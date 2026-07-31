@@ -5,7 +5,6 @@
 
 package org.signal.mediasend.screens.edit.video
 
-import android.content.Context
 import android.net.Uri
 import android.view.LayoutInflater
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -25,6 +24,7 @@ import androidx.compose.ui.viewinterop.AndroidView
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.horizontalGutters
 import org.signal.core.util.logging.Log
+import org.signal.mediasend.PreviewMediaInputFactory
 import org.signal.mediasend.R
 import org.signal.mediasend.screens.edit.MediaEditScreenEvents
 import org.thoughtcrime.securesms.video.interfaces.MediaInputFactory
@@ -144,9 +144,7 @@ fun VideoTrimBarPreview() {
   Previews.Preview {
     VideoTrimBar(
       videoUri = Uri.EMPTY,
-      mediaInputFactory = object : MediaInputFactory {
-        override fun createForUri(context: Context, uri: Uri) = throw UnsupportedOperationException()
-      },
+      mediaInputFactory = PreviewMediaInputFactory,
       videoTrimData = VideoTrimData(isDurationEdited = false)
     )
   }

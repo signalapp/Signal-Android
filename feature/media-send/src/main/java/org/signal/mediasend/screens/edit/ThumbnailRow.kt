@@ -304,12 +304,12 @@ private fun DeleteBoxPreview() {
 }
 
 @Composable
-internal fun rememberPreviewMedia(count: Int): List<Media> {
+internal fun rememberPreviewMedia(count: Int, contentType: String = ContentTypeUtil.IMAGE_PNG): List<Media> {
   return remember(count) {
     (0 until count).map {
       Media(
         uri = "https://example.com/image$it.png".toUri(),
-        contentType = ContentTypeUtil.IMAGE_PNG,
+        contentType = contentType,
         width = 100,
         height = 100,
         duration = 0,

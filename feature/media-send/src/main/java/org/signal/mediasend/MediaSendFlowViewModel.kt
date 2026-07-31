@@ -792,7 +792,13 @@ class MediaSendFlowViewModel(
     val snapshot = state.value
     if (snapshot.sentMediaQuality == sentMediaQuality) return
 
-    updateState { copy(sentMediaQuality = sentMediaQuality, isPreUploadEnabled = false) }
+    updateState {
+      copy(
+        sentMediaQuality = sentMediaQuality,
+        videoTranscodingTiers = repository.getVideoTranscodingTiers(sentMediaQuality),
+        isPreUploadEnabled = false
+      )
+    }
     repository.sentMediaQuality = sentMediaQuality
     preUploadController.cancelAllUploads()
 

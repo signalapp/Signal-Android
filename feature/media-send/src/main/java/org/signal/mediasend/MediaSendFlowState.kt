@@ -17,6 +17,7 @@ import org.signal.core.models.parcelers.NullableCharSequenceParceler
 import org.signal.core.util.ContentTypeUtil
 import org.signal.mediasend.screens.edit.image.BrushWidths
 import org.signal.mediasend.screens.edit.video.VideoTrimData
+import org.thoughtcrime.securesms.video.TranscodingConfig
 import kotlin.time.Duration
 
 /**
@@ -127,6 +128,13 @@ data class MediaSendFlowState(
   val storyMaxVideoDuration: Duration = MediaSendDependencies.mediaSendRepository.storyMaxVideoDuration,
 
   /**
+   * The transcoding tiers that apply at [sentMediaQuality], which an estimate of a video's upload size is derived from.
+   * Re-read whenever the quality changes.
+   */
+  val videoTranscodingTiers: @WriteWith<TransientVideoTranscodingTiersParceler> List<TranscodingConfig.QualityTier> =
+    MediaSendDependencies.mediaSendRepository.getVideoTranscodingTiers(sentMediaQuality),
+
+  /**
    * The image editor's per-tool brush widths. Seeded from storage and written back as the user adjusts them.
    */
   val brushWidths: BrushWidths = MediaSendDependencies.mediaSendRepository.brushWidths
@@ -168,6 +176,17 @@ data class MediaSendFlowState(
   private object TransientSentMediaQualityParceler : Parceler<SentMediaQuality> {
     override fun create(parcel: Parcel): SentMediaQuality = MediaSendDependencies.mediaSendRepository.sentMediaQuality
     override fun SentMediaQuality.write(parcel: Parcel, flags: Int) = Unit
+  }
+
+  /**
+   * Derived from the quality the repository restores, so it is re-read alongside it rather than saved.
+   */
+  private object TransientVideoTranscodingTiersParceler : Parceler<List<TranscodingConfig.QualityTier>> {
+    override fun create(parcel: Parcel): List<TranscodingConfig.QualityTier> {
+      return MediaSendDependencies.mediaSendRepository.getVideoTranscodingTiers(MediaSendDependencies.mediaSendRepository.sentMediaQuality)
+    }
+
+    override fun List<TranscodingConfig.QualityTier>.write(parcel: Parcel, flags: Int) = Unit
   }
 
   enum class ViewOnceToggleState(val code: Int) {

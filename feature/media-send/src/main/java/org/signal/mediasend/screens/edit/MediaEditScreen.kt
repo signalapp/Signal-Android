@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.Arrangement.spacedBy
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
@@ -45,14 +46,16 @@ import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.LocalChatColorProvider
 import org.signal.core.ui.compose.LocalDisplayNameProvider
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.horizontalGutters
 import org.signal.core.ui.rememberWindowBreakpoint
+import org.signal.core.util.ContentTypeUtil
 import org.signal.glide.compose.GlideImage
 import org.signal.glide.compose.GlideImageScaleType
 import org.signal.glide.decryptableuri.DecryptableUri
 import org.signal.imageeditor.core.model.EditorModel
 import org.signal.mediasend.EditorState
-import org.signal.mediasend.MediaSendDependencies
 import org.signal.mediasend.MediaSendFlowState
+import org.signal.mediasend.PreviewMediaInputFactory
 import org.signal.mediasend.rememberPreviewState
 import org.signal.mediasend.screens.MediaSendMetrics
 import org.signal.mediasend.screens.edit.document.DocumentPage
@@ -67,13 +70,18 @@ import org.signal.mediasend.screens.edit.image.ImageEditorUndoRedoButtons
 import org.signal.mediasend.screens.edit.image.RotationDial
 import org.signal.mediasend.screens.edit.video.VideoEditorFragment
 import org.signal.mediasend.screens.edit.video.VideoEditorViewModel
+import org.signal.mediasend.screens.edit.video.VideoSizeHint
 import org.signal.mediasend.screens.edit.video.VideoTrimBar
+import org.signal.mediasend.screens.edit.video.VideoTrimData
+import org.thoughtcrime.securesms.video.TranscodingConfig
+import org.thoughtcrime.securesms.video.interfaces.MediaInputFactory
 
 @Composable
 internal fun MediaEditScreen(
   state: MediaSendFlowState,
   onEvent: (MediaEditScreenEvents) -> Unit,
-  imageControllers: ImageController.Container
+  imageControllers: ImageController.Container,
+  mediaInputFactory: MediaInputFactory
 ) {
   val scope = rememberCoroutineScope()
 
@@ -161,6 +169,11 @@ internal fun MediaEditScreen(
         }
 
         is EditorState.VideoTrim, EditorState.VideoGif -> {
+          if (LocalInspectionMode.current) {
+            Box(modifier = Modifier.fillMaxSize().background(color = Color.Red))
+            return@HorizontalPager
+          }
+
           val media = state.selectedMedia[index]
           var videoEditorFragment by remember(media.uri) { mutableStateOf<VideoEditorFragment?>(null) }
 
@@ -253,6 +266,8 @@ internal fun MediaEditScreen(
           VideoTrimTimeline(
             videoUri = focusedUri,
             editorState = focusedEditorState,
+            transcodingTiers = state.videoTranscodingTiers,
+            mediaInputFactory = mediaInputFactory,
             videoEditorViewModel = videoEditorViewModel,
             onInteractingChange = { isVideoInteracting = it },
             onEvent = onEvent
@@ -456,13 +471,16 @@ private fun MediaToolbar(
 }
 
 /**
- * Trim/scrub timeline for the focused video. Drag state is reported through [onInteractingChange] so the rest of the
- * stack can get out of the way, and seeks are translated into player commands rather than screen events.
+ * Trim/scrub timeline for the focused video, with the resulting duration and estimated upload size beneath it. Drag
+ * state is reported through [onInteractingChange] so the rest of the stack can get out of the way, and seeks are
+ * translated into player commands rather than screen events.
  */
 @Composable
 private fun VideoTrimTimeline(
   videoUri: Uri,
   editorState: EditorState.VideoTrim,
+  transcodingTiers: List<TranscodingConfig.QualityTier>,
+  mediaInputFactory: MediaInputFactory,
   videoEditorViewModel: VideoEditorViewModel,
   onInteractingChange: (Boolean) -> Unit,
   onEvent: (MediaEditScreenEvents) -> Unit
@@ -475,35 +493,49 @@ private fun VideoTrimTimeline(
     }
   }
 
-  VideoTrimBar(
-    videoUri = videoUri,
-    mediaInputFactory = MediaSendDependencies.mediaInputFactory,
-    videoTrimData = editorState.videoTrimData,
-    maxSelectableDurationUs = editorState.maxDurationUs,
-    playbackPositionUs = playbackPositionUs,
-    onEvent = { event ->
-      when (event) {
-        is MediaEditScreenEvents.VideoTrimChanged -> {
-          onInteractingChange(!event.editingComplete)
-          onEvent(event)
-        }
+  Column(
+    horizontalAlignment = Alignment.End,
+    modifier = Modifier.fillMaxWidth()
+  ) {
+    VideoTrimBar(
+      videoUri = videoUri,
+      mediaInputFactory = mediaInputFactory,
+      videoTrimData = editorState.videoTrimData,
+      maxSelectableDurationUs = editorState.maxDurationUs,
+      playbackPositionUs = playbackPositionUs,
+      onEvent = { event ->
+        when (event) {
+          is MediaEditScreenEvents.VideoTrimChanged -> {
+            onInteractingChange(!event.editingComplete)
+            onEvent(event)
+          }
 
-        is MediaEditScreenEvents.VideoSeek -> {
-          onInteractingChange(!event.editingComplete)
-          videoEditorViewModel.sendCommand(
-            videoUri,
-            if (event.editingComplete) {
-              VideoEditorViewModel.Command.EndPositionDrag(event.positionUs)
-            } else {
-              VideoEditorViewModel.Command.PositionDrag(event.positionUs)
-            }
-          )
-        }
+          is MediaEditScreenEvents.VideoSeek -> {
+            onInteractingChange(!event.editingComplete)
+            videoEditorViewModel.sendCommand(
+              videoUri,
+              if (event.editingComplete) {
+                VideoEditorViewModel.Command.EndPositionDrag(event.positionUs)
+              } else {
+                VideoEditorViewModel.Command.PositionDrag(event.positionUs)
+              }
+            )
+          }
 
-        else -> onEvent(event)
+          else -> onEvent(event)
+        }
       }
-    }
-  )
+    )
+
+    // Gutters to match the bar's, so the hint's end lines up with the end of the timeline.
+    VideoSizeHint(
+      transcodingTiers = transcodingTiers,
+      duration = editorState.videoTrimData.getDuration(),
+      modifier = Modifier
+        .horizontalGutters()
+        .padding(top = 4.dp)
+    )
+  }
 }
 
 @Composable
@@ -530,7 +562,29 @@ private fun MediaEditScreenPreview() {
         )
       ),
       onEvent = {},
-      imageControllers = remember { ImageController.Container() }
+      imageControllers = remember { ImageController.Container() },
+      mediaInputFactory = PreviewMediaInputFactory
+    )
+  }
+}
+
+@AllDevicePreviews
+@Composable
+private fun MediaEditScreenVideoPreview() {
+  val selectedMedia = rememberPreviewMedia(10, contentType = ContentTypeUtil.VIDEO_MP4)
+
+  Previews.Preview {
+    MediaEditScreen(
+      state = rememberPreviewState().copy(
+        selectedMedia = selectedMedia,
+        focusedMedia = selectedMedia.first(),
+        editorStateMap = mutableMapOf(
+          selectedMedia.first().uri to EditorState.VideoTrim(VideoTrimData())
+        )
+      ),
+      onEvent = {},
+      imageControllers = remember { ImageController.Container() },
+      mediaInputFactory = PreviewMediaInputFactory
     )
   }
 }

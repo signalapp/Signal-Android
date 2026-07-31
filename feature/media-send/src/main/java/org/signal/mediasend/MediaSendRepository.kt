@@ -14,6 +14,7 @@ import org.signal.core.models.media.MediaFolder
 import org.signal.imageeditor.core.model.EditorModel
 import org.signal.mediasend.preupload.PreUploadResult
 import org.signal.mediasend.screens.edit.image.BrushWidths
+import org.thoughtcrime.securesms.video.TranscodingConfig
 import java.io.InputStream
 import kotlin.time.Duration
 
@@ -97,6 +98,12 @@ interface MediaSendRepository {
    * duration allowed by any transcoding quality tier.
    */
   fun getMaxVideoRecordDurationSeconds(): Int
+
+  /**
+   * The transcoding quality tiers that apply when sending video at [quality]. These describe what the transcoder will
+   * target, and are what an estimate of a video's upload size is derived from.
+   */
+  fun getVideoTranscodingTiers(quality: SentMediaQuality): List<TranscodingConfig.QualityTier>
 
   /**
    * Checks if video transcoding is available on this device.

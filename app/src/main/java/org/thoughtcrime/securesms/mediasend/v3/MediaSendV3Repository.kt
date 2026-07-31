@@ -249,6 +249,10 @@ object MediaSendV3Repository : MediaSendRepository {
     return TranscodingConfigProvider.getMaxVideoDurationSeconds()
   }
 
+  override fun getVideoTranscodingTiers(quality: SentMediaQuality): List<TranscodingConfig.QualityTier> {
+    return TranscodingConfigProvider.getConfigsForMediaQuality(quality)
+  }
+
   override fun isVideoTranscodeAvailable(): Boolean {
     return MediaConstraints.isVideoTranscodeAvailable()
   }

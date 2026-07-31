@@ -110,7 +110,8 @@ internal fun MediaSendNavigation(
           MediaEditScreen(
             state = state,
             onEvent = viewModel::onMediaEditScreenEvent,
-            imageControllers = viewModel.imageControllers
+            imageControllers = viewModel.imageControllers,
+            mediaInputFactory = MediaSendDependencies.mediaInputFactory
           )
         }
 
