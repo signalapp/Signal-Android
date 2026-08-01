@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.jobs
 
 import android.app.Application
+import arrow.core.right
 import assertk.assertThat
 import assertk.assertions.isEqualTo
 import assertk.assertions.isNotNull
@@ -22,7 +23,6 @@ import org.robolectric.annotation.Config
 import org.signal.core.util.logging.Log
 import org.signal.donations.InAppPaymentType
 import org.signal.donations.PaymentSourceType
-import org.signal.network.NetworkResult
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
@@ -451,7 +451,7 @@ class InAppPaymentRecurringContextJobTest {
     }
 
     mockkObject(BackupRepository)
-    every { BackupRepository.getBackupTier() } returns NetworkResult.Success(MessageBackupTier.PAID)
+    every { BackupRepository.getBackupTier() } returns MessageBackupTier.PAID.right()
     every { BackupRepository.resetInitializedStateAndAuthCredentials() } returns Unit
 
     val iap = insertInAppPayment(

@@ -21,6 +21,7 @@ import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations
 import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations
 import org.signal.mediasend.MediaSendDependencies
 import org.signal.network.api.ArchiveApi
+import org.signal.network.api.ArchiveApiV2
 import org.signal.network.api.AttachmentApi
 import org.signal.network.api.CallingApi
 import org.signal.network.api.CdsApi
@@ -38,6 +39,7 @@ import org.signal.network.api.UsernameApi
 import org.signal.network.config.HttpProxy
 import org.signal.network.config.SignalServiceConfiguration
 import org.signal.network.rest.SignalRestClient
+import org.signal.network.service.ArchiveService
 import org.signal.network.service.MessageService
 import org.signal.video.exo.ExoPlayerPool
 import org.thoughtcrime.securesms.BuildConfig
@@ -352,6 +354,14 @@ object AppDependencies {
     get() = networkModule.archiveApi
 
   @JvmStatic
+  val archiveApiV2: ArchiveApiV2
+    get() = networkModule.archiveApiV2
+
+  @JvmStatic
+  val archiveService: ArchiveService
+    get() = networkModule.archiveService
+
+  @JvmStatic
   val keysApi: KeysApi
     get() = networkModule.keysApi
 
@@ -470,6 +480,8 @@ object AppDependencies {
     fun provideSignalServiceAccountManager(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, accountApi: AccountApi, pushServiceSocket: PushServiceSocket, groupsV2Operations: GroupsV2Operations): SignalServiceAccountManager
     fun provideSignalServiceMessageSender(protocolStore: SignalServiceDataStore, pushServiceSocket: PushServiceSocket, messageApi: MessageApi, keysApi: KeysApi): SignalServiceMessageSender
     fun provideMessageService(protocolStore: SignalServiceDataStore, messageApiV2: MessageApiV2, keysApiV2: KeysApiV2): MessageService
+    fun provideArchiveApiV2(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket, signalServiceConfiguration: SignalServiceConfiguration): ArchiveApiV2
+    fun provideArchiveService(archiveApi: ArchiveApiV2): ArchiveService
     fun provideSignalServiceMessageReceiver(pushServiceSocket: PushServiceSocket): SignalServiceMessageReceiver
     fun provideSignalServiceNetworkAccess(): SignalServiceNetworkAccess
     fun provideRecipientCache(): LiveRecipientCache
@@ -508,7 +520,7 @@ object AppDependencies {
     fun providePinnedMessageManager(): PinnedMessageManager
     fun provideLibsignalNetwork(config: SignalServiceConfiguration): Network
     fun provideBillingApi(): BillingApi
-    fun provideArchiveApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket, pushServiceSocket: PushServiceSocket, signalServiceConfiguration: SignalServiceConfiguration): ArchiveApi
+    fun provideArchiveApi(pushServiceSocket: PushServiceSocket): ArchiveApi
     fun provideKeysApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket): KeysApi
     fun provideAttachmentApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, pushServiceSocket: PushServiceSocket): AttachmentApi
     fun provideLinkDeviceApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket): LinkDeviceApi

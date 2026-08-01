@@ -5,10 +5,11 @@
 
 package org.thoughtcrime.securesms.jobs
 
+import arrow.core.Either
 import org.signal.core.util.logging.Log
-import org.signal.network.NetworkResult
-import org.thoughtcrime.securesms.backup.v2.BackupRepository
+import org.signal.network.service.ArchiveError
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.jobmanager.CoroutineJob
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -20,7 +21,7 @@ import kotlin.time.Duration.Companion.milliseconds
  */
 class BackupRefreshJob private constructor(
   parameters: Parameters
-) : Job(parameters) {
+) : CoroutineJob(parameters) {
 
   companion object {
     private val TAG = Log.tag(BackupRefreshJob::class)
@@ -68,34 +69,37 @@ class BackupRefreshJob private constructor(
     }
   }
 
-  override fun run(): Result {
+  override suspend fun doRun(): Result {
     if (!canExecuteJob()) {
       return Result.success()
     }
 
-    val result = BackupRepository.refreshBackup()
-
-    return when (result) {
-      is NetworkResult.Success -> {
+    return when (val result = AppDependencies.archiveService.refreshBackup()) {
+      is Either.Right -> {
         SignalStore.backup.lastCheckInMillis = System.currentTimeMillis()
         SignalStore.backup.lastCheckInSnoozeMillis = 0
         Result.success()
       }
-      is NetworkResult.NetworkError -> {
-        Log.w(TAG, "Network error when refreshing backup.", result.getCause())
-        Result.retry(defaultBackoff())
-      }
-      is NetworkResult.StatusCodeError -> {
-        Log.w(TAG, "Status code error (${result.code}) when refreshing backup.", result.getCause())
-        if (result.code == 429) {
-          Result.retry(result.retryAfter()?.inWholeMilliseconds ?: defaultBackoff())
-        } else {
+      is Either.Left -> when (val error = result.value) {
+        is ArchiveError.NetworkError -> {
+          Log.w(TAG, "Network error when refreshing backup.", error.exception)
+          Result.retry(defaultBackoff())
+        }
+        is ArchiveError.CredentialError.RateLimited -> {
+          Log.w(TAG, "Rate limited when refreshing backup.", error.cause)
+          Result.retry(error.retryAfter?.inWholeMilliseconds ?: defaultBackoff())
+        }
+        is ArchiveError.ApplicationError -> {
+          Log.w(TAG, "Application error when refreshing backup.", error.exception)
           Result.failure()
         }
-      }
-      is NetworkResult.ApplicationError -> {
-        Log.w(TAG, "Application error when refreshing backup.", result.throwable)
-        Result.failure()
+        is ArchiveError.CredentialError.Unauthorized,
+        is ArchiveError.CredentialError.NotFound,
+        is ArchiveError.CredentialError.InvalidRequest,
+        is ArchiveError.CredentialError.ZkVerificationFailed -> {
+          Log.w(TAG, "Error when refreshing backup: ${error::class.simpleName}", error.cause)
+          Result.failure()
+        }
       }
     }
   }

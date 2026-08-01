@@ -6,11 +6,13 @@
 package org.thoughtcrime.securesms.jobs
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import arrow.core.right
 import assertk.assertThat
 import assertk.assertions.isEqualTo
 import assertk.assertions.isFalse
 import assertk.assertions.isNull
 import io.mockk.Runs
+import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.just
 import io.mockk.mockkObject
@@ -24,7 +26,8 @@ import org.junit.runner.RunWith
 import org.signal.core.models.backup.MediaName
 import org.signal.core.models.database.AttachmentId
 import org.signal.core.util.Base64.decodeBase64OrThrow
-import org.signal.network.NetworkResult
+import org.signal.network.api.ArchiveApiV2
+import org.signal.network.service.ArchiveService
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
@@ -33,12 +36,11 @@ import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.BackupMediaSnapshotTable.MediaEntry
 import org.thoughtcrime.securesms.database.MessageType
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.testing.SignalActivityRule
 import org.thoughtcrime.securesms.util.MediaUtil
-import org.whispersystems.signalservice.api.archive.ArchiveGetMediaItemsResponse
-import org.whispersystems.signalservice.api.archive.ArchiveGetMediaItemsResponse.StoredMediaObject
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId
 import java.io.ByteArrayInputStream
@@ -52,6 +54,8 @@ class ArchiveAttachmentReconciliationJobTest {
   @get:Rule
   val harness = SignalActivityRule()
 
+  private val archiveService: ArchiveService = AppDependencies.archiveService
+
   @Before
   fun setUp() {
     SignalStore.backup.backupTier = MessageBackupTier.PAID
@@ -61,7 +65,7 @@ class ArchiveAttachmentReconciliationJobTest {
 
     mockkObject(BackupRepository)
     mockkObject(ArchiveCommitAttachmentDeletesJob)
-    every { ArchiveCommitAttachmentDeletesJob.deleteMediaObjectsFromCdn(any(), any(), any(), any()) } returns null
+    coEvery { ArchiveCommitAttachmentDeletesJob.deleteMediaObjectsFromCdn(any(), any(), any(), any()) } returns null
   }
 
   @After
@@ -221,20 +225,14 @@ class ArchiveAttachmentReconciliationJobTest {
     val remoteKey = attachment.remoteKey!!.decodeBase64OrThrow()
     val mediaId = MediaName.fromPlaintextHashAndRemoteKey(plaintextHash, remoteKey).toMediaId(SignalStore.backup.mediaRootBackupKey).encode()
 
-    every { BackupRepository.listRemoteMediaObjects(any(), any()) } returns NetworkResult.Success(
-      ArchiveGetMediaItemsResponse(
-        storedMediaObjects = listOf(StoredMediaObject(cdn = cdn, mediaId = mediaId, objectLength = attachment.size)),
-        backupDir = null,
-        mediaDir = null,
-        cursor = null
-      )
-    )
+    coEvery { archiveService.listRemoteMediaObjects(any(), any()) } returns ArchiveApiV2.MediaItemsPage(
+      storedMediaObjects = listOf(ArchiveApiV2.StoredMediaObject(cdn = cdn, mediaId = mediaId, objectLength = attachment.size)),
+      cursor = null
+    ).right()
   }
 
   private fun fakeCdnEmpty() {
-    every { BackupRepository.listRemoteMediaObjects(any(), any()) } returns NetworkResult.Success(
-      ArchiveGetMediaItemsResponse(storedMediaObjects = emptyList(), backupDir = null, mediaDir = null, cursor = null)
-    )
+    coEvery { archiveService.listRemoteMediaObjects(any(), any()) } returns ArchiveApiV2.MediaItemsPage(storedMediaObjects = emptyList(), cursor = null).right()
   }
 
   private fun createIncomingMessage(serverTime: Duration, attachment: Attachment): IncomingMessage {

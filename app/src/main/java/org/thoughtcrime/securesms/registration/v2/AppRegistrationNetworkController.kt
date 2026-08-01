@@ -102,6 +102,7 @@ import kotlin.time.Duration
 import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
+import kotlin.time.toKotlinDuration
 import org.whispersystems.signalservice.api.account.AccountAttributes as ServiceAccountAttributes
 
 /**
@@ -349,22 +350,22 @@ class AppRegistrationNetworkController(
     val access = if (messageCredential != null) {
       ArchiveServiceAccess(messageCredential, messageBackupKey)
     } else {
-      when (val credResult = SignalNetwork.archive.getServiceCredentials(currentTime)) {
-        is NetworkResult.Success -> {
+      when (val credResult = SignalNetwork.archiveV2.getServiceCredentials(currentTime)) {
+        is RequestResult.Success -> {
           SignalStore.backup.messageCredentials.add(credResult.result.messageCredentials)
           SignalStore.backup.messageCredentials.clearOlderThan(currentTime)
           val credential = SignalStore.backup.messageCredentials.byDay.getForCurrentTime(currentTime.milliseconds)
             ?: return@withContext RequestResult.ApplicationError(IllegalStateException("Failed to obtain backup credentials after fetch"))
           ArchiveServiceAccess(credential, messageBackupKey)
         }
-        is NetworkResult.StatusCodeError -> return@withContext RequestResult.ApplicationError(IllegalStateException("Failed to fetch backup credentials: ${credResult.code}"))
-        is NetworkResult.NetworkError -> return@withContext RequestResult.RetryableNetworkError(credResult.exception)
-        is NetworkResult.ApplicationError -> return@withContext RequestResult.ApplicationError(credResult.throwable)
+        is RequestResult.NonSuccess -> return@withContext RequestResult.ApplicationError(IllegalStateException("Failed to fetch backup credentials: ${credResult.error}"))
+        is RequestResult.RetryableNetworkError -> return@withContext RequestResult.RetryableNetworkError(credResult.networkError)
+        is RequestResult.ApplicationError -> return@withContext RequestResult.ApplicationError(credResult.cause)
       }
     }
 
-    when (val result = SignalNetwork.archive.getMessageBackupInfo(aci, access)) {
-      is NetworkResult.Success -> {
+    when (val result = SignalNetwork.archiveV2.getMessageBackupInfo(aci, access)) {
+      is RequestResult.Success -> {
         val info = result.result
         RequestResult.Success(
           NetworkController.GetBackupInfoResponse(
@@ -378,19 +379,14 @@ class AppRegistrationNetworkController(
           )
         )
       }
-      is NetworkResult.StatusCodeError -> {
-        when (result.code) {
-          401 -> {
-            // The server doesn't distinguish an invalid credential from a backup-id that was never provisioned, so libsignal's guidance is to treat this as
-            // "backups aren't set up" rather than an auth failure.
-            RequestResult.NonSuccess(NetworkController.GetBackupInfoError.NoBackup)
-          }
-          429 -> RequestResult.NonSuccess(NetworkController.GetBackupInfoError.RateLimited(result.retryAfter() ?: Duration.ZERO))
-          else -> RequestResult.ApplicationError(IllegalStateException("Unexpected response code: ${result.code}"))
-        }
+      // The server doesn't distinguish an invalid credential from a backup-id that was never provisioned, so libsignal's guidance is to treat this as
+      // "backups aren't set up" rather than an auth failure.
+      is RequestResult.NonSuccess -> RequestResult.NonSuccess(NetworkController.GetBackupInfoError.NoBackup)
+      is RequestResult.RetryableNetworkError -> when (val retryAfter = result.retryAfter) {
+        null -> RequestResult.RetryableNetworkError(result.networkError)
+        else -> RequestResult.NonSuccess(NetworkController.GetBackupInfoError.RateLimited(retryAfter.toKotlinDuration()))
       }
-      is NetworkResult.NetworkError -> RequestResult.RetryableNetworkError(result.exception)
-      is NetworkResult.ApplicationError -> RequestResult.ApplicationError(result.throwable)
+      is RequestResult.ApplicationError -> RequestResult.ApplicationError(result.cause)
     }
   }
 
@@ -471,11 +467,11 @@ class AppRegistrationNetworkController(
 
     val access = ArchiveServiceAccess(messageCredential, aep.deriveMessageBackupKey())
 
-    val cdnCredentials = when (val cdnResult = SignalNetwork.archive.getCdnReadCredentials(cdn, aci, access)) {
-      is NetworkResult.Success -> cdnResult.result.headers
-      is NetworkResult.StatusCodeError -> return@withContext RequestResult.ApplicationError(IllegalStateException("Failed to get CDN credentials: ${cdnResult.code}"))
-      is NetworkResult.NetworkError -> return@withContext RequestResult.RetryableNetworkError(cdnResult.exception)
-      is NetworkResult.ApplicationError -> return@withContext RequestResult.ApplicationError(cdnResult.throwable)
+    val cdnCredentials = when (val cdnResult = SignalNetwork.archiveV2.getCdnReadCredentials(cdn, aci, access)) {
+      is RequestResult.Success -> cdnResult.result.headers
+      is RequestResult.NonSuccess -> return@withContext RequestResult.ApplicationError(IllegalStateException("Failed to get CDN credentials: ${cdnResult.error}"))
+      is RequestResult.RetryableNetworkError -> return@withContext RequestResult.RetryableNetworkError(cdnResult.networkError)
+      is RequestResult.ApplicationError -> return@withContext RequestResult.ApplicationError(cdnResult.cause)
     }
 
     try {

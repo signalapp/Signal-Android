@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.jobs
 
+import arrow.core.getOrElse
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.logging.Log
 import org.signal.donations.InAppPaymentType
@@ -13,7 +14,6 @@ import org.signal.libsignal.zkgroup.receipts.ReceiptCredential
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialRequestContext
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialResponse
-import org.signal.network.NetworkResult
 import org.signal.network.exceptions.NonSuccessfulResponseCodeException
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
@@ -239,12 +239,9 @@ class InAppPaymentRecurringContextJob private constructor(
           return false
         }
 
-        val tier = when (val result = BackupRepository.getBackupTier()) {
-          is NetworkResult.Success -> result.result
-          else -> {
-            warning("Failed to get backup tier via zk check.")
-            MessageBackupTier.FREE
-          }
+        val tier = BackupRepository.getBackupTier().getOrElse {
+          warning("Failed to get backup tier via zk check.")
+          MessageBackupTier.FREE
         }
 
         if (tier != MessageBackupTier.PAID) {

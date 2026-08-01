@@ -11,9 +11,13 @@ import androidx.annotation.CheckResult
 import androidx.annotation.Discouraged
 import androidx.annotation.WorkerThread
 import androidx.core.app.NotificationCompat
+import arrow.core.Either
+import arrow.core.flatMap
+import arrow.core.left
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
@@ -63,26 +67,24 @@ import org.signal.core.util.requireIntOrNull
 import org.signal.core.util.requireNonNullString
 import org.signal.core.util.requireString
 import org.signal.core.util.stream.NonClosingOutputStream
-import org.signal.core.util.urlEncode
 import org.signal.core.util.withinTransaction
 import org.signal.libsignal.messagebackup.BackupForwardSecrecyToken
-import org.signal.libsignal.net.CopyBackupMediaItem
-import org.signal.libsignal.net.CopyBackupMediaOutcome
 import org.signal.libsignal.net.DeleteBackupMediaItem
-import org.signal.libsignal.zkgroup.VerificationFailedException
+import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.zkgroup.backups.BackupLevel
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
-import org.signal.network.ApplicationErrorAction
 import org.signal.network.NetworkResult
-import org.signal.network.StatusCodeErrorAction
+import org.signal.network.api.ArchiveApiV2
 import org.signal.network.api.SvrBApi
 import org.signal.network.exceptions.NonSuccessfulResponseCodeException
+import org.signal.network.service.ArchiveError
+import org.signal.network.service.ArchiveService
+import org.signal.network.service.toArchiveResult
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
 import org.thoughtcrime.securesms.backup.DeletionState
-import org.thoughtcrime.securesms.backup.v2.BackupRepository.copyAttachmentToArchive
 import org.thoughtcrime.securesms.backup.v2.BackupRepository.exportForDebugging
 import org.thoughtcrime.securesms.backup.v2.importer.ChatItemArchiveImporter
 import org.thoughtcrime.securesms.backup.v2.processor.AccountDataArchiveProcessor
@@ -136,10 +138,8 @@ import org.thoughtcrime.securesms.jobs.StorageForcePushJob
 import org.thoughtcrime.securesms.jobs.Svr2MirrorJob
 import org.thoughtcrime.securesms.jobs.UploadAttachmentToArchiveJob
 import org.thoughtcrime.securesms.keyvalue.BackupValues
-import org.thoughtcrime.securesms.keyvalue.BackupValues.ArchiveServiceCredentials
 import org.thoughtcrime.securesms.keyvalue.KeyValueStore
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.keyvalue.isDecisionPending
 import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogRepository
 import org.thoughtcrime.securesms.net.SignalNetwork
@@ -153,19 +153,10 @@ import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.toMillis
-import org.whispersystems.signalservice.api.archive.ArchiveGetMediaItemsResponse
-import org.whispersystems.signalservice.api.archive.ArchiveKeyRotationLimitResponse
-import org.whispersystems.signalservice.api.archive.ArchiveServiceAccess
-import org.whispersystems.signalservice.api.archive.ArchiveServiceAccessPair
-import org.whispersystems.signalservice.api.archive.ArchiveServiceCredential
-import org.whispersystems.signalservice.api.archive.GetArchiveCdnCredentialsResponse
-import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil
 import org.whispersystems.signalservice.api.link.TransferArchiveResponse
 import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment.ProgressListener
-import org.whispersystems.signalservice.internal.crypto.PaddingInputStream
 import org.whispersystems.signalservice.internal.push.AttachmentUploadForm
-import org.whispersystems.signalservice.internal.push.AuthCredentials
 import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
@@ -198,38 +189,8 @@ object BackupRepository {
   private const val RECENT_RECIPIENTS_MAX = 50
   private val MANUAL_BACKUP_NOTIFICATION_THRESHOLD = 30.days
 
-  private val resetInitializedStateErrorAction: StatusCodeErrorAction = { error ->
-    when (error.code) {
-      401 -> {
-        Log.w(TAG, "Received status 401. Resetting initialized state + auth credentials.", error.exception)
-        resetInitializedStateAndAuthCredentials()
-      }
-
-      403 -> {
-        if (SignalStore.backup.backupTierInternalOverride != null) {
-          Log.w(TAG, "Received status 403, but the internal override is set, so not doing anything.", error.exception)
-        } else {
-          Log.w(TAG, "Received status 403. The user is not in the media tier. Updating local state.", error.exception)
-          if (SignalStore.backup.backupTier == MessageBackupTier.PAID) {
-            Log.w(TAG, "Local device thought it was on PAID tier. Downgrading to FREE tier.")
-            SignalStore.backup.backupTier = MessageBackupTier.FREE
-            SignalStore.backup.backupExpiredAndDowngraded = true
-            scheduleSyncForAccountChange()
-          }
-
-          SignalStore.uiHints.markHasEverEnabledRemoteBackups()
-        }
-      }
-    }
-  }
-
-  private val clearAuthCredentials: ApplicationErrorAction = { error ->
-    if (error.getCause() is VerificationFailedException) {
-      Log.w(TAG, "Unable to verify/receive credentials, clearing cache to fetch new.", error.getCause())
-      SignalStore.backup.messageCredentials.clearAll()
-      SignalStore.backup.mediaCredentials.clearAll()
-    }
-  }
+  private val archiveService: ArchiveService
+    get() = AppDependencies.archiveService
 
   /**
    * Generates a new AEP that the user can choose to confirm.
@@ -280,86 +241,6 @@ object BackupRepository {
     Log.d(TAG, "Waiting for local backup job cancelations to occur...")
     while (!AppDependencies.jobManager.areQueuesEmpty(setOf(LocalBackupJob.QUEUE))) {
       delay(1.seconds)
-    }
-  }
-
-  /**
-   * Triggers backup id reservation. As documented, this is safe to perform multiple times.
-   */
-  @WorkerThread
-  fun triggerBackupIdReservation(): NetworkResult<Unit> {
-    val messageBackupKey = SignalStore.backup.messageBackupKey
-    val mediaRootBackupKey = SignalStore.backup.mediaRootBackupKey
-    return SignalNetwork.archive.triggerBackupIdReservation(messageBackupKey, mediaRootBackupKey, SignalStore.account.requireAci())
-      .runIfSuccessful {
-        SignalStore.backup.messageCredentials.clearAll()
-        SignalStore.backup.mediaCredentials.clearAll()
-      }
-  }
-
-  @WorkerThread
-  fun triggerBackupIdReservationForRestore(): NetworkResult<Unit> {
-    val messageBackupKey = SignalStore.backup.messageBackupKey
-    return SignalNetwork.archive.triggerBackupIdReservation(messageBackupKey, null, SignalStore.account.requireAci())
-      .runIfSuccessful {
-        SignalStore.backup.messageCredentials.clearAll()
-      }
-  }
-
-  /**
-   * Refreshes backup via server
-   */
-  fun refreshBackup(): NetworkResult<Unit> {
-    Log.d(TAG, "Refreshing backup...")
-
-    Log.d(TAG, "Fetching backup auth credential.")
-    val credentialResult = initBackupAndFetchAuth()
-    if (credentialResult.getCause() != null) {
-      Log.w(TAG, "Failed to access backup auth.", credentialResult.getCause())
-      return credentialResult.map { Unit }
-    }
-
-    val credential = credentialResult.successOrThrow()
-
-    Log.d(TAG, "Fetched backup auth credential. Fetching backup tier.")
-
-    val backupTierResult = getBackupTier()
-    if (backupTierResult.getCause() != null) {
-      Log.w(TAG, "Failed to access backup tier.", backupTierResult.getCause())
-      return backupTierResult.map { Unit }
-    }
-
-    val backupTier = backupTierResult.successOrThrow()
-
-    Log.d(TAG, "Fetched backup tier. Refreshing message backup access.")
-    val messageBackupAccessResult = AppDependencies.archiveApi.refreshBackup(
-      aci = SignalStore.account.requireAci(),
-      archiveServiceAccess = credential.messageBackupAccess
-    )
-
-    if (messageBackupAccessResult.getCause() != null) {
-      Log.d(TAG, "Failed to refresh message backup access.", messageBackupAccessResult.getCause())
-      return messageBackupAccessResult
-    }
-
-    Log.d(TAG, "Refreshed message backup access.")
-    if (backupTier == MessageBackupTier.PAID) {
-      Log.d(TAG, "Refreshing media backup access.")
-
-      val mediaBackupAccessResult = AppDependencies.archiveApi.refreshBackup(
-        aci = SignalStore.account.requireAci(),
-        archiveServiceAccess = credential.mediaBackupAccess
-      )
-
-      if (mediaBackupAccessResult.getCause() != null) {
-        Log.d(TAG, "Failed to refresh media backup access.", mediaBackupAccessResult.getCause())
-      }
-
-      Log.d(TAG, "Refreshed media backup access.")
-
-      return mediaBackupAccessResult
-    } else {
-      return messageBackupAccessResult
     }
   }
 
@@ -1548,35 +1429,16 @@ object BackupRepository {
     return ImportResult.Success(backupTime = header.backupTimeMs, selfRecipientId = selfId)
   }
 
-  fun listRemoteMediaObjects(limit: Int, cursor: String? = null): NetworkResult<ArchiveGetMediaItemsResponse> {
-    return initBackupAndFetchAuth()
-      .then { credential ->
-        SignalNetwork.archive.getArchiveMediaItemsPage(SignalStore.account.requireAci(), credential.mediaBackupAccess, limit, cursor)
-      }.runOnStatusCodeError {
-        SignalStore.backup.mediaCredentials.clearAll()
-      }
-  }
-
   /**
    * Grabs the backup tier we think the user is on without performing any kind of authentication clearing
    * on a 403 error. Ensures we can check without rolling the user back during the BackupSubscriptionCheckJob.
    */
-  fun getBackupTierWithoutDowngrade(): NetworkResult<MessageBackupTier> {
-    return if (SignalStore.backup.areBackupsEnabled) {
-      getArchiveServiceAccessPair()
-        .then { credential ->
-          val zkCredential = SignalNetwork.archive.getZkCredential(Recipient.self().requireAci(), credential.messageBackupAccess)
-          val tier = if (zkCredential.backupLevel == BackupLevel.PAID) {
-            MessageBackupTier.PAID
-          } else {
-            MessageBackupTier.FREE
-          }
-
-          NetworkResult.Success(tier)
-        }
-    } else {
-      NetworkResult.StatusCodeError(NonSuccessfulResponseCodeException(404))
+  fun getBackupTierWithoutDowngrade(): Either<ArchiveError.CredentialError, MessageBackupTier> {
+    if (!SignalStore.backup.areBackupsEnabled) {
+      return ArchiveError.CredentialError.NotFound(NonSuccessfulResponseCodeException(404)).left()
     }
+
+    return runBlocking { archiveService.getBackupLevelWithoutDowngrade() }.map { it.toMessageBackupTier() }
   }
 
   /**
@@ -1585,12 +1447,12 @@ object BackupRepository {
    *
    * Note that this will set the user's backup tier to FREE if they are not on PAID, so avoid this method if you don't intend that to be the case.
    */
-  fun getBackupTier(): NetworkResult<MessageBackupTier> {
-    return if (SignalStore.backup.areBackupsEnabled) {
-      getBackupTier(Recipient.self().requireAci())
-    } else {
-      NetworkResult.StatusCodeError(NonSuccessfulResponseCodeException(404))
+  fun getBackupTier(): Either<ArchiveError.CredentialError, MessageBackupTier> {
+    if (!SignalStore.backup.areBackupsEnabled) {
+      return ArchiveError.CredentialError.NotFound(NonSuccessfulResponseCodeException(404)).left()
     }
+
+    return runBlocking { archiveService.getBackupLevel() }.map { it.toMessageBackupTier() }
   }
 
   fun enablePaidBackupTier() {
@@ -1603,111 +1465,42 @@ object BackupRepository {
     scheduleSyncForAccountChange()
   }
 
-  /**
-   * Grabs the backup tier for the given ACI. Note that this will set the user's backup
-   * tier to FREE if they are not on PAID, so avoid this method if you don't intend that
-   * to be the case.
-   */
-  private fun getBackupTier(aci: ACI): NetworkResult<MessageBackupTier> {
-    return initBackupAndFetchAuth()
-      .map { credential ->
-        val zkCredential = SignalNetwork.archive.getZkCredential(aci, credential.messageBackupAccess)
-        if (zkCredential.backupLevel == BackupLevel.PAID) {
-          MessageBackupTier.PAID
-        } else {
-          MessageBackupTier.FREE
-        }
-      }
-  }
-
-  /**
-   * Returns an object with details about the remote backup state.
-   */
-  fun debugGetRemoteBackupState(): NetworkResult<DebugBackupMetadata> {
-    return initBackupAndFetchAuth()
-      .then { credential ->
-        SignalNetwork.archive.getMediaBackupInfo(SignalStore.account.requireAci(), credential.mediaBackupAccess)
-          .map { it to credential }
-      }
-      .then { pair ->
-        val (mediaBackupInfo, credential) = pair
-        SignalNetwork.archive.debugGetUploadedMediaItemMetadata(SignalStore.account.requireAci(), credential.mediaBackupAccess)
-          .map { mediaObjects ->
-            DebugBackupMetadata(
-              usedSpace = mediaBackupInfo.usedSpace,
-              mediaCount = mediaObjects.size.toLong(),
-              mediaSize = mediaObjects.sumOf { it.objectLength }
-            )
-          }
-      }
-  }
-
-  fun getMessageBackupUploadForm(backupFileSize: Long): NetworkResult<AttachmentUploadForm> {
-    return initBackupAndFetchAuth()
-      .then { credential ->
-        SignalNetwork.archive.getMessageBackupUploadForm(SignalStore.account.requireAci(), credential.messageBackupAccess, backupFileSize)
-      }
-  }
-
-  fun downloadBackupFile(destination: File, listener: ProgressListener? = null): NetworkResult<Unit> {
-    return initBackupAndFetchAuth()
-      .then { credential ->
-        SignalNetwork.archive.getMessageBackupInfo(SignalStore.account.requireAci(), credential.messageBackupAccess)
-      }
-      .then { info -> getCdnReadCredentials(CredentialType.MESSAGE, info.cdn).map { it.headers to info } }
-      .map { pair ->
-        val (cdnCredentials, info) = pair
-        val messageReceiver = AppDependencies.signalServiceMessageReceiver
-        messageReceiver.retrieveBackup(info.cdn, cdnCredentials, "backups/${info.backupDir}/${info.backupName}", destination, listener)
-      }
-  }
-
-  fun getBackupFileLastModified(): NetworkResult<ZonedDateTime> {
-    return initBackupAndFetchAuth()
-      .then { credential ->
-        SignalNetwork.archive.getMessageBackupInfo(SignalStore.account.requireAci(), credential.messageBackupAccess)
-      }
-      .then { info -> getCdnReadCredentials(CredentialType.MESSAGE, info.cdn).map { it.headers to info } }
-      .then { pair ->
-        val (cdnCredentials, info) = pair
+  fun downloadBackupFile(destination: File, listener: ProgressListener? = null): Either<ArchiveError.BackupFileError, Unit> {
+    return runBlocking { archiveService.getMessageBackupFileLocation() }
+      .flatMap { location ->
         NetworkResult.fromFetch {
-          AppDependencies.signalServiceMessageReceiver.getCdnLastModifiedTime(info.cdn, cdnCredentials, "backups/${info.backupDir}/${info.backupName}")
+          AppDependencies.signalServiceMessageReceiver.retrieveBackup(location.cdn, location.cdnCredentials, location.path, destination, listener)
+        }.toArchiveResult()
+      }
+  }
+
+  fun getBackupFileLastModified(): Either<ArchiveError.BackupFileError, ZonedDateTime> {
+    return runBlocking { archiveService.getMessageBackupFileLocation() }
+      .flatMap { location -> location.getLastModified() }
+  }
+
+  /**
+   * Stores the remote backup's last-modified time in [BackupValues.lastBackupTime].
+   */
+  fun refreshBackupFileTimestamp(): Either<ArchiveError.BackupFileError, ZonedDateTime> {
+    return getBackupFileLastModified()
+      .onRight { SignalStore.backup.lastBackupTime = it.toMillis() }
+      .onLeft { error ->
+        when (error) {
+          is ArchiveError.CredentialError.NotFound,
+          is ArchiveError.CredentialError.Unauthorized -> {
+            SignalStore.backup.lastBackupTime = 0L
+          }
+          is ArchiveError.EntitlementError.NotEntitled,
+          is ArchiveError.CredentialError.InvalidRequest,
+          is ArchiveError.CredentialError.RateLimited,
+          is ArchiveError.BackupFileError.UnexpectedResponse,
+          is ArchiveError.CredentialError.ZkVerificationFailed,
+          is ArchiveError.NetworkError,
+          is ArchiveError.ApplicationError -> {
+            Log.w(TAG, "Failed to refresh last backup time from remote: ${error::class.simpleName}")
+          }
         }
-      }
-  }
-
-  /**
-   * Stores the remote backup's last-modified time in [BackupValues.lastBackupTime], (404/401 clear it to 0).
-   */
-  fun refreshBackupFileTimestamp(): NetworkResult<ZonedDateTime> {
-    return getBackupFileLastModified().also { result ->
-      when (result) {
-        is NetworkResult.Success -> SignalStore.backup.lastBackupTime = result.result.toMillis()
-        is NetworkResult.StatusCodeError if (result.code == 404 || result.code == 401) -> SignalStore.backup.lastBackupTime = 0L
-        else -> Log.w(TAG, "Failed to refresh last backup time from remote: ${result::class.simpleName}")
-      }
-    }
-  }
-
-  /**
-   * Returns an object with details about the remote backup state.
-   */
-  fun debugGetArchivedMediaState(): NetworkResult<List<ArchiveGetMediaItemsResponse.StoredMediaObject>> {
-    return initBackupAndFetchAuth()
-      .then { credential ->
-        SignalNetwork.archive.debugGetUploadedMediaItemMetadata(SignalStore.account.requireAci(), credential.mediaBackupAccess)
-      }
-  }
-
-  /**
-   * Retrieves an [AttachmentUploadForm] that can be used to upload an attachment to the transit cdn.
-   *
-   * It's important to note that in order to get this to the archive cdn, you still need to use [copyAttachmentToArchive].
-   */
-  fun getAttachmentUploadForm(uploadLength: Long): NetworkResult<AttachmentUploadForm> {
-    return initBackupAndFetchAuth()
-      .then { credential ->
-        SignalNetwork.archive.getMediaUploadForm(SignalStore.account.requireAci(), credential.mediaBackupAccess, uploadLength)
       }
   }
 
@@ -1736,286 +1529,104 @@ object BackupRepository {
   }
 
   /**
-   * Copies a thumbnail that has been uploaded to the transit cdn to the archive cdn.
-   *
-   * @return The archive cdn number the thumbnail landed on.
+   * Copies an attachment that has been uploaded to the transit cdn to the archive cdn, recording the cdn it landed on.
    */
-  fun copyThumbnailToArchive(thumbnail: UploadedThumbnailInfo, parentAttachment: DatabaseAttachment): NetworkResult<Int> {
-    return initBackupAndFetchAuth()
-      .then { credential ->
-        val item = buildCopyBackupMediaItem(thumbnail.cdnNumber, thumbnail.remoteLocation, thumbnail.size, parentAttachment.requireThumbnailMediaName(), credential.mediaBackupAccess.backupKey)
-        copySingleMediaToArchive(credential.mediaBackupAccess, item)
-      }
+  suspend fun copyAttachmentToArchive(attachment: DatabaseAttachment): Either<ArchiveError.CopyMediaError, Unit> {
+    return archiveService.copyToArchive(
+      cdnNumber = attachment.cdn.cdnNumber,
+      remoteLocation = attachment.remoteLocation!!,
+      plaintextSize = attachment.size,
+      mediaName = attachment.requireMediaName()
+    )
+      .map { archiveCdn -> SignalDatabase.attachments.setArchiveCdn(attachmentId = attachment.attachmentId, archiveCdn = archiveCdn) }
+      .also { Log.i(TAG, "archiveMediaResult: ${it.describe()}") }
   }
 
-  /**
-   * Copies an attachment that has been uploaded to the transit cdn to the archive cdn.
-   */
-  fun copyAttachmentToArchive(attachment: DatabaseAttachment): NetworkResult<Unit> {
-    return initBackupAndFetchAuth()
-      .then { credential ->
-        val item = buildCopyBackupMediaItem(attachment.cdn.cdnNumber, attachment.remoteLocation!!, attachment.size, attachment.requireMediaName(), credential.mediaBackupAccess.backupKey)
-        copySingleMediaToArchive(credential.mediaBackupAccess, item)
-      }
-      .map { archiveCdn ->
-        SignalDatabase.attachments.setArchiveCdn(attachmentId = attachment.attachmentId, archiveCdn = archiveCdn)
-      }
-      .also { Log.i(TAG, "archiveMediaResult: ${it::class.simpleName}") }
-  }
-
-  fun deleteAbandonedMediaObjects(mediaObjects: Collection<ArchivedMediaObject>): NetworkResult<Unit> {
-    return NetworkResult
-      .fromLocal { mediaObjects.filter { it.cdn == Cdn.CDN_3.cdnNumber }.map { it.toDeleteBackupMediaItem() } }
-      .then { mediaToDelete ->
-        if (mediaToDelete.isEmpty()) {
-          Log.i(TAG, "No media to delete, quick success")
-          return@then NetworkResult.Success(Unit)
-        }
-
-        initBackupAndFetchAuth()
-          .then { credential ->
-            SignalNetwork.archive.deleteArchivedMedia(
-              aci = SignalStore.account.requireAci(),
-              archiveServiceAccess = credential.mediaBackupAccess,
-              mediaToDelete = mediaToDelete
-            ).map { }
-          }
-      }
-      .also { Log.i(TAG, "deleteAbandonedMediaObjectsResult: ${it::class.simpleName}") }
-  }
-
-  fun deleteBackup(): NetworkResult<Unit> {
-    return initBackupAndFetchAuth()
-      .then { credential ->
-        SignalNetwork.archive.deleteBackup(SignalStore.account.requireAci(), credential.messageBackupAccess)
-      }
-  }
-
-  fun deleteMediaBackup(): NetworkResult<Unit> {
-    return initBackupAndFetchAuth()
-      .then { credential ->
-        SignalNetwork.archive.deleteBackup(SignalStore.account.requireAci(), credential.mediaBackupAccess)
-      }
-  }
-
-  fun debugDeleteAllArchivedMedia(): NetworkResult<Unit> {
-    val itemLimit = 1000
-    return debugGetArchivedMediaState()
-      .then { archivedMedia ->
-        val mediaChunksToDelete = archivedMedia
-          .filter { it.cdn == Cdn.CDN_3.cdnNumber }
-          .map { ArchivedMediaObject(mediaId = it.mediaId, cdn = it.cdn).toDeleteBackupMediaItem() }
-          .chunked(itemLimit)
-
-        if (mediaChunksToDelete.isEmpty()) {
-          Log.i(TAG, "No media to delete, quick success")
-          return@then NetworkResult.Success(Unit)
-        }
-
-        getArchiveServiceAccessPair()
-          .then processChunks@{ credential ->
-            mediaChunksToDelete.forEachIndexed { index, chunk ->
-              val result = SignalNetwork.archive.deleteArchivedMedia(
-                aci = SignalStore.account.requireAci(),
-                archiveServiceAccess = credential.mediaBackupAccess,
-                mediaToDelete = chunk
-              ).map { }
-
-              if (result !is NetworkResult.Success) {
-                Log.w(TAG, "Error occurred while deleting archived media chunk #$index: $result")
-                return@processChunks result
-              }
-            }
-            NetworkResult.Success(Unit)
-          }
-      }
-      .map {
-        SignalDatabase.attachments.clearAllArchiveData()
-      }
-      .also { Log.i(TAG, "debugDeleteAllArchivedMediaResult: ${it::class.simpleName}") }
-  }
-
-  /**
-   * Retrieve credentials for reading from the backup cdn.
-   */
-  fun getCdnReadCredentials(credentialType: CredentialType, cdnNumber: Int): NetworkResult<GetArchiveCdnCredentialsResponse> {
-    val credentialStore = when (credentialType) {
-      CredentialType.MESSAGE -> SignalStore.backup.messageCredentials
-      CredentialType.MEDIA -> SignalStore.backup.mediaCredentials
-    }
-
-    val cached = credentialStore.cdnReadCredentials
-    if (cached != null) {
-      return NetworkResult.Success(cached)
-    }
-
-    return initBackupAndFetchAuth()
-      .then { credential ->
-        val archiveServiceAccess = when (credentialType) {
-          CredentialType.MESSAGE -> credential.messageBackupAccess
-          CredentialType.MEDIA -> credential.mediaBackupAccess
-        }
-
-        SignalNetwork.archive.getCdnReadCredentials(
-          cdnNumber = cdnNumber,
-          aci = SignalStore.account.requireAci(),
-          archiveServiceAccess = archiveServiceAccess
+  suspend fun debugDeleteAllArchivedMedia(): Either<ArchiveError.EntitlementError, Unit> {
+    return archiveService
+      .debugGetArchivedMediaState()
+      .flatMap { archivedMedia ->
+        archiveService.deleteArchivedMedia(
+          archivedMedia
+            .filter { it.cdn == Cdn.CDN_3.cdnNumber }
+            .map { ArchivedMediaObject(mediaId = it.mediaId, cdn = it.cdn).toDeleteBackupMediaItem() }
         )
       }
-      .also {
-        if (it is NetworkResult.Success) {
-          credentialStore.cdnReadCredentials = it.result
-        }
-      }
-      .also { Log.i(TAG, "getCdnReadCredentialsResult: ${it::class.simpleName}") }
+      .map { SignalDatabase.attachments.clearAllArchiveData() }
+      .also { Log.i(TAG, "debugDeleteAllArchivedMediaResult: ${it.describe()}") }
   }
 
   fun restoreBackupFileTimestamp(): RestoreTimestampResult {
-    val timestampResult: NetworkResult<ZonedDateTime> = getBackupFileLastModified()
+    val result = getBackupFileLastModified().toRestoreTimestampResult()
 
-    when {
-      timestampResult is NetworkResult.Success -> {
-        SignalStore.backup.lastBackupTime = timestampResult.result.toMillis()
+    when (result) {
+      is RestoreTimestampResult.Success -> {
+        SignalStore.backup.lastBackupTime = result.timestamp
         SignalStore.backup.isBackupTimestampRestored = true
         SignalStore.uiHints.markHasEverEnabledRemoteBackups()
-        return RestoreTimestampResult.Success(SignalStore.backup.lastBackupTime)
       }
 
-      timestampResult is NetworkResult.StatusCodeError && timestampResult.code == 404 -> {
-        Log.i(TAG, "No backup file exists")
+      RestoreTimestampResult.NotFound, RestoreTimestampResult.BackupsNotEnabled -> {
         SignalStore.backup.lastBackupTime = 0L
         SignalStore.backup.isBackupTimestampRestored = true
-        return RestoreTimestampResult.NotFound
       }
 
-      timestampResult is NetworkResult.StatusCodeError && timestampResult.code == 401 -> {
-        Log.i(TAG, "Backups not enabled")
-        SignalStore.backup.lastBackupTime = 0L
-        SignalStore.backup.isBackupTimestampRestored = true
-        return RestoreTimestampResult.BackupsNotEnabled
-      }
-
-      timestampResult is NetworkResult.ApplicationError && timestampResult.getCause() is VerificationFailedException -> {
-        Log.w(TAG, "Entered AEP fails zk verification", timestampResult.getCause())
-        return RestoreTimestampResult.VerificationFailure
-      }
-
-      else -> {
-        Log.w(TAG, "Could not check for backup file.", timestampResult.getCause())
-        return RestoreTimestampResult.Failure
-      }
-    }
-  }
-
-  fun verifyBackupKeyAssociatedWithAccount(aci: ACI, aep: AccountEntropyPool): RestoreTimestampResult {
-    Log.i(TAG, "Verifying enter aep is associated with account")
-    var result: RestoreTimestampResult = getBackupTimestampToVerifyAepAssociatedWithAccountAndHasBackup(aci, aep)
-
-    if (result is RestoreTimestampResult.VerificationFailure) {
-      Log.w(TAG, "Resetting backup id reservation due to zk verification failure")
-      val triggerResult = SignalNetwork.archive.triggerBackupIdReservation(aep.deriveMessageBackupKey(), null, aci)
-      result = when {
-        triggerResult is NetworkResult.Success -> {
-          Log.i(TAG, "Reset successful, retrying aep verification")
-          SignalStore.backup.messageCredentials.clearAll()
-          getBackupTimestampToVerifyAepAssociatedWithAccountAndHasBackup(aci, aep)
-        }
-
-        triggerResult is NetworkResult.StatusCodeError && triggerResult.code == 429 -> {
-          Log.w(TAG, "Rate limited when resetting backup id, failing operation $triggerResult")
-          RestoreTimestampResult.RateLimited(triggerResult.retryAfter())
-        }
-
-        else -> {
-          Log.w(TAG, "Reset backup id failed, failing operation", triggerResult.getCause())
-          result
-        }
-      }
+      else -> Unit
     }
 
     return result
   }
 
-  private fun getBackupTimestampToVerifyAepAssociatedWithAccountAndHasBackup(aci: ACI, aep: AccountEntropyPool): RestoreTimestampResult {
-    val currentTime = System.currentTimeMillis()
-    val messageBackupKey = aep.deriveMessageBackupKey()
+  fun verifyBackupKeyAssociatedWithAccount(aci: ACI, aep: AccountEntropyPool): RestoreTimestampResult {
+    Log.i(TAG, "Verifying enter aep is associated with account")
+    val result: RestoreTimestampResult = getBackupTimestampToVerifyAepAssociatedWithAccountAndHasBackup(aci, aep)
 
-    val result: NetworkResult<ZonedDateTime> = SignalNetwork.archive.getServiceCredentials(currentTime)
-      .then { result ->
-        val credential: ArchiveServiceCredential? = ArchiveServiceCredentials(result.messageCredentials.associateBy { it.redemptionTime }).getForCurrentTime(currentTime.milliseconds)
+    if (result !is RestoreTimestampResult.VerificationFailure) {
+      return result
+    }
 
-        if (credential == null) {
-          NetworkResult.ApplicationError(NullPointerException("No credential available for current time."))
-        } else {
-          NetworkResult.Success(
-            ArchiveServiceAccess(
-              credential = credential,
-              backupKey = messageBackupKey
-            )
-          )
+    Log.w(TAG, "Resetting backup id reservation due to zk verification failure")
+
+    return when (val triggerResult = runBlocking { SignalNetwork.archiveV2.triggerBackupIdReservation(aep.deriveMessageBackupKey(), null, aci) }) {
+      is RequestResult.Success -> {
+        Log.i(TAG, "Reset successful, retrying aep verification")
+        SignalStore.backup.messageCredentials.clearAll()
+        getBackupTimestampToVerifyAepAssociatedWithAccountAndHasBackup(aci, aep)
+      }
+
+      is RequestResult.NonSuccess -> when (val error = triggerResult.error) {
+        is ArchiveApiV2.SetBackupIdError.RateLimited -> {
+          Log.w(TAG, "Rate limited when resetting backup id, failing operation")
+          RestoreTimestampResult.RateLimited(error.retryAfter)
+        }
+
+        ArchiveApiV2.SetBackupIdError.InvalidCredential -> {
+          Log.w(TAG, "Reset backup id rejected the credential, failing operation")
+          result
+        }
+
+        ArchiveApiV2.SetBackupIdError.Unauthorized -> {
+          Log.w(TAG, "Reset backup id rejected our account auth, failing operation")
+          result
         }
       }
-      .then { messageAccess ->
-        SignalNetwork.archive.getMessageBackupInfo(SignalStore.account.requireAci(), messageAccess)
-          .then { info -> SignalNetwork.archive.getCdnReadCredentials(info.cdn, aci, messageAccess).map { it.headers to info } }
-          .then { pair ->
-            val (cdnCredentials, info) = pair
-            NetworkResult.fromFetch {
-              AppDependencies.signalServiceMessageReceiver.getCdnLastModifiedTime(info.cdn, cdnCredentials, "backups/${info.backupDir}/${info.backupName}")
-            }
-          }
+
+      is RequestResult.RetryableNetworkError -> {
+        Log.w(TAG, "Reset backup id hit a network error, failing operation", triggerResult.networkError)
+        result
       }
 
-    return when {
-      result is NetworkResult.Success -> {
-        RestoreTimestampResult.Success(result.result.toMillis())
-      }
-
-      result is NetworkResult.StatusCodeError && result.code == 404 -> {
-        Log.i(TAG, "No backup file exists")
-        RestoreTimestampResult.NotFound
-      }
-
-      result is NetworkResult.StatusCodeError && result.code == 401 -> {
-        Log.i(TAG, "Backups not enabled")
-        RestoreTimestampResult.BackupsNotEnabled
-      }
-
-      result is NetworkResult.ApplicationError && result.getCause() is VerificationFailedException -> {
-        Log.w(TAG, "Entered AEP fails zk verification", result.getCause())
-        RestoreTimestampResult.VerificationFailure
-      }
-
-      else -> {
-        Log.w(TAG, "Could not check for backup file.", result.getCause())
-        RestoreTimestampResult.Failure
+      is RequestResult.ApplicationError -> {
+        Log.w(TAG, "Reset backup id failed, failing operation", triggerResult.cause)
+        result
       }
     }
   }
 
-  /**
-   * Retrieves media-specific cdn path, preferring cached value if available.
-   *
-   * This will change if the backup expires, a new backup-id is set, or the delete all endpoint is called.
-   */
-  fun getArchivedMediaCdnPath(): NetworkResult<String> {
-    val cachedMediaPath = SignalStore.backup.cachedMediaCdnPath
-
-    if (cachedMediaPath != null) {
-      return NetworkResult.Success(cachedMediaPath)
-    }
-
-    return initBackupAndFetchAuth()
-      .then { credential ->
-        SignalNetwork.archive.getMediaBackupInfo(SignalStore.account.requireAci(), credential.mediaBackupAccess).map {
-          "${it.backupDir.urlEncode()}/${it.mediaDir.urlEncode()}"
-        }
-      }
-      .also {
-        if (it is NetworkResult.Success) {
-          SignalStore.backup.cachedMediaCdnPath = it.result
-        }
-      }
+  private fun getBackupTimestampToVerifyAepAssociatedWithAccountAndHasBackup(aci: ACI, aep: AccountEntropyPool): RestoreTimestampResult {
+    return runBlocking { archiveService.getMessageBackupFileLocationForKey(aci, aep.deriveMessageBackupKey()) }
+      .flatMap { location -> location.getLastModified() }
+      .toRestoreTimestampResult()
   }
 
   suspend fun getBackupTypes(availableBackupTiers: List<MessageBackupTier>): List<MessageBackupsType> {
@@ -2088,93 +1699,7 @@ object BackupRepository {
       }
   }
 
-  /**
-   * See [org.signal.network.api.ArchiveApi.getSvrBAuthorization].
-   */
-  fun getSvrBAuth(): NetworkResult<AuthCredentials> {
-    return initBackupAndFetchAuth()
-      .then { SignalNetwork.archive.getSvrBAuthorization(SignalStore.account.requireAci(), it.messageBackupAccess) }
-  }
-
-  fun getKeyRotationLimit(): NetworkResult<ArchiveKeyRotationLimitResponse> {
-    return SignalNetwork.archive.getKeyRotationLimit()
-  }
-
-  /**
-   * During normal operation, ensures that the backupId has been reserved and that your public key has been set,
-   * while also returning an archive access data. Should be the basis of all backup operations.
-   *
-   * When called during registration before backups are initialized, will only fetch access data and not initialize backups. This
-   * prevents early initialization with incorrect keys before we have restored them.
-   */
-  private fun initBackupAndFetchAuth(): NetworkResult<ArchiveServiceAccessPair> {
-    return if (SignalStore.backup.backupsInitialized || SignalStore.account.isLinkedDevice) {
-      getArchiveServiceAccessPair()
-        .runOnStatusCodeError(resetInitializedStateErrorAction)
-        .runOnApplicationError(clearAuthCredentials)
-    } else if (isPreRestoreDuringRegistration()) {
-      Log.w(TAG, "Requesting/using auth credentials in pre-restore state", Throwable())
-      getArchiveServiceAccessPair()
-        .runOnApplicationError(clearAuthCredentials)
-    } else {
-      val messageBackupKey = SignalStore.backup.messageBackupKey
-      val mediaRootBackupKey = SignalStore.backup.mediaRootBackupKey
-
-      return SignalNetwork.archive
-        .triggerBackupIdReservation(messageBackupKey, mediaRootBackupKey, SignalStore.account.requireAci())
-        .then {
-          SignalStore.backup.messageCredentials.clearAll()
-          SignalStore.backup.mediaCredentials.clearAll()
-          getArchiveServiceAccessPair()
-        }
-        .then { credential -> SignalNetwork.archive.setPublicKey(SignalStore.account.requireAci(), credential.messageBackupAccess).map { credential } }
-        .then { credential -> SignalNetwork.archive.setPublicKey(SignalStore.account.requireAci(), credential.mediaBackupAccess).map { credential } }
-        .runIfSuccessful { SignalStore.backup.backupsInitialized = true }
-        .runOnStatusCodeError(resetInitializedStateErrorAction)
-        .runOnApplicationError(clearAuthCredentials)
-    }
-  }
-
-  /**
-   * Retrieves an auth credential, preferring a cached value if available.
-   */
-  private fun getArchiveServiceAccessPair(): NetworkResult<ArchiveServiceAccessPair> {
-    val currentTime = System.currentTimeMillis()
-
-    val messageCredential = SignalStore.backup.messageCredentials.byDay.getForCurrentTime(currentTime.milliseconds)
-    val mediaCredential = SignalStore.backup.mediaCredentials.byDay.getForCurrentTime(currentTime.milliseconds)
-
-    if (messageCredential != null && mediaCredential != null) {
-      return NetworkResult.Success(
-        ArchiveServiceAccessPair(
-          messageBackupAccess = ArchiveServiceAccess(messageCredential, SignalStore.backup.messageBackupKey),
-          mediaBackupAccess = ArchiveServiceAccess(mediaCredential, SignalStore.backup.mediaRootBackupKey)
-        )
-      )
-    }
-
-    Log.w(TAG, "No credentials found for today, need to fetch new ones! This shouldn't happen under normal circumstances. We should ensure the routine fetch is running properly.")
-
-    return SignalNetwork.archive.getServiceCredentials(currentTime).map { result ->
-      SignalStore.backup.messageCredentials.add(result.messageCredentials)
-      SignalStore.backup.messageCredentials.clearOlderThan(currentTime)
-
-      SignalStore.backup.mediaCredentials.add(result.mediaCredentials)
-      SignalStore.backup.mediaCredentials.clearOlderThan(currentTime)
-
-      ArchiveServiceAccessPair(
-        messageBackupAccess = ArchiveServiceAccess(SignalStore.backup.messageCredentials.byDay.getForCurrentTime(currentTime.milliseconds)!!, SignalStore.backup.messageBackupKey),
-        mediaBackupAccess = ArchiveServiceAccess(SignalStore.backup.mediaCredentials.byDay.getForCurrentTime(currentTime.milliseconds)!!, SignalStore.backup.mediaRootBackupKey)
-      )
-    }
-  }
-
-  private fun isPreRestoreDuringRegistration(): Boolean {
-    return !SignalStore.registration.isRegistrationComplete &&
-      SignalStore.registration.restoreDecisionState.isDecisionPending
-  }
-
-  private fun scheduleSyncForAccountChange() {
+  internal fun scheduleSyncForAccountChange() {
     SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
     StorageSyncHelper.scheduleSyncForDataChange()
   }
@@ -2189,38 +1714,6 @@ object BackupRepository {
     val e164: String,
     val profileKey: ProfileKey
   )
-
-  private fun buildCopyBackupMediaItem(cdnNumber: Int, remoteLocation: String, plaintextSize: Long, mediaName: MediaName, mediaRootBackupKey: MediaRootBackupKey): CopyBackupMediaItem {
-    val mediaSecrets = mediaRootBackupKey.deriveMediaSecrets(mediaName)
-
-    return CopyBackupMediaItem(
-      sourceAttachmentCdn = cdnNumber,
-      sourceKey = remoteLocation,
-      objectLength = AttachmentCipherStreamUtil.getCiphertextLength(PaddingInputStream.getPaddedSize(plaintextSize)),
-      mediaId = mediaSecrets.id.value,
-      encryptionKey = mediaSecrets.macKey + mediaSecrets.aesKey
-    )
-  }
-
-  /**
-   * Copies a single item to the archive cdn, returning the cdn it landed on.
-   *
-   * libsignal reports per-item outcomes rather than status codes, so we translate them back into the status codes callers already branch on: a missing source
-   * is a 410, a length mismatch is a 400, and no remaining space is a 413.
-   */
-  private fun copySingleMediaToArchive(archiveServiceAccess: ArchiveServiceAccess<MediaRootBackupKey>, item: CopyBackupMediaItem): NetworkResult<Int> {
-    return SignalNetwork.archive
-      .copyMediaToArchive(SignalStore.account.requireAci(), archiveServiceAccess, listOf(item))
-      .then { outcomes ->
-        when (val outcome = outcomes.firstOrNull()) {
-          is CopyBackupMediaOutcome.Success -> NetworkResult.Success(outcome.cdn)
-          is CopyBackupMediaOutcome.SourceNotFound -> NetworkResult.StatusCodeError(NonSuccessfulResponseCodeException(410, "Source attachment not found"))
-          is CopyBackupMediaOutcome.WrongSourceLength -> NetworkResult.StatusCodeError(NonSuccessfulResponseCodeException(400, "Wrong source length"))
-          is CopyBackupMediaOutcome.OutOfSpace -> NetworkResult.StatusCodeError(NonSuccessfulResponseCodeException(413, "No media space remaining"))
-          null -> NetworkResult.ApplicationError(IllegalStateException("Copy stream ended without an outcome for the item!"))
-        }
-      }
-  }
 
   suspend fun restoreRemoteBackup(): RemoteRestoreResult {
     val context = AppDependencies.application
@@ -2242,7 +1735,7 @@ object BackupRepository {
     }
   }
 
-  private fun restoreRemoteBackup(controller: BackupProgressService.Controller, cancellationSignal: () -> Boolean): RemoteRestoreResult {
+  private suspend fun restoreRemoteBackup(controller: BackupProgressService.Controller, cancellationSignal: () -> Boolean): RemoteRestoreResult {
     ArchiveRestoreProgress.onRestoringDb()
 
     val progressListener = object : ProgressListener {
@@ -2261,10 +1754,10 @@ object BackupRepository {
     Log.i(TAG, "[remoteRestore] Downloading backup")
     val tempBackupFile = AppDependencies.blobs.forNonAutoEncryptingSingleSessionOnDisk(AppDependencies.application)
     when (val result = downloadBackupFile(tempBackupFile, progressListener)) {
-      is NetworkResult.Success -> Log.i(TAG, "[remoteRestore] Download successful")
-      else -> {
-        Log.w(TAG, "[remoteRestore] Failed to download backup file", result.getCause())
-        return RemoteRestoreResult.NetworkError
+      is Either.Right -> Log.i(TAG, "[remoteRestore] Download successful")
+      is Either.Left -> {
+        Log.w(TAG, "[remoteRestore] Failed to download backup file", result.value.cause)
+        return result.value.toRemoteRestoreFailure()
       }
     }
 
@@ -2287,11 +1780,12 @@ object BackupRepository {
     val messageBackupKey = SignalStore.backup.messageBackupKey
 
     Log.i(TAG, "[remoteRestore] Fetching SVRB data")
-    val svrBAuth = when (val result = getSvrBAuth()) {
-      is NetworkResult.Success -> result.result
-      is NetworkResult.NetworkError -> return RemoteRestoreResult.NetworkError.logW(TAG, "[remoteRestore] Network error when getting SVRB auth.", result.getCause())
-      is NetworkResult.StatusCodeError -> return RemoteRestoreResult.NetworkError.logW(TAG, "[remoteRestore] Status code error when getting SVRB auth.", result.getCause())
-      is NetworkResult.ApplicationError -> throw result.throwable
+    val svrBAuth = when (val result = archiveService.getSvrBAuth()) {
+      is Either.Right -> result.value
+      is Either.Left -> when (val error = result.value) {
+        is ArchiveError.ApplicationError -> throw error.exception
+        else -> return error.toRemoteRestoreFailure().logW(TAG, "[remoteRestore] Failed to get SVRB auth: ${error::class.simpleName}", error.cause)
+      }
     }
 
     val forwardSecrecyToken = when (val result = SignalNetwork.svrB.restore(svrBAuth, messageBackupKey, forwardSecrecyMetadata)) {
@@ -2467,24 +1961,87 @@ object BackupRepository {
     ).encodeByteString()
   }
 
-  fun getRemoteBackupForwardSecrecyMetadata(): NetworkResult<ByteArray?> {
-    return initBackupAndFetchAuth()
-      .then { credential -> SignalNetwork.archive.getMessageBackupInfo(SignalStore.account.requireAci(), credential.messageBackupAccess) }
-      .then { info -> getCdnReadCredentials(CredentialType.MESSAGE, info.cdn).map { it.headers to info } }
-      .then { pair ->
-        val (cdnCredentials, info) = pair
-        val headers = cdnCredentials.toMutableMap().apply {
+  suspend fun getRemoteBackupForwardSecrecyMetadata(): Either<ArchiveError.BackupFileError, ByteArray?> {
+    return archiveService.getMessageBackupFileLocation()
+      .flatMap { location ->
+        val headers = location.cdnCredentials.toMutableMap().apply {
           this["range"] = "bytes=0-${EncryptedBackupReader.BACKUP_SECRET_METADATA_UPPERBOUND - 1}"
         }
 
-        AppDependencies.signalServiceMessageReceiver.retrieveBackupForwardSecretMetadataBytes(
-          info.cdn,
-          headers,
-          "backups/${info.backupDir}/${info.backupName}",
-          EncryptedBackupReader.BACKUP_SECRET_METADATA_UPPERBOUND
-        )
+        AppDependencies.signalServiceMessageReceiver
+          .retrieveBackupForwardSecretMetadataBytes(location.cdn, headers, location.path, EncryptedBackupReader.BACKUP_SECRET_METADATA_UPPERBOUND)
+          .toArchiveResult()
       }
       .map { bytes -> EncryptedBackupReader.readForwardSecrecyMetadata(ByteArrayInputStream(bytes)) }
+  }
+
+  private fun BackupLevel.toMessageBackupTier(): MessageBackupTier {
+    return if (this == BackupLevel.PAID) MessageBackupTier.PAID else MessageBackupTier.FREE
+  }
+
+  private fun ArchiveService.BackupFileLocation.getLastModified(): Either<ArchiveError.BackupFileError, ZonedDateTime> {
+    return NetworkResult
+      .fromFetch { AppDependencies.signalServiceMessageReceiver.getCdnLastModifiedTime(cdn, cdnCredentials, path) }
+      .toArchiveResult()
+  }
+
+  private fun Either<ArchiveError.BackupFileError, ZonedDateTime>.toRestoreTimestampResult(): RestoreTimestampResult {
+    return fold(
+      ifRight = { RestoreTimestampResult.Success(it.toMillis()) },
+      ifLeft = { error ->
+        when (error) {
+          is ArchiveError.CredentialError.NotFound -> {
+            Log.i(TAG, "No backup file exists")
+            RestoreTimestampResult.NotFound
+          }
+          is ArchiveError.CredentialError.Unauthorized -> {
+            Log.i(TAG, "Backups not enabled")
+            RestoreTimestampResult.BackupsNotEnabled
+          }
+          is ArchiveError.CredentialError.ZkVerificationFailed -> {
+            Log.w(TAG, "Entered AEP fails zk verification", error.exception)
+            RestoreTimestampResult.VerificationFailure
+          }
+          is ArchiveError.EntitlementError.NotEntitled,
+          is ArchiveError.CredentialError.InvalidRequest,
+          is ArchiveError.CredentialError.RateLimited,
+          is ArchiveError.BackupFileError.UnexpectedResponse,
+          is ArchiveError.NetworkError,
+          is ArchiveError.ApplicationError -> {
+            Log.w(TAG, "Could not check for backup file: ${error::class.simpleName}", error.cause)
+            RestoreTimestampResult.Failure
+          }
+        }
+      }
+    )
+  }
+
+  private fun Either<ArchiveError, *>.describe(): String {
+    return fold(ifRight = { "Success" }, ifLeft = { it::class.simpleName ?: "Error" })
+  }
+
+  /**
+   * Whether a failed restore step is worth telling the user to check their connection over.
+   *
+   * [RemoteRestoreResult.NetworkError] drives "couldn't reach the server, try again" messaging, so only genuinely transient failures may map to it -- a rejected
+   * credential or a missing backup is a [RemoteRestoreResult.Failure] no amount of retrying fixes.
+   */
+  private fun ArchiveError.BackupFileError.toRemoteRestoreFailure(): RemoteRestoreResult {
+    return when (this) {
+      is ArchiveError.NetworkError,
+      is ArchiveError.CredentialError.RateLimited -> {
+        RemoteRestoreResult.NetworkError
+      }
+      is ArchiveError.CredentialError.Unauthorized,
+      is ArchiveError.EntitlementError.NotEntitled,
+      is ArchiveError.CredentialError.NotFound,
+      is ArchiveError.CredentialError.InvalidRequest,
+      is ArchiveError.BackupFileError.UnexpectedResponse,
+      is ArchiveError.CredentialError.ZkVerificationFailed,
+      is ArchiveError.ApplicationError -> {
+        RemoteRestoreResult.Failure
+      }
+    }
   }
 
   interface ExportProgressListener {
@@ -2497,10 +2054,6 @@ object BackupRepository {
     fun onChatFolder()
     fun onMessage(currentProgress: Long, approximateCount: Long)
     fun onAttachment(currentProgress: Long, totalCount: Long)
-  }
-
-  enum class CredentialType {
-    MESSAGE, MEDIA
   }
 }
 
@@ -2553,12 +2106,6 @@ class ImportState(val mediaRootBackupKey: MediaRootBackupKey, val backupMode: Ba
     return chatFolderPosition++
   }
 }
-
-class DebugBackupMetadata(
-  val usedSpace: Long,
-  val mediaCount: Long,
-  val mediaSize: Long
-)
 
 data class StagedBackupKeyRotations(
   val aep: AccountEntropyPool,

@@ -16,7 +16,6 @@ import kotlinx.coroutines.withContext
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.logging.Log
-import org.signal.network.NetworkResult
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.StagedBackupKeyRotations
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -74,16 +73,14 @@ class BackupKeyDisplayViewModel : ViewModel(), BackupKeyCredentialManagerHandler
 
   fun getKeyRotationLimit() {
     viewModelScope.launch(SignalDispatchers.IO) {
-      val result = BackupRepository.getKeyRotationLimit()
-      if (result is NetworkResult.Success) {
-        internalUiState.update {
-          it.copy(
-            canRotateKey = result.result.hasPermitsRemaining ?: true
-          )
+      AppDependencies.archiveService
+        .getKeyRotationLimit()
+        .onRight { limit ->
+          internalUiState.update { it.copy(canRotateKey = limit.hasPermitsRemaining ?: true) }
         }
-      } else {
-        Log.w(TAG, "Error while getting rotation limit: $result. Default to allowing key rotations.")
-      }
+        .onLeft { error ->
+          Log.w(TAG, "Error while getting rotation limit: ${error::class.simpleName}. Default to allowing key rotations.")
+        }
     }
   }
 

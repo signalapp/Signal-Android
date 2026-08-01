@@ -32,6 +32,7 @@ import org.signal.libsignal.zkgroup.ServerPublicParams;
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations;
 import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations;
 import org.signal.network.api.ArchiveApi;
+import org.signal.network.api.ArchiveApiV2;
 import org.signal.network.api.AttachmentApi;
 import org.signal.network.api.CallingApi;
 import org.signal.network.api.CdsApi;
@@ -47,8 +48,10 @@ import org.signal.network.api.RemoteConfigApi;
 import org.signal.network.api.SvrBApi;
 import org.signal.network.api.UsernameApi;
 import org.signal.network.rest.SignalRestClient;
+import org.signal.network.service.ArchiveService;
 import org.signal.network.service.MessageService;
 import org.signal.video.exo.ExoPlayerPool;
+import org.thoughtcrime.securesms.backup.v2.SignalStoreArchiveCacheStore;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.components.TypingStatusRepository;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
@@ -558,12 +561,22 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   }
 
   @Override
-  public @NonNull ArchiveApi provideArchiveApi(@NonNull SignalWebSocket.AuthenticatedWebSocket authWebSocket, @NonNull SignalWebSocket.UnauthenticatedWebSocket unauthWebSocket, @NonNull PushServiceSocket pushServiceSocket, @NonNull SignalServiceConfiguration signalServiceConfiguration) {
+  public @NonNull ArchiveApiV2 provideArchiveApiV2(@NonNull SignalWebSocket.AuthenticatedWebSocket authWebSocket, @NonNull SignalWebSocket.UnauthenticatedWebSocket unauthWebSocket, @NonNull SignalServiceConfiguration signalServiceConfiguration) {
     try {
-      return new ArchiveApi(authWebSocket, unauthWebSocket, pushServiceSocket, new GenericServerPublicParams(signalServiceConfiguration.getBackupServerPublicParams()));
+      return new ArchiveApiV2(authWebSocket, unauthWebSocket, new GenericServerPublicParams(signalServiceConfiguration.getBackupServerPublicParams()));
     } catch (InvalidInputException e) {
       throw new RuntimeException(e);
     }
+  }
+
+  @Override
+  public @NonNull ArchiveService provideArchiveService(@NonNull ArchiveApiV2 archiveApi) {
+    return new ArchiveService(archiveApi, SignalStoreArchiveCacheStore.INSTANCE);
+  }
+
+  @Override
+  public @NonNull ArchiveApi provideArchiveApi(@NonNull PushServiceSocket pushServiceSocket) {
+    return new ArchiveApi(pushServiceSocket);
   }
 
   @Override

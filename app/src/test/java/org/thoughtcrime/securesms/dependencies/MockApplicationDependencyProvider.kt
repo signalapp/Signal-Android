@@ -103,6 +103,18 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
     return mockk(relaxed = true)
   }
 
+  override fun provideArchiveApiV2(
+    authWebSocket: SignalWebSocket.AuthenticatedWebSocket,
+    unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket,
+    signalServiceConfiguration: SignalServiceConfiguration
+  ): org.signal.network.api.ArchiveApiV2 {
+    return mockk(relaxed = true)
+  }
+
+  override fun provideArchiveService(archiveApi: org.signal.network.api.ArchiveApiV2): org.signal.network.service.ArchiveService {
+    return mockk(relaxed = true)
+  }
+
   override fun provideMessageService(
     protocolStore: SignalServiceDataStore,
     messageApiV2: org.signal.network.api.MessageApiV2,
@@ -265,7 +277,7 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
     return mockk(relaxed = true)
   }
 
-  override fun provideArchiveApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket, pushServiceSocket: PushServiceSocket, signalServiceConfiguration: SignalServiceConfiguration): ArchiveApi {
+  override fun provideArchiveApi(pushServiceSocket: PushServiceSocket): ArchiveApi {
     return mockk(relaxed = true)
   }
 

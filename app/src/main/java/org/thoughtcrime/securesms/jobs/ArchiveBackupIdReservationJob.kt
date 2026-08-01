@@ -5,9 +5,11 @@
 
 package org.thoughtcrime.securesms.jobs
 
+import arrow.core.Either
 import org.signal.core.util.logging.Log
-import org.signal.network.NetworkResult
-import org.thoughtcrime.securesms.backup.v2.BackupRepository
+import org.signal.network.service.ArchiveError
+import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.jobmanager.CoroutineJob
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -20,7 +22,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences
  *
  * Calling this repeatedly is a no-op from the server's perspective, so no need to be careful around retries or anything.
  */
-class ArchiveBackupIdReservationJob private constructor(parameters: Parameters) : Job(parameters) {
+class ArchiveBackupIdReservationJob private constructor(parameters: Parameters) : CoroutineJob(parameters) {
 
   companion object {
     private val TAG = Log.tag(ArchiveBackupIdReservationJob::class)
@@ -41,7 +43,7 @@ class ArchiveBackupIdReservationJob private constructor(parameters: Parameters) 
 
   override fun getFactoryKey(): String = KEY
 
-  override fun run(): Result {
+  override suspend fun doRun(): Result {
     if (!SignalStore.account.isRegistered) {
       Log.w(TAG, "Not registered. Skipping.")
       return Result.success()
@@ -57,17 +59,25 @@ class ArchiveBackupIdReservationJob private constructor(parameters: Parameters) 
       return Result.success()
     }
 
-    return when (val result = BackupRepository.triggerBackupIdReservation()) {
-      is NetworkResult.Success -> Result.success()
-      is NetworkResult.NetworkError -> Result.retry(defaultBackoff())
-      is NetworkResult.ApplicationError -> Result.fatalFailure(RuntimeException(result.throwable))
-      is NetworkResult.StatusCodeError -> {
-        when (result.code) {
-          429 -> Result.retry(result.retryAfter()?.inWholeMilliseconds ?: defaultBackoff())
-          else -> {
-            Log.w(TAG, "Failed to reserve backupId with status: ${result.code}. This should only happen on a malformed request or server error. Reducing backoff interval to be safe.")
+    return when (val result = AppDependencies.archiveService.triggerBackupIdReservation()) {
+      is Either.Right -> Result.success()
+      is Either.Left -> when (val error = result.value) {
+        is ArchiveError.NetworkError -> {
+          if (error.isServerSide) {
+            Log.w(TAG, "Server error while reserving backupId. Backing off hard.", error.exception)
             Result.retry(RemoteConfig.serverErrorMaxBackoff)
+          } else {
+            Result.retry(defaultBackoff())
           }
+        }
+        is ArchiveError.ApplicationError -> Result.fatalFailure(RuntimeException(error.exception))
+        is ArchiveError.CredentialError.RateLimited -> Result.retry(error.retryAfter?.inWholeMilliseconds ?: defaultBackoff())
+        is ArchiveError.CredentialError.InvalidRequest,
+        is ArchiveError.CredentialError.Unauthorized,
+        is ArchiveError.CredentialError.NotFound,
+        is ArchiveError.CredentialError.ZkVerificationFailed -> {
+          Log.w(TAG, "Failed to reserve backupId: ${error::class.simpleName}. This should only happen on a malformed request. Reducing backoff interval to be safe.")
+          Result.retry(RemoteConfig.serverErrorMaxBackoff)
         }
       }
     }

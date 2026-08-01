@@ -5,11 +5,15 @@
 
 package org.thoughtcrime.securesms.jobs
 
+import arrow.core.left
+import arrow.core.right
 import assertk.assertThat
 import assertk.assertions.contains
 import assertk.assertions.isEqualTo
 import assertk.assertions.isNull
 import assertk.assertions.isTrue
+import io.mockk.coEvery
+import io.mockk.coVerify
 import io.mockk.every
 import io.mockk.mockkObject
 import io.mockk.unmockkAll
@@ -21,8 +25,9 @@ import org.junit.Rule
 import org.junit.Test
 import org.signal.core.util.Base64
 import org.signal.core.util.Util
-import org.signal.network.NetworkResult
 import org.signal.network.exceptions.NonSuccessfulResponseCodeException
+import org.signal.network.service.ArchiveError
+import org.signal.network.service.ArchiveService
 import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.backup.DeletionState
@@ -30,6 +35,7 @@ import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.protos.BackupDeleteJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.testing.Flag
@@ -49,12 +55,14 @@ class BackupDeleteJobTest {
   @get:Rule
   val harness = SignalActivityRule()
 
+  private val archiveService: ArchiveService = AppDependencies.archiveService
+
   @Before
   fun setUp() {
     mockkObject(BackupRepository)
-    every { BackupRepository.getBackupTier() } returns NetworkResult.Success(MessageBackupTier.PAID)
-    every { BackupRepository.deleteBackup() } returns NetworkResult.Success(Unit)
-    every { BackupRepository.deleteMediaBackup() } returns NetworkResult.Success(Unit)
+    every { BackupRepository.getBackupTier() } returns MessageBackupTier.PAID.right()
+    coEvery { archiveService.deleteMessageBackup() } returns Unit.right()
+    coEvery { archiveService.deleteMediaBackup() } returns Unit.right()
   }
 
   @After
@@ -193,9 +201,11 @@ class BackupDeleteJobTest {
 
     val result = job.run()
 
+    coVerify {
+      archiveService.deleteMessageBackup()
+      archiveService.deleteMediaBackup()
+    }
     verify {
-      BackupRepository.deleteBackup()
-      BackupRepository.deleteMediaBackup()
       BackupRepository.resetInitializedStateAndAuthCredentials()
     }
 
@@ -205,7 +215,7 @@ class BackupDeleteJobTest {
 
   @Test
   fun givenNetworkErrorDuringMessageBackupDeletion_whenIRun_thenIExpectRetry() {
-    every { BackupRepository.deleteBackup() } returns NetworkResult.NetworkError(IOException())
+    coEvery { archiveService.deleteMessageBackup() } returns ArchiveError.NetworkError(IOException()).left()
 
     SignalStore.backup.deletionState = DeletionState.CLEAR_LOCAL_STATE
 
@@ -218,7 +228,7 @@ class BackupDeleteJobTest {
 
   @Test
   fun givenNetworkErrorDuringMediaBackupDeletion_whenIRun_thenIExpectRetry() {
-    every { BackupRepository.deleteMediaBackup() } returns NetworkResult.NetworkError(IOException())
+    coEvery { archiveService.deleteMediaBackup() } returns ArchiveError.NetworkError(IOException()).left()
 
     SignalStore.backup.deletionState = DeletionState.CLEAR_LOCAL_STATE
 
@@ -231,7 +241,7 @@ class BackupDeleteJobTest {
 
   @Test
   fun givenRateLimitedDuringMessageBackupDeletion_whenIRun_thenIExpectRetry() {
-    every { BackupRepository.deleteBackup() } returns NetworkResult.StatusCodeError(NonSuccessfulResponseCodeException(429))
+    coEvery { archiveService.deleteMessageBackup() } returns ArchiveError.CredentialError.RateLimited(null, NonSuccessfulResponseCodeException(429)).left()
 
     SignalStore.backup.deletionState = DeletionState.CLEAR_LOCAL_STATE
 
@@ -244,7 +254,7 @@ class BackupDeleteJobTest {
 
   @Test
   fun givenRateLimitedDuringMediaBackupDeletion_whenIRun_thenIExpectRetry() {
-    every { BackupRepository.deleteMediaBackup() } returns NetworkResult.StatusCodeError(NonSuccessfulResponseCodeException(429))
+    coEvery { archiveService.deleteMediaBackup() } returns ArchiveError.CredentialError.RateLimited(null, NonSuccessfulResponseCodeException(429)).left()
 
     SignalStore.backup.deletionState = DeletionState.CLEAR_LOCAL_STATE
 

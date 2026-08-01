@@ -12,6 +12,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.documentfile.provider.DocumentFile
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import arrow.core.Either
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -22,6 +23,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import org.signal.archive.stream.EncryptedBackupReader
 import org.signal.archive.stream.EncryptedBackupReader.Companion.MAC_SIZE
@@ -38,14 +40,14 @@ import org.signal.core.util.readNBytesOrThrow
 import org.signal.core.util.roundedString
 import org.signal.core.util.stream.LimitedInputStream
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
-import org.signal.network.NetworkResult
 import org.signal.network.api.SvrBApi
+import org.signal.network.service.ArchiveError
+import org.signal.network.service.ArchiveService.DebugBackupMetadata
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
 import org.thoughtcrime.securesms.backup.LocalExportProgress
 import org.thoughtcrime.securesms.backup.v2.ArchiveValidator
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
-import org.thoughtcrime.securesms.backup.v2.DebugBackupMetadata
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.RemoteRestoreResult
 import org.thoughtcrime.securesms.database.AttachmentTable
@@ -209,10 +211,10 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
       val tempBackupFile = AppDependencies.blobs.forNonAutoEncryptingSingleSessionOnDisk(AppDependencies.application)
 
       when (val result = BackupRepository.downloadBackupFile(tempBackupFile)) {
-        is NetworkResult.Success -> Log.i(TAG, "Download successful")
-        else -> {
-          Log.w(TAG, "Failed to download backup file", result.getCause())
-          throw IOException(result.getCause())
+        is Either.Right -> Log.i(TAG, "Download successful")
+        is Either.Left -> {
+          Log.w(TAG, "Failed to download backup file", result.value.cause)
+          throw IOException("Failed to download backup file: ${result.value}", result.value.cause)
         }
       }
 
@@ -221,9 +223,9 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
         throw IOException("Failed to read forward secrecy metadata!")
       }
 
-      val svrBAuth = when (val result = BackupRepository.getSvrBAuth()) {
-        is NetworkResult.Success -> result.result
-        else -> throw IOException("Failed to read forward secrecy metadata!")
+      val svrBAuth = when (val result = runBlocking { AppDependencies.archiveService.getSvrBAuth() }) {
+        is Either.Right -> result.value
+        is Either.Left -> throw IOException("Failed to read forward secrecy metadata!")
       }
 
       val forwardSecrecyToken = when (val result = SignalNetwork.svrB.restore(svrBAuth, SignalStore.backup.messageBackupKey, forwardSecrecyMetadata)) {
@@ -261,23 +263,24 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
     disposables += Single
       .fromCallable {
         BackupRepository.restoreBackupFileTimestamp()
-        BackupRepository.debugGetRemoteBackupState()
+        runBlocking { AppDependencies.archiveService.debugGetRemoteBackupState() }
       }
       .subscribeOn(Schedulers.io())
       .subscribe { result ->
         when {
-          result is NetworkResult.Success -> {
+          result is Either.Right -> {
+            val metadata = result.value
             _state.value = _state.value.copy(
-              statusMessage = "Remote backup exists. ${result.result.mediaCount} media items, using ${result.result.usedSpace} bytes (${result.result.usedSpace.bytes.inMebiBytes.roundedString(3)} MiB)"
+              statusMessage = "Remote backup exists. ${metadata.mediaCount} media items, using ${metadata.usedSpace} bytes (${metadata.usedSpace.bytes.inMebiBytes.roundedString(3)} MiB)"
             )
           }
 
-          result is NetworkResult.StatusCodeError && result.code == 404 -> {
+          result is Either.Left && result.value is ArchiveError.CredentialError.NotFound -> {
             _state.value = _state.value.copy(statusMessage = "Remote backup does not exists.")
           }
 
           else -> {
-            Log.w(TAG, "Error checking remote backup state", result.getCause())
+            Log.w(TAG, "Error checking remote backup state: ${(result as Either.Left).value}", result.value.cause)
             _state.value = _state.value.copy(statusMessage = "Failed to fetch remote backup state.")
           }
         }
@@ -365,9 +368,9 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
     viewModelScope.launch(Dispatchers.IO) {
       launch {
         statsState.update { it.copy(loadingRemoteStats = true) }
-        val (remoteState: DebugBackupMetadata?, errorMsg: String?) = when (val result = BackupRepository.debugGetRemoteBackupState()) {
-          is NetworkResult.Success -> result.result to null
-          else -> null to result.toString()
+        val (remoteState: DebugBackupMetadata?, errorMsg: String?) = when (val result = AppDependencies.archiveService.debugGetRemoteBackupState()) {
+          is Either.Right -> result.value to null
+          is Either.Left -> null to result.value.toString()
         }
         statsState.update { it.copy(remoteState = remoteState, remoteFailureMsg = errorMsg, loadingRemoteStats = false) }
       }
@@ -376,15 +379,15 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
 
   suspend fun deleteRemoteBackupData(): Boolean = withContext(Dispatchers.IO) {
     when (val result = BackupRepository.debugDeleteAllArchivedMedia()) {
-      is NetworkResult.Success -> Log.i(TAG, "Remote data deleted")
-      else -> {
-        Log.w(TAG, "Unable to delete media", result.getCause())
+      is Either.Right -> Log.i(TAG, "Remote data deleted")
+      is Either.Left -> {
+        Log.w(TAG, "Unable to delete media", result.value.cause)
         return@withContext false
       }
     }
 
-    when (val result = BackupRepository.deleteBackup()) {
-      is NetworkResult.Success -> {
+    when (val result = AppDependencies.archiveService.deleteMessageBackup()) {
+      is Either.Right -> {
         SignalStore.backup.backupsInitialized = false
         SignalStore.backup.messageCredentials.clearAll()
         SignalStore.backup.mediaCredentials.clearAll()
@@ -392,7 +395,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
         return@withContext true
       }
 
-      else -> Log.w(TAG, "Unable to delete remote data", result.getCause())
+      is Either.Left -> Log.w(TAG, "Unable to delete remote data", result.value.cause)
     }
 
     return@withContext false

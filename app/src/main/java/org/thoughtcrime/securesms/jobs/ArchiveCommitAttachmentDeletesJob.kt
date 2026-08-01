@@ -5,14 +5,17 @@
 
 package org.thoughtcrime.securesms.jobs
 
+import arrow.core.Either
 import org.signal.core.models.backup.MediaId
 import org.signal.core.util.Base64
 import org.signal.core.util.logging.Log
-import org.signal.network.NetworkResult
+import org.signal.network.service.ArchiveError
+import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.backup.v2.ArchivedMediaObject
-import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.database.BackupMediaSnapshotTable
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.jobmanager.CoroutineJob
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.RemoteConfig
@@ -25,7 +28,7 @@ import kotlin.time.Duration.Companion.hours
  * Instead, we have to do it after a backup is taken. This job looks at [BackupMediaSnapshotTable] in order to determine which media objects
  * can be safely deleted from the archive service.
  */
-class ArchiveCommitAttachmentDeletesJob private constructor(parameters: Parameters) : Job(parameters) {
+class ArchiveCommitAttachmentDeletesJob private constructor(parameters: Parameters) : CoroutineJob(parameters) {
 
   companion object {
     private val TAG = Log.tag(ArchiveCommitAttachmentDeletesJob::class.java)
@@ -40,7 +43,7 @@ class ArchiveCommitAttachmentDeletesJob private constructor(parameters: Paramete
      *
      * @return Null if successful, or a [Result] indicating the failure.
      */
-    fun deleteMediaObjectsFromCdn(tag: String, attachmentsToDelete: Set<ArchivedMediaObject>, backoffGenerator: () -> Long, cancellationSignal: () -> Boolean): Result? {
+    suspend fun deleteMediaObjectsFromCdn(tag: String, attachmentsToDelete: Set<ArchivedMediaObject>, backoffGenerator: () -> Long, cancellationSignal: () -> Boolean): Result? {
       if (RemoteConfig.internalUser) {
         val mediaIds = attachmentsToDelete.take(250).map { MediaId(Base64.decode(it.mediaId)) }
         Log.w(TAG, "Deleting MediaIds (showing ${mediaIds.size}/${attachmentsToDelete.size}): ${mediaIds.joinToString() }")
@@ -52,37 +55,40 @@ class ArchiveCommitAttachmentDeletesJob private constructor(parameters: Paramete
           return Result.failure()
         }
 
-        when (val result = BackupRepository.deleteAbandonedMediaObjects(chunk)) {
-          is NetworkResult.Success -> {
+        val mediaToDelete = chunk.filter { it.cdn == Cdn.CDN_3.cdnNumber }.map { it.toDeleteBackupMediaItem() }
+
+        when (val result = AppDependencies.archiveService.deleteArchivedMedia(mediaToDelete)) {
+          is Either.Right -> {
             Log.i(tag, "Successfully deleted ${chunk.size} attachments off of the CDN. (Note: Count includes thumbnails)", true)
           }
 
-          is NetworkResult.NetworkError -> {
-            return Result.retry(backoffGenerator())
-          }
-
-          is NetworkResult.StatusCodeError -> {
-            when (result.code) {
-              429 -> {
-                Log.w(tag, "Rate limited while attempting to delete media objects. Retrying later.", true)
-                return Result.retry(result.retryAfter()?.inWholeMilliseconds ?: backoffGenerator())
-              }
-
-              in 500..599 -> {
-                Log.w(tag, "Failed to delete attachments from CDN with code: ${result.code}. Retrying with a larger backoff.", result.getCause(), true)
-                return Result.retry(1.hours.inWholeMilliseconds)
-              }
-
-              else -> {
-                Log.w(tag, "Failed to delete attachments from CDN with code: ${result.code}. Considering this a terminal failure.", result.getCause(), true)
-                return Result.failure()
+          is Either.Left -> when (val error = result.value) {
+            is ArchiveError.NetworkError -> {
+              return if (error.isServerSide) {
+                Log.w(tag, "Server error while deleting attachments from the CDN. Retrying with a larger backoff.", error.exception, true)
+                Result.retry(1.hours.inWholeMilliseconds)
+              } else {
+                Result.retry(backoffGenerator())
               }
             }
-          }
 
-          is NetworkResult.ApplicationError -> {
-            Log.w(tag, "Crash when trying to delete attachments from the CDN", result.getCause(), true)
-            Result.fatalFailure(RuntimeException(result.getCause()))
+            is ArchiveError.CredentialError.RateLimited -> {
+              Log.w(tag, "Rate limited while attempting to delete media objects. Retrying later.", true)
+              return Result.retry(error.retryAfter?.inWholeMilliseconds ?: backoffGenerator())
+            }
+
+            is ArchiveError.ApplicationError -> {
+              Log.w(tag, "Crash when trying to delete attachments from the CDN", error.exception, true)
+              return Result.fatalFailure(RuntimeException(error.exception))
+            }
+
+            is ArchiveError.CredentialError.Unauthorized,
+            is ArchiveError.CredentialError.NotFound,
+            is ArchiveError.CredentialError.InvalidRequest,
+            is ArchiveError.CredentialError.ZkVerificationFailed -> {
+              Log.w(tag, "Failed to delete attachments from CDN: ${error::class.simpleName}. Considering this a terminal failure.", error.cause, true)
+              return Result.failure()
+            }
           }
         }
       }
@@ -104,7 +110,7 @@ class ArchiveCommitAttachmentDeletesJob private constructor(parameters: Paramete
 
   override fun getFactoryKey(): String = KEY
 
-  override fun run(): Result {
+  override suspend fun doRun(): Result {
     if (!SignalStore.backup.backsUpMedia) {
       Log.w(TAG, "This user doesn't back up media! Skipping.")
       return Result.success()
