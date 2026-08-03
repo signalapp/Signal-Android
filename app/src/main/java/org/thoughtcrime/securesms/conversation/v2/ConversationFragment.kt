@@ -540,8 +540,6 @@ class ConversationFragment :
     InlineQueryViewModelV2(conversationRecipientRepository)
   }
 
-  private val shareDataTimestampViewModel: ShareDataTimestampViewModel by activityViewModels()
-
   private val mainNavigationViewModel: MainNavigationViewModel by activityViewModels { MainNavigationViewModel.Factory() }
 
   private val inlineQueryController: InlineQueryResultsControllerV2 by lazy {
@@ -1450,7 +1448,7 @@ class ConversationFragment :
       .inputReadyState
       .take(1)
       .flatMapMaybe { inputReadyState ->
-        draftViewModel.loadShareOrDraftData(shareDataTimestampViewModel.timestamp)
+        draftViewModel.loadShareOrDraftData()
           .map { inputReadyState to it }
       }
       .subscribeBy { (inputReadyState, data) -> handleShareOrDraftData(inputReadyState, data) }
@@ -2165,8 +2163,6 @@ class ConversationFragment :
   }
 
   private fun handleShareOrDraftData(inputReadyState: InputReadyState, data: ShareOrDraftData) {
-    shareDataTimestampViewModel.setTimestampFromConversationArgs(args)
-
     if (inputReadyState.isAnnouncementGroup == true && inputReadyState.isAdmin == false) {
       Toast.makeText(requireContext(), R.string.MultiselectForwardFragment__only_admins_can_send_messages_to_this_group, Toast.LENGTH_SHORT).show()
       draftViewModel.clearDraft()

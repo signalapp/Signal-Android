@@ -132,8 +132,8 @@ class DraftViewModel @JvmOverloads constructor(
     return newState
   }
 
-  fun loadShareOrDraftData(lastShareDataTimestamp: Long): Maybe<DraftRepository.ShareOrDraftData> {
-    return repository.getShareOrDraftData(lastShareDataTimestamp)
+  fun loadShareOrDraftData(): Maybe<DraftRepository.ShareOrDraftData> {
+    return repository.getShareOrDraftData()
       .doOnSuccess { (_, drafts) ->
         if (drafts != null) {
           store.update { saveDraftsIfChanged(it, it.copyAndSetDrafts(drafts = drafts)) }

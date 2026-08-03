@@ -51,7 +51,6 @@ open class ConversationActivity : PassphraseRequiredActivity(), VoiceNoteMediaCo
   override val googlePayResultPublisher: Subject<GooglePayComponent.GooglePayResult> = PublishSubject.create()
 
   private val motionEventRelay: MotionEventRelay by viewModels()
-  private val shareDataTimestampViewModel: ShareDataTimestampViewModel by viewModels()
 
   override fun onPreCreate() {
     theme.onCreate(this)
@@ -79,7 +78,6 @@ open class ConversationActivity : PassphraseRequiredActivity(), VoiceNoteMediaCo
     transitionDebouncer.publish { supportStartPostponedEnterTransition() }
     window.requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)
 
-    shareDataTimestampViewModel.setTimestampFromActivityCreation(savedInstanceState, intent)
     setContentView(R.layout.fragment_container)
 
     if (savedInstanceState == null) {

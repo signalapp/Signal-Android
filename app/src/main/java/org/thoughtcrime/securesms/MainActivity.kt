@@ -134,7 +134,6 @@ import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner
 import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.conversation.NewConversationActivity
 import org.thoughtcrime.securesms.conversation.v2.MotionEventRelay
-import org.thoughtcrime.securesms.conversation.v2.ShareDataTimestampViewModel
 import org.thoughtcrime.securesms.conversationlist.ConversationListArchiveFragment
 import org.thoughtcrime.securesms.conversationlist.ConversationListFragment
 import org.thoughtcrime.securesms.conversationlist.RelinkDevicesReminderBottomSheetFragment
@@ -257,7 +256,6 @@ class MainActivity :
 
   private val toolbarViewModel: MainToolbarViewModel by viewModels()
   private val toolbarCallback = ToolbarCallback()
-  private val shareDataTimestampViewModel: ShareDataTimestampViewModel by viewModels()
 
   private val motionEventRelay: MotionEventRelay by viewModels()
 
@@ -381,8 +379,6 @@ class MainActivity :
         )
       }
     }
-
-    shareDataTimestampViewModel.setTimestampFromActivityCreation(savedInstanceState, intent)
 
     setContent {
       val mainToolbarState by toolbarViewModel.state.collectAsStateWithLifecycle()
