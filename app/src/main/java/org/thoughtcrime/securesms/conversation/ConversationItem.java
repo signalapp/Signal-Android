@@ -105,6 +105,7 @@ import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.conversation.clicklisteners.AttachmentCancelClickListener;
 import org.thoughtcrime.securesms.conversation.clicklisteners.ResendClickListener;
+import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.conversation.colors.Colorizer;
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectCollection;
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart;
@@ -446,7 +447,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     setHasBeenQuoted(conversationMessage);
     setHasBeenScheduled(conversationMessage);
     setHasBeenPinned(conversationMessage);
-    setPoll(messageRecord, messageRecord.getToRecipient().getChatColors().asSingleColor());
+    setPoll(messageRecord, messageRecord.getToRecipient().getChatColors());
     adjustMarginsForSenderVisibility();
 
     if (audioViewStub.resolved()) {
@@ -1857,10 +1858,10 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     }
   }
 
-  private void setPoll(@NonNull MessageRecord messageRecord, int chatColor) {
+  private void setPoll(@NonNull MessageRecord messageRecord, @NonNull ChatColors chatColors) {
     if (hasPoll(messageRecord) && !messageRecord.isRemoteDelete()) {
       PollRecord poll = MessageRecordUtil.getPoll(messageRecord);
-      PollComponentKt.setContent(pollView.get(), poll, isOutgoing(), chatColor, () -> {
+      PollComponentKt.setContent(pollView.get(), poll, isOutgoing(), chatColors.asSingleColor(), chatColors.needsDarkText(), () -> {
         if (eventListener != null && batchSelected.isEmpty()) {
           eventListener.onViewResultsClicked(poll.getId());
         } else {
