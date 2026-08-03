@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -19,6 +21,7 @@ import org.thoughtcrime.securesms.contacts.paged.ChatType
 import org.thoughtcrime.securesms.contacts.selection.ContactSelectionArguments
 import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton
 import java.util.Optional
@@ -90,7 +93,18 @@ class SelectRecipientsFragment : LoggingFragment(), ContactSelectionListFragment
         .subscribeBy(onSuccess = { findNavController().navigateUp() })
     }
 
+    applyEdgeToEdgeInsets(view, toolbar)
+
     updateAddToProfile()
+  }
+
+  private fun applyEdgeToEdgeInsets(view: View, toolbar: Toolbar) {
+    toolbar.updateLayoutParams { height = ViewGroup.LayoutParams.WRAP_CONTENT }
+    SystemWindowInsetsSetter.attach(toolbar, viewLifecycleOwner, WindowInsetsCompat.Type.statusBars())
+
+    val bottomInsetTypes = WindowInsetsCompat.Type.navigationBars() or WindowInsetsCompat.Type.ime()
+    SystemWindowInsetsSetter.attach(view.findViewById(R.id.contact_selection_list_fragment), viewLifecycleOwner, bottomInsetTypes)
+    SystemWindowInsetsSetter.attach(view.findViewById(R.id.select_recipients_add), viewLifecycleOwner, bottomInsetTypes, SystemWindowInsetsSetter.ApplyMode.MARGIN)
   }
 
   override fun onDestroyView() {
