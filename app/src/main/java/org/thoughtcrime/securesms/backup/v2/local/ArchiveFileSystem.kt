@@ -38,7 +38,6 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
-import java.util.TimeZone
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.atomic.AtomicInteger
 
@@ -255,7 +254,7 @@ class ArchiveFileSystem private constructor(private val context: Context, root: 
    * Attempt to create a [SnapshotFileSystem] to represent a single backup snapshot.
    */
   fun createSnapshot(): SnapshotFileSystem? {
-    val timestamp = SimpleDateFormat("yyyy-MM-dd-HH-mm-ss", Locale.US).apply { timeZone = TimeZone.getTimeZone("UTC") }.format(Date())
+    val timestamp = SimpleDateFormat("yyyy-MM-dd-HH-mm-ss", Locale.US).format(Date())
     val snapshotDirectoryName = "${BACKUP_DIRECTORY_PREFIX}-$timestamp"
 
     if (signalBackups.hasFile(snapshotDirectoryName)) {
@@ -281,6 +280,11 @@ class ArchiveFileSystem private constructor(private val context: Context, root: 
 
   /**
    * List all snapshots found in this directory sorted by creation timestamp, newest first.
+   *
+   * The timestamp comes from the directory's last-modified time rather than its name. Names are only a fallback for providers that don't report a modified
+   * time, because a directory may have been named by a version that stamped names in UTC rather than local time, and parsing such a name with a single rule
+   * yields a time that is off by the local UTC offset. That matters here: this ordering drives both [deleteOldBackups] retention and the dates shown when
+   * choosing a backup to restore.
    */
   fun listSnapshots(): List<SnapshotInfo> {
     return signalBackups
@@ -290,7 +294,7 @@ class ArchiveFileSystem private constructor(private val context: Context, root: 
       .mapNotNull { f -> f.name?.let { it to f } }
       .filter { (name, _) -> name.startsWith(BACKUP_DIRECTORY_PREFIX) }
       .map { (name, file) ->
-        val timestamp = name.replace(BACKUP_DIRECTORY_PREFIX, "").toMilliseconds()
+        val timestamp = file.lastModified().takeIf { it > 0 } ?: name.replace(BACKUP_DIRECTORY_PREFIX, "").toMilliseconds()
         SnapshotInfo(timestamp, name, file)
       }
       .sortedByDescending { it.timestamp }
@@ -507,12 +511,19 @@ class FilesFileSystem(private val context: Context, private val root: DocumentFi
   }
 }
 
+/**
+ * Parses a snapshot directory name suffix (e.g. "-2026-01-02-03-04-05") into epoch milliseconds, interpreting the timestamp in the device's default time zone
+ * to match [ArchiveFileSystem.createSnapshot].
+ *
+ * Only a fallback for [ArchiveFileSystem.listSnapshots] when a directory reports no modified time. Names written before snapshots were stamped in local time
+ * are in UTC, and nothing in the name distinguishes the two, so a parsed value can be off by the local UTC offset.
+ */
 private fun String.toMilliseconds(): Long {
   val parts: List<String> = split("-").dropLastWhile { it.isEmpty() }
 
   if (parts.size == 7) {
     try {
-      val calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"), Locale.US)
+      val calendar = Calendar.getInstance(Locale.US)
       calendar[Calendar.YEAR] = parts[1].toInt()
       calendar[Calendar.MONTH] = parts[2].toInt() - 1
       calendar[Calendar.DAY_OF_MONTH] = parts[3].toInt()
