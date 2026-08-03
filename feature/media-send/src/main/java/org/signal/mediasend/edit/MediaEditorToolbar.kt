@@ -19,14 +19,17 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.WindowBreakpoint
 import org.signal.core.ui.compose.IconButtons
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.copied.androidx.compose.material3.IconButtonColors
 import org.signal.core.ui.rememberWindowBreakpoint
+import org.signal.mediasend.EditorState
 import org.signal.mediasend.MediaSendState
 import org.signal.mediasend.SentMediaQuality
+import org.signal.mediasend.test.TestTags
 
 @Composable
 internal fun MediaEditorToolbar(
@@ -73,12 +76,14 @@ internal fun MediaEditorToolbar(
 internal fun MediaEditorToolbarButton(
   imageVector: ImageVector,
   onClick: () -> Unit,
+  modifier: Modifier = Modifier,
   contentDescription: String? = null,
   colors: IconButtonColors = IconButtons.iconButtonColors()
 ) {
   IconButtons.IconButton(
     onClick = onClick,
-    colors = colors
+    colors = colors,
+    modifier = modifier
   ) {
     Icon(imageVector = imageVector, contentDescription = contentDescription, modifier = Modifier.size(24.dp))
   }
@@ -87,30 +92,58 @@ internal fun MediaEditorToolbarButton(
 @Composable
 internal fun MediaEditorToolbarSharedButtons(
   state: MediaSendState,
-  canSave: Boolean,
+  editorState: EditorState,
   onEvent: (MediaEditScreenEvent) -> Unit
 ) {
-  MediaEditorToolbarButton(
-    imageVector = if (state.sentMediaQuality == SentMediaQuality.HIGH) {
-      SignalIcons.QualityHigh.imageVector
-    } else {
-      SignalIcons.QualityHighSlash.imageVector
-    },
-    onClick = { onEvent(MediaEditScreenEvent.ToggleMediaQuality) }
-  )
+  if (isQualityVisible(state, editorState)) {
+    MediaEditorToolbarButton(
+      imageVector = if (state.sentMediaQuality == SentMediaQuality.HIGH) {
+        SignalIcons.QualityHigh.imageVector
+      } else {
+        SignalIcons.QualityHighSlash.imageVector
+      },
+      onClick = { onEvent(MediaEditScreenEvent.ToggleMediaQuality) },
+      modifier = Modifier.testTag(TestTags.MEDIA_EDITOR_TOOLBAR_QUALITY_BUTTON)
+    )
+  }
 
-  if (canSave) {
+  if (isSaveVisible(editorState)) {
     MediaEditorToolbarButton(
       imageVector = SignalIcons.Save.imageVector,
-      onClick = { onEvent(MediaEditScreenEvent.SaveMedia) }
+      onClick = { onEvent(MediaEditScreenEvent.SaveMedia) },
+      modifier = Modifier.testTag(TestTags.MEDIA_EDITOR_TOOLBAR_SAVE_BUTTON)
     )
   }
 
-  // Adding a second attachment would silently drop view-once, so the entry point goes away while it is on.
-  if (!state.isViewOnceEnabled) {
+  if (isAddMediaVisible(state, editorState)) {
     MediaEditorToolbarButton(
       imageVector = SignalIcons.Plus.imageVector, // TODO [alex] - wrong art asset
-      onClick = { onEvent(MediaEditScreenEvent.NavigateToGallery) }
+      onClick = { onEvent(MediaEditScreenEvent.NavigateToGallery) },
+      modifier = Modifier.testTag(TestTags.MEDIA_EDITOR_TOOLBAR_ADD_MEDIA_BUTTON)
     )
   }
+}
+
+private fun isQualityVisible(state: MediaSendState, editorState: EditorState): Boolean {
+  return !state.isStory && editorState !is EditorState.Document
+}
+
+private fun isSaveVisible(editorState: EditorState): Boolean {
+  return editorState is EditorState.Image || editorState is EditorState.Gif
+}
+
+/**
+ * Adding a second attachment would silently drop view-once, so the entry point -- and the selection rail it belongs to
+ * -- goes away while it is on.
+ */
+internal fun isAddMediaVisible(state: MediaSendState, editorState: EditorState?): Boolean {
+  return !state.isViewOnceEnabled && editorState !is EditorState.Document
+}
+
+/**
+ * Whether [MediaEditorToolbarSharedButtons] would render anything, so callers with no buttons of their own can skip the
+ * toolbar rather than leave an empty one behind.
+ */
+internal fun hasSharedToolbarButtons(state: MediaSendState, editorState: EditorState): Boolean {
+  return isQualityVisible(state, editorState) || isSaveVisible(editorState) || isAddMediaVisible(state, editorState)
 }

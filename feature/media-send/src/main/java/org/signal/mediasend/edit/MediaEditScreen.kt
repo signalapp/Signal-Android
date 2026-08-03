@@ -259,7 +259,7 @@ internal fun MediaEditScreen(
           )
         }
 
-        if (state.selectedMedia.size > 1) {
+        if (state.selectedMedia.size > 1 && isAddMediaVisible(state, focusedEditorState)) {
           MediaEditControl(visible = !isImageEditing, faded = isDragging) {
             ThumbnailRow(
               selectedMedia = state.selectedMedia,
@@ -422,6 +422,11 @@ private fun MediaToolbar(
     return
   }
 
+  // An empty toolbar would still claim its slot in the surrounding stack, so bail before the control is composed.
+  if (focusedEditorState !is EditorState.Image && !hasSharedToolbarButtons(state, focusedEditorState)) {
+    return
+  }
+
   MediaEditControl(faded = isDragging, modifier = modifier) {
     when (focusedEditorState) {
       is EditorState.Image -> {
@@ -429,6 +434,7 @@ private fun MediaToolbar(
           ImageEditorToolbar(
             imageEditorController = it,
             state = state,
+            editorState = focusedEditorState,
             onEvent = onEvent,
             modifier = Modifier
               .navigationBarsPadding()
@@ -441,8 +447,8 @@ private fun MediaToolbar(
       else -> MediaEditorToolbar {
         MediaEditorToolbarSharedButtons(
           state = state,
-          onEvent = onEvent,
-          canSave = focusedEditorState is EditorState.VideoTrim
+          editorState = focusedEditorState,
+          onEvent = onEvent
         )
       }
     }

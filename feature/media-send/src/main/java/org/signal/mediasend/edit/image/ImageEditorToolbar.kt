@@ -25,6 +25,7 @@ import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.next
 import org.signal.imageeditor.core.model.EditorModel
+import org.signal.mediasend.EditorState
 import org.signal.mediasend.MediaSendState
 import org.signal.mediasend.edit.ImageController
 import org.signal.mediasend.edit.MediaEditScreenDialogs
@@ -39,6 +40,7 @@ import java.util.EnumMap
 internal fun ImageEditorToolbar(
   imageEditorController: ImageController,
   state: MediaSendState,
+  editorState: EditorState.Image,
   onEvent: (MediaEditScreenEvent) -> Unit,
   modifier: Modifier = Modifier
 ) {
@@ -50,7 +52,7 @@ internal fun ImageEditorToolbar(
       )
     }
     imageEditorController.mode == ImageController.Mode.NONE -> {
-      ImageEditorNoneStateToolbar(imageEditorController, state, onEvent, modifier)
+      ImageEditorNoneStateToolbar(imageEditorController, state, editorState, onEvent, modifier)
     }
     imageEditorController.mode == ImageController.Mode.CROP -> {
       ImageEditorCropAndResizeToolbar(imageEditorController, modifier)
@@ -68,6 +70,7 @@ internal fun ImageEditorToolbar(
 private fun ImageEditorNoneStateToolbar(
   imageEditorController: ImageController,
   state: MediaSendState,
+  editorState: EditorState.Image,
   onEvent: (MediaEditScreenEvent) -> Unit,
   modifier: Modifier = Modifier
 ) {
@@ -84,7 +87,7 @@ private fun ImageEditorNoneStateToolbar(
 
     MediaEditorToolbarSharedButtons(
       state = state,
-      canSave = true,
+      editorState = editorState,
       onEvent = onEvent
     )
   }
@@ -274,6 +277,7 @@ private fun ImageEditorNoneStateToolbarPreview() {
         ImageController(EditorModel.create(0))
       },
       state = rememberPreviewState(),
+      editorState = remember { EditorState.Image(EditorModel.create(0)) },
       onEvent = {}
     )
   }

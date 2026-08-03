@@ -13,6 +13,11 @@ object TestTags {
   // Add A Message Row
   const val ADD_A_MESSAGE_NEXT_BUTTON = "add_a_message_next_button"
 
+  // Media Editor Toolbar
+  const val MEDIA_EDITOR_TOOLBAR_QUALITY_BUTTON = "media_editor_toolbar_quality_button"
+  const val MEDIA_EDITOR_TOOLBAR_SAVE_BUTTON = "media_editor_toolbar_save_button"
+  const val MEDIA_EDITOR_TOOLBAR_ADD_MEDIA_BUTTON = "media_editor_toolbar_add_media_button"
+
   // Schedule Send Menu
   const val SCHEDULE_SEND_PICK_TIME_OPTION = "schedule_send_pick_time_option"
 
