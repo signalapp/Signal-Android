@@ -43,7 +43,7 @@ data class MediaSendState(
   val focusedMedia: Media? = null,
   val isMeteredConnection: Boolean = false,
   val isPreUploadEnabled: Boolean = false,
-  val sentMediaQuality: SentMediaQuality = SentMediaQuality.STANDARD,
+  val sentMediaQuality: @WriteWith<TransientSentMediaQualityParceler> SentMediaQuality = MediaSendDependencies.mediaSendRepository.sentMediaQuality,
   /**
    * Per-media editor state keyed by URI (video trim data, image editor data, etc.).
    */
@@ -188,6 +188,14 @@ data class MediaSendState(
   private object TransientMediaConstraintsParceler : Parceler<MediaConstraints> {
     override fun create(parcel: Parcel): MediaConstraints = MediaSendDependencies.mediaSendRepository.getMediaConstraints()
     override fun MediaConstraints.write(parcel: Parcel, flags: Int) = Unit
+  }
+
+  /**
+   * The repository is the source of truth: every toggle writes through to it, so the value is re-read rather than saved.
+   */
+  private object TransientSentMediaQualityParceler : Parceler<SentMediaQuality> {
+    override fun create(parcel: Parcel): SentMediaQuality = MediaSendDependencies.mediaSendRepository.sentMediaQuality
+    override fun SentMediaQuality.write(parcel: Parcel, flags: Int) = Unit
   }
 
   enum class ViewOnceToggleState(val code: Int) {

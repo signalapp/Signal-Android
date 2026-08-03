@@ -60,6 +60,11 @@ interface MediaSendRepository {
   suspend fun deleteBlobs(media: List<Media>)
 
   /**
+   * User's sent-media-quality setting, backed by persistent storage.
+   */
+  var sentMediaQuality: SentMediaQuality
+
+  /**
    * Whether the user has opted out of the warning shown before media is written to shared device storage.
    */
   val hasDismissedSaveToStorageWarning: Boolean

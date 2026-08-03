@@ -763,6 +763,7 @@ class MediaSendViewModel(
     if (snapshot.sentMediaQuality == sentMediaQuality) return
 
     updateState { copy(sentMediaQuality = sentMediaQuality, isPreUploadEnabled = false) }
+    repository.sentMediaQuality = sentMediaQuality
     preUploadController.cancelAllUploads()
 
     // Re-clamp video durations based on new quality

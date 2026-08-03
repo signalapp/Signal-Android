@@ -90,6 +90,12 @@ object MediaSendV3Repository : MediaSendRepository {
       SignalStore.misc.isCameraFacingFront = value
     }
 
+  override var sentMediaQuality: SentMediaQuality
+    get() = SignalStore.settings.sentMediaQuality
+    set(value) {
+      SignalStore.settings.sentMediaQuality = value
+    }
+
   override suspend fun getFolders(): List<MediaFolder> = suspendCancellableCoroutine { continuation ->
     mediaRepository.getFolders(appContext) { folders ->
       continuation.resume(folders)
