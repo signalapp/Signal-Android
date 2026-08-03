@@ -253,12 +253,8 @@ object MediaSendV3Repository : MediaSendRepository {
     return MediaConstraints.isVideoTranscodeAvailable()
   }
 
-  override suspend fun getStorySendRequirements(media: List<Media>): StorySendRequirements = withContext(Dispatchers.IO) {
-    when (Stories.MediaTransform.getSendRequirements(media)) {
-      Stories.MediaTransform.SendRequirements.VALID_DURATION -> StorySendRequirements.CAN_SEND
-      Stories.MediaTransform.SendRequirements.REQUIRES_CLIP -> StorySendRequirements.REQUIRES_CROP
-      Stories.MediaTransform.SendRequirements.CAN_NOT_SEND -> StorySendRequirements.CAN_NOT_SEND
-    }
+  override suspend fun getStorySendRequirements(media: List<Media>): Map<Uri, StorySendRequirements> = withContext(Dispatchers.IO) {
+    media.associate { it.uri to Stories.MediaTransform.getSendRequirements(it).toFeatureSendRequirements() }
   }
 
   override suspend fun checkUntrustedIdentities(contactIds: Set<Long>, since: Long): List<Long> = withContext(Dispatchers.Default) {

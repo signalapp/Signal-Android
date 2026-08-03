@@ -104,9 +104,12 @@ interface MediaSendRepository {
   fun isVideoTranscodeAvailable(): Boolean
 
   /**
-   * Gets story send requirements for the given media.
+   * Gets the story send requirement for each of the given media, keyed by URI as the selection's stable identity.
+   *
+   * Per-item because pre-upload eligibility is decided per media, while the UI needs the whole selection's
+   * requirement. Deriving the latter from this map keeps duration probing to a single pass.
    */
-  suspend fun getStorySendRequirements(media: List<Media>): StorySendRequirements
+  suspend fun getStorySendRequirements(media: List<Media>): Map<Uri, StorySendRequirements>
 
   /**
    * Checks for untrusted identity records among the given contacts.
@@ -236,4 +239,18 @@ enum class StorySendRequirements {
 
   /** Requires cropping before sending to stories. */
   REQUIRES_CROP
+}
+
+/**
+ * The strictest requirement across [this], which is how a send treats a selection: one item that cannot be sent
+ * blocks the selection, and one item needing a crop makes the selection need one. Empty selections can send.
+ */
+fun Collection<StorySendRequirements>.strictest(): StorySendRequirements {
+  return fold(StorySendRequirements.CAN_SEND) { left, right ->
+    when {
+      left == StorySendRequirements.CAN_NOT_SEND || right == StorySendRequirements.CAN_NOT_SEND -> StorySendRequirements.CAN_NOT_SEND
+      left == StorySendRequirements.REQUIRES_CROP || right == StorySendRequirements.REQUIRES_CROP -> StorySendRequirements.REQUIRES_CROP
+      else -> StorySendRequirements.CAN_SEND
+    }
+  }
 }

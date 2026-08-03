@@ -26,6 +26,15 @@ fun StorySendRequirements.toAppSendRequirements(): Stories.MediaTransform.SendRe
 }
 
 /**
+ * Maps the app-layer [Stories.MediaTransform.SendRequirements] to the feature-module [StorySendRequirements].
+ */
+fun Stories.MediaTransform.SendRequirements.toFeatureSendRequirements(): StorySendRequirements = when (this) {
+  Stories.MediaTransform.SendRequirements.VALID_DURATION -> StorySendRequirements.CAN_SEND
+  Stories.MediaTransform.SendRequirements.CAN_NOT_SEND -> StorySendRequirements.CAN_NOT_SEND
+  Stories.MediaTransform.SendRequirements.REQUIRES_CLIP -> StorySendRequirements.REQUIRES_CROP
+}
+
+/**
  * Turns a sticker pick into a [Renderer] the image editor can place.
  */
 internal fun StickerSelectResult.toRenderer(): Renderer = when (this) {

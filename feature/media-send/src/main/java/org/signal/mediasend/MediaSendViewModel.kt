@@ -162,8 +162,6 @@ class MediaSendViewModel(
     .distinctUntilChanged()
 
   init {
-    // Matches legacy behavior: VM subscribes to connectivity updates and derives
-    // isPreUploadEnabled from metered state.
     viewModelScope.launch {
       isMeteredFlow.collect { metered ->
         updateState { copy(isMeteredConnection = metered, isPreUploadEnabled = shouldPreUpload(metered)) }
@@ -607,11 +605,11 @@ class MediaSendViewModel(
         }
 
         // Update story requirements
-        updateStorySendRequirements(updatedMedia)
+        val storySendRequirements = updateStorySendRequirements(updatedMedia)
 
         // Start pre-uploads for new media
         val newMedia = updatedMedia.filter { item -> media.any { it.uri == item.uri } }
-        startUpload(newMedia)
+        startUpload(newMedia, storySendRequirements)
       }
 
       filterResult.error?.let { onMediaFilterError(it, isSelectionEmpty = filterResult.filteredMedia.isEmpty()) }
@@ -787,14 +785,20 @@ class MediaSendViewModel(
 
   //region Pre-Upload Management
 
-  private fun startUpload(media: List<Media>) {
+  /**
+   * @param storySendRequirements Requirements for the current selection, so a story destination can skip media that
+   *   will be clipped at send time and uploaded as a different asset.
+   */
+  private fun startUpload(media: List<Media>, storySendRequirements: Map<Uri, StorySendRequirements>) {
     val snapshot = state.value
     if (!snapshot.isPreUploadEnabled) return
 
-    val filteredPreUploadMedia = if (snapshot.mode is MediaSendActivityContract.Mode.SingleRecipient) {
+    val isChatDestination = (snapshot.mode is MediaSendActivityContract.Mode.SingleRecipient && !snapshot.isStory) || !snapshot.storiesEnabled
+
+    val filteredPreUploadMedia = if (isChatDestination) {
       media.filter { !ContentTypeUtil.isDocumentType(it.contentType) }
     } else {
-      media.filter { ContentTypeUtil.isStorySupportedType(it.contentType) }
+      media.filter { storySendRequirements[it.uri] != StorySendRequirements.REQUIRES_CROP }
     }
 
     preUploadController.startUpload(filteredPreUploadMedia, snapshot.recipientId)
@@ -1100,9 +1104,10 @@ class MediaSendViewModel(
    * Computed for every flow, not just story flows: the contact picker consults this before allowing a story
    * to be selected, so leaving it at its default would strip story selections made mid-flow.
    */
-  private suspend fun updateStorySendRequirements(media: List<Media>) {
+  private suspend fun updateStorySendRequirements(media: List<Media>): Map<Uri, StorySendRequirements> {
     val requirements = repository.getStorySendRequirements(media)
-    updateState { copy(storySendRequirements = requirements) }
+    updateState { copy(storySendRequirements = requirements.values.strictest()) }
+    return requirements
   }
 
   //endregion
@@ -1307,7 +1312,12 @@ class MediaSendViewModel(
     preUploadController.deleteAbandonedAttachments()
   }
 
-  private fun shouldPreUpload(metered: Boolean): Boolean = !metered
+  /**
+   * A flow that picks its destination mid-flight has nothing to attribute an upload to yet, so it waits for the send.
+   */
+  private fun shouldPreUpload(metered: Boolean): Boolean {
+    return !metered && args.mode != MediaSendActivityContract.Mode.ChooseAfterMediaSelection
+  }
 
   //endregion
 
