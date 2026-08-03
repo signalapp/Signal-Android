@@ -106,9 +106,9 @@
     <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
     <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">ရွေးချယ်ထားသောနည်းလမ်းဖြင့် ကုဒ်ပို့၍မရပါ။ အခြားနည်းလမ်းတစ်ခုကို စမ်းကြည့်ပါ။</string>
     <!-- Dialog shown when the provider rejected placing a verification phone call to the user\'s number -->
-    <string name="VerificationCodeScreen__could_not_call_provider_rejected">We couldn\'t call you with a verification code. Please try again, or request the code via SMS instead.</string>
+    <string name="VerificationCodeScreen__could_not_call_provider_rejected">အတည်ပြုကုဒ်ဖြင့် သင့်ထံ ဖုန်းခေါ်ဆို၍ မရပါ။ ကျေးဇူးပြု၍ ထပ်မံကြိုးစားပါ၊ သို့မဟုတ် SMS မှတစ်ဆင့် ကုဒ်ကို တောင်းယူပါ။</string>
     <!-- Dialog shown when the provider rejected sending a verification SMS to the user\'s number -->
-    <string name="VerificationCodeScreen__could_not_sms_provider_rejected">We couldn\'t send you an SMS with a verification code. Please try again, or request the code via a phone call instead.</string>
+    <string name="VerificationCodeScreen__could_not_sms_provider_rejected">အတည်ပြုကုဒ်ပါဝင်သော SMS ကို သင့်ထံ ပို့၍ မရပါ။ ကျေးဇူးပြု၍ ထပ်မံကြိုးစားပါ၊ သို့မဟုတ် ဖုန်းခေါ်ဆိုမှုမှတစ်ဆင့် ကုဒ်ကို တောင်းယူပါ။</string>
     <!-- Snackbar shown for registration errors -->
     <string name="VerificationCodeScreen__registration_error">မှတ်ပုံတင်ခြင်း မအောင်မြင်ပါ။ ထပ်ကြိုးစားကြည့်ပါ။</string>
     <!-- Button text for having trouble with verification -->
@@ -124,7 +124,7 @@
     <!-- Clickable substring linking to contacting support within VerificationCodeScreen__support_bottom_sheet_body_call_to_action -->
     <string name="VerificationCodeScreen__support_bottom_sheet_cta_contact_support_substring">ပံ့ပိုးမှုစင်တာသို့ ဆက်သွယ်ရန်</string>
     <!-- Email subject used when contacting support from the verification code screen -->
-    <string name="VerificationCodeScreen__contact_support_email_subject">Signal မှတ်ပုံတင်ခြင်း Android အတွက် အတည်ပြုကုဒ်</string>
+    <string name="VerificationCodeScreen__contact_support_email_subject">Signal မှတ်ပုံတင်ခြင်း - Android အတွက် အတည်ပြုကုဒ်</string>
     <!-- Text placed in the body of the support email composed from the verification code screen. Used to route the request, so it is not translated. -->
   <!-- Removed by excludeNonTranslatables <string name="VerificationCodeScreen__contact_support_email_filter" translatable="false">Signal Registration - Verification Code for Android</string> -->
     <!-- URL opened for troubleshooting steps from the verification code screen -->
@@ -381,9 +381,9 @@
     <!-- Error shown below the PIN field when the confirmation PIN does not match the one the user first entered. -->
     <string name="PinCreationScreen__pins_dont_match">PIN နံပါတ်များ မကိုက်ညီပါ။ ထပ်မံကြိုးစားပါ။</string>
     <!-- Error shown below the PIN field when the user tries to create a PIN that is too easy to guess, such as one made of sequential or repeated digits. -->
-    <string name="PinCreationScreen__choose_a_stronger_pin">ပိုခိုင်မာသော ပင်နံပါတ်ကို ရွေးပါ</string>
+    <string name="PinCreationScreen__choose_a_stronger_pin">ပိုခိုင်မာသော PIN ကို ရွေးပါ</string>
     <!-- Error shown below the PIN field when the user tries to create a PIN that matches the code used to verify their phone number. -->
-    <string name="PinCreationScreen__reentered_verification_code">You re-entered the code that was already used to verify your phone number. Choose a new and unique Signal PIN.</string>
+    <string name="PinCreationScreen__reentered_verification_code">သင့်ဖုန်းနံပါတ်ကို အတည်ပြုရန် အသုံးပြုပြီးသား ကုဒ်ကို ထပ်မံထည့်သွင်းထားပါသည်။ သီးသန့် Signal PIN အသစ်ကို ရွေးပါ။</string>
     <!-- Overflow menu item that opens a help article about Signal PINs. -->
     <string name="PinCreationScreen__learn_more_about_pins">PIN နံပါတ်များအကြောင်း ပိုမိုလေ့လာပါ</string>
     <!-- Title of the dialog confirming that the user wants to disable their Signal PIN. -->
@@ -408,7 +408,7 @@
     <!-- Describes the PIN that needs to be entered. -->
     <string name="PinEntryScreen__enter_the_pin_you_created">Signal ကို ပထမဆုံးထည့်သွင်းစဥ်က ဖန်တီးခဲ့သည့် PIN ကို ရိုက်ထည့်ပါ။</string>
     <!-- Error shown when the user enters the code used to verify their phone number instead of their PIN, and it was not their actual PIN. -->
-    <string name="PinEntryScreen__reentered_verification_code">You re-entered the code that was already used to verify your phone number. Enter the unique Signal PIN that you previously chose for your account.</string>
+    <string name="PinEntryScreen__reentered_verification_code">သင့်ဖုန်းနံပါတ်ကို အတည်ပြုရန် အသုံးပြုပြီးသား ကုဒ်ကို ထပ်မံထည့်သွင်းထားပါသည်။ သင့်အကောင့်အတွက် ယခင်ရွေးချယ်ထားသော သီးသန့် Signal PIN ကို ထည့်သွင်းပါ။</string>
     <!-- Error shown when an incorrect PIN is entered. %1$d is the number of attempts remaining. -->
     <plurals name="PinEntryScreen__incorrect_pin">
         <item quantity="other">PIN မမှန်ကန်ပါ။ ကြိုးစားရန် %1$d ကြိမ် ကျန်ရှိပါသည်။</item>
@@ -434,7 +434,7 @@
     <!-- Labels the button in the no-data-to-restore dialog that lets the user contact support. -->
     <string name="PinEntryScreen__contact_support">ပံ့ပိုးရေးသို့ ဆက်သွယ်ရန်</string>
     <!-- Subject line of the support email composed when the user contacts support about PIN entry. -->
-    <string name="PinEntryScreen__contact_support_email_subject">Signal မှတ်ပုံတင်ခြင်း - Android ပေါ်တွင် ပင်နံပါတ်နှင့် ပါတ်သက်သော အကူအညီရယူလိုပါသည်</string>
+    <string name="PinEntryScreen__contact_support_email_subject">Signal မှတ်ပုံတင်ခြင်း - Android တွင် PIN နှင့် ပါတ်သက်သော အကူအညီရယူလိုပါသည်</string>
     <!-- Text placed in the body of the support email composed when the user contacts support about PIN entry. Used to route the request, so it is not translated. -->
   <!-- Removed by excludeNonTranslatables <string name="PinEntryScreen__contact_support_email_filter" translatable="false">Signal Registration - Need Help with PIN for Android</string> -->
 

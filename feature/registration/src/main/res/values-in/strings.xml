@@ -88,7 +88,7 @@
     <!-- Button text for call me action -->
     <string name="VerificationCodeScreen__call_me_instead">Telepon saya</string>
     <!-- Button text for resend SMS when countdown is active. Placeholders are minutes and seconds -->
-    <string name="VerificationCodeScreen__resend_code_available_in">Kirim Kode Lagi (%1$02d:%2$02d)</string>
+    <string name="VerificationCodeScreen__resend_code_available_in">Kirim Ulang Kode (%1$02d:%2$02d)</string>
     <!-- Button text for call me when countdown is active. Placeholders are minutes and seconds -->
     <string name="VerificationCodeScreen__call_me_available_in">Telepon saya (%1$02d:%2$02d)</string>
     <!-- Toast shown when the user enters an incorrect verification code -->
@@ -106,9 +106,9 @@
     <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
     <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">Tidak bisa mengirim kode melalui metode yang dipilih. Silakan coba opsi lain.</string>
     <!-- Dialog shown when the provider rejected placing a verification phone call to the user\'s number -->
-    <string name="VerificationCodeScreen__could_not_call_provider_rejected">We couldn\'t call you with a verification code. Please try again, or request the code via SMS instead.</string>
+    <string name="VerificationCodeScreen__could_not_call_provider_rejected">Kami tidak bisa menelepon Anda untuk memberikan kode verifikasi. Coba lagi atau minta kode melalui SMS sebagai gantinya.</string>
     <!-- Dialog shown when the provider rejected sending a verification SMS to the user\'s number -->
-    <string name="VerificationCodeScreen__could_not_sms_provider_rejected">We couldn\'t send you an SMS with a verification code. Please try again, or request the code via a phone call instead.</string>
+    <string name="VerificationCodeScreen__could_not_sms_provider_rejected">Kami tidak bisa mengirimi Anda SMS berisi kode verifikasi. Coba lagi atau minta kode melalui panggilan telepon sebagai gantinya.</string>
     <!-- Snackbar shown for registration errors -->
     <string name="VerificationCodeScreen__registration_error">Pendaftaran gagal. Silakan coba lagi.</string>
     <!-- Button text for having trouble with verification -->
@@ -311,7 +311,7 @@
     <!-- Button to contact support -->
     <string name="RemoteRestoreScreen__contact_support">Hubungi tim dukungan</string>
     <!-- Subject line of the support email composed when the user contacts support about an unrecoverable backup. -->
-    <string name="RemoteRestoreScreen__contact_support_email_subject">Kegagalan permanen pemulihan data cadangan di Signal Android</string>
+    <string name="RemoteRestoreScreen__contact_support_email_subject">Kegagalan Permanen Pemulihan Data Cadangan di Signal Android</string>
     <!-- Text placed in the body of the support email composed when the user contacts support about an unrecoverable backup. Used to route the request, so it is not translated. -->
   <!-- Removed by excludeNonTranslatables <string name="RemoteRestoreScreen__contact_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
     <!-- Shown while downloading the backup from the server -->
@@ -383,7 +383,7 @@
     <!-- Error shown below the PIN field when the user tries to create a PIN that is too easy to guess, such as one made of sequential or repeated digits. -->
     <string name="PinCreationScreen__choose_a_stronger_pin">Buat PIN yang lebih kuat</string>
     <!-- Error shown below the PIN field when the user tries to create a PIN that matches the code used to verify their phone number. -->
-    <string name="PinCreationScreen__reentered_verification_code">You re-entered the code that was already used to verify your phone number. Choose a new and unique Signal PIN.</string>
+    <string name="PinCreationScreen__reentered_verification_code">Anda memasukkan lagi kode yang sudah digunakan untuk memverifikasi nomor telepon Anda. Pilih PIN Signal yang baru dan unik.</string>
     <!-- Overflow menu item that opens a help article about Signal PINs. -->
     <string name="PinCreationScreen__learn_more_about_pins">Pelajari lebih lanjut tentang PIN</string>
     <!-- Title of the dialog confirming that the user wants to disable their Signal PIN. -->
@@ -408,7 +408,7 @@
     <!-- Describes the PIN that needs to be entered. -->
     <string name="PinEntryScreen__enter_the_pin_you_created">Masukkan PIN yang Anda buat saat pertama kali menginstal Signal</string>
     <!-- Error shown when the user enters the code used to verify their phone number instead of their PIN, and it was not their actual PIN. -->
-    <string name="PinEntryScreen__reentered_verification_code">You re-entered the code that was already used to verify your phone number. Enter the unique Signal PIN that you previously chose for your account.</string>
+    <string name="PinEntryScreen__reentered_verification_code">Anda memasukkan lagi kode yang sudah digunakan untuk memverifikasi nomor telepon Anda. Masukkan PIN Signal unik yang sebelumnya dipilih untuk akun Anda.</string>
     <!-- Error shown when an incorrect PIN is entered. %1$d is the number of attempts remaining. -->
     <plurals name="PinEntryScreen__incorrect_pin">
         <item quantity="other">PIN salah. Sisa %1$d kali percobaan.</item>
@@ -602,9 +602,9 @@
     <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->
     <string name="ContactSupportDialog__submit_debug_log">Kirim catatan debug?</string>
     <!-- Body of the dialog asking the user whether they want to attach a debug log to their support request -->
-    <string name="ContactSupportDialog__your_debug_logs">Kami dapat menangani masalah dengan lebih cepat jika Anda mengirimkan log debug (opsional).</string>
+    <string name="ContactSupportDialog__your_debug_logs">Kami dapat menangani masalah dengan lebih cepat jika Anda mengirimkan catatan debug (opsional).</string>
     <!-- Button that contacts support with a debug log attached -->
-    <string name="ContactSupportDialog__submit_with_debug_log">Kirimkan dengan log debug</string>
+    <string name="ContactSupportDialog__submit_with_debug_log">Kirim dengan catatan debug</string>
     <!-- Button that contacts support without attaching a debug log -->
-    <string name="ContactSupportDialog__submit_without_debug_log">Kirim tanpa log debug</string>
+    <string name="ContactSupportDialog__submit_without_debug_log">Kirim tanpa catatan debug</string>
 </resources>

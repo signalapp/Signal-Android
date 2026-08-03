@@ -106,9 +106,9 @@
     <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
     <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">തിരഞ്ഞെടുത്ത രീതിയിലൂടെ കോഡ് അയയ്ക്കാൻ കഴിഞ്ഞില്ല. മറ്റൊരു ഓപ്ഷൻ പരീക്ഷിച്ചു നോക്കൂ.</string>
     <!-- Dialog shown when the provider rejected placing a verification phone call to the user\'s number -->
-    <string name="VerificationCodeScreen__could_not_call_provider_rejected">We couldn\'t call you with a verification code. Please try again, or request the code via SMS instead.</string>
+    <string name="VerificationCodeScreen__could_not_call_provider_rejected">നിങ്ങള്‍ക്ക് കോള്‍ വഴി പരിശോധിച്ചുറപ്പിക്കല്‍ കോഡ് നല്‍കാന്‍ ഞങ്ങള്‍ക്ക് കഴിഞ്ഞില്ല. ദയവായി വീണ്ടും ശ്രമിക്കുക, അല്ലെങ്കിൽ പകരം SMS വഴി കോഡിനായി അഭ്യർത്ഥിക്കുക.</string>
     <!-- Dialog shown when the provider rejected sending a verification SMS to the user\'s number -->
-    <string name="VerificationCodeScreen__could_not_sms_provider_rejected">We couldn\'t send you an SMS with a verification code. Please try again, or request the code via a phone call instead.</string>
+    <string name="VerificationCodeScreen__could_not_sms_provider_rejected">നിങ്ങള്‍ക്ക് SMS വഴി പരിശോധിച്ചുറപ്പിക്കല്‍ കോഡ് നല്‍കാന്‍ ഞങ്ങള്‍ക്ക് കഴിഞ്ഞില്ല. ദയവായി വീണ്ടും ശ്രമിക്കുക, അല്ലെങ്കിൽ പകരം ഫോൺ കോൾ വഴി കോഡിനായി അഭ്യർത്ഥിക്കുക.</string>
     <!-- Snackbar shown for registration errors -->
     <string name="VerificationCodeScreen__registration_error">രജിസ്ട്രേഷൻ പരാജയപ്പെട്ടു. വീണ്ടും ശ്രമിക്കുക.</string>
     <!-- Button text for having trouble with verification -->
@@ -384,7 +384,7 @@
     <!-- Error shown below the PIN field when the user tries to create a PIN that is too easy to guess, such as one made of sequential or repeated digits. -->
     <string name="PinCreationScreen__choose_a_stronger_pin">ശക്തമായ ഒരു PIN തിരഞ്ഞെടുക്കുക</string>
     <!-- Error shown below the PIN field when the user tries to create a PIN that matches the code used to verify their phone number. -->
-    <string name="PinCreationScreen__reentered_verification_code">You re-entered the code that was already used to verify your phone number. Choose a new and unique Signal PIN.</string>
+    <string name="PinCreationScreen__reentered_verification_code">നിങ്ങളുടെ ഫോൺ നമ്പർ പരിശോധിച്ചുറപ്പിക്കുന്നതിനായി മുമ്പ് ഉപയോഗിച്ച അതേ കോഡ് തന്നെയാണ് നിങ്ങൾ വീണ്ടും നൽകിയത്. പുതിയതും തനതായതുമായ ഒരു Signal PIN തിരഞ്ഞെടുക്കുക.</string>
     <!-- Overflow menu item that opens a help article about Signal PINs. -->
     <string name="PinCreationScreen__learn_more_about_pins">PIN-കളെക്കുറിച്ച് കൂടുതൽ പഠിക്കുക.</string>
     <!-- Title of the dialog confirming that the user wants to disable their Signal PIN. -->
@@ -409,7 +409,7 @@
     <!-- Describes the PIN that needs to be entered. -->
     <string name="PinEntryScreen__enter_the_pin_you_created">നിങ്ങൾ ആദ്യമായി Signal ഇൻസ്റ്റാൾ ചെയ്തപ്പോൾ നിർമ്മിച്ച PIN നൽകുക</string>
     <!-- Error shown when the user enters the code used to verify their phone number instead of their PIN, and it was not their actual PIN. -->
-    <string name="PinEntryScreen__reentered_verification_code">You re-entered the code that was already used to verify your phone number. Enter the unique Signal PIN that you previously chose for your account.</string>
+    <string name="PinEntryScreen__reentered_verification_code">നിങ്ങളുടെ ഫോൺ നമ്പർ പരിശോധിച്ചുറപ്പിക്കുന്നതിനായി മുമ്പ് ഉപയോഗിച്ച അതേ കോഡ് തന്നെയാണ് നിങ്ങൾ വീണ്ടും നൽകിയത്. നിങ്ങളുടെ അക്കൗണ്ടിനായി നിങ്ങൾ മുമ്പ് തിരഞ്ഞെടുത്ത തനതായ Signal PIN നൽകുക.</string>
     <!-- Error shown when an incorrect PIN is entered. %1$d is the number of attempts remaining. -->
     <plurals name="PinEntryScreen__incorrect_pin">
         <item quantity="one">PIN തെറ്റാണ്. %1$d ശ്രമം ശേഷിക്കുന്നു.</item>

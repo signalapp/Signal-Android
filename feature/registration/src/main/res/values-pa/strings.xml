@@ -106,9 +106,9 @@
     <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
     <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">ਚੁਣੀ ਗਈ ਵਿਧੀ ਰਾਹੀਂ ਕੋਡ ਨਹੀਂ ਭੇਜਿਆ ਜਾ ਸਕਿਆ। ਕਿਰਪਾ ਕਰਕੇ ਕੋਈ ਹੋਰ ਵਿਕਲਪ ਅਜ਼ਮਾਓ।</string>
     <!-- Dialog shown when the provider rejected placing a verification phone call to the user\'s number -->
-    <string name="VerificationCodeScreen__could_not_call_provider_rejected">We couldn\'t call you with a verification code. Please try again, or request the code via SMS instead.</string>
+    <string name="VerificationCodeScreen__could_not_call_provider_rejected">ਅਸੀਂ ਤਸਦੀਕ ਕੋਡ ਦੱਸਣ ਲਈ ਤੁਹਾਨੂੰ ਕਾਲ ਨਹੀਂ ਕਰ ਸਕੇ। ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ, ਜਾਂ ਇਸਦੀ ਬਜਾਏ SMS ਰਾਹੀਂ ਕੋਡ ਪ੍ਰਾਪਤ ਕਰਨ ਦੀ ਬੇਨਤੀ ਕਰੋ।</string>
     <!-- Dialog shown when the provider rejected sending a verification SMS to the user\'s number -->
-    <string name="VerificationCodeScreen__could_not_sms_provider_rejected">We couldn\'t send you an SMS with a verification code. Please try again, or request the code via a phone call instead.</string>
+    <string name="VerificationCodeScreen__could_not_sms_provider_rejected">ਅਸੀਂ ਤੁਹਾਨੂੰ ਤਸਦੀਕ ਕੋਡ ਵਾਲਾ SMS ਨਹੀਂ ਭੇਜ ਸਕੇ। ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ, ਜਾਂ ਇਸਦੀ ਬਜਾਏ ਫ਼ੋਨ ਕਾਲ ਰਾਹੀਂ ਕੋਡ ਪ੍ਰਾਪਤ ਕਰਨ ਦੀ ਬੇਨਤੀ ਕਰੋ।</string>
     <!-- Snackbar shown for registration errors -->
     <string name="VerificationCodeScreen__registration_error">ਰਜਿਸਟ੍ਰੇਸ਼ਨ ਅਸਫਲ ਰਹੀ। ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
     <!-- Button text for having trouble with verification -->
@@ -124,7 +124,7 @@
     <!-- Clickable substring linking to contacting support within VerificationCodeScreen__support_bottom_sheet_body_call_to_action -->
     <string name="VerificationCodeScreen__support_bottom_sheet_cta_contact_support_substring">ਸਹਾਇਤਾ ਟੀਮ ਨਾਲ ਸੰਪਰਕ ਕਰੋ</string>
     <!-- Email subject used when contacting support from the verification code screen -->
-    <string name="VerificationCodeScreen__contact_support_email_subject">Signal ਰਜਿਸਟ੍ਰੇਸ਼ਨ - ਐਂਡਰਾਇਡ ਲਈ ਪੁਸ਼ਟੀਕਰਣ ਕੋਡ</string>
+    <string name="VerificationCodeScreen__contact_support_email_subject">Signal ਰਜਿਸਟ੍ਰੇਸ਼ਨ - Android ਲਈ ਤਸਦੀਕ ਕੋਡ</string>
     <!-- Text placed in the body of the support email composed from the verification code screen. Used to route the request, so it is not translated. -->
   <!-- Removed by excludeNonTranslatables <string name="VerificationCodeScreen__contact_support_email_filter" translatable="false">Signal Registration - Verification Code for Android</string> -->
     <!-- URL opened for troubleshooting steps from the verification code screen -->
@@ -382,9 +382,9 @@
     <!-- Error shown below the PIN field when the confirmation PIN does not match the one the user first entered. -->
     <string name="PinCreationScreen__pins_dont_match">PIN ਮੇਲ ਨਹੀਂ ਖਾ ਰਹੇ। ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
     <!-- Error shown below the PIN field when the user tries to create a PIN that is too easy to guess, such as one made of sequential or repeated digits. -->
-    <string name="PinCreationScreen__choose_a_stronger_pin">ਮਜ਼ਬੂਤ PIN ਬਣਾਓ</string>
+    <string name="PinCreationScreen__choose_a_stronger_pin">ਇੱਕ ਮਜ਼ਬੂਤ PIN ਚੁਣੋ</string>
     <!-- Error shown below the PIN field when the user tries to create a PIN that matches the code used to verify their phone number. -->
-    <string name="PinCreationScreen__reentered_verification_code">You re-entered the code that was already used to verify your phone number. Choose a new and unique Signal PIN.</string>
+    <string name="PinCreationScreen__reentered_verification_code">ਤੁਸੀਂ ਉਹ ਕੋਡ ਦੁਬਾਰਾ ਦਰਜ ਕੀਤਾ ਹੈ ਜੋ ਤੁਹਾਡੇ ਫ਼ੋਨ ਨੰਬਰ ਦੀ ਤਸਦੀਕ ਕਰਨ ਲਈ ਪਹਿਲਾਂ ਹੀ ਵਰਤਿਆ ਗਿਆ ਸੀ। ਇੱਕ ਨਵਾਂ ਅਤੇ ਵਿਲੱਖਣ Signal PIN ਚੁਣੋ।</string>
     <!-- Overflow menu item that opens a help article about Signal PINs. -->
     <string name="PinCreationScreen__learn_more_about_pins">PINs ਬਾਰੇ ਹੋਰ ਜਾਣੋ</string>
     <!-- Title of the dialog confirming that the user wants to disable their Signal PIN. -->
@@ -409,7 +409,7 @@
     <!-- Describes the PIN that needs to be entered. -->
     <string name="PinEntryScreen__enter_the_pin_you_created">ਉਹ PIN ਦਰਜ ਕਰੋ ਜੋ ਤੁਸੀਂ ਪਹਿਲੀ ਵਾਰ Signal ਇੰਸਟਾਲ ਕਰਨ ਵੇਲੇ ਬਣਾਇਆ ਸੀ</string>
     <!-- Error shown when the user enters the code used to verify their phone number instead of their PIN, and it was not their actual PIN. -->
-    <string name="PinEntryScreen__reentered_verification_code">You re-entered the code that was already used to verify your phone number. Enter the unique Signal PIN that you previously chose for your account.</string>
+    <string name="PinEntryScreen__reentered_verification_code">ਤੁਸੀਂ ਉਹ ਕੋਡ ਦੁਬਾਰਾ ਦਰਜ ਕੀਤਾ ਹੈ ਜੋ ਤੁਹਾਡੇ ਫ਼ੋਨ ਨੰਬਰ ਦੀ ਤਸਦੀਕ ਕਰਨ ਲਈ ਪਹਿਲਾਂ ਹੀ ਵਰਤਿਆ ਗਿਆ ਸੀ। ਉਹ ਵਿਲੱਖਣ Signal PIN ਦਰਜ ਕਰੋ ਜੋ ਤੁਸੀਂ ਪਹਿਲਾਂ ਆਪਣੇ ਖਾਤੇ ਲਈ ਚੁਣਿਆ ਸੀ।</string>
     <!-- Error shown when an incorrect PIN is entered. %1$d is the number of attempts remaining. -->
     <plurals name="PinEntryScreen__incorrect_pin">
         <item quantity="one">ਗਲਤ ਪਿੰਨ। %1$d ਕੋਸ਼ਿਸ਼ ਬਾਕੀ।</item>
@@ -436,7 +436,7 @@
     <!-- Labels the button in the no-data-to-restore dialog that lets the user contact support. -->
     <string name="PinEntryScreen__contact_support">ਸਹਾਇਤਾ ਟੀਮ ਨਾਲ ਸੰਪਰਕ ਕਰੋ</string>
     <!-- Subject line of the support email composed when the user contacts support about PIN entry. -->
-    <string name="PinEntryScreen__contact_support_email_subject">Signal ਰਜਿਸਟ੍ਰੇਸ਼ਨ - Android ਦੇ ਲਈ PIN ਨੂੰ ਲੈਕੇ ਮਦਦ ਦੀ ਲੋੜ ਹੈ</string>
+    <string name="PinEntryScreen__contact_support_email_subject">Signal ਰਜਿਸਟ੍ਰੇਸ਼ਨ - Android ਦੇ PIN ਸੰਬੰਧੀ ਮਦਦ ਚਾਹੀਦੀ ਹੈ</string>
     <!-- Text placed in the body of the support email composed when the user contacts support about PIN entry. Used to route the request, so it is not translated. -->
   <!-- Removed by excludeNonTranslatables <string name="PinEntryScreen__contact_support_email_filter" translatable="false">Signal Registration - Need Help with PIN for Android</string> -->
 
@@ -604,7 +604,7 @@
     <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->
     <string name="ContactSupportDialog__submit_debug_log">ਕੀ ਤੁਸੀਂ ਡੀਬੱਗ ਲੌਗ ਦਰਜ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
     <!-- Body of the dialog asking the user whether they want to attach a debug log to their support request -->
-    <string name="ContactSupportDialog__your_debug_logs">ਤੁਹਾਡੇ ਡੀਬੱਗ ਲੌਗ ਤੁਹਾਡੀ ਸਮੱਸਿਆ ਦਾ ਤੇਜ਼ੀ ਨਾਲ ਨਿਪਟਾਰਾ ਕਰਨ ਵਿੱਚ ਸਾਡੀ ਮਦਦ ਕਰਨਗੇ। ਲੌਗ ਜਮ੍ਹਾਂ ਕਰਨਾ ਤੁਹਾਡੀ ਇੱਛਾ ਉੱਤੇ ਨਿਰਭਰ ਕਰਦਾ ਹੈ।</string>
+    <string name="ContactSupportDialog__your_debug_logs">ਤੁਹਾਡੇ ਡੀਬੱਗ ਲੌਗ ਤੁਹਾਡੀ ਸਮੱਸਿਆ ਦਾ ਤੇਜ਼ੀ ਨਾਲ ਨਿਪਟਾਰਾ ਕਰਨ ਵਿੱਚ ਸਾਡੀ ਮਦਦ ਕਰਨਗੇ। ਲੌਗ ਦਰਜ ਕਰਨਾ ਤੁਹਾਡੀ ਇੱਛਾ ਉੱਤੇ ਨਿਰਭਰ ਕਰਦਾ ਹੈ।</string>
     <!-- Button that contacts support with a debug log attached -->
     <string name="ContactSupportDialog__submit_with_debug_log">ਡੀਬੱਗ ਲੌਗ ਦੇ ਨਾਲ ਦਰਜ ਕਰੋ</string>
     <!-- Button that contacts support without attaching a debug log -->

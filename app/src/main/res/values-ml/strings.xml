@@ -296,13 +296,13 @@
 
     <!-- ClockSkewActivity -->
     <!-- Title of the full-screen dialog shown when the device clock is too far off from the real time -->
-    <string name="ClockSkewActivity__title">Date is inaccurate</string>
+    <string name="ClockSkewActivity__title">തീയതി കൃത്യമല്ല</string>
     <!-- Body text explaining that the device clock is wrong and needs to be fixed -->
-    <string name="ClockSkewActivity__date_inaccurate_description">Your device date is inaccurate.\nAdjust your clock and try again.</string>
+    <string name="ClockSkewActivity__date_inaccurate_description">നിങ്ങളുടെ ഉപകരണത്തിലെ തീയതി കൃത്യമല്ല.\nനിങ്ങളുടെ ക്ലോക്ക് ക്രമീകരിച്ച് വീണ്ടും ശ്രമിക്കുക.</string>
     <!-- Shows the user the current, inaccurate date and time reported by their device. Placeholder is the formatted date, time, and time zone. -->
-    <string name="ClockSkewActivity__time_prefix">Your device date and time is:\n%1$s</string>
+    <string name="ClockSkewActivity__time_prefix">നിങ്ങളുടെ ഉപകരണത്തിലെ തീയതിയും സമയവും:\n %1$s</string>
     <!-- Button that opens the system date and time settings -->
-    <string name="ClockSkewActivity__adjust_date_button">Adjust date</string>
+    <string name="ClockSkewActivity__adjust_date_button">തീയതി ക്രമീകരിക്കുക</string>
 
     <!-- CommunicationActions -->
     <string name="CommunicationActions_no_browser_found">വെബ്‌ബ്രൗസറൊന്നും കണ്ടെത്തിയില്ല.</string>
@@ -591,7 +591,7 @@
     <string name="ConversationFragment_delete">ഇല്ലാതാക്കൂ</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">എല്ലായിടത്തും ഇല്ലാതാക്കുക</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">This message will be deleted for everyone in the chat. They will be able to see that you deleted a message.</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">ചാറ്റിലുള്ള എല്ലാവർക്കും വേണ്ടി ഈ സന്ദേശം ഇല്ലാതാക്കപ്പെടും. നിങ്ങൾ ഒരു സന്ദേശം ഇല്ലാതാക്കി എന്ന് അവർക്ക് കാണാൻ സാധിക്കും.</string>
     <string name="ConversationFragment_quoted_message_not_found">യഥാർത്ഥ സന്ദേശം കണ്ടെത്തിയില്ല</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">യഥാർത്ഥ സന്ദേശം മേലിൽ ലഭ്യമല്ല</string>
     <string name="ConversationFragment_failed_to_open_message">സന്ദേശം തുറക്കുന്നതിൽ പരാജയപ്പെട്ടു</string>
@@ -770,28 +770,28 @@
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">വായിക്കാത്ത ചാറ്റുകൾ ഒന്നുമില്ല</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="one">Delete message history?</item>
-        <item quantity="other">Delete message histories?</item>
+        <item quantity="one">സന്ദേശ ചരിത്രം ഇല്ലാതാക്കണോ?</item>
+        <item quantity="other">സന്ദേശ ചരിത്രങ്ങൾ ഇല്ലാതാക്കണോ?</item>
     </plurals>
     <!-- Dialog message shown when deleting chats, none of which are groups -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">All messages in this chat will be deleted.</item>
-        <item quantity="other">All messages in these chats will be deleted.</item>
+        <item quantity="one">ഈ ചാറ്റിലെ എല്ലാ സന്ദേശങ്ങളും ഇല്ലാതാക്കപ്പെടും.</item>
+        <item quantity="other">ഈ ചാറ്റുകളിലെ എല്ലാ സന്ദേശങ്ങളും ഇല്ലാതാക്കപ്പെടും.</item>
     </plurals>
     <!-- Dialog message shown when deleting chats, with at least one group -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_group">
-        <item quantity="one">All messages in this chat will be deleted. You will still be a member of this group.</item>
-        <item quantity="other">All messages in these chats will be deleted. You will still be a member of any groups you have not left yet.</item>
+        <item quantity="one">ഈ ചാറ്റിലെ എല്ലാ സന്ദേശങ്ങളും ഇല്ലാതാക്കപ്പെടും. നിങ്ങൾ തുടർന്നും ഈ ഗ്രൂപ്പിൽ അംഗമായിരിക്കും.</item>
+        <item quantity="other">ഈ ചാറ്റുകളിലെ എല്ലാ സന്ദേശങ്ങളും ഇല്ലാതാക്കപ്പെടും. നിങ്ങൾ ഇതുവരെ പുറത്തുപോകാത്ത ഏതൊരു ഗ്രൂപ്പിലും തുടർന്നും അംഗമായിരിക്കും.</item>
     </plurals>
     <!-- Dialog message shown when deleting chats, none of which are groups, and the user has a linked device -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device">
-        <item quantity="one">All messages in this chat will be deleted from all your devices.</item>
-        <item quantity="other">All messages in these chats will be deleted from all your devices.</item>
+        <item quantity="one">ഈ ചാറ്റിലെ എല്ലാ സന്ദേശങ്ങളും നിങ്ങളുടെ എല്ലാ ഉപകരണങ്ങളിൽ നിന്നും ഇല്ലാതാക്കപ്പെടും.</item>
+        <item quantity="other">ഈ ചാറ്റുകളിലെ എല്ലാ സന്ദേശങ്ങളും നിങ്ങളുടെ എല്ലാ ഉപകരണങ്ങളിൽ നിന്നും ഇല്ലാതാക്കപ്പെടും.</item>
     </plurals>
     <!-- Dialog message shown when deleting chats with at least one group, and the user has a linked device -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device_group">
-        <item quantity="one">All messages in this chat will be deleted from all your devices. You will still be a member of this group.</item>
-        <item quantity="other">All messages in these chats will be deleted from all your devices. You will still be a member of any groups you have not left yet.</item>
+        <item quantity="one">ഈ ചാറ്റിലെ എല്ലാ സന്ദേശങ്ങളും നിങ്ങളുടെ എല്ലാ ഉപകരണങ്ങളിൽ നിന്നും ഇല്ലാതാക്കപ്പെടും. നിങ്ങൾ തുടർന്നും ഈ ഗ്രൂപ്പിൽ അംഗമായിരിക്കും.</item>
+        <item quantity="other">ഈ ചാറ്റുകളിലെ എല്ലാ സന്ദേശങ്ങളും നിങ്ങളുടെ എല്ലാ ഉപകരണങ്ങളിൽ നിന്നും ഇല്ലാതാക്കപ്പെടും. നിങ്ങൾ ഇതുവരെ പുറത്തുപോകാത്ത ഏതൊരു ഗ്രൂപ്പിലും തുടർന്നും അംഗമായിരിക്കും.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">ഇല്ലാതാക്കുന്നു</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
@@ -1142,7 +1142,7 @@
     <!-- Toast shown when the process of linking a device has been cancelled -->
     <string name="LinkDeviceFragment__linking_cancelled">ലിങ്കിംഗ് റദ്ദാക്കി</string>
     <!-- Snackbar shown when the user tries to link a new device but has already reached the maximum number of linked devices. Placeholder is the maximum count. -->
-    <string name="LinkDeviceFragment__you_can_only_have_d_linked_devices">You can only have %1$d linked devices.</string>
+    <string name="LinkDeviceFragment__you_can_only_have_d_linked_devices">നിങ്ങൾക്ക് %1$d ലിങ്ക് ചെയ്‌ത ഉപകരണങ്ങൾ മാത്രമേ ഉണ്ടാകാൻ പാടുള്ളൂ.</string>
     <!-- Message shown in progress dialog telling users to avoid closing the app while messages are being synced -->
     <string name="LinkDeviceFragment__do_not_close">ആപ്പ് അടയ്ക്കരുത്</string>
     <!-- Dialog title shown when a device is unlinked -->
@@ -6409,7 +6409,7 @@
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">ഒന്നോ അതിലധികമോ ഇനങ്ങൾ വളരെ വലുതായിരുന്നു</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">ഒന്നോ അതിലധികമോ ഇനങ്ങൾ അസാധുവാണ്</string>
     <string name="MediaReviewFragment__too_many_items_selected">വളരെയധികം ഇനങ്ങൾ തിരഞ്ഞെടുത്തു</string>
-    <string name="MediaReviewFragment__video_trimmed_to_fit">Your video was trimmed to fit within the size limit</string>
+    <string name="MediaReviewFragment__video_trimmed_to_fit">വലിപ്പപരിധിയിൽ ഉൾക്കൊള്ളിക്കുന്നതിനായി നിങ്ങളുടെ വീഡിയോ ദൈർഘ്യം കുറച്ചു</string>
     <!-- Small notification presented to the user when they set their video to view-once mode -->
     <string name="MediaReviewFragment__video_set_to_view_once">വീഡിയോ ഒരിക്കൽ കാണാൻ സജ്ജമാക്കി</string>
     <!-- Small notification presented to the user when they set their photo to view-once mode -->
@@ -6962,7 +6962,7 @@
     <!-- Donation receipts amount title -->
     <string name="DonationReceiptDetailsFragment__amount">തുക</string>
     <!-- Donation receipts thanks -->
-    <string name="DonationReceiptDetailsFragment__thank_you_for_supporting" tools:ignore="TypographyDashes">Thank you for supporting Signal. Your contribution helps fuel the mission of protecting free expression and enabling secure global communication for millions around the world, through open source privacy technology. If you’re a resident of the United States, please retain this receipt for your tax records. Signal Technology Foundation is a tax-exempt nonprofit organization in the United States under section 501c3 of the Internal Revenue Code. Our Federal Tax ID is 82-4506840. Signal did not provide any goods or services in consideration of this contribution.</string>
+    <string name="DonationReceiptDetailsFragment__thank_you_for_supporting" tools:ignore="TypographyDashes">Signal-നെ പിന്തുണച്ചതിന് നന്ദി. സ്വതന്ത്രമായ അഭിപ്രായപ്രകടനം സംരക്ഷിക്കുന്നതിനും ലോകമെമ്പാടുമുള്ള ദശലക്ഷക്കണക്കിന് ആളുകൾക്ക് ഓപ്പൺ സോഴ്‌സ് സ്വകാര്യതാ സാങ്കേതികവിദ്യയിലൂടെ സുരക്ഷിതമായ ആഗോള ആശയവിനിമയം സാധ്യമാക്കുന്നതിനുമുള്ള ദൗത്യത്തിന് നിങ്ങളുടെ സംഭാവന ഇന്ധനം പകരുന്നു. നിങ്ങൾ യുണൈറ്റഡ് സ്റ്റേറ്റ്സിൽ താമസിക്കുന്ന ആളാണെങ്കിൽ, നിങ്ങളുടെ നികുതി രേഖകൾക്കായി ഈ രസീത് സൂക്ഷിക്കുക. Signal ടെക്നോളജി ഫൗണ്ടേഷൻ, ഇന്റേണൽ റവന്യൂ കോഡിന്റെ സെക്ഷൻ 501c3 പ്രകാരം യുണൈറ്റഡ് സ്റ്റേറ്റ്സിലെ നികുതി ഇളവ് ലഭിച്ച ഒരു ലാഭേച്ഛയില്ലാത്ത സ്ഥാപനമാണ്. ഞങ്ങളുടെ ഫെഡറൽ ടാക്സ് ഐഡി 82-4506840 ആണ്. ഈ സംഭാവനയ്ക്ക് പകരമായി Signal യാതൊരു സാധനങ്ങളോ സേവനങ്ങളോ നൽകിയിട്ടില്ല.</string>
     <!-- Donation reciepts screen empty state title -->
     <string name="DonationReceiptListFragment__no_receipts">രസീതുകളൊന്നുമില്ല</string>
 

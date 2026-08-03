@@ -88,7 +88,7 @@
     <!-- Button text for call me action -->
     <string name="VerificationCodeScreen__call_me_instead">Позови ме</string>
     <!-- Button text for resend SMS when countdown is active. Placeholders are minutes and seconds -->
-    <string name="VerificationCodeScreen__resend_code_available_in">Поново пошаљи шифру (%1$02d:%2$02d)</string>
+    <string name="VerificationCodeScreen__resend_code_available_in">Поново пошаљи кôд (%1$02d:%2$02d)</string>
     <!-- Button text for call me when countdown is active. Placeholders are minutes and seconds -->
     <string name="VerificationCodeScreen__call_me_available_in">Позови ме (%1$02d:%2$02d)</string>
     <!-- Toast shown when the user enters an incorrect verification code -->
@@ -106,9 +106,9 @@
     <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
     <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">Слање кода путем означене методе није успело. Пробајте неку другу опцију.</string>
     <!-- Dialog shown when the provider rejected placing a verification phone call to the user\'s number -->
-    <string name="VerificationCodeScreen__could_not_call_provider_rejected">We couldn\'t call you with a verification code. Please try again, or request the code via SMS instead.</string>
+    <string name="VerificationCodeScreen__could_not_call_provider_rejected">Нисмо успели да вам доставимо верификациони кôд путем позива. Пробајте поново или затражите кôд преко SMS-а.</string>
     <!-- Dialog shown when the provider rejected sending a verification SMS to the user\'s number -->
-    <string name="VerificationCodeScreen__could_not_sms_provider_rejected">We couldn\'t send you an SMS with a verification code. Please try again, or request the code via a phone call instead.</string>
+    <string name="VerificationCodeScreen__could_not_sms_provider_rejected">Нисмо успели да вам доставимо верификациони кôд путем SMS-а. Пробајте поново или затражите кôд преко позива.</string>
     <!-- Snackbar shown for registration errors -->
     <string name="VerificationCodeScreen__registration_error">Регистрација није успела. Пробајте поново.</string>
     <!-- Button text for having trouble with verification -->
@@ -124,7 +124,7 @@
     <!-- Clickable substring linking to contacting support within VerificationCodeScreen__support_bottom_sheet_body_call_to_action -->
     <string name="VerificationCodeScreen__support_bottom_sheet_cta_contact_support_substring">Обратите се подршци</string>
     <!-- Email subject used when contacting support from the verification code screen -->
-    <string name="VerificationCodeScreen__contact_support_email_subject">Rегистрација Signal-a – шифра за верификацију за Android</string>
+    <string name="VerificationCodeScreen__contact_support_email_subject">Rегистрација Signal-a – кôд за верификацију за Android</string>
     <!-- Text placed in the body of the support email composed from the verification code screen. Used to route the request, so it is not translated. -->
   <!-- Removed by excludeNonTranslatables <string name="VerificationCodeScreen__contact_support_email_filter" translatable="false">Signal Registration - Verification Code for Android</string> -->
     <!-- URL opened for troubleshooting steps from the verification code screen -->
@@ -384,7 +384,7 @@
     <!-- Error shown below the PIN field when the user tries to create a PIN that is too easy to guess, such as one made of sequential or repeated digits. -->
     <string name="PinCreationScreen__choose_a_stronger_pin">Унесите јачи PIN</string>
     <!-- Error shown below the PIN field when the user tries to create a PIN that matches the code used to verify their phone number. -->
-    <string name="PinCreationScreen__reentered_verification_code">You re-entered the code that was already used to verify your phone number. Choose a new and unique Signal PIN.</string>
+    <string name="PinCreationScreen__reentered_verification_code">Поново сте унели кôд који сте већ искористили за верификацију броја телефона. Одаберите нови јединствени Signal PIN.</string>
     <!-- Overflow menu item that opens a help article about Signal PINs. -->
     <string name="PinCreationScreen__learn_more_about_pins">Сазнајте више о PIN-овима</string>
     <!-- Title of the dialog confirming that the user wants to disable their Signal PIN. -->
@@ -409,7 +409,7 @@
     <!-- Describes the PIN that needs to be entered. -->
     <string name="PinEntryScreen__enter_the_pin_you_created">Унесите PIN који сте креирали када сте први пут инсталирали Signal</string>
     <!-- Error shown when the user enters the code used to verify their phone number instead of their PIN, and it was not their actual PIN. -->
-    <string name="PinEntryScreen__reentered_verification_code">You re-entered the code that was already used to verify your phone number. Enter the unique Signal PIN that you previously chose for your account.</string>
+    <string name="PinEntryScreen__reentered_verification_code">Поново сте унели кôд који сте већ искористили за верификацију броја телефона. Унесите јединствени Signal PIN који сте претходно одабрали за свој налог.</string>
     <!-- Error shown when an incorrect PIN is entered. %1$d is the number of attempts remaining. -->
     <plurals name="PinEntryScreen__incorrect_pin">
         <item quantity="one">PIN је нетачан. Преосталих покушаја: %1$d</item>
