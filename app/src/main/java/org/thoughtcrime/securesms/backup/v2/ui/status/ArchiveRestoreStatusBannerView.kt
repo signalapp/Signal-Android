@@ -5,7 +5,7 @@
 
 package org.thoughtcrime.securesms.backup.v2.ui.status
 
-import androidx.compose.foundation.border
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
@@ -31,6 +31,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -69,7 +70,10 @@ fun ArchiveRestoreStatusBanner(
     verticalAlignment = Alignment.CenterVertically,
     modifier = Modifier
       .padding(contentPadding)
-      .border(1.dp, color = MaterialTheme.colorScheme.outline.copy(alpha = 0.38f), shape = RoundedCornerShape(12.dp))
+      .background(
+        color = colorResource(CoreUiR.color.signal_colorSurface2),
+        shape = RoundedCornerShape(24.dp)
+      )
       .fillMaxWidth()
       .defaultMinSize(minHeight = 48.dp)
       .clickable(onClick = onBannerClick)
@@ -119,6 +123,7 @@ fun ArchiveRestoreStatusBanner(
       CircularProgressIndicator(
         progress = { data.progress!! },
         strokeWidth = 3.dp,
+        color = MaterialTheme.colorScheme.onSurface,
         strokeCap = StrokeCap.Round,
         modifier = Modifier
           .size(24.dp, 24.dp)

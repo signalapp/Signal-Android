@@ -59,7 +59,7 @@ private fun Banner(contentPadding: PaddingValues, usernameSyncState: UsernameSyn
     } else {
       stringResource(id = R.string.UsernameOutOfSyncReminder__link_corrupt)
     },
-    importance = Importance.ERROR,
+    importance = Importance.NORMAL,
     actions = listOf(
       Action(R.string.UsernameOutOfSyncReminder__fix_now) {
         onFixClicked(usernameSyncState)

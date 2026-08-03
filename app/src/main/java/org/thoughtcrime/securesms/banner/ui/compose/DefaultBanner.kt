@@ -6,7 +6,7 @@
 package org.thoughtcrime.securesms.banner.ui.compose
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -28,6 +28,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
@@ -56,40 +57,36 @@ fun DefaultBanner(
   progressPercent: Int = -1,
   paddingValues: PaddingValues
 ) {
+  val isDarkTheme = isSystemInDarkTheme()
   Box(
     modifier = Modifier
       .padding(paddingValues)
-      .clip(RoundedCornerShape(12.dp))
+      .clip(RoundedCornerShape(24.dp))
       .background(
         color = when (importance) {
-          Importance.NORMAL -> MaterialTheme.colorScheme.surface
+          Importance.NORMAL -> colorResource(CoreUiR.color.signal_colorSurface2)
           Importance.ERROR -> colorResource(id = R.color.reminder_background)
         }
-      )
-      .border(
-        width = 1.dp,
-        color = colorResource(id = CoreUiR.color.signal_colorOutline_38),
-        shape = RoundedCornerShape(12.dp)
       )
   ) {
     Row(
       verticalAlignment = Alignment.CenterVertically,
       modifier = Modifier
-        .defaultMinSize(minHeight = 74.dp)
+        .defaultMinSize(minHeight = 54.dp)
     ) {
       Column {
         Row(modifier = Modifier.fillMaxWidth()) {
           Column(
             modifier = Modifier
               .weight(1f)
-              .padding(start = 16.dp, top = 16.dp)
+              .padding(start = 16.dp, end = 16.dp, top = 16.dp)
           ) {
             if (title.isNotNullOrBlank()) {
               Text(
                 text = title,
                 color = when (importance) {
                   Importance.NORMAL -> MaterialTheme.colorScheme.onSurface
-                  Importance.ERROR -> colorResource(id = CoreUiR.color.signal_light_colorOnSurface)
+                  Importance.ERROR -> if (isDarkTheme) Color(0xFFC79869) else colorResource(id = CoreUiR.color.signal_light_colorOnSurface)
                 },
                 style = MaterialTheme.typography.bodyLarge
               )
@@ -99,7 +96,7 @@ fun DefaultBanner(
               text = body,
               color = when (importance) {
                 Importance.NORMAL -> MaterialTheme.colorScheme.onSurfaceVariant
-                Importance.ERROR -> colorResource(id = CoreUiR.color.signal_light_colorOnSurface)
+                Importance.ERROR -> if (isDarkTheme) Color(0xFFC79869) else colorResource(id = CoreUiR.color.signal_light_colorOnSurface)
               },
               style = MaterialTheme.typography.bodyMedium
             )
@@ -133,26 +130,26 @@ fun DefaultBanner(
               style = MaterialTheme.typography.bodySmall,
               color = when (importance) {
                 Importance.NORMAL -> MaterialTheme.colorScheme.onSurfaceVariant
-                Importance.ERROR -> colorResource(id = CoreUiR.color.signal_light_colorOnSurface)
+                Importance.ERROR -> if (isDarkTheme) Color(0xFFC79869) else colorResource(id = CoreUiR.color.signal_light_colorOnSurface)
               }
             )
           }
 
-          Box(modifier = Modifier.size(48.dp)) {
-            if (onDismissListener != null) {
+          if (onDismissListener != null) {
+            Box(modifier = Modifier.size(40.dp)) {
               IconButton(
                 onClick = {
                   onHideListener?.invoke()
                   onDismissListener()
                 },
-                modifier = Modifier.size(48.dp)
+                modifier = Modifier.size(40.dp)
               ) {
                 Icon(
                   imageVector = SignalIcons.X.imageVector,
                   contentDescription = stringResource(id = R.string.InviteActivity_cancel),
                   tint = when (importance) {
                     Importance.NORMAL -> MaterialTheme.colorScheme.onSurfaceVariant
-                    Importance.ERROR -> colorResource(id = CoreUiR.color.signal_light_colorOnSurface)
+                    Importance.ERROR -> colorResource(id = CoreUiR.color.signal_colorOnSurface)
                   }
                 )
               }
@@ -163,22 +160,31 @@ fun DefaultBanner(
           horizontalArrangement = Arrangement.End,
           modifier = Modifier
             .fillMaxWidth()
-            .padding(end = 8.dp)
+            .padding(end = 8.dp, bottom = 8.dp)
         ) {
           for (action in actions) {
             TextButton(
               onClick = action.onClick,
               colors = when (importance) {
-                Importance.NORMAL -> ButtonDefaults.textButtonColors()
-                Importance.ERROR -> ButtonDefaults.textButtonColors(contentColor = colorResource(CoreUiR.color.signal_light_colorPrimary))
-              }
+                Importance.NORMAL -> ButtonDefaults.textButtonColors(
+                  containerColor = colorResource(CoreUiR.color.signal_colorSurface5),
+                  contentColor = MaterialTheme.colorScheme.onSurface
+                )
+                Importance.ERROR -> ButtonDefaults.textButtonColors(
+                  containerColor = if (isDarkTheme) Color(0xFF392D22) else Color(0xFFF5E1B8),
+                  contentColor = if (isDarkTheme) Color(0xFFC79869) else colorResource(id = CoreUiR.color.signal_colorNeutralInverse)
+                )
+              },
+              modifier = Modifier.padding(horizontal = 8.dp)
             ) {
               Text(
                 text = if (!action.isPluralizedLabel) {
                   stringResource(id = action.label)
                 } else {
                   pluralStringResource(id = action.label, count = action.pluralQuantity)
-                }
+                },
+                style = MaterialTheme.typography.labelLarge,
+                modifier = Modifier.padding(horizontal = 12.dp)
               )
             }
           }
