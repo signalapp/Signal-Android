@@ -488,7 +488,12 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
 
     keyedExecutor.execute(id.toString(), () -> {
       try {
-        Recipient               group      = Recipient.resolved(id);
+        Recipient group = Recipient.resolved(id);
+        if (!group.getGroupId().isPresent()) {
+          Log.w(TAG, "Recipient " + id + " is no longer a group. Skipping peek.");
+          return;
+        }
+
         GroupId.V2              groupId    = group.requireGroupId().requireV2();
         ExternalGroupCredential credential = GroupManager.getExternalGroupCredential(context, groupId);
 
