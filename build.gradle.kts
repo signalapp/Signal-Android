@@ -59,6 +59,9 @@ subprojects {
 
   tasks.withType<Test>().configureEach {
     maxParallelForks = (Runtime.getRuntime().availableProcessors() / 4).coerceAtLeast(1)
+
+    // Raised for robolectric
+    maxHeapSize = "2g"
   }
 }
 

@@ -4,6 +4,7 @@ import kotlin.Pair;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 import androidx.annotation.WorkerThread;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -31,16 +32,15 @@ public class ReviewCardViewModel extends ViewModel {
   private final boolean                                isGroupThread;
 
   public ReviewCardViewModel(@NonNull ReviewCardRepository repository, @Nullable GroupId groupId) {
-    final LiveData<Boolean> isSelfGroupAdmin;
+    this(repository,
+         groupId != null,
+         groupId != null ? new LiveGroup(groupId).getRecipientIsAdmin(Recipient.self().getId())
+                         : new DefaultValueLiveData<>(false));
+  }
 
-    if (groupId != null) {
-      LiveGroup liveGroup = new LiveGroup(groupId);
-      isSelfGroupAdmin = liveGroup.getRecipientIsAdmin(Recipient.self().getId());
-    } else {
-      isSelfGroupAdmin = new DefaultValueLiveData<>(false);
-    }
-
-    this.isGroupThread    = groupId != null;
+  @VisibleForTesting
+  ReviewCardViewModel(@NonNull ReviewCardRepository repository, boolean isGroupThread, @NonNull LiveData<Boolean> isSelfGroupAdmin) {
+    this.isGroupThread    = isGroupThread;
     this.repository       = repository;
     this.reviewRecipients = new MutableLiveData<>();
 
@@ -87,7 +87,7 @@ public class ReviewCardViewModel extends ViewModel {
   @WorkerThread
   private @NonNull List<ReviewCard> transformReviewRecipients(boolean isSelfGroupAdmin, @NonNull List<ReviewRecipient> reviewRecipients) {
     return reviewRecipients.stream()
-                           .filter(r -> repository.loadGroupsInCommonCount(r) > 0)
+                           .filter(r -> !isGroupThread || repository.loadGroupsInCommonCount(r) > 0)
                            .map(r -> new ReviewCard(r,
                                           repository.loadGroupsInCommonCount(r) - (isGroupThread ? 1 : 0),
                                           getCardType(r),
