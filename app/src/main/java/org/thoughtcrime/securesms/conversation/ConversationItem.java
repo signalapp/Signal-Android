@@ -1495,6 +1495,11 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       documentViewStub.get().setDownloadClickListener(singleDownloadClickListener);
       documentViewStub.get().setOnLongClickListener(passthroughClickListener);
 
+      if (messageRecord.isOutgoing() && conversationRecipient.get().getChatColors().needsDarkText()) {
+        int darkTextColor = ContextCompat.getColor(context, R.color.black);
+        documentViewStub.get().setTextColor(darkTextColor, darkTextColor);
+      }
+
       ViewUtil.updateLayoutParams(bodyText, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
       ViewUtil.updateLayoutParamsIfNonNull(groupSenderHolder, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
       ViewUtil.setTopMargin(bodyText, 0);

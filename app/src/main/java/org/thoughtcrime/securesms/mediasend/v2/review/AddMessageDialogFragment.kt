@@ -8,6 +8,8 @@ import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.FragmentManager
@@ -22,6 +24,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.signal.core.ui.R as CoreUiR
 import org.signal.core.ui.view.Stub
 import org.signal.core.util.ByteLimitInputFilter
 import org.signal.core.util.EditTextUtil
@@ -249,8 +252,15 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
     Recipient.live(recipientId).observe(viewLifecycleOwner) { recipient ->
       this.recipient = recipient
 
-      val confirmButton = requireView().findViewById<View>(R.id.confirm_button)
+      val confirmButton = requireView().findViewById<ImageView>(R.id.confirm_button)
       ViewCompat.setBackgroundTintList(confirmButton, ColorStateList.valueOf(recipient.chatColors.asSingleColor()))
+      confirmButton.setColorFilter(
+        if (recipient.chatColors.needsDarkText()) {
+          ContextCompat.getColor(requireContext(), R.color.black)
+        } else {
+          ContextCompat.getColor(requireContext(), CoreUiR.color.signal_colorOnCustom)
+        }
+      )
       mentionsViewModel.onRecipientChange(recipient)
 
       binding.content.addAMessageInput.setMentionValidator { annotations ->

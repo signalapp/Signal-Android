@@ -120,6 +120,11 @@ public class DocumentView extends FrameLayout {
     awaitingDisposable.dispose();
   }
 
+  public void setTextColor(int titleColor, int captionColor) {
+    fileName.setTextColor(titleColor);
+    fileSize.setTextColor(captionColor);
+  }
+
   public void setDownloadClickListener(@Nullable SlideClickListener listener) {
     this.downloadListener = listener;
   }
