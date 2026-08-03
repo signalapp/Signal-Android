@@ -16,6 +16,7 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.IntentFilter
+import android.content.res.ColorStateList
 import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.graphics.Color
@@ -1999,6 +2000,17 @@ class ConversationFragment :
       colorFilter = PorterDuffColorFilter(chatColors.asSingleColor(), PorterDuff.Mode.MULTIPLY)
       invalidateSelf()
     }
+
+    val buttonIconTint = ColorStateList.valueOf(
+      if (chatColors.needsDarkText()) {
+        ContextCompat.getColor(requireContext(), R.color.black)
+      } else {
+        ContextCompat.getColor(requireContext(), R.color.conversation_send_button_tint)
+      }
+    )
+    binding.conversationInputPanel.attachButton.imageTintList = buttonIconTint
+    binding.conversationInputPanel.sendEditButton.imageTintList = buttonIconTint
+    binding.conversationInputPanel.sendButton.imageTintList = buttonIconTint
   }
 
   private fun presentScrollButtons(scrollButtonState: ConversationScrollButtonState) {

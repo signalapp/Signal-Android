@@ -57,7 +57,7 @@ class PaymentMessageView @JvmOverloads constructor(
     binding.paymentDirection.apply {
       if (outgoing) {
         text = context.getString(R.string.PaymentMessageView_you_sent_s, recipient.getShortDisplayName(context))
-        setTextColor(colorizer.getOutgoingFooterTextColor(context))
+        setTextColor(colorizer.getOutgoingFooterTextColor(context, recipient.chatColors))
       } else {
         text = context.getString(R.string.PaymentMessageView_s_sent_you, recipient.getShortDisplayName(context))
         setTextColor(colorizer.getIncomingFooterTextColor(context, recipient.hasWallpaper))
@@ -67,7 +67,7 @@ class PaymentMessageView @JvmOverloads constructor(
     binding.paymentNote.apply {
       text = payment.note
       visible = payment.note.isNotEmpty()
-      setTextColor(if (outgoing) colorizer.getOutgoingBodyTextColor(context) else colorizer.getIncomingBodyTextColor(context, recipient.hasWallpaper))
+      setTextColor(if (outgoing) colorizer.getOutgoingBodyTextColor(context, recipient.chatColors) else colorizer.getIncomingBodyTextColor(context, recipient.hasWallpaper))
     }
 
     val quoteViewColorTheme = QuoteViewColorTheme.resolveTheme(outgoing, false, recipient.hasWallpaper)
@@ -96,7 +96,7 @@ class PaymentMessageView @JvmOverloads constructor(
     binding.paymentDirection.apply {
       if (outgoing) {
         text = context.getString(R.string.PaymentMessageView_you_sent_s, recipient.getShortDisplayName(context))
-        setTextColor(colorizer.getOutgoingFooterTextColor(context))
+        setTextColor(colorizer.getOutgoingFooterTextColor(context, recipient.chatColors))
       } else {
         text = context.getString(R.string.PaymentMessageView_s_sent_you, recipient.getShortDisplayName(context))
         setTextColor(colorizer.getIncomingFooterTextColor(context, recipient.hasWallpaper))
@@ -118,7 +118,7 @@ class PaymentMessageView @JvmOverloads constructor(
     binding.paymentNote.apply {
       text = note
       visible = note.isNotEmpty()
-      setTextColor(if (outgoing) colorizer.getOutgoingBodyTextColor(context) else colorizer.getIncomingBodyTextColor(context, recipient.hasWallpaper))
+      setTextColor(if (outgoing) colorizer.getOutgoingBodyTextColor(context, recipient.chatColors) else colorizer.getIncomingBodyTextColor(context, recipient.hasWallpaper))
     }
 
     val quoteViewColorTheme = QuoteViewColorTheme.resolveTheme(outgoing, false, recipient.hasWallpaper)

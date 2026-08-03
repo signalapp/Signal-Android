@@ -946,18 +946,18 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
     if (messageRecord.isOutgoing() && !messageRecord.isRemoteDelete()) {
       bodyBubble.getBackground().setColorFilter(recipient.getChatColors().getChatBubbleColorFilter());
-      bodyText.setTextColor(colorizer.getOutgoingBodyTextColor(context));
-      bodyText.setLinkTextColor(colorizer.getOutgoingBodyTextColor(context));
-      footer.setTextColor(colorizer.getOutgoingFooterTextColor(context));
-      footer.setIconColor(colorizer.getOutgoingFooterIconColor(context));
-      footer.setRevealDotColor(colorizer.getOutgoingFooterIconColor(context));
+      bodyText.setTextColor(colorizer.getOutgoingBodyTextColor(context, recipient.getChatColors()));
+      bodyText.setLinkTextColor(colorizer.getOutgoingBodyTextColor(context, recipient.getChatColors()));
+      footer.setTextColor(colorizer.getOutgoingFooterTextColor(context, recipient.getChatColors()));
+      footer.setIconColor(colorizer.getOutgoingFooterIconColor(context, recipient.getChatColors()));
+      footer.setRevealDotColor(colorizer.getOutgoingFooterIconColor(context, recipient.getChatColors()));
       footer.setOnlyShowSendingStatus(false, messageRecord);
     } else if (messageRecord.isRemoteDelete()) {
       if (messageRecord.isOutgoing() && hasWallpaper) {
         bodyBubble.getBackground().setColorFilter(recipient.getChatColors().getChatBubbleColorFilter());
-        footer.setTextColor(colorizer.getOutgoingFooterTextColor(context));
-        footer.setIconColor(colorizer.getOutgoingFooterIconColor(context));
-        footer.setRevealDotColor(colorizer.getOutgoingFooterIconColor(context));
+        footer.setTextColor(colorizer.getOutgoingFooterTextColor(context, recipient.getChatColors()));
+        footer.setIconColor(colorizer.getOutgoingFooterIconColor(context, recipient.getChatColors()));
+        footer.setRevealDotColor(colorizer.getOutgoingFooterIconColor(context, recipient.getChatColors()));
       } else if (hasWallpaper) {
         bodyBubble.getBackground().setColorFilter(getDefaultBubbleColor(true), PorterDuff.Mode.SRC_IN);
         footer.setTextColor(ContextCompat.getColor(context, R.color.signal_text_secondary));
@@ -2051,7 +2051,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   private void setStoryReactionLabel(@NonNull MessageRecord record) {
     if (isStoryReaction(record) && !record.isRemoteDelete()) {
       storyReactionLabelWrapper.setVisibility(View.VISIBLE);
-      storyReactionLabel.setTextColor(record.isOutgoing() ? colorizer.getOutgoingBodyTextColor(context) : ContextCompat.getColor(context, R.color.signal_text_primary));
+      storyReactionLabel.setTextColor(record.isOutgoing() ? colorizer.getOutgoingBodyTextColor(context, conversationRecipient.get().getChatColors()) : ContextCompat.getColor(context, R.color.signal_text_primary));
       storyReactionLabel.setText(getStoryReactionLabelText(messageRecord));
     } else if (storyReactionLabelWrapper != null) {
       storyReactionLabelWrapper.setVisibility(View.GONE);

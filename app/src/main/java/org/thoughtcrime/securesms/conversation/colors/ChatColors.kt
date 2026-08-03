@@ -49,6 +49,11 @@ class ChatColors(
   fun isSolid(): Boolean = singleColor != null
 
   /**
+   * Whether this color is light enough that outgoing bubble text/icons need to render dark instead of the usual white.
+   */
+  fun needsDarkText(): Boolean = singleColor == ChatColorsPalette.Bubbles.PETAL.singleColor
+
+  /**
    * Returns the Drawable to render the linear gradient, or null if this ChatColors is a single color.
    */
   val chatBubbleMask: Drawable
