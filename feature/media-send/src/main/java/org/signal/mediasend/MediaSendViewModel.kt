@@ -325,6 +325,10 @@ class MediaSendViewModel(
       is MediaEditScreenEvent.BrushWidthChanged -> {
         setBrushWidth(mediaEditScreenEvent.tool, mediaEditScreenEvent.fraction)
       }
+
+      is MediaEditScreenEvent.ToggleBlurFaces -> {
+        setBlurFacesEnabled(mediaEditScreenEvent.enabled)
+      }
     }
   }
 
@@ -348,6 +352,22 @@ class MediaSendViewModel(
     val editorState = snapshot.editorStateMap[uri] as? EditorState.Image ?: return null
 
     return imageControllers.getOrCreate(uri, editorState.model)
+  }
+
+  /**
+   * Masks or unmasks the faces in the focused image. Enabling this is what triggers the detection itself, which the
+   * editor's own state reports on, so that the work outlives the composition it was requested from.
+   */
+  private fun setBlurFacesEnabled(enabled: Boolean) {
+    val controller = focusedImageController() ?: return
+
+    if (enabled) {
+      viewModelScope.launch {
+        controller.blurFaces(MediaSendDependencies.application)
+      }
+    } else {
+      controller.clearFaceBlurs()
+    }
   }
 
   private fun setBrushWidth(tool: BrushTool, fraction: Float) {

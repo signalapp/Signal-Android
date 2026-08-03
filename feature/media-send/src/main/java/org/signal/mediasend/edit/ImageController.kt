@@ -5,6 +5,7 @@
 
 package org.signal.mediasend.edit
 
+import android.content.Context
 import android.graphics.Paint
 import android.net.Uri
 import androidx.compose.runtime.Stable
@@ -13,6 +14,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshots.SnapshotStateMap
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import org.signal.imageeditor.core.Renderer
 import org.signal.imageeditor.core.SelectableRenderer
 import org.signal.imageeditor.core.TappableRenderer
@@ -21,8 +24,10 @@ import org.signal.imageeditor.core.model.EditorModel
 import org.signal.imageeditor.core.renderers.MultiLineTextRenderer
 import org.signal.mediasend.edit.image.BrushTool
 import org.signal.mediasend.edit.image.BrushWidthsState
+import org.signal.mediasend.edit.image.FaceDetectionResult
 import org.signal.mediasend.edit.image.HSVColorBarState
 import org.signal.mediasend.edit.image.ImageEditorState
+import org.signal.mediasend.edit.image.detectFaces
 
 /**
  * Holds the editor state for a single image (modes, undo, selection, etc.).
@@ -106,6 +111,22 @@ internal class ImageController(
 
   val isUserDrawing: Boolean by derivedStateOf { mode == Mode.DRAW || mode == Mode.HIGHLIGHT }
   val isUserBlurring: Boolean by derivedStateOf { mode == Mode.BLUR }
+
+  var isDetectingFaces: Boolean by mutableStateOf(false)
+    private set
+
+  /**
+   * Whether the image's faces are masked, which is what the blur-faces toggle reflects. Taken from the model rather than
+   * the toggle so that undoing or clearing the masks turns it back off.
+   */
+  val isBlurringFaces: Boolean by derivedStateOf {
+    // Reading the revision is what re-derives this when masks are added to or removed from the model.
+    imageEditorState.revision
+    isDetectingFaces || editorModel.hasFaceRenderer()
+  }
+
+  private var cachedFaceDetection: FaceDetectionResult? = null
+  private var isFaceBlurRequested: Boolean = false
 
   val brushTool: BrushTool? by derivedStateOf {
     when (mode) {
@@ -282,6 +303,63 @@ internal class ImageController(
     while (imageEditorState.undoAvailable) {
       editorModel.undo()
     }
+  }
+
+  /**
+   * Masks every face in the image, finding them first unless a previous detection still describes the image as it is now
+   * cropped. Suspends for as long as the detection takes, which [isDetectingFaces] reports so the screen can say so.
+   */
+  suspend fun blurFaces(context: Context) {
+    isFaceBlurRequested = true
+
+    if (isDetectingFaces) {
+      return
+    }
+
+    val cached = cachedFaceDetection?.takeIf { it.matches(editorModel) }
+    if (cached != null) {
+      applyFaceBlurs(cached)
+      return
+    }
+
+    isDetectingFaces = true
+    val result = try {
+      withContext(Dispatchers.Default) {
+        detectFaces(context, editorModel, imageEditorState.typefaceProvider)
+      }
+    } finally {
+      isDetectingFaces = false
+    }
+
+    // The toggle can go back off while detection runs, and finding faces after that must not mask them anyway.
+    if (isFaceBlurRequested) {
+      applyFaceBlurs(result)
+    }
+  }
+
+  fun clearFaceBlurs() {
+    isFaceBlurRequested = false
+
+    if (!editorModel.hasFaceRenderer()) {
+      return
+    }
+
+    editorModel.clearFaceRenderers()
+    drawSessionDirty = true
+    imageEditorState.invalidate()
+  }
+
+  private fun applyFaceBlurs(result: FaceDetectionResult) {
+    if (result.faces.isEmpty()) {
+      // Not worth keeping: a re-run once the image has loaded, or after a crop, may well find something.
+      cachedFaceDetection = null
+      return
+    }
+
+    editorModel.addFaceBlurs(result.faces, result.renderSize, result.cropPosition)
+    cachedFaceDetection = result
+    drawSessionDirty = true
+    imageEditorState.invalidate()
   }
 
   fun setDrawColor(color: Int) {

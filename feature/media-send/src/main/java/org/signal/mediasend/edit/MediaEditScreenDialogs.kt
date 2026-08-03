@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
 import org.signal.mediasend.R
+import kotlin.time.Duration.Companion.milliseconds
 
 object MediaEditScreenDialogs {
 
@@ -120,6 +121,19 @@ object MediaEditScreenDialogs {
   @Composable
   fun SavingToStorageProgressDialog() {
     Dialogs.IndeterminateProgressDialog(message = stringResource(R.string.MediaSendDialogs__saving_media))
+  }
+
+  /**
+   * Covers face detection, which blocks the editor for as long as it runs. Detection on a small image can finish in a
+   * frame or two, so the spinner waits before showing itself rather than flashing.
+   */
+  @Composable
+  fun DetectingFacesProgressDialog(visible: Boolean) {
+    Dialogs.IndeterminateProgressDialog(
+      visible = visible,
+      delayDuration = 200.milliseconds,
+      minimumDisplayDuration = 400.milliseconds
+    )
   }
 }
 

@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.scribbles;
+package org.signal.imageeditor.core;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -17,7 +17,7 @@ import java.util.stream.Stream;
 /**
  * Detects faces with the built in Android face detection.
  */
-final class AndroidFaceDetector implements FaceDetector {
+public final class AndroidFaceDetector implements FaceDetector {
 
   private static final String TAG = Log.tag(AndroidFaceDetector.class);
 

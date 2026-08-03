@@ -25,6 +25,7 @@ import org.signal.imageeditor.core.renderers.MultiLineTextRenderer;
 
 import java.util.HashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
@@ -914,6 +915,48 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
     }
 
     updateUndoRedoAvailableState(undoRedoStacks);
+  }
+
+  /**
+   * Masks each of {@code faces} with a blur, as a single undoable edit.
+   *
+   * @param faces      Bounds of each face, in the coordinate space of a render of this model at {@code renderSize}.
+   * @param renderSize Size of the render the faces were detected in.
+   * @param position   The inverse crop position at the time of that render, which is what keeps the masks on the faces
+   *                   when the image is cropped or rotated.
+   */
+  public void addFaceBlurs(@NonNull List<RectF> faces, @NonNull Point renderSize, @NonNull Matrix position) {
+    if (faces.isEmpty()) {
+      return;
+    }
+
+    pushUndoPoint();
+
+    Matrix renderProjection = new Matrix();
+    renderProjection.setRectToRect(new RectF(0, 0, renderSize.x, renderSize.y), Bounds.FULL_BOUNDS, Matrix.ScaleToFit.FILL);
+
+    Matrix facePosition = new Matrix(position);
+    facePosition.preConcat(renderProjection);
+
+    Matrix faceMatrix = new Matrix();
+
+    for (RectF face : faces) {
+      EditorElement element     = new EditorElement(new FaceBlurRenderer(), Z_MASK);
+      Matrix        localMatrix = element.getLocalMatrix();
+
+      faceMatrix.setRectToRect(Bounds.FULL_BOUNDS, face, Matrix.ScaleToFit.FILL);
+
+      localMatrix.set(facePosition);
+      localMatrix.preConcat(faceMatrix);
+
+      element.getFlags().setEditable(false)
+             .setSelectable(false)
+             .persist();
+
+      addElementWithoutPushUndo(element);
+    }
+
+    invalidate.run();
   }
 
   public void clearFaceRenderers() {

@@ -39,8 +39,9 @@ import org.signal.core.util.ThrottledDebouncer;
 import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
-import org.signal.imageeditor.core.Bounds;
+import org.signal.imageeditor.core.AndroidFaceDetector;
 import org.signal.imageeditor.core.ColorableRenderer;
+import org.signal.imageeditor.core.FaceDetector;
 import org.signal.imageeditor.core.ImageEditorView;
 import org.signal.imageeditor.core.Renderer;
 import org.signal.imageeditor.core.SelectableRenderer;
@@ -48,7 +49,6 @@ import org.signal.imageeditor.core.TappableRenderer;
 import org.signal.imageeditor.core.model.EditorElement;
 import org.signal.imageeditor.core.model.EditorModel;
 import org.signal.imageeditor.core.renderers.BezierDrawingRenderer;
-import org.signal.imageeditor.core.renderers.FaceBlurRenderer;
 import org.signal.imageeditor.core.renderers.MultiLineTextRenderer;
 import org.signal.imageeditor.core.renderers.UriGlideRenderer;
 import org.signal.mediasend.MediaConstraints;
@@ -76,6 +76,7 @@ import java.io.ByteArrayOutputStream;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -840,34 +841,12 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
   }
 
   private void renderFaceBlurs(@NonNull FaceDetectionResult result) {
-    List<FaceDetector.Face> faces = result.faces;
-
-    if (faces.isEmpty()) {
+    if (result.faces.isEmpty()) {
       cachedFaceDetection = null;
       return;
     }
 
-    imageEditorView.getModel().pushUndoPoint();
-
-    Matrix faceMatrix = new Matrix();
-
-    for (FaceDetector.Face face : faces) {
-      Renderer      faceBlurRenderer = new FaceBlurRenderer();
-      EditorElement element          = new EditorElement(faceBlurRenderer, EditorModel.Z_MASK);
-      Matrix        localMatrix      = element.getLocalMatrix();
-
-      faceMatrix.setRectToRect(Bounds.FULL_BOUNDS, face.getBounds(), Matrix.ScaleToFit.FILL);
-
-      localMatrix.set(result.position);
-      localMatrix.preConcat(faceMatrix);
-
-      element.getFlags().setEditable(false)
-             .setSelectable(false)
-             .persist();
-
-      imageEditorView.getModel().addElementWithoutPushUndo(element);
-    }
-
+    imageEditorView.getModel().addFaceBlurs(result.faces, result.imageSize, result.position);
     imageEditorView.invalidate();
 
     cachedFaceDetection = new Pair<>(getUri(), result);
@@ -1101,16 +1080,14 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
   }
 
   private static class FaceDetectionResult {
-    private final List<FaceDetector.Face> faces;
-    private final Matrix                  position;
+    private final List<RectF> faces;
+    private final Point       imageSize;
+    private final Matrix      position;
 
     private FaceDetectionResult(@NonNull List<FaceDetector.Face> faces, @NonNull Point imageSize, @NonNull Matrix position) {
-      this.faces    = faces;
-      this.position = new Matrix(position);
-
-      Matrix imageProjectionMatrix = new Matrix();
-      imageProjectionMatrix.setRectToRect(new RectF(0, 0, imageSize.x, imageSize.y), Bounds.FULL_BOUNDS, Matrix.ScaleToFit.FILL);
-      this.position.preConcat(imageProjectionMatrix);
+      this.faces     = faces.stream().map(FaceDetector.Face::getBounds).collect(Collectors.toList());
+      this.imageSize = imageSize;
+      this.position  = new Matrix(position);
     }
   }
 

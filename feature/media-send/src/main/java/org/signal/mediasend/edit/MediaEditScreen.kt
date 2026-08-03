@@ -55,6 +55,7 @@ import org.signal.mediasend.MediaSendDependencies
 import org.signal.mediasend.MediaSendMetrics
 import org.signal.mediasend.MediaSendState
 import org.signal.mediasend.edit.document.DocumentPage
+import org.signal.mediasend.edit.image.BlurFacesBar
 import org.signal.mediasend.edit.image.BrushWidthBar
 import org.signal.mediasend.edit.image.BrushWidthPreview
 import org.signal.mediasend.edit.image.DrawModeColorBar
@@ -298,6 +299,15 @@ internal fun MediaEditScreen(
               DrawModeColorBar(imageEditorController = controller)
             }
           }
+
+          if (controller.isUserBlurring) {
+            MediaEditControl(faded = isDragging) {
+              BlurFacesBar(
+                checked = controller.isBlurringFaces,
+                onCheckedChange = { onEvent(MediaEditScreenEvent.ToggleBlurFaces(it)) }
+              )
+            }
+          }
         }
 
         if (isSmallWindowBreakpoint) {
@@ -389,6 +399,8 @@ internal fun MediaEditScreen(
     if (state.isSavingMedia) {
       MediaEditScreenDialogs.SavingToStorageProgressDialog()
     }
+
+    MediaEditScreenDialogs.DetectingFacesProgressDialog(visible = imageController?.isDetectingFaces == true)
   }
 }
 

@@ -74,7 +74,7 @@ internal class ImageEditorState(
     revision++
   }
 
-  private val defaultTypefaceProvider = RendererContext.TypefaceProvider { _: Context, _: Renderer, _: RendererContext.Invalidate ->
+  val typefaceProvider = RendererContext.TypefaceProvider { _: Context, _: Renderer, _: RendererContext.Invalidate ->
     Typeface.DEFAULT
   }
 
@@ -126,7 +126,7 @@ internal class ImageEditorState(
   fun getOrCreateRendererContext(context: Context, canvas: Canvas): RendererContext {
     val current = rendererContext
     if (current != null && current.canvas === canvas) return current
-    return RendererContext(context, canvas, rendererReady, rendererInvalidate, defaultTypefaceProvider).also {
+    return RendererContext(context, canvas, rendererReady, rendererInvalidate, typefaceProvider).also {
       rendererContext = it
     }
   }
