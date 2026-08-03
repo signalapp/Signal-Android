@@ -121,8 +121,10 @@ class NetworkDependenciesModule(
   }
 
   val libsignalNetwork: Network by lazy {
-    provider.provideLibsignalNetwork(signalServiceNetworkAccess.getConfiguration())
+    provider.provideLibsignalNetwork(signalServiceNetworkAccess.getConfiguration(), networkProxyState)
   }
+
+  val networkProxyState: NetworkProxyState = NetworkProxyState()
 
   val authWebSocket: SignalWebSocket.AuthenticatedWebSocket by lazy {
     provider.provideAuthWebSocket({ signalServiceNetworkAccess.getConfiguration() }, { libsignalNetwork }).also {

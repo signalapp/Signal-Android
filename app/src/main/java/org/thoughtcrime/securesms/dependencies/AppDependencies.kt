@@ -12,7 +12,6 @@ import org.signal.core.util.billing.BillingApi
 import org.signal.core.util.concurrent.DeadlockDetector
 import org.signal.core.util.concurrent.LatestValueObservable
 import org.signal.core.util.contentproviders.BlobProvider
-import org.signal.core.util.orNull
 import org.signal.core.util.resettableLazy
 import org.signal.donations.permits.DonationPermitsRepository
 import org.signal.glide.SignalGlideDependencies
@@ -35,7 +34,6 @@ import org.signal.network.api.RegistrationApiV2
 import org.signal.network.api.RemoteConfigApi
 import org.signal.network.api.SvrBApi
 import org.signal.network.api.UsernameApi
-import org.signal.network.config.HttpProxy
 import org.signal.network.config.SignalServiceConfiguration
 import org.signal.network.rest.SignalRestClient
 import org.signal.network.service.MessageService
@@ -316,6 +314,10 @@ object AppDependencies {
     get() = networkModule.libsignalNetwork
 
   @JvmStatic
+  val networkProxyState: NetworkProxyState
+    get() = networkModule.networkProxyState
+
+  @JvmStatic
   val authWebSocket: SignalWebSocket.AuthenticatedWebSocket
     get() = networkModule.authWebSocket
 
@@ -453,16 +455,6 @@ object AppDependencies {
     networkModule.openConnections()
   }
 
-  fun onSystemHttpProxyChange(systemHttpProxy: HttpProxy?): Boolean {
-    val currentSystemProxy = signalServiceNetworkAccess.getConfiguration().systemHttpProxy.orNull()
-    return if (currentSystemProxy?.host != systemHttpProxy?.host || currentSystemProxy?.port != systemHttpProxy?.port) {
-      resetNetwork()
-      true
-    } else {
-      false
-    }
-  }
-
   interface Provider {
     fun providePushServiceSocket(signalServiceConfiguration: SignalServiceConfiguration, groupsV2Operations: GroupsV2Operations): PushServiceSocket
     fun provideSignalRestClient(signalServiceConfiguration: SignalServiceConfiguration): SignalRestClient
@@ -506,7 +498,7 @@ object AppDependencies {
     fun provideOkHttpClient(): OkHttpClient
     fun provideScheduledMessageManager(): ScheduledMessageManager
     fun providePinnedMessageManager(): PinnedMessageManager
-    fun provideLibsignalNetwork(config: SignalServiceConfiguration): Network
+    fun provideLibsignalNetwork(config: SignalServiceConfiguration, proxyState: NetworkProxyState): Network
     fun provideBillingApi(): BillingApi
     fun provideArchiveApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket, pushServiceSocket: PushServiceSocket, signalServiceConfiguration: SignalServiceConfiguration): ArchiveApi
     fun provideKeysApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket): KeysApi

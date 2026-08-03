@@ -176,7 +176,6 @@ class SignalRestClientTest {
       networkInterceptors = emptyList(),
       dns = Optional.empty(),
       signalProxy = Optional.empty(),
-      systemHttpProxy = Optional.empty(),
       zkGroupServerPublicParams = ByteArray(0),
       genericServerPublicParams = ByteArray(0),
       backupServerPublicParams = ByteArray(0),
