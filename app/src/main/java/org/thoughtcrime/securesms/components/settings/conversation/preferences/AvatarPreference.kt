@@ -63,7 +63,7 @@ object AvatarPreference {
       }
 
       avatar.setStoryRingFromState(model.storyViewState)
-      avatar.displayChatAvatar(model.recipient)
+      avatar.displayChatAvatar(model.recipient, animateAvatar = true)
       avatar.disableQuickContact()
       avatar.setOnClickListener { model.onAvatarClick(avatar) }
     }
