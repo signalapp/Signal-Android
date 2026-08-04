@@ -1026,6 +1026,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         int darkTint = getContext().getResources().getColor(R.color.black);
         audioViewStub.get().setTint(darkTint);
         audioViewStub.get().setProgressAndPlayBackgroundTint(getContext().getResources().getColor(org.signal.core.ui.R.color.signal_colorTransparent2));
+        audioViewStub.get().setWaveformColors(darkTint, getContext().getResources().getColor(R.color.transparent_black_40), darkTint);
       } else {
         audioViewStub.get().setTint(getContext().getResources().getColor(R.color.conversation_item_outgoing_audio_foreground_tint));
         audioViewStub.get().setProgressAndPlayBackgroundTint(getContext().getResources().getColor(org.signal.core.ui.R.color.signal_colorTransparent2));
@@ -2041,9 +2042,12 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       if (hasWallpaper && hasNoBubble((messageRecord))) {
         if (messageRecord.isOutgoing()) {
           activeFooter.disableBubbleBackground();
-          activeFooter.setTextColor(ContextCompat.getColor(context, R.color.conversation_item_sent_text_secondary_color));
-          activeFooter.setIconColor(ContextCompat.getColor(context, R.color.conversation_item_sent_text_secondary_color));
-          activeFooter.setRevealDotColor(ContextCompat.getColor(context, R.color.conversation_item_sent_text_secondary_color));
+          int color = conversationRecipient.get().getChatColors().needsDarkText()
+                      ? ContextCompat.getColor(context, R.color.black)
+                      : ContextCompat.getColor(context, R.color.conversation_item_sent_text_secondary_color);
+          activeFooter.setTextColor(color);
+          activeFooter.setIconColor(color);
+          activeFooter.setRevealDotColor(color);
         } else {
           activeFooter.enableBubbleBackground(R.drawable.wallpaper_bubble_background_tintable_11, getDefaultBubbleColor(hasWallpaper));
         }
