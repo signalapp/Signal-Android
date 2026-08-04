@@ -6,7 +6,9 @@ import android.util.AttributeSet
 import android.widget.TextView
 import androidx.annotation.ColorInt
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
+import org.signal.core.ui.R as CoreUiR
 import org.thoughtcrime.securesms.R
 
 class MediaCountIndicatorButton @JvmOverloads constructor(
@@ -25,7 +27,14 @@ class MediaCountIndicatorButton @JvmOverloads constructor(
     countView.text = "$count"
   }
 
-  fun setChatColor(@ColorInt color: Int) {
+  fun setChatColor(@ColorInt color: Int, needsDarkText: Boolean = false) {
     ViewCompat.setBackgroundTintList(countView, ColorStateList.valueOf(color))
+    countView.setTextColor(
+      if (needsDarkText) {
+        ContextCompat.getColor(context, R.color.black)
+      } else {
+        ContextCompat.getColor(context, CoreUiR.color.signal_light_colorBackground)
+      }
+    )
   }
 }
