@@ -8,6 +8,9 @@ package org.thoughtcrime.securesms.conversation.drafts
 import android.app.Application
 import io.mockk.every
 import io.mockk.mockk
+import io.reactivex.rxjava3.plugins.RxJavaPlugins
+import io.reactivex.rxjava3.schedulers.Schedulers
+import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
 import org.junit.Before
@@ -48,8 +51,17 @@ class DraftRepositoryTest {
   fun setUp() {
     Log.initialize(SystemOutLogger())
 
+    // Another test sharing this Robolectric sandbox may have already initialized Schedulers.io() to a
+    // TestScheduler that nothing advances, which would make load()'s blockingGet() wait forever. Run inline.
+    RxJavaPlugins.setIoSchedulerHandler { Schedulers.trampoline() }
+
     draftTable = mockk(relaxed = true)
     every { draftTable.getDrafts(any()) } returns DraftTable.Drafts()
+  }
+
+  @After
+  fun tearDown() {
+    RxJavaPlugins.setIoSchedulerHandler(null)
   }
 
   @Test
