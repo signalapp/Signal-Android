@@ -578,6 +578,9 @@ class AppRegistrationStorageController(private val context: Context) : StorageCo
       try {
         when (val result = BackupRepository.restoreRemoteBackup()) {
           is RemoteRestoreResult.Success -> {
+            // The restore adopted the account's existing SVRB chain, so there's nothing left for BackupMessagesJob to re-init.
+            SignalStore.backup.backupSecretRestoreRequired = false
+
             send(
               RemoteBackupRestoreProgress.Complete(
                 restoredSvrPin = SignalStore.svr.pin,
@@ -759,6 +762,13 @@ class AppRegistrationStorageController(private val context: Context) : StorageCo
 
     accountData.linkedDeviceData?.mediaRootBackupKey?.let {
       SignalStore.backup.mediaRootBackupKey = MediaRootBackupKey(it.toByteArray())
+    }
+
+    if (accountData.reRegistration) {
+      // The account may already have SVRB data for this backup key. Until we've adopted that chain (either by restoring a backup, or by reading
+      // the remote metadata during the first BackupMessagesJob) we must not start a new chain, or the existing remote backup becomes unrestorable.
+      Log.i(TAG, "[applyAccountData] Re-registration. Marking that we need to restore SVRB secrets before backing up.")
+      SignalStore.backup.backupSecretRestoreRequired = true
     }
 
     SignalStore.account.setServicePassword(accountData.servicePassword)

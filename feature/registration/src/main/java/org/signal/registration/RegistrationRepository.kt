@@ -683,6 +683,7 @@ class RegistrationRepository(val context: Context, val networkController: Networ
         this.aci = result.result.aci
         this.pni = result.result.pni
         this.servicePassword = keyMaterial.servicePassword
+        this.reRegistration = result.result.reregistration
       }
       storageController.commitRegistrationData()
     }

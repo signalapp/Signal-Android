@@ -45,6 +45,9 @@ message AccountData {
   bool fetchesMessages = 14;
 
   LinkedDeviceData linkedDeviceData = 15;
+
+  // Whether the service reported this registration as a re-registration of an existing account.
+  bool reRegistration = 16;
 }
 
 message SvrCredential {

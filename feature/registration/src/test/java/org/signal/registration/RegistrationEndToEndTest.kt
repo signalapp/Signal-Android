@@ -141,6 +141,7 @@ class RegistrationEndToEndTest {
     assert(committed.accountData?.pni?.isNotEmpty() == true) { "Expected committed PNI to be populated" }
     assert(committed.pin == PIN) { "Expected committed pin $PIN but was ${committed.pin}" }
     assert(committed.accountEntropyPool.isNotEmpty()) { "Expected committed AEP to be populated" }
+    assert(committed.accountData?.reRegistration == false) { "Expected a new registration to not be flagged as a re-registration" }
 
     assert(networkController.lastCreateSessionE164 == E164) { "Expected a session for $E164 but was ${networkController.lastCreateSessionE164}" }
     assert(networkController.lastRegisterAccountRequest?.e164 == E164) { "Expected registration for $E164 but was ${networkController.lastRegisterAccountRequest}" }
@@ -643,6 +644,7 @@ class RegistrationEndToEndTest {
     assert(committed != null) { "Expected registration data to be committed" }
     assert(committed!!.accountData?.e164 == E164) { "Expected committed e164 $E164 but was ${committed.accountData?.e164}" }
     assert(committed.pin == PIN) { "Expected committed pin $PIN but was ${committed.pin}" }
+    assert(committed.accountData?.reRegistration == true) { "Expected the committed account data to be flagged as a re-registration" }
   }
 
   @Test

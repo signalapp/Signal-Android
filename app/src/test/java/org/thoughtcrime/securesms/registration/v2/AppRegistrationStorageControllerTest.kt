@@ -231,6 +231,34 @@ class AppRegistrationStorageControllerTest {
   }
 
   @Test
+  fun `commit - re-registration - requires svrb secret restore before backing up`() = runBlocking<Unit> {
+    seedInProgressData(
+      RegistrationData(
+        accountData = accountData(reRegistration = true),
+        accountEntropyPool = aep.value
+      )
+    )
+
+    controller.commitRegistrationData()
+
+    assertThat(SignalStore.backup.backupSecretRestoreRequired).isTrue()
+  }
+
+  @Test
+  fun `commit - new account - does not require svrb secret restore`() = runBlocking<Unit> {
+    seedInProgressData(
+      RegistrationData(
+        accountData = accountData(reRegistration = false),
+        accountEntropyPool = aep.value
+      )
+    )
+
+    controller.commitRegistrationData()
+
+    assertThat(SignalStore.backup.backupSecretRestoreRequired).isFalse()
+  }
+
+  @Test
   fun `commit - called twice - only applies account data once`() = runBlocking<Unit> {
     seedInProgressData(
       RegistrationData(
@@ -396,7 +424,7 @@ class AppRegistrationStorageControllerTest {
 
   private fun readInProgressData(): RegistrationData = runBlocking { controller.readInProgressRegistrationData() }
 
-  private fun accountData(servicePassword: String = SERVICE_PASSWORD, linkedDeviceData: LinkedDeviceData? = null): AccountData {
+  private fun accountData(servicePassword: String = SERVICE_PASSWORD, linkedDeviceData: LinkedDeviceData? = null, reRegistration: Boolean = false): AccountData {
     return AccountData(
       aciIdentityKeyPair = aciIdentity.serialize().toByteString(),
       pniIdentityKeyPair = pniIdentity.serialize().toByteString(),
@@ -410,7 +438,8 @@ class AppRegistrationStorageControllerTest {
       pni = pni.toString(),
       e164 = E164,
       servicePassword = servicePassword,
-      linkedDeviceData = linkedDeviceData
+      linkedDeviceData = linkedDeviceData,
+      reRegistration = reRegistration
     )
   }
 }
