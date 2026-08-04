@@ -3,8 +3,6 @@ package org.thoughtcrime.securesms;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.transition.TransitionInflater;
@@ -15,7 +13,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityOptionsCompat;
-import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
@@ -109,31 +106,29 @@ public final class AvatarPreviewActivity extends PassphraseRequiredActivity {
 
       Drawable fallbackDrawable = new FallbackAvatarDrawable(context, fallbackAvatar);
 
-      Resources resources = this.getResources();
-
+      // Not asBitmap(), so an animated GIF avatar can actually play here.
       Glide.with(this)
-              .asBitmap()
               .load(contactPhoto)
               .fallback(fallbackDrawable)
               .error(fallbackDrawable)
               .diskCacheStrategy(DiskCacheStrategy.ALL)
-              .addListener(new RequestListener<Bitmap>() {
+              .addListener(new RequestListener<Drawable>() {
                 @Override
-                public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Bitmap> target, boolean isFirstResource) {
+                public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
                   Log.w(TAG, "Unable to load avatar, or avatar removed, closing");
                   finish();
                   return false;
                 }
 
                 @Override
-                public boolean onResourceReady(Bitmap resource, Object model, Target<Bitmap> target, DataSource dataSource, boolean isFirstResource) {
+                public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
                   return false;
                 }
               })
-              .into(new CustomTarget<Bitmap>() {
+              .into(new CustomTarget<Drawable>() {
                 @Override
-                public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                  avatar.setImageDrawable(RoundedBitmapDrawableFactory.create(resources, resource));
+                public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                  avatar.setImageDrawable(resource);
                   startPostponedEnterTransition();
                 }
 

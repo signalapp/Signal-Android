@@ -224,7 +224,7 @@ public final class AvatarImageView extends AppCompatImageView {
           if (wasUnblurred) {
             blurred = shouldBlur;
             request = request.transition(DrawableTransitionOptions.withCrossFade(200));
-          } else {
+          } else if (!avatarOptions.animateAvatar) {
             request = request.dontAnimate();
           }
 
@@ -349,12 +349,14 @@ public final class AvatarImageView extends AppCompatImageView {
     private final boolean useSelfProfileAvatar;
     private final boolean useBlurGradient;
     private final int     fixedSize;
+    private final boolean animateAvatar;
 
     private AvatarOptions(@NonNull Builder builder) {
       this.quickContactEnabled  = builder.quickContactEnabled;
       this.useSelfProfileAvatar = builder.useSelfProfileAvatar;
       this.useBlurGradient      = builder.useBlurGradient;
       this.fixedSize            = builder.fixedSize;
+      this.animateAvatar        = builder.animateAvatar;
     }
 
     public static final class Builder {
@@ -365,6 +367,7 @@ public final class AvatarImageView extends AppCompatImageView {
       private boolean useSelfProfileAvatar = false;
       private boolean useBlurGradient      = false;
       private int     fixedSize            = -1;
+      private boolean animateAvatar        = false;
 
       private Builder(@NonNull AvatarImageView avatarImageView) {
         this.avatarImageView = avatarImageView;
@@ -387,6 +390,11 @@ public final class AvatarImageView extends AppCompatImageView {
 
       public @NonNull Builder withFixedSize(@Px @IntRange(from = 1) int fixedSize) {
         this.fixedSize = fixedSize;
+        return this;
+      }
+
+      public @NonNull Builder withAnimateAvatar(boolean animateAvatar) {
+        this.animateAvatar = animateAvatar;
         return this;
       }
 
