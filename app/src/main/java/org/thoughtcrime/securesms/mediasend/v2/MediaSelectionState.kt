@@ -4,7 +4,7 @@ import android.net.Uri
 import org.signal.core.models.media.Media
 import org.signal.mediasend.MediaConstraints
 import org.signal.mediasend.SentMediaQuality
-import org.signal.mediasend.edit.video.VideoTrimData
+import org.signal.mediasend.screens.edit.video.VideoTrimData
 import org.thoughtcrime.securesms.conversation.MessageSendType
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.TranscodingConfigProvider

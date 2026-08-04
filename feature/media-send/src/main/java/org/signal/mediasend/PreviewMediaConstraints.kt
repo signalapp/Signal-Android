@@ -7,7 +7,7 @@ package org.signal.mediasend
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import org.signal.mediasend.edit.image.BrushWidths
+import org.signal.mediasend.screens.edit.image.BrushWidths
 import org.thoughtcrime.securesms.video.TranscodingConfig
 import kotlin.time.Duration.Companion.seconds
 
@@ -35,7 +35,7 @@ object PreviewMediaConstraints : MediaConstraints() {
 
 @Composable
 internal fun rememberPreviewState() = remember {
-  MediaSendState(
+  MediaSendFlowState(
     mediaConstraints = PreviewMediaConstraints,
     storyMaxVideoDuration = 30.seconds,
     storiesEnabled = true,

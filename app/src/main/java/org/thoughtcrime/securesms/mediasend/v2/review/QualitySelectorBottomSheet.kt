@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.fragment.app.viewModels
 import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.ComposeBottomSheetDialogFragment
-import org.signal.mediasend.edit.QualitySelectorSheetContent
+import org.signal.mediasend.screens.edit.QualitySelectorSheetContent
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionViewModel
 
 /**

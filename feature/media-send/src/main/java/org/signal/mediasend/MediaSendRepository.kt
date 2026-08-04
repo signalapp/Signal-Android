@@ -12,8 +12,8 @@ import kotlinx.coroutines.flow.Flow
 import org.signal.core.models.media.Media
 import org.signal.core.models.media.MediaFolder
 import org.signal.imageeditor.core.model.EditorModel
-import org.signal.mediasend.edit.image.BrushWidths
 import org.signal.mediasend.preupload.PreUploadResult
+import org.signal.mediasend.screens.edit.image.BrushWidths
 import java.io.InputStream
 import kotlin.time.Duration
 

@@ -5,7 +5,7 @@ import androidx.annotation.WorkerThread
 import org.signal.core.models.media.Media
 import org.signal.core.models.media.TransformProperties
 import org.signal.mediasend.SentMediaQuality
-import org.signal.mediasend.edit.video.VideoTrimData
+import org.signal.mediasend.screens.edit.video.VideoTrimData
 
 class VideoTrimTransform(private val data: VideoTrimData) : MediaTransform {
   @WorkerThread

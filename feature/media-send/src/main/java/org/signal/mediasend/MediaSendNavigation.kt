@@ -1,0 +1,185 @@
+package org.signal.mediasend
+
+import android.annotation.SuppressLint
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
+import androidx.navigation3.runtime.NavEntry
+import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
+import androidx.navigation3.ui.NavDisplay
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collectLatest
+import org.signal.core.ui.compose.Snackbars
+import org.signal.core.ui.compose.showSnackbar
+import org.signal.mediasend.screens.capture.MediaCaptureScreen
+import org.signal.mediasend.screens.edit.MediaEditScreen
+import org.signal.mediasend.screens.select.MediaSelectScreen
+import org.signal.mediasend.screens.select.MediaSelectViewModel
+import kotlin.time.Duration.Companion.seconds
+
+/**
+ * Enforces the following flow of:
+ *
+ * Capture -> Edit -> Send
+ * Select -> Edit -> Send
+ */
+@Composable
+internal fun MediaSendNavigation(
+  viewModel: MediaSendFlowViewModel,
+  modifier: Modifier = Modifier,
+  textStoryEditorSlot: @Composable () -> Unit = {},
+  sendSlot: @Composable (MediaSendFlowState) -> Unit = {}
+) {
+  Box {
+    NavDisplay(
+      backStack = viewModel.backStack,
+      modifier = modifier.fillMaxSize(),
+      // Each select screen owns a view model of its own, so entries need their own stores rather than the activity's.
+      entryDecorators = listOf(
+        rememberSaveableStateHolderNavEntryDecorator(),
+        rememberViewModelStoreNavEntryDecorator()
+      )
+    ) { key ->
+      when (key) {
+        is MediaSendNavKey.Capture -> NavEntry(MediaSendNavKey.Capture.Chrome) {
+          val state by viewModel.state.collectAsStateWithLifecycle()
+
+          MediaCaptureScreen(
+            selectedCaptureScreen = key,
+            state = state,
+            onEvent = viewModel::onMediaCaptureScreenEvent,
+            textStoryEditorSlot = textStoryEditorSlot
+          )
+        }
+
+        MediaSendNavKey.Select.Folders -> NavEntry(key) {
+          val selectViewModel: MediaSelectViewModel = viewModel(
+            factory = MediaSelectViewModel.Factory(
+              parentState = viewModel.state,
+              parentEventEmitter = viewModel::onEvent,
+              mediaFolder = null
+            )
+          )
+          val state by selectViewModel.state.collectAsStateWithLifecycle()
+
+          selectViewModel.readMediaPermission.Content()
+
+          MediaSelectScreen(
+            state = state,
+            onEvent = selectViewModel::onEvent
+          )
+        }
+
+        is MediaSendNavKey.Select.Files -> NavEntry(key) {
+          val selectViewModel: MediaSelectViewModel = viewModel(
+            factory = MediaSelectViewModel.Factory(
+              parentState = viewModel.state,
+              parentEventEmitter = viewModel::onEvent,
+              mediaFolder = key.folder
+            )
+          )
+          val state by selectViewModel.state.collectAsStateWithLifecycle()
+
+          selectViewModel.readMediaPermission.Content()
+
+          MediaSelectScreen(
+            state = state,
+            onEvent = selectViewModel::onEvent
+          )
+        }
+
+        is MediaSendNavKey.Edit -> NavEntry(MediaSendNavKey.Edit) {
+          val state by viewModel.state.collectAsStateWithLifecycle()
+          MediaEditScreen(
+            state = state,
+            onEvent = viewModel::onMediaEditScreenEvent,
+            imageControllers = viewModel.imageControllers
+          )
+        }
+
+        is MediaSendNavKey.Send -> NavEntry(key) {
+          val state by viewModel.state.collectAsStateWithLifecycle()
+          sendSlot(state)
+        }
+
+        else -> error("Unknown key: $key")
+      }
+    }
+
+    Snackbar(viewModel.snackbarEvents)
+    Toast(viewModel.toastEvents)
+  }
+}
+
+private val TOAST_DURATION = 3.seconds
+
+/**
+ * Shows each [ToastEvent] over the middle of the screen for [TOAST_DURATION]. A new event replaces whatever is showing
+ * and restarts that countdown.
+ */
+@Composable
+private fun BoxScope.Toast(
+  toastEvents: Flow<ToastEvent>
+) {
+  var event: ToastEvent? by remember { mutableStateOf(null) }
+  var visible: Boolean by remember { mutableStateOf(false) }
+
+  LaunchedEffect(Unit) {
+    toastEvents.collectLatest {
+      event = it
+      visible = true
+      delay(TOAST_DURATION)
+      visible = false
+    }
+  }
+
+  AnimatedVisibility(
+    visible = visible,
+    enter = fadeIn(),
+    exit = fadeOut(),
+    modifier = Modifier.align(Alignment.Center)
+  ) {
+    // Held past the hide so that it is still there to fade out.
+    event?.let { MediaSendToast(event = it) }
+  }
+}
+
+@SuppressLint("LocalContextGetResourceValueCall")
+@Composable
+private fun BoxScope.Snackbar(
+  snackbarEvents: Flow<SnackbarEvent>
+) {
+  val context = LocalContext.current
+  val snackbarHostState = remember { SnackbarHostState() }
+
+  LaunchedEffect(snackbarHostState) {
+    snackbarEvents.collect { event ->
+      snackbarHostState.showSnackbar(
+        message = context.getString(event.message),
+        duration = event.duration
+      )
+    }
+  }
+
+  Snackbars.Host(
+    snackbarHostState,
+    modifier = Modifier.align(Alignment.BottomCenter)
+  )
+}

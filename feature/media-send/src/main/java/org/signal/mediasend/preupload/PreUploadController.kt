@@ -6,6 +6,7 @@
 package org.signal.mediasend.preupload
 
 import android.content.Context
+import android.net.Uri
 import androidx.annotation.WorkerThread
 import org.signal.core.models.media.Media
 import org.signal.core.util.ThreadUtil
@@ -32,7 +33,13 @@ class PreUploadController {
 
   private val callback: PreUploadRepository = MediaSendDependencies.preUploadRepository
   private val context: Context = MediaSendDependencies.application
-  private val uploadResults: LinkedHashMap<Media, PreUploadResult> = LinkedHashMap()
+
+  /**
+   * Keyed by URI rather than by [Media] itself: there is one pre-uploaded attachment per item on disk, and everything
+   * else about a [Media] changes as it moves through the flow. Editing a caption, trimming a video or filling in a
+   * video's dimensions all produce a new, non-equal [Media] for the same attachment.
+   */
+  private val uploadResults: LinkedHashMap<Uri, PreUploadResult> = LinkedHashMap()
   private val executor: Executor =
     SignalExecutors.newCachedSingleThreadExecutor("signal-PreUpload", ThreadUtil.PRIORITY_IMPORTANT_BACKGROUND_THREAD)
 
@@ -58,7 +65,7 @@ class PreUploadController {
     executor.execute {
       for (media in mediaItems) {
         Log.d(TAG, "Canceling existing preuploads.")
-        cancelUploadInternal(media)
+        cancelUploadInternal(media.uri)
         Log.d(TAG, "Re-uploading media with recipient.")
         uploadMediaInternal(media, recipientId)
       }
@@ -77,9 +84,9 @@ class PreUploadController {
       for ((oldMedia, newMedia) in oldToNew) {
         val same = oldMedia == newMedia && hasSameTransformProperties(oldMedia, newMedia)
 
-        if (!same || !uploadResults.containsKey(newMedia)) {
+        if (!same || !uploadResults.containsKey(newMedia.uri)) {
           Log.d(TAG, "Canceling existing preuploads.")
-          cancelUploadInternal(oldMedia)
+          cancelUploadInternal(oldMedia.uri)
           Log.d(TAG, "Applying media updates.")
           uploadMediaInternal(newMedia, recipientId)
         }
@@ -107,7 +114,7 @@ class PreUploadController {
    */
   fun cancelUpload(media: Media) {
     Log.d(TAG, "User canceling media upload.")
-    executor.execute { cancelUploadInternal(media) }
+    executor.execute { cancelUploadInternal(media.uri) }
   }
 
   /**
@@ -119,7 +126,7 @@ class PreUploadController {
     Log.d(TAG, "Canceling uploads.")
     executor.execute {
       for (media in mediaItems) {
-        cancelUploadInternal(media)
+        cancelUploadInternal(media.uri)
       }
     }
   }
@@ -131,8 +138,8 @@ class PreUploadController {
     Log.d(TAG, "Canceling all uploads.")
     executor.execute {
       val keysSnapshot = uploadResults.keys.toList()
-      for (media in keysSnapshot) {
-        cancelUploadInternal(media)
+      for (uri in keysSnapshot) {
+        cancelUploadInternal(uri)
       }
     }
   }
@@ -181,25 +188,25 @@ class PreUploadController {
     val result = callback.preUpload(context, media, recipientId)
 
     if (result != null) {
-      uploadResults[media] = result
+      uploadResults[media.uri] = result
     } else {
       Log.w(TAG, "Failed to upload media with URI: ${media.uri}")
     }
   }
 
-  private fun cancelUploadInternal(media: Media) {
-    val result = uploadResults[media] ?: return
+  private fun cancelUploadInternal(uri: Uri) {
+    val result = uploadResults[uri] ?: return
 
     Log.d(TAG, "Canceling attachment upload jobs for ${result.attachmentId}")
     callback.cancelJobs(context, result.jobIds)
-    uploadResults.remove(media)
+    uploadResults.remove(uri)
     callback.deleteAttachment(context, result.attachmentId)
   }
 
   @WorkerThread
   private fun updateCaptionsInternal(updatedMedia: List<Media>) {
     for (updated in updatedMedia) {
-      val result = uploadResults[updated]
+      val result = uploadResults[updated.uri]
 
       if (result != null) {
         callback.updateAttachmentCaption(context, result.attachmentId, updated.caption)
@@ -212,14 +219,14 @@ class PreUploadController {
   @WorkerThread
   private fun updateDisplayOrderInternal(mediaInOrder: List<Media>) {
     val orderMap: MutableMap<Long, Int> = LinkedHashMap()
-    val orderedUploadResults: LinkedHashMap<Media, PreUploadResult> = LinkedHashMap()
+    val orderedUploadResults: LinkedHashMap<Uri, PreUploadResult> = LinkedHashMap()
 
     for ((index, media) in mediaInOrder.withIndex()) {
-      val result = uploadResults[media]
+      val result = uploadResults[media.uri]
 
       if (result != null) {
         orderMap[result.attachmentId] = index
-        orderedUploadResults[media] = result
+        orderedUploadResults[media.uri] = result
       } else {
         Log.w(TAG, "When updating display order, no pre-upload result could be found for media with URI: ${media.uri}")
       }

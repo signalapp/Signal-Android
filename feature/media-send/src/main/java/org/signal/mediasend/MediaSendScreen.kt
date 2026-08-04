@@ -19,17 +19,17 @@ import androidx.navigationevent.compose.LocalNavigationEventDispatcherOwner
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.LocalDisplayNameProvider
 import org.signal.core.ui.compose.theme.SignalTheme
-import org.signal.mediasend.edit.MediaEditScreenDialogs
+import org.signal.mediasend.screens.edit.MediaEditScreenDialogs
 
 @Composable
 fun MediaSendScreen(
-  contractArgs: MediaSendActivityContract.Args,
+  contractArgs: MediaSendFlowActivityContract.Args,
   modifier: Modifier = Modifier,
   textStoryEditorSlot: @Composable () -> Unit = {},
-  sendSlot: @Composable (MediaSendState) -> Unit = {},
+  sendSlot: @Composable (MediaSendFlowState) -> Unit = {},
   onExternalHudCommand: (HudCommand) -> Unit = {}
 ) {
-  val viewModel = viewModel<MediaSendViewModel>(factory = MediaSendViewModel.Factory(args = contractArgs))
+  val viewModel = viewModel<MediaSendFlowViewModel>(factory = MediaSendFlowViewModel.Factory(args = contractArgs))
 
   LaunchedEffect(viewModel) {
     viewModel.hudCommands.collect { command ->
@@ -85,15 +85,9 @@ fun MediaSendScreen(
         }
 
         viewModel.writeStoragePermission.Content()
-        viewModel.readMediaPermission.Content()
 
-        MediaSendNavDisplay(
-          stateFlow = viewModel.state,
-          snackbarEvents = viewModel.snackbarEvents,
-          toastEvents = viewModel.toastEvents,
-          imageControllers = viewModel.imageControllers,
-          backStack = viewModel.backStack,
-          eventHandler = viewModel,
+        MediaSendNavigation(
+          viewModel = viewModel,
           modifier = modifier,
           textStoryEditorSlot = textStoryEditorSlot,
           sendSlot = sendSlot

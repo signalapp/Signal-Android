@@ -35,8 +35,8 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.overrideActivityTransitionCompat
 import org.signal.mediasend.MediaSendNavKey
 import org.signal.mediasend.MediaValidator
-import org.signal.mediasend.capture.MediaCaptureBottomBar
-import org.signal.mediasend.capture.MediaCaptureScreenEvent
+import org.signal.mediasend.screens.capture.MediaCaptureBottomBar
+import org.signal.mediasend.screens.capture.MediaCaptureScreenEvent
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.emoji.EmojiEventListener

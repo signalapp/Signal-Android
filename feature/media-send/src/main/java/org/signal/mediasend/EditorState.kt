@@ -11,7 +11,7 @@ import androidx.core.os.bundleOf
 import kotlinx.parcelize.Parcelize
 import org.signal.core.util.getParcelableCompat
 import org.signal.imageeditor.core.model.EditorModel
-import org.signal.mediasend.edit.video.VideoTrimData
+import org.signal.mediasend.screens.edit.video.VideoTrimData
 
 /**
  * Sealed interface for per-media editor state. All subtypes are [Parcelable] so the

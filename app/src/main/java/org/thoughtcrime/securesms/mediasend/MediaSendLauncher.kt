@@ -12,7 +12,7 @@ import android.os.Parcelable
 import org.signal.core.models.media.Media
 import org.signal.core.util.getParcelableExtraCompat
 import org.signal.mediasend.MediaRecipientId
-import org.signal.mediasend.MediaSendActivityContract
+import org.signal.mediasend.MediaSendFlowActivityContract
 import org.signal.mediasend.MediaSendRecipient
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.conversation.MessageSendType
@@ -45,9 +45,9 @@ object MediaSendLauncher {
     return if (useV3) {
       v3Intent(
         context,
-        MediaSendActivityContract.Args(
+        MediaSendFlowActivityContract.Args(
           isCameraFirst = true,
-          mode = MediaSendActivityContract.Mode.ChooseAfterMediaSelection,
+          mode = MediaSendFlowActivityContract.Mode.ChooseAfterMediaSelection,
           isStory = isStory
         )
       )
@@ -66,9 +66,9 @@ object MediaSendLauncher {
     return if (useV3) {
       v3Intent(
         context,
-        MediaSendActivityContract.Args(
+        MediaSendFlowActivityContract.Args(
           isCameraFirst = true,
-          mode = MediaSendActivityContract.Mode.SingleRecipient,
+          mode = MediaSendFlowActivityContract.Mode.SingleRecipient,
           recipientId = recipientId.toMediaRecipientId(),
           isReply = isReply
         )
@@ -82,9 +82,9 @@ object MediaSendLauncher {
     return if (useV3) {
       v3Intent(
         context,
-        MediaSendActivityContract.Args(
+        MediaSendFlowActivityContract.Args(
           isCameraFirst = true,
-          mode = MediaSendActivityContract.Mode.ChooseAfterMediaSelection,
+          mode = MediaSendFlowActivityContract.Mode.ChooseAfterMediaSelection,
           isForQuickRestore = true
         )
       )
@@ -97,9 +97,9 @@ object MediaSendLauncher {
     return if (useV3) {
       v3Intent(
         context,
-        MediaSendActivityContract.Args(
+        MediaSendFlowActivityContract.Args(
           isCameraFirst = true,
-          mode = MediaSendActivityContract.Mode.SingleRecipient,
+          mode = MediaSendFlowActivityContract.Mode.SingleRecipient,
           recipientId = recipientId.toMediaRecipientId(),
           isStory = true,
           isAddToGroupStoryFlow = true
@@ -122,8 +122,8 @@ object MediaSendLauncher {
     return if (useV3) {
       v3Intent(
         context,
-        MediaSendActivityContract.Args(
-          mode = MediaSendActivityContract.Mode.SingleRecipient,
+        MediaSendFlowActivityContract.Args(
+          mode = MediaSendFlowActivityContract.Mode.SingleRecipient,
           recipientId = recipientId.toMediaRecipientId(),
           initialMedia = media,
           initialMessage = message,
@@ -146,8 +146,8 @@ object MediaSendLauncher {
     return if (useV3) {
       v3Intent(
         context,
-        MediaSendActivityContract.Args(
-          mode = MediaSendActivityContract.Mode.SingleRecipient,
+        MediaSendFlowActivityContract.Args(
+          mode = MediaSendFlowActivityContract.Mode.SingleRecipient,
           recipientId = recipientId.toMediaRecipientId(),
           initialMedia = media,
           initialMessage = message
@@ -163,8 +163,8 @@ object MediaSendLauncher {
     return if (useV3) {
       v3Intent(
         context,
-        MediaSendActivityContract.Args(
-          mode = MediaSendActivityContract.Mode.ChooseAfterMediaSelection,
+        MediaSendFlowActivityContract.Args(
+          mode = MediaSendFlowActivityContract.Mode.ChooseAfterMediaSelection,
           initialMedia = media
         )
       )
@@ -185,8 +185,8 @@ object MediaSendLauncher {
     return if (useV3) {
       v3Intent(
         context,
-        MediaSendActivityContract.Args(
-          mode = MediaSendActivityContract.Mode.MultiRecipient,
+        MediaSendFlowActivityContract.Args(
+          mode = MediaSendFlowActivityContract.Mode.MultiRecipient,
           additionalRecipients = recipientSearchKeys.map { MediaSendRecipient(it.recipientId.toMediaRecipientId(), it.isStory) },
           initialMedia = media,
           initialMessage = message,
@@ -214,9 +214,9 @@ object MediaSendLauncher {
     return data.getParcelableExtraCompat(MediaSendActivityResult.EXTRA_RESULT, Parcelable::class.java) as? MediaSendActivityResult
   }
 
-  private fun v3Intent(context: Context, args: MediaSendActivityContract.Args): Intent {
+  private fun v3Intent(context: Context, args: MediaSendFlowActivityContract.Args): Intent {
     return Intent(context, MediaSendV3Activity::class.java)
-      .putExtra(MediaSendActivityContract.EXTRA_ARGS, args.copy(maxSelection = RemoteConfig.maxAttachmentCount))
+      .putExtra(MediaSendFlowActivityContract.EXTRA_ARGS, args.copy(maxSelection = RemoteConfig.maxAttachmentCount))
   }
 
   private fun RecipientId.toMediaRecipientId(): MediaRecipientId = MediaRecipientId(toLong())

@@ -12,9 +12,9 @@ import org.signal.core.ui.permissions.Permissions
 import org.signal.core.util.SeekableFileDescriptor
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.logging.Log
-import org.signal.mediasend.CameraFragment
 import org.signal.mediasend.MediaConstraints
-import org.signal.mediasend.capture.CameraXFragment
+import org.signal.mediasend.screens.capture.CameraFragment
+import org.signal.mediasend.screens.capture.CameraXFragment
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.mediasend.v2.HudCommand

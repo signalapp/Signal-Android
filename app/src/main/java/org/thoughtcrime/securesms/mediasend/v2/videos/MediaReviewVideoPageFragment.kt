@@ -10,9 +10,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.launch
 import org.signal.core.util.getParcelableCompat
-import org.signal.mediasend.edit.video.VideoEditorFragment
-import org.signal.mediasend.edit.video.VideoEditorViewModel
-import org.signal.mediasend.edit.video.VideoThumbnailsRangeSelectorView
+import org.signal.mediasend.screens.edit.video.VideoEditorFragment
+import org.signal.mediasend.screens.edit.video.VideoEditorViewModel
+import org.signal.mediasend.screens.edit.video.VideoThumbnailsRangeSelectorView
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.mediasend.v2.HudCommand
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionViewModel

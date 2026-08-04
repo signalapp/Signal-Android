@@ -18,6 +18,9 @@ object TestTags {
   const val MEDIA_EDITOR_TOOLBAR_SAVE_BUTTON = "media_editor_toolbar_save_button"
   const val MEDIA_EDITOR_TOOLBAR_ADD_MEDIA_BUTTON = "media_editor_toolbar_add_media_button"
 
+  // Media Select Screen
+  const val MEDIA_SELECT_GRID = "media_select_grid"
+
   // Schedule Send Menu
   const val SCHEDULE_SEND_PICK_TIME_OPTION = "schedule_send_pick_time_option"
 

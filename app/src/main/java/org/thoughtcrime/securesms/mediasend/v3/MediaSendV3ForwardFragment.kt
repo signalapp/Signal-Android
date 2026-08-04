@@ -31,10 +31,10 @@ import org.signal.core.util.getParcelableArrayListCompat
 import org.signal.core.util.logging.Log
 import org.signal.mediasend.EditorState
 import org.signal.mediasend.MediaRecipientId
-import org.signal.mediasend.MediaSendActivityContract
+import org.signal.mediasend.MediaSendFlowActivityContract
+import org.signal.mediasend.MediaSendFlowState
+import org.signal.mediasend.MediaSendFlowViewModel
 import org.signal.mediasend.MediaSendRecipient
-import org.signal.mediasend.MediaSendState
-import org.signal.mediasend.MediaSendViewModel
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.paged.ArbitraryRepository
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchConfiguration
@@ -56,7 +56,7 @@ import org.signal.core.ui.R as CoreUiR
  * View-backed wrapper around [MultiselectForwardFragment] that provides the [ViewGroup] container
  * required by [MultiselectForwardFragment.Callback.getContainer] for bottom bar inflation.
  *
- * Implements the callback interface and uses the shared [MediaSendViewModel] to drive
+ * Implements the callback interface and uses the shared [MediaSendFlowViewModel] to drive
  * the send flow forward.
  *
  * For story sends this also acts as the [SearchConfigurationProvider], swapping the default
@@ -79,8 +79,8 @@ class MediaSendV3ForwardFragment : Fragment(R.layout.multiselect_forward_activit
     private val PREVIEW_HEIGHT = 260.dp
   }
 
-  private val viewModel: MediaSendViewModel by activityViewModels {
-    MediaSendViewModel.Factory(args = MediaSendActivityContract.Args.fromIntent(requireActivity().intent))
+  private val viewModel: MediaSendFlowViewModel by activityViewModels {
+    MediaSendFlowViewModel.Factory(args = MediaSendFlowActivityContract.Args.fromIntent(requireActivity().intent))
   }
 
   /**
@@ -213,7 +213,7 @@ class MediaSendV3ForwardFragment : Fragment(R.layout.multiselect_forward_activit
    * Renders the first [PREVIEW_COUNT] selected media into single-session blobs so the picker shows what is actually
    * being posted, edits included. Items that aren't routed through the image editor are previewed as-is.
    */
-  private fun renderStoryPreviews(state: MediaSendState) {
+  private fun renderStoryPreviews(state: MediaSendFlowState) {
     val context = requireContext().applicationContext
 
     viewLifecycleOwner.lifecycleScope.launch {

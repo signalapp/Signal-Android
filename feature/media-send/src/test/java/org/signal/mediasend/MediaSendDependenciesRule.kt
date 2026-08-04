@@ -10,11 +10,11 @@ import io.mockk.every
 import io.mockk.mockk
 import org.junit.rules.ExternalResource
 import org.signal.camera.CameraDependencies
-import org.signal.mediasend.edit.image.BrushWidths
+import org.signal.mediasend.screens.edit.image.BrushWidths
 import kotlin.time.Duration.Companion.seconds
 
 /**
- * Stands up the module dependency graph that [MediaSendState] reaches into for its own defaults, so tests can build a
+ * Stands up the module dependency graph that [MediaSendFlowState] reaches into for its own defaults, so tests can build a
  * state without an app around them.
  */
 class MediaSendDependenciesRule(private val application: Application) : ExternalResource() {

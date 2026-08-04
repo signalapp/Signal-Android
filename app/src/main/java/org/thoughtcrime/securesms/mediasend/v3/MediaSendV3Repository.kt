@@ -39,8 +39,8 @@ import org.signal.mediasend.SendRequest
 import org.signal.mediasend.SendResult
 import org.signal.mediasend.SentMediaQuality
 import org.signal.mediasend.StorySendRequirements
-import org.signal.mediasend.edit.image.BrushWidths
 import org.signal.mediasend.preupload.PreUploadResult
+import org.signal.mediasend.screens.edit.image.BrushWidths
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.conversation.MessageSendType

@@ -33,9 +33,9 @@ import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.ui.getWindowBreakpoint
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.dp
-import org.signal.mediasend.capture.MediaCaptureScreenEvent
-import org.signal.mediasend.capture.TextStoryHorizontalBar
-import org.signal.mediasend.capture.TextStoryVerticalBar
+import org.signal.mediasend.screens.capture.MediaCaptureScreenEvent
+import org.signal.mediasend.screens.capture.TextStoryHorizontalBar
+import org.signal.mediasend.screens.capture.TextStoryVerticalBar
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.conversation.colors.ChatColors

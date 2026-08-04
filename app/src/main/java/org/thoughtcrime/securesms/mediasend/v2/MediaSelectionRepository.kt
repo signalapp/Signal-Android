@@ -16,7 +16,7 @@ import org.signal.imageeditor.core.model.EditorModel
 import org.signal.mediasend.MediaConstraints
 import org.signal.mediasend.MediaValidator
 import org.signal.mediasend.SentMediaQuality
-import org.signal.mediasend.edit.video.VideoTrimData
+import org.signal.mediasend.screens.edit.video.VideoTrimData
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.conversation.MessageSendType
 import org.thoughtcrime.securesms.database.SignalDatabase

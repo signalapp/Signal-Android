@@ -32,13 +32,13 @@ import org.signal.core.ui.compose.LocalChatColorProvider
 import org.signal.core.ui.compose.LocalDisplayNameProvider
 import org.signal.core.ui.getWindowBreakpoint
 import org.signal.mediasend.HudCommand
-import org.signal.mediasend.MediaSendActivityContract
+import org.signal.mediasend.MediaSendFlowActivityContract
+import org.signal.mediasend.MediaSendFlowViewModel
 import org.signal.mediasend.MediaSendNavKey
 import org.signal.mediasend.MediaSendRecipient
 import org.signal.mediasend.MediaSendScreen
-import org.signal.mediasend.MediaSendViewModel
-import org.signal.mediasend.edit.LocalAddAMessageRowTextField
-import org.signal.mediasend.edit.LocalScheduledSendTimeFormatter
+import org.signal.mediasend.screens.edit.LocalAddAMessageRowTextField
+import org.signal.mediasend.screens.edit.LocalScheduledSendTimeFormatter
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.components.emoji.EmojiEventListener
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView
@@ -77,9 +77,9 @@ class MediaSendV3Activity :
   ScheduleMessageTimePickerBottomSheet.ScheduleCallback,
   ScheduleMessageDialogCallback {
 
-  private val contractArgs: MediaSendActivityContract.Args by lazy { MediaSendActivityContract.Args.fromIntent(intent) }
+  private val contractArgs: MediaSendFlowActivityContract.Args by lazy { MediaSendFlowActivityContract.Args.fromIntent(intent) }
 
-  private val viewModel: MediaSendViewModel by viewModels { MediaSendViewModel.Factory(args = contractArgs) }
+  private val viewModel: MediaSendFlowViewModel by viewModels { MediaSendFlowViewModel.Factory(args = contractArgs) }
 
   private val addMessageCommandViewModel: EmojiKeyboardEventViewModel by viewModels()
 

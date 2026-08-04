@@ -24,6 +24,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
@@ -41,6 +42,8 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.list.ReorderListEvent.ItemMoved
 
@@ -82,24 +85,28 @@ fun rememberReorderableListState(
   val baseAutoScrollSpeed = with(LocalDensity.current) { 10.dp.toPx() }
   val scrollAcceleration = 2f
 
+  // Gated on there being an overscroll to act on: waiting on frames is what asks for the next one, so an ungated loop
+  // would hold the list at the display's frame rate for as long as it is on screen.
   LaunchedEffect(state, autoScroll) {
     if (!autoScroll) {
       return@LaunchedEffect
     }
 
-    while (true) {
-      withFrameNanos { }
+    snapshotFlow { state.dragOverscrollAmount != 0f }
+      .distinctUntilChanged()
+      .collectLatest { isOverscrolling ->
+        while (isOverscrolling) {
+          withFrameNanos { }
 
-      val overscrollAmount = state.dragOverscrollAmount
-      if (overscrollAmount != 0f) {
-        val scrollDirection = if (overscrollAmount < 0f) -1f else 1f
-        val scrollAmount = (scrollDirection * baseAutoScrollSpeed + overscrollAmount * scrollAcceleration)
-          .coerceIn(-maxAutoScrollSpeed, maxAutoScrollSpeed)
-        lazyListState.scrollBy(scrollAmount)
+          val overscrollAmount = state.dragOverscrollAmount
+          val scrollDirection = if (overscrollAmount < 0f) -1f else 1f
+          val scrollAmount = (scrollDirection * baseAutoScrollSpeed + overscrollAmount * scrollAcceleration)
+            .coerceIn(-maxAutoScrollSpeed, maxAutoScrollSpeed)
+          lazyListState.scrollBy(scrollAmount)
 
-        state.swapDraggingItemIfNeeded()
+          state.swapDraggingItemIfNeeded()
+        }
       }
-    }
   }
   return state
 }

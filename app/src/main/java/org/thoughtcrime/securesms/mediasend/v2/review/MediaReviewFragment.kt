@@ -42,8 +42,8 @@ import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
 import org.signal.mediasend.MediaConstraints
 import org.signal.mediasend.SentMediaQuality
-import org.signal.mediasend.edit.video.VideoThumbnailsRangeSelectorView
-import org.signal.mediasend.edit.video.VideoTrimData
+import org.signal.mediasend.screens.edit.video.VideoThumbnailsRangeSelectorView
+import org.signal.mediasend.screens.edit.video.VideoTrimData
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.conversation.MessageSendType
