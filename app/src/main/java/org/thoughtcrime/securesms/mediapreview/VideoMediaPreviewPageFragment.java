@@ -27,16 +27,16 @@ import org.signal.video.VideoPlayer;
 import java.util.concurrent.TimeUnit;
 
 @OptIn(markerClass = UnstableApi.class)
-public final class VideoMediaPreviewFragment extends MediaPreviewFragment {
+public final class VideoMediaPreviewPageFragment extends MediaPreviewPageFragment {
 
-  private static final String TAG = Log.tag(VideoMediaPreviewFragment.class);
+  private static final String TAG = Log.tag(VideoMediaPreviewPageFragment.class);
 
   private static final Long MINIMUM_DURATION_FOR_SKIP_MS = TimeUnit.MILLISECONDS.convert(30, TimeUnit.SECONDS);
 
-  private VideoPlayer             videoView;
-  private boolean                 isVideoGif;
-  private MediaPreviewV2ViewModel viewModel;
-  private LifecycleDisposable     lifecycleDisposable;
+  private VideoPlayer           videoView;
+  private boolean               isVideoGif;
+  private MediaPreviewViewModel viewModel;
+  private LifecycleDisposable   lifecycleDisposable;
 
 
   @Override
@@ -61,7 +61,7 @@ public final class VideoMediaPreviewFragment extends MediaPreviewFragment {
     }
 
     videoView           = itemView.findViewById(R.id.video_player);
-    viewModel           = new ViewModelProvider(requireActivity()).get(MediaPreviewV2ViewModel.class);
+    viewModel           = new ViewModelProvider(requireActivity()).get(MediaPreviewViewModel.class);
     lifecycleDisposable = new LifecycleDisposable();
 
     lifecycleDisposable.add(viewModel.getState().distinctUntilChanged().subscribe(state -> {

@@ -13,7 +13,7 @@ import org.signal.core.util.concurrent.SimpleTask;
 
 import java.util.Objects;
 
-public abstract class MediaPreviewFragment extends Fragment {
+public abstract class MediaPreviewPageFragment extends Fragment {
 
   public static final String DATA_URI = "DATA_URI";
 

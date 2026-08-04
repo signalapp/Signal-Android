@@ -35,17 +35,17 @@ import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.rx.RxStore
 
-class MediaPreviewV2ViewModel : ViewModel() {
+class MediaPreviewViewModel : ViewModel() {
 
   companion object {
-    private val TAG = Log.tag(MediaPreviewV2ViewModel::class)
+    private val TAG = Log.tag(MediaPreviewViewModel::class)
   }
 
-  private val store = RxStore(MediaPreviewV2State())
+  private val store = RxStore(MediaPreviewState())
   private val disposables = CompositeDisposable()
   private val repository: MediaPreviewRepository = MediaPreviewRepository()
 
-  val state: Flowable<MediaPreviewV2State> = store.stateFlowable.observeOn(AndroidSchedulers.mainThread())
+  val state: Flowable<MediaPreviewState> = store.stateFlowable.observeOn(AndroidSchedulers.mainThread())
   val currentPosition: Int
     get() = store.state.position
 
@@ -58,7 +58,7 @@ class MediaPreviewV2ViewModel : ViewModel() {
   }
 
   fun fetchAttachments(context: Context, startingAttachmentId: AttachmentId, threadId: Long, sorting: MediaTable.Sorting, forceRefresh: Boolean = false) {
-    if (store.state.loadState == MediaPreviewV2State.LoadState.INIT || forceRefresh) {
+    if (store.state.loadState == MediaPreviewState.LoadState.INIT || forceRefresh) {
       disposables += repository.getAttachments(context, startingAttachmentId, threadId, sorting).subscribe { result ->
         store.update { oldState ->
           val albums = result.records.fold(mutableMapOf()) { acc: MutableMap<Long, MutableList<Media>>, mediaRecord: MediaTable.MediaRecord ->
@@ -74,14 +74,14 @@ class MediaPreviewV2ViewModel : ViewModel() {
               position = result.initialPosition,
               mediaRecords = result.records,
               albums = albums,
-              loadState = MediaPreviewV2State.LoadState.DATA_LOADED
+              loadState = MediaPreviewState.LoadState.DATA_LOADED
             )
           } else {
             oldState.copy(
               position = result.records.size - result.initialPosition - 1,
               mediaRecords = result.records.reversed(),
               albums = albums.mapValues { it.value.reversed() },
-              loadState = MediaPreviewV2State.LoadState.DATA_LOADED
+              loadState = MediaPreviewState.LoadState.DATA_LOADED
             )
           }
         }
@@ -112,7 +112,7 @@ class MediaPreviewV2ViewModel : ViewModel() {
   }
 
   fun initialize(showThread: Boolean, allMediaInAlbumRail: Boolean, leftIsRecent: Boolean) {
-    if (store.state.loadState == MediaPreviewV2State.LoadState.INIT) {
+    if (store.state.loadState == MediaPreviewState.LoadState.INIT) {
       store.update { oldState ->
         oldState.copy(showThread = showThread, allMediaInAlbumRail = allMediaInAlbumRail, leftIsRecent = leftIsRecent)
       }
@@ -127,7 +127,7 @@ class MediaPreviewV2ViewModel : ViewModel() {
 
   fun setMediaReady() {
     store.update { oldState ->
-      oldState.copy(loadState = MediaPreviewV2State.LoadState.MEDIA_READY)
+      oldState.copy(loadState = MediaPreviewState.LoadState.MEDIA_READY)
     }
   }
 
@@ -168,7 +168,7 @@ class MediaPreviewV2ViewModel : ViewModel() {
 
   fun onDestroyView() {
     store.update { oldState ->
-      oldState.copy(loadState = MediaPreviewV2State.LoadState.DATA_LOADED)
+      oldState.copy(loadState = MediaPreviewState.LoadState.DATA_LOADED)
     }
   }
 

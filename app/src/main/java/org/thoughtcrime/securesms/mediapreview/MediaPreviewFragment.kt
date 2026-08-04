@@ -62,7 +62,7 @@ import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.MediaTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageRecord
-import org.thoughtcrime.securesms.databinding.FragmentMediaPreviewV2Binding
+import org.thoughtcrime.securesms.databinding.FragmentMediaPreviewBinding
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mediapreview.caption.ExpandingCaptionView
@@ -88,19 +88,19 @@ import java.util.concurrent.TimeUnit
 import kotlin.math.roundToInt
 import org.signal.core.ui.R as CoreUiR
 
-class MediaPreviewV2Fragment :
-  LoggingFragment(R.layout.fragment_media_preview_v2),
-  MediaPreviewFragment.Events {
+class MediaPreviewFragment :
+  LoggingFragment(R.layout.fragment_media_preview),
+  MediaPreviewPageFragment.Events {
 
   private val lifecycleDisposable = LifecycleDisposable()
-  private val binding by ViewBinderDelegate(FragmentMediaPreviewV2Binding::bind)
-  private val viewModel: MediaPreviewV2ViewModel by viewModels(ownerProducer = {
+  private val binding by ViewBinderDelegate(FragmentMediaPreviewBinding::bind)
+  private val viewModel: MediaPreviewViewModel by viewModels(ownerProducer = {
     requireActivity()
   })
   private val debouncer = Debouncer(2, TimeUnit.SECONDS)
   private val args: MediaIntentFactory.MediaPreviewArgs by lazy { MediaIntentFactory.requireArguments(requireArguments()) }
 
-  private lateinit var pagerAdapter: MediaPreviewV2Adapter
+  private lateinit var pagerAdapter: MediaPreviewAdapter
   private lateinit var albumRailAdapter: MediaRailAdapter
   private lateinit var fullscreenHelper: FullscreenHelper
 
@@ -154,7 +154,7 @@ class MediaPreviewV2Fragment :
 
   private fun initializeViewModel(args: MediaIntentFactory.MediaPreviewArgs) {
     if (!MediaUtil.isImageType(args.initialMediaType) && !MediaUtil.isVideoType(args.initialMediaType)) {
-      Log.w(TAG, "Unsupported media type sent to MediaPreviewV2Fragment, finishing.")
+      Log.w(TAG, "Unsupported media type sent to MediaPreviewFragment, finishing.")
       Snackbar.make(binding.root, R.string.MediaPreviewActivity_unssuported_media_type, Snackbar.LENGTH_LONG)
         .setAction(R.string.MediaPreviewActivity_dismiss_due_to_error) {
           activity?.finish()
@@ -186,7 +186,7 @@ class MediaPreviewV2Fragment :
   private fun initializeViewPager() {
     binding.mediaPager.offscreenPageLimit = OFFSCREEN_PAGE_LIMIT_DEFAULT
     binding.mediaPager.setPageTransformer(MarginPageTransformer(ViewUtil.dpToPx(24)))
-    pagerAdapter = MediaPreviewV2Adapter(this)
+    pagerAdapter = MediaPreviewAdapter(this)
     binding.mediaPager.adapter = pagerAdapter
     binding.mediaPager.registerOnPageChangeCallback(object : OnPageChangeCallback() {
       override fun onPageSelected(position: Int) {
@@ -204,7 +204,7 @@ class MediaPreviewV2Fragment :
       layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
       addItemDecoration(CenterDecoration(0))
       albumRailAdapter = MediaRailAdapter(
-        Glide.with(this@MediaPreviewV2Fragment),
+        Glide.with(this@MediaPreviewFragment),
         { media -> jumpViewPagerToMedia(media) },
         object : ImageLoadingListener() {
           override fun onAllRequestsFinished() {
@@ -224,19 +224,19 @@ class MediaPreviewV2Fragment :
     fullscreenHelper.showAndHideWithSystemUI(requireActivity().window, binding.toolbarLayout, binding.mediaPreviewDetailsContainer)
   }
 
-  private fun bindCurrentState(currentState: MediaPreviewV2State) {
+  private fun bindCurrentState(currentState: MediaPreviewState) {
     if (currentState.position < 0 && currentState.mediaRecords.isEmpty()) {
       onMediaNotAvailable()
       return
     }
     when (currentState.loadState) {
-      MediaPreviewV2State.LoadState.DATA_LOADED -> bindDataLoadedState(currentState)
-      MediaPreviewV2State.LoadState.MEDIA_READY -> bindMediaReadyState(currentState)
+      MediaPreviewState.LoadState.DATA_LOADED -> bindDataLoadedState(currentState)
+      MediaPreviewState.LoadState.MEDIA_READY -> bindMediaReadyState(currentState)
       else -> Unit
     }
   }
 
-  private fun bindDataLoadedState(currentState: MediaPreviewV2State) {
+  private fun bindDataLoadedState(currentState: MediaPreviewState) {
     val currentPosition = currentState.position
 
     val backingItems = currentState.mediaRecords.mapNotNull { it.attachment }
@@ -260,7 +260,7 @@ class MediaPreviewV2Fragment :
    * This is not available until after a page has been chosen by the ViewPager, and we receive the
    * {@link OnPageChangeCallback}.
    */
-  private fun bindMediaReadyState(currentState: MediaPreviewV2State) {
+  private fun bindMediaReadyState(currentState: MediaPreviewState) {
     val currentPosition: Int = currentState.position
     if (currentState.mediaRecords.isEmpty() || currentPosition < 0) {
       onMediaNotAvailable()
@@ -272,7 +272,7 @@ class MediaPreviewV2Fragment :
 
     childFragmentManager.fragments.forEach { fragment ->
       if (fragment.tag != currentItemTag) {
-        (fragment as? MediaPreviewFragment)?.pause()
+        (fragment as? MediaPreviewPageFragment)?.pause()
       }
     }
 
@@ -304,7 +304,7 @@ class MediaPreviewV2Fragment :
 
   /**
    * The body passed in via arguments for the initially-opened message. Used as a fallback until the background
-   * body resolution populates [MediaPreviewV2State.messageBodies], so the caption never blanks out after the
+   * body resolution populates [MediaPreviewState.messageBodies], so the caption never blanks out after the
    * instant render.
    */
   private fun initialBodyForMessage(messageId: Long?): SpannableString? {
@@ -394,7 +394,7 @@ class MediaPreviewV2Fragment :
     crossfadeViewIn(binding.mediaPreviewDetailsContainer)
   }
 
-  private fun bindMediaPreviewPlaybackControls(currentItem: MediaTable.MediaRecord, currentFragment: MediaPreviewFragment?) {
+  private fun bindMediaPreviewPlaybackControls(currentItem: MediaTable.MediaRecord, currentFragment: MediaPreviewPageFragment?) {
     val mediaType: MediaPreviewPlayerControlView.MediaMode = if (currentItem.attachment?.videoGif == true) {
       MediaPreviewPlayerControlView.MediaMode.IMAGE
     } else {
@@ -423,7 +423,7 @@ class MediaPreviewV2Fragment :
   }
 
   private fun pauseCurrentMediaIfVideo() {
-    (getMediaPreviewFragmentFromChildFragmentManager(binding.mediaPager.currentItem) as? VideoMediaPreviewFragment)?.pause()
+    (getMediaPreviewFragmentFromChildFragmentManager(binding.mediaPager.currentItem) as? VideoMediaPreviewPageFragment)?.pause()
   }
 
   private fun tryBindMediaPreviewPlaybackControls(
@@ -505,8 +505,8 @@ class MediaPreviewV2Fragment :
     }
   }
 
-  private fun getMediaPreviewFragmentFromChildFragmentManager(currentPosition: Int): MediaPreviewFragment? {
-    return childFragmentManager.findFragmentByTag(pagerAdapter.getFragmentTag(currentPosition)) as? MediaPreviewFragment
+  private fun getMediaPreviewFragmentFromChildFragmentManager(currentPosition: Int): MediaPreviewPageFragment? {
+    return childFragmentManager.findFragmentByTag(pagerAdapter.getFragmentTag(currentPosition)) as? MediaPreviewPageFragment
   }
 
   private fun jumpViewPagerToMedia(media: Media) {
@@ -669,7 +669,7 @@ class MediaPreviewV2Fragment :
     )
 
     lifecycleScope.launch {
-      AttachmentSaver(this@MediaPreviewV2Fragment).saveAttachments(setOf(saveAttachment))
+      AttachmentSaver(this@MediaPreviewFragment).saveAttachments(setOf(saveAttachment))
     }
   }
 
@@ -779,7 +779,7 @@ class MediaPreviewV2Fragment :
     private const val EXPANDED_CAPTION_HEIGHT_FALLBACK_DP = 400
     private const val EXPANDED_CAPTION_HEIGHT_PERCENT: Float = 0.7F
 
-    private val TAG = Log.tag(MediaPreviewV2Fragment::class.java)
+    private val TAG = Log.tag(MediaPreviewFragment::class.java)
 
     const val ARGS_KEY: String = "args"
 

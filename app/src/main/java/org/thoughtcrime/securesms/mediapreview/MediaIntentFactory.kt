@@ -64,7 +64,7 @@ object MediaIntentFactory {
 
   @JvmStatic
   fun create(context: Context, args: MediaPreviewArgs): Intent {
-    return Intent(context, MediaPreviewV2Activity::class.java).putExtra(ARGS_KEY, args)
+    return Intent(context, MediaPreviewActivity::class.java).putExtra(ARGS_KEY, args)
   }
 
   fun intentFromMediaRecord(

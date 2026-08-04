@@ -73,7 +73,7 @@ import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectFor
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
-import org.thoughtcrime.securesms.mediapreview.MediaPreviewFragment
+import org.thoughtcrime.securesms.mediapreview.MediaPreviewPageFragment
 import org.thoughtcrime.securesms.mediapreview.VideoControlsDelegate
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -559,7 +559,7 @@ class StoryViewerPageFragment :
   override fun onDestroyView() {
     super.onDestroyView()
     childFragmentManager.fragments.forEach {
-      if (it is MediaPreviewFragment) {
+      if (it is MediaPreviewPageFragment) {
         it.cleanUp()
       }
     }

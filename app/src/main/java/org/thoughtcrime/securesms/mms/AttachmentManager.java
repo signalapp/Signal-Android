@@ -64,7 +64,7 @@ import org.thoughtcrime.securesms.giph.ui.GiphyActivity;
 import org.thoughtcrime.securesms.maps.PlacePickerActivity;
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory;
 import org.thoughtcrime.securesms.mediapreview.MediaPreviewCache;
-import org.thoughtcrime.securesms.mediapreview.MediaPreviewV2Fragment;
+import org.thoughtcrime.securesms.mediapreview.MediaPreviewFragment;
 import org.thoughtcrime.securesms.mediasend.MediaSendLauncher;
 import org.thoughtcrime.securesms.payments.CanNotSendPaymentDialog;
 import org.thoughtcrime.securesms.payments.PaymentsAddressException;
@@ -379,7 +379,7 @@ public class AttachmentManager {
   }
 
   private void previewImageDraft(final @NonNull Slide slide) {
-    if (MediaPreviewV2Fragment.isContentTypeSupported(slide.getContentType()) && slide.getUri() != null) {
+    if (MediaPreviewFragment.isContentTypeSupported(slide.getContentType()) && slide.getUri() != null) {
       MediaIntentFactory.MediaPreviewArgs args = new MediaIntentFactory.MediaPreviewArgs(
           MediaIntentFactory.NOT_IN_A_THREAD,
           MediaIntentFactory.UNKNOWN_TIMESTAMP,

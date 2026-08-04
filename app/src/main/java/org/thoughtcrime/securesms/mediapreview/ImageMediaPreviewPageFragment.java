@@ -17,12 +17,12 @@ import org.thoughtcrime.securesms.components.ZoomingImageView;
 import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.MediaUtil;
 
-public final class ImageMediaPreviewFragment extends MediaPreviewFragment {
+public final class ImageMediaPreviewPageFragment extends MediaPreviewPageFragment {
+
   private MediaPreviewPlayerControlView bottomBarControlView;
 
-  private MediaPreviewV2ViewModel viewModel;
-  private LifecycleDisposable     lifecycleDisposable;
-
+  private MediaPreviewViewModel viewModel;
+  private LifecycleDisposable   lifecycleDisposable;
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,7 +40,7 @@ public final class ImageMediaPreviewFragment extends MediaPreviewFragment {
     String           contentType      = arguments.getString(DATA_CONTENT_TYPE);
     ZoomingImageView zoomingImageView = view.findViewById(R.id.zooming_image_view);
 
-    viewModel           = new ViewModelProvider(requireActivity()).get(MediaPreviewV2ViewModel.class);
+    viewModel           = new ViewModelProvider(requireActivity()).get(MediaPreviewViewModel.class);
     lifecycleDisposable = new LifecycleDisposable();
 
     lifecycleDisposable.bindTo(getViewLifecycleOwner());

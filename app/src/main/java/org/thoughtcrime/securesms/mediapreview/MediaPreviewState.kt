@@ -4,7 +4,7 @@ import android.text.SpannableString
 import org.signal.core.models.media.Media
 import org.thoughtcrime.securesms.database.MediaTable
 
-data class MediaPreviewV2State(
+data class MediaPreviewState(
   val mediaRecords: List<MediaTable.MediaRecord> = emptyList(),
   val loadState: LoadState = LoadState.INIT,
   val position: Int = 0,

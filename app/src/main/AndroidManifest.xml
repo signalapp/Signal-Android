@@ -653,7 +653,7 @@
             android:windowSoftInputMode="stateHidden" />
 
         <activity
-            android:name=".mediapreview.MediaPreviewV2Activity"
+            android:name=".mediapreview.MediaPreviewActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:exported="false"
             android:label="@string/AndroidManifest__media_preview"

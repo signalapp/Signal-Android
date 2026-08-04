@@ -11,8 +11,8 @@ import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.adapter.StableIdGenerator
 
-class MediaPreviewV2Adapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
-  private val TAG = Log.tag(MediaPreviewV2Adapter::class.java)
+class MediaPreviewAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
+  private val TAG = Log.tag(MediaPreviewAdapter::class.java)
   private var items: List<Attachment> = listOf()
   private val stableIdGenerator = StableIdGenerator<Attachment>()
   private val currentIdSet: HashSet<Long> = HashSet()
@@ -30,16 +30,16 @@ class MediaPreviewV2Adapter(fragment: Fragment) : FragmentStateAdapter(fragment)
 
     val contentType = attachment.contentType
     val args = bundleOf(
-      MediaPreviewFragment.DATA_URI to attachment.displayUri,
-      MediaPreviewFragment.DATA_CONTENT_TYPE to contentType,
-      MediaPreviewFragment.DATA_SIZE to attachment.size,
-      MediaPreviewFragment.AUTO_PLAY to attachment.videoGif,
-      MediaPreviewFragment.VIDEO_GIF to attachment.videoGif
+      MediaPreviewPageFragment.DATA_URI to attachment.displayUri,
+      MediaPreviewPageFragment.DATA_CONTENT_TYPE to contentType,
+      MediaPreviewPageFragment.DATA_SIZE to attachment.size,
+      MediaPreviewPageFragment.AUTO_PLAY to attachment.videoGif,
+      MediaPreviewPageFragment.VIDEO_GIF to attachment.videoGif
     )
     val fragment = if (MediaUtil.isVideo(contentType)) {
-      VideoMediaPreviewFragment()
+      VideoMediaPreviewPageFragment()
     } else if (MediaUtil.isImageType(contentType)) {
-      ImageMediaPreviewFragment()
+      ImageMediaPreviewPageFragment()
     } else {
       throw AssertionError("Unexpected media type: $contentType")
     }

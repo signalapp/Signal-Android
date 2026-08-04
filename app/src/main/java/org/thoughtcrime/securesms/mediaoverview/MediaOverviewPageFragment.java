@@ -50,7 +50,7 @@ import org.thoughtcrime.securesms.database.loaders.GroupedThreadMediaLoader;
 import org.thoughtcrime.securesms.database.loaders.MediaLoader;
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory;
-import org.thoughtcrime.securesms.mediapreview.MediaPreviewV2Activity;
+import org.thoughtcrime.securesms.mediapreview.MediaPreviewActivity;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.signal.core.ui.permissions.Permissions;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -377,8 +377,8 @@ public final class MediaOverviewPageFragment extends LoggingFragment
               DimensionUnit.DP.toDp(12)
           ),
           false);
-      view.setTransitionName(MediaPreviewV2Activity.SHARED_ELEMENT_TRANSITION_NAME);
-      ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(requireActivity(), view, MediaPreviewV2Activity.SHARED_ELEMENT_TRANSITION_NAME);
+      view.setTransitionName(MediaPreviewActivity.SHARED_ELEMENT_TRANSITION_NAME);
+      ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(requireActivity(), view, MediaPreviewActivity.SHARED_ELEMENT_TRANSITION_NAME);
       context.startActivity(MediaIntentFactory.create(context, args), options.toBundle());
     } else {
       if (!MediaUtil.isAudio(attachment)) {

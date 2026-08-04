@@ -21,11 +21,11 @@ import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner
 import org.thoughtcrime.securesms.util.WindowUtil
 
-class MediaPreviewV2Activity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner {
+class MediaPreviewActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner {
 
   override lateinit var voiceNoteMediaController: VoiceNoteMediaController
 
-  private val viewModel: MediaPreviewV2ViewModel by viewModels()
+  private val viewModel: MediaPreviewViewModel by viewModels()
   private val lifecycleDisposable = LifecycleDisposable()
   private val args by lazy {
     MediaIntentFactory.requireArguments(intent.extras!!)
@@ -85,7 +85,7 @@ class MediaPreviewV2Activity : PassphraseRequiredActivity(), VoiceNoteMediaContr
 
     super.onCreate(savedInstanceState, ready)
     setTheme(R.style.TextSecure_MediaPreview)
-    setContentView(R.layout.activity_mediapreview_v2)
+    setContentView(R.layout.activity_media_preview)
 
     transitionImageView = findViewById(R.id.transition_image_view)
     val cacheDrawable = MediaPreviewCache.drawable?.let { RecycledBitmapGuardDrawable(it) }
@@ -111,7 +111,7 @@ class MediaPreviewV2Activity : PassphraseRequiredActivity(), VoiceNoteMediaContr
       lifecycleDisposable += viewModel.state.map {
         it.isInSharedAnimation to it.loadState
       }.distinctUntilChanged().subscribe { (isInSharedAnimation, loadState) ->
-        if (loadState == MediaPreviewV2State.LoadState.MEDIA_READY) {
+        if (loadState == MediaPreviewState.LoadState.MEDIA_READY) {
           hasMediaBeenReady = true
         }
         if (!isInSharedAnimation && hasMediaBeenReady) {
@@ -134,10 +134,10 @@ class MediaPreviewV2Activity : PassphraseRequiredActivity(), VoiceNoteMediaContr
 
     if (savedInstanceState == null) {
       val bundle = Bundle()
-      bundle.putParcelable(MediaPreviewV2Fragment.ARGS_KEY, args)
+      bundle.putParcelable(MediaPreviewFragment.ARGS_KEY, args)
       supportFragmentManager.commit {
         setReorderingAllowed(true)
-        add(R.id.fragment_container_view, MediaPreviewV2Fragment::class.java, bundle, FRAGMENT_TAG)
+        add(R.id.fragment_container_view, MediaPreviewFragment::class.java, bundle, FRAGMENT_TAG)
       }
     }
   }
@@ -156,7 +156,7 @@ class MediaPreviewV2Activity : PassphraseRequiredActivity(), VoiceNoteMediaContr
   }
 
   companion object {
-    private const val FRAGMENT_TAG = "media_preview_fragment_v2"
+    private const val FRAGMENT_TAG = "media_preview_fragment"
     const val SHARED_ELEMENT_TRANSITION_NAME = "thumb"
   }
 }
