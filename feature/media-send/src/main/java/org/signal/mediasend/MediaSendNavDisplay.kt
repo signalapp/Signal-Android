@@ -1,6 +1,9 @@
 package org.signal.mediasend
 
 import android.annotation.SuppressLint
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.fillMaxSize
@@ -10,7 +13,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -22,9 +27,11 @@ import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
 import androidx.navigationevent.compose.LocalNavigationEventDispatcherOwner
 import androidx.navigationevent.compose.rememberNavigationEventDispatcherOwner
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.emptyFlow
 import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Previews
@@ -35,6 +42,7 @@ import org.signal.mediasend.edit.ImageController
 import org.signal.mediasend.edit.MediaEditScreen
 import org.signal.mediasend.select.MediaSelectScreen
 import org.signal.mediasend.select.MediaSelectScreenState
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * Enforces the following flow of:
@@ -46,6 +54,7 @@ import org.signal.mediasend.select.MediaSelectScreenState
 internal fun MediaSendNavDisplay(
   stateFlow: StateFlow<MediaSendState>,
   snackbarEvents: Flow<SnackbarEvent>,
+  toastEvents: Flow<ToastEvent>,
   imageControllers: ImageController.Container,
   backStack: NavBackStack<NavKey>,
   eventHandler: MediaSendEventHandler,
@@ -122,6 +131,40 @@ internal fun MediaSendNavDisplay(
     }
 
     Snackbar(snackbarEvents)
+    Toast(toastEvents)
+  }
+}
+
+private val TOAST_DURATION = 3.seconds
+
+/**
+ * Shows each [ToastEvent] over the middle of the screen for [TOAST_DURATION]. A new event replaces whatever is showing
+ * and restarts that countdown.
+ */
+@Composable
+private fun BoxScope.Toast(
+  toastEvents: Flow<ToastEvent>
+) {
+  var event: ToastEvent? by remember { mutableStateOf(null) }
+  var visible: Boolean by remember { mutableStateOf(false) }
+
+  LaunchedEffect(Unit) {
+    toastEvents.collectLatest {
+      event = it
+      visible = true
+      delay(TOAST_DURATION)
+      visible = false
+    }
+  }
+
+  AnimatedVisibility(
+    visible = visible,
+    enter = fadeIn(),
+    exit = fadeOut(),
+    modifier = Modifier.align(Alignment.Center)
+  ) {
+    // Held past the hide so that it is still there to fade out.
+    event?.let { MediaSendToast(event = it) }
   }
 }
 
@@ -156,6 +199,7 @@ private fun MediaSendNavDisplayPreview() {
       MediaSendNavDisplay(
         stateFlow = MutableStateFlow(MediaSendState(isCameraFirst = true)),
         snackbarEvents = emptyFlow(),
+        toastEvents = emptyFlow(),
         imageControllers = remember { ImageController.Container() },
         backStack = rememberNavBackStack(MediaSendNavKey.Edit),
         eventHandler = MediaSendEventHandler.Empty,

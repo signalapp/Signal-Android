@@ -18,6 +18,16 @@
   <string name="SentMediaQuality__high">عالية الدقة</string>
   <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
   <string name="SentMediaQuality__standard">قياسية</string>
+  <!-- Label for our standard quality media conversion. -->
+  <string name="QualitySelectorBottomSheetDialog__standard">قياسية</string>
+  <!-- Description for our standard quality media conversion. -->
+  <string name="QualitySelectorBottomSheetDialog__faster_less_data">أسرع، بيانات أقل</string>
+  <!-- Label for our high quality media conversion. This has better quality than standard. -->
+  <string name="QualitySelectorBottomSheetDialog__high">عالي الدقة</string>
+  <!-- Label for our high quality media conversion. This has better quality than standard. -->
+  <string name="QualitySelectorBottomSheetDialog__slower_more_data">أبطأ، بيانات أكثر</string>
+  <!-- Title heading for our media conversion quality selector. -->
+  <string name="QualitySelectorBottomSheetDialog__media_quality">جودة الوسائط</string>
   <!-- Title of the screen where the user browses their device gallery to pick media to send. -->
   <string name="MediaSelectScreen__gallery">المعرض</string>
   <!-- Accessibility description for the button that advances from media selection to the next step in the send flow. -->
@@ -117,4 +127,30 @@
   <string name="LinkedDeviceScannedDialog__it_looks_like_youre_trying">يَبدو أنك تُحاول ربط جهاز يستخدم سيجنال. انقر على \"متابعة\" ثم انقر على \"ربط جهاز جديد\" وامسح كود الـ QR من جديد.</string>
   <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
   <string name="LinkedDeviceScannedDialog__device_link_dialog_continue">متابعة</string>
+  <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
+  <string name="MediaReviewFragment__video_set_to_high_quality">تمَّ تحديد جودة الفيديو للجودة العالية</string>
+  <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
+  <string name="MediaReviewFragment__video_set_to_standard_quality">تمَّ تحديد جودة الفيديو للجودة القياسية</string>
+  <!-- Small notification presented to the user when they set their still image to be sent in high visual quality. -->
+  <string name="MediaReviewFragment__photo_set_to_high_quality">تمَّ تحديد جودة الصورة للجودة العالية</string>
+  <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
+  <string name="MediaReviewFragment__photo_set_to_standard_quality">تمَّ تحديد جودة الصورة للجودة القياسية</string>
+  <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
+  <plurals name="MediaReviewFragment__items_set_to_high_quality">
+    <item quantity="zero">تمَّ تحديد جودة %1$d عناصر للجودة العالية</item>
+    <item quantity="one">تمَّ تحديد جودة %1$d عنصر للجودة العالية</item>
+    <item quantity="two">تمَّ تحديد جودة %1$d عنصرين للجودة العالية</item>
+    <item quantity="few">تمَّ تحديد جودة %1$d عناصر للجودة العالية</item>
+    <item quantity="many">تمَّ تحديد جودة %1$d عنصرًا للجودة العالية</item>
+    <item quantity="other">تمَّ تحديد جودة %1$d عنصر للجودة العالية</item>
+  </plurals>
+  <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
+  <plurals name="MediaReviewFragment__items_set_to_standard_quality">
+    <item quantity="zero">تمَّ تحديد جودة %1$d عناصر للجودة القياسية</item>
+    <item quantity="one">تمَّ تحديد جودة %1$d عنصر للجودة القياسية</item>
+    <item quantity="two">تمَّ تحديد جودة %1$d عنصرين للجودة القياسية</item>
+    <item quantity="few">تمَّ تحديد جودة %1$d عناصر للجودة القياسية</item>
+    <item quantity="many">تمَّ تحديد جودة %1$d عنصرًا للجودة القياسية</item>
+    <item quantity="other">تمَّ تحديد جودة %1$d عنصر للجودة القياسية</item>
+  </plurals>
 </resources>

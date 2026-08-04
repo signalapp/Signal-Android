@@ -18,6 +18,16 @@
   <string name="SentMediaQuality__high">উচ্চ</string>
   <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
   <string name="SentMediaQuality__standard">স্ট্যান্ডার্ড</string>
+  <!-- Label for our standard quality media conversion. -->
+  <string name="QualitySelectorBottomSheetDialog__standard">স্ট্যান্ডার্ড</string>
+  <!-- Description for our standard quality media conversion. -->
+  <string name="QualitySelectorBottomSheetDialog__faster_less_data">দ্রুততর, কম ডেটা</string>
+  <!-- Label for our high quality media conversion. This has better quality than standard. -->
+  <string name="QualitySelectorBottomSheetDialog__high">উচ্চ</string>
+  <!-- Label for our high quality media conversion. This has better quality than standard. -->
+  <string name="QualitySelectorBottomSheetDialog__slower_more_data">আরও ধীরগতি, আরও ডেটা</string>
+  <!-- Title heading for our media conversion quality selector. -->
+  <string name="QualitySelectorBottomSheetDialog__media_quality">মিডিয়ার মান</string>
   <!-- Title of the screen where the user browses their device gallery to pick media to send. -->
   <string name="MediaSelectScreen__gallery">গ্যাল্যারি</string>
   <!-- Accessibility description for the button that advances from media selection to the next step in the send flow. -->
@@ -113,4 +123,22 @@
   <string name="LinkedDeviceScannedDialog__it_looks_like_youre_trying">মনে হচ্ছে আপনি একটি Signal ডিভাইস লিংক করার চেষ্টা করছেন। \"এগিয়ে যান\"-এ ট্যাপ করুন এবং তারপর \"একটি নতুন ডিভাইস লিংক করুন\"-এ ট্যাপ করুন এবং আবারো QR কোডটি স্ক্যান করুন।</string>
   <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
   <string name="LinkedDeviceScannedDialog__device_link_dialog_continue">চলতে থাকুন</string>
+  <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
+  <string name="MediaReviewFragment__video_set_to_high_quality">ভিডিও উচ্চ মানে সেট করা হয়েছে</string>
+  <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
+  <string name="MediaReviewFragment__video_set_to_standard_quality">ভিডিও স্ট্যান্ডার্ড কোয়ালিটিতে সেট করা হয়েছে</string>
+  <!-- Small notification presented to the user when they set their still image to be sent in high visual quality. -->
+  <string name="MediaReviewFragment__photo_set_to_high_quality">ছবি উচ্চ মানে সেট করা হয়েছে</string>
+  <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
+  <string name="MediaReviewFragment__photo_set_to_standard_quality">ছবি স্ট্যান্ডার্ড মানে সেট করা হয়েছে</string>
+  <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
+  <plurals name="MediaReviewFragment__items_set_to_high_quality">
+    <item quantity="one">%1$d-টি আইটেম উচ্চ মানে সেট করা হয়েছে</item>
+    <item quantity="other">%1$d-টি আইটেম উচ্চ মানে সেট করা হয়েছে</item>
+  </plurals>
+  <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
+  <plurals name="MediaReviewFragment__items_set_to_standard_quality">
+    <item quantity="one">%1$d-টি আইটেম স্ট্যান্ডার্ড মানে সেট করা হয়েছে</item>
+    <item quantity="other">%1$d-টি আইটেম স্ট্যান্ডার্ড মানে সেট করা হয়েছে</item>
+  </plurals>
 </resources>

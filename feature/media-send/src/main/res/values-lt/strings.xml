@@ -18,6 +18,16 @@
   <string name="SentMediaQuality__high">Aukšta</string>
   <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
   <string name="SentMediaQuality__standard">Standartinė</string>
+  <!-- Label for our standard quality media conversion. -->
+  <string name="QualitySelectorBottomSheetDialog__standard">Standartinė</string>
+  <!-- Description for our standard quality media conversion. -->
+  <string name="QualitySelectorBottomSheetDialog__faster_less_data">Greičiau, mažiau duomenų</string>
+  <!-- Label for our high quality media conversion. This has better quality than standard. -->
+  <string name="QualitySelectorBottomSheetDialog__high">Aukšta</string>
+  <!-- Label for our high quality media conversion. This has better quality than standard. -->
+  <string name="QualitySelectorBottomSheetDialog__slower_more_data">Lėčiau, daugiau duomenų</string>
+  <!-- Title heading for our media conversion quality selector. -->
+  <string name="QualitySelectorBottomSheetDialog__media_quality">Medijos kokybė</string>
   <!-- Title of the screen where the user browses their device gallery to pick media to send. -->
   <string name="MediaSelectScreen__gallery">Galerija</string>
   <!-- Accessibility description for the button that advances from media selection to the next step in the send flow. -->
@@ -115,4 +125,26 @@
   <string name="LinkedDeviceScannedDialog__it_looks_like_youre_trying">Atrodo, kad bandote susieti „Signal“ įrenginį. Bakstelėkite „Tęsti“, tada bakstelėkite „Susieti naują įrenginį“ ir nuskaitykite QR kodą dar kartą.</string>
   <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
   <string name="LinkedDeviceScannedDialog__device_link_dialog_continue">Tęsti</string>
+  <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
+  <string name="MediaReviewFragment__video_set_to_high_quality">Nustatyta aukšta vaizdo įrašo kokybė</string>
+  <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
+  <string name="MediaReviewFragment__video_set_to_standard_quality">Nustatyta standartinė vaizdo įrašo kokybė</string>
+  <!-- Small notification presented to the user when they set their still image to be sent in high visual quality. -->
+  <string name="MediaReviewFragment__photo_set_to_high_quality">Nustatyta aukšta nuotraukos kokybė</string>
+  <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
+  <string name="MediaReviewFragment__photo_set_to_standard_quality">Nustatyta standartinė nuotraukos kokybė</string>
+  <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
+  <plurals name="MediaReviewFragment__items_set_to_high_quality">
+    <item quantity="one">Nustatyta aukšta %1$d elemento kokybė</item>
+    <item quantity="few">Nustatyta aukšta %1$d elementų kokybė</item>
+    <item quantity="many">Nustatyta aukšta %1$d elemento kokybė</item>
+    <item quantity="other">Nustatyta aukšta %1$d elementų kokybė</item>
+  </plurals>
+  <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
+  <plurals name="MediaReviewFragment__items_set_to_standard_quality">
+    <item quantity="one">Nustatyta standartinė %1$d elemento kokybė</item>
+    <item quantity="few">Nustatyta standartinė %1$d elementų kokybė</item>
+    <item quantity="many">Nustatyta standartinė %1$d elementų kokybė</item>
+    <item quantity="other">Nustatyta standartinė %1$d elementų kokybė</item>
+  </plurals>
 </resources>

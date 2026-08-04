@@ -17,6 +17,10 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.testTag
@@ -96,13 +100,23 @@ internal fun MediaEditorToolbarSharedButtons(
   onEvent: (MediaEditScreenEvent) -> Unit
 ) {
   if (isQualityVisible(state, editorState)) {
+    var isSelectingQuality by rememberSaveable { mutableStateOf(false) }
+
+    if (isSelectingQuality) {
+      QualitySelectorBottomSheet(
+        quality = state.sentMediaQuality,
+        onQualitySelected = { onEvent(MediaEditScreenEvent.SetMediaQuality(it)) },
+        onDismiss = { isSelectingQuality = false }
+      )
+    }
+
     MediaEditorToolbarButton(
       imageVector = if (state.sentMediaQuality == SentMediaQuality.HIGH) {
         SignalIcons.QualityHigh.imageVector
       } else {
         SignalIcons.QualityHighSlash.imageVector
       },
-      onClick = { onEvent(MediaEditScreenEvent.ToggleMediaQuality) },
+      onClick = { isSelectingQuality = true },
       modifier = Modifier.testTag(TestTags.MEDIA_EDITOR_TOOLBAR_QUALITY_BUTTON)
     )
   }

@@ -18,6 +18,16 @@
   <string name="SentMediaQuality__high">Yüksək</string>
   <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
   <string name="SentMediaQuality__standard">Standard</string>
+  <!-- Label for our standard quality media conversion. -->
+  <string name="QualitySelectorBottomSheetDialog__standard">Standard</string>
+  <!-- Description for our standard quality media conversion. -->
+  <string name="QualitySelectorBottomSheetDialog__faster_less_data">Sürətli, daha az verilənlər</string>
+  <!-- Label for our high quality media conversion. This has better quality than standard. -->
+  <string name="QualitySelectorBottomSheetDialog__high">Yüksək</string>
+  <!-- Label for our high quality media conversion. This has better quality than standard. -->
+  <string name="QualitySelectorBottomSheetDialog__slower_more_data">Yavaş, daha çox verilənlər</string>
+  <!-- Title heading for our media conversion quality selector. -->
+  <string name="QualitySelectorBottomSheetDialog__media_quality">Media keyfiyyəti</string>
   <!-- Title of the screen where the user browses their device gallery to pick media to send. -->
   <string name="MediaSelectScreen__gallery">Qalereya</string>
   <!-- Accessibility description for the button that advances from media selection to the next step in the send flow. -->
@@ -113,4 +123,22 @@
   <string name="LinkedDeviceScannedDialog__it_looks_like_youre_trying">Görünür, bir Signal cihazını əlaqələndirməyə çalışırsınız. \"Davam et\" düyməsinə basdıqdan sonra \"Yeni cihazla əlaqələndir\" seçiminə toxunub, QR kodunu yenidən skan edin.</string>
   <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
   <string name="LinkedDeviceScannedDialog__device_link_dialog_continue">Davam et</string>
+  <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
+  <string name="MediaReviewFragment__video_set_to_high_quality">Video yüksək keyfiyyətə sazlanıb</string>
+  <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
+  <string name="MediaReviewFragment__video_set_to_standard_quality">Video standart keyfiyyətdə sazlandı</string>
+  <!-- Small notification presented to the user when they set their still image to be sent in high visual quality. -->
+  <string name="MediaReviewFragment__photo_set_to_high_quality">Fotoşəkil yüksək keyfiyyətə sazlanıb</string>
+  <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
+  <string name="MediaReviewFragment__photo_set_to_standard_quality">Fotoşəkil standart keyfiyyətə sazlanıb</string>
+  <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
+  <plurals name="MediaReviewFragment__items_set_to_high_quality">
+    <item quantity="one">%1$d fayl yüksək keyfiyyətə sazlanıb</item>
+    <item quantity="other">%1$d fayl yüksək keyfiyyətə sazlanıb</item>
+  </plurals>
+  <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
+  <plurals name="MediaReviewFragment__items_set_to_standard_quality">
+    <item quantity="one">%1$d fayl standart keyfiyyətə sazlanıb</item>
+    <item quantity="other">%1$d fayl standart keyfiyyətə sazlanıb</item>
+  </plurals>
 </resources>

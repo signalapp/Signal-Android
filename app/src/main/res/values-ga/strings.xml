@@ -6081,18 +6081,6 @@
     <!-- GroupDescriptionDialog -->
     <string name="GroupDescriptionDialog__group_description">Group Description</string>
 
-    <!-- QualitySelectorBottomSheetDialog -->
-    <!-- Label for our standard quality media conversion. -->
-    <string name="QualitySelectorBottomSheetDialog__standard">Caighdeánach</string>
-    <!-- Description for our standard quality media conversion. -->
-    <string name="QualitySelectorBottomSheetDialog__faster_less_data">Níos tapúla, níos lú sonraí</string>
-    <!-- Label for our high quality media conversion. This has better quality than standard. -->
-    <string name="QualitySelectorBottomSheetDialog__high">Ard</string>
-    <!-- Label for our high quality media conversion. This has better quality than standard. -->
-    <string name="QualitySelectorBottomSheetDialog__slower_more_data">Níos moille, níos mó sonraí</string>
-    <!-- Title heading for our media conversion quality selector. -->
-    <string name="QualitySelectorBottomSheetDialog__media_quality">Media Quality</string>
-
     <!-- AppSettingsFragment -->
     <!-- String alerting user that something is wrong with their backups subscription -->
     <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Athnuaigh do shíntiús Cúltacaí Slána Signal</string>
@@ -6894,14 +6882,6 @@
     <string name="MediaReviewFragment__video_set_to_view_once">Físeán socraithe ag amharc aonuaire</string>
     <!-- Small notification presented to the user when they set their photo to view-once mode -->
     <string name="MediaReviewFragment__photo_set_to_view_once">Grianghraf socraithe ag amharc aonuaire</string>
-    <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
-    <string name="MediaReviewFragment__video_set_to_high_quality">Físeán socraithe ag ardchaighdeán</string>
-    <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
-    <string name="MediaReviewFragment__video_set_to_standard_quality">Físeán socraithe ag gnáthchaighdeán</string>
-    <!-- Small notification presented to the user when they set their still image to be sent in high visual quality. -->
-    <string name="MediaReviewFragment__photo_set_to_high_quality">Grianghraf socraithe ag ardchaighdeán</string>
-    <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
-    <string name="MediaReviewFragment__photo_set_to_standard_quality">Grianghraf socraithe ag gnáthchaighdeán</string>
     <!-- Accessibility label describing the add media button on the Media review screen -->
     <string name="MediaReviewFragment__add_media_accessibility_label">Cuir Meán leis</string>
     <!-- Accessibility label describing the brush and pen button on the Media review screen -->
@@ -6920,22 +6900,6 @@
     <string name="MediaReviewFragment__send_media_accessibility_label">Seol Meán</string>
     <!-- Accessibility label describing the finish adding a message button on the Media review screen dialog -->
     <string name="MediaReviewFragment__finish_adding_a_message_accessibility_label">Críochnaigh le Teachtaireacht a chur leis</string>
-    <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
-    <plurals name="MediaReviewFragment__items_set_to_high_quality">
-        <item quantity="one">%1$d mhír socraithe ag ardchaighdeán</item>
-        <item quantity="two">%1$d mhír socraithe ag ardchaighdeán</item>
-        <item quantity="few">%1$d mhír socraithe ag ardchaighdeán</item>
-        <item quantity="many">%1$d mír socraithe ag ardchaighdeán</item>
-        <item quantity="other">%1$d mír socraithe ag ardchaighdeán</item>
-    </plurals>
-    <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
-    <plurals name="MediaReviewFragment__items_set_to_standard_quality">
-        <item quantity="one">%1$d mhír socraithe ag gnáthchaighdeán</item>
-        <item quantity="two">%1$d mhír socraithe ag gnáthchaighdeán</item>
-        <item quantity="few">%1$d mhír socraithe ag gnáthchaighdeán</item>
-        <item quantity="many">%1$d mír socraithe ag gnáthchaighdeán</item>
-        <item quantity="other">%1$d mír socraithe ag gnáthchaighdeán</item>
-    </plurals>
 
     <string name="ImageEditorHud__cancel">Cealaigh</string>
     <string name="ImageEditorHud__draw">Tarraing</string>

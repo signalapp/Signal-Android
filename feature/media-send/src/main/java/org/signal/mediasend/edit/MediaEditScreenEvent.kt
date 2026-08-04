@@ -6,6 +6,7 @@
 package org.signal.mediasend.edit
 
 import org.signal.core.models.media.Media
+import org.signal.mediasend.SentMediaQuality
 import org.signal.mediasend.edit.image.BrushTool
 import org.signal.mediasend.edit.video.VideoTrimData
 
@@ -19,7 +20,7 @@ sealed interface MediaEditScreenEvent {
   data class ScheduleSendClick(val option: ScheduleSendOption) : MediaEditScreenEvent
   data object NavigateBack : MediaEditScreenEvent
   data object NavigateToGallery : MediaEditScreenEvent
-  data object ToggleMediaQuality : MediaEditScreenEvent
+  data class SetMediaQuality(val quality: SentMediaQuality) : MediaEditScreenEvent
   data object ToggleViewOnce : MediaEditScreenEvent
   data class BrushWidthChanged(val tool: BrushTool, val fraction: Float) : MediaEditScreenEvent
   data class ToggleBlurFaces(val enabled: Boolean) : MediaEditScreenEvent

@@ -5938,18 +5938,6 @@
     <!-- GroupDescriptionDialog -->
     <string name="GroupDescriptionDialog__group_description">תיאור קבוצה</string>
 
-    <!-- QualitySelectorBottomSheetDialog -->
-    <!-- Label for our standard quality media conversion. -->
-    <string name="QualitySelectorBottomSheetDialog__standard">תקנית</string>
-    <!-- Description for our standard quality media conversion. -->
-    <string name="QualitySelectorBottomSheetDialog__faster_less_data">מהירה יותר, פחות נתונים</string>
-    <!-- Label for our high quality media conversion. This has better quality than standard. -->
-    <string name="QualitySelectorBottomSheetDialog__high">גבוה</string>
-    <!-- Label for our high quality media conversion. This has better quality than standard. -->
-    <string name="QualitySelectorBottomSheetDialog__slower_more_data">איטית יותר, יותר נתונים</string>
-    <!-- Title heading for our media conversion quality selector. -->
-    <string name="QualitySelectorBottomSheetDialog__media_quality">איכות מדיה</string>
-
     <!-- AppSettingsFragment -->
     <!-- String alerting user that something is wrong with their backups subscription -->
     <string name="AppSettingsFragment__renew_your_signal_backups_subscription">חידוש מנוי הגיבויים המאובטחים שלך ב–Signal</string>
@@ -6734,14 +6722,6 @@
     <string name="MediaReviewFragment__video_set_to_view_once">וידאו מוגדר לצפייה חד פעמית</string>
     <!-- Small notification presented to the user when they set their photo to view-once mode -->
     <string name="MediaReviewFragment__photo_set_to_view_once">תמונה מוגדרת לצפייה חד פעמית</string>
-    <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
-    <string name="MediaReviewFragment__video_set_to_high_quality">וידאו מוגדר לאיכות גבוהה</string>
-    <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
-    <string name="MediaReviewFragment__video_set_to_standard_quality">וידאו מוגדר לאיכות סטנדרטית</string>
-    <!-- Small notification presented to the user when they set their still image to be sent in high visual quality. -->
-    <string name="MediaReviewFragment__photo_set_to_high_quality">תמונה מוגדרת לאיכות גבוהה</string>
-    <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
-    <string name="MediaReviewFragment__photo_set_to_standard_quality">תמונה מוגדרת לאיכות רגילה</string>
     <!-- Accessibility label describing the add media button on the Media review screen -->
     <string name="MediaReviewFragment__add_media_accessibility_label">הוספת מדיה</string>
     <!-- Accessibility label describing the brush and pen button on the Media review screen -->
@@ -6760,20 +6740,6 @@
     <string name="MediaReviewFragment__send_media_accessibility_label">שליחת מדיה</string>
     <!-- Accessibility label describing the finish adding a message button on the Media review screen dialog -->
     <string name="MediaReviewFragment__finish_adding_a_message_accessibility_label">סיום הוספת הודעה</string>
-    <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
-    <plurals name="MediaReviewFragment__items_set_to_high_quality">
-        <item quantity="one">פריט %1$d מוגדר לאיכות גבוהה</item>
-        <item quantity="two">%1$d פריטים מוגדרים לאיכות גבוהה</item>
-        <item quantity="many">%1$d פריטים מוגדרים לאיכות גבוהה</item>
-        <item quantity="other">%1$d פריטים מוגדרים לאיכות גבוהה</item>
-    </plurals>
-    <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
-    <plurals name="MediaReviewFragment__items_set_to_standard_quality">
-        <item quantity="one">פריט %1$d מוגדר לאיכות רגילה</item>
-        <item quantity="two">%1$d פריטים מוגדרים לאיכות רגילה</item>
-        <item quantity="many">%1$d פריטים מוגדרים לאיכות רגילה</item>
-        <item quantity="other">%1$d פריטים מוגדרים לאיכות רגילה</item>
-    </plurals>
 
     <string name="ImageEditorHud__cancel">בטל</string>
     <string name="ImageEditorHud__draw">צייר</string>

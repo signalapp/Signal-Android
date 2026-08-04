@@ -42,6 +42,7 @@ import org.signal.core.models.media.MediaFolder
 import org.signal.core.ui.compose.DialogController
 import org.signal.core.ui.compose.DialogResult
 import org.signal.core.ui.compose.PermissionController
+import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.util.StorageUtil
 import org.signal.core.util.ContentTypeUtil
@@ -123,6 +124,9 @@ class MediaSendViewModel(
 
   private val internalSnackbarEvents: Channel<SnackbarEvent> = Channel(Channel.BUFFERED)
   internal val snackbarEvents: Flow<SnackbarEvent> = internalSnackbarEvents.receiveAsFlow()
+
+  private val internalToastEvents: Channel<ToastEvent> = Channel(Channel.BUFFERED)
+  internal val toastEvents: Flow<ToastEvent> = internalToastEvents.receiveAsFlow()
 
   internal val usernameScannedDialog = DialogController<String>()
   internal val linkedDeviceScannedDialog = DialogController<Unit>()
@@ -352,8 +356,8 @@ class MediaSendViewModel(
         backStack.goToFolders()
       }
 
-      MediaEditScreenEvent.ToggleMediaQuality -> {
-        setSentMediaQuality(state.value.sentMediaQuality.next())
+      is MediaEditScreenEvent.SetMediaQuality -> {
+        setSentMediaQuality(mediaEditScreenEvent.quality)
       }
 
       MediaEditScreenEvent.ToggleViewOnce -> {
@@ -839,6 +843,9 @@ class MediaSendViewModel(
     repository.sentMediaQuality = sentMediaQuality
     preUploadController.cancelAllUploads()
 
+    // Confirmed from here rather than from the picker so that the fallback in onVideoRecorded is reported too.
+    qualityToastEvent(sentMediaQuality, snapshot.selectedMedia)?.let { internalToastEvents.trySend(it) }
+
     // Re-clamp video durations based on new quality
     var videoTrimmed = false
     snapshot.selectedMedia.forEach { mediaItem ->
@@ -863,6 +870,44 @@ class MediaSendViewModel(
     if (videoTrimmed) {
       internalSnackbarEvents.trySend(SnackbarEvent(message = R.string.MediaSendViewModel__video_trimmed_to_fit))
     }
+  }
+
+  /**
+   * Copy confirming a move to [quality], which names the media itself when there is only one item and counts them
+   * otherwise. Null for a lone attachment that is neither a video nor an image, which there is nothing to say about.
+   */
+  private fun qualityToastEvent(quality: SentMediaQuality, media: List<Media>): ToastEvent? {
+    if (media.isEmpty()) {
+      return null
+    }
+
+    val isHigh = quality == SentMediaQuality.HIGH
+    val single = media.singleOrNull()
+
+    val message = when {
+      single == null -> ToastMessage.Quantity(
+        id = if (isHigh) R.plurals.MediaReviewFragment__items_set_to_high_quality else R.plurals.MediaReviewFragment__items_set_to_standard_quality,
+        count = media.size
+      )
+
+      isNonGifVideo(single) -> ToastMessage.Text(
+        if (isHigh) R.string.MediaReviewFragment__video_set_to_high_quality else R.string.MediaReviewFragment__video_set_to_standard_quality
+      )
+
+      ContentTypeUtil.isImageType(single.contentType) -> ToastMessage.Text(
+        if (isHigh) R.string.MediaReviewFragment__photo_set_to_high_quality else R.string.MediaReviewFragment__photo_set_to_standard_quality
+      )
+
+      else -> {
+        Log.i(TAG, "No quality confirmation for an attachment of type: ${single.contentType}")
+        return null
+      }
+    }
+
+    return ToastEvent(
+      icon = if (isHigh) SignalIcons.QualityHigh else SignalIcons.QualityHighSlash,
+      message = message
+    )
   }
 
   //endregion
@@ -1053,7 +1098,7 @@ class MediaSendViewModel(
 
   /**
    * Flips view-once. Turning it on drops any message the user had already typed, since a view-once send cannot carry
-   * a body, and confirms the change with a snackbar.
+   * a body, and confirms the change with a toast.
    */
   fun toggleViewOnce() {
     updateState { copy(viewOnceToggleState = viewOnceToggleState.next()) }
@@ -1069,13 +1114,16 @@ class MediaSendViewModel(
       ContentTypeUtil.isVideoType(focusedMedia.contentType) &&
       !focusedMedia.isVideoGif
 
-    internalSnackbarEvents.trySend(
-      SnackbarEvent(
-        message = if (isVideo) {
-          R.string.MediaSendViewModel__video_set_to_view_once
-        } else {
-          R.string.MediaSendViewModel__photo_set_to_view_once
-        }
+    internalToastEvents.trySend(
+      ToastEvent(
+        icon = SignalIcons.ViewOnce,
+        message = ToastMessage.Text(
+          if (isVideo) {
+            R.string.MediaSendViewModel__video_set_to_view_once
+          } else {
+            R.string.MediaSendViewModel__photo_set_to_view_once
+          }
+        )
       )
     )
   }

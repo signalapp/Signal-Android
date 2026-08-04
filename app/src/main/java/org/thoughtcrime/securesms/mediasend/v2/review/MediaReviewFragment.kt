@@ -80,6 +80,7 @@ import java.util.concurrent.TimeUnit
 import kotlin.math.roundToInt
 import kotlin.time.Duration.Companion.microseconds
 import org.signal.core.ui.R as CoreUiR
+import org.signal.mediasend.R as MediaSendR
 
 /**
  * Allows the user to view and edit selected media.
@@ -429,15 +430,15 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
       val media: Media = mediaList[0]
       if (MediaUtil.isNonGifVideo(media)) {
         if (state.quality == SentMediaQuality.HIGH) {
-          getString(R.string.MediaReviewFragment__video_set_to_high_quality)
+          getString(MediaSendR.string.MediaReviewFragment__video_set_to_high_quality)
         } else {
-          getString(R.string.MediaReviewFragment__video_set_to_standard_quality)
+          getString(MediaSendR.string.MediaReviewFragment__video_set_to_standard_quality)
         }
       } else if (MediaUtil.isImageType(media.contentType)) {
         if (state.quality == SentMediaQuality.HIGH) {
-          getString(R.string.MediaReviewFragment__photo_set_to_high_quality)
+          getString(MediaSendR.string.MediaReviewFragment__photo_set_to_high_quality)
         } else {
-          getString(R.string.MediaReviewFragment__photo_set_to_standard_quality)
+          getString(MediaSendR.string.MediaReviewFragment__photo_set_to_standard_quality)
         }
       } else {
         Log.i(TAG, "Could not display quality toggle toast for attachment of type: ${media.contentType}")
@@ -445,9 +446,9 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
       }
     } else {
       if (state.quality == SentMediaQuality.HIGH) {
-        resources.getQuantityString(R.plurals.MediaReviewFragment__items_set_to_high_quality, mediaList.size, mediaList.size)
+        resources.getQuantityString(MediaSendR.plurals.MediaReviewFragment__items_set_to_high_quality, mediaList.size, mediaList.size)
       } else {
-        resources.getQuantityString(R.plurals.MediaReviewFragment__items_set_to_standard_quality, mediaList.size, mediaList.size)
+        resources.getQuantityString(MediaSendR.plurals.MediaReviewFragment__items_set_to_standard_quality, mediaList.size, mediaList.size)
       }
     }
 

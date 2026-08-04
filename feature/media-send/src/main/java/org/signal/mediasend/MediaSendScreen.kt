@@ -90,6 +90,7 @@ fun MediaSendScreen(
         MediaSendNavDisplay(
           stateFlow = viewModel.state,
           snackbarEvents = viewModel.snackbarEvents,
+          toastEvents = viewModel.toastEvents,
           imageControllers = viewModel.imageControllers,
           backStack = viewModel.backStack,
           eventHandler = viewModel,

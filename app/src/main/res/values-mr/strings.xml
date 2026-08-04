@@ -5652,18 +5652,6 @@
     <!-- GroupDescriptionDialog -->
     <string name="GroupDescriptionDialog__group_description">गट विवरण</string>
 
-    <!-- QualitySelectorBottomSheetDialog -->
-    <!-- Label for our standard quality media conversion. -->
-    <string name="QualitySelectorBottomSheetDialog__standard">मानक</string>
-    <!-- Description for our standard quality media conversion. -->
-    <string name="QualitySelectorBottomSheetDialog__faster_less_data">जलद, कमी डेटा</string>
-    <!-- Label for our high quality media conversion. This has better quality than standard. -->
-    <string name="QualitySelectorBottomSheetDialog__high">उच्च</string>
-    <!-- Label for our high quality media conversion. This has better quality than standard. -->
-    <string name="QualitySelectorBottomSheetDialog__slower_more_data">हळू, अधिक डेटा</string>
-    <!-- Title heading for our media conversion quality selector. -->
-    <string name="QualitySelectorBottomSheetDialog__media_quality">मिडिया दर्जा</string>
-
     <!-- AppSettingsFragment -->
     <!-- String alerting user that something is wrong with their backups subscription -->
     <string name="AppSettingsFragment__renew_your_signal_backups_subscription">तुमचे Signal सुरक्षित बॅकअप्स चे सदस्यत्व रीन्यू करा</string>
@@ -6414,14 +6402,6 @@
     <string name="MediaReviewFragment__video_set_to_view_once">व्हिडिओ एकदा पाहण्यासाठी सेट करा</string>
     <!-- Small notification presented to the user when they set their photo to view-once mode -->
     <string name="MediaReviewFragment__photo_set_to_view_once">एकदा फोटो पाहण्यासाठी सेट करा</string>
-    <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
-    <string name="MediaReviewFragment__video_set_to_high_quality">व्हिडिओ उच्च गुणवत्तेवर सेट करा</string>
-    <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
-    <string name="MediaReviewFragment__video_set_to_standard_quality">व्हिडिओ मानक गुणवत्तेवर सेट केला आहे</string>
-    <!-- Small notification presented to the user when they set their still image to be sent in high visual quality. -->
-    <string name="MediaReviewFragment__photo_set_to_high_quality">फोटो उच्च गुणवत्तेवर सेट करा</string>
-    <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
-    <string name="MediaReviewFragment__photo_set_to_standard_quality">फोटो मानक गुणवत्तेवर सेट करा</string>
     <!-- Accessibility label describing the add media button on the Media review screen -->
     <string name="MediaReviewFragment__add_media_accessibility_label">मिडीया समाविष्ट करा</string>
     <!-- Accessibility label describing the brush and pen button on the Media review screen -->
@@ -6440,16 +6420,6 @@
     <string name="MediaReviewFragment__send_media_accessibility_label">मिडीया पाठवा</string>
     <!-- Accessibility label describing the finish adding a message button on the Media review screen dialog -->
     <string name="MediaReviewFragment__finish_adding_a_message_accessibility_label">संदेश समाविष्ट करा</string>
-    <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
-    <plurals name="MediaReviewFragment__items_set_to_high_quality">
-        <item quantity="one">%1$d आयटम उच्च गुणवत्तेवर सेट केला आहे</item>
-        <item quantity="other">%1$d आयटम्स उच्च गुणवत्तेवर सेट केले आहेत</item>
-    </plurals>
-    <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
-    <plurals name="MediaReviewFragment__items_set_to_standard_quality">
-        <item quantity="one">%1$d आयटम मानक गुणवत्तेवर सेट केला आहे</item>
-        <item quantity="other">%1$d आयटम्स मानक गुणवत्तेवर सेट केले आहेत</item>
-    </plurals>
 
     <string name="ImageEditorHud__cancel">रद्द करा</string>
     <string name="ImageEditorHud__draw">रेखाटा</string>

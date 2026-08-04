@@ -5652,18 +5652,6 @@
     <!-- GroupDescriptionDialog -->
     <string name="GroupDescriptionDialog__group_description">Taldearen deskribapena</string>
 
-    <!-- QualitySelectorBottomSheetDialog -->
-    <!-- Label for our standard quality media conversion. -->
-    <string name="QualitySelectorBottomSheetDialog__standard">Estandarra</string>
-    <!-- Description for our standard quality media conversion. -->
-    <string name="QualitySelectorBottomSheetDialog__faster_less_data">Azkarrago, datu gutxiago</string>
-    <!-- Label for our high quality media conversion. This has better quality than standard. -->
-    <string name="QualitySelectorBottomSheetDialog__high">Altua</string>
-    <!-- Label for our high quality media conversion. This has better quality than standard. -->
-    <string name="QualitySelectorBottomSheetDialog__slower_more_data">Mantsoago, datu gehiago</string>
-    <!-- Title heading for our media conversion quality selector. -->
-    <string name="QualitySelectorBottomSheetDialog__media_quality">Media kalitatea</string>
-
     <!-- AppSettingsFragment -->
     <!-- String alerting user that something is wrong with their backups subscription -->
     <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Berritu Signal-en babeskopia seguruetarako harpidetza</string>
@@ -6414,14 +6402,6 @@
     <string name="MediaReviewFragment__video_set_to_view_once">Bideoa behin bakarrik ikus daitekeela ezarri da</string>
     <!-- Small notification presented to the user when they set their photo to view-once mode -->
     <string name="MediaReviewFragment__photo_set_to_view_once">Argazkia behin bakarrik ikus daitekeela ezarri da</string>
-    <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
-    <string name="MediaReviewFragment__video_set_to_high_quality">Bideoaren kalitatea handi gisa ezarri da</string>
-    <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
-    <string name="MediaReviewFragment__video_set_to_standard_quality">Bideoaren kalitatea estandar gisa ezarri da</string>
-    <!-- Small notification presented to the user when they set their still image to be sent in high visual quality. -->
-    <string name="MediaReviewFragment__photo_set_to_high_quality">Argazkiaren kalitatea handi gisa ezarri da</string>
-    <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
-    <string name="MediaReviewFragment__photo_set_to_standard_quality">Argazkiaren kalitatea estandar gisa ezarri da</string>
     <!-- Accessibility label describing the add media button on the Media review screen -->
     <string name="MediaReviewFragment__add_media_accessibility_label">Gehitu multimedia-eduki gisa</string>
     <!-- Accessibility label describing the brush and pen button on the Media review screen -->
@@ -6440,16 +6420,6 @@
     <string name="MediaReviewFragment__send_media_accessibility_label">Bidali multimedia-edukia</string>
     <!-- Accessibility label describing the finish adding a message button on the Media review screen dialog -->
     <string name="MediaReviewFragment__finish_adding_a_message_accessibility_label">Amaitu mezua gehitzen</string>
-    <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
-    <plurals name="MediaReviewFragment__items_set_to_high_quality">
-        <item quantity="one">%1$d elementuren kalitatea handi gisa ezarri da</item>
-        <item quantity="other">%1$d elementuren kalitatea handi gisa ezarri da</item>
-    </plurals>
-    <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
-    <plurals name="MediaReviewFragment__items_set_to_standard_quality">
-        <item quantity="one">%1$d elementuren kalitatea estandar gisa ezarri da</item>
-        <item quantity="other">%1$d elementuren kalitatea estandar gisa ezarri da</item>
-    </plurals>
 
     <string name="ImageEditorHud__cancel">Utzi</string>
     <string name="ImageEditorHud__draw">Marraztu</string>
