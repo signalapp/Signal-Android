@@ -27,7 +27,7 @@ fun MediaSendScreen(
   modifier: Modifier = Modifier,
   textStoryEditorSlot: @Composable () -> Unit = {},
   sendSlot: @Composable (MediaSendFlowState) -> Unit = {},
-  onExternalHudCommand: (HudCommand) -> Unit = {}
+  onExternalHudCommand: (MediaSendFlowHudCommand) -> Unit = {}
 ) {
   val viewModel = viewModel<MediaSendFlowViewModel>(factory = MediaSendFlowViewModel.Factory(args = contractArgs))
 

@@ -33,10 +33,10 @@ import org.signal.core.util.getParcelableArrayListExtraCompat
 import org.signal.core.util.getParcelableExtraCompat
 import org.signal.core.util.logging.Log
 import org.signal.core.util.overrideActivityTransitionCompat
-import org.signal.mediasend.MediaSendNavKey
+import org.signal.mediasend.MediaSendRoute
 import org.signal.mediasend.MediaValidator
 import org.signal.mediasend.screens.capture.MediaCaptureBottomBar
-import org.signal.mediasend.screens.capture.MediaCaptureScreenEvent
+import org.signal.mediasend.screens.capture.MediaCaptureScreenEvents
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.emoji.EmojiEventListener
@@ -61,7 +61,7 @@ class MediaSelectionActivity :
   EmojiEventListener,
   EmojiSearchFragment.Callback {
 
-  private var selectedCaptureScreen: MediaSendNavKey.Capture by mutableStateOf(MediaSendNavKey.Capture.Camera)
+  private var selectedCaptureScreen: MediaSendRoute.Capture by mutableStateOf(MediaSendRoute.Capture.Camera)
 
   private var isOnCaptureScreen: Boolean by mutableStateOf(false)
 
@@ -138,12 +138,12 @@ class MediaSelectionActivity :
             selectedMedia = state?.selectedMedia ?: emptyList(),
             onEvent = { event ->
               when (event) {
-                MediaCaptureScreenEvent.ShowCamera -> debouncer.publish { popTextStoryPostCreationFragment() }
-                MediaCaptureScreenEvent.ShowTextStory -> viewModel.sendCommand(HudCommand.GoToText)
-                MediaCaptureScreenEvent.NextClicked -> viewModel.sendCommand(HudCommand.GoToReview)
-                is MediaCaptureScreenEvent.Camera -> Unit
-                MediaCaptureScreenEvent.CycleTextStoryBackgroundColor -> Unit
-                MediaCaptureScreenEvent.AddLinkToTextStory -> Unit
+                MediaCaptureScreenEvents.ShowCamera -> debouncer.publish { popTextStoryPostCreationFragment() }
+                MediaCaptureScreenEvents.ShowTextStory -> viewModel.sendCommand(HudCommand.GoToText)
+                MediaCaptureScreenEvents.NextClicked -> viewModel.sendCommand(HudCommand.GoToReview)
+                is MediaCaptureScreenEvents.Camera -> Unit
+                MediaCaptureScreenEvents.CycleTextStoryBackgroundColor -> Unit
+                MediaCaptureScreenEvents.AddLinkToTextStory -> Unit
               }
             },
             modifier = Modifier.navigationBarsPadding()
@@ -168,7 +168,7 @@ class MediaSelectionActivity :
     (supportFragmentManager.findFragmentByTag(NAV_HOST_TAG) as NavHostFragment).navController.addOnDestinationChangedListener { _, d, _ ->
       when (d.id) {
         R.id.mediaCaptureFragment -> {
-          selectedCaptureScreen = MediaSendNavKey.Capture.Camera
+          selectedCaptureScreen = MediaSendRoute.Capture.Camera
           isOnCaptureScreen = true
           requestedOrientation = if (resources.getWindowBreakpoint() is WindowBreakpoint.Small) {
             ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
@@ -178,7 +178,7 @@ class MediaSelectionActivity :
         }
 
         R.id.textStoryPostCreationFragment -> {
-          selectedCaptureScreen = MediaSendNavKey.Capture.TextStory
+          selectedCaptureScreen = MediaSendRoute.Capture.TextStory
           isOnCaptureScreen = true
           requestedOrientation = if (resources.getWindowBreakpoint() is WindowBreakpoint.Small) {
             ActivityInfo.SCREEN_ORIENTATION_PORTRAIT

@@ -107,15 +107,15 @@ private const val PLACEHOLDER_COUNT = 100
  */
 @Composable
 internal fun MediaSelectScreen(
-  state: MediaSelectScreenState,
-  onEvent: (MediaSelectScreenEvent) -> Unit
+  state: MediaSelectState,
+  onEvent: (MediaSelectScreenEvents) -> Unit
 ) {
   // Without read access there is nothing to browse, and with selected-photos access and nothing selected there is
   // nothing yet. Both show the placeholder grid behind a call to action, so both use the denser file grid.
   val showPlaceholders = state.mediaPermissions == MediaPermissions.NONE ||
     (state.mediaPermissions == MediaPermissions.PARTIAL && !state.hasContent)
 
-  val gridConfiguration = rememberGridConfiguration(state is MediaSelectScreenState.Folders && !showPlaceholders)
+  val gridConfiguration = rememberGridConfiguration(state is MediaSelectState.Folders && !showPlaceholders)
   val backDispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
 
   val gridState = rememberLazyGridState()
@@ -126,27 +126,27 @@ internal fun MediaSelectScreen(
   LaunchedEffect(state.isSelectionRejected) {
     if (state.isSelectionRejected) {
       dragToSelectState.cancel()
-      onEvent(MediaSelectScreenEvent.SelectionRejectionShown)
+      onEvent(MediaSelectScreenEvents.SelectionRejectionShown)
     }
   }
 
   // The system prompt and the app settings round-trip both land us back here, and neither tells us what changed.
   val currentOnEvent by rememberUpdatedState(onEvent)
   LifecycleResumeEffect(Unit) {
-    currentOnEvent(MediaSelectScreenEvent.Refresh)
+    currentOnEvent(MediaSelectScreenEvents.Refresh)
     onPauseOrDispose { }
   }
 
   Scaffolds.Settings(
     title = when (state) {
-      is MediaSelectScreenState.Folders -> stringResource(R.string.MediaSelectScreen__gallery)
-      is MediaSelectScreenState.Files -> state.selectedMediaFolder.title
+      is MediaSelectState.Folders -> stringResource(R.string.MediaSelectScreen__gallery)
+      is MediaSelectState.Files -> state.selectedMediaFolder.title
     },
     navigationIcon = ImageVector.vectorResource(org.signal.core.ui.R.drawable.symbol_arrow_start_24),
     onNavigationClick = { backDispatcher?.onBackPressed() },
     actions = {
       IconButton(onClick = {
-        onEvent(MediaSelectScreenEvent.NavigateToCamera)
+        onEvent(MediaSelectScreenEvents.NavigateToCamera)
       }) {
         Icon(imageVector = SignalIcons.Camera.imageVector, contentDescription = stringResource(R.string.MediaSelectScreen__go_to_camera))
       }
@@ -175,7 +175,7 @@ internal fun MediaSelectScreen(
             .fillMaxSize()
             .testTag(TestTags.MEDIA_SELECT_GRID)
             .then(
-              if (state is MediaSelectScreenState.Files && !showPlaceholders) {
+              if (state is MediaSelectState.Files && !showPlaceholders) {
                 Modifier.dragToSelect(dragToSelectState)
               } else {
                 Modifier
@@ -188,13 +188,13 @@ internal fun MediaSelectScreen(
             }
           } else {
             when (state) {
-              is MediaSelectScreenState.Folders -> {
+              is MediaSelectState.Folders -> {
                 items(state.mediaFolders, key = { it.bucketId }) {
                   MediaFolderTile(it, onEvent)
                 }
               }
 
-              is MediaSelectScreenState.Files -> {
+              is MediaSelectState.Files -> {
                 items(state.selectedMediaFolderItems, key = { it.uri }) { media ->
                   MediaTile(media = media, state.selectedMedia.indexOfFirst { it.uri == media.uri }, onEvent = onEvent)
                 }
@@ -239,7 +239,7 @@ internal fun MediaSelectScreen(
           )
 
           NextButton(state.selectedMedia.size) {
-            onEvent(MediaSelectScreenEvent.NavigateToEdit)
+            onEvent(MediaSelectScreenEvents.NavigateToEdit)
           }
         }
       }
@@ -250,16 +250,16 @@ internal fun MediaSelectScreen(
 /**
  * Turns the covered index ranges reported by the gesture into batched selection events for the media those indices
  * stand for. Only the file grid is homogeneous enough for this: one tile per item, so a grid index is an index into
- * [MediaSelectScreenState.Files.selectedMediaFolderItems].
+ * [MediaSelectState.Files.selectedMediaFolderItems].
  */
 @Composable
 private fun rememberDragToSelectMediaState(
-  state: MediaSelectScreenState,
-  onEvent: (MediaSelectScreenEvent) -> Unit,
+  state: MediaSelectState,
+  onEvent: (MediaSelectScreenEvents) -> Unit,
   gridState: LazyGridState
 ): DragToSelectState {
   return rememberDragToSelectState(gridState) { event ->
-    val items = (state as? MediaSelectScreenState.Files)?.selectedMediaFolderItems ?: return@rememberDragToSelectState
+    val items = (state as? MediaSelectState.Files)?.selectedMediaFolderItems ?: return@rememberDragToSelectState
 
     when (event) {
       is DragSelectEvent.Started -> {
@@ -267,7 +267,7 @@ private fun rememberDragToSelectMediaState(
         // and stops there, which is how the v2 gallery behaved.
         val media = items.getOrNull(event.index)
         if (media != null && state.selectedMedia.any { it.uri == media.uri }) {
-          onEvent(MediaSelectScreenEvent.MediaUnselected(setOf(media)))
+          onEvent(MediaSelectScreenEvents.MediaUnselected(setOf(media)))
           cancel()
         }
       }
@@ -275,14 +275,14 @@ private fun rememberDragToSelectMediaState(
       is DragSelectEvent.RangeSelected -> {
         val media = event.indices.mapNotNullTo(mutableSetOf(), items::getOrNull)
         if (media.isNotEmpty()) {
-          onEvent(MediaSelectScreenEvent.MediaSelected(media))
+          onEvent(MediaSelectScreenEvents.MediaSelected(media))
         }
       }
 
       is DragSelectEvent.RangeUnselected -> {
         val media = event.indices.mapNotNullTo(mutableSetOf(), items::getOrNull)
         if (media.isNotEmpty()) {
-          onEvent(MediaSelectScreenEvent.MediaUnselected(media))
+          onEvent(MediaSelectScreenEvents.MediaUnselected(media))
         }
       }
     }
@@ -371,7 +371,7 @@ private fun <T> WindowSizeClass.forWidthBreakpoint(
  * selected-photos access has produced something to browse.
  */
 @Composable
-private fun LimitedAccessBar(onEvent: (MediaSelectScreenEvent) -> Unit) {
+private fun LimitedAccessBar(onEvent: (MediaSelectScreenEvents) -> Unit) {
   val menuController = remember { DropdownMenus.MenuController() }
 
   Row(
@@ -406,7 +406,7 @@ private fun LimitedAccessBar(onEvent: (MediaSelectScreenEvent) -> Unit) {
 @Composable
 private fun MediaAccessCallToAction(
   mediaPermissions: MediaPermissions,
-  onEvent: (MediaSelectScreenEvent) -> Unit,
+  onEvent: (MediaSelectScreenEvents) -> Unit,
   modifier: Modifier = Modifier
 ) {
   val menuController = remember { DropdownMenus.MenuController() }
@@ -436,7 +436,7 @@ private fun MediaAccessCallToAction(
 
     Box(modifier = Modifier.padding(top = 20.dp)) {
       if (hasNoAccess) {
-        Buttons.LargeTonal(onClick = { onEvent(MediaSelectScreenEvent.RequestMediaPermissions) }) {
+        Buttons.LargeTonal(onClick = { onEvent(MediaSelectScreenEvents.RequestMediaPermissions) }) {
           Text(text = stringResource(R.string.MediaSelectScreen__allow_access))
         }
       } else {
@@ -457,7 +457,7 @@ private fun MediaAccessCallToAction(
 @Composable
 private fun ManageAccessMenu(
   menuController: DropdownMenus.MenuController,
-  onEvent: (MediaSelectScreenEvent) -> Unit
+  onEvent: (MediaSelectScreenEvents) -> Unit
 ) {
   val context = LocalContext.current
 
@@ -466,7 +466,7 @@ private fun ManageAccessMenu(
       menuController = controller,
       drawableResId = R.drawable.symbol_album_tilt_24,
       stringResId = R.string.MediaSelectScreen__select_more_photos,
-      onClick = { onEvent(MediaSelectScreenEvent.SelectMorePhotos) }
+      onClick = { onEvent(MediaSelectScreenEvents.SelectMorePhotos) }
     )
 
     DropdownMenus.ItemWithIcon(
@@ -495,13 +495,13 @@ private fun MediaTilePlaceholder() {
 @Composable
 private fun MediaFolderTile(
   mediaFolder: MediaFolder,
-  onEvent: (MediaSelectScreenEvent) -> Unit
+  onEvent: (MediaSelectScreenEvents) -> Unit
 ) {
   Column(
     modifier = Modifier
       .fillMaxWidth()
       .clickable(
-        onClick = { onEvent(MediaSelectScreenEvent.FolderClick(mediaFolder)) },
+        onClick = { onEvent(MediaSelectScreenEvents.FolderClick(mediaFolder)) },
         onClickLabel = mediaFolder.title,
         role = Role.Button
       ),
@@ -541,7 +541,7 @@ private fun MediaFolderTile(
 private fun MediaTile(
   media: Media,
   selectionIndex: Int,
-  onEvent: (MediaSelectScreenEvent) -> Unit
+  onEvent: (MediaSelectScreenEvents) -> Unit
 ) {
   val scale by animateFloatAsState(
     targetValue = if (selectionIndex >= 0) {
@@ -563,7 +563,7 @@ private fun MediaTile(
       .aspectRatio(1f)
       .background(color = MaterialTheme.colorScheme.surfaceVariant)
       .clickable(
-        onClick = { onEvent(MediaSelectScreenEvent.MediaClick(media)) },
+        onClick = { onEvent(MediaSelectScreenEvents.MediaClick(media)) },
         onClickLabel = media.fileName,
         role = Role.Button
       )
@@ -642,12 +642,12 @@ private fun NextButton(mediaSelectionCount: Int, onClick: () -> Unit) {
 private fun SelectedMediaRow(
   selectedMedia: List<Media>,
   alignment: Alignment.Horizontal,
-  onEvent: (MediaSelectScreenEvent) -> Unit,
+  onEvent: (MediaSelectScreenEvents) -> Unit,
   modifier: Modifier = Modifier
 ) {
   val listState = rememberLazyListState()
   val reorderBuffer = rememberReorderBuffer(selectedMedia) { fromIndex, toIndex ->
-    onEvent(MediaSelectScreenEvent.ReorderSelectedMedia(fromIndex, toIndex))
+    onEvent(MediaSelectScreenEvents.ReorderSelectedMedia(fromIndex, toIndex))
   }
   val reorderableListState = rememberReorderableListState(
     lazyListState = listState,
@@ -665,8 +665,8 @@ private fun SelectedMediaRow(
     itemsIndexed(reorderBuffer.items, key = { _, media -> media.uri }) { index, media ->
       ReorderableItem(reorderableListState, index) {
         MediaThumbnail(media) {
-          onEvent(MediaSelectScreenEvent.SetFocusedMedia(media))
-          onEvent(MediaSelectScreenEvent.NavigateToEdit)
+          onEvent(MediaSelectScreenEvents.SetFocusedMedia(media))
+          onEvent(MediaSelectScreenEvents.NavigateToEdit)
         }
       }
     }
@@ -703,7 +703,7 @@ private fun MediaThumbnail(
 private fun MediaSelectScreenFolderPreview() {
   Previews.Preview {
     MediaSelectScreen(
-      state = MediaSelectScreenState.Folders(
+      state = MediaSelectState.Folders(
         mediaFolders = rememberPreviewMediaFolders(20),
         selectedMedia = emptyList()
       ),
@@ -721,13 +721,13 @@ private fun MediaSelectScreenMediaPreview() {
 
   Previews.Preview {
     MediaSelectScreen(
-      state = MediaSelectScreenState.Files(
+      state = MediaSelectState.Files(
         selectedMediaFolder = folders.first(),
         selectedMediaFolderItems = media,
         selectedMedia = selectedMedia
       ),
       onEvent = {
-        if (it is MediaSelectScreenEvent.MediaClick) {
+        if (it is MediaSelectScreenEvents.MediaClick) {
           if (it.media in selectedMedia) {
             selectedMedia.remove(it.media)
           } else {
@@ -744,7 +744,7 @@ private fun MediaSelectScreenMediaPreview() {
 private fun MediaSelectScreenNoPermissionPreview() {
   Previews.Preview {
     MediaSelectScreen(
-      state = MediaSelectScreenState.Folders(
+      state = MediaSelectState.Folders(
         mediaFolders = emptyList(),
         selectedMedia = emptyList(),
         mediaPermissions = MediaPermissions.NONE
@@ -759,7 +759,7 @@ private fun MediaSelectScreenNoPermissionPreview() {
 private fun MediaSelectScreenPartialPermissionEmptyPreview() {
   Previews.Preview {
     MediaSelectScreen(
-      state = MediaSelectScreenState.Folders(
+      state = MediaSelectState.Folders(
         mediaFolders = emptyList(),
         selectedMedia = emptyList(),
         mediaPermissions = MediaPermissions.PARTIAL
@@ -774,7 +774,7 @@ private fun MediaSelectScreenPartialPermissionEmptyPreview() {
 private fun MediaSelectScreenPartialPermissionPreview() {
   Previews.Preview {
     MediaSelectScreen(
-      state = MediaSelectScreenState.Folders(
+      state = MediaSelectState.Folders(
         mediaFolders = rememberPreviewMediaFolders(4),
         selectedMedia = emptyList(),
         mediaPermissions = MediaPermissions.PARTIAL
@@ -819,7 +819,7 @@ private fun MediaTileSelectedPreview() {
       media = rememberPreviewMedia(1).first(),
       selectionIndex = if (isSelected) 0 else -1,
       onEvent = {
-        if (it is MediaSelectScreenEvent.MediaClick) {
+        if (it is MediaSelectScreenEvents.MediaClick) {
           isSelected = !isSelected
         }
       }

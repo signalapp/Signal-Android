@@ -8,7 +8,7 @@ package org.signal.mediasend.screens.select
 import org.signal.core.models.media.Media
 import org.signal.core.models.media.MediaFolder
 
-sealed interface MediaSelectScreenState {
+sealed interface MediaSelectState {
 
   /** The flow's current selection, as last reported by the parent. */
   val selectedMedia: List<Media>
@@ -27,7 +27,7 @@ sealed interface MediaSelectScreenState {
     override val selectedMedia: List<Media>,
     override val mediaPermissions: MediaPermissions = MediaPermissions.FULL,
     override val isSelectionRejected: Boolean = false
-  ) : MediaSelectScreenState {
+  ) : MediaSelectState {
     override val hasContent: Boolean
       get() = mediaFolders.isNotEmpty()
   }
@@ -38,17 +38,17 @@ sealed interface MediaSelectScreenState {
     override val selectedMedia: List<Media>,
     override val mediaPermissions: MediaPermissions = MediaPermissions.FULL,
     override val isSelectionRejected: Boolean = false
-  ) : MediaSelectScreenState {
+  ) : MediaSelectState {
     override val hasContent: Boolean
       get() = selectedMediaFolderItems.isNotEmpty()
   }
 
-  fun withParentState(selectedMedia: List<Media>, isSelectionRejected: Boolean): MediaSelectScreenState = when (this) {
+  fun withParentState(selectedMedia: List<Media>, isSelectionRejected: Boolean): MediaSelectState = when (this) {
     is Folders -> copy(selectedMedia = selectedMedia, isSelectionRejected = isSelectionRejected)
     is Files -> copy(selectedMedia = selectedMedia, isSelectionRejected = isSelectionRejected)
   }
 
-  fun withMediaPermissions(mediaPermissions: MediaPermissions): MediaSelectScreenState = when (this) {
+  fun withMediaPermissions(mediaPermissions: MediaPermissions): MediaSelectState = when (this) {
     is Folders -> copy(mediaPermissions = mediaPermissions)
     is Files -> copy(mediaPermissions = mediaPermissions)
   }

@@ -22,7 +22,7 @@ import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.ui.compose.Snackbars
 import org.signal.core.util.logging.Log
 import org.signal.mediasend.MediaSendDependencies
-import org.signal.mediasend.MediaSendEvent
+import org.signal.mediasend.MediaSendFlowEvent
 import org.signal.mediasend.MediaSendFlowState
 import org.signal.mediasend.MediaSendRepository
 import org.signal.mediasend.R
@@ -32,39 +32,39 @@ import org.signal.mediasend.SnackbarEvent
  * Drives the select screen, for one appearance of it: either the list of folders, or the contents of a single folder.
  *
  * The gallery and how much of it we are allowed to read are only of interest to this screen, so they live here. The
- * selection is not -- the rest of the flow sends it -- so it arrives as [MediaSelectScreenEvent.ParentStateChanged] and
+ * selection is not -- the rest of the flow sends it -- so it arrives as [MediaSelectScreenEvents.ParentStateChanged] and
  * is rendered from a copy in this screen's own state. Anything this screen wants done to it goes back out as a
- * [MediaSendEvent].
+ * [MediaSendFlowEvent].
  *
  * @param mediaFolder The folder whose contents to show, or null for the list of folders.
  */
 internal class MediaSelectViewModel(
   private val parentState: StateFlow<MediaSendFlowState>,
-  private val parentEventEmitter: (MediaSendEvent) -> Unit,
+  private val parentEventEmitter: (MediaSendFlowEvent) -> Unit,
   mediaFolder: MediaFolder?,
   private val repository: MediaSendRepository = MediaSendDependencies.mediaSendRepository
-) : EventDrivenViewModel<MediaSelectScreenEvent>(TAG) {
+) : EventDrivenViewModel<MediaSelectScreenEvents>(TAG) {
 
   companion object {
     private val TAG = Log.tag(MediaSelectViewModel::class)
   }
 
-  private val _state: MutableStateFlow<MediaSelectScreenState> = MutableStateFlow(
+  private val _state: MutableStateFlow<MediaSelectState> = MutableStateFlow(
     if (mediaFolder != null) {
-      MediaSelectScreenState.Files(
+      MediaSelectState.Files(
         selectedMediaFolder = mediaFolder,
         selectedMediaFolderItems = emptyList(),
         selectedMedia = emptyList()
       )
     } else {
-      MediaSelectScreenState.Folders(
+      MediaSelectState.Folders(
         mediaFolders = emptyList(),
         selectedMedia = emptyList()
       )
     }
   )
 
-  val state: StateFlow<MediaSelectScreenState> = _state.asStateFlow()
+  val state: StateFlow<MediaSelectState> = _state.asStateFlow()
 
   /** Hosted here, since this is the only screen that asks for the gallery's permissions. */
   val readMediaPermission = MediaPermissionController()
@@ -72,35 +72,35 @@ internal class MediaSelectViewModel(
   init {
     parentState
       .distinctUntilChangedBy { it.selectedMedia to it.isSelectionRejected }
-      .onEach { onEvent(MediaSelectScreenEvent.ParentStateChanged(it)) }
+      .onEach { onEvent(MediaSelectScreenEvents.ParentStateChanged(it)) }
       .launchIn(viewModelScope)
 
     refresh()
   }
 
-  override suspend fun processEvent(event: MediaSelectScreenEvent) {
+  override suspend fun processEvent(event: MediaSelectScreenEvents) {
     when (event) {
-      is MediaSelectScreenEvent.ParentStateChanged -> _state.update { it.withParentState(event.parentState.selectedMedia, event.parentState.isSelectionRejected) }
-      MediaSelectScreenEvent.SelectionRejectionShown -> parentEventEmitter(MediaSendEvent.SelectionRejectionShown)
-      is MediaSelectScreenEvent.FolderClick -> event.mediaFolder?.let { parentEventEmitter(MediaSendEvent.NavigateToFiles(it)) }
-      is MediaSelectScreenEvent.MediaClick -> applyMediaClickEvent(event.media)
-      is MediaSelectScreenEvent.MediaSelected -> parentEventEmitter(MediaSendEvent.AddMedia(event.media))
-      is MediaSelectScreenEvent.MediaUnselected -> parentEventEmitter(MediaSendEvent.RemoveMedia(event.media))
-      is MediaSelectScreenEvent.SetFocusedMedia -> parentEventEmitter(MediaSendEvent.SetFocusedMedia(event.media))
-      is MediaSelectScreenEvent.ReorderSelectedMedia -> parentEventEmitter(MediaSendEvent.ReorderSelectedMedia(event.fromIndex, event.toIndex))
-      MediaSelectScreenEvent.NavigateToEdit -> parentEventEmitter(MediaSendEvent.NavigateToEdit)
-      MediaSelectScreenEvent.NavigateToCamera -> parentEventEmitter(MediaSendEvent.NavigateToCamera)
-      MediaSelectScreenEvent.Refresh -> refresh()
-      MediaSelectScreenEvent.RequestMediaPermissions -> requestReadMediaPermissions(reportDenial = true)
-      MediaSelectScreenEvent.SelectMorePhotos -> requestReadMediaPermissions(reportDenial = false)
+      is MediaSelectScreenEvents.ParentStateChanged -> _state.update { it.withParentState(event.parentState.selectedMedia, event.parentState.isSelectionRejected) }
+      MediaSelectScreenEvents.SelectionRejectionShown -> parentEventEmitter(MediaSendFlowEvent.SelectionRejectionShown)
+      is MediaSelectScreenEvents.FolderClick -> event.mediaFolder?.let { parentEventEmitter(MediaSendFlowEvent.NavigateToFiles(it)) }
+      is MediaSelectScreenEvents.MediaClick -> applyMediaClickEvent(event.media)
+      is MediaSelectScreenEvents.MediaSelected -> parentEventEmitter(MediaSendFlowEvent.AddMedia(event.media))
+      is MediaSelectScreenEvents.MediaUnselected -> parentEventEmitter(MediaSendFlowEvent.RemoveMedia(event.media))
+      is MediaSelectScreenEvents.SetFocusedMedia -> parentEventEmitter(MediaSendFlowEvent.SetFocusedMedia(event.media))
+      is MediaSelectScreenEvents.ReorderSelectedMedia -> parentEventEmitter(MediaSendFlowEvent.ReorderSelectedMedia(event.fromIndex, event.toIndex))
+      MediaSelectScreenEvents.NavigateToEdit -> parentEventEmitter(MediaSendFlowEvent.NavigateToEdit)
+      MediaSelectScreenEvents.NavigateToCamera -> parentEventEmitter(MediaSendFlowEvent.NavigateToCamera)
+      MediaSelectScreenEvents.Refresh -> refresh()
+      MediaSelectScreenEvents.RequestMediaPermissions -> requestReadMediaPermissions(reportDenial = true)
+      MediaSelectScreenEvents.SelectMorePhotos -> requestReadMediaPermissions(reportDenial = false)
     }
   }
 
   private fun applyMediaClickEvent(media: Media) {
     if (_state.value.selectedMedia.any { it.uri == media.uri }) {
-      parentEventEmitter(MediaSendEvent.RemoveMedia(setOf(media)))
+      parentEventEmitter(MediaSendFlowEvent.RemoveMedia(setOf(media)))
     } else {
-      parentEventEmitter(MediaSendEvent.AddMedia(setOf(media)))
+      parentEventEmitter(MediaSendFlowEvent.AddMedia(setOf(media)))
     }
   }
 
@@ -113,9 +113,9 @@ internal class MediaSelectViewModel(
     viewModelScope.launch {
       val mediaPermissions = MediaPermissions.current()
 
-      val reloaded: MediaSelectScreenState = when (val snapshot = _state.value) {
-        is MediaSelectScreenState.Folders -> snapshot.copy(mediaFolders = repository.getFolders())
-        is MediaSelectScreenState.Files -> snapshot.copy(selectedMediaFolderItems = repository.getMedia(snapshot.selectedMediaFolder.bucketId))
+      val reloaded: MediaSelectState = when (val snapshot = _state.value) {
+        is MediaSelectState.Folders -> snapshot.copy(mediaFolders = repository.getFolders())
+        is MediaSelectState.Files -> snapshot.copy(selectedMediaFolderItems = repository.getMedia(snapshot.selectedMediaFolder.bucketId))
       }
 
       // Only what the parent reports can have changed while we were reading, and that is not ours to overwrite.
@@ -137,7 +137,7 @@ internal class MediaSelectViewModel(
 
       if (reportDenial && denied) {
         parentEventEmitter(
-          MediaSendEvent.ShowSnackbar(
+          MediaSendFlowEvent.ShowSnackbar(
             SnackbarEvent(
               message = R.string.MediaSelectScreen__signal_needs_access_to_show_your_photos_and_videos,
               duration = Snackbars.Duration.LONG
@@ -152,7 +152,7 @@ internal class MediaSelectViewModel(
 
   class Factory(
     private val parentState: StateFlow<MediaSendFlowState>,
-    private val parentEventEmitter: (MediaSendEvent) -> Unit,
+    private val parentEventEmitter: (MediaSendFlowEvent) -> Unit,
     private val mediaFolder: MediaFolder?
   ) : ViewModelProvider.Factory {
     @Suppress("UNCHECKED_CAST")

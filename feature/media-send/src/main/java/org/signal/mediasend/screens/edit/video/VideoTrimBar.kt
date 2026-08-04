@@ -26,7 +26,7 @@ import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.horizontalGutters
 import org.signal.core.util.logging.Log
 import org.signal.mediasend.R
-import org.signal.mediasend.screens.edit.MediaEditScreenEvent
+import org.signal.mediasend.screens.edit.MediaEditScreenEvents
 import org.thoughtcrime.securesms.video.interfaces.MediaInputFactory
 import java.io.IOException
 import java.util.concurrent.TimeUnit
@@ -36,8 +36,8 @@ private const val TAG = "VideoEditorToolbar"
 
 /**
  * Timeline/trim toolbar for a video. Trim data and the current playback position are owned elsewhere and passed in;
- * all user-driven changes are reported back through [onEvent] — [MediaEditScreenEvent.VideoTrimChanged] for trim
- * handles and [MediaEditScreenEvent.VideoSeek] for scrubbing the playback position.
+ * all user-driven changes are reported back through [onEvent] — [MediaEditScreenEvents.VideoTrimChanged] for trim
+ * handles and [MediaEditScreenEvents.VideoSeek] for scrubbing the playback position.
  *
  * [videoUri] and [mediaInputFactory] are required to load the underlying video: the timeline renders nothing until an
  * input is set, since that is also what drives thumbnail extraction and duration discovery. [maxSelectableDurationUs]
@@ -50,7 +50,7 @@ fun VideoTrimBar(
   videoTrimData: VideoTrimData,
   maxSelectableDurationUs: Long = 0L,
   playbackPositionUs: Long = 0L,
-  onEvent: (MediaEditScreenEvent) -> Unit = {}
+  onEvent: (MediaEditScreenEvents) -> Unit = {}
 ) {
   val currentOnEvent by rememberUpdatedState(onEvent)
   var isDragging by remember { mutableStateOf(false) }
@@ -60,12 +60,12 @@ fun VideoTrimBar(
     object : VideoThumbnailsRangeSelectorView.PositionDragListener {
       override fun onPositionDrag(position: Long) {
         isDragging = true
-        currentOnEvent(MediaEditScreenEvent.VideoSeek(positionUs = position, editingComplete = false))
+        currentOnEvent(MediaEditScreenEvents.VideoSeek(positionUs = position, editingComplete = false))
       }
 
       override fun onEndPositionDrag(position: Long) {
         isDragging = false
-        currentOnEvent(MediaEditScreenEvent.VideoSeek(positionUs = position, editingComplete = true))
+        currentOnEvent(MediaEditScreenEvents.VideoSeek(positionUs = position, editingComplete = true))
       }
     }
   }
@@ -74,7 +74,7 @@ fun VideoTrimBar(
     VideoThumbnailsRangeSelectorView.RangeDragListener { minValue, maxValue, duration, end ->
       isDragging = !end
       currentOnEvent(
-        MediaEditScreenEvent.VideoTrimChanged(
+        MediaEditScreenEvents.VideoTrimChanged(
           videoTrimData = VideoTrimData(
             isDurationEdited = minValue > 0 || maxValue < duration,
             totalInputDurationUs = duration,

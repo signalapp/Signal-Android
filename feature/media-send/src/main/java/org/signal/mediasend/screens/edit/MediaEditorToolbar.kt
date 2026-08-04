@@ -97,7 +97,7 @@ internal fun MediaEditorToolbarButton(
 internal fun MediaEditorToolbarSharedButtons(
   state: MediaSendFlowState,
   editorState: EditorState,
-  onEvent: (MediaEditScreenEvent) -> Unit
+  onEvent: (MediaEditScreenEvents) -> Unit
 ) {
   if (isQualityVisible(state, editorState)) {
     var isSelectingQuality by rememberSaveable { mutableStateOf(false) }
@@ -105,7 +105,7 @@ internal fun MediaEditorToolbarSharedButtons(
     if (isSelectingQuality) {
       QualitySelectorBottomSheet(
         quality = state.sentMediaQuality,
-        onQualitySelected = { onEvent(MediaEditScreenEvent.SetMediaQuality(it)) },
+        onQualitySelected = { onEvent(MediaEditScreenEvents.SetMediaQuality(it)) },
         onDismiss = { isSelectingQuality = false }
       )
     }
@@ -124,7 +124,7 @@ internal fun MediaEditorToolbarSharedButtons(
   if (isSaveVisible(editorState)) {
     MediaEditorToolbarButton(
       imageVector = SignalIcons.Save.imageVector,
-      onClick = { onEvent(MediaEditScreenEvent.SaveMedia) },
+      onClick = { onEvent(MediaEditScreenEvents.SaveMedia) },
       modifier = Modifier.testTag(TestTags.MEDIA_EDITOR_TOOLBAR_SAVE_BUTTON)
     )
   }
@@ -132,7 +132,7 @@ internal fun MediaEditorToolbarSharedButtons(
   if (isAddMediaVisible(state, editorState)) {
     MediaEditorToolbarButton(
       imageVector = SignalIcons.Plus.imageVector, // TODO [alex] - wrong art asset
-      onClick = { onEvent(MediaEditScreenEvent.NavigateToGallery) },
+      onClick = { onEvent(MediaEditScreenEvents.NavigateToGallery) },
       modifier = Modifier.testTag(TestTags.MEDIA_EDITOR_TOOLBAR_ADD_MEDIA_BUTTON)
     )
   }

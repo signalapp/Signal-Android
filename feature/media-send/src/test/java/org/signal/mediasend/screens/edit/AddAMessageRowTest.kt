@@ -37,7 +37,7 @@ class AddAMessageRowTest {
   @get:Rule
   val coreUiDependenciesRule = CoreUiDependenciesRule(ApplicationProvider.getApplicationContext())
 
-  private val events = mutableListOf<MediaEditScreenEvent>()
+  private val events = mutableListOf<MediaEditScreenEvents>()
   private var nextClicks = 0
 
   @Test
@@ -47,7 +47,7 @@ class AddAMessageRowTest {
     composeTestRule.onNodeWithTag(TestTags.ADD_A_MESSAGE_NEXT_BUTTON).performClick()
 
     assertEquals(1, nextClicks)
-    assertNull(events.filterIsInstance<MediaEditScreenEvent.ScheduleSendClick>().firstOrNull())
+    assertNull(events.filterIsInstance<MediaEditScreenEvents.ScheduleSendClick>().firstOrNull())
   }
 
   @Test
@@ -58,8 +58,8 @@ class AddAMessageRowTest {
     composeTestRule.onNodeWithTag(TestTags.SCHEDULE_SEND_PICK_TIME_OPTION).performClick()
 
     assertEquals(
-      MediaEditScreenEvent.ScheduleSendClick(ScheduleSendOption.PickTime),
-      events.filterIsInstance<MediaEditScreenEvent.ScheduleSendClick>().single()
+      MediaEditScreenEvents.ScheduleSendClick(ScheduleSendOption.PickTime),
+      events.filterIsInstance<MediaEditScreenEvents.ScheduleSendClick>().single()
     )
     assertEquals(0, nextClicks)
   }
@@ -71,7 +71,7 @@ class AddAMessageRowTest {
     composeTestRule.onNodeWithTag(TestTags.ADD_A_MESSAGE_NEXT_BUTTON).performTouchInput { longClick() }
 
     composeTestRule.onNodeWithTag(TestTags.SCHEDULE_SEND_PICK_TIME_OPTION).assertDoesNotExist()
-    assertEquals(emptyList<MediaEditScreenEvent>(), events)
+    assertEquals(emptyList<MediaEditScreenEvents>(), events)
   }
 
   private fun setContent(canScheduleSend: Boolean) {

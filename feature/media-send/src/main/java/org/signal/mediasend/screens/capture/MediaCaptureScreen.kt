@@ -56,7 +56,7 @@ import org.signal.glide.compose.GlideImage
 import org.signal.glide.decryptableuri.DecryptableUri
 import org.signal.mediasend.MediaSendFlowActivityContract
 import org.signal.mediasend.MediaSendFlowState
-import org.signal.mediasend.MediaSendNavKey
+import org.signal.mediasend.MediaSendRoute
 import org.signal.mediasend.R
 import org.signal.mediasend.rememberPreviewState
 import org.signal.mediasend.screens.edit.rememberPreviewMedia
@@ -72,9 +72,9 @@ private const val TEXT_STORY_Z_INDEX = 1f
  */
 @Composable
 fun MediaCaptureScreen(
-  selectedCaptureScreen: MediaSendNavKey.Capture,
+  selectedCaptureScreen: MediaSendRoute.Capture,
   state: MediaSendFlowState,
-  onEvent: (MediaCaptureScreenEvent) -> Unit,
+  onEvent: (MediaCaptureScreenEvents) -> Unit,
   textStoryEditorSlot: @Composable () -> Unit
 ) {
   Box(
@@ -85,7 +85,7 @@ fun MediaCaptureScreen(
     AnimatedContent(
       targetState = selectedCaptureScreen,
       transitionSpec = {
-        if (targetState is MediaSendNavKey.Capture.TextStory) {
+        if (targetState is MediaSendRoute.Capture.TextStory) {
           ContentTransform(
             targetContentEnter = slideInHorizontally { width -> width },
             initialContentExit = ExitTransition.KeepUntilTransitionsFinished,
@@ -101,7 +101,7 @@ fun MediaCaptureScreen(
       }
     ) { captureScreen ->
       when (captureScreen) {
-        is MediaSendNavKey.Capture.TextStory -> textStoryEditorSlot()
+        is MediaSendRoute.Capture.TextStory -> textStoryEditorSlot()
         else -> {
           MediaCameraCaptureScreen(
             state = state,
@@ -139,9 +139,9 @@ private fun rememberCanDisplayBottomBar(state: MediaSendFlowState): Boolean {
 fun MediaCaptureBottomBar(
   canDisplayToggleSwitch: Boolean,
   canDisplayMediaBar: Boolean,
-  selectedCaptureScreen: MediaSendNavKey.Capture,
+  selectedCaptureScreen: MediaSendRoute.Capture,
   selectedMedia: List<Media>,
-  onEvent: (MediaCaptureScreenEvent) -> Unit,
+  onEvent: (MediaCaptureScreenEvents) -> Unit,
   modifier: Modifier = Modifier
 ) {
   if (canDisplayToggleSwitch) {
@@ -161,8 +161,8 @@ fun MediaCaptureBottomBar(
 
 @Composable
 private fun MediaCaptureToggleBar(
-  selectedCaptureScreen: MediaSendNavKey.Capture,
-  onEvent: (MediaCaptureScreenEvent) -> Unit,
+  selectedCaptureScreen: MediaSendRoute.Capture,
+  onEvent: (MediaCaptureScreenEvents) -> Unit,
   modifier: Modifier = Modifier
 ) {
   val cameraDisplay = CameraDisplay.rememberCameraDisplay(isLandscape = false)
@@ -175,15 +175,15 @@ private fun MediaCaptureToggleBar(
       .padding(horizontal = 6.dp, vertical = 6.dp)
   ) {
     SegmentedBarButton(
-      selected = selectedCaptureScreen == MediaSendNavKey.Capture.Camera,
-      onClick = { onEvent(MediaCaptureScreenEvent.ShowCamera) }
+      selected = selectedCaptureScreen == MediaSendRoute.Capture.Camera,
+      onClick = { onEvent(MediaCaptureScreenEvents.ShowCamera) }
     ) {
       Text(text = stringResource(R.string.MediaCaptureScreen__camera))
     }
 
     SegmentedBarButton(
-      selected = selectedCaptureScreen == MediaSendNavKey.Capture.TextStory,
-      onClick = { onEvent(MediaCaptureScreenEvent.ShowTextStory) }
+      selected = selectedCaptureScreen == MediaSendRoute.Capture.TextStory,
+      onClick = { onEvent(MediaCaptureScreenEvents.ShowTextStory) }
     ) {
       Text(text = stringResource(R.string.MediaCaptureScreen__text))
     }
@@ -213,7 +213,7 @@ private fun SingleChoiceSegmentedButtonRowScope.SegmentedBarButton(
 @Composable
 private fun MediaCaptureMediaBar(
   selectedMedia: List<Media>,
-  onEvent: (MediaCaptureScreenEvent) -> Unit,
+  onEvent: (MediaCaptureScreenEvents) -> Unit,
   modifier: Modifier = Modifier
 ) {
   val cameraDisplay = CameraDisplay.rememberCameraDisplay(isLandscape = false)
@@ -260,13 +260,13 @@ private fun MediaCaptureMediaBar(
 
 @Composable
 private fun NextButton(
-  onEvent: (MediaCaptureScreenEvent) -> Unit,
+  onEvent: (MediaCaptureScreenEvents) -> Unit,
   modifier: Modifier = Modifier
 ) {
   val cameraDisplay = CameraDisplay.rememberCameraDisplay(isLandscape = false)
 
   IconButton(
-    onClick = { onEvent(MediaCaptureScreenEvent.NextClicked) },
+    onClick = { onEvent(MediaCaptureScreenEvents.NextClicked) },
     modifier = modifier
       .padding(bottom = cameraDisplay.getNextPaddingBottom().dp, end = cameraDisplay.getNextPaddingEnd().dp)
       .size(48.dp)
@@ -286,7 +286,7 @@ private fun NextButton(
 fun MediaCaptureScreenPreview() {
   Previews.Preview {
     MediaCaptureScreen(
-      selectedCaptureScreen = MediaSendNavKey.Capture.Camera,
+      selectedCaptureScreen = MediaSendRoute.Capture.Camera,
       state = rememberPreviewState()
         .copy(
           isCameraFirst = true,
@@ -306,7 +306,7 @@ fun MediaCaptureScreenWithSelectedMediaPreview() {
 
   Previews.Preview {
     MediaCaptureScreen(
-      selectedCaptureScreen = MediaSendNavKey.Capture.Camera,
+      selectedCaptureScreen = MediaSendRoute.Capture.Camera,
       state = rememberPreviewState()
         .copy(
           isCameraFirst = true,
@@ -323,15 +323,15 @@ fun MediaCaptureScreenWithSelectedMediaPreview() {
 @NightPreview
 @Composable
 fun MediaCaptureToggleBarPreview() {
-  var selectedCaptureScreen: MediaSendNavKey.Capture by remember { mutableStateOf(MediaSendNavKey.Capture.Camera) }
+  var selectedCaptureScreen: MediaSendRoute.Capture by remember { mutableStateOf(MediaSendRoute.Capture.Camera) }
 
   Previews.Preview {
     MediaCaptureToggleBar(
       selectedCaptureScreen = selectedCaptureScreen,
       onEvent = {
         when (it) {
-          MediaCaptureScreenEvent.ShowCamera -> selectedCaptureScreen = MediaSendNavKey.Capture.Camera
-          MediaCaptureScreenEvent.ShowTextStory -> selectedCaptureScreen = MediaSendNavKey.Capture.TextStory
+          MediaCaptureScreenEvents.ShowCamera -> selectedCaptureScreen = MediaSendRoute.Capture.Camera
+          MediaCaptureScreenEvents.ShowTextStory -> selectedCaptureScreen = MediaSendRoute.Capture.TextStory
           else -> Unit
         }
       }
@@ -342,7 +342,7 @@ fun MediaCaptureToggleBarPreview() {
 @NightPreview
 @Composable
 fun MediaCaptureMediaBarPreview() {
-  var selectedCaptureScreen: MediaSendNavKey.Capture by remember { mutableStateOf(MediaSendNavKey.Capture.Camera) }
+  var selectedCaptureScreen: MediaSendRoute.Capture by remember { mutableStateOf(MediaSendRoute.Capture.Camera) }
   val selectedMedia = rememberPreviewMedia(1)
 
   Previews.Preview {
@@ -350,8 +350,8 @@ fun MediaCaptureMediaBarPreview() {
       selectedMedia = selectedMedia,
       onEvent = {
         when (it) {
-          MediaCaptureScreenEvent.ShowCamera -> selectedCaptureScreen = MediaSendNavKey.Capture.Camera
-          MediaCaptureScreenEvent.ShowTextStory -> selectedCaptureScreen = MediaSendNavKey.Capture.TextStory
+          MediaCaptureScreenEvents.ShowCamera -> selectedCaptureScreen = MediaSendRoute.Capture.Camera
+          MediaCaptureScreenEvents.ShowTextStory -> selectedCaptureScreen = MediaSendRoute.Capture.TextStory
           else -> Unit
         }
       }

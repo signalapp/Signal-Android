@@ -54,10 +54,10 @@ import org.signal.imageeditor.core.model.EditorModel
 import org.signal.imageeditor.core.renderers.UriGlideRenderer
 import org.signal.mediasend.preupload.PreUploadController
 import org.signal.mediasend.preupload.PreUploadResult
-import org.signal.mediasend.screens.capture.CameraXScreenEvent
-import org.signal.mediasend.screens.capture.MediaCaptureScreenEvent
+import org.signal.mediasend.screens.capture.CameraXScreenEvents
+import org.signal.mediasend.screens.capture.MediaCaptureScreenEvents
 import org.signal.mediasend.screens.edit.ImageController
-import org.signal.mediasend.screens.edit.MediaEditScreenEvent
+import org.signal.mediasend.screens.edit.MediaEditScreenEvents
 import org.signal.mediasend.screens.edit.ScheduleSendOption
 import org.signal.mediasend.screens.edit.image.BrushTool
 import org.signal.mediasend.screens.edit.image.BrushWidthsState
@@ -110,10 +110,10 @@ class MediaSendFlowViewModel(
     key = KEY_BACK_STACK
   ) {
     val startKey = when {
-      args.asTextStory -> MediaSendNavKey.Capture.TextStory
-      args.isCameraFirst -> MediaSendNavKey.Capture.Camera
-      args.initialMedia.isNotEmpty() -> MediaSendNavKey.Edit
-      else -> MediaSendNavKey.Select.Folders
+      args.asTextStory -> MediaSendRoute.Capture.TextStory
+      args.isCameraFirst -> MediaSendRoute.Capture.Camera
+      args.initialMedia.isNotEmpty() -> MediaSendRoute.Edit
+      else -> MediaSendRoute.Select.Folders
     }
 
     NavBackStack(startKey)
@@ -149,8 +149,8 @@ class MediaSendFlowViewModel(
   }
 
   /** One-shot HUD commands exposed as a Flow. */
-  private val hudCommandChannel = Channel<HudCommand>(Channel.BUFFERED)
-  val hudCommands: Flow<HudCommand> = hudCommandChannel.receiveAsFlow()
+  private val hudCommandChannel = Channel<MediaSendFlowHudCommand>(Channel.BUFFERED)
+  val hudCommands: Flow<MediaSendFlowHudCommand> = hudCommandChannel.receiveAsFlow()
 
   /** Per-image editor controllers, held here so results arriving from outside the flow can be applied immediately. */
   internal val imageControllers = ImageController.Container(BrushWidthsState(internalState.value.brushWidths))
@@ -190,15 +190,15 @@ class MediaSendFlowViewModel(
         when (result) {
           MediaSendQrRepository.QrCheckResult.LinkDevice -> {
             when (linkedDeviceScannedDialog.show(Unit)) {
-              DialogResult.POSITIVE -> sendHudCommand(HudCommand.GoToLinkedDevices)
+              DialogResult.POSITIVE -> sendHudCommand(MediaSendFlowHudCommand.GoToLinkedDevices)
               else -> Unit
             }
           }
           MediaSendQrRepository.QrCheckResult.None -> Unit
-          is MediaSendQrRepository.QrCheckResult.ReRegistration -> sendHudCommand(HudCommand.GoToQuickTransfer(qrData))
+          is MediaSendQrRepository.QrCheckResult.ReRegistration -> sendHudCommand(MediaSendFlowHudCommand.GoToQuickTransfer(qrData))
           is MediaSendQrRepository.QrCheckResult.Username -> {
             when (usernameScannedDialog.show(result.username)) {
-              DialogResult.POSITIVE -> sendHudCommand(HudCommand.GoToConversation(result.recipientId))
+              DialogResult.POSITIVE -> sendHudCommand(MediaSendFlowHudCommand.GoToConversation(result.recipientId))
               else -> Unit
             }
           }
@@ -244,65 +244,65 @@ class MediaSendFlowViewModel(
 
   //region Media Selection
 
-  /** Applies a change a screen has asked for to the flow's own state. See [MediaSendEvent]. */
-  internal fun onEvent(event: MediaSendEvent) {
+  /** Applies a change a screen has asked for to the flow's own state. See [MediaSendFlowEvent]. */
+  internal fun onEvent(event: MediaSendFlowEvent) {
     when (event) {
-      is MediaSendEvent.AddMedia -> addMedia(event.media)
-      is MediaSendEvent.RemoveMedia -> removeMedia(event.media)
-      is MediaSendEvent.SetFocusedMedia -> setFocusedMedia(event.media)
-      is MediaSendEvent.ReorderSelectedMedia -> reorderMedia(event.fromIndex, event.toIndex)
-      is MediaSendEvent.ShowSnackbar -> internalSnackbarEvents.trySend(event.snackbar)
-      MediaSendEvent.SelectionRejectionShown -> updateState { copy(isSelectionRejected = false) }
-      is MediaSendEvent.NavigateToFiles -> backStack.goToFiles(event.mediaFolder)
-      MediaSendEvent.NavigateToEdit -> backStack.goToEdit()
-      MediaSendEvent.NavigateToCamera -> backStack.goToCamera()
+      is MediaSendFlowEvent.AddMedia -> addMedia(event.media)
+      is MediaSendFlowEvent.RemoveMedia -> removeMedia(event.media)
+      is MediaSendFlowEvent.SetFocusedMedia -> setFocusedMedia(event.media)
+      is MediaSendFlowEvent.ReorderSelectedMedia -> reorderMedia(event.fromIndex, event.toIndex)
+      is MediaSendFlowEvent.ShowSnackbar -> internalSnackbarEvents.trySend(event.snackbar)
+      MediaSendFlowEvent.SelectionRejectionShown -> updateState { copy(isSelectionRejected = false) }
+      is MediaSendFlowEvent.NavigateToFiles -> backStack.goToFiles(event.mediaFolder)
+      MediaSendFlowEvent.NavigateToEdit -> backStack.goToEdit()
+      MediaSendFlowEvent.NavigateToCamera -> backStack.goToCamera()
     }
   }
 
-  override fun onMediaCaptureScreenEvent(mediaCaptureScreenEvent: MediaCaptureScreenEvent) {
+  override fun onMediaCaptureScreenEvent(mediaCaptureScreenEvent: MediaCaptureScreenEvents) {
     when (mediaCaptureScreenEvent) {
-      MediaCaptureScreenEvent.ShowCamera -> backStack.goToCamera()
-      MediaCaptureScreenEvent.ShowTextStory -> backStack.goToTextStory()
-      is MediaCaptureScreenEvent.Camera -> onCameraXScreenEvent(mediaCaptureScreenEvent.event)
-      MediaCaptureScreenEvent.NextClicked -> backStack.goToEdit()
-      MediaCaptureScreenEvent.CycleTextStoryBackgroundColor -> error("Handled directly in the fragment.")
-      MediaCaptureScreenEvent.AddLinkToTextStory -> error("Handled directly in the fragment.")
+      MediaCaptureScreenEvents.ShowCamera -> backStack.goToCamera()
+      MediaCaptureScreenEvents.ShowTextStory -> backStack.goToTextStory()
+      is MediaCaptureScreenEvents.Camera -> onCameraXScreenEvent(mediaCaptureScreenEvent.event)
+      MediaCaptureScreenEvents.NextClicked -> backStack.goToEdit()
+      MediaCaptureScreenEvents.CycleTextStoryBackgroundColor -> error("Handled directly in the fragment.")
+      MediaCaptureScreenEvents.AddLinkToTextStory -> error("Handled directly in the fragment.")
     }
   }
 
-  private fun onCameraXScreenEvent(event: CameraXScreenEvent) {
+  private fun onCameraXScreenEvent(event: CameraXScreenEvents) {
     when (event) {
-      CameraXScreenEvent.CameraCloseClicked -> sendHudCommand(HudCommand.CloseScreen)
-      CameraXScreenEvent.GalleryClicked -> backStack.goToFolders()
-      is CameraXScreenEvent.ImageCaptured -> handleImageCaptured(event)
-      is CameraXScreenEvent.VideoCaptured -> handleVideoCaptured(event)
-      is CameraXScreenEvent.QrCodeFound -> qrCheckRequest.trySend(event.data)
-      CameraXScreenEvent.VideoCaptureError -> {
+      CameraXScreenEvents.CameraCloseClicked -> sendHudCommand(MediaSendFlowHudCommand.CloseScreen)
+      CameraXScreenEvents.GalleryClicked -> backStack.goToFolders()
+      is CameraXScreenEvents.ImageCaptured -> handleImageCaptured(event)
+      is CameraXScreenEvents.VideoCaptured -> handleVideoCaptured(event)
+      is CameraXScreenEvents.QrCodeFound -> qrCheckRequest.trySend(event.data)
+      CameraXScreenEvents.VideoCaptureError -> {
         internalSnackbarEvents.trySend(SnackbarEvent(message = R.string.MediaSendViewModel__error_recording_video))
       }
     }
   }
 
-  override fun onMediaEditScreenEvent(mediaEditScreenEvent: MediaEditScreenEvent) {
+  override fun onMediaEditScreenEvent(mediaEditScreenEvent: MediaEditScreenEvents) {
     when (mediaEditScreenEvent) {
-      is MediaEditScreenEvent.FocusedMediaChanged -> setFocusedMedia(mediaEditScreenEvent.media)
-      is MediaEditScreenEvent.ReorderSelectedMedia -> reorderMedia(mediaEditScreenEvent.fromIndex, mediaEditScreenEvent.toIndex)
-      MediaEditScreenEvent.NextClick -> onNextClick()
-      is MediaEditScreenEvent.ScheduleSendClick -> onScheduleSendClick(mediaEditScreenEvent.option)
-      MediaEditScreenEvent.NavigateBack -> onPopFromEdit()
-      is MediaEditScreenEvent.VideoTrimChanged -> onEditVideoDuration(
+      is MediaEditScreenEvents.FocusedMediaChanged -> setFocusedMedia(mediaEditScreenEvent.media)
+      is MediaEditScreenEvents.ReorderSelectedMedia -> reorderMedia(mediaEditScreenEvent.fromIndex, mediaEditScreenEvent.toIndex)
+      MediaEditScreenEvents.NextClick -> onNextClick()
+      is MediaEditScreenEvents.ScheduleSendClick -> onScheduleSendClick(mediaEditScreenEvent.option)
+      MediaEditScreenEvents.NavigateBack -> onPopFromEdit()
+      is MediaEditScreenEvents.VideoTrimChanged -> onEditVideoDuration(
         totalDurationUs = mediaEditScreenEvent.videoTrimData.totalInputDurationUs,
         startTimeUs = mediaEditScreenEvent.videoTrimData.startTimeUs,
         endTimeUs = mediaEditScreenEvent.videoTrimData.endTimeUs,
         touchEnabled = mediaEditScreenEvent.editingComplete
       )
 
-      is MediaEditScreenEvent.VideoSeek -> error("VideoSeek is routed to the video player bus by MediaEditScreen and must not reach the view-model.")
-      is MediaEditScreenEvent.AddMessageClick -> {
+      is MediaEditScreenEvents.VideoSeek -> error("VideoSeek is routed to the video player bus by MediaEditScreen and must not reach the view-model.")
+      is MediaEditScreenEvents.AddMessageClick -> {
         val snapshot: MediaSendFlowState = state.value
 
         sendHudCommand(
-          HudCommand.ShowAddAMessageDialog(
+          MediaSendFlowHudCommand.ShowAddAMessageDialog(
             message = snapshot.message ?: "",
             startWithEmojiKeyboard = mediaEditScreenEvent.startWithEmojiKeyboard,
             isViewOnceAvailable = snapshot.isViewOnceAvailable
@@ -310,42 +310,42 @@ class MediaSendFlowViewModel(
         )
       }
 
-      MediaEditScreenEvent.StickerClick -> {
-        sendHudCommand(HudCommand.SelectSticker)
+      MediaEditScreenEvents.StickerClick -> {
+        sendHudCommand(MediaSendFlowHudCommand.SelectSticker)
       }
 
-      MediaEditScreenEvent.NavigateToGallery -> {
+      MediaEditScreenEvents.NavigateToGallery -> {
         backStack.goToFolders()
       }
 
-      is MediaEditScreenEvent.SetMediaQuality -> {
+      is MediaEditScreenEvents.SetMediaQuality -> {
         setSentMediaQuality(mediaEditScreenEvent.quality)
       }
 
-      MediaEditScreenEvent.ToggleViewOnce -> {
+      MediaEditScreenEvents.ToggleViewOnce -> {
         toggleViewOnce()
       }
 
-      MediaEditScreenEvent.SaveMedia -> {
+      MediaEditScreenEvents.SaveMedia -> {
         saveFocusedMediaToStorage()
       }
 
-      is MediaEditScreenEvent.RemoveMedia -> {
+      is MediaEditScreenEvents.RemoveMedia -> {
         removeMedia(mediaEditScreenEvent.media)
       }
 
-      is MediaEditScreenEvent.BrushWidthChanged -> {
+      is MediaEditScreenEvents.BrushWidthChanged -> {
         setBrushWidth(mediaEditScreenEvent.tool, mediaEditScreenEvent.fraction)
       }
 
-      is MediaEditScreenEvent.ToggleBlurFaces -> {
+      is MediaEditScreenEvents.ToggleBlurFaces -> {
         setBlurFacesEnabled(mediaEditScreenEvent.enabled)
       }
     }
   }
 
   /**
-   * Result of the picker opened for [HudCommand.SelectSticker], applied to the focused image. A null [renderer] means
+   * Result of the picker opened for [MediaSendFlowHudCommand.SelectSticker], applied to the focused image. A null [renderer] means
    * the picker was dismissed.
    */
   fun onStickerSelected(renderer: Renderer?) {
@@ -389,7 +389,7 @@ class MediaSendFlowViewModel(
     repository.brushWidths = brushWidths
   }
 
-  private fun handleImageCaptured(imageCaptured: CameraXScreenEvent.ImageCaptured) {
+  private fun handleImageCaptured(imageCaptured: CameraXScreenEvents.ImageCaptured) {
     viewModelScope.launch {
       val media: Media? = withContext(Dispatchers.IO) {
         try {
@@ -413,7 +413,7 @@ class MediaSendFlowViewModel(
     }
   }
 
-  private fun handleVideoCaptured(videoCaptured: CameraXScreenEvent.VideoCaptured) {
+  private fun handleVideoCaptured(videoCaptured: CameraXScreenEvents.VideoCaptured) {
     viewModelScope.launch {
       val media: Media? = withContext(Dispatchers.IO) {
         try {
@@ -470,7 +470,7 @@ class MediaSendFlowViewModel(
     backStack.goToEdit()
   }
 
-  private fun sendHudCommand(hudCommand: HudCommand) {
+  private fun sendHudCommand(hudCommand: MediaSendFlowHudCommand) {
     viewModelScope.launch {
       hudCommandChannel.send(hudCommand)
     }
@@ -578,8 +578,8 @@ class MediaSendFlowViewModel(
     internalSnackbarEvents.trySend(SnackbarEvent(message = message))
     updateState { copy(isSelectionRejected = true) }
 
-    if (isSelectionEmpty && backStack.lastOrNull() == MediaSendNavKey.Edit) {
-      backStack.resetTo(if (state.value.isCameraFirst) MediaSendNavKey.Capture.Camera else MediaSendNavKey.Select.Folders)
+    if (isSelectionEmpty && backStack.lastOrNull() == MediaSendRoute.Edit) {
+      backStack.resetTo(if (state.value.isCameraFirst) MediaSendRoute.Capture.Camera else MediaSendRoute.Select.Folders)
     }
   }
 
@@ -1127,17 +1127,17 @@ class MediaSendFlowViewModel(
 
   private fun onScheduleSendClick(option: ScheduleSendOption) {
     when (option) {
-      is ScheduleSendOption.PresetTime -> sendHudCommand(HudCommand.ConfirmScheduledSend(option.timeMs))
-      ScheduleSendOption.PickTime -> sendHudCommand(HudCommand.PickScheduledSendTime)
+      is ScheduleSendOption.PresetTime -> sendHudCommand(MediaSendFlowHudCommand.ConfirmScheduledSend(option.timeMs))
+      ScheduleSendOption.PickTime -> sendHudCommand(MediaSendFlowHudCommand.PickScheduledSendTime)
     }
   }
 
   /**
-   * A time chosen in the picker opened for [HudCommand.PickScheduledSendTime]. It still has to clear the app's
+   * A time chosen in the picker opened for [MediaSendFlowHudCommand.PickScheduledSendTime]. It still has to clear the app's
    * scheduling prerequisites, just like a time picked straight from the menu.
    */
   fun onScheduledSendTimeSelected(scheduledTime: Long) {
-    sendHudCommand(HudCommand.ConfirmScheduledSend(scheduledTime))
+    sendHudCommand(MediaSendFlowHudCommand.ConfirmScheduledSend(scheduledTime))
   }
 
   /**
@@ -1223,18 +1223,18 @@ class MediaSendFlowViewModel(
 
     viewModelScope.launch {
       when (val result = send()) {
-        is SendResult.ReadyToSend -> sendHudCommand(HudCommand.FinishWithResult(result.payload))
-        is SendResult.Success -> sendHudCommand(HudCommand.FinishWithoutResult)
+        is SendResult.ReadyToSend -> sendHudCommand(MediaSendFlowHudCommand.FinishWithResult(result.payload))
+        is SendResult.Success -> sendHudCommand(MediaSendFlowHudCommand.FinishWithoutResult)
 
         is SendResult.UntrustedIdentity -> {
           updateState { copy(isSending = false) }
-          sendHudCommand(HudCommand.ResolveUntrustedIdentities(result.recipientIds))
+          sendHudCommand(MediaSendFlowHudCommand.ResolveUntrustedIdentities(result.recipientIds))
         }
 
         is SendResult.Error -> {
           Log.w(TAG, "Send failed: ${result.message}")
           updateState { copy(isSending = false) }
-          sendHudCommand(HudCommand.CloseScreen)
+          sendHudCommand(MediaSendFlowHudCommand.CloseScreen)
         }
       }
     }

@@ -10,12 +10,12 @@ import kotlinx.serialization.Serializable
 import org.signal.core.models.media.MediaFolder
 
 /**
- * Nav3 keys
+ * Using @Serializable and NavKey for type-safe navigation with Navigation 3.
  */
 @Serializable
-sealed interface MediaSendNavKey : NavKey {
+sealed interface MediaSendRoute : NavKey {
   @Serializable
-  sealed interface Select : MediaSendNavKey {
+  sealed interface Select : MediaSendRoute {
     @Serializable
     data object Folders : Select
 
@@ -24,7 +24,7 @@ sealed interface MediaSendNavKey : NavKey {
   }
 
   @Serializable
-  sealed interface Capture : MediaSendNavKey {
+  sealed interface Capture : MediaSendRoute {
     @Serializable
     data object Chrome : Capture
 
@@ -36,8 +36,8 @@ sealed interface MediaSendNavKey : NavKey {
   }
 
   @Serializable
-  data object Edit : MediaSendNavKey
+  data object Edit : MediaSendRoute
 
   @Serializable
-  data object Send : MediaSendNavKey
+  data object Send : MediaSendRoute
 }

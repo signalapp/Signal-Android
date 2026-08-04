@@ -18,7 +18,7 @@ import org.signal.mediasend.rememberPreviewState
 @Composable
 fun MediaCameraCaptureScreen(
   state: MediaSendFlowState,
-  onEvent: (MediaCaptureScreenEvent) -> Unit
+  onEvent: (MediaCaptureScreenEvents) -> Unit
 ) {
   CameraXScreen(
     state = remember(state.selectedMedia) {
@@ -28,7 +28,7 @@ fun MediaCameraCaptureScreen(
         selectedMediaCount = state.selectedMedia.size
       )
     },
-    onEvent = { event -> onEvent(MediaCaptureScreenEvent.Camera(event)) },
+    onEvent = { event -> onEvent(MediaCaptureScreenEvents.Camera(event)) },
     videoRecordingConfig = rememberVideoRecordingConfig(
       mediaConstraints = state.mediaConstraints,
       maxDurationSecondsOverride = if (state.isStory) state.storyMaxVideoDuration.inWholeSeconds.toInt() else 0

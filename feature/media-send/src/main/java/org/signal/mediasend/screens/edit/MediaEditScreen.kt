@@ -72,7 +72,7 @@ import org.signal.mediasend.screens.edit.video.VideoTrimBar
 @Composable
 internal fun MediaEditScreen(
   state: MediaSendFlowState,
-  onEvent: (MediaEditScreenEvent) -> Unit,
+  onEvent: (MediaEditScreenEvents) -> Unit,
   imageControllers: ImageController.Container
 ) {
   val scope = rememberCoroutineScope()
@@ -97,7 +97,7 @@ internal fun MediaEditScreen(
     state.selectedMedia.size == 1 &&
     state.selectedMedia.firstOrNull() == state.cameraFirstCapture
   BackHandler(enabled = isOnlyCameraFirstCapture) {
-    onEvent(MediaEditScreenEvent.NavigateBack)
+    onEvent(MediaEditScreenEvents.NavigateBack)
   }
 
   Box(modifier = Modifier.fillMaxSize()) {
@@ -224,7 +224,7 @@ internal fun MediaEditScreen(
             imageController.setBrushWidthFraction(fraction)
 
             if (gestureComplete && tool != null) {
-              onEvent(MediaEditScreenEvent.BrushWidthChanged(tool, fraction))
+              onEvent(MediaEditScreenEvents.BrushWidthChanged(tool, fraction))
             }
           }
         )
@@ -266,11 +266,11 @@ internal fun MediaEditScreen(
               pagerState = pagerState,
               enabled = !isInteracting,
               onFocusedMediaChange = {
-                onEvent(MediaEditScreenEvent.FocusedMediaChanged(it))
+                onEvent(MediaEditScreenEvents.FocusedMediaChanged(it))
               },
               onThumbnailClick = { index ->
                 if (pagerState.currentPage == index) {
-                  onEvent(MediaEditScreenEvent.RemoveMedia(state.selectedMedia[index]))
+                  onEvent(MediaEditScreenEvents.RemoveMedia(state.selectedMedia[index]))
                 } else {
                   scope.launch {
                     pagerState.animateScrollToPage(index)
@@ -278,7 +278,7 @@ internal fun MediaEditScreen(
                 }
               },
               onReorder = { fromIndex, toIndex ->
-                onEvent(MediaEditScreenEvent.ReorderSelectedMedia(fromIndex, toIndex))
+                onEvent(MediaEditScreenEvents.ReorderSelectedMedia(fromIndex, toIndex))
               }
             )
           }
@@ -304,7 +304,7 @@ internal fun MediaEditScreen(
             MediaEditControl(faded = isDragging) {
               BlurFacesBar(
                 checked = controller.isBlurringFaces,
-                onCheckedChange = { onEvent(MediaEditScreenEvent.ToggleBlurFaces(it)) }
+                onCheckedChange = { onEvent(MediaEditScreenEvents.ToggleBlurFaces(it)) }
               )
             }
           }
@@ -337,7 +337,7 @@ internal fun MediaEditScreen(
           message = state.message,
           recipientChatColor = recipientChatColor,
           onEvent = onEvent,
-          onNextClick = { onEvent(MediaEditScreenEvent.NextClick) },
+          onNextClick = { onEvent(MediaEditScreenEvents.NextClick) },
           modifier = Modifier
             .widthIn(max = 624.dp)
             .padding(horizontal = 16.dp)
@@ -410,7 +410,7 @@ internal fun MediaEditScreen(
 @Composable
 private fun MediaToolbar(
   state: MediaSendFlowState,
-  onEvent: (MediaEditScreenEvent) -> Unit,
+  onEvent: (MediaEditScreenEvents) -> Unit,
   focusedUri: Uri?,
   focusedEditorState: EditorState?,
   imageController: ImageController?,
@@ -465,7 +465,7 @@ private fun VideoTrimTimeline(
   editorState: EditorState.VideoTrim,
   videoEditorViewModel: VideoEditorViewModel,
   onInteractingChange: (Boolean) -> Unit,
-  onEvent: (MediaEditScreenEvent) -> Unit
+  onEvent: (MediaEditScreenEvents) -> Unit
 ) {
   val playbackPositionUs by produceState(editorState.videoTrimData.startTimeUs, videoUri) {
     videoEditorViewModel.events(videoUri).collect { event ->
@@ -483,12 +483,12 @@ private fun VideoTrimTimeline(
     playbackPositionUs = playbackPositionUs,
     onEvent = { event ->
       when (event) {
-        is MediaEditScreenEvent.VideoTrimChanged -> {
+        is MediaEditScreenEvents.VideoTrimChanged -> {
           onInteractingChange(!event.editingComplete)
           onEvent(event)
         }
 
-        is MediaEditScreenEvent.VideoSeek -> {
+        is MediaEditScreenEvents.VideoSeek -> {
           onInteractingChange(!event.editingComplete)
           videoEditorViewModel.sendCommand(
             videoUri,

@@ -58,7 +58,7 @@ internal fun MediaSendNavigation(
       )
     ) { key ->
       when (key) {
-        is MediaSendNavKey.Capture -> NavEntry(MediaSendNavKey.Capture.Chrome) {
+        is MediaSendRoute.Capture -> NavEntry(MediaSendRoute.Capture.Chrome) {
           val state by viewModel.state.collectAsStateWithLifecycle()
 
           MediaCaptureScreen(
@@ -69,7 +69,7 @@ internal fun MediaSendNavigation(
           )
         }
 
-        MediaSendNavKey.Select.Folders -> NavEntry(key) {
+        MediaSendRoute.Select.Folders -> NavEntry(key) {
           val selectViewModel: MediaSelectViewModel = viewModel(
             factory = MediaSelectViewModel.Factory(
               parentState = viewModel.state,
@@ -87,7 +87,7 @@ internal fun MediaSendNavigation(
           )
         }
 
-        is MediaSendNavKey.Select.Files -> NavEntry(key) {
+        is MediaSendRoute.Select.Files -> NavEntry(key) {
           val selectViewModel: MediaSelectViewModel = viewModel(
             factory = MediaSelectViewModel.Factory(
               parentState = viewModel.state,
@@ -105,7 +105,7 @@ internal fun MediaSendNavigation(
           )
         }
 
-        is MediaSendNavKey.Edit -> NavEntry(MediaSendNavKey.Edit) {
+        is MediaSendRoute.Edit -> NavEntry(MediaSendRoute.Edit) {
           val state by viewModel.state.collectAsStateWithLifecycle()
           MediaEditScreen(
             state = state,
@@ -114,7 +114,7 @@ internal fun MediaSendNavigation(
           )
         }
 
-        is MediaSendNavKey.Send -> NavEntry(key) {
+        is MediaSendRoute.Send -> NavEntry(key) {
           val state by viewModel.state.collectAsStateWithLifecycle()
           sendSlot(state)
         }

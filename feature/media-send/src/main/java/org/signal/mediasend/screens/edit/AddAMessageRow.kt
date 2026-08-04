@@ -62,7 +62,7 @@ val LocalAddAMessageRowTextField = compositionLocalOf<@Composable (CharSequence,
 @Composable
 fun AddAMessageRow(
   message: CharSequence?,
-  onEvent: (MediaEditScreenEvent) -> Unit,
+  onEvent: (MediaEditScreenEvents) -> Unit,
   onNextClick: () -> Unit,
   modifier: Modifier = Modifier,
   enabled: Boolean = true,
@@ -87,7 +87,7 @@ fun AddAMessageRow(
             // A view-once send cannot carry a body, so the row becomes a static label rather than an entry point.
             Modifier
           } else {
-            Modifier.clickable(enabled = enabled, onClickLabel = stringResource(R.string.AddAMessageRow__add_a_message), onClick = { onEvent(MediaEditScreenEvent.AddMessageClick()) }, role = Role.Button)
+            Modifier.clickable(enabled = enabled, onClickLabel = stringResource(R.string.AddAMessageRow__add_a_message), onClick = { onEvent(MediaEditScreenEvents.AddMessageClick()) }, role = Role.Button)
           }
         )
     ) {
@@ -104,7 +104,7 @@ fun AddAMessageRow(
       } else {
         IconButtons.IconButton(
           enabled = enabled,
-          onClick = { onEvent(MediaEditScreenEvent.AddMessageClick(startWithEmojiKeyboard = true)) }
+          onClick = { onEvent(MediaEditScreenEvents.AddMessageClick(startWithEmojiKeyboard = true)) }
         ) {
           Icon(
             painter = SignalIcons.Emoji.painter,
@@ -123,7 +123,7 @@ fun AddAMessageRow(
       if (viewOnceAvailable) {
         IconButtons.IconButton(
           enabled = enabled,
-          onClick = { onEvent(MediaEditScreenEvent.ToggleViewOnce) }
+          onClick = { onEvent(MediaEditScreenEvents.ToggleViewOnce) }
         ) {
           Icon(
             painter = if (viewOnce) SignalIcons.ViewOnce.painter else SignalIcons.ViewOnceInfinite.painter,
@@ -159,7 +159,7 @@ fun AddAMessageRow(
 
       ScheduleSendMenu(
         controller = scheduleSendMenuController,
-        onOptionClick = { onEvent(MediaEditScreenEvent.ScheduleSendClick(it)) }
+        onOptionClick = { onEvent(MediaEditScreenEvents.ScheduleSendClick(it)) }
       )
     }
   }

@@ -46,13 +46,13 @@ class MediaSelectScreenDragTest {
   @get:Rule
   val mediaSendDependenciesRule = MediaSendDependenciesRule(ApplicationProvider.getApplicationContext())
 
-  private val events = mutableListOf<MediaSelectScreenEvent>()
+  private val events = mutableListOf<MediaSelectScreenEvents>()
 
   private val selected: Set<Media>
-    get() = events.filterIsInstance<MediaSelectScreenEvent.MediaSelected>().flatMap { it.media }.toSet()
+    get() = events.filterIsInstance<MediaSelectScreenEvents.MediaSelected>().flatMap { it.media }.toSet()
 
   private val unselected: Set<Media>
-    get() = events.filterIsInstance<MediaSelectScreenEvent.MediaUnselected>().flatMap { it.media }.toSet()
+    get() = events.filterIsInstance<MediaSelectScreenEvents.MediaUnselected>().flatMap { it.media }.toSet()
 
   @Test
   fun `Given an unselected tile, when it is long pressed, then it alone is selected`() {
@@ -138,7 +138,7 @@ class MediaSelectScreenDragTest {
       SignalTheme {
         Box(modifier = Modifier.size(GRID_WIDTH.dp, GRID_HEIGHT.dp)) {
           MediaSelectScreen(
-            state = MediaSelectScreenState.Files(
+            state = MediaSelectState.Files(
               selectedMediaFolder = FOLDER,
               selectedMediaFolderItems = MEDIA,
               selectedMedia = selectedMedia

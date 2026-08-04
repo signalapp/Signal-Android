@@ -335,17 +335,17 @@ internal fun rememberVideoRecordingConfig(mediaConstraints: MediaConstraints?, m
 }
 
 /**
- * Bridges [CameraXScreenEvent]s emitted by [CameraXScreen] back onto the legacy [CameraFragment.Controller] callbacks
+ * Bridges [CameraXScreenEvents]s emitted by [CameraXScreen] back onto the legacy [CameraFragment.Controller] callbacks
  * for Fragment-based consumers.
  */
-private fun CameraFragment.Controller.onCameraXScreenEvent(event: CameraXScreenEvent) {
+private fun CameraFragment.Controller.onCameraXScreenEvent(event: CameraXScreenEvents) {
   when (event) {
-    is CameraXScreenEvent.ImageCaptured -> onImageCaptured(event.data, event.width, event.height)
-    is CameraXScreenEvent.VideoCaptured -> onVideoCaptured(event.fd, event.durationMs)
-    is CameraXScreenEvent.QrCodeFound -> onQrCodeFound(event.data)
-    CameraXScreenEvent.VideoCaptureError -> onVideoCaptureError()
-    CameraXScreenEvent.GalleryClicked -> onGalleryClicked()
-    CameraXScreenEvent.CameraCloseClicked -> onCameraCloseClicked()
+    is CameraXScreenEvents.ImageCaptured -> onImageCaptured(event.data, event.width, event.height)
+    is CameraXScreenEvents.VideoCaptured -> onVideoCaptured(event.fd, event.durationMs)
+    is CameraXScreenEvents.QrCodeFound -> onQrCodeFound(event.data)
+    CameraXScreenEvents.VideoCaptureError -> onVideoCaptureError()
+    CameraXScreenEvents.GalleryClicked -> onGalleryClicked()
+    CameraXScreenEvents.CameraCloseClicked -> onCameraCloseClicked()
   }
 }
 
@@ -438,7 +438,7 @@ class VideoFileDescriptor(val context: Context) {
 @Composable
 fun CameraXScreen(
   state: CameraXScreenState,
-  onEvent: (CameraXScreenEvent) -> Unit,
+  onEvent: (CameraXScreenEvents) -> Unit,
   videoRecordingConfig: VideoRecordingConfig,
   onCheckPermissions: () -> Unit,
   hasCameraPermission: () -> Boolean,
@@ -499,7 +499,7 @@ fun CameraXScreen(
   LaunchedEffect(cameraViewModel, state.isQrScanEnabled) {
     if (state.isQrScanEnabled) {
       cameraViewModel.qrCodeDetected.collect { qrCode ->
-        onEvent(CameraXScreenEvent.QrCodeFound(qrCode))
+        onEvent(CameraXScreenEvents.QrCodeFound(qrCode))
       }
     }
   }
@@ -629,7 +629,7 @@ fun CameraXScreen(
       PermissionMissingContent(
         isVideoEnabled = captureMode != CameraCaptureMode.ImageOnly,
         onRequestPermissions = onCheckPermissions,
-        onGalleryClicked = { onEvent(CameraXScreenEvent.GalleryClicked) },
+        onGalleryClicked = { onEvent(CameraXScreenEvents.GalleryClicked) },
         galleryButtonBottomPadding = hudBottomMargin + 16.dp
       )
     }
@@ -687,7 +687,7 @@ private fun handleHudEvent(
   event: StandardCameraHudEvents,
   context: Context,
   cameraViewModel: CameraScreenViewModel,
-  onEvent: (CameraXScreenEvent) -> Unit,
+  onEvent: (CameraXScreenEvents) -> Unit,
   isVideoEnabled: Boolean,
   onRequestMicPermission: () -> Unit,
   createVideoFileDescriptor: () -> ActiveRecording?,
@@ -725,11 +725,11 @@ private fun handleHudEvent(
     }
 
     is StandardCameraHudEvents.GalleryClick -> {
-      onEvent(CameraXScreenEvent.GalleryClicked)
+      onEvent(CameraXScreenEvents.GalleryClicked)
     }
 
     is StandardCameraHudEvents.CloseClick -> {
-      onEvent(CameraXScreenEvent.CameraCloseClicked)
+      onEvent(CameraXScreenEvents.CameraCloseClicked)
     }
 
     is StandardCameraHudEvents.ToggleFlash -> {
@@ -754,33 +754,33 @@ private fun handleHudEvent(
   }
 }
 
-private fun handlePhotoCaptured(bitmap: Bitmap, onEvent: (CameraXScreenEvent) -> Unit) {
+private fun handlePhotoCaptured(bitmap: Bitmap, onEvent: (CameraXScreenEvents) -> Unit) {
   // Convert bitmap to JPEG byte array
   val outputStream = ByteArrayOutputStream()
   bitmap.compress(Bitmap.CompressFormat.JPEG, 90, outputStream)
   val data = outputStream.toByteArray()
 
-  onEvent(CameraXScreenEvent.ImageCaptured(data, bitmap.width, bitmap.height))
+  onEvent(CameraXScreenEvents.ImageCaptured(data, bitmap.width, bitmap.height))
 }
 
 private fun handleVideoCaptured(
   result: VideoCaptureResult,
   releaseVideoFileDescriptor: () -> SeekableFileDescriptor?,
-  onEvent: (CameraXScreenEvent) -> Unit
+  onEvent: (CameraXScreenEvents) -> Unit
 ) {
   when (result) {
     is VideoCaptureResult.Success -> {
       val descriptor = releaseVideoFileDescriptor()
       if (descriptor != null) {
-        onEvent(CameraXScreenEvent.VideoCaptured(descriptor, result.durationMs))
+        onEvent(CameraXScreenEvents.VideoCaptured(descriptor, result.durationMs))
       } else {
-        onEvent(CameraXScreenEvent.VideoCaptureError)
+        onEvent(CameraXScreenEvents.VideoCaptureError)
       }
     }
 
     is VideoCaptureResult.Error -> {
       Log.w(TAG, "Video capture failed: ${result.message}", result.throwable)
-      onEvent(CameraXScreenEvent.VideoCaptureError)
+      onEvent(CameraXScreenEvents.VideoCaptureError)
     }
   }
 }

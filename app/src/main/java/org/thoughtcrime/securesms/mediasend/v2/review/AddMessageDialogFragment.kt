@@ -26,7 +26,7 @@ import org.signal.core.ui.view.Stub
 import org.signal.core.util.ByteLimitInputFilter
 import org.signal.core.util.EditTextUtil
 import org.signal.core.util.getParcelableCompat
-import org.signal.mediasend.HudCommand
+import org.signal.mediasend.MediaSendFlowHudCommand
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.ui.warning.guardAgainstRecoveryKeyPaste
 import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout
@@ -339,7 +339,7 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
     const val RESULT_INCREMENT_VIEW_ONCE_STATE = "AddMessageViewModel_IncrementViewOnceState"
     const val RESULT_MESSAGE = "AddMessageViewModel__Message"
 
-    fun show(fragmentManager: FragmentManager, addAMessageDialog: HudCommand.ShowAddAMessageDialog, destination: RecipientId?) {
+    fun show(fragmentManager: FragmentManager, addAMessageDialog: MediaSendFlowHudCommand.ShowAddAMessageDialog, destination: RecipientId?) {
       return show(fragmentManager, addAMessageDialog.message, addAMessageDialog.startWithEmojiKeyboard, addAMessageDialog.isViewOnceAvailable, destination)
     }
 

@@ -31,11 +31,11 @@ import org.signal.core.ui.WindowBreakpoint
 import org.signal.core.ui.compose.LocalChatColorProvider
 import org.signal.core.ui.compose.LocalDisplayNameProvider
 import org.signal.core.ui.getWindowBreakpoint
-import org.signal.mediasend.HudCommand
 import org.signal.mediasend.MediaSendFlowActivityContract
+import org.signal.mediasend.MediaSendFlowHudCommand
 import org.signal.mediasend.MediaSendFlowViewModel
-import org.signal.mediasend.MediaSendNavKey
 import org.signal.mediasend.MediaSendRecipient
+import org.signal.mediasend.MediaSendRoute
 import org.signal.mediasend.MediaSendScreen
 import org.signal.mediasend.screens.edit.LocalAddAMessageRowTextField
 import org.signal.mediasend.screens.edit.LocalScheduledSendTimeFormatter
@@ -120,7 +120,7 @@ class MediaSendV3Activity :
 
     setContent {
       val context = LocalContext.current
-      val isOnCaptureScreen = viewModel.backStack.lastOrNull() is MediaSendNavKey.Capture
+      val isOnCaptureScreen = viewModel.backStack.lastOrNull() is MediaSendRoute.Capture
 
       LaunchedEffect(isOnCaptureScreen) {
         onCaptureScreenChanged(isOnCaptureScreen)
@@ -170,7 +170,7 @@ class MediaSendV3Activity :
           },
           onExternalHudCommand = {
             when (it) {
-              is HudCommand.ShowAddAMessageDialog -> {
+              is MediaSendFlowHudCommand.ShowAddAMessageDialog -> {
                 AddMessageDialogFragment.show(
                   fragmentManager = supportFragmentManager,
                   addAMessageDialog = it,
@@ -180,19 +180,19 @@ class MediaSendV3Activity :
                 )
               }
 
-              is HudCommand.SelectSticker -> stickerLauncher.launch(Unit)
+              is MediaSendFlowHudCommand.SelectSticker -> stickerLauncher.launch(Unit)
 
-              is HudCommand.PickScheduledSendTime -> {
+              is MediaSendFlowHudCommand.PickScheduledSendTime -> {
                 ScheduleMessageTimePickerBottomSheet.showSchedule(supportFragmentManager)
               }
 
-              is HudCommand.ConfirmScheduledSend -> {
+              is MediaSendFlowHudCommand.ConfirmScheduledSend -> {
                 if (!ReenableScheduledMessagesDialogFragment.showIfNeeded(this, supportFragmentManager, null, it.scheduledTime)) {
                   viewModel.onScheduledSendConfirmed(it.scheduledTime)
                 }
               }
 
-              is HudCommand.GoToConversation -> {
+              is MediaSendFlowHudCommand.GoToConversation -> {
                 lifecycleScope.launch(Dispatchers.Default) {
                   val recipient = Recipient.resolved(RecipientId.from(it.recipientId.id))
                   withContext(Dispatchers.Main) {
@@ -205,27 +205,27 @@ class MediaSendV3Activity :
                 }
               }
 
-              HudCommand.GoToLinkedDevices -> {
+              MediaSendFlowHudCommand.GoToLinkedDevices -> {
                 startActivity(AppSettingsActivity.linkedDevices(this))
                 finish()
               }
 
-              is HudCommand.GoToQuickTransfer -> {
+              is MediaSendFlowHudCommand.GoToQuickTransfer -> {
                 startActivity(QuickTransferOldDeviceActivity.intent(this, it.qrData))
                 finish()
               }
 
-              is HudCommand.FinishWithResult -> finishWithResult(it.payload)
+              is MediaSendFlowHudCommand.FinishWithResult -> finishWithResult(it.payload)
 
-              is HudCommand.FinishWithoutResult -> onSentWithoutResult()
+              is MediaSendFlowHudCommand.FinishWithoutResult -> onSentWithoutResult()
 
-              is HudCommand.ResolveUntrustedIdentities -> {
+              is MediaSendFlowHudCommand.ResolveUntrustedIdentities -> {
                 SafetyNumberBottomSheet
                   .forRecipientIdsAndDestinations(it.untrustedRecipientIds.map(RecipientId::from), destinations())
                   .show(supportFragmentManager)
               }
 
-              is HudCommand.CloseScreen -> {
+              is MediaSendFlowHudCommand.CloseScreen -> {
                 // TODO [media-send] warning dialog
                 finish()
               }

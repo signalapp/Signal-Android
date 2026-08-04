@@ -30,7 +30,7 @@ import org.signal.mediasend.MediaSendFlowState
 import org.signal.mediasend.rememberPreviewState
 import org.signal.mediasend.screens.edit.ImageController
 import org.signal.mediasend.screens.edit.MediaEditScreenDialogs
-import org.signal.mediasend.screens.edit.MediaEditScreenEvent
+import org.signal.mediasend.screens.edit.MediaEditScreenEvents
 import org.signal.mediasend.screens.edit.MediaEditorToolbar
 import org.signal.mediasend.screens.edit.MediaEditorToolbarButton
 import org.signal.mediasend.screens.edit.MediaEditorToolbarSharedButtons
@@ -41,7 +41,7 @@ internal fun ImageEditorToolbar(
   imageEditorController: ImageController,
   state: MediaSendFlowState,
   editorState: EditorState.Image,
-  onEvent: (MediaEditScreenEvent) -> Unit,
+  onEvent: (MediaEditScreenEvents) -> Unit,
   modifier: Modifier = Modifier
 ) {
   when {
@@ -71,7 +71,7 @@ private fun ImageEditorNoneStateToolbar(
   imageEditorController: ImageController,
   state: MediaSendFlowState,
   editorState: EditorState.Image,
-  onEvent: (MediaEditScreenEvent) -> Unit,
+  onEvent: (MediaEditScreenEvents) -> Unit,
   modifier: Modifier = Modifier
 ) {
   MediaEditorToolbar(modifier) {
@@ -96,7 +96,7 @@ private fun ImageEditorNoneStateToolbar(
 @Composable
 private fun ImageEditorDrawStateToolbar(
   imageEditorController: ImageController,
-  onEvent: (MediaEditScreenEvent) -> Unit,
+  onEvent: (MediaEditScreenEvents) -> Unit,
   modifier: Modifier = Modifier
 ) {
   MediaEditorToolbar(
@@ -135,7 +135,7 @@ private fun ImageEditorDrawStateToolbar(
         // Unconditional: if a previous pick never delivered a result the mode is still INSERT_STICKER, and gating on it
         // would leave the button dead.
         imageEditorController.enterStickerMode()
-        onEvent(MediaEditScreenEvent.StickerClick)
+        onEvent(MediaEditScreenEvents.StickerClick)
       }
     )
 
