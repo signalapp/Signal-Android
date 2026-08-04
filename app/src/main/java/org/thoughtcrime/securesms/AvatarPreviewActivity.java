@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.transition.TransitionInflater;
@@ -129,6 +130,9 @@ public final class AvatarPreviewActivity extends PassphraseRequiredActivity {
                 @Override
                 public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
                   avatar.setImageDrawable(resource);
+                  if (resource instanceof Animatable) {
+                    ((Animatable) resource).start();
+                  }
                   startPostponedEnterTransition();
                 }
 

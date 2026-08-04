@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.components;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 
@@ -340,6 +341,9 @@ public final class AvatarImageView extends AppCompatImageView {
     @Override
     public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
       setImageDrawable(resource);
+      if (resource instanceof Animatable) {
+        ((Animatable) resource).start();
+      }
     }
   }
 
