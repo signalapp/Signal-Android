@@ -37,6 +37,7 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -337,9 +338,12 @@ private fun CameraControls(
 ) {
   val orientation = LocalConfiguration.current.orientation
 
+  val currentEmitter by rememberUpdatedState(emitter)
+  val currentHasAudioPermission by rememberUpdatedState(hasAudioPermission)
+
   val gallery: @Composable () -> Unit = remember {
     movableContentOf {
-      GalleryThumbnailButton(onClick = { emitter(StandardCameraHudEvents.GalleryClick) })
+      GalleryThumbnailButton(onClick = { currentEmitter(StandardCameraHudEvents.GalleryClick) })
     }
   }
 
@@ -350,16 +354,16 @@ private fun CameraControls(
       CaptureButton(
         isRecording = isRecording,
         recordingProgress = recordingProgress,
-        onTap = { emitter(StandardCameraHudEvents.PhotoCaptureTriggered) },
+        onTap = { currentEmitter(StandardCameraHudEvents.PhotoCaptureTriggered) },
         onLongPressStart = {
-          if (hasAudioPermission()) {
-            emitter(StandardCameraHudEvents.VideoCaptureStarted)
+          if (currentHasAudioPermission()) {
+            currentEmitter(StandardCameraHudEvents.VideoCaptureStarted)
           } else {
-            emitter(StandardCameraHudEvents.AudioPermissionRequired)
+            currentEmitter(StandardCameraHudEvents.AudioPermissionRequired)
           }
         },
-        onLongPressEnd = { emitter(StandardCameraHudEvents.VideoCaptureStopped) },
-        onZoomChange = { emitter(StandardCameraHudEvents.SetZoomLevel(it)) }
+        onLongPressEnd = { currentEmitter(StandardCameraHudEvents.VideoCaptureStopped) },
+        onZoomChange = { currentEmitter(StandardCameraHudEvents.SetZoomLevel(it)) }
       )
     }
   }
