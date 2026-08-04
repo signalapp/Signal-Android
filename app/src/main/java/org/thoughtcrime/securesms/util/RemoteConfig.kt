@@ -1481,5 +1481,14 @@ object RemoteConfig {
     hotSwappable = true
   )
 
+  /** Whether to utilize the new media-send feature module */
+  @JvmStatic
+  @get:JvmName("useNewMediaSendFlow")
+  val useNewMediaSendFlow: Boolean by remoteBoolean(
+    key = "android.useNewMediaSendFlow",
+    defaultValue = false,
+    hotSwappable = true
+  )
+
   // endregion
 }

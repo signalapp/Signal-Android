@@ -59,7 +59,18 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
    */
   var forceSinglePane by booleanValue(FORCE_SINGLE_PANE_ON_ALL_DEVICES, false).falseForExternalUsers()
 
-  var useNewMediaActivity by booleanValue(USE_NEW_MEDIA_ACTIVITY, false).falseForExternalUsers()
+  /**
+   * Whether to use the new media-send flow. Internal users can override the remote value.
+   */
+  var useNewMediaActivity: Boolean
+    get() = if (RemoteConfig.internalUser) {
+      getBoolean(USE_NEW_MEDIA_ACTIVITY, RemoteConfig.useNewMediaSendFlow)
+    } else {
+      RemoteConfig.useNewMediaSendFlow
+    }
+    set(value) {
+      putBoolean(USE_NEW_MEDIA_ACTIVITY, value)
+    }
 
   /**
    * Members will not be added directly to a GV2 even if they could be.
