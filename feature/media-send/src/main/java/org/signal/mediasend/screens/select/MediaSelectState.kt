@@ -7,11 +7,18 @@ package org.signal.mediasend.screens.select
 
 import org.signal.core.models.media.Media
 import org.signal.core.models.media.MediaFolder
+import org.signal.mediasend.MediaRecipientId
 
 sealed interface MediaSelectState {
 
   /** The flow's current selection, as last reported by the parent. */
   val selectedMedia: List<Media>
+
+  /**
+   * The single recipient this media is headed to, or null when the destination is still to be chosen. Fixed for the
+   * life of the flow, so it is read once at construction rather than mirrored from the parent.
+   */
+  val recipientId: MediaRecipientId?
 
   /** How much of the device's media we are allowed to read. */
   val mediaPermissions: MediaPermissions
@@ -25,6 +32,7 @@ sealed interface MediaSelectState {
   data class Folders(
     val mediaFolders: List<MediaFolder>,
     override val selectedMedia: List<Media>,
+    override val recipientId: MediaRecipientId? = null,
     override val mediaPermissions: MediaPermissions = MediaPermissions.FULL,
     override val isSelectionRejected: Boolean = false
   ) : MediaSelectState {
@@ -36,6 +44,7 @@ sealed interface MediaSelectState {
     val selectedMediaFolder: MediaFolder,
     val selectedMediaFolderItems: List<Media>,
     override val selectedMedia: List<Media>,
+    override val recipientId: MediaRecipientId? = null,
     override val mediaPermissions: MediaPermissions = MediaPermissions.FULL,
     override val isSelectionRejected: Boolean = false
   ) : MediaSelectState {

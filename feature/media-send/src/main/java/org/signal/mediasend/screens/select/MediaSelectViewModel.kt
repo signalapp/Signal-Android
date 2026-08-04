@@ -54,12 +54,14 @@ internal class MediaSelectViewModel(
       MediaSelectState.Files(
         selectedMediaFolder = mediaFolder,
         selectedMediaFolderItems = emptyList(),
-        selectedMedia = emptyList()
+        selectedMedia = emptyList(),
+        recipientId = parentState.value.recipientId
       )
     } else {
       MediaSelectState.Folders(
         mediaFolders = emptyList(),
-        selectedMedia = emptyList()
+        selectedMedia = emptyList(),
+        recipientId = parentState.value.recipientId
       )
     }
   )

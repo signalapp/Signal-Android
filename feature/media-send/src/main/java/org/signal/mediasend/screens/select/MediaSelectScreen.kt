@@ -58,6 +58,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
@@ -79,6 +80,7 @@ import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.DropdownMenus
+import org.signal.core.ui.compose.LocalChatColorProvider
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
@@ -91,6 +93,7 @@ import org.signal.core.ui.compose.list.rememberDragToSelectState
 import org.signal.core.ui.compose.list.rememberReorderBuffer
 import org.signal.core.ui.compose.list.rememberReorderableListState
 import org.signal.core.ui.compose.list.reorderableList
+import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.glide.compose.GlideImage
 import org.signal.mediasend.R
 import org.signal.mediasend.screens.MediaSendMetrics
@@ -117,6 +120,7 @@ internal fun MediaSelectScreen(
 
   val gridConfiguration = rememberGridConfiguration(state is MediaSelectState.Folders && !showPlaceholders)
   val backDispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
+  val recipientChatColor: Color? = state.recipientId?.let { LocalChatColorProvider.current(it.id).value }
 
   val gridState = rememberLazyGridState()
   val dragToSelectState = rememberDragToSelectMediaState(state, onEvent, gridState)
@@ -196,7 +200,12 @@ internal fun MediaSelectScreen(
 
               is MediaSelectState.Files -> {
                 items(state.selectedMediaFolderItems, key = { it.uri }) { media ->
-                  MediaTile(media = media, state.selectedMedia.indexOfFirst { it.uri == media.uri }, onEvent = onEvent)
+                  MediaTile(
+                    media = media,
+                    selectionIndex = state.selectedMedia.indexOfFirst { it.uri == media.uri },
+                    recipientChatColor = recipientChatColor,
+                    onEvent = onEvent
+                  )
                 }
               }
             }
@@ -238,7 +247,10 @@ internal fun MediaSelectScreen(
               .padding(end = 16.dp)
           )
 
-          NextButton(state.selectedMedia.size) {
+          NextButton(
+            mediaSelectionCount = state.selectedMedia.size,
+            recipientChatColor = recipientChatColor
+          ) {
             onEvent(MediaSelectScreenEvents.NavigateToEdit)
           }
         }
@@ -537,11 +549,16 @@ private fun MediaFolderTile(
   }
 }
 
+/**
+ * @param recipientChatColor The chat color of the single recipient this media is headed to, or null when the
+ *   destination is still to be chosen and the selection badge falls back to the theme.
+ */
 @Composable
 private fun MediaTile(
   media: Media,
   selectionIndex: Int,
-  onEvent: (MediaSelectScreenEvents) -> Unit
+  onEvent: (MediaSelectScreenEvents) -> Unit,
+  recipientChatColor: Color? = null
 ) {
   val scale by animateFloatAsState(
     targetValue = if (selectionIndex >= 0) {
@@ -600,30 +617,33 @@ private fun MediaTile(
         modifier = Modifier
           .border(width = 3.dp, color = MaterialTheme.colorScheme.surfaceVariant, shape = RoundedCornerShape(percent = 50))
           .padding(1.dp)
-          .background(color = MaterialTheme.colorScheme.primary, shape = RoundedCornerShape(percent = 50))
+          .background(color = recipientChatColor ?: MaterialTheme.colorScheme.primary, shape = RoundedCornerShape(percent = 50))
           .ensureWidthIsAtLeastHeight()
           .padding(horizontal = 5.5.dp, vertical = 2.dp)
       ) {
-        Text(text = "${selectionIndex + 1}", color = MaterialTheme.colorScheme.onPrimary)
+        Text(
+          text = "${selectionIndex + 1}",
+          color = if (recipientChatColor != null) SignalTheme.colors.colorOnCustom else MaterialTheme.colorScheme.onPrimary
+        )
       }
     }
   }
 }
 
 @Composable
-private fun NextButton(mediaSelectionCount: Int, onClick: () -> Unit) {
+private fun NextButton(mediaSelectionCount: Int, recipientChatColor: Color? = null, onClick: () -> Unit) {
   Buttons.MediumTonal(
     onClick = onClick,
     contentPadding = PaddingValues(horizontal = 12.dp, vertical = 10.dp)
   ) {
     Box(
       modifier = Modifier
-        .background(color = MaterialTheme.colorScheme.primary, shape = RoundedCornerShape(percent = 50))
+        .background(color = recipientChatColor ?: MaterialTheme.colorScheme.primary, shape = RoundedCornerShape(percent = 50))
         .ensureWidthIsAtLeastHeight()
     ) {
       Text(
         text = "$mediaSelectionCount",
-        color = MaterialTheme.colorScheme.onPrimary,
+        color = if (recipientChatColor != null) SignalTheme.colors.colorOnCustom else MaterialTheme.colorScheme.onPrimary,
         modifier = Modifier
       )
     }
@@ -829,10 +849,35 @@ private fun MediaTileSelectedPreview() {
 
 @DayNightPreviews
 @Composable
+private fun MediaTileSelectedChatColorPreview() {
+  Previews.Preview {
+    MediaTile(
+      media = rememberPreviewMedia(1).first(),
+      selectionIndex = 0,
+      onEvent = {},
+      recipientChatColor = Color(0xFF3B7845)
+    )
+  }
+}
+
+@DayNightPreviews
+@Composable
 private fun NextButtonPreview() {
   Previews.Preview {
     NextButton(
       mediaSelectionCount = 3,
+      onClick = {}
+    )
+  }
+}
+
+@DayNightPreviews
+@Composable
+private fun NextButtonChatColorPreview() {
+  Previews.Preview {
+    NextButton(
+      mediaSelectionCount = 3,
+      recipientChatColor = Color(0xFF3B7845),
       onClick = {}
     )
   }
