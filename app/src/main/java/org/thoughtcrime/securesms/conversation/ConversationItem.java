@@ -774,7 +774,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       }
 
       if (audioViewStub.resolved()) {
-        setAudioViewTint(messageRecord);
+        setAudioViewTint(messageRecord, modified);
       }
     }
 
@@ -1002,7 +1002,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     bodyBubble.setOutliners(outliners);
 
     if (audioViewStub.resolved()) {
-      setAudioViewTint(messageRecord);
+      setAudioViewTint(messageRecord, recipient);
     }
 
     if (hasWallpaper) {
@@ -1012,7 +1012,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     }
   }
 
-  private void setAudioViewTint(MessageRecord messageRecord) {
+  private void setAudioViewTint(MessageRecord messageRecord, @NonNull Recipient recipient) {
     if (hasAudio(messageRecord)) {
       if (!messageRecord.isOutgoing()) {
         if (hasWallpaper) {
@@ -1022,6 +1022,10 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
           audioViewStub.get().setTint(getContext().getResources().getColor(R.color.conversation_item_incoming_audio_foreground_tint_normal));
           audioViewStub.get().setProgressAndPlayBackgroundTint(getContext().getResources().getColor(R.color.conversation_item_incoming_audio_play_pause_background_tint_normal));
         }
+      } else if (recipient.getChatColors().needsDarkText()) {
+        int darkTint = getContext().getResources().getColor(R.color.black);
+        audioViewStub.get().setTint(darkTint);
+        audioViewStub.get().setProgressAndPlayBackgroundTint(getContext().getResources().getColor(org.signal.core.ui.R.color.signal_colorTransparent2));
       } else {
         audioViewStub.get().setTint(getContext().getResources().getColor(R.color.conversation_item_outgoing_audio_foreground_tint));
         audioViewStub.get().setProgressAndPlayBackgroundTint(getContext().getResources().getColor(org.signal.core.ui.R.color.signal_colorTransparent2));
