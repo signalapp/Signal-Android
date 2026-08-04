@@ -106,9 +106,9 @@
     <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
     <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">無法透過所選方法發送驗證碼。請嘗試其他選項。</string>
     <!-- Dialog shown when the provider rejected placing a verification phone call to the user\'s number -->
-    <string name="VerificationCodeScreen__could_not_call_provider_rejected">We couldn\'t call you with a verification code. Please try again, or request the code via SMS instead.</string>
+    <string name="VerificationCodeScreen__could_not_call_provider_rejected">我們無法致電提供驗證碼給你。請再試一次，或改以 SMS 短訊方式索取驗證碼。</string>
     <!-- Dialog shown when the provider rejected sending a verification SMS to the user\'s number -->
-    <string name="VerificationCodeScreen__could_not_sms_provider_rejected">We couldn\'t send you an SMS with a verification code. Please try again, or request the code via a phone call instead.</string>
+    <string name="VerificationCodeScreen__could_not_sms_provider_rejected">我們無法傳送 SMS 短訊提供驗證碼給你。請再試一次，或改以電話方式索取驗證碼。</string>
     <!-- Snackbar shown for registration errors -->
     <string name="VerificationCodeScreen__registration_error">註冊失敗。請重試。</string>
     <!-- Button text for having trouble with verification -->
@@ -383,7 +383,7 @@
     <!-- Error shown below the PIN field when the user tries to create a PIN that is too easy to guess, such as one made of sequential or repeated digits. -->
     <string name="PinCreationScreen__choose_a_stronger_pin">選擇一個更強的 PIN 碼</string>
     <!-- Error shown below the PIN field when the user tries to create a PIN that matches the code used to verify their phone number. -->
-    <string name="PinCreationScreen__reentered_verification_code">You re-entered the code that was already used to verify your phone number. Choose a new and unique Signal PIN.</string>
+    <string name="PinCreationScreen__reentered_verification_code">你再次輸入了已用於驗證電話號碼的驗證碼。請選擇一個全新而獨特的 Signal PIN 碼。</string>
     <!-- Overflow menu item that opens a help article about Signal PINs. -->
     <string name="PinCreationScreen__learn_more_about_pins">深入瞭解 PIN 碼</string>
     <!-- Title of the dialog confirming that the user wants to disable their Signal PIN. -->
@@ -408,7 +408,7 @@
     <!-- Describes the PIN that needs to be entered. -->
     <string name="PinEntryScreen__enter_the_pin_you_created">輸入你在首次安裝 Signal 時建立的 PIN 碼</string>
     <!-- Error shown when the user enters the code used to verify their phone number instead of their PIN, and it was not their actual PIN. -->
-    <string name="PinEntryScreen__reentered_verification_code">You re-entered the code that was already used to verify your phone number. Enter the unique Signal PIN that you previously chose for your account.</string>
+    <string name="PinEntryScreen__reentered_verification_code">你再次輸入了已用於驗證電話號碼的驗證碼。請輸入你之前為帳戶設定的專屬 Signal PIN 碼。</string>
     <!-- Error shown when an incorrect PIN is entered. %1$d is the number of attempts remaining. -->
     <plurals name="PinEntryScreen__incorrect_pin">
         <item quantity="other">PIN 碼不正確。尚餘%1$d 次機會。</item>

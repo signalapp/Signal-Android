@@ -296,13 +296,13 @@
 
     <!-- ClockSkewActivity -->
     <!-- Title of the full-screen dialog shown when the device clock is too far off from the real time -->
-    <string name="ClockSkewActivity__title">Date is inaccurate</string>
+    <string name="ClockSkewActivity__title">Date inexacte</string>
     <!-- Body text explaining that the device clock is wrong and needs to be fixed -->
-    <string name="ClockSkewActivity__date_inaccurate_description">Your device date is inaccurate.\nAdjust your clock and try again.</string>
+    <string name="ClockSkewActivity__date_inaccurate_description">Votre appareil n\'affiche pas la bonne date.\nRéglez l\'horloge, puis réessayez.</string>
     <!-- Shows the user the current, inaccurate date and time reported by their device. Placeholder is the formatted date, time, and time zone. -->
-    <string name="ClockSkewActivity__time_prefix">Your device date and time is:\n%1$s</string>
+    <string name="ClockSkewActivity__time_prefix">Date et heure de votre appareil :\n%1$s</string>
     <!-- Button that opens the system date and time settings -->
-    <string name="ClockSkewActivity__adjust_date_button">Adjust date</string>
+    <string name="ClockSkewActivity__adjust_date_button">Corriger la date</string>
 
     <!-- CommunicationActions -->
     <string name="CommunicationActions_no_browser_found">Navigateur web introuvable.</string>
@@ -591,7 +591,7 @@
     <string name="ConversationFragment_delete">Supprimer</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">Supprimer de tous les appareils</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">This message will be deleted for everyone in the chat. They will be able to see that you deleted a message.</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Ce message sera supprimé pour tous les membres du groupe. Ils verront que vous l\'avez supprimé.</string>
     <string name="ConversationFragment_quoted_message_not_found">Message d\'origine introuvable</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Le message d\'origine n\'est plus disponible</string>
     <string name="ConversationFragment_failed_to_open_message">Impossible d\'ouvrir le message</string>
@@ -770,28 +770,28 @@
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">Aucune conversation non lue</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="one">Delete message history?</item>
-        <item quantity="other">Delete message histories?</item>
+        <item quantity="one">Supprimer l\'historique des messages ?</item>
+        <item quantity="other">Supprimer les historiques des messages ?</item>
     </plurals>
     <!-- Dialog message shown when deleting chats, none of which are groups -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">All messages in this chat will be deleted.</item>
-        <item quantity="other">All messages in these chats will be deleted.</item>
+        <item quantity="one">Tous les messages de cette conversation seront supprimés.</item>
+        <item quantity="other">Tous les messages de ces conversations seront supprimés.</item>
     </plurals>
     <!-- Dialog message shown when deleting chats, with at least one group -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_group">
-        <item quantity="one">All messages in this chat will be deleted. You will still be a member of this group.</item>
-        <item quantity="other">All messages in these chats will be deleted. You will still be a member of any groups you have not left yet.</item>
+        <item quantity="one">Tous les messages de cette conversation seront supprimés. Vous resterez néanmoins membre de ce groupe.</item>
+        <item quantity="other">Tous les messages de ces conversations seront supprimés. Vous resterez néanmoins membre des groupes que vous n\'avez pas quittés.</item>
     </plurals>
     <!-- Dialog message shown when deleting chats, none of which are groups, and the user has a linked device -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device">
-        <item quantity="one">All messages in this chat will be deleted from all your devices.</item>
-        <item quantity="other">All messages in these chats will be deleted from all your devices.</item>
+        <item quantity="one">Tous les messages de cette conversation seront supprimés de tous vos appareils.</item>
+        <item quantity="other">Tous les messages de ces conversations seront supprimés de tous vos appareils.</item>
     </plurals>
     <!-- Dialog message shown when deleting chats with at least one group, and the user has a linked device -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device_group">
-        <item quantity="one">All messages in this chat will be deleted from all your devices. You will still be a member of this group.</item>
-        <item quantity="other">All messages in these chats will be deleted from all your devices. You will still be a member of any groups you have not left yet.</item>
+        <item quantity="one">Tous les messages de cette conversation seront supprimés de tous vos appareils. Vous resterez néanmoins membre de ce groupe.</item>
+        <item quantity="other">Tous les messages de ces conversations seront supprimés de tous vos appareils. Vous resterez néanmoins membre des groupes que vous n\'avez pas quittés.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Suppression</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
@@ -1142,7 +1142,7 @@
     <!-- Toast shown when the process of linking a device has been cancelled -->
     <string name="LinkDeviceFragment__linking_cancelled">Association annulée</string>
     <!-- Snackbar shown when the user tries to link a new device but has already reached the maximum number of linked devices. Placeholder is the maximum count. -->
-    <string name="LinkDeviceFragment__you_can_only_have_d_linked_devices">You can only have %1$d linked devices.</string>
+    <string name="LinkDeviceFragment__you_can_only_have_d_linked_devices">Vous ne pouvez pas associer plus de %1$d appareils.</string>
     <!-- Message shown in progress dialog telling users to avoid closing the app while messages are being synced -->
     <string name="LinkDeviceFragment__do_not_close">Ne fermez pas l\'appli.</string>
     <!-- Dialog title shown when a device is unlinked -->
@@ -3518,7 +3518,7 @@
     <!-- Action in reminder banner that will take user to re-register -->
     <string name="UnauthorizedReminder_reregister_action">Réenregistrer l\'appareil</string>
     <!-- Message shown in a reminder banner when this linked device is no longer linked to a primary device -->
-    <string name="UnauthorizedReminder_this_device_is_no_longer_linked_relink_to_continue_messaging">Cet appareil n\'est plus associé. Réassociez-le pour continuer à utiliser Signal.</string>
+    <string name="UnauthorizedReminder_this_device_is_no_longer_linked_relink_to_continue_messaging">Cet appareil n\'est plus associé. Réassociez-le pour continuer d\'utiliser Signal.</string>
     <!-- Action in reminder banner that will take the user to re-link this device -->
     <string name="UnauthorizedReminder_relink_action">Réassocier l\'appareil</string>
 
@@ -3527,7 +3527,7 @@
 
     <!-- EnclaveFailureReminder -->
     <!-- Banner message to update app to use payments -->
-    <string name="EnclaveFailureReminder_update_signal">Pour continuer à utiliser les paiements, installez la dernière version de Signal. Il est possible que le solde affiché ne soit pas à jour.</string>
+    <string name="EnclaveFailureReminder_update_signal">Pour continuer d\'utiliser les paiements, installez la dernière version de Signal. Il est possible que le solde affiché ne soit pas à jour.</string>
     <!-- Banner button to update now -->
 
     <!-- WebRtcCallActivity -->
@@ -6409,7 +6409,7 @@
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">Un ou plusieurs fichiers sont trop volumineux.</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">Un ou plusieurs éléments ne sont pas valides</string>
     <string name="MediaReviewFragment__too_many_items_selected">Vous avez sélectionné un trop grand nombre d\'éléments</string>
-    <string name="MediaReviewFragment__video_trimmed_to_fit">Your video was trimmed to fit within the size limit</string>
+    <string name="MediaReviewFragment__video_trimmed_to_fit">Votre vidéo a été rognée, car elle dépassait la taille limite</string>
     <!-- Small notification presented to the user when they set their video to view-once mode -->
     <string name="MediaReviewFragment__video_set_to_view_once">Vue unique activée pour cette vidéo</string>
     <!-- Small notification presented to the user when they set their photo to view-once mode -->
@@ -6607,7 +6607,7 @@
     <!-- Title of dialog telling user they need to re-register signal -->
     <string name="ReregisterSignalDialog__title">Appareil non enregistré</string>
     <!-- Message of dialog telling user they need to re-register signal as it is no longer registered -->
-    <string name="ReregisterSignalDialog__message">Cet appareil n\'est plus enregistré. Réinscrivez-vous pour continuer à utiliser Signal sur cet appareil.</string>
+    <string name="ReregisterSignalDialog__message">Cet appareil n\'est plus enregistré. Réinscrivez-vous pour continuer d\'utiliser Signal sur cet appareil.</string>
     <!-- Button text of re-registration dialog to re-register the device.  -->
     <string name="ReregisterSignalDialog__reregister_action">Réenregistrer l’appareil</string>
     <!-- Button text of re-registration dialog to cancel the dialog.  -->
@@ -6962,7 +6962,7 @@
     <!-- Donation receipts amount title -->
     <string name="DonationReceiptDetailsFragment__amount">Montant</string>
     <!-- Donation receipts thanks -->
-    <string name="DonationReceiptDetailsFragment__thank_you_for_supporting" tools:ignore="TypographyDashes">Merci de soutenir Signal. Votre contribution nous aide à remplir notre mission : protéger la liberté d\'expression et offrir des communications sécurisées à des millions de personnes aux quatre coins du monde – le tout, grâce à une technologie open source conçue pour la protection de la vie privée. Si vous résidez aux États-Unis, conservez ce reçu pour le communiquer aux services fiscaux. La Signal Technology Foundation est un organisme à but non lucratif, régi par le code fédéral des impôts des États-Unis. Notre numéro d\'identification fiscale est le suivant : 82-4506840. Aucun bien ni service n\'a été fourni par Signal en échange de ce don.</string>
+    <string name="DonationReceiptDetailsFragment__thank_you_for_supporting" tools:ignore="TypographyDashes">Merci de soutenir Signal. Votre contribution nous aide à remplir notre mission : protéger la liberté d\'expression et offrir des communications sécurisées à des millions de personnes aux quatre coins du monde – le tout, grâce à une technologie open source conçue pour la protection de la vie privée. Si vous résidez aux États-Unis, conservez ce reçu pour le communiquer aux services fiscaux. La Signal Technology Foundation est un organisme à but non lucratif exonéré d\'impôts, en vertu de la section 501c3 du code fédéral des impôts des États-Unis. Notre numéro d\'identification fiscale est le suivant : 82-4506840. Aucun bien ni service n\'a été fourni par Signal en échange de ce don.</string>
     <!-- Donation reciepts screen empty state title -->
     <string name="DonationReceiptListFragment__no_receipts">Aucun reçu</string>
 
@@ -9462,7 +9462,7 @@
     <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">Activer les sauvegardes sur l\'appareil ?</string>
 
     <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Pour continuer à utiliser les sauvegardes sur l\'appareil, activez-les sur ce compte via Paramètres &gt; Sauvegardes.</string>
+    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Pour continuer d\'utiliser les sauvegardes sur l\'appareil, activez-les sur ce compte via Paramètres &gt; Sauvegardes.</string>
 
     <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
     <string name="RestoreLocalBackupActivity__turn_on_now">Activer</string>

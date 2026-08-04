@@ -296,13 +296,13 @@
 
     <!-- ClockSkewActivity -->
     <!-- Title of the full-screen dialog shown when the device clock is too far off from the real time -->
-    <string name="ClockSkewActivity__title">Date is inaccurate</string>
+    <string name="ClockSkewActivity__title">তারিখটি সঠিক নয়</string>
     <!-- Body text explaining that the device clock is wrong and needs to be fixed -->
-    <string name="ClockSkewActivity__date_inaccurate_description">Your device date is inaccurate.\nAdjust your clock and try again.</string>
+    <string name="ClockSkewActivity__date_inaccurate_description">আপনার ডিভাইসের তারিখটি সঠিক নয়।\nআপনার ঘড়ি ঠিক করুন এবং আবার চেষ্টা করুন।</string>
     <!-- Shows the user the current, inaccurate date and time reported by their device. Placeholder is the formatted date, time, and time zone. -->
-    <string name="ClockSkewActivity__time_prefix">Your device date and time is:\n%1$s</string>
+    <string name="ClockSkewActivity__time_prefix">আপনার ডিভাইসের তারিখ এবং সময় হলো:\n%1$s</string>
     <!-- Button that opens the system date and time settings -->
-    <string name="ClockSkewActivity__adjust_date_button">Adjust date</string>
+    <string name="ClockSkewActivity__adjust_date_button">তারিখ ঠিক করুন</string>
 
     <!-- CommunicationActions -->
     <string name="CommunicationActions_no_browser_found">কোন ওয়েব ব্রাউজার পাওয়া যায়নি।</string>
@@ -591,7 +591,7 @@
     <string name="ConversationFragment_delete">মুছে ফেলুন</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">সব জায়গা থেকে মুছে ফেলুন</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">This message will be deleted for everyone in the chat. They will be able to see that you deleted a message.</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">এই মেসেজটি এই চ্যাটে থাকা সকলের জন্য মুছে ফেলা হবে। তারা দেখতে পাবেন যে আপনি একটি মেসেজ মুছে ফেলেছেন।</string>
     <string name="ConversationFragment_quoted_message_not_found">মূল বার্তাটি পাওয়া যায়নি</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">মূল বার্তাটি আর পাওয়া যাচ্ছে না</string>
     <string name="ConversationFragment_failed_to_open_message">বার্তা দেখাতে ব্যর্থ</string>
@@ -770,28 +770,28 @@
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">অপঠিত কোনো চ্যাট নেই</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="one">Delete message history?</item>
-        <item quantity="other">Delete message histories?</item>
+        <item quantity="one">মেসেজের ইতিহাস মুছবেন?</item>
+        <item quantity="other">মেসেজের ইতিহাস মুছবেন?</item>
     </plurals>
     <!-- Dialog message shown when deleting chats, none of which are groups -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">All messages in this chat will be deleted.</item>
-        <item quantity="other">All messages in these chats will be deleted.</item>
+        <item quantity="one">এই চ্যাটের সব মেসেজ মুছে ফেলা হবে।</item>
+        <item quantity="other">এই চ্যাটগুলোর সব মেসেজ মুছে ফেলা হবে।</item>
     </plurals>
     <!-- Dialog message shown when deleting chats, with at least one group -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_group">
-        <item quantity="one">All messages in this chat will be deleted. You will still be a member of this group.</item>
-        <item quantity="other">All messages in these chats will be deleted. You will still be a member of any groups you have not left yet.</item>
+        <item quantity="one">এই চ্যাটের সব মেসেজ মুছে ফেলা হবে। আপনি এই গ্রুপের সদস্য হিসেবেই থাকবেন।</item>
+        <item quantity="other">এই চ্যাটগুলোর সব মেসেজ মুছে ফেলা হবে। আপনি এখনো যে গ্রুপগুলো ছাড়েননি, সেগুলোর সদস্য হিসেবেই থাকবেন।</item>
     </plurals>
     <!-- Dialog message shown when deleting chats, none of which are groups, and the user has a linked device -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device">
-        <item quantity="one">All messages in this chat will be deleted from all your devices.</item>
-        <item quantity="other">All messages in these chats will be deleted from all your devices.</item>
+        <item quantity="one">এই চ্যাটে থাকা সব মেসেজ আপনার সব ডিভাইস থেকে মুছে ফেলা হবে।</item>
+        <item quantity="other">এই চ্যাটগুলোতে থাকা সব মেসেজ আপনার সব ডিভাইস থেকে মুছে ফেলা হবে।</item>
     </plurals>
     <!-- Dialog message shown when deleting chats with at least one group, and the user has a linked device -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device_group">
-        <item quantity="one">All messages in this chat will be deleted from all your devices. You will still be a member of this group.</item>
-        <item quantity="other">All messages in these chats will be deleted from all your devices. You will still be a member of any groups you have not left yet.</item>
+        <item quantity="one">এই চ্যাটে থাকা সব মেসেজ আপনার সব ডিভাইস থেকে মুছে ফেলা হবে। আপনি এই গ্রুপের সদস্য হিসেবেই থাকবেন।</item>
+        <item quantity="other">এই চ্যাটগুলোতে থাকা সব মেসেজ আপনার সব ডিভাইস থেকে মুছে ফেলা হবে। আপনি এই গ্রুপের সদস্য হিসেবেই থাকবেন।</item>
     </plurals>
     <string name="ConversationListFragment_deleting">মোছা হচ্ছে…</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
@@ -1142,7 +1142,7 @@
     <!-- Toast shown when the process of linking a device has been cancelled -->
     <string name="LinkDeviceFragment__linking_cancelled">লিংক করা বাতিল করা হয়েছে</string>
     <!-- Snackbar shown when the user tries to link a new device but has already reached the maximum number of linked devices. Placeholder is the maximum count. -->
-    <string name="LinkDeviceFragment__you_can_only_have_d_linked_devices">You can only have %1$d linked devices.</string>
+    <string name="LinkDeviceFragment__you_can_only_have_d_linked_devices">আপনার কেবল %1$d-টি লিংক করা ডিভাইস থাকতে পারে।</string>
     <!-- Message shown in progress dialog telling users to avoid closing the app while messages are being synced -->
     <string name="LinkDeviceFragment__do_not_close">অ্যাপ বন্ধ করবেন না</string>
     <!-- Dialog title shown when a device is unlinked -->
@@ -6409,7 +6409,7 @@
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">এক বা একাধিক আইটেম খুব বড় ছিল৷</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">এক বা একাধিক আইটেম বাতিল ছিল</string>
     <string name="MediaReviewFragment__too_many_items_selected">অনেকগুলি আইটেম নির্বাচন করা হয়েছে</string>
-    <string name="MediaReviewFragment__video_trimmed_to_fit">Your video was trimmed to fit within the size limit</string>
+    <string name="MediaReviewFragment__video_trimmed_to_fit">আকারের সীমার মধ্যে রাখার জন্য আপনার ভিডিওটি ছোট করা হয়েছে।</string>
     <!-- Small notification presented to the user when they set their video to view-once mode -->
     <string name="MediaReviewFragment__video_set_to_view_once">ভিডিও একবার দেখার জন্য সেট করা হয়েছে</string>
     <!-- Small notification presented to the user when they set their photo to view-once mode -->

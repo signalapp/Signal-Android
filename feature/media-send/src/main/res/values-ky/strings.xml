@@ -29,8 +29,8 @@
   <string name="MediaCaptureScreen__text">Текст</string>
     <!-- Label for the pill that displays the media count -->
     <plurals name="MediaCaptureScreen_n_items">
-        <item quantity="one">%1$d item</item>
-        <item quantity="other">%1$d items</item>
+        <item quantity="one">%1$d нерсе</item>
+        <item quantity="other">%1$d нерсе</item>
     </plurals>
 
   <!-- Video editor play button content description -->
@@ -98,7 +98,7 @@
   <!-- Displayed when there is an error capturing image -->
   <string name="MediaSendViewModel__error_taking_photo">Сүрөт тартууда ката кетти</string>
   <!-- Displayed when a video was automatically trimmed so it fits within the size limit -->
-  <string name="MediaSendViewModel__video_trimmed_to_fit">Your video was trimmed to fit within the size limit</string>
+  <string name="MediaSendViewModel__video_trimmed_to_fit">Видеоңуз өлчөм чегине туура келгидей кылып кыркылды</string>
 
   <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
   <string name="UsernameScannedDialog__username_dialog_title">%1$s табылды</string>

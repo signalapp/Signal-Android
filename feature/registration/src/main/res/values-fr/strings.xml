@@ -106,9 +106,9 @@
     <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
     <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">Impossible d\'envoyer le code via le canal sélectionné. Veuillez choisir une autre option.</string>
     <!-- Dialog shown when the provider rejected placing a verification phone call to the user\'s number -->
-    <string name="VerificationCodeScreen__could_not_call_provider_rejected">We couldn\'t call you with a verification code. Please try again, or request the code via SMS instead.</string>
+    <string name="VerificationCodeScreen__could_not_call_provider_rejected">Nous ne parvenons pas à vous appeler pour vous communiquer le code de vérification. Veuillez réessayer ou demander l’envoi du code par SMS.</string>
     <!-- Dialog shown when the provider rejected sending a verification SMS to the user\'s number -->
-    <string name="VerificationCodeScreen__could_not_sms_provider_rejected">We couldn\'t send you an SMS with a verification code. Please try again, or request the code via a phone call instead.</string>
+    <string name="VerificationCodeScreen__could_not_sms_provider_rejected">Nous ne parvenons pas à vous communiquer le code de vérification par SMS. Veuillez réessayer ou demander à le recevoir via un appel vocal.</string>
     <!-- Snackbar shown for registration errors -->
     <string name="VerificationCodeScreen__registration_error">Échec de l\'inscription. Veuillez réessayer.</string>
     <!-- Button text for having trouble with verification -->
@@ -124,7 +124,7 @@
     <!-- Clickable substring linking to contacting support within VerificationCodeScreen__support_bottom_sheet_body_call_to_action -->
     <string name="VerificationCodeScreen__support_bottom_sheet_cta_contact_support_substring">contacter l\'assistance</string>
     <!-- Email subject used when contacting support from the verification code screen -->
-    <string name="VerificationCodeScreen__contact_support_email_subject">Inscription à Signal – Code de vérification pour Android</string>
+    <string name="VerificationCodeScreen__contact_support_email_subject">Inscription à Signal : code de vérification pour Android</string>
     <!-- Text placed in the body of the support email composed from the verification code screen. Used to route the request, so it is not translated. -->
   <!-- Removed by excludeNonTranslatables <string name="VerificationCodeScreen__contact_support_email_filter" translatable="false">Signal Registration - Verification Code for Android</string> -->
     <!-- URL opened for troubleshooting steps from the verification code screen -->
@@ -384,7 +384,7 @@
     <!-- Error shown below the PIN field when the user tries to create a PIN that is too easy to guess, such as one made of sequential or repeated digits. -->
     <string name="PinCreationScreen__choose_a_stronger_pin">Choisissez un code PIN plus complexe</string>
     <!-- Error shown below the PIN field when the user tries to create a PIN that matches the code used to verify their phone number. -->
-    <string name="PinCreationScreen__reentered_verification_code">You re-entered the code that was already used to verify your phone number. Choose a new and unique Signal PIN.</string>
+    <string name="PinCreationScreen__reentered_verification_code">Vous avez ressaisi le code reçu pour vérifier votre numéro de téléphone. Vous devez en fait créer un nouveau code PIN, que vous n\'utiliserez que pour votre compte Signal.</string>
     <!-- Overflow menu item that opens a help article about Signal PINs. -->
     <string name="PinCreationScreen__learn_more_about_pins">En savoir plus sur les codes PIN</string>
     <!-- Title of the dialog confirming that the user wants to disable their Signal PIN. -->
@@ -409,7 +409,7 @@
     <!-- Describes the PIN that needs to be entered. -->
     <string name="PinEntryScreen__enter_the_pin_you_created">Saisissez le code PIN que vous avez créé lors de la première installation de Signal.</string>
     <!-- Error shown when the user enters the code used to verify their phone number instead of their PIN, and it was not their actual PIN. -->
-    <string name="PinEntryScreen__reentered_verification_code">You re-entered the code that was already used to verify your phone number. Enter the unique Signal PIN that you previously chose for your account.</string>
+    <string name="PinEntryScreen__reentered_verification_code">Vous avez ressaisi le code reçu pour vérifier votre numéro de téléphone. Vous devez saisir le code PIN unique que vous avez créé pour votre compte Signal.</string>
     <!-- Error shown when an incorrect PIN is entered. %1$d is the number of attempts remaining. -->
     <plurals name="PinEntryScreen__incorrect_pin">
         <item quantity="one">Code PIN incorrect. Il ne vous reste plus qu\'%1$d tentative.</item>

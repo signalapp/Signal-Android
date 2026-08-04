@@ -296,13 +296,13 @@
 
     <!-- ClockSkewActivity -->
     <!-- Title of the full-screen dialog shown when the device clock is too far off from the real time -->
-    <string name="ClockSkewActivity__title">Date is inaccurate</string>
+    <string name="ClockSkewActivity__title">A data está incorreta</string>
     <!-- Body text explaining that the device clock is wrong and needs to be fixed -->
-    <string name="ClockSkewActivity__date_inaccurate_description">Your device date is inaccurate.\nAdjust your clock and try again.</string>
+    <string name="ClockSkewActivity__date_inaccurate_description">A data do dispositivo está incorreta.\nAjuste seu relógio e tente novamente.</string>
     <!-- Shows the user the current, inaccurate date and time reported by their device. Placeholder is the formatted date, time, and time zone. -->
-    <string name="ClockSkewActivity__time_prefix">Your device date and time is:\n%1$s</string>
+    <string name="ClockSkewActivity__time_prefix">Data e hora do dispositivo:\n%1$s</string>
     <!-- Button that opens the system date and time settings -->
-    <string name="ClockSkewActivity__adjust_date_button">Adjust date</string>
+    <string name="ClockSkewActivity__adjust_date_button">Ajustar hora</string>
 
     <!-- CommunicationActions -->
     <string name="CommunicationActions_no_browser_found">Nenhum navegador encontrado.</string>
@@ -591,7 +591,7 @@
     <string name="ConversationFragment_delete">Excluir</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">Apagar em todos os lugares</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">This message will be deleted for everyone in the chat. They will be able to see that you deleted a message.</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Esta mensagem será apagada para todos os participantes dessa conversa. Eles poderão ver que você apagou uma mensagem.</string>
     <string name="ConversationFragment_quoted_message_not_found">Mensagem original não encontrada</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Mensagem original indisponível</string>
     <string name="ConversationFragment_failed_to_open_message">Falha ao abrir mensagem</string>
@@ -770,28 +770,28 @@
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">Sem chats não lidos</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="one">Delete message history?</item>
-        <item quantity="other">Delete message histories?</item>
+        <item quantity="one">Apagar histórico de mensagens?</item>
+        <item quantity="other">Apagar históricos de mensagens?</item>
     </plurals>
     <!-- Dialog message shown when deleting chats, none of which are groups -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">All messages in this chat will be deleted.</item>
-        <item quantity="other">All messages in these chats will be deleted.</item>
+        <item quantity="one">Todas as mensagens nessa conversa serão apagadas.</item>
+        <item quantity="other">Todas as mensagens nessas conversas serão apagadas.</item>
     </plurals>
     <!-- Dialog message shown when deleting chats, with at least one group -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_group">
-        <item quantity="one">All messages in this chat will be deleted. You will still be a member of this group.</item>
-        <item quantity="other">All messages in these chats will be deleted. You will still be a member of any groups you have not left yet.</item>
+        <item quantity="one">Todas as mensagens nessa conversa serão apagadas. Você ainda será membro deste grupo.</item>
+        <item quantity="other">Todas as mensagens nessas conversas serão apagadas. Você ainda será membro dos grupos dos quais ainda faz parte.</item>
     </plurals>
     <!-- Dialog message shown when deleting chats, none of which are groups, and the user has a linked device -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device">
-        <item quantity="one">All messages in this chat will be deleted from all your devices.</item>
-        <item quantity="other">All messages in these chats will be deleted from all your devices.</item>
+        <item quantity="one">Esta mensagem será apagada de todos os seus dispositivos.</item>
+        <item quantity="other">Estas mensagens serão apagadas de todos os seus dispositivos.</item>
     </plurals>
     <!-- Dialog message shown when deleting chats with at least one group, and the user has a linked device -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device_group">
-        <item quantity="one">All messages in this chat will be deleted from all your devices. You will still be a member of this group.</item>
-        <item quantity="other">All messages in these chats will be deleted from all your devices. You will still be a member of any groups you have not left yet.</item>
+        <item quantity="one">Todas as mensagens nessa conversa serão apagadas de todos os seus dispositivos. Você ainda será membro deste grupo.</item>
+        <item quantity="other">Todas as mensagens nessas conversas serão apagadas de todos os seus dispositivos. Você ainda será membro dos grupos dos quais ainda faz parte.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Excluindo</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
@@ -1142,7 +1142,7 @@
     <!-- Toast shown when the process of linking a device has been cancelled -->
     <string name="LinkDeviceFragment__linking_cancelled">Vinculação cancelada</string>
     <!-- Snackbar shown when the user tries to link a new device but has already reached the maximum number of linked devices. Placeholder is the maximum count. -->
-    <string name="LinkDeviceFragment__you_can_only_have_d_linked_devices">You can only have %1$d linked devices.</string>
+    <string name="LinkDeviceFragment__you_can_only_have_d_linked_devices">Você só pode ter %1$d dispositivos vinculados.</string>
     <!-- Message shown in progress dialog telling users to avoid closing the app while messages are being synced -->
     <string name="LinkDeviceFragment__do_not_close">Não feche o aplicativo</string>
     <!-- Dialog title shown when a device is unlinked -->
@@ -6409,7 +6409,7 @@
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">Um ou mais itens são muito grandes</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">Um ou mais itens são inválidos</string>
     <string name="MediaReviewFragment__too_many_items_selected">Muitos itens foram selecionados</string>
-    <string name="MediaReviewFragment__video_trimmed_to_fit">Your video was trimmed to fit within the size limit</string>
+    <string name="MediaReviewFragment__video_trimmed_to_fit">Seu vídeo foi reduzido para caber no limite de tamanho. </string>
     <!-- Small notification presented to the user when they set their video to view-once mode -->
     <string name="MediaReviewFragment__video_set_to_view_once">Vídeo configurado para visualização única</string>
     <!-- Small notification presented to the user when they set their photo to view-once mode -->
@@ -6962,7 +6962,7 @@
     <!-- Donation receipts amount title -->
     <string name="DonationReceiptDetailsFragment__amount">Valor</string>
     <!-- Donation receipts thanks -->
-    <string name="DonationReceiptDetailsFragment__thank_you_for_supporting" tools:ignore="TypographyDashes">Obrigado por apoiar o Signal. Sua contribuição ajuda a impulsionar nossa missão de proteger a liberdade de expressão e possibilitar uma comunicação global segura para milhões de pessoas em todo o mundo por meio de tecnologia de privacidade de código aberto. Se você é residente dos Estados Unidos, guarde este comprovante para seus registros fiscais. A Signal Technology Foundation é uma organização sem fins lucrativos isenta de impostos nos Estados Unidos, conforme a seção 501(c)(3) do Internal Revenue Code. Nosso número de identificação fiscal federal (Federal Tax ID) é 82-4506840. O Signal não forneceu bens nem serviços em troca desta contribuição. </string>
+    <string name="DonationReceiptDetailsFragment__thank_you_for_supporting" tools:ignore="TypographyDashes">Obrigado por apoiar o Signal. Sua contribuição ajuda a impulsionar nossa missão de proteger a liberdade de expressão e possibilitar uma comunicação global segura para milhões de pessoas em todo o mundo por meio de tecnologia de privacidade de código aberto. Se você é residente dos Estados Unidos, guarde este comprovante para seus registros fiscais. A Signal Technology Foundation é uma organização sem fins lucrativos isenta de impostos nos Estados Unidos, conforme a seção 501c3 do Internal Revenue Code. Nosso número Federal Tax ID é 82-4506840. O Signal não forneceu bens nem serviços em troca desta contribuição.</string>
     <!-- Donation reciepts screen empty state title -->
     <string name="DonationReceiptListFragment__no_receipts">Nenhuma nota fiscal</string>
 

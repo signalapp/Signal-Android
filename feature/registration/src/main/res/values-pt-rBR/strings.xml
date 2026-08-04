@@ -106,9 +106,9 @@
     <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
     <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">Não foi possível enviar o código pelo método selecionado. Tente outra opção.</string>
     <!-- Dialog shown when the provider rejected placing a verification phone call to the user\'s number -->
-    <string name="VerificationCodeScreen__could_not_call_provider_rejected">We couldn\'t call you with a verification code. Please try again, or request the code via SMS instead.</string>
+    <string name="VerificationCodeScreen__could_not_call_provider_rejected">Não foi possível ligar para informar seu código de verificação. Tente novamente ou solicite o código por SMS. </string>
     <!-- Dialog shown when the provider rejected sending a verification SMS to the user\'s number -->
-    <string name="VerificationCodeScreen__could_not_sms_provider_rejected">We couldn\'t send you an SMS with a verification code. Please try again, or request the code via a phone call instead.</string>
+    <string name="VerificationCodeScreen__could_not_sms_provider_rejected">Não foi possível enviar um SMS com seu código de verificação. Tente novamente ou solicite o código por chamada telefônica. </string>
     <!-- Snackbar shown for registration errors -->
     <string name="VerificationCodeScreen__registration_error">O cadastro falhou. Tente novamente.</string>
     <!-- Button text for having trouble with verification -->
@@ -384,7 +384,7 @@
     <!-- Error shown below the PIN field when the user tries to create a PIN that is too easy to guess, such as one made of sequential or repeated digits. -->
     <string name="PinCreationScreen__choose_a_stronger_pin">Escolha um PIN mais forte</string>
     <!-- Error shown below the PIN field when the user tries to create a PIN that matches the code used to verify their phone number. -->
-    <string name="PinCreationScreen__reentered_verification_code">You re-entered the code that was already used to verify your phone number. Choose a new and unique Signal PIN.</string>
+    <string name="PinCreationScreen__reentered_verification_code">Você digitou novamente o código que já foi usado para verificar seu número de telefone. Escolha um novo PIN exclusivo do Signal. </string>
     <!-- Overflow menu item that opens a help article about Signal PINs. -->
     <string name="PinCreationScreen__learn_more_about_pins">Saiba mais sobre PINs</string>
     <!-- Title of the dialog confirming that the user wants to disable their Signal PIN. -->
@@ -409,7 +409,7 @@
     <!-- Describes the PIN that needs to be entered. -->
     <string name="PinEntryScreen__enter_the_pin_you_created">Insira o PIN que criou quando instalou o Signal pela primeira vez</string>
     <!-- Error shown when the user enters the code used to verify their phone number instead of their PIN, and it was not their actual PIN. -->
-    <string name="PinEntryScreen__reentered_verification_code">You re-entered the code that was already used to verify your phone number. Enter the unique Signal PIN that you previously chose for your account.</string>
+    <string name="PinEntryScreen__reentered_verification_code">Você digitou novamente o código que já foi usado para verificar seu número de telefone. Digite o PIN exclusivo do Signal que você definiu anteriormente para sua conta. </string>
     <!-- Error shown when an incorrect PIN is entered. %1$d is the number of attempts remaining. -->
     <plurals name="PinEntryScreen__incorrect_pin">
         <item quantity="one">PIN incorreto. %1$d tentativa restante.</item>
