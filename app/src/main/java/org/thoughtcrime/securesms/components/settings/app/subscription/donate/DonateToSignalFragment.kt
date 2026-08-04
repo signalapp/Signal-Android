@@ -111,6 +111,8 @@ class DonateToSignalFragment :
 
   override val listScrollsBehindToolbar: Boolean = true
 
+  override val listAvoidsKeyboard: Boolean = true
+
   override fun onToolbarNavigationClicked() {
     requireActivity().onBackPressedDispatcher.onBackPressed()
   }

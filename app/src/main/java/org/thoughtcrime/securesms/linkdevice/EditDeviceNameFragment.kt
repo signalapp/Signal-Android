@@ -2,8 +2,10 @@ package org.thoughtcrime.securesms.linkdevice
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.MaterialTheme
@@ -85,7 +87,10 @@ class EditDeviceNameFragment : ComposeFragment() {
     ) { contentPadding: PaddingValues ->
       EditNameScreen(
         state = state,
-        modifier = Modifier.padding(contentPadding),
+        modifier = Modifier
+          .padding(contentPadding)
+          .consumeWindowInsets(contentPadding)
+          .imePadding(),
         onSave = { viewModel.saveName(it) }
       )
     }

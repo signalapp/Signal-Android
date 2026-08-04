@@ -46,7 +46,7 @@ public class EditProfileNameFragment extends Fragment {
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-    SystemWindowInsetsSetter.attach(view, getViewLifecycleOwner());
+    SystemWindowInsetsSetter.attach(view, getViewLifecycleOwner(), SystemWindowInsetsSetter.SAFE_AREA_WITH_KEYBOARD);
 
     this.givenName  = view.findViewById(R.id.edit_profile_name_given_name);
     this.familyName = view.findViewById(R.id.edit_profile_name_family_name);

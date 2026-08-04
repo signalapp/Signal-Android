@@ -48,6 +48,13 @@ abstract class DSLSettingsFragment(
    */
   protected open val listScrollsBehindToolbar: Boolean = false
 
+  /**
+   * Set by layouts with text input inside the list. The host windows are edge-to-edge, so `adjustResize` no
+   * longer shrinks the window when the keyboard opens; the list has to carry the IME inset itself to keep the
+   * focused field visible.
+   */
+  protected open val listAvoidsKeyboard: Boolean = false
+
   @CallSuper
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     toolbar = view.findViewById(R.id.toolbar)
@@ -113,7 +120,9 @@ abstract class DSLSettingsFragment(
     }
 
     recyclerView?.let { recycler ->
-      val insetTypes = WindowInsetsCompat.Type.navigationBars() or if (listScrollsBehindToolbar) WindowInsetsCompat.Type.statusBars() else 0
+      val insetTypes = WindowInsetsCompat.Type.navigationBars() or
+        (if (listScrollsBehindToolbar) WindowInsetsCompat.Type.statusBars() else 0) or
+        (if (listAvoidsKeyboard) WindowInsetsCompat.Type.ime() else 0)
 
       if (listScrollsBehindToolbar) {
         recycler.updatePadding(top = recycler.paddingTop + resources.getDimensionPixelSize(R.dimen.signal_m3_toolbar_height))

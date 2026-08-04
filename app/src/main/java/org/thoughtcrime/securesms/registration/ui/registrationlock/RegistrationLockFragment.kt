@@ -44,7 +44,7 @@ class RegistrationLockFragment : LoggingFragment(R.layout.fragment_registration_
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
-    SystemWindowInsetsSetter.attach(view, viewLifecycleOwner)
+    SystemWindowInsetsSetter.attach(view, viewLifecycleOwner, SystemWindowInsetsSetter.SAFE_AREA_WITH_KEYBOARD)
     setDebugLogSubmitMultiTapView(view.findViewById(R.id.kbs_lock_pin_title))
 
     val args: RegistrationLockFragmentArgs = RegistrationLockFragmentArgs.fromBundle(requireArguments())

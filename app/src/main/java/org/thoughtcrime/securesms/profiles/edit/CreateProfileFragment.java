@@ -90,7 +90,7 @@ public class CreateProfileFragment extends LoggingFragment {
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-    SystemWindowInsetsSetter.attach(binding.container, getViewLifecycleOwner());
+    SystemWindowInsetsSetter.attach(binding.container, getViewLifecycleOwner(), SystemWindowInsetsSetter.SAFE_AREA_WITH_KEYBOARD);
 
     GroupId groupId = GroupId.parseNullableOrThrow(requireArguments().getString(GROUP_ID, null));
 

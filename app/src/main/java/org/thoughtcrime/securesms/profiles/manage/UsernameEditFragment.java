@@ -70,7 +70,7 @@ public class UsernameEditFragment extends LoggingFragment {
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-    SystemWindowInsetsSetter.attach(view, getViewLifecycleOwner());
+    SystemWindowInsetsSetter.attach(view, getViewLifecycleOwner(), SystemWindowInsetsSetter.SAFE_AREA_WITH_KEYBOARD);
 
     Bundle bundle = getArguments();
     if (bundle != null) {

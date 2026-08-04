@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.registration.fragments.ContactSupportBottomShe
 import org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate
 import org.thoughtcrime.securesms.registration.fragments.SignalStrengthPhoneStateListener
 import org.thoughtcrime.securesms.registration.sms.ReceivedSmsEvent
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
 import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.visible
@@ -56,6 +57,8 @@ class ChangeNumberEnterCodeFragment : LoggingFragment(R.layout.fragment_change_n
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
+    SystemWindowInsetsSetter.attach(view, viewLifecycleOwner, SystemWindowInsetsSetter.SAFE_AREA_WITH_KEYBOARD)
+
     val toolbar: Toolbar = view.findViewById(R.id.toolbar)
     toolbar.title = viewModel.number.fullFormattedNumber
     toolbar.setNavigationOnClickListener {

@@ -68,7 +68,7 @@ class EnterCodeFragment : LoggingFragment(R.layout.fragment_registration_enter_c
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
-    SystemWindowInsetsSetter.attach(view, viewLifecycleOwner)
+    SystemWindowInsetsSetter.attach(view, viewLifecycleOwner, SystemWindowInsetsSetter.SAFE_AREA_WITH_KEYBOARD)
     setDebugLogSubmitMultiTapView(binding.verifyHeader)
 
     phoneStateListener = SignalStrengthPhoneStateListener(this, PhoneStateCallback())

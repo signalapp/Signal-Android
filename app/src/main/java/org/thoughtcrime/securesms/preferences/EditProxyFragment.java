@@ -75,7 +75,7 @@ public class EditProxyFragment extends Fragment {
     this.saveButton  = view.findViewById(R.id.edit_proxy_save);
     this.shareButton = view.findViewById(R.id.edit_proxy_share);
 
-    SystemWindowInsetsSetter.attach(saveButton, getViewLifecycleOwner(), WindowInsetsCompat.Type.navigationBars(), SystemWindowInsetsSetter.ApplyMode.MARGIN);
+    SystemWindowInsetsSetter.attach(saveButton, getViewLifecycleOwner(), WindowInsetsCompat.Type.navigationBars() | WindowInsetsCompat.Type.ime(), SystemWindowInsetsSetter.ApplyMode.MARGIN);
 
     lifecycleDisposable = new LifecycleDisposable();
     lifecycleDisposable.bindTo(getViewLifecycleOwner());

@@ -12,6 +12,14 @@ import androidx.lifecycle.LifecycleOwner
 object SystemWindowInsetsSetter {
 
   /**
+   * The safe area for a screen root that contains text input. The host windows are edge-to-edge, so
+   * `adjustResize` no longer shrinks the window when the keyboard opens and the root has to carry the
+   * IME inset itself. Bottom resolves to the keyboard height or the navigation bar, whichever is larger.
+   */
+  @JvmField
+  val SAFE_AREA_WITH_KEYBOARD: Int = WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.ime()
+
+  /**
    * How the resolved system-bar insets are applied to the target view. In both modes the view's
    * original padding/margin (captured when [attach] is called) is preserved and the insets are
    * added on top, so a view keeps its designed spacing and still clears the system bars.

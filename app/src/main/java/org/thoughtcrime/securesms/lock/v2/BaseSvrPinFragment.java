@@ -59,7 +59,7 @@ public abstract class BaseSvrPinFragment<ViewModel extends BaseSvrPinViewModel> 
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-    SystemWindowInsetsSetter.attach(view, getViewLifecycleOwner());
+    SystemWindowInsetsSetter.attach(view, getViewLifecycleOwner(), SystemWindowInsetsSetter.SAFE_AREA_WITH_KEYBOARD);
 
     initializeViews(view);
 

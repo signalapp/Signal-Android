@@ -112,7 +112,7 @@ public class ShareInterstitialActivity extends PassphraseRequiredActivity {
 
     toolbar.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
     SystemWindowInsetsSetter.attach(toolbar, this, WindowInsetsCompat.Type.statusBars());
-    SystemWindowInsetsSetter.attach(confirm, this, WindowInsetsCompat.Type.navigationBars(), SystemWindowInsetsSetter.ApplyMode.MARGIN);
+    SystemWindowInsetsSetter.attach(confirm, this, WindowInsetsCompat.Type.navigationBars() | WindowInsetsCompat.Type.ime(), SystemWindowInsetsSetter.ApplyMode.MARGIN);
 
     SelectionAwareEmojiEditText text = findViewById(R.id.text);
 

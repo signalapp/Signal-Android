@@ -32,6 +32,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.LabeledEditText;
 import org.thoughtcrime.securesms.registration.ui.countrycode.Country;
 import org.thoughtcrime.securesms.util.SpanUtil;
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
@@ -58,6 +59,8 @@ public class DeleteAccountFragment extends Fragment {
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     View    confirm        = view.findViewById(R.id.delete_account_fragment_delete);
     Toolbar toolbar        = view.findViewById(R.id.toolbar);
+
+    SystemWindowInsetsSetter.attach(view, getViewLifecycleOwner(), SystemWindowInsetsSetter.SAFE_AREA_WITH_KEYBOARD);
 
     bullets       = view.findViewById(R.id.delete_account_fragment_bullets);
     countryCode   = view.findViewById(R.id.delete_account_fragment_country_code);
