@@ -314,13 +314,6 @@ public class SubmitDebugLogActivity extends BaseActivity {
   }
 
   @Override
-  public void onBackPressed() {
-    if (!viewModel.onBackPressed()) {
-      super.onBackPressed();
-    }
-  }
-
-  @Override
   protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
 
