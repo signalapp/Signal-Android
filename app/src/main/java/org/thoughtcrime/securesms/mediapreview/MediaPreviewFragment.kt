@@ -129,7 +129,7 @@ class MediaPreviewFragment :
     initializeViewPager()
     initializeAlbumRail()
     initializeFullScreenUi()
-    anchorMarginsToBottomInsets(binding.mediaPreviewDetailsContainer)
+    anchorPaddingToBottomInsets(binding.mediaPreviewDetailsContainer)
     lifecycleDisposable +=
       viewModel
         .state
@@ -557,16 +557,14 @@ class MediaPreviewFragment :
     return Pair(builder, contentDesc)
   }
 
-  private fun anchorMarginsToBottomInsets(viewToAnchor: View) {
+  private fun anchorPaddingToBottomInsets(viewToAnchor: View) {
     ViewCompat.setOnApplyWindowInsetsListener(viewToAnchor) { view: View, windowInsetsCompat: WindowInsetsCompat ->
-      val layoutParams = view.layoutParams as ViewGroup.MarginLayoutParams
-      layoutParams.setMargins(
+      view.setPadding(
         windowInsetsCompat.systemWindowInsetLeft,
-        layoutParams.topMargin,
+        view.paddingTop,
         windowInsetsCompat.systemWindowInsetRight,
         windowInsetsCompat.systemWindowInsetBottom
       )
-      view.layoutParams = layoutParams
       windowInsetsCompat
     }
   }
