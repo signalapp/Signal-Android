@@ -316,7 +316,7 @@ private sealed interface PollColorsType {
         progressBackground = SignalTheme.colors.colorTransparent3,
         checkbox = secondaryTextColor,
         checkboxBackground = primaryTextColor,
-        button = Color(chatColor),
+        button = if (needsDarkText) colorResource(R.color.black) else Color(chatColor),
         buttonBackground = colorResource(R.color.conversation_item_sent_text_primary_color)
       )
     }
