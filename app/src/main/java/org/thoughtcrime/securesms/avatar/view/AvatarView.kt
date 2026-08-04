@@ -71,8 +71,10 @@ class AvatarView @JvmOverloads constructor(
   /**
    * Displays Note-to-Self
    */
-  fun displayChatAvatar(recipient: Recipient) {
-    avatar.setAvatar(recipient)
+  fun displayChatAvatar(recipient: Recipient, animateAvatar: Boolean = false) {
+    avatar.buildOptions()
+      .withAnimateAvatar(animateAvatar)
+      .load(recipient)
   }
 
   /**

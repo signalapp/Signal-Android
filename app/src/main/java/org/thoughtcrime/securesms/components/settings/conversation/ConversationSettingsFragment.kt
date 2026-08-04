@@ -315,6 +315,7 @@ class ConversationSettingsFragment :
           .withQuickContactEnabled(false)
           .withUseSelfProfileAvatar(false)
           .withFixedSize(ViewUtil.dpToPx(80))
+          .withAnimateAvatar(true)
           .load(state.recipient)
 
         if (!state.recipient.isSelf) {
