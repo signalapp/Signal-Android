@@ -5,7 +5,7 @@
 # SDK & Build Versions
 buildTools = "36.0.0"
 compileSdk = "37"
-targetSdk = "35"
+targetSdk = "36"
 minSdk = "23"
 ndk = "28.0.13004108"
 javaVersion = "21"
