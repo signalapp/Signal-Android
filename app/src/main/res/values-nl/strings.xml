@@ -296,13 +296,13 @@
 
     <!-- ClockSkewActivity -->
     <!-- Title of the full-screen dialog shown when the device clock is too far off from the real time -->
-    <string name="ClockSkewActivity__title">Date is inaccurate</string>
+    <string name="ClockSkewActivity__title">Datum is incorrect</string>
     <!-- Body text explaining that the device clock is wrong and needs to be fixed -->
-    <string name="ClockSkewActivity__date_inaccurate_description">Your device date is inaccurate.\nAdjust your clock and try again.</string>
+    <string name="ClockSkewActivity__date_inaccurate_description">De datum op je apparaat is incorrect.\nPas je klok aan en probeer het opnieuw.</string>
     <!-- Shows the user the current, inaccurate date and time reported by their device. Placeholder is the formatted date, time, and time zone. -->
-    <string name="ClockSkewActivity__time_prefix">Your device date and time is:\n%1$s</string>
+    <string name="ClockSkewActivity__time_prefix">De datum en tijd op je apparaat zijn:\n%1$s</string>
     <!-- Button that opens the system date and time settings -->
-    <string name="ClockSkewActivity__adjust_date_button">Adjust date</string>
+    <string name="ClockSkewActivity__adjust_date_button">Datum aanpassen</string>
 
     <!-- CommunicationActions -->
     <string name="CommunicationActions_no_browser_found">Geen webbrowser gevonden.</string>
@@ -591,7 +591,7 @@
     <string name="ConversationFragment_delete">Verwijderen</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">Verwijderen van alle apparaten</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">This message will be deleted for everyone in the chat. They will be able to see that you deleted a message.</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Dit bericht wordt voor iedereen in de chat verwijderd. Iedereen kan zien dat je het bericht hebt verwijderd.</string>
     <string name="ConversationFragment_quoted_message_not_found">Oorspronkelijk bericht niet gevonden</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Oorspronkelijk bericht niet langer beschikbaar.</string>
     <string name="ConversationFragment_failed_to_open_message">Openen van bericht is mislukt</string>
@@ -770,28 +770,28 @@
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">Geen ongelezen chats</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="one">Delete message history?</item>
-        <item quantity="other">Delete message histories?</item>
+        <item quantity="one">Berichtgeschiedenis wissen?</item>
+        <item quantity="other">Berichtgeschiedenis van deze chats wissen?</item>
     </plurals>
     <!-- Dialog message shown when deleting chats, none of which are groups -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">All messages in this chat will be deleted.</item>
-        <item quantity="other">All messages in these chats will be deleted.</item>
+        <item quantity="one">Alle berichten in deze chat worden verwijderd.</item>
+        <item quantity="other">Alle berichten in deze chats worden verwijderd.</item>
     </plurals>
     <!-- Dialog message shown when deleting chats, with at least one group -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_group">
-        <item quantity="one">All messages in this chat will be deleted. You will still be a member of this group.</item>
-        <item quantity="other">All messages in these chats will be deleted. You will still be a member of any groups you have not left yet.</item>
+        <item quantity="one">Alle berichten in deze chat worden verwijderd. Je blijft lid van deze groep.</item>
+        <item quantity="other">Alle berichten in deze chats worden verwijderd. Je blijft lid van alle groepen die je nog niet hebt verlaten.</item>
     </plurals>
     <!-- Dialog message shown when deleting chats, none of which are groups, and the user has a linked device -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device">
-        <item quantity="one">All messages in this chat will be deleted from all your devices.</item>
-        <item quantity="other">All messages in these chats will be deleted from all your devices.</item>
+        <item quantity="one">Alle berichten in deze chat worden verwijderd van al je apparaten.</item>
+        <item quantity="other">Alle berichten in deze chats worden verwijderd van al je apparaten.</item>
     </plurals>
     <!-- Dialog message shown when deleting chats with at least one group, and the user has a linked device -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device_group">
-        <item quantity="one">All messages in this chat will be deleted from all your devices. You will still be a member of this group.</item>
-        <item quantity="other">All messages in these chats will be deleted from all your devices. You will still be a member of any groups you have not left yet.</item>
+        <item quantity="one">Alle berichten in deze chat worden verwijderd van al je apparaten. Je blijft lid van deze groep.</item>
+        <item quantity="other">Alle berichten in deze chats worden verwijderd van al je apparaten. Je blijft lid van alle groepen die je nog niet hebt verlaten.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Aan het verwijderen</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
@@ -1142,7 +1142,7 @@
     <!-- Toast shown when the process of linking a device has been cancelled -->
     <string name="LinkDeviceFragment__linking_cancelled">Koppelen van apparaat geannuleerd</string>
     <!-- Snackbar shown when the user tries to link a new device but has already reached the maximum number of linked devices. Placeholder is the maximum count. -->
-    <string name="LinkDeviceFragment__you_can_only_have_d_linked_devices">You can only have %1$d linked devices.</string>
+    <string name="LinkDeviceFragment__you_can_only_have_d_linked_devices">Je kunt slechts %1$d gekoppelde apparaten hebben.</string>
     <!-- Message shown in progress dialog telling users to avoid closing the app while messages are being synced -->
     <string name="LinkDeviceFragment__do_not_close">Sluit Signal niet</string>
     <!-- Dialog title shown when a device is unlinked -->
@@ -6409,7 +6409,7 @@
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">Een of meerdere items zijn te groot</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">Een of meerdere items zijn ongeldig</string>
     <string name="MediaReviewFragment__too_many_items_selected">Te veel items geselecteerd</string>
-    <string name="MediaReviewFragment__video_trimmed_to_fit">Your video was trimmed to fit within the size limit</string>
+    <string name="MediaReviewFragment__video_trimmed_to_fit">Je video is ingekort om binnen de maximale bestandsgrootte te passen</string>
     <!-- Small notification presented to the user when they set their video to view-once mode -->
     <string name="MediaReviewFragment__video_set_to_view_once">Video ingesteld op eenmalige weergave</string>
     <!-- Small notification presented to the user when they set their photo to view-once mode -->
@@ -6962,7 +6962,7 @@
     <!-- Donation receipts amount title -->
     <string name="DonationReceiptDetailsFragment__amount">Bedrag</string>
     <!-- Donation receipts thanks -->
-    <string name="DonationReceiptDetailsFragment__thank_you_for_supporting" tools:ignore="TypographyDashes">Thank you for supporting Signal. Your contribution helps fuel the mission of protecting free expression and enabling secure global communication for millions around the world, through open source privacy technology. If you’re a resident of the United States, please retain this receipt for your tax records. Signal Technology Foundation is a tax-exempt nonprofit organization in the United States under section 501c3 of the Internal Revenue Code. Our Federal Tax ID is 82-4506840. Signal did not provide any goods or services in consideration of this contribution.</string>
+    <string name="DonationReceiptDetailsFragment__thank_you_for_supporting" tools:ignore="TypographyDashes">Bedankt dat je Signal steunt! Jouw bijdrage helpt bij het voortzetten van onze missie om via opensource privacytechnologie de vrijheid van expressie te beschermen en beveiligde communicatie voor miljoenen mensen over de hele wereld mogelijk te maken. Bewaar dit donatiebewijs als je een inwoner bent van de Verenigde Staten van Amerika, zodat je je donatie kunt opgeven bij je belastingaangifte. Signal Technology Foundation is een organisatie zonder winstoogmerk in de Verenigde Staten van Amerika en is vrijgesteld van belastingen volgens sectie 501c3 van de US Internal Revenue Code (het Amerikaanse belastingreglement). Ons federale-belasting-ID is 82-4506840. Signal heeft in ruil voor deze bijdrage geen goederen of diensten geleverd.</string>
     <!-- Donation reciepts screen empty state title -->
     <string name="DonationReceiptListFragment__no_receipts">Geen donatiebewijzen</string>
 

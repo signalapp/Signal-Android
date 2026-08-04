@@ -296,13 +296,13 @@
 
     <!-- ClockSkewActivity -->
     <!-- Title of the full-screen dialog shown when the device clock is too far off from the real time -->
-    <string name="ClockSkewActivity__title">Date is inaccurate</string>
+    <string name="ClockSkewActivity__title">تاریخ غلط ہے</string>
     <!-- Body text explaining that the device clock is wrong and needs to be fixed -->
-    <string name="ClockSkewActivity__date_inaccurate_description">Your device date is inaccurate.\nAdjust your clock and try again.</string>
+    <string name="ClockSkewActivity__date_inaccurate_description">آپ کی ڈیوائس کی تاریخ غلط ہے۔\nاپنی گھڑی کو ایڈجسٹ کریں اور دوبارہ کوشش کریں۔</string>
     <!-- Shows the user the current, inaccurate date and time reported by their device. Placeholder is the formatted date, time, and time zone. -->
-    <string name="ClockSkewActivity__time_prefix">Your device date and time is:\n%1$s</string>
+    <string name="ClockSkewActivity__time_prefix">آپ کی ڈیوائس کی تاریخ اور وقت یہ ہے:\n%1$s</string>
     <!-- Button that opens the system date and time settings -->
-    <string name="ClockSkewActivity__adjust_date_button">Adjust date</string>
+    <string name="ClockSkewActivity__adjust_date_button">تاریخ ایڈجسٹ کریں</string>
 
     <!-- CommunicationActions -->
     <string name="CommunicationActions_no_browser_found">کوئی ویب براؤزر نہیں ملا۔</string>
@@ -591,7 +591,7 @@
     <string name="ConversationFragment_delete">حذف کریں</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">ہر جگہ سے ڈیلیٹ کریں</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">This message will be deleted for everyone in the chat. They will be able to see that you deleted a message.</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">یہ میسج چیٹ میں ہر کسی کے لیے حذف کر دیا جائے گا۔ وہ یہ دیکھ سکیں گے کہ آپ نے میسج حذف کر دیا۔</string>
     <string name="ConversationFragment_quoted_message_not_found">اصل میسج نہیں ملا</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">اصل پیغامات طویل دستیاب نہیں ہیں</string>
     <string name="ConversationFragment_failed_to_open_message">پیغامات کھولنے میں ناکامی</string>
@@ -770,28 +770,28 @@
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">کوئی بغیر پڑھی ہوئی چیٹس نہیں</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="one">Delete message history?</item>
-        <item quantity="other">Delete message histories?</item>
+        <item quantity="one">میسج ہسٹری حذف کریں؟</item>
+        <item quantity="other">میسج ہسٹریز حذف کریں؟</item>
     </plurals>
     <!-- Dialog message shown when deleting chats, none of which are groups -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">All messages in this chat will be deleted.</item>
-        <item quantity="other">All messages in these chats will be deleted.</item>
+        <item quantity="one">اس چیٹ کے تمام میسجز حذف کر دیے جائیں گے۔</item>
+        <item quantity="other">ان چیٹس کے تمام میسجز حذف کر دیے جائیں گے۔</item>
     </plurals>
     <!-- Dialog message shown when deleting chats, with at least one group -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_group">
-        <item quantity="one">All messages in this chat will be deleted. You will still be a member of this group.</item>
-        <item quantity="other">All messages in these chats will be deleted. You will still be a member of any groups you have not left yet.</item>
+        <item quantity="one">اس چیٹ کے تمام میسجز حذف کر دیے جائیں گے۔ آپ پھر بھی اس گروپ کے ممبر رہیں گے۔</item>
+        <item quantity="other">ان چیٹس کے تمام میسجز حذف کر دیے جائیں گے۔ آپ پھر بھی ایسے کسی گروپس کے ممبر رہیں گے جو آپ نے ابھی تک نہیں چھوڑے۔</item>
     </plurals>
     <!-- Dialog message shown when deleting chats, none of which are groups, and the user has a linked device -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device">
-        <item quantity="one">All messages in this chat will be deleted from all your devices.</item>
-        <item quantity="other">All messages in these chats will be deleted from all your devices.</item>
+        <item quantity="one">آپ کی تمام ڈیوائسز سے اس چیٹ کے تمام میسجز حذف کر دیے جائیں گے۔</item>
+        <item quantity="other">آپ کی تمام ڈیوائسز سے ان چیٹس کے تمام میسجز حذف کر دیے جائیں گے۔</item>
     </plurals>
     <!-- Dialog message shown when deleting chats with at least one group, and the user has a linked device -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device_group">
-        <item quantity="one">All messages in this chat will be deleted from all your devices. You will still be a member of this group.</item>
-        <item quantity="other">All messages in these chats will be deleted from all your devices. You will still be a member of any groups you have not left yet.</item>
+        <item quantity="one">آپ کی تمام ڈیوائسز سے ان چیٹس کے تمام میسجز حذف کر دیے جائیں گے۔ آپ پھر بھی اس گروپ کے ممبر رہیں گے۔</item>
+        <item quantity="other">آپ کی تمام ڈیوائسز سے ان چیٹس کے تمام میسجز حذف کر دیے جائیں گے۔ آپ پھر بھی کسی ایسے گروپس کے ممبر رہیں گے جو آپ نے ابھی تک نہیں چھوڑے۔</item>
     </plurals>
     <string name="ConversationListFragment_deleting">حذف ہو رہا ہے</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
@@ -1142,7 +1142,7 @@
     <!-- Toast shown when the process of linking a device has been cancelled -->
     <string name="LinkDeviceFragment__linking_cancelled">مربوط کیا جانا منسوخ کردیا گیا ہے</string>
     <!-- Snackbar shown when the user tries to link a new device but has already reached the maximum number of linked devices. Placeholder is the maximum count. -->
-    <string name="LinkDeviceFragment__you_can_only_have_d_linked_devices">You can only have %1$d linked devices.</string>
+    <string name="LinkDeviceFragment__you_can_only_have_d_linked_devices">آپ صرف %1$d لنک کردہ ڈیوائسز رکھ سکتے ہیں۔</string>
     <!-- Message shown in progress dialog telling users to avoid closing the app while messages are being synced -->
     <string name="LinkDeviceFragment__do_not_close">ایپ کو بند مت کریں</string>
     <!-- Dialog title shown when a device is unlinked -->
@@ -6409,7 +6409,7 @@
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">ایک یا زائد آئٹمز بہت بڑی تھیں</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">ایک یا زائد آئٹمز غلط تھیں</string>
     <string name="MediaReviewFragment__too_many_items_selected">بہت زیادہ آئٹمز منتخب کیے گئے ہیں</string>
-    <string name="MediaReviewFragment__video_trimmed_to_fit">Your video was trimmed to fit within the size limit</string>
+    <string name="MediaReviewFragment__video_trimmed_to_fit">آپ کی ویڈیو کو سائز کی حد کے مطابق بنانے کے لیے چھوٹا کیا گیا تھا</string>
     <!-- Small notification presented to the user when they set their video to view-once mode -->
     <string name="MediaReviewFragment__video_set_to_view_once">ویڈیو صرف ایک بار ویو پر سیٹ کر دی گئی</string>
     <!-- Small notification presented to the user when they set their photo to view-once mode -->
@@ -6962,7 +6962,7 @@
     <!-- Donation receipts amount title -->
     <string name="DonationReceiptDetailsFragment__amount">رقم</string>
     <!-- Donation receipts thanks -->
-    <string name="DonationReceiptDetailsFragment__thank_you_for_supporting" tools:ignore="TypographyDashes">Thank you for supporting Signal. Your contribution helps fuel the mission of protecting free expression and enabling secure global communication for millions around the world, through open source privacy technology. If you’re a resident of the United States, please retain this receipt for your tax records. Signal Technology Foundation is a tax-exempt nonprofit organization in the United States under section 501c3 of the Internal Revenue Code. Our Federal Tax ID is 82-4506840. Signal did not provide any goods or services in consideration of this contribution.</string>
+    <string name="DonationReceiptDetailsFragment__thank_you_for_supporting" tools:ignore="TypographyDashes">Signal کو سپورٹ کرنے کے لیے آپ کا شکریہ۔ آپ کا تعاون اوپن سورس پرائیویسی ٹیکنالوجی کے ذریعے دنیا بھر کے لاکھوں افراد کے لیے آزاد اظہارِ رائے کے تحفظ اور محفوظ عالمی مواصلت کو فعال بنانے کے مشن کو تقویت دینے میں مدد کرتا ہے۔ اگر آپ امریکہ کے رہائشی ہیں، تو براہ کرم اس رسید کو اپنے ٹیکس ریکارڈز کے لیے محفوظ رکھیں۔ Signal Technology Foundation امریکہ میں Internal Revenue Code کے سیکشن 501c3 کے تحت ٹیکس سے مستثنیٰ غیر منفعتی تنظیم ہے۔ ہماری Federal Tax ID 82-4506840 ہے۔ Signal اس تعاون کے بدلے کوئی بھی سامان یا سروسز فراہم نہیں کرتا۔</string>
     <!-- Donation reciepts screen empty state title -->
     <string name="DonationReceiptListFragment__no_receipts">کوئی رسیدیں نہیں</string>
 

@@ -106,9 +106,9 @@
     <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
     <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">Не атрымалася адправіць код выбраным метадам. Паспрабуйце іншы варыянт.</string>
     <!-- Dialog shown when the provider rejected placing a verification phone call to the user\'s number -->
-    <string name="VerificationCodeScreen__could_not_call_provider_rejected">We couldn\'t call you with a verification code. Please try again, or request the code via SMS instead.</string>
+    <string name="VerificationCodeScreen__could_not_call_provider_rejected">Мы не змаглі паведаміць вам праверачны код праз званок. Паўтарыце спробу або запытайце код праз SMS.</string>
     <!-- Dialog shown when the provider rejected sending a verification SMS to the user\'s number -->
-    <string name="VerificationCodeScreen__could_not_sms_provider_rejected">We couldn\'t send you an SMS with a verification code. Please try again, or request the code via a phone call instead.</string>
+    <string name="VerificationCodeScreen__could_not_sms_provider_rejected">Мы не змаглі адправіць вам праверачны код праз SMS. Паўтарыце спробу або запытайце код праз званок.</string>
     <!-- Snackbar shown for registration errors -->
     <string name="VerificationCodeScreen__registration_error">Не атрымалася зарэгістравацца. Паўтарыце спробу.</string>
     <!-- Button text for having trouble with verification -->
@@ -386,7 +386,7 @@
     <!-- Error shown below the PIN field when the user tries to create a PIN that is too easy to guess, such as one made of sequential or repeated digits. -->
     <string name="PinCreationScreen__choose_a_stronger_pin">Выберыце больш надзейны PIN-код</string>
     <!-- Error shown below the PIN field when the user tries to create a PIN that matches the code used to verify their phone number. -->
-    <string name="PinCreationScreen__reentered_verification_code">You re-entered the code that was already used to verify your phone number. Choose a new and unique Signal PIN.</string>
+    <string name="PinCreationScreen__reentered_verification_code">Вы нанова ўвялі код, які ўжо выкарыстоўваўся для праверкі вашага нумара тэлефона. Выберыце новы і ўнікальны PIN-код Signal.</string>
     <!-- Overflow menu item that opens a help article about Signal PINs. -->
     <string name="PinCreationScreen__learn_more_about_pins">Даведацца больш пра PIN-коды</string>
     <!-- Title of the dialog confirming that the user wants to disable their Signal PIN. -->
@@ -411,7 +411,7 @@
     <!-- Describes the PIN that needs to be entered. -->
     <string name="PinEntryScreen__enter_the_pin_you_created">Увядзіце PIN-код, які вы стварылі, калі ўпершыню ўсталёўвалі Signal</string>
     <!-- Error shown when the user enters the code used to verify their phone number instead of their PIN, and it was not their actual PIN. -->
-    <string name="PinEntryScreen__reentered_verification_code">You re-entered the code that was already used to verify your phone number. Enter the unique Signal PIN that you previously chose for your account.</string>
+    <string name="PinEntryScreen__reentered_verification_code">Вы нанова ўвялі код, які ўжо выкарыстоўваўся для праверкі вашага нумара тэлефона. Увядзіце ўнікальны PIN-код Signal, які вы раней стварылі для свайго ўліковага запісу.</string>
     <!-- Error shown when an incorrect PIN is entered. %1$d is the number of attempts remaining. -->
     <plurals name="PinEntryScreen__incorrect_pin">
         <item quantity="one">Няправільны PIN-код. Застаецца %1$d спроба.</item>

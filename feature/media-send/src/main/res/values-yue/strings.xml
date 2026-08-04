@@ -97,7 +97,7 @@
   <!-- Displayed when there is an error capturing image -->
   <string name="MediaSendViewModel__error_taking_photo">影相嗰陣出錯</string>
   <!-- Displayed when a video was automatically trimmed so it fits within the size limit -->
-  <string name="MediaSendViewModel__video_trimmed_to_fit">Your video was trimmed to fit within the size limit</string>
+  <string name="MediaSendViewModel__video_trimmed_to_fit">你嘅影片已經裁剪到啱返大細</string>
 
   <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
   <string name="UsernameScannedDialog__username_dialog_title">搵到 %1$s</string>

@@ -29,7 +29,7 @@
   <string name="MediaCaptureScreen__text">ਟੈਕਸਟ</string>
     <!-- Label for the pill that displays the media count -->
     <plurals name="MediaCaptureScreen_n_items">
-        <item quantity="one">%1$d ਚੀਜਾਂ </item>
+        <item quantity="one">%1$d ਆਈਟਮ</item>
         <item quantity="other">%1$d ਆਈਟਮਾਂ</item>
     </plurals>
 
@@ -98,7 +98,7 @@
   <!-- Displayed when there is an error capturing image -->
   <string name="MediaSendViewModel__error_taking_photo">ਫ਼ੋਟੋ ਖਿੱਚਣ ਦੌਰਾਨ ਕੋਈ ਗੜਬੜ ਹੋਈ</string>
   <!-- Displayed when a video was automatically trimmed so it fits within the size limit -->
-  <string name="MediaSendViewModel__video_trimmed_to_fit">Your video was trimmed to fit within the size limit</string>
+  <string name="MediaSendViewModel__video_trimmed_to_fit">ਤੁਹਾਡੀ ਵੀਡੀਓ ਨੂੰ ਆਕਾਰ ਦੀ ਸੀਮਾ ਦੇ ਅੰਦਰ ਫਿੱਟ ਕਰਨ ਲਈ ਛੋਟਾ ਕੀਤਾ ਗਿਆ ਸੀ</string>
 
   <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
   <string name="UsernameScannedDialog__username_dialog_title">%1$s ਲੱਭਿਆ</string>

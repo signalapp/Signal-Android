@@ -300,13 +300,13 @@
 
     <!-- ClockSkewActivity -->
     <!-- Title of the full-screen dialog shown when the device clock is too far off from the real time -->
-    <string name="ClockSkewActivity__title">Date is inaccurate</string>
+    <string name="ClockSkewActivity__title">התאריך לא מדויק</string>
     <!-- Body text explaining that the device clock is wrong and needs to be fixed -->
-    <string name="ClockSkewActivity__date_inaccurate_description">Your device date is inaccurate.\nAdjust your clock and try again.</string>
+    <string name="ClockSkewActivity__date_inaccurate_description">התאריך במכשיר שלך לא מדויק.\nיש לעדכן אותו ולנסות שוב.</string>
     <!-- Shows the user the current, inaccurate date and time reported by their device. Placeholder is the formatted date, time, and time zone. -->
-    <string name="ClockSkewActivity__time_prefix">Your device date and time is:\n%1$s</string>
+    <string name="ClockSkewActivity__time_prefix">התאריך והשעה במכשיר שלך הם:\n%1$s</string>
     <!-- Button that opens the system date and time settings -->
-    <string name="ClockSkewActivity__adjust_date_button">Adjust date</string>
+    <string name="ClockSkewActivity__adjust_date_button">עדכון תאריך</string>
 
     <!-- CommunicationActions -->
     <string name="CommunicationActions_no_browser_found">דפדפן רשת לא נמצא.</string>
@@ -615,7 +615,7 @@
     <string name="ConversationFragment_delete">מחיקה</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">מחיקה בכל מקום</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">This message will be deleted for everyone in the chat. They will be able to see that you deleted a message.</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">הודעה זו תימחק עבור כל מי שנמצא בצ׳אט. הם יוכלו לראות שמחקת הודעה.</string>
     <string name="ConversationFragment_quoted_message_not_found">הודעה מקורית לא נמצאה</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">ההודעה המקורית אינה זמינה יותר</string>
     <string name="ConversationFragment_failed_to_open_message">נכשל בפתיחת הודעה</string>
@@ -798,38 +798,38 @@
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">אין צ׳אטים שלא נקראו</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="one">Delete message history?</item>
-        <item quantity="two">Delete message histories?</item>
-        <item quantity="many">Delete message histories?</item>
-        <item quantity="other">Delete message histories?</item>
+        <item quantity="one">למחוק היסטוריית הודעות?</item>
+        <item quantity="two">למחוק היסטוריות הודעות?</item>
+        <item quantity="many">למחוק היסטוריות הודעות?</item>
+        <item quantity="other">למחוק היסטוריות הודעות?</item>
     </plurals>
     <!-- Dialog message shown when deleting chats, none of which are groups -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">All messages in this chat will be deleted.</item>
-        <item quantity="two">All messages in these chats will be deleted.</item>
-        <item quantity="many">All messages in these chats will be deleted.</item>
-        <item quantity="other">All messages in these chats will be deleted.</item>
+        <item quantity="one">כל ההודעות בצ׳אט הזה יימחקו.</item>
+        <item quantity="two">כל ההודעות בצ׳אטים האלה יימחקו.</item>
+        <item quantity="many">כל ההודעות בצ׳אטים האלה יימחקו.</item>
+        <item quantity="other">כל ההודעות בצ׳אטים האלה יימחקו.</item>
     </plurals>
     <!-- Dialog message shown when deleting chats, with at least one group -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_group">
-        <item quantity="one">All messages in this chat will be deleted. You will still be a member of this group.</item>
-        <item quantity="two">All messages in these chats will be deleted. You will still be a member of any groups you have not left yet.</item>
-        <item quantity="many">All messages in these chats will be deleted. You will still be a member of any groups you have not left yet.</item>
-        <item quantity="other">All messages in these chats will be deleted. You will still be a member of any groups you have not left yet.</item>
+        <item quantity="one">כל ההודעות בצ׳אט הזה יימחקו. עדיין תישאר/י חבר/ה בקבוצה הזו.</item>
+        <item quantity="two">כל ההודעות בצ׳אטים האלה יימחקו. עדיין תישאר/י חבר/ה בקבוצות שלא עזבת.</item>
+        <item quantity="many">כל ההודעות בצ׳אטים האלה יימחקו. עדיין תישאר/י חבר/ה בקבוצות שלא עזבת.</item>
+        <item quantity="other">כל ההודעות בצ׳אטים האלה יימחקו. עדיין תישאר/י חבר/ה בקבוצות שלא עזבת.</item>
     </plurals>
     <!-- Dialog message shown when deleting chats, none of which are groups, and the user has a linked device -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device">
-        <item quantity="one">All messages in this chat will be deleted from all your devices.</item>
-        <item quantity="two">All messages in these chats will be deleted from all your devices.</item>
-        <item quantity="many">All messages in these chats will be deleted from all your devices.</item>
-        <item quantity="other">All messages in these chats will be deleted from all your devices.</item>
+        <item quantity="one">כל ההודעות בצ׳אט הזה יימחקו מכל המכשירים שלך.</item>
+        <item quantity="two">כל ההודעות בצ׳אטים האלה יימחקו מכל המכשירים שלך.</item>
+        <item quantity="many">כל ההודעות בצ׳אטים האלה יימחקו מכל המכשירים שלך.</item>
+        <item quantity="other">כל ההודעות בצ׳אטים האלה יימחקו מכל המכשירים שלך.</item>
     </plurals>
     <!-- Dialog message shown when deleting chats with at least one group, and the user has a linked device -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device_group">
-        <item quantity="one">All messages in this chat will be deleted from all your devices. You will still be a member of this group.</item>
-        <item quantity="two">All messages in these chats will be deleted from all your devices. You will still be a member of any groups you have not left yet.</item>
-        <item quantity="many">All messages in these chats will be deleted from all your devices. You will still be a member of any groups you have not left yet.</item>
-        <item quantity="other">All messages in these chats will be deleted from all your devices. You will still be a member of any groups you have not left yet.</item>
+        <item quantity="one">כל ההודעות בצ׳אט הזה יימחקו מכל המכשירים שלך. עדיין תישאר/י חבר/ה בקבוצה הזו.</item>
+        <item quantity="two">כל ההודעות בצ׳אטים האלה יימחקו מכל המכשירים שלך. עדיין תישאר/י חבר/ה בקבוצות שלא עזבת.</item>
+        <item quantity="many">כל ההודעות בצ׳אטים האלה יימחקו מכל המכשירים שלך. עדיין תישאר/י חבר/ה בקבוצות שלא עזבת.</item>
+        <item quantity="other">כל ההודעות בצ׳אטים האלה יימחקו מכל המכשירים שלך. עדיין תישאר/י חבר/ה בקבוצות שלא עזבת.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">מוחק</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
@@ -1200,7 +1200,7 @@
     <!-- Toast shown when the process of linking a device has been cancelled -->
     <string name="LinkDeviceFragment__linking_cancelled">הקישור בוטל</string>
     <!-- Snackbar shown when the user tries to link a new device but has already reached the maximum number of linked devices. Placeholder is the maximum count. -->
-    <string name="LinkDeviceFragment__you_can_only_have_d_linked_devices">You can only have %1$d linked devices.</string>
+    <string name="LinkDeviceFragment__you_can_only_have_d_linked_devices">אפשר לקשר רק %1$d מכשירים.</string>
     <!-- Message shown in progress dialog telling users to avoid closing the app while messages are being synced -->
     <string name="LinkDeviceFragment__do_not_close">לא לסגור את האפליקציה</string>
     <!-- Dialog title shown when a device is unlinked -->
@@ -6729,7 +6729,7 @@
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">פריט אחד או יותר היו יותר מדי גדולים</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">פריט אחד או יותר היו בלתי תקפים</string>
     <string name="MediaReviewFragment__too_many_items_selected">יותר מדי פריטים נבחרו</string>
-    <string name="MediaReviewFragment__video_trimmed_to_fit">Your video was trimmed to fit within the size limit</string>
+    <string name="MediaReviewFragment__video_trimmed_to_fit">הסרטון שלך קוצץ כדי להתאים למגבלת הגודל</string>
     <!-- Small notification presented to the user when they set their video to view-once mode -->
     <string name="MediaReviewFragment__video_set_to_view_once">וידאו מוגדר לצפייה חד פעמית</string>
     <!-- Small notification presented to the user when they set their photo to view-once mode -->
@@ -7286,7 +7286,7 @@
     <!-- Donation receipts amount title -->
     <string name="DonationReceiptDetailsFragment__amount">סכום</string>
     <!-- Donation receipts thanks -->
-    <string name="DonationReceiptDetailsFragment__thank_you_for_supporting" tools:ignore="TypographyDashes">Thank you for supporting Signal. Your contribution helps fuel the mission of protecting free expression and enabling secure global communication for millions around the world, through open source privacy technology. If you’re a resident of the United States, please retain this receipt for your tax records. Signal Technology Foundation is a tax-exempt nonprofit organization in the United States under section 501c3 of the Internal Revenue Code. Our Federal Tax ID is 82-4506840. Signal did not provide any goods or services in consideration of this contribution.</string>
+    <string name="DonationReceiptDetailsFragment__thank_you_for_supporting" tools:ignore="TypographyDashes">תודה על התמיכה ב–Signal. התרומה שלך עוזרת להמשיך לקדם את המשימה שלנו להגן על חופש הביטוי ולאפשר תקשורת גלובלית מאובטחת עבור מיליונים ברחבי העולם, באמצעות טכנולוגיית פרטיות בקוד פתוח. אם מקום המגורים שלך הוא ארה״ב, יש לשמור את הקבלה הזו לצורך רישומי המס שלך. Signal Technology Foundation היא עמותה ללא מטרות רווח פטורה ממס בארה״ב תחת סעיף 501c3 של קוד מס ההכנסה האמריקאי. מזהה המס הפדרלי שלנו הוא 82-4506840. Signal לא סיפקה כל מוצר או שירות בתמורה לתרומה זו.</string>
     <!-- Donation reciepts screen empty state title -->
     <string name="DonationReceiptListFragment__no_receipts">אין קבלות</string>
 

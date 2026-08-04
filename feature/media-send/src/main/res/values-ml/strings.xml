@@ -98,7 +98,7 @@
   <!-- Displayed when there is an error capturing image -->
   <string name="MediaSendViewModel__error_taking_photo">ഫോട്ടോ എടുക്കുന്നതിൽ പിശക്</string>
   <!-- Displayed when a video was automatically trimmed so it fits within the size limit -->
-  <string name="MediaSendViewModel__video_trimmed_to_fit">Your video was trimmed to fit within the size limit</string>
+  <string name="MediaSendViewModel__video_trimmed_to_fit">വലിപ്പപരിധിയിൽ ഉൾക്കൊള്ളിക്കുന്നതിനായി നിങ്ങളുടെ വീഡിയോ ദൈർഘ്യം കുറച്ചു</string>
 
   <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
   <string name="UsernameScannedDialog__username_dialog_title">%1$s എന്നയാളെ കണ്ടെത്തി</string>

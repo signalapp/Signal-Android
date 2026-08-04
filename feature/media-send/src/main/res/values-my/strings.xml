@@ -29,7 +29,7 @@
   <string name="MediaCaptureScreen__text">စာသား</string>
     <!-- Label for the pill that displays the media count -->
     <plurals name="MediaCaptureScreen_n_items">
-        <item quantity="other">ဒေါင်းလုဒ် %1$d ခု</item>
+        <item quantity="other">Item %1$d ခု</item>
     </plurals>
 
   <!-- Video editor play button content description -->
@@ -97,7 +97,7 @@
   <!-- Displayed when there is an error capturing image -->
   <string name="MediaSendViewModel__error_taking_photo">ဓာတ်ပုံရိုက်နေစဉ် ချို့ယွင်းချက်တစ်ခု ဖြစ်ပွားခဲ့သည်</string>
   <!-- Displayed when a video was automatically trimmed so it fits within the size limit -->
-  <string name="MediaSendViewModel__video_trimmed_to_fit">Your video was trimmed to fit within the size limit</string>
+  <string name="MediaSendViewModel__video_trimmed_to_fit">သင့်ဗီဒီယိုကို အရွယ်အစားကန့်သတ်ချက်အတွင်း ဝင်စေရန် ဖြတ်တောက်ထားပါသည်</string>
 
   <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
   <string name="UsernameScannedDialog__username_dialog_title">%1$s ကို တွေ့ရှိသည်</string>

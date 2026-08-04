@@ -106,9 +106,9 @@
     <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
     <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">មិនអាចផ្ញើលេខកូដតាមវិធីដែលបានជ្រើសរើសទេ។ សូមសាកល្បងជម្រើសផ្សេងទៀត។</string>
     <!-- Dialog shown when the provider rejected placing a verification phone call to the user\'s number -->
-    <string name="VerificationCodeScreen__could_not_call_provider_rejected">We couldn\'t call you with a verification code. Please try again, or request the code via SMS instead.</string>
+    <string name="VerificationCodeScreen__could_not_call_provider_rejected">យើងមិនអាចហៅទូរសព្ទទៅអ្នកជាមួយលេខកូដផ្ទៀងផ្ទាត់បានទេ។ សូមព្យាយាមម្តងទៀត ឬស្នើសុំលេខកូដតាមរយៈសារ SMS វិញ។</string>
     <!-- Dialog shown when the provider rejected sending a verification SMS to the user\'s number -->
-    <string name="VerificationCodeScreen__could_not_sms_provider_rejected">We couldn\'t send you an SMS with a verification code. Please try again, or request the code via a phone call instead.</string>
+    <string name="VerificationCodeScreen__could_not_sms_provider_rejected">យើងមិនអាចផ្ញើសារ SMS ដែលមានលេខកូដផ្ទៀងផ្ទាត់ទៅអ្នកបានទេ។ សូមព្យាយាមម្តងទៀត ឬស្នើសុំលេខកូដតាមរយៈការហៅទូរសព្ទវិញ។</string>
     <!-- Snackbar shown for registration errors -->
     <string name="VerificationCodeScreen__registration_error">ការចុះឈ្មោះមិនបានជោគជ័យទេ។ សូមព្យាយាមម្តងទៀត។</string>
     <!-- Button text for having trouble with verification -->
@@ -124,7 +124,7 @@
     <!-- Clickable substring linking to contacting support within VerificationCodeScreen__support_bottom_sheet_body_call_to_action -->
     <string name="VerificationCodeScreen__support_bottom_sheet_cta_contact_support_substring">ទាក់ទងផ្នែកជំនួយ</string>
     <!-- Email subject used when contacting support from the verification code screen -->
-    <string name="VerificationCodeScreen__contact_support_email_subject">ការចុះឈ្មោះ Signal - ការផ្ទៀងផ្ទាត់កូដសម្រាប់ Android</string>
+    <string name="VerificationCodeScreen__contact_support_email_subject">ការចុះឈ្មោះ Signal - លេខកូដផ្ទៀងផ្ទាត់សម្រាប់ Android</string>
     <!-- Text placed in the body of the support email composed from the verification code screen. Used to route the request, so it is not translated. -->
   <!-- Removed by excludeNonTranslatables <string name="VerificationCodeScreen__contact_support_email_filter" translatable="false">Signal Registration - Verification Code for Android</string> -->
     <!-- URL opened for troubleshooting steps from the verification code screen -->
@@ -381,9 +381,9 @@
     <!-- Error shown below the PIN field when the confirmation PIN does not match the one the user first entered. -->
     <string name="PinCreationScreen__pins_dont_match">លេខកូដសម្ងាត់មិនត្រូវគ្នា។ ព្យាយាមម្តងទៀត។</string>
     <!-- Error shown below the PIN field when the user tries to create a PIN that is too easy to guess, such as one made of sequential or repeated digits. -->
-    <string name="PinCreationScreen__choose_a_stronger_pin">ជ្រើសរើសលេខ PIN ខ្លាំងជាងនេះ</string>
+    <string name="PinCreationScreen__choose_a_stronger_pin">ជ្រើសរើសលេខកូដសម្ងាត់ខ្លាំងជាងនេះ</string>
     <!-- Error shown below the PIN field when the user tries to create a PIN that matches the code used to verify their phone number. -->
-    <string name="PinCreationScreen__reentered_verification_code">You re-entered the code that was already used to verify your phone number. Choose a new and unique Signal PIN.</string>
+    <string name="PinCreationScreen__reentered_verification_code">អ្នកបានបញ្ចូលឡើងវិញនូវលេខកូដដែលត្រូវបានប្រើរួចហើយដើម្បីផ្ទៀងផ្ទាត់លេខទូរសព្ទរបស់អ្នក។ ជ្រើសរើសលេខកូដសម្ងាត់ Signal ថ្មី និងតែមួយគត់។</string>
     <!-- Overflow menu item that opens a help article about Signal PINs. -->
     <string name="PinCreationScreen__learn_more_about_pins">ស្វែងយល់បន្ថែមអំពីលេខកូដសម្ងាត់</string>
     <!-- Title of the dialog confirming that the user wants to disable their Signal PIN. -->
@@ -408,7 +408,7 @@
     <!-- Describes the PIN that needs to be entered. -->
     <string name="PinEntryScreen__enter_the_pin_you_created">បញ្ចូលលេខកូដសម្ងាត់ដែលអ្នកបានបង្កើតនៅពេលអ្នកដំឡើង Signal ដំបូង</string>
     <!-- Error shown when the user enters the code used to verify their phone number instead of their PIN, and it was not their actual PIN. -->
-    <string name="PinEntryScreen__reentered_verification_code">You re-entered the code that was already used to verify your phone number. Enter the unique Signal PIN that you previously chose for your account.</string>
+    <string name="PinEntryScreen__reentered_verification_code">អ្នកបានបញ្ចូលឡើងវិញនូវលេខកូដដែលត្រូវបានប្រើរួចហើយដើម្បីផ្ទៀងផ្ទាត់លេខទូរសព្ទរបស់អ្នក។ បញ្ចូលេខកូដសម្ងាត់ Signal តែមួយគត់ដែលអ្នកបានជ្រើសរើសពីមុនសម្រាប់គណនីរបស់អ្នក។</string>
     <!-- Error shown when an incorrect PIN is entered. %1$d is the number of attempts remaining. -->
     <plurals name="PinEntryScreen__incorrect_pin">
         <item quantity="other">លេខកូដសម្ងាត់មិនត្រឹមត្រូវ។ អាចព្យាយាមបាន %1$d ដងទៀត។</item>
@@ -434,7 +434,7 @@
     <!-- Labels the button in the no-data-to-restore dialog that lets the user contact support. -->
     <string name="PinEntryScreen__contact_support">ទាក់ទងផ្នែកជំនួយ</string>
     <!-- Subject line of the support email composed when the user contacts support about PIN entry. -->
-    <string name="PinEntryScreen__contact_support_email_subject">ការចុះឈ្មោះ Signal - ត្រូវការជំនួយជាមួយ PIN សម្រាប់ Android</string>
+    <string name="PinEntryScreen__contact_support_email_subject">ការចុះឈ្មោះ Signal - ត្រូវការជំនួយចំពោះលេខកូដសម្ងាត់សម្រាប់ Android</string>
     <!-- Text placed in the body of the support email composed when the user contacts support about PIN entry. Used to route the request, so it is not translated. -->
   <!-- Removed by excludeNonTranslatables <string name="PinEntryScreen__contact_support_email_filter" translatable="false">Signal Registration - Need Help with PIN for Android</string> -->
 
@@ -604,7 +604,7 @@
     <!-- Body of the dialog asking the user whether they want to attach a debug log to their support request -->
     <string name="ContactSupportDialog__your_debug_logs">កំណត់ត្រាបញ្ហារបស់អ្នកនឹងជួយយើងដោះស្រាយបញ្ហារបស់អ្នកឱ្យបានកាន់តែលឿន។ អ្នកមានជម្រើសដាក់ឬមិនដាក់បញ្ជូនកំណត់ត្រារបស់អ្នក។</string>
     <!-- Button that contacts support with a debug log attached -->
-    <string name="ContactSupportDialog__submit_with_debug_log">ដាក់បញ្ជូនជាមួយកំណត់ត្រាបញ្ហា</string>
+    <string name="ContactSupportDialog__submit_with_debug_log">ដាក់បញ្ជូនដោយមានកំណត់ត្រាបញ្ហា</string>
     <!-- Button that contacts support without attaching a debug log -->
     <string name="ContactSupportDialog__submit_without_debug_log">ដាក់បញ្ជូនដោយគ្មានកំណត់ត្រាបញ្ហា</string>
 </resources>

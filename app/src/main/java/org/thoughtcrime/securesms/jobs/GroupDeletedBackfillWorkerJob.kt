@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.jobs
 
+import org.signal.core.util.ThreadUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.jobmanager.Job
@@ -12,12 +13,18 @@ import org.thoughtcrime.securesms.jobmanager.Job
 /**
  * Clears metadata of existing deleted groups (left and thread deleted). Each group's state is re-validated at run time,
  * so any group that has settled back to active (or regained a thread) is skipped.
+ *
+ * Clearing a single group is a large multi-table write transaction, so we pause between groups. Otherwise an account with
+ * a lot of deleted groups will monopolize the database write connection for as long as it takes to clear them all, which
+ * stalls foreground work like message sends and conversation rendering.
  */
 class GroupDeletedBackfillWorkerJob private constructor(parameters: Parameters) : Job(parameters) {
 
   companion object {
     val TAG = Log.tag(GroupDeletedBackfillWorkerJob::class.java)
     const val KEY = "GroupDeletedBackfillWorkerJob"
+
+    private const val PAUSE_BETWEEN_GROUPS_MS = 1000L
   }
 
   constructor() : this(
@@ -42,7 +49,11 @@ class GroupDeletedBackfillWorkerJob private constructor(parameters: Parameters) 
         .toList()
     }
 
-    groupIdsToClear.forEach { id ->
+    groupIdsToClear.forEachIndexed { index, id ->
+      if (index > 0) {
+        ThreadUtil.sleep(PAUSE_BETWEEN_GROUPS_MS)
+      }
+
       SignalDatabase.groups.clearGroupIfLeftAndDeleted(id)
     }
 
