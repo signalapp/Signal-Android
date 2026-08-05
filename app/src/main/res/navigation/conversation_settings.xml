@@ -52,6 +52,10 @@
             app:argType="long[]"
             app:nullable="true" />
 
+        <argument
+            android:name="kind"
+            app:argType="org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsKind" />
+
         <action
             android:id="@+id/action_conversationSettingsFragment_to_soundsAndNotificationsSettingsFragment"
             app:destination="@id/soundsAndNotificationsSettingsFragment"
