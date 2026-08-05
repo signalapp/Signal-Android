@@ -58,6 +58,7 @@ import org.signal.glide.compose.GlideImageScaleType
 import org.signal.glide.decryptableuri.DecryptableUri
 import org.signal.imageeditor.core.model.EditorModel
 import org.signal.mediasend.EditorState
+import org.signal.mediasend.MediaConstraints
 import org.signal.mediasend.MediaSendFlowState
 import org.signal.mediasend.PreviewMediaInputFactory
 import org.signal.mediasend.rememberPreviewState
@@ -285,7 +286,7 @@ internal fun MediaEditScreen(
         verticalArrangement = spacedBy(20.dp),
         horizontalAlignment = Alignment.CenterHorizontally
       ) {
-        if (focusedEditorState is EditorState.VideoTrim) {
+        if (focusedEditorState is EditorState.VideoTrim && MediaConstraints.isVideoTranscodeAvailable()) {
           VideoTrimTimeline(
             videoUri = focusedUri,
             editorState = focusedEditorState,
