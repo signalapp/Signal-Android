@@ -55,6 +55,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -76,6 +77,12 @@ import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
 import androidx.lifecycle.compose.LifecycleResumeEffect
 import androidx.window.core.layout.WindowSizeClass
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.currentCoroutineContext
+import kotlinx.coroutines.ensureActive
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.emptyFlow
+import kotlinx.coroutines.flow.first
 import org.signal.core.models.media.Media
 import org.signal.core.models.media.MediaFolder
 import org.signal.core.ui.compose.AllDevicePreviews
@@ -116,7 +123,8 @@ private const val PLACEHOLDER_COUNT = 100
 @Composable
 internal fun MediaSelectScreen(
   state: MediaSelectState,
-  onEvent: (MediaSelectScreenEvents) -> Unit
+  onEvent: (MediaSelectScreenEvents) -> Unit,
+  selectionAdditions: Flow<Media> = emptyFlow()
 ) {
   // Without read access there is nothing to browse, and with selected-photos access and nothing selected there is
   // nothing yet. Both show the placeholder grid behind a call to action, so both use the denser file grid.
@@ -251,6 +259,7 @@ internal fun MediaSelectScreen(
         ) {
           SelectedMediaRow(
             selectedMedia = state.selectedMedia,
+            selectionAdditions = selectionAdditions,
             alignment = gridConfiguration.bottomBarAlignment,
             onEvent = onEvent,
             modifier = Modifier
@@ -706,6 +715,7 @@ private fun NextButton(mediaSelectionCount: Int, recipientChatColor: Color? = nu
 @Composable
 private fun SelectedMediaRow(
   selectedMedia: List<Media>,
+  selectionAdditions: Flow<Media>,
   alignment: Alignment.Horizontal,
   onEvent: (MediaSelectScreenEvents) -> Unit,
   modifier: Modifier = Modifier
@@ -722,6 +732,26 @@ private fun SelectedMediaRow(
     onEvent = reorderBuffer::onReorderListEvent
   )
 
+  LaunchedEffect(listState, selectionAdditions) {
+    selectionAdditions.collect { addition ->
+      // Located in the order the rail is rendering rather than in the selection, which a drag in progress is holding
+      // back. The addition is also announced with the state that carries it, ahead of the layout that measures it, and a
+      // list asked for an item it has not measured yet believes it is already at its end and gives up without moving.
+      val index = snapshotFlow {
+        val index = reorderBuffer.items.indexOfFirst { it.uri == addition.uri }
+        if (index < listState.layoutInfo.totalItemsCount) index else -1
+      }.first { it >= 0 }
+
+      try {
+        listState.animateScrollToItem(index)
+      } catch (e: CancellationException) {
+        // A touch on the rail preempts the scroll and cancels it. That is the user taking the rail over, and it ends
+        // this scroll rather than our interest in the next addition.
+        currentCoroutineContext().ensureActive()
+      }
+    }
+  }
+
   LazyRow(
     state = listState,
     modifier = modifier.reorderableList(reorderableListState),
@@ -729,7 +759,10 @@ private fun SelectedMediaRow(
   ) {
     itemsIndexed(reorderBuffer.items, key = { _, media -> media.uri }) { index, media ->
       ReorderableItem(reorderableListState, index) {
-        MediaThumbnail(media) {
+        MediaThumbnail(
+          media = media,
+          modifier = Modifier.testTag(TestTags.selectedMediaThumbnail(media.uri.toString()))
+        ) {
           onEvent(MediaSelectScreenEvents.SetFocusedMedia(media))
           onEvent(MediaSelectScreenEvents.NavigateToEdit)
         }
@@ -744,22 +777,28 @@ private fun MediaThumbnail(
   modifier: Modifier = Modifier,
   onClick: () -> Unit
 ) {
-  if (LocalInspectionMode.current) {
-    Box(
-      modifier = modifier
-        .size(MediaSendMetrics.SelectedMediaPreviewSize)
-        .background(color = Previews.rememberRandomColor(), shape = RoundedCornerShape(8.dp))
-        .clickable(onClick = onClick, onClickLabel = media.fileName, role = Role.Button)
-    )
-  } else {
-    GlideImage(
-      model = media.uri,
-      imageSize = MediaSendMetrics.SelectedMediaPreviewSize,
-      modifier = modifier
-        .size(MediaSendMetrics.SelectedMediaPreviewSize)
-        .clip(RoundedCornerShape(8.dp))
-        .clickable(onClick = onClick, onClickLabel = media.fileName, role = Role.Button)
-    )
+  // Sized by the box rather than by what ends up in it. The thumbnail emits nothing at all until it has loaded, and an
+  // item with no width until then is one the rail cannot lay out, scroll to, or show.
+  Box(
+    modifier = modifier
+      .size(MediaSendMetrics.SelectedMediaPreviewSize)
+      .clip(RoundedCornerShape(8.dp))
+      .background(color = MaterialTheme.colorScheme.surfaceVariant)
+      .clickable(onClick = onClick, onClickLabel = media.fileName, role = Role.Button)
+  ) {
+    if (LocalInspectionMode.current) {
+      Box(
+        modifier = Modifier
+          .fillMaxSize()
+          .background(color = Previews.rememberRandomColor())
+      )
+    } else {
+      GlideImage(
+        model = media.uri,
+        imageSize = MediaSendMetrics.SelectedMediaPreviewSize,
+        modifier = Modifier.fillMaxSize()
+      )
+    }
   }
 }
 

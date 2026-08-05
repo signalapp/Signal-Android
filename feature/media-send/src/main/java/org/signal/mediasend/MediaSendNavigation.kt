@@ -82,7 +82,8 @@ internal fun MediaSendNavigation(
             factory = MediaSelectViewModel.Factory(
               parentState = viewModel.state,
               parentEventEmitter = viewModel::onEvent,
-              mediaFolder = null
+              mediaFolder = null,
+              selectionAdditions = viewModel.selectionAdditions
             )
           )
           val state by selectViewModel.state.collectAsStateWithLifecycle()
@@ -91,7 +92,8 @@ internal fun MediaSendNavigation(
 
           MediaSelectScreen(
             state = state,
-            onEvent = selectViewModel::onEvent
+            onEvent = selectViewModel::onEvent,
+            selectionAdditions = selectViewModel.selectionAdditions
           )
         }
 
@@ -100,7 +102,8 @@ internal fun MediaSendNavigation(
             factory = MediaSelectViewModel.Factory(
               parentState = viewModel.state,
               parentEventEmitter = viewModel::onEvent,
-              mediaFolder = key.folder
+              mediaFolder = key.folder,
+              selectionAdditions = viewModel.selectionAdditions
             )
           )
           val state by selectViewModel.state.collectAsStateWithLifecycle()
@@ -109,7 +112,8 @@ internal fun MediaSendNavigation(
 
           MediaSelectScreen(
             state = state,
-            onEvent = selectViewModel::onEvent
+            onEvent = selectViewModel::onEvent,
+            selectionAdditions = selectViewModel.selectionAdditions
           )
         }
 

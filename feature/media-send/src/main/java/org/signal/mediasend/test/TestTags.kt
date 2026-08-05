@@ -22,6 +22,9 @@ object TestTags {
   // Media Select Screen
   const val MEDIA_SELECT_GRID = "media_select_grid"
 
+  /** Tag for the selected media rail's thumbnail of the media at [uri]. */
+  fun selectedMediaThumbnail(uri: String): String = "selected_media_thumbnail_$uri"
+
   // Schedule Send Menu
   const val SCHEDULE_SEND_PICK_TIME_OPTION = "schedule_send_pick_time_option"
 

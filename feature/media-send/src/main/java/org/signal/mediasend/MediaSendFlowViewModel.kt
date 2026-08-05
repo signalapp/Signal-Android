@@ -24,6 +24,7 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -124,6 +125,13 @@ class MediaSendFlowViewModel(
 
   private val internalToastEvents: Channel<ToastEvent> = Channel(Channel.BUFFERED)
   internal val toastEvents: Flow<ToastEvent> = internalToastEvents.receiveAsFlow()
+
+  /**
+   * The media that has most recently landed in the selection, for the screens that follow the selection as it grows.
+   * Only this knows which that is: what the user picked is not necessarily what survived validation.
+   */
+  private val internalSelectionAdditions: Channel<Media> = Channel(capacity = 1, onBufferOverflow = BufferOverflow.DROP_OLDEST)
+  internal val selectionAdditions: Flow<Media> = internalSelectionAdditions.receiveAsFlow()
 
   internal val usernameScannedDialog = DialogController<String>()
   internal val linkedDeviceScannedDialog = DialogController<Unit>()
@@ -586,6 +594,8 @@ class MediaSendFlowViewModel(
             }
           )
         }
+
+        updatedMedia.lastOrNull { item -> media.any { it.uri == item.uri } }?.let { internalSelectionAdditions.trySend(it) }
 
         if (initializedEditorStates.values.any { it is EditorState.VideoTrim && it.videoTrimData.isDurationEdited }) {
           internalSnackbarEvents.trySend(SnackbarEvent(message = R.string.MediaSendViewModel__video_trimmed_to_fit))
