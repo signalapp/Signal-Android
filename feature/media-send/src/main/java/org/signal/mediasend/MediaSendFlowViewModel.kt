@@ -712,23 +712,6 @@ class MediaSendFlowViewModel(
   }
 
   /**
-   * Applies updates to selected media (old -> new).
-   */
-  fun applyMediaUpdates(oldToNew: Map<Media, Media>) {
-    if (oldToNew.isEmpty()) return
-
-    mutateSelection {
-      val snapshot = state.value
-      val updatedSelection = snapshot.selectedMedia.map { oldToNew[it] ?: it }
-      updateState { copy(selectedMedia = updatedSelection) }
-
-      preUploadController.applyMediaUpdates(oldToNew, snapshot.recipientId)
-      preUploadController.updateCaptions(updatedSelection)
-      preUploadController.updateDisplayOrder(updatedSelection)
-    }
-  }
-
-  /**
    * Sets the current ordering of selected media.
    */
   fun setDisplayOrder(mediaInOrder: List<Media>) {
@@ -1324,8 +1307,8 @@ class MediaSendFlowViewModel(
   /**
    * A flow that picks its destination mid-flight has nothing to attribute an upload to yet, so it waits for the send.
    */
-  private fun shouldPreUpload(metered: Boolean): Boolean {
-    return !metered && args.mode != MediaSendFlowActivityContract.Mode.ChooseAfterMediaSelection
+  private fun MediaSendFlowState.shouldPreUpload(metered: Boolean): Boolean {
+    return !metered && !isContactSelectionRequired
   }
 
   //endregion
