@@ -265,7 +265,7 @@
     <!-- Description shown when the entered passphrase or recovery key cannot decrypt the selected backup -->
     <string name="LocalBackupRestoreScreen__incorrect_credential_description">اطلاعاتی که وارد کرده‌اید با این نسخه پشتیبان مطابقت ندارد. لطفاً آن را بررسی و دوباره امتحان کنید.</string>
     <!-- Button to link an existing Signal account to this device -->
-    <string name="WelcomeScreen__link_your_account">حسابتان را پیوند دهید</string>
+    <string name="WelcomeScreen__link_your_account">حسابتان را متصل کنید</string>
     <!-- Prompt shown to users who don\'t have a Signal account yet -->
     <string name="WelcomeScreen__not_on_signal_yet">هنوز در سیگنال نیستید؟</string>
     <!-- Button to create a new Signal account -->
