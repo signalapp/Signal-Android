@@ -35,7 +35,7 @@ class TransferControlsTest {
   @Before
   fun setUp() {
     mockkStatic(MediaUtil::class)
-    every { MediaUtil.isInstantVideoSupported(any()) } returns false
+    every { MediaUtil.isInstantVideoSupported(any() as Attachment) } returns false
   }
 
   @After
@@ -185,7 +185,7 @@ class TransferControlsTest {
 
   @Test
   fun `gallery pending playable is corner without item count`() {
-    every { MediaUtil.isInstantVideoSupported(any()) } returns true
+    every { MediaUtil.isInstantVideoSupported(any() as Attachment) } returns true
     val state = stateOf(listOf(slide(AttachmentTable.TRANSFER_PROGRESS_PENDING), slide(AttachmentTable.TRANSFER_PROGRESS_PENDING)))
     val render = TransferControls.deriveRenderState(state) as TransferControlsRenderState.Pending
     assertEquals(TransferControls.Placement.CORNER, render.placement)
