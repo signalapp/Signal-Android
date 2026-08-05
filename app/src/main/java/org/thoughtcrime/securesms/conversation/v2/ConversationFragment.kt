@@ -5098,6 +5098,10 @@ class ConversationFragment :
             },
             onComplete = {
               sendKeyboardImage(uri, contentType!!, null)
+            },
+            onError = {
+              Log.w(TAG, "Failed to read details for the keyboard image. Continuing without them.", it)
+              sendKeyboardImage(uri, contentType!!, null)
             }
           )
       } else if (MediaUtil.isVideoType(contentType)) {
