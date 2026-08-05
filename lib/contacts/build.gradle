@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace 'org.signal.contacts'
+    namespace = 'org.signal.contacts'
 }
 
 dependencies {
