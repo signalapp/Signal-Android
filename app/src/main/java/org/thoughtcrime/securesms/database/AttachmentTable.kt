@@ -625,7 +625,7 @@ class AttachmentTable(
         LocalArchivableAttachment(
           attachmentId = AttachmentId(it.requireLong(ID)),
           file = File(it.requireNonNullString(DATA_FILE)),
-          random = it.requireNonNullBlob(DATA_RANDOM),
+          random = it.requireBlob(DATA_RANDOM),
           size = it.requireLong(DATA_SIZE),
           localBackupKey = AttachmentMetadataTable.getMetadata(it)!!.localBackupKey!!,
           plaintextHash = Base64.decode(it.requireNonNullString(DATA_HASH_END)),
@@ -649,7 +649,7 @@ class AttachmentTable(
         LocalArchivableAttachment(
           attachmentId = AttachmentId(it.requireLong(ID)),
           file = File(it.requireNonNullString(DATA_FILE)),
-          random = it.requireNonNullBlob(DATA_RANDOM),
+          random = it.requireBlob(DATA_RANDOM),
           size = it.requireLong(DATA_SIZE),
           localBackupKey = AttachmentMetadataTable.getMetadata(it)!!.localBackupKey!!,
           plaintextHash = Base64.decode(it.requireNonNullString(DATA_HASH_END)),
@@ -2716,9 +2716,9 @@ class AttachmentTable(
   }
 
   @Throws(FileNotFoundException::class)
-  private fun getDataStream(file: File, random: ByteArray, offset: Long): InputStream? {
+  private fun getDataStream(file: File, random: ByteArray?, offset: Long): InputStream? {
     return try {
-      if (random.size == 32) {
+      if (random != null && random.size == 32) {
         ModernDecryptingPartInputStream.createFor(attachmentSecret, random, file, offset)
       } else {
         val stream = ClassicDecryptingPartInputStream.createFor(attachmentSecret, file)
@@ -2743,7 +2743,11 @@ class AttachmentTable(
     val thumbnailInfo = getThumbnailFileInfo(attachmentId) ?: return null
 
     return try {
-      ModernDecryptingPartInputStream.createFor(attachmentSecret, thumbnailInfo.random, thumbnailInfo.file, offset)
+      if (thumbnailInfo.random != null && thumbnailInfo.random.size == 32) {
+        ModernDecryptingPartInputStream.createFor(attachmentSecret, thumbnailInfo.random, thumbnailInfo.file, offset)
+      } else {
+        ClassicDecryptingPartInputStream.createFor(attachmentSecret, thumbnailInfo.file)
+      }
     } catch (e: FileNotFoundException) {
       Log.w(TAG, e)
       throw e
@@ -3535,7 +3539,7 @@ class AttachmentTable(
 
   private fun Cursor.readDataFileInfo(): DataFileInfo? {
     val filePath: String = this.requireString(DATA_FILE) ?: return null
-    val random: ByteArray = this.requireBlob(DATA_RANDOM) ?: return null
+    val random: ByteArray? = this.requireBlob(DATA_RANDOM)
 
     return DataFileInfo(
       id = AttachmentId(this.requireLong(ID)),
@@ -3559,7 +3563,7 @@ class AttachmentTable(
     return ThumbnailFileInfo(
       id = AttachmentId(this.requireLong(ID)),
       file = File(this.requireNonNullString(THUMBNAIL_FILE)),
-      random = this.requireNonNullBlob(THUMBNAIL_RANDOM)
+      random = this.requireBlob(THUMBNAIL_RANDOM)
     )
   }
 
@@ -3931,7 +3935,7 @@ class AttachmentTable(
     val id: AttachmentId,
     val file: File,
     val length: Long,
-    val random: ByteArray,
+    val random: ByteArray?,
     val hashStart: String?,
     val hashEnd: String?,
     val transformProperties: TransformProperties,
@@ -3948,7 +3952,7 @@ class AttachmentTable(
   class ThumbnailFileInfo(
     val id: AttachmentId,
     val file: File,
-    val random: ByteArray
+    val random: ByteArray?
   )
 
   enum class ThumbnailRestoreState(val value: Int) {
@@ -4021,7 +4025,7 @@ class AttachmentTable(
   class LocalArchivableAttachment(
     val attachmentId: AttachmentId,
     val file: File,
-    val random: ByteArray,
+    val random: ByteArray?,
     val size: Long,
     val plaintextHash: ByteArray,
     val localBackupKey: LocalBackupKey,
