@@ -62,6 +62,7 @@ import org.signal.mediasend.screens.edit.document.DocumentPage
 import org.signal.mediasend.screens.edit.image.BlurFacesBar
 import org.signal.mediasend.screens.edit.image.BrushWidthBar
 import org.signal.mediasend.screens.edit.image.BrushWidthPreview
+import org.signal.mediasend.screens.edit.image.DrawAnywhereToBlurPill
 import org.signal.mediasend.screens.edit.image.DrawModeColorBar
 import org.signal.mediasend.screens.edit.image.ImageEditor
 import org.signal.mediasend.screens.edit.image.ImageEditorClearAllButton
@@ -386,11 +387,15 @@ internal fun MediaEditScreen(
         .padding(top = 10.dp)
         .systemBarsPadding()
     ) {
-      MediaEditSummaryPill(
-        displayName = displayName,
-        selectedMedia = state.selectedMedia,
-        selectedPage = pagerState.currentPage
-      )
+      if (imageController?.isUserBlurring == true) {
+        DrawAnywhereToBlurPill()
+      } else {
+        MediaEditSummaryPill(
+          displayName = displayName,
+          selectedMedia = state.selectedMedia,
+          selectedPage = pagerState.currentPage
+        )
+      }
     }
 
     ImageEditorUndoRedoButtons(

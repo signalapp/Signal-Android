@@ -100,6 +100,9 @@
   <!-- Label for the toggle that blurs every face in the image being edited -->
   <string name="BlurFacesBar__blur_faces">Blur faces</string>
 
+  <!-- Hint displayed in a pill at the top of the image editor telling the user they can drag anywhere on the image to blur that area -->
+  <string name="DrawAnywhereToBlurPill__draw_anywhere_to_blur">Draw anywhere to blur</string>
+
   <!-- Content description for the button that cycles the text being edited between styles -->
   <string name="TextModeColorBar__toggle_between_text_styles">Toggle between text styles</string>
 
