@@ -113,7 +113,7 @@ fun AddAMessageRow(
         }
 
         LocalAddAMessageRowTextField.current(
-          message ?: stringResource(R.string.AddAMessageRow__message),
+          message?.takeIf { it.isNotBlank() } ?: stringResource(R.string.AddAMessageRow__message),
           Modifier
             .weight(1f)
             .padding(end = if (viewOnceAvailable) 0.dp else 16.dp)

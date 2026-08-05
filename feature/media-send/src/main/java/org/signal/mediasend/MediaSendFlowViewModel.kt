@@ -100,7 +100,7 @@ class MediaSendFlowViewModel(
     isReply = args.isReply,
     isAddToGroupStoryFlow = args.isAddToGroupStoryFlow,
     maxSelection = args.maxSelection,
-    message = if (args.asTextStory) null else args.initialMessage,
+    message = if (args.asTextStory) null else normalizeMessageBody(args.initialMessage),
     isContactSelectionRequired = args.mode == MediaSendFlowActivityContract.Mode.ChooseAfterMediaSelection,
     sendType = args.sendType
   )
@@ -1077,11 +1077,7 @@ class MediaSendFlowViewModel(
   //region Message
 
   fun setMessage(text: CharSequence?) {
-    updateState { copy(message = text) }
-  }
-
-  private fun onMessageChange(message: String) {
-    setMessage(message)
+    updateState { copy(message = normalizeMessageBody(text)) }
   }
 
   //endregion
@@ -1321,6 +1317,14 @@ class MediaSendFlowViewModel(
     private const val KEY_STATE = "media_send_vm_state"
     private const val KEY_EDITED_VIDEO_URIS = "media_send_vm_edited_video_uris"
     private const val KEY_BACK_STACK = "media_send_vm_back_stack"
+
+    /**
+     * Trims a body the way the chat compose field does before a send, preserving spans like mentions and styling, and
+     * collapses a whitespace-only body to null so it is indistinguishable from a body the user never typed.
+     */
+    private fun normalizeMessageBody(text: CharSequence?): CharSequence? {
+      return text?.let { StringUtil.trimSequence(it) }?.takeIf { it.isNotEmpty() }
+    }
   }
 
   /**
