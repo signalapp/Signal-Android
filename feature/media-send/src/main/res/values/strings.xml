@@ -89,6 +89,9 @@
         <item quantity="other">%1$d items</item>
     </plurals>
 
+  <!-- Content description for the button that attaches a link to the text story being created -->
+  <string name="TextStoryBar__add_link">Add link</string>
+
   <!-- Name shown on the document preview when we cannot read the file\'s name. -->
   <string name="DocumentPage__unnamed_file">Unnamed file</string>
 
@@ -96,6 +99,11 @@
   <string name="DrawModeColorBar__highlighter">Highlighter</string>
   <!-- Content description for button to enable brush mode -->
   <string name="DrawModeColorBar__brush">Brush</string>
+
+  <!-- Content description for the crop toggle when the crop area is currently constrained to a fixed aspect ratio. Tapping it removes the constraint. -->
+  <string name="ImageEditorToolbar__aspect_ratio_locked">Aspect ratio locked</string>
+  <!-- Content description for the crop toggle when the crop area can currently be resized freely. Tapping it constrains the crop area to a fixed aspect ratio. -->
+  <string name="ImageEditorToolbar__aspect_ratio_unlocked">Aspect ratio unlocked</string>
 
   <!-- Label for the toggle that blurs every face in the image being edited -->
   <string name="BlurFacesBar__blur_faces">Blur faces</string>

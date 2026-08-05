@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.FoldablePortraitDayPreview
 import org.signal.core.ui.compose.FoldablePortraitNightPreview
@@ -27,6 +28,7 @@ import org.signal.core.util.next
 import org.signal.imageeditor.core.model.EditorModel
 import org.signal.mediasend.EditorState
 import org.signal.mediasend.MediaSendFlowState
+import org.signal.mediasend.R
 import org.signal.mediasend.rememberPreviewState
 import org.signal.mediasend.screens.edit.ImageController
 import org.signal.mediasend.screens.edit.MediaEditScreenDialogs
@@ -177,6 +179,8 @@ private fun ImageEditorCropAndResizeToolbar(
 
     val cropLockImageVector = SignalIcons.CropLock.imageVector
     val cropUnlockImageVector = SignalIcons.CropUnlock.imageVector
+    val cropLockContentDescription = stringResource(R.string.ImageEditorToolbar__aspect_ratio_locked)
+    val cropUnlockContentDescription = stringResource(R.string.ImageEditorToolbar__aspect_ratio_unlocked)
 
     IconCrossfadeToggleButton(
       target = if (imageEditorController.isCropAspectRatioLocked) CropLock.LOCKED else CropLock.UNLOCKED,
@@ -192,6 +196,14 @@ private fun ImageEditorCropAndResizeToolbar(
         ).apply {
           put(CropLock.LOCKED, cropLockImageVector)
           put(CropLock.UNLOCKED, cropUnlockImageVector)
+        }
+      },
+      targetToContentDescriptionMap = remember(cropLockContentDescription, cropUnlockContentDescription) {
+        EnumMap<CropLock, String>(
+          CropLock::class.java
+        ).apply {
+          put(CropLock.LOCKED, cropLockContentDescription)
+          put(CropLock.UNLOCKED, cropUnlockContentDescription)
         }
       }
     )
@@ -231,7 +243,8 @@ private fun DiscardButton(imageEditorController: ImageController) {
 private inline fun <reified E : Enum<E>> IconCrossfadeToggleButton(
   target: E,
   crossinline setTarget: (E) -> Unit,
-  targetToImageMap: EnumMap<E, ImageVector>
+  targetToImageMap: EnumMap<E, ImageVector>,
+  targetToContentDescriptionMap: EnumMap<E, String>
 ) {
   IconButtons.IconButton(
     onClick = { setTarget(target.next()) }
@@ -239,7 +252,7 @@ private inline fun <reified E : Enum<E>> IconCrossfadeToggleButton(
     Crossfade(target) { enumValue ->
       Icon(
         imageVector = targetToImageMap[enumValue]!!,
-        contentDescription = null, // TODO
+        contentDescription = targetToContentDescriptionMap[enumValue],
         modifier = Modifier.size(24.dp)
       )
     }

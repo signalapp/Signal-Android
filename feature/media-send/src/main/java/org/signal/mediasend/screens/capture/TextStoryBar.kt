@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.IconButtons
 import org.signal.core.ui.compose.NightPreview
@@ -96,7 +97,7 @@ private fun LinkButton(
     Icon(
       imageVector = SignalIcons.Link.imageVector,
       tint = SignalTheme.colors.colorOnCustom,
-      contentDescription = null // TODO [media-send]
+      contentDescription = stringResource(R.string.TextStoryBar__add_link)
     )
   }
 }
