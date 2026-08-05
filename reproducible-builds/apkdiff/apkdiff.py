@@ -1,14 +1,14 @@
 #! /usr/bin/env python3
 
 import difflib
+import logging
 import subprocess
 import sys
-import logging
 from zipfile import ZipFile
 
-from loguru import logger  # ty:ignore[unresolved-import]
+from androguard.core.axml import AXMLPrinter
+from loguru import logger
 from lxml import etree  # ty:ignore[unresolved-import]
-from androguard.core.axml import AXMLPrinter  # ty:ignore[unresolved-import]
 
 logging.getLogger("apkdiff").setLevel(logging.ERROR)
 logger.disable("androguard")
@@ -47,7 +47,7 @@ MANIFEST_IGNORE_METADATA: list[str] = [
 ]
 
 
-def compare(apk1, apk2) -> bool:
+def compare(apk1: str, apk2: str) -> bool:
     print(f"Comparing: \n\t{apk1}\n\t{apk2}\n")
 
     print("Unzipping...")
@@ -78,21 +78,19 @@ def compare_entry_names(zip1: ZipFile, zip2: ZipFile) -> bool:
     name_list_sorted_1 = sorted(zip1.namelist())
     name_list_sorted_2 = sorted(zip2.namelist())
 
-    for ignoreFile in IGNORE_FILES:
-        while ignoreFile in name_list_sorted_1:
-            name_list_sorted_1.remove(ignoreFile)
-        while ignoreFile in name_list_sorted_2:
-            name_list_sorted_2.remove(ignoreFile)
+    for ignore_file in IGNORE_FILES:
+        while ignore_file in name_list_sorted_1:
+            name_list_sorted_1.remove(ignore_file)
+        while ignore_file in name_list_sorted_2:
+            name_list_sorted_2.remove(ignore_file)
 
     success = True
     if len(name_list_sorted_1) != len(name_list_sorted_2):
-        print(
-            f"Manifest lengths differ! {len(name_list_sorted_1)} vs {len(name_list_sorted_2)}"
-        )
+        print(f"Manifest lengths differ! {len(name_list_sorted_1)} vs {len(name_list_sorted_2)}")
         success = False
 
-    only_in_first = sorted(list(set(name_list_sorted_1) - set(name_list_sorted_2)))
-    only_in_second = sorted(list(set(name_list_sorted_2) - set(name_list_sorted_1)))
+    only_in_first = sorted(set(name_list_sorted_1) - set(name_list_sorted_2))
+    only_in_second = sorted(set(name_list_sorted_2) - set(name_list_sorted_1))
 
     if only_in_first:
         print(f"Files present only in {zip1.filename}:")
@@ -108,7 +106,7 @@ def compare_entry_names(zip1: ZipFile, zip2: ZipFile) -> bool:
 
     # If sets are identical but ordering differs, still report ordering mismatches
     if success:
-        for entry_name_1, entry_name_2 in zip(name_list_sorted_1, name_list_sorted_2):
+        for entry_name_1, entry_name_2 in zip(name_list_sorted_1, name_list_sorted_2, strict=True):
             if entry_name_1 != entry_name_2:
                 print(f"Sorted manifests don't match: {entry_name_1} vs {entry_name_2}")
                 success = False
@@ -118,18 +116,12 @@ def compare_entry_names(zip1: ZipFile, zip2: ZipFile) -> bool:
 
 def compare_entry_contents(zip1: ZipFile, zip2: ZipFile) -> bool:
     print("Comparing zip entry contents...")
-    info_list_1 = list(
-        filter(lambda info: info.filename not in IGNORE_FILES, zip1.infolist())
-    )
-    info_list_2 = list(
-        filter(lambda info: info.filename not in IGNORE_FILES, zip2.infolist())
-    )
+    info_list_1 = list(filter(lambda info: info.filename not in IGNORE_FILES, zip1.infolist()))
+    info_list_2 = list(filter(lambda info: info.filename not in IGNORE_FILES, zip2.infolist()))
 
     success = True
     if len(info_list_1) != len(info_list_2):
-        print(
-            f"APK info lists of different length! {len(info_list_1)} vs {len(info_list_2)}"
-        )
+        print(f"APK info lists of different length! {len(info_list_1)} vs {len(info_list_2)}")
         success = False
 
     for entry_info_1 in info_list_1:
@@ -138,14 +130,10 @@ def compare_entry_contents(zip1: ZipFile, zip2: ZipFile) -> bool:
                 entry_bytes_1 = zip1.read(entry_info_1.filename)
                 entry_bytes_2 = zip2.read(entry_info_2.filename)
 
-                if entry_bytes_1 != entry_bytes_2 and not handle_special_cases(
-                    entry_info_1.filename, entry_bytes_1, entry_bytes_2
-                ):
+                if entry_bytes_1 != entry_bytes_2 and not handle_special_cases(entry_info_1.filename, entry_bytes_1, entry_bytes_2):
                     zip1.extract(entry_info_1, "mismatches/first")
                     zip2.extract(entry_info_2, "mismatches/second")
-                    print(
-                        f"APKs differ on file {entry_info_1.filename}! Files extracted to the mismatches/ directory."
-                    )
+                    print(f"APKs differ on file {entry_info_1.filename}! Files extracted to the mismatches/ directory.")
                     success = False
 
                 info_list_2.remove(entry_info_2)
@@ -154,17 +142,18 @@ def compare_entry_contents(zip1: ZipFile, zip2: ZipFile) -> bool:
     return success
 
 
-def handle_special_cases(filename: str, bytes1: bytes, bytes2: bytes):
+def handle_special_cases(filename: str, bytes1: bytes, bytes2: bytes) -> bool:
     """
-    There are some specific files that expect will not be byte-for-byte identical. We want to ensure that the files
-    are matching except these expected differences. The differences are all related to extra XML attributes that the
+    There are some specific files that expect will not be byte-for-byte identical.
+
+    We want to ensure that the files are matching except these expected differences. The differences are all related to extra XML attributes that the
     Play Store may add as part of the bundle process. These differences do not affect the behavior of the app and are
     unfortunately unavoidable given the modern realities of the Play Store.
     """
     if filename == "AndroidManifest.xml":
         print("Comparing AndroidManifest.xml...")
         return axml_diff(filename, bytes1, bytes2)
-    elif filename == "resources.arsc":
+    if filename == "resources.arsc":  # noqa: SIM103
         # we will compare resources.arsc separately with aapt2, so we can ignore any differences here
         return True
 
@@ -179,33 +168,27 @@ def compare_resources_arsc(apk1: str, apk2: str) -> bool:
 
     if resources1 == resources2:
         return True
-    else:
-        print("resources.arsc files differ!")
-        diff = difflib.unified_diff(
-            resources1,
-            resources2,
-            fromfile=apk1,
-            tofile=apk2,
-            lineterm="",
-        )
-        for line in diff:
-            print(line)
-        return False
+    print("resources.arsc files differ!")
+    diff = difflib.unified_diff(
+        resources1,
+        resources2,
+        fromfile=apk1,
+        tofile=apk2,
+        lineterm="",
+    )
+    for line in diff:
+        print(line)
+    return False
 
 
-def dump_resources(apk):
+def dump_resources(apk: str) -> list[str]:
     try:
-        with subprocess.Popen(
-            ["aapt2", "dump", "resources", apk],
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            text=True,
-        ) as process:
+        with subprocess.Popen(["aapt2", "dump", "resources", apk], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, shell=False) as process:
             stdout, stderr = process.communicate()
             if process.returncode != 0:
                 raise RuntimeError(f"aapt2 failed with error: {stderr.strip()}")
-    except FileNotFoundError:
-        raise RuntimeError("aapt2 is not installed or not in the PATH.")
+    except FileNotFoundError as err:
+        raise RuntimeError("aapt2 is not installed or not in the PATH.") from err
 
     return stdout.strip().splitlines()
 
@@ -235,16 +218,15 @@ def axml_diff(filename: str, bytes1: bytes, bytes2: bytes) -> bool:
 
     if pretty_a == pretty_b:
         return True
-    else:
-        print(f"{filename} files differ!")
-        diff = difflib.unified_diff(
-            a=pretty_a.splitlines(keepends=True),
-            b=pretty_b.splitlines(keepends=True),
-            fromfile="a/" + filename,
-            tofile="b/" + filename,
-        )
-        sys.stdout.writelines(diff)
-        return False
+    print(f"{filename} files differ!")
+    diff = difflib.unified_diff(
+        a=pretty_a.splitlines(keepends=True),
+        b=pretty_b.splitlines(keepends=True),
+        fromfile="a/" + filename,
+        tofile="b/" + filename,
+    )
+    sys.stdout.writelines(diff)
+    return False
 
 
 if __name__ == "__main__":
