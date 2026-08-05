@@ -40,6 +40,7 @@ import org.signal.mediasend.MediaSendScreen
 import org.signal.mediasend.screens.edit.LocalAddAMessageRowTextField
 import org.signal.mediasend.screens.edit.LocalScheduledSendTimeFormatter
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
+import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.emoji.EmojiEventListener
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
@@ -141,10 +142,10 @@ class MediaSendV3Activity :
         },
         LocalDisplayNameProvider provides { id ->
           rememberRecipientField(RecipientId.from(id)) {
-            if (isUnknown) {
-              ""
-            } else {
-              getDisplayName(context)
+            when {
+              isUnknown -> ""
+              isSelf -> context.getString(R.string.note_to_self)
+              else -> getDisplayName(context)
             }
           }
         },
