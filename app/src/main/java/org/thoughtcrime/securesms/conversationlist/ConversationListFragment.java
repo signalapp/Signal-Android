@@ -836,10 +836,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
         new UnauthorizedBanner(requireContext()),
         new ServiceOutageBanner(requireContext()),
         new OutdatedBuildBanner(),
-        new DozeBanner(requireContext(), () -> {
-          bannerManager.updateContent(bannerView.get());
-          return Unit.INSTANCE;
-        }),
+        new DozeBanner(requireContext()),
         new CdsTemporaryErrorBanner(getChildFragmentManager()),
         new CdsPermanentErrorBanner(getChildFragmentManager()),
         new UsernameOutOfSyncBanner((usernameSyncState) -> {
