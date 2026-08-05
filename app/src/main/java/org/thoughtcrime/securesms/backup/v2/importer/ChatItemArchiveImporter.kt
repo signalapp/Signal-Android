@@ -98,7 +98,8 @@ import org.signal.archive.proto.GiftBadge as BackupGiftBadge
 class ChatItemArchiveImporter(
   private val db: SQLiteDatabase,
   private val importState: ImportState,
-  private val batchSize: Int
+  private val batchSize: Int,
+  private val clock: () -> Long = System::currentTimeMillis
 ) {
   companion object {
     private val TAG = Log.tag(ChatItemArchiveImporter::class.java)
@@ -170,6 +171,11 @@ class ChatItemArchiveImporter(
    * If this item causes the buffer to hit the batch size, then a batch of items will actually be inserted.
    */
   fun import(chatItem: ChatItem) {
+    if (chatItem.isExpired(clock())) {
+      Log.w(TAG, ImportSkips.messageExpired(chatItem.dateSent))
+      return
+    }
+
     val fromLocalRecipientId: RecipientId? = importState.remoteToLocalRecipientId[chatItem.authorId]
     if (fromLocalRecipientId == null) {
       Log.w(TAG, ImportSkips.fromRecipientNotFound(chatItem.dateSent))
@@ -280,6 +286,13 @@ class ChatItemArchiveImporter(
         Log.w(TAG, "Failed to insert message with timestamp ${message.contentValues.get(MessageTable.DATE_SENT)}. Must skip.", e)
       }
     }
+  }
+
+  private fun ChatItem.isExpired(now: Long): Boolean {
+    val expireStartDate = this.expireStartDate?.takeIf { it > 0 } ?: return false
+    val expiresInMs = this.expiresInMs?.takeIf { it > 0 } ?: return false
+    val expiresAt = expireStartDate + expiresInMs
+    return expiresAt <= now
   }
 
   private fun ChatItem.toMessageInsert(fromRecipientId: RecipientId, chatRecipientId: RecipientId, threadId: Long): MessageInsert {

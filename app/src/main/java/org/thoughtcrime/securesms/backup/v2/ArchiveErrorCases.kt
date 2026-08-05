@@ -311,6 +311,10 @@ object ImportSkips {
     return log(0, "Missing recipient for chat $chatId")
   }
 
+  fun messageExpired(sentTimestamp: Long): String {
+    return log(sentTimestamp, "Message has already expired.")
+  }
+
   fun missingAdminDeleteRecipient(sentTimestamp: Long, chatId: Long): String {
     return log(sentTimestamp, "Missing admin delete recipient for chat $chatId")
   }
