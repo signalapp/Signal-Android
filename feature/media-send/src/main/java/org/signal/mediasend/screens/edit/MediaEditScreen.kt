@@ -30,7 +30,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -40,6 +42,8 @@ import androidx.compose.ui.unit.dp
 import androidx.fragment.compose.AndroidFragment
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
+import kotlinx.coroutines.flow.drop
+import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
 import org.signal.core.ui.WindowBreakpoint
 import org.signal.core.ui.compose.AllDevicePreviews
@@ -98,6 +102,24 @@ internal fun MediaEditScreen(
     if (targetPage >= 0 && targetPage != pagerState.currentPage) {
       pagerState.scrollToPage(targetPage)
     }
+  }
+
+  // Read through the latest selection rather than the one captured when the effect below started, since removals and
+  // reordering change which media a settled page refers to without restarting it.
+  val currentSelectedMedia by rememberUpdatedState(state.selectedMedia)
+
+  // Focus belongs to the pager rather than to any one piece of chrome: the thumbnail rail is not composed for
+  // documents, and a swipe still has to be reported from there.
+  LaunchedEffect(pagerState) {
+    snapshotFlow { pagerState.isScrollInProgress }
+      .filter { !it }
+      .drop(1)
+      .collect {
+        val settledMedia = currentSelectedMedia.getOrNull(pagerState.currentPage)
+        if (settledMedia != null) {
+          onEvent(MediaEditScreenEvents.FocusedMediaChanged(settledMedia))
+        }
+      }
   }
 
   // During a camera-first flow, backing out of edit when the only selection is the capture itself should discard the
@@ -281,9 +303,6 @@ internal fun MediaEditScreen(
               selectedMedia = state.selectedMedia,
               pagerState = pagerState,
               enabled = !isInteracting,
-              onFocusedMediaChange = {
-                onEvent(MediaEditScreenEvents.FocusedMediaChanged(it))
-              },
               onThumbnailClick = { index ->
                 if (pagerState.currentPage == index) {
                   onEvent(MediaEditScreenEvents.RemoveMedia(state.selectedMedia[index]))

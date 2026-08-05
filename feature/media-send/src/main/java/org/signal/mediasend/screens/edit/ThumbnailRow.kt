@@ -29,7 +29,6 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -42,8 +41,6 @@ import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.drop
-import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
 import org.signal.core.models.media.Media
 import org.signal.core.ui.compose.DayNightPreviews
@@ -67,12 +64,14 @@ private val MAX_PADDING = 8.dp
 /**
  * Horizontally scrollable thumbnail strip that syncs with [pagerState].
  * Features fish-eye padding effect where the centered item has more padding.
+ *
+ * Dragging the strip scrolls the pager, and which media the settled page focuses is reported by the caller from
+ * [pagerState] rather than from here, since this row is only one of the chromes the pager can be swiped beneath.
  */
 @Composable
 internal fun ThumbnailRow(
   selectedMedia: List<Media>,
   pagerState: PagerState,
-  onFocusedMediaChange: (Media) -> Unit,
   onThumbnailClick: (Int) -> Unit = {},
   onReorder: (fromIndex: Int, toIndex: Int) -> Unit = { _, _ -> },
   enabled: Boolean = true
@@ -100,22 +99,6 @@ internal fun ThumbnailRow(
   val draggableState = rememberDraggableState { delta ->
     val scaledDelta = delta * (pagerPageSize.toFloat() / itemStride)
     pagerState.dispatchRawDelta(-scaledDelta)
-  }
-
-  // Read through the latest selection rather than the one captured when the effect started, since reordering changes
-  // which media a settled page refers to without restarting the effect.
-  val currentSelectedMedia by rememberUpdatedState(selectedMedia)
-
-  LaunchedEffect(pagerState) {
-    snapshotFlow { pagerState.isScrollInProgress }
-      .filter { !it }
-      .drop(1)
-      .collectLatest {
-        val settledPage = pagerState.currentPage
-        if (settledPage in currentSelectedMedia.indices) {
-          onFocusedMediaChange(currentSelectedMedia[settledPage])
-        }
-      }
   }
 
   // The rail's scroll position belongs to the drag rather than the pager from the moment an item is picked up until the
@@ -169,10 +152,6 @@ internal fun ThumbnailRow(
               else -> pagerState.currentPage
             }
             pagerState.animateScrollToPage(targetPage)
-
-            if (targetPage in selectedMedia.indices) {
-              onFocusedMediaChange(selectedMedia[targetPage])
-            }
           }
         }
       )
@@ -275,8 +254,7 @@ private fun ThumbnailRowPreview() {
   Previews.Preview {
     ThumbnailRow(
       selectedMedia = media,
-      pagerState = pagerState,
-      onFocusedMediaChange = { }
+      pagerState = pagerState
     )
   }
 }
