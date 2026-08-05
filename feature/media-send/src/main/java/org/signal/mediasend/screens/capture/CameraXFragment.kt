@@ -379,6 +379,7 @@ class ActiveRecording(val parcelFd: ParcelFileDescriptor, val maxDurationSeconds
 class VideoFileDescriptor(val context: Context) {
 
   private var videoFileDescriptor: SeekableFileDescriptor? = null
+  private var usingEncryptedDisk: Boolean = false
 
   /**
    * Creates the descriptor to record into, reporting the cap that goes with whichever descriptor was actually
@@ -396,6 +397,7 @@ class VideoFileDescriptor(val context: Context) {
       val encrypted = CameraXUtil.createEncryptedDiskVideoFileDescriptor(context)
       if (encrypted != null) {
         videoFileDescriptor = encrypted
+        usingEncryptedDisk = true
         return ActiveRecording(encrypted.parcelFd, config.maxDurationSeconds)
       }
       Log.w(TAG, "Failed to create encrypted disk file descriptor, falling back to memory")
@@ -412,12 +414,27 @@ class VideoFileDescriptor(val context: Context) {
   }
 
   /**
+   * The recording never produced a file. A disk-backed descriptor that fails this late fails the same way on
+   * every retry, so retire it for the rest of the process and let the next recording take the RAM-backed one
+   * and its shorter cap.
+   */
+  fun onRecordingFailed() {
+    if (usingEncryptedDisk && Build.VERSION.SDK_INT >= 26) {
+      Log.w(TAG, "Recording failed on an encrypted disk descriptor. Falling back to memory from here on.")
+      EncryptedProxyFileDescriptor.markUnsupported()
+    }
+
+    destroy()
+  }
+
+  /**
    * Hands the recorded descriptor to the consumer, which becomes responsible for closing it. The copy on the
    * consuming side runs asynchronously and can outlive this screen, so ownership has to travel with it.
    */
   fun releaseForReading(): SeekableFileDescriptor? {
     val descriptor = videoFileDescriptor ?: return null
     videoFileDescriptor = null
+    usingEncryptedDisk = false
 
     return try {
       Os.lseek(descriptor.fileDescriptor, 0, OsConstants.SEEK_SET)
@@ -432,6 +449,7 @@ class VideoFileDescriptor(val context: Context) {
   fun destroy() {
     videoFileDescriptor?.closeQuietly()
     videoFileDescriptor = null
+    usingEncryptedDisk = false
   }
 }
 
@@ -594,7 +612,8 @@ fun CameraXScreen(
                     activeRecordingMaxDurationMs = it.maxDurationSeconds * 1000L
                   }
                 },
-                releaseVideoFileDescriptor = { videoFileDescriptor.releaseForReading() }
+                releaseVideoFileDescriptor = { videoFileDescriptor.releaseForReading() },
+                onVideoCaptureFailed = { videoFileDescriptor.onRecordingFailed() }
               )
             },
             stringResources = StringResources(
@@ -691,7 +710,8 @@ private fun handleHudEvent(
   isVideoEnabled: Boolean,
   onRequestMicPermission: () -> Unit,
   createVideoFileDescriptor: () -> ActiveRecording?,
-  releaseVideoFileDescriptor: () -> SeekableFileDescriptor?
+  releaseVideoFileDescriptor: () -> SeekableFileDescriptor?,
+  onVideoCaptureFailed: () -> Unit
 ) {
   when (event) {
     is StandardCameraHudEvents.PhotoCaptureTriggered -> {
@@ -711,7 +731,7 @@ private fun handleHudEvent(
           context = context,
           output = VideoOutput.FileDescriptorOutput(recording.parcelFd),
           onVideoCaptured = { result ->
-            handleVideoCaptured(result, releaseVideoFileDescriptor, onEvent)
+            handleVideoCaptured(result, releaseVideoFileDescriptor, onVideoCaptureFailed, onEvent)
           }
         )
       } else {
@@ -766,6 +786,7 @@ private fun handlePhotoCaptured(bitmap: Bitmap, onEvent: (CameraXScreenEvents) -
 private fun handleVideoCaptured(
   result: VideoCaptureResult,
   releaseVideoFileDescriptor: () -> SeekableFileDescriptor?,
+  onVideoCaptureFailed: () -> Unit,
   onEvent: (CameraXScreenEvents) -> Unit
 ) {
   when (result) {
@@ -780,6 +801,7 @@ private fun handleVideoCaptured(
 
     is VideoCaptureResult.Error -> {
       Log.w(TAG, "Video capture failed: ${result.message}", result.throwable)
+      onVideoCaptureFailed()
       onEvent(CameraXScreenEvents.VideoCaptureError)
     }
   }

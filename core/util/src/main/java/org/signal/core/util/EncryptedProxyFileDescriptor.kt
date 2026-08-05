@@ -50,7 +50,13 @@ class EncryptedProxyFileDescriptor private constructor(
 
     private const val DIRECTORY = "encrypted-proxy-fd"
     private const val SELF_TEST_DEBUG_NAME = "self-test"
-    private const val SELF_TEST_SIZE = 4096
+    private const val SELF_TEST_HEADER_SIZE = 28
+    private const val SELF_TEST_LARGE_WRITE_SIZE = 512 * 1024
+    private const val SELF_TEST_FOOTER_OFFSET = SELF_TEST_HEADER_SIZE + SELF_TEST_LARGE_WRITE_SIZE
+    private const val SELF_TEST_FOOTER_SIZE = 16
+    private const val SELF_TEST_SIZE = SELF_TEST_FOOTER_OFFSET + SELF_TEST_FOOTER_SIZE
+    private const val SELF_TEST_PATCH_OFFSET = 8
+    private const val SELF_TEST_PATCH_SIZE = 8
     private const val KEY_SIZE = 32
     private const val BLOCK_SIZE = 16
 
@@ -83,6 +89,19 @@ class EncryptedProxyFileDescriptor private constructor(
     }
 
     /**
+     * Retires proxy file descriptors for the remainder of the process, so that callers fall back to whatever
+     * they use when they're unavailable. For failures that only surface once a descriptor is in real use, which
+     * the self-test cannot be relied upon to predict.
+     */
+    @JvmStatic
+    fun markUnsupported() {
+      if (cachedSelfTestResult != false) {
+        Log.w(TAG, "Marking proxy file descriptors as unsupported.")
+      }
+      cachedSelfTestResult = false
+    }
+
+    /**
      * Creates a new descriptor whose backing file lives in the app's cache directory, or null if one
      * could not be opened.
      *
@@ -90,6 +109,10 @@ class EncryptedProxyFileDescriptor private constructor(
      */
     @JvmStatic
     fun create(context: Context, debugName: String): EncryptedProxyFileDescriptor? {
+      if (cachedSelfTestResult == false) {
+        return null
+      }
+
       val storageManager = context.getSystemService(StorageManager::class.java)
       if (storageManager == null) {
         Log.w(TAG, "StorageManager is unavailable.")
@@ -163,8 +186,8 @@ class EncryptedProxyFileDescriptor private constructor(
     }
 
     /**
-     * Verifies that data written through a proxy descriptor at various offsets reads back
-     * intact, and that only ciphertext lands in the backing file.
+     * Verifies that data written through a proxy descriptor reads back intact, and that only ciphertext
+     * lands in the backing file. Mirrors MP4 muxer write pattern.
      */
     private fun selfTest(context: Context): Boolean {
       val descriptor = create(context, SELF_TEST_DEBUG_NAME)
@@ -174,28 +197,35 @@ class EncryptedProxyFileDescriptor private constructor(
       }
 
       return descriptor.use { proxy ->
+        val fd = proxy.fileDescriptor
         val random = SecureRandom()
         val expected = ByteArray(SELF_TEST_SIZE).also { random.nextBytes(it) }
 
-        if (!pwriteFully(proxy.fileDescriptor, expected, 0, expected.size, 0)) {
-          Log.w(TAG, "Self-test: short write.")
+        if (!pwriteExact(fd, "header", expected, 0, SELF_TEST_HEADER_SIZE, 0)) {
           return@use false
         }
 
-        val overwrite = ByteArray(100).also { random.nextBytes(it) }
-        System.arraycopy(overwrite, 0, expected, 1000, overwrite.size)
-        if (!pwriteFully(proxy.fileDescriptor, overwrite, 0, overwrite.size, 1000)) {
-          Log.w(TAG, "Self-test: short overwrite.")
+        if (!pwriteExact(fd, "reservation", expected, SELF_TEST_HEADER_SIZE, SELF_TEST_LARGE_WRITE_SIZE, SELF_TEST_HEADER_SIZE.toLong())) {
           return@use false
         }
 
-        if (Os.fstat(proxy.fileDescriptor).st_size != expected.size.toLong()) {
+        if (!pwriteExact(fd, "footer", expected, SELF_TEST_FOOTER_OFFSET, SELF_TEST_FOOTER_SIZE, SELF_TEST_FOOTER_OFFSET.toLong())) {
+          return@use false
+        }
+
+        val patch = ByteArray(SELF_TEST_PATCH_SIZE).also { random.nextBytes(it) }
+        System.arraycopy(patch, 0, expected, SELF_TEST_PATCH_OFFSET, patch.size)
+        if (!pwriteExact(fd, "patch", patch, 0, patch.size, SELF_TEST_PATCH_OFFSET.toLong())) {
+          return@use false
+        }
+
+        if (Os.fstat(fd).st_size != SELF_TEST_SIZE.toLong()) {
           Log.w(TAG, "Self-test: unexpected file size.")
           return@use false
         }
 
-        val actual = ByteArray(expected.size)
-        if (!preadFully(proxy.fileDescriptor, actual, 0, actual.size, 0)) {
+        val actual = ByteArray(SELF_TEST_SIZE)
+        if (!preadFully(fd, actual, 0, actual.size, 0)) {
           Log.w(TAG, "Self-test: short read.")
           return@use false
         }
@@ -206,7 +236,7 @@ class EncryptedProxyFileDescriptor private constructor(
         }
 
         val onDisk = proxy.backingFile.readBytes()
-        if (onDisk.size != expected.size || onDisk.contentEquals(expected)) {
+        if (onDisk.size != SELF_TEST_SIZE || onDisk.contentEquals(expected)) {
           Log.w(TAG, "Self-test: backing file does not look encrypted.")
           return@use false
         }
@@ -215,15 +245,22 @@ class EncryptedProxyFileDescriptor private constructor(
       }
     }
 
-    private fun pwriteFully(fd: FileDescriptor, data: ByteArray, byteOffset: Int, byteCount: Int, fileOffset: Long): Boolean {
-      var written = 0
-      while (written < byteCount) {
-        val result = Os.pwrite(fd, data, byteOffset + written, byteCount - written, fileOffset + written)
-        if (result <= 0) {
-          return false
-        }
-        written += result
+    /**
+     * A single [Os.pwrite] that has to transfer everything it was handed.
+     */
+    private fun pwriteExact(fd: FileDescriptor, label: String, data: ByteArray, byteOffset: Int, byteCount: Int, fileOffset: Long): Boolean {
+      val written = try {
+        Os.pwrite(fd, data, byteOffset, byteCount, fileOffset)
+      } catch (e: ErrnoException) {
+        Log.w(TAG, "Self-test: $label write failed.", e)
+        return false
       }
+
+      if (written != byteCount) {
+        Log.w(TAG, "Self-test: $label write was short. Wanted $byteCount, wrote $written.")
+        return false
+      }
+
       return true
     }
 
