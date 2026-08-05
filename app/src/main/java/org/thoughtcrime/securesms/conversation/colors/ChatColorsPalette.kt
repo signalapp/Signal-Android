@@ -60,6 +60,18 @@ object ChatColorsPalette {
       0xFF71717F.toInt()
     )
 
+    @JvmField
+    val PETAL = ChatColors.forColor(
+      ChatColors.Id.BuiltIn,
+      0xFFFCCDD9.toInt()
+    )
+
+    @JvmField
+    val MINT = ChatColors.forColor(
+      ChatColors.Id.BuiltIn,
+      0xFFC8F0C0.toInt()
+    )
+
     // endregion
 
     // region Gradients
@@ -177,7 +189,9 @@ object ChatColorsPalette {
       VIOLET,
       PLUM,
       TAUPE,
-      STEEL
+      STEEL,
+      PETAL,
+      MINT
     )
     val gradients =
       listOf(EMBER, MIDNIGHT, INFRARED, LAGOON, FLUORESCENT, BASIL, SUBLIME, SEA, TANGERINE)

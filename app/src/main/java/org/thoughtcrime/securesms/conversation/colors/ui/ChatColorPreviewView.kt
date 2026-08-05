@@ -179,9 +179,9 @@ class ChatColorPreviewView @JvmOverloads constructor(
     colorizerView.background = mask
 
     sentBubbles.forEach {
-      it.body.setTextColor(colorizer.getOutgoingBodyTextColor(context))
-      it.time.setTextColor(colorizer.getOutgoingFooterTextColor(context))
-      it.delivery?.setTint(colorizer.getOutgoingFooterIconColor(context))
+      it.body.setTextColor(colorizer.getOutgoingBodyTextColor(context, chatColors))
+      it.time.setTextColor(colorizer.getOutgoingFooterTextColor(context, chatColors))
+      it.delivery?.setTint(colorizer.getOutgoingFooterIconColor(context, chatColors))
     }
   }
 

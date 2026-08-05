@@ -111,6 +111,8 @@ fun ChatStyle.toLocal(importState: ImportState): ChatColors? {
       ChatStyle.BubbleColorPreset.SOLID_PLUM -> ChatColorsPalette.Bubbles.PLUM
       ChatStyle.BubbleColorPreset.SOLID_TAUPE -> ChatColorsPalette.Bubbles.TAUPE
       ChatStyle.BubbleColorPreset.SOLID_STEEL -> ChatColorsPalette.Bubbles.STEEL
+      ChatStyle.BubbleColorPreset.SOLID_PETAL -> ChatColorsPalette.Bubbles.PETAL
+      ChatStyle.BubbleColorPreset.SOLID_MINT -> ChatColorsPalette.Bubbles.MINT
       // Gradients
       ChatStyle.BubbleColorPreset.GRADIENT_EMBER -> ChatColorsPalette.Bubbles.EMBER
       ChatStyle.BubbleColorPreset.GRADIENT_MIDNIGHT -> ChatColorsPalette.Bubbles.MIDNIGHT
@@ -155,6 +157,8 @@ fun ChatColors.toRemote(): ChatStyle.BubbleColorPreset? {
     ChatColorsPalette.Bubbles.PLUM -> return ChatStyle.BubbleColorPreset.SOLID_PLUM
     ChatColorsPalette.Bubbles.TAUPE -> return ChatStyle.BubbleColorPreset.SOLID_TAUPE
     ChatColorsPalette.Bubbles.STEEL -> return ChatStyle.BubbleColorPreset.SOLID_STEEL
+    ChatColorsPalette.Bubbles.PETAL -> return ChatStyle.BubbleColorPreset.SOLID_PETAL
+    ChatColorsPalette.Bubbles.MINT -> return ChatStyle.BubbleColorPreset.SOLID_MINT
     ChatColorsPalette.Bubbles.ULTRAMARINE -> return ChatStyle.BubbleColorPreset.SOLID_ULTRAMARINE
     // Gradients
     ChatColorsPalette.Bubbles.EMBER -> return ChatStyle.BubbleColorPreset.GRADIENT_EMBER

@@ -53,7 +53,8 @@ class MediaSelectionGalleryFragment : Fragment(R.layout.fragment_container), Med
       mediaGalleryFragment.onViewStateUpdated(
         MediaGalleryFragment.ViewState(
           selectedMedia = state.selectedMedia,
-          chatColor = state.recipient?.chatColors?.asSingleColor() ?: ContextCompat.getColor(requireContext(), CoreUiR.color.signal_light_colorPrimary)
+          chatColor = state.recipient?.chatColors?.asSingleColor() ?: ContextCompat.getColor(requireContext(), CoreUiR.color.signal_light_colorPrimary),
+          needsDarkText = state.recipient?.chatColors?.needsDarkText() ?: false
         )
       )
     }

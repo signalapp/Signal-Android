@@ -573,6 +573,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
 
     val sendButtonForegroundTint = when {
       !enabled -> ContextCompat.getColor(requireContext(), CoreUiR.color.signal_colorSecondaryContainer)
+      recipient != null && recipient.chatColors.needsDarkText() -> ContextCompat.getColor(requireContext(), R.color.black)
       recipient != null -> ContextCompat.getColor(requireContext(), CoreUiR.color.signal_colorOnCustom)
       else -> ContextCompat.getColor(requireContext(), CoreUiR.color.signal_colorSecondaryContainer)
     }

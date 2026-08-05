@@ -15,6 +15,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
+import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.ColorInt;
@@ -67,6 +68,7 @@ public final class PlacePickerActivity extends AppCompatActivity {
   private static final int                   ANIMATION_DURATION     = 250;
   private static final OvershootInterpolator OVERSHOOT_INTERPOLATOR = new OvershootInterpolator();
   public  static final String                KEY_CHAT_COLOR         = "chat_color";
+  public  static final String                KEY_NEEDS_DARK_TEXT    = "needs_dark_text";
 
   private final DynamicTheme dynamicTheme = new DynamicNoActionBarTheme();
 
@@ -97,7 +99,7 @@ public final class PlacePickerActivity extends AppCompatActivity {
 
     bottomSheet      = findViewById(R.id.bottom_sheet);
     View markerImage = findViewById(R.id.marker_image_view);
-    View fab         = findViewById(R.id.place_chosen_button);
+    ImageView fab    = findViewById(R.id.place_chosen_button);
 
     ViewCompat.setOnApplyWindowInsetsListener(findViewById(android.R.id.content), (view, insets) -> {
       systemBarInsets = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -107,6 +109,8 @@ public final class PlacePickerActivity extends AppCompatActivity {
     });
 
     ViewCompat.setBackgroundTintList(fab, ColorStateList.valueOf(getIntent().getIntExtra(KEY_CHAT_COLOR, Color.RED)));
+    fab.setColorFilter(getIntent().getBooleanExtra(KEY_NEEDS_DARK_TEXT, false) ? ContextCompat.getColor(this, R.color.black)
+                                                                               : ContextCompat.getColor(this, R.color.white));
     fab.setOnClickListener(v -> finishWithAddress());
 
     if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)   == PackageManager.PERMISSION_GRANTED ||

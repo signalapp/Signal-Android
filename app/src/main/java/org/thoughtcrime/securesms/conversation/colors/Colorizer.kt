@@ -18,18 +18,30 @@ import org.signal.core.ui.R as CoreUiR
  */
 interface Colorizer {
   @ColorInt
-  fun getOutgoingBodyTextColor(context: Context): Int {
-    return ContextCompat.getColor(context, R.color.conversation_outgoing_body_color)
+  fun getOutgoingBodyTextColor(context: Context, chatColors: ChatColors? = null): Int {
+    return if (chatColors?.needsDarkText() == true) {
+      ContextCompat.getColor(context, R.color.black)
+    } else {
+      ContextCompat.getColor(context, R.color.conversation_outgoing_body_color)
+    }
   }
 
   @ColorInt
-  fun getOutgoingFooterTextColor(context: Context): Int {
-    return ContextCompat.getColor(context, R.color.conversation_outgoing_footer_color)
+  fun getOutgoingFooterTextColor(context: Context, chatColors: ChatColors? = null): Int {
+    return if (chatColors?.needsDarkText() == true) {
+      ContextCompat.getColor(context, R.color.black)
+    } else {
+      ContextCompat.getColor(context, R.color.conversation_outgoing_footer_color)
+    }
   }
 
   @ColorInt
-  fun getOutgoingFooterIconColor(context: Context): Int {
-    return ContextCompat.getColor(context, R.color.conversation_outgoing_footer_color)
+  fun getOutgoingFooterIconColor(context: Context, chatColors: ChatColors? = null): Int {
+    return if (chatColors?.needsDarkText() == true) {
+      ContextCompat.getColor(context, R.color.black)
+    } else {
+      ContextCompat.getColor(context, R.color.conversation_outgoing_footer_color)
+    }
   }
 
   @ColorInt
