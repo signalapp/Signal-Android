@@ -31,6 +31,7 @@ import org.signal.core.ui.R
  * Signal icon library with all available icons.
  */
 enum class SignalIcons(private val icon: SignalIcon) : SignalIcon by icon {
+  AlbumPlus(icon(R.drawable.symbol_album_plus_24)),
   ArrowStart(icon(R.drawable.symbol_arrow_start_24)),
   ArrowEnd(icon(R.drawable.symbol_arrow_end_24)),
   At(icon(R.drawable.symbol_at_24)),

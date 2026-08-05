@@ -131,7 +131,7 @@ internal fun MediaEditorToolbarSharedButtons(
 
   if (isAddMediaVisible(state, editorState)) {
     MediaEditorToolbarButton(
-      imageVector = SignalIcons.Plus.imageVector, // TODO [alex] - wrong art asset
+      imageVector = SignalIcons.AlbumPlus.imageVector,
       onClick = { onEvent(MediaEditScreenEvents.NavigateToGallery) },
       modifier = Modifier.testTag(TestTags.MEDIA_EDITOR_TOOLBAR_ADD_MEDIA_BUTTON)
     )
