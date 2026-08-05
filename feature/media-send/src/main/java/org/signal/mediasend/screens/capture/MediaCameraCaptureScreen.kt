@@ -20,10 +20,14 @@ fun MediaCameraCaptureScreen(
   state: MediaSendFlowState,
   onEvent: (MediaCaptureScreenEvents) -> Unit
 ) {
+  // Shared with the permission controller so that the microphone is asked for exactly when recording is on offer.
+  val isVideoEnabled = true
+  val permissions = rememberCameraPermissionController(isVideoEnabled)
+
   CameraXScreen(
     state = remember(state.selectedMedia) {
       CameraXScreenState(
-        isVideoEnabled = true,
+        isVideoEnabled = isVideoEnabled,
         isQrScanEnabled = true,
         selectedMediaCount = state.selectedMedia.size
       )
@@ -33,9 +37,9 @@ fun MediaCameraCaptureScreen(
       mediaConstraints = state.mediaConstraints,
       maxDurationSecondsOverride = if (state.isStory) state.storyMaxVideoDuration.inWholeSeconds.toInt() else 0
     ),
-    onCheckPermissions = {}, // TODO [media-send]
-    onRequestMicPermission = {}, // TODO [media-send]
-    hasCameraPermission = { true }, // TODO [media-send]
+    onCheckPermissions = permissions.requestCapturePermissions,
+    onRequestMicPermission = permissions.requestMicrophonePermission,
+    hasCameraPermission = permissions.hasCameraPermission,
     storiesEnabled = state.storiesEnabled
   )
 }
