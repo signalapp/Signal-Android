@@ -4,8 +4,6 @@ import com.android.build.api.artifact.ArtifactTransformationRequest
 import com.android.build.api.artifact.SingleArtifact
 import com.android.build.api.variant.HasAndroidTest
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
-import org.gradle.process.ExecOperations
-import org.gradle.work.DisableCachingByDefault
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
 import java.time.Instant
@@ -13,7 +11,6 @@ import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 import java.util.Properties
-import javax.inject.Inject
 
 plugins {
   alias(libs.plugins.android.application)

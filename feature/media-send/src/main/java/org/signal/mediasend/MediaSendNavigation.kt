@@ -25,13 +25,18 @@ import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.map
+import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.compose.showSnackbar
 import org.signal.mediasend.screens.capture.MediaCaptureScreen
 import org.signal.mediasend.screens.edit.MediaEditScreen
 import org.signal.mediasend.screens.select.MediaSelectScreen
 import org.signal.mediasend.screens.select.MediaSelectViewModel
+import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
 
 /**
@@ -126,10 +131,29 @@ internal fun MediaSendNavigation(
 
     Snackbar(viewModel.snackbarEvents)
     Toast(viewModel.toastEvents)
+    SendProgress(viewModel.state)
   }
 }
 
 private val TOAST_DURATION = 3.seconds
+private val SEND_PROGRESS_DELAY = 300.milliseconds
+
+/**
+ * Covers the whole flow while a send is in flight, so that the media on its way out cannot be edited or resent. Sends
+ * that resolve immediately never show it.
+ */
+@Composable
+private fun SendProgress(
+  state: StateFlow<MediaSendFlowState>
+) {
+  val isSending by remember(state) { state.map { it.isSending }.distinctUntilChanged() }
+    .collectAsStateWithLifecycle(initialValue = false)
+
+  Dialogs.IndeterminateProgressDialog(
+    visible = isSending,
+    delayDuration = SEND_PROGRESS_DELAY
+  )
+}
 
 /**
  * Shows each [ToastEvent] over the middle of the screen for [TOAST_DURATION]. A new event replaces whatever is showing
