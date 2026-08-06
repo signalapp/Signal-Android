@@ -1,3 +1,8 @@
+/*
+ * Copyright 2026 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 package org.signal.imageeditor.core;
 
 import android.graphics.Matrix;
@@ -13,6 +18,7 @@ class ThumbDragEditSession extends ElementEditSession {
   private final PointF  oppositeControlPoint                = new PointF();
   private final float[] oppositeControlPointOnControlParent = new float[2];
   private final float[] oppositeControlPointOnElement       = new float[2];
+  private final float   initialRotationRadians;
 
   @NonNull
   private final          ThumbRenderer.ControlPoint controlPoint;
@@ -21,11 +27,13 @@ class ThumbDragEditSession extends ElementEditSession {
   private ThumbDragEditSession(@NonNull EditorElement selected,
                                @NonNull ThumbRenderer.ControlPoint controlPoint,
                                @NonNull Matrix inverseMatrix,
-                               @NonNull Matrix thumbContainerRelativeMatrix)
+                               @NonNull Matrix thumbContainerRelativeMatrix,
+                               float initialRotationRadians)
   {
     super(selected, inverseMatrix);
     this.controlPoint                 = controlPoint;
     this.thumbContainerRelativeMatrix = thumbContainerRelativeMatrix;
+    this.initialRotationRadians       = initialRotationRadians;
   }
 
   static EditSession startDrag(@NonNull EditorElement selected,
@@ -36,7 +44,7 @@ class ThumbDragEditSession extends ElementEditSession {
   {
     if (!selected.getFlags().isEditable()) return null;
 
-    ElementEditSession elementDragEditSession = new ThumbDragEditSession(selected, controlPoint, inverseViewModelMatrix, thumbContainerRelativeMatrix);
+    ElementEditSession elementDragEditSession = new ThumbDragEditSession(selected, controlPoint, inverseViewModelMatrix, thumbContainerRelativeMatrix, selected.getLocalRotationAngle());
     elementDragEditSession.setScreenStartPoint(0, point);
     elementDragEditSession.setScreenEndPoint(0, point);
     return elementDragEditSession;
@@ -72,6 +80,7 @@ class ThumbDragEditSession extends ElementEditSession {
       editorMatrix.postTranslate(-oppositeControlPoint.x, -oppositeControlPoint.y);
       editorMatrix.postScale(scale, scale);
       double angle = angle(endPointElement[0], oppositeControlPoint) - angle(startPointElement[0], oppositeControlPoint);
+      angle = RotationSnap.snapToAngle(initialRotationRadians, angle);
       rotate(editorMatrix, angle);
       editorMatrix.postTranslate(oppositeControlPoint.x, oppositeControlPoint.y);
     } else {
