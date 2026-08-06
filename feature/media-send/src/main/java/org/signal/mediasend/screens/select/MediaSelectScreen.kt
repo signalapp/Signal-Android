@@ -58,6 +58,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
@@ -94,11 +95,14 @@ import org.signal.core.ui.compose.list.rememberReorderBuffer
 import org.signal.core.ui.compose.list.rememberReorderableListState
 import org.signal.core.ui.compose.list.reorderableList
 import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.core.util.ContentTypeUtil
 import org.signal.glide.compose.GlideImage
 import org.signal.mediasend.R
 import org.signal.mediasend.screens.MediaSendMetrics
 import org.signal.mediasend.screens.edit.rememberPreviewMedia
 import org.signal.mediasend.test.TestTags
+import org.signal.mediasend.util.formatAsClock
+import kotlin.time.Duration.Companion.milliseconds
 import org.signal.core.ui.permissions.Permissions as PermissionsUtil
 
 /** How many empty tiles stand in for the gallery we are not allowed to show. Matches the v2 gallery. */
@@ -568,8 +572,12 @@ private fun MediaTile(
     }
   )
 
+  val outerCornerClip by animateDpAsState(
+    if (selectionIndex >= 0) 0.dp else 2.dp
+  )
+
   val cornerClip by animateDpAsState(
-    if (selectionIndex >= 0) 12.dp else 0.dp
+    if (selectionIndex >= 0) 12.dp else 2.dp
   )
 
   // Square regardless of what is in it. The thumbnail emits nothing until it has loaded, so a tile sized by its content
@@ -578,33 +586,37 @@ private fun MediaTile(
     modifier = Modifier
       .fillMaxWidth()
       .aspectRatio(1f)
-      .background(color = MaterialTheme.colorScheme.surfaceVariant)
+      .background(color = MaterialTheme.colorScheme.surfaceVariant, shape = RoundedCornerShape(outerCornerClip))
       .clickable(
         onClick = { onEvent(MediaSelectScreenEvents.MediaClick(media)) },
         onClickLabel = media.fileName,
         role = Role.Button
       )
   ) {
-    if (LocalInspectionMode.current) {
-      Box(
-        modifier = Modifier
-          .scale(scale)
-          .background(color = Previews.rememberRandomColor(), shape = RoundedCornerShape(cornerClip))
-          .fillMaxWidth()
-          .aspectRatio(1f)
-      )
-    } else {
-      val width = maxWidth
-      val height = maxHeight
+    val width = maxWidth
+    val height = maxHeight
 
-      GlideImage(
-        model = media.uri,
-        imageSize = DpSize(width, height),
-        modifier = Modifier
-          .aspectRatio(1f)
-          .scale(scale)
-          .clip(RoundedCornerShape(cornerClip))
-      )
+    Box(
+      modifier = Modifier
+        .aspectRatio(1f)
+        .scale(scale)
+        .clip(RoundedCornerShape(cornerClip))
+    ) {
+      if (LocalInspectionMode.current) {
+        Box(
+          modifier = Modifier
+            .background(color = Previews.rememberRandomColor())
+            .fillMaxWidth()
+        )
+      } else {
+        GlideImage(
+          model = media.uri,
+          imageSize = DpSize(width, height),
+          modifier = Modifier.aspectRatio(1f)
+        )
+      }
+
+      MediaTileVideoOverlay(media)
     }
   }
 
@@ -626,6 +638,32 @@ private fun MediaTile(
           color = if (recipientChatColor != null) SignalTheme.colors.colorOnCustom else MaterialTheme.colorScheme.onPrimary
         )
       }
+    }
+  }
+}
+
+@Composable
+private fun MediaTileVideoOverlay(
+  media: Media
+) {
+  if (ContentTypeUtil.isVideo(media.contentType) && !media.isVideoGif) {
+    Box(
+      contentAlignment = Alignment.TopEnd,
+      modifier = Modifier
+        .fillMaxWidth()
+        .background(
+          brush = Brush.verticalGradient(
+            0f to Color.Black.copy(alpha = 0.4f),
+            1f to Color.Transparent
+          )
+        )
+        .padding(top = 8.dp, end = 8.dp, bottom = 26.dp)
+    ) {
+      Text(
+        text = remember(media.duration) { media.duration.milliseconds.formatAsClock() },
+        style = MaterialTheme.typography.labelLarge,
+        color = SignalTheme.colors.colorOnCustom
+      )
     }
   }
 }
