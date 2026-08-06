@@ -21,6 +21,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.fragment.compose.AndroidFragment
 import androidx.lifecycle.lifecycleScope
@@ -122,6 +123,7 @@ class MediaSendV3Activity :
     setContent {
       val context = LocalContext.current
       val isOnCaptureScreen = viewModel.backStack.lastOrNull() is MediaSendRoute.Capture
+      val noteToSelf = stringResource(R.string.note_to_self)
 
       LaunchedEffect(isOnCaptureScreen) {
         onCaptureScreenChanged(isOnCaptureScreen)
@@ -144,7 +146,7 @@ class MediaSendV3Activity :
           rememberRecipientField(RecipientId.from(id)) {
             when {
               isUnknown -> ""
-              isSelf -> context.getString(R.string.note_to_self)
+              isSelf -> noteToSelf
               else -> getDisplayName(context)
             }
           }
