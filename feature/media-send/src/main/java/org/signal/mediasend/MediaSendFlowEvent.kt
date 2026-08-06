@@ -25,4 +25,5 @@ internal sealed interface MediaSendFlowEvent {
   data class NavigateToFiles(val mediaFolder: MediaFolder) : MediaSendFlowEvent
   data object NavigateToEdit : MediaSendFlowEvent
   data object NavigateToCamera : MediaSendFlowEvent
+  data object NavigateBack : MediaSendFlowEvent
 }

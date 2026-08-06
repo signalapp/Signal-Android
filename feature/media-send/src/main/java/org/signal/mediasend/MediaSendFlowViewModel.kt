@@ -256,6 +256,25 @@ class MediaSendFlowViewModel(
       is MediaSendFlowEvent.NavigateToFiles -> backStack.goToFiles(event.mediaFolder)
       MediaSendFlowEvent.NavigateToEdit -> backStack.goToEdit()
       MediaSendFlowEvent.NavigateToCamera -> backStack.goToCamera()
+      MediaSendFlowEvent.NavigateBack -> onPopFromSelect()
+    }
+  }
+
+  /**
+   * Backs out of a select screen while nothing is selected, stepping over an editor that would have nothing to edit
+   * and no toolbar to leave by. Decided here rather than when the selection empties, so that re-selecting something
+   * still returns the user to their editor.
+   */
+  private fun onPopFromSelect() {
+    val destination = backStack.dropLast(1).dropLastWhile { it == MediaSendRoute.Edit }
+
+    if (destination.isEmpty()) {
+      sendHudCommand(MediaSendFlowHudCommand.CloseScreen)
+      return
+    }
+
+    while (backStack.size > destination.size) {
+      backStack.pop()
     }
   }
 

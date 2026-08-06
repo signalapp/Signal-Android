@@ -5,6 +5,7 @@
 
 package org.signal.mediasend.screens.select
 
+import androidx.activity.compose.BackHandler
 import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateDpAsState
@@ -128,6 +129,12 @@ internal fun MediaSelectScreen(
 
   val gridState = rememberLazyGridState()
   val dragToSelectState = rememberDragToSelectMediaState(state, onEvent, gridState)
+
+  // Only an empty selection can leave an editor with nothing to edit behind us. Every other back press is left to the
+  // navigation default, which keeps its predictive-back gesture.
+  BackHandler(enabled = state.selectedMedia.isEmpty()) {
+    onEvent(MediaSelectScreenEvents.NavigateBack)
+  }
 
   // Once the selection starts refusing items there is nothing left for the drag to do, and letting it run on would
   // raise a refusal for every further tile it crosses.
