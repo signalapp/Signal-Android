@@ -52,6 +52,7 @@ import org.signal.core.util.forEach
 import org.signal.core.util.groupBy
 import org.signal.core.util.isNull
 import org.signal.core.util.logging.Log
+import org.signal.core.util.nullIfEmpty
 import org.signal.core.util.readToList
 import org.signal.core.util.readToSet
 import org.signal.core.util.readToSingleInt
@@ -3509,7 +3510,7 @@ class AttachmentTable(
       height = cursor.requireInt(HEIGHT),
       quote = cursor.requireBoolean(QUOTE),
       quoteTargetContentType = cursor.requireString(QUOTE_TARGET_CONTENT_TYPE),
-      caption = cursor.requireString(CAPTION),
+      caption = cursor.requireString(CAPTION).nullIfEmpty(),
       stickerLocator = cursor.readStickerLocator(),
       blurHash = if (MediaUtil.isAudioType(contentType)) null else BlurHash.parseOrNull(cursor.requireString(BLUR_HASH)),
       audioHash = if (MediaUtil.isAudioType(contentType)) AudioHash.parseOrNull(cursor.requireString(BLUR_HASH)) else null,

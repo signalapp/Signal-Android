@@ -40,7 +40,7 @@ public final class AttachmentPointerUtil {
                                               ((pointer.flags != null ? pointer.flags : 0) & AttachmentPointer.Flags.VOICE_MESSAGE.getValue()) != 0,
                                               ((pointer.flags != null ? pointer.flags : 0) & AttachmentPointer.Flags.BORDERLESS.getValue()) != 0,
                                               ((pointer.flags != null ? pointer.flags : 0) & AttachmentPointer.Flags.GIF.getValue()) != 0,
-                                              pointer.caption != null ? Optional.of(pointer.caption) : Optional.empty(),
+                                              pointer.caption != null && !pointer.caption.isEmpty() ? Optional.of(pointer.caption) : Optional.empty(),
                                               pointer.blurHash != null ? Optional.of(pointer.blurHash) : Optional.empty(),
                                               pointer.uploadTimestamp != null ? pointer.uploadTimestamp : 0,
                                               UuidUtil.fromByteStringOrNull(pointer.clientUuid));
