@@ -10,6 +10,8 @@ import android.content.Context
 import androidx.documentfile.provider.DocumentFile
 import androidx.test.core.app.ApplicationProvider
 import assertk.assertThat
+import assertk.assertions.isBetween
+import assertk.assertions.isEqualTo
 import assertk.assertions.isFalse
 import assertk.assertions.isNotNull
 import assertk.assertions.isNull
@@ -20,6 +22,9 @@ import org.junit.rules.TemporaryFolder
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import java.util.Calendar
+import java.util.Locale
+import java.util.TimeZone
 
 @RunWith(RobolectricTestRunner::class)
 @Config(manifest = Config.NONE, application = Application::class)
@@ -126,6 +131,88 @@ class ArchiveFileSystemTest {
     val result = ArchiveFileSystem.openForRestore(context, DocumentFile.fromFile(renamed))
 
     assertThat(result).isNull()
+  }
+
+  @Test
+  fun `createSnapshot folder name round-trips through listSnapshots in a non-UTC time zone`() {
+    val defaultTimeZone = TimeZone.getDefault()
+    try {
+      TimeZone.setDefault(TimeZone.getTimeZone("America/Los_Angeles"))
+
+      val parent = temporaryFolder.newFolder()
+      val fileSystem = ArchiveFileSystem.fromFile(context, parent)
+
+      val before = System.currentTimeMillis() / 1000 * 1000
+      val snapshot = fileSystem.createSnapshot()!!
+      snapshot.finalize()
+      val after = System.currentTimeMillis()
+
+      val info = fileSystem.listSnapshots().single()
+      assertThat(info.timestamp).isBetween(before, after)
+    } finally {
+      TimeZone.setDefault(defaultTimeZone)
+    }
+  }
+
+  @Test
+  fun `listSnapshots sorts a newer local-time snapshot ahead of an older UTC-named one`() {
+    val defaultTimeZone = TimeZone.getDefault()
+    try {
+      TimeZone.setDefault(TimeZone.getTimeZone("America/Los_Angeles"))
+
+      val parent = temporaryFolder.newFolder()
+      val fileSystem = ArchiveFileSystem.fromFile(context, parent)
+      val signalBackups = parent.resolve(ArchiveFileSystem.MAIN_DIRECTORY_NAME)
+
+      // Written by a version that stamped names in UTC. Created first, but its name reads 7 hours ahead of local time.
+      val older = signalBackups.resolve("${ArchiveFileSystem.BACKUP_DIRECTORY_PREFIX}-2026-08-03-18-55-33").also { it.mkdir() }
+      // Written after the switch to local-time names, so its name reads lower despite being newer.
+      val newer = signalBackups.resolve("${ArchiveFileSystem.BACKUP_DIRECTORY_PREFIX}-2026-08-03-12-04-35").also { it.mkdir() }
+
+      older.setLastModified(1_785_783_333_000)
+      newer.setLastModified(1_785_783_875_000)
+
+      val snapshots = fileSystem.listSnapshots()
+
+      assertThat(snapshots.map { it.name }).isEqualTo(listOf(newer.name, older.name))
+    } finally {
+      TimeZone.setDefault(defaultTimeZone)
+    }
+  }
+
+  @Test
+  fun `listSnapshots falls back to the name when no modified time is reported`() {
+    val parent = temporaryFolder.newFolder()
+    val fileSystem = ArchiveFileSystem.fromFile(context, parent)
+    val signalBackups = parent.resolve(ArchiveFileSystem.MAIN_DIRECTORY_NAME)
+    val snapshot = signalBackups.resolve("${ArchiveFileSystem.BACKUP_DIRECTORY_PREFIX}-2026-01-02-03-04-05").also { it.mkdir() }
+    snapshot.setLastModified(0)
+
+    val info = fileSystem.listSnapshots().single()
+
+    val expected = Calendar.getInstance(Locale.US).apply {
+      set(2026, Calendar.JANUARY, 2, 3, 4, 5)
+      set(Calendar.MILLISECOND, 0)
+    }.timeInMillis
+    assertThat(info.timestamp).isEqualTo(expected)
+  }
+
+  @Test
+  fun `listSnapshots sorts newest first`() {
+    val parent = temporaryFolder.newFolder()
+    val fileSystem = ArchiveFileSystem.fromFile(context, parent)
+    val signalBackups = parent.resolve(ArchiveFileSystem.MAIN_DIRECTORY_NAME)
+    signalBackups.resolve("${ArchiveFileSystem.BACKUP_DIRECTORY_PREFIX}-2026-01-01-00-00-00").also { it.mkdir() }.setLastModified(1_767_225_600_000)
+    signalBackups.resolve("${ArchiveFileSystem.BACKUP_DIRECTORY_PREFIX}-2026-01-02-00-00-00").also { it.mkdir() }.setLastModified(1_767_312_000_000)
+
+    val snapshots = fileSystem.listSnapshots()
+
+    assertThat(snapshots.map { it.name }).isEqualTo(
+      listOf(
+        "${ArchiveFileSystem.BACKUP_DIRECTORY_PREFIX}-2026-01-02-00-00-00",
+        "${ArchiveFileSystem.BACKUP_DIRECTORY_PREFIX}-2026-01-01-00-00-00"
+      )
+    )
   }
 
   /**
