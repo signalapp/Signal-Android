@@ -5082,8 +5082,16 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     for (record in records) {
       val timestamp = record.dateSent
 
+      if (timestamp <= QUOTE_NOT_PRESENT_ID) {
+        continue
+      }
+
       byQuoteDescriptor[QuoteDescriptor(timestamp, record.fromRecipient.id)] = record
       timestamps.add(timestamp)
+    }
+
+    if (timestamps.isEmpty()) {
+      return emptySet()
     }
 
     val quotedIds: MutableSet<Long> = mutableSetOf()
@@ -5095,14 +5103,14 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     readableDatabase
       .select(ID, QUOTE_ID, QUOTE_AUTHOR)
       .from(TABLE_NAME)
-      .where("${quoteIdQuery.where} AND $SCHEDULED_DATE = -1", quoteIdQuery.whereArgs)
+      .where("${quoteIdQuery.where} AND $QUOTE_AUTHOR > 0 AND $SCHEDULED_DATE = -1", quoteIdQuery.whereArgs)
       .run()
       .forEach { cursor ->
         val messageId = cursor.requireLong(ID)
         if (messageId !in pastRevisionMessageIds) {
           val quoteLocator = QuoteDescriptor(
             timestamp = cursor.requireLong(QUOTE_ID),
-            author = RecipientId.from(cursor.requireNonNullString(QUOTE_AUTHOR))
+            author = RecipientId.from(cursor.requireLong(QUOTE_AUTHOR))
           )
 
           if (byQuoteDescriptor.containsKey(quoteLocator)) {
