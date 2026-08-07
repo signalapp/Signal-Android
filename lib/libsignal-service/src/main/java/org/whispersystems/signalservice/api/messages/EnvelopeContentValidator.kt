@@ -217,8 +217,8 @@ object EnvelopeContentValidator {
   }
 
   private fun validateSyncMessage(envelope: Envelope, syncMessage: SyncMessage, localAci: ACI): Result {
-    // Source serviceId was already determined to be a valid serviceId in general
-    val sourceServiceId = ServiceId.parseOrThrow(envelope.sourceServiceId, envelope.sourceServiceIdBinary)
+    val sourceServiceId = ServiceId.parseOrNull(envelope.sourceServiceId, envelope.sourceServiceIdBinary)
+      ?: return Result.Invalid("[SyncMessage] Missing or invalid source ServiceId!")
 
     if (sourceServiceId != localAci) {
       return Result.Invalid("[SyncMessage] Source was not our own account!")

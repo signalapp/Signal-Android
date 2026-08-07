@@ -594,7 +594,15 @@ class IncomingMessageObserver(
       val committed = SignalDatabase.tryRunInTransaction {
         for (response in batch) {
           SignalTrace.beginSection("IncomingMessageObserver#perMessageTransaction")
-          val result = processEnvelope(bufferedStore, response.envelope, response.serverDeliveredTimestamp, batchCache)
+          val result = when (response) {
+            is EnvelopeResponse.Parsed -> {
+              processEnvelope(bufferedStore, response.envelope, response.serverDeliveredTimestamp, batchCache)
+            }
+            is EnvelopeResponse.Unparseable -> {
+              Log.w(TAG, "Unparseable envelope. Nothing to process, but we'll still ack it.")
+              null
+            }
+          }
           bufferedStore.flushToDisk()
           SignalTrace.endSection()
 
@@ -643,10 +651,16 @@ class IncomingMessageObserver(
 
       for ((index, response) in batch.withIndex()) {
         SignalTrace.beginSection("IncomingMessageObserver#perMessageTransaction")
-        val results = SignalDatabase.runInTransaction {
-          val result = processEnvelope(bufferedStore, response.envelope, response.serverDeliveredTimestamp, batchCache)
-          bufferedStore.flushToDisk()
-          result
+        val results = when (response) {
+          is EnvelopeResponse.Parsed -> SignalDatabase.runInTransaction {
+            val result = processEnvelope(bufferedStore, response.envelope, response.serverDeliveredTimestamp, batchCache)
+            bufferedStore.flushToDisk()
+            result
+          }
+          is EnvelopeResponse.Unparseable -> {
+            Log.w(TAG, "Unparseable envelope. Nothing to process, but we'll still ack it.")
+            null
+          }
         }
         SignalTrace.endSection()
 

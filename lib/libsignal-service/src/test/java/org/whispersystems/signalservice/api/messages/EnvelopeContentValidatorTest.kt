@@ -1139,4 +1139,14 @@ class EnvelopeContentValidatorTest {
     val result = EnvelopeContentValidator.validate(Envelope(), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
     assert(result is EnvelopeContentValidator.Result.Valid)
   }
+
+  @Test
+  fun `validate - ensure a sync message with no source is marked invalid rather than throwing`() {
+    val content = Content(
+      syncMessage = SyncMessage()
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
 }
