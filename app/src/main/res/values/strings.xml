@@ -7,7 +7,7 @@
 
 <!-- smartling.instruction_comments_enabled = on -->
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name" translatable="false">Signal</string>
+    <string name="app_name" translatable="false">ERIZO</string>
 
     <string name="install_url" translatable="false">https://signal.org/install</string>
     <string name="donate_url" translatable="false">https://signal.org/donate</string>
