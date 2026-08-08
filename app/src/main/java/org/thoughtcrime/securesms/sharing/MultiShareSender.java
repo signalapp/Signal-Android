@@ -14,13 +14,11 @@ import org.signal.core.util.BreakIteratorCompat;
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.UriAttachment;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.conversation.MessageSendType;
 import org.thoughtcrime.securesms.conversation.colors.ChatColors;
-import org.signal.core.models.media.TransformProperties;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.StoryType;
@@ -33,7 +31,6 @@ import org.signal.core.models.media.Media;
 import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryBackgroundColors;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.OutgoingMessage;
-import org.signal.mediasend.SentMediaQuality;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.mms.SlideFactory;
@@ -242,8 +239,6 @@ public final class MultiShareSender {
                                                     .flatMap(slide -> {
                                                       if (slide instanceof VideoSlide) {
                                                         return expandToClips(context, (VideoSlide) slide).stream();
-                                                      } else if (slide instanceof ImageSlide) {
-                                                        return Stream.of(ensureDefaultQuality(context, (ImageSlide) slide));
                                                       } else if (slide instanceof StickerSlide) {
                                                         return Stream.empty();
                                                       } else {
@@ -346,27 +341,6 @@ public final class MultiShareSender {
                                                                                                    thumbnail.transformProperties).asAttachment()
           )
       ));
-    }
-  }
-
-  private static Slide ensureDefaultQuality(@NonNull Context context, @NonNull ImageSlide imageSlide) {
-    Attachment attachment = imageSlide.asAttachment();
-    final TransformProperties transformProperties = attachment.transformProperties;
-    if (transformProperties != null && transformProperties.sentMediaQuality == SentMediaQuality.HIGH.code) {
-      return new ImageSlide(
-          context,
-          attachment.getUri(),
-          attachment.contentType,
-          attachment.size,
-          attachment.width,
-          attachment.height,
-          attachment.borderless,
-          attachment.caption,
-          attachment.blurHash,
-          TransformProperties.empty()
-      );
-    } else {
-      return imageSlide;
     }
   }
 
