@@ -23,7 +23,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.coroutines.flow.Flow
+import org.signal.core.ui.compose.CollectActions
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.permissions.Permissions
 import org.signal.core.util.getParcelableArrayListExtraCompat
@@ -195,7 +195,7 @@ class ConversationSettingsFragment : ComposeFragment() {
   private fun IndividualContent() {
     val state by individualViewModel.state.collectAsStateWithLifecycle()
 
-    CollectActions(individualViewModel.actions)
+    CollectActions(individualViewModel.actions) { action -> handleAction(action) }
     NotifyWhenLoaded(state.isLoaded)
 
     IndividualSettingsScreen(
@@ -211,7 +211,7 @@ class ConversationSettingsFragment : ComposeFragment() {
   private fun NoteToSelfContent() {
     val state by individualViewModel.state.collectAsStateWithLifecycle()
 
-    CollectActions(individualViewModel.actions)
+    CollectActions(individualViewModel.actions) { action -> handleAction(action) }
     NotifyWhenLoaded(state.isLoaded)
 
     NoteToSelfSettingsScreen(
@@ -227,7 +227,7 @@ class ConversationSettingsFragment : ComposeFragment() {
   private fun ReleaseNotesContent() {
     val state by individualViewModel.state.collectAsStateWithLifecycle()
 
-    CollectActions(individualViewModel.actions)
+    CollectActions(individualViewModel.actions) { action -> handleAction(action) }
     NotifyWhenLoaded(state.isLoaded)
 
     ReleaseNotesSettingsScreen(
@@ -243,7 +243,7 @@ class ConversationSettingsFragment : ComposeFragment() {
   private fun GroupContent() {
     val state by groupViewModel.state.collectAsStateWithLifecycle()
 
-    CollectActions(groupViewModel.actions)
+    CollectActions(groupViewModel.actions) { action -> handleAction(action) }
     NotifyWhenLoaded(state.isLoaded)
 
     GroupSettingsScreen(
@@ -253,13 +253,6 @@ class ConversationSettingsFragment : ComposeFragment() {
       onAvatarViewCreated = { avatarView = it },
       onSharedMediaViewClicked = { lastClickedSharedMediaView = it }
     )
-  }
-
-  @Composable
-  private fun CollectActions(actions: Flow<ConversationSettingsAction>) {
-    LaunchedEffect(actions) {
-      actions.collect { action -> handleAction(action) }
-    }
   }
 
   @Composable
