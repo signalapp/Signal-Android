@@ -11,6 +11,7 @@ import androidx.annotation.OptIn
 import androidx.media3.common.MimeTypes
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.datasource.DataSource
+import androidx.media3.exoplayer.DefaultRenderersFactory
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.exoplayer.mediacodec.MediaCodecUtil
 import androidx.media3.exoplayer.source.DefaultMediaSourceFactory
@@ -31,6 +32,7 @@ class SimpleExoPlayerPool(context: Context) : ExoPlayerPool<ExoPlayer>(MAXIMUM_R
   private val okHttpClient = AppDependencies.okHttpClient.newBuilder().proxySelector(ContentProxySelector()).build()
   private val dataSourceFactory: DataSource.Factory = SignalDataSource.Factory(AppDependencies.application, okHttpClient, DataSourceTransferListener)
   private val mediaSourceFactory: MediaSource.Factory = DefaultMediaSourceFactory(dataSourceFactory)
+  private val renderersFactory = DefaultRenderersFactory(this.context).setEnableDecoderFallback(true)
 
   init {
     AppForegroundObserver.addListener(this)
@@ -65,7 +67,7 @@ class SimpleExoPlayerPool(context: Context) : ExoPlayerPool<ExoPlayer>(MAXIMUM_R
 
   @MainThread
   override fun createPlayer(): ExoPlayer {
-    return ExoPlayer.Builder(context)
+    return ExoPlayer.Builder(context, renderersFactory)
       .setMediaSourceFactory(mediaSourceFactory)
       .setSeekBackIncrementMs(SEEK_INTERVAL.inWholeMilliseconds)
       .setSeekForwardIncrementMs(SEEK_INTERVAL.inWholeMilliseconds)
