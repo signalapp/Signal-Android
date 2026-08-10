@@ -17,6 +17,7 @@ data class CallSetupState(
   var ringerRecipient: Recipient = Recipient.UNKNOWN,
   @get:JvmName("shouldWaitForTelecomApproval") var waitForTelecom: Boolean = false,
   @get:JvmName("isTelecomApproved") var telecomApproved: Boolean = false,
+  @get:JvmName("shouldWaitForAudio") var waitForAudio: Boolean = false,
   var iceServers: MutableList<PeerConnection.IceServer> = mutableListOf(),
   @get:JvmName("isAlwaysTurnServers") var alwaysTurnServers: Boolean = false
 ) {

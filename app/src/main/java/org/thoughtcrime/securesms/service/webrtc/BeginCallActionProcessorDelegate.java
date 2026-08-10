@@ -115,8 +115,7 @@ public class BeginCallActionProcessorDelegate extends WebRtcActionProcessor {
   protected @NonNull WebRtcServiceState handleStartIncomingCall(@NonNull WebRtcServiceState currentState, @NonNull RemotePeer remotePeer, @NonNull OfferMessage.Type offerType) {
     remotePeer.answering();
 
-    Log.i(tag, "assign activePeer callId: " + remotePeer.getCallId() + " key: " + remotePeer.hashCode());
-
+    Log.i(tag, "assign activePeer callId: " + remotePeer.getCallId() + " key: " + remotePeer.hashCode() + " offerType: " + offerType + " telecomSupported: " + AndroidTelecomUtil.getTelecomSupported());
 
     boolean    isRemoteVideoOffer = currentState.getCallSetupState(remotePeer).isRemoteVideoOffer();
     Recipient  recipient          = remotePeer.getRecipient();

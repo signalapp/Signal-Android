@@ -276,6 +276,10 @@ class ActiveCallManager(
     callManager.onAudioDeviceChangeFailed()
   }
 
+  override fun onAudioReadyForAccept() {
+    callManager.onAudioReadyForAccept()
+  }
+
   override fun onBluetoothPermissionDenied() {
     callManager.onBluetoothPermissionDenied()
   }

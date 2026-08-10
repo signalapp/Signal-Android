@@ -62,7 +62,7 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
 
   @Override
   protected @NonNull WebRtcServiceState handleStartOutgoingCall(@NonNull WebRtcServiceState currentState, @NonNull RemotePeer remotePeer, @NonNull OfferMessage.Type offerType) {
-    Log.i(TAG, "handleStartOutgoingCall():");
+    Log.i(TAG, "handleStartOutgoingCall(): offerType: " + offerType);
     WebRtcServiceStateBuilder builder = currentState.builder();
 
     remotePeer.dialing();
