@@ -345,6 +345,10 @@ class MediaSendFlowViewModel(
         toggleViewOnce()
       }
 
+      MediaEditScreenEvents.ToggleVideoMuted -> {
+        toggleVideoMuted()
+      }
+
       MediaEditScreenEvents.SaveMedia -> {
         saveFocusedMediaToStorage()
       }
@@ -890,6 +894,20 @@ class MediaSendFlowViewModel(
   }
 
   /**
+   * Toggles whether the focused video's audio track is stripped when it is sent.
+   */
+  private fun toggleVideoMuted() {
+    val snapshot = state.value
+    val uri = snapshot.focusedMedia?.uri ?: return
+    val existing = snapshot.editorStateMap[uri] as? EditorState.VideoTrim ?: return
+    val updated = existing.copy(videoTrimData = existing.videoTrimData.copy(isMuted = !existing.videoTrimData.isMuted))
+
+    updateState { copy(editorStateMap = editorStateMap + (uri to updated)) }
+
+    snapshot.selectedMedia.firstOrNull { it.uri == uri }?.let { preUploadController.cancelUpload(it) }
+  }
+
+  /**
    * Updates video trim duration.
    */
   fun onEditVideoDuration(
@@ -914,7 +932,7 @@ class MediaSendFlowViewModel(
     val maxVideoDurationUs = getMaxVideoDurationUs(existingData.videoTrimData.totalInputDurationUs.microseconds)
     val preserveStartTime = unedited || !endMoved
 
-    val newData = VideoTrimData(
+    val newData = existingData.videoTrimData.copy(
       isDurationEdited = durationEdited,
       totalInputDurationUs = totalDurationUs,
       startTimeUs = clampedStartTime,

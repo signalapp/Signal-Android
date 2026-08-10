@@ -87,6 +87,8 @@ enum class SignalIcons(private val icon: SignalIcon) : SignalIcon by icon {
   Settings(icon(R.drawable.symbol_settings_android_24)),
   Share(icon(R.drawable.symbol_share_android_24)),
   SignalBackupsDisplay(icon(R.drawable.symbol_signal_backups_display_48)),
+  Speaker(icon(R.drawable.symbol_speaker_24)),
+  SpeakerSlash(icon(R.drawable.symbol_speaker_slash_24)),
   Sticker(icon(R.drawable.symbol_sticker_24)),
   Text(icon(R.drawable.symbol_text_24)),
   TextSquare(icon(R.drawable.symbol_text_square_24)),

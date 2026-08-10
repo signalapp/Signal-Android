@@ -121,6 +121,14 @@ internal fun MediaEditorToolbarSharedButtons(
     )
   }
 
+  if (editorState is EditorState.VideoTrim && isMuteVisible(state, editorState)) {
+    MediaEditorToolbarButton(
+      imageVector = if (editorState.videoTrimData.isMuted) SignalIcons.SpeakerSlash.imageVector else SignalIcons.Speaker.imageVector,
+      onClick = { onEvent(MediaEditScreenEvents.ToggleVideoMuted) },
+      modifier = Modifier.testTag(TestTags.MEDIA_EDITOR_TOOLBAR_MUTE_BUTTON)
+    )
+  }
+
   if (isSaveVisible(editorState)) {
     MediaEditorToolbarButton(
       imageVector = SignalIcons.Save.imageVector,
@@ -146,6 +154,10 @@ private fun isSaveVisible(editorState: EditorState): Boolean {
   return editorState is EditorState.Image || editorState is EditorState.Gif
 }
 
+private fun isMuteVisible(state: MediaSendFlowState, editorState: EditorState): Boolean {
+  return state.isMuteVideoAudioEnabled && editorState is EditorState.VideoTrim
+}
+
 /**
  * Adding a second attachment would silently drop view-once, so the entry point -- and the selection rail it belongs to
  * -- goes away while it is on.
@@ -159,5 +171,5 @@ internal fun isAddMediaVisible(state: MediaSendFlowState, editorState: EditorSta
  * toolbar rather than leave an empty one behind.
  */
 internal fun hasSharedToolbarButtons(state: MediaSendFlowState, editorState: EditorState): Boolean {
-  return isQualityVisible(state, editorState) || isSaveVisible(editorState) || isAddMediaVisible(state, editorState)
+  return isQualityVisible(state, editorState) || isMuteVisible(state, editorState) || isSaveVisible(editorState) || isAddMediaVisible(state, editorState)
 }

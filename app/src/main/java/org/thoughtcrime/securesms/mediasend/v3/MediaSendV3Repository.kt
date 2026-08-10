@@ -329,6 +329,9 @@ object MediaSendV3Repository : MediaSendRepository {
       SignalStore.imageEditor.setBlurPercentage((value.blur * 100).roundToInt())
     }
 
+  override val isMuteVideoAudioLabsEnabled: Boolean
+    get() = SignalStore.labs.muteVideoAudio
+
   private fun PreUploadResult.toLegacyPreUploadResult(): MessageSender.PreUploadResult {
     return MessageSender.PreUploadResult(media, AttachmentId(attachmentId), jobIds)
   }

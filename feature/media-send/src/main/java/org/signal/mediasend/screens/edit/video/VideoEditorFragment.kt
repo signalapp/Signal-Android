@@ -139,15 +139,23 @@ class VideoEditorFragment : Fragment() {
 
   fun onStateUpdate(focusedUri: Uri?, isTouchEnabled: Boolean, getOrCreateVideoTrimData: (Uri) -> VideoTrimData) {
     val currentlyFocused = focusedUri != null && focusedUri == uri
+
     if (IS_VIDEO_TRANSCODE_AVAILABLE) {
       if (currentlyFocused) {
         if (isVideoGif) {
           player.play()
         } else {
-          if (!isFocused) {
-            bindVideoTimeline(getOrCreateVideoTrimData(uri))
+          val videoTrimData = getOrCreateVideoTrimData(uri)
+
+          if (videoTrimData.isMuted) {
+            player.mute()
           } else {
-            val videoTrimData = getOrCreateVideoTrimData(focusedUri)
+            player.unmute()
+          }
+
+          if (!isFocused) {
+            bindVideoTimeline(videoTrimData)
+          } else {
             hud.isVisible = isTouchEnabled && !isVideoGif
             onEditVideoDuration(videoTrimData, isTouchEnabled)
           }

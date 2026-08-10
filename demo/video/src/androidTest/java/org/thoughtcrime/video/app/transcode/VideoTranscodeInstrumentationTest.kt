@@ -159,7 +159,8 @@ class VideoTranscodeInstrumentationTest {
       (qualityTier.videoBitrateMbps * VideoConstants.MB).toInt(),
       qualityTier.audioBitrateKbps * VideoConstants.KB,
       qualityTier.resolution,
-      true
+      true,
+      false
     )
 
     outputFile.outputStream().use { outputStream ->

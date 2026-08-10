@@ -6417,6 +6417,8 @@
     <string name="MediaReviewFragment__crop_rotate_accessibility_label">Crop and Rotate</string>
     <!-- Accessibility label describing the change media quality button on the Media review screen -->
     <string name="MediaReviewFragment__change_media_quality_accessibility_label">Change Media Quality</string>
+    <!-- Accessibility label describing the mute video audio button on the Media review screen -->
+    <string name="MediaReviewFragment__mute_video_audio_accessibility_label" translatable="false">Mute Video Audio (Labs)</string>
     <!-- Accessibility label describing the save media button on the Media review screen -->
     <string name="MediaReviewFragment__save_media_accessibility_label">Save Media</string>
     <!-- Accessibility label describing the toggle emoji keyboard button on the Media review screen -->

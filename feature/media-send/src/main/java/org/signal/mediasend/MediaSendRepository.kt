@@ -153,6 +153,12 @@ interface MediaSendRepository {
    * The image editor's per-tool brush widths, shared with the v2 editor.
    */
   var brushWidths: BrushWidths
+
+  /**
+   * Whether the labs flag for stripping a video's audio track before sending is on. Callers should ask
+   * [MediaConstraints.isMuteVideoAudioAvailable] instead, which also accounts for transcode support.
+   */
+  val isMuteVideoAudioLabsEnabled: Boolean
 }
 
 /**

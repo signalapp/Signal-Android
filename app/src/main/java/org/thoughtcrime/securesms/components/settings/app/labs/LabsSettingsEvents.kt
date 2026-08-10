@@ -14,4 +14,5 @@ sealed interface LabsSettingsEvents {
   data class ToggleStickerReplies(val enabled: Boolean) : LabsSettingsEvents
   data class ToggleMuteBreakthroughNotifications(val enabled: Boolean) : LabsSettingsEvents
   data class ToggleImprovedMessageDeletion(val enabled: Boolean) : LabsSettingsEvents
+  data class ToggleMuteVideoAudio(val enabled: Boolean) : LabsSettingsEvents
 }

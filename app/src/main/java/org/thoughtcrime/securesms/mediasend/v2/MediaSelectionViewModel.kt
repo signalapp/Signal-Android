@@ -400,7 +400,7 @@ class MediaSelectionViewModel(
       val endMoved = !isEntireDuration && data.endTimeUs != endTimeUs
       val maxVideoDurationUs: Long = it.calculateMaxVideoDurationUs((endTimeUs - clampedStartTime).microseconds)
       val preserveStartTime = unedited || !endMoved
-      val videoTrimData = VideoTrimData(durationEdited, totalDurationUs, clampedStartTime, endTimeUs)
+      val videoTrimData = data.copy(isDurationEdited = durationEdited, totalInputDurationUs = totalDurationUs, startTimeUs = clampedStartTime, endTimeUs = endTimeUs)
       val updatedData = clampToMaxClipDuration(videoTrimData, maxVideoDurationUs, preserveStartTime)
 
       if (updatedData != videoTrimData) {
@@ -423,6 +423,22 @@ class MediaSelectionViewModel(
         it.copy(isTouchEnabled = touchEnabled)
       }
     }
+  }
+
+  /**
+   * Toggles whether the focused video's audio track is stripped when it is sent.
+   */
+  fun toggleVideoMuted() {
+    val uri = store.state.focusedMedia?.uri ?: return
+    val data = store.state.getOrCreateVideoTrimData(uri)
+    val updatedData = data.copy(isMuted = !data.isMuted)
+
+    store.update {
+      it.copy(editorStateMap = it.editorStateMap + (uri to updatedData))
+    }
+
+    Log.d(TAG, "Canceling attachment upload because the audio was muted/unmuted.")
+    cancelUpload(MediaBuilder.buildMedia(uri))
   }
 
   fun getEditorState(uri: Uri): Any? {

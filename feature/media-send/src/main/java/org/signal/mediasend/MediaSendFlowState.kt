@@ -137,7 +137,12 @@ data class MediaSendFlowState(
   /**
    * The image editor's per-tool brush widths. Seeded from storage and written back as the user adjusts them.
    */
-  val brushWidths: BrushWidths = MediaSendDependencies.mediaSendRepository.brushWidths
+  val brushWidths: BrushWidths = MediaSendDependencies.mediaSendRepository.brushWidths,
+
+  /**
+   * Whether the labs-gated control for stripping a video's audio track is available.
+   */
+  val isMuteVideoAudioEnabled: Boolean = MediaConstraints.isMuteVideoAudioAvailable()
 ) : Parcelable {
 
   /**

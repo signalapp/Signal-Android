@@ -96,6 +96,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
   private lateinit var drawToolButton: View
   private lateinit var cropAndRotateButton: View
   private lateinit var qualityButton: ImageView
+  private lateinit var muteVideoAudioButton: ImageView
   private lateinit var saveButton: View
   private lateinit var sendButton: ImageView
   private lateinit var addMediaButton: View
@@ -164,6 +165,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
     drawToolButton = view.findViewById(R.id.draw_tool)
     cropAndRotateButton = view.findViewById(R.id.crop_and_rotate_tool)
     qualityButton = view.findViewById(R.id.quality_selector)
+    muteVideoAudioButton = view.findViewById(R.id.mute_video_audio)
     saveButton = view.findViewById(R.id.save_to_media)
     sendButton = view.findViewById(R.id.send)
     addMediaButton = view.findViewById(R.id.add_media)
@@ -213,6 +215,10 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
 
     qualityButton.setOnClickListener {
       QualitySelectorBottomSheet().show(parentFragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
+    }
+
+    muteVideoAudioButton.setOnClickListener {
+      sharedViewModel.toggleVideoMuted()
     }
 
     saveButton.setOnClickListener {
@@ -380,6 +386,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
       presentPager(state)
       presentAddMessageEntry(state.viewOnceToggleState, state.message)
       presentImageQualityToggle(state)
+      presentMuteVideoAudioToggle(state)
       if (state.quality != sentMediaQuality) {
         presentQualityToggleToast(state)
       }
@@ -558,6 +565,13 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
     )
   }
 
+  private fun presentMuteVideoAudioToggle(state: MediaSelectionState) {
+    val muted = state.focusedMedia?.uri?.let { state.getOrCreateVideoTrimData(it).isMuted } == true
+    muteVideoAudioButton.setImageResource(
+      if (muted) CoreUiR.drawable.symbol_speaker_slash_24 else CoreUiR.drawable.symbol_speaker_24
+    )
+  }
+
   private fun presentSendButton(enabled: Boolean, sendType: MessageSendType, recipient: Recipient?) {
     val sendButtonBackgroundTint = when {
       !enabled -> ContextCompat.getColor(requireContext(), R.color.core_grey_50)
@@ -648,6 +662,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
     animators.addAll(computeSendButtonAnimators(state))
     animators.addAll(computeSaveButtonAnimators(state))
     animators.addAll(computeQualityButtonAnimators(state))
+    animators.addAll(computeMuteVideoAudioButtonAnimators(state))
     animators.addAll(computeCropAndRotateButtonAnimators(state))
     animators.addAll(computeDrawToolButtonAnimators(state))
     animators.addAll(computeRecipientDisplayAnimators(state))
@@ -786,6 +801,15 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
       listOf(MediaReviewAnimatorController.getFadeInAnimator(qualityButton))
     } else {
       listOf(MediaReviewAnimatorController.getFadeOutAnimator(qualityButton))
+    }
+  }
+
+  private fun computeMuteVideoAudioButtonAnimators(state: MediaSelectionState): List<Animator> {
+    val focusedMedia = state.focusedMedia
+    return if (state.isTouchEnabled && MediaConstraints.isMuteVideoAudioAvailable() && focusedMedia != null && MediaUtil.isNonGifVideo(focusedMedia)) {
+      listOf(MediaReviewAnimatorController.getFadeInAnimator(muteVideoAudioButton))
+    } else {
+      listOf(MediaReviewAnimatorController.getFadeOutAnimator(muteVideoAudioButton))
     }
   }
 

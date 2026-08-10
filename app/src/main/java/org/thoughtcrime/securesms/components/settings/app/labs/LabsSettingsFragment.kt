@@ -160,6 +160,15 @@ private fun LabsSettingsContent(
           onCheckChanged = { onEvent(LabsSettingsEvents.ToggleImprovedMessageDeletion(it)) }
         )
       }
+
+      item {
+        Rows.ToggleRow(
+          checked = state.muteVideoAudio,
+          text = "Mute Video Audio",
+          label = "Adds a button to the video editor that removes the audio track from a video before sending it.",
+          onCheckChanged = { onEvent(LabsSettingsEvents.ToggleMuteVideoAudio(it)) }
+        )
+      }
     }
   }
 }

@@ -133,8 +133,8 @@ class RestoreLocalBackupActivityViewModel : ViewModel() {
 
         SignalStore.backup.localRestoreAccountEntropyPool = null
         SignalStore.registration.restoreDecisionState = RestoreDecisionState.Completed
-        SignalStore.backup.backupSecretRestoreRequired = false
         SignalStore.backup.newLocalBackupsSelectedSnapshotTimestamp = -1L
+        SignalStore.backup.backupSecretRestoreRequired = true
 
         val backupIdMatchesCurrentAccount = actualBackupId?.value?.contentEquals(expectedBackupId.value) == true
         if (backupIdMatchesCurrentAccount) {

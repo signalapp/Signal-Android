@@ -211,6 +211,8 @@ object BackupRepository {
     resetInitializedStateAndAuthCredentials()
     SignalStore.account.rotateAccountEntropyPool(stagedKeyRotations.aep)
     SignalStore.backup.mediaRootBackupKey = stagedKeyRotations.mediaRootBackupKey
+    resetSvrBChain()
+
     refreshMasterKeyDependents()
     BackupMessagesJob.enqueue()
   }
@@ -225,6 +227,15 @@ object BackupRepository {
     }
 
     AppDependencies.jobManager.addAll(jobs)
+  }
+
+  /**
+   * Discards our local SVRB state so that the next backup starts a brand new chain.
+   */
+  fun resetSvrBChain() {
+    Log.i(TAG, "Resetting SVRB chain.", true)
+    SignalStore.backup.nextBackupSecretData = null
+    SignalStore.backup.backupSecretRestoreRequired = false
   }
 
   fun resetInitializedStateAndAuthCredentials() {

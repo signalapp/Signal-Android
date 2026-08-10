@@ -2839,6 +2839,10 @@ class AttachmentTable(
       return false
     }
 
+    if (newProperties.videoMuted != potentialMatchProperties.videoMuted) {
+      return false
+    }
+
     return true
   }
 

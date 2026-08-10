@@ -27,4 +27,5 @@ sealed interface MediaEditScreenEvents {
   data object SaveMedia : MediaEditScreenEvents
   data class VideoTrimChanged(val videoTrimData: VideoTrimData, val editingComplete: Boolean) : MediaEditScreenEvents
   data class VideoSeek(val positionUs: Long, val editingComplete: Boolean) : MediaEditScreenEvents
+  data object ToggleVideoMuted : MediaEditScreenEvents
 }

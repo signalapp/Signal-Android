@@ -71,7 +71,7 @@ fun SoundsAndNotificationsRow(
 
   Rows.TextRow(
     text = if (isInternalUser) "$label (Internal Only)" else label,
-    icon = painterResource(R.drawable.symbol_speaker_24),
+    icon = painterResource(CoreUiR.drawable.symbol_speaker_24),
     enabled = enabled,
     onClick = onClick,
     modifier = modifier
