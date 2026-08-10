@@ -1199,7 +1199,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         val updated = db.update(TABLE_NAME, contentValues, query.where, query.whereArgs) > 0
 
         if (inCallUuids.isEmpty()) {
-          val acknowledgedCall = sameEraId && (containsSelf || groupCallUpdateDetails.localUserJoined)
+          val acknowledgedCall = (sameEraId && containsSelf) || groupCallUpdateDetails.localUserJoined
           finalizeEndedGroupCallMessage(db, record, acknowledgedCall, logPrefix = "[updatePreviousGroupCall]")
         }
 
