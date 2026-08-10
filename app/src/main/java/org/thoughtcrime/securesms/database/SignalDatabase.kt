@@ -10,6 +10,7 @@ import org.signal.core.util.crypto.AttachmentSecret
 import org.signal.core.util.logging.Log
 import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.crypto.DatabaseSecret
+import org.thoughtcrime.securesms.database.SignalDatabase.Companion.runInTransaction
 import org.thoughtcrime.securesms.database.helpers.SignalDatabaseMigrations
 import org.thoughtcrime.securesms.database.model.AvatarPickerDatabase
 import java.io.File
@@ -299,6 +300,7 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
           instance!!.reactionTable.deleteAbandonedReactions()
           instance!!.searchTable.fullyResetTables(useTransaction = false)
           instance!!.recipientTable.clearFileWallpapersPostBackupRestore()
+          instance!!.recipientTable.clearSelfKeyTransparencyData()
           instance!!.rawWritableDatabase.execSQL("DROP TABLE IF EXISTS key_value")
           instance!!.rawWritableDatabase.execSQL("DROP TABLE IF EXISTS megaphone")
           instance!!.rawWritableDatabase.execSQL("DROP TABLE IF EXISTS job_spec")
