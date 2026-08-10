@@ -69,6 +69,7 @@ fun AddAMessageRow(
   canScheduleSend: Boolean = false,
   viewOnceAvailable: Boolean = false,
   viewOnce: Boolean = false,
+  isReply: Boolean = false,
   recipientChatColor: Color? = null
 ) {
   Row(
@@ -87,7 +88,7 @@ fun AddAMessageRow(
             // A view-once send cannot carry a body, so the row becomes a static label rather than an entry point.
             Modifier
           } else {
-            Modifier.clickable(enabled = enabled, onClickLabel = stringResource(R.string.AddAMessageRow__add_a_message), onClick = { onEvent(MediaEditScreenEvents.AddMessageClick()) }, role = Role.Button)
+            Modifier.clickable(enabled = enabled, onClickLabel = stringResource(if (isReply) R.string.AddAMessageRow__add_a_reply else R.string.AddAMessageRow__add_a_message), onClick = { onEvent(MediaEditScreenEvents.AddMessageClick()) }, role = Role.Button)
           }
         )
     ) {
@@ -113,7 +114,7 @@ fun AddAMessageRow(
         }
 
         LocalAddAMessageRowTextField.current(
-          message?.takeIf { it.isNotBlank() } ?: stringResource(R.string.AddAMessageRow__message),
+          message?.takeIf { it.isNotBlank() } ?: stringResource(if (isReply) R.string.AddAMessageRow__add_a_reply else R.string.AddAMessageRow__message),
           Modifier
             .weight(1f)
             .padding(end = if (viewOnceAvailable) 0.dp else 16.dp)
@@ -200,6 +201,19 @@ private fun AddAMessageRowViewOncePreview() {
       onNextClick = {},
       viewOnceAvailable = true,
       viewOnce = true
+    )
+  }
+}
+
+@DayNightPreviews
+@Composable
+private fun AddAMessageRowReplyPreview() {
+  Previews.Preview {
+    AddAMessageRow(
+      message = null,
+      onEvent = {},
+      onNextClick = {},
+      isReply = true
     )
   }
 }

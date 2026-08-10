@@ -370,6 +370,7 @@ internal fun MediaEditScreen(
           canScheduleSend = !state.isStory,
           viewOnceAvailable = state.isViewOnceAvailable,
           viewOnce = state.isViewOnceEnabled,
+          isReply = state.isReply,
           message = state.message,
           recipientChatColor = recipientChatColor,
           onEvent = onEvent,

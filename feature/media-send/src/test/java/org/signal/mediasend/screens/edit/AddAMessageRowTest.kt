@@ -89,14 +89,29 @@ class AddAMessageRowTest {
     composeTestRule.onNodeWithText("Check this out").assertExists()
   }
 
-  private fun setContent(canScheduleSend: Boolean = false, message: CharSequence? = null) {
+  @Test
+  fun `Given a reply flow with no message, when the row is displayed, then the reply placeholder is shown`() {
+    setContent(isReply = true)
+
+    composeTestRule.onNodeWithText("Add a reply").assertExists()
+  }
+
+  @Test
+  fun `Given a reply flow with a message, when the row is displayed, then the message is shown`() {
+    setContent(message = "Check this out", isReply = true)
+
+    composeTestRule.onNodeWithText("Check this out").assertExists()
+  }
+
+  private fun setContent(canScheduleSend: Boolean = false, message: CharSequence? = null, isReply: Boolean = false) {
     composeTestRule.setContent {
       SignalTheme {
         AddAMessageRow(
           message = message,
           onEvent = { events += it },
           onNextClick = { nextClicks++ },
-          canScheduleSend = canScheduleSend
+          canScheduleSend = canScheduleSend,
+          isReply = isReply
         )
       }
     }
