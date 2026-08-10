@@ -165,6 +165,8 @@ message BackupMessagesJobData {
   string dataFile = 2;
   ResumableUpload uploadSpec = 3;
   string resumableUri = 4;
+  bytes pendingNextBackupSecretData = 5;
+  uint64 pendingMessageCutoffTime = 6;
 }
 
 message NewLinkedDeviceNotificationJobData {
