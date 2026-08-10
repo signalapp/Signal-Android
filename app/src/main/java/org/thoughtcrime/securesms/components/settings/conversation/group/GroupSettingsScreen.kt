@@ -575,7 +575,7 @@ private fun MemberRow(
             emoji = memberLabel.label.emoji,
             text = memberLabel.label.displayText,
             tintColor = Color(memberLabel.tintColor),
-            modifier = Modifier.padding(vertical = 2.dp),
+            contentPadding = MemberLabelPill.contentPaddingCompact,
             textStyle = MemberLabelPill.textStyleCompact
           )
 
