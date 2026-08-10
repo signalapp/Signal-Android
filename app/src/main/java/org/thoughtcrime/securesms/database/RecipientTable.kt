@@ -4247,8 +4247,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     val updated = writableDatabase
       .update(TABLE_NAME)
       .values(KEY_TRANSPARENCY_DATA to null)
-      .where("$ACI_COLUMN = ?", Recipient.self().requireAci().toString())
-      .run()
+      .where("$ACI_COLUMN = ? AND $KEY_TRANSPARENCY_DATA IS NOT NULL", Recipient.self().requireAci().toString())
+      .run() > 0
     Log.i(TAG, "Clearing self key transparency data $updated")
   }
 

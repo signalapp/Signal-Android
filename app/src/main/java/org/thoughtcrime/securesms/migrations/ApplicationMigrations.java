@@ -211,9 +211,10 @@ public class ApplicationMigrations {
 //    static final int GROUP_DELETED_AT_BACKFILL     = 167;
     static final int STICKER_PACK_STORAGE_SYNC     = 168;
     static final int GROUP_DELETED_AT_BACKFILL     = 169;
+    static final int KT_RESET_FAILURE              = 170;
   }
 
-  public static final int CURRENT_VERSION = 169;
+  public static final int CURRENT_VERSION = 170;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -978,6 +979,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.GROUP_DELETED_AT_BACKFILL) {
       jobs.put(Version.GROUP_DELETED_AT_BACKFILL, new GroupDeletedBackfillMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.KT_RESET_FAILURE) {
+      jobs.put(Version.KT_RESET_FAILURE, new KeyTransparencyFailureMigrationJob());
     }
 
     return jobs;

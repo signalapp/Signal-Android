@@ -76,6 +76,7 @@ import org.thoughtcrime.securesms.migrations.FixChangeNumberErrorMigrationJob;
 import org.thoughtcrime.securesms.migrations.GooglePlayBillingPurchaseTokenMigrationJob;
 import org.thoughtcrime.securesms.migrations.GroupDeletedBackfillMigrationJob;
 import org.thoughtcrime.securesms.migrations.IdentityTableCleanupMigrationJob;
+import org.thoughtcrime.securesms.migrations.KeyTransparencyFailureMigrationJob;
 import org.thoughtcrime.securesms.migrations.KeyTransparencyUsernameMigrationJob;
 import org.thoughtcrime.securesms.migrations.LegacyMigrationJob;
 import org.thoughtcrime.securesms.migrations.LocalArchiveReconciliationMigrationJob;
@@ -347,6 +348,7 @@ public final class JobManagerFactories {
       put(GooglePlayBillingPurchaseTokenMigrationJob.KEY, new GooglePlayBillingPurchaseTokenMigrationJob.Factory());
       put(GroupDeletedBackfillMigrationJob.KEY,           new GroupDeletedBackfillMigrationJob.Factory());
       put(IdentityTableCleanupMigrationJob.KEY,           new IdentityTableCleanupMigrationJob.Factory());
+      put(KeyTransparencyFailureMigrationJob.KEY,         new KeyTransparencyFailureMigrationJob.Factory());
       put(KeyTransparencyUsernameMigrationJob.KEY,        new KeyTransparencyUsernameMigrationJob.Factory());
       put(LegacyMigrationJob.KEY,                         new LegacyMigrationJob.Factory());
       put(LocalArchiveReconciliationMigrationJob.KEY,     new LocalArchiveReconciliationMigrationJob.Factory());
