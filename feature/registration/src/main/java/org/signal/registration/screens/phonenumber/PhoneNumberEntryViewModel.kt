@@ -331,6 +331,7 @@ class PhoneNumberEntryViewModel(
             }
             is RegisterAccountError.RegistrationLock -> {
               Log.w(TAG, "[Register] Reglocked. This implies that the user still had reglock enabled despite the pre-existing data not thinking it was.")
+              parentEventEmitter(RegistrationFlowEvent.E164Chosen(e164))
               parentEventEmitter.navigateTo(
                 RegistrationRoute.PinEntryForRegistrationLock(
                   timeRemaining = error.data.timeRemaining,

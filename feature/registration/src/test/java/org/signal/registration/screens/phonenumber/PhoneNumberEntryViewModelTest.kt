@@ -1680,8 +1680,10 @@ class PhoneNumberEntryViewModelTest {
 
     viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.PhoneNumberConfirmed, parentEventEmitter, stateEmitter)
 
-    assertThat(emittedEvents).hasSize(1)
-    assertThat(emittedEvents.first())
+    // The e164 must be recorded before navigating, otherwise the PIN entry screen has nothing to register with and resets the flow
+    assertThat(emittedEvents).hasSize(2)
+    assertThat(emittedEvents[0]).isEqualTo(RegistrationFlowEvent.E164Chosen("+15551234567"))
+    assertThat(emittedEvents[1])
       .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
       .prop(RegistrationFlowEvent.NavigateToScreen::route)
       .isInstanceOf<RegistrationRoute.PinEntryForRegistrationLock>()

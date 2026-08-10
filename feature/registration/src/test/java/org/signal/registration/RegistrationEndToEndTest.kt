@@ -678,6 +678,72 @@ class RegistrationEndToEndTest {
   }
 
   @Test
+  fun `re-registering the same number onto an unexpectedly reglocked account is unlocked by entering the pin, without an sms verification`() {
+    // The reglock is governed by a master key held in SVR, not the one derived from the pre-existing AEP
+    val svrMasterKey = MasterKey(ByteArray(32) { it.toByte() })
+
+    // The device's own data says reglock is off, so the fast path registers without a reglock token and is rejected
+    storageController.preExistingRegistrationData = preExistingRegistrationData(E164)
+
+    networkController.onRegisterAccount = { request ->
+      if (request.registrationLock == svrMasterKey.deriveRegistrationLock()) {
+        RequestResult.Success(networkController.registerAccountResponse(request.e164, reregistration = true))
+      } else {
+        RequestResult.NonSuccess(
+          RegisterAccountError.RegistrationLock(
+            RegistrationLockResponse(
+              timeRemaining = 14.days.inWholeMilliseconds,
+              svr2Credentials = SvrCredentials(username = "svr-user", password = "svr-pass")
+            )
+          )
+        )
+      }
+    }
+
+    networkController.onRestoreMasterKeyFromSvr = { request ->
+      if (request.pin == PIN) {
+        RequestResult.Success(MasterKeyResponse(svrMasterKey))
+      } else {
+        RequestResult.NonSuccess(RestoreMasterKeyError.WrongPin(triesRemaining = 3))
+      }
+    }
+
+    var registrationComplete = false
+    launchRegistrationFlow(onRegistrationComplete = { registrationComplete = true })
+
+    // Continue to phone entry, where the previous number is prefilled, and confirm it
+    waitForTag(TestTags.WELCOME_SCREEN)
+    composeTestRule.onNodeWithTag(TestTags.WELCOME_GET_STARTED_BUTTON).performClick()
+    waitForTag(TestTags.PHONE_NUMBER_SCREEN)
+    composeTestRule.onNodeWithTag(TestTags.PHONE_NUMBER_NEXT_BUTTON).performClick()
+    waitForTag(Dialogs.TEST_TAG_ALERT_DIALOG_CONFIRM_BUTTON)
+    composeTestRule.onNodeWithTag(Dialogs.TEST_TAG_ALERT_DIALOG_CONFIRM_BUTTON).performClick()
+
+    // The recovery-password fast path hit an unexpected reglock, so the user must prove they know their existing PIN
+    waitForTag(TestTags.PIN_ENTRY_SCREEN)
+    composeTestRule.onNodeWithTag(TestTags.PIN_ENTRY_INPUT).performTextInput(PIN)
+    composeTestRule.onNodeWithTag(TestTags.PIN_ENTRY_CONTINUE_BUTTON).performClick()
+
+    // The e164 chosen on the fast path is still known, so the PIN screen can register rather than resetting the flow
+    waitFor("registration to complete") { registrationComplete }
+
+    assert(networkController.lastRestoreMasterKeyRequest?.pin == PIN) { "Expected master key restore with pin $PIN but was ${networkController.lastRestoreMasterKeyRequest}" }
+
+    val finalRequest = networkController.lastRegisterAccountRequest
+    assert(finalRequest?.e164 == E164) { "Expected registration for $E164 but was $finalRequest" }
+    assert(finalRequest?.sessionId == null) { "Expected registration without a session, since the fast path never created one, but was $finalRequest" }
+    assert(finalRequest?.recoveryPassword == svrMasterKey.deriveRegistrationRecoveryPassword()) { "Expected registration via the RRP derived from the restored master key but was $finalRequest" }
+    assert(finalRequest?.registrationLock == svrMasterKey.deriveRegistrationLock()) { "Expected registration with the reglock token derived from the restored master key but was $finalRequest" }
+
+    assert(networkController.lastCreateSessionE164 == null) { "Expected no SMS verification session to be created but was ${networkController.lastCreateSessionE164}" }
+
+    val committed = storageController.committedData
+    assert(committed != null) { "Expected registration data to be committed" }
+    assert(committed!!.accountData?.e164 == E164) { "Expected committed e164 $E164 but was ${committed.accountData?.e164}" }
+    assert(committed.accountData?.aci?.isNotEmpty() == true) { "Expected committed ACI to be populated" }
+  }
+
+  @Test
   fun `re-registering with pre-existing data through sms verification skips the post-registration restore prompt`() {
     // Pre-existing data for a different number, so the same-number recovery-password fast path is skipped and the flow
     // goes through SMS verification, exercising the post-registration re-registration branch.
