@@ -40,12 +40,14 @@ public abstract class DatabaseTable {
     this.context        = context;
     this.databaseHelper = databaseHelper;
 
-    if (this instanceof RecipientIdDatabaseReference) {
-      recipientIdDatabaseTables.add((RecipientIdDatabaseReference) this);
-    }
+    if (databaseHelper != null && databaseHelper.isPrimaryDatabase()) {
+      if (this instanceof RecipientIdDatabaseReference) {
+        recipientIdDatabaseTables.add((RecipientIdDatabaseReference) this);
+      }
 
-    if (this instanceof ThreadIdDatabaseReference) {
-      threadIdDatabaseTables.add((ThreadIdDatabaseReference) this);
+      if (this instanceof ThreadIdDatabaseReference) {
+        threadIdDatabaseTables.add((ThreadIdDatabaseReference) this);
+      }
     }
   }
 

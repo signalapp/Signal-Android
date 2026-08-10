@@ -30,6 +30,8 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
   ),
   SignalDatabaseOpenHelper {
 
+  val isPrimaryDatabase: Boolean = name == DATABASE_NAME
+
   val messageTable: MessageTable = MessageTable(context, this)
   val attachmentTable: AttachmentTable = AttachmentTable(context, this, attachmentSecret)
   val mediaTable: MediaTable = MediaTable(context, this)
