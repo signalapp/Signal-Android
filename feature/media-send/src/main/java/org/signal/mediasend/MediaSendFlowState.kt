@@ -140,7 +140,7 @@ data class MediaSendFlowState(
   val brushWidths: BrushWidths = MediaSendDependencies.mediaSendRepository.brushWidths,
 
   /**
-   * Whether the labs-gated control for stripping a video's audio track is available.
+   * Whether the control for stripping a video's audio track is available.
    */
   val isMuteVideoAudioEnabled: Boolean = MediaConstraints.isMuteVideoAudioAvailable()
 ) : Parcelable {

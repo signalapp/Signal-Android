@@ -16,6 +16,5 @@ data class LabsSettingsState(
   val starredMessages: Boolean = false,
   val stickerReplies: Boolean = false,
   val muteBreakthroughNotifications: Boolean = false,
-  val improvedMessageDeletion: Boolean = false,
-  val muteVideoAudio: Boolean = false
+  val improvedMessageDeletion: Boolean = false
 )

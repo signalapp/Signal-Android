@@ -49,10 +49,6 @@ class LabsSettingsViewModel : ViewModel() {
         SignalStore.labs.improvedMessageDeletion = event.enabled
         _state.value = _state.value.copy(improvedMessageDeletion = event.enabled)
       }
-      is LabsSettingsEvents.ToggleMuteVideoAudio -> {
-        SignalStore.labs.muteVideoAudio = event.enabled
-        _state.value = _state.value.copy(muteVideoAudio = event.enabled)
-      }
     }
   }
 
@@ -65,8 +61,7 @@ class LabsSettingsViewModel : ViewModel() {
       starredMessages = SignalStore.labs.starredMessages,
       stickerReplies = SignalStore.labs.stickerReplies,
       muteBreakthroughNotifications = SignalStore.labs.muteBreakthroughNotifications,
-      improvedMessageDeletion = SignalStore.labs.improvedMessageDeletion,
-      muteVideoAudio = SignalStore.labs.muteVideoAudio
+      improvedMessageDeletion = SignalStore.labs.improvedMessageDeletion
     )
   }
 }

@@ -12,7 +12,6 @@ class LabsValues internal constructor(store: KeyValueStore) : SignalStoreValues(
     const val STICKER_REPLIES: String = "labs.sticker_replies"
     const val MUTE_BREAKTHROUGH_NOTIFICATIONS: String = "labs.mute_breakthrough_notifications"
     const val IMPROVED_MESSAGE_DELETION: String = "labs.improved_message_deletion"
-    const val MUTE_VIDEO_AUDIO: String = "labs.mute_video_audio"
   }
 
   public override fun onFirstEverAppLaunch() = Unit
@@ -34,8 +33,6 @@ class LabsValues internal constructor(store: KeyValueStore) : SignalStoreValues(
   var muteBreakthroughNotifications by booleanValue(MUTE_BREAKTHROUGH_NOTIFICATIONS, true).falseForExternalUsers()
 
   var improvedMessageDeletion by booleanValue(IMPROVED_MESSAGE_DELETION, true).falseForExternalUsers()
-
-  var muteVideoAudio by booleanValue(MUTE_VIDEO_AUDIO, true).falseForExternalUsers()
 
   private fun SignalStoreValueDelegate<Boolean>.falseForExternalUsers(): SignalStoreValueDelegate<Boolean> {
     return this.map { actualValue -> RemoteConfig.internalUser && actualValue }

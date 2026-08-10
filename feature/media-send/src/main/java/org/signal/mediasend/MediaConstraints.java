@@ -105,6 +105,6 @@ public abstract class MediaConstraints {
    * Stripping the audio track means re-encoding the video, so the control is only offered where that is possible.
    */
   public static boolean isMuteVideoAudioAvailable() {
-    return MediaSendDependencies.INSTANCE.getMediaSendRepository().isMuteVideoAudioLabsEnabled() && isVideoTranscodeAvailable();
+    return isVideoTranscodeAvailable();
   }
 }
