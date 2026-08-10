@@ -2666,7 +2666,7 @@
 
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call">
-        <item quantity="other">통화 참가자 %1$d명</item>
+        <item quantity="other">통화 참가자(%1$d명)</item>
     </plurals>
     <plurals name="CallParticipantsListDialog__signal_will_ring">
         <item quantity="other">Signal에서 전화를 겁니다(%1$d)</item>
@@ -4137,7 +4137,7 @@
     <string name="preferences__dark_theme">어둡게</string>
     <string name="preferences__appearance">모양</string>
     <string name="preferences__theme">테마</string>
-    <string name="preferences__chat_color_and_wallpaper">대화창 색 및 배경 화면</string>
+    <string name="preferences__chat_color_and_wallpaper">대화창 색 및 배경화면</string>
     <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
     <string name="preferences__app_icon">앱 아이콘</string>
     <!-- Approval for changing the app icon. -->
@@ -4388,7 +4388,7 @@
     <string name="PaymentsAddMoneyFragment__your_wallet_address">지갑 주소</string>
     <string name="PaymentsAddMoneyFragment__copy">복사</string>
     <string name="PaymentsAddMoneyFragment__copied_to_clipboard">클립보드로 복사됨</string>
-    <string name="PaymentsAddMoneyFragment__to_add_funds">자금을 추가하려면 MobileCoin을 내 지갑 주소로 보내세요. MobileCoin을 지원하는 거래소의 계정에서 거래를 시작한 다음 QR 코드를 스캔하거나 지갑 주소를 복사하세요.</string>
+    <string name="PaymentsAddMoneyFragment__to_add_funds">자금을 충전하려면 내 지갑 주소로 MobileCoin을 보내세요. MobileCoin을 지원하는 거래소에서 출금 거래를 시작한 다음, QR 코드를 스캔하거나 지갑 주소를 복사해 주세요.</string>
   <!-- Removed by excludeNonTranslatables <string name="PaymentsAddMoneyFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string> -->
 
     <!-- PaymentsDetailsFragment -->
@@ -5221,9 +5221,9 @@
     <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">음성 메시지를 재생하지 못했습니다.</string>
 
     <!-- VoiceNoteMediaDescriptionCompatFactory -->
-    <string name="VoiceNoteMediaItemFactory__voice_message">음성 메시지 %1$s</string>
+    <string name="VoiceNoteMediaItemFactory__voice_message">음성 메시지 · %1$s</string>
     <!-- This is a title in a banner describing the conversation sender to receiver placeholders of the currently playing voice memo. -->
-    <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s~%2$s</string>
+    <string name="VoiceNoteMediaItemFactory__s_to_s">보낸 사람: %1$s, 받는 사람: %2$s</string>
 
     <string name="BlockedUsersActivity__s_has_been_blocked">\'%1$s\' 님을 차단했습니다.</string>
     <string name="BlockedUsersActivity__failed_to_block_s">\'%1$s\' 님을 차단하지 못했습니다.</string>
@@ -5231,9 +5231,9 @@
 
     <!-- ReviewCardDialogFragment -->
     <!-- Title of a screen where the user will be prompted to review group members with the same name -->
-    <string name="ReviewCardDialogFragment__review_members">멤버 검토</string>
+    <string name="ReviewCardDialogFragment__review_members">멤버 검토하기</string>
     <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
-    <string name="ReviewCardDialogFragment__review_request">요청 검토</string>
+    <string name="ReviewCardDialogFragment__review_request">요청 검토하기</string>
     <!-- Message of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
     <plurals name="ReviewCardDialogFragment__d_group_members_have_the_same_name">
         <item quantity="other">그룹 멤버 %1$d명의 이름이 동일합니다. 아래에서 멤버를 살펴보고 필요한 조치를 취하세요.</item>
@@ -5245,13 +5245,13 @@
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">공통된 다른 그룹이 없습니다.</string>
     <string name="ReviewCardDialogFragment__no_groups_in_common">공통된 그룹이 없습니다.</string>
     <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
-        <item quantity="other">공통 그룹이 %1$d개 더 있습니다</item>
+        <item quantity="other">다른 공통 그룹 %1$d개</item>
     </plurals>
     <plurals name="ReviewCardDialogFragment__d_groups_in_common">
         <item quantity="other">공통 그룹 %1$d개</item>
     </plurals>
     <string name="ReviewCardDialogFragment__remove_s_from_group">그룹에서 %1$s 님을 내보낼까요?</string>
-    <string name="ReviewCardDialogFragment__remove">제거</string>
+    <string name="ReviewCardDialogFragment__remove">내보내기</string>
     <string name="ReviewCardDialogFragment__failed_to_remove_group_member">그룹 멤버를 내보내지 못했습니다.</string>
 
     <!-- ReviewCard -->
@@ -5267,17 +5267,17 @@
     <string name="ReviewCard__s_is_in_your_system_contacts">%1$s 님은 내 휴대폰 연락처에 저장되어 있습니다.</string>
 
     <!-- CallParticipantsListUpdatePopupWindow -->
-    <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s 가입함</string>
-    <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s 및 %2$s 가입함</string>
-    <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s 및 %3$s 가입함</string>
+    <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s 님이 들어왔습니다</string>
+    <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s 님, %2$s 님이 들어왔습니다</string>
+    <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s 님, %2$s 님, %3$s 님이 들어왔습니다</string>
     <!-- Toast message shown in group call when 3 or more people join -->
     <plurals name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">
-        <item quantity="other">%1$s 님, %2$s 님 외 %3$d명이 참여했습니다</item>
+        <item quantity="other">%1$s 님, %2$s 님 외 %3$d명이 들어왔습니다</item>
     </plurals>
     <!-- Toast/popup text shown when someone leaves a group call -->
-    <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s 남음</string>
-    <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s 및 %2$s 남음</string>
-    <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s 및 %3$s 남음</string>
+    <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s 님이 나갔습니다</string>
+    <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s 님, %2$s 님이 나갔습니다</string>
+    <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s 님, %2$s 님, %3$s 님이 나갔습니다</string>
     <!-- Toast message shown in group call when 3 or more people leave -->
     <plurals name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">
         <item quantity="other">%1$s 님, %2$s 님 외 %3$d명이 나갔습니다</item>
@@ -5289,11 +5289,11 @@
 
     <!-- WifiToCellularPopupWindow -->
     <!-- Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead. -->
-    <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Wi-Fi 신호가 약합니다. 셀룰러 데이터로 전환하세요.</string>
+    <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Wi-Fi 연결이 원활하지 않아 모바일 데이터로 전환했습니다.</string>
 
     <!-- DeleteAccountFragment -->
     <string name="DeleteAccountFragment__deleting_your_account_will">계정을 삭제할 경우:</string>
-    <string name="DeleteAccountFragment__enter_your_phone_number">전화번호를 입력하세요.</string>
+    <string name="DeleteAccountFragment__enter_your_phone_number">전화번호를 입력하세요</string>
     <string name="DeleteAccountFragment__delete_account">계정 삭제</string>
     <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">계정 정보와 프로필 사진을 삭제합니다.</string>
     <string name="DeleteAccountFragment__delete_all_your_messages">모든 메시지를 삭제합니다.</string>
@@ -5302,8 +5302,8 @@
     <string name="DeleteAccountFragment__no_number">지정된 전화번호가 없습니다.</string>
     <string name="DeleteAccountFragment__the_phone_number">입력한 전화번호가 내 계정과 일치하지 않습니다.</string>
     <string name="DeleteAccountFragment__are_you_sure">정말 계정을 삭제하시겠어요?</string>
-    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">이 작업을 수행하면 Signal 계정을 삭제하고 애플리케이션을 초기화합니다. 프로세스를 완료하면 앱을 종료합니다.</string>
-    <string name="DeleteAccountFragment__failed_to_delete_local_data">로컬 데이터를 삭제하지 못했습니다. 시스템 애플리케이션 설정에서 수동으로 제거할 수 있습니다.</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">진행 시 Signal 계정이 삭제되며 앱이 초기화됩니다. 프로세스가 완료되면 앱이 자동으로 종료됩니다.</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">로컬 데이터를 삭제하지 못했습니다. 기기의 애플리케이션 설정에서 직접 삭제할 수 있습니다.</string>
     <string name="DeleteAccountFragment__launch_app_settings">앱 설정 시작</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
     <string name="DeleteAccountFragment__leaving_groups">그룹을 나가는 중…</string>
@@ -5312,13 +5312,13 @@
     <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
     <string name="DeleteAccountFragment__canceling_your_subscription">구독을 취소하는 중…</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
-    <string name="DeleteAccountFragment__depending_on_the_number_of_groups">속한 그룹 수에 따라 작업에 몇 분이 걸릴 수 있습니다.</string>
+    <string name="DeleteAccountFragment__depending_on_the_number_of_groups">참여 중인 그룹 수에 따라 몇 분 정도 걸릴 수 있습니다.</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
     <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">사용자 데이터를 삭제하고 앱을 초기화하는 중</string>
     <!-- Title of error dialog shown when a network error occurs during account deletion -->
     <string name="DeleteAccountFragment__account_not_deleted">계정을 삭제하지 못함</string>
     <!-- Message of error dialog shown when a network error occurs during account deletion -->
-    <string name="DeleteAccountFragment__there_was_a_problem">삭제 프로세스를 완료하던 중 문제가 발생했습니다. 네트워크 연결을 확인하고 다시 시도하세요.</string>
+    <string name="DeleteAccountFragment__there_was_a_problem">삭제를 완료하지 못했습니다. 네트워크 연결 상태를 확인하고 다시 시도해 주세요.</string>
 
     <!-- DeleteAccountCountryPickerFragment -->
     <string name="DeleteAccountCountryPickerFragment__search_countries">국가 검색</string>
@@ -5340,30 +5340,30 @@
     <!-- When sharing to a list of people, %1$s is the name of a person -->
     <string name="ShareActivity__comma_s">, %1$s</string>
     <!-- Toast when the incoming intent is invalid -->
-    <string name="ShareActivity__could_not_get_share_data_from_intent">인텐트에서 데이터 공유를 받지 못했습니다.</string>
+    <string name="ShareActivity__could_not_get_share_data_from_intent">공유 데이터를 가져오지 못했습니다.</string>
 
     <!-- MultiShareDialogs -->
-    <string name="MultiShareDialogs__failed_to_send_to_some_users">일부 사용자에 대한 보내기가 실패했습니다</string>
-    <string name="MultiShareDialogs__you_can_only_share_with_up_to">최대 %1$d개 대화와만 공유할 수 있습니다.</string>
+    <string name="MultiShareDialogs__failed_to_send_to_some_users">일부 사용자에게 전송하지 못했습니다</string>
+    <string name="MultiShareDialogs__you_can_only_share_with_up_to">최대 %1$d개의 채팅방으로만 공유할 수 있습니다</string>
 
     <!-- ChatWallpaperActivity -->
 
     <!-- ChatWallpaperFragment -->
     <string name="ChatWallpaperFragment__chat_color">대화창 색</string>
-    <string name="ChatWallpaperFragment__reset_chat_colors">대화창 색 재설정</string>
-    <string name="ChatWallpaperFragment__reset_chat_color">대화창 색 재설정</string>
+    <string name="ChatWallpaperFragment__reset_chat_colors">대화창 색 초기화</string>
+    <string name="ChatWallpaperFragment__reset_chat_color">대화창 색 초기화</string>
     <string name="ChatWallpaperFragment__reset_chat_color_question">대화창 색을 초기화할까요?</string>
     <string name="ChatWallpaperFragment__set_wallpaper">배경 설정하기</string>
-    <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">다크 모드는 배경 화면을 어둡게 합니다.</string>
+    <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">다크 모드는 배경화면을 어둡게 합니다.</string>
     <string name="ChatWallpaperFragment__contact_name">연락처 이름</string>
     <string name="ChatWallpaperFragment__reset">초기화</string>
     <string name="ChatWallpaperFragment__wallpaper_preview_description">배경 미리보기</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">모든 대화창 색을 덮어쓸까요?</string>
-    <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">모든 배경 화면을 덮어쓰시겠어요?</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">기본 색 초기화</string>
-    <string name="ChatWallpaperFragment__reset_all_colors">모든 색상 재설정</string>
-    <string name="ChatWallpaperFragment__reset_default_wallpaper">기본 배경 화면 재설정</string>
-    <string name="ChatWallpaperFragment__reset_all_wallpapers">모든 배경 초기화하기</string>
+    <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">모든 배경화면을 덮어쓸까요?</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">기본 색상 초기화</string>
+    <string name="ChatWallpaperFragment__reset_all_colors">모든 색상 초기화</string>
+    <string name="ChatWallpaperFragment__reset_default_wallpaper">기본 배경화면 초기화</string>
+    <string name="ChatWallpaperFragment__reset_all_wallpapers">모든 배경 초기화</string>
     <string name="ChatWallpaperFragment__reset_wallpapers">배경 초기화</string>
     <string name="ChatWallpaperFragment__reset_wallpaper">배경 초기화</string>
     <string name="ChatWallpaperFragment__reset_wallpaper_question">배경을 초기화할까요?</string>
@@ -5375,27 +5375,27 @@
     <!-- ChatWallpaperPreviewActivity -->
     <string name="ChatWallpaperPreviewActivity__preview">미리보기</string>
     <string name="ChatWallpaperPreviewActivity__set_wallpaper">배경 설정하기</string>
-    <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">더 많은 배경을 미리보기하려면 스와이프하세요</string>
-    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">모든 대화에 배경 화면 설정</string>
-    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">%1$s에 배경 설정하기</string>
-    <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">갤러리를 보려면 저장 권한이 필요합니다.</string>
+    <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">화면을 밀어 다른 배경화면을 둘러보세요.</string>
+    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">모든 대화에 배경화면 설정하기</string>
+    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">%1$s 님과의 대화창에 배경화면 설정하기</string>
+    <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">갤러리를 확인하려면 저장 공간 접근 권한이 필요합니다.</string>
 
     <!-- WallpaperImageSelectionActivity -->
 
     <!-- WallpaperCropActivity -->
     <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">두 손가락으로 확대하고 드래그하여 조절하세요.</string>
-    <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">모든 대화에 배경 화면을 설정합니다.</string>
-    <string name="WallpaperCropActivity__set_wallpaper_for_s">%1$s에 배경 설정하기.</string>
+    <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">모든 대화에 배경화면을 설정합니다.</string>
+    <string name="WallpaperCropActivity__set_wallpaper_for_s">%1$s 님과의 대화창에 배경화면을 설정합니다.</string>
     <string name="WallpaperCropActivity__error_setting_wallpaper">배경 설정 중 문제가 발생했습니다.</string>
-    <string name="WallpaperCropActivity__blur_photo">사진 블러하기</string>
+    <string name="WallpaperCropActivity__blur_photo">사진에 흐림 효과 주기</string>
 
     <!-- InfoCard -->
     <string name="payment_info_card_about_mobilecoin">MobileCoin 소개</string>
     <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin은 개인정보 보호에 특화된 새로운 디지털 통화입니다.</string>
     <string name="payment_info_card_adding_funds">자금 추가</string>
-    <string name="payment_info_card_you_can_add_funds_for_use_in">MobileCoin을 지갑 주소로 전송하여 Signal에서 사용할 자금을 추가할 수 있습니다.</string>
+    <string name="payment_info_card_you_can_add_funds_for_use_in">내 지갑 주소로 MobileCoin을 보내 Signal에서 사용할 금액을 충전할 수 있습니다.</string>
     <string name="payment_info_card_cashing_out">현금화</string>
-    <string name="payment_info_card_you_can_cash_out_mobilecoin">MobileCoin 지원 거래소에서 언제든지 현금화할 수 있습니다. 거래소에서 본인의 계좌로 출금 이체만 진행하시면 됩니다.</string>
+    <string name="payment_info_card_you_can_cash_out_mobilecoin">MobileCoin을 지원하는 거래소에서 언제든 현금화할 수 있습니다. 해당 거래소에서 본인 계좌로 출금 이체만 진행해 주세요.</string>
     <string name="payment_info_card_hide_this_card">이 카드를 숨길까요?</string>
     <string name="payment_info_card_hide">숨기기</string>
     <!-- Title of save recovery phrase card -->
@@ -5414,8 +5414,8 @@
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">지갑 비활성화</string>
     <string name="DeactivateWalletFragment__your_balance">잔액</string>
-    <string name="DeactivateWalletFragment__its_recommended_that_you">결제를 비활성화하기 전에 다른 지갑 주소로 자금을 이체하는 것이 좋습니다. 지금 이체하지 않더라도, 나중에 결제 기능을 다시 활성화하면 Signal에 연동된 지갑 내 잔액을 그대로 이용하실 수 있습니다.</string>
-    <string name="DeactivateWalletFragment__transfer_remaining_balance">잔액 이체</string>
+    <string name="DeactivateWalletFragment__its_recommended_that_you">결제를 비활성화하기 전에 다른 지갑 주소로 자금을 이전하는 것이 좋습니다. 지금 이전하지 않더라도, 나중에 결제 기능을 다시 활성화하면 Signal에 연동된 지갑 내 잔액을 그대로 이용하실 수 있습니다.</string>
+    <string name="DeactivateWalletFragment__transfer_remaining_balance">잔액 이전하기</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring">이전하지 않고 비활성화</string>
     <string name="DeactivateWalletFragment__deactivate">비활성화</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">이전하지 않고 비활성화할까요?</string>
@@ -5463,12 +5463,12 @@
     <string name="PaymentsRecoveryPhraseFragment__next">다음</string>
     <string name="PaymentsRecoveryPhraseFragment__edit">수정</string>
     <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">나의 복원 문구</string>
-    <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">다음 %1$d개 단어를 순서대로 쓰세요. 안전한 장소에 목록을 저장하세요.</string>
+    <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">아래 %1$d개의 단어를 순서대로 정확히 받아 적고, 안전한 장소에 잘 보관해 주세요.</string>
     <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">문구를 올바르게 입력했는지 확인하세요.</string>
     <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">스크린샷을 찍거나 이메일로 보내지 마세요.</string>
     <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">결제 계정이 복원되었습니다.</string>
     <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">잘못된 복원 문구</string>
-    <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">문구를 올바르게 입력했는지 확인하고 다시 시도하세요.</string>
+    <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">문구를 올바르게 입력했는지 확인하고 다시 시도해 주세요.</string>
     <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">클립보드에 복사할까요?</string>
     <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">복원 문구를 디지털 방식으로 저장하는 경우, 본인이 신뢰할 수 있는 안전한 곳에 보관해 주세요.</string>
     <string name="PaymentsRecoveryPhraseFragment__copy">복사</string>
@@ -5483,7 +5483,7 @@
 
     <!-- PaymentsRecoveryEntryFragment -->
     <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">복원 문구 입력</string>
-    <string name="PaymentsRecoveryEntryFragment__enter_word_d">%1$d를 입력하세요.</string>
+    <string name="PaymentsRecoveryEntryFragment__enter_word_d">단어 %1$d을(를) 입력하세요</string>
     <string name="PaymentsRecoveryEntryFragment__word_d">단어 %1$d</string>
     <string name="PaymentsRecoveryEntryFragment__next">다음</string>
     <string name="PaymentsRecoveryEntryFragment__invalid_word">유효하지 않은 단어</string>
@@ -5959,7 +5959,7 @@
     <string name="EditReactionsFragment__tap_to_replace_an_emoji">이모티콘을 바꾸려면 탭하세요.</string>
     <string name="EditReactionsFragment__reset">초기화</string>
     <string name="EditReactionsFragment_save">저장</string>
-    <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">배경 화면에 색상을 자동 일치시킵니다.</string>
+    <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">배경화면에 색상을 자동 일치시킵니다.</string>
     <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">드래그하여 그라데이션 방향 변경</string>
 
     <!-- AddAProfilePhotoMegaphone -->
@@ -7823,7 +7823,7 @@
     <!-- Action to remove a participant from a call -->
     <string name="CallParticipantSheet__remove_from_call">통화에서 내보내기</string>
     <!-- Action to view contact details for a participant -->
-    <string name="CallParticipantSheet__contact_details">연락처</string>
+    <string name="CallParticipantSheet__contact_details">연락처 정보</string>
 
     <!-- CreateCallLinkBottomSheetDialogFragment -->
     <!-- Fragment title -->

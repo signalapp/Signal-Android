@@ -52,7 +52,7 @@
     <string name="RegistrationActivity_the_number_you_entered_is_not_valid">तुम्ही प्रविष्य केलेला क्रमांक वैध नाही असे दिसते. कृपया देशाचा कोड आणि फोन नंबर तपासा आणि पुन्हा प्रयत्न करा.</string>
     <string name="RegistrationActivity_next">पुढे</string>
     <!-- Button on the phone number screen that starts registering with a purchased Signal Login instead of a phone number -->
-    <string name="RegistrationActivity_register_without_number">Register without number</string>
+    <string name="RegistrationActivity_register_without_number">नंबर शिवाय नोंदणी करा</string>
     <!-- Dialog title to confirm phone number -->
     <string name="RegistrationActivity_is_the_phone_number">खाली दिलेला फोन नंबर बरोबर आहे काय?</string>
     <!-- Dialog body to confirm phone number -->
@@ -604,87 +604,87 @@
 
     <!-- Shared registration strings -->
     <!-- Content description for the back arrow in a registration screen header. -->
-    <string name="RegistrationScreen__back">Back</string>
+    <string name="RegistrationScreen__back">मागे</string>
 
     <!-- Signal Login purchase screen -->
     <!-- Title of the screen where the user buys a Signal Login to register without a phone number. -->
-    <string name="SignalLoginPaymentScreen__signal_login">Signal Login</string>
+    <string name="SignalLoginPaymentScreen__signal_login">Signal लॉगिन</string>
     <!-- Description of what a Signal Login is. Followed by a "learn more" link. -->
-    <string name="SignalLoginPaymentScreen__register_without_a_phone_number">Register without a phone number using Signal Login. With a one-time purchase, you\'ll receive an account key to get started.</string>
+    <string name="SignalLoginPaymentScreen__register_without_a_phone_number">फोन नंबर शिवाय Signal लॉगिन वापरून नोंदणी करा. एकवेळच्या खरेदीसह, तुम्हाला सुरुवात करण्यासाठी खात्याची एक की अर्थात किल्ली मिळेल.</string>
     <!-- Link at the end of the description that opens a support article about Signal Login. -->
-    <string name="SignalLoginPaymentScreen__learn_more">Learn more</string>
+    <string name="SignalLoginPaymentScreen__learn_more">अधिक जाणून घ्या</string>
     <!-- Subtitle of the purchase option, clarifying the price is not a subscription. -->
-    <string name="SignalLoginPaymentScreen__one_time_purchase">One-time purchase</string>
+    <string name="SignalLoginPaymentScreen__one_time_purchase">एकवेळची खरेदी</string>
     <!-- Selling point of the purchase option: no phone number is required. -->
-    <string name="SignalLoginPaymentScreen__no_phone_number_needed">No phone number needed</string>
+    <string name="SignalLoginPaymentScreen__no_phone_number_needed">फोन नंबर आवश्यक नाही</string>
     <!-- Selling point of the purchase option: a username is used to reach the user. -->
-    <string name="SignalLoginPaymentScreen__username_for_messaging_and_calls">Username for messaging &amp; calls</string>
+    <string name="SignalLoginPaymentScreen__username_for_messaging_and_calls">संदेश पाठवण्यासाठी आणि कॉल्स करण्यासाठी वापरकर्ता नाव</string>
     <!-- Selling point of the purchase option: the purchase supports Signal. -->
-    <string name="SignalLoginPaymentScreen__signal_is_a_non_profit">Signal is a non-profit — your purchase helps support our mission</string>
+    <string name="SignalLoginPaymentScreen__signal_is_a_non_profit">Signal एक ना-नफा संस्था आहे — तुमच्या खरेदीने आमच्या उद्दिष्टास सपोर्ट मिळण्यास मदत होते</string>
     <!-- Title of the option for users who already bought a Signal Login. -->
-    <string name="SignalLoginPaymentScreen__i_have_a_signal_login">I have a Signal Login</string>
+    <string name="SignalLoginPaymentScreen__i_have_a_signal_login">माझे Signal लॉगिन आहे</string>
     <!-- Subtitle of the existing-login option. -->
-    <string name="SignalLoginPaymentScreen__use_your_existing_account_key">Use your existing account key</string>
+    <string name="SignalLoginPaymentScreen__use_your_existing_account_key">तुमची सध्याची खाते की वापरा</string>
     <!-- Selling point of the existing-login option: the account can be restored. -->
-    <string name="SignalLoginPaymentScreen__login_and_restore_your_account">Login and restore your account</string>
+    <string name="SignalLoginPaymentScreen__login_and_restore_your_account">लॉगिन करा आणि तुमचे खाते परत मिळवा</string>
     <!-- Selling point of the existing-login option, thanking the user for their previous purchase. -->
-    <string name="SignalLoginPaymentScreen__thanks_for_supporting_signal">Thanks for supporting Signal</string>
+    <string name="SignalLoginPaymentScreen__thanks_for_supporting_signal">Signal ला समर्थन दिल्याबद्दल धन्यवाद</string>
     <!-- Action button that starts the purchase. Placeholder is the localized price, e.g. "$1.99". -->
-    <string name="SignalLoginPaymentScreen__pay_s">Pay %1$s</string>
+    <string name="SignalLoginPaymentScreen__pay_s">%1$s भरा</string>
     <!-- Action button that starts the purchase, shown while the price is still loading. -->
-    <string name="SignalLoginPaymentScreen__pay">Pay</string>
+    <string name="SignalLoginPaymentScreen__pay">पे करा</string>
     <!-- Action button shown when the user indicated they already have a Signal Login. -->
-    <string name="SignalLoginPaymentScreen__continue">Continue</string>
+    <string name="SignalLoginPaymentScreen__continue">सुरू ठेवा</string>
     <!-- Error shown when the purchase does not go through. -->
-    <string name="SignalLoginPaymentScreen__your_purchase_could_not_be_completed">Your purchase could not be completed. You have not been charged.</string>
+    <string name="SignalLoginPaymentScreen__your_purchase_could_not_be_completed">तुमची खरेदी पूर्ण करता आली नाही. तुम्हाला पैसे आकारण्यात आले नाहीत.</string>
 
     <!-- Signal Login details screen -->
     <!-- Title of the screen that shows the user their newly purchased Signal Login. -->
-    <string name="SignalLoginInfoScreen__your_signal_login">Your Signal Login</string>
+    <string name="SignalLoginInfoScreen__your_signal_login">तुमचे Signal लॉगिन</string>
     <!-- Description warning the user that a lost Signal Login cannot be recovered. -->
-    <string name="SignalLoginInfoScreen__thanks_for_your_purchase">Thanks for your purchase. Use your Signal Login to register and restore your account. If you forget your keys, you will not be able to recover your account.</string>
+    <string name="SignalLoginInfoScreen__thanks_for_your_purchase">तुमच्या खरेदीसाठी धन्यवाद. तुमचे खाते नोंदवण्यासाठी आणि परत मिळवण्यासाठी तुमचे Signal लॉगिन वापरा. जर तुम्ही तुमच्या कीज् विसरलात, तर तुम्हाला तुमचे खाते परत मिळवता येणार नाही.</string>
     <!-- Label for the account portion of the Signal Login on the credential card. -->
-    <string name="SignalLoginInfoScreen__account">Account</string>
+    <string name="SignalLoginInfoScreen__account">खाते</string>
     <!-- Label for the recovery portion of the Signal Login on the credential card. -->
-    <string name="SignalLoginInfoScreen__recovery">Recovery</string>
+    <string name="SignalLoginInfoScreen__recovery">रीकव्हरी</string>
     <!-- Button on the credential card that reveals the full Signal Login. -->
-    <string name="SignalLoginInfoScreen__view_details">View details</string>
+    <string name="SignalLoginInfoScreen__view_details">तपशील पाहा</string>
     <!-- Body of the dialog revealing the full Signal Login. First placeholder is the account key, second is the recovery key. -->
-    <string name="SignalLoginInfoScreen__account_s_recovery_s">Account: %1$s\n\nRecovery: %2$s</string>
+    <string name="SignalLoginInfoScreen__account_s_recovery_s">खाते : %1$s\n\nरीकव्हरी : %2$s</string>
     <!-- Action button that stores the Signal Login in the device password manager. -->
-    <string name="SignalLoginInfoScreen__save_to_password_manager">Save to password manager</string>
+    <string name="SignalLoginInfoScreen__save_to_password_manager">पासवर्ड व्यवस्थापकामध्ये जतन करा</string>
     <!-- Action button for users who would rather write the Signal Login down themselves. -->
-    <string name="SignalLoginInfoScreen__save_manually">Save manually</string>
+    <string name="SignalLoginInfoScreen__save_manually">स्वतः जतन करा</string>
     <!-- Error shown when the Signal Login could not be stored in the password manager. -->
-    <string name="SignalLoginInfoScreen__your_signal_login_could_not_be_saved">Your Signal Login could not be saved. Please save it manually instead.</string>
+    <string name="SignalLoginInfoScreen__your_signal_login_could_not_be_saved">तुमचे Signal लॉगिन जतन करता आले नाही. कृपया ते स्वतः जतन करा.</string>
 
     <!-- Add username screen -->
     <!-- Title of the screen offering the user an optional username. -->
-    <string name="AddUsernameScreen__add_an_optional_username">Add an optional username</string>
+    <string name="AddUsernameScreen__add_an_optional_username">एक पर्यायी वापरकर्ता नाव समाविष्ट करा</string>
     <!-- Description explaining what a username is used for. -->
-    <string name="AddUsernameScreen__people_can_message_you_by_username">People can message you by username instead of a phone number.</string>
+    <string name="AddUsernameScreen__people_can_message_you_by_username">लोक तुम्हाला फोन नंबर ऐवजी वापरकर्ता नाव वापरून संदेश पाठवू शकतात.</string>
     <!-- Prompt shown above the username field. -->
-    <string name="AddUsernameScreen__choose_your_username">Choose your username</string>
+    <string name="AddUsernameScreen__choose_your_username">आपले वापरकर्तानाव निवडा</string>
     <!-- Label/hint for the username field. -->
-    <string name="AddUsernameScreen__username">Username</string>
+    <string name="AddUsernameScreen__username">वापरकर्तानाव</string>
     <!-- Helper text below the username field. Followed by a "learn more" link. -->
-    <string name="AddUsernameScreen__usernames_are_always_paired_with_a_set_of_numbers">Usernames are always paired with a set of numbers.</string>
+    <string name="AddUsernameScreen__usernames_are_always_paired_with_a_set_of_numbers">वापरकर्ता नावे नेहमी संख्यांच्या संचासह जोडलेली असतात.</string>
     <!-- Link in the helper text that opens a support article about usernames. -->
-    <string name="AddUsernameScreen__learn_more">Learn more</string>
+    <string name="AddUsernameScreen__learn_more">अधिक जाणून घ्या</string>
     <!-- Button that skips choosing a username. -->
-    <string name="AddUsernameScreen__skip">Skip</string>
+    <string name="AddUsernameScreen__skip">वगळा</string>
     <!-- Button that submits the chosen username. -->
-    <string name="AddUsernameScreen__next">Next</string>
+    <string name="AddUsernameScreen__next">पुढे</string>
     <!-- Validation error shown when the entered username is too short. -->
-    <string name="AddUsernameScreen__usernames_must_be_at_least_3_characters">Usernames must be at least 3 characters</string>
+    <string name="AddUsernameScreen__usernames_must_be_at_least_3_characters">वापरकर्ता नाव किमान 3 अक्षरी असायला हवे</string>
     <!-- Validation error shown when the entered username is too long. -->
-    <string name="AddUsernameScreen__usernames_must_be_at_most_32_characters">Usernames must be at most 32 characters</string>
+    <string name="AddUsernameScreen__usernames_must_be_at_most_32_characters">वापरकर्ता नाव जास्तीत जास्त 32 अक्षरी असायला हवे</string>
     <!-- Validation error shown when the entered username contains disallowed characters. -->
-    <string name="AddUsernameScreen__usernames_can_only_contain">Usernames can only contain letters, numbers, and underscores</string>
+    <string name="AddUsernameScreen__usernames_can_only_contain">वापरकर्ता नावात फक्त अक्षरे, अंक आणि अंडरस्कोर असू शकतात</string>
     <!-- Validation error shown when the entered username starts with a digit. -->
-    <string name="AddUsernameScreen__usernames_cannot_begin_with_a_number">Usernames cannot begin with a number</string>
+    <string name="AddUsernameScreen__usernames_cannot_begin_with_a_number">वापरकर्ता नावाची सुरुवात अंकाने होऊ शकत नाही</string>
     <!-- Error shown when the chosen username cannot be reserved. -->
-    <string name="AddUsernameScreen__this_username_is_not_available">This username is not available. Please try another.</string>
+    <string name="AddUsernameScreen__this_username_is_not_available">हे वापरकर्ता नाव उपलब्ध नाही. कृपया दुसरे आजमावून पाहा.</string>
 
     <!-- ContactSupportDialog -->
     <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->

@@ -1127,7 +1127,7 @@
 
     <!-- LinkDeviceFragment -->
     <!-- Description for how Signal will work with a linked device (eg desktop, iPad) -->
-    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Use this Signal account on another device.</string>
+    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Naudoti šią „Signal“ paskyrą kitame įrenginyje.</string>
     <!-- Button prompting users to link a new device to their account -->
     <string name="LinkDeviceFragment__link_a_new_device">Susieti naują įrenginį</string>
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->

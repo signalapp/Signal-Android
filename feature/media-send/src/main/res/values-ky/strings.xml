@@ -7,19 +7,19 @@
   <!-- Confirmation button that discards the user\'s image edits. -->
   <string name="MediaSendDialogs__discard">Жокко чыгаруу</string>
   <!-- Dialog title asking to save the media being edited to the phone\'s storage -->
-  <string name="MediaSendDialogs__save_to_phone">Save to phone?</string>
+  <string name="MediaSendDialogs__save_to_phone">Телефонго сактайсызбы?</string>
   <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other apps. -->
-  <string name="MediaSendDialogs__this_media_will_be_saved">This media will be saved to your phone\'s storage. Other apps may be able to access it depending on your phone\'s permissions.</string>
+  <string name="MediaSendDialogs__this_media_will_be_saved">Бул нерселер телефонуңузга сакталат. Башка колдонмолор аларды телефонуңуздун уруксаттарына жараша пайдаланышы мүмкүн.</string>
   <!-- Confirmation button that saves the media being edited to the phone\'s storage. -->
-  <string name="MediaSendDialogs__save">Save</string>
+  <string name="MediaSendDialogs__save">Сактоо</string>
   <!-- Checkbox shown in the save dialog to not show the dialog again in future saves -->
-  <string name="MediaSendDialogs__dont_show_again">Don\'t show again</string>
+  <string name="MediaSendDialogs__dont_show_again">Кайра көрүнбөсүн</string>
   <!-- Progress dialog message shown while the media being edited is written out to the phone\'s storage. -->
   <string name="MediaSendDialogs__saving_media">Saving attachment to storage…</string>
   <!-- Dialog message asking the user to confirm that the media should be added to a group\'s story. The placeholder is the group\'s name. -->
-  <string name="MediaSendDialogs__add_to_the_group_story">Add to the group story \"%1$s\"</string>
+  <string name="MediaSendDialogs__add_to_the_group_story">\"%1$s\" топтук окуясына кошуңуз</string>
   <!-- Confirmation button that adds the media to the group\'s story. -->
-  <string name="MediaSendDialogs__add_to_story">Add to story</string>
+  <string name="MediaSendDialogs__add_to_story">Окуяга кошуу</string>
   <!-- Accessibility label for the row that lets the user add a text message to accompany the media being sent. -->
   <string name="AddAMessageRow__add_a_message">Билдирүү кошуу</string>
   <!-- Accessibility description for the button that opens the emoji keyboard. -->
@@ -29,29 +29,29 @@
   <!-- Accessibility description for the button that advances to the next step in the media send flow. -->
   <string name="AddAMessageRow__next">Кийинки</string>
   <!-- Accessibility description for the button that sends the media to the already-known recipient. -->
-  <string name="AddAMessageRow__send">Send</string>
+  <string name="AddAMessageRow__send">Жөнөтүү</string>
   <!-- Accessibility description for long-pressing the send button to schedule the send for later. -->
-  <string name="AddAMessageRow__schedule_send">Schedule send</string>
+  <string name="AddAMessageRow__schedule_send">Жөнөтүүнү пландоо</string>
   <!-- Menu option that opens a picker for choosing the exact date and time to send at. -->
-  <string name="ScheduleSendMenu__pick_date_and_time">Pick Date &amp; Time</string>
+  <string name="ScheduleSendMenu__pick_date_and_time">Күндү жана убакытты тандоо</string>
   <!-- Label shown in place of the add-a-message row when the media has been set to view once, indicating that no message can be attached. -->
-  <string name="AddAMessageRow__view_once_media">View once media</string>
+  <string name="AddAMessageRow__view_once_media">Бир жолу көрүлүүчү MMS</string>
   <!-- Accessibility label for the button at the end of the add-a-message row that turns view-once mode on and off. -->
-  <string name="AddAMessageRow__toggle_view_once">Toggle view once</string>
+  <string name="AddAMessageRow__toggle_view_once">Бир жолу көрүүнү которуштуруу</string>
   <!-- Setting option that can be selected to default media to be sent as high quality by default -->
   <string name="SentMediaQuality__high">Шашылыш</string>
   <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
   <string name="SentMediaQuality__standard">Стандарт</string>
   <!-- Label for our standard quality media conversion. -->
-  <string name="QualitySelectorBottomSheetDialog__standard">Standard</string>
+  <string name="QualitySelectorBottomSheetDialog__standard">Стандарт</string>
   <!-- Description for our standard quality media conversion. -->
-  <string name="QualitySelectorBottomSheetDialog__faster_less_data">Faster, less data</string>
+  <string name="QualitySelectorBottomSheetDialog__faster_less_data">Тезирээк, азыраак берилмелер</string>
   <!-- Label for our high quality media conversion. This has better quality than standard. -->
-  <string name="QualitySelectorBottomSheetDialog__high">High</string>
+  <string name="QualitySelectorBottomSheetDialog__high">Шашылыш</string>
   <!-- Label for our high quality media conversion. This has better quality than standard. -->
-  <string name="QualitySelectorBottomSheetDialog__slower_more_data">Slower, more data</string>
+  <string name="QualitySelectorBottomSheetDialog__slower_more_data">Жайыраак, көбүрөөк берилмелер</string>
   <!-- Title heading for our media conversion quality selector. -->
-  <string name="QualitySelectorBottomSheetDialog__media_quality">Media quality</string>
+  <string name="QualitySelectorBottomSheetDialog__media_quality">Медиа сапаты</string>
   <!-- Title of the screen where the user browses their device gallery to pick media to send. -->
   <string name="MediaSelectScreen__gallery">Галерея</string>
   <!-- Accessibility description for the button that advances from media selection to the next step in the send flow. -->
@@ -59,25 +59,25 @@
   <!-- Accessibility description for the button that leaves media selection and opens the camera. -->
   <string name="MediaSelectScreen__go_to_camera">Go to camera</string>
   <!-- Message shown in place of the gallery when the user has not granted permission to read their photos and videos. -->
-  <string name="MediaSelectScreen__signal_needs_permission_to_show_your_photos_and_videos">Signal needs permission to show your photos and videos</string>
+  <string name="MediaSelectScreen__signal_needs_permission_to_show_your_photos_and_videos">Signal сүрөттөрүңүз менен видеолоруңузду сиздин уруксатыңыз менен көрсөтөт</string>
   <!-- Label for the button that asks the system for permission to read the user\'s photos and videos. -->
-  <string name="MediaSelectScreen__allow_access">Allow Access</string>
+  <string name="MediaSelectScreen__allow_access">Кирүүгө уруксат берүү</string>
   <!-- Message shown in place of the gallery when the user only shared selected photos with Signal and none of them can be shown. -->
-  <string name="MediaSelectScreen__no_photos_or_videos_found">No photos or videos found. Signal only has access to photos and videos you selected.</string>
+  <string name="MediaSelectScreen__no_photos_or_videos_found">Бир дагы сүрөт же видео табылган жок. Signal\'га сиз тандаган сүрөттөр менен видеолор гана жеткиликтүү.</string>
   <!-- Reminder shown above the gallery when the user only shared selected photos with Signal. -->
-  <string name="MediaSelectScreen__signal_has_limited_access">Signal has limited access to photos or videos</string>
+  <string name="MediaSelectScreen__signal_has_limited_access">Signal\'га сүрөттөр же видеолор жеткиликсиз</string>
   <!-- Label for the button that opens the menu for changing which photos and videos Signal can see. -->
-  <string name="MediaSelectScreen__manage">Manage</string>
+  <string name="MediaSelectScreen__manage">Өзгөртүү</string>
   <!-- Menu option that re-opens the system picker so the user can share more photos and videos with Signal. -->
-  <string name="MediaSelectScreen__select_more_photos">Select more photos</string>
+  <string name="MediaSelectScreen__select_more_photos">Дагы сүрөт тандоо</string>
   <!-- Menu option that opens Signal\'s permission settings in the system settings app. -->
-  <string name="MediaSelectScreen__go_to_settings">Go to Settings</string>
+  <string name="MediaSelectScreen__go_to_settings">Тууралоо бөлүмүнө өтүү</string>
   <!-- Title of the sheet shown when the permission to read photos and videos has been permanently denied, directing the user to app settings. -->
-  <string name="MediaSelectScreen__allow_access_to_storage">Allow access to storage</string>
+  <string name="MediaSelectScreen__allow_access_to_storage">Сактагычка мүмкүнчүлүк берүү</string>
   <!-- Subtitle of the sheet shown when the permission to read photos and videos has been permanently denied, introducing the steps that follow. -->
-  <string name="MediaSelectScreen__to_show_photos_and_videos">To show photos and videos:</string>
+  <string name="MediaSelectScreen__to_show_photos_and_videos">Сүрөттөр менен видеолорду көрсөтүү үчүн:</string>
   <!-- Snackbar shown when the user denies the permission to read their photos and videos. -->
-  <string name="MediaSelectScreen__signal_needs_access_to_show_your_photos_and_videos">Signal needs access to show your photos and videos.</string>
+  <string name="MediaSelectScreen__signal_needs_access_to_show_your_photos_and_videos">Сүрөттөрүңүз менен видеолоруңузду Signal\'га жеткиликтүү кылыңыз.</string>
 
   <!-- Label for the button that switches the capture screen to the camera. -->
   <string name="MediaCaptureScreen__camera">Камера</string>
@@ -90,21 +90,21 @@
     </plurals>
 
   <!-- Name shown on the document preview when we cannot read the file\'s name. -->
-  <string name="DocumentPage__unnamed_file">Unnamed file</string>
+  <string name="DocumentPage__unnamed_file">Аталышы жок файл</string>
 
   <!-- Content description for button to enable highlighter mode -->
-  <string name="DrawModeColorBar__highlighter">Highlighter</string>
+  <string name="DrawModeColorBar__highlighter">Баса белгилегич</string>
   <!-- Content description for button to enable brush mode -->
   <string name="DrawModeColorBar__brush">Brush</string>
 
   <!-- Label for the toggle that blurs every face in the image being edited -->
-  <string name="BlurFacesBar__blur_faces">Blur faces</string>
+  <string name="BlurFacesBar__blur_faces">Жүздөрдү мунарыктатуу</string>
 
   <!-- Content description for the button that cycles the text being edited between styles -->
-  <string name="TextModeColorBar__toggle_between_text_styles">Toggle between text styles</string>
+  <string name="TextModeColorBar__toggle_between_text_styles">Текст стилдеринин ортосунда которуштуруу</string>
 
   <!-- Label for the button that undoes every edit made to the image, returning it to its original state -->
-  <string name="ImageEditorClearAllButton__clear_all">Clear all</string>
+  <string name="ImageEditorClearAllButton__clear_all">Баарын тазалоо</string>
 
   <!-- Content description for the button that undoes the last edit made to the image -->
   <string name="ImageEditorUndoRedoButtons__undo_edit">Undo edit</string>
@@ -179,29 +179,29 @@
   <!-- Displayed when a video was automatically trimmed so it fits within the size limit -->
   <string name="MediaSendViewModel__video_trimmed_to_fit">Видеоңуз өлчөм чегине туура келгидей кылып кыркылды</string>
   <!-- Displayed when one or more of the selected items could not be added because they exceed the size limit -->
-  <string name="MediaSendViewModel__one_or_more_items_were_too_large">One or more items were too large</string>
+  <string name="MediaSendViewModel__one_or_more_items_were_too_large">Бир же бир нече нерсе өтө чоң болуп чыкты</string>
   <!-- Displayed when one or more of the selected items could not be added because they are not a type that can be sent -->
-  <string name="MediaSendViewModel__one_or_more_items_were_invalid">One or more items were invalid</string>
+  <string name="MediaSendViewModel__one_or_more_items_were_invalid">Бир же бир нече нерсе жараксыз</string>
   <!-- Displayed when the user tries to select more items than can be sent at once -->
-  <string name="MediaSendViewModel__too_many_items_selected">Too many items selected</string>
+  <string name="MediaSendViewModel__too_many_items_selected">Өтө көп нерсе тандалды</string>
   <!-- Displayed after the media being edited was successfully saved to the phone\'s storage -->
-  <string name="MediaSendViewModel__media_saved">Media saved</string>
+  <string name="MediaSendViewModel__media_saved">Медиа файл сакталды</string>
   <!-- Displayed when the media being edited could not be saved to the phone\'s storage -->
   <string name="MediaSendViewModel__error_saving_media">Error while saving attachment to storage!</string>
   <!-- Displayed when the media being edited cannot be saved because the storage permission was denied -->
-  <string name="MediaSendViewModel__unable_to_save_without_storage_permission">Unable to save to external storage without permissions</string>
+  <string name="MediaSendViewModel__unable_to_save_without_storage_permission">Уруксат алмайынча, тышкы сактагычка сактай албайт.</string>
   <!-- Small notification presented to the user when they set their photo to view-once mode -->
-  <string name="MediaSendViewModel__photo_set_to_view_once">Photo set to view once</string>
+  <string name="MediaSendViewModel__photo_set_to_view_once">Сүрөт бир гана жолу көрүлөт деп коюлду</string>
   <!-- Small notification presented to the user when they set their video to view-once mode -->
-  <string name="MediaSendViewModel__video_set_to_view_once">Video set to view once</string>
+  <string name="MediaSendViewModel__video_set_to_view_once">Видео бир гана жолу көрүлөт деп коюлду</string>
   <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
-  <string name="MediaReviewFragment__video_set_to_high_quality">Video set to high quality</string>
+  <string name="MediaReviewFragment__video_set_to_high_quality">Видео жогорку сапатка коюлду</string>
   <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
-  <string name="MediaReviewFragment__video_set_to_standard_quality">Video set to standard quality</string>
+  <string name="MediaReviewFragment__video_set_to_standard_quality">Видео стандарттык сапатка коюлду</string>
   <!-- Small notification presented to the user when they set their still image to be sent in high visual quality. -->
-  <string name="MediaReviewFragment__photo_set_to_high_quality">Photo set to high quality</string>
+  <string name="MediaReviewFragment__photo_set_to_high_quality">Сүрөт жогорку сапатка коюлду</string>
   <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
-  <string name="MediaReviewFragment__photo_set_to_standard_quality">Photo set to standard quality</string>
+  <string name="MediaReviewFragment__photo_set_to_standard_quality">Сүрөт стандарттык сапатка коюлду</string>
   <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
   <plurals name="MediaReviewFragment__items_set_to_high_quality">
         <item quantity="one">%1$d item set to high quality</item>
@@ -213,7 +213,7 @@
         <item quantity="other">%1$d items set to standard quality</item>
     </plurals>
   <!-- Message shown when saving the media being edited requires the storage permission, but that permission has been permanently denied by the user. -->
-  <string name="MediaSendViewModel__signal_needs_the_storage_permission">Signal needs the Storage permission in order to save to external storage, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Storage\".</string>
+  <string name="MediaSendViewModel__signal_needs_the_storage_permission">Тышкы сактагычка сактоо үчүн Signal колдонмосуна сактагычты колдонууга уруксат беришиңиз керек, бирок сиз андан баш тарткансыз. Колдонмонун параметрлерине кирүү үчүн \"Улантуу\" дегенди басып, \"Уруксаттар\" дегенди тандап, \"Сактагыч\" дегенди иштетиңиз.</string>
 
   <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
   <string name="UsernameScannedDialog__username_dialog_title">%1$s табылды</string>
@@ -251,9 +251,9 @@
     </plurals>
     <!-- Item label displayed in a pill in the editor specifying the type of media being sent. -->
     <plurals name="MediaEditScreen__item">
-        <item quantity="one">%1$d Item</item>
-        <item quantity="other">%1$d Items</item>
+        <item quantity="one">%1$d нерсе</item>
+        <item quantity="other">%1$d нерсе</item>
     </plurals>
     <!-- x of y label displayed in a pill in the editor specifying the type of media being sent. First placeholder is selected page, second is total count. -->
-    <string name="MediaEditScreen__d_of_d">%1$d of %2$d</string>
+    <string name="MediaEditScreen__d_of_d">%2$d ичинен %1$d</string>
 </resources>

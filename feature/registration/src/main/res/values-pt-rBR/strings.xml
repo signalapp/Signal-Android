@@ -604,7 +604,7 @@
 
     <!-- Shared registration strings -->
     <!-- Content description for the back arrow in a registration screen header. -->
-    <string name="RegistrationScreen__back">Back</string>
+    <string name="RegistrationScreen__back">Voltar</string>
 
     <!-- Signal Login purchase screen -->
     <!-- Title of the screen where the user buys a Signal Login to register without a phone number. -->
@@ -612,7 +612,7 @@
     <!-- Description of what a Signal Login is. Followed by a "learn more" link. -->
     <string name="SignalLoginPaymentScreen__register_without_a_phone_number">Register without a phone number using Signal Login. With a one-time purchase, you\'ll receive an account key to get started.</string>
     <!-- Link at the end of the description that opens a support article about Signal Login. -->
-    <string name="SignalLoginPaymentScreen__learn_more">Learn more</string>
+    <string name="SignalLoginPaymentScreen__learn_more">Saiba mais</string>
     <!-- Subtitle of the purchase option, clarifying the price is not a subscription. -->
     <string name="SignalLoginPaymentScreen__one_time_purchase">One-time purchase</string>
     <!-- Selling point of the purchase option: no phone number is required. -->
@@ -628,13 +628,13 @@
     <!-- Selling point of the existing-login option: the account can be restored. -->
     <string name="SignalLoginPaymentScreen__login_and_restore_your_account">Login and restore your account</string>
     <!-- Selling point of the existing-login option, thanking the user for their previous purchase. -->
-    <string name="SignalLoginPaymentScreen__thanks_for_supporting_signal">Thanks for supporting Signal</string>
+    <string name="SignalLoginPaymentScreen__thanks_for_supporting_signal">Agradecemos seu apoio ao Signal</string>
     <!-- Action button that starts the purchase. Placeholder is the localized price, e.g. "$1.99". -->
     <string name="SignalLoginPaymentScreen__pay_s">Pay %1$s</string>
     <!-- Action button that starts the purchase, shown while the price is still loading. -->
-    <string name="SignalLoginPaymentScreen__pay">Pay</string>
+    <string name="SignalLoginPaymentScreen__pay">Pagar</string>
     <!-- Action button shown when the user indicated they already have a Signal Login. -->
-    <string name="SignalLoginPaymentScreen__continue">Continue</string>
+    <string name="SignalLoginPaymentScreen__continue">Continuar</string>
     <!-- Error shown when the purchase does not go through. -->
     <string name="SignalLoginPaymentScreen__your_purchase_could_not_be_completed">Your purchase could not be completed. You have not been charged.</string>
 
@@ -644,7 +644,7 @@
     <!-- Description warning the user that a lost Signal Login cannot be recovered. -->
     <string name="SignalLoginInfoScreen__thanks_for_your_purchase">Thanks for your purchase. Use your Signal Login to register and restore your account. If you forget your keys, you will not be able to recover your account.</string>
     <!-- Label for the account portion of the Signal Login on the credential card. -->
-    <string name="SignalLoginInfoScreen__account">Account</string>
+    <string name="SignalLoginInfoScreen__account">Conta</string>
     <!-- Label for the recovery portion of the Signal Login on the credential card. -->
     <string name="SignalLoginInfoScreen__recovery">Recovery</string>
     <!-- Button on the credential card that reveals the full Signal Login. -->
@@ -652,9 +652,9 @@
     <!-- Body of the dialog revealing the full Signal Login. First placeholder is the account key, second is the recovery key. -->
     <string name="SignalLoginInfoScreen__account_s_recovery_s">Account: %1$s\n\nRecovery: %2$s</string>
     <!-- Action button that stores the Signal Login in the device password manager. -->
-    <string name="SignalLoginInfoScreen__save_to_password_manager">Save to password manager</string>
+    <string name="SignalLoginInfoScreen__save_to_password_manager">Salvar no gerenciador de senhas</string>
     <!-- Action button for users who would rather write the Signal Login down themselves. -->
-    <string name="SignalLoginInfoScreen__save_manually">Save manually</string>
+    <string name="SignalLoginInfoScreen__save_manually">Salvar manualmente</string>
     <!-- Error shown when the Signal Login could not be stored in the password manager. -->
     <string name="SignalLoginInfoScreen__your_signal_login_could_not_be_saved">Your Signal Login could not be saved. Please save it manually instead.</string>
 
@@ -664,17 +664,17 @@
     <!-- Description explaining what a username is used for. -->
     <string name="AddUsernameScreen__people_can_message_you_by_username">People can message you by username instead of a phone number.</string>
     <!-- Prompt shown above the username field. -->
-    <string name="AddUsernameScreen__choose_your_username">Choose your username</string>
+    <string name="AddUsernameScreen__choose_your_username">Escolha seu nome de usuário</string>
     <!-- Label/hint for the username field. -->
-    <string name="AddUsernameScreen__username">Username</string>
+    <string name="AddUsernameScreen__username">Nome de usuário</string>
     <!-- Helper text below the username field. Followed by a "learn more" link. -->
-    <string name="AddUsernameScreen__usernames_are_always_paired_with_a_set_of_numbers">Usernames are always paired with a set of numbers.</string>
+    <string name="AddUsernameScreen__usernames_are_always_paired_with_a_set_of_numbers">Os nomes de usuário são sempre combinados com um conjunto de números.</string>
     <!-- Link in the helper text that opens a support article about usernames. -->
-    <string name="AddUsernameScreen__learn_more">Learn more</string>
+    <string name="AddUsernameScreen__learn_more">Saiba mais</string>
     <!-- Button that skips choosing a username. -->
-    <string name="AddUsernameScreen__skip">Skip</string>
+    <string name="AddUsernameScreen__skip">Pular</string>
     <!-- Button that submits the chosen username. -->
-    <string name="AddUsernameScreen__next">Next</string>
+    <string name="AddUsernameScreen__next">Próximo</string>
     <!-- Validation error shown when the entered username is too short. -->
     <string name="AddUsernameScreen__usernames_must_be_at_least_3_characters">Usernames must be at least 3 characters</string>
     <!-- Validation error shown when the entered username is too long. -->

@@ -52,7 +52,7 @@
     <string name="RegistrationActivity_the_number_you_entered_is_not_valid">入力した番号が有効ではありません。国番号と電話番号を確認してもう一度お試しください。</string>
     <string name="RegistrationActivity_next">次へ</string>
     <!-- Button on the phone number screen that starts registering with a purchased Signal Login instead of a phone number -->
-    <string name="RegistrationActivity_register_without_number">Register without number</string>
+    <string name="RegistrationActivity_register_without_number">電話番号無しで登録</string>
     <!-- Dialog title to confirm phone number -->
     <string name="RegistrationActivity_is_the_phone_number">下記の電話番号でよろしいですか？</string>
     <!-- Dialog body to confirm phone number -->
@@ -602,87 +602,87 @@
 
     <!-- Shared registration strings -->
     <!-- Content description for the back arrow in a registration screen header. -->
-    <string name="RegistrationScreen__back">Back</string>
+    <string name="RegistrationScreen__back">戻る</string>
 
     <!-- Signal Login purchase screen -->
     <!-- Title of the screen where the user buys a Signal Login to register without a phone number. -->
-    <string name="SignalLoginPaymentScreen__signal_login">Signal Login</string>
+    <string name="SignalLoginPaymentScreen__signal_login">Signalログインキー</string>
     <!-- Description of what a Signal Login is. Followed by a "learn more" link. -->
-    <string name="SignalLoginPaymentScreen__register_without_a_phone_number">Register without a phone number using Signal Login. With a one-time purchase, you\'ll receive an account key to get started.</string>
+    <string name="SignalLoginPaymentScreen__register_without_a_phone_number">Signalログインキーを使って、電話番号無しで登録します。一回限りの購入で、利用開始に必要となるアカウントキーを受け取れます。</string>
     <!-- Link at the end of the description that opens a support article about Signal Login. -->
-    <string name="SignalLoginPaymentScreen__learn_more">Learn more</string>
+    <string name="SignalLoginPaymentScreen__learn_more">詳しく見る</string>
     <!-- Subtitle of the purchase option, clarifying the price is not a subscription. -->
-    <string name="SignalLoginPaymentScreen__one_time_purchase">One-time purchase</string>
+    <string name="SignalLoginPaymentScreen__one_time_purchase">一回限りの購入</string>
     <!-- Selling point of the purchase option: no phone number is required. -->
-    <string name="SignalLoginPaymentScreen__no_phone_number_needed">No phone number needed</string>
+    <string name="SignalLoginPaymentScreen__no_phone_number_needed">電話番号は不要です</string>
     <!-- Selling point of the purchase option: a username is used to reach the user. -->
-    <string name="SignalLoginPaymentScreen__username_for_messaging_and_calls">Username for messaging &amp; calls</string>
+    <string name="SignalLoginPaymentScreen__username_for_messaging_and_calls">メッセージと通話がユーザーネームで可能です</string>
     <!-- Selling point of the purchase option: the purchase supports Signal. -->
-    <string name="SignalLoginPaymentScreen__signal_is_a_non_profit">Signal is a non-profit — your purchase helps support our mission</string>
+    <string name="SignalLoginPaymentScreen__signal_is_a_non_profit">Signalは非営利団体であり、皆様のご購入は私たちの活動をサポートしていただくことに繋がります</string>
     <!-- Title of the option for users who already bought a Signal Login. -->
-    <string name="SignalLoginPaymentScreen__i_have_a_signal_login">I have a Signal Login</string>
+    <string name="SignalLoginPaymentScreen__i_have_a_signal_login">Signalログインキーを持っている場合</string>
     <!-- Subtitle of the existing-login option. -->
-    <string name="SignalLoginPaymentScreen__use_your_existing_account_key">Use your existing account key</string>
+    <string name="SignalLoginPaymentScreen__use_your_existing_account_key">既存のアカウントキーを使用してください</string>
     <!-- Selling point of the existing-login option: the account can be restored. -->
-    <string name="SignalLoginPaymentScreen__login_and_restore_your_account">Login and restore your account</string>
+    <string name="SignalLoginPaymentScreen__login_and_restore_your_account">ログインしてアカウントを復元してください</string>
     <!-- Selling point of the existing-login option, thanking the user for their previous purchase. -->
-    <string name="SignalLoginPaymentScreen__thanks_for_supporting_signal">Thanks for supporting Signal</string>
+    <string name="SignalLoginPaymentScreen__thanks_for_supporting_signal">Signalをサポートしていただきありがとうございます</string>
     <!-- Action button that starts the purchase. Placeholder is the localized price, e.g. "$1.99". -->
-    <string name="SignalLoginPaymentScreen__pay_s">Pay %1$s</string>
+    <string name="SignalLoginPaymentScreen__pay_s">%1$sを支払う</string>
     <!-- Action button that starts the purchase, shown while the price is still loading. -->
-    <string name="SignalLoginPaymentScreen__pay">Pay</string>
+    <string name="SignalLoginPaymentScreen__pay">送金</string>
     <!-- Action button shown when the user indicated they already have a Signal Login. -->
-    <string name="SignalLoginPaymentScreen__continue">Continue</string>
+    <string name="SignalLoginPaymentScreen__continue">続行</string>
     <!-- Error shown when the purchase does not go through. -->
-    <string name="SignalLoginPaymentScreen__your_purchase_could_not_be_completed">Your purchase could not be completed. You have not been charged.</string>
+    <string name="SignalLoginPaymentScreen__your_purchase_could_not_be_completed">購入処理は完了できませんでした。課金はされていません。</string>
 
     <!-- Signal Login details screen -->
     <!-- Title of the screen that shows the user their newly purchased Signal Login. -->
-    <string name="SignalLoginInfoScreen__your_signal_login">Your Signal Login</string>
+    <string name="SignalLoginInfoScreen__your_signal_login">Signalログインキー</string>
     <!-- Description warning the user that a lost Signal Login cannot be recovered. -->
-    <string name="SignalLoginInfoScreen__thanks_for_your_purchase">Thanks for your purchase. Use your Signal Login to register and restore your account. If you forget your keys, you will not be able to recover your account.</string>
+    <string name="SignalLoginInfoScreen__thanks_for_your_purchase">ご購入ありがとうございます。Signalログインキーを使って登録し、アカウントを復元してください。キーを忘れた場合、アカウントの復元はできません。</string>
     <!-- Label for the account portion of the Signal Login on the credential card. -->
-    <string name="SignalLoginInfoScreen__account">Account</string>
+    <string name="SignalLoginInfoScreen__account">アカウント</string>
     <!-- Label for the recovery portion of the Signal Login on the credential card. -->
-    <string name="SignalLoginInfoScreen__recovery">Recovery</string>
+    <string name="SignalLoginInfoScreen__recovery">復元</string>
     <!-- Button on the credential card that reveals the full Signal Login. -->
-    <string name="SignalLoginInfoScreen__view_details">View details</string>
+    <string name="SignalLoginInfoScreen__view_details">詳細を表示</string>
     <!-- Body of the dialog revealing the full Signal Login. First placeholder is the account key, second is the recovery key. -->
-    <string name="SignalLoginInfoScreen__account_s_recovery_s">Account: %1$s\n\nRecovery: %2$s</string>
+    <string name="SignalLoginInfoScreen__account_s_recovery_s">アカウント：%1$s\n\n復元：%2$s</string>
     <!-- Action button that stores the Signal Login in the device password manager. -->
-    <string name="SignalLoginInfoScreen__save_to_password_manager">Save to password manager</string>
+    <string name="SignalLoginInfoScreen__save_to_password_manager">パスワードマネージャーに保存する</string>
     <!-- Action button for users who would rather write the Signal Login down themselves. -->
-    <string name="SignalLoginInfoScreen__save_manually">Save manually</string>
+    <string name="SignalLoginInfoScreen__save_manually">手動で保存</string>
     <!-- Error shown when the Signal Login could not be stored in the password manager. -->
-    <string name="SignalLoginInfoScreen__your_signal_login_could_not_be_saved">Your Signal Login could not be saved. Please save it manually instead.</string>
+    <string name="SignalLoginInfoScreen__your_signal_login_could_not_be_saved">Signalログインキーを保存できませんでした。代わりに手動で保存してください。</string>
 
     <!-- Add username screen -->
     <!-- Title of the screen offering the user an optional username. -->
-    <string name="AddUsernameScreen__add_an_optional_username">Add an optional username</string>
+    <string name="AddUsernameScreen__add_an_optional_username">任意のユーザーネームの追加</string>
     <!-- Description explaining what a username is used for. -->
-    <string name="AddUsernameScreen__people_can_message_you_by_username">People can message you by username instead of a phone number.</string>
+    <string name="AddUsernameScreen__people_can_message_you_by_username">ユーザーは、電話番号の代わりにユーザーネームでメッセージを送れます。</string>
     <!-- Prompt shown above the username field. -->
-    <string name="AddUsernameScreen__choose_your_username">Choose your username</string>
+    <string name="AddUsernameScreen__choose_your_username">ユーザーネームを選択してください</string>
     <!-- Label/hint for the username field. -->
-    <string name="AddUsernameScreen__username">Username</string>
+    <string name="AddUsernameScreen__username">ユーザーネーム</string>
     <!-- Helper text below the username field. Followed by a "learn more" link. -->
-    <string name="AddUsernameScreen__usernames_are_always_paired_with_a_set_of_numbers">Usernames are always paired with a set of numbers.</string>
+    <string name="AddUsernameScreen__usernames_are_always_paired_with_a_set_of_numbers">ユーザーネームは、常に一組の数字とペアになっています。</string>
     <!-- Link in the helper text that opens a support article about usernames. -->
-    <string name="AddUsernameScreen__learn_more">Learn more</string>
+    <string name="AddUsernameScreen__learn_more">詳しく見る</string>
     <!-- Button that skips choosing a username. -->
-    <string name="AddUsernameScreen__skip">Skip</string>
+    <string name="AddUsernameScreen__skip">スキップ</string>
     <!-- Button that submits the chosen username. -->
-    <string name="AddUsernameScreen__next">Next</string>
+    <string name="AddUsernameScreen__next">次へ</string>
     <!-- Validation error shown when the entered username is too short. -->
-    <string name="AddUsernameScreen__usernames_must_be_at_least_3_characters">Usernames must be at least 3 characters</string>
+    <string name="AddUsernameScreen__usernames_must_be_at_least_3_characters">ユーザーネームは3文字以上にしてください</string>
     <!-- Validation error shown when the entered username is too long. -->
-    <string name="AddUsernameScreen__usernames_must_be_at_most_32_characters">Usernames must be at most 32 characters</string>
+    <string name="AddUsernameScreen__usernames_must_be_at_most_32_characters">ユーザーネームは最大で32文字です</string>
     <!-- Validation error shown when the entered username contains disallowed characters. -->
-    <string name="AddUsernameScreen__usernames_can_only_contain">Usernames can only contain letters, numbers, and underscores</string>
+    <string name="AddUsernameScreen__usernames_can_only_contain">ユーザーネームに使用できるのは、文字、数字、アンダーバーのみです</string>
     <!-- Validation error shown when the entered username starts with a digit. -->
-    <string name="AddUsernameScreen__usernames_cannot_begin_with_a_number">Usernames cannot begin with a number</string>
+    <string name="AddUsernameScreen__usernames_cannot_begin_with_a_number">ユーザーネームの先頭に数字は使用できません</string>
     <!-- Error shown when the chosen username cannot be reserved. -->
-    <string name="AddUsernameScreen__this_username_is_not_available">This username is not available. Please try another.</string>
+    <string name="AddUsernameScreen__this_username_is_not_available">このユーザーネームは使用できません。別のユーザーネームをお試しください。</string>
 
     <!-- ContactSupportDialog -->
     <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->

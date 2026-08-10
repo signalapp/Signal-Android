@@ -52,7 +52,7 @@
     <string name="RegistrationActivity_the_number_you_entered_is_not_valid">Бројот што го внесовте изгледа дека не е валиден. Проверете го повикувачкиот број за земјата и телефонскиот број и пробајте пак.</string>
     <string name="RegistrationActivity_next">Следно</string>
     <!-- Button on the phone number screen that starts registering with a purchased Signal Login instead of a phone number -->
-    <string name="RegistrationActivity_register_without_number">Register without number</string>
+    <string name="RegistrationActivity_register_without_number">Регистрирајте се без број</string>
     <!-- Dialog title to confirm phone number -->
     <string name="RegistrationActivity_is_the_phone_number">Дали телефонскиот број подолу е точен?</string>
     <!-- Dialog body to confirm phone number -->
@@ -604,87 +604,87 @@
 
     <!-- Shared registration strings -->
     <!-- Content description for the back arrow in a registration screen header. -->
-    <string name="RegistrationScreen__back">Back</string>
+    <string name="RegistrationScreen__back">Назад</string>
 
     <!-- Signal Login purchase screen -->
     <!-- Title of the screen where the user buys a Signal Login to register without a phone number. -->
-    <string name="SignalLoginPaymentScreen__signal_login">Signal Login</string>
+    <string name="SignalLoginPaymentScreen__signal_login">Signal-најава</string>
     <!-- Description of what a Signal Login is. Followed by a "learn more" link. -->
-    <string name="SignalLoginPaymentScreen__register_without_a_phone_number">Register without a phone number using Signal Login. With a one-time purchase, you\'ll receive an account key to get started.</string>
+    <string name="SignalLoginPaymentScreen__register_without_a_phone_number">Регистрирајте се без телефонски број со Signal-најава. Со еднократно купување, ќе добиете клуч за корисничка сметка за да започнете.</string>
     <!-- Link at the end of the description that opens a support article about Signal Login. -->
-    <string name="SignalLoginPaymentScreen__learn_more">Learn more</string>
+    <string name="SignalLoginPaymentScreen__learn_more">Дознајте повеќе</string>
     <!-- Subtitle of the purchase option, clarifying the price is not a subscription. -->
-    <string name="SignalLoginPaymentScreen__one_time_purchase">One-time purchase</string>
+    <string name="SignalLoginPaymentScreen__one_time_purchase">Еднократно купување</string>
     <!-- Selling point of the purchase option: no phone number is required. -->
-    <string name="SignalLoginPaymentScreen__no_phone_number_needed">No phone number needed</string>
+    <string name="SignalLoginPaymentScreen__no_phone_number_needed">Не е потребен телефонски број</string>
     <!-- Selling point of the purchase option: a username is used to reach the user. -->
-    <string name="SignalLoginPaymentScreen__username_for_messaging_and_calls">Username for messaging &amp; calls</string>
+    <string name="SignalLoginPaymentScreen__username_for_messaging_and_calls">Корисничко име за пораки и повици</string>
     <!-- Selling point of the purchase option: the purchase supports Signal. -->
-    <string name="SignalLoginPaymentScreen__signal_is_a_non_profit">Signal is a non-profit — your purchase helps support our mission</string>
+    <string name="SignalLoginPaymentScreen__signal_is_a_non_profit">Signal е непрофитна организација — вашето купување ни помага да ја исполниме нашата мисија</string>
     <!-- Title of the option for users who already bought a Signal Login. -->
-    <string name="SignalLoginPaymentScreen__i_have_a_signal_login">I have a Signal Login</string>
+    <string name="SignalLoginPaymentScreen__i_have_a_signal_login">Имам Signal-најава</string>
     <!-- Subtitle of the existing-login option. -->
-    <string name="SignalLoginPaymentScreen__use_your_existing_account_key">Use your existing account key</string>
+    <string name="SignalLoginPaymentScreen__use_your_existing_account_key">Користете го вашиот постоечки клуч за корисничка сметка</string>
     <!-- Selling point of the existing-login option: the account can be restored. -->
-    <string name="SignalLoginPaymentScreen__login_and_restore_your_account">Login and restore your account</string>
+    <string name="SignalLoginPaymentScreen__login_and_restore_your_account">Најавете се и вратете ја вашата корисничка сметка</string>
     <!-- Selling point of the existing-login option, thanking the user for their previous purchase. -->
-    <string name="SignalLoginPaymentScreen__thanks_for_supporting_signal">Thanks for supporting Signal</string>
+    <string name="SignalLoginPaymentScreen__thanks_for_supporting_signal">Ви благодариме што го поддржувате Signal</string>
     <!-- Action button that starts the purchase. Placeholder is the localized price, e.g. "$1.99". -->
-    <string name="SignalLoginPaymentScreen__pay_s">Pay %1$s</string>
+    <string name="SignalLoginPaymentScreen__pay_s">Платете %1$s</string>
     <!-- Action button that starts the purchase, shown while the price is still loading. -->
-    <string name="SignalLoginPaymentScreen__pay">Pay</string>
+    <string name="SignalLoginPaymentScreen__pay">Плати</string>
     <!-- Action button shown when the user indicated they already have a Signal Login. -->
-    <string name="SignalLoginPaymentScreen__continue">Continue</string>
+    <string name="SignalLoginPaymentScreen__continue">Продолжи</string>
     <!-- Error shown when the purchase does not go through. -->
-    <string name="SignalLoginPaymentScreen__your_purchase_could_not_be_completed">Your purchase could not be completed. You have not been charged.</string>
+    <string name="SignalLoginPaymentScreen__your_purchase_could_not_be_completed">Вашето купување не можеше да се заврши. Не ви е наплатено.</string>
 
     <!-- Signal Login details screen -->
     <!-- Title of the screen that shows the user their newly purchased Signal Login. -->
-    <string name="SignalLoginInfoScreen__your_signal_login">Your Signal Login</string>
+    <string name="SignalLoginInfoScreen__your_signal_login">Вашата Signal-најава</string>
     <!-- Description warning the user that a lost Signal Login cannot be recovered. -->
-    <string name="SignalLoginInfoScreen__thanks_for_your_purchase">Thanks for your purchase. Use your Signal Login to register and restore your account. If you forget your keys, you will not be able to recover your account.</string>
+    <string name="SignalLoginInfoScreen__thanks_for_your_purchase">Ви благодариме за вашето купување. Со вашата Signal-најава регистрирајте се и вратете ја вашата корисничка сметка. Ако го заборавите вашиот клуч, нема да можете ја вратите вашата корисничка сметка.</string>
     <!-- Label for the account portion of the Signal Login on the credential card. -->
-    <string name="SignalLoginInfoScreen__account">Account</string>
+    <string name="SignalLoginInfoScreen__account">Сметка</string>
     <!-- Label for the recovery portion of the Signal Login on the credential card. -->
-    <string name="SignalLoginInfoScreen__recovery">Recovery</string>
+    <string name="SignalLoginInfoScreen__recovery">Враќање</string>
     <!-- Button on the credential card that reveals the full Signal Login. -->
-    <string name="SignalLoginInfoScreen__view_details">View details</string>
+    <string name="SignalLoginInfoScreen__view_details">Видете ги деталите</string>
     <!-- Body of the dialog revealing the full Signal Login. First placeholder is the account key, second is the recovery key. -->
-    <string name="SignalLoginInfoScreen__account_s_recovery_s">Account: %1$s\n\nRecovery: %2$s</string>
+    <string name="SignalLoginInfoScreen__account_s_recovery_s">Корисничка сметка: %1$s\n\nВраќање: %2$s</string>
     <!-- Action button that stores the Signal Login in the device password manager. -->
-    <string name="SignalLoginInfoScreen__save_to_password_manager">Save to password manager</string>
+    <string name="SignalLoginInfoScreen__save_to_password_manager">Зачувајте во управувачот со лозинки</string>
     <!-- Action button for users who would rather write the Signal Login down themselves. -->
-    <string name="SignalLoginInfoScreen__save_manually">Save manually</string>
+    <string name="SignalLoginInfoScreen__save_manually">Зачувајте рачно</string>
     <!-- Error shown when the Signal Login could not be stored in the password manager. -->
-    <string name="SignalLoginInfoScreen__your_signal_login_could_not_be_saved">Your Signal Login could not be saved. Please save it manually instead.</string>
+    <string name="SignalLoginInfoScreen__your_signal_login_could_not_be_saved">Вашата Signal-најава не можеше да се зачува. Ве молиме зачувајте ја рачно.</string>
 
     <!-- Add username screen -->
     <!-- Title of the screen offering the user an optional username. -->
-    <string name="AddUsernameScreen__add_an_optional_username">Add an optional username</string>
+    <string name="AddUsernameScreen__add_an_optional_username">Додајте опционално корисничко име</string>
     <!-- Description explaining what a username is used for. -->
-    <string name="AddUsernameScreen__people_can_message_you_by_username">People can message you by username instead of a phone number.</string>
+    <string name="AddUsernameScreen__people_can_message_you_by_username">Луѓето ќе можат да ви пишуваат користејќи го вашето корисничко име наместо телефонскиот број.</string>
     <!-- Prompt shown above the username field. -->
-    <string name="AddUsernameScreen__choose_your_username">Choose your username</string>
+    <string name="AddUsernameScreen__choose_your_username">Одберете го вашете корисничко име</string>
     <!-- Label/hint for the username field. -->
-    <string name="AddUsernameScreen__username">Username</string>
+    <string name="AddUsernameScreen__username">Корисничко име</string>
     <!-- Helper text below the username field. Followed by a "learn more" link. -->
-    <string name="AddUsernameScreen__usernames_are_always_paired_with_a_set_of_numbers">Usernames are always paired with a set of numbers.</string>
+    <string name="AddUsernameScreen__usernames_are_always_paired_with_a_set_of_numbers">Корисничките имиња се спаруваат со низа бројки.</string>
     <!-- Link in the helper text that opens a support article about usernames. -->
-    <string name="AddUsernameScreen__learn_more">Learn more</string>
+    <string name="AddUsernameScreen__learn_more">Дознајте повеќе</string>
     <!-- Button that skips choosing a username. -->
-    <string name="AddUsernameScreen__skip">Skip</string>
+    <string name="AddUsernameScreen__skip">Прескокни</string>
     <!-- Button that submits the chosen username. -->
-    <string name="AddUsernameScreen__next">Next</string>
+    <string name="AddUsernameScreen__next">Следно</string>
     <!-- Validation error shown when the entered username is too short. -->
-    <string name="AddUsernameScreen__usernames_must_be_at_least_3_characters">Usernames must be at least 3 characters</string>
+    <string name="AddUsernameScreen__usernames_must_be_at_least_3_characters">Корисничките имиња мора да имаат минимум 3 знаци</string>
     <!-- Validation error shown when the entered username is too long. -->
-    <string name="AddUsernameScreen__usernames_must_be_at_most_32_characters">Usernames must be at most 32 characters</string>
+    <string name="AddUsernameScreen__usernames_must_be_at_most_32_characters">Корисничките имиња мора да имаат максимум 32 знаци</string>
     <!-- Validation error shown when the entered username contains disallowed characters. -->
-    <string name="AddUsernameScreen__usernames_can_only_contain">Usernames can only contain letters, numbers, and underscores</string>
+    <string name="AddUsernameScreen__usernames_can_only_contain">Корисничките имиња можат да содржат само букви, бројки и долни црти</string>
     <!-- Validation error shown when the entered username starts with a digit. -->
-    <string name="AddUsernameScreen__usernames_cannot_begin_with_a_number">Usernames cannot begin with a number</string>
+    <string name="AddUsernameScreen__usernames_cannot_begin_with_a_number">Корисничкото име не може да започне со број</string>
     <!-- Error shown when the chosen username cannot be reserved. -->
-    <string name="AddUsernameScreen__this_username_is_not_available">This username is not available. Please try another.</string>
+    <string name="AddUsernameScreen__this_username_is_not_available">Ова корисничко име не е достапно. Ве молиме обидете се со друго.</string>
 
     <!-- ContactSupportDialog -->
     <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->

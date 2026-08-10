@@ -52,7 +52,7 @@
     <string name="RegistrationActivity_the_number_you_entered_is_not_valid">你輸入的號碼似乎無效。請檢查國家代碼和電話號碼，然後再試一次。</string>
     <string name="RegistrationActivity_next">下一步</string>
     <!-- Button on the phone number screen that starts registering with a purchased Signal Login instead of a phone number -->
-    <string name="RegistrationActivity_register_without_number">Register without number</string>
+    <string name="RegistrationActivity_register_without_number">免號碼註冊</string>
     <!-- Dialog title to confirm phone number -->
     <string name="RegistrationActivity_is_the_phone_number">以下電話號碼是否正確？</string>
     <!-- Dialog body to confirm phone number -->
@@ -602,87 +602,87 @@
 
     <!-- Shared registration strings -->
     <!-- Content description for the back arrow in a registration screen header. -->
-    <string name="RegistrationScreen__back">Back</string>
+    <string name="RegistrationScreen__back">返回</string>
 
     <!-- Signal Login purchase screen -->
     <!-- Title of the screen where the user buys a Signal Login to register without a phone number. -->
-    <string name="SignalLoginPaymentScreen__signal_login">Signal Login</string>
+    <string name="SignalLoginPaymentScreen__signal_login">Signal 免號登入</string>
     <!-- Description of what a Signal Login is. Followed by a "learn more" link. -->
-    <string name="SignalLoginPaymentScreen__register_without_a_phone_number">Register without a phone number using Signal Login. With a one-time purchase, you\'ll receive an account key to get started.</string>
+    <string name="SignalLoginPaymentScreen__register_without_a_phone_number">使用 Signal 免號登入，無需電話號碼即可註冊。只需付款一次，即可獲得帳戶金鑰，立即開始使用。</string>
     <!-- Link at the end of the description that opens a support article about Signal Login. -->
-    <string name="SignalLoginPaymentScreen__learn_more">Learn more</string>
+    <string name="SignalLoginPaymentScreen__learn_more">了解更多</string>
     <!-- Subtitle of the purchase option, clarifying the price is not a subscription. -->
-    <string name="SignalLoginPaymentScreen__one_time_purchase">One-time purchase</string>
+    <string name="SignalLoginPaymentScreen__one_time_purchase">一次性購買</string>
     <!-- Selling point of the purchase option: no phone number is required. -->
-    <string name="SignalLoginPaymentScreen__no_phone_number_needed">No phone number needed</string>
+    <string name="SignalLoginPaymentScreen__no_phone_number_needed">無需電話號碼</string>
     <!-- Selling point of the purchase option: a username is used to reach the user. -->
-    <string name="SignalLoginPaymentScreen__username_for_messaging_and_calls">Username for messaging &amp; calls</string>
+    <string name="SignalLoginPaymentScreen__username_for_messaging_and_calls">以用戶名稱傳送訊息與通話</string>
     <!-- Selling point of the purchase option: the purchase supports Signal. -->
-    <string name="SignalLoginPaymentScreen__signal_is_a_non_profit">Signal is a non-profit — your purchase helps support our mission</string>
+    <string name="SignalLoginPaymentScreen__signal_is_a_non_profit">Signal 是一個非營利組織—你的購買將有助於支持我們的使命</string>
     <!-- Title of the option for users who already bought a Signal Login. -->
-    <string name="SignalLoginPaymentScreen__i_have_a_signal_login">I have a Signal Login</string>
+    <string name="SignalLoginPaymentScreen__i_have_a_signal_login">我有 Signal 免號登入</string>
     <!-- Subtitle of the existing-login option. -->
-    <string name="SignalLoginPaymentScreen__use_your_existing_account_key">Use your existing account key</string>
+    <string name="SignalLoginPaymentScreen__use_your_existing_account_key">使用現有的帳戶金鑰</string>
     <!-- Selling point of the existing-login option: the account can be restored. -->
-    <string name="SignalLoginPaymentScreen__login_and_restore_your_account">Login and restore your account</string>
+    <string name="SignalLoginPaymentScreen__login_and_restore_your_account">登入並還原你的帳戶</string>
     <!-- Selling point of the existing-login option, thanking the user for their previous purchase. -->
-    <string name="SignalLoginPaymentScreen__thanks_for_supporting_signal">Thanks for supporting Signal</string>
+    <string name="SignalLoginPaymentScreen__thanks_for_supporting_signal">感謝你對 Signal 的支持</string>
     <!-- Action button that starts the purchase. Placeholder is the localized price, e.g. "$1.99". -->
-    <string name="SignalLoginPaymentScreen__pay_s">Pay %1$s</string>
+    <string name="SignalLoginPaymentScreen__pay_s">支付 %1$s</string>
     <!-- Action button that starts the purchase, shown while the price is still loading. -->
-    <string name="SignalLoginPaymentScreen__pay">Pay</string>
+    <string name="SignalLoginPaymentScreen__pay">支付</string>
     <!-- Action button shown when the user indicated they already have a Signal Login. -->
-    <string name="SignalLoginPaymentScreen__continue">Continue</string>
+    <string name="SignalLoginPaymentScreen__continue">繼續</string>
     <!-- Error shown when the purchase does not go through. -->
-    <string name="SignalLoginPaymentScreen__your_purchase_could_not_be_completed">Your purchase could not be completed. You have not been charged.</string>
+    <string name="SignalLoginPaymentScreen__your_purchase_could_not_be_completed">你的交易未能完成。你尚未被扣款。</string>
 
     <!-- Signal Login details screen -->
     <!-- Title of the screen that shows the user their newly purchased Signal Login. -->
-    <string name="SignalLoginInfoScreen__your_signal_login">Your Signal Login</string>
+    <string name="SignalLoginInfoScreen__your_signal_login">你的 Signal 免號登入</string>
     <!-- Description warning the user that a lost Signal Login cannot be recovered. -->
-    <string name="SignalLoginInfoScreen__thanks_for_your_purchase">Thanks for your purchase. Use your Signal Login to register and restore your account. If you forget your keys, you will not be able to recover your account.</string>
+    <string name="SignalLoginInfoScreen__thanks_for_your_purchase">感謝你的購買。請使用你的 Signal 免號登入進行註冊及帳戶還原。如果你忘記了金鑰，你將會無法恢復帳戶。</string>
     <!-- Label for the account portion of the Signal Login on the credential card. -->
-    <string name="SignalLoginInfoScreen__account">Account</string>
+    <string name="SignalLoginInfoScreen__account">帳戶</string>
     <!-- Label for the recovery portion of the Signal Login on the credential card. -->
-    <string name="SignalLoginInfoScreen__recovery">Recovery</string>
+    <string name="SignalLoginInfoScreen__recovery">恢復金鑰</string>
     <!-- Button on the credential card that reveals the full Signal Login. -->
-    <string name="SignalLoginInfoScreen__view_details">View details</string>
+    <string name="SignalLoginInfoScreen__view_details">檢視詳情</string>
     <!-- Body of the dialog revealing the full Signal Login. First placeholder is the account key, second is the recovery key. -->
-    <string name="SignalLoginInfoScreen__account_s_recovery_s">Account: %1$s\n\nRecovery: %2$s</string>
+    <string name="SignalLoginInfoScreen__account_s_recovery_s">帳戶：%1$s\n\n恢復金鑰：%2$s</string>
     <!-- Action button that stores the Signal Login in the device password manager. -->
-    <string name="SignalLoginInfoScreen__save_to_password_manager">Save to password manager</string>
+    <string name="SignalLoginInfoScreen__save_to_password_manager">儲存至密碼管理器</string>
     <!-- Action button for users who would rather write the Signal Login down themselves. -->
-    <string name="SignalLoginInfoScreen__save_manually">Save manually</string>
+    <string name="SignalLoginInfoScreen__save_manually">手動儲存</string>
     <!-- Error shown when the Signal Login could not be stored in the password manager. -->
-    <string name="SignalLoginInfoScreen__your_signal_login_could_not_be_saved">Your Signal Login could not be saved. Please save it manually instead.</string>
+    <string name="SignalLoginInfoScreen__your_signal_login_could_not_be_saved">未能儲存你的 Signal 免號登入。請改為手動儲存。</string>
 
     <!-- Add username screen -->
     <!-- Title of the screen offering the user an optional username. -->
-    <string name="AddUsernameScreen__add_an_optional_username">Add an optional username</string>
+    <string name="AddUsernameScreen__add_an_optional_username">新增自選用戶名稱</string>
     <!-- Description explaining what a username is used for. -->
-    <string name="AddUsernameScreen__people_can_message_you_by_username">People can message you by username instead of a phone number.</string>
+    <string name="AddUsernameScreen__people_can_message_you_by_username">其他人現在可以使用用戶名稱而非電話號碼向你發送訊息。</string>
     <!-- Prompt shown above the username field. -->
-    <string name="AddUsernameScreen__choose_your_username">Choose your username</string>
+    <string name="AddUsernameScreen__choose_your_username">選擇你的用戶名稱</string>
     <!-- Label/hint for the username field. -->
-    <string name="AddUsernameScreen__username">Username</string>
+    <string name="AddUsernameScreen__username">用戶名稱</string>
     <!-- Helper text below the username field. Followed by a "learn more" link. -->
-    <string name="AddUsernameScreen__usernames_are_always_paired_with_a_set_of_numbers">Usernames are always paired with a set of numbers.</string>
+    <string name="AddUsernameScreen__usernames_are_always_paired_with_a_set_of_numbers">用戶名稱都會與一組數字配對。</string>
     <!-- Link in the helper text that opens a support article about usernames. -->
-    <string name="AddUsernameScreen__learn_more">Learn more</string>
+    <string name="AddUsernameScreen__learn_more">了解更多</string>
     <!-- Button that skips choosing a username. -->
-    <string name="AddUsernameScreen__skip">Skip</string>
+    <string name="AddUsernameScreen__skip">略過</string>
     <!-- Button that submits the chosen username. -->
-    <string name="AddUsernameScreen__next">Next</string>
+    <string name="AddUsernameScreen__next">下一步</string>
     <!-- Validation error shown when the entered username is too short. -->
-    <string name="AddUsernameScreen__usernames_must_be_at_least_3_characters">Usernames must be at least 3 characters</string>
+    <string name="AddUsernameScreen__usernames_must_be_at_least_3_characters">用戶名稱須至少包含 3 個字元</string>
     <!-- Validation error shown when the entered username is too long. -->
-    <string name="AddUsernameScreen__usernames_must_be_at_most_32_characters">Usernames must be at most 32 characters</string>
+    <string name="AddUsernameScreen__usernames_must_be_at_most_32_characters">用戶名稱最多只能包含 32 個字元</string>
     <!-- Validation error shown when the entered username contains disallowed characters. -->
-    <string name="AddUsernameScreen__usernames_can_only_contain">Usernames can only contain letters, numbers, and underscores</string>
+    <string name="AddUsernameScreen__usernames_can_only_contain">用戶名稱僅可包含英文字母、數字以及底線</string>
     <!-- Validation error shown when the entered username starts with a digit. -->
-    <string name="AddUsernameScreen__usernames_cannot_begin_with_a_number">Usernames cannot begin with a number</string>
+    <string name="AddUsernameScreen__usernames_cannot_begin_with_a_number">用戶名稱不得以數字開頭</string>
     <!-- Error shown when the chosen username cannot be reserved. -->
-    <string name="AddUsernameScreen__this_username_is_not_available">This username is not available. Please try another.</string>
+    <string name="AddUsernameScreen__this_username_is_not_available">此用戶名稱無法使用。請嘗試其他名稱。</string>
 
     <!-- ContactSupportDialog -->
     <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->

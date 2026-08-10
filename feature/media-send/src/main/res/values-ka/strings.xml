@@ -7,19 +7,19 @@
   <!-- Confirmation button that discards the user\'s image edits. -->
   <string name="MediaSendDialogs__discard">გაუქმება</string>
   <!-- Dialog title asking to save the media being edited to the phone\'s storage -->
-  <string name="MediaSendDialogs__save_to_phone">Save to phone?</string>
+  <string name="MediaSendDialogs__save_to_phone">გსურს მობილურში შეინახო?</string>
   <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other apps. -->
-  <string name="MediaSendDialogs__this_media_will_be_saved">This media will be saved to your phone\'s storage. Other apps may be able to access it depending on your phone\'s permissions.</string>
+  <string name="MediaSendDialogs__this_media_will_be_saved">ეს მედია ფაილი შენი მობილურის მეხსიერებაში შეინახება. შეიძლება, შენი მობილურის ნებართვებიდან გამომდინარე, სხვა აპებს მასზე წვდომა ჰქონდეთ.</string>
   <!-- Confirmation button that saves the media being edited to the phone\'s storage. -->
-  <string name="MediaSendDialogs__save">Save</string>
+  <string name="MediaSendDialogs__save">შენახვა</string>
   <!-- Checkbox shown in the save dialog to not show the dialog again in future saves -->
-  <string name="MediaSendDialogs__dont_show_again">Don\'t show again</string>
+  <string name="MediaSendDialogs__dont_show_again">აღარ მაჩვენო</string>
   <!-- Progress dialog message shown while the media being edited is written out to the phone\'s storage. -->
-  <string name="MediaSendDialogs__saving_media">Saving attachment to storage…</string>
+  <string name="MediaSendDialogs__saving_media">დანართი მეხსიერებაში ინახება…</string>
   <!-- Dialog message asking the user to confirm that the media should be added to a group\'s story. The placeholder is the group\'s name. -->
-  <string name="MediaSendDialogs__add_to_the_group_story">Add to the group story \"%1$s\"</string>
+  <string name="MediaSendDialogs__add_to_the_group_story">დაამატე ჯგუფის Story-ი \"%1$s\"</string>
   <!-- Confirmation button that adds the media to the group\'s story. -->
-  <string name="MediaSendDialogs__add_to_story">Add to story</string>
+  <string name="MediaSendDialogs__add_to_story">Story-ში დამატება</string>
   <!-- Accessibility label for the row that lets the user add a text message to accompany the media being sent. -->
   <string name="AddAMessageRow__add_a_message">შეტყობინების დამატება</string>
   <!-- Accessibility description for the button that opens the emoji keyboard. -->
@@ -29,55 +29,55 @@
   <!-- Accessibility description for the button that advances to the next step in the media send flow. -->
   <string name="AddAMessageRow__next">შემდეგი</string>
   <!-- Accessibility description for the button that sends the media to the already-known recipient. -->
-  <string name="AddAMessageRow__send">Send</string>
+  <string name="AddAMessageRow__send">გაგზავნა</string>
   <!-- Accessibility description for long-pressing the send button to schedule the send for later. -->
-  <string name="AddAMessageRow__schedule_send">Schedule send</string>
+  <string name="AddAMessageRow__schedule_send">გაგზავნე დაგეგმილად</string>
   <!-- Menu option that opens a picker for choosing the exact date and time to send at. -->
-  <string name="ScheduleSendMenu__pick_date_and_time">Pick Date &amp; Time</string>
+  <string name="ScheduleSendMenu__pick_date_and_time">აირჩიე თარიღი &amp; დრო</string>
   <!-- Label shown in place of the add-a-message row when the media has been set to view once, indicating that no message can be attached. -->
-  <string name="AddAMessageRow__view_once_media">View once media</string>
+  <string name="AddAMessageRow__view_once_media">ერთხელ სანახავი მედია-ფაილი</string>
   <!-- Accessibility label for the button at the end of the add-a-message row that turns view-once mode on and off. -->
-  <string name="AddAMessageRow__toggle_view_once">Toggle view once</string>
+  <string name="AddAMessageRow__toggle_view_once">გადართე ერთხელ ნახვა</string>
   <!-- Setting option that can be selected to default media to be sent as high quality by default -->
   <string name="SentMediaQuality__high">მაღალი</string>
   <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
   <string name="SentMediaQuality__standard">სტანდარტული</string>
   <!-- Label for our standard quality media conversion. -->
-  <string name="QualitySelectorBottomSheetDialog__standard">Standard</string>
+  <string name="QualitySelectorBottomSheetDialog__standard">სტანდარტული</string>
   <!-- Description for our standard quality media conversion. -->
-  <string name="QualitySelectorBottomSheetDialog__faster_less_data">Faster, less data</string>
+  <string name="QualitySelectorBottomSheetDialog__faster_less_data">უფრო სწრაფი, ნაკლები მონაცემი</string>
   <!-- Label for our high quality media conversion. This has better quality than standard. -->
-  <string name="QualitySelectorBottomSheetDialog__high">High</string>
+  <string name="QualitySelectorBottomSheetDialog__high">მაღალი</string>
   <!-- Label for our high quality media conversion. This has better quality than standard. -->
-  <string name="QualitySelectorBottomSheetDialog__slower_more_data">Slower, more data</string>
+  <string name="QualitySelectorBottomSheetDialog__slower_more_data">უფრო ნელი, მეტი მონაცემი</string>
   <!-- Title heading for our media conversion quality selector. -->
-  <string name="QualitySelectorBottomSheetDialog__media_quality">Media quality</string>
+  <string name="QualitySelectorBottomSheetDialog__media_quality">მედია-ფაილების ხარისხი</string>
   <!-- Title of the screen where the user browses their device gallery to pick media to send. -->
   <string name="MediaSelectScreen__gallery">გალერეა</string>
   <!-- Accessibility description for the button that advances from media selection to the next step in the send flow. -->
   <string name="MediaSelectScreen__next">შემდეგი</string>
   <!-- Accessibility description for the button that leaves media selection and opens the camera. -->
-  <string name="MediaSelectScreen__go_to_camera">Go to camera</string>
+  <string name="MediaSelectScreen__go_to_camera">კამერაზე გადასვლა</string>
   <!-- Message shown in place of the gallery when the user has not granted permission to read their photos and videos. -->
-  <string name="MediaSelectScreen__signal_needs_permission_to_show_your_photos_and_videos">Signal needs permission to show your photos and videos</string>
+  <string name="MediaSelectScreen__signal_needs_permission_to_show_your_photos_and_videos">შენი ფოტოებისა და ვიდეოების საჩვენებლად Signal-ს ნებართვა სჭირდება</string>
   <!-- Label for the button that asks the system for permission to read the user\'s photos and videos. -->
-  <string name="MediaSelectScreen__allow_access">Allow Access</string>
+  <string name="MediaSelectScreen__allow_access">წვდომის მიცემა</string>
   <!-- Message shown in place of the gallery when the user only shared selected photos with Signal and none of them can be shown. -->
-  <string name="MediaSelectScreen__no_photos_or_videos_found">No photos or videos found. Signal only has access to photos and videos you selected.</string>
+  <string name="MediaSelectScreen__no_photos_or_videos_found">ფოტოები და ვიდეოები ვერ მოიძებნა. Signal-ს მხოლოდ იმ ფოტოებსა და ვიდეოებზე აქვს წვდომა, რომლებიც შენ აირჩიე.</string>
   <!-- Reminder shown above the gallery when the user only shared selected photos with Signal. -->
-  <string name="MediaSelectScreen__signal_has_limited_access">Signal has limited access to photos or videos</string>
+  <string name="MediaSelectScreen__signal_has_limited_access">Signal-ს ფოტოებსა და ვიდეოებზე შეზღუდული წვდომა აქვს</string>
   <!-- Label for the button that opens the menu for changing which photos and videos Signal can see. -->
-  <string name="MediaSelectScreen__manage">Manage</string>
+  <string name="MediaSelectScreen__manage">მართვა</string>
   <!-- Menu option that re-opens the system picker so the user can share more photos and videos with Signal. -->
-  <string name="MediaSelectScreen__select_more_photos">Select more photos</string>
+  <string name="MediaSelectScreen__select_more_photos">მეტი ფოტოს არჩევა</string>
   <!-- Menu option that opens Signal\'s permission settings in the system settings app. -->
-  <string name="MediaSelectScreen__go_to_settings">Go to Settings</string>
+  <string name="MediaSelectScreen__go_to_settings">შედი პარამეტრებში</string>
   <!-- Title of the sheet shown when the permission to read photos and videos has been permanently denied, directing the user to app settings. -->
-  <string name="MediaSelectScreen__allow_access_to_storage">Allow access to storage</string>
+  <string name="MediaSelectScreen__allow_access_to_storage">მეხსიერებაზე წვდომის მიცემა</string>
   <!-- Subtitle of the sheet shown when the permission to read photos and videos has been permanently denied, introducing the steps that follow. -->
-  <string name="MediaSelectScreen__to_show_photos_and_videos">To show photos and videos:</string>
+  <string name="MediaSelectScreen__to_show_photos_and_videos">ფოტოებისა და ვიდეოების საჩვენებლად:</string>
   <!-- Snackbar shown when the user denies the permission to read their photos and videos. -->
-  <string name="MediaSelectScreen__signal_needs_access_to_show_your_photos_and_videos">Signal needs access to show your photos and videos.</string>
+  <string name="MediaSelectScreen__signal_needs_access_to_show_your_photos_and_videos">Signal-ს წვდომა მხოლოდ შენი ფოტოებისა და ვიდეოების საჩვენებლად სჭირდება.</string>
 
   <!-- Label for the button that switches the capture screen to the camera. -->
   <string name="MediaCaptureScreen__camera">კამერა</string>
@@ -90,26 +90,26 @@
     </plurals>
 
   <!-- Name shown on the document preview when we cannot read the file\'s name. -->
-  <string name="DocumentPage__unnamed_file">Unnamed file</string>
+  <string name="DocumentPage__unnamed_file">უსახელო ფაილი</string>
 
   <!-- Content description for button to enable highlighter mode -->
-  <string name="DrawModeColorBar__highlighter">Highlighter</string>
+  <string name="DrawModeColorBar__highlighter">ჰაილაითერი</string>
   <!-- Content description for button to enable brush mode -->
-  <string name="DrawModeColorBar__brush">Brush</string>
+  <string name="DrawModeColorBar__brush">ფუნჯი</string>
 
   <!-- Label for the toggle that blurs every face in the image being edited -->
-  <string name="BlurFacesBar__blur_faces">Blur faces</string>
+  <string name="BlurFacesBar__blur_faces">სახეების გაბუნდოვნება</string>
 
   <!-- Content description for the button that cycles the text being edited between styles -->
-  <string name="TextModeColorBar__toggle_between_text_styles">Toggle between text styles</string>
+  <string name="TextModeColorBar__toggle_between_text_styles">ტექსტის სტილებს შორის გადართვა</string>
 
   <!-- Label for the button that undoes every edit made to the image, returning it to its original state -->
-  <string name="ImageEditorClearAllButton__clear_all">Clear all</string>
+  <string name="ImageEditorClearAllButton__clear_all">ყველას გასუფთავება</string>
 
   <!-- Content description for the button that undoes the last edit made to the image -->
-  <string name="ImageEditorUndoRedoButtons__undo_edit">Undo edit</string>
+  <string name="ImageEditorUndoRedoButtons__undo_edit">რედაქტირების გაუქმება</string>
   <!-- Content description for the button that redoes the last undone edit made to the image -->
-  <string name="ImageEditorUndoRedoButtons__redo_edit">Redo edit</string>
+  <string name="ImageEditorUndoRedoButtons__redo_edit">რედაქტირების დაბრუნება</string>
 
   <!-- Video editor play button content description -->
 
@@ -179,41 +179,41 @@
   <!-- Displayed when a video was automatically trimmed so it fits within the size limit -->
   <string name="MediaSendViewModel__video_trimmed_to_fit">შენი ვიდეო ზომის ლიმიტის მიხედვით მოიჭრა</string>
   <!-- Displayed when one or more of the selected items could not be added because they exceed the size limit -->
-  <string name="MediaSendViewModel__one_or_more_items_were_too_large">One or more items were too large</string>
+  <string name="MediaSendViewModel__one_or_more_items_were_too_large">ერთი ან მეტი ელემენტი ზედმეტად დიდი იყო</string>
   <!-- Displayed when one or more of the selected items could not be added because they are not a type that can be sent -->
-  <string name="MediaSendViewModel__one_or_more_items_were_invalid">One or more items were invalid</string>
+  <string name="MediaSendViewModel__one_or_more_items_were_invalid">ერთი ან მეტი ელემენტი არავალიდური იყო</string>
   <!-- Displayed when the user tries to select more items than can be sent at once -->
-  <string name="MediaSendViewModel__too_many_items_selected">Too many items selected</string>
+  <string name="MediaSendViewModel__too_many_items_selected">მონიშნულია ზედმეტი ელემენტი</string>
   <!-- Displayed after the media being edited was successfully saved to the phone\'s storage -->
-  <string name="MediaSendViewModel__media_saved">Media saved</string>
+  <string name="MediaSendViewModel__media_saved">მედია ფაილი შენახულია</string>
   <!-- Displayed when the media being edited could not be saved to the phone\'s storage -->
-  <string name="MediaSendViewModel__error_saving_media">Error while saving attachment to storage!</string>
+  <string name="MediaSendViewModel__error_saving_media">მიმაგრებული ფაილის მეხსიერებაში შენახვისას შეცდომა დაფიქსირდა!</string>
   <!-- Displayed when the media being edited cannot be saved because the storage permission was denied -->
-  <string name="MediaSendViewModel__unable_to_save_without_storage_permission">Unable to save to external storage without permissions</string>
+  <string name="MediaSendViewModel__unable_to_save_without_storage_permission">ნებართვების გარეშე გარე მეხსიერებაში შენახვა შეუძლებელია</string>
   <!-- Small notification presented to the user when they set their photo to view-once mode -->
-  <string name="MediaSendViewModel__photo_set_to_view_once">Photo set to view once</string>
+  <string name="MediaSendViewModel__photo_set_to_view_once">ფოტო ერთხელ ნახვის რეჟიმზეა დაყენებული</string>
   <!-- Small notification presented to the user when they set their video to view-once mode -->
-  <string name="MediaSendViewModel__video_set_to_view_once">Video set to view once</string>
+  <string name="MediaSendViewModel__video_set_to_view_once">ვიდეო ერთხელ ნახვის რეჟიმზეა დაყენებული</string>
   <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
-  <string name="MediaReviewFragment__video_set_to_high_quality">Video set to high quality</string>
+  <string name="MediaReviewFragment__video_set_to_high_quality">ვიდეო დაყენებულია მაღალ ხარისხზე</string>
   <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
-  <string name="MediaReviewFragment__video_set_to_standard_quality">Video set to standard quality</string>
+  <string name="MediaReviewFragment__video_set_to_standard_quality">ვიდეო სტანდარტულ ხარისხზეა დაყენებული</string>
   <!-- Small notification presented to the user when they set their still image to be sent in high visual quality. -->
-  <string name="MediaReviewFragment__photo_set_to_high_quality">Photo set to high quality</string>
+  <string name="MediaReviewFragment__photo_set_to_high_quality">ფოტო დაყენებულია მაღალ ხარისხზე</string>
   <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
-  <string name="MediaReviewFragment__photo_set_to_standard_quality">Photo set to standard quality</string>
+  <string name="MediaReviewFragment__photo_set_to_standard_quality">ფოტო სტანდარტულ ხარისხზეა დაყენებული</string>
   <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
   <plurals name="MediaReviewFragment__items_set_to_high_quality">
-        <item quantity="one">%1$d item set to high quality</item>
-        <item quantity="other">%1$d items set to high quality</item>
+        <item quantity="one">%1$d ელემენტი მაღალ ხარისხზეა დაყენებული</item>
+        <item quantity="other">%1$d ელემენტი მაღალ ხარისხზეა დაყენებული</item>
     </plurals>
   <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
   <plurals name="MediaReviewFragment__items_set_to_standard_quality">
-        <item quantity="one">%1$d item set to standard quality</item>
-        <item quantity="other">%1$d items set to standard quality</item>
+        <item quantity="one">%1$d ელემენტი სტანდარტულ ხარისხზეა დაყენებული</item>
+        <item quantity="other">%1$d ელემენტი სტანდარტულ ხარისხზეა დაყენებული</item>
     </plurals>
   <!-- Message shown when saving the media being edited requires the storage permission, but that permission has been permanently denied by the user. -->
-  <string name="MediaSendViewModel__signal_needs_the_storage_permission">Signal needs the Storage permission in order to save to external storage, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Storage\".</string>
+  <string name="MediaSendViewModel__signal_needs_the_storage_permission">გარე მეხსიერებაში შესანახად Signal-ს შენახვის ნებართვა სჭირდება, მაგრამ ის სამუდამოდ იქნა უარყოფილი. გთხოვთ, შეხვიდე აპის პარამეტრებში, აირჩიო „ნებართვები“ და ჩართო „შენახვა“.</string>
 
   <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
   <string name="UsernameScannedDialog__username_dialog_title">ნაპოვნია %1$s</string>
@@ -231,29 +231,29 @@
 
     <!-- Gif label displayed in a pill in the editor specifying the type of media being sent. -->
     <plurals name="MediaEditScreen__gif">
-        <item quantity="one">%1$d Gif</item>
-        <item quantity="other">%1$d Gifs</item>
+        <item quantity="one">%1$d GIF</item>
+        <item quantity="other">%1$d GIF</item>
     </plurals>
     <!-- Photo label displayed in a pill in the editor specifying the type of media being sent. -->
     <plurals name="MediaEditScreen__photo">
-        <item quantity="one">%1$d Photo</item>
-        <item quantity="other">%1$d Photos</item>
+        <item quantity="one">%1$d ფოტო</item>
+        <item quantity="other">%1$d ფოტო</item>
     </plurals>
     <!-- Video label displayed in a pill in the editor specifying the type of media being sent. -->
     <plurals name="MediaEditScreen__video">
-        <item quantity="one">%1$d Video</item>
-        <item quantity="other">%1$d Videos</item>
+        <item quantity="one">%1$d ვიდეო</item>
+        <item quantity="other">%1$d ვიდეო</item>
     </plurals>
     <!-- Document label displayed in a pill in the editor specifying the type of media being sent. -->
     <plurals name="MediaEditScreen__document">
-        <item quantity="one">%1$d Document</item>
-        <item quantity="other">%1$d Documents</item>
+        <item quantity="one">%1$d დოკუმენტი</item>
+        <item quantity="other">%1$d დოკუმენტი</item>
     </plurals>
     <!-- Item label displayed in a pill in the editor specifying the type of media being sent. -->
     <plurals name="MediaEditScreen__item">
-        <item quantity="one">%1$d Item</item>
-        <item quantity="other">%1$d Items</item>
+        <item quantity="one">%1$d ელემენტი</item>
+        <item quantity="other">%1$d ელემენტი</item>
     </plurals>
     <!-- x of y label displayed in a pill in the editor specifying the type of media being sent. First placeholder is selected page, second is total count. -->
-    <string name="MediaEditScreen__d_of_d">%1$d of %2$d</string>
+    <string name="MediaEditScreen__d_of_d">%1$d %2$d-დან</string>
 </resources>

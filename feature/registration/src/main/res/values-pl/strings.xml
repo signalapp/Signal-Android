@@ -108,7 +108,7 @@
     <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
     <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">Nie udało się wysłać kodu wybraną metodą. Wybierz drugą opcję.</string>
     <!-- Dialog shown when the provider rejected placing a verification phone call to the user\'s number -->
-    <string name="VerificationCodeScreen__could_not_call_provider_rejected">Nie udało się podać Ci kodu weryfikacyjnego przez połączenie głosowe. Spróbuj ponownie lub poproś o SMS z kodem.</string>
+    <string name="VerificationCodeScreen__could_not_call_provider_rejected">Nie udało się podać Ci kodu weryfikacyjnego przez połączenie głosowe. Spróbuj ponownie lub wybierz SMS jako metodę dostarczenia kodu.</string>
     <!-- Dialog shown when the provider rejected sending a verification SMS to the user\'s number -->
     <string name="VerificationCodeScreen__could_not_sms_provider_rejected">Nie udało się wysłać do Ciebie SMS-a z kodem weryfikacyjnym. Spróbuj ponownie lub wybierz połączenie głosowe jako metodę dostarczenia kodu.</string>
     <!-- Snackbar shown for registration errors -->
@@ -138,7 +138,7 @@
     <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
     <string name="WelcomeFragment_restore_action_scan_qr">Zeskanuj kod QR ze swojego obecnego konta, aby szybko zacząć korzystać z aplikacji Signal</string>
     <!-- Row title for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">Nie mam swojego starego telefonu</string>
+    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">Nie mam swojego poprzedniego telefonu</string>
     <!-- Row subtitle for restore/transfer without using a previous device -->
     <string name="WelcomeFragment_restore_action_reinstalling">Wybierz tę opcję również wtedy, gdy ponownie instalujesz Signal na tym samym urządzeniu</string>
 
@@ -313,7 +313,7 @@
     <!-- Button to contact support -->
     <string name="RemoteRestoreScreen__contact_support">Skontaktuj się z pomocą techniczną</string>
     <!-- Subject line of the support email composed when the user contacts support about an unrecoverable backup. -->
-    <string name="RemoteRestoreScreen__contact_support_email_subject">Błąd podczas przywracania kopii zapasowej Signal Android</string>
+    <string name="RemoteRestoreScreen__contact_support_email_subject">Błąd podczas przywracania kopii zapasowej aplikacji Signal Android</string>
     <!-- Text placed in the body of the support email composed when the user contacts support about an unrecoverable backup. Used to route the request, so it is not translated. -->
   <!-- Removed by excludeNonTranslatables <string name="RemoteRestoreScreen__contact_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
     <!-- Shown while downloading the backup from the server -->
@@ -386,9 +386,9 @@
     <!-- Error shown below the PIN field when the confirmation PIN does not match the one the user first entered. -->
     <string name="PinCreationScreen__pins_dont_match">Kody PIN nie są takie same. Spróbuj ponownie.</string>
     <!-- Error shown below the PIN field when the user tries to create a PIN that is too easy to guess, such as one made of sequential or repeated digits. -->
-    <string name="PinCreationScreen__choose_a_stronger_pin">Wybierz silniejszy kod PIN</string>
+    <string name="PinCreationScreen__choose_a_stronger_pin">Ustaw silniejszy PIN</string>
     <!-- Error shown below the PIN field when the user tries to create a PIN that matches the code used to verify their phone number. -->
-    <string name="PinCreationScreen__reentered_verification_code">Ponownie wpisano kod, który został już użyty do weryfikacji numeru telefonu. Ustaw nowy, unikalny kod PIN Signal.</string>
+    <string name="PinCreationScreen__reentered_verification_code">Kod, który podajesz, służył tylko do weryfikacji numeru telefonu. Ustaw dla siebie nowy PIN Signal.</string>
     <!-- Overflow menu item that opens a help article about Signal PINs. -->
     <string name="PinCreationScreen__learn_more_about_pins">Dowiedz się więcej o kodach PIN</string>
     <!-- Title of the dialog confirming that the user wants to disable their Signal PIN. -->
@@ -413,7 +413,7 @@
     <!-- Describes the PIN that needs to be entered. -->
     <string name="PinEntryScreen__enter_the_pin_you_created">Podaj PIN utworzony podczas pierwszej instalacji Signal</string>
     <!-- Error shown when the user enters the code used to verify their phone number instead of their PIN, and it was not their actual PIN. -->
-    <string name="PinEntryScreen__reentered_verification_code">Ponownie wpisano kod, który został już użyty do weryfikacji numeru telefonu. Podaj unikalny kod PIN Signal, który wcześniej został ustawiony dla Twojego konta.</string>
+    <string name="PinEntryScreen__reentered_verification_code">Kod, który podajesz, służył tylko do weryfikacji numeru telefonu. Teraz musisz podać swój PIN Signal utworzony przez Ciebie wcześniej na tym koncie.</string>
     <!-- Error shown when an incorrect PIN is entered. %1$d is the number of attempts remaining. -->
     <plurals name="PinEntryScreen__incorrect_pin">
         <item quantity="one">PIN niepoprawny. Została Ci %1$d próba.</item>
@@ -608,7 +608,7 @@
 
     <!-- Shared registration strings -->
     <!-- Content description for the back arrow in a registration screen header. -->
-    <string name="RegistrationScreen__back">Back</string>
+    <string name="RegistrationScreen__back">Wstecz</string>
 
     <!-- Signal Login purchase screen -->
     <!-- Title of the screen where the user buys a Signal Login to register without a phone number. -->
@@ -616,7 +616,7 @@
     <!-- Description of what a Signal Login is. Followed by a "learn more" link. -->
     <string name="SignalLoginPaymentScreen__register_without_a_phone_number">Register without a phone number using Signal Login. With a one-time purchase, you\'ll receive an account key to get started.</string>
     <!-- Link at the end of the description that opens a support article about Signal Login. -->
-    <string name="SignalLoginPaymentScreen__learn_more">Learn more</string>
+    <string name="SignalLoginPaymentScreen__learn_more">Dowiedz się więcej</string>
     <!-- Subtitle of the purchase option, clarifying the price is not a subscription. -->
     <string name="SignalLoginPaymentScreen__one_time_purchase">One-time purchase</string>
     <!-- Selling point of the purchase option: no phone number is required. -->
@@ -632,13 +632,13 @@
     <!-- Selling point of the existing-login option: the account can be restored. -->
     <string name="SignalLoginPaymentScreen__login_and_restore_your_account">Login and restore your account</string>
     <!-- Selling point of the existing-login option, thanking the user for their previous purchase. -->
-    <string name="SignalLoginPaymentScreen__thanks_for_supporting_signal">Thanks for supporting Signal</string>
+    <string name="SignalLoginPaymentScreen__thanks_for_supporting_signal">Wsparcie dla aplikacji Signal</string>
     <!-- Action button that starts the purchase. Placeholder is the localized price, e.g. "$1.99". -->
     <string name="SignalLoginPaymentScreen__pay_s">Pay %1$s</string>
     <!-- Action button that starts the purchase, shown while the price is still loading. -->
-    <string name="SignalLoginPaymentScreen__pay">Pay</string>
+    <string name="SignalLoginPaymentScreen__pay">Wyślij płatność</string>
     <!-- Action button shown when the user indicated they already have a Signal Login. -->
-    <string name="SignalLoginPaymentScreen__continue">Continue</string>
+    <string name="SignalLoginPaymentScreen__continue">Kontynuuj</string>
     <!-- Error shown when the purchase does not go through. -->
     <string name="SignalLoginPaymentScreen__your_purchase_could_not_be_completed">Your purchase could not be completed. You have not been charged.</string>
 
@@ -648,7 +648,7 @@
     <!-- Description warning the user that a lost Signal Login cannot be recovered. -->
     <string name="SignalLoginInfoScreen__thanks_for_your_purchase">Thanks for your purchase. Use your Signal Login to register and restore your account. If you forget your keys, you will not be able to recover your account.</string>
     <!-- Label for the account portion of the Signal Login on the credential card. -->
-    <string name="SignalLoginInfoScreen__account">Account</string>
+    <string name="SignalLoginInfoScreen__account">Konto</string>
     <!-- Label for the recovery portion of the Signal Login on the credential card. -->
     <string name="SignalLoginInfoScreen__recovery">Recovery</string>
     <!-- Button on the credential card that reveals the full Signal Login. -->
@@ -656,9 +656,9 @@
     <!-- Body of the dialog revealing the full Signal Login. First placeholder is the account key, second is the recovery key. -->
     <string name="SignalLoginInfoScreen__account_s_recovery_s">Account: %1$s\n\nRecovery: %2$s</string>
     <!-- Action button that stores the Signal Login in the device password manager. -->
-    <string name="SignalLoginInfoScreen__save_to_password_manager">Save to password manager</string>
+    <string name="SignalLoginInfoScreen__save_to_password_manager">Zapisz w menedżerze haseł</string>
     <!-- Action button for users who would rather write the Signal Login down themselves. -->
-    <string name="SignalLoginInfoScreen__save_manually">Save manually</string>
+    <string name="SignalLoginInfoScreen__save_manually">Zapisz gdzie indziej</string>
     <!-- Error shown when the Signal Login could not be stored in the password manager. -->
     <string name="SignalLoginInfoScreen__your_signal_login_could_not_be_saved">Your Signal Login could not be saved. Please save it manually instead.</string>
 
@@ -668,17 +668,17 @@
     <!-- Description explaining what a username is used for. -->
     <string name="AddUsernameScreen__people_can_message_you_by_username">People can message you by username instead of a phone number.</string>
     <!-- Prompt shown above the username field. -->
-    <string name="AddUsernameScreen__choose_your_username">Choose your username</string>
+    <string name="AddUsernameScreen__choose_your_username">Wybierz nazwę użytkownika</string>
     <!-- Label/hint for the username field. -->
-    <string name="AddUsernameScreen__username">Username</string>
+    <string name="AddUsernameScreen__username">Nazwa użytkownika</string>
     <!-- Helper text below the username field. Followed by a "learn more" link. -->
-    <string name="AddUsernameScreen__usernames_are_always_paired_with_a_set_of_numbers">Usernames are always paired with a set of numbers.</string>
+    <string name="AddUsernameScreen__usernames_are_always_paired_with_a_set_of_numbers">Nazwy użytkowników zawsze są parowane z zestawem cyfr.</string>
     <!-- Link in the helper text that opens a support article about usernames. -->
-    <string name="AddUsernameScreen__learn_more">Learn more</string>
+    <string name="AddUsernameScreen__learn_more">Dowiedz się więcej</string>
     <!-- Button that skips choosing a username. -->
-    <string name="AddUsernameScreen__skip">Skip</string>
+    <string name="AddUsernameScreen__skip">Pomiń</string>
     <!-- Button that submits the chosen username. -->
-    <string name="AddUsernameScreen__next">Next</string>
+    <string name="AddUsernameScreen__next">Dalej</string>
     <!-- Validation error shown when the entered username is too short. -->
     <string name="AddUsernameScreen__usernames_must_be_at_least_3_characters">Usernames must be at least 3 characters</string>
     <!-- Validation error shown when the entered username is too long. -->
