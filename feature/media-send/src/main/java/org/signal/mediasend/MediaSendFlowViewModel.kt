@@ -1366,8 +1366,14 @@ class MediaSendFlowViewModel(
 
   //region Lifecycle
 
+  /**
+   * A send that picks its destination from the forward sheet finishes the activity as soon as it hands us the
+   * selection, so the send is usually still running when we get here. Cleaning up in that case would cancel the
+   * uploads it depends on and sweep away any attachment it hasn't finished attributing to a message yet, so we leave
+   * it alone and let the send do its own cleanup. Anything a failed send leaves behind is swept on next app start.
+   */
   override fun onCleared() {
-    if (internalState.value.isSent) {
+    if (internalState.value.isSent || internalState.value.isSending) {
       return
     }
 
