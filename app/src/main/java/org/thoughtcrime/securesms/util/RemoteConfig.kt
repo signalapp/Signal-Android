@@ -1442,19 +1442,6 @@ object RemoteConfig {
     hotSwappable = true
   )
 
-  /**
-   * A ratio between 0 and 1, where 0 means that a session is never archived due
-   * to a lack of PQ, and 1 means that a session is always archived due to a
-   * lack of PQ.
-   */
-  @JvmStatic
-  @get:JvmName("requirePqRatio")
-  val requirePqRatio: Double by remoteDouble(
-    key = "android.requirePqRatio",
-    defaultValue = 0.0,
-    hotSwappable = true
-  )
-
   @JvmStatic
   @get:JvmName("disappearMore")
   val disappearMore: Boolean by remoteBoolean(
