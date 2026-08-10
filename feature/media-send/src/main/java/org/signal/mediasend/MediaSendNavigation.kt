@@ -1,6 +1,7 @@
 package org.signal.mediasend
 
 import android.annotation.SuppressLint
+import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -17,6 +18,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
@@ -29,6 +31,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
+import org.signal.core.ui.compose.DialogController
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.compose.showSnackbar
@@ -129,6 +132,13 @@ internal fun MediaSendNavigation(
       }
     }
 
+    // NavDisplay only consumes back while there is somewhere left to go back to. Composed after it to catch the press
+    // at the root, which would otherwise fall through to the activity and finish it.
+    BackHandler(enabled = viewModel.backStack.size == 1) {
+      viewModel.onCloseRequested()
+    }
+
+    DiscardMediaDialog(viewModel.discardMediaDialog)
     Snackbar(viewModel.snackbarEvents)
     Toast(viewModel.toastEvents)
     SendProgress(viewModel.state)
@@ -137,6 +147,26 @@ internal fun MediaSendNavigation(
 
 private val TOAST_DURATION = 3.seconds
 private val SEND_PROGRESS_DELAY = 300.milliseconds
+
+/**
+ * Dialog displayed when the user tries to close out of media send, to warn them that they'll discard media.
+ */
+@Composable
+private fun DiscardMediaDialog(
+  controller: DialogController<Unit>
+) {
+  controller.Content { _, onDismissRequest, onConfirm, _, onDeny ->
+    Dialogs.SimpleAlertDialog(
+      title = stringResource(R.string.MediaSendDialogs__discard_media),
+      body = stringResource(R.string.MediaSendDialogs__you_will_lose_any_media),
+      confirm = stringResource(R.string.MediaSendDialogs__discard),
+      dismiss = stringResource(android.R.string.cancel),
+      onConfirm = onConfirm,
+      onDeny = onDeny,
+      onDismissRequest = onDismissRequest
+    )
+  }
+}
 
 /**
  * Covers the whole flow while a send is in flight, so that the media on its way out cannot be edited or resent. Sends

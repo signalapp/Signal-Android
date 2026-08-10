@@ -228,10 +228,7 @@ class MediaSendV3Activity :
                   .show(supportFragmentManager)
               }
 
-              is MediaSendFlowHudCommand.CloseScreen -> {
-                // TODO [media-send] warning dialog
-                finish()
-              }
+              is MediaSendFlowHudCommand.CloseScreen -> finish()
             }
           }
         )

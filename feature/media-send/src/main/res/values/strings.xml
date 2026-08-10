@@ -6,6 +6,10 @@
   <string name="MediaSendDialogs__youll_lose_any_changes">You\'ll lose any changes you\'ve made to this photo.</string>
   <!-- Confirmation button that discards the user\'s image edits. -->
   <string name="MediaSendDialogs__discard">Discard</string>
+  <!-- Dialog title shown when the user tries to close media send while media is selected. -->
+  <string name="MediaSendDialogs__discard_media">Discard media?</string>
+  <!-- Dialog body explaining that leaving media send will discard the selected media along with any edits. -->
+  <string name="MediaSendDialogs__you_will_lose_any_media">You will lose any media you captured and changes you made.</string>
   <!-- Dialog title asking to save the media being edited to the phone\'s storage -->
   <string name="MediaSendDialogs__save_to_phone">Save to phone?</string>
   <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other apps. -->

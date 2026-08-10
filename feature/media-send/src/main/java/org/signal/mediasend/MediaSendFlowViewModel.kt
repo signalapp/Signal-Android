@@ -128,6 +128,7 @@ class MediaSendFlowViewModel(
   internal val usernameScannedDialog = DialogController<String>()
   internal val linkedDeviceScannedDialog = DialogController<Unit>()
   internal val saveToStorageDialog = DialogController<Unit>()
+  internal val discardMediaDialog = DialogController<Unit>()
   internal val addToGroupStoryDialog = DialogController<MediaRecipientId>()
 
   internal val writeStoragePermission = PermissionController(
@@ -261,6 +262,23 @@ class MediaSendFlowViewModel(
   }
 
   /**
+   * Leaves the flow at the user's request, confirming first if that would throw a selection away. Closing for reasons
+   * of our own emits [MediaSendFlowHudCommand.CloseScreen] directly instead.
+   */
+  internal fun onCloseRequested() {
+    if (state.value.selectedMedia.isEmpty()) {
+      sendHudCommand(MediaSendFlowHudCommand.CloseScreen)
+      return
+    }
+
+    viewModelScope.launch {
+      if (discardMediaDialog.show(Unit) == DialogResult.POSITIVE) {
+        sendHudCommand(MediaSendFlowHudCommand.CloseScreen)
+      }
+    }
+  }
+
+  /**
    * Backs out of a select screen while nothing is selected, stepping over an editor that would have nothing to edit
    * and no toolbar to leave by. Decided here rather than when the selection empties, so that re-selecting something
    * still returns the user to their editor.
@@ -269,7 +287,7 @@ class MediaSendFlowViewModel(
     val destination = backStack.dropLast(1).dropLastWhile { it == MediaSendRoute.Edit }
 
     if (destination.isEmpty()) {
-      sendHudCommand(MediaSendFlowHudCommand.CloseScreen)
+      onCloseRequested()
       return
     }
 
@@ -291,7 +309,7 @@ class MediaSendFlowViewModel(
 
   private fun onCameraXScreenEvent(event: CameraXScreenEvents) {
     when (event) {
-      CameraXScreenEvents.CameraCloseClicked -> sendHudCommand(MediaSendFlowHudCommand.CloseScreen)
+      CameraXScreenEvents.CameraCloseClicked -> onCloseRequested()
       CameraXScreenEvents.GalleryClicked -> backStack.goToFolders()
       is CameraXScreenEvents.ImageCaptured -> handleImageCaptured(event)
       is CameraXScreenEvents.VideoCaptured -> handleVideoCaptured(event)
