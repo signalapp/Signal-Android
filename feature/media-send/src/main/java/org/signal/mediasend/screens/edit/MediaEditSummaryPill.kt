@@ -23,7 +23,6 @@ import androidx.compose.ui.unit.dp
 import org.signal.core.models.media.Media
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.ContentTypeUtil
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.mediasend.R
@@ -81,7 +80,7 @@ private fun SingleRowPill(singleRow: MediaEditSummaryPillTargetState.SingleRow) 
   Pill(
     modifier = Modifier.padding(
       horizontal = 12.dp,
-      vertical = 4.dp
+      vertical = 8.dp
     )
   ) {
     Text(text = singleRow.text, style = MaterialTheme.typography.bodyMedium)
@@ -108,7 +107,7 @@ private fun Pill(modifier: Modifier = Modifier, content: @Composable () -> Unit)
   Box(
     modifier = Modifier
       .background(
-        color = SignalTheme.colors.colorSurface5,
+        color = MaterialTheme.colorScheme.surfaceVariant,
         shape = CircleShape
       )
       .then(modifier)
