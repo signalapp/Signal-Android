@@ -103,7 +103,7 @@ class RecipientTableTest {
   @Test
   fun givenABlockedRecipient_whenIQueryAllContacts_thenIDoNotExpectBlockedToBeReturned() {
     SignalDatabase.recipients.setProfileName(target, ProfileName.fromParts("Blocked", "Person"))
-    SignalDatabase.recipients.setBlocked(target, true)
+    SignalDatabase.recipients.setBlocked(target, true, 0)
 
     val results = SignalDatabase.recipients.queryAllContacts("Blocked", RecipientTable.IncludeSelfMode.Exclude)!!
 
@@ -113,7 +113,7 @@ class RecipientTableTest {
   @Test
   fun givenABlockedRecipient_whenIGetSignalContacts_thenIDoNotExpectBlockedToBeReturned() {
     SignalDatabase.recipients.setProfileName(target, ProfileName.fromParts("Blocked", "Person"))
-    SignalDatabase.recipients.setBlocked(target, true)
+    SignalDatabase.recipients.setBlocked(target, true, 0)
 
     val results: MutableList<RecipientId> = SignalDatabase.recipients.getSignalContacts(RecipientTable.IncludeSelfMode.Exclude).use {
       val ids = mutableListOf<RecipientId>()
@@ -131,7 +131,7 @@ class RecipientTableTest {
   @Test
   fun givenABlockedRecipient_whenIQuerySignalContacts_thenIDoNotExpectBlockedToBeReturned() {
     SignalDatabase.recipients.setProfileName(target, ProfileName.fromParts("Blocked", "Person"))
-    SignalDatabase.recipients.setBlocked(target, true)
+    SignalDatabase.recipients.setBlocked(target, true, 0)
 
     val results = SignalDatabase.recipients.querySignalContacts(RecipientTable.ContactSearchQuery("Blocked", RecipientTable.IncludeSelfMode.Exclude))!!
 
@@ -141,7 +141,7 @@ class RecipientTableTest {
   @Test
   fun givenABlockedRecipient_whenIGetNonGroupContacts_thenIDoNotExpectBlockedToBeReturned() {
     SignalDatabase.recipients.setProfileName(target, ProfileName.fromParts("Blocked", "Person"))
-    SignalDatabase.recipients.setBlocked(target, true)
+    SignalDatabase.recipients.setBlocked(target, true, 0)
 
     val results: MutableList<RecipientId> = SignalDatabase.recipients.getNonGroupContacts(RecipientTable.IncludeSelfMode.Exclude)?.use {
       val ids = mutableListOf<RecipientId>()
@@ -219,6 +219,7 @@ class RecipientTableTest {
       RecipientTable.GROUP_ID,
       RecipientTable.TYPE,
       RecipientTable.BLOCKED,
+      RecipientTable.BLOCKED_AT,
       RecipientTable.STORAGE_SERVICE_ID
     )
 

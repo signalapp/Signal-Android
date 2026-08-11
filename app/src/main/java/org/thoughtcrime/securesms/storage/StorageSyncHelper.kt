@@ -208,6 +208,7 @@ object StorageSyncHelper {
         releaseNotesChatMutedUntilTimestamp = releaseChannelRecord.muteUntil
         releaseNotesChatBlocked = releaseChannelRecord.isBlocked == true
         releaseNotesChatMarkedUnread = releaseChannelRecord.syncExtras.isForcedUnread == true
+        releaseNotesChatBlockedAt = releaseChannelRecord.blockedAt.takeIf { it != 0L }
       }
     }
 
@@ -334,7 +335,7 @@ object StorageSyncHelper {
     }
 
     SignalStore.releaseChannel.releaseChannelRecipientId?.let { releaseChannelId ->
-      update.new.proto.releaseNotesChatBlocked?.let { SignalDatabase.recipients.setBlocked(releaseChannelId, it) }
+      update.new.proto.releaseNotesChatBlocked?.let { blocked -> SignalDatabase.recipients.setBlocked(releaseChannelId, blocked, if (blocked) update.new.proto.releaseNotesChatBlockedAt ?: 0 else 0) }
       update.new.proto.releaseNotesChatMutedUntilTimestamp?.let { SignalDatabase.recipients.setMuted(releaseChannelId, it) }
       if (update.new.proto.releaseNotesChatArchived != null && update.new.proto.releaseNotesChatMarkedUnread != null) {
         SignalDatabase.threads.applyStorageSyncReleaseChannelUpdate(releaseChannelId, update.new.proto.releaseNotesChatArchived!!, update.new.proto.releaseNotesChatMarkedUnread!!)

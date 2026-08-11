@@ -14,7 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.DateUtils;
 
+import java.util.Locale;
 import java.util.Objects;
 
 final class BlockedUsersAdapter extends ListAdapter<Recipient, BlockedUsersAdapter.ViewHolder> {
@@ -43,6 +45,7 @@ final class BlockedUsersAdapter extends ListAdapter<Recipient, BlockedUsersAdapt
     private final AvatarImageView avatar;
     private final TextView        displayName;
     private final TextView        username;
+    private final TextView        blockedAt;
 
     public ViewHolder(@NonNull View itemView, Consumer<Integer> clickConsumer) {
       super(itemView);
@@ -50,6 +53,7 @@ final class BlockedUsersAdapter extends ListAdapter<Recipient, BlockedUsersAdapt
       this.avatar           = itemView.findViewById(R.id.avatar);
       this.displayName      = itemView.findViewById(R.id.display_name);
       this.username         = itemView.findViewById(R.id.username);
+      this.blockedAt        = itemView.findViewById(R.id.blocked_at);
 
       itemView.setOnClickListener(unused -> {
         if (getAdapterPosition() != RecyclerView.NO_POSITION) {
@@ -69,6 +73,15 @@ final class BlockedUsersAdapter extends ListAdapter<Recipient, BlockedUsersAdapt
         username.setVisibility(View.VISIBLE);
       } else {
         username.setVisibility(View.GONE);
+      }
+
+      long blockedAtTimestamp = recipient.getBlockedAt();
+      if (blockedAtTimestamp > 0) {
+        String time = DateUtils.formatDateWithYear(Locale.getDefault(), blockedAtTimestamp);
+        blockedAt.setText(itemView.getContext().getString(R.string.BlockedUsersActivity__blocked_on_s, time));
+        blockedAt.setVisibility(View.VISIBLE);
+      } else {
+        blockedAt.setVisibility(View.GONE);
       }
     }
   }

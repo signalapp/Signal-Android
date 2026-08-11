@@ -308,6 +308,7 @@ object DateUtils : android.text.format.DateUtils() {
     return timestamp.toDateString("EEE, MMM d", locale)
   }
 
+  @JvmStatic
   fun formatDateWithYear(locale: Locale, timestamp: Long): String {
     return timestamp.toDateString("MMM d, yyyy", locale)
   }

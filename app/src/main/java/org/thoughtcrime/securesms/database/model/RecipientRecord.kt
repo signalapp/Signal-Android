@@ -37,6 +37,7 @@ data class RecipientRecord(
   val distributionListId: DistributionListId?,
   val recipientType: RecipientTable.RecipientType,
   val isBlocked: Boolean,
+  val blockedAt: Long,
   val muteUntil: Long,
   val messageVibrateState: VibrateState,
   val callVibrateState: VibrateState,

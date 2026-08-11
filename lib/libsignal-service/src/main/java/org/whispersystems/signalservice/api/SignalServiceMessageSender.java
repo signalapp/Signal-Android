@@ -1548,7 +1548,20 @@ public class SignalServiceMessageSender {
 
     blockedMessage.acisBinary(blocked.individuals.stream().filter(a -> a.getAci() != null).map(a -> a.getAci().toByteString()).collect(Collectors.toList()));
     blockedMessage.numbers(blocked.individuals.stream().filter(a -> a.getE164() != null).map(a -> a.getE164()).collect(Collectors.toList()));
-    blockedMessage.groupIds(blocked.groupIds.stream().map(ByteString::of).collect(Collectors.toList()));
+    blockedMessage.groupIds(blocked.groups.stream().map(g -> ByteString.of(g.getGroupId())).collect(Collectors.toList()));
+
+    blockedMessage.blockedE164s(blocked.individuals.stream().filter(a -> a.getE164() != null).map(a -> new SyncMessage.Blocked.BlockedE164.Builder()
+                                                                                                                              .e164(a.getE164())
+                                                                                                                              .timestamp(a.getBlockedAt())
+                                                                                                                              .build()).collect(Collectors.toList()));
+    blockedMessage.blockedAcis(blocked.individuals.stream().filter(a -> a.getAci() != null).map(a -> new SyncMessage.Blocked.BlockedAci.Builder()
+                                                                                                                            .aciBinary(a.getAci().toByteString())
+                                                                                                                            .timestamp(a.getBlockedAt())
+                                                                                                                            .build()).collect(Collectors.toList()));
+    blockedMessage.blockedGroups(blocked.groups.stream().map(g -> new SyncMessage.Blocked.BlockedGroup.Builder()
+                                                                                         .groupId(ByteString.of(g.getGroupId()))
+                                                                                         .timestamp(g.getBlockedAt())
+                                                                                         .build()).collect(Collectors.toList()));
 
     return container.syncMessage(syncMessage.blocked(blockedMessage.build()).build()).build();
   }

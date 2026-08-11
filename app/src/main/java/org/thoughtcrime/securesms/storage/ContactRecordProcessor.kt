@@ -237,6 +237,7 @@ class ContactRecordProcessor(
       identityState = mergedIdentityState
       identityKey = mergedIdentityKey?.toByteString() ?: ByteString.EMPTY
       blocked = remote.proto.blocked
+      blockedTimestamp = remote.proto.blockedTimestamp
       whitelisted = remote.proto.whitelisted
       archived = remote.proto.archived
       markedUnread = remote.proto.markedUnread

@@ -127,6 +127,7 @@ object RecipientTableCursorUtil {
       distributionListId = distributionListId,
       recipientType = RecipientTable.RecipientType.fromId(cursor.requireInt(RecipientTable.TYPE)),
       isBlocked = cursor.requireBoolean(RecipientTable.BLOCKED),
+      blockedAt = cursor.requireLong(RecipientTable.BLOCKED_AT),
       muteUntil = cursor.requireLong(RecipientTable.MUTE_UNTIL),
       messageVibrateState = RecipientTable.VibrateState.fromId(cursor.requireInt(RecipientTable.MESSAGE_VIBRATE)),
       callVibrateState = RecipientTable.VibrateState.fromId(cursor.requireInt(RecipientTable.CALL_VIBRATE)),

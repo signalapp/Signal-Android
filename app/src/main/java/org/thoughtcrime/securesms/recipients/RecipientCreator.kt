@@ -166,6 +166,7 @@ object RecipientCreator {
       messageVibrate = record.messageVibrateState,
       callVibrate = record.callVibrateState,
       isBlocked = record.isBlocked,
+      blockedAt = record.blockedAt,
       expiresInSeconds = record.expireMessages,
       expireTimerVersion = record.expireTimerVersion,
       participantIdsValue = participantIds ?: LinkedList(),

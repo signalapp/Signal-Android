@@ -85,6 +85,7 @@ class Recipient(
   val isActiveGroup: Boolean = false,
   val isSelf: Boolean = false,
   val isBlocked: Boolean = false,
+  val blockedAt: Long = 0,
   val muteUntil: Long = 0,
   val messageVibrate: VibrateState = VibrateState.DEFAULT,
   val callVibrate: VibrateState = VibrateState.DEFAULT,
@@ -842,6 +843,7 @@ class Recipient(
       isResolving == other.isResolving &&
       isSelf == other.isSelf &&
       isBlocked == other.isBlocked &&
+      blockedAt == other.blockedAt &&
       muteUntil == other.muteUntil &&
       expiresInSeconds == other.expiresInSeconds &&
       profileAvatarFileDetails == other.profileAvatarFileDetails &&

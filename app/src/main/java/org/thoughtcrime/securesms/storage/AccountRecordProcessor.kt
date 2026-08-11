@@ -146,6 +146,7 @@ class AccountRecordProcessor(
       releaseNotesChatMutedUntilTimestamp = remote.proto.releaseNotesChatMutedUntilTimestamp ?: local.proto.releaseNotesChatMutedUntilTimestamp
       releaseNotesChatBlocked = remote.proto.releaseNotesChatBlocked ?: local.proto.releaseNotesChatBlocked
       releaseNotesChatMarkedUnread = remote.proto.releaseNotesChatMarkedUnread ?: local.proto.releaseNotesChatMarkedUnread
+      releaseNotesChatBlockedAt = remote.proto.releaseNotesChatBlockedAt ?: local.proto.releaseNotesChatBlockedAt
 
       safeSetPayments(payments?.enabled == true, payments?.entropy?.toByteArray())
       safeSetSubscriber(donationSubscriberId, donationSubscriberCurrencyCode)
