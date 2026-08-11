@@ -15,6 +15,8 @@ import org.thoughtcrime.securesms.recipients.Recipient
 
 data class IndividualSettingsState(
   val recipient: Recipient = Recipient.UNKNOWN,
+  /** Changed when recipient content changes, since Recipient.equals only compares IDs. */
+  val recipientContentVersion: Int = 0,
   val threadId: Long = -1L,
   val storyViewState: StoryViewState = StoryViewState.NONE,
   val isDeprecatedOrUnregistered: Boolean = false,

@@ -401,6 +401,7 @@ class GroupSettingsViewModel(
 
     return copy(
       recipient = recipient,
+      recipientContentVersion = if (this.recipient.hasSameContent(recipient)) recipientContentVersion else recipientContentVersion + 1,
       callBar = CallBarState(
         isMessageAvailable = isCallInfoVariant,
         isVideoAvailable = recipient.isPushV2Group && !recipient.isBlocked && recipient.isActiveGroup,
