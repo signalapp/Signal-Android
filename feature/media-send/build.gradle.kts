@@ -67,6 +67,7 @@ dependencies {
 
   // Media
   implementation(libs.androidx.media3.exoplayer)
+  implementation(libs.androidx.media3.ui)
 
   // CameraX
   implementation(libs.androidx.camera.core)

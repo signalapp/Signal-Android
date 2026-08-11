@@ -23,6 +23,13 @@ import org.signal.imageeditor.core.Renderer
 import org.signal.imageeditor.core.RendererContext
 import org.signal.imageeditor.core.model.EditorElement
 import org.signal.imageeditor.core.model.EditorModel
+import org.signal.mediasend.screens.edit.ChromeInsets
+
+/** In model units. */
+private const val MIN_CONTENT_VIEW_PORT = 100f
+
+private const val MIN_ZOOM = 1f
+private const val MAX_ZOOM = 8f
 
 /**
  * Compose-observable wrapper around [EditorModel].
@@ -61,7 +68,17 @@ internal class ImageEditorState(
   val visibleViewPort: RectF = RectF(Bounds.LEFT, Bounds.TOP, Bounds.RIGHT, Bounds.BOTTOM)
 
   private val viewPort: RectF = RectF(Bounds.LEFT, Bounds.TOP, Bounds.RIGHT, Bounds.BOTTOM)
+  private val contentViewPort: RectF = RectF(Bounds.LEFT, Bounds.TOP, Bounds.RIGHT, Bounds.BOTTOM)
   private val screen: RectF = RectF()
+
+  private val fitMatrix: Matrix = Matrix()
+  private var zoomScale: Float = 1f
+  private var zoomTranslateX: Float = 0f
+  private var zoomTranslateY: Float = 0f
+
+  private var canvasWidth: Float = 0f
+  private var canvasHeight: Float = 0f
+  private var contentInsets: ChromeInsets = ChromeInsets()
 
   private var rendererContext: RendererContext? = null
 
@@ -98,9 +115,66 @@ internal class ImageEditorState(
     editorModel.setUndoRedoStackListener(null)
   }
 
-  /** Recomputes the view matrix to map the editor's coordinate space to the given pixel dimensions. */
-  fun updateViewMatrix(width: Float, height: Float) {
-    screen.set(0f, 0f, width, height)
+  fun setCanvasSize(width: Float, height: Float) {
+    if (width == canvasWidth && height == canvasHeight) return
+
+    canvasWidth = width
+    canvasHeight = height
+
+    clearZoom()
+    updateViewMatrix()
+  }
+
+  /** Layered onto [viewMatrix] after the fit rather than pushed into the model, so it is not undoable or exported. */
+  fun zoomBy(focusX: Float, focusY: Float, scaleFactor: Float, panX: Float, panY: Float) {
+    val scaled = (zoomScale * scaleFactor).coerceIn(MIN_ZOOM, MAX_ZOOM)
+    val applied = scaled / zoomScale
+
+    // Pin what is under the midpoint of the fingers while the scale changes, then track the fingers.
+    zoomTranslateX = focusX - (focusX - zoomTranslateX) * applied + panX
+    zoomTranslateY = focusY - (focusY - zoomTranslateY) * applied + panY
+    zoomScale = scaled
+
+    constrainZoom()
+    applyZoom()
+  }
+
+  fun clearZoom() {
+    if (zoomScale == 1f && zoomTranslateX == 0f && zoomTranslateY == 0f) return
+
+    zoomScale = 1f
+    zoomTranslateX = 0f
+    zoomTranslateY = 0f
+    applyZoom()
+  }
+
+  private fun constrainZoom() {
+    zoomTranslateX = zoomTranslateX.coerceIn(canvasWidth - canvasWidth * zoomScale, 0f)
+    zoomTranslateY = zoomTranslateY.coerceIn(canvasHeight - canvasHeight * zoomScale, 0f)
+  }
+
+  private fun applyZoom() {
+    viewMatrix.set(fitMatrix)
+    viewMatrix.postScale(zoomScale, zoomScale)
+    viewMatrix.postTranslate(zoomTranslateX, zoomTranslateY)
+    revision++
+  }
+
+  fun setContentInsets(insets: ChromeInsets) {
+    if (insets == contentInsets) return
+
+    contentInsets = insets
+    updateViewMatrix()
+  }
+
+  /**
+   * Unlike the view-based editor this was ported from, the rect handed to the model is inset by [contentInsets] while
+   * the matrix still spans the full canvas, so transformed content can still reach the screen edges.
+   */
+  private fun updateViewMatrix() {
+    if (canvasWidth <= 0f || canvasHeight <= 0f) return
+
+    screen.set(0f, 0f, canvasWidth, canvasHeight)
     viewMatrix.setRectToRect(viewPort, screen, Matrix.ScaleToFit.FILL)
 
     val values = FloatArray(9)
@@ -118,8 +192,26 @@ internal class ImageEditorState(
 
     visibleViewPort.set(tempViewPort)
     viewMatrix.setRectToRect(visibleViewPort, screen, Matrix.ScaleToFit.CENTER)
-    editorModel.setVisibleViewPort(visibleViewPort)
-    revision++
+
+    // Viewport and screen share an aspect ratio by construction, so one scale covers both axes.
+    val pixelsToModel = if (screen.width() > 0f) visibleViewPort.width() / screen.width() else 0f
+    contentViewPort.set(
+      visibleViewPort.left + contentInsets.left * pixelsToModel,
+      visibleViewPort.top + contentInsets.top * pixelsToModel,
+      visibleViewPort.right - contentInsets.right * pixelsToModel,
+      visibleViewPort.bottom - contentInsets.bottom * pixelsToModel
+    )
+
+    // Chrome plus keyboard can exceed the screen on a short device.
+    if (contentViewPort.width() < MIN_CONTENT_VIEW_PORT || contentViewPort.height() < MIN_CONTENT_VIEW_PORT) {
+      contentViewPort.set(visibleViewPort)
+    }
+
+    editorModel.setVisibleViewPort(contentViewPort)
+
+    fitMatrix.set(viewMatrix)
+    constrainZoom()
+    applyZoom()
   }
 
   /** Returns a cached [RendererContext], recreating it only when the canvas instance changes. */

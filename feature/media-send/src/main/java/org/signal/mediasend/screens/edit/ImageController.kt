@@ -384,6 +384,8 @@ internal class ImageController(
   }
 
   fun enterCropMode() {
+    // Two fingers belong to the crop from here, so there would be no way back out of a zoom.
+    imageEditorState.clearZoom()
     editorModel.startCrop()
     initialDialScale = editorModel.mainImage?.localScaleX ?: 1f
     transitionTo(Mode.CROP)

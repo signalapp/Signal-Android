@@ -31,6 +31,7 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.input.pointer.AwaitPointerEventScope
 import androidx.compose.ui.input.pointer.changedToDown
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.onSizeChanged
@@ -44,11 +45,13 @@ import androidx.compose.ui.unit.dp
 import org.signal.imageeditor.core.ImageEditorTouchHandler
 import org.signal.imageeditor.core.model.EditorElement
 import org.signal.imageeditor.core.renderers.MultiLineTextRenderer
+import org.signal.mediasend.screens.edit.ChromeInsets
 import org.signal.mediasend.screens.edit.ImageController
 
 @Composable
 internal fun ImageEditor(
   controller: ImageController,
+  contentInsets: ChromeInsets,
   modifier: Modifier = Modifier
 ) {
   val context = LocalContext.current
@@ -63,6 +66,10 @@ internal fun ImageEditor(
     onDispose { state.detach() }
   }
 
+  LaunchedEffect(state, contentInsets) {
+    state.setContentInsets(contentInsets)
+  }
+
   LaunchedEffect(controller.isDraggedElementOverTrash) {
     if (controller.isDraggedElementOverTrash) {
       hapticFeedback.performHapticFeedback(HapticFeedbackType.TextHandleMove)
@@ -74,7 +81,7 @@ internal fun ImageEditor(
       modifier = Modifier
         .matchParentSize()
         .clipToBounds()
-        .onSizeChanged { state.updateViewMatrix(it.width.toFloat(), it.height.toFloat()) }
+        .onSizeChanged { state.setCanvasSize(it.width.toFloat(), it.height.toFloat()) }
         .imageEditorPointerInput(state, controller)
     ) {
       state.revision
@@ -173,8 +180,15 @@ private fun Modifier.imageEditorPointerInput(state: ImageEditorState, controller
         controller.onEntityDown(hitElement)
       }
 
-      // In NONE mode with nothing hit, let the pager handle the gesture
-      if (controller.mode == ImageController.Mode.NONE && !touchHandler.hasActiveSession()) {
+      // Crop is excluded: two fingers there scale the image inside the crop frame.
+      val canZoomCanvas = !touchHandler.hasActiveSession() && controller.mode != ImageController.Mode.CROP
+      if (canZoomCanvas && !awaitSecondPointer()) {
+        // In NONE mode the pager took the swipe; anywhere else it was a tap on nothing, which still deselects.
+        if (controller.mode != ImageController.Mode.NONE) {
+          touchHandler.onUp(state.editorModel)
+          lastTapElement = null
+          controller.onEntitySingleTap(null)
+        }
         return@awaitEachGesture
       }
 
@@ -186,6 +200,7 @@ private fun Modifier.imageEditorPointerInput(state: ImageEditorState, controller
       var draggedElement: EditorElement? = null
       var droppedOnTrash = false
       var didPinch = false
+      var zoomPointers: Pair<Offset, Offset>? = null
 
       try {
         while (true) {
@@ -231,7 +246,16 @@ private fun Modifier.imageEditorPointerInput(state: ImageEditorState, controller
             break
           }
 
-          if (currentCount == 2 && previousPointerCount < 2) {
+          if (canZoomCanvas) {
+            // Deliberately outside didPinch: zooming is not an edit and must not mark the model dirty.
+            zoomPointers = if (currentCount == 2) {
+              val current = currentPressed[0].position to currentPressed[1].position
+              zoomPointers?.let { state.zoomBetween(it, current) }
+              current
+            } else {
+              null
+            }
+          } else if (currentCount == 2 && previousPointerCount < 2) {
             didPinch = true
             val newPointer = event.changes.firstOrNull { it.changedToDown() } ?: currentPressed.last()
             val pointerIndex = event.changes.indexOf(newPointer).coerceIn(0, 1)
@@ -249,7 +273,7 @@ private fun Modifier.imageEditorPointerInput(state: ImageEditorState, controller
           val position = currentPressed.first().position
           if (inDrag) {
             controller.onDragMoved(draggedElement, touchHandler.checkTrashIntersect(state.editorModel, position.toPointF()))
-          } else if (currentCount == 1 && !touchHandler.isDrawingSession() && (position - down.position).getDistanceSquared() > MAX_MOVE_SQUARED_BEFORE_DRAG) {
+          } else if (!canZoomCanvas && currentCount == 1 && !touchHandler.isDrawingSession() && (position - down.position).getDistanceSquared() > MAX_MOVE_SQUARED_BEFORE_DRAG) {
             inDrag = true
             draggedElement = touchHandler.getSelected()
             controller.onDragStarted(draggedElement)
@@ -270,3 +294,34 @@ private fun Modifier.imageEditorPointerInput(state: ImageEditorState, controller
 }
 
 private fun Offset.toPointF(): PointF = PointF(x, y)
+
+/** Consumes nothing while waiting, so a one-finger swipe still reaches the pager. */
+private suspend fun AwaitPointerEventScope.awaitSecondPointer(): Boolean {
+  while (true) {
+    val event = awaitPointerEvent()
+
+    if (event.changes.any { it.isConsumed }) return false
+
+    val pressed = event.changes.count { it.pressed }
+    if (pressed == 0) return false
+    if (pressed >= 2) return true
+  }
+}
+
+private fun ImageEditorState.zoomBetween(previous: Pair<Offset, Offset>, current: Pair<Offset, Offset>) {
+  val previousSpread = (previous.first - previous.second).getDistance()
+  val currentSpread = (current.first - current.second).getDistance()
+  if (previousSpread <= 0f || currentSpread <= 0f) return
+
+  val previousMidpoint = (previous.first + previous.second) / 2f
+  val currentMidpoint = (current.first + current.second) / 2f
+  val pan = currentMidpoint - previousMidpoint
+
+  zoomBy(
+    focusX = currentMidpoint.x,
+    focusY = currentMidpoint.y,
+    scaleFactor = currentSpread / previousSpread,
+    panX = pan.x,
+    panY = pan.y
+  )
+}

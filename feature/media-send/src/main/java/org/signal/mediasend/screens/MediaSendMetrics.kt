@@ -21,6 +21,8 @@ object MediaSendMetrics {
   val SelectedMediaPreviewSize = DpSize(44.dp, 44.dp)
   val SelectedMediaPreviewShape = RoundedCornerShape(8.dp)
 
+  val MediaProjectionGutter = 16.dp
+
   val ControlEnterTransition: EnterTransition = fadeIn()
   val ControlExitTransition: ExitTransition = fadeOut()
 
