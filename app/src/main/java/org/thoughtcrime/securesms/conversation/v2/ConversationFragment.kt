@@ -27,7 +27,6 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.provider.Browser
 import android.provider.ContactsContract
 import android.provider.Settings
 import android.text.Editable
@@ -57,6 +56,7 @@ import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.pm.ShortcutManagerCompat
+import androidx.core.net.toUri
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.doOnPreDraw
@@ -129,6 +129,7 @@ import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.concurrent.ListenableFuture
 import org.signal.core.util.concurrent.addTo
 import org.signal.core.util.dp
+import org.signal.core.util.encourageNewBrowserTab
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.signal.core.util.requireDrawable
@@ -898,10 +899,6 @@ class ConversationFragment :
   }
 
   override fun startActivity(intent: Intent) {
-    if (intent.getStringArrayExtra(Browser.EXTRA_APPLICATION_ID) != null) {
-      intent.removeExtra(Browser.EXTRA_APPLICATION_ID)
-    }
-
     try {
       super.startActivity(intent)
     } catch (e: ActivityNotFoundException) {
@@ -911,6 +908,10 @@ class ConversationFragment :
         toastDuration = Toast.LENGTH_LONG
       )
     }
+  }
+
+  private fun openLink(url: String) {
+    startActivity(Intent(Intent.ACTION_VIEW, url.toUri()).encourageNewBrowserTab())
   }
 
   //endregion
@@ -3550,8 +3551,8 @@ class ConversationFragment :
     }
 
     override fun onLinkPreviewClicked(linkPreview: LinkPreview) {
-      val activity = activity ?: return
-      CommunicationActions.openBrowserLink(activity, linkPreview.url)
+      activity ?: return
+      openLink(linkPreview.url)
     }
 
     override fun onQuotedIndicatorClicked(messageRecord: MessageRecord) {
@@ -3940,8 +3941,14 @@ class ConversationFragment :
     override fun onScheduledIndicatorClicked(view: View, conversationMessage: ConversationMessage) = Unit
 
     override fun onUrlClicked(url: String): Boolean {
-      return CommunicationActions.handlePotentialGroupLinkUrl(requireActivity(), url) ||
+      if (CommunicationActions.handlePotentialGroupLinkUrl(requireActivity(), url) ||
         CommunicationActions.handlePotentialProxyLinkUrl(requireActivity(), url)
+      ) {
+        return true
+      }
+
+      openLink(url)
+      return true
     }
 
     override fun onViewGiftBadgeClicked(messageRecord: MessageRecord) {
