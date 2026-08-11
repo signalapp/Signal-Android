@@ -77,6 +77,7 @@ public final class SignalPinReminderDialog {
     ClickableSpan clickableSpan = new ClickableSpan() {
       @Override
       public void onClick(@NonNull View widget) {
+        ViewUtil.hideKeyboard(context, pinEditText);
         dialog.dismiss();
         launcher.launch(CreateSvrPinActivity.getIntentForPinChangeFromForgotPin(context), CreateSvrPinActivity.REQUEST_NEW_PIN);
       }
@@ -91,6 +92,7 @@ public final class SignalPinReminderDialog {
     PinVerifier          verifier = new V2PinVerifier();
 
     skip.setOnClickListener(v -> {
+      ViewUtil.hideKeyboard(context, pinEditText);
       dialog.dismiss();
       mainCallback.onReminderDismissed(callback.hadWrongGuess());
     });
@@ -112,6 +114,7 @@ public final class SignalPinReminderDialog {
           submit.setEnabled(true);
 
           if (PinHashUtil.verifyLocalPinHash(localHash, text)) {
+            ViewUtil.hideKeyboard(context, pinEditText);
             dialog.dismiss();
             mainCallback.onReminderCompleted(text, callback.hadWrongGuess());
           }
@@ -134,6 +137,7 @@ public final class SignalPinReminderDialog {
       @Override
       public void onPinCorrect(@NonNull String pin) {
         Log.i(TAG, "Correct PIN entry.");
+        ViewUtil.hideKeyboard(context, inputText);
         dialog.dismiss();
         mainCallback.onReminderCompleted(pin, hadWrongGuess);
       }
