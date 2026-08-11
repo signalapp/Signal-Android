@@ -1472,7 +1472,7 @@ object RemoteConfig {
   @JvmStatic
   @get:JvmName("useNewMediaSendFlow")
   val useNewMediaSendFlow: Boolean by remoteBoolean(
-    key = "android.useNewMediaSendFlow",
+    key = "android.useNewMediaSendFlow.2",
     defaultValue = false,
     hotSwappable = true
   )

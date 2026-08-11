@@ -402,7 +402,7 @@ internal fun MediaEditScreen(
     val displayName: String? by displayNameState
 
     MediaEditControl(
-      faded = isDragging,
+      faded = isDragging || isImageEditing,
       modifier = Modifier
         .align(Alignment.TopCenter)
         .padding(top = 10.dp)

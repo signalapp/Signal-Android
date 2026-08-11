@@ -10,6 +10,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -82,7 +83,7 @@ fun AddAMessageRow(
       modifier = Modifier
         .background(color = MaterialTheme.colorScheme.surfaceVariant, shape = RoundedCornerShape(24.dp))
         .weight(1f)
-        .heightIn(min = 40.dp)
+        .heightIn(min = 44.dp)
         .then(
           if (viewOnce) {
             // A view-once send cannot carry a body, so the row becomes a static label rather than an entry point.
@@ -117,6 +118,7 @@ fun AddAMessageRow(
           message?.takeIf { it.isNotBlank() } ?: stringResource(if (isReply) R.string.AddAMessageRow__add_a_reply else R.string.AddAMessageRow__message),
           Modifier
             .weight(1f)
+            .height(44.dp)
             .padding(end = if (viewOnceAvailable) 0.dp else 16.dp, top = 10.dp, bottom = 10.dp)
         )
       }
@@ -143,8 +145,8 @@ fun AddAMessageRow(
         onLongClick = if (canScheduleSend) scheduleSendMenuController::show else null,
         onLongClickLabel = stringResource(R.string.AddAMessageRow__schedule_send),
         colors = IconButtons.iconButtonColors(
-          containerColor = recipientChatColor ?: MaterialTheme.colorScheme.onSecondaryContainer,
-          contentColor = if (recipientChatColor != null) SignalTheme.colors.colorOnCustom else MaterialTheme.colorScheme.secondaryContainer,
+          containerColor = recipientChatColor ?: MaterialTheme.colorScheme.primaryContainer,
+          contentColor = if (recipientChatColor != null) SignalTheme.colors.colorOnCustom else MaterialTheme.colorScheme.onPrimaryContainer,
           disabledContainerColor = DisabledNextButtonColor,
           disabledContentColor = MaterialTheme.colorScheme.secondaryContainer
         ),
