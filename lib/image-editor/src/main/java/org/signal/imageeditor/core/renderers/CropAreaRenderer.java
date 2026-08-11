@@ -43,7 +43,7 @@ public final class CropAreaRenderer implements Renderer {
     Resources resources = rendererContext.context.getResources();
 
     canvas.clipPath(cropClipPath);
-    canvas.drawColor(color);
+    canvas.drawColor(rendererContext.resolveBlackoutColor(color));
 
     rendererContext.mapRect(dst, Bounds.FULL_BOUNDS);
 

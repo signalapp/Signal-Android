@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
@@ -28,6 +29,7 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.nativeCanvas
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.input.pointer.changedToDown
 import androidx.compose.ui.input.pointer.pointerInput
@@ -53,6 +55,9 @@ internal fun ImageEditor(
   val state = controller.imageEditorState
   val hapticFeedback = LocalHapticFeedback.current
 
+  // Masks everything outside the image, so it has to match the surface the editor is drawn on to read as a background.
+  val blackoutColor = MaterialTheme.colorScheme.surface.toArgb()
+
   DisposableEffect(state) {
     state.attach()
     onDispose { state.detach() }
@@ -76,6 +81,7 @@ internal fun ImageEditor(
 
       val nativeCanvas = drawContext.canvas.nativeCanvas
       val rendererContext = state.getOrCreateRendererContext(context, nativeCanvas)
+      rendererContext.setBlackoutColor(blackoutColor)
       rendererContext.save()
       try {
         rendererContext.canvasMatrix.initial(state.viewMatrix)

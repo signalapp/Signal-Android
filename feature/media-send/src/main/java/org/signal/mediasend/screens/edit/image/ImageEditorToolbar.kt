@@ -78,13 +78,13 @@ private fun ImageEditorNoneStateToolbar(
 ) {
   MediaEditorToolbar(modifier) {
     MediaEditorToolbarButton(
-      imageVector = SignalIcons.BrushPen.imageVector,
-      onClick = imageEditorController::beginDrawEdit
+      imageVector = SignalIcons.CropRotate.imageVector,
+      onClick = imageEditorController::beginCropAndRotateEdit
     )
 
     MediaEditorToolbarButton(
-      imageVector = SignalIcons.CropRotate.imageVector,
-      onClick = imageEditorController::beginCropAndRotateEdit
+      imageVector = SignalIcons.BrushPen.imageVector,
+      onClick = imageEditorController::beginDrawEdit
     )
 
     MediaEditorToolbarSharedButtons(
