@@ -1,0 +1,27 @@
+name: Build ERIZO APK
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar el código
+        uses: actions/checkout@v4
+
+      - name: Configurar Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - name: Compilar APK
+        run: ./gradlew assembleDebug
+
+      - name: Guardar APK generada
+        uses: actions/upload-artifact@v4
+        with:
+          name: erizo-apk
+          path: app/build/outputs/apk/**/*.apk
