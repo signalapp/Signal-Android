@@ -15,6 +15,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewOutlineProvider
+import androidx.annotation.OptIn
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
@@ -33,7 +34,6 @@ import org.signal.video.VideoPlayer
 import kotlin.time.Duration.Companion.microseconds
 import kotlin.time.Duration.Companion.milliseconds
 
-@OptIn(UnstableApi::class)
 class VideoEditorFragment : Fragment() {
   private val videoScanThrottle = Throttler(150)
   private val handler = Handler(Looper.getMainLooper())
@@ -271,6 +271,7 @@ class VideoEditorFragment : Fragment() {
   }
 
   /** The content frame tracks the video's rectangle, but fills everything it is given until the player reports a size. */
+  @OptIn(UnstableApi::class)
   private fun shapeContentFrame(view: View) {
     val contentFrame: AspectRatioFrameLayout = view.findViewById(R.id.exo_content_frame) ?: return
     val radius = VIDEO_CORNER_RADIUS_DP * resources.displayMetrics.density
