@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.conversation.ConversationMessage;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
+import org.thoughtcrime.securesms.groups.ui.GroupMemberOrder;
 
 import java.util.Collection;
 import java.util.Comparator;
@@ -12,9 +13,9 @@ import java.util.List;
 import java.util.TreeSet;
 
 public final class MessageDetails {
-  private static final Comparator<RecipientDeliveryStatus> HAS_DISPLAY_NAME     = (r1, r2) -> Boolean.compare(r2.getRecipient().hasAUserSetDisplayName(AppDependencies.getApplication()), r1.getRecipient().hasAUserSetDisplayName(AppDependencies.getApplication()));
-  private static final Comparator<RecipientDeliveryStatus> ALPHABETICAL         = (r1, r2) -> r1.getRecipient().getDisplayName(AppDependencies.getApplication()).compareToIgnoreCase(r2.getRecipient().getDisplayName(AppDependencies.getApplication()));
-  private static final Comparator<RecipientDeliveryStatus> RECIPIENT_COMPARATOR = HAS_DISPLAY_NAME.thenComparing(ALPHABETICAL);
+  private static final Comparator<RecipientDeliveryStatus> RECIPIENT_COMPARATOR = GroupMemberOrder.<RecipientDeliveryStatus>displayNameComparator(r -> r.getRecipient().hasAUserSetDisplayName(AppDependencies.getApplication()),
+                                                                                                                                                r -> r.getRecipient().getDisplayName(AppDependencies.getApplication()))
+                                                                                                 .thenComparing(r -> r.getRecipient().getId());
 
   private final ConversationMessage conversationMessage;
 
