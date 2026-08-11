@@ -154,9 +154,9 @@ class InAppPaymentRecurringContextJob private constructor(
       throw Exception("Unregistered users cannot perform this job.")
     }
 
-    if (SignalStore.account.isLinkedDevice) {
+    if (SignalStore.account.isLinkedDevice && SignalDatabase.inAppPayments.getById(inAppPaymentId)?.type == InAppPaymentType.RECURRING_BACKUP) {
       warning("Linked device. Failing.")
-      throw Exception("Linked devices cannot not perform this job")
+      throw Exception("Linked devices cannot perform this job for backups")
     }
 
     val (inAppPayment, requestContext) = getAndValidateInAppPayment()
