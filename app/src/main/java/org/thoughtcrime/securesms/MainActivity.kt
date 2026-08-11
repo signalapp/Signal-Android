@@ -1174,16 +1174,16 @@ class MainActivity :
       toolbarViewModel.markAllMessagesRead()
     }
 
-    override fun onInviteFriendsClick() {
-      openSettings.launch(AppSettingsActivity.invite(this@MainActivity))
-    }
-
     override fun onFilterUnreadChatsClick() {
       toolbarViewModel.setChatFilter(ConversationFilter.UNREAD)
     }
 
     override fun onClearUnreadChatsFilterClick() {
       toolbarViewModel.setChatFilter(ConversationFilter.OFF)
+    }
+
+    override fun onOpenArchiveClick() {
+      mainNavigationViewModel.onArchiveSelected()
     }
 
     override fun onStarredMessagesClick() {
