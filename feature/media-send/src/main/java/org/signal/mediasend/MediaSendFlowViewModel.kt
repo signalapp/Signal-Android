@@ -928,9 +928,19 @@ class MediaSendFlowViewModel(
     val snapshot = state.value
     val uri = snapshot.focusedMedia?.uri ?: return
     val existing = snapshot.editorStateMap[uri] as? EditorState.VideoTrim ?: return
-    val updated = existing.copy(videoTrimData = existing.videoTrimData.copy(isMuted = !existing.videoTrimData.isMuted))
+    val isNowMuted = !existing.videoTrimData.isMuted
+    val updated = existing.copy(videoTrimData = existing.videoTrimData.copy(isMuted = isNowMuted))
 
     updateState { copy(editorStateMap = editorStateMap + (uri to updated)) }
+
+    if (isNowMuted) {
+      internalToastEvents.trySend(
+        ToastEvent(
+          icon = SignalIcons.SpeakerSlash,
+          message = ToastMessage.Text(R.string.MediaSendViewModel__video_will_be_sent_without_audio)
+        )
+      )
+    }
 
     snapshot.selectedMedia.firstOrNull { it.uri == uri }?.let { preUploadController.cancelUpload(it) }
   }
