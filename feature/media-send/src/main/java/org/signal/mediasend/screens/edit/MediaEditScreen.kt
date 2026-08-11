@@ -376,7 +376,7 @@ internal fun MediaEditScreen(
           onEvent = onEvent,
           onNextClick = { onEvent(MediaEditScreenEvents.NextClick) },
           modifier = Modifier
-            .widthIn(max = 624.dp)
+            .widthIn(max = MediaSendMetrics.BottomBarMaxWidth)
             .padding(horizontal = 16.dp)
             // Own padding rather than the stack's arrangement so the gap collapses along with the slide.
             .padding(top = 20.dp, bottom = 16.dp)
@@ -521,7 +521,9 @@ private fun VideoTrimTimeline(
 
   Column(
     horizontalAlignment = Alignment.End,
-    modifier = Modifier.fillMaxWidth()
+    modifier = Modifier
+      .widthIn(max = MediaSendMetrics.BottomBarMaxWidth)
+      .fillMaxWidth()
   ) {
     VideoTrimBar(
       videoUri = videoUri,

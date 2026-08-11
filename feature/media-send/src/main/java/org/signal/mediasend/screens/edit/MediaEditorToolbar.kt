@@ -8,6 +8,7 @@ package org.signal.mediasend.screens.edit
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -49,6 +50,8 @@ internal fun MediaEditorToolbar(
     Row(modifier = modifier.height(48.dp)) {
       leading()
 
+      Spacer(modifier = Modifier.weight(1f))
+
       Row(
         modifier = Modifier
           .fillMaxHeight()
@@ -57,11 +60,15 @@ internal fun MediaEditorToolbar(
         content()
       }
 
+      Spacer(modifier = Modifier.weight(1f))
+
       trailing()
     }
   } else {
     Column(modifier = modifier.width(48.dp)) {
-      leading()
+      trailing()
+
+      Spacer(modifier = Modifier.size(16.dp))
 
       Column(
         modifier = Modifier
@@ -71,7 +78,9 @@ internal fun MediaEditorToolbar(
         content()
       }
 
-      trailing()
+      Spacer(modifier = Modifier.size(16.dp))
+
+      leading()
     }
   }
 }

@@ -6,6 +6,8 @@
 package org.signal.mediasend.screens.edit.image
 
 import androidx.compose.animation.Crossfade
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -104,10 +106,10 @@ private fun ImageEditorDrawStateToolbar(
   MediaEditorToolbar(
     modifier = modifier,
     leading = {
-      CommitButton(imageEditorController)
+      DiscardButton(imageEditorController)
     },
     trailing = {
-      DiscardButton(imageEditorController)
+      CommitButton(imageEditorController)
     }
   ) {
     ImageEditorToggleButton(
@@ -161,10 +163,10 @@ private fun ImageEditorCropAndResizeToolbar(
   MediaEditorToolbar(
     modifier = modifier,
     leading = {
-      CommitButton(imageEditorController)
+      DiscardButton(imageEditorController)
     },
     trailing = {
-      DiscardButton(imageEditorController)
+      CommitButton(imageEditorController)
     }
   ) {
     MediaEditorToolbarButton(
@@ -285,14 +287,16 @@ private fun ImageEditorToggleButton(
 @Composable
 private fun ImageEditorNoneStateToolbarPreview() {
   Previews.Preview {
-    ImageEditorNoneStateToolbar(
-      imageEditorController = remember {
-        ImageController(EditorModel.create(0))
-      },
-      state = rememberPreviewState(),
-      editorState = remember { EditorState.Image(EditorModel.create(0)) },
-      onEvent = {}
-    )
+    Box(modifier = Modifier.fillMaxSize()) {
+      ImageEditorNoneStateToolbar(
+        imageEditorController = remember {
+          ImageController(EditorModel.create(0))
+        },
+        state = rememberPreviewState(),
+        editorState = remember { EditorState.Image(EditorModel.create(0)) },
+        onEvent = {}
+      )
+    }
   }
 }
 
@@ -303,14 +307,16 @@ private fun ImageEditorNoneStateToolbarPreview() {
 @Composable
 private fun ImageEditorDrawStateToolbarPreview() {
   Previews.Preview {
-    ImageEditorDrawStateToolbar(
-      imageEditorController = remember {
-        ImageController(EditorModel.create(0)).apply {
-          enterDrawMode()
-        }
-      },
-      onEvent = {}
-    )
+    Box(modifier = Modifier.fillMaxSize()) {
+      ImageEditorDrawStateToolbar(
+        imageEditorController = remember {
+          ImageController(EditorModel.create(0)).apply {
+            enterDrawMode()
+          }
+        },
+        onEvent = {}
+      )
+    }
   }
 }
 
@@ -321,13 +327,15 @@ private fun ImageEditorDrawStateToolbarPreview() {
 @Composable
 private fun ImageEditorCropAndResizeToolbarPreview() {
   Previews.Preview {
-    ImageEditorCropAndResizeToolbar(
-      imageEditorController = remember {
-        ImageController(EditorModel.create(0)).apply {
-          enterCropMode()
+    Box(modifier = Modifier.fillMaxSize()) {
+      ImageEditorCropAndResizeToolbar(
+        imageEditorController = remember {
+          ImageController(EditorModel.create(0)).apply {
+            enterCropMode()
+          }
         }
-      }
-    )
+      )
+    }
   }
 }
 
