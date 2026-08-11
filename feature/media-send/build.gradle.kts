@@ -70,6 +70,7 @@ dependencies {
 
   // CameraX
   implementation(libs.androidx.camera.core)
+  implementation(libs.androidx.camera.compose)
 
   // Testing
   testImplementation(testFixtures(project(":core:ui")))

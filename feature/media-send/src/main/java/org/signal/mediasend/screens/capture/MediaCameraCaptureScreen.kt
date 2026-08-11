@@ -5,6 +5,7 @@
 
 package org.signal.mediasend.screens.capture
 
+import androidx.camera.viewfinder.core.ImplementationMode
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.tooling.preview.Preview
@@ -40,7 +41,8 @@ fun MediaCameraCaptureScreen(
     onCheckPermissions = permissions.requestCapturePermissions,
     onRequestMicPermission = permissions.requestMicrophonePermission,
     hasCameraPermission = permissions.hasCameraPermission,
-    storiesEnabled = state.storiesEnabled
+    storiesEnabled = state.storiesEnabled,
+    implementationMode = ImplementationMode.EMBEDDED
   )
 }
 

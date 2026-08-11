@@ -5,12 +5,7 @@
 
 package org.signal.mediasend.screens.capture
 
-import androidx.compose.animation.AnimatedContent
-import androidx.compose.animation.ContentTransform
-import androidx.compose.animation.EnterTransition
-import androidx.compose.animation.ExitTransition
-import androidx.compose.animation.slideInHorizontally
-import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement.spacedBy
@@ -82,23 +77,8 @@ fun MediaCaptureScreen(
       .fillMaxSize()
       .background(color = Color.Black)
   ) {
-    AnimatedContent(
-      targetState = selectedCaptureScreen,
-      transitionSpec = {
-        if (targetState is MediaSendRoute.Capture.TextStory) {
-          ContentTransform(
-            targetContentEnter = slideInHorizontally { width -> width },
-            initialContentExit = ExitTransition.KeepUntilTransitionsFinished,
-            targetContentZIndex = TEXT_STORY_Z_INDEX
-          )
-        } else {
-          ContentTransform(
-            targetContentEnter = EnterTransition.None,
-            initialContentExit = slideOutHorizontally { width -> width },
-            targetContentZIndex = CAMERA_Z_INDEX
-          )
-        }
-      }
+    Crossfade(
+      targetState = selectedCaptureScreen
     ) { captureScreen ->
       when (captureScreen) {
         is MediaSendRoute.Capture.TextStory -> textStoryEditorSlot()
