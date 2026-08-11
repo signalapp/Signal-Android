@@ -194,7 +194,11 @@ internal fun MediaEditScreen(
 
         is EditorState.VideoTrim, EditorState.VideoGif -> {
           if (LocalInspectionMode.current) {
-            Box(modifier = Modifier.fillMaxSize().background(color = Color.Red))
+            Box(
+              modifier = Modifier
+                .fillMaxSize()
+                .background(color = Color.Red)
+            )
             return@HorizontalPager
           }
 
@@ -471,15 +475,22 @@ private fun MediaToolbar(
   MediaEditControl(faded = isDragging, modifier = modifier) {
     when (focusedEditorState) {
       is EditorState.Image -> {
+        val breakpoint = rememberWindowBreakpoint()
+        val modifier = if (breakpoint is WindowBreakpoint.Small) {
+          Modifier
+            .navigationBarsPadding()
+            .padding(horizontal = 16.dp)
+        } else {
+          Modifier.padding(end = 24.dp)
+        }
+
         imageController?.let {
           ImageEditorToolbar(
             imageEditorController = it,
             state = state,
             editorState = focusedEditorState,
             onEvent = onEvent,
-            modifier = Modifier
-              .navigationBarsPadding()
-              .padding(end = 24.dp)
+            modifier = modifier
               .then(if (isTextEditing) Modifier.imePadding() else Modifier)
           )
         }
