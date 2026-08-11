@@ -130,7 +130,7 @@ public final class SupportEmailUtil {
     }
 
     switch (tier) {
-      case FREE: return "F1";
+      case FREE: return "U1";
       case PAID: return "P1";
       default:   return "D1";
     }
