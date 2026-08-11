@@ -80,7 +80,7 @@ fun AddAMessageRow(
     Row(
       verticalAlignment = Alignment.CenterVertically,
       modifier = Modifier
-        .background(color = MaterialTheme.colorScheme.surfaceVariant, shape = RoundedCornerShape(percent = 50))
+        .background(color = MaterialTheme.colorScheme.surfaceVariant, shape = RoundedCornerShape(24.dp))
         .weight(1f)
         .heightIn(min = 40.dp)
         .then(
@@ -117,7 +117,7 @@ fun AddAMessageRow(
           message?.takeIf { it.isNotBlank() } ?: stringResource(if (isReply) R.string.AddAMessageRow__add_a_reply else R.string.AddAMessageRow__message),
           Modifier
             .weight(1f)
-            .padding(end = if (viewOnceAvailable) 0.dp else 16.dp)
+            .padding(end = if (viewOnceAvailable) 0.dp else 16.dp, top = 10.dp, bottom = 10.dp)
         )
       }
 
@@ -241,6 +241,18 @@ private fun AddAMessageRowDisabledPreview() {
       onNextClick = {},
       enabled = false,
       recipientChatColor = Color(0xFF3B7845)
+    )
+  }
+}
+
+@DayNightPreviews
+@Composable
+private fun AddAMessageRowLongContentPreview() {
+  Previews.Preview {
+    AddAMessageRow(
+      message = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      onEvent = {},
+      onNextClick = {}
     )
   }
 }
