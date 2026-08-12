@@ -260,7 +260,8 @@ fun AccountSettingsScreen(
   Scaffolds.Settings(
     title = stringResource(R.string.AccountSettingsFragment__account),
     onNavigationClick = callbacks::onNavigationClick,
-    navigationIcon = ImageVector.vectorResource(R.drawable.ic_arrow_left_24)
+    navigationIcon = ImageVector.vectorResource(R.drawable.ic_arrow_left_24),
+    navigationContentDescription = stringResource(R.string.CallScreenTopBar__go_back),
   ) { contentPadding ->
     LazyColumn(
       modifier = Modifier

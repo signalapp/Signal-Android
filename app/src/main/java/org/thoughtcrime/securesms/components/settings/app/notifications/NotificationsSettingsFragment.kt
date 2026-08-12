@@ -299,7 +299,8 @@ fun NotificationsSettingsScreen(
   Scaffolds.Settings(
     title = stringResource(R.string.preferences__notifications),
     onNavigationClick = callbacks::onNavigationClick,
-    navigationIcon = SignalIcons.ArrowStart.imageVector
+    navigationIcon = SignalIcons.ArrowStart.imageVector,
+    navigationContentDescription = stringResource(R.string.CallScreenTopBar__go_back),
   ) {
     LazyColumn(
       modifier = Modifier.padding(it)
