@@ -39,7 +39,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
-import kotlinx.coroutines.withContext
 import org.signal.core.models.media.Media
 import org.signal.core.ui.compose.DialogController
 import org.signal.core.ui.compose.DialogResult
@@ -55,8 +54,6 @@ import org.signal.imageeditor.core.model.EditorModel
 import org.signal.imageeditor.core.renderers.UriGlideRenderer
 import org.signal.mediasend.preupload.PreUploadController
 import org.signal.mediasend.preupload.PreUploadResult
-import org.signal.mediasend.screens.capture.CameraXScreenEvents
-import org.signal.mediasend.screens.capture.MediaCaptureScreenEvents
 import org.signal.mediasend.screens.edit.ImageController
 import org.signal.mediasend.screens.edit.MediaEditScreenEvents
 import org.signal.mediasend.screens.edit.ScheduleSendOption
@@ -64,9 +61,6 @@ import org.signal.mediasend.screens.edit.image.BrushTool
 import org.signal.mediasend.screens.edit.image.BrushWidthsState
 import org.signal.mediasend.screens.edit.video.VideoTrimData
 import org.signal.mediasend.util.MeteredConnectivity
-import org.thoughtcrime.securesms.video.videoconverter.utils.VideoConstants
-import java.io.FileInputStream
-import java.io.IOException
 import kotlin.coroutines.resume
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.microseconds
@@ -262,9 +256,14 @@ class MediaSendFlowViewModel(
       is MediaSendFlowEvent.ReorderSelectedMedia -> reorderMedia(event.fromIndex, event.toIndex)
       is MediaSendFlowEvent.ShowSnackbar -> internalSnackbarEvents.trySend(event.snackbar)
       MediaSendFlowEvent.SelectionRejectionShown -> updateState { copy(isSelectionRejected = false) }
+      is MediaSendFlowEvent.MediaCaptured -> onMediaCaptured(event.media, event.recordingDuration)
+      is MediaSendFlowEvent.QrCodeScanned -> qrCheckRequest.trySend(event.data)
+      MediaSendFlowEvent.CloseRequested -> onCloseRequested()
       is MediaSendFlowEvent.NavigateToFiles -> backStack.goToFiles(event.mediaFolder)
+      MediaSendFlowEvent.NavigateToFolders -> backStack.goToFolders()
       MediaSendFlowEvent.NavigateToEdit -> backStack.goToEdit()
       MediaSendFlowEvent.NavigateToCamera -> backStack.goToCamera()
+      MediaSendFlowEvent.NavigateToTextStory -> backStack.goToTextStory()
       MediaSendFlowEvent.NavigateBack -> onPopFromSelect()
     }
   }
@@ -301,30 +300,6 @@ class MediaSendFlowViewModel(
 
     while (backStack.size > destination.size) {
       backStack.pop()
-    }
-  }
-
-  override fun onMediaCaptureScreenEvent(mediaCaptureScreenEvent: MediaCaptureScreenEvents) {
-    when (mediaCaptureScreenEvent) {
-      MediaCaptureScreenEvents.ShowCamera -> backStack.goToCamera()
-      MediaCaptureScreenEvents.ShowTextStory -> backStack.goToTextStory()
-      is MediaCaptureScreenEvents.Camera -> onCameraXScreenEvent(mediaCaptureScreenEvent.event)
-      MediaCaptureScreenEvents.NextClicked -> backStack.goToEdit()
-      MediaCaptureScreenEvents.CycleTextStoryBackgroundColor -> error("Handled directly in the fragment.")
-      MediaCaptureScreenEvents.AddLinkToTextStory -> error("Handled directly in the fragment.")
-    }
-  }
-
-  private fun onCameraXScreenEvent(event: CameraXScreenEvents) {
-    when (event) {
-      CameraXScreenEvents.CameraCloseClicked -> onCloseRequested()
-      CameraXScreenEvents.GalleryClicked -> backStack.goToFolders()
-      is CameraXScreenEvents.ImageCaptured -> handleImageCaptured(event)
-      is CameraXScreenEvents.VideoCaptured -> handleVideoCaptured(event)
-      is CameraXScreenEvents.QrCodeFound -> qrCheckRequest.trySend(event.data)
-      CameraXScreenEvents.VideoCaptureError -> {
-        internalSnackbarEvents.trySend(SnackbarEvent(message = R.string.MediaSendViewModel__error_recording_video))
-      }
     }
   }
 
@@ -438,78 +413,14 @@ class MediaSendFlowViewModel(
     repository.brushWidths = brushWidths
   }
 
-  private fun handleImageCaptured(imageCaptured: CameraXScreenEvents.ImageCaptured) {
-    viewModelScope.launch {
-      val media: Media? = withContext(Dispatchers.IO) {
-        try {
-          val length = imageCaptured.data.size.toLong()
-          val uri = MediaSendDependencies.blobs
-            .forData(imageCaptured.data)
-            .withMimeType(ContentTypeUtil.IMAGE_JPEG)
-            .createForSingleSessionOnDisk(MediaSendDependencies.application)
+  /**
+   * Takes on media the camera captured and moves the user along to edit it.
+   *
+   * @param recordingDuration How long the capture ran, for the captures that were recorded.
+   */
+  private fun onMediaCaptured(media: Media, recordingDuration: Duration?) {
+    recordingDuration?.let { onVideoRecorded(it) }
 
-          buildCapturedMedia(uri, ContentTypeUtil.IMAGE_JPEG, imageCaptured.width, imageCaptured.height, length)
-        } catch (e: IOException) {
-          null
-        }
-      }
-
-      if (media != null) {
-        onMediaRendered(media)
-      } else {
-        internalSnackbarEvents.trySend(SnackbarEvent(message = R.string.MediaSendViewModel__error_taking_photo))
-      }
-    }
-  }
-
-  private fun handleVideoCaptured(videoCaptured: CameraXScreenEvents.VideoCaptured) {
-    viewModelScope.launch {
-      val media: Media? = withContext(Dispatchers.IO) {
-        try {
-          videoCaptured.fd.use { descriptor ->
-            FileInputStream(descriptor.fileDescriptor).use { stream ->
-              val length = stream.channel.size()
-              val uri = MediaSendDependencies.blobs
-                .forData(stream, length)
-                .withMimeType(VideoConstants.RECORDED_VIDEO_CONTENT_TYPE)
-                .createForSingleSessionOnDisk(MediaSendDependencies.application)
-
-              buildCapturedMedia(uri, VideoConstants.RECORDED_VIDEO_CONTENT_TYPE, 0, 0, length)
-            }
-          }
-        } catch (e: IOException) {
-          null
-        }
-      }
-
-      if (media != null) {
-        onVideoRecorded(videoCaptured.durationMs.milliseconds)
-        onMediaRendered(media)
-      } else {
-        internalSnackbarEvents.trySend(SnackbarEvent(message = R.string.MediaSendViewModel__error_recording_video))
-      }
-    }
-  }
-
-  private fun buildCapturedMedia(uri: Uri, mimeType: String, width: Int, height: Int, size: Long): Media {
-    return Media(
-      uri = uri,
-      contentType = mimeType,
-      date = System.currentTimeMillis(),
-      width = width,
-      height = height,
-      size = size,
-      duration = 0,
-      isBorderless = false,
-      isVideoGif = false,
-      bucketId = Media.ALL_MEDIA_BUCKET_ID,
-      caption = null,
-      transformProperties = null,
-      fileName = null
-    )
-  }
-
-  private fun onMediaRendered(media: Media) {
     if (args.isCameraFirst && internalState.value.cameraFirstCapture == null) {
       addCameraFirstCapture(media)
     } else {

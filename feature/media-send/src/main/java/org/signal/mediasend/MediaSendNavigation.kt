@@ -36,6 +36,8 @@ import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.compose.showSnackbar
 import org.signal.mediasend.screens.capture.MediaCaptureScreen
+import org.signal.mediasend.screens.capture.MediaCaptureScreenEvents
+import org.signal.mediasend.screens.capture.MediaCaptureViewModel
 import org.signal.mediasend.screens.edit.MediaEditScreen
 import org.signal.mediasend.screens.select.MediaSelectScreen
 import org.signal.mediasend.screens.select.MediaSelectViewModel
@@ -67,12 +69,24 @@ internal fun MediaSendNavigation(
     ) { key ->
       when (key) {
         is MediaSendRoute.Capture -> NavEntry(MediaSendRoute.Capture.Chrome) {
-          val state by viewModel.state.collectAsStateWithLifecycle()
+          val captureViewModel: MediaCaptureViewModel = viewModel(
+            factory = MediaCaptureViewModel.Factory(
+              parentState = viewModel.state,
+              parentEventEmitter = viewModel::onEvent,
+              selectedCaptureScreen = key
+            )
+          )
+          val state by captureViewModel.state.collectAsStateWithLifecycle()
+
+          // Toggling between the camera and the text story editor is navigation, so it arrives as a new key on an
+          // entry that is deliberately not recreated by it.
+          LaunchedEffect(key) {
+            captureViewModel.onEvent(MediaCaptureScreenEvents.SelectedCaptureScreenChanged(key))
+          }
 
           MediaCaptureScreen(
-            selectedCaptureScreen = key,
             state = state,
-            onEvent = viewModel::onMediaCaptureScreenEvent,
+            onEvent = captureViewModel::onEvent,
             textStoryEditorSlot = textStoryEditorSlot
           )
         }

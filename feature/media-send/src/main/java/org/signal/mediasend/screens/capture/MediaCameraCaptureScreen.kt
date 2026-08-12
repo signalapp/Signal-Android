@@ -10,15 +10,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.tooling.preview.Preview
 import org.signal.core.ui.compose.Previews
-import org.signal.mediasend.MediaSendFlowState
-import org.signal.mediasend.rememberPreviewState
+import org.signal.mediasend.PreviewMediaConstraints
 
 /**
  * Allows the user to capture images and video from the hardware camera to utilize in the media send flow.
  */
 @Composable
-fun MediaCameraCaptureScreen(
-  state: MediaSendFlowState,
+internal fun MediaCameraCaptureScreen(
+  state: MediaCaptureState,
   onEvent: (MediaCaptureScreenEvents) -> Unit
 ) {
   // Shared with the permission controller so that the microphone is asked for exactly when recording is on offer.
@@ -36,7 +35,7 @@ fun MediaCameraCaptureScreen(
     onEvent = { event -> onEvent(MediaCaptureScreenEvents.Camera(event)) },
     videoRecordingConfig = rememberVideoRecordingConfig(
       mediaConstraints = state.mediaConstraints,
-      maxDurationSecondsOverride = if (state.isStory) state.storyMaxVideoDuration.inWholeSeconds.toInt() else 0
+      maxDurationSecondsOverride = state.maxVideoDurationSecondsOverride
     ),
     onCheckPermissions = permissions.requestCapturePermissions,
     onRequestMicPermission = permissions.requestMicrophonePermission,
@@ -51,7 +50,7 @@ fun MediaCameraCaptureScreen(
 private fun MediaCameraCaptureScreenPreview() {
   Previews.Preview {
     MediaCameraCaptureScreen(
-      state = rememberPreviewState(),
+      state = MediaCaptureState(mediaConstraints = PreviewMediaConstraints),
       onEvent = {}
     )
   }

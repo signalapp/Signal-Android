@@ -33,7 +33,7 @@ import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.ui.getWindowBreakpoint
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.dp
-import org.signal.mediasend.screens.capture.MediaCaptureScreenEvents
+import org.signal.mediasend.screens.capture.TextStoryBarEvents
 import org.signal.mediasend.screens.capture.TextStoryHorizontalBar
 import org.signal.mediasend.screens.capture.TextStoryVerticalBar
 import org.thoughtcrime.securesms.R
@@ -256,11 +256,10 @@ class TextStoryPostCreationFragment : Fragment(R.layout.stories_text_post_creati
     binding.scene.addView(composeView)
   }
 
-  private fun onTextStoryBarEvent(event: MediaCaptureScreenEvents) {
+  private fun onTextStoryBarEvent(event: TextStoryBarEvents) {
     when (event) {
-      MediaCaptureScreenEvents.CycleTextStoryBackgroundColor -> viewModel.cycleBackgroundColor()
-      MediaCaptureScreenEvents.AddLinkToTextStory -> TextStoryPostLinkEntryFragment().show(childFragmentManager, null)
-      else -> Unit
+      TextStoryBarEvents.CycleBackgroundColor -> viewModel.cycleBackgroundColor()
+      TextStoryBarEvents.AddLink -> TextStoryPostLinkEntryFragment().show(childFragmentManager, null)
     }
   }
 

@@ -34,7 +34,7 @@ class TextStoryBarTest {
   @get:Rule
   val coreUiDependenciesRule = CoreUiDependenciesRule(ApplicationProvider.getApplicationContext())
 
-  private val events = mutableListOf<MediaCaptureScreenEvents>()
+  private val events = mutableListOf<TextStoryBarEvents>()
 
   @Test
   fun `Given the text story bar, when the labelled add link button is tapped, then a link is requested`() {
@@ -49,6 +49,6 @@ class TextStoryBarTest {
 
     composeTestRule.onNodeWithContentDescription("Add link").performClick()
 
-    assertEquals(MediaCaptureScreenEvents.AddLinkToTextStory, events.single())
+    assertEquals(TextStoryBarEvents.AddLink, events.single())
   }
 }

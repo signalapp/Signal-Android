@@ -7,6 +7,7 @@ package org.signal.mediasend
 
 import org.signal.core.models.media.Media
 import org.signal.core.models.media.MediaFolder
+import kotlin.time.Duration
 
 /**
  * Changes to the flow itself, raised by the screens within it. A screen owns what only it renders; the selection, the
@@ -22,8 +23,23 @@ internal sealed interface MediaSendFlowEvent {
   /** Whoever was mid-gesture has stopped, so [MediaSendFlowState.isSelectionRejected] has served its purpose. */
   data object SelectionRejectionShown : MediaSendFlowEvent
 
+  /**
+   * Media the camera captured and wrote out, which joins the selection and takes the user on to the editor.
+   *
+   * @param recordingDuration How long the recording ran, or null for a capture that was not recorded.
+   */
+  data class MediaCaptured(val media: Media, val recordingDuration: Duration? = null) : MediaSendFlowEvent
+
+  /** Data read from a QR code. Every outcome of acting on it leaves the flow, so none of it is a screen's to handle. */
+  data class QrCodeScanned(val data: String) : MediaSendFlowEvent
+
+  /** The user asked to leave, which is confirmed first if it would throw a selection away. */
+  data object CloseRequested : MediaSendFlowEvent
+
   data class NavigateToFiles(val mediaFolder: MediaFolder) : MediaSendFlowEvent
+  data object NavigateToFolders : MediaSendFlowEvent
   data object NavigateToEdit : MediaSendFlowEvent
   data object NavigateToCamera : MediaSendFlowEvent
+  data object NavigateToTextStory : MediaSendFlowEvent
   data object NavigateBack : MediaSendFlowEvent
 }

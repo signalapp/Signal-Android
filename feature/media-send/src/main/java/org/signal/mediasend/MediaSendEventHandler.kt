@@ -5,7 +5,6 @@
 
 package org.signal.mediasend
 
-import org.signal.mediasend.screens.capture.MediaCaptureScreenEvents
 import org.signal.mediasend.screens.edit.MediaEditScreenEvents
 
 /**
@@ -14,5 +13,4 @@ import org.signal.mediasend.screens.edit.MediaEditScreenEvents
  */
 interface MediaSendEventHandler {
   fun onMediaEditScreenEvent(mediaEditScreenEvent: MediaEditScreenEvents)
-  fun onMediaCaptureScreenEvent(mediaCaptureScreenEvent: MediaCaptureScreenEvents)
 }

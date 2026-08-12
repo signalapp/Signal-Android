@@ -32,7 +32,7 @@ import org.signal.mediasend.R
 @Composable
 fun TextStoryHorizontalBar(
   background: Brush,
-  onEvent: (MediaCaptureScreenEvents) -> Unit,
+  onEvent: (TextStoryBarEvents) -> Unit,
   modifier: Modifier = Modifier
 ) {
   Row(
@@ -49,7 +49,7 @@ fun TextStoryHorizontalBar(
 @Composable
 fun TextStoryVerticalBar(
   background: Brush,
-  onEvent: (MediaCaptureScreenEvents) -> Unit,
+  onEvent: (TextStoryBarEvents) -> Unit,
   modifier: Modifier = Modifier
 ) {
   Column(
@@ -66,12 +66,12 @@ fun TextStoryVerticalBar(
 @Composable
 private fun ColorButton(
   background: Brush,
-  onEvent: (MediaCaptureScreenEvents) -> Unit
+  onEvent: (TextStoryBarEvents) -> Unit
 ) {
   IconButtons.IconButton(
     size = 48.dp,
     onClick = {
-      onEvent(MediaCaptureScreenEvents.CycleTextStoryBackgroundColor)
+      onEvent(TextStoryBarEvents.CycleBackgroundColor)
     }
   ) {
     Box(
@@ -86,12 +86,12 @@ private fun ColorButton(
 
 @Composable
 private fun LinkButton(
-  onEvent: (MediaCaptureScreenEvents) -> Unit
+  onEvent: (TextStoryBarEvents) -> Unit
 ) {
   IconButtons.IconButton(
     size = 48.dp,
     onClick = {
-      onEvent(MediaCaptureScreenEvents.AddLinkToTextStory)
+      onEvent(TextStoryBarEvents.AddLink)
     }
   ) {
     Icon(

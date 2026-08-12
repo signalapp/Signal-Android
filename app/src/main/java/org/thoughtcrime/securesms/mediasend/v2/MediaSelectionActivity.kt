@@ -141,9 +141,9 @@ class MediaSelectionActivity :
                 MediaCaptureScreenEvents.ShowCamera -> debouncer.publish { popTextStoryPostCreationFragment() }
                 MediaCaptureScreenEvents.ShowTextStory -> viewModel.sendCommand(HudCommand.GoToText)
                 MediaCaptureScreenEvents.NextClicked -> viewModel.sendCommand(HudCommand.GoToReview)
-                is MediaCaptureScreenEvents.Camera -> Unit
-                MediaCaptureScreenEvents.CycleTextStoryBackgroundColor -> Unit
-                MediaCaptureScreenEvents.AddLinkToTextStory -> Unit
+                is MediaCaptureScreenEvents.Camera,
+                is MediaCaptureScreenEvents.ParentStateChanged,
+                is MediaCaptureScreenEvents.SelectedCaptureScreenChanged -> Unit
               }
             },
             modifier = Modifier.navigationBarsPadding()
