@@ -838,20 +838,6 @@ object RemoteConfig {
     hotSwappable = true
   )
 
-  /** A comma-separated list of manufacturers that *should* use Telecom for calling.  */
-  val telecomManufacturerAllowList: String by remoteString(
-    key = "android.calling.telecomAllowList",
-    defaultValue = "",
-    hotSwappable = true
-  )
-
-  /** A comma-separated list of manufacturers that *should* use Telecom for calling.  */
-  val telecomModelBlocklist: String by remoteString(
-    key = "android.calling.telecomModelBlockList",
-    defaultValue = "",
-    hotSwappable = true
-  )
-
   /** A comma-separated list of manufacturers that should *not* use CameraX mixed mode.  */
   val cameraXMixedModelBlocklist: String by remoteString(
     key = "android.cameraXMixedModelBlockList.3",
@@ -1434,6 +1420,15 @@ object RemoteConfig {
     key = "android.useNewMediaSendFlow.2",
     defaultValue = false,
     hotSwappable = true
+  )
+
+  /** Whether to enable Jetpack telecom integration for 1:1 calls */
+  @JvmStatic
+  @get:JvmName("useJetPackTelecom")
+  val useJetPackTelecom: Boolean by remoteBoolean(
+    key = "android.calling.useJetPackTelecom",
+    defaultValue = false,
+    hotSwappable = false
   )
 
   // endregion

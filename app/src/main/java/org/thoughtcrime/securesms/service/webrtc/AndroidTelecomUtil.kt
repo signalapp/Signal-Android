@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager
 object AndroidTelecomUtil {
 
   private val TAG = Log.tag(AndroidTelecomUtil::class.java)
+  private const val MIN_SDK_VERSION = 37
   private val context = AppDependencies.application
   private var systemRejected = false
   private var registered = false
@@ -34,7 +35,7 @@ object AndroidTelecomUtil {
   @JvmStatic
   val telecomSupported: Boolean
     get() {
-      if (Build.VERSION.SDK_INT >= 36 && !systemRejected && isTelecomAllowedForDevice()) {
+      if (Build.VERSION.SDK_INT >= MIN_SDK_VERSION && !systemRejected && isTelecomAllowedForDevice()) {
         if (!registered) {
           registerPhoneAccount()
         }
@@ -48,12 +49,11 @@ object AndroidTelecomUtil {
 
   @JvmStatic
   fun registerPhoneAccount() {
-    if (Build.VERSION.SDK_INT >= 36 && !systemRejected) {
+    if (Build.VERSION.SDK_INT >= MIN_SDK_VERSION && !systemRejected) {
       Log.i(TAG, "Registering with CallsManager")
       try {
         callsManager.registerAppWithTelecom(
-          capabilities = CallsManager.CAPABILITY_BASELINE or CallsManager.CAPABILITY_SUPPORTS_VIDEO_CALLING,
-          backwardsCompatSdkLevel = 37
+          capabilities = CallsManager.CAPABILITY_BASELINE or CallsManager.CAPABILITY_SUPPORTS_VIDEO_CALLING
         )
         Log.i(TAG, "CallsManager registration successful")
         registered = true
@@ -210,8 +210,9 @@ object AndroidTelecomUtil {
 
   private fun isTelecomAllowedForDevice(): Boolean {
     if (RemoteConfig.internalUser) {
-      return !SignalStore.internal.callingDisableTelecom
+      return SignalStore.internal.callingUseTelecom
     }
+
     return RingRtcDynamicConfiguration.isTelecomAllowedForDevice()
   }
 }

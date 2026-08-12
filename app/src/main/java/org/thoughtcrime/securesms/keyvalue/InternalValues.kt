@@ -18,7 +18,7 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
     const val DELAY_RESENDS: String = "internal.delay_resends"
     const val CALLING_SERVER: String = "internal.calling_server"
     const val CALLING_DATA_MODE: String = "internal.calling_bandwidth_mode"
-    const val CALLING_DISABLE_TELECOM: String = "internal.calling_disable_telecom"
+    const val CALLING_USE_TELECOM: String = "internal.calling_use_telecom"
     const val CALLING_SET_AUDIO_CONFIG: String = "internal.calling_set_audio_config"
     const val CALLING_USE_OBOE_ADM: String = "internal.calling_use_oboe_adm"
     const val CALLING_USE_SOFTWARE_AEC: String = "internal.calling_use_software_aec"
@@ -152,9 +152,9 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
     }
 
   /**
-   * Whether or not Telecom integration is manually disabled.
+   * Whether or not Telecom integration is enabled.
    */
-  var callingDisableTelecom by booleanValue(CALLING_DISABLE_TELECOM, true).falseForExternalUsers()
+  var callingUseTelecom by booleanValue(CALLING_USE_TELECOM, true).falseForExternalUsers()
 
   /**
    * Whether or not to override the audio settings from the remote configuration.

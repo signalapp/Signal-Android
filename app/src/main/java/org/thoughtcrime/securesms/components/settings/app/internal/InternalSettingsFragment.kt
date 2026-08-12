@@ -716,10 +716,10 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       )
 
       switchPref(
-        title = DSLSettingsText.from("Disable Telecom integration"),
-        isChecked = state.callingDisableTelecom,
+        title = DSLSettingsText.from("Use Telecom integration"),
+        isChecked = state.callingUseTelecom,
         onClick = {
-          viewModel.setInternalCallingDisableTelecom(!state.callingDisableTelecom)
+          viewModel.setInternalCallingUseTelecom(!state.callingUseTelecom)
         }
       )
 

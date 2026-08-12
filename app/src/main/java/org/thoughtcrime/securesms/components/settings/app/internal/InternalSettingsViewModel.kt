@@ -107,8 +107,8 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     refresh()
   }
 
-  fun setInternalCallingDisableTelecom(enabled: Boolean) {
-    preferenceDataStore.putBoolean(InternalValues.CALLING_DISABLE_TELECOM, enabled)
+  fun setInternalCallingUseTelecom(enabled: Boolean) {
+    preferenceDataStore.putBoolean(InternalValues.CALLING_USE_TELECOM, enabled)
     refresh()
   }
 
@@ -246,7 +246,7 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     allowCensorshipSetting = SignalStore.internal.allowChangingCensorshipSetting,
     callingServer = SignalStore.internal.groupCallingServer,
     callingDataMode = SignalStore.internal.callingDataMode,
-    callingDisableTelecom = SignalStore.internal.callingDisableTelecom,
+    callingUseTelecom = SignalStore.internal.callingUseTelecom,
     callingSetAudioConfig = SignalStore.internal.callingSetAudioConfig,
     callingUseOboeAdm = SignalStore.internal.callingUseOboeAdm,
     callingUseSoftwareAec = SignalStore.internal.callingUseSoftwareAec,

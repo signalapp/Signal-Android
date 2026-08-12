@@ -12,7 +12,7 @@ data class InternalSettingsState(
   val allowCensorshipSetting: Boolean,
   val callingServer: String,
   val callingDataMode: CallManager.DataMode,
-  val callingDisableTelecom: Boolean,
+  val callingUseTelecom: Boolean,
   val callingSetAudioConfig: Boolean,
   val callingUseOboeAdm: Boolean,
   val callingUseSoftwareAec: Boolean,
