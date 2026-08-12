@@ -143,7 +143,7 @@ class ArchiveAttachmentReconciliationJob private constructor(
       return Result.success()
     }
 
-    if (!AppDependencies.jobManager.areQueuesEmpty(UploadAttachmentToArchiveJob.QUEUES)) {
+    if (!AppDependencies.jobManager.areQueuesEmpty(UploadAttachmentToArchiveJob.QUEUES + ArchiveThumbnailUploadJob.QUEUES)) {
       Log.i(TAG, "There are still uploads in progress. Retrying later.")
       return Result.retry(defaultBackoff())
     }
