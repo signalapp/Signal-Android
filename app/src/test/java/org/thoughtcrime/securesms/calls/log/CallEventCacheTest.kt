@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.webrtc.CallLinkPeekInfo
 import org.thoughtcrime.securesms.service.webrtc.SignalCallManager
 import kotlin.time.Duration.Companion.days
+import kotlin.time.Duration.Companion.hours
 
 class CallEventCacheTest {
 
@@ -152,6 +153,42 @@ class CallEventCacheTest {
     val filterState = CallEventCache.FilterState()
     val result = CallEventCache.clusterCallEvents(testData, filterState)
     assertThat(result).size().isEqualTo(2)
+  }
+
+  @Test
+  fun `Given two entries in descending timestamp order outside of time threshold, when I clusterCallEvents, then I expect two entries`() {
+    val testData = listOf(
+      createCacheRecord(
+        callId = 1,
+        timestamp = 1.days.inWholeMilliseconds
+      ),
+      createCacheRecord(
+        callId = 2,
+        timestamp = 0
+      )
+    )
+
+    val filterState = CallEventCache.FilterState()
+    val result = CallEventCache.clusterCallEvents(testData, filterState)
+    assertThat(result).size().isEqualTo(2)
+  }
+
+  @Test
+  fun `Given two entries in descending timestamp order within time threshold, when I clusterCallEvents, then I expect one entry`() {
+    val testData = listOf(
+      createCacheRecord(
+        callId = 1,
+        timestamp = 1.hours.inWholeMilliseconds
+      ),
+      createCacheRecord(
+        callId = 2,
+        timestamp = 0
+      )
+    )
+
+    val filterState = CallEventCache.FilterState()
+    val result = CallEventCache.clusterCallEvents(testData, filterState)
+    assertThat(result).size().isEqualTo(1)
   }
 
   @Test
