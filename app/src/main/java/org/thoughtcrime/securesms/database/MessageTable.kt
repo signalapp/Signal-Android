@@ -2263,10 +2263,17 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     return getMessages(messageIds)
   }
 
-  private fun getOriginalEditedMessageRecord(messageId: Long): Long {
+  /**
+   * Returns the id of the revision that [messageId] was created as an edit of, or 0 if it isn't an edit.
+   */
+  private fun getPreviousRevisionId(messageId: Long, originalMessageId: Long): Long {
+    if (originalMessageId <= 0) {
+      return 0
+    }
+
     return readableDatabase.select(ID)
       .from(TABLE_NAME)
-      .where("$TABLE_NAME.$LATEST_REVISION_ID = ?", messageId)
+      .where("($TABLE_NAME.$ID = ? OR $TABLE_NAME.$ORIGINAL_MESSAGE_ID = ?) AND $TABLE_NAME.$ID < ?", originalMessageId, originalMessageId, messageId)
       .orderBy("$ID DESC")
       .limit(1)
       .run()
@@ -3011,7 +3018,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
           null
         }
 
-        val editedMessage = getOriginalEditedMessageRecord(messageId)
+        val editedMessage = getPreviousRevisionId(messageId, cursor.requireLong(ORIGINAL_MESSAGE_ID))
 
         OutgoingMessage(
           recipient = threadRecipient,
