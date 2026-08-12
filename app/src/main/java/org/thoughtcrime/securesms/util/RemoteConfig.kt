@@ -1259,28 +1259,6 @@ object RemoteConfig {
   )
 
   /**
-   * Whether or not to receive admin delete messages.
-   */
-  @JvmStatic
-  @get:JvmName("receiveAdminDelete")
-  val receiveAdminDelete: Boolean by remoteBoolean(
-    key = "android.receiveAdminDelete.3",
-    defaultValue = false,
-    hotSwappable = true
-  )
-
-  /**
-   * Whether or not to send admin delete messages.
-   */
-  @JvmStatic
-  @get:JvmName("sendAdminDelete")
-  val sendAdminDelete: Boolean by remoteBoolean(
-    key = "android.sendAdminDelete.2",
-    defaultValue = false,
-    hotSwappable = true
-  )
-
-  /**
    * Maximum time that passes where a message can still be regularly deleted
    */
   @JvmStatic
@@ -1379,17 +1357,6 @@ object RemoteConfig {
   )
 
   /**
-   * Whether to collapse update events
-   */
-  @JvmStatic
-  @get:JvmName("collapseEvents")
-  val collapseEvents: Boolean by remoteBoolean(
-    key = "android.collapseEvents.2",
-    defaultValue = false,
-    hotSwappable = true
-  )
-
-  /**
    * Whether the backups upgrade megaphone can be displayed
    */
   @JvmStatic
@@ -1439,14 +1406,6 @@ object RemoteConfig {
   val changeNumberPostRegistrationWaitingPeriodSeconds: Long by remoteLong(
     key = "global.changeNumber.postRegistrationWaitingPeriodSeconds",
     defaultValue = 3600,
-    hotSwappable = true
-  )
-
-  @JvmStatic
-  @get:JvmName("disappearMore")
-  val disappearMore: Boolean by remoteBoolean(
-    key = "android.disappearMore.2",
-    defaultValue = false,
     hotSwappable = true
   )
 

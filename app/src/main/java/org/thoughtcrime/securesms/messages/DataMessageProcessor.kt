@@ -1420,11 +1420,6 @@ object DataMessageProcessor {
   }
 
   fun handleAdminRemoteDelete(context: Context, envelope: Envelope, message: DataMessage, senderRecipient: Recipient, threadRecipient: Recipient, earlyMessageCacheEntry: EarlyMessageCacheEntry?): MessageId? {
-    if (!RemoteConfig.receiveAdminDelete) {
-      log(envelope.clientTimestamp!!, "Admin delete is not allowed due to remote config.")
-      return null
-    }
-
     val delete = message.adminDelete!!
 
     log(envelope.clientTimestamp!!, "Admin delete for message ${delete.targetSentTimestamp}")

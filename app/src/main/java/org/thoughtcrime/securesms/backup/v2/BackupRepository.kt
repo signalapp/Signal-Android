@@ -1427,9 +1427,7 @@ object BackupRepository {
     AppDependencies.jobManager.addAll(groupJobs)
     stopwatch.split("group-jobs")
 
-    if (RemoteConfig.collapseEvents) {
-      AppDependencies.jobManager.add(BackfillCollapsedMessageJob())
-    }
+    AppDependencies.jobManager.add(BackfillCollapsedMessageJob())
 
     SignalStore.backup.firstAppVersion = header.firstAppVersion
     SignalStore.internal.importedBackupDebugInfo = header.debugInfo.let { BackupDebugInfo.ADAPTER.decodeOrNull(it.toByteArray()) }

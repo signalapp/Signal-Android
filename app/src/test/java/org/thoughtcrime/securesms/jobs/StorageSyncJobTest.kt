@@ -8,7 +8,10 @@ package org.thoughtcrime.securesms.jobs
 import android.app.Application
 import androidx.test.core.app.ApplicationProvider
 import io.mockk.every
+import io.mockk.mockkObject
+import io.mockk.unmockkObject
 import okio.ByteString.Companion.toByteString
+import org.junit.After
 import org.junit.Assert.assertArrayEquals
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
@@ -33,6 +36,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.StickerPackId
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.jobmanager.Job
+import org.thoughtcrime.securesms.jobs.StorageSyncJobTest.Companion.BASE_MANIFEST_VERSION
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -48,6 +52,7 @@ import org.whispersystems.signalservice.internal.storage.protos.GroupV1Record
 import org.whispersystems.signalservice.internal.storage.protos.StickerPackRecord
 import org.whispersystems.signalservice.internal.storage.protos.StorageRecord
 import java.util.UUID
+import kotlin.time.Duration.Companion.minutes
 
 /**
  * Tests for [StorageSyncJob]. Remote storage is a real encrypt/decrypt round-trip against
@@ -75,9 +80,17 @@ class StorageSyncJobTest {
     Log.initialize(SystemOutLogger())
     remoteStorage.stubDefaults(recipients.signalStore)
 
+    mockkObject()
+    every { RemoteConfig.defaultMaxBackoff } returns 1.minutes.inWholeMilliseconds
+
     // We need to run an initial sync so that every test starts with local and remote already agreeing at  [BASE_MANIFEST_VERSION].
     // Without that, the default "All chats" chat folder shows up as a local-only ID in every test and muddies the assertions.
     runInitialSync()
+  }
+
+  @After
+  fun tearDown() {
+    unmockkObject(RemoteConfig)
   }
 
   @Test

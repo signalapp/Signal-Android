@@ -12,12 +12,8 @@ import org.signal.ringrtc.CallId
 import org.signal.ringrtc.CallManager
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.testing.Flag
-import org.thoughtcrime.securesms.testing.RemoteConfigForTest
 import org.thoughtcrime.securesms.testing.SignalActivityRule
-import org.thoughtcrime.securesms.testing.TestRemoteConfigFlag
 
-@RemoteConfigForTest(flags = [Flag(TestRemoteConfigFlag.DISAPPEAR_MORE, "true")])
 @RunWith(AndroidJUnit4::class)
 class CallTableTest {
 

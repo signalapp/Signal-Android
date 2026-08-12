@@ -65,7 +65,6 @@ class RecipientTestRule : TestRule {
       )
 
       mockkObject(RemoteConfig)
-      every { RemoteConfig.collapseEvents } returns true
 
       every { signalStore.account.aci } returns selfAci
       every { signalStore.account.requireAci() } returns selfAci

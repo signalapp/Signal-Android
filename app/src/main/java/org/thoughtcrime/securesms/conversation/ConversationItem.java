@@ -1206,7 +1206,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
           eventListener.onInMemoryMessageClicked((InMemoryMessageRecord) messageRecord);
         }
       });
-    } else if (RemoteConfig.receiveAdminDelete() && conversationMessage.getDeletedByRecipient() != null) {
+    } else if (conversationMessage.getDeletedByRecipient() != null) {
       bodyText.setText(getDeletedMessageText(conversationMessage, hasWallpaper));
       bodyText.setVisibility(View.VISIBLE);
       bodyText.setOverflowText(null);

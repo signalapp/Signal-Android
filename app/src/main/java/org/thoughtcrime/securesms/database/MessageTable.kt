@@ -3715,7 +3715,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
    * If it is not, but the new message is a collapsing type, mark it as a new collapsed head. Returns whether a message was collapsed.
    */
   fun maybeCollapseMessage(db: SQLiteDatabase, messageId: Long, threadId: Long, dateReceived: Long, messageExtras: MessageExtras?, messageType: Long): Boolean {
-    if (!RemoteConfig.collapseEvents || !CollapsibleEvents.isCollapsibleType(messageType, messageExtras)) {
+    if (!CollapsibleEvents.isCollapsibleType(messageType, messageExtras)) {
       return false
     }
 
