@@ -32,7 +32,6 @@ import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.copied.androidx.compose.material3.IconButtonColors
 import org.signal.core.ui.rememberWindowBreakpoint
 import org.signal.mediasend.EditorState
-import org.signal.mediasend.MediaSendFlowState
 import org.signal.mediasend.SentMediaQuality
 import org.signal.mediasend.test.TestTags
 
@@ -104,7 +103,7 @@ internal fun MediaEditorToolbarButton(
 
 @Composable
 internal fun MediaEditorToolbarSharedButtons(
-  state: MediaSendFlowState,
+  state: MediaEditState,
   editorState: EditorState,
   onEvent: (MediaEditScreenEvents) -> Unit
 ) {
@@ -155,7 +154,7 @@ internal fun MediaEditorToolbarSharedButtons(
   }
 }
 
-private fun isQualityVisible(state: MediaSendFlowState, editorState: EditorState): Boolean {
+private fun isQualityVisible(state: MediaEditState, editorState: EditorState): Boolean {
   return !state.isStory && editorState !is EditorState.Document
 }
 
@@ -163,7 +162,7 @@ private fun isSaveVisible(editorState: EditorState): Boolean {
   return editorState is EditorState.Image || editorState is EditorState.Gif
 }
 
-private fun isMuteVisible(state: MediaSendFlowState, editorState: EditorState): Boolean {
+private fun isMuteVisible(state: MediaEditState, editorState: EditorState): Boolean {
   return state.isMuteVideoAudioEnabled && editorState is EditorState.VideoTrim
 }
 
@@ -171,7 +170,7 @@ private fun isMuteVisible(state: MediaSendFlowState, editorState: EditorState): 
  * Adding a second attachment would silently drop view-once, so the entry point -- and the selection rail it belongs to
  * -- goes away while it is on.
  */
-internal fun isAddMediaVisible(state: MediaSendFlowState, editorState: EditorState?): Boolean {
+internal fun isAddMediaVisible(state: MediaEditState, editorState: EditorState?): Boolean {
   return !state.isViewOnceEnabled && editorState !is EditorState.Document
 }
 
@@ -179,6 +178,6 @@ internal fun isAddMediaVisible(state: MediaSendFlowState, editorState: EditorSta
  * Whether [MediaEditorToolbarSharedButtons] would render anything, so callers with no buttons of their own can skip the
  * toolbar rather than leave an empty one behind.
  */
-internal fun hasSharedToolbarButtons(state: MediaSendFlowState, editorState: EditorState): Boolean {
+internal fun hasSharedToolbarButtons(state: MediaEditState, editorState: EditorState): Boolean {
   return isQualityVisible(state, editorState) || isMuteVisible(state, editorState) || isSaveVisible(editorState) || isAddMediaVisible(state, editorState)
 }

@@ -70,9 +70,7 @@ import org.signal.glide.decryptableuri.DecryptableUri
 import org.signal.imageeditor.core.model.EditorModel
 import org.signal.mediasend.EditorState
 import org.signal.mediasend.MediaConstraints
-import org.signal.mediasend.MediaSendFlowState
 import org.signal.mediasend.PreviewMediaInputFactory
-import org.signal.mediasend.rememberPreviewState
 import org.signal.mediasend.screens.MediaSendMetrics
 import org.signal.mediasend.screens.edit.document.DocumentPage
 import org.signal.mediasend.screens.edit.image.BlurFacesBar
@@ -99,7 +97,7 @@ private val CHROME_SETTLE_WINDOW = 500.milliseconds
 
 @Composable
 internal fun MediaEditScreen(
-  state: MediaSendFlowState,
+  state: MediaEditState,
   onEvent: (MediaEditScreenEvents) -> Unit,
   imageControllers: ImageController.Container,
   mediaInputFactory: MediaInputFactory
@@ -138,12 +136,7 @@ internal fun MediaEditScreen(
       }
   }
 
-  // During a camera-first flow, backing out of edit when the only selection is the capture itself should discard the
-  // capture and return to the camera rather than leaving the empty editor on the back stack.
-  val isOnlyCameraFirstCapture = state.cameraFirstCapture != null &&
-    state.selectedMedia.size == 1 &&
-    state.selectedMedia.firstOrNull() == state.cameraFirstCapture
-  BackHandler(enabled = isOnlyCameraFirstCapture) {
+  BackHandler(enabled = state.isOnlyCameraFirstCapture) {
     onEvent(MediaEditScreenEvents.NavigateBack)
   }
 
@@ -535,7 +528,7 @@ internal fun MediaEditScreen(
  */
 @Composable
 private fun MediaToolbar(
-  state: MediaSendFlowState,
+  state: MediaEditState,
   onEvent: (MediaEditScreenEvents) -> Unit,
   focusedUri: Uri?,
   focusedEditorState: EditorState?,
@@ -685,12 +678,10 @@ private fun MediaEditScreenPreview() {
 
   Previews.Preview {
     MediaEditScreen(
-      state = rememberPreviewState().copy(
+      state = MediaEditState(
         selectedMedia = selectedMedia,
         focusedMedia = selectedMedia.first(),
-        editorStateMap = mutableMapOf(
-          selectedMedia.first().uri to EditorState.Image(EditorModel.create(0))
-        )
+        editorStateMap = mapOf(selectedMedia.first().uri to EditorState.Image(EditorModel.create(0)))
       ),
       onEvent = {},
       imageControllers = remember { ImageController.Container() },
@@ -706,12 +697,10 @@ private fun MediaEditScreenVideoPreview() {
 
   Previews.Preview {
     MediaEditScreen(
-      state = rememberPreviewState().copy(
+      state = MediaEditState(
         selectedMedia = selectedMedia,
         focusedMedia = selectedMedia.first(),
-        editorStateMap = mutableMapOf(
-          selectedMedia.first().uri to EditorState.VideoTrim(VideoTrimData())
-        )
+        editorStateMap = mapOf(selectedMedia.first().uri to EditorState.VideoTrim(VideoTrimData()))
       ),
       onEvent = {},
       imageControllers = remember { ImageController.Container() },

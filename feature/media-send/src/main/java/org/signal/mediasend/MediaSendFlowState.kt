@@ -16,7 +16,6 @@ import org.signal.core.models.media.Media
 import org.signal.core.models.parcelers.NullableCharSequenceParceler
 import org.signal.core.util.ContentTypeUtil
 import org.signal.mediasend.screens.edit.image.BrushWidths
-import org.signal.mediasend.screens.edit.video.VideoTrimData
 import org.thoughtcrime.securesms.video.TranscodingConfig
 import kotlin.time.Duration
 
@@ -73,10 +72,6 @@ data class MediaSendFlowState(
    * Whether the media has been sent (prevents duplicate sends).
    */
   val isSent: Boolean = false,
-  /**
-   * Whether the focused media is currently being written out to the device's shared storage.
-   */
-  val isSavingMedia: @WriteWith<TransientInFlightFlagParceler> Boolean = false,
   /**
    * Whether this is a story send flow.
    */
@@ -157,10 +152,6 @@ data class MediaSendFlowState(
    */
   val isViewOnceEnabled: Boolean
     get() = isViewOnceAvailable && viewOnceToggleState == ViewOnceToggleState.ONCE
-
-  fun getOrCreateVideoTrimData(uri: Uri): VideoTrimData {
-    return (editorStateMap[uri] as? EditorState.VideoTrim)?.videoTrimData ?: VideoTrimData()
-  }
 
   /**
    * No-op parceler for flags tracking work that cannot outlive the process that started it.

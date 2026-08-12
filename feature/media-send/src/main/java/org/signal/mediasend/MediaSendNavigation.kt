@@ -39,6 +39,8 @@ import org.signal.mediasend.screens.capture.MediaCaptureScreen
 import org.signal.mediasend.screens.capture.MediaCaptureScreenEvents
 import org.signal.mediasend.screens.capture.MediaCaptureViewModel
 import org.signal.mediasend.screens.edit.MediaEditScreen
+import org.signal.mediasend.screens.edit.MediaEditScreenDialogs
+import org.signal.mediasend.screens.edit.MediaEditViewModel
 import org.signal.mediasend.screens.select.MediaSelectScreen
 import org.signal.mediasend.screens.select.MediaSelectViewModel
 import kotlin.time.Duration.Companion.milliseconds
@@ -132,10 +134,20 @@ internal fun MediaSendNavigation(
         }
 
         is MediaSendRoute.Edit -> NavEntry(MediaSendRoute.Edit) {
-          val state by viewModel.state.collectAsStateWithLifecycle()
+          val editViewModel: MediaEditViewModel = viewModel(
+            factory = MediaEditViewModel.Factory(
+              parentState = viewModel.state,
+              parentEventEmitter = viewModel::onEvent
+            )
+          )
+          val state by editViewModel.state.collectAsStateWithLifecycle()
+
+          SaveToStorageDialog(editViewModel)
+          editViewModel.writeStoragePermission.Content()
+
           MediaEditScreen(
             state = state,
-            onEvent = viewModel::onMediaEditScreenEvent,
+            onEvent = editViewModel::onEvent,
             imageControllers = viewModel.imageControllers,
             mediaInputFactory = MediaSendDependencies.mediaInputFactory
           )
@@ -165,6 +177,24 @@ internal fun MediaSendNavigation(
 
 private val TOAST_DURATION = 3.seconds
 private val SEND_PROGRESS_DELAY = 300.milliseconds
+
+/**
+ * Warns that saving a copy to shared storage leaves it outside of Signal, before the first save of a session.
+ */
+@Composable
+private fun SaveToStorageDialog(viewModel: MediaEditViewModel) {
+  viewModel.saveToStorageDialog.Content { _, onDismissRequest, onConfirm, _, _ ->
+    MediaEditScreenDialogs.SaveToStorageConfirmationDialog(
+      onSave = { doNotShowAgain ->
+        if (doNotShowAgain) {
+          viewModel.markSaveToStorageWarningDismissed()
+        }
+        onConfirm()
+      },
+      onDismissRequest = onDismissRequest
+    )
+  }
+}
 
 /**
  * Dialog displayed when the user tries to close out of media send, to warn them that they'll discard media.

@@ -36,7 +36,8 @@ import org.signal.mediasend.test.TestTags
 /**
  * Covers the chrome the flow adds over a capture screen: which bar is offered, to which flows, and what it raises.
  *
- * Rendered on the text story route throughout, so that the bars are under test rather than the camera behind them.
+ * The bars are rendered on the text story route, so that they are what is under test rather than the camera behind
+ * them. Which of the two the route actually puts up is covered on its own.
  */
 @RunWith(RobolectricTestRunner::class)
 @Config(application = Application::class, qualifiers = "w400dp-h800dp")
@@ -117,6 +118,23 @@ class MediaCaptureScreenTest {
 
     composeTestRule.onNodeWithTag(TEXT_STORY_SLOT).assertIsDisplayed()
     assertThat(events).isEmpty()
+  }
+
+  /** The camera is the fallback for every capture route that is not the text story, including the flow's chrome key. */
+  @Test
+  fun `Given the camera route, when displayed, then the text story editor is not what fills the screen`() {
+    setContent(cameraFirstState().copy(selectedCaptureScreen = MediaSendRoute.Capture.Camera))
+
+    composeTestRule.onNodeWithTag(TEXT_STORY_SLOT).assertDoesNotExist()
+    composeTestRule.onNodeWithTag(TestTags.MEDIA_CAPTURE_SCREEN).assertIsDisplayed()
+  }
+
+  @Test
+  fun `Given the camera route, when displayed, then the flow's chrome sits over it`() {
+    setContent(cameraFirstState().copy(selectedCaptureScreen = MediaSendRoute.Capture.Camera))
+
+    composeTestRule.onNodeWithTag(TestTags.MEDIA_CAPTURE_CAMERA_TOGGLE).assertIsDisplayed()
+    composeTestRule.onNodeWithTag(TestTags.MEDIA_CAPTURE_TEXT_STORY_TOGGLE).assertIsDisplayed()
   }
 
   private fun cameraFirstState() = MediaCaptureState(

@@ -25,7 +25,6 @@ import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.ContentTypeUtil
 import org.signal.mediasend.EditorState
 import org.signal.mediasend.MediaSendDependenciesRule
-import org.signal.mediasend.MediaSendFlowState
 import org.signal.mediasend.test.TestTags
 
 /**
@@ -174,7 +173,7 @@ class MediaEditorToolbarSharedButtonsTest {
     }
   }
 
-  private fun setContent(state: MediaSendFlowState, editorState: EditorState) {
+  private fun setContent(state: MediaEditState, editorState: EditorState) {
     composeTestRule.setContent {
       SignalTheme {
         MediaEditorToolbar {
@@ -188,12 +187,13 @@ class MediaEditorToolbarSharedButtonsTest {
     }
   }
 
-  private fun state(media: Media, isStory: Boolean = false, viewOnce: Boolean = false, muteEnabled: Boolean = false): MediaSendFlowState {
-    return MediaSendFlowState(
+  private fun state(media: Media, isStory: Boolean = false, viewOnce: Boolean = false, muteEnabled: Boolean = false): MediaEditState {
+    return MediaEditState(
       selectedMedia = listOf(media),
       focusedMedia = media,
       isStory = isStory,
-      viewOnceToggleState = if (viewOnce) MediaSendFlowState.ViewOnceToggleState.ONCE else MediaSendFlowState.ViewOnceToggleState.OFF,
+      isViewOnceAvailable = !isStory,
+      isViewOnceEnabled = viewOnce,
       isMuteVideoAudioEnabled = muteEnabled
     )
   }

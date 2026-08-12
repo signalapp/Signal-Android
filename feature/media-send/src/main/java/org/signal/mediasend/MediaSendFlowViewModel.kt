@@ -5,7 +5,6 @@
 
 package org.signal.mediasend
 
-import android.Manifest
 import android.graphics.Bitmap
 import android.net.Uri
 import androidx.lifecycle.SavedStateHandle
@@ -42,9 +41,7 @@ import kotlinx.coroutines.sync.withLock
 import org.signal.core.models.media.Media
 import org.signal.core.ui.compose.DialogController
 import org.signal.core.ui.compose.DialogResult
-import org.signal.core.ui.compose.PermissionController
 import org.signal.core.ui.compose.SignalIcons
-import org.signal.core.ui.util.StorageUtil
 import org.signal.core.util.ContentTypeUtil
 import org.signal.core.util.StringUtil
 import org.signal.core.util.logging.Log
@@ -55,7 +52,6 @@ import org.signal.imageeditor.core.renderers.UriGlideRenderer
 import org.signal.mediasend.preupload.PreUploadController
 import org.signal.mediasend.preupload.PreUploadResult
 import org.signal.mediasend.screens.edit.ImageController
-import org.signal.mediasend.screens.edit.MediaEditScreenEvents
 import org.signal.mediasend.screens.edit.ScheduleSendOption
 import org.signal.mediasend.screens.edit.image.BrushTool
 import org.signal.mediasend.screens.edit.image.BrushWidthsState
@@ -78,7 +74,7 @@ class MediaSendFlowViewModel(
   private val repository: MediaSendRepository,
   private val preUploadController: PreUploadController,
   isMeteredFlow: Flow<Boolean>
-) : ViewModel(), MediaSendEventHandler {
+) : ViewModel() {
 
   private val args: MediaSendFlowActivityContract.Args = savedStateHandle[KEY_ARGS]
     ?: throw IllegalStateException("MediaSendViewModel requires args in SavedStateHandle. Use Factory to create.")
@@ -129,14 +125,8 @@ class MediaSendFlowViewModel(
 
   internal val usernameScannedDialog = DialogController<String>()
   internal val linkedDeviceScannedDialog = DialogController<Unit>()
-  internal val saveToStorageDialog = DialogController<Unit>()
   internal val discardMediaDialog = DialogController<Unit>()
   internal val addToGroupStoryDialog = DialogController<MediaRecipientId>()
-
-  internal val writeStoragePermission = PermissionController(
-    permission = Manifest.permission.WRITE_EXTERNAL_STORAGE,
-    permanentDenialMessage = R.string.MediaSendViewModel__signal_needs_the_storage_permission
-  )
 
   private val qrCheckRequest: Channel<String> = Channel(Channel.RENDEZVOUS)
 
@@ -259,13 +249,45 @@ class MediaSendFlowViewModel(
       is MediaSendFlowEvent.MediaCaptured -> onMediaCaptured(event.media, event.recordingDuration)
       is MediaSendFlowEvent.QrCodeScanned -> qrCheckRequest.trySend(event.data)
       MediaSendFlowEvent.CloseRequested -> onCloseRequested()
+
+      is MediaSendFlowEvent.SetMediaQuality -> setSentMediaQuality(event.quality)
+      is MediaSendFlowEvent.SetBrushWidth -> setBrushWidth(event.tool, event.fraction)
+      is MediaSendFlowEvent.SetBlurFacesEnabled -> setBlurFacesEnabled(event.enabled)
+      is MediaSendFlowEvent.VideoTrimChanged -> onEditVideoDuration(
+        totalDurationUs = event.videoTrimData.totalInputDurationUs,
+        startTimeUs = event.videoTrimData.startTimeUs,
+        endTimeUs = event.videoTrimData.endTimeUs,
+        touchEnabled = event.editingComplete
+      )
+      MediaSendFlowEvent.ToggleViewOnce -> toggleViewOnce()
+      MediaSendFlowEvent.ToggleVideoMuted -> toggleVideoMuted()
+
+      is MediaSendFlowEvent.AddMessageRequested -> onAddMessageRequested(event.startWithEmojiKeyboard)
+      is MediaSendFlowEvent.ScheduleSendRequested -> onScheduleSendClick(event.option)
+      MediaSendFlowEvent.StickerRequested -> sendHudCommand(MediaSendFlowHudCommand.SelectSticker)
+      MediaSendFlowEvent.NextRequested -> onNextClick()
+
       is MediaSendFlowEvent.NavigateToFiles -> backStack.goToFiles(event.mediaFolder)
       MediaSendFlowEvent.NavigateToFolders -> backStack.goToFolders()
       MediaSendFlowEvent.NavigateToEdit -> backStack.goToEdit()
       MediaSendFlowEvent.NavigateToCamera -> backStack.goToCamera()
       MediaSendFlowEvent.NavigateToTextStory -> backStack.goToTextStory()
-      MediaSendFlowEvent.NavigateBack -> onPopFromSelect()
+      MediaSendFlowEvent.NavigateBackFromSelect -> onPopFromSelect()
+      MediaSendFlowEvent.NavigateBackFromEdit -> onPopFromEdit()
     }
+  }
+
+  /** Opens the message field, which is a dialog the flow's host owns rather than anything on a screen. */
+  private fun onAddMessageRequested(startWithEmojiKeyboard: Boolean) {
+    val snapshot: MediaSendFlowState = state.value
+
+    sendHudCommand(
+      MediaSendFlowHudCommand.ShowAddAMessageDialog(
+        message = snapshot.message ?: "",
+        startWithEmojiKeyboard = startWithEmojiKeyboard,
+        isViewOnceAvailable = snapshot.isViewOnceAvailable
+      )
+    )
   }
 
   /**
@@ -300,71 +322,6 @@ class MediaSendFlowViewModel(
 
     while (backStack.size > destination.size) {
       backStack.pop()
-    }
-  }
-
-  override fun onMediaEditScreenEvent(mediaEditScreenEvent: MediaEditScreenEvents) {
-    when (mediaEditScreenEvent) {
-      is MediaEditScreenEvents.FocusedMediaChanged -> setFocusedMedia(mediaEditScreenEvent.media)
-      is MediaEditScreenEvents.ReorderSelectedMedia -> reorderMedia(mediaEditScreenEvent.fromIndex, mediaEditScreenEvent.toIndex)
-      MediaEditScreenEvents.NextClick -> onNextClick()
-      is MediaEditScreenEvents.ScheduleSendClick -> onScheduleSendClick(mediaEditScreenEvent.option)
-      MediaEditScreenEvents.NavigateBack -> onPopFromEdit()
-      is MediaEditScreenEvents.VideoTrimChanged -> onEditVideoDuration(
-        totalDurationUs = mediaEditScreenEvent.videoTrimData.totalInputDurationUs,
-        startTimeUs = mediaEditScreenEvent.videoTrimData.startTimeUs,
-        endTimeUs = mediaEditScreenEvent.videoTrimData.endTimeUs,
-        touchEnabled = mediaEditScreenEvent.editingComplete
-      )
-
-      is MediaEditScreenEvents.VideoSeek -> error("VideoSeek is routed to the video player bus by MediaEditScreen and must not reach the view-model.")
-      is MediaEditScreenEvents.AddMessageClick -> {
-        val snapshot: MediaSendFlowState = state.value
-
-        sendHudCommand(
-          MediaSendFlowHudCommand.ShowAddAMessageDialog(
-            message = snapshot.message ?: "",
-            startWithEmojiKeyboard = mediaEditScreenEvent.startWithEmojiKeyboard,
-            isViewOnceAvailable = snapshot.isViewOnceAvailable
-          )
-        )
-      }
-
-      MediaEditScreenEvents.StickerClick -> {
-        sendHudCommand(MediaSendFlowHudCommand.SelectSticker)
-      }
-
-      MediaEditScreenEvents.NavigateToGallery -> {
-        backStack.goToFolders()
-      }
-
-      is MediaEditScreenEvents.SetMediaQuality -> {
-        setSentMediaQuality(mediaEditScreenEvent.quality)
-      }
-
-      MediaEditScreenEvents.ToggleViewOnce -> {
-        toggleViewOnce()
-      }
-
-      MediaEditScreenEvents.ToggleVideoMuted -> {
-        toggleVideoMuted()
-      }
-
-      MediaEditScreenEvents.SaveMedia -> {
-        saveFocusedMediaToStorage()
-      }
-
-      is MediaEditScreenEvents.RemoveMedia -> {
-        removeMedia(mediaEditScreenEvent.media)
-      }
-
-      is MediaEditScreenEvents.BrushWidthChanged -> {
-        setBrushWidth(mediaEditScreenEvent.tool, mediaEditScreenEvent.fraction)
-      }
-
-      is MediaEditScreenEvents.ToggleBlurFaces -> {
-        setBlurFacesEnabled(mediaEditScreenEvent.enabled)
-      }
     }
   }
 
@@ -968,54 +925,6 @@ class MediaSendFlowViewModel(
 
   fun setEditorState(uri: Uri, state: EditorState) {
     updateState { copy(editorStateMap = editorStateMap + (uri to state)) }
-  }
-
-  //endregion
-
-  //region Save To Storage
-
-  /**
-   * Writes the focused image, edits included, out to the device's shared storage.
-   */
-  private fun saveFocusedMediaToStorage() {
-    val focusedUri = state.value.focusedMedia?.uri ?: return
-    val editorState = state.value.editorStateMap[focusedUri] as? EditorState.Image ?: return
-
-    viewModelScope.launch {
-      if (!repository.hasDismissedSaveToStorageWarning && saveToStorageDialog.show(Unit) != DialogResult.POSITIVE) {
-        return@launch
-      }
-
-      if (!StorageUtil.canWriteToMediaStore() && !writeStoragePermission.request()) {
-        internalSnackbarEvents.trySend(SnackbarEvent(message = R.string.MediaSendViewModel__unable_to_save_without_storage_permission))
-        return@launch
-      }
-
-      if (state.value.isSavingMedia) {
-        return@launch
-      }
-
-      updateState { copy(isSavingMedia = true) }
-      val result = try {
-        repository.saveImageToStorage(editorState.model)
-      } finally {
-        updateState { copy(isSavingMedia = false) }
-      }
-
-      internalSnackbarEvents.trySend(
-        SnackbarEvent(
-          message = when (result) {
-            SaveToStorageResult.SUCCESS -> R.string.MediaSendViewModel__media_saved
-            SaveToStorageResult.FAILURE -> R.string.MediaSendViewModel__error_saving_media
-            SaveToStorageResult.NO_WRITE_ACCESS -> R.string.MediaSendViewModel__unable_to_save_without_storage_permission
-          }
-        )
-      )
-    }
-  }
-
-  fun markSaveToStorageWarningDismissed() {
-    repository.markSaveToStorageWarningDismissed()
   }
 
   //endregion

@@ -95,7 +95,7 @@ internal class MediaSelectViewModel(
       is MediaSelectScreenEvents.ReorderSelectedMedia -> parentEventEmitter(MediaSendFlowEvent.ReorderSelectedMedia(event.fromIndex, event.toIndex))
       MediaSelectScreenEvents.NavigateToEdit -> parentEventEmitter(MediaSendFlowEvent.NavigateToEdit)
       MediaSelectScreenEvents.NavigateToCamera -> parentEventEmitter(MediaSendFlowEvent.NavigateToCamera)
-      MediaSelectScreenEvents.NavigateBack -> parentEventEmitter(MediaSendFlowEvent.NavigateBack)
+      MediaSelectScreenEvents.NavigateBack -> parentEventEmitter(MediaSendFlowEvent.NavigateBackFromSelect)
       MediaSelectScreenEvents.Refresh -> refresh()
       MediaSelectScreenEvents.RequestMediaPermissions -> requestReadMediaPermissions(reportDenial = true)
       MediaSelectScreenEvents.SelectMorePhotos -> requestReadMediaPermissions(reportDenial = false)

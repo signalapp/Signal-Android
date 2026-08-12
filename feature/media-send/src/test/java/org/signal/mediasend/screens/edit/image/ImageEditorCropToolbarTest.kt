@@ -23,8 +23,8 @@ import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.imageeditor.core.model.EditorModel
 import org.signal.mediasend.EditorState
 import org.signal.mediasend.MediaSendDependenciesRule
-import org.signal.mediasend.MediaSendFlowState
 import org.signal.mediasend.screens.edit.ImageController
+import org.signal.mediasend.screens.edit.MediaEditState
 
 /**
  * The aspect ratio toggle is an icon-only button whose icon is the only thing that says whether the crop is locked, so the
@@ -70,7 +70,7 @@ class ImageEditorCropToolbarTest {
 
         ImageEditorToolbar(
           imageEditorController = controller,
-          state = MediaSendFlowState(),
+          state = MediaEditState(),
           editorState = EditorState.Image(EDITOR_MODEL),
           onEvent = {}
         )

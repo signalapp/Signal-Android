@@ -16,6 +16,7 @@ import assertk.assertions.isEqualTo
 import assertk.assertions.isFalse
 import assertk.assertions.isTrue
 import io.mockk.coEvery
+import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -71,6 +72,8 @@ class MediaCaptureViewModelTest {
     Dispatchers.resetMain()
   }
 
+  //region Chrome the flow's configuration decides
+
   @Test
   fun `Given a camera-first flow that has yet to pick a destination, when created, then the bottom bar can display`() = runTest {
     val viewModel = createViewModel(cameraFirstStoryCapableState())
@@ -79,8 +82,33 @@ class MediaCaptureViewModelTest {
   }
 
   @Test
+  fun `Given a camera-first flow aimed at one recipient's story, when created, then the bottom bar can display`() = runTest {
+    val viewModel = createViewModel(
+      cameraFirstStoryCapableState().copy(mode = MediaSendFlowActivityContract.Mode.SingleRecipient, isStory = true)
+    )
+
+    assertThat(viewModel.state.value.canDisplayBottomBar).isTrue()
+  }
+
+  @Test
   fun `Given a camera-first flow headed straight to a chat, when created, then the bottom bar stays hidden`() = runTest {
-    val viewModel = createViewModel(cameraFirstStoryCapableState().copy(mode = MediaSendFlowActivityContract.Mode.SingleRecipient, isStory = false))
+    val viewModel = createViewModel(
+      cameraFirstStoryCapableState().copy(mode = MediaSendFlowActivityContract.Mode.SingleRecipient, isStory = false)
+    )
+
+    assertThat(viewModel.state.value.canDisplayBottomBar).isFalse()
+  }
+
+  @Test
+  fun `Given stories are unavailable, when created, then the bottom bar stays hidden`() = runTest {
+    val viewModel = createViewModel(cameraFirstStoryCapableState().copy(storiesEnabled = false))
+
+    assertThat(viewModel.state.value.canDisplayBottomBar).isFalse()
+  }
+
+  @Test
+  fun `Given the camera was not what opened the flow, when created, then the bottom bar stays hidden`() = runTest {
+    val viewModel = createViewModel(cameraFirstStoryCapableState().copy(isCameraFirst = false))
 
     assertThat(viewModel.state.value.canDisplayBottomBar).isFalse()
   }
@@ -98,6 +126,10 @@ class MediaCaptureViewModelTest {
 
     assertThat(viewModel.state.value.maxVideoDurationSecondsOverride).isEqualTo(0)
   }
+
+  //endregion
+
+  //region Following the flow
 
   @Test
   fun `when the flow's selection changes, then the screen's copy of it follows`() = runTest {
@@ -120,53 +152,60 @@ class MediaCaptureViewModelTest {
     assertThat(viewModel.state.value.selectedCaptureScreen).isEqualTo(MediaSendRoute.Capture.TextStory)
   }
 
+  /**
+   * Which capture screen is showing is not the flow's to report, and a capture landing in the selection is exactly when
+   * the flow reports something while the text story editor is open.
+   */
   @Test
-  fun `when the camera is asked for, then the flow is sent to it`() = runTest {
-    onEvent(MediaCaptureScreenEvents.ShowCamera)
+  fun `Given the text story editor is open, when the flow's selection changes, then it stays open`() = runTest {
+    val parentState = MutableStateFlow(MediaSendFlowState())
+    val viewModel = createViewModel(parentState)
+    viewModel.onEvent(MediaCaptureScreenEvents.SelectedCaptureScreenChanged(MediaSendRoute.Capture.TextStory))
+    advanceUntilIdle()
 
-    assertThat(parentEvents).containsExactly(MediaSendFlowEvent.NavigateToCamera)
+    parentState.value = MediaSendFlowState(selectedMedia = listOf(MEDIA))
+    advanceUntilIdle()
+
+    assertThat(viewModel.state.value.selectedCaptureScreen).isEqualTo(MediaSendRoute.Capture.TextStory)
+    assertThat(viewModel.state.value.selectedMedia).containsExactly(MEDIA)
   }
 
   @Test
-  fun `when the text story editor is asked for, then the flow is sent to it`() = runTest {
-    onEvent(MediaCaptureScreenEvents.ShowTextStory)
+  fun `Given nothing has happened, when created, then the flow is left alone`() = runTest {
+    createViewModel()
+    advanceUntilIdle()
 
-    assertThat(parentEvents).containsExactly(MediaSendFlowEvent.NavigateToTextStory)
+    assertThat(parentEvents).isEmpty()
   }
 
+  //endregion
+
+  //region Handing off to the flow
+
+  /**
+   * Everything the flow, rather than this screen, is responsible for. Kept as one table so that an event added to the
+   * screen without a home in the flow's own vocabulary shows up as a gap here.
+   */
   @Test
-  fun `when next is clicked, then the flow moves on to the editor`() = runTest {
-    onEvent(MediaCaptureScreenEvents.NextClicked)
+  fun `Given work only the flow can do, when it is asked for, then it is handed over unchanged`() = runTest {
+    val handOffs: List<Pair<MediaCaptureScreenEvents, MediaSendFlowEvent>> = listOf(
+      MediaCaptureScreenEvents.ShowCamera to MediaSendFlowEvent.NavigateToCamera,
+      MediaCaptureScreenEvents.ShowTextStory to MediaSendFlowEvent.NavigateToTextStory,
+      MediaCaptureScreenEvents.NextClicked to MediaSendFlowEvent.NavigateToEdit,
+      camera(CameraXScreenEvents.GalleryClicked) to MediaSendFlowEvent.NavigateToFolders,
+      camera(CameraXScreenEvents.CameraCloseClicked) to MediaSendFlowEvent.CloseRequested,
+      camera(CameraXScreenEvents.QrCodeFound("sgnl://example")) to MediaSendFlowEvent.QrCodeScanned("sgnl://example"),
+      camera(CameraXScreenEvents.VideoCaptureError) to snackbar(R.string.MediaSendViewModel__error_recording_video)
+    )
 
-    assertThat(parentEvents).containsExactly(MediaSendFlowEvent.NavigateToEdit)
-  }
+    handOffs.forEach { (screenEvent, expected) ->
+      parentEvents.clear()
 
-  @Test
-  fun `when the gallery is opened from the camera, then the flow is sent to it`() = runTest {
-    onCameraEvent(CameraXScreenEvents.GalleryClicked)
+      createViewModel().onEvent(screenEvent)
+      advanceUntilIdle()
 
-    assertThat(parentEvents).containsExactly(MediaSendFlowEvent.NavigateToFolders)
-  }
-
-  @Test
-  fun `when the camera is closed, then the flow is asked to close`() = runTest {
-    onCameraEvent(CameraXScreenEvents.CameraCloseClicked)
-
-    assertThat(parentEvents).containsExactly(MediaSendFlowEvent.CloseRequested)
-  }
-
-  @Test
-  fun `when a qr code is read, then it is handed to the flow`() = runTest {
-    onCameraEvent(CameraXScreenEvents.QrCodeFound("sgnl://example"))
-
-    assertThat(parentEvents).containsExactly(MediaSendFlowEvent.QrCodeScanned("sgnl://example"))
-  }
-
-  @Test
-  fun `when a recording fails outright, then the failure is reported`() = runTest {
-    onCameraEvent(CameraXScreenEvents.VideoCaptureError)
-
-    assertThat(parentEvents).containsExactly(snackbar(R.string.MediaSendViewModel__error_recording_video))
+      assertThat(parentEvents, name = screenEvent.toString()).containsExactly(expected)
+    }
   }
 
   @Test
@@ -179,6 +218,16 @@ class MediaCaptureViewModelTest {
   }
 
   @Test
+  fun `when an image is captured, then it is written out with what the camera reported`() = runTest {
+    coEvery { repository.writeCapturedImage(any(), any(), any()) } returns MEDIA
+    val data = byteArrayOf(1, 2, 3)
+
+    onCameraEvent(CameraXScreenEvents.ImageCaptured(data = data, width = 640, height = 480))
+
+    coVerify(exactly = 1) { repository.writeCapturedImage(data, 640, 480) }
+  }
+
+  @Test
   fun `when an image cannot be written out, then the failure is reported and nothing is handed over`() = runTest {
     coEvery { repository.writeCapturedImage(any(), any(), any()) } returns null
 
@@ -187,6 +236,7 @@ class MediaCaptureViewModelTest {
     assertThat(parentEvents).containsExactly(snackbar(R.string.MediaSendViewModel__error_taking_photo))
   }
 
+  /** The duration rides along because it is what the flow drops back to standard quality on. */
   @Test
   fun `when a recording is captured, then it is handed over with how long it ran`() = runTest {
     coEvery { repository.writeCapturedVideo(any()) } returns MEDIA
@@ -205,13 +255,7 @@ class MediaCaptureViewModelTest {
     assertThat(parentEvents).containsExactly(snackbar(R.string.MediaSendViewModel__error_recording_video))
   }
 
-  @Test
-  fun `Given nothing has happened, when created, then the flow is left alone`() = runTest {
-    createViewModel()
-    advanceUntilIdle()
-
-    assertThat(parentEvents).isEmpty()
-  }
+  //endregion
 
   /** Raises [event] on a freshly created screen and lets it settle. */
   private fun TestScope.onEvent(event: MediaCaptureScreenEvents) {
@@ -220,8 +264,10 @@ class MediaCaptureViewModelTest {
   }
 
   private fun TestScope.onCameraEvent(event: CameraXScreenEvents) {
-    onEvent(MediaCaptureScreenEvents.Camera(event))
+    onEvent(camera(event))
   }
+
+  private fun camera(event: CameraXScreenEvents) = MediaCaptureScreenEvents.Camera(event)
 
   private fun snackbar(@StringRes message: Int) = MediaSendFlowEvent.ShowSnackbar(SnackbarEvent(message = message))
 
