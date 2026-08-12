@@ -177,7 +177,8 @@ object RecipientTableCursorUtil {
     val capabilities = cursor.requireLong(RecipientTable.CAPABILITIES)
     return RecipientRecord.Capabilities(
       rawBits = capabilities,
-      usernameSyncMessages = Recipient.Capability.deserialize(Bitmask.read(capabilities, RecipientTable.Capabilities.USERNAME_SYNC_MESSAGES, RecipientTable.Capabilities.BIT_LENGTH).toInt())
+      usernameSyncMessages = Recipient.Capability.deserialize(Bitmask.read(capabilities, RecipientTable.Capabilities.USERNAME_SYNC_MESSAGES, RecipientTable.Capabilities.BIT_LENGTH).toInt()),
+      optionalPhoneNumber = Recipient.Capability.deserialize(Bitmask.read(capabilities, RecipientTable.Capabilities.OPTIONAL_PHONE_NUMBER, RecipientTable.Capabilities.BIT_LENGTH).toInt())
     )
   }
 

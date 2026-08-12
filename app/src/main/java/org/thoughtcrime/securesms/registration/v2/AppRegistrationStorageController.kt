@@ -758,7 +758,7 @@ class AppRegistrationStorageController(private val context: Context) : StorageCo
 
     val aci = ACI.parseOrThrow(accountData.aci)
     val pni = PNI.parseOrNull(accountData.pni)
-    val e164 = accountData.e164.nullIfBlank()
+    val e164 = accountData.e164?.nullIfBlank()
     val isAciChanged = SignalStore.account.aci != aci
 
     if (pni == null) {

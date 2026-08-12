@@ -37,15 +37,20 @@ import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.ecc.ECPrivateKey
 import org.signal.libsignal.zkgroup.GenericServerPublicParams
+import org.signal.libsignal.zkgroup.ServerSecretParams
 import org.signal.libsignal.zkgroup.VerificationFailedException
 import org.signal.libsignal.zkgroup.backups.BackupAuthCredentialRequestContext
 import org.signal.libsignal.zkgroup.backups.BackupAuthCredentialResponse
+import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
+import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialRequest
+import org.signal.libsignal.zkgroup.receipts.ServerZkReceiptOperations
 import org.signal.network.NetworkResult
 import org.signal.network.api.LinkDeviceApi
 import org.signal.network.api.RegistrationApiV2
 import org.signal.network.api.RegistrationApiV2.AccountAttributes
 import org.signal.network.api.RegistrationApiV2.CheckSvrCredentialsError
 import org.signal.network.api.RegistrationApiV2.CheckSvrCredentialsResponse
+import org.signal.network.api.RegistrationApiV2.CreateLoginReceiptCredentialResult
 import org.signal.network.api.RegistrationApiV2.CreateSessionError
 import org.signal.network.api.RegistrationApiV2.DeviceAttributes
 import org.signal.network.api.RegistrationApiV2.GetSessionStatusError
@@ -92,7 +97,10 @@ import org.whispersystems.signalservice.internal.websocket.LibSignalChatConnecti
 import java.io.Closeable
 import java.io.IOException
 import java.time.Instant
+import java.time.temporal.ChronoUnit
 import java.util.Locale
+import java.util.UUID
+import kotlin.random.Random
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.hours
@@ -114,12 +122,16 @@ class DemoNetworkController(
     const val DEVICE_TRANSFER_NOTIFICATION_CHANNEL_ID = "device_transfer"
     private const val DEVICE_TRANSFER_NOTIFICATION_ID = 4321
     private const val USER_AGENT = "Signal-Android-Registration-Sample"
+    private const val LOGIN_PURCHASE_RECEIPT_LEVEL = 1L
   }
 
   private val json = Json { ignoreUnknownKeys = true }
 
+  /** Stands in for the service when issuing mock Signal Login receipt credentials. */
+  private val demoReceiptServerSecretParams: ServerSecretParams by lazy { ServerSecretParams.generate() }
+
   private val registrationApi: RegistrationApiV2 by lazy {
-    RegistrationApiV2(SignalRestClient(serviceConfiguration, USER_AGENT))
+    RegistrationApiV2(SignalRestClient(serviceConfiguration, USER_AGENT), phonenumberlessRegistrationAllowed = true)
   }
 
   private val okHttpClient: okhttp3.OkHttpClient by lazy {
@@ -202,6 +214,48 @@ class DemoNetworkController(
       pniPreKeys = pniPreKeys,
       fcmToken = fcmToken,
       skipDeviceTransfer = skipDeviceTransfer
+    )
+  }
+
+  /**
+   * The endpoint is not deployed yet, so the demo mints its own receipt credential rather than calling the service. The
+   * credential is issued by throwaway server params, so it is internally consistent but will not verify against the
+   * real server's public params.
+   */
+  override suspend fun createLoginPurchaseReceiptCredential(
+    purchaseIdentifier: String,
+    receiptCredentialRequest: ReceiptCredentialRequest,
+    paymentProvider: RegistrationApiV2.LoginPurchasePaymentProvider
+  ): RequestResult<CreateLoginReceiptCredentialResult, RegistrationApiV2.CreateLoginReceiptCredentialError> {
+    Log.i(TAG, "[createLoginPurchaseReceiptCredential] Returning a locally-issued receipt credential for $paymentProvider.")
+
+    val expiration = Instant.now().truncatedTo(ChronoUnit.DAYS).plus(5L * 366, ChronoUnit.DAYS).epochSecond
+    val response = ServerZkReceiptOperations(demoReceiptServerSecretParams).issueReceiptCredential(receiptCredentialRequest, expiration, LOGIN_PURCHASE_RECEIPT_LEVEL)
+
+    return RequestResult.Success(CreateLoginReceiptCredentialResult.Issued(response))
+  }
+
+  /** The endpoint is not deployed yet, so the demo fabricates the account the service would have created. */
+  override suspend fun registerAccountWithoutPhoneNumber(
+    password: String,
+    receiptCredentialPresentation: ReceiptCredentialPresentation,
+    attributes: AccountAttributes,
+    aciPreKeys: PreKeyCollection,
+    fcmToken: String?,
+    skipDeviceTransfer: Boolean
+  ): RequestResult<RegisterAccountResponse, RegistrationApiV2.RegisterAccountWithoutPhoneNumberError> {
+    Log.i(TAG, "[registerAccountWithoutPhoneNumber] Returning a fabricated numberless account.")
+
+    return RequestResult.Success(
+      RegisterAccountResponse(
+        aci = UUID.randomUUID().toString(),
+        usernameHash = null,
+        usernameLinkHandle = null,
+        storageCapable = true,
+        entitlements = null,
+        authCredentialSalt = Base64.encodeWithPadding(Random.nextBytes(16)),
+        reregistration = false
+      )
     )
   }
 
@@ -1026,7 +1080,8 @@ class DemoNetworkController(
         versionedExpirationTimer = true,
         attachmentBackfill = true,
         spqr = true,
-        usernameChangeSyncMessage = true
+        usernameChangeSyncMessage = true,
+        optionalPhoneNumber = false
       ),
       pniRegistrationId = RegistrationPreferences.pniRegistrationId,
       recoveryPassword = recoveryPassword
@@ -1319,9 +1374,10 @@ class DemoNetworkController(
       unidentifiedAccessKey,
       unrestrictedUnidentifiedAccess,
       capabilities?.toServiceCapabilities(),
-      discoverableByPhoneNumber,
+      // The legacy service model can't express "no phone number".
+      discoverableByPhoneNumber ?: false,
       null,
-      pniRegistrationId,
+      pniRegistrationId ?: 0,
       recoveryPassword
     )
   }
@@ -1332,7 +1388,8 @@ class DemoNetworkController(
       versionedExpirationTimer,
       attachmentBackfill,
       spqr,
-      usernameChangeSyncMessage
+      usernameChangeSyncMessage,
+      optionalPhoneNumber
     )
   }
 

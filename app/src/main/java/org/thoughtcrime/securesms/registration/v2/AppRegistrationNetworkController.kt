@@ -24,19 +24,25 @@ import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.ecc.ECPrivateKey
+import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
+import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialRequest
 import org.signal.network.NetworkResult
 import org.signal.network.api.ArchiveApiV2
 import org.signal.network.api.RegistrationApiV2
 import org.signal.network.api.RegistrationApiV2.AccountAttributes
 import org.signal.network.api.RegistrationApiV2.CheckSvrCredentialsError
 import org.signal.network.api.RegistrationApiV2.CheckSvrCredentialsResponse
+import org.signal.network.api.RegistrationApiV2.CreateLoginReceiptCredentialError
+import org.signal.network.api.RegistrationApiV2.CreateLoginReceiptCredentialResult
 import org.signal.network.api.RegistrationApiV2.CreateSessionError
 import org.signal.network.api.RegistrationApiV2.DeviceAttributes
 import org.signal.network.api.RegistrationApiV2.GetSessionStatusError
 import org.signal.network.api.RegistrationApiV2.LinkDeviceResponse
+import org.signal.network.api.RegistrationApiV2.LoginPurchasePaymentProvider
 import org.signal.network.api.RegistrationApiV2.PreKeyCollection
 import org.signal.network.api.RegistrationApiV2.RegisterAccountError
 import org.signal.network.api.RegistrationApiV2.RegisterAccountResponse
+import org.signal.network.api.RegistrationApiV2.RegisterAccountWithoutPhoneNumberError
 import org.signal.network.api.RegistrationApiV2.RegisterAsLinkedDeviceError
 import org.signal.network.api.RegistrationApiV2.RequestVerificationCodeError
 import org.signal.network.api.RegistrationApiV2.RestoreMethod
@@ -86,6 +92,7 @@ import org.thoughtcrime.securesms.registration.fcm.PushChallengeRequest
 import org.thoughtcrime.securesms.registration.ui.restore.StorageServiceRestore
 import org.thoughtcrime.securesms.registration.util.RegistrationUtil
 import org.thoughtcrime.securesms.registration.viewmodel.SvrAuthCredentialSet
+import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.SvrNoDataException
 import org.whispersystems.signalservice.api.link.TransferArchiveResponse
@@ -183,6 +190,25 @@ class AppRegistrationNetworkController(
       fcmToken = fcmToken,
       skipDeviceTransfer = skipDeviceTransfer
     )
+  }
+
+  override suspend fun createLoginPurchaseReceiptCredential(
+    purchaseIdentifier: String,
+    receiptCredentialRequest: ReceiptCredentialRequest,
+    paymentProvider: LoginPurchasePaymentProvider
+  ): RequestResult<CreateLoginReceiptCredentialResult, CreateLoginReceiptCredentialError> {
+    throw NotImplementedError()
+  }
+
+  override suspend fun registerAccountWithoutPhoneNumber(
+    password: String,
+    receiptCredentialPresentation: ReceiptCredentialPresentation,
+    attributes: AccountAttributes,
+    aciPreKeys: PreKeyCollection,
+    fcmToken: String?,
+    skipDeviceTransfer: Boolean
+  ): RequestResult<RegisterAccountResponse, RegisterAccountWithoutPhoneNumberError> {
+    throw NotImplementedError()
   }
 
   override suspend fun getFcmToken(): String? {
@@ -819,6 +845,11 @@ class AppRegistrationNetworkController(
   }
 
   private fun AccountAttributes.toServiceAccountAttributes(): ServiceAccountAttributes {
+    if (!Environment.PHONENUMBERLESS_REGISTRATION) {
+      checkNotNull(discoverableByPhoneNumber) { "Missing phone number discoverability for an account that must have a phone number!" }
+      checkNotNull(pniRegistrationId) { "Missing PNI registration ID for an account that must have a phone number!" }
+    }
+
     return ServiceAccountAttributes(
       signalingKey,
       registrationId,
@@ -827,9 +858,10 @@ class AppRegistrationNetworkController(
       unidentifiedAccessKey,
       unrestrictedUnidentifiedAccess,
       capabilities?.toServiceCapabilities(),
-      discoverableByPhoneNumber,
+      // The legacy service entity can't express "no phone number".
+      discoverableByPhoneNumber ?: false,
       null,
-      pniRegistrationId,
+      pniRegistrationId ?: 0,
       recoveryPassword
     )
   }
@@ -840,7 +872,8 @@ class AppRegistrationNetworkController(
       versionedExpirationTimer,
       attachmentBackfill,
       spqr,
-      usernameChangeSyncMessage
+      usernameChangeSyncMessage,
+      optionalPhoneNumber
     )
   }
 }

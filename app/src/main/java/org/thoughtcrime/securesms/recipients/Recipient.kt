@@ -356,6 +356,9 @@ class Recipient(
   /** The user's capability to receive username sync messages */
   val usernameSyncMessagesCapability: Capability = capabilities.usernameSyncMessages
 
+  /** The user's capability to participate on an account that has no phone number */
+  val optionalPhoneNumberCapability: Capability = capabilities.optionalPhoneNumber
+
   /** The wallpaper to render as the chat background, if present. */
   val wallpaper: ChatWallpaper?
     get() {

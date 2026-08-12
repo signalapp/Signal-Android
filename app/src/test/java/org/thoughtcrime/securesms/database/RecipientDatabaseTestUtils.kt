@@ -125,7 +125,8 @@ object RecipientDatabaseTestUtils {
       sealedSenderAccessMode = sealedSenderAccessMode,
       capabilities = RecipientRecord.Capabilities(
         rawBits = capabilities,
-        usernameSyncMessages = Recipient.Capability.SUPPORTED
+        usernameSyncMessages = Recipient.Capability.SUPPORTED,
+        optionalPhoneNumber = Recipient.Capability.SUPPORTED
       ),
       storageId = storageId,
       mentionSetting = mentionSetting,

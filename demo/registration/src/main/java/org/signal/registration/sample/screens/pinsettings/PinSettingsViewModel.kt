@@ -184,7 +184,8 @@ class PinSettingsViewModel(
           versionedExpirationTimer = true,
           attachmentBackfill = true,
           spqr = true,
-          usernameChangeSyncMessage = true
+          usernameChangeSyncMessage = true,
+          optionalPhoneNumber = false
         ),
         pniRegistrationId = RegistrationPreferences.pniRegistrationId,
         recoveryPassword = recoveryPassword

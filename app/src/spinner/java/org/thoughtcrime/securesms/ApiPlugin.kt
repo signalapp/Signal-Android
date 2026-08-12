@@ -398,7 +398,7 @@ class ApiPlugin : Plugin {
       }
 
       SignalDatabase.recipients.setProfileKeyIfAbsent(recipientId, ProfileKeyUtil.createNew())
-      SignalDatabase.recipients.setCapabilities(recipientId, SignalServiceProfile.Capabilities(true, true, true))
+      SignalDatabase.recipients.setCapabilities(recipientId, SignalServiceProfile.Capabilities(true, true, true, false))
       SignalDatabase.recipients.setProfileSharing(recipientId, profileSharing)
 
       if (registered) {

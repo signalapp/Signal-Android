@@ -12,16 +12,22 @@ import org.signal.core.models.MasterKey
 import org.signal.core.models.ServiceId.ACI
 import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.protocol.IdentityKeyPair
+import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
+import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialRequest
 import org.signal.network.api.RegistrationApiV2.AccountAttributes
 import org.signal.network.api.RegistrationApiV2.CheckSvrCredentialsError
 import org.signal.network.api.RegistrationApiV2.CheckSvrCredentialsResponse
+import org.signal.network.api.RegistrationApiV2.CreateLoginReceiptCredentialError
+import org.signal.network.api.RegistrationApiV2.CreateLoginReceiptCredentialResult
 import org.signal.network.api.RegistrationApiV2.CreateSessionError
 import org.signal.network.api.RegistrationApiV2.DeviceAttributes
 import org.signal.network.api.RegistrationApiV2.GetSessionStatusError
 import org.signal.network.api.RegistrationApiV2.LinkDeviceResponse
+import org.signal.network.api.RegistrationApiV2.LoginPurchasePaymentProvider
 import org.signal.network.api.RegistrationApiV2.PreKeyCollection
 import org.signal.network.api.RegistrationApiV2.RegisterAccountError
 import org.signal.network.api.RegistrationApiV2.RegisterAccountResponse
+import org.signal.network.api.RegistrationApiV2.RegisterAccountWithoutPhoneNumberError
 import org.signal.network.api.RegistrationApiV2.RegisterAsLinkedDeviceError
 import org.signal.network.api.RegistrationApiV2.RequestVerificationCodeError
 import org.signal.network.api.RegistrationApiV2.RestoreMethod
@@ -307,6 +313,21 @@ class FakeNetworkController(
     lastRegisterAccountRequest = request
     return onRegisterAccount(request)
   }
+
+  override suspend fun createLoginPurchaseReceiptCredential(
+    purchaseIdentifier: String,
+    receiptCredentialRequest: ReceiptCredentialRequest,
+    paymentProvider: LoginPurchasePaymentProvider
+  ): RequestResult<CreateLoginReceiptCredentialResult, CreateLoginReceiptCredentialError> = notExpected()
+
+  override suspend fun registerAccountWithoutPhoneNumber(
+    password: String,
+    receiptCredentialPresentation: ReceiptCredentialPresentation,
+    attributes: AccountAttributes,
+    aciPreKeys: PreKeyCollection,
+    fcmToken: String?,
+    skipDeviceTransfer: Boolean
+  ): RequestResult<RegisterAccountResponse, RegisterAccountWithoutPhoneNumberError> = notExpected()
 
   override suspend fun getFcmToken(): String? = fcmToken
 

@@ -701,6 +701,11 @@ class RegistrationRepository(
     )
 
     if (result is RequestResult.Success) {
+      if (!isPhoneNumberlessRegistrationAvailable) {
+        checkNotNull(result.result.e164) { "Missing e164 in the response for a primary registration!" }
+        checkNotNull(result.result.pni) { "Missing PNI in the response for a primary registration!" }
+      }
+
       storageController.updateInProgressRegistrationData {
         this.accountEntropyPool = keyMaterial.accountEntropyPool.value
       }
@@ -929,7 +934,7 @@ class RegistrationRepository(
    */
   suspend fun isRegistered(): Boolean = withContext(Dispatchers.IO) {
     val accountData = storageController.readInProgressRegistrationData().accountData
-    accountData != null && accountData.aci.isNotEmpty() && accountData.pni.isNotEmpty()
+    accountData != null && accountData.aci.isNotEmpty() && !accountData.pni.isNullOrEmpty()
   }
 
   fun restoreV1Backup(rootUri: Uri, backupUri: Uri, passphrase: String): Flow<LocalBackupRestoreProgress> {
@@ -1103,7 +1108,8 @@ class RegistrationRepository(
       versionedExpirationTimer = true,
       attachmentBackfill = true,
       spqr = true,
-      usernameChangeSyncMessage = true
+      usernameChangeSyncMessage = true,
+      optionalPhoneNumber = false
     )
   }
 

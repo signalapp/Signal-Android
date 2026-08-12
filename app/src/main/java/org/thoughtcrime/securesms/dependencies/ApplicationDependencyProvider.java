@@ -600,7 +600,7 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
 
   @Override
   public @NonNull RegistrationApiV2 provideRegistrationApiV2(@NonNull SignalRestClient signalRestClient) {
-    return new RegistrationApiV2(signalRestClient);
+    return new RegistrationApiV2(signalRestClient, Environment.PHONENUMBERLESS_REGISTRATION);
   }
 
   @Override
