@@ -4487,15 +4487,6 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Úsáidte le déanaí</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">An Teachtaireacht Seo</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Úsáidte le Déanaí</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Straoiseoga ⁊ Daoine</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">An Dúlra</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Bia</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Gníomhaíochtaí</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Áiteanna</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Rudaí</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Siombailí</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Bratacha</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Straoiseoga</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Gan toradh</string>
 
     <!-- GifQuickSearchOption -->

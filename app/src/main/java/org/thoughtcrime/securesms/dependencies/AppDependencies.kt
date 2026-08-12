@@ -15,6 +15,7 @@ import org.signal.core.util.contentproviders.BlobProvider
 import org.signal.core.util.orNull
 import org.signal.core.util.resettableLazy
 import org.signal.donations.permits.DonationPermitsRepository
+import org.signal.emoji.EmojiDependencies
 import org.signal.glide.SignalGlideDependencies
 import org.signal.libsignal.net.Network
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations
@@ -126,6 +127,7 @@ object AppDependencies {
     SignalGlideDependencies.init(application, SignalGlideDependenciesProvider)
     CameraDependencies.init(application, CameraDependenciesProvider)
     MediaSendDependencies.init(application, MediaSendDependenciesProvider)
+    EmojiDependencies.init(application, EmojiDependenciesProvider)
   }
 
   @JvmStatic

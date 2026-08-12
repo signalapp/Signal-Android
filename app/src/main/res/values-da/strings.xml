@@ -4118,15 +4118,6 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Nylige</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Denne besked</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Senest brugte</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Smileys &amp; personer</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Natur</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Mad</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Aktiviteter</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Steder</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Objekter</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Symboler</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Flag</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Humørikoner</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Ingen fundne resultater</string>
 
     <!-- GifQuickSearchOption -->

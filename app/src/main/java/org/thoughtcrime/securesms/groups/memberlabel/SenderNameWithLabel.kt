@@ -23,7 +23,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
-import org.thoughtcrime.securesms.components.emoji.Emojifier
+import org.signal.emoji.Emojifier
 
 private val defaultLabelTextStyle: @Composable () -> TextStyle = { MaterialTheme.typography.bodySmall }
 

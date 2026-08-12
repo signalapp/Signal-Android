@@ -4364,15 +4364,6 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Nedavno</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">To sporočilo</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nedavno uporabljeno</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Smeški &amp; Ljudje</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Narava</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Hrana</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Dejavnosti</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Kraji</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Objekti</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Simboli</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Zastave</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emotikoni</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Ni rezultatov</string>
 
     <!-- GifQuickSearchOption -->

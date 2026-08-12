@@ -122,6 +122,7 @@ include(":lib:image-editor")
 include(":lib:debuglogs-viewer")
 include(":lib:blurhash")
 include(":lib:apng")
+include(":lib:emoji")
 include(":lib:archive")
 
 // Feature modules

@@ -4118,15 +4118,6 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">अलीकडील</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">हा संदेश</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">अलीकडील वापरलेले</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">स्माईली आणि व्यक्ती</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">निसर्ग</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">अन्न</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">क्रिया</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">ठिकाणे</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">वस्तू</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">चिन्ह</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">झेंडे</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">इमोटीकॉन</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">कुठलेही परिणाम नाहीत</string>
 
     <!-- GifQuickSearchOption -->

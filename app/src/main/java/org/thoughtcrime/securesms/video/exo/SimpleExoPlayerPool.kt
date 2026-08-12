@@ -17,10 +17,10 @@ import androidx.media3.exoplayer.mediacodec.MediaCodecUtil
 import androidx.media3.exoplayer.source.DefaultMediaSourceFactory
 import androidx.media3.exoplayer.source.MediaSource
 import org.signal.core.util.AppForegroundObserver
+import org.signal.core.util.DeviceProperties
 import org.signal.video.exo.ExoPlayerPool
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.net.ContentProxySelector
-import org.thoughtcrime.securesms.util.DeviceProperties
 import kotlin.time.Duration.Companion.seconds
 
 /**

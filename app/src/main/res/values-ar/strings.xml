@@ -4610,15 +4610,6 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">الأحدث</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">هذه الرسالة</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">تمَّ الاستخدام مُؤخَّرًا</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">أوجُه سمايلي وأشخاص</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">الطبيعة</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">الطعام</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">الأنشطة</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">الأماكن</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">الأشياء</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">الرموز الخاصة</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">الأعلام</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">الرموز التعبيرية</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">لم يتم العثور على أي نتائج</string>
 
     <!-- GifQuickSearchOption -->

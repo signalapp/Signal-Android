@@ -14,6 +14,7 @@ import org.signal.core.util.isNotEmpty
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.signal.core.util.toOptional
+import org.signal.emoji.EmojiUtil
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
 import org.signal.network.util.Preconditions
 import org.thoughtcrime.securesms.attachments.Attachment
@@ -21,7 +22,6 @@ import org.thoughtcrime.securesms.attachments.LocalStickerAttachment
 import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.attachments.TombstoneAttachment
 import org.thoughtcrime.securesms.calls.links.CallLinks
-import org.thoughtcrime.securesms.components.emoji.EmojiUtil
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.contactshare.ContactModelMapper
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil

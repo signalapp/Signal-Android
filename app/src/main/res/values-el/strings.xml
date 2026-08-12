@@ -4118,15 +4118,6 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Πρόσφατα</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Αυτό το μήνυμα</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Πρόσφατα χρησιμοποιημένα</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Φατσούλες &amp; Άνθρωποι</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Φύση</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Φαγητό</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Δραστηριότητες</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Τοποθεσίες</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Αντικείμενα</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Σύμβολα</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Σημαίες</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emoticons</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Δε βρέθηκαν αποτελέσματα</string>
 
     <!-- GifQuickSearchOption -->

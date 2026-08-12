@@ -4118,15 +4118,6 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">حالیہ</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">یہ پیغام</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">حالیہ استعمال شدہ</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">اموجس &amp;amp؛ لوگ</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">قدرت</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">کھانا</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">سرگرمیاں</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">مقامات</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">چیزیں</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">علامتیں</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">جھنڈے</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">ایموجیس</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">کوئی نتیجہ نہیں</string>
 
     <!-- GifQuickSearchOption -->

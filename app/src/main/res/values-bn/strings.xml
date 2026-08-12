@@ -4118,15 +4118,6 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">সাম্প্রতিক</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">এই মেসেজ</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">সম্প্রতি ব্যাবহৃত হয়েছে</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">স্মাইলি &amp; লোকজন</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">প্রকৃতি</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">খাবার</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">কার্যক্রম</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">স্থান সমূহ</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">বস্তু সমূহ</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">প্রতীক সমূহ</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">পতাকা সমূহ</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">ইমোটিকন সমূহ</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">কোনও ফলাফল পাওয়া যায়নি</string>
 
     <!-- GifQuickSearchOption -->

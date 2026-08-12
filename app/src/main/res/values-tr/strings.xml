@@ -4118,15 +4118,6 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Yakınlarda</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Bu İleti</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Yakınlarda Kullanılmış</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Smileyler &amp; Kişiler</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Doğa</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Gıda</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Etkinlikler</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Mekanlar</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Nesneler</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Semboller</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Bayraklar</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">His simgeleri</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Sonuç bulunamadı</string>
 
     <!-- GifQuickSearchOption -->

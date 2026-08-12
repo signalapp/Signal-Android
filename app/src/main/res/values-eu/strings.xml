@@ -4118,15 +4118,6 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Azkenaldikoak</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Mezu Hau</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Arestian erabilia</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Emojiak &amp; Jendea</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Natura</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Janaria</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Aktibitateak</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Tokiak</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Objektuak</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Ikurrak</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Banderak</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emotikonoak</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Ez da emaitzarik aurkitu</string>
 
     <!-- GifQuickSearchOption -->

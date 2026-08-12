@@ -4364,15 +4364,6 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Poslední</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Tato zpráva</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nedávno použité</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Smajlíci &amp; Lidé</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Příroda</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Jídlo</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Činnosti</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Místa</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Objekty</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Symboly</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Vlajky</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emotikony</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Nebyly nalezeny žádné výsledky</string>
 
     <!-- GifQuickSearchOption -->

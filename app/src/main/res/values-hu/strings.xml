@@ -4118,15 +4118,6 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Előzmények</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Jelenlegi üzenet</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nemrég használt</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Smiley-k és emberek</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Természet</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Étel</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Tevékenységek</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Helyek</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Tárgyak</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Szimbólumok</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Zászlók</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emotikonok</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Nincs találat</string>
 
     <!-- GifQuickSearchOption -->

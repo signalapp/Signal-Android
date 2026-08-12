@@ -3995,15 +3995,6 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">ล่าสุด</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">ข้อความนี้</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">เพิ่งใช้</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">หน้ายิ้ม &amp; ผู้คน</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">ธรรมชาติ</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">อาหาร</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">กิจกรรม</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">สถานที่</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">วัตถุ</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">สัญลักษณ์</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">ธง</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">อีโมติคอน</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">ไม่พบผลลัพธ์</string>
 
     <!-- GifQuickSearchOption -->

@@ -4118,15 +4118,6 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Sonuncular</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Bu mesaj</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Son istifadə edilən</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Təbəssüm və insanlar</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Təbiət</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Ərzaq</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Fəaliyyətlər</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Məkanlar</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Obyektlər</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Simvollar</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Bayraqlar</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">İfadələr</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Heç nə tapılmadı</string>
 
     <!-- GifQuickSearchOption -->

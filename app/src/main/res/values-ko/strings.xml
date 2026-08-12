@@ -3995,15 +3995,6 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">최근</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">이 메시지</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">최근 사용</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">웃는 얼굴 &amp; 사람</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">자연</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">음식</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">활동</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">장소</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">사물</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">부호</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">국기</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">이모티콘</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">결과 없음</string>
 
     <!-- GifQuickSearchOption -->

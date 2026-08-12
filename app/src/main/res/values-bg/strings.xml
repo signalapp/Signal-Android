@@ -4118,15 +4118,6 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Скорошни</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Това съобщение</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Наскоро използвани</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Усмивки &amp; Хора</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Природа</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Храна</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Дейности</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Места</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Обекти</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Символи</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Знамена</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Емотикони</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Нищо не открихме</string>
 
     <!-- GifQuickSearchOption -->

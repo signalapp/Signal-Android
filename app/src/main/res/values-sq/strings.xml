@@ -4118,15 +4118,6 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Së fundmi</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Këtë Mesazh</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Përdorur Së Fundi</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Emotikone &amp; Persona</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Natyrë</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Ushqim</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Veprimtari</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Vende</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Objekte</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Simbole</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Flamuj</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emotikone</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">S\\’u gjet përfundim</string>
 
     <!-- GifQuickSearchOption -->

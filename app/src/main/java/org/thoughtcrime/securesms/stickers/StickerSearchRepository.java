@@ -7,12 +7,12 @@ import androidx.annotation.WorkerThread;
 
 import org.signal.core.models.database.StickerRecord;
 import org.signal.core.util.concurrent.SignalExecutors;
-import org.thoughtcrime.securesms.components.emoji.EmojiUtil;
+import org.signal.emoji.EmojiUtil;
 import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.StickerTables;
 import org.thoughtcrime.securesms.database.StickerTables.StickerRecordReader;
-import org.thoughtcrime.securesms.emoji.EmojiSource;
+import org.signal.emoji.EmojiSource;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -4118,15 +4118,6 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">அண்மையில்</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">இந்த செய்தி</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">சமீபத்தில் பயன்படுத்தப்பட்டது</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">உணர்வு ஓவியங்கள் &amp; மக்கள்</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">இயற்கை</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">உணவு</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">செயல்பாடுகள்</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">இடங்கள்</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">பொருள்கள்</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">சின்னங்கள்</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">கொடிகள்</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">உணர்வு ஓவியங்கள்</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">இல்லை முடிவுகள் கிடைத்தன</string>
 
     <!-- GifQuickSearchOption -->

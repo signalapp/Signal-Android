@@ -32,6 +32,7 @@ import org.signal.core.ui.WindowBreakpoint
 import org.signal.core.ui.compose.LocalChatColorProvider
 import org.signal.core.ui.compose.LocalDisplayNameProvider
 import org.signal.core.ui.getWindowBreakpoint
+import org.signal.emoji.EmojiEventListener
 import org.signal.mediasend.MediaSendFlowActivityContract
 import org.signal.mediasend.MediaSendFlowHudCommand
 import org.signal.mediasend.MediaSendFlowViewModel
@@ -42,7 +43,6 @@ import org.signal.mediasend.screens.edit.LocalAddAMessageRowTextField
 import org.signal.mediasend.screens.edit.LocalScheduledSendTimeFormatter
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.emoji.EmojiEventListener
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey

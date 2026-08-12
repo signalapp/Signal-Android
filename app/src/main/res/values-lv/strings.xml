@@ -4241,15 +4241,6 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Pēdējās</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Šī ziņa</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nesen lietotie</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Smaidiņi; Cilvēki</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Daba</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Ēdiens</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Aktivitātes</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Vietas</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Objekti</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Simboli</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Karogi</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emocijikonas</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Nekas netika atrasts</string>
 
     <!-- GifQuickSearchOption -->

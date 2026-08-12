@@ -3995,15 +3995,6 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">يېقىنقى</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">بۇ ئۇچۇر</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">يېقىندا ئىشلىتىلدى</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">كۈلۈمسىرەش&amp; كىشىلەر</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">تەبىئەت</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">يېمەكلىك</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">پائالىيەت</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">ئورۇن</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">نەرسە</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">بەلگە</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">بايراق</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">ھېسسىيات ئىپادىلىرى</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">ھېچقانداق نەتىجە تېپىلمىدى</string>
 
     <!-- GifQuickSearchOption -->

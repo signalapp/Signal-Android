@@ -18,11 +18,11 @@ import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.money.FiatMoney
 import org.signal.donations.InAppPaymentType
+import org.signal.emoji.EmojiEventListener
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.InputAwareLayout
 import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout
-import org.thoughtcrime.securesms.components.emoji.EmojiEventListener
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboard
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment

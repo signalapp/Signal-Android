@@ -3995,15 +3995,6 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">ថ្មីៗនេះ</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">សារនេះ</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">បានប្រើប្រាស់ថ្មីៗ</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">ញញឹម &amp; មនុស្ស</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">ធម្មជាតិ</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">អាហារ</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">សកម្មភាព</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">ទីកន្លែង</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">វត្ថុ</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">សញ្ញា</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">ទង់</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">រូបតំណាងអារម្មណ៍</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">មិនមានលទ្ធផល</string>
 
     <!-- GifQuickSearchOption -->

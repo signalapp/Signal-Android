@@ -3995,15 +3995,6 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">最近通话</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">此消息</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">最近使用</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">笑脸和情感</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">自然</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">食物</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">活动</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">地点</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">物品</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">符号</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">旗帜</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">颜文字</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">未找到结果</string>
 
     <!-- GifQuickSearchOption -->

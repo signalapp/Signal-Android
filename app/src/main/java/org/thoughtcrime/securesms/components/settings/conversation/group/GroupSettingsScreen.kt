@@ -37,9 +37,9 @@ import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Texts
+import org.signal.emoji.EmojiText
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.AvatarImage
-import org.thoughtcrime.securesms.components.emoji.EmojiText
 import org.thoughtcrime.securesms.components.settings.conversation.group.GroupSettingsState.Dialog
 import org.thoughtcrime.securesms.components.settings.conversation.shared.ArchiveChatRow
 import org.thoughtcrime.securesms.components.settings.conversation.shared.BlockRow

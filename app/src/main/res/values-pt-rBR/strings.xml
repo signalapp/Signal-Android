@@ -4118,15 +4118,6 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Recentes</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Esta mensagem</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Utilizado recentemente</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Emojis e pessoas</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Animais e natureza</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Comida e bebidas</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Atividades</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Viagens e lugares</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Objetos</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Símbolos</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Bandeiras</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emoticons</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Nenhum resultado encontrado</string>
 
     <!-- GifQuickSearchOption -->

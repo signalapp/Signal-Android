@@ -18,8 +18,8 @@ import org.signal.core.ui.BottomSheetUtil
 import org.signal.core.util.BreakIteratorCompat
 import org.signal.core.util.EditTextUtil
 import org.signal.core.util.concurrent.LifecycleDisposable
+import org.signal.emoji.EmojiUtil
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.emoji.EmojiUtil
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.EditNotificationProfileViewModel.SaveNotificationProfileResult
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.models.NotificationProfileNamePreset

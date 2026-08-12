@@ -35,9 +35,9 @@ import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
+import org.signal.emoji.EmojiText
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.AvatarImage
-import org.thoughtcrime.securesms.components.emoji.EmojiText
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.signal.core.ui.R as CoreUiR
 

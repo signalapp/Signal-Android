@@ -704,6 +704,7 @@ dependencies {
   implementation(project(":feature:camera"))
   implementation(project(":feature:registration"))
   implementation(project(":lib:apng"))
+  implementation(project(":lib:emoji"))
 
   implementation(libs.androidx.fragment.ktx)
   implementation(libs.androidx.appcompat)

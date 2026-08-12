@@ -3995,15 +3995,6 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">နောက်ဆုံး</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">၎င်းမက်ဆေ့ချ်</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">နောက်ဆုံးသုံးခဲ့သော</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">အပြုံးမျက်နှာ နှင့် လူများ</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">သဘာဝ</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">အစားအစာ</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">လှုပ်ရှားမှုများ</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">နေရာများ</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">အရာဝတ္ထုများ</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">သင်္ကေတများ</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">အလံများ</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">ရုပ်ပြောင်များ</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">ရလဒ်များ ရှာမတွေ့ပါ</string>
 
     <!-- GifQuickSearchOption -->

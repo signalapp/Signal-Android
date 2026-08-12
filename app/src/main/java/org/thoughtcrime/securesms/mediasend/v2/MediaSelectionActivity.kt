@@ -33,13 +33,13 @@ import org.signal.core.util.getParcelableArrayListExtraCompat
 import org.signal.core.util.getParcelableExtraCompat
 import org.signal.core.util.logging.Log
 import org.signal.core.util.overrideActivityTransitionCompat
+import org.signal.emoji.EmojiEventListener
 import org.signal.mediasend.MediaSendRoute
 import org.signal.mediasend.MediaValidator
 import org.signal.mediasend.screens.capture.MediaCaptureBottomBar
 import org.signal.mediasend.screens.capture.MediaCaptureScreenEvents
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.emoji.EmojiEventListener
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.conversation.MessageSendType
 import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardEvent

@@ -4364,15 +4364,6 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Ostatnie</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Ta wiadomość</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Ostatnio używane</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Buźki i osoby</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Natura</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Żywność</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Aktywność</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Miejsca</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Przedmioty</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Symbole</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Flagi</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emotikony</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Nie udało się niczego znaleźć</string>
 
     <!-- GifQuickSearchOption -->

@@ -4118,15 +4118,6 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">ఇటీవలివి</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">ఈ సందేశం</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">ఇటీవల ఉపయోగించబడింది</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">స్మైలీస్ &amp; ప్రజలు</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">ప్రకృతి</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">ఆహారం</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">కార్యాచరణలు</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">స్థలాలు</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">వస్తువులు</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">చిహ్నాలు</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">జెండాలు</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">ఎమోటికాన్లు</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">ఫలితాలు కనుగొనబడలేదు</string>
 
     <!-- GifQuickSearchOption -->

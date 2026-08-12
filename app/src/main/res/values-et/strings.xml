@@ -4118,15 +4118,6 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Hiljutised</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">See sõnum</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Hiljuti kasutatud</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Emotikonid &amp; inimesed</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Loodus</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Toit</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Hobitegevused</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Kohad</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Objektid</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Sümbolid</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Lipud</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emotikonid</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Tulemusi ei leitud</string>
 
     <!-- GifQuickSearchOption -->

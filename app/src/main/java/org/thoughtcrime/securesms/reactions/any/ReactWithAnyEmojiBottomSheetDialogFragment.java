@@ -29,7 +29,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.thoughtcrime.securesms.R;
 import org.signal.core.ui.FixedRoundedCornerBottomSheetDialogFragment;
-import org.thoughtcrime.securesms.components.emoji.EmojiEventListener;
+import org.signal.emoji.EmojiEventListener;
 import org.thoughtcrime.securesms.components.emoji.EmojiPageView;
 import org.thoughtcrime.securesms.components.emoji.EmojiPageViewGridAdapter;
 import org.thoughtcrime.securesms.database.model.MessageRecord;

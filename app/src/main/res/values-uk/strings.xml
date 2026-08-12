@@ -4364,15 +4364,6 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Недавні</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Це повідомлення</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Недавні</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Смайлики і люди</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Природа</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Їжа і напої</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Заняття</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Місцевості</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Предмети</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Символи</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Прапори</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Емограми</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Нічого не знайдено</string>
 
     <!-- GifQuickSearchOption -->

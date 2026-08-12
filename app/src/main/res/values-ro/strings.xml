@@ -4241,15 +4241,6 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Recente</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Acest mesaj</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Utilizate Recent</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Smiley-uri &amp; Oameni</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Natură</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Mâncare</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Activități</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Locuri</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Obiecte</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Simboluri</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Steaguri</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emoticoane</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Nici un rezultat găsit</string>
 
     <!-- GifQuickSearchOption -->
