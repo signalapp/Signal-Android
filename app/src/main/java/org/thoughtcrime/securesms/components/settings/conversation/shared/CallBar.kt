@@ -63,7 +63,7 @@ fun CallBar(
   isMuteMenuShown: Boolean = false
 ) {
   Row(
-    horizontalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterHorizontally),
+    horizontalArrangement = Arrangement.spacedBy(32.dp, Alignment.CenterHorizontally),
     modifier = modifier
       .fillMaxWidth()
       .padding(horizontal = 16.dp)
