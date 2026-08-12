@@ -28,7 +28,8 @@ class FakeArchiveCacheStore(
   override val aci: ACI = ACI.from(UUID.fromString("aaaaaaaa-0000-0000-0000-000000000001")),
   override val messageBackupKey: MessageBackupKey = MessageBackupKey(ByteArray(32) { 1 }),
   override val mediaRootBackupKey: MediaRootBackupKey = MediaRootBackupKey(ByteArray(32) { 2 }),
-  override var backupsInitialized: Boolean = true,
+  override var messageBackupInitialized: Boolean = true,
+  override var mediaBackupInitialized: Boolean = true,
   override var cachedMediaCdnPath: String? = null,
   override val isLinkedDevice: Boolean = false,
   override val isPreRestoreDuringRegistration: Boolean = false

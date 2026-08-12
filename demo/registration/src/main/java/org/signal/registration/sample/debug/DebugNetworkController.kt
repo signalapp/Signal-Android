@@ -308,6 +308,14 @@ class DebugNetworkController(
     return delegate.getRemoteBackupInfo(aep)
   }
 
+  override suspend fun reserveBackupId(aep: AccountEntropyPool): RequestResult<Unit, NetworkController.ReserveBackupIdError> {
+    NetworkDebugState.getOverride<RequestResult<Unit, NetworkController.ReserveBackupIdError>>("reserveBackupId")?.let {
+      Log.d(TAG, "[reserveBackupId] Returning debug override")
+      return it
+    }
+    return delegate.reserveBackupId(aep)
+  }
+
   override suspend fun getBackupFileLastModified(aep: AccountEntropyPool, backupInfo: NetworkController.GetBackupInfoResponse): RequestResult<Long, GetBackupInfoError> {
     NetworkDebugState.getOverride<RequestResult<Long, GetBackupInfoError>>("getBackupFileLastModified")?.let {
       Log.d(TAG, "[getBackupFileLastModified] Returning debug override")

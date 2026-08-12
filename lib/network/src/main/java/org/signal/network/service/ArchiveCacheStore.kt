@@ -33,8 +33,11 @@ interface ArchiveCacheStore {
 
   val mediaCredentials: CredentialCache
 
-  /** Whether the backupId has been reserved and the public key set. See [ArchiveService.getArchiveServiceAccess]. */
-  var backupsInitialized: Boolean
+  /** Whether the message backupId has been reserved and the public key set. See [ArchiveService.getArchiveServiceAccess]. */
+  var messageBackupInitialized: Boolean
+
+  /** Whether the media backupId has been reserved and the public key set. See [ArchiveService.getArchiveServiceAccess]. */
+  var mediaBackupInitialized: Boolean
 
   /** The `{backupDir}/{mediaDir}` path media lives under on the cdn. Changes whenever the backup is reset. */
   var cachedMediaCdnPath: String?

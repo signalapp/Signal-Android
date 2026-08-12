@@ -553,7 +553,8 @@ fun Screen(
         text = "Clear backup init flag",
         label = "Clears our local state around whether backups have been initialized or not. Will force us to make request to claim backupId and set public keys.",
         onClick = {
-          SignalStore.backup.backupsInitialized = false
+          SignalStore.backup.messageBackupInitialized = false
+          SignalStore.backup.mediaBackupInitialized = false
         }
       )
 

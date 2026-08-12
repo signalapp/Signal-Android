@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.registration.v2
 
 import android.content.Context
+import arrow.core.Either
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.awaitClose
@@ -24,6 +25,7 @@ import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.ecc.ECPrivateKey
 import org.signal.network.NetworkResult
+import org.signal.network.api.ArchiveApiV2
 import org.signal.network.api.RegistrationApiV2
 import org.signal.network.api.RegistrationApiV2.AccountAttributes
 import org.signal.network.api.RegistrationApiV2.CheckSvrCredentialsError
@@ -44,6 +46,7 @@ import org.signal.network.api.RegistrationApiV2.SubmitVerificationCodeError
 import org.signal.network.api.RegistrationApiV2.SvrCredentials
 import org.signal.network.api.RegistrationApiV2.UpdateSessionError
 import org.signal.network.api.RegistrationApiV2.VerificationCodeTransport
+import org.signal.network.service.ArchiveError
 import org.signal.registration.LinkAndSyncWaitResult
 import org.signal.registration.NetworkController
 import org.signal.registration.NetworkController.BackupMasterKeyError
@@ -52,6 +55,7 @@ import org.signal.registration.NetworkController.LinkDeviceProvisioningEvent
 import org.signal.registration.NetworkController.LinkDeviceProvisioningMessage
 import org.signal.registration.NetworkController.ProvisioningEvent
 import org.signal.registration.NetworkController.ProvisioningMessage
+import org.signal.registration.NetworkController.ReserveBackupIdError
 import org.signal.registration.NetworkController.RestoreAccountRecordError
 import org.signal.registration.NetworkController.RestoreMasterKeyError
 import org.signal.registration.NetworkController.SetAccountAttributesError
@@ -84,7 +88,6 @@ import org.thoughtcrime.securesms.registration.util.RegistrationUtil
 import org.thoughtcrime.securesms.registration.viewmodel.SvrAuthCredentialSet
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.SvrNoDataException
-import org.whispersystems.signalservice.api.archive.ArchiveServiceAccess
 import org.whispersystems.signalservice.api.link.TransferArchiveResponse
 import org.whispersystems.signalservice.api.messages.multidevice.RequestMessage
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage
@@ -100,9 +103,7 @@ import java.util.Locale
 import kotlin.coroutines.coroutineContext
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.hours
-import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
-import kotlin.time.toKotlinDuration
 import org.whispersystems.signalservice.api.account.AccountAttributes as ServiceAccountAttributes
 
 /**
@@ -343,49 +344,40 @@ class AppRegistrationNetworkController(
   override suspend fun getRemoteBackupInfo(aep: AccountEntropyPool): RequestResult<NetworkController.GetBackupInfoResponse, NetworkController.GetBackupInfoError> = withContext(Dispatchers.IO) {
     val aci = SignalStore.account.aci ?: return@withContext RequestResult.ApplicationError(IllegalStateException("ACI not available"))
 
-    val currentTime = System.currentTimeMillis()
-    val messageBackupKey = aep.deriveMessageBackupKey()
-    val messageCredential = SignalStore.backup.messageCredentials.byDay.getForCurrentTime(currentTime.milliseconds)
-
-    val access = if (messageCredential != null) {
-      ArchiveServiceAccess(messageCredential, messageBackupKey)
-    } else {
-      when (val credResult = SignalNetwork.archiveV2.getServiceCredentials(currentTime)) {
-        is RequestResult.Success -> {
-          SignalStore.backup.messageCredentials.add(credResult.result.messageCredentials)
-          SignalStore.backup.messageCredentials.clearOlderThan(currentTime)
-          val credential = SignalStore.backup.messageCredentials.byDay.getForCurrentTime(currentTime.milliseconds)
-            ?: return@withContext RequestResult.ApplicationError(IllegalStateException("Failed to obtain backup credentials after fetch"))
-          ArchiveServiceAccess(credential, messageBackupKey)
-        }
-        is RequestResult.NonSuccess -> return@withContext RequestResult.ApplicationError(IllegalStateException("Failed to fetch backup credentials: ${credResult.error}"))
-        is RequestResult.RetryableNetworkError -> return@withContext RequestResult.RetryableNetworkError(credResult.networkError)
-        is RequestResult.ApplicationError -> return@withContext RequestResult.ApplicationError(credResult.cause)
-      }
-    }
-
-    when (val result = SignalNetwork.archiveV2.getMessageBackupInfo(aci, access)) {
-      is RequestResult.Success -> {
-        val info = result.result
-        RequestResult.Success(
-          NetworkController.GetBackupInfoResponse(
-            cdn = info.cdn,
-            backupDir = info.backupDir,
-            // mediaDir and usedSpace live under the media credential, not the message credential we're using here. The server left them empty on this request
-            // before too, so nothing that reads them is losing a value it used to get.
-            mediaDir = null,
-            backupName = info.backupName,
-            usedSpace = null
+    AppDependencies.archiveService
+      .getMessageBackupInfoForKey(aci, aep.deriveMessageBackupKey())
+      .fold(
+        ifRight = { info ->
+          RequestResult.Success(
+            NetworkController.GetBackupInfoResponse(
+              cdn = info.cdn,
+              backupDir = info.backupDir,
+              mediaDir = null,
+              backupName = info.backupName,
+              usedSpace = null
+            )
           )
-        )
+        },
+        ifLeft = { it.toGetBackupInfoError() }
+      )
+  }
+
+  override suspend fun reserveBackupId(aep: AccountEntropyPool): RequestResult<Unit, ReserveBackupIdError> = withContext(Dispatchers.IO) {
+    val aci = SignalStore.account.aci ?: return@withContext RequestResult.ApplicationError(IllegalStateException("ACI not available"))
+
+    // Uses API directly because ArchiveService uses stored key
+    when (val result = SignalNetwork.archiveV2.triggerBackupIdReservation(messageBackupKey = aep.deriveMessageBackupKey(), mediaRootBackupKey = null, aci = aci)) {
+      is RequestResult.Success -> {
+        // Anything cached was issued against the backup-id we just replaced, so it can never verify.
+        SignalStore.backup.messageCredentials.clearAll()
+        RequestResult.Success(Unit)
       }
-      // The server doesn't distinguish an invalid credential from a backup-id that was never provisioned, so libsignal's guidance is to treat this as
-      // "backups aren't set up" rather than an auth failure.
-      is RequestResult.NonSuccess -> RequestResult.NonSuccess(NetworkController.GetBackupInfoError.NoBackup)
-      is RequestResult.RetryableNetworkError -> when (val retryAfter = result.retryAfter) {
-        null -> RequestResult.RetryableNetworkError(result.networkError)
-        else -> RequestResult.NonSuccess(NetworkController.GetBackupInfoError.RateLimited(retryAfter.toKotlinDuration()))
+      is RequestResult.NonSuccess -> when (val error = result.error) {
+        ArchiveApiV2.SetBackupIdError.InvalidCredential -> RequestResult.NonSuccess(ReserveBackupIdError.InvalidCredential)
+        ArchiveApiV2.SetBackupIdError.Unauthorized -> RequestResult.NonSuccess(ReserveBackupIdError.Unauthorized)
+        is ArchiveApiV2.SetBackupIdError.RateLimited -> RequestResult.NonSuccess(ReserveBackupIdError.RateLimited(error.retryAfter))
       }
+      is RequestResult.RetryableNetworkError -> RequestResult.RetryableNetworkError(result.networkError)
       is RequestResult.ApplicationError -> RequestResult.ApplicationError(result.cause)
     }
   }
@@ -457,30 +449,35 @@ class AppRegistrationNetworkController(
     backupInfo: NetworkController.GetBackupInfoResponse
   ): RequestResult<Long, NetworkController.GetBackupInfoError> = withContext(Dispatchers.IO) {
     val aci = SignalStore.account.aci ?: return@withContext RequestResult.ApplicationError(IllegalStateException("ACI not available"))
-    val cdn = backupInfo.cdn ?: return@withContext RequestResult.ApplicationError(IllegalStateException("CDN number not available"))
-    val backupDir = backupInfo.backupDir ?: return@withContext RequestResult.ApplicationError(IllegalStateException("Backup dir not available"))
-    val backupName = backupInfo.backupName ?: return@withContext RequestResult.ApplicationError(IllegalStateException("Backup name not available"))
 
-    val currentTime = System.currentTimeMillis()
-    val messageCredential = SignalStore.backup.messageCredentials.byDay.getForCurrentTime(currentTime.milliseconds)
-      ?: return@withContext RequestResult.ApplicationError(IllegalStateException("No message credential available"))
-
-    val access = ArchiveServiceAccess(messageCredential, aep.deriveMessageBackupKey())
-
-    val cdnCredentials = when (val cdnResult = SignalNetwork.archiveV2.getCdnReadCredentials(cdn, aci, access)) {
-      is RequestResult.Success -> cdnResult.result.headers
-      is RequestResult.NonSuccess -> return@withContext RequestResult.ApplicationError(IllegalStateException("Failed to get CDN credentials: ${cdnResult.error}"))
-      is RequestResult.RetryableNetworkError -> return@withContext RequestResult.RetryableNetworkError(cdnResult.networkError)
-      is RequestResult.ApplicationError -> return@withContext RequestResult.ApplicationError(cdnResult.cause)
+    val location = when (val result = AppDependencies.archiveService.getMessageBackupFileLocationForKey(aci, aep.deriveMessageBackupKey())) {
+      is Either.Right -> result.value
+      is Either.Left -> return@withContext result.value.toGetBackupInfoError()
     }
 
     try {
-      val lastModified = AppDependencies.signalServiceMessageReceiver.getCdnLastModifiedTime(cdn, cdnCredentials, "backups/$backupDir/$backupName")
+      val lastModified = AppDependencies.signalServiceMessageReceiver.getCdnLastModifiedTime(location.cdn, location.cdnCredentials, location.path)
       RequestResult.Success(lastModified.toInstant().toEpochMilli())
     } catch (e: IOException) {
       RequestResult.RetryableNetworkError(e)
     } catch (e: Exception) {
       RequestResult.ApplicationError(e)
+    }
+  }
+
+  private fun <T> ArchiveError.CredentialError.toGetBackupInfoError(): RequestResult<T, NetworkController.GetBackupInfoError> {
+    return when (this) {
+      // The server doesn't distinguish an invalid credential from a backup-id that was never provisioned, so a rejected credential means "backups aren't set up".
+      is ArchiveError.CredentialError.Unauthorized,
+      is ArchiveError.CredentialError.NotFound -> RequestResult.NonSuccess(NetworkController.GetBackupInfoError.NoBackup)
+      is ArchiveError.CredentialError.InvalidRequest -> RequestResult.NonSuccess(NetworkController.GetBackupInfoError.BadArguments(cause?.message))
+      is ArchiveError.CredentialError.RateLimited -> when (val retryAfter = retryAfter) {
+        null -> RequestResult.RetryableNetworkError(IOException(cause))
+        else -> RequestResult.NonSuccess(NetworkController.GetBackupInfoError.RateLimited(retryAfter))
+      }
+      is ArchiveError.CredentialError.ZkVerificationFailed -> RequestResult.NonSuccess(NetworkController.GetBackupInfoError.CredentialVerificationFailed)
+      is ArchiveError.NetworkError -> RequestResult.RetryableNetworkError(exception)
+      is ArchiveError.ApplicationError -> RequestResult.ApplicationError(exception)
     }
   }
 

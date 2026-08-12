@@ -239,7 +239,8 @@ object BackupRepository {
   }
 
   fun resetInitializedStateAndAuthCredentials() {
-    SignalStore.backup.backupsInitialized = false
+    SignalStore.backup.messageBackupInitialized = false
+    SignalStore.backup.mediaBackupInitialized = false
     SignalStore.backup.messageCredentials.clearAll()
     SignalStore.backup.mediaCredentials.clearAll()
     SignalStore.backup.cachedMediaCdnPath = null

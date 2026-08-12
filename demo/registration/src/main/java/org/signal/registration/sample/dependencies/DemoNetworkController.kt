@@ -1083,8 +1083,53 @@ class DemoNetworkController(
     } catch (e: IOException) {
       Log.w(TAG, "[getRemoteBackupInfo] IOException", e)
       RequestResult.RetryableNetworkError(e)
+    } catch (e: VerificationFailedException) {
+      Log.w(TAG, "[getRemoteBackupInfo] Credential failed zk verification", e)
+      RequestResult.NonSuccess(NetworkController.GetBackupInfoError.CredentialVerificationFailed)
     } catch (e: Exception) {
       Log.w(TAG, "[getRemoteBackupInfo] Exception", e)
+      RequestResult.ApplicationError(e)
+    }
+  }
+
+  override suspend fun reserveBackupId(aep: AccountEntropyPool): RequestResult<Unit, NetworkController.ReserveBackupIdError> = withContext(Dispatchers.IO) {
+    val aci = RegistrationPreferences.aci
+    val password = RegistrationPreferences.servicePassword
+
+    if (aci == null || password == null) {
+      Log.w(TAG, "[reserveBackupId] Credentials not available")
+      return@withContext RequestResult.ApplicationError(IllegalStateException("Credentials not available"))
+    }
+
+    try {
+      val credentialRequest = BackupAuthCredentialRequestContext
+        .create(aep.deriveMessageBackupKey().value, aci.rawUuid)
+        .request
+        .serialize()
+
+      val requestBody = """{"messageBackupAuthCredentialRequest":"${Base64.encodeWithPadding(credentialRequest)}"}"""
+        .toRequestBody("application/json".toMediaType())
+
+      val request = okhttp3.Request.Builder()
+        .url("${serviceConfiguration.signalServiceUrls[0].url}/v1/archives/backupid")
+        .put(requestBody)
+        .header("Authorization", okhttp3.Credentials.basic(authUsername(aci), password))
+        .build()
+
+      okHttpClient.newCall(request).execute().use { response ->
+        when (response.code) {
+          200, 204 -> RequestResult.Success(Unit)
+          400 -> RequestResult.NonSuccess(NetworkController.ReserveBackupIdError.InvalidCredential)
+          401 -> RequestResult.NonSuccess(NetworkController.ReserveBackupIdError.Unauthorized)
+          429 -> RequestResult.NonSuccess(NetworkController.ReserveBackupIdError.RateLimited(response.retryAfter()))
+          else -> RequestResult.ApplicationError(IllegalStateException("Unexpected response code: ${response.code}"))
+        }
+      }
+    } catch (e: IOException) {
+      Log.w(TAG, "[reserveBackupId] IOException", e)
+      RequestResult.RetryableNetworkError(e)
+    } catch (e: Exception) {
+      Log.w(TAG, "[reserveBackupId] Exception", e)
       RequestResult.ApplicationError(e)
     }
   }

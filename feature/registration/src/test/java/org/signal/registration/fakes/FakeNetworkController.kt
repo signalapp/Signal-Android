@@ -41,6 +41,7 @@ import org.signal.registration.NetworkController.LinkDeviceProvisioningEvent
 import org.signal.registration.NetworkController.MasterKeyResponse
 import org.signal.registration.NetworkController.ProvisioningEvent
 import org.signal.registration.NetworkController.ProvisioningMessage
+import org.signal.registration.NetworkController.ReserveBackupIdError
 import org.signal.registration.NetworkController.RestoreAccountRecordError
 import org.signal.registration.NetworkController.RestoreMasterKeyError
 import org.signal.registration.NetworkController.SetAccountAttributesError
@@ -99,6 +100,10 @@ class FakeNetworkController(
   var lastSetRestoreMethodRequest: SetRestoreMethodRequest? = null
     private set
   var accountAttributesSyncJobEnqueued = false
+    private set
+
+  /** How many times the flow re-committed the backup-id. */
+  var reserveBackupIdCount = 0
     private set
 
   /**
@@ -165,6 +170,10 @@ class FakeNetworkController(
 
   var onGetRemoteBackupInfo: suspend (AccountEntropyPool) -> RequestResult<GetBackupInfoResponse, GetBackupInfoError> = {
     RequestResult.Success(GetBackupInfoResponse(cdn = 3, backupDir = "backup-dir", mediaDir = "media-dir", backupName = "backup", usedSpace = 1_000_000))
+  }
+
+  var onReserveBackupId: suspend (AccountEntropyPool) -> RequestResult<Unit, ReserveBackupIdError> = {
+    RequestResult.Success(Unit)
   }
 
   var onGetBackupFileLastModified: suspend (AccountEntropyPool) -> RequestResult<Long, GetBackupInfoError> = {
@@ -339,6 +348,11 @@ class FakeNetworkController(
 
   override suspend fun getRemoteBackupInfo(aep: AccountEntropyPool): RequestResult<GetBackupInfoResponse, GetBackupInfoError> {
     return onGetRemoteBackupInfo(aep)
+  }
+
+  override suspend fun reserveBackupId(aep: AccountEntropyPool): RequestResult<Unit, ReserveBackupIdError> {
+    reserveBackupIdCount++
+    return onReserveBackupId(aep)
   }
 
   override suspend fun getBackupFileLastModified(aep: AccountEntropyPool, backupInfo: GetBackupInfoResponse): RequestResult<Long, GetBackupInfoError> {

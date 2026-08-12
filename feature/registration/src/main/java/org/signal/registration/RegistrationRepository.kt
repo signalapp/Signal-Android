@@ -949,8 +949,37 @@ class RegistrationRepository(
     storageController.scanLocalBackupFolder(folderUri)
   }
 
-  suspend fun getRemoteBackupInfo(aep: AccountEntropyPool): RequestResult<NetworkController.GetBackupInfoResponse, NetworkController.GetBackupInfoError> = withContext(Dispatchers.IO) {
-    networkController.getRemoteBackupInfo(aep)
+  /**
+   * Fetches metadata about the remote backup that [aep] unlocks, re-initializing the backupId and retrying once if we fail
+   * to verify our credentials.
+   */
+  suspend fun getAndMaybeHealRemoteBackupInfo(aep: AccountEntropyPool): RequestResult<NetworkController.GetBackupInfoResponse, NetworkController.GetBackupInfoError> = withContext(Dispatchers.IO) {
+    val result = networkController.getRemoteBackupInfo(aep)
+
+    if (result !is RequestResult.NonSuccess || result.error !is NetworkController.GetBackupInfoError.CredentialVerificationFailed) {
+      return@withContext result
+    }
+
+    Log.w(TAG, "[getAndMaybeHealRemoteBackupInfo] Credential failed zk verification. Re-committing the backup-id and retrying.")
+
+    when (val reserveResult = networkController.reserveBackupId(aep)) {
+      is RequestResult.Success -> {
+        Log.i(TAG, "[getAndMaybeHealRemoteBackupInfo] Backup-id re-committed. Retrying.")
+        networkController.getRemoteBackupInfo(aep)
+      }
+      is RequestResult.NonSuccess -> {
+        Log.w(TAG, "[getAndMaybeHealRemoteBackupInfo] Could not re-commit the backup-id: ${reserveResult.error}")
+        result
+      }
+      is RequestResult.RetryableNetworkError -> {
+        Log.w(TAG, "[getAndMaybeHealRemoteBackupInfo] Network error re-committing the backup-id.", reserveResult.networkError)
+        RequestResult.RetryableNetworkError(reserveResult.networkError)
+      }
+      is RequestResult.ApplicationError -> {
+        Log.w(TAG, "[getAndMaybeHealRemoteBackupInfo] Application error re-committing the backup-id.", reserveResult.cause)
+        RequestResult.ApplicationError(reserveResult.cause)
+      }
+    }
   }
 
   suspend fun getBackupFileLastModified(aep: AccountEntropyPool, backupInfo: NetworkController.GetBackupInfoResponse): RequestResult<Long, NetworkController.GetBackupInfoError> = withContext(Dispatchers.IO) {

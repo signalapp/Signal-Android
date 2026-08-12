@@ -40,6 +40,8 @@ class LogSectionRemoteBackups : LogSection {
     output.append("Can backup with cellular            : ${SignalStore.backup.backupWithCellular}\n")
     output.append("Has backup been uploaded            : ${SignalStore.backup.hasBackupBeenUploaded}\n")
     output.append("Backup failure state                : ${SignalStore.backup.backupCreationError?.name ?: "None"}\n")
+    output.append("Message backup initialized          : ${SignalStore.backup.messageBackupInitialized}\n")
+    output.append("Media backup initialized            : ${SignalStore.backup.mediaBackupInitialized}\n")
     output.append("Optimize storage                    : ${SignalStore.backup.optimizeStorage}\n")
     output.append("Detected subscription state mismatch: ${SignalStore.backup.subscriptionStateMismatchDetected}\n")
     output.append("Last verified key time              : ${SignalStore.backup.lastVerifyKeyTime}\n")

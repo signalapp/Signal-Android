@@ -57,7 +57,7 @@ class RemoteBackupRestoreViewModelTest {
     aep = AccountEntropyPool.generate()
     mockRepository = mockk(relaxed = true)
     every { mockRepository.restoreRemoteBackup(any()) } returns emptyFlow()
-    coEvery { mockRepository.getRemoteBackupInfo(any()) } returns
+    coEvery { mockRepository.getAndMaybeHealRemoteBackupInfo(any()) } returns
       RequestResult.NonSuccess(NetworkController.GetBackupInfoError.NoBackup)
     emittedParentEvents = mutableListOf()
     parentEventEmitter = { event -> emittedParentEvents.add(event) }
@@ -136,7 +136,7 @@ class RemoteBackupRestoreViewModelTest {
 
     viewModel.applyEvent(currentState, RemoteBackupRestoreScreenEvents.Retry, stateEmitter)
 
-    coVerify(exactly = 2) { mockRepository.getRemoteBackupInfo(aep) }
+    coVerify(exactly = 2) { mockRepository.getAndMaybeHealRemoteBackupInfo(aep) }
     assertThat(emittedStates).hasSize(1)
     assertThat(states.last().loadAttempts).isEqualTo(2)
   }
@@ -174,20 +174,20 @@ class RemoteBackupRestoreViewModelTest {
   // ==================== loadBackupInfo ====================
 
   @Test
-  fun `init with successful backup info invokes getRemoteBackupInfo and getBackupFileLastModified`() = runTest(testDispatcher) {
+  fun `init with successful backup info invokes getAndMaybeHealRemoteBackupInfo and getBackupFileLastModified`() = runTest(testDispatcher) {
     val info = backupInfo()
-    coEvery { mockRepository.getRemoteBackupInfo(any()) } returns RequestResult.Success(info)
+    coEvery { mockRepository.getAndMaybeHealRemoteBackupInfo(any()) } returns RequestResult.Success(info)
     coEvery { mockRepository.getBackupFileLastModified(any(), any()) } returns RequestResult.Success(1234L)
 
     createViewModel()
 
-    coVerify { mockRepository.getRemoteBackupInfo(aep) }
+    coVerify { mockRepository.getAndMaybeHealRemoteBackupInfo(aep) }
     coVerify { mockRepository.getBackupFileLastModified(aep, info) }
   }
 
   @Test
   fun `init with successful backup info moves to Loaded with size and time`() = runTest(testDispatcher) {
-    coEvery { mockRepository.getRemoteBackupInfo(any()) } returns RequestResult.Success(backupInfo(usedSpace = 2048L))
+    coEvery { mockRepository.getAndMaybeHealRemoteBackupInfo(any()) } returns RequestResult.Success(backupInfo(usedSpace = 2048L))
     coEvery { mockRepository.getBackupFileLastModified(any(), any()) } returns RequestResult.Success(99999L)
 
     val viewModel = createViewModel()
@@ -200,7 +200,7 @@ class RemoteBackupRestoreViewModelTest {
 
   @Test
   fun `init with null usedSpace defaults backup size to zero`() = runTest(testDispatcher) {
-    coEvery { mockRepository.getRemoteBackupInfo(any()) } returns RequestResult.Success(backupInfo(usedSpace = null))
+    coEvery { mockRepository.getAndMaybeHealRemoteBackupInfo(any()) } returns RequestResult.Success(backupInfo(usedSpace = null))
     coEvery { mockRepository.getBackupFileLastModified(any(), any()) } returns RequestResult.Success(1L)
 
     val viewModel = createViewModel()
@@ -212,7 +212,7 @@ class RemoteBackupRestoreViewModelTest {
 
   @Test
   fun `init with successful info but failed last-modified lookup uses sentinel backup time`() = runTest(testDispatcher) {
-    coEvery { mockRepository.getRemoteBackupInfo(any()) } returns RequestResult.Success(backupInfo())
+    coEvery { mockRepository.getAndMaybeHealRemoteBackupInfo(any()) } returns RequestResult.Success(backupInfo())
     coEvery { mockRepository.getBackupFileLastModified(any(), any()) } returns
       RequestResult.NonSuccess(NetworkController.GetBackupInfoError.NoBackup)
 
@@ -225,7 +225,7 @@ class RemoteBackupRestoreViewModelTest {
 
   @Test
   fun `init with NoBackup moves to NotFound`() = runTest(testDispatcher) {
-    coEvery { mockRepository.getRemoteBackupInfo(any()) } returns
+    coEvery { mockRepository.getAndMaybeHealRemoteBackupInfo(any()) } returns
       RequestResult.NonSuccess(NetworkController.GetBackupInfoError.NoBackup)
 
     val viewModel = createViewModel()
@@ -236,7 +236,7 @@ class RemoteBackupRestoreViewModelTest {
 
   @Test
   fun `init with BadArguments moves to Failure`() = runTest(testDispatcher) {
-    coEvery { mockRepository.getRemoteBackupInfo(any()) } returns
+    coEvery { mockRepository.getAndMaybeHealRemoteBackupInfo(any()) } returns
       RequestResult.NonSuccess(NetworkController.GetBackupInfoError.BadArguments())
 
     val viewModel = createViewModel()
@@ -247,7 +247,7 @@ class RemoteBackupRestoreViewModelTest {
 
   @Test
   fun `init with BadAuthCredential moves to Failure`() = runTest(testDispatcher) {
-    coEvery { mockRepository.getRemoteBackupInfo(any()) } returns
+    coEvery { mockRepository.getAndMaybeHealRemoteBackupInfo(any()) } returns
       RequestResult.NonSuccess(NetworkController.GetBackupInfoError.BadAuthCredential())
 
     val viewModel = createViewModel()
@@ -258,7 +258,7 @@ class RemoteBackupRestoreViewModelTest {
 
   @Test
   fun `init with Forbidden moves to Failure`() = runTest(testDispatcher) {
-    coEvery { mockRepository.getRemoteBackupInfo(any()) } returns
+    coEvery { mockRepository.getAndMaybeHealRemoteBackupInfo(any()) } returns
       RequestResult.NonSuccess(NetworkController.GetBackupInfoError.Forbidden())
 
     val viewModel = createViewModel()
@@ -269,7 +269,7 @@ class RemoteBackupRestoreViewModelTest {
 
   @Test
   fun `init with RateLimited moves to Failure`() = runTest(testDispatcher) {
-    coEvery { mockRepository.getRemoteBackupInfo(any()) } returns
+    coEvery { mockRepository.getAndMaybeHealRemoteBackupInfo(any()) } returns
       RequestResult.NonSuccess(NetworkController.GetBackupInfoError.RateLimited(30.seconds))
 
     val viewModel = createViewModel()
@@ -279,8 +279,19 @@ class RemoteBackupRestoreViewModelTest {
   }
 
   @Test
+  fun `init with CredentialVerificationFailed moves to Failure`() = runTest(testDispatcher) {
+    coEvery { mockRepository.getAndMaybeHealRemoteBackupInfo(any()) } returns
+      RequestResult.NonSuccess(NetworkController.GetBackupInfoError.CredentialVerificationFailed)
+
+    val viewModel = createViewModel()
+    val states = collectStatesOf(viewModel)
+
+    assertThat(states.last().loadState).isEqualTo(RemoteBackupRestoreState.LoadState.Failure)
+  }
+
+  @Test
   fun `init with retryable network error moves to Failure`() = runTest(testDispatcher) {
-    coEvery { mockRepository.getRemoteBackupInfo(any()) } returns
+    coEvery { mockRepository.getAndMaybeHealRemoteBackupInfo(any()) } returns
       RequestResult.RetryableNetworkError(IOException("Network error"))
 
     val viewModel = createViewModel()
@@ -291,7 +302,7 @@ class RemoteBackupRestoreViewModelTest {
 
   @Test
   fun `init with application error moves to Failure`() = runTest(testDispatcher) {
-    coEvery { mockRepository.getRemoteBackupInfo(any()) } returns
+    coEvery { mockRepository.getAndMaybeHealRemoteBackupInfo(any()) } returns
       RequestResult.ApplicationError(RuntimeException("Unexpected"))
 
     val viewModel = createViewModel()
@@ -415,7 +426,7 @@ class RemoteBackupRestoreViewModelTest {
 
   @Test
   fun `successful backup info emits UserSuppliedAepVerified`() = runTest(testDispatcher) {
-    coEvery { mockRepository.getRemoteBackupInfo(any()) } returns RequestResult.Success(backupInfo())
+    coEvery { mockRepository.getAndMaybeHealRemoteBackupInfo(any()) } returns RequestResult.Success(backupInfo())
     coEvery { mockRepository.getBackupFileLastModified(any(), any()) } returns RequestResult.Success(1234L)
 
     createViewModel()

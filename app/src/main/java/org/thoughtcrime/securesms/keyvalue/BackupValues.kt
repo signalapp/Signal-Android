@@ -62,6 +62,8 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     private const val KEY_RESTORE_OVER_CELLULAR = "backup.restore.useCellular"
     private const val KEY_OPTIMIZE_STORAGE = "backup.optimizeStorage"
     private const val KEY_BACKUPS_INITIALIZED = "backup.initialized"
+    private const val KEY_MESSAGE_BACKUP_INITIALIZED = "backup.messageBackupInitialized"
+    private const val KEY_MEDIA_BACKUP_INITIALIZED = "backup.mediaBackupInitialized"
     private const val KEY_IMPORTED_EMPTY_ANDROID_SETTINGS = "backup.importedEmptyAndroidSettings"
 
     const val KEY_ARCHIVE_UPLOAD_STATE = "backup.archiveUploadState"
@@ -113,6 +115,12 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     private val cachedCdnCredentialsExpiresIn: Duration = 12.hours
 
     private val lock = ReentrantLock()
+  }
+
+  init {
+    if (!store.containsKey(KEY_MESSAGE_BACKUP_INITIALIZED)) {
+      migrateSplitBackupsInitialized()
+    }
   }
 
   public override fun onFirstEverAppLaunch() = Unit
@@ -385,7 +393,8 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
       .beginWrite()
       .putLong(KEY_NEXT_BACKUP_TIME, -1)
       .putLong(KEY_LAST_BACKUP_TIME, -1)
-      .putBoolean(KEY_BACKUPS_INITIALIZED, false)
+      .putBoolean(KEY_MESSAGE_BACKUP_INITIALIZED, false)
+      .putBoolean(KEY_MEDIA_BACKUP_INITIALIZED, false)
       .putBoolean(KEY_BACKUP_UPLOADED, false)
       .putLong(KEY_LAST_VERIFY_KEY_TIME, -1)
       .putBoolean(KEY_HAS_VERIFIED_BEFORE, false)
@@ -395,7 +404,11 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     backupTierInternalOverride = null
   }
 
-  var backupsInitialized: Boolean by booleanValue(KEY_BACKUPS_INITIALIZED, false)
+  /** Whether the message backupId has been reserved with the service and our public key set. */
+  var messageBackupInitialized: Boolean by booleanValue(KEY_MESSAGE_BACKUP_INITIALIZED, false)
+
+  /** The media counterpart to [messageBackupInitialized]. */
+  var mediaBackupInitialized: Boolean by booleanValue(KEY_MEDIA_BACKUP_INITIALIZED, false)
 
   var restoreState: RestoreState by enumValue(KEY_RESTORE_STATE, RestoreState.NONE, RestoreState.serializer)
   var totalRestorableAttachmentSize: Long by longValue(KEY_TOTAL_RESTORABLE_ATTACHMENT_SIZE, 0)
@@ -582,6 +595,18 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
 
   private fun getNextBackupFailureSheetSnoozeTime(previous: Duration): Duration {
     return previous + 7.days
+  }
+
+  /** Do not alter. If you need to migrate more stuff, create a new method. */
+  private fun migrateSplitBackupsInitialized() {
+    val initialized = getBoolean(KEY_BACKUPS_INITIALIZED, false)
+    Log.i(TAG, "Splitting the backups-initialized flag into message/media. Existing value: $initialized")
+
+    store
+      .beginWrite()
+      .putBoolean(KEY_MESSAGE_BACKUP_INITIALIZED, initialized)
+      .putBoolean(KEY_MEDIA_BACKUP_INITIALIZED, initialized)
+      .commit()
   }
 
   class SerializedCredentials(

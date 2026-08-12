@@ -226,6 +226,16 @@ interface NetworkController {
   suspend fun getRemoteBackupInfo(aep: AccountEntropyPool): RequestResult<GetBackupInfoResponse, GetBackupInfoError>
 
   /**
+   * Re-commits the backup-id derived from [aep] so that subsequent auth credentials the service issues are bound to it.
+   *
+   * Repeated calls are safe. Implementations must discard any cached auth credential, since anything cached was issued
+   * against the previous backup-id.
+   *
+   * PUT /v1/archives/backupid
+   */
+  suspend fun reserveBackupId(aep: AccountEntropyPool): RequestResult<Unit, ReserveBackupIdError>
+
+  /**
    * Gets the last-modified timestamp of the backup file on the CDN.
    * Requires [GetBackupInfoResponse] to know the CDN location of the backup.
    *
@@ -422,6 +432,23 @@ interface NetworkController {
     data class Forbidden(val body: String? = null) : GetBackupInfoError()
     data object NoBackup : GetBackupInfoError()
     data class RateLimited(val retryAfter: Duration) : GetBackupInfoError()
+
+    /**
+     * The auth credential the service issued failed zk verification against the key it was requested with. Either the key
+     * doesn't belong to the account, or the backup-id the service is issuing against is stale (e.g. the account was
+     * re-registered with a new AEP without re-committing the backup-id). See [NetworkController.reserveBackupId].
+     */
+    data object CredentialVerificationFailed : GetBackupInfoError()
+  }
+
+  sealed class ReserveBackupIdError : BadRequestError {
+    /** The zkgroup credential request was rejected. */
+    data object InvalidCredential : ReserveBackupIdError()
+
+    /** The account credentials the request was made with were rejected. */
+    data object Unauthorized : ReserveBackupIdError()
+
+    data class RateLimited(val retryAfter: Duration?) : ReserveBackupIdError()
   }
 
   sealed class VerifyBackupKeyError : BadRequestError {

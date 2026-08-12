@@ -840,6 +840,67 @@ class RegistrationEndToEndTest {
   }
 
   @Test
+  fun `a remote restore whose auth credential fails verification re-commits the backup-id and carries on`() {
+    val aep = AccountEntropyPool.generate()
+
+    // The service is still issuing credentials against a backup-id from before the account was last re-registered, so
+    // nothing it hands out can verify until the client re-commits the one derived from the AEP in hand.
+    networkController.onGetRemoteBackupInfo = {
+      if (networkController.reserveBackupIdCount == 0) {
+        RequestResult.NonSuccess(NetworkController.GetBackupInfoError.CredentialVerificationFailed)
+      } else {
+        RequestResult.Success(NetworkController.GetBackupInfoResponse(cdn = 3, backupDir = "backup-dir", mediaDir = "media-dir", backupName = "backup", usedSpace = 1_000_000))
+      }
+    }
+
+    // The backup contains the user's PIN, so no PIN screens are needed after the restore
+    storageController.onRestoreRemoteBackup = {
+      flowOf(RemoteBackupRestoreProgress.Complete(restoredSvrPin = PIN, restoredProfileKey = null))
+    }
+
+    var registrationComplete = false
+    launchRegistrationFlow(onRegistrationComplete = { registrationComplete = true })
+
+    startManualRestore()
+    chooseRestoreOption(TestTags.ARCHIVE_RESTORE_SELECTION_FROM_SIGNAL_BACKUPS)
+    enterPhoneNumber()
+    enterAep(aep)
+
+    // The restore screen only offers the restore once the backup info has loaded, which it can't do until the backup-id
+    // has been re-committed underneath it
+    startRemoteRestore()
+
+    waitFor("registration to complete") { registrationComplete }
+
+    assert(networkController.reserveBackupIdCount == 1) { "Expected the backup-id to be re-committed exactly once but was ${networkController.reserveBackupIdCount}" }
+
+    val committed = storageController.committedData
+    assert(committed != null) { "Expected registration data to be committed" }
+    assert(committed!!.accountEntropyPool == aep.value) { "Expected the committed AEP to be the one the user entered" }
+    assert(committed.pin == PIN) { "Expected the pin from the restored backup but was ${committed.pin}" }
+    assert(storageController.restoreDecision == RestoreDecision.COMPLETED) { "Expected COMPLETED restore decision but was ${storageController.restoreDecision}" }
+  }
+
+  @Test
+  fun `a remote restore whose backup-id cannot be re-committed surfaces a load failure`() {
+    val aep = AccountEntropyPool.generate()
+
+    networkController.onGetRemoteBackupInfo = { RequestResult.NonSuccess(NetworkController.GetBackupInfoError.CredentialVerificationFailed) }
+    networkController.onReserveBackupId = { RequestResult.NonSuccess(NetworkController.ReserveBackupIdError.Unauthorized) }
+
+    launchRegistrationFlow()
+
+    startManualRestore()
+    chooseRestoreOption(TestTags.ARCHIVE_RESTORE_SELECTION_FROM_SIGNAL_BACKUPS)
+    enterPhoneNumber()
+    enterAep(aep)
+
+    waitForText(ApplicationProvider.getApplicationContext<Application>().getString(R.string.RemoteRestoreScreen__cant_restore_backup))
+
+    assert(networkController.reserveBackupIdCount == 1) { "Expected a single attempt to re-commit the backup-id but was ${networkController.reserveBackupIdCount}" }
+  }
+
+  @Test
   fun `restoring a local backup before registering completes registration`() {
     val aep = AccountEntropyPool.generate()
 
