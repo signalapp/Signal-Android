@@ -481,6 +481,7 @@
             android:screenOrientation="portrait"
             android:exported="false"
             android:launchMode="singleTop"
+            android:enableOnBackInvokedCallback="true"
             android:theme="@style/TextSecure.DarkNoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden|adjustNothing" />
 

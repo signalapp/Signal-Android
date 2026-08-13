@@ -35,6 +35,7 @@ import org.signal.core.ui.compose.DialogController
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.compose.showSnackbar
+import org.signal.core.ui.navigation.TransitionSpecs
 import org.signal.mediasend.screens.capture.MediaCaptureScreen
 import org.signal.mediasend.screens.capture.MediaCaptureScreenEvents
 import org.signal.mediasend.screens.capture.MediaCaptureViewModel
@@ -67,7 +68,10 @@ internal fun MediaSendNavigation(
       entryDecorators = listOf(
         rememberSaveableStateHolderNavEntryDecorator(),
         rememberViewModelStoreNavEntryDecorator()
-      )
+      ),
+      transitionSpec = { TransitionSpecs.FadeScale.transitionSpec },
+      popTransitionSpec = { TransitionSpecs.FadeScale.popTransitionSpec },
+      predictivePopTransitionSpec = { TransitionSpecs.FadeScale.predictivePopTransitionSpec }
     ) { key ->
       when (key) {
         is MediaSendRoute.Capture -> NavEntry(MediaSendRoute.Capture.Chrome) {
