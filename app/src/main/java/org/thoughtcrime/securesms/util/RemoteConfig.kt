@@ -1431,5 +1431,12 @@ object RemoteConfig {
     hotSwappable = false
   )
 
+  /** The minimum SDK version required to enable Jetpack telecom integration */
+  val telecomMinSdkVersion: Int by remoteInt(
+    key = "android.calling.telecomMinSdkVersion",
+    defaultValue = 37,
+    hotSwappable = false
+  )
+
   // endregion
 }

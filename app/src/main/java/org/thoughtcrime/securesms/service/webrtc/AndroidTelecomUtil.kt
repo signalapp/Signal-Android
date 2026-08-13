@@ -24,7 +24,6 @@ import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager
 object AndroidTelecomUtil {
 
   private val TAG = Log.tag(AndroidTelecomUtil::class.java)
-  private const val MIN_SDK_VERSION = 37
   private val context = AppDependencies.application
   private var systemRejected = false
   private var registered = false
@@ -35,7 +34,7 @@ object AndroidTelecomUtil {
   @JvmStatic
   val telecomSupported: Boolean
     get() {
-      if (Build.VERSION.SDK_INT >= MIN_SDK_VERSION && !systemRejected && isTelecomAllowedForDevice()) {
+      if (Build.VERSION.SDK_INT >= RemoteConfig.telecomMinSdkVersion && !systemRejected && isTelecomAllowedForDevice()) {
         if (!registered) {
           registerPhoneAccount()
         }
@@ -49,7 +48,7 @@ object AndroidTelecomUtil {
 
   @JvmStatic
   fun registerPhoneAccount() {
-    if (Build.VERSION.SDK_INT >= MIN_SDK_VERSION && !systemRejected) {
+    if (Build.VERSION.SDK_INT >= RemoteConfig.telecomMinSdkVersion && !systemRejected) {
       Log.i(TAG, "Registering with CallsManager")
       try {
         callsManager.registerAppWithTelecom(
