@@ -193,14 +193,20 @@ class ChatItemArchiveExporter(
       }
 
       when {
-        record.deletedBy == record.fromRecipientId -> {
-          builder.remoteDeletedMessage = RemoteDeletedMessage()
-          transformTimer.emit("remote-delete")
-        }
-
         record.deletedBy != null -> {
-          builder.adminDeletedMessage = AdminDeletedMessage(adminId = record.deletedBy)
-          transformTimer.emit("admin-delete")
+          val deletedByAuthor = record.deletedBy == builder.authorId
+          val isGroupChat = exportState.threadIdToRecipientId[record.threadId] in exportState.groupRecipientIds
+
+          if (!deletedByAuthor && isGroupChat) {
+            builder.adminDeletedMessage = AdminDeletedMessage(adminId = record.deletedBy)
+            transformTimer.emit("admin-delete")
+          } else {
+            if (!deletedByAuthor) {
+              Log.w(TAG, ExportOddities.adminDeleteInNonGroupChat(record.dateSent))
+            }
+            builder.remoteDeletedMessage = RemoteDeletedMessage()
+            transformTimer.emit("remote-delete")
+          }
         }
 
         MessageTypes.isJoinedType(record.type) -> {
