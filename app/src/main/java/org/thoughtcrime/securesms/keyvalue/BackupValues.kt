@@ -52,6 +52,9 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     private const val KEY_NEXT_BACKUP_TIME = "backup.nextBackupTime"
     private const val KEY_LAST_BACKUP_TIME = "backup.lastBackupTime"
     private const val KEY_LAST_ATTACHMENT_RECONCILIATION_TIME = "backup.lastBackupMediaSyncTime"
+    private const val KEY_LAST_COMPLETED_RECONCILIATION_SNAPSHOT_VERSION = "backup.lastCompletedReconciliationSnapshotVersion"
+    private const val KEY_LAST_COMPLETED_RECONCILIATION_TIME = "backup.lastCompletedReconciliationTime"
+    private const val KEY_LAST_FORCED_RECONCILIATION_ATTEMPT_TIME = "backup.lastForcedReconciliationAttemptTime"
     private const val KEY_TOTAL_RESTORABLE_ATTACHMENT_SIZE = "backup.totalRestorableAttachmentSize"
     private const val KEY_LAST_BACKUP_PROTO_VERSION = "backup.lastBackupProtoVersion"
 
@@ -193,6 +196,33 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
 
   var lastAttachmentReconciliationTime: Long by longValue(KEY_LAST_ATTACHMENT_RECONCILIATION_TIME, -1)
 
+  /**
+   * Negative if no crawl has ever completed on this device. Must be cleared by anything that invalidates our view of the CDN (new media root backup key, tier
+   * change), because it gates deleting local copies of media.
+   */
+  var lastCompletedReconciliationSnapshotVersion: Long by longValue(KEY_LAST_COMPLETED_RECONCILIATION_SNAPSHOT_VERSION, -1)
+
+  /**
+   * When the crawl behind [lastCompletedReconciliationSnapshotVersion] finished, or zero if none ever has. Written alongside it.
+   */
+  var lastCompletedReconciliationTime: Long by longValue(KEY_LAST_COMPLETED_RECONCILIATION_TIME, 0)
+
+  /**
+   * Advances when a forced crawl *starts*, unlike [lastAttachmentReconciliationTime] which only advances on completion, so that a crawl which can never finish
+   * doesn't get re-forced daily while one that never started still can be.
+   */
+  var lastForcedReconciliationAttemptTime: Long by longValue(KEY_LAST_FORCED_RECONCILIATION_ATTEMPT_TIME, 0)
+
+  /**
+   * Discards everything we know about having verified our media against the archive CDN, so offloading stays gated until a fresh crawl confirms it again. Call
+   * this from anything that invalidates that view.
+   */
+  fun clearArchiveVerificationState() {
+    lastCompletedReconciliationSnapshotVersion = -1
+    lastCompletedReconciliationTime = 0
+    lastForcedReconciliationAttemptTime = 0
+  }
+
   var userManuallySkippedMediaRestore: Boolean by booleanValue(KEY_USER_MANUALLY_SKIPPED_MEDIA_RESTORE, false)
 
   /**
@@ -258,6 +288,8 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
         store.beginWrite().putBlob(KEY_MEDIA_ROOT_BACKUP_KEY, value.value).commit()
         mediaCredentials.clearAll()
         cachedMediaCdnPath = null
+
+        clearArchiveVerificationState()
       }
     }
 
@@ -298,6 +330,8 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
           clearNotEnoughRemoteStorageSpace()
           clearMessageBackupFailureSheetWatermark()
           backupCreationError = null
+
+          clearArchiveVerificationState()
 
           if (storedValue == null) {
             Log.i(TAG, "Enabling backups. Resetting 'finished initial backup' state.")

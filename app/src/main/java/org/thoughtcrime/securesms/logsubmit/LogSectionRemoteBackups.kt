@@ -46,6 +46,9 @@ class LogSectionRemoteBackups : LogSection {
     output.append("Detected subscription state mismatch: ${SignalStore.backup.subscriptionStateMismatchDetected}\n")
     output.append("Last verified key time              : ${SignalStore.backup.lastVerifyKeyTime}\n")
     output.append("Local restore reconcile pending     : ${SignalStore.backup.localRestoreReconcilePending}\n")
+    output.append("Last CDN-verified snapshot version  : ${SignalStore.backup.lastCompletedReconciliationSnapshotVersion}\n")
+    output.append("Last CDN-verified time              : ${SignalStore.backup.lastCompletedReconciliationTime}\n")
+    output.append("Last forced reconciliation attempt  : ${SignalStore.backup.lastForcedReconciliationAttemptTime}\n")
     output.append("Restore state                       : ${ArchiveRestoreProgress.state}\n")
     output.append("\n -- Subscription State\n")
 
