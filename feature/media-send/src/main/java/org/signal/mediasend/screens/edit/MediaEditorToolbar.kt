@@ -89,11 +89,13 @@ internal fun MediaEditorToolbarButton(
   imageVector: ImageVector,
   onClick: () -> Unit,
   modifier: Modifier = Modifier,
+  enabled: Boolean = true,
   contentDescription: String? = null,
   colors: IconButtonColors = IconButtons.iconButtonColors()
 ) {
   IconButtons.IconButton(
     onClick = onClick,
+    enabled = enabled,
     colors = colors,
     modifier = modifier
   ) {
@@ -105,7 +107,8 @@ internal fun MediaEditorToolbarButton(
 internal fun MediaEditorToolbarSharedButtons(
   state: MediaEditState,
   editorState: EditorState,
-  onEvent: (MediaEditScreenEvents) -> Unit
+  onEvent: (MediaEditScreenEvents) -> Unit,
+  enabled: Boolean = true
 ) {
   if (isQualityVisible(state, editorState)) {
     var isSelectingQuality by rememberSaveable { mutableStateOf(false) }
@@ -125,6 +128,7 @@ internal fun MediaEditorToolbarSharedButtons(
         SignalIcons.QualityHighSlash.imageVector
       },
       onClick = { isSelectingQuality = true },
+      enabled = enabled,
       modifier = Modifier.testTag(TestTags.MEDIA_EDITOR_TOOLBAR_QUALITY_BUTTON)
     )
   }
@@ -133,6 +137,7 @@ internal fun MediaEditorToolbarSharedButtons(
     MediaEditorToolbarButton(
       imageVector = if (editorState.videoTrimData.isMuted) SignalIcons.SpeakerSlash.imageVector else SignalIcons.Speaker.imageVector,
       onClick = { onEvent(MediaEditScreenEvents.ToggleVideoMuted) },
+      enabled = enabled,
       modifier = Modifier.testTag(TestTags.MEDIA_EDITOR_TOOLBAR_MUTE_BUTTON)
     )
   }
@@ -141,6 +146,7 @@ internal fun MediaEditorToolbarSharedButtons(
     MediaEditorToolbarButton(
       imageVector = SignalIcons.Save.imageVector,
       onClick = { onEvent(MediaEditScreenEvents.SaveMedia) },
+      enabled = enabled,
       modifier = Modifier.testTag(TestTags.MEDIA_EDITOR_TOOLBAR_SAVE_BUTTON)
     )
   }
@@ -149,6 +155,7 @@ internal fun MediaEditorToolbarSharedButtons(
     MediaEditorToolbarButton(
       imageVector = SignalIcons.AlbumPlus.imageVector,
       onClick = { onEvent(MediaEditScreenEvents.NavigateToGallery) },
+      enabled = enabled,
       modifier = Modifier.testTag(TestTags.MEDIA_EDITOR_TOOLBAR_ADD_MEDIA_BUTTON)
     )
   }

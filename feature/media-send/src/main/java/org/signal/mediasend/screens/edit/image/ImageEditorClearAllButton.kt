@@ -25,13 +25,13 @@ import org.signal.mediasend.screens.edit.MediaEditControl
 @Composable
 internal fun ImageEditorClearAllButton(
   imageEditorController: ImageController?,
-  isDragging: Boolean,
+  faded: Boolean,
   modifier: Modifier = Modifier,
   canUndo: Boolean = imageEditorController?.imageEditorState?.undoAvailable ?: false
 ) {
   MediaEditControl(
-    visible = imageEditorController != null && imageEditorController.mode != ImageController.Mode.NONE && canUndo,
-    faded = isDragging,
+    visible = imageEditorController != null && imageEditorController.isUserInEdit && canUndo,
+    faded = faded,
     modifier = modifier
   ) {
     Buttons.MediumTonal(
@@ -55,7 +55,7 @@ private fun ImageEditorClearAllButtonPreview() {
     Box(modifier = Modifier.fillMaxSize()) {
       ImageEditorClearAllButton(
         imageEditorController = remember { ImageController(EditorModel.create(0x0)).apply { enterDrawMode() } },
-        isDragging = false,
+        faded = false,
         canUndo = true
       )
     }

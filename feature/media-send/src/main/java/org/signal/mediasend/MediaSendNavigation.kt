@@ -69,9 +69,9 @@ internal fun MediaSendNavigation(
         rememberSaveableStateHolderNavEntryDecorator(),
         rememberViewModelStoreNavEntryDecorator()
       ),
-      transitionSpec = { TransitionSpecs.FadeScale.transitionSpec },
-      popTransitionSpec = { TransitionSpecs.FadeScale.popTransitionSpec },
-      predictivePopTransitionSpec = { TransitionSpecs.FadeScale.predictivePopTransitionSpec }
+      transitionSpec = { TransitionSpecs.Fade.transitionSpec },
+      popTransitionSpec = { TransitionSpecs.Fade.popTransitionSpec },
+      predictivePopTransitionSpec = { TransitionSpecs.Fade.predictivePopTransitionSpec }
     ) { key ->
       when (key) {
         is MediaSendRoute.Capture -> NavEntry(MediaSendRoute.Capture.Chrome) {

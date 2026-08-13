@@ -12,6 +12,9 @@ import android.graphics.Paint
 import android.graphics.Point
 import android.graphics.RectF
 import android.graphics.Typeface
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.animate
+import androidx.compose.animation.core.tween
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -30,6 +33,9 @@ private const val MIN_CONTENT_VIEW_PORT = 100f
 
 private const val MIN_ZOOM = 1f
 private const val MAX_ZOOM = 8f
+
+/** How long the canvas takes to ease back to its fit, rather than snapping there. */
+private const val ZOOM_SETTLE_DURATION_MILLIS = 250
 
 /**
  * Compose-observable wrapper around [EditorModel].
@@ -55,6 +61,10 @@ internal class ImageEditorState(
   /** True while the user is actively manipulating the image: drawing, moving, scaling, or rotating. */
   var isGestureActive: Boolean by mutableStateOf(false)
     internal set
+
+  /** Whether the canvas is scaled past its fit. */
+  var isZoomed: Boolean by mutableStateOf(false)
+    private set
 
   var textEditingElement: EditorElement? = null
   var isDrawing: Boolean = false
@@ -139,6 +149,34 @@ internal class ImageEditorState(
     applyZoom()
   }
 
+  /** Drags the zoomed canvas under the finger. A no-op at the fit scale, where there is nothing to pan to. */
+  fun panBy(panX: Float, panY: Float) {
+    zoomBy(focusX = 0f, focusY = 0f, scaleFactor = 1f, panX = panX, panY = panY)
+  }
+
+  /**
+   * Eases the canvas back to its fit and leaves the zoom cleared. Scale and translation are driven off one fraction,
+   * which is what keeps every frame inside [constrainZoom]'s bounds without having to re-clamp along the way.
+   */
+  suspend fun animateZoomToFit() {
+    val fromScale = zoomScale
+    val fromTranslateX = zoomTranslateX
+    val fromTranslateY = zoomTranslateY
+
+    animate(
+      initialValue = 1f,
+      targetValue = 0f,
+      animationSpec = tween(durationMillis = ZOOM_SETTLE_DURATION_MILLIS, easing = FastOutSlowInEasing)
+    ) { fraction, _ ->
+      zoomScale = MIN_ZOOM + (fromScale - MIN_ZOOM) * fraction
+      zoomTranslateX = fromTranslateX * fraction
+      zoomTranslateY = fromTranslateY * fraction
+      applyZoom()
+    }
+
+    clearZoom()
+  }
+
   fun clearZoom() {
     if (zoomScale == 1f && zoomTranslateX == 0f && zoomTranslateY == 0f) return
 
@@ -158,6 +196,8 @@ internal class ImageEditorState(
     viewMatrix.postScale(zoomScale, zoomScale)
     viewMatrix.postTranslate(zoomTranslateX, zoomTranslateY)
     revision++
+
+    isZoomed = zoomScale > MIN_ZOOM
   }
 
   fun setContentInsets(insets: ChromeInsets) {

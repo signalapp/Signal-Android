@@ -47,13 +47,21 @@ internal class ImageController(
     private const val STICKER_SCALE = 0.4f
   }
 
-  val isUserInEdit: Boolean by derivedStateOf { mode != Mode.NONE }
+  val isUserInEdit: Boolean by derivedStateOf { mode.isEditing }
 
   val imageEditorState = ImageEditorState(editorModel).also {
     it.onGestureCompleted = { drawSessionDirty = true }
   }
 
   var mode: Mode by mutableStateOf(Mode.NONE)
+    private set
+
+  /** Whether the chrome that [Mode.ZOOM] fades has been tapped back into view. */
+  var isChromeRevealed: Boolean by mutableStateOf(false)
+    private set
+
+  /** Whether the canvas is easing back to its fit, which nothing else may zoom or pan out from under. */
+  var isSettlingZoom: Boolean by mutableStateOf(false)
     private set
 
   var isCropAspectRatioLocked: Boolean by mutableStateOf(editorModel.isCropAspectLocked)
@@ -157,11 +165,14 @@ internal class ImageController(
     }
   }
 
+  /** Whether the chrome is out of the way of a zoomed image, waiting on a tap to come back. */
+  val isChromeFadedForZoom: Boolean by derivedStateOf { mode == Mode.ZOOM && !isChromeRevealed }
+
   /**
    * Backs out of the current mode into the one before it. Draw and crop sessions go through [requestCancelEdit] so that
    * backing out of a dirty one asks first rather than silently throwing the work away.
    */
-  fun onBackPressed() {
+  suspend fun onBackPressed() {
     // A selection is a level of its own: back gives that up before it gives up the mode.
     if (selectedElement != null) {
       clearSelection()
@@ -171,6 +182,7 @@ internal class ImageController(
     when (mode) {
       Mode.TEXT -> finishTextEditing()
       Mode.DRAW, Mode.HIGHLIGHT, Mode.BLUR, Mode.CROP -> requestCancelEdit()
+      Mode.ZOOM -> exitZoomMode()
       Mode.NONE, Mode.INSERT_STICKER, Mode.DELETE -> Unit
     }
   }
@@ -239,11 +251,79 @@ internal class ImageController(
   }
 
   private fun transitionTo(newMode: Mode) {
+    // A zoom only survives in Mode.ZOOM: every other mode has spent two fingers on something else, leaving no way back
+    // out of one.
+    if (mode == Mode.ZOOM && newMode != Mode.ZOOM) {
+      isChromeRevealed = false
+      imageEditorState.clearZoom()
+    }
+
     if (!newMode.isTransient) {
-      restingMode = newMode
+      restingMode = newMode.asRestingMode
     }
 
     mode = newMode
+  }
+
+  /**
+   * The mode a transient one hands back to. Never [Mode.ZOOM]: leaving it dropped the zoom, so coming back would leave
+   * the pager locked around an image sitting at its fit scale.
+   */
+  private val Mode.asRestingMode: Mode
+    get() = if (this == Mode.ZOOM) Mode.NONE else this
+
+  /**
+   * Pinches the canvas, opening [Mode.ZOOM] on the way up from the fit scale and closing it again on the way back down,
+   * so a pinch that undoes itself hands the pager and the selection back without needing a double tap.
+   */
+  fun zoomBy(focusX: Float, focusY: Float, scaleFactor: Float, panX: Float, panY: Float) {
+    if (isSettlingZoom || (mode != Mode.NONE && mode != Mode.ZOOM)) {
+      return
+    }
+
+    imageEditorState.zoomBy(focusX, focusY, scaleFactor, panX, panY)
+
+    when {
+      imageEditorState.isZoomed && mode == Mode.NONE -> enterZoomMode()
+      !imageEditorState.isZoomed && mode == Mode.ZOOM -> transitionTo(Mode.NONE)
+    }
+  }
+
+  fun panBy(panX: Float, panY: Float) {
+    if (isSettlingZoom || mode != Mode.ZOOM) {
+      return
+    }
+
+    imageEditorState.panBy(panX, panY)
+  }
+
+  private fun enterZoomMode() {
+    clearSelection()
+    transitionTo(Mode.ZOOM)
+  }
+
+  /**
+   * Eases the canvas back to its fit and then leaves zoom mode. The chrome is revealed up front so that it fades back in
+   * alongside the image rather than waiting for it to land.
+   */
+  suspend fun exitZoomMode() {
+    if (mode != Mode.ZOOM || isSettlingZoom) {
+      return
+    }
+
+    isSettlingZoom = true
+    isChromeRevealed = true
+
+    try {
+      imageEditorState.animateZoomToFit()
+    } finally {
+      isSettlingZoom = false
+      transitionTo(Mode.NONE)
+    }
+  }
+
+  fun toggleChromeRevealed() {
+    isChromeRevealed = !isChromeRevealed
   }
 
   /** Ends a transient mode by returning to the session the user was in before it. */
@@ -384,8 +464,6 @@ internal class ImageController(
   }
 
   fun enterCropMode() {
-    // Two fingers belong to the crop from here, so there would be no way back out of a zoom.
-    imageEditorState.clearZoom()
     editorModel.startCrop()
     initialDialScale = editorModel.mainImage?.localScaleX ?: 1f
     transitionTo(Mode.CROP)
@@ -470,6 +548,10 @@ internal class ImageController(
   }
 
   fun onEntityDown(element: EditorElement?) {
+    if (mode == Mode.ZOOM) {
+      return
+    }
+
     if (element != null && element.renderer is SelectableRenderer) {
       selectElement(element)
     } else {
@@ -478,6 +560,10 @@ internal class ImageController(
   }
 
   fun onEntitySingleTap(element: EditorElement?) {
+    if (mode == Mode.ZOOM) {
+      return
+    }
+
     val tappable = element?.renderer as? TappableRenderer ?: return
 
     tappable.onTapped()
@@ -486,7 +572,7 @@ internal class ImageController(
 
   /** Re-opens an existing text element, which is how the user gets back to its color and style controls. */
   fun onEntityDoubleTap(element: EditorElement?) {
-    if (mode == Mode.CROP || element == null || element.renderer !is MultiLineTextRenderer) {
+    if (mode == Mode.CROP || mode == Mode.ZOOM || element == null || element.renderer !is MultiLineTextRenderer) {
       return
     }
 
@@ -523,7 +609,7 @@ internal class ImageController(
   fun enterStickerMode() {
     // Re-opening the picker must not record INSERT_STICKER as the mode to come back to.
     if (mode != Mode.INSERT_STICKER) {
-      modeBeforeStickerInsertion = mode
+      modeBeforeStickerInsertion = mode.asRestingMode
     }
 
     transitionTo(Mode.INSERT_STICKER)
@@ -648,6 +734,7 @@ internal class ImageController(
 
   enum class Mode {
     NONE,
+    ZOOM,
     CROP,
     TEXT,
     DRAW,
@@ -659,6 +746,10 @@ internal class ImageController(
     /** Whether this is something done within a session rather than a session in its own right. */
     internal val isTransient: Boolean
       get() = this == TEXT || this == DELETE || this == INSERT_STICKER
+
+    /** Whether an editing session is open. [NONE] and [ZOOM] are ways of looking at the image rather than changing it. */
+    internal val isEditing: Boolean
+      get() = this != NONE && this != ZOOM
   }
 
   /**

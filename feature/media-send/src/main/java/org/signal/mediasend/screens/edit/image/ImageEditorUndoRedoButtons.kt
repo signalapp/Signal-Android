@@ -29,14 +29,14 @@ import org.signal.mediasend.screens.edit.MediaEditControl
 @Composable
 internal fun ImageEditorUndoRedoButtons(
   imageEditorController: ImageController?,
-  isDragging: Boolean,
+  faded: Boolean,
   modifier: Modifier = Modifier,
   canUndo: Boolean = imageEditorController?.imageEditorState?.undoAvailable ?: false,
   canRedo: Boolean = imageEditorController?.imageEditorState?.redoAvailable ?: false
 ) {
   MediaEditControl(
-    visible = imageEditorController != null && imageEditorController.mode != ImageController.Mode.NONE && (canUndo || canRedo),
-    faded = isDragging,
+    visible = imageEditorController != null && imageEditorController.isUserInEdit && (canUndo || canRedo),
+    faded = faded,
     modifier = modifier
   ) {
     Row(horizontalArrangement = spacedBy(8.dp)) {
@@ -80,7 +80,7 @@ private fun ImageEditorUndoRedoButtonsPreview() {
             enterDrawMode()
           }
         },
-        isDragging = false,
+        faded = false,
         canUndo = true,
         canRedo = true
       )

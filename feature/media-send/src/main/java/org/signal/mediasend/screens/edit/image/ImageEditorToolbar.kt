@@ -45,7 +45,8 @@ internal fun ImageEditorToolbar(
   state: MediaEditState,
   editorState: EditorState.Image,
   onEvent: (MediaEditScreenEvents) -> Unit,
-  modifier: Modifier = Modifier
+  modifier: Modifier = Modifier,
+  enabled: Boolean = true
 ) {
   when {
     imageEditorController.shouldDisplayTextColorBar -> {
@@ -54,14 +55,14 @@ internal fun ImageEditorToolbar(
         modifier = modifier
       )
     }
-    imageEditorController.mode == ImageController.Mode.NONE -> {
-      ImageEditorNoneStateToolbar(imageEditorController, state, editorState, onEvent, modifier)
+    !imageEditorController.isUserInEdit -> {
+      ImageEditorNoneStateToolbar(imageEditorController, state, editorState, onEvent, modifier, enabled)
     }
     imageEditorController.mode == ImageController.Mode.CROP -> {
-      ImageEditorCropAndResizeToolbar(imageEditorController, modifier)
+      ImageEditorCropAndResizeToolbar(imageEditorController, modifier, enabled)
     }
     else -> {
-      ImageEditorDrawStateToolbar(imageEditorController, onEvent, modifier)
+      ImageEditorDrawStateToolbar(imageEditorController, onEvent, modifier, enabled)
     }
   }
 }
@@ -75,23 +76,27 @@ private fun ImageEditorNoneStateToolbar(
   state: MediaEditState,
   editorState: EditorState.Image,
   onEvent: (MediaEditScreenEvents) -> Unit,
-  modifier: Modifier = Modifier
+  modifier: Modifier = Modifier,
+  enabled: Boolean = true
 ) {
   MediaEditorToolbar(modifier) {
     MediaEditorToolbarButton(
       imageVector = SignalIcons.CropRotate.imageVector,
-      onClick = imageEditorController::beginCropAndRotateEdit
+      onClick = imageEditorController::beginCropAndRotateEdit,
+      enabled = enabled
     )
 
     MediaEditorToolbarButton(
       imageVector = SignalIcons.BrushPen.imageVector,
-      onClick = imageEditorController::beginDrawEdit
+      onClick = imageEditorController::beginDrawEdit,
+      enabled = enabled
     )
 
     MediaEditorToolbarSharedButtons(
       state = state,
       editorState = editorState,
-      onEvent = onEvent
+      onEvent = onEvent,
+      enabled = enabled
     )
   }
 }
@@ -100,20 +105,22 @@ private fun ImageEditorNoneStateToolbar(
 private fun ImageEditorDrawStateToolbar(
   imageEditorController: ImageController,
   onEvent: (MediaEditScreenEvents) -> Unit,
-  modifier: Modifier = Modifier
+  modifier: Modifier = Modifier,
+  enabled: Boolean = true
 ) {
   MediaEditorToolbar(
     modifier = modifier,
     leading = {
-      DiscardButton(imageEditorController)
+      DiscardButton(imageEditorController, enabled)
     },
     trailing = {
-      CommitButton(imageEditorController)
+      CommitButton(imageEditorController, enabled)
     }
   ) {
     ImageEditorToggleButton(
       imageVector = SignalIcons.Draw.imageVector,
       checked = imageEditorController.isUserDrawing,
+      enabled = enabled,
       onCheckChanged = {
         if (!imageEditorController.isUserDrawing) {
           imageEditorController.enterDrawMode()
@@ -124,6 +131,7 @@ private fun ImageEditorDrawStateToolbar(
     ImageEditorToggleButton(
       imageVector = SignalIcons.Text.imageVector,
       checked = imageEditorController.isUserEnteringText,
+      enabled = enabled,
       onCheckChanged = {
         if (!imageEditorController.isUserEnteringText) {
           imageEditorController.enterTextMode()
@@ -134,6 +142,7 @@ private fun ImageEditorDrawStateToolbar(
     ImageEditorToggleButton(
       imageVector = SignalIcons.Sticker.imageVector,
       checked = imageEditorController.isUserInsertingSticker,
+      enabled = enabled,
       onCheckChanged = {
         // Unconditional: if a previous pick never delivered a result the mode is still INSERT_STICKER, and gating on it
         // would leave the button dead.
@@ -145,6 +154,7 @@ private fun ImageEditorDrawStateToolbar(
     ImageEditorToggleButton(
       imageVector = SignalIcons.Blur.imageVector,
       checked = imageEditorController.isUserBlurring,
+      enabled = enabled,
       onCheckChanged = {
         if (!imageEditorController.isUserBlurring) {
           imageEditorController.enterBlurMode()
@@ -157,25 +167,28 @@ private fun ImageEditorDrawStateToolbar(
 @Composable
 private fun ImageEditorCropAndResizeToolbar(
   imageEditorController: ImageController,
-  modifier: Modifier = Modifier
+  modifier: Modifier = Modifier,
+  enabled: Boolean = true
 ) {
   MediaEditorToolbar(
     modifier = modifier,
     leading = {
-      DiscardButton(imageEditorController)
+      DiscardButton(imageEditorController, enabled)
     },
     trailing = {
-      CommitButton(imageEditorController)
+      CommitButton(imageEditorController, enabled)
     }
   ) {
     MediaEditorToolbarButton(
       imageVector = SignalIcons.CropRotate.imageVector,
-      onClick = imageEditorController::rotate
+      onClick = imageEditorController::rotate,
+      enabled = enabled
     )
 
     MediaEditorToolbarButton(
       imageVector = SignalIcons.Flip.imageVector,
-      onClick = imageEditorController::flip
+      onClick = imageEditorController::flip,
+      enabled = enabled
     )
 
     val cropLockImageVector = SignalIcons.CropLock.imageVector
@@ -184,6 +197,7 @@ private fun ImageEditorCropAndResizeToolbar(
     val cropUnlockContentDescription = stringResource(R.string.ImageEditorToolbar__aspect_ratio_unlocked)
 
     IconCrossfadeToggleButton(
+      enabled = enabled,
       target = if (imageEditorController.isCropAspectRatioLocked) CropLock.LOCKED else CropLock.UNLOCKED,
       setTarget = { target ->
         when (target) {
@@ -212,10 +226,11 @@ private fun ImageEditorCropAndResizeToolbar(
 }
 
 @Composable
-private fun CommitButton(imageEditorController: ImageController) {
+private fun CommitButton(imageEditorController: ImageController, enabled: Boolean) {
   MediaEditorToolbarButton(
     imageVector = SignalIcons.Check.imageVector,
     onClick = imageEditorController::commitEdit,
+    enabled = enabled,
     colors = IconButtons.iconButtonColors(
       containerColor = MaterialTheme.colorScheme.primaryContainer
     )
@@ -223,7 +238,7 @@ private fun CommitButton(imageEditorController: ImageController) {
 }
 
 @Composable
-private fun DiscardButton(imageEditorController: ImageController) {
+private fun DiscardButton(imageEditorController: ImageController, enabled: Boolean) {
   if (imageEditorController.showDiscardDialog) {
     MediaEditScreenDialogs.DiscardEditsConfirmationDialog(
       onDiscard = imageEditorController::confirmDiscardEdit,
@@ -234,6 +249,7 @@ private fun DiscardButton(imageEditorController: ImageController) {
   MediaEditorToolbarButton(
     imageVector = SignalIcons.X.imageVector,
     onClick = imageEditorController::requestCancelEdit,
+    enabled = enabled,
     colors = IconButtons.iconButtonColors(
       containerColor = MaterialTheme.colorScheme.surfaceVariant
     )
@@ -245,10 +261,12 @@ private inline fun <reified E : Enum<E>> IconCrossfadeToggleButton(
   target: E,
   crossinline setTarget: (E) -> Unit,
   targetToImageMap: EnumMap<E, ImageVector>,
-  targetToContentDescriptionMap: EnumMap<E, String>
+  targetToContentDescriptionMap: EnumMap<E, String>,
+  enabled: Boolean = true
 ) {
   IconButtons.IconButton(
-    onClick = { setTarget(target.next()) }
+    onClick = { setTarget(target.next()) },
+    enabled = enabled
   ) {
     Crossfade(target) { enumValue ->
       Icon(
@@ -265,11 +283,13 @@ private fun ImageEditorToggleButton(
   imageVector: ImageVector,
   checked: Boolean,
   onCheckChanged: (Boolean) -> Unit,
-  contentDescription: String? = null
+  contentDescription: String? = null,
+  enabled: Boolean = true
 ) {
   IconButtons.IconToggleButton(
     checked = checked,
     onCheckedChange = onCheckChanged,
+    enabled = enabled,
     colors = iconToggleButtonColors(
       checkedContentColor = MaterialTheme.colorScheme.onSurface,
       checkedContainerColor = SignalTheme.colors.colorTransparentInverse2

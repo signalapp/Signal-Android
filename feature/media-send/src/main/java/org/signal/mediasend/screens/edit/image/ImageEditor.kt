@@ -21,6 +21,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -32,6 +33,7 @@ import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.input.pointer.AwaitPointerEventScope
+import androidx.compose.ui.input.pointer.PointerInputChange
 import androidx.compose.ui.input.pointer.changedToDown
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.onSizeChanged
@@ -42,6 +44,8 @@ import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 import org.signal.imageeditor.core.ImageEditorTouchHandler
 import org.signal.imageeditor.core.model.EditorElement
 import org.signal.imageeditor.core.renderers.MultiLineTextRenderer
@@ -57,6 +61,7 @@ internal fun ImageEditor(
   val context = LocalContext.current
   val state = controller.imageEditorState
   val hapticFeedback = LocalHapticFeedback.current
+  val scope = rememberCoroutineScope()
 
   // Masks everything outside the image, so it has to match the surface the editor is drawn on to read as a background.
   val blackoutColor = MaterialTheme.colorScheme.surface.toArgb()
@@ -82,7 +87,7 @@ internal fun ImageEditor(
         .matchParentSize()
         .clipToBounds()
         .onSizeChanged { state.setCanvasSize(it.width.toFloat(), it.height.toFloat()) }
-        .imageEditorPointerInput(state, controller)
+        .imageEditorPointerInput(state, controller, scope)
     ) {
       state.revision
 
@@ -146,7 +151,7 @@ private fun HiddenTextInput(controller: ImageController) {
 /** How far a finger travels before a touch on an element counts as a drag. */
 private const val MAX_MOVE_SQUARED_BEFORE_DRAG = 10f
 
-private fun Modifier.imageEditorPointerInput(state: ImageEditorState, controller: ImageController): Modifier {
+private fun Modifier.imageEditorPointerInput(state: ImageEditorState, controller: ImageController, scope: CoroutineScope): Modifier {
   return this.pointerInput(controller, controller.textEditingElement) {
     val touchHandler = ImageEditorTouchHandler()
 
@@ -154,8 +159,16 @@ private fun Modifier.imageEditorPointerInput(state: ImageEditorState, controller
     var lastTapElement: EditorElement? = null
     var lastTapUptimeMillis = 0L
 
+    // The equivalent for the canvas itself, which only zoom mode taps.
+    var lastCanvasTapUptimeMillis = 0L
+
     awaitEachGesture {
       val down = awaitFirstDown(requireUnconsumed = true)
+
+      if (controller.mode == ImageController.Mode.ZOOM) {
+        lastCanvasTapUptimeMillis = zoomGesture(controller, down, lastCanvasTapUptimeMillis, scope)
+        return@awaitEachGesture
+      }
 
       if (state.textEditingElement != null) {
         // During text editing, a tap on the canvas finishes editing
@@ -180,9 +193,14 @@ private fun Modifier.imageEditorPointerInput(state: ImageEditorState, controller
         controller.onEntityDown(hitElement)
       }
 
+      val hasNoSession = !touchHandler.hasActiveSession()
+
+      // Only at rest: every other mode has already spent two fingers on the elements or on the crop frame.
+      val canZoomCanvas = hasNoSession && controller.mode == ImageController.Mode.NONE
+
       // Crop is excluded: two fingers there scale the image inside the crop frame.
-      val canZoomCanvas = !touchHandler.hasActiveSession() && controller.mode != ImageController.Mode.CROP
-      if (canZoomCanvas && !awaitSecondPointer()) {
+      val canWaitForSecondPointer = hasNoSession && controller.mode != ImageController.Mode.CROP
+      if (canWaitForSecondPointer && !awaitSecondPointer()) {
         // In NONE mode the pager took the swipe; anywhere else it was a tap on nothing, which still deselects.
         if (controller.mode != ImageController.Mode.NONE) {
           touchHandler.onUp(state.editorModel)
@@ -250,16 +268,18 @@ private fun Modifier.imageEditorPointerInput(state: ImageEditorState, controller
             // Deliberately outside didPinch: zooming is not an edit and must not mark the model dirty.
             zoomPointers = if (currentCount == 2) {
               val current = currentPressed[0].position to currentPressed[1].position
-              zoomPointers?.let { state.zoomBetween(it, current) }
+              zoomPointers?.let { controller.zoomBetween(it, current) }
               current
             } else {
               null
             }
           } else if (currentCount == 2 && previousPointerCount < 2) {
-            didPinch = true
             val newPointer = event.changes.firstOrNull { it.changedToDown() } ?: currentPressed.last()
             val pointerIndex = event.changes.indexOf(newPointer).coerceIn(0, 1)
             touchHandler.onSecondPointerDown(state.editorModel, state.viewMatrix, newPointer.position.toPointF(), pointerIndex)
+
+            // Only an edit if it found something to scale: two fingers on empty space must not arm the discard prompt.
+            didPinch = touchHandler.hasActiveSession()
           } else if (currentCount == 1 && previousPointerCount == 2) {
             val released = event.changes.firstOrNull { !it.pressed && it.previousPressed }
             val releasedIndex = if (released != null) event.changes.indexOf(released).coerceIn(0, 1) else 0
@@ -308,7 +328,76 @@ private suspend fun AwaitPointerEventScope.awaitSecondPointer(): Boolean {
   }
 }
 
-private fun ImageEditorState.zoomBetween(previous: Pair<Offset, Offset>, current: Pair<Offset, Offset>) {
+/**
+ * Owns the whole gesture while the canvas is zoomed: one finger pans, two pinch, a tap toggles the chrome, and a double
+ * tap eases the image back to its fit scale. Nothing reaches the pager from here -- a swipe is a pan.
+ *
+ * The settle runs on [scope] rather than here, so gesture detection is back up before it finishes.
+ *
+ * Returns the uptime a following tap has to beat to count as a double tap, or zero when this gesture was not a tap.
+ */
+private suspend fun AwaitPointerEventScope.zoomGesture(
+  controller: ImageController,
+  down: PointerInputChange,
+  lastTapUptimeMillis: Long,
+  scope: CoroutineScope
+): Long {
+  down.consume()
+  controller.imageEditorState.isGestureActive = true
+
+  val isSecondTap = down.uptimeMillis - lastTapUptimeMillis <= viewConfiguration.doubleTapTimeoutMillis
+  var isTap = true
+  var zoomPointers: Pair<Offset, Offset>? = null
+
+  try {
+    while (true) {
+      val event = awaitPointerEvent()
+      val pressed = event.changes.filter { it.pressed }
+      event.changes.forEach { it.consume() }
+
+      if (pressed.isEmpty()) {
+        break
+      }
+
+      if (pressed.size >= 2) {
+        isTap = false
+        val current = pressed[0].position to pressed[1].position
+        zoomPointers?.let { controller.zoomBetween(it, current) }
+        zoomPointers = current
+        continue
+      }
+
+      // The pinch is over, so the finger left behind starts panning from wherever it is rather than from the midpoint.
+      zoomPointers = null
+
+      val change = pressed.first()
+      if (isTap && (change.position - down.position).getDistance() > viewConfiguration.touchSlop) {
+        isTap = false
+      }
+
+      if (!isTap) {
+        val pan = change.position - change.previousPosition
+        controller.panBy(pan.x, pan.y)
+      }
+    }
+  } finally {
+    controller.imageEditorState.isGestureActive = false
+  }
+
+  if (!isTap) {
+    return 0L
+  }
+
+  if (isSecondTap) {
+    scope.launch { controller.exitZoomMode() }
+    return 0L
+  }
+
+  controller.toggleChromeRevealed()
+  return down.uptimeMillis
+}
+
+private fun ImageController.zoomBetween(previous: Pair<Offset, Offset>, current: Pair<Offset, Offset>) {
   val previousSpread = (previous.first - previous.second).getDistance()
   val currentSpread = (current.first - current.second).getDistance()
   if (previousSpread <= 0f || currentSpread <= 0f) return

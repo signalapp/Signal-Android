@@ -58,6 +58,25 @@ object TransitionSpecs {
   }
 
   /**
+   * Screens fade in place, without any directional movement.
+   */
+  object Fade : Transition {
+    private const val DURATION = 200
+
+    override val transitionSpec: ContentTransform =
+      (
+        fadeIn(animationSpec = tween(DURATION))
+        ) togetherWith
+        (
+          fadeOut(animationSpec = tween(DURATION))
+          )
+
+    override val popTransitionSpec: ContentTransform = transitionSpec
+
+    override val predictivePopTransitionSpec: ContentTransform = transitionSpec
+  }
+
+  /**
    * Screens fade and zoom in place, without any directional movement.
    */
   object FadeScale : Transition {

@@ -163,17 +163,21 @@ internal fun MediaEditScreen(
     // Composed after the camera-first handler so it wins while an editor mode is open: back should step out of that mode
     // rather than leave the screen.
     BackHandler(enabled = imageController?.canHandleBack == true) {
-      imageController?.onBackPressed()
+      scope.launch { imageController?.onBackPressed() }
     }
 
     var isVideoInteracting by remember(focusedUri) { mutableStateOf(false) }
     var isAdjustingBrushWidth by remember(focusedUri) { mutableStateOf(false) }
     val isImageEditing = imageController?.isUserInEdit == true
-    val isInteracting = isImageEditing || isVideoInteracting
+    val isZooming = imageController?.mode == ImageController.Mode.ZOOM
+    val isInteracting = isImageEditing || isVideoInteracting || isZooming
 
     // Drags of the media itself, which every piece of chrome gets out of the way for. Sliders are excluded -- they are
     // chrome themselves, and clearing the screen would hide what they adjust.
     val isDragging = imageController?.imageEditorState?.isGestureActive == true || isVideoInteracting
+
+    // A zoomed image gets the screen to itself in the same way a drag does, until a tap asks for the chrome back.
+    val isChromeFaded = isDragging || imageController?.isChromeFadedForZoom == true
 
     val isAtRest = !isImageEditing && !isVideoInteracting
     val isAtRestState by rememberUpdatedState(isAtRest)
@@ -312,7 +316,7 @@ internal fun MediaEditScreen(
       )
 
       MediaEditControl(
-        faded = isDragging,
+        faded = isChromeFaded,
         modifier = Modifier.align(Alignment.CenterStart)
       ) {
         BrushWidthBar(
@@ -362,7 +366,7 @@ internal fun MediaEditScreen(
         }
 
         if (state.selectedMedia.size > 1 && isAddMediaVisible(state, focusedEditorState)) {
-          MediaEditControl(visible = !isImageEditing, faded = isDragging) {
+          MediaEditControl(visible = !isImageEditing, faded = isChromeFaded) {
             ThumbnailRow(
               selectedMedia = state.selectedMedia,
               pagerState = pagerState,
@@ -394,13 +398,13 @@ internal fun MediaEditScreen(
           }
 
           if (controller.isUserDrawing) {
-            MediaEditControl(faded = isDragging) {
+            MediaEditControl(faded = isChromeFaded) {
               DrawModeColorBar(imageEditorController = controller)
             }
           }
 
           if (controller.isUserBlurring) {
-            MediaEditControl(faded = isDragging) {
+            MediaEditControl(faded = isChromeFaded) {
               BlurFacesBar(
                 checked = controller.isBlurringFaces,
                 onCheckedChange = { onEvent(MediaEditScreenEvents.ToggleBlurFaces(it)) }
@@ -417,14 +421,14 @@ internal fun MediaEditScreen(
             onEvent = onEvent,
             imageController = imageController,
             isTextEditing = isTextEditing,
-            isDragging = isDragging
+            faded = isChromeFaded
           )
         }
       }
 
       MediaEditControl(
         visible = !isImageEditing,
-        faded = isDragging,
+        faded = isChromeFaded,
         enter = MediaSendMetrics.SlidingControlEnterTransition,
         exit = MediaSendMetrics.SlidingControlExitTransition
       ) {
@@ -465,7 +469,7 @@ internal fun MediaEditScreen(
           onEvent = onEvent,
           imageController = imageController,
           isTextEditing = isTextEditing,
-          isDragging = isDragging
+          faded = isChromeFaded
         )
       }
     }
@@ -482,7 +486,7 @@ internal fun MediaEditScreen(
         .reportChromeInset(chromeInsets, ChromeSlot.TOP_BAND, ChromeEdge.TOP)
     ) {
       MediaEditControl(
-        faded = isDragging || isImageEditing,
+        faded = isChromeFaded || isImageEditing,
         modifier = Modifier
           .align(Alignment.TopCenter)
           .padding(top = 10.dp)
@@ -500,7 +504,7 @@ internal fun MediaEditScreen(
 
       ImageEditorUndoRedoButtons(
         imageEditorController = imageController,
-        isDragging = isDragging,
+        faded = isChromeFaded,
         modifier = Modifier
           .align(Alignment.TopStart)
           .padding(top = 12.dp, start = 16.dp)
@@ -508,7 +512,7 @@ internal fun MediaEditScreen(
 
       ImageEditorClearAllButton(
         imageEditorController = imageController,
-        isDragging = isDragging,
+        faded = isChromeFaded,
         modifier = Modifier
           .align(Alignment.TopEnd)
           .padding(top = 12.dp, end = 16.dp)
@@ -534,7 +538,7 @@ private fun MediaToolbar(
   focusedEditorState: EditorState?,
   imageController: ImageController?,
   isTextEditing: Boolean,
-  isDragging: Boolean,
+  faded: Boolean,
   modifier: Modifier = Modifier
 ) {
   if (focusedUri == null || focusedEditorState == null) {
@@ -546,7 +550,7 @@ private fun MediaToolbar(
     return
   }
 
-  MediaEditControl(faded = isDragging, modifier = modifier) {
+  MediaEditControl(faded = faded, modifier = modifier) {
     when (focusedEditorState) {
       is EditorState.Image -> {
         val breakpoint = rememberWindowBreakpoint()
@@ -565,7 +569,8 @@ private fun MediaToolbar(
             editorState = focusedEditorState,
             onEvent = onEvent,
             modifier = modifier
-              .then(if (isTextEditing) Modifier.imePadding() else Modifier)
+              .then(if (isTextEditing) Modifier.imePadding() else Modifier),
+            enabled = !faded
           )
         }
       }
@@ -574,7 +579,8 @@ private fun MediaToolbar(
         MediaEditorToolbarSharedButtons(
           state = state,
           editorState = focusedEditorState,
-          onEvent = onEvent
+          onEvent = onEvent,
+          enabled = !faded
         )
       }
     }
