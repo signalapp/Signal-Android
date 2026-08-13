@@ -124,17 +124,22 @@ internal class ImageController(
     private set
 
   /**
-   * Whether the image's faces are masked, which is what the blur-faces toggle reflects. Taken from the model rather than
-   * the toggle so that undoing or clearing the masks turns it back off.
+   * Whether the blur-faces toggle reads as on. The request alone holds it on for an image with no face to mask, but once
+   * there are masks on the model it follows them, so undoing or clearing them turns it back off.
    */
   val isBlurringFaces: Boolean by derivedStateOf {
     // Reading the revision is what re-derives this when masks are added to or removed from the model.
     imageEditorState.revision
-    isDetectingFaces || editorModel.hasFaceRenderer()
+    if (hasAppliedFaceMasks) editorModel.hasFaceRenderer() else isFaceBlurRequested
   }
 
   private var cachedFaceDetection: FaceDetectionResult? = null
-  private var isFaceBlurRequested: Boolean = false
+
+  /** Whether the user has asked for the faces in this image to be masked, which is the toggle's own position. */
+  private var isFaceBlurRequested: Boolean by mutableStateOf(false)
+
+  /** Whether the request put masks on the model, which only holds for an image a face was actually found in. */
+  private var hasAppliedFaceMasks: Boolean by mutableStateOf(false)
 
   val brushTool: BrushTool? by derivedStateOf {
     when (mode) {
@@ -380,6 +385,9 @@ internal class ImageController(
   }
 
   fun clearAllEdits() {
+    isFaceBlurRequested = false
+    hasAppliedFaceMasks = false
+
     while (imageEditorState.undoAvailable) {
       editorModel.undo()
     }
@@ -391,6 +399,7 @@ internal class ImageController(
    */
   suspend fun blurFaces(context: Context) {
     isFaceBlurRequested = true
+    hasAppliedFaceMasks = false
 
     if (isDetectingFaces) {
       return
@@ -419,6 +428,7 @@ internal class ImageController(
 
   fun clearFaceBlurs() {
     isFaceBlurRequested = false
+    hasAppliedFaceMasks = false
 
     if (!editorModel.hasFaceRenderer()) {
       return
@@ -438,6 +448,7 @@ internal class ImageController(
 
     editorModel.addFaceBlurs(result.faces, result.renderSize, result.cropPosition)
     cachedFaceDetection = result
+    hasAppliedFaceMasks = true
     drawSessionDirty = true
     imageEditorState.invalidate()
   }
