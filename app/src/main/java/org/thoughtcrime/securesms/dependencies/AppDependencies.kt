@@ -282,8 +282,27 @@ object AppDependencies {
   @JvmStatic
   val webSocketObserver: LatestValueObservable<WebSocketConnectionState> = LatestValueObservable(_webSocketObserver)
 
+  private val _libsignalNetwork = resettableLazy {
+    provider.provideLibsignalNetwork(signalServiceNetworkAccess.getConfiguration())
+  }
+
+  @JvmStatic
+  val libsignalNetwork: Network by _libsignalNetwork
+
+  @JvmStatic
+  val authWebSocket: SignalWebSocket.AuthenticatedWebSocket by lazy {
+    provider.provideAuthWebSocket({ signalServiceNetworkAccess.getConfiguration() }, { libsignalNetwork }).also {
+      it.state.subscribe { state -> _webSocketObserver.onNext(state) }
+    }
+  }
+
+  @JvmStatic
+  val unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket by lazy {
+    provider.provideUnauthWebSocket({ signalServiceNetworkAccess.getConfiguration() }, { libsignalNetwork })
+  }
+
   private val _networkModule = resettableLazy {
-    NetworkDependenciesModule(application, provider, _webSocketObserver)
+    NetworkDependenciesModule(application, provider, authWebSocket, unauthWebSocket, Supplier { libsignalNetwork })
   }
   private val networkModule by _networkModule
 
@@ -314,18 +333,6 @@ object AppDependencies {
   @JvmStatic
   val incomingMessageObserver: IncomingMessageObserver
     get() = networkModule.incomingMessageObserver
-
-  @JvmStatic
-  val libsignalNetwork: Network
-    get() = networkModule.libsignalNetwork
-
-  @JvmStatic
-  val authWebSocket: SignalWebSocket.AuthenticatedWebSocket
-    get() = networkModule.authWebSocket
-
-  @JvmStatic
-  val unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket
-    get() = networkModule.unauthWebSocket
 
   @JvmStatic
   val groupsV2Authorization: GroupsV2Authorization
@@ -454,9 +461,14 @@ object AppDependencies {
     networkModule.resetProtocolStores()
   }
 
+  /**
+   * Disconnects the websockets and throws out the network-dependent object graph. The websockets themselves survive:
+   * they re-read their configuration through suppliers when they reconnect. See [authWebSocket].
+   */
   @JvmStatic
   fun resetNetwork() {
     networkModule.closeConnections()
+    _libsignalNetwork.reset()
     _networkModule.reset()
   }
 

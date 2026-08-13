@@ -313,6 +313,7 @@ class IncomingMessageObserver(
     webSocketStateDisposable.dispose()
     clockSkewScope.cancel()
     terminated = true
+    authWebSocket.removeKeepAliveToken(WEB_SOCKET_KEEP_ALIVE_TOKEN)
     authWebSocket.disconnect()
   }
 
