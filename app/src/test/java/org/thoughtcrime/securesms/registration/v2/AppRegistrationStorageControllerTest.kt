@@ -49,6 +49,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.runJobBlocking
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob
 import org.thoughtcrime.securesms.jobs.PreKeysSyncJob
+import org.thoughtcrime.securesms.jobs.ReclaimUsernameAndLinkJob
 import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob
 import org.thoughtcrime.securesms.jobs.RotateCertificateJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -294,6 +295,67 @@ class AppRegistrationStorageControllerTest {
     controller.commitRegistrationData()
 
     assertThat(SignalStore.backup.backupSecretRestoreRequired).isFalse()
+  }
+
+  @Test
+  fun `commit - re-registration - flags that the username needs to be reclaimed`() = runBlocking<Unit> {
+    seedInProgressData(
+      RegistrationData(
+        accountData = accountData(reRegistration = true),
+        accountEntropyPool = aep.value
+      )
+    )
+
+    controller.commitRegistrationData()
+
+    assertThat(SignalStore.misc.needsUsernameRestore).isTrue()
+  }
+
+  @Test
+  fun `commit - new account - does not flag that the username needs to be reclaimed`() = runBlocking<Unit> {
+    seedInProgressData(
+      RegistrationData(
+        accountData = accountData(reRegistration = false),
+        accountEntropyPool = aep.value
+      )
+    )
+
+    controller.commitRegistrationData()
+
+    assertThat(SignalStore.misc.needsUsernameRestore).isFalse()
+  }
+
+  @Test
+  fun `onRegistrationFlowFinished - username reclaim pending - enqueues reclaim job`() = runBlocking<Unit> {
+    SignalStore.misc.needsUsernameRestore = true
+
+    controller.onRegistrationFlowFinished()
+
+    verify { AppDependencies.jobManager.add(ofType<ReclaimUsernameAndLinkJob>()) }
+  }
+
+  @Test
+  fun `onRegistrationFlowFinished - no username reclaim pending - does not enqueue reclaim job`() = runBlocking<Unit> {
+    SignalStore.misc.needsUsernameRestore = false
+
+    controller.onRegistrationFlowFinished()
+
+    verify(exactly = 0) { AppDependencies.jobManager.add(ofType<ReclaimUsernameAndLinkJob>()) }
+  }
+
+  @Test
+  fun `re-registration - commit then flow finished - enqueues reclaim job`() = runBlocking<Unit> {
+    seedInProgressData(
+      RegistrationData(
+        accountData = accountData(reRegistration = true),
+        accountEntropyPool = aep.value
+      )
+    )
+
+    controller.commitRegistrationData()
+    controller.onRegistrationFlowFinished()
+
+    verify { AppDependencies.jobManager.add(ofType<ReclaimUsernameAndLinkJob>()) }
   }
 
   @Test
