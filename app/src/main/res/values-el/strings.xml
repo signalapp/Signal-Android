@@ -171,6 +171,8 @@
     <string name="BlockedUsersActivity__block_user">Αποκλεισμός χρήστη;</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">Ο/Η «%1$s» δεν θα μπορεί να σε καλέσει ή να σου στείλει μηνύματα.</string>
     <string name="BlockedUsersActivity__block">Αποκλεισμός</string>
+    <!-- Subtitle shown under a blocked user. Placeholder is the time they were blocked-->
+    <string name="BlockedUsersActivity__blocked_on_s">Blocked on %1$s</string>
 
     <!-- CreditCardFragment -->
     <!-- Title of fragment -->
@@ -1069,13 +1071,13 @@
 
     <!-- LinkDeviceFragment -->
     <!-- Description for how Signal will work with a linked device (eg desktop, iPad) -->
-    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Use this Signal account on another device.</string>
+    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Χρησιμοποίησε αυτόν τον λογαριασμό Signal σε διαφορετική συσκευή.</string>
     <!-- Button prompting users to link a new device to their account -->
     <string name="LinkDeviceFragment__link_a_new_device">Σύνδεση νέας συσκευής</string>
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
     <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$s Τα μηνύματα και οι πληροφορίες συνομιλίας προστατεύονται με κρυπτογράφηση από άκρο σε άκρο σε όλες τις συσκευές</string>
     <!-- Bottom sheet title explaining how Signal works on a linked device -->
-    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal στον υπολογιστή ή το iPad</string>
+    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal on a linked device</string>
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
     <string name="LinkDeviceFragment__all_messaging_is_private">Όλα τα μηνύματα στις συνδεδεμένες συσκευές είναι ιδιωτικά</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
@@ -6198,6 +6200,8 @@
     <string name="ConversationSettingsFragment__end_group">Διαγραφή ομάδας</string>
     <!-- Banner shown at the top of group settings when the group has been ended -->
     <string name="ConversationSettingsFragment__this_group_was_ended">Αυτή η ομάδα έχει καταργηθεί.</string>
+    <!-- Subhead under a legacy group\'s name, joining the member count and the "Legacy Group" label. %1$s is the member count, %2$s is the label -->
+    <string name="ConversationSettingsFragment__s_dot_s">%1$s · %2$s</string>
     <!-- Archive chat option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__archive_chat">Αρχειοθέτηση συνομιλίας</string>
     <!-- Delete chat option in group conversation settings screen -->
@@ -6401,6 +6405,8 @@
     <string name="MediaReviewFragment__crop_rotate_accessibility_label">Περικοπή και περιστροφή</string>
     <!-- Accessibility label describing the change media quality button on the Media review screen -->
     <string name="MediaReviewFragment__change_media_quality_accessibility_label">Αλλαγή ποιότητας πολυμέσων</string>
+    <!-- Accessibility label describing the mute video audio button on the Media review screen -->
+    <string name="MediaReviewFragment__mute_video_audio_accessibility_label">Mute Video Audio</string>
     <!-- Accessibility label describing the save media button on the Media review screen -->
     <string name="MediaReviewFragment__save_media_accessibility_label">Αποθήκευση πολυμέσων</string>
     <!-- Accessibility label describing the toggle emoji keyboard button on the Media review screen -->

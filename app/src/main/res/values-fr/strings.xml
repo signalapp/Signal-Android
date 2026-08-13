@@ -105,7 +105,7 @@
     <!-- Text in a button that allows users to manage which media Signal has access to -->
     <string name="AttachmentKeyboard_manage">Gérer</string>
     <!-- Option in menu to select more photos that Signal will have access to -->
-    <string name="AttachmentKeyboard_select_more_photos">Sélectionner d’autres photos</string>
+    <string name="AttachmentKeyboard_select_more_photos">Sélectionner d\'autres photos</string>
     <!-- Option in menu to go to settings -->
     <string name="AttachmentKeyboard_go_to_settings">Accéder aux paramètres</string>
     <!-- Text explaining that Signal has limited access to photos -->
@@ -115,7 +115,7 @@
 
     <!-- MediaGalleryFragment -->
     <!-- Text describing that no photos or videos are currently found in the gallery and that Signal can only access media that the user allows -->
-    <string name="MediaGalleryFragment__no_photos_found">Aucune photo ou vidéo disponible. Signal ne peut accéder qu’aux photos et vidéos que vous avez sélectionnées.</string>
+    <string name="MediaGalleryFragment__no_photos_found">Aucune photo ou vidéo disponible. Signal ne peut accéder qu\'aux photos et vidéos que vous avez sélectionnées.</string>
 
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">Impossible de trouver une appli pour sélectionner le média.</string>
@@ -124,7 +124,7 @@
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Pour joindre une position géographique, Signal doit accéder à l\'application Position, mais vous lui en avez interdit l\'accès. Ouvrez l\'application Paramètres de votre appareil, puis touchez Applications &gt; Signal &gt; Autorisations et activez \"Position\".</string>
 
     <!-- Dialog title asking users for location permission -->
-    <string name="AttachmentManager_signal_allow_access_location">Autoriser l’accès à votre position</string>
+    <string name="AttachmentManager_signal_allow_access_location">Autoriser l\'accès à votre position</string>
     <!-- Dialog description that will explain the steps needed to give location permission -->
     <string name="AttachmentManager_signal_to_send_location">Pour partager votre position :</string>
     <!-- Alert dialog description asking for location permission -->
@@ -132,7 +132,7 @@
     <!-- Toast text explaining Signal\'s need for location access -->
     <string name="AttachmentManager_signal_needs_location_access">Pour partager votre position, autorisez Signal à accéder aux services de localisation de votre téléphone.</string>
     <!-- Dialog title asking users for gallery storage permission -->
-    <string name="AttachmentManager_signal_allow_storage">Autoriser l’accès au stockage</string>
+    <string name="AttachmentManager_signal_allow_storage">Autoriser l\'accès au stockage</string>
     <!-- Dialog description that will explain the steps needed to give gallery storage permission -->
     <string name="AttachmentManager_signal_to_show_photos">Pour afficher les photos et vidéos :</string>
     <!-- Toast text explaining Signal\'s need for storage access -->
@@ -171,6 +171,8 @@
     <string name="BlockedUsersActivity__block_user">Bloquer cet utilisateur ?</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">%1$s ne pourra ni vous appeler, ni vous envoyer des messages.</string>
     <string name="BlockedUsersActivity__block">Bloquer</string>
+    <!-- Subtitle shown under a blocked user. Placeholder is the time they were blocked-->
+    <string name="BlockedUsersActivity__blocked_on_s">Blocked on %1$s</string>
 
     <!-- CreditCardFragment -->
     <!-- Title of fragment -->
@@ -472,7 +474,7 @@
     <string name="ConversationActivity_cancel_request">Annuler la demande</string>
 
     <!-- Dialog title asking users for microphone permission -->
-    <string name="ConversationActivity_allow_access_microphone">Autoriser l’accès au microphone</string>
+    <string name="ConversationActivity_allow_access_microphone">Autoriser l\'accès au microphone</string>
     <!-- Dialog description that will explain the steps needed to give microphone permissions -->
     <string name="ConversationActivity_signal_to_send_audio_messages">Pour envoyer des messages vocaux :</string>
     <!-- Alert dialog description asking for microphone permission in order to send voice messages -->
@@ -1069,13 +1071,13 @@
 
     <!-- LinkDeviceFragment -->
     <!-- Description for how Signal will work with a linked device (eg desktop, iPad) -->
-    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Use this Signal account on another device.</string>
+    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Utilisez ce compte Signal sur un autre appareil.</string>
     <!-- Button prompting users to link a new device to their account -->
     <string name="LinkDeviceFragment__link_a_new_device">Associer un nouvel appareil</string>
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
     <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$s Avec son protocole de chiffrement de bout en bout, Signal protège les messages et les conversations sur tous vos appareils.</string>
     <!-- Bottom sheet title explaining how Signal works on a linked device -->
-    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal sur ordinateur ou sur iPad</string>
+    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal on a linked device</string>
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
     <string name="LinkDeviceFragment__all_messaging_is_private">Même sur les appareils associés, toutes les communications Signal restent privées.</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
@@ -2531,11 +2533,11 @@
     <!-- Message of dialog displayed when a user is removed from a call link -->
     <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">Un utilisateur vous a retiré de l\'appel.</string>
     <!-- Dialog title asking users for camera and microphone permission -->
-    <string name="WebRtcCallActivity__allow_access_camera_microphone">Autoriser l’accès à l’appareil photo et au microphone</string>
+    <string name="WebRtcCallActivity__allow_access_camera_microphone">Autoriser l\'accès à l\'appareil photo et au microphone</string>
     <!-- Dialog title asking users for microphone permission -->
-    <string name="WebRtcCallActivity__allow_access_microphone">Autoriser l’accès au microphone</string>
+    <string name="WebRtcCallActivity__allow_access_microphone">Autoriser l\'accès au microphone</string>
     <!-- Dialog title asking users for camera permission -->
-    <string name="WebRtcCallActivity__allow_access_camera">Autoriser l’accès à l’appareil photo</string>
+    <string name="WebRtcCallActivity__allow_access_camera">Autoriser l\'accès à l\'appareil photo</string>
     <!-- Dialog description explaining why camera and microphone permissions are needed to start or join a call -->
     <string name="WebRtcCallActivity__to_start_call_camera_microphone">Pour passer ou rejoindre un appel, autorisez Signal à accéder à votre appareil photo et à votre microphone.</string>
     <!-- Dialog description explaining why microphone permissions are needed to start or join a call -->
@@ -3591,7 +3593,7 @@
     <!-- Row item title for finding people on Signal via your contacts -->
     <string name="contact_selection_activity__find_people_you_know">Rechercher des personnes que vous connaissez sur Signal</string>
     <!-- Row item description asking users for access to their contacts to find people they know -->
-    <string name="contact_selection_activity__allow_access_to_contacts">Autorisez l’accès à vos contacts</string>
+    <string name="contact_selection_activity__allow_access_to_contacts">Autorisez l\'accès à vos contacts</string>
     <!-- Row header title for more section -->
     <string name="contact_selection_activity__more">Plus</string>
 
@@ -3626,7 +3628,7 @@
     <!-- Text on row item to find user by username -->
     <string name="ContactSelectionListFragment__find_by_username">Rechercher par nom d’utilisateur</string>
     <!-- Dialog title asking users for contact permission -->
-    <string name="ContactSelectionListFragment_allow_access_contacts">Autoriser l’accès aux contacts</string>
+    <string name="ContactSelectionListFragment_allow_access_contacts">Autoriser l\'accès aux contacts</string>
     <!-- Dialog description that will explain the steps needed to give contact permissions -->
     <string name="ContactSelectionListFragment_to_find_people">Pour rechercher des personnes que vous connaissez sur Signal :</string>
     <!-- Text on button prompting users to give Signal contact permissions -->
@@ -3634,7 +3636,7 @@
     <!-- Text on button to dismiss Signal\'s request for contact permissions -->
     <string name="ContactSelectionListFragment__no_thanks">Non merci</string>
     <!-- Text asking for user\'s contact permission -->
-    <string name="ContactSelectionListFragment__allow_access_to_your_contacts_encrypted">Autorisez l’accès à vos contacts. La liste de vos contacts est chiffrée et le service Signal n’y a pas accès.</string>
+    <string name="ContactSelectionListFragment__allow_access_to_your_contacts_encrypted">Autorisez l\'accès à vos contacts. La liste de vos contacts est chiffrée et le service Signal n\'y a pas accès.</string>
 
     <!-- contact_selection_list_fragment -->
     <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Pour afficher vos contacts, Signal doit accéder à l\'application Contacts.</string>
@@ -6198,6 +6200,8 @@
     <string name="ConversationSettingsFragment__end_group">Désactiver le groupe</string>
     <!-- Banner shown at the top of group settings when the group has been ended -->
     <string name="ConversationSettingsFragment__this_group_was_ended">Ce groupe est désactivé.</string>
+    <!-- Subhead under a legacy group\'s name, joining the member count and the "Legacy Group" label. %1$s is the member count, %2$s is the label -->
+    <string name="ConversationSettingsFragment__s_dot_s">%1$s · %2$s</string>
     <!-- Archive chat option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__archive_chat">Archiver la conversation</string>
     <!-- Delete chat option in group conversation settings screen -->
@@ -6401,6 +6405,8 @@
     <string name="MediaReviewFragment__crop_rotate_accessibility_label">Recadrer et faire pivoter</string>
     <!-- Accessibility label describing the change media quality button on the Media review screen -->
     <string name="MediaReviewFragment__change_media_quality_accessibility_label">Modifier la qualité du média</string>
+    <!-- Accessibility label describing the mute video audio button on the Media review screen -->
+    <string name="MediaReviewFragment__mute_video_audio_accessibility_label">Mute Video Audio</string>
     <!-- Accessibility label describing the save media button on the Media review screen -->
     <string name="MediaReviewFragment__save_media_accessibility_label">Enregistrer le média</string>
     <!-- Accessibility label describing the toggle emoji keyboard button on the Media review screen -->

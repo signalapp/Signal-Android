@@ -171,6 +171,8 @@
     <string name="BlockedUsersActivity__block_user">یوزر کو بلاک کریں؟</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" آپ کو کال کرنے یا پیغامات بھیجنے کے قابل نہیں ہوگا۔</string>
     <string name="BlockedUsersActivity__block">بلاک کریں</string>
+    <!-- Subtitle shown under a blocked user. Placeholder is the time they were blocked-->
+    <string name="BlockedUsersActivity__blocked_on_s">Blocked on %1$s</string>
 
     <!-- CreditCardFragment -->
     <!-- Title of fragment -->
@@ -1075,7 +1077,7 @@
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
     <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">تمام ڈیوائسز پر %1$s کے میسجز اور چیٹ کی معلومات کلی طور پر انکرپشن کے ذریعے محفوظ کی جاتی ہیں</string>
     <!-- Bottom sheet title explaining how Signal works on a linked device -->
-    <string name="LinkDeviceFragment__signal_on_desktop_ipad">ڈیسک ٹاپ یا iPad پر Signal</string>
+    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal on a linked device</string>
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
     <string name="LinkDeviceFragment__all_messaging_is_private">لنک کردہ ڈیوائسز پر تمام میسجنگ نجی ہے</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
@@ -6198,6 +6200,8 @@
     <string name="ConversationSettingsFragment__end_group">گروپ ختم کریں</string>
     <!-- Banner shown at the top of group settings when the group has been ended -->
     <string name="ConversationSettingsFragment__this_group_was_ended">گروپ ختم ہو گیا ہے۔</string>
+    <!-- Subhead under a legacy group\'s name, joining the member count and the "Legacy Group" label. %1$s is the member count, %2$s is the label -->
+    <string name="ConversationSettingsFragment__s_dot_s">%1$s · %2$s</string>
     <!-- Archive chat option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__archive_chat">چیٹ آرکائیو کریں</string>
     <!-- Delete chat option in group conversation settings screen -->
@@ -6401,6 +6405,8 @@
     <string name="MediaReviewFragment__crop_rotate_accessibility_label">کراپ کریں اور گھمائیں</string>
     <!-- Accessibility label describing the change media quality button on the Media review screen -->
     <string name="MediaReviewFragment__change_media_quality_accessibility_label">میڈیا کی کوالٹی تبدیل کریں</string>
+    <!-- Accessibility label describing the mute video audio button on the Media review screen -->
+    <string name="MediaReviewFragment__mute_video_audio_accessibility_label">Mute Video Audio</string>
     <!-- Accessibility label describing the save media button on the Media review screen -->
     <string name="MediaReviewFragment__save_media_accessibility_label">میڈیا کو محفوظ کریں</string>
     <!-- Accessibility label describing the toggle emoji keyboard button on the Media review screen -->
