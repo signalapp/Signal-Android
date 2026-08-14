@@ -177,7 +177,9 @@ class IndividualSettingsViewModel(
         _actions.send(ConversationSettingsAction.AddContact(state.recipient))
       }
       IndividualSettingsEvent.ViewSafetyNumberClicked -> {
-        _actions.send(ConversationSettingsAction.ShowSafetyNumber(state.identityRecord))
+        val identityRecord = repository.getIdentity(recipientId)
+        _state.update { it.copy(identityRecord = identityRecord) }
+        _actions.send(ConversationSettingsAction.ShowSafetyNumber(identityRecord))
       }
       is IndividualSettingsEvent.SharedMediaClicked -> {
         _actions.send(sharedMediaClickAction(event.mediaRecord, event.isLtr))
