@@ -6047,7 +6047,7 @@
     <!-- Banner shown at the top of group settings when the group has been ended -->
     <string name="ConversationSettingsFragment__this_group_was_ended">Grup ini sudah bubar.</string>
     <!-- Subhead under a legacy group\'s name, joining the member count and the "Legacy Group" label. %1$s is the member count, %2$s is the label -->
-    <string name="ConversationSettingsFragment__s_dot_s">%1$s · %2$s</string>
+    <string name="ConversationSettingsFragment__s_dot_s">%1$s . %2$s</string>
     <!-- Archive chat option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__archive_chat">Arsipkan chat</string>
     <!-- Delete chat option in group conversation settings screen -->

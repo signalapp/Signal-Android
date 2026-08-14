@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
     <!-- Emoji category headers, shown in the emoji keyboard and the react-with-any-emoji sheet -->
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Smileys &amp; People</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Nature</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Food</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Activities</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Places</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Objects</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Symbols</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Flags</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emoticons</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Смајлија и луѓе</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Природа</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Храна</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Активности</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Места</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Предмети</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Симболи</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Знамиња</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Емотикони</string>
 </resources>

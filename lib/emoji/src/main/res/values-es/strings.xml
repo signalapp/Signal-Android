@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
     <!-- Emoji category headers, shown in the emoji keyboard and the react-with-any-emoji sheet -->
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Smileys &amp; People</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Nature</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Food</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Activities</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Places</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Objects</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Symbols</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Flags</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emoticons</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Emoticonos y personas</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Animales y naturaleza</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Comida y bebida</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Actividades</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Viajes y destinos</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Objetos</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Símbolos</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Banderas</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emoticonos</string>
 </resources>

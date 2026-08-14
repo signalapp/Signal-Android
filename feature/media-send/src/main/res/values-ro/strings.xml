@@ -27,7 +27,7 @@
   <!-- Accessibility label for the row that lets the user add a text message to accompany the media being sent. -->
   <string name="AddAMessageRow__add_a_message">Adaugă un mesaj</string>
   <!-- Label and accessibility label used in place of \"Add a message\" when the media is being sent as a reply to another message. -->
-  <string name="AddAMessageRow__add_a_reply">Add a reply</string>
+  <string name="AddAMessageRow__add_a_reply">Adaugă un răspuns</string>
   <!-- Accessibility description for the button that opens the emoji keyboard. -->
   <string name="AddAMessageRow__open_emoji_keyboard">Deschide tastatura de emoji</string>
   <!-- Placeholder text shown in the add-a-message row before the user has entered any message text. -->
@@ -41,7 +41,7 @@
   <!-- Menu option that opens a picker for choosing the exact date and time to send at. -->
   <string name="ScheduleSendMenu__pick_date_and_time">Alege data și ora</string>
   <!-- Label shown in place of the add-a-message row when the media has been set to view once, indicating that no message can be attached. -->
-  <string name="AddAMessageRow__view_once_media">Mijloc media vizibil o singură dată</string>
+  <string name="AddAMessageRow__view_once_media">Media vizibilă o singură dată</string>
   <!-- Accessibility label for the button at the end of the add-a-message row that turns view-once mode on and off. -->
   <string name="AddAMessageRow__toggle_view_once">Comută la Media vizibilă o singură dată</string>
   <!-- Setting option that can be selected to default media to be sent as high quality by default -->
@@ -97,7 +97,7 @@
     </plurals>
 
   <!-- Content description for the button that attaches a link to the text story being created -->
-  <string name="TextStoryBar__add_link">Add link</string>
+  <string name="TextStoryBar__add_link">Adaugă linkul</string>
 
   <!-- Name shown on the document preview when we cannot read the file\'s name. -->
   <string name="DocumentPage__unnamed_file">Fișier fără nume</string>
@@ -116,7 +116,7 @@
   <string name="BlurFacesBar__blur_faces">Estompare fețe</string>
 
   <!-- Hint displayed in a pill at the top of the image editor telling the user they can drag anywhere on the image to blur that area -->
-  <string name="DrawAnywhereToBlurPill__draw_anywhere_to_blur">Draw anywhere to blur</string>
+  <string name="DrawAnywhereToBlurPill__draw_anywhere_to_blur">Desenează oriunde pentru a estompa</string>
 
   <!-- Content description for the button that cycles the text being edited between styles -->
   <string name="TextModeColorBar__toggle_between_text_styles">Comută între stiluri de text</string>
@@ -233,7 +233,7 @@
         <item quantity="other">%1$d de articole setate la calitate standard</item>
     </plurals>
   <!-- Message shown when saving the media being edited requires the storage permission, but that permission has been permanently denied by the user. -->
-  <string name="MediaSendViewModel__signal_needs_the_storage_permission">Signal are nevoie de permisiunea pentru spațiul de stocare extern pentru a salva pe spațiul de stocare extern, dar i-a fost refuzat accesul permanent. Te rugăm mergi în meniul de setări al aplicației, selectează \"Permisiuni\" și activează \"Spațiu de stocare\".</string>
+  <string name="MediaSendViewModel__signal_needs_the_storage_permission">Signal are nevoie de permisiunea pentru spațiul de stocare extern, pentru a salva pe spațiul de stocare extern, dar i-a fost refuzat accesul permanent. Te rugăm mergi în meniul de setări al aplicației, selectează \"Permisiuni\" și activează \"Spațiu de stocare\".</string>
   <!-- Message shown when the user disables audio on a video -->
   <string name="MediaSendViewModel__video_will_be_sent_without_audio">Video will be sent without audio</string>
 

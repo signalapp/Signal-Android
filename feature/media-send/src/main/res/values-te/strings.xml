@@ -27,7 +27,7 @@
   <!-- Accessibility label for the row that lets the user add a text message to accompany the media being sent. -->
   <string name="AddAMessageRow__add_a_message">ఒక సందేశాన్ని జోడించండి</string>
   <!-- Label and accessibility label used in place of \"Add a message\" when the media is being sent as a reply to another message. -->
-  <string name="AddAMessageRow__add_a_reply">Add a reply</string>
+  <string name="AddAMessageRow__add_a_reply">ప్రత్యుత్తరమును జోడించండి</string>
   <!-- Accessibility description for the button that opens the emoji keyboard. -->
   <string name="AddAMessageRow__open_emoji_keyboard">ఎమోజీ కీబోర్డ్‌ను తెరవండి</string>
   <!-- Placeholder text shown in the add-a-message row before the user has entered any message text. -->
@@ -96,7 +96,7 @@
     </plurals>
 
   <!-- Content description for the button that attaches a link to the text story being created -->
-  <string name="TextStoryBar__add_link">Add link</string>
+  <string name="TextStoryBar__add_link">లింక్‌ని జోడించండి</string>
 
   <!-- Name shown on the document preview when we cannot read the file\'s name. -->
   <string name="DocumentPage__unnamed_file">పేరులేని పంక్తి</string>
@@ -115,7 +115,7 @@
   <string name="BlurFacesBar__blur_faces">ముఖాలు మసకబారుతాయి</string>
 
   <!-- Hint displayed in a pill at the top of the image editor telling the user they can drag anywhere on the image to blur that area -->
-  <string name="DrawAnywhereToBlurPill__draw_anywhere_to_blur">Draw anywhere to blur</string>
+  <string name="DrawAnywhereToBlurPill__draw_anywhere_to_blur">అస్పష్టంగా ఉండటానికి ఎక్కడైనా గీయండి</string>
 
   <!-- Content description for the button that cycles the text being edited between styles -->
   <string name="TextModeColorBar__toggle_between_text_styles">టెక్ట్స్ స్టైల్స్ మధ్య టోగుల్ చేయడం</string>
