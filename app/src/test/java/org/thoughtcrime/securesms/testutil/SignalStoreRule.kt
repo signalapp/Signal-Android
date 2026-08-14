@@ -22,7 +22,7 @@ class SignalStoreRule : ExternalResource() {
 
   override fun before() {
     val application = ApplicationProvider.getApplicationContext<Application>()
-    SignalStore.testInject(SignalStore(application, KeyValueStore(MockKeyValuePersistentStorage.withDataSet(KeyValueDataSet()))))
+    SignalStore.testInject(SignalStore(application, KeyValueStore(MockKeyValuePersistentStorage.withDataSet(KeyValueDataSet()), DirectExecutor())))
   }
 
   override fun after() {

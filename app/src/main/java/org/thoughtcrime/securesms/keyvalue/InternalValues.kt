@@ -4,6 +4,7 @@ import org.signal.archive.proto.BackupDebugInfo
 import org.signal.ringrtc.CallManager.DataMode
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.database.model.IssuePriority
+import org.thoughtcrime.securesms.keyvalue.protos.IssueNotifyTimes
 import org.thoughtcrime.securesms.util.Environment.Calling.defaultSfuUrl
 import org.thoughtcrime.securesms.util.RemoteConfig
 
@@ -43,6 +44,7 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
     const val USE_NEW_MEDIA_ACTIVITY: String = "internal.use_new_media_activity"
     const val ANR_DETECTION_CRASH: String = "internal.anr_detection_crash"
     const val ISSUE_NOTIFICATION_PRIORITY: String = "internal.issue_notification_priority"
+    const val ISSUE_NOTIFY_TIMES: String = "internal.issue_notify_times"
   }
 
   public override fun onFirstEverAppLaunch() = Unit
@@ -224,6 +226,9 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
   var issueNotificationPriority: IssuePriority
     get() = IssuePriority.fromValue(getInteger(ISSUE_NOTIFICATION_PRIORITY, IssuePriority.HIGH.value))
     set(value) = putInteger(ISSUE_NOTIFICATION_PRIORITY, value.value)
+
+  /** Persisted so an issue's notification cooldown isn't reset by process death. */
+  var issueNotifyTimes: IssueNotifyTimes by protoValue(ISSUE_NOTIFY_TIMES, IssueNotifyTimes(), IssueNotifyTimes.ADAPTER)
 
   var showArchiveStateHint by booleanValue(SHOW_ARCHIVE_STATE_HINT, false).defaultForExternalUsers()
 

@@ -7,9 +7,12 @@ package org.thoughtcrime.securesms.jobs
 
 import android.app.Application
 import androidx.test.core.app.ApplicationProvider
+import io.mockk.CapturingSlot
 import io.mockk.every
 import io.mockk.mockkObject
+import io.mockk.slot
 import io.mockk.unmockkObject
+import io.mockk.verify
 import okio.ByteString.Companion.toByteString
 import org.junit.After
 import org.junit.Assert.assertArrayEquals
@@ -31,8 +34,10 @@ import org.signal.core.util.Util
 import org.signal.core.util.logging.Log
 import org.signal.core.util.update
 import org.signal.core.util.withinTransaction
+import org.thoughtcrime.securesms.database.IssueReporter
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.IssuePriority
 import org.thoughtcrime.securesms.database.model.StickerPackId
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.jobmanager.Job
@@ -91,6 +96,7 @@ class StorageSyncJobTest {
   @After
   fun tearDown() {
     unmockkObject(RemoteConfig)
+    unmockkObject(IssueReporter)
   }
 
   @Test
@@ -382,6 +388,79 @@ class StorageSyncJobTest {
     assertTrue(result.isSuccess)
     assertNull(storageIdOf(contact))
     assertEquals(0, remoteStorage.records.count { it.proto.contact != null })
+  }
+
+  @Test
+  fun `given another device keeps undoing my write, when I run again, then I stop writing`() {
+    stubIssueReporter()
+
+    val throttledRun = loopWritesUntilThrottled()
+
+    assertTrue(throttledRun.isSuccess)
+    assertEquals(0, remoteStorage.writeCount)
+    assertEquals(0, remoteStorage.records.count { it.proto.contact?.givenName == "Loop" })
+  }
+
+  @Test
+  fun `given another device keeps undoing my write, when I throttle it, then I report it at high priority`() {
+    val priority = stubIssueReporter()
+
+    loopWritesUntilThrottled()
+
+    verify { IssueReporter.report(any(), any(), any(), any(), any(), any()) }
+    assertEquals(IssuePriority.HIGH, priority.captured)
+  }
+
+  @Test
+  fun `given a local-only contact the other device leaves alone, when I run repeatedly, then I keep writing`() {
+    stubIssueReporter()
+    every { recipients.signalStore.account.isMultiDevice } returns true
+    SignalDatabase.recipients.rotateStorageId(recipients.createRecipient("Local Contact"))
+
+    check(runJob(StorageSyncJob.forLocalChange()).isSuccess)
+
+    repeat(4) {
+      SignalDatabase.recipients.rotateStorageId(recipients.createRecipient("Local Contact ${it + 2}"))
+      remoteStorage.resetCounters()
+
+      assertTrue(runJob(StorageSyncJob.forLocalChange()).isSuccess)
+      assertEquals(1, remoteStorage.writeCount)
+    }
+  }
+
+  /**
+   * Writes the same contact, with the other device deleting it again after each, until a run gets throttled. Returns
+   * that run, leaving [FakeStorageServiceRule.writeCount] counting only it. Driven by observation rather than a fixed
+   * count because the record's payload settles after its first sync, so the number of passes isn't fixed.
+   */
+  private fun loopWritesUntilThrottled(): Job.Result {
+    every { recipients.signalStore.account.isMultiDevice } returns true
+    SignalDatabase.recipients.rotateStorageId(recipients.createRecipient("Loop Contact"))
+
+    repeat(12) { pass ->
+      remoteStorage.resetCounters()
+
+      val result = runJob(StorageSyncJob.forRemoteChange())
+      check(result.isSuccess) { "Loop write ${pass + 1} failed!" }
+
+      if (remoteStorage.writeCount == 0) {
+        return result
+      }
+
+      val withoutLoopContact = remoteStorage.records.filterNot { record -> record.proto.contact?.givenName == "Loop" }
+      remoteStorage.setRemoteState(withoutLoopContact, version = remoteStorage.manifest!!.version + 1)
+    }
+
+    throw AssertionError("Writes were never throttled!")
+  }
+
+  private fun stubIssueReporter(): CapturingSlot<IssuePriority> {
+    val priority = slot<IssuePriority>()
+
+    mockkObject(IssueReporter)
+    every { IssueReporter.report(any(), any(), any(), capture(priority), any(), any()) } returns Unit
+
+    return priority
   }
 
   /**
