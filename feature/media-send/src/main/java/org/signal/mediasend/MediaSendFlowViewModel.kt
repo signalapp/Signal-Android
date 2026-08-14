@@ -538,13 +538,17 @@ class MediaSendFlowViewModel(
 
   // TODO - this should likely be in a repository?
   private fun createImageEditorModel(media: Media): EditorModel {
+    // Bounded to what we would ever send, since an unbounded decode of something like a 50MP photo produces a bitmap
+    // too large for a Canvas to draw.
+    val constraints = repository.getMediaConstraints(SentMediaQuality.HIGH)
+
     val editorModel = EditorModel.create(0x0)
     val element = EditorElement(
       UriGlideRenderer(
         media.uri,
         true,
-        0,
-        0,
+        constraints.imageMaxWidth,
+        constraints.imageMaxHeight,
         UriGlideRenderer.STRONG_BLUR,
         object : RequestListener<Bitmap> {
           override fun onResourceReady(resource: Bitmap?, model: Any?, target: Target<Bitmap?>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
