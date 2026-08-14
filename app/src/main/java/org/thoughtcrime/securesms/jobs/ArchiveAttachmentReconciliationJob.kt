@@ -188,7 +188,7 @@ class ArchiveAttachmentReconciliationJob private constructor(
    */
   private fun clearPendingLocalRestoreReconcile() {
     if (SignalStore.backup.localRestoreReconcilePending) {
-      Log.i(TAG, "Local restore reconciliation complete. Clearing the pending flag and enqueueing a backup to upload any remaining media.", true)
+      Log.i(TAG, "Local restore reconciliation complete. Clearing the pending flag and enqueueing a backup to track and upload any remaining media.", true)
       SignalStore.backup.localRestoreReconcilePending = false
       BackupMessagesJob.enqueue()
     }
@@ -261,12 +261,11 @@ class ArchiveAttachmentReconciliationJob private constructor(
     if (mayNeedReUploadCount > 0) {
       Log.w(TAG, "Found $mayNeedReUploadCount attachments that are present in the target snapshot, but could not be found on the CDN. This could be a bookkeeping error, or the upload may still be in progress. Checking.", true)
 
-      var newBackupJobRequired = false
       var bookkeepingErrorCount = 0
       var unrecoverableCount = 0
 
-      var fullSizeMismatchFound = false
-      var thumbnailMismatchFound = false
+      var fullSizeReUploadNeeded = false
+      var thumbnailReUploadNeeded = false
 
       mediaObjectsThatMayNeedReUpload.forEach { mediaObjectCursor ->
         val entry = BackupMediaSnapshotTable.MediaEntry.fromCursor(mediaObjectCursor)
@@ -287,8 +286,13 @@ class ArchiveAttachmentReconciliationJob private constructor(
         when (resetResult) {
           ArchiveTransferStateResetResult.RESET -> {
             Log.w(TAG, "$logPrefix Reset transfer state by hash/key.", true)
-            newBackupJobRequired = true
             bookkeepingErrorCount++
+
+            if (entry.isThumbnail) {
+              thumbnailReUploadNeeded = true
+            } else {
+              fullSizeReUploadNeeded = true
+            }
           }
 
           ArchiveTransferStateResetResult.SKIPPED_NO_LOCAL_DATA -> {
@@ -303,9 +307,9 @@ class ArchiveAttachmentReconciliationJob private constructor(
 
             // Deliberately not set for SKIPPED_NO_LOCAL_DATA, since the precautionary backfills these drive could never upload media that has no local bytes.
             if (entry.isThumbnail) {
-              thumbnailMismatchFound = true
+              thumbnailReUploadNeeded = true
             } else {
-              fullSizeMismatchFound = true
+              fullSizeReUploadNeeded = true
             }
           }
         }
@@ -314,6 +318,7 @@ class ArchiveAttachmentReconciliationJob private constructor(
 
       if (bookkeepingErrorCount > 0) {
         Log.w(TAG, "Found that $bookkeepingErrorCount/$mayNeedReUploadCount of the CDN mismatches were bookkeeping errors.", true)
+        maybePostReconciliationFailureNotification()
       } else {
         Log.i(TAG, "None of the $mayNeedReUploadCount CDN mismatches were bookkeeping errors.", true)
       }
@@ -342,19 +347,15 @@ class ArchiveAttachmentReconciliationJob private constructor(
         stopwatch.split("internal-lookup")
       }
 
-      if (newBackupJobRequired) {
-        Log.w(TAG, "Some of the errors require re-uploading a new backup job to resolve.", true)
-        maybePostReconciliationFailureNotification()
-        BackupMessagesJob.enqueue()
-      } else {
-        if (fullSizeMismatchFound) {
-          Log.d(TAG, "Full size mismatch found. Enqueuing an attachment backfill job to be safe.", true)
-          AppDependencies.jobManager.add(ArchiveAttachmentBackfillJob())
-        }
-        if (thumbnailMismatchFound) {
-          Log.d(TAG, "Thumbnail mismatch found. Enqueuing a thumbnail backfill job to be safe.", true)
-          AppDependencies.jobManager.add(ArchiveThumbnailBackfillJob())
-        }
+      // No backup is started here on purpose. Re-uploading is the whole repair, and [ArchiveUploadProgress] is what decides whether the resulting CDN numbers
+      // warrant a fresh export once the backfill finishes uploading.
+      if (fullSizeReUploadNeeded) {
+        Log.d(TAG, "Full size mismatch found. Enqueuing an attachment backfill job.", true)
+        AppDependencies.jobManager.add(ArchiveAttachmentBackfillJob())
+      }
+      if (thumbnailReUploadNeeded) {
+        Log.d(TAG, "Thumbnail mismatch found. Enqueuing a thumbnail backfill job.", true)
+        AppDependencies.jobManager.add(ArchiveThumbnailBackfillJob())
       }
     } else {
       Log.d(TAG, "No attachments need to be repaired.", true)

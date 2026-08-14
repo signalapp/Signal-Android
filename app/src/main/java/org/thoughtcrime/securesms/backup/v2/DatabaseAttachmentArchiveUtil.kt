@@ -99,9 +99,11 @@ fun DatabaseAttachment.hadIntegrityCheckPerformed(): Boolean {
 
 /**
  * Creates a [SignalServiceAttachmentPointer] for the archived attachment of the given [DatabaseAttachment].
+ *
+ * @param archiveCdnOverride The archive CDN to point at instead of the one we have stored, for retrying a download whose stored CDN looks wrong.
  */
 @Throws(InvalidAttachmentException::class)
-fun DatabaseAttachment.createArchiveAttachmentPointer(useArchiveCdn: Boolean): SignalServiceAttachmentPointer {
+fun DatabaseAttachment.createArchiveAttachmentPointer(useArchiveCdn: Boolean, archiveCdnOverride: Int? = null): SignalServiceAttachmentPointer {
   if (remoteKey.isNullOrBlank()) {
     throw InvalidAttachmentException("empty encrypted key")
   }
@@ -120,7 +122,7 @@ fun DatabaseAttachment.createArchiveAttachmentPointer(useArchiveCdn: Boolean): S
         mediaId = this.requireMediaName().toMediaId(mediaRootBackupKey).encode()
       )
 
-      id to (archiveCdn ?: RemoteConfig.backupFallbackArchiveCdn)
+      id to (archiveCdnOverride ?: archiveCdn ?: RemoteConfig.backupFallbackArchiveCdn)
     } else {
       if (remoteLocation.isNullOrEmpty()) {
         throw InvalidAttachmentException("empty content id")

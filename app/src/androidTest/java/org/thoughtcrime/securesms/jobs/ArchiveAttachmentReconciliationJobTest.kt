@@ -15,6 +15,7 @@ import assertk.assertions.isEqualTo
 import assertk.assertions.isFalse
 import assertk.assertions.isGreaterThan
 import assertk.assertions.isNull
+import assertk.assertions.isTrue
 import io.mockk.Runs
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -45,6 +46,7 @@ import org.thoughtcrime.securesms.database.BackupMediaSnapshotTable.MediaEntry
 import org.thoughtcrime.securesms.database.MessageType
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.jobmanager.JobTracker
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.testing.SignalActivityRule
@@ -55,9 +57,11 @@ import java.io.ByteArrayInputStream
 import java.io.IOException
 import java.util.Optional
 import java.util.UUID
+import java.util.concurrent.CopyOnWriteArrayList
 import kotlin.random.Random
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days
+import kotlin.time.Duration.Companion.seconds
 
 @RunWith(AndroidJUnit4::class)
 class ArchiveAttachmentReconciliationJobTest {
@@ -69,6 +73,10 @@ class ArchiveAttachmentReconciliationJobTest {
 
   private val deletedFromCdn = slot<Set<ArchivedMediaObject>>()
 
+  private val watchedJobKeys = setOf(ArchiveAttachmentBackfillJob.KEY, ArchiveThumbnailBackfillJob.KEY, BackupMessagesJob.KEY)
+  private val enqueuedJobKeys: MutableList<String> = CopyOnWriteArrayList()
+  private val jobListener = JobTracker.JobListener { job, _ -> enqueuedJobKeys += job.factoryKey }
+
   @Before
   fun setUp() {
     SignalStore.backup.backupTier = MessageBackupTier.PAID
@@ -77,12 +85,19 @@ class ArchiveAttachmentReconciliationJobTest {
     SignalStore.backup.localRestoreReconcilePending = false
     SignalStore.backup.lastUsedMessageCutoffTime = 0
 
+    AppDependencies.jobManager.addListener(JobTracker.JobFilter { it.factoryKey in watchedJobKeys }, jobListener)
+
+    mockkObject(BackupMessagesJob)
+    every { BackupMessagesJob.enqueue() } just Runs
+
     mockkObject(ArchiveCommitAttachmentDeletesJob)
     coEvery { ArchiveCommitAttachmentDeletesJob.deleteMediaObjectsFromCdn(any(), capture(deletedFromCdn), any(), any()) } returns null
   }
 
   @After
   fun tearDown() {
+    AppDependencies.jobManager.removeListener(jobListener)
+    enqueuedJobKeys.clear()
     unmockkAll()
   }
 
@@ -137,10 +152,8 @@ class ArchiveAttachmentReconciliationJobTest {
    * migration or the reconcile-first flow.
    */
   @Test
-  fun givenFinishedMediaMissingFromCdn_whenAnOrdinaryPeriodicReconciliationRuns_thenItHealsToNoneAndReUploads() {
+  fun givenFinishedMediaMissingFromCdn_whenAnOrdinaryPeriodicReconciliationRuns_thenItHealsToNoneAndReUploadsWithoutANewBackup() {
     SignalStore.backup.lastAttachmentReconciliationTime = System.currentTimeMillis() - 60.days.inWholeMilliseconds
-    mockkObject(BackupMessagesJob)
-    every { BackupMessagesJob.enqueue() } just Runs
 
     val attachmentId = seedFinalizedAttachment("remote-key-periodic".toByteArray(), byteArrayOf(1, 2, 3, 4, 5))
     SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.FINISHED)
@@ -152,7 +165,10 @@ class ArchiveAttachmentReconciliationJobTest {
     val healed = SignalDatabase.attachments.getAttachment(attachmentId)!!
     assertThat(healed.archiveTransferState).isEqualTo(AttachmentTable.ArchiveTransferState.NONE)
     assertThat(healed.archiveCdn).isNull()
-    verify(exactly = 1) { BackupMessagesJob.enqueue() }
+    assertThat(SignalDatabase.attachments.doAnyAttachmentsNeedArchiveUpload()).isTrue()
+    assertThat(awaitEnqueuedJob(ArchiveAttachmentBackfillJob.KEY)).isTrue()
+    assertThat(enqueuedJobKeys).doesNotContain(BackupMessagesJob.KEY)
+    verify(exactly = 0) { BackupMessagesJob.enqueue() }
   }
 
   /**
@@ -231,14 +247,19 @@ class ArchiveAttachmentReconciliationJobTest {
     assertThat(SignalDatabase.attachments.getAttachment(attachmentId)!!.archiveTransferState).isEqualTo(AttachmentTable.ArchiveTransferState.NONE)
   }
 
+  /**
+   * A local restore imports the CDN numbers its backup file claimed and optimistically marks them finished, so the export that ran ahead of this crawl published
+   * claims the crawl has since corrected. A full backup is what republishes the verified state, unlike the media-only repair the periodic path does.
+   */
   @Test
-  fun givenLocalRestoreReconcilePending_whenReconcileCompletes_thenIExpectFlagCleared() {
+  fun givenLocalRestoreReconcilePending_whenReconcileCompletes_thenIExpectFlagClearedAndABackup() {
     SignalStore.backup.localRestoreReconcilePending = true
     fakeCdnEmpty()
 
     ArchiveAttachmentReconciliationJob(forced = true).run()
 
     assertThat(SignalStore.backup.localRestoreReconcilePending).isFalse()
+    verify(exactly = 1) { BackupMessagesJob.enqueue() }
   }
 
   /**
@@ -484,6 +505,19 @@ class ArchiveAttachmentReconciliationJobTest {
 
     val messageId = SignalDatabase.messages.insertMessageInbox(createIncomingMessage(serverTime = 0.days, attachment = attachment)).get().messageId
     return SignalDatabase.attachments.getAttachmentsForMessage(messageId).first().attachmentId
+  }
+
+  /**
+   * [JobTracker] dispatches to listeners on its own executor, so an enqueue that already happened may not have been reported yet.
+   */
+  private fun awaitEnqueuedJob(factoryKey: String, timeout: Duration = 5.seconds): Boolean {
+    val deadline = System.currentTimeMillis() + timeout.inWholeMilliseconds
+
+    while (System.currentTimeMillis() < deadline && !enqueuedJobKeys.contains(factoryKey)) {
+      Thread.sleep(25)
+    }
+
+    return enqueuedJobKeys.contains(factoryKey)
   }
 
   private fun seedFinalizedAttachment(remoteKey: ByteArray, data: ByteArray, receivedAt: Duration = 0.days): AttachmentId {
