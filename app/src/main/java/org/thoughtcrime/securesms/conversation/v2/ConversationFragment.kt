@@ -166,7 +166,6 @@ import org.thoughtcrime.securesms.components.SendButton
 import org.thoughtcrime.securesms.components.SignalProgressDialog
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.components.compose.ActionModeTopBarView
-import org.thoughtcrime.securesms.components.compose.DeleteSyncEducationDialog
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboard
 import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel
 import org.thoughtcrime.securesms.components.location.SignalPlace
@@ -3156,15 +3155,6 @@ class ConversationFragment :
   }
 
   private fun handleDeleteMessages(messageParts: Set<MultiselectPart>) {
-    if (DeleteSyncEducationDialog.shouldShow()) {
-      DeleteSyncEducationDialog
-        .show(childFragmentManager)
-        .subscribe { handleDeleteMessages(messageParts) }
-        .addTo(disposables)
-
-      return
-    }
-
     val records = messageParts.map(MultiselectPart::getMessageRecord).toSet()
 
     disposables += DeleteDialog.show(

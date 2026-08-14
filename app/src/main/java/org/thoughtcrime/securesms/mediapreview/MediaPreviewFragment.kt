@@ -47,14 +47,12 @@ import org.signal.core.models.media.Media
 import org.signal.core.ui.logging.LoggingFragment
 import org.signal.core.util.Debouncer
 import org.signal.core.util.concurrent.LifecycleDisposable
-import org.signal.core.util.concurrent.addTo
 import org.signal.core.util.logging.Log
 import org.signal.core.util.requireDrawable
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.attachments.AttachmentSaver
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
-import org.thoughtcrime.securesms.components.compose.DeleteSyncEducationDialog
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
@@ -673,15 +671,6 @@ class MediaPreviewFragment :
 
   private fun deleteMedia(mediaItem: MediaTable.MediaRecord) {
     val attachment: DatabaseAttachment = mediaItem.attachment ?: return
-
-    if (DeleteSyncEducationDialog.shouldShow()) {
-      DeleteSyncEducationDialog
-        .show(childFragmentManager)
-        .subscribe { deleteMedia(mediaItem) }
-        .addTo(lifecycleDisposable)
-
-      return
-    }
 
     val messageRecord = SignalDatabase.messages.getMessageRecord(attachment.mmsId)
     val isNoteToSelf = messageRecord.isOutgoing && messageRecord.toRecipient.isSelf
