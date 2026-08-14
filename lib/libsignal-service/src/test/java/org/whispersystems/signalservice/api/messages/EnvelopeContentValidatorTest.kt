@@ -840,6 +840,81 @@ class EnvelopeContentValidatorTest {
   }
 
   @Test
+  fun `validate - ensure data message body of exactly 2048 bytes is marked valid`() {
+    val content = Content(
+      dataMessage = DataMessage(
+        timestamp = 1234,
+        body = "a".repeat(2048)
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Valid)
+  }
+
+  @Test
+  fun `validate - ensure data message body over 2048 bytes is marked invalid`() {
+    val content = Content(
+      dataMessage = DataMessage(
+        timestamp = 1234,
+        body = "a".repeat(2049)
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure data message body over 2048 UTF-8 bytes is marked invalid`() {
+    val content = Content(
+      dataMessage = DataMessage(
+        timestamp = 1234,
+        body = "é".repeat(1025)
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure edit message body over 2048 bytes is marked invalid`() {
+    val content = Content(
+      editMessage = EditMessage(
+        targetSentTimestamp = 1000,
+        dataMessage = DataMessage(
+          timestamp = 1234,
+          body = "a".repeat(2049)
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure sync sent body over 2048 bytes is marked invalid`() {
+    val envelope = Envelope(sourceServiceId = SELF_ACI.toString(), clientTimestamp = 1234)
+    val content = Content(
+      syncMessage = SyncMessage(
+        sent = SyncMessage.Sent(
+          timestamp = 1234,
+          destinationServiceId = OTHER_ACI.toString(),
+          message = DataMessage(
+            timestamp = 1234,
+            body = "a".repeat(2049)
+          )
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(envelope, content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
   fun `validate - ensure sync sent without a timestamp is marked invalid`() {
     val envelope = Envelope(sourceServiceId = SELF_ACI.toString(), clientTimestamp = 1234)
     val content = Content(

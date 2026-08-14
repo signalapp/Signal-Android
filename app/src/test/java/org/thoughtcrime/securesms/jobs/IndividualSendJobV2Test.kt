@@ -64,11 +64,11 @@ import org.thoughtcrime.securesms.service.ExpiringMessageManager
 import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
 import org.thoughtcrime.securesms.testutil.MockSignalStoreRule
 import org.thoughtcrime.securesms.util.DataMessageError
-import org.thoughtcrime.securesms.util.MessageUtil
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.toDataMessage
 import org.whispersystems.signalservice.api.crypto.ContentHint
 import org.whispersystems.signalservice.api.crypto.EnvelopeContent
+import org.whispersystems.signalservice.api.messages.SignalServiceMessageLimits
 import org.whispersystems.signalservice.internal.push.Content
 import org.whispersystems.signalservice.internal.push.DataMessage
 import org.whispersystems.signalservice.internal.push.PniSignatureMessage
@@ -293,7 +293,7 @@ class IndividualSendJobV2Test {
 
   @Test
   fun `Given body exceeds inline size limit, when run, then return failure`() {
-    val tooLargeBody = "x".repeat(MessageUtil.MAX_INLINE_BODY_SIZE_BYTES + 1)
+    val tooLargeBody = "x".repeat(SignalServiceMessageLimits.MAX_INLINE_BODY_SIZE_BYTES + 1)
     every { outgoingMessage.body } returns tooLargeBody
 
     val result = createAndRunJob()

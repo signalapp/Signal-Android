@@ -1,6 +1,7 @@
 package org.whispersystems.signalservice.api.messages
 
 import okio.ByteString
+import okio.utf8Size
 import org.signal.core.models.ServiceId
 import org.signal.core.models.ServiceId.ACI
 import org.signal.libsignal.protocol.message.CiphertextMessage
@@ -89,6 +90,10 @@ object EnvelopeContentValidator {
 
     if (dataMessage.timestamp != envelope.clientTimestamp) {
       return Result.Invalid("[DataMessage] Timestamps don't match! envelope: ${envelope.clientTimestamp}, content: ${dataMessage.timestamp}")
+    }
+
+    if (dataMessage.body.isBodyTooLarge()) {
+      return Result.Invalid("[DataMessage] Body exceeds ${SignalServiceMessageLimits.MAX_INLINE_BODY_SIZE_BYTES} bytes!")
     }
 
     if (dataMessage.quote != null && ACI.parseOrNull(dataMessage.quote.authorAci, dataMessage.quote.authorAciBinary).isNullOrInvalidServiceId()) {
@@ -435,6 +440,10 @@ object EnvelopeContentValidator {
       return Result.Invalid("[EditMessage] Timestamps don't match! envelope: ${envelope.clientTimestamp}, content: ${dataMessage.timestamp}")
     }
 
+    if (dataMessage.body.isBodyTooLarge()) {
+      return Result.Invalid("[EditMessage] Body exceeds ${SignalServiceMessageLimits.MAX_INLINE_BODY_SIZE_BYTES} bytes!")
+    }
+
     if (dataMessage.requiredProtocolVersion != null && dataMessage.requiredProtocolVersion > DataMessage.ProtocolVersion.CURRENT.value) {
       return Result.UnsupportedDataMessage(
         ourVersion = DataMessage.ProtocolVersion.CURRENT.value,
@@ -482,6 +491,10 @@ object EnvelopeContentValidator {
 
   private fun DataMessage.hasLongTextAttachment(): Boolean {
     return this.attachments.any { it.contentType == LONG_TEXT_CONTENT_TYPE }
+  }
+
+  private fun String?.isBodyTooLarge(): Boolean {
+    return this != null && this.utf8Size() > SignalServiceMessageLimits.MAX_INLINE_BODY_SIZE_BYTES
   }
 
   private fun BodyRange.isStyleRangeMissingOffsets(): Boolean {

@@ -62,6 +62,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentStre
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceEditMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroupV2;
+import org.whispersystems.signalservice.api.messages.SignalServiceMessageLimits;
 import org.whispersystems.signalservice.api.messages.SignalServicePreview;
 import org.whispersystems.signalservice.api.messages.SignalServiceReceiptMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceStoryMessage;
@@ -1004,8 +1005,8 @@ public class SignalServiceMessageSender {
     Content.Builder     container   = new Content.Builder();
     DataMessage.Builder dataMessage = createDataMessage(message);
 
-    if (dataMessage.body != null && Utf8.size(dataMessage.body) > 2048) {
-      throw new ContentTooLargeException(Utf8.size(dataMessage.body), "UTF-8 size of the data message body was over 2048 bytes!");
+    if (dataMessage.body != null && Utf8.size(dataMessage.body) > SignalServiceMessageLimits.MAX_INLINE_BODY_SIZE_BYTES) {
+      throw new ContentTooLargeException(Utf8.size(dataMessage.body), "UTF-8 size of the data message body was over " + SignalServiceMessageLimits.MAX_INLINE_BODY_SIZE_BYTES + " bytes!");
     }
 
     return enforceMaxContentSize(container.dataMessage(dataMessage.build()).build());

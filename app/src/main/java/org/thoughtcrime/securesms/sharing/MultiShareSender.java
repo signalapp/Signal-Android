@@ -45,6 +45,7 @@ import org.signal.core.util.Base64;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MessageUtil;
 import org.signal.core.util.Util;
+import org.whispersystems.signalservice.api.messages.SignalServiceMessageLimits;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -111,7 +112,7 @@ public final class MultiShareSender {
       List<Contact>   contacts           = multiShareArgs.getSharedContacts();
       SlideDeck       slideDeck          = new SlideDeck(primarySlideDeck);
 
-      boolean needsSplit = message != null && Utf8.size(message) > MessageUtil.MAX_INLINE_BODY_SIZE_BYTES;
+      boolean needsSplit = message != null && Utf8.size(message) > SignalServiceMessageLimits.MAX_INLINE_BODY_SIZE_BYTES;
       boolean hasMmsMedia = !multiShareArgs.getMedia().isEmpty() ||
                             (multiShareArgs.getDataUri() != null && multiShareArgs.getDataUri() != Uri.EMPTY) ||
                             multiShareArgs.getStickerLocator() != null ||
