@@ -5,40 +5,65 @@
 
 package org.thoughtcrime.securesms.components.settings.conversation.shared
 
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.filterNotNull
-import kotlinx.coroutines.flow.map
+import org.signal.uicomponents.recentmediarail.RecentMedia
+import org.signal.uicomponents.recentmediarail.RecentMedia.Availability
+import org.signal.uicomponents.recentmediarail.RecentMediaRailPresenter
 import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsRepository
+import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.MediaTable
 
 private const val SHARED_MEDIA_LIMIT = 100
 
 /**
- * Loads the shared media rail for a thread, and lets the host ask for a reload after the user comes back from the
- * media viewer. Held by each conversation settings view model, which applies the results to its own state.
+ * Feeds the shared media rail for a thread. Held by each conversation settings view model, which hands it to the rail's
+ * presenter.
  *
- * Nothing is emitted until the thread id has been resolved, so that a screen can tell "still loading" apart from
- * "this chat has no media" and reserve space for the rail accordingly.
+ * The rail itself only ever refers to media by position, so this also hangs onto the records it last loaded so that the
+ * view model can turn a tap back into the media it stands for.
  */
-class SharedMediaLoader(private val repository: ConversationSettingsRepository) {
+class SharedMediaLoader(private val repository: ConversationSettingsRepository) : RecentMediaRailPresenter.Loader {
 
-  private val refreshTrigger = MutableSharedFlow<Unit>(replay = 1).apply { tryEmit(Unit) }
-  private val threadId = MutableStateFlow<Long?>(null)
+  @Volatile
+  private var records: List<MediaTable.MediaRecord> = emptyList()
 
-  fun onThreadIdLoaded(threadId: Long) {
-    this.threadId.value = threadId
+  override suspend fun load(sourceId: Long): List<RecentMedia> {
+    val loaded = repository.getSharedMedia(sourceId, SHARED_MEDIA_LIMIT)
+    records = loaded
+    return loaded.map { it.toRecentMedia() }
   }
 
-  fun refresh() {
-    refreshTrigger.tryEmit(Unit)
-  }
+  fun recordAt(index: Int): MediaTable.MediaRecord? = records.getOrNull(index)
+}
 
-  fun observe(): Flow<List<MediaTable.MediaRecord>> {
-    return combine(threadId.filterNotNull().distinctUntilChanged(), refreshTrigger) { id, _ -> id }
-      .map { repository.getSharedMedia(it, SHARED_MEDIA_LIMIT) }
+private fun MediaTable.MediaRecord.toRecentMedia(): RecentMedia {
+  return RecentMedia(
+    thumbnailUri = attachment?.displayUri,
+    availability = availability(),
+    thumbnailTimeUs = attachment?.transformProperties?.videoTrimStartTimeUs ?: 0
+  )
+}
+
+/** Whether the attachment behind this record is actually here yet, and if not, whether we can go get it. */
+private fun MediaTable.MediaRecord.availability(): Availability {
+  val attachment = this.attachment
+
+  return when {
+    attachment == null -> {
+      Availability.UNAVAILABLE
+    }
+    attachment.displayUri == null -> {
+      if (attachment.transferState == AttachmentTable.TRANSFER_RESTORE_OFFLOADED) {
+        Availability.RESTORABLE
+      } else {
+        Availability.UNAVAILABLE
+      }
+    }
+    attachment.transferState != AttachmentTable.TRANSFER_PROGRESS_DONE &&
+      attachment.transferState != AttachmentTable.TRANSFER_RESTORE_OFFLOADED -> {
+      Availability.UNAVAILABLE
+    }
+    else -> {
+      Availability.AVAILABLE
+    }
   }
 }

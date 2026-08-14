@@ -5,9 +5,11 @@
 
 package org.thoughtcrime.securesms.components.settings.conversation.group
 
+import org.signal.uicomponents.recentmediarail.RecentMediaRailAction
+import org.signal.uicomponents.recentmediarail.RecentMediaRailEvents
+import org.signal.uicomponents.recentmediarail.RecentMediaRailState
 import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsRepository.GroupDetails
 import org.thoughtcrime.securesms.components.settings.conversation.shared.CallEntry
-import org.thoughtcrime.securesms.database.MediaTable
 import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.groups.memberlabel.StyledMemberLabel
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -73,14 +75,6 @@ sealed interface GroupSettingsEvent {
 
   /** The user tapped the starred messages row. */
   data object StarredMessagesClicked : GroupSettingsEvent
-
-  /** The user tapped an item in the shared media rail, carrying the media that item stands for. */
-  data class SharedMediaClicked(val mediaRecord: MediaTable.MediaRecord, val isLtr: Boolean) : GroupSettingsEvent {
-    override fun toString(): String = "SharedMediaClicked(messageId=${mediaRecord.messageId}, isLtr=$isLtr)"
-  }
-
-  /** The user tapped "see all" on the shared media rail, which opens the media overview. */
-  data object SeeAllSharedMediaClicked : GroupSettingsEvent
 
   /** The user tapped the search button in the member list header. */
   data object MemberSearchClicked : GroupSettingsEvent
@@ -150,9 +144,6 @@ sealed interface GroupSettingsEvent {
     override fun toString(): String = "AddMembersSelected(count=${recipientIds.size})"
   }
 
-  /** The user came back from the media viewer, so the shared media rail may be out of date. */
-  data object SharedMediaRefreshRequested : GroupSettingsEvent
-
   /** The group's record or recipient changed, alongside whether its chat is currently archived. */
   data class GroupDetailsChanged(val details: GroupDetails, val isArchived: Boolean) : GroupSettingsEvent {
     override fun toString(): String = "GroupDetailsChanged(memberCount=${details.members.size}, isArchived=$isArchived)"
@@ -166,11 +157,6 @@ sealed interface GroupSettingsEvent {
   /** The group's story became unviewed, viewed, or went away entirely. */
   data class StoryViewStateChanged(val storyViewState: StoryViewState) : GroupSettingsEvent
 
-  /** The shared media rail finished loading, either for the first time or after a refresh. */
-  data class SharedMediaChanged(val media: List<MediaTable.MediaRecord>) : GroupSettingsEvent {
-    override fun toString(): String = "SharedMediaChanged(count=${media.size})"
-  }
-
   /** The calls behind the call info variant of this screen finished loading. */
   data class CallsChanged(val calls: List<CallEntry>) : GroupSettingsEvent {
     override fun toString(): String = "CallsChanged(count=${calls.size})"
@@ -178,4 +164,15 @@ sealed interface GroupSettingsEvent {
 
   /** The group's thread id came back, or -1 if it doesn't have a thread yet. */
   data class ThreadIdLoaded(val threadId: Long) : GroupSettingsEvent
+
+  /** Received an event from the media rail that we want to forward */
+  data class MediaRailEvent(val event: RecentMediaRailEvents) : GroupSettingsEvent
+
+  /** The media rail's presenter emitted new state for us to mirror. */
+  data class MediaRailStateChanged(val railState: RecentMediaRailState) : GroupSettingsEvent {
+    override fun toString(): String = "MediaRailStateChanged(count=${railState.media.size}, loaded=${railState.loaded})"
+  }
+
+  /** The media rail's presenter decided something needs doing that only this screen can do. */
+  data class MediaRailAction(val action: RecentMediaRailAction) : GroupSettingsEvent
 }

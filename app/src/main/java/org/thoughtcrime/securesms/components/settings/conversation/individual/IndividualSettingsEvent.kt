@@ -5,9 +5,11 @@
 
 package org.thoughtcrime.securesms.components.settings.conversation.individual
 
+import org.signal.uicomponents.recentmediarail.RecentMediaRailAction
+import org.signal.uicomponents.recentmediarail.RecentMediaRailEvents
+import org.signal.uicomponents.recentmediarail.RecentMediaRailState
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.conversation.shared.CallEntry
-import org.thoughtcrime.securesms.database.MediaTable
 import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -80,14 +82,6 @@ sealed interface IndividualSettingsEvent {
   /** The user tapped the safety number row. */
   data object ViewSafetyNumberClicked : IndividualSettingsEvent
 
-  /** The user tapped an item in the shared media rail, carrying the media that item stands for. */
-  data class SharedMediaClicked(val mediaRecord: MediaTable.MediaRecord, val isLtr: Boolean) : IndividualSettingsEvent {
-    override fun toString(): String = "SharedMediaClicked(messageId=${mediaRecord.messageId}, isLtr=$isLtr)"
-  }
-
-  /** The user tapped "see all" on the shared media rail, which opens the media overview. */
-  data object SeeAllSharedMediaClicked : IndividualSettingsEvent
-
   /** The user tapped the support center link, which only the release notes chat offers. */
   data object SupportCenterClicked : IndividualSettingsEvent
 
@@ -127,9 +121,6 @@ sealed interface IndividualSettingsEvent {
   /** Dismisses whatever is in [IndividualSettingsState.dialog]. */
   data object DialogDismissed : IndividualSettingsEvent
 
-  /** The user came back from the media viewer, so the shared media rail may be out of date. */
-  data object SharedMediaRefreshRequested : IndividualSettingsEvent
-
   /** The user came back from adding or viewing a system contact, so the recipient may be out of date. */
   data object RecipientRefreshRequested : IndividualSettingsEvent
 
@@ -140,11 +131,6 @@ sealed interface IndividualSettingsEvent {
 
   /** The recipient's story became unviewed, viewed, or went away entirely. */
   data class StoryViewStateChanged(val storyViewState: StoryViewState) : IndividualSettingsEvent
-
-  /** The shared media rail finished loading, either for the first time or after a refresh. */
-  data class SharedMediaChanged(val media: List<MediaTable.MediaRecord>) : IndividualSettingsEvent {
-    override fun toString(): String = "SharedMediaChanged(count=${media.size})"
-  }
 
   /** The calls behind the call info variant of this screen finished loading. */
   data class CallsChanged(val calls: List<CallEntry>) : IndividualSettingsEvent {
@@ -166,4 +152,15 @@ sealed interface IndividualSettingsEvent {
   data class IdentityRecordLoaded(val identityRecord: IdentityRecord?) : IndividualSettingsEvent {
     override fun toString(): String = "IdentityRecordLoaded(present=${identityRecord != null})"
   }
+
+  /** Received an event from the media rail that we want to forward */
+  data class MediaRailEvent(val event: RecentMediaRailEvents) : IndividualSettingsEvent
+
+  /** The media rail's presenter emitted new state for us to mirror. */
+  data class MediaRailStateChanged(val railState: RecentMediaRailState) : IndividualSettingsEvent {
+    override fun toString(): String = "MediaRailStateChanged(count=${railState.media.size}, loaded=${railState.loaded})"
+  }
+
+  /** The media rail's presenter decided something needs doing that only this screen can do. */
+  data class MediaRailAction(val action: RecentMediaRailAction) : IndividualSettingsEvent
 }

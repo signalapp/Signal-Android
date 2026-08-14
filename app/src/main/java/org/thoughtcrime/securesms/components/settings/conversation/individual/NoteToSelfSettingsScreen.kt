@@ -34,7 +34,6 @@ fun NoteToSelfSettingsScreen(
   onEvent: (IndividualSettingsEvent) -> Unit,
   onNavigationClick: () -> Unit,
   onAvatarViewCreated: (View) -> Unit,
-  onSharedMediaViewClicked: (View) -> Unit,
   modifier: Modifier = Modifier
 ) {
   ConversationSettingsScaffold(
@@ -101,11 +100,8 @@ fun NoteToSelfSettingsScreen(
     }
 
     sharedMediaSection(
-      media = state.sharedMedia,
-      loaded = state.sharedMediaLoaded,
-      onMediaClick = { mediaRecord, isLtr -> onEvent(IndividualSettingsEvent.SharedMediaClicked(mediaRecord, isLtr)) },
-      onMediaViewClicked = onSharedMediaViewClicked,
-      onSeeAllClick = { onEvent(IndividualSettingsEvent.SeeAllSharedMediaClicked) }
+      state = state.mediaRail,
+      onEvent = { onEvent(IndividualSettingsEvent.MediaRailEvent(it)) }
     )
   }
 }
@@ -118,14 +114,12 @@ private fun NoteToSelfSettingsScreenPreview() {
       state = IndividualSettingsState(
         recipient = previewRecipient(1L, isSelf = true),
         threadId = 1L,
-        sharedMediaLoaded = true,
         starredMessagesEnabled = true,
         callBar = CallBarState(isSearchAvailable = true)
       ),
       onEvent = {},
       onNavigationClick = {},
-      onAvatarViewCreated = {},
-      onSharedMediaViewClicked = {}
+      onAvatarViewCreated = {}
     )
   }
 }

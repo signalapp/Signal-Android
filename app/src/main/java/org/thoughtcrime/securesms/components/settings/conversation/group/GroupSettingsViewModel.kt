@@ -21,6 +21,8 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
+import org.signal.uicomponents.recentmediarail.RecentMediaRailEvents
+import org.signal.uicomponents.recentmediarail.RecentMediaRailPresenter
 import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsAction
 import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsRepository
 import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsRepository.GroupDetails
@@ -28,7 +30,7 @@ import org.thoughtcrime.securesms.components.settings.conversation.group.GroupSe
 import org.thoughtcrime.securesms.components.settings.conversation.shared.BlockAndSpamHandler
 import org.thoughtcrime.securesms.components.settings.conversation.shared.CallBarState
 import org.thoughtcrime.securesms.components.settings.conversation.shared.SharedMediaLoader
-import org.thoughtcrime.securesms.components.settings.conversation.shared.sharedMediaClickAction
+import org.thoughtcrime.securesms.components.settings.conversation.shared.toConversationSettingsAction
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.groups.v2.GroupAddMembersResult
@@ -66,6 +68,7 @@ class GroupSettingsViewModel(
   val actions: Flow<ConversationSettingsAction> = _actions.receiveAsFlow()
 
   private val sharedMediaLoader = SharedMediaLoader(repository)
+  private val mediaRailPresenter = RecentMediaRailPresenter(viewModelScope, sharedMediaLoader)
 
   init {
     repository
@@ -81,9 +84,14 @@ class GroupSettingsViewModel(
       .onEach { onEvent(GroupSettingsEvent.StoryViewStateChanged(it)) }
       .launchIn(viewModelScope)
 
-    sharedMediaLoader
-      .observe()
-      .onEach { onEvent(GroupSettingsEvent.SharedMediaChanged(it)) }
+    mediaRailPresenter
+      .state
+      .onEach { onEvent(GroupSettingsEvent.MediaRailStateChanged(it)) }
+      .launchIn(viewModelScope)
+
+    mediaRailPresenter
+      .actions
+      .onEach { onEvent(GroupSettingsEvent.MediaRailAction(it)) }
       .launchIn(viewModelScope)
 
     if (callMessageIds.isNotEmpty()) {
@@ -185,10 +193,6 @@ class GroupSettingsViewModel(
 
       GroupSettingsEvent.StarredMessagesClicked -> _actions.send(ConversationSettingsAction.OpenStarredMessages(state.threadId))
 
-      is GroupSettingsEvent.SharedMediaClicked -> _actions.send(sharedMediaClickAction(event.mediaRecord, event.isLtr))
-
-      GroupSettingsEvent.SeeAllSharedMediaClicked -> _actions.send(ConversationSettingsAction.ShowMediaOverview(state.threadId))
-
       GroupSettingsEvent.MemberSearchClicked -> {
         _actions.send(ConversationSettingsAction.NavigateToMemberSearch(groupId, state.canAddMembers, state.groupLinkEnabled))
       }
@@ -283,10 +287,6 @@ class GroupSettingsViewModel(
         _state.update { it.copy(dialog = Dialog.None) }
       }
 
-      GroupSettingsEvent.SharedMediaRefreshRequested -> {
-        sharedMediaLoader.refresh()
-      }
-
       is GroupSettingsEvent.GroupDetailsChanged -> {
         _state.update { it.applyGroupDetails(event.details, event.isArchived) }
       }
@@ -304,17 +304,25 @@ class GroupSettingsViewModel(
         _state.update { it.copy(storyViewState = event.storyViewState) }
       }
 
-      is GroupSettingsEvent.SharedMediaChanged -> {
-        _state.update { it.copy(sharedMedia = event.media, sharedMediaLoaded = true) }
-      }
-
       is GroupSettingsEvent.CallsChanged -> {
         _state.update { it.copy(calls = event.calls) }
       }
 
       is GroupSettingsEvent.ThreadIdLoaded -> {
         _state.update { it.copy(threadId = event.threadId) }
-        sharedMediaLoader.onThreadIdLoaded(event.threadId)
+        mediaRailPresenter.onEvent(RecentMediaRailEvents.SourceChanged(event.threadId))
+      }
+
+      is GroupSettingsEvent.MediaRailEvent -> {
+        mediaRailPresenter.onEvent(event.event)
+      }
+
+      is GroupSettingsEvent.MediaRailStateChanged -> {
+        _state.update { it.copy(mediaRail = event.railState) }
+      }
+
+      is GroupSettingsEvent.MediaRailAction -> {
+        event.action.toConversationSettingsAction(sharedMediaLoader, state.threadId)?.let { _actions.send(it) }
       }
     }
   }

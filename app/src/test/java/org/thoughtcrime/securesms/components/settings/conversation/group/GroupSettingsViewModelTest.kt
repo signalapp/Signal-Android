@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.components.settings.conversation.group
 
+import androidx.compose.ui.unit.IntRect
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.every
@@ -28,6 +29,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
+import org.signal.uicomponents.recentmediarail.RecentMediaRailEvents
 import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsAction
 import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsRepository
 import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsRepository.GroupDetails
@@ -601,17 +603,18 @@ class GroupSettingsViewModelTest {
     val viewModel = createViewModel()
     val actions = collectActions(viewModel)
 
-    viewModel.onEvent(GroupSettingsEvent.SeeAllSharedMediaClicked)
+    viewModel.onEvent(GroupSettingsEvent.MediaRailEvent(RecentMediaRailEvents.SeeAllClicked))
 
     assertEquals(ConversationSettingsAction.ShowMediaOverview(THREAD_ID), actions.single())
   }
 
   @Test
   fun `shared media click reports the media is not sent yet when there is no attachment`() = runTest(testDispatcher) {
+    coEvery { repository.getSharedMedia(any(), any()) } returns listOf(mediaRecord())
     val viewModel = createViewModel()
     val actions = collectActions(viewModel)
 
-    viewModel.onEvent(GroupSettingsEvent.SharedMediaClicked(mediaRecord(), isLtr = true))
+    viewModel.onEvent(GroupSettingsEvent.MediaRailEvent(RecentMediaRailEvents.ItemClicked(index = 0, bounds = IntRect.Zero, leftToRight = true)))
 
     assertEquals(ConversationSettingsAction.ShowMediaNotSentYet, actions.single())
   }

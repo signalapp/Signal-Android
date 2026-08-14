@@ -5,12 +5,12 @@
 
 package org.thoughtcrime.securesms.components.settings.conversation.group
 
+import org.signal.uicomponents.recentmediarail.RecentMediaRailState
 import org.thoughtcrime.securesms.components.settings.conversation.shared.CallBarState
 import org.thoughtcrime.securesms.components.settings.conversation.shared.CallEntry
 import org.thoughtcrime.securesms.components.settings.conversation.shared.CollapsibleList
 import org.thoughtcrime.securesms.components.settings.conversation.shared.GroupMember
 import org.thoughtcrime.securesms.components.settings.conversation.shared.LegacyGroupState
-import org.thoughtcrime.securesms.database.MediaTable
 import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.memberlabel.StyledMemberLabel
@@ -31,8 +31,7 @@ data class GroupSettingsState(
   val disappearingMessagesLifespan: Int = 0,
   val canModifyBlockedState: Boolean = false,
   val isArchived: Boolean = false,
-  val sharedMedia: List<MediaTable.MediaRecord> = emptyList(),
-  val sharedMediaLoaded: Boolean = false,
+  val mediaRail: RecentMediaRailState = RecentMediaRailState(),
   val calls: List<CallEntry> = emptyList(),
   val callBar: CallBarState = CallBarState(),
   val title: String = "",

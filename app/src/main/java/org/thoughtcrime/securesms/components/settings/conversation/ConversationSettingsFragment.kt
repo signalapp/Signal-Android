@@ -17,6 +17,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.unit.IntRect
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -30,6 +31,7 @@ import org.signal.core.util.getParcelableArrayListExtraCompat
 import org.signal.core.util.logging.Log
 import org.signal.core.util.requireParcelableCompat
 import org.signal.donations.InAppPaymentType
+import org.signal.uicomponents.recentmediarail.RecentMediaRailEvents
 import org.thoughtcrime.securesms.AvatarPreviewActivity
 import org.thoughtcrime.securesms.BlockUnblockDialog
 import org.thoughtcrime.securesms.MainActivity
@@ -66,6 +68,7 @@ import org.thoughtcrime.securesms.main.MainNavigationChatDetailRouter
 import org.thoughtcrime.securesms.main.MainNavigationDetailLocation
 import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory
+import org.thoughtcrime.securesms.mediapreview.MediaPreviewCache
 import org.thoughtcrime.securesms.nicknames.NicknameActivity
 import org.thoughtcrime.securesms.profiles.edit.CreateProfileActivity
 import org.thoughtcrime.securesms.recipients.RecipientExporter
@@ -117,9 +120,8 @@ class ConversationSettingsFragment : ComposeFragment() {
   private var transitionCallback: TransitionCallback? = null
   private var chatRouter: MainNavigationChatDetailRouter? = null
 
-  /** The avatar and shared media views own the shared element transitions out of this screen. */
+  /** The avatar view owns the shared element transition out of this screen. */
   private var avatarView: View? = null
-  private var lastClickedSharedMediaView: View? = null
 
   private lateinit var addToGroupStoryDelegate: AddToGroupStoryDelegate
   private lateinit var nicknameLauncher: ActivityResultLauncher<NicknameActivity.Args>
@@ -163,7 +165,6 @@ class ConversationSettingsFragment : ComposeFragment() {
   override fun onDestroyView() {
     super.onDestroyView()
     avatarView = null
-    lastClickedSharedMediaView = null
   }
 
   /**
@@ -202,8 +203,7 @@ class ConversationSettingsFragment : ComposeFragment() {
       state = state,
       onEvent = individualViewModel::onEvent,
       onNavigationClick = { requireActivity().onBackPressedDispatcher.onBackPressed() },
-      onAvatarViewCreated = { avatarView = it },
-      onSharedMediaViewClicked = { lastClickedSharedMediaView = it }
+      onAvatarViewCreated = { avatarView = it }
     )
   }
 
@@ -218,8 +218,7 @@ class ConversationSettingsFragment : ComposeFragment() {
       state = state,
       onEvent = individualViewModel::onEvent,
       onNavigationClick = { requireActivity().onBackPressedDispatcher.onBackPressed() },
-      onAvatarViewCreated = { avatarView = it },
-      onSharedMediaViewClicked = { lastClickedSharedMediaView = it }
+      onAvatarViewCreated = { avatarView = it }
     )
   }
 
@@ -234,8 +233,7 @@ class ConversationSettingsFragment : ComposeFragment() {
       state = state,
       onEvent = individualViewModel::onEvent,
       onNavigationClick = { requireActivity().onBackPressedDispatcher.onBackPressed() },
-      onAvatarViewCreated = { avatarView = it },
-      onSharedMediaViewClicked = { lastClickedSharedMediaView = it }
+      onAvatarViewCreated = { avatarView = it }
     )
   }
 
@@ -250,9 +248,23 @@ class ConversationSettingsFragment : ComposeFragment() {
       state = state,
       onEvent = groupViewModel::onEvent,
       onNavigationClick = { requireActivity().onBackPressedDispatcher.onBackPressed() },
-      onAvatarViewCreated = { avatarView = it },
-      onSharedMediaViewClicked = { lastClickedSharedMediaView = it }
+      onAvatarViewCreated = { avatarView = it }
     )
+  }
+
+  /**
+   * Animates the media viewer up out of the rail item the user tapped. [bounds] arrive in window coordinates, since the
+   * rail is Compose and has no view of its own to hand over, so they have to be moved into our root view's space first.
+   */
+  private fun scaleUpFromRail(bounds: IntRect): ActivityOptions? {
+    if (bounds.isEmpty) {
+      return null
+    }
+
+    val root = view ?: return null
+    val rootLocation = IntArray(2).also { root.getLocationInWindow(it) }
+
+    return ActivityOptions.makeScaleUpAnimation(root, bounds.left - rootLocation[0], bounds.top - rootLocation[1], bounds.width, bounds.height)
   }
 
   @Composable
@@ -277,8 +289,8 @@ class ConversationSettingsFragment : ComposeFragment() {
       }
       REQUEST_CODE_RETURN_FROM_MEDIA -> {
         dispatch(
-          individual = { it.onEvent(IndividualSettingsEvent.SharedMediaRefreshRequested) },
-          group = { it.onEvent(GroupSettingsEvent.SharedMediaRefreshRequested) }
+          individual = { it.onEvent(IndividualSettingsEvent.MediaRailEvent(RecentMediaRailEvents.RefreshRequested)) },
+          group = { it.onEvent(GroupSettingsEvent.MediaRailEvent(RecentMediaRailEvents.RefreshRequested)) }
         )
       }
       REQUEST_CODE_ADD_CONTACT, REQUEST_CODE_VIEW_CONTACT -> {
@@ -414,21 +426,15 @@ class ConversationSettingsFragment : ComposeFragment() {
         VerifyIdentityActivity.startOrShowExchangeMessagesDialog(requireActivity(), action.identityRecord)
       }
       is ConversationSettingsAction.ShowMediaPreview -> {
-        val view = lastClickedSharedMediaView
-        if (view != null) {
-          view.transitionName = "thumb"
-          val options = ActivityOptions.makeSceneTransitionAnimation(requireActivity(), view, "thumb")
-          startActivityForResult(
-            MediaIntentFactory.intentFromMediaRecord(requireContext(), action.mediaRecord, action.isLtr, allMediaInRail = true),
-            REQUEST_CODE_RETURN_FROM_MEDIA,
-            options.toBundle()
-          )
-        } else {
-          startActivityForResult(
-            MediaIntentFactory.intentFromMediaRecord(requireContext(), action.mediaRecord, action.isLtr, allMediaInRail = true),
-            REQUEST_CODE_RETURN_FROM_MEDIA
-          )
-        }
+        // The rail is Compose and has no drawable to hand over, so make sure the viewer doesn't try to transition out of
+        // whatever some other screen left behind.
+        MediaPreviewCache.drawable = null
+
+        startActivityForResult(
+          MediaIntentFactory.intentFromMediaRecord(requireContext(), action.mediaRecord, action.isLtr, allMediaInRail = true),
+          REQUEST_CODE_RETURN_FROM_MEDIA,
+          scaleUpFromRail(action.bounds)?.toBundle()
+        )
       }
       is ConversationSettingsAction.DownloadMedia -> {
         action.mediaRecord.attachment?.let { AttachmentDownloadJob.downloadAttachmentIfNeeded(it) }

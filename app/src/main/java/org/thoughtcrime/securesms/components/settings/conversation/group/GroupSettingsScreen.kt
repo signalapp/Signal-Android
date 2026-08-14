@@ -78,7 +78,6 @@ fun GroupSettingsScreen(
   onEvent: (GroupSettingsEvent) -> Unit,
   onNavigationClick: () -> Unit,
   onAvatarViewCreated: (View) -> Unit,
-  onSharedMediaViewClicked: (View) -> Unit,
   modifier: Modifier = Modifier
 ) {
   ConversationSettingsScaffold(
@@ -198,11 +197,8 @@ fun GroupSettingsScreen(
     }
 
     sharedMediaSection(
-      media = state.sharedMedia,
-      loaded = state.sharedMediaLoaded,
-      onMediaClick = { mediaRecord, isLtr -> onEvent(GroupSettingsEvent.SharedMediaClicked(mediaRecord, isLtr)) },
-      onMediaViewClicked = onSharedMediaViewClicked,
-      onSeeAllClick = { onEvent(GroupSettingsEvent.SeeAllSharedMediaClicked) }
+      state = state.mediaRail,
+      onEvent = { onEvent(GroupSettingsEvent.MediaRailEvent(it)) }
     )
 
     membershipSection(state, onEvent)
@@ -668,7 +664,6 @@ private fun previewState(
     groupId = PREVIEW_GROUP_ID,
     recipient = recipient,
     threadId = 1L,
-    sharedMediaLoaded = true,
     canModifyBlockedState = true,
     allMembers = allMembers,
     membersExpanded = membersExpanded,
@@ -698,8 +693,7 @@ private fun GroupSettingsScreenPreview(state: GroupSettingsState) {
       state = state,
       onEvent = {},
       onNavigationClick = {},
-      onAvatarViewCreated = {},
-      onSharedMediaViewClicked = {}
+      onAvatarViewCreated = {}
     )
   }
 }

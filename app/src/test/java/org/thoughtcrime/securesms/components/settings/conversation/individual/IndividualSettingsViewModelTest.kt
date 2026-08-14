@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.components.settings.conversation.individual
 
+import androidx.compose.ui.unit.IntRect
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.every
@@ -30,6 +31,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.signal.core.models.database.AttachmentId
+import org.signal.uicomponents.recentmediarail.RecentMediaRailEvents
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
@@ -89,8 +91,11 @@ class IndividualSettingsViewModelTest {
 
   private fun createViewModel(
     callMessageIds: LongArray = longArrayOf(),
-    kind: ConversationSettingsKind = ConversationSettingsKind.INDIVIDUAL
+    kind: ConversationSettingsKind = ConversationSettingsKind.INDIVIDUAL,
+    sharedMedia: List<MediaTable.MediaRecord> = emptyList()
   ): IndividualSettingsViewModel {
+    coEvery { repository.getSharedMedia(any(), any()) } returns sharedMedia
+
     return IndividualSettingsViewModel(
       recipientId = RECIPIENT_ID,
       kind = kind,
@@ -178,7 +183,7 @@ class IndividualSettingsViewModelTest {
     val viewModel = createViewModel()
 
     assertEquals(THREAD_ID, viewModel.state.value.threadId)
-    assertTrue(viewModel.state.value.sharedMediaLoaded)
+    assertTrue(viewModel.state.value.mediaRail.loaded)
     assertTrue(viewModel.state.value.isLoaded)
   }
 
@@ -379,7 +384,7 @@ class IndividualSettingsViewModelTest {
     val viewModel = createViewModel()
     val actions = collectActions(viewModel)
 
-    viewModel.onEvent(IndividualSettingsEvent.SeeAllSharedMediaClicked)
+    viewModel.onEvent(IndividualSettingsEvent.MediaRailEvent(RecentMediaRailEvents.SeeAllClicked))
 
     assertEquals(ConversationSettingsAction.ShowMediaOverview(THREAD_ID), actions.single())
   }
@@ -387,32 +392,31 @@ class IndividualSettingsViewModelTest {
   @Test
   fun `shared media click shows the preview for a downloaded attachment`() = runTest(testDispatcher) {
     val record = mediaRecord(attachment(transferState = AttachmentTable.TRANSFER_PROGRESS_DONE, hasUri = true))
-    val viewModel = createViewModel()
+    val viewModel = createViewModel(sharedMedia = listOf(record))
     val actions = collectActions(viewModel)
 
-    viewModel.onEvent(IndividualSettingsEvent.SharedMediaClicked(record, isLtr = true))
+    viewModel.onEvent(railItemClicked())
 
-    assertEquals(ConversationSettingsAction.ShowMediaPreview(record, true), actions.single())
+    assertEquals(ConversationSettingsAction.ShowMediaPreview(record, true, RAIL_ITEM_BOUNDS), actions.single())
   }
 
   @Test
   fun `shared media click downloads offloaded media that has no local file`() = runTest(testDispatcher) {
     val record = mediaRecord(attachment(transferState = AttachmentTable.TRANSFER_RESTORE_OFFLOADED, hasUri = false))
-    val viewModel = createViewModel()
+    val viewModel = createViewModel(sharedMedia = listOf(record))
     val actions = collectActions(viewModel)
 
-    viewModel.onEvent(IndividualSettingsEvent.SharedMediaClicked(record, isLtr = true))
+    viewModel.onEvent(railItemClicked())
 
     assertEquals(ConversationSettingsAction.DownloadMedia(record), actions.single())
   }
 
   @Test
   fun `shared media click reports the media is not sent yet when there is no attachment`() = runTest(testDispatcher) {
-    val record = mediaRecord(null)
-    val viewModel = createViewModel()
+    val viewModel = createViewModel(sharedMedia = listOf(mediaRecord(null)))
     val actions = collectActions(viewModel)
 
-    viewModel.onEvent(IndividualSettingsEvent.SharedMediaClicked(record, isLtr = true))
+    viewModel.onEvent(railItemClicked())
 
     assertEquals(ConversationSettingsAction.ShowMediaNotSentYet, actions.single())
   }
@@ -420,12 +424,22 @@ class IndividualSettingsViewModelTest {
   @Test
   fun `shared media click reports the media is not sent yet when it is still in flight`() = runTest(testDispatcher) {
     val record = mediaRecord(attachment(transferState = AttachmentTable.TRANSFER_PROGRESS_STARTED, hasUri = true))
+    val viewModel = createViewModel(sharedMedia = listOf(record))
+    val actions = collectActions(viewModel)
+
+    viewModel.onEvent(railItemClicked())
+
+    assertEquals(ConversationSettingsAction.ShowMediaNotSentYet, actions.single())
+  }
+
+  @Test
+  fun `shared media click is ignored when the rail no longer has that item`() = runTest(testDispatcher) {
     val viewModel = createViewModel()
     val actions = collectActions(viewModel)
 
-    viewModel.onEvent(IndividualSettingsEvent.SharedMediaClicked(record, isLtr = true))
+    viewModel.onEvent(railItemClicked())
 
-    assertEquals(ConversationSettingsAction.ShowMediaNotSentYet, actions.single())
+    assertTrue(actions.isEmpty())
   }
 
   @Test
@@ -739,6 +753,7 @@ class IndividualSettingsViewModelTest {
   private companion object {
     val RECIPIENT_ID: RecipientId = RecipientId.from(1L)
     const val THREAD_ID = 5L
+    val RAIL_ITEM_BOUNDS = IntRect(left = 16, top = 100, right = 96, bottom = 180)
 
     fun individual(
       isBlocked: Boolean = false,
@@ -773,6 +788,11 @@ class IndividualSettingsViewModelTest {
           every { id } returns RecipientId.from(100L + index)
         }
       }
+    }
+
+    /** The first rail item being tapped, which is all these tests ever need. */
+    fun railItemClicked(): IndividualSettingsEvent.MediaRailEvent {
+      return IndividualSettingsEvent.MediaRailEvent(RecentMediaRailEvents.ItemClicked(index = 0, bounds = RAIL_ITEM_BOUNDS, leftToRight = true))
     }
 
     fun mediaRecord(attachment: DatabaseAttachment?): MediaTable.MediaRecord {
