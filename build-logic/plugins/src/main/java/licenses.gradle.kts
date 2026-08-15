@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Signal Messenger, LLC
+ * Copyright 2026 Signal Messenger, LLC
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
@@ -19,7 +19,7 @@ val out = project.serviceOf<StyledTextOutputFactory>().create("output")
  * This task will fail if we cannot map an artifact's license to a known license in [Licenses]. If this happens,
  * you need to manually save the new license, or map the URL to an existing license in [Licenses.getLicense].
  */
-task("saveLicenses") {
+tasks.register("saveLicenses") {
   description = "Finds the licenses for all of our dependencies and saves them to app/src/main/res/raw/third_party_licenses."
   group = "Static Files"
 

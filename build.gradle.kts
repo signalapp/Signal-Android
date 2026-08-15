@@ -1,3 +1,8 @@
+/*
+ * Copyright 2026 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -8,11 +13,15 @@ import java.io.FileNotFoundException
 plugins {
   alias(libs.plugins.android.application) apply false
   alias(libs.plugins.jetbrains.kotlin.android) apply false
-  alias(libs.plugins.jetbrains.kotlin.jvm) apply false
+  alias(libs.plugins.jetbrains.kotlin.jvm)
   alias(libs.plugins.compose.compiler) apply false
   alias(libs.plugins.ktlint)
   alias(benchmarkLibs.plugins.baselineprofile) apply false
   id("dependency-verification")
+}
+
+dependencies {
+  testImplementation(testLibs.junit.junit)
 }
 
 buildscript {
@@ -184,7 +193,7 @@ gradle.projectsEvaluated {
   }
 }
 
-tasks.register("clean", Delete::class) {
+tasks.named<Delete>("clean") {
   delete(rootProject.layout.buildDirectory)
 }
 
