@@ -3086,11 +3086,6 @@
     <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">skontaktuj się z pomocą techniczną</string>
 
     <!-- RegistrationLockV2Dialog -->
-    <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Włączyć blokadę rejestracji?</string>
-    <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Wyłączyć blokadę rejestracji?</string>
-    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Jeśli przy ponownej rejestracji w aplikacji Signal nie będziesz pamiętać PIN-u, stracisz dostęp do konta na 7 dni.</string>
-    <string name="RegistrationLockV2Dialog_turn_on">Włącz</string>
-    <string name="RegistrationLockV2Dialog_turn_off">Wyłącz</string>
 
     <!-- RevealableMessageView -->
     <string name="RevealableMessageView_view_photo">Wyświetl zdjęcie</string>
@@ -4530,12 +4525,10 @@
     <string name="preferences__system_default">Domyślny systemu</string>
     <string name="preferences__language">Język</string>
     <string name="preferences__signal_messages_and_calls">Wiadomości i połączenia Signal</string>
-    <string name="preferences__advanced_pin_settings">Zaawansowane ustawienia PIN-u</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">Zaawansowane ustawienia PIN-u</string>
     <string name="preferences__free_private_messages_and_calls">Darmowe prywatne wiadomości i połączenia z użytkownikami aplikacji Signal</string>
     <string name="preferences__submit_debug_log">Prześlij dziennik debugowania</string>
-    <string name="preferences__delete_account">Usuń konto</string>
     <string name="preferences__support_wifi_calling">Tryb zgodności Wi-Fi Calling</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Włącz, jeśli Twoje urządzenie może dostarczać wiadomości SMS i MMS za pomocą Wi-Fi (włącz tylko wtedy, gdy na urządzeniu jest włączona funkcja Wi-Fi Calling)</string>
     <string name="preferences__incognito_keyboard">Klawiatura w trybie incognito</string>
@@ -5141,8 +5134,6 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Podaj PIN utworzony na swoim koncie. PIN to nie to samo, co kod weryfikacyjny otrzymany SMS-em.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Podaj PIN utworzony na tym koncie.</string>
-    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
-    <string name="RegistrationLockFragment__switch_keyboard">Przełącz klawiaturę</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">PIN niepoprawny. Spróbuj ponownie.</string>
     <string name="RegistrationLockFragment__forgot_pin">Nie pamiętasz PIN-u?</string>
     <string name="RegistrationLockFragment__incorrect_pin">Niepoprawny PIN</string>
@@ -5230,8 +5221,6 @@
     <!-- Text label button to skip restoring -->
     <string name="registration_activity__skip_restore">Pomiń przywracanie</string>
     <string name="preferences_chats__chat_backups">Kopia zapasowa czatów</string>
-    <string name="preferences_chats__transfer_account">Przenieś konto</string>
-    <string name="preferences_chats__transfer_account_to_a_new_android_device">Przenieś konto na nowe urządzenie z Androidem</string>
     <!-- Title for dialog to enter in the backup passphrase -->
     <string name="RegistrationActivity_enter_backup_passphrase">Podaj hasło do kopii zapasowej</string>
     <string name="RegistrationActivity_restore">Przywróć</string>
@@ -5319,19 +5308,9 @@
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">Autoblokada ekranu</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
     <string name="preferences_app_protection__to_use_screen_lock">Aby korzystać z blokady ekranu, ustaw na urządzeniu PIN, wzór lub hasło.</string>
-    <string name="preferences_app_protection__signal_pin">PIN Signal</string>
-    <string name="preferences_app_protection__create_a_pin">Utwórz PIN</string>
-    <string name="preferences_app_protection__change_your_pin">Zmień swój PIN</string>
-    <string name="preferences_app_protection__pin_reminders">Przypomnienia o PIN-ie</string>
-    <string name="preferences_app_protection__turn_off">Wyłącz</string>
-    <string name="preferences_app_protection__confirm_pin">Potwierdź PIN</string>
-    <string name="preferences_app_protection__confirm_your_signal_pin">Potwierdź swój PIN Signal</string>
-    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">PIN-u nie można odzyskać, dlatego upewnij się, że go pamiętasz lub przechowujesz w bezpiecznym miejscu. Jeśli zapomnisz swój PIN, przy ponownej rejestracji konta Signal możesz stracić dane.</string>
-    <string name="preferences_app_protection__incorrect_pin_try_again">PIN niepoprawny. Spróbuj ponownie.</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">Nie udało się włączyć blokady rejestracji.</string>
     <string name="preferences_app_protection__failed_to_disable_registration_lock">Nie udało się wyłączyć blokady rejestracji.</string>
     <string name="AppProtectionPreferenceFragment_none">Brak</string>
-    <string name="preferences_app_protection__registration_lock">Blokada rejestracji</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Musisz podać PIN do blokady rejestracji</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">PIN składa się z co najmniej %1$d cyfr lub liter</string>
     <string name="RegistrationActivity_too_many_attempts">Zbyt wiele prób</string>
@@ -5379,20 +5358,6 @@
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
     <string name="Recipient_deleted_account">Konto usunięte</string>
 
-    <!-- Option in settings that will take use to re-register if they are no longer registered -->
-    <string name="preferences_account_reregister">Zarejestruj konto ponownie</string>
-    <!-- Option in settings that will take user to our website or playstore to update their expired build -->
-    <string name="preferences_account_update_signal">Zaktualizuj Signal</string>
-    <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
-    <string name="preferences_account_delete_all_data">Usuń wszystkie dane</string>
-    <!-- Title for confirmation dialog confirming user wants to delete all their data -->
-    <string name="preferences_account_delete_all_data_confirmation_title">Usunąć wszystkie dane?</string>
-    <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_message">Spowoduje to zresetowanie aplikacji i usunięcie wiadomości. Następnie aplikacja zostanie zamknięta.</string>
-    <!-- Confirmation action to proceed with application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_proceed">Kontynuuj</string>
-    <!-- Confirmation action to cancel application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_cancel">Anuluj</string>
     <!-- Error message shown when we fail to delete the data for some unknown reason -->
     <string name="preferences_account_delete_all_data_failed">Nie udało się usunąć danych</string>
 
@@ -5950,12 +5915,6 @@
     <string name="AppSettingsFragment__no_subscriber_id_set">Brak identyfikatora</string>
 
     <!-- AccountSettingsFragment -->
-    <string name="AccountSettingsFragment__account">Konto</string>
-    <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Z czasem będziemy pytać coraz rzadziej</string>
-    <string name="AccountSettingsFragment__require_your_signal_pin">Aby ponownie zarejestrować swój numer telefonu w aplikacji Signal, wymagaj PIN-u</string>
-    <string name="AccountSettingsFragment__change_phone_number">Zmień numer telefonu</string>
-    <!-- Account setting that allows user to request and export their signal account data -->
-    <string name="AccountSettingsFragment__request_account_data">Dane Twojego konta</string>
 
     <!-- ExportAccountDataFragment -->
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->

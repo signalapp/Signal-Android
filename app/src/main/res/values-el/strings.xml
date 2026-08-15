@@ -2894,11 +2894,6 @@
     <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">Επικοινωνία με την υποστήριξη</string>
 
     <!-- RegistrationLockV2Dialog -->
-    <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Ενεργοποίηση του Κλειδώματος εγγραφής;</string>
-    <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Απενεργοποίηση του Κλειδώματος εγγραφής;</string>
-    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Αν ξεχάσεις το PIN του Signal σου όταν επανεγγραφτείς στο Signal, θα κλειδωθείς έξω απ\' τον λογαριασμό σου για 7 ημέρες.</string>
-    <string name="RegistrationLockV2Dialog_turn_on">Ενεργοποίηση</string>
-    <string name="RegistrationLockV2Dialog_turn_off">Απενεργοποίηση</string>
 
     <!-- RevealableMessageView -->
     <string name="RevealableMessageView_view_photo">Προβολή φωτογραφίας</string>
@@ -4282,12 +4277,10 @@
     <string name="preferences__system_default">Προκαθορισμένο του συστήματος</string>
     <string name="preferences__language">Γλώσσα</string>
     <string name="preferences__signal_messages_and_calls">Μηνύματα και κλήσεις του Signal</string>
-    <string name="preferences__advanced_pin_settings">Ρυθμίσεις PIN για προχωρημένους</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">Ρυθμίσεις PIN για προχωρημένους</string>
     <string name="preferences__free_private_messages_and_calls">Δωρεάν προσωπικά μηνύματα και κλήσεις προς τους χρήστες και τις χρήστριες του Signal</string>
     <string name="preferences__submit_debug_log">Αποστολή αρχείου συμβάντων αποσφαλμάτωσης</string>
-    <string name="preferences__delete_account">Διαγραφή λογαριασμού</string>
     <string name="preferences__support_wifi_calling">Λειτουργία συμβατότητας \"WiFi Calling\'</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Ενεργοποίησέ το αν η συσκευή σου χρησιμοποιεί παράδοση SMS/MMS μέσω WiFi (ενεργοποίηση μόνο αν το \'WiFi Calling\' είναι ενεργοποιημένο στη συσκευή σου)</string>
     <string name="preferences__incognito_keyboard">Κρυφό πληκτρολόγιο</string>
@@ -4881,8 +4874,6 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Γράψε το PIN που δημιούργησες για το λογαριασμό σου. Αυτό είναι διαφορετικό από τον κωδικό επαλήθευσης που έλαβες μέσω SMS.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Εισήγαγε το PIN που δημιούργησες για τον λογαριασμό σου.</string>
-    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
-    <string name="RegistrationLockFragment__switch_keyboard">Εναλλαγή πληκτρολογίου</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Λάθος PIN. Ξαναδοκίμασε.</string>
     <string name="RegistrationLockFragment__forgot_pin">Ξέχασες το PIN;</string>
     <string name="RegistrationLockFragment__incorrect_pin">Λάθος ΡΙΝ</string>
@@ -4960,8 +4951,6 @@
     <!-- Text label button to skip restoring -->
     <string name="registration_activity__skip_restore">Παράλειψη επαναφοράς</string>
     <string name="preferences_chats__chat_backups">Αντίγραφα ασφαλείας συνομιλιών</string>
-    <string name="preferences_chats__transfer_account">Μεταφορά λογαριασμού</string>
-    <string name="preferences_chats__transfer_account_to_a_new_android_device">Μεταφορά λογαριασμού σε νέα συσκευή Android</string>
     <!-- Title for dialog to enter in the backup passphrase -->
     <string name="RegistrationActivity_enter_backup_passphrase">Εισαγωγή συνθηματικό αντίγραφου ασφαλείας</string>
     <string name="RegistrationActivity_restore">Επαναφορά</string>
@@ -5049,19 +5038,9 @@
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">Χρονικό όριο αδράνειας κλειδώματος οθόνης</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
     <string name="preferences_app_protection__to_use_screen_lock">Για να χρησιμοποιήσεις το κλείδωμα οθόνης, όρισε ένα PIN, μοτίβο ή κωδικό πρόσβασης σε αυτήν τη συσκευή.</string>
-    <string name="preferences_app_protection__signal_pin">PIN Signal</string>
-    <string name="preferences_app_protection__create_a_pin">Δημιουργία PIN</string>
-    <string name="preferences_app_protection__change_your_pin">Αλλαγή του PIN σου</string>
-    <string name="preferences_app_protection__pin_reminders">Υπενθυμίσεις PIN</string>
-    <string name="preferences_app_protection__turn_off">Απενεργοποίηση</string>
-    <string name="preferences_app_protection__confirm_pin">Επιβεβαίωση PIN</string>
-    <string name="preferences_app_protection__confirm_your_signal_pin">Επιβεβαίωση PIN Signal</string>
-    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Επιβεβαιώσου πως θυμάσαι ή πως έχεις αποθηκεύσει σε ασφαλές μέρος το PIN σου, καθώς αυτό δεν μπορεί να ανακτηθεί. Αν ξεχάσεις το PIN σου, ίσως χαθούν δεδομένα κατά την επανεγγραφή του λογαριασμού Signal σου.</string>
-    <string name="preferences_app_protection__incorrect_pin_try_again">Λάθος PIN. Ξαναδοκίμασε.</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">Αποτυχία ενεργοποίησης Κλειδώματος εγγραφής.</string>
     <string name="preferences_app_protection__failed_to_disable_registration_lock">Αποτυχία απενεργοποίησης Κλειδώματος εγγραφής.</string>
     <string name="AppProtectionPreferenceFragment_none">Κανένα</string>
-    <string name="preferences_app_protection__registration_lock">Κλείδωμα εγγραφής</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Πρέπει να εισάγεις το PIN Κλειδώματος εγγραφής σου</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Το PIN έχει τουλάχιστον %1$d ψηφία ή χαρακτήρες</string>
     <string name="RegistrationActivity_too_many_attempts">Υπερβολικά πολλές προσπάθειες</string>
@@ -5109,20 +5088,6 @@
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
     <string name="Recipient_deleted_account">Διαγραμμένος λογαριασμός</string>
 
-    <!-- Option in settings that will take use to re-register if they are no longer registered -->
-    <string name="preferences_account_reregister">Επανεγγραφή στον λογαριασμό</string>
-    <!-- Option in settings that will take user to our website or playstore to update their expired build -->
-    <string name="preferences_account_update_signal">Αναβάθμιση του Signal</string>
-    <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
-    <string name="preferences_account_delete_all_data">Διαγραφή όλων των δεδομένων</string>
-    <!-- Title for confirmation dialog confirming user wants to delete all their data -->
-    <string name="preferences_account_delete_all_data_confirmation_title">Διαγραφή όλων των δεδομένων;</string>
-    <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_message">Αυτό θα επαναφέρει την εφαρμογή και θα διαγράψει όλα τα μηνύματά σου. Η εφαρμογή θα κλείσει αφού ολοκληρωθεί αυτή η διαδικασία.</string>
-    <!-- Confirmation action to proceed with application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_proceed">Συνέχεια</string>
-    <!-- Confirmation action to cancel application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_cancel">Ακύρωση</string>
     <!-- Error message shown when we fail to delete the data for some unknown reason -->
     <string name="preferences_account_delete_all_data_failed">Αποτυχία διαγραφής δεδομένων</string>
 
@@ -5664,12 +5629,6 @@
     <string name="AppSettingsFragment__no_subscriber_id_set">Δεν έχει οριστεί id συνδρομητή</string>
 
     <!-- AccountSettingsFragment -->
-    <string name="AccountSettingsFragment__account">Λογαριασμός</string>
-    <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Θα στο ζητάμε όχι τόσο συχνά όσο περνάει ο καιρός</string>
-    <string name="AccountSettingsFragment__require_your_signal_pin">Να απαιτείται το PIN Signal σου για να εγγράψεις ξανά τον αριθμό τηλεφώνου σου στο Signal</string>
-    <string name="AccountSettingsFragment__change_phone_number">Αλλαγή αριθμού τηλεφώνου</string>
-    <!-- Account setting that allows user to request and export their signal account data -->
-    <string name="AccountSettingsFragment__request_account_data">Τα δεδομένα του λογαριασμού σου</string>
 
     <!-- ExportAccountDataFragment -->
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->

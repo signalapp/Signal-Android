@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Тіркеу құлпын іске қосу керек пе?</string>
+    <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Тіркеу құлпын ажырату керек пе?</string>
+    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Егер Signal қолданбасына қайтадан тіркелген кезде, PIN кодыңызды ұмытып қалсаңыз, тіркелгіңіз сіз үшін 7 күнге құлыпталады.</string>
+    <string name="RegistrationLockV2Dialog_turn_on">Іске қосу</string>
+    <string name="RegistrationLockV2Dialog_turn_off">Өшіру</string>
+    <string name="preferences__advanced_pin_settings">Кеңейтілген PIN-код параметрлері</string>
+    <string name="preferences__delete_account">Аккаунтты жою</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="RegistrationLockFragment__switch_keyboard">Пернетақтаны ауыстырыңыз</string>
+    <string name="preferences_chats__transfer_account">Аккаунтты тасымалдау</string>
+    <string name="preferences_chats__transfer_account_to_a_new_android_device">Аккаунтты жаңа Android құрылғысына тасымалдау</string>
+    <string name="preferences_app_protection__signal_pin">Signal PIN коды</string>
+    <string name="preferences_app_protection__create_a_pin">PIN код жасау</string>
+    <string name="preferences_app_protection__change_your_pin">PIN кодты өзгерту</string>
+    <string name="preferences_app_protection__pin_reminders">PIN-кодты еске салғыштар</string>
+    <string name="preferences_app_protection__turn_off">Өшіру</string>
+    <string name="preferences_app_protection__confirm_pin">PIN кодын растау</string>
+    <string name="preferences_app_protection__confirm_your_signal_pin">Signal PIN кодын растау</string>
+    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">PIN-кодты есіңізде сақтаңыз немесе қауіпсіз жерде сақтаңыз, себебі оны қалпына келтіру мүмкін емес. PIN-кодыңызды ұмытып қалсаңыз, Signal аккаунтыңызды қайта тіркеу кезінде деректеріңізді жоғалтып алуыңыз мүмкін.</string>
+    <string name="preferences_app_protection__incorrect_pin_try_again">Дұрыс емес PIN. Қайтадан байқап көріңіз.</string>
+    <string name="preferences_app_protection__registration_lock">Тіркеуді құлыптау</string>
+    <!-- Option in settings that will take use to re-register if they are no longer registered -->
+    <string name="preferences_account_reregister">Аккаунтты қайта тіркеу</string>
+    <!-- Option in settings that will take user to our website or playstore to update their expired build -->
+    <string name="preferences_account_update_signal">Signal-ды жаңарту</string>
+    <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
+    <string name="preferences_account_delete_all_data">Барлық деректі жою</string>
+    <!-- Title for confirmation dialog confirming user wants to delete all their data -->
+    <string name="preferences_account_delete_all_data_confirmation_title">Барлық деректі жою керек пе?</string>
+    <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
+    <string name="preferences_account_delete_all_data_confirmation_message">Бұл функция қолданбаны қалпына келтіріп, барлық хатты жойып тастайды. Бұл процесс аяқталған соң, қолданба жабылады.</string>
+    <!-- Confirmation action to proceed with application data deletion -->
+    <string name="preferences_account_delete_all_data_confirmation_proceed">Жалғастыру</string>
+    <!-- Confirmation action to cancel application data deletion -->
+    <string name="preferences_account_delete_all_data_confirmation_cancel">Бас тарту</string>
+    <string name="AccountSettingsFragment__account">Аккаунт</string>
+    <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Уақыт өткен сайын сізден сирек сұралатын болады</string>
+    <string name="AccountSettingsFragment__require_your_signal_pin">Signal-да телефон нөміріңізді қайта тіркеу үшін Signal PIN-коды қажет</string>
+    <string name="AccountSettingsFragment__change_phone_number">Телефон нөмірін өзгерту</string>
+    <!-- Account setting that allows user to request and export their signal account data -->
+    <string name="AccountSettingsFragment__request_account_data">Аккаунтыңыз туралы дерек</string>
+</resources>

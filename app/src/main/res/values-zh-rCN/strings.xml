@@ -2798,11 +2798,6 @@
     <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">联系支持人员</string>
 
     <!-- RegistrationLockV2Dialog -->
-    <string name="RegistrationLockV2Dialog_turn_on_registration_lock">开启注册锁定？</string>
-    <string name="RegistrationLockV2Dialog_turn_off_registration_lock">关闭注册锁定？</string>
-    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">再次注册 Signal 时，如果忘记 Signal PIN，将在 7 天内无法使用你的帐户。</string>
-    <string name="RegistrationLockV2Dialog_turn_on">开启</string>
-    <string name="RegistrationLockV2Dialog_turn_off">关闭</string>
 
     <!-- RevealableMessageView -->
     <string name="RevealableMessageView_view_photo">查看图片</string>
@@ -4158,12 +4153,10 @@
     <string name="preferences__system_default">系统默认</string>
     <string name="preferences__language">语言</string>
     <string name="preferences__signal_messages_and_calls">Signal 消息和通话</string>
-    <string name="preferences__advanced_pin_settings">高级 PIN 设置</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">高级 PIN 设置</string>
     <string name="preferences__free_private_messages_and_calls">Signal 用户可使用免费的加密消息和通话</string>
     <string name="preferences__submit_debug_log">提交调试日志</string>
-    <string name="preferences__delete_account">删除账户</string>
     <string name="preferences__support_wifi_calling">“WiFi 呼叫”兼容模式</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">当设备通过 WiFi 发送短信或彩信时，请启用（仅当设备启用“WiFi 呼叫”时，启用该选项）</string>
     <string name="preferences__incognito_keyboard">隐身键盘</string>
@@ -4751,8 +4744,6 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">输入帐户的 PIN 码。该密码不是短信验证码。</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">请输入您为您的账户创建的 PIN 码。</string>
-    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
-    <string name="RegistrationLockFragment__switch_keyboard">切换键盘</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">PIN 错误，请重试。</string>
     <string name="RegistrationLockFragment__forgot_pin">忘记 PIN？</string>
     <string name="RegistrationLockFragment__incorrect_pin">PIN 错误</string>
@@ -4825,8 +4816,6 @@
     <!-- Text label button to skip restoring -->
     <string name="registration_activity__skip_restore">跳过恢复</string>
     <string name="preferences_chats__chat_backups">聊天备份</string>
-    <string name="preferences_chats__transfer_account">转移帐户</string>
-    <string name="preferences_chats__transfer_account_to_a_new_android_device">转移帐户至新的 Android 设备</string>
     <!-- Title for dialog to enter in the backup passphrase -->
     <string name="RegistrationActivity_enter_backup_passphrase">输入备份密码</string>
     <string name="RegistrationActivity_restore">还原</string>
@@ -4914,19 +4903,9 @@
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">不活跃锁屏逾时</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
     <string name="preferences_app_protection__to_use_screen_lock">如要使用屏幕锁定，请在此设备上设置 PIN 码、解锁图案或密码。</string>
-    <string name="preferences_app_protection__signal_pin">Signal PIN 码</string>
-    <string name="preferences_app_protection__create_a_pin">创建 PIN 码</string>
-    <string name="preferences_app_protection__change_your_pin">更改 PIN 码</string>
-    <string name="preferences_app_protection__pin_reminders">PIN 码提醒</string>
-    <string name="preferences_app_protection__turn_off">关闭</string>
-    <string name="preferences_app_protection__confirm_pin">确认 PIN</string>
-    <string name="preferences_app_protection__confirm_your_signal_pin">请确认您的 Signal PIN 码</string>
-    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">请确保你能牢记或安全保存好你的 PIN 码，因为它不能被找回。如果你忘记了 PIN 码，你可能会在重新注册 Signal 账号时丢失一些数据。</string>
-    <string name="preferences_app_protection__incorrect_pin_try_again">PIN 错误，请重试。</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">无法启用注册锁。</string>
     <string name="preferences_app_protection__failed_to_disable_registration_lock">无法禁用注册锁。</string>
     <string name="AppProtectionPreferenceFragment_none">无</string>
-    <string name="preferences_app_protection__registration_lock">注册锁定</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">必须输入注册锁定 PIN</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">您的密码必须是由至少%1$d位数字或字母组成</string>
     <string name="RegistrationActivity_too_many_attempts">尝试次数过多</string>
@@ -4974,20 +4953,6 @@
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
     <string name="Recipient_deleted_account">删除账户</string>
 
-    <!-- Option in settings that will take use to re-register if they are no longer registered -->
-    <string name="preferences_account_reregister">重新注册账户</string>
-    <!-- Option in settings that will take user to our website or playstore to update their expired build -->
-    <string name="preferences_account_update_signal">升级 Signal</string>
-    <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
-    <string name="preferences_account_delete_all_data">删除所有数据</string>
-    <!-- Title for confirmation dialog confirming user wants to delete all their data -->
-    <string name="preferences_account_delete_all_data_confirmation_title">是否删除所有数据？</string>
-    <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_message">这将重置应用并删除所有消息。应用将会在这个过程完成后关闭。</string>
-    <!-- Confirmation action to proceed with application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_proceed">继续</string>
-    <!-- Confirmation action to cancel application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_cancel">取消</string>
     <!-- Error message shown when we fail to delete the data for some unknown reason -->
     <string name="preferences_account_delete_all_data_failed">无法删除数据</string>
 
@@ -5521,12 +5486,6 @@
     <string name="AppSettingsFragment__no_subscriber_id_set">未设置订户 ID</string>
 
     <!-- AccountSettingsFragment -->
-    <string name="AccountSettingsFragment__account">帐户</string>
-    <string name="AccountSettingsFragment__youll_be_asked_less_frequently">提醒次数将逐渐减少</string>
-    <string name="AccountSettingsFragment__require_your_signal_pin">再次用您的手机号码注册 Signal，要求输入 Signal 密码</string>
-    <string name="AccountSettingsFragment__change_phone_number">更改手机号码</string>
-    <!-- Account setting that allows user to request and export their signal account data -->
-    <string name="AccountSettingsFragment__request_account_data">您的账户数据</string>
 
     <!-- ExportAccountDataFragment -->
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->

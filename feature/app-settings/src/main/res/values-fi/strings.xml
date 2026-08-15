@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Otetaanko rekisteröintiesto käyttöön?</string>
+    <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Poistetaanko rekisteröintiesto käytöstä?</string>
+    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Jos et muista Signal-tunnuslukua, kun rekisteröit Signalin uudelleen, tili lukitaan 7 päiväksi.</string>
+    <string name="RegistrationLockV2Dialog_turn_on">Ota käyttöön</string>
+    <string name="RegistrationLockV2Dialog_turn_off">Poista käytöstä</string>
+    <string name="preferences__advanced_pin_settings">Tunnusluvun lisäasetukset</string>
+    <string name="preferences__delete_account">Poista tili</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="RegistrationLockFragment__switch_keyboard">Vaihda näppäimistöä</string>
+    <string name="preferences_chats__transfer_account">Siirrä tili</string>
+    <string name="preferences_chats__transfer_account_to_a_new_android_device">Siirrä tili uuteen Android-laitteeseen</string>
+    <string name="preferences_app_protection__signal_pin">Signal-tunnusluku</string>
+    <string name="preferences_app_protection__create_a_pin">Luo tunnusluku</string>
+    <string name="preferences_app_protection__change_your_pin">Vaihda tunnusluku</string>
+    <string name="preferences_app_protection__pin_reminders">Tunnuslukumuistutukset</string>
+    <string name="preferences_app_protection__turn_off">Poista käytöstä</string>
+    <string name="preferences_app_protection__confirm_pin">Vahvista tunnusluku</string>
+    <string name="preferences_app_protection__confirm_your_signal_pin">Vahvista Signal-tunnuslukusi</string>
+    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Opettele tunnusluku ulkoa tai tallenna se turvallisesti, sillä sitä ei voi palauttaa. Jos tunnusluku unohtuu ja Signal rekisteröidään uudelleen, tietoja voi kadota.</string>
+    <string name="preferences_app_protection__incorrect_pin_try_again">Väärä tunnusluku, yritä uudelleen.</string>
+    <string name="preferences_app_protection__registration_lock">Rekisteröintiesto</string>
+    <!-- Option in settings that will take use to re-register if they are no longer registered -->
+    <string name="preferences_account_reregister">Rekisteröi tili uudelleen</string>
+    <!-- Option in settings that will take user to our website or playstore to update their expired build -->
+    <string name="preferences_account_update_signal">Päivitä Signal</string>
+    <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
+    <string name="preferences_account_delete_all_data">Poista kaikki tiedot</string>
+    <!-- Title for confirmation dialog confirming user wants to delete all their data -->
+    <string name="preferences_account_delete_all_data_confirmation_title">Poistetaanko kaikki tiedot?</string>
+    <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
+    <string name="preferences_account_delete_all_data_confirmation_message">Tämä nollaa sovelluksen ja poistaa kaikki viestit. Sovellus sulkeutuu, kun prosessi on valmis.</string>
+    <!-- Confirmation action to proceed with application data deletion -->
+    <string name="preferences_account_delete_all_data_confirmation_proceed">Jatka</string>
+    <!-- Confirmation action to cancel application data deletion -->
+    <string name="preferences_account_delete_all_data_confirmation_cancel">Peruuta</string>
+    <string name="AccountSettingsFragment__account">Tili</string>
+    <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Kysymme harvemmin ajan kuluessa</string>
+    <string name="AccountSettingsFragment__require_your_signal_pin">Vaadi Signal-tunnuslukua aina, kun tällä puhelinnumerolla rekisteröidytään Signaliin.</string>
+    <string name="AccountSettingsFragment__change_phone_number">Vaihda puhelinnumero</string>
+    <!-- Account setting that allows user to request and export their signal account data -->
+    <string name="AccountSettingsFragment__request_account_data">Tilitietosi</string>
+</resources>

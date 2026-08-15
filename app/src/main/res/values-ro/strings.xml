@@ -2990,11 +2990,6 @@
     <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">Contactează Asistența</string>
 
     <!-- RegistrationLockV2Dialog -->
-    <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Activează Blocarea Înregistrării?</string>
-    <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Dezactivează Blocarea Înregistrării?</string>
-    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Dacă îți uiți PIN-ul Signal atunci când te înregistrezi din nou cu Signal, contul tău va fi blocat timp de 7 zile.</string>
-    <string name="RegistrationLockV2Dialog_turn_on">Activare</string>
-    <string name="RegistrationLockV2Dialog_turn_off">Dezactivare</string>
 
     <!-- RevealableMessageView -->
     <string name="RevealableMessageView_view_photo">Vezi Poza</string>
@@ -4406,12 +4401,10 @@
     <string name="preferences__system_default">Setarea telefonului</string>
     <string name="preferences__language">Limba</string>
     <string name="preferences__signal_messages_and_calls">Mesaje și apeluri Signal</string>
-    <string name="preferences__advanced_pin_settings">Setări PIN avansate</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">Setări PIN avansate</string>
     <string name="preferences__free_private_messages_and_calls">Mesaje și apeluri, private și gratuite cu utilizatorii Signal</string>
     <string name="preferences__submit_debug_log">Trimite jurnalul de depanare</string>
-    <string name="preferences__delete_account">Șterge-ți contul</string>
     <string name="preferences__support_wifi_calling">Mod compatibilitate \"Apelare WiFi\"</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Activează dacă dispozitivul tău trimite SMS/MMS prin WiFi (activează atunci când \"Apelare WiFi\" este activat pe dispozitivul tău)</string>
     <string name="preferences__incognito_keyboard">Tastatură incognito</string>
@@ -5011,8 +5004,6 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Introdu codul PIN pe care l-ai creat pentru contul tău. Acesta este diferit față de codul de verificare prin SMS.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Introdu PIN-ul pe care l-ai creat pentru contul tău.</string>
-    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
-    <string name="RegistrationLockFragment__switch_keyboard">Schimbă tastaturile</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">PIN incorect. Încearcă din nou.</string>
     <string name="RegistrationLockFragment__forgot_pin">Ai uitat PIN-ul?</string>
     <string name="RegistrationLockFragment__incorrect_pin">PIN incorect</string>
@@ -5095,8 +5086,6 @@
     <!-- Text label button to skip restoring -->
     <string name="registration_activity__skip_restore">Sari peste restaurare</string>
     <string name="preferences_chats__chat_backups">Backup-uri pt. conversații</string>
-    <string name="preferences_chats__transfer_account">Transfer cont</string>
-    <string name="preferences_chats__transfer_account_to_a_new_android_device">Transfer cont pe un nou dispozitiv Android</string>
     <!-- Title for dialog to enter in the backup passphrase -->
     <string name="RegistrationActivity_enter_backup_passphrase">Introdu parola pentru backup</string>
     <string name="RegistrationActivity_restore">Restaurează</string>
@@ -5184,19 +5173,9 @@
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">Expirare timp blocare ecran pentru inactivitate</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
     <string name="preferences_app_protection__to_use_screen_lock">Ca să folosești blocarea ecranului, setează un cod PIN, un model sau o parolă pe acest dispozitiv.</string>
-    <string name="preferences_app_protection__signal_pin">PIN Signal</string>
-    <string name="preferences_app_protection__create_a_pin">Creează un PIN</string>
-    <string name="preferences_app_protection__change_your_pin">Modificare PIN</string>
-    <string name="preferences_app_protection__pin_reminders">Mementouri PIN</string>
-    <string name="preferences_app_protection__turn_off">Dezactivare</string>
-    <string name="preferences_app_protection__confirm_pin">Confirmare PIN</string>
-    <string name="preferences_app_protection__confirm_your_signal_pin">Confirmă PIN-ul tău Signal</string>
-    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Asigură-te că memorezi sau salvezi în siguranță codul PIN, deoarece acesta nu poate fi recuperat. Dacă uiți codul PIN, este posibil să pierzi date la înregistrarea din nou a contului tău Signal.</string>
-    <string name="preferences_app_protection__incorrect_pin_try_again">PIN incorect. Încearcă din nou.</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">Activarea blocării înregistrării a eșuat.</string>
     <string name="preferences_app_protection__failed_to_disable_registration_lock">Dezactivarea blocării înregistrării a eșuat.</string>
     <string name="AppProtectionPreferenceFragment_none">Niciuna</string>
-    <string name="preferences_app_protection__registration_lock">Blocarea Înregistrării</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Trebuie să introduci PIN-ul de blocare al înregistrării</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">PIN-ul tău are cel puțin %1$d cifre sau caractere</string>
     <string name="RegistrationActivity_too_many_attempts">Prea multe încercări</string>
@@ -5244,20 +5223,6 @@
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
     <string name="Recipient_deleted_account">Cont șters</string>
 
-    <!-- Option in settings that will take use to re-register if they are no longer registered -->
-    <string name="preferences_account_reregister">Înregistrează din nou contul</string>
-    <!-- Option in settings that will take user to our website or playstore to update their expired build -->
-    <string name="preferences_account_update_signal">Actualizează Signal</string>
-    <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
-    <string name="preferences_account_delete_all_data">Șterge toate datele</string>
-    <!-- Title for confirmation dialog confirming user wants to delete all their data -->
-    <string name="preferences_account_delete_all_data_confirmation_title">Ștergi toate datele?</string>
-    <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_message">Această acțiune va reseta aplicația și va șterge toate mesajele. Aplicația se va închide după ce se încheie procesul.</string>
-    <!-- Confirmation action to proceed with application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_proceed">Continuă</string>
-    <!-- Confirmation action to cancel application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_cancel">Anulează</string>
     <!-- Error message shown when we fail to delete the data for some unknown reason -->
     <string name="preferences_account_delete_all_data_failed">Nu s-au șters datele</string>
 
@@ -5807,12 +5772,6 @@
     <string name="AppSettingsFragment__no_subscriber_id_set">Nu este setat niciun ID de abonat</string>
 
     <!-- AccountSettingsFragment -->
-    <string name="AccountSettingsFragment__account">Cont</string>
-    <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Vei fi întrebat mai rar în timp</string>
-    <string name="AccountSettingsFragment__require_your_signal_pin">Solicitare PIN Signal pentru a înregistra din nou numărul tău de telefon la Signal.</string>
-    <string name="AccountSettingsFragment__change_phone_number">Schimbare număr de telefon</string>
-    <!-- Account setting that allows user to request and export their signal account data -->
-    <string name="AccountSettingsFragment__request_account_data">Datele contului tău</string>
 
     <!-- ExportAccountDataFragment -->
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->

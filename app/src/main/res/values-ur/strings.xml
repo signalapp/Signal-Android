@@ -2894,11 +2894,6 @@
     <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">سپورٹ سے رابطہ کریں</string>
 
     <!-- RegistrationLockV2Dialog -->
-    <string name="RegistrationLockV2Dialog_turn_on_registration_lock">رجسٹریشن لاک آن کریں؟</string>
-    <string name="RegistrationLockV2Dialog_turn_off_registration_lock">رجسٹریشن لاک آف کریں؟</string>
-    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">اگر آپ دوبارہ Signal کے ساتھ اندراج کرتے وقت اپنا Signal پن بھول جاتے ہیں تو ، آپ کو 7 دن کے لئے اپنے اکاؤنٹ سے بند کر دیا جائے گا۔</string>
-    <string name="RegistrationLockV2Dialog_turn_on">آن کر دو</string>
-    <string name="RegistrationLockV2Dialog_turn_off">بند کریں</string>
 
     <!-- RevealableMessageView -->
     <string name="RevealableMessageView_view_photo">تصویر دیکھیں</string>
@@ -4282,12 +4277,10 @@
     <string name="preferences__system_default">سسٹم ڈیفالٹ</string>
     <string name="preferences__language">زبان</string>
     <string name="preferences__signal_messages_and_calls">Signal پیغامات اور کالز</string>
-    <string name="preferences__advanced_pin_settings">اعلی درجے کی PIN کی ترتیبات</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">اعلی درجے کی PIN کی ترتیبات</string>
     <string name="preferences__free_private_messages_and_calls">Signal صارفین کیلئے ذاتی پیغامات اور کالیں مفت ہیں</string>
     <string name="preferences__submit_debug_log">ڈی بَگ لاگ پیش کریں</string>
-    <string name="preferences__delete_account">اکاؤنٹ حذف کریں</string>
     <string name="preferences__support_wifi_calling">\'WiFi Calling\' کے مطابق وضع</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">اگر آپ کی ڈیوائس وائی فائی پر ایس ایم ایس / ایم ایم ایس ترسیل کا استعمال کرتا ہے تو فعال کریں (تبھی قابل بنائیں جب آپ کے آلے پر \'وائی فائی کالنگ\' فعال ہوجائے)</string>
     <string name="preferences__incognito_keyboard">پوشیدہ کی بورڈ</string>
@@ -4881,8 +4874,6 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">اپنے اکاؤنٹ کیلئے جو پن بنایا ہے داخل کریں۔ یہ آپ کے تصدیقی ایس ایم ایس سے مختلف ہے۔</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">وہ پِن درج کریں جو آپ نے اپنے اکاؤنٹ کے لیے تخلیق کیا تھا۔</string>
-    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
-    <string name="RegistrationLockFragment__switch_keyboard">کی بورڈ سوئچ کریں</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">غلط پن. دوبارہ کوشش کریں.</string>
     <string name="RegistrationLockFragment__forgot_pin">پن بھول گیا؟</string>
     <string name="RegistrationLockFragment__incorrect_pin">غلط پن</string>
@@ -4960,8 +4951,6 @@
     <!-- Text label button to skip restoring -->
     <string name="registration_activity__skip_restore">بحال کرنا نظر انداز کریں</string>
     <string name="preferences_chats__chat_backups">چیٹ کے بیک اپس</string>
-    <string name="preferences_chats__transfer_account">اکاؤنٹ منتقل کریں</string>
-    <string name="preferences_chats__transfer_account_to_a_new_android_device">اکاؤنٹ کو کسی نئے Android ڈیوائس میں منتقل کریں</string>
     <!-- Title for dialog to enter in the backup passphrase -->
     <string name="RegistrationActivity_enter_backup_passphrase">بیک اپ فاسفریز داخل کریں</string>
     <string name="RegistrationActivity_restore">بحال کریں</string>
@@ -5049,19 +5038,9 @@
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">غیر سرگرمی سکرین لاک کا وقت ختم ہو چکا ہے</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
     <string name="preferences_app_protection__to_use_screen_lock">اس ڈیوائس پر اسکرین لاک استعمال کرنے کے لیے PIN، پیٹرن، یا پاس ورڈ لگائیں۔</string>
-    <string name="preferences_app_protection__signal_pin">Signal پن</string>
-    <string name="preferences_app_protection__create_a_pin">ایک پن بنائیں</string>
-    <string name="preferences_app_protection__change_your_pin">اپنا پن تبدیل کریں</string>
-    <string name="preferences_app_protection__pin_reminders">PIN یاددہانی</string>
-    <string name="preferences_app_protection__turn_off">بند کریں</string>
-    <string name="preferences_app_protection__confirm_pin">پن کی تصدیق کریں</string>
-    <string name="preferences_app_protection__confirm_your_signal_pin">اپنے سگنل پن کی تصدیق کریں</string>
-    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">اس بات کو یقینی بنائیں کہ آپ اپنے PIN کو حفظ یا محفوظ طریقے سے محفوظ کریں کیونکہ اسے بازیافت نہیں کیا جاسکتا ہے۔ اگر آپ اپنا پن بھول جاتے ہیں تو ، اپنے Signal اکاؤنٹ کی دوبارہ رجسٹریشن کرتے وقت آپ ڈیٹا کھو سکتے ہیں۔</string>
-    <string name="preferences_app_protection__incorrect_pin_try_again">غلط پن. دوبارہ کوشش کریں.</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">رجسٹریشن لاک کو فعال کرنے میں ناکام۔</string>
     <string name="preferences_app_protection__failed_to_disable_registration_lock">رجسٹریشن لاک کو غیر فعال کرنے میں ناکام۔</string>
     <string name="AppProtectionPreferenceFragment_none">کوئی نہیں</string>
-    <string name="preferences_app_protection__registration_lock">رجسٹریشن لاک</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">آپ لازمی اپنا رجسٹریشن لاک پن داخل کریں</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">آپ کے پن میں کم از کم %1$d ہندسے یا حرف ہیں</string>
     <string name="RegistrationActivity_too_many_attempts">بہت زیادہ کوششیں</string>
@@ -5109,20 +5088,6 @@
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
     <string name="Recipient_deleted_account">حذف شدہ اکاؤنٹ</string>
 
-    <!-- Option in settings that will take use to re-register if they are no longer registered -->
-    <string name="preferences_account_reregister">اکاؤنٹ کو دوبارہ رجسٹر کریں</string>
-    <!-- Option in settings that will take user to our website or playstore to update their expired build -->
-    <string name="preferences_account_update_signal">Signal اپ ڈیٹ کریں</string>
-    <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
-    <string name="preferences_account_delete_all_data">تمام ڈیٹا حذف کریں</string>
-    <!-- Title for confirmation dialog confirming user wants to delete all their data -->
-    <string name="preferences_account_delete_all_data_confirmation_title">تمام ڈیٹا کو حذف کریں؟</string>
-    <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_message">اس سے ایپ دوبارہ سیٹ ہو جائے گی اور تمام میسجز حذف ہو جائیں گے۔ ایپ اس عمل کے مکمل ہونے کے بعد بند ہو جائے گی۔</string>
-    <!-- Confirmation action to proceed with application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_proceed">آگے بڑھیں</string>
-    <!-- Confirmation action to cancel application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_cancel">منسوخ کریں</string>
     <!-- Error message shown when we fail to delete the data for some unknown reason -->
     <string name="preferences_account_delete_all_data_failed">ڈیٹا کو حذف کرنے میں ناکام</string>
 
@@ -5664,12 +5629,6 @@
     <string name="AppSettingsFragment__no_subscriber_id_set">کوئی سبسکرائبر id سیٹ نہیں کی گئی</string>
 
     <!-- AccountSettingsFragment -->
-    <string name="AccountSettingsFragment__account">اکاؤنٹ</string>
-    <string name="AccountSettingsFragment__youll_be_asked_less_frequently">وقت کے ساتھ آپ سے کم پوچھا جائے گا</string>
-    <string name="AccountSettingsFragment__require_your_signal_pin">اپنے فون نمبر کو دوبارہ Signal کے ساتھ رجسٹر کرنے کیلئے اپنے Signal پن کی ضرورت ہے</string>
-    <string name="AccountSettingsFragment__change_phone_number">فون نمبر تبدیل کریں</string>
-    <!-- Account setting that allows user to request and export their signal account data -->
-    <string name="AccountSettingsFragment__request_account_data">آپ کا اکاؤنٹ ڈیٹا</string>
 
     <!-- ExportAccountDataFragment -->
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->

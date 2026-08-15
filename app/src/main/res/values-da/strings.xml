@@ -2894,11 +2894,6 @@
     <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">Kontakt support</string>
 
     <!-- RegistrationLockV2Dialog -->
-    <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Aktiver registreringslås?</string>
-    <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Deaktiver registreringslås?</string>
-    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Hvis du glemmer din pinkode til Signal ved genregistrering af Signal, vil du blive låst ude af din konto i 7 dage.</string>
-    <string name="RegistrationLockV2Dialog_turn_on">Aktiver</string>
-    <string name="RegistrationLockV2Dialog_turn_off">Deaktiver</string>
 
     <!-- RevealableMessageView -->
     <string name="RevealableMessageView_view_photo">Vis billede</string>
@@ -4282,12 +4277,10 @@
     <string name="preferences__system_default">Systemstandard</string>
     <string name="preferences__language">Sprog</string>
     <string name="preferences__signal_messages_and_calls">Signal-beskeder og opkald</string>
-    <string name="preferences__advanced_pin_settings">Avancerede pinkode-indstillinger</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">Avancerede pinkode-indstillinger</string>
     <string name="preferences__free_private_messages_and_calls">Gratis private beskeder og opkald til Signal-brugere</string>
     <string name="preferences__submit_debug_log">Indsend fejlsøgningslog</string>
-    <string name="preferences__delete_account">Slet konto</string>
     <string name="preferences__support_wifi_calling">Kompatibilitetstilstand for WiFi-opkald</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktiver hvis din enhed bruger SMS/MMS via WiFi (brug kun hvis WiFi-opkald er aktiveret på din enhed)</string>
     <string name="preferences__incognito_keyboard">Inkognito-tastatur</string>
@@ -4881,8 +4874,6 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Indtast den pinkode du oprettede til din konto. Den er forskellig fra din SMS-verifikationskode.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Angiv den pinkode, du har oprettet til din konto.</string>
-    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
-    <string name="RegistrationLockFragment__switch_keyboard">Skift tastatur</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Forkert pinkode. Prøv igen.</string>
     <string name="RegistrationLockFragment__forgot_pin">Glemt pinkode?</string>
     <string name="RegistrationLockFragment__incorrect_pin">Forkert pinkode</string>
@@ -4960,8 +4951,6 @@
     <!-- Text label button to skip restoring -->
     <string name="registration_activity__skip_restore">Spring gendannelse over</string>
     <string name="preferences_chats__chat_backups">Sikkerhedskopier af chats</string>
-    <string name="preferences_chats__transfer_account">Overfør konto</string>
-    <string name="preferences_chats__transfer_account_to_a_new_android_device">Overfør konto til en ny Android-enhed</string>
     <!-- Title for dialog to enter in the backup passphrase -->
     <string name="RegistrationActivity_enter_backup_passphrase">Indtast adgangssætning til sikkerhedskopi</string>
     <string name="RegistrationActivity_restore">Gendan</string>
@@ -5049,19 +5038,9 @@
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">Timeout for inaktiv skærmlås</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
     <string name="preferences_app_protection__to_use_screen_lock">Hvis du vil bruge skærmlås, skal du angive en pinkode, et mønster eller en adgangskode på denne enhed.</string>
-    <string name="preferences_app_protection__signal_pin">Signal-pinkode</string>
-    <string name="preferences_app_protection__create_a_pin">Opret en pinkode</string>
-    <string name="preferences_app_protection__change_your_pin">Skift din pinkode</string>
-    <string name="preferences_app_protection__pin_reminders">Pinkode-påmindelser</string>
-    <string name="preferences_app_protection__turn_off">Deaktiver</string>
-    <string name="preferences_app_protection__confirm_pin">Bekræft pinkode</string>
-    <string name="preferences_app_protection__confirm_your_signal_pin">Bekræft din Signal-pinkode</string>
-    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Vær sikker på at du husker eller opbevarer din pinkode sikkert, da den ikke kan gendannes. Hvis du glemmer din pinkode, kan du miste data når du genregistrerer din Signal-konto.</string>
-    <string name="preferences_app_protection__incorrect_pin_try_again">Forkert pinkode. Prøv igen.</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">Aktivering af registreringslås mislykkedes</string>
     <string name="preferences_app_protection__failed_to_disable_registration_lock">Deaktivering af registreringslås mislykkedes</string>
     <string name="AppProtectionPreferenceFragment_none">Ingen</string>
-    <string name="preferences_app_protection__registration_lock">Registreringslås</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Du skal indtaste din registreringslås-pinkode</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Din pinkode består af mindst %1$d tal eller bogstaver</string>
     <string name="RegistrationActivity_too_many_attempts">For mange forsøg</string>
@@ -5109,20 +5088,6 @@
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
     <string name="Recipient_deleted_account">Slettet konto</string>
 
-    <!-- Option in settings that will take use to re-register if they are no longer registered -->
-    <string name="preferences_account_reregister">Genregistrering af konto</string>
-    <!-- Option in settings that will take user to our website or playstore to update their expired build -->
-    <string name="preferences_account_update_signal">Opdater Signal</string>
-    <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
-    <string name="preferences_account_delete_all_data">Slet alle data</string>
-    <!-- Title for confirmation dialog confirming user wants to delete all their data -->
-    <string name="preferences_account_delete_all_data_confirmation_title">Slet alle data?</string>
-    <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_message">Dette vil nulstille applikationen ved at slette alle beskeder. Appen lukkes, når denne proces er afsluttet.</string>
-    <!-- Confirmation action to proceed with application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_proceed">Fortsæt</string>
-    <!-- Confirmation action to cancel application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_cancel">Annuller</string>
     <!-- Error message shown when we fail to delete the data for some unknown reason -->
     <string name="preferences_account_delete_all_data_failed">Kunne ikke slette data</string>
 
@@ -5664,12 +5629,6 @@
     <string name="AppSettingsFragment__no_subscriber_id_set">Ingen abonnent-id indstillet</string>
 
     <!-- AccountSettingsFragment -->
-    <string name="AccountSettingsFragment__account">Konto</string>
-    <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Du vil blive spurgt sjældnere med tiden</string>
-    <string name="AccountSettingsFragment__require_your_signal_pin">Kræver din Signal-pinkode for at registrere dit telefonnummer med Signal igen.</string>
-    <string name="AccountSettingsFragment__change_phone_number">Skift telefonnummer</string>
-    <!-- Account setting that allows user to request and export their signal account data -->
-    <string name="AccountSettingsFragment__request_account_data">Dine kontooplysninger</string>
 
     <!-- ExportAccountDataFragment -->
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->

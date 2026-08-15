@@ -73,6 +73,7 @@ enum class SignalIcons(private val icon: SignalIcon) : SignalIcon by icon {
   MobileNextDisplay(icon(R.drawable.symbol_mobile_next_display_48)),
   MoreVertical(icon(R.drawable.symbol_more_vertical_24)),
   Nighttime(icon(R.drawable.ic_nighttime_26)),
+  NumberPad(icon(R.drawable.ic_number_pad_conversation_filter_24)),
   PersonCircle(icon(R.drawable.symbol_person_circle_24)),
   Phone(icon(R.drawable.symbol_phone_24)),
   Plus(icon(R.drawable.symbol_plus_24)),

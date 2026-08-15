@@ -3278,11 +3278,6 @@
     <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">الاتصال بالدعم</string>
 
     <!-- RegistrationLockV2Dialog -->
-    <string name="RegistrationLockV2Dialog_turn_on_registration_lock">هل تريد تشغيل قفل التسجيل؟</string>
-    <string name="RegistrationLockV2Dialog_turn_off_registration_lock">هل تريد إيقاف قفل التسجيل؟</string>
-    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">إدا نسيتَ رقم التعريف الشخصي (PIN) على سيجنال وقُمتَ بالتسجيل مرّة أخرى في سيجنال، سوف يُقفَل حسابك لسبعة أيام.</string>
-    <string name="RegistrationLockV2Dialog_turn_on">تشغيل</string>
-    <string name="RegistrationLockV2Dialog_turn_off">إيقاف</string>
 
     <!-- RevealableMessageView -->
     <string name="RevealableMessageView_view_photo">عرض الصورة</string>
@@ -4778,12 +4773,10 @@
     <string name="preferences__system_default">اللغة الافتراضية للنظام</string>
     <string name="preferences__language">اللغة</string>
     <string name="preferences__signal_messages_and_calls">رسائل ومكالمات سيجنال</string>
-    <string name="preferences__advanced_pin_settings">الإعدادات المُتقدِّمة لرقم الـ PIN</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">الإعدادات المُتقدِّمة لرقم الـ PIN</string>
     <string name="preferences__free_private_messages_and_calls">رسائل ومكالمات مجانية وآمنة مع مُستخدِمي سيجنال</string>
     <string name="preferences__submit_debug_log">إرسال سجل الأخطاء</string>
-    <string name="preferences__delete_account">حذف الحساب</string>
     <string name="preferences__support_wifi_calling">وضع التوافق مع \"التواصل بالواي فاي\"</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">يمكنك تفعيل الخاصية إذا كان هاتفك يدعم تسليم رسائل SMS أو رسائل MMS عبر الواي فاي (قُم بالتفعيل فقط في حال تمكين التواصل بالواي فاي بهاتفك)</string>
     <string name="preferences__incognito_keyboard">لوحة مفاتيح في وضع متخفي</string>
@@ -5401,8 +5394,6 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">أدخِل رقم التعريف الشخصي (PIN) الذي قمتَ بإنشائه لحسابك. هو مختلف عن كود التحقُّق الذي وصلك عبر رسالة قصيرة.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">أدخِل رقم التعريف الشخصي (PIN) الذي أنشأته لحسابك.</string>
-    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
-    <string name="RegistrationLockFragment__switch_keyboard">تغيير لوحة المفاتيح</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">رقم التعريف الشخصي (PIN) غير صحيح. حاوِل مرّة أخرى.</string>
     <string name="RegistrationLockFragment__forgot_pin">هل نسيت رقم التعريف الشخصي (PIN)؟</string>
     <string name="RegistrationLockFragment__incorrect_pin">رقم التعريف الشخصي (PIN) غير صحيح</string>
@@ -5500,8 +5491,6 @@
     <!-- Text label button to skip restoring -->
     <string name="registration_activity__skip_restore">تخطّي الاستعادة</string>
     <string name="preferences_chats__chat_backups">النسخ الاحتياطية للدردشات</string>
-    <string name="preferences_chats__transfer_account">نقل الحساب</string>
-    <string name="preferences_chats__transfer_account_to_a_new_android_device">نقل الحساب إلى جهاز أندرويد جديد</string>
     <!-- Title for dialog to enter in the backup passphrase -->
     <string name="RegistrationActivity_enter_backup_passphrase">أدخِل العبارة السرية للنسخة الاحتياطية</string>
     <string name="RegistrationActivity_restore">استعادة</string>
@@ -5589,19 +5578,9 @@
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">فترة عدم النشاط لقفل الشاشة</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
     <string name="preferences_app_protection__to_use_screen_lock">لاستخدام قفل الشاشة، قُم بتعيين رقم تعريف شخصي (PIN) أو نمط أو كلمة مرور على هذا الجهاز.</string>
-    <string name="preferences_app_protection__signal_pin">رقم PIN على سيجنال</string>
-    <string name="preferences_app_protection__create_a_pin">إنشاء رقم تعريف شخصي (PIN)</string>
-    <string name="preferences_app_protection__change_your_pin">تغيير رقم الـ PIN</string>
-    <string name="preferences_app_protection__pin_reminders">تذكيرات رقم التعريف الشخصي (PIN)</string>
-    <string name="preferences_app_protection__turn_off">إيقاف</string>
-    <string name="preferences_app_protection__confirm_pin">تأكيد رقم التعريف الشخصي (PIN)</string>
-    <string name="preferences_app_protection__confirm_your_signal_pin">تأكيد رقم PIN على سيجنال</string>
-    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">يجب عليك التأكُّد من حفظ رقم التعريف الشخصي (PIN) أو تخزينه في مكان آمن، لأنه لا يمكن استعادته في حال فقدانه. في حال نسيانك رقم التعريف الشخصي (PIN)، قد تخسر البيانات عند إعادة تسجيل حسابك على سيجنال.</string>
-    <string name="preferences_app_protection__incorrect_pin_try_again">رقم التعريف الشخصي (PIN) غير صحيح. حاوِل مرّة أخرى.</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">تعذَّر تفعيل قفل التسجيل.</string>
     <string name="preferences_app_protection__failed_to_disable_registration_lock">تعذَّر تعطيل قفل التسجيل.</string>
     <string name="AppProtectionPreferenceFragment_none">لا شيء</string>
-    <string name="preferences_app_protection__registration_lock">قفل التسجيل</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">يجب إدخال رقم التعريف الشخصي (PIN) لقفل التسجيل</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">يحوي رقم التعريف الشخصي (PIN) على %1$d أرقام أو حروف على الأقل.</string>
     <string name="RegistrationActivity_too_many_attempts">محاولات كثيرة</string>
@@ -5649,20 +5628,6 @@
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
     <string name="Recipient_deleted_account">حساب محذوف</string>
 
-    <!-- Option in settings that will take use to re-register if they are no longer registered -->
-    <string name="preferences_account_reregister">إعادة تسجيل الحساب</string>
-    <!-- Option in settings that will take user to our website or playstore to update their expired build -->
-    <string name="preferences_account_update_signal">تحديث سيجنال</string>
-    <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
-    <string name="preferences_account_delete_all_data">حذف جميع البيانات</string>
-    <!-- Title for confirmation dialog confirming user wants to delete all their data -->
-    <string name="preferences_account_delete_all_data_confirmation_title">هل ترغبُ بحذف جميع البيانات؟</string>
-    <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_message">سَيُؤدِّي هذا إلى إعادة تعيين التطبيق وحذف كل الرسائل. سيتمُّ إغلاق التطبيق بعد اكتمال هذه العملية.</string>
-    <!-- Confirmation action to proceed with application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_proceed">مواصلة</string>
-    <!-- Confirmation action to cancel application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_cancel">إلغاء</string>
     <!-- Error message shown when we fail to delete the data for some unknown reason -->
     <string name="preferences_account_delete_all_data_failed">فشلت عملية حذف البيانات</string>
 
@@ -6236,12 +6201,6 @@
     <string name="AppSettingsFragment__no_subscriber_id_set">لا يوجد أي مجموعة مُعرِّف للمُشترِك</string>
 
     <!-- AccountSettingsFragment -->
-    <string name="AccountSettingsFragment__account">الحِساب</string>
-    <string name="AccountSettingsFragment__youll_be_asked_less_frequently">سيُطلَب منك بعدد مرّاتٍ أقل مع مرور الوقت.</string>
-    <string name="AccountSettingsFragment__require_your_signal_pin">يتطلَّب ‫رقم التعريف الشخصي‬ الخاص بك على سيجنال لتسجيل رقم هاتفك في سيجنال مرّة أخرى</string>
-    <string name="AccountSettingsFragment__change_phone_number">تغيير رقم الهاتف</string>
-    <!-- Account setting that allows user to request and export their signal account data -->
-    <string name="AccountSettingsFragment__request_account_data">بيانات حسابك</string>
 
     <!-- ExportAccountDataFragment -->
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->

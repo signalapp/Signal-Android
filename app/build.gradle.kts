@@ -708,6 +708,7 @@ dependencies {
   implementation(project(":lib:ui-components"))
   implementation(project(":lib:video"))
 
+  implementation(project(":feature:app-settings"))
   implementation(project(":feature:camera"))
   implementation(project(":feature:registration"))
 

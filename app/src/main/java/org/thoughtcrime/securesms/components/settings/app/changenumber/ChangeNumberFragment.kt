@@ -37,6 +37,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import kotlin.time.Duration.Companion.milliseconds
+import org.signal.appsettings.R as AppSettingsR
 
 class ChangeNumberFragment : ComposeFragment() {
 
@@ -97,7 +98,7 @@ fun ChangeNumberScreen(
       )
 
       Text(
-        text = stringResource(id = R.string.AccountSettingsFragment__change_phone_number),
+        text = stringResource(id = AppSettingsR.string.AccountSettingsFragment__change_phone_number),
         style = MaterialTheme.typography.headlineMedium,
         textAlign = TextAlign.Center,
         modifier = Modifier.padding(top = 24.dp)

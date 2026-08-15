@@ -2798,11 +2798,6 @@
     <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">ياردەم خادىمى بىلەن ئالاقىلىشىش</string>
 
     <!-- RegistrationLockV2Dialog -->
-    <string name="RegistrationLockV2Dialog_turn_on_registration_lock">تىزىملىتىش قۇلۇپىنى ئاچامسىز؟</string>
-    <string name="RegistrationLockV2Dialog_turn_off_registration_lock">تىزىملىتىش قۇلۇپىنى تاقامسىز؟</string>
-    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">ئەگەر Signal غا قايتا تىزىملاتقىنىڭىزدا Signal PIN نى ئۇنتۇپ قالغان بولسىڭىز، ھېساباتىڭىزنى 7 كۈن قۇلۇپلاپ سالىسىز.</string>
-    <string name="RegistrationLockV2Dialog_turn_on">ئېچىش</string>
-    <string name="RegistrationLockV2Dialog_turn_off">تاقا</string>
 
     <!-- RevealableMessageView -->
     <string name="RevealableMessageView_view_photo">سۈرەت كۆرسەت</string>
@@ -4158,12 +4153,10 @@
     <string name="preferences__system_default">كۆڭۈلدىكى سىستېما</string>
     <string name="preferences__language">تىل</string>
     <string name="preferences__signal_messages_and_calls">Signal ئۇچۇر ۋە چاقىرىشلىرى</string>
-    <string name="preferences__advanced_pin_settings">ئالىي PIN تەڭشەكلىرى</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">ئالىي PIN تەڭشەكلىرى</string>
     <string name="preferences__free_private_messages_and_calls">Signal ئىشلەتكۈچىلىرىگە ھەقسىز شەخسىي ئۇچۇرلار ۋە چاقىرىقلار</string>
     <string name="preferences__submit_debug_log">سازلاش خاتىرە يوللا</string>
-    <string name="preferences__delete_account">ھېساباتنى ئۆچۈر</string>
     <string name="preferences__support_wifi_calling">«WiFi چاقىرىقى» ماسلىشىشچان ھالىتى</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">ئۈسكۈنىڭىز WiFi دا  قىسقا ئۇچۇر ياكى كۆپ ۋاسىتە ئۇچۇر ئەۋەتكەندە قوزغىتىڭ (پەقەت ئۈسكىنىڭىزدە «WiFi چاقىرىقى» ئاكتىپ بولسا قوزغىتىڭ)</string>
     <string name="preferences__incognito_keyboard">يوشۇرۇن ھەرپتاختىسى</string>
@@ -4751,8 +4744,6 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">ھېساباتىڭىز ئۈچۈن قۇرغان PIN نىڭىزنى كىرگۈزۈڭ. بۇ سىزنىڭ قىسقا ئۇچۇرلۇق دەلىللەش كودىڭىزغا ئوخشىمايدۇ.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">ھېساباتىڭىز ئۈچۈن قۇرغان PIN نى كىرگۈزۈڭ.</string>
-    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
-    <string name="RegistrationLockFragment__switch_keyboard">كۇنۇپكا تاختىسىنى ئالماشتۇرۇش</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">PIN  خاتا، قايتا سىناڭ.</string>
     <string name="RegistrationLockFragment__forgot_pin">PINنى ئۇنۇتتىڭىز؟</string>
     <string name="RegistrationLockFragment__incorrect_pin">خاتا PIN</string>
@@ -4825,8 +4816,6 @@
     <!-- Text label button to skip restoring -->
     <string name="registration_activity__skip_restore">ئەسلىگە كەلتۈرۈشتى ئاتلاڭ</string>
     <string name="preferences_chats__chat_backups">پاراڭ زاپاسلانمىسى</string>
-    <string name="preferences_chats__transfer_account">ھېساباتنى يۆتكە</string>
-    <string name="preferences_chats__transfer_account_to_a_new_android_device">يېڭى بىر Android ئۈسكىنىسگە ھېساباتنى يۆتكە</string>
     <!-- Title for dialog to enter in the backup passphrase -->
     <string name="RegistrationActivity_enter_backup_passphrase">زاپاسلاش ئىم ئىبارىسىنى كىرگۈزۈڭ</string>
     <string name="RegistrationActivity_restore">ئەسلىگە كەلتۈرۈش</string>
@@ -4914,19 +4903,9 @@
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">ئېكران قۇلۇپى ۋاقتى توشتى</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
     <string name="preferences_app_protection__to_use_screen_lock">ئېكران قۇلۇپىنى ئىشلىتىش ئۈچۈن بۇ ئۈسكۈنىگە PIN نومۇر ، ئەندىزە ياكى پارول بەلگىلەڭ.</string>
-    <string name="preferences_app_protection__signal_pin">Signal PIN</string>
-    <string name="preferences_app_protection__create_a_pin">بىر PIN قۇر</string>
-    <string name="preferences_app_protection__change_your_pin">PIN نىڭنى ئۆزگەرت</string>
-    <string name="preferences_app_protection__pin_reminders">PIN ئەسكەرتكۈچىلىرى</string>
-    <string name="preferences_app_protection__turn_off">تاقا</string>
-    <string name="preferences_app_protection__confirm_pin">PIN نى جەزىملەڭ</string>
-    <string name="preferences_app_protection__confirm_your_signal_pin">Signal PIN نىڭىزنى جەزىملەڭ</string>
-    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">PIN نى ئەسلىگە كەلتۈرگىلى بولمىغاچقا، ئۇنى ئەستە ساقلىۋالغىنىڭىزغا ياكى بىخەتەر بىر يەردە ساقلىغىنىڭىزغا كاپالەتلىك قىلىڭ. ئەگەر Signal ھېسابىڭىزنى قايتىدىن تىزىملاتسىڭىز، مەلۇماتلىرىڭىزنى يوقىتىشىڭىز مۈمكىن.</string>
-    <string name="preferences_app_protection__incorrect_pin_try_again">PIN  خاتا، قايتا سىناڭ.</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">تىزىملىتىش قۇلۇپىنى قوزغاتقىلى بولمىدى.</string>
     <string name="preferences_app_protection__failed_to_disable_registration_lock">تىزىملىتىش قۇلۇپىنى ئاكتىپسىزلىغىلى بولمىدى.</string>
     <string name="AppProtectionPreferenceFragment_none">ھېچنېمە</string>
-    <string name="preferences_app_protection__registration_lock">تىزىملىتىش قۇلۇپى</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">سىز چۇقۇم تىزىملىتىش قۇلۇپى PIN ڭىزنى كىرگۈزۈشىڭىز كېرەك</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">سىزنىڭ PIN ىڭىز ئەڭ ئاز %1$d خانىلىق سان ياكى ھەرپلەردىن تۈزۈلۈشى كېرەك</string>
     <string name="RegistrationActivity_too_many_attempts">بەك كۆپ ئۇرۇنۇلدى</string>
@@ -4974,20 +4953,6 @@
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
     <string name="Recipient_deleted_account">ھېساباتنى ئۆچۈرۈش</string>
 
-    <!-- Option in settings that will take use to re-register if they are no longer registered -->
-    <string name="preferences_account_reregister">ھېساباتنى قايتا تىزىملىتىش</string>
-    <!-- Option in settings that will take user to our website or playstore to update their expired build -->
-    <string name="preferences_account_update_signal">Signal نى يېڭىلا</string>
-    <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
-    <string name="preferences_account_delete_all_data">ھەممە سانلىق مەلۇماتنى ئۆچۈر</string>
-    <!-- Title for confirmation dialog confirming user wants to delete all their data -->
-    <string name="preferences_account_delete_all_data_confirmation_title">بارلىق سانلىق مەلۇماتنى ئۆچۈرەمسىز؟</string>
-    <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_message">بۇ مەشغۇلات ئەپنى قايتىدىن قوزغىتىدۇ ۋە بارلىق ئۇچۇرلارنى ئ‍ۆچۈرىدۇ. بۇ جەريان تاماملانغاندىن كېيىن ئەپ تاقىلىدۇ.</string>
-    <!-- Confirmation action to proceed with application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_proceed">داۋاملاشتۇر</string>
-    <!-- Confirmation action to cancel application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_cancel">بىكار قىلىش</string>
     <!-- Error message shown when we fail to delete the data for some unknown reason -->
     <string name="preferences_account_delete_all_data_failed">سانلىق مەلۇماتنى ئۆچۈرەلمىدى</string>
 
@@ -5521,12 +5486,6 @@
     <string name="AppSettingsFragment__no_subscriber_id_set">مۇشتەرىلىك كىملىكى يوق</string>
 
     <!-- AccountSettingsFragment -->
-    <string name="AccountSettingsFragment__account">ھېسابات</string>
-    <string name="AccountSettingsFragment__youll_be_asked_less_frequently">ۋاقىتنىڭ ئۆتۈشىگە ئەگىشىپ سوئالىڭىز ئازىيىدۇ</string>
-    <string name="AccountSettingsFragment__require_your_signal_pin">تېلېفون نومۇرىڭىزنى Signal دا قايتا تىزىملىتىش ئۈچۈن Signal PIN نىڭىز لازىم.</string>
-    <string name="AccountSettingsFragment__change_phone_number">تېلېفون نومۇرىنى ئۆزگەرت</string>
-    <!-- Account setting that allows user to request and export their signal account data -->
-    <string name="AccountSettingsFragment__request_account_data">ھېساباتىڭىزنىڭ سانلىق مەلۇماتلىرى</string>
 
     <!-- ExportAccountDataFragment -->
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->

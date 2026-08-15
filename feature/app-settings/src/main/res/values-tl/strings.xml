@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Paganahin ang Registration Lock?</string>
+    <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Patayin ang Registration Lock?</string>
+    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Kung makalimutan mo ang iyong PIN sa Signal kapag nagrehistro kang muli, hindi mo mabubuksan ang iyong account sa loob ng 7 araw.</string>
+    <string name="RegistrationLockV2Dialog_turn_on">Buksan</string>
+    <string name="RegistrationLockV2Dialog_turn_off">Patayin</string>
+    <string name="preferences__advanced_pin_settings">Advanced PIN settings</string>
+    <string name="preferences__delete_account">Burahin ang account</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="RegistrationLockFragment__switch_keyboard">Magpalit ng keyboard</string>
+    <string name="preferences_chats__transfer_account">Transfer account</string>
+    <string name="preferences_chats__transfer_account_to_a_new_android_device">I-transfer ang account sa bagong Android device</string>
+    <string name="preferences_app_protection__signal_pin">PIN ng Signal</string>
+    <string name="preferences_app_protection__create_a_pin">Lumikha ng PIN</string>
+    <string name="preferences_app_protection__change_your_pin">Baguhin ang iyong PIN</string>
+    <string name="preferences_app_protection__pin_reminders">PIN reminders</string>
+    <string name="preferences_app_protection__turn_off">Patayin</string>
+    <string name="preferences_app_protection__confirm_pin">Kumpirmahin ang PIN</string>
+    <string name="preferences_app_protection__confirm_your_signal_pin">Kumpirmahin ang PIN ng iyong Signal</string>
+    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Siguraduhing memorize mo o naka-store securely ang iyong PIN dahil hindi na ito mare-recover. Kung makalimutan mo ang iyong PIN, pwedeng mawala ang data mo kapag nag-register ka ulit ng iyong Signal account.</string>
+    <string name="preferences_app_protection__incorrect_pin_try_again">Hindi tama ang PIN. Subukang muli.</string>
+    <string name="preferences_app_protection__registration_lock">Lock sa Pagpaparehistro</string>
+    <!-- Option in settings that will take use to re-register if they are no longer registered -->
+    <string name="preferences_account_reregister">Mag-register ulit ng account</string>
+    <!-- Option in settings that will take user to our website or playstore to update their expired build -->
+    <string name="preferences_account_update_signal">I-update ang Signal</string>
+    <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
+    <string name="preferences_account_delete_all_data">Burahin ang lahat ng data</string>
+    <!-- Title for confirmation dialog confirming user wants to delete all their data -->
+    <string name="preferences_account_delete_all_data_confirmation_title">Gusto mo bang i-burahin ang lahat ng data?</string>
+    <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
+    <string name="preferences_account_delete_all_data_confirmation_message">Mare-reset ang app at mabubura ang lahat ng messages. Magsasara ang app kapag natapos na ang prosesong ito.</string>
+    <!-- Confirmation action to proceed with application data deletion -->
+    <string name="preferences_account_delete_all_data_confirmation_proceed">Magpatuloy</string>
+    <!-- Confirmation action to cancel application data deletion -->
+    <string name="preferences_account_delete_all_data_confirmation_cancel">I-cancel</string>
+    <string name="AccountSettingsFragment__account">Account</string>
+    <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Hindi ka na masyadong tatanungin over time</string>
+    <string name="AccountSettingsFragment__require_your_signal_pin">Require your Signal PIN para ma-register ulit ang iyong phone number with Signal</string>
+    <string name="AccountSettingsFragment__change_phone_number">Change phone number</string>
+    <!-- Account setting that allows user to request and export their signal account data -->
+    <string name="AccountSettingsFragment__request_account_data">Ang iyong account data</string>
+</resources>

@@ -2894,11 +2894,6 @@
     <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">Кардарларды колдоо кызматына кайрылуу</string>
 
     <!-- RegistrationLockV2Dialog -->
-    <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Катталууну Кулпулоо колдонулсунбу?</string>
-    <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Катталууну Кулпулоо өчүрүлсүнбү?</string>
-    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Signal\'дагы PIN кодуңузду унутуп калсаңыз, Signal\'га кайра катталып жатканда 7 күн бою жеке баракчаңызга кире албай каласыз.</string>
-    <string name="RegistrationLockV2Dialog_turn_on">Күйгүзүү</string>
-    <string name="RegistrationLockV2Dialog_turn_off">Өчүрүү</string>
 
     <!-- RevealableMessageView -->
     <string name="RevealableMessageView_view_photo">Сүрөттү карап көрүү</string>
@@ -4282,12 +4277,10 @@
     <string name="preferences__system_default">Демейки</string>
     <string name="preferences__language">Тил</string>
     <string name="preferences__signal_messages_and_calls">Signal билдирүүлөрү жана чалуулары</string>
-    <string name="preferences__advanced_pin_settings">Өркүндөтүлгөн PIN параметрлери</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">Өркүндөтүлгөн PIN параметрлери</string>
     <string name="preferences__free_private_messages_and_calls">Signal колдонуучуларына акысыз жеке билдирүүлөр жана чалуулар</string>
     <string name="preferences__submit_debug_log">Мүчүлүштүктөр журналын жөнөтүү</string>
-    <string name="preferences__delete_account">Аккаунтту өчүрүү</string>
     <string name="preferences__support_wifi_calling">\'WiFi Чалуу\' шайкештик режими</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Эгер түзмөгүңүз WiFi аркылуу SMS/MMS жеткирүүнү колдонсо, иштетүү (түзмөгүңүздө \"WiFi чалуу\" күйгүзүлгөндө гана иштетиңиз)</string>
     <string name="preferences__incognito_keyboard">Жашыруун баскычтоп</string>
@@ -4881,8 +4874,6 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Жеке кабинетиңиз үчүн түзгөн PIN кодду киргизиңиз. Бул код SMS аркылуу келген текшерүү кодуңуздан айырмаланып турат.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Аккаунтуңуздун PIN кодун киргизиниз.</string>
-    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
-    <string name="RegistrationLockFragment__switch_keyboard">Башка баскычтопко которулуу</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Туура эмес PIN-код. Кайра кайталаңыз.</string>
     <string name="RegistrationLockFragment__forgot_pin">PIN-кодду унуттуңузбу?</string>
     <string name="RegistrationLockFragment__incorrect_pin">Туура эмес PIN-код</string>
@@ -4960,8 +4951,6 @@
     <!-- Text label button to skip restoring -->
     <string name="registration_activity__skip_restore">Өткөрүп жиберүү</string>
     <string name="preferences_chats__chat_backups">Маектердин камдык көчүрмөсү</string>
-    <string name="preferences_chats__transfer_account">Аккаунтту которуу</string>
-    <string name="preferences_chats__transfer_account_to_a_new_android_device">Аккаунтту жаңы Android түзмөгүнө өткөрүү</string>
     <!-- Title for dialog to enter in the backup passphrase -->
     <string name="RegistrationActivity_enter_backup_passphrase">Кошумча сыр сөз айкашы киргизиңиз</string>
     <string name="RegistrationActivity_restore">Калыбына келтирүү</string>
@@ -5049,19 +5038,9 @@
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">Экранды кулпулоо аракетсиздик таймауту</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
     <string name="preferences_app_protection__to_use_screen_lock">Экран кулпусуна ушул түзмөктөн PIN кодду, графикалык ачкычты же сырсөздү коюңуз.</string>
-    <string name="preferences_app_protection__signal_pin">Signal PIN коду</string>
-    <string name="preferences_app_protection__create_a_pin">PIN код түзүү</string>
-    <string name="preferences_app_protection__change_your_pin">PIN кодуңузду өзгөртүңүз</string>
-    <string name="preferences_app_protection__pin_reminders">PIN код эстеткичтери</string>
-    <string name="preferences_app_protection__turn_off">Өчүрүү</string>
-    <string name="preferences_app_protection__confirm_pin">PIN-кодду тастыктаңыз</string>
-    <string name="preferences_app_protection__confirm_your_signal_pin">Signal\'дын PIN кодун ырастаңыз</string>
-    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">PIN кодуңузду эстеп же коопсуз сактаганыңызды текшериңиз, аны калыбына келтирүү мүмкүн эмес. Эгер PIN кодуңузду унутуп калсаңыз, Signal аккаунтуңузду кайра каттаганыңызда берилмелериңизди жоготуп алышыңыз мүмкүн.</string>
-    <string name="preferences_app_protection__incorrect_pin_try_again">Туура эмес Пин. Кайра кайталаңыз.</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">Катталууну кулпулоо ишке ашырылбады.</string>
     <string name="preferences_app_protection__failed_to_disable_registration_lock">Катталууну кулпулоо өчурүлгөн жок.</string>
     <string name="AppProtectionPreferenceFragment_none">Эч бир</string>
-    <string name="preferences_app_protection__registration_lock">Катталууну Кулпулоо</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Катталууну Кулпулоо үчүн PIN-кодун киргизишиңиз керек</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Сиздин PIN-кодуңузда жок дегенде%1$d цифра же белги болуусу зарыл</string>
     <string name="RegistrationActivity_too_many_attempts">Ашыкча көп аракет көрүлдү</string>
@@ -5109,20 +5088,6 @@
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
     <string name="Recipient_deleted_account">Өчүрүлгөн аккаунт</string>
 
-    <!-- Option in settings that will take use to re-register if they are no longer registered -->
-    <string name="preferences_account_reregister">Аккаунтту кайра каттоо</string>
-    <!-- Option in settings that will take user to our website or playstore to update their expired build -->
-    <string name="preferences_account_update_signal">Signal\'ды жаңыртуу</string>
-    <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
-    <string name="preferences_account_delete_all_data">Бардык берилмелерди өчүрүү</string>
-    <!-- Title for confirmation dialog confirming user wants to delete all their data -->
-    <string name="preferences_account_delete_all_data_confirmation_title">Бардык берилмелер өчүрөсүзбү?</string>
-    <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_message">Колдонмо кайра орнотулуп, бардык билдирүүлөр өчүп калат. Бул процесс аяктагандан кийин колдонмо жабылат.</string>
-    <!-- Confirmation action to proceed with application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_proceed">Улантуу</string>
-    <!-- Confirmation action to cancel application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_cancel">Жок</string>
     <!-- Error message shown when we fail to delete the data for some unknown reason -->
     <string name="preferences_account_delete_all_data_failed">Өчпөй калды</string>
 
@@ -5664,12 +5629,6 @@
     <string name="AppSettingsFragment__no_subscriber_id_set">Бир дагы жазылуучунун идентификатору коюлган жок</string>
 
     <!-- AccountSettingsFragment -->
-    <string name="AccountSettingsFragment__account">Аккаунт</string>
-    <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Убакыттын өтүшү менен сизден азыраак суралат</string>
-    <string name="AccountSettingsFragment__require_your_signal_pin">Телефон номериңизди Signal менен кайра каттоо үчүн Signal кызматынын PIN кодун талап кылыңыз</string>
-    <string name="AccountSettingsFragment__change_phone_number">Телефон номерин өзгөртүү</string>
-    <!-- Account setting that allows user to request and export their signal account data -->
-    <string name="AccountSettingsFragment__request_account_data">Аккаунтуңуздагы нерселер</string>
 
     <!-- ExportAccountDataFragment -->
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->

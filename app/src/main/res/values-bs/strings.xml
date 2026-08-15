@@ -3086,11 +3086,6 @@
     <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">Kontaktirajte podršku</string>
 
     <!-- RegistrationLockV2Dialog -->
-    <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Uključiti zaključavanje registracije?</string>
-    <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Isključiti zaključavanje registracije?</string>
-    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Ako zaboravite svoj Signal PIN kad se budete ponovo registrovali na Signalu, Vaš račun bit će Vam nedostupan 7 dana.</string>
-    <string name="RegistrationLockV2Dialog_turn_on">Uključi</string>
-    <string name="RegistrationLockV2Dialog_turn_off">Isključi</string>
 
     <!-- RevealableMessageView -->
     <string name="RevealableMessageView_view_photo">Vidi fotografiju</string>
@@ -4530,12 +4525,10 @@
     <string name="preferences__system_default">Sistemske postavke</string>
     <string name="preferences__language">Jezik</string>
     <string name="preferences__signal_messages_and_calls">Signal poruke i pozivi</string>
-    <string name="preferences__advanced_pin_settings">Napredna podešavanja PIN-a</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">Napredna podešavanja PIN-a</string>
     <string name="preferences__free_private_messages_and_calls">Besplatne privatne poruke i pozivi za korisnike Signala</string>
     <string name="preferences__submit_debug_log">Pošaljite zapis za ispravljanje grešaka</string>
-    <string name="preferences__delete_account">Izbriši račun</string>
     <string name="preferences__support_wifi_calling">\'WiFi pozivanje\' kompatibilni način rada</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktivirajte ukoliko Vaš uređaj isporučuje SMS/MMS poruke preko WiFi-a (aktivirajte samo kad je na Vašem uređaju aktivno i \'WiFi pozivanje\')</string>
     <string name="preferences__incognito_keyboard">Inkognito tastatura</string>
@@ -5141,8 +5134,6 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Unesite PIN koji ste kreirali za svoj račun. PIN nije isto što i SMS kōd za verifikaciju.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Unesite PIN koji ste kreirali za svoj račun.</string>
-    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
-    <string name="RegistrationLockFragment__switch_keyboard">Promijeni tastaturu</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Netačan PIN. Pokušajte ponovo.</string>
     <string name="RegistrationLockFragment__forgot_pin">Zaboravili ste PIN?</string>
     <string name="RegistrationLockFragment__incorrect_pin">Netačan PIN</string>
@@ -5230,8 +5221,6 @@
     <!-- Text label button to skip restoring -->
     <string name="registration_activity__skip_restore">Preskoči obnovu</string>
     <string name="preferences_chats__chat_backups">Rezervne kopije chata</string>
-    <string name="preferences_chats__transfer_account">Prenesi račun</string>
-    <string name="preferences_chats__transfer_account_to_a_new_android_device">Prenesite račun na novi Android uređaj</string>
     <!-- Title for dialog to enter in the backup passphrase -->
     <string name="RegistrationActivity_enter_backup_passphrase">Unesite lozinku za rezervne kopije</string>
     <string name="RegistrationActivity_restore">Vrati</string>
@@ -5319,19 +5308,9 @@
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">Zaključavanje ekrana nakon neaktivnosti</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
     <string name="preferences_app_protection__to_use_screen_lock">Za korištenje zaključavanja ekrana postavite PIN, uzorak ili lozinku na ovom uređaju.</string>
-    <string name="preferences_app_protection__signal_pin">Signal PIN</string>
-    <string name="preferences_app_protection__create_a_pin">Kreiraj PIN</string>
-    <string name="preferences_app_protection__change_your_pin">Promijenite svoj PIN</string>
-    <string name="preferences_app_protection__pin_reminders">PIN podsjetnici</string>
-    <string name="preferences_app_protection__turn_off">Isključi</string>
-    <string name="preferences_app_protection__confirm_pin">Potvrdite PIN</string>
-    <string name="preferences_app_protection__confirm_your_signal_pin">Potvrdite svoj Signal PIN</string>
-    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Budite sigurni da ste svoj PIN zapamtili ili pohranili na sigurno mjesto, jer se on ne može vratiti. Ako zaboravite PIN, može se dogoditi da izgubite stare podatke prilikom ponovne registracije na Signal.</string>
-    <string name="preferences_app_protection__incorrect_pin_try_again">Netačan PIN. Pokušajte ponovo.</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">Neuspjelo aktiviranje zaključavanja registracije.</string>
     <string name="preferences_app_protection__failed_to_disable_registration_lock">Neuspjelo deaktiviranje zaključavanja registracije.</string>
     <string name="AppProtectionPreferenceFragment_none">Nijedno</string>
-    <string name="preferences_app_protection__registration_lock">Zaključavanje registracije</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Morate unijeti svoj PIN za zaključavanje registracije</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Vaš PIN mora sadržavati najmanje %1$d brojki ili slova</string>
     <string name="RegistrationActivity_too_many_attempts">Previše pokušaja</string>
@@ -5379,20 +5358,6 @@
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
     <string name="Recipient_deleted_account">Izbrisan račun</string>
 
-    <!-- Option in settings that will take use to re-register if they are no longer registered -->
-    <string name="preferences_account_reregister">Ponovo registrirajte račun</string>
-    <!-- Option in settings that will take user to our website or playstore to update their expired build -->
-    <string name="preferences_account_update_signal">Ažurirajte Signal</string>
-    <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
-    <string name="preferences_account_delete_all_data">Izbriši sve podatke</string>
-    <!-- Title for confirmation dialog confirming user wants to delete all their data -->
-    <string name="preferences_account_delete_all_data_confirmation_title">Izbrisati sve podatke?</string>
-    <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_message">Ovo će ponovo postaviti aplikaciju i izbrisati sve poruke. Aplikacija će se zatvoriti nakon što se ovaj postupak završi.</string>
-    <!-- Confirmation action to proceed with application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_proceed">Nastavljanje</string>
-    <!-- Confirmation action to cancel application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_cancel">Otkaži</string>
     <!-- Error message shown when we fail to delete the data for some unknown reason -->
     <string name="preferences_account_delete_all_data_failed">Brisanje podataka nije uspjelo</string>
 
@@ -5950,12 +5915,6 @@
     <string name="AppSettingsFragment__no_subscriber_id_set">Nije postavljen ID pretplatnika</string>
 
     <!-- AccountSettingsFragment -->
-    <string name="AccountSettingsFragment__account">Račun</string>
-    <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Bit ćete podsjećani sve rjeđe i rjeđe</string>
-    <string name="AccountSettingsFragment__require_your_signal_pin">Zahtijevajte svoj Signal PIN da bi se Vaš broj telefona mogao ponovo registrovati na Signal</string>
-    <string name="AccountSettingsFragment__change_phone_number">Promijeni broj telefona</string>
-    <!-- Account setting that allows user to request and export their signal account data -->
-    <string name="AccountSettingsFragment__request_account_data">Podaci o vašem računu</string>
 
     <!-- ExportAccountDataFragment -->
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->

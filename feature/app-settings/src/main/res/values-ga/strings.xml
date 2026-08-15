@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="RegistrationLockV2Dialog_turn_on_registration_lock">An bhfuil fonn ort Glas Clárúcháin a chur ar siúl?</string>
+    <string name="RegistrationLockV2Dialog_turn_off_registration_lock">An bhfuil fonn ort an Glas Clárúcháin a mhúchadh?</string>
+    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Má ligeann tú d\'UAP Signal i ndearmad nuair a chláróidh tú le Signal arís, cuirfear do chuntas faoi ghlas ar feadh 7 lá.</string>
+    <string name="RegistrationLockV2Dialog_turn_on">Cuir ar siúl</string>
+    <string name="RegistrationLockV2Dialog_turn_off">Múch</string>
+    <string name="preferences__advanced_pin_settings">Ardroghanna UAP</string>
+    <string name="preferences__delete_account">Scrios cuntas</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="RegistrationLockFragment__switch_keyboard">Aistrigh eochairchlár</string>
+    <string name="preferences_chats__transfer_account">Cuntas a Aistriú</string>
+    <string name="preferences_chats__transfer_account_to_a_new_android_device">Aistrigh cuntas chuig gléas nua Android</string>
+    <string name="preferences_app_protection__signal_pin">UAP Signal</string>
+    <string name="preferences_app_protection__create_a_pin">Cruthaigh UAP</string>
+    <string name="preferences_app_protection__change_your_pin">Athraigh d\'UAP</string>
+    <string name="preferences_app_protection__pin_reminders">Meabhrúcháin UAP</string>
+    <string name="preferences_app_protection__turn_off">Múch</string>
+    <string name="preferences_app_protection__confirm_pin">Deimhnaigh an UAP</string>
+    <string name="preferences_app_protection__confirm_your_signal_pin">UAP Signal a Dheimhniú</string>
+    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Cinntigh go gcuirfidh tú d\'UAP de do ghlanmheabhair nó go ndéanfaidh tú í a stóráil go slán toisc nach féidir í a aisghabháil. Má dhéanann tú dearmad ar d\'UAP, seans go gcaillfidh tú sonraí agus do chuntas Signal á athchlárú agat.</string>
+    <string name="preferences_app_protection__incorrect_pin_try_again">UAP mhícheart. Bain triail eile as.</string>
+    <string name="preferences_app_protection__registration_lock">Glas Clárúcháin</string>
+    <!-- Option in settings that will take use to re-register if they are no longer registered -->
+    <string name="preferences_account_reregister">Athchláraigh cuntas</string>
+    <!-- Option in settings that will take user to our website or playstore to update their expired build -->
+    <string name="preferences_account_update_signal">Nuashonraigh Signal</string>
+    <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
+    <string name="preferences_account_delete_all_data">Scrios na sonraí go léir</string>
+    <!-- Title for confirmation dialog confirming user wants to delete all their data -->
+    <string name="preferences_account_delete_all_data_confirmation_title">Scrios na sonraí go léir?</string>
+    <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
+    <string name="preferences_account_delete_all_data_confirmation_message">Athshocrófar an aip agus scriosfar gach teachtaireacht leis sin. Dúnfar an app nuair a bheidh an próiseas seo críochnaithe.</string>
+    <!-- Confirmation action to proceed with application data deletion -->
+    <string name="preferences_account_delete_all_data_confirmation_proceed">Ar Aghaidh</string>
+    <!-- Confirmation action to cancel application data deletion -->
+    <string name="preferences_account_delete_all_data_confirmation_cancel">Cuir ar ceal</string>
+    <string name="AccountSettingsFragment__account">Cuntas</string>
+    <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Ní iarrfar ort chomh minic le himeacht ama</string>
+    <string name="AccountSettingsFragment__require_your_signal_pin">Éiligh d\'UAP Signal le d\'uimhir ghutháin a chlárú le Signal arís</string>
+    <string name="AccountSettingsFragment__change_phone_number">Athraigh uimhir ghutháin</string>
+    <!-- Account setting that allows user to request and export their signal account data -->
+    <string name="AccountSettingsFragment__request_account_data">Sonraí do chuntais</string>
+</resources>
