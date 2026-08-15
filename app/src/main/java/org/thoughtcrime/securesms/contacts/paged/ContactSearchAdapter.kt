@@ -26,6 +26,7 @@ open class ContactSearchAdapter(
     ContactSearchModels.registerStoryItems(this, displayOptions.displayCheckBox, onClickCallbacks::onStoryClicked, storyContextMenuCallbacks, displayOptions.displayStoryRing)
     ContactSearchModels.registerKnownRecipientItems(this, fixedContacts, displayOptions, onClickCallbacks::onKnownRecipientClicked, longClickCallbacks::onKnownRecipientLongClick, callButtonClickCallbacks)
     ContactSearchModels.registerHeaders(this)
+    ContactSearchModels.registerSectionLoading(this)
     ContactSearchModels.registerExpands(this, onClickCallbacks::onExpandClicked)
     ContactSearchModels.registerChatTypeItems(this, onClickCallbacks::onChatTypeClicked)
     ContactSearchModels.registerUnknownRecipientItems(this, onClickCallbacks::onUnknownRecipientClicked, displayOptions.displayCheckBox)

@@ -351,22 +351,23 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
     return noMetadata && noMembers
   }
 
-  fun queryGroupsByMemberName(inputQuery: String): Cursor {
+  fun queryGroupsByMemberName(inputQuery: String, limit: Int): Cursor {
     val subquery = recipients.getAllContactsSubquery(inputQuery, RecipientTable.IncludeSelfMode.IncludeWithoutRemap)
     val statement = """
-      SELECT 
-        DISTINCT $TABLE_NAME.*, 
+      SELECT
+        DISTINCT $TABLE_NAME.*,
         GROUP_CONCAT(${MembershipTable.TABLE_NAME}.${MembershipTable.RECIPIENT_ID}) as $MEMBER_GROUP_CONCAT,
         ${ThreadTable.TABLE_NAME}.${ThreadTable.DATE} as $THREAD_DATE
-      FROM $TABLE_NAME          
+      FROM $TABLE_NAME
       INNER JOIN ${MembershipTable.TABLE_NAME} ON ${MembershipTable.TABLE_NAME}.${MembershipTable.GROUP_ID} = $TABLE_NAME.$GROUP_ID
       INNER JOIN ${ThreadTable.TABLE_NAME} ON ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} = $TABLE_NAME.$RECIPIENT_ID
       WHERE $TABLE_NAME.$IS_MEMBER = 1 AND $TABLE_NAME.$TERMINATED_BY = 0 AND ${MembershipTable.TABLE_NAME}.${MembershipTable.RECIPIENT_ID} IN (${subquery.where})
       GROUP BY ${MembershipTable.TABLE_NAME}.${MembershipTable.GROUP_ID}
       ORDER BY $TITLE COLLATE NOCASE ASC
+      LIMIT ?
     """
 
-    return databaseHelper.signalReadableDatabase.query(statement, subquery.whereArgs)
+    return databaseHelper.signalReadableDatabase.query(statement, subquery.whereArgs + limit.toString())
   }
 
   fun queryGroupsByTitle(inputQuery: String, includeInactive: Boolean, excludeV1: Boolean, excludeMms: Boolean): Reader {

@@ -3787,7 +3787,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   /**
    * Queries all contacts without an active thread.
    */
-  fun getAllContactsWithoutThreads(inputQuery: String): Cursor {
+  fun getAllContactsWithoutThreads(inputQuery: String, limit: Int): Cursor {
     val query = SqlUtil.buildCaseInsensitiveGlobPattern(inputQuery)
 
     //language=sql
@@ -3795,14 +3795,15 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       SELECT ${searchProjection(IncludeSelfMode.Exclude).joinToString(", ")} FROM $TABLE_NAME
       WHERE $BLOCKED = ? AND $HIDDEN = ? AND $REGISTERED != ? AND NOT EXISTS (SELECT 1 FROM ${ThreadTable.TABLE_NAME} WHERE ${ThreadTable.TABLE_NAME}.${ThreadTable.ACTIVE} = 1 AND ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} = $TABLE_NAME.$ID LIMIT 1)
       AND (
-          $SORT_NAME GLOB ? OR 
-          $USERNAME GLOB ? OR 
-          ${ContactSearchSelection.E164_SEARCH} OR 
+          $SORT_NAME GLOB ? OR
+          $USERNAME GLOB ? OR
+          ${ContactSearchSelection.E164_SEARCH} OR
           $EMAIL GLOB ?
       )
+      LIMIT ?
     """
 
-    return readableDatabase.query(subquery, SqlUtil.buildArgs(0, 0, RegisteredState.NOT_REGISTERED.id, query, query, query, query))
+    return readableDatabase.query(subquery, SqlUtil.buildArgs(0, 0, RegisteredState.NOT_REGISTERED.id, query, query, query, query, limit))
   }
 
   @JvmOverloads
