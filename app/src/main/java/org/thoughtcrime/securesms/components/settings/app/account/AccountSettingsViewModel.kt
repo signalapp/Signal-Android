@@ -31,6 +31,9 @@ class AccountSettingsViewModel(
 
   companion object {
     private val TAG = Log.tag(AccountSettingsViewModel::class)
+
+    /** Stand-in for the real key count, which we have nowhere to read from yet. */
+    private const val MOCK_SIGNAL_LOGIN_KEY_COUNT = 2
   }
 
   private val _state = MutableStateFlow(AccountSettingsState())
@@ -101,6 +104,9 @@ class AccountSettingsViewModel(
           )
         }
       }
+      AccountSettingsEvent.AuthenticatorAppClicked -> {
+        _actions.send(AccountSettingsAction.NavigateToAuthenticatorAppSetup)
+      }
       AccountSettingsEvent.AdvancedPinSettingsClicked -> {
         _actions.send(AccountSettingsAction.NavigateToAdvancedPinSettings)
       }
@@ -146,7 +152,15 @@ class AccountSettingsViewModel(
         pinRemindersEnabled = repository.arePinRemindersEnabled(),
         registrationLockEnabled = repository.isRegistrationLockEnabled(),
         userUnregistered = repository.isUserUnregistered(),
-        clientDeprecated = repository.isClientDeprecated()
+        clientDeprecated = repository.isClientDeprecated(),
+        signalLogin = if (repository.isPhoneNumberlessRegistrationEnabled()) {
+          AccountSettingsState.SignalLogin(
+            keyCount = MOCK_SIGNAL_LOGIN_KEY_COUNT,
+            hasAuthenticatorApp = repository.hasAuthenticatorApp()
+          )
+        } else {
+          null
+        }
       )
     }
   }

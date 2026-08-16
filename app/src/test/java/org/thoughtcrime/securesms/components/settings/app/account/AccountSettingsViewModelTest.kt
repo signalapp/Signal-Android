@@ -9,6 +9,7 @@ import assertk.assertThat
 import assertk.assertions.isEqualTo
 import assertk.assertions.isFalse
 import assertk.assertions.isInstanceOf
+import assertk.assertions.isNull
 import assertk.assertions.isTrue
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -61,6 +62,8 @@ class AccountSettingsViewModelTest {
     every { repository.isUserUnregistered() } returns false
     every { repository.isClientDeprecated() } returns false
     every { repository.getPinKeyboardType() } returns PinKeyboardType.NUMERIC
+    every { repository.isPhoneNumberlessRegistrationEnabled() } returns false
+    every { repository.hasAuthenticatorApp() } returns false
     every { repository.verifyLocalPin(any()) } answers { firstArg<String>() == CORRECT_PIN }
     coEvery { repository.setRegistrationLockEnabled(any()) } returns true
   }
@@ -286,6 +289,35 @@ class AccountSettingsViewModelTest {
     viewModel.onEvent(AccountSettingsEvent.PinCreated)
 
     assertThat(actions.last()).isEqualTo(AccountSettingsAction.ShowPinCreatedConfirmation)
+  }
+
+  @Test
+  fun `the Signal Login section is left out when phone-numberless registration is off`() = runTest(testDispatcher) {
+    val viewModel = createViewModel()
+
+    assertThat(viewModel.state.value.signalLogin).isNull()
+  }
+
+  @Test
+  fun `the Signal Login section is filled in when phone-numberless registration is on`() = runTest(testDispatcher) {
+    every { repository.isPhoneNumberlessRegistrationEnabled() } returns true
+    every { repository.hasAuthenticatorApp() } returns true
+
+    val viewModel = createViewModel()
+
+    assertThat(viewModel.state.value.signalLogin?.hasAuthenticatorApp).isEqualTo(true)
+  }
+
+  @Test
+  fun `AuthenticatorAppClicked opens the authenticator setup flow`() = runTest(testDispatcher) {
+    every { repository.isPhoneNumberlessRegistrationEnabled() } returns true
+
+    val viewModel = createViewModel()
+    val actions = collectActions(viewModel.actions)
+
+    viewModel.onEvent(AccountSettingsEvent.AuthenticatorAppClicked)
+
+    assertThat(actions.last()).isEqualTo(AccountSettingsAction.NavigateToAuthenticatorAppSetup)
   }
 
   private fun createViewModel(): AccountSettingsViewModel = AccountSettingsViewModel(repository)

@@ -7,9 +7,15 @@ package org.signal.appsettings.account
 
 import androidx.annotation.StringRes
 import androidx.annotation.VisibleForTesting
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Icon
@@ -22,13 +28,21 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import org.signal.appsettings.R
 import org.signal.appsettings.account.AccountSettingsState.Dialog
@@ -42,10 +56,14 @@ import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.Texts
 import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.core.ui.R as CoreUiR
 
 @VisibleForTesting
 object AccountSettingsTestTags {
   const val SCROLLER = "scroller"
+  const val CARD_SIGNAL_LOGIN = "card-signal-login"
+  const val ROW_AUTHENTICATOR_APP = "row-authenticator-app"
+  const val ROW_SECURITY_KEYS = "row-security-keys"
   const val ROW_MODIFY_PIN = "row-modify-pin"
   const val ROW_PIN_REMINDER = "row-pin-reminder"
   const val ROW_REGISTRATION_LOCK = "row-registration-lock"
@@ -79,6 +97,63 @@ fun AccountSettingsScreen(
         .padding(contentPadding)
         .testTag(AccountSettingsTestTags.SCROLLER)
     ) {
+      if (state.signalLogin != null) {
+        item {
+          Texts.SectionHeader(
+            text = stringResource(R.string.AccountSettingsFragment__signal_login)
+          )
+        }
+
+        item {
+          SignalLoginCard(keyCount = state.signalLogin.keyCount)
+        }
+
+        item {
+          SectionFooter(text = stringResource(R.string.AccountSettingsFragment__your_signal_login_is_used_to_recover))
+        }
+
+        item {
+          Dividers.Default()
+        }
+
+        item {
+          Texts.SectionHeader(
+            text = stringResource(R.string.AccountSettingsFragment__two_factor_authentication)
+          )
+        }
+
+        item {
+          Rows.TextRow(
+            icon = SignalIcons.DevicePhone.imageVector,
+            text = stringResource(R.string.AccountSettingsFragment__authenticator_app),
+            label = if (state.signalLogin.hasAuthenticatorApp) {
+              stringResource(R.string.AccountSettingsFragment__enabled)
+            } else {
+              stringResource(R.string.AccountSettingsFragment__use_an_authenticator_app)
+            },
+            onClick = { onEvent(AccountSettingsEvent.AuthenticatorAppClicked) },
+            modifier = Modifier.testTag(AccountSettingsTestTags.ROW_AUTHENTICATOR_APP)
+          )
+        }
+
+        item {
+          Rows.TextRow(
+            icon = SignalIcons.Key.imageVector,
+            text = stringResource(R.string.AccountSettingsFragment__security_keys),
+            label = stringResource(R.string.AccountSettingsFragment__set_up_using_a_physical_security_key),
+            modifier = Modifier.testTag(AccountSettingsTestTags.ROW_SECURITY_KEYS)
+          )
+        }
+
+        item {
+          SectionFooter(text = stringResource(R.string.AccountSettingsFragment__use_a_second_form_of_authentication))
+        }
+
+        item {
+          Dividers.Default()
+        }
+      }
+
       item {
         Texts.SectionHeader(
           text = stringResource(R.string.preferences_app_protection__signal_pin)
@@ -241,6 +316,86 @@ fun AccountSettingsScreen(
   }
 }
 
+/**
+ * The card at the top of the screen that summarizes the user's Signal Login. It has no destination yet, so it isn't
+ * clickable.
+ */
+@Composable
+private fun SignalLoginCard(
+  keyCount: Int,
+  modifier: Modifier = Modifier
+) {
+  Row(
+    modifier = modifier
+      .fillMaxWidth()
+      .padding(horizontal = 20.dp)
+      .clip(RoundedCornerShape(18.dp))
+      .background(SignalTheme.colors.colorSurface2)
+      .padding(horizontal = 18.dp, vertical = 20.dp)
+      .testTag(AccountSettingsTestTags.CARD_SIGNAL_LOGIN),
+    verticalAlignment = Alignment.CenterVertically
+  ) {
+    Image(
+      painter = painterResource(R.drawable.image_signal_login_card),
+      contentDescription = null,
+      contentScale = ContentScale.FillBounds,
+      modifier = Modifier
+        .size(width = 91.dp, height = 52.dp)
+        .clip(RoundedCornerShape(8.dp))
+    )
+
+    Column(
+      modifier = Modifier
+        .weight(1f)
+        .padding(horizontal = 20.dp)
+    ) {
+      Text(
+        text = stringResource(R.string.AccountSettingsFragment__account_and_recovery),
+        style = MaterialTheme.typography.bodyLarge
+      )
+
+      Text(
+        text = pluralStringResource(R.plurals.AccountSettingsFragment__d_keys, keyCount, keyCount),
+        style = MaterialTheme.typography.bodyMedium,
+        color = MaterialTheme.colorScheme.onSurfaceVariant
+      )
+    }
+
+    Icon(
+      imageVector = SignalIcons.ChevronRight.imageVector,
+      contentDescription = null,
+      tint = MaterialTheme.colorScheme.onSurfaceVariant
+    )
+  }
+}
+
+/**
+ * Explanatory text shown underneath a section, ending in a "Learn more" link that has nowhere to go yet.
+ */
+@Composable
+private fun SectionFooter(
+  text: String,
+  modifier: Modifier = Modifier
+) {
+  val learnMore = stringResource(R.string.AccountSettingsFragment__learn_more)
+  val primaryColor = MaterialTheme.colorScheme.primary
+
+  Text(
+    text = remember(text, learnMore, primaryColor) {
+      buildAnnotatedString {
+        append(text)
+        append(" ")
+        withStyle(SpanStyle(color = primaryColor)) {
+          append(learnMore)
+        }
+      }
+    },
+    style = MaterialTheme.typography.bodyMedium,
+    color = MaterialTheme.colorScheme.onSurfaceVariant,
+    modifier = modifier.padding(horizontal = dimensionResource(CoreUiR.dimen.gutter), vertical = 16.dp)
+  )
+}
+
 @Composable
 private fun DeleteAllDataConfirmationDialog(
   onEvent: (AccountSettingsEvent) -> Unit
@@ -395,6 +550,21 @@ private fun AccountSettingsScreenPreview() {
         hasRestoredAep = true,
         pinRemindersEnabled = true,
         registrationLockEnabled = true
+      ),
+      onEvent = {}
+    )
+  }
+}
+
+@DayNightPreviews
+@Composable
+private fun AccountSettingsScreenSignalLoginPreview() {
+  Previews.Preview {
+    AccountSettingsScreen(
+      state = AccountSettingsState(
+        hasPin = true,
+        pinRemindersEnabled = true,
+        signalLogin = AccountSettingsState.SignalLogin(keyCount = 2, hasAuthenticatorApp = false)
       ),
       onEvent = {}
     )

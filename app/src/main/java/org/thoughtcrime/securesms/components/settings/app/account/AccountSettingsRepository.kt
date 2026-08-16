@@ -8,10 +8,12 @@ package org.thoughtcrime.securesms.components.settings.app.account
 import kotlinx.coroutines.withContext
 import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.components.settings.app.account.authenticator.AuthenticatorRepository
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.lock.v2.PinKeyboardType
 import org.thoughtcrime.securesms.pin.SvrRepository
+import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.kbs.PinHashUtil
 import java.io.IOException
@@ -24,6 +26,8 @@ class AccountSettingsRepository {
   companion object {
     private val TAG = Log.tag(AccountSettingsRepository::class)
   }
+
+  private val authenticatorRepository = AuthenticatorRepository()
 
   fun hasPin(): Boolean = SignalStore.svr.hasPin() && !SignalStore.svr.hasOptedOut()
 
@@ -40,6 +44,10 @@ class AccountSettingsRepository {
   fun isClientDeprecated(): Boolean = SignalStore.misc.isClientDeprecated
 
   fun getPinKeyboardType(): PinKeyboardType = SignalStore.pin.keyboardType
+
+  fun isPhoneNumberlessRegistrationEnabled(): Boolean = Environment.PHONENUMBERLESS_REGISTRATION
+
+  fun hasAuthenticatorApp(): Boolean = authenticatorRepository.hasAuthenticatorApp()
 
   fun verifyLocalPin(pin: String): Boolean {
     val localPinHash = SignalStore.svr.localPinHash

@@ -13,11 +13,21 @@ data class AccountSettingsState(
   val userUnregistered: Boolean = false,
   val clientDeprecated: Boolean = false,
   val canTransferWhileUnregistered: Boolean = true,
+  val signalLogin: SignalLogin? = null,
   val dialog: Dialog = Dialog.None
 ) {
 
   val isNotDeprecatedOrUnregistered: Boolean
     get() = !(userUnregistered || clientDeprecated)
+
+  /**
+   * The Signal Login and two-factor authentication sections, which only exist when phone-numberless registration is
+   * enabled. Null means the sections aren't shown at all.
+   */
+  data class SignalLogin(
+    val keyCount: Int,
+    val hasAuthenticatorApp: Boolean
+  )
 
   /** Whichever dialog the screen is showing, if any. Only one is ever up at a time. */
   sealed interface Dialog {

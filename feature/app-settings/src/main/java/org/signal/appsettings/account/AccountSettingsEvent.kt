@@ -42,6 +42,9 @@ sealed interface AccountSettingsEvent {
   /** The user confirmed turning registration lock on or off. */
   data object RegistrationLockConfirmed : AccountSettingsEvent
 
+  /** The user tapped the authenticator app row in the two-factor authentication section. */
+  data object AuthenticatorAppClicked : AccountSettingsEvent
+
   /** The user tapped the advanced PIN settings row. */
   data object AdvancedPinSettingsClicked : AccountSettingsEvent
 

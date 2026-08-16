@@ -289,6 +289,25 @@ class AccountSettingsScreenTest {
       .assertIsNotEnabled()
   }
 
+  @Test
+  fun givenNoSignalLogin_whenScreenDisplayed_thenTwoFactorSectionIsAbsent() {
+    setContent(createState())
+
+    composeTestRule.onNodeWithTag(AccountSettingsTestTags.CARD_SIGNAL_LOGIN).assertDoesNotExist()
+    composeTestRule.onNodeWithTag(AccountSettingsTestTags.ROW_AUTHENTICATOR_APP).assertDoesNotExist()
+  }
+
+  @Test
+  fun givenASignalLogin_whenIClickAuthenticatorApp_thenIExpectAuthenticatorAppEvent() {
+    setContent(createState(signalLogin = AccountSettingsState.SignalLogin(keyCount = 2, hasAuthenticatorApp = false)))
+
+    composeTestRule.onNodeWithTag(AccountSettingsTestTags.CARD_SIGNAL_LOGIN).assertIsDisplayed()
+
+    composeTestRule.onNodeWithTag(AccountSettingsTestTags.ROW_AUTHENTICATOR_APP).performClick()
+
+    assertThat(events).contains(AccountSettingsEvent.AuthenticatorAppClicked)
+  }
+
   private fun setContent(state: AccountSettingsState) {
     composeTestRule.setContent {
       AccountSettingsScreen(
@@ -311,6 +330,7 @@ class AccountSettingsScreenTest {
     userUnregistered: Boolean = false,
     clientDeprecated: Boolean = false,
     canTransferWhileUnregistered: Boolean = true,
+    signalLogin: AccountSettingsState.SignalLogin? = null,
     dialog: Dialog = Dialog.None
   ): AccountSettingsState {
     return AccountSettingsState(
@@ -321,6 +341,7 @@ class AccountSettingsScreenTest {
       userUnregistered = userUnregistered,
       clientDeprecated = clientDeprecated,
       canTransferWhileUnregistered = canTransferWhileUnregistered,
+      signalLogin = signalLogin,
       dialog = dialog
     )
   }
