@@ -36,6 +36,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalInspectionMode
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
@@ -53,6 +54,7 @@ import org.signal.core.ui.compose.list.reorderableList
 import org.signal.core.util.ContentTypeUtil
 import org.signal.glide.compose.GlideImage
 import org.signal.mediasend.screens.MediaSendMetrics
+import org.signal.mediasend.test.TestTags
 import kotlin.math.abs
 import kotlin.math.floor
 import kotlin.math.roundToInt
@@ -95,6 +97,15 @@ internal fun ThumbnailRow(
     onEvent = reorderBuffer::onReorderListEvent
   )
   val isReordering = reorderableListState.draggingItemIndex != null
+
+  // A thumbnail's page has to be looked up by identity rather than taken from its slot in the row: for the length of a
+  // drag the row renders the order that drag has built up while the pager is still on the pre-drag one, so the two
+  // disagree about what any given index refers to. Everything keyed off the pager - the delete affordance and the
+  // fish-eye - has to follow the media rather than the index, or it lands on whatever the drag has shuffled into the
+  // pager's slot and only corrects itself once the new order arrives.
+  val pageIndices = remember(selectedMedia) {
+    selectedMedia.withIndex().associate { (index, media) -> media.uri to index }
+  }
 
   val draggableState = rememberDraggableState { delta ->
     val scaledDelta = delta * (pagerPageSize.toFloat() / itemStride)
@@ -170,10 +181,12 @@ internal fun ThumbnailRow(
       modifier = if (enabled) Modifier.reorderableList(reorderableListState) else Modifier
     ) {
       itemsIndexed(reorderBuffer.items, key = { _, media -> media.uri }) { index, media ->
-        val padding by remember(index) {
+        val pageIndex = pageIndices[media.uri] ?: index
+
+        val padding by remember(pageIndex) {
           derivedStateOf {
             val currentPosition = pagerState.currentPage + pagerState.currentPageOffsetFraction
-            val distanceFromCenter = abs(index - currentPosition).coerceIn(0f, 1f)
+            val distanceFromCenter = abs(pageIndex - currentPosition).coerceIn(0f, 1f)
             lerp(MAX_PADDING, MIN_PADDING, distanceFromCenter)
           }
         }
@@ -184,13 +197,14 @@ internal fun ThumbnailRow(
           modifier = Modifier.clip(MediaSendMetrics.SelectedMediaPreviewShape)
         ) {
           DeleteBox(
-            enabled = pagerState.currentPage == index
+            enabled = pagerState.currentPage == pageIndex,
+            testTag = TestTags.thumbnailRowDeleteIcon(media.uri.toString())
           ) {
             Thumbnail(
               media = media,
               modifier = Modifier
                 .padding(horizontal = padding)
-                .clickable(enabled = enabled) { onThumbnailClick(index) }
+                .clickable(enabled = enabled) { onThumbnailClick(pageIndex) }
             )
           }
         }
@@ -206,6 +220,7 @@ private fun lerp(start: Dp, stop: Dp, fraction: Float): Dp {
 @Composable
 private fun DeleteBox(
   enabled: Boolean,
+  testTag: String? = null,
   content: @Composable () -> Unit
 ) {
   Box {
@@ -221,6 +236,7 @@ private fun DeleteBox(
           .size(MediaSendMetrics.SelectedMediaPreviewSize)
           .padding(10.dp)
           .align(Alignment.Center)
+          .then(if (testTag != null) Modifier.testTag(testTag) else Modifier)
       )
     }
   }

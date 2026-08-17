@@ -19,6 +19,11 @@ object TestTags {
   const val MEDIA_EDITOR_TOOLBAR_ADD_MEDIA_BUTTON = "media_editor_toolbar_add_media_button"
   const val MEDIA_EDITOR_TOOLBAR_MUTE_BUTTON = "media_editor_toolbar_mute_button"
 
+  // Media Edit Screen
+
+  /** Tag for the delete affordance the thumbnail row puts on the media at [uri]. */
+  fun thumbnailRowDeleteIcon(uri: String): String = "thumbnail_row_delete_icon_$uri"
+
   // Media Capture Screen
   const val MEDIA_CAPTURE_SCREEN = "media_capture_screen"
   const val MEDIA_CAPTURE_CAMERA_TOGGLE = "media_capture_camera_toggle"
