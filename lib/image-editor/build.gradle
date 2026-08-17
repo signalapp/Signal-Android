@@ -4,6 +4,12 @@ plugins {
 
 android {
     namespace = "org.signal.imageeditor"
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
 }
 
 dependencies {

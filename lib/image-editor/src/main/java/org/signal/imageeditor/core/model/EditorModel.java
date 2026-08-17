@@ -697,9 +697,22 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
     }
   }
 
+  /**
+   * Fits the model to the area it is displayed in.
+   * <p>
+   * This is presentation, not an edit, so a model that was unchanged stays unchanged: the view matrix this writes is
+   * part of the tree {@link #isChanged()} compares, so without re-baselining, merely laying a model out would report as
+   * a change and get the image needlessly re-rendered on send.
+   */
   public void setVisibleViewPort(@NonNull RectF visibleViewPort) {
+    boolean changedBefore = isChanged();
+
     this.visibleViewPort.set(visibleViewPort);
     this.editorElementHierarchy.updateViewToCrop(visibleViewPort, invalidate);
+
+    if (!changedBefore) {
+      undoRedoStacks.updateUnchangedState(editorElementHierarchy.getRoot());
+    }
   }
 
   public Set<Integer> getUniqueColorsIgnoringAlpha() {
