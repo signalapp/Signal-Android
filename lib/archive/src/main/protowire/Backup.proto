@@ -1384,6 +1384,8 @@ message ChatStyle {
     GRADIENT_SUBLIME = 20;
     GRADIENT_SEA = 21;
     GRADIENT_TANGERINE = 22;
+    SOLID_PETAL = 23;
+    SOLID_MINT = 24;
   }
 
   // If unset, importers should consider there to be no wallpaper.

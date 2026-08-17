@@ -103,13 +103,13 @@ object MediaGallerySelectableItem {
     }
   }
 
-  data class FileModel(val media: Media, val isSelected: Boolean, val selectionOneBasedIndex: Int, val chatColor: Int? = null) : MappingModel<FileModel> {
+  data class FileModel(val media: Media, val isSelected: Boolean, val selectionOneBasedIndex: Int, val chatColor: Int? = null, val needsDarkText: Boolean = false) : MappingModel<FileModel> {
     override fun areItemsTheSame(newItem: FileModel): Boolean {
       return newItem.media == media
     }
 
     override fun areContentsTheSame(newItem: FileModel): Boolean {
-      return newItem.media == media && isSelected == newItem.isSelected && selectionOneBasedIndex == newItem.selectionOneBasedIndex && chatColor == newItem.chatColor
+      return newItem.media == media && isSelected == newItem.isSelected && selectionOneBasedIndex == newItem.selectionOneBasedIndex && chatColor == newItem.chatColor && needsDarkText == newItem.needsDarkText
     }
 
     override fun getChangePayload(newItem: FileModel): Any? {
@@ -131,6 +131,13 @@ object MediaGallerySelectableItem {
     override fun bind(model: FileModel) {
       checkView?.visible = model.isSelected
       checkView?.text = "${model.selectionOneBasedIndex}"
+      checkView?.setTextColor(
+        if (model.needsDarkText) {
+          ContextCompat.getColor(itemView.context, R.color.black)
+        } else {
+          ContextCompat.getColor(itemView.context, CoreUiR.color.signal_light_colorNeutral)
+        }
+      )
       (checkView?.background?.mutate() as? LayerDrawable)?.getDrawable(1)
         ?.let { backgroundDrawable ->
           val tintColor = model.chatColor ?: ContextCompat.getColor(itemView.context, CoreUiR.color.signal_light_colorPrimary)

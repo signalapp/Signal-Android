@@ -203,6 +203,7 @@ class ConversationActivityResultContracts(private val fragment: Fragment, privat
     override fun createIntent(context: Context, input: ChatColors): Intent {
       return Intent(context, PlacePickerActivity::class.java)
         .putExtra(PlacePickerActivity.KEY_CHAT_COLOR, input.asSingleColor())
+        .putExtra(PlacePickerActivity.KEY_NEEDS_DARK_TEXT, input.needsDarkText())
     }
 
     override fun parseResult(resultCode: Int, intent: Intent?): SelectLocationOutput? {

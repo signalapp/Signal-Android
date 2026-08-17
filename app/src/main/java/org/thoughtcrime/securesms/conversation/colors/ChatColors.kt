@@ -18,6 +18,7 @@ import androidx.compose.ui.graphics.LinearGradientShader
 import androidx.compose.ui.graphics.ShaderBrush
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.TileMode
+import androidx.core.graphics.ColorUtils
 import com.google.common.base.Objects
 import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
@@ -47,6 +48,14 @@ class ChatColors(
 
   fun isGradient(): Boolean = linearGradient != null
   fun isSolid(): Boolean = singleColor != null
+
+  /**
+   * Whether this color is light enough that outgoing bubble text/icons need to render dark instead of the usual white.
+   */
+  fun needsDarkText(): Boolean {
+    val color = singleColor ?: return false
+    return ColorUtils.calculateLuminance(color) > DARK_TEXT_LUMINANCE_THRESHOLD
+  }
 
   /**
    * Returns the Drawable to render the linear gradient, or null if this ChatColors is a single color.
@@ -176,6 +185,12 @@ class ChatColors(
   }
 
   companion object {
+    /**
+     * Luminance above which a solid chat color needs dark text/icons instead of the default light ones.
+     * Existing solids max out around 0.18, so this leaves plenty of margin.
+     */
+    private const val DARK_TEXT_LUMINANCE_THRESHOLD = 0.4
+
     /**
      * Converts a network chat color into our domain model object.
      *

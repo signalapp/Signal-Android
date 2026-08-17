@@ -73,9 +73,9 @@ public final class AudioView extends FrameLayout {
 
   @Nullable private final TextView duration;
 
-  @ColorInt private final int waveFormPlayedBarsColor;
-  @ColorInt private final int waveFormUnplayedBarsColor;
-  @ColorInt private final int waveFormThumbTint;
+  @ColorInt private int waveFormPlayedBarsColor;
+  @ColorInt private int waveFormUnplayedBarsColor;
+  @ColorInt private int waveFormThumbTint;
 
   @Nullable private SlideClickListener downloadListener;
             private int                backwardsCounter;
@@ -176,6 +176,16 @@ public final class AudioView extends FrameLayout {
     EventBus.getDefault().unregister(this);
     disposable.dispose();
     awaitingDisposable.dispose();
+  }
+
+  public void setWaveformColors(@ColorInt int playedColor, @ColorInt int unplayedColor, @ColorInt int thumbColor) {
+    this.waveFormPlayedBarsColor   = playedColor;
+    this.waveFormUnplayedBarsColor = unplayedColor;
+    this.waveFormThumbTint         = thumbColor;
+
+    if (seekBar instanceof WaveFormSeekBarView) {
+      ((WaveFormSeekBarView) seekBar).setColors(playedColor, unplayedColor, thumbColor);
+    }
   }
 
   public void setProgressAndPlayBackgroundTint(@ColorInt int color) {

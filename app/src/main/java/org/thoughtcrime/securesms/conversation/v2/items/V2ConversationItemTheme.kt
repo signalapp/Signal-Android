@@ -11,6 +11,7 @@ import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.ConversationMessage
+import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.conversation.v2.items.V2ConversationItemUtils.isThumbnailAtBottomOfBubble
 import org.thoughtcrime.securesms.util.hasNoBubble
 import org.signal.core.ui.R as CoreUiR
@@ -100,11 +101,11 @@ class V2ConversationItemTheme(
   @ColorInt
   private fun getColor(
     conversationMessage: ConversationMessage,
-    outgoingColor: (Context) -> Int,
+    outgoingColor: (Context, ChatColors?) -> Int,
     incomingColor: (Context, Boolean) -> Int
   ): Int {
     return if (conversationMessage.messageRecord.isOutgoing) {
-      outgoingColor(context)
+      outgoingColor(context, conversationContext.getChatColorsData().chatColors)
     } else {
       incomingColor(context, conversationContext.hasWallpaper())
     }
