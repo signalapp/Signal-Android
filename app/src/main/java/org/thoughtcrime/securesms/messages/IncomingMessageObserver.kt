@@ -583,7 +583,7 @@ class IncomingMessageObserver(
     /**
      * Attempts to process the entire batch in a single transaction for performance.
      *
-     * @return true if the transaction committed, false if it the batch was rolled back.
+     * @return true if the transaction committed, false if the batch was rolled back.
      */
     private fun processBatchInTransaction(batch: List<EnvelopeResponse>): Boolean {
       val allFollowUpOperations = mutableListOf<FollowUpOperation>()

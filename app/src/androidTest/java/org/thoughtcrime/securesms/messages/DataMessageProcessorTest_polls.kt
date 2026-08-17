@@ -103,7 +103,8 @@ class DataMessageProcessorTest_polls {
       metadata = EnvelopeMetadata(alice.requireServiceId(), null, 1, false, null, harness.self.requireServiceId(), CiphertextMessage.WHISPER_TYPE),
       threadRecipient = Recipient.resolved(groupRecipientId),
       groupId = groupId,
-      receivedTime = 200
+      receivedTime = 200,
+      batchCache = OneTimeBatchCache()
     )
 
     assert(insertResult?.messageId != null)
@@ -124,7 +125,8 @@ class DataMessageProcessorTest_polls {
       metadata = EnvelopeMetadata(alice.requireServiceId(), null, 1, false, null, harness.self.requireServiceId(), CiphertextMessage.WHISPER_TYPE),
       threadRecipient = bob,
       groupId = groupId,
-      receivedTime = 200
+      receivedTime = 200,
+      batchCache = OneTimeBatchCache()
     )
 
     assert(insertResult == null)
@@ -142,7 +144,8 @@ class DataMessageProcessorTest_polls {
       metadata = EnvelopeMetadata(alice.requireServiceId(), null, 1, false, null, harness.self.requireServiceId(), CiphertextMessage.WHISPER_TYPE),
       threadRecipient = bob,
       groupId = groupId,
-      receivedTime = 200
+      receivedTime = 200,
+      batchCache = OneTimeBatchCache()
     )
 
     assert(insertResult == null)
@@ -158,7 +161,8 @@ class DataMessageProcessorTest_polls {
       metadata = EnvelopeMetadata(alice.requireServiceId(), null, 1, false, null, harness.self.requireServiceId(), CiphertextMessage.WHISPER_TYPE),
       threadRecipient = bob,
       groupId = groupId,
-      receivedTime = 200
+      receivedTime = 200,
+      batchCache = OneTimeBatchCache()
     )
 
     assert(insertResult == null)
@@ -311,7 +315,8 @@ class DataMessageProcessorTest_polls {
       message = DataMessage(pollVote = pollVote),
       senderRecipient = senderRecipient,
       threadRecipient = Recipient.resolved(groupRecipientId),
-      earlyMessageCacheEntry = null
+      earlyMessageCacheEntry = null,
+      batchCache = OneTimeBatchCache()
     )
   }
 

@@ -299,6 +299,19 @@ public class JobManager implements ConstraintObserver.Notifier {
   }
 
   /**
+   * Search through the list of pending jobs and find all that match a given predicate. Unlike {@link #find(Predicate)}, this reads from the in-memory job list,
+   * making it dramatically cheaper when there are many jobs enqueued. The tradeoff is that the predicate can only consider the properties present on a
+   * {@link MinimalJobSpec}.
+   *
+   * Note that there will always be races here, and the result you get back may not be valid anymore by the time you get it. Use with caution.
+   */
+  @WorkerThread
+  public @NonNull List<MinimalJobSpec> findMinimalJobs(@NonNull Predicate<MinimalJobSpec> predicate) {
+    waitUntilInitialized();
+    return jobController.findMinimalJobs(predicate);
+  }
+
+  /**
    * Runs the specified job synchronously. Beware: All normal dependencies are respected, meaning
    * you must take great care where you call this. It could take a very long time to complete!
    *

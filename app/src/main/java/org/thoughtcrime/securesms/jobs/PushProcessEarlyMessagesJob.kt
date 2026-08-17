@@ -77,12 +77,16 @@ class PushProcessEarlyMessagesJob private constructor(parameters: Parameters) : 
 
     /**
      * Enqueues a job to run after the most-recently-enqueued [PushProcessMessageJob].
+     *
+     * Prefer [org.thoughtcrime.securesms.messages.BatchCache.requiresEarlyMessageProcessing] over calling this directly, so that a batch of messages only results in
+     * a single enqueue.
      */
     @JvmStatic
     fun enqueue() {
       val jobManger = AppDependencies.jobManager
 
-      val youngestProcessJobId: String? = jobManger.find { it.factoryKey == PushProcessMessageJob.KEY }
+      val youngestProcessJobId: String? = jobManger
+        .findMinimalJobs { it.factoryKey == PushProcessMessageJob.KEY }
         .maxByOrNull { it.createTime }
         ?.id
 
