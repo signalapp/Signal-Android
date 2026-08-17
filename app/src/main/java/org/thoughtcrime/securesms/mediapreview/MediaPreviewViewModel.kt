@@ -53,6 +53,21 @@ class MediaPreviewViewModel : ViewModel() {
     store.update { it.copy(isInSharedAnimation = isInSharedAnimation) }
   }
 
+  /**
+   * Records that the media at [uri] decoded with an UltraHDR gain map. Monotonic and additive: a
+   * gain map never disappears, and the set is bounded by the number of HDR images the user actually
+   * views in this activity.
+   */
+  fun setHdrCapable(uri: Uri) {
+    store.update { oldState ->
+      if (oldState.hdrCapableUris.contains(uri)) oldState else oldState.copy(hdrCapableUris = oldState.hdrCapableUris + uri)
+    }
+  }
+
+  /** Synchronous read for [MediaPreviewActivity.onStart], where there is no pending Rx emission to react to. */
+  val shouldRenderHdr: Boolean
+    get() = store.state.shouldRenderHdr
+
   fun shouldFinishAfterTransition(initialMediaUri: Uri): Boolean {
     return currentPosition in store.state.mediaRecords.indices && store.state.mediaRecords[currentPosition].toMedia()?.uri == initialMediaUri
   }

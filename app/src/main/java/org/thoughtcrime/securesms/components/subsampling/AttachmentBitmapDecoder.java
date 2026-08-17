@@ -6,6 +6,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 
+import androidx.annotation.Nullable;
+
 import com.davemorrissey.labs.subscaleview.decoder.ImageDecoder;
 import com.davemorrissey.labs.subscaleview.decoder.SkiaImageDecoder;
 
@@ -15,7 +17,11 @@ import java.io.InputStream;
 
 public class AttachmentBitmapDecoder implements ImageDecoder{
 
-  public AttachmentBitmapDecoder() {}
+  private final @Nullable GainmapReporter reporter;
+
+  public AttachmentBitmapDecoder(@Nullable GainmapReporter reporter) {
+    this.reporter = reporter;
+  }
 
   @Override
   public Bitmap decode(Context context, Uri uri) throws Exception {
@@ -33,6 +39,13 @@ public class AttachmentBitmapDecoder implements ImageDecoder{
 
       if (bitmap == null) {
         throw new RuntimeException("Skia image region decoder returned null bitmap - image format may not be supported");
+      }
+
+      // SubsamplingScaleImageView reaches this decoder both for a preview source and, from
+      // initialiseBaseLayer(), for any image that fits at native resolution inside the canvas max bitmap
+      // size -- the common case for Signal attachments. Both decoders therefore have to report.
+      if (reporter != null && UltraHdrSupport.hasGainmap(bitmap)) {
+        reporter.onGainmapPresent();
       }
 
       return bitmap;
