@@ -78,7 +78,12 @@ class ArchiveFileSystem private constructor(private val context: Context, root: 
         return null
       }
 
-      return ArchiveFileSystem(context, root, readOnly = false)
+      return try {
+        ArchiveFileSystem(context, root, readOnly = false)
+      } catch (e: IOException) {
+        Log.w(TAG, "Unable to open backup directory for writing", e)
+        null
+      }
     }
 
     /**
@@ -448,7 +453,7 @@ class FilesFileSystem(private val context: Context, private val root: DocumentFi
       (0..255)
         .map { i -> i.toString(16).padStart(2, '0') }
         .associateWith { name ->
-          existingFolders[name] ?: root.createDirectory(name)!!
+          existingFolders[name] ?: root.createDirectory(name) ?: throw IOException("Unable to create sub-directory $name")
         }
     }
   }
