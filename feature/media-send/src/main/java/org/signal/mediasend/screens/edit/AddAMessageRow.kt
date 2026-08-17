@@ -41,6 +41,13 @@ import org.signal.mediasend.test.TestTags
 private val DisabledNextButtonColor = Color(0xFF777777)
 
 /**
+ * Mirrors the legacy send button's size. Has to be stated rather than left to the [IconButtons.IconButton] default of
+ * 40dp: the default draws the container inside the 48dp of layout that [androidx.compose.material3.minimumInteractiveComponentSize]
+ * reserves, leaving a button that is 8dp smaller than it looks like it should be and smaller than the row it sits in.
+ */
+private val NextButtonSize = 48.dp
+
+/**
  * Because we need to be able to support stuff like mentions, styled text, and custom emoji, we need to allow
  * the users of this feature to inject their own text-field.
  */
@@ -142,6 +149,7 @@ fun AddAMessageRow(
       IconButtons.IconButton(
         enabled = enabled,
         onClick = onNextClick,
+        size = NextButtonSize,
         onLongClick = if (canScheduleSend) scheduleSendMenuController::show else null,
         onLongClickLabel = stringResource(R.string.AddAMessageRow__schedule_send),
         colors = IconButtons.iconButtonColors(
