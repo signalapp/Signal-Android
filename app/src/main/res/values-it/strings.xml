@@ -172,7 +172,7 @@
     <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" non potrà chiamarti né inviarti messaggi.</string>
     <string name="BlockedUsersActivity__block">Blocca</string>
     <!-- Subtitle shown under a blocked user. Placeholder is the time they were blocked-->
-    <string name="BlockedUsersActivity__blocked_on_s">Blocked on %1$s</string>
+    <string name="BlockedUsersActivity__blocked_on_s">Bloccato il %1$s</string>
 
     <!-- CreditCardFragment -->
     <!-- Title of fragment -->
@@ -1077,7 +1077,7 @@
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
     <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$s I messaggi e le informazioni delle chat sono protetti da una crittografia end-to-end su tutti i dispositivi</string>
     <!-- Bottom sheet title explaining how Signal works on a linked device -->
-    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal on a linked device</string>
+    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal su un dispositivo collegato</string>
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
     <string name="LinkDeviceFragment__all_messaging_is_private">Tutti i messaggi sui dispositivi collegati sono privati</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
@@ -6406,7 +6406,7 @@
     <!-- Accessibility label describing the change media quality button on the Media review screen -->
     <string name="MediaReviewFragment__change_media_quality_accessibility_label">Cambia la qualità del media</string>
     <!-- Accessibility label describing the mute video audio button on the Media review screen -->
-    <string name="MediaReviewFragment__mute_video_audio_accessibility_label">Mute Video Audio</string>
+    <string name="MediaReviewFragment__mute_video_audio_accessibility_label">Silenzia audio del video</string>
     <!-- Accessibility label describing the save media button on the Media review screen -->
     <string name="MediaReviewFragment__save_media_accessibility_label">Salva media</string>
     <!-- Accessibility label describing the toggle emoji keyboard button on the Media review screen -->

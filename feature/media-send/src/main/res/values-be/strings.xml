@@ -7,9 +7,9 @@
   <!-- Confirmation button that discards the user\'s image edits. -->
   <string name="MediaSendDialogs__discard">Скінуць</string>
   <!-- Dialog title shown when the user tries to close media send while media is selected. -->
-  <string name="MediaSendDialogs__discard_media">Discard media?</string>
+  <string name="MediaSendDialogs__discard_media">Не захоўваць медыяфайлы?</string>
   <!-- Dialog body explaining that leaving media send will discard the selected media along with any edits. -->
-  <string name="MediaSendDialogs__you_will_lose_any_media">You will lose any media you captured and changes you made.</string>
+  <string name="MediaSendDialogs__you_will_lose_any_media">Вы страціце ўсе захопленыя вамі медыяфайлы і ўнесеныя вамі змены.</string>
   <!-- Dialog title asking to save the media being edited to the phone\'s storage -->
   <string name="MediaSendDialogs__save_to_phone">Захаваць на тэлефоне?</string>
   <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other apps. -->
@@ -98,7 +98,7 @@
     </plurals>
 
   <!-- Content description for the button that attaches a link to the text story being created -->
-  <string name="TextStoryBar__add_link">Add link</string>
+  <string name="TextStoryBar__add_link">Дадаць спасылку</string>
 
   <!-- Name shown on the document preview when we cannot read the file\'s name. -->
   <string name="DocumentPage__unnamed_file">Файл без назвы</string>
@@ -109,9 +109,9 @@
   <string name="DrawModeColorBar__brush">Пэндзаль</string>
 
   <!-- Content description for the crop toggle when the crop area is currently constrained to a fixed aspect ratio. Tapping it removes the constraint. -->
-  <string name="ImageEditorToolbar__aspect_ratio_locked">Aspect ratio locked</string>
+  <string name="ImageEditorToolbar__aspect_ratio_locked">Суадносіны бакоў зафіксаваны</string>
   <!-- Content description for the crop toggle when the crop area can currently be resized freely. Tapping it constrains the crop area to a fixed aspect ratio. -->
-  <string name="ImageEditorToolbar__aspect_ratio_unlocked">Aspect ratio unlocked</string>
+  <string name="ImageEditorToolbar__aspect_ratio_unlocked">Суадносіны бакоў не зафіксаваны</string>
 
   <!-- Label for the toggle that blurs every face in the image being edited -->
   <string name="BlurFacesBar__blur_faces">Размыць твары</string>
@@ -238,7 +238,7 @@
   <!-- Message shown when saving the media being edited requires the storage permission, but that permission has been permanently denied by the user. -->
   <string name="MediaSendViewModel__signal_needs_the_storage_permission">Signal патрабуе дазволу на сховішча для захавання на знешнім сховішчы, але ён быў вамі адмоўлены. Калі ласка, перайдзіце ў меню наладаў праграмы, выберыце «Дазволы» і ўключыце «Сховішча».</string>
   <!-- Message shown when the user disables audio on a video -->
-  <string name="MediaSendViewModel__video_will_be_sent_without_audio">Video will be sent without audio</string>
+  <string name="MediaSendViewModel__video_will_be_sent_without_audio">Відэа будзе даслана без аўдыё</string>
 
   <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
   <string name="UsernameScannedDialog__username_dialog_title">Знойдзены карыстальнік: %1$s</string>

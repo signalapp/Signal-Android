@@ -7,9 +7,9 @@
   <!-- Confirmation button that discards the user\'s image edits. -->
   <string name="MediaSendDialogs__discard">បោះបង់</string>
   <!-- Dialog title shown when the user tries to close media send while media is selected. -->
-  <string name="MediaSendDialogs__discard_media">Discard media?</string>
+  <string name="MediaSendDialogs__discard_media">បោះបង់មេឌៀ?</string>
   <!-- Dialog body explaining that leaving media send will discard the selected media along with any edits. -->
-  <string name="MediaSendDialogs__you_will_lose_any_media">You will lose any media you captured and changes you made.</string>
+  <string name="MediaSendDialogs__you_will_lose_any_media">អ្នកនឹងបាត់បង់មេឌៀណាមួយដែលអ្នកបានថត និងការផ្លាស់ប្តូរដែលអ្នកបានធ្វើឡើង។</string>
   <!-- Dialog title asking to save the media being edited to the phone\'s storage -->
   <string name="MediaSendDialogs__save_to_phone">រក្សាទុកក្នុងទូរសព្ទឬ?</string>
   <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other apps. -->
@@ -27,7 +27,7 @@
   <!-- Accessibility label for the row that lets the user add a text message to accompany the media being sent. -->
   <string name="AddAMessageRow__add_a_message">បញ្ចូលសារមួយ</string>
   <!-- Label and accessibility label used in place of \"Add a message\" when the media is being sent as a reply to another message. -->
-  <string name="AddAMessageRow__add_a_reply">បន្ថែមការឆ្លើយតប</string>
+  <string name="AddAMessageRow__add_a_reply">បញ្ចូលការឆ្លើយតប</string>
   <!-- Accessibility description for the button that opens the emoji keyboard. -->
   <string name="AddAMessageRow__open_emoji_keyboard">បើកក្តារចុចរូបអារម្មណ៍</string>
   <!-- Placeholder text shown in the add-a-message row before the user has entered any message text. -->
@@ -106,15 +106,15 @@
   <string name="DrawModeColorBar__brush">ជក់</string>
 
   <!-- Content description for the crop toggle when the crop area is currently constrained to a fixed aspect ratio. Tapping it removes the constraint. -->
-  <string name="ImageEditorToolbar__aspect_ratio_locked">Aspect ratio locked</string>
+  <string name="ImageEditorToolbar__aspect_ratio_locked">បានចាក់សោសមាមាត្រ</string>
   <!-- Content description for the crop toggle when the crop area can currently be resized freely. Tapping it constrains the crop area to a fixed aspect ratio. -->
-  <string name="ImageEditorToolbar__aspect_ratio_unlocked">Aspect ratio unlocked</string>
+  <string name="ImageEditorToolbar__aspect_ratio_unlocked">បានដោះសោសមាមាត្រ</string>
 
   <!-- Label for the toggle that blurs every face in the image being edited -->
   <string name="BlurFacesBar__blur_faces">ព្រិលមុខ</string>
 
   <!-- Hint displayed in a pill at the top of the image editor telling the user they can drag anywhere on the image to blur that area -->
-  <string name="DrawAnywhereToBlurPill__draw_anywhere_to_blur">គូរកន្លែងដើម្បីព្រិល</string>
+  <string name="DrawAnywhereToBlurPill__draw_anywhere_to_blur">គូរកន្លែងណាក៏បានដើម្បីធ្វើឱ្យព្រឹល</string>
 
   <!-- Content description for the button that cycles the text being edited between styles -->
   <string name="TextModeColorBar__toggle_between_text_styles">ឆ្លាស់រចនាបទអក្សរ</string>
@@ -229,7 +229,7 @@
   <!-- Message shown when saving the media being edited requires the storage permission, but that permission has been permanently denied by the user. -->
   <string name="MediaSendViewModel__signal_needs_the_storage_permission">Signal ត្រូវការការអនុញ្ញាតឱ្យប្រើកន្លែងផ្ទុក ដើម្បីរក្សាទុកឯកសារក្នុងកន្លែងផ្ទុកខាងក្រៅ ប៉ុន្តែវាត្រូវបានបដិសេធជាអចិន្ត្រៃយ៍ហើយ។ សូមបន្តទៅកាន់ការកំណត់កម្មវិធី ហើយជ្រើសរើស \"ការអនុញ្ញាត\" រួចបើក \"កន្លែងផ្ទុក\"។</string>
   <!-- Message shown when the user disables audio on a video -->
-  <string name="MediaSendViewModel__video_will_be_sent_without_audio">Video will be sent without audio</string>
+  <string name="MediaSendViewModel__video_will_be_sent_without_audio">វីដេអូនឹងត្រូវបានផ្ញើដោយគ្មានសំឡេង</string>
 
   <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
   <string name="UsernameScannedDialog__username_dialog_title">បានរកឃើញ %1$s</string>

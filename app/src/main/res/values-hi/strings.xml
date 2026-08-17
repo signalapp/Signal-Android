@@ -977,7 +977,7 @@
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">अपने बैकअप पासफ़्रेज़ की जांच करें और पुष्टि करें कि यह मेल खाता है</string>
     <string name="BackupsPreferenceFragment__turn_on">बैकअप चालू करें</string>
     <string name="BackupsPreferenceFragment__turn_off">बंद करें</string>
-    <string name="BackupsPreferenceFragment__to_restore_a_backup">"बैकअप को रीस्टोर करने के लिए, Signal को फिर से इंस्टॉल करें। ऐप खोलें और \'बैकअप रीस्टोर करें\' पर टैप करें, फिर बैकअप फ़ाइल चुनें। %1$s"</string>
+    <string name="BackupsPreferenceFragment__to_restore_a_backup">"बैकअप को रीस्टोर करने के लिए, Signal को फिर से इंस्टॉल करें। ऐप खोलें और 'बैकअप रीस्टोर करें' पर टैप करें, फिर बैकअप फ़ाइल चुनें। %1$s"</string>
     <string name="BackupsPreferenceFragment__learn_more">ज़्यादा जानें</string>
     <string name="BackupsPreferenceFragment__in_progress">जारी है…</string>
     <!-- Status text shown in backup preferences when verifying a backup -->
@@ -1446,8 +1446,8 @@
     <string name="RequestingMembersFragment_pending_member_requests">सदस्य के पेंडिंग इनवाइट</string>
     <string name="RequestingMembersFragment_no_member_requests_to_show">सदस्यों की ओर से कोई इनवाइट नहीं है।</string>
     <string name="RequestingMembersFragment_explanation">इस सूची में मौजूद लोग ग्रुप लिंक के ज़रिए इस ग्रुप में जुड़ने की कोशिश कर रहे हैं।</string>
-    <string name="RequestingMembersFragment_added_s">"\'%1$s\' को जोड़ा गया"</string>
-    <string name="RequestingMembersFragment_denied_s">"\'%1$s\' के अनुरोध को नामंज़ूर किया गया"</string>
+    <string name="RequestingMembersFragment_added_s">"'%1$s' को जोड़ा गया"</string>
+    <string name="RequestingMembersFragment_denied_s">"'%1$s' के अनुरोध को नामंज़ूर किया गया"</string>
 
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">हो गया</string>
@@ -5177,7 +5177,7 @@
     <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
     <string name="NewDeviceTransferInstructions__tap_on_account">"अकाउंट पर टैप करें"</string>
     <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
-    <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"दोनों डिवाइस पर \'अकाउंट ट्रांसफ़र करें\' पर टैप करें, फिर \'जारी रखें\' पर टैप करें"</string>
+    <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"दोनों डिवाइस पर 'अकाउंट ट्रांसफ़र करें' पर टैप करें, फिर 'जारी रखें' पर टैप करें"</string>
 
     <!-- NewDeviceTransferSetupFragment -->
     <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">पुराने Android डिवाइस से कनेक्ट किया जा रहा है…</string>
@@ -5254,9 +5254,9 @@
     <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
     <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">अपने नए Android डिवाइस पर Signal डाउनलोड करें</string>
     <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
-    <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">"अकाउंट \'ट्रांसफ़र करें\' या \'रीस्टोर करें\' पर टैप करें"</string>
+    <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">"अकाउंट 'ट्रांसफ़र करें' या 'रीस्टोर करें' पर टैप करें"</string>
     <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
-    <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">"प्रॉम्प्ट किए जाने पर \'Android डिवाइस से ट्रांसफ़र करें\' चुनें और फिर \'जारी रखें\' चुनें। दोनों डिवाइस को पास-पास रखें।"</string>
+    <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">"प्रॉम्प्ट किए जाने पर 'Android डिवाइस से ट्रांसफ़र करें' चुनें और फिर 'जारी रखें' चुनें। दोनों डिवाइस को पास-पास रखें।"</string>
     <string name="OldDeviceTransferInstructions__continue">जारी रखें</string>
     <!-- Title for exit device transfer confirmation dialog -->
     <string name="OldDeviceTransferInstructions__confirm_exit_title">डिवाइस ट्रांसफ़र रोकना है?</string>
@@ -6228,7 +6228,7 @@
     <!-- Warning title shown before restricting member labels to admins only. -->
     <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">मेंबर लेबल हटा दिए जाएंगे</string>
     <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"इस अनुमति को \'सिर्फ़ ऐडमिन\' में बदलने पर, वे मेंबर लेबल हट जाएंगे जिन्हें नॉन-ऐडमिन ने इस ग्रुप में सेट किया है।"</string>
+    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"इस अनुमति को 'सिर्फ़ ऐडमिन' में बदलने पर, वे मेंबर लेबल हट जाएंगे जिन्हें नॉन-ऐडमिन ने इस ग्रुप में सेट किया है।"</string>
     <!-- Confirm button for changing member label permission after warning. -->
     <string name="PermissionsSettingsFragment__change_permission">अनुमति बदलें</string>
 
@@ -8264,7 +8264,7 @@
     <string name="InactivePrimary__got_it">ठीक है</string>
 
     <!-- Text describing how to restore a backup displayed on the on-device backups screen -->
-    <string name="OnDeviceBackupsScreen__to_restore_a_backup">"बैकअप रीस्टोर करने के लिए, Signal का नया वर्ज़न इंस्टॉल करें। ऐप खोलें और \'बैकअप रीस्टोर करें\' पर टैप करें, फिर बैकअप फ़ाइल चुनें।"</string>
+    <string name="OnDeviceBackupsScreen__to_restore_a_backup">"बैकअप रीस्टोर करने के लिए, Signal का नया वर्ज़न इंस्टॉल करें। ऐप खोलें और 'बैकअप रीस्टोर करें' पर टैप करें, फिर बैकअप फ़ाइल चुनें।"</string>
     <!-- Body of a dialog shown when turning on on-device backups while "Optimize Signal storage" is enabled, warning that optimized media won\'t be included -->
     <string name="OnDeviceBackupsScreen__you_have_optimize_signal_storage_on">आपने \'Signal स्टोरेज को ऑप्टिमाइज़ करें\' चालू किया हुआ है। अगर आपको अपने ऑन-डिवाइस बैकअप में सारा मीडिया शामिल करना है, तो सेटिंग बंद कर दें।</string>
     <!-- Dialog action that takes the user to the "Optimize Signal storage" setting -->
@@ -8872,7 +8872,7 @@
     <!-- Text on dialog when user backup is deleted -->
     <string name="RemoteBackupsSettingsFragment__backup_deleted">बैकअप डिलीट किया गया</string>
     <!-- Subtitle for frequency option MANUAL for backup frequency -->
-    <string name="RemoteBackupsSettingsFragment__by_tapping_back_up_now">"\'अभी बैकअप लें\' पर टैप करके"</string>
+    <string name="RemoteBackupsSettingsFragment__by_tapping_back_up_now">"'अभी बैकअप लें' पर टैप करके"</string>
     <!-- Title for frequency option DAILY for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__daily">रोज़</string>
     <!-- Title for frequency option DAILY for backup frequency -->

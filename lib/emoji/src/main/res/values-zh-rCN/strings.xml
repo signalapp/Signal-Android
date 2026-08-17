@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
     <!-- Emoji category headers, shown in the emoji keyboard and the react-with-any-emoji sheet -->
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">笑脸和情感</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">表情与人物</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">自然</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">食物</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">活动</string>

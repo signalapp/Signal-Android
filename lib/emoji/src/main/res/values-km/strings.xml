@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
     <!-- Emoji category headers, shown in the emoji keyboard and the react-with-any-emoji sheet -->
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">ញញឹម &amp; មនុស្ស</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">រូបញញឹម និងមនុស្ស</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">ធម្មជាតិ</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">អាហារ</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">សកម្មភាព</string>

@@ -172,7 +172,7 @@
     <string name="BlockedUserActivity__s_will_not_be_able_to">「%1$s」之後就無得再打俾你或者傳送訊息俾你。</string>
     <string name="BlockedUsersActivity__block">封鎖</string>
     <!-- Subtitle shown under a blocked user. Placeholder is the time they were blocked-->
-    <string name="BlockedUsersActivity__blocked_on_s">Blocked on %1$s</string>
+    <string name="BlockedUsersActivity__blocked_on_s">喺 %1$s 封鎖咗</string>
 
     <!-- CreditCardFragment -->
     <!-- Title of fragment -->
@@ -1048,7 +1048,7 @@
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
     <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$s 所有裝置上嘅訊息同聊天資料都有端對端加密保護</string>
     <!-- Bottom sheet title explaining how Signal works on a linked device -->
-    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal on a linked device</string>
+    <string name="LinkDeviceFragment__signal_on_desktop_ipad">連結咗嘅裝置上面嘅 Signal</string>
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
     <string name="LinkDeviceFragment__all_messaging_is_private">所有連結裝置上面嘅訊息都係私密嘅</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
@@ -6246,7 +6246,7 @@
     <!-- Accessibility label describing the change media quality button on the Media review screen -->
     <string name="MediaReviewFragment__change_media_quality_accessibility_label">更改媒體品質</string>
     <!-- Accessibility label describing the mute video audio button on the Media review screen -->
-    <string name="MediaReviewFragment__mute_video_audio_accessibility_label">Mute Video Audio</string>
+    <string name="MediaReviewFragment__mute_video_audio_accessibility_label">影片語音靜音</string>
     <!-- Accessibility label describing the save media button on the Media review screen -->
     <string name="MediaReviewFragment__save_media_accessibility_label">儲存媒體</string>
     <!-- Accessibility label describing the toggle emoji keyboard button on the Media review screen -->

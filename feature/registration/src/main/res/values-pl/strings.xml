@@ -400,7 +400,7 @@
     <!-- Labels the button that cancels disabling the Signal PIN. -->
     <string name="PinCreationScreen__cancel">Anuluj</string>
     <!-- Dialog message shown when the PIN could not be created because of a problem reaching the service. -->
-    <string name="PinCreationScreen__service_error">Podczas łączenia z usługą wystąpił błąd.</string>
+    <string name="PinCreationScreen__service_error">Podczas łączenia z aplikacją wystąpił błąd.</string>
     <!-- Dialog message shown when the PIN could not be created because of a network error. -->
     <string name="PinCreationScreen__network_error">Wystąpił błąd sieci.</string>
     <!-- Dialog message shown when the PIN could not be created because of a network error, and the user may retry after a delay. Placeholder is the wait duration. -->
@@ -515,7 +515,7 @@
     <!-- Body of the confirmation dialog warning that continuing will erase all local data before relinking to a different account -->
     <string name="LinkAccountScreen__you_are_attempting_to_link_a_different_account">Próbujesz połączyć inne konto Signal. Jeśli przejdziesz dalej, wszystkie dane aplikacji Signal zapisane obecnie na tym urządzeniu zostaną usunięte.</string>
     <!-- Destructive confirmation button that deletes all local data and restarts the app so it can be linked to a different account -->
-    <string name="LinkAccountScreen__delete_and_restart">Usuń i zrestartuj</string>
+    <string name="LinkAccountScreen__delete_and_restart">Usuń i uruchom ponownie</string>
     <!-- Content description for the button that closes the maximized QR code overlay -->
     <string name="LinkAccountScreen__close_qr_code">Zamknij kod QR</string>
 
@@ -628,7 +628,7 @@
     <!-- Title of the option for users who already bought a Signal Login. -->
     <string name="SignalLoginPaymentScreen__i_have_a_signal_login">Mam login Signal</string>
     <!-- Subtitle of the existing-login option. -->
-    <string name="SignalLoginPaymentScreen__use_your_existing_account_key">Użyj kodu konta wykupionego wcześniej</string>
+    <string name="SignalLoginPaymentScreen__use_your_existing_account_key">Użyj kodu do konta wykupionego wcześniej</string>
     <!-- Selling point of the existing-login option: the account can be restored. -->
     <string name="SignalLoginPaymentScreen__login_and_restore_your_account">Zaloguj się i przywróć konto</string>
     <!-- Selling point of the existing-login option, thanking the user for their previous purchase. -->

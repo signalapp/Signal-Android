@@ -7,9 +7,9 @@
   <!-- Confirmation button that discards the user\'s image edits. -->
   <string name="MediaSendDialogs__discard">破棄する</string>
   <!-- Dialog title shown when the user tries to close media send while media is selected. -->
-  <string name="MediaSendDialogs__discard_media">Discard media?</string>
+  <string name="MediaSendDialogs__discard_media">メディアを破棄しますか？</string>
   <!-- Dialog body explaining that leaving media send will discard the selected media along with any edits. -->
-  <string name="MediaSendDialogs__you_will_lose_any_media">You will lose any media you captured and changes you made.</string>
+  <string name="MediaSendDialogs__you_will_lose_any_media">キャプチャしたメディアや行った変更はすべて失われます。</string>
   <!-- Dialog title asking to save the media being edited to the phone\'s storage -->
   <string name="MediaSendDialogs__save_to_phone">スマートフォンに保存しますか？</string>
   <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other apps. -->
@@ -95,7 +95,7 @@
     </plurals>
 
   <!-- Content description for the button that attaches a link to the text story being created -->
-  <string name="TextStoryBar__add_link">リンクを追加します</string>
+  <string name="TextStoryBar__add_link">リンクを追加</string>
 
   <!-- Name shown on the document preview when we cannot read the file\'s name. -->
   <string name="DocumentPage__unnamed_file">無名のファイル</string>
@@ -106,9 +106,9 @@
   <string name="DrawModeColorBar__brush">ブラシ</string>
 
   <!-- Content description for the crop toggle when the crop area is currently constrained to a fixed aspect ratio. Tapping it removes the constraint. -->
-  <string name="ImageEditorToolbar__aspect_ratio_locked">Aspect ratio locked</string>
+  <string name="ImageEditorToolbar__aspect_ratio_locked">アスペクト比がロックされています</string>
   <!-- Content description for the crop toggle when the crop area can currently be resized freely. Tapping it constrains the crop area to a fixed aspect ratio. -->
-  <string name="ImageEditorToolbar__aspect_ratio_unlocked">Aspect ratio unlocked</string>
+  <string name="ImageEditorToolbar__aspect_ratio_unlocked">アスペクト比がロック解除されています</string>
 
   <!-- Label for the toggle that blurs every face in the image being edited -->
   <string name="BlurFacesBar__blur_faces">顔をぼかす</string>
@@ -229,7 +229,7 @@
   <!-- Message shown when saving the media being edited requires the storage permission, but that permission has been permanently denied by the user. -->
   <string name="MediaSendViewModel__signal_needs_the_storage_permission">外部ストレージにデータを保存するには、Signalにストレージへのアクセス許可が必要ですが、無効になっています。アプリ設定メニューの「アプリの権限」で「ストレージ」を有効にしてください。</string>
   <!-- Message shown when the user disables audio on a video -->
-  <string name="MediaSendViewModel__video_will_be_sent_without_audio">Video will be sent without audio</string>
+  <string name="MediaSendViewModel__video_will_be_sent_without_audio">ビデオが音声なしで送信されます</string>
 
   <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
   <string name="UsernameScannedDialog__username_dialog_title">%1$sが見つかりました</string>

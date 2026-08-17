@@ -7,9 +7,9 @@
   <!-- Confirmation button that discards the user\'s image edits. -->
   <string name="MediaSendDialogs__discard">புறந்தள்ளு</string>
   <!-- Dialog title shown when the user tries to close media send while media is selected. -->
-  <string name="MediaSendDialogs__discard_media">Discard media?</string>
+  <string name="MediaSendDialogs__discard_media">ஊடகத்தை நிராகரிக்கவா?</string>
   <!-- Dialog body explaining that leaving media send will discard the selected media along with any edits. -->
-  <string name="MediaSendDialogs__you_will_lose_any_media">You will lose any media you captured and changes you made.</string>
+  <string name="MediaSendDialogs__you_will_lose_any_media">நீங்கள் பதிவுசெய்த எந்த மீடியாவையும் நீங்கள் செய்த மாற்றங்களையும் இழப்பீர்கள்.</string>
   <!-- Dialog title asking to save the media being edited to the phone\'s storage -->
   <string name="MediaSendDialogs__save_to_phone">தொலைபேசியில் சேமிக்கவா?</string>
   <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other apps. -->
@@ -107,9 +107,9 @@
   <string name="DrawModeColorBar__brush">பிரஷ்</string>
 
   <!-- Content description for the crop toggle when the crop area is currently constrained to a fixed aspect ratio. Tapping it removes the constraint. -->
-  <string name="ImageEditorToolbar__aspect_ratio_locked">Aspect ratio locked</string>
+  <string name="ImageEditorToolbar__aspect_ratio_locked">தோற்ற விகிதம் பூட்டப்பட்டது</string>
   <!-- Content description for the crop toggle when the crop area can currently be resized freely. Tapping it constrains the crop area to a fixed aspect ratio. -->
-  <string name="ImageEditorToolbar__aspect_ratio_unlocked">Aspect ratio unlocked</string>
+  <string name="ImageEditorToolbar__aspect_ratio_unlocked">தோற்ற விகிதம் தடைநீக்கப்பட்டது</string>
 
   <!-- Label for the toggle that blurs every face in the image being edited -->
   <string name="BlurFacesBar__blur_faces">முகங்களை மங்கலாக்குங்கள்</string>
@@ -232,7 +232,7 @@
   <!-- Message shown when saving the media being edited requires the storage permission, but that permission has been permanently denied by the user. -->
   <string name="MediaSendViewModel__signal_needs_the_storage_permission">வெளிப்புற சேமிப்பகத்தில் சேமிக்க Signal சேமிப்பக அனுமதி தேவை, ஆனால் அது நிரந்தரமாக மறுக்கப்பட்டது. பயன்பாடு அமைப்புகளைத் தொடரவும், \"அனுமதிகள்\" என்பதைத் தேர்ந்தெடுத்து, \"சேமிப்பகத்தை\" இயக்கவும்.</string>
   <!-- Message shown when the user disables audio on a video -->
-  <string name="MediaSendViewModel__video_will_be_sent_without_audio">Video will be sent without audio</string>
+  <string name="MediaSendViewModel__video_will_be_sent_without_audio">ஆடியோ இல்லாமல் வீடியோ அனுப்பப்படும்</string>
 
   <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
   <string name="UsernameScannedDialog__username_dialog_title">%1$s கிடைத்தது</string>

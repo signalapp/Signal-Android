@@ -172,7 +172,7 @@
     <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" ਤੁਹਾਨੂੰ ਕਾਲ ਨਹੀਂ ਕਰ ਸਕਣਗੇ ਜਾਂ ਸੁਨੇਹੇ ਨਹੀਂ ਭੇਜ ਸਕਣਗੇ।</string>
     <string name="BlockedUsersActivity__block">ਪਾਬੰਦੀ ਲਗਾਓ</string>
     <!-- Subtitle shown under a blocked user. Placeholder is the time they were blocked-->
-    <string name="BlockedUsersActivity__blocked_on_s">Blocked on %1$s</string>
+    <string name="BlockedUsersActivity__blocked_on_s">%1$s ਉੱਤੇ ਪਾਬੰਦੀ ਲਗਾਈ ਗਈ</string>
 
     <!-- CreditCardFragment -->
     <!-- Title of fragment -->
@@ -1077,7 +1077,7 @@
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
     <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$s ਸੁਨੇਹੇ ਅਤੇ ਚੈਟ ਦੀ ਜਾਣਕਾਰੀ ਸਾਰੇ ਡਿਵਾਈਸਾਂ ਉੱਤੇ ਸਿਰੇ-ਤੋਂ-ਸਿਰੇ ਤੱਕ ਇਨਕ੍ਰਿਪਸ਼ਨ ਨਾਲ ਸੁਰੱਖਿਅਤ ਹੁੰਦੀ ਹੈ</string>
     <!-- Bottom sheet title explaining how Signal works on a linked device -->
-    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal on a linked device</string>
+    <string name="LinkDeviceFragment__signal_on_desktop_ipad">ਲਿੰਕ ਕੀਤੇ ਡਿਵਾਈਸ ਉੱਤੇ Signal</string>
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
     <string name="LinkDeviceFragment__all_messaging_is_private">ਲਿੰਕ ਕੀਤੇ ਡਿਵਾਈਸਾਂ \'ਤੇ ਸਾਰੇ ਸੁਨੇਹੇ ਪ੍ਰਾਈਵੇਟ ਹੁੰਦੇ ਹਨ</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
@@ -6406,7 +6406,7 @@
     <!-- Accessibility label describing the change media quality button on the Media review screen -->
     <string name="MediaReviewFragment__change_media_quality_accessibility_label">ਮੀਡੀਆ ਕੁਆਲਿਟੀ ਬਦਲੋ</string>
     <!-- Accessibility label describing the mute video audio button on the Media review screen -->
-    <string name="MediaReviewFragment__mute_video_audio_accessibility_label">Mute Video Audio</string>
+    <string name="MediaReviewFragment__mute_video_audio_accessibility_label">ਵੀਡੀਓ ਦੀ ਆਡੀਓ ਨੂੰ ਮਿਊਟ ਕਰੋ</string>
     <!-- Accessibility label describing the save media button on the Media review screen -->
     <string name="MediaReviewFragment__save_media_accessibility_label">ਮੀਡੀਆ ਸੇਵ ਕਰੋ</string>
     <!-- Accessibility label describing the toggle emoji keyboard button on the Media review screen -->
