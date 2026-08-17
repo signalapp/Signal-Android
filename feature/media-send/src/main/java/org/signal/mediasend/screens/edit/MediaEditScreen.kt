@@ -124,12 +124,19 @@ internal fun MediaEditScreen(
 
   // Focus belongs to the pager rather than to any one piece of chrome: the thumbnail rail is not composed for
   // documents, and a swipe still has to be reported from there.
+  //
+  // Observed as the settled page rather than as the falling edge of isScrollInProgress. snapshotFlow re-reads its block
+  // when it resumes and drops a value equal to the one it last emitted, so a scroll that both starts and finishes
+  // between two resumptions -- one fling of a fast flick through a long selection, or the instant scroll of
+  // scrollToPage -- collapses to a single false and reports nothing, leaving focus on the page the user swiped away
+  // from. A page index cannot collapse that way: whatever the pager last came to rest on is what gets reported.
+  // Reading the page from the emission rather than from currentPage also keeps the report tied to that resting page
+  // instead of to wherever a later fling has since moved.
   LaunchedEffect(pagerState) {
-    snapshotFlow { pagerState.isScrollInProgress }
-      .filter { !it }
+    snapshotFlow { pagerState.settledPage }
       .drop(1)
-      .collect {
-        val settledMedia = currentSelectedMedia.getOrNull(pagerState.currentPage)
+      .collect { settledPage ->
+        val settledMedia = currentSelectedMedia.getOrNull(settledPage)
         if (settledMedia != null) {
           onEvent(MediaEditScreenEvents.FocusedMediaChanged(settledMedia))
         }
