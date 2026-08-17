@@ -91,6 +91,7 @@ internal class ImageEditorState(
   private var contentInsets: ChromeInsets = ChromeInsets()
 
   private var rendererContext: RendererContext? = null
+  private var attachCount: Int = 0
 
   private val rendererReady = RendererContext.Ready { renderer: Renderer, cropMatrix: Matrix?, size: Point? ->
     editorModel.onReady(renderer, cropMatrix, size)
@@ -110,8 +111,16 @@ internal class ImageEditorState(
     revision++
   }
 
-  /** Hooks into the [EditorModel]'s invalidation and undo/redo callbacks. Call in [DisposableEffect]. */
+  /**
+   * Hooks into the [EditorModel]'s invalidation and undo/redo callbacks. Call in [DisposableEffect].
+   *
+   * Reference counted: removing media shifts the surviving items down a pager slot, and Compose applies the new
+   * slot's subcomposition before disposing the old one, so a state can be attached by its new page while its old
+   * page is still to be torn down. Without the count that teardown would unhook a state that is still on screen,
+   * leaving the model unable to trigger a redraw for anything it drives itself -- crop, rotate, flip, undo/redo.
+   */
   fun attach() {
+    attachCount++
     editorModel.setInvalidate { revision++ }
     editorModel.setUndoRedoStackListener { undo, redo ->
       undoAvailable = undo
@@ -119,8 +128,11 @@ internal class ImageEditorState(
     }
   }
 
-  /** Unhooks from the [EditorModel]. Call in [DisposableEffect]'s onDispose. */
+  /** Unhooks from the [EditorModel] once the last holder has let go. Call in [DisposableEffect]'s onDispose. */
   fun detach() {
+    attachCount = (attachCount - 1).coerceAtLeast(0)
+    if (attachCount > 0) return
+
     editorModel.setInvalidate(null)
     editorModel.setUndoRedoStackListener(null)
   }
