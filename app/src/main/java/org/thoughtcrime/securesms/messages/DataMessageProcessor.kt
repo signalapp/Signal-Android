@@ -432,6 +432,7 @@ object DataMessageProcessor {
         val storyGroupId: GroupId? = storyGroupRecord?.id?.takeIf { storyGroupRecord.isActive }
         if (storyGroupId != groupId) {
           warn(envelope.clientTimestamp!!, "Story reaction target does not belong to the same conversation as the incoming message. Dropping reaction.")
+          SignalDatabase.messages.setTransactionSuccessful()
           return null
         }
 
@@ -452,10 +453,12 @@ object DataMessageProcessor {
           expiresIn = message.expireTimerDuration
         } else {
           warn(envelope.clientTimestamp!!, "Story has reactions disabled. Dropping reaction.")
+          SignalDatabase.messages.setTransactionSuccessful()
           return null
         }
       } catch (e: NoSuchMessageException) {
         warn(envelope.clientTimestamp!!, "Couldn't find story for reaction.", e)
+        SignalDatabase.messages.setTransactionSuccessful()
         return null
       }
 
@@ -476,9 +479,10 @@ object DataMessageProcessor {
       )
 
       val insertResult: InsertResult? = SignalDatabase.messages.insertMessageInbox(mediaMessage, -1).orNull()
-      if (insertResult != null) {
-        SignalDatabase.messages.setTransactionSuccessful()
 
+      SignalDatabase.messages.setTransactionSuccessful()
+
+      if (insertResult != null) {
         if (parentStoryId.isGroupReply()) {
           AppDependencies.messageNotifier.updateNotification(context, ConversationId.fromThreadAndReply(insertResult.threadId, parentStoryId as GroupReply))
         } else {
@@ -759,14 +763,13 @@ object DataMessageProcessor {
         val storyGroupId: GroupId? = groupRecord?.id?.takeIf { groupStory }
         if (storyGroupId != groupId) {
           warn(envelope.clientTimestamp!!, "Story reply target does not belong to the same conversation as the incoming message. Dropping reply.")
+          SignalDatabase.messages.setTransactionSuccessful()
           return null
         }
 
         if (!groupStory) {
           threadRecipient = senderRecipient
         }
-
-        handlePossibleExpirationUpdate(envelope, metadata, senderRecipient, threadRecipient, groupId, message.expireTimerDuration, message.expireTimerVersion, receivedTime)
 
         if (message.hasGroupContext) {
           parentStoryId = GroupReply(storyMessageId.id)
@@ -784,10 +787,14 @@ object DataMessageProcessor {
           expiresInMillis = message.expireTimerDuration
         } else {
           warn(envelope.clientTimestamp!!, "Story has replies disabled. Dropping reply.")
+          SignalDatabase.messages.setTransactionSuccessful()
           return null
         }
+
+        handlePossibleExpirationUpdate(envelope, metadata, senderRecipient, threadRecipient, groupId, message.expireTimerDuration, message.expireTimerVersion, receivedTime)
       } catch (e: NoSuchMessageException) {
         warn(envelope.clientTimestamp!!, "Couldn't find story for reply.", e)
+        SignalDatabase.messages.setTransactionSuccessful()
         return null
       }
 
@@ -813,9 +820,9 @@ object DataMessageProcessor {
 
       val insertResult: InsertResult? = SignalDatabase.messages.insertMessageInbox(mediaMessage, -1).orNull()
 
-      if (insertResult != null) {
-        SignalDatabase.messages.setTransactionSuccessful()
+      SignalDatabase.messages.setTransactionSuccessful()
 
+      if (insertResult != null) {
         if (parentStoryId.isGroupReply()) {
           AppDependencies.messageNotifier.updateNotification(context, ConversationId.fromThreadAndReply(insertResult.threadId, parentStoryId as GroupReply))
         } else {
@@ -942,11 +949,11 @@ object DataMessageProcessor {
       )
 
       insertResult = SignalDatabase.messages.insertMessageInbox(retrieved = mediaMessage, candidateThreadId = -1, skipThreadUpdate = batchCache.batchThreadUpdates).orNull()
-      if (insertResult != null) {
-        SignalDatabase.messages.setTransactionSuccessful()
-        if (insertResult.needsThreadUpdate) {
-          batchCache.addIncomingMessageInsertThreadUpdate(insertResult.threadId)
-        }
+
+      SignalDatabase.messages.setTransactionSuccessful()
+
+      if (insertResult != null && insertResult.needsThreadUpdate) {
+        batchCache.addIncomingMessageInsertThreadUpdate(insertResult.threadId)
       }
     } catch (e: MmsException) {
       throw StorageFailedException(e, metadata.sourceServiceId.toString(), metadata.sourceDeviceId)
