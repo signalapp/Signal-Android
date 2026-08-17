@@ -41,7 +41,6 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
     const val SHOW_ARCHIVE_STATE_HINT: String = "internal.show_archive_state_hint"
     const val INCLUDE_DEBUGLOG_IN_BACKUP: String = "internal.include_debuglog_in_backup"
     const val IMPORTED_BACKUP_DEBUG_INFO: String = "internal.imported_backup_debug_info"
-    const val USE_NEW_MEDIA_ACTIVITY: String = "internal.use_new_media_activity"
     const val ANR_DETECTION_CRASH: String = "internal.anr_detection_crash"
     const val ISSUE_NOTIFICATION_PRIORITY: String = "internal.issue_notification_priority"
     const val ISSUE_NOTIFY_TIMES: String = "internal.issue_notify_times"
@@ -60,19 +59,6 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
    * Force single-pane on all devices
    */
   var forceSinglePane by booleanValue(FORCE_SINGLE_PANE_ON_ALL_DEVICES, false).falseForExternalUsers()
-
-  /**
-   * Whether to use the new media-send flow. Internal users can override the remote value.
-   */
-  var useNewMediaActivity: Boolean
-    get() = if (RemoteConfig.internalUser) {
-      getBoolean(USE_NEW_MEDIA_ACTIVITY, RemoteConfig.useNewMediaSendFlow)
-    } else {
-      RemoteConfig.useNewMediaSendFlow
-    }
-    set(value) {
-      putBoolean(USE_NEW_MEDIA_ACTIVITY, value)
-    }
 
   /**
    * Members will not be added directly to a GV2 even if they could be.

@@ -1,9 +1,9 @@
 /*
- * Copyright 2025 Signal Messenger, LLC
+ * Copyright 2026 Signal Messenger, LLC
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.mediasend.v2.review
+package org.thoughtcrime.securesms.mediasend.v2.gallery
 
 import android.content.Context
 import android.content.res.Resources

@@ -467,15 +467,6 @@
             android:windowSoftInputMode="stateHidden" />
 
         <activity
-            android:name=".mediasend.v2.MediaSelectionActivity"
-            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize|uiMode"
-            android:screenOrientation="portrait"
-            android:exported="false"
-            android:launchMode="singleTop"
-            android:theme="@style/TextSecure.DarkNoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustNothing" />
-
-        <activity
             android:name=".mediasend.v3.MediaSendV3Activity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize|uiMode"
             android:screenOrientation="portrait"

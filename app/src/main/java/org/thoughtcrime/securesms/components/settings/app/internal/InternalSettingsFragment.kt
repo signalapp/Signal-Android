@@ -1082,14 +1082,6 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
           viewModel.setUseConversationItemV2Media(!state.useConversationItemV2ForMedia)
         }
       )
-
-      switchPref(
-        title = DSLSettingsText.from("Use new media activity"),
-        isChecked = state.useNewMediaActivity,
-        onClick = {
-          viewModel.setUseNewMediaActivity(!state.useNewMediaActivity)
-        }
-      )
     }
   }
 

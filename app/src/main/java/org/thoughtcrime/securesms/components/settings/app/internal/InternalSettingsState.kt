@@ -35,7 +35,6 @@ data class InternalSettingsState(
   val hasPendingOneTimeDonation: Boolean,
   val forceSplitPane: Boolean,
   val forceSinglePane: Boolean,
-  val useNewMediaActivity: Boolean,
   val disableInternalUser: Boolean,
   val searchQuery: String = ""
 )

@@ -172,11 +172,6 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     refresh()
   }
 
-  fun setUseNewMediaActivity(enabled: Boolean) {
-    SignalStore.internal.useNewMediaActivity = enabled
-    refresh()
-  }
-
   fun addSampleReleaseNote(callToAction: String = "action") {
     repository.addSampleReleaseNote(callToAction)
   }
@@ -269,7 +264,6 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     hasPendingOneTimeDonation = SignalStore.inAppPayments.getPendingOneTimeDonation() != null,
     forceSplitPane = SignalStore.internal.forceSplitPane,
     forceSinglePane = SignalStore.internal.forceSinglePane,
-    useNewMediaActivity = SignalStore.internal.useNewMediaActivity,
     disableInternalUser = RemoteConfig.internalUserDisabled
   )
 

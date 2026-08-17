@@ -1413,15 +1413,6 @@ object RemoteConfig {
     hotSwappable = true
   )
 
-  /** Whether to utilize the new media-send feature module */
-  @JvmStatic
-  @get:JvmName("useNewMediaSendFlow")
-  val useNewMediaSendFlow: Boolean by remoteBoolean(
-    key = "android.useNewMediaSendFlow.2",
-    defaultValue = false,
-    hotSwappable = true
-  )
-
   /** Whether to enable Jetpack telecom integration for 1:1 calls */
   @JvmStatic
   @get:JvmName("useJetPackTelecom")
