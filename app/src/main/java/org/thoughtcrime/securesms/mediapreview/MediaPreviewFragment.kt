@@ -132,7 +132,7 @@ class MediaPreviewFragment :
       viewModel
         .state
         .distinctUntilChanged { t1, t2 ->
-          // this is all fields except for [isInSharedAnimation], which is explicitly excluded.
+          // All fields except [isInSharedAnimation] and [hdrCapableUris], neither of which bindCurrentState renders.
           (
             t1.mediaRecords == t2.mediaRecords &&
               t1.loadState == t2.loadState &&
