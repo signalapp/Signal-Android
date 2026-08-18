@@ -50,6 +50,9 @@ message AccountData {
 
   // Whether the service reported this registration as a re-registration of an existing account.
   bool reRegistration = 16;
+
+  // Salt used by the service to generate PNI auth credentials. Only present for an account registered without a phone number.
+  optional bytes authCredentialSalt = 17;
 }
 
 message SvrCredential {

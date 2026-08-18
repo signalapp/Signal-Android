@@ -49,6 +49,7 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
     private const val KEY_DEVICE_NAME = "account.device_name"
     private const val KEY_DEVICE_ID = "account.device_id"
     private const val KEY_PNI_REGISTRATION_ID = "account.pni_registration_id"
+    private const val KEY_AUTH_CREDENTIAL_SALT = "account.auth_credential_salt"
 
     private const val KEY_ACI_IDENTITY_PUBLIC_KEY = "account.aci_identity_public_key"
     private const val KEY_ACI_IDENTITY_PRIVATE_KEY = "account.aci_identity_private_key"
@@ -275,6 +276,9 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
   fun setServicePassword(servicePassword: String) {
     putString(KEY_SERVICE_PASSWORD, servicePassword)
   }
+
+  /** Salt used by the service to generate PNI auth credentials. Only present for an account registered without a phone number. */
+  var authCredentialSalt: ByteArray? by nullableBlobValue(KEY_AUTH_CREDENTIAL_SALT, null)
 
   /** A randomly-generated value that represents this registration instance. Helps the server know if you reinstalled. */
   var registrationId: Int by integerValue(KEY_REGISTRATION_ID, 0)

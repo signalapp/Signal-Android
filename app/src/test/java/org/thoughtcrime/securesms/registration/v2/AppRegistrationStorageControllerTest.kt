@@ -94,6 +94,7 @@ class AppRegistrationStorageControllerTest {
   private val pniSignedPreKey = PreKeyUtil.generateSignedPreKey(12, pniIdentity.privateKey)
   private val aciLastResortKyberPreKey = PreKeyUtil.generateLastResortKyberPreKey(21, aciIdentity.privateKey)
   private val pniLastResortKyberPreKey = PreKeyUtil.generateLastResortKyberPreKey(22, pniIdentity.privateKey)
+  private val authCredentialSalt = byteArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16)
 
   private val blobData = mutableMapOf<Uri, ByteArray>()
   private var blobCounter = 0
@@ -147,6 +148,7 @@ class AppRegistrationStorageControllerTest {
     assertThat(SignalStore.account.pniIdentityKey.serialize()).isEqualTo(pniIdentity.serialize())
     assertThat(SignalStore.account.accountEntropyPool.value).isEqualTo(aep.value)
     assertThat(SignalStore.account.restoredAccountEntropyPool).isTrue()
+    assertThat(SignalStore.account.authCredentialSalt).isNotNull().isEqualTo(authCredentialSalt)
 
     assertThat(SignalStore.account.aciPreKeys.isSignedPreKeyRegistered).isTrue()
     assertThat(SignalStore.account.aciPreKeys.activeSignedPreKeyId).isEqualTo(11)
@@ -539,7 +541,8 @@ class AppRegistrationStorageControllerTest {
       e164 = E164,
       servicePassword = servicePassword,
       linkedDeviceData = linkedDeviceData,
-      reRegistration = reRegistration
+      reRegistration = reRegistration,
+      authCredentialSalt = authCredentialSalt.toByteString()
     )
   }
 }

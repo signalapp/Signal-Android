@@ -820,6 +820,10 @@ class AppRegistrationStorageController(private val context: Context) : StorageCo
       SignalStore.misc.needsUsernameRestore = true
     }
 
+    accountData.authCredentialSalt?.let {
+      SignalStore.account.authCredentialSalt = it.toByteArray()
+    }
+
     SignalStore.account.setServicePassword(accountData.servicePassword)
     SignalStore.account.setRegistered(registered = true, isAciChanged = isAciChanged)
     TextSecurePreferences.setPromptedPushRegistration(context, true)

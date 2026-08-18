@@ -715,6 +715,7 @@ class RegistrationRepository(
         this.pni = result.result.pni
         this.servicePassword = keyMaterial.servicePassword
         this.reRegistration = result.result.reregistration
+        this.authCredentialSalt = result.result.authCredentialSalt?.let { Base64.decode(it).toByteString() }
       }
       storageController.commitRegistrationData()
     }
