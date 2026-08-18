@@ -171,9 +171,15 @@ class LinkDeviceViewModel : ViewModel() {
 
     val uri = Uri.parse(url)
     if (LinkDeviceRepository.isValidQr(uri)) {
+      val capabilities = uri.getCapabilities()
+      val qrCodeState = when {
+        Capability.Numberless !in capabilities && SignalStore.account.pni == null -> QrCodeState.OUTDATED_DEVICE
+        Capability.LinkAndSync in capabilities -> QrCodeState.VALID_WITH_SYNC
+        else -> QrCodeState.VALID_WITHOUT_SYNC
+      }
       _state.update {
         it.copy(
-          qrCodeState = if (uri.supportsLinkAndSync()) QrCodeState.VALID_WITH_SYNC else QrCodeState.VALID_WITHOUT_SYNC,
+          qrCodeState = qrCodeState,
           linkUri = uri
         )
       }
@@ -215,7 +221,7 @@ class LinkDeviceViewModel : ViewModel() {
       Log.i(TAG, "Adding device with sync.")
       addDeviceWithSync(linkUri)
     } else {
-      Log.i(TAG, "Adding device without sync. (uri: ${linkUri.supportsLinkAndSync()})")
+      Log.i(TAG, "Adding device without sync. (backup5: ${Capability.LinkAndSync in linkUri.getCapabilities()})")
       addDeviceWithoutSync(linkUri)
     }
   }
@@ -413,9 +419,17 @@ class LinkDeviceViewModel : ViewModel() {
     LinkedDeviceInactiveCheckJob.enqueue()
   }
 
-  private fun Uri.supportsLinkAndSync(): Boolean {
-    val capabilities = this.getQueryParameter("capabilities")?.split(",")?.toSet() ?: emptySet()
-    return "backup5" in capabilities
+  private fun Uri.getCapabilities(): Set<Capability> {
+    return this.getQueryParameter("capabilities")
+      ?.split(",")
+      ?.mapNotNull { value -> Capability.entries.firstOrNull { it.value == value } }
+      ?.toSet()
+      ?: emptySet()
+  }
+
+  private enum class Capability(val value: String) {
+    LinkAndSync("backup5"),
+    Numberless("nopni")
   }
 
   fun onSyncErrorIgnored() = viewModelScope.launch(Dispatchers.IO) {
