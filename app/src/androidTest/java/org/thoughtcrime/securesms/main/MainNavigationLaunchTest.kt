@@ -29,15 +29,25 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.calls.log.CallLogFragment
 import org.thoughtcrime.securesms.conversation.ConversationArgs
 import org.thoughtcrime.securesms.conversation.ConversationIntents
+import org.thoughtcrime.securesms.conversation.MessageSendType
 import org.thoughtcrime.securesms.conversation.v2.ConversationFragment
 import org.thoughtcrime.securesms.conversationlist.ConversationListArchiveFragment
 import org.thoughtcrime.securesms.conversationlist.ConversationListFragment
+import org.thoughtcrime.securesms.database.DraftTable
+import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord
+import org.thoughtcrime.securesms.database.model.StoryType
+import org.thoughtcrime.securesms.database.withAttachments
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.landing.StoriesLandingFragment
 import org.thoughtcrime.securesms.testing.SignalActivityRule
+import org.thoughtcrime.securesms.util.MessageTableTestUtils
 import java.io.ByteArrayOutputStream
 import java.util.Collections
 import java.util.concurrent.CountDownLatch
@@ -145,6 +155,73 @@ class MainNavigationLaunchTest {
       check(launched.recorder.createdArgs.size == 1) {
         "Expected exactly one ConversationFragment for image share, got ${launched.recorder.createdArgs.size}"
       }
+    }
+  }
+
+  @Test
+  fun warmStart_plainExternalImage_cancel_restoresExistingTextDraft() {
+    val draftText = "draft that must survive image share"
+    val threadId = seedTextDraft(draftText)
+    val media = realJpegMedia()
+
+    launchSync(notificationToConversationIntent(recipient)).use { launched ->
+      awaitComposerText(launched, draftText)
+      val mediaSend = launchPlainExternalImageShare(launched, media)
+
+      finishMediaEditor(mediaSend)
+
+      awaitComposerText(launched, draftText)
+      awaitPersistedTextDraft(threadId, draftText)
+    }
+  }
+
+  @Test
+  fun warmStart_plainExternalImage_send_restoresExistingTextDraftWithoutUsingItAsCaption() {
+    val draftText = "draft that must not become a caption"
+    val threadId = seedTextDraft(draftText)
+    val media = realJpegMedia()
+
+    launchSync(notificationToConversationIntent(recipient)).use { launched ->
+      awaitComposerText(launched, draftText)
+      val mediaSend = launchPlainExternalImageShare(launched, media)
+      val messagesBeforeSend = messageIds(threadId)
+
+      finishMediaEditor(mediaSend, mediaSendResult(media))
+
+      awaitComposerText(launched, draftText)
+      awaitPersistedTextDraft(threadId, draftText)
+      assertNewOutgoingImageMessage(threadId, messagesBeforeSend, media, draftText)
+    }
+  }
+
+  @Test
+  fun recreate_whilePlainExternalImageEditorOpen_sendPreservesExistingTextDraft() {
+    val draftText = "draft that must survive recreation"
+    val threadId = seedTextDraft(draftText)
+    val media = realJpegMedia()
+
+    launchSync(notificationToConversationIntent(recipient)).use { launched ->
+      awaitComposerText(launched, draftText)
+      val mediaSend = launchPlainExternalImageShare(launched, media)
+      val originalActivity = launched.activity
+      val originalFragment = runOnMainSync { launched.recorder.latestActive() }
+      val fragmentCount = launched.recorder.createdArgs.size
+
+      runOnMainSync { launched.activity.recreate() }
+
+      await(timeoutMs = 15_000, description = "MainActivity and ConversationFragment recreated behind the media editor") {
+        launched.activity !== originalActivity &&
+          launched.recorder.createdArgs.size > fragmentCount &&
+          launched.recorder.latestActive() !== originalFragment
+      }
+      awaitComposerText(launched, draftText)
+      val messagesBeforeSend = messageIds(threadId)
+
+      finishMediaEditor(mediaSend, mediaSendResult(media))
+
+      awaitComposerText(launched, draftText)
+      awaitPersistedTextDraft(threadId, draftText)
+      assertNewOutgoingImageMessage(threadId, messagesBeforeSend, media, draftText)
     }
   }
 
@@ -608,6 +685,150 @@ class MainNavigationLaunchTest {
       transformProperties = null,
       fileName = null
     )
+  }
+
+  private fun seedTextDraft(text: String): Long {
+    val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(Recipient.resolved(recipient))
+    SignalDatabase.drafts.replaceDrafts(
+      threadId,
+      DraftTable.Drafts(listOf(DraftTable.Draft(DraftTable.Draft.TEXT, text)))
+    )
+    return threadId
+  }
+
+  private fun launchPlainExternalImageShare(launched: LaunchedActivity, media: Media): MediaSelectionActivity {
+    val timestamp = maxOf(System.currentTimeMillis(), SignalStore.misc.lastProcessedShareDataTimestamp + 1)
+    val intent = shareToConversationIntent(
+      recipient = recipient,
+      blob = media.uri,
+      mimeType = checkNotNull(media.contentType),
+      shareDataTimestamp = timestamp
+    )
+
+    runOnMainSync {
+      InstrumentationRegistry.getInstrumentation().callActivityOnNewIntent(launched.activity, intent)
+    }
+
+    return launched.awaitActivity(MediaSelectionActivity::class.java, timeoutMs = 20_000)
+  }
+
+  private fun mediaSendResult(media: Media): MediaSendActivityResult {
+    return MediaSendActivityResult(
+      recipientId = recipient,
+      nonUploadedMedia = listOf(media),
+      body = "",
+      messageSendType = MessageSendType.SignalMessageSendType,
+      isViewOnce = false,
+      mentions = emptyList(),
+      bodyRanges = null,
+      storyType = StoryType.NONE
+    )
+  }
+
+  private fun finishMediaEditor(activity: MediaSelectionActivity, result: MediaSendActivityResult? = null) {
+    runOnMainSync {
+      if (result == null) {
+        activity.setResult(Activity.RESULT_CANCELED)
+      } else {
+        activity.setResult(
+          Activity.RESULT_OK,
+          Intent().putExtra(MediaSendActivityResult.EXTRA_RESULT, result)
+        )
+      }
+      activity.finish()
+    }
+  }
+
+  private fun awaitPersistedTextDraft(threadId: Long, expected: String) {
+    await(timeoutMs = 15_000, description = "database draft remains \"$expected\"") {
+      SignalDatabase.drafts
+        .getDrafts(threadId)
+        .firstOrNull { it.type == DraftTable.Draft.TEXT }
+        ?.value == expected
+    }
+  }
+
+  private fun messageIds(threadId: Long): Set<Long> {
+    return MessageTableTestUtils.getMessages(threadId).mapTo(mutableSetOf()) { it.id }
+  }
+
+  private fun assertNewOutgoingImageMessage(threadId: Long, previousMessageIds: Set<Long>, expectedMedia: Media, draftText: String) {
+    try {
+      await(timeoutMs = 15_000, description = "a new message to be inserted") {
+        newMessagesWithAttachments(threadId, previousMessageIds).isNotEmpty()
+      }
+    } catch (e: IllegalStateException) {
+      val observedMessages = newMessagesWithAttachments(threadId, previousMessageIds)
+      throw IllegalStateException(
+        "${e.message}\n${describeMessagesAfterBaseline(observedMessages, previousMessageIds)}",
+        e
+      )
+    }
+
+    val newMessages = newMessagesWithAttachments(threadId, previousMessageIds)
+    val observedState = describeMessagesAfterBaseline(newMessages, previousMessageIds)
+    val newOutgoingMessages = newMessages.filter { it.isOutgoing }
+
+    check(newOutgoingMessages.size == 1) {
+      "Expected exactly one new outgoing message, got ${newOutgoingMessages.map { it.id }}\n$observedState"
+    }
+
+    val message = newOutgoingMessages.single()
+    check(message is MmsMessageRecord) { "Expected an outgoing MMS, got ${message.javaClass.name}\n$observedState" }
+    check(message.containsMediaSlide()) { "Expected the outgoing MMS to contain a media slide\n$observedState" }
+    check(message.body.isNullOrEmpty()) { "Expected no outgoing body/caption, got ${message.body}\n$observedState" }
+    check(message.body != draftText) { "Existing draft was used as the outgoing message body\n$observedState" }
+
+    val imageSlides = message.slideDeck.slides.filter { it.hasImage() }
+    check(imageSlides.size == 1) {
+      "Expected exactly one image attachment, got ${message.slideDeck.slides.map { it.contentType }}\n$observedState"
+    }
+    check(imageSlides.single().contentType == expectedMedia.contentType) {
+      "Expected image content type ${expectedMedia.contentType}, got ${imageSlides.single().contentType}\n$observedState"
+    }
+    check(imageSlides.single().fileSize == expectedMedia.size) {
+      "Expected image size ${expectedMedia.size}, got ${imageSlides.single().fileSize}\n$observedState"
+    }
+    check(imageSlides.single().caption.orElse(null).isNullOrEmpty()) {
+      "Expected no image caption, got ${imageSlides.single().caption.orElse(null)}\n$observedState"
+    }
+  }
+
+  private fun newMessagesWithAttachments(threadId: Long, previousMessageIds: Set<Long>): List<MessageRecord> {
+    return MessageTableTestUtils
+      .getMessages(threadId)
+      .filter { it.id !in previousMessageIds }
+      .withAttachments()
+  }
+
+  private fun describeMessagesAfterBaseline(messages: List<MessageRecord>, previousMessageIds: Set<Long>): String {
+    if (messages.isEmpty()) {
+      return "No new message exists after previousMessageIds=$previousMessageIds"
+    }
+
+    return buildString {
+      appendLine("Messages created after previousMessageIds=$previousMessageIds:")
+      messages.forEach { message ->
+        val mmsMessage = message as? MmsMessageRecord
+        val slides = mmsMessage?.slideDeck?.slides.orEmpty()
+        appendLine(
+          "- id=${message.id}, recordClass=${message.javaClass.name}, isOutgoing=${message.isOutgoing}, " +
+            "body=${message.body}, containsMediaSlide=${mmsMessage?.containsMediaSlide() ?: "n/a"}, slideCount=${slides.size}"
+        )
+        slides.forEachIndexed { index, slide ->
+          val isMedia = slide.hasImage() ||
+            slide.hasVideo() ||
+            slide.hasAudio() ||
+            slide.hasDocument() ||
+            slide.hasSticker() ||
+            slide.hasViewOnce()
+          appendLine(
+            "  slide[$index]: contentType=${slide.contentType}, uri=${slide.uri}, fileSize=${slide.fileSize}, " +
+              "hasImage=${slide.hasImage()}, isMedia=$isMedia, caption=${slide.caption.orElse(null)}"
+          )
+        }
+      }
+    }.trimEnd()
   }
 
   /**

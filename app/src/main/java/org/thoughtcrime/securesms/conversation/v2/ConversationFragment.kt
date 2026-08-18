@@ -431,6 +431,7 @@ class ConversationFragment :
 
     private const val ACTION_PINNED_SHORTCUT = "action_pinned_shortcut"
     private const val SAVED_STATE_IS_SEARCH_REQUESTED = "is_search_requested"
+    private const val SAVED_STATE_IS_PLAIN_EXTERNAL_IMAGE_SHARE_PENDING = "is_plain_external_image_share_pending"
     private const val EMOJI_SEARCH_FRAGMENT_TAG = "EmojiSearchFragment"
     private const val MESSAGE_DETAILS_TAG = "MessageDetailsFragment"
 
@@ -593,6 +594,8 @@ class ConversationFragment :
       field = value
       viewModel.setIsSearchRequested(value)
     }
+
+  private var isPlainExternalImageSharePending: Boolean = false
 
   private var previousPage: KeyboardPage? = null
   private var previousPages: Set<KeyboardPage>? = null
@@ -802,12 +805,14 @@ class ConversationFragment :
     super.onViewStateRestored(savedInstanceState)
 
     isSearchRequested = savedInstanceState?.getBoolean(SAVED_STATE_IS_SEARCH_REQUESTED, false) ?: args.isWithSearchOpen
+    isPlainExternalImageSharePending = savedInstanceState?.getBoolean(SAVED_STATE_IS_PLAIN_EXTERNAL_IMAGE_SHARE_PENDING, false) ?: false
   }
 
   override fun onSaveInstanceState(outState: Bundle) {
     super.onSaveInstanceState(outState)
 
     outState.putBoolean(SAVED_STATE_IS_SEARCH_REQUESTED, isSearchRequested)
+    outState.putBoolean(SAVED_STATE_IS_PLAIN_EXTERNAL_IMAGE_SHARE_PENDING, isPlainExternalImageSharePending)
   }
 
   override fun onStart() {
@@ -1445,15 +1450,7 @@ class ConversationFragment :
       this::handleReplyToMessage
     ).attachToRecyclerView(binding.conversationItemRecycler)
 
-    viewModel
-      .inputReadyState
-      .take(1)
-      .flatMapMaybe { inputReadyState ->
-        draftViewModel.loadShareOrDraftData()
-          .map { inputReadyState to it }
-      }
-      .subscribeBy { (inputReadyState, data) -> handleShareOrDraftData(inputReadyState, data) }
-      .addTo(disposables)
+    loadShareOrDraftData()
 
     disposables.add(
       draftViewModel
@@ -2191,6 +2188,15 @@ class ConversationFragment :
       }
 
       is ShareOrDraftData.SetMedia -> {
+        if (
+          args.shareDataTimestamp > 0 &&
+          args.media.isNullOrEmpty() &&
+          args.draftText == null &&
+          data.text == null &&
+          data.mediaType == SlideFactory.MediaType.IMAGE
+        ) {
+          isPlainExternalImageSharePending = true
+        }
         composeText.setDraftText(data.text)
         setMedia(data.media, data.mediaType)
       }
@@ -2205,6 +2211,18 @@ class ConversationFragment :
         conversationActivityResultContracts.launchMediaEditor(data.mediaList, recipientId, data.text)
       }
     }
+  }
+
+  private fun loadShareOrDraftData() {
+    viewModel
+      .inputReadyState
+      .take(1)
+      .flatMapMaybe { inputReadyState ->
+        draftViewModel.loadShareOrDraftData()
+          .map { inputReadyState to it }
+      }
+      .subscribeBy { (inputReadyState, data) -> handleShareOrDraftData(inputReadyState, data) }
+      .addTo(disposables)
   }
 
   private fun handleScheduledMessagesCountChange(count: Int) {
@@ -2554,6 +2572,7 @@ class ConversationFragment :
     preUploadResults: List<MessageSender.PreUploadResult> = emptyList(),
     bypassPreSendSafetyNumberCheck: Boolean = false,
     isViewOnce: Boolean = false,
+    clearDraftOnComplete: Boolean = true,
     afterSendComplete: () -> Unit = {}
   ) {
     val threadRecipient = viewModel.recipientSnapshot
@@ -2630,7 +2649,7 @@ class ConversationFragment :
       }
       .subscribeBy(
         onComplete = {
-          onSendComplete()
+          onSendComplete(clearDraftOnComplete)
           afterSendComplete()
         },
         onError = {
@@ -2640,7 +2659,7 @@ class ConversationFragment :
       )
   }
 
-  private fun onSendComplete() {
+  private fun onSendComplete(clearDraft: Boolean = true) {
     if (isDetached || activity?.isFinishing == true) {
       return
     }
@@ -2650,7 +2669,9 @@ class ConversationFragment :
 
     updateLinkPreviewState()
 
-    draftViewModel.clearDraft()
+    if (clearDraft) {
+      draftViewModel.clearDraft()
+    }
 
     inputPanel.exitEditMessageMode()
 
@@ -4563,7 +4584,13 @@ class ConversationFragment :
     }
 
     override fun onMediaSend(result: MediaSendActivityResult?) {
+      val restoreDraftAfterMedia = isPlainExternalImageSharePending
+      isPlainExternalImageSharePending = false
+
       if (result == null) {
+        if (restoreDraftAfterMedia) {
+          loadShareOrDraftData()
+        }
         return
       }
 
@@ -4571,11 +4598,14 @@ class ConversationFragment :
       if (result.recipientId != recipientSnapshot?.id) {
         Log.w(TAG, "Result's recipientId did not match ours! Result: " + result.recipientId + ", Ours: " + recipientSnapshot?.id)
         toast(R.string.ConversationActivity_error_sending_media)
+        if (restoreDraftAfterMedia) {
+          loadShareOrDraftData()
+        }
         return
       }
 
       if (result.isPushPreUpload) {
-        sendPreUploadMediaMessage(result)
+        sendPreUploadMediaMessage(result, restoreDraftAfterMedia)
         return
       }
 
@@ -4607,16 +4637,20 @@ class ConversationFragment :
         scheduledDate = result.scheduledTime,
         slideDeck = SlideDeck().apply { slides.forEach { addSlide(it) } },
         contacts = emptyList(),
-        clearCompose = true,
+        clearCompose = !restoreDraftAfterMedia,
         linkPreviews = emptyList(),
         isViewOnce = result.isViewOnce,
-        bypassPreSendSafetyNumberCheck = true
+        bypassPreSendSafetyNumberCheck = true,
+        clearDraftOnComplete = !restoreDraftAfterMedia
       ) {
         viewModel.deleteSlideData(slides)
+        if (restoreDraftAfterMedia) {
+          loadShareOrDraftData()
+        }
       }
     }
 
-    private fun sendPreUploadMediaMessage(result: MediaSendActivityResult) {
+    private fun sendPreUploadMediaMessage(result: MediaSendActivityResult, restoreDraftAfterMedia: Boolean) {
       sendMessage(
         body = result.body,
         mentions = result.mentions,
@@ -4626,12 +4660,17 @@ class ConversationFragment :
         scheduledDate = result.scheduledTime,
         slideDeck = null,
         contacts = emptyList(),
-        clearCompose = true,
+        clearCompose = !restoreDraftAfterMedia,
         linkPreviews = emptyList(),
         preUploadResults = result.preUploadResults,
         isViewOnce = result.isViewOnce,
-        bypassPreSendSafetyNumberCheck = true
-      )
+        bypassPreSendSafetyNumberCheck = true,
+        clearDraftOnComplete = !restoreDraftAfterMedia
+      ) {
+        if (restoreDraftAfterMedia) {
+          loadShareOrDraftData()
+        }
+      }
     }
 
     override fun onContactSelect(uri: Uri?) {
