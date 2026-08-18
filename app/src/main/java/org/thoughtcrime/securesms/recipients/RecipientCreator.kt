@@ -184,7 +184,7 @@ object RecipientCreator {
       sealedSenderAccessModeValue = record.sealedSenderAccessMode,
       capabilities = record.capabilities,
       storageId = record.storageId,
-      mentionSetting = record.mentionSetting,
+      mentionSettingValue = record.mentionSetting,
       callNotificationSettingValue = record.callNotificationSetting,
       replyNotificationSettingValue = record.replyNotificationSetting,
       wallpaperValue = record.wallpaper?.validate(),

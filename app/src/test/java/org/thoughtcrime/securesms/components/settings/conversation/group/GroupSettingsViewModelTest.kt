@@ -67,7 +67,6 @@ class GroupSettingsViewModelTest {
 
     every { repository.isDeprecatedOrUnregistered() } returns false
     every { repository.isStarredMessagesEnabled() } returns false
-    every { repository.isInternalUser() } returns false
     every { repository.isInternalRecipientDetailsEnabled() } returns false
     every { repository.isStoriesFeatureEnabled() } returns false
     every { repository.isAddToStoryAvailable() } returns true

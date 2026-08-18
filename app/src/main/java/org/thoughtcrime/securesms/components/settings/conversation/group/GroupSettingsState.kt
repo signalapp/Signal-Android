@@ -25,7 +25,6 @@ data class GroupSettingsState(
   val threadId: Long = -1L,
   val storyViewState: StoryViewState = StoryViewState.NONE,
   val isDeprecatedOrUnregistered: Boolean = false,
-  val isInternalUser: Boolean = false,
   val displayInternalRecipientDetails: Boolean = false,
   val starredMessagesEnabled: Boolean = false,
   val disappearingMessagesLifespan: Int = 0,

@@ -247,7 +247,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         $SEALED_SENDER_MODE INTEGER DEFAULT 0, 
         $STORAGE_SERVICE_ID TEXT UNIQUE DEFAULT NULL, 
         $STORAGE_SERVICE_PROTO TEXT DEFAULT NULL,
-        $MENTION_SETTING INTEGER DEFAULT ${NotificationSetting.ALWAYS_NOTIFY.id},
+        $MENTION_SETTING INTEGER DEFAULT ${NotificationSetting.SYSTEM_DEFAULT.id},
         $CAPABILITIES INTEGER DEFAULT 0,
         $LAST_SESSION_RESET BLOB DEFAULT NULL,
         $WALLPAPER BLOB DEFAULT NULL,
@@ -271,8 +271,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         $NOTE TEXT DEFAULT NULL,
         $MESSAGE_EXPIRATION_TIME_VERSION INTEGER DEFAULT 1 NOT NULL,
         $KEY_TRANSPARENCY_DATA BLOB DEFAULT NULL,
-        $CALL_NOTIFICATION_SETTING INTEGER DEFAULT ${NotificationSetting.ALWAYS_NOTIFY.id},
-        $REPLY_NOTIFICATION_SETTING INTEGER DEFAULT ${NotificationSetting.ALWAYS_NOTIFY.id},
+        $CALL_NOTIFICATION_SETTING INTEGER DEFAULT ${NotificationSetting.SYSTEM_DEFAULT.id},
+        $REPLY_NOTIFICATION_SETTING INTEGER DEFAULT ${NotificationSetting.SYSTEM_DEFAULT.id},
         $BLOCKED_AT INTEGER DEFAULT 0
       )
       """
@@ -4579,9 +4579,9 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       MESSAGE_EXPIRATION_TIME_VERSION to 1,
       SEALED_SENDER_MODE to 0,
       STORAGE_SERVICE_PROTO to null,
-      MENTION_SETTING to NotificationSetting.ALWAYS_NOTIFY.id,
-      CALL_NOTIFICATION_SETTING to NotificationSetting.ALWAYS_NOTIFY.id,
-      REPLY_NOTIFICATION_SETTING to NotificationSetting.ALWAYS_NOTIFY.id,
+      MENTION_SETTING to NotificationSetting.SYSTEM_DEFAULT.id,
+      CALL_NOTIFICATION_SETTING to NotificationSetting.SYSTEM_DEFAULT.id,
+      REPLY_NOTIFICATION_SETTING to NotificationSetting.SYSTEM_DEFAULT.id,
       CAPABILITIES to 0,
       LAST_SESSION_RESET to null,
       WALLPAPER to null,
@@ -5174,12 +5174,21 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   }
 
   enum class NotificationSetting(val id: Int) {
-    ALWAYS_NOTIFY(0),
-    DO_NOT_NOTIFY(1);
+    SYSTEM_DEFAULT(0),
+    DO_NOT_NOTIFY(1),
+    ALWAYS_NOTIFY(2);
 
     companion object {
       fun fromId(id: Int): NotificationSetting {
         return entries[id]
+      }
+
+      fun resolve(setting: NotificationSetting, allowedByDefault: Boolean): NotificationSetting {
+        return if (setting == SYSTEM_DEFAULT) {
+          if (allowedByDefault) ALWAYS_NOTIFY else DO_NOT_NOTIFY
+        } else {
+          setting
+        }
       }
     }
   }

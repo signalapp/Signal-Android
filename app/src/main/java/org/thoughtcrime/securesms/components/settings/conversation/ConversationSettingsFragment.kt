@@ -401,12 +401,7 @@ class ConversationSettingsFragment : ComposeFragment() {
         startActivity(ChatWallpaperActivity.createIntent(requireContext(), action.recipientId))
       }
       is ConversationSettingsAction.NavigateToSoundsAndNotifications -> {
-        val directions = if (action.useInternalScreen) {
-          ConversationSettingsFragmentDirections.actionConversationSettingsFragmentToSoundsAndNotificationsSettingsFragment2(action.recipientId)
-        } else {
-          ConversationSettingsFragmentDirections.actionConversationSettingsFragmentToSoundsAndNotificationsSettingsFragment(action.recipientId)
-        }
-
+        val directions = ConversationSettingsFragmentDirections.actionConversationSettingsFragmentToSoundsAndNotificationsSettingsFragment(action.recipientId)
         navController.safeNavigate(directions)
       }
       is ConversationSettingsAction.OpenStarredMessages -> {

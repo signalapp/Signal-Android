@@ -145,15 +145,6 @@ private fun LabsSettingsContent(
 
       item {
         Rows.ToggleRow(
-          checked = state.muteBreakthroughNotifications,
-          text = "Improved Notification Management",
-          label = "Adds per-conversation controls to let calls and replies break through mute. New options in the sounds & notifications settings for a chat.",
-          onCheckChanged = { onEvent(LabsSettingsEvents.ToggleMuteBreakthroughNotifications(it)) }
-        )
-      }
-
-      item {
-        Rows.ToggleRow(
           checked = state.improvedMessageDeletion,
           text = "Improved message deletion",
           label = "Show a temporary tombstone when you delete a message, allowing you to promote it to a remote deletion.",

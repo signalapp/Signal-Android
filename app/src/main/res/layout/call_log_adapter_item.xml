@@ -50,20 +50,35 @@
 
     <org.thoughtcrime.securesms.components.emoji.EmojiTextView
         android:id="@+id/call_recipient_name"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:ellipsize="end"
         android:gravity="start|center_vertical"
         android:maxLines="2"
         android:textAlignment="viewStart"
         android:textAppearance="@style/Signal.Text.BodyLarge"
+        app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@+id/call_info"
-        app:layout_constraintEnd_toStartOf="@id/call_status_barrier"
+        app:layout_constraintEnd_toStartOf="@id/call_recipient_muted"
         app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toEndOf="@+id/call_recipient_avatar"
         app:layout_constraintTop_toTopOf="@+id/call_recipient_avatar"
         tools:text="Miles Morales" />
+
+    <ImageView
+        android:id="@+id/call_recipient_muted"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/symbol_bell_slash_compact_16"
+        app:layout_constraintBottom_toBottomOf="@id/call_recipient_name"
+        app:layout_constraintEnd_toStartOf="@id/call_status_barrier"
+        app:layout_constraintStart_toEndOf="@id/call_recipient_name"
+        app:layout_constraintTop_toTopOf="@id/call_recipient_name"
+        app:tint="@color/signal_colorOnSurfaceVariant" />
 
     <org.thoughtcrime.securesms.components.emoji.EmojiTextView
         android:id="@+id/call_info"

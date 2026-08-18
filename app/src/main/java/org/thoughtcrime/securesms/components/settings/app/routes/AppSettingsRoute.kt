@@ -74,6 +74,7 @@ sealed interface AppSettingsRoute : Parcelable {
   @Parcelize
   sealed interface NotificationsRoute : AppSettingsRoute {
     data object Notifications : NotificationsRoute
+    data object MutedNotifications : NotificationsRoute
     data object NotificationProfiles : NotificationsRoute
     data class EditProfile(val profileId: Long = -1L) : NotificationsRoute
     data class ProfileDetails(val profileId: Long) : NotificationsRoute

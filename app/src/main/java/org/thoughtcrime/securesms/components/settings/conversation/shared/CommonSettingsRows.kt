@@ -64,13 +64,10 @@ fun ChatColorAndWallpaperRow(
 fun SoundsAndNotificationsRow(
   onClick: () -> Unit,
   modifier: Modifier = Modifier,
-  isInternalUser: Boolean = false,
   enabled: Boolean = true
 ) {
-  val label = stringResource(R.string.ConversationSettingsFragment__sounds_and_notifications)
-
   Rows.TextRow(
-    text = if (isInternalUser) "$label (Internal Only)" else label,
+    text = stringResource(R.string.ConversationSettingsFragment__sounds_and_notifications),
     icon = painterResource(CoreUiR.drawable.symbol_speaker_24),
     enabled = enabled,
     onClick = onClick,
@@ -179,7 +176,6 @@ private fun ChatSettingsRowsPreview() {
       DisappearingMessagesRow(lifespanSeconds = 7.days.inWholeSeconds.toInt(), enabled = false, onClick = {})
       ChatColorAndWallpaperRow(onClick = {})
       SoundsAndNotificationsRow(onClick = {})
-      SoundsAndNotificationsRow(isInternalUser = true, onClick = {})
       SoundsAndNotificationsRow(enabled = false, onClick = {})
       StarredMessagesRow(onClick = {})
     }

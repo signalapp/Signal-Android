@@ -85,10 +85,6 @@ class ConversationSettingsRepository(
     return SignalStore.labs.starredMessages
   }
 
-  fun isInternalUser(): Boolean {
-    return RemoteConfig.internalUser
-  }
-
   fun isAddToStoryAvailable(): Boolean {
     return !SignalStore.story.isFeatureDisabled
   }

@@ -172,6 +172,13 @@ class DefaultMessageNotifier(context: Application) : MessageNotifier {
       }
     }
 
+    if (state.reactionsDisabledFilteredMessages.isNotEmpty()) {
+      Log.i(TAG, "Marking ${state.reactionsDisabledFilteredMessages.size} reactions as notified to skip notification")
+      state.reactionsDisabledFilteredMessages.forEach { item ->
+        SignalDatabase.messages.markAsNotified(item.id)
+      }
+    }
+
     if (!SignalStore.settings.isMessageNotificationsEnabled) {
       Log.i(TAG, "Marking ${state.conversations.size} conversations as notified to skip notification")
       state.conversations.forEach { conversation ->

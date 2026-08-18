@@ -69,7 +69,6 @@ class IndividualSettingsViewModelTest {
 
     every { repository.isDeprecatedOrUnregistered() } returns false
     every { repository.isStarredMessagesEnabled() } returns false
-    every { repository.isInternalUser() } returns false
     every { repository.isInternalRecipientDetailsEnabled() } returns false
     every { repository.isStoriesFeatureEnabled() } returns false
     every { repository.isBlockable(any()) } returns true
@@ -335,14 +334,13 @@ class IndividualSettingsViewModelTest {
   }
 
   @Test
-  fun `sounds and notifications click uses the internal screen for internal users`() = runTest(testDispatcher) {
-    every { repository.isInternalUser() } returns true
+  fun `sounds and notifications click navigates`() = runTest(testDispatcher) {
     val viewModel = createViewModel()
     val actions = collectActions(viewModel)
 
     viewModel.onEvent(IndividualSettingsEvent.SoundsAndNotificationsClicked)
 
-    assertEquals(ConversationSettingsAction.NavigateToSoundsAndNotifications(RECIPIENT_ID, useInternalScreen = true), actions.single())
+    assertEquals(ConversationSettingsAction.NavigateToSoundsAndNotifications(RECIPIENT_ID), actions.single())
   }
 
   @Test

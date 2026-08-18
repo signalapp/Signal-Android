@@ -59,7 +59,6 @@ class IndividualSettingsViewModel(
     IndividualSettingsState(
       isDeprecatedOrUnregistered = repository.isDeprecatedOrUnregistered(),
       starredMessagesEnabled = repository.isStarredMessagesEnabled(),
-      isInternalUser = repository.isInternalUser(),
       displayInternalRecipientDetails = repository.isInternalRecipientDetailsEnabled()
     )
   )
@@ -176,7 +175,7 @@ class IndividualSettingsViewModel(
         _actions.send(ConversationSettingsAction.OpenChatWallpaper(recipientId))
       }
       IndividualSettingsEvent.SoundsAndNotificationsClicked -> {
-        _actions.send(ConversationSettingsAction.NavigateToSoundsAndNotifications(recipientId, state.isInternalUser))
+        _actions.send(ConversationSettingsAction.NavigateToSoundsAndNotifications(recipientId))
       }
       IndividualSettingsEvent.StarredMessagesClicked -> {
         _actions.send(ConversationSettingsAction.OpenStarredMessages(state.threadId))

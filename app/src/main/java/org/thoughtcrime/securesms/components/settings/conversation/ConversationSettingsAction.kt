@@ -86,7 +86,7 @@ sealed interface ConversationSettingsAction {
   data class OpenChatWallpaper(val recipientId: RecipientId) : ConversationSettingsAction
 
   /** Open the sounds and notifications screen. */
-  data class NavigateToSoundsAndNotifications(val recipientId: RecipientId, val useInternalScreen: Boolean) : ConversationSettingsAction
+  data class NavigateToSoundsAndNotifications(val recipientId: RecipientId) : ConversationSettingsAction
 
   /** Open the list of starred messages in this chat. */
   data class OpenStarredMessages(val threadId: Long) : ConversationSettingsAction

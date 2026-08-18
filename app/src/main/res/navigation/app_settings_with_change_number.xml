@@ -557,6 +557,14 @@
             app:popEnterAnim="@anim/fragment_close_enter"
             app:popExitAnim="@anim/fragment_close_exit" />
 
+        <action
+            android:id="@+id/action_notificationsSettingsFragment_to_mutedNotificationsFragment"
+            app:destination="@id/mutedNotificationsFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+
     </fragment>
 
     <!-- region Privacy -->
@@ -1098,6 +1106,10 @@
     <include app:graph="@navigation/manage_badges" />
 
     <!-- endregion -->
+
+    <fragment
+        android:id="@+id/mutedNotificationsFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.notifications.GlobalMutedNotificationsFragment" />
 
     <!-- Notification Profiles -->
     <fragment

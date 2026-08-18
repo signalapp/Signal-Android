@@ -57,7 +57,6 @@ class GroupSettingsViewModel(
       groupId = groupId,
       isDeprecatedOrUnregistered = repository.isDeprecatedOrUnregistered(),
       starredMessagesEnabled = repository.isStarredMessagesEnabled(),
-      isInternalUser = repository.isInternalUser(),
       displayInternalRecipientDetails = repository.isInternalRecipientDetailsEnabled()
     )
   )
@@ -188,7 +187,7 @@ class GroupSettingsViewModel(
       GroupSettingsEvent.ChatColorAndWallpaperClicked -> _actions.send(ConversationSettingsAction.OpenChatWallpaper(state.recipient.id))
 
       GroupSettingsEvent.SoundsAndNotificationsClicked -> {
-        _actions.send(ConversationSettingsAction.NavigateToSoundsAndNotifications(state.recipient.id, state.isInternalUser))
+        _actions.send(ConversationSettingsAction.NavigateToSoundsAndNotifications(state.recipient.id))
       }
 
       GroupSettingsEvent.StarredMessagesClicked -> _actions.send(ConversationSettingsAction.OpenStarredMessages(state.threadId))

@@ -184,7 +184,6 @@ fun GroupSettingsScreen(
 
     item {
       SoundsAndNotificationsRow(
-        isInternalUser = state.isInternalUser,
         enabled = !state.isDeprecatedOrUnregistered,
         onClick = { onEvent(GroupSettingsEvent.SoundsAndNotificationsClicked) }
       )

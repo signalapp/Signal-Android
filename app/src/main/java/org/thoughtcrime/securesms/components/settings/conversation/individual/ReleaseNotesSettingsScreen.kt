@@ -106,7 +106,6 @@ fun ReleaseNotesSettingsScreen(
 
     item {
       SoundsAndNotificationsRow(
-        isInternalUser = state.isInternalUser,
         enabled = !state.isDeprecatedOrUnregistered,
         onClick = { onEvent(IndividualSettingsEvent.SoundsAndNotificationsClicked) }
       )

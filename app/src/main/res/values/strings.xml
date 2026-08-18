@@ -1579,12 +1579,6 @@
     <!-- Dialog message -->
     <string name="RestoreActivity__no_longer_registered_message">This is likely because you registered your Signal account on a different device.</string>
 
-    <!-- GroupMentionSettingDialog -->
-    <string name="GroupMentionSettingDialog_notify_me_for_mentions">Notify me for Mentions</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Receive notifications when you’re mentioned in muted chats?</string>
-    <string name="GroupMentionSettingDialog_always_notify_me">Always notify me</string>
-    <string name="GroupMentionSettingDialog_dont_notify_me">Don\'t notify me</string>
-
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Your username, QR code and link aren\'t visible on your profile. Only share your username with people you trust.</string>
@@ -3265,7 +3259,7 @@
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
     <string name="MuteDialog_mute_notifications">Mute notifications</string>
     <!-- Dialog option that, when pressed, will open a time picker to let the user choose how long they\'d like to mute notifications for -->
-    <string name="MuteDialog__mute_until">Mute until…</string>
+    <string name="MuteDialog__mute_until">Until…</string>
 
     <!-- MuteUntilTimePickerBottomSheet -->
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
@@ -4133,10 +4127,10 @@
     <string name="arrays__use_default">Use default</string>
     <string name="arrays__use_custom">Use custom</string>
 
-    <string name="arrays__mute_for_one_hour">Mute for 1 hour</string>
-    <string name="arrays__mute_for_eight_hours">Mute for 8 hours</string>
-    <string name="arrays__mute_for_one_day">Mute for 1 day</string>
-    <string name="arrays__mute_for_seven_days">Mute for 7 days</string>
+    <string name="arrays__mute_for_one_hour">1 Hour</string>
+    <string name="arrays__mute_for_eight_hours">8 Hours</string>
+    <string name="arrays__mute_for_one_day">1 Day</string>
+    <string name="arrays__mute_for_seven_days">1 Week</string>
     <string name="arrays__always">Always</string>
 
     <string name="arrays__settings_default">Settings default</string>
@@ -4191,6 +4185,10 @@
     <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
     <string name="preferences__inactivity_timeout_interval">Inactivity timeout interval</string>
     <string name="preferences__notifications">Notifications</string>
+    <!-- Preference item menu to enable notifications -->
+    <string name="preferences__enable_notifications">Enable notifications</string>
+    <!-- Preference header for call notifications -->
+    <string name="preferences__call_notifications">Call notifications</string>
     <string name="preferences__led_color">LED color</string>
     <string name="preferences__led_color_unknown">Unknown</string>
     <string name="preferences__pref_led_blink_title">LED blink pattern</string>
@@ -4348,6 +4346,16 @@
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Using less data may improve calls on bad networks.</string>
     <string name="preferences_notifications__in_chat_sounds">In-chat sounds</string>
     <string name="preferences_notifications__show">Show</string>
+    <!-- Preference item to set notification settings when chats are muted -->
+    <string name="preferences_notifications__while_muted">While muted</string>
+    <!-- Option in settings to turn on reaction notifications -->
+    <string name="preferences_notifications__reaction">Reaction notifications</string>
+    <!-- Body option in settings to turn on reaction notifications    -->
+    <string name="preferences_notifications__notify_reaction">Show notifications for reactions to messages you send</string>
+    <!-- Option in settings to turn on unread reminders -->
+    <string name="preferences_notifications__unread">Unread reminders</string>
+    <!-- Body option to turn on unread reminders -->
+    <string name="preferences_notifications__notify_unread">Occasionally notify when there are unread messages in muted chats</string>
     <string name="preferences_notifications__ringtone">Ringtone</string>
     <string name="preferences_chats__message_text_size">Message font size</string>
     <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
@@ -5922,14 +5930,46 @@
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Messages</string>
     <string name="NotificationsSettingsFragment__calls">Calls</string>
-    <string name="NotificationsSettingsFragment__notify_when">Notify when…</string>
+    <!-- Notification header for sounds -->
+    <string name="NotificationsSettingsFragment__sounds">Sounds</string>
     <string name="NotificationsSettingsFragment__contact_joins_signal">Contact joins Signal</string>
+    <!-- Notification body to get notified when someone joins Signal -->
+    <string name="NotificationsSettingsFragment__notify_contact">Show a notification when a phone contact joins Signal</string>
+    <!-- Option to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset">Reset notification settings</string>
+    <!-- Option body to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_notifications">Reset notification settings to default, including custom settings for your chats</string>
+    <!-- Dialog to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_body">Reset all notification settings to default for all chats?</string>
+    <!-- Confirmation button to reset dialog -->
+    <string name="NotificationsSettingsFragment__reset_confirm">Reset</string>
     <!-- Notification preference header -->
     <string name="NotificationsSettingsFragment__notification_profiles">Notification profiles</string>
     <!-- Notification preference option header -->
     <string name="NotificationsSettingsFragment__profiles">Profiles</string>
     <!-- Notification preference summary text -->
     <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Create a profile to receive notifications only from people and groups you choose.</string>
+
+    <!-- Header to describe screen that shows while muted settings -->
+    <string name="MutedNotificationsFragment__while">While muted</string>
+    <!-- Title for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls">Calls</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body_global">Ring or notify when a call is started in muted chats.</string>
+    <!-- Title for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions">Mentions</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body_global">Notify when you are mentioned in muted chats.</string>
+    <!-- Title for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies">Replies</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body_global">Notify when someone replies to your message in muted chats.</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body">Ring or notify when a call is started while this chat is muted.</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body">Notify when you are mentioned while this chat is muted.</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body">Notify when someone replies to your message while this chat is muted.</string>
 
     <!-- NotificationProfilesFragment -->
     <!-- Title for notification profiles screen that shows all existing profiles; Title with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->

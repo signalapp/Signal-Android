@@ -30,8 +30,6 @@ class LabsValues internal constructor(store: KeyValueStore) : SignalStoreValues(
 
   var stickerReplies by booleanValue(STICKER_REPLIES, false).falseForExternalUsers()
 
-  var muteBreakthroughNotifications by booleanValue(MUTE_BREAKTHROUGH_NOTIFICATIONS, true).falseForExternalUsers()
-
   var improvedMessageDeletion by booleanValue(IMPROVED_MESSAGE_DELETION, true).falseForExternalUsers()
 
   private fun SignalStoreValueDelegate<Boolean>.falseForExternalUsers(): SignalStoreValueDelegate<Boolean> {
