@@ -2263,16 +2263,6 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     return getMessages(messageIds)
   }
 
-  private fun getOriginalEditedMessageRecord(messageId: Long): Long {
-    return readableDatabase.select(ID)
-      .from(TABLE_NAME)
-      .where("$TABLE_NAME.$LATEST_REVISION_ID = ?", messageId)
-      .orderBy("$ID DESC")
-      .limit(1)
-      .run()
-      .readToSingleLong(0)
-  }
-
   fun getMessages(messageIds: Collection<Long?>): MmsReader {
     val ids = TextUtils.join(",", messageIds)
     return mmsReaderFor(queryMessages("$TABLE_NAME.$ID IN ($ids)", null))
@@ -3011,7 +3001,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
           null
         }
 
-        val editedMessage = getOriginalEditedMessageRecord(messageId)
+        val editedMessage = cursor.requireLong(ORIGINAL_MESSAGE_ID)
 
         OutgoingMessage(
           recipient = threadRecipient,
