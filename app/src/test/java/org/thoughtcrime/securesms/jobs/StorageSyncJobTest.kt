@@ -35,6 +35,7 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.update
 import org.signal.core.util.withinTransaction
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
+import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.database.IssueReporter
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -54,6 +55,7 @@ import org.thoughtcrime.securesms.testutil.SystemOutLogger
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord
 import org.whispersystems.signalservice.api.storage.StorageId
+import org.whispersystems.signalservice.internal.storage.protos.AccountRecord
 import org.whispersystems.signalservice.internal.storage.protos.ContactRecord
 import org.whispersystems.signalservice.internal.storage.protos.GroupV1Record
 import org.whispersystems.signalservice.internal.storage.protos.StickerPackRecord
@@ -376,6 +378,81 @@ class StorageSyncJobTest {
   }
 
   @Test
+  fun `given a linked device with a tier, when I write our account record, then I include our tier`() {
+    stubLinkedDevice()
+    every { recipients.signalStore.backup.areBackupsEnabled } returns true
+    every { recipients.signalStore.backup.backupTier } returns MessageBackupTier.PAID
+
+    markSelfNeedsSync()
+
+    val result = runJob(StorageSyncJob.forLocalChange())
+
+    assertTrue(result.isSuccess)
+    assertEquals(MessageBackupTier.PAID.toBackupLevel(), remoteAccountRecord().backupTier)
+  }
+
+  @Test
+  fun `given a linked device and a remote record with a higher tier, when I run, then I apply it`() {
+    stubLinkedDevice()
+
+    remoteStorage.setRemoteState(listOf(accountRecordWithBackupTier(MessageBackupTier.PAID.toBackupLevel())), version = BASE_MANIFEST_VERSION + 1)
+
+    val jobManager = AppDependencies.jobManager
+    val result = runJob(StorageSyncJob.forRemoteChange())
+
+    assertTrue(result.isSuccess)
+    verify { recipients.signalStore.backup.backupTier = MessageBackupTier.PAID }
+    verify(exactly = 0) { jobManager.add(ofType<BackupTierDowngradeCheckJob>()) }
+  }
+
+  @Test
+  fun `given a linked device and a remote record without a tier, when I run, then I keep our tier and confirm with the service`() {
+    stubLinkedDevice()
+    every { recipients.signalStore.backup.areBackupsEnabled } returns true
+    every { recipients.signalStore.backup.backupTier } returns MessageBackupTier.PAID
+
+    remoteStorage.setRemoteState(listOf(accountRecordWithBackupTier(null)), version = BASE_MANIFEST_VERSION + 1)
+
+    val jobManager = AppDependencies.jobManager
+    val result = runJob(StorageSyncJob.forRemoteChange())
+
+    assertTrue(result.isSuccess)
+    verify(exactly = 0) { recipients.signalStore.backup.backupTier = null }
+    verify { jobManager.add(ofType<BackupTierDowngradeCheckJob>()) }
+  }
+
+  @Test
+  fun `given a linked device on paid and a remote record on free, when I run, then I keep our tier and confirm with the service`() {
+    stubLinkedDevice()
+    every { recipients.signalStore.backup.areBackupsEnabled } returns true
+    every { recipients.signalStore.backup.backupTier } returns MessageBackupTier.PAID
+
+    remoteStorage.setRemoteState(listOf(accountRecordWithBackupTier(MessageBackupTier.FREE.toBackupLevel())), version = BASE_MANIFEST_VERSION + 1)
+
+    val jobManager = AppDependencies.jobManager
+    val result = runJob(StorageSyncJob.forRemoteChange())
+
+    assertTrue(result.isSuccess)
+    verify(exactly = 0) { recipients.signalStore.backup.backupTier = MessageBackupTier.FREE }
+    verify { jobManager.add(ofType<BackupTierDowngradeCheckJob>()) }
+  }
+
+  @Test
+  fun `given a primary with a tier and a remote record without one, when I run, then I write our tier back and confirm nothing`() {
+    every { recipients.signalStore.backup.areBackupsEnabled } returns true
+    every { recipients.signalStore.backup.backupTier } returns MessageBackupTier.PAID
+
+    remoteStorage.setRemoteState(listOf(accountRecordWithBackupTier(null)), version = BASE_MANIFEST_VERSION + 1)
+
+    val jobManager = AppDependencies.jobManager
+    val result = runJob(StorageSyncJob.forRemoteChange())
+
+    assertTrue(result.isSuccess)
+    assertEquals(MessageBackupTier.PAID.toBackupLevel(), remoteAccountRecord().backupTier)
+    verify(exactly = 0) { jobManager.add(ofType<BackupTierDowngradeCheckJob>()) }
+  }
+
+  @Test
   fun `given a contact was unregistered long ago, when I run, then I remove their storage id`() {
     val contact = recipients.createRecipient("Local Contact")
     SignalDatabase.recipients.rotateStorageId(contact)
@@ -668,5 +745,30 @@ class StorageSyncJobTest {
   /** Mimics another device writing an unrelated record, which bumps the manifest but leaves our account record stale. */
   private fun bumpRemoteManifestWithoutTouchingAccountRecord() {
     remoteStorage.addRemoteRecords(listOf(contactRecord(ACI.from(UUID.randomUUID()), ProfileName.fromParts("Remote", "Contact"))))
+  }
+
+  private fun markSelfNeedsSync() {
+    SignalDatabase.recipients.markNeedsSync(recipients.self)
+    Recipient.self().live().refresh()
+  }
+
+  private fun remoteAccountRecord(): AccountRecord {
+    return remoteStorage.records.mapNotNull { it.proto.account }.single()
+  }
+
+  private fun stubLinkedDevice() {
+    every { recipients.signalStore.account.isLinkedDevice } returns true
+    every { recipients.signalStore.account.isPrimaryDevice } returns false
+    every { recipients.signalStore.account.restoredAccountEntropyPoolFromPrimary } returns true
+  }
+
+  /** Our account record as another device would have rewritten it: same contents, [backupTier] swapped in, under a fresh storage id so that we see it as remote-only. */
+  private fun accountRecordWithBackupTier(backupTier: Long?): SignalStorageRecord {
+    val record = StorageSyncHelper.buildAccountRecord(ApplicationProvider.getApplicationContext(), Recipient.self())
+
+    return record.copy(
+      id = StorageId.forAccount(StorageSyncHelper.generateKey()),
+      proto = record.proto.copy(account = record.proto.account!!.copy(backupTier = backupTier))
+    )
   }
 }

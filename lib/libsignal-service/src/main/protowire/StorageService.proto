@@ -237,12 +237,6 @@ message AccountRecord {
     }
   }
 
-  message BackupTierHistory {
-    // See zkgroup for integer particular values. Unset if backups are not enabled.
-    optional uint64 backupTier = 1;
-    optional uint64 endedAtTimestamp = 2;
-  }
-
   message NotificationProfileManualOverride {
     message ManuallyEnabled {
       bytes id = 1;
@@ -299,7 +293,7 @@ message AccountRecord {
   optional uint64                            backupTier                                 = 40; // See zkgroup for integer particular values. Unset if backups are not enabled.
            IAPSubscriberData                 backupSubscriberData                       = 41;
   optional AvatarColor                       avatarColor                                = 42;
-           BackupTierHistory                 backupTierHistory                          = 43;
+           reserved                          /* backupTierHistory */                      43;
            NotificationProfileManualOverride notificationProfileManualOverride          = 44;
            bool                              notificationProfileSyncDisabled            = 45;
            bool                              automaticKeyVerificationDisabled           = 46;

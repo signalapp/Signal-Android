@@ -141,7 +141,7 @@ class AccountRecordProcessor(
       username = remote.proto.username
       usernameLink = remote.proto.usernameLink
       notificationProfileManualOverride = remote.proto.notificationProfileManualOverride
-      backupTier = local.proto.backupTier ?: remote.proto.backupTier
+      backupTier = if (SignalStore.account.isPrimaryDevice) local.proto.backupTier ?: remote.proto.backupTier else remote.proto.backupTier
       avatarColor = if (SignalStore.account.isPrimaryDevice) local.proto.avatarColor else remote.proto.avatarColor
       automaticKeyVerificationDisabled = remote.proto.automaticKeyVerificationDisabled
       hasSeenAdminDeleteEducationDialog = remote.proto.hasSeenAdminDeleteEducationDialog

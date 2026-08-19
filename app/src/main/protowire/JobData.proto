@@ -292,3 +292,7 @@ message IndividualSendJobV2Data {
 message MultiDeviceAttachmentBackfillRequestJobData {
   uint64 messageId = 1;
 }
+
+message BackupTierDowngradeCheckJobData {
+  optional uint64 remoteBackupTier = 1;
+}
