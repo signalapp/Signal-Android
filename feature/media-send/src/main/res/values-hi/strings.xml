@@ -7,9 +7,9 @@
   <!-- Confirmation button that discards the user\'s image edits. -->
   <string name="MediaSendDialogs__discard">रद्द करें</string>
   <!-- Dialog title shown when the user tries to close media send while media is selected. -->
-  <string name="MediaSendDialogs__discard_media">Discard media?</string>
+  <string name="MediaSendDialogs__discard_media">मीडिया हटाना है?</string>
   <!-- Dialog body explaining that leaving media send will discard the selected media along with any edits. -->
-  <string name="MediaSendDialogs__you_will_lose_any_media">You will lose any media you captured and changes you made.</string>
+  <string name="MediaSendDialogs__you_will_lose_any_media">आपका कैप्चर किया गया सारा मीडिया और किए गए सभी बदलाव रद्द हो जाएंगे।</string>
   <!-- Dialog title asking to save the media being edited to the phone\'s storage -->
   <string name="MediaSendDialogs__save_to_phone">फ़ोन में सेव करना है?</string>
   <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other apps. -->
@@ -107,9 +107,9 @@
   <string name="DrawModeColorBar__brush">ब्रश</string>
 
   <!-- Content description for the crop toggle when the crop area is currently constrained to a fixed aspect ratio. Tapping it removes the constraint. -->
-  <string name="ImageEditorToolbar__aspect_ratio_locked">Aspect ratio locked</string>
+  <string name="ImageEditorToolbar__aspect_ratio_locked">आस्पेक्ट रेश्यो लॉक हो गया है</string>
   <!-- Content description for the crop toggle when the crop area can currently be resized freely. Tapping it constrains the crop area to a fixed aspect ratio. -->
-  <string name="ImageEditorToolbar__aspect_ratio_unlocked">Aspect ratio unlocked</string>
+  <string name="ImageEditorToolbar__aspect_ratio_unlocked">आस्पेक्ट रेश्यो अनलॉक हो गया है</string>
 
   <!-- Label for the toggle that blurs every face in the image being edited -->
   <string name="BlurFacesBar__blur_faces">चेहरे ब्लर करें</string>
@@ -232,7 +232,7 @@
   <!-- Message shown when saving the media being edited requires the storage permission, but that permission has been permanently denied by the user. -->
   <string name="MediaSendViewModel__signal_needs_the_storage_permission">बाहरी स्टोरेज में फ़ाइल सेव करने के लिए Signal को स्टोरेज का ऐक्सेस चाहिए। हालांकि, आपने इससे जुड़ी अनुमति को स्थायी रूप से बंद कर रखा है। ऐक्सेस देने के लिए, ऐप सेटिंग में जाकर \'अनुमतियां\' चुनें और इसके बाद \'स्टोरेज\' चालू करें।</string>
   <!-- Message shown when the user disables audio on a video -->
-  <string name="MediaSendViewModel__video_will_be_sent_without_audio">Video will be sent without audio</string>
+  <string name="MediaSendViewModel__video_will_be_sent_without_audio">वीडियो बिना ऑडियो के भेजा जाएगा</string>
 
   <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
   <string name="UsernameScannedDialog__username_dialog_title">%1$s मिला</string>

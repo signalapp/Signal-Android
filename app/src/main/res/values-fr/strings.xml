@@ -172,7 +172,7 @@
     <string name="BlockedUserActivity__s_will_not_be_able_to">%1$s ne pourra ni vous appeler, ni vous envoyer des messages.</string>
     <string name="BlockedUsersActivity__block">Bloquer</string>
     <!-- Subtitle shown under a blocked user. Placeholder is the time they were blocked-->
-    <string name="BlockedUsersActivity__blocked_on_s">Blocked on %1$s</string>
+    <string name="BlockedUsersActivity__blocked_on_s">Bloqué le %1$s</string>
 
     <!-- CreditCardFragment -->
     <!-- Title of fragment -->
@@ -430,7 +430,6 @@
     <!-- Accessibility text associated with image button to send an edited message. -->
     <string name="ConversationActivity_send_edit">Envoyer le message modifié</string>
     <string name="ConversationActivity_compose_message">Rédiger un message</string>
-    <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Oups ! Une erreur s\'est produite lors de l\'ajout de la pièce jointe.</string>
     <!-- Toast shown when user is unable to find the recipient when sending a message -->
     <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Destinataire incorrect : saisissez un numéro ou une adresse e-mail valides.</string>
     <string name="ConversationActivity_message_is_empty_exclamation">Message vide</string>
@@ -1077,7 +1076,7 @@
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
     <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$s Avec son protocole de chiffrement de bout en bout, Signal protège les messages et les conversations sur tous vos appareils.</string>
     <!-- Bottom sheet title explaining how Signal works on a linked device -->
-    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal on a linked device</string>
+    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal sur un appareil associé</string>
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
     <string name="LinkDeviceFragment__all_messaging_is_private">Même sur les appareils associés, toutes les communications Signal restent privées.</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
@@ -1191,6 +1190,8 @@
     <string name="AddLinkDeviceFragment__this_qr_code_not_valid">Ce code QR est incorrect. Veuillez scanner le code QR affiché sur l\'appareil à associer.</string>
     <!-- Button in dialog to retry linking a device with a qr code -->
     <string name="AddLinkDeviceFragment__retry">Réessayer</string>
+    <!-- Text shown in a dialog when the device being linked is too out-of-date to be linked to this account -->
+    <string name="AddLinkDeviceFragment__the_device_you_are_trying_to_link_is_out_of_date">The device you\'re trying to link is out of date. Please upgrade and try again.</string>
 
     <!-- LinkDeviceSyncBottomSheet -->
     <!-- Option in bottom sheet to transfer message history -->
@@ -1576,12 +1577,6 @@
     <!-- Dialog message -->
     <string name="RestoreActivity__no_longer_registered_message">Vous avez probablement créé votre compte Signal depuis un autre appareil.</string>
 
-    <!-- GroupMentionSettingDialog -->
-    <string name="GroupMentionSettingDialog_notify_me_for_mentions">Me prévenir quand on me mentionne</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Recevoir des notifications lorsqu\'on vous mentionne dans des conversations mises en sourdine ?</string>
-    <string name="GroupMentionSettingDialog_always_notify_me">Toujours me prévenir</string>
-    <string name="GroupMentionSettingDialog_dont_notify_me">Ne pas me prévenir</string>
-
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Votre nom d\'utilisateur, votre code QR et votre lien ne s\'affichent pas sur votre profil. Ne partagez votre nom d\'utilisateur qu\'avec des personnes de confiance.</string>
@@ -1882,9 +1877,6 @@
 
     <!-- MediaPickerActivity -->
     <string name="MediaPickerActivity__menu_open_camera">Ouvrir l\'appareil photo</string>
-
-    <!-- MediaSendActivity -->
-    <string name="MediaSendActivity_camera_unavailable">Appareil photo non disponible.</string>
 
     <!-- MediaRepository -->
     <string name="MediaRepository_all_media">Tous les médias</string>
@@ -2893,8 +2885,6 @@
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">Contacter l\'assistance</string>
 
-    <!-- RegistrationLockV2Dialog -->
-
     <!-- RevealableMessageView -->
     <string name="RevealableMessageView_view_photo">Afficher la photo</string>
     <string name="RevealableMessageView_view_video">Regarder la vidéo</string>
@@ -3264,7 +3254,7 @@
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
     <string name="MuteDialog_mute_notifications">Mettre les notifications en sourdine</string>
     <!-- Dialog option that, when pressed, will open a time picker to let the user choose how long they\'d like to mute notifications for -->
-    <string name="MuteDialog__mute_until">Personnaliser…</string>
+    <string name="MuteDialog__mute_until">Until…</string>
 
     <!-- MuteUntilTimePickerBottomSheet -->
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
@@ -4132,10 +4122,10 @@
     <string name="arrays__use_default">Utiliser la valeur par défaut</string>
     <string name="arrays__use_custom">Personnalisé</string>
 
-    <string name="arrays__mute_for_one_hour">Pendant 1 heure</string>
-    <string name="arrays__mute_for_eight_hours">Pendant 8 heures</string>
-    <string name="arrays__mute_for_one_day">Pendant 24 heures</string>
-    <string name="arrays__mute_for_seven_days">Pendant 1 semaine</string>
+    <string name="arrays__mute_for_one_hour">1 Hour</string>
+    <string name="arrays__mute_for_eight_hours">8 Hours</string>
+    <string name="arrays__mute_for_one_day">1 Day</string>
+    <string name="arrays__mute_for_seven_days">1 Week</string>
     <string name="arrays__always">Toujours</string>
 
     <string name="arrays__settings_default">Par défaut</string>
@@ -4190,6 +4180,10 @@
     <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
     <string name="preferences__inactivity_timeout_interval">Délai d\'inactivité</string>
     <string name="preferences__notifications">Notifications</string>
+    <!-- Preference item menu to enable notifications -->
+    <string name="preferences__enable_notifications">Enable notifications</string>
+    <!-- Preference header for call notifications -->
+    <string name="preferences__call_notifications">Call notifications</string>
     <string name="preferences__led_color">Couleur de la LED</string>
     <string name="preferences__led_color_unknown">Inconnue</string>
     <string name="preferences__pref_led_blink_title">Clignotement de la LED</string>
@@ -4347,6 +4341,16 @@
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Utiliser moins de données peut améliorer la qualité des appels en cas de mauvaise couverture réseau.</string>
     <string name="preferences_notifications__in_chat_sounds">Sons des conversations</string>
     <string name="preferences_notifications__show">Afficher</string>
+    <!-- Preference item to set notification settings when chats are muted -->
+    <string name="preferences_notifications__while_muted">While muted</string>
+    <!-- Option in settings to turn on reaction notifications -->
+    <string name="preferences_notifications__reaction">Reaction notifications</string>
+    <!-- Body option in settings to turn on reaction notifications    -->
+    <string name="preferences_notifications__notify_reaction">Show notifications for reactions to messages you send</string>
+    <!-- Option in settings to turn on unread reminders -->
+    <string name="preferences_notifications__unread">Unread reminders</string>
+    <!-- Body option to turn on unread reminders -->
+    <string name="preferences_notifications__notify_unread">Occasionally notify when there are unread messages in muted chats</string>
     <string name="preferences_notifications__ringtone">Sonnerie</string>
     <string name="preferences_chats__message_text_size">Taille de police pour les messages</string>
     <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
@@ -5628,8 +5632,6 @@
     <!-- String displayed in a toast when a subscriber id is not present for a given type -->
     <string name="AppSettingsFragment__no_subscriber_id_set">Aucun identifiant d\'abonnement défini</string>
 
-    <!-- AccountSettingsFragment -->
-
     <!-- ExportAccountDataFragment -->
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
     <string name="ExportAccountDataFragment__your_account_data">Données du compte</string>
@@ -5923,14 +5925,46 @@
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Messages</string>
     <string name="NotificationsSettingsFragment__calls">Appels</string>
-    <string name="NotificationsSettingsFragment__notify_when">Me prévenir quand…</string>
+    <!-- Notification header for sounds -->
+    <string name="NotificationsSettingsFragment__sounds">Sounds</string>
     <string name="NotificationsSettingsFragment__contact_joins_signal">Un contact rejoint Signal</string>
+    <!-- Notification body to get notified when someone joins Signal -->
+    <string name="NotificationsSettingsFragment__notify_contact">Show a notification when a phone contact joins Signal</string>
+    <!-- Option to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset">Reset notification settings</string>
+    <!-- Option body to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_notifications">Reset notification settings to default, including custom settings for your chats</string>
+    <!-- Dialog to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_body">Reset all notification settings to default for all chats?</string>
+    <!-- Confirmation button to reset dialog -->
+    <string name="NotificationsSettingsFragment__reset_confirm">Reset</string>
     <!-- Notification preference header -->
     <string name="NotificationsSettingsFragment__notification_profiles">Profils de notification</string>
     <!-- Notification preference option header -->
     <string name="NotificationsSettingsFragment__profiles">Profils</string>
     <!-- Notification preference summary text -->
     <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Créez un ou plusieurs profils pour filtrer les notifications : vous ne recevez ainsi que celles des contacts de votre choix.</string>
+
+    <!-- Header to describe screen that shows while muted settings -->
+    <string name="MutedNotificationsFragment__while">While muted</string>
+    <!-- Title for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls">Calls</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body_global">Ring or notify when a call is started in muted chats.</string>
+    <!-- Title for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions">Mentions</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body_global">Notify when you are mentioned in muted chats.</string>
+    <!-- Title for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies">Replies</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body_global">Notify when someone replies to your message in muted chats.</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body">Ring or notify when a call is started while this chat is muted.</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body">Notify when you are mentioned while this chat is muted.</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body">Notify when someone replies to your message while this chat is muted.</string>
 
     <!-- NotificationProfilesFragment -->
     <!-- Title for notification profiles screen that shows all existing profiles; Title with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -6344,36 +6378,9 @@
     <!-- Positive dialog action when sending a story via an add to group story button -->
     <string name="MediaReviewFragment__add_to_story">Ajouter à la story</string>
     <string name="MediaReviewFragment__add_a_message">Ajouter un message</string>
-    <!-- Hint text inside of a compose box that is shown when the user is adding media while quoting a message. -->
-    <string name="MediaReviewFragment__add_a_reply">Ajouter une réponse</string>
     <string name="MediaReviewFragment__send_to">Envoyer à</string>
-    <string name="MediaReviewFragment__view_once_message">Média à vue unique</string>
-    <string name="MediaReviewFragment__one_or_more_items_were_too_large">Un ou plusieurs fichiers sont trop volumineux.</string>
-    <string name="MediaReviewFragment__one_or_more_items_were_invalid">Un ou plusieurs éléments ne sont pas valides</string>
-    <string name="MediaReviewFragment__too_many_items_selected">Vous avez sélectionné un trop grand nombre d\'éléments</string>
-    <string name="MediaReviewFragment__video_trimmed_to_fit">Votre vidéo a été rognée, car elle dépassait la taille limite</string>
-    <!-- Small notification presented to the user when they set their video to view-once mode -->
-    <string name="MediaReviewFragment__video_set_to_view_once">Vue unique activée pour cette vidéo</string>
-    <!-- Small notification presented to the user when they set their photo to view-once mode -->
-    <string name="MediaReviewFragment__photo_set_to_view_once">Vue unique activée pour cette photo</string>
-    <!-- Accessibility label describing the add media button on the Media review screen -->
-    <string name="MediaReviewFragment__add_media_accessibility_label">Ajouter un média</string>
-    <!-- Accessibility label describing the brush and pen button on the Media review screen -->
-    <string name="MediaReviewFragment__brush_pen_accessibility_label">Pinceau et stylo</string>
-    <!-- Accessibility label describing the crop and rotate button on the Media review screen -->
-    <string name="MediaReviewFragment__crop_rotate_accessibility_label">Recadrer et faire pivoter</string>
-    <!-- Accessibility label describing the change media quality button on the Media review screen -->
-    <string name="MediaReviewFragment__change_media_quality_accessibility_label">Modifier la qualité du média</string>
-    <!-- Accessibility label describing the mute video audio button on the Media review screen -->
-    <string name="MediaReviewFragment__mute_video_audio_accessibility_label">Mute Video Audio</string>
-    <!-- Accessibility label describing the save media button on the Media review screen -->
-    <string name="MediaReviewFragment__save_media_accessibility_label">Enregistrer le média</string>
-    <!-- Accessibility label describing the toggle emoji keyboard button on the Media review screen -->
-    <string name="MediaReviewFragment__emoji_toggle_accessibility_label">Afficher ou masquer le clavier des émojis</string>
     <!-- Accessibility label describing the toggle view once button on the Media review screen -->
     <string name="MediaReviewFragment__view_once_toggle_accessibility_label">Activer ou désactiver l\'option \"Vue unique\"</string>
-    <!-- Accessibility label describing the send media button on the Media review screen -->
-    <string name="MediaReviewFragment__send_media_accessibility_label">Envoyer le média</string>
     <!-- Accessibility label describing the finish adding a message button on the Media review screen dialog -->
     <string name="MediaReviewFragment__finish_adding_a_message_accessibility_label">Confirmer l\'ajout du message</string>
 
@@ -6393,27 +6400,9 @@
 
     <string name="MediaCountIndicatorButton__send">Envoyer</string>
 
-    <string name="MediaReviewSelectedItem__tap_to_remove">Appuyer pour supprimer</string>
-    <string name="MediaReviewSelectedItem__tap_to_select">Toucher l\'écran pour sélectionner</string>
-
     <string name="MediaReviewImagePageFragment__discard">Supprimer</string>
     <string name="MediaReviewImagePageFragment__discard_changes">Supprimer les modifications ?</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Vous perdrez toutes les modifications apportées à cette photo.</string>
-
-    <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_title">Utilisateur trouvé : %1$s</string>
-    <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_body">Démarrer une conversation avec %1$s</string>
-    <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
-    <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">Démarrer une conversation</string>
-
-    <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_title">Associer l’appareil ?</string>
-    <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_it_looks_like_youre_trying">Vous voulez associer un appareil Signal ? Appuyez sur \"Continuer\", puis sur \"Associer un nouvel appareil\" et rescannez le code QR.</string>
-    <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
-    <string name="MediaCaptureFragment_device_link_dialog_continue">Continuer</string>
-
 
     <string name="BadgesOverviewFragment__my_badges">Mes macarons</string>
     <string name="BadgesOverviewFragment__featured_badge">Macaron affiché</string>
@@ -8670,13 +8659,6 @@
     <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">Le groupe est désactivé.</string>
     <!-- Body of bottom sheet shown when opening a terminated group -->
     <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">Ce groupe ne permet plus d\'échanger ni messages ni appels.</string>
-
-    <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_title">La suppression des messages est maintenant synchronisée sur tous vos appareils.</string>
-    <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_message">Lorsque vous supprimez des messages ou des conversations, ils sont supprimés de votre téléphone et de vos appareils associés.</string>
-    <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_acknowledge_button">OK</string>
 
     <!-- NoManualBackupBottomSheet -->
     <!-- Title for bottom sheet, placeholder is number of days. -->

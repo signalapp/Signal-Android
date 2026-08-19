@@ -172,7 +172,7 @@
     <string name="BlockedUserActivity__s_will_not_be_able_to">A \"%1$s\" nem fog tudni sem üzenetet küldeni neked, sem pedig felhívni.</string>
     <string name="BlockedUsersActivity__block">Letiltás</string>
     <!-- Subtitle shown under a blocked user. Placeholder is the time they were blocked-->
-    <string name="BlockedUsersActivity__blocked_on_s">Blocked on %1$s</string>
+    <string name="BlockedUsersActivity__blocked_on_s">Letiltás időpontja: %1$s</string>
 
     <!-- CreditCardFragment -->
     <!-- Title of fragment -->
@@ -430,7 +430,6 @@
     <!-- Accessibility text associated with image button to send an edited message. -->
     <string name="ConversationActivity_send_edit">Szerkesztés küldése</string>
     <string name="ConversationActivity_compose_message">Üzenetírás</string>
-    <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Sajnos hiba történt a melléklet csatolása során.</string>
     <!-- Toast shown when user is unable to find the recipient when sending a message -->
     <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">A címzett nem egy érvényes SMS vagy email cím!</string>
     <string name="ConversationActivity_message_is_empty_exclamation">Üres az üzenet!</string>
@@ -1077,7 +1076,7 @@
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
     <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$s Az üzeneteket és a csevegési információkat végpontok közötti titkosítás védi minden eszközön</string>
     <!-- Bottom sheet title explaining how Signal works on a linked device -->
-    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal on a linked device</string>
+    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal egy kapcsolt eszközön</string>
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
     <string name="LinkDeviceFragment__all_messaging_is_private">A kapcsolt eszközökön minden üzenet privát</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
@@ -1191,6 +1190,8 @@
     <string name="AddLinkDeviceFragment__this_qr_code_not_valid">Érvénytelen QR-kód. Ellenőrizd, hogy valóban a társítani kívánt készüléken megjelent QR-kódot olvasod be.</string>
     <!-- Button in dialog to retry linking a device with a qr code -->
     <string name="AddLinkDeviceFragment__retry">Újra</string>
+    <!-- Text shown in a dialog when the device being linked is too out-of-date to be linked to this account -->
+    <string name="AddLinkDeviceFragment__the_device_you_are_trying_to_link_is_out_of_date">The device you\'re trying to link is out of date. Please upgrade and try again.</string>
 
     <!-- LinkDeviceSyncBottomSheet -->
     <!-- Option in bottom sheet to transfer message history -->
@@ -1576,12 +1577,6 @@
     <!-- Dialog message -->
     <string name="RestoreActivity__no_longer_registered_message">Ez valószínűleg azért van, mert egy másik eszközön regisztráltad a Signal fiókodat.</string>
 
-    <!-- GroupMentionSettingDialog -->
-    <string name="GroupMentionSettingDialog_notify_me_for_mentions">Értesítsen említés esetén</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Szeretnél értesítéseket kapni, ha egy némított csevegésben megemlítenek?</string>
-    <string name="GroupMentionSettingDialog_always_notify_me">Mindig értesítsen</string>
-    <string name="GroupMentionSettingDialog_dont_notify_me">Sose értesítsen</string>
-
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">A felhasználóneved, a QR-kódod és a hivatkozásod nem látható a profilodban. Csak olyanokkal oszd meg a felhasználónevedet, akikben megbízol.</string>
@@ -1882,9 +1877,6 @@
 
     <!-- MediaPickerActivity -->
     <string name="MediaPickerActivity__menu_open_camera">Kamera megnyitása</string>
-
-    <!-- MediaSendActivity -->
-    <string name="MediaSendActivity_camera_unavailable">A kamera nem érhető el.</string>
 
     <!-- MediaRepository -->
     <string name="MediaRepository_all_media">Összes médiafájl</string>
@@ -2893,8 +2885,6 @@
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">Segítségkérés</string>
 
-    <!-- RegistrationLockV2Dialog -->
-
     <!-- RevealableMessageView -->
     <string name="RevealableMessageView_view_photo">Fotó megtekintése</string>
     <string name="RevealableMessageView_view_video">Videó megtekintése</string>
@@ -3264,7 +3254,7 @@
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
     <string name="MuteDialog_mute_notifications">Értesítések némítása</string>
     <!-- Dialog option that, when pressed, will open a time picker to let the user choose how long they\'d like to mute notifications for -->
-    <string name="MuteDialog__mute_until">Némítás eddig…</string>
+    <string name="MuteDialog__mute_until">Until…</string>
 
     <!-- MuteUntilTimePickerBottomSheet -->
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
@@ -4132,10 +4122,10 @@
     <string name="arrays__use_default">Alapértelmezett használata</string>
     <string name="arrays__use_custom">Egyéni használata</string>
 
-    <string name="arrays__mute_for_one_hour">Némítás egy órára</string>
-    <string name="arrays__mute_for_eight_hours">Némítás 8 órára</string>
-    <string name="arrays__mute_for_one_day">Némítás egy napra</string>
-    <string name="arrays__mute_for_seven_days">Némítás 7 napra</string>
+    <string name="arrays__mute_for_one_hour">1 Hour</string>
+    <string name="arrays__mute_for_eight_hours">8 Hours</string>
+    <string name="arrays__mute_for_one_day">1 Day</string>
+    <string name="arrays__mute_for_seven_days">1 Week</string>
     <string name="arrays__always">Végleg</string>
 
     <string name="arrays__settings_default">Alapértelmezett beállítások</string>
@@ -4190,6 +4180,10 @@
     <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
     <string name="preferences__inactivity_timeout_interval">Inaktivitási időtúllépés időköz</string>
     <string name="preferences__notifications">Értesítések</string>
+    <!-- Preference item menu to enable notifications -->
+    <string name="preferences__enable_notifications">Enable notifications</string>
+    <!-- Preference header for call notifications -->
+    <string name="preferences__call_notifications">Call notifications</string>
     <string name="preferences__led_color">LED színe</string>
     <string name="preferences__led_color_unknown">Ismeretlen</string>
     <string name="preferences__pref_led_blink_title">LED villogás mintázata</string>
@@ -4347,6 +4341,16 @@
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Mérsékeltebb adathasználat javíthatja a hívások minőségét gyenge hálózatokon.</string>
     <string name="preferences_notifications__in_chat_sounds">Csevegésen belüli hangok</string>
     <string name="preferences_notifications__show">Megjelenítés</string>
+    <!-- Preference item to set notification settings when chats are muted -->
+    <string name="preferences_notifications__while_muted">While muted</string>
+    <!-- Option in settings to turn on reaction notifications -->
+    <string name="preferences_notifications__reaction">Reaction notifications</string>
+    <!-- Body option in settings to turn on reaction notifications    -->
+    <string name="preferences_notifications__notify_reaction">Show notifications for reactions to messages you send</string>
+    <!-- Option in settings to turn on unread reminders -->
+    <string name="preferences_notifications__unread">Unread reminders</string>
+    <!-- Body option to turn on unread reminders -->
+    <string name="preferences_notifications__notify_unread">Occasionally notify when there are unread messages in muted chats</string>
     <string name="preferences_notifications__ringtone">Csengőhang</string>
     <string name="preferences_chats__message_text_size">Üzenetek betűmérete</string>
     <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
@@ -5628,8 +5632,6 @@
     <!-- String displayed in a toast when a subscriber id is not present for a given type -->
     <string name="AppSettingsFragment__no_subscriber_id_set">Nincs még beállítva előfizetői azonosító</string>
 
-    <!-- AccountSettingsFragment -->
-
     <!-- ExportAccountDataFragment -->
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
     <string name="ExportAccountDataFragment__your_account_data">Fiókadataid</string>
@@ -5923,14 +5925,46 @@
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Üzenetek</string>
     <string name="NotificationsSettingsFragment__calls">Hívások</string>
-    <string name="NotificationsSettingsFragment__notify_when">Értesítsen mikor…</string>
+    <!-- Notification header for sounds -->
+    <string name="NotificationsSettingsFragment__sounds">Sounds</string>
     <string name="NotificationsSettingsFragment__contact_joins_signal">Ismerős csatlakozott Signalra</string>
+    <!-- Notification body to get notified when someone joins Signal -->
+    <string name="NotificationsSettingsFragment__notify_contact">Show a notification when a phone contact joins Signal</string>
+    <!-- Option to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset">Reset notification settings</string>
+    <!-- Option body to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_notifications">Reset notification settings to default, including custom settings for your chats</string>
+    <!-- Dialog to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_body">Reset all notification settings to default for all chats?</string>
+    <!-- Confirmation button to reset dialog -->
+    <string name="NotificationsSettingsFragment__reset_confirm">Reset</string>
     <!-- Notification preference header -->
     <string name="NotificationsSettingsFragment__notification_profiles">Értesítési profilok</string>
     <!-- Notification preference option header -->
     <string name="NotificationsSettingsFragment__profiles">Profilok</string>
     <!-- Notification preference summary text -->
     <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Hozz létre egy profilt, hogy csak azoktól a személyektől és csoportoktól érkezzen értesítés, akiket kiválasztasz!</string>
+
+    <!-- Header to describe screen that shows while muted settings -->
+    <string name="MutedNotificationsFragment__while">While muted</string>
+    <!-- Title for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls">Calls</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body_global">Ring or notify when a call is started in muted chats.</string>
+    <!-- Title for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions">Mentions</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body_global">Notify when you are mentioned in muted chats.</string>
+    <!-- Title for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies">Replies</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body_global">Notify when someone replies to your message in muted chats.</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body">Ring or notify when a call is started while this chat is muted.</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body">Notify when you are mentioned while this chat is muted.</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body">Notify when someone replies to your message while this chat is muted.</string>
 
     <!-- NotificationProfilesFragment -->
     <!-- Title for notification profiles screen that shows all existing profiles; Title with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -6344,36 +6378,9 @@
     <!-- Positive dialog action when sending a story via an add to group story button -->
     <string name="MediaReviewFragment__add_to_story">Hozzáadás a Történethez</string>
     <string name="MediaReviewFragment__add_a_message">Szöveg hozzáadása</string>
-    <!-- Hint text inside of a compose box that is shown when the user is adding media while quoting a message. -->
-    <string name="MediaReviewFragment__add_a_reply">Válasz hozzáadása</string>
     <string name="MediaReviewFragment__send_to">Címzett</string>
-    <string name="MediaReviewFragment__view_once_message">Egyszer megjelenő médiafájl megtekintése</string>
-    <string name="MediaReviewFragment__one_or_more_items_were_too_large">Egy vagy több elem túl nagy méretű</string>
-    <string name="MediaReviewFragment__one_or_more_items_were_invalid">Egy vagy több elem érvénytelen formátumú</string>
-    <string name="MediaReviewFragment__too_many_items_selected">Túl sok kijelölt elem</string>
-    <string name="MediaReviewFragment__video_trimmed_to_fit">A videódat megvágtuk, hogy illeszkedjen a méretkorláthoz</string>
-    <!-- Small notification presented to the user when they set their video to view-once mode -->
-    <string name="MediaReviewFragment__video_set_to_view_once">A videó egyszeri megtekintésre van állítva</string>
-    <!-- Small notification presented to the user when they set their photo to view-once mode -->
-    <string name="MediaReviewFragment__photo_set_to_view_once">A fotó egyszeri megtekintésre van állítva</string>
-    <!-- Accessibility label describing the add media button on the Media review screen -->
-    <string name="MediaReviewFragment__add_media_accessibility_label">Médiatartalom hozzáadása</string>
-    <!-- Accessibility label describing the brush and pen button on the Media review screen -->
-    <string name="MediaReviewFragment__brush_pen_accessibility_label">Ecset és toll</string>
-    <!-- Accessibility label describing the crop and rotate button on the Media review screen -->
-    <string name="MediaReviewFragment__crop_rotate_accessibility_label">Vágás és forgatás</string>
-    <!-- Accessibility label describing the change media quality button on the Media review screen -->
-    <string name="MediaReviewFragment__change_media_quality_accessibility_label">Médiatartalom minőségének módosítása</string>
-    <!-- Accessibility label describing the mute video audio button on the Media review screen -->
-    <string name="MediaReviewFragment__mute_video_audio_accessibility_label">Mute Video Audio</string>
-    <!-- Accessibility label describing the save media button on the Media review screen -->
-    <string name="MediaReviewFragment__save_media_accessibility_label">Médiatartalom mentése</string>
-    <!-- Accessibility label describing the toggle emoji keyboard button on the Media review screen -->
-    <string name="MediaReviewFragment__emoji_toggle_accessibility_label">Emoji billentyűzet kapcsoló</string>
     <!-- Accessibility label describing the toggle view once button on the Media review screen -->
     <string name="MediaReviewFragment__view_once_toggle_accessibility_label">Egyszer megtekinthető nézet be-/kikapcsolása</string>
-    <!-- Accessibility label describing the send media button on the Media review screen -->
-    <string name="MediaReviewFragment__send_media_accessibility_label">Médiatartalom küldése</string>
     <!-- Accessibility label describing the finish adding a message button on the Media review screen dialog -->
     <string name="MediaReviewFragment__finish_adding_a_message_accessibility_label">Fejezd be az üzenet hozzáadását</string>
 
@@ -6393,27 +6400,9 @@
 
     <string name="MediaCountIndicatorButton__send">Küldés</string>
 
-    <string name="MediaReviewSelectedItem__tap_to_remove">Koppints az eltávolításhoz</string>
-    <string name="MediaReviewSelectedItem__tap_to_select">Koppints a kiválasztáshoz</string>
-
     <string name="MediaReviewImagePageFragment__discard">Elvetés</string>
     <string name="MediaReviewImagePageFragment__discard_changes">Elveted a változásokat?</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Elvesztesz minden változtatást, amit ezen a fotón csináltál.</string>
-
-    <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_title">Megtaláltuk: %1$s</string>
-    <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_body">Kezdj el csevegni %1$s felhasználóval</string>
-    <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
-    <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">Ugrás a csevegéshez</string>
-
-    <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_title">Eszköz társítása?</string>
-    <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_it_looks_like_youre_trying">Úgy tűnik, hogy egy Signal-eszközt próbálsz társítani. Koppints a Folytatás, majd az „Új eszköz összekapcsolása” elemre, és olvasd be újra a QR-kódot.</string>
-    <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
-    <string name="MediaCaptureFragment_device_link_dialog_continue">Tovább</string>
-
 
     <string name="BadgesOverviewFragment__my_badges">Jelvényeim</string>
     <string name="BadgesOverviewFragment__featured_badge">Kitűzött jelvény</string>
@@ -8670,13 +8659,6 @@
     <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">A csoport megszűnt.</string>
     <!-- Body of bottom sheet shown when opening a terminated group -->
     <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">Ebben a csoportban többé nem küldhetsz és fogadhatsz üzeneteket, illetve nem indíthatsz és fogadhatsz hívásokat.</string>
-
-    <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_title">A törlés mostantól az összes eszközödön szinkronizálva van</string>
-    <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_message">Amikor üzeneteket vagy csevegéseket törölsz, azok a telefonodról és az összes kapcsolt eszközről is törlésre kerülnek.</string>
-    <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_acknowledge_button">OK</string>
 
     <!-- NoManualBackupBottomSheet -->
     <!-- Title for bottom sheet, placeholder is number of days. -->

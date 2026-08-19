@@ -428,7 +428,6 @@
     <!-- Accessibility text associated with image button to send an edited message. -->
     <string name="ConversationActivity_send_edit">ផ្ញើសារដែលកែ</string>
     <string name="ConversationActivity_compose_message">បង្កើតសារថ្មី</string>
-    <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">សុំទោស មានបញ្ហក្នុងការកំណត់ឯកសារភ្ជាប់របស់អ្នក។</string>
     <!-- Toast shown when user is unable to find the recipient when sending a message -->
     <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">អ្នកទទួល មិនមានSMS ឬ អ៊ីម៉ែល ត្រឹមត្រូវ!</string>
     <string name="ConversationActivity_message_is_empty_exclamation">សារទទេ!</string>
@@ -1162,6 +1161,8 @@
     <string name="AddLinkDeviceFragment__this_qr_code_not_valid">កូដ QR នេះមិនត្រឹមត្រូវទេ។ សូមឱ្យប្រាកដថា អ្នកកំពុងតែស្គែនកូដ QR ដែលបង្ហាញនៅលើឧបករណ៍ដែលអ្នកចង់ភ្ជាប់។</string>
     <!-- Button in dialog to retry linking a device with a qr code -->
     <string name="AddLinkDeviceFragment__retry">ព្យាយាមម្តងទៀត</string>
+    <!-- Text shown in a dialog when the device being linked is too out-of-date to be linked to this account -->
+    <string name="AddLinkDeviceFragment__the_device_you_are_trying_to_link_is_out_of_date">The device you\'re trying to link is out of date. Please upgrade and try again.</string>
 
     <!-- LinkDeviceSyncBottomSheet -->
     <!-- Option in bottom sheet to transfer message history -->
@@ -1529,12 +1530,6 @@
     <!-- Dialog message -->
     <string name="RestoreActivity__no_longer_registered_message">នេះទំនងជាដោយសារតែអ្នកបានចុះឈ្មោះគណនី Signal របស់អ្នកនៅលើឧបករណ៍ផ្សេង។</string>
 
-    <!-- GroupMentionSettingDialog -->
-    <string name="GroupMentionSettingDialog_notify_me_for_mentions">ជូនដំណឹងខ្ញុំសម្រាប់ការហៅឈ្មោះ</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">ទទួលបានការជូនដំណឹងនៅពេលដែលអ្នកត្រូវបានគេលើកឡើងនៅក្នុងការជជែកដែលបានបិទសំឡេងឬ?</string>
-    <string name="GroupMentionSettingDialog_always_notify_me">ជូនដំណឹងខ្ញុំជានិច្ច</string>
-    <string name="GroupMentionSettingDialog_dont_notify_me">កុំជូនដំណឹងខ្ញុំ</string>
-
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">ឈ្មោះអ្នកប្រើ កូដ QR និងតំណរបស់អ្នកមិនអាចមើលឃើញនៅលើប្រូហ្វាល់របស់អ្នកទេ។ សូមចែករំលែកឈ្មោះអ្នកប្រើរបស់អ្នកជាមួយមនុស្សដែលអ្នកទុកចិត្តប៉ុណ្ណោះ។</string>
@@ -1825,9 +1820,6 @@
 
     <!-- MediaPickerActivity -->
     <string name="MediaPickerActivity__menu_open_camera">បើកកាមេរ៉ា</string>
-
-    <!-- MediaSendActivity -->
-    <string name="MediaSendActivity_camera_unavailable">កាមេរ៉ាមិនដំណើរការ</string>
 
     <!-- MediaRepository -->
     <string name="MediaRepository_all_media">ព័ត៌មានទាំងអស់</string>
@@ -2797,8 +2789,6 @@
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">ទាក់ទងផ្នែកជំនួយ</string>
 
-    <!-- RegistrationLockV2Dialog -->
-
     <!-- RevealableMessageView -->
     <string name="RevealableMessageView_view_photo">បើកមើលរូបភាព</string>
     <string name="RevealableMessageView_view_video">បង្ហាញវីដេអូ</string>
@@ -3163,7 +3153,7 @@
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
     <string name="MuteDialog_mute_notifications">បិទសំឡេងការជូនដំណឹង</string>
     <!-- Dialog option that, when pressed, will open a time picker to let the user choose how long they\'d like to mute notifications for -->
-    <string name="MuteDialog__mute_until">បិទសំឡេងរហូតដល់…</string>
+    <string name="MuteDialog__mute_until">Until…</string>
 
     <!-- MuteUntilTimePickerBottomSheet -->
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
@@ -4009,10 +3999,10 @@
     <string name="arrays__use_default">ប្រើលំនាំដើម</string>
     <string name="arrays__use_custom">ប្រើផ្សេងៗ</string>
 
-    <string name="arrays__mute_for_one_hour">បិទសំឡេង 1 ម៉ោង</string>
-    <string name="arrays__mute_for_eight_hours">បិទសំឡេង 8 ម៉ោង</string>
-    <string name="arrays__mute_for_one_day">បិទសំឡេង 1 ថ្ងៃ</string>
-    <string name="arrays__mute_for_seven_days">បិទសំឡេង 7 ថ្ងៃ</string>
+    <string name="arrays__mute_for_one_hour">1 Hour</string>
+    <string name="arrays__mute_for_eight_hours">8 Hours</string>
+    <string name="arrays__mute_for_one_day">1 Day</string>
+    <string name="arrays__mute_for_seven_days">1 Week</string>
     <string name="arrays__always">ជានិច្ច</string>
 
     <string name="arrays__settings_default">ការកំណត់លំនាំដើម</string>
@@ -4066,6 +4056,10 @@
     <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
     <string name="preferences__inactivity_timeout_interval">ចន្លោះពេលអសកម្ម</string>
     <string name="preferences__notifications">សារជូនដំណឹង</string>
+    <!-- Preference item menu to enable notifications -->
+    <string name="preferences__enable_notifications">Enable notifications</string>
+    <!-- Preference header for call notifications -->
+    <string name="preferences__call_notifications">Call notifications</string>
     <string name="preferences__led_color">ពណ៌​LED</string>
     <string name="preferences__led_color_unknown">មិនដឹង</string>
     <string name="preferences__pref_led_blink_title">លំនាំលោតភ្លើង LED</string>
@@ -4221,6 +4215,16 @@
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">ការប្រើប្រាស់ទិន្នន័យតិចអាចធ្វើឱ្យការហៅល្អប្រសើរឡើងនៅលើបណ្តាញដែលមិនល្អ។</string>
     <string name="preferences_notifications__in_chat_sounds">សំឡេងក្នុងការជជែក</string>
     <string name="preferences_notifications__show">បង្ហាញ</string>
+    <!-- Preference item to set notification settings when chats are muted -->
+    <string name="preferences_notifications__while_muted">While muted</string>
+    <!-- Option in settings to turn on reaction notifications -->
+    <string name="preferences_notifications__reaction">Reaction notifications</string>
+    <!-- Body option in settings to turn on reaction notifications    -->
+    <string name="preferences_notifications__notify_reaction">Show notifications for reactions to messages you send</string>
+    <!-- Option in settings to turn on unread reminders -->
+    <string name="preferences_notifications__unread">Unread reminders</string>
+    <!-- Body option to turn on unread reminders -->
+    <string name="preferences_notifications__notify_unread">Occasionally notify when there are unread messages in muted chats</string>
     <string name="preferences_notifications__ringtone">សំឡេងរោទិ៍</string>
     <string name="preferences_chats__message_text_size">ទំហំអក្សរសារ</string>
     <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
@@ -5485,8 +5489,6 @@
     <!-- String displayed in a toast when a subscriber id is not present for a given type -->
     <string name="AppSettingsFragment__no_subscriber_id_set">មិនមានការកំណត់លេខសម្គាល់អ្នកជាវទេ</string>
 
-    <!-- AccountSettingsFragment -->
-
     <!-- ExportAccountDataFragment -->
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
     <string name="ExportAccountDataFragment__your_account_data">ទិន្នន័យគណនីរបស់អ្នក</string>
@@ -5772,14 +5774,46 @@
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">សារ</string>
     <string name="NotificationsSettingsFragment__calls">ការហៅ</string>
-    <string name="NotificationsSettingsFragment__notify_when">ជូនដំណឹងនៅពេល</string>
+    <!-- Notification header for sounds -->
+    <string name="NotificationsSettingsFragment__sounds">Sounds</string>
     <string name="NotificationsSettingsFragment__contact_joins_signal">លេខទំនាក់ទំនងដែលបានចូលរួមជាមួយ Signal</string>
+    <!-- Notification body to get notified when someone joins Signal -->
+    <string name="NotificationsSettingsFragment__notify_contact">Show a notification when a phone contact joins Signal</string>
+    <!-- Option to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset">Reset notification settings</string>
+    <!-- Option body to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_notifications">Reset notification settings to default, including custom settings for your chats</string>
+    <!-- Dialog to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_body">Reset all notification settings to default for all chats?</string>
+    <!-- Confirmation button to reset dialog -->
+    <string name="NotificationsSettingsFragment__reset_confirm">Reset</string>
     <!-- Notification preference header -->
     <string name="NotificationsSettingsFragment__notification_profiles">ទម្រង់សារជូនដំណឹង</string>
     <!-- Notification preference option header -->
     <string name="NotificationsSettingsFragment__profiles">គណនី</string>
     <!-- Notification preference summary text -->
     <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">បង្កើតគណនីមួយដើម្បីទទួលសារជូនដំណឹងតែពីមនុស្ស និងក្រុមដែលអ្នកបានរើស</string>
+
+    <!-- Header to describe screen that shows while muted settings -->
+    <string name="MutedNotificationsFragment__while">While muted</string>
+    <!-- Title for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls">Calls</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body_global">Ring or notify when a call is started in muted chats.</string>
+    <!-- Title for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions">Mentions</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body_global">Notify when you are mentioned in muted chats.</string>
+    <!-- Title for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies">Replies</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body_global">Notify when someone replies to your message in muted chats.</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body">Ring or notify when a call is started while this chat is muted.</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body">Notify when you are mentioned while this chat is muted.</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body">Notify when someone replies to your message while this chat is muted.</string>
 
     <!-- NotificationProfilesFragment -->
     <!-- Title for notification profiles screen that shows all existing profiles; Title with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -6184,36 +6218,9 @@
     <!-- Positive dialog action when sending a story via an add to group story button -->
     <string name="MediaReviewFragment__add_to_story">បញ្ចូលទៅរឿងរ៉ាវ</string>
     <string name="MediaReviewFragment__add_a_message">បន្ថែមសារមួយ</string>
-    <!-- Hint text inside of a compose box that is shown when the user is adding media while quoting a message. -->
-    <string name="MediaReviewFragment__add_a_reply">បន្ថែមការឆ្លើយតប</string>
     <string name="MediaReviewFragment__send_to">ផ្ញើទៅ</string>
-    <string name="MediaReviewFragment__view_once_message">មេឌៀមើលបានតែម្តង</string>
-    <string name="MediaReviewFragment__one_or_more_items_were_too_large">ធាតុមួយ ឬច្រើនមានទំហំធំពេក</string>
-    <string name="MediaReviewFragment__one_or_more_items_were_invalid">មានធាតុមួយ ឬច្រើនមិនត្រឹមត្រូវ</string>
-    <string name="MediaReviewFragment__too_many_items_selected">ធាតុដែលបានជ្រើសរើសច្រើនពេក</string>
-    <string name="MediaReviewFragment__video_trimmed_to_fit">វីដេអូរបស់អ្នកត្រូវបានកាត់តម្រឹមឱ្យត្រូវតាមទំហំកំណត់</string>
-    <!-- Small notification presented to the user when they set their video to view-once mode -->
-    <string name="MediaReviewFragment__video_set_to_view_once">វីដេអូត្រូវបានកំណត់ទៅជាមើលតែម្តង</string>
-    <!-- Small notification presented to the user when they set their photo to view-once mode -->
-    <string name="MediaReviewFragment__photo_set_to_view_once">រូបថតត្រូវបានកំណត់ទៅជាមើលតែម្តង</string>
-    <!-- Accessibility label describing the add media button on the Media review screen -->
-    <string name="MediaReviewFragment__add_media_accessibility_label">បញ្ចូលមេឌៀ</string>
-    <!-- Accessibility label describing the brush and pen button on the Media review screen -->
-    <string name="MediaReviewFragment__brush_pen_accessibility_label">ជក់ និងប៊ិច</string>
-    <!-- Accessibility label describing the crop and rotate button on the Media review screen -->
-    <string name="MediaReviewFragment__crop_rotate_accessibility_label">កាត់តម្រឹម ហើយបង្វិល</string>
-    <!-- Accessibility label describing the change media quality button on the Media review screen -->
-    <string name="MediaReviewFragment__change_media_quality_accessibility_label">ផ្លាស់ប្តូរគុណភាពមេឌៀ</string>
-    <!-- Accessibility label describing the mute video audio button on the Media review screen -->
-    <string name="MediaReviewFragment__mute_video_audio_accessibility_label">បិទសំឡេងវីដេអូ</string>
-    <!-- Accessibility label describing the save media button on the Media review screen -->
-    <string name="MediaReviewFragment__save_media_accessibility_label">រក្សាទុកមេឌៀ</string>
-    <!-- Accessibility label describing the toggle emoji keyboard button on the Media review screen -->
-    <string name="MediaReviewFragment__emoji_toggle_accessibility_label">បិទ/បើកក្តារចុចរូបអារម្មណ៍</string>
     <!-- Accessibility label describing the toggle view once button on the Media review screen -->
     <string name="MediaReviewFragment__view_once_toggle_accessibility_label">បិទ/បើកមុខងារមើលបានតែម្តង</string>
-    <!-- Accessibility label describing the send media button on the Media review screen -->
-    <string name="MediaReviewFragment__send_media_accessibility_label">ផ្ញើមេឌៀ</string>
     <!-- Accessibility label describing the finish adding a message button on the Media review screen dialog -->
     <string name="MediaReviewFragment__finish_adding_a_message_accessibility_label">បញ្ចប់ការបញ្ចូលសារ</string>
 
@@ -6233,27 +6240,9 @@
 
     <string name="MediaCountIndicatorButton__send">ផ្ញើ</string>
 
-    <string name="MediaReviewSelectedItem__tap_to_remove">ចុចដើម្បីដកចេញ</string>
-    <string name="MediaReviewSelectedItem__tap_to_select">ចុចដើម្បីជ្រើសរើស</string>
-
     <string name="MediaReviewImagePageFragment__discard">បោះបង់</string>
     <string name="MediaReviewImagePageFragment__discard_changes">បោះបង់ការផ្លាស់ប្ដូរ?</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">អ្នកនឹងបាត់បង់ការផ្លាស់ប្ដូរទាំងអស់ដែលអ្នកបានធ្វើលើរូបភាពនេះ</string>
-
-    <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_title">បានរកឃើញ %1$s</string>
-    <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_body">ចាប់ផ្តើមការជជែកជាមួយ \"%1$s\"</string>
-    <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
-    <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">ចូលទៅការជជែក</string>
-
-    <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_title">ភ្ជាប់ឧបករណ៍មែនទេ?</string>
-    <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_it_looks_like_youre_trying">អ្នកហាក់ដូចជាកំពុងព្យាយាមភ្ជាប់ឧបករណ៍ Signal។ ចុចបន្ត ហើយបន្ទាប់មកចុច \"ភ្ជាប់ឧបករណ៍ថ្មី\" ហើយស្គែនកូដ QR ម្តងទៀត។</string>
-    <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
-    <string name="MediaCaptureFragment_device_link_dialog_continue">បន្ត</string>
-
 
     <string name="BadgesOverviewFragment__my_badges">ស្លាករបស់ខ្ញុំ</string>
     <string name="BadgesOverviewFragment__featured_badge">ស្លាកពិសេស</string>
@@ -8478,13 +8467,6 @@
     <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">ក្រុមនេះបានបញ្ចប់ហើយ។</string>
     <!-- Body of bottom sheet shown when opening a terminated group -->
     <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">អ្នកលែងអាចផ្ញើ និងទទួលសារ ឬការហៅទូរសព្ទនៅក្នុងក្រុមនេះទៀតហើយ។</string>
-
-    <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_title">ឥឡូវនេះការលុបត្រូវបានធ្វើសមកាលកម្មនៅលើឧបករណ៍របស់អ្នកទាំងអស់</string>
-    <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_message">នៅពេលអ្នកលុបសារ ឬការជជែក ពួកវានឹងត្រូវបានលុបចេញពីទូរសព្ទរបស់អ្នក និងឧបករណ៍ដែលបានភ្ជាប់។</string>
-    <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_acknowledge_button">យល់ព្រម</string>
 
     <!-- NoManualBackupBottomSheet -->
     <!-- Title for bottom sheet, placeholder is number of days. -->

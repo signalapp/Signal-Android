@@ -434,7 +434,6 @@
     <!-- Accessibility text associated with image button to send an edited message. -->
     <string name="ConversationActivity_send_edit">Отправить с изменениями</string>
     <string name="ConversationActivity_compose_message">Написать сообщение</string>
-    <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Извините, произошла ошибка при обработке вложения.</string>
     <!-- Toast shown when user is unable to find the recipient when sending a message -->
     <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Адрес получателя не является ни номером телефона, ни адресом электронной почты!</string>
     <string name="ConversationActivity_message_is_empty_exclamation">Пустое сообщение!</string>
@@ -1249,6 +1248,8 @@
     <string name="AddLinkDeviceFragment__this_qr_code_not_valid">Этот QR-код недействителен. Пожалуйста, убедитесь, что вы сканируете QR-код, показанный на устройстве, которое вы хотите привязать.</string>
     <!-- Button in dialog to retry linking a device with a qr code -->
     <string name="AddLinkDeviceFragment__retry">Повторить попытку</string>
+    <!-- Text shown in a dialog when the device being linked is too out-of-date to be linked to this account -->
+    <string name="AddLinkDeviceFragment__the_device_you_are_trying_to_link_is_out_of_date">The device you\'re trying to link is out of date. Please upgrade and try again.</string>
 
     <!-- LinkDeviceSyncBottomSheet -->
     <!-- Option in bottom sheet to transfer message history -->
@@ -1670,12 +1671,6 @@
     <!-- Dialog message -->
     <string name="RestoreActivity__no_longer_registered_message">Это может быть вызвано тем, что вы зарегистрировали свою учётную запись Signal на другом устройстве.</string>
 
-    <!-- GroupMentionSettingDialog -->
-    <string name="GroupMentionSettingDialog_notify_me_for_mentions">Уведомлять меня об упоминаниях</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Получать уведомления, когда вас упоминают в чатах с отключёнными уведомлениями?</string>
-    <string name="GroupMentionSettingDialog_always_notify_me">Всегда уведомлять меня</string>
-    <string name="GroupMentionSettingDialog_dont_notify_me">Не уведомлять меня</string>
-
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Ваше имя пользователя, QR-код и ссылка не видны в вашем профиле. Делитесь вашим именем пользователя только с теми, кому доверяете.</string>
@@ -1996,9 +1991,6 @@
 
     <!-- MediaPickerActivity -->
     <string name="MediaPickerActivity__menu_open_camera">Открыть камеру</string>
-
-    <!-- MediaSendActivity -->
-    <string name="MediaSendActivity_camera_unavailable">Камера недоступна.</string>
 
     <!-- MediaRepository -->
     <string name="MediaRepository_all_media">Все медиа</string>
@@ -3085,8 +3077,6 @@
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">Связаться с поддержкой</string>
 
-    <!-- RegistrationLockV2Dialog -->
-
     <!-- RevealableMessageView -->
     <string name="RevealableMessageView_view_photo">Просмотреть фото</string>
     <string name="RevealableMessageView_view_video">Просмотреть видео</string>
@@ -3466,7 +3456,7 @@
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
     <string name="MuteDialog_mute_notifications">Откл. звук уведомлений</string>
     <!-- Dialog option that, when pressed, will open a time picker to let the user choose how long they\'d like to mute notifications for -->
-    <string name="MuteDialog__mute_until">Отключить звук до…</string>
+    <string name="MuteDialog__mute_until">Until…</string>
 
     <!-- MuteUntilTimePickerBottomSheet -->
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
@@ -4378,10 +4368,10 @@
     <string name="arrays__use_default">Использовать настройку по умолчанию</string>
     <string name="arrays__use_custom">Использовать пользовательскую настройку</string>
 
-    <string name="arrays__mute_for_one_hour">Отключить звук на 1 час</string>
-    <string name="arrays__mute_for_eight_hours">Отключить звук на 8 часов</string>
-    <string name="arrays__mute_for_one_day">Отключить звук на 1 день</string>
-    <string name="arrays__mute_for_seven_days">Отключить звук на 7 дней</string>
+    <string name="arrays__mute_for_one_hour">1 Hour</string>
+    <string name="arrays__mute_for_eight_hours">8 Hours</string>
+    <string name="arrays__mute_for_one_day">1 Day</string>
+    <string name="arrays__mute_for_seven_days">1 Week</string>
     <string name="arrays__always">Всегда</string>
 
     <string name="arrays__settings_default">По умолчанию</string>
@@ -4438,6 +4428,10 @@
     <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
     <string name="preferences__inactivity_timeout_interval">Период бездействия</string>
     <string name="preferences__notifications">Уведомления</string>
+    <!-- Preference item menu to enable notifications -->
+    <string name="preferences__enable_notifications">Enable notifications</string>
+    <!-- Preference header for call notifications -->
+    <string name="preferences__call_notifications">Call notifications</string>
     <string name="preferences__led_color">Цвет светодиода</string>
     <string name="preferences__led_color_unknown">Неизвестный</string>
     <string name="preferences__pref_led_blink_title">Мигание светодиода</string>
@@ -4599,6 +4593,16 @@
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Экономия трафика может улучшить звонки при плохой связи.</string>
     <string name="preferences_notifications__in_chat_sounds">Звуки внутри чата</string>
     <string name="preferences_notifications__show">Показывать</string>
+    <!-- Preference item to set notification settings when chats are muted -->
+    <string name="preferences_notifications__while_muted">While muted</string>
+    <!-- Option in settings to turn on reaction notifications -->
+    <string name="preferences_notifications__reaction">Reaction notifications</string>
+    <!-- Body option in settings to turn on reaction notifications    -->
+    <string name="preferences_notifications__notify_reaction">Show notifications for reactions to messages you send</string>
+    <!-- Option in settings to turn on unread reminders -->
+    <string name="preferences_notifications__unread">Unread reminders</string>
+    <!-- Body option to turn on unread reminders -->
+    <string name="preferences_notifications__notify_unread">Occasionally notify when there are unread messages in muted chats</string>
     <string name="preferences_notifications__ringtone">Мелодия</string>
     <string name="preferences_chats__message_text_size">Размер шрифта сообщения</string>
     <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
@@ -5356,7 +5360,7 @@
 
     <string name="Recipient_unknown">Неизвестный</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
-    <string name="Recipient_deleted_account">Удалённая учётная запись</string>
+    <string name="Recipient_deleted_account">Удалённый пользователь</string>
 
     <!-- Error message shown when we fail to delete the data for some unknown reason -->
     <string name="preferences_account_delete_all_data_failed">Не удалось удалить данные</string>
@@ -5914,8 +5918,6 @@
     <!-- String displayed in a toast when a subscriber id is not present for a given type -->
     <string name="AppSettingsFragment__no_subscriber_id_set">Идентификатор подписчика не установлен</string>
 
-    <!-- AccountSettingsFragment -->
-
     <!-- ExportAccountDataFragment -->
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
     <string name="ExportAccountDataFragment__your_account_data">Данные вашей учётной записи</string>
@@ -6225,14 +6227,46 @@
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Сообщения</string>
     <string name="NotificationsSettingsFragment__calls">Звонки</string>
-    <string name="NotificationsSettingsFragment__notify_when">Уведомлять, когда…</string>
+    <!-- Notification header for sounds -->
+    <string name="NotificationsSettingsFragment__sounds">Sounds</string>
     <string name="NotificationsSettingsFragment__contact_joins_signal">Контакт присоединяется к Signal</string>
+    <!-- Notification body to get notified when someone joins Signal -->
+    <string name="NotificationsSettingsFragment__notify_contact">Show a notification when a phone contact joins Signal</string>
+    <!-- Option to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset">Reset notification settings</string>
+    <!-- Option body to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_notifications">Reset notification settings to default, including custom settings for your chats</string>
+    <!-- Dialog to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_body">Reset all notification settings to default for all chats?</string>
+    <!-- Confirmation button to reset dialog -->
+    <string name="NotificationsSettingsFragment__reset_confirm">Reset</string>
     <!-- Notification preference header -->
     <string name="NotificationsSettingsFragment__notification_profiles">Профили уведомлений</string>
     <!-- Notification preference option header -->
     <string name="NotificationsSettingsFragment__profiles">Профили</string>
     <!-- Notification preference summary text -->
     <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Создайте профиль, чтобы получать уведомления только от людей и групп, выбранных вами.</string>
+
+    <!-- Header to describe screen that shows while muted settings -->
+    <string name="MutedNotificationsFragment__while">While muted</string>
+    <!-- Title for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls">Calls</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body_global">Ring or notify when a call is started in muted chats.</string>
+    <!-- Title for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions">Mentions</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body_global">Notify when you are mentioned in muted chats.</string>
+    <!-- Title for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies">Replies</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body_global">Notify when someone replies to your message in muted chats.</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body">Ring or notify when a call is started while this chat is muted.</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body">Notify when you are mentioned while this chat is muted.</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body">Notify when someone replies to your message while this chat is muted.</string>
 
     <!-- NotificationProfilesFragment -->
     <!-- Title for notification profiles screen that shows all existing profiles; Title with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -6664,36 +6698,9 @@
     <!-- Positive dialog action when sending a story via an add to group story button -->
     <string name="MediaReviewFragment__add_to_story">Добавить к истории</string>
     <string name="MediaReviewFragment__add_a_message">Добавьте сообщение</string>
-    <!-- Hint text inside of a compose box that is shown when the user is adding media while quoting a message. -->
-    <string name="MediaReviewFragment__add_a_reply">Добавьте ответ</string>
     <string name="MediaReviewFragment__send_to">Отправить</string>
-    <string name="MediaReviewFragment__view_once_message">Просмотреть одноразовые медиа</string>
-    <string name="MediaReviewFragment__one_or_more_items_were_too_large">Один или несколько элементов были слишком большими</string>
-    <string name="MediaReviewFragment__one_or_more_items_were_invalid">Один или несколько элементов были недействительными</string>
-    <string name="MediaReviewFragment__too_many_items_selected">Выбрано слишком много элементов</string>
-    <string name="MediaReviewFragment__video_trimmed_to_fit">Ваше видео было обрезано из-за превышения ограничения размера</string>
-    <!-- Small notification presented to the user when they set their video to view-once mode -->
-    <string name="MediaReviewFragment__video_set_to_view_once">Видео для однократного просмотра</string>
-    <!-- Small notification presented to the user when they set their photo to view-once mode -->
-    <string name="MediaReviewFragment__photo_set_to_view_once">Фото для однократного просмотра</string>
-    <!-- Accessibility label describing the add media button on the Media review screen -->
-    <string name="MediaReviewFragment__add_media_accessibility_label">Добавить медиафайлы</string>
-    <!-- Accessibility label describing the brush and pen button on the Media review screen -->
-    <string name="MediaReviewFragment__brush_pen_accessibility_label">Кисть и фломастер</string>
-    <!-- Accessibility label describing the crop and rotate button on the Media review screen -->
-    <string name="MediaReviewFragment__crop_rotate_accessibility_label">Обрезать и повернуть</string>
-    <!-- Accessibility label describing the change media quality button on the Media review screen -->
-    <string name="MediaReviewFragment__change_media_quality_accessibility_label">Изменить качество медиафайлов</string>
-    <!-- Accessibility label describing the mute video audio button on the Media review screen -->
-    <string name="MediaReviewFragment__mute_video_audio_accessibility_label">Отключить звук видео</string>
-    <!-- Accessibility label describing the save media button on the Media review screen -->
-    <string name="MediaReviewFragment__save_media_accessibility_label">Сохранить медиафайлы</string>
-    <!-- Accessibility label describing the toggle emoji keyboard button on the Media review screen -->
-    <string name="MediaReviewFragment__emoji_toggle_accessibility_label">Клавиатура эмодзи</string>
     <!-- Accessibility label describing the toggle view once button on the Media review screen -->
     <string name="MediaReviewFragment__view_once_toggle_accessibility_label">Переключение одноразового просмотра</string>
-    <!-- Accessibility label describing the send media button on the Media review screen -->
-    <string name="MediaReviewFragment__send_media_accessibility_label">Отправить медиафайлы</string>
     <!-- Accessibility label describing the finish adding a message button on the Media review screen dialog -->
     <string name="MediaReviewFragment__finish_adding_a_message_accessibility_label">Завершить добавление сообщения</string>
 
@@ -6713,27 +6720,9 @@
 
     <string name="MediaCountIndicatorButton__send">Отправить</string>
 
-    <string name="MediaReviewSelectedItem__tap_to_remove">Нажмите, чтобы убрать</string>
-    <string name="MediaReviewSelectedItem__tap_to_select">Нажмите, чтобы выбрать</string>
-
     <string name="MediaReviewImagePageFragment__discard">Сбросить</string>
     <string name="MediaReviewImagePageFragment__discard_changes">Сбросить изменения?</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Вы потеряете все изменения, которые вы сделали в этой фотографии.</string>
-
-    <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_title">Найдено: %1$s</string>
-    <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_body">Начать чат с «%1$s»</string>
-    <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
-    <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">Перейти к чату</string>
-
-    <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_title">Привязать устройство?</string>
-    <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_it_looks_like_youre_trying">Похоже, вы пытаетесь привязать устройство Signal. Нажмите «Продолжить», затем «Привязать новое устройство» и снова просканируйте QR-код.</string>
-    <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
-    <string name="MediaCaptureFragment_device_link_dialog_continue">Продолжить</string>
-
 
     <string name="BadgesOverviewFragment__my_badges">Мои значки</string>
     <string name="BadgesOverviewFragment__featured_badge">Главный значок</string>
@@ -9054,13 +9043,6 @@
     <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">Группа закрыта.</string>
     <!-- Body of bottom sheet shown when opening a terminated group -->
     <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">Вы больше не сможете отправлять и получать сообщения или звонки в этой группе.</string>
-
-    <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_title">Удаление теперь происходит синхронно на всех ваших устройствах</string>
-    <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_message">При удалении сообщений или чатов они будут удаляться с вашего телефона и со связанных устройств.</string>
-    <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_acknowledge_button">ОК</string>
 
     <!-- NoManualBackupBottomSheet -->
     <!-- Title for bottom sheet, placeholder is number of days. -->
