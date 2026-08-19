@@ -209,7 +209,7 @@ object StorageSyncModels {
       systemFamilyName = recipient.systemProfileName.familyName
       systemNickname = recipient.syncExtras.systemNickname ?: ""
       blocked = recipient.isBlocked
-      blockedTimestamp = recipient.blockedAt
+      blockedAtTimestamp = recipient.blockedAt
       whitelisted = recipient.profileSharing || recipient.systemContactUri != null
       identityKey = recipient.syncExtras.identityKey?.toByteString() ?: ByteString.EMPTY
       identityState = localToRemoteIdentityState(recipient.syncExtras.identityStatus)
@@ -239,7 +239,7 @@ object StorageSyncModels {
     return SignalGroupV2Record.newBuilder(recipient.syncExtras.storageProto).apply {
       masterKey = groupMasterKey.serialize().toByteString()
       blocked = recipient.isBlocked
-      blockedTimestamp = recipient.blockedAt
+      blockedAtTimestamp = recipient.blockedAt
       whitelisted = recipient.profileSharing
       archived = recipient.syncExtras.isArchived
       markedUnread = recipient.syncExtras.isForcedUnread

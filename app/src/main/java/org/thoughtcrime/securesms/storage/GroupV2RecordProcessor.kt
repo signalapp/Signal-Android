@@ -53,7 +53,7 @@ class GroupV2RecordProcessor(private val recipientTable: RecipientTable, private
     val merged = SignalGroupV2Record.newBuilder(remote.serializedUnknowns).apply {
       masterKey = remote.proto.masterKey
       blocked = remote.proto.blocked
-      blockedTimestamp = remote.proto.blockedTimestamp
+      blockedAtTimestamp = remote.proto.blockedAtTimestamp
       whitelisted = remote.proto.whitelisted
       archived = remote.proto.archived
       markedUnread = remote.proto.markedUnread

@@ -143,7 +143,7 @@ message ContactRecord {
   optional AvatarColor avatarColor      = 24;
   bytes         aciBinary               = 25; // 16-byte UUID
   bytes         pniBinary               = 26; // 16-byte UUID
-  uint64        blockedTimestamp        = 27; // 0 means the blocked time is unknown
+  uint64        blockedAtTimestamp      = 27; // 0 means the blocked time is unknown
   // Next ID: 28
 }
 
@@ -175,7 +175,7 @@ message GroupV2Record {
   StorySendMode storySendMode                = 10;
   optional AvatarColor avatarColor           = 11;
   bytes         verifiedNameHash             = 12; // SHA-256 of UTF-8 encoded decrypted group title that was last verified
-  uint64        blockedTimestamp             = 13; // 0 means the blocked time is unknown
+  uint64        blockedAtTimestamp           = 13; // 0 means the blocked time is unknown
 }
 
 message Payments {
