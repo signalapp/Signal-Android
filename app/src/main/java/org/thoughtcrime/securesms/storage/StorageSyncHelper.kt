@@ -115,6 +115,19 @@ object StorageSyncHelper {
     return update.old.proto.profileKey != update.new.proto.profileKey
   }
 
+  /**
+   * Iff successfully written records carried the expected rotation, clears the content.
+   */
+  @JvmStatic
+  fun clearRotatedProfileKeyIfSynced(written: List<SignalStorageRecord>) {
+    val rotated = SignalStore.account.notSyncedRotatedSelfProfileKey ?: return
+
+    if (written.any { it.proto.account?.profileKey?.toByteArray().contentEquals(rotated) }) {
+      Log.i(TAG, "Published our rotated profile key.")
+      SignalStore.account.notSyncedRotatedSelfProfileKey = null
+    }
+  }
+
   @JvmStatic
   fun buildAccountRecord(context: Context, self: Recipient): SignalStorageRecord {
     var self = self

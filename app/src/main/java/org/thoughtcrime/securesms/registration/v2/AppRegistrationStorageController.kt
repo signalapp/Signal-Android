@@ -792,6 +792,7 @@ class AppRegistrationStorageController(private val context: Context) : StorageCo
     recipientTable.markRegisteredOrThrow(selfId, aci)
     recipientTable.linkIdsForSelf(aci, pni, e164)
     recipientTable.setProfileKey(selfId, profileKey)
+    SignalStore.account.notSyncedRotatedSelfProfileKey = null
 
     AppDependencies.recipientCache.clearSelf()
 

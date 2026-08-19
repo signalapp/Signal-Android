@@ -502,6 +502,8 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
       SignalStore.storageService.manifest = remoteWriteOperation.manifest
       SignalStore.svr.masterKeyForInitialDataRestore = null
 
+      StorageSyncHelper.clearRotatedProfileKeyIfSynced(remoteWriteOperation.inserts)
+
       stopwatch.split("remote-write")
 
       needsMultiDeviceSync = true

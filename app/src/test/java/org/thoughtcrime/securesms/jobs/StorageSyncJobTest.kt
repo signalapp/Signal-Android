@@ -34,11 +34,13 @@ import org.signal.core.util.Util
 import org.signal.core.util.logging.Log
 import org.signal.core.util.update
 import org.signal.core.util.withinTransaction
+import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.database.IssueReporter
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.IssuePriority
 import org.thoughtcrime.securesms.database.model.StickerPackId
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobs.StorageSyncJobTest.Companion.BASE_MANIFEST_VERSION
@@ -446,6 +448,76 @@ class StorageSyncJobTest {
     }
   }
 
+  @Test
+  fun `given I just rotated my profile key, when a newer remote manifest still has the old one, then I keep mine`() {
+    val rotated = rotateSelfProfileKey()
+
+    bumpRemoteManifestWithoutTouchingAccountRecord()
+
+    assertTrue(runJob(StorageSyncJob.forRemoteChange()).isSuccess)
+    assertArrayEquals(rotated.serialize(), SignalDatabase.recipients.getRecord(recipients.self).profileKey)
+  }
+
+  @Test
+  fun `given I just rotated my profile key, when a newer remote manifest still has the old one, then I publish mine`() {
+    val rotated = rotateSelfProfileKey()
+
+    bumpRemoteManifestWithoutTouchingAccountRecord()
+
+    assertTrue(runJob(StorageSyncJob.forRemoteChange()).isSuccess)
+
+    val accounts = remoteStorage.records.mapNotNull { it.proto.account }
+    assertEquals(1, accounts.size)
+    assertArrayEquals(rotated.serialize(), accounts[0].profileKey.toByteArray())
+    assertNull(recipients.signalStore.account.notSyncedRotatedSelfProfileKey)
+  }
+
+  @Test
+  fun `given no rotation of mine is pending, when remote has a different profile key, then I take theirs`() {
+    val remoteKey = SignalDatabase.recipients.getRecord(recipients.self).profileKey
+
+    // Registration always leaves us a locally generated key, so this must still defer to remote.
+    SignalDatabase.recipients.setProfileKey(recipients.self, ProfileKey(Util.getSecretBytes(32)))
+    Recipient.self().live().refresh()
+
+    bumpRemoteManifestWithoutTouchingAccountRecord()
+
+    assertTrue(runJob(StorageSyncJob.forRemoteChange()).isSuccess)
+    assertArrayEquals(remoteKey, SignalDatabase.recipients.getRecord(recipients.self).profileKey)
+  }
+
+  @Test
+  fun `given a recorded rotation that no longer matches my profile key, when remote has a different one, then I take theirs`() {
+    recipients.signalStore.account.notSyncedRotatedSelfProfileKey = Util.getSecretBytes(32)
+
+    val remoteKey = SignalDatabase.recipients.getRecord(recipients.self).profileKey
+    SignalDatabase.recipients.setProfileKey(recipients.self, ProfileKey(Util.getSecretBytes(32)))
+    Recipient.self().live().refresh()
+
+    bumpRemoteManifestWithoutTouchingAccountRecord()
+
+    assertTrue(runJob(StorageSyncJob.forRemoteChange()).isSuccess)
+    assertArrayEquals(remoteKey, SignalDatabase.recipients.getRecord(recipients.self).profileKey)
+  }
+
+  @Test
+  fun `given I just rotated my profile key, when their account record has an avatar path, then I do not fetch it`() {
+    SignalDatabase.recipients.setProfileAvatar(recipients.self, "avatar-path-for-the-old-key")
+    Recipient.self().live().refresh()
+    check(runJob(StorageSyncJob.forLocalChange()).isSuccess)
+    check(remoteStorage.records.mapNotNull { it.proto.account }.single().avatarUrlPath == "avatar-path-for-the-old-key")
+
+    SignalDatabase.recipients.setProfileAvatar(recipients.self, null)
+    rotateSelfProfileKey()
+
+    bumpRemoteManifestWithoutTouchingAccountRecord()
+
+    val jobManager = AppDependencies.jobManager
+
+    assertTrue(runJob(StorageSyncJob.forRemoteChange()).isSuccess)
+    verify(exactly = 0) { jobManager.add(ofType(RetrieveProfileAvatarJob::class)) }
+  }
+
   /**
    * Writes the same contact, with the other device deleting it again after each, until a run gets throttled. Returns
    * that run, leaving [FakeStorageServiceRule.writeCount] counting only it. Driven by observation rather than a fixed
@@ -580,5 +652,21 @@ class StorageSyncJobTest {
   private fun runJob(job: StorageSyncJob): Job.Result {
     job.setContext(ApplicationProvider.getApplicationContext())
     return job.run()
+  }
+
+  /** Rotates our own profile key the way [RotateProfileKeyJob] does, and returns the new key. */
+  private fun rotateSelfProfileKey(): ProfileKey {
+    val rotated = ProfileKey(Util.getSecretBytes(32))
+
+    recipients.signalStore.account.notSyncedRotatedSelfProfileKey = rotated.serialize()
+    SignalDatabase.recipients.setProfileKey(recipients.self, rotated)
+    Recipient.self().live().refresh()
+
+    return rotated
+  }
+
+  /** Mimics another device writing an unrelated record, which bumps the manifest but leaves our account record stale. */
+  private fun bumpRemoteManifestWithoutTouchingAccountRecord() {
+    remoteStorage.addRemoteRecords(listOf(contactRecord(ACI.from(UUID.randomUUID()), ProfileName.fromParts("Remote", "Contact"))))
   }
 }

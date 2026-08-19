@@ -87,6 +87,7 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
 
     private const val KEY_HAS_LINKED_DEVICES = "account.has_linked_devices"
     private const val KEY_HAS_INACTIVE_PRIMARY_DEVICE_ALERT = "account.has_inactive_primary_device_alert"
+    private const val KEY_NOT_SYNCED_ROTATED_SELF_PROFILE_KEY = "account.not_synced_rotated_self_profile_key"
 
     private const val KEY_VERIFICATION_CODE_REQUESTED_AT = "account.verification_code_requested_at"
 
@@ -607,6 +608,9 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
    */
   @get:JvmName("isMultiDevice")
   var isMultiDevice by booleanValue(KEY_HAS_LINKED_DEVICES, false)
+
+  /** Our own profile key that is still pending being written to storage service. */
+  var notSyncedRotatedSelfProfileKey: ByteArray? by nullableBlobValue(KEY_NOT_SYNCED_ROTATED_SELF_PROFILE_KEY, null)
 
   /** Server has indicated a verification code was requested for the account at this timestamp (ms since epoch) */
   private val verificationCodeRequestedAtMsValue = longValue(KEY_VERIFICATION_CODE_REQUESTED_AT, 0)

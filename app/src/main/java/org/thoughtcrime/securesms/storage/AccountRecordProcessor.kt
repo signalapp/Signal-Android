@@ -108,11 +108,14 @@ class AccountRecordProcessor(
 
     val unknownFields = remote.serializedUnknowns
 
+    val unpublishedRotation = SignalStore.account.notSyncedRotatedSelfProfileKey
+    val keepLocalProfileKey = unpublishedRotation != null && local.proto.profileKey.toByteArray().contentEquals(unpublishedRotation)
+
     val merged = SignalAccountRecord.newBuilder(unknownFields).apply {
       givenName = mergedGivenName
       familyName = mergedFamilyName
-      avatarUrlPath = remote.proto.avatarUrlPath.nullIfEmpty() ?: local.proto.avatarUrlPath
-      profileKey = remote.proto.profileKey.nullIfEmpty() ?: local.proto.profileKey
+      avatarUrlPath = if (keepLocalProfileKey) local.proto.avatarUrlPath else remote.proto.avatarUrlPath.nullIfEmpty() ?: local.proto.avatarUrlPath
+      profileKey = if (keepLocalProfileKey) local.proto.profileKey else remote.proto.profileKey.nullIfEmpty() ?: local.proto.profileKey
       noteToSelfArchived = remote.proto.noteToSelfArchived
       noteToSelfMarkedUnread = remote.proto.noteToSelfMarkedUnread
       readReceipts = remote.proto.readReceipts
