@@ -572,8 +572,13 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
     });
   }
 
+  /**
+   * Attempts to launch the call screen. On newer OS versions we can only do this when we're already in the
+   * foreground, otherwise the background activity start is blocked and we have to rely on the full screen
+   * intent attached to the CallStyle notification.
+   */
   public boolean startCallCardActivityIfPossible() {
-    if (Build.VERSION.SDK_INT >= CallNotificationBuilder.API_LEVEL_CALL_STYLE) {
+    if (Build.VERSION.SDK_INT >= CallNotificationBuilder.API_LEVEL_CALL_STYLE && !AppForegroundObserver.isForegrounded()) {
       return false;
     }
 
