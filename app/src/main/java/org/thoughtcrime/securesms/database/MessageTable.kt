@@ -5720,7 +5720,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     val threads: MutableList<Long> = LinkedList()
 
     readableDatabase
-      .select(ID, TYPE, THREAD_ID, EXPIRES_IN, EXPIRE_STARTED, LATEST_REVISION_ID)
+      .select(ID, TYPE, THREAD_ID, DATE_RECEIVED, EXPIRES_IN, EXPIRE_STARTED, LATEST_REVISION_ID)
       .from(TABLE_NAME)
       .where("$DATE_SENT = ? AND ($FROM_RECIPIENT_ID = ? OR ($FROM_RECIPIENT_ID = ? AND $outgoingTypeClause))", messageId.timetamp, messageId.recipientId, Recipient.self().id)
       .run()
@@ -5728,6 +5728,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         val id = cursor.requireLong(ID)
         val type = cursor.requireLong(TYPE)
         val threadId = cursor.requireLong(THREAD_ID)
+        val dateReceived = cursor.requireLong(DATE_RECEIVED)
         val expiresIn = cursor.requireLong(EXPIRES_IN)
         val expireStarted = cursor.requireLong(EXPIRE_STARTED).let {
           if (it > 0) {
@@ -5763,9 +5764,9 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         val latest: Long? = threadToLatestRead[threadId]
 
         threadToLatestRead[threadId] = if (latest != null) {
-          max(latest, messageId.timetamp)
+          max(latest, dateReceived)
         } else {
-          messageId.timetamp
+          dateReceived
         }
       }
 
