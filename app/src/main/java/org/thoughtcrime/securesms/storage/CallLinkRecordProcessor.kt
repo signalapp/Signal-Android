@@ -11,6 +11,7 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.toOptional
 import org.signal.ringrtc.CallLinkRootKey
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 import org.whispersystems.signalservice.api.storage.SignalCallLinkRecord
 import org.whispersystems.signalservice.api.storage.StorageId
@@ -50,10 +51,31 @@ class CallLinkRecordProcessor : DefaultStorageRecordProcessor<SignalCallLinkReco
         rootKey = callRootKey.keyBytes.toByteString()
         adminPasskey = callLink.credentials.adminPassBytes.toByteString()
         deletedAtTimestampMs = callLink.deletionTimestamp
-      }.build().toSignalCallLinkRecord(StorageId.forCallLink(keyGenerator.generate())).toOptional()
+      }.build().toSignalCallLinkRecord(localStorageId(callLink.recipientId, keyGenerator)).toOptional()
     } else {
       return Optional.empty<SignalCallLinkRecord>()
     }
+  }
+
+  /**
+   * The storageId of a call link lives on its recipient. Returning the real one matters: [SignalCallLinkRecord] compares by id, so handing back a
+   * generated id would make every processed record look changed and trigger a pointless local update.
+   *
+   * Generating one is defensive only, and in particular is not how an aged-off tombstone recovers. Deleting a call link clears its admin key, so
+   * [getMatching] returns empty for that case and [insertLocal] restores the id from the remote record instead.
+   */
+  private fun localStorageId(recipientId: RecipientId, keyGenerator: StorageKeyGenerator): StorageId {
+    val existing = SignalDatabase.recipients.getRecordForSync(recipientId)?.storageId
+
+    if (existing != null) {
+      return StorageId.forCallLink(existing)
+    }
+
+    Log.w(TAG, "Call link was missing a storageId, generating one.")
+    val generated = keyGenerator.generate()
+    SignalDatabase.recipients.updateStorageId(recipientId, generated)
+
+    return StorageId.forCallLink(generated)
   }
 
   /**

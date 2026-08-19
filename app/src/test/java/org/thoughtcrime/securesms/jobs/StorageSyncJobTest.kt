@@ -391,6 +391,24 @@ class StorageSyncJobTest {
   }
 
   @Test
+  fun `given a contact was unregistered recently, when I run, then I keep their storage id`() {
+    val contact = recipients.createRecipient("Local Contact")
+    SignalDatabase.recipients.rotateStorageId(contact)
+    check(runJob(StorageSyncJob.forLocalChange()).isSuccess)
+    check(remoteStorage.records.count { it.proto.contact != null } == 1)
+
+    SignalDatabase.recipients.markUnregistered(contact)
+    Recipient.live(contact).refresh()
+    remoteStorage.resetCounters()
+
+    val result = runJob(StorageSyncJob.forLocalChange())
+
+    assertTrue(result.isSuccess)
+    assertNotNull(storageIdOf(contact))
+    assertEquals(1, remoteStorage.records.count { it.proto.contact != null })
+  }
+
+  @Test
   fun `given another device keeps undoing my write, when I run again, then I stop writing`() {
     stubIssueReporter()
 

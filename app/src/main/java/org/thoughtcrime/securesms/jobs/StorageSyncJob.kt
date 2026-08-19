@@ -307,9 +307,11 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
         val updatedFolders = SignalDatabase.chatFolders.removeStorageIdsFromLocalOnlyDeletedFolders(idDifference.localOnlyIds)
         val updatedProfiles = SignalDatabase.notificationProfiles.removeStorageIdsFromLocalOnlyDeletedProfiles(idDifference.localOnlyIds)
         val updatedPacks = SignalDatabase.stickers.removeStorageIdsFromLocalOnlyDeletedPacks(idDifference.localOnlyIds)
+        val updatedLists = SignalDatabase.distributionLists.removeStorageIdsFromLocalOnlyDeletedLists(idDifference.localOnlyIds)
+        val updatedCallLinks = SignalDatabase.callLinks.removeStorageIdsFromLocalOnlyDeletedCallLinks(idDifference.localOnlyIds)
 
-        if (updatedRecipients > 0 || updatedFolders > 0 || updatedProfiles > 0 || updatedPacks > 0) {
-          Log.w(TAG, "Found $updatedRecipients recipients, $updatedFolders folders, $updatedProfiles notification profiles, $updatedPacks sticker packs that were deleted remotely but only marked unregistered/deleted locally. Removed those from local store. Recalculating diff.")
+        if (updatedRecipients > 0 || updatedFolders > 0 || updatedProfiles > 0 || updatedPacks > 0 || updatedLists > 0 || updatedCallLinks > 0) {
+          Log.w(TAG, "Found $updatedRecipients recipients, $updatedFolders folders, $updatedProfiles notification profiles, $updatedPacks sticker packs, $updatedLists distribution lists, $updatedCallLinks call links that were deleted remotely but only marked unregistered/deleted locally. Removed those from local store. Recalculating diff.")
 
           localStorageIdsBeforeMerge = getAllLocalStorageIds(self)
           idDifference = StorageSyncHelper.findIdDifference(remoteManifest.storageIds, localStorageIdsBeforeMerge)
@@ -401,12 +403,16 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
     stopwatch.split("known-unknowns")
 
     val remoteWriteOperation: WriteOperationResult = db.withinTransaction {
-      val removedUnregistered = SignalDatabase.recipients.removeStorageIdsFromOldUnregisteredRecipients(System.currentTimeMillis())
-      val removedDeletedFolders = SignalDatabase.chatFolders.removeStorageIdsFromOldDeletedFolders(System.currentTimeMillis())
-      val removedDeletedProfiles = SignalDatabase.notificationProfiles.removeStorageIdsFromOldDeletedProfiles(System.currentTimeMillis())
-      val removedDeletedPacks = SignalDatabase.stickers.removeStorageIdsFromOldDeletedPacks(System.currentTimeMillis())
-      if (removedUnregistered > 0 || removedDeletedFolders > 0 || removedDeletedProfiles > 0 || removedDeletedPacks > 0) {
-        Log.i(TAG, "Removed $removedUnregistered unregistered, $removedDeletedFolders folders, $removedDeletedProfiles notification profiles, $removedDeletedPacks sticker packs from storage service that have been deleted for longer than ${RemoteConfig.messageQueueTime.milliseconds.inWholeDays} days.")
+      val expiredBefore = System.currentTimeMillis() - RemoteConfig.messageQueueTime
+      val removedUnregistered = SignalDatabase.recipients.removeStorageIdsFromOldUnregisteredRecipients(expiredBefore)
+      val removedDeletedFolders = SignalDatabase.chatFolders.removeStorageIdsFromOldDeletedFolders(expiredBefore)
+      val removedDeletedProfiles = SignalDatabase.notificationProfiles.removeStorageIdsFromOldDeletedProfiles(expiredBefore)
+      val removedDeletedPacks = SignalDatabase.stickers.removeStorageIdsFromOldDeletedPacks(expiredBefore)
+      val removedDeletedLists = SignalDatabase.distributionLists.removeStorageIdsFromOldDeletedLists(expiredBefore)
+      val removedDeletedCallLinks = SignalDatabase.callLinks.removeStorageIdsFromOldDeletedCallLinks(expiredBefore)
+
+      if (removedUnregistered > 0 || removedDeletedFolders > 0 || removedDeletedProfiles > 0 || removedDeletedPacks > 0 || removedDeletedLists > 0 || removedDeletedCallLinks > 0) {
+        Log.i(TAG, "Removed $removedUnregistered unregistered, $removedDeletedFolders folders, $removedDeletedProfiles notification profiles, $removedDeletedPacks sticker packs, $removedDeletedLists distribution lists, $removedDeletedCallLinks call links from storage service that have been deleted for longer than ${RemoteConfig.messageQueueTime.milliseconds.inWholeDays} days.")
       }
 
       self = freshSelf()
