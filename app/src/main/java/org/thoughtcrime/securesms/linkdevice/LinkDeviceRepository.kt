@@ -247,7 +247,8 @@ object LinkDeviceRepository {
       masterKey = SignalStore.svr.masterKey,
       code = verificationCodeResult.verificationCode,
       ephemeralMessageBackupKey = ephemeralMessageBackupKey,
-      mediaRootBackupKey = SignalStore.backup.mediaRootBackupKey
+      mediaRootBackupKey = SignalStore.backup.mediaRootBackupKey,
+      authCredentialSalt = SignalStore.account.authCredentialSalt
     )
 
     return when (deviceLinkResult) {
