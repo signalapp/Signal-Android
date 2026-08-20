@@ -39,7 +39,7 @@ internal fun TextModeColorBar(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically
       ) {
-        TextColorBar(imageEditorController, orientation)
+        TextColorBar(imageEditorController, orientation, Modifier.weight(1f, fill = false))
         TextStyleToggle(imageEditorController)
       }
     }
@@ -49,7 +49,7 @@ internal fun TextModeColorBar(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally
       ) {
-        TextColorBar(imageEditorController, orientation)
+        TextColorBar(imageEditorController, orientation, Modifier.weight(1f, fill = false))
         TextStyleToggle(imageEditorController)
       }
     }
@@ -59,12 +59,14 @@ internal fun TextModeColorBar(
 @Composable
 private fun TextColorBar(
   imageEditorController: ImageController,
-  orientation: ColorBarOrientation
+  orientation: ColorBarOrientation,
+  modifier: Modifier = Modifier
 ) {
   HSVColorBar(
     state = imageEditorController.textColorBarState,
     onColorChanged = imageEditorController::setTextColor,
-    orientation = orientation
+    orientation = orientation,
+    modifier = modifier
   )
 }
 
