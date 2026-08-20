@@ -1977,8 +1977,13 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   /**
    * Applies multiple profile fields in a single UPDATE statement. Calls [rotateStorageId] and
    * [notifyRecipientChanged] at most once. Designed for bulk profile fetches.
+   *
+   * Of these fields, only the profile name and username live on the storage service contact record, so
+   * the storage id is only rotated when one of those actually changes.
    */
   fun applyProfileUpdate(id: RecipientId, update: ProfileUpdate) {
+    val clearsUsername = update.clearUsername && hasUsername(id)
+
     val contentValues = ContentValues().apply {
       update.profileName?.let {
         put(PROFILE_GIVEN_NAME, it.givenName.nullIfBlank())
@@ -2009,7 +2014,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
           .build()
         put(EXPIRING_PROFILE_KEY_CREDENTIAL, Base64.encodeWithPadding(columnData.encode()))
       }
-      if (update.clearUsername) {
+      if (clearsUsername) {
         putNull(USERNAME)
       }
     }
@@ -2019,12 +2024,19 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
 
     if (update(id, contentValues)) {
-      val needsStorageRotation = update.profileName != null || update.clearUsername
+      val needsStorageRotation = update.profileName != null || clearsUsername
       if (needsStorageRotation) {
         rotateStorageId(id)
       }
       AppDependencies.databaseObserver.notifyRecipientChanged(id)
     }
+  }
+
+  private fun hasUsername(id: RecipientId): Boolean {
+    return readableDatabase
+      .exists(TABLE_NAME)
+      .where("$ID = ? AND $USERNAME NOT NULL", id.serialize())
+      .run()
   }
 
   fun setProfileName(id: RecipientId, profileName: ProfileName) {

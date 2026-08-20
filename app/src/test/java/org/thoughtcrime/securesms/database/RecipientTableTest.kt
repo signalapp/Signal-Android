@@ -13,6 +13,8 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotEquals
 import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertNull
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -229,6 +231,70 @@ class RecipientTableTest {
 
     assertThat(allColumns).isNotEmpty()
     assertThat(uncategorized).isEmpty()
+  }
+
+  @Test
+  fun givenAContactWithNoUsername_whenAProfileUpdateOnlyChangesFieldsAbsentFromTheContactRecord_thenIExpectNoStorageIdRotation() {
+    SignalDatabase.recipients.setStorageIdIfNotSet(target)
+    val originalStorageId: ByteArray? = SignalDatabase.recipients.getRecord(target).storageId
+    assertNotNull("Precondition: contact should have a storage id", originalStorageId)
+    assertNull("Precondition: contact should have no username", SignalDatabase.recipients.getUsername(target))
+
+    // WHEN a profile fetch reports a new sealed sender mode, which the contact record does not carry
+    SignalDatabase.recipients.applyProfileUpdate(
+      target,
+      RecipientTable.ProfileUpdate(
+        sealedSenderAccessMode = RecipientTable.SealedSenderAccessMode.ENABLED,
+        clearUsername = true
+      )
+    )
+
+    assertEquals(RecipientTable.SealedSenderAccessMode.ENABLED, SignalDatabase.recipients.getRecord(target).sealedSenderAccessMode)
+    assertTrue(
+      "Storage id must not rotate for fields absent from the contact record, otherwise we republish identical content under a fresh id",
+      originalStorageId!!.contentEquals(SignalDatabase.recipients.getRecord(target).storageId)
+    )
+  }
+
+  @Test
+  fun givenAContactWithAUsername_whenAProfileUpdateClearsIt_thenIExpectAStorageIdRotation() {
+    SignalDatabase.recipients.setUsername(target, "target.01")
+    SignalDatabase.recipients.setStorageIdIfNotSet(target)
+
+    val originalStorageId: ByteArray? = SignalDatabase.recipients.getRecord(target).storageId
+    assertNotNull("Precondition: contact should have a storage id", originalStorageId)
+
+    SignalDatabase.recipients.applyProfileUpdate(
+      target,
+      RecipientTable.ProfileUpdate(
+        sealedSenderAccessMode = RecipientTable.SealedSenderAccessMode.ENABLED,
+        clearUsername = true
+      )
+    )
+
+    assertNull(SignalDatabase.recipients.getUsername(target))
+    assertFalse(
+      "Storage id should rotate when the username is actually cleared",
+      originalStorageId!!.contentEquals(SignalDatabase.recipients.getRecord(target).storageId)
+    )
+  }
+
+  @Test
+  fun givenASyncedContact_whenAProfileUpdateChangesTheProfileName_thenIExpectAStorageIdRotation() {
+    SignalDatabase.recipients.setStorageIdIfNotSet(target)
+    val originalStorageId: ByteArray? = SignalDatabase.recipients.getRecord(target).storageId
+    assertNotNull("Precondition: contact should have a storage id", originalStorageId)
+
+    // WHEN a profile fetch reports a new profile name, which the contact record does carry
+    SignalDatabase.recipients.applyProfileUpdate(
+      target,
+      RecipientTable.ProfileUpdate(profileName = ProfileName.fromParts("Renamed", "Person"))
+    )
+
+    assertFalse(
+      "Storage id should rotate when the profile name changes",
+      originalStorageId!!.contentEquals(SignalDatabase.recipients.getRecord(target).storageId)
+    )
   }
 
   companion object {
