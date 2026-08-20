@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.service.webrtc
 import android.os.Build
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.ringrtc.AudioConfig
+import org.signal.ringrtc.SvcConfig
 import org.signal.ringrtc.VideoConfig
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.RemoteConfig
@@ -62,6 +63,23 @@ object RingRtcDynamicConfiguration {
     videoConfig.enableSoftwareVp9Decode = RemoteConfig.enableSoftwareVp9Decode || RemoteConfig.enableSoftwareVp9DecodeSoCList.contains(soc) || RemoteConfig.enableSoftwareVp9DecodeSoCList.contains(model)
 
     return videoConfig
+  }
+
+  @JvmStatic
+  fun getSvcConfig(): SvcConfig? {
+    val enableSvc = (RemoteConfig.internalUser && SignalStore.internal.callingEnableSvc) || (!RemoteConfig.internalUser && RemoteConfig.enableSvc)
+    val videoConfig = getVideoConfig()
+    if (enableSvc && videoConfig.enableSoftwareVp9Encode) {
+      val maxBitrateBps = RemoteConfig.svcMaxBitrateBps
+      return SvcConfig(RemoteConfig.svcMode, RemoteConfig.svcModeForScreenshare, if (maxBitrateBps != 0) { maxBitrateBps } else { null })
+    }
+    return null
+  }
+
+  @JvmStatic
+  fun getStatsIntervalSecs(): Int? {
+    val secs = SignalStore.internal.callingStatsIntervalSecs
+    return if (secs != 0) secs else null
   }
 
   private fun getSoCInfo(): Pair<String, String> {

@@ -24,6 +24,8 @@ data class InternalSettingsState(
   val callingUseHardwareVp9Decode: Boolean,
   val callingUseSoftwareVp9Encode: Boolean,
   val callingUseSoftwareVp9Decode: Boolean,
+  val callingEnableSvc: Boolean,
+  val callingStatsIntervalSecs: Int,
   val useBuiltInEmojiSet: Boolean,
   val emojiVersion: EmojiFiles.Version?,
   val removeSenderKeyMinimium: Boolean,
