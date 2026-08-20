@@ -1,10 +1,15 @@
 package org.thoughtcrime.securesms;
 
 import android.content.BroadcastReceiver;
+import android.content.ClipData;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcelable;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
@@ -40,6 +45,8 @@ import org.thoughtcrime.securesms.util.AppStartup;
 import org.thoughtcrime.securesms.util.Environment;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public abstract class PassphraseRequiredActivity extends BaseActivity implements MasterSecretListener {
@@ -47,6 +54,9 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
 
   public static final String LOCALE_EXTRA      = "locale_extra";
   public static final String NEXT_INTENT_EXTRA = "next_intent";
+
+  private static final String NEXT_INTENT_URI_GRANTS_PRESERVED = "next_intent_uri_grants_preserved";
+  private static final int[]  URI_ACCESS_FLAGS                  = { Intent.FLAG_GRANT_READ_URI_PERMISSION, Intent.FLAG_GRANT_WRITE_URI_PERMISSION };
 
   private static final int STATE_NORMAL              = 0;
   private static final int STATE_CREATE_PASSPHRASE   = 1;
@@ -243,8 +253,14 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
   }
 
   private Intent getPromptPassphraseIntent() {
-    Intent intent = getRoutedIntent(PassphrasePromptActivity.class, getIntent());
+    Intent nextIntent = getIntent();
+    Intent intent      = getRoutedIntent(PassphrasePromptActivity.class, nextIntent);
     intent.putExtra(PassphrasePromptActivity.FROM_FOREGROUND, AppForegroundObserver.isForegrounded());
+
+    if (preserveUriPermissionsForNextIntent(this, nextIntent)) {
+      intent.putExtra(NEXT_INTENT_URI_GRANTS_PRESERVED, true);
+    }
+
     return intent;
   }
 
@@ -326,6 +342,165 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
     final Intent intent = new Intent(this, destination);
     if (nextIntent != null)   intent.putExtra(NEXT_INTENT_EXTRA, nextIntent);
     return intent;
+  }
+
+  /**
+   * Temporary URI grants delivered by {@link Intent#FLAG_GRANT_READ_URI_PERMISSION} and/or
+   * {@link Intent#FLAG_GRANT_WRITE_URI_PERMISSION} are normally owned by the activity that receives them and are
+   * revoked as soon as that activity is destroyed. Locking routes the original activity to the passphrase prompt and
+   * finishes it, so a share intent (e.g. {@code ACTION_SEND} with {@code EXTRA_STREAM}) would lose access to its
+   * content URIs before it can be relaunched after unlock. Re-grant the same access to our own package without an
+   * activity owner so it survives until the prompt relaunches the intent, at which point it is promptly revoked.
+   * <p>
+   * Revoking a grant that was made to a specific package requires {@link Context#revokeUriPermission(String, Uri, int)},
+   * which is API 26+. Below that we could create the grant but never reliably drop it again, which would trade a
+   * broken share for a leaked permission. So the whole mechanism is gated: older devices keep the previous behaviour
+   * of losing the grant at the lock boundary.
+   */
+  private static boolean preserveUriPermissionsForNextIntent(@NonNull Context context, @Nullable Intent intent) {
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+      return false;
+    }
+
+    if (intent == null) {
+      return false;
+    }
+
+    final int accessFlags = intent.getFlags() & (Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+    if (accessFlags == 0) {
+      return false;
+    }
+
+    final List<Uri> uris = getUrisFromIntent(intent);
+    if (uris.isEmpty()) {
+      return false;
+    }
+
+    boolean granted = false;
+
+    for (Uri uri : uris) {
+      if (!ContentResolver.SCHEME_CONTENT.equals(uri.getScheme())) {
+        continue;
+      }
+
+      for (int flag : URI_ACCESS_FLAGS) {
+        if ((accessFlags & flag) == 0) {
+          continue;
+        }
+
+        try {
+          context.grantUriPermission(context.getPackageName(), uri, flag);
+          granted = true;
+        } catch (SecurityException | IllegalArgumentException e) {
+          Log.w(TAG, "Unable to preserve URI permission for " + uri, e);
+        }
+      }
+    }
+
+    return granted;
+  }
+
+  static boolean hasPreservedUriPermissions(@NonNull Intent intent) {
+    return intent.getBooleanExtra(NEXT_INTENT_URI_GRANTS_PRESERVED, false);
+  }
+
+  /**
+   * Revokes only the ownerless grants created by {@link #preserveUriPermissionsForNextIntent(Context, Intent)}.
+   * The new activity receives its own activity-scoped grant when {@code nextIntent} is started, so revoking the
+   * package-scoped grant immediately after launch does not break the share.
+   */
+  static void revokePreservedUriPermissions(@NonNull Context context, @Nullable Intent intent) {
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+      return;
+    }
+
+    if (intent == null) {
+      return;
+    }
+
+    final int accessFlags = intent.getFlags() & (Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+    if (accessFlags == 0) {
+      return;
+    }
+
+    for (Uri uri : getUrisFromIntent(intent)) {
+      if (!ContentResolver.SCHEME_CONTENT.equals(uri.getScheme())) {
+        continue;
+      }
+
+      for (int flag : URI_ACCESS_FLAGS) {
+        if ((accessFlags & flag) == 0) {
+          continue;
+        }
+
+        try {
+          context.revokeUriPermission(context.getPackageName(), uri, flag);
+        } catch (SecurityException | IllegalArgumentException e) {
+          Log.w(TAG, "Unable to revoke preserved URI permission for " + uri, e);
+        }
+      }
+    }
+  }
+
+  private static @NonNull List<Uri> getUrisFromIntent(@NonNull Intent intent) {
+    final List<Uri> uris = new ArrayList<>();
+
+    addUri(uris, intent.getData());
+    addUrisFromClipData(uris, intent.getClipData(), 0);
+
+    final Bundle extras = intent.getExtras();
+    if (extras != null) {
+      addUrisFromStreamExtra(uris, extras.get(Intent.EXTRA_STREAM));
+    }
+
+    return uris;
+  }
+
+  private static void addUrisFromClipData(@NonNull List<Uri> uris, @Nullable ClipData clipData, int depth) {
+    if (clipData == null || depth > 3) {
+      return;
+    }
+
+    for (int i = 0; i < clipData.getItemCount(); i++) {
+      ClipData.Item item = clipData.getItemAt(i);
+      addUri(uris, item.getUri());
+
+      final Intent nestedIntent = item.getIntent();
+      if (nestedIntent != null) {
+        addUri(uris, nestedIntent.getData());
+        addUrisFromClipData(uris, nestedIntent.getClipData(), depth + 1);
+
+        final Bundle nestedExtras = nestedIntent.getExtras();
+        if (nestedExtras != null) {
+          addUrisFromStreamExtra(uris, nestedExtras.get(Intent.EXTRA_STREAM));
+        }
+      }
+    }
+  }
+
+  @SuppressWarnings("unchecked")
+  private static void addUrisFromStreamExtra(@NonNull List<Uri> uris, @Nullable Object streamExtra) {
+    if (streamExtra instanceof Uri) {
+      addUri(uris, (Uri) streamExtra);
+    } else if (streamExtra instanceof Iterable) {
+      for (Object value : (Iterable) streamExtra) {
+        if (value instanceof Uri) {
+          addUri(uris, (Uri) value);
+        }
+      }
+    } else if (streamExtra instanceof Parcelable[]) {
+      for (Parcelable value : (Parcelable[]) streamExtra) {
+        if (value instanceof Uri) {
+          addUri(uris, (Uri) value);
+        }
+      }
+    }
+  }
+
+  private static void addUri(@NonNull List<Uri> uris, @Nullable Uri uri) {
+    if (uri != null && !uris.contains(uri)) {
+      uris.add(uri);
+    }
   }
 
   private Intent getConversationListIntent() {
