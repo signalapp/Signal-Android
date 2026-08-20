@@ -4614,10 +4614,10 @@
     <string name="arrays__use_default">استخدِم الافتراضي</string>
     <string name="arrays__use_custom">استخدِم التخصيص</string>
 
-    <string name="arrays__mute_for_one_hour">1 Hour</string>
-    <string name="arrays__mute_for_eight_hours">8 Hours</string>
-    <string name="arrays__mute_for_one_day">1 Day</string>
-    <string name="arrays__mute_for_seven_days">1 Week</string>
+    <string name="arrays__mute_for_one_hour">ساعة واحدة</string>
+    <string name="arrays__mute_for_eight_hours">ثمانِ ساعات</string>
+    <string name="arrays__mute_for_one_day">يوم واحد</string>
+    <string name="arrays__mute_for_seven_days">أسبوع واحد</string>
     <string name="arrays__always">دائمًا</string>
 
     <string name="arrays__settings_default">الإعدادات الافتراضية</string>
@@ -4677,9 +4677,9 @@
     <string name="preferences__inactivity_timeout_interval">مدة الصلاحية</string>
     <string name="preferences__notifications">الإشعارات</string>
     <!-- Preference item menu to enable notifications -->
-    <string name="preferences__enable_notifications">Enable notifications</string>
+    <string name="preferences__enable_notifications">تفعيل الإشعارات</string>
     <!-- Preference header for call notifications -->
-    <string name="preferences__call_notifications">Call notifications</string>
+    <string name="preferences__call_notifications">إشعارات المكالمات</string>
     <string name="preferences__led_color">لون LED</string>
     <string name="preferences__led_color_unknown">مجهول</string>
     <string name="preferences__pref_led_blink_title">نمط وميض LED</string>
@@ -6530,7 +6530,7 @@
     <string name="NotificationsSettingsFragment__messages">الرسائل</string>
     <string name="NotificationsSettingsFragment__calls">المكالمات</string>
     <!-- Notification header for sounds -->
-    <string name="NotificationsSettingsFragment__sounds">Sounds</string>
+    <string name="NotificationsSettingsFragment__sounds">اﻷصوات</string>
     <string name="NotificationsSettingsFragment__contact_joins_signal">انضمام جهة اتصال لسيجنال</string>
     <!-- Notification body to get notified when someone joins Signal -->
     <string name="NotificationsSettingsFragment__notify_contact">Show a notification when a phone contact joins Signal</string>
@@ -6541,7 +6541,7 @@
     <!-- Dialog to reset their notification settings -->
     <string name="NotificationsSettingsFragment__reset_body">Reset all notification settings to default for all chats?</string>
     <!-- Confirmation button to reset dialog -->
-    <string name="NotificationsSettingsFragment__reset_confirm">Reset</string>
+    <string name="NotificationsSettingsFragment__reset_confirm">إعادة التعيين</string>
     <!-- Notification preference header -->
     <string name="NotificationsSettingsFragment__notification_profiles">ملفات الإشعارات</string>
     <!-- Notification preference option header -->
@@ -6552,15 +6552,15 @@
     <!-- Header to describe screen that shows while muted settings -->
     <string name="MutedNotificationsFragment__while">While muted</string>
     <!-- Title for toggle row to control call settings while muted -->
-    <string name="MutedNotificationsFragment__calls">Calls</string>
+    <string name="MutedNotificationsFragment__calls">المكالمات</string>
     <!-- Description for toggle row to control call settings while muted -->
     <string name="MutedNotificationsFragment__calls_body_global">Ring or notify when a call is started in muted chats.</string>
     <!-- Title for toggle row to control mentions settings while muted -->
-    <string name="MutedNotificationsFragment__mentions">Mentions</string>
+    <string name="MutedNotificationsFragment__mentions">الإشارات إلى اﻷفراد</string>
     <!-- Description for toggle row to control mentions settings while muted -->
     <string name="MutedNotificationsFragment__mentions_body_global">Notify when you are mentioned in muted chats.</string>
     <!-- Title for toggle row to control replies settings while muted -->
-    <string name="MutedNotificationsFragment__replies">Replies</string>
+    <string name="MutedNotificationsFragment__replies">الردود</string>
     <!-- Description for toggle row to control replies settings while muted -->
     <string name="MutedNotificationsFragment__replies_body_global">Notify when someone replies to your message in muted chats.</string>
     <!-- Description for toggle row to control call settings while muted -->

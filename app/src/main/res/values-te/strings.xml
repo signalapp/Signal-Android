@@ -4122,10 +4122,10 @@
     <string name="arrays__use_default">అప్రమేయం ఉపయోగించు</string>
     <string name="arrays__use_custom">నియమము ఉపయోగించు</string>
 
-    <string name="arrays__mute_for_one_hour">1 Hour</string>
-    <string name="arrays__mute_for_eight_hours">8 Hours</string>
-    <string name="arrays__mute_for_one_day">1 Day</string>
-    <string name="arrays__mute_for_seven_days">1 Week</string>
+    <string name="arrays__mute_for_one_hour">1 గంట</string>
+    <string name="arrays__mute_for_eight_hours">8 గంటలు</string>
+    <string name="arrays__mute_for_one_day">1 రోజు</string>
+    <string name="arrays__mute_for_seven_days">1 వారం</string>
     <string name="arrays__always">ఎల్లప్పుడూ</string>
 
     <string name="arrays__settings_default">అప్రమేయ అమరికలు</string>
@@ -4181,9 +4181,9 @@
     <string name="preferences__inactivity_timeout_interval">క్రియాశూన్యత మధ్యకాలము విరామసమయము</string>
     <string name="preferences__notifications">ప్రకటనలు</string>
     <!-- Preference item menu to enable notifications -->
-    <string name="preferences__enable_notifications">Enable notifications</string>
+    <string name="preferences__enable_notifications">నోటిఫికేషన్‌లను ప్రారంభించండి</string>
     <!-- Preference header for call notifications -->
-    <string name="preferences__call_notifications">Call notifications</string>
+    <string name="preferences__call_notifications">కాల్ నోటిఫికేషన్లు</string>
     <string name="preferences__led_color">ఎల్ఈడి రంగు</string>
     <string name="preferences__led_color_unknown">తెలియని</string>
     <string name="preferences__pref_led_blink_title">ఎల్ఇడి రెప్పపాటు నమూనా</string>
@@ -5937,7 +5937,7 @@
     <!-- Dialog to reset their notification settings -->
     <string name="NotificationsSettingsFragment__reset_body">Reset all notification settings to default for all chats?</string>
     <!-- Confirmation button to reset dialog -->
-    <string name="NotificationsSettingsFragment__reset_confirm">Reset</string>
+    <string name="NotificationsSettingsFragment__reset_confirm">రీసెట్ చేయండి</string>
     <!-- Notification preference header -->
     <string name="NotificationsSettingsFragment__notification_profiles">నోటిఫికేషన్ ప్రొఫైల్‌లు</string>
     <!-- Notification preference option header -->
@@ -5948,15 +5948,15 @@
     <!-- Header to describe screen that shows while muted settings -->
     <string name="MutedNotificationsFragment__while">While muted</string>
     <!-- Title for toggle row to control call settings while muted -->
-    <string name="MutedNotificationsFragment__calls">Calls</string>
+    <string name="MutedNotificationsFragment__calls">కాల్‌లు</string>
     <!-- Description for toggle row to control call settings while muted -->
     <string name="MutedNotificationsFragment__calls_body_global">Ring or notify when a call is started in muted chats.</string>
     <!-- Title for toggle row to control mentions settings while muted -->
-    <string name="MutedNotificationsFragment__mentions">Mentions</string>
+    <string name="MutedNotificationsFragment__mentions">ప్రస్తావనలు</string>
     <!-- Description for toggle row to control mentions settings while muted -->
     <string name="MutedNotificationsFragment__mentions_body_global">Notify when you are mentioned in muted chats.</string>
     <!-- Title for toggle row to control replies settings while muted -->
-    <string name="MutedNotificationsFragment__replies">Replies</string>
+    <string name="MutedNotificationsFragment__replies">రిప్లైలు</string>
     <!-- Description for toggle row to control replies settings while muted -->
     <string name="MutedNotificationsFragment__replies_body_global">Notify when someone replies to your message in muted chats.</string>
     <!-- Description for toggle row to control call settings while muted -->

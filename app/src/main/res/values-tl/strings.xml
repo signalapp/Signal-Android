@@ -4122,10 +4122,10 @@
     <string name="arrays__use_default">Gamitin ang default</string>
     <string name="arrays__use_custom">Gumamit ng custom</string>
 
-    <string name="arrays__mute_for_one_hour">1 Hour</string>
-    <string name="arrays__mute_for_eight_hours">8 Hours</string>
-    <string name="arrays__mute_for_one_day">1 Day</string>
-    <string name="arrays__mute_for_seven_days">1 Week</string>
+    <string name="arrays__mute_for_one_hour">1 hour</string>
+    <string name="arrays__mute_for_eight_hours">8 hours</string>
+    <string name="arrays__mute_for_one_day">1 day</string>
+    <string name="arrays__mute_for_seven_days">1 week</string>
     <string name="arrays__always">Always</string>
 
     <string name="arrays__settings_default">Default ng settings</string>
@@ -4181,7 +4181,7 @@
     <string name="preferences__inactivity_timeout_interval">Tagal ng timeout para sa kawalang-aktibidad</string>
     <string name="preferences__notifications">Mga Notipikasyon</string>
     <!-- Preference item menu to enable notifications -->
-    <string name="preferences__enable_notifications">Enable notifications</string>
+    <string name="preferences__enable_notifications">I-enable ang notifications</string>
     <!-- Preference header for call notifications -->
     <string name="preferences__call_notifications">Call notifications</string>
     <string name="preferences__led_color">Kulay ng LED</string>
@@ -5937,7 +5937,7 @@
     <!-- Dialog to reset their notification settings -->
     <string name="NotificationsSettingsFragment__reset_body">Reset all notification settings to default for all chats?</string>
     <!-- Confirmation button to reset dialog -->
-    <string name="NotificationsSettingsFragment__reset_confirm">Reset</string>
+    <string name="NotificationsSettingsFragment__reset_confirm">I-reset</string>
     <!-- Notification preference header -->
     <string name="NotificationsSettingsFragment__notification_profiles">Notification profiles</string>
     <!-- Notification preference option header -->

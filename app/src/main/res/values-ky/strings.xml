@@ -797,7 +797,7 @@
     <string name="ConversationListFragment_deleting">Өчүрүлүүдө</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
         <item quantity="one"></item>
-        <item quantity="other">Тандалган маектер өчүрүлүүдө...</item>
+        <item quantity="other">Тандалган маектер өчүрүлүүдө…</item>
     </plurals>
     <plurals name="ConversationListFragment_conversations_archived">
         <item quantity="one"></item>
@@ -1062,7 +1062,7 @@
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Пландалган билдирүүнү өчүрөсүзбү?</string>
     <!-- Progress message shown while deleting selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Өчүрүлүүдө...</string>
+    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Өчүрүлүүдө…</string>
 
     <!-- DecryptionFailedDialog -->
     <string name="DecryptionFailedDialog_chat_session_refreshed">Маектин сессиясы жаңырды</string>
@@ -3707,7 +3707,7 @@
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
     <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">Бул адамды өчүрдүңүз, ага билдирүү жөнөтсөңүз, тизмеңизге кайра кошулат.</string>
     <!-- Update item button text shown for the accepted message request update message -->
-    <string name="ConversationUpdateItem_block_report">Бөгөттөө же кабарлоо...</string>
+    <string name="ConversationUpdateItem_block_report">Бөгөттөө же кабарлоо…</string>
     <!-- Update item button text shown for a profile name change. -->
     <string name="ConversationUpdateItem_update">Жаңыртуу</string>
     <!-- Update item button text to show how many group updates there are. -->
@@ -4122,10 +4122,10 @@
     <string name="arrays__use_default">Демейки параметрди колдонуу</string>
     <string name="arrays__use_custom">Жеке параметрди колдонуу</string>
 
-    <string name="arrays__mute_for_one_hour">1 Hour</string>
-    <string name="arrays__mute_for_eight_hours">8 Hours</string>
-    <string name="arrays__mute_for_one_day">1 Day</string>
-    <string name="arrays__mute_for_seven_days">1 Week</string>
+    <string name="arrays__mute_for_one_hour">1 саат</string>
+    <string name="arrays__mute_for_eight_hours">8 саат</string>
+    <string name="arrays__mute_for_one_day">1 күн</string>
+    <string name="arrays__mute_for_seven_days">1 жума</string>
     <string name="arrays__always">Ар дайым</string>
 
     <string name="arrays__settings_default">Демейки</string>
@@ -4181,9 +4181,9 @@
     <string name="preferences__inactivity_timeout_interval">Аракетсиздик мезгили</string>
     <string name="preferences__notifications">Билдирмелер</string>
     <!-- Preference item menu to enable notifications -->
-    <string name="preferences__enable_notifications">Enable notifications</string>
+    <string name="preferences__enable_notifications">Билдирмелерди иштетүү</string>
     <!-- Preference header for call notifications -->
-    <string name="preferences__call_notifications">Call notifications</string>
+    <string name="preferences__call_notifications">Чалуу билдирмелери</string>
     <string name="preferences__led_color">LED түсү</string>
     <string name="preferences__led_color_unknown">Белгисиз</string>
     <string name="preferences__pref_led_blink_title">LED кантип бүлбүлдөйт</string>
@@ -5937,7 +5937,7 @@
     <!-- Dialog to reset their notification settings -->
     <string name="NotificationsSettingsFragment__reset_body">Reset all notification settings to default for all chats?</string>
     <!-- Confirmation button to reset dialog -->
-    <string name="NotificationsSettingsFragment__reset_confirm">Reset</string>
+    <string name="NotificationsSettingsFragment__reset_confirm">Кайра коюу</string>
     <!-- Notification preference header -->
     <string name="NotificationsSettingsFragment__notification_profiles">Билдирме профилдери</string>
     <!-- Notification preference option header -->
@@ -5948,15 +5948,15 @@
     <!-- Header to describe screen that shows while muted settings -->
     <string name="MutedNotificationsFragment__while">While muted</string>
     <!-- Title for toggle row to control call settings while muted -->
-    <string name="MutedNotificationsFragment__calls">Calls</string>
+    <string name="MutedNotificationsFragment__calls">Чалуулар</string>
     <!-- Description for toggle row to control call settings while muted -->
     <string name="MutedNotificationsFragment__calls_body_global">Ring or notify when a call is started in muted chats.</string>
     <!-- Title for toggle row to control mentions settings while muted -->
-    <string name="MutedNotificationsFragment__mentions">Mentions</string>
+    <string name="MutedNotificationsFragment__mentions">Айтып өтүүлөр</string>
     <!-- Description for toggle row to control mentions settings while muted -->
     <string name="MutedNotificationsFragment__mentions_body_global">Notify when you are mentioned in muted chats.</string>
     <!-- Title for toggle row to control replies settings while muted -->
-    <string name="MutedNotificationsFragment__replies">Replies</string>
+    <string name="MutedNotificationsFragment__replies">Жооптор</string>
     <!-- Description for toggle row to control replies settings while muted -->
     <string name="MutedNotificationsFragment__replies_body_global">Notify when someone replies to your message in muted chats.</string>
     <!-- Description for toggle row to control call settings while muted -->

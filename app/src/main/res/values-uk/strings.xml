@@ -4368,10 +4368,10 @@
     <string name="arrays__use_default">Використовувати типове налаштування</string>
     <string name="arrays__use_custom">Використовувати власне налаштування</string>
 
-    <string name="arrays__mute_for_one_hour">1 Hour</string>
-    <string name="arrays__mute_for_eight_hours">8 Hours</string>
-    <string name="arrays__mute_for_one_day">1 Day</string>
-    <string name="arrays__mute_for_seven_days">1 Week</string>
+    <string name="arrays__mute_for_one_hour">1 година</string>
+    <string name="arrays__mute_for_eight_hours">8 годин</string>
+    <string name="arrays__mute_for_one_day">1 день</string>
+    <string name="arrays__mute_for_seven_days">1 тиждень</string>
     <string name="arrays__always">Назавжди</string>
 
     <string name="arrays__settings_default">Типові налаштування</string>
@@ -4429,9 +4429,9 @@
     <string name="preferences__inactivity_timeout_interval">Мінімальна тривалість періоду бездіяльності</string>
     <string name="preferences__notifications">Сповіщення</string>
     <!-- Preference item menu to enable notifications -->
-    <string name="preferences__enable_notifications">Enable notifications</string>
+    <string name="preferences__enable_notifications">Увімкнути сповіщення</string>
     <!-- Preference header for call notifications -->
-    <string name="preferences__call_notifications">Call notifications</string>
+    <string name="preferences__call_notifications">Сповіщення про виклики</string>
     <string name="preferences__led_color">Колір LED</string>
     <string name="preferences__led_color_unknown">Невідомо</string>
     <string name="preferences__pref_led_blink_title">Схема мерехтіння LED</string>
@@ -6228,7 +6228,7 @@
     <string name="NotificationsSettingsFragment__messages">Повідомлення</string>
     <string name="NotificationsSettingsFragment__calls">Виклики</string>
     <!-- Notification header for sounds -->
-    <string name="NotificationsSettingsFragment__sounds">Sounds</string>
+    <string name="NotificationsSettingsFragment__sounds">Звуки</string>
     <string name="NotificationsSettingsFragment__contact_joins_signal">Контакт приєднався до Signal</string>
     <!-- Notification body to get notified when someone joins Signal -->
     <string name="NotificationsSettingsFragment__notify_contact">Show a notification when a phone contact joins Signal</string>
@@ -6239,7 +6239,7 @@
     <!-- Dialog to reset their notification settings -->
     <string name="NotificationsSettingsFragment__reset_body">Reset all notification settings to default for all chats?</string>
     <!-- Confirmation button to reset dialog -->
-    <string name="NotificationsSettingsFragment__reset_confirm">Reset</string>
+    <string name="NotificationsSettingsFragment__reset_confirm">Скинути</string>
     <!-- Notification preference header -->
     <string name="NotificationsSettingsFragment__notification_profiles">Профілі сповіщень</string>
     <!-- Notification preference option header -->
@@ -6250,15 +6250,15 @@
     <!-- Header to describe screen that shows while muted settings -->
     <string name="MutedNotificationsFragment__while">While muted</string>
     <!-- Title for toggle row to control call settings while muted -->
-    <string name="MutedNotificationsFragment__calls">Calls</string>
+    <string name="MutedNotificationsFragment__calls">Виклики</string>
     <!-- Description for toggle row to control call settings while muted -->
     <string name="MutedNotificationsFragment__calls_body_global">Ring or notify when a call is started in muted chats.</string>
     <!-- Title for toggle row to control mentions settings while muted -->
-    <string name="MutedNotificationsFragment__mentions">Mentions</string>
+    <string name="MutedNotificationsFragment__mentions">Згадки</string>
     <!-- Description for toggle row to control mentions settings while muted -->
     <string name="MutedNotificationsFragment__mentions_body_global">Notify when you are mentioned in muted chats.</string>
     <!-- Title for toggle row to control replies settings while muted -->
-    <string name="MutedNotificationsFragment__replies">Replies</string>
+    <string name="MutedNotificationsFragment__replies">Відповіді</string>
     <!-- Description for toggle row to control replies settings while muted -->
     <string name="MutedNotificationsFragment__replies_body_global">Notify when someone replies to your message in muted chats.</string>
     <!-- Description for toggle row to control call settings while muted -->

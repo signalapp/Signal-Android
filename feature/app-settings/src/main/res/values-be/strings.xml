@@ -1,51 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
     <!-- RegistrationLockV2Dialog -->
-    <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Turn on Registration Lock?</string>
-    <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Turn off Registration Lock?</string>
-    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">If you forget your Signal PIN when registering with Signal again, you’ll be locked out of your account for 7 days.</string>
-    <string name="RegistrationLockV2Dialog_turn_on">Turn on</string>
-    <string name="RegistrationLockV2Dialog_turn_off">Turn off</string>
-    <string name="preferences__advanced_pin_settings">Advanced PIN settings</string>
-    <string name="preferences__delete_account">Delete account</string>
+    <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Уключыць блакіроўку рэгістрацыі?</string>
+    <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Адключыць блакіроўку рэгістрацыі?</string>
+    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Калі пры паўторнай рэгістрацыі ў Signal вы зноў забудзеце свой PIN-код Signal, ваш уліковы запіс будзе заблакаваны на 7 дзён.</string>
+    <string name="RegistrationLockV2Dialog_turn_on">Уключыць</string>
+    <string name="RegistrationLockV2Dialog_turn_off">Адключыць</string>
+    <string name="preferences__advanced_pin_settings">Пашыраныя налады PIN-кода</string>
+    <string name="preferences__delete_account">Выдаліць уліковы запіс</string>
     <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
-    <string name="RegistrationLockFragment__switch_keyboard">Switch keyboard</string>
-    <string name="preferences_chats__transfer_account">Transfer account</string>
-    <string name="preferences_chats__transfer_account_to_a_new_android_device">Transfer account to a new Android device</string>
-    <string name="preferences_app_protection__signal_pin">Signal PIN</string>
-    <string name="preferences_app_protection__create_a_pin">Create a PIN</string>
-    <string name="preferences_app_protection__change_your_pin">Change your PIN</string>
-    <string name="preferences_app_protection__pin_reminders">PIN reminders</string>
-    <string name="preferences_app_protection__turn_off">Turn off</string>
-    <string name="preferences_app_protection__confirm_pin">Confirm PIN</string>
-    <string name="preferences_app_protection__confirm_your_signal_pin">Confirm your Signal PIN</string>
-    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Make sure you memorize or securely store your PIN as it can\'t be recovered. If you forget your PIN, you may lose data when re-registering your Signal account.</string>
-    <string name="preferences_app_protection__incorrect_pin_try_again">Incorrect PIN. Try again.</string>
-    <string name="preferences_app_protection__registration_lock">Registration Lock</string>
+    <string name="RegistrationLockFragment__switch_keyboard">Пераключыць клавіятуру</string>
+    <string name="preferences_chats__transfer_account">Перанесці ўліковы запіс</string>
+    <string name="preferences_chats__transfer_account_to_a_new_android_device">Перанесці ўліковы запіс на новую прыладу Android</string>
+    <string name="preferences_app_protection__signal_pin">PIN-код Signal</string>
+    <string name="preferences_app_protection__create_a_pin">Стварыць PIN-код</string>
+    <string name="preferences_app_protection__change_your_pin">Змяніць свой PIN-код</string>
+    <string name="preferences_app_protection__pin_reminders">Напаміны PIN-кода</string>
+    <string name="preferences_app_protection__turn_off">Адключыць</string>
+    <string name="preferences_app_protection__confirm_pin">Пацвердзіць PIN-код</string>
+    <string name="preferences_app_protection__confirm_your_signal_pin">Пацвердзіць свой PIN-код Signal</string>
+    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Пераканайцеся, што вы запомнілі або надзейна захавалі свой PIN-код, бо яго немагчыма аднавіць. Калі вы забудзеце PIN-код, вы можаце страціць даныя пры паўторнай рэгістрацыі свайго ўліковага запісу Signal.</string>
+    <string name="preferences_app_protection__incorrect_pin_try_again">Няправільны PIN-код. Паўтарыце спробу.</string>
+    <string name="preferences_app_protection__registration_lock">Блакіроўка рэгістрацыі</string>
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
-    <string name="preferences_account_reregister">Re-register account</string>
+    <string name="preferences_account_reregister">Зарэгістраваць паўторна ўліковы запіс</string>
     <!-- Option in settings that will take user to our website or playstore to update their expired build -->
-    <string name="preferences_account_update_signal">Update Signal</string>
+    <string name="preferences_account_update_signal">Абнавіць Signal</string>
     <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
-    <string name="preferences_account_delete_all_data">Delete all data</string>
+    <string name="preferences_account_delete_all_data">Выдаліць усе даныя</string>
     <!-- Title for confirmation dialog confirming user wants to delete all their data -->
-    <string name="preferences_account_delete_all_data_confirmation_title">Delete all data?</string>
+    <string name="preferences_account_delete_all_data_confirmation_title">Выдаліць усе даныя?</string>
     <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_message">This will reset the app and delete all messages. The app will close after this process is complete.</string>
+    <string name="preferences_account_delete_all_data_confirmation_message">Праграма будзе скінута, і ўсе вашы паведамленні будуць выдалены. Праграма закрыецца пасля завяршэння гэтага працэсу.</string>
     <!-- Confirmation action to proceed with application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_proceed">Proceed</string>
+    <string name="preferences_account_delete_all_data_confirmation_proceed">Працягнуць</string>
     <!-- Confirmation action to cancel application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_cancel">Cancel</string>
+    <string name="preferences_account_delete_all_data_confirmation_cancel">Скасаваць</string>
 
     <!-- AccountSettingsFragment -->
-    <string name="AccountSettingsFragment__account">Account</string>
-    <string name="AccountSettingsFragment__youll_be_asked_less_frequently">You\'ll be asked less frequently over time</string>
-    <string name="AccountSettingsFragment__require_your_signal_pin">Require your Signal PIN to register your phone number with Signal again</string>
-    <string name="AccountSettingsFragment__change_phone_number">Change phone number</string>
+    <string name="AccountSettingsFragment__account">Уліковы запіс</string>
+    <string name="AccountSettingsFragment__youll_be_asked_less_frequently">З часам мы будзем запытваць вас радзей</string>
+    <string name="AccountSettingsFragment__require_your_signal_pin">Патрэбен ваш PIN-код Signal, каб нанова зарэгістраваць ваш нумар тэлефона ў Signal</string>
+    <string name="AccountSettingsFragment__change_phone_number">Змяніць нумар тэлефона</string>
     <!-- Account setting that allows user to request and export their signal account data -->
-    <string name="AccountSettingsFragment__request_account_data">Your account data</string>
+    <string name="AccountSettingsFragment__request_account_data">Даныя аб вашым уліковым запісу</string>
     <!-- Section header for the Signal Login section of account settings -->
-    <string name="AccountSettingsFragment__signal_login">Signal Login</string>
+    <string name="AccountSettingsFragment__signal_login">Лагін Signal</string>
     <!-- Title of the card that opens the user\'s Signal Login account and recovery keys -->
     <string name="AccountSettingsFragment__account_and_recovery">Account &amp; recovery</string>
     <!-- Subtitle of the Signal Login card describing how many keys make up the login -->
@@ -64,7 +64,7 @@
     <!-- Description of the authenticator app setting -->
     <string name="AccountSettingsFragment__use_an_authenticator_app">Use an authenticator app to generate one-time verification codes</string>
     <!-- Description of the authenticator app setting when one has already been set up -->
-    <string name="AccountSettingsFragment__enabled">Enabled</string>
+    <string name="AccountSettingsFragment__enabled">Уключана</string>
     <!-- Account setting for setting up a physical security key -->
     <string name="AccountSettingsFragment__security_keys">Security keys</string>
     <!-- Description of the security keys setting -->
@@ -72,7 +72,7 @@
     <!-- Description of two-factor authentication, shown below the two-factor authentication rows -->
     <string name="AccountSettingsFragment__use_a_second_form_of_authentication">Use a second form of authentication to protect your account when using your Signal Login on a new device.</string>
     <!-- Clickable text that takes the user to a support article -->
-    <string name="AccountSettingsFragment__learn_more">Learn more</string>
+    <string name="AccountSettingsFragment__learn_more">Даведацца больш</string>
 
     <!-- AuthenticatorSetupScreen -->
     <!-- Title of the screen that walks the user through setting up an authenticator app -->
@@ -80,7 +80,7 @@
     <!-- Instructions shown at the top of the authenticator app setup screen -->
     <string name="AuthenticatorSetupScreen__follow_these_steps">Follow these steps to set up your authenticator app.</string>
     <!-- Clickable text that takes the user to a support article -->
-    <string name="AuthenticatorSetupScreen__learn_more">Learn more</string>
+    <string name="AuthenticatorSetupScreen__learn_more">Даведацца больш</string>
     <!-- Header of the first step of authenticator app setup -->
     <string name="AuthenticatorSetupScreen__step_1">Step 1</string>
     <!-- Body of the first step of authenticator app setup -->
@@ -94,9 +94,9 @@
     <!-- Text above the setup key explaining that it can be entered by hand instead -->
     <string name="AuthenticatorSetupScreen__or_you_can_copy_this_key">Or you can copy this key to manually set it up.</string>
     <!-- Button that copies the setup key to the clipboard -->
-    <string name="AuthenticatorSetupScreen__copy">Copy</string>
+    <string name="AuthenticatorSetupScreen__copy">Капіраваць</string>
     <!-- Toast shown after the setup key has been copied to the clipboard -->
-    <string name="AuthenticatorSetupScreen__copied_to_clipboard">Copied to clipboard</string>
+    <string name="AuthenticatorSetupScreen__copied_to_clipboard">Скапіравана ў буфер абмену</string>
     <!-- Toast shown when there is no app installed that can handle the authenticator setup link -->
     <string name="AuthenticatorSetupScreen__no_authenticator_app_found">No authenticator app found</string>
     <!-- Header of the third step of authenticator app setup -->
@@ -104,7 +104,7 @@
     <!-- Body of the third step of authenticator app setup -->
     <string name="AuthenticatorSetupScreen__copy_the_code_thats_generated">Copy the code that\'s generated and return here to continue.</string>
     <!-- Button that advances from the setup instructions to entering a code -->
-    <string name="AuthenticatorSetupScreen__continue">Continue</string>
+    <string name="AuthenticatorSetupScreen__continue">Працягнуць</string>
 
     <!-- AuthenticatorCodeEntryScreen -->
     <!-- Title of the screen where the user enters the code from their authenticator app -->
@@ -112,9 +112,9 @@
     <!-- Instructions shown above the code entry field -->
     <string name="AuthenticatorCodeEntryScreen__enter_the_6_digit_code">Enter the 6-digit code from your authenticator app.</string>
     <!-- Label of the code entry field -->
-    <string name="AuthenticatorCodeEntryScreen__code">Code</string>
+    <string name="AuthenticatorCodeEntryScreen__code">Код</string>
     <!-- Button that submits the entered code -->
-    <string name="AuthenticatorCodeEntryScreen__done">Done</string>
+    <string name="AuthenticatorCodeEntryScreen__done">Гатова</string>
     <!-- Toast shown after an authenticator app has been successfully set up -->
     <string name="AuthenticatorCodeEntryScreen__authenticator_app_added">Authenticator app added</string>
 </resources>

@@ -3999,10 +3999,10 @@
     <string name="arrays__use_default">Gunakan standar</string>
     <string name="arrays__use_custom">Gunakan pilihan khusus</string>
 
-    <string name="arrays__mute_for_one_hour">1 Hour</string>
-    <string name="arrays__mute_for_eight_hours">8 Hours</string>
-    <string name="arrays__mute_for_one_day">1 Day</string>
-    <string name="arrays__mute_for_seven_days">1 Week</string>
+    <string name="arrays__mute_for_one_hour">1 jam</string>
+    <string name="arrays__mute_for_eight_hours">8 jam</string>
+    <string name="arrays__mute_for_one_day">1 hari</string>
+    <string name="arrays__mute_for_seven_days">1 minggu</string>
     <string name="arrays__always">Selalu</string>
 
     <string name="arrays__settings_default">Pengaturan standar</string>
@@ -4057,9 +4057,9 @@
     <string name="preferences__inactivity_timeout_interval">Interval waktu habis karena tiada aktivitas</string>
     <string name="preferences__notifications">Notifikasi</string>
     <!-- Preference item menu to enable notifications -->
-    <string name="preferences__enable_notifications">Enable notifications</string>
+    <string name="preferences__enable_notifications">Aktifkan notifikasi</string>
     <!-- Preference header for call notifications -->
-    <string name="preferences__call_notifications">Call notifications</string>
+    <string name="preferences__call_notifications">Notifikasi panggilan</string>
     <string name="preferences__led_color">Warna LED</string>
     <string name="preferences__led_color_unknown">Tidak dikenal</string>
     <string name="preferences__pref_led_blink_title">Pola kedip LED</string>
@@ -5775,7 +5775,7 @@
     <string name="NotificationsSettingsFragment__messages">Pesan</string>
     <string name="NotificationsSettingsFragment__calls">Panggilan</string>
     <!-- Notification header for sounds -->
-    <string name="NotificationsSettingsFragment__sounds">Sounds</string>
+    <string name="NotificationsSettingsFragment__sounds">Suara</string>
     <string name="NotificationsSettingsFragment__contact_joins_signal">Kontak bergabung di Signal</string>
     <!-- Notification body to get notified when someone joins Signal -->
     <string name="NotificationsSettingsFragment__notify_contact">Show a notification when a phone contact joins Signal</string>
@@ -5797,15 +5797,15 @@
     <!-- Header to describe screen that shows while muted settings -->
     <string name="MutedNotificationsFragment__while">While muted</string>
     <!-- Title for toggle row to control call settings while muted -->
-    <string name="MutedNotificationsFragment__calls">Calls</string>
+    <string name="MutedNotificationsFragment__calls">Panggilan</string>
     <!-- Description for toggle row to control call settings while muted -->
     <string name="MutedNotificationsFragment__calls_body_global">Ring or notify when a call is started in muted chats.</string>
     <!-- Title for toggle row to control mentions settings while muted -->
-    <string name="MutedNotificationsFragment__mentions">Mentions</string>
+    <string name="MutedNotificationsFragment__mentions">Penyebutan</string>
     <!-- Description for toggle row to control mentions settings while muted -->
     <string name="MutedNotificationsFragment__mentions_body_global">Notify when you are mentioned in muted chats.</string>
     <!-- Title for toggle row to control replies settings while muted -->
-    <string name="MutedNotificationsFragment__replies">Replies</string>
+    <string name="MutedNotificationsFragment__replies">Balasan</string>
     <!-- Description for toggle row to control replies settings while muted -->
     <string name="MutedNotificationsFragment__replies_body_global">Notify when someone replies to your message in muted chats.</string>
     <!-- Description for toggle row to control call settings while muted -->
