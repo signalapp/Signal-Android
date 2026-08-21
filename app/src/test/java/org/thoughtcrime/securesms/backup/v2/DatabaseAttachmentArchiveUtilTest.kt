@@ -123,6 +123,7 @@ class DatabaseAttachmentArchiveUtilTest {
       archiveCdn = archiveCdn,
       thumbnailRestoreState = AttachmentTable.ThumbnailRestoreState.NONE,
       archiveTransferState = AttachmentTable.ArchiveTransferState.FINISHED,
+      archiveThumbnailTransferState = AttachmentTable.ArchiveTransferState.NONE,
       uuid = null,
       quoteTargetContentType = null,
       metadata = null

@@ -231,6 +231,7 @@ class AttachmentTable(
       THUMBNAIL_FILE,
       THUMBNAIL_RESTORE_STATE,
       ARCHIVE_TRANSFER_STATE,
+      ARCHIVE_THUMBNAIL_TRANSFER_STATE,
       ATTACHMENT_UUID
     )
 
@@ -287,6 +288,9 @@ class AttachmentTable(
 
     private const val DATA_FILE_INDEX = "attachment_data_index"
     private const val DATA_HASH_REMOTE_KEY_INDEX = "attachment_data_hash_end_remote_key_index"
+
+    /** How many media names fit in one statement. Each binds two args, so this has to stay under half of [SqlUtil.MAX_QUERY_ARGS]. */
+    const val ARCHIVE_MEDIA_KEY_BATCH_SIZE = 400
 
     @JvmField
     val CREATE_INDEXS = arrayOf(
@@ -1150,65 +1154,167 @@ class AttachmentTable(
   }
 
   /**
-   * Resets the archive upload state by hash/key if we believe the attachment should have been uploaded already.
+   * Internal-only. Drops the local bytes for a single attachment exactly the way [markEligibleAttachmentsAsOptimized] does, bypassing every eligibility rule so a
+   * specific attachment can be put into the offloaded state on demand.
    */
-  fun resetArchiveTransferStateByPlaintextHashAndRemoteKeyIfNecessary(plaintextHash: ByteArray, remoteKey: ByteArray): ArchiveTransferStateResetResult {
+  fun debugOffloadAttachment(attachmentId: AttachmentId): Int {
+    return writableDatabase
+      .update(TABLE_NAME)
+      .values(
+        TRANSFER_STATE to TRANSFER_RESTORE_OFFLOADED,
+        DATA_FILE to null,
+        DATA_RANDOM to null,
+        TRANSFORM_PROPERTIES to null,
+        DATA_HASH_START to null,
+        OFFLOAD_RESTORED_AT to 0
+      )
+      .where("$ID = ?", attachmentId.id)
+      .run()
+      .also { AppDependencies.databaseObserver.notifyAttachmentUpdatedObservers() }
+  }
+
+  /**
+   * Resets the archive upload state by hash/key for any media we believe should have been uploaded already. Accepts at most
+   * [ARCHIVE_MEDIA_KEY_BATCH_SIZE] names, since they all go into one statement.
+   */
+  fun resetArchiveTransferStateByPlaintextHashAndRemoteKeyIfNecessary(mediaNames: List<MediaNameParts>): List<ArchiveTransferStateResetResult> {
     return resetArchiveTransferStateIfNecessary(
-      plaintextHash = plaintextHash,
-      remoteKey = remoteKey,
+      mediaNames = mediaNames,
       stateColumn = ARCHIVE_TRANSFER_STATE,
       values = contentValuesOf(
         ARCHIVE_TRANSFER_STATE to ArchiveTransferState.NONE.value,
         ARCHIVE_CDN to null
-      )
+      ),
+      unrecoverableState = null
     )
   }
 
   /**
-   * Resets the archive thumbnail upload state by hash/key if we believe the thumbnail should have been uploaded already.
+   * Resets the archive thumbnail upload state by hash/key for any thumbnail we believe should have been uploaded already. Accepts at most
+   * [ARCHIVE_MEDIA_KEY_BATCH_SIZE] names, since they all go into one statement.
+   *
+   * Unlike full-size media, a thumbnail with no local bytes is marked [ArchiveTransferState.PERMANENT_FAILURE] rather than left alone. The next
+   * backup stops tracking it and later crawls stop rediscovering something they can never repair. Restoring the full-size media lifts the mark.
    */
-  fun resetArchiveThumbnailTransferStateByPlaintextHashAndRemoteKeyIfNecessary(plaintextHash: ByteArray, remoteKey: ByteArray): ArchiveTransferStateResetResult {
+  fun resetArchiveThumbnailTransferStateByPlaintextHashAndRemoteKeyIfNecessary(mediaNames: List<MediaNameParts>): List<ArchiveTransferStateResetResult> {
     return resetArchiveTransferStateIfNecessary(
-      plaintextHash = plaintextHash,
-      remoteKey = remoteKey,
+      mediaNames = mediaNames,
       stateColumn = ARCHIVE_THUMBNAIL_TRANSFER_STATE,
-      values = contentValuesOf(ARCHIVE_THUMBNAIL_TRANSFER_STATE to ArchiveTransferState.NONE.value)
+      values = contentValuesOf(ARCHIVE_THUMBNAIL_TRANSFER_STATE to ArchiveTransferState.NONE.value),
+      unrecoverableState = ArchiveTransferState.PERMANENT_FAILURE
     )
   }
 
-  private fun resetArchiveTransferStateIfNecessary(plaintextHash: ByteArray, remoteKey: ByteArray, stateColumn: String, values: ContentValues): ArchiveTransferStateResetResult {
-    val encodedHash = Base64.encodeWithPadding(plaintextHash)
-    val encodedKey = Base64.encodeWithPadding(remoteKey)
-    val finishedClause = "$DATA_HASH_END = ? AND $REMOTE_KEY = ? AND $stateColumn = ${ArchiveTransferState.FINISHED.value}"
+  /**
+   * For each of the given [mediaNames], clears [stateColumn] if we believe the media was already uploaded but something has told us it isn't there.
+   */
+  private fun resetArchiveTransferStateIfNecessary(
+    mediaNames: List<MediaNameParts>,
+    stateColumn: String,
+    values: ContentValues,
+    unrecoverableState: ArchiveTransferState?
+  ): List<ArchiveTransferStateResetResult> {
+    require(mediaNames.size <= ARCHIVE_MEDIA_KEY_BATCH_SIZE) { "Batch of ${mediaNames.size} exceeds what fits in one statement." }
 
-    return writableDatabase.withinTransaction { db ->
-      val isFinished = db
-        .exists(TABLE_NAME)
-        .where(finishedClause, encodedHash, encodedKey)
-        .run()
-
-      if (!isFinished) {
-        return@withinTransaction ArchiveTransferStateResetResult.NOT_NEEDED
-      }
-
-      val hasLocalData = db
-        .exists(TABLE_NAME)
-        .where("$DATA_HASH_END = ? AND $REMOTE_KEY = ? AND $DATA_FILE NOT NULL", encodedHash, encodedKey)
-        .run()
-
-      // With no local data file there is nothing to re-upload, and clearing the state makes the export emit a tombstone instead of a locator, which in turn marks
-      // the media for deletion off of the CDN.
-      if (!hasLocalData) {
-        return@withinTransaction ArchiveTransferStateResetResult.SKIPPED_NO_LOCAL_DATA
-      }
-
-      db.update(TABLE_NAME)
-        .values(values)
-        .where(finishedClause, encodedHash, encodedKey)
-        .run()
-
-      ArchiveTransferStateResetResult.RESET
+    if (mediaNames.isEmpty()) {
+      return emptyList()
     }
+
+    val hasLocalDataByMediaName: Map<MediaNameParts, Boolean> = getArchiveFinishedMediaWithLocalData(mediaNames, stateColumn)
+
+    // Without this, already-recorded media looks like gone-or-in-progress and re-arms a backfill that can never upload it.
+    val alreadyRecorded: Set<MediaNameParts> = if (unrecoverableState != null) {
+      getMatchingMediaNames(mediaNames, "$stateColumn = ${unrecoverableState.value}")
+    } else {
+      emptySet()
+    }
+
+    val recoverable = mutableListOf<MediaNameParts>()
+    val unrecoverable = mutableListOf<MediaNameParts>()
+
+    val results = mediaNames.map { mediaName ->
+      when (hasLocalDataByMediaName[mediaName]) {
+        null -> if (mediaName in alreadyRecorded) {
+          ArchiveTransferStateResetResult.MARKED_UNRECOVERABLE
+        } else {
+          ArchiveTransferStateResetResult.NOT_NEEDED
+        }
+
+        true -> {
+          recoverable += mediaName
+          ArchiveTransferStateResetResult.RESET
+        }
+
+        false -> if (unrecoverableState != null) {
+          unrecoverable += mediaName
+          ArchiveTransferStateResetResult.MARKED_UNRECOVERABLE
+        } else {
+          ArchiveTransferStateResetResult.SKIPPED_NO_LOCAL_DATA
+        }
+      }
+    }
+
+    if (recoverable.isNotEmpty()) {
+      updateArchiveFinishedMedia(recoverable, stateColumn, values, "$DATA_FILE NOT NULL")
+    }
+
+    if (unrecoverable.isNotEmpty() && unrecoverableState != null) {
+      updateArchiveFinishedMedia(unrecoverable, stateColumn, contentValuesOf(stateColumn to unrecoverableState.value), "$DATA_FILE IS NULL")
+    }
+
+    return results
+  }
+
+  /**
+   * Given [mediaNames], the ones we believe are finished, mapped to whether we still have local bytes.
+   */
+  private fun getArchiveFinishedMediaWithLocalData(mediaNames: List<MediaNameParts>, stateColumn: String): Map<MediaNameParts, Boolean> {
+    val archived = getMatchingMediaNames(mediaNames, "$stateColumn = ${ArchiveTransferState.FINISHED.value}")
+    if (archived.isEmpty()) {
+      return emptyMap()
+    }
+
+    val withLocalData = getMatchingMediaNames(archived.toList(), "$DATA_FILE NOT NULL")
+
+    return archived.associateWith { it in withLocalData }
+  }
+
+  /**
+   * The subset of [mediaNames] that has at least one attachment satisfying [clause].
+   */
+  private fun getMatchingMediaNames(mediaNames: List<MediaNameParts>, clause: String): Set<MediaNameParts> {
+    val tuples = mediaNameTuples(mediaNames)
+
+    return readableDatabase
+      .select(DATA_HASH_END, REMOTE_KEY)
+      .from("$TABLE_NAME INDEXED BY $DATA_HASH_REMOTE_KEY_INDEX")
+      .where("$clause AND ${tuples.where}", tuples.whereArgs)
+      .run()
+      .readToSet { cursor ->
+        MediaNameParts(
+          plaintextHash = cursor.requireNonNullString(DATA_HASH_END),
+          remoteKey = cursor.requireNonNullString(REMOTE_KEY)
+        )
+      }
+  }
+
+  /** [localDataClause] re-asserts the unlocked lookup's conclusion, so a concurrent restore or offload can't be written over. */
+  private fun updateArchiveFinishedMedia(mediaNames: List<MediaNameParts>, stateColumn: String, values: ContentValues, localDataClause: String): Int {
+    val tuples = mediaNameTuples(mediaNames)
+
+    return writableDatabase
+      .update("$TABLE_NAME INDEXED BY $DATA_HASH_REMOTE_KEY_INDEX")
+      .values(values)
+      .where("$stateColumn = ${ArchiveTransferState.FINISHED.value} AND $localDataClause AND ${tuples.where}", tuples.whereArgs)
+      .run()
+  }
+
+  /** Matches the hash/key pair of any of [mediaNames]. */
+  private fun mediaNameTuples(mediaNames: List<MediaNameParts>): SqlUtil.Query {
+    return SqlUtil.Query(
+      where = "($DATA_HASH_END, $REMOTE_KEY) IN (VALUES ${mediaNames.joinToString(separator = ", ") { "(?, ?)" }})",
+      whereArgs = mediaNames.flatMap { listOf(it.plaintextHash, it.remoteKey) }.toTypedArray()
+    )
   }
 
   /**
@@ -2017,7 +2123,14 @@ class AttachmentTable(
 
       val dataFilePath = hashMatch?.file?.absolutePath ?: fileWriteResult.file.absolutePath
 
-      val updateCount = if (archiveRestore && existingPlaceholder.dataHash != null) {
+      // Only this branch matches purely by hash/key, which is the granularity the mark is applied at.
+      val restoringByHashAndKey = archiveRestore && existingPlaceholder.dataHash != null
+
+      if (restoringByHashAndKey && existingPlaceholder.archiveThumbnailTransferState == ArchiveTransferState.PERMANENT_FAILURE) {
+        values.put(ARCHIVE_THUMBNAIL_TRANSFER_STATE, ArchiveTransferState.NONE.value)
+      }
+
+      val updateCount = if (restoringByHashAndKey) {
         // Can update all rows with the same mediaName as data_file column will likely be null
         db.update(TABLE_NAME)
           .values(values)
@@ -3744,6 +3857,7 @@ class AttachmentTable(
       archiveCdn = cursor.requireIntOrNull(ARCHIVE_CDN),
       thumbnailRestoreState = ThumbnailRestoreState.deserialize(cursor.requireInt(THUMBNAIL_RESTORE_STATE)),
       archiveTransferState = ArchiveTransferState.deserialize(cursor.requireInt(ARCHIVE_TRANSFER_STATE)),
+      archiveThumbnailTransferState = ArchiveTransferState.deserialize(cursor.requireInt(ARCHIVE_THUMBNAIL_TRANSFER_STATE)),
       uuid = UuidUtil.parseOrNull(cursor.requireString(ATTACHMENT_UUID)),
       metadata = AttachmentMetadataTable.getMetadata(cursor)
     )
@@ -4502,7 +4616,16 @@ class AttachmentTable(
   /**
    * The base64 [DATA_HASH_END] and [REMOTE_KEY] that a [MediaName] is derived from.
    */
-  data class MediaNameParts(val plaintextHash: String, val remoteKey: String)
+  data class MediaNameParts(val plaintextHash: String, val remoteKey: String) {
+    companion object {
+      fun fromBytes(plaintextHash: ByteArray, remoteKey: ByteArray): MediaNameParts {
+        return MediaNameParts(
+          plaintextHash = Base64.encodeWithPadding(plaintextHash),
+          remoteKey = Base64.encodeWithPadding(remoteKey)
+        )
+      }
+    }
+  }
 
   enum class ArchiveTransferStateResetResult {
     /** We cleared the state, so the media will be re-uploaded. */
@@ -4510,6 +4633,9 @@ class AttachmentTable(
 
     /** We left the state alone because there are no local bytes to re-upload, so the media is unrecoverable rather than merely out of date. */
     SKIPPED_NO_LOCAL_DATA,
+
+    /** Like [SKIPPED_NO_LOCAL_DATA], but the absence is recorded so it stops being tracked and rediscovered. Covers media already recorded by an earlier pass. */
+    MARKED_UNRECOVERABLE,
 
     /** There was nothing to clear. The attachment is gone, or an upload is already underway. */
     NOT_NEEDED

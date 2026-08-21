@@ -68,7 +68,8 @@ object FakeMessageRecords {
     archiveMediaId: String? = null,
     archiveThumbnailId: String? = null,
     thumbnailRestoreState: AttachmentTable.ThumbnailRestoreState = AttachmentTable.ThumbnailRestoreState.NONE,
-    archiveTransferState: AttachmentTable.ArchiveTransferState = AttachmentTable.ArchiveTransferState.NONE
+    archiveTransferState: AttachmentTable.ArchiveTransferState = AttachmentTable.ArchiveTransferState.NONE,
+    archiveThumbnailTransferState: AttachmentTable.ArchiveTransferState = AttachmentTable.ArchiveTransferState.NONE
   ): DatabaseAttachment {
     return DatabaseAttachment(
       attachmentId = attachmentId,
@@ -103,6 +104,7 @@ object FakeMessageRecords {
       archiveCdn = archiveCdn,
       thumbnailRestoreState = thumbnailRestoreState,
       archiveTransferState = archiveTransferState,
+      archiveThumbnailTransferState = archiveThumbnailTransferState,
       uuid = null,
       quoteTargetContentType = null,
       metadata = null

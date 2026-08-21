@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.ArchivedMediaObject
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.AttachmentTable.ArchiveTransferStateResetResult
+import org.thoughtcrime.securesms.database.AttachmentTable.MediaNameParts
 import org.thoughtcrime.securesms.database.BackupMediaSnapshotTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -261,70 +262,42 @@ class ArchiveAttachmentReconciliationJob private constructor(
     if (mayNeedReUploadCount > 0) {
       Log.w(TAG, "Found $mayNeedReUploadCount attachments that are present in the target snapshot, but could not be found on the CDN. This could be a bookkeeping error, or the upload may still be in progress. Checking.", true)
 
-      var bookkeepingErrorCount = 0
-      var unrecoverableCount = 0
-
-      var fullSizeReUploadNeeded = false
-      var thumbnailReUploadNeeded = false
+      val tally = RepairTally()
+      val batch = ArrayList<BackupMediaSnapshotTable.MediaEntry>(AttachmentTable.ARCHIVE_MEDIA_KEY_BATCH_SIZE)
 
       mediaObjectsThatMayNeedReUpload.forEach { mediaObjectCursor ->
         val entry = BackupMediaSnapshotTable.MediaEntry.fromCursor(mediaObjectCursor)
+        batch += entry
 
         if (internalUser) {
           mediaIdsThatNeedUpload += MediaId(entry.mediaId)
         }
 
-        val mediaIdLog = if (internalUser) "[${MediaId(entry.mediaId)}]" else ""
-        val logPrefix = if (entry.isThumbnail) "[Thumbnail]$mediaIdLog" else "[Fullsize]$mediaIdLog"
-
-        val resetResult = if (entry.isThumbnail) {
-          SignalDatabase.attachments.resetArchiveThumbnailTransferStateByPlaintextHashAndRemoteKeyIfNecessary(entry.plaintextHash, entry.remoteKey)
-        } else {
-          SignalDatabase.attachments.resetArchiveTransferStateByPlaintextHashAndRemoteKeyIfNecessary(entry.plaintextHash, entry.remoteKey)
-        }
-
-        when (resetResult) {
-          ArchiveTransferStateResetResult.RESET -> {
-            Log.w(TAG, "$logPrefix Reset transfer state by hash/key.", true)
-            bookkeepingErrorCount++
-
-            if (entry.isThumbnail) {
-              thumbnailReUploadNeeded = true
-            } else {
-              fullSizeReUploadNeeded = true
-            }
-          }
-
-          ArchiveTransferStateResetResult.SKIPPED_NO_LOCAL_DATA -> {
-            if (internalUser) {
-              Log.w(TAG, "$logPrefix Missing from the CDN with no local data to re-upload. Leaving the archive state alone so we keep the locator.", true)
-            }
-            unrecoverableCount++
-          }
-
-          ArchiveTransferStateResetResult.NOT_NEEDED -> {
-            Log.i(TAG, "$logPrefix Did not need to reset the transfer state by hash/key because it either no longer exists or the upload is already in-progress.", true)
-
-            // Deliberately not set for SKIPPED_NO_LOCAL_DATA, since the precautionary backfills these drive could never upload media that has no local bytes.
-            if (entry.isThumbnail) {
-              thumbnailReUploadNeeded = true
-            } else {
-              fullSizeReUploadNeeded = true
-            }
-          }
+        if (batch.size >= AttachmentTable.ARCHIVE_MEDIA_KEY_BATCH_SIZE) {
+          repairBatch(batch, tally, internalUser)
+          batch.clear()
         }
       }
+      repairBatch(batch, tally, internalUser)
       stopwatch.split("mark-reupload")
 
-      if (bookkeepingErrorCount > 0) {
-        Log.w(TAG, "Found that $bookkeepingErrorCount/$mayNeedReUploadCount of the CDN mismatches were bookkeeping errors.", true)
+      if (tally.resetCount > 0) {
+        Log.w(TAG, "Found that ${tally.resetCount}/$mayNeedReUploadCount of the CDN mismatches were bookkeeping errors.", true)
         maybePostReconciliationFailureNotification()
       } else {
         Log.i(TAG, "None of the $mayNeedReUploadCount CDN mismatches were bookkeeping errors.", true)
       }
 
-      if (unrecoverableCount > 0) {
-        Log.w(TAG, "Found that $unrecoverableCount/$mayNeedReUploadCount of the CDN mismatches have no local data to re-upload. That media is not recoverable from this device.", true)
+      if (tally.unrecoverableCount > 0) {
+        Log.w(TAG, "Found that ${tally.unrecoverableCount}/$mayNeedReUploadCount of the CDN mismatches have no local data to re-upload. That media is not recoverable from this device.", true)
+      }
+
+      if (tally.markedUnrecoverableCount > 0) {
+        Log.w(TAG, "Marked ${tally.markedUnrecoverableCount}/$mayNeedReUploadCount of the CDN mismatches as permanently failed thumbnails, since there is no local data to rebuild them from. They will stop being tracked until the media is restored.", true)
+      }
+
+      if (tally.notNeededCount > 0) {
+        Log.i(TAG, "Did not need to reset ${tally.notNeededCount}/$mayNeedReUploadCount of the CDN mismatches, because they either no longer exist or an upload is already in-progress.", true)
       }
 
       Log.d(TAG, "AFTER:\n" + SignalDatabase.attachments.debugGetAttachmentStats().shortPrettyString(), true)
@@ -349,11 +322,11 @@ class ArchiveAttachmentReconciliationJob private constructor(
 
       // No backup is started here on purpose. Re-uploading is the whole repair, and [ArchiveUploadProgress] is what decides whether the resulting CDN numbers
       // warrant a fresh export once the backfill finishes uploading.
-      if (fullSizeReUploadNeeded) {
+      if (tally.fullSizeReUploadNeeded) {
         Log.d(TAG, "Full size mismatch found. Enqueuing an attachment backfill job.", true)
         AppDependencies.jobManager.add(ArchiveAttachmentBackfillJob())
       }
-      if (thumbnailReUploadNeeded) {
+      if (tally.thumbnailReUploadNeeded) {
         Log.d(TAG, "Thumbnail mismatch found. Enqueuing a thumbnail backfill job.", true)
         AppDependencies.jobManager.add(ArchiveThumbnailBackfillJob())
       }
@@ -546,6 +519,54 @@ class ArchiveAttachmentReconciliationJob private constructor(
     return null
   }
 
+  /**
+   * Clears the archive transfer state for a batch of media objects that a crawl couldn't find on the CDN, so they get re-uploaded, folding the outcomes into
+   * [tally].
+   */
+  private fun repairBatch(batch: List<BackupMediaSnapshotTable.MediaEntry>, tally: RepairTally, internalUser: Boolean) {
+    if (batch.isEmpty()) {
+      return
+    }
+
+    for ((isThumbnail, entries) in batch.groupBy { it.isThumbnail }) {
+      val mediaNames = entries.map { MediaNameParts.fromBytes(plaintextHash = it.plaintextHash, remoteKey = it.remoteKey) }
+
+      val results = if (isThumbnail) {
+        SignalDatabase.attachments.resetArchiveThumbnailTransferStateByPlaintextHashAndRemoteKeyIfNecessary(mediaNames)
+      } else {
+        SignalDatabase.attachments.resetArchiveTransferStateByPlaintextHashAndRemoteKeyIfNecessary(mediaNames)
+      }
+
+      for ((entry, result) in entries.zip(results)) {
+        when (result) {
+          ArchiveTransferStateResetResult.RESET -> {
+            val mediaIdLog = if (internalUser) "[${MediaId(entry.mediaId)}]" else ""
+            val logPrefix = if (isThumbnail) "[Thumbnail]$mediaIdLog" else "[Fullsize]$mediaIdLog"
+            Log.w(TAG, "$logPrefix Reset transfer state by hash/key.", true)
+
+            tally.resetCount++
+            tally.markReUploadNeeded(isThumbnail)
+          }
+
+          ArchiveTransferStateResetResult.SKIPPED_NO_LOCAL_DATA -> {
+            tally.unrecoverableCount++
+          }
+
+          ArchiveTransferStateResetResult.MARKED_UNRECOVERABLE -> {
+            tally.markedUnrecoverableCount++
+          }
+
+          ArchiveTransferStateResetResult.NOT_NEEDED -> {
+            tally.notNeededCount++
+
+            // Deliberately not done for SKIPPED_NO_LOCAL_DATA, since the precautionary backfills these drive could never upload media that has no local bytes.
+            tally.markReUploadNeeded(isThumbnail)
+          }
+        }
+      }
+    }
+  }
+
   private fun maybePostReconciliationFailureNotification() {
     if (!RemoteConfig.internalUser) {
       return
@@ -563,6 +584,23 @@ class ArchiveAttachmentReconciliationJob private constructor(
       .build()
 
     NotificationManagerCompat.from(context).notify(NotificationIds.RECONCILIATION_ERROR, notification)
+  }
+
+  private class RepairTally {
+    var resetCount = 0
+    var unrecoverableCount = 0
+    var markedUnrecoverableCount = 0
+    var notNeededCount = 0
+    var fullSizeReUploadNeeded = false
+    var thumbnailReUploadNeeded = false
+
+    fun markReUploadNeeded(isThumbnail: Boolean) {
+      if (isThumbnail) {
+        thumbnailReUploadNeeded = true
+      } else {
+        fullSizeReUploadNeeded = true
+      }
+    }
   }
 
   class Factory : Job.Factory<ArchiveAttachmentReconciliationJob> {

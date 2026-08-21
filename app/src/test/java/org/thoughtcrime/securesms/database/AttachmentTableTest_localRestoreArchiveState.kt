@@ -7,6 +7,8 @@ package org.thoughtcrime.securesms.database
 
 import android.app.Application
 import assertk.assertThat
+import assertk.assertions.containsExactly
+import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
 import assertk.assertions.isFalse
 import assertk.assertions.isNull
@@ -18,7 +20,6 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.signal.core.models.database.AttachmentId
-import org.signal.core.util.Base64
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.attachments.ArchivedAttachment
 import org.thoughtcrime.securesms.attachments.Attachment
@@ -96,12 +97,11 @@ class AttachmentTableTest_localRestoreArchiveState {
     val attachmentId = insertArchivedAttachment(archiveCdn = 3, localBackupKey = Random.nextBytes(32))
     val attachment = SignalDatabase.attachments.getAttachment(attachmentId)!!
 
-    val result = SignalDatabase.attachments.resetArchiveTransferStateByPlaintextHashAndRemoteKeyIfNecessary(
-      plaintextHash = Base64.decode(attachment.dataHash!!),
-      remoteKey = Base64.decode(attachment.remoteKey!!)
+    val results = SignalDatabase.attachments.resetArchiveTransferStateByPlaintextHashAndRemoteKeyIfNecessary(
+      listOf(AttachmentTable.MediaNameParts(plaintextHash = attachment.dataHash!!, remoteKey = attachment.remoteKey!!))
     )
 
-    assertThat(result).isEqualTo(AttachmentTable.ArchiveTransferStateResetResult.SKIPPED_NO_LOCAL_DATA)
+    assertThat(results).containsExactly(AttachmentTable.ArchiveTransferStateResetResult.SKIPPED_NO_LOCAL_DATA)
 
     val after = SignalDatabase.attachments.getAttachment(attachmentId)!!
     assertThat(after.archiveTransferState).isEqualTo(AttachmentTable.ArchiveTransferState.FINISHED)
@@ -113,12 +113,81 @@ class AttachmentTableTest_localRestoreArchiveState {
     val attachmentId = insertArchivedAttachment(archiveCdn = null, localBackupKey = Random.nextBytes(32))
     val attachment = SignalDatabase.attachments.getAttachment(attachmentId)!!
 
-    val result = SignalDatabase.attachments.resetArchiveTransferStateByPlaintextHashAndRemoteKeyIfNecessary(
-      plaintextHash = Base64.decode(attachment.dataHash!!),
-      remoteKey = Base64.decode(attachment.remoteKey!!)
+    val results = SignalDatabase.attachments.resetArchiveTransferStateByPlaintextHashAndRemoteKeyIfNecessary(
+      listOf(AttachmentTable.MediaNameParts(plaintextHash = attachment.dataHash!!, remoteKey = attachment.remoteKey!!))
     )
 
-    assertThat(result).isEqualTo(AttachmentTable.ArchiveTransferStateResetResult.NOT_NEEDED)
+    assertThat(results).containsExactly(AttachmentTable.ArchiveTransferStateResetResult.NOT_NEEDED)
+  }
+
+  @Test
+  fun resetArchiveTransferState_batchedResultsLineUpWithTheirKeys() {
+    val finishedNoLocalData = SignalDatabase.attachments.getAttachment(insertArchivedAttachment(archiveCdn = 3, localBackupKey = Random.nextBytes(32)))!!
+    val notFinished = SignalDatabase.attachments.getAttachment(insertArchivedAttachment(archiveCdn = null, localBackupKey = Random.nextBytes(32)))!!
+
+    val results = SignalDatabase.attachments.resetArchiveTransferStateByPlaintextHashAndRemoteKeyIfNecessary(
+      listOf(
+        AttachmentTable.MediaNameParts.fromBytes(plaintextHash = Random.nextBytes(8), remoteKey = Random.nextBytes(8)),
+        AttachmentTable.MediaNameParts(plaintextHash = finishedNoLocalData.dataHash!!, remoteKey = finishedNoLocalData.remoteKey!!),
+        AttachmentTable.MediaNameParts(plaintextHash = notFinished.dataHash!!, remoteKey = notFinished.remoteKey!!)
+      )
+    )
+
+    assertThat(results).containsExactly(
+      AttachmentTable.ArchiveTransferStateResetResult.NOT_NEEDED,
+      AttachmentTable.ArchiveTransferStateResetResult.SKIPPED_NO_LOCAL_DATA,
+      AttachmentTable.ArchiveTransferStateResetResult.NOT_NEEDED
+    )
+  }
+
+  @Test
+  fun resetArchiveThumbnailTransferState_marksUnrecoverableWhenThereIsNoLocalDataFileToRebuildFrom() {
+    val attachmentId = insertArchivedAttachment(archiveCdn = 3, localBackupKey = Random.nextBytes(32))
+    val attachment = SignalDatabase.attachments.getAttachment(attachmentId)!!
+    SignalDatabase.attachments.setArchiveThumbnailTransferState(attachmentId, AttachmentTable.ArchiveTransferState.FINISHED)
+
+    val results = SignalDatabase.attachments.resetArchiveThumbnailTransferStateByPlaintextHashAndRemoteKeyIfNecessary(
+      listOf(AttachmentTable.MediaNameParts(plaintextHash = attachment.dataHash!!, remoteKey = attachment.remoteKey!!))
+    )
+
+    assertThat(results).containsExactly(AttachmentTable.ArchiveTransferStateResetResult.MARKED_UNRECOVERABLE)
+    assertThat(SignalDatabase.attachments.getArchiveThumbnailTransferState(attachmentId)).isEqualTo(AttachmentTable.ArchiveTransferState.PERMANENT_FAILURE)
+
+    // The full-size locator is deliberately left intact, since that media is still on the CDN.
+    val after = SignalDatabase.attachments.getAttachment(attachmentId)!!
+    assertThat(after.archiveTransferState).isEqualTo(AttachmentTable.ArchiveTransferState.FINISHED)
+    assertThat(after.archiveCdn).isEqualTo(3)
+  }
+
+  @Test
+  fun resetArchiveThumbnailTransferState_reportsAlreadyRecordedMediaAsUnrecoverableRatherThanNotNeeded() {
+    val attachmentId = insertArchivedAttachment(archiveCdn = 3, localBackupKey = Random.nextBytes(32))
+    val attachment = SignalDatabase.attachments.getAttachment(attachmentId)!!
+    SignalDatabase.attachments.setArchiveThumbnailTransferState(attachmentId, AttachmentTable.ArchiveTransferState.FINISHED)
+
+    val mediaNames = listOf(
+      AttachmentTable.MediaNameParts(plaintextHash = attachment.dataHash!!, remoteKey = attachment.remoteKey!!)
+    )
+
+    assertThat(SignalDatabase.attachments.resetArchiveThumbnailTransferStateByPlaintextHashAndRemoteKeyIfNecessary(mediaNames))
+      .containsExactly(AttachmentTable.ArchiveTransferStateResetResult.MARKED_UNRECOVERABLE)
+
+    assertThat(SignalDatabase.attachments.resetArchiveThumbnailTransferStateByPlaintextHashAndRemoteKeyIfNecessary(mediaNames))
+      .containsExactly(AttachmentTable.ArchiveTransferStateResetResult.MARKED_UNRECOVERABLE)
+  }
+
+  @Test(expected = IllegalArgumentException::class)
+  fun resetArchiveTransferState_rejectsABatchTooLargeForOneStatement() {
+    val tooMany = List(AttachmentTable.ARCHIVE_MEDIA_KEY_BATCH_SIZE + 1) {
+      AttachmentTable.MediaNameParts.fromBytes(plaintextHash = Random.nextBytes(8), remoteKey = Random.nextBytes(8))
+    }
+
+    SignalDatabase.attachments.resetArchiveTransferStateByPlaintextHashAndRemoteKeyIfNecessary(tooMany)
+  }
+
+  @Test
+  fun resetArchiveTransferState_noResultsForAnEmptyBatch() {
+    assertThat(SignalDatabase.attachments.resetArchiveThumbnailTransferStateByPlaintextHashAndRemoteKeyIfNecessary(emptyList())).isEmpty()
   }
 
   private fun insertArchivedAttachment(archiveCdn: Int?, localBackupKey: ByteArray?): AttachmentId {
