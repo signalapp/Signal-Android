@@ -29,7 +29,7 @@ public class LinkUtilTest_isLegal {
         { "https://abcdefg.i2p",                   true  },
         { "http://кц.com",                         false },
         { "кц.com",                                false },
-        { "http://asĸ.com",                        false },
+        { "http://asĸ.com",                        true  }, // ĸ (U+0138) is Unicode script LATIN
         { "http://foo.кц.рф",                      false },
         { "кц.рф\u202C",                           false },
         { "кц.рф\u202D",                           false },
@@ -47,6 +47,12 @@ public class LinkUtilTest_isLegal {
         { "localhost",                             true },
         { "https://localhost",                     true },
         { "cool.test",                             true },
+        { "grå.org",                               true }, // å is Latin script
+        { "münchen.de",                            true }, // ü is Latin script
+        { "慕田峪长城.网址",                         true }, // Great Wall site
+        // Мышкин is the idiot in Dostoyevsky's book.
+        { "Мышкин.рф",                             true }, // Cyrillic к U+043A
+        { "Мышκин.рф",                             false }, // Greek κ U+03BA
         { "https://github.com/signalapp/Signal-Android/compare/v6.23.2...v6.23.3", true }
     });
   }
