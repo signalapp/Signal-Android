@@ -1191,7 +1191,7 @@
     <!-- Button in dialog to retry linking a device with a qr code -->
     <string name="AddLinkDeviceFragment__retry">Опитайте отново</string>
     <!-- Text shown in a dialog when the device being linked is too out-of-date to be linked to this account -->
-    <string name="AddLinkDeviceFragment__the_device_you_are_trying_to_link_is_out_of_date">The device you\'re trying to link is out of date. Please upgrade and try again.</string>
+    <string name="AddLinkDeviceFragment__the_device_you_are_trying_to_link_is_out_of_date">Устройството, което се опитвате да свържете, е остаряло. Моля, вземете ново и опитайте отново.</string>
 
     <!-- LinkDeviceSyncBottomSheet -->
     <!-- Option in bottom sheet to transfer message history -->
@@ -3254,7 +3254,7 @@
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
     <string name="MuteDialog_mute_notifications">Тих режим за известия</string>
     <!-- Dialog option that, when pressed, will open a time picker to let the user choose how long they\'d like to mute notifications for -->
-    <string name="MuteDialog__mute_until">Until…</string>
+    <string name="MuteDialog__mute_until">До…</string>
 
     <!-- MuteUntilTimePickerBottomSheet -->
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
@@ -4342,15 +4342,15 @@
     <string name="preferences_notifications__in_chat_sounds">Звуци в чатове</string>
     <string name="preferences_notifications__show">Показване</string>
     <!-- Preference item to set notification settings when chats are muted -->
-    <string name="preferences_notifications__while_muted">While muted</string>
+    <string name="preferences_notifications__while_muted">При заглушени чатове</string>
     <!-- Option in settings to turn on reaction notifications -->
-    <string name="preferences_notifications__reaction">Reaction notifications</string>
+    <string name="preferences_notifications__reaction">Известия за реакции</string>
     <!-- Body option in settings to turn on reaction notifications    -->
-    <string name="preferences_notifications__notify_reaction">Show notifications for reactions to messages you send</string>
+    <string name="preferences_notifications__notify_reaction">Показване на известия за реакции на съобщенията, които изпращате</string>
     <!-- Option in settings to turn on unread reminders -->
-    <string name="preferences_notifications__unread">Unread reminders</string>
+    <string name="preferences_notifications__unread">Непрочетени напомняния</string>
     <!-- Body option to turn on unread reminders -->
-    <string name="preferences_notifications__notify_unread">Occasionally notify when there are unread messages in muted chats</string>
+    <string name="preferences_notifications__notify_unread">Изпращане на известия от време на време, когато в чатовете без звук има непрочетени съобщения</string>
     <string name="preferences_notifications__ringtone">Мелодия</string>
     <string name="preferences_chats__message_text_size">Размер на текста</string>
     <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
@@ -5929,13 +5929,13 @@
     <string name="NotificationsSettingsFragment__sounds">Звуци</string>
     <string name="NotificationsSettingsFragment__contact_joins_signal">Ваш контакт се присъедини към Signal</string>
     <!-- Notification body to get notified when someone joins Signal -->
-    <string name="NotificationsSettingsFragment__notify_contact">Show a notification when a phone contact joins Signal</string>
+    <string name="NotificationsSettingsFragment__notify_contact">Показване на известия, когато контакт на телефона се присъедини към Signal</string>
     <!-- Option to reset their notification settings -->
-    <string name="NotificationsSettingsFragment__reset">Reset notification settings</string>
+    <string name="NotificationsSettingsFragment__reset">Нулиране на настройките за известия</string>
     <!-- Option body to reset their notification settings -->
-    <string name="NotificationsSettingsFragment__reset_notifications">Reset notification settings to default, including custom settings for your chats</string>
+    <string name="NotificationsSettingsFragment__reset_notifications">Нулиране на настройките за известия до тези по подразбиране, включително персонализираните настройки за вашите чатове</string>
     <!-- Dialog to reset their notification settings -->
-    <string name="NotificationsSettingsFragment__reset_body">Reset all notification settings to default for all chats?</string>
+    <string name="NotificationsSettingsFragment__reset_body">Нулиране на всички настройки за известия до тези по подразбиране за всички чатове?</string>
     <!-- Confirmation button to reset dialog -->
     <string name="NotificationsSettingsFragment__reset_confirm">Нулиране</string>
     <!-- Notification preference header -->
@@ -5946,25 +5946,25 @@
     <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Създайте профил, за да получавате известия само от избрани от вас хора и групи.</string>
 
     <!-- Header to describe screen that shows while muted settings -->
-    <string name="MutedNotificationsFragment__while">While muted</string>
+    <string name="MutedNotificationsFragment__while">При заглушени чатове</string>
     <!-- Title for toggle row to control call settings while muted -->
     <string name="MutedNotificationsFragment__calls">Повиквания</string>
     <!-- Description for toggle row to control call settings while muted -->
-    <string name="MutedNotificationsFragment__calls_body_global">Ring or notify when a call is started in muted chats.</string>
+    <string name="MutedNotificationsFragment__calls_body_global">Позвъняване или изпращане на известие, когато има започнато обаждане в чатове без звук.</string>
     <!-- Title for toggle row to control mentions settings while muted -->
     <string name="MutedNotificationsFragment__mentions">Споменавания</string>
     <!-- Description for toggle row to control mentions settings while muted -->
-    <string name="MutedNotificationsFragment__mentions_body_global">Notify when you are mentioned in muted chats.</string>
+    <string name="MutedNotificationsFragment__mentions_body_global">Изпращане на известие, когато ви споменат в чатове без звук.</string>
     <!-- Title for toggle row to control replies settings while muted -->
     <string name="MutedNotificationsFragment__replies">Отговори</string>
     <!-- Description for toggle row to control replies settings while muted -->
-    <string name="MutedNotificationsFragment__replies_body_global">Notify when someone replies to your message in muted chats.</string>
+    <string name="MutedNotificationsFragment__replies_body_global">Изпращане на известие, когато някой отговори на вашето съобщение в чатове без звук.</string>
     <!-- Description for toggle row to control call settings while muted -->
-    <string name="MutedNotificationsFragment__calls_body">Ring or notify when a call is started while this chat is muted.</string>
+    <string name="MutedNotificationsFragment__calls_body">Позвъняване или изпращане на известие, когато има започнато обаждане, докато този чат е без звук.</string>
     <!-- Description for toggle row to control mentions settings while muted -->
-    <string name="MutedNotificationsFragment__mentions_body">Notify when you are mentioned while this chat is muted.</string>
+    <string name="MutedNotificationsFragment__mentions_body">Известяване, когато ви споменат, докато този чат е без звук.</string>
     <!-- Description for toggle row to control replies settings while muted -->
-    <string name="MutedNotificationsFragment__replies_body">Notify when someone replies to your message while this chat is muted.</string>
+    <string name="MutedNotificationsFragment__replies_body">Известяване, когато някой отговори на вашето съобщение, докато този чат е без звук.</string>
 
     <!-- NotificationProfilesFragment -->
     <!-- Title for notification profiles screen that shows all existing profiles; Title with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->

@@ -1191,7 +1191,7 @@
     <!-- Button in dialog to retry linking a device with a qr code -->
     <string name="AddLinkDeviceFragment__retry">Probeer weer</string>
     <!-- Text shown in a dialog when the device being linked is too out-of-date to be linked to this account -->
-    <string name="AddLinkDeviceFragment__the_device_you_are_trying_to_link_is_out_of_date">The device you\'re trying to link is out of date. Please upgrade and try again.</string>
+    <string name="AddLinkDeviceFragment__the_device_you_are_trying_to_link_is_out_of_date">Die toestel wat jy probeer koppel, is nie op datum nie. Doen asseblief \'n opgradering en probeer weer.</string>
 
     <!-- LinkDeviceSyncBottomSheet -->
     <!-- Option in bottom sheet to transfer message history -->
@@ -3254,7 +3254,7 @@
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
     <string name="MuteDialog_mute_notifications">Demp kennisgewings</string>
     <!-- Dialog option that, when pressed, will open a time picker to let the user choose how long they\'d like to mute notifications for -->
-    <string name="MuteDialog__mute_until">Until…</string>
+    <string name="MuteDialog__mute_until">Tot…</string>
 
     <!-- MuteUntilTimePickerBottomSheet -->
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
@@ -4342,15 +4342,15 @@
     <string name="preferences_notifications__in_chat_sounds">Klanke tydens klets</string>
     <string name="preferences_notifications__show">Vertoon</string>
     <!-- Preference item to set notification settings when chats are muted -->
-    <string name="preferences_notifications__while_muted">While muted</string>
+    <string name="preferences_notifications__while_muted">Terwyl gedemp</string>
     <!-- Option in settings to turn on reaction notifications -->
-    <string name="preferences_notifications__reaction">Reaction notifications</string>
+    <string name="preferences_notifications__reaction">Reaksiekennisgewings</string>
     <!-- Body option in settings to turn on reaction notifications    -->
-    <string name="preferences_notifications__notify_reaction">Show notifications for reactions to messages you send</string>
+    <string name="preferences_notifications__notify_reaction">Toon kennisgewings vir reaksies op boodskappe wat jy gestuur het</string>
     <!-- Option in settings to turn on unread reminders -->
-    <string name="preferences_notifications__unread">Unread reminders</string>
+    <string name="preferences_notifications__unread">Ongeleesde herinnerings</string>
     <!-- Body option to turn on unread reminders -->
-    <string name="preferences_notifications__notify_unread">Occasionally notify when there are unread messages in muted chats</string>
+    <string name="preferences_notifications__notify_unread">Stel af en toe in kennis wanneer daar ongeleesde boodskappe in gedempte kletse is</string>
     <string name="preferences_notifications__ringtone">Luitoon</string>
     <string name="preferences_chats__message_text_size">Boodskaplettergrootte</string>
     <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
@@ -5926,16 +5926,16 @@
     <string name="NotificationsSettingsFragment__messages">Boodskappe</string>
     <string name="NotificationsSettingsFragment__calls">Oproepe</string>
     <!-- Notification header for sounds -->
-    <string name="NotificationsSettingsFragment__sounds">Sounds</string>
+    <string name="NotificationsSettingsFragment__sounds">Klanke</string>
     <string name="NotificationsSettingsFragment__contact_joins_signal">Kontak sluit by Signal aan</string>
     <!-- Notification body to get notified when someone joins Signal -->
-    <string name="NotificationsSettingsFragment__notify_contact">Show a notification when a phone contact joins Signal</string>
+    <string name="NotificationsSettingsFragment__notify_contact">Toon \'n kennisgewing wanneer \'n telefoonkontak by Signal aansluit</string>
     <!-- Option to reset their notification settings -->
-    <string name="NotificationsSettingsFragment__reset">Reset notification settings</string>
+    <string name="NotificationsSettingsFragment__reset">Stel kennisgewinginstellings terug</string>
     <!-- Option body to reset their notification settings -->
-    <string name="NotificationsSettingsFragment__reset_notifications">Reset notification settings to default, including custom settings for your chats</string>
+    <string name="NotificationsSettingsFragment__reset_notifications">Stel kennisgewinginstellings terug, waaronder pasgemaakte instellings vir jou kletse</string>
     <!-- Dialog to reset their notification settings -->
-    <string name="NotificationsSettingsFragment__reset_body">Reset all notification settings to default for all chats?</string>
+    <string name="NotificationsSettingsFragment__reset_body">Stel alle kennisgewinginstellings terug na die verstekinstelling vir alle kletse?</string>
     <!-- Confirmation button to reset dialog -->
     <string name="NotificationsSettingsFragment__reset_confirm">Stel terug</string>
     <!-- Notification preference header -->
@@ -5946,25 +5946,25 @@
     <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Skep ’n profiel om slegs kennisgewings te ontvang van die mense en groepe wat jy kies.</string>
 
     <!-- Header to describe screen that shows while muted settings -->
-    <string name="MutedNotificationsFragment__while">While muted</string>
+    <string name="MutedNotificationsFragment__while">Terwyl gedemp</string>
     <!-- Title for toggle row to control call settings while muted -->
     <string name="MutedNotificationsFragment__calls">Oproepe</string>
     <!-- Description for toggle row to control call settings while muted -->
-    <string name="MutedNotificationsFragment__calls_body_global">Ring or notify when a call is started in muted chats.</string>
+    <string name="MutedNotificationsFragment__calls_body_global">Lui of stel in kennis wanneer \'n oproep in gedempte kletse begin word.</string>
     <!-- Title for toggle row to control mentions settings while muted -->
     <string name="MutedNotificationsFragment__mentions">Meldings</string>
     <!-- Description for toggle row to control mentions settings while muted -->
-    <string name="MutedNotificationsFragment__mentions_body_global">Notify when you are mentioned in muted chats.</string>
+    <string name="MutedNotificationsFragment__mentions_body_global">Stel in kennis wanneer jy in gedempte kletse genoem word.</string>
     <!-- Title for toggle row to control replies settings while muted -->
     <string name="MutedNotificationsFragment__replies">Antwoorde</string>
     <!-- Description for toggle row to control replies settings while muted -->
-    <string name="MutedNotificationsFragment__replies_body_global">Notify when someone replies to your message in muted chats.</string>
+    <string name="MutedNotificationsFragment__replies_body_global">Stel in kennis wanneer iemand op jou boodskappe in gedempte kletse antwoord.</string>
     <!-- Description for toggle row to control call settings while muted -->
-    <string name="MutedNotificationsFragment__calls_body">Ring or notify when a call is started while this chat is muted.</string>
+    <string name="MutedNotificationsFragment__calls_body">Lui of stel in kennis wanneer \'n oproep begin word terwyl hierdie klets gedemp is.</string>
     <!-- Description for toggle row to control mentions settings while muted -->
-    <string name="MutedNotificationsFragment__mentions_body">Notify when you are mentioned while this chat is muted.</string>
+    <string name="MutedNotificationsFragment__mentions_body">Stel in kennis wanneer jy genoem word terwyl hierdie klets gedemp is.</string>
     <!-- Description for toggle row to control replies settings while muted -->
-    <string name="MutedNotificationsFragment__replies_body">Notify when someone replies to your message while this chat is muted.</string>
+    <string name="MutedNotificationsFragment__replies_body">Stel in kennis wanneer iemand op jou boodskap antwoord terwyl hierdie klets gedemp is.</string>
 
     <!-- NotificationProfilesFragment -->
     <!-- Title for notification profiles screen that shows all existing profiles; Title with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->

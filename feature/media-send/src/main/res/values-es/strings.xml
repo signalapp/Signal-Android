@@ -190,9 +190,9 @@
   <string name="CameraXFragment_signal_needs_the_recording_permissions_to_capture_video">Signal necesita acceso al micrófono para grabar vídeos. Ve al menú Ajustes de tu dispositivo y selecciona Aplicaciones y notificaciones &gt; Signal &gt; Permisos de la aplicación, y activa el acceso al micrófono y a la cámara. Estos pasos pueden variar dependiendo de tu dispositivo.</string>
 
   <!-- Displayed when there is an error capturing video -->
-  <string name="MediaSendViewModel__error_recording_video">Error al grabar vídeo</string>
+  <string name="MediaSendViewModel__error_recording_video">No se ha podido grabar el vídeo</string>
   <!-- Displayed when there is an error capturing image -->
-  <string name="MediaSendViewModel__error_taking_photo">Error al hacer foto</string>
+  <string name="MediaSendViewModel__error_taking_photo">No se ha podido capturar la foto</string>
   <!-- Displayed when a video was automatically trimmed so it fits within the size limit -->
   <string name="MediaSendViewModel__video_trimmed_to_fit">Se ha recortado tu vídeo para ajustarlo al límite de tamaño</string>
   <!-- Displayed when one or more of the selected items could not be added because they exceed the size limit -->
