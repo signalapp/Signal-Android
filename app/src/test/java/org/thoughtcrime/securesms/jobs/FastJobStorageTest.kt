@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.jobs
 
 import assertk.assertThat
+import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
 import assertk.assertions.isNotEqualTo
 import assertk.assertions.isNotNull
@@ -1054,6 +1055,23 @@ class FastJobStorageTest {
     assertThat(subject.getJobCountForFactoryAndQueue("f1", "q1")).isEqualTo(1)
     assertThat(subject.getJobCountForFactoryAndQueue("f2", "q1")).isEqualTo(0)
     assertThat(subject.getJobCountForFactoryAndQueue("f1", "does-not-exist")).isEqualTo(0)
+  }
+
+  @Test
+  fun `getAllMinimalJobSpecsMatchingFilter - general`() {
+    val fullSpec1 = FullSpec(jobSpec(id = "1", factoryKey = "f1", createTime = 1), emptyList(), emptyList())
+    val fullSpec2 = FullSpec(jobSpec(id = "2", factoryKey = "f1", createTime = 3), emptyList(), emptyList())
+    val fullSpec3 = FullSpec(jobSpec(id = "3", factoryKey = "f2", queueKey = "q1", createTime = 2), emptyList(), emptyList())
+
+    val subject = FastJobStorage(mockDatabase(listOf(fullSpec1, fullSpec2, fullSpec3)))
+    subject.init()
+
+    val f1Jobs = subject.getAllMinimalJobSpecsMatchingFilter { it.factoryKey == "f1" }
+    assertThat(f1Jobs.map { it.id }.toSet()).isEqualTo(setOf("1", "2"))
+    assertThat(f1Jobs.maxByOrNull { it.createTime }?.id).isEqualTo("2")
+
+    assertThat(subject.getAllMinimalJobSpecsMatchingFilter { it.queueKey == "q1" }.map { it.id }).isEqualTo(listOf("3"))
+    assertThat(subject.getAllMinimalJobSpecsMatchingFilter { it.factoryKey == "does-not-exist" }).isEmpty()
   }
 
   @Test

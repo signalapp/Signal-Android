@@ -6,6 +6,9 @@ package org.whispersystems.signalservice.internal.crypto
 
 import assertk.assertThat
 import assertk.assertions.isEqualTo
+import assertk.assertions.isGreaterThan
+import assertk.assertions.isGreaterThanOrEqualTo
+import assertk.assertions.isLessThanOrEqualTo
 import org.junit.Test
 import org.signal.core.util.StreamUtil
 import java.io.ByteArrayInputStream
@@ -36,5 +39,33 @@ class PaddingInputStreamTest {
         }
       }
     }
+  }
+
+  /**
+   * Sizes above [Int.MAX_VALUE] must not be truncated. A padded size smaller than the input implies a *negative* amount of padding, which blows up
+   * callers that use the difference to size a buffer.
+   */
+  @Test
+  fun `getPaddedSize does not truncate sizes above Int MAX_VALUE`() {
+    val sizes = listOf(
+      Int.MAX_VALUE.toLong() - 1,
+      Int.MAX_VALUE.toLong(),
+      Int.MAX_VALUE.toLong() + 1,
+      3L * 1024 * 1024 * 1024,
+      100L * 1024 * 1024 * 1024
+    )
+
+    sizes.forEach { size ->
+      assertThat(PaddingInputStream.getPaddedSize(size), "padded size of $size").isGreaterThanOrEqualTo(size)
+    }
+  }
+
+  @Test
+  fun `getMaxUnpaddedSize does not truncate sizes above Int MAX_VALUE`() {
+    val maxPaddedSize = 100L * 1024 * 1024 * 1024
+    val maxUnpaddedSize = PaddingInputStream.getMaxUnpaddedSize(maxPaddedSize)
+
+    assertThat(maxUnpaddedSize).isGreaterThan(Int.MAX_VALUE.toLong())
+    assertThat(PaddingInputStream.getPaddedSize(maxUnpaddedSize)).isLessThanOrEqualTo(maxPaddedSize)
   }
 }

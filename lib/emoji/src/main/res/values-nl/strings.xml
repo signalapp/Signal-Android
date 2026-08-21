@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <!-- Emoji category headers, shown in the emoji keyboard and the react-with-any-emoji sheet -->
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Smileys &amp; mensen</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Dieren &amp; natuur</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Eten &amp; drinken</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Activiteiten</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Reizen &amp; plaatsen</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Objecten</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Symbolen</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Vlaggen</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emoticons</string>
+</resources>

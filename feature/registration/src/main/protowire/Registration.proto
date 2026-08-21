@@ -37,8 +37,10 @@ message AccountData {
   int32 pniRegistrationId = 8;
 
   string aci = 9;
-  string pni = 10;
-  string e164 = 11;
+  // Absent for an account registered without a phone number.
+  optional string pni = 10;
+  // Absent for an account registered without a phone number.
+  optional string e164 = 11;
   string servicePassword = 12;
 
   bytes unidentifiedAccessKey = 13;
@@ -48,6 +50,9 @@ message AccountData {
 
   // Whether the service reported this registration as a re-registration of an existing account.
   bool reRegistration = 16;
+
+  // Salt used by the service to generate PNI auth credentials. Only present for an account registered without a phone number.
+  optional bytes authCredentialSalt = 17;
 }
 
 message SvrCredential {

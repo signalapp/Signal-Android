@@ -7,6 +7,7 @@ package org.signal.registration.screens.pincreation
 
 import assertk.assertThat
 import assertk.assertions.contains
+import assertk.assertions.containsExactly
 import assertk.assertions.hasSize
 import assertk.assertions.isEqualTo
 import assertk.assertions.isFalse
@@ -73,6 +74,21 @@ class PinCreationViewModelTest {
     val states = mutableListOf<PinCreationState>()
     backgroundScope.launch(testDispatcher) { viewModel.state.collect { states.add(it) } }
     return states
+  }
+
+  private fun TestScope.collectActions(): List<PinCreationScreenActions> {
+    val actions = mutableListOf<PinCreationScreenActions>()
+    backgroundScope.launch(testDispatcher) { viewModel.actions.collect { actions.add(it) } }
+    return actions
+  }
+
+  @Test
+  fun `LearnMore emits an action to open the learn more article`() = runTest(testDispatcher) {
+    val actions = collectActions()
+
+    viewModel.applyEvent(PinCreationState(), PinCreationScreenEvents.LearnMore)
+
+    assertThat(actions).containsExactly(PinCreationScreenActions.OpenLearnMoreArticle)
   }
 
   // ==================== PIN Confirmation Tests ====================

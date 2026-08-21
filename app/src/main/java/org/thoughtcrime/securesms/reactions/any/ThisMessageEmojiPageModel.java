@@ -8,8 +8,8 @@ import androidx.annotation.Nullable;
 import java.util.stream.Collectors;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.components.emoji.Emoji;
-import org.thoughtcrime.securesms.components.emoji.EmojiPageModel;
+import org.signal.emoji.Emoji;
+import org.signal.emoji.EmojiPageModel;
 import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel;
 
 import java.util.List;
@@ -32,7 +32,7 @@ class ThisMessageEmojiPageModel implements EmojiPageModel {
 
   @Override
   public int getIconAttr() {
-    return R.attr.emoji_category_recent;
+    return org.signal.emoji.R.attr.emoji_category_recent;
   }
 
   @Override

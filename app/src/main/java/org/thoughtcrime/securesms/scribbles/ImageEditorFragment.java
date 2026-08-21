@@ -59,7 +59,6 @@ import org.thoughtcrime.securesms.attachments.AttachmentSaver;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.fonts.FontTypefaceProvider;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.mediasend.MediaSendPageFragment;
 import org.thoughtcrime.securesms.mediasend.v2.MediaAnimations;
 import org.thoughtcrime.securesms.mms.PushMediaConstraints;
 import org.thoughtcrime.securesms.scribbles.stickers.AnalogClockStickerRenderer;
@@ -85,7 +84,6 @@ import kotlin.Pair;
 import static android.app.Activity.RESULT_OK;
 
 public final class ImageEditorFragment extends Fragment implements ImageEditorHudV2.EventListener,
-                                                                   MediaSendPageFragment,
                                                                    TextEntryDialogFragment.Controller
 {
 
@@ -313,25 +311,21 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
     requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), onBackPressedCallback);
   }
 
-  @Override
   public void setUri(@NonNull Uri uri) {
     this.imageUri = uri;
   }
 
   @NonNull
-  @Override
   public Uri getUri() {
     return imageUri;
   }
 
-  @Override
   public Object saveState() {
     Data data = new Data();
     data.writeModel(imageEditorView.getModel());
     return data;
   }
 
-  @Override
   public void restoreState(@NonNull Object state) {
     if (state instanceof Data) {
 
@@ -349,10 +343,6 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
     } else {
       Log.w(TAG, "Received a bad saved state. Received class: " + state.getClass().getName());
     }
-  }
-
-  @Override
-  public void notifyHidden() {
   }
 
   private void changeEntityColor(int selectedColor) {

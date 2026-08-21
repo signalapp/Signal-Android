@@ -34,7 +34,7 @@ object AndroidTelecomUtil {
   @JvmStatic
   val telecomSupported: Boolean
     get() {
-      if (Build.VERSION.SDK_INT >= 36 && !systemRejected && isTelecomAllowedForDevice()) {
+      if (Build.VERSION.SDK_INT >= RemoteConfig.telecomMinSdkVersion && !systemRejected && isTelecomAllowedForDevice()) {
         if (!registered) {
           registerPhoneAccount()
         }
@@ -48,12 +48,11 @@ object AndroidTelecomUtil {
 
   @JvmStatic
   fun registerPhoneAccount() {
-    if (Build.VERSION.SDK_INT >= 36 && !systemRejected) {
+    if (Build.VERSION.SDK_INT >= RemoteConfig.telecomMinSdkVersion && !systemRejected) {
       Log.i(TAG, "Registering with CallsManager")
       try {
         callsManager.registerAppWithTelecom(
-          capabilities = CallsManager.CAPABILITY_BASELINE or CallsManager.CAPABILITY_SUPPORTS_VIDEO_CALLING,
-          backwardsCompatSdkLevel = 37
+          capabilities = CallsManager.CAPABILITY_BASELINE or CallsManager.CAPABILITY_SUPPORTS_VIDEO_CALLING
         )
         Log.i(TAG, "CallsManager registration successful")
         registered = true
@@ -210,8 +209,9 @@ object AndroidTelecomUtil {
 
   private fun isTelecomAllowedForDevice(): Boolean {
     if (RemoteConfig.internalUser) {
-      return !SignalStore.internal.callingDisableTelecom
+      return SignalStore.internal.callingUseTelecom
     }
+
     return RingRtcDynamicConfiguration.isTelecomAllowedForDevice()
   }
 }

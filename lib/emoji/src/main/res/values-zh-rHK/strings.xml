@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <!-- Emoji category headers, shown in the emoji keyboard and the react-with-any-emoji sheet -->
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">笑臉與人物</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">自然</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">食物</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">活動</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">地方</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">物件</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">符號</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">旗幟</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">表情符號</string>
+</resources>

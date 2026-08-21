@@ -313,7 +313,7 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
       val profileNameResult = resolveProfileName(recipient, recipientProfileKey, profile.name)
       val aboutResult = resolveProfileAbout(recipientProfileKey, profile.about, profile.aboutEmoji)
       val phoneNumberSharing = resolvePhoneNumberSharing(recipient, recipientProfileKey, profile.phoneNumberSharing)
-      val clearUsername = recipient.hasNonUsernameDisplayName(context) || profileNameResult?.changed == true
+      val clearUsername = (recipient.username.isPresent && recipient.hasNonUsernameDisplayName(context)) || profileNameResult?.changed == true
 
       val update = RecipientTable.ProfileUpdate(
         profileName = if (profileNameResult?.changed == true) profileNameResult.remoteProfileName else null,

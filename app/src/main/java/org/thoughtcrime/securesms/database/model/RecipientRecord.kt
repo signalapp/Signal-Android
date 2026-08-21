@@ -37,6 +37,7 @@ data class RecipientRecord(
   val distributionListId: DistributionListId?,
   val recipientType: RecipientTable.RecipientType,
   val isBlocked: Boolean,
+  val blockedAt: Long,
   val muteUntil: Long,
   val messageVibrateState: VibrateState,
   val callVibrateState: VibrateState,
@@ -122,13 +123,15 @@ data class RecipientRecord(
 
   data class Capabilities(
     val rawBits: Long,
-    val usernameSyncMessages: Recipient.Capability
+    val usernameSyncMessages: Recipient.Capability,
+    val optionalPhoneNumber: Recipient.Capability
   ) {
     companion object {
       @JvmField
       val UNKNOWN = Capabilities(
         rawBits = 0,
-        usernameSyncMessages = Recipient.Capability.UNKNOWN
+        usernameSyncMessages = Recipient.Capability.UNKNOWN,
+        optionalPhoneNumber = Recipient.Capability.UNKNOWN
       )
     }
   }

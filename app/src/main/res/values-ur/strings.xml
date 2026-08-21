@@ -171,6 +171,8 @@
     <string name="BlockedUsersActivity__block_user">یوزر کو بلاک کریں؟</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" آپ کو کال کرنے یا پیغامات بھیجنے کے قابل نہیں ہوگا۔</string>
     <string name="BlockedUsersActivity__block">بلاک کریں</string>
+    <!-- Subtitle shown under a blocked user. Placeholder is the time they were blocked-->
+    <string name="BlockedUsersActivity__blocked_on_s">%1$s کو بلاک کردہ</string>
 
     <!-- CreditCardFragment -->
     <!-- Title of fragment -->
@@ -428,7 +430,6 @@
     <!-- Accessibility text associated with image button to send an edited message. -->
     <string name="ConversationActivity_send_edit">ترمیم بھیجیں</string>
     <string name="ConversationActivity_compose_message">پیغام تحریر کریں</string>
-    <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">معذرت، آپ کی اٹیچمنٹ ترتیب میں کوئی خرابی تھی۔</string>
     <!-- Toast shown when user is unable to find the recipient when sending a message -->
     <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">وصول کنندہ ایس ایم ایس یا ای میل ایڈریس درست نہیں ہے!</string>
     <string name="ConversationActivity_message_is_empty_exclamation">پیغام خالی ہے!</string>
@@ -1075,7 +1076,7 @@
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
     <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">تمام ڈیوائسز پر %1$s کے میسجز اور چیٹ کی معلومات کلی طور پر انکرپشن کے ذریعے محفوظ کی جاتی ہیں</string>
     <!-- Bottom sheet title explaining how Signal works on a linked device -->
-    <string name="LinkDeviceFragment__signal_on_desktop_ipad">ڈیسک ٹاپ یا iPad پر Signal</string>
+    <string name="LinkDeviceFragment__signal_on_desktop_ipad">لنک کردہ ڈیوائس پر Signal</string>
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
     <string name="LinkDeviceFragment__all_messaging_is_private">لنک کردہ ڈیوائسز پر تمام میسجنگ نجی ہے</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
@@ -1189,6 +1190,8 @@
     <string name="AddLinkDeviceFragment__this_qr_code_not_valid">یہ QR کوڈ درست نہیں ہے۔براہ کرم آپ جس لنک کو ڈیوائس پر ڈسپلیڈ کرنا چاہتے ہیں اور یقینی بنائیں کہ آپ QR کوڈ سکین کر رہے ہیں۔</string>
     <!-- Button in dialog to retry linking a device with a qr code -->
     <string name="AddLinkDeviceFragment__retry">دوبارہ کوشش کریں</string>
+    <!-- Text shown in a dialog when the device being linked is too out-of-date to be linked to this account -->
+    <string name="AddLinkDeviceFragment__the_device_you_are_trying_to_link_is_out_of_date">The device you\'re trying to link is out of date. Please upgrade and try again.</string>
 
     <!-- LinkDeviceSyncBottomSheet -->
     <!-- Option in bottom sheet to transfer message history -->
@@ -1574,12 +1577,6 @@
     <!-- Dialog message -->
     <string name="RestoreActivity__no_longer_registered_message">ایسا ہو سکتا ہے کیونکہ آپ نے ایک مختلف ڈیوائس پر اپنا Signal اکاؤنٹ رجسٹر کیا تھا۔</string>
 
-    <!-- GroupMentionSettingDialog -->
-    <string name="GroupMentionSettingDialog_notify_me_for_mentions">جب مجھے کوئی ذکر کرتا ہے تو مجھے مطلع کریں</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">خاموش کردہ چیٹس میں خود کو مینشن کیے جانے پر اطلاعات موصول کریں؟</string>
-    <string name="GroupMentionSettingDialog_always_notify_me">مجھے ہمیشہ مطلع کریں</string>
-    <string name="GroupMentionSettingDialog_dont_notify_me">مجھے مطلع نہ کریں</string>
-
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">آپ کا یوزر نیم، QR کوڈ اور لنک آپ کی پروفائل پر نظر نہیں آتے۔ اپنا یوزر نیم صرف ان لوگوں کے ساتھ شیئر کریں جن پر آپ کو اعتماد ہو۔</string>
@@ -1880,9 +1877,6 @@
 
     <!-- MediaPickerActivity -->
     <string name="MediaPickerActivity__menu_open_camera">کیمرہ کھولیں</string>
-
-    <!-- MediaSendActivity -->
-    <string name="MediaSendActivity_camera_unavailable">کیمرہ دستیاب نہیں ہے</string>
 
     <!-- MediaRepository -->
     <string name="MediaRepository_all_media">تمام میڈیا</string>
@@ -2891,13 +2885,6 @@
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">سپورٹ سے رابطہ کریں</string>
 
-    <!-- RegistrationLockV2Dialog -->
-    <string name="RegistrationLockV2Dialog_turn_on_registration_lock">رجسٹریشن لاک آن کریں؟</string>
-    <string name="RegistrationLockV2Dialog_turn_off_registration_lock">رجسٹریشن لاک آف کریں؟</string>
-    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">اگر آپ دوبارہ Signal کے ساتھ اندراج کرتے وقت اپنا Signal پن بھول جاتے ہیں تو ، آپ کو 7 دن کے لئے اپنے اکاؤنٹ سے بند کر دیا جائے گا۔</string>
-    <string name="RegistrationLockV2Dialog_turn_on">آن کر دو</string>
-    <string name="RegistrationLockV2Dialog_turn_off">بند کریں</string>
-
     <!-- RevealableMessageView -->
     <string name="RevealableMessageView_view_photo">تصویر دیکھیں</string>
     <string name="RevealableMessageView_view_video">ویڈیو دیکھیں</string>
@@ -3267,7 +3254,7 @@
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
     <string name="MuteDialog_mute_notifications">اطلاعات کو خاموش کریں</string>
     <!-- Dialog option that, when pressed, will open a time picker to let the user choose how long they\'d like to mute notifications for -->
-    <string name="MuteDialog__mute_until">میوٹ کریں تا وقت…</string>
+    <string name="MuteDialog__mute_until">Until…</string>
 
     <!-- MuteUntilTimePickerBottomSheet -->
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
@@ -4118,15 +4105,6 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">حالیہ</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">یہ پیغام</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">حالیہ استعمال شدہ</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">اموجس &amp;amp؛ لوگ</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">قدرت</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">کھانا</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">سرگرمیاں</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">مقامات</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">چیزیں</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">علامتیں</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">جھنڈے</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">ایموجیس</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">کوئی نتیجہ نہیں</string>
 
     <!-- GifQuickSearchOption -->
@@ -4144,10 +4122,10 @@
     <string name="arrays__use_default">پہلے سے طے شدہ استعمال کریں</string>
     <string name="arrays__use_custom">اپنی مرضی سے استعمال کریں</string>
 
-    <string name="arrays__mute_for_one_hour">1 گھنٹے کے لیے خاموش کریں</string>
-    <string name="arrays__mute_for_eight_hours">8 گھنٹوں کے لیے خاموش کریں</string>
-    <string name="arrays__mute_for_one_day">1 دن کے لیے خاموش کریں</string>
-    <string name="arrays__mute_for_seven_days">7 دنوں کے لیے خاموش کریں</string>
+    <string name="arrays__mute_for_one_hour">1 گھنٹا</string>
+    <string name="arrays__mute_for_eight_hours">8 گھنٹے</string>
+    <string name="arrays__mute_for_one_day">1 دن</string>
+    <string name="arrays__mute_for_seven_days">1 ہفتہ</string>
     <string name="arrays__always">ہمیشہ</string>
 
     <string name="arrays__settings_default">پہلے سے موجود ترتیبات</string>
@@ -4202,6 +4180,10 @@
     <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
     <string name="preferences__inactivity_timeout_interval">غیر فعال ہونے کا وقفہ</string>
     <string name="preferences__notifications">اطلاعات</string>
+    <!-- Preference item menu to enable notifications -->
+    <string name="preferences__enable_notifications">اطلاعات فعال کریں</string>
+    <!-- Preference header for call notifications -->
+    <string name="preferences__call_notifications">کال کی اطلاعات</string>
     <string name="preferences__led_color">LED رنگ</string>
     <string name="preferences__led_color_unknown">نامعلوم</string>
     <string name="preferences__pref_led_blink_title">LED بلنک پیٹرن</string>
@@ -4289,12 +4271,10 @@
     <string name="preferences__system_default">سسٹم ڈیفالٹ</string>
     <string name="preferences__language">زبان</string>
     <string name="preferences__signal_messages_and_calls">Signal پیغامات اور کالز</string>
-    <string name="preferences__advanced_pin_settings">اعلی درجے کی PIN کی ترتیبات</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">اعلی درجے کی PIN کی ترتیبات</string>
     <string name="preferences__free_private_messages_and_calls">Signal صارفین کیلئے ذاتی پیغامات اور کالیں مفت ہیں</string>
     <string name="preferences__submit_debug_log">ڈی بَگ لاگ پیش کریں</string>
-    <string name="preferences__delete_account">اکاؤنٹ حذف کریں</string>
     <string name="preferences__support_wifi_calling">\'WiFi Calling\' کے مطابق وضع</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">اگر آپ کی ڈیوائس وائی فائی پر ایس ایم ایس / ایم ایم ایس ترسیل کا استعمال کرتا ہے تو فعال کریں (تبھی قابل بنائیں جب آپ کے آلے پر \'وائی فائی کالنگ\' فعال ہوجائے)</string>
     <string name="preferences__incognito_keyboard">پوشیدہ کی بورڈ</string>
@@ -4361,6 +4341,16 @@
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">کم ڈیٹا کا استعمال خراب نیٹ ورکس پر کالوں کو بہتر بنا سکتا ہے۔</string>
     <string name="preferences_notifications__in_chat_sounds">درونِ ایپ آوازیں</string>
     <string name="preferences_notifications__show">دکھائیں</string>
+    <!-- Preference item to set notification settings when chats are muted -->
+    <string name="preferences_notifications__while_muted">While muted</string>
+    <!-- Option in settings to turn on reaction notifications -->
+    <string name="preferences_notifications__reaction">Reaction notifications</string>
+    <!-- Body option in settings to turn on reaction notifications    -->
+    <string name="preferences_notifications__notify_reaction">Show notifications for reactions to messages you send</string>
+    <!-- Option in settings to turn on unread reminders -->
+    <string name="preferences_notifications__unread">Unread reminders</string>
+    <!-- Body option to turn on unread reminders -->
+    <string name="preferences_notifications__notify_unread">Occasionally notify when there are unread messages in muted chats</string>
     <string name="preferences_notifications__ringtone">رنگ ٹون</string>
     <string name="preferences_chats__message_text_size">پیغام فونٹ سائز</string>
     <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
@@ -4888,8 +4878,6 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">اپنے اکاؤنٹ کیلئے جو پن بنایا ہے داخل کریں۔ یہ آپ کے تصدیقی ایس ایم ایس سے مختلف ہے۔</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">وہ پِن درج کریں جو آپ نے اپنے اکاؤنٹ کے لیے تخلیق کیا تھا۔</string>
-    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
-    <string name="RegistrationLockFragment__switch_keyboard">کی بورڈ سوئچ کریں</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">غلط پن. دوبارہ کوشش کریں.</string>
     <string name="RegistrationLockFragment__forgot_pin">پن بھول گیا؟</string>
     <string name="RegistrationLockFragment__incorrect_pin">غلط پن</string>
@@ -4967,8 +4955,6 @@
     <!-- Text label button to skip restoring -->
     <string name="registration_activity__skip_restore">بحال کرنا نظر انداز کریں</string>
     <string name="preferences_chats__chat_backups">چیٹ کے بیک اپس</string>
-    <string name="preferences_chats__transfer_account">اکاؤنٹ منتقل کریں</string>
-    <string name="preferences_chats__transfer_account_to_a_new_android_device">اکاؤنٹ کو کسی نئے Android ڈیوائس میں منتقل کریں</string>
     <!-- Title for dialog to enter in the backup passphrase -->
     <string name="RegistrationActivity_enter_backup_passphrase">بیک اپ فاسفریز داخل کریں</string>
     <string name="RegistrationActivity_restore">بحال کریں</string>
@@ -5056,19 +5042,9 @@
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">غیر سرگرمی سکرین لاک کا وقت ختم ہو چکا ہے</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
     <string name="preferences_app_protection__to_use_screen_lock">اس ڈیوائس پر اسکرین لاک استعمال کرنے کے لیے PIN، پیٹرن، یا پاس ورڈ لگائیں۔</string>
-    <string name="preferences_app_protection__signal_pin">Signal پن</string>
-    <string name="preferences_app_protection__create_a_pin">ایک پن بنائیں</string>
-    <string name="preferences_app_protection__change_your_pin">اپنا پن تبدیل کریں</string>
-    <string name="preferences_app_protection__pin_reminders">PIN یاددہانی</string>
-    <string name="preferences_app_protection__turn_off">بند کریں</string>
-    <string name="preferences_app_protection__confirm_pin">پن کی تصدیق کریں</string>
-    <string name="preferences_app_protection__confirm_your_signal_pin">اپنے سگنل پن کی تصدیق کریں</string>
-    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">اس بات کو یقینی بنائیں کہ آپ اپنے PIN کو حفظ یا محفوظ طریقے سے محفوظ کریں کیونکہ اسے بازیافت نہیں کیا جاسکتا ہے۔ اگر آپ اپنا پن بھول جاتے ہیں تو ، اپنے Signal اکاؤنٹ کی دوبارہ رجسٹریشن کرتے وقت آپ ڈیٹا کھو سکتے ہیں۔</string>
-    <string name="preferences_app_protection__incorrect_pin_try_again">غلط پن. دوبارہ کوشش کریں.</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">رجسٹریشن لاک کو فعال کرنے میں ناکام۔</string>
     <string name="preferences_app_protection__failed_to_disable_registration_lock">رجسٹریشن لاک کو غیر فعال کرنے میں ناکام۔</string>
     <string name="AppProtectionPreferenceFragment_none">کوئی نہیں</string>
-    <string name="preferences_app_protection__registration_lock">رجسٹریشن لاک</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">آپ لازمی اپنا رجسٹریشن لاک پن داخل کریں</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">آپ کے پن میں کم از کم %1$d ہندسے یا حرف ہیں</string>
     <string name="RegistrationActivity_too_many_attempts">بہت زیادہ کوششیں</string>
@@ -5116,20 +5092,6 @@
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
     <string name="Recipient_deleted_account">حذف شدہ اکاؤنٹ</string>
 
-    <!-- Option in settings that will take use to re-register if they are no longer registered -->
-    <string name="preferences_account_reregister">اکاؤنٹ کو دوبارہ رجسٹر کریں</string>
-    <!-- Option in settings that will take user to our website or playstore to update their expired build -->
-    <string name="preferences_account_update_signal">Signal اپ ڈیٹ کریں</string>
-    <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
-    <string name="preferences_account_delete_all_data">تمام ڈیٹا حذف کریں</string>
-    <!-- Title for confirmation dialog confirming user wants to delete all their data -->
-    <string name="preferences_account_delete_all_data_confirmation_title">تمام ڈیٹا کو حذف کریں؟</string>
-    <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_message">اس سے ایپ دوبارہ سیٹ ہو جائے گی اور تمام میسجز حذف ہو جائیں گے۔ ایپ اس عمل کے مکمل ہونے کے بعد بند ہو جائے گی۔</string>
-    <!-- Confirmation action to proceed with application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_proceed">آگے بڑھیں</string>
-    <!-- Confirmation action to cancel application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_cancel">منسوخ کریں</string>
     <!-- Error message shown when we fail to delete the data for some unknown reason -->
     <string name="preferences_account_delete_all_data_failed">ڈیٹا کو حذف کرنے میں ناکام</string>
 
@@ -5670,14 +5632,6 @@
     <!-- String displayed in a toast when a subscriber id is not present for a given type -->
     <string name="AppSettingsFragment__no_subscriber_id_set">کوئی سبسکرائبر id سیٹ نہیں کی گئی</string>
 
-    <!-- AccountSettingsFragment -->
-    <string name="AccountSettingsFragment__account">اکاؤنٹ</string>
-    <string name="AccountSettingsFragment__youll_be_asked_less_frequently">وقت کے ساتھ آپ سے کم پوچھا جائے گا</string>
-    <string name="AccountSettingsFragment__require_your_signal_pin">اپنے فون نمبر کو دوبارہ Signal کے ساتھ رجسٹر کرنے کیلئے اپنے Signal پن کی ضرورت ہے</string>
-    <string name="AccountSettingsFragment__change_phone_number">فون نمبر تبدیل کریں</string>
-    <!-- Account setting that allows user to request and export their signal account data -->
-    <string name="AccountSettingsFragment__request_account_data">آپ کا اکاؤنٹ ڈیٹا</string>
-
     <!-- ExportAccountDataFragment -->
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
     <string name="ExportAccountDataFragment__your_account_data">آپ کا اکاؤنٹ ڈیٹا</string>
@@ -5971,14 +5925,46 @@
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">پیغامات</string>
     <string name="NotificationsSettingsFragment__calls">کالز</string>
-    <string name="NotificationsSettingsFragment__notify_when">مطلع کریں جب…</string>
+    <!-- Notification header for sounds -->
+    <string name="NotificationsSettingsFragment__sounds">آوازیں</string>
     <string name="NotificationsSettingsFragment__contact_joins_signal">رابطہ Signal میں شامل ہوتا ہے</string>
+    <!-- Notification body to get notified when someone joins Signal -->
+    <string name="NotificationsSettingsFragment__notify_contact">Show a notification when a phone contact joins Signal</string>
+    <!-- Option to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset">Reset notification settings</string>
+    <!-- Option body to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_notifications">Reset notification settings to default, including custom settings for your chats</string>
+    <!-- Dialog to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_body">Reset all notification settings to default for all chats?</string>
+    <!-- Confirmation button to reset dialog -->
+    <string name="NotificationsSettingsFragment__reset_confirm">ری سیٹ کریں</string>
     <!-- Notification preference header -->
     <string name="NotificationsSettingsFragment__notification_profiles">اطلاع کی پروفائلز</string>
     <!-- Notification preference option header -->
     <string name="NotificationsSettingsFragment__profiles">پروفائلز</string>
     <!-- Notification preference summary text -->
     <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">صرف اپنے منتخب افراد اور گروپس کی اطلاعات موصول کرنے کے لیے پروفائل تخلیق کریں۔</string>
+
+    <!-- Header to describe screen that shows while muted settings -->
+    <string name="MutedNotificationsFragment__while">While muted</string>
+    <!-- Title for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls">کالز</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body_global">Ring or notify when a call is started in muted chats.</string>
+    <!-- Title for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions">ذکر</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body_global">Notify when you are mentioned in muted chats.</string>
+    <!-- Title for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies">جوابات</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body_global">Notify when someone replies to your message in muted chats.</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body">Ring or notify when a call is started while this chat is muted.</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body">Notify when you are mentioned while this chat is muted.</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body">Notify when someone replies to your message while this chat is muted.</string>
 
     <!-- NotificationProfilesFragment -->
     <!-- Title for notification profiles screen that shows all existing profiles; Title with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -6207,6 +6193,8 @@
     <string name="ConversationSettingsFragment__end_group">گروپ ختم کریں</string>
     <!-- Banner shown at the top of group settings when the group has been ended -->
     <string name="ConversationSettingsFragment__this_group_was_ended">گروپ ختم ہو گیا ہے۔</string>
+    <!-- Subhead under a legacy group\'s name, joining the member count and the "Legacy Group" label. %1$s is the member count, %2$s is the label -->
+    <string name="ConversationSettingsFragment__s_dot_s">%1$s · %2$s</string>
     <!-- Archive chat option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__archive_chat">چیٹ آرکائیو کریں</string>
     <!-- Delete chat option in group conversation settings screen -->
@@ -6390,34 +6378,9 @@
     <!-- Positive dialog action when sending a story via an add to group story button -->
     <string name="MediaReviewFragment__add_to_story">سٹوری میں شامل کریں</string>
     <string name="MediaReviewFragment__add_a_message">پیغام شامل کریں</string>
-    <!-- Hint text inside of a compose box that is shown when the user is adding media while quoting a message. -->
-    <string name="MediaReviewFragment__add_a_reply">جواب شامل کریں</string>
     <string name="MediaReviewFragment__send_to">بھیجیں بنام</string>
-    <string name="MediaReviewFragment__view_once_message">ایک مرتبہ دیکھا جانے والا میڈیا</string>
-    <string name="MediaReviewFragment__one_or_more_items_were_too_large">ایک یا زائد آئٹمز بہت بڑی تھیں</string>
-    <string name="MediaReviewFragment__one_or_more_items_were_invalid">ایک یا زائد آئٹمز غلط تھیں</string>
-    <string name="MediaReviewFragment__too_many_items_selected">بہت زیادہ آئٹمز منتخب کیے گئے ہیں</string>
-    <string name="MediaReviewFragment__video_trimmed_to_fit">آپ کی ویڈیو کو سائز کی حد کے مطابق بنانے کے لیے چھوٹا کیا گیا تھا</string>
-    <!-- Small notification presented to the user when they set their video to view-once mode -->
-    <string name="MediaReviewFragment__video_set_to_view_once">ویڈیو صرف ایک بار ویو پر سیٹ کر دی گئی</string>
-    <!-- Small notification presented to the user when they set their photo to view-once mode -->
-    <string name="MediaReviewFragment__photo_set_to_view_once">تصویر ایک مرتبہ ویو پر سیٹ کر دی گئی</string>
-    <!-- Accessibility label describing the add media button on the Media review screen -->
-    <string name="MediaReviewFragment__add_media_accessibility_label">میڈیا شامل کریں</string>
-    <!-- Accessibility label describing the brush and pen button on the Media review screen -->
-    <string name="MediaReviewFragment__brush_pen_accessibility_label">برش اور قلم</string>
-    <!-- Accessibility label describing the crop and rotate button on the Media review screen -->
-    <string name="MediaReviewFragment__crop_rotate_accessibility_label">کراپ کریں اور گھمائیں</string>
-    <!-- Accessibility label describing the change media quality button on the Media review screen -->
-    <string name="MediaReviewFragment__change_media_quality_accessibility_label">میڈیا کی کوالٹی تبدیل کریں</string>
-    <!-- Accessibility label describing the save media button on the Media review screen -->
-    <string name="MediaReviewFragment__save_media_accessibility_label">میڈیا کو محفوظ کریں</string>
-    <!-- Accessibility label describing the toggle emoji keyboard button on the Media review screen -->
-    <string name="MediaReviewFragment__emoji_toggle_accessibility_label">پوشیدہ کی بورڈ ٹوگل کریں</string>
     <!-- Accessibility label describing the toggle view once button on the Media review screen -->
     <string name="MediaReviewFragment__view_once_toggle_accessibility_label">ایک بار دیکھیں کو ٹوگل کریں</string>
-    <!-- Accessibility label describing the send media button on the Media review screen -->
-    <string name="MediaReviewFragment__send_media_accessibility_label">میڈیا بھیجیں</string>
     <!-- Accessibility label describing the finish adding a message button on the Media review screen dialog -->
     <string name="MediaReviewFragment__finish_adding_a_message_accessibility_label">میسج شامل کرنا مکمل کریں</string>
 
@@ -6437,27 +6400,9 @@
 
     <string name="MediaCountIndicatorButton__send">بھیجیں</string>
 
-    <string name="MediaReviewSelectedItem__tap_to_remove">ہٹانے کے لیے ٹیپ کریں</string>
-    <string name="MediaReviewSelectedItem__tap_to_select">منتخب کرنے کے لیے ٹیپ کریں</string>
-
     <string name="MediaReviewImagePageFragment__discard">مسترد کیجئے</string>
     <string name="MediaReviewImagePageFragment__discard_changes">تبدیلیاں رد کریں؟</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">آپ اس تصویر میں کی گئی کسی بھی تبدیلی سے محروم ہو جائیں گے۔</string>
-
-    <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_title">%1$s ملا ہے</string>
-    <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_body">\"%1$s\" کے ساتھ چیٹ شروع کریں</string>
-    <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
-    <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">چیٹ پر جائیں</string>
-
-    <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_title">ڈیوائس مربوط کریں؟</string>
-    <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_it_looks_like_youre_trying">ایسا لگتا ہے کہ آپ Signal ڈیوائس کو لنک کرنے کی کوشش کر رہے ہیں۔ جاری رکھیں پر ٹیپ کریں اور پھر \"نئی ڈیوائس لنک کریں\" پر ٹیپ کریں اور QR کوڈ کو دوبارہ اسکین کریں۔</string>
-    <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
-    <string name="MediaCaptureFragment_device_link_dialog_continue">جاری رکھیں</string>
-
 
     <string name="BadgesOverviewFragment__my_badges">میرے بیجز</string>
     <string name="BadgesOverviewFragment__featured_badge">خصوصی بیج</string>
@@ -8714,13 +8659,6 @@
     <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">گروپ ختم ہو گیا ہے۔</string>
     <!-- Body of bottom sheet shown when opening a terminated group -->
     <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">آپ اس گروپ میں مزید میسجز نہ بھیج سکتے ہیں، نہ وصول کر سکتے ہیں، اور نہ ہی کالز کر سکتے ہیں۔</string>
-
-    <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_title">حذف کرنے کو اب آپ کی تمام ڈیوائسز پر مطابقت پذیرکر دیا گیا ہے</string>
-    <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_message">جب آپ میسجز یا چیٹس حذف کرتے ہیں، تو وہ آپ کے فون اور لنک کردہ ڈیوائسز سے حذف کر دی جائیں گی۔</string>
-    <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_acknowledge_button">ٹھیک ہے</string>
 
     <!-- NoManualBackupBottomSheet -->
     <!-- Title for bottom sheet, placeholder is number of days. -->

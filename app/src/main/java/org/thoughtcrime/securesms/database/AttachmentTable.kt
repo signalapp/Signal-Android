@@ -52,6 +52,7 @@ import org.signal.core.util.forEach
 import org.signal.core.util.groupBy
 import org.signal.core.util.isNull
 import org.signal.core.util.logging.Log
+import org.signal.core.util.nullIfEmpty
 import org.signal.core.util.readToList
 import org.signal.core.util.readToSet
 import org.signal.core.util.readToSingleInt
@@ -425,7 +426,9 @@ class AttachmentTable(
   }
 
   /**
-   * Filters thumbnail snapshot entries down to only those that have at least one eligible attachment capable of thumbnail upload.
+   * Already-archived thumbnails are kept even with no local data file to upload from, because offloaded media still legitimately references its thumbnail.
+   * Dropping those entries would take them out of the snapshot, which marks them for deletion off of the CDN. A restored thumbnail counts as archived too: we
+   * downloaded it from the CDN, so it is there regardless of what the archive state says.
    */
   fun filterThumbnailsWithoutEligibleAttachment(entries: Set<BackupMediaSnapshotTable.MediaEntry>): Set<BackupMediaSnapshotTable.MediaEntry> {
     if (entries.isEmpty()) {
@@ -441,16 +444,7 @@ class AttachmentTable(
     readableDatabase
       .select(DATA_HASH_END, REMOTE_KEY)
       .from(TABLE_NAME)
-      .where(
-        """
-        $DATA_HASH_END NOT NULL AND
-        $REMOTE_KEY NOT NULL AND
-        $DATA_FILE NOT NULL AND
-        $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE AND
-        $QUOTE = 0 AND
-        $ARCHIVE_THUMBNAIL_TRANSFER_STATE != ${ArchiveTransferState.PERMANENT_FAILURE.value}
-        """
-      )
+      .where(buildThumbnailEligibilityClause())
       .run()
       .forEach { cursor ->
         val hashEnd = cursor.requireNonNullString(DATA_HASH_END)
@@ -665,7 +659,7 @@ class AttachmentTable(
   fun getLast30DaysOfRestorableAttachments(batchSize: Int): List<RestorableAttachment> {
     val thirtyDaysAgo = System.currentTimeMillis().milliseconds - 30.days
     return readableDatabase
-      .select("$TABLE_NAME.$ID", MESSAGE_ID, DATA_SIZE, DATA_HASH_END, REMOTE_KEY, STICKER_PACK_ID)
+      .select("$TABLE_NAME.$ID", MESSAGE_ID, DATA_SIZE, DATA_HASH_END, REMOTE_KEY, STICKER_PACK_ID, CONTENT_TYPE, QUOTE, STICKER_ID)
       .from("$TABLE_NAME LEFT JOIN ${MessageTable.TABLE_NAME} ON ${MessageTable.TABLE_NAME}.${MessageTable.ID} = $TABLE_NAME.$MESSAGE_ID")
       .where("$TRANSFER_STATE = ? AND (${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED} >= ? OR $MESSAGE_ID = ?)", TRANSFER_NEEDS_RESTORE, thirtyDaysAgo.inWholeMilliseconds, WALLPAPER_MESSAGE_ID)
       .limit(batchSize)
@@ -678,7 +672,10 @@ class AttachmentTable(
           size = it.requireLong(DATA_SIZE),
           plaintextHash = it.requireString(DATA_HASH_END)?.let { hash -> Base64.decode(hash) },
           remoteKey = it.requireString(REMOTE_KEY)?.let { key -> Base64.decode(key) },
-          stickerPackId = it.requireString(STICKER_PACK_ID)
+          stickerPackId = it.requireString(STICKER_PACK_ID),
+          contentType = it.requireString(CONTENT_TYPE),
+          quote = it.requireBoolean(QUOTE),
+          stickerId = it.requireInt(STICKER_ID)
         )
       }
   }
@@ -690,7 +687,7 @@ class AttachmentTable(
   fun getOlderRestorableAttachments(batchSize: Int): List<RestorableAttachment> {
     val thirtyDaysAgo = System.currentTimeMillis().milliseconds - 30.days
     return readableDatabase
-      .select("$TABLE_NAME.$ID", MESSAGE_ID, DATA_SIZE, DATA_HASH_END, REMOTE_KEY, STICKER_PACK_ID)
+      .select("$TABLE_NAME.$ID", MESSAGE_ID, DATA_SIZE, DATA_HASH_END, REMOTE_KEY, STICKER_PACK_ID, CONTENT_TYPE, QUOTE, STICKER_ID)
       .from("$TABLE_NAME LEFT JOIN ${MessageTable.TABLE_NAME} ON ${MessageTable.TABLE_NAME}.${MessageTable.ID} = $TABLE_NAME.$MESSAGE_ID")
       .where("$TRANSFER_STATE = ? AND (${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED} < ? OR $MESSAGE_ID = ?)", TRANSFER_NEEDS_RESTORE, thirtyDaysAgo.inWholeMilliseconds, WALLPAPER_MESSAGE_ID)
       .limit(batchSize)
@@ -703,14 +700,17 @@ class AttachmentTable(
           size = it.requireLong(DATA_SIZE),
           plaintextHash = it.requireString(DATA_HASH_END)?.let { hash -> Base64.decode(hash) },
           remoteKey = it.requireString(REMOTE_KEY)?.let { key -> Base64.decode(key) },
-          stickerPackId = it.requireString(STICKER_PACK_ID)
+          stickerPackId = it.requireString(STICKER_PACK_ID),
+          contentType = it.requireString(CONTENT_TYPE),
+          quote = it.requireBoolean(QUOTE),
+          stickerId = it.requireInt(STICKER_ID)
         )
       }
   }
 
   fun getRestorableOptimizedAttachments(): List<RestorableAttachment> {
     return readableDatabase
-      .select(ID, MESSAGE_ID, DATA_SIZE, DATA_HASH_END, REMOTE_KEY, STICKER_PACK_ID)
+      .select(ID, MESSAGE_ID, DATA_SIZE, DATA_HASH_END, REMOTE_KEY, STICKER_PACK_ID, CONTENT_TYPE, QUOTE, STICKER_ID)
       .from(TABLE_NAME)
       .where("$TRANSFER_STATE = ? AND $DATA_HASH_END NOT NULL AND $REMOTE_KEY NOT NULL", TRANSFER_RESTORE_OFFLOADED)
       .orderBy("$ID DESC")
@@ -722,7 +722,10 @@ class AttachmentTable(
           size = it.requireLong(DATA_SIZE),
           plaintextHash = it.requireString(DATA_HASH_END)?.let { hash -> Base64.decode(hash) },
           remoteKey = it.requireString(REMOTE_KEY)?.let { key -> Base64.decode(key) },
-          stickerPackId = it.requireString(STICKER_PACK_ID)
+          stickerPackId = it.requireString(STICKER_PACK_ID),
+          contentType = it.requireString(CONTENT_TYPE),
+          quote = it.requireBoolean(QUOTE),
+          stickerId = it.requireInt(STICKER_ID)
         )
       }
   }
@@ -947,16 +950,7 @@ class AttachmentTable(
   fun doAnyThumbnailsNeedArchiveUpload(): Boolean {
     return readableDatabase
       .exists("$TABLE_NAME INNER JOIN ${MessageTable.TABLE_NAME} ON $TABLE_NAME.$MESSAGE_ID = ${MessageTable.TABLE_NAME}.${MessageTable.ID}")
-      .where(
-        """
-        ${buildAttachmentsThatCanArchiveQuery("$ARCHIVE_THUMBNAIL_TRANSFER_STATE IN (${ArchiveTransferState.NONE.value}, ${ArchiveTransferState.TEMPORARY_FAILURE.value})")} AND
-        $QUOTE = 0 AND
-        $STICKER_ID = -1 AND
-        ($CONTENT_TYPE LIKE 'image/%' OR $CONTENT_TYPE LIKE 'video/%') AND
-        $CONTENT_TYPE != 'image/svg+xml' AND
-        $MESSAGE_ID != $WALLPAPER_MESSAGE_ID
-      """
-      )
+      .where(buildThumbnailsThatNeedArchiveWorkQuery())
       .run()
   }
 
@@ -995,16 +989,7 @@ class AttachmentTable(
     return readableDatabase
       .select("$TABLE_NAME.$ID")
       .from("$TABLE_NAME INNER JOIN ${MessageTable.TABLE_NAME} ON $TABLE_NAME.$MESSAGE_ID = ${MessageTable.TABLE_NAME}.${MessageTable.ID}")
-      .where(
-        """
-        ${buildAttachmentsThatCanArchiveQuery("$ARCHIVE_THUMBNAIL_TRANSFER_STATE IN (${ArchiveTransferState.NONE.value}, ${ArchiveTransferState.TEMPORARY_FAILURE.value})")} AND
-        $QUOTE = 0 AND
-        $STICKER_ID = -1 AND
-        ($CONTENT_TYPE LIKE 'image/%' OR $CONTENT_TYPE LIKE 'video/%') AND
-        $CONTENT_TYPE != 'image/svg+xml' AND
-        $MESSAGE_ID != $WALLPAPER_MESSAGE_ID
-      """
-      )
+      .where(buildThumbnailsThatNeedArchiveWorkQuery())
       .run()
       .readToList { AttachmentId(it.requireLong(ID)) }
   }
@@ -1031,6 +1016,13 @@ class AttachmentTable(
       .where("$ID = ?", id.id)
       .run()
       .readToSingleObject { ArchiveTransferState.deserialize(it.requireInt(ARCHIVE_THUMBNAIL_TRANSFER_STATE)) }
+  }
+
+  fun hasThumbnailFile(id: AttachmentId): Boolean {
+    return readableDatabase
+      .exists(TABLE_NAME)
+      .where("$ID = ? AND $THUMBNAIL_FILE NOT NULL", id.id)
+      .run()
   }
 
   /**
@@ -1160,28 +1152,63 @@ class AttachmentTable(
   /**
    * Resets the archive upload state by hash/key if we believe the attachment should have been uploaded already.
    */
-  fun resetArchiveTransferStateByPlaintextHashAndRemoteKeyIfNecessary(plaintextHash: ByteArray, remoteKey: ByteArray): Boolean {
-    return writableDatabase
-      .update(TABLE_NAME)
-      .values(
+  fun resetArchiveTransferStateByPlaintextHashAndRemoteKeyIfNecessary(plaintextHash: ByteArray, remoteKey: ByteArray): ArchiveTransferStateResetResult {
+    return resetArchiveTransferStateIfNecessary(
+      plaintextHash = plaintextHash,
+      remoteKey = remoteKey,
+      stateColumn = ARCHIVE_TRANSFER_STATE,
+      values = contentValuesOf(
         ARCHIVE_TRANSFER_STATE to ArchiveTransferState.NONE.value,
         ARCHIVE_CDN to null
       )
-      .where("$DATA_HASH_END = ? AND $REMOTE_KEY = ? AND $ARCHIVE_TRANSFER_STATE = ${ArchiveTransferState.FINISHED.value}", Base64.encodeWithPadding(plaintextHash), Base64.encodeWithPadding(remoteKey))
-      .run() > 0
+    )
   }
 
   /**
    * Resets the archive thumbnail upload state by hash/key if we believe the thumbnail should have been uploaded already.
    */
-  fun resetArchiveThumbnailTransferStateByPlaintextHashAndRemoteKeyIfNecessary(plaintextHash: ByteArray, remoteKey: ByteArray): Boolean {
-    return writableDatabase
-      .update(TABLE_NAME)
-      .values(
-        ARCHIVE_THUMBNAIL_TRANSFER_STATE to ArchiveTransferState.NONE.value
-      )
-      .where("$DATA_HASH_END = ? AND $REMOTE_KEY = ? AND $ARCHIVE_THUMBNAIL_TRANSFER_STATE = ${ArchiveTransferState.FINISHED.value}", Base64.encodeWithPadding(plaintextHash), Base64.encodeWithPadding(remoteKey))
-      .run() > 0
+  fun resetArchiveThumbnailTransferStateByPlaintextHashAndRemoteKeyIfNecessary(plaintextHash: ByteArray, remoteKey: ByteArray): ArchiveTransferStateResetResult {
+    return resetArchiveTransferStateIfNecessary(
+      plaintextHash = plaintextHash,
+      remoteKey = remoteKey,
+      stateColumn = ARCHIVE_THUMBNAIL_TRANSFER_STATE,
+      values = contentValuesOf(ARCHIVE_THUMBNAIL_TRANSFER_STATE to ArchiveTransferState.NONE.value)
+    )
+  }
+
+  private fun resetArchiveTransferStateIfNecessary(plaintextHash: ByteArray, remoteKey: ByteArray, stateColumn: String, values: ContentValues): ArchiveTransferStateResetResult {
+    val encodedHash = Base64.encodeWithPadding(plaintextHash)
+    val encodedKey = Base64.encodeWithPadding(remoteKey)
+    val finishedClause = "$DATA_HASH_END = ? AND $REMOTE_KEY = ? AND $stateColumn = ${ArchiveTransferState.FINISHED.value}"
+
+    return writableDatabase.withinTransaction { db ->
+      val isFinished = db
+        .exists(TABLE_NAME)
+        .where(finishedClause, encodedHash, encodedKey)
+        .run()
+
+      if (!isFinished) {
+        return@withinTransaction ArchiveTransferStateResetResult.NOT_NEEDED
+      }
+
+      val hasLocalData = db
+        .exists(TABLE_NAME)
+        .where("$DATA_HASH_END = ? AND $REMOTE_KEY = ? AND $DATA_FILE NOT NULL", encodedHash, encodedKey)
+        .run()
+
+      // With no local data file there is nothing to re-upload, and clearing the state makes the export emit a tombstone instead of a locator, which in turn marks
+      // the media for deletion off of the CDN.
+      if (!hasLocalData) {
+        return@withinTransaction ArchiveTransferStateResetResult.SKIPPED_NO_LOCAL_DATA
+      }
+
+      db.update(TABLE_NAME)
+        .values(values)
+        .where(finishedClause, encodedHash, encodedKey)
+        .run()
+
+      ArchiveTransferStateResetResult.RESET
+    }
   }
 
   /**
@@ -1232,49 +1259,128 @@ class AttachmentTable(
    *
    * Marking offloaded only clears the strong references to the on disk file and clears other local file data like hashes.
    * Another operation must run to actually delete the data from disk. See [deleteAbandonedAttachmentFiles].
+   *
+   * @param lastCompletedCrawlVersion The snapshot version of the most recent reconciliation that finished crawling the archive CDN, or negative if none ever has.
+   * @param pageSize How many candidates to derive mediaIds for at a time.
    */
-  fun markEligibleAttachmentsAsOptimized(minimumAge: Duration = 30.days) {
-    val now = System.currentTimeMillis()
+  fun markEligibleAttachmentsAsOptimized(lastCompletedCrawlVersion: Long, minimumAge: Duration = 30.days, now: Long = System.currentTimeMillis(), pageSize: Int = 500) {
+    if (lastCompletedCrawlVersion < 0) {
+      Log.w(TAG, "No reconciliation has ever completed on this device. Refusing to offload anything.", true)
+      return
+    }
 
-    val subSelect = """
-      SELECT $TABLE_NAME.$ID 
-      FROM $TABLE_NAME 
-      INNER JOIN ${MessageTable.TABLE_NAME} ON ${MessageTable.TABLE_NAME}.${MessageTable.ID} = $TABLE_NAME.$MESSAGE_ID 
-      WHERE
+    // Everything that looks offloadable locally, saying nothing about whether the archive CDN actually has the bytes
+    fun eligibilityClause(prefix: String): String = """
+      $prefix$OFFLOAD_RESTORED_AT < ${now - 7.days.inWholeMilliseconds} AND
+      $prefix$TRANSFER_STATE = $TRANSFER_PROGRESS_DONE AND
+      $prefix$ARCHIVE_TRANSFER_STATE = ${ArchiveTransferState.FINISHED.value} AND
+      $prefix$DATA_FILE IS NOT NULL AND
+      $prefix$STICKER_ID = -1 AND
+      $prefix$REMOTE_KEY IS NOT NULL AND
+      $prefix$DATA_HASH_END IS NOT NULL AND
       (
-        $TABLE_NAME.$OFFLOAD_RESTORED_AT < ${now - 7.days.inWholeMilliseconds} AND
-        $TABLE_NAME.$TRANSFER_STATE = $TRANSFER_PROGRESS_DONE AND
-        $TABLE_NAME.$ARCHIVE_TRANSFER_STATE = ${ArchiveTransferState.FINISHED.value} AND
-        $TABLE_NAME.$DATA_FILE IS NOT NULL AND
-        $TABLE_NAME.$STICKER_ID = -1 AND
-        $TABLE_NAME.$REMOTE_KEY IS NOT NULL AND
-        $TABLE_NAME.$DATA_HASH_END IS NOT NULL AND
-        (
-          $TABLE_NAME.$THUMBNAIL_FILE IS NOT NULL OR 
-          NOT ($TABLE_NAME.$CONTENT_TYPE LIKE 'image/%' OR $TABLE_NAME.$CONTENT_TYPE LIKE 'video/%') OR
-          $TABLE_NAME.$CONTENT_TYPE = 'image/svg+xml'
-        )
-      )
-      AND
-      (
-        ${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED} < ${now - minimumAge.inWholeMilliseconds}
+        $prefix$THUMBNAIL_FILE IS NOT NULL OR
+        NOT ($prefix$CONTENT_TYPE LIKE 'image/%' OR $prefix$CONTENT_TYPE LIKE 'video/%') OR
+        $prefix$CONTENT_TYPE = 'image/svg+xml'
       )
     """
 
-    val count = writableDatabase
-      .update(TABLE_NAME)
-      .values(
-        TRANSFER_STATE to TRANSFER_RESTORE_OFFLOADED,
-        DATA_FILE to null,
-        DATA_RANDOM to null,
-        TRANSFORM_PROPERTIES to null,
-        DATA_HASH_START to null,
-        OFFLOAD_RESTORED_AT to 0
-      )
-      .where("$ID in ($subSelect)")
-      .run()
+    val oldestAllowedDateReceived = now - minimumAge.inWholeMilliseconds
+    val mediaRootBackupKey = SignalStore.backup.mediaRootBackupKey
 
-    Log.i(TAG, "Marked $count attachments as optimized")
+    var lastId = 0L
+    var offloadedCount = 0
+    var candidateCount = 0
+    var unconfirmedCount = 0
+
+    while (true) {
+      // Paged by id rather than looping until the candidate query runs dry: candidates the CDN never confirms stay eligible forever, so only a strictly advancing
+      // cursor terminates.
+      val candidates: List<Pair<Long, MediaNameParts>> = readableDatabase
+        .rawQuery(
+          """
+          SELECT $TABLE_NAME.$ID, $TABLE_NAME.$DATA_HASH_END, $TABLE_NAME.$REMOTE_KEY
+          FROM $TABLE_NAME
+          INNER JOIN ${MessageTable.TABLE_NAME} ON ${MessageTable.TABLE_NAME}.${MessageTable.ID} = $TABLE_NAME.$MESSAGE_ID
+          WHERE
+            $TABLE_NAME.$ID > $lastId AND
+            ${eligibilityClause("$TABLE_NAME.")} AND
+            ${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED} < $oldestAllowedDateReceived
+          ORDER BY $TABLE_NAME.$ID ASC
+          LIMIT $pageSize
+          """
+        )
+        .readToList { cursor ->
+          cursor.requireLong(ID) to MediaNameParts(
+            plaintextHash = cursor.requireNonNullString(DATA_HASH_END),
+            remoteKey = cursor.requireNonNullString(REMOTE_KEY)
+          )
+        }
+
+      if (candidates.isEmpty()) {
+        break
+      }
+
+      lastId = candidates.last().first
+
+      // Group by mediaId, which is the only thing the snapshot table can be joined on. Scoped to the page so the derivation cache can't grow without bound.
+      val mediaIdsByMediaName: MutableMap<MediaNameParts, String> = mutableMapOf()
+      val candidateIdsByMediaId: MutableMap<String, MutableList<Long>> = mutableMapOf()
+
+      candidates.forEach { (id, mediaName) ->
+        val mediaId = mediaIdsByMediaName.getOrPut(mediaName) {
+          MediaName.fromPlaintextHashAndRemoteKey(Base64.decode(mediaName.plaintextHash), Base64.decode(mediaName.remoteKey))
+            .toMediaId(mediaRootBackupKey)
+            .encode()
+        }
+
+        candidateIdsByMediaId.getOrPut(mediaId) { mutableListOf() } += id
+      }
+
+      // Narrow to media the server itself told us about. This is the only step backed by evidence that didn't originate on this device.
+      val confirmedOnCdn = SignalDatabase.backupMediaSnapshots.getMediaIdsConfirmedOnCdn(candidateIdsByMediaId.keys, lastCompletedCrawlVersion)
+      val idsToOffload: List<Long> = confirmedOnCdn.flatMap { candidateIdsByMediaId[it] ?: emptyList() }
+
+      candidateCount += candidateIdsByMediaId.size
+      unconfirmedCount += candidateIdsByMediaId.size - confirmedOnCdn.size
+
+      if (idsToOffload.isNotEmpty()) {
+        // Eligibility is re-checked at write time, since anything could have changed while we were deriving mediaIds outside of a transaction.
+        val idQuery = SqlUtil.buildFastCollectionQuery(ID, idsToOffload)
+
+        offloadedCount += writableDatabase
+          .update(TABLE_NAME)
+          .values(
+            TRANSFER_STATE to TRANSFER_RESTORE_OFFLOADED,
+            DATA_FILE to null,
+            DATA_RANDOM to null,
+            TRANSFORM_PROPERTIES to null,
+            DATA_HASH_START to null,
+            OFFLOAD_RESTORED_AT to 0
+          )
+          .where(
+            """
+            ${idQuery.where} AND
+            ${eligibilityClause("")} AND
+            EXISTS (
+              SELECT 1
+              FROM ${MessageTable.TABLE_NAME}
+              WHERE
+                ${MessageTable.TABLE_NAME}.${MessageTable.ID} = $TABLE_NAME.$MESSAGE_ID AND
+                ${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED} < $oldestAllowedDateReceived
+            )
+            """,
+            idQuery.whereArgs
+          )
+          .run()
+      }
+    }
+
+    if (unconfirmedCount > 0) {
+      Log.w(TAG, "Skipping $unconfirmedCount/$candidateCount candidate media objects that the archive CDN has not confirmed since snapshot version $lastCompletedCrawlVersion.", true)
+    }
+
+    Log.i(TAG, "Marked $offloadedCount attachments as optimized")
   }
 
   /**
@@ -1658,10 +1764,21 @@ class AttachmentTable(
     writableDatabase
       .update(TABLE_NAME)
       .values(THUMBNAIL_RESTORE_STATE to ThumbnailRestoreState.PERMANENT_FAILURE.value)
-      .where("$ID = ? AND $THUMBNAIL_RESTORE_STATE != ?", attachmentId.id, ThumbnailRestoreState.FINISHED)
+      .where("$ID = ? AND $THUMBNAIL_RESTORE_STATE != ?", attachmentId.id, ThumbnailRestoreState.FINISHED.value)
       .run()
 
     notifyConversationListeners(messages.getThreadIdForMessage(mmsId))
+  }
+
+  /**
+   * Records that a thumbnail can't be built from the local data file. Skips rows with a restore pending or completed.
+   */
+  fun markThumbnailPermanentlyFailedIfUnrestorable(attachmentId: AttachmentId) {
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(THUMBNAIL_RESTORE_STATE to ThumbnailRestoreState.PERMANENT_FAILURE.value)
+      .where("$ID = ? AND $THUMBNAIL_RESTORE_STATE = ?", attachmentId.id, ThumbnailRestoreState.NONE.value)
+      .run()
   }
 
   fun setTransferProgressPermanentFailure(attachmentId: AttachmentId, mmsId: Long) {
@@ -2570,6 +2687,7 @@ class AttachmentTable(
     }
 
     val objectsByMediaId: Map<String, ArchivedMediaObject> = objects.associateBy { it.mediaId }
+    val mediaRootBackupKey = SignalStore.backup.mediaRootBackupKey
 
     // Collect updates grouped by CDN: Map<cdn, List<Pair<plaintextHash, remoteKey>>>
     val updatesByCdn: MutableMap<Int, MutableList<Pair<String, String>>> = mutableMapOf()
@@ -2587,7 +2705,7 @@ class AttachmentTable(
         val plaintextHash = Base64.decode(plaintextHashStr)
 
         val mediaId = MediaName.fromPlaintextHashAndRemoteKey(plaintextHash, remoteKey)
-          .toMediaId(SignalStore.backup.mediaRootBackupKey)
+          .toMediaId(mediaRootBackupKey)
           .encode()
 
         val matchingObject = objectsByMediaId[mediaId]
@@ -2620,6 +2738,83 @@ class AttachmentTable(
 
           updatedCount += batch.size
         }
+      }
+    }
+
+    if (updatedCount > 0) {
+      AppDependencies.databaseObserver.notifyAttachmentUpdatedObservers()
+    }
+
+    return updatedCount
+  }
+
+  /**
+   * A restore only carries a claim about the full-size object, so a CDN listing is the only proof we ever get that a *thumbnail* object exists. Without this a
+   * restored device both drops the thumbnail from its snapshot and re-uploads a thumbnail the CDN already has.
+   *
+   * @return the number of unique (plaintextHash, remoteKey) pairs that were updated
+   */
+  fun setArchiveThumbnailFinishedForMatchingMediaObjects(objects: Set<ArchivedMediaObject>): Int {
+    if (objects.isEmpty()) {
+      return 0
+    }
+
+    val candidateClause = """
+      $DATA_HASH_END NOT NULL AND
+      $REMOTE_KEY NOT NULL AND
+      $ARCHIVE_TRANSFER_STATE = ${ArchiveTransferState.FINISHED.value} AND
+      $ARCHIVE_THUMBNAIL_TRANSFER_STATE != ${ArchiveTransferState.FINISHED.value}
+    """
+
+    // Skips the group-by scan below in the common case, where every thumbnail state is already correct and there is nothing to promote.
+    if (!readableDatabase.exists(TABLE_NAME).where(candidateClause).run()) {
+      return 0
+    }
+
+    val mediaIds: Set<String> = objects.map { it.mediaId }.toSet()
+    val mediaRootBackupKey = SignalStore.backup.mediaRootBackupKey
+    val matches: MutableList<MediaNameParts> = mutableListOf()
+
+    readableDatabase
+      .select(DATA_HASH_END, REMOTE_KEY)
+      .from(TABLE_NAME)
+      .where(candidateClause)
+      .groupBy("$DATA_HASH_END, $REMOTE_KEY")
+      .run()
+      .readToList { cursor ->
+        MediaNameParts(
+          plaintextHash = cursor.requireNonNullString(DATA_HASH_END),
+          remoteKey = cursor.requireNonNullString(REMOTE_KEY)
+        )
+      }
+      .forEach { parts ->
+        val thumbnailMediaId = MediaName
+          .fromPlaintextHashAndRemoteKeyForThumbnail(Base64.decode(parts.plaintextHash), Base64.decode(parts.remoteKey))
+          .toMediaId(mediaRootBackupKey)
+          .encode()
+
+        if (thumbnailMediaId in mediaIds) {
+          matches += parts
+        }
+      }
+
+    if (matches.isEmpty()) {
+      return 0
+    }
+
+    var updatedCount = 0
+
+    writableDatabase.withinTransaction { db ->
+      for (batch in matches.chunked(250)) {
+        val whereClause = batch.joinToString(" OR ") { "($DATA_HASH_END = ? AND $REMOTE_KEY = ?)" }
+        val whereArgs = batch.flatMap { listOf(it.plaintextHash, it.remoteKey) }.toTypedArray()
+
+        db.update(TABLE_NAME)
+          .values(ARCHIVE_THUMBNAIL_TRANSFER_STATE to ArchiveTransferState.FINISHED.value)
+          .where(whereClause, *whereArgs)
+          .run()
+
+        updatedCount += batch.size
       }
     }
 
@@ -2835,6 +3030,10 @@ class AttachmentTable(
     }
 
     if (newProperties.videoTrimEndTimeUs != potentialMatchProperties.videoTrimEndTimeUs) {
+      return false
+    }
+
+    if (newProperties.videoMuted != potentialMatchProperties.videoMuted) {
       return false
     }
 
@@ -3449,6 +3648,31 @@ class AttachmentTable(
   }
 
   /**
+   * Thumbnails that need work, which is either "the archive has no copy" or "we have no local copy".
+   */
+  private fun buildThumbnailsThatNeedArchiveWorkQuery(): String {
+    val stateFilter = """
+      (
+        $ARCHIVE_THUMBNAIL_TRANSFER_STATE IN (${ArchiveTransferState.NONE.value}, ${ArchiveTransferState.TEMPORARY_FAILURE.value}) OR
+        (
+          $ARCHIVE_THUMBNAIL_TRANSFER_STATE = ${ArchiveTransferState.FINISHED.value} AND
+          $THUMBNAIL_FILE IS NULL AND
+          $THUMBNAIL_RESTORE_STATE != ${ThumbnailRestoreState.PERMANENT_FAILURE.value}
+        )
+      )
+    """
+
+    return """
+      ${buildAttachmentsThatCanArchiveQuery(stateFilter)} AND
+      $QUOTE = 0 AND
+      $STICKER_ID = -1 AND
+      ($CONTENT_TYPE LIKE 'image/%' OR $CONTENT_TYPE LIKE 'video/%') AND
+      $CONTENT_TYPE != 'image/svg+xml' AND
+      $MESSAGE_ID != $WALLPAPER_MESSAGE_ID
+    """
+  }
+
+  /**
    * IMPORTANT: This query may match against rows that have no associated message (like a wallpaper attachment).
    * This needs to be accounted by allowing nulls when reading any message table row.
    */
@@ -3509,7 +3733,7 @@ class AttachmentTable(
       height = cursor.requireInt(HEIGHT),
       quote = cursor.requireBoolean(QUOTE),
       quoteTargetContentType = cursor.requireString(QUOTE_TARGET_CONTENT_TYPE),
-      caption = cursor.requireString(CAPTION),
+      caption = cursor.requireString(CAPTION).nullIfEmpty(),
       stickerLocator = cursor.readStickerLocator(),
       blurHash = if (MediaUtil.isAudioType(contentType)) null else BlurHash.parseOrNull(cursor.requireString(BLUR_HASH)),
       audioHash = if (MediaUtil.isAudioType(contentType)) AudioHash.parseOrNull(cursor.requireString(BLUR_HASH)) else null,
@@ -3588,6 +3812,7 @@ class AttachmentTable(
   fun getAttachmentDataForMediaIds(mediaIds: Collection<MediaId>): List<ArchiveAttachmentMatch> {
     if (mediaIds.isEmpty()) return emptyList()
     val mediaIdByteStrings = mediaIds.map { it.value.toByteString() }.toSet()
+    val mediaRootBackupKey = SignalStore.backup.mediaRootBackupKey
 
     val found: MutableList<ArchiveAttachmentMatch> = mutableListOf()
 
@@ -3604,13 +3829,13 @@ class AttachmentTable(
 
         val mediaId = MediaName
           .fromPlaintextHashAndRemoteKey(plaintextHash, remoteKey)
-          .toMediaId(SignalStore.backup.mediaRootBackupKey)
+          .toMediaId(mediaRootBackupKey)
           .value
           .toByteString()
 
         val mediaIdThumbnail = MediaName
           .fromPlaintextHashAndRemoteKeyForThumbnail(plaintextHash, remoteKey)
-          .toMediaId(SignalStore.backup.mediaRootBackupKey)
+          .toMediaId(mediaRootBackupKey)
           .value
           .toByteString()
 
@@ -3631,26 +3856,123 @@ class AttachmentTable(
   }
 
   /**
+   * Whether an attachment still makes its thumbnail worth having on the archive CDN: we can either upload one from local data, or one is already up there.
+   * Mirrors the snapshot write side, except stickers, which it doesn't exclude either, so filtering them here would delete thumbnails it still wants.
+   */
+  private fun buildThumbnailEligibilityClause(): String {
+    return """
+      $DATA_HASH_END NOT NULL AND
+      $REMOTE_KEY NOT NULL AND
+      $QUOTE = 0 AND
+      $MESSAGE_ID != $WALLPAPER_MESSAGE_ID AND
+      ($CONTENT_TYPE LIKE 'image/%' OR $CONTENT_TYPE LIKE 'video/%') AND
+      $CONTENT_TYPE != 'image/svg+xml' AND
+      $ARCHIVE_THUMBNAIL_TRANSFER_STATE != ${ArchiveTransferState.PERMANENT_FAILURE.value} AND
+      (
+        ($DATA_FILE NOT NULL AND $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE) OR
+        $ARCHIVE_THUMBNAIL_TRANSFER_STATE = ${ArchiveTransferState.FINISHED.value} OR
+        $THUMBNAIL_RESTORE_STATE = ${ThumbnailRestoreState.FINISHED.value}
+      )
+    """
+  }
+
+  /**
+   * Stops an attachment from counting as a referent when the over-size-limit cutoff left its message out of the backup, matching the exporter's
+   * `$DATE_RECEIVED >= cutoff`. Attachments with no message row at all, like wallpapers, are deliberately still referents.
+   *
+   * @param messageInclusionCutoffTime Zero when every message made it into the backup, which is the overwhelmingly common case.
+   */
+  private fun buildMessageIncludedInBackupClause(messageInclusionCutoffTime: Long): String {
+    if (messageInclusionCutoffTime <= 0) {
+      return ""
+    }
+
+    return """
+      AND NOT EXISTS (
+        SELECT 1
+        FROM ${MessageTable.TABLE_NAME}
+        WHERE
+          ${MessageTable.TABLE_NAME}.${MessageTable.ID} = $TABLE_NAME.$MESSAGE_ID AND
+          ${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED} < $messageInclusionCutoffTime
+      )
+    """
+  }
+
+  /**
+   * The thumbnail counterpart to [getMediaNamesWithNoAttachment]: of the given media names, the ones no attachment still wants a thumbnail for.
+   */
+  fun getMediaNamesWithNoEligibleThumbnail(mediaNames: Set<MediaNameParts>, messageInclusionCutoffTime: Long = 0): Set<MediaNameParts> {
+    if (mediaNames.isEmpty()) {
+      return emptySet()
+    }
+
+    val gone: MutableSet<MediaNameParts> = mediaNames.toMutableSet()
+
+    for (batch in mediaNames.chunked(250)) {
+      val whereClause = batch.joinToString(" OR ") { "($DATA_HASH_END = ? AND $REMOTE_KEY = ?)" }
+      val whereArgs = batch.flatMap { listOf(it.plaintextHash, it.remoteKey) }.toTypedArray()
+
+      readableDatabase
+        .select(DATA_HASH_END, REMOTE_KEY)
+        .from(TABLE_NAME)
+        .where("($whereClause) AND ${buildThumbnailEligibilityClause()}${buildMessageIncludedInBackupClause(messageInclusionCutoffTime)}", *whereArgs)
+        .groupBy("$DATA_HASH_END, $REMOTE_KEY")
+        .run()
+        .forEach { cursor ->
+          gone -= MediaNameParts(plaintextHash = cursor.requireNonNullString(DATA_HASH_END), remoteKey = cursor.requireNonNullString(REMOTE_KEY))
+        }
+    }
+
+    return gone
+  }
+
+  fun getMediaNamesWithNoAttachment(mediaNames: Set<MediaNameParts>, messageInclusionCutoffTime: Long = 0): Set<MediaNameParts> {
+    if (mediaNames.isEmpty()) {
+      return emptySet()
+    }
+
+    val gone: MutableSet<MediaNameParts> = mediaNames.toMutableSet()
+
+    for (batch in mediaNames.chunked(250)) {
+      val whereClause = batch.joinToString(" OR ") { "($DATA_HASH_END = ? AND $REMOTE_KEY = ?)" }
+      val whereArgs = batch.flatMap { listOf(it.plaintextHash, it.remoteKey) }.toTypedArray()
+
+      readableDatabase
+        .select(DATA_HASH_END, REMOTE_KEY)
+        .from(TABLE_NAME)
+        .where("($whereClause)${buildMessageIncludedInBackupClause(messageInclusionCutoffTime)}", *whereArgs)
+        .groupBy("$DATA_HASH_END, $REMOTE_KEY")
+        .run()
+        .forEach { cursor ->
+          gone -= MediaNameParts(plaintextHash = cursor.requireNonNullString(DATA_HASH_END), remoteKey = cursor.requireNonNullString(REMOTE_KEY))
+        }
+    }
+
+    return gone
+  }
+
+  /**
    * Given a set of media objects, this will return all of the items in the set that could not be found locally.
    */
-  fun getMediaObjectsThatCantBeFound(objects: Set<ArchivedMediaObject>): Set<ArchivedMediaObject> {
+  fun getMediaObjectsThatCantBeFound(objects: Set<ArchivedMediaObject>, messageInclusionCutoffTime: Long = 0): Set<ArchivedMediaObject> {
     if (objects.isEmpty()) {
       return emptySet()
     }
 
     val objectsByMediaId: MutableMap<String, ArchivedMediaObject> = objects.associateBy { it.mediaId }.toMutableMap()
+    val mediaRootBackupKey = SignalStore.backup.mediaRootBackupKey
 
     readableDatabase
       .select(*PROJECTION)
       .from(TABLE_NAME)
-      .where("$REMOTE_KEY NOT NULL AND $DATA_HASH_END NOT NULL")
+      .where("$REMOTE_KEY NOT NULL AND $DATA_HASH_END NOT NULL${buildMessageIncludedInBackupClause(messageInclusionCutoffTime)}")
       .groupBy("$DATA_HASH_END, $REMOTE_KEY")
       .run()
       .forEach { cursor ->
         val remoteKey = Base64.decode(cursor.requireNonNullString(REMOTE_KEY))
         val plaintextHash = Base64.decode(cursor.requireNonNullString(DATA_HASH_END))
-        val mediaId = MediaName.fromPlaintextHashAndRemoteKey(plaintextHash, remoteKey).toMediaId(SignalStore.backup.mediaRootBackupKey).encode()
-        val mediaIdThumbnail = MediaName.fromPlaintextHashAndRemoteKeyForThumbnail(plaintextHash, remoteKey).toMediaId(SignalStore.backup.mediaRootBackupKey).encode()
+        val mediaId = MediaName.fromPlaintextHashAndRemoteKey(plaintextHash, remoteKey).toMediaId(mediaRootBackupKey).encode()
+        val mediaIdThumbnail = MediaName.fromPlaintextHashAndRemoteKeyForThumbnail(plaintextHash, remoteKey).toMediaId(mediaRootBackupKey).encode()
 
         objectsByMediaId.remove(mediaId)
         objectsByMediaId.remove(mediaIdThumbnail)
@@ -4034,8 +4356,24 @@ class AttachmentTable(
     val size: Long,
     val plaintextHash: ByteArray?,
     val remoteKey: ByteArray?,
-    val stickerPackId: String?
+    val stickerPackId: String?,
+    val contentType: String?,
+    val quote: Boolean,
+    val stickerId: Int
   ) {
+    /**
+     * Whether a thumbnail for this attachment could ever have been uploaded, matches [buildThumbnailsThatNeedArchiveWorkQuery] and
+     * `BackupMessagesJob.toThumbnailMediaEntries`.
+     */
+    val couldHaveArchivedThumbnail: Boolean
+      get() {
+        return mmsId != WALLPAPER_MESSAGE_ID &&
+          !quote &&
+          stickerId == -1 &&
+          contentType != "image/svg+xml" &&
+          MediaUtil.isImageOrVideoType(contentType)
+      }
+
     override fun equals(other: Any?): Boolean {
       return this === other || attachmentId == (other as? RestorableAttachment)?.attachmentId
     }
@@ -4159,5 +4497,21 @@ class AttachmentTable(
     override fun toString(): String {
       return "attachmentId=${attachment.attachmentId}, mediaId=$mediaId, messageId=${attachment.mmsId}, isThumbnail=$isThumbnail, contentType=${attachment.contentType}, quote=${attachment.quote}, wallpaper=$isWallpaper, transferState=${attachment.transferState}, archiveTransferState=${attachment.archiveTransferState}, hasData=${attachment.hasData}, dateSent=${messageRecord?.dateSent}, messageType=${messageRecord?.type}, messageFrom=${messageRecord?.fromRecipient?.id}, messageTo=${messageRecord?.toRecipient?.id}, expiresIn=${messageRecord?.expiresIn}, expireStarted=${messageRecord?.expireStarted}"
     }
+  }
+
+  /**
+   * The base64 [DATA_HASH_END] and [REMOTE_KEY] that a [MediaName] is derived from.
+   */
+  data class MediaNameParts(val plaintextHash: String, val remoteKey: String)
+
+  enum class ArchiveTransferStateResetResult {
+    /** We cleared the state, so the media will be re-uploaded. */
+    RESET,
+
+    /** We left the state alone because there are no local bytes to re-upload, so the media is unrecoverable rather than merely out of date. */
+    SKIPPED_NO_LOCAL_DATA,
+
+    /** There was nothing to clear. The attachment is gone, or an upload is already underway. */
+    NOT_NEEDED
   }
 }

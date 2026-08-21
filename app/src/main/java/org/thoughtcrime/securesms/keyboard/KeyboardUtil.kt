@@ -8,22 +8,20 @@ package org.thoughtcrime.securesms.keyboard
 import android.net.Uri
 import androidx.annotation.WorkerThread
 import org.signal.core.util.bitmaps.BitmapUtil
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import java.util.concurrent.ExecutionException
-import java.util.concurrent.TimeoutException
 
 object KeyboardUtil {
+
+  private val TAG = Log.tag(KeyboardUtil::class)
 
   @WorkerThread
   fun getImageDetails(uri: Uri): ImageDetails? {
     return try {
       val (width, height) = BitmapUtil.getDimensions(AppDependencies.application.contentResolver.openInputStream(uri))
-      return ImageDetails(width = width, height = height, isSticker = uri.isForSticker())
-    } catch (e: InterruptedException) {
-      null
-    } catch (e: ExecutionException) {
-      null
-    } catch (e: TimeoutException) {
+      ImageDetails(width = width, height = height, isSticker = uri.isForSticker())
+    } catch (e: Exception) {
+      Log.w(TAG, "Unable to read details for the provided image.", e)
       null
     }
   }

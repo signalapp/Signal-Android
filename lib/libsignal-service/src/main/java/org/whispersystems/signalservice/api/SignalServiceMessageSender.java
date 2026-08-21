@@ -62,6 +62,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentStre
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceEditMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroupV2;
+import org.whispersystems.signalservice.api.messages.SignalServiceMessageLimits;
 import org.whispersystems.signalservice.api.messages.SignalServicePreview;
 import org.whispersystems.signalservice.api.messages.SignalServiceReceiptMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceStoryMessage;
@@ -1004,8 +1005,8 @@ public class SignalServiceMessageSender {
     Content.Builder     container   = new Content.Builder();
     DataMessage.Builder dataMessage = createDataMessage(message);
 
-    if (dataMessage.body != null && Utf8.size(dataMessage.body) > 2048) {
-      throw new ContentTooLargeException(Utf8.size(dataMessage.body), "UTF-8 size of the data message body was over 2048 bytes!");
+    if (dataMessage.body != null && Utf8.size(dataMessage.body) > SignalServiceMessageLimits.MAX_INLINE_BODY_SIZE_BYTES) {
+      throw new ContentTooLargeException(Utf8.size(dataMessage.body), "UTF-8 size of the data message body was over " + SignalServiceMessageLimits.MAX_INLINE_BODY_SIZE_BYTES + " bytes!");
     }
 
     return enforceMaxContentSize(container.dataMessage(dataMessage.build()).build());
@@ -1548,7 +1549,20 @@ public class SignalServiceMessageSender {
 
     blockedMessage.acisBinary(blocked.individuals.stream().filter(a -> a.getAci() != null).map(a -> a.getAci().toByteString()).collect(Collectors.toList()));
     blockedMessage.numbers(blocked.individuals.stream().filter(a -> a.getE164() != null).map(a -> a.getE164()).collect(Collectors.toList()));
-    blockedMessage.groupIds(blocked.groupIds.stream().map(ByteString::of).collect(Collectors.toList()));
+    blockedMessage.groupIds(blocked.groups.stream().map(g -> ByteString.of(g.getGroupId())).collect(Collectors.toList()));
+
+    blockedMessage.blockedE164s(blocked.individuals.stream().filter(a -> a.getE164() != null).map(a -> new SyncMessage.Blocked.BlockedE164.Builder()
+                                                                                                                              .e164(a.getE164())
+                                                                                                                              .timestamp(a.getBlockedAt())
+                                                                                                                              .build()).collect(Collectors.toList()));
+    blockedMessage.blockedAcis(blocked.individuals.stream().filter(a -> a.getAci() != null).map(a -> new SyncMessage.Blocked.BlockedAci.Builder()
+                                                                                                                            .aciBinary(a.getAci().toByteString())
+                                                                                                                            .timestamp(a.getBlockedAt())
+                                                                                                                            .build()).collect(Collectors.toList()));
+    blockedMessage.blockedGroups(blocked.groups.stream().map(g -> new SyncMessage.Blocked.BlockedGroup.Builder()
+                                                                                         .groupId(ByteString.of(g.getGroupId()))
+                                                                                         .timestamp(g.getBlockedAt())
+                                                                                         .build()).collect(Collectors.toList()));
 
     return container.syncMessage(syncMessage.blocked(blockedMessage.build()).build()).build();
   }

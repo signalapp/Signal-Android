@@ -5,6 +5,7 @@
 
 package org.signal.mediasend.screens.edit.video
 
+import android.graphics.Outline
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -13,12 +14,16 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewOutlineProvider
+import androidx.annotation.OptIn
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.media3.common.util.UnstableApi
+import androidx.media3.ui.AspectRatioFrameLayout
 import kotlinx.coroutines.launch
 import org.signal.core.util.Throttler
 import org.signal.core.util.getParcelableCompat
@@ -69,6 +74,8 @@ class VideoEditorFragment : Fragment() {
 
     player = view.findViewById(R.id.video_player)
     hud = view.findViewById(R.id.video_editor_hud)
+
+    shapeContentFrame(view)
 
     uri = requireArguments().getParcelableCompat(KEY_URI, Uri::class.java)!!
     isVideoGif = requireArguments().getBoolean(KEY_IS_VIDEO_GIF)
@@ -139,15 +146,23 @@ class VideoEditorFragment : Fragment() {
 
   fun onStateUpdate(focusedUri: Uri?, isTouchEnabled: Boolean, getOrCreateVideoTrimData: (Uri) -> VideoTrimData) {
     val currentlyFocused = focusedUri != null && focusedUri == uri
+
     if (IS_VIDEO_TRANSCODE_AVAILABLE) {
       if (currentlyFocused) {
         if (isVideoGif) {
           player.play()
         } else {
-          if (!isFocused) {
-            bindVideoTimeline(getOrCreateVideoTrimData(uri))
+          val videoTrimData = getOrCreateVideoTrimData(uri)
+
+          if (videoTrimData.isMuted) {
+            player.mute()
           } else {
-            val videoTrimData = getOrCreateVideoTrimData(focusedUri)
+            player.unmute()
+          }
+
+          if (!isFocused) {
+            bindVideoTimeline(videoTrimData)
+          } else {
             hud.isVisible = isTouchEnabled && !isVideoGif
             onEditVideoDuration(videoTrimData, isTouchEnabled)
           }
@@ -255,6 +270,26 @@ class VideoEditorFragment : Fragment() {
     }
   }
 
+  /** The content frame tracks the video's rectangle, but fills everything it is given until the player reports a size. */
+  @OptIn(UnstableApi::class)
+  private fun shapeContentFrame(view: View) {
+    val contentFrame: AspectRatioFrameLayout = view.findViewById(R.id.exo_content_frame) ?: return
+    val radius = VIDEO_CORNER_RADIUS_DP * resources.displayMetrics.density
+
+    contentFrame.outlineProvider = object : ViewOutlineProvider() {
+      override fun getOutline(outlined: View, outline: Outline) {
+        outline.setRoundRect(0, 0, outlined.width, outlined.height, radius)
+      }
+    }
+    contentFrame.clipToOutline = true
+
+    val width = requireArguments().getInt(KEY_WIDTH)
+    val height = requireArguments().getInt(KEY_HEIGHT)
+    if (width > 0 && height > 0) {
+      contentFrame.setAspectRatio(width / height.toFloat())
+    }
+  }
+
   private fun onSeek(position: Long, dragComplete: Boolean) {
     if (dragComplete) {
       videoScanThrottle.clear()
@@ -272,15 +307,21 @@ class VideoEditorFragment : Fragment() {
 
     private val IS_VIDEO_TRANSCODE_AVAILABLE = Build.VERSION.SDK_INT >= 26
 
+    private const val VIDEO_CORNER_RADIUS_DP = 12f
+
     private const val KEY_URI = "uri"
     private const val KEY_MAX_SEND = "max_send_size"
     private const val KEY_IS_VIDEO_GIF = "is_video_gif"
+    private const val KEY_WIDTH = "width"
+    private const val KEY_HEIGHT = "height"
 
-    fun arguments(uri: Uri, maxAttachmentSize: Long, isVideoGif: Boolean): Bundle {
+    fun arguments(uri: Uri, maxAttachmentSize: Long, isVideoGif: Boolean, width: Int = 0, height: Int = 0): Bundle {
       return Bundle().apply {
         putParcelable(KEY_URI, uri)
         putLong(KEY_MAX_SEND, maxAttachmentSize)
         putBoolean(KEY_IS_VIDEO_GIF, isVideoGif)
+        putInt(KEY_WIDTH, width)
+        putInt(KEY_HEIGHT, height)
       }
     }
 

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <!-- Emoji category headers, shown in the emoji keyboard and the react-with-any-emoji sheet -->
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Emotikone &amp; Persona</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Natyrë</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Ushqim</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Veprimtari</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Vende</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Objekte</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Simbole</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Flamuj</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emotikone</string>
+</resources>

@@ -172,6 +172,37 @@ class InAppPaymentRecurringContextJobTest {
   }
 
   @Test
+  fun `Given a linked device, when I run for a donation, then I expect success`() {
+    every { mockSignalStore.account.isLinkedDevice } returns true
+
+    val activeSubscription = inAppPaymentsTestRule.createActiveSubscription()
+    inAppPaymentsTestRule.initializeActiveSubscriptionMock(activeSubscription = activeSubscription)
+
+    val iap = insertInAppPayment()
+    val job = InAppPaymentRecurringContextJob.create(iap)
+    job.onAdded()
+
+    val result = job.run()
+    assertThat(result.isSuccess).isTrue()
+  }
+
+  @Test
+  fun `Given a linked device, when I run for a backup, then I expect failure`() {
+    every { mockSignalStore.account.isLinkedDevice } returns true
+
+    val activeSubscription = inAppPaymentsTestRule.createActiveSubscription()
+    inAppPaymentsTestRule.initializeActiveSubscriptionMock(activeSubscription = activeSubscription)
+
+    val iap = insertInAppPayment(type = InAppPaymentType.RECURRING_BACKUP)
+    val job = InAppPaymentRecurringContextJob.create(iap)
+    job.onAdded()
+
+    val result = job.run()
+    assertThat(result.isFailure).isTrue()
+    verify(atLeast = 0, atMost = 0) { AppDependencies.donationsService.submitReceiptCredentialRequestSync(any(), any()) }
+  }
+
+  @Test
   fun `Given END state, when I run, then I expect failure`() {
     val iap = insertInAppPayment(
       state = InAppPaymentTable.State.END

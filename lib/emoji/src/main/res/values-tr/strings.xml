@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <!-- Emoji category headers, shown in the emoji keyboard and the react-with-any-emoji sheet -->
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Gülenyüzler ve Kişiler</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Doğa</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Yiyecekler</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Etkinlikler</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Mekanlar</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Nesneler</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Semboller</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Bayraklar</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">İfadeler</string>
+</resources>

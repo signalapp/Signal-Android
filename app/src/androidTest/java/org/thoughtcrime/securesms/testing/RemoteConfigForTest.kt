@@ -46,8 +46,7 @@ annotation class RawFlag(val key: String, val value: String)
  */
 enum class TestRemoteConfigFlag(private val property: KProperty0<*>) {
   INTERNAL_USER(RemoteConfig::internalUser),
-  DEFAULT_MAX_BACKOFF(RemoteConfig::defaultMaxBackoff),
-  DISAPPEAR_MORE(RemoteConfig::disappearMore);
+  DEFAULT_MAX_BACKOFF(RemoteConfig::defaultMaxBackoff);
 
   val key: String
     get() {

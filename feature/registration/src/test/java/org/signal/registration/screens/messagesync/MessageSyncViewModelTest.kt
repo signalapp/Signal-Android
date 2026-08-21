@@ -7,6 +7,7 @@ package org.signal.registration.screens.messagesync
 
 import assertk.assertThat
 import assertk.assertions.contains
+import assertk.assertions.containsExactly
 import assertk.assertions.doesNotContain
 import assertk.assertions.isEqualTo
 import assertk.assertions.isFalse
@@ -78,6 +79,17 @@ class MessageSyncViewModelTest {
     assertThat(viewModel.state.value.isFinishing).isFalse()
     coVerify(exactly = 0) { mockRepository.restoreLinkedDeviceFromStorageService() }
     assertThat(emittedParentEvents).doesNotContain(RegistrationFlowEvent.NavigateToScreen(RegistrationRoute.FullyComplete))
+  }
+
+  @Test
+  fun `applyEvent LearnMoreClick emits an action to open the learn more article`() = runTest(testDispatcher) {
+    every { mockRepository.restoreLinkAndSyncBackup() } returns flowOf(LinkAndSyncProgress.Failed())
+
+    val viewModel = createViewModel()
+    val actions = collectActions(viewModel)
+    viewModel.applyEvent(viewModel.state.value, MessageSyncScreenEvent.LearnMoreClick) {}
+
+    assertThat(actions).containsExactly(MessageSyncScreenAction.OpenLearnMoreArticle)
   }
 
   @Test
@@ -169,5 +181,11 @@ class MessageSyncViewModelTest {
     // Keep the WhileSubscribed state flow hot so state.value reflects updates during the test.
     backgroundScope.launch { viewModel.state.collect {} }
     return viewModel
+  }
+
+  private fun TestScope.collectActions(viewModel: MessageSyncViewModel): List<MessageSyncScreenAction> {
+    val actions = mutableListOf<MessageSyncScreenAction>()
+    backgroundScope.launch(testDispatcher) { viewModel.actions.collect { actions.add(it) } }
+    return actions
   }
 }

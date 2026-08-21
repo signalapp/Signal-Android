@@ -26,6 +26,9 @@ import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.util.RemoteConfig
 import java.io.ByteArrayOutputStream
 import java.io.PrintStream
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.days
+import kotlin.time.Duration.Companion.minutes
 
 /**
  * Records noteworthy runtime issues to the [LogDatabase] issue table on a low-priority background thread.
@@ -41,6 +44,7 @@ object IssueReporter {
   const val ISSUE_SLOW_DATABASE_WRITE = "Slow Database Write"
   const val ISSUE_SLOW_DATABASE_READ = "Slow Database Read"
   const val ISSUE_SLOW_DATABASE_LOCK = "Slow Database Lock"
+  const val ISSUE_STORAGE_SYNC_LOOP = "Storage Sync Loop"
 
   const val SLOW_WRITE_LOW_PRIORITY_MS = 1_000L
   const val SLOW_WRITE_MEDIUM_PRIORITY_MS = 5_000L
@@ -50,6 +54,12 @@ object IssueReporter {
   const val SLOW_LOCK_MEDIUM_PRIORITY_MS = 5_000L
 
   private const val NON_INTERNAL_DEBOUNCE_MS = 5_000L
+
+  /** Applies per issue name, so a persistently-firing issue can't bury every other notification. */
+  private val DEFAULT_NOTIFY_COOLDOWN = 30.minutes
+
+  /** Ages entries out of the persisted map. Must exceed the longest cooldown a caller passes. */
+  private val MAX_NOTIFY_TIME_AGE = 7.days
 
   private val IGNORED_DB_STACK_TRACE_CLASSES = listOf(
     "BackupRepository",
@@ -72,9 +82,7 @@ object IssueReporter {
   /**
    * Records a generic issue. Safe to call from any thread.
    */
-  @JvmStatic
-  @JvmOverloads
-  fun report(name: String, description: String, throwable: Throwable? = null, priority: IssuePriority = IssuePriority.LOW, duration: Long? = null) {
+  fun report(name: String, description: String, throwable: Throwable? = null, priority: IssuePriority = IssuePriority.LOW, duration: Long? = null, notifyCooldown: Duration = DEFAULT_NOTIFY_COOLDOWN) {
     val now = System.currentTimeMillis()
 
     if (!RemoteConfig.internalUser) {
@@ -86,7 +94,9 @@ object IssueReporter {
 
     requests.add(IssueRequest(now, BuildConfig.VERSION_NAME, name, description, throwable, priority, duration))
 
-    maybeNotify(name, priority)
+    if (RemoteConfig.internalUser) {
+      maybeNotify(name, priority, notifyCooldown)
+    }
   }
 
   @JvmStatic
@@ -138,12 +148,17 @@ object IssueReporter {
     report(ISSUE_SLOW_DATABASE_READ, query?.trim() ?: "", throwable, priority = priority, duration = durationMs)
   }
 
-  private fun maybeNotify(name: String, priority: IssuePriority) {
-    if (!RemoteConfig.internalUser) {
+  /** Synchronized because the cooldown is a read-modify-write of a persisted value, and this is safe to call anywhere. */
+  @Synchronized
+  private fun maybeNotify(name: String, priority: IssuePriority, cooldown: Duration) {
+    if (priority.value < SignalStore.internal.issueNotificationPriority.value) {
       return
     }
 
-    if (priority.value < SignalStore.internal.issueNotificationPriority.value) {
+    val now = System.currentTimeMillis()
+    val notifyTimes = SignalStore.internal.issueNotifyTimes
+
+    if (now - (notifyTimes.lastNotifyTimeByName[name] ?: 0) < cooldown.inWholeMilliseconds) {
       return
     }
 
@@ -160,6 +175,15 @@ object IssueReporter {
       .build()
 
     NotificationManagerCompat.from(context).notify(NotificationIds.INTERNAL_ERROR, notification)
+
+    val updatedTimes = notifyTimes
+      .lastNotifyTimeByName
+      .filterValues { now < it || now - it < MAX_NOTIFY_TIME_AGE.inWholeMilliseconds }
+      .plus(name to now)
+
+    SignalStore.internal.issueNotifyTimes = notifyTimes.copy(
+      lastNotifyTimeByName = updatedTimes
+    )
   }
 
   private fun isExpectedSlowDatabaseOperation(): Boolean {

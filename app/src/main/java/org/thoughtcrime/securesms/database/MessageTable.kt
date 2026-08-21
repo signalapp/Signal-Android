@@ -2263,10 +2263,17 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     return getMessages(messageIds)
   }
 
-  private fun getOriginalEditedMessageRecord(messageId: Long): Long {
+  /**
+   * Returns the id of the revision that [messageId] was created as an edit of, or 0 if it isn't an edit.
+   */
+  private fun getPreviousRevisionId(messageId: Long, originalMessageId: Long): Long {
+    if (originalMessageId <= 0) {
+      return 0
+    }
+
     return readableDatabase.select(ID)
       .from(TABLE_NAME)
-      .where("$TABLE_NAME.$LATEST_REVISION_ID = ?", messageId)
+      .where("($TABLE_NAME.$ID = ? OR $TABLE_NAME.$ORIGINAL_MESSAGE_ID = ?) AND $TABLE_NAME.$ID < ?", originalMessageId, originalMessageId, messageId)
       .orderBy("$ID DESC")
       .limit(1)
       .run()
@@ -3011,7 +3018,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
           null
         }
 
-        val editedMessage = getOriginalEditedMessageRecord(messageId)
+        val editedMessage = getPreviousRevisionId(messageId, cursor.requireLong(ORIGINAL_MESSAGE_ID))
 
         OutgoingMessage(
           recipient = threadRecipient,
@@ -3715,7 +3722,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
    * If it is not, but the new message is a collapsing type, mark it as a new collapsed head. Returns whether a message was collapsed.
    */
   fun maybeCollapseMessage(db: SQLiteDatabase, messageId: Long, threadId: Long, dateReceived: Long, messageExtras: MessageExtras?, messageType: Long): Boolean {
-    if (!RemoteConfig.collapseEvents || !CollapsibleEvents.isCollapsibleType(messageType, messageExtras)) {
+    if (!CollapsibleEvents.isCollapsibleType(messageType, messageExtras)) {
       return false
     }
 
@@ -5082,8 +5089,16 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     for (record in records) {
       val timestamp = record.dateSent
 
+      if (timestamp <= QUOTE_NOT_PRESENT_ID) {
+        continue
+      }
+
       byQuoteDescriptor[QuoteDescriptor(timestamp, record.fromRecipient.id)] = record
       timestamps.add(timestamp)
+    }
+
+    if (timestamps.isEmpty()) {
+      return emptySet()
     }
 
     val quotedIds: MutableSet<Long> = mutableSetOf()
@@ -5095,14 +5110,14 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     readableDatabase
       .select(ID, QUOTE_ID, QUOTE_AUTHOR)
       .from(TABLE_NAME)
-      .where("${quoteIdQuery.where} AND $SCHEDULED_DATE = -1", quoteIdQuery.whereArgs)
+      .where("${quoteIdQuery.where} AND $QUOTE_AUTHOR > 0 AND $SCHEDULED_DATE = -1", quoteIdQuery.whereArgs)
       .run()
       .forEach { cursor ->
         val messageId = cursor.requireLong(ID)
         if (messageId !in pastRevisionMessageIds) {
           val quoteLocator = QuoteDescriptor(
             timestamp = cursor.requireLong(QUOTE_ID),
-            author = RecipientId.from(cursor.requireNonNullString(QUOTE_AUTHOR))
+            author = RecipientId.from(cursor.requireLong(QUOTE_AUTHOR))
           )
 
           if (byQuoteDescriptor.containsKey(quoteLocator)) {
@@ -5705,7 +5720,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     val threads: MutableList<Long> = LinkedList()
 
     readableDatabase
-      .select(ID, TYPE, THREAD_ID, EXPIRES_IN, EXPIRE_STARTED, LATEST_REVISION_ID)
+      .select(ID, TYPE, THREAD_ID, DATE_RECEIVED, EXPIRES_IN, EXPIRE_STARTED, LATEST_REVISION_ID)
       .from(TABLE_NAME)
       .where("$DATE_SENT = ? AND ($FROM_RECIPIENT_ID = ? OR ($FROM_RECIPIENT_ID = ? AND $outgoingTypeClause))", messageId.timetamp, messageId.recipientId, Recipient.self().id)
       .run()
@@ -5713,6 +5728,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         val id = cursor.requireLong(ID)
         val type = cursor.requireLong(TYPE)
         val threadId = cursor.requireLong(THREAD_ID)
+        val dateReceived = cursor.requireLong(DATE_RECEIVED)
         val expiresIn = cursor.requireLong(EXPIRES_IN)
         val expireStarted = cursor.requireLong(EXPIRE_STARTED).let {
           if (it > 0) {
@@ -5748,9 +5764,9 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         val latest: Long? = threadToLatestRead[threadId]
 
         threadToLatestRead[threadId] = if (latest != null) {
-          max(latest, messageId.timetamp)
+          max(latest, dateReceived)
         } else {
-          messageId.timetamp
+          dateReceived
         }
       }
 

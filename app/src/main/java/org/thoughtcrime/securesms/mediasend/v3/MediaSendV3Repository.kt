@@ -308,8 +308,8 @@ object MediaSendV3Repository : MediaSendRepository {
     return !RemoteConfig.cameraXMixedModelBlocklist.asListContains(Build.MODEL)
   }
 
-  override fun getMediaConstraints(): MediaConstraints {
-    return PushMediaConstraints(null)
+  override fun getMediaConstraints(quality: SentMediaQuality?): MediaConstraints {
+    return PushMediaConstraints(quality)
   }
 
   override var storyMaxVideoDuration: Duration = Stories.MAX_VIDEO_DURATION_MILLIS.milliseconds

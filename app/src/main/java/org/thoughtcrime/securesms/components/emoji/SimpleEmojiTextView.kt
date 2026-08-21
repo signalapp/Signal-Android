@@ -7,6 +7,7 @@ import android.text.TextUtils
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
 import org.signal.core.util.ThrottledDebouncer
+import org.signal.emoji.EmojiProvider
 import org.thoughtcrime.securesms.components.spoiler.SpoilerRendererDelegate
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import java.util.Optional

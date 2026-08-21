@@ -5,12 +5,12 @@ import android.net.Uri
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.concurrent.SignalExecutors
-import org.thoughtcrime.securesms.components.emoji.Emoji
-import org.thoughtcrime.securesms.components.emoji.EmojiPageModel
+import org.signal.emoji.Emoji
+import org.signal.emoji.EmojiPageModel
+import org.signal.emoji.EmojiSource
 import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel
 import org.thoughtcrime.securesms.database.EmojiSearchTable
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.emoji.EmojiSource
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import java.util.function.Consumer
 

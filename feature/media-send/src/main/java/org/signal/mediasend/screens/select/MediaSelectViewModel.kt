@@ -8,6 +8,7 @@ package org.signal.mediasend.screens.select
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -42,6 +43,8 @@ internal class MediaSelectViewModel(
   private val parentState: StateFlow<MediaSendFlowState>,
   private val parentEventEmitter: (MediaSendFlowEvent) -> Unit,
   mediaFolder: MediaFolder?,
+  /** Passed straight through: the rail follows it, and nothing about it is this screen's to decide. */
+  val selectionAdditions: Flow<Media>,
   private val repository: MediaSendRepository = MediaSendDependencies.mediaSendRepository
 ) : EventDrivenViewModel<MediaSelectScreenEvents>(TAG) {
 
@@ -92,6 +95,7 @@ internal class MediaSelectViewModel(
       is MediaSelectScreenEvents.ReorderSelectedMedia -> parentEventEmitter(MediaSendFlowEvent.ReorderSelectedMedia(event.fromIndex, event.toIndex))
       MediaSelectScreenEvents.NavigateToEdit -> parentEventEmitter(MediaSendFlowEvent.NavigateToEdit)
       MediaSelectScreenEvents.NavigateToCamera -> parentEventEmitter(MediaSendFlowEvent.NavigateToCamera)
+      MediaSelectScreenEvents.NavigateBack -> parentEventEmitter(MediaSendFlowEvent.NavigateBackFromSelect)
       MediaSelectScreenEvents.Refresh -> refresh()
       MediaSelectScreenEvents.RequestMediaPermissions -> requestReadMediaPermissions(reportDenial = true)
       MediaSelectScreenEvents.SelectMorePhotos -> requestReadMediaPermissions(reportDenial = false)
@@ -155,11 +159,12 @@ internal class MediaSelectViewModel(
   class Factory(
     private val parentState: StateFlow<MediaSendFlowState>,
     private val parentEventEmitter: (MediaSendFlowEvent) -> Unit,
-    private val mediaFolder: MediaFolder?
+    private val mediaFolder: MediaFolder?,
+    private val selectionAdditions: Flow<Media>
   ) : ViewModelProvider.Factory {
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return MediaSelectViewModel(parentState, parentEventEmitter, mediaFolder) as T
+      return MediaSelectViewModel(parentState, parentEventEmitter, mediaFolder, selectionAdditions) as T
     }
   }
 }

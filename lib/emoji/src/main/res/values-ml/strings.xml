@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <!-- Emoji category headers, shown in the emoji keyboard and the react-with-any-emoji sheet -->
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">സ്മൈലി &amp; ആളുകൾ</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">പ്രകൃതി</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">ഭക്ഷണം</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">പ്രവർത്തനങ്ങൾ</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">സ്ഥലങ്ങൾ</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">വസ്തുക്കൾ</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">ചിഹ്നങ്ങൾ</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">പതാകകൾ</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">ഇമോട്ടിക്കോണുകൾ</string>
+</resources>

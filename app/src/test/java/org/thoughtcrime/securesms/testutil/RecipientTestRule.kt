@@ -65,7 +65,6 @@ class RecipientTestRule : TestRule {
       )
 
       mockkObject(RemoteConfig)
-      every { RemoteConfig.collapseEvents } returns true
 
       every { signalStore.account.aci } returns selfAci
       every { signalStore.account.requireAci() } returns selfAci
@@ -188,7 +187,7 @@ class RecipientTestRule : TestRule {
     }
     SignalDatabase.recipients.setProfileName(id, profileName)
     SignalDatabase.recipients.setProfileKeyIfAbsent(id, ProfileKey(Random.nextBytes(32)))
-    SignalDatabase.recipients.setCapabilities(id, SignalServiceProfile.Capabilities(true, true, true))
+    SignalDatabase.recipients.setCapabilities(id, SignalServiceProfile.Capabilities(true, true, true, false))
     SignalDatabase.recipients.setProfileSharing(id, profileSharing)
     SignalDatabase.recipients.markRegistered(id, aci)
     return id

@@ -7,12 +7,12 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import org.thoughtcrime.securesms.components.emoji.EmojiPageModel;
+import org.signal.emoji.EmojiPageModel;
 import org.thoughtcrime.securesms.components.emoji.EmojiPageViewGridAdapter;
 import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
-import org.thoughtcrime.securesms.emoji.EmojiCategory;
+import org.signal.emoji.EmojiCategory;
 import org.thoughtcrime.securesms.keyboard.emoji.EmojiCategoryMappingModel;
 import org.thoughtcrime.securesms.keyboard.emoji.RecentsMappingModel;
 import org.thoughtcrime.securesms.keyboard.emoji.search.EmojiSearchRepository;

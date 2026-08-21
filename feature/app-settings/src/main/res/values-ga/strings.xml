@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <!-- RegistrationLockV2Dialog -->
+    <string name="RegistrationLockV2Dialog_turn_on_registration_lock">An bhfuil fonn ort Glas Clárúcháin a chur ar siúl?</string>
+    <string name="RegistrationLockV2Dialog_turn_off_registration_lock">An bhfuil fonn ort an Glas Clárúcháin a mhúchadh?</string>
+    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Má ligeann tú d\'UAP Signal i ndearmad nuair a chláróidh tú le Signal arís, cuirfear do chuntas faoi ghlas ar feadh 7 lá.</string>
+    <string name="RegistrationLockV2Dialog_turn_on">Cuir ar siúl</string>
+    <string name="RegistrationLockV2Dialog_turn_off">Múch</string>
+    <string name="preferences__advanced_pin_settings">Ardroghanna UAP</string>
+    <string name="preferences__delete_account">Scrios cuntas</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="RegistrationLockFragment__switch_keyboard">Aistrigh eochairchlár</string>
+    <string name="preferences_chats__transfer_account">Cuntas a Aistriú</string>
+    <string name="preferences_chats__transfer_account_to_a_new_android_device">Aistrigh cuntas chuig gléas nua Android</string>
+    <string name="preferences_app_protection__signal_pin">UAP Signal</string>
+    <string name="preferences_app_protection__create_a_pin">Cruthaigh UAP</string>
+    <string name="preferences_app_protection__change_your_pin">Athraigh d\'UAP</string>
+    <string name="preferences_app_protection__pin_reminders">Meabhrúcháin UAP</string>
+    <string name="preferences_app_protection__turn_off">Múch</string>
+    <string name="preferences_app_protection__confirm_pin">Deimhnaigh an UAP</string>
+    <string name="preferences_app_protection__confirm_your_signal_pin">UAP Signal a Dheimhniú</string>
+    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Cinntigh go gcuirfidh tú d\'UAP de do ghlanmheabhair nó go ndéanfaidh tú í a stóráil go slán toisc nach féidir í a aisghabháil. Má dhéanann tú dearmad ar d\'UAP, seans go gcaillfidh tú sonraí agus do chuntas Signal á athchlárú agat.</string>
+    <string name="preferences_app_protection__incorrect_pin_try_again">UAP mícheart. Triail arís.</string>
+    <string name="preferences_app_protection__registration_lock">Glas Clárúcháin</string>
+    <!-- Option in settings that will take use to re-register if they are no longer registered -->
+    <string name="preferences_account_reregister">Athchláraigh cuntas</string>
+    <!-- Option in settings that will take user to our website or playstore to update their expired build -->
+    <string name="preferences_account_update_signal">Nuashonraigh Signal</string>
+    <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
+    <string name="preferences_account_delete_all_data">Scrios na sonraí go léir</string>
+    <!-- Title for confirmation dialog confirming user wants to delete all their data -->
+    <string name="preferences_account_delete_all_data_confirmation_title">Scrios na sonraí go léir?</string>
+    <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
+    <string name="preferences_account_delete_all_data_confirmation_message">Athshocrófar an aip agus scriosfar gach teachtaireacht leis sin. Dúnfar an app nuair a bheidh an próiseas seo críochnaithe.</string>
+    <!-- Confirmation action to proceed with application data deletion -->
+    <string name="preferences_account_delete_all_data_confirmation_proceed">Ar Aghaidh</string>
+    <!-- Confirmation action to cancel application data deletion -->
+    <string name="preferences_account_delete_all_data_confirmation_cancel">Cuir ar ceal</string>
+
+    <!-- AccountSettingsFragment -->
+    <string name="AccountSettingsFragment__account">Cuntas</string>
+    <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Ní iarrfar ort chomh minic le himeacht ama</string>
+    <string name="AccountSettingsFragment__require_your_signal_pin">Éiligh d\'UAP Signal le d\'uimhir ghutháin a chlárú le Signal arís</string>
+    <string name="AccountSettingsFragment__change_phone_number">Athraigh uimhir ghutháin</string>
+    <!-- Account setting that allows user to request and export their signal account data -->
+    <string name="AccountSettingsFragment__request_account_data">Sonraí do chuntais</string>
+    <!-- Section header for the Signal Login section of account settings -->
+    <string name="AccountSettingsFragment__signal_login">Logáil Isteach Signal</string>
+    <!-- Title of the card that opens the user\'s Signal Login account and recovery keys -->
+    <string name="AccountSettingsFragment__account_and_recovery">Account &amp; recovery</string>
+    <!-- Subtitle of the Signal Login card describing how many keys make up the login -->
+    <plurals name="AccountSettingsFragment__d_keys">
+        <item quantity="one">%1$d key</item>
+        <item quantity="two">%1$d keys</item>
+        <item quantity="few">%1$d keys</item>
+        <item quantity="many">%1$d keys</item>
+        <item quantity="other">%1$d keys</item>
+    </plurals>
+    <!-- Description of what a Signal Login is, shown below the Signal Login card -->
+    <string name="AccountSettingsFragment__your_signal_login_is_used_to_recover">Your Signal Login is used to recover and restore your account. Keep these keys stored safely in a password manager you trust.</string>
+    <!-- Section header for the two-factor authentication section of account settings -->
+    <string name="AccountSettingsFragment__two_factor_authentication">Two-factor authentication</string>
+    <!-- Account setting that takes the user to the authenticator app setup flow -->
+    <string name="AccountSettingsFragment__authenticator_app">Authenticator app</string>
+    <!-- Description of the authenticator app setting -->
+    <string name="AccountSettingsFragment__use_an_authenticator_app">Use an authenticator app to generate one-time verification codes</string>
+    <!-- Description of the authenticator app setting when one has already been set up -->
+    <string name="AccountSettingsFragment__enabled">Cumasaithe</string>
+    <!-- Account setting for setting up a physical security key -->
+    <string name="AccountSettingsFragment__security_keys">Security keys</string>
+    <!-- Description of the security keys setting -->
+    <string name="AccountSettingsFragment__set_up_using_a_physical_security_key">Set up using a physical security key</string>
+    <!-- Description of two-factor authentication, shown below the two-factor authentication rows -->
+    <string name="AccountSettingsFragment__use_a_second_form_of_authentication">Use a second form of authentication to protect your account when using your Signal Login on a new device.</string>
+    <!-- Clickable text that takes the user to a support article -->
+    <string name="AccountSettingsFragment__learn_more">Tuilleadh faisnéise</string>
+
+    <!-- AuthenticatorSetupScreen -->
+    <!-- Title of the screen that walks the user through setting up an authenticator app -->
+    <string name="AuthenticatorSetupScreen__authenticator_app">Authenticator app</string>
+    <!-- Instructions shown at the top of the authenticator app setup screen -->
+    <string name="AuthenticatorSetupScreen__follow_these_steps">Follow these steps to set up your authenticator app.</string>
+    <!-- Clickable text that takes the user to a support article -->
+    <string name="AuthenticatorSetupScreen__learn_more">Tuilleadh faisnéise</string>
+    <!-- Header of the first step of authenticator app setup -->
+    <string name="AuthenticatorSetupScreen__step_1">Step 1</string>
+    <!-- Body of the first step of authenticator app setup -->
+    <string name="AuthenticatorSetupScreen__install_a_trusted_authenticator_app">Install a trusted authenticator app on your device.</string>
+    <!-- Header of the second step of authenticator app setup -->
+    <string name="AuthenticatorSetupScreen__step_2">Step 2</string>
+    <!-- Body of the second step of authenticator app setup -->
+    <string name="AuthenticatorSetupScreen__open_your_authenticator_app">Open your authenticator app by tapping the button below to add your Signal account.</string>
+    <!-- Button that opens the user\'s authenticator app -->
+    <string name="AuthenticatorSetupScreen__open">Open</string>
+    <!-- Text above the setup key explaining that it can be entered by hand instead -->
+    <string name="AuthenticatorSetupScreen__or_you_can_copy_this_key">Or you can copy this key to manually set it up.</string>
+    <!-- Button that copies the setup key to the clipboard -->
+    <string name="AuthenticatorSetupScreen__copy">Cóipeáil</string>
+    <!-- Toast shown after the setup key has been copied to the clipboard -->
+    <string name="AuthenticatorSetupScreen__copied_to_clipboard">Cóipeáilte chuig an ngearrthaisce</string>
+    <!-- Toast shown when there is no app installed that can handle the authenticator setup link -->
+    <string name="AuthenticatorSetupScreen__no_authenticator_app_found">No authenticator app found</string>
+    <!-- Header of the third step of authenticator app setup -->
+    <string name="AuthenticatorSetupScreen__step_3">Step 3</string>
+    <!-- Body of the third step of authenticator app setup -->
+    <string name="AuthenticatorSetupScreen__copy_the_code_thats_generated">Copy the code that\'s generated and return here to continue.</string>
+    <!-- Button that advances from the setup instructions to entering a code -->
+    <string name="AuthenticatorSetupScreen__continue">Lean ar aghaidh</string>
+
+    <!-- AuthenticatorCodeEntryScreen -->
+    <!-- Title of the screen where the user enters the code from their authenticator app -->
+    <string name="AuthenticatorCodeEntryScreen__enter_your_code">Enter your code</string>
+    <!-- Instructions shown above the code entry field -->
+    <string name="AuthenticatorCodeEntryScreen__enter_the_6_digit_code">Enter the 6-digit code from your authenticator app.</string>
+    <!-- Label of the code entry field -->
+    <string name="AuthenticatorCodeEntryScreen__code">Cód</string>
+    <!-- Button that submits the entered code -->
+    <string name="AuthenticatorCodeEntryScreen__done">Déanta</string>
+    <!-- Toast shown after an authenticator app has been successfully set up -->
+    <string name="AuthenticatorCodeEntryScreen__authenticator_app_added">Authenticator app added</string>
+</resources>

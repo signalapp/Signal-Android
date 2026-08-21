@@ -75,6 +75,7 @@ class ContactArchiveExporter(private val cursor: Cursor, private val selfId: Lon
       .username(cursor.requireString(RecipientTable.USERNAME)?.takeIf { it.isValidUsername() })
       .e164(cursor.requireString(RecipientTable.E164)?.e164ToLong())
       .blocked(cursor.requireBoolean(RecipientTable.BLOCKED))
+      .blockedAtTimestamp(cursor.requireLong(RecipientTable.BLOCKED_AT))
       .visibility(Recipient.HiddenState.deserialize(cursor.requireInt(RecipientTable.HIDDEN)).toRemote())
       .profileKey(cursor.requireString(RecipientTable.PROFILE_KEY)?.let { ProfileKeyUtil.profileKeyOrNull(it)?.serialize()?.toByteString() })
       .profileSharing(cursor.requireBoolean(RecipientTable.PROFILE_SHARING))

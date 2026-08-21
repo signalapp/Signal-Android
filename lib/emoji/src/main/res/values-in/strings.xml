@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <!-- Emoji category headers, shown in the emoji keyboard and the react-with-any-emoji sheet -->
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Smiley &amp; Orang</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Alam</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Makanan</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Aktivitas</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Tempat</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Obyek</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Simbol</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Bendera</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emotikon</string>
+</resources>

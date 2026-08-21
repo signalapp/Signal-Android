@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <!-- Emoji category headers, shown in the emoji keyboard and the react-with-any-emoji sheet -->
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">સ્માઇલીઝ &amp; લોકો</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">પ્રકૃતિ</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">ખોરાક</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">પ્રવત્તિઓ</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">સ્થાનો</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">વસ્તુઓ</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">ચિહ્નો</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">ફ્લેગ</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">ઇમોટિકોન્સ</string>
+</resources>

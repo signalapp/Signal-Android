@@ -19,7 +19,7 @@ import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.avatar.AvatarPickerStorage;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
-import org.thoughtcrime.securesms.emoji.EmojiFiles;
+import org.signal.emoji.EmojiFiles;
 import org.thoughtcrime.securesms.providers.PartProvider;
 
 import java.io.FileNotFoundException;

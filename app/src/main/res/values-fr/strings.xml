@@ -105,7 +105,7 @@
     <!-- Text in a button that allows users to manage which media Signal has access to -->
     <string name="AttachmentKeyboard_manage">Gérer</string>
     <!-- Option in menu to select more photos that Signal will have access to -->
-    <string name="AttachmentKeyboard_select_more_photos">Sélectionner d’autres photos</string>
+    <string name="AttachmentKeyboard_select_more_photos">Sélectionner d\'autres photos</string>
     <!-- Option in menu to go to settings -->
     <string name="AttachmentKeyboard_go_to_settings">Accéder aux paramètres</string>
     <!-- Text explaining that Signal has limited access to photos -->
@@ -115,7 +115,7 @@
 
     <!-- MediaGalleryFragment -->
     <!-- Text describing that no photos or videos are currently found in the gallery and that Signal can only access media that the user allows -->
-    <string name="MediaGalleryFragment__no_photos_found">Aucune photo ou vidéo disponible. Signal ne peut accéder qu’aux photos et vidéos que vous avez sélectionnées.</string>
+    <string name="MediaGalleryFragment__no_photos_found">Aucune photo ou vidéo disponible. Signal ne peut accéder qu\'aux photos et vidéos que vous avez sélectionnées.</string>
 
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">Impossible de trouver une appli pour sélectionner le média.</string>
@@ -124,7 +124,7 @@
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Pour joindre une position géographique, Signal doit accéder à l\'application Position, mais vous lui en avez interdit l\'accès. Ouvrez l\'application Paramètres de votre appareil, puis touchez Applications &gt; Signal &gt; Autorisations et activez \"Position\".</string>
 
     <!-- Dialog title asking users for location permission -->
-    <string name="AttachmentManager_signal_allow_access_location">Autoriser l’accès à votre position</string>
+    <string name="AttachmentManager_signal_allow_access_location">Autoriser l\'accès à votre position</string>
     <!-- Dialog description that will explain the steps needed to give location permission -->
     <string name="AttachmentManager_signal_to_send_location">Pour partager votre position :</string>
     <!-- Alert dialog description asking for location permission -->
@@ -132,7 +132,7 @@
     <!-- Toast text explaining Signal\'s need for location access -->
     <string name="AttachmentManager_signal_needs_location_access">Pour partager votre position, autorisez Signal à accéder aux services de localisation de votre téléphone.</string>
     <!-- Dialog title asking users for gallery storage permission -->
-    <string name="AttachmentManager_signal_allow_storage">Autoriser l’accès au stockage</string>
+    <string name="AttachmentManager_signal_allow_storage">Autoriser l\'accès au stockage</string>
     <!-- Dialog description that will explain the steps needed to give gallery storage permission -->
     <string name="AttachmentManager_signal_to_show_photos">Pour afficher les photos et vidéos :</string>
     <!-- Toast text explaining Signal\'s need for storage access -->
@@ -171,6 +171,8 @@
     <string name="BlockedUsersActivity__block_user">Bloquer cet utilisateur ?</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">%1$s ne pourra ni vous appeler, ni vous envoyer des messages.</string>
     <string name="BlockedUsersActivity__block">Bloquer</string>
+    <!-- Subtitle shown under a blocked user. Placeholder is the time they were blocked-->
+    <string name="BlockedUsersActivity__blocked_on_s">Bloqué le %1$s</string>
 
     <!-- CreditCardFragment -->
     <!-- Title of fragment -->
@@ -428,7 +430,6 @@
     <!-- Accessibility text associated with image button to send an edited message. -->
     <string name="ConversationActivity_send_edit">Envoyer le message modifié</string>
     <string name="ConversationActivity_compose_message">Rédiger un message</string>
-    <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Oups ! Une erreur s\'est produite lors de l\'ajout de la pièce jointe.</string>
     <!-- Toast shown when user is unable to find the recipient when sending a message -->
     <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Destinataire incorrect : saisissez un numéro ou une adresse e-mail valides.</string>
     <string name="ConversationActivity_message_is_empty_exclamation">Message vide</string>
@@ -472,7 +473,7 @@
     <string name="ConversationActivity_cancel_request">Annuler la demande</string>
 
     <!-- Dialog title asking users for microphone permission -->
-    <string name="ConversationActivity_allow_access_microphone">Autoriser l’accès au microphone</string>
+    <string name="ConversationActivity_allow_access_microphone">Autoriser l\'accès au microphone</string>
     <!-- Dialog description that will explain the steps needed to give microphone permissions -->
     <string name="ConversationActivity_signal_to_send_audio_messages">Pour envoyer des messages vocaux :</string>
     <!-- Alert dialog description asking for microphone permission in order to send voice messages -->
@@ -1069,13 +1070,13 @@
 
     <!-- LinkDeviceFragment -->
     <!-- Description for how Signal will work with a linked device (eg desktop, iPad) -->
-    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Use this Signal account on another device.</string>
+    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Utilisez ce compte Signal sur un autre appareil.</string>
     <!-- Button prompting users to link a new device to their account -->
     <string name="LinkDeviceFragment__link_a_new_device">Associer un nouvel appareil</string>
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
     <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$s Avec son protocole de chiffrement de bout en bout, Signal protège les messages et les conversations sur tous vos appareils.</string>
     <!-- Bottom sheet title explaining how Signal works on a linked device -->
-    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal sur ordinateur ou sur iPad</string>
+    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal sur un appareil associé</string>
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
     <string name="LinkDeviceFragment__all_messaging_is_private">Même sur les appareils associés, toutes les communications Signal restent privées.</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
@@ -1189,6 +1190,8 @@
     <string name="AddLinkDeviceFragment__this_qr_code_not_valid">Ce code QR est incorrect. Veuillez scanner le code QR affiché sur l\'appareil à associer.</string>
     <!-- Button in dialog to retry linking a device with a qr code -->
     <string name="AddLinkDeviceFragment__retry">Réessayer</string>
+    <!-- Text shown in a dialog when the device being linked is too out-of-date to be linked to this account -->
+    <string name="AddLinkDeviceFragment__the_device_you_are_trying_to_link_is_out_of_date">The device you\'re trying to link is out of date. Please upgrade and try again.</string>
 
     <!-- LinkDeviceSyncBottomSheet -->
     <!-- Option in bottom sheet to transfer message history -->
@@ -1574,12 +1577,6 @@
     <!-- Dialog message -->
     <string name="RestoreActivity__no_longer_registered_message">Vous avez probablement créé votre compte Signal depuis un autre appareil.</string>
 
-    <!-- GroupMentionSettingDialog -->
-    <string name="GroupMentionSettingDialog_notify_me_for_mentions">Me prévenir quand on me mentionne</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Recevoir des notifications lorsqu\'on vous mentionne dans des conversations mises en sourdine ?</string>
-    <string name="GroupMentionSettingDialog_always_notify_me">Toujours me prévenir</string>
-    <string name="GroupMentionSettingDialog_dont_notify_me">Ne pas me prévenir</string>
-
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Votre nom d\'utilisateur, votre code QR et votre lien ne s\'affichent pas sur votre profil. Ne partagez votre nom d\'utilisateur qu\'avec des personnes de confiance.</string>
@@ -1880,9 +1877,6 @@
 
     <!-- MediaPickerActivity -->
     <string name="MediaPickerActivity__menu_open_camera">Ouvrir l\'appareil photo</string>
-
-    <!-- MediaSendActivity -->
-    <string name="MediaSendActivity_camera_unavailable">Appareil photo non disponible.</string>
 
     <!-- MediaRepository -->
     <string name="MediaRepository_all_media">Tous les médias</string>
@@ -2531,11 +2525,11 @@
     <!-- Message of dialog displayed when a user is removed from a call link -->
     <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">Un utilisateur vous a retiré de l\'appel.</string>
     <!-- Dialog title asking users for camera and microphone permission -->
-    <string name="WebRtcCallActivity__allow_access_camera_microphone">Autoriser l’accès à l’appareil photo et au microphone</string>
+    <string name="WebRtcCallActivity__allow_access_camera_microphone">Autoriser l\'accès à l\'appareil photo et au microphone</string>
     <!-- Dialog title asking users for microphone permission -->
-    <string name="WebRtcCallActivity__allow_access_microphone">Autoriser l’accès au microphone</string>
+    <string name="WebRtcCallActivity__allow_access_microphone">Autoriser l\'accès au microphone</string>
     <!-- Dialog title asking users for camera permission -->
-    <string name="WebRtcCallActivity__allow_access_camera">Autoriser l’accès à l’appareil photo</string>
+    <string name="WebRtcCallActivity__allow_access_camera">Autoriser l\'accès à l\'appareil photo</string>
     <!-- Dialog description explaining why camera and microphone permissions are needed to start or join a call -->
     <string name="WebRtcCallActivity__to_start_call_camera_microphone">Pour passer ou rejoindre un appel, autorisez Signal à accéder à votre appareil photo et à votre microphone.</string>
     <!-- Dialog description explaining why microphone permissions are needed to start or join a call -->
@@ -2890,13 +2884,6 @@
     <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">cette page dédiée à la résolution des problèmes</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">Contacter l\'assistance</string>
-
-    <!-- RegistrationLockV2Dialog -->
-    <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Activer le blocage d’inscription ?</string>
-    <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Désactiver le blocage d’inscription ?</string>
-    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Si vous ne vous souvenez plus de votre code PIN au moment de vous réinscrire à Signal, vous ne pourrez pas accéder à votre compte pendant sept jours.</string>
-    <string name="RegistrationLockV2Dialog_turn_on">Activer</string>
-    <string name="RegistrationLockV2Dialog_turn_off">Désactiver</string>
 
     <!-- RevealableMessageView -->
     <string name="RevealableMessageView_view_photo">Afficher la photo</string>
@@ -3267,7 +3254,7 @@
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
     <string name="MuteDialog_mute_notifications">Mettre les notifications en sourdine</string>
     <!-- Dialog option that, when pressed, will open a time picker to let the user choose how long they\'d like to mute notifications for -->
-    <string name="MuteDialog__mute_until">Personnaliser…</string>
+    <string name="MuteDialog__mute_until">Until…</string>
 
     <!-- MuteUntilTimePickerBottomSheet -->
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
@@ -3591,7 +3578,7 @@
     <!-- Row item title for finding people on Signal via your contacts -->
     <string name="contact_selection_activity__find_people_you_know">Rechercher des personnes que vous connaissez sur Signal</string>
     <!-- Row item description asking users for access to their contacts to find people they know -->
-    <string name="contact_selection_activity__allow_access_to_contacts">Autorisez l’accès à vos contacts</string>
+    <string name="contact_selection_activity__allow_access_to_contacts">Autorisez l\'accès à vos contacts</string>
     <!-- Row header title for more section -->
     <string name="contact_selection_activity__more">Plus</string>
 
@@ -3626,7 +3613,7 @@
     <!-- Text on row item to find user by username -->
     <string name="ContactSelectionListFragment__find_by_username">Rechercher par nom d’utilisateur</string>
     <!-- Dialog title asking users for contact permission -->
-    <string name="ContactSelectionListFragment_allow_access_contacts">Autoriser l’accès aux contacts</string>
+    <string name="ContactSelectionListFragment_allow_access_contacts">Autoriser l\'accès aux contacts</string>
     <!-- Dialog description that will explain the steps needed to give contact permissions -->
     <string name="ContactSelectionListFragment_to_find_people">Pour rechercher des personnes que vous connaissez sur Signal :</string>
     <!-- Text on button prompting users to give Signal contact permissions -->
@@ -3634,7 +3621,7 @@
     <!-- Text on button to dismiss Signal\'s request for contact permissions -->
     <string name="ContactSelectionListFragment__no_thanks">Non merci</string>
     <!-- Text asking for user\'s contact permission -->
-    <string name="ContactSelectionListFragment__allow_access_to_your_contacts_encrypted">Autorisez l’accès à vos contacts. La liste de vos contacts est chiffrée et le service Signal n’y a pas accès.</string>
+    <string name="ContactSelectionListFragment__allow_access_to_your_contacts_encrypted">Autorisez l\'accès à vos contacts. La liste de vos contacts est chiffrée et le service Signal n\'y a pas accès.</string>
 
     <!-- contact_selection_list_fragment -->
     <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Pour afficher vos contacts, Signal doit accéder à l\'application Contacts.</string>
@@ -4118,15 +4105,6 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Récents</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Ce message</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Récemment utilisés</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Émoticônes et personnages</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Nature</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Nourriture et boissons</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Activités</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Voyages et lieux</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Objets</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Symboles</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Drapeaux</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Émoticônes</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Aucun résultat</string>
 
     <!-- GifQuickSearchOption -->
@@ -4144,10 +4122,10 @@
     <string name="arrays__use_default">Utiliser la valeur par défaut</string>
     <string name="arrays__use_custom">Personnalisé</string>
 
-    <string name="arrays__mute_for_one_hour">Pendant 1 heure</string>
-    <string name="arrays__mute_for_eight_hours">Pendant 8 heures</string>
-    <string name="arrays__mute_for_one_day">Pendant 24 heures</string>
-    <string name="arrays__mute_for_seven_days">Pendant 1 semaine</string>
+    <string name="arrays__mute_for_one_hour">1 heure</string>
+    <string name="arrays__mute_for_eight_hours">8 heures</string>
+    <string name="arrays__mute_for_one_day">24 heures</string>
+    <string name="arrays__mute_for_seven_days">1 semaine</string>
     <string name="arrays__always">Toujours</string>
 
     <string name="arrays__settings_default">Par défaut</string>
@@ -4202,6 +4180,10 @@
     <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
     <string name="preferences__inactivity_timeout_interval">Délai d\'inactivité</string>
     <string name="preferences__notifications">Notifications</string>
+    <!-- Preference item menu to enable notifications -->
+    <string name="preferences__enable_notifications">Activer les notifications</string>
+    <!-- Preference header for call notifications -->
+    <string name="preferences__call_notifications">Notifications d\'appel</string>
     <string name="preferences__led_color">Couleur de la LED</string>
     <string name="preferences__led_color_unknown">Inconnue</string>
     <string name="preferences__pref_led_blink_title">Clignotement de la LED</string>
@@ -4289,12 +4271,10 @@
     <string name="preferences__system_default">Thème par défaut du système</string>
     <string name="preferences__language">Langue</string>
     <string name="preferences__signal_messages_and_calls">Appels et messages Signal</string>
-    <string name="preferences__advanced_pin_settings">Paramètres de PIN avancés</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">Paramètres de PIN avancés</string>
     <string name="preferences__free_private_messages_and_calls">Messages et appels gratuits et confidentiels vers les utilisateurs de Signal</string>
     <string name="preferences__submit_debug_log">Envoyer le journal de débogage</string>
-    <string name="preferences__delete_account">Supprimer le compte</string>
     <string name="preferences__support_wifi_calling">Mode de compatibilité \"Appels Wi-Fi\"</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Activer cette option si votre appareil transmet les SMS et MMS via le Wi-Fi (ne l\'activer que si l\'option \"Appels Wi-Fi\" est activée sur votre appareil)</string>
     <string name="preferences__incognito_keyboard">Clavier incognito</string>
@@ -4361,6 +4341,16 @@
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Utiliser moins de données peut améliorer la qualité des appels en cas de mauvaise couverture réseau.</string>
     <string name="preferences_notifications__in_chat_sounds">Sons des conversations</string>
     <string name="preferences_notifications__show">Afficher</string>
+    <!-- Preference item to set notification settings when chats are muted -->
+    <string name="preferences_notifications__while_muted">While muted</string>
+    <!-- Option in settings to turn on reaction notifications -->
+    <string name="preferences_notifications__reaction">Reaction notifications</string>
+    <!-- Body option in settings to turn on reaction notifications    -->
+    <string name="preferences_notifications__notify_reaction">Show notifications for reactions to messages you send</string>
+    <!-- Option in settings to turn on unread reminders -->
+    <string name="preferences_notifications__unread">Unread reminders</string>
+    <!-- Body option to turn on unread reminders -->
+    <string name="preferences_notifications__notify_unread">Occasionally notify when there are unread messages in muted chats</string>
     <string name="preferences_notifications__ringtone">Sonnerie</string>
     <string name="preferences_chats__message_text_size">Taille de police pour les messages</string>
     <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
@@ -4888,8 +4878,6 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Saisissez le code PIN que vous avez créé pour votre compte. Il ne s’agit pas du code de vérification reçu par SMS.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Saisissez le code PIN que vous avez créé pour votre compte Signal.</string>
-    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
-    <string name="RegistrationLockFragment__switch_keyboard">Changer de clavier</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Code PIN incorrect. Veuillez réessayer.</string>
     <string name="RegistrationLockFragment__forgot_pin">Code PIN oublié ?</string>
     <string name="RegistrationLockFragment__incorrect_pin">Code PIN incorrect.</string>
@@ -4967,8 +4955,6 @@
     <!-- Text label button to skip restoring -->
     <string name="registration_activity__skip_restore">Ignorer la restauration</string>
     <string name="preferences_chats__chat_backups">Sauvegarde des conversations</string>
-    <string name="preferences_chats__transfer_account">Transférer le compte</string>
-    <string name="preferences_chats__transfer_account_to_a_new_android_device">Transférer le compte vers un nouvel appareil Android</string>
     <!-- Title for dialog to enter in the backup passphrase -->
     <string name="RegistrationActivity_enter_backup_passphrase">Saisir la phrase secrète de sauvegarde</string>
     <string name="RegistrationActivity_restore">Restaurer</string>
@@ -5056,19 +5042,9 @@
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">Délai d\'inactivité avant verrouillage de l\'écran</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
     <string name="preferences_app_protection__to_use_screen_lock">Pour activer le verrouillage de l\'écran, définissez un code PIN, un schéma de déverrouillage ou un mot de passe sur cet appareil.</string>
-    <string name="preferences_app_protection__signal_pin">Code PIN Signal</string>
-    <string name="preferences_app_protection__create_a_pin">Créer un code PIN</string>
-    <string name="preferences_app_protection__change_your_pin">Changer de code PIN</string>
-    <string name="preferences_app_protection__pin_reminders">Rappels de code PIN</string>
-    <string name="preferences_app_protection__turn_off">Désactiver</string>
-    <string name="preferences_app_protection__confirm_pin">Confirmer le PIN</string>
-    <string name="preferences_app_protection__confirm_your_signal_pin">Confirmer votre code PIN Signal</string>
-    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Mémorisez bien votre code PIN ou gardez-le en lieu sûr, car il est impossible de le récupérer. En cas d’oubli, vous risquez de perdre des données lorsque vous réinscrirez votre compte Signal.</string>
-    <string name="preferences_app_protection__incorrect_pin_try_again">Code PIN incorrect. Veuillez réessayer.</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">Impossible d’activer le blocage d’inscription.</string>
     <string name="preferences_app_protection__failed_to_disable_registration_lock">Impossible de désactiver le blocage d’inscription.</string>
     <string name="AppProtectionPreferenceFragment_none">Aucun</string>
-    <string name="preferences_app_protection__registration_lock">Blocage d’inscription</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Saisissez le PIN du blocage d’inscription</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Votre code PIN comporte au moins %1$d chiffres ou caractères</string>
     <string name="RegistrationActivity_too_many_attempts">Trop grand nombre de tentatives</string>
@@ -5116,20 +5092,6 @@
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
     <string name="Recipient_deleted_account">Compte supprimé</string>
 
-    <!-- Option in settings that will take use to re-register if they are no longer registered -->
-    <string name="preferences_account_reregister">Réinscrire le compte</string>
-    <!-- Option in settings that will take user to our website or playstore to update their expired build -->
-    <string name="preferences_account_update_signal">Mettre à jour Signal</string>
-    <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
-    <string name="preferences_account_delete_all_data">Supprimer toutes les données</string>
-    <!-- Title for confirmation dialog confirming user wants to delete all their data -->
-    <string name="preferences_account_delete_all_data_confirmation_title">Supprimer toutes les données ?</string>
-    <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_message">L\'appli sera réinitialisée et tous les messages seront supprimés. Signal se fermera une fois le processus terminé.</string>
-    <!-- Confirmation action to proceed with application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_proceed">Continuer</string>
-    <!-- Confirmation action to cancel application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_cancel">Annuler</string>
     <!-- Error message shown when we fail to delete the data for some unknown reason -->
     <string name="preferences_account_delete_all_data_failed">Impossible de supprimer les données</string>
 
@@ -5670,14 +5632,6 @@
     <!-- String displayed in a toast when a subscriber id is not present for a given type -->
     <string name="AppSettingsFragment__no_subscriber_id_set">Aucun identifiant d\'abonnement défini</string>
 
-    <!-- AccountSettingsFragment -->
-    <string name="AccountSettingsFragment__account">Compte</string>
-    <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Les rappels deviennent moins fréquents au fil du temps</string>
-    <string name="AccountSettingsFragment__require_your_signal_pin">Exiger le code PIN Signal pour réenregistrer votre numéro de téléphone sur Signal</string>
-    <string name="AccountSettingsFragment__change_phone_number">Changer de numéro de téléphone</string>
-    <!-- Account setting that allows user to request and export their signal account data -->
-    <string name="AccountSettingsFragment__request_account_data">Données du compte</string>
-
     <!-- ExportAccountDataFragment -->
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
     <string name="ExportAccountDataFragment__your_account_data">Données du compte</string>
@@ -5971,14 +5925,46 @@
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Messages</string>
     <string name="NotificationsSettingsFragment__calls">Appels</string>
-    <string name="NotificationsSettingsFragment__notify_when">Me prévenir quand…</string>
+    <!-- Notification header for sounds -->
+    <string name="NotificationsSettingsFragment__sounds">Sons</string>
     <string name="NotificationsSettingsFragment__contact_joins_signal">Un contact rejoint Signal</string>
+    <!-- Notification body to get notified when someone joins Signal -->
+    <string name="NotificationsSettingsFragment__notify_contact">Show a notification when a phone contact joins Signal</string>
+    <!-- Option to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset">Reset notification settings</string>
+    <!-- Option body to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_notifications">Reset notification settings to default, including custom settings for your chats</string>
+    <!-- Dialog to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_body">Reset all notification settings to default for all chats?</string>
+    <!-- Confirmation button to reset dialog -->
+    <string name="NotificationsSettingsFragment__reset_confirm">Réinitialiser</string>
     <!-- Notification preference header -->
     <string name="NotificationsSettingsFragment__notification_profiles">Profils de notification</string>
     <!-- Notification preference option header -->
     <string name="NotificationsSettingsFragment__profiles">Profils</string>
     <!-- Notification preference summary text -->
     <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Créez un ou plusieurs profils pour filtrer les notifications : vous ne recevez ainsi que celles des contacts de votre choix.</string>
+
+    <!-- Header to describe screen that shows while muted settings -->
+    <string name="MutedNotificationsFragment__while">While muted</string>
+    <!-- Title for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls">Appels</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body_global">Ring or notify when a call is started in muted chats.</string>
+    <!-- Title for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions">Mentions</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body_global">Notify when you are mentioned in muted chats.</string>
+    <!-- Title for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies">Réactions</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body_global">Notify when someone replies to your message in muted chats.</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body">Ring or notify when a call is started while this chat is muted.</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body">Notify when you are mentioned while this chat is muted.</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body">Notify when someone replies to your message while this chat is muted.</string>
 
     <!-- NotificationProfilesFragment -->
     <!-- Title for notification profiles screen that shows all existing profiles; Title with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -6207,6 +6193,8 @@
     <string name="ConversationSettingsFragment__end_group">Désactiver le groupe</string>
     <!-- Banner shown at the top of group settings when the group has been ended -->
     <string name="ConversationSettingsFragment__this_group_was_ended">Ce groupe est désactivé.</string>
+    <!-- Subhead under a legacy group\'s name, joining the member count and the "Legacy Group" label. %1$s is the member count, %2$s is the label -->
+    <string name="ConversationSettingsFragment__s_dot_s">%1$s · %2$s</string>
     <!-- Archive chat option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__archive_chat">Archiver la conversation</string>
     <!-- Delete chat option in group conversation settings screen -->
@@ -6390,34 +6378,9 @@
     <!-- Positive dialog action when sending a story via an add to group story button -->
     <string name="MediaReviewFragment__add_to_story">Ajouter à la story</string>
     <string name="MediaReviewFragment__add_a_message">Ajouter un message</string>
-    <!-- Hint text inside of a compose box that is shown when the user is adding media while quoting a message. -->
-    <string name="MediaReviewFragment__add_a_reply">Ajouter une réponse</string>
     <string name="MediaReviewFragment__send_to">Envoyer à</string>
-    <string name="MediaReviewFragment__view_once_message">Média à vue unique</string>
-    <string name="MediaReviewFragment__one_or_more_items_were_too_large">Un ou plusieurs fichiers sont trop volumineux.</string>
-    <string name="MediaReviewFragment__one_or_more_items_were_invalid">Un ou plusieurs éléments ne sont pas valides</string>
-    <string name="MediaReviewFragment__too_many_items_selected">Vous avez sélectionné un trop grand nombre d\'éléments</string>
-    <string name="MediaReviewFragment__video_trimmed_to_fit">Votre vidéo a été rognée, car elle dépassait la taille limite</string>
-    <!-- Small notification presented to the user when they set their video to view-once mode -->
-    <string name="MediaReviewFragment__video_set_to_view_once">Vue unique activée pour cette vidéo</string>
-    <!-- Small notification presented to the user when they set their photo to view-once mode -->
-    <string name="MediaReviewFragment__photo_set_to_view_once">Vue unique activée pour cette photo</string>
-    <!-- Accessibility label describing the add media button on the Media review screen -->
-    <string name="MediaReviewFragment__add_media_accessibility_label">Ajouter un média</string>
-    <!-- Accessibility label describing the brush and pen button on the Media review screen -->
-    <string name="MediaReviewFragment__brush_pen_accessibility_label">Pinceau et stylo</string>
-    <!-- Accessibility label describing the crop and rotate button on the Media review screen -->
-    <string name="MediaReviewFragment__crop_rotate_accessibility_label">Recadrer et faire pivoter</string>
-    <!-- Accessibility label describing the change media quality button on the Media review screen -->
-    <string name="MediaReviewFragment__change_media_quality_accessibility_label">Modifier la qualité du média</string>
-    <!-- Accessibility label describing the save media button on the Media review screen -->
-    <string name="MediaReviewFragment__save_media_accessibility_label">Enregistrer le média</string>
-    <!-- Accessibility label describing the toggle emoji keyboard button on the Media review screen -->
-    <string name="MediaReviewFragment__emoji_toggle_accessibility_label">Afficher ou masquer le clavier des émojis</string>
     <!-- Accessibility label describing the toggle view once button on the Media review screen -->
     <string name="MediaReviewFragment__view_once_toggle_accessibility_label">Activer ou désactiver l\'option \"Vue unique\"</string>
-    <!-- Accessibility label describing the send media button on the Media review screen -->
-    <string name="MediaReviewFragment__send_media_accessibility_label">Envoyer le média</string>
     <!-- Accessibility label describing the finish adding a message button on the Media review screen dialog -->
     <string name="MediaReviewFragment__finish_adding_a_message_accessibility_label">Confirmer l\'ajout du message</string>
 
@@ -6437,27 +6400,9 @@
 
     <string name="MediaCountIndicatorButton__send">Envoyer</string>
 
-    <string name="MediaReviewSelectedItem__tap_to_remove">Appuyer pour supprimer</string>
-    <string name="MediaReviewSelectedItem__tap_to_select">Toucher l\'écran pour sélectionner</string>
-
     <string name="MediaReviewImagePageFragment__discard">Supprimer</string>
     <string name="MediaReviewImagePageFragment__discard_changes">Supprimer les modifications ?</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Vous perdrez toutes les modifications apportées à cette photo.</string>
-
-    <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_title">Utilisateur trouvé : %1$s</string>
-    <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_body">Démarrer une conversation avec %1$s</string>
-    <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
-    <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">Démarrer une conversation</string>
-
-    <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_title">Associer l’appareil ?</string>
-    <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_it_looks_like_youre_trying">Vous voulez associer un appareil Signal ? Appuyez sur \"Continuer\", puis sur \"Associer un nouvel appareil\" et rescannez le code QR.</string>
-    <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
-    <string name="MediaCaptureFragment_device_link_dialog_continue">Continuer</string>
-
 
     <string name="BadgesOverviewFragment__my_badges">Mes macarons</string>
     <string name="BadgesOverviewFragment__featured_badge">Macaron affiché</string>
@@ -8714,13 +8659,6 @@
     <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">Le groupe est désactivé.</string>
     <!-- Body of bottom sheet shown when opening a terminated group -->
     <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">Ce groupe ne permet plus d\'échanger ni messages ni appels.</string>
-
-    <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_title">La suppression des messages est maintenant synchronisée sur tous vos appareils.</string>
-    <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_message">Lorsque vous supprimez des messages ou des conversations, ils sont supprimés de votre téléphone et de vos appareils associés.</string>
-    <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_acknowledge_button">OK</string>
 
     <!-- NoManualBackupBottomSheet -->
     <!-- Title for bottom sheet, placeholder is number of days. -->

@@ -6,6 +6,10 @@
   <string name="MediaSendDialogs__youll_lose_any_changes">আপনি এই ফটোতে করা যেকোনো পরিবর্তন হারাবেন।</string>
   <!-- Confirmation button that discards the user\'s image edits. -->
   <string name="MediaSendDialogs__discard">বাতিল করুন</string>
+  <!-- Dialog title shown when the user tries to close media send while media is selected. -->
+  <string name="MediaSendDialogs__discard_media">মিডিয়া বাতিল করবেন?</string>
+  <!-- Dialog body explaining that leaving media send will discard the selected media along with any edits. -->
+  <string name="MediaSendDialogs__you_will_lose_any_media">আপনার ধারণ করা সব মিডিয়া এবং আপনার করা পরিবর্তনগুলো মুছে যাবে।</string>
   <!-- Dialog title asking to save the media being edited to the phone\'s storage -->
   <string name="MediaSendDialogs__save_to_phone">ফোনে সেভ করবেন?</string>
   <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other apps. -->
@@ -15,13 +19,15 @@
   <!-- Checkbox shown in the save dialog to not show the dialog again in future saves -->
   <string name="MediaSendDialogs__dont_show_again">আর দেখবেন না</string>
   <!-- Progress dialog message shown while the media being edited is written out to the phone\'s storage. -->
-  <string name="MediaSendDialogs__saving_media">Saving attachment to storage…</string>
+  <string name="MediaSendDialogs__saving_media">যোগ করা ফাইলটি স্টোরেজে সংরক্ষণ করা হচ্ছে…</string>
   <!-- Dialog message asking the user to confirm that the media should be added to a group\'s story. The placeholder is the group\'s name. -->
   <string name="MediaSendDialogs__add_to_the_group_story">গ্ৰুপ স্টোরিতে যোগ করুন \"%1$s\"</string>
   <!-- Confirmation button that adds the media to the group\'s story. -->
   <string name="MediaSendDialogs__add_to_story">স্টোরি যোগ করুন</string>
   <!-- Accessibility label for the row that lets the user add a text message to accompany the media being sent. -->
   <string name="AddAMessageRow__add_a_message">একটি বার্তা যোগ করুন</string>
+  <!-- Label and accessibility label used in place of \"Add a message\" when the media is being sent as a reply to another message. -->
+  <string name="AddAMessageRow__add_a_reply">একটি জবাব যোগ করুন</string>
   <!-- Accessibility description for the button that opens the emoji keyboard. -->
   <string name="AddAMessageRow__open_emoji_keyboard">ইমোজি কীবোর্ড খুলুন</string>
   <!-- Placeholder text shown in the add-a-message row before the user has entered any message text. -->
@@ -57,7 +63,7 @@
   <!-- Accessibility description for the button that advances from media selection to the next step in the send flow. -->
   <string name="MediaSelectScreen__next">পরবর্তী</string>
   <!-- Accessibility description for the button that leaves media selection and opens the camera. -->
-  <string name="MediaSelectScreen__go_to_camera">Go to camera</string>
+  <string name="MediaSelectScreen__go_to_camera">ক্যামেরা-তে যান</string>
   <!-- Message shown in place of the gallery when the user has not granted permission to read their photos and videos. -->
   <string name="MediaSelectScreen__signal_needs_permission_to_show_your_photos_and_videos">আপনার ছবি ও ভিডিও দেখানোর জন্য Signal-এর অনুমতি প্রয়োজন</string>
   <!-- Label for the button that asks the system for permission to read the user\'s photos and videos. -->
@@ -89,16 +95,27 @@
         <item quantity="other">%1$d-টি আইটেম</item>
     </plurals>
 
+  <!-- Content description for the button that attaches a link to the text story being created -->
+  <string name="TextStoryBar__add_link">লিংক যোগ করুন</string>
+
   <!-- Name shown on the document preview when we cannot read the file\'s name. -->
   <string name="DocumentPage__unnamed_file">নামহীন ফাইল</string>
 
   <!-- Content description for button to enable highlighter mode -->
   <string name="DrawModeColorBar__highlighter">হাইলাইটার</string>
   <!-- Content description for button to enable brush mode -->
-  <string name="DrawModeColorBar__brush">Brush</string>
+  <string name="DrawModeColorBar__brush">ব্রাশ</string>
+
+  <!-- Content description for the crop toggle when the crop area is currently constrained to a fixed aspect ratio. Tapping it removes the constraint. -->
+  <string name="ImageEditorToolbar__aspect_ratio_locked">অ্যাসপেক্ট রেশিও লক করা আছে</string>
+  <!-- Content description for the crop toggle when the crop area can currently be resized freely. Tapping it constrains the crop area to a fixed aspect ratio. -->
+  <string name="ImageEditorToolbar__aspect_ratio_unlocked">অ্যাসপেক্ট রেশিও আনলক করা আছে</string>
 
   <!-- Label for the toggle that blurs every face in the image being edited -->
   <string name="BlurFacesBar__blur_faces">চেহারা অস্পষ্ট করুন</string>
+
+  <!-- Hint displayed in a pill at the top of the image editor telling the user they can drag anywhere on the image to blur that area -->
+  <string name="DrawAnywhereToBlurPill__draw_anywhere_to_blur">যেকোনো জায়গা অস্পষ্ট করতে আলতো চেপে টানুন</string>
 
   <!-- Content description for the button that cycles the text being edited between styles -->
   <string name="TextModeColorBar__toggle_between_text_styles">পাঠ্য শৈলীর মধ্যে টগল করুন</string>
@@ -107,9 +124,9 @@
   <string name="ImageEditorClearAllButton__clear_all">সব পরিষ্কার করুন</string>
 
   <!-- Content description for the button that undoes the last edit made to the image -->
-  <string name="ImageEditorUndoRedoButtons__undo_edit">Undo edit</string>
+  <string name="ImageEditorUndoRedoButtons__undo_edit">এডিটকে পূর্বাবস্থায় ফেরান</string>
   <!-- Content description for the button that redoes the last undone edit made to the image -->
-  <string name="ImageEditorUndoRedoButtons__redo_edit">Redo edit</string>
+  <string name="ImageEditorUndoRedoButtons__redo_edit">আবারো এডিট করুন</string>
 
   <!-- Video editor play button content description -->
 
@@ -187,7 +204,7 @@
   <!-- Displayed after the media being edited was successfully saved to the phone\'s storage -->
   <string name="MediaSendViewModel__media_saved">মিডিয়া সেভ করা হয়েছে</string>
   <!-- Displayed when the media being edited could not be saved to the phone\'s storage -->
-  <string name="MediaSendViewModel__error_saving_media">Error while saving attachment to storage!</string>
+  <string name="MediaSendViewModel__error_saving_media">স্টোরেজে সংযুক্তি সংরক্ষণের সময় ত্রুটি দেখা দিয়েছে!</string>
   <!-- Displayed when the media being edited cannot be saved because the storage permission was denied -->
   <string name="MediaSendViewModel__unable_to_save_without_storage_permission">অনুমতি ব্যতীত বাহ্যিক স্টোরেজে সংরক্ষণ করতে অক্ষম</string>
   <!-- Small notification presented to the user when they set their photo to view-once mode -->
@@ -214,6 +231,8 @@
     </plurals>
   <!-- Message shown when saving the media being edited requires the storage permission, but that permission has been permanently denied by the user. -->
   <string name="MediaSendViewModel__signal_needs_the_storage_permission">বাহ্যিক স্টোরেজে সংরক্ষণের জন্য Signalএর স্টোরেজের অনুমতি প্রয়োজন তবে এটি স্থায়ীভাবে অস্বীকার করা হয়েছে। দয়া করে অ্যাপ্লিকেশন সেটিংসে যান, \"অনুমতিগুলি\" নির্বাচন করুন এবং \"স্টোরেজ\" সক্ষম করুন।</string>
+  <!-- Message shown when the user disables audio on a video -->
+  <string name="MediaSendViewModel__video_will_be_sent_without_audio">অডিও ছাড়া ভিডিও পাঠানো হবে</string>
 
   <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
   <string name="UsernameScannedDialog__username_dialog_title">%1$s পাওয়া গেছে</string>
@@ -231,8 +250,8 @@
 
     <!-- Gif label displayed in a pill in the editor specifying the type of media being sent. -->
     <plurals name="MediaEditScreen__gif">
-        <item quantity="one">%1$d Gif</item>
-        <item quantity="other">%1$d Gifs</item>
+        <item quantity="one">%1$d GIF</item>
+        <item quantity="other">%1$d GIFs</item>
     </plurals>
     <!-- Photo label displayed in a pill in the editor specifying the type of media being sent. -->
     <plurals name="MediaEditScreen__photo">
@@ -241,13 +260,13 @@
     </plurals>
     <!-- Video label displayed in a pill in the editor specifying the type of media being sent. -->
     <plurals name="MediaEditScreen__video">
-        <item quantity="one">%1$d Video</item>
-        <item quantity="other">%1$d Videos</item>
+        <item quantity="one">%1$d ভিডিও</item>
+        <item quantity="other">%1$d ভিডিও</item>
     </plurals>
     <!-- Document label displayed in a pill in the editor specifying the type of media being sent. -->
     <plurals name="MediaEditScreen__document">
-        <item quantity="one">%1$d Document</item>
-        <item quantity="other">%1$d Documents</item>
+        <item quantity="one">%1$d ডকুমেন্ট</item>
+        <item quantity="other">%1$d ডকুমেন্ট</item>
     </plurals>
     <!-- Item label displayed in a pill in the editor specifying the type of media being sent. -->
     <plurals name="MediaEditScreen__item">

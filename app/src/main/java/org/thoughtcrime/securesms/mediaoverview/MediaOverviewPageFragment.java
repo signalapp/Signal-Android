@@ -39,7 +39,6 @@ import org.signal.core.ui.logging.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.components.SignalProgressDialog;
-import org.thoughtcrime.securesms.components.compose.DeleteSyncEducationDialog;
 import org.thoughtcrime.securesms.components.menu.ActionItem;
 import org.thoughtcrime.securesms.components.menu.SignalBottomActionBar;
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController;
@@ -452,25 +451,10 @@ public final class MediaOverviewPageFragment extends LoggingFragment
   }
 
   private void handleDeleteSingleMedia(@NonNull MediaTable.MediaRecord mediaRecord) {
-    if (DeleteSyncEducationDialog.shouldShow()) {
-      lifecycleDisposable.add(
-          DeleteSyncEducationDialog.show(getChildFragmentManager())
-                                   .subscribe(() -> handleDeleteSingleMedia(mediaRecord))
-      );
-      return;
-    }
     MediaActions.handleDeleteMedia(this, Collections.singleton(mediaRecord));
   }
 
   private void handleDeleteSelectedMedia() {
-    if (DeleteSyncEducationDialog.shouldShow()) {
-      lifecycleDisposable.add(
-          DeleteSyncEducationDialog.show(getChildFragmentManager())
-                                   .subscribe(this::handleDeleteSelectedMedia)
-      );
-      return;
-    }
-
     MediaActions.handleDeleteMedia(this, getListAdapter().getSelectedMedia());
     exitMultiSelect();
   }

@@ -8,6 +8,7 @@ package org.signal.mediasend.screens.edit
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -31,7 +32,6 @@ import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.copied.androidx.compose.material3.IconButtonColors
 import org.signal.core.ui.rememberWindowBreakpoint
 import org.signal.mediasend.EditorState
-import org.signal.mediasend.MediaSendFlowState
 import org.signal.mediasend.SentMediaQuality
 import org.signal.mediasend.test.TestTags
 
@@ -49,6 +49,8 @@ internal fun MediaEditorToolbar(
     Row(modifier = modifier.height(48.dp)) {
       leading()
 
+      Spacer(modifier = Modifier.weight(1f))
+
       Row(
         modifier = Modifier
           .fillMaxHeight()
@@ -57,11 +59,15 @@ internal fun MediaEditorToolbar(
         content()
       }
 
+      Spacer(modifier = Modifier.weight(1f))
+
       trailing()
     }
   } else {
     Column(modifier = modifier.width(48.dp)) {
-      leading()
+      trailing()
+
+      Spacer(modifier = Modifier.size(16.dp))
 
       Column(
         modifier = Modifier
@@ -71,7 +77,9 @@ internal fun MediaEditorToolbar(
         content()
       }
 
-      trailing()
+      Spacer(modifier = Modifier.size(16.dp))
+
+      leading()
     }
   }
 }
@@ -81,11 +89,13 @@ internal fun MediaEditorToolbarButton(
   imageVector: ImageVector,
   onClick: () -> Unit,
   modifier: Modifier = Modifier,
+  enabled: Boolean = true,
   contentDescription: String? = null,
   colors: IconButtonColors = IconButtons.iconButtonColors()
 ) {
   IconButtons.IconButton(
     onClick = onClick,
+    enabled = enabled,
     colors = colors,
     modifier = modifier
   ) {
@@ -95,9 +105,10 @@ internal fun MediaEditorToolbarButton(
 
 @Composable
 internal fun MediaEditorToolbarSharedButtons(
-  state: MediaSendFlowState,
+  state: MediaEditState,
   editorState: EditorState,
-  onEvent: (MediaEditScreenEvents) -> Unit
+  onEvent: (MediaEditScreenEvents) -> Unit,
+  enabled: Boolean = true
 ) {
   if (isQualityVisible(state, editorState)) {
     var isSelectingQuality by rememberSaveable { mutableStateOf(false) }
@@ -117,7 +128,17 @@ internal fun MediaEditorToolbarSharedButtons(
         SignalIcons.QualityHighSlash.imageVector
       },
       onClick = { isSelectingQuality = true },
+      enabled = enabled,
       modifier = Modifier.testTag(TestTags.MEDIA_EDITOR_TOOLBAR_QUALITY_BUTTON)
+    )
+  }
+
+  if (editorState is EditorState.VideoTrim && isMuteVisible(state, editorState)) {
+    MediaEditorToolbarButton(
+      imageVector = if (editorState.videoTrimData.isMuted) SignalIcons.SpeakerSlash.imageVector else SignalIcons.Speaker.imageVector,
+      onClick = { onEvent(MediaEditScreenEvents.ToggleVideoMuted) },
+      enabled = enabled,
+      modifier = Modifier.testTag(TestTags.MEDIA_EDITOR_TOOLBAR_MUTE_BUTTON)
     )
   }
 
@@ -125,20 +146,22 @@ internal fun MediaEditorToolbarSharedButtons(
     MediaEditorToolbarButton(
       imageVector = SignalIcons.Save.imageVector,
       onClick = { onEvent(MediaEditScreenEvents.SaveMedia) },
+      enabled = enabled,
       modifier = Modifier.testTag(TestTags.MEDIA_EDITOR_TOOLBAR_SAVE_BUTTON)
     )
   }
 
   if (isAddMediaVisible(state, editorState)) {
     MediaEditorToolbarButton(
-      imageVector = SignalIcons.Plus.imageVector, // TODO [alex] - wrong art asset
+      imageVector = SignalIcons.AlbumPlus.imageVector,
       onClick = { onEvent(MediaEditScreenEvents.NavigateToGallery) },
+      enabled = enabled,
       modifier = Modifier.testTag(TestTags.MEDIA_EDITOR_TOOLBAR_ADD_MEDIA_BUTTON)
     )
   }
 }
 
-private fun isQualityVisible(state: MediaSendFlowState, editorState: EditorState): Boolean {
+private fun isQualityVisible(state: MediaEditState, editorState: EditorState): Boolean {
   return !state.isStory && editorState !is EditorState.Document
 }
 
@@ -146,11 +169,15 @@ private fun isSaveVisible(editorState: EditorState): Boolean {
   return editorState is EditorState.Image || editorState is EditorState.Gif
 }
 
+private fun isMuteVisible(state: MediaEditState, editorState: EditorState): Boolean {
+  return state.isMuteVideoAudioEnabled && editorState is EditorState.VideoTrim
+}
+
 /**
  * Adding a second attachment would silently drop view-once, so the entry point -- and the selection rail it belongs to
  * -- goes away while it is on.
  */
-internal fun isAddMediaVisible(state: MediaSendFlowState, editorState: EditorState?): Boolean {
+internal fun isAddMediaVisible(state: MediaEditState, editorState: EditorState?): Boolean {
   return !state.isViewOnceEnabled && editorState !is EditorState.Document
 }
 
@@ -158,6 +185,6 @@ internal fun isAddMediaVisible(state: MediaSendFlowState, editorState: EditorSta
  * Whether [MediaEditorToolbarSharedButtons] would render anything, so callers with no buttons of their own can skip the
  * toolbar rather than leave an empty one behind.
  */
-internal fun hasSharedToolbarButtons(state: MediaSendFlowState, editorState: EditorState): Boolean {
-  return isQualityVisible(state, editorState) || isSaveVisible(editorState) || isAddMediaVisible(state, editorState)
+internal fun hasSharedToolbarButtons(state: MediaEditState, editorState: EditorState): Boolean {
+  return isQualityVisible(state, editorState) || isMuteVisible(state, editorState) || isSaveVisible(editorState) || isAddMediaVisible(state, editorState)
 }

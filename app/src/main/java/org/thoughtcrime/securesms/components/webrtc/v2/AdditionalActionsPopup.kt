@@ -38,8 +38,8 @@ import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.TriggerAlignedPopup
 import org.signal.core.ui.compose.TriggerAlignedPopupState
 import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.emoji.EmojiImage
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.emoji.EmojiImage
 
 data class AdditionalActionsState(
   val triggerAlignedPopupState: TriggerAlignedPopupState,

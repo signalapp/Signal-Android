@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <!-- Emoji category headers, shown in the emoji keyboard and the react-with-any-emoji sheet -->
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Φατσούλες &amp; Άνθρωποι</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Φύση</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Φαγητό</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Δραστηριότητες</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Τοποθεσίες</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Αντικείμενα</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Σύμβολα</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Σημαίες</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emoticons</string>
+</resources>

@@ -247,4 +247,47 @@ class BoostTest__MoneyFilter {
 
     assertEquals("0.0", result)
   }
+
+  @Test
+  fun `Given USD, when I enter ten integral digits, then I expect successful filter`() {
+    val testSubject = Boost.MoneyFilter(usd)
+    val editable = SpannableStringBuilder("1234567890.12")
+    val dest = SpannableStringBuilder()
+
+    val filterResult = testSubject.filter(editable, 0, editable.length, dest, 0, 0)
+
+    assertNull(filterResult)
+  }
+
+  @Test
+  fun `Given USD, when I enter eleven integral digits, then I expect unsuccessful filter`() {
+    val testSubject = Boost.MoneyFilter(usd)
+    val editable = SpannableStringBuilder("12345678901")
+    val dest = SpannableStringBuilder()
+
+    val filterResult = testSubject.filter(editable, 0, editable.length, dest, 0, 0)
+
+    assertNotNull(filterResult)
+  }
+
+  @Test
+  fun `Given USD and ten integral digits, when I append a digit, then I expect the existing text to be retained`() {
+    val testSubject = Boost.MoneyFilter(usd)
+    val dest = SpannableStringBuilder("$1234567890")
+
+    val filterResult = testSubject.filter("1", 0, 1, dest, dest.length, dest.length)
+
+    assertEquals("", filterResult.toString())
+  }
+
+  @Test
+  fun `Given JPY, when I enter eleven integral digits, then I expect unsuccessful filter`() {
+    val testSubject = Boost.MoneyFilter(yen)
+    val editable = SpannableStringBuilder("12345678901")
+    val dest = SpannableStringBuilder()
+
+    val filterResult = testSubject.filter(editable, 0, editable.length, dest, 0, 0)
+
+    assertNotNull(filterResult)
+  }
 }

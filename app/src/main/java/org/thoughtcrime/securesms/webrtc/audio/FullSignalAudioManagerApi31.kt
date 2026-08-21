@@ -24,6 +24,8 @@ class FullSignalAudioManagerApi31(context: Context, eventListener: EventListener
   private var savedIsSpeakerPhoneOn = false
   private var hasWiredHeadset = false
 
+  private var appliedCommunicationDeviceId: Int? = null
+
   private val deviceCallback = object : AudioDeviceCallback() {
 
     override fun onAudioDevicesAdded(addedDevices: Array<out AudioDeviceInfo>) {
@@ -39,7 +41,7 @@ class FullSignalAudioManagerApi31(context: Context, eventListener: EventListener
 
   private val communicationDeviceChangedListener = AudioManager.OnCommunicationDeviceChangedListener { device ->
     if (device != null) {
-      Log.i(TAG, "OnCommunicationDeviceChangedListener: id: ${device.id} type: ${getDeviceTypeName(device.type)}")
+      Log.i(TAG, "OnCommunicationDeviceChangedListener: id: ${device.id} type: ${getDeviceTypeName(device.type)} mode: ${getModeName(requestedMode)} state: $state")
       if (state == State.RUNNING && userSelectedAudioDevice != null && device.id != userSelectedAudioDevice?.id) {
         Log.w(TAG, "OnCommunicationDeviceChangedListener: Device changed to ${device.id} but user selected ${userSelectedAudioDevice?.id}. Re-asserting user selection.")
         logRoutingContext("OnCommunicationDeviceChangedListener", device)
@@ -51,28 +53,41 @@ class FullSignalAudioManagerApi31(context: Context, eventListener: EventListener
   }
 
   private val modeChangedListener = AudioManager.OnModeChangedListener { mode ->
-    Log.i(TAG, "OnModeChangedListener: ${getModeName(mode)}")
-    if (state == State.RUNNING && mode != AudioManager.MODE_IN_COMMUNICATION) {
-      Log.w(TAG, "OnModeChangedListener: Not MODE_IN_COMMUNICATION during a call. state: $state")
-      logRoutingContext("OnModeChangedListener")
+    Log.i(TAG, "OnModeChangedListener: applied ${getModeName(mode)} (requested ${getModeName(requestedMode)}) state: $state")
+
+    appliedMode = mode
+
+    if (mode == AudioManager.MODE_IN_COMMUNICATION) {
+      Log.i(TAG, "OnModeChangedListener: commDevice: ${describeDevice(androidAudioManager.communicationDevice)} micMute: ${androidAudioManager.isMicrophoneMute}")
+      notifyReadyForAccept("mode applied")
+    } else if (state != State.UNINITIALIZED) {
+      if (state == State.RUNNING) {
+        Log.w(TAG, "OnModeChangedListener: Not MODE_IN_COMMUNICATION during a call. state: $state")
+      }
+      logRoutingContext("OnModeChangedListener", mode = mode)
     }
   }
 
   private val audioRecordingCallback = object : AudioManager.AudioRecordingCallback() {
     override fun onRecordingConfigChanged(configs: List<AudioRecordingConfiguration>) {
       if (configs.isEmpty()) {
-        Log.i(TAG, "AudioRecordingCallback: no active recordings")
+        Log.i(TAG, "AudioRecordingCallback: no active recordings state: $state mode: ${getModeName(requestedMode)}")
       } else {
         for (config in configs) {
           val deviceName = config.audioDevice?.let { getDeviceTypeName(it.type) } ?: "null"
-          Log.i(TAG, "AudioRecordingCallback: silenced: ${config.isClientSilenced} source: ${getAudioSourceName(config.audioSource)} device: $deviceName")
+          val description = "AudioRecordingCallback: silenced: ${config.isClientSilenced} source: ${getAudioSourceName(config.audioSource)} device: $deviceName state: $state mode: ${getModeName(requestedMode)}"
+          if (config.isClientSilenced) {
+            Log.w(TAG, description)
+          } else {
+            Log.i(TAG, description)
+          }
         }
       }
     }
   }
 
   override fun setDefaultAudioDevice(recipientId: RecipientId?, newDefaultDevice: AudioDevice, clearUserEarpieceSelection: Boolean) {
-    Log.d(TAG, "setDefaultAudioDevice(): currentDefault: $defaultAudioDevice device: $newDefaultDevice clearUser: $clearUserEarpieceSelection")
+    Log.i(TAG, "setDefaultAudioDevice(): currentDefault: $defaultAudioDevice device: $newDefaultDevice clearUser: $clearUserEarpieceSelection state: $state mode: ${getModeName(requestedMode)}")
     defaultAudioDevice = when (newDefaultDevice) {
       AudioDevice.SPEAKER_PHONE -> newDefaultDevice
       AudioDevice.EARPIECE -> {
@@ -87,31 +102,26 @@ class FullSignalAudioManagerApi31(context: Context, eventListener: EventListener
 
     val userSelectedDeviceType: AudioDevice = userSelectedAudioDevice?.type?.let { AudioDeviceMapping.fromPlatformType(it) } ?: AudioDevice.NONE
     if (clearUserEarpieceSelection && userSelectedDeviceType == AudioDevice.EARPIECE) {
-      Log.d(TAG, "Clearing user setting of earpiece")
+      Log.i(TAG, "Clearing user setting of earpiece")
       userSelectedAudioDevice = null
     }
 
-    Log.d(TAG, "New default: $defaultAudioDevice userSelected: ${userSelectedAudioDevice?.id} of type ${userSelectedAudioDevice?.type}")
+    Log.i(TAG, "New default: $defaultAudioDevice userSelected: ${userSelectedAudioDevice?.id} of type ${userSelectedAudioDevice?.type}")
     updateAudioDeviceState()
   }
 
   override fun initialize() {
     if (state == State.UNINITIALIZED) {
       savedAudioMode = androidAudioManager.mode
+      requestedMode = savedAudioMode
+      appliedMode = savedAudioMode
       savedIsSpeakerPhoneOn = androidAudioManager.isSpeakerphoneOn
       savedIsMicrophoneMute = androidAudioManager.isMicrophoneMute
       hasWiredHeadset = androidAudioManager.isWiredHeadsetOn
 
       Log.i(TAG, "initialize: savedMode: ${getModeName(savedAudioMode)} savedSpeaker: $savedIsSpeakerPhoneOn savedMicMute: $savedIsMicrophoneMute wiredHeadset: $hasWiredHeadset")
 
-      val focusGained = androidAudioManager.requestCallAudioFocus()
-      if (!focusGained) {
-        Log.w(TAG, "initialize: audio focus request failed, scheduling retry")
-        handler.postDelayed({
-          val retryGained = androidAudioManager.requestCallAudioFocus()
-          Log.i(TAG, "initialize: audio focus retry result: $retryGained")
-        }, 500)
-      }
+      requestCallAudioFocus("initialize")
 
       setMicrophoneMute(false)
 
@@ -125,36 +135,50 @@ class FullSignalAudioManagerApi31(context: Context, eventListener: EventListener
 
       state = State.PREINITIALIZED
 
-      Log.d(TAG, "Initialized")
+      Log.i(TAG, "initialize: complete. mode: ${getModeName(requestedMode)}")
+    } else {
+      Log.i(TAG, "initialize: skipping, state: $state")
+    }
+  }
+
+  override fun onPrepareForAccept() {
+    Log.i(TAG, "onPrepareForAccept: state: $state previousMode: ${getModeName(requestedMode)} appliedMode: ${getModeName(appliedMode)}")
+
+    incomingRinger.stop()
+    requestCallAudioFocus("onPrepareForAccept")
+    setMicrophoneMute(false)
+
+    // The mode is global but owned per app, so always claim it even when another app holds it,
+    // but only expect a callback when the global mode actually moves.
+    val expectModeChange = requestedMode != AudioManager.MODE_IN_COMMUNICATION || appliedMode != AudioManager.MODE_IN_COMMUNICATION
+    setMode(AudioManager.MODE_IN_COMMUNICATION, "onPrepareForAccept")
+
+    if (!expectModeChange) {
+      notifyReadyForAccept("no mode change expected")
     }
   }
 
   override fun start() {
-    Log.i(TAG, "start: currentState: $state currentMode: ${getModeName(androidAudioManager.mode)}")
+    Log.i(TAG, "start: currentState: $state previousMode: ${getModeName(requestedMode)} appliedMode: ${getModeName(appliedMode)} prepared: $preparedForAccept")
 
     incomingRinger.stop()
     outgoingRinger.stop()
+    requestCallAudioFocus("start")
 
-    val focusGained = androidAudioManager.requestCallAudioFocus()
-    if (!focusGained) {
-      Log.w(TAG, "start: audio focus request failed, scheduling retry")
-      handler.postDelayed({
-        val retryGained = androidAudioManager.requestCallAudioFocus()
-        Log.i(TAG, "start: audio focus retry result: $retryGained")
-      }, 500)
+    // Only the accept path can skip this, and only because the listener proves the mode is in effect.
+    if (!preparedForAccept || appliedMode != AudioManager.MODE_IN_COMMUNICATION) {
+      setMode(AudioManager.MODE_IN_COMMUNICATION, "start")
     }
 
     state = State.RUNNING
-    Log.i(TAG, "start: setting mode to MODE_IN_COMMUNICATION")
-    androidAudioManager.mode = AudioManager.MODE_IN_COMMUNICATION
+    logActiveRecordingConfigurations("start")
+
     val volume: Float = androidAudioManager.ringVolumeWithMinimum()
     soundPool.play(connectedSoundId, volume, volume, 0, 0, 1.0f)
-
-    Log.d(TAG, "Started")
   }
 
   override fun stop(playDisconnect: Boolean) {
-    Log.i(TAG, "stop: playDisconnect: $playDisconnect currentState: $state")
+    Log.i(TAG, "stop: playDisconnect: $playDisconnect currentState: $state currentMode: ${getModeName(requestedMode)}")
 
     incomingRinger.stop()
     outgoingRinger.stop()
@@ -179,17 +203,19 @@ class FullSignalAudioManagerApi31(context: Context, eventListener: EventListener
           "Therefore skipping audio device reset."
       )
     } else {
-      Log.i(TAG, "stop: restoring mode to ${getModeName(savedAudioMode)}")
+      Log.i(TAG, "stop: restoring mode to ${getModeName(savedAudioMode)} speaker: $savedIsSpeakerPhoneOn micMute: $savedIsMicrophoneMute")
       androidAudioManager.clearCommunicationDevice()
       setSpeakerphoneOn(savedIsSpeakerPhoneOn)
       setMicrophoneMute(savedIsMicrophoneMute)
-      androidAudioManager.mode = savedAudioMode
+      setMode(savedAudioMode, "stop")
     }
     androidAudioManager.abandonCallAudioFocus()
-    Log.d(TAG, "Abandoned audio focus for VOICE_CALL streams")
     state = State.UNINITIALIZED
+    resetAcceptState()
+    appliedMode = AudioManager.MODE_INVALID
+    appliedCommunicationDeviceId = null
 
-    Log.d(TAG, "Stopped")
+    Log.i(TAG, "stop: complete. mode: ${getModeName(requestedMode)}")
   }
 
   override fun selectAudioDevice(recipientId: RecipientId?, device: Int, isId: Boolean) {
@@ -197,9 +223,9 @@ class FullSignalAudioManagerApi31(context: Context, eventListener: EventListener
       throw IllegalArgumentException("Must supply a device address for API 31+.")
     }
 
-    Log.d(TAG, "Selecting $device")
-
     userSelectedAudioDevice = androidAudioManager.availableCommunicationDevices.find { it.id == device }
+
+    Log.i(TAG, "selectAudioDevice(): requested: $device resolved: ${describeDevice(userSelectedAudioDevice)} state: $state mode: ${getModeName(requestedMode)}")
 
     updateAudioDeviceState()
   }
@@ -217,6 +243,14 @@ class FullSignalAudioManagerApi31(context: Context, eventListener: EventListener
 
     val availableCommunicationDevices: List<AudioDeviceInfo> = androidAudioManager.availableCommunicationDevices
 
+    Log.i(
+      TAG,
+      "updateAudioDeviceState(): state: $state mode: ${getModeName(requestedMode)}\n" +
+        "    default: $defaultAudioDevice userSelected: ${describeDevice(userSelectedAudioDevice)}\n" +
+        "    current: ${describeDevice(currentAudioDevice)}\n" +
+        "    available: ${describeDevices(availableCommunicationDevices)}"
+    )
+
     if (userSelectedAudioDevice != null && availableCommunicationDevices.none { it.id == userSelectedAudioDevice?.id }) {
       Log.w(TAG, "User selected device ${userSelectedAudioDevice?.id} of type ${userSelectedAudioDevice?.type?.let { getDeviceTypeName(it) }} is no longer available. Clearing user selection.")
       userSelectedAudioDevice = null
@@ -224,7 +258,7 @@ class FullSignalAudioManagerApi31(context: Context, eventListener: EventListener
 
     var candidate: AudioDeviceInfo? = userSelectedAudioDevice
     if (candidate != null && candidate.id != 0) {
-      val result = androidAudioManager.setCommunicationDevice(candidate)
+      val result = setCommunicationDeviceIfNeeded(candidate, currentAudioDevice)
       if (result) {
         eventListener?.onAudioDeviceChanged(AudioDeviceMapping.fromPlatformType(candidate.type), availableCommunicationDevices.map { AudioDeviceMapping.fromPlatformType(it.type) }.toSet())
       } else {
@@ -247,24 +281,50 @@ class FullSignalAudioManagerApi31(context: Context, eventListener: EventListener
         null -> {
           Log.e(TAG, "Tried to switch audio devices but could not find suitable device in list of types: ${availableCommunicationDevices.map { getDeviceTypeName(it.type) }.joinToString()}")
           androidAudioManager.clearCommunicationDevice()
+          appliedCommunicationDeviceId = null
           eventListener?.onAudioDeviceChangeFailed()
         }
         else -> {
-          Log.d(TAG, "Switching to new device of type ${getDeviceTypeName(candidate.type)} from ${currentAudioDevice?.type?.let { getDeviceTypeName(it) }}")
-          val result = androidAudioManager.setCommunicationDevice(candidate)
-          if (result) {
-            Log.w(TAG, "Succeeded in setting ${candidate.id} (type: ${getDeviceTypeName(candidate.type)}) as communication device.")
+          if (setCommunicationDeviceIfNeeded(candidate, currentAudioDevice)) {
             eventListener?.onAudioDeviceChanged(AudioDeviceMapping.fromPlatformType(candidate.type), availableCommunicationDevices.map { AudioDeviceMapping.fromPlatformType(it.type) }.toSet())
           } else {
-            Log.w(TAG, "Failed to set ${candidate.id} as communication device.")
             eventListener?.onAudioDeviceChangeFailed()
           }
         }
       }
     }
   }
-  private fun logRoutingContext(event: String, callbackDevice: AudioDeviceInfo? = null) {
-    val mode = androidAudioManager.mode
+
+  private fun setCommunicationDeviceIfNeeded(device: AudioDeviceInfo, currentDevice: AudioDeviceInfo?): Boolean {
+    if (device.id == appliedCommunicationDeviceId && device.id == currentDevice?.id) {
+      Log.i(TAG, "setCommunicationDevice(${describeDevice(device)}) skipped, already routed")
+      return true
+    }
+
+    val result = androidAudioManager.setCommunicationDevice(device)
+    val description = "setCommunicationDevice(${describeDevice(device)}) returned $result in ${getModeName(requestedMode)}, previous: ${describeDevice(currentDevice)}"
+    if (result) {
+      appliedCommunicationDeviceId = device.id
+      Log.i(TAG, description)
+    } else {
+      Log.w(TAG, description)
+    }
+    return result
+  }
+
+  private fun logActiveRecordingConfigurations(event: String) {
+    val configs = androidAudioManager.activeRecordingConfigurations
+    if (configs.isEmpty()) {
+      Log.w(TAG, "$event: activeRecordingConfigurations: none mode: ${getModeName(requestedMode)}")
+      return
+    }
+    for (config in configs) {
+      val deviceName = config.audioDevice?.let { getDeviceTypeName(it.type) } ?: "null"
+      Log.i(TAG, "$event: activeRecordingConfiguration: silenced: ${config.isClientSilenced} source: ${getAudioSourceName(config.audioSource)} device: $deviceName mode: ${getModeName(requestedMode)}")
+    }
+  }
+
+  private fun logRoutingContext(event: String, callbackDevice: AudioDeviceInfo? = null, mode: Int = appliedMode) {
     val currentDevice: AudioDeviceInfo? = androidAudioManager.communicationDevice
     val availableDevices: List<AudioDeviceInfo> = androidAudioManager.availableCommunicationDevices
     val selectedStillAvailable = userSelectedAudioDevice?.let { selected ->
@@ -273,36 +333,29 @@ class FullSignalAudioManagerApi31(context: Context, eventListener: EventListener
     val probableCause = when {
       mode != AudioManager.MODE_IN_COMMUNICATION -> "mode_not_in_communication"
       userSelectedAudioDevice != null && !selectedStillAvailable -> "user_selected_device_disconnected"
+      state != State.RUNNING -> "expected_before_accept"
       else -> "platform_or_competing_app_reroute"
     }
-    Log.w(
-      TAG,
-      "$event: probableCause: $probableCause state: $state mode: ${getModeName(mode)} " +
-        "defaultDevice: $defaultAudioDevice callbackDevice: ${describeDevice(callbackDevice)} " +
-        "userSelected: ${describeDevice(userSelectedAudioDevice)} " +
-        "currentDevice: ${describeDevice(currentDevice)} availableDevices: ${describeDevices(availableDevices)}"
-    )
+    val description = "$event: probableCause: $probableCause state: $state mode: ${getModeName(mode)}\n" +
+      "    defaultDevice: $defaultAudioDevice callbackDevice: ${describeDevice(callbackDevice)}\n" +
+      "    userSelected: ${describeDevice(userSelectedAudioDevice)}\n" +
+      "    currentDevice: ${describeDevice(currentDevice)}\n" +
+      "    availableDevices: ${describeDevices(availableDevices)}"
+    if (state == State.RUNNING) {
+      Log.w(TAG, description)
+    } else {
+      Log.i(TAG, description)
+    }
   }
-  private fun describeDevices(devices: List<AudioDeviceInfo>): String {
-    return devices.joinToString(prefix = "[", postfix = "]") { describeDevice(it) }
-  }
+
+  private fun describeDevices(devices: List<AudioDeviceInfo>): String = devices.joinToString(prefix = "[", postfix = "]") { describeDevice(it) }
+
   private fun describeDevice(device: AudioDeviceInfo?): String {
     if (device == null) {
       return "null"
     }
     val productName = device.productName?.toString()?.takeIf { it.isNotBlank() } ?: "unknown"
     return "${device.id}:${getDeviceTypeName(device.type)}:$productName"
-  }
-
-  private fun getModeName(mode: Int): String {
-    return when (mode) {
-      AudioManager.MODE_NORMAL -> "MODE_NORMAL"
-      AudioManager.MODE_RINGTONE -> "MODE_RINGTONE"
-      AudioManager.MODE_IN_CALL -> "MODE_IN_CALL"
-      AudioManager.MODE_IN_COMMUNICATION -> "MODE_IN_COMMUNICATION"
-      AudioManager.MODE_CALL_SCREENING -> "MODE_CALL_SCREENING"
-      else -> "UNKNOWN($mode)"
-    }
   }
 
   private fun getDeviceTypeName(type: Int): String {

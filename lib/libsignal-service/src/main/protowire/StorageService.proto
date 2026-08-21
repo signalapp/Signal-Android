@@ -143,7 +143,8 @@ message ContactRecord {
   optional AvatarColor avatarColor      = 24;
   bytes         aciBinary               = 25; // 16-byte UUID
   bytes         pniBinary               = 26; // 16-byte UUID
-  // Next ID: 27
+  uint64        blockedAtTimestamp      = 27; // 0 means the blocked time is unknown
+  // Next ID: 28
 }
 
 message GroupV1Record {
@@ -174,6 +175,7 @@ message GroupV2Record {
   StorySendMode storySendMode                = 10;
   optional AvatarColor avatarColor           = 11;
   bytes         verifiedNameHash             = 12; // SHA-256 of UTF-8 encoded decrypted group title that was last verified
+  uint64        blockedAtTimestamp           = 13; // 0 means the blocked time is unknown
 }
 
 message Payments {
@@ -235,12 +237,6 @@ message AccountRecord {
     }
   }
 
-  message BackupTierHistory {
-    // See zkgroup for integer particular values. Unset if backups are not enabled.
-    optional uint64 backupTier = 1;
-    optional uint64 endedAtTimestamp = 2;
-  }
-
   message NotificationProfileManualOverride {
     message ManuallyEnabled {
       bytes id = 1;
@@ -297,7 +293,7 @@ message AccountRecord {
   optional uint64                            backupTier                                 = 40; // See zkgroup for integer particular values. Unset if backups are not enabled.
            IAPSubscriberData                 backupSubscriberData                       = 41;
   optional AvatarColor                       avatarColor                                = 42;
-           BackupTierHistory                 backupTierHistory                          = 43;
+           reserved                          /* backupTierHistory */                      43;
            NotificationProfileManualOverride notificationProfileManualOverride          = 44;
            bool                              notificationProfileSyncDisabled            = 45;
            bool                              automaticKeyVerificationDisabled           = 46;
@@ -306,6 +302,7 @@ message AccountRecord {
   optional uint64                            releaseNotesChatMutedUntilTimestamp        = 49;
   optional bool                              releaseNotesChatBlocked                    = 50;
   optional bool                              releaseNotesChatMarkedUnread               = 51;
+  optional uint64                            releaseNotesChatBlockedAt                  = 52; // only set if known (>0)
 }
 
 message StoryDistributionListRecord {

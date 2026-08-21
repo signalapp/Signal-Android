@@ -5,6 +5,8 @@
 
 package org.signal.mediasend.screens.edit.image
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -15,7 +17,6 @@ import androidx.compose.ui.res.stringResource
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.imageeditor.core.model.EditorModel
 import org.signal.mediasend.R
 import org.signal.mediasend.screens.edit.ImageController
@@ -24,18 +25,18 @@ import org.signal.mediasend.screens.edit.MediaEditControl
 @Composable
 internal fun ImageEditorClearAllButton(
   imageEditorController: ImageController?,
-  isDragging: Boolean,
+  faded: Boolean,
   modifier: Modifier = Modifier,
   canUndo: Boolean = imageEditorController?.imageEditorState?.undoAvailable ?: false
 ) {
   MediaEditControl(
-    visible = imageEditorController != null && imageEditorController.mode != ImageController.Mode.NONE && canUndo,
-    faded = isDragging,
+    visible = imageEditorController != null && imageEditorController.isUserInEdit && canUndo,
+    faded = faded,
     modifier = modifier
   ) {
     Buttons.MediumTonal(
       colors = ButtonDefaults.buttonColors(
-        containerColor = SignalTheme.colors.colorSurface5,
+        containerColor = MaterialTheme.colorScheme.surfaceVariant,
         contentColor = MaterialTheme.colorScheme.onSurface
       ),
       onClick = {
@@ -51,10 +52,12 @@ internal fun ImageEditorClearAllButton(
 @Composable
 private fun ImageEditorClearAllButtonPreview() {
   Previews.Preview {
-    ImageEditorClearAllButton(
-      imageEditorController = remember { ImageController(EditorModel.create(0x0)).apply { enterDrawMode() } },
-      isDragging = false,
-      canUndo = true
-    )
+    Box(modifier = Modifier.fillMaxSize()) {
+      ImageEditorClearAllButton(
+        imageEditorController = remember { ImageController(EditorModel.create(0x0)).apply { enterDrawMode() } },
+        faded = false,
+        canUndo = true
+      )
+    }
   }
 }

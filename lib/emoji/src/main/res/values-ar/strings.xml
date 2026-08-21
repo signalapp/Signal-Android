@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <!-- Emoji category headers, shown in the emoji keyboard and the react-with-any-emoji sheet -->
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">أوجُه سمايلي وأشخاص</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">الطبيعة</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">الطعام</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">الأنشطة</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">الأماكن</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">الأشياء</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">الرموز الخاصة</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">الأعلام</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">الرموز التعبيرية</string>
+</resources>

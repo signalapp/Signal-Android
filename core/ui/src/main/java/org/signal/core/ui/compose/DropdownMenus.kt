@@ -21,6 +21,7 @@ import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.MenuDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -80,6 +81,7 @@ object DropdownMenus {
   fun Item(
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(horizontal = 16.dp),
+    @DrawableRes leadingIconResId: Int? = null,
     text: @Composable () -> Unit,
     onClick: () -> Unit
   ) {
@@ -90,6 +92,17 @@ object DropdownMenus {
           text()
         }
       },
+      leadingIcon = if (leadingIconResId != null) {
+        {
+          Icon(
+            imageVector = ImageVector.vectorResource(id = leadingIconResId),
+            contentDescription = null
+          )
+        }
+      } else {
+        null
+      },
+      colors = MenuDefaults.itemColors(leadingIconColor = MaterialTheme.colorScheme.onSurface),
       onClick = onClick,
       modifier = modifier
     )

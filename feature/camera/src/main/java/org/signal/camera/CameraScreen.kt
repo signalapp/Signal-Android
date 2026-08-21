@@ -4,6 +4,7 @@ import androidx.camera.compose.CameraXViewfinder
 import androidx.camera.core.SurfaceRequest
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.viewfinder.compose.MutableCoordinateTransformer
+import androidx.camera.viewfinder.core.ImplementationMode
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.Spring
@@ -82,6 +83,7 @@ fun CameraScreen(
   enableQrScanning: Boolean = false,
   fillViewport: Boolean = false,
   landscape: Boolean? = null,
+  implementationMode: ImplementationMode = ImplementationMode.EXTERNAL,
   content: @Composable BoxScope.() -> Unit = {}
 ) {
   val context = LocalContext.current
@@ -147,6 +149,7 @@ fun CameraScreen(
         val currentSurfaceRequest = surfaceRequest!!
 
         CameraXViewfinder(
+          implementationMode = implementationMode,
           surfaceRequest = currentSurfaceRequest,
           coordinateTransformer = coordinateTransformer,
           contentScale = if (fillViewport) ContentScale.Crop else ContentScale.Fit,

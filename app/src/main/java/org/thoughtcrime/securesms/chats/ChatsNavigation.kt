@@ -57,7 +57,9 @@ fun EntryProviderScope<NavKey>.chatsNavEntries(
     MessageDetailsEntry(route)
   }
 
-  entry<MainNavigationDetailLocation.Chats.ConversationSettings> { route ->
+  entry<MainNavigationDetailLocation.Chats.ConversationSettings>(
+    metadata = TransitionSpecs.FadeScale.metadata
+  ) { route ->
     ConversationSettingsEntry(route)
   }
 }

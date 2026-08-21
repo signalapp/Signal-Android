@@ -14,7 +14,8 @@ object AppCapabilities {
       versionedExpirationTimer = true,
       attachmentBackfill = true,
       spqr = true,
-      usernameChangeSyncMessage = true
+      usernameChangeSyncMessage = true,
+      optionalPhoneNumber = false
     )
   }
 }

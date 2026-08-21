@@ -171,6 +171,8 @@
     <string name="BlockedUsersActivity__block_user">ユーザーをブロックしますか？</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">「%1$s」は、あなたにメッセージや通話の発信ができなくなります。</string>
     <string name="BlockedUsersActivity__block">ブロック</string>
+    <!-- Subtitle shown under a blocked user. Placeholder is the time they were blocked-->
+    <string name="BlockedUsersActivity__blocked_on_s">%1$s にブロック済み</string>
 
     <!-- CreditCardFragment -->
     <!-- Title of fragment -->
@@ -426,7 +428,6 @@
     <!-- Accessibility text associated with image button to send an edited message. -->
     <string name="ConversationActivity_send_edit">編集した内容を送信する</string>
     <string name="ConversationActivity_compose_message">メッセージ作成</string>
-    <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">添付ファイルの設定中にエラーが発生しました。</string>
     <!-- Toast shown when user is unable to find the recipient when sending a message -->
     <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">宛先のSMSまたはEメールアドレスが不正です！</string>
     <string name="ConversationActivity_message_is_empty_exclamation">メッセージが空です！</string>
@@ -1046,7 +1047,7 @@
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
     <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$sのメッセージ情報とチャット情報は、すべての端末でエンドツーエンドの暗号化で保護されています</string>
     <!-- Bottom sheet title explaining how Signal works on a linked device -->
-    <string name="LinkDeviceFragment__signal_on_desktop_ipad">DesktopまたはiPad上のSignal</string>
+    <string name="LinkDeviceFragment__signal_on_desktop_ipad">リンク済み端末のSignal</string>
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
     <string name="LinkDeviceFragment__all_messaging_is_private">リンク済み端末上のすべてのメッセージはプライバシーが保護されています</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
@@ -1160,6 +1161,8 @@
     <string name="AddLinkDeviceFragment__this_qr_code_not_valid">このQRコードは無効です。リンクしたい端末に表示されているQRコードであるか確認してください。</string>
     <!-- Button in dialog to retry linking a device with a qr code -->
     <string name="AddLinkDeviceFragment__retry">再試行</string>
+    <!-- Text shown in a dialog when the device being linked is too out-of-date to be linked to this account -->
+    <string name="AddLinkDeviceFragment__the_device_you_are_trying_to_link_is_out_of_date">The device you\'re trying to link is out of date. Please upgrade and try again.</string>
 
     <!-- LinkDeviceSyncBottomSheet -->
     <!-- Option in bottom sheet to transfer message history -->
@@ -1527,12 +1530,6 @@
     <!-- Dialog message -->
     <string name="RestoreActivity__no_longer_registered_message">おそらく別の端末でSignalアカウントを登録したことが原因です。</string>
 
-    <!-- GroupMentionSettingDialog -->
-    <string name="GroupMentionSettingDialog_notify_me_for_mentions">メンションの通知</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">ミュートしたチャットでメンションがあった際に、通知を受け取りますか？</string>
-    <string name="GroupMentionSettingDialog_always_notify_me">常に通知を受け取る</string>
-    <string name="GroupMentionSettingDialog_dont_notify_me">通知を受け取らない</string>
-
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">ユーザーネーム、QRコード、リンクはプロフィールに表示されません。ユーザーネームは信頼できる人とのみ共有してください。</string>
@@ -1823,9 +1820,6 @@
 
     <!-- MediaPickerActivity -->
     <string name="MediaPickerActivity__menu_open_camera">カメラを開く</string>
-
-    <!-- MediaSendActivity -->
-    <string name="MediaSendActivity_camera_unavailable">カメラは利用できません。</string>
 
     <!-- MediaRepository -->
     <string name="MediaRepository_all_media">すべてのメディア</string>
@@ -2795,13 +2789,6 @@
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">サポートに問い合わせる</string>
 
-    <!-- RegistrationLockV2Dialog -->
-    <string name="RegistrationLockV2Dialog_turn_on_registration_lock">登録ロックを有効にしますか？</string>
-    <string name="RegistrationLockV2Dialog_turn_off_registration_lock">登録ロックを無効にしますか？</string>
-    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Signalに再登録する際にPINを忘れると、アカウントが7日間ロックされます。</string>
-    <string name="RegistrationLockV2Dialog_turn_on">有効にする</string>
-    <string name="RegistrationLockV2Dialog_turn_off">無効にする</string>
-
     <!-- RevealableMessageView -->
     <string name="RevealableMessageView_view_photo">写真を見る</string>
     <string name="RevealableMessageView_view_video">動画を見る</string>
@@ -3166,7 +3153,7 @@
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
     <string name="MuteDialog_mute_notifications">通知をミュート</string>
     <!-- Dialog option that, when pressed, will open a time picker to let the user choose how long they\'d like to mute notifications for -->
-    <string name="MuteDialog__mute_until">ミュート（期限指定）</string>
+    <string name="MuteDialog__mute_until">Until…</string>
 
     <!-- MuteUntilTimePickerBottomSheet -->
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
@@ -3995,15 +3982,6 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">最近使った絵文字</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">このメッセージ</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">最近使ったもの</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">スマイリーと人々</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">自然</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">食品</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">アクティビティ</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">場所</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">オブジェクト</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">記号</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">旗</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">顔文字</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">検索結果はありません</string>
 
     <!-- GifQuickSearchOption -->
@@ -4021,10 +3999,10 @@
     <string name="arrays__use_default">既定を使う</string>
     <string name="arrays__use_custom">カスタムを使う</string>
 
-    <string name="arrays__mute_for_one_hour">1時間ミュート</string>
-    <string name="arrays__mute_for_eight_hours">8時間ミュート</string>
-    <string name="arrays__mute_for_one_day">1日間ミュート</string>
-    <string name="arrays__mute_for_seven_days">7日間ミュート</string>
+    <string name="arrays__mute_for_one_hour">1時間</string>
+    <string name="arrays__mute_for_eight_hours">8時間</string>
+    <string name="arrays__mute_for_one_day">1日</string>
+    <string name="arrays__mute_for_seven_days">1週間</string>
     <string name="arrays__always">常時</string>
 
     <string name="arrays__settings_default">既定の設定</string>
@@ -4078,6 +4056,10 @@
     <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
     <string name="preferences__inactivity_timeout_interval">無操作タイムアウトの間隔</string>
     <string name="preferences__notifications">通知</string>
+    <!-- Preference item menu to enable notifications -->
+    <string name="preferences__enable_notifications">通知を有効にする</string>
+    <!-- Preference header for call notifications -->
+    <string name="preferences__call_notifications">着信通知</string>
     <string name="preferences__led_color">LED色</string>
     <string name="preferences__led_color_unknown">不明</string>
     <string name="preferences__pref_led_blink_title">LED点滅パターン</string>
@@ -4165,12 +4147,10 @@
     <string name="preferences__system_default">システム既定</string>
     <string name="preferences__language">言語</string>
     <string name="preferences__signal_messages_and_calls">Signalメッセージと通話</string>
-    <string name="preferences__advanced_pin_settings">PINの詳細設定</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">PINの詳細設定</string>
     <string name="preferences__free_private_messages_and_calls">Signalユーザーにプライベートメッセージと通話の自由を</string>
     <string name="preferences__submit_debug_log">デバッグログの提出</string>
-    <string name="preferences__delete_account">アカウントの消去</string>
     <string name="preferences__support_wifi_calling">Wi-Fi通話互換モード</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">この端末がWi-Fi経由のSMS/MMS送信を使用している場合は、有効にしてください (Wi-Fi通話の有効時のみ有効になります)。</string>
     <string name="preferences__incognito_keyboard">シークレットキーボード</string>
@@ -4235,6 +4215,16 @@
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">データ通信量を抑えると、低品質なネットワーク上での通話が改善されることがあります。</string>
     <string name="preferences_notifications__in_chat_sounds">チャット中の着信音</string>
     <string name="preferences_notifications__show">表示</string>
+    <!-- Preference item to set notification settings when chats are muted -->
+    <string name="preferences_notifications__while_muted">While muted</string>
+    <!-- Option in settings to turn on reaction notifications -->
+    <string name="preferences_notifications__reaction">Reaction notifications</string>
+    <!-- Body option in settings to turn on reaction notifications    -->
+    <string name="preferences_notifications__notify_reaction">Show notifications for reactions to messages you send</string>
+    <!-- Option in settings to turn on unread reminders -->
+    <string name="preferences_notifications__unread">Unread reminders</string>
+    <!-- Body option to turn on unread reminders -->
+    <string name="preferences_notifications__notify_unread">Occasionally notify when there are unread messages in muted chats</string>
     <string name="preferences_notifications__ringtone">着信音</string>
     <string name="preferences_chats__message_text_size">メッセージのフォントサイズ</string>
     <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
@@ -4758,8 +4748,6 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">あなたのアカウント用に作成したPINを入力してください。これはSMSの認証コードとは違います。</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">アカウント用に作成した PIN を入力してください。</string>
-    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
-    <string name="RegistrationLockFragment__switch_keyboard">キーボードを切り替える</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">PINが違います。再度試してください。</string>
     <string name="RegistrationLockFragment__forgot_pin">PINを忘れましたか？</string>
     <string name="RegistrationLockFragment__incorrect_pin">PINが違います</string>
@@ -4832,8 +4820,6 @@
     <!-- Text label button to skip restoring -->
     <string name="registration_activity__skip_restore">復元をスキップする</string>
     <string name="preferences_chats__chat_backups">チャットのバックアップ</string>
-    <string name="preferences_chats__transfer_account">アカウントの移行</string>
-    <string name="preferences_chats__transfer_account_to_a_new_android_device">新しいAndroid端末にアカウントを移行します。</string>
     <!-- Title for dialog to enter in the backup passphrase -->
     <string name="RegistrationActivity_enter_backup_passphrase">バックアップ用パスフレーズを入力してください</string>
     <string name="RegistrationActivity_restore">復元する</string>
@@ -4921,19 +4907,9 @@
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">画面ロックまでの無操作時間</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
     <string name="preferences_app_protection__to_use_screen_lock">画面ロックを使用するには、この端末でPIN、パターン、またはパスワードを設定します。</string>
-    <string name="preferences_app_protection__signal_pin">Signal PIN</string>
-    <string name="preferences_app_protection__create_a_pin">PINを作成する</string>
-    <string name="preferences_app_protection__change_your_pin">PINを変更</string>
-    <string name="preferences_app_protection__pin_reminders">PINリマインダー</string>
-    <string name="preferences_app_protection__turn_off">無効にする</string>
-    <string name="preferences_app_protection__confirm_pin">PINを再入力</string>
-    <string name="preferences_app_protection__confirm_your_signal_pin">Signal PINの確認</string>
-    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">PINは復元できないため、記憶するか安全に保管してください。PINを忘れると、Signalアカウントの再登録時にデータが失われる可能性があります。</string>
-    <string name="preferences_app_protection__incorrect_pin_try_again">PINが違います。もう一度試してください。</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">登録ロックを有効にすることに失敗しました。</string>
     <string name="preferences_app_protection__failed_to_disable_registration_lock">登録ロックを無効にすることに失敗しました</string>
     <string name="AppProtectionPreferenceFragment_none">なし</string>
-    <string name="preferences_app_protection__registration_lock">登録ロック</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">登録ロックPINの入力が必要です</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">あなたのPINは%1$d字以上です</string>
     <string name="RegistrationActivity_too_many_attempts">試行回数が多すぎます</string>
@@ -4981,20 +4957,6 @@
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
     <string name="Recipient_deleted_account">消去されたアカウント</string>
 
-    <!-- Option in settings that will take use to re-register if they are no longer registered -->
-    <string name="preferences_account_reregister">アカウントを再登録する</string>
-    <!-- Option in settings that will take user to our website or playstore to update their expired build -->
-    <string name="preferences_account_update_signal">Signalをアップデートしてください</string>
-    <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
-    <string name="preferences_account_delete_all_data">すべてのデータを消去する</string>
-    <!-- Title for confirmation dialog confirming user wants to delete all their data -->
-    <string name="preferences_account_delete_all_data_confirmation_title">すべてのデータを消去しますか？</string>
-    <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_message">メッセージを消去して、アプリを初期化します。この処理が完了するとアプリは終了します。</string>
-    <!-- Confirmation action to proceed with application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_proceed">進む</string>
-    <!-- Confirmation action to cancel application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_cancel">キャンセル</string>
     <!-- Error message shown when we fail to delete the data for some unknown reason -->
     <string name="preferences_account_delete_all_data_failed">データの消去に失敗しました</string>
 
@@ -5527,14 +5489,6 @@
     <!-- String displayed in a toast when a subscriber id is not present for a given type -->
     <string name="AppSettingsFragment__no_subscriber_id_set">サブスクリプションIDが設定されていません</string>
 
-    <!-- AccountSettingsFragment -->
-    <string name="AccountSettingsFragment__account">アカウント</string>
-    <string name="AccountSettingsFragment__youll_be_asked_less_frequently">確認の頻度は次第に少なくなります。</string>
-    <string name="AccountSettingsFragment__require_your_signal_pin">あなたの電話番号をSignalに再登録する際に、Signal PINを要求します。</string>
-    <string name="AccountSettingsFragment__change_phone_number">電話番号を変更</string>
-    <!-- Account setting that allows user to request and export their signal account data -->
-    <string name="AccountSettingsFragment__request_account_data">あなたのアカウントデータ</string>
-
     <!-- ExportAccountDataFragment -->
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
     <string name="ExportAccountDataFragment__your_account_data">あなたのアカウントデータ</string>
@@ -5820,14 +5774,46 @@
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">メッセージ</string>
     <string name="NotificationsSettingsFragment__calls">通話</string>
-    <string name="NotificationsSettingsFragment__notify_when">その他の通知</string>
+    <!-- Notification header for sounds -->
+    <string name="NotificationsSettingsFragment__sounds">着信音</string>
     <string name="NotificationsSettingsFragment__contact_joins_signal">連絡先のSignal参加時</string>
+    <!-- Notification body to get notified when someone joins Signal -->
+    <string name="NotificationsSettingsFragment__notify_contact">Show a notification when a phone contact joins Signal</string>
+    <!-- Option to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset">Reset notification settings</string>
+    <!-- Option body to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_notifications">Reset notification settings to default, including custom settings for your chats</string>
+    <!-- Dialog to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_body">Reset all notification settings to default for all chats?</string>
+    <!-- Confirmation button to reset dialog -->
+    <string name="NotificationsSettingsFragment__reset_confirm">リセットする</string>
     <!-- Notification preference header -->
     <string name="NotificationsSettingsFragment__notification_profiles">通知プロファイル</string>
     <!-- Notification preference option header -->
     <string name="NotificationsSettingsFragment__profiles">プロファイル</string>
     <!-- Notification preference summary text -->
     <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">プロファイルを作成すると、通知を受け取りたい相手やグループを限定できます。</string>
+
+    <!-- Header to describe screen that shows while muted settings -->
+    <string name="MutedNotificationsFragment__while">While muted</string>
+    <!-- Title for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls">通話</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body_global">Ring or notify when a call is started in muted chats.</string>
+    <!-- Title for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions">メンション</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body_global">Notify when you are mentioned in muted chats.</string>
+    <!-- Title for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies">返信</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body_global">Notify when someone replies to your message in muted chats.</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body">Ring or notify when a call is started while this chat is muted.</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body">Notify when you are mentioned while this chat is muted.</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body">Notify when someone replies to your message while this chat is muted.</string>
 
     <!-- NotificationProfilesFragment -->
     <!-- Title for notification profiles screen that shows all existing profiles; Title with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -6053,6 +6039,8 @@
     <string name="ConversationSettingsFragment__end_group">グループを閉じる</string>
     <!-- Banner shown at the top of group settings when the group has been ended -->
     <string name="ConversationSettingsFragment__this_group_was_ended">このグループは閉じられました。</string>
+    <!-- Subhead under a legacy group\'s name, joining the member count and the "Legacy Group" label. %1$s is the member count, %2$s is the label -->
+    <string name="ConversationSettingsFragment__s_dot_s">%1$s · %2$s</string>
     <!-- Archive chat option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__archive_chat">チャットをアーカイブ</string>
     <!-- Delete chat option in group conversation settings screen -->
@@ -6230,34 +6218,9 @@
     <!-- Positive dialog action when sending a story via an add to group story button -->
     <string name="MediaReviewFragment__add_to_story">ストーリーに追加</string>
     <string name="MediaReviewFragment__add_a_message">メッセージを追加してください</string>
-    <!-- Hint text inside of a compose box that is shown when the user is adding media while quoting a message. -->
-    <string name="MediaReviewFragment__add_a_reply">返信を追加</string>
     <string name="MediaReviewFragment__send_to">宛先</string>
-    <string name="MediaReviewFragment__view_once_message">使い捨てメディア</string>
-    <string name="MediaReviewFragment__one_or_more_items_were_too_large">1つ以上のアイテムのサイズが大きすぎます</string>
-    <string name="MediaReviewFragment__one_or_more_items_were_invalid">1つ以上のアイテムが不正です</string>
-    <string name="MediaReviewFragment__too_many_items_selected">選択されたアイテムが多すぎます</string>
-    <string name="MediaReviewFragment__video_trimmed_to_fit">サイズ制限内に収まるように動画がトリミングされました</string>
-    <!-- Small notification presented to the user when they set their video to view-once mode -->
-    <string name="MediaReviewFragment__video_set_to_view_once">ビデオは一度だけ表示するように設定されています</string>
-    <!-- Small notification presented to the user when they set their photo to view-once mode -->
-    <string name="MediaReviewFragment__photo_set_to_view_once">写真は一度だけ表示するように設定されています</string>
-    <!-- Accessibility label describing the add media button on the Media review screen -->
-    <string name="MediaReviewFragment__add_media_accessibility_label">メディアを追加する</string>
-    <!-- Accessibility label describing the brush and pen button on the Media review screen -->
-    <string name="MediaReviewFragment__brush_pen_accessibility_label">ブラシとペン</string>
-    <!-- Accessibility label describing the crop and rotate button on the Media review screen -->
-    <string name="MediaReviewFragment__crop_rotate_accessibility_label">切り抜きと回転</string>
-    <!-- Accessibility label describing the change media quality button on the Media review screen -->
-    <string name="MediaReviewFragment__change_media_quality_accessibility_label">メディアの品質を変更する</string>
-    <!-- Accessibility label describing the save media button on the Media review screen -->
-    <string name="MediaReviewFragment__save_media_accessibility_label">メディアを保存する</string>
-    <!-- Accessibility label describing the toggle emoji keyboard button on the Media review screen -->
-    <string name="MediaReviewFragment__emoji_toggle_accessibility_label">絵文字キーボードを切り替える</string>
     <!-- Accessibility label describing the toggle view once button on the Media review screen -->
     <string name="MediaReviewFragment__view_once_toggle_accessibility_label">「一度だけ表示」の切替え</string>
-    <!-- Accessibility label describing the send media button on the Media review screen -->
-    <string name="MediaReviewFragment__send_media_accessibility_label">メディアを送信する</string>
     <!-- Accessibility label describing the finish adding a message button on the Media review screen dialog -->
     <string name="MediaReviewFragment__finish_adding_a_message_accessibility_label">メッセージの追加を完了する</string>
 
@@ -6277,27 +6240,9 @@
 
     <string name="MediaCountIndicatorButton__send">送信する</string>
 
-    <string name="MediaReviewSelectedItem__tap_to_remove">タップして削除</string>
-    <string name="MediaReviewSelectedItem__tap_to_select">タップして選択</string>
-
     <string name="MediaReviewImagePageFragment__discard">破棄する</string>
     <string name="MediaReviewImagePageFragment__discard_changes">変更を破棄しますか？</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">この写真に加えた変更はすべて失われます。</string>
-
-    <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_title">%1$sが見つかりました</string>
-    <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_body">「%1$s」とのチャットを始める</string>
-    <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
-    <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">チャットする</string>
-
-    <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_title">端末をリンクしますか？</string>
-    <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_it_looks_like_youre_trying">Signal端末をリンクしようとしていますか？［続ける］→［新しい端末をリンクする］をタップし、もう一度QRコードをスキャンしてください。</string>
-    <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
-    <string name="MediaCaptureFragment_device_link_dialog_continue">続行</string>
-
 
     <string name="BadgesOverviewFragment__my_badges">マイバッジ</string>
     <string name="BadgesOverviewFragment__featured_badge">表示するバッジ</string>
@@ -8522,13 +8467,6 @@
     <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">このグループは閉じられました。</string>
     <!-- Body of bottom sheet shown when opening a terminated group -->
     <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">このグループ内では、メッセージの送受信や通話の受発信ができなくなりました。</string>
-
-    <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_title">消去機能がすべての端末で同期されるようになりました</string>
-    <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_message">メッセージやチャットを消去した場合、ご利用のスマートフォンやリンク済み端末からも消去されます。</string>
-    <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_acknowledge_button">OK</string>
 
     <!-- NoManualBackupBottomSheet -->
     <!-- Title for bottom sheet, placeholder is number of days. -->

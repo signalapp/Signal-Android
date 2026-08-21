@@ -197,7 +197,7 @@ class RemoteBackupRestoreViewModel(
       _state.value = _state.value.copy(loadState = RemoteBackupRestoreState.LoadState.Loading, loadAttempts = _state.value.loadAttempts + 1)
 
       val result = withContext(ioDispatcher) {
-        repository.getRemoteBackupInfo(_state.value.aep)
+        repository.getAndMaybeHealRemoteBackupInfo(_state.value.aep)
       }
 
       when (result) {
@@ -244,6 +244,11 @@ class RemoteBackupRestoreViewModel(
             }
             is NetworkController.GetBackupInfoError.RateLimited -> {
               Log.w(TAG, "[loadBackupInfo] Rate limited. Try again in: ${error.retryAfter}")
+              _state.value.copy(loadState = RemoteBackupRestoreState.LoadState.Failure)
+            }
+            is NetworkController.GetBackupInfoError.CredentialVerificationFailed -> {
+              // Either the retried fetch failed the same way, or the backup-id could not be re-committed at all -- the repository collapses both to this.
+              Log.w(TAG, "[loadBackupInfo] Credential failed zk verification and re-committing the backup-id did not recover it.")
               _state.value.copy(loadState = RemoteBackupRestoreState.LoadState.Failure)
             }
           }

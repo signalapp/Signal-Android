@@ -5,6 +5,7 @@
 
 package org.signal.archive.stream
 
+import org.signal.core.util.writeZeros
 import org.whispersystems.signalservice.internal.crypto.PaddingInputStream
 import java.io.FilterOutputStream
 import java.io.OutputStream
@@ -24,9 +25,8 @@ class PaddedGzipOutputStream private constructor(private val outputStream: SizeO
 
     val totalLength = outputStream.size
     val paddedSize: Long = PaddingInputStream.getPaddedSize(totalLength)
-    val paddingToAdd: Int = (paddedSize - totalLength).toInt()
 
-    outputStream.write(ByteArray(paddingToAdd))
+    outputStream.writeZeros(paddedSize - totalLength)
   }
 
   /**

@@ -51,6 +51,7 @@ object ContactArchiveImporter {
     val profileKey = contact.profileKey?.toByteArray()
     val values = contentValuesOf(
       RecipientTable.BLOCKED to contact.blocked,
+      RecipientTable.BLOCKED_AT to contact.blockedAtTimestamp,
       RecipientTable.HIDDEN to contact.visibility.toLocal().serialize(),
       RecipientTable.TYPE to RecipientTable.RecipientType.INDIVIDUAL.id,
       RecipientTable.PROFILE_FAMILY_NAME to contact.profileFamilyName,

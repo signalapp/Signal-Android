@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <!-- Emoji category headers, shown in the emoji keyboard and the react-with-any-emoji sheet -->
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Straoiseoga ⁊ Daoine</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">An Dúlra</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Bia</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Gníomhaíochtaí</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Áiteanna</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Rudaí</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Siombailí</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Bratacha</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Straoiseoga</string>
+</resources>

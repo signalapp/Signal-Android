@@ -2,9 +2,9 @@ package org.thoughtcrime.securesms.keyboard.emoji
 
 import android.content.Context
 import org.signal.core.util.concurrent.SignalExecutors
-import org.thoughtcrime.securesms.components.emoji.EmojiPageModel
+import org.signal.emoji.EmojiPageModel
+import org.signal.emoji.EmojiSource.Companion.latest
 import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel
-import org.thoughtcrime.securesms.emoji.EmojiSource.Companion.latest
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import java.util.function.Consumer
 

@@ -102,17 +102,26 @@ data class InternalConversationSettingsState(
       } else {
         val capabilities: RecipientRecord.Capabilities? = SignalDatabase.recipients.getCapabilities(recipient.id)
         if (capabilities != null) {
-          AnnotatedString("No capabilities right now.")
-          // Always leave one as an example in case we add one in the future
-          val style: SpanStyle = when (capabilities.usernameSyncMessages) {
-            Recipient.Capability.SUPPORTED -> SpanStyle(color = Color(0, 150, 0))
-            Recipient.Capability.NOT_SUPPORTED -> SpanStyle(color = Color.Red)
-            Recipient.Capability.UNKNOWN -> SpanStyle(fontStyle = FontStyle.Italic)
-          }
+          val named = listOf(
+            "usernameSyncMessages" to capabilities.usernameSyncMessages,
+            "optionalPhoneNumber" to capabilities.optionalPhoneNumber
+          )
 
           buildAnnotatedString {
-            withStyle(style = style) {
-              append("usernameSyncMessages")
+            named.forEachIndexed { index, (name, capability) ->
+              val style: SpanStyle = when (capability) {
+                Recipient.Capability.SUPPORTED -> SpanStyle(color = Color(0, 150, 0))
+                Recipient.Capability.NOT_SUPPORTED -> SpanStyle(color = Color.Red)
+                Recipient.Capability.UNKNOWN -> SpanStyle(fontStyle = FontStyle.Italic)
+              }
+
+              if (index > 0) {
+                append(", ")
+              }
+
+              withStyle(style = style) {
+                append(name)
+              }
             }
           }
         } else {

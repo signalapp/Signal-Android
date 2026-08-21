@@ -531,10 +531,15 @@ class CameraScreenViewModel : ViewModel() {
       .build()
       .also { it.surfaceProvider = event.surfaceProvider }
 
-    // Image capture with 16:9 aspect ratio (optimized for speed)
+    // Image capture with 16:9 aspect ratio (optimized for speed).
+    // The flash mode must be seeded from state: this builds a brand new ImageCapture, and a fresh one
+    // defaults to FLASH_MODE_OFF. Rebinds happen on every camera switch and every re-entry into the
+    // camera, so without this the HUD would keep showing the user's flash selection while the hardware
+    // flash silently stopped firing.
     val imageCapture = ImageCapture.Builder()
       .setCaptureMode(ImageCapture.CAPTURE_MODE_MINIMIZE_LATENCY)
       .setResolutionSelector(resolutionSelector)
+      .setFlashMode(_state.value.flashMode.cameraxMode)
       .build()
 
     val videoCapture: VideoCapture<Recorder>? = if (event.captureMode == CameraCaptureMode.ImageAndVideoSimultaneous && !FORCE_LIMITED_BINDING) {

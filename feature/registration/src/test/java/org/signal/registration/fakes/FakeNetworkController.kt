@@ -12,16 +12,22 @@ import org.signal.core.models.MasterKey
 import org.signal.core.models.ServiceId.ACI
 import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.protocol.IdentityKeyPair
+import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
+import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialRequest
 import org.signal.network.api.RegistrationApiV2.AccountAttributes
 import org.signal.network.api.RegistrationApiV2.CheckSvrCredentialsError
 import org.signal.network.api.RegistrationApiV2.CheckSvrCredentialsResponse
+import org.signal.network.api.RegistrationApiV2.CreateLoginReceiptCredentialError
+import org.signal.network.api.RegistrationApiV2.CreateLoginReceiptCredentialResult
 import org.signal.network.api.RegistrationApiV2.CreateSessionError
 import org.signal.network.api.RegistrationApiV2.DeviceAttributes
 import org.signal.network.api.RegistrationApiV2.GetSessionStatusError
 import org.signal.network.api.RegistrationApiV2.LinkDeviceResponse
+import org.signal.network.api.RegistrationApiV2.LoginPurchasePaymentProvider
 import org.signal.network.api.RegistrationApiV2.PreKeyCollection
 import org.signal.network.api.RegistrationApiV2.RegisterAccountError
 import org.signal.network.api.RegistrationApiV2.RegisterAccountResponse
+import org.signal.network.api.RegistrationApiV2.RegisterAccountWithoutPhoneNumberError
 import org.signal.network.api.RegistrationApiV2.RegisterAsLinkedDeviceError
 import org.signal.network.api.RegistrationApiV2.RequestVerificationCodeError
 import org.signal.network.api.RegistrationApiV2.RestoreMethod
@@ -41,6 +47,7 @@ import org.signal.registration.NetworkController.LinkDeviceProvisioningEvent
 import org.signal.registration.NetworkController.MasterKeyResponse
 import org.signal.registration.NetworkController.ProvisioningEvent
 import org.signal.registration.NetworkController.ProvisioningMessage
+import org.signal.registration.NetworkController.ReserveBackupIdError
 import org.signal.registration.NetworkController.RestoreAccountRecordError
 import org.signal.registration.NetworkController.RestoreMasterKeyError
 import org.signal.registration.NetworkController.SetAccountAttributesError
@@ -99,6 +106,10 @@ class FakeNetworkController(
   var lastSetRestoreMethodRequest: SetRestoreMethodRequest? = null
     private set
   var accountAttributesSyncJobEnqueued = false
+    private set
+
+  /** How many times the flow re-committed the backup-id. */
+  var reserveBackupIdCount = 0
     private set
 
   /**
@@ -165,6 +176,10 @@ class FakeNetworkController(
 
   var onGetRemoteBackupInfo: suspend (AccountEntropyPool) -> RequestResult<GetBackupInfoResponse, GetBackupInfoError> = {
     RequestResult.Success(GetBackupInfoResponse(cdn = 3, backupDir = "backup-dir", mediaDir = "media-dir", backupName = "backup", usedSpace = 1_000_000))
+  }
+
+  var onReserveBackupId: suspend (AccountEntropyPool) -> RequestResult<Unit, ReserveBackupIdError> = {
+    RequestResult.Success(Unit)
   }
 
   var onGetBackupFileLastModified: suspend (AccountEntropyPool) -> RequestResult<Long, GetBackupInfoError> = {
@@ -299,6 +314,21 @@ class FakeNetworkController(
     return onRegisterAccount(request)
   }
 
+  override suspend fun createLoginPurchaseReceiptCredential(
+    purchaseIdentifier: String,
+    receiptCredentialRequest: ReceiptCredentialRequest,
+    paymentProvider: LoginPurchasePaymentProvider
+  ): RequestResult<CreateLoginReceiptCredentialResult, CreateLoginReceiptCredentialError> = notExpected()
+
+  override suspend fun registerAccountWithoutPhoneNumber(
+    password: String,
+    receiptCredentialPresentation: ReceiptCredentialPresentation,
+    attributes: AccountAttributes,
+    aciPreKeys: PreKeyCollection,
+    fcmToken: String?,
+    skipDeviceTransfer: Boolean
+  ): RequestResult<RegisterAccountResponse, RegisterAccountWithoutPhoneNumberError> = notExpected()
+
   override suspend fun getFcmToken(): String? = fcmToken
 
   override suspend fun awaitPushChallengeToken(): String? = pushChallengeToken
@@ -339,6 +369,11 @@ class FakeNetworkController(
 
   override suspend fun getRemoteBackupInfo(aep: AccountEntropyPool): RequestResult<GetBackupInfoResponse, GetBackupInfoError> {
     return onGetRemoteBackupInfo(aep)
+  }
+
+  override suspend fun reserveBackupId(aep: AccountEntropyPool): RequestResult<Unit, ReserveBackupIdError> {
+    reserveBackupIdCount++
+    return onReserveBackupId(aep)
   }
 
   override suspend fun getBackupFileLastModified(aep: AccountEntropyPool, backupInfo: GetBackupInfoResponse): RequestResult<Long, GetBackupInfoError> {

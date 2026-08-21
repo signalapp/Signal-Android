@@ -9,11 +9,14 @@ import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.receiveAsFlow
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.RequestResult
@@ -42,6 +45,9 @@ class PinCreationViewModel(
 
   private val _state = MutableStateFlow(PinCreationState())
   val state: StateFlow<PinCreationState> = _state.asStateFlow()
+
+  private val _actions = Channel<PinCreationScreenActions>(Channel.BUFFERED)
+  val actions: Flow<PinCreationScreenActions> = _actions.receiveAsFlow()
 
   init {
     _state
@@ -101,7 +107,7 @@ class PinCreationViewModel(
       }
 
       is PinCreationScreenEvents.LearnMore -> {
-        // Handled by the navigation layer, which opens the help URL directly.
+        _actions.trySend(PinCreationScreenActions.OpenLearnMoreArticle)
       }
 
       is PinCreationScreenEvents.BackToPinEntry -> {

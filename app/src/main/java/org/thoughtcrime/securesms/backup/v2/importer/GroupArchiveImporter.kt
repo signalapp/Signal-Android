@@ -57,6 +57,7 @@ object GroupArchiveImporter {
       put(RecipientTable.AVATAR_COLOR, AvatarColorHash.forGroupId(groupId).serialize())
       put(RecipientTable.PROFILE_SHARING, group.whitelisted.toInt())
       put(RecipientTable.BLOCKED, group.blocked.toInt())
+      put(RecipientTable.BLOCKED_AT, group.blockedAtTimestamp)
       put(RecipientTable.TYPE, RecipientTable.RecipientType.GV2.id)
       put(RecipientTable.STORAGE_SERVICE_ID, Base64.encodeWithPadding(StorageSyncHelper.generateKey()))
       put(RecipientTable.AVATAR_COLOR, group.avatarColor?.toLocal()?.serialize())

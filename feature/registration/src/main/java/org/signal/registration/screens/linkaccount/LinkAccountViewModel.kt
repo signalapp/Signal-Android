@@ -10,11 +10,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.EventDrivenViewModel
@@ -49,6 +52,9 @@ class LinkAccountViewModel(
   private val _state = MutableStateFlow(LinkAccountScreenState(showCreateAccount = showCreateAccount))
   val state: StateFlow<LinkAccountScreenState> = _state.asStateFlow()
 
+  private val _actions = Channel<LinkAccountScreenAction>(Channel.BUFFERED)
+  val actions: Flow<LinkAccountScreenAction> = _actions.receiveAsFlow()
+
   private var provisioningJob: Job? = null
 
   init {
@@ -66,7 +72,10 @@ class LinkAccountViewModel(
   @VisibleForTesting
   fun applyEvent(state: LinkAccountScreenState, event: LinkAccountScreenEvent, stateEmitter: (LinkAccountScreenState) -> Unit) {
     val result = when (event) {
-      LinkAccountScreenEvent.GetHelpClick -> error("This event is handled in the nav-entry.")
+      LinkAccountScreenEvent.GetHelpClick -> {
+        _actions.trySend(LinkAccountScreenAction.OpenGetHelpArticle)
+        state
+      }
       LinkAccountScreenEvent.CreateAccountClick -> {
         // Revisit permission screen if necessary
         if (parentState.value.backStack.any { it == RegistrationRoute.PhoneNumberEntry }) {

@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms
 
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.widget.Toast
 import androidx.compose.foundation.clickable
@@ -59,9 +60,10 @@ class InviteFragment : ComposeFragment() {
       .setAction(Intent.ACTION_SEND)
       .putExtra(Intent.EXTRA_TEXT, inviteText)
       .setType("text/plain")
-    if (sendIntent.resolveActivity(requireContext().packageManager) != null) {
+
+    try {
       startActivity(Intent.createChooser(sendIntent, getString(R.string.InviteActivity_invite_to_signal)))
-    } else {
+    } catch (e: ActivityNotFoundException) {
       Toast.makeText(requireContext(), R.string.InviteActivity_no_app_to_share_to, Toast.LENGTH_LONG).show()
     }
   }

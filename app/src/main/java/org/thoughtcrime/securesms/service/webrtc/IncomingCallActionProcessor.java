@@ -116,7 +116,8 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
                                                 NetworkUtil.getCallingDataMode(context),
                                                 AUDIO_LEVELS_INTERVAL,
                                                 dredDuration,
-                                                false);
+                                                false,
+                                                RingRtcDynamicConfiguration.getStatsIntervalSecs());
     } catch (CallException e) {
       return callFailure(currentState, "Unable to proceed with call: ", e);
     }
@@ -136,7 +137,7 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
   protected @NonNull WebRtcServiceState handleAcceptCall(@NonNull WebRtcServiceState currentState, boolean answerWithVideo) {
     RemotePeer activePeer = currentState.getCallInfoState().requireActivePeer();
 
-    Log.i(TAG, "handleAcceptCall(): call_id: " + activePeer.getCallId());
+    Log.i(TAG, "handleAcceptCall(): call_id: " + activePeer.getCallId() + " answerWithVideo: " + answerWithVideo);
 
     OutgoingVideoSourceRouter router = currentState.getVideoState().requireRouter();
     router.setVanitySink(null);
@@ -153,6 +154,28 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
                                .changeCallSetupState(activePeer.getCallId())
                                .acceptWithVideo(answerWithVideo)
                                .accepted(true)
+                               .waitForAudio(true)
+                               .build();
+
+    webRtcInteractor.prepareAudioForAccept();
+
+    return currentState;
+  }
+
+  @Override
+  protected @NonNull WebRtcServiceState handleAudioReadyForAccept(@NonNull WebRtcServiceState currentState) {
+    RemotePeer activePeer = currentState.getCallInfoState().getActivePeer();
+
+    if (activePeer == null || !currentState.getCallSetupState(activePeer.getCallId()).shouldWaitForAudio()) {
+      Log.w(TAG, "handleAudioReadyForAccept(): call is no longer waiting to be accepted, ignoring");
+      return currentState;
+    }
+
+    Log.i(TAG, "handleAudioReadyForAccept(): call_id: " + activePeer.getCallId());
+
+    currentState = currentState.builder()
+                               .changeCallSetupState(activePeer.getCallId())
+                               .waitForAudio(false)
                                .build();
 
     try {
@@ -172,7 +195,8 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
       return currentState;
     }
 
-    if (currentState.getCallSetupState(activePeer).isAccepted()) {
+    // Reject deny if the call has already been fully accepted by RingRTC
+    if (currentState.getCallSetupState(activePeer).isAccepted() && !currentState.getCallSetupState(activePeer).shouldWaitForAudio()) {
       Log.w(TAG, "Cannot deny after call has been accepted!");
       return currentState;
     }
@@ -240,11 +264,11 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
   }
 
   protected @NonNull WebRtcServiceState handleLocalRinging(@NonNull WebRtcServiceState currentState, @NonNull RemotePeer remotePeer) {
-    Log.i(TAG, "handleLocalRinging(): call_id: " + remotePeer.getCallId());
-
     RemotePeer activePeer                = currentState.getCallInfoState().requireActivePeer();
     Recipient  recipient                 = remotePeer.getRecipient();
     boolean    shouldDisturbUserWithCall = DoNotDisturbUtil.shouldDisturbUserWithCall(context.getApplicationContext(), recipient);
+
+    Log.i(TAG, "handleLocalRinging(): call_id: " + remotePeer.getCallId() + " shouldDisturbUser: " + shouldDisturbUserWithCall);
 
     activePeer.localRinging();
 

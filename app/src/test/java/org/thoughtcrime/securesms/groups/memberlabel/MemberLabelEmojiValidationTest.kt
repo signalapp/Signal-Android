@@ -15,7 +15,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
-import org.thoughtcrime.securesms.emoji.EmojiSource
+import org.signal.emoji.EmojiSource
 import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
 
 @RunWith(RobolectricTestRunner::class)

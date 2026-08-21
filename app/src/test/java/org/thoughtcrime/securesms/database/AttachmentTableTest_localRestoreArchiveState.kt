@@ -18,6 +18,7 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.signal.core.models.database.AttachmentId
+import org.signal.core.util.Base64
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.attachments.ArchivedAttachment
 import org.thoughtcrime.securesms.attachments.Attachment
@@ -88,6 +89,36 @@ class AttachmentTableTest_localRestoreArchiveState {
     SignalDatabase.attachments.resetArchiveTransferStateForLocalBackupMedia()
 
     assertThat(SignalDatabase.attachments.hasArchiveFinishedLocalBackupMedia()).isFalse()
+  }
+
+  @Test
+  fun resetArchiveTransferState_skippedWhenThereIsNoLocalDataFileToReUploadFrom() {
+    val attachmentId = insertArchivedAttachment(archiveCdn = 3, localBackupKey = Random.nextBytes(32))
+    val attachment = SignalDatabase.attachments.getAttachment(attachmentId)!!
+
+    val result = SignalDatabase.attachments.resetArchiveTransferStateByPlaintextHashAndRemoteKeyIfNecessary(
+      plaintextHash = Base64.decode(attachment.dataHash!!),
+      remoteKey = Base64.decode(attachment.remoteKey!!)
+    )
+
+    assertThat(result).isEqualTo(AttachmentTable.ArchiveTransferStateResetResult.SKIPPED_NO_LOCAL_DATA)
+
+    val after = SignalDatabase.attachments.getAttachment(attachmentId)!!
+    assertThat(after.archiveTransferState).isEqualTo(AttachmentTable.ArchiveTransferState.FINISHED)
+    assertThat(after.archiveCdn).isEqualTo(3)
+  }
+
+  @Test
+  fun resetArchiveTransferState_notNeededWhenNotFinished() {
+    val attachmentId = insertArchivedAttachment(archiveCdn = null, localBackupKey = Random.nextBytes(32))
+    val attachment = SignalDatabase.attachments.getAttachment(attachmentId)!!
+
+    val result = SignalDatabase.attachments.resetArchiveTransferStateByPlaintextHashAndRemoteKeyIfNecessary(
+      plaintextHash = Base64.decode(attachment.dataHash!!),
+      remoteKey = Base64.decode(attachment.remoteKey!!)
+    )
+
+    assertThat(result).isEqualTo(AttachmentTable.ArchiveTransferStateResetResult.NOT_NEEDED)
   }
 
   private fun insertArchivedAttachment(archiveCdn: Int?, localBackupKey: ByteArray?): AttachmentId {

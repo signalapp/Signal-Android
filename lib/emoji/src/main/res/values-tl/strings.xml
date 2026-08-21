@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <!-- Emoji category headers, shown in the emoji keyboard and the react-with-any-emoji sheet -->
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Smileys &amp; Mga Tao</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Kalikasan</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Pagkain</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Mga Aktibidad</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Mga Lugar</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Mga Bagay</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Mga Simbolo</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Mga Watawat</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emoticons</string>
+</resources>

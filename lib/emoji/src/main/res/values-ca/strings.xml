@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <!-- Emoji category headers, shown in the emoji keyboard and the react-with-any-emoji sheet -->
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Emoticones somrients i gent</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Natura</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Menjar</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Activitats</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Llocs</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Objectes</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Símbols</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Banderes</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emoticona</string>
+</resources>

@@ -127,6 +127,7 @@ object RecipientTableCursorUtil {
       distributionListId = distributionListId,
       recipientType = RecipientTable.RecipientType.fromId(cursor.requireInt(RecipientTable.TYPE)),
       isBlocked = cursor.requireBoolean(RecipientTable.BLOCKED),
+      blockedAt = cursor.requireLong(RecipientTable.BLOCKED_AT),
       muteUntil = cursor.requireLong(RecipientTable.MUTE_UNTIL),
       messageVibrateState = RecipientTable.VibrateState.fromId(cursor.requireInt(RecipientTable.MESSAGE_VIBRATE)),
       callVibrateState = RecipientTable.VibrateState.fromId(cursor.requireInt(RecipientTable.CALL_VIBRATE)),
@@ -176,7 +177,8 @@ object RecipientTableCursorUtil {
     val capabilities = cursor.requireLong(RecipientTable.CAPABILITIES)
     return RecipientRecord.Capabilities(
       rawBits = capabilities,
-      usernameSyncMessages = Recipient.Capability.deserialize(Bitmask.read(capabilities, RecipientTable.Capabilities.USERNAME_SYNC_MESSAGES, RecipientTable.Capabilities.BIT_LENGTH).toInt())
+      usernameSyncMessages = Recipient.Capability.deserialize(Bitmask.read(capabilities, RecipientTable.Capabilities.USERNAME_SYNC_MESSAGES, RecipientTable.Capabilities.BIT_LENGTH).toInt()),
+      optionalPhoneNumber = Recipient.Capability.deserialize(Bitmask.read(capabilities, RecipientTable.Capabilities.OPTIONAL_PHONE_NUMBER, RecipientTable.Capabilities.BIT_LENGTH).toInt())
     )
   }
 

@@ -4,6 +4,7 @@ import org.signal.archive.proto.BackupDebugInfo
 import org.signal.ringrtc.CallManager.DataMode
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.database.model.IssuePriority
+import org.thoughtcrime.securesms.keyvalue.protos.IssueNotifyTimes
 import org.thoughtcrime.securesms.util.Environment.Calling.defaultSfuUrl
 import org.thoughtcrime.securesms.util.RemoteConfig
 
@@ -18,7 +19,7 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
     const val DELAY_RESENDS: String = "internal.delay_resends"
     const val CALLING_SERVER: String = "internal.calling_server"
     const val CALLING_DATA_MODE: String = "internal.calling_bandwidth_mode"
-    const val CALLING_DISABLE_TELECOM: String = "internal.calling_disable_telecom"
+    const val CALLING_USE_TELECOM: String = "internal.calling_use_telecom"
     const val CALLING_SET_AUDIO_CONFIG: String = "internal.calling_set_audio_config"
     const val CALLING_USE_OBOE_ADM: String = "internal.calling_use_oboe_adm"
     const val CALLING_USE_SOFTWARE_AEC: String = "internal.calling_use_software_aec"
@@ -30,6 +31,8 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
     const val CALLING_USE_HARDWARE_VP9_DECODE: String = "internal.calling_use_hardware_vp9_decode"
     const val CALLING_USE_SOFTWARE_VP9_ENCODE: String = "internal.calling_use_software_vp9_encode"
     const val CALLING_USE_SOFTWARE_VP9_DECODE: String = "internal.calling_use_software_vp9_decode"
+    const val CALLING_ENABLE_SVC: String = "internal.calling_enable_svc"
+    const val CALLING_STATS_INTERVAL_SECS: String = "internal.calling_stats_interval_secs"
     const val SHAKE_TO_REPORT: String = "internal.shake_to_report"
     const val DISABLE_STORAGE_SERVICE: String = "internal.disable_storage_service"
     const val LAST_SCROLL_POSITION: String = "internal.last_scroll_position"
@@ -40,9 +43,9 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
     const val SHOW_ARCHIVE_STATE_HINT: String = "internal.show_archive_state_hint"
     const val INCLUDE_DEBUGLOG_IN_BACKUP: String = "internal.include_debuglog_in_backup"
     const val IMPORTED_BACKUP_DEBUG_INFO: String = "internal.imported_backup_debug_info"
-    const val USE_NEW_MEDIA_ACTIVITY: String = "internal.use_new_media_activity"
     const val ANR_DETECTION_CRASH: String = "internal.anr_detection_crash"
     const val ISSUE_NOTIFICATION_PRIORITY: String = "internal.issue_notification_priority"
+    const val ISSUE_NOTIFY_TIMES: String = "internal.issue_notify_times"
   }
 
   public override fun onFirstEverAppLaunch() = Unit
@@ -58,19 +61,6 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
    * Force single-pane on all devices
    */
   var forceSinglePane by booleanValue(FORCE_SINGLE_PANE_ON_ALL_DEVICES, false).falseForExternalUsers()
-
-  /**
-   * Whether to use the new media-send flow. Internal users can override the remote value.
-   */
-  var useNewMediaActivity: Boolean
-    get() = if (RemoteConfig.internalUser) {
-      getBoolean(USE_NEW_MEDIA_ACTIVITY, RemoteConfig.useNewMediaSendFlow)
-    } else {
-      RemoteConfig.useNewMediaSendFlow
-    }
-    set(value) {
-      putBoolean(USE_NEW_MEDIA_ACTIVITY, value)
-    }
 
   /**
    * Members will not be added directly to a GV2 even if they could be.
@@ -152,9 +142,9 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
     }
 
   /**
-   * Whether or not Telecom integration is manually disabled.
+   * Whether or not Telecom integration is enabled.
    */
-  var callingDisableTelecom by booleanValue(CALLING_DISABLE_TELECOM, true).falseForExternalUsers()
+  var callingUseTelecom by booleanValue(CALLING_USE_TELECOM, true).falseForExternalUsers()
 
   /**
    * Whether or not to override the audio settings from the remote configuration.
@@ -211,6 +201,13 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
    */
   var callingUseSoftwareVp9Decode by booleanValue(CALLING_USE_SOFTWARE_VP9_DECODE, true).defaultForExternalUsers()
 
+  var callingEnableSvc by booleanValue(CALLING_ENABLE_SVC, false).defaultForExternalUsers()
+
+  /**
+   * How often, in seconds, RingRTC should report call stats. Zero means use the default interval.
+   */
+  var callingStatsIntervalSecs: Int by integerValue(CALLING_STATS_INTERVAL_SECS, 0).defaultForExternalUsers()
+
   var lastScrollPosition: Int by integerValue(LAST_SCROLL_POSITION, 0).defaultForExternalUsers()
 
   var useConversationItemV2Media by booleanValue(CONVERSATION_ITEM_V2_MEDIA, false).defaultForExternalUsers()
@@ -224,6 +221,9 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
   var issueNotificationPriority: IssuePriority
     get() = IssuePriority.fromValue(getInteger(ISSUE_NOTIFICATION_PRIORITY, IssuePriority.HIGH.value))
     set(value) = putInteger(ISSUE_NOTIFICATION_PRIORITY, value.value)
+
+  /** Persisted so an issue's notification cooldown isn't reset by process death. */
+  var issueNotifyTimes: IssueNotifyTimes by protoValue(ISSUE_NOTIFY_TIMES, IssueNotifyTimes(), IssueNotifyTimes.ADAPTER)
 
   var showArchiveStateHint by booleanValue(SHOW_ARCHIVE_STATE_HINT, false).defaultForExternalUsers()
 

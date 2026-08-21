@@ -25,7 +25,6 @@ import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.ContentTypeUtil
 import org.signal.mediasend.EditorState
 import org.signal.mediasend.MediaSendDependenciesRule
-import org.signal.mediasend.MediaSendFlowState
 import org.signal.mediasend.test.TestTags
 
 /**
@@ -66,7 +65,7 @@ class MediaEditorToolbarSharedButtonsTest {
 
   @Test
   fun `Given a video, when rendering the toolbar, then saving is not offered`() {
-    setContent(state(media = VIDEO), EditorState.VideoTrim.forVideo(durationUs = 1_000, maxDurationUs = 1_000))
+    setContent(state(media = VIDEO), VIDEO_EDITOR_STATE)
 
     assertQuality(visible = true)
     assertSave(visible = false)
@@ -109,6 +108,34 @@ class MediaEditorToolbarSharedButtonsTest {
     assertAddMedia(visible = false)
   }
 
+  @Test
+  fun `Given the mute labs flag is off, when rendering the toolbar for a video, then muting is not offered`() {
+    setContent(state(media = VIDEO), VIDEO_EDITOR_STATE)
+
+    assertMute(visible = false)
+  }
+
+  @Test
+  fun `Given the mute labs flag is on, when rendering the toolbar for a video, then muting is offered`() {
+    setContent(state(media = VIDEO, muteEnabled = true), VIDEO_EDITOR_STATE)
+
+    assertMute(visible = true)
+  }
+
+  @Test
+  fun `Given the mute labs flag is on, when rendering the toolbar for a video gif, then muting is not offered`() {
+    setContent(state(media = VIDEO_GIF, muteEnabled = true), EditorState.VideoGif)
+
+    assertMute(visible = false)
+  }
+
+  @Test
+  fun `Given the mute labs flag is on, when rendering the toolbar for an image, then muting is not offered`() {
+    setContent(state(media = IMAGE, muteEnabled = true), IMAGE_EDITOR_STATE)
+
+    assertMute(visible = false)
+  }
+
   /**
    * The selection rail is the multi-item form of the add media button, so it follows the same rule.
    */
@@ -135,6 +162,8 @@ class MediaEditorToolbarSharedButtonsTest {
 
   private fun assertAddMedia(visible: Boolean) = assertTag(TestTags.MEDIA_EDITOR_TOOLBAR_ADD_MEDIA_BUTTON, visible)
 
+  private fun assertMute(visible: Boolean) = assertTag(TestTags.MEDIA_EDITOR_TOOLBAR_MUTE_BUTTON, visible)
+
   private fun assertTag(tag: String, visible: Boolean) {
     val node = composeTestRule.onNodeWithTag(tag)
     if (visible) {
@@ -144,7 +173,7 @@ class MediaEditorToolbarSharedButtonsTest {
     }
   }
 
-  private fun setContent(state: MediaSendFlowState, editorState: EditorState) {
+  private fun setContent(state: MediaEditState, editorState: EditorState) {
     composeTestRule.setContent {
       SignalTheme {
         MediaEditorToolbar {
@@ -158,12 +187,14 @@ class MediaEditorToolbarSharedButtonsTest {
     }
   }
 
-  private fun state(media: Media, isStory: Boolean = false, viewOnce: Boolean = false): MediaSendFlowState {
-    return MediaSendFlowState(
+  private fun state(media: Media, isStory: Boolean = false, viewOnce: Boolean = false, muteEnabled: Boolean = false): MediaEditState {
+    return MediaEditState(
       selectedMedia = listOf(media),
       focusedMedia = media,
       isStory = isStory,
-      viewOnceToggleState = if (viewOnce) MediaSendFlowState.ViewOnceToggleState.ONCE else MediaSendFlowState.ViewOnceToggleState.OFF
+      isViewOnceAvailable = !isStory,
+      isViewOnceEnabled = viewOnce,
+      isMuteVideoAudioEnabled = muteEnabled
     )
   }
 
@@ -171,6 +202,7 @@ class MediaEditorToolbarSharedButtonsTest {
     /** The editor model is never read by the toolbar, and a real one cannot be built under Robolectric's legacy graphics. */
     private val IMAGE_EDITOR_STATE = EditorState.Image(mockk(relaxed = true))
     private val DOCUMENT_EDITOR_STATE = EditorState.Document(fileName = "report.pdf", fileSize = 1, extension = "pdf")
+    private val VIDEO_EDITOR_STATE = EditorState.VideoTrim.forVideo(durationUs = 1_000, maxDurationUs = 1_000)
 
     private val IMAGE = media(contentType = ContentTypeUtil.IMAGE_JPEG)
     private val GIF = media(contentType = ContentTypeUtil.IMAGE_GIF)

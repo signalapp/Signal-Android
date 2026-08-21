@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <!-- Emoji category headers, shown in the emoji keyboard and the react-with-any-emoji sheet -->
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Smiley-uri &amp; Oameni</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Natură</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Mâncare</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Activități</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Locuri</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Obiecte</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Simboluri</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Steaguri</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emoticoane</string>
+</resources>

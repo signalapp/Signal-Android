@@ -10,6 +10,7 @@ import android.media.AudioDeviceCallback;
 import android.media.AudioDeviceInfo;
 import android.media.AudioFocusRequest;
 import android.media.AudioManager;
+import android.media.AudioRecordingConfiguration;
 import android.media.SoundPool;
 import android.os.Build;
 import android.os.Handler;
@@ -198,6 +199,11 @@ public abstract class AudioManagerCompat {
     audioManager.unregisterAudioRecordingCallback(callback);
   }
 
+  @RequiresApi(24)
+  public @NonNull List<AudioRecordingConfiguration> getActiveRecordingConfigurations() {
+    return audioManager.getActiveRecordingConfigurations();
+  }
+
   @SuppressLint("WrongConstant")
   public boolean isWiredHeadsetOn() {
     AudioDeviceInfo[] devices = audioManager.getDevices(AudioManager.GET_DEVICES_ALL);
@@ -323,7 +329,7 @@ public abstract class AudioManagerCompat {
             .setOnAudioFocusChangeListener(onAudioFocusChangeListener)
             .build();
       } else {
-        Log.w(TAG, "Trying again to request audio focus");
+        Log.w(TAG, "Trying to request audio focus");
       }
 
       try {

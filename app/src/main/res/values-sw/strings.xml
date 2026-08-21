@@ -171,6 +171,8 @@
     <string name="BlockedUsersActivity__block_user">Ungependa kumzuia mtumiaji?</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" hawataweza kukupigia simu au kukutumia ujumbe.</string>
     <string name="BlockedUsersActivity__block">Zuia</string>
+    <!-- Subtitle shown under a blocked user. Placeholder is the time they were blocked-->
+    <string name="BlockedUsersActivity__blocked_on_s">Alikuwa blocked %1$s</string>
 
     <!-- CreditCardFragment -->
     <!-- Title of fragment -->
@@ -428,7 +430,6 @@
     <!-- Accessibility text associated with image button to send an edited message. -->
     <string name="ConversationActivity_send_edit">Tuma uhariri</string>
     <string name="ConversationActivity_compose_message">Tunga ujumbe</string>
-    <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Samahani, hitilafi ilitokea kwenye kuweka kiambatanisho chako.</string>
     <!-- Toast shown when user is unable to find the recipient when sending a message -->
     <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Mpokeaji sio anwani sahihi ya Ujumbe au barua pepe!</string>
     <string name="ConversationActivity_message_is_empty_exclamation">Ujumbe ni mtupu!</string>
@@ -1069,13 +1070,13 @@
 
     <!-- LinkDeviceFragment -->
     <!-- Description for how Signal will work with a linked device (eg desktop, iPad) -->
-    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Use this Signal account on another device.</string>
+    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Tumia akaunti hii ya Signal kwenye kifaa kingine.</string>
     <!-- Button prompting users to link a new device to their account -->
     <string name="LinkDeviceFragment__link_a_new_device">Unganisha kifaa kipya</string>
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
     <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$s Taarifa za ujumbe na gumzo zinalindwa na usimbaji fiche kwenye vifaa vyote</string>
     <!-- Bottom sheet title explaining how Signal works on a linked device -->
-    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal kwenye Desktop au iPad</string>
+    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal kwenye kifaa kilichounganishwa</string>
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
     <string name="LinkDeviceFragment__all_messaging_is_private">Utumaji ujumbe wa vifaa vilivyounganishwa ni wa faragha</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
@@ -1189,6 +1190,8 @@
     <string name="AddLinkDeviceFragment__this_qr_code_not_valid">Msimbo huu wa QR sio halali. Tafadhali hakikisha unaskani msimbo wa QR ulioonyeshwa kwenye kifaa unachotaka kuunganisha.</string>
     <!-- Button in dialog to retry linking a device with a qr code -->
     <string name="AddLinkDeviceFragment__retry">Jaribu Upya</string>
+    <!-- Text shown in a dialog when the device being linked is too out-of-date to be linked to this account -->
+    <string name="AddLinkDeviceFragment__the_device_you_are_trying_to_link_is_out_of_date">The device you\'re trying to link is out of date. Please upgrade and try again.</string>
 
     <!-- LinkDeviceSyncBottomSheet -->
     <!-- Option in bottom sheet to transfer message history -->
@@ -1574,12 +1577,6 @@
     <!-- Dialog message -->
     <string name="RestoreActivity__no_longer_registered_message">Huenda hii imetokea kwa sababu ulisajili akaunti yako ya Signal kwenye kifaa kingine.</string>
 
-    <!-- GroupMentionSettingDialog -->
-    <string name="GroupMentionSettingDialog_notify_me_for_mentions">Niarifu Ninapotajwa</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Je, ungependa kupokea arifa unapotajwa katika mazungumzo yaliyonyamazishwa?</string>
-    <string name="GroupMentionSettingDialog_always_notify_me">Niarifu kila wakati</string>
-    <string name="GroupMentionSettingDialog_dont_notify_me">Usiniarifu</string>
-
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Jina lako la mtumiaji, code yako ya QR na kiungo havionekani kwenye wasifu wako. Shiriki jina lako la mtumiaji na watu unaowaamini tu.</string>
@@ -1880,9 +1877,6 @@
 
     <!-- MediaPickerActivity -->
     <string name="MediaPickerActivity__menu_open_camera">Fungua kamera</string>
-
-    <!-- MediaSendActivity -->
-    <string name="MediaSendActivity_camera_unavailable">Kamera haipatikani</string>
 
     <!-- MediaRepository -->
     <string name="MediaRepository_all_media">Media zote</string>
@@ -2891,13 +2885,6 @@
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">Wasiliana na Msaada</string>
 
-    <!-- RegistrationLockV2Dialog -->
-    <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Je, washa Kufuli ya Usajili?</string>
-    <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Je, zima Kufuli ya Usajili?</string>
-    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Iwapo utasahau PINI yako ya Signal wakati wa kusajili na Signal tena, utafungiwa akaunti yako kwa siku 7.</string>
-    <string name="RegistrationLockV2Dialog_turn_on">Washa</string>
-    <string name="RegistrationLockV2Dialog_turn_off">Zima</string>
-
     <!-- RevealableMessageView -->
     <string name="RevealableMessageView_view_photo">Onyesha Picha</string>
     <string name="RevealableMessageView_view_video">Tazama video</string>
@@ -3267,7 +3254,7 @@
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
     <string name="MuteDialog_mute_notifications">Nyamazisha arifa</string>
     <!-- Dialog option that, when pressed, will open a time picker to let the user choose how long they\'d like to mute notifications for -->
-    <string name="MuteDialog__mute_until">Zima sauti hadi…</string>
+    <string name="MuteDialog__mute_until">Until…</string>
 
     <!-- MuteUntilTimePickerBottomSheet -->
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
@@ -4118,15 +4105,6 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Hivi karibuni</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Ujumbe huu</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Iliyotumiwa hivi majuzi</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Tabasamu na Watu</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Asili</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Chakula</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Shughuli</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Maeneo</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Vitu</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Ishara</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Bendera</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emoji za Hisia</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Hakuna matokeo yaliyopatikana</string>
 
     <!-- GifQuickSearchOption -->
@@ -4144,10 +4122,10 @@
     <string name="arrays__use_default">Tumia chaguo msingi</string>
     <string name="arrays__use_custom">Tumia kaida</string>
 
-    <string name="arrays__mute_for_one_hour">Nyamazisha kwa saa 1</string>
-    <string name="arrays__mute_for_eight_hours">Nyamazisha kwa saa 8</string>
-    <string name="arrays__mute_for_one_day">Nyamazisha kwa siku 1</string>
-    <string name="arrays__mute_for_seven_days">Nyamazisha kwa siku 7</string>
+    <string name="arrays__mute_for_one_hour">Saa moja</string>
+    <string name="arrays__mute_for_eight_hours">Saa 8</string>
+    <string name="arrays__mute_for_one_day">Siku moja</string>
+    <string name="arrays__mute_for_seven_days">Wiki moja</string>
     <string name="arrays__always">Kila mara</string>
 
     <string name="arrays__settings_default">Mipangilio chaguo msingi</string>
@@ -4202,6 +4180,10 @@
     <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
     <string name="preferences__inactivity_timeout_interval">Kipindi cha uishaji muda</string>
     <string name="preferences__notifications">Arifa</string>
+    <!-- Preference item menu to enable notifications -->
+    <string name="preferences__enable_notifications">Wezesha arifa</string>
+    <!-- Preference header for call notifications -->
+    <string name="preferences__call_notifications">Arifa za simu</string>
     <string name="preferences__led_color">Rangi za LED</string>
     <string name="preferences__led_color_unknown">Isiyojulikana</string>
     <string name="preferences__pref_led_blink_title">Mfano wa LED blink</string>
@@ -4289,12 +4271,10 @@
     <string name="preferences__system_default">Chaguo-msingi la mfumo</string>
     <string name="preferences__language">Lugha</string>
     <string name="preferences__signal_messages_and_calls">Ujumbe na simu za Signal</string>
-    <string name="preferences__advanced_pin_settings">Mipangilio ya PIN ya Hali ya Juu</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">Mipangilio ya PIN ya Hali ya Juu</string>
     <string name="preferences__free_private_messages_and_calls">Ujumbe wa faragha wa bure na simu kwa watumiaji wa Signal</string>
     <string name="preferences__submit_debug_log">Wasilisha tunzakumbukumbu ya ueuaji</string>
-    <string name="preferences__delete_account">Futa akaunti</string>
     <string name="preferences__support_wifi_calling">\'\'Simu ya Wi-Fi\' aina ya utangamano</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Wezesha iwapo kifaa chako kinatumia uwasilishaji wa SMS / MMS juu ya WiFi (wezesha tu wakati \"Simu ya WiFi\" imewezeshwa kwenye kifaa chako)</string>
     <string name="preferences__incognito_keyboard">Baobonye isiyotambulika</string>
@@ -4361,6 +4341,16 @@
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Kutumia kiasi kidogo cha data kunaweza kuboresha mazungumzo ya simu katika mitandao isiyo thabiti.</string>
     <string name="preferences_notifications__in_chat_sounds">Sauti za gumzo</string>
     <string name="preferences_notifications__show">Onyesha</string>
+    <!-- Preference item to set notification settings when chats are muted -->
+    <string name="preferences_notifications__while_muted">While muted</string>
+    <!-- Option in settings to turn on reaction notifications -->
+    <string name="preferences_notifications__reaction">Reaction notifications</string>
+    <!-- Body option in settings to turn on reaction notifications    -->
+    <string name="preferences_notifications__notify_reaction">Show notifications for reactions to messages you send</string>
+    <!-- Option in settings to turn on unread reminders -->
+    <string name="preferences_notifications__unread">Unread reminders</string>
+    <!-- Body option to turn on unread reminders -->
+    <string name="preferences_notifications__notify_unread">Occasionally notify when there are unread messages in muted chats</string>
     <string name="preferences_notifications__ringtone">Mlio wa simu</string>
     <string name="preferences_chats__message_text_size">ukubwa wa maandishi ya ujumbe</string>
     <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
@@ -4888,8 +4878,6 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Ingiza Nenosiri ulilobuni kwa hii akaunti. Hii ni tofauti na nambari za kuthibitisha kupitia Ujumbe mfupi.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Ingiza PIN uliyounda ya akaunti yako.</string>
-    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
-    <string name="RegistrationLockFragment__switch_keyboard">Badili kibodi</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Nenosiri sio sahihi. Jaribu tena.</string>
     <string name="RegistrationLockFragment__forgot_pin">Umesahau Nenosiri?</string>
     <string name="RegistrationLockFragment__incorrect_pin">Nenosiri sio sahihi</string>
@@ -4967,8 +4955,6 @@
     <!-- Text label button to skip restoring -->
     <string name="registration_activity__skip_restore">Ruka rejesha</string>
     <string name="preferences_chats__chat_backups">Nakalahifadhi ya Gumzo</string>
-    <string name="preferences_chats__transfer_account">Hamisha akaunti</string>
-    <string name="preferences_chats__transfer_account_to_a_new_android_device">Hamishia akaunti kwenye kifaa kipya cha Android</string>
     <!-- Title for dialog to enter in the backup passphrase -->
     <string name="RegistrationActivity_enter_backup_passphrase">ingiza nenosiri la nakalahifadhi</string>
     <string name="RegistrationActivity_restore">Rejesha</string>
@@ -5056,19 +5042,9 @@
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">Muda wa kuisha Screen Lock isipokuwa na shughuli</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
     <string name="preferences_app_protection__to_use_screen_lock">Ili utumie screen lock weka PIN, muundo au nenosiri kwenye kifaa hiki.</string>
-    <string name="preferences_app_protection__signal_pin">Nenosiri la Signal</string>
-    <string name="preferences_app_protection__create_a_pin">Unda Nenosiri</string>
-    <string name="preferences_app_protection__change_your_pin">Badilisha PINI yako</string>
-    <string name="preferences_app_protection__pin_reminders">Vikumbusho vya PIN</string>
-    <string name="preferences_app_protection__turn_off">Zima</string>
-    <string name="preferences_app_protection__confirm_pin">Thibitisha PIN</string>
-    <string name="preferences_app_protection__confirm_your_signal_pin">Thibitisha PINI yako ya Signal</string>
-    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Hakikisha unakumbuka au kuhifadhi PIN yako salama kwani haiwezi kurejeshwa. Ukisahau PIN yako, unaweza kupoteza data unaposajili upya akaunti yako ya Signal.</string>
-    <string name="preferences_app_protection__incorrect_pin_try_again">Nenosiri sio sahihi. Jaribu tena.</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">Imeshindwa kuwezesha kufuli ya usajili.</string>
     <string name="preferences_app_protection__failed_to_disable_registration_lock">Imeshindwa kulemaza kufuli ya usajili.</string>
     <string name="AppProtectionPreferenceFragment_none">Hakuna</string>
-    <string name="preferences_app_protection__registration_lock">Lock ya usajili</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Ni lazima uingize Lock PIN yako ya usajili</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Nenosiri lako lina angalau nambari au vibambo %1$d</string>
     <string name="RegistrationActivity_too_many_attempts">Majaribio mengi mno</string>
@@ -5116,20 +5092,6 @@
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
     <string name="Recipient_deleted_account">Akaunti iliyofutwa</string>
 
-    <!-- Option in settings that will take use to re-register if they are no longer registered -->
-    <string name="preferences_account_reregister">Sajili upya akaunti</string>
-    <!-- Option in settings that will take user to our website or playstore to update their expired build -->
-    <string name="preferences_account_update_signal">Sasisha Signal</string>
-    <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
-    <string name="preferences_account_delete_all_data">Futa data yote</string>
-    <!-- Title for confirmation dialog confirming user wants to delete all their data -->
-    <string name="preferences_account_delete_all_data_confirmation_title">Futa data yote?</string>
-    <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_message">Hii itaweka upya programu na kufuta jumbe zote. Programu hii itafunga baada ya mchakato huu kukamilika.</string>
-    <!-- Confirmation action to proceed with application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_proceed">Endelea</string>
-    <!-- Confirmation action to cancel application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_cancel">Ghairi</string>
     <!-- Error message shown when we fail to delete the data for some unknown reason -->
     <string name="preferences_account_delete_all_data_failed">Imeshindwa kufuta data</string>
 
@@ -5670,14 +5632,6 @@
     <!-- String displayed in a toast when a subscriber id is not present for a given type -->
     <string name="AppSettingsFragment__no_subscriber_id_set">Hakuna seti ya utambulisho ya msajili</string>
 
-    <!-- AccountSettingsFragment -->
-    <string name="AccountSettingsFragment__account">Akaunti</string>
-    <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Utaulizwa mara chache zaidi baada ya muda</string>
-    <string name="AccountSettingsFragment__require_your_signal_pin">Itisha PIN yako ya Signal ili usajili tena nambari yako ya simu katika Signal.</string>
-    <string name="AccountSettingsFragment__change_phone_number">Badili nambari ya simu</string>
-    <!-- Account setting that allows user to request and export their signal account data -->
-    <string name="AccountSettingsFragment__request_account_data">Data za akaunti yako</string>
-
     <!-- ExportAccountDataFragment -->
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
     <string name="ExportAccountDataFragment__your_account_data">Data za akaunti yako</string>
@@ -5971,14 +5925,46 @@
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Jumbe</string>
     <string name="NotificationsSettingsFragment__calls">Simu</string>
-    <string name="NotificationsSettingsFragment__notify_when">Nisrifu wakati…</string>
+    <!-- Notification header for sounds -->
+    <string name="NotificationsSettingsFragment__sounds">Sounds</string>
     <string name="NotificationsSettingsFragment__contact_joins_signal">Mwasiliano amejiunga na Signal</string>
+    <!-- Notification body to get notified when someone joins Signal -->
+    <string name="NotificationsSettingsFragment__notify_contact">Show a notification when a phone contact joins Signal</string>
+    <!-- Option to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset">Reset notification settings</string>
+    <!-- Option body to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_notifications">Reset notification settings to default, including custom settings for your chats</string>
+    <!-- Dialog to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_body">Reset all notification settings to default for all chats?</string>
+    <!-- Confirmation button to reset dialog -->
+    <string name="NotificationsSettingsFragment__reset_confirm">Weka upya mipangilio</string>
     <!-- Notification preference header -->
     <string name="NotificationsSettingsFragment__notification_profiles">Arifa za Wasifu</string>
     <!-- Notification preference option header -->
     <string name="NotificationsSettingsFragment__profiles">Wasifu</string>
     <!-- Notification preference summary text -->
     <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Tengeneza wasifu ili kupata arifa kutoka kwa watu na vikundi unavyovichagua.</string>
+
+    <!-- Header to describe screen that shows while muted settings -->
+    <string name="MutedNotificationsFragment__while">While muted</string>
+    <!-- Title for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls">Simu</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body_global">Ring or notify when a call is started in muted chats.</string>
+    <!-- Title for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions">Kutajwa</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body_global">Notify when you are mentioned in muted chats.</string>
+    <!-- Title for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies">Majibu</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body_global">Notify when someone replies to your message in muted chats.</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body">Ring or notify when a call is started while this chat is muted.</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body">Notify when you are mentioned while this chat is muted.</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body">Notify when someone replies to your message while this chat is muted.</string>
 
     <!-- NotificationProfilesFragment -->
     <!-- Title for notification profiles screen that shows all existing profiles; Title with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -6207,6 +6193,8 @@
     <string name="ConversationSettingsFragment__end_group">Funga kikundi</string>
     <!-- Banner shown at the top of group settings when the group has been ended -->
     <string name="ConversationSettingsFragment__this_group_was_ended">Kikundi hiki kimefungwa.</string>
+    <!-- Subhead under a legacy group\'s name, joining the member count and the "Legacy Group" label. %1$s is the member count, %2$s is the label -->
+    <string name="ConversationSettingsFragment__s_dot_s">%1$s · %2$s</string>
     <!-- Archive chat option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__archive_chat">Hifadhi Gumzo</string>
     <!-- Delete chat option in group conversation settings screen -->
@@ -6390,34 +6378,9 @@
     <!-- Positive dialog action when sending a story via an add to group story button -->
     <string name="MediaReviewFragment__add_to_story">Ongeza kwenye stori</string>
     <string name="MediaReviewFragment__add_a_message">Ongeza ujumbe</string>
-    <!-- Hint text inside of a compose box that is shown when the user is adding media while quoting a message. -->
-    <string name="MediaReviewFragment__add_a_reply">Ongeza jibu</string>
     <string name="MediaReviewFragment__send_to">Tuma kwa</string>
-    <string name="MediaReviewFragment__view_once_message">Tazama mara moja</string>
-    <string name="MediaReviewFragment__one_or_more_items_were_too_large">Kitu kimoja au zaidi vilikuwa vikubwa sana</string>
-    <string name="MediaReviewFragment__one_or_more_items_were_invalid">Kitu kimoja au zaidi vilikuwa batili</string>
-    <string name="MediaReviewFragment__too_many_items_selected">Vitu vingi zaidi vimechaguliwa</string>
-    <string name="MediaReviewFragment__video_trimmed_to_fit">Video yako ilipunguzwa ili kutoshea kikomo cha ukubwa</string>
-    <!-- Small notification presented to the user when they set their video to view-once mode -->
-    <string name="MediaReviewFragment__video_set_to_view_once">Video imewekwa kutazama mara moja</string>
-    <!-- Small notification presented to the user when they set their photo to view-once mode -->
-    <string name="MediaReviewFragment__photo_set_to_view_once">Picha imewekwa kutazama mara moja</string>
-    <!-- Accessibility label describing the add media button on the Media review screen -->
-    <string name="MediaReviewFragment__add_media_accessibility_label">Ongeza Picha au Video</string>
-    <!-- Accessibility label describing the brush and pen button on the Media review screen -->
-    <string name="MediaReviewFragment__brush_pen_accessibility_label">Brashi na Peni</string>
-    <!-- Accessibility label describing the crop and rotate button on the Media review screen -->
-    <string name="MediaReviewFragment__crop_rotate_accessibility_label">Kata kisha zungusha</string>
-    <!-- Accessibility label describing the change media quality button on the Media review screen -->
-    <string name="MediaReviewFragment__change_media_quality_accessibility_label">Badili Ubora wa Picha au Video</string>
-    <!-- Accessibility label describing the save media button on the Media review screen -->
-    <string name="MediaReviewFragment__save_media_accessibility_label">Hifadhi Picha au Video</string>
-    <!-- Accessibility label describing the toggle emoji keyboard button on the Media review screen -->
-    <string name="MediaReviewFragment__emoji_toggle_accessibility_label">Badili kicharazio emoji</string>
     <!-- Accessibility label describing the toggle view once button on the Media review screen -->
     <string name="MediaReviewFragment__view_once_toggle_accessibility_label">Geuza Kitufe cha Tazama Mara Moja</string>
-    <!-- Accessibility label describing the send media button on the Media review screen -->
-    <string name="MediaReviewFragment__send_media_accessibility_label">Tuma Picha au Video</string>
     <!-- Accessibility label describing the finish adding a message button on the Media review screen dialog -->
     <string name="MediaReviewFragment__finish_adding_a_message_accessibility_label">Maliza kuongeza Ujumbe</string>
 
@@ -6437,27 +6400,9 @@
 
     <string name="MediaCountIndicatorButton__send">Tuma</string>
 
-    <string name="MediaReviewSelectedItem__tap_to_remove">Bonyeza kuondoa</string>
-    <string name="MediaReviewSelectedItem__tap_to_select">Bonyeza kuchagua</string>
-
     <string name="MediaReviewImagePageFragment__discard">Tupa</string>
     <string name="MediaReviewImagePageFragment__discard_changes">Ondoa mabadiliko?</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Utapoteza mabadiliko yoyote uliyofanya kwenye picha hii.</string>
-
-    <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_title">Imepatikana %1$s</string>
-    <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_body">Anza gumzo na \"%1$s\"</string>
-    <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
-    <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">Enda kwenye gumzo</string>
-
-    <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_title">Unganisha kifaa?</string>
-    <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_it_looks_like_youre_trying">Inaonekana kama unajaribu kuunganisha kifaa cha Signal. Gusa endelea na kisha gusa \"Unganisha kifaa kipya\" na uskani kodi ya QR tena.</string>
-    <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
-    <string name="MediaCaptureFragment_device_link_dialog_continue">Endelea</string>
-
 
     <string name="BadgesOverviewFragment__my_badges">Beji zangu</string>
     <string name="BadgesOverviewFragment__featured_badge">Beji inayoangaziwa</string>
@@ -8714,13 +8659,6 @@
     <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">Kikundi kimefungwa.</string>
     <!-- Body of bottom sheet shown when opening a terminated group -->
     <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">Huwezi tena kutuma na kupokea ujumbe au simu katika kikundi hiki.</string>
-
-    <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_title">Kufuta sasa kumeunganishwa kwenye vifaa vyao vyote</string>
-    <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_message">Unapofuta jumbe au gumzo, yatafutwa kabisa kutoka kwenye simu yako na vifaa vyako vilivyounganishwa.</string>
-    <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_acknowledge_button">Sawa</string>
 
     <!-- NoManualBackupBottomSheet -->
     <!-- Title for bottom sheet, placeholder is number of days. -->

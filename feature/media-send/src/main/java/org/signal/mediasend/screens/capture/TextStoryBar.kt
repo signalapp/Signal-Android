@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.IconButtons
 import org.signal.core.ui.compose.NightPreview
@@ -31,7 +32,7 @@ import org.signal.mediasend.R
 @Composable
 fun TextStoryHorizontalBar(
   background: Brush,
-  onEvent: (MediaCaptureScreenEvents) -> Unit,
+  onEvent: (TextStoryBarEvents) -> Unit,
   modifier: Modifier = Modifier
 ) {
   Row(
@@ -48,7 +49,7 @@ fun TextStoryHorizontalBar(
 @Composable
 fun TextStoryVerticalBar(
   background: Brush,
-  onEvent: (MediaCaptureScreenEvents) -> Unit,
+  onEvent: (TextStoryBarEvents) -> Unit,
   modifier: Modifier = Modifier
 ) {
   Column(
@@ -65,12 +66,12 @@ fun TextStoryVerticalBar(
 @Composable
 private fun ColorButton(
   background: Brush,
-  onEvent: (MediaCaptureScreenEvents) -> Unit
+  onEvent: (TextStoryBarEvents) -> Unit
 ) {
   IconButtons.IconButton(
     size = 48.dp,
     onClick = {
-      onEvent(MediaCaptureScreenEvents.CycleTextStoryBackgroundColor)
+      onEvent(TextStoryBarEvents.CycleBackgroundColor)
     }
   ) {
     Box(
@@ -85,18 +86,18 @@ private fun ColorButton(
 
 @Composable
 private fun LinkButton(
-  onEvent: (MediaCaptureScreenEvents) -> Unit
+  onEvent: (TextStoryBarEvents) -> Unit
 ) {
   IconButtons.IconButton(
     size = 48.dp,
     onClick = {
-      onEvent(MediaCaptureScreenEvents.AddLinkToTextStory)
+      onEvent(TextStoryBarEvents.AddLink)
     }
   ) {
     Icon(
       imageVector = SignalIcons.Link.imageVector,
       tint = SignalTheme.colors.colorOnCustom,
-      contentDescription = null // TODO [media-send]
+      contentDescription = stringResource(R.string.TextStoryBar__add_link)
     )
   }
 }

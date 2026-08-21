@@ -35,7 +35,7 @@ public final class FillRenderer implements Renderer {
     path.addRoundRect(dst, DimensionUnit.DP.toPixels(18), DimensionUnit.DP.toPixels(18), Path.Direction.CW);
 
     rendererContext.canvas.clipPath(path);
-    rendererContext.canvas.drawColor(color);
+    rendererContext.canvas.drawColor(rendererContext.resolveBlackoutColor(color));
     rendererContext.canvas.restore();
   }
 

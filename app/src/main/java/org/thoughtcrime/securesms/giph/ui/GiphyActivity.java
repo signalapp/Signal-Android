@@ -131,7 +131,7 @@ public class GiphyActivity extends PassphraseRequiredActivity implements Keyboar
     }
 
     Media media = new Media(success.getBlobUri(), mimeType, 0, success.getWidth(), success.getHeight(), 0, 0, false,  true, null, null, null, null);
-    startActivityForResult(MediaSendLauncher.editor(this, sendType, Collections.singletonList(media), recipientId, text), MEDIA_SENDER);
+    startActivityForResult(MediaSendLauncher.editor(this, Collections.singletonList(media), recipientId, text), MEDIA_SENDER);
   }
 
   private void handleGiphyMp4ErrorResult(@NonNull GiphyMp4SaveResult.Error error) {

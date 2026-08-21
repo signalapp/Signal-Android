@@ -279,6 +279,11 @@ class MessageBackupsFlowViewModel(
     }
   }
 
+  fun onBackupKeySavedToPasswordManager() {
+    SignalStore.backup.lastVerifyKeyTime = System.currentTimeMillis()
+    goToNextStage()
+  }
+
   fun goToRecordManually() {
     internalStateFlow.update {
       it.copy(stage = MessageBackupsStage.BACKUP_KEY_RECORD_MANUALLY)

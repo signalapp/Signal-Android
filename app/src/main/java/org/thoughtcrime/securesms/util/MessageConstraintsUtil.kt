@@ -117,8 +117,7 @@ object MessageConstraintsUtil {
   }
 
   fun isValidAdminDeleteSend(message: MessageRecord, currentTime: Long, isAdmin: Boolean, isResend: Boolean): Boolean {
-    return RemoteConfig.sendAdminDelete &&
-      isAdmin &&
+    return isAdmin &&
       !message.isUpdate &&
       message.isPush &&
       (!message.toRecipient.isGroup || message.toRecipient.isActiveGroup) &&

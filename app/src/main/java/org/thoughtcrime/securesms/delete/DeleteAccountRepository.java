@@ -14,6 +14,8 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
+import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
+import org.thoughtcrime.securesms.groups.GroupChangeFailedException;
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.net.SignalNetwork;
 import org.signal.core.util.ServiceUtil;
@@ -67,7 +69,8 @@ class DeleteAccountRepository {
 
       Log.i(TAG, "deleteAccount: attempting to leave groups...");
 
-      int groupsLeft = 0;
+      int groupsProcessed = 0;
+      int groupsFailed    = 0;
       try (GroupTable.Reader groups = SignalDatabase.groups().getGroups()) {
         GroupRecord groupRecord = groups.getNext();
         onDeleteAccountEvent.accept(new DeleteAccountEvent.LeaveGroupsProgress(groups.getCount(), 0));
@@ -76,9 +79,14 @@ class DeleteAccountRepository {
         while (groupRecord != null) {
           if (groupRecord.getId().isPush() && groupRecord.isActive()) {
             if (!groupRecord.isV1Group()) {
-              GroupManager.leaveGroup(AppDependencies.getApplication(), groupRecord.getId().requirePush(), true);
+              try {
+                GroupManager.leaveGroup(AppDependencies.getApplication(), groupRecord.getId().requirePush(), true);
+              } catch (IOException | GroupChangeBusyException | GroupChangeFailedException e) {
+                groupsFailed++;
+                Log.w(TAG, "deleteAccount: failed to leave a group, continuing with the rest.", e);
+              }
             }
-            onDeleteAccountEvent.accept(new DeleteAccountEvent.LeaveGroupsProgress(groups.getCount(), ++groupsLeft));
+            onDeleteAccountEvent.accept(new DeleteAccountEvent.LeaveGroupsProgress(groups.getCount(), ++groupsProcessed));
           }
 
           groupRecord = groups.getNext();
@@ -91,7 +99,11 @@ class DeleteAccountRepository {
         return;
       }
 
-      Log.i(TAG, "deleteAccount: successfully left all groups.");
+      if (groupsFailed > 0) {
+        Log.w(TAG, "deleteAccount: failed to leave " + groupsFailed + " group(s). Continuing with deletion anyway.");
+      } else {
+        Log.i(TAG, "deleteAccount: successfully left all groups.");
+      }
       Log.i(TAG, "deleteAccount: attempting to delete account from server...");
 
       try {

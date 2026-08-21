@@ -9,6 +9,7 @@ import assertk.assertThat
 import assertk.assertions.hasSize
 import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
+import assertk.assertions.isFalse
 import assertk.assertions.isNotEmpty
 import assertk.assertions.isNotEqualTo
 import assertk.assertions.isNull
@@ -27,6 +28,7 @@ import org.signal.core.util.Base64
 import org.signal.core.util.Base64.decodeBase64OrThrow
 import org.signal.core.util.copyTo
 import org.signal.core.util.stream.NullOutputStream
+import org.signal.core.util.update
 import org.signal.mediasend.SentMediaQuality
 import org.thoughtcrime.securesms.attachments.ArchivedAttachment
 import org.thoughtcrime.securesms.attachments.Attachment
@@ -57,6 +59,10 @@ import kotlin.time.Duration.Companion.seconds
 
 @RunWith(AndroidJUnit4::class)
 class AttachmentTableTest {
+
+  companion object {
+    private const val TEST_PAGE_SIZE = 3
+  }
 
   @get:Rule
   val harness = SignalActivityRule(othersCount = 10)
@@ -594,6 +600,210 @@ class AttachmentTableTest {
     assertThat(updatedCount).isEqualTo(0)
   }
 
+  /**
+   * Offloading deletes the only local copy, so it must be gated on evidence that came from the server. Being in the snapshot is our own bookkeeping. Only
+   * last_seen_on_remote_snapshot_version is the part the CDN told us, so only it can authorize the delete.
+   */
+  @Test
+  fun givenAnOffloadCandidateConfirmedOnTheCdn_whenIOptimize_thenIExpectItOffloaded() {
+    val attachmentId = seedOffloadCandidate()
+    val snapshotVersion = commitSnapshotFor(attachmentId, markSeenOnRemote = true)
+
+    SignalDatabase.attachments.markEligibleAttachmentsAsOptimized(lastCompletedCrawlVersion = snapshotVersion, minimumAge = 30.days, now = pastTheOffloadWindow())
+
+    assertThat(SignalDatabase.attachments.getAttachment(attachmentId)!!.transferState).isEqualTo(AttachmentTable.TRANSFER_RESTORE_OFFLOADED)
+  }
+
+  @Test
+  fun givenAnOffloadCandidateNeverSeenOnTheCdn_whenIOptimize_thenIExpectItLeftAlone() {
+    val attachmentId = seedOffloadCandidate()
+    val snapshotVersion = commitSnapshotFor(attachmentId, markSeenOnRemote = false)
+
+    SignalDatabase.attachments.markEligibleAttachmentsAsOptimized(lastCompletedCrawlVersion = snapshotVersion, minimumAge = 30.days, now = pastTheOffloadWindow())
+
+    assertThat(SignalDatabase.attachments.getAttachment(attachmentId)!!.transferState).isEqualTo(AttachmentTable.TRANSFER_PROGRESS_DONE)
+  }
+
+  @Test
+  fun givenNoCompletedReconciliation_whenIOptimize_thenIExpectNothingOffloaded() {
+    val attachmentId = seedOffloadCandidate()
+    commitSnapshotFor(attachmentId, markSeenOnRemote = true)
+
+    SignalDatabase.attachments.markEligibleAttachmentsAsOptimized(lastCompletedCrawlVersion = -1, minimumAge = 30.days, now = pastTheOffloadWindow())
+
+    assertThat(SignalDatabase.attachments.getAttachment(attachmentId)!!.transferState).isEqualTo(AttachmentTable.TRANSFER_PROGRESS_DONE)
+  }
+
+  /**
+   * Coverage across pages: if only the first page were processed, the overflow would silently never be reclaimed.
+   */
+  @Test
+  fun givenMoreConfirmedCandidatesThanOnePage_whenIOptimize_thenIExpectEveryPageOffloaded() {
+    val attachmentIds = List(TEST_PAGE_SIZE * 3) { seedOffloadCandidate() }
+    val snapshotVersion = commitSnapshotForAll(attachmentIds, markSeenOnRemote = true)
+
+    SignalDatabase.attachments.markEligibleAttachmentsAsOptimized(lastCompletedCrawlVersion = snapshotVersion, minimumAge = 30.days, now = pastTheOffloadWindow(), pageSize = TEST_PAGE_SIZE)
+
+    assertThat(attachmentIds.count { isOffloaded(it) }).isEqualTo(attachmentIds.size)
+  }
+
+  /**
+   * Termination when nothing is offloadable. Unconfirmed candidates stay eligible forever, so a loop that ran until the candidate query drained would spin here
+   * and this test would hang rather than fail. Only the advancing id cursor ends it.
+   */
+  @Test
+  fun givenMoreUnconfirmedCandidatesThanOnePage_whenIOptimize_thenIExpectItToTerminateAndOffloadNothing() {
+    val attachmentIds = List(TEST_PAGE_SIZE * 3) { seedOffloadCandidate() }
+    val snapshotVersion = commitSnapshotForAll(attachmentIds, markSeenOnRemote = false)
+
+    SignalDatabase.attachments.markEligibleAttachmentsAsOptimized(lastCompletedCrawlVersion = snapshotVersion, minimumAge = 30.days, now = pastTheOffloadWindow(), pageSize = TEST_PAGE_SIZE)
+
+    assertThat(attachmentIds.count { isOffloaded(it) }).isEqualTo(0)
+  }
+
+  /**
+   * Stickers come back from their pack rather than the archive, so they are never offloaded no matter what the CDN confirms.
+   */
+  @Test
+  fun givenAStickerOffloadCandidate_whenIOptimize_thenIExpectItLeftAlone() {
+    val attachmentId = seedOffloadCandidate()
+    val snapshotVersion = commitSnapshotFor(attachmentId, markSeenOnRemote = true)
+    markAsSticker(attachmentId)
+
+    SignalDatabase.attachments.markEligibleAttachmentsAsOptimized(lastCompletedCrawlVersion = snapshotVersion, minimumAge = 30.days, now = pastTheOffloadWindow())
+
+    assertThat(isOffloaded(attachmentId)).isFalse()
+  }
+
+  /**
+   * Offloading an image with no thumbnail would leave nothing at all to render in the conversation, so visual media has to keep a local thumbnail to qualify.
+   */
+  @Test
+  fun givenAnImageOffloadCandidateWithNoThumbnail_whenIOptimize_thenIExpectItLeftAlone() {
+    val attachmentId = seedOffloadCandidate(contentType = MediaUtil.IMAGE_JPEG)
+    val snapshotVersion = commitSnapshotFor(attachmentId, markSeenOnRemote = true)
+
+    SignalDatabase.attachments.markEligibleAttachmentsAsOptimized(lastCompletedCrawlVersion = snapshotVersion, minimumAge = 30.days, now = pastTheOffloadWindow())
+
+    assertThat(isOffloaded(attachmentId)).isFalse()
+  }
+
+  /**
+   * Media the user just pulled back down would otherwise be offloaded again immediately, undoing the restore they asked for.
+   */
+  @Test
+  fun givenARecentlyRestoredOffloadCandidate_whenIOptimize_thenIExpectItLeftAlone() {
+    val attachmentId = seedOffloadCandidate()
+    val snapshotVersion = commitSnapshotFor(attachmentId, markSeenOnRemote = true)
+    val evaluatedAt = pastTheOffloadWindow()
+    markRestoredAt(attachmentId, evaluatedAt)
+
+    SignalDatabase.attachments.markEligibleAttachmentsAsOptimized(lastCompletedCrawlVersion = snapshotVersion, minimumAge = 30.days, now = evaluatedAt)
+
+    assertThat(isOffloaded(attachmentId)).isFalse()
+  }
+
+  @Test
+  fun givenAnOffloadCandidateOnATooRecentMessage_whenIOptimize_thenIExpectItLeftAlone() {
+    val attachmentId = seedOffloadCandidate()
+    val snapshotVersion = commitSnapshotFor(attachmentId, markSeenOnRemote = true)
+
+    SignalDatabase.attachments.markEligibleAttachmentsAsOptimized(lastCompletedCrawlVersion = snapshotVersion, minimumAge = 30.days, now = System.currentTimeMillis())
+
+    assertThat(isOffloaded(attachmentId)).isFalse()
+  }
+
+  /** Far enough ahead of the seeded message that both the offload age and the 7-day offload-restore window are satisfied. */
+  private fun pastTheOffloadWindow(): Long = System.currentTimeMillis() + 60.days.inWholeMilliseconds
+
+  /** A full locator, because a partial one makes reading the attachment back blow up on the sticker fields. */
+  private fun markAsSticker(attachmentId: AttachmentId) {
+    SignalDatabase.rawDatabase
+      .update(AttachmentTable.TABLE_NAME)
+      .values(
+        AttachmentTable.STICKER_ID to 7,
+        AttachmentTable.STICKER_PACK_ID to "aa1111bbcc2222ddee3333ff44445555",
+        AttachmentTable.STICKER_PACK_KEY to "YWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXoxMjM0NTY3ODkwYWI=",
+        AttachmentTable.STICKER_EMOJI to ":)"
+      )
+      .where("${AttachmentTable.ID} = ?", attachmentId.id)
+      .run()
+  }
+
+  private fun markRestoredAt(attachmentId: AttachmentId, restoredAt: Long) {
+    SignalDatabase.rawDatabase
+      .update(AttachmentTable.TABLE_NAME)
+      .values(AttachmentTable.OFFLOAD_RESTORED_AT to restoredAt)
+      .where("${AttachmentTable.ID} = ?", attachmentId.id)
+      .run()
+  }
+
+  /** Defaults to a non-media content type, which keeps the candidate eligible without also having to generate a thumbnail file. */
+  private fun seedOffloadCandidate(contentType: String = "application/pdf"): AttachmentId {
+    val data = byteArrayOf(1, 2, 3, 4, 5)
+    val attachment = createAttachmentPointer(Random.nextBytes(32), data.size, contentType = contentType)
+    val messageResult = SignalDatabase.messages.insertMessageInbox(createIncomingMessage(serverTime = System.currentTimeMillis().milliseconds, attachment = attachment)).get()
+    val attachmentId = messageResult.insertedAttachments!![attachment]!!
+
+    SignalDatabase.attachments.setTransferState(messageResult.messageId, attachmentId, AttachmentTable.TRANSFER_PROGRESS_STARTED)
+    SignalDatabase.attachments.finalizeAttachmentAfterDownload(messageResult.messageId, attachmentId, ByteArrayInputStream(data))
+    SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.FINISHED)
+
+    return attachmentId
+  }
+
+  /**
+   * Commits every entry in a single snapshot version. Calling [commitSnapshotFor] in a loop would not work: each commit bumps the version, leaving all but the
+   * last entry below MAX_VERSION and therefore unconfirmable.
+   */
+  private fun commitSnapshotForAll(attachmentIds: List<AttachmentId>, markSeenOnRemote: Boolean): Long {
+    val mediaIds: MutableList<String> = mutableListOf()
+    val entries: MutableList<BackupMediaSnapshotTable.MediaEntry> = mutableListOf()
+
+    for (attachmentId in attachmentIds) {
+      val attachment = SignalDatabase.attachments.getAttachment(attachmentId)!!
+      val plaintextHash = attachment.dataHash!!.decodeBase64OrThrow()
+      val remoteKey = attachment.remoteKey!!.decodeBase64OrThrow()
+      val mediaId = MediaName.fromPlaintextHashAndRemoteKey(plaintextHash, remoteKey).toMediaId(SignalStore.backup.mediaRootBackupKey).encode()
+
+      mediaIds += mediaId
+      entries += BackupMediaSnapshotTable.MediaEntry(mediaId = mediaId, cdn = 3, plaintextHash = plaintextHash, remoteKey = remoteKey, isThumbnail = false)
+    }
+
+    SignalDatabase.backupMediaSnapshots.writePendingMediaEntries(entries)
+    SignalDatabase.backupMediaSnapshots.commitPendingRows()
+
+    val snapshotVersion = SignalDatabase.backupMediaSnapshots.getCurrentSnapshotVersion()
+    if (markSeenOnRemote) {
+      SignalDatabase.backupMediaSnapshots.markSeenOnRemote(mediaIds, snapshotVersion)
+    }
+
+    return snapshotVersion
+  }
+
+  private fun isOffloaded(attachmentId: AttachmentId): Boolean {
+    return SignalDatabase.attachments.getAttachment(attachmentId)!!.transferState == AttachmentTable.TRANSFER_RESTORE_OFFLOADED
+  }
+
+  private fun commitSnapshotFor(attachmentId: AttachmentId, markSeenOnRemote: Boolean): Long {
+    val attachment = SignalDatabase.attachments.getAttachment(attachmentId)!!
+    val plaintextHash = attachment.dataHash!!.decodeBase64OrThrow()
+    val remoteKey = attachment.remoteKey!!.decodeBase64OrThrow()
+    val mediaId = MediaName.fromPlaintextHashAndRemoteKey(plaintextHash, remoteKey).toMediaId(SignalStore.backup.mediaRootBackupKey).encode()
+
+    SignalDatabase.backupMediaSnapshots.writePendingMediaEntries(
+      listOf(BackupMediaSnapshotTable.MediaEntry(mediaId = mediaId, cdn = 3, plaintextHash = plaintextHash, remoteKey = remoteKey, isThumbnail = false))
+    )
+    SignalDatabase.backupMediaSnapshots.commitPendingRows()
+
+    val snapshotVersion = SignalDatabase.backupMediaSnapshots.getCurrentSnapshotVersion()
+    if (markSeenOnRemote) {
+      SignalDatabase.backupMediaSnapshots.markSeenOnRemote(listOf(mediaId), snapshotVersion)
+    }
+
+    return snapshotVersion
+  }
+
   private fun createIncomingMessage(
     serverTime: Duration,
     attachment: Attachment,
@@ -611,13 +821,13 @@ class AttachmentTableTest {
     )
   }
 
-  private fun createAttachmentPointer(key: ByteArray, size: Int): Attachment {
+  private fun createAttachmentPointer(key: ByteArray, size: Int, contentType: String = MediaUtil.IMAGE_JPEG): Attachment {
     return PointerAttachment.forPointer(
       pointer = Optional.of(
         SignalServiceAttachmentPointer(
           cdnNumber = 3,
           remoteId = SignalServiceAttachmentRemoteId.V4("asdf"),
-          contentType = MediaUtil.IMAGE_JPEG,
+          contentType = contentType,
           key = key,
           size = Optional.of(size),
           preview = Optional.empty(),

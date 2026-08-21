@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <!-- Emoji category headers, shown in the emoji keyboard and the react-with-any-emoji sheet -->
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">స్మైలీస్ &amp; ప్రజలు</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">ప్రకృతి</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">ఆహారం</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">కార్యాచరణలు</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">స్థలాలు</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">వస్తువులు</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">చిహ్నాలు</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">జెండాలు</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">ఎమోటికాన్లు</string>
+</resources>

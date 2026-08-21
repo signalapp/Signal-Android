@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <!-- Emoji category headers, shown in the emoji keyboard and the react-with-any-emoji sheet -->
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Šypsenėlės ir žmonės</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Gamta</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Maistas</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Veiklos</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Vietos</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Objektai</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Simboliai</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Vėliavos</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Jaustukai</string>
+</resources>

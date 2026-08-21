@@ -136,6 +136,11 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
   }
 
   @Synchronized
+  override fun getAllMinimalJobSpecsMatchingFilter(predicate: Predicate<MinimalJobSpec>): List<MinimalJobSpec> {
+    return minimalJobs.filter { predicate.test(it) }
+  }
+
+  @Synchronized
   override fun getNextEligibleJob(currentTime: Long, filter: (MinimalJobSpec) -> Boolean): JobSpec? {
     val stopwatch = debugStopwatch("get-pending")
     val migrationJob: MinimalJobSpec? = migrationJobs.firstOrNull()

@@ -42,8 +42,8 @@ enum class CallControlsChange(
   RINGING_DISABLED(null, R.string.CallStateUpdatePopupWindow__group_is_too_large),
   MIC_ON(R.drawable.symbol_mic_compact_16, R.string.CallStateUpdatePopupWindow__mic_on),
   MIC_OFF(R.drawable.symbol_mic_slash_compact_16, R.string.CallStateUpdatePopupWindow__mic_off),
-  SPEAKER_ON(R.drawable.symbol_speaker_24, R.string.CallStateUpdatePopupWindow__speaker_on),
-  SPEAKER_OFF(R.drawable.symbol_speaker_slash_24, R.string.CallStateUpdatePopupWindow__speaker_off)
+  SPEAKER_ON(CoreUiR.drawable.symbol_speaker_24, R.string.CallStateUpdatePopupWindow__speaker_on),
+  SPEAKER_OFF(CoreUiR.drawable.symbol_speaker_slash_24, R.string.CallStateUpdatePopupWindow__speaker_off)
 }
 
 /**

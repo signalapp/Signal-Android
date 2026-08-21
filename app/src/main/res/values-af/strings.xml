@@ -171,6 +171,8 @@
     <string name="BlockedUsersActivity__block_user">Versper gebruiker?</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" sal nie in staat wees om jou te bel of om boodskappe aan jou te stuur nie.</string>
     <string name="BlockedUsersActivity__block">Versper</string>
+    <!-- Subtitle shown under a blocked user. Placeholder is the time they were blocked-->
+    <string name="BlockedUsersActivity__blocked_on_s">Versper op %1$s</string>
 
     <!-- CreditCardFragment -->
     <!-- Title of fragment -->
@@ -428,7 +430,6 @@
     <!-- Accessibility text associated with image button to send an edited message. -->
     <string name="ConversationActivity_send_edit">Stuur wysiging</string>
     <string name="ConversationActivity_compose_message">Skryf boodskap</string>
-    <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Jammer, daar was \'n fout tydens die opstel van jou aanhangsel.</string>
     <!-- Toast shown when user is unable to find the recipient when sending a message -->
     <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Ontvanger is nie \'n geldige SMS- of e-pos-adres nie</string>
     <string name="ConversationActivity_message_is_empty_exclamation">Boodskap is leeg!</string>
@@ -1075,7 +1076,7 @@
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
     <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$s Boodskappe en kletsinligting word deur end-tot-end-enkriptering op alle toestelle beskerm</string>
     <!-- Bottom sheet title explaining how Signal works on a linked device -->
-    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal op rekenaar of iPad</string>
+    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal op \'n gekoppelde toestel</string>
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
     <string name="LinkDeviceFragment__all_messaging_is_private">Alle boodskappe op gekoppelde toestelle is privaat</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
@@ -1189,6 +1190,8 @@
     <string name="AddLinkDeviceFragment__this_qr_code_not_valid">Hierdie QR-kode is nie geldig nie. Skandeer die QR-kode wat gewys word op die toestel wat u wil koppel.</string>
     <!-- Button in dialog to retry linking a device with a qr code -->
     <string name="AddLinkDeviceFragment__retry">Probeer weer</string>
+    <!-- Text shown in a dialog when the device being linked is too out-of-date to be linked to this account -->
+    <string name="AddLinkDeviceFragment__the_device_you_are_trying_to_link_is_out_of_date">The device you\'re trying to link is out of date. Please upgrade and try again.</string>
 
     <!-- LinkDeviceSyncBottomSheet -->
     <!-- Option in bottom sheet to transfer message history -->
@@ -1574,12 +1577,6 @@
     <!-- Dialog message -->
     <string name="RestoreActivity__no_longer_registered_message">Dit is waarskynlik omdat jy jou Signal-rekening op \'n ander toestel geregistreer het.</string>
 
-    <!-- GroupMentionSettingDialog -->
-    <string name="GroupMentionSettingDialog_notify_me_for_mentions">Stel my in kennis van Vermeldings</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Ontvang kennisgewings wanneer jy in gedempte kletse genoem word?</string>
-    <string name="GroupMentionSettingDialog_always_notify_me">Stel my altyd in kennis</string>
-    <string name="GroupMentionSettingDialog_dont_notify_me">Moet my nie in kennis stel nie</string>
-
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Jou gebruikersnaam, QR-kode en skakel is nie op jou profiel sigbaar nie. Deel net jou gebruikersnaam met mense wat jy vertrou.</string>
@@ -1880,9 +1877,6 @@
 
     <!-- MediaPickerActivity -->
     <string name="MediaPickerActivity__menu_open_camera">Maak kamera oop</string>
-
-    <!-- MediaSendActivity -->
-    <string name="MediaSendActivity_camera_unavailable">Kamera nie beskikbaar nie.</string>
 
     <!-- MediaRepository -->
     <string name="MediaRepository_all_media">Alle media</string>
@@ -2891,13 +2885,6 @@
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">Kontak Steundiens</string>
 
-    <!-- RegistrationLockV2Dialog -->
-    <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Skakel registrasieslot aan?</string>
-    <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Skakel registrasieslot af?</string>
-    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">As jy jou Signal-PIN vergeet het wanneer jy weer by Signal registreer, sal jy vir 7 dae uit jou rekening gesluit word.</string>
-    <string name="RegistrationLockV2Dialog_turn_on">Skakel aan</string>
-    <string name="RegistrationLockV2Dialog_turn_off">Skakel af</string>
-
     <!-- RevealableMessageView -->
     <string name="RevealableMessageView_view_photo">Bekyk foto</string>
     <string name="RevealableMessageView_view_video">Bekyk video</string>
@@ -3267,7 +3254,7 @@
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
     <string name="MuteDialog_mute_notifications">Demp kennisgewings</string>
     <!-- Dialog option that, when pressed, will open a time picker to let the user choose how long they\'d like to mute notifications for -->
-    <string name="MuteDialog__mute_until">Demp tot…</string>
+    <string name="MuteDialog__mute_until">Until…</string>
 
     <!-- MuteUntilTimePickerBottomSheet -->
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
@@ -4118,15 +4105,6 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Onlangs</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Hierdie boodskap</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Onlangs gebruik</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Gesiggies &amp; Mense</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Natuur</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Kos</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Aktiwiteite</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Plekke</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Voorwerpe</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Simbole</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Vlae</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emotikons</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Geen resultate gevind nie</string>
 
     <!-- GifQuickSearchOption -->
@@ -4144,10 +4122,10 @@
     <string name="arrays__use_default">Gebruik verstek</string>
     <string name="arrays__use_custom">Gebruik pasgemaakte</string>
 
-    <string name="arrays__mute_for_one_hour">Demp vir 1 uur</string>
-    <string name="arrays__mute_for_eight_hours">Demp vir 8 uur</string>
-    <string name="arrays__mute_for_one_day">Demp vir 1 dag</string>
-    <string name="arrays__mute_for_seven_days">Demp vir 7 dae</string>
+    <string name="arrays__mute_for_one_hour">1 uur</string>
+    <string name="arrays__mute_for_eight_hours">8 uur</string>
+    <string name="arrays__mute_for_one_day">1 dag</string>
+    <string name="arrays__mute_for_seven_days">1 week</string>
     <string name="arrays__always">Altyd</string>
 
     <string name="arrays__settings_default">Verstek-instellings</string>
@@ -4202,6 +4180,10 @@
     <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
     <string name="preferences__inactivity_timeout_interval">Tydperk voor sluiting a.g.v. onaktiwiteit</string>
     <string name="preferences__notifications">Kennisgewings</string>
+    <!-- Preference item menu to enable notifications -->
+    <string name="preferences__enable_notifications">Aktiveer kennisgewings</string>
+    <!-- Preference header for call notifications -->
+    <string name="preferences__call_notifications">Oproepkennisgewings</string>
     <string name="preferences__led_color">LED-kleur</string>
     <string name="preferences__led_color_unknown">Onbekend</string>
     <string name="preferences__pref_led_blink_title">LED-flikkerpatroon</string>
@@ -4289,12 +4271,10 @@
     <string name="preferences__system_default">Stelsel verstek</string>
     <string name="preferences__language">Taal</string>
     <string name="preferences__signal_messages_and_calls">Signal-boodskappe en -oproepe</string>
-    <string name="preferences__advanced_pin_settings">Gevorderde PIN-instellings</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">Gevorderde PIN-instellings</string>
     <string name="preferences__free_private_messages_and_calls">Gratis privaat-boodskappe en -oproepe na Signal gebruikers</string>
     <string name="preferences__submit_debug_log">Dien ontfout-log in</string>
-    <string name="preferences__delete_account">Skrap rekening</string>
     <string name="preferences__support_wifi_calling">\"Wi-Fi-oproepe\"-versoenbaarheidsmodus</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktiveer indien jou toestel SMS/MMS-aflewering oor Wi-Fi gebruik (aktiveer slegs wanneer \"Wi-Fi-oproepe\" op jou toestel gekativeer is).</string>
     <string name="preferences__incognito_keyboard">Incognito-toetsbord</string>
@@ -4361,6 +4341,16 @@
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Die gebruik van minder data kan oproepe op swak netwerke verbeter.</string>
     <string name="preferences_notifications__in_chat_sounds">Klanke tydens klets</string>
     <string name="preferences_notifications__show">Vertoon</string>
+    <!-- Preference item to set notification settings when chats are muted -->
+    <string name="preferences_notifications__while_muted">While muted</string>
+    <!-- Option in settings to turn on reaction notifications -->
+    <string name="preferences_notifications__reaction">Reaction notifications</string>
+    <!-- Body option in settings to turn on reaction notifications    -->
+    <string name="preferences_notifications__notify_reaction">Show notifications for reactions to messages you send</string>
+    <!-- Option in settings to turn on unread reminders -->
+    <string name="preferences_notifications__unread">Unread reminders</string>
+    <!-- Body option to turn on unread reminders -->
+    <string name="preferences_notifications__notify_unread">Occasionally notify when there are unread messages in muted chats</string>
     <string name="preferences_notifications__ringtone">Luitoon</string>
     <string name="preferences_chats__message_text_size">Boodskaplettergrootte</string>
     <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
@@ -4888,8 +4878,6 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Voer die PIN in wat jy vir jou rekening geskep het. Dit is anders as jou SMS-verifikasiekode.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Sleutel die PIN in wat jy vir jou rekening geskep het.</string>
-    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
-    <string name="RegistrationLockFragment__switch_keyboard">Verander sleutelbord</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">PIN verkeerd. Probeer weer.</string>
     <string name="RegistrationLockFragment__forgot_pin">PIN vergeet?</string>
     <string name="RegistrationLockFragment__incorrect_pin">PIN verkeerd</string>
@@ -4967,8 +4955,6 @@
     <!-- Text label button to skip restoring -->
     <string name="registration_activity__skip_restore">Slaan herstel oor</string>
     <string name="preferences_chats__chat_backups">Klets rugsteune</string>
-    <string name="preferences_chats__transfer_account">Dra rekening oor</string>
-    <string name="preferences_chats__transfer_account_to_a_new_android_device">Dra rekening oor na nuwe Android-toestel</string>
     <!-- Title for dialog to enter in the backup passphrase -->
     <string name="RegistrationActivity_enter_backup_passphrase">Voer rugsteun-wagwoordfrase in</string>
     <string name="RegistrationActivity_restore">Herstel</string>
@@ -5056,19 +5042,9 @@
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">Skermslot-onaktiwiteitsluiting</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
     <string name="preferences_app_protection__to_use_screen_lock">Om skermslot te gebruik, stel \'n PIN, patroon of wagwoord op hierdie toestel op.</string>
-    <string name="preferences_app_protection__signal_pin">Signal-PIN</string>
-    <string name="preferences_app_protection__create_a_pin">Skep ’n PIN</string>
-    <string name="preferences_app_protection__change_your_pin">Verander jou PIN</string>
-    <string name="preferences_app_protection__pin_reminders">PIN-herinnerings</string>
-    <string name="preferences_app_protection__turn_off">Skakel af</string>
-    <string name="preferences_app_protection__confirm_pin">Bevestig PIN</string>
-    <string name="preferences_app_protection__confirm_your_signal_pin">Bevestig jou Signal-PIN</string>
-    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Maak seker dat jy jou PIN memoriseer of veilig bewaar, want dit kan nie herwin word nie. As jy jou PIN vergeet, kan jy moontlik data verloor wanneer jy jou Signal-rekening herregistreer.</string>
-    <string name="preferences_app_protection__incorrect_pin_try_again">PIN verkeerd. Probeer weer.</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">Kon nie registrasieslot aktiveer nie.</string>
     <string name="preferences_app_protection__failed_to_disable_registration_lock">Kon nie registrasieslot deaktiveer nie.</string>
     <string name="AppProtectionPreferenceFragment_none">Geen</string>
-    <string name="preferences_app_protection__registration_lock">Registrasieslot</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Jy moet jou registrasieslot-PIN invoer</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Jou PIN het ten minste %1$d syfers of karakters nodig</string>
     <string name="RegistrationActivity_too_many_attempts">Te veel pogings</string>
@@ -5116,20 +5092,6 @@
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
     <string name="Recipient_deleted_account">Geskrapte rekening</string>
 
-    <!-- Option in settings that will take use to re-register if they are no longer registered -->
-    <string name="preferences_account_reregister">Herregistreer rekening</string>
-    <!-- Option in settings that will take user to our website or playstore to update their expired build -->
-    <string name="preferences_account_update_signal">Werk Signal by</string>
-    <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
-    <string name="preferences_account_delete_all_data">Skrap alle data</string>
-    <!-- Title for confirmation dialog confirming user wants to delete all their data -->
-    <string name="preferences_account_delete_all_data_confirmation_title">Skrap alle data?</string>
-    <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_message">Dit sal die toepassing terugstel en alle boodskappe skrap. Die toepassing sal toemaak nadat hierdie proses voltooi is.</string>
-    <!-- Confirmation action to proceed with application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_proceed">Gaan voort</string>
-    <!-- Confirmation action to cancel application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_cancel">Kanselleer</string>
     <!-- Error message shown when we fail to delete the data for some unknown reason -->
     <string name="preferences_account_delete_all_data_failed">Kon nie data uitvee nie</string>
 
@@ -5670,14 +5632,6 @@
     <!-- String displayed in a toast when a subscriber id is not present for a given type -->
     <string name="AppSettingsFragment__no_subscriber_id_set">Geen intekenaar-ID opgestel nie</string>
 
-    <!-- AccountSettingsFragment -->
-    <string name="AccountSettingsFragment__account">Rekening</string>
-    <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Jy sal mettertyd al hoe minder gevra word</string>
-    <string name="AccountSettingsFragment__require_your_signal_pin">Jou Signal-PIN is nodig om weer jou telefoonnommer met Signal te registreer</string>
-    <string name="AccountSettingsFragment__change_phone_number">Verander telefoonnommer</string>
-    <!-- Account setting that allows user to request and export their signal account data -->
-    <string name="AccountSettingsFragment__request_account_data">Jou rekeningdata</string>
-
     <!-- ExportAccountDataFragment -->
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
     <string name="ExportAccountDataFragment__your_account_data">Jou rekeningdata</string>
@@ -5971,14 +5925,46 @@
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Boodskappe</string>
     <string name="NotificationsSettingsFragment__calls">Oproepe</string>
-    <string name="NotificationsSettingsFragment__notify_when">Stel in kennis wanneer…</string>
+    <!-- Notification header for sounds -->
+    <string name="NotificationsSettingsFragment__sounds">Sounds</string>
     <string name="NotificationsSettingsFragment__contact_joins_signal">Kontak sluit by Signal aan</string>
+    <!-- Notification body to get notified when someone joins Signal -->
+    <string name="NotificationsSettingsFragment__notify_contact">Show a notification when a phone contact joins Signal</string>
+    <!-- Option to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset">Reset notification settings</string>
+    <!-- Option body to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_notifications">Reset notification settings to default, including custom settings for your chats</string>
+    <!-- Dialog to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_body">Reset all notification settings to default for all chats?</string>
+    <!-- Confirmation button to reset dialog -->
+    <string name="NotificationsSettingsFragment__reset_confirm">Stel terug</string>
     <!-- Notification preference header -->
     <string name="NotificationsSettingsFragment__notification_profiles">Kennisgewingsprofiele</string>
     <!-- Notification preference option header -->
     <string name="NotificationsSettingsFragment__profiles">Profiele</string>
     <!-- Notification preference summary text -->
     <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Skep ’n profiel om slegs kennisgewings te ontvang van die mense en groepe wat jy kies.</string>
+
+    <!-- Header to describe screen that shows while muted settings -->
+    <string name="MutedNotificationsFragment__while">While muted</string>
+    <!-- Title for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls">Oproepe</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body_global">Ring or notify when a call is started in muted chats.</string>
+    <!-- Title for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions">Meldings</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body_global">Notify when you are mentioned in muted chats.</string>
+    <!-- Title for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies">Antwoorde</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body_global">Notify when someone replies to your message in muted chats.</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body">Ring or notify when a call is started while this chat is muted.</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body">Notify when you are mentioned while this chat is muted.</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body">Notify when someone replies to your message while this chat is muted.</string>
 
     <!-- NotificationProfilesFragment -->
     <!-- Title for notification profiles screen that shows all existing profiles; Title with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -6207,6 +6193,8 @@
     <string name="ConversationSettingsFragment__end_group">Beëindig groep</string>
     <!-- Banner shown at the top of group settings when the group has been ended -->
     <string name="ConversationSettingsFragment__this_group_was_ended">Hierdie groep is beëindig.</string>
+    <!-- Subhead under a legacy group\'s name, joining the member count and the "Legacy Group" label. %1$s is the member count, %2$s is the label -->
+    <string name="ConversationSettingsFragment__s_dot_s">%1$s · %2$s</string>
     <!-- Archive chat option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__archive_chat">Argiveer klets</string>
     <!-- Delete chat option in group conversation settings screen -->
@@ -6390,34 +6378,9 @@
     <!-- Positive dialog action when sending a story via an add to group story button -->
     <string name="MediaReviewFragment__add_to_story">Voeg by storie by</string>
     <string name="MediaReviewFragment__add_a_message">Voeg ’n boodskap toe</string>
-    <!-- Hint text inside of a compose box that is shown when the user is adding media while quoting a message. -->
-    <string name="MediaReviewFragment__add_a_reply">Voeg ’n antwoord toe</string>
     <string name="MediaReviewFragment__send_to">Stuur na</string>
-    <string name="MediaReviewFragment__view_once_message">Eenkeerkyk-media</string>
-    <string name="MediaReviewFragment__one_or_more_items_were_too_large">Een of meer items was te groot</string>
-    <string name="MediaReviewFragment__one_or_more_items_were_invalid">Een of meer items was ongeldig</string>
-    <string name="MediaReviewFragment__too_many_items_selected">Te veel items gekies</string>
-    <string name="MediaReviewFragment__video_trimmed_to_fit">Jou video is verkort om by die groottebeperking in te pas</string>
-    <!-- Small notification presented to the user when they set their video to view-once mode -->
-    <string name="MediaReviewFragment__video_set_to_view_once">Video gestel om dit slegs een keer te sien</string>
-    <!-- Small notification presented to the user when they set their photo to view-once mode -->
-    <string name="MediaReviewFragment__photo_set_to_view_once">Foto gestel om dit slegs een keer te sien</string>
-    <!-- Accessibility label describing the add media button on the Media review screen -->
-    <string name="MediaReviewFragment__add_media_accessibility_label">Voeg \'n medium by</string>
-    <!-- Accessibility label describing the brush and pen button on the Media review screen -->
-    <string name="MediaReviewFragment__brush_pen_accessibility_label">Kwas en pen</string>
-    <!-- Accessibility label describing the crop and rotate button on the Media review screen -->
-    <string name="MediaReviewFragment__crop_rotate_accessibility_label">Snoei en roteer</string>
-    <!-- Accessibility label describing the change media quality button on the Media review screen -->
-    <string name="MediaReviewFragment__change_media_quality_accessibility_label">Verander mediakwaliteit</string>
-    <!-- Accessibility label describing the save media button on the Media review screen -->
-    <string name="MediaReviewFragment__save_media_accessibility_label">Stoor media</string>
-    <!-- Accessibility label describing the toggle emoji keyboard button on the Media review screen -->
-    <string name="MediaReviewFragment__emoji_toggle_accessibility_label">Skakel emoji-toetsbord aan of af</string>
     <!-- Accessibility label describing the toggle view once button on the Media review screen -->
     <string name="MediaReviewFragment__view_once_toggle_accessibility_label">Verwissel skermbeeld eenmaal</string>
-    <!-- Accessibility label describing the send media button on the Media review screen -->
-    <string name="MediaReviewFragment__send_media_accessibility_label">Stuur media</string>
     <!-- Accessibility label describing the finish adding a message button on the Media review screen dialog -->
     <string name="MediaReviewFragment__finish_adding_a_message_accessibility_label">Voltooi byvoeging van \'n boodskap</string>
 
@@ -6437,27 +6400,9 @@
 
     <string name="MediaCountIndicatorButton__send">Stuur</string>
 
-    <string name="MediaReviewSelectedItem__tap_to_remove">Tik om te verwyder</string>
-    <string name="MediaReviewSelectedItem__tap_to_select">Tik om te kies</string>
-
     <string name="MediaReviewImagePageFragment__discard">Wys af</string>
     <string name="MediaReviewImagePageFragment__discard_changes">Wys veranderinge af?</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Jy sal veranderinge aan hierdie foto verloor.</string>
-
-    <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_title">%1$s gevind</string>
-    <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_body">Begin klets met \"%1$s\"</string>
-    <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
-    <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">Gaan na klets</string>
-
-    <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_title">Koppel toestel?</string>
-    <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_it_looks_like_youre_trying">Dit lyk of jy \'n Signal-toestel probeer koppel. Tik op Gaan voort en tik dan op \"Koppel \'n nuwe toestel\" en skandeer die QR-kode weer.</string>
-    <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
-    <string name="MediaCaptureFragment_device_link_dialog_continue">Gaan voort</string>
-
 
     <string name="BadgesOverviewFragment__my_badges">My wapens</string>
     <string name="BadgesOverviewFragment__featured_badge">Vertoonwapen</string>
@@ -8714,13 +8659,6 @@
     <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">Die groep is beëindig.</string>
     <!-- Body of bottom sheet shown when opening a terminated group -->
     <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">Jy kan nie meer boodskappe of oproepe in hierdie groep stuur en ontvang nie.</string>
-
-    <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_title">Skrapping is nou oor al jou toestelle gesinchroniseer</string>
-    <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_message">Wanneer jy boodskappe of kletse skrap, sal hulle van jou foon en gekoppelde toestelle geskrap word.</string>
-    <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_acknowledge_button">Goed</string>
 
     <!-- NoManualBackupBottomSheet -->
     <!-- Title for bottom sheet, placeholder is number of days. -->

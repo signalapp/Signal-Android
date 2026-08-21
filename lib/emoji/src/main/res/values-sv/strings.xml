@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <!-- Emoji category headers, shown in the emoji keyboard and the react-with-any-emoji sheet -->
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Humörsymboler &amp; personer</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Natur</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Mat</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Aktiviteter</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Platser</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Objekt</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Symboler</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Flaggor</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Uttryckssymboler</string>
+</resources>

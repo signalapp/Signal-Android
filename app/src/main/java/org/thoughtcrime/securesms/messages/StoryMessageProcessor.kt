@@ -90,9 +90,8 @@ object StoryMessageProcessor {
       )
 
       insertResult = SignalDatabase.messages.insertMessageInbox(mediaMessage, -1).orNull()
-      if (insertResult != null) {
-        SignalDatabase.messages.setTransactionSuccessful()
-      }
+
+      SignalDatabase.messages.setTransactionSuccessful()
     } catch (e: MmsException) {
       throw StorageFailedException(e, metadata.sourceServiceId.toString(), metadata.sourceDeviceId)
     } finally {

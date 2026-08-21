@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.database.model.KeyTransparencyStore
 import org.thoughtcrime.securesms.database.model.RecipientRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.dependencies.KeyTransparencyApi
+import org.thoughtcrime.securesms.jobs.BackupTierDowngradeCheckJob
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob
 import org.thoughtcrime.securesms.jobs.StorageSyncJob
@@ -115,6 +116,19 @@ object StorageSyncHelper {
     return update.old.proto.profileKey != update.new.proto.profileKey
   }
 
+  /**
+   * Iff successfully written records carried the expected rotation, clears the content.
+   */
+  @JvmStatic
+  fun clearRotatedProfileKeyIfSynced(written: List<SignalStorageRecord>) {
+    val rotated = SignalStore.account.notSyncedRotatedSelfProfileKey ?: return
+
+    if (written.any { it.proto.account?.profileKey?.toByteArray().contentEquals(rotated) }) {
+      Log.i(TAG, "Published our rotated profile key.")
+      SignalStore.account.notSyncedRotatedSelfProfileKey = null
+    }
+  }
+
   @JvmStatic
   fun buildAccountRecord(context: Context, self: Recipient): SignalStorageRecord {
     var self = self
@@ -183,7 +197,6 @@ object StorageSyncHelper {
       }
 
       backupTier = when {
-        SignalStore.account.isLinkedDevice -> null
         SignalStore.backup.areBackupsEnabled && SignalStore.backup.backupTier != null -> SignalStore.backup.backupTier!!.toBackupLevel()
         SignalStore.backup.backupTierInternalOverride != null -> SignalStore.backup.backupTierInternalOverride!!.toBackupLevel()
         else -> null
@@ -208,6 +221,7 @@ object StorageSyncHelper {
         releaseNotesChatMutedUntilTimestamp = releaseChannelRecord.muteUntil
         releaseNotesChatBlocked = releaseChannelRecord.isBlocked == true
         releaseNotesChatMarkedUnread = releaseChannelRecord.syncExtras.isForcedUnread == true
+        releaseNotesChatBlockedAt = releaseChannelRecord.blockedAt.takeIf { it != 0L }
       }
     }
 
@@ -296,8 +310,15 @@ object StorageSyncHelper {
 
     if (SignalStore.account.isLinkedDevice) {
       val remoteBackupTier = MessageBackupTier.fromBackupLevel(update.new.proto.backupTier)
-      if (remoteBackupTier != SignalStore.backup.backupTier) {
-        SignalStore.backup.backupTier = remoteBackupTier
+      val localBackupTier = SignalStore.backup.backupTier
+
+      if (remoteBackupTier != localBackupTier) {
+        if (isBackupTierDowngrade(from = localBackupTier, to = remoteBackupTier)) {
+          Log.w(TAG, "Remote account record downgrades our backup tier ($localBackupTier -> $remoteBackupTier). Confirming with the service before applying it.")
+          BackupTierDowngradeCheckJob.enqueue(update.new.proto.backupTier)
+        } else {
+          SignalStore.backup.backupTier = remoteBackupTier
+        }
       }
     }
 
@@ -334,7 +355,7 @@ object StorageSyncHelper {
     }
 
     SignalStore.releaseChannel.releaseChannelRecipientId?.let { releaseChannelId ->
-      update.new.proto.releaseNotesChatBlocked?.let { SignalDatabase.recipients.setBlocked(releaseChannelId, it) }
+      update.new.proto.releaseNotesChatBlocked?.let { blocked -> SignalDatabase.recipients.setBlocked(releaseChannelId, blocked, if (blocked) update.new.proto.releaseNotesChatBlockedAt ?: 0 else 0) }
       update.new.proto.releaseNotesChatMutedUntilTimestamp?.let { SignalDatabase.recipients.setMuted(releaseChannelId, it) }
       if (update.new.proto.releaseNotesChatArchived != null && update.new.proto.releaseNotesChatMarkedUnread != null) {
         SignalDatabase.threads.applyStorageSyncReleaseChannelUpdate(releaseChannelId, update.new.proto.releaseNotesChatArchived!!, update.new.proto.releaseNotesChatMarkedUnread!!)
@@ -391,6 +412,14 @@ object StorageSyncHelper {
       AppDependencies.jobManager.add(StorageSyncJob.forRemoteChange())
     } else {
       Log.d(TAG, "No need for sync. Last sync was $timeSinceLastSync ms ago.")
+    }
+  }
+
+  private fun isBackupTierDowngrade(from: MessageBackupTier?, to: MessageBackupTier?): Boolean {
+    return when (from) {
+      null -> false
+      MessageBackupTier.FREE -> to == null
+      MessageBackupTier.PAID -> to == null || to == MessageBackupTier.FREE
     }
   }
 

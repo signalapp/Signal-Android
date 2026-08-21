@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <!-- Emoji category headers, shown in the emoji keyboard and the react-with-any-emoji sheet -->
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">اموجس &amp;amp؛ لوگ</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">قدرت</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">کھانا</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">سرگرمیاں</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">مقامات</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">چیزیں</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">علامتیں</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">جھنڈے</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">ایموجیس</string>
+</resources>
