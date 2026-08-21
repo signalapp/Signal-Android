@@ -655,8 +655,10 @@ public final class SettingsValues extends SignalStoreValues {
     }
   }
 
+  // DISABLED is the "never touched" default. FcmRefreshJob only auto-enables from DISABLED, not
+  // DISABLED_BY_USER, so an explicit opt-out survives even if FCM keeps failing.
   public enum ForceWebsocketMode {
-    DISABLED(0), ENABLED_BY_USER(1), ENABLED_AUTOMATICALLY(2);
+    DISABLED(0), ENABLED_BY_USER(1), ENABLED_AUTOMATICALLY(2), DISABLED_BY_USER(3);
 
     private final int value;
 
@@ -665,7 +667,7 @@ public final class SettingsValues extends SignalStoreValues {
     }
 
     public boolean isEnabled() {
-      return this != DISABLED;
+      return this == ENABLED_BY_USER || this == ENABLED_AUTOMATICALLY;
     }
 
     public int serialize() {
@@ -680,6 +682,8 @@ public final class SettingsValues extends SignalStoreValues {
           return ENABLED_BY_USER;
         case 2:
           return ENABLED_AUTOMATICALLY;
+        case 3:
+          return DISABLED_BY_USER;
         default:
           throw new IllegalArgumentException("Bad value: " + value);
       }
