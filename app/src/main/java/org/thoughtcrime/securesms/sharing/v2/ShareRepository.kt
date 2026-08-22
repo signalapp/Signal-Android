@@ -30,10 +30,9 @@ class ShareRepository(context: Context) {
 
   @NonNull
   @WorkerThread
-  @Throws(IOException::class)
   private fun resolve(multiShareExternal: UnresolvedShareData.ExternalSingleShare): ResolvedShareData {
     if (!multiShareExternal.isInternalShare && !UriUtil.isValidExternalUri(appContext, multiShareExternal.uri)) {
-      return ResolvedShareData.Failure
+      return ResolvedShareData.Failure(ShareError.UNKNOWN)
     }
 
     val uri = multiShareExternal.uri
@@ -45,8 +44,11 @@ class ShareRepository(context: Context) {
       appContext.contentResolver.openInputStream(uri)
     } catch (e: SecurityException) {
       Log.w(TAG, "Failed to read stream!", e)
-      null
-    } ?: return ResolvedShareData.Failure
+      return ResolvedShareData.Failure(ShareError.ACCESS_DENIED)
+    } catch (e: IOException) {
+      Log.w(TAG, "Failed to read stream!", e)
+      return ResolvedShareData.Failure(ShareError.UNKNOWN)
+    } ?: return ResolvedShareData.Failure(ShareError.UNKNOWN)
 
     val blobUri: Uri = try {
       AppDependencies.blobs
@@ -56,7 +58,7 @@ class ShareRepository(context: Context) {
         .createForSingleSessionOnDisk(appContext)
     } catch (e: IOException) {
       Log.e(TAG, "Failed to get blob uri")
-      return ResolvedShareData.Failure
+      return ResolvedShareData.Failure(ShareError.UNKNOWN)
     }
 
     return ResolvedShareData.ExternalUri(
@@ -77,14 +79,19 @@ class ShareRepository(context: Context) {
       }
 
     if (mimeTypes.isEmpty()) {
-      return ResolvedShareData.Failure
+      return ResolvedShareData.Failure(ShareError.UNKNOWN)
     }
 
+    var accessBlocked = false
     val media: List<Media> = mimeTypes.toList()
       .take(RemoteConfig.maxAttachmentCount)
       .map { (uri, mimeType) ->
         val stream: InputStream = try {
           appContext.contentResolver.openInputStream(uri)
+        } catch (e: SecurityException) {
+          Log.w(TAG, "Failed to open: $uri", e)
+          accessBlocked = true
+          null
         } catch (e: IOException) {
           Log.w(TAG, "Failed to open: $uri")
           null
@@ -122,8 +129,10 @@ class ShareRepository(context: Context) {
 
     return if (media.isNotEmpty()) {
       ResolvedShareData.Media(media, externalMultiShare.text)
+    } else if (accessBlocked) {
+      ResolvedShareData.Failure(ShareError.ACCESS_DENIED)
     } else {
-      ResolvedShareData.Failure
+      ResolvedShareData.Failure(ShareError.UNKNOWN)
     }
   }
 
@@ -131,25 +140,42 @@ class ShareRepository(context: Context) {
     private val TAG = Log.tag(ShareRepository::class.java)
 
     private fun getMimeType(context: Context, uri: Uri, mimeType: String?, fileExtension: String? = null): String {
-      var updatedMimeType = MediaUtil.getMimeType(context, uri, fileExtension)
+      var updatedMimeType = try {
+        MediaUtil.getMimeType(context, uri, fileExtension)
+      } catch (e: SecurityException) {
+        Log.w(TAG, "Failed to query mime type!", e)
+        null
+      }
       if (updatedMimeType == null) {
         updatedMimeType = MediaUtil.getCorrectedMimeType(mimeType)
       }
       return updatedMimeType ?: MediaUtil.UNKNOWN
     }
 
-    @Throws(IOException::class)
     private fun getSize(context: Context, uri: Uri): Long {
       var size: Long = 0
 
-      context.contentResolver.query(uri, null, null, null, null).use { cursor ->
-        if (cursor != null && cursor.moveToFirst() && cursor.getColumnIndex(OpenableColumns.SIZE) >= 0) {
-          size = cursor.getLong(cursor.getColumnIndexOrThrow(OpenableColumns.SIZE))
+      try {
+        context.contentResolver.query(uri, null, null, null, null).use { cursor ->
+          if (cursor != null && cursor.moveToFirst() && cursor.getColumnIndex(OpenableColumns.SIZE) >= 0) {
+            size = cursor.getLong(cursor.getColumnIndexOrThrow(OpenableColumns.SIZE))
+          }
         }
+      } catch (e: SecurityException) {
+        Log.w(TAG, "Failed to query size!", e)
+        return 0
       }
 
       if (size <= 0) {
-        size = MediaUtil.getMediaSize(context, uri)
+        try {
+          size = MediaUtil.getMediaSize(context, uri)
+        } catch (e: SecurityException) {
+          Log.w(TAG, "Failed to read media size!", e)
+          return 0
+        } catch (e: IOException) {
+          Log.w(TAG, "Failed to read media size!", e)
+          return 0
+        }
       }
 
       return size
@@ -160,11 +186,16 @@ class ShareRepository(context: Context) {
         return uri.lastPathSegment
       }
 
-      context.contentResolver.query(uri, null, null, null, null).use { cursor ->
-        if (cursor != null && cursor.moveToFirst() && cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME) >= 0) {
-          return cursor.getString(cursor.getColumnIndexOrThrow(OpenableColumns.DISPLAY_NAME))
+      try {
+        context.contentResolver.query(uri, null, null, null, null).use { cursor ->
+          if (cursor != null && cursor.moveToFirst() && cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME) >= 0) {
+            return cursor.getString(cursor.getColumnIndexOrThrow(OpenableColumns.DISPLAY_NAME))
+          }
         }
+      } catch (e: SecurityException) {
+        Log.w(TAG, "Failed to query file name!", e)
       }
+
       return null
     }
   }

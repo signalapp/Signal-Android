@@ -36,7 +36,15 @@ sealed class ResolvedShareData {
     }
   }
 
-  object Failure : ResolvedShareData() {
+  data class Failure(val error: ShareError) : ResolvedShareData() {
     override fun toMultiShareArgs(): MultiShareArgs = throw UnsupportedOperationException()
   }
+}
+
+enum class ShareError {
+  /** The shared content could not be read because the sending app did not grant URI access. */
+  ACCESS_DENIED,
+
+  /** Any other failure while trying to read the shared content. */
+  UNKNOWN
 }
