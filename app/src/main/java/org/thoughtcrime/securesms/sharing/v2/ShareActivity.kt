@@ -135,7 +135,10 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
       when (shareState.loadState) {
         ShareState.ShareDataLoadState.Init -> Unit
         is ShareState.ShareDataLoadState.Failed -> {
-          showShareError(shareState.loadState.error)
+          if (!viewModel.hasShareErrorBeenShown()) {
+            viewModel.markShareErrorShown()
+            showShareError(shareState.loadState.error)
+          }
           finish()
         }
         is ShareState.ShareDataLoadState.Loaded -> {

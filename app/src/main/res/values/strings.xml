@@ -5451,7 +5451,7 @@
     <!-- Toast when the incoming intent is invalid -->
     <string name="ShareActivity__could_not_get_share_data_from_intent">Could not get share data from intent.</string>
     <!-- Toast when Signal could not access content shared to it because the sending app did not grant permission -->
-    <string name="ShareActivity__could_not_access_shared_content">Signal couldn\'t access the shared content. The sending app didn\'t grant the necessary permission.</string>
+    <string name="ShareActivity__could_not_access_shared_content">Signal couldn\'t access the shared content. The sending app didn\'t grant permission for it.</string>
     <!-- Toast when Signal could not load content shared to it -->
     <string name="ShareActivity__could_not_share_content">Signal couldn\'t load the shared content.</string>
 

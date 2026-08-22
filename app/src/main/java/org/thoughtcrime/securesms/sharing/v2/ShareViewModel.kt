@@ -25,6 +25,7 @@ class ShareViewModel(
   private val store = RxStore(ShareState())
   private val disposables = CompositeDisposable()
   private val eventSubject = PublishSubject.create<ShareEvent>()
+  private var shareErrorShown = false
 
   val state: Flowable<ShareState> = store.stateFlowable
   val events: Observable<ShareEvent> = eventSubject
@@ -80,6 +81,16 @@ class ShareViewModel(
 
   private fun moveToFailedState(error: ShareError) {
     store.update { it.copy(loadState = ShareState.ShareDataLoadState.Failed(error)) }
+  }
+
+  /**
+   * Whether the current failure has already been surfaced to the user. Prevents the share error
+   * toast from being shown again when the activity is recreated while the state is still failed.
+   */
+  fun hasShareErrorBeenShown(): Boolean = shareErrorShown
+
+  fun markShareErrorShown() {
+    shareErrorShown = true
   }
 
   private fun Throwable.toShareError(): ShareError {
