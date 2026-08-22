@@ -17,6 +17,10 @@ import assertk.assertions.isInstanceOf
 import assertk.assertions.isNull
 import io.mockk.every
 import io.mockk.mockk
+import io.mockk.mockkObject
+import io.mockk.unmockkObject
+import org.junit.After
+import org.junit.Before
 import org.junit.BeforeClass
 import org.junit.Rule
 import org.junit.Test
@@ -27,13 +31,14 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
 import org.thoughtcrime.securesms.testutil.SystemOutLogger
+import org.thoughtcrime.securesms.util.RemoteConfig
 import java.io.ByteArrayInputStream
 import java.io.IOException
 
 /**
  * Verifies that [ShareRepository] resolves external share data gracefully when the sending app
  * has not granted access to a content URI (e.g. AOSP Contacts sharing a vCard without
- * `FLAG_GRANT_READ_URI_PERMISSION`), rather than throwing or failing silently without user feedback.
+ * FLAG_GRANT_READ_URI_PERMISSION), rather than throwing or failing silently without user feedback.
  */
 @RunWith(RobolectricTestRunner::class)
 @Config(manifest = Config.NONE, application = Application::class)
@@ -50,7 +55,20 @@ class ShareRepositoryTest {
     }
   }
 
+  @Before
+  fun setup() {
+    mockkObject(RemoteConfig)
+    every { RemoteConfig.maxAttachmentCount } returns 32
+  }
+
+  @After
+  fun tearDown() {
+    unmockkObject(RemoteConfig)
+  }
+
   private val vCardUri: Uri = Uri.parse("content://com.android.contacts/contacts/as_vcard/42")
+  private val photoUriOne: Uri = Uri.parse("content://com.example.shareprovider/media/1")
+  private val photoUriTwo: Uri = Uri.parse("content://com.example.shareprovider/media/2")
 
   @Test
   fun givenSecurityExceptionFromResolver_whenResolveSingleShare_thenReturnAccessDeniedFailure() {
@@ -103,6 +121,70 @@ class ShareRepositoryTest {
     assertThat(externalUri.text).isNull()
   }
 
+  @Test
+  fun givenSecurityExceptionFromMimeLookupOnAllUris_whenResolveMultiShare_thenReturnAccessDeniedFailure() {
+    val resolver = mockk<ContentResolver>(relaxed = true)
+    every { resolver.getType(any()) } throws SecurityException("No URI grant")
+
+    val repository = repositoryWith(resolver)
+    val result = repository.resolve(unresolvedMultiShare()).blockingGet()
+
+    assertThat(result).isEqualTo(ResolvedShareData.Failure(ShareError.ACCESS_DENIED))
+  }
+
+  @Test
+  fun givenSecurityExceptionFromMimeLookupOnOneUri_whenResolveMultiShare_thenReturnAccessDeniedFailure() {
+    val resolver = mockk<ContentResolver>(relaxed = true)
+    every { resolver.getType(photoUriOne) } returns "image/jpeg"
+    every { resolver.getType(photoUriTwo) } throws SecurityException("No URI grant")
+    every { resolver.openInputStream(any()) } returns ByteArrayInputStream(ByteArray(64))
+
+    val repository = repositoryWith(resolver)
+    val result = repository.resolve(unresolvedMultiShare()).blockingGet()
+
+    assertThat(result).isEqualTo(ResolvedShareData.Failure(ShareError.ACCESS_DENIED))
+  }
+
+  @Test
+  fun givenSecurityExceptionFromStreamOnOneUri_whenResolveMultiShare_thenReturnAccessDeniedFailure() {
+    val resolver = mockk<ContentResolver>(relaxed = true)
+    every { resolver.getType(any()) } returns "image/jpeg"
+    every { resolver.openInputStream(photoUriOne) } returns ByteArrayInputStream(ByteArray(64))
+    every { resolver.openInputStream(photoUriTwo) } throws SecurityException("No URI grant")
+
+    val repository = repositoryWith(resolver)
+    val result = repository.resolve(unresolvedMultiShare()).blockingGet()
+
+    assertThat(result).isEqualTo(ResolvedShareData.Failure(ShareError.ACCESS_DENIED))
+  }
+
+  @Test
+  fun givenIOExceptionFromStreams_whenResolveMultiShare_thenReturnUnknownFailure() {
+    val resolver = mockk<ContentResolver>(relaxed = true)
+    every { resolver.getType(any()) } returns "image/jpeg"
+    every { resolver.openInputStream(any()) } throws IOException("Failed to open")
+
+    val repository = repositoryWith(resolver)
+    val result = repository.resolve(unresolvedMultiShare()).blockingGet()
+
+    assertThat(result).isEqualTo(ResolvedShareData.Failure(ShareError.UNKNOWN))
+  }
+
+  @Test
+  fun givenReadableMultiShareUris_whenResolveMultiShare_thenResolveMedia() {
+    val resolver = mockk<ContentResolver>(relaxed = true)
+    every { resolver.getType(any()) } returns "image/jpeg"
+    every { resolver.openInputStream(any()) } answers { ByteArrayInputStream(ByteArray(64)) }
+    every { AppDependencies.blobs.forData(any(), any()) } returns mockk(relaxed = true)
+
+    val repository = repositoryWith(resolver)
+    val result = repository.resolve(unresolvedMultiShare()).blockingGet()
+
+    assertThat(result).isInstanceOf(ResolvedShareData.Media::class)
+    val media = result as ResolvedShareData.Media
+    assertThat(media.media.size).isEqualTo(2)
+  }
+
   private fun repositoryWith(resolver: ContentResolver): ShareRepository {
     val context = mockk<Context>(relaxed = true)
     every { context.applicationContext } returns context
@@ -113,5 +195,9 @@ class ShareRepositoryTest {
 
   private fun unresolvedSingleShare(): UnresolvedShareData.ExternalSingleShare {
     return UnresolvedShareData.ExternalSingleShare(vCardUri, "text/x-vcard", null, false)
+  }
+
+  private fun unresolvedMultiShare(): UnresolvedShareData.ExternalMultiShare {
+    return UnresolvedShareData.ExternalMultiShare(listOf(photoUriOne, photoUriTwo), null, false)
   }
 }
