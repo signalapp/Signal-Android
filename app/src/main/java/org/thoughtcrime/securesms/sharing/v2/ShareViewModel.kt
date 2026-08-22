@@ -33,15 +33,18 @@ class ShareViewModel(
     disposables += shareRepository.resolve(unresolvedShareData).subscribeBy(
       onSuccess = { data ->
         when (data) {
-          ResolvedShareData.Failure -> {
-            moveToFailedState()
+          is ResolvedShareData.Failure -> {
+            moveToFailedState(data.error)
           }
           else -> {
             store.update { it.copy(loadState = ShareState.ShareDataLoadState.Loaded(data)) }
           }
         }
       },
-      onError = this::moveToFailedState
+      onError = { throwable ->
+        Log.w(TAG, "Could not load share data.", throwable)
+        moveToFailedState(throwable.toShareError())
+      }
     )
   }
 
@@ -75,9 +78,15 @@ class ShareViewModel(
     store.dispose()
   }
 
-  private fun moveToFailedState(throwable: Throwable? = null) {
-    Log.w(TAG, "Could not load share data.", throwable)
-    store.update { it.copy(loadState = ShareState.ShareDataLoadState.Failed) }
+  private fun moveToFailedState(error: ShareError) {
+    store.update { it.copy(loadState = ShareState.ShareDataLoadState.Failed(error)) }
+  }
+
+  private fun Throwable.toShareError(): ShareError {
+    return when (this) {
+      is SecurityException -> ShareError.ACCESS_DENIED
+      else -> ShareError.UNKNOWN
+    }
   }
 
   class Factory(

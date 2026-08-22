@@ -134,7 +134,10 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
     lifecycleDisposable += viewModel.state.observeOn(AndroidSchedulers.mainThread()).subscribe { shareState ->
       when (shareState.loadState) {
         ShareState.ShareDataLoadState.Init -> Unit
-        ShareState.ShareDataLoadState.Failed -> finish()
+        is ShareState.ShareDataLoadState.Failed -> {
+          showShareError(shareState.loadState.error)
+          finish()
+        }
         is ShareState.ShareDataLoadState.Loaded -> {
           val directShareTarget = this.directShareTarget
           if (directShareTarget != null) {
@@ -348,6 +351,15 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
         finish()
       }
     }
+  }
+
+  private fun showShareError(error: ShareError) {
+    val message = when (error) {
+      ShareError.ACCESS_DENIED -> R.string.ShareActivity__could_not_access_shared_content
+      ShareError.UNKNOWN -> R.string.ShareActivity__could_not_share_content
+    }
+
+    Toast.makeText(this, message, Toast.LENGTH_LONG).show()
   }
 
   private fun handleIntentError(intentError: IntentError) {
