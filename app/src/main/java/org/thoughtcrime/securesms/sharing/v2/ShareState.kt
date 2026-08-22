@@ -6,6 +6,6 @@ data class ShareState(
   sealed class ShareDataLoadState {
     object Init : ShareDataLoadState()
     data class Loaded(val resolvedShareData: ResolvedShareData) : ShareDataLoadState()
-    object Failed : ShareDataLoadState()
+    data class Failed(val error: ShareError) : ShareDataLoadState()
   }
 }
