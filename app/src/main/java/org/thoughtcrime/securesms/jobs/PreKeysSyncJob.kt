@@ -120,7 +120,7 @@ class PreKeysSyncJob private constructor(
   }
 
   override fun onRun() {
-    if (!SignalStore.account.isRegistered || SignalStore.account.aci == null || SignalStore.account.pni == null) {
+    if (!SignalStore.account.isRegistered || SignalStore.account.aci == null) {
       warn(TAG, "Not yet registered")
       return
     }
@@ -138,7 +138,7 @@ class PreKeysSyncJob private constructor(
       if (!checkPreKeyConsistency(ServiceIdType.ACI, AppDependencies.protocolStore.aci(), SignalStore.account.aciPreKeys)) {
         warn(TAG, ServiceIdType.ACI, "Prekey consistency check failed! Must rotate keys!")
         true
-      } else if (!checkPreKeyConsistency(ServiceIdType.PNI, AppDependencies.protocolStore.pni(), SignalStore.account.pniPreKeys)) {
+      } else if (AppDependencies.protocolStore.pniOrNull()?.let { !checkPreKeyConsistency(ServiceIdType.PNI, it, SignalStore.account.pniPreKeys) } == true) {
         warn(TAG, ServiceIdType.PNI, "Prekey consistency check failed! Must rotate keys! (ACI consistency check must have passed)")
         true
       } else {
@@ -160,7 +160,13 @@ class PreKeysSyncJob private constructor(
     }
 
     syncPreKeys(ServiceIdType.ACI, SignalStore.account.aci, AppDependencies.protocolStore.aci(), SignalStore.account.aciPreKeys, forceRotation)
-    syncPreKeys(ServiceIdType.PNI, SignalStore.account.pni, AppDependencies.protocolStore.pni(), SignalStore.account.pniPreKeys, forcePniRotation)
+
+    val pniProtocolStore = AppDependencies.protocolStore.pniOrNull()
+    if (pniProtocolStore != null) {
+      syncPreKeys(ServiceIdType.PNI, SignalStore.account.pni, pniProtocolStore, SignalStore.account.pniPreKeys, forcePniRotation)
+    } else {
+      warn(TAG, ServiceIdType.PNI, "No PNI store. Skipping PNI prekey sync.")
+    }
     SignalStore.misc.lastFullPrekeyRefreshTime = System.currentTimeMillis()
 
     if (forcePniRotation) {

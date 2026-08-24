@@ -217,37 +217,19 @@ class UnreadDividerInstrumentationTest {
       // Once mark-read settles, the unread count must equal the index of the newest visible message — i.e. exactly the
       // messages still below the viewport (reverse layout: position 0 = newest, so index N = N newer messages). This is
       // the number the scroll-to-bottom button and chat-list badge show; it must not over- or under-count mid-scroll.
-      val stableCount = awaitStableUnreadCount(threadId)
-      val newestVisiblePosition = await(timeoutMs = 5_000, description = "newest visible position") {
+      // Mark-read is debounced and arrives in waves as views are revealed, so both sides are sampled together until
+      // they agree — a genuine miscount never converges and fails the timeout.
+      val settledCount = await(timeoutMs = 20_000, description = "unread count to match the newest visible position") {
         val recycler = launched.latestConversationFragment()?.view?.findViewById<RecyclerView>(R.id.conversation_item_recycler)
-        (recycler?.layoutManager as? LinearLayoutManager)?.findFirstVisibleItemPosition()?.takeIf { it >= 0 }
+        val newestVisiblePosition = (recycler?.layoutManager as? LinearLayoutManager)?.findFirstVisibleItemPosition() ?: return@await null
+        val unreadCount = SignalDatabase.messages.getUnreadCount(threadId)
+        if (newestVisiblePosition >= 0 && unreadCount == newestVisiblePosition) unreadCount else null
       }
 
-      assertThat(stableCount).isEqualTo(newestVisiblePosition)
       // Sanity: we exercised a genuine mid-scroll point, not the very top or bottom.
-      assertThat(stableCount).isGreaterThan(0)
-      assertThat(stableCount).isLessThan(total)
+      assertThat(settledCount).isGreaterThan(0)
+      assertThat(settledCount).isLessThan(total)
     }
-  }
-
-  /** Polls [MessageTable.getUnreadCount] until it holds steady (mark-read is debounced + async), then returns it. */
-  private fun awaitStableUnreadCount(threadId: Long, timeoutMs: Long = 20_000): Int {
-    val deadline = System.currentTimeMillis() + timeoutMs
-    var last = Int.MIN_VALUE
-    var stableSince = System.currentTimeMillis()
-    while (System.currentTimeMillis() < deadline) {
-      val current = SignalDatabase.messages.getUnreadCount(threadId)
-      if (current == last) {
-        if (System.currentTimeMillis() - stableSince >= 500) {
-          return current
-        }
-      } else {
-        last = current
-        stableSince = System.currentTimeMillis()
-      }
-      Thread.sleep(100)
-    }
-    throw AssertionError("Unread count never stabilized (last observed = $last)")
   }
 
   private data class BottomObserved(

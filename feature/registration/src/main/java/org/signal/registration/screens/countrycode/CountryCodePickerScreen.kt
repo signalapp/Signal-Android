@@ -153,7 +153,7 @@ private fun TwoPaneLayout(
       ) {
         Text(
           stringResource(R.string.CountryCodeSelectScreen__your_country),
-          style = MaterialTheme.typography.headlineMedium,
+          style = MaterialTheme.typography.headlineLarge,
           modifier = Modifier.attachDebugLogHelper()
         )
       }

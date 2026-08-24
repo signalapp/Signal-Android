@@ -7,6 +7,7 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import org.signal.core.util.Stopwatch
+import org.signal.core.util.UnableToStartException
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.BackupFileIOError
@@ -24,6 +25,7 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.service.GenericForegroundService
 import org.thoughtcrime.securesms.service.NotificationController
 import java.io.IOException
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Local backup job for installs using new backupv2 folder format.
@@ -57,7 +59,7 @@ class LocalArchiveJob internal constructor(parameters: Parameters) : Job(paramet
         context,
         context.getString(R.string.LocalBackupJob_creating_signal_backup),
         NotificationChannels.getInstance().BACKUPS,
-        R.drawable.ic_signal_backup
+        CoreUiR.drawable.ic_signal_backup
       )
     } catch (e: UnableToStartException) {
       Log.w(TAG, "Unable to start foreground backup service, continuing without service")
@@ -175,7 +177,7 @@ class LocalArchiveJob internal constructor(parameters: Parameters) : Job(paramet
     when {
       exporting != null -> {
         val phase = NotificationPhase.Export(exporting.phase)
-        val title = when (exporting.phase) {
+        val contentText = when (exporting.phase) {
           LocalBackupCreationProgress.ExportPhase.MESSAGE -> {
             if (exporting.frameTotalCount > 0) {
               context.getString(
@@ -193,7 +195,7 @@ class LocalArchiveJob internal constructor(parameters: Parameters) : Job(paramet
           else -> context.getString(R.string.BackupCreationProgressRow__preparing_backup)
         }
         if (previousPhase != phase || exporting.phase == LocalBackupCreationProgress.ExportPhase.MESSAGE) {
-          notification.replaceTitle(title)
+          notification.replaceContentText(contentText)
           previousPhase = phase
         }
         if (exporting.frameTotalCount == 0L) {
@@ -205,7 +207,7 @@ class LocalArchiveJob internal constructor(parameters: Parameters) : Job(paramet
 
       transferring != null -> {
         if (previousPhase !is NotificationPhase.Transfer) {
-          notification.replaceTitle(AppDependencies.application.getString(R.string.LocalArchiveJob__exporting_media))
+          notification.replaceContentText(AppDependencies.application.getString(R.string.LocalArchiveJob__exporting_media))
           previousPhase = NotificationPhase.Transfer
         }
         if (transferring.total == 0L) {

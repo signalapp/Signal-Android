@@ -12,6 +12,9 @@ import assertk.assertions.isEqualTo
 import assertk.assertions.isNull
 import io.mockk.every
 import io.mockk.mockk
+import io.mockk.mockkObject
+import io.mockk.unmockkObject
+import org.junit.After
 import org.junit.Before
 import org.junit.BeforeClass
 import org.junit.Rule
@@ -23,6 +26,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
 import org.thoughtcrime.securesms.testutil.SystemOutLogger
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.webrtc.audio.AudioManagerCompat
 
 @RunWith(RobolectricTestRunner::class)
@@ -59,11 +63,19 @@ class WebRtcAudioPicker31Test {
 
   @Before
   fun setUp() {
+    mockkObject(RemoteConfig)
+    every { RemoteConfig.telecomMinSdkVersion } returns 37
+
     audioManagerCompat = AppDependencies.androidCallAudioManager
     outputState = ToggleButtonOutputState()
     lastSelectedDevice = null
     lastUpdatedAudioOutput = null
     pickerHidden = false
+  }
+
+  @After
+  fun tearDown() {
+    unmockkObject(RemoteConfig)
   }
 
   private fun createDevice(type: Int, id: Int, name: String = "Device $id"): AudioDeviceInfo {

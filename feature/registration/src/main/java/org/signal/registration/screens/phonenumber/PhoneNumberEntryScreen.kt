@@ -35,6 +35,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
@@ -58,6 +59,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextRange
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
@@ -237,7 +239,7 @@ private fun OnePaneLayout(
 
   OnePaneRegistrationScaffold(
     params = params,
-    topBar = { TopAppBar(scrollBehavior = topBarScrollBehavior, onEvent = onEvent) },
+    topBar = { TopAppBar(scrollBehavior = topBarScrollBehavior, isLinkAndSyncAvailable = state.isLinkAndSyncAvailable, onEvent = onEvent) },
     content = { paddingValues ->
       Column(
         modifier = Modifier
@@ -294,7 +296,7 @@ private fun TwoPaneLayout(
 
   TwoPaneRegistrationScaffold(
     params = params,
-    topBar = { TopAppBar(scrollBehavior = topBarScrollBehavior, onEvent = onEvent) },
+    topBar = { TopAppBar(scrollBehavior = topBarScrollBehavior, isLinkAndSyncAvailable = state.isLinkAndSyncAvailable, onEvent = onEvent) },
     firstPane = { paddingValues ->
       Column(
         modifier = Modifier
@@ -303,7 +305,7 @@ private fun TwoPaneLayout(
           .verticalScroll(firstPaneScrollState)
           .padding(paddingValues)
       ) {
-        Description()
+        Description(twoPane = true)
       }
     },
     secondPane = { paddingValues ->
@@ -346,6 +348,7 @@ private fun TwoPaneLayout(
 @Composable
 fun TopAppBar(
   scrollBehavior: TopAppBarScrollBehavior,
+  isLinkAndSyncAvailable: Boolean,
   onEvent: (PhoneNumberEntryScreenEvents) -> Unit
 ) {
   val context = LocalContext.current
@@ -381,23 +384,25 @@ fun TopAppBar(
             menuController.hide()
           }
         )
-        DropdownMenus.Item(
-          text = { Text(text = stringResource(R.string.RegistrationActivity_link_device)) },
-          onClick = {
-            onEvent(PhoneNumberEntryScreenEvents.LinkDevice)
-            menuController.hide()
-          }
-        )
+        if (isLinkAndSyncAvailable) {
+          DropdownMenus.Item(
+            text = { Text(text = stringResource(R.string.RegistrationActivity_link_device)) },
+            onClick = {
+              onEvent(PhoneNumberEntryScreenEvents.LinkDevice)
+              menuController.hide()
+            }
+          )
+        }
       }
     }
   )
 }
 
 @Composable
-private fun Description() {
+private fun Description(twoPane: Boolean = false) {
   Text(
     text = stringResource(R.string.RegistrationActivity_phone_number),
-    style = MaterialTheme.typography.headlineMedium,
+    style = if (twoPane) MaterialTheme.typography.headlineLarge else MaterialTheme.typography.headlineMedium,
     modifier = Modifier
       .fillMaxWidth()
       .attachDebugLogHelper()
@@ -405,7 +410,7 @@ private fun Description() {
 
   Text(
     text = stringResource(R.string.RegistrationActivity_you_will_receive_a_verification_code),
-    style = MaterialTheme.typography.bodyLarge,
+    style = if (twoPane) MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Normal) else MaterialTheme.typography.bodyLarge,
     color = MaterialTheme.colorScheme.onSurfaceVariant,
     modifier = Modifier.padding(top = 16.dp)
   )
@@ -423,6 +428,18 @@ private fun NextButton(
     horizontalArrangement = Arrangement.End,
     verticalAlignment = Alignment.CenterVertically
   ) {
+    if (state.isPhoneNumberlessRegistrationAvailable) {
+      TextButton(
+        onClick = { onEvent(PhoneNumberEntryScreenEvents.RegisterWithoutNumber) },
+        enabled = !state.showSpinner,
+        modifier = Modifier.testTag(TestTags.PHONE_NUMBER_REGISTER_WITHOUT_NUMBER_BUTTON)
+      ) {
+        Text(stringResource(R.string.RegistrationActivity_register_without_number))
+      }
+
+      Spacer(modifier = Modifier.weight(1f))
+    }
+
     Buttons.LargeTonal(
       onClick = { onEvent(PhoneNumberEntryScreenEvents.NextClicked) },
       enabled = !state.showSpinner && state.isNumberPossible,
@@ -620,6 +637,17 @@ private fun PhoneNumberScreenPreview() {
   Previews.Preview {
     PhoneNumberScreen(
       state = PhoneNumberEntryState(),
+      onEvent = {}
+    )
+  }
+}
+
+@AllDevicePreviews
+@Composable
+private fun PhoneNumberScreenRegisterWithoutNumberPreview() {
+  Previews.Preview {
+    PhoneNumberScreen(
+      state = PhoneNumberEntryState(isPhoneNumberlessRegistrationAvailable = true),
       onEvent = {}
     )
   }

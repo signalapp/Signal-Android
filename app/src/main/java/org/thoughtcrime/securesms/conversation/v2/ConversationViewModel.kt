@@ -44,6 +44,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.rx3.asFlow
 import org.signal.core.models.ServiceId
+import org.signal.core.models.database.StickerRecord
 import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
@@ -74,7 +75,6 @@ import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.ReactionRecord
-import org.thoughtcrime.securesms.database.model.StickerRecord
 import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -153,7 +153,7 @@ class ConversationViewModel(
 
   val groupMemberServiceIds: Observable<List<ServiceId>> = recipientRepository
     .groupRecord
-    .filter { it.isPresent && it.get().isV2Group }
+    .filter { it.isPresent && it.get().hasV2GroupProperties }
     .map { it.get().requireV2GroupProperties().getMemberServiceIds() }
     .distinctUntilChanged()
     .observeOn(AndroidSchedulers.mainThread())
@@ -640,6 +640,13 @@ class ConversationViewModel(
 
   fun updateIdentityRecordsInBackground() {
     refreshIdentityRecords.onNext(Unit)
+  }
+
+  fun refreshInputReadyState() {
+    val recipientId = recipientSnapshot?.id ?: return
+    viewModelScope.launch(Dispatchers.Default) {
+      Recipient.live(recipientId).refresh()
+    }
   }
 
   fun updateIdentityRecords(): Completable {

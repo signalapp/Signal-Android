@@ -10,23 +10,26 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigationevent.NavigationEventDispatcherOwner
 import androidx.navigationevent.compose.LocalNavigationEventDispatcherOwner
 import org.signal.core.ui.compose.Dialogs
+import org.signal.core.ui.compose.LocalDisplayNameProvider
 import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.mediasend.screens.edit.MediaEditScreenDialogs
 
 @Composable
 fun MediaSendScreen(
-  contractArgs: MediaSendActivityContract.Args,
+  contractArgs: MediaSendFlowActivityContract.Args,
   modifier: Modifier = Modifier,
   textStoryEditorSlot: @Composable () -> Unit = {},
-  sendSlot: @Composable (MediaSendState) -> Unit = {},
-  onExternalHudCommand: (HudCommand) -> Unit = {}
+  sendSlot: @Composable (MediaSendFlowState) -> Unit = {},
+  onExternalHudCommand: (MediaSendFlowHudCommand) -> Unit = {}
 ) {
-  val viewModel = viewModel<MediaSendViewModel>(factory = MediaSendViewModel.Factory(args = contractArgs))
+  val viewModel = viewModel<MediaSendFlowViewModel>(factory = MediaSendFlowViewModel.Factory(args = contractArgs))
 
   LaunchedEffect(viewModel) {
     viewModel.hudCommands.collect { command ->
@@ -58,11 +61,19 @@ fun MediaSendScreen(
           )
         }
 
-        MediaSendNavDisplay(
-          stateFlow = viewModel.state,
-          snackbarEvents = viewModel.snackbarEvents,
-          backStack = viewModel.backStack,
-          eventHandler = viewModel,
+        viewModel.addToGroupStoryDialog.Content { recipientId, onDismissRequest, onConfirm, _, onDeny ->
+          val groupName: String by LocalDisplayNameProvider.current(recipientId.id)
+
+          MediaEditScreenDialogs.AddToGroupStoryConfirmationDialog(
+            groupName = groupName,
+            onAddToStory = onConfirm,
+            onDeny = onDeny,
+            onDismissRequest = onDismissRequest
+          )
+        }
+
+        MediaSendNavigation(
+          viewModel = viewModel,
           modifier = modifier,
           textStoryEditorSlot = textStoryEditorSlot,
           sendSlot = sendSlot

@@ -45,12 +45,14 @@
     <string name="RegistrationActivity_select_a_country">국가 선택</string>
     <string name="RegistrationActivity_phone_number_description">전화번호</string>
     <!-- Error shown beneath the phone number field when the entered number is not valid -->
-    <string name="RegistrationActivity_not_a_valid_phone_number">Not a valid phone number</string>
+    <string name="RegistrationActivity_not_a_valid_phone_number">유효하지 않은 전화번호입니다.</string>
     <!-- Dialog title shown when the entered phone number is rejected as invalid -->
-    <string name="RegistrationActivity_invalid_phone_number">Invalid phone number</string>
+    <string name="RegistrationActivity_invalid_phone_number">전화번호가 올바르지 않습니다</string>
     <!-- Dialog body shown when the entered phone number is rejected as invalid -->
-    <string name="RegistrationActivity_the_number_you_entered_is_not_valid">The number you entered doesn\'t appear to be valid. Please check the country code and phone number and try again.</string>
+    <string name="RegistrationActivity_the_number_you_entered_is_not_valid">입력하신 번호가 유효하지 않습니다. 국가 코드와 전화번호를 확인하고 다시 시도해 주세요.</string>
     <string name="RegistrationActivity_next">다음</string>
+    <!-- Button on the phone number screen that starts registering with a purchased Signal Login instead of a phone number -->
+    <string name="RegistrationActivity_register_without_number">전화번호 없이 등록하기</string>
     <!-- Dialog title to confirm phone number -->
     <string name="RegistrationActivity_is_the_phone_number">아래 전화번호가 맞나요?</string>
     <!-- Dialog body to confirm phone number -->
@@ -62,7 +64,7 @@
     <!-- Menu option to use a proxy -->
     <string name="RegistrationActivity_use_proxy">프록시 사용하기</string>
     <!-- Menu option to link this as a device -->
-    <string name="RegistrationActivity_link_device">기기 연결</string>
+    <string name="RegistrationActivity_link_device">기기 연동</string>
     <!-- Clickable text that opens a corresponding URL -->
     <string name="RegistrationActivity_learn_more">자세히 알아보기</string>
 
@@ -87,8 +89,8 @@
     <string name="VerificationCodeScreen__resend_code">코드 다시 보내기</string>
     <!-- Button text for call me action -->
     <string name="VerificationCodeScreen__call_me_instead">전화로 받기</string>
-    <!-- Countdown text shown below the resend code button. Placeholders are minutes and seconds -->
-    <string name="VerificationCodeScreen__countdown_format">(%1$02d:%2$02d)</string>
+    <!-- Button text for resend SMS when countdown is active. Placeholders are minutes and seconds -->
+    <string name="VerificationCodeScreen__resend_code_available_in">코드 다시 보내기(%1$02d:%2$02d)</string>
     <!-- Button text for call me when countdown is active. Placeholders are minutes and seconds -->
     <string name="VerificationCodeScreen__call_me_available_in">전화로 받기(%1$02d:%2$02d)</string>
     <!-- Toast shown when the user enters an incorrect verification code -->
@@ -105,6 +107,10 @@
     <string name="VerificationCodeScreen__unable_to_send_sms">해당 전화번호에 SMS를 전송할 수 없습니다. 몇 시간 정도 기다렸다가 다시 시도해 주세요.</string>
     <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
     <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">선택한 방법으로 코드를 전송할 수 없습니다. 다른 옵션으로 진행해 주세요.</string>
+    <!-- Dialog shown when the provider rejected placing a verification phone call to the user\'s number -->
+    <string name="VerificationCodeScreen__could_not_call_provider_rejected">전화로 인증 코드를 전송하지 못했습니다. 다시 시도하거나 SMS를 통해 인증 코드를 요청해 주세요.</string>
+    <!-- Dialog shown when the provider rejected sending a verification SMS to the user\'s number -->
+    <string name="VerificationCodeScreen__could_not_sms_provider_rejected">SMS로 인증 코드를 전송하지 못했습니다. 다시 시도하거나 전화로 인증 코드를 받아 보세요.</string>
     <!-- Snackbar shown for registration errors -->
     <string name="VerificationCodeScreen__registration_error">등록에 실패했습니다. 다시 시도해 주세요.</string>
     <!-- Button text for having trouble with verification -->
@@ -120,7 +126,9 @@
     <!-- Clickable substring linking to contacting support within VerificationCodeScreen__support_bottom_sheet_body_call_to_action -->
     <string name="VerificationCodeScreen__support_bottom_sheet_cta_contact_support_substring">고객 지원 문의</string>
     <!-- Email subject used when contacting support from the verification code screen -->
-  <!-- Removed by excludeNonTranslatables <string name="VerificationCodeScreen__contact_support_email_subject" translatable="false">Signal Registration - Verification Code for Android</string> -->
+    <string name="VerificationCodeScreen__contact_support_email_subject">Signal 등록 - Android용 인증 코드</string>
+    <!-- Text placed in the body of the support email composed from the verification code screen. Used to route the request, so it is not translated. -->
+  <!-- Removed by excludeNonTranslatables <string name="VerificationCodeScreen__contact_support_email_filter" translatable="false">Signal Registration - Verification Code for Android</string> -->
     <!-- URL opened for troubleshooting steps from the verification code screen -->
   <!-- Removed by excludeNonTranslatables <string name="VerificationCodeScreen__support_center_url" translatable="false">https://support.signal.org/</string> -->
 
@@ -204,7 +212,7 @@
     <!-- Label for the recovery key text field -->
     <string name="LocalBackupRestoreScreen__recovery_key">복구 키</string>
     <!-- Label for the backup passphrase text field -->
-    <string name="LocalBackupRestoreScreen__passphrase">Passphrase</string>
+    <string name="LocalBackupRestoreScreen__passphrase">암호 문구</string>
     <!-- Error text when passphrase is too long -->
     <string name="LocalBackupRestoreScreen__too_long">너무 깁니다(%1$d/%2$d)</string>
     <!-- Link for users who don\'t have their passphrase -->
@@ -229,11 +237,11 @@
     <!-- Button that prompts the device password manager to fill in the recovery key -->
     <string name="EnterAepScreen__fill_from_password_manager">비밀번호 관리자에서 가져오기</string>
     <!-- Title of the dialog warning that the backup being restored was created with a different account -->
-    <string name="EnterAepScreen__restore_to_new_account">Restore to new account?</string>
+    <string name="EnterAepScreen__restore_to_new_account">새 계정으로 복원할까요?</string>
     <!-- Body of the dialog warning the user that the backup was created with a different account and they will lose group memberships -->
-    <string name="EnterAepScreen__restore_to_new_account_body">The backup you are restoring was created using a different Signal account. You can restore this backup to a new account, but you will no longer be a member of any groups that were restored.</string>
+    <string name="EnterAepScreen__restore_to_new_account_body">지금 복원 중인 계정은 다른 Signal 계정을 사용하여 생성되었습니다. 이 백업을 새로운 계정으로 복원할 수는 있으나, 이 경우 복원된 그룹에서 더 이상 멤버로 유지되지 않습니다.</string>
     <!-- Confirm button label for the restore to new account dialog -->
-    <string name="EnterAepScreen__restore">Restore</string>
+    <string name="EnterAepScreen__restore">복원하기</string>
     <!-- Text shown while preparing the restore -->
     <string name="LocalBackupRestoreScreen__preparing_restore">복구 준비 중…</string>
     <!-- Title shown while restore is in progress -->
@@ -251,13 +259,13 @@
     <!-- Button to retry restore after failure -->
     <string name="LocalBackupRestoreScreen__try_again">다시 시도하기</string>
     <!-- Title shown when the entered passphrase cannot decrypt the selected backup -->
-    <string name="LocalBackupRestoreScreen__incorrect_passphrase">Incorrect passphrase</string>
+    <string name="LocalBackupRestoreScreen__incorrect_passphrase">암호 문구가 올바르지 않습니다</string>
     <!-- Title shown when the entered recovery key cannot decrypt the selected backup -->
-    <string name="LocalBackupRestoreScreen__incorrect_recovery_key">Incorrect recovery key</string>
+    <string name="LocalBackupRestoreScreen__incorrect_recovery_key">잘못된 복구 키</string>
     <!-- Description shown when the entered passphrase or recovery key cannot decrypt the selected backup -->
-    <string name="LocalBackupRestoreScreen__incorrect_credential_description">The credential you entered doesn\'t match this backup. Please check it and try again.</string>
+    <string name="LocalBackupRestoreScreen__incorrect_credential_description">입력한 인증 정보가 이 백업과 일치하지 않습니다. 확인 후 다시 시도해 주세요.</string>
     <!-- Button to link an existing Signal account to this device -->
-    <string name="WelcomeScreen__link_your_account">계정 연결하기</string>
+    <string name="WelcomeScreen__link_your_account">계정 연동하기</string>
     <!-- Prompt shown to users who don\'t have a Signal account yet -->
     <string name="WelcomeScreen__not_on_signal_yet">아직 Signal에 가입하지 않으셨나요?</string>
     <!-- Button to create a new Signal account -->
@@ -304,8 +312,10 @@
     <string name="RemoteRestoreScreen__your_backup_is_not_recoverable">백업을 복원하는 동안 오류가 발생하여, 백업이 복원되지 않았습니다. 고객 지원팀에 문의해 주시기 바랍니다.</string>
     <!-- Button to contact support -->
     <string name="RemoteRestoreScreen__contact_support">지원팀에 문의</string>
-    <!-- Subject line of the support email composed when the user contacts support about an unrecoverable backup. Also used to route the request, so it is not translated. -->
-  <!-- Removed by excludeNonTranslatables <string name="RemoteRestoreScreen__contact_support_email_subject" translatable="false">Signal Android Backup restore permanent failure</string> -->
+    <!-- Subject line of the support email composed when the user contacts support about an unrecoverable backup. -->
+    <string name="RemoteRestoreScreen__contact_support_email_subject">Signal Android 백업 복원 영구 오류</string>
+    <!-- Text placed in the body of the support email composed when the user contacts support about an unrecoverable backup. Used to route the request, so it is not translated. -->
+  <!-- Removed by excludeNonTranslatables <string name="RemoteRestoreScreen__contact_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
     <!-- Shown while downloading the backup from the server -->
     <string name="RemoteRestoreScreen__downloading_backup">백업을 다운로드하는 중…</string>
     <!-- Shown while restoring messages from the downloaded backup -->
@@ -372,6 +382,10 @@
     <string name="PinCreationScreen__reenter_pin">PIN 재입력</string>
     <!-- Error shown below the PIN field when the confirmation PIN does not match the one the user first entered. -->
     <string name="PinCreationScreen__pins_dont_match">PIN이 일치하지 않습니다. 다시 시도해 주세요.</string>
+    <!-- Error shown below the PIN field when the user tries to create a PIN that is too easy to guess, such as one made of sequential or repeated digits. -->
+    <string name="PinCreationScreen__choose_a_stronger_pin">더 강력한 PIN을 설정하세요</string>
+    <!-- Error shown below the PIN field when the user tries to create a PIN that matches the code used to verify their phone number. -->
+    <string name="PinCreationScreen__reentered_verification_code">전화번호 인증에 이미 사용된 코드를 다시 입력했습니다. 새로운 전용 Signal PIN을 설정해 주세요.</string>
     <!-- Overflow menu item that opens a help article about Signal PINs. -->
     <string name="PinCreationScreen__learn_more_about_pins">PIN에 대해 더 알아보기</string>
     <!-- Title of the dialog confirming that the user wants to disable their Signal PIN. -->
@@ -395,6 +409,8 @@
     <string name="PinEntryScreen__enter_your_pin">PIN 입력</string>
     <!-- Describes the PIN that needs to be entered. -->
     <string name="PinEntryScreen__enter_the_pin_you_created">Signal을 처음 설치했을 때 만든 PIN을 입력해 주세요.</string>
+    <!-- Error shown when the user enters the code used to verify their phone number instead of their PIN, and it was not their actual PIN. -->
+    <string name="PinEntryScreen__reentered_verification_code">전화번호 인증에 이미 사용된 코드를 다시 입력했습니다. 이전에 계정에 설정한 전용 Signal PIN을 입력하세요.</string>
     <!-- Error shown when an incorrect PIN is entered. %1$d is the number of attempts remaining. -->
     <plurals name="PinEntryScreen__incorrect_pin">
         <item quantity="other">PIN이 일치하지 않습니다. 입력 가능한 횟수가 %1$d회 남았습니다.</item>
@@ -419,8 +435,10 @@
     <string name="PinEntryScreen__no_data_could_be_found">계정을 복구할 수 있는 데이터를 찾을 수 없습니다. 새로운 PIN을 생성하세요.</string>
     <!-- Labels the button in the no-data-to-restore dialog that lets the user contact support. -->
     <string name="PinEntryScreen__contact_support">지원팀에 문의</string>
-    <!-- Subject line of the support email composed when the user contacts support about PIN entry. Also used to route the request, so it is not translated. -->
-  <!-- Removed by excludeNonTranslatables <string name="PinEntryScreen__contact_support_email_subject" translatable="false">Signal Registration - Need Help with PIN for Android</string> -->
+    <!-- Subject line of the support email composed when the user contacts support about PIN entry. -->
+    <string name="PinEntryScreen__contact_support_email_subject">Signal 등록 - Android용 PIN 설정과 관련해 도움이 필요합니다</string>
+    <!-- Text placed in the body of the support email composed when the user contacts support about PIN entry. Used to route the request, so it is not translated. -->
+  <!-- Removed by excludeNonTranslatables <string name="PinEntryScreen__contact_support_email_filter" translatable="false">Signal Registration - Need Help with PIN for Android</string> -->
 
     <!-- Title for the screen asking the user to grant the notification permission -->
     <string name="AllowNotificationsScreen__allow_notifications">알림 허용</string>
@@ -441,6 +459,8 @@
     <string name="MessageSyncScreen__preparing">준비 중…</string>
     <!-- Progress label shown under the sync progress bar while messages are being imported and the rest of the account is restored, after the download finishes -->
     <string name="MessageSyncScreen__finishing">완료하는 중…</string>
+    <!-- Progress label shown while messages are being imported/restored from the downloaded backup -->
+    <string name="MessageSyncScreen__restoring">복원 중…</string>
     <!-- Informational notice in the sync screen footer, indicating the sync is end-to-end encrypted. Precedes a separate "Learn more" link. -->
     <string name="MessageSyncScreen__messages_and_chat_info_are_protected_by_e2ee">동기화 프로세스를 비롯하여 메시지와 대화 정보는 종단간 암호화로 보호됩니다.</string>
     <!-- Inline link in the sync screen footer that opens documentation about end-to-end encryption during sync -->
@@ -457,13 +477,13 @@
     <string name="MessageSyncScreen__continue_without_messages">메시지 없이 계속하기</string>
 
     <!-- Title for the screen that shows a QR code the user scans with their existing primary device to link this device as a secondary -->
-    <string name="LinkAccountScreen__scan_this_code_to_link_your_account">이 코드를 스캔하여 계정을 연결하세요</string>
+    <string name="LinkAccountScreen__scan_this_code_to_link_your_account">이 코드를 스캔하여 계정을 연동하세요</string>
     <!-- Step in the link-account instructions: open Signal on the user\'s existing phone -->
     <string name="LinkAccountScreen__open_signal_on_your_phone">휴대전화에서 Signal을 엽니다.</string>
     <!-- Step in the link-account instructions: tap profile picture to open Signal Settings -->
     <string name="LinkAccountScreen__tap_your_profile_picture_to_open_signal_settings">프로필 사진을 탭하여 Signal 설정을 엽니다.</string>
     <!-- Step in the link-account instructions: navigate to the Linked devices section and tap Link new device. The quoted strings should match the button/menu labels in the primary device\'s settings. -->
-    <string name="LinkAccountScreen__tap_linked_devices_and_link_new_device">\'연결된 기기\'와 \'새 기기 연결\'을 차례로 탭합니다.</string>
+    <string name="LinkAccountScreen__tap_linked_devices_and_link_new_device">\'연동 기기\'와 \'새 기기 연동\'을 차례로 탭합니다.</string>
     <!-- Button label opening help content for users who can\'t complete the link-account steps -->
     <string name="LinkAccountScreen__get_help_with_these_steps">도움이 필요하신가요?</string>
     <!-- Accessibility content description for the button that enlarges the QR code to full screen -->
@@ -479,15 +499,15 @@
     <!-- Button to retry generating the QR code after it failed to load -->
     <string name="LinkAccountScreen__retry">재시도</string>
     <!-- Progress dialog message shown while this device is being registered as a linked device -->
-    <string name="LinkAccountScreen__linking_device">기기를 연결하는 중…</string>
+    <string name="LinkAccountScreen__linking_device">기기를 연동하는 중…</string>
     <!-- Progress dialog message shown while waiting for the primary device to prepare the message backup -->
     <string name="LinkAccountScreen__waiting_for_your_other_device">다른 기기를 기다리는 중…</string>
     <!-- Error dialog message shown when linking this device fails -->
-    <string name="LinkAccountScreen__error_linking_device">기기 연결 도중 오류가 발생했습니다.</string>
+    <string name="LinkAccountScreen__error_linking_device">기기를 연동하는 데 오류가 발생했습니다.</string>
     <!-- Title of the confirmation dialog shown when the scanned QR code belongs to a different account than the one this device is currently linked to -->
     <string name="LinkAccountScreen__delete_app_data_question">앱 데이터를 삭제할까요?</string>
     <!-- Body of the confirmation dialog warning that continuing will erase all local data before relinking to a different account -->
-    <string name="LinkAccountScreen__you_are_attempting_to_link_a_different_account">다른 Signal 계정을 연결하고 있습니다. 계속 진행할 경우 현재 기기에 있는 모든 Signal 데이터가 삭제됩니다.</string>
+    <string name="LinkAccountScreen__you_are_attempting_to_link_a_different_account">다른 Signal 계정을 연동하려고 합니다. 계속 진행하면 현재 기기에 있는 모든 Signal 데이터가 삭제됩니다.</string>
     <!-- Destructive confirmation button that deletes all local data and restarts the app so it can be linked to a different account -->
     <string name="LinkAccountScreen__delete_and_restart">삭제 후 재시작</string>
     <!-- Content description for the button that closes the maximized QR code overlay -->
@@ -579,4 +599,98 @@
     <string name="CaptchaScreen__failed_to_load_captcha">CAPTCHA를 로드하지 못했습니다.</string>
     <!-- Button to cancel out of the captcha screen. -->
     <string name="CaptchaScreen__cancel">취소</string>
+
+    <!-- Shared registration strings -->
+    <!-- Content description for the back arrow in a registration screen header. -->
+    <string name="RegistrationScreen__back">뒤로</string>
+
+    <!-- Signal Login purchase screen -->
+    <!-- Title of the screen where the user buys a Signal Login to register without a phone number. -->
+    <string name="SignalLoginPaymentScreen__signal_login">Signal 로그인</string>
+    <!-- Description of what a Signal Login is. Followed by a "learn more" link. -->
+    <string name="SignalLoginPaymentScreen__register_without_a_phone_number">Signal 로그인을 이용해 전화번호 없이 등록하세요. 1회 구매를 완료하면 시작에 필요한 계정 키가 발급됩니다.</string>
+    <!-- Link at the end of the description that opens a support article about Signal Login. -->
+    <string name="SignalLoginPaymentScreen__learn_more">자세히 알아보기</string>
+    <!-- Subtitle of the purchase option, clarifying the price is not a subscription. -->
+    <string name="SignalLoginPaymentScreen__one_time_purchase">1회 구매</string>
+    <!-- Selling point of the purchase option: no phone number is required. -->
+    <string name="SignalLoginPaymentScreen__no_phone_number_needed">전화번호 입력 필요 없음</string>
+    <!-- Selling point of the purchase option: a username is used to reach the user. -->
+    <string name="SignalLoginPaymentScreen__username_for_messaging_and_calls">메시지와 통화를 위한 사용자 이름</string>
+    <!-- Selling point of the purchase option: the purchase supports Signal. -->
+    <string name="SignalLoginPaymentScreen__signal_is_a_non_profit">Signal은 비영리 단체로, 결제 금액은 Signal의 사명을 이어가는 데 도움이 됩니다.</string>
+    <!-- Title of the option for users who already bought a Signal Login. -->
+    <string name="SignalLoginPaymentScreen__i_have_a_signal_login">Signal 로그인이 있는 경우</string>
+    <!-- Subtitle of the existing-login option. -->
+    <string name="SignalLoginPaymentScreen__use_your_existing_account_key">기존 계정 키를 사용하세요</string>
+    <!-- Selling point of the existing-login option: the account can be restored. -->
+    <string name="SignalLoginPaymentScreen__login_and_restore_your_account">로그인 및 계정 복구</string>
+    <!-- Selling point of the existing-login option, thanking the user for their previous purchase. -->
+    <string name="SignalLoginPaymentScreen__thanks_for_supporting_signal">Signal을 후원해 주셔서 감사합니다!</string>
+    <!-- Action button that starts the purchase. Placeholder is the localized price, e.g. "$1.99". -->
+    <string name="SignalLoginPaymentScreen__pay_s">%1$s 결제하기</string>
+    <!-- Action button that starts the purchase, shown while the price is still loading. -->
+    <string name="SignalLoginPaymentScreen__pay">지불</string>
+    <!-- Action button shown when the user indicated they already have a Signal Login. -->
+    <string name="SignalLoginPaymentScreen__continue">계속</string>
+    <!-- Error shown when the purchase does not go through. -->
+    <string name="SignalLoginPaymentScreen__your_purchase_could_not_be_completed">결제를 완료하지 못해 요금이 청구되지 않았습니다.</string>
+
+    <!-- Signal Login details screen -->
+    <!-- Title of the screen that shows the user their newly purchased Signal Login. -->
+    <string name="SignalLoginInfoScreen__your_signal_login">Signal 로그인</string>
+    <!-- Description warning the user that a lost Signal Login cannot be recovered. -->
+    <string name="SignalLoginInfoScreen__thanks_for_your_purchase">구매해 주셔서 감사합니다! Signal 로그인을 사용해 계정을 등록하고 복구하세요. 키를 잊어버리면 계정을 복구할 수 없습니다.</string>
+    <!-- Label for the account portion of the Signal Login on the credential card. -->
+    <string name="SignalLoginInfoScreen__account">계정</string>
+    <!-- Label for the recovery portion of the Signal Login on the credential card. -->
+    <string name="SignalLoginInfoScreen__recovery">복구</string>
+    <!-- Button on the credential card that reveals the full Signal Login. -->
+    <string name="SignalLoginInfoScreen__view_details">상세 정보 보기</string>
+    <!-- Body of the dialog revealing the full Signal Login. First placeholder is the account key, second is the recovery key. -->
+    <string name="SignalLoginInfoScreen__account_s_recovery_s">계정: %1$s\n\n복구: %2$s</string>
+    <!-- Action button that stores the Signal Login in the device password manager. -->
+    <string name="SignalLoginInfoScreen__save_to_password_manager">비밀번호 관리자에 저장</string>
+    <!-- Action button for users who would rather write the Signal Login down themselves. -->
+    <string name="SignalLoginInfoScreen__save_manually">수동으로 저장</string>
+    <!-- Error shown when the Signal Login could not be stored in the password manager. -->
+    <string name="SignalLoginInfoScreen__your_signal_login_could_not_be_saved">Signal 로그인을 저장하지 못했습니다. 수동으로 저장해 주세요.</string>
+
+    <!-- Add username screen -->
+    <!-- Title of the screen offering the user an optional username. -->
+    <string name="AddUsernameScreen__add_an_optional_username">사용자 이름 추가(선택 사항)</string>
+    <!-- Description explaining what a username is used for. -->
+    <string name="AddUsernameScreen__people_can_message_you_by_username">전화번호 대신 사용자 이름으로 메시지를 보낼 수 있습니다.</string>
+    <!-- Prompt shown above the username field. -->
+    <string name="AddUsernameScreen__choose_your_username">사용자 이름을 선택하세요</string>
+    <!-- Label/hint for the username field. -->
+    <string name="AddUsernameScreen__username">사용자 이름</string>
+    <!-- Helper text below the username field. Followed by a "learn more" link. -->
+    <string name="AddUsernameScreen__usernames_are_always_paired_with_a_set_of_numbers">모든 사용자 이름에는 고유 번호가 부여됩니다.</string>
+    <!-- Link in the helper text that opens a support article about usernames. -->
+    <string name="AddUsernameScreen__learn_more">자세히 알아보기</string>
+    <!-- Button that skips choosing a username. -->
+    <string name="AddUsernameScreen__skip">건너뛰기</string>
+    <!-- Button that submits the chosen username. -->
+    <string name="AddUsernameScreen__next">다음</string>
+    <!-- Validation error shown when the entered username is too short. -->
+    <string name="AddUsernameScreen__usernames_must_be_at_least_3_characters">사용자 이름은 최소 3자 이상이어야 합니다</string>
+    <!-- Validation error shown when the entered username is too long. -->
+    <string name="AddUsernameScreen__usernames_must_be_at_most_32_characters">사용자 이름은 최대 32자 이하이어야 합니다</string>
+    <!-- Validation error shown when the entered username contains disallowed characters. -->
+    <string name="AddUsernameScreen__usernames_can_only_contain">사용자 이름에는 영문자, 숫자, 밑줄만 사용할 수 있습니다</string>
+    <!-- Validation error shown when the entered username starts with a digit. -->
+    <string name="AddUsernameScreen__usernames_cannot_begin_with_a_number">사용자 이름은 숫자로 시작할 수 없습니다</string>
+    <!-- Error shown when the chosen username cannot be reserved. -->
+    <string name="AddUsernameScreen__this_username_is_not_available">사용할 수 없는 사용자 이름입니다. 다른 사용자 이름을 입력해 주세요.</string>
+
+    <!-- ContactSupportDialog -->
+    <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__submit_debug_log">디버그 로그를 제출하시겠어요?</string>
+    <!-- Body of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__your_debug_logs">디버그 로그를 보내 문제 해결에 도움을 주실 수 있습니다. 로그 보내기는 선택 사항입니다.</string>
+    <!-- Button that contacts support with a debug log attached -->
+    <string name="ContactSupportDialog__submit_with_debug_log">디버그 로그와 함께 보내기</string>
+    <!-- Button that contacts support without attaching a debug log -->
+    <string name="ContactSupportDialog__submit_without_debug_log">디버그 로그를 제외하고 보내기</string>
 </resources>

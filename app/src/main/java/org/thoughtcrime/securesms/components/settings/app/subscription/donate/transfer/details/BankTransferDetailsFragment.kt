@@ -9,9 +9,11 @@ import android.os.Bundle
 import android.view.View
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.text.KeyboardActions
@@ -231,6 +233,8 @@ fun BankTransferDetailsContent(
         .fillMaxWidth()
         .fillMaxHeight()
         .padding(it)
+        .consumeWindowInsets(it)
+        .imePadding()
     ) {
       val focusManager = LocalFocusManager.current
       val focusRequester = remember { FocusRequester() }

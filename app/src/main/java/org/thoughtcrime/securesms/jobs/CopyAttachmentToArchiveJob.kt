@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.jobs
 
+import arrow.core.Either
 import kotlinx.coroutines.runBlocking
 import org.signal.core.models.backup.MediaName
 import org.signal.core.models.database.AttachmentId
@@ -8,8 +9,7 @@ import org.signal.core.util.ByteSize
 import org.signal.core.util.bytes
 import org.signal.core.util.logging.Log
 import org.signal.core.util.logging.logW
-import org.signal.libsignal.zkgroup.VerificationFailedException
-import org.signal.network.NetworkResult
+import org.signal.network.service.ArchiveError
 import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.backup.v2.hadIntegrityCheckPerformed
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.jobmanager.CoroutineJob
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.NoRemoteArchiveGarbageCollectionPendingConstraint
@@ -35,7 +36,7 @@ import java.util.concurrent.TimeUnit
  * This job runs at high priority within its queue, which it shares with [UploadAttachmentToArchiveJob]. Therefore, copies are given priority over new uploads,
  * which allows the two-part archive upload process to finish quickly.
  */
-class CopyAttachmentToArchiveJob private constructor(private val attachmentId: AttachmentId, parameters: Parameters) : Job(parameters) {
+class CopyAttachmentToArchiveJob private constructor(private val attachmentId: AttachmentId, parameters: Parameters) : CoroutineJob(parameters) {
 
   companion object {
     private val TAG = Log.tag(CopyAttachmentToArchiveJob::class.java)
@@ -74,7 +75,7 @@ class CopyAttachmentToArchiveJob private constructor(private val attachmentId: A
     }
   }
 
-  override fun run(): Result {
+  override suspend fun doRun(): Result {
     if (SignalStore.account.isLinkedDevice) {
       Log.w(TAG, "[$attachmentId] Linked devices don't backup media. Skipping.")
       setArchiveTransferStateWithDelayedNotification(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
@@ -171,35 +172,30 @@ class CopyAttachmentToArchiveJob private constructor(private val attachmentId: A
     }
 
     val result = when (val archiveResult = BackupRepository.copyAttachmentToArchive(attachment)) {
-      is NetworkResult.Success -> {
+      is Either.Right -> {
         Log.i(TAG, "[$attachmentId]$mediaIdLog Successfully copied the archive tier.")
         Result.success()
       }
 
-      is NetworkResult.NetworkError -> {
-        Log.w(TAG, "[$attachmentId]$mediaIdLog Encountered a retryable network error.", archiveResult.exception)
-        Result.retry(defaultBackoff())
-      }
-
-      is NetworkResult.StatusCodeError -> {
-        when (archiveResult.code) {
-          400 -> {
-            Log.w(TAG, "[$attachmentId]$mediaIdLog Something is invalid about our request. Possibly the length. Scheduling a re-upload. Body: ${archiveResult.exception.stringBody}")
+      is Either.Left -> {
+        when (val error = archiveResult.value) {
+          is ArchiveError.NetworkError -> {
+            Log.w(TAG, "[$attachmentId]$mediaIdLog Encountered a retryable network error.", error.exception)
+            Result.retry(defaultBackoff())
+          }
+          is ArchiveError.CopyMediaError.WrongSourceLength -> {
+            Log.w(TAG, "[$attachmentId]$mediaIdLog Something is invalid about our request. Possibly the length. Scheduling a re-upload.")
             setArchiveTransferStateWithDelayedNotification(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
             AppDependencies.jobManager.add(UploadAttachmentToArchiveJob(attachmentId, canReuseUpload = false))
             Result.success()
           }
-          403 -> {
-            Log.w(TAG, "[$attachmentId]$mediaIdLog Insufficient permissions to upload. Handled in parent handler.")
-            Result.success()
-          }
-          410 -> {
+          is ArchiveError.CopyMediaError.SourceNotFound -> {
             Log.w(TAG, "[$attachmentId]$mediaIdLog The attachment no longer exists on the transit tier. Scheduling a re-upload.")
             setArchiveTransferStateWithDelayedNotification(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
             AppDependencies.jobManager.add(UploadAttachmentToArchiveJob(attachmentId, canReuseUpload = false))
             Result.success()
           }
-          413 -> {
+          is ArchiveError.CopyMediaError.OutOfRemoteSpace -> {
             Log.w(TAG, "[$attachmentId]$mediaIdLog Insufficient storage space! Can't upload!")
             val remoteStorageQuota = getServerQuota() ?: return Result.retry(defaultBackoff()).logW(TAG, "[$attachmentId] Failed to fetch server quota! Retrying.")
 
@@ -214,24 +210,26 @@ class CopyAttachmentToArchiveJob private constructor(private val attachmentId: A
 
             Result.retry(defaultBackoff())
           }
-          429 -> {
+          is ArchiveError.CredentialError.RateLimited -> {
             Log.w(TAG, "[$attachmentId]$mediaIdLog Rate limit exceeded. Retrying.")
-            Result.retry(archiveResult.retryAfter()?.inWholeMilliseconds ?: defaultBackoff())
+            Result.retry(error.retryAfter?.inWholeMilliseconds ?: defaultBackoff())
           }
-          else -> {
-            Log.w(TAG, "[$attachmentId]$mediaIdLog Got back a non-2xx status code: ${archiveResult.code}. Retrying.")
+          is ArchiveError.CredentialError.ZkVerificationFailed -> {
+            Log.w(TAG, "[$attachmentId]$mediaIdLog Encountered a verification failure when trying to upload! Retrying.")
             Result.retry(defaultBackoff())
           }
-        }
-      }
-
-      is NetworkResult.ApplicationError -> {
-        if (archiveResult.throwable is VerificationFailedException) {
-          Log.w(TAG, "[$attachmentId]$mediaIdLog Encountered a verification failure when trying to upload! Retrying.")
-          Result.retry(defaultBackoff())
-        } else {
-          Log.w(TAG, "[$attachmentId]$mediaIdLog Encountered a fatal error when trying to upload!")
-          Result.fatalFailure(RuntimeException(archiveResult.throwable))
+          is ArchiveError.ApplicationError -> {
+            Log.w(TAG, "[$attachmentId]$mediaIdLog Encountered a fatal error when trying to upload!")
+            Result.fatalFailure(RuntimeException(error.exception))
+          }
+          // Note that a copy is anonymous, so libsignal reports a lack of entitlement as an unauthorized credential too. Either way a retry will re-establish
+          // the credential, and the parent handler is what reacts to a downgraded tier.
+          is ArchiveError.CredentialError.Unauthorized,
+          is ArchiveError.CredentialError.NotFound,
+          is ArchiveError.CredentialError.InvalidRequest -> {
+            Log.w(TAG, "[$attachmentId]$mediaIdLog Got back ${error::class.simpleName}. Retrying.")
+            Result.retry(defaultBackoff())
+          }
         }
       }
     }

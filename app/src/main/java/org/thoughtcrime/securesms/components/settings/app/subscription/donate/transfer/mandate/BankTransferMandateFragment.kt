@@ -5,9 +5,6 @@
 
 package org.thoughtcrime.securesms.components.settings.app.subscription.donate.transfer.mandate
 
-import android.annotation.SuppressLint
-import android.os.Bundle
-import android.view.View
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -60,7 +57,6 @@ import org.signal.core.ui.compose.Texts
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.transfer.DonationTransferTestTags
-import org.thoughtcrime.securesms.compose.StatusBarColorAnimator
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
@@ -76,17 +72,6 @@ class BankTransferMandateFragment : ComposeFragment() {
     BankTransferMandateViewModel(args.inAppPaymentId)
   }
 
-  private lateinit var statusBarColorAnimator: StatusBarColorAnimator
-
-  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    statusBarColorAnimator = StatusBarColorAnimator(requireActivity())
-  }
-
-  override fun onResume() {
-    super.onResume()
-    statusBarColorAnimator.setColorImmediate()
-  }
-
   @Composable
   override fun FragmentContent() {
     val mandate by viewModel.mandate
@@ -97,8 +82,7 @@ class BankTransferMandateFragment : ComposeFragment() {
       failedToLoadMandate = failedToLoadMandate,
       onNavigationClick = this::onNavigationClick,
       onContinueClick = this::onContinueClick,
-      onLearnMoreClick = this::onLearnMoreClick,
-      onCanScrollUp = statusBarColorAnimator::setCanScrollUp
+      onLearnMoreClick = this::onLearnMoreClick
     )
   }
 
@@ -136,22 +120,19 @@ fun BankTransferScreenPreview() {
       failedToLoadMandate = false,
       onNavigationClick = {},
       onContinueClick = {},
-      onLearnMoreClick = {},
-      onCanScrollUp = {}
+      onLearnMoreClick = {}
     )
   }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun BankTransferScreen(
   bankMandate: String,
   failedToLoadMandate: Boolean,
   onNavigationClick: () -> Unit,
   onContinueClick: () -> Unit,
-  onLearnMoreClick: () -> Unit,
-  onCanScrollUp: (Boolean) -> Unit
+  onLearnMoreClick: () -> Unit
 ) {
   val listState = rememberLazyListState()
   val scope = rememberCoroutineScope()
@@ -182,17 +163,19 @@ fun BankTransferScreen(
         colors = if (listState.canScrollBackward) TopAppBarDefaults.topAppBarColors(containerColor = SignalTheme.colors.colorSurface2) else TopAppBarDefaults.topAppBarColors()
       )
     }
-  ) {
-    onCanScrollUp(listState.canScrollBackward)
-
-    Column(horizontalAlignment = CenterHorizontally, modifier = Modifier.fillMaxSize()) {
+  ) { paddingValues ->
+    Column(
+      horizontalAlignment = CenterHorizontally,
+      modifier = Modifier
+        .padding(paddingValues)
+        .fillMaxSize()
+    ) {
       LazyColumn(
         state = listState,
         horizontalAlignment = CenterHorizontally,
         modifier = Modifier
           .fillMaxWidth()
           .weight(1f, true)
-          .padding(top = 64.dp)
       ) {
         item {
           Image(

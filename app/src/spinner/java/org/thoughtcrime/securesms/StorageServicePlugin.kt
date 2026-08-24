@@ -63,6 +63,9 @@ class StorageServicePlugin : Plugin {
       } else if (record.proto.notificationProfile != null) {
         row += "Notification Profile"
         row += record.proto.notificationProfile.toString().prettyPrintProto()
+      } else if (record.proto.stickerPack != null) {
+        row += "Sticker Pack"
+        row += record.proto.stickerPack.toString().prettyPrintProto()
       } else {
         row += "Unknown"
         row += ""

@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.impl.DataRestoreConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.DecryptionsDrainedConstraint;
 
 /**
@@ -34,6 +35,7 @@ public final class RequestGroupV2InfoJob extends BaseJob {
     this(new Parameters.Builder()
                        .setQueue("RequestGroupV2InfoSyncJob")
                        .addConstraint(DecryptionsDrainedConstraint.KEY)
+                       .addConstraint(DataRestoreConstraint.KEY)
                        .setMaxAttempts(Parameters.UNLIMITED)
                        .build(),
          groupId,

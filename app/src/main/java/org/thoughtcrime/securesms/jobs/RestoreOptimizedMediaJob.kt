@@ -31,6 +31,11 @@ class RestoreOptimizedMediaJob private constructor(parameters: Parameters) : Job
 
     @JvmStatic
     fun enqueueIfNecessary() {
+      if (SignalStore.account.isLinkedDevice && SignalStore.backup.optimizeStorage) {
+        Log.w(TAG, "Storage optimization is not supported on linked devices. Disabling and restoring all media.")
+        SignalStore.backup.optimizeStorage = false
+      }
+
       if (SignalStore.backup.backsUpMedia && !SignalStore.backup.optimizeStorage) {
         AppDependencies.jobManager.add(RestoreOptimizedMediaJob())
       }

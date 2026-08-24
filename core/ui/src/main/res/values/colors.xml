@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Bottom-sheet dialog navigation bar color. Opaque below API 27 (keeps the legacy colored
+         strip); overridden to transparent in values-v27 so Material's BottomSheetDialog lays the
+         sheet out edge-to-edge and pads it for the navigation bar itself. -->
+    <color name="signal_bottom_sheet_navigation_bar">@color/signal_colorSurface1</color>
+
+</resources>

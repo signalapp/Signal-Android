@@ -9,8 +9,10 @@ import android.os.Bundle
 import android.view.View
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.text.KeyboardActions
@@ -237,7 +239,10 @@ private fun IdealTransferDetailsContent(
 
     Column(
       horizontalAlignment = CenterHorizontally,
-      modifier = Modifier.padding(it)
+      modifier = Modifier
+        .padding(it)
+        .consumeWindowInsets(it)
+        .imePadding()
     ) {
       LazyColumn(
         modifier = Modifier

@@ -5,9 +5,9 @@
 
 package org.whispersystems.signalservice.api.kbs;
 
-final class PinString {
+public final class PinString {
 
-  static boolean allNumeric(CharSequence pin) {
+  public static boolean allNumeric(CharSequence pin) {
     for (int i = 0; i < pin.length(); i++) {
       if (!Character.isDigit(pin.charAt(i))) return false;
     }
@@ -17,7 +17,7 @@ final class PinString {
   /**
    * Converts a string of not necessarily Arabic numerals to Arabic 0..9 characters.
    */
-  static String toArabic(CharSequence numerals) {
+  public static String toArabic(CharSequence numerals) {
     int length = numerals.length();
     char[] arabic = new char[length];
 

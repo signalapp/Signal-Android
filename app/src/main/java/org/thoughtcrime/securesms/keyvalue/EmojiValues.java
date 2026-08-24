@@ -5,7 +5,7 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.thoughtcrime.securesms.components.emoji.EmojiUtil;
+import org.signal.emoji.EmojiUtil;
 import org.signal.core.util.Util;
 
 import java.util.ArrayList;

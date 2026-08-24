@@ -12,6 +12,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.signal.core.util.Stopwatch;
+import org.signal.core.util.UnableToStartException;
 import org.signal.core.util.androidx.DocumentFileUtil;
 import org.signal.core.util.androidx.DocumentFileUtil.OperationResult;
 import org.signal.core.util.crypto.AttachmentSecretProvider;
@@ -89,7 +90,7 @@ public final class LocalBackupJobApi29 extends BaseJob {
       notification = GenericForegroundService.startForegroundTask(context,
                                                                   context.getString(R.string.LocalBackupJob_creating_signal_backup),
                                                                   NotificationChannels.getInstance().BACKUPS,
-                                                                  R.drawable.ic_signal_backup);
+                                                                  org.signal.core.ui.R.drawable.ic_signal_backup);
     } catch (UnableToStartException e) {
       Log.w(TAG, "Unable to start foreground backup service, continuing without service");
     }

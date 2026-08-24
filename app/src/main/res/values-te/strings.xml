@@ -4,7 +4,7 @@
   ~ SPDX-License-Identifier: AGPL-3.0-only
   -->
 <!-- smartling.instruction_comments_enabled = on -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
   <!-- Removed by excludeNonTranslatables <string name="app_name" translatable="false">Signal</string> -->
 
   <!-- Removed by excludeNonTranslatables <string name="install_url" translatable="false">https://signal.org/install</string> -->
@@ -171,6 +171,8 @@
     <string name="BlockedUsersActivity__block_user">యూజర్‌ను బ్లాక్ చేసేదా?</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" ఇక మీకు కాల్ ఇంకా మెసేజ్ చేయలేరు.</string>
     <string name="BlockedUsersActivity__block">బ్లాక్ చేయండి</string>
+    <!-- Subtitle shown under a blocked user. Placeholder is the time they were blocked-->
+    <string name="BlockedUsersActivity__blocked_on_s">%1$s గం. లకు బ్లాక్ చేయబడింది</string>
 
     <!-- CreditCardFragment -->
     <!-- Title of fragment -->
@@ -294,6 +296,16 @@
     <string name="ClientDeprecatedActivity_warning">హెచ్చరిక</string>
     <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">మీ Signal వెర్షన్ గడువు ముగిసింది. మీరు మీ సందేశ చరిత్రను చూడవచ్చు, కానీ మీరు అప్‌డేట్ చేసే వరకు మీరు సందేశాలను పంపలేరు లేదా అందుకోలేరు.</string>
 
+    <!-- ClockSkewActivity -->
+    <!-- Title of the full-screen dialog shown when the device clock is too far off from the real time -->
+    <string name="ClockSkewActivity__title">తేదీ సరిగ్గా లేదు</string>
+    <!-- Body text explaining that the device clock is wrong and needs to be fixed -->
+    <string name="ClockSkewActivity__date_inaccurate_description">మీ పరికరం తేదీ సరిగ్గా లేదు.\nమీ గడియారాన్ని సరిచేసుకుని, మళ్ళీ ప్రయత్నించండి.</string>
+    <!-- Shows the user the current, inaccurate date and time reported by their device. Placeholder is the formatted date, time, and time zone. -->
+    <string name="ClockSkewActivity__time_prefix">మీ పరికరం యొక్క తేదీ మరియు సమయం:\n%1$s</string>
+    <!-- Button that opens the system date and time settings -->
+    <string name="ClockSkewActivity__adjust_date_button">తేదీని సర్దుబాటు చేయండి</string>
+
     <!-- CommunicationActions -->
     <string name="CommunicationActions_no_browser_found">వెబ్ బ్రౌజర్ కనుగొనబడలేదు.</string>
     <string name="CommunicationActions_send_email">ఈ మెయిల్ పంపించండి</string>
@@ -388,6 +400,8 @@
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
     <string name="ConversationItem_s_deleted_this_message">%1$s ఈ సందేశాన్ని తొలగించారు</string>
     <string name="ConversationItem_you_deleted_this_message">మీరు ఈ సందేశాన్ని తొలగించారు</string>
+    <!-- Tappable text shown on a locally-deleted message tombstone, prompting the user to promote it to a delete-for-everyone -->
+    <string name="ConversationItem_delete_for_everyone_question">ప్రతి ఒక్కరి కొరకు తొలగించాలా?</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
     <string name="ConversationItem_admin_s_deleted_this_message">అడ్మిన్ %1$s ఈ సందేశాన్ని తొలగించారు</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -416,7 +430,6 @@
     <!-- Accessibility text associated with image button to send an edited message. -->
     <string name="ConversationActivity_send_edit">సవరణను పంపండి</string>
     <string name="ConversationActivity_compose_message">సందేశాన్ని కంపోజ్చెయ్</string>
-    <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">క్షమించండి, మీ అటాచ్మెంట్ అమర్చడంలో లోపం ఉంది.</string>
     <!-- Toast shown when user is unable to find the recipient when sending a message -->
     <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">స్వీకర్త చెల్లుబాటుకాని ఎస్ఎంఎస్ లేదా ఇమెయిలు చిరునామా !</string>
     <string name="ConversationActivity_message_is_empty_exclamation">సందేశం ఖాళీగా ఉంది!</string>
@@ -579,7 +592,7 @@
     <string name="ConversationFragment_delete">తొలగించండి</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">ప్రతిచోటా తొలగించండి</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">ఒకవేళ వారు Signal యొక్క ఇటీవలి వెర్షన్‌లో ఉంటే చాట్‌లోని ప్రతి ఒక్కరికీ ఈ సందేశం తొలగించబడుతుంది. మీరు సందేశాన్ని తొలగించినట్లుగా వారు చూడగలుగుతారు.</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">ఈ సందేశం చాట్‌లోని అందరి కోసం తొలగించబడుతుంది. మీరు ఒక సందేశాన్ని తొలగించారని వారు చూడగలరు.</string>
     <string name="ConversationFragment_quoted_message_not_found">అసలు సందేశం కనుగొనబడలేదు</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">అసలు సందేశం ఇకపై అందుబాటులో లేదు</string>
     <string name="ConversationFragment_failed_to_open_message">సందేశాన్ని తెరవడంలో విఫలమైంది</string>
@@ -758,17 +771,28 @@
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">చదవని చాట్‌‌లు లేవు</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="one">ఎంపిక చేసిన చాట్‌ను తొలగించేదా?</item>
-        <item quantity="other">ఎంపిక చేసిన చాట్‌లను తొలగించేదా?</item>
+        <item quantity="one">సందేశ చరిత్రను తొలగించాలా?</item>
+        <item quantity="other">సందేశ చరిత్రలను తొలగించాలా?</item>
     </plurals>
+    <!-- Dialog message shown when deleting chats, none of which are groups -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">ఇది ఎంపిక చేసిన చాట్‌ను శాశ్వతంగా తొలగిస్తుంది.</item>
-        <item quantity="other">ఇది ఎంపిక చేసిన అన్ని %1$d చాట్‌లను శాశ్వతంగా తొలగిస్తుంది.</item>
+        <item quantity="one">ఈ చాట్‌లోని సందేశాలన్నీ తొలగించబడతాయి.</item>
+        <item quantity="other">ఈ చాట్‌లలోని సందేశాలన్నీ తొలగించబడతాయి.</item>
     </plurals>
-    <!-- Dialog message shown when deleting one to many conversations from the chat list and the user has a linked device -->
+    <!-- Dialog message shown when deleting chats, with at least one group -->
+    <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_group">
+        <item quantity="one">ఈ చాట్‌లోని సందేశాలన్నీ తొలగించబడతాయి. మీరు ఇప్పటికీ ఈ గ్రూప్‌లో సభ్యునిగానే ఉంటారు.</item>
+        <item quantity="other">ఈ చాట్‌లలోని సందేశాలన్నీ తొలగించబడతాయి. మీరు ఇంకా వదిలిపెట్టని ఏ గ్రూపులలో అయినా సభ్యులుగానే ఉంటారు.</item>
+    </plurals>
+    <!-- Dialog message shown when deleting chats, none of which are groups, and the user has a linked device -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device">
-        <item quantity="one">ఇది ఎంపిక చేసిన చాట్‌ను మీ పరికరాలన్నింటి నుండి శాశ్వతంగా తొలగిస్తుంది.</item>
-        <item quantity="other">ఇది ఎంపిక చేసిన అన్ని %1$d చాట్‌లను మీ పరికరాలన్నింటి నుండి శాశ్వతంగా తొలగిస్తుంది.</item>
+        <item quantity="one">ఈ చాట్‌లోని సందేశాలన్నీ మీ అన్ని పరికరాల నుండి తొలగించబడతాయి.</item>
+        <item quantity="other">ఈ చాట్‌లలోని సందేశాలన్నీ మీ అన్ని పరికరాల నుండి తొలగించబడతాయి.</item>
+    </plurals>
+    <!-- Dialog message shown when deleting chats with at least one group, and the user has a linked device -->
+    <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device_group">
+        <item quantity="one">ఈ చాట్‌లోని సందేశాలన్నీ మీ అన్ని పరికరాల నుండి తొలగించబడతాయి. మీరు ఇప్పటికీ ఈ గ్రూప్‌లో సభ్యునిగానే ఉంటారు.</item>
+        <item quantity="other">ఈ చాట్‌లలోని సందేశాలన్నీ మీ అన్ని పరికరాల నుండి తొలగించబడతాయి. మీరు ఇంకా వదిలిపెట్టని ఏవైనా గ్రూపులలో మీరు ఇప్పటికీ సభ్యులుగానే ఉంటారు.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">తొలగిపోతున్నాయ్</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
@@ -1046,13 +1070,13 @@
 
     <!-- LinkDeviceFragment -->
     <!-- Description for how Signal will work with a linked device (eg desktop, iPad) -->
-    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">ఈ Signal ఖాతాను డెస్క్‌టాప్ లేదా iPad లో ఉపయోగించండి.</string>
+    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">ఈ Signal ఖాతాను మరొక పరికరంలో ఉపయోగించండి.</string>
     <!-- Button prompting users to link a new device to their account -->
     <string name="LinkDeviceFragment__link_a_new_device">కొత్త పరికరాన్ని లింక్ చేయండి</string>
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
     <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$s సందేశాలు మరియు చాట్ సమాచారం అన్ని పరికరాలలో ఎండ్-టు-ఎండ్ గుప్తీకరణ ద్వారా రక్షించబడుతుంది</string>
     <!-- Bottom sheet title explaining how Signal works on a linked device -->
-    <string name="LinkDeviceFragment__signal_on_desktop_ipad">డెస్క్‌టాప్ లేదా iPad లో Signal</string>
+    <string name="LinkDeviceFragment__signal_on_desktop_ipad">లింక్ చేయబడిన పరికరంలో Signal</string>
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
     <string name="LinkDeviceFragment__all_messaging_is_private">లింక్ చేసిన పరికరాలలో పంపే సందేశాలు అన్ని ప్రైవేట్‌గా ఉంటాయి</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
@@ -1118,6 +1142,8 @@
     <string name="LinkDeviceFragment__edit_name">పేరు ఎడిట్ చేయండి</string>
     <!-- Toast shown when the process of linking a device has been cancelled -->
     <string name="LinkDeviceFragment__linking_cancelled">లింక్ చేయడం రద్దు చేయబడింది</string>
+    <!-- Snackbar shown when the user tries to link a new device but has already reached the maximum number of linked devices. Placeholder is the maximum count. -->
+    <string name="LinkDeviceFragment__you_can_only_have_d_linked_devices">మీరు గరిష్టంగా %1$d లింక్ చేసిన పరికరాలను మాత్రమే కలిగి ఉండగలరు.</string>
     <!-- Message shown in progress dialog telling users to avoid closing the app while messages are being synced -->
     <string name="LinkDeviceFragment__do_not_close">యాప్‌ను మూసివేయవద్దు</string>
     <!-- Dialog title shown when a device is unlinked -->
@@ -1164,6 +1190,8 @@
     <string name="AddLinkDeviceFragment__this_qr_code_not_valid">ఈ QR కోడ్ చెల్లదు. దయచేసి మీరు లింక్ చేయదలిచిన పరికరంలో ప్రదర్శించబడే QR కోడ్‌ను స్కాన్ చేస్తున్నారని నిర్ధారించుకోండి.</string>
     <!-- Button in dialog to retry linking a device with a qr code -->
     <string name="AddLinkDeviceFragment__retry">మళ్ళీ ప్రయత్నించు</string>
+    <!-- Text shown in a dialog when the device being linked is too out-of-date to be linked to this account -->
+    <string name="AddLinkDeviceFragment__the_device_you_are_trying_to_link_is_out_of_date">The device you\'re trying to link is out of date. Please upgrade and try again.</string>
 
     <!-- LinkDeviceSyncBottomSheet -->
     <!-- Option in bottom sheet to transfer message history -->
@@ -1549,12 +1577,6 @@
     <!-- Dialog message -->
     <string name="RestoreActivity__no_longer_registered_message">మీరు మీ Signal ఖాతాను వేరొక పరికరంలో నమోదు చేసుకున్నందున ఇది జరిగి ఉండవచ్చు.</string>
 
-    <!-- GroupMentionSettingDialog -->
-    <string name="GroupMentionSettingDialog_notify_me_for_mentions">నాకు ప్రస్తావనల తెలియజేయండి</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">మ్యూట్ చేయబడిన చాట్‌ల‌లో మీరు పేర్కొనబడినప్పుడు నోటిఫికేషన్‌లను అందుకునేదా?</string>
-    <string name="GroupMentionSettingDialog_always_notify_me">ఎల్లప్పుడూ నాకు తెలియజేయండి</string>
-    <string name="GroupMentionSettingDialog_dont_notify_me">నాకు తెలియజేయవద్దు</string>
-
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">మీ యూజర్‌నేమ్, QR కోడ్ మరియు లింక్ మీ ప్రొఫైల్‌లో కనిపించవు. మీకు నమ్మకం ఉన్న వ్యక్తులతో మాత్రమే మీ యూజర్‌నేమ్‌ను పంచుకోండి.</string>
@@ -1855,9 +1877,6 @@
 
     <!-- MediaPickerActivity -->
     <string name="MediaPickerActivity__menu_open_camera">కెమెరా తెరువు</string>
-
-    <!-- MediaSendActivity -->
-    <string name="MediaSendActivity_camera_unavailable">కెమెరా అందుబాటులో లేదు.</string>
 
     <!-- MediaRepository -->
     <string name="MediaRepository_all_media">అన్ని మీడియా</string>
@@ -2866,13 +2885,6 @@
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">మద్దతును సంప్రదించండి</string>
 
-    <!-- RegistrationLockV2Dialog -->
-    <string name="RegistrationLockV2Dialog_turn_on_registration_lock">రిజిస్ట్రేషన్ లాక్ ఆన్ చేయాలా?</string>
-    <string name="RegistrationLockV2Dialog_turn_off_registration_lock">రిజిస్ట్రేషన్ లాక్ ఆఫ్ చేయాలా?</string>
-    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Signal ‌తో మళ్లీ నమోదు చేసేటప్పుడు మీరు మీ Signal పిన్‌ను మరచిపోతే, మీరు మీ ఖాతా నుండి 7 రోజులు లాక్ అవుతారు.</string>
-    <string name="RegistrationLockV2Dialog_turn_on">ఆరంభించండి</string>
-    <string name="RegistrationLockV2Dialog_turn_off">తీసివేయు</string>
-
     <!-- RevealableMessageView -->
     <string name="RevealableMessageView_view_photo">చిత్రాలు వీక్షించండి</string>
     <string name="RevealableMessageView_view_video">వీడియో చూడండి</string>
@@ -3070,6 +3082,7 @@
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_locale" translatable="false">Locale:</string> -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_challenge_received" translatable="false">Challenge Received:</string> -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_registered" translatable="false">Registered:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_backups" translatable="false">Backups:</string> -->
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">సమూహం నవీకరించబడింది</string>
@@ -3241,7 +3254,7 @@
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
     <string name="MuteDialog_mute_notifications">నోటిఫికేషన్‌లను మ్యూట్ చేయండి</string>
     <!-- Dialog option that, when pressed, will open a time picker to let the user choose how long they\'d like to mute notifications for -->
-    <string name="MuteDialog__mute_until">దీని వరకు మ్యూట్ చేయండి…</string>
+    <string name="MuteDialog__mute_until">Until…</string>
 
     <!-- MuteUntilTimePickerBottomSheet -->
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
@@ -4092,15 +4105,6 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">ఇటీవలివి</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">ఈ సందేశం</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">ఇటీవల ఉపయోగించబడింది</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">స్మైలీస్ &amp; ప్రజలు</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">ప్రకృతి</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">ఆహారం</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">కార్యాచరణలు</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">స్థలాలు</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">వస్తువులు</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">చిహ్నాలు</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">జెండాలు</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">ఎమోటికాన్లు</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">ఫలితాలు కనుగొనబడలేదు</string>
 
     <!-- GifQuickSearchOption -->
@@ -4118,10 +4122,10 @@
     <string name="arrays__use_default">అప్రమేయం ఉపయోగించు</string>
     <string name="arrays__use_custom">నియమము ఉపయోగించు</string>
 
-    <string name="arrays__mute_for_one_hour">1 గంట పాటు మ్యూట్ చేయండి</string>
-    <string name="arrays__mute_for_eight_hours">8 గంటల పాటు మ్యూట్ చేయండి</string>
-    <string name="arrays__mute_for_one_day">1 రోజుంతా మ్యూట్ చేయండి</string>
-    <string name="arrays__mute_for_seven_days">7 రోజుల పాటు మ్యూట్ చేయండి</string>
+    <string name="arrays__mute_for_one_hour">1 గంట</string>
+    <string name="arrays__mute_for_eight_hours">8 గంటలు</string>
+    <string name="arrays__mute_for_one_day">1 రోజు</string>
+    <string name="arrays__mute_for_seven_days">1 వారం</string>
     <string name="arrays__always">ఎల్లప్పుడూ</string>
 
     <string name="arrays__settings_default">అప్రమేయ అమరికలు</string>
@@ -4176,6 +4180,10 @@
     <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
     <string name="preferences__inactivity_timeout_interval">క్రియాశూన్యత మధ్యకాలము విరామసమయము</string>
     <string name="preferences__notifications">ప్రకటనలు</string>
+    <!-- Preference item menu to enable notifications -->
+    <string name="preferences__enable_notifications">నోటిఫికేషన్‌లను ప్రారంభించండి</string>
+    <!-- Preference header for call notifications -->
+    <string name="preferences__call_notifications">కాల్ నోటిఫికేషన్లు</string>
     <string name="preferences__led_color">ఎల్ఈడి రంగు</string>
     <string name="preferences__led_color_unknown">తెలియని</string>
     <string name="preferences__pref_led_blink_title">ఎల్ఇడి రెప్పపాటు నమూనా</string>
@@ -4263,12 +4271,10 @@
     <string name="preferences__system_default">సిస్టమ్ అప్రమేయం</string>
     <string name="preferences__language">భాష</string>
     <string name="preferences__signal_messages_and_calls">Signal సందేశాలు మరియు కాల్స్</string>
-    <string name="preferences__advanced_pin_settings">అధునాతన పిన్ సెట్టింగ్‌లు</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">అధునాతన పిన్ సెట్టింగ్‌లు</string>
     <string name="preferences__free_private_messages_and_calls">Signal వినుయోగదారులకు ఉచిత వ్యక్తిగత సందేశాలు మరియు కాల్స్</string>
     <string name="preferences__submit_debug_log">డీబగ్ లాగ్ను సమర్పించండి</string>
-    <string name="preferences__delete_account">ఖాతాను తొలగించండి</string>
     <string name="preferences__support_wifi_calling">\'వైఫై కాలింగ్\' కి అనుకూలమైన పద్ధతి</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">మీ పరికరం వైఫై ద్వారా SMS / MMS డెలివరీ చెస్తునట్లు అయితె మీ పరికరం ప్రరంబించండి ( \'వైఫై కాలింగ్\'ఉన్నప్పుడు మాత్రమే మీ పరికరం ప్రరంబించండి)</string>
     <string name="preferences__incognito_keyboard">అజ్ఞాత కీబోర్డ్</string>
@@ -4335,6 +4341,16 @@
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">తక్కువ డేటాను ఉపయోగించడం వల్ల చెడ్డ నెట్‌వర్క్‌లలో కాల్‌లను మెరుగుపరుస్తుంది</string>
     <string name="preferences_notifications__in_chat_sounds">చాట్‌లో ధ్వనులు</string>
     <string name="preferences_notifications__show">కనబర్చు</string>
+    <!-- Preference item to set notification settings when chats are muted -->
+    <string name="preferences_notifications__while_muted">While muted</string>
+    <!-- Option in settings to turn on reaction notifications -->
+    <string name="preferences_notifications__reaction">Reaction notifications</string>
+    <!-- Body option in settings to turn on reaction notifications    -->
+    <string name="preferences_notifications__notify_reaction">Show notifications for reactions to messages you send</string>
+    <!-- Option in settings to turn on unread reminders -->
+    <string name="preferences_notifications__unread">Unread reminders</string>
+    <!-- Body option to turn on unread reminders -->
+    <string name="preferences_notifications__notify_unread">Occasionally notify when there are unread messages in muted chats</string>
     <string name="preferences_notifications__ringtone">రింగ్టోన్</string>
     <string name="preferences_chats__message_text_size">సందేశం ఫాంట్ పరిమాణం</string>
     <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
@@ -4862,8 +4878,6 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">మీ ఖాతా కోసం మీరు సృష్టించిన పిన్‌ను నమోదు చేయండి. ఇది మీ SMS ధృవీకరణ కోడ్‌కు భిన్నంగా ఉంటుంది.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">మీ ఖాతా కొరకు మీరు సృష్టించిన PIN ను ఎంటర్ చేయండి.</string>
-    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
-    <string name="RegistrationLockFragment__switch_keyboard">కీబోర్డ్ మారండి</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">తప్పు పిన్. మళ్ళీ ప్రయత్నించండి.</string>
     <string name="RegistrationLockFragment__forgot_pin">పిన్ను మరచిపోయారా?</string>
     <string name="RegistrationLockFragment__incorrect_pin">తప్పయిన పిన్</string>
@@ -4941,8 +4955,6 @@
     <!-- Text label button to skip restoring -->
     <string name="registration_activity__skip_restore">పునరుద్ధరించడాన్ని దాటవేయండి</string>
     <string name="preferences_chats__chat_backups">చాట్ బ్యాకప్‌లు</string>
-    <string name="preferences_chats__transfer_account">ఖాతాను బదిలీ చేయడం</string>
-    <string name="preferences_chats__transfer_account_to_a_new_android_device">ఖాతాను కొత్త Android పరికరానికి బదిలీ చేయండి</string>
     <!-- Title for dialog to enter in the backup passphrase -->
     <string name="RegistrationActivity_enter_backup_passphrase">ప్రత్యామ్నాయ పాస్ఫ్రేజ్ని నమోదు చేయండి</string>
     <string name="RegistrationActivity_restore">పునరుద్ధరించు</string>
@@ -5030,19 +5042,9 @@
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">స్క్రీన్ లాక్ నిష్క్రియ సమయం</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
     <string name="preferences_app_protection__to_use_screen_lock">స్క్రీన్ లాక్‌ను ఉపయోగించడానికి ఈ పరికరంలో PIN, నమూనా లేదా పాస్‌వర్డ్‌ను సెట్ చేయండి.</string>
-    <string name="preferences_app_protection__signal_pin">Signal పిన్</string>
-    <string name="preferences_app_protection__create_a_pin">పిన్ సృష్టించండి</string>
-    <string name="preferences_app_protection__change_your_pin">మీ పిన్ మార్చండి</string>
-    <string name="preferences_app_protection__pin_reminders">పిన్ రిమైండర్‌లు</string>
-    <string name="preferences_app_protection__turn_off">తీసివేయు</string>
-    <string name="preferences_app_protection__confirm_pin">పిన్ ని నిర్ధారించండి</string>
-    <string name="preferences_app_protection__confirm_your_signal_pin">మీ Signal పిన్ను నిర్ధారించండి</string>
-    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">మీ పిన్ను తిరిగి పొందలేనందున మీరు గుర్తుంచుకున్నారని లేదా సురక్షితంగా నిల్వ చేశారని నిర్ధారించుకోండి. మీరు మీ పిన్‌ను మరచిపోతే, మీ Signal ఖాతాను తిరిగి నమోదు చేసేటప్పుడు మీరు డేటాను కోల్పోవచ్చు.</string>
-    <string name="preferences_app_protection__incorrect_pin_try_again">తప్పు పిన్. మళ్ళీ ప్రయత్నించండి.</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">రిజిస్ట్రేషన్ లాక్‌ని ప్రారంభించడంలో విఫలమైంది.</string>
     <string name="preferences_app_protection__failed_to_disable_registration_lock">రిజిస్ట్రేషన్ లాక్‌ను నిలిపివేయడంలో విఫలమైంది.</string>
     <string name="AppProtectionPreferenceFragment_none">ఏదీ కాదు</string>
-    <string name="preferences_app_protection__registration_lock">నమోదు లాక్</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">మీరు మీ నమోదు లాక్ పిన్ నమోదు చేయాలి</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">మీ పిన్‌లో కనీసం %1$d అంకెలు లేదా అక్షరాలు ఉన్నాయి</string>
     <string name="RegistrationActivity_too_many_attempts">మితిమీరిన ప్రయత్నాలు</string>
@@ -5090,48 +5092,34 @@
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
     <string name="Recipient_deleted_account">తొలగించబడిన ఖాతా</string>
 
-    <!-- Option in settings that will take use to re-register if they are no longer registered -->
-    <string name="preferences_account_reregister">ఖాతాను తిరిగి నమోదు చేయండి</string>
-    <!-- Option in settings that will take user to our website or playstore to update their expired build -->
-    <string name="preferences_account_update_signal">Signal ను నవీకరించండి</string>
-    <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
-    <string name="preferences_account_delete_all_data">మొత్తం సమాచారమును తొలగించండి</string>
-    <!-- Title for confirmation dialog confirming user wants to delete all their data -->
-    <string name="preferences_account_delete_all_data_confirmation_title">మొత్తం సమాచారమును తొలగించేదా?</string>
-    <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_message">ఇది యాప్‌ను రీసెట్ చేస్తుంది మరియు అన్ని సందేశాలను తొలగిస్తుంది. ఈ ప్రక్రియ పూర్తయిన తరువాత యాప్ మూసివేయబడుతుంది.</string>
-    <!-- Confirmation action to proceed with application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_proceed">కొనసాగండి</string>
-    <!-- Confirmation action to cancel application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_cancel">రద్దు చేయండి</string>
     <!-- Error message shown when we fail to delete the data for some unknown reason -->
     <string name="preferences_account_delete_all_data_failed">డేటాను తొలగించడం విఫలమైంది</string>
 
     <!-- LinkedDeviceAccountSettingsFragment -->
     <!-- Title of an informational card shown on the account settings screen of a linked device -->
-    <string name="LinkedDeviceAccountSettingsFragment__this_is_a_linked_device">This is a linked device</string>
+    <string name="LinkedDeviceAccountSettingsFragment__this_is_a_linked_device">ఇది లింక్ చేయబడిన పరికరం</string>
     <!-- Body of an informational card explaining that account settings must be managed from the primary device -->
-    <string name="LinkedDeviceAccountSettingsFragment__to_manage_your_account_settings">To manage your account settings, open Signal on your primary device.</string>
+    <string name="LinkedDeviceAccountSettingsFragment__to_manage_your_account_settings">మీ ఖాతా సెట్టింగ్‌లను నిర్వహించడానికి, మీ ప్రాథమిక పరికరంలో Signal ను తెరవండి.</string>
     <!-- Title of a settings row that deletes all Signal data from this linked device -->
-    <string name="LinkedDeviceAccountSettingsFragment__delete_app_data">Delete app data</string>
+    <string name="LinkedDeviceAccountSettingsFragment__delete_app_data">యాప్ డేటాను తొలగించండి</string>
     <!-- Subtitle of the delete app data row explaining what it does -->
-    <string name="LinkedDeviceAccountSettingsFragment__this_will_remove_all_data">This will remove all data from the Signal app on this device.</string>
+    <string name="LinkedDeviceAccountSettingsFragment__this_will_remove_all_data">ఇది ఈ పరికరంలోని Signal యాప్ నుండి మొత్తం డేటాను తొలగిస్తుంది.</string>
     <!-- Title of the confirmation dialog shown when deleting app data from a linked device -->
-    <string name="LinkedDeviceAccountSettingsFragment__delete_app_data_question">Delete app data?</string>
+    <string name="LinkedDeviceAccountSettingsFragment__delete_app_data_question">యాప్ డేటాను తొలగించాలా?</string>
     <!-- Message of the confirmation dialog explaining that only this device\'s data is deleted, not the account -->
-    <string name="LinkedDeviceAccountSettingsFragment__this_will_delete_all_data_and_messages">This will delete all data and messages from the Signal app on this device. Your Signal account and data on your primary device or other linked devices will not be deleted. The app will close after this process is complete.</string>
+    <string name="LinkedDeviceAccountSettingsFragment__this_will_delete_all_data_and_messages">ఇది ఈ పరికరంలోని Signal యాప్ నుండి మొత్తం డేటా మరియు సందేశాలను తొలగిస్తుంది. మీ ప్రాథమిక పరికరం లేదా ఇతర లింక్ చేసిన పరికరాల్లోని మీ Signal ఖాతా మరియు డేటా తొలగించబడదు. ఈ ప్రక్రియ పూర్తయిన తరువాత యాప్ మూసివేయబడుతుంది.</string>
 
     <!-- LinkedDeviceAccountLearnMoreBottomSheet -->
     <!-- Emphasized lead-in phrase shown in bold at the start of the learn more sheet body. Must appear verbatim within LinkedDeviceAccountLearnMoreBottomSheet__linked_devices_let_you_access. -->
-    <string name="LinkedDeviceAccountLearnMoreBottomSheet__linked_devices">Linked Devices</string>
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__linked_devices">పరికరాలు అనుసంధానించు</string>
     <!-- Body text of the linked devices learn more sheet. The leading \"Linked Devices\" is shown in bold. -->
-    <string name="LinkedDeviceAccountLearnMoreBottomSheet__linked_devices_let_you_access">Linked Devices let you access your Signal account and messages securely on any of your additional devices.</string>
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__linked_devices_let_you_access">లింక్ చేసిన పరికరాలు మీ అదనపు పరికరాలలో దేనిలోనైనా మీ Signal ఖాతాను మరియు సందేశాలను సురక్షితంగా యాక్సెస్ చేయడానికి మిమ్మల్ని అనుమతిస్తాయి.</string>
     <!-- Bullet point describing what devices can be linked -->
-    <string name="LinkedDeviceAccountLearnMoreBottomSheet__you_can_link_a_desktop">You can link a desktop, tablet or additional phone</string>
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__you_can_link_a_desktop">మీరు డెస్క్‌టాప్, టాబ్లెట్ లేదా అదనపు ఫోన్‌ను లింక్ చేయవచ్చు</string>
     <!-- Bullet point describing that the primary device manages linked devices -->
-    <string name="LinkedDeviceAccountLearnMoreBottomSheet__your_primary_device_manages">Your primary device manages what\'s linked, you can link up to 5 devices.</string>
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__your_primary_device_manages">వేటిని లింక్ చేయాలనేది మీ ప్రాథమిక పరికరం నిర్వహిస్తుంది, మీరు గరిష్టంగా 5 పరికరాలను లింక్ చేయవచ్చు.</string>
     <!-- Bullet point describing that some settings are only available on the primary device -->
-    <string name="LinkedDeviceAccountLearnMoreBottomSheet__some_account_settings">Some account settings are managed on your primary device only, including account settings and backups.</string>
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__some_account_settings">ఖాతా సెట్టింగ్‌లు మరియు బ్యాకప్‌లతో సహా కొన్ని ఖాతా సెట్టింగ్‌లు మీ ప్రాథమిక పరికరంలో మాత్రమే నిర్వహించబడతాయి.</string>
 
     <!-- TransferOrRestoreFragment -->
     <string name="TransferOrRestoreFragment__transfer_or_restore_account">ఖాతాను బదిలీ చేయండి లేదా పునరుద్ధరించండి</string>
@@ -5626,18 +5614,6 @@
     <!-- GroupDescriptionDialog -->
     <string name="GroupDescriptionDialog__group_description">గ్రూపు వివరణ</string>
 
-    <!-- QualitySelectorBottomSheetDialog -->
-    <!-- Label for our standard quality media conversion. -->
-    <string name="QualitySelectorBottomSheetDialog__standard">ప్రామాణికం</string>
-    <!-- Description for our standard quality media conversion. -->
-    <string name="QualitySelectorBottomSheetDialog__faster_less_data">వేగంగా, తక్కువ డేటా</string>
-    <!-- Label for our high quality media conversion. This has better quality than standard. -->
-    <string name="QualitySelectorBottomSheetDialog__high">అధికం</string>
-    <!-- Label for our high quality media conversion. This has better quality than standard. -->
-    <string name="QualitySelectorBottomSheetDialog__slower_more_data">నెమ్మదిగా, మరింత డేటా</string>
-    <!-- Title heading for our media conversion quality selector. -->
-    <string name="QualitySelectorBottomSheetDialog__media_quality">మీడియా నాణ్యత</string>
-
     <!-- AppSettingsFragment -->
     <!-- String alerting user that something is wrong with their backups subscription -->
     <string name="AppSettingsFragment__renew_your_signal_backups_subscription">మీ Signal సురక్షిత బ్యాకప్‌ల సబ్‌స్క్రిప్షన్‌ను పునరుద్ధరించండి</string>
@@ -5655,14 +5631,6 @@
     <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">బ్యాకప్‌ల సబ్‌స్క్రైబర్ ID క్లిప్‌బోర్డ్‌కు కాపీ చేయబడింది</string>
     <!-- String displayed in a toast when a subscriber id is not present for a given type -->
     <string name="AppSettingsFragment__no_subscriber_id_set">ఏ సబ్‌స్క్రైబర్ id సెట్ చేయబడలేదు</string>
-
-    <!-- AccountSettingsFragment -->
-    <string name="AccountSettingsFragment__account">ఖాతా</string>
-    <string name="AccountSettingsFragment__youll_be_asked_less_frequently">క్రమేపీ మిమ్మల్ని తక్కువసార్లు అడుగుతారు</string>
-    <string name="AccountSettingsFragment__require_your_signal_pin">మళ్లీ Signal తో మీ ఫోన్ నెంబర్‌ను రిజిస్టర్ చేసుకోవడానికి మీ Signal PIN అవసరం</string>
-    <string name="AccountSettingsFragment__change_phone_number">ఫోన్ నెంబరు మార్చండి</string>
-    <!-- Account setting that allows user to request and export their signal account data -->
-    <string name="AccountSettingsFragment__request_account_data">మీ ఖాతా డేటా</string>
 
     <!-- ExportAccountDataFragment -->
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
@@ -5957,14 +5925,46 @@
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">సందేశాలు</string>
     <string name="NotificationsSettingsFragment__calls">కాల్స్</string>
-    <string name="NotificationsSettingsFragment__notify_when">ఎప్పుడు తెలియజేయండి…</string>
+    <!-- Notification header for sounds -->
+    <string name="NotificationsSettingsFragment__sounds">Sounds</string>
     <string name="NotificationsSettingsFragment__contact_joins_signal">కాంటాక్ట్ Signal లో చేరారు.</string>
+    <!-- Notification body to get notified when someone joins Signal -->
+    <string name="NotificationsSettingsFragment__notify_contact">Show a notification when a phone contact joins Signal</string>
+    <!-- Option to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset">Reset notification settings</string>
+    <!-- Option body to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_notifications">Reset notification settings to default, including custom settings for your chats</string>
+    <!-- Dialog to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_body">Reset all notification settings to default for all chats?</string>
+    <!-- Confirmation button to reset dialog -->
+    <string name="NotificationsSettingsFragment__reset_confirm">రీసెట్ చేయండి</string>
     <!-- Notification preference header -->
     <string name="NotificationsSettingsFragment__notification_profiles">నోటిఫికేషన్ ప్రొఫైల్‌లు</string>
     <!-- Notification preference option header -->
     <string name="NotificationsSettingsFragment__profiles">ప్రొఫైల్‌లు</string>
     <!-- Notification preference summary text -->
     <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">మీరు ఎంచుకున్న వ్యక్తులు మరియు గ్రూపుల నుంచి మాత్రమే నోటిఫికేషన్‌లను పొందడానికి ఒక ప్రొఫైల్‌ని సృష్టించండి.</string>
+
+    <!-- Header to describe screen that shows while muted settings -->
+    <string name="MutedNotificationsFragment__while">While muted</string>
+    <!-- Title for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls">కాల్‌లు</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body_global">Ring or notify when a call is started in muted chats.</string>
+    <!-- Title for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions">ప్రస్తావనలు</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body_global">Notify when you are mentioned in muted chats.</string>
+    <!-- Title for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies">రిప్లైలు</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body_global">Notify when someone replies to your message in muted chats.</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body">Ring or notify when a call is started while this chat is muted.</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body">Notify when you are mentioned while this chat is muted.</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body">Notify when someone replies to your message while this chat is muted.</string>
 
     <!-- NotificationProfilesFragment -->
     <!-- Title for notification profiles screen that shows all existing profiles; Title with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -6193,6 +6193,8 @@
     <string name="ConversationSettingsFragment__end_group">గ్రూప్‌ను ముగించండి</string>
     <!-- Banner shown at the top of group settings when the group has been ended -->
     <string name="ConversationSettingsFragment__this_group_was_ended">ఈ గ్రూప్ ముగిసింది.</string>
+    <!-- Subhead under a legacy group\'s name, joining the member count and the "Legacy Group" label. %1$s is the member count, %2$s is the label -->
+    <string name="ConversationSettingsFragment__s_dot_s">%1$s · %2$s</string>
     <!-- Archive chat option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__archive_chat">చాట్‌ను ఆర్కైవ్ చేయండి</string>
     <!-- Delete chat option in group conversation settings screen -->
@@ -6376,53 +6378,11 @@
     <!-- Positive dialog action when sending a story via an add to group story button -->
     <string name="MediaReviewFragment__add_to_story">స్టోరీకు జోడించండి</string>
     <string name="MediaReviewFragment__add_a_message">ఒక సందేశాన్ని జోడించండి</string>
-    <!-- Hint text inside of a compose box that is shown when the user is adding media while quoting a message. -->
-    <string name="MediaReviewFragment__add_a_reply">ప్రత్యుత్తరమును జోడించండి</string>
     <string name="MediaReviewFragment__send_to">వీరికి పంపండి</string>
-    <string name="MediaReviewFragment__view_once_message">ఒక్కసారి వీక్షించదగిన మీడియా</string>
-    <string name="MediaReviewFragment__one_or_more_items_were_too_large">ఒకటి లేదా అంతకంటే ఎక్కువ ఐటమ్‌లు చాలా పొడవుగా ఉన్నాయి</string>
-    <string name="MediaReviewFragment__one_or_more_items_were_invalid">ఒకటి లేదా అంతకంటే ఎక్కువ ఐటమ్‌లు చెల్లుబాటు కావు.</string>
-    <string name="MediaReviewFragment__too_many_items_selected">చాలా ఎక్కువగా ఐటమ్‌లు ఎంచుకోబడ్డాయి</string>
-    <!-- Small notification presented to the user when they set their video to view-once mode -->
-    <string name="MediaReviewFragment__video_set_to_view_once">ఒకసారి వీక్షించేందుకు వీడియో సెట్ చేయబడింది</string>
-    <!-- Small notification presented to the user when they set their photo to view-once mode -->
-    <string name="MediaReviewFragment__photo_set_to_view_once">ఒకసారి వీక్షించేందుకు ఫోటో సెట్ చేయబడింది</string>
-    <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
-    <string name="MediaReviewFragment__video_set_to_high_quality">అధిక నాణ్యతకు వీడియో సెట్ చేయబడింది</string>
-    <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
-    <string name="MediaReviewFragment__video_set_to_standard_quality">ప్రామాణిక నాణ్యతకు వీడియో సెట్ చేయబడింది</string>
-    <!-- Small notification presented to the user when they set their still image to be sent in high visual quality. -->
-    <string name="MediaReviewFragment__photo_set_to_high_quality">అధిక నాణ్యతకు ఫోటో సెట్ చేయబడింది</string>
-    <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
-    <string name="MediaReviewFragment__photo_set_to_standard_quality">ప్రామాణిక నాణ్యతకు ఫోటో సెట్ చేయబడింది</string>
-    <!-- Accessibility label describing the add media button on the Media review screen -->
-    <string name="MediaReviewFragment__add_media_accessibility_label">మీడియాను జోడించండి</string>
-    <!-- Accessibility label describing the brush and pen button on the Media review screen -->
-    <string name="MediaReviewFragment__brush_pen_accessibility_label">బ్రష్ మరియు పెన్</string>
-    <!-- Accessibility label describing the crop and rotate button on the Media review screen -->
-    <string name="MediaReviewFragment__crop_rotate_accessibility_label">క్రాప్ చేయండి, రొటేట్ చేయండి</string>
-    <!-- Accessibility label describing the change media quality button on the Media review screen -->
-    <string name="MediaReviewFragment__change_media_quality_accessibility_label">మీడియా నాణ్యతను మార్చండి</string>
-    <!-- Accessibility label describing the save media button on the Media review screen -->
-    <string name="MediaReviewFragment__save_media_accessibility_label">మీడియాను సేవ్ చేయండి</string>
-    <!-- Accessibility label describing the toggle emoji keyboard button on the Media review screen -->
-    <string name="MediaReviewFragment__emoji_toggle_accessibility_label">టోగుల్ ఎమోజి కీబోర్డు</string>
     <!-- Accessibility label describing the toggle view once button on the Media review screen -->
     <string name="MediaReviewFragment__view_once_toggle_accessibility_label">ఒకసారి వీక్షణను టోగుల్ చేయండి</string>
-    <!-- Accessibility label describing the send media button on the Media review screen -->
-    <string name="MediaReviewFragment__send_media_accessibility_label">మీడియాను పంపండి</string>
     <!-- Accessibility label describing the finish adding a message button on the Media review screen dialog -->
     <string name="MediaReviewFragment__finish_adding_a_message_accessibility_label">సందేశాన్ని జోడించడం పూర్తి చేయండి</string>
-    <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
-    <plurals name="MediaReviewFragment__items_set_to_high_quality">
-        <item quantity="one">%1$d అంశం అధిక నాణ్యతకు సెట్ చేయబడింది</item>
-        <item quantity="other">%1$d అంశాలు అధిక నాణ్యతకు సెట్ చేయబడ్డాయి</item>
-    </plurals>
-    <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
-    <plurals name="MediaReviewFragment__items_set_to_standard_quality">
-        <item quantity="one">%1$d అంశం ప్రామాణిక నాణ్యతకు సెట్ చేయబడింది</item>
-        <item quantity="other">%1$d అంశాలు ప్రామాణిక నాణ్యతకు సెట్ చేయబడ్డాయి</item>
-    </plurals>
 
     <string name="ImageEditorHud__cancel">రద్దు</string>
     <string name="ImageEditorHud__draw">గీయండి</string>
@@ -6440,27 +6400,9 @@
 
     <string name="MediaCountIndicatorButton__send">పంపు</string>
 
-    <string name="MediaReviewSelectedItem__tap_to_remove">తొలగించడానికి తట్టండి</string>
-    <string name="MediaReviewSelectedItem__tap_to_select">ఎంచుకోవడానికి నొక్కండి</string>
-
     <string name="MediaReviewImagePageFragment__discard">తీసివేయు</string>
     <string name="MediaReviewImagePageFragment__discard_changes">మార్పులను విస్మరించాలా?</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">ఈ ఫోటోకు మీరు చేసిన ఏవైనా మార్పులను మీరు కోల్పోతారు.</string>
-
-    <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_title">%1$s ను కనుగొన్నాము</string>
-    <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_body">\"%1$s\"తో చాట్‌ను ప్రారంభించండి</string>
-    <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
-    <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">చాట్‌కు వెళ్ళండి</string>
-
-    <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_title">పరికరాన్ని లింక్ చేసేదా?</string>
-    <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_it_looks_like_youre_trying">మీరు Signal పరికరాన్ని లింక్ చేయడానికి ప్రయత్నిస్తున్నట్లు కనిపిస్తోంది. కొనసాగించును తట్టండి, ఆపై \"కొత్త పరికరాన్ని లింక్ చేయండి\"పై తట్టండి, QR కోడ్‌ను మళ్లీ స్కాన్ చేయండి.</string>
-    <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
-    <string name="MediaCaptureFragment_device_link_dialog_continue">కొనసాగండి</string>
-
 
     <string name="BadgesOverviewFragment__my_badges">నా బ్యాడ్జీలు</string>
     <string name="BadgesOverviewFragment__featured_badge">ఫీచర్డ్ బ్యాడ్జి</string>
@@ -6935,7 +6877,7 @@
     <!-- Donation receipts amount title -->
     <string name="DonationReceiptDetailsFragment__amount">మొత్తం</string>
     <!-- Donation receipts thanks -->
-    <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Signal కు మద్దతు ఇచ్చినందుకు ధన్యవాదాలు. ప్రపంచవ్యాప్తంగా ఉన్న మిలియన్‌ల కొరకు సురక్షితమైన గ్లోబల్ కమ్యూనికేషన్‌లను మరియు భావ స్వేచ్ఛను సంరక్షించే ఓపెన్ సోర్స్ ప్రైవసీ టెక్నాలజీని అభివృద్ధి చేసే మిషన్‌కు మీ కంట్రిబ్యూషన్ దోహదపడుతుంది. మీరు అమెరికా పౌరులు అయితే, మీ ట్యాక్స్ రికార్డుల కొరకు ఈ రసీదును మీ వద్ద ఉంచిపెట్టుకోండి. Signal టెక్నాలజీ ఫౌండేషన్ అనేది అమెరికాలో అంతర్గత రెవిన్యూ కోడ్ యొక్క 501c3 సెక్షన్ కింద పన్ను-మినహాయింపు కలిగిన లాభాపేక్ష లేని సంస్థ. మా ఫెడరల్ ట్యాక్స్ ID 82–4506840.</string>
+    <string name="DonationReceiptDetailsFragment__thank_you_for_supporting" tools:ignore="TypographyDashes">Signal కు మద్దతు ఇచ్చినందుకు ధన్యవాదాలు. ఓపెన్ సోర్స్ గోప్యతా సాంకేతికత ద్వారా ప్రపంచవ్యాప్తంగా లక్షలాది మందికి స్వేచ్ఛా వ్యక్తీకరణను రక్షించడం మరియు సురక్షితమైన భౌగోళిక కమ్యూనికేషన్‌ను ప్రారంభించడం అనే లక్ష్యాన్ని ముందుకు తీసుకెళ్ళడంలో మీ సహకారం సహాయపడుతుంది. ఒకవేళ మీరు యునైటెడ్ స్టేట్స్ నివాసి అయితే, మీ పన్ను రికార్డ్‌ల కోసం దయచేసి ఈ రసీదును మీ దగ్గర ఉంచుకోండి. Signal టెక్నాలజీ ఫౌండేషన్ అనేది యునైటెడ్ స్టేట్స్‌లోని అంతర్గత రెవెన్యూ కోడ్ యొక్క సెక్షన్ 501c3 కింద పన్ను మినహాయింపు పొందిన లాభాపేక్షలేని సంస్థ. మా ఫెడరల్ పన్ను ID 82-4506840. ఈ విరాళానికి ప్రతిఫలంగా Signal ఎటువంటి వస్తువులను లేదా సేవలను అందించలేదు.</string>
     <!-- Donation reciepts screen empty state title -->
     <string name="DonationReceiptListFragment__no_receipts">రసీదులు లేవు</string>
 
@@ -8718,13 +8660,6 @@
     <!-- Body of bottom sheet shown when opening a terminated group -->
     <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">మీరు ఇకపై ఈ గ్రూప్‌లో సందేశాలు లేదా కాల్‌లు పంపలేరు మరియు స్వీకరించలేరు.</string>
 
-    <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_title">తొలగించడం ఇప్పుడు మీ అన్ని పరికరాలలో సింక్ చేయబడింది</string>
-    <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_message">మీరు సందేశాలు లేదా చాట్‌లు తొలగించినప్పుడు, అవి మీ ఫోన్ అలాగే లింక్ చేసిన పరికరాల నుంచి కూడా తొలగించబడతాయి.</string>
-    <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_acknowledge_button">సరే</string>
-
     <!-- NoManualBackupBottomSheet -->
     <!-- Title for bottom sheet, placeholder is number of days. -->
     <plurals name="NoManualBackupBottomSheet__no_backup_for_d_days">
@@ -8749,7 +8684,7 @@
     <!-- Subtitle for row for no backup ever created -->
     <string name="BackupsSettingsFragment_automatic_backups_with_signals">Signal యొక్క సురక్షితమైన ఎండ్-టు-ఎండ్ గుప్తీకరించబడిన నిల్వ సేవతో ఆటోమేటిక్ బ్యాకప్స్.</string>
     <!-- Subtitle shown on a linked device when backups are off, directing the user to set them up on their phone -->
-    <string name="BackupsSettingsFragment__automatic_backups_get_started_on_your_phone">Automatic backups with Signal\'s secure end-to-end encrypted storage service. Get started on your phone.</string>
+    <string name="BackupsSettingsFragment__automatic_backups_get_started_on_your_phone">Signal యొక్క సురక్షితమైన ఎండ్-టు-ఎండ్ గుప్తీకరించబడిన నిల్వ సేవతో ఆటోమేటిక్ బ్యాకప్స్. మీ ఫోన్‌లో ప్రారంభించండి.</string>
     <!-- Subtitle for row for backups that are active but subscription not found -->
     <string name="BackupsSettingsFragment_subscription_not_found_on_this_device">"ఈ పరికరంలో సబ్‌స్క్రిప్షన్ కనుగొనబడలేదు."</string>
     <!-- Action button label to set up backups -->
@@ -8854,15 +8789,15 @@
     <!-- Subtext describing when a backup has never taken place. -->
     <string name="RemoteBackupsSettingsFragment__never">ఎప్పుడూ</string>
     <!-- Subtext on a linked device describing when the primary device last backed up. Placeholder is the formatted date and time. -->
-    <string name="RemoteBackupsSettingsFragment__your_phone_s">Your phone · %1$s</string>
+    <string name="RemoteBackupsSettingsFragment__your_phone_s">మీ ఫోన్ · %1$s</string>
     <!-- Message shown on a linked device with a free backup plan explaining that the subscription is managed on the primary device -->
-    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_upgrade_your_subscription_on_your_primary_device">You can manage or upgrade your Signal Secure Backups subscription on your primary device.</string>
+    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_upgrade_your_subscription_on_your_primary_device">మీరు మీ ప్రాథమిక పరికరంలో Signal సురక్షిత బ్యాకప్‌ల సబ్‌స్క్రిప్షన్‌ను నిర్వహించవచ్చు లేదా అప్‌గ్రేడ్ చేయవచ్చు.</string>
     <!-- Message shown on a linked device with a paid backup plan explaining that the subscription is managed on the primary device -->
-    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_cancel_your_subscription_on_your_primary_device">You can manage or cancel your Signal Secure Backups subscription on your primary device.</string>
+    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_cancel_your_subscription_on_your_primary_device">మీరు మీ ప్రధాన పరికరంలో Signal సురక్షిత బ్యాకప్‌ల సబ్‌స్క్రిప్షన్‌ను నిర్వహించవచ్చు లేదా రద్దు చేయవచ్చు.</string>
     <!-- Message shown on a linked device with a canceled backup subscription explaining that the subscription is managed on the primary device -->
-    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_renew_your_subscription_on_your_primary_device">You can manage or renew your Signal Secure Backups subscription on your primary device.</string>
+    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_renew_your_subscription_on_your_primary_device">మీరు మీ ప్రధాన పరికరంలో Signal సురక్షిత బ్యాకప్‌ల సబ్‌స్క్రిప్షన్‌ను నిర్వహించవచ్చు లేదా పునరుద్ధరించవచ్చు.</string>
     <!-- Message shown on a linked device when backups are off or the subscription was not found, explaining that backups are managed on the primary device -->
-    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_upgrade_backups_on_your_primary_device">You can manage or upgrade Signal Secure Backups on your primary device.</string>
+    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_upgrade_backups_on_your_primary_device">మీరు మీ ప్రాథమిక పరికరంలో Signal సురక్షిత బ్యాకప్‌లను నిర్వహించవచ్చు లేదా అప్‌గ్రేడ్ చేయవచ్చు.</string>
     <!-- Button label to perform a backup immediately -->
     <string name="RemoteBackupsSettingsFragment__back_up_now">భద్రపరచు</string>
     <!-- Dialog title when confirming whether to turn off and deleting backups -->

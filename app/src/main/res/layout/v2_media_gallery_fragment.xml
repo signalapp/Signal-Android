@@ -59,7 +59,7 @@
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toTopOf="@id/media_gallery_bottom_bar_barrier"
         app:layout_constraintTop_toBottomOf="@id/media_gallery_manage_container"
-        app:spanCount="4"
+        app:spanCount="24"
         tools:itemCount="36"
         tools:listitem="@layout/v2_media_gallery_item" />
 

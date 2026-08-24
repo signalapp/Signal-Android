@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -21,13 +22,14 @@ import org.thoughtcrime.securesms.giph.mp4.GiphyMp4Fragment;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4SaveResult;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ViewModel;
 import org.thoughtcrime.securesms.keyboard.emoji.KeyboardPageSearchView;
-import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity;
+import org.thoughtcrime.securesms.mediasend.MediaSendLauncher;
 import org.thoughtcrime.securesms.mms.SlideFactory;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.RemoteConfig;
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 
@@ -98,6 +100,9 @@ public class GiphyActivity extends PassphraseRequiredActivity implements Keyboar
     searchView.setCallbacks(this);
     searchView.enableBackNavigation(true);
     ViewUtil.focusAndShowKeyboard(searchView);
+
+    SystemWindowInsetsSetter.attach(findViewById(R.id.giphy_toolbar), this, WindowInsetsCompat.Type.statusBars());
+    SystemWindowInsetsSetter.attach(findViewById(R.id.giphy_logo), this, WindowInsetsCompat.Type.navigationBars());
   }
 
   private void handleGiphyMp4SaveResult(@NonNull GiphyMp4SaveResult result) {
@@ -126,7 +131,7 @@ public class GiphyActivity extends PassphraseRequiredActivity implements Keyboar
     }
 
     Media media = new Media(success.getBlobUri(), mimeType, 0, success.getWidth(), success.getHeight(), 0, 0, false,  true, null, null, null, null);
-    startActivityForResult(MediaSelectionActivity.editor(this, sendType, Collections.singletonList(media), recipientId, text), MEDIA_SENDER);
+    startActivityForResult(MediaSendLauncher.editor(this, Collections.singletonList(media), recipientId, text), MEDIA_SENDER);
   }
 
   private void handleGiphyMp4ErrorResult(@NonNull GiphyMp4SaveResult.Error error) {

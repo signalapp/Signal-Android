@@ -45,12 +45,14 @@
     <string name="RegistrationActivity_select_a_country">Pumili ng bansa</string>
     <string name="RegistrationActivity_phone_number_description">Phone number</string>
     <!-- Error shown beneath the phone number field when the entered number is not valid -->
-    <string name="RegistrationActivity_not_a_valid_phone_number">Not a valid phone number</string>
+    <string name="RegistrationActivity_not_a_valid_phone_number">Hindi valid na phone number</string>
     <!-- Dialog title shown when the entered phone number is rejected as invalid -->
     <string name="RegistrationActivity_invalid_phone_number">Invalid phone number</string>
     <!-- Dialog body shown when the entered phone number is rejected as invalid -->
-    <string name="RegistrationActivity_the_number_you_entered_is_not_valid">The number you entered doesn\'t appear to be valid. Please check the country code and phone number and try again.</string>
+    <string name="RegistrationActivity_the_number_you_entered_is_not_valid">Hindi valid ang number na nilagay mo. I-check ang country code at phone number at subukan ulit.</string>
     <string name="RegistrationActivity_next">Susunod</string>
+    <!-- Button on the phone number screen that starts registering with a purchased Signal Login instead of a phone number -->
+    <string name="RegistrationActivity_register_without_number">Mag-register nang walang number</string>
     <!-- Dialog title to confirm phone number -->
     <string name="RegistrationActivity_is_the_phone_number">Tama ba ang phone number na nasa ibaba?</string>
     <!-- Dialog body to confirm phone number -->
@@ -87,8 +89,8 @@
     <string name="VerificationCodeScreen__resend_code">I-resend ang Code</string>
     <!-- Button text for call me action -->
     <string name="VerificationCodeScreen__call_me_instead">Tawagan ako</string>
-    <!-- Countdown text shown below the resend code button. Placeholders are minutes and seconds -->
-    <string name="VerificationCodeScreen__countdown_format">(%1$02d:%2$02d)</string>
+    <!-- Button text for resend SMS when countdown is active. Placeholders are minutes and seconds -->
+    <string name="VerificationCodeScreen__resend_code_available_in">I-resend ang Code (%1$02d:%2$02d)</string>
     <!-- Button text for call me when countdown is active. Placeholders are minutes and seconds -->
     <string name="VerificationCodeScreen__call_me_available_in">Tawagan ako (%1$02d:%2$02d)</string>
     <!-- Toast shown when the user enters an incorrect verification code -->
@@ -105,6 +107,10 @@
     <string name="VerificationCodeScreen__unable_to_send_sms">Hindi kami makapag-send ng text sa number mo. Subukan ulit pagkatapos ng ilang oras.</string>
     <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
     <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">Hindi makapag-send ng code gamit ang napiling method. Pumili ng iba pang pagpipilian.</string>
+    <!-- Dialog shown when the provider rejected placing a verification phone call to the user\'s number -->
+    <string name="VerificationCodeScreen__could_not_call_provider_rejected">Hindi ka namin matawagan para sa verification code. Subukan ulit, o mag-request ang code via SMS.</string>
+    <!-- Dialog shown when the provider rejected sending a verification SMS to the user\'s number -->
+    <string name="VerificationCodeScreen__could_not_sms_provider_rejected">Hindi ka namin mapadalhan ng SMS na may verification code. Subukan ulit, o mag-request ang code via phone call.</string>
     <!-- Snackbar shown for registration errors -->
     <string name="VerificationCodeScreen__registration_error">Failed ang registration. Subukan ulit.</string>
     <!-- Button text for having trouble with verification -->
@@ -120,7 +126,9 @@
     <!-- Clickable substring linking to contacting support within VerificationCodeScreen__support_bottom_sheet_body_call_to_action -->
     <string name="VerificationCodeScreen__support_bottom_sheet_cta_contact_support_substring">Kontakin ang Support</string>
     <!-- Email subject used when contacting support from the verification code screen -->
-  <!-- Removed by excludeNonTranslatables <string name="VerificationCodeScreen__contact_support_email_subject" translatable="false">Signal Registration - Verification Code for Android</string> -->
+    <string name="VerificationCodeScreen__contact_support_email_subject">Pagpaparehistro sa Signal - Verification Code para sa Android</string>
+    <!-- Text placed in the body of the support email composed from the verification code screen. Used to route the request, so it is not translated. -->
+  <!-- Removed by excludeNonTranslatables <string name="VerificationCodeScreen__contact_support_email_filter" translatable="false">Signal Registration - Verification Code for Android</string> -->
     <!-- URL opened for troubleshooting steps from the verification code screen -->
   <!-- Removed by excludeNonTranslatables <string name="VerificationCodeScreen__support_center_url" translatable="false">https://support.signal.org/</string> -->
 
@@ -229,11 +237,11 @@
     <!-- Button that prompts the device password manager to fill in the recovery key -->
     <string name="EnterAepScreen__fill_from_password_manager">Sagutan mula sa password manager</string>
     <!-- Title of the dialog warning that the backup being restored was created with a different account -->
-    <string name="EnterAepScreen__restore_to_new_account">Restore to new account?</string>
+    <string name="EnterAepScreen__restore_to_new_account">I-restore sa bagong account?</string>
     <!-- Body of the dialog warning the user that the backup was created with a different account and they will lose group memberships -->
-    <string name="EnterAepScreen__restore_to_new_account_body">The backup you are restoring was created using a different Signal account. You can restore this backup to a new account, but you will no longer be a member of any groups that were restored.</string>
+    <string name="EnterAepScreen__restore_to_new_account_body">Ginawa sa ibang Signal account ang backup na nire-restore mo. Pwede mong i-restore ang backup na ito sa bagong account, pero hindi ka na magiging member ng anumang group na ni-restore.</string>
     <!-- Confirm button label for the restore to new account dialog -->
-    <string name="EnterAepScreen__restore">Restore</string>
+    <string name="EnterAepScreen__restore">I-restore</string>
     <!-- Text shown while preparing the restore -->
     <string name="LocalBackupRestoreScreen__preparing_restore">Hinahanda ang pag-restore…</string>
     <!-- Title shown while restore is in progress -->
@@ -251,11 +259,11 @@
     <!-- Button to retry restore after failure -->
     <string name="LocalBackupRestoreScreen__try_again">Subukang muli</string>
     <!-- Title shown when the entered passphrase cannot decrypt the selected backup -->
-    <string name="LocalBackupRestoreScreen__incorrect_passphrase">Incorrect passphrase</string>
+    <string name="LocalBackupRestoreScreen__incorrect_passphrase">Maling passphrase</string>
     <!-- Title shown when the entered recovery key cannot decrypt the selected backup -->
-    <string name="LocalBackupRestoreScreen__incorrect_recovery_key">Incorrect recovery key</string>
+    <string name="LocalBackupRestoreScreen__incorrect_recovery_key">Maling recovery key</string>
     <!-- Description shown when the entered passphrase or recovery key cannot decrypt the selected backup -->
-    <string name="LocalBackupRestoreScreen__incorrect_credential_description">The credential you entered doesn\'t match this backup. Please check it and try again.</string>
+    <string name="LocalBackupRestoreScreen__incorrect_credential_description">Iba ang credential na nilagay mo sa backup na ito. I-check at subukan ulit.</string>
     <!-- Button to link an existing Signal account to this device -->
     <string name="WelcomeScreen__link_your_account">I-link ang account mo</string>
     <!-- Prompt shown to users who don\'t have a Signal account yet -->
@@ -304,8 +312,10 @@
     <string name="RemoteRestoreScreen__your_backup_is_not_recoverable">Nagkaroon ng error habang sinusubukang i-restore ang backup mo. Hindi na maaaring ma-recover ang backup mo. Paki contact ang support para makakuha ng tulong.</string>
     <!-- Button to contact support -->
     <string name="RemoteRestoreScreen__contact_support">Kontakin ang Support</string>
-    <!-- Subject line of the support email composed when the user contacts support about an unrecoverable backup. Also used to route the request, so it is not translated. -->
-  <!-- Removed by excludeNonTranslatables <string name="RemoteRestoreScreen__contact_support_email_subject" translatable="false">Signal Android Backup restore permanent failure</string> -->
+    <!-- Subject line of the support email composed when the user contacts support about an unrecoverable backup. -->
+    <string name="RemoteRestoreScreen__contact_support_email_subject">Permanenteng pagkabigo sa pag-restore ng Signal Android Backup</string>
+    <!-- Text placed in the body of the support email composed when the user contacts support about an unrecoverable backup. Used to route the request, so it is not translated. -->
+  <!-- Removed by excludeNonTranslatables <string name="RemoteRestoreScreen__contact_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
     <!-- Shown while downloading the backup from the server -->
     <string name="RemoteRestoreScreen__downloading_backup">Dina-download ang backup…</string>
     <!-- Shown while restoring messages from the downloaded backup -->
@@ -373,6 +383,10 @@
     <string name="PinCreationScreen__reenter_pin">Ilagay ulit ang PIN</string>
     <!-- Error shown below the PIN field when the confirmation PIN does not match the one the user first entered. -->
     <string name="PinCreationScreen__pins_dont_match">Hindi tugma ang mga PIN. Subukang muli.</string>
+    <!-- Error shown below the PIN field when the user tries to create a PIN that is too easy to guess, such as one made of sequential or repeated digits. -->
+    <string name="PinCreationScreen__choose_a_stronger_pin">Pumili ng mas malakas na PIN</string>
+    <!-- Error shown below the PIN field when the user tries to create a PIN that matches the code used to verify their phone number. -->
+    <string name="PinCreationScreen__reentered_verification_code">Naglagay ka ng code na dati mo nang ginamit para i-verify ang iyong phone number. Pumili ng bago at unique na Signal PIN.</string>
     <!-- Overflow menu item that opens a help article about Signal PINs. -->
     <string name="PinCreationScreen__learn_more_about_pins">Magdagdag ng kaalaman tungkol sa mga PIN</string>
     <!-- Title of the dialog confirming that the user wants to disable their Signal PIN. -->
@@ -396,6 +410,8 @@
     <string name="PinEntryScreen__enter_your_pin">Ilagay ang iyong PIN</string>
     <!-- Describes the PIN that needs to be entered. -->
     <string name="PinEntryScreen__enter_the_pin_you_created">Ilagay ang PIN na ginawa mo noong unang beses kang nag-install ng Signal</string>
+    <!-- Error shown when the user enters the code used to verify their phone number instead of their PIN, and it was not their actual PIN. -->
+    <string name="PinEntryScreen__reentered_verification_code">Naglagay ka ng code na dati mo nang ginamit para i-verify ang iyong phone number. Ilagay ang unique Signal PIN na ginamit mo dati para sa iyong account.</string>
     <!-- Error shown when an incorrect PIN is entered. %1$d is the number of attempts remaining. -->
     <plurals name="PinEntryScreen__incorrect_pin">
         <item quantity="one">Hindi tama ang PIN. %1$d pagtatangka na lang.</item>
@@ -421,8 +437,10 @@
     <string name="PinEntryScreen__no_data_could_be_found">Walang mahanap na data para i-restore ang account mo. Gumawa ng bagong PIN.</string>
     <!-- Labels the button in the no-data-to-restore dialog that lets the user contact support. -->
     <string name="PinEntryScreen__contact_support">Kontakin ang Support</string>
-    <!-- Subject line of the support email composed when the user contacts support about PIN entry. Also used to route the request, so it is not translated. -->
-  <!-- Removed by excludeNonTranslatables <string name="PinEntryScreen__contact_support_email_subject" translatable="false">Signal Registration - Need Help with PIN for Android</string> -->
+    <!-- Subject line of the support email composed when the user contacts support about PIN entry. -->
+    <string name="PinEntryScreen__contact_support_email_subject">Pagrehistro sa Signal - Kailangan ng tulong sa PIN para sa Android</string>
+    <!-- Text placed in the body of the support email composed when the user contacts support about PIN entry. Used to route the request, so it is not translated. -->
+  <!-- Removed by excludeNonTranslatables <string name="PinEntryScreen__contact_support_email_filter" translatable="false">Signal Registration - Need Help with PIN for Android</string> -->
 
     <!-- Title for the screen asking the user to grant the notification permission -->
     <string name="AllowNotificationsScreen__allow_notifications">Payagan ang notifications</string>
@@ -443,6 +461,8 @@
     <string name="MessageSyncScreen__preparing">Hinahanda…</string>
     <!-- Progress label shown under the sync progress bar while messages are being imported and the rest of the account is restored, after the download finishes -->
     <string name="MessageSyncScreen__finishing">Tinatapos…</string>
+    <!-- Progress label shown while messages are being imported/restored from the downloaded backup -->
+    <string name="MessageSyncScreen__restoring">Nagre-restore…</string>
     <!-- Informational notice in the sync screen footer, indicating the sync is end-to-end encrypted. Precedes a separate "Learn more" link. -->
     <string name="MessageSyncScreen__messages_and_chat_info_are_protected_by_e2ee">Protektado ng end-to-end encryption ang messages at chat info, kasama ang proseso ng pag-sync.</string>
     <!-- Inline link in the sync screen footer that opens documentation about end-to-end encryption during sync -->
@@ -581,4 +601,98 @@
     <string name="CaptchaScreen__failed_to_load_captcha">Nagkaroon ng error sa pag-load ng captcha</string>
     <!-- Button to cancel out of the captcha screen. -->
     <string name="CaptchaScreen__cancel">I-cancel</string>
+
+    <!-- Shared registration strings -->
+    <!-- Content description for the back arrow in a registration screen header. -->
+    <string name="RegistrationScreen__back">Bumalik</string>
+
+    <!-- Signal Login purchase screen -->
+    <!-- Title of the screen where the user buys a Signal Login to register without a phone number. -->
+    <string name="SignalLoginPaymentScreen__signal_login">Signal Login</string>
+    <!-- Description of what a Signal Login is. Followed by a "learn more" link. -->
+    <string name="SignalLoginPaymentScreen__register_without_a_phone_number">Mag-register nang walang phone number gamit ang Signal Login. Sa pamamagitan ng one-time purchase, makakatanggap ka ng account key para makapagsimula.</string>
+    <!-- Link at the end of the description that opens a support article about Signal Login. -->
+    <string name="SignalLoginPaymentScreen__learn_more">Matuto pa</string>
+    <!-- Subtitle of the purchase option, clarifying the price is not a subscription. -->
+    <string name="SignalLoginPaymentScreen__one_time_purchase">One-time purchase</string>
+    <!-- Selling point of the purchase option: no phone number is required. -->
+    <string name="SignalLoginPaymentScreen__no_phone_number_needed">Walang phone number na kailangan</string>
+    <!-- Selling point of the purchase option: a username is used to reach the user. -->
+    <string name="SignalLoginPaymentScreen__username_for_messaging_and_calls">Username para sa messaging &amp; calls</string>
+    <!-- Selling point of the purchase option: the purchase supports Signal. -->
+    <string name="SignalLoginPaymentScreen__signal_is_a_non_profit">Ang Signal ay isang non-profit — ang purchase mo ay nakakatulong na suportahan ang aming misyon</string>
+    <!-- Title of the option for users who already bought a Signal Login. -->
+    <string name="SignalLoginPaymentScreen__i_have_a_signal_login">Mayroon akong Signal Login</string>
+    <!-- Subtitle of the existing-login option. -->
+    <string name="SignalLoginPaymentScreen__use_your_existing_account_key">Gamitin ang existing account key mo</string>
+    <!-- Selling point of the existing-login option: the account can be restored. -->
+    <string name="SignalLoginPaymentScreen__login_and_restore_your_account">Mag-log in at i-restore ang account mo</string>
+    <!-- Selling point of the existing-login option, thanking the user for their previous purchase. -->
+    <string name="SignalLoginPaymentScreen__thanks_for_supporting_signal">Maraming salamat sa pagsuporta sa Signal</string>
+    <!-- Action button that starts the purchase. Placeholder is the localized price, e.g. "$1.99". -->
+    <string name="SignalLoginPaymentScreen__pay_s">Magbayad ng %1$s</string>
+    <!-- Action button that starts the purchase, shown while the price is still loading. -->
+    <string name="SignalLoginPaymentScreen__pay">Pay</string>
+    <!-- Action button shown when the user indicated they already have a Signal Login. -->
+    <string name="SignalLoginPaymentScreen__continue">Magpatuloy</string>
+    <!-- Error shown when the purchase does not go through. -->
+    <string name="SignalLoginPaymentScreen__your_purchase_could_not_be_completed">Hindi nakumpleto ang purchase mo. Hindi ka na-charge rito.</string>
+
+    <!-- Signal Login details screen -->
+    <!-- Title of the screen that shows the user their newly purchased Signal Login. -->
+    <string name="SignalLoginInfoScreen__your_signal_login">Ang Signal Login Mo</string>
+    <!-- Description warning the user that a lost Signal Login cannot be recovered. -->
+    <string name="SignalLoginInfoScreen__thanks_for_your_purchase">Salamat sa iyong pagbili. Gamitin ang Signal Login mo para mag-register at i-restore ang iyong account. Kung nakalimutan mo ang iyong keys, hindi mo na maaaring ma-recover ang iyong account.</string>
+    <!-- Label for the account portion of the Signal Login on the credential card. -->
+    <string name="SignalLoginInfoScreen__account">Account</string>
+    <!-- Label for the recovery portion of the Signal Login on the credential card. -->
+    <string name="SignalLoginInfoScreen__recovery">Recovery</string>
+    <!-- Button on the credential card that reveals the full Signal Login. -->
+    <string name="SignalLoginInfoScreen__view_details">Tingnan ang details</string>
+    <!-- Body of the dialog revealing the full Signal Login. First placeholder is the account key, second is the recovery key. -->
+    <string name="SignalLoginInfoScreen__account_s_recovery_s">Account: %1$s\n\nRecovery: %2$s</string>
+    <!-- Action button that stores the Signal Login in the device password manager. -->
+    <string name="SignalLoginInfoScreen__save_to_password_manager">I-save sa password manager</string>
+    <!-- Action button for users who would rather write the Signal Login down themselves. -->
+    <string name="SignalLoginInfoScreen__save_manually">I-save manually</string>
+    <!-- Error shown when the Signal Login could not be stored in the password manager. -->
+    <string name="SignalLoginInfoScreen__your_signal_login_could_not_be_saved">Hindi aa-save ang Signal Login mo. I-save ito manually.</string>
+
+    <!-- Add username screen -->
+    <!-- Title of the screen offering the user an optional username. -->
+    <string name="AddUsernameScreen__add_an_optional_username">Maglagay ng optional username</string>
+    <!-- Description explaining what a username is used for. -->
+    <string name="AddUsernameScreen__people_can_message_you_by_username">Maaari kang i-message ng mga tao gamit ang username sa halip na phone number.</string>
+    <!-- Prompt shown above the username field. -->
+    <string name="AddUsernameScreen__choose_your_username">Pumili ng username mo</string>
+    <!-- Label/hint for the username field. -->
+    <string name="AddUsernameScreen__username">Username</string>
+    <!-- Helper text below the username field. Followed by a "learn more" link. -->
+    <string name="AddUsernameScreen__usernames_are_always_paired_with_a_set_of_numbers">Ang usernames ay palaging may kasamang numero.</string>
+    <!-- Link in the helper text that opens a support article about usernames. -->
+    <string name="AddUsernameScreen__learn_more">Matuto pa</string>
+    <!-- Button that skips choosing a username. -->
+    <string name="AddUsernameScreen__skip">Laktawan</string>
+    <!-- Button that submits the chosen username. -->
+    <string name="AddUsernameScreen__next">Susunod</string>
+    <!-- Validation error shown when the entered username is too short. -->
+    <string name="AddUsernameScreen__usernames_must_be_at_least_3_characters">Ang usernames ay dapat at least 3 characters</string>
+    <!-- Validation error shown when the entered username is too long. -->
+    <string name="AddUsernameScreen__usernames_must_be_at_most_32_characters">Ang usernames ay hindi dapat hihigit sa 32 characters</string>
+    <!-- Validation error shown when the entered username contains disallowed characters. -->
+    <string name="AddUsernameScreen__usernames_can_only_contain">Letters, numbers, at underscores lang ang maaaring gamitin sa username</string>
+    <!-- Validation error shown when the entered username starts with a digit. -->
+    <string name="AddUsernameScreen__usernames_cannot_begin_with_a_number">Hindi maaaring magsimula number ang usernames</string>
+    <!-- Error shown when the chosen username cannot be reserved. -->
+    <string name="AddUsernameScreen__this_username_is_not_available">Hindi available ang username na ito. Sumubok ng iba pa.</string>
+
+    <!-- ContactSupportDialog -->
+    <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__submit_debug_log">Gusto mo bang mag-submit ng debug log?</string>
+    <!-- Body of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__your_debug_logs">Makatutulong ang debug logs para mas mabilis naming maayos ang isyung ibinahagi mo. Optional ang pag-submit ng iyong logs.</string>
+    <!-- Button that contacts support with a debug log attached -->
+    <string name="ContactSupportDialog__submit_with_debug_log">I-submit kasama ang debug log</string>
+    <!-- Button that contacts support without attaching a debug log -->
+    <string name="ContactSupportDialog__submit_without_debug_log">I-submit na walang debug log</string>
 </resources>

@@ -13,31 +13,32 @@ import org.signal.core.models.ServiceId.PNI
 import org.signal.core.models.backup.MediaRootBackupKey
 import org.signal.core.models.backup.MessageBackupKey
 import org.signal.core.util.Base64
+import org.signal.core.util.logging.Log
 import org.signal.core.util.urlEncode
+import org.signal.libsignal.net.AuthDevicesService
+import org.signal.libsignal.net.DeviceIdNotFoundException
+import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.ecc.ECPublicKey
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.signal.network.NetworkResult
 import org.signal.network.websocket.WebSocketRequestMessage
-import org.signal.network.websocket.delete
 import org.signal.network.websocket.get
 import org.signal.network.websocket.put
 import org.whispersystems.signalservice.api.fromWebSocketRequest
 import org.whispersystems.signalservice.api.link.LinkedDeviceVerificationCodeResponse
-import org.whispersystems.signalservice.api.link.SetDeviceNameRequest
 import org.whispersystems.signalservice.api.link.SetLinkedDeviceTransferArchiveRequest
 import org.whispersystems.signalservice.api.link.TransferArchiveError
 import org.whispersystems.signalservice.api.link.TransferArchiveResponse
 import org.whispersystems.signalservice.api.link.WaitForLinkedDeviceResponse
-import org.whispersystems.signalservice.api.messages.multidevice.DeviceInfo
 import org.whispersystems.signalservice.api.provisioning.ProvisioningMessage
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
 import org.whispersystems.signalservice.internal.crypto.PrimaryProvisioningCipher
-import org.whispersystems.signalservice.internal.push.DeviceInfoList
 import org.whispersystems.signalservice.internal.push.ProvisionMessage
 import org.whispersystems.signalservice.internal.push.ProvisioningVersion
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
+import org.signal.libsignal.net.LinkedDevice as LibSignalLinkedDevice
 
 /**
  * Class to interact with device-linking endpoints.
@@ -45,31 +46,26 @@ import kotlin.time.Duration.Companion.seconds
 class LinkDeviceApi(
   private val authWebSocket: SignalWebSocket.AuthenticatedWebSocket
 ) {
+
+  companion object {
+    private val TAG = Log.tag(LinkDeviceApi::class)
+  }
+
   /**
    * Fetches a list of linked devices.
-   *
-   * GET /v1/devices
-   *
-   * - 200: Success
    */
-  fun getDevices(): NetworkResult<List<DeviceInfo>> {
-    val request = WebSocketRequestMessage.get("/v1/devices")
-    return NetworkResult
-      .fromWebSocketRequest(authWebSocket, request, DeviceInfoList::class)
-      .map { it.getDevices() }
+  suspend fun getDevices(): RequestResult<List<LibSignalLinkedDevice>, Nothing> {
+    return authWebSocket.runCatchingWithChatConnection { connection ->
+      AuthDevicesService(connection).getDevices()
+    }
   }
 
   /**
    * Remove and unlink a linked device.
-   *
-   * DELETE /v1/devices/{id}
-   *
-   * - 200: Success
    */
-  suspend fun removeDevice(deviceId: Int): NetworkResult<Unit> {
-    val request = WebSocketRequestMessage.delete("/v1/devices/$deviceId")
-    return NetworkResult.fromWebSocketSuspend(NetworkResult.DefaultWebSocketConverter(Unit::class)) {
-      authWebSocket.requestSuspend(request)
+  suspend fun removeDevice(deviceId: Int): RequestResult<Unit, Nothing> {
+    return authWebSocket.runCatchingWithChatConnection { connection ->
+      AuthDevicesService(connection).removeDevice(deviceId)
     }
   }
 
@@ -99,31 +95,44 @@ class LinkDeviceApi(
    * - 411: Account is already at the device limit.
    * - 422: Bad request.
    * - 429: Rate-limited.
+   *
+   * [e164], [pni], and [pniIdentityKeyPair] are absent for an account with no phone number, and are only ever sent
+   * as a complete set.
    */
   fun linkDevice(
-    e164: String,
+    e164: String?,
     aci: ACI,
-    pni: PNI,
+    pni: PNI?,
     deviceIdentifier: String,
     deviceKey: ECPublicKey,
     aciIdentityKeyPair: IdentityKeyPair,
-    pniIdentityKeyPair: IdentityKeyPair,
+    pniIdentityKeyPair: IdentityKeyPair?,
     profileKey: ProfileKey,
     accountEntropyPool: AccountEntropyPool,
     masterKey: MasterKey,
     mediaRootBackupKey: MediaRootBackupKey,
     code: String,
-    ephemeralMessageBackupKey: MessageBackupKey?
+    ephemeralMessageBackupKey: MessageBackupKey?,
+    authCredentialSalt: ByteArray?
   ): NetworkResult<Unit> {
+    val sendPhoneNumberData = e164 != null && pni != null && pniIdentityKeyPair != null
+    if (!sendPhoneNumberData && (e164 != null || pni != null || pniIdentityKeyPair != null)) {
+      Log.w(TAG, "[linkDevice] Incomplete phone number data! hasNumber: ${e164 != null}, hasPni: ${pni != null}, hasPniIdentityKey: ${pniIdentityKeyPair != null}. Linking the new device without a phone number.")
+    }
+
+    val sentE164 = e164.takeIf { sendPhoneNumberData }
+    val sentPni = pni.takeIf { sendPhoneNumberData }
+    val sentPniIdentityKeyPair = pniIdentityKeyPair.takeIf { sendPhoneNumberData }
+
     val cipher = PrimaryProvisioningCipher(deviceKey)
     val message = ProvisionMessage(
       aciIdentityKeyPublic = aciIdentityKeyPair.publicKey.serialize().toByteString(),
       aciIdentityKeyPrivate = aciIdentityKeyPair.privateKey.serialize().toByteString(),
-      pniIdentityKeyPublic = pniIdentityKeyPair.publicKey.serialize().toByteString(),
-      pniIdentityKeyPrivate = pniIdentityKeyPair.privateKey.serialize().toByteString(),
+      pniIdentityKeyPublic = sentPniIdentityKeyPair?.publicKey?.serialize()?.toByteString(),
+      pniIdentityKeyPrivate = sentPniIdentityKeyPair?.privateKey?.serialize()?.toByteString(),
       aci = aci.toString(),
-      pni = pni.toStringWithoutPrefix(),
-      number = e164,
+      pni = sentPni?.toStringWithoutPrefix(),
+      number = sentE164,
       provisioningCode = code,
       userAgent = null,
       profileKey = profileKey.serialize().toByteString(),
@@ -132,7 +141,8 @@ class LinkDeviceApi(
       accountEntropyPool = accountEntropyPool.value,
       mediaRootBackupKey = mediaRootBackupKey.value.toByteString(),
       aciBinary = aci.toByteString(),
-      pniBinary = pni.toByteStringWithoutPrefix()
+      pniBinary = sentPni?.toByteStringWithoutPrefix(),
+      authCredentialSalt = authCredentialSalt?.toByteString()
     )
     val ciphertext: ByteArray = cipher.encrypt(message)
     val body = ProvisioningMessage(Base64.encodeWithPadding(ciphertext))
@@ -207,17 +217,16 @@ class LinkDeviceApi(
   }
 
   /**
-   * Sets the name for a linked device
+   * Sets the name for a linked device.
    *
-   * PUT /v1/accounts/name?deviceId=[deviceId]
+   * @param encryptedDeviceName Must be between 1 and 225 bytes long.
    *
-   * - 204: Success.
-   * - 403: Not authorized to change the name of the device with the given ID
-   * - 404: No device found with the given ID
+   * A [DeviceIdNotFoundException] means there is no device with the given [deviceId].
    */
-  fun setDeviceName(encryptedDeviceName: String, deviceId: Int): NetworkResult<Unit> {
-    val request = WebSocketRequestMessage.put("/v1/accounts/name?deviceId=$deviceId", SetDeviceNameRequest(encryptedDeviceName))
-    return NetworkResult.fromWebSocketRequest(authWebSocket, request)
+  suspend fun setDeviceName(encryptedDeviceName: ByteArray, deviceId: Int): RequestResult<Unit, DeviceIdNotFoundException> {
+    return authWebSocket.runCatchingWithChatConnection { connection ->
+      AuthDevicesService(connection).setDeviceName(deviceId, encryptedDeviceName)
+    }
   }
 
   /**

@@ -16,6 +16,7 @@ import kotlinx.coroutines.launch
 import org.signal.core.util.AppForegroundObserver
 import org.signal.core.util.SleepTimer
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.clockskew.ClockSkewDetector
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.TextSecurePreferences
@@ -144,6 +145,18 @@ class SignalWebSocketHealthMonitor(
     }
     executor.execute {
       SignalStore.account.hasInactivePrimaryDeviceAlert = SignalStore.account.isLinkedDevice && alerts.contains(ALERT_IDLE_PRIMARY_DEVICE)
+    }
+  }
+
+  override fun onServerTimestamp(serverTimestamp: Long, isIdentifiedWebSocket: Boolean) {
+    if (!isIdentifiedWebSocket) {
+      return
+    }
+    executor.execute {
+      if (!SignalStore.account.isRegistered) {
+        return@execute
+      }
+      ClockSkewDetector.onServerTimeReceived(serverTimestamp)
     }
   }
 

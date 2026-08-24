@@ -5,8 +5,11 @@ import android.graphics.Typeface
 import android.net.Uri
 import android.os.Bundle
 import androidx.annotation.ColorInt
+import androidx.core.os.bundleOf
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.createSavedStateHandle
+import androidx.lifecycle.viewmodel.CreationExtras
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Observable
@@ -17,6 +20,7 @@ import io.reactivex.rxjava3.processors.BehaviorProcessor
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import io.reactivex.rxjava3.subjects.Subject
+import org.signal.core.util.BreakIteratorCompat
 import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
@@ -25,13 +29,19 @@ import org.thoughtcrime.securesms.fonts.TextFont
 import org.thoughtcrime.securesms.fonts.TextToScript
 import org.thoughtcrime.securesms.fonts.TypefaceCache
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
+import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil
 import org.thoughtcrime.securesms.mediasend.v2.text.send.TextStoryPostSendRepository
 import org.thoughtcrime.securesms.mediasend.v2.text.send.TextStoryPostSendResult
 import org.thoughtcrime.securesms.util.rx.RxStore
 
-class TextStoryPostCreationViewModel(private val repository: TextStoryPostSendRepository, private val identityChangesSince: Long = System.currentTimeMillis()) : ViewModel() {
+class TextStoryPostCreationViewModel(
+  savedStateHandle: SavedStateHandle,
+  private val repository: TextStoryPostSendRepository,
+  draftText: CharSequence? = null,
+  private val identityChangesSince: Long = System.currentTimeMillis()
+) : ViewModel() {
 
-  private val store = RxStore(TextStoryPostCreationState())
+  private val store = RxStore(restoreState(savedStateHandle) ?: buildInitialState(draftText))
   private val textFontSubject: Subject<TextFont> = BehaviorSubject.create()
   private val temporaryBodySubject: Subject<String> = BehaviorSubject.createDefault("")
   private val disposables = CompositeDisposable()
@@ -42,6 +52,10 @@ class TextStoryPostCreationViewModel(private val repository: TextStoryPostSendRe
   val typeface: Flowable<Typeface> = internalTypeface.observeOn(AndroidSchedulers.mainThread())
 
   init {
+    savedStateHandle.setSavedStateProvider(TEXT_STORY_INSTANCE_STATE) {
+      bundleOf(TEXT_STORY_INSTANCE_STATE to store.state)
+    }
+
     textFontSubject.onNext(store.state.textFont)
 
     val scriptGuess = temporaryBodySubject.observeOn(Schedulers.io()).map { TextToScript.guessScript(it) }
@@ -62,18 +76,6 @@ class TextStoryPostCreationViewModel(private val repository: TextStoryPostSendRe
 
   override fun onCleared() {
     disposables.clear()
-  }
-
-  fun saveToInstanceState(outState: Bundle) {
-    outState.putParcelable(TEXT_STORY_INSTANCE_STATE, store.state)
-  }
-
-  fun restoreFromInstanceState(inState: Bundle) {
-    if (inState.containsKey(TEXT_STORY_INSTANCE_STATE)) {
-      val state: TextStoryPostCreationState = inState.getParcelableCompat(TEXT_STORY_INSTANCE_STATE, TextStoryPostCreationState::class.java)!!
-      textFontSubject.onNext(store.state.textFont)
-      store.update { state }
-    }
   }
 
   fun getBody(): CharSequence {
@@ -135,14 +137,46 @@ class TextStoryPostCreationViewModel(private val repository: TextStoryPostSendRe
     return store.state.linkPreviewUri
   }
 
-  class Factory(private val repository: TextStoryPostSendRepository) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return modelClass.cast(TextStoryPostCreationViewModel(repository)) as T
-    }
-  }
-
   companion object {
     private val TAG = Log.tag(TextStoryPostCreationViewModel::class.java)
     private const val TEXT_STORY_INSTANCE_STATE = "text.story.instance.state"
+    private const val MAX_DRAFT_LENGTH = 700
+
+    fun create(extras: CreationExtras, draftText: CharSequence? = null): TextStoryPostCreationViewModel {
+      return TextStoryPostCreationViewModel(
+        savedStateHandle = extras.createSavedStateHandle(),
+        repository = TextStoryPostSendRepository(),
+        draftText = draftText
+      )
+    }
+
+    private fun restoreState(savedStateHandle: SavedStateHandle): TextStoryPostCreationState? {
+      return savedStateHandle
+        .get<Bundle>(TEXT_STORY_INSTANCE_STATE)
+        ?.getParcelableCompat(TEXT_STORY_INSTANCE_STATE, TextStoryPostCreationState::class.java)
+    }
+
+    private fun buildInitialState(draftText: CharSequence?): TextStoryPostCreationState {
+      val message: String = draftText?.toString()?.takeIf { it.isNotBlank() } ?: return TextStoryPostCreationState()
+
+      val firstLinkUrl: String? = LinkPreviewUtil
+        .findValidPreviewUrls(message)
+        .findFirst()
+        .map { it.url }
+        .orElse(null)
+
+      val iterator = BreakIteratorCompat.getInstance()
+      iterator.setText(message)
+      val trimmedMessage = iterator.take(MAX_DRAFT_LENGTH).toString()
+
+      return when {
+        firstLinkUrl == null -> TextStoryPostCreationState(body = trimmedMessage.trim())
+        firstLinkUrl == message -> TextStoryPostCreationState(linkPreviewUri = firstLinkUrl)
+        else -> TextStoryPostCreationState(
+          body = trimmedMessage.replace(firstLinkUrl, "").trim(),
+          linkPreviewUri = firstLinkUrl
+        )
+      }
+    }
   }
 }

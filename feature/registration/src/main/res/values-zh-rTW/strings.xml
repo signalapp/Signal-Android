@@ -45,12 +45,14 @@
     <string name="RegistrationActivity_select_a_country">選取國家或地區</string>
     <string name="RegistrationActivity_phone_number_description">電話號碼</string>
     <!-- Error shown beneath the phone number field when the entered number is not valid -->
-    <string name="RegistrationActivity_not_a_valid_phone_number">Not a valid phone number</string>
+    <string name="RegistrationActivity_not_a_valid_phone_number">不是有效的電話號碼</string>
     <!-- Dialog title shown when the entered phone number is rejected as invalid -->
-    <string name="RegistrationActivity_invalid_phone_number">Invalid phone number</string>
+    <string name="RegistrationActivity_invalid_phone_number">無效的電話號碼</string>
     <!-- Dialog body shown when the entered phone number is rejected as invalid -->
-    <string name="RegistrationActivity_the_number_you_entered_is_not_valid">The number you entered doesn\'t appear to be valid. Please check the country code and phone number and try again.</string>
+    <string name="RegistrationActivity_the_number_you_entered_is_not_valid">你輸入的號碼似乎無效。請檢查國家代碼和電話號碼，然後再試一次。</string>
     <string name="RegistrationActivity_next">下一步</string>
+    <!-- Button on the phone number screen that starts registering with a purchased Signal Login instead of a phone number -->
+    <string name="RegistrationActivity_register_without_number">免號碼註冊</string>
     <!-- Dialog title to confirm phone number -->
     <string name="RegistrationActivity_is_the_phone_number">以下電話號碼是否正確？</string>
     <!-- Dialog body to confirm phone number -->
@@ -87,8 +89,8 @@
     <string name="VerificationCodeScreen__resend_code">重新傳送認證碼</string>
     <!-- Button text for call me action -->
     <string name="VerificationCodeScreen__call_me_instead">請改為進行電話驗證</string>
-    <!-- Countdown text shown below the resend code button. Placeholders are minutes and seconds -->
-    <string name="VerificationCodeScreen__countdown_format">(%1$02d:%2$02d)</string>
+    <!-- Button text for resend SMS when countdown is active. Placeholders are minutes and seconds -->
+    <string name="VerificationCodeScreen__resend_code_available_in">重新傳送驗證碼 (%1$02d:%2$02d)</string>
     <!-- Button text for call me when countdown is active. Placeholders are minutes and seconds -->
     <string name="VerificationCodeScreen__call_me_available_in">致電給我 (%1$02d:%2$02d)</string>
     <!-- Toast shown when the user enters an incorrect verification code -->
@@ -105,6 +107,10 @@
     <string name="VerificationCodeScreen__unable_to_send_sms">我們無法向你的號碼發送 SMS 短訊。請於幾個小時後重試。</string>
     <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
     <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">無法透過所選方法發送驗證碼。請嘗試其他選項。</string>
+    <!-- Dialog shown when the provider rejected placing a verification phone call to the user\'s number -->
+    <string name="VerificationCodeScreen__could_not_call_provider_rejected">我們無法致電提供驗證碼給你。請再試一次，或改以 SMS 短訊方式索取驗證碼。</string>
+    <!-- Dialog shown when the provider rejected sending a verification SMS to the user\'s number -->
+    <string name="VerificationCodeScreen__could_not_sms_provider_rejected">我們無法傳送 SMS 短訊提供驗證碼給你。請再試一次，或改以電話方式索取驗證碼。</string>
     <!-- Snackbar shown for registration errors -->
     <string name="VerificationCodeScreen__registration_error">註冊失敗。請重試。</string>
     <!-- Button text for having trouble with verification -->
@@ -120,7 +126,9 @@
     <!-- Clickable substring linking to contacting support within VerificationCodeScreen__support_bottom_sheet_body_call_to_action -->
     <string name="VerificationCodeScreen__support_bottom_sheet_cta_contact_support_substring">聯絡支援</string>
     <!-- Email subject used when contacting support from the verification code screen -->
-  <!-- Removed by excludeNonTranslatables <string name="VerificationCodeScreen__contact_support_email_subject" translatable="false">Signal Registration - Verification Code for Android</string> -->
+    <string name="VerificationCodeScreen__contact_support_email_subject">Signal 註冊 - Android驗證碼</string>
+    <!-- Text placed in the body of the support email composed from the verification code screen. Used to route the request, so it is not translated. -->
+  <!-- Removed by excludeNonTranslatables <string name="VerificationCodeScreen__contact_support_email_filter" translatable="false">Signal Registration - Verification Code for Android</string> -->
     <!-- URL opened for troubleshooting steps from the verification code screen -->
   <!-- Removed by excludeNonTranslatables <string name="VerificationCodeScreen__support_center_url" translatable="false">https://support.signal.org/</string> -->
 
@@ -204,7 +212,7 @@
     <!-- Label for the recovery key text field -->
     <string name="LocalBackupRestoreScreen__recovery_key">恢復金鑰</string>
     <!-- Label for the backup passphrase text field -->
-    <string name="LocalBackupRestoreScreen__passphrase">Passphrase</string>
+    <string name="LocalBackupRestoreScreen__passphrase">密碼片語</string>
     <!-- Error text when passphrase is too long -->
     <string name="LocalBackupRestoreScreen__too_long">太長 (%1$d/%2$d)</string>
     <!-- Link for users who don\'t have their passphrase -->
@@ -229,11 +237,11 @@
     <!-- Button that prompts the device password manager to fill in the recovery key -->
     <string name="EnterAepScreen__fill_from_password_manager">由密碼管理員填寫</string>
     <!-- Title of the dialog warning that the backup being restored was created with a different account -->
-    <string name="EnterAepScreen__restore_to_new_account">Restore to new account?</string>
+    <string name="EnterAepScreen__restore_to_new_account">要還原至新帳戶嗎？</string>
     <!-- Body of the dialog warning the user that the backup was created with a different account and they will lose group memberships -->
-    <string name="EnterAepScreen__restore_to_new_account_body">The backup you are restoring was created using a different Signal account. You can restore this backup to a new account, but you will no longer be a member of any groups that were restored.</string>
+    <string name="EnterAepScreen__restore_to_new_account_body">你正在還原的備份是使用另一個 Signal 帳戶建立的。你可以將此備份還原至新帳戶，但你將不再是任何已還原群組的成員。</string>
     <!-- Confirm button label for the restore to new account dialog -->
-    <string name="EnterAepScreen__restore">Restore</string>
+    <string name="EnterAepScreen__restore">還原</string>
     <!-- Text shown while preparing the restore -->
     <string name="LocalBackupRestoreScreen__preparing_restore">還原準備中…</string>
     <!-- Title shown while restore is in progress -->
@@ -251,11 +259,11 @@
     <!-- Button to retry restore after failure -->
     <string name="LocalBackupRestoreScreen__try_again">再試一次</string>
     <!-- Title shown when the entered passphrase cannot decrypt the selected backup -->
-    <string name="LocalBackupRestoreScreen__incorrect_passphrase">Incorrect passphrase</string>
+    <string name="LocalBackupRestoreScreen__incorrect_passphrase">密碼片語不正確</string>
     <!-- Title shown when the entered recovery key cannot decrypt the selected backup -->
-    <string name="LocalBackupRestoreScreen__incorrect_recovery_key">Incorrect recovery key</string>
+    <string name="LocalBackupRestoreScreen__incorrect_recovery_key">恢復金鑰不正確</string>
     <!-- Description shown when the entered passphrase or recovery key cannot decrypt the selected backup -->
-    <string name="LocalBackupRestoreScreen__incorrect_credential_description">The credential you entered doesn\'t match this backup. Please check it and try again.</string>
+    <string name="LocalBackupRestoreScreen__incorrect_credential_description">你輸入的憑證與此備份不符。請檢查清楚然後再試一次。</string>
     <!-- Button to link an existing Signal account to this device -->
     <string name="WelcomeScreen__link_your_account">連結你的帳戶</string>
     <!-- Prompt shown to users who don\'t have a Signal account yet -->
@@ -304,8 +312,10 @@
     <string name="RemoteRestoreScreen__your_backup_is_not_recoverable">備份還原時發生錯誤。你的備份無法恢復。請聯絡支援團隊以提供協助。</string>
     <!-- Button to contact support -->
     <string name="RemoteRestoreScreen__contact_support">聯絡支援</string>
-    <!-- Subject line of the support email composed when the user contacts support about an unrecoverable backup. Also used to route the request, so it is not translated. -->
-  <!-- Removed by excludeNonTranslatables <string name="RemoteRestoreScreen__contact_support_email_subject" translatable="false">Signal Android Backup restore permanent failure</string> -->
+    <!-- Subject line of the support email composed when the user contacts support about an unrecoverable backup. -->
+    <string name="RemoteRestoreScreen__contact_support_email_subject">Signal Android 備份還原永久失敗</string>
+    <!-- Text placed in the body of the support email composed when the user contacts support about an unrecoverable backup. Used to route the request, so it is not translated. -->
+  <!-- Removed by excludeNonTranslatables <string name="RemoteRestoreScreen__contact_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
     <!-- Shown while downloading the backup from the server -->
     <string name="RemoteRestoreScreen__downloading_backup">正在下載備份…</string>
     <!-- Shown while restoring messages from the downloaded backup -->
@@ -372,6 +382,10 @@
     <string name="PinCreationScreen__reenter_pin">重新輸入 PIN 碼</string>
     <!-- Error shown below the PIN field when the confirmation PIN does not match the one the user first entered. -->
     <string name="PinCreationScreen__pins_dont_match">PIN 碼不相符。請再試一次。</string>
+    <!-- Error shown below the PIN field when the user tries to create a PIN that is too easy to guess, such as one made of sequential or repeated digits. -->
+    <string name="PinCreationScreen__choose_a_stronger_pin">請選擇一個強度較高的 PIN 碼</string>
+    <!-- Error shown below the PIN field when the user tries to create a PIN that matches the code used to verify their phone number. -->
+    <string name="PinCreationScreen__reentered_verification_code">你再次輸入了已用於驗證電話號碼的驗證碼。請選擇一個全新而獨特的 Signal PIN 碼。</string>
     <!-- Overflow menu item that opens a help article about Signal PINs. -->
     <string name="PinCreationScreen__learn_more_about_pins">了解更多有關 PIN 碼</string>
     <!-- Title of the dialog confirming that the user wants to disable their Signal PIN. -->
@@ -395,6 +409,8 @@
     <string name="PinEntryScreen__enter_your_pin">輸入你的 PIN 碼</string>
     <!-- Describes the PIN that needs to be entered. -->
     <string name="PinEntryScreen__enter_the_pin_you_created">輸入你在首次安裝 Signal 時建立的 PIN 碼</string>
+    <!-- Error shown when the user enters the code used to verify their phone number instead of their PIN, and it was not their actual PIN. -->
+    <string name="PinEntryScreen__reentered_verification_code">你再次輸入了已用於驗證電話號碼的驗證碼。請輸入你之前為帳戶設定的專屬 Signal PIN 碼。</string>
     <!-- Error shown when an incorrect PIN is entered. %1$d is the number of attempts remaining. -->
     <plurals name="PinEntryScreen__incorrect_pin">
         <item quantity="other">PIN碼錯誤。剩下%1$d次嘗試次數。</item>
@@ -419,8 +435,10 @@
     <string name="PinEntryScreen__no_data_could_be_found">找不到任何資料來還原你的帳戶。請建立一個新的 PIN 碼。</string>
     <!-- Labels the button in the no-data-to-restore dialog that lets the user contact support. -->
     <string name="PinEntryScreen__contact_support">聯絡支援</string>
-    <!-- Subject line of the support email composed when the user contacts support about PIN entry. Also used to route the request, so it is not translated. -->
-  <!-- Removed by excludeNonTranslatables <string name="PinEntryScreen__contact_support_email_subject" translatable="false">Signal Registration - Need Help with PIN for Android</string> -->
+    <!-- Subject line of the support email composed when the user contacts support about PIN entry. -->
+    <string name="PinEntryScreen__contact_support_email_subject">Signal 註冊 — Android 用戶需要 PIN 碼的協助</string>
+    <!-- Text placed in the body of the support email composed when the user contacts support about PIN entry. Used to route the request, so it is not translated. -->
+  <!-- Removed by excludeNonTranslatables <string name="PinEntryScreen__contact_support_email_filter" translatable="false">Signal Registration - Need Help with PIN for Android</string> -->
 
     <!-- Title for the screen asking the user to grant the notification permission -->
     <string name="AllowNotificationsScreen__allow_notifications">允許通知</string>
@@ -441,6 +459,8 @@
     <string name="MessageSyncScreen__preparing">正在準備…</string>
     <!-- Progress label shown under the sync progress bar while messages are being imported and the rest of the account is restored, after the download finishes -->
     <string name="MessageSyncScreen__finishing">完成中…</string>
+    <!-- Progress label shown while messages are being imported/restored from the downloaded backup -->
+    <string name="MessageSyncScreen__restoring">正在還原…</string>
     <!-- Informational notice in the sync screen footer, indicating the sync is end-to-end encrypted. Precedes a separate "Learn more" link. -->
     <string name="MessageSyncScreen__messages_and_chat_info_are_protected_by_e2ee">訊息和聊天資訊均受端對端加密的保護，包括同步過程。</string>
     <!-- Inline link in the sync screen footer that opens documentation about end-to-end encryption during sync -->
@@ -579,4 +599,98 @@
     <string name="CaptchaScreen__failed_to_load_captcha">載入「我不是機械人」驗證失敗</string>
     <!-- Button to cancel out of the captcha screen. -->
     <string name="CaptchaScreen__cancel">取消</string>
+
+    <!-- Shared registration strings -->
+    <!-- Content description for the back arrow in a registration screen header. -->
+    <string name="RegistrationScreen__back">返回</string>
+
+    <!-- Signal Login purchase screen -->
+    <!-- Title of the screen where the user buys a Signal Login to register without a phone number. -->
+    <string name="SignalLoginPaymentScreen__signal_login">Signal 免號登入</string>
+    <!-- Description of what a Signal Login is. Followed by a "learn more" link. -->
+    <string name="SignalLoginPaymentScreen__register_without_a_phone_number">使用 Signal 免號登入，無需電話號碼即可註冊。只需付款一次，即可獲得帳戶金鑰，立即開始使用。</string>
+    <!-- Link at the end of the description that opens a support article about Signal Login. -->
+    <string name="SignalLoginPaymentScreen__learn_more">了解更多</string>
+    <!-- Subtitle of the purchase option, clarifying the price is not a subscription. -->
+    <string name="SignalLoginPaymentScreen__one_time_purchase">一次性購買</string>
+    <!-- Selling point of the purchase option: no phone number is required. -->
+    <string name="SignalLoginPaymentScreen__no_phone_number_needed">無需電話號碼</string>
+    <!-- Selling point of the purchase option: a username is used to reach the user. -->
+    <string name="SignalLoginPaymentScreen__username_for_messaging_and_calls">以用戶名稱傳送訊息與通話</string>
+    <!-- Selling point of the purchase option: the purchase supports Signal. -->
+    <string name="SignalLoginPaymentScreen__signal_is_a_non_profit">Signal 是一個非營利組織—你的購買將有助於支持我們的使命</string>
+    <!-- Title of the option for users who already bought a Signal Login. -->
+    <string name="SignalLoginPaymentScreen__i_have_a_signal_login">我有 Signal 免號登入</string>
+    <!-- Subtitle of the existing-login option. -->
+    <string name="SignalLoginPaymentScreen__use_your_existing_account_key">使用現有的帳戶金鑰</string>
+    <!-- Selling point of the existing-login option: the account can be restored. -->
+    <string name="SignalLoginPaymentScreen__login_and_restore_your_account">登入並還原你的帳戶</string>
+    <!-- Selling point of the existing-login option, thanking the user for their previous purchase. -->
+    <string name="SignalLoginPaymentScreen__thanks_for_supporting_signal">感謝你對 Signal 的支持</string>
+    <!-- Action button that starts the purchase. Placeholder is the localized price, e.g. "$1.99". -->
+    <string name="SignalLoginPaymentScreen__pay_s">支付 %1$s</string>
+    <!-- Action button that starts the purchase, shown while the price is still loading. -->
+    <string name="SignalLoginPaymentScreen__pay">支付</string>
+    <!-- Action button shown when the user indicated they already have a Signal Login. -->
+    <string name="SignalLoginPaymentScreen__continue">繼續</string>
+    <!-- Error shown when the purchase does not go through. -->
+    <string name="SignalLoginPaymentScreen__your_purchase_could_not_be_completed">你的交易未能完成。你尚未被扣款。</string>
+
+    <!-- Signal Login details screen -->
+    <!-- Title of the screen that shows the user their newly purchased Signal Login. -->
+    <string name="SignalLoginInfoScreen__your_signal_login">你的 Signal 免號登入</string>
+    <!-- Description warning the user that a lost Signal Login cannot be recovered. -->
+    <string name="SignalLoginInfoScreen__thanks_for_your_purchase">感謝你的購買。請使用你的 Signal 免號登入進行註冊及帳戶還原。如果你忘記了金鑰，你將會無法恢復帳戶。</string>
+    <!-- Label for the account portion of the Signal Login on the credential card. -->
+    <string name="SignalLoginInfoScreen__account">帳號</string>
+    <!-- Label for the recovery portion of the Signal Login on the credential card. -->
+    <string name="SignalLoginInfoScreen__recovery">恢復金鑰</string>
+    <!-- Button on the credential card that reveals the full Signal Login. -->
+    <string name="SignalLoginInfoScreen__view_details">檢視詳情</string>
+    <!-- Body of the dialog revealing the full Signal Login. First placeholder is the account key, second is the recovery key. -->
+    <string name="SignalLoginInfoScreen__account_s_recovery_s">帳戶：%1$s\n\n恢復金鑰：%2$s</string>
+    <!-- Action button that stores the Signal Login in the device password manager. -->
+    <string name="SignalLoginInfoScreen__save_to_password_manager">儲存至密碼管理器</string>
+    <!-- Action button for users who would rather write the Signal Login down themselves. -->
+    <string name="SignalLoginInfoScreen__save_manually">手動儲存</string>
+    <!-- Error shown when the Signal Login could not be stored in the password manager. -->
+    <string name="SignalLoginInfoScreen__your_signal_login_could_not_be_saved">未能儲存你的 Signal 免號登入。請改為手動儲存。</string>
+
+    <!-- Add username screen -->
+    <!-- Title of the screen offering the user an optional username. -->
+    <string name="AddUsernameScreen__add_an_optional_username">新增自選用戶名稱</string>
+    <!-- Description explaining what a username is used for. -->
+    <string name="AddUsernameScreen__people_can_message_you_by_username">其他人現在可以使用用戶名稱而非電話號碼向你發送訊息。</string>
+    <!-- Prompt shown above the username field. -->
+    <string name="AddUsernameScreen__choose_your_username">選擇你的使用者名稱</string>
+    <!-- Label/hint for the username field. -->
+    <string name="AddUsernameScreen__username">使用者名稱</string>
+    <!-- Helper text below the username field. Followed by a "learn more" link. -->
+    <string name="AddUsernameScreen__usernames_are_always_paired_with_a_set_of_numbers">用戶名稱都會與一組數字配對。</string>
+    <!-- Link in the helper text that opens a support article about usernames. -->
+    <string name="AddUsernameScreen__learn_more">了解更多</string>
+    <!-- Button that skips choosing a username. -->
+    <string name="AddUsernameScreen__skip">略過</string>
+    <!-- Button that submits the chosen username. -->
+    <string name="AddUsernameScreen__next">下一步</string>
+    <!-- Validation error shown when the entered username is too short. -->
+    <string name="AddUsernameScreen__usernames_must_be_at_least_3_characters">用戶名稱須至少包含 3 個字元</string>
+    <!-- Validation error shown when the entered username is too long. -->
+    <string name="AddUsernameScreen__usernames_must_be_at_most_32_characters">用戶名稱最多只能包含 32 個字元</string>
+    <!-- Validation error shown when the entered username contains disallowed characters. -->
+    <string name="AddUsernameScreen__usernames_can_only_contain">用戶名稱僅可包含英文字母、數字以及底線</string>
+    <!-- Validation error shown when the entered username starts with a digit. -->
+    <string name="AddUsernameScreen__usernames_cannot_begin_with_a_number">用戶名稱不得以數字開頭</string>
+    <!-- Error shown when the chosen username cannot be reserved. -->
+    <string name="AddUsernameScreen__this_username_is_not_available">此用戶名稱無法使用。請嘗試其他名稱。</string>
+
+    <!-- ContactSupportDialog -->
+    <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__submit_debug_log">要提交除錯日誌嗎？</string>
+    <!-- Body of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__your_debug_logs">除錯日誌會幫助我們更快地修正問題。上載除錯日誌是可選項目。</string>
+    <!-- Button that contacts support with a debug log attached -->
+    <string name="ContactSupportDialog__submit_with_debug_log">上傳錯誤偵測紀錄</string>
+    <!-- Button that contacts support without attaching a debug log -->
+    <string name="ContactSupportDialog__submit_without_debug_log">上傳不含錯誤偵測紀錄</string>
 </resources>

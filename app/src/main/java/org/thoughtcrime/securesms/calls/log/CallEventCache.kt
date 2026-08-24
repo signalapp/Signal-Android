@@ -40,6 +40,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil
 import java.util.concurrent.Executor
+import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.time.Duration.Companion.hours
@@ -91,28 +92,24 @@ class CallEventCache(
     ): CallLogRow.Call? {
       val parent = next()
 
-      if (parent.type == Type.AD_HOC_CALL.code && !callLinksSeen.add(parent.peer)) {
-        return null
-      }
+      val isActiveCallLinkRow = parent.type != Type.AD_HOC_CALL.code || callLinksSeen.add(parent.peer)
 
       val children = mutableSetOf<Long>()
-      while (hasNext()) {
-        val child = next()
 
-        if (child.type == Type.AD_HOC_CALL.code) {
-          previous()
-          break
-        }
+      if (parent.type != Type.AD_HOC_CALL.code) {
+        while (hasNext()) {
+          val child = next()
 
-        if (parent.peer == child.peer && parent.direction == child.direction && isEventMatch(parent, child) && isWithinTimeout(parent, child)) {
-          children.add(child.rowId)
-        } else {
-          previous()
-          break
+          if (parent.peer == child.peer && parent.direction == child.direction && isEventMatch(parent, child) && isWithinTimeout(parent, child)) {
+            children.add(child.rowId)
+          } else {
+            previous()
+            break
+          }
         }
       }
 
-      return createParentCallLogRow(parent, children, filterState, groupCallStateMap, canUserBeginCallMap)
+      return createParentCallLogRow(parent, children, filterState, groupCallStateMap, canUserBeginCallMap, isActiveCallLinkRow)
     }
 
     private fun readDataFromDatabase(): List<CacheRecord> {
@@ -141,7 +138,7 @@ class CallEventCache(
     }
 
     private fun isWithinTimeout(parent: CacheRecord, child: CacheRecord): Boolean {
-      return (child.timestamp - parent.timestamp) <= 4.hours.inWholeMilliseconds
+      return abs(parent.timestamp - child.timestamp) <= 4.hours.inWholeMilliseconds
     }
 
     private fun canUserBeginCall(peer: Recipient, decryptedGroup: ByteArray?): CallLogRow.CanStartCall {
@@ -170,7 +167,8 @@ class CallEventCache(
       children: Set<Long>,
       filterState: FilterState,
       groupCallStateCache: MutableMap<Long, CallLogRow.GroupCallState>,
-      canUserBeginCallMap: MutableMap<Long, CallLogRow.CanStartCall>
+      canUserBeginCallMap: MutableMap<Long, CallLogRow.CanStartCall>,
+      isActiveCallLinkRow: Boolean
     ): CallLogRow.Call {
       val peer = Recipient.resolved(RecipientId.from(parent.peer))
       return CallLogRow.Call(
@@ -196,7 +194,7 @@ class CallEventCache(
         },
         children = setOf(parent.rowId) + children,
         searchQuery = filterState.query,
-        callLinkPeekInfo = AppDependencies.signalCallManager.peekInfoSnapshot[peer.id],
+        callLinkPeekInfo = if (isActiveCallLinkRow) AppDependencies.signalCallManager.peekInfoSnapshot[peer.id] else null,
         canUserBeginCall = if (peer.isGroup) {
           canUserBeginCallMap.getOrPut(parent.peer) { canUserBeginCall(peer, parent.decryptedGroupBytes) }
         } else {

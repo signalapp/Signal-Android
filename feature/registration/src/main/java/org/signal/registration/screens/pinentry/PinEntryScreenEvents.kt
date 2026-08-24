@@ -27,4 +27,5 @@ sealed class PinEntryScreenEvents {
   data object Skip : PinEntryScreenEvents()
   data object CreateNewPin : PinEntryScreenEvents()
   data object ContactSupport : PinEntryScreenEvents()
+  data object DismissContactSupport : PinEntryScreenEvents()
 }

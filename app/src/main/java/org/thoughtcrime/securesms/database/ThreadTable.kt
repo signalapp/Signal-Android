@@ -46,6 +46,7 @@ import org.thoughtcrime.securesms.database.MessageTable.MarkedMessageInfo
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.attachments
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.drafts
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.groupReceipts
+import org.thoughtcrime.securesms.database.SignalDatabase.Companion.groups
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.mentions
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.messageLog
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.messages
@@ -62,6 +63,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.BadGroupIdException
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.jobs.DeleteAbandonedAttachmentsJob
+import org.thoughtcrime.securesms.jobs.GroupDeletedBackfillWorkerJob
 import org.thoughtcrime.securesms.jobs.MultiDeviceDeleteSyncJob
 import org.thoughtcrime.securesms.jobs.OptimizeMessageSearchIndexJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -80,7 +82,6 @@ import org.thoughtcrime.securesms.util.isPoll
 import org.thoughtcrime.securesms.util.isScheduled
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord
 import org.whispersystems.signalservice.api.storage.SignalContactRecord
-import org.whispersystems.signalservice.api.storage.SignalGroupV1Record
 import org.whispersystems.signalservice.api.storage.SignalGroupV2Record
 import org.whispersystems.signalservice.api.storage.toSignalServiceAddress
 import org.whispersystems.signalservice.internal.storage.protos.AccountRecord
@@ -707,10 +708,10 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       SELECT COUNT(${RecipientTable.MUTE_UNTIL})
       FROM $TABLE_NAME
         LEFT OUTER JOIN ${RecipientTable.TABLE_NAME} ON $TABLE_NAME.$RECIPIENT_ID = ${RecipientTable.TABLE_NAME}.${RecipientTable.ID}
-      WHERE 
+      WHERE
         $ARCHIVED = 0 AND
-        ${RecipientTable.MUTE_UNTIL} = 0
-        $chatFolderQuery 
+        ${RecipientTable.MUTE_UNTIL} < ${System.currentTimeMillis()}
+        $chatFolderQuery
       """
 
     return readableDatabase.rawQuery(unmutedChats, null).readToSingleBoolean()
@@ -1383,6 +1384,10 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       MultiDeviceDeleteSyncJob.enqueueThreadDeletes(addressableMessages, isFullDelete = true)
     }
 
+    for (recipientId in recipientIds) {
+      groups.clearGroupIfLeftAndDeleted(recipientId)
+    }
+
     notifyConversationListListeners()
     notifyConversationListeners(selectedConversations)
     notifyStickerListeners()
@@ -1407,6 +1412,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         threadIdCache.clear()
       }
     }
+
+    AppDependencies.jobManager.add(GroupDeletedBackfillWorkerJob())
 
     notifyConversationListListeners()
     ConversationUtil.clearAllShortcuts(context)
@@ -1598,10 +1605,6 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
   fun applyStorageSyncUpdate(recipientId: RecipientId, record: SignalContactRecord) {
     applyStorageSyncUpdate(recipientId, record.proto.archived, record.proto.markedUnread, isGroup = false)
-  }
-
-  fun applyStorageSyncUpdate(recipientId: RecipientId, record: SignalGroupV1Record) {
-    applyStorageSyncUpdate(recipientId, record.proto.archived, record.proto.markedUnread, isGroup = true)
   }
 
   fun applyStorageSyncUpdate(recipientId: RecipientId, record: SignalGroupV2Record) {
@@ -2310,6 +2313,28 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     return Reader(cursor)
   }
 
+  fun deleteThread(recipientId: RecipientId) {
+    val threadId = getThreadIdIfExistsFor(recipientId)
+    if (threadId == -1L) {
+      return
+    }
+
+    val deleted = writableDatabase
+      .delete(TABLE_NAME)
+      .where("$RECIPIENT_ID = ?", recipientId)
+      .run()
+
+    synchronized(threadIdCache) {
+      threadIdCache.remove(recipientId)
+    }
+
+    for (table in threadIdDatabaseTables) {
+      table.onDeletedGroupThread(threadId)
+    }
+
+    Log.d(TAG, "Deleted thread: $deleted")
+  }
+
   private fun ChatFolderRecord.toQuery(): String {
     if (this.id == -1L || this.folderType == ChatFolderRecord.FolderType.ALL) {
       return ""
@@ -2340,7 +2365,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     }
 
     if (!this.showMutedChats) {
-      fullQuery.add("${RecipientTable.TABLE_NAME}.${RecipientTable.MUTE_UNTIL} = 0")
+      fullQuery.add("${RecipientTable.TABLE_NAME}.${RecipientTable.MUTE_UNTIL} < ${System.currentTimeMillis()}")
     }
 
     return "AND ${fullQuery.joinToString(" AND ") { "($it)" }}"

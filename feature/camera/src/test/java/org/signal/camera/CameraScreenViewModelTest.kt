@@ -11,6 +11,7 @@ import androidx.camera.core.CameraControl
 import androidx.camera.core.CameraInfo
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
+import androidx.camera.core.ImageCapture
 import androidx.camera.core.Preview
 import androidx.camera.core.ZoomState
 import androidx.camera.lifecycle.ProcessCameraProvider
@@ -65,6 +66,12 @@ class CameraScreenViewModelTest {
   @Before
   fun setUp() {
     Dispatchers.setMain(testDispatcher)
+    CameraDependencies.init(
+      RuntimeEnvironment.getApplication(),
+      object : CameraDependencies.Provider {
+        override fun isStoriesFeatureEnabled(): Boolean = false
+      }
+    )
     viewModel = CameraScreenViewModel()
 
     every { mockCamera.cameraControl } returns mockCameraControl
@@ -129,6 +136,7 @@ class CameraScreenViewModelTest {
 
   private fun List<Any?>.hasVideoCapture() = any { it is VideoCapture<*> }
   private fun List<Any?>.hasImageAnalysis() = any { it is ImageAnalysis }
+  private fun List<Any?>.imageCapture() = filterIsInstance<ImageCapture>().firstOrNull()
 
   private fun setupZoomState(minZoom: Float, maxZoom: Float) {
     val mockZoomState: ZoomState = mockk()
@@ -332,6 +340,26 @@ class CameraScreenViewModelTest {
     viewModel.onEvent(CameraScreenEvents.NextFlashMode)
 
     assertThat(viewModel.state.value.flashMode).isEqualTo(FlashMode.Off)
+  }
+
+  @Test
+  fun `rebinding after the flash mode was set carries that flash mode onto the new ImageCapture`() {
+    bindCamera()
+    viewModel.onEvent(CameraScreenEvents.SetFlashMode(FlashMode.On))
+
+    // A camera switch or a re-entry into the camera rebinds, building a brand new ImageCapture.
+    val attempts = captureBindingAttempts()
+    bindCamera()
+
+    assertThat(attempts.last().imageCapture()?.flashMode).isEqualTo(ImageCapture.FLASH_MODE_ON)
+  }
+
+  @Test
+  fun `binding with the default flash mode leaves the ImageCapture flash off`() {
+    val attempts = captureBindingAttempts()
+    bindCamera()
+
+    assertThat(attempts.last().imageCapture()?.flashMode).isEqualTo(ImageCapture.FLASH_MODE_OFF)
   }
 
   // ===========================================================================

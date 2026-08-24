@@ -1,7 +1,9 @@
 package org.thoughtcrime.securesms.megaphone;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
+
+import androidx.activity.OnBackPressedCallback;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
@@ -12,6 +14,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.PlayStoreUtil;
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;
 
 /**
  * Shown when a users build fully expires. Controlled by {@link Megaphones.Event#CLIENT_DEPRECATED}.
@@ -24,8 +27,17 @@ public class ClientDeprecatedActivity extends PassphraseRequiredActivity {
   protected void onCreate(Bundle savedInstanceState, boolean ready) {
     setContentView(R.layout.client_deprecated_activity);
 
+    SystemWindowInsetsSetter.attach(findViewById(R.id.client_deprecated_root), this, WindowInsetsCompat.Type.systemBars());
+
     findViewById(R.id.client_deprecated_update_button).setOnClickListener(v -> onUpdateClicked());
     findViewById(R.id.client_deprecated_dont_update_button).setOnClickListener(v -> onDontUpdateClicked());
+
+    getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+      @Override
+      public void handleOnBackPressed() {
+        // The user must explicitly choose to update or to dismiss this screen.
+      }
+    });
   }
 
   @Override
@@ -37,12 +49,6 @@ public class ClientDeprecatedActivity extends PassphraseRequiredActivity {
   protected void onResume() {
     super.onResume();
     theme.onResume(this);
-  }
-
-  @SuppressLint("MissingSuperCall")
-  @Override
-  public void onBackPressed() {
-    // Disabled
   }
 
   private void onUpdateClicked() {

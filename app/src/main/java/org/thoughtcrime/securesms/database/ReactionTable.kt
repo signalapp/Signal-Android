@@ -161,7 +161,7 @@ class ReactionTable(context: Context, databaseHelper: SignalDatabase) : Database
     }
   }
 
-  private fun hasReactions(messageId: MessageId): Boolean {
+  fun hasReactions(messageId: MessageId): Boolean {
     val query = "$MESSAGE_ID = ?"
     val args = SqlUtil.buildArgs(messageId.id)
 
@@ -178,6 +178,15 @@ class ReactionTable(context: Context, databaseHelper: SignalDatabase) : Database
       .run()
 
     Log.d(TAG, "Remapped $fromId to $toId. count: $count")
+  }
+
+  override fun onDeletedRecipient(recipientId: RecipientId) {
+    val deleted = writableDatabase
+      .delete(TABLE_NAME)
+      .where("$AUTHOR_ID = ?", recipientId)
+      .run()
+
+    Log.d(TAG, "Deleted recipient: $deleted")
   }
 
   fun deleteAbandonedReactions() {

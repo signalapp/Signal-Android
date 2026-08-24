@@ -7,6 +7,7 @@ import android.os.Parcelable
 import org.signal.imageeditor.core.Bounds
 import org.signal.imageeditor.core.RendererContext
 import org.signal.imageeditor.core.SelectableRenderer
+import org.signal.imageeditor.core.TappableRenderer
 import org.signal.imageeditor.core.renderers.InvalidateableRenderer
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 

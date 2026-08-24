@@ -16,16 +16,19 @@ import android.widget.Toast
 import androidx.annotation.PluralsRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalResources
@@ -132,7 +135,9 @@ class MultiselectForwardFragment :
   private var dismissibleDialog: SimpleProgressDialog.DismissibleDialog? = null
   private var handler: Handler? = null
 
+  /** Height of the bottom bar's content, excluding any window inset padding it applies. */
   private var bottomBarHeightPx by mutableIntStateOf(0)
+  private var isBottomBarVisible by mutableStateOf(false)
 
   private val args: MultiselectForwardFragmentArgs by lazy {
     requireArguments().getParcelableCompat(ARGS, MultiselectForwardFragmentArgs::class.java)!!
@@ -157,7 +162,7 @@ class MultiselectForwardFragment :
         mapStateToConfiguration = this@MultiselectForwardFragment::getConfiguration,
         contactSearchCallbacks = remember { SearchCallbacks() },
         additionalEntries = findListener<SearchConfigurationProvider>()?.getAdditionalEntries() ?: persistentHashMapOf(),
-        bottomContentPadding = with(LocalDensity.current) { bottomBarHeightPx.toDp() }
+        bottomContentPadding = with(LocalDensity.current) { (if (isBottomBarVisible) bottomBarHeightPx else 0).toDp() }
       )
     }
   }
@@ -203,7 +208,9 @@ class MultiselectForwardFragment :
             isSplitPane = isSplitPane,
             modifier = Modifier
               .fillMaxWidth()
+              .imePadding()
               .navigationBarsPadding()
+              .onSizeChanged { bottomBarHeightPx = it.height }
           )
         }
       }
@@ -214,10 +221,6 @@ class MultiselectForwardFragment :
     }
 
     bottomBar.visible = false
-
-    bottomBar.addOnLayoutChangeListener { _, _, top, _, bottom, _, _, _, _ ->
-      bottomBarHeightPx = if (bottomBar.isVisible) bottom - top else 0
-    }
 
     container.addView(bottomBar)
 
@@ -245,13 +248,14 @@ class MultiselectForwardFragment :
           if (contactSelection.isNotEmpty() && !bottomBar.isVisible) {
             bottomBar.animation = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_fade_from_bottom)
             bottomBar.visible = true
+            isBottomBarVisible = true
             if (args.forceDisableAddMessage) {
               ViewUtil.hideKeyboard(requireContext(), bottomBar)
             }
           } else if (contactSelection.isEmpty() && bottomBar.isVisible) {
             bottomBar.animation = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_fade_to_bottom)
             bottomBar.visible = false
-            bottomBarHeightPx = 0
+            isBottomBarVisible = false
           }
         }
       }

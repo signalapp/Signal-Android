@@ -12,13 +12,13 @@ import androidx.annotation.DrawableRes
 import androidx.core.app.NotificationCompat
 import androidx.core.app.ServiceCompat
 import androidx.core.content.IntentCompat
+import org.signal.core.util.ForegroundServiceUtil
 import org.signal.core.util.PendingIntentFlags.mutable
+import org.signal.core.util.UnableToStartException
 import org.signal.core.util.logging.Log
 import org.signal.network.util.Preconditions
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.jobs.ForegroundServiceUtil
-import org.thoughtcrime.securesms.jobs.UnableToStartException
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import java.util.concurrent.atomic.AtomicInteger
 import java.util.concurrent.locks.ReentrantLock
@@ -37,6 +37,7 @@ class GenericForegroundService : Service() {
 
     private const val NOTIFICATION_ID = 827353982
     private const val EXTRA_TITLE = "extra_title"
+    private const val EXTRA_CONTENT_TEXT = "extra_content_text"
     private const val EXTRA_CHANNEL_ID = "extra_channel_id"
     private const val EXTRA_ICON_RES = "extra_icon_res"
     private const val EXTRA_ID = "extra_id"
@@ -48,7 +49,7 @@ class GenericForegroundService : Service() {
     private const val ACTION_STOP = "stop"
 
     private val NEXT_ID = AtomicInteger()
-    private val DEFAULT_ENTRY = Entry("", NotificationChannels.getInstance().OTHER, R.drawable.ic_notification, -1, 0, 0, false)
+    private val DEFAULT_ENTRY = Entry("", null, NotificationChannels.getInstance().OTHER, R.drawable.ic_notification, -1, 0, 0, false)
 
     /**
      * Waits for {@param delayMillis} ms before starting the foreground task.
@@ -211,6 +212,14 @@ class GenericForegroundService : Service() {
     }
   }
 
+  fun replaceContentText(id: Int, contentText: String) {
+    lock.withLock {
+      updateEntry(id) { oldEntry ->
+        oldEntry.copy(contentText = contentText)
+      }
+    }
+  }
+
   fun replaceProgress(id: Int, progressMax: Int, progress: Int, indeterminate: Boolean) {
     lock.withLock {
       updateEntry(id) { oldEntry ->
@@ -240,6 +249,7 @@ class GenericForegroundService : Service() {
         NotificationCompat.Builder(this, active.channelId)
           .setSmallIcon(active.iconRes)
           .setContentTitle(active.title)
+          .setContentText(active.contentText)
           .setProgress(active.progressMax, active.progress, active.indeterminate)
           .setContentIntent(active.contentIntent ?: PendingIntent.getActivity(this, 0, MainActivity.clearTop(this), mutable()))
           .setVibrate(longArrayOf(0))
@@ -280,6 +290,7 @@ class GenericForegroundService : Service() {
 
   private data class Entry(
     val title: String,
+    val contentText: String?,
     val channelId: String,
     @field:DrawableRes @param:DrawableRes val iconRes: Int,
     val id: Int,
@@ -296,6 +307,7 @@ class GenericForegroundService : Service() {
       fun fromIntent(intent: Intent): Entry {
         return Entry(
           title = intent.getStringExtra(EXTRA_TITLE) ?: DEFAULT_ENTRY.title,
+          contentText = intent.getStringExtra(EXTRA_CONTENT_TEXT) ?: DEFAULT_ENTRY.contentText,
           channelId = intent.getStringExtra(EXTRA_CHANNEL_ID) ?: DEFAULT_ENTRY.channelId,
           iconRes = intent.getIntExtra(EXTRA_ICON_RES, DEFAULT_ENTRY.iconRes),
           id = intent.getIntExtra(EXTRA_ID, DEFAULT_ENTRY.id),

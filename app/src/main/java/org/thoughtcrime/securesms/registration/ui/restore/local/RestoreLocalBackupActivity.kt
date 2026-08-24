@@ -15,11 +15,14 @@ import androidx.activity.viewModels
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -221,6 +224,7 @@ private fun RestoreLocalBackupScreen(
     BoxWithConstraints(
       modifier = Modifier
         .fillMaxSize()
+        .windowInsetsPadding(WindowInsets.safeDrawing)
         .horizontalGutters()
     ) {
       val totalHeightPx = with(density) { maxHeight.roundToPx() }

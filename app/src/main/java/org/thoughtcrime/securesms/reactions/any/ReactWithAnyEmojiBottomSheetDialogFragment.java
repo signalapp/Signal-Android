@@ -16,6 +16,7 @@ import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.loader.app.LoaderManager;
@@ -28,7 +29,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.thoughtcrime.securesms.R;
 import org.signal.core.ui.FixedRoundedCornerBottomSheetDialogFragment;
-import org.thoughtcrime.securesms.components.emoji.EmojiEventListener;
+import org.signal.emoji.EmojiEventListener;
 import org.thoughtcrime.securesms.components.emoji.EmojiPageView;
 import org.thoughtcrime.securesms.components.emoji.EmojiPageViewGridAdapter;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -37,6 +38,7 @@ import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageCategoriesAdap
 import org.thoughtcrime.securesms.keyboard.emoji.KeyboardPageSearchView;
 import org.thoughtcrime.securesms.reactions.ReactionsRepository;
 import org.thoughtcrime.securesms.reactions.edit.EditReactionsActivity;
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel;
@@ -213,6 +215,10 @@ public final class ReactWithAnyEmojiBottomSheetDialogFragment extends FixedRound
     }
 
     container.addView(tabBar);
+
+    // The tab bar is pinned to the bottom of the dialog window rather than the sheet, so it is not covered by
+    // the sheet's own inset padding.
+    SystemWindowInsetsSetter.attach(tabBar.findViewById(R.id.emoji_categories_row), getViewLifecycleOwner(), WindowInsetsCompat.Type.navigationBars());
 
     emojiPageView.addOnScrollListener(new TopAndBottomShadowHelper(requireView().findViewById(R.id.react_with_any_emoji_top_shadow),
                                                                    tabBar.findViewById(R.id.react_with_any_emoji_bottom_shadow)));

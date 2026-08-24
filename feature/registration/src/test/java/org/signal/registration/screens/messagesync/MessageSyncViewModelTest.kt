@@ -7,7 +7,9 @@ package org.signal.registration.screens.messagesync
 
 import assertk.assertThat
 import assertk.assertions.contains
+import assertk.assertions.containsExactly
 import assertk.assertions.doesNotContain
+import assertk.assertions.isEqualTo
 import assertk.assertions.isFalse
 import assertk.assertions.isTrue
 import io.mockk.coVerify
@@ -80,6 +82,17 @@ class MessageSyncViewModelTest {
   }
 
   @Test
+  fun `applyEvent LearnMoreClick emits an action to open the learn more article`() = runTest(testDispatcher) {
+    every { mockRepository.restoreLinkAndSyncBackup() } returns flowOf(LinkAndSyncProgress.Failed())
+
+    val viewModel = createViewModel()
+    val actions = collectActions(viewModel)
+    viewModel.applyEvent(viewModel.state.value, MessageSyncScreenEvent.LearnMoreClick) {}
+
+    assertThat(actions).containsExactly(MessageSyncScreenAction.OpenLearnMoreArticle)
+  }
+
+  @Test
   fun `applyEvent RetryClick clears the dialog and restarts the restore`() = runTest(testDispatcher) {
     every { mockRepository.restoreLinkAndSyncBackup() } returns flowOf(LinkAndSyncProgress.Failed())
 
@@ -136,15 +149,27 @@ class MessageSyncViewModelTest {
   }
 
   @Test
-  fun `restore Restoring switches to indeterminate finishing state`() = runTest(testDispatcher) {
+  fun `restore Finalizing switches to indeterminate finishing state`() = runTest(testDispatcher) {
     every { mockRepository.restoreLinkAndSyncBackup() } returns flowOf(
       LinkAndSyncProgress.Downloading(bytesDownloaded = 5.bytes, totalBytes = 10.bytes),
-      LinkAndSyncProgress.Restoring
+      LinkAndSyncProgress.Finalizing
     )
 
     val viewModel = createViewModel()
 
     assertThat(viewModel.state.value.isFinishing).isTrue()
+  }
+
+  @Test
+  fun `restore Restoring surfaces determinate restore progress without finishing`() = runTest(testDispatcher) {
+    every { mockRepository.restoreLinkAndSyncBackup() } returns flowOf(
+      LinkAndSyncProgress.Restoring(bytesRestored = 3.bytes, totalBytes = 10.bytes)
+    )
+
+    val viewModel = createViewModel()
+
+    assertThat(viewModel.state.value.stage).isEqualTo(MessageSyncScreenState.Stage.Restoring(restored = 3.bytes, total = 10.bytes))
+    assertThat(viewModel.state.value.isFinishing).isFalse()
   }
 
   private fun TestScope.createViewModel(): MessageSyncViewModel {
@@ -156,5 +181,11 @@ class MessageSyncViewModelTest {
     // Keep the WhileSubscribed state flow hot so state.value reflects updates during the test.
     backgroundScope.launch { viewModel.state.collect {} }
     return viewModel
+  }
+
+  private fun TestScope.collectActions(viewModel: MessageSyncViewModel): List<MessageSyncScreenAction> {
+    val actions = mutableListOf<MessageSyncScreenAction>()
+    backgroundScope.launch(testDispatcher) { viewModel.actions.collect { actions.add(it) } }
+    return actions
   }
 }

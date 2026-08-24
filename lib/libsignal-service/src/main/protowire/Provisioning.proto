@@ -44,7 +44,8 @@ message ProvisionMessage {
   optional bytes mediaRootBackupKey = 16; // 32-bytes
   optional bytes aciBinary = 17; // 16-byte UUID
   optional bytes pniBinary = 18; // 16-byte UUID
-  // NEXT ID: 19
+  optional bytes authCredentialSalt = 19; // 16-bytes
+  // NEXT ID: 20
 }
 
 enum ProvisioningVersion {

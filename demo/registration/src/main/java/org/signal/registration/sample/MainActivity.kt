@@ -136,7 +136,8 @@ private fun SampleNavHost(
       context = context.applicationContext,
       networkController = registrationDependencies.networkController,
       storageController = registrationDependencies.storageController,
-      isLinkAndSyncAvailable = registrationDependencies.isLinkAndSyncAvailable
+      isLinkAndSyncAvailable = registrationDependencies.isLinkAndSyncAvailable,
+      isPhoneNumberlessRegistrationAvailable = registrationDependencies.isPhoneNumberlessRegistrationAvailable
     )
   }
 

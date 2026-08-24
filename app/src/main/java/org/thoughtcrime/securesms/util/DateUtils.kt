@@ -296,7 +296,9 @@ object DateUtils : android.text.format.DateUtils() {
     } else if (isTomorrow(timestamp)) {
       context.getString(R.string.DateUtils_tomorrow)
     } else {
-      localDateTime.dayOfWeek.getDisplayName(TextStyle.FULL, Locale.getDefault())
+      val locale = Locale.getDefault()
+      // Many locales (e.g. Dutch, French, Spanish) render weekday names in lowercase, but this is used as a standalone label, so we want it capitalized.
+      localDateTime.dayOfWeek.getDisplayName(TextStyle.FULL, locale).capitalizeFirstChar(locale)
     }
     val time = localDateTime.toLocalTime().formatHours(context)
     return context.getString(R.string.DateUtils_schedule_at, dayModifier, time)
@@ -306,6 +308,7 @@ object DateUtils : android.text.format.DateUtils() {
     return timestamp.toDateString("EEE, MMM d", locale)
   }
 
+  @JvmStatic
   fun formatDateWithYear(locale: Locale, timestamp: Long): String {
     return timestamp.toDateString("MMM d, yyyy", locale)
   }
@@ -455,6 +458,13 @@ object DateUtils : android.text.format.DateUtils() {
     }
     this.dateFormatSymbols = symbols
     return this
+  }
+
+  /**
+   * Uppercases the first character using the rules of the provided [locale]. A no-op for scripts that have no notion of case.
+   */
+  private fun String.capitalizeFirstChar(locale: Locale): String {
+    return replaceFirstChar { it.titlecase(locale) }
   }
 
   private data class TemplateLocale(val template: String, val locale: Locale)

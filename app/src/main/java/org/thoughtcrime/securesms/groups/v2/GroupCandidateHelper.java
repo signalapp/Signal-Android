@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.ProfileUtil;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.groupsv2.GroupCandidate;
+import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
 import org.signal.core.models.ServiceId;
 
 import java.io.IOException;
@@ -56,7 +57,15 @@ public class GroupCandidateHelper {
     if (!candidate.hasValidProfileKeyCredential()) {
       recipientTable.clearProfileKeyCredential(recipient.getId());
 
-      Optional<ExpiringProfileKeyCredential> credential = ProfileUtil.updateExpiringProfileKeyCredential(recipient);
+      Optional<ExpiringProfileKeyCredential> credential;
+      try {
+        credential = ProfileUtil.updateExpiringProfileKeyCredential(recipient);
+      } catch (NotFoundException e) {
+        Log.w(TAG, "Profile not found for " + recipient.getId() + ". Marking unregistered and falling back to an invite.");
+        recipientTable.markUnregistered(recipient.getId());
+        credential = Optional.empty();
+      }
+
       if (credential.isPresent()) {
         candidate = candidate.withExpiringProfileKeyCredential(credential.get());
       } else {

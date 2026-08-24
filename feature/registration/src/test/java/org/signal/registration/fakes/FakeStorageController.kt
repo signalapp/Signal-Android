@@ -29,11 +29,18 @@ import java.time.LocalDateTime
  */
 class FakeStorageController : StorageController {
 
+  /** Guards [inProgressData], whose read-modify-write updates arrive concurrently from multiple [kotlinx.coroutines.Dispatchers.IO] threads. */
+  private val dataLock = Any()
+
   var inProgressData: RegistrationData = RegistrationData()
     private set
   var committedData: RegistrationData? = null
     private set
   var restoreDecision: RestoreDecision? = null
+    private set
+
+  /** How many times [onRegistrationFlowFinished] has been called. The app hangs post-registration bookkeeping off of this. */
+  var registrationFlowFinishedCount: Int = 0
     private set
 
   /** Simulates a previously-registered device, which the flow will try to re-register via recovery password. */
@@ -73,24 +80,34 @@ class FakeStorageController : StorageController {
   override suspend fun getPreExistingRegistrationData(): PreExistingRegistrationData? = preExistingRegistrationData
 
   override suspend fun clearAllData() {
-    inProgressData = RegistrationData()
+    synchronized(dataLock) {
+      inProgressData = RegistrationData()
+    }
   }
 
   override suspend fun clearLocalDataAndRestart() = notExpected()
 
-  override suspend fun readInProgressRegistrationData(): RegistrationData = inProgressData
+  override suspend fun readInProgressRegistrationData(): RegistrationData = synchronized(dataLock) { inProgressData }
 
   override suspend fun updateInProgressRegistrationData(updater: RegistrationData.Builder.() -> Unit) {
-    inProgressData = inProgressData.newBuilder().apply(updater).lastUpdatedMillis(System.currentTimeMillis()).build()
+    synchronized(dataLock) {
+      inProgressData = inProgressData.newBuilder().apply(updater).lastUpdatedMillis(System.currentTimeMillis()).build()
+    }
   }
 
   override suspend fun commitRegistrationData() {
-    val accountData = inProgressData.accountData
-    val accountDataComplete = accountData != null && accountData.e164.isNotEmpty() && accountData.aci.isNotEmpty() && accountData.pni.isNotEmpty() && accountData.servicePassword.isNotEmpty()
-    if (!inProgressData.accountDataCommitted && accountDataComplete) {
-      inProgressData = inProgressData.newBuilder().accountDataCommitted(true).build()
+    synchronized(dataLock) {
+      val accountData = inProgressData.accountData
+      val accountDataComplete = accountData != null && !accountData.e164.isNullOrEmpty() && accountData.aci.isNotEmpty() && !accountData.pni.isNullOrEmpty() && accountData.servicePassword.isNotEmpty()
+      if (!inProgressData.accountDataCommitted && accountDataComplete) {
+        inProgressData = inProgressData.newBuilder().accountDataCommitted(true).build()
+      }
+      committedData = inProgressData
     }
-    committedData = inProgressData
+  }
+
+  override suspend fun onRegistrationFlowFinished() {
+    registrationFlowFinishedCount++
   }
 
   override suspend fun setRestoreDecision(decision: RestoreDecision) {

@@ -24,7 +24,9 @@ sealed class PhoneNumberEntryScreenEvents {
    * new raw field text are provided so the view model can determine whether this was a single typed character or a bulk
    * change (a paste or autofill).
    */
-  data class NationalNumberChanged(val oldValue: String, val newValue: String) : PhoneNumberEntryScreenEvents()
+  data class NationalNumberChanged(val oldValue: String, val newValue: String) : PhoneNumberEntryScreenEvents() {
+    override fun toString(): String = "NationalNumberChanged(oldValue=${oldValue.censor()}, newValue=${newValue.censor()})"
+  }
 
   /** The user changed the country via the country picker. */
   data class CountrySelected(val countryCode: Int, val regionCode: String, val countryName: String, val countryEmoji: String) : PhoneNumberEntryScreenEvents()
@@ -50,6 +52,9 @@ sealed class PhoneNumberEntryScreenEvents {
 
   /** The user chose to link this device to an existing account instead of registering a new number. */
   data object LinkDevice : PhoneNumberEntryScreenEvents()
+
+  /** The user chose to register with a Signal Login instead of a phone number. */
+  data object RegisterWithoutNumber : PhoneNumberEntryScreenEvents()
 
   data class CaptchaCompleted(val token: String) : PhoneNumberEntryScreenEvents() {
     override fun toString(): String = "CaptchaCompleted(token=${token.censor()})"

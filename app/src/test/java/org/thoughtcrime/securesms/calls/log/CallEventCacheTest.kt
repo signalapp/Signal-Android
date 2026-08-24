@@ -3,6 +3,8 @@ package org.thoughtcrime.securesms.calls.log
 import assertk.assertThat
 import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
+import assertk.assertions.isNotNull
+import assertk.assertions.isNull
 import assertk.assertions.size
 import io.mockk.every
 import io.mockk.mockk
@@ -16,8 +18,11 @@ import org.thoughtcrime.securesms.database.CallTable.Event
 import org.thoughtcrime.securesms.database.CallTable.Type
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.service.webrtc.CallLinkPeekInfo
 import org.thoughtcrime.securesms.service.webrtc.SignalCallManager
 import kotlin.time.Duration.Companion.days
+import kotlin.time.Duration.Companion.hours
 
 class CallEventCacheTest {
 
@@ -151,6 +156,42 @@ class CallEventCacheTest {
   }
 
   @Test
+  fun `Given two entries in descending timestamp order outside of time threshold, when I clusterCallEvents, then I expect two entries`() {
+    val testData = listOf(
+      createCacheRecord(
+        callId = 1,
+        timestamp = 1.days.inWholeMilliseconds
+      ),
+      createCacheRecord(
+        callId = 2,
+        timestamp = 0
+      )
+    )
+
+    val filterState = CallEventCache.FilterState()
+    val result = CallEventCache.clusterCallEvents(testData, filterState)
+    assertThat(result).size().isEqualTo(2)
+  }
+
+  @Test
+  fun `Given two entries in descending timestamp order within time threshold, when I clusterCallEvents, then I expect one entry`() {
+    val testData = listOf(
+      createCacheRecord(
+        callId = 1,
+        timestamp = 1.hours.inWholeMilliseconds
+      ),
+      createCacheRecord(
+        callId = 2,
+        timestamp = 0
+      )
+    )
+
+    val filterState = CallEventCache.FilterState()
+    val result = CallEventCache.clusterCallEvents(testData, filterState)
+    assertThat(result).size().isEqualTo(1)
+  }
+
+  @Test
   fun `Given two entries with a mismatch between them, when I clusterCallEvents, then I expect three entries`() {
     val testData = listOf(
       createCacheRecord(
@@ -173,7 +214,7 @@ class CallEventCacheTest {
   }
 
   @Test
-  fun `Given two call link entries in a row, when I clusterCallEvents, then I expect two entries`() {
+  fun `Given two call link entries on different links, when I clusterCallEvents, then I expect two entries`() {
     val testData = listOf(
       createCacheRecord(
         callId = 1,
@@ -190,6 +231,59 @@ class CallEventCacheTest {
     val filterState = CallEventCache.FilterState()
     val result = CallEventCache.clusterCallEvents(testData, filterState)
     assertThat(result).size().isEqualTo(2)
+  }
+
+  @Test
+  fun `Given two calls on the same call link, when I clusterCallEvents, then I expect two entries`() {
+    val testData = listOf(
+      createCacheRecord(
+        callId = 2,
+        peer = 1,
+        type = Type.AD_HOC_CALL.code
+      ),
+      createCacheRecord(
+        callId = 1,
+        peer = 1,
+        type = Type.AD_HOC_CALL.code
+      )
+    )
+
+    val filterState = CallEventCache.FilterState()
+    val result = CallEventCache.clusterCallEvents(testData, filterState)
+    assertThat(result).size().isEqualTo(2)
+  }
+
+  @Test
+  fun `Given multiple calls on the same call link, when I clusterCallEvents, then only the newest row keeps peek info`() {
+    every { AppDependencies.signalCallManager.peekInfoSnapshot } returns mapOf(
+      RecipientId.from(1) to CallLinkPeekInfo(callId = null, isActive = true, isJoined = false)
+    )
+
+    val testData = listOf(
+      createCacheRecord(
+        callId = 3,
+        peer = 1,
+        type = Type.AD_HOC_CALL.code
+      ),
+      createCacheRecord(
+        callId = 2,
+        peer = 1,
+        type = Type.AD_HOC_CALL.code
+      ),
+      createCacheRecord(
+        callId = 1,
+        peer = 1,
+        type = Type.AD_HOC_CALL.code
+      )
+    )
+
+    val filterState = CallEventCache.FilterState()
+    val result = CallEventCache.clusterCallEvents(testData, filterState)
+
+    assertThat(result).size().isEqualTo(3)
+    assertThat(result[0].callLinkPeekInfo).isNotNull()
+    assertThat(result[1].callLinkPeekInfo).isNull()
+    assertThat(result[2].callLinkPeekInfo).isNull()
   }
 
   private fun createCacheRecord(

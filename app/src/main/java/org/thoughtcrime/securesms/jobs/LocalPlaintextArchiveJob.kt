@@ -11,6 +11,7 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import org.signal.core.util.PendingIntentFlags.immutable
 import org.signal.core.util.Stopwatch
+import org.signal.core.util.UnableToStartException
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.LocalExportProgress
@@ -28,6 +29,7 @@ import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import org.signal.core.ui.R as CoreUiR
 
 class LocalPlaintextArchiveJob internal constructor(
   private val destinationUri: String,
@@ -73,7 +75,7 @@ class LocalPlaintextArchiveJob internal constructor(
         context,
         context.getString(R.string.LocalBackupJob_creating_signal_backup),
         NotificationChannels.getInstance().BACKUPS,
-        R.drawable.ic_signal_backup,
+        CoreUiR.drawable.ic_signal_backup,
         contentIntent
       )
     } catch (e: UnableToStartException) {
@@ -100,6 +102,8 @@ class LocalPlaintextArchiveJob internal constructor(
         Log.w(TAG, "Unable to create export directory")
         return Result.failure()
       }
+
+      exportDir.createFile("application/octet-stream", ".nomedia")
 
       stopwatch.split("create-dir")
 
@@ -170,7 +174,7 @@ class LocalPlaintextArchiveJob internal constructor(
     when {
       exporting != null -> {
         val phase = NotificationPhase.Export(exporting.phase)
-        val title = when (exporting.phase) {
+        val contentText = when (exporting.phase) {
           LocalBackupCreationProgress.ExportPhase.MESSAGE -> {
             if (exporting.frameTotalCount > 0) {
               context.getString(
@@ -188,7 +192,7 @@ class LocalPlaintextArchiveJob internal constructor(
           else -> context.getString(R.string.BackupCreationProgressRow__preparing_backup)
         }
         if (previousPhase != phase || exporting.phase == LocalBackupCreationProgress.ExportPhase.MESSAGE) {
-          notification.replaceTitle(title)
+          notification.replaceContentText(contentText)
           previousPhase = phase
         }
         if (exporting.frameTotalCount == 0L) {
@@ -200,7 +204,7 @@ class LocalPlaintextArchiveJob internal constructor(
 
       transferring != null -> {
         if (previousPhase !is NotificationPhase.Transfer) {
-          notification.replaceTitle(AppDependencies.application.getString(R.string.LocalArchiveJob__exporting_media))
+          notification.replaceContentText(AppDependencies.application.getString(R.string.LocalArchiveJob__exporting_media))
           previousPhase = NotificationPhase.Transfer
         }
         if (transferring.total == 0L) {

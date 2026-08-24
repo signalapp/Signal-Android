@@ -6,27 +6,130 @@
   <string name="MediaSendDialogs__youll_lose_any_changes">તમે આ ફોટો પર કરેલા કોઈ પણ ફેરફારો ગુમાવશો.</string>
   <!-- Confirmation button that discards the user\'s image edits. -->
   <string name="MediaSendDialogs__discard">કાઢી નાખો</string>
+  <!-- Dialog title shown when the user tries to close media send while media is selected. -->
+  <string name="MediaSendDialogs__discard_media">મીડિયા કાઢી નાખીએ?</string>
+  <!-- Dialog body explaining that leaving media send will discard the selected media along with any edits. -->
+  <string name="MediaSendDialogs__you_will_lose_any_media">તમે કેપ્ચર કરેલા કોઈ પણ મીડિયા અને તમે કરેલા ફેરફારો ગુમાવશો.</string>
+  <!-- Dialog title asking to save the media being edited to the phone\'s storage -->
+  <string name="MediaSendDialogs__save_to_phone">ફોન પર સેવ કરવું છે?</string>
+  <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other apps. -->
+  <string name="MediaSendDialogs__this_media_will_be_saved">આ મીડિયા તમારા ફોનના સ્ટોરેજમાં સેવ કરવામાં આવશે. તમારા ફોનની પરવાનગીઓના આધારે અન્ય ઍપ તેને એક્સેસ કરી શકે તેવું બની શકે.</string>
+  <!-- Confirmation button that saves the media being edited to the phone\'s storage. -->
+  <string name="MediaSendDialogs__save">સેવ કરો</string>
+  <!-- Checkbox shown in the save dialog to not show the dialog again in future saves -->
+  <string name="MediaSendDialogs__dont_show_again">ફરીથી બતાવશો નહીં</string>
+  <!-- Progress dialog message shown while the media being edited is written out to the phone\'s storage. -->
+  <string name="MediaSendDialogs__saving_media">એટેચમેન્ટને સ્ટોરેજમાં સેવ કરીએ છીએ…</string>
+  <!-- Dialog message asking the user to confirm that the media should be added to a group\'s story. The placeholder is the group\'s name. -->
+  <string name="MediaSendDialogs__add_to_the_group_story">ગ્રૂપ સ્ટોરી \"%1$s\"માં ઉમેરો</string>
+  <!-- Confirmation button that adds the media to the group\'s story. -->
+  <string name="MediaSendDialogs__add_to_story">સ્ટોરીમાં ઉમેરો</string>
   <!-- Accessibility label for the row that lets the user add a text message to accompany the media being sent. -->
   <string name="AddAMessageRow__add_a_message">મેસેજ ઉમેરો</string>
+  <!-- Label and accessibility label used in place of \"Add a message\" when the media is being sent as a reply to another message. -->
+  <string name="AddAMessageRow__add_a_reply">જવાબ ઉમેરો</string>
   <!-- Accessibility description for the button that opens the emoji keyboard. -->
   <string name="AddAMessageRow__open_emoji_keyboard">ઇમોજી કીબોર્ડ ખોલો</string>
   <!-- Placeholder text shown in the add-a-message row before the user has entered any message text. -->
   <string name="AddAMessageRow__message">મેસેજ</string>
   <!-- Accessibility description for the button that advances to the next step in the media send flow. -->
   <string name="AddAMessageRow__next">આગળ</string>
+  <!-- Accessibility description for the button that sends the media to the already-known recipient. -->
+  <string name="AddAMessageRow__send">મોકલો</string>
+  <!-- Accessibility description for long-pressing the send button to schedule the send for later. -->
+  <string name="AddAMessageRow__schedule_send">શેડ્યૂલ પ્રમાણે મોકલો</string>
+  <!-- Menu option that opens a picker for choosing the exact date and time to send at. -->
+  <string name="ScheduleSendMenu__pick_date_and_time">તારીખ અને સમય પસંદ કરો</string>
+  <!-- Label shown in place of the add-a-message row when the media has been set to view once, indicating that no message can be attached. -->
+  <string name="AddAMessageRow__view_once_media">એકવાર જોઈ શકાય તેવા મીડિયા</string>
+  <!-- Accessibility label for the button at the end of the add-a-message row that turns view-once mode on and off. -->
+  <string name="AddAMessageRow__toggle_view_once">\'એકવાર જુઓ\'ને ચાલુ-બંધ કરો</string>
   <!-- Setting option that can be selected to default media to be sent as high quality by default -->
   <string name="SentMediaQuality__high">ઉચ્ચ</string>
   <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
   <string name="SentMediaQuality__standard">સ્ટાન્ડર્ડ</string>
+  <!-- Label for our standard quality media conversion. -->
+  <string name="QualitySelectorBottomSheetDialog__standard">સ્ટાન્ડર્ડ</string>
+  <!-- Description for our standard quality media conversion. -->
+  <string name="QualitySelectorBottomSheetDialog__faster_less_data">ઝડપી, ઓછો ડેટા</string>
+  <!-- Label for our high quality media conversion. This has better quality than standard. -->
+  <string name="QualitySelectorBottomSheetDialog__high">ઉચ્ચ</string>
+  <!-- Label for our high quality media conversion. This has better quality than standard. -->
+  <string name="QualitySelectorBottomSheetDialog__slower_more_data">ધીમો, વધુ ડેટા</string>
+  <!-- Title heading for our media conversion quality selector. -->
+  <string name="QualitySelectorBottomSheetDialog__media_quality">મીડિયા ગુણવત્તા</string>
   <!-- Title of the screen where the user browses their device gallery to pick media to send. -->
   <string name="MediaSelectScreen__gallery">ગેલેરી</string>
   <!-- Accessibility description for the button that advances from media selection to the next step in the send flow. -->
   <string name="MediaSelectScreen__next">આગળ</string>
+  <!-- Accessibility description for the button that leaves media selection and opens the camera. -->
+  <string name="MediaSelectScreen__go_to_camera">કૅમેરા પર જાઓ</string>
+  <!-- Message shown in place of the gallery when the user has not granted permission to read their photos and videos. -->
+  <string name="MediaSelectScreen__signal_needs_permission_to_show_your_photos_and_videos">તમારા ફોટા અને વીડિયો બતાવવા માટે Signalને પરવાનગીની જરૂર છે</string>
+  <!-- Label for the button that asks the system for permission to read the user\'s photos and videos. -->
+  <string name="MediaSelectScreen__allow_access">ઍક્સેસ આપો</string>
+  <!-- Message shown in place of the gallery when the user only shared selected photos with Signal and none of them can be shown. -->
+  <string name="MediaSelectScreen__no_photos_or_videos_found">કોઈ ફોટો કે વીડિયો મળ્યા નથી. Signal પાસે ફક્ત તમે પસંદ કરેલા ફોટા અને વીડિયોની જ ઍક્સેસ છે.</string>
+  <!-- Reminder shown above the gallery when the user only shared selected photos with Signal. -->
+  <string name="MediaSelectScreen__signal_has_limited_access">Signal પાસે ફોટા અથવા વીડિયોનો મર્યાદિત ઍક્સેસ છે</string>
+  <!-- Label for the button that opens the menu for changing which photos and videos Signal can see. -->
+  <string name="MediaSelectScreen__manage">મેનેજ કરો</string>
+  <!-- Menu option that re-opens the system picker so the user can share more photos and videos with Signal. -->
+  <string name="MediaSelectScreen__select_more_photos">વધુ ફોટા પસંદ કરો</string>
+  <!-- Menu option that opens Signal\'s permission settings in the system settings app. -->
+  <string name="MediaSelectScreen__go_to_settings">સેટિંગ્સ પર જાઓ</string>
+  <!-- Title of the sheet shown when the permission to read photos and videos has been permanently denied, directing the user to app settings. -->
+  <string name="MediaSelectScreen__allow_access_to_storage">સ્ટોરેજના એક્સેસની મંજૂરી આપો</string>
+  <!-- Subtitle of the sheet shown when the permission to read photos and videos has been permanently denied, introducing the steps that follow. -->
+  <string name="MediaSelectScreen__to_show_photos_and_videos">ફોટા અને વીડિયો બતાવવા માટે:</string>
+  <!-- Snackbar shown when the user denies the permission to read their photos and videos. -->
+  <string name="MediaSelectScreen__signal_needs_access_to_show_your_photos_and_videos">તમારા ફોટા અને વીડિયો બતાવવા માટે Signalને ઍક્સેસની જરૂર છે.</string>
+
   <!-- Label for the button that switches the capture screen to the camera. -->
   <string name="MediaCaptureScreen__camera">કૅમેરા</string>
   <!-- Label for the button that switches the capture screen to the text story editor. -->
-  <string name="MediaCaptureScreen__text_story">ટેક્સ્ટ સ્ટોરી</string>
+  <string name="MediaCaptureScreen__text">ટેક્સ્ટ</string>
+    <!-- Label for the pill that displays the media count -->
+    <plurals name="MediaCaptureScreen_n_items">
+        <item quantity="one">%1$d આઇટમ</item>
+        <item quantity="other">%1$d આઇટમ</item>
+    </plurals>
+
+  <!-- Content description for the button that attaches a link to the text story being created -->
+  <string name="TextStoryBar__add_link">લિંક ઉમેરો</string>
+
+  <!-- Name shown on the document preview when we cannot read the file\'s name. -->
+  <string name="DocumentPage__unnamed_file">અનામી ફાઇલ</string>
+
+  <!-- Content description for button to enable highlighter mode -->
+  <string name="DrawModeColorBar__highlighter">હાઇલાઇટર</string>
+  <!-- Content description for button to enable brush mode -->
+  <string name="DrawModeColorBar__brush">બ્રશ</string>
+
+  <!-- Content description for the crop toggle when the crop area is currently constrained to a fixed aspect ratio. Tapping it removes the constraint. -->
+  <string name="ImageEditorToolbar__aspect_ratio_locked">આસ્પેક્ટ રેશિયો લૉક છે</string>
+  <!-- Content description for the crop toggle when the crop area can currently be resized freely. Tapping it constrains the crop area to a fixed aspect ratio. -->
+  <string name="ImageEditorToolbar__aspect_ratio_unlocked">આસ્પેક્ટ રેશિયો અનલૉક છે</string>
+
+  <!-- Label for the toggle that blurs every face in the image being edited -->
+  <string name="BlurFacesBar__blur_faces">ચહેરા ઝાંખા કરો</string>
+
+  <!-- Hint displayed in a pill at the top of the image editor telling the user they can drag anywhere on the image to blur that area -->
+  <string name="DrawAnywhereToBlurPill__draw_anywhere_to_blur">ઝાંખા કરવા માટે ગમે તે જગ્યાએ દોરો</string>
+
+  <!-- Content description for the button that cycles the text being edited between styles -->
+  <string name="TextModeColorBar__toggle_between_text_styles">ટેક્સ્ટ સ્ટાઇલ વચ્ચે બદલો</string>
+
+  <!-- Label for the button that undoes every edit made to the image, returning it to its original state -->
+  <string name="ImageEditorClearAllButton__clear_all">બધું સાફ કરો</string>
+
+  <!-- Content description for the button that undoes the last edit made to the image -->
+  <string name="ImageEditorUndoRedoButtons__undo_edit">ફેરફાર રદ કરો</string>
+  <!-- Content description for the button that redoes the last undone edit made to the image -->
+  <string name="ImageEditorUndoRedoButtons__redo_edit">ફેરફાર પહેલાં હતો તેમ કરો</string>
+
   <!-- Video editor play button content description -->
+
   <string name="VideoEditorHud_play_video_description">વીડિયો વગાડો</string>
 
   <!-- CameraFragment -->
@@ -90,6 +193,46 @@
   <string name="MediaSendViewModel__error_recording_video">વીડિયો રેકોર્ડિંગ કરવામાં ભૂલ આવી</string>
   <!-- Displayed when there is an error capturing image -->
   <string name="MediaSendViewModel__error_taking_photo">ફોટો લેવામાં ભૂલ આવી</string>
+  <!-- Displayed when a video was automatically trimmed so it fits within the size limit -->
+  <string name="MediaSendViewModel__video_trimmed_to_fit">તમારા વીડિયોને સાઇઝ મર્યાદામાં ફિટ થાય તે રીતે ટ્રીમ કરવામાં આવ્યો હતો</string>
+  <!-- Displayed when one or more of the selected items could not be added because they exceed the size limit -->
+  <string name="MediaSendViewModel__one_or_more_items_were_too_large">એક અથવા વધુ વસ્તુઓ બહુ મોટી હતી</string>
+  <!-- Displayed when one or more of the selected items could not be added because they are not a type that can be sent -->
+  <string name="MediaSendViewModel__one_or_more_items_were_invalid">એક અથવા વધુ વસ્તુઓ અમાન્ય હતી</string>
+  <!-- Displayed when the user tries to select more items than can be sent at once -->
+  <string name="MediaSendViewModel__too_many_items_selected">બહુ બધી વસ્તુઓ પસંદ કરી</string>
+  <!-- Displayed after the media being edited was successfully saved to the phone\'s storage -->
+  <string name="MediaSendViewModel__media_saved">મીડિયા સેવ કર્યું</string>
+  <!-- Displayed when the media being edited could not be saved to the phone\'s storage -->
+  <string name="MediaSendViewModel__error_saving_media">એટેચમેન્ટને સ્ટોરેજમાં સેવ કરતી વખતે ભૂલ!</string>
+  <!-- Displayed when the media being edited cannot be saved because the storage permission was denied -->
+  <string name="MediaSendViewModel__unable_to_save_without_storage_permission">પરવાનગી વિના બાહ્ય સ્ટોરેજમાં સેવ કરવામાં અસમર્થ</string>
+  <!-- Small notification presented to the user when they set their photo to view-once mode -->
+  <string name="MediaSendViewModel__photo_set_to_view_once">ફોટાને વ્યૂ વન્સ પર સેટ કર્યો</string>
+  <!-- Small notification presented to the user when they set their video to view-once mode -->
+  <string name="MediaSendViewModel__video_set_to_view_once">વીડિયોને વ્યૂ વન્સ પર સેટ કરવામાં આવ્યો</string>
+  <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
+  <string name="MediaReviewFragment__video_set_to_high_quality">વીડિયોને હાઇ ક્વોલિટી પર સેટ કરવામાં આવ્યો</string>
+  <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
+  <string name="MediaReviewFragment__video_set_to_standard_quality">વીડિયોને સ્ટાન્ડર્ડ ક્વોલિટી પર સેટ કરવામાં આવ્યો</string>
+  <!-- Small notification presented to the user when they set their still image to be sent in high visual quality. -->
+  <string name="MediaReviewFragment__photo_set_to_high_quality">ફોટોને હાઇ ક્વોલિટી પર સેટ કરવામાં આવ્યો</string>
+  <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
+  <string name="MediaReviewFragment__photo_set_to_standard_quality">ફોટાને સ્ટાન્ડર્ડ ક્વોલિટી પર સેટ કરવામાં આવ્યો</string>
+  <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
+  <plurals name="MediaReviewFragment__items_set_to_high_quality">
+        <item quantity="one">%1$d આઇટમને હાઇ ક્વોલિટી પર સેટ કરવામાં આવી</item>
+        <item quantity="other">%1$d આઇટમને હાઇ ક્વોલિટી પર સેટ કરવામાં આવી</item>
+    </plurals>
+  <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
+  <plurals name="MediaReviewFragment__items_set_to_standard_quality">
+        <item quantity="one">%1$d આઇટમને સ્ટાન્ડર્ડ ક્વોલિટી પર સેટ કરવામાં આવી</item>
+        <item quantity="other">%1$d આઇટમને સ્ટાન્ડર્ડ ક્વોલિટી પર સેટ કરવામાં આવી</item>
+    </plurals>
+  <!-- Message shown when saving the media being edited requires the storage permission, but that permission has been permanently denied by the user. -->
+  <string name="MediaSendViewModel__signal_needs_the_storage_permission">બાહ્ય સ્ટોરેજ માં સેવ કરવા માટે Signal ને સ્ટોરેજ પરવાનગીની જરૂર છે, પરંતુ તેનો કાયમી નામંજૂર કરવામાં આવી છે. કૃપા કરીને એપ્લિકેશન સેટિંગ્સ ચાલુ રાખો \"પરવાનગી\" પસંદ કરો, અને \"સ્ટોરેજ\" સક્ષમ કરો.</string>
+  <!-- Message shown when the user disables audio on a video -->
+  <string name="MediaSendViewModel__video_will_be_sent_without_audio">વીડિયોને ઓડિયો વગર મોકલવામાં આવશે</string>
 
   <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
   <string name="UsernameScannedDialog__username_dialog_title">%1$s મળ્યા</string>
@@ -104,4 +247,32 @@
   <string name="LinkedDeviceScannedDialog__it_looks_like_youre_trying">એવું લાગે છે કે તમે Signal ડિવાઇસને લિંક કરવાનો પ્રયાસ કરી રહ્યાં છો. ચાલુ રાખો પર ટેપ કરો અને પછી \"નવું ડિવાઇસ લિંક કરો\" પર ટેપ કરો અને ફરીથી QR કોડ સ્કેન કરો.</string>
   <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
   <string name="LinkedDeviceScannedDialog__device_link_dialog_continue">ચાલુ રાખો</string>
+
+    <!-- Gif label displayed in a pill in the editor specifying the type of media being sent. -->
+    <plurals name="MediaEditScreen__gif">
+        <item quantity="one">%1$d Gif</item>
+        <item quantity="other">%1$d Gifs</item>
+    </plurals>
+    <!-- Photo label displayed in a pill in the editor specifying the type of media being sent. -->
+    <plurals name="MediaEditScreen__photo">
+        <item quantity="one">%1$d ફોટો</item>
+        <item quantity="other">%1$d ફોટા</item>
+    </plurals>
+    <!-- Video label displayed in a pill in the editor specifying the type of media being sent. -->
+    <plurals name="MediaEditScreen__video">
+        <item quantity="one">%1$d વીડિયો</item>
+        <item quantity="other">%1$d વીડિયો</item>
+    </plurals>
+    <!-- Document label displayed in a pill in the editor specifying the type of media being sent. -->
+    <plurals name="MediaEditScreen__document">
+        <item quantity="one">%1$d દસ્તાવેજ</item>
+        <item quantity="other">%1$d દસ્તાવેજો</item>
+    </plurals>
+    <!-- Item label displayed in a pill in the editor specifying the type of media being sent. -->
+    <plurals name="MediaEditScreen__item">
+        <item quantity="one">%1$d આઇટમ</item>
+        <item quantity="other">%1$d આઇટમ</item>
+    </plurals>
+    <!-- x of y label displayed in a pill in the editor specifying the type of media being sent. First placeholder is selected page, second is total count. -->
+    <string name="MediaEditScreen__d_of_d">%2$dમાંથી %1$d</string>
 </resources>

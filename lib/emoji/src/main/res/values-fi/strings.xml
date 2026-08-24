@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <!-- Emoji category headers, shown in the emoji keyboard and the react-with-any-emoji sheet -->
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Hymiöt ja ihmiset</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Luonto</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Ruoka</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Toiminta</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Paikat</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Esineet</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Symbolit</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Liput</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Hymiöt</string>
+</resources>

@@ -9,10 +9,10 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 
 public class DeviceProvisioningActivity extends PassphraseRequiredActivity {
 
-  @SuppressWarnings("unused")
   private static final String TAG = Log.tag(DeviceProvisioningActivity.class);
 
   @Override
@@ -22,6 +22,13 @@ public class DeviceProvisioningActivity extends PassphraseRequiredActivity {
 
   @Override
   protected void onCreate(Bundle bundle, boolean ready) {
+    if (SignalStore.account().isLinkedDevice()) {
+      Log.i(TAG, "Cannot link a device from a linked device. Ignoring provisioning intent.");
+      startActivity(MainActivity.clearTop(this));
+      finish();
+      return;
+    }
+
     AlertDialog dialog = new MaterialAlertDialogBuilder(this)
         .setTitle(getString(R.string.DeviceProvisioningActivity_link_a_signal_device))
         .setMessage(getString(R.string.DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account))

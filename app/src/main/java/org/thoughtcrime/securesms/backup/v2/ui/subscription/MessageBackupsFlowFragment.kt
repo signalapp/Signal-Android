@@ -165,7 +165,7 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
             MessageBackupsKeyRecordMode.Passkey(
               onSaveToPasswordManager = viewModel::onBackupKeySaveRequested,
               onSaveManually = viewModel::goToRecordManually,
-              onSaveSuccessful = viewModel::goToNextStage
+              onSaveSuccessful = viewModel::onBackupKeySavedToPasswordManager
             )
           },
           onCopyToClipboardClick = { Util.copyToClipboard(context, it, CLIPBOARD_TIMEOUT_SECONDS) },

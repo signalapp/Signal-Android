@@ -5,7 +5,8 @@
     tools:viewBindingIgnore="true"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:fillViewport="true">
+            android:fillViewport="true"
+            android:fitsSystemWindows="true">
 
     <FrameLayout android:layout_width="fill_parent"
                  android:layout_height="wrap_content"

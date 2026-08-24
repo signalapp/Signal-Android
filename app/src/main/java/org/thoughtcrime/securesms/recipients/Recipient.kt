@@ -11,6 +11,7 @@ import kotlinx.collections.immutable.toImmutableList
 import org.signal.core.models.ServiceId
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.ServiceId.PNI
+import org.signal.core.ui.fonts.SignalSymbols
 import org.signal.core.util.BidiUtil
 import org.signal.core.util.Util
 import org.signal.core.util.UuidUtil
@@ -43,7 +44,6 @@ import org.thoughtcrime.securesms.database.model.ProfileAvatarFileDetails
 import org.thoughtcrime.securesms.database.model.RecipientRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.RecipientExtras
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.fonts.SignalSymbols
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.NotificationChannels
@@ -51,6 +51,7 @@ import org.thoughtcrime.securesms.phonenumbers.NumberUtil
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient.Companion.external
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SignalE164Util
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.UsernameUtil.isValidUsernameForSearch
@@ -85,6 +86,7 @@ class Recipient(
   val isActiveGroup: Boolean = false,
   val isSelf: Boolean = false,
   val isBlocked: Boolean = false,
+  val blockedAt: Long = 0,
   val muteUntil: Long = 0,
   val messageVibrate: VibrateState = VibrateState.DEFAULT,
   val callVibrate: VibrateState = VibrateState.DEFAULT,
@@ -108,9 +110,9 @@ class Recipient(
   private val sealedSenderAccessModeValue: SealedSenderAccessMode = SealedSenderAccessMode.UNKNOWN,
   private val capabilities: RecipientRecord.Capabilities = RecipientRecord.Capabilities.UNKNOWN,
   val storageId: ByteArray? = null,
-  val mentionSetting: NotificationSetting = NotificationSetting.ALWAYS_NOTIFY,
-  private val callNotificationSettingValue: NotificationSetting = NotificationSetting.ALWAYS_NOTIFY,
-  private val replyNotificationSettingValue: NotificationSetting = NotificationSetting.ALWAYS_NOTIFY,
+  private val mentionSettingValue: NotificationSetting = NotificationSetting.SYSTEM_DEFAULT,
+  private val callNotificationSettingValue: NotificationSetting = NotificationSetting.SYSTEM_DEFAULT,
+  private val replyNotificationSettingValue: NotificationSetting = NotificationSetting.SYSTEM_DEFAULT,
   private val wallpaperValue: ChatWallpaper? = null,
   private val chatColorsValue: ChatColors? = null,
   val avatarColor: AvatarColor = AvatarColor.UNKNOWN,
@@ -304,6 +306,7 @@ class Recipient(
   val participantAcis: List<ServiceId>
     get() {
       return groupRecord
+        .filter { it.hasV2GroupProperties }
         .map { it.requireV2GroupProperties().getMemberServiceIds().toImmutableList() }
         .orElse(emptyList<ServiceId>().toImmutableList())
     }
@@ -336,13 +339,17 @@ class Recipient(
   /** The notification channel, if both set and supported by the system. Otherwise null. */
   val notificationChannel: String? = if (!NotificationChannels.supported()) null else notificationChannelValue
 
+  /** Whether mentions should break through mute for this recipient. */
+  val mentionSetting: NotificationSetting
+    get() = NotificationSetting.resolve(mentionSettingValue, SignalStore.settings.allowMentionsWhileMuted)
+
   /** Whether calls should break through mute for this recipient. */
   val callNotificationSetting: NotificationSetting
-    get() = if (SignalStore.labs.muteBreakthroughNotifications) callNotificationSettingValue else NotificationSetting.ALWAYS_NOTIFY
+    get() = if (RemoteConfig.internalUser) NotificationSetting.resolve(callNotificationSettingValue, SignalStore.settings.allowCallsWhileMuted) else NotificationSetting.ALWAYS_NOTIFY
 
-  /** Whether replies should break through mute for this recipient. Only applicable to groups. */
+  /** Whether replies should break through mute for this recipient. */
   val replyNotificationSetting: NotificationSetting
-    get() = if (groupIdValue == null) NotificationSetting.DO_NOT_NOTIFY else if (SignalStore.labs.muteBreakthroughNotifications) replyNotificationSettingValue else mentionSetting
+    get() = if (groupIdValue == null) NotificationSetting.DO_NOT_NOTIFY else if (RemoteConfig.internalUser) NotificationSetting.resolve(replyNotificationSettingValue, SignalStore.settings.allowRepliesWhileMuted) else mentionSetting
 
   /** The state around whether we can send sealed sender to this user. */
   val sealedSenderAccessMode: SealedSenderAccessMode = if (pni.isPresent && pni == serviceId) {
@@ -353,6 +360,9 @@ class Recipient(
 
   /** The user's capability to receive username sync messages */
   val usernameSyncMessagesCapability: Capability = capabilities.usernameSyncMessages
+
+  /** The user's capability to participate on an account that has no phone number */
+  val optionalPhoneNumberCapability: Capability = capabilities.optionalPhoneNumber
 
   /** The wallpaper to render as the chat background, if present. */
   val wallpaper: ChatWallpaper?
@@ -841,6 +851,7 @@ class Recipient(
       isResolving == other.isResolving &&
       isSelf == other.isSelf &&
       isBlocked == other.isBlocked &&
+      blockedAt == other.blockedAt &&
       muteUntil == other.muteUntil &&
       expiresInSeconds == other.expiresInSeconds &&
       profileAvatarFileDetails == other.profileAvatarFileDetails &&
@@ -869,7 +880,7 @@ class Recipient(
       profileAvatar == other.profileAvatar &&
       notificationChannelValue == other.notificationChannelValue &&
       sealedSenderAccessModeValue == other.sealedSenderAccessModeValue &&
-      mentionSetting == other.mentionSetting &&
+      mentionSettingValue == other.mentionSettingValue &&
       callNotificationSettingValue == other.callNotificationSettingValue &&
       replyNotificationSettingValue == other.replyNotificationSettingValue &&
       wallpaperValue == other.wallpaperValue &&

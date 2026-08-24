@@ -8,6 +8,7 @@ import android.os.Build
 import androidx.core.app.NotificationCompat
 import org.signal.core.util.ByteSize
 import org.signal.core.util.PendingIntentFlags
+import org.signal.core.util.SafeForegroundService
 import org.signal.core.util.bytes
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.MainActivity

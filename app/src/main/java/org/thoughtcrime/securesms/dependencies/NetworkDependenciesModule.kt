@@ -6,9 +6,6 @@
 package org.thoughtcrime.securesms.dependencies
 
 import android.app.Application
-import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.kotlin.plusAssign
-import io.reactivex.rxjava3.subjects.Subject
 import okhttp3.ConnectionSpec
 import okhttp3.OkHttpClient
 import org.signal.core.util.logging.Log
@@ -17,6 +14,7 @@ import org.signal.core.util.resettableLazy
 import org.signal.libsignal.net.Network
 import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations
 import org.signal.network.api.ArchiveApi
+import org.signal.network.api.ArchiveApiV2
 import org.signal.network.api.AttachmentApi
 import org.signal.network.api.CallingApi
 import org.signal.network.api.CdsApi
@@ -27,11 +25,16 @@ import org.signal.network.api.MessageApiV2
 import org.signal.network.api.PaymentsApi
 import org.signal.network.api.ProvisioningApi
 import org.signal.network.api.RateLimitChallengeApi
+import org.signal.network.api.RegistrationApiV2
 import org.signal.network.api.RemoteConfigApi
 import org.signal.network.api.SvrBApi
 import org.signal.network.api.UsernameApi
+import org.signal.network.config.TrustStore
 import org.signal.network.rest.SignalRestClient
+import org.signal.network.service.ArchiveService
 import org.signal.network.service.MessageService
+import org.signal.network.util.Tls12SocketFactory
+import org.signal.network.util.TlsProxySocketFactory
 import org.thoughtcrime.securesms.crypto.storage.SignalServiceDataStoreImpl
 import org.thoughtcrime.securesms.groups.GroupsV2Authorization
 import org.thoughtcrime.securesms.groups.GroupsV2AuthorizationMemoryValueCache
@@ -49,21 +52,18 @@ import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations
 import org.whispersystems.signalservice.api.keys.KeysApi
 import org.whispersystems.signalservice.api.message.MessageApi
 import org.whispersystems.signalservice.api.profiles.ProfileApi
-import org.whispersystems.signalservice.api.push.TrustStore
 import org.whispersystems.signalservice.api.registration.RegistrationApi
 import org.whispersystems.signalservice.api.services.DonationsService
 import org.whispersystems.signalservice.api.services.ProfileService
 import org.whispersystems.signalservice.api.storage.StorageServiceApi
-import org.whispersystems.signalservice.api.util.Tls12SocketFactory
-import org.whispersystems.signalservice.api.util.TlsProxySocketFactory
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
-import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
 import org.whispersystems.signalservice.api.websocket.WebSocketUnavailableException
 import org.whispersystems.signalservice.internal.push.PushServiceSocket
 import org.whispersystems.signalservice.internal.util.BlacklistingTrustManager
 import org.whispersystems.signalservice.internal.util.Util
 import java.security.KeyManagementException
 import java.security.NoSuchAlgorithmException
+import java.util.function.Supplier
 import javax.net.ssl.SSLContext
 import javax.net.ssl.X509TrustManager
 
@@ -74,14 +74,14 @@ import javax.net.ssl.X509TrustManager
 class NetworkDependenciesModule(
   private val application: Application,
   private val provider: AppDependencies.Provider,
-  private val webSocketStateSubject: Subject<WebSocketConnectionState>
+  private val authWebSocket: SignalWebSocket.AuthenticatedWebSocket,
+  private val unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket,
+  private val libsignalNetworkSupplier: Supplier<Network>
 ) {
 
   companion object {
     private val TAG = "NetworkDependencies"
   }
-
-  private val disposables: CompositeDisposable = CompositeDisposable()
 
   val signalServiceNetworkAccess: SignalServiceNetworkAccess by lazy {
     provider.provideSignalServiceNetworkAccess()
@@ -119,20 +119,6 @@ class NetworkDependenciesModule(
     provider.provideSignalServiceAccountManager(authWebSocket, accountApi, pushServiceSocket, groupsV2Operations)
   }
 
-  val libsignalNetwork: Network by lazy {
-    provider.provideLibsignalNetwork(signalServiceNetworkAccess.getConfiguration())
-  }
-
-  val authWebSocket: SignalWebSocket.AuthenticatedWebSocket by lazy {
-    provider.provideAuthWebSocket({ signalServiceNetworkAccess.getConfiguration() }, { libsignalNetwork }).also {
-      disposables += it.state.subscribe { s -> webSocketStateSubject.onNext(s) }
-    }
-  }
-
-  val unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket by lazy {
-    provider.provideUnauthWebSocket({ signalServiceNetworkAccess.getConfiguration() }, { libsignalNetwork })
-  }
-
   val groupsV2Authorization: GroupsV2Authorization by lazy {
     val authCache: GroupsV2Authorization.ValueCache = GroupsV2AuthorizationMemoryValueCache(SignalStore.groupsV2AciAuthorizationCache)
     GroupsV2Authorization(signalServiceAccountManager.groupsV2Api, authCache)
@@ -163,8 +149,12 @@ class NetworkDependenciesModule(
   }
 
   val archiveApi: ArchiveApi by lazy {
-    provider.provideArchiveApi(authWebSocket, unauthWebSocket, pushServiceSocket, signalServiceNetworkAccess.getConfiguration())
+    provider.provideArchiveApi(pushServiceSocket)
   }
+
+  val archiveApiV2: ArchiveApiV2 by lazy { provider.provideArchiveApiV2(authWebSocket, unauthWebSocket, signalServiceNetworkAccess.getConfiguration()) }
+
+  val archiveService: ArchiveService by lazy { provider.provideArchiveService(archiveApiV2) }
 
   val keysApi: KeysApi by lazy {
     provider.provideKeysApi(authWebSocket, unauthWebSocket)
@@ -181,6 +171,8 @@ class NetworkDependenciesModule(
   val registrationApi: RegistrationApi by lazy {
     provider.provideRegistrationApi(pushServiceSocket)
   }
+
+  val registrationApiV2: RegistrationApiV2 by lazy { provider.provideRegistrationApiV2(signalRestClient) }
 
   val storageServiceApi: StorageServiceApi by lazy {
     provider.provideStorageServiceApi(authWebSocket, pushServiceSocket)
@@ -235,7 +227,7 @@ class NetworkDependenciesModule(
   }
 
   val svrBApi: SvrBApi by lazy {
-    provider.provideSvrBApi(libsignalNetwork)
+    provider.provideSvrBApi(libsignalNetworkSupplier.get())
   }
 
   val keyTransparencyApi: KeyTransparencyApi by lazy {
@@ -279,7 +271,6 @@ class NetworkDependenciesModule(
       signalServiceMessageSender.cancelInFlightRequests()
     }
     unauthWebSocket.disconnect()
-    disposables.clear()
   }
 
   fun openConnections() {

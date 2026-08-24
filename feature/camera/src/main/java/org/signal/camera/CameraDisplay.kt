@@ -6,11 +6,22 @@
 package org.signal.camera
 
 import android.app.Activity
+import android.content.res.Configuration
 import android.content.res.Resources
 import androidx.annotation.Dimension
 import androidx.annotation.Px
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.LocalWindowInfo
+import androidx.compose.ui.unit.IntOffset
 import androidx.window.layout.WindowMetricsCalculator
+import org.signal.core.ui.WindowBreakpoint
+import org.signal.core.ui.getWindowBreakpoint
+import org.signal.core.ui.rememberWindowBreakpoint
 import org.signal.core.util.dp
+
+private val NEXT_PADDING_SMALL = IntOffset(16, 12)
+private val NEXT_PADDING_MEDIUM_LARGE = IntOffset(30, 16)
 
 /**
  * Description of the Camera Viewport, Controls, and Toggle position information.
@@ -20,6 +31,7 @@ enum class CameraDisplay(
   val roundViewFinderCorners: Boolean,
   private val withTogglePositionInfo: PositionInfo,
   private val withoutTogglePositionInfo: PositionInfo,
+  private val nextPadding: IntOffset,
   @get:Dimension(unit = Dimension.DP) private val toggleBottomMargin: Int
 ) {
   DISPLAY_20_9(
@@ -34,7 +46,8 @@ enum class CameraDisplay(
       cameraCaptureMarginBottomDp = 130,
       cameraViewportGravity = CameraViewportGravity.CENTER
     ),
-    toggleBottomMargin = 52
+    nextPadding = NEXT_PADDING_SMALL,
+    toggleBottomMargin = 20
   ),
   DISPLAY_19_9(
     aspectRatio = 9f / 19f,
@@ -48,7 +61,8 @@ enum class CameraDisplay(
       cameraCaptureMarginBottomDp = 128,
       cameraViewportGravity = CameraViewportGravity.CENTER
     ),
-    toggleBottomMargin = 52
+    nextPadding = NEXT_PADDING_SMALL,
+    toggleBottomMargin = 20
   ),
   DISPLAY_18_9(
     aspectRatio = 9f / 18f,
@@ -61,7 +75,8 @@ enum class CameraDisplay(
       cameraCaptureMarginBottomDp = 84,
       cameraViewportGravity = CameraViewportGravity.CENTER
     ),
-    toggleBottomMargin = 54
+    nextPadding = NEXT_PADDING_SMALL,
+    toggleBottomMargin = 20
   ),
   DISPLAY_16_9(
     aspectRatio = 9f / 16f,
@@ -74,7 +89,8 @@ enum class CameraDisplay(
       cameraCaptureMarginBottomDp = 84,
       cameraViewportGravity = CameraViewportGravity.BOTTOM
     ),
-    toggleBottomMargin = 54
+    nextPadding = NEXT_PADDING_SMALL,
+    toggleBottomMargin = 20
   ),
   DISPLAY_6_5(
     aspectRatio = 5f / 6f,
@@ -87,8 +103,45 @@ enum class CameraDisplay(
       cameraCaptureMarginBottomDp = 84,
       cameraViewportGravity = CameraViewportGravity.CENTER
     ),
-    toggleBottomMargin = 54
+    nextPadding = NEXT_PADDING_SMALL,
+    toggleBottomMargin = 20
+  ),
+  LARGE_PORTRAIT(
+    aspectRatio = 9f / 16f,
+    roundViewFinderCorners = true,
+    withTogglePositionInfo = PositionInfo(
+      cameraCaptureMarginBottomDp = 0,
+      cameraViewportGravity = CameraViewportGravity.CENTER
+    ),
+    withoutTogglePositionInfo = PositionInfo(
+      cameraCaptureMarginBottomDp = 0,
+      cameraViewportGravity = CameraViewportGravity.CENTER
+    ),
+    nextPadding = NEXT_PADDING_MEDIUM_LARGE,
+    toggleBottomMargin = 20
+  ),
+  LARGE_LANDSCAPE(
+    aspectRatio = 16f / 9f,
+    roundViewFinderCorners = true,
+    withTogglePositionInfo = PositionInfo(
+      cameraCaptureMarginBottomDp = 0,
+      cameraViewportGravity = CameraViewportGravity.CENTER
+    ),
+    withoutTogglePositionInfo = PositionInfo(
+      cameraCaptureMarginBottomDp = 0,
+      cameraViewportGravity = CameraViewportGravity.CENTER
+    ),
+    nextPadding = NEXT_PADDING_MEDIUM_LARGE,
+    toggleBottomMargin = 20
   );
+
+  fun getNextPaddingEnd(): Int {
+    return nextPadding.y
+  }
+
+  fun getNextPaddingBottom(): Int {
+    return nextPadding.x
+  }
 
   @JvmOverloads
   @Px
@@ -113,10 +166,13 @@ enum class CameraDisplay(
     return positionInfo.cameraViewportGravity
   }
 
-  @Px
+  @Dimension(Dimension.DP)
   fun getToggleBottomMargin(): Int {
-    return toggleBottomMargin.dp
+    return toggleBottomMargin
   }
+
+  /** Whether the viewfinder/card is oriented landscape (only true for [LARGE_LANDSCAPE]). */
+  fun isLandscape(): Boolean = aspectRatio > 1f
 
   companion object {
     @Px
@@ -139,15 +195,39 @@ enum class CameraDisplay(
       val windowMetrics = windowMetricsCalculator.computeCurrentWindowMetrics(activity)
       val width = windowMetrics.bounds.width()
       val height = windowMetrics.bounds.height()
-      val winAr = width.toFloat() / height
-      val aspectRatio = if (winAr > 1f) 1 / winAr else winAr
+      val breakpoint = activity.resources.getWindowBreakpoint()
+      val orientation = if (width > height) Configuration.ORIENTATION_LANDSCAPE else Configuration.ORIENTATION_PORTRAIT
 
-      return when {
-        aspectRatio <= DISPLAY_20_9.aspectRatio -> DISPLAY_20_9
-        aspectRatio <= DISPLAY_19_9.aspectRatio -> DISPLAY_19_9
-        aspectRatio <= DISPLAY_18_9.aspectRatio -> DISPLAY_18_9
-        aspectRatio >= DISPLAY_6_5.aspectRatio -> DISPLAY_6_5
-        else -> DISPLAY_16_9
+      return calculateDisplay(breakpoint, orientation, width, height)
+    }
+
+    @Composable
+    fun rememberCameraDisplay(isLandscape: Boolean): CameraDisplay {
+      val breakpoint = rememberWindowBreakpoint()
+      val containerSize = LocalWindowInfo.current.containerSize
+      val orientation = if (isLandscape) Configuration.ORIENTATION_LANDSCAPE else Configuration.ORIENTATION_PORTRAIT
+
+      return remember(breakpoint, orientation, containerSize) {
+        calculateDisplay(breakpoint, orientation, containerSize.width, containerSize.height)
+      }
+    }
+
+    private fun calculateDisplay(breakpoint: WindowBreakpoint, orientation: Int, width: Int, height: Int): CameraDisplay {
+      return if (breakpoint is WindowBreakpoint.Small && orientation == Configuration.ORIENTATION_PORTRAIT) {
+        val winAr = width.toFloat() / height
+        val aspectRatio = if (winAr > 1f) 1 / winAr else winAr
+
+        when {
+          aspectRatio <= DISPLAY_20_9.aspectRatio -> DISPLAY_20_9
+          aspectRatio <= DISPLAY_19_9.aspectRatio -> DISPLAY_19_9
+          aspectRatio <= DISPLAY_18_9.aspectRatio -> DISPLAY_18_9
+          aspectRatio >= DISPLAY_6_5.aspectRatio -> DISPLAY_6_5
+          else -> DISPLAY_16_9
+        }
+      } else if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+        LARGE_PORTRAIT
+      } else {
+        LARGE_LANDSCAPE
       }
     }
   }

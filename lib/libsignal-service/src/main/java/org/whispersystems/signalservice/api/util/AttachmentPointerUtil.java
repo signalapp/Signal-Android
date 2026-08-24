@@ -7,7 +7,6 @@ import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemo
 import org.whispersystems.signalservice.internal.push.AttachmentPointer;
 
 import java.io.IOException;
-import java.util.Objects;
 import java.util.Optional;
 
 import okio.ByteString;
@@ -18,10 +17,18 @@ public final class AttachmentPointerUtil {
   }
 
   public static SignalServiceAttachmentPointer createSignalAttachmentPointer(AttachmentPointer pointer) throws InvalidMessageStructureException {
-    return new SignalServiceAttachmentPointer(Objects.requireNonNull(pointer.cdnNumber),
+    if (pointer.cdnNumber == null) {
+      throw new InvalidMessageStructureException("AttachmentPointer CDN number not set");
+    }
+
+    if (pointer.key == null) {
+      throw new InvalidMessageStructureException("AttachmentPointer key not set");
+    }
+
+    return new SignalServiceAttachmentPointer(pointer.cdnNumber,
                                               SignalServiceAttachmentRemoteId.from(pointer),
                                               pointer.contentType,
-                                              Objects.requireNonNull(pointer.key).toByteArray(),
+                                              pointer.key.toByteArray(),
                                               pointer.size != null ? Optional.of(pointer.size) : Optional.empty(),
                                               pointer.thumbnail != null ? Optional.of(pointer.thumbnail.toByteArray()): Optional.empty(),
                                               pointer.width != null ? pointer.width : 0,
@@ -33,7 +40,7 @@ public final class AttachmentPointerUtil {
                                               ((pointer.flags != null ? pointer.flags : 0) & AttachmentPointer.Flags.VOICE_MESSAGE.getValue()) != 0,
                                               ((pointer.flags != null ? pointer.flags : 0) & AttachmentPointer.Flags.BORDERLESS.getValue()) != 0,
                                               ((pointer.flags != null ? pointer.flags : 0) & AttachmentPointer.Flags.GIF.getValue()) != 0,
-                                              pointer.caption != null ? Optional.of(pointer.caption) : Optional.empty(),
+                                              pointer.caption != null && !pointer.caption.isEmpty() ? Optional.of(pointer.caption) : Optional.empty(),
                                               pointer.blurHash != null ? Optional.of(pointer.blurHash) : Optional.empty(),
                                               pointer.uploadTimestamp != null ? pointer.uploadTimestamp : 0,
                                               UuidUtil.fromByteStringOrNull(pointer.clientUuid));

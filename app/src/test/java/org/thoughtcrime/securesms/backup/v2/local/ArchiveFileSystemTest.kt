@@ -98,6 +98,36 @@ class ArchiveFileSystemTest {
     assertThat(result).isNull()
   }
 
+  @Test
+  fun `openForRestore succeeds when the archive lives in a differently-named directory`() {
+    val renamed = temporaryFolder.newFolder("Signal")
+    buildArchiveContents(renamed)
+
+    val result = ArchiveFileSystem.openForRestore(context, DocumentFile.fromFile(renamed))
+
+    assertThat(result).isNotNull()
+  }
+
+  @Test
+  fun `openForRestore isRootedAtSignalBackups is true for a differently-named archive directory`() {
+    val renamed = temporaryFolder.newFolder("Signal")
+    buildArchiveContents(renamed)
+
+    val result = ArchiveFileSystem.openForRestore(context, DocumentFile.fromFile(renamed))!!
+
+    assertThat(result.isRootedAtSignalBackups).isTrue()
+  }
+
+  @Test
+  fun `openForRestore returns null for a differently-named directory that only contains a files folder`() {
+    val renamed = temporaryFolder.newFolder("Signal")
+    renamed.resolve("files").mkdir()
+
+    val result = ArchiveFileSystem.openForRestore(context, DocumentFile.fromFile(renamed))
+
+    assertThat(result).isNull()
+  }
+
   /**
    * Creates the SignalBackups directory structure inside [parent] and returns the SignalBackups directory.
    */
@@ -105,5 +135,13 @@ class ArchiveFileSystemTest {
     val signalBackups = parent.resolve(ArchiveFileSystem.MAIN_DIRECTORY_NAME).also { it.mkdir() }
     signalBackups.resolve("files").mkdir()
     return signalBackups
+  }
+
+  /**
+   * Creates the raw archive contents (a "files" directory and a snapshot directory) directly inside [dir].
+   */
+  private fun buildArchiveContents(dir: java.io.File) {
+    dir.resolve("files").mkdir()
+    dir.resolve("${ArchiveFileSystem.BACKUP_DIRECTORY_PREFIX}-2026-01-01-00-00-00").mkdir()
   }
 }

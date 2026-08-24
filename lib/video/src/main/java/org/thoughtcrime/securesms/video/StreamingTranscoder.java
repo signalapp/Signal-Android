@@ -43,6 +43,7 @@ public final class StreamingTranscoder {
   private final           long               fileSizeEstimate;
   private final @Nullable TranscoderOptions  options;
   private final           boolean            allowAudioRemux;
+  private final           boolean            muteAudio;
 
   /**
    * @param upperSizeLimit A upper size to transcode to. The actual output size can be up to 10% smaller.
@@ -51,12 +52,14 @@ public final class StreamingTranscoder {
                              @Nullable TranscoderOptions options,
                              @NonNull List<TranscodingConfig.QualityTier> configs,
                              long upperSizeLimit,
-                             boolean allowAudioRemux)
+                             boolean allowAudioRemux,
+                             boolean muteAudio)
       throws IOException, VideoSourceException
   {
     this.dataSource = dataSource;
     this.options    = options;
     this.allowAudioRemux = allowAudioRemux;
+    this.muteAudio = muteAudio;
 
     final MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
     try {
@@ -77,7 +80,7 @@ public final class StreamingTranscoder {
     this.targetQuality  = TranscodingQuality.createFromQualityTiers(configs, duration);
     this.upperSizeLimit = upperSizeLimit;
 
-    this.transcodeRequired = inputBitRate >= targetQuality.getTargetTotalBitRate() * 1.2 || inSize > upperSizeLimit || containsLocation(mediaMetadataRetriever) || options != null || !isH264(dataSource);
+    this.transcodeRequired = inputBitRate >= targetQuality.getTargetTotalBitRate() * 1.2 || inSize > upperSizeLimit || containsLocation(mediaMetadataRetriever) || options != null || muteAudio || !isH264(dataSource);
     if (!transcodeRequired) {
       Log.i(TAG, "Video is within 20% of target bitrate, below the size limit, contained no location metadata or custom options, and is already H.264.");
     }
@@ -91,12 +94,14 @@ public final class StreamingTranscoder {
                              int videoBitrate,
                              int audioBitrate,
                              int shortEdge,
-                             boolean allowAudioRemux)
+                             boolean allowAudioRemux,
+                             boolean muteAudio)
       throws IOException, VideoSourceException
   {
     this.dataSource      = dataSource;
     this.options         = options;
     this.allowAudioRemux = allowAudioRemux;
+    this.muteAudio       = muteAudio;
 
     final MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
     try {
@@ -124,10 +129,11 @@ public final class StreamingTranscoder {
                                                              int videoBitrate,
                                                              int audioBitrate,
                                                              int shortEdge,
-                                                             boolean allowAudioRemux)
+                                                             boolean allowAudioRemux,
+                                                             boolean muteAudio)
       throws VideoSourceException, IOException
   {
-    return new StreamingTranscoder(dataSource, options, codec, videoBitrate, audioBitrate, shortEdge, allowAudioRemux);
+    return new StreamingTranscoder(dataSource, options, codec, videoBitrate, audioBitrate, shortEdge, allowAudioRemux, muteAudio);
   }
 
   /**
@@ -164,7 +170,7 @@ public final class StreamingTranscoder {
     final boolean sizeLimitEnabled = 0 < upperSizeLimit;
 
     if (sizeLimitEnabled && upperSizeLimit < fileSizeEstimate) {
-      throw new VideoSizeException("Size constraints could not be met!");
+      throw new VideoSizeException("Size constraints could not be met! upperSizeLimit: " + upperSizeLimit + ", fileSizeEstimate: " + fileSizeEstimate);
     }
 
     final long startTime = System.currentTimeMillis();
@@ -184,6 +190,7 @@ public final class StreamingTranscoder {
     converter.setVideoBitrate(targetQuality.getTargetVideoBitRate());
     converter.setAudioBitrate(targetQuality.getTargetAudioBitRate());
     converter.setAllowAudioRemux(allowAudioRemux);
+    converter.setSkipAudio(muteAudio);
 
     if (options != null) {
       if (options.endTimeUs > 0) {

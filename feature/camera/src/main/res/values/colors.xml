@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright 2026 Signal Messenger, LLC
+  ~ SPDX-License-Identifier: AGPL-3.0-only
+  -->
+
+<resources>
+    <color name="CameraHud_control_background">#CC333333</color>
+    <color name="CameraHud_control_red_background">#FFD92F20</color>
+</resources>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <!-- RegistrationLockV2Dialog -->
+    <string name="RegistrationLockV2Dialog_turn_on_registration_lock">မှတ်ပုံတင်မှု ပိတ်ထားခြင်းကို အသုံးပြုမည်လား?</string>
+    <string name="RegistrationLockV2Dialog_turn_off_registration_lock">မှတ်ပုံတင်မှု ပိတ်ထားခြင်းကို အသုံးမပြုမည်လား?</string>
+    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">အကယ်၍ သင်၏ Signal ပင်နံပါတ် ကို နောက်တစ်ကြိမ် မှတ်ပုံတင်သည့်အခါတွင် မေ့နေပါက သင်၏ အကောင့်ကို ၇ ရက် အသုံးပြုနိုင်မည်မဟုတ်ပါ။</string>
+    <string name="RegistrationLockV2Dialog_turn_on">ဖွင့်မည်</string>
+    <string name="RegistrationLockV2Dialog_turn_off">ပိတ်မည်</string>
+    <string name="preferences__advanced_pin_settings">အဆင့်မြင့် ပင်နံပါတ် အပြင်အဆင်များ</string>
+    <string name="preferences__delete_account">အကောင့်ကို ဖျက်ရန်</string>
+    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
+    <string name="RegistrationLockFragment__switch_keyboard">ကီးဘုတ် ပြောင်းရန်</string>
+    <string name="preferences_chats__transfer_account">အကောင့်လွှဲမယ်</string>
+    <string name="preferences_chats__transfer_account_to_a_new_android_device">သင့် Android စက်အသစ်ပေါ်သို့ အကောင့်လွှဲပြောင်းမယ်</string>
+    <string name="preferences_app_protection__signal_pin">Signal ပင်နံပါတ်</string>
+    <string name="preferences_app_protection__create_a_pin">ပင်နံပါတ်တစ်ခုဖန်တီးမည်</string>
+    <string name="preferences_app_protection__change_your_pin">သင်၏ပင်နံပါတ်ကိုပြောင်းပါ</string>
+    <string name="preferences_app_protection__pin_reminders">ပင်နံပါတ်သတိပေးချက်များ</string>
+    <string name="preferences_app_protection__turn_off">ပိတ်မည်</string>
+    <string name="preferences_app_protection__confirm_pin">ပင်နံပါတ်အား အတည်ပြုမည်</string>
+    <string name="preferences_app_protection__confirm_your_signal_pin">သင်၏ Signal ပင်နံပါတ်ကိုအတည်ပြုပါ</string>
+    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">သင်၏ပင်နံပါတ်ကို ပြန်လည်သိမ်းဆည်းမရပါကြောင့် အလွတ်ကျက်ထား သို့မဟုတ် သေချာစွာသိမ်းထားပါ။ သင်၏ပင်နံပါတ်ကိုသင်မေ့သွားပါက သင်၏ Signal အကောင့်ကိုပြန်လည်မှတ်ပုံတင်သောအခါ ဒေတာဆုံးရှုံးနိုင်သည်။</string>
+    <string name="preferences_app_protection__incorrect_pin_try_again">PIN နံပါတ် မှားနေသည်။ ထပ်မံကြိုးစားပါ။</string>
+    <string name="preferences_app_protection__registration_lock">မှတ်ပုံတင်မှု ပိတ်ထားခြင်း</string>
+    <!-- Option in settings that will take use to re-register if they are no longer registered -->
+    <string name="preferences_account_reregister">အကောင့်ကို ပြန်လည်၍မှတ်ပုံတင်ရန်</string>
+    <!-- Option in settings that will take user to our website or playstore to update their expired build -->
+    <string name="preferences_account_update_signal">Signal ကို အပ်ဒိတ်လုပ်ပါ။</string>
+    <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
+    <string name="preferences_account_delete_all_data">ဒေတာအားလုံး ဖျက်ရန်</string>
+    <!-- Title for confirmation dialog confirming user wants to delete all their data -->
+    <string name="preferences_account_delete_all_data_confirmation_title">ဒေတာအားလုံးကို ဖျက်မည်လား။</string>
+    <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
+    <string name="preferences_account_delete_all_data_confirmation_message">၎င်းသည် အက်ပ်ကို ပြန်လည်သတ်မှတ်မည်ဖြစ်ပြီး မက်ဆေ့ချ်အားလုံးကို ဖျက်လိုက်ပါမည်။ ဤလုပ်ငန်းစဉ် ပြီးသွားသောအခါ အက်ပ် ပိတ်သွားပါမည်။</string>
+    <!-- Confirmation action to proceed with application data deletion -->
+    <string name="preferences_account_delete_all_data_confirmation_proceed">လုပ်ပြီးပြီ</string>
+    <!-- Confirmation action to cancel application data deletion -->
+    <string name="preferences_account_delete_all_data_confirmation_cancel">မလုပ်တော့ပါ</string>
+
+    <!-- AccountSettingsFragment -->
+    <string name="AccountSettingsFragment__account">အကောင့်</string>
+    <string name="AccountSettingsFragment__youll_be_asked_less_frequently">သင့်အား အကြိမ်ရေနည်းနည်းဖြင့် မေးမြန်းသွားပါမည်</string>
+    <string name="AccountSettingsFragment__require_your_signal_pin">သင့်ဖုန်းနံပါတ်ကို Signal ဖြင့် ထပ်မံစာရင်းသွင်းရန် သင်၏ Signal PIN ကို လိုအပ်ပါသည်</string>
+    <string name="AccountSettingsFragment__change_phone_number">ဖုန်းနံပါတ်ပြောင်းလဲရန်</string>
+    <!-- Account setting that allows user to request and export their signal account data -->
+    <string name="AccountSettingsFragment__request_account_data">သင့်အကောင့်ဒေတာ</string>
+    <!-- Section header for the Signal Login section of account settings -->
+    <string name="AccountSettingsFragment__signal_login">Signal လော့ဂ်အင်</string>
+    <!-- Title of the card that opens the user\'s Signal Login account and recovery keys -->
+    <string name="AccountSettingsFragment__account_and_recovery">Account &amp; recovery</string>
+    <!-- Subtitle of the Signal Login card describing how many keys make up the login -->
+    <plurals name="AccountSettingsFragment__d_keys">
+        <item quantity="other">%1$d keys</item>
+    </plurals>
+    <!-- Description of what a Signal Login is, shown below the Signal Login card -->
+    <string name="AccountSettingsFragment__your_signal_login_is_used_to_recover">Your Signal Login is used to recover and restore your account. Keep these keys stored safely in a password manager you trust.</string>
+    <!-- Section header for the two-factor authentication section of account settings -->
+    <string name="AccountSettingsFragment__two_factor_authentication">Two-factor authentication</string>
+    <!-- Account setting that takes the user to the authenticator app setup flow -->
+    <string name="AccountSettingsFragment__authenticator_app">Authenticator app</string>
+    <!-- Description of the authenticator app setting -->
+    <string name="AccountSettingsFragment__use_an_authenticator_app">Use an authenticator app to generate one-time verification codes</string>
+    <!-- Description of the authenticator app setting when one has already been set up -->
+    <string name="AccountSettingsFragment__enabled">လုပ်ဆောင်သော</string>
+    <!-- Account setting for setting up a physical security key -->
+    <string name="AccountSettingsFragment__security_keys">Security keys</string>
+    <!-- Description of the security keys setting -->
+    <string name="AccountSettingsFragment__set_up_using_a_physical_security_key">Set up using a physical security key</string>
+    <!-- Description of two-factor authentication, shown below the two-factor authentication rows -->
+    <string name="AccountSettingsFragment__use_a_second_form_of_authentication">Use a second form of authentication to protect your account when using your Signal Login on a new device.</string>
+    <!-- Clickable text that takes the user to a support article -->
+    <string name="AccountSettingsFragment__learn_more">ပိုမိုလေ့လာရန်</string>
+
+    <!-- AuthenticatorSetupScreen -->
+    <!-- Title of the screen that walks the user through setting up an authenticator app -->
+    <string name="AuthenticatorSetupScreen__authenticator_app">Authenticator app</string>
+    <!-- Instructions shown at the top of the authenticator app setup screen -->
+    <string name="AuthenticatorSetupScreen__follow_these_steps">Follow these steps to set up your authenticator app.</string>
+    <!-- Clickable text that takes the user to a support article -->
+    <string name="AuthenticatorSetupScreen__learn_more">ပိုမိုလေ့လာရန်</string>
+    <!-- Header of the first step of authenticator app setup -->
+    <string name="AuthenticatorSetupScreen__step_1">Step 1</string>
+    <!-- Body of the first step of authenticator app setup -->
+    <string name="AuthenticatorSetupScreen__install_a_trusted_authenticator_app">Install a trusted authenticator app on your device.</string>
+    <!-- Header of the second step of authenticator app setup -->
+    <string name="AuthenticatorSetupScreen__step_2">Step 2</string>
+    <!-- Body of the second step of authenticator app setup -->
+    <string name="AuthenticatorSetupScreen__open_your_authenticator_app">Open your authenticator app by tapping the button below to add your Signal account.</string>
+    <!-- Button that opens the user\'s authenticator app -->
+    <string name="AuthenticatorSetupScreen__open">Open</string>
+    <!-- Text above the setup key explaining that it can be entered by hand instead -->
+    <string name="AuthenticatorSetupScreen__or_you_can_copy_this_key">Or you can copy this key to manually set it up.</string>
+    <!-- Button that copies the setup key to the clipboard -->
+    <string name="AuthenticatorSetupScreen__copy">ကူးမည်</string>
+    <!-- Toast shown after the setup key has been copied to the clipboard -->
+    <string name="AuthenticatorSetupScreen__copied_to_clipboard">ကလစ်ဘုတ်သို့ ကူးယူပြီး</string>
+    <!-- Toast shown when there is no app installed that can handle the authenticator setup link -->
+    <string name="AuthenticatorSetupScreen__no_authenticator_app_found">No authenticator app found</string>
+    <!-- Header of the third step of authenticator app setup -->
+    <string name="AuthenticatorSetupScreen__step_3">Step 3</string>
+    <!-- Body of the third step of authenticator app setup -->
+    <string name="AuthenticatorSetupScreen__copy_the_code_thats_generated">Copy the code that\'s generated and return here to continue.</string>
+    <!-- Button that advances from the setup instructions to entering a code -->
+    <string name="AuthenticatorSetupScreen__continue">ဆက်လုပ်ရန်</string>
+
+    <!-- AuthenticatorCodeEntryScreen -->
+    <!-- Title of the screen where the user enters the code from their authenticator app -->
+    <string name="AuthenticatorCodeEntryScreen__enter_your_code">Enter your code</string>
+    <!-- Instructions shown above the code entry field -->
+    <string name="AuthenticatorCodeEntryScreen__enter_the_6_digit_code">Enter the 6-digit code from your authenticator app.</string>
+    <!-- Label of the code entry field -->
+    <string name="AuthenticatorCodeEntryScreen__code">ကုဒ်</string>
+    <!-- Button that submits the entered code -->
+    <string name="AuthenticatorCodeEntryScreen__done">ပြီးပါပြီ</string>
+    <!-- Toast shown after an authenticator app has been successfully set up -->
+    <string name="AuthenticatorCodeEntryScreen__authenticator_app_added">Authenticator app added</string>
+</resources>

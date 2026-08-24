@@ -27,6 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.DialogProperties
 import org.signal.core.ui.compose.AllDevicePreviews
@@ -117,7 +118,7 @@ private fun TwoPaneLayout(
           .verticalScroll(firstPaneScrollState)
           .padding(paddingValues)
       ) {
-        Description()
+        Description(twoPane = true)
       }
     },
     secondPane = { paddingValues ->
@@ -134,10 +135,10 @@ private fun TwoPaneLayout(
 }
 
 @Composable
-private fun Description() {
+private fun Description(twoPane: Boolean = false) {
   Text(
     text = stringResource(R.string.ArchiveRestoreSelectionScreen__restore_or_transfer_account),
-    style = MaterialTheme.typography.headlineMedium,
+    style = if (twoPane) MaterialTheme.typography.headlineLarge else MaterialTheme.typography.headlineMedium,
     modifier = Modifier
       .fillMaxWidth()
       .attachDebugLogHelper()
@@ -145,7 +146,7 @@ private fun Description() {
 
   Text(
     text = stringResource(R.string.ArchiveRestoreSelectionScreen__subheading),
-    style = MaterialTheme.typography.bodyLarge,
+    style = if (twoPane) MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Normal) else MaterialTheme.typography.bodyLarge,
     color = MaterialTheme.colorScheme.onSurfaceVariant,
     modifier = Modifier.padding(top = 16.dp)
   )

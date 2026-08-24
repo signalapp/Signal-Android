@@ -22,12 +22,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.glide.compose.GlideImage
 import org.signal.glide.compose.GlideImageScaleType
 import org.signal.glide.decryptableuri.DecryptableUri
+
+private val FRONT_PREVIEW_SIZE = DpSize(width = 120.dp, height = 215.dp)
+private val BACK_PREVIEW_SIZE = DpSize(width = 110.dp, height = 177.dp)
 
 /**
  * The stacked, overlapping story media thumbnails shown as the first item in the contact list in [StoriesMultiselectForwardActivity].
@@ -53,7 +57,7 @@ fun StoryMediaPreviews(
     if (previews.size > 1) {
       Box(
         modifier = Modifier
-          .size(width = 110.dp, height = 177.dp)
+          .size(BACK_PREVIEW_SIZE)
           .offset(x = (-28).dp)
           .rotate(-15f)
           .clip(RoundedCornerShape(12.dp))
@@ -61,6 +65,7 @@ fun StoryMediaPreviews(
       ) {
         GlideImage(
           model = remember { DecryptableUri(previews[1]) },
+          imageSize = BACK_PREVIEW_SIZE,
           scaleType = GlideImageScaleType.CENTER_CROP,
           modifier = Modifier.fillMaxSize()
         )
@@ -69,7 +74,7 @@ fun StoryMediaPreviews(
 
     Box(
       modifier = Modifier
-        .size(width = 120.dp, height = 215.dp)
+        .size(FRONT_PREVIEW_SIZE)
         .border(width = 3.dp, color = MaterialTheme.colorScheme.background, shape = RoundedCornerShape(12.dp))
         .padding(1.5.dp)
         .clip(RoundedCornerShape(12.dp))
@@ -77,6 +82,7 @@ fun StoryMediaPreviews(
     ) {
       GlideImage(
         model = remember { DecryptableUri(previews[0]) },
+        imageSize = FRONT_PREVIEW_SIZE,
         scaleType = GlideImageScaleType.CENTER_CROP,
         modifier = Modifier.fillMaxSize()
       )

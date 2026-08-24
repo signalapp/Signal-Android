@@ -4,7 +4,6 @@
  */
 package org.thoughtcrime.securesms.jobs
 
-import androidx.annotation.MainThread
 import okio.Source
 import okio.buffer
 import org.greenrobot.eventbus.EventBus
@@ -92,7 +91,6 @@ class AttachmentDownloadJob private constructor(
     }
 
     @JvmStatic
-    @MainThread
     fun downloadAttachmentIfNeeded(databaseAttachment: DatabaseAttachment): String? {
       return when (val transferState = databaseAttachment.transferState) {
         AttachmentTable.TRANSFER_PROGRESS_DONE -> null

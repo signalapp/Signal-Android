@@ -1,25 +1,25 @@
 package org.thoughtcrime.securesms.keyboard.sticker
 
 import android.net.Uri
+import org.signal.core.models.database.StickerRecord
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.nullIfBlank
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.database.StickerTable
-import org.thoughtcrime.securesms.database.StickerTable.StickerPackRecordReader
-import org.thoughtcrime.securesms.database.StickerTable.StickerRecordReader
+import org.thoughtcrime.securesms.database.StickerTables
+import org.thoughtcrime.securesms.database.StickerTables.StickerPackRecordReader
+import org.thoughtcrime.securesms.database.StickerTables.StickerRecordReader
 import org.thoughtcrime.securesms.database.model.StickerPackRecord
-import org.thoughtcrime.securesms.database.model.StickerRecord
 import java.util.function.Consumer
 
 private const val RECENT_LIMIT = 24
 private const val RECENT_PACK_ID = "RECENT"
 
-class StickerKeyboardRepository(private val stickerTable: StickerTable) {
+class StickerKeyboardRepository(private val stickerTables: StickerTables) {
   fun getStickerPacks(consumer: Consumer<List<KeyboardStickerPack>>) {
     SignalExecutors.BOUNDED.execute {
       val packs: MutableList<KeyboardStickerPack> = mutableListOf()
 
-      StickerPackRecordReader(stickerTable.getInstalledStickerPacks()).use { reader ->
+      StickerPackRecordReader(stickerTables.getInstalledStickerPacks()).use { reader ->
         var pack: StickerPackRecord? = reader.getNext()
         while (pack != null) {
           packs += KeyboardStickerPack(packId = pack.packId, title = pack.title.nullIfBlank(), coverUri = pack.cover.uri)
@@ -30,7 +30,7 @@ class StickerKeyboardRepository(private val stickerTable: StickerTable) {
       val fullPacks: MutableList<KeyboardStickerPack> = packs.map { p ->
         val stickers: MutableList<StickerRecord> = mutableListOf()
 
-        StickerRecordReader(stickerTable.getStickersForPack(p.packId)).use { reader ->
+        StickerRecordReader(stickerTables.getStickersForPack(p.packId)).use { reader ->
           var sticker: StickerRecord? = reader.getNext()
           while (sticker != null) {
             stickers.add(sticker)
@@ -52,7 +52,7 @@ class StickerKeyboardRepository(private val stickerTable: StickerTable) {
   private fun getRecentStickerPack(): KeyboardStickerPack {
     val recentStickers: MutableList<StickerRecord> = mutableListOf()
 
-    StickerRecordReader(stickerTable.getRecentlyUsedStickers(RECENT_LIMIT)).use { reader ->
+    StickerRecordReader(stickerTables.getRecentlyUsedStickers(RECENT_LIMIT)).use { reader ->
       var recentSticker: StickerRecord? = reader.getNext()
       while (recentSticker != null) {
         recentStickers.add(recentSticker)

@@ -45,12 +45,14 @@
     <string name="RegistrationActivity_select_a_country">Selecciona un país</string>
     <string name="RegistrationActivity_phone_number_description">Número de teléfono</string>
     <!-- Error shown beneath the phone number field when the entered number is not valid -->
-    <string name="RegistrationActivity_not_a_valid_phone_number">Not a valid phone number</string>
+    <string name="RegistrationActivity_not_a_valid_phone_number">No es un número de teléfono válido</string>
     <!-- Dialog title shown when the entered phone number is rejected as invalid -->
-    <string name="RegistrationActivity_invalid_phone_number">Invalid phone number</string>
+    <string name="RegistrationActivity_invalid_phone_number">Número de teléfono no válido</string>
     <!-- Dialog body shown when the entered phone number is rejected as invalid -->
-    <string name="RegistrationActivity_the_number_you_entered_is_not_valid">The number you entered doesn\'t appear to be valid. Please check the country code and phone number and try again.</string>
+    <string name="RegistrationActivity_the_number_you_entered_is_not_valid">Parece que el número que has introducido no es válido. Comprueba el código de país y el número de teléfono e inténtalo de nuevo.</string>
     <string name="RegistrationActivity_next">Siguiente</string>
+    <!-- Button on the phone number screen that starts registering with a purchased Signal Login instead of a phone number -->
+    <string name="RegistrationActivity_register_without_number">Registrarme sin número</string>
     <!-- Dialog title to confirm phone number -->
     <string name="RegistrationActivity_is_the_phone_number">¿Es correcto el siguiente número de teléfono?</string>
     <!-- Dialog body to confirm phone number -->
@@ -87,8 +89,8 @@
     <string name="VerificationCodeScreen__resend_code">Reenviar clave</string>
     <!-- Button text for call me action -->
     <string name="VerificationCodeScreen__call_me_instead">Mejor llámame</string>
-    <!-- Countdown text shown below the resend code button. Placeholders are minutes and seconds -->
-    <string name="VerificationCodeScreen__countdown_format">(%1$02d:%2$02d)</string>
+    <!-- Button text for resend SMS when countdown is active. Placeholders are minutes and seconds -->
+    <string name="VerificationCodeScreen__resend_code_available_in">Reenviar clave (%1$02d:%2$02d)</string>
     <!-- Button text for call me when countdown is active. Placeholders are minutes and seconds -->
     <string name="VerificationCodeScreen__call_me_available_in">Llámame (en %1$02d:%2$02d)</string>
     <!-- Toast shown when the user enters an incorrect verification code -->
@@ -105,6 +107,10 @@
     <string name="VerificationCodeScreen__unable_to_send_sms">No hemos podido enviarte un SMS a tu número. Vuelve a intentarlo dentro de unas horas.</string>
     <!-- Snackbar shown when the selected transport (SMS/voice) is unavailable -->
     <string name="VerificationCodeScreen__could_not_send_code_via_selected_method">No se ha podido enviar la clave a través del método seleccionado. Prueba con otra opción.</string>
+    <!-- Dialog shown when the provider rejected placing a verification phone call to the user\'s number -->
+    <string name="VerificationCodeScreen__could_not_call_provider_rejected">No hemos podido llamarte para darte la clave de verificación. Inténtalo de nuevo o solicita la clave por SMS.</string>
+    <!-- Dialog shown when the provider rejected sending a verification SMS to the user\'s number -->
+    <string name="VerificationCodeScreen__could_not_sms_provider_rejected">No hemos podido enviarte un SMS con la clave de verificación. Inténtalo de nuevo o solicita la clave mediante llamada.</string>
     <!-- Snackbar shown for registration errors -->
     <string name="VerificationCodeScreen__registration_error">No se ha podido completar el registro. Inténtalo de nuevo.</string>
     <!-- Button text for having trouble with verification -->
@@ -120,7 +126,9 @@
     <!-- Clickable substring linking to contacting support within VerificationCodeScreen__support_bottom_sheet_body_call_to_action -->
     <string name="VerificationCodeScreen__support_bottom_sheet_cta_contact_support_substring">Contactar con asistencia</string>
     <!-- Email subject used when contacting support from the verification code screen -->
-  <!-- Removed by excludeNonTranslatables <string name="VerificationCodeScreen__contact_support_email_subject" translatable="false">Signal Registration - Verification Code for Android</string> -->
+    <string name="VerificationCodeScreen__contact_support_email_subject">Registro en Signal: Clave de verificación en Android</string>
+    <!-- Text placed in the body of the support email composed from the verification code screen. Used to route the request, so it is not translated. -->
+  <!-- Removed by excludeNonTranslatables <string name="VerificationCodeScreen__contact_support_email_filter" translatable="false">Signal Registration - Verification Code for Android</string> -->
     <!-- URL opened for troubleshooting steps from the verification code screen -->
   <!-- Removed by excludeNonTranslatables <string name="VerificationCodeScreen__support_center_url" translatable="false">https://support.signal.org/</string> -->
 
@@ -204,7 +212,7 @@
     <!-- Label for the recovery key text field -->
     <string name="LocalBackupRestoreScreen__recovery_key">Clave de recuperación</string>
     <!-- Label for the backup passphrase text field -->
-    <string name="LocalBackupRestoreScreen__passphrase">Passphrase</string>
+    <string name="LocalBackupRestoreScreen__passphrase">Frase de contraseña</string>
     <!-- Error text when passphrase is too long -->
     <string name="LocalBackupRestoreScreen__too_long">Demasiado larga (%1$d/%2$d)</string>
     <!-- Link for users who don\'t have their passphrase -->
@@ -229,11 +237,11 @@
     <!-- Button that prompts the device password manager to fill in the recovery key -->
     <string name="EnterAepScreen__fill_from_password_manager">Rellenar desde el gestor de contraseñas</string>
     <!-- Title of the dialog warning that the backup being restored was created with a different account -->
-    <string name="EnterAepScreen__restore_to_new_account">Restore to new account?</string>
+    <string name="EnterAepScreen__restore_to_new_account">¿Restaurar a la nueva cuenta?</string>
     <!-- Body of the dialog warning the user that the backup was created with a different account and they will lose group memberships -->
-    <string name="EnterAepScreen__restore_to_new_account_body">The backup you are restoring was created using a different Signal account. You can restore this backup to a new account, but you will no longer be a member of any groups that were restored.</string>
+    <string name="EnterAepScreen__restore_to_new_account_body">La copia de seguridad que estás restaurando se creó usando otra cuenta de Signal. Puedes restaurar esta copia de seguridad a una nueva cuenta, pero ya no serás un participante de ninguno de los grupos que restaures.</string>
     <!-- Confirm button label for the restore to new account dialog -->
-    <string name="EnterAepScreen__restore">Restore</string>
+    <string name="EnterAepScreen__restore">Restaurar</string>
     <!-- Text shown while preparing the restore -->
     <string name="LocalBackupRestoreScreen__preparing_restore">Preparando la restauración…</string>
     <!-- Title shown while restore is in progress -->
@@ -251,11 +259,11 @@
     <!-- Button to retry restore after failure -->
     <string name="LocalBackupRestoreScreen__try_again">Reintentar</string>
     <!-- Title shown when the entered passphrase cannot decrypt the selected backup -->
-    <string name="LocalBackupRestoreScreen__incorrect_passphrase">Incorrect passphrase</string>
+    <string name="LocalBackupRestoreScreen__incorrect_passphrase">Frase de contraseña incorrecta</string>
     <!-- Title shown when the entered recovery key cannot decrypt the selected backup -->
-    <string name="LocalBackupRestoreScreen__incorrect_recovery_key">Incorrect recovery key</string>
+    <string name="LocalBackupRestoreScreen__incorrect_recovery_key">Clave de recuperación incorrecta</string>
     <!-- Description shown when the entered passphrase or recovery key cannot decrypt the selected backup -->
-    <string name="LocalBackupRestoreScreen__incorrect_credential_description">The credential you entered doesn\'t match this backup. Please check it and try again.</string>
+    <string name="LocalBackupRestoreScreen__incorrect_credential_description">La clave que has introducido no coincide con la de esta copia de seguridad. Compruébala e inténtalo de nuevo.</string>
     <!-- Button to link an existing Signal account to this device -->
     <string name="WelcomeScreen__link_your_account">Vincular mi cuenta</string>
     <!-- Prompt shown to users who don\'t have a Signal account yet -->
@@ -304,8 +312,10 @@
     <string name="RemoteRestoreScreen__your_backup_is_not_recoverable">Se ha producido un error al restaurar tu copia de seguridad. Tu copia de seguridad no se puede recuperar. Contacta con el equipo de Asistencia para obtener ayuda.</string>
     <!-- Button to contact support -->
     <string name="RemoteRestoreScreen__contact_support">Contactar con asistencia</string>
-    <!-- Subject line of the support email composed when the user contacts support about an unrecoverable backup. Also used to route the request, so it is not translated. -->
-  <!-- Removed by excludeNonTranslatables <string name="RemoteRestoreScreen__contact_support_email_subject" translatable="false">Signal Android Backup restore permanent failure</string> -->
+    <!-- Subject line of the support email composed when the user contacts support about an unrecoverable backup. -->
+    <string name="RemoteRestoreScreen__contact_support_email_subject">Error permanente: no se ha podido restaurar la copia de seguridad de Signal Android</string>
+    <!-- Text placed in the body of the support email composed when the user contacts support about an unrecoverable backup. Used to route the request, so it is not translated. -->
+  <!-- Removed by excludeNonTranslatables <string name="RemoteRestoreScreen__contact_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
     <!-- Shown while downloading the backup from the server -->
     <string name="RemoteRestoreScreen__downloading_backup">Descargando copia de seguridad…</string>
     <!-- Shown while restoring messages from the downloaded backup -->
@@ -322,7 +332,7 @@
     <!-- Title for screen when your account is locked -->
     <string name="AccountLockedScreen__account_locked">Cuenta bloqueada</string>
     <!-- Description for screen when account is locked -->
-    <string name="AccountLockedScreen__your_account">Se ha bloqueado tu cuenta para proteger tu privacidad y seguridad. Después de %1$d días de inactividad de la cuenta, podrás volver a registrarte con este número de teléfono sin necesidad de introducir tu PIN. Se eliminará todo tu contenido.</string>
+    <string name="AccountLockedScreen__your_account">Se ha bloqueado tu cuenta para proteger tu privacidad y seguridad. Después de %1$d días con tu cuenta inactiva, podrás volver a registrarte con este número de teléfono sin necesidad de introducir tu PIN. Se eliminará todo tu contenido.</string>
 
     <!-- Step 1 to quick restore -->
     <string name="QuickRestoreQRScreen__step_1">Abre Signal en tu dispositivo anterior</string>
@@ -360,9 +370,9 @@
     <!-- Labels the button to learn more about Signal PINs. -->
     <string name="PinCreationScreen__learn_more">Más información</string>
     <!-- Labels the button to switch to the numeric PIN keyboard type. -->
-    <string name="PinCreationScreen__switch_to_numeric">Cambiar a numérico</string>
+    <string name="PinCreationScreen__switch_to_numeric">Cambiar a clave numérica</string>
     <!-- Labels the button to switch to the alphanumeric PIN keyboard type. -->
-    <string name="PinCreationScreen__switch_to_alphanumeric">Cambiar a alfanumérico</string>
+    <string name="PinCreationScreen__switch_to_alphanumeric">Cambiar a clave alfanumérica</string>
     <!-- Labels the button to submit a new Signal PIN. -->
     <string name="PinCreationScreen__next">Siguiente</string>
     <!-- Hint shown below the create PIN field when numeric keyboard is active. -->
@@ -373,6 +383,10 @@
     <string name="PinCreationScreen__reenter_pin">Vuelve a introducir el PIN</string>
     <!-- Error shown below the PIN field when the confirmation PIN does not match the one the user first entered. -->
     <string name="PinCreationScreen__pins_dont_match">Los PIN no coinciden. Inténtalo de nuevo.</string>
+    <!-- Error shown below the PIN field when the user tries to create a PIN that is too easy to guess, such as one made of sequential or repeated digits. -->
+    <string name="PinCreationScreen__choose_a_stronger_pin">Elige un PIN más seguro</string>
+    <!-- Error shown below the PIN field when the user tries to create a PIN that matches the code used to verify their phone number. -->
+    <string name="PinCreationScreen__reentered_verification_code">Has vuelto a introducir el código que ya habías usado para verificar tu número de teléfono. Elige un nuevo PIN de Signal único.</string>
     <!-- Overflow menu item that opens a help article about Signal PINs. -->
     <string name="PinCreationScreen__learn_more_about_pins">Más información sobre los PIN</string>
     <!-- Title of the dialog confirming that the user wants to disable their Signal PIN. -->
@@ -396,6 +410,8 @@
     <string name="PinEntryScreen__enter_your_pin">Introduce tu PIN</string>
     <!-- Describes the PIN that needs to be entered. -->
     <string name="PinEntryScreen__enter_the_pin_you_created">Introduce el PIN que creaste cuando instalaste Signal por primera vez.</string>
+    <!-- Error shown when the user enters the code used to verify their phone number instead of their PIN, and it was not their actual PIN. -->
+    <string name="PinEntryScreen__reentered_verification_code">Has vuelto a introducir el código que ya habías usado para verificar tu número de teléfono. Introduce el PIN de Signal único que elegiste antes para tu cuenta.</string>
     <!-- Error shown when an incorrect PIN is entered. %1$d is the number of attempts remaining. -->
     <plurals name="PinEntryScreen__incorrect_pin">
         <item quantity="one">PIN incorrecto. Te queda %1$d intento.</item>
@@ -421,13 +437,15 @@
     <string name="PinEntryScreen__no_data_could_be_found">No se han podido encontrar datos para restaurar tu cuenta. Crea un nuevo PIN.</string>
     <!-- Labels the button in the no-data-to-restore dialog that lets the user contact support. -->
     <string name="PinEntryScreen__contact_support">Contactar con asistencia</string>
-    <!-- Subject line of the support email composed when the user contacts support about PIN entry. Also used to route the request, so it is not translated. -->
-  <!-- Removed by excludeNonTranslatables <string name="PinEntryScreen__contact_support_email_subject" translatable="false">Signal Registration - Need Help with PIN for Android</string> -->
+    <!-- Subject line of the support email composed when the user contacts support about PIN entry. -->
+    <string name="PinEntryScreen__contact_support_email_subject">Registro en Signal: Ayuda con el PIN en Android</string>
+    <!-- Text placed in the body of the support email composed when the user contacts support about PIN entry. Used to route the request, so it is not translated. -->
+  <!-- Removed by excludeNonTranslatables <string name="PinEntryScreen__contact_support_email_filter" translatable="false">Signal Registration - Need Help with PIN for Android</string> -->
 
     <!-- Title for the screen asking the user to grant the notification permission -->
     <string name="AllowNotificationsScreen__allow_notifications">Permitir notificaciones</string>
     <!-- Description for the screen asking the user to grant the notification permission -->
-    <string name="AllowNotificationsScreen__signal_would_like_to_request_the_notification_permission">Signal necesita permiso para mostrarte notificaciones. Así podrás recibir alertas en tu dispositivo cuando te lleguen mensajes nuevos.</string>
+    <string name="AllowNotificationsScreen__signal_would_like_to_request_the_notification_permission">Signal necesita permiso para mostrarte notificaciones. Así podrás recibir avisos en tu dispositivo cuando te lleguen mensajes nuevos.</string>
     <!-- Button label that dismisses the notification permission request without granting it -->
     <string name="AllowNotificationsScreen__not_now">Ahora no</string>
     <!-- Button label that proceeds with the notification permission request -->
@@ -443,6 +461,8 @@
     <string name="MessageSyncScreen__preparing">Preparando…</string>
     <!-- Progress label shown under the sync progress bar while messages are being imported and the rest of the account is restored, after the download finishes -->
     <string name="MessageSyncScreen__finishing">Completando…</string>
+    <!-- Progress label shown while messages are being imported/restored from the downloaded backup -->
+    <string name="MessageSyncScreen__restoring">Restaurando…</string>
     <!-- Informational notice in the sync screen footer, indicating the sync is end-to-end encrypted. Precedes a separate "Learn more" link. -->
     <string name="MessageSyncScreen__messages_and_chat_info_are_protected_by_e2ee">Los mensajes y chats, al igual que el proceso de sincronización, están protegidos con cifrado de extremo a extremo.</string>
     <!-- Inline link in the sync screen footer that opens documentation about end-to-end encryption during sync -->
@@ -496,7 +516,7 @@
     <string name="LinkAccountScreen__close_qr_code">Cerrar código QR</string>
 
     <!-- Device transfer: Instructions screen -->
-    <string name="DeviceTransferInstructions__transfer_your_account">Transferir tu cuenta</string>
+    <string name="DeviceTransferInstructions__transfer_your_account">Transfiere tu cuenta</string>
     <string name="DeviceTransferInstructions__to_transfer_open_signal_on_your_old_android_device">Para transferir tu cuenta, abre Signal en tu dispositivo Android anterior y selecciona Transferir cuenta.</string>
     <string name="DeviceTransferInstructions__continue">Continuar</string>
 
@@ -504,7 +524,7 @@
     <string name="DeviceTransferSetup__preparing_to_connect">Preparando la conexión con tu dispositivo Android anterior…</string>
     <string name="DeviceTransferSetup__take_a_moment_should_be_ready_soon">Esto puede llevar unos minutos. Debería estar listo pronto.</string>
     <string name="DeviceTransferSetup__waiting_for_old_device">Esperando a la conexión de tu dispositivo anterior…</string>
-    <string name="DeviceTransferSetup__verify_numbers_match">Verifica que coincidan los números de ambos dispositivos</string>
+    <string name="DeviceTransferSetup__verify_numbers_match">Comprueba que coinciden los números de ambos dispositivos</string>
     <string name="DeviceTransferSetup__numbers_match">Sí, los números coinciden</string>
     <string name="DeviceTransferSetup__numbers_do_not_match">Los números no coinciden</string>
     <string name="DeviceTransferSetup__waiting_for_other_to_verify">Esperando a la verificación de tu dispositivo anterior…</string>
@@ -519,7 +539,7 @@
     <string name="DeviceTransferSetup__unexpected_error_connecting">No se ha podido conectar con tu dispositivo anterior.</string>
     <string name="DeviceTransferSetup__retry">Reintentar</string>
     <string name="DeviceTransferSetup__unable_to_discover_old_device">No se puede encontrar tu dispositivo anterior</string>
-    <string name="DeviceTransferSetup__troubleshooting_tips">• Asegúrate de haber concedido los permisos de ubicación.\n• Comprueba que el Wi-Fi está activado y que no haya grupos de Wi-Fi Direct guardados.\n• Desactiva y vuelve a activar la conexión Wi-Fi en ambos dispositivos.\n• Asegúrate de que ambos dispositivos estén en modo de transferencia.</string>
+    <string name="DeviceTransferSetup__troubleshooting_tips">• Asegúrate de haber concedido los permisos de ubicación.\n• Comprueba que el Wi-Fi está activado y que no hay grupos de Wi-Fi Direct guardados.\n• Desactiva y vuelve a activar la conexión Wi-Fi en ambos dispositivos.\n• Asegúrate de que ambos dispositivos estén en modo de transferencia.</string>
     <string name="DeviceTransferSetup__try_again">Reintentar</string>
     <string name="DeviceTransferSetup__the_numbers_do_not_match">Los números no coinciden</string>
     <string name="DeviceTransferSetup__if_numbers_dont_match_wrong_device">Si los números de tus dispositivos no coinciden, es posible que no te hayas conectado al dispositivo correcto.</string>
@@ -581,4 +601,98 @@
     <string name="CaptchaScreen__failed_to_load_captcha">No se ha podido cargar el captcha</string>
     <!-- Button to cancel out of the captcha screen. -->
     <string name="CaptchaScreen__cancel">Cancelar</string>
+
+    <!-- Shared registration strings -->
+    <!-- Content description for the back arrow in a registration screen header. -->
+    <string name="RegistrationScreen__back">Atrás</string>
+
+    <!-- Signal Login purchase screen -->
+    <!-- Title of the screen where the user buys a Signal Login to register without a phone number. -->
+    <string name="SignalLoginPaymentScreen__signal_login">Login de Signal</string>
+    <!-- Description of what a Signal Login is. Followed by a "learn more" link. -->
+    <string name="SignalLoginPaymentScreen__register_without_a_phone_number">Regístrate sin un número de teléfono con el login de Signal. Con una compra única, recibirás una clave de cuenta para iniciar sesión.</string>
+    <!-- Link at the end of the description that opens a support article about Signal Login. -->
+    <string name="SignalLoginPaymentScreen__learn_more">Más información</string>
+    <!-- Subtitle of the purchase option, clarifying the price is not a subscription. -->
+    <string name="SignalLoginPaymentScreen__one_time_purchase">Compra única</string>
+    <!-- Selling point of the purchase option: no phone number is required. -->
+    <string name="SignalLoginPaymentScreen__no_phone_number_needed">No necesitas un número de teléfono</string>
+    <!-- Selling point of the purchase option: a username is used to reach the user. -->
+    <string name="SignalLoginPaymentScreen__username_for_messaging_and_calls">Usa un alias para mensajes y llamadas</string>
+    <!-- Selling point of the purchase option: the purchase supports Signal. -->
+    <string name="SignalLoginPaymentScreen__signal_is_a_non_profit">Signal es una organización sin ánimo de lucro: tu compra nos ayuda a llevar a cabo nuestra misión</string>
+    <!-- Title of the option for users who already bought a Signal Login. -->
+    <string name="SignalLoginPaymentScreen__i_have_a_signal_login">Tengo un login de Signal</string>
+    <!-- Subtitle of the existing-login option. -->
+    <string name="SignalLoginPaymentScreen__use_your_existing_account_key">Usa tu clave de cuenta actual</string>
+    <!-- Selling point of the existing-login option: the account can be restored. -->
+    <string name="SignalLoginPaymentScreen__login_and_restore_your_account">Inicia sesión y restaura tu cuenta</string>
+    <!-- Selling point of the existing-login option, thanking the user for their previous purchase. -->
+    <string name="SignalLoginPaymentScreen__thanks_for_supporting_signal">Gracias por apoyar a Signal</string>
+    <!-- Action button that starts the purchase. Placeholder is the localized price, e.g. "$1.99". -->
+    <string name="SignalLoginPaymentScreen__pay_s">Pagar %1$s</string>
+    <!-- Action button that starts the purchase, shown while the price is still loading. -->
+    <string name="SignalLoginPaymentScreen__pay">Pagar</string>
+    <!-- Action button shown when the user indicated they already have a Signal Login. -->
+    <string name="SignalLoginPaymentScreen__continue">Continuar</string>
+    <!-- Error shown when the purchase does not go through. -->
+    <string name="SignalLoginPaymentScreen__your_purchase_could_not_be_completed">No se ha podido completar la compra. No hemos aplicado ningún cargo.</string>
+
+    <!-- Signal Login details screen -->
+    <!-- Title of the screen that shows the user their newly purchased Signal Login. -->
+    <string name="SignalLoginInfoScreen__your_signal_login">Tu login de Signal</string>
+    <!-- Description warning the user that a lost Signal Login cannot be recovered. -->
+    <string name="SignalLoginInfoScreen__thanks_for_your_purchase">Gracias por tu compra. Usa tu login de Signal para registrarte y restaurar tu cuenta. Si olvidas tu clave, no podrás recuperar tu cuenta.</string>
+    <!-- Label for the account portion of the Signal Login on the credential card. -->
+    <string name="SignalLoginInfoScreen__account">Cuenta</string>
+    <!-- Label for the recovery portion of the Signal Login on the credential card. -->
+    <string name="SignalLoginInfoScreen__recovery">Recuperación</string>
+    <!-- Button on the credential card that reveals the full Signal Login. -->
+    <string name="SignalLoginInfoScreen__view_details">Ver detalles</string>
+    <!-- Body of the dialog revealing the full Signal Login. First placeholder is the account key, second is the recovery key. -->
+    <string name="SignalLoginInfoScreen__account_s_recovery_s">Cuenta: %1$s\n\nRecuperación: %2$s</string>
+    <!-- Action button that stores the Signal Login in the device password manager. -->
+    <string name="SignalLoginInfoScreen__save_to_password_manager">Guardar en el gestor de contraseñas</string>
+    <!-- Action button for users who would rather write the Signal Login down themselves. -->
+    <string name="SignalLoginInfoScreen__save_manually">Guardar manualmente</string>
+    <!-- Error shown when the Signal Login could not be stored in the password manager. -->
+    <string name="SignalLoginInfoScreen__your_signal_login_could_not_be_saved">No se ha podido guardar tu login de Signal. Guárdalo de forma manual.</string>
+
+    <!-- Add username screen -->
+    <!-- Title of the screen offering the user an optional username. -->
+    <string name="AddUsernameScreen__add_an_optional_username">Añadir un alias opcional</string>
+    <!-- Description explaining what a username is used for. -->
+    <string name="AddUsernameScreen__people_can_message_you_by_username">Las personas pueden enviarte mensajes usando tu alias en lugar de tu número de teléfono.</string>
+    <!-- Prompt shown above the username field. -->
+    <string name="AddUsernameScreen__choose_your_username">Elige tu alias</string>
+    <!-- Label/hint for the username field. -->
+    <string name="AddUsernameScreen__username">Alias</string>
+    <!-- Helper text below the username field. Followed by a "learn more" link. -->
+    <string name="AddUsernameScreen__usernames_are_always_paired_with_a_set_of_numbers">Los alias siempre incluyen un conjunto de números.</string>
+    <!-- Link in the helper text that opens a support article about usernames. -->
+    <string name="AddUsernameScreen__learn_more">Más información</string>
+    <!-- Button that skips choosing a username. -->
+    <string name="AddUsernameScreen__skip">Omitir</string>
+    <!-- Button that submits the chosen username. -->
+    <string name="AddUsernameScreen__next">Siguiente</string>
+    <!-- Validation error shown when the entered username is too short. -->
+    <string name="AddUsernameScreen__usernames_must_be_at_least_3_characters">Los alias debe tener como mínimo 3 caracteres</string>
+    <!-- Validation error shown when the entered username is too long. -->
+    <string name="AddUsernameScreen__usernames_must_be_at_most_32_characters">Los alias deben tener como máximo 32 caracteres</string>
+    <!-- Validation error shown when the entered username contains disallowed characters. -->
+    <string name="AddUsernameScreen__usernames_can_only_contain">Los alias solo pueden contener letras, números y guiones bajos</string>
+    <!-- Validation error shown when the entered username starts with a digit. -->
+    <string name="AddUsernameScreen__usernames_cannot_begin_with_a_number">Los alias no pueden comenzar con un número</string>
+    <!-- Error shown when the chosen username cannot be reserved. -->
+    <string name="AddUsernameScreen__this_username_is_not_available">Alias no disponible. Prueba con otro.</string>
+
+    <!-- ContactSupportDialog -->
+    <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__submit_debug_log">¿Quieres enviar tu registro de depuración?</string>
+    <!-- Body of the dialog asking the user whether they want to attach a debug log to their support request -->
+    <string name="ContactSupportDialog__your_debug_logs">El registro de depuración nos ayudará a solucionar tu problema más rápido. Enviar tu registro es opcional.</string>
+    <!-- Button that contacts support with a debug log attached -->
+    <string name="ContactSupportDialog__submit_with_debug_log">Enviar con registro de depuración</string>
+    <!-- Button that contacts support without attaching a debug log -->
+    <string name="ContactSupportDialog__submit_without_debug_log">Enviar sin registro de depuración</string>
 </resources>

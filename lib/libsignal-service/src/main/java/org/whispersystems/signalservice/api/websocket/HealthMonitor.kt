@@ -9,4 +9,6 @@ interface HealthMonitor {
   fun onMessageError(status: Int, isIdentifiedWebSocket: Boolean)
 
   fun onReceivedAlerts(alerts: Array<out String>, isIdentifiedWebSocket: Boolean)
+
+  fun onServerTimestamp(serverTimestamp: Long, isIdentifiedWebSocket: Boolean)
 }

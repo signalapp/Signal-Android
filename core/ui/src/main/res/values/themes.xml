@@ -7,7 +7,8 @@
         <item name="bottomSheetStyle">@style/Widget.CoreUi.FixedRoundedCorners.BottomSheet</item>
         <item name="android:windowEnterAnimation">@anim/slide_from_bottom</item>
         <item name="android:windowExitAnimation">@anim/slide_to_bottom</item>
-        <item name="android:navigationBarColor" tools:targetApi="lollipop">@color/signal_colorSurface1</item>
+        <!-- Only applies under API 35, otherwise edge-to-edge enforcement keeps the bar transparent and the sheet draws behind it. -->
+        <item name="android:navigationBarColor" tools:targetApi="lollipop">@color/signal_bottom_sheet_navigation_bar</item>
     </style>
 
     <style name="Widget.CoreUi.FixedRoundedCorners.BottomSheet" parent="Widget.Material3.BottomSheet.Modal">

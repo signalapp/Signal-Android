@@ -8,9 +8,10 @@ package org.signal.core.ui.compose.list
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
+import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.scrollBy
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.lazy.LazyItemScope
 import androidx.compose.foundation.lazy.LazyListItemInfo
 import androidx.compose.foundation.lazy.LazyListState
@@ -23,19 +24,26 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.GraphicsLayerScope
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.hapticfeedback.HapticFeedback
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.input.pointer.PointerInputChange
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.list.ReorderListEvent.ItemMoved
 
@@ -43,38 +51,62 @@ import org.signal.core.ui.compose.list.ReorderListEvent.ItemMoved
  * Adapted from the AndroidX Compose demo
  * https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:compose/foundation/foundation/integration-tests/foundation-demos/src/main/java/androidx/compose/foundation/demos/LazyColumnDragAndDropDemo.kt
  *
- * - Allows for dragging and dropping to reorder within lazy columns.
+ * - Allows for dragging and dropping to reorder within lazy columns and lazy rows.
  * - Supports adding non-draggable headers and footers.
+ *
+ * @param autoScroll Whether dragging past an edge scrolls the list. Pass false when the list's scroll position is owned
+ *   by something other than the user, such as a rail driven by a pager, since scrolling it here only fights that owner.
  */
 @Composable
 fun rememberReorderableListState(
   lazyListState: LazyListState,
   includeHeader: Boolean,
   includeFooter: Boolean,
+  orientation: Orientation = Orientation.Vertical,
+  autoScroll: Boolean = true,
   onEvent: (ReorderListEvent) -> Unit = {}
 ): ReorderableListState {
   val scope = rememberCoroutineScope()
-  val state = remember(lazyListState) {
-    ReorderableListState(state = lazyListState, onEvent = onEvent, includeHeader = includeHeader, includeFooter = includeFooter, scope = scope)
+  val isRtl = LocalLayoutDirection.current == LayoutDirection.Rtl
+  val hapticFeedback = LocalHapticFeedback.current
+  val state = remember(lazyListState, orientation, isRtl, hapticFeedback) {
+    ReorderableListState(
+      state = lazyListState,
+      onEvent = onEvent,
+      includeHeader = includeHeader,
+      includeFooter = includeFooter,
+      scope = scope,
+      orientation = orientation,
+      mainAxisSign = if (orientation == Orientation.Horizontal && isRtl) -1f else 1f,
+      hapticFeedback = hapticFeedback
+    )
   }
   val maxAutoScrollSpeed = with(LocalDensity.current) { 30.dp.toPx() }
   val baseAutoScrollSpeed = with(LocalDensity.current) { 10.dp.toPx() }
   val scrollAcceleration = 2f
 
-  LaunchedEffect(state) {
-    while (true) {
-      withFrameNanos { }
-
-      val overscrollAmount = state.dragOverscrollAmount
-      if (overscrollAmount != 0f) {
-        val scrollDirection = if (overscrollAmount < 0f) -1f else 1f
-        val scrollAmount = (scrollDirection * baseAutoScrollSpeed + overscrollAmount * scrollAcceleration)
-          .coerceIn(-maxAutoScrollSpeed, maxAutoScrollSpeed)
-        lazyListState.scrollBy(scrollAmount)
-
-        state.swapDraggingItemIfNeeded()
-      }
+  // Gated on there being an overscroll to act on: waiting on frames is what asks for the next one, so an ungated loop
+  // would hold the list at the display's frame rate for as long as it is on screen.
+  LaunchedEffect(state, autoScroll) {
+    if (!autoScroll) {
+      return@LaunchedEffect
     }
+
+    snapshotFlow { state.dragOverscrollAmount != 0f }
+      .distinctUntilChanged()
+      .collectLatest { isOverscrolling ->
+        while (isOverscrolling) {
+          withFrameNanos { }
+
+          val overscrollAmount = state.dragOverscrollAmount
+          val scrollDirection = if (overscrollAmount < 0f) -1f else 1f
+          val scrollAmount = (scrollDirection * baseAutoScrollSpeed + overscrollAmount * scrollAcceleration)
+            .coerceIn(-maxAutoScrollSpeed, maxAutoScrollSpeed)
+          lazyListState.scrollBy(scrollAmount)
+
+          state.swapDraggingItemIfNeeded()
+        }
+      }
   }
   return state
 }
@@ -84,6 +116,9 @@ class ReorderableListState internal constructor(
   private val scope: CoroutineScope,
   private val includeHeader: Boolean,
   private val includeFooter: Boolean,
+  internal val orientation: Orientation,
+  private val mainAxisSign: Float,
+  private val hapticFeedback: HapticFeedback,
   private val onEvent: (ReorderListEvent) -> Unit
 ) {
   var draggingItemIndex by mutableStateOf<Int?>(null)
@@ -109,27 +144,56 @@ class ReorderableListState internal constructor(
   internal var previousItemOffset = Animatable(0f)
     private set
 
+  /**
+   * Converts a pointer position within the list container into a position along the list's scrolling axis.
+   *
+   * Pointer positions are measured from the container edge while item offsets are measured from the content area, so any
+   * before-content padding has to be taken out. That padding is what the layout reports as a negative viewport start
+   * offset.
+   */
+  private fun Offset.toMainAxisPosition(): Float {
+    val positionInContainer = when {
+      orientation == Orientation.Vertical -> y
+      mainAxisSign > 0f -> x
+      else -> state.layoutInfo.viewportSize.width - x
+    }
+
+    return positionInContainer + state.layoutInfo.viewportStartOffset
+  }
+
+  /** Converts a distance along the list's scrolling axis into the equivalent physical translation. */
+  internal fun toPhysicalTranslation(mainAxisOffset: Float): Float = mainAxisSign * mainAxisOffset
+
   internal fun onDragStart(offset: Offset) {
+    val mainAxisPosition = offset.toMainAxisPosition()
+
     state.layoutInfo.visibleItemsInfo
       .firstOrNull { item ->
-        offset.y.toInt() in item.offset..(item.offset + item.size) &&
+        mainAxisPosition.toInt() in item.offset..(item.offset + item.size) &&
           (!includeHeader || item.index != 0) &&
           (!includeFooter || item.index != (state.layoutInfo.totalItemsCount - 1))
       }
       ?.also {
         draggingItemIndex = it.index
         draggingItemInitialOffset = it.offset
+        hapticFeedback.performHapticFeedback(HapticFeedbackType.LongPress)
       }
   }
 
   internal fun onDragEnd() {
+    val wasDragging = draggingItemIndex != null
     onDragInterrupted()
-    onEvent(ReorderListEvent.ItemDropped)
+    if (wasDragging) {
+      onEvent(ReorderListEvent.ItemDropped)
+    }
   }
 
   internal fun onDragCancel() {
+    val wasDragging = draggingItemIndex != null
     onDragInterrupted()
-    onEvent(ReorderListEvent.DragCanceled)
+    if (wasDragging) {
+      onEvent(ReorderListEvent.DragCanceled)
+    }
   }
 
   private fun onDragInterrupted() {
@@ -159,7 +223,7 @@ class ReorderableListState internal constructor(
 
     change.consume()
 
-    draggingItemDraggedDelta += offset.y
+    draggingItemDraggedDelta += mainAxisSign * if (orientation == Orientation.Vertical) offset.y else offset.x
 
     val draggingItem = draggingItemLayoutInfo
     val isDraggingItemOffScreen = draggingItem == null
@@ -199,32 +263,33 @@ class ReorderableListState internal constructor(
       ?.let { targetItem -> performSwap(draggingItem, targetItem) }
   }
 
+  /**
+   * The item to trade places with, if any: the one the dragged item's center is currently over, once that center has
+   * passed the midpoint of it. The same midpoint rule applies in both directions so that dragging backwards takes no
+   * more travel than dragging forwards, and the gap between items counts towards its neighbours so there is no dead
+   * zone where nothing swaps.
+   */
   private fun findSwapTarget(draggingItem: LazyListItemInfo, startOffset: Float, endOffset: Float): LazyListItemInfo? {
-    val middleOffset = startOffset + (endOffset - startOffset) / 2f
+    val draggedCenter = startOffset + (endOffset - startOffset) / 2f
+    val halfSpacing = state.layoutInfo.mainAxisItemSpacing / 2f
 
     return state.layoutInfo.visibleItemsInfo.find { item ->
+      val itemCenter = item.offset + item.size / 2f
+
       when {
         item.index == draggingItem.index -> false
         includeHeader && item.index == 0 -> false
         includeFooter && item.index == (state.layoutInfo.totalItemsCount - 1) -> false
-
-        item.index > draggingItem.index -> {
-          val centerOfDraggedItem = middleOffset.toInt()
-          val centerOfItemBelow = item.offset + item.size / 2
-          val draggedItemOverlapsItemBelow = centerOfDraggedItem in item.offset..item.offsetEnd
-          draggedItemOverlapsItemBelow && centerOfDraggedItem >= centerOfItemBelow
-        }
-
-        else -> {
-          val isDirectlyAboveDraggingItem = item.index == draggingItem.index - 1
-          val topOfItemAbove = item.offset.toFloat()
-          isDirectlyAboveDraggingItem && endOffset <= topOfItemAbove
-        }
+        draggedCenter < item.offset - halfSpacing || draggedCenter > item.offsetEnd + halfSpacing -> false
+        item.index > draggingItem.index -> draggedCenter >= itemCenter
+        else -> draggedCenter <= itemCenter
       }
     }
   }
 
   private fun performSwap(draggingItem: LazyListItemInfo, targetItem: LazyListItemInfo) {
+    hapticFeedback.performHapticFeedback(HapticFeedbackType.SegmentFrequentTick)
+
     if (includeHeader) {
       onEvent.invoke(ItemMoved(fromIndex = draggingItem.index - 1, toIndex = targetItem.index - 1))
     } else {
@@ -260,22 +325,24 @@ sealed interface ReorderListEvent {
  * Enables drag-to-reorder functionality within a container.
  *
  * @param reorderableListState The state managing the drag operation.
- * @param dragHandleWidth Width of the draggable area (positioned at the end of the container).
+ * @param dragHandleWidth Width of the draggable area (positioned at the end of each row), or null to allow drags to start
+ *   anywhere in the container after a long press.
  */
 @Composable
 fun Modifier.reorderableList(
   reorderableListState: ReorderableListState,
-  dragHandleWidth: Dp
+  dragHandleWidth: Dp? = null
 ): Modifier {
   val isRtl = LocalLayoutDirection.current == LayoutDirection.Rtl
   return pointerInput(reorderableListState, dragHandleWidth, isRtl) {
     val containerWidthPx = size.width.toFloat()
-    val handleWidthPx = dragHandleWidth.toPx()
 
-    val dragHandleXRange = if (isRtl) {
-      0f..handleWidthPx
-    } else {
-      (containerWidthPx - handleWidthPx)..containerWidthPx
+    val dragHandleXRange = dragHandleWidth?.toPx()?.let { handleWidthPx ->
+      if (isRtl) {
+        0f..handleWidthPx
+      } else {
+        (containerWidthPx - handleWidthPx)..containerWidthPx
+      }
     }
 
     detectDragGestures(
@@ -293,20 +360,33 @@ fun LazyItemScope.ReorderableItem(
   reorderableListState: ReorderableListState,
   index: Int,
   modifier: Modifier = Modifier,
-  content: @Composable ColumnScope.(isDragging: Boolean) -> Unit
+  content: @Composable (isDragging: Boolean) -> Unit
 ) {
   val dragging = index == reorderableListState.draggingItemIndex
   val draggingModifier =
     if (dragging) {
       Modifier
         .zIndex(1f)
-        .graphicsLayer { translationY = reorderableListState.draggingItemOffset }
+        .graphicsLayer { translateMainAxis(reorderableListState, reorderableListState.draggingItemOffset) }
     } else if (index == reorderableListState.previousIndexOfDraggedItem) {
       Modifier
         .zIndex(1f)
-        .graphicsLayer { translationY = reorderableListState.previousItemOffset.value }
+        .graphicsLayer { translateMainAxis(reorderableListState, reorderableListState.previousItemOffset.value) }
     } else {
       Modifier.animateItem(fadeInSpec = null, fadeOutSpec = null)
     }
-  Column(modifier = modifier.then(draggingModifier)) { content(dragging) }
+
+  if (reorderableListState.orientation == Orientation.Horizontal) {
+    Row(modifier = modifier.then(draggingModifier)) { content(dragging) }
+  } else {
+    Column(modifier = modifier.then(draggingModifier)) { content(dragging) }
+  }
+}
+
+private fun GraphicsLayerScope.translateMainAxis(reorderableListState: ReorderableListState, mainAxisOffset: Float) {
+  if (reorderableListState.orientation == Orientation.Horizontal) {
+    translationX = reorderableListState.toPhysicalTranslation(mainAxisOffset)
+  } else {
+    translationY = mainAxisOffset
+  }
 }

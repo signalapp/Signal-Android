@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.testing.endpoints
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.subjects.BehaviorSubject
+import org.signal.libsignal.net.ChatConnection
 import org.signal.network.websocket.WebSocketRequestMessage
 import org.signal.network.websocket.WebSocketResponseMessage
 import org.signal.network.websocket.WebsocketResponse
@@ -98,6 +99,10 @@ class ResponderWebSocketConnection(
   }
 
   override fun sendResponse(response: WebSocketResponseMessage) = Unit
+
+  override suspend fun <T> runWithChatConnection(callback: (ChatConnection) -> T): T {
+    throw IOException("Responder does not provide a libsignal chat connection")
+  }
 
   private fun parseHeaders(headers: List<String>): Map<String, String> {
     return headers.mapNotNull { header ->

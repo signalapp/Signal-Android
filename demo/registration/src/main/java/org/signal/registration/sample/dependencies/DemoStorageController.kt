@@ -33,6 +33,7 @@ import org.signal.libsignal.protocol.state.KyberPreKeyRecord
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.signal.network.NetworkResult
+import org.signal.network.api.RegistrationApiV2.SvrCredentials
 import org.signal.registration.NetworkController
 import org.signal.registration.NewRegistrationData
 import org.signal.registration.PreExistingRegistrationData
@@ -165,12 +166,14 @@ class DemoStorageController(private val context: Context) : StorageController {
     }
 
     // Account identity
-    if (accountData.e164.isNotEmpty() && accountData.aci.isNotEmpty() && accountData.pni.isNotEmpty() && accountData.servicePassword.isNotEmpty() && data.accountEntropyPool.isNotEmpty()) {
+    val e164 = accountData.e164
+    val pni = accountData.pni
+    if (!e164.isNullOrEmpty() && accountData.aci.isNotEmpty() && !pni.isNullOrEmpty() && accountData.servicePassword.isNotEmpty() && data.accountEntropyPool.isNotEmpty()) {
       RegistrationPreferences.saveRegistrationData(
         NewRegistrationData(
-          e164 = accountData.e164,
+          e164 = e164,
           aci = ACI.parseOrThrow(accountData.aci),
-          pni = PNI.parseOrThrow(accountData.pni),
+          pni = PNI.parseOrThrow(pni),
           servicePassword = accountData.servicePassword,
           aep = AccountEntropyPool(data.accountEntropyPool)
         )
@@ -197,7 +200,7 @@ class DemoStorageController(private val context: Context) : StorageController {
     // SVR credentials
     if (data.svrCredentials.isNotEmpty()) {
       RegistrationPreferences.restoredSvr2Credentials = data.svrCredentials.map {
-        NetworkController.SvrCredentials(username = it.username, password = it.password)
+        SvrCredentials(username = it.username, password = it.password)
       }
     }
 
@@ -206,7 +209,7 @@ class DemoStorageController(private val context: Context) : StorageController {
       RegistrationPreferences.saveProvisioningData(
         NetworkController.ProvisioningMessage(
           accountEntropyPool = data.accountEntropyPool,
-          e164 = accountData.e164,
+          e164 = accountData.e164.orEmpty(),
           pin = data.pin.ifEmpty { null },
           aciIdentityKeyPair = IdentityKeyPair(accountData.aciIdentityKeyPair.toByteArray()),
           pniIdentityKeyPair = IdentityKeyPair(accountData.pniIdentityKeyPair.toByteArray()),
@@ -230,6 +233,8 @@ class DemoStorageController(private val context: Context) : StorageController {
 
     Unit
   }
+
+  override suspend fun onRegistrationFlowFinished() = Unit
 
   override suspend fun setRestoreDecision(decision: RestoreDecision) = withContext(Dispatchers.IO) {
     Log.i(TAG, "[setRestoreDecision] Recording restore decision: $decision")
@@ -406,7 +411,7 @@ class DemoStorageController(private val context: Context) : StorageController {
 
         // Decrypt + parse the backup proto to prove the round-trip worked. We intentionally do NOT
         // import the frames into a database -- that is the app's full backup-restore pipeline.
-        trySend(LinkAndSyncProgress.Restoring)
+        trySend(LinkAndSyncProgress.Finalizing)
         val downloadedBytes = tempFile.length()
         var frameCount = 0
         EncryptedBackupReader.createForLocalOrLinking(

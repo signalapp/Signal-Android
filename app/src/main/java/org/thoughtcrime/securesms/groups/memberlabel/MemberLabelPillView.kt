@@ -8,12 +8,11 @@ package org.thoughtcrime.securesms.groups.memberlabel
 import android.content.Context
 import android.util.AttributeSet
 import androidx.annotation.ColorInt
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.AbstractComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
@@ -55,7 +54,7 @@ class MemberLabelPillView : AbstractComposeView {
         emoji = label.emoji,
         text = label.displayText,
         tintColor = tintColor,
-        modifier = Modifier.padding(horizontal = style.horizontalPadding, vertical = style.verticalPadding),
+        contentPadding = PaddingValues(horizontal = style.horizontalPadding, vertical = style.verticalPadding),
         textStyle = style.textStyle(),
         maxLines = style.maxLines
       )

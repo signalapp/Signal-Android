@@ -5,14 +5,14 @@ import android.database.Cursor;
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
+import org.signal.core.models.database.StickerRecord;
 import org.signal.core.util.concurrent.SignalExecutors;
-import org.thoughtcrime.securesms.components.emoji.EmojiUtil;
+import org.signal.emoji.EmojiUtil;
 import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.database.StickerTable;
-import org.thoughtcrime.securesms.database.StickerTable.StickerRecordReader;
-import org.thoughtcrime.securesms.database.model.StickerRecord;
-import org.thoughtcrime.securesms.emoji.EmojiSource;
+import org.thoughtcrime.securesms.database.StickerTables;
+import org.thoughtcrime.securesms.database.StickerTables.StickerRecordReader;
+import org.signal.emoji.EmojiSource;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,11 +20,10 @@ import java.util.List;
 import java.util.Set;
 
 import io.reactivex.rxjava3.core.Single;
-import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public final class StickerSearchRepository {
 
-  private final StickerTable    stickerDatabase;
+  private final StickerTables   stickerDatabase;
   private final AttachmentTable attachmentDatabase;
 
   public StickerSearchRepository() {

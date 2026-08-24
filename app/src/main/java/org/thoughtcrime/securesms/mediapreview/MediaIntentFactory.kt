@@ -7,13 +7,13 @@ import android.os.Bundle
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 import kotlinx.parcelize.WriteWith
+import org.signal.core.models.parcelers.NullableCharSequenceParceler
 import org.signal.core.util.dp
 import org.signal.core.util.getParcelableCompat
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.database.MediaTable
 import org.thoughtcrime.securesms.database.MediaTable.MediaRecord
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.parcelers.NullableCharSequenceParceler
 
 object MediaIntentFactory {
   private const val ARGS_KEY = "args"
@@ -64,7 +64,7 @@ object MediaIntentFactory {
 
   @JvmStatic
   fun create(context: Context, args: MediaPreviewArgs): Intent {
-    return Intent(context, MediaPreviewV2Activity::class.java).putExtra(ARGS_KEY, args)
+    return Intent(context, MediaPreviewActivity::class.java).putExtra(ARGS_KEY, args)
   }
 
   fun intentFromMediaRecord(

@@ -56,6 +56,7 @@ public final class LeaveGroupDialog {
     SimpleTask.run(activity.getLifecycle(), () -> {
       GroupTable.V2GroupProperties groupProperties = SignalDatabase.groups()
                                                                    .getGroup(groupId)
+                                                                   .filter(GroupRecord::getHasV2GroupProperties)
                                                                    .map(GroupRecord::requireV2GroupProperties)
                                                                    .orElse(null);
 

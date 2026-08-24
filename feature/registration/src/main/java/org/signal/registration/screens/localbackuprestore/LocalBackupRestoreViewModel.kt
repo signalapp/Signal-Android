@@ -22,13 +22,16 @@ import org.signal.core.models.AccountEntropyPool
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.ui.navigation.ResultEventBus
 import org.signal.core.util.logging.Log
+import org.signal.core.util.throttleLatest
 import org.signal.registration.RegistrationFlowEvent
 import org.signal.registration.RegistrationFlowState
 import org.signal.registration.RegistrationRepository
 import org.signal.registration.RegistrationRoute
 import org.signal.registration.RestoreDecision
+import org.signal.registration.screens.shared.RestoreProgress
 import org.signal.registration.screens.util.navigateBack
 import org.signal.registration.screens.util.navigateTo
+import kotlin.time.Duration.Companion.seconds
 
 class LocalBackupRestoreViewModel(
   private val repository: RegistrationRepository,
@@ -51,6 +54,7 @@ class LocalBackupRestoreViewModel(
 
   init {
     _state
+      .throttleLatest(1.seconds) { it.restorePhase != LocalBackupRestoreState.RestorePhase.InProgress }
       .onEach { Log.d(TAG, "[State] $it") }
       .launchIn(viewModelScope)
 
@@ -223,18 +227,19 @@ class LocalBackupRestoreViewModel(
       }
       restoreFlow.collect { progress ->
         _state.value = when (progress) {
-          is LocalBackupRestoreProgress.Preparing -> LocalBackupRestoreState(
+          is LocalBackupRestoreProgress.Preparing -> currentState.copy(
             restorePhase = LocalBackupRestoreState.RestorePhase.Preparing,
-            aep = currentState.aep,
-            v1Passphrase = currentState.v1Passphrase,
-            storageCapable = currentState.storageCapable
+            progressFraction = 0f,
+            restoreProgress = null
           )
-          is LocalBackupRestoreProgress.InProgress -> LocalBackupRestoreState(
+          is LocalBackupRestoreProgress.InProgress -> currentState.copy(
             restorePhase = LocalBackupRestoreState.RestorePhase.InProgress,
             progressFraction = progress.progressFraction,
-            aep = currentState.aep,
-            v1Passphrase = currentState.v1Passphrase,
-            storageCapable = currentState.storageCapable
+            restoreProgress = RestoreProgress(
+              phase = RestoreProgress.Phase.Restoring,
+              bytesCompleted = progress.bytesRead,
+              totalBytes = progress.totalBytes
+            )
           )
           is LocalBackupRestoreProgress.Complete -> {
             onRestoreComplete(_state.value.copy(aep = aep, v1Passphrase = currentState.v1Passphrase, storageCapable = currentState.storageCapable), progress, backup.type)

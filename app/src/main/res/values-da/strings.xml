@@ -4,7 +4,7 @@
   ~ SPDX-License-Identifier: AGPL-3.0-only
   -->
 <!-- smartling.instruction_comments_enabled = on -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
   <!-- Removed by excludeNonTranslatables <string name="app_name" translatable="false">Signal</string> -->
 
   <!-- Removed by excludeNonTranslatables <string name="install_url" translatable="false">https://signal.org/install</string> -->
@@ -171,6 +171,8 @@
     <string name="BlockedUsersActivity__block_user">Blokér bruger?</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" vil ikke kunne ringe eller sende beskeder til dig.</string>
     <string name="BlockedUsersActivity__block">Blokér</string>
+    <!-- Subtitle shown under a blocked user. Placeholder is the time they were blocked-->
+    <string name="BlockedUsersActivity__blocked_on_s">Blokeret %1$s</string>
 
     <!-- CreditCardFragment -->
     <!-- Title of fragment -->
@@ -294,6 +296,16 @@
     <string name="ClientDeprecatedActivity_warning">Advarsel</string>
     <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Din Signal-version er udløbet. Du kan se din meddelelseshistorik, men du kan ikke sende eller modtage beskeder, før du opdaterer.</string>
 
+    <!-- ClockSkewActivity -->
+    <!-- Title of the full-screen dialog shown when the device clock is too far off from the real time -->
+    <string name="ClockSkewActivity__title">Datoen er ikke korrekt</string>
+    <!-- Body text explaining that the device clock is wrong and needs to be fixed -->
+    <string name="ClockSkewActivity__date_inaccurate_description">Din enheds dato er ikke korrekt.\nRet dato og klokkeslæt, og prøv igen.</string>
+    <!-- Shows the user the current, inaccurate date and time reported by their device. Placeholder is the formatted date, time, and time zone. -->
+    <string name="ClockSkewActivity__time_prefix">Din enheds dato og klokkeslæt er:\n%1$s</string>
+    <!-- Button that opens the system date and time settings -->
+    <string name="ClockSkewActivity__adjust_date_button">Ret dato</string>
+
     <!-- CommunicationActions -->
     <string name="CommunicationActions_no_browser_found">Ingen webbrowser fundet.</string>
     <string name="CommunicationActions_send_email">Send e-mail</string>
@@ -388,6 +400,8 @@
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
     <string name="ConversationItem_s_deleted_this_message">%1$s slettede beskeden</string>
     <string name="ConversationItem_you_deleted_this_message">Du slettede beskeden</string>
+    <!-- Tappable text shown on a locally-deleted message tombstone, prompting the user to promote it to a delete-for-everyone -->
+    <string name="ConversationItem_delete_for_everyone_question">Slet for alles vedkommende?</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
     <string name="ConversationItem_admin_s_deleted_this_message">Administratoren %1$s slettede denne besked</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -416,7 +430,6 @@
     <!-- Accessibility text associated with image button to send an edited message. -->
     <string name="ConversationActivity_send_edit">Send redigeret version</string>
     <string name="ConversationActivity_compose_message">Opret besked</string>
-    <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Beklager, der opstod en fejl ved vedhæftning af din fil.</string>
     <!-- Toast shown when user is unable to find the recipient when sending a message -->
     <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Modtager er ikke en gyldig SMS eller e-mailadresse!</string>
     <string name="ConversationActivity_message_is_empty_exclamation">Beskeden er tom!</string>
@@ -579,7 +592,7 @@
     <string name="ConversationFragment_delete">Slet</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">Slet overalt</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Denne besked slettes for alle i chatten, hvis de har den seneste version af Signal. De kan se at du har slettet en besked.</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Denne besked bliver slettet for alle i chatten. De vil kunne se, at du har slettet en besked.</string>
     <string name="ConversationFragment_quoted_message_not_found">Oprindelig besked blev ikke fundet</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Oprindelig besked er ikke længere tilgængelig</string>
     <string name="ConversationFragment_failed_to_open_message">Fejl ved åbning af besked</string>
@@ -758,17 +771,28 @@
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">Ingen ulæste chats</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="one">Slet valgt chat?</item>
-        <item quantity="other">Slet valgte chats?</item>
+        <item quantity="one">Vil du slette beskedhistorikken?</item>
+        <item quantity="other">Vil du slette beskedhistorikkerne?</item>
     </plurals>
+    <!-- Dialog message shown when deleting chats, none of which are groups -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">Dette sletter den valgte chat permanent.</item>
-        <item quantity="other">Dette sletter de %1$d valgte chats permanent.</item>
+        <item quantity="one">Alle beskeder i denne chat slettes.</item>
+        <item quantity="other">Alle beskeder i disse chats slettes.</item>
     </plurals>
-    <!-- Dialog message shown when deleting one to many conversations from the chat list and the user has a linked device -->
+    <!-- Dialog message shown when deleting chats, with at least one group -->
+    <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_group">
+        <item quantity="one">Alle beskeder i denne chat slettes. Du er stadig medlem af denne gruppe.</item>
+        <item quantity="other">Alle beskeder i disse chats slettes. Du er stadig medlem af de grupper, du endnu ikke har forladt.</item>
+    </plurals>
+    <!-- Dialog message shown when deleting chats, none of which are groups, and the user has a linked device -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device">
-        <item quantity="one">Dette sletter den valgte chat fra alle dine enheder permanent.</item>
-        <item quantity="other">Dette sletter alle %1$d valgte chats fra alle dine enheder permanent.</item>
+        <item quantity="one">Alle beskeder i denne chat slettes fra alle dine enheder.</item>
+        <item quantity="other">Alle beskeder i disse chats slettes fra alle dine enheder.</item>
+    </plurals>
+    <!-- Dialog message shown when deleting chats with at least one group, and the user has a linked device -->
+    <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device_group">
+        <item quantity="one">Alle beskeder i disse chats bliver slettet fra alle dine enheder. Du vil stadig være medlem af de grupper, du endnu ikke har forladt.</item>
+        <item quantity="other">Alle beskeder i disse chats bliver slettet fra alle dine enheder. Du vil stadig være medlem af de grupper, du endnu ikke har forladt.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Sletter</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
@@ -1046,13 +1070,13 @@
 
     <!-- LinkDeviceFragment -->
     <!-- Description for how Signal will work with a linked device (eg desktop, iPad) -->
-    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Brug denne Signal-konto på computer eller iPad.</string>
+    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Brug denne Signal-konto på en anden enhed.</string>
     <!-- Button prompting users to link a new device to their account -->
     <string name="LinkDeviceFragment__link_a_new_device">Forbind en ny enhed</string>
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
     <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$s-beskeder og -chatinfo er beskyttet af E2E-kryptering på alle enheder</string>
     <!-- Bottom sheet title explaining how Signal works on a linked device -->
-    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal på computer eller iPad</string>
+    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal på en forbundet enhed</string>
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
     <string name="LinkDeviceFragment__all_messaging_is_private">Alle beskeder på forbundne enheder er private</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
@@ -1118,6 +1142,8 @@
     <string name="LinkDeviceFragment__edit_name">Redigér navn</string>
     <!-- Toast shown when the process of linking a device has been cancelled -->
     <string name="LinkDeviceFragment__linking_cancelled">Forbindelsen er annulleret</string>
+    <!-- Snackbar shown when the user tries to link a new device but has already reached the maximum number of linked devices. Placeholder is the maximum count. -->
+    <string name="LinkDeviceFragment__you_can_only_have_d_linked_devices">Du kan højst have %1$d tilknyttede enheder.</string>
     <!-- Message shown in progress dialog telling users to avoid closing the app while messages are being synced -->
     <string name="LinkDeviceFragment__do_not_close">Undlad at lukke appen</string>
     <!-- Dialog title shown when a device is unlinked -->
@@ -1164,6 +1190,8 @@
     <string name="AddLinkDeviceFragment__this_qr_code_not_valid">Denne QR-kode er ikke gyldig. Sørg for, at du scanner QR-koden, der vises på den enhed du vil forbinde</string>
     <!-- Button in dialog to retry linking a device with a qr code -->
     <string name="AddLinkDeviceFragment__retry">Prøv igen</string>
+    <!-- Text shown in a dialog when the device being linked is too out-of-date to be linked to this account -->
+    <string name="AddLinkDeviceFragment__the_device_you_are_trying_to_link_is_out_of_date">The device you\'re trying to link is out of date. Please upgrade and try again.</string>
 
     <!-- LinkDeviceSyncBottomSheet -->
     <!-- Option in bottom sheet to transfer message history -->
@@ -1549,12 +1577,6 @@
     <!-- Dialog message -->
     <string name="RestoreActivity__no_longer_registered_message">Det skyldes sandsynligvis, at du har registreret din Signal-konto på en anden enhed.</string>
 
-    <!-- GroupMentionSettingDialog -->
-    <string name="GroupMentionSettingDialog_notify_me_for_mentions">Underret mig ved omtaler</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Vil du modtage notifikationer, når du bliver tagget i ignorerede chats?</string>
-    <string name="GroupMentionSettingDialog_always_notify_me">Underret mig altid</string>
-    <string name="GroupMentionSettingDialog_dont_notify_me">Underret mig ikke</string>
-
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Dit brugernavn, din QR-kode og dit link er ikke synlige på din profil. Del kun dit brugernavn med folk, du stoler på.</string>
@@ -1855,9 +1877,6 @@
 
     <!-- MediaPickerActivity -->
     <string name="MediaPickerActivity__menu_open_camera">Åbn kamera</string>
-
-    <!-- MediaSendActivity -->
-    <string name="MediaSendActivity_camera_unavailable">Kamera er ikke tilgængeligt.</string>
 
     <!-- MediaRepository -->
     <string name="MediaRepository_all_media">Alle mediefiler</string>
@@ -2866,13 +2885,6 @@
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">Kontakt support</string>
 
-    <!-- RegistrationLockV2Dialog -->
-    <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Aktiver registreringslås?</string>
-    <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Deaktiver registreringslås?</string>
-    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Hvis du glemmer din pinkode til Signal ved genregistrering af Signal, vil du blive låst ude af din konto i 7 dage.</string>
-    <string name="RegistrationLockV2Dialog_turn_on">Aktiver</string>
-    <string name="RegistrationLockV2Dialog_turn_off">Deaktiver</string>
-
     <!-- RevealableMessageView -->
     <string name="RevealableMessageView_view_photo">Vis billede</string>
     <string name="RevealableMessageView_view_video">Se video</string>
@@ -3070,6 +3082,7 @@
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_locale" translatable="false">Locale:</string> -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_challenge_received" translatable="false">Challenge Received:</string> -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_registered" translatable="false">Registered:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_backups" translatable="false">Backups:</string> -->
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">Gruppe opdateret</string>
@@ -3241,7 +3254,7 @@
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
     <string name="MuteDialog_mute_notifications">Slå notifikationer fra</string>
     <!-- Dialog option that, when pressed, will open a time picker to let the user choose how long they\'d like to mute notifications for -->
-    <string name="MuteDialog__mute_until">Ignorer indtil…</string>
+    <string name="MuteDialog__mute_until">Until…</string>
 
     <!-- MuteUntilTimePickerBottomSheet -->
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
@@ -4092,15 +4105,6 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Nylige</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Denne besked</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Senest brugte</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Smileys &amp; personer</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Natur</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Mad</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Aktiviteter</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Steder</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Objekter</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Symboler</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Flag</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Humørikoner</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Ingen fundne resultater</string>
 
     <!-- GifQuickSearchOption -->
@@ -4118,10 +4122,10 @@
     <string name="arrays__use_default">Brug standard</string>
     <string name="arrays__use_custom">Brug tilpasset</string>
 
-    <string name="arrays__mute_for_one_hour">Ignorer i 1 time</string>
-    <string name="arrays__mute_for_eight_hours">Ignorer i 8 timer</string>
-    <string name="arrays__mute_for_one_day">Ignorer 1 dag</string>
-    <string name="arrays__mute_for_seven_days">Ignorer i 7 dage</string>
+    <string name="arrays__mute_for_one_hour">1 time</string>
+    <string name="arrays__mute_for_eight_hours">8 timer</string>
+    <string name="arrays__mute_for_one_day">1 dag</string>
+    <string name="arrays__mute_for_seven_days">1 uge</string>
     <string name="arrays__always">Altid</string>
 
     <string name="arrays__settings_default">Standardindstillinger</string>
@@ -4176,6 +4180,10 @@
     <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
     <string name="preferences__inactivity_timeout_interval">Timeout-interval for inaktivitet</string>
     <string name="preferences__notifications">Notifikationer</string>
+    <!-- Preference item menu to enable notifications -->
+    <string name="preferences__enable_notifications">Aktiver notifikationer</string>
+    <!-- Preference header for call notifications -->
+    <string name="preferences__call_notifications">Opkaldsnotifikationer</string>
     <string name="preferences__led_color">LED-farve</string>
     <string name="preferences__led_color_unknown">Ukendt</string>
     <string name="preferences__pref_led_blink_title">LED-blinkemønster</string>
@@ -4263,12 +4271,10 @@
     <string name="preferences__system_default">Systemstandard</string>
     <string name="preferences__language">Sprog</string>
     <string name="preferences__signal_messages_and_calls">Signal-beskeder og opkald</string>
-    <string name="preferences__advanced_pin_settings">Avancerede pinkode-indstillinger</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">Avancerede pinkode-indstillinger</string>
     <string name="preferences__free_private_messages_and_calls">Gratis private beskeder og opkald til Signal-brugere</string>
     <string name="preferences__submit_debug_log">Indsend fejlsøgningslog</string>
-    <string name="preferences__delete_account">Slet konto</string>
     <string name="preferences__support_wifi_calling">Kompatibilitetstilstand for WiFi-opkald</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktiver hvis din enhed bruger SMS/MMS via WiFi (brug kun hvis WiFi-opkald er aktiveret på din enhed)</string>
     <string name="preferences__incognito_keyboard">Inkognito-tastatur</string>
@@ -4335,6 +4341,16 @@
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Brug af færre data kan forbedre opkald på dårlige netværk.</string>
     <string name="preferences_notifications__in_chat_sounds">Chatlyde</string>
     <string name="preferences_notifications__show">Vis</string>
+    <!-- Preference item to set notification settings when chats are muted -->
+    <string name="preferences_notifications__while_muted">While muted</string>
+    <!-- Option in settings to turn on reaction notifications -->
+    <string name="preferences_notifications__reaction">Reaction notifications</string>
+    <!-- Body option in settings to turn on reaction notifications    -->
+    <string name="preferences_notifications__notify_reaction">Show notifications for reactions to messages you send</string>
+    <!-- Option in settings to turn on unread reminders -->
+    <string name="preferences_notifications__unread">Unread reminders</string>
+    <!-- Body option to turn on unread reminders -->
+    <string name="preferences_notifications__notify_unread">Occasionally notify when there are unread messages in muted chats</string>
     <string name="preferences_notifications__ringtone">Ringetone</string>
     <string name="preferences_chats__message_text_size">Skriftstørrelse på beskeder</string>
     <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
@@ -4862,8 +4878,6 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Indtast den pinkode du oprettede til din konto. Den er forskellig fra din SMS-verifikationskode.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Angiv den pinkode, du har oprettet til din konto.</string>
-    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
-    <string name="RegistrationLockFragment__switch_keyboard">Skift tastatur</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Forkert pinkode. Prøv igen.</string>
     <string name="RegistrationLockFragment__forgot_pin">Glemt pinkode?</string>
     <string name="RegistrationLockFragment__incorrect_pin">Forkert pinkode</string>
@@ -4941,8 +4955,6 @@
     <!-- Text label button to skip restoring -->
     <string name="registration_activity__skip_restore">Spring gendannelse over</string>
     <string name="preferences_chats__chat_backups">Sikkerhedskopier af chats</string>
-    <string name="preferences_chats__transfer_account">Overfør konto</string>
-    <string name="preferences_chats__transfer_account_to_a_new_android_device">Overfør konto til en ny Android-enhed</string>
     <!-- Title for dialog to enter in the backup passphrase -->
     <string name="RegistrationActivity_enter_backup_passphrase">Indtast adgangssætning til sikkerhedskopi</string>
     <string name="RegistrationActivity_restore">Gendan</string>
@@ -5030,19 +5042,9 @@
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">Timeout for inaktiv skærmlås</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
     <string name="preferences_app_protection__to_use_screen_lock">Hvis du vil bruge skærmlås, skal du angive en pinkode, et mønster eller en adgangskode på denne enhed.</string>
-    <string name="preferences_app_protection__signal_pin">Signal-pinkode</string>
-    <string name="preferences_app_protection__create_a_pin">Opret en pinkode</string>
-    <string name="preferences_app_protection__change_your_pin">Skift din pinkode</string>
-    <string name="preferences_app_protection__pin_reminders">Pinkode-påmindelser</string>
-    <string name="preferences_app_protection__turn_off">Deaktiver</string>
-    <string name="preferences_app_protection__confirm_pin">Bekræft pinkode</string>
-    <string name="preferences_app_protection__confirm_your_signal_pin">Bekræft din Signal-pinkode</string>
-    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Vær sikker på at du husker eller opbevarer din pinkode sikkert, da den ikke kan gendannes. Hvis du glemmer din pinkode, kan du miste data når du genregistrerer din Signal-konto.</string>
-    <string name="preferences_app_protection__incorrect_pin_try_again">Forkert pinkode. Prøv igen.</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">Aktivering af registreringslås mislykkedes</string>
     <string name="preferences_app_protection__failed_to_disable_registration_lock">Deaktivering af registreringslås mislykkedes</string>
     <string name="AppProtectionPreferenceFragment_none">Ingen</string>
-    <string name="preferences_app_protection__registration_lock">Registreringslås</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Du skal indtaste din registreringslås-pinkode</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Din pinkode består af mindst %1$d tal eller bogstaver</string>
     <string name="RegistrationActivity_too_many_attempts">For mange forsøg</string>
@@ -5090,48 +5092,34 @@
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
     <string name="Recipient_deleted_account">Slettet konto</string>
 
-    <!-- Option in settings that will take use to re-register if they are no longer registered -->
-    <string name="preferences_account_reregister">Genregistrering af konto</string>
-    <!-- Option in settings that will take user to our website or playstore to update their expired build -->
-    <string name="preferences_account_update_signal">Opdater Signal</string>
-    <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
-    <string name="preferences_account_delete_all_data">Slet alle data</string>
-    <!-- Title for confirmation dialog confirming user wants to delete all their data -->
-    <string name="preferences_account_delete_all_data_confirmation_title">Slet alle data?</string>
-    <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_message">Dette vil nulstille applikationen ved at slette alle beskeder. Appen lukkes, når denne proces er afsluttet.</string>
-    <!-- Confirmation action to proceed with application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_proceed">Fortsæt</string>
-    <!-- Confirmation action to cancel application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_cancel">Annuller</string>
     <!-- Error message shown when we fail to delete the data for some unknown reason -->
     <string name="preferences_account_delete_all_data_failed">Kunne ikke slette data</string>
 
     <!-- LinkedDeviceAccountSettingsFragment -->
     <!-- Title of an informational card shown on the account settings screen of a linked device -->
-    <string name="LinkedDeviceAccountSettingsFragment__this_is_a_linked_device">This is a linked device</string>
+    <string name="LinkedDeviceAccountSettingsFragment__this_is_a_linked_device">Dette er en tilknyttet enhed</string>
     <!-- Body of an informational card explaining that account settings must be managed from the primary device -->
-    <string name="LinkedDeviceAccountSettingsFragment__to_manage_your_account_settings">To manage your account settings, open Signal on your primary device.</string>
+    <string name="LinkedDeviceAccountSettingsFragment__to_manage_your_account_settings">Åbn Signal på din primære enhed for at administrere dine kontoindstillinger.</string>
     <!-- Title of a settings row that deletes all Signal data from this linked device -->
-    <string name="LinkedDeviceAccountSettingsFragment__delete_app_data">Delete app data</string>
+    <string name="LinkedDeviceAccountSettingsFragment__delete_app_data">Slet appdata</string>
     <!-- Subtitle of the delete app data row explaining what it does -->
-    <string name="LinkedDeviceAccountSettingsFragment__this_will_remove_all_data">This will remove all data from the Signal app on this device.</string>
+    <string name="LinkedDeviceAccountSettingsFragment__this_will_remove_all_data">Dette sletter alle data fra Signal-appen på denne enhed.</string>
     <!-- Title of the confirmation dialog shown when deleting app data from a linked device -->
-    <string name="LinkedDeviceAccountSettingsFragment__delete_app_data_question">Delete app data?</string>
+    <string name="LinkedDeviceAccountSettingsFragment__delete_app_data_question">Slet appdata?</string>
     <!-- Message of the confirmation dialog explaining that only this device\'s data is deleted, not the account -->
-    <string name="LinkedDeviceAccountSettingsFragment__this_will_delete_all_data_and_messages">This will delete all data and messages from the Signal app on this device. Your Signal account and data on your primary device or other linked devices will not be deleted. The app will close after this process is complete.</string>
+    <string name="LinkedDeviceAccountSettingsFragment__this_will_delete_all_data_and_messages">Dette sletter alle data og beskeder fra Signal-appen på denne enhed. Din Signal-konto og data på din primære enhed eller andre tilknyttede enheder vil ikke blive slettet. Appen lukkes, når denne proces er afsluttet.</string>
 
     <!-- LinkedDeviceAccountLearnMoreBottomSheet -->
     <!-- Emphasized lead-in phrase shown in bold at the start of the learn more sheet body. Must appear verbatim within LinkedDeviceAccountLearnMoreBottomSheet__linked_devices_let_you_access. -->
-    <string name="LinkedDeviceAccountLearnMoreBottomSheet__linked_devices">Linked Devices</string>
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__linked_devices">Forbundne enheder</string>
     <!-- Body text of the linked devices learn more sheet. The leading \"Linked Devices\" is shown in bold. -->
-    <string name="LinkedDeviceAccountLearnMoreBottomSheet__linked_devices_let_you_access">Linked Devices let you access your Signal account and messages securely on any of your additional devices.</string>
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__linked_devices_let_you_access">Tilknyttede enheder giver dig sikker adgang til din Signal-konto og dine beskeder på dine andre enheder.</string>
     <!-- Bullet point describing what devices can be linked -->
-    <string name="LinkedDeviceAccountLearnMoreBottomSheet__you_can_link_a_desktop">You can link a desktop, tablet or additional phone</string>
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__you_can_link_a_desktop">Du kan tilknytte en computer, en tablet eller en ekstra telefon</string>
     <!-- Bullet point describing that the primary device manages linked devices -->
-    <string name="LinkedDeviceAccountLearnMoreBottomSheet__your_primary_device_manages">Your primary device manages what\'s linked, you can link up to 5 devices.</string>
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__your_primary_device_manages">Din primære enhed administrerer, hvilke enheder der er tilknyttet. Du kan tilknytte op til fem enheder.</string>
     <!-- Bullet point describing that some settings are only available on the primary device -->
-    <string name="LinkedDeviceAccountLearnMoreBottomSheet__some_account_settings">Some account settings are managed on your primary device only, including account settings and backups.</string>
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__some_account_settings">Nogle kontoindstillinger administreres kun på din primære enhed, herunder kontoindstillinger og sikkerhedskopier.</string>
 
     <!-- TransferOrRestoreFragment -->
     <string name="TransferOrRestoreFragment__transfer_or_restore_account">Overfør eller gendan konto</string>
@@ -5626,18 +5614,6 @@
     <!-- GroupDescriptionDialog -->
     <string name="GroupDescriptionDialog__group_description">Gruppebeskrivelse</string>
 
-    <!-- QualitySelectorBottomSheetDialog -->
-    <!-- Label for our standard quality media conversion. -->
-    <string name="QualitySelectorBottomSheetDialog__standard">Standard</string>
-    <!-- Description for our standard quality media conversion. -->
-    <string name="QualitySelectorBottomSheetDialog__faster_less_data">Hurtigere, færre data</string>
-    <!-- Label for our high quality media conversion. This has better quality than standard. -->
-    <string name="QualitySelectorBottomSheetDialog__high">Høj</string>
-    <!-- Label for our high quality media conversion. This has better quality than standard. -->
-    <string name="QualitySelectorBottomSheetDialog__slower_more_data">Langsommere, mere data</string>
-    <!-- Title heading for our media conversion quality selector. -->
-    <string name="QualitySelectorBottomSheetDialog__media_quality">Mediekvalitet</string>
-
     <!-- AppSettingsFragment -->
     <!-- String alerting user that something is wrong with their backups subscription -->
     <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Forny dit abonnement på sikre Signal-sikkerhedskopier</string>
@@ -5655,14 +5631,6 @@
     <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">Kopierede sikkerhedskopieringsabonnent-id til udklipsholder</string>
     <!-- String displayed in a toast when a subscriber id is not present for a given type -->
     <string name="AppSettingsFragment__no_subscriber_id_set">Ingen abonnent-id indstillet</string>
-
-    <!-- AccountSettingsFragment -->
-    <string name="AccountSettingsFragment__account">Konto</string>
-    <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Du vil blive spurgt sjældnere med tiden</string>
-    <string name="AccountSettingsFragment__require_your_signal_pin">Kræver din Signal-pinkode for at registrere dit telefonnummer med Signal igen.</string>
-    <string name="AccountSettingsFragment__change_phone_number">Skift telefonnummer</string>
-    <!-- Account setting that allows user to request and export their signal account data -->
-    <string name="AccountSettingsFragment__request_account_data">Dine kontooplysninger</string>
 
     <!-- ExportAccountDataFragment -->
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
@@ -5957,14 +5925,46 @@
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Beskeder</string>
     <string name="NotificationsSettingsFragment__calls">Opkald</string>
-    <string name="NotificationsSettingsFragment__notify_when">Underret når …</string>
+    <!-- Notification header for sounds -->
+    <string name="NotificationsSettingsFragment__sounds">Lyde</string>
     <string name="NotificationsSettingsFragment__contact_joins_signal">Kontakt begynder at bruge Signal</string>
+    <!-- Notification body to get notified when someone joins Signal -->
+    <string name="NotificationsSettingsFragment__notify_contact">Show a notification when a phone contact joins Signal</string>
+    <!-- Option to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset">Reset notification settings</string>
+    <!-- Option body to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_notifications">Reset notification settings to default, including custom settings for your chats</string>
+    <!-- Dialog to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_body">Reset all notification settings to default for all chats?</string>
+    <!-- Confirmation button to reset dialog -->
+    <string name="NotificationsSettingsFragment__reset_confirm">Nulstil</string>
     <!-- Notification preference header -->
     <string name="NotificationsSettingsFragment__notification_profiles">Notifikationsprofiler</string>
     <!-- Notification preference option header -->
     <string name="NotificationsSettingsFragment__profiles">Profiler</string>
     <!-- Notification preference summary text -->
     <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Opret en profil for kun at modtage notifikationer fra personer og grupper, du vælger.</string>
+
+    <!-- Header to describe screen that shows while muted settings -->
+    <string name="MutedNotificationsFragment__while">While muted</string>
+    <!-- Title for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls">Opkald</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body_global">Ring or notify when a call is started in muted chats.</string>
+    <!-- Title for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions">Omtaler</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body_global">Notify when you are mentioned in muted chats.</string>
+    <!-- Title for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies">Svar</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body_global">Notify when someone replies to your message in muted chats.</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body">Ring or notify when a call is started while this chat is muted.</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body">Notify when you are mentioned while this chat is muted.</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body">Notify when someone replies to your message while this chat is muted.</string>
 
     <!-- NotificationProfilesFragment -->
     <!-- Title for notification profiles screen that shows all existing profiles; Title with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -6193,6 +6193,8 @@
     <string name="ConversationSettingsFragment__end_group">Afslut gruppe</string>
     <!-- Banner shown at the top of group settings when the group has been ended -->
     <string name="ConversationSettingsFragment__this_group_was_ended">Denne gruppe er afsluttet.</string>
+    <!-- Subhead under a legacy group\'s name, joining the member count and the "Legacy Group" label. %1$s is the member count, %2$s is the label -->
+    <string name="ConversationSettingsFragment__s_dot_s">%1$s · %2$s</string>
     <!-- Archive chat option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__archive_chat">Arkivér chat</string>
     <!-- Delete chat option in group conversation settings screen -->
@@ -6376,53 +6378,11 @@
     <!-- Positive dialog action when sending a story via an add to group story button -->
     <string name="MediaReviewFragment__add_to_story">Føj til historie</string>
     <string name="MediaReviewFragment__add_a_message">Tilføj en besked</string>
-    <!-- Hint text inside of a compose box that is shown when the user is adding media while quoting a message. -->
-    <string name="MediaReviewFragment__add_a_reply">Tilføj et svar</string>
     <string name="MediaReviewFragment__send_to">Send til</string>
-    <string name="MediaReviewFragment__view_once_message">Se medier én gang</string>
-    <string name="MediaReviewFragment__one_or_more_items_were_too_large">Et eller flere emner var for store</string>
-    <string name="MediaReviewFragment__one_or_more_items_were_invalid">Et eller flere emner var ugyldige</string>
-    <string name="MediaReviewFragment__too_many_items_selected">Der er valgt for mange emner</string>
-    <!-- Small notification presented to the user when they set their video to view-once mode -->
-    <string name="MediaReviewFragment__video_set_to_view_once">Video indstillet til vis én gang</string>
-    <!-- Small notification presented to the user when they set their photo to view-once mode -->
-    <string name="MediaReviewFragment__photo_set_to_view_once">Billede indstillet til visning én gang</string>
-    <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
-    <string name="MediaReviewFragment__video_set_to_high_quality">Video indstillet til høj kvalitet</string>
-    <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
-    <string name="MediaReviewFragment__video_set_to_standard_quality">Video indstillet til standardkvalitet</string>
-    <!-- Small notification presented to the user when they set their still image to be sent in high visual quality. -->
-    <string name="MediaReviewFragment__photo_set_to_high_quality">Billede indstillet til høj kvalitet</string>
-    <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
-    <string name="MediaReviewFragment__photo_set_to_standard_quality">Billede indstillet til standardkvalitet</string>
-    <!-- Accessibility label describing the add media button on the Media review screen -->
-    <string name="MediaReviewFragment__add_media_accessibility_label">Tilføj en mediefil</string>
-    <!-- Accessibility label describing the brush and pen button on the Media review screen -->
-    <string name="MediaReviewFragment__brush_pen_accessibility_label">Pensel og pen</string>
-    <!-- Accessibility label describing the crop and rotate button on the Media review screen -->
-    <string name="MediaReviewFragment__crop_rotate_accessibility_label">Beskær og roter</string>
-    <!-- Accessibility label describing the change media quality button on the Media review screen -->
-    <string name="MediaReviewFragment__change_media_quality_accessibility_label">Skift mediekvalitet</string>
-    <!-- Accessibility label describing the save media button on the Media review screen -->
-    <string name="MediaReviewFragment__save_media_accessibility_label">Gem mediefil</string>
-    <!-- Accessibility label describing the toggle emoji keyboard button on the Media review screen -->
-    <string name="MediaReviewFragment__emoji_toggle_accessibility_label">Slå Emoji tastatur til/fra</string>
     <!-- Accessibility label describing the toggle view once button on the Media review screen -->
     <string name="MediaReviewFragment__view_once_toggle_accessibility_label">Skift til engangsvisning</string>
-    <!-- Accessibility label describing the send media button on the Media review screen -->
-    <string name="MediaReviewFragment__send_media_accessibility_label">Send mediefil</string>
     <!-- Accessibility label describing the finish adding a message button on the Media review screen dialog -->
     <string name="MediaReviewFragment__finish_adding_a_message_accessibility_label">Afslut tilføjelse af en meddelelse</string>
-    <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
-    <plurals name="MediaReviewFragment__items_set_to_high_quality">
-        <item quantity="one">%1$d emne indstillet til høj kvalitet</item>
-        <item quantity="other">%1$d emner indstillet til høj kvalitet</item>
-    </plurals>
-    <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
-    <plurals name="MediaReviewFragment__items_set_to_standard_quality">
-        <item quantity="one">%1$d emne indstillet til standardkvalitet</item>
-        <item quantity="other">%1$d emner indstillet til standardkvalitet</item>
-    </plurals>
 
     <string name="ImageEditorHud__cancel">Annullér</string>
     <string name="ImageEditorHud__draw">Tegn</string>
@@ -6440,27 +6400,9 @@
 
     <string name="MediaCountIndicatorButton__send">Send</string>
 
-    <string name="MediaReviewSelectedItem__tap_to_remove">Tryk for at fjerne</string>
-    <string name="MediaReviewSelectedItem__tap_to_select">Tryk for at vælge</string>
-
     <string name="MediaReviewImagePageFragment__discard">Kassér</string>
     <string name="MediaReviewImagePageFragment__discard_changes">Kassér ændringer?</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Du mister alle ændringer, du har lavet for dette billede.</string>
-
-    <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_title">Fandt %1$s</string>
-    <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_body">Start en chat med \"%1$s\"</string>
-    <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
-    <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">Gå til chat</string>
-
-    <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_title">Forbind enhed?</string>
-    <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_it_looks_like_youre_trying">Det ser ud til, at du forsøger at tilknytte en Signal-enhed. Tryk på fortsæt, tryk \"Tilknyt en ny enhed\", og scan QR-koden igen.</string>
-    <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
-    <string name="MediaCaptureFragment_device_link_dialog_continue">Fortsæt</string>
-
 
     <string name="BadgesOverviewFragment__my_badges">Mine badges</string>
     <string name="BadgesOverviewFragment__featured_badge">Fremhævet badge</string>
@@ -6935,7 +6877,7 @@
     <!-- Donation receipts amount title -->
     <string name="DonationReceiptDetailsFragment__amount">Beløb</string>
     <!-- Donation receipts thanks -->
-    <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Tak for din støtte til Signal. Dit bidrag støtter vores mission om at udvikle open source-privatlivsteknologi, der beskytter ytringsfrihed og muliggør sikker global kommunikation for millioner af mennesker verden over. Hvis du er bosiddende i USA, bedes du gemme denne kvittering til dine skattepapirer. Signal Technology Foundation er en skattefritaget nonprofitorganisation i USA i henhold til afsnit 501c3 i Internal Revenue Code. Vores føderale Skatte-ID er 82-4506840.</string>
+    <string name="DonationReceiptDetailsFragment__thank_you_for_supporting" tools:ignore="TypographyDashes">Tak, fordi du støtter Signal. Dit bidrag er med til at fremme missionen om at beskytte ytringsfriheden og muliggøre sikker global kommunikation for millioner af mennesker verden over gennem open source-privatlivsteknologi. Hvis du er bosiddende i USA, bedes du gemme denne kvittering til dine skatteoptegnelser. Signal Technology Foundation er en skattefritaget nonprofitorganisation i USA i henhold til paragraf 501c3 i Internal Revenue Code. Vores Federal Tax ID er 82-4506840. Signal har ikke leveret varer eller tjenesteydelser til gengæld for dette bidrag.</string>
     <!-- Donation reciepts screen empty state title -->
     <string name="DonationReceiptListFragment__no_receipts">Ingen kvitteringer</string>
 
@@ -8718,13 +8660,6 @@
     <!-- Body of bottom sheet shown when opening a terminated group -->
     <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">Du kan ikke længere sende eller modtage beskeder eller opkald i denne gruppe.</string>
 
-    <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_title">Sletning synkroniseres nu på tværs af alle dine enheder</string>
-    <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_message">Når du sletter beskeder eller chats, slettes de fra din telefon og tilknyttede enheder.</string>
-    <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_acknowledge_button">OK</string>
-
     <!-- NoManualBackupBottomSheet -->
     <!-- Title for bottom sheet, placeholder is number of days. -->
     <plurals name="NoManualBackupBottomSheet__no_backup_for_d_days">
@@ -8749,7 +8684,7 @@
     <!-- Subtitle for row for no backup ever created -->
     <string name="BackupsSettingsFragment_automatic_backups_with_signals">Automatiske sikkerhedskopier med Signals sikre E2E-krypterede lagertjeneste.</string>
     <!-- Subtitle shown on a linked device when backups are off, directing the user to set them up on their phone -->
-    <string name="BackupsSettingsFragment__automatic_backups_get_started_on_your_phone">Automatic backups with Signal\'s secure end-to-end encrypted storage service. Get started on your phone.</string>
+    <string name="BackupsSettingsFragment__automatic_backups_get_started_on_your_phone">Automatiske sikkerhedskopier med Signals sikre E2E-krypterede lagertjeneste. Kom i gang på din telefon.</string>
     <!-- Subtitle for row for backups that are active but subscription not found -->
     <string name="BackupsSettingsFragment_subscription_not_found_on_this_device">"Der blev ikke fundet noget abonnement på denne enhed."</string>
     <!-- Action button label to set up backups -->
@@ -8854,15 +8789,15 @@
     <!-- Subtext describing when a backup has never taken place. -->
     <string name="RemoteBackupsSettingsFragment__never">Aldrig</string>
     <!-- Subtext on a linked device describing when the primary device last backed up. Placeholder is the formatted date and time. -->
-    <string name="RemoteBackupsSettingsFragment__your_phone_s">Your phone · %1$s</string>
+    <string name="RemoteBackupsSettingsFragment__your_phone_s">Din telefon · %1$s</string>
     <!-- Message shown on a linked device with a free backup plan explaining that the subscription is managed on the primary device -->
-    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_upgrade_your_subscription_on_your_primary_device">You can manage or upgrade your Signal Secure Backups subscription on your primary device.</string>
+    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_upgrade_your_subscription_on_your_primary_device">Du kan administrere eller opgradere dit abonnement på sikre sikkerhedskopier i Signal på din primære enhed.</string>
     <!-- Message shown on a linked device with a paid backup plan explaining that the subscription is managed on the primary device -->
-    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_cancel_your_subscription_on_your_primary_device">You can manage or cancel your Signal Secure Backups subscription on your primary device.</string>
+    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_cancel_your_subscription_on_your_primary_device">Du kan administrere eller opsige dit abonnement på sikre sikkerhedskopier i Signal på din primære enhed.</string>
     <!-- Message shown on a linked device with a canceled backup subscription explaining that the subscription is managed on the primary device -->
-    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_renew_your_subscription_on_your_primary_device">You can manage or renew your Signal Secure Backups subscription on your primary device.</string>
+    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_renew_your_subscription_on_your_primary_device">Du kan administrere eller forny dit abonnement på sikre sikkerhedskopier i Signal på din primære enhed.</string>
     <!-- Message shown on a linked device when backups are off or the subscription was not found, explaining that backups are managed on the primary device -->
-    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_upgrade_backups_on_your_primary_device">You can manage or upgrade Signal Secure Backups on your primary device.</string>
+    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_upgrade_backups_on_your_primary_device">Du kan administrere eller opgradere dit abonnement på sikre sikkerhedskopier i Signal på din primære enhed.</string>
     <!-- Button label to perform a backup immediately -->
     <string name="RemoteBackupsSettingsFragment__back_up_now">Sikkerhedskopier nu</string>
     <!-- Dialog title when confirming whether to turn off and deleting backups -->

@@ -15,7 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatEditText;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.components.emoji.EmojiProvider.EmojiDrawable;
+import org.signal.emoji.EmojiProvider.EmojiDrawable;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.EditTextExtensionsKt;
 import org.signal.core.util.ServiceUtil;
@@ -24,6 +24,7 @@ import org.signal.core.util.Util;
 
 import java.util.HashSet;
 import java.util.Set;
+import org.signal.emoji.EmojiFilter;
 
 
 public class EmojiEditText extends AppCompatEditText {

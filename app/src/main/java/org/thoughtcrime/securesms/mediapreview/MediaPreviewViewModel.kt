@@ -1,0 +1,229 @@
+package org.thoughtcrime.securesms.mediapreview
+
+import android.Manifest
+import android.app.Notification
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModel
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Completable
+import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.kotlin.plusAssign
+import io.reactivex.rxjava3.schedulers.Schedulers
+import org.signal.core.models.database.AttachmentId
+import org.signal.core.models.media.Media
+import org.signal.core.util.PendingIntentFlags
+import org.signal.core.util.concurrent.SignalExecutors
+import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.attachments.DatabaseAttachment
+import org.thoughtcrime.securesms.database.MediaTable
+import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogActivity
+import org.thoughtcrime.securesms.mms.PartUriParser
+import org.thoughtcrime.securesms.notifications.NotificationChannels
+import org.thoughtcrime.securesms.notifications.NotificationIds
+import org.thoughtcrime.securesms.util.RemoteConfig
+import org.thoughtcrime.securesms.util.rx.RxStore
+
+class MediaPreviewViewModel : ViewModel() {
+
+  companion object {
+    private val TAG = Log.tag(MediaPreviewViewModel::class)
+  }
+
+  private val store = RxStore(MediaPreviewState())
+  private val disposables = CompositeDisposable()
+  private val repository: MediaPreviewRepository = MediaPreviewRepository()
+
+  val state: Flowable<MediaPreviewState> = store.stateFlowable.observeOn(AndroidSchedulers.mainThread())
+  val currentPosition: Int
+    get() = store.state.position
+
+  fun setIsInSharedAnimation(isInSharedAnimation: Boolean) {
+    store.update { it.copy(isInSharedAnimation = isInSharedAnimation) }
+  }
+
+  /** Records that the media at [uri] decoded with an UltraHDR gain map. Additive; a gain map never disappears. */
+  fun setHdrCapable(uri: Uri) {
+    store.update { oldState ->
+      if (oldState.hdrCapableUris.contains(uri)) oldState else oldState.copy(hdrCapableUris = oldState.hdrCapableUris + uri)
+    }
+  }
+
+  /** Synchronous read for [MediaPreviewActivity.onStart], where there is no pending Rx emission to react to. */
+  val shouldRenderHdr: Boolean
+    get() = store.state.shouldRenderHdr
+
+  fun shouldFinishAfterTransition(initialMediaUri: Uri): Boolean {
+    return currentPosition in store.state.mediaRecords.indices && store.state.mediaRecords[currentPosition].toMedia()?.uri == initialMediaUri
+  }
+
+  fun fetchAttachments(context: Context, startingAttachmentId: AttachmentId, threadId: Long, sorting: MediaTable.Sorting, forceRefresh: Boolean = false) {
+    if (store.state.loadState == MediaPreviewState.LoadState.INIT || forceRefresh) {
+      disposables += repository.getAttachments(context, startingAttachmentId, threadId, sorting).subscribe { result ->
+        store.update { oldState ->
+          val albums = result.records.fold(mutableMapOf()) { acc: MutableMap<Long, MutableList<Media>>, mediaRecord: MediaTable.MediaRecord ->
+            val attachment = mediaRecord.attachment
+            if (attachment != null) {
+              val convertedMedia = mediaRecord.toMedia() ?: return@fold acc
+              acc.getOrPut(attachment.mmsId) { mutableListOf() }.add(convertedMedia)
+            }
+            acc
+          }
+          if (oldState.leftIsRecent) {
+            oldState.copy(
+              position = result.initialPosition,
+              mediaRecords = result.records,
+              albums = albums,
+              loadState = MediaPreviewState.LoadState.DATA_LOADED
+            )
+          } else {
+            oldState.copy(
+              position = result.records.size - result.initialPosition - 1,
+              mediaRecords = result.records.reversed(),
+              albums = albums.mapValues { it.value.reversed() },
+              loadState = MediaPreviewState.LoadState.DATA_LOADED
+            )
+          }
+        }
+        fetchMessageBodies(context, result.records)
+      }
+    }
+  }
+
+  private fun fetchMessageBodies(context: Context, records: List<MediaTable.MediaRecord>) {
+    val messageIds = records.mapNotNull { it.attachment?.mmsId }.toSet()
+    if (messageIds.isEmpty()) {
+      return
+    }
+    disposables += repository.resolveMessageBodies(context, messageIds).subscribe { bodies ->
+      store.update { oldState -> oldState.copy(messageBodies = oldState.messageBodies + bodies) }
+    }
+  }
+
+  fun refetchAttachments(context: Context, startingAttachmentId: AttachmentId, threadId: Long, sorting: MediaTable.Sorting) {
+    val state = store.state
+    val currentAttachmentId = if (state.position in state.mediaRecords.indices) {
+      state.mediaRecords[state.position].attachment?.attachmentId
+    } else {
+      null
+    }
+
+    fetchAttachments(context, currentAttachmentId ?: startingAttachmentId, threadId, sorting, true)
+  }
+
+  fun initialize(showThread: Boolean, allMediaInAlbumRail: Boolean, leftIsRecent: Boolean) {
+    if (store.state.loadState == MediaPreviewState.LoadState.INIT) {
+      store.update { oldState ->
+        oldState.copy(showThread = showThread, allMediaInAlbumRail = allMediaInAlbumRail, leftIsRecent = leftIsRecent)
+      }
+    }
+  }
+
+  fun setCurrentPage(position: Int) {
+    store.update { oldState ->
+      oldState.copy(position = position)
+    }
+  }
+
+  fun setMediaReady() {
+    store.update { oldState ->
+      oldState.copy(loadState = MediaPreviewState.LoadState.MEDIA_READY)
+    }
+  }
+
+  fun remoteDelete(attachment: DatabaseAttachment): Completable {
+    return repository.remoteDelete(attachment).subscribeOn(Schedulers.io())
+  }
+
+  fun localDelete(context: Context, attachment: DatabaseAttachment): Completable {
+    return repository.localDelete(attachment).subscribeOn(Schedulers.io())
+  }
+
+  fun jumpToFragment(context: Context, messageId: Long): Single<Intent> {
+    return repository.getMessagePositionIntent(context, messageId)
+  }
+
+  fun onIncrementalMacError(uri: Uri) {
+    maybePostInvalidMacErrorNotification(AppDependencies.application)
+
+    val attachmentId = try {
+      val parser = PartUriParser(uri)
+      parser.partId
+    } catch (e: Exception) {
+      Log.w(TAG, "Got an incremental mac error, but could not parse the attachment data from the URI!", e)
+      return
+    }
+
+    SignalExecutors.BOUNDED.execute {
+      Log.w(TAG, "Got an incremental mac error for attachment $attachmentId, clearing the incremental mac data.")
+      val attachment = SignalDatabase.attachments.getAttachment(attachmentId) ?: return@execute
+      SignalDatabase.attachments.clearIncrementalMacsForAttachmentAndAnyDuplicates(attachmentId, attachment.remoteKey, attachment.dataHash)
+    }
+  }
+
+  override fun onCleared() {
+    disposables.dispose()
+    store.dispose()
+  }
+
+  fun onDestroyView() {
+    store.update { oldState ->
+      oldState.copy(loadState = MediaPreviewState.LoadState.DATA_LOADED)
+    }
+  }
+
+  private fun maybePostInvalidMacErrorNotification(context: Context) {
+    if (!RemoteConfig.internalUser) {
+      return
+    }
+
+    if (ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+      Log.w(TAG, "maybePostInvalidMacErrorNotification: Notification permission is not granted.")
+      return
+    }
+
+    val notification: Notification = NotificationCompat.Builder(context, NotificationChannels.getInstance().FAILURES)
+      .setSmallIcon(R.drawable.ic_notification)
+      .setContentTitle("[Internal-only] Bad incrementalMac!")
+      .setContentText("Tap to send a debug log")
+      .setContentIntent(PendingIntent.getActivity(context, 0, Intent(context, SubmitDebugLogActivity::class.java), PendingIntentFlags.mutable()))
+      .build()
+
+    NotificationManagerCompat.from(context).notify(NotificationIds.INTERNAL_ERROR, notification)
+  }
+}
+
+fun MediaTable.MediaRecord.toMedia(): Media? {
+  val attachment = this.attachment
+  val uri = attachment?.uri
+  if (attachment == null || uri == null) {
+    return null
+  }
+
+  return Media(
+    uri = uri,
+    contentType = this.contentType,
+    date = this.date,
+    width = attachment.width,
+    height = attachment.height,
+    size = attachment.size,
+    duration = 0,
+    isBorderless = attachment.borderless,
+    isVideoGif = attachment.videoGif,
+    bucketId = null,
+    caption = attachment.caption,
+    transformProperties = null,
+    fileName = null
+  )
+}

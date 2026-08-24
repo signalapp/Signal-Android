@@ -10,11 +10,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.exclude
+import androidx.compose.foundation.layout.ime
+import androidx.compose.foundation.layout.navigationBars
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.ViewCompositionStrategy
@@ -43,7 +49,12 @@ abstract class ComposeBottomSheetDialogFragment : FixedRoundedCornerBottomSheetD
         }
         CompositionLocalProvider(LocalFragmentManager provides childFragmentManager) {
           SignalTheme(isDarkMode = isDark) {
+            // No navigation bar padding here: BottomSheetBehavior already bottom-pads the sheet
+            // for the navigation bar (paddingBottomSystemWindowInsets) once the window is
+            // edge-to-edge, so padding again would double up. The keyboard inset excludes the
+            // navigation bar for the same reason.
             Surface(
+              modifier = Modifier.windowInsetsPadding(WindowInsets.ime.exclude(WindowInsets.navigationBars)),
               shape = RoundedCornerShape(cornerRadius.dp, cornerRadius.dp),
               color = SignalTheme.colors.colorSurface1,
               contentColor = MaterialTheme.colorScheme.onSurface

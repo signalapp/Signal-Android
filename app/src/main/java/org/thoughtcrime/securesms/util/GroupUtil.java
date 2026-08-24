@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil;
 import org.thoughtcrime.securesms.mms.MessageGroupContext;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroupV2;
 import org.whispersystems.signalservice.internal.push.Content;
@@ -76,10 +77,16 @@ public final class GroupUtil {
   public static void setDataMessageGroupContext(@NonNull Context context,
                                                 @NonNull SignalServiceDataMessage.Builder dataMessageBuilder,
                                                 @NonNull GroupId.Push groupId)
+      throws UndeliverableMessageException
   {
     if (groupId.isV2()) {
-      GroupTable                   groupDatabase     = SignalDatabase.groups();
-      GroupRecord                  groupRecord       = groupDatabase.requireGroup(groupId);
+      GroupTable  groupDatabase = SignalDatabase.groups();
+      GroupRecord groupRecord   = groupDatabase.requireGroup(groupId);
+
+      if (!groupRecord.getHasV2GroupProperties()) {
+        throw new UndeliverableMessageException("No group properties for V2 group " + groupId + ", likely deleted; cannot attach group context.");
+      }
+
       GroupTable.V2GroupProperties v2GroupProperties = groupRecord.requireV2GroupProperties();
       SignalServiceGroupV2            group             = SignalServiceGroupV2.newBuilder(v2GroupProperties.getGroupMasterKey())
                                                                               .withRevision(v2GroupProperties.getGroupRevision())

@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.reactions.any;
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 
-import org.thoughtcrime.securesms.components.emoji.EmojiPageModel;
+import org.signal.emoji.EmojiPageModel;
 
 import java.util.Objects;
 

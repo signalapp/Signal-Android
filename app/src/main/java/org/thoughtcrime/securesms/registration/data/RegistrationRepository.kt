@@ -213,6 +213,7 @@ object RegistrationRepository {
     recipientTable.markRegisteredOrThrow(selfId, aci)
     recipientTable.linkIdsForSelf(aci, pni, data.e164)
     recipientTable.setProfileKey(selfId, ProfileKey(data.profileKey.toByteArray()))
+    SignalStore.account.notSyncedRotatedSelfProfileKey = null
 
     AppDependencies.recipientCache.clearSelf()
 

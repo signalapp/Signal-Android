@@ -252,15 +252,17 @@ public final class AttachmentCompressionJob extends BaseJob {
           throw new UndeliverableMessageException("Cannot get media data source for attachment.");
         }
 
-        TranscoderOptions options = null;
+        TranscoderOptions options   = null;
+        boolean           muteAudio = false;
         if (transformProperties != null) {
           allowSkipOnFailure = !transformProperties.getVideoEdited();
+          muteAudio          = transformProperties.videoMuted;
           if (transformProperties.videoTrim) {
             options = new TranscoderOptions(transformProperties.videoTrimStartTimeUs, transformProperties.videoTrimEndTimeUs);
           }
         }
 
-        StreamingTranscoder transcoder = new StreamingTranscoder(dataSource, options, constraints.getVideoTranscodingSettings(), constraints.getCompressedVideoMaxSize(), RemoteConfig.allowAudioRemuxing());
+        StreamingTranscoder transcoder = new StreamingTranscoder(dataSource, options, constraints.getVideoTranscodingSettings(), AttachmentUploadJob.getMaxPlaintextSize(), RemoteConfig.allowAudioRemuxing(), muteAudio);
 
         if (transcoder.isTranscodeRequired()) {
           Log.i(TAG, "Compressing with streaming muxer");

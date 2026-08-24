@@ -45,6 +45,14 @@ object StoryMessageProcessor {
       return
     }
 
+    if (threadRecipient.isGroup) {
+      val groupRecord = SignalDatabase.groups.getGroup(threadRecipient.requireGroupId()).orNull()
+      if (groupRecord != null && groupRecord.isAnnouncementGroup && !groupRecord.isAdmin(senderRecipient)) {
+        warn(envelope.clientTimestamp!!, "Dropping a group story from a non-admin in an announcement-only group.")
+        return
+      }
+    }
+
     if (!threadRecipient.isGroup && !(senderRecipient.isProfileSharing || senderRecipient.isSystemContact)) {
       warn(envelope.clientTimestamp!!, "Dropping story from an untrusted source.")
       return
@@ -82,9 +90,8 @@ object StoryMessageProcessor {
       )
 
       insertResult = SignalDatabase.messages.insertMessageInbox(mediaMessage, -1).orNull()
-      if (insertResult != null) {
-        SignalDatabase.messages.setTransactionSuccessful()
-      }
+
+      SignalDatabase.messages.setTransactionSuccessful()
     } catch (e: MmsException) {
       throw StorageFailedException(e, metadata.sourceServiceId.toString(), metadata.sourceDeviceId)
     } finally {

@@ -3,9 +3,11 @@ package org.thoughtcrime.securesms.groups.ui.invitesandrequests;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
@@ -21,6 +23,7 @@ import org.thoughtcrime.securesms.groups.ui.invitesandrequests.invited.PendingMe
 import org.thoughtcrime.securesms.groups.ui.invitesandrequests.requesting.RequestingMembersFragment;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;
 
 public class ManagePendingAndRequestingMembersActivity extends PassphraseRequiredActivity {
 
@@ -66,6 +69,9 @@ public class ManagePendingAndRequestingMembersActivity extends PassphraseRequire
     Toolbar toolbar = findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
     requireSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+    toolbar.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
+    SystemWindowInsetsSetter.attach(toolbar, this, WindowInsetsCompat.Type.statusBars());
   }
 
   private static class ViewPagerAdapter extends FragmentStateAdapter {

@@ -31,7 +31,7 @@ buildscript {
     classpath(libs.gradle)
     classpath(libs.androidx.navigation.safe.args.gradle.plugin)
     classpath(libs.protobuf.gradle.plugin)
-    classpath("com.squareup.wire:wire-gradle-plugin:6.4.0") {
+    classpath("com.squareup.wire:wire-gradle-plugin:6.4.5") {
       exclude(group = "com.squareup.wire", module = "wire-swift-generator")
       exclude(group = "com.squareup.wire", module = "wire-grpc-client")
       exclude(group = "com.squareup.wire", module = "wire-grpc-jvm")
@@ -59,6 +59,9 @@ subprojects {
 
   tasks.withType<Test>().configureEach {
     maxParallelForks = (Runtime.getRuntime().availableProcessors() / 4).coerceAtLeast(1)
+
+    // Raised for robolectric
+    maxHeapSize = "2g"
   }
 }
 

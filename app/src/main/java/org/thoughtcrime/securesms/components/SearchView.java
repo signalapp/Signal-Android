@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.components.emoji.EmojiFilter;
+import org.signal.emoji.EmojiFilter;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 
 /**

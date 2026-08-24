@@ -58,7 +58,8 @@ class RegistrationActivity : ComponentActivity() {
       context = this.application,
       networkController = RegistrationDependencies.get().networkController,
       storageController = RegistrationDependencies.get().storageController,
-      isLinkAndSyncAvailable = RegistrationDependencies.get().isLinkAndSyncAvailable
+      isLinkAndSyncAvailable = RegistrationDependencies.get().isLinkAndSyncAvailable,
+      isPhoneNumberlessRegistrationAvailable = RegistrationDependencies.get().isPhoneNumberlessRegistrationAvailable
     )
   }
 

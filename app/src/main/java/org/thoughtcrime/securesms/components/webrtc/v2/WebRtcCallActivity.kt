@@ -21,7 +21,6 @@ import android.os.Bundle
 import android.util.Rational
 import android.view.Surface
 import android.view.ViewGroup
-import android.view.Window
 import android.view.WindowManager
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
@@ -151,8 +150,6 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
     lifecycleDisposable.bindTo(this)
 
     super.onCreate(savedInstanceState)
-
-    requestWindowFeature(Window.FEATURE_NO_TITLE)
 
     volumeControlStream = AudioManager.STREAM_VOICE_CALL
 

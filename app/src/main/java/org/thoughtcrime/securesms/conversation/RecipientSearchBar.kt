@@ -36,6 +36,7 @@ import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.IconButtons.IconButton
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.SignalIcons
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.recipients.ui.RecipientPicker.KeyboardType
 
@@ -131,7 +132,7 @@ private fun KeyboardToggleButton(
   ) {
     when (keyboardType) {
       KeyboardType.Text -> Icon(
-        imageVector = ImageVector.vectorResource(R.drawable.ic_number_pad_conversation_filter_24),
+        imageVector = SignalIcons.NumberPad.imageVector,
         tint = MaterialTheme.colorScheme.onSurface,
         contentDescription = stringResource(R.string.RecipientSearchBar_accessibility_switch_to_numeric_keyboard)
       )

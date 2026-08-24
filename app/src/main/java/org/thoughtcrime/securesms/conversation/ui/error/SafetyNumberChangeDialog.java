@@ -105,8 +105,6 @@ public final class SafetyNumberChangeDialog extends DialogFragment implements Sa
     fragment.show(fragmentManager, SAFETY_NUMBER_DIALOG);
   }
 
-  private SafetyNumberChangeDialog() {}
-
   @Override
   public @Nullable View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     return dialogView;

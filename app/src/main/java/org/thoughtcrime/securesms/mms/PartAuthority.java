@@ -14,12 +14,12 @@ import androidx.core.provider.DocumentsContractCompat;
 
 import org.signal.core.models.database.AttachmentId;
 import org.signal.core.models.media.TransformProperties;
-import org.thoughtcrime.securesms.BuildConfig;
+import org.signal.core.util.PartAuthorityUris;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.avatar.AvatarPickerStorage;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
-import org.thoughtcrime.securesms.emoji.EmojiFiles;
+import org.signal.emoji.EmojiFiles;
 import org.thoughtcrime.securesms.providers.PartProvider;
 
 import java.io.FileNotFoundException;
@@ -27,18 +27,6 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class PartAuthority {
-
-  private static final String AUTHORITY                 = BuildConfig.APPLICATION_ID;
-  private static final String PART_URI_STRING           = "content://" + AUTHORITY + "/part";
-  private static final String PART_THUMBNAIL_STRING     = "content://" + AUTHORITY + "/thumbnail";
-  private static final String STICKER_URI_STRING        = "content://" + AUTHORITY + "/sticker";
-  private static final String EMOJI_URI_STRING          = "content://" + AUTHORITY + "/emoji";
-  private static final String AVATAR_PICKER_URI_STRING  = "content://" + AUTHORITY + "/avatar_picker";
-  private static final Uri    PART_CONTENT_URI          = Uri.parse(PART_URI_STRING);
-  private static final Uri    PART_THUMBNAIL_URI        = Uri.parse(PART_THUMBNAIL_STRING);
-  private static final Uri    STICKER_CONTENT_URI       = Uri.parse(STICKER_URI_STRING);
-  private static final Uri    EMOJI_CONTENT_URI         = Uri.parse(EMOJI_URI_STRING);
-  private static final Uri    AVATAR_PICKER_CONTENT_URI = Uri.parse(AVATAR_PICKER_URI_STRING);
 
   private static final int PART_ROW          = 1;
   private static final int BLOB_ROW          = 3;
@@ -51,13 +39,15 @@ public class PartAuthority {
   private static final UriMatcher uriMatcher;
 
   static {
+    String authority = PartAuthorityUris.getAuthority();
+
     uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-    uriMatcher.addURI(AUTHORITY, "part/#", PART_ROW);
-    uriMatcher.addURI(AUTHORITY, "thumbnail/#", THUMBNAIL_ROW);
-    uriMatcher.addURI(AUTHORITY, "sticker/#", STICKER_ROW);
-    uriMatcher.addURI(AUTHORITY, "wallpaper/*", WALLPAPER_ROW);
-    uriMatcher.addURI(AUTHORITY, "emoji/*", EMOJI_ROW);
-    uriMatcher.addURI(AUTHORITY, "avatar_picker/*", AVATAR_PICKER_ROW);
+    uriMatcher.addURI(authority, PartAuthorityUris.PATH_PART + "/#", PART_ROW);
+    uriMatcher.addURI(authority, PartAuthorityUris.PATH_THUMBNAIL + "/#", THUMBNAIL_ROW);
+    uriMatcher.addURI(authority, PartAuthorityUris.PATH_STICKER + "/#", STICKER_ROW);
+    uriMatcher.addURI(authority, PartAuthorityUris.PATH_WALLPAPER + "/*", WALLPAPER_ROW);
+    uriMatcher.addURI(authority, PartAuthorityUris.PATH_EMOJI + "/*", EMOJI_ROW);
+    uriMatcher.addURI(authority, PartAuthorityUris.PATH_AVATAR_PICKER + "/*", AVATAR_PICKER_ROW);
     uriMatcher.addURI(AppDependencies.getBlobs().getAuthority(), AppDependencies.getBlobs().PATH, BLOB_ROW);
   }
 
@@ -164,35 +154,35 @@ public class PartAuthority {
   }
 
   public static Uri getAttachmentDataUri(AttachmentId attachmentId) {
-    return ContentUris.withAppendedId(PART_CONTENT_URI, attachmentId.id);
+    return PartAuthorityUris.getAttachmentDataUri(attachmentId);
   }
 
   public static Uri getAttachmentThumbnailUri(AttachmentId attachmentId) {
-    return ContentUris.withAppendedId(PART_THUMBNAIL_URI, attachmentId.id);
+    return PartAuthorityUris.getAttachmentThumbnailUri(attachmentId);
   }
 
   public static Uri getStickerUri(long id) {
-    return ContentUris.withAppendedId(STICKER_CONTENT_URI, id);
+    return PartAuthorityUris.getStickerUri(id);
   }
 
   public static Uri getAvatarPickerUri(String filename) {
-    return Uri.withAppendedPath(AVATAR_PICKER_CONTENT_URI, filename);
+    return PartAuthorityUris.getAvatarPickerUri(filename);
   }
 
   public static Uri getEmojiUri(String sprite) {
-    return Uri.withAppendedPath(EMOJI_CONTENT_URI, sprite);
+    return PartAuthorityUris.getEmojiUri(sprite);
   }
 
   public static String getWallpaperFilename(Uri uri) {
-    return uri.getPathSegments().get(1);
+    return PartAuthorityUris.getFilename(uri);
   }
 
   public static String getEmojiFilename(Uri uri) {
-    return uri.getPathSegments().get(1);
+    return PartAuthorityUris.getFilename(uri);
   }
 
   public static String getAvatarPickerFilename(Uri uri) {
-    return uri.getPathSegments().get(1);
+    return PartAuthorityUris.getFilename(uri);
   }
 
   public static boolean isLocalUri(final @NonNull Uri uri) {

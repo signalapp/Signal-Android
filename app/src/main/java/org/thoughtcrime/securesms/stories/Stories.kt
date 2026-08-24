@@ -324,8 +324,9 @@ object Stories {
     @WorkerThread
     fun clipMediaToStoryDuration(media: Media): List<Media> {
       val storyDurationUs = TimeUnit.MILLISECONDS.toMicros(MAX_VIDEO_DURATION_MILLIS)
-      val startOffsetUs = media.transformProperties?.videoTrimStartTimeUs ?: 0L
-      val endOffsetUs = media.transformProperties?.videoTrimEndTimeUs ?: TimeUnit.MILLISECONDS.toMicros(getVideoDuration(media.uri))
+      val pendingTrim = media.transformProperties?.takeIf { it.videoTrim && !it.skipTransform }
+      val startOffsetUs = pendingTrim?.videoTrimStartTimeUs ?: 0L
+      val endOffsetUs = pendingTrim?.videoTrimEndTimeUs ?: TimeUnit.MILLISECONDS.toMicros(getVideoDuration(media.uri))
       val durationUs = endOffsetUs - startOffsetUs
 
       if (durationUs <= 0L) {
@@ -341,7 +342,7 @@ object Stories {
           error("Illegal clip: $startTimeUs > $endTimeUs for clip $clipIndex")
         }
 
-        TransformProperties(false, true, startTimeUs, endTimeUs, SentMediaQuality.STANDARD.code, false)
+        TransformProperties(false, true, startTimeUs, endTimeUs, media.transformProperties?.sentMediaQuality ?: SentMediaQuality.STANDARD.code, false)
       }.map { transformMedia(media, it) }
     }
 
@@ -399,7 +400,7 @@ object Stories {
         isVideoGif = videoSlide.isVideoGif,
         bucketId = null,
         caption = videoSlide.caption.orNull(),
-        transformProperties = null,
+        transformProperties = videoSlide.asAttachment().transformProperties,
         fileName = null
       )
     }

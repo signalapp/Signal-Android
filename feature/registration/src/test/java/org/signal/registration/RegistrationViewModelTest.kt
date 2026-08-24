@@ -26,6 +26,8 @@ import org.junit.Before
 import org.junit.Test
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.MasterKey
+import org.signal.network.api.RegistrationApiV2.SessionMetadata
+import org.signal.network.api.RegistrationApiV2.SvrCredentials
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class RegistrationViewModelTest {
@@ -357,6 +359,63 @@ class RegistrationViewModelTest {
   }
 
   @Test
+  fun `applyEvent NavigateBack from recovery key entry clears pendingRestoreOption`() = runTest(testDispatcher) {
+    coEvery { mockRepository.restoreFlowState() } returns null
+    coEvery { mockRepository.getPreExistingRegistrationData() } returns null
+
+    val viewModel = RegistrationViewModel(mockRepository, SavedStateHandle())
+    advanceUntilIdle()
+
+    val initialState = RegistrationFlowState(
+      backStack = listOf(RegistrationRoute.Welcome, RegistrationRoute.PhoneNumberEntry, RegistrationRoute.EnterAepForRemoteBackupPreRegistration("+15551234567")),
+      pendingRestoreOption = PendingRestoreOption.RemoteBackup
+    )
+
+    val result = viewModel.applyEvent(initialState, RegistrationFlowEvent.NavigateBack)
+
+    assertThat(result.backStack).isEqualTo(listOf(RegistrationRoute.Welcome, RegistrationRoute.PhoneNumberEntry))
+    assertThat(result.pendingRestoreOption).isNull()
+  }
+
+  @Test
+  fun `applyEvent NavigateBack from phone number entry clears pendingRestoreOption`() = runTest(testDispatcher) {
+    coEvery { mockRepository.restoreFlowState() } returns null
+    coEvery { mockRepository.getPreExistingRegistrationData() } returns null
+
+    val viewModel = RegistrationViewModel(mockRepository, SavedStateHandle())
+    advanceUntilIdle()
+
+    val initialState = RegistrationFlowState(
+      backStack = listOf(RegistrationRoute.Welcome, RegistrationRoute.PhoneNumberEntry),
+      pendingRestoreOption = PendingRestoreOption.LocalBackup
+    )
+
+    val result = viewModel.applyEvent(initialState, RegistrationFlowEvent.NavigateBack)
+
+    assertThat(result.backStack).isEqualTo(listOf(RegistrationRoute.Welcome))
+    assertThat(result.pendingRestoreOption).isNull()
+  }
+
+  @Test
+  fun `applyEvent NavigateBack from local backup restore keeps pendingRestoreOption`() = runTest(testDispatcher) {
+    coEvery { mockRepository.restoreFlowState() } returns null
+    coEvery { mockRepository.getPreExistingRegistrationData() } returns null
+
+    val viewModel = RegistrationViewModel(mockRepository, SavedStateHandle())
+    advanceUntilIdle()
+
+    val initialState = RegistrationFlowState(
+      backStack = listOf(RegistrationRoute.Welcome, RegistrationRoute.PhoneNumberEntry, RegistrationRoute.LocalBackupRestore(isPreRegistration = true)),
+      pendingRestoreOption = PendingRestoreOption.LocalBackup
+    )
+
+    val result = viewModel.applyEvent(initialState, RegistrationFlowEvent.NavigateBack)
+
+    assertThat(result.backStack).isEqualTo(listOf(RegistrationRoute.Welcome, RegistrationRoute.PhoneNumberEntry))
+    assertThat(result.pendingRestoreOption).isEqualTo(PendingRestoreOption.LocalBackup)
+  }
+
+  @Test
   fun `applyEvent NavigateToScreen Welcome clears backStack`() = runTest(testDispatcher) {
     coEvery { mockRepository.restoreFlowState() } returns null
     coEvery { mockRepository.getPreExistingRegistrationData() } returns null
@@ -370,7 +429,7 @@ class RegistrationViewModelTest {
         RegistrationRoute.PhoneNumberEntry,
         RegistrationRoute.PinEntryForRegistrationLock(
           timeRemaining = 1000L,
-          svrCredentials = NetworkController.SvrCredentials(username = "user", password = "pass")
+          svrCredentials = SvrCredentials(username = "user", password = "pass")
         ),
         RegistrationRoute.AccountLocked(timeRemainingMs = 1000L)
       )
@@ -610,6 +669,45 @@ class RegistrationViewModelTest {
   }
 
   @Test
+  fun `applyEvent VerificationCodeRequested updates both request windows`() = runTest(testDispatcher) {
+    coEvery { mockRepository.restoreFlowState() } returns null
+    coEvery { mockRepository.getPreExistingRegistrationData() } returns null
+
+    val viewModel = RegistrationViewModel(mockRepository, SavedStateHandle())
+    advanceUntilIdle()
+
+    val result = viewModel.applyEvent(
+      RegistrationFlowState(),
+      RegistrationFlowEvent.VerificationCodeRequested("+15551234567", nextSmsAllowedTimestamp = 12_345L, nextCallAllowedTimestamp = 23_456L)
+    )
+
+    assertThat(result.lastSmsVerificationCodeRequest).isEqualTo(VerificationCodeRequest("+15551234567", 12_345L))
+    assertThat(result.lastCallVerificationCodeRequest).isEqualTo(VerificationCodeRequest("+15551234567", 23_456L))
+  }
+
+  @Test
+  fun `applyEvent VerificationCodeRequested keeps the existing window when a timestamp is absent`() = runTest(testDispatcher) {
+    coEvery { mockRepository.restoreFlowState() } returns null
+    coEvery { mockRepository.getPreExistingRegistrationData() } returns null
+
+    val viewModel = RegistrationViewModel(mockRepository, SavedStateHandle())
+    advanceUntilIdle()
+
+    val initialState = RegistrationFlowState(
+      lastSmsVerificationCodeRequest = VerificationCodeRequest("+15551234567", 12_345L),
+      lastCallVerificationCodeRequest = VerificationCodeRequest("+15551234567", 23_456L)
+    )
+
+    val result = viewModel.applyEvent(
+      initialState,
+      RegistrationFlowEvent.VerificationCodeRequested("+15551234567", nextSmsAllowedTimestamp = 99_999L, nextCallAllowedTimestamp = null)
+    )
+
+    assertThat(result.lastSmsVerificationCodeRequest).isEqualTo(VerificationCodeRequest("+15551234567", 99_999L))
+    assertThat(result.lastCallVerificationCodeRequest).isEqualTo(VerificationCodeRequest("+15551234567", 23_456L))
+  }
+
+  @Test
   fun `applyEvent E164Chosen updates sessionE164`() = runTest(testDispatcher) {
     coEvery { mockRepository.restoreFlowState() } returns null
     coEvery { mockRepository.getPreExistingRegistrationData() } returns null
@@ -791,8 +889,8 @@ class RegistrationViewModelTest {
 
   // ==================== Helpers ====================
 
-  private fun createSessionMetadata(id: String = "test-session"): NetworkController.SessionMetadata {
-    return NetworkController.SessionMetadata(
+  private fun createSessionMetadata(id: String = "test-session"): SessionMetadata {
+    return SessionMetadata(
       id = id,
       nextSms = 1000L,
       nextCall = 2000L,

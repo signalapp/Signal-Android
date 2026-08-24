@@ -8,6 +8,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -17,12 +18,13 @@ import org.signal.core.ui.BottomSheetUtil
 import org.signal.core.util.BreakIteratorCompat
 import org.signal.core.util.EditTextUtil
 import org.signal.core.util.concurrent.LifecycleDisposable
+import org.signal.emoji.EmojiUtil
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.emoji.EmojiUtil
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.EditNotificationProfileViewModel.SaveNotificationProfileResult
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.models.NotificationProfileNamePreset
 import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDialogFragment
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
@@ -61,6 +63,8 @@ class EditNotificationProfileFragment : DSLSettingsFragment(layoutId = R.layout.
     val emojiView: ImageView = view.findViewById(R.id.edit_notification_profile_emoji)
     val nameView: EditText = view.findViewById(R.id.edit_notification_profile_name)
     val nameTextWrapper: TextInputLayout = view.findViewById(R.id.edit_notification_profile_name_wrapper)
+
+    SystemWindowInsetsSetter.attach(saveButton, viewLifecycleOwner, WindowInsetsCompat.Type.navigationBars() or WindowInsetsCompat.Type.ime(), SystemWindowInsetsSetter.ApplyMode.MARGIN)
 
     EditTextUtil.addGraphemeClusterLimitFilter(nameView, NOTIFICATION_PROFILE_NAME_MAX_GLYPHS)
     nameView.addTextChangedListener(

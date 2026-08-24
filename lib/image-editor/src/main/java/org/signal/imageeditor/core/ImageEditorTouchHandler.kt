@@ -12,6 +12,7 @@ import org.signal.imageeditor.core.model.EditorElement
 import org.signal.imageeditor.core.model.EditorModel
 import org.signal.imageeditor.core.model.ThumbRenderer
 import org.signal.imageeditor.core.renderers.BezierDrawingRenderer
+import org.signal.imageeditor.core.renderers.TrashRenderer
 
 /**
  * Public facade for touch handling on an [EditorModel].
@@ -33,6 +34,7 @@ class ImageEditorTouchHandler {
 
   private var editSession: EditSession? = null
   private var moreThanOnePointerUsedInSession: Boolean = false
+  private var drawingSession: Boolean = false
 
   /** Configures whether the next gesture should create a drawing session if no element is hit. */
   fun setDrawing(drawing: Boolean, blur: Boolean) {
@@ -124,6 +126,28 @@ class ImageEditorTouchHandler {
     return editSession != null
   }
 
+  /** True when the gesture is laying down a stroke rather than moving an element. */
+  fun isDrawingSession(): Boolean {
+    return drawingSession
+  }
+
+  /** Whether [point] is over the trash, growing or shrinking it to match. False while the trash is hidden. */
+  fun checkTrashIntersect(model: EditorModel, point: PointF): Boolean {
+    if (drawingSession) {
+      return false
+    }
+
+    val trashRenderer = model.trash.renderer as? TrashRenderer
+
+    return if (model.checkTrashIntersectsPoint(point)) {
+      trashRenderer?.expand()
+      true
+    } else {
+      trashRenderer?.shrink()
+      false
+    }
+  }
+
   fun getSelected(): EditorElement? {
     return editSession?.selected
   }
@@ -137,8 +161,11 @@ class ImageEditorTouchHandler {
   ): EditSession? {
     val session = startMoveAndResizeSession(model, viewMatrix, inverse, point, selected)
     if (session == null && drawing) {
+      drawingSession = true
       return startDrawingSession(model, viewMatrix, point)
     }
+
+    drawingSession = false
     return session
   }
 

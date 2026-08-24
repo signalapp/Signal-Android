@@ -164,7 +164,7 @@ public class RecipientUtil {
       GroupManager.leaveGroupFromBlockOrMessageRequest(context, recipient.getGroupId().get().requirePush());
     }
 
-    SignalDatabase.recipients().setBlocked(recipient.getId(), true);
+    SignalDatabase.recipients().setBlocked(recipient.getId(), true, System.currentTimeMillis());
     insertBlockedUpdate(recipient, SignalDatabase.threads().getOrCreateThreadIdFor(recipient));
 
     RecipientUtil.updateProfileSharingAfterBlock(recipient, true);
@@ -198,11 +198,15 @@ public class RecipientUtil {
     }
     Log.i(TAG, "Unblocking " + recipient.getId() + " (group: " + recipient.isGroup() + ")", new Throwable());
 
-    SignalDatabase.recipients().setBlocked(recipient.getId(), false);
+    SignalDatabase.recipients().setBlocked(recipient.getId(), false, 0);
     SignalDatabase.recipients().setProfileSharing(recipient.getId(), true);
     insertUnblockedUpdate(recipient, SignalDatabase.threads().getOrCreateThreadIdFor(recipient));
     AppDependencies.getJobManager().add(new MultiDeviceBlockedUpdateJob());
     StorageSyncHelper.scheduleSyncForDataChange();
+
+    if (recipient.isGroup()) {
+      SignalDatabase.groups().clearGroupIfLeftAndDeleted(recipient.getId());
+    }
   }
 
   private static void insertBlockedUpdate(@NonNull Recipient recipient, long threadId) {
@@ -349,7 +353,7 @@ public class RecipientUtil {
       GroupTable groupDatabase = SignalDatabase.groups();
       return groupDatabase.getPushGroupsContainingMember(recipient.getId())
                           .stream()
-                          .filter(GroupRecord::isV2Group)
+                          .filter(GroupRecord::getHasV2GroupProperties)
                           .anyMatch(group -> group.memberLevel(Recipient.self()).isInGroup());
 
     }

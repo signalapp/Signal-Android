@@ -37,7 +37,9 @@ class RemoteConfig_StaticValuesTest {
       "100",
       "12345678910111213141516",
       "*",
-      "1.0.0"
+      "1.0.0",
+      "[]",
+      "[\"foo\"]"
     )
 
     val configKeys = RemoteConfig.configsByKey.keys

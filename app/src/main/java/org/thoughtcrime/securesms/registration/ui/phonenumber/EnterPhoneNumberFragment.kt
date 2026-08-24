@@ -68,6 +68,7 @@ import org.thoughtcrime.securesms.util.Dialogs
 import org.thoughtcrime.securesms.util.SignalE164Util
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.SupportEmailUtil
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.livedata.LiveDataObserverCallback
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
@@ -99,6 +100,7 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
+    SystemWindowInsetsSetter.attach(view, viewLifecycleOwner, SystemWindowInsetsSetter.SAFE_AREA_WITH_KEYBOARD)
     setDebugLogSubmitMultiTapView(binding.verifyHeader)
     requireActivity().onBackPressedDispatcher.addCallback(
       viewLifecycleOwner,

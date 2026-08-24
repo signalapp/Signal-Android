@@ -16,12 +16,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
 
+import androidx.activity.EdgeToEdge;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -73,6 +76,7 @@ public final class PlacePickerActivity extends AppCompatActivity {
   private LatLng                   currentLocation = new LatLng(0, 0);
   private AddressLookup            addressLookup;
   private GoogleMap                googleMap;
+  private Insets                   systemBarInsets;
 
   public static void startActivityForResultAtCurrentLocation(@NonNull Fragment fragment, int requestCode, @ColorInt int chatColor) {
     fragment.startActivityForResult(new Intent(fragment.requireActivity(), PlacePickerActivity.class).putExtra(KEY_CHAT_COLOR, chatColor), requestCode);
@@ -85,14 +89,22 @@ public final class PlacePickerActivity extends AppCompatActivity {
   @SuppressLint("MissingInflatedId")
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
+    EdgeToEdge.enable(this);
     super.onCreate(savedInstanceState);
     dynamicTheme.onCreate(this);
-    
+
     setContentView(R.layout.activity_place_picker);
 
     bottomSheet      = findViewById(R.id.bottom_sheet);
     View markerImage = findViewById(R.id.marker_image_view);
     View fab         = findViewById(R.id.place_chosen_button);
+
+    ViewCompat.setOnApplyWindowInsetsListener(findViewById(android.R.id.content), (view, insets) -> {
+      systemBarInsets = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+      bottomSheet.setPadding(systemBarInsets.left, 0, systemBarInsets.right, systemBarInsets.bottom);
+      applyMapPadding();
+      return insets;
+    });
 
     ViewCompat.setBackgroundTintList(fab, ColorStateList.valueOf(getIntent().getIntExtra(KEY_CHAT_COLOR, Color.RED)));
     fab.setOnClickListener(v -> finishWithAddress());
@@ -167,7 +179,14 @@ public final class PlacePickerActivity extends AppCompatActivity {
   private void setMap(GoogleMap googleMap) {
     this.googleMap = googleMap;
 
+    applyMapPadding();
     moveMapToInitialIfPossible();
+  }
+
+  private void applyMapPadding() {
+    if (googleMap != null && systemBarInsets != null) {
+      googleMap.setPadding(systemBarInsets.left, systemBarInsets.top, systemBarInsets.right, systemBarInsets.bottom);
+    }
   }
 
   private void moveMapToInitialIfPossible() {

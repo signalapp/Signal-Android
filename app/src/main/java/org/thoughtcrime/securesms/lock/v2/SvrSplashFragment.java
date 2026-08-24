@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.pin.PinOptOutDialog;
 import org.thoughtcrime.securesms.util.CommunicationActions;
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 
 public final class SvrSplashFragment extends Fragment {
@@ -47,6 +48,8 @@ public final class SvrSplashFragment extends Fragment {
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    SystemWindowInsetsSetter.attach(view, getViewLifecycleOwner());
+
     title           = view.findViewById(R.id.kbs_splash_title);
     description     = view.findViewById(R.id.kbs_splash_description);
     primaryAction   = view.findViewById(R.id.kbs_splash_primary_action);

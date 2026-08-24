@@ -7,11 +7,13 @@ package org.signal.registration.sample.debug
 
 import org.signal.libsignal.net.BadRequestError
 import org.signal.libsignal.net.RequestResult
+import org.signal.network.api.RegistrationApiV2.ChargeFailure
+import org.signal.network.api.RegistrationApiV2.ChargeFailureResponse
+import org.signal.network.api.RegistrationApiV2.RegistrationLockResponse
+import org.signal.network.api.RegistrationApiV2.SessionMetadata
+import org.signal.network.api.RegistrationApiV2.SvrCredentials
+import org.signal.network.api.RegistrationApiV2.ThirdPartyServiceErrorResponse
 import org.signal.registration.NetworkController
-import org.signal.registration.NetworkController.RegistrationLockResponse
-import org.signal.registration.NetworkController.SessionMetadata
-import org.signal.registration.NetworkController.SvrCredentials
-import org.signal.registration.NetworkController.ThirdPartyServiceErrorResponse
 import java.io.IOException
 import kotlin.reflect.KClass
 import kotlin.reflect.KParameter
@@ -52,6 +54,17 @@ object DebugNetworkMockData {
   private val mockRegistrationLockResponse = RegistrationLockResponse(
     timeRemaining = 86400000L,
     svr2Credentials = mockSvrCredentials
+  )
+
+  private val mockChargeFailureResponse = ChargeFailureResponse(
+    processor = "STRIPE",
+    chargeFailure = ChargeFailure(
+      code = "card_declined",
+      message = "Mock charge failure",
+      outcomeNetworkStatus = "declined_by_network",
+      outcomeReason = "generic_decline",
+      outcomeType = "issuer_declined"
+    )
   )
 
   // ============================================
@@ -179,6 +192,7 @@ object DebugNetworkMockData {
       type == SessionMetadata::class -> mockSessionMetadata
       type == SvrCredentials::class -> mockSvrCredentials
       type == RegistrationLockResponse::class -> mockRegistrationLockResponse
+      type == ChargeFailureResponse::class -> mockChargeFailureResponse
       type == ThirdPartyServiceErrorResponse::class -> ThirdPartyServiceErrorResponse(
         reason = "Mock third party error",
         permanentFailure = false

@@ -64,6 +64,7 @@ import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.ui.compose.TabletPortraitDayPreview
 import org.signal.core.ui.compose.dismissWithAnimation
 import org.signal.core.ui.compose.horizontalGutters
 import org.signal.core.ui.compose.theme.SignalTheme
@@ -82,40 +83,39 @@ import kotlin.math.sqrt
  */
 @Composable
 fun WelcomeScreen(
+  state: WelcomeScreenState,
   onEvent: (WelcomeScreenEvents) -> Unit,
-  modifier: Modifier = Modifier,
-  isLinkAndSyncAvailable: Boolean = false
+  modifier: Modifier = Modifier
 ) {
   var showBottomSheet by remember { mutableStateOf(false) }
   val windowBreakpoint = rememberWindowBreakpoint()
   val onRestoreOrTransferClick = { showBottomSheet = true }
-  val onTermsAndPrivacyClick = { onEvent(WelcomeScreenEvents.ViewTermsAndPrivacy) }
-  val displayLinkAsPrimaryOption by rememberDisplayLinkAndSyncAsPrimaryPath(isLinkAndSyncAvailable)
+  val displayLinkAsPrimaryOption by rememberDisplayLinkAndSyncAsPrimaryPath(state.isLinkAndSyncAvailable)
 
   when (windowBreakpoint) {
     is WindowBreakpoint.Small -> {
       CompactLayout(
+        state = state,
         onEvent = onEvent,
         onRestoreOrTransferClick = onRestoreOrTransferClick,
-        onTermsAndPrivacyClick = onTermsAndPrivacyClick,
         modifier = modifier
       )
     }
 
     is WindowBreakpoint.Medium -> {
       MediumLayout(
+        state = state,
         onEvent = onEvent,
         onRestoreOrTransferClick = onRestoreOrTransferClick,
-        onTermsAndPrivacyClick = onTermsAndPrivacyClick,
         modifier = modifier
       )
     }
 
     is WindowBreakpoint.Large -> {
       LargeLayout(
-        displayLinkAsPrimaryOption = displayLinkAsPrimaryOption,
+        state = state,
         onEvent = onEvent,
-        onTermsAndPrivacyClick = onTermsAndPrivacyClick,
+        displayLinkAsPrimaryOption = displayLinkAsPrimaryOption,
         onRestoreOrTransferClick = onRestoreOrTransferClick,
         modifier = modifier
       )
@@ -135,8 +135,8 @@ fun WelcomeScreen(
 
 @Composable
 private fun CompactLayout(
+  state: WelcomeScreenState,
   onEvent: (WelcomeScreenEvents) -> Unit,
-  onTermsAndPrivacyClick: () -> Unit,
   onRestoreOrTransferClick: () -> Unit,
   modifier: Modifier = Modifier
 ) {
@@ -175,13 +175,14 @@ private fun CompactLayout(
           modifier = Modifier.widthIn(max = 320.dp),
           horizontalAlignment = Alignment.CenterHorizontally
         ) {
-          TermsAndPrivacy(onTermsAndPrivacyClick = onTermsAndPrivacyClick)
+          TermsAndPrivacy(onEvent)
 
           Spacer(modifier = Modifier.height(16.dp))
 
           PrimaryDeviceCallToActionButtons(
             onEvent = onEvent,
-            onRestoreOrTransferClick = onRestoreOrTransferClick
+            onRestoreOrTransferClick = onRestoreOrTransferClick,
+            showRestoreOrTransfer = state.showRestoreOrTransfer
           )
 
           Spacer(modifier = Modifier.height(48.dp))
@@ -193,8 +194,8 @@ private fun CompactLayout(
 
 @Composable
 private fun MediumLayout(
+  state: WelcomeScreenState,
   onEvent: (WelcomeScreenEvents) -> Unit,
-  onTermsAndPrivacyClick: () -> Unit,
   onRestoreOrTransferClick: () -> Unit,
   modifier: Modifier = Modifier
 ) {
@@ -221,7 +222,7 @@ private fun MediumLayout(
         }
 
         TermsAndPrivacy(
-          onTermsAndPrivacyClick = onTermsAndPrivacyClick,
+          onEvent = onEvent,
           modifier = Modifier
             .align(Alignment.BottomCenter)
             .padding(bottom = 24.dp)
@@ -239,7 +240,8 @@ private fun MediumLayout(
         ) {
           PrimaryDeviceCallToActionButtons(
             onEvent = onEvent,
-            onRestoreOrTransferClick = onRestoreOrTransferClick
+            onRestoreOrTransferClick = onRestoreOrTransferClick,
+            showRestoreOrTransfer = state.showRestoreOrTransfer
           )
         }
       }
@@ -249,9 +251,9 @@ private fun MediumLayout(
 
 @Composable
 private fun LargeLayout(
-  displayLinkAsPrimaryOption: Boolean,
+  state: WelcomeScreenState,
   onEvent: (WelcomeScreenEvents) -> Unit,
-  onTermsAndPrivacyClick: () -> Unit,
+  displayLinkAsPrimaryOption: Boolean,
   onRestoreOrTransferClick: () -> Unit,
   modifier: Modifier = Modifier
 ) {
@@ -260,7 +262,7 @@ private fun LargeLayout(
     content = {
       Row(
         horizontalArrangement = SpaceAround,
-        modifier = Modifier.padding(vertical = 56.dp)
+        modifier = Modifier.padding(horizontal = 32.dp, vertical = 56.dp)
       ) {
         HeroImage(
           modifier = Modifier
@@ -288,7 +290,7 @@ private fun LargeLayout(
             Spacer(modifier = Modifier.height(77.dp))
 
             TermsAndPrivacy(
-              onTermsAndPrivacyClick = onTermsAndPrivacyClick,
+              onEvent = onEvent,
               modifier = Modifier
                 .align(Alignment.CenterHorizontally)
                 .padding(bottom = 8.dp)
@@ -301,7 +303,8 @@ private fun LargeLayout(
             } else {
               PrimaryDeviceCallToActionButtons(
                 onEvent = onEvent,
-                onRestoreOrTransferClick = onRestoreOrTransferClick
+                onRestoreOrTransferClick = onRestoreOrTransferClick,
+                showRestoreOrTransfer = state.showRestoreOrTransfer
               )
             }
           }
@@ -341,11 +344,11 @@ private fun Headline(
 
 @Composable
 private fun TermsAndPrivacy(
-  onTermsAndPrivacyClick: () -> Unit,
+  onEvent: (WelcomeScreenEvents) -> Unit,
   modifier: Modifier = Modifier
 ) {
   TextButton(
-    onClick = onTermsAndPrivacyClick,
+    onClick = { onEvent(WelcomeScreenEvents.ViewTermsAndPrivacy) },
     colors = ButtonDefaults.textButtonColors(
       contentColor = MaterialTheme.colorScheme.onSurfaceVariant
     ),
@@ -361,7 +364,8 @@ private fun TermsAndPrivacy(
 @Composable
 private fun PrimaryDeviceCallToActionButtons(
   onEvent: (WelcomeScreenEvents) -> Unit,
-  onRestoreOrTransferClick: () -> Unit
+  onRestoreOrTransferClick: () -> Unit,
+  showRestoreOrTransfer: Boolean
 ) {
   Buttons.LargeTonal(
     onClick = { onEvent(WelcomeScreenEvents.Continue) },
@@ -372,18 +376,20 @@ private fun PrimaryDeviceCallToActionButtons(
     Text(stringResource(R.string.RegistrationActivity_continue))
   }
 
-  Spacer(modifier = Modifier.height(17.dp))
+  if (showRestoreOrTransfer) {
+    Spacer(modifier = Modifier.height(16.dp))
 
-  Buttons.LargeTonal(
-    onClick = onRestoreOrTransferClick,
-    colors = ButtonDefaults.filledTonalButtonColors(
-      containerColor = SignalTheme.colors.colorSurface2
-    ),
-    modifier = Modifier
-      .fillMaxWidth()
-      .testTag(TestTags.WELCOME_RESTORE_OR_TRANSFER_BUTTON)
-  ) {
-    Text(stringResource(R.string.registration_activity__restore_or_transfer))
+    Buttons.LargeTonal(
+      onClick = onRestoreOrTransferClick,
+      colors = ButtonDefaults.filledTonalButtonColors(
+        containerColor = SignalTheme.colors.colorSurface2
+      ),
+      modifier = Modifier
+        .fillMaxWidth()
+        .testTag(TestTags.WELCOME_RESTORE_OR_TRANSFER_BUTTON)
+    ) {
+      Text(stringResource(R.string.registration_activity__restore_or_transfer))
+    }
   }
 }
 
@@ -405,7 +411,9 @@ private fun ColumnScope.SecondaryDeviceCallToActionButtons(
     modifier = Modifier.align(Alignment.CenterHorizontally)
   ) {
     Text(
-      text = stringResource(R.string.WelcomeScreen__not_on_signal_yet)
+      text = stringResource(R.string.WelcomeScreen__not_on_signal_yet),
+      style = MaterialTheme.typography.bodyMedium,
+      color = MaterialTheme.colorScheme.onSurfaceVariant
     )
 
     TextButton(
@@ -555,7 +563,15 @@ private fun rememberDisplayLinkAndSyncAsPrimaryPath(isLinkAndSyncAvailable: Bool
 @Composable
 private fun WelcomeScreenPreview() {
   Previews.Preview {
-    WelcomeScreen(onEvent = {})
+    WelcomeScreen(state = WelcomeScreenState(), onEvent = {})
+  }
+}
+
+@TabletPortraitDayPreview
+@Composable
+private fun WelcomeScreenLinkedDevicePreview() {
+  Previews.Preview {
+    WelcomeScreen(state = WelcomeScreenState(isLinkAndSyncAvailable = true), onEvent = {})
   }
 }
 

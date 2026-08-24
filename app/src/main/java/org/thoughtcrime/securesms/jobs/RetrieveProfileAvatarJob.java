@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.database.model.ProfileAvatarFileDetails;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.impl.DataRestoreConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
@@ -77,6 +78,7 @@ public class RetrieveProfileAvatarJob extends BaseJob {
     this(new Job.Parameters.Builder().setGlobalPriority(priority)
                                      .setQueue("RetrieveProfileAvatarJob::" + recipient.getId().toQueueKey())
                                      .addConstraint(NetworkConstraint.KEY)
+                                     .addConstraint(DataRestoreConstraint.KEY)
                                      .setLifespan(TimeUnit.HOURS.toMillis(1))
                                      .build(),
          recipient,

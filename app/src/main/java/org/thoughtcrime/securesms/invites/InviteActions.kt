@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.invites
 
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.widget.Toast
@@ -30,9 +31,9 @@ object InviteActions {
     )
     val intent = CommunicationActions.createIntentToShareTextViaShareSheet(inviteText)
 
-    if (intent.resolveActivity(context.packageManager) != null) {
+    try {
       launchIntent(Intent.createChooser(intent, context.getString(R.string.InviteActivity_invite_to_signal)))
-    } else {
+    } catch (e: ActivityNotFoundException) {
       Toast.makeText(context, R.string.InviteActivity_no_app_to_share_to, Toast.LENGTH_LONG).show()
     }
   }

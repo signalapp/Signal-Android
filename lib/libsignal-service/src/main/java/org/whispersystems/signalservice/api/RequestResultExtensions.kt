@@ -70,6 +70,39 @@ fun <T : Any> RequestResult<T, RestStatusCodeError>.successOrThrow(): T {
   }
 }
 
+/**
+ * [successOrThrow] variant for an API that defines no business-logic errors, so there is no
+ * [RequestResult.NonSuccess] case to handle. Exists as a separate overload because Java cannot
+ * bind a [Nothing] error argument to the [RestStatusCodeError] receiver above.
+ */
+@JvmName("successOrThrowNoError")
+@Throws(IOException::class)
+fun <T : Any> RequestResult<T, Nothing>.successOrThrow(): T {
+  return when (this) {
+    is RequestResult.Success -> result
+    is RequestResult.RetryableNetworkError -> throw networkError
+    is RequestResult.NonSuccess -> error("Code branch is unreachable")
+    is RequestResult.ApplicationError -> throw when (val error = cause) {
+      is IOException, is RuntimeException -> error
+      else -> RuntimeException(error)
+    }
+  }
+}
+
+/**
+ * Returns the [Throwable] associated with a non-successful result, or null if there isn't one. Mirrors
+ * [org.signal.network.NetworkResult.getCause] for logging-only call sites that don't care which flavor of failure
+ * they got.
+ */
+fun RequestResult<*, *>.getCause(): Throwable? {
+  return when (this) {
+    is RequestResult.Success -> null
+    is RequestResult.NonSuccess -> error as? Throwable
+    is RequestResult.RetryableNetworkError -> networkError
+    is RequestResult.ApplicationError -> cause
+  }
+}
+
 private fun <T : Any> WebsocketResponse.toRequestResult(clazz: KClass<T>): RequestResult<T, RestStatusCodeError> {
   return if (status < 200 || status > 299) {
     RequestResult.NonSuccess(RestStatusCodeError(status, headers, body?.toByteArray()))

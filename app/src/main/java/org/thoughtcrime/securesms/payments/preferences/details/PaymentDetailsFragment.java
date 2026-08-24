@@ -8,6 +8,7 @@ import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.style.TextAppearanceSpan;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.Group;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -35,6 +37,7 @@ import org.thoughtcrime.securesms.payments.State;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.SpanUtil;
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;
 import org.thoughtcrime.securesms.util.views.LearnMoreTextView;
 import org.whispersystems.signalservice.api.payments.Money;
 
@@ -54,6 +57,10 @@ public final class PaymentDetailsFragment extends LoggingFragment {
     Toolbar toolbar = view.findViewById(R.id.payments_details_toolbar);
 
     toolbar.setNavigationOnClickListener(v -> Navigation.findNavController(v).popBackStack());
+
+    toolbar.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
+    SystemWindowInsetsSetter.attach(toolbar, getViewLifecycleOwner(), WindowInsetsCompat.Type.statusBars());
+    SystemWindowInsetsSetter.attach(view.findViewById(R.id.payments_details_scroll_view), getViewLifecycleOwner(), WindowInsetsCompat.Type.navigationBars());
 
     PaymentDetailsParcelable details = PaymentDetailsFragmentArgs.fromBundle(requireArguments()).getPaymentDetails();
 

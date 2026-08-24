@@ -42,7 +42,7 @@ class MessageSyncScreenTest {
     composeTestRule.setContent {
       SignalTheme {
         MessageSyncScreen(
-          state = MessageSyncScreenState(downloadedBytes = 1.mebiBytes, totalBytes = 3300.kibiBytes),
+          state = MessageSyncScreenState(stage = MessageSyncScreenState.Stage.Downloading(downloaded = 1.mebiBytes, total = 3300.kibiBytes)),
           onEvent = {}
         )
       }
@@ -59,7 +59,7 @@ class MessageSyncScreenTest {
     composeTestRule.setContent {
       SignalTheme {
         MessageSyncScreen(
-          state = MessageSyncScreenState(downloadedBytes = 1.mebiBytes, totalBytes = 3300.kibiBytes),
+          state = MessageSyncScreenState(stage = MessageSyncScreenState.Stage.Downloading(downloaded = 1.mebiBytes, total = 3300.kibiBytes)),
           onEvent = { event -> emittedEvent = event }
         )
       }
@@ -75,7 +75,7 @@ class MessageSyncScreenTest {
     composeTestRule.setContent {
       SignalTheme {
         MessageSyncScreen(
-          state = MessageSyncScreenState(downloadedBytes = 1.mebiBytes, totalBytes = 3300.kibiBytes),
+          state = MessageSyncScreenState(stage = MessageSyncScreenState.Stage.Downloading(downloaded = 1.mebiBytes, total = 3300.kibiBytes)),
           onEvent = {}
         )
       }
@@ -89,7 +89,7 @@ class MessageSyncScreenTest {
     composeTestRule.setContent {
       SignalTheme {
         MessageSyncScreen(
-          state = MessageSyncScreenState(isFinishing = true),
+          state = MessageSyncScreenState(stage = MessageSyncScreenState.Stage.Finishing),
           onEvent = {}
         )
       }

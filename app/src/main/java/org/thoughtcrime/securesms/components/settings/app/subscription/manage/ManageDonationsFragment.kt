@@ -74,6 +74,8 @@ class ManageDonationsFragment :
 
   private val viewModel: ManageDonationsViewModel by viewModels()
 
+  override val listScrollsBehindToolbar: Boolean = true
+
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     viewLifecycleOwner.lifecycle.addObserver(InAppPaymentsBottomSheetDelegate(childFragmentManager, viewLifecycleOwner))
     super.onViewCreated(view, savedInstanceState)
@@ -138,14 +140,14 @@ class ManageDonationsFragment :
 
   override fun getMaterial3OnScrollHelper(toolbar: Toolbar?): Material3OnScrollHelper {
     return object : Material3OnScrollHelper(activity = requireActivity(), views = listOf(toolbar!!), lifecycleOwner = viewLifecycleOwner) {
-      override val activeColorSet: ColorSet = ColorSet(R.color.transparent, CoreUiR.color.signal_colorBackground)
-      override val inactiveColorSet: ColorSet = ColorSet(R.color.transparent, CoreUiR.color.signal_colorBackground)
+      override val activeColorSet: ColorSet = ColorSet(R.color.transparent)
+      override val inactiveColorSet: ColorSet = ColorSet(R.color.transparent)
     }
   }
 
   private fun getConfiguration(state: ManageDonationsState): DSLConfiguration {
     return configure {
-      space(36.dp)
+      space(12.dp)
 
       customPref(
         BadgePreview.BadgeModel.SubscriptionModel(

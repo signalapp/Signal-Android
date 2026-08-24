@@ -154,6 +154,10 @@ public class WebRtcInteractor {
     ActiveCallManager.sendAudioManagerCommand(context, new AudioManagerCommand.Stop(playDisconnect));
   }
 
+  void prepareAudioForAccept() {
+    ActiveCallManager.sendAudioManagerCommand(context, new AudioManagerCommand.PrepareForAccept());
+  }
+
   void startAudioCommunication() {
     ActiveCallManager.sendAudioManagerCommand(context, new AudioManagerCommand.Start());
   }

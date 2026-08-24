@@ -90,7 +90,7 @@ public class AvatarHelper {
   }
 
   /**
-   * Deletes and avatar.
+   * Deletes an avatar.
    */
   public static void delete(@NonNull Context context, @NonNull RecipientId recipientId) {
     getAvatarFile(context, recipientId).delete();

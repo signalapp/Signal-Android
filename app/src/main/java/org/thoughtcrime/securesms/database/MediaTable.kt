@@ -58,6 +58,7 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.ARCHIVE_CDN},
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.THUMBNAIL_RESTORE_STATE},
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.ARCHIVE_TRANSFER_STATE},
+        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.ARCHIVE_THUMBNAIL_TRANSFER_STATE},
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.ATTACHMENT_UUID},
         ${MessageTable.TABLE_NAME}.${MessageTable.TYPE},
         ${MessageTable.TABLE_NAME}.${MessageTable.DATE_SENT},
@@ -84,27 +85,17 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
         $THREAD_RECIPIENT_ID > 0
       """
 
-    private val UNIQUE_MEDIA_QUERY = """
-        SELECT 
-          MAX(${AttachmentTable.DATA_SIZE}) as ${AttachmentTable.DATA_SIZE}, 
-          ${AttachmentTable.CONTENT_TYPE} 
-        FROM 
-          ${AttachmentTable.TABLE_NAME} 
-        WHERE 
-          ${AttachmentTable.STICKER_PACK_ID} IS NULL AND 
-          ${AttachmentTable.TRANSFER_STATE} = ${AttachmentTable.TRANSFER_PROGRESS_DONE} 
+    private const val UNIQUE_MEDIA_QUERY = """
+        SELECT
+          MAX(${AttachmentTable.DATA_SIZE}) as ${AttachmentTable.DATA_SIZE},
+          ${AttachmentTable.CONTENT_TYPE}
+        FROM
+          ${AttachmentTable.TABLE_NAME}
+        WHERE
+          ${AttachmentTable.STICKER_PACK_ID} IS NULL AND
+          ${AttachmentTable.DATA_FILE} IS NOT NULL
         GROUP BY ${AttachmentTable.DATA_FILE}
       """
-
-    private val GALLERY_MEDIA_QUERY = String.format(
-      BASE_MEDIA_QUERY,
-      """
-        ${AttachmentTable.DATA_FILE} IS NOT NULL AND
-        ${AttachmentTable.CONTENT_TYPE} NOT LIKE 'image/svg%' AND 
-        (${AttachmentTable.CONTENT_TYPE} LIKE 'image/%' OR ${AttachmentTable.CONTENT_TYPE} LIKE 'video/%') AND
-        ${MessageTable.LINK_PREVIEWS} IS NULL
-      """
-    )
 
     private val GALLERY_MEDIA_QUERY_INCLUDING_TEMP_VIDEOS = String.format(
       BASE_MEDIA_QUERY,
@@ -173,6 +164,7 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.ARCHIVE_CDN},
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.THUMBNAIL_RESTORE_STATE},
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.ARCHIVE_TRANSFER_STATE},
+        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.ARCHIVE_THUMBNAIL_TRANSFER_STATE},
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.ATTACHMENT_UUID},
         ${MessageTable.TABLE_NAME}.${MessageTable.TYPE},
         ${MessageTable.TABLE_NAME}.${MessageTable.DATE_SENT},

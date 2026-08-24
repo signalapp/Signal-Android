@@ -83,9 +83,11 @@ import org.thoughtcrime.securesms.components.settings.app.internal.backup.Intern
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.ArchiveAttachmentBackfillJob
 import org.thoughtcrime.securesms.jobs.ArchiveAttachmentReconciliationJob
+import org.thoughtcrime.securesms.jobs.ArchiveCommitAttachmentDeletesJob
 import org.thoughtcrime.securesms.jobs.ArchiveThumbnailBackfillJob
 import org.thoughtcrime.securesms.jobs.BackupRestoreMediaJob
 import org.thoughtcrime.securesms.jobs.LocalBackupJob
+import org.thoughtcrime.securesms.jobs.OptimizeMediaJob
 import org.thoughtcrime.securesms.keyvalue.BackupValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.registration.ui.restore.local.RestoreLocalBackupActivity
@@ -161,6 +163,8 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
           onEnqueueAttachmentBackfillJob = { AppDependencies.jobManager.add(ArchiveAttachmentBackfillJob()) },
           onEnqueueThumbnailBackfillJob = { AppDependencies.jobManager.add(ArchiveThumbnailBackfillJob()) },
           onEnqueueMediaRestoreClicked = { AppDependencies.jobManager.add(BackupRestoreMediaJob()) },
+          onEnqueueOptimizeMediaClicked = { AppDependencies.jobManager.add(OptimizeMediaJob()) },
+          onEnqueueCommitDeletesClicked = { AppDependencies.jobManager.add(ArchiveCommitAttachmentDeletesJob()) },
           onHaltAllBackupJobsClicked = { viewModel.haltAllJobs() },
           onValidateBackupClicked = { viewModel.validateBackup() },
           onSaveEncryptedBackupToDiskClicked = {
@@ -357,6 +361,8 @@ fun Screen(
   onEnqueueMediaRestoreClicked: () -> Unit = {},
   onEnqueueAttachmentBackfillJob: () -> Unit = {},
   onEnqueueThumbnailBackfillJob: () -> Unit = {},
+  onEnqueueOptimizeMediaClicked: () -> Unit = {},
+  onEnqueueCommitDeletesClicked: () -> Unit = {},
   onWipeDataAndRestoreFromRemoteClicked: () -> Unit = {},
   onHaltAllBackupJobsClicked: () -> Unit = {},
   onSavePlaintextCopyOfRemoteBackupClicked: () -> Unit = {},
@@ -457,6 +463,18 @@ fun Screen(
       )
 
       Rows.TextRow(
+        text = "Enqueue optimize media job",
+        label = "Schedules a job that will offload local copies of media the archive CDN has confirmed. Normally only runs after a backup.",
+        onClick = onEnqueueOptimizeMediaClicked
+      )
+
+      Rows.TextRow(
+        text = "Enqueue commit deletes job",
+        label = "Schedules a job that will delete unreferenced media from the archive CDN. Normally only runs after a backup.",
+        onClick = onEnqueueCommitDeletesClicked
+      )
+
+      Rows.TextRow(
         text = "Halt all backup jobs",
         label = "Stops all backup-related jobs to the best of our ability.",
         onClick = onHaltAllBackupJobsClicked
@@ -553,7 +571,8 @@ fun Screen(
         text = "Clear backup init flag",
         label = "Clears our local state around whether backups have been initialized or not. Will force us to make request to claim backupId and set public keys.",
         onClick = {
-          SignalStore.backup.backupsInitialized = false
+          SignalStore.backup.messageBackupInitialized = false
+          SignalStore.backup.mediaBackupInitialized = false
         }
       )
 

@@ -260,7 +260,7 @@ public final class MenuState {
     return builder.shouldShowCopyAction(!actionMessage && !remoteDelete && hasText && !hasGift && !hasPayment && !hasPoll)
                   .shouldShowDeleteAction(!hasInMemory && onlyContainsCompleteMessages(selectedParts))
                   .shouldShowReactions(!conversationRecipient.isReleaseNotes() && !conversationRecipient.isInactiveGroup())
-                  .shouldShowPaymentDetails(hasPayment)
+                  .shouldShowPaymentDetails(hasPayment && SignalStore.account().isPrimaryDevice())
                   .shouldShowPollTerminate(hasPollTerminate)
                   .shouldShowPinMessage(canPinMessage)
                   .shouldShowUnpinMessage(canUnpinMessage)

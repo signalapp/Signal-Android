@@ -4,11 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.Window
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import org.signal.core.ui.util.ThemeUtil
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.InputAwareConstraintLayout
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboard
@@ -18,16 +15,11 @@ import org.thoughtcrime.securesms.keyboard.sticker.StickerKeyboardPageFragment
 import org.thoughtcrime.securesms.util.ThemedFragment.themeResId
 import org.thoughtcrime.securesms.util.ThemedFragment.themedInflate
 import org.thoughtcrime.securesms.util.ThemedFragment.withTheme
-import org.thoughtcrime.securesms.util.WindowUtil
 import org.thoughtcrime.securesms.util.fragments.findListener
 import org.thoughtcrime.securesms.util.visible
 import kotlin.reflect.KClass
 
 class KeyboardPagerFragment : Fragment(), InputAwareConstraintLayout.InputFragment {
-
-  companion object {
-    val ARG_SET_NAV_COLOR = "args.setNavColor"
-  }
 
   private lateinit var emojiButton: View
   private lateinit var stickerButton: View
@@ -36,9 +28,6 @@ class KeyboardPagerFragment : Fragment(), InputAwareConstraintLayout.InputFragme
 
   private val fragments: MutableMap<KClass<*>, Fragment> = mutableMapOf()
   private var currentFragment: Fragment? = null
-
-  private val shouldSetNavColor: Boolean
-    get() = arguments?.getBoolean(ARG_SET_NAV_COLOR) ?: true
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
     return themedInflate(R.layout.keyboard_pager_fragment, inflater, container)
@@ -61,39 +50,12 @@ class KeyboardPagerFragment : Fragment(), InputAwareConstraintLayout.InputFragme
     emojiButton.setOnClickListener { viewModel.switchToPage(KeyboardPage.EMOJI) }
     stickerButton.setOnClickListener { viewModel.switchToPage(KeyboardPage.STICKER) }
     gifButton.setOnClickListener { viewModel.switchToPage(KeyboardPage.GIF) }
-
-    onHiddenChanged(false)
-  }
-
-  override fun onHiddenChanged(hidden: Boolean) {
-    if (shouldSetNavColor) {
-      getWindow()?.let { window ->
-        if (hidden) {
-          WindowUtil.setNavigationBarColor(requireContext(), window, ThemeUtil.getThemedColor(requireContext(), android.R.attr.navigationBarColor))
-        } else {
-          WindowUtil.setNavigationBarColor(requireContext(), window, ThemeUtil.getThemedColor(requireContext(), R.attr.mediaKeyboardBottomBarBackgroundColor))
-        }
-      }
-    }
   }
 
   @Suppress("DEPRECATION")
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
     viewModel.page().value?.let(this::onPageSelected)
-  }
-
-  private fun getWindow(): Window? {
-    var parent: Fragment? = parentFragment
-    while (parent != null) {
-      if (parent is DialogFragment) {
-        return parent.dialog?.window
-      }
-
-      parent = parent.parentFragment
-    }
-
-    return activity?.window
   }
 
   private fun onPageSelected(page: KeyboardPage) {
@@ -143,8 +105,6 @@ class KeyboardPagerFragment : Fragment(), InputAwareConstraintLayout.InputFragme
   override fun show() {
     findListener<MediaKeyboard.MediaKeyboardListener>()?.onShown()
     if (isAdded && view != null) {
-      onHiddenChanged(false)
-
       viewModel.page().value?.let(this::onPageSelected)
     }
   }
@@ -152,8 +112,6 @@ class KeyboardPagerFragment : Fragment(), InputAwareConstraintLayout.InputFragme
   override fun hide() {
     findListener<MediaKeyboard.MediaKeyboardListener>()?.onHidden()
     if (isAdded && view != null) {
-      onHiddenChanged(true)
-
       val transaction = childFragmentManager.beginTransaction()
       fragments.values.forEach { transaction.remove(it) }
       transaction.commitAllowingStateLoss()

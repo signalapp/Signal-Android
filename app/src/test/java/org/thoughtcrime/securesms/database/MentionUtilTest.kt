@@ -45,4 +45,13 @@ class MentionUtilTest {
 
     assertThat(update.body.toString()).isEqualTo("RecipientId::1est")
   }
+
+  @Test
+  fun overflowingRangeIsIgnored() {
+    val mentions = listOf(Mention(RecipientId.from(1L), 1, Int.MAX_VALUE))
+
+    val update: MentionUtil.UpdatedBodyAndMentions = MentionUtil.update("hi there", mentions) { it.recipientId.toString() }
+
+    assertThat(update.body.toString()).isEqualTo("hi there")
+  }
 }

@@ -368,6 +368,14 @@ sealed class SignalWebSocket(
     suspend fun <Result, Error : BadRequestError> runCatchingWithChatConnection(
       callback: (UnauthenticatedChatConnection) -> CompletableFuture<RequestResult<Result, Error>>
     ): RequestResult<Result, Error> = runCatchingWithChatConnectionInternal { callback(it as UnauthenticatedChatConnection) }
+
+    /**
+     * Companion to [runCatchingWithChatConnection] for libsignal's streaming endpoints, which hand back a [kotlinx.coroutines.flow.Flow] rather than a future.
+     * The stream is started on the chat connection here; collecting it (and classifying whatever it throws) is up to the caller.
+     */
+    suspend fun <T> withChatConnection(callback: (UnauthenticatedChatConnection) -> T): T {
+      return getWebSocket().runWithChatConnection { callback(it as UnauthenticatedChatConnection) }
+    }
   }
 
   /**
@@ -448,7 +456,6 @@ sealed class SignalWebSocket(
       }
     }
 
-    @Throws(IOException::class)
     private fun WebSocketRequestMessage.toEnvelopeResponse(): EnvelopeResponse {
       val timestamp = this.findHeader()
 
@@ -456,9 +463,14 @@ sealed class SignalWebSocket(
         Log.w(TAG, "Failed to parse $SERVER_DELIVERED_TIMESTAMP_HEADER")
       }
 
-      val envelope = Envelope.ADAPTER.decode(this.body!!.toByteArray())
+      val envelope = try {
+        Envelope.ADAPTER.decode(this.body!!.toByteArray())
+      } catch (e: Exception) {
+        Log.w(TAG, "Failed to parse envelope!", e)
+        return EnvelopeResponse.Unparseable(this)
+      }
 
-      return EnvelopeResponse(envelope, timestamp ?: 0, this)
+      return EnvelopeResponse.Parsed(envelope, timestamp ?: 0, this)
     }
 
     private fun WebSocketRequestMessage.findHeader(): Long? {

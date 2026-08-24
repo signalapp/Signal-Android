@@ -10,6 +10,7 @@ import com.android.tools.screenshot.PreviewTest
 import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.RtlPreview
+import org.signal.core.ui.compose.TabletPreviews
 
 class WelcomeScreenScreenshotTests {
   @PreviewTest
@@ -18,7 +19,16 @@ class WelcomeScreenScreenshotTests {
   @Composable
   fun WelcomeScreenPhonePreview() {
     Previews.Preview {
-      WelcomeScreen(onEvent = {})
+      WelcomeScreen(state = WelcomeScreenState(), onEvent = {})
+    }
+  }
+
+  @PreviewTest
+  @TabletPreviews
+  @Composable
+  fun WelcomeScreenLinkedDevicePreview() {
+    Previews.Preview {
+      WelcomeScreen(state = WelcomeScreenState(isLinkAndSyncAvailable = true), onEvent = {})
     }
   }
 }

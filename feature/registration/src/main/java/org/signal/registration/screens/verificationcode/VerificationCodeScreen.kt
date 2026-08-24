@@ -45,6 +45,7 @@ import androidx.compose.ui.input.key.onKeyEvent
 import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -52,12 +53,15 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LifecycleEventEffect
 import kotlinx.coroutines.delay
 import org.signal.core.ui.compose.AllDevicePreviews
+import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
+import org.signal.network.api.RegistrationApiV2.VerificationCodeTransport
 import org.signal.registration.R
 import org.signal.registration.screens.OnePaneRegistrationScaffold
 import org.signal.registration.screens.RegistrationScaffold
 import org.signal.registration.screens.TwoPaneRegistrationScaffold
 import org.signal.registration.screens.attachDebugLogHelper
+import org.signal.registration.screens.shared.ContactSupportDialog
 import org.signal.registration.test.TestTags
 import kotlin.time.Duration.Companion.seconds
 
@@ -77,7 +81,7 @@ fun VerificationCodeScreen(
   val resources = LocalResources.current
 
   LaunchedEffect(state.rateLimits) {
-    if (state.rateLimits.smsResendTimeRemaining > 0.seconds || state.rateLimits.callRequestTimeRemaining > 0.seconds) {
+    if (state.smsResendCountdown() != null || state.callRequestCountdown() != null) {
       while (true) {
         delay(1000)
         onEvent(VerificationCodeScreenEvents.CountdownTick)
@@ -99,8 +103,6 @@ fun VerificationCodeScreen(
       state.snackbars.incorrectVerificationCode -> resources.getString(R.string.VerificationCodeScreen__incorrect_code) to VerificationCodeScreenEvents.IncorrectVerificationCodeSnackbarDismissed
       state.snackbars.networkError -> resources.getString(R.string.VerificationCodeScreen__network_error) to VerificationCodeScreenEvents.NetworkErrorSnackbarDismissed
       state.snackbars.rateLimitedRetryAfter != null -> resources.getString(R.string.VerificationCodeScreen__too_many_attempts_try_again_in_s, state.snackbars.rateLimitedRetryAfter.toString()) to VerificationCodeScreenEvents.RateLimitedSnackbarDismissed
-      state.snackbars.unableToSendSms -> resources.getString(R.string.VerificationCodeScreen__unable_to_send_sms) to VerificationCodeScreenEvents.UnableToSendSmsSnackbarDismissed
-      state.snackbars.couldNotRequestCodeWithSelectedTransport -> resources.getString(R.string.VerificationCodeScreen__could_not_send_code_via_selected_method) to VerificationCodeScreenEvents.CouldNotRequestCodeWithSelectedTransportSnackbarDismissed
       state.snackbars.unknownError -> resources.getString(R.string.VerificationCodeScreen__an_unexpected_error_occurred) to VerificationCodeScreenEvents.UnknownErrorSnackbarDismissed
       state.snackbars.registrationError -> resources.getString(R.string.VerificationCodeScreen__registration_error) to VerificationCodeScreenEvents.RegistrationErrorSnackbarDismissed
       else -> return@LaunchedEffect
@@ -109,6 +111,8 @@ fun VerificationCodeScreen(
     snackbarHostState.showSnackbar(message)
     onEvent(dismissedEvent)
   }
+
+  RequestCodeErrorDialogs(state.dialogs, onEvent)
 
   LaunchedEffect(state.focusedDigitIndex) {
     focusRequesters[state.focusedDigitIndex].requestFocus()
@@ -120,7 +124,16 @@ fun VerificationCodeScreen(
 
   if (state.showContactSupportSheet) {
     ContactSupportBottomSheet(
+      onContactSupport = { onEvent(VerificationCodeScreenEvents.ContactSupportDialog) },
       onDismiss = { onEvent(VerificationCodeScreenEvents.DismissContactSupport) }
+    )
+  }
+
+  if (state.showContactSupportDialog) {
+    ContactSupportDialog(
+      subject = R.string.VerificationCodeScreen__contact_support_email_subject,
+      filter = R.string.VerificationCodeScreen__contact_support_email_filter,
+      onDismiss = { onEvent(VerificationCodeScreenEvents.DismissContactSupportDialog) }
     )
   }
 
@@ -145,6 +158,50 @@ fun VerificationCodeScreen(
         onEvent = onEvent
       )
     }
+  }
+}
+
+/**
+ * Modal dialogs for failures that occur while requesting a verification code (resend SMS / call me). Unlike the
+ * inline snackbars used for code submission, these block until acknowledged so the user can't miss them.
+ */
+@Composable
+private fun RequestCodeErrorDialogs(dialogs: VerificationCodeState.Dialogs, onEvent: (VerificationCodeScreenEvents) -> Unit) {
+  dialogs.providerRejectedTransport?.let { transport ->
+    val message = when (transport) {
+      VerificationCodeTransport.VOICE -> stringResource(R.string.VerificationCodeScreen__could_not_call_provider_rejected)
+      VerificationCodeTransport.SMS -> stringResource(R.string.VerificationCodeScreen__could_not_sms_provider_rejected)
+    }
+    Dialogs.SimpleMessageDialog(
+      message = message,
+      dismiss = stringResource(android.R.string.ok),
+      onDismiss = { onEvent(VerificationCodeScreenEvents.ProviderRejectedDialogDismissed) }
+    )
+    return
+  }
+
+  val simpleError: Pair<String, VerificationCodeScreenEvents>? = when {
+    dialogs.networkError -> stringResource(R.string.VerificationCodeScreen__network_error) to VerificationCodeScreenEvents.NetworkErrorDialogDismissed
+    dialogs.rateLimitedRetryAfter != null -> {
+      val message = if (dialogs.rateLimitedRetryAfter.isPositive()) {
+        stringResource(R.string.VerificationCodeScreen__too_many_attempts_try_again_in_s, dialogs.rateLimitedRetryAfter.toString())
+      } else {
+        stringResource(R.string.VerificationCodeScreen__too_many_attempts)
+      }
+      message to VerificationCodeScreenEvents.RateLimitedDialogDismissed
+    }
+    dialogs.couldNotRequestCodeWithSelectedTransport -> stringResource(R.string.VerificationCodeScreen__could_not_send_code_via_selected_method) to VerificationCodeScreenEvents.CouldNotRequestCodeWithSelectedTransportDialogDismissed
+    dialogs.unableToSendSms -> stringResource(R.string.VerificationCodeScreen__unable_to_send_sms) to VerificationCodeScreenEvents.UnableToSendSmsDialogDismissed
+    dialogs.unknownError -> stringResource(R.string.VerificationCodeScreen__an_unexpected_error_occurred) to VerificationCodeScreenEvents.UnknownErrorDialogDismissed
+    else -> null
+  }
+
+  simpleError?.let { (message, dismissedEvent) ->
+    Dialogs.SimpleMessageDialog(
+      message = message,
+      dismiss = stringResource(android.R.string.ok),
+      onDismiss = { onEvent(dismissedEvent) }
+    )
   }
 }
 
@@ -229,7 +286,7 @@ private fun TwoPaneLayout(
           .verticalScroll(firstPaneScrollState)
           .padding(paddingValues)
       ) {
-        Description(state, onEvent)
+        Description(state, onEvent, twoPane = true)
       }
     },
     secondPane = { paddingValues ->
@@ -361,8 +418,10 @@ private fun CodeField(
 
 @Composable
 private fun AlternateCodeOptions(state: VerificationCodeState, onEvent: (VerificationCodeScreenEvents) -> Unit) {
-  val canResendSms = state.canResendSms()
   val disabledColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f)
+
+  val canResendSms = state.canResendSms()
+  val smsCountdown = state.smsResendCountdown()
   TextButton(
     onClick = { onEvent(VerificationCodeScreenEvents.ResendSms) },
     enabled = canResendSms,
@@ -370,14 +429,13 @@ private fun AlternateCodeOptions(state: VerificationCodeState, onEvent: (Verific
       .testTag(TestTags.VERIFICATION_CODE_RESEND_SMS_BUTTON)
   ) {
     Text(
-      text = if (canResendSms) {
-        stringResource(R.string.VerificationCodeScreen__resend_code)
-      } else {
-        val totalSeconds = state.rateLimits.smsResendTimeRemaining.inWholeSeconds.toInt()
+      text = if (smsCountdown != null) {
+        val totalSeconds = smsCountdown.inWholeSeconds.toInt()
         val minutes = totalSeconds / 60
         val seconds = totalSeconds % 60
-        stringResource(R.string.VerificationCodeScreen__resend_code) + " " +
-          stringResource(R.string.VerificationCodeScreen__countdown_format, minutes, seconds)
+        stringResource(R.string.VerificationCodeScreen__resend_code_available_in, minutes, seconds)
+      } else {
+        stringResource(R.string.VerificationCodeScreen__resend_code)
       },
       color = if (canResendSms) MaterialTheme.colorScheme.primary else disabledColor,
       textAlign = TextAlign.Center,
@@ -388,6 +446,7 @@ private fun AlternateCodeOptions(state: VerificationCodeState, onEvent: (Verific
   Spacer(modifier = Modifier.width(8.dp))
 
   val canRequestCall = state.canRequestCall()
+  val callCountdown = state.callRequestCountdown()
   TextButton(
     onClick = { onEvent(VerificationCodeScreenEvents.CallMe) },
     enabled = canRequestCall,
@@ -395,13 +454,13 @@ private fun AlternateCodeOptions(state: VerificationCodeState, onEvent: (Verific
       .testTag(TestTags.VERIFICATION_CODE_CALL_ME_BUTTON)
   ) {
     Text(
-      text = if (canRequestCall) {
-        stringResource(R.string.VerificationCodeScreen__call_me_instead)
-      } else {
-        val totalSeconds = state.rateLimits.callRequestTimeRemaining.inWholeSeconds.toInt()
+      text = if (callCountdown != null) {
+        val totalSeconds = callCountdown.inWholeSeconds.toInt()
         val minutes = totalSeconds / 60
         val seconds = totalSeconds % 60
         stringResource(R.string.VerificationCodeScreen__call_me_available_in, minutes, seconds)
+      } else {
+        stringResource(R.string.VerificationCodeScreen__call_me_instead)
       },
       color = if (canRequestCall) MaterialTheme.colorScheme.primary else disabledColor,
       textAlign = TextAlign.Center,
@@ -411,10 +470,10 @@ private fun AlternateCodeOptions(state: VerificationCodeState, onEvent: (Verific
 }
 
 @Composable
-private fun Description(state: VerificationCodeState, onEvent: (VerificationCodeScreenEvents) -> Unit) {
+private fun Description(state: VerificationCodeState, onEvent: (VerificationCodeScreenEvents) -> Unit, twoPane: Boolean = false) {
   Text(
     text = stringResource(R.string.VerificationCodeScreen__verification_code),
-    style = MaterialTheme.typography.headlineMedium,
+    style = if (twoPane) MaterialTheme.typography.headlineLarge else MaterialTheme.typography.headlineMedium,
     modifier = Modifier
       .fillMaxWidth()
       .attachDebugLogHelper()
@@ -422,7 +481,7 @@ private fun Description(state: VerificationCodeState, onEvent: (VerificationCode
 
   Text(
     text = stringResource(R.string.VerificationCodeScreen__enter_the_code_we_sent_to_s, state.e164),
-    style = MaterialTheme.typography.bodyLarge,
+    style = if (twoPane) MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Normal) else MaterialTheme.typography.bodyLarge,
     color = MaterialTheme.colorScheme.onSurfaceVariant,
     modifier = Modifier.padding(top = 16.dp)
   )

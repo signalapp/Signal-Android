@@ -78,7 +78,7 @@ class TranscodingConfigTest {
   fun givenLargeFileSize_whenIGetMaxVideoUploadDuration_thenIExpectCoercionToTierMaxDuration() {
     val tier = QualityTier(resolution = 480, videoBitrateMbps = 1.0f, audioBitrateKbps = 128, maxDurationSec = 30)
 
-    val result = TranscodingConfig.calculateMaxVideoUploadDurationInSeconds(listOf(tier), 10.seconds, maxFileSize = 10000000L)
+    val result = TranscodingConfig.calculateMaxVideoUploadDurationInSeconds(listOf(tier), 10.seconds)
 
     assertEquals(tier.maxDurationSec, result)
   }

@@ -37,8 +37,8 @@ import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.Texts
 import org.signal.core.ui.compose.horizontalGutters
+import org.signal.emoji.EmojiStrings
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.emoji.EmojiStrings
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.models.NotificationProfileRow
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile

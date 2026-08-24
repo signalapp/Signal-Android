@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.ColorInt;
@@ -16,9 +17,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;
 
 import com.bumptech.glide.Glide;
 
@@ -90,6 +94,8 @@ public class ContactShareEditActivity extends PassphraseRequiredActivity impleme
     Material3OnScrollHelper onScrollHelper = Material3OnScrollHelper.create(this, toolbar);
     onScrollHelper.attach(contactList);
 
+    applyEdgeToEdgeInsets(toolbar, contactList, sendButton);
+
     ContactShareEditAdapter contactAdapter = new ContactShareEditAdapter(Glide.with(this), dynamicLanguage.getCurrentLocale(), this);
     contactList.setAdapter(contactAdapter);
 
@@ -101,6 +107,13 @@ public class ContactShareEditActivity extends PassphraseRequiredActivity impleme
       contactList.post(() -> contactList.scrollToPosition(0));
     });
     viewModel.getEvents().observe(this, this::presentEvent);
+  }
+
+  private void applyEdgeToEdgeInsets(@NonNull Toolbar toolbar, @NonNull RecyclerView list, @NonNull View sendButton) {
+    toolbar.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
+    SystemWindowInsetsSetter.attach(toolbar, this, WindowInsetsCompat.Type.statusBars());
+    SystemWindowInsetsSetter.attach(list, this, WindowInsetsCompat.Type.navigationBars());
+    SystemWindowInsetsSetter.attach(sendButton, this, WindowInsetsCompat.Type.navigationBars(), SystemWindowInsetsSetter.ApplyMode.MARGIN);
   }
 
   @Override

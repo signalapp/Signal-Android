@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.registration.ui.permissions.GrantPermissionsFr
 import org.thoughtcrime.securesms.registration.ui.phonenumber.EnterPhoneNumberMode
 import org.thoughtcrime.securesms.util.BackupUtil
 import org.thoughtcrime.securesms.util.CommunicationActions
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.visible
 
@@ -44,6 +45,8 @@ class WelcomeFragment : LoggingFragment(R.layout.fragment_registration_welcome_v
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
+
+    SystemWindowInsetsSetter.attach(view, viewLifecycleOwner)
 
     setDebugLogSubmitMultiTapView(binding.image)
     setDebugLogSubmitMultiTapView(binding.title)

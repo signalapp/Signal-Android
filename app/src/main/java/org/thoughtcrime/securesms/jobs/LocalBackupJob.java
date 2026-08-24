@@ -13,6 +13,7 @@ import org.signal.core.ui.permissions.Permissions;
 import org.signal.core.ui.util.StorageUtil;
 import org.signal.core.util.NoExternalStorageException;
 import org.signal.core.util.Stopwatch;
+import org.signal.core.util.UnableToStartException;
 import org.signal.core.util.crypto.AttachmentSecretProvider;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
@@ -117,7 +118,7 @@ public final class LocalBackupJob extends BaseJob {
     try (NotificationController notification = GenericForegroundService.startForegroundTask(context,
                                                                      context.getString(R.string.LocalBackupJob_creating_signal_backup),
                                                                      NotificationChannels.getInstance().BACKUPS,
-                                                                     R.drawable.ic_signal_backup))
+                                                                     org.signal.core.ui.R.drawable.ic_signal_backup))
     {
       updater.setNotification(notification);
       EventBus.getDefault().register(updater);

@@ -1,12 +1,12 @@
 package org.thoughtcrime.securesms.keyboard.sticker
 
 import androidx.annotation.WorkerThread
-import org.thoughtcrime.securesms.components.emoji.EmojiUtil
+import org.signal.core.models.database.StickerRecord
+import org.signal.emoji.EmojiUtil
 import org.thoughtcrime.securesms.database.EmojiSearchTable
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.database.StickerTable
-import org.thoughtcrime.securesms.database.StickerTable.StickerRecordReader
-import org.thoughtcrime.securesms.database.model.StickerRecord
+import org.thoughtcrime.securesms.database.StickerTables
+import org.thoughtcrime.securesms.database.StickerTables.StickerRecordReader
 
 private const val RECENT_LIMIT = 24
 private const val EMOJI_SEARCH_RESULTS_LIMIT = 20
@@ -14,12 +14,12 @@ private const val EMOJI_SEARCH_RESULTS_LIMIT = 20
 class StickerSearchRepository {
 
   private val emojiSearchTable: EmojiSearchTable = SignalDatabase.emojiSearch
-  private val stickerTable: StickerTable = SignalDatabase.stickers
+  private val stickerTables: StickerTables = SignalDatabase.stickers
 
   @WorkerThread
   fun search(query: String): List<StickerRecord> {
     if (query.isEmpty()) {
-      return StickerRecordReader(stickerTable.getRecentlyUsedStickers(RECENT_LIMIT)).readAll()
+      return StickerRecordReader(stickerTables.getRecentlyUsedStickers(RECENT_LIMIT)).readAll()
     }
 
     val maybeEmojiQuery: List<StickerRecord> = findStickersForEmoji(query)
@@ -36,7 +36,7 @@ class StickerSearchRepository {
 
     return EmojiUtil.getAllRepresentations(searchEmoji)
       .filterNotNull()
-      .map { candidate -> StickerRecordReader(stickerTable.getStickersByEmoji(candidate)).readAll() }
+      .map { candidate -> StickerRecordReader(stickerTables.getStickersByEmoji(candidate)).readAll() }
       .flatten()
   }
 }

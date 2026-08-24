@@ -26,6 +26,7 @@ import android.os.Bundle;
 import androidx.core.app.RemoteInput;
 
 import org.signal.core.util.concurrent.SignalExecutors;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.MessageTable.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.ParentStoryId;
@@ -45,6 +46,8 @@ import java.util.List;
  * Get the response text from the Wearable Device and sends an message as a reply
  */
 public class RemoteReplyReceiver extends BroadcastReceiver {
+
+  private static final String TAG = Log.tag(RemoteReplyReceiver.class);
 
   public static final String REPLY_ACTION         = "org.thoughtcrime.securesms.notifications.WEAR_REPLY";
   public static final String RECIPIENT_EXTRA      = "recipient_extra";
@@ -70,43 +73,51 @@ public class RemoteReplyReceiver extends BroadcastReceiver {
     if (replyMethod == null) throw new AssertionError("No reply method specified");
 
     if (responseText != null) {
+      PendingResult finisher = goAsync();
+
       SignalExecutors.BOUNDED.execute(() -> {
-        long threadId;
+        try {
+          long threadId;
 
-        Recipient               recipient     = Recipient.resolved(recipientId);
-        String                  body          = responseText.toString();
-        ParentStoryId           parentStoryId = groupStoryId != Long.MIN_VALUE ? ParentStoryId.deserialize(groupStoryId) : null;
-        MessageUtil.SplitResult splitMessage  = MessageUtil.getSplitMessage(context, body);
-        SlideDeck               slideDeck     = null;
+          Recipient               recipient     = Recipient.resolved(recipientId);
+          String                  body          = responseText.toString();
+          ParentStoryId           parentStoryId = groupStoryId != Long.MIN_VALUE ? ParentStoryId.deserialize(groupStoryId) : null;
+          MessageUtil.SplitResult splitMessage  = MessageUtil.getSplitMessage(context, body);
+          SlideDeck               slideDeck     = null;
 
-        if (splitMessage.getTextSlide().isPresent()) {
-          slideDeck = new SlideDeck();
-          slideDeck.addSlide(splitMessage.getTextSlide().get());
-        }
-
-        switch (replyMethod) {
-          case SecureMessage:
-          case GroupMessage: {
-            OutgoingMessage reply = OutgoingMessage.quickReply(recipient,
-                                                               slideDeck,
-                                                               splitMessage.getBody(),
-                                                               parentStoryId);
-
-            threadId = MessageSender.send(context, reply, -1, MessageSender.SendType.SIGNAL, null, null);
-            break;
+          if (splitMessage.getTextSlide().isPresent()) {
+            slideDeck = new SlideDeck();
+            slideDeck.addSlide(splitMessage.getTextSlide().get());
           }
-          default:
-            throw new AssertionError("Unknown Reply method");
+
+          switch (replyMethod) {
+            case SecureMessage:
+            case GroupMessage: {
+              OutgoingMessage reply = OutgoingMessage.quickReply(recipient,
+                                                                 slideDeck,
+                                                                 splitMessage.getBody(),
+                                                                 parentStoryId);
+
+              threadId = MessageSender.send(context, reply, -1, MessageSender.SendType.SIGNAL, null, null);
+              break;
+            }
+            default:
+              throw new AssertionError("Unknown Reply method");
+          }
+
+          AppDependencies.getMessageNotifier()
+                         .addStickyThread(new ConversationId(threadId, groupStoryId != Long.MIN_VALUE ? groupStoryId : null),
+                                                  intent.getLongExtra(EARLIEST_TIMESTAMP, System.currentTimeMillis()));
+
+          List<MarkedMessageInfo> messageIds = SignalDatabase.threads().setRead(threadId);
+
+          AppDependencies.getMessageNotifier().updateNotification(context);
+          MarkReadReceiver.process(messageIds);
+
+          Log.i(TAG, "Enqueued a reply for thread " + threadId + ".");
+        } finally {
+          finisher.finish();
         }
-
-        AppDependencies.getMessageNotifier()
-                       .addStickyThread(new ConversationId(threadId, groupStoryId != Long.MIN_VALUE ? groupStoryId : null),
-                                                intent.getLongExtra(EARLIEST_TIMESTAMP, System.currentTimeMillis()));
-
-        List<MarkedMessageInfo> messageIds = SignalDatabase.threads().setRead(threadId);
-
-        AppDependencies.getMessageNotifier().updateNotification(context);
-        MarkReadReceiver.process(messageIds);
       });
     }
   }

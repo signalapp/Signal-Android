@@ -106,11 +106,10 @@ import org.thoughtcrime.securesms.components.compose.rememberBiometricsAuthentic
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.backups.BackupState
 import org.thoughtcrime.securesms.components.settings.app.subscription.MessageBackupsCheckoutLauncher.createBackupsCheckoutLauncher
-import org.thoughtcrime.securesms.compose.StatusBarColorNestedScrollConnection
 import org.thoughtcrime.securesms.help.HelpFragment
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
-import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity
+import org.thoughtcrime.securesms.mediasend.MediaSendLauncher
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.DateUtils
@@ -151,8 +150,7 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
       backupRestoreState = restoreState,
       backupDeleteState = deleteState,
       contentCallbacks = callbacks,
-      backupProgress = backupProgress,
-      statusBarColorNestedScrollConnection = remember { StatusBarColorNestedScrollConnection(requireActivity()) }
+      backupProgress = backupProgress
     )
   }
 
@@ -280,7 +278,7 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
     }
 
     override fun onTransferScanQrCodeClick() {
-      startActivity(MediaSelectionActivity.camera(context!!))
+      startActivity(MediaSendLauncher.camera(context!!))
     }
   }
 
@@ -360,8 +358,7 @@ private fun RemoteBackupsSettingsContent(
   backupRestoreState: BackupRestoreState,
   backupDeleteState: DeletionState,
   contentCallbacks: ContentCallbacks,
-  backupProgress: ArchiveUploadProgressState?,
-  statusBarColorNestedScrollConnection: StatusBarColorNestedScrollConnection?
+  backupProgress: ArchiveUploadProgressState?
 ) {
   val context = LocalContext.current
   val biometrics = rememberBiometricsAuthentication(
@@ -402,13 +399,6 @@ private fun RemoteBackupsSettingsContent(
       )
     },
     modifier = Modifier
-      .then(
-        if (statusBarColorNestedScrollConnection != null) {
-          Modifier.nestedScroll(statusBarColorNestedScrollConnection)
-        } else {
-          Modifier
-        }
-      )
       .nestedScroll(scrollBehavior.nestedScrollConnection),
     snackbarHost = {
       Snackbars.Host(snackbarHostState = snackbarHostState)
@@ -1885,7 +1875,6 @@ private fun RemoteBackupsSettingsContentPreview() {
         hasRedemptionError = true,
         isOutOfStorageSpace = true
       ),
-      statusBarColorNestedScrollConnection = null,
       backupDeleteState = DeletionState.NONE,
       backupRestoreState = BackupRestoreState.None,
       contentCallbacks = ContentCallbacks.Empty,
@@ -1915,7 +1904,6 @@ private fun RemoteBackupsSettingsInternalUserContentPreview() {
         internalUser = true,
         includeDebuglog = true
       ),
-      statusBarColorNestedScrollConnection = null,
       backupDeleteState = DeletionState.NONE,
       backupRestoreState = BackupRestoreState.None,
       contentCallbacks = ContentCallbacks.Empty,
@@ -1948,7 +1936,6 @@ private fun RemoteBackupsSettingsLinkedDevicePaidContentPreview() {
           renewalTime = 1_752_710_400.seconds
         )
       ),
-      statusBarColorNestedScrollConnection = null,
       backupDeleteState = DeletionState.NONE,
       backupRestoreState = BackupRestoreState.None,
       contentCallbacks = ContentCallbacks.Empty,
@@ -1973,7 +1960,6 @@ private fun RemoteBackupsSettingsLinkedDeviceNotFoundContentPreview() {
         backupMediaSize = 2300000,
         backupState = BackupState.NotFound
       ),
-      statusBarColorNestedScrollConnection = null,
       backupDeleteState = DeletionState.NONE,
       backupRestoreState = BackupRestoreState.None,
       contentCallbacks = ContentCallbacks.Empty,

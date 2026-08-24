@@ -30,10 +30,10 @@ import androidx.compose.ui.unit.sp
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.LargeFontPreviews
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.fonts.SignalSymbols
+import org.signal.core.ui.fonts.SignalSymbols.SignalSymbol
+import org.signal.emoji.Emojifier
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.emoji.Emojifier
-import org.thoughtcrime.securesms.fonts.SignalSymbols
-import org.thoughtcrime.securesms.fonts.SignalSymbols.SignalSymbol
 
 private const val VERIFIED_BADGE_ID = "verified_badge"
 

@@ -19,7 +19,7 @@ import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult
-import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity
+import org.thoughtcrime.securesms.mediasend.MediaSendLauncher
 import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -45,18 +45,17 @@ class AddToGroupStoryDelegate(
   private val addToStoryLauncher: ActivityResultLauncher<Intent> = fragment.registerForActivityResult(
     ActivityResultContracts.StartActivityForResult()
   ) { result ->
-    val data = result.data
-    if (data == null) {
+    val mediaSelectionResult: MediaSendActivityResult? = MediaSendLauncher.parseResult(result.resultCode, result.data)
+    if (mediaSelectionResult == null) {
       Log.d(TAG, "No result data.")
     } else {
       Log.d(TAG, "Processing result...")
-      val mediaSelectionResult: MediaSendActivityResult = MediaSendActivityResult.fromData(data)
       handleResult(mediaSelectionResult)
     }
   }
 
   fun addToStory(recipientId: RecipientId) {
-    val addToStoryIntent = MediaSelectionActivity.addToGroupStory(
+    val addToStoryIntent = MediaSendLauncher.addToGroupStory(
       fragment.requireContext(),
       recipientId
     )

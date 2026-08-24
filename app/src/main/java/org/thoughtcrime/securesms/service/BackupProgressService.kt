@@ -12,18 +12,21 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.os.PowerManager
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import org.signal.core.util.PendingIntentFlags
+import org.signal.core.util.SafeForegroundService
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.MainActivity
-import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.NotificationIds
 import java.util.concurrent.locks.ReentrantLock
 import javax.annotation.CheckReturnValue
 import kotlin.concurrent.withLock
+import kotlin.time.Duration.Companion.hours
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Foreground service to provide "long" run support to backup jobs.
@@ -43,6 +46,9 @@ class BackupProgressService : SafeForegroundService() {
     private var title: String = ""
     private var progress: Float = 0f
     private var indeterminate: Boolean = true
+
+    private const val WAKE_LOCK_TAG = "signal:backupProgress"
+    private val WAKE_LOCK_TIMEOUT = 2.hours.inWholeMilliseconds
 
     @CheckReturnValue
     fun start(context: Context, startingTitle: String): Controller {
@@ -72,7 +78,7 @@ class BackupProgressService : SafeForegroundService() {
 
     private fun getForegroundNotification(context: Context): Notification {
       return NotificationCompat.Builder(context, NotificationChannels.getInstance().OTHER)
-        .setSmallIcon(R.drawable.ic_notification)
+        .setSmallIcon(CoreUiR.drawable.ic_signal_backup)
         .setContentTitle(title)
         .setProgress(100, (progress * 100).toInt(), indeterminate)
         .setContentIntent(PendingIntent.getActivity(context, 0, MainActivity.clearTop(context), PendingIntentFlags.mutable()))
@@ -81,6 +87,8 @@ class BackupProgressService : SafeForegroundService() {
     }
   }
 
+  private var wakeLock: PowerManager.WakeLock? = null
+
   override val tag: String = TAG
   override val notificationId: Int = NotificationIds.BACKUP_PROGRESS
 
@@ -88,9 +96,45 @@ class BackupProgressService : SafeForegroundService() {
     return getForegroundNotification(this)
   }
 
+  override fun onServiceStartCommandReceived(intent: Intent) {
+    acquireWakeLock()
+  }
+
+  override fun onServiceStopCommandReceived(intent: Intent) {
+    releaseWakeLock()
+  }
+
+  override fun onDestroy() {
+    super.onDestroy()
+    releaseWakeLock()
+  }
+
   override fun onTimeout(startId: Int, fgsType: Int) {
     Log.w(TAG, "BackupProgressService has timed out. startId: $startId, foregroundServiceType: $fgsType")
     stop(context = this, fromTimeout = true)
+  }
+
+  private fun acquireWakeLock() {
+    try {
+      if (wakeLock?.isHeld != true) {
+        wakeLock = ContextCompat.getSystemService(this, PowerManager::class.java)
+          ?.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, WAKE_LOCK_TAG)
+          ?.apply { acquire(WAKE_LOCK_TIMEOUT) }
+      }
+    } catch (e: Exception) {
+      Log.w(TAG, "Failed to acquire wake lock.", e)
+    }
+  }
+
+  private fun releaseWakeLock() {
+    try {
+      if (wakeLock?.isHeld == true) {
+        wakeLock?.release()
+      }
+    } catch (e: Exception) {
+      Log.w(TAG, "Failed to release wake lock.", e)
+    }
+    wakeLock = null
   }
 
   /**

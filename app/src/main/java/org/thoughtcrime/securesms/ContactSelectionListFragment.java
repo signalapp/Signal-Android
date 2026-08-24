@@ -553,6 +553,8 @@ public final class ContactSelectionListFragment extends LoggingFragment {
 
       @Override
       protected void onPostExecute(Boolean result) {
+        setRefreshing(false);
+
         if (result) {
           reset();
         } else {

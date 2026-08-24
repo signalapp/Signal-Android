@@ -25,11 +25,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="28dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="1dp"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@id/quote_attachment_name_stub"
-        app:layout_constraintEnd_toStartOf="@id/quote_missing_story_reaction_emoji"
+        app:layout_constraintEnd_toStartOf="@id/quote_author_end_barrier"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toEndOf="@id/quote_bar"
         app:layout_constraintTop_toTopOf="parent"
@@ -52,7 +52,7 @@
         android:inflatedId="@id/quote_attachment_name_stub"
         android:layout="@layout/v2_quote_view_attachment_name_stub"
         app:layout_constraintBottom_toTopOf="@id/media_type"
-        app:layout_constraintEnd_toStartOf="@id/quote_missing_story_reaction_emoji"
+        app:layout_constraintEnd_toStartOf="@id/quote_body_end_barrier"
         app:layout_constraintStart_toEndOf="@id/quote_bar"
         app:layout_constraintTop_toBottomOf="@id/quote_author_holder"
         app:layout_constraintWidth_default="spread"
@@ -69,7 +69,7 @@
         android:textColor="@color/core_black"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/quote_text"
-        app:layout_constraintEnd_toStartOf="@id/quote_missing_story_reaction_emoji"
+        app:layout_constraintEnd_toStartOf="@id/quote_body_end_barrier"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toEndOf="@id/quote_bar"
         app:layout_constraintTop_toBottomOf="@id/quote_attachment_name_stub"
@@ -91,7 +91,7 @@
         app:emoji_renderSpoilers="true"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@id/content_barrier"
-        app:layout_constraintEnd_toStartOf="@id/quote_missing_story_reaction_emoji"
+        app:layout_constraintEnd_toStartOf="@id/quote_body_end_barrier"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toEndOf="@id/quote_bar"
         app:layout_constraintTop_toBottomOf="@id/media_type"
@@ -143,6 +143,22 @@
         android:layout="@layout/v2_quote_view_dismiss_stub"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Author sits at the top of the quote, so it only needs to clear the views anchored there. -->
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/quote_author_end_barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="start"
+        app:constraint_referenced_ids="quote_thumbnail,quote_dismiss_stub,quote_missing_story_reaction_emoji" />
+
+    <!-- Body content can reach the bottom of the quote, where the story reaction emoji floats over it. -->
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/quote_body_end_barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="start"
+        app:constraint_referenced_ids="quote_thumbnail,quote_dismiss_stub,quote_missing_story_reaction_emoji,quote_story_reaction_emoji" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/content_barrier"

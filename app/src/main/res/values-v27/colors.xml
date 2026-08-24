@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Transparent on API 27+: Material's BottomSheetDialog only lays the sheet out edge-to-edge
+         (and pads it for the navigation bar) when the window navigation bar color is non-opaque. -->
+    <color name="bottom_sheet_navigation_bar_surface">@android:color/transparent</color>
+
+</resources>

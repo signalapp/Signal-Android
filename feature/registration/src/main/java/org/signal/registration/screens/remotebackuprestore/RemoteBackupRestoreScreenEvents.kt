@@ -13,4 +13,8 @@ sealed class RemoteBackupRestoreScreenEvents {
   data object Cancel : RemoteBackupRestoreScreenEvents()
 
   data object DismissError : RemoteBackupRestoreScreenEvents()
+
+  data object ContactSupport : RemoteBackupRestoreScreenEvents()
+
+  data object DismissContactSupport : RemoteBackupRestoreScreenEvents()
 }

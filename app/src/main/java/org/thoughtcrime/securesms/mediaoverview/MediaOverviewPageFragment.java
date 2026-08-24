@@ -19,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.ActionMode;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.Observer;
@@ -38,7 +39,6 @@ import org.signal.core.ui.logging.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.components.SignalProgressDialog;
-import org.thoughtcrime.securesms.components.compose.DeleteSyncEducationDialog;
 import org.thoughtcrime.securesms.components.menu.ActionItem;
 import org.thoughtcrime.securesms.components.menu.SignalBottomActionBar;
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController;
@@ -49,7 +49,7 @@ import org.thoughtcrime.securesms.database.loaders.GroupedThreadMediaLoader;
 import org.thoughtcrime.securesms.database.loaders.MediaLoader;
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory;
-import org.thoughtcrime.securesms.mediapreview.MediaPreviewV2Activity;
+import org.thoughtcrime.securesms.mediapreview.MediaPreviewActivity;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.signal.core.ui.permissions.Permissions;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -57,6 +57,7 @@ import org.thoughtcrime.securesms.util.BottomOffsetDecoration;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.OffloadedMediaDialogUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 import org.json.JSONArray;
@@ -172,6 +173,10 @@ public final class MediaOverviewPageFragment extends LoggingFragment
                                               this,
                                               sorting.isRelatedToFileSize(),
                                               threadId == MediaTable.ALL_THREADS);
+    this.recyclerView.setClipToPadding(false);
+    SystemWindowInsetsSetter.attach(recyclerView, getViewLifecycleOwner(), WindowInsetsCompat.Type.navigationBars());
+    SystemWindowInsetsSetter.attach(bottomActionBar, getViewLifecycleOwner(), WindowInsetsCompat.Type.navigationBars(), SystemWindowInsetsSetter.ApplyMode.MARGIN);
+
     this.recyclerView.setAdapter(adapter);
     this.recyclerView.setLayoutManager(gridManager);
     this.recyclerView.setHasFixedSize(true);
@@ -371,8 +376,8 @@ public final class MediaOverviewPageFragment extends LoggingFragment
               DimensionUnit.DP.toDp(12)
           ),
           false);
-      view.setTransitionName(MediaPreviewV2Activity.SHARED_ELEMENT_TRANSITION_NAME);
-      ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(requireActivity(), view, MediaPreviewV2Activity.SHARED_ELEMENT_TRANSITION_NAME);
+      view.setTransitionName(MediaPreviewActivity.SHARED_ELEMENT_TRANSITION_NAME);
+      ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(requireActivity(), view, MediaPreviewActivity.SHARED_ELEMENT_TRANSITION_NAME);
       context.startActivity(MediaIntentFactory.create(context, args), options.toBundle());
     } else {
       if (!MediaUtil.isAudio(attachment)) {
@@ -446,25 +451,10 @@ public final class MediaOverviewPageFragment extends LoggingFragment
   }
 
   private void handleDeleteSingleMedia(@NonNull MediaTable.MediaRecord mediaRecord) {
-    if (DeleteSyncEducationDialog.shouldShow()) {
-      lifecycleDisposable.add(
-          DeleteSyncEducationDialog.show(getChildFragmentManager())
-                                   .subscribe(() -> handleDeleteSingleMedia(mediaRecord))
-      );
-      return;
-    }
     MediaActions.handleDeleteMedia(this, Collections.singleton(mediaRecord));
   }
 
   private void handleDeleteSelectedMedia() {
-    if (DeleteSyncEducationDialog.shouldShow()) {
-      lifecycleDisposable.add(
-          DeleteSyncEducationDialog.show(getChildFragmentManager())
-                                   .subscribe(this::handleDeleteSelectedMedia)
-      );
-      return;
-    }
-
     MediaActions.handleDeleteMedia(this, getListAdapter().getSelectedMedia());
     exitMultiSelect();
   }

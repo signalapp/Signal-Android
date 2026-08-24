@@ -50,20 +50,14 @@
 
     <style name="Theme.Signal.WallpaperCropper" parent="@style/TextSecure.DarkNoActionBar">
         <item name="colorPrimaryDark">@color/wallpaper_preview_background</item>
-        <item name="android:statusBarColor" tools:ignore="NewApi">@color/wallpaper_preview_background</item>
         <item name="android:windowLightStatusBar" tools:ignore="NewApi">false</item>
-        <item name="android:navigationBarColor" tools:ignore="NewApi">@color/wallpaper_preview_background</item>
         <item name="android:windowLightNavigationBar" tools:ignore="NewApi">false</item>
-        <item name="android:windowTranslucentNavigation">true</item>
     </style>
 
     <style name="Theme.Signal.WallpaperCropper.Light" parent="@style/TextSecure.LightNoActionBar">
         <item name="colorPrimary">@color/wallpaper_preview_background</item>
         <item name="colorPrimaryDark">@color/wallpaper_preview_background</item>
         <item name="android:textColorSecondary">@color/white</item>
-        <item name="android:windowTranslucentNavigation">true</item>
-        <item name="android:statusBarColor" tools:ignore="NewApi">@color/wallpaper_preview_background</item>
-        <item name="android:navigationBarColor" tools:ignore="NewApi">@color/wallpaper_preview_background</item>
         <item name="android:windowLightNavigationBar" tools:ignore="NewApi">false</item>
     </style>
 
@@ -96,8 +90,6 @@
     <style name="TextSecure.LightIntroTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
         <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
         <item name="android:windowLayoutInDisplayCutoutMode" tools:targetApi="27">default</item>
-        <item name="android:statusBarColor" tools:ignore="NewApi">@color/signal_colorSurface</item>
-        <item name="android:navigationBarColor">@color/signal_colorSurface</item>
         <item name="android:windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
@@ -113,8 +105,6 @@
     <style name="TextSecure.DarkIntroTheme" parent="@style/Theme.AppCompat">
         <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
         <item name="android:windowLayoutInDisplayCutoutMode" tools:targetApi="27">default</item>
-        <item name="android:statusBarColor" tools:ignore="NewApi">@color/signal_colorSurface</item>
-        <item name="android:navigationBarColor">@color/signal_colorSurface</item>
         <item name="android:windowLightStatusBar" tools:ignore="NewApi">false</item>
         <item name="android:windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
@@ -149,7 +139,13 @@
         <item name="fixedRoundedCornerBottomSheetStyle">@style/Widget.Signal.FixedRoundedCorners</item>
         <item name="permissionsRationaleDialogTheme">@style/Theme.Signal.AlertDialog.Light.Cornered</item>
         <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
-        <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
+        <!--
+          Off so the framework does not scrim a transparent system bar for legibility, hiding the content we
+          draw behind it. Set here rather than alongside enableEdgeToEdge() because dialog and bottom sheet
+          windows inherit this theme, and they are not covered by those calls.
+        -->
+        <item name="android:enforceNavigationBarContrast" tools:targetApi="29">false</item>
+        <item name="android:enforceStatusBarContrast" tools:targetApi="29">false</item>
 
         <!-- Material 3 -->
         <item name="colorPrimary">@color/signal_colorPrimary</item>
@@ -246,7 +242,9 @@
         <item name="fixedRoundedCornerBottomSheetStyle">@style/Widget.Signal.FixedRoundedCorners</item>
         <item name="permissionsRationaleDialogTheme">@style/Theme.Signal.AlertDialog.Dark.Cornered</item>
         <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
-        <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
+        <!-- As above: no framework contrast scrim over the transparent system bars. -->
+        <item name="android:enforceNavigationBarContrast" tools:targetApi="29">false</item>
+        <item name="android:enforceStatusBarContrast" tools:targetApi="29">false</item>
 
         <!-- Material 3 -->
         <item name="colorPrimary">@color/signal_colorPrimary</item>
@@ -401,11 +399,8 @@
 
     <style name="TextSecure.DarkTheme.WebRTCCall">
         <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
-        <item name="android:statusBarColor" tools:ignore="NewApi">@color/core_ultramarine</item>
         <item name="android:windowActionBar">false</item>
-        <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowLightStatusBar" tools:ignore="NewApi">false</item>
-        <item name="android:windowTranslucentNavigation">true</item>
         <item name="android:windowLightNavigationBar" tools:ignore="NewApi">false</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -447,9 +442,15 @@
         <item name="contactCheckboxBackground">@drawable/contact_selection_checkbox_dialog</item>
     </style>
 
+    <!--
+      The navigationBarColor items below only apply under API 35. At and above, edge-to-edge is enforced and
+      the bar is always transparent, so BottomSheetDialog instead draws the sheet itself behind the bar and
+      pads its content by the inset. The colors are matched to the sheet backgroundTint so both paths look
+      the same.
+    -->
     <style name="Widget.Signal.FixedRoundedCorners.Messages" parent="Widget.Signal.FixedRoundedCorners">
         <item name="bottomSheetStyle">@style/Widget.Signal.FixedRoundedCorners.Messages.BottomSheet</item>
-        <item name="android:navigationBarColor" tools:targetApi="lollipop">@color/signal_colorSurface</item>
+        <item name="android:navigationBarColor" tools:targetApi="lollipop">@color/bottom_sheet_navigation_bar_surface</item>
     </style>
 
     <style name="Widget.Signal.FixedRoundedCorners.Messages.BottomSheet" parent="Widget.Material3.BottomSheet">
@@ -460,7 +461,7 @@
 
     <style name="Widget.Signal.FixedRoundedCorners.Stories">
         <item name="bottomSheetStyle">@style/Widget.Signal.FixedRoundedCorners.BottomSheet.Stories</item>
-        <item name="android:navigationBarColor" tools:targetApi="lollipop">@color/signal_colorSurface</item>
+        <item name="android:navigationBarColor" tools:targetApi="lollipop">@color/bottom_sheet_navigation_bar_surface</item>
     </style>
 
     <style name="Widget.Signal.FixedRoundedCorners.BottomSheet.Stories" parent="Widget.CoreUi.FixedRoundedCorners.BottomSheet">
@@ -546,6 +547,7 @@
         <item name="android:singleLine">false</item>
     </style>
 
+    <!-- As above: the navigationBarColor/statusBarColor items in this group only apply under API 35. -->
     <style name="Theme.Signal.RoundedBottomSheet.Light">
         <item name="bottomSheetStyle">@style/Widget.Signal.BottomSheet.Rounded</item>
 
@@ -553,7 +555,7 @@
 
         <item name="colorAccent">@color/core_ultramarine</item>
 
-        <item name="android:navigationBarColor" tools:ignore="NewApi">@color/signal_colorSurface1</item>
+        <item name="android:navigationBarColor" tools:ignore="NewApi">@color/signal_bottom_sheet_navigation_bar</item>
         <item name="android:windowLightNavigationBar" tools:ignore="NewApi">true</item>
 
         <item name="android:colorForeground">@color/black</item>
@@ -568,7 +570,7 @@
 
         <item name="colorAccent">@color/core_ultramarine_light</item>
 
-        <item name="android:navigationBarColor" tools:ignore="NewApi">@color/signal_colorSurface1</item>
+        <item name="android:navigationBarColor" tools:ignore="NewApi">@color/signal_bottom_sheet_navigation_bar</item>
         <item name="android:windowLightNavigationBar" tools:ignore="NewApi">false</item>
         <item name="android:statusBarColor" tools:ignore="NewApi">@color/transparent</item>
         <item name="materialButtonStyle">@style/Widget.Signal.BottomSheet.MaterialButtonStyle</item>
@@ -584,7 +586,7 @@
 
         <item name="colorAccent">@color/signal_colorPrimary</item>
 
-        <item name="android:navigationBarColor" tools:ignore="NewApi">@color/signal_colorSurface</item>
+        <item name="android:navigationBarColor" tools:ignore="NewApi">@color/bottom_sheet_navigation_bar_surface</item>
         <item name="android:windowLightNavigationBar" tools:ignore="NewApi">false</item>
         <item name="android:statusBarColor" tools:ignore="NewApi">@color/transparent</item>
     </style>

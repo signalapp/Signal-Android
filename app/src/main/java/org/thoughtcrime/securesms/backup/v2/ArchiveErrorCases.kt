@@ -258,6 +258,10 @@ object ExportOddities {
     return log(0, "No release channel recipient was found.")
   }
 
+  fun adminDeleteInNonGroupChat(sentTimestamp: Long): String {
+    return log(sentTimestamp, "Message was deleted by someone other than the author, but it isn't in a group chat. Exporting it as a normal remote delete.")
+  }
+
   private fun log(sentTimestamp: Long, message: String): String {
     return "[ODDITY][$sentTimestamp] $message"
   }

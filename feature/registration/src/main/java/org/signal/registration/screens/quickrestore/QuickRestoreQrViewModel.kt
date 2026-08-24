@@ -21,6 +21,7 @@ import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.ui.compose.QrCodeData
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.RequestResult
+import org.signal.network.api.RegistrationApiV2.RegisterAccountError
 import org.signal.registration.NetworkController
 import org.signal.registration.RegistrationFlowEvent
 import org.signal.registration.RegistrationRepository
@@ -132,7 +133,7 @@ class QuickRestoreQrViewModel(
       }
       is RequestResult.NonSuccess -> {
         when (val error = registerResult.error) {
-          is NetworkController.RegisterAccountError.RateLimited -> {
+          is RegisterAccountError.RateLimited -> {
             Log.w(TAG, "[Register] Rate limited (retryAfter: ${error.retryAfter}).")
             _state.value = _state.value.copy(
               isRegistering = false,
@@ -140,7 +141,7 @@ class QuickRestoreQrViewModel(
               errorMessage = null
             )
           }
-          is NetworkController.RegisterAccountError.RegistrationRecoveryPasswordIncorrect -> {
+          is RegisterAccountError.RegistrationRecoveryPasswordIncorrect -> {
             Log.w(TAG, "[Register] Recovery password incorrect: ${error.message}")
             _state.value = _state.value.copy(
               isRegistering = false,
@@ -148,7 +149,7 @@ class QuickRestoreQrViewModel(
               errorMessage = null
             )
           }
-          is NetworkController.RegisterAccountError.RegistrationLock -> {
+          is RegisterAccountError.RegistrationLock -> {
             if (provideRegistrationLock) {
               Log.w(TAG, "[Register] Still registration locked after providing the reglock token derived from the provisioned AEP. Falling back to PIN entry.")
               parentEventEmitter.navigateTo(
@@ -162,7 +163,7 @@ class QuickRestoreQrViewModel(
               attemptToRegister(message, provideRegistrationLock = true)
             }
           }
-          is NetworkController.RegisterAccountError.SessionNotFoundOrNotVerified -> {
+          is RegisterAccountError.SessionNotFoundOrNotVerified -> {
             Log.w(TAG, "[Register] Session not found or not verified: ${error.message}")
             _state.value = _state.value.copy(
               isRegistering = false,
@@ -170,11 +171,11 @@ class QuickRestoreQrViewModel(
               errorMessage = null
             )
           }
-          is NetworkController.RegisterAccountError.DeviceTransferPossible -> {
+          is RegisterAccountError.DeviceTransferPossible -> {
             Log.w(TAG, "[Register] Device transfer possible. We never set this flag, so we should never see it. Resetting.")
             parentEventEmitter(RegistrationFlowEvent.ResetState)
           }
-          is NetworkController.RegisterAccountError.InvalidRequest -> {
+          is RegisterAccountError.InvalidRequest -> {
             Log.w(TAG, "[Register] Invalid request: ${error.message}")
             _state.value = _state.value.copy(
               isRegistering = false,

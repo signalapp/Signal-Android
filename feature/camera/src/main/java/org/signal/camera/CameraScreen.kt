@@ -1,10 +1,10 @@
 package org.signal.camera
 
-import android.content.res.Configuration
 import androidx.camera.compose.CameraXViewfinder
 import androidx.camera.core.SurfaceRequest
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.viewfinder.compose.MutableCoordinateTransformer
+import androidx.camera.viewfinder.core.ImplementationMode
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.Spring
@@ -36,15 +36,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
-import androidx.compose.ui.platform.LocalLifecycleOwner
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import org.signal.core.ui.compose.AllNightPreviews
 import org.signal.core.ui.compose.Previews
+import kotlin.time.Duration.Companion.milliseconds
 import androidx.camera.core.Preview as CameraPreview
 
 /**
@@ -82,24 +82,18 @@ fun CameraScreen(
   captureMode: CameraCaptureMode = CameraCaptureMode.ImageAndVideoSimultaneous,
   enableQrScanning: Boolean = false,
   fillViewport: Boolean = false,
+  landscape: Boolean? = null,
+  implementationMode: ImplementationMode = ImplementationMode.EXTERNAL,
   content: @Composable BoxScope.() -> Unit = {}
 ) {
   val context = LocalContext.current
   val lifecycleOwner = LocalLifecycleOwner.current
-  val configuration = LocalConfiguration.current
   val isInPreview = LocalInspectionMode.current
 
-  // State to hold the surface request from CameraX Preview
   var surfaceRequest by remember { mutableStateOf<SurfaceRequest?>(null) }
 
-  // Determine aspect ratio based on orientation
-  val isLandscape = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
-  val aspectRatio = if (isLandscape) 16f / 9f else 9f / 16f
-
-  // Bind camera and setup surface provider. Re-bind on orientation changes so the
-  // Preview's target rotation matches the new display rotation — otherwise the surface
-  // is set up for the previous orientation and the frame ends up rotated/stretched.
-  LaunchedEffect(lifecycleOwner, state.lensFacing, configuration.orientation) {
+  // Bind once; a screen rotation rebuilds just the preview (below), not the whole camera.
+  LaunchedEffect(lifecycleOwner, state.lensFacing) {
     val cameraProvider = ProcessCameraProvider.getInstance(context).get()
 
     val surfaceProvider = CameraPreview.SurfaceProvider { request ->
@@ -122,7 +116,10 @@ fun CameraScreen(
     contentAlignment = contentAlignment,
     modifier = modifier.fillMaxSize()
   ) {
-    // Determine whether to match height constraints first based on available space.
+    // Use the caller's orientation when supplied so the viewport agrees with the card; else fall back to layout space.
+    val landscapeLayout = landscape ?: (maxWidth > maxHeight)
+    val aspectRatio = if (landscapeLayout) 16f / 9f else 9f / 16f
+
     val availableAspectRatio = maxWidth / maxHeight
     val matchHeightFirst = availableAspectRatio > aspectRatio
 
@@ -152,6 +149,7 @@ fun CameraScreen(
         val currentSurfaceRequest = surfaceRequest!!
 
         CameraXViewfinder(
+          implementationMode = implementationMode,
           surfaceRequest = currentSurfaceRequest,
           coordinateTransformer = coordinateTransformer,
           contentScale = if (fillViewport) ContentScale.Crop else ContentScale.Fit,
@@ -228,7 +226,7 @@ private fun FocusIndicator(
 
     // Fade out after delay
     launch {
-      delay(400L)
+      delay(400.milliseconds)
       alpha.animateTo(
         targetValue = 0f,
         animationSpec = tween(durationMillis = 400)
@@ -269,77 +267,9 @@ private fun SelfieFlashOverlay(visible: Boolean) {
   }
 }
 
-@Preview(name = "Phone", showBackground = true, backgroundColor = 0xFF000000)
+@AllNightPreviews
 @Composable
 private fun CameraScreenPreview() {
-  Previews.Preview {
-    CameraScreen(
-      state = CameraScreenState(),
-      emitter = {}
-    )
-  }
-}
-
-@Preview(
-  name = "Phone - Small",
-  showBackground = true,
-  backgroundColor = 0xFF000000,
-  widthDp = 320,
-  heightDp = 568
-)
-@Composable
-private fun CameraScreenPreviewSmallPhone() {
-  Previews.Preview {
-    CameraScreen(
-      state = CameraScreenState(),
-      emitter = {}
-    )
-  }
-}
-
-@Preview(
-  name = "Tablet",
-  showBackground = true,
-  backgroundColor = 0xFF000000,
-  widthDp = 600,
-  heightDp = 960
-)
-@Composable
-private fun CameraScreenPreviewTablet() {
-  Previews.Preview {
-    CameraScreen(
-      state = CameraScreenState(),
-      emitter = {}
-    )
-  }
-}
-
-@Preview(
-  name = "Landscape",
-  showBackground = true,
-  backgroundColor = 0xFF000000,
-  widthDp = 840,
-  heightDp = 400
-)
-@Composable
-private fun CameraScreenPreviewLandscape() {
-  Previews.Preview {
-    CameraScreen(
-      state = CameraScreenState(),
-      emitter = {}
-    )
-  }
-}
-
-@Preview(
-  name = "Foldable",
-  showBackground = true,
-  backgroundColor = 0xFF000000,
-  widthDp = 673,
-  heightDp = 841
-)
-@Composable
-private fun CameraScreenPreviewFoldable() {
   Previews.Preview {
     CameraScreen(
       state = CameraScreenState(),

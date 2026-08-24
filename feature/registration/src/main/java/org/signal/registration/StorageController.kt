@@ -14,6 +14,7 @@ import org.signal.archive.LocalBackupRestoreProgress
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.ServiceId.PNI
+import org.signal.core.util.censor
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.state.KyberPreKeyRecord
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord
@@ -96,6 +97,12 @@ interface StorageController {
    * state that is (re-)applied on every commit.
    */
   suspend fun commitRegistrationData()
+
+  /**
+   * Called exactly once, after the user has finished the entire registration flow and all data has been committed.
+   * Gives the app a chance to do any final post-registration bookkeeping.
+   */
+  suspend fun onRegistrationFlowFinished()
 
   /**
    * Persists the terminal [RestoreDecision] the user reached during registration directly to permanent app state,
@@ -225,16 +232,10 @@ data class KeyMaterial(
   val aciSignedPreKey: SignedPreKeyRecord,
   /** Last resort Kyber pre-key for ACI. */
   val aciLastResortKyberPreKey: KyberPreKeyRecord,
-  /** Identity key pair for the Phone Number Identity (PNI). */
-  val pniIdentityKeyPair: IdentityKeyPair,
-  /** Signed pre-key for PNI. */
-  val pniSignedPreKey: SignedPreKeyRecord,
-  /** Last resort Kyber pre-key for PNI. */
-  val pniLastResortKyberPreKey: KyberPreKeyRecord,
+  /** Key material for the Phone Number Identity (PNI), or null for an account with no phone number. */
+  val pni: PniKeyMaterial?,
   /** Registration ID for the ACI. */
   val aciRegistrationId: Int,
-  /** Registration ID for the PNI. */
-  val pniRegistrationId: Int,
   /** Profile key for sealed sender. */
   val profileKey: ByteArray,
   /** Unidentified access key (derived from profile key) for sealed sender. */
@@ -243,7 +244,26 @@ data class KeyMaterial(
   val servicePassword: String,
   /** Account entropy pool for key derivation. */
   val accountEntropyPool: AccountEntropyPool
-) : Parcelable
+) : Parcelable {
+
+  /**
+   * The PNI half of the account's key material. Generated as a unit, and only when the account has a phone number.
+   */
+  @Parcelize
+  @TypeParceler<IdentityKeyPair, IdentityKeyPairParceler>
+  @TypeParceler<SignedPreKeyRecord, SignedPreKeyRecordParceler>
+  @TypeParceler<KyberPreKeyRecord, KyberPreKeyRecordParceler>
+  data class PniKeyMaterial(
+    /** Identity key pair for the Phone Number Identity (PNI). */
+    val identityKeyPair: IdentityKeyPair,
+    /** Signed pre-key for PNI. */
+    val signedPreKey: SignedPreKeyRecord,
+    /** Last resort Kyber pre-key for PNI. */
+    val lastResortKyberPreKey: KyberPreKeyRecord,
+    /** Registration ID for the PNI. */
+    val registrationId: Int
+  ) : Parcelable
+}
 
 data class NewRegistrationData(
   val e164: String,
@@ -268,4 +288,8 @@ data class PreExistingRegistrationData(
   val unrestrictedUnidentifiedAccess: Boolean,
   val aciIdentityKeyPair: IdentityKeyPair,
   val pniIdentityKeyPair: IdentityKeyPair
-) : Parcelable
+) : Parcelable {
+  override fun toString(): String {
+    return "PreExistingRegistrationData(e164=$e164, aci=$aci, pni=$pni, servicePassword=${servicePassword.censor()}, aep=${aep.displayValue.censor()}, registrationLockEnabled=$registrationLockEnabled, unrestrictedUnidentifiedAccess=$unrestrictedUnidentifiedAccess, aciIdentityKeyPair=xxx, pniIdentityKeyPair=xxx)"
+  }
+}

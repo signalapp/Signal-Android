@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.stickers.preview;
 
-import android.content.Context;
 import android.database.Cursor;
 
 import androidx.annotation.NonNull;
@@ -8,13 +7,13 @@ import androidx.annotation.WorkerThread;
 
 import java.util.stream.Collectors;
 
+import org.signal.core.models.database.StickerRecord;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.InvalidMessageException;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.database.StickerTable;
+import org.thoughtcrime.securesms.database.StickerTables;
 import org.thoughtcrime.securesms.database.model.StickerPackRecord;
-import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.signal.core.util.Hex;
 import org.thoughtcrime.securesms.stickers.StickerManifest;
@@ -30,7 +29,7 @@ public final class StickerPackPreviewRepository {
 
   private static final String TAG = Log.tag(StickerPackPreviewRepository.class);
 
-  private final StickerTable                 stickerDatabase;
+  private final StickerTables                stickerDatabase;
   private final SignalServiceMessageReceiver receiver;
 
   public StickerPackPreviewRepository() {
@@ -103,7 +102,7 @@ public final class StickerPackPreviewRepository {
     List<StickerManifest.Sticker> stickers = new ArrayList<>();
 
     try (Cursor cursor = stickerDatabase.getStickersForPack(packId)) {
-      StickerTable.StickerRecordReader reader = new StickerTable.StickerRecordReader(cursor);
+      StickerTables.StickerRecordReader reader = new StickerTables.StickerRecordReader(cursor);
 
       StickerRecord record;
       while ((record = reader.getNext()) != null) {

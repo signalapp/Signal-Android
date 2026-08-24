@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.ReactionRecord
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.polls.PollVote
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -94,6 +95,7 @@ object NotificationStateProvider {
     val conversations: MutableList<NotificationConversation> = mutableListOf()
     val muteFilteredMessages: MutableList<NotificationState.FilteredMessage> = mutableListOf()
     val profileFilteredMessages: MutableList<NotificationState.FilteredMessage> = mutableListOf()
+    val reactionsDisabledFilteredMessages: MutableList<NotificationState.FilteredMessage> = mutableListOf()
 
     messages.groupBy { it.thread }
       .forEach { (thread, threadMessages) ->
@@ -101,10 +103,11 @@ object NotificationStateProvider {
 
         for (notification: NotificationMessage in threadMessages) {
           when (notification.includeMessage(notificationProfile)) {
-            MessageInclusion.INCLUDE -> notificationItems.add(MessageNotification(notification.threadRecipient, notification.messageRecord))
+            MessageInclusion.INCLUDE -> notificationItems.add(MessageNotification(notification.threadRecipient, notification.messageRecord, notification.isUnreadMessage))
             MessageInclusion.EXCLUDE -> Unit
             MessageInclusion.MUTE_FILTERED -> muteFilteredMessages += NotificationState.FilteredMessage(notification.messageRecord.id, notification.messageRecord.isMms)
             MessageInclusion.PROFILE_FILTERED -> profileFilteredMessages += NotificationState.FilteredMessage(notification.messageRecord.id, notification.messageRecord.isMms)
+            MessageInclusion.REACTIONS_DISABLED_FILTERED -> reactionsDisabledFilteredMessages += NotificationState.FilteredMessage(notification.messageRecord.id, notification.messageRecord.isMms)
           }
 
           if (notification.hasUnreadReactions) {
@@ -114,6 +117,7 @@ object NotificationStateProvider {
                 MessageInclusion.EXCLUDE -> Unit
                 MessageInclusion.MUTE_FILTERED -> muteFilteredMessages += NotificationState.FilteredMessage(notification.messageRecord.id, notification.messageRecord.isMms)
                 MessageInclusion.PROFILE_FILTERED -> profileFilteredMessages += NotificationState.FilteredMessage(notification.messageRecord.id, notification.messageRecord.isMms)
+                MessageInclusion.REACTIONS_DISABLED_FILTERED -> reactionsDisabledFilteredMessages += NotificationState.FilteredMessage(notification.messageRecord.id, notification.messageRecord.isMms)
               }
             }
           }
@@ -125,6 +129,7 @@ object NotificationStateProvider {
                 MessageInclusion.EXCLUDE -> Unit
                 MessageInclusion.MUTE_FILTERED -> muteFilteredMessages += NotificationState.FilteredMessage(notification.messageRecord.id, notification.messageRecord.isMms)
                 MessageInclusion.PROFILE_FILTERED -> profileFilteredMessages += NotificationState.FilteredMessage(notification.messageRecord.id, notification.messageRecord.isMms)
+                MessageInclusion.REACTIONS_DISABLED_FILTERED -> reactionsDisabledFilteredMessages += NotificationState.FilteredMessage(notification.messageRecord.id, notification.messageRecord.isMms)
               }
             }
           }
@@ -141,7 +146,7 @@ object NotificationStateProvider {
         }
       }
 
-    return NotificationState(conversations, muteFilteredMessages, profileFilteredMessages)
+    return NotificationState(conversations, muteFilteredMessages, profileFilteredMessages, reactionsDisabledFilteredMessages)
   }
 
   private data class NotificationMessage(
@@ -161,6 +166,7 @@ object NotificationStateProvider {
   ) {
     private val isGroupStoryReply: Boolean = thread.groupStoryId != null
     private val isUnreadIncoming: Boolean = isUnreadMessage && !messageRecord.isOutgoing && !isGroupStoryReply
+    private val isUnreadNoteToSelf: Boolean = isUnreadMessage && messageRecord.isOutgoing && threadRecipient.isSelf && !isGroupStoryReply
     private val isIncomingMissedCall: Boolean = !messageRecord.isOutgoing && (messageRecord.isMissedAudioCall || messageRecord.isMissedVideoCall)
 
     private val isNotifiableGroupStoryMessage: Boolean =
@@ -170,7 +176,7 @@ object NotificationStateProvider {
         (isParentStorySentBySelf || messageRecord.hasGroupQuoteOrSelfMention() || (hasSelfRepliedToStory && !messageRecord.isStoryReaction()))
 
     fun includeMessage(notificationProfile: NotificationProfile?): MessageInclusion {
-      return if (isUnreadIncoming || stickyThread || isNotifiableGroupStoryMessage || isIncomingMissedCall) {
+      return if (isUnreadIncoming || isUnreadNoteToSelf || stickyThread || isNotifiableGroupStoryMessage || isIncomingMissedCall) {
         if (threadRecipient.isMuted && !breaksThroughMute()) {
           MessageInclusion.MUTE_FILTERED
         } else if (notificationProfile != null && !notificationProfile.isRecipientAllowed(threadRecipient.id) && !(notificationProfile.allowAllMentions && messageRecord.hasGroupQuoteOrSelfMention())) {
@@ -197,7 +203,9 @@ object NotificationStateProvider {
     }
 
     fun includeReaction(reaction: ReactionRecord, notificationProfile: NotificationProfile?): MessageInclusion {
-      return if (threadRecipient.isMuted) {
+      return if (!SignalStore.settings.reactionNotifications) {
+        MessageInclusion.REACTIONS_DISABLED_FILTERED
+      } else if (threadRecipient.isMuted) {
         MessageInclusion.MUTE_FILTERED
       } else if (notificationProfile != null && !notificationProfile.isRecipientAllowed(threadRecipient.id)) {
         MessageInclusion.PROFILE_FILTERED
@@ -232,6 +240,7 @@ object NotificationStateProvider {
     INCLUDE,
     EXCLUDE,
     MUTE_FILTERED,
-    PROFILE_FILTERED
+    PROFILE_FILTERED,
+    REACTIONS_DISABLED_FILTERED
   }
 }

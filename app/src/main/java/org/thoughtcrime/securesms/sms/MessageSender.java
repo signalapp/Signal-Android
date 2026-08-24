@@ -698,7 +698,7 @@ public class MessageSender {
     private final AttachmentId       attachmentId;
     private final Collection<String> jobIds;
 
-    PreUploadResult(@NonNull Media media, @NonNull AttachmentId attachmentId, @NonNull Collection<String> jobIds) {
+    public PreUploadResult(@NonNull Media media, @NonNull AttachmentId attachmentId, @NonNull Collection<String> jobIds) {
       this.media        = media;
       this.attachmentId = attachmentId;
       this.jobIds       = jobIds;

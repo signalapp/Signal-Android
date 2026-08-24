@@ -17,7 +17,6 @@ import org.signal.core.util.toUShort
 import org.signal.core.util.writeUInt
 import java.io.ByteArrayOutputStream
 import java.io.Closeable
-import java.io.EOFException
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
@@ -51,14 +50,17 @@ class ApngDecoder private constructor(
 
     private const val MAX_CHUNK_LENGTH: UInt = 52_428_800u // 50 MiB
 
-    @Throws(IOException::class)
+    /**
+     * Reports whether the stream holds an APNG. Malformed or truncated input is simply not an APNG, so this reports
+     * false rather than surfacing the failure to the caller.
+     */
     fun isApng(inputStream: InputStream): Boolean {
-      val magic = inputStream.readNBytesOrThrow(8)
-      if (!magic.contentEquals(PNG_MAGIC)) {
-        return false
-      }
-
       try {
+        val magic = inputStream.readNBytesOrThrow(8)
+        if (!magic.contentEquals(PNG_MAGIC)) {
+          return false
+        }
+
         while (true) {
           val length: UInt = inputStream.readUInt()
           val type: String = inputStream.readNBytesOrThrow(4).toString(Charsets.US_ASCII)
@@ -71,10 +73,11 @@ class ApngDecoder private constructor(
             return false
           }
 
-          // Skip over data + CRC for chunks we don't care about
+          // Skip over data + CRC for chunks we don't care about. A hostile length just runs off the end of the stream,
+          // which skipNBytesOrThrow reports as a plain IOException rather than an EOFException.
           inputStream.skipNBytesOrThrow(length.toLong() + 4)
         }
-      } catch (e: EOFException) {
+      } catch (e: IOException) {
         return false
       }
     }
@@ -135,7 +138,7 @@ class ApngDecoder private constructor(
       // Read the magic bytes to verify that this is a PNG
       val magic = scanner.readBytes(8)
       if (!magic.contentEquals(PNG_MAGIC)) {
-        throw IllegalArgumentException("Not a PNG!")
+        throw IOException("Not a PNG!")
       }
 
       // The IHDR chunk is the first chunk in a PNG file and contains metadata about the image.
@@ -281,6 +284,10 @@ class ApngDecoder private constructor(
         if (fdatRegions.isNotEmpty() && isValidFrame(fctl, ihdr)) {
           frames += Frame(fcTL = fctl, dataRegions = fdatRegions, isIdat = false)
         }
+      }
+
+      if (frames.isEmpty()) {
+        throw IOException("APNG contains no valid frames!")
       }
 
       return ApngDecoder(

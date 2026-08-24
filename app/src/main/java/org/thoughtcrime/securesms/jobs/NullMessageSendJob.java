@@ -63,6 +63,11 @@ public class NullMessageSendJob extends BaseJob {
 
   @Override
   protected void onRun() throws Exception {
+    if (!SignalDatabase.recipients().containsId(recipientId)) {
+      Log.w(TAG, "Cannot find recipient, likely deleted group.");
+      return;
+    }
+
     RecipientRecord recipient = SignalDatabase.recipients().getRecord(recipientId);
 
     if (recipient.getGroupId() != null) {

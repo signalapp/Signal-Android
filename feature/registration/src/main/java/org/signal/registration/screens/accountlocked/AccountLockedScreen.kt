@@ -138,7 +138,7 @@ private fun TwoPaneLayout(
           .padding(paddingValues),
         horizontalAlignment = Alignment.CenterHorizontally
       ) {
-        Title()
+        Title(twoPane = true)
       }
     },
     secondPane = { paddingValues ->
@@ -174,10 +174,10 @@ private fun TwoPaneLayout(
 }
 
 @Composable
-private fun Title() {
+private fun Title(twoPane: Boolean = false) {
   Text(
     text = stringResource(R.string.AccountLockedScreen__account_locked),
-    style = MaterialTheme.typography.headlineMedium,
+    style = if (twoPane) MaterialTheme.typography.headlineLarge else MaterialTheme.typography.headlineMedium,
     modifier = Modifier
       .fillMaxWidth()
       .attachDebugLogHelper()

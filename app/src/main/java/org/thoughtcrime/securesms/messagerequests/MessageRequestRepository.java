@@ -68,7 +68,7 @@ public final class MessageRequestRepository {
 
     if (groupRecord.isPresent()) {
       List<Recipient> recipients = Recipient.resolvedList(groupRecord.get().getMembers());
-      if (groupRecord.get().isV2Group()) {
+      if (groupRecord.get().getHasV2GroupProperties()) {
         boolean         groupHasExistingContacts = recipients.stream().filter(r -> !r.isSelf()).anyMatch(r -> r.isProfileSharing() || r.isSystemContact());
         List<Recipient> membersPreview           = recipients.stream().filter(r -> !r.isSelf()).limit(MAX_MEMBER_NAMES).collect(Collectors.toList());
         DecryptedGroup  decryptedGroup           = groupRecord.get().requireV2GroupProperties().getDecryptedGroup();

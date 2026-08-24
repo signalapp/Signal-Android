@@ -58,6 +58,27 @@ class BetterCipherInputStream(
 
   override fun markSupported(): Boolean = false
 
+  /**
+   * Since AES/CBC decryption is sequential, we can't just skip bytes on the underlying ciphertext stream
+   * so we must process every preceding ciphertext block to keep its internal chaining state correct.
+   */
+  @Throws(IOException::class)
+  override fun skip(byteCount: Long): Long {
+    var totalSkipped = 0L
+    val buffer = ByteArray(4096)
+
+    while (totalSkipped < byteCount) {
+      val toRead = min(buffer.size.toLong(), byteCount - totalSkipped).toInt()
+      val read = read(buffer, 0, toRead)
+      if (read == -1) {
+        break
+      }
+      totalSkipped += read
+    }
+
+    return totalSkipped
+  }
+
   @Throws(IOException::class)
   private fun readIncremental(outputBuffer: ByteArray, originalOffset: Int, originalLength: Int): Int {
     var offset = originalOffset

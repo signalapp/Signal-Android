@@ -226,6 +226,10 @@ data class Boost(
   @VisibleForTesting
   class MoneyFilter(val currency: Currency, private val text: AppCompatEditText? = null, private val onCustomAmountChanged: (String) -> Unit = {}) : DigitsKeyListener(false, true), TextWatcher {
 
+    companion object {
+      private const val MAX_INTEGRAL_DIGITS = 10
+    }
+
     val separator = DecimalFormatSymbols.getInstance().decimalSeparator
     val separatorCount = min(1, currency.defaultFractionDigits)
     val symbol: String = currency.getSymbol(Locale.getDefault())
@@ -256,6 +260,12 @@ data class Boost(
     ): CharSequence? {
       val result = dest.subSequence(0, dstart).toString() + source.toString() + dest.subSequence(dend, dest.length)
       val resultWithoutCurrencyPrefix = BidiUtil.stripBidiIndicator(result.removePrefix(symbol).removeSuffix(symbol).trim())
+
+      val integralDigitCount = resultWithoutCurrencyPrefix.substringBefore(separator).count { it.isDigit() }
+
+      if (integralDigitCount > MAX_INTEGRAL_DIGITS) {
+        return dest.subSequence(dstart, dend)
+      }
 
       if (resultWithoutCurrencyPrefix.length == 1 && !resultWithoutCurrencyPrefix.isDigitsOnly() && resultWithoutCurrencyPrefix != separator.toString()) {
         return dest.subSequence(dstart, dend)

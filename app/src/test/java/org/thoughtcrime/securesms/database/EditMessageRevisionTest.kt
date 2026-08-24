@@ -165,6 +165,36 @@ class EditMessageRevisionTest {
     assertThat(getLatestRevisionId(edit2Id)).isNull()
   }
 
+  @Test
+  fun removeDuplicatesRepairsOrphanedLatestRevisionIdInsteadOfLeavingForeignKeyViolation() {
+    val originalId = insertOriginalMessage(sentTimeMillis = 1000)
+    val edit1Id = insertEdit(originalSentTimestamp = 1000, editSentTimeMillis = 1001)
+    val edit2Id = insertEdit(originalSentTimestamp = 1000, editSentTimeMillis = 1002)
+
+    assertThat(getLatestRevisionId(originalId)).isNotNull().isEqualTo(edit2Id)
+
+    // Simulate what a backup import can produce: the latest revision is gone (deleted as a duplicate, or never inserted), but the
+    // earlier revisions still point at it via latest_revision_id. Foreign keys are disabled during import, so this is not caught until
+    // the final integrity check.
+    SignalDatabase.writableDatabase.execSQL("PRAGMA foreign_keys=OFF")
+    SignalDatabase.writableDatabase.execSQL("DELETE FROM ${MessageTable.TABLE_NAME} WHERE ${MessageTable.ID} = ?", arrayOf(edit2Id))
+    assertThat(getLatestRevisionId(originalId)).isNotNull().isEqualTo(edit2Id)
+
+    SignalDatabase.messages.removeDuplicatesPostBackupRestore()
+
+    assertEquals("Orphaned latest_revision_id references must be cleaned up", 0, countDanglingLatestRevisionIds())
+    SignalDatabase.writableDatabase.execSQL("PRAGMA foreign_keys=ON")
+  }
+
+  private fun countDanglingLatestRevisionIds(): Int {
+    return SignalDatabase.writableDatabase
+      .query("SELECT COUNT(*) FROM ${MessageTable.TABLE_NAME} WHERE ${MessageTable.LATEST_REVISION_ID} IS NOT NULL AND ${MessageTable.LATEST_REVISION_ID} NOT IN (SELECT ${MessageTable.ID} FROM ${MessageTable.TABLE_NAME})")
+      .use { cursor ->
+        cursor.moveToFirst()
+        cursor.getInt(0)
+      }
+  }
+
   private fun insertOriginalMessage(sentTimeMillis: Long): Long {
     val message = IncomingMessage(
       type = MessageType.NORMAL,

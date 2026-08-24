@@ -1,5 +1,6 @@
 package org.signal.camera
 
+import android.view.Surface
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
 import androidx.compose.ui.geometry.Offset
@@ -18,7 +19,10 @@ data class CameraScreenState(
   val recordingDuration: Long = 0L,
   val showShutter: Boolean = false,
   val showSelfieFlash: Boolean = false,
-  val captureError: CaptureError? = null
+  val captureError: CaptureError? = null,
+  val isLandscape: Boolean = false,
+  /** Committed physical device rotation ([Surface] rotation). Drives Small-screen HUD icon rotation. */
+  val deviceRotation: Int = Surface.ROTATION_0
 )
 
 sealed interface CaptureError {

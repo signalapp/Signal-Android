@@ -62,7 +62,7 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
 
   @Override
   protected @NonNull WebRtcServiceState handleStartOutgoingCall(@NonNull WebRtcServiceState currentState, @NonNull RemotePeer remotePeer, @NonNull OfferMessage.Type offerType) {
-    Log.i(TAG, "handleStartOutgoingCall():");
+    Log.i(TAG, "handleStartOutgoingCall(): offerType: " + offerType);
     WebRtcServiceStateBuilder builder = currentState.builder();
 
     remotePeer.dialing();
@@ -147,7 +147,6 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
     }
 
     byte            dredDuration    = (byte) RemoteConfig.dredDuration();
-    boolean         enableVp9       = RemoteConfig.enableSoftwareVp9();
     boolean         hideIp          = !activePeer.getRecipient().isProfileSharing() || callSetupState.isAlwaysTurnServers();
     VideoState      videoState      = currentState.getVideoState();
     CallParticipant callParticipant = Objects.requireNonNull(currentState.getCallInfoState().getRemoteCallParticipant(activePeer.getRecipient()));
@@ -157,6 +156,7 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
                                                 context,
                                                 videoState.getLockableEglBase().require(),
                                                 RingRtcDynamicConfiguration.getAudioConfig(),
+                                                RingRtcDynamicConfiguration.getVideoConfig(),
                                                 videoState.requireLocalSink(),
                                                 callParticipant.getVideoSink(),
                                                 videoState.requireRouter(),
@@ -165,8 +165,8 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
                                                 NetworkUtil.getCallingDataMode(context),
                                                 AUDIO_LEVELS_INTERVAL,
                                                 dredDuration,
-                                                enableVp9,
-                                                currentState.getCallSetupState(activePeer).isEnableVideoOnCreate());
+                                                currentState.getCallSetupState(activePeer).isEnableVideoOnCreate(),
+                                                RingRtcDynamicConfiguration.getStatsIntervalSecs());
     } catch (CallException e) {
       return callFailure(currentState, "Unable to proceed with call: ", e);
     }

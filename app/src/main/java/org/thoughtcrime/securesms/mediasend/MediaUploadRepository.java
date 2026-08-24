@@ -129,6 +129,19 @@ public class MediaUploadRepository {
     });
   }
 
+  /**
+   * Replaces the tracked results with pre-uploads performed elsewhere, so that a send driven by this repository
+   * can reuse them instead of uploading the same media again.
+   */
+  public void setPreUploadResults(@NonNull Collection<PreUploadResult> results) {
+    executor.execute(() -> {
+      uploadResults.clear();
+      for (PreUploadResult result : results) {
+        uploadResults.put(result.getMedia(), result);
+      }
+    });
+  }
+
   public void getPreUploadResults(@NonNull Callback<Collection<PreUploadResult>> callback) {
     executor.execute(() -> callback.onResult(uploadResults.values()));
   }

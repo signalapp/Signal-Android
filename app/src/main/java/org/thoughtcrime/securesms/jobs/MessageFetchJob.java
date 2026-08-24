@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.messages.WebSocketDrainer;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.service.GenericForegroundService;
 import org.signal.core.util.AppForegroundObserver;
+import org.signal.core.util.UnableToStartException;
 import org.signal.network.exceptions.PushNetworkException;
 
 import java.io.IOException;

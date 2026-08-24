@@ -8,7 +8,7 @@ import android.view.animation.AnimationUtils
 import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
-import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.transition.ChangeBounds
 import androidx.transition.Transition
@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.animation.transitions.AlphaTransition
 import org.thoughtcrime.securesms.components.emoji.EmojiImageView
 import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDialogFragment
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
 import org.thoughtcrime.securesms.util.ViewUtil
 
 private val SELECTED_SIZE = ViewUtil.dpToPx(36)
@@ -45,7 +46,7 @@ class EditReactionsFragment : LoggingFragment(R.layout.edit_reactions_fragment),
     toolbar.setNavigationOnClickListener {
       requireActivity().onBackPressed()
     }
-    configureToolbar()
+    configureInsets(view)
 
     reactionViews = listOf(
       view.findViewById(R.id.reaction_1),
@@ -88,18 +89,9 @@ class EditReactionsFragment : LoggingFragment(R.layout.edit_reactions_fragment),
     view.setOnClickListener { viewModel.setSelection(EditReactionsViewModel.NO_SELECTION) }
   }
 
-  private fun configureToolbar() {
-    @Suppress("DEPRECATION")
-    ViewCompat.setOnApplyWindowInsetsListener(toolbar) { _, insets ->
-      updateToolbarTopMargin(insets.systemWindowInsetTop)
-      insets
-    }
-  }
-
-  private fun updateToolbarTopMargin(topMargin: Int) {
-    val layoutParams = toolbar.layoutParams as ConstraintLayout.LayoutParams
-    layoutParams.topMargin = topMargin
-    toolbar.layoutParams = layoutParams
+  private fun configureInsets(view: View) {
+    SystemWindowInsetsSetter.attach(toolbar, viewLifecycleOwner, WindowInsetsCompat.Type.statusBars(), SystemWindowInsetsSetter.ApplyMode.MARGIN)
+    SystemWindowInsetsSetter.attach(view.findViewById(R.id.edit_reactions_fragment_save), viewLifecycleOwner, WindowInsetsCompat.Type.navigationBars(), SystemWindowInsetsSetter.ApplyMode.MARGIN)
   }
 
   private fun select(emojiImageView: EmojiImageView) {

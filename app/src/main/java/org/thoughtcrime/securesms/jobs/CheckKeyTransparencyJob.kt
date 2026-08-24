@@ -90,13 +90,16 @@ class CheckKeyTransparencyJob private constructor(
       return if (!SignalStore.account.isRegistered) {
         Log.i(TAG, "Account not registered. Exiting.")
         false
+      } else if (!SignalStore.registration.isRegistrationComplete) {
+        Log.i(TAG, "Registration is not complete. Exiting.")
+        false
       } else if (TextSecurePreferences.isUnauthorizedReceived(AppDependencies.application)) {
         Log.i(TAG, "Account is unauthorized. Exiting.")
         false
       } else if (!SignalStore.settings.automaticVerificationEnabled) {
         Log.i(TAG, "Automatic verification disabled. Exiting.")
         false
-      } else if (SignalStore.account.usernameSyncState != AccountValues.UsernameSyncState.IN_SYNC) {
+      } else if (SignalStore.account.usernameSyncState != AccountValues.UsernameSyncState.IN_SYNC || SignalStore.account.usernameSyncErrorCount > 0) {
         Log.i(TAG, "Username is in a bad state. Exiting.")
         false
       } else if (!Recipient.self().hasAci || !Recipient.self().hasE164) {

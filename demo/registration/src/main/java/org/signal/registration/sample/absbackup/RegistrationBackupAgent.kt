@@ -10,7 +10,7 @@ import android.app.backup.BackupDataInput
 import android.app.backup.BackupDataOutput
 import android.os.ParcelFileDescriptor
 import org.signal.core.util.logging.Log
-import org.signal.registration.NetworkController
+import org.signal.network.api.RegistrationApiV2.SvrCredentials
 import org.signal.registration.sample.storage.RegistrationPreferences
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
@@ -86,13 +86,13 @@ class RegistrationBackupAgent : BackupAgent() {
 
     try {
       val byteArrayInputStream = ByteArrayInputStream(data)
-      val credentials = mutableListOf<NetworkController.SvrCredentials>()
+      val credentials = mutableListOf<SvrCredentials>()
       DataInputStream(byteArrayInputStream).use { input ->
         val count = input.readInt()
         repeat(count) {
           val username = input.readUTF()
           val password = input.readUTF()
-          credentials.add(NetworkController.SvrCredentials(username = username, password = password))
+          credentials.add(SvrCredentials(username = username, password = password))
         }
       }
       RegistrationPreferences.restoredSvr2Credentials = credentials

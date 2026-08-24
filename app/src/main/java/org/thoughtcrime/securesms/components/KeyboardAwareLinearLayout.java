@@ -17,40 +17,37 @@
 package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
-import android.graphics.Rect;
-import android.os.Build;
+import android.content.res.Configuration;
 import android.preference.PreferenceManager;
 import android.util.AttributeSet;
-import android.util.DisplayMetrics;
-import android.view.Surface;
-import android.view.View;
-import android.view.WindowInsets;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.LinearLayoutCompat;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
-import org.signal.core.util.ServiceUtil;
 import org.signal.core.util.Util;
-import org.thoughtcrime.securesms.util.ViewUtil;
 
-import java.lang.reflect.Field;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
  * LinearLayout that, when a view container, will report back when it thinks a soft keyboard
- * has been opened and what its height would be.
+ * has been opened and what its height would be. Driven by {@link WindowInsetsCompat.Type#ime()}
+ * insets, so it requires an edge-to-edge host window (all activity and dialog windows in the app
+ * are edge-to-edge). The reported height excludes the navigation bar, matching what a custom
+ * keyboard sitting above a navigation-bar-padded container should be sized to.
  */
 public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
   private static final String TAG = Log.tag(KeyboardAwareLinearLayout.class);
 
   private static final long KEYBOARD_DEBOUNCE = 150;
 
-  private final Rect                          rect            = new Rect();
   private final Set<OnKeyboardHiddenListener> hiddenListeners = new HashSet<>();
   private final Set<OnKeyboardShownListener>  shownListeners  = new HashSet<>();
-  private final DisplayMetrics                displayMetrics  = new DisplayMetrics();
 
   private final int minKeyboardSize;
   private final int minCustomKeyboardSize;
@@ -58,14 +55,14 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
   private final int minCustomKeyboardTopMarginPortrait;
   private final int minCustomKeyboardTopMarginLandscape;
   private final int minCustomKeyboardTopMarginLandscapeBubble;
-  private final int statusBarHeight;
-
-  private int viewInset;
 
   private boolean keyboardOpen = false;
-  private int     rotation     = 0;
   private boolean isBubble     = false;
   private long    openedAt     = 0;
+  private int     lastKeyboardHeight;
+  private boolean lastKeyboardVisible;
+
+  private InsetPaddingMode insetPaddingMode = InsetPaddingMode.NONE;
 
   public KeyboardAwareLinearLayout(Context context) {
     this(context, null);
@@ -83,48 +80,71 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
     minCustomKeyboardTopMarginPortrait        = getResources().getDimensionPixelSize(R.dimen.min_custom_keyboard_top_margin_portrait);
     minCustomKeyboardTopMarginLandscape       = getResources().getDimensionPixelSize(R.dimen.min_custom_keyboard_top_margin_portrait);
     minCustomKeyboardTopMarginLandscapeBubble = getResources().getDimensionPixelSize(R.dimen.min_custom_keyboard_top_margin_landscape_bubble);
-    statusBarHeight                           = ViewUtil.getStatusBarHeight(this);
-    viewInset                                 = getViewInset();
-  }
 
-  @Override
-  protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-    updateRotation();
-    updateKeyboardState();
-    super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    ViewCompat.setOnApplyWindowInsetsListener(this, (view, insets) -> {
+      Insets ime  = insets.getInsets(WindowInsetsCompat.Type.ime());
+      Insets nav  = insets.getInsets(WindowInsetsCompat.Type.navigationBars());
+      Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+
+      lastKeyboardHeight  = Math.max(0, ime.bottom - nav.bottom);
+      lastKeyboardVisible = insets.isVisible(WindowInsetsCompat.Type.ime());
+
+      switch (insetPaddingMode) {
+        case NONE:
+          break;
+        case KEYBOARD:
+          setPadding(getPaddingLeft(), getPaddingTop(), getPaddingRight(), lastKeyboardVisible ? lastKeyboardHeight : 0);
+          break;
+        case KEYBOARD_AND_NAVIGATION_BAR:
+          setPadding(getPaddingLeft(), getPaddingTop(), getPaddingRight(), Math.max(nav.bottom, ime.bottom));
+          break;
+        case SAFE_AREA:
+          setPadding(bars.left, bars.top, bars.right, Math.max(bars.bottom, ime.bottom));
+          break;
+      }
+
+      updateKeyboardState();
+
+      return insets;
+    });
   }
 
   public void setIsBubble(boolean isBubble) {
     this.isBubble = isBubble;
   }
 
-  private void updateRotation() {
-    int oldRotation = rotation;
-    rotation = getDeviceRotation();
-    if (oldRotation != rotation) {
-      Log.i(TAG, "rotation changed");
-      onKeyboardClose();
-    }
+  /**
+   * Opt-in self-padding, replacing the window resize behavior these layouts relied on before the
+   * host windows went edge-to-edge. [InsetPaddingMode.NONE] keeps the layout as a pure keyboard
+   * event source (e.g. when a parent container already manages insets).
+   */
+  public void setInsetPaddingMode(@NonNull InsetPaddingMode mode) {
+    this.insetPaddingMode = mode;
+    ViewCompat.requestApplyInsets(this);
+  }
+
+  public enum InsetPaddingMode {
+    /** Apply no padding; the layout only reports keyboard events. */
+    NONE,
+    /** Pad the bottom by the keyboard height above the navigation bar (use inside a container that already clears the navigation bar). */
+    KEYBOARD,
+    /** Pad the bottom by the keyboard or navigation bar, whichever is larger. */
+    KEYBOARD_AND_NAVIGATION_BAR,
+    /** Pad all sides by the system bars, and the bottom by the keyboard when it is taller. */
+    SAFE_AREA
   }
 
   private void updateKeyboardState() {
-    if (viewInset == 0) viewInset = getViewInset();
-
-    getWindowVisibleDisplayFrame(rect);
-
-    final int availableHeight = getAvailableHeight();
-    final int keyboardHeight  = availableHeight - rect.bottom;
-
-    if (keyboardHeight > minKeyboardSize) {
-      if (getKeyboardHeight() != keyboardHeight) {
+    if (lastKeyboardVisible && lastKeyboardHeight > minKeyboardSize) {
+      if (getKeyboardHeight() != lastKeyboardHeight) {
         if (isLandscape()) {
-          setKeyboardLandscapeHeight(keyboardHeight);
+          setKeyboardLandscapeHeight(lastKeyboardHeight);
         } else {
-          setKeyboardPortraitHeight(keyboardHeight);
+          setKeyboardPortraitHeight(lastKeyboardHeight);
         }
       }
       if (!keyboardOpen) {
-        onKeyboardOpen(keyboardHeight);
+        onKeyboardOpen(lastKeyboardHeight);
       }
     } else if (keyboardOpen) {
       onKeyboardClose();
@@ -134,53 +154,7 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
   @Override
   protected void onAttachedToWindow() {
     super.onAttachedToWindow();
-    rotation = getDeviceRotation();
-    if (getRootWindowInsets() != null) {
-      int          bottomInset;
-      WindowInsets windowInsets = getRootWindowInsets();
-
-      if (Build.VERSION.SDK_INT >= 30) {
-        bottomInset = windowInsets.getInsets(WindowInsets.Type.navigationBars()).bottom;
-      } else {
-        bottomInset = windowInsets.getStableInsetBottom();
-      }
-
-      if (bottomInset != 0 && (viewInset == 0 || viewInset == statusBarHeight)) {
-        Log.i(TAG, "Updating view inset based on WindowInsets. viewInset: " + viewInset + " windowInset: " + bottomInset);
-        viewInset = bottomInset;
-      }
-    }
-  }
-
-  private int getViewInset() {
-    try {
-      Field attachInfoField = View.class.getDeclaredField("mAttachInfo");
-      attachInfoField.setAccessible(true);
-      Object attachInfo = attachInfoField.get(this);
-      if (attachInfo != null) {
-        Field stableInsetsField = attachInfo.getClass().getDeclaredField("mStableInsets");
-        stableInsetsField.setAccessible(true);
-        Rect insets = (Rect) stableInsetsField.get(attachInfo);
-        if (insets != null) {
-          return insets.bottom;
-        }
-      }
-    } catch (NoSuchFieldException | IllegalAccessException e) {
-      // Do nothing
-    }
-    return statusBarHeight;
-  }
-
-  private int getAvailableHeight() {
-    final int availableHeight = this.getRootView().getHeight() - viewInset;
-    final int availableWidth  = this.getRootView().getWidth();
-
-    if (isLandscape() && availableHeight > availableWidth) {
-      //noinspection SuspiciousNameCombination
-      return availableWidth;
-    }
-
-    return availableHeight;
+    ViewCompat.requestApplyInsets(this);
   }
 
   protected void onKeyboardOpen(int keyboardHeight) {
@@ -213,21 +187,7 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
   }
 
   public boolean isLandscape() {
-    int rotation = getDeviceRotation();
-    return rotation == Surface.ROTATION_90 || rotation == Surface.ROTATION_270;
-  }
-
-  private int getDeviceRotation() {
-    if (isInEditMode()) {
-      return Surface.ROTATION_0;
-    }
-
-    if (Build.VERSION.SDK_INT >= 30) {
-      getContext().getDisplay().getRealMetrics(displayMetrics);
-    } else {
-      ServiceUtil.getWindowManager(getContext()).getDefaultDisplay().getRealMetrics(displayMetrics);
-    }
-    return displayMetrics.widthPixels > displayMetrics.heightPixels ? Surface.ROTATION_90 : Surface.ROTATION_0;
+    return getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
   }
 
   private int getKeyboardLandscapeHeight() {

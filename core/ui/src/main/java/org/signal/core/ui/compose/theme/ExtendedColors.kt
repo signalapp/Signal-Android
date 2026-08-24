@@ -29,7 +29,9 @@ data class ExtendedColors(
   val colorNeutralInverse: Color,
   val colorNeutralVariantInverse: Color,
   val colorWarning: Color,
-  val colorOnWarning: Color
+  val colorOnWarning: Color,
+  val colorAlert: Color,
+  val colorAlertDisabled: Color
 )
 
 val LocalExtendedColors = staticCompositionLocalOf {
@@ -57,6 +59,8 @@ val LocalExtendedColors = staticCompositionLocalOf {
     colorNeutralInverse = Color.Unspecified,
     colorNeutralVariantInverse = Color.Unspecified,
     colorWarning = Color.Unspecified,
-    colorOnWarning = Color.Unspecified
+    colorOnWarning = Color.Unspecified,
+    colorAlert = Color.Unspecified,
+    colorAlertDisabled = Color.Unspecified
   )
 }

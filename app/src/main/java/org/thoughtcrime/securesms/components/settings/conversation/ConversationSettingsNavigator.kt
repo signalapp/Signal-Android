@@ -24,10 +24,10 @@ object ConversationSettingsNavigator {
       return
     }
 
-    val intent = if (recipient.isPushGroup) {
+    val intent = if (recipient.isGroup) {
       ConversationSettingsActivity.forGroup(activity, recipient.requireGroupId())
     } else {
-      ConversationSettingsActivity.forRecipient(activity, recipient.id)
+      ConversationSettingsActivity.forRecipient(activity, recipient)
     }
     activity.startActivity(intent)
   }

@@ -50,7 +50,6 @@ import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDial
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.service.webrtc.links.UpdateCallLinkResult
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcEphemeralState
-import org.thoughtcrime.securesms.util.WindowUtil
 import org.thoughtcrime.securesms.webrtc.CallParticipantsViewState
 import kotlin.time.Duration.Companion.seconds
 
@@ -76,9 +75,6 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
   private val lifecycleDisposable = LifecycleDisposable()
 
   init {
-    WindowUtil.clearTranslucentNavigationBar(activity.window)
-    WindowUtil.clearTranslucentStatusBar(activity.window)
-
     activity.enableEdgeToEdge(
       statusBarStyle = SystemBarStyle.dark(Color.TRANSPARENT),
       navigationBarStyle = SystemBarStyle.dark(Color.TRANSPARENT)
@@ -241,6 +237,7 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
           callParticipantUpdatePopupController = callParticipantUpdatePopupController,
           isSelfAdmin = controlAndInfoState.isSelfAdmin(),
           isCallLink = controlAndInfoState.callLink != null,
+          canRemoteMute = callParticipantsState.groupCallState.isNotIdle,
           onMuteAudio = callInfoCallbacks::onMuteAudio,
           onRemoveFromCall = callInfoCallbacks::onRemoveFromCall,
           onContactDetails = callInfoCallbacks::onContactDetails,

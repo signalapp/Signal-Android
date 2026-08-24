@@ -40,3 +40,35 @@ fun OutputStream.writeUInt(value: UInt) {
   // Note that casting to an int here is fine, because at the end of the day, we're just writing 4 bytes to the stream
   this.write(ByteBuffer.allocate(4).order(ByteOrder.BIG_ENDIAN).putInt(value.toInt()).array())
 }
+
+/**
+ * Writes [count] zero bytes to the stream, using a bounded buffer so that we never allocate the full [count] at once.
+ * A non-positive [count] writes nothing.
+ */
+fun OutputStream.writeZeros(count: Long, maxBufferSize: Int = 32 * 1024) {
+  writeRepeated(0, count, maxBufferSize)
+}
+
+/**
+ * Writes [value] to the stream [count] times, using a bounded buffer so that we never allocate the full [count] at once.
+ * A non-positive [count] writes nothing.
+ */
+fun OutputStream.writeRepeated(value: Byte, count: Long, maxBufferSize: Int = 32 * 1024) {
+  require(maxBufferSize > 0) { "maxBufferSize must be positive, was $maxBufferSize" }
+
+  if (count <= 0) {
+    return
+  }
+
+  val buffer = ByteArray(minOf(count, maxBufferSize.toLong()).toInt())
+  if (value != 0.toByte()) {
+    buffer.fill(value)
+  }
+
+  var remaining = count
+  while (remaining > 0) {
+    val chunkSize = minOf(remaining, buffer.size.toLong()).toInt()
+    this.write(buffer, 0, chunkSize)
+    remaining -= chunkSize
+  }
+}

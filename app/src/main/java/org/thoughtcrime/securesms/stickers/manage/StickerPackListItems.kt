@@ -27,7 +27,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
@@ -45,7 +44,6 @@ import org.thoughtcrime.securesms.components.transfercontrols.TransferProgressIn
 import org.thoughtcrime.securesms.components.transfercontrols.TransferProgressState
 import org.thoughtcrime.securesms.stickers.StickerPreviewDataFactory
 import org.thoughtcrime.securesms.stickers.manage.AvailableStickerPack.DownloadStatus
-import org.thoughtcrime.securesms.util.DeviceProperties
 import org.signal.core.ui.R as CoreUiR
 
 @Composable
@@ -243,7 +241,7 @@ private fun StickerPackInfo(
   ) {
     GlideImage(
       model = coverImageUri,
-      enableApngAnimation = DeviceProperties.shouldAllowApngStickerAnimation(LocalContext.current),
+      enableApngAnimation = true,
       modifier = Modifier
         .padding(end = 16.dp)
         .size(56.dp)

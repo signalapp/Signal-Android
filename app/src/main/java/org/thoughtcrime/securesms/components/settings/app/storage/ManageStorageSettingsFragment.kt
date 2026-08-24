@@ -334,12 +334,14 @@ private fun ManageStorageSettingsScreen(
         onClick = onSetChatLengthLimit
       )
 
-      Rows.ToggleRow(
-        text = stringResource(id = R.string.ManageStorageSettingsFragment_apply_limits_title),
-        label = stringResource(id = R.string.ManageStorageSettingsFragment_apply_limits_description),
-        checked = state.syncTrimDeletes,
-        onCheckChanged = onSyncTrimThreadDeletes
-      )
+      if (state.isPrimary) {
+        Rows.ToggleRow(
+          text = stringResource(id = R.string.ManageStorageSettingsFragment_apply_limits_title),
+          label = stringResource(id = R.string.ManageStorageSettingsFragment_apply_limits_description),
+          checked = state.syncTrimDeletes,
+          onCheckChanged = onSyncTrimThreadDeletes
+        )
+      }
 
       Dividers.Default()
 

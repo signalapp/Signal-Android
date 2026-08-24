@@ -31,7 +31,7 @@ public final class ForceUpdateGroupV2Job extends BaseJob {
     SignalExecutors.BOUNDED.execute(() -> {
       Optional<GroupRecord> group = SignalDatabase.groups().getGroup(groupId);
       if (group.isPresent() &&
-          group.get().isV2Group() &&
+          group.get().getHasV2GroupProperties() &&
           group.get().getLastForceUpdateTimestamp() + FORCE_UPDATE_INTERVAL < System.currentTimeMillis()
       ) {
         AppDependencies.getJobManager().add(new ForceUpdateGroupV2Job(groupId));

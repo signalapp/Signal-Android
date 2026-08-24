@@ -41,6 +41,7 @@ import org.signal.core.ui.compose.ComposeBottomSheetDialogFragment
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.horizontalGutters
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.CommunicationActions
@@ -56,8 +57,11 @@ class SelfVerificationFailureSheet : ComposeBottomSheetDialogFragment() {
 
   companion object {
 
+    private val TAG = Log.tag(SelfVerificationFailureSheet::class.java)
+
     @JvmStatic
     fun show(fragmentManager: FragmentManager) {
+      Log.i(TAG, "Showing key transparency verification failure sheet")
       SignalStore.misc.hasSeenKeyTransparencyFailure = true
       SelfVerificationFailureSheet().show(fragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
     }

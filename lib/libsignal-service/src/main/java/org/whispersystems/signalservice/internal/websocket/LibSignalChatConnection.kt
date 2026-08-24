@@ -718,5 +718,9 @@ class LibSignalChatConnection(
       }
       healthMonitor.onReceivedAlerts(alerts, isIdentifiedWebSocket = chat is AuthenticatedChatConnection)
     }
+
+    override fun onServerTimestamp(chat: ChatConnection, serverTimestamp: Long) {
+      healthMonitor.onServerTimestamp(serverTimestamp, isIdentifiedWebSocket = chat is AuthenticatedChatConnection)
+    }
   }
 }

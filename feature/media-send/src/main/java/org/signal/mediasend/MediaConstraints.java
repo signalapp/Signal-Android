@@ -100,4 +100,11 @@ public abstract class MediaConstraints {
   public static boolean isVideoTranscodeAvailable() {
     return Build.VERSION.SDK_INT >= 26;
   }
+
+  /**
+   * Stripping the audio track means re-encoding the video, so the control is only offered where that is possible.
+   */
+  public static boolean isMuteVideoAudioAvailable() {
+    return isVideoTranscodeAvailable();
+  }
 }

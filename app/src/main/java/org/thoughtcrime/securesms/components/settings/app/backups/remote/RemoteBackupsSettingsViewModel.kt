@@ -276,13 +276,15 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
 
   fun getKeyRotationLimit() {
     viewModelScope.launch(SignalDispatchers.IO) {
-      val result = BackupRepository.getKeyRotationLimit()
-      val canRotateKey = if (result is NetworkResult.Success) {
-        result.result.hasPermitsRemaining!!
-      } else {
-        Log.w(TAG, "Error while getting rotation limit: $result. Default to allowing key rotations.")
-        true
-      }
+      val canRotateKey = AppDependencies.archiveService
+        .getKeyRotationLimit()
+        .fold(
+          ifRight = { it.hasPermitsRemaining!! },
+          ifLeft = { error ->
+            Log.w(TAG, "Error while getting rotation limit: ${error::class.simpleName}. Default to allowing key rotations.")
+            true
+          }
+        )
 
       if (!canRotateKey) {
         requestDialog(RemoteBackupsSettingsState.Dialog.KEY_ROTATION_LIMIT_REACHED)

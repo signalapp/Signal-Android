@@ -5,8 +5,8 @@ import okhttp3.Response
 import org.signal.core.util.logging.Log
 import org.signal.core.util.logging.Log.tag
 import org.signal.core.util.orNull
+import org.signal.network.config.SignalServiceConfiguration
 import org.thoughtcrime.securesms.keyvalue.SignalStore.Companion.misc
-import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration
 import java.io.IOException
 
 /**

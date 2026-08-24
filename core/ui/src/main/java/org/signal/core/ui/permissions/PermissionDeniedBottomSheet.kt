@@ -8,6 +8,7 @@ package org.signal.core.ui.permissions
 import android.content.Intent
 import android.net.Uri
 import android.provider.Settings
+import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,13 +16,17 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.InlineTextContent
 import androidx.compose.foundation.text.appendInlineContent
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.Placeholder
@@ -37,6 +42,7 @@ import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.ComposeBottomSheetDialogFragment
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.dismissWithAnimation
 
 private const val PLACEHOLDER = "__RADIO_BUTTON_PLACEHOLDER__"
 
@@ -85,6 +91,40 @@ class PermissionDeniedBottomSheet private constructor() : ComposeBottomSheetDial
   }
 }
 
+/**
+ * Compose-native counterpart to [PermissionDeniedBottomSheet], for callers that live in a composition rather than
+ * a fragment. Renders the same [PermissionDeniedSheetContent], so the two routes cannot drift apart.
+ */
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun PermissionDeniedSheet(
+  @StringRes titleRes: Int,
+  @StringRes subtitleRes: Int,
+  useExtended: Boolean = false,
+  onDismiss: () -> Unit
+) {
+  val context = LocalContext.current
+  val sheetState = rememberModalBottomSheetState()
+  val scope = rememberCoroutineScope()
+
+  // The content draws its own handle, so the sheet does not add a second one.
+  BottomSheets.BottomSheet(
+    onDismissRequest = { sheetState.dismissWithAnimation(scope, onComplete = onDismiss) },
+    sheetState = sheetState,
+    dragHandle = null
+  ) {
+    PermissionDeniedSheetContent(
+      titleRes = titleRes,
+      subtitleRes = subtitleRes,
+      useExtended = useExtended,
+      onSettingsClicked = {
+        context.startActivity(Permissions.getApplicationSettingsIntent(context))
+        sheetState.dismissWithAnimation(scope, onComplete = onDismiss)
+      }
+    )
+  }
+}
+
 @DayNightPreviews
 @Composable
 private fun PermissionDeniedSheetContentPreview() {
@@ -98,9 +138,9 @@ private fun PermissionDeniedSheetContentPreview() {
 }
 
 @Composable
-private fun PermissionDeniedSheetContent(
-  titleRes: Int,
-  subtitleRes: Int,
+fun PermissionDeniedSheetContent(
+  @StringRes titleRes: Int,
+  @StringRes subtitleRes: Int,
   useExtended: Boolean = false,
   onSettingsClicked: () -> Unit
 ) {

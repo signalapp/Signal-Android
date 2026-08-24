@@ -46,7 +46,7 @@ import org.thoughtcrime.securesms.database.SenderKeyTable;
 import org.thoughtcrime.securesms.database.SenderKeySharedTable;
 import org.thoughtcrime.securesms.database.SessionTable;
 import org.thoughtcrime.securesms.database.SignedPreKeyTable;
-import org.thoughtcrime.securesms.database.StickerTable;
+import org.thoughtcrime.securesms.database.StickerTables;
 import org.thoughtcrime.securesms.database.model.AvatarPickerDatabase;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.keyvalue.KeyValueDataSet;
@@ -62,6 +62,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -186,7 +187,7 @@ public class FullBackupExporter extends FullBackupBase {
           count = exportTable(table, input, outputStream, cursor -> isForNonExpiringPollMessage(input, cursor.getLong(cursor.getColumnIndexOrThrow(PollTables.PollOptionTable.POLL_ID))), null, count, estimatedCount, cancellationSignal);
         } else if (table.equals(PollTables.PollVoteTable.TABLE_NAME)) {
           count = exportTable(table, input, outputStream, cursor -> isForNonExpiringPollMessage(input, cursor.getLong(cursor.getColumnIndexOrThrow(PollTables.PollVoteTable.POLL_ID))), null, count, estimatedCount, cancellationSignal);
-        } else if (table.equals(StickerTable.TABLE_NAME)) {
+        } else if (table.equals(StickerTables.Sticker.TABLE_NAME)) {
           count = exportTable(table, input, outputStream, cursor -> true, (cursor, innerCount) -> exportSticker(attachmentSecret, cursor, outputStream, innerCount, estimatedCount), count, estimatedCount, cancellationSignal);
         } else if (!TABLE_CONTENT_BLOCKLIST.contains(table)) {
           count = exportTable(table, input, outputStream, null, null, count, estimatedCount, cancellationSignal);
@@ -238,7 +239,7 @@ public class FullBackupExporter extends FullBackupBase {
         count += getCount(input, BackupCountQueries.getGroupReceiptCount());
       } else if (table.equals(AttachmentTable.TABLE_NAME)) {
         count += getCount(input, BackupCountQueries.getAttachmentCount());
-      } else if (table.equals(StickerTable.TABLE_NAME)) {
+      } else if (table.equals(StickerTables.Sticker.TABLE_NAME)) {
         count += getCount(input, "SELECT COUNT(*) FROM " + table);
       } else if (!TABLE_CONTENT_BLOCKLIST.contains(table)) {
         count += getCount(input, "SELECT COUNT(*) FROM " + table);
@@ -497,11 +498,11 @@ public class FullBackupExporter extends FullBackupBase {
                                    long estimatedCount)
       throws IOException
   {
-    long rowId = cursor.getLong(cursor.getColumnIndexOrThrow(StickerTable.ID));
-    long size  = cursor.getLong(cursor.getColumnIndexOrThrow(StickerTable.FILE_LENGTH));
+    long rowId = cursor.getLong(cursor.getColumnIndexOrThrow(StickerTables.Sticker.ID));
+    long size  = cursor.getLong(cursor.getColumnIndexOrThrow(StickerTables.Sticker.FILE_LENGTH));
 
-    String data   = cursor.getString(cursor.getColumnIndexOrThrow(StickerTable.FILE_PATH));
-    byte[] random = cursor.getBlob(cursor.getColumnIndexOrThrow(StickerTable.FILE_RANDOM));
+    String data   = cursor.getString(cursor.getColumnIndexOrThrow(StickerTables.Sticker.FILE_PATH));
+    byte[] random = cursor.getBlob(cursor.getColumnIndexOrThrow(StickerTables.Sticker.FILE_RANDOM));
 
     if (!TextUtils.isEmpty(data) && size > 0) {
       EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, ++count, estimatedCount));
@@ -597,23 +598,44 @@ public class FullBackupExporter extends FullBackupBase {
   }
 
   private static boolean isNonExpiringMessage(@NonNull SQLiteDatabase db, @NonNull Cursor cursor) {
-    long id                = CursorUtil.requireLong(cursor, MessageTable.ID);
-    long expireStarted     = CursorUtil.requireLong(cursor, MessageTable.EXPIRE_STARTED);
-    long expiresIn         = CursorUtil.requireLong(cursor, MessageTable.EXPIRES_IN);
-    long latestRevisionId  = CursorUtil.requireLong(cursor, MessageTable.LATEST_REVISION_ID);
+    return isNonExpiringMessage(db,
+                                CursorUtil.requireLong(cursor, MessageTable.ID),
+                                CursorUtil.requireLong(cursor, MessageTable.EXPIRE_STARTED),
+                                CursorUtil.requireLong(cursor, MessageTable.EXPIRES_IN),
+                                CursorUtil.requireLong(cursor, MessageTable.LATEST_REVISION_ID));
+  }
+
+  /**
+   * Corrupt data can contain a cycle in {@link MessageTable#LATEST_REVISION_ID}, so the walk tracks visited ids.
+   */
+  private static boolean isNonExpiringMessage(@NonNull SQLiteDatabase db, long id, long expireStarted, long expiresIn, long latestRevisionId) {
+    String[] columns = new String[] { MessageTable.ID, MessageTable.EXPIRE_STARTED, MessageTable.EXPIRES_IN, MessageTable.LATEST_REVISION_ID };
+    String   where   = MessageTable.ID + " = ?";
+
+    Set<Long> visited = new HashSet<>();
+
+    while (latestRevisionId > 0 && latestRevisionId != id) {
+      if (!visited.add(id)) {
+        Log.w(TAG, "Detected a cycle in the message revision chain! Stopping the walk at " + id);
+        break;
+      }
+
+      try (Cursor cursor = db.query(MessageTable.TABLE_NAME, columns, where, SqlUtil.buildArgs(latestRevisionId), null, null, null)) {
+        if (cursor == null || !cursor.moveToFirst()) {
+          return false;
+        }
+
+        id               = CursorUtil.requireLong(cursor, MessageTable.ID);
+        expireStarted    = CursorUtil.requireLong(cursor, MessageTable.EXPIRE_STARTED);
+        expiresIn        = CursorUtil.requireLong(cursor, MessageTable.EXPIRES_IN);
+        latestRevisionId = CursorUtil.requireLong(cursor, MessageTable.LATEST_REVISION_ID);
+      }
+    }
 
     long expiresAt     = expireStarted + expiresIn;
     long timeRemaining = expiresAt - System.currentTimeMillis();
 
-    if (latestRevisionId > 0 && latestRevisionId != id ) {
-      return isForNonExpiringMessage(db, latestRevisionId);
-    }
-
-    if (expireStarted > 0 && timeRemaining <= EXPIRATION_BACKUP_THRESHOLD) {
-      return false;
-    }
-
-    return true;
+    return !(expireStarted > 0 && timeRemaining <= EXPIRATION_BACKUP_THRESHOLD);
   }
 
   private static boolean isForNonExpiringMessage(@NonNull SQLiteDatabase db, long messageId) {

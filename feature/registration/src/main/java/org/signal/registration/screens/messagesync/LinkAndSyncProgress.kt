@@ -18,8 +18,11 @@ sealed interface LinkAndSyncProgress {
   /** Downloading the backup from the primary/CDN. */
   data class Downloading(val bytesDownloaded: ByteSize, val totalBytes: ByteSize) : LinkAndSyncProgress
 
-  /** Importing/restoring messages from the downloaded backup. */
-  data object Restoring : LinkAndSyncProgress
+  /** Importing/restoring messages from the downloaded backup, with determinate progress. */
+  data class Restoring(val bytesRestored: ByteSize, val totalBytes: ByteSize) : LinkAndSyncProgress
+
+  /** Post-restore finalization work that does not report granular progress. */
+  data object Finalizing : LinkAndSyncProgress
 
   /** The link-and-sync restore completed (or there was nothing to restore). */
   data object Complete : LinkAndSyncProgress

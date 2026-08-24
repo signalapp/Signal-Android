@@ -10,26 +10,26 @@ import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
 import org.signal.core.ui.getWindowSizeClass
 import org.signal.core.util.BidiUtil
+import org.signal.core.util.DeviceProperties
 import org.signal.core.util.DiskUtil
 import org.signal.core.util.FontUtil.canRenderEmojiAtFontSize
+import org.signal.core.util.ScreenDensity
 import org.signal.core.util.ServiceUtil
 import org.signal.core.util.Util
 import org.signal.core.util.bytes
 import org.signal.core.util.getAnimationScale
 import org.signal.core.util.roundedString
+import org.signal.emoji.EmojiFiles.Version.Companion.readVersion
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.emoji.EmojiFiles.Version.Companion.readVersion
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.StandardUserAgentInterceptor
 import org.thoughtcrime.securesms.notifications.SlowNotificationHeuristics.isHavingDelayedNotifications
 import org.thoughtcrime.securesms.recipients.Recipient.Companion.self
 import org.thoughtcrime.securesms.service.webrtc.AndroidTelecomUtil.telecomSupported
 import org.thoughtcrime.securesms.util.AppSignatureUtil
-import org.thoughtcrime.securesms.util.DeviceProperties
 import org.thoughtcrime.securesms.util.NetworkUtil
 import org.thoughtcrime.securesms.util.PowerManagerCompat
-import org.thoughtcrime.securesms.util.ScreenDensity
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.VersionTracker.getDaysSinceFirstInstalled
 import java.util.Locale
@@ -84,7 +84,6 @@ class LogSectionSystemInfo : LogSection {
       IgnoringBatteryOpt: ${PowerManagerCompat.isIgnoringBatteryOptimizations(context)}
       BkgRestricted     : ${if (Build.VERSION.SDK_INT >= 28) DeviceProperties.isBackgroundRestricted(context) else "N/A"}
       Data Saver        : ${DeviceProperties.getDataSaverState(context)}
-      APNG Animation    : ${DeviceProperties.shouldAllowApngStickerAnimation(context)}
       ApkManifestUrl    : ${BuildConfig.APK_UPDATE_MANIFEST_URL?.takeIf { BuildConfig.MANAGES_APP_UPDATES } ?: "N/A"}
       App               : ${getAppInfo(context)}
       Package           : ${BuildConfig.APPLICATION_ID} (${getSigningString(context)})

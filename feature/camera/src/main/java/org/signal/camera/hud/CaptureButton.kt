@@ -39,11 +39,8 @@ import kotlin.math.min
  * Capture button colors matching CameraButtonView.java
  */
 private object CaptureButtonColors {
-  /** Background fill: white at 30% alpha (0x4CFFFFFF) */
-  val Background = Color(0x4CFFFFFF)
-
-  /** Outer ring stroke: pure white (0xFFFFFFFF) */
-  val Arc = Color.White
+  /** Background fill: custom control color (0xCC333333) */
+  val Background = Color(0xCC333333)
 
   /** Inner fill: pure white (0xFFFFFFFF) */
   val CaptureFill = Color.White
@@ -51,8 +48,8 @@ private object CaptureButtonColors {
   /** Outer stroke while recording: black at 15% alpha (0x26000000) */
   val Outline = Color(0x26000000)
 
-  /** Record indicator: Material red (0xFFF44336) */
-  val Record = Color(0xFFF44336)
+  /** Record indicator: Camera control red (0xFFD92F20) */
+  val Record = Color(0xFFD92F20)
 
   /** Progress arc: pure white (0xFFFFFFFF) */
   val Progress = Color.White
@@ -63,25 +60,25 @@ private object CaptureButtonColors {
  */
 private object CaptureButtonDimensions {
   /** Stroke width for the capture arc in image mode: 3.5dp */
-  val CaptureArcStrokeWidth = 3.5.dp
+  val CaptureArcStrokeWidth = 0.dp
 
   /** Stroke width for the outline in video mode: 4dp */
-  val OutlineStrokeWidth = 4.dp
+  val OutlineStrokeWidth = 0.dp
 
   /** Stroke width for the progress arc: 4dp */
   val ProgressArcStrokeWidth = 4.dp
 
   /** Protection margin for capture fill circle: 10dp */
-  val CaptureFillProtection = 10.dp
+  val CaptureFillProtection = 6.dp
 
   /** Default button size */
-  val DefaultButtonSize = 80.dp
+  val DefaultButtonSize = 76.dp
 
   /** Default image capture size (inner area) */
   val DefaultImageCaptureSize = 60.dp
 
   /** Default record indicator size (red dot) */
-  val DefaultRecordSize = 24.dp
+  val DefaultRecordSize = 40.dp
 }
 
 /**
@@ -132,7 +129,7 @@ fun CaptureButton(
   // Scale animation for press feedback and recording state
   LaunchedEffect(isPressed, isRecording) {
     val targetScale = when {
-      isRecording -> 1.3f
+      isRecording -> 1.42f
       isPressed -> 0.9f
       else -> 1f
     }
@@ -147,9 +144,7 @@ fun CaptureButton(
   }
 
   val density = LocalDensity.current
-  val imageCaptureRadius = with(density) { imageCaptureSize.toPx() / 2f }
   val recordRadius = with(density) { recordSize.toPx() / 2f }
-  val captureArcStroke = with(density) { CaptureButtonDimensions.CaptureArcStrokeWidth.toPx() }
   val outlineStroke = with(density) { CaptureButtonDimensions.OutlineStrokeWidth.toPx() }
   val progressStroke = with(density) { CaptureButtonDimensions.ProgressArcStrokeWidth.toPx() }
   val fillProtection = with(density) { CaptureButtonDimensions.CaptureFillProtection.toPx() }
@@ -246,8 +241,6 @@ fun CaptureButton(
         )
       } else {
         drawForImageCapture(
-          captureRadius = imageCaptureRadius,
-          arcStroke = captureArcStroke,
           fillProtection = fillProtection
         )
       }
@@ -267,8 +260,6 @@ private fun decelerateInterpolation(input: Float): Float {
  * Draw the button in image capture mode.
  */
 private fun DrawScope.drawForImageCapture(
-  captureRadius: Float,
-  arcStroke: Float,
   fillProtection: Float
 ) {
   val centerX = size.width / 2f
@@ -280,14 +271,6 @@ private fun DrawScope.drawForImageCapture(
     color = CaptureButtonColors.Background,
     radius = radius,
     center = Offset(centerX, centerY)
-  )
-
-  // Arc outline
-  drawCircle(
-    color = CaptureButtonColors.Arc,
-    radius = radius,
-    center = Offset(centerX, centerY),
-    style = Stroke(width = arcStroke)
   )
 
   // Inner fill circle (smaller to create the ring effect)

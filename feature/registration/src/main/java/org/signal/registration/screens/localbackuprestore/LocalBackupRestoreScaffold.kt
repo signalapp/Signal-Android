@@ -23,6 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import org.signal.registration.screens.OnePaneRegistrationScaffold
 import org.signal.registration.screens.RegistrationScaffold
@@ -36,7 +37,7 @@ import org.signal.registration.test.TestTags
 @Composable
 internal fun LocalBackupRestoreLayout(
   modifier: Modifier = Modifier,
-  description: (@Composable ColumnScope.() -> Unit)? = null,
+  description: (@Composable ColumnScope.(twoPane: Boolean) -> Unit)? = null,
   primaryButton: (@Composable (Modifier) -> Unit)? = null,
   secondaryButton: (@Composable (Modifier) -> Unit)? = null,
   content: @Composable ColumnScope.() -> Unit
@@ -57,7 +58,7 @@ internal fun LocalBackupRestoreLayout(
               .testTag(TestTags.LOCAL_BACKUP_RESTORE_SCREEN),
             horizontalAlignment = Alignment.CenterHorizontally
           ) {
-            description?.invoke(this)
+            description?.invoke(this, false)
             Spacer(modifier = Modifier.height(24.dp))
             content()
           }
@@ -102,7 +103,7 @@ internal fun LocalBackupRestoreLayout(
               .verticalScroll(firstPaneScrollState)
               .padding(paddingValues)
           ) {
-            description?.invoke(this)
+            description?.invoke(this, true)
           }
         },
         secondPane = { paddingValues ->
@@ -144,10 +145,10 @@ internal fun LocalBackupRestoreLayout(
 }
 
 @Composable
-internal fun Description(headline: String, body: String) {
+internal fun Description(headline: String, body: String, twoPane: Boolean = false) {
   Text(
     text = headline,
-    style = MaterialTheme.typography.headlineMedium,
+    style = if (twoPane) MaterialTheme.typography.headlineLarge else MaterialTheme.typography.headlineMedium,
     modifier = Modifier
       .fillMaxWidth()
       .attachDebugLogHelper()
@@ -155,7 +156,7 @@ internal fun Description(headline: String, body: String) {
 
   Text(
     text = body,
-    style = MaterialTheme.typography.bodyLarge,
+    style = if (twoPane) MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Normal) else MaterialTheme.typography.bodyLarge,
     color = MaterialTheme.colorScheme.onSurfaceVariant,
     modifier = Modifier.padding(top = 16.dp)
   )

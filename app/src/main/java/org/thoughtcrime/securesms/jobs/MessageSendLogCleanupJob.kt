@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.jobs
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
+import org.thoughtcrime.securesms.jobmanager.impl.DataRestoreConstraint
 import org.thoughtcrime.securesms.util.RemoteConfig
 import java.util.concurrent.TimeUnit
 
@@ -23,6 +24,7 @@ class MessageSendLogCleanupJob private constructor(parameters: Parameters) : Job
       AppDependencies.jobManager.add(
         MessageSendLogCleanupJob(
           Parameters.Builder()
+            .addConstraint(DataRestoreConstraint.KEY)
             .setInitialDelay(TimeUnit.MINUTES.toMillis(1))
             .setLifespan(TimeUnit.HOURS.toMillis(1))
             .setMaxInstancesForFactory(1)

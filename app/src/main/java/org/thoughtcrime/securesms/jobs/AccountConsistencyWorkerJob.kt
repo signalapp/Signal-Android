@@ -73,6 +73,12 @@ class AccountConsistencyWorkerJob private constructor(parameters: Parameters) : 
       return
     }
 
+    if (SignalStore.account.pni == null) {
+      Log.i(TAG, "Phonenumberless account, skipping the rest.")
+      SignalStore.misc.lastConsistencyCheckTime = System.currentTimeMillis()
+      return
+    }
+
     val pniProfile: SignalServiceProfile = ProfileUtil.retrieveProfileSync(SignalStore.account.pni!!, SignalServiceProfile.RequestType.PROFILE).profile
     val encodedPniPublicKey = Base64.encodeWithPadding(SignalStore.account.pniIdentityKey.publicKey.serialize())
 

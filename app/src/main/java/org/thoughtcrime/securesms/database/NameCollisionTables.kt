@@ -287,6 +287,15 @@ class NameCollisionTables(
     Log.d(TAG, "Remapped $fromId to $toId")
   }
 
+  override fun onDeletedRecipient(recipientId: RecipientId) {
+    val deleted = writableDatabase
+      .delete(NameCollisionMembershipTable.TABLE_NAME)
+      .where("${NameCollisionMembershipTable.RECIPIENT_ID} = ?", recipientId)
+      .run()
+
+    Log.d(TAG, "Deleted recipient: $deleted")
+  }
+
   private fun handleNameCollisions(
     threadRecipientId: RecipientId,
     getCollisionRecipients: () -> Set<ReviewRecipient>
@@ -512,6 +521,9 @@ class NameCollisionTables(
 
     val results = mutableListOf<ReviewRecipient>()
 
+    val cachedDisplayNames = HashMap<RecipientId, String>(members.size + changed.size)
+    val displayName = { recipient: Recipient -> cachedDisplayNames.getOrPut(recipient.id) { recipient.getDisplayName(context) } }
+
     for (reviewRecipient in changed) {
       if (results.contains(reviewRecipient)) {
         continue
@@ -519,8 +531,10 @@ class NameCollisionTables(
 
       members.remove(reviewRecipient.recipient)
 
+      val changedDisplayName = displayName(reviewRecipient.recipient)
+
       for (member in members) {
-        if (member.getDisplayName(context) == reviewRecipient.recipient.getDisplayName(context)) {
+        if (displayName(member) == changedDisplayName) {
           results.add(reviewRecipient)
           results.add(ReviewRecipient(member))
         }

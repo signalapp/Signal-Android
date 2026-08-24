@@ -1,20 +1,23 @@
 package org.thoughtcrime.securesms.keyboard.sticker
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.Px
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import org.signal.core.ui.enableEdgeToEdge
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.keyboard.emoji.KeyboardPageSearchView
 import org.thoughtcrime.securesms.stickers.StickerEventListener
-import org.thoughtcrime.securesms.util.DeviceProperties
 import org.thoughtcrime.securesms.util.InsetItemDecoration
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.fragments.findListener
@@ -37,17 +40,29 @@ class StickerSearchDialogFragment : DialogFragment(), KeyboardStickerListAdapter
     setStyle(STYLE_NO_FRAME, R.style.Signal_DayNight_Dialog_Animated_Bottom)
   }
 
+  override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+    return super.onCreateDialog(savedInstanceState).apply {
+      window?.enableEdgeToEdge()
+    }
+  }
+
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
     return inflater.inflate(R.layout.sticker_search_dialog_fragment, container, false)
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
+    ViewCompat.setOnApplyWindowInsetsListener(view) { v, insets ->
+      val safeArea = insets.getInsets(WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.ime())
+      v.setPadding(safeArea.left, safeArea.top, safeArea.right, safeArea.bottom)
+      insets
+    }
+
     search = view.findViewById(R.id.sticker_search_text)
     list = view.findViewById(R.id.sticker_search_list)
     noResults = view.findViewById(R.id.sticker_search_no_results)
 
-    adapter = KeyboardStickerListAdapter(Glide.with(this), this, DeviceProperties.shouldAllowApngStickerAnimation(requireContext()))
+    adapter = KeyboardStickerListAdapter(Glide.with(this), this, true)
     layoutManager = GridLayoutManager(requireContext(), 2)
 
     list.layoutManager = layoutManager

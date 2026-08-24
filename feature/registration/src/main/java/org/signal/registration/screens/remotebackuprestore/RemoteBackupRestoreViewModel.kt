@@ -20,6 +20,7 @@ import kotlinx.coroutines.withContext
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
+import org.signal.core.util.throttleLatest
 import org.signal.libsignal.net.RequestResult
 import org.signal.registration.NetworkController
 import org.signal.registration.RegistrationFlowEvent
@@ -27,9 +28,11 @@ import org.signal.registration.RegistrationFlowState
 import org.signal.registration.RegistrationRepository
 import org.signal.registration.RegistrationRoute
 import org.signal.registration.RestoreDecision
+import org.signal.registration.screens.shared.RestoreProgress
 import org.signal.registration.screens.util.navigateBack
 import org.signal.registration.screens.util.navigateTo
 import kotlin.coroutines.CoroutineContext
+import kotlin.time.Duration.Companion.seconds
 
 class RemoteBackupRestoreViewModel(
   private val aep: AccountEntropyPool,
@@ -48,6 +51,7 @@ class RemoteBackupRestoreViewModel(
 
   init {
     _state
+      .throttleLatest(1.seconds) { it.restoreState != RemoteBackupRestoreState.RestoreState.InProgress }
       .onEach { Log.d(TAG, "[State] $it") }
       .launchIn(viewModelScope)
 
@@ -78,6 +82,12 @@ class RemoteBackupRestoreViewModel(
       is RemoteBackupRestoreScreenEvents.DismissError -> {
         stateEmitter(state.copy(restoreState = RemoteBackupRestoreState.RestoreState.None, restoreProgress = null))
       }
+      is RemoteBackupRestoreScreenEvents.ContactSupport -> {
+        stateEmitter(state.copy(showContactSupportDialog = true))
+      }
+      is RemoteBackupRestoreScreenEvents.DismissContactSupport -> {
+        stateEmitter(state.copy(showContactSupportDialog = false))
+      }
     }
   }
 
@@ -89,8 +99,8 @@ class RemoteBackupRestoreViewModel(
             Log.i(TAG, "[restoreBackup] Restoring...")
             _state.value = _state.value.copy(
               restoreState = RemoteBackupRestoreState.RestoreState.InProgress,
-              restoreProgress = RemoteBackupRestoreState.RestoreProgress(
-                phase = RemoteBackupRestoreState.RestoreProgress.Phase.Downloading,
+              restoreProgress = RestoreProgress(
+                phase = RestoreProgress.Phase.Downloading,
                 bytesCompleted = progress.bytesDownloaded,
                 totalBytes = progress.totalBytes
               )
@@ -100,8 +110,8 @@ class RemoteBackupRestoreViewModel(
             Log.i(TAG, "[restoreBackup] Restoring...")
             _state.value = _state.value.copy(
               restoreState = RemoteBackupRestoreState.RestoreState.InProgress,
-              restoreProgress = RemoteBackupRestoreState.RestoreProgress(
-                phase = RemoteBackupRestoreState.RestoreProgress.Phase.Restoring,
+              restoreProgress = RestoreProgress(
+                phase = RestoreProgress.Phase.Restoring,
                 bytesCompleted = progress.bytesRead,
                 totalBytes = progress.totalBytes
               )
@@ -111,8 +121,8 @@ class RemoteBackupRestoreViewModel(
             Log.i(TAG, "[restoreBackup] Finalizing...")
             _state.value = _state.value.copy(
               restoreState = RemoteBackupRestoreState.RestoreState.InProgress,
-              restoreProgress = RemoteBackupRestoreState.RestoreProgress(
-                phase = RemoteBackupRestoreState.RestoreProgress.Phase.Finalizing,
+              restoreProgress = RestoreProgress(
+                phase = RestoreProgress.Phase.Finalizing,
                 bytesCompleted = 0,
                 totalBytes = 0
               )
@@ -187,7 +197,7 @@ class RemoteBackupRestoreViewModel(
       _state.value = _state.value.copy(loadState = RemoteBackupRestoreState.LoadState.Loading, loadAttempts = _state.value.loadAttempts + 1)
 
       val result = withContext(ioDispatcher) {
-        repository.getRemoteBackupInfo(_state.value.aep)
+        repository.getAndMaybeHealRemoteBackupInfo(_state.value.aep)
       }
 
       when (result) {
@@ -234,6 +244,11 @@ class RemoteBackupRestoreViewModel(
             }
             is NetworkController.GetBackupInfoError.RateLimited -> {
               Log.w(TAG, "[loadBackupInfo] Rate limited. Try again in: ${error.retryAfter}")
+              _state.value.copy(loadState = RemoteBackupRestoreState.LoadState.Failure)
+            }
+            is NetworkController.GetBackupInfoError.CredentialVerificationFailed -> {
+              // Either the retried fetch failed the same way, or the backup-id could not be re-committed at all -- the repository collapses both to this.
+              Log.w(TAG, "[loadBackupInfo] Credential failed zk verification and re-committing the backup-id did not recover it.")
               _state.value.copy(loadState = RemoteBackupRestoreState.LoadState.Failure)
             }
           }

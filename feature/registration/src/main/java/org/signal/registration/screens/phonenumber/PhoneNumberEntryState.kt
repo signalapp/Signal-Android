@@ -5,10 +5,12 @@
 
 package org.signal.registration.screens.phonenumber
 
-import org.signal.registration.NetworkController
-import org.signal.registration.NetworkController.SessionMetadata
+import org.signal.core.util.censor
+import org.signal.network.api.RegistrationApiV2.SessionMetadata
+import org.signal.network.api.RegistrationApiV2.SvrCredentials
 import org.signal.registration.PendingRestoreOption
 import org.signal.registration.PreExistingRegistrationData
+import org.signal.registration.VerificationCodeRequest
 import kotlin.time.Duration
 
 data class PhoneNumberEntryState(
@@ -20,18 +22,23 @@ data class PhoneNumberEntryState(
   val formattedNumber: String = "",
   val sessionE164: String? = null,
   val sessionMetadata: SessionMetadata? = null,
+  val smsVerificationCodeRequest: VerificationCodeRequest? = null,
   val showSpinner: Boolean = false,
   val dialogs: Dialogs = Dialogs(),
   val preExistingRegistrationData: PreExistingRegistrationData? = null,
-  val restoredSvrCredentials: List<NetworkController.SvrCredentials> = emptyList(),
+  val restoredSvrCredentials: List<SvrCredentials> = emptyList(),
   val pendingRestoreOption: PendingRestoreOption? = null,
   val initialized: Boolean = false,
   /** Whether the entered number has a plausible length for the selected country code. */
   val isNumberPossible: Boolean = false,
   /** Whether the entered number is definitively invalid. A still-too-short number is not considered invalid, since the user may simply be mid-entry. */
-  val isNumberInvalid: Boolean = false
+  val isNumberInvalid: Boolean = false,
+  /** Gates whether the link device option is shown in the overflow menu. */
+  val isLinkAndSyncAvailable: Boolean = false,
+  /** Gates whether the "register without number" option is shown in the footer. */
+  val isPhoneNumberlessRegistrationAvailable: Boolean = false
 ) {
-  override fun toString(): String = "PhoneNumberEntryState(regionCode=$regionCode, countryCode=$countryCode, countryName=$countryName, countryEmoji=$countryEmoji, nationalNumber=$nationalNumber, formattedNumber=$formattedNumber, sessionE164=$sessionE164, sessionMetadata=${sessionMetadata?.let { "present" }}, showSpinner=$showSpinner, dialogs=$dialogs, preExistingRegistrationData=${preExistingRegistrationData?.let { "present" }}, restoredSvrCredentials=${restoredSvrCredentials.size} items, pendingRestoreOption=$pendingRestoreOption, initialized=$initialized, isNumberPossible=$isNumberPossible, isNumberInvalid=$isNumberInvalid)"
+  override fun toString(): String = "PhoneNumberEntryState(regionCode=$regionCode, countryCode=$countryCode, countryName=$countryName, countryEmoji=$countryEmoji, nationalNumber=${nationalNumber.censor()}, formattedNumber=${formattedNumber.censor()}, sessionE164=$sessionE164, sessionMetadata=$sessionMetadata, smsVerificationCodeRequest=$smsVerificationCodeRequest, showSpinner=$showSpinner, dialogs=$dialogs, preExistingRegistrationData=${preExistingRegistrationData?.let { "present" }}, restoredSvrCredentials=${restoredSvrCredentials.size} items, pendingRestoreOption=$pendingRestoreOption, initialized=$initialized, isNumberPossible=$isNumberPossible, isNumberInvalid=$isNumberInvalid,  isLinkAndSyncAvailable=$isLinkAndSyncAvailable, isPhoneNumberlessRegistrationAvailable=$isPhoneNumberlessRegistrationAvailable)"
 
   data class Dialogs(
     /** Asks the user to confirm the number they entered before submitting it. */

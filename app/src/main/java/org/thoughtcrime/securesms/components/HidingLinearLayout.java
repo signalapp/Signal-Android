@@ -12,6 +12,9 @@ import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 
 public class HidingLinearLayout extends LinearLayout {
 
+  /** Tracks whether the most recent request was to hide, so that a canceled hide animation cannot later apply {@link #GONE}. */
+  private boolean hiding;
+
   public HidingLinearLayout(Context context) {
     super(context);
   }
@@ -26,6 +29,8 @@ public class HidingLinearLayout extends LinearLayout {
 
   public void hide(boolean shouldAnimate) {
     if (!isEnabled() || getVisibility() == GONE) return;
+
+    hiding = true;
 
     if (!shouldAnimate) {
       setVisibility(GONE);
@@ -48,7 +53,9 @@ public class HidingLinearLayout extends LinearLayout {
 
       @Override
       public void onAnimationEnd(Animation animation) {
-        setVisibility(GONE);
+        if (hiding) {
+          setVisibility(GONE);
+        }
       }
     });
 
@@ -56,7 +63,12 @@ public class HidingLinearLayout extends LinearLayout {
   }
 
   public void show() {
-    if (!isEnabled() || getVisibility() == VISIBLE) return;
+    if (!isEnabled()) return;
+
+    hiding = false;
+    clearAnimation();
+
+    if (getVisibility() == VISIBLE) return;
 
     setVisibility(VISIBLE);
 
@@ -75,6 +87,7 @@ public class HidingLinearLayout extends LinearLayout {
   }
 
   public void disable() {
+    hiding = true;
     setVisibility(GONE);
     setEnabled(false);
   }

@@ -7,11 +7,11 @@ package org.whispersystems.signalservice.api
 
 import okhttp3.ConnectionSpec
 import okhttp3.OkHttpClient
-import org.whispersystems.signalservice.api.push.TrustStore
-import org.whispersystems.signalservice.api.util.Tls12SocketFactory
-import org.whispersystems.signalservice.api.util.TlsProxySocketFactory
-import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration
-import org.whispersystems.signalservice.internal.configuration.SignalUrl
+import org.signal.network.config.SignalServiceConfiguration
+import org.signal.network.config.SignalUrl
+import org.signal.network.config.TrustStore
+import org.signal.network.util.Tls12SocketFactory
+import org.signal.network.util.TlsProxySocketFactory
 import org.whispersystems.signalservice.internal.util.BlacklistingTrustManager
 import org.whispersystems.signalservice.internal.util.Util
 import java.security.KeyManagementException

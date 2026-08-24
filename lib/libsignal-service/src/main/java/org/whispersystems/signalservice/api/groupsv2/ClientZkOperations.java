@@ -5,7 +5,7 @@ import org.signal.libsignal.zkgroup.ServerPublicParams;
 import org.signal.libsignal.zkgroup.auth.ClientZkAuthOperations;
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations;
 import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations;
-import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
+import org.signal.network.config.SignalServiceConfiguration;
 
 /**
  * Contains access to all ZK group operations for the client.

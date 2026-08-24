@@ -7,8 +7,9 @@ plugins {
 
 android {
   namespace = "org.signal.baselineprofile"
+
   compileSdk {
-    version = release(36)
+    version = release(libs.versions.compileSdk.get().toInt())
   }
 
   compileOptions {

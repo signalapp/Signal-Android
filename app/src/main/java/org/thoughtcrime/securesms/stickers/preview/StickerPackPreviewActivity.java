@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -33,9 +34,9 @@ import org.thoughtcrime.securesms.stickers.StickerRemoteUri;
 import org.thoughtcrime.securesms.stickers.StickerRolloverTouchListener;
 import org.thoughtcrime.securesms.stickers.StickerUrl;
 import org.thoughtcrime.securesms.stickers.manage.StickerManagementRepository;
-import org.thoughtcrime.securesms.util.DeviceProperties;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;
 import org.whispersystems.signalservice.api.util.OptionalUtil;
 
 import java.util.Collections;
@@ -159,7 +160,10 @@ public final class StickerPackPreviewActivity extends PassphraseRequiredActivity
     this.shareButton      = findViewById(R.id.sticker_install_share_button);
     this.shareButtonImage = findViewById(R.id.sticker_install_share_button_image);
 
-    this.adapter       = new StickerPackPreviewAdapter(Glide.with(this), this, DeviceProperties.shouldAllowApngStickerAnimation(this));
+    SystemWindowInsetsSetter.attach(installButton, this, WindowInsetsCompat.Type.navigationBars(), SystemWindowInsetsSetter.ApplyMode.MARGIN);
+    SystemWindowInsetsSetter.attach(removeButton, this, WindowInsetsCompat.Type.navigationBars(), SystemWindowInsetsSetter.ApplyMode.MARGIN);
+
+    this.adapter       = new StickerPackPreviewAdapter(Glide.with(this), this, true);
     this.layoutManager = new GridLayoutManager(this, 2);
     this.touchListener = new StickerRolloverTouchListener(this, Glide.with(this), this, this);
     onScreenWidthChanged(getScreenWidth());
@@ -171,6 +175,8 @@ public final class StickerPackPreviewActivity extends PassphraseRequiredActivity
 
   private void initToolbar() {
     Toolbar toolbar = findViewById(R.id.sticker_install_toolbar);
+
+    SystemWindowInsetsSetter.attach(toolbar, this, WindowInsetsCompat.Type.statusBars());
 
     setSupportActionBar(toolbar);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -212,7 +218,7 @@ public final class StickerPackPreviewActivity extends PassphraseRequiredActivity
       Glide.with(this).load(model)
               .transition(DrawableTransitionOptions.withCrossFade())
               .fitCenter()
-              .set(ApngOptions.ANIMATE, DeviceProperties.shouldAllowApngStickerAnimation(this))
+              .set(ApngOptions.ANIMATE, true)
               .into(coverImage);
     } else {
       coverImage.setImageDrawable(null);

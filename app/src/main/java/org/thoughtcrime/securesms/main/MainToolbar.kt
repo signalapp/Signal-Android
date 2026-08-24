@@ -85,14 +85,15 @@ import org.thoughtcrime.securesms.conversationlist.model.ConversationFilter
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.rememberRecipientField
+import org.signal.core.ui.R as CoreUiR
 
 interface MainToolbarCallback {
   fun onNewGroupClick()
   fun onClearPassphraseClick()
   fun onMarkReadClick()
-  fun onInviteFriendsClick()
   fun onFilterUnreadChatsClick()
   fun onClearUnreadChatsFilterClick()
+  fun onOpenArchiveClick()
   fun onSettingsClick()
   fun onNotificationProfileClick()
   fun onProxyClick()
@@ -114,9 +115,9 @@ interface MainToolbarCallback {
     override fun onNewGroupClick() = Unit
     override fun onClearPassphraseClick() = Unit
     override fun onMarkReadClick() = Unit
-    override fun onInviteFriendsClick() = Unit
     override fun onFilterUnreadChatsClick() = Unit
     override fun onClearUnreadChatsFilterClick() = Unit
+    override fun onOpenArchiveClick() = Unit
     override fun onSettingsClick() = Unit
     override fun onNotificationProfileClick() = Unit
     override fun onProxyClick() = Unit
@@ -570,6 +571,7 @@ private fun HeadsUpIndicator(state: MainToolbarState, modifier: Modifier = Modif
 @Composable
 private fun StoryDropDownItems(callback: MainToolbarCallback, onOptionSelected: () -> Unit) {
   DropdownMenus.Item(
+    leadingIconResId = CoreUiR.drawable.symbol_lock_24,
     text = {
       Text(
         text = stringResource(R.string.StoriesLandingFragment__story_privacy)
@@ -585,6 +587,7 @@ private fun StoryDropDownItems(callback: MainToolbarCallback, onOptionSelected: 
 @Composable
 private fun CallDropdownItems(callFilter: CallLogFilter, callback: MainToolbarCallback, onOptionSelected: () -> Unit) {
   DropdownMenus.Item(
+    leadingIconResId = R.drawable.symbol_x_circle_24,
     text = {
       Text(
         text = stringResource(R.string.CallLogFragment__clear_call_history)
@@ -598,6 +601,7 @@ private fun CallDropdownItems(callFilter: CallLogFilter, callback: MainToolbarCa
 
   if (callFilter == CallLogFilter.ALL) {
     DropdownMenus.Item(
+      leadingIconResId = R.drawable.symbol_filter_24,
       text = {
         Text(
           text = stringResource(R.string.CallLogFragment__filter_missed_calls)
@@ -610,6 +614,7 @@ private fun CallDropdownItems(callFilter: CallLogFilter, callback: MainToolbarCa
     )
   } else {
     DropdownMenus.Item(
+      leadingIconResId = R.drawable.symbol_filter_24,
       text = {
         Text(
           text = stringResource(R.string.CallLogFragment__clear_filter)
@@ -623,18 +628,7 @@ private fun CallDropdownItems(callFilter: CallLogFilter, callback: MainToolbarCa
   }
 
   DropdownMenus.Item(
-    text = {
-      Text(
-        text = stringResource(R.string.text_secure_normal__menu_settings)
-      )
-    },
-    onClick = {
-      callback.onSettingsClick()
-      onOptionSelected()
-    }
-  )
-
-  DropdownMenus.Item(
+    leadingIconResId = R.drawable.symbol_bell_sleep_24,
     text = {
       Text(
         text = stringResource(R.string.ConversationListFragment__notification_profile)
@@ -645,11 +639,25 @@ private fun CallDropdownItems(callFilter: CallLogFilter, callback: MainToolbarCa
       onOptionSelected()
     }
   )
+
+  DropdownMenus.Item(
+    leadingIconResId = CoreUiR.drawable.symbol_settings_android_24,
+    text = {
+      Text(
+        text = stringResource(R.string.text_secure_normal__menu_settings)
+      )
+    },
+    onClick = {
+      callback.onSettingsClick()
+      onOptionSelected()
+    }
+  )
 }
 
 @Composable
 private fun ChatDropdownItems(state: MainToolbarState, callback: MainToolbarCallback, onOptionSelected: () -> Unit) {
   DropdownMenus.Item(
+    leadingIconResId = R.drawable.symbol_group_24,
     text = {
       Text(
         text = stringResource(R.string.text_secure_normal__menu_new_group)
@@ -663,6 +671,7 @@ private fun ChatDropdownItems(state: MainToolbarState, callback: MainToolbarCall
 
   if (state.hasPassphrase) {
     DropdownMenus.Item(
+      leadingIconResId = CoreUiR.drawable.symbol_lock_24,
       text = {
         Text(
           text = stringResource(R.string.text_secure_normal__menu_clear_passphrase)
@@ -676,6 +685,7 @@ private fun ChatDropdownItems(state: MainToolbarState, callback: MainToolbarCall
   }
 
   DropdownMenus.Item(
+    leadingIconResId = R.drawable.symbol_chat_check,
     text = {
       Text(
         text = stringResource(R.string.text_secure_normal__mark_all_as_read)
@@ -687,20 +697,9 @@ private fun ChatDropdownItems(state: MainToolbarState, callback: MainToolbarCall
     }
   )
 
-  DropdownMenus.Item(
-    text = {
-      Text(
-        text = stringResource(R.string.text_secure_normal__invite_friends)
-      )
-    },
-    onClick = {
-      callback.onInviteFriendsClick()
-      onOptionSelected()
-    }
-  )
-
   if (state.chatFilter == ConversationFilter.OFF) {
     DropdownMenus.Item(
+      leadingIconResId = R.drawable.symbol_filter_24,
       text = {
         Text(
           text = stringResource(R.string.text_secure_normal__filter_unread_chats)
@@ -713,6 +712,7 @@ private fun ChatDropdownItems(state: MainToolbarState, callback: MainToolbarCall
     )
   } else {
     DropdownMenus.Item(
+      leadingIconResId = R.drawable.symbol_filter_24,
       text = {
         Text(
           text = stringResource(R.string.text_secure_normal__clear_unread_filter)
@@ -725,8 +725,35 @@ private fun ChatDropdownItems(state: MainToolbarState, callback: MainToolbarCall
     )
   }
 
+  DropdownMenus.Item(
+    leadingIconResId = R.drawable.symbol_bell_sleep_24,
+    text = {
+      Text(
+        text = stringResource(R.string.ConversationListFragment__notification_profile)
+      )
+    },
+    onClick = {
+      callback.onNotificationProfileClick()
+      onOptionSelected()
+    }
+  )
+
+  DropdownMenus.Item(
+    leadingIconResId = R.drawable.symbol_archive_24,
+    text = {
+      Text(
+        text = stringResource(R.string.AndroidManifest_archived_conversations)
+      )
+    },
+    onClick = {
+      callback.onOpenArchiveClick()
+      onOptionSelected()
+    }
+  )
+
   if (SignalStore.labs.starredMessages) {
     DropdownMenus.Item(
+      leadingIconResId = R.drawable.symbol_star_24,
       text = {
         Text(
           text = stringResource(R.string.text_secure_normal__starred_messages)
@@ -740,6 +767,7 @@ private fun ChatDropdownItems(state: MainToolbarState, callback: MainToolbarCall
   }
 
   DropdownMenus.Item(
+    leadingIconResId = CoreUiR.drawable.symbol_settings_android_24,
     text = {
       Text(
         text = stringResource(R.string.text_secure_normal__menu_settings)
@@ -747,18 +775,6 @@ private fun ChatDropdownItems(state: MainToolbarState, callback: MainToolbarCall
     },
     onClick = {
       callback.onSettingsClick()
-      onOptionSelected()
-    }
-  )
-
-  DropdownMenus.Item(
-    text = {
-      Text(
-        text = stringResource(R.string.ConversationListFragment__notification_profile)
-      )
-    },
-    onClick = {
-      callback.onNotificationProfileClick()
       onOptionSelected()
     }
   )

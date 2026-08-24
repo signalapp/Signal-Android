@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <!-- Emoji category headers, shown in the emoji keyboard and the react-with-any-emoji sheet -->
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">រូបញញឹម និងមនុស្ស</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">ធម្មជាតិ</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">អាហារ</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">សកម្មភាព</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">ទីកន្លែង</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">វត្ថុ</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">សញ្ញា</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">ទង់</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">រូបតំណាងអារម្មណ៍</string>
+</resources>

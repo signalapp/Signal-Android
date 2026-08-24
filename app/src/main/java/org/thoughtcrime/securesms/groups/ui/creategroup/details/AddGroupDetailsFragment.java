@@ -21,6 +21,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
@@ -52,6 +53,7 @@ import org.thoughtcrime.securesms.recipients.ui.disappearingmessages.RecipientDi
 import org.signal.core.util.bitmaps.BitmapUtil;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.RemoteConfig;
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
@@ -108,6 +110,13 @@ public class AddGroupDetailsFragment extends LoggingFragment {
     TextView            mmsWarningText           = view.findViewById(R.id.mms_warning_text);
     View                addLater                 = view.findViewById(R.id.add_later);
     TextView            disappearingMessageValue = view.findViewById(R.id.group_disappearing_messages_value);
+
+    toolbar.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
+    SystemWindowInsetsSetter.attach(toolbar, getViewLifecycleOwner(), WindowInsetsCompat.Type.statusBars());
+
+    members.setClipToPadding(false);
+    SystemWindowInsetsSetter.attach(members, getViewLifecycleOwner(), WindowInsetsCompat.Type.navigationBars());
+    SystemWindowInsetsSetter.attach(create, getViewLifecycleOwner(), WindowInsetsCompat.Type.navigationBars(), SystemWindowInsetsSetter.ApplyMode.MARGIN);
 
     members.initializeAdapter(getViewLifecycleOwner());
     avatarPlaceholder = Objects.requireNonNull(VectorDrawableCompat.create(getResources(), R.drawable.ic_camera_outline_24, requireActivity().getTheme()));

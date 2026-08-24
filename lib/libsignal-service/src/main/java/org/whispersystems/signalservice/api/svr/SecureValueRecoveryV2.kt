@@ -9,6 +9,7 @@ import org.signal.core.util.Hex
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.svr2.PinHash
 import org.signal.network.NetworkResult
+import org.signal.network.config.SignalServiceConfiguration
 import org.signal.network.exceptions.NonSuccessfulResponseCodeException
 import org.signal.network.util.JsonUtil
 import org.signal.network.websocket.WebSocketRequestMessage
@@ -28,7 +29,6 @@ import org.whispersystems.signalservice.api.svr.SecureValueRecovery.PinChangeSes
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.RestoreResponse
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.SvrVersion
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
-import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration
 import org.whispersystems.signalservice.internal.push.AuthCredentials
 import java.io.IOException
 import kotlin.time.Duration.Companion.seconds

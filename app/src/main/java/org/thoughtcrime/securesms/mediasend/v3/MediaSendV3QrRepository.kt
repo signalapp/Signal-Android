@@ -9,6 +9,7 @@ import kotlinx.coroutines.rx3.await
 import org.signal.core.util.logging.Log
 import org.signal.mediasend.MediaRecipientId
 import org.signal.mediasend.MediaSendQrRepository
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.registration.data.QuickRegistrationRepository
@@ -20,8 +21,8 @@ object MediaSendV3QrRepository : MediaSendQrRepository {
   override suspend fun checkQrData(qrData: String): MediaSendQrRepository.QrCheckResult {
     return when {
       UsernameRepository.isValidLink(qrData) -> handleUsernameLink(qrData)
-      qrData.startsWith("sgnl://linkdevice") -> handleLinkDevice()
-      qrData.startsWith("sgnl://rereg") && QuickRegistrationRepository.isValidReRegistrationQr(qrData) -> handleReReg(qrData)
+      qrData.startsWith("sgnl://linkdevice") && SignalStore.account.isPrimaryDevice -> handleLinkDevice()
+      qrData.startsWith("sgnl://rereg") && QuickRegistrationRepository.isValidReRegistrationQr(qrData) && SignalStore.account.isPrimaryDevice -> handleReReg(qrData)
       else -> MediaSendQrRepository.QrCheckResult.None
     }
   }

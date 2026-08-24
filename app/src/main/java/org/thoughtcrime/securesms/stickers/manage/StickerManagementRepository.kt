@@ -17,8 +17,8 @@ import org.signal.core.util.requireNonNullString
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.database.StickerTable
-import org.thoughtcrime.securesms.database.StickerTable.StickerPackRecordReader
+import org.thoughtcrime.securesms.database.StickerTables
+import org.thoughtcrime.securesms.database.StickerTables.StickerPackRecordReader
 import org.thoughtcrime.securesms.database.model.StickerPackId
 import org.thoughtcrime.securesms.database.model.StickerPackKey
 import org.thoughtcrime.securesms.database.model.StickerPackRecord
@@ -35,7 +35,7 @@ import org.thoughtcrime.securesms.stickers.BlessedPacks
 object StickerManagementRepository {
   private val jobManager: JobManager = AppDependencies.jobManager
   private val databaseObserver: DatabaseObserver = AppDependencies.databaseObserver
-  private val stickersDbTable: StickerTable = SignalDatabase.stickers
+  private val stickersDbTable: StickerTables = SignalDatabase.stickers
   private val attachmentsDbTable: AttachmentTable = SignalDatabase.attachments
   private val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.Default)
 
@@ -134,7 +134,7 @@ object StickerManagementRepository {
   }
 
   suspend fun setStickerPacksOrder(packsInOrder: List<StickerPackRecord>) = withContext(Dispatchers.Default) {
-    stickersDbTable.updatePackOrder(packsInOrder)
+    stickersDbTable.updatePackPositions(packsInOrder)
   }
 
   interface Callback<T> {

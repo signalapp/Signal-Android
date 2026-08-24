@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <!-- Emoji category headers, shown in the emoji keyboard and the react-with-any-emoji sheet -->
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">ਸਮਾਇਲੀ ਅਤੇ ਲੋਕ</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">ਕੁਦਰਤ</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">ਭੋਜਨ</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">ਗਤੀਵਿਧੀਆਂ</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">ਥਾਵਾਂ</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">ਚੀਜ਼ਾਂ</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">ਚਿੰਨ੍ਹ</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">ਝੰਡੇ</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">ਇਮੋਟੀਕੋਨ</string>
+</resources>

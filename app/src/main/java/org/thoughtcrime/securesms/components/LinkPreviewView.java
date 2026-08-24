@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.bumptech.glide.RequestManager;
 
@@ -207,6 +208,27 @@ public class LinkPreviewView extends FrameLayout {
     } else {
       thumbnail.setVisibility(GONE);
     }
+
+    boolean thumbnailVisible = (showThumbnail && linkPreview.getThumbnail().isPresent()) || callLinkRootKey != null;
+    alignTitleWithThumbnail(thumbnailVisible);
+  }
+
+  private void alignTitleWithThumbnail(boolean thumbnailVisible) {
+    ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams) title.getLayoutParams();
+    if (thumbnailVisible) {
+      params.topToTop       = R.id.linkpreview_thumbnail;
+      params.bottomToBottom = R.id.linkpreview_thumbnail;
+      params.startToEnd     = R.id.linkpreview_thumbnail;
+      params.startToStart   = ConstraintLayout.LayoutParams.UNSET;
+      params.setMarginStart(ViewUtil.dpToPx(8));
+    } else {
+      params.topToTop       = ConstraintLayout.LayoutParams.PARENT_ID;
+      params.bottomToBottom = ConstraintLayout.LayoutParams.UNSET;
+      params.startToEnd     = ConstraintLayout.LayoutParams.UNSET;
+      params.startToStart   = ConstraintLayout.LayoutParams.PARENT_ID;
+      params.setMarginStart(0);
+    }
+    title.setLayoutParams(params);
   }
 
   public void setCorners(int topStart, int topEnd) {

@@ -12,10 +12,14 @@ import org.signal.libsignal.protocol.message.CiphertextMessage
 import org.signal.libsignal.protocol.message.DecryptionErrorMessage
 import org.whispersystems.signalservice.internal.push.AttachmentPointer
 import org.whispersystems.signalservice.internal.push.BodyRange
+import org.whispersystems.signalservice.internal.push.CallMessage
 import org.whispersystems.signalservice.internal.push.Content
 import org.whispersystems.signalservice.internal.push.DataMessage
+import org.whispersystems.signalservice.internal.push.EditMessage
 import org.whispersystems.signalservice.internal.push.Envelope
+import org.whispersystems.signalservice.internal.push.StoryMessage
 import org.whispersystems.signalservice.internal.push.SyncMessage
+import org.whispersystems.signalservice.internal.push.TextAttachment
 
 class EnvelopeContentValidatorTest {
 
@@ -303,6 +307,106 @@ class EnvelopeContentValidatorTest {
   }
 
   @Test
+  fun `validate - ensure pin messages without a valid aci are marked invalid`() {
+    val content = Content(
+      dataMessage = DataMessage(
+        timestamp = 1234,
+        pinMessage = DataMessage.PinMessage(
+          targetAuthorAciBinary = "bad".toByteArray().toByteString(),
+          targetSentTimestamp = 1000,
+          pinDurationSeconds = 60
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure pin messages without a target timestamp are marked invalid`() {
+    val content = Content(
+      dataMessage = DataMessage(
+        timestamp = 1234,
+        pinMessage = DataMessage.PinMessage(
+          targetAuthorAciBinary = OTHER_ACI.toByteString(),
+          pinDurationSeconds = 60
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure pin messages without a pin duration are marked invalid`() {
+    val content = Content(
+      dataMessage = DataMessage(
+        timestamp = 1234,
+        pinMessage = DataMessage.PinMessage(
+          targetAuthorAciBinary = OTHER_ACI.toByteString(),
+          targetSentTimestamp = 1000
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure pin messages with pinDurationForever set to false but no seconds are marked invalid`() {
+    val content = Content(
+      dataMessage = DataMessage(
+        timestamp = 1234,
+        pinMessage = DataMessage.PinMessage(
+          targetAuthorAciBinary = OTHER_ACI.toByteString(),
+          targetSentTimestamp = 1000,
+          pinDurationForever = false
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure pin messages with a pin duration in seconds are marked valid`() {
+    val content = Content(
+      dataMessage = DataMessage(
+        timestamp = 1234,
+        pinMessage = DataMessage.PinMessage(
+          targetAuthorAciBinary = OTHER_ACI.toByteString(),
+          targetSentTimestamp = 1000,
+          pinDurationSeconds = 60
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Valid)
+  }
+
+  @Test
+  fun `validate - ensure pin messages with pinDurationForever set to true are marked valid`() {
+    val content = Content(
+      dataMessage = DataMessage(
+        timestamp = 1234,
+        pinMessage = DataMessage.PinMessage(
+          targetAuthorAciBinary = OTHER_ACI.toByteString(),
+          targetSentTimestamp = 1000,
+          pinDurationForever = true
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Valid)
+  }
+
+  @Test
   fun `validate - ensure quote body range mentions with invalid aci are marked invalid`() {
     val content = Content(
       dataMessage = DataMessage(
@@ -578,5 +682,546 @@ class EnvelopeContentValidatorTest {
 
     val result = EnvelopeContentValidator.validate(envelope, content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
     assert(result is EnvelopeContentValidator.Result.Valid)
+  }
+
+  @Test
+  fun `validate - ensure story body range with negative length is marked invalid`() {
+    val content = Content(
+      storyMessage = StoryMessage(
+        textAttachment = TextAttachment(text = "abc"),
+        bodyRanges = listOf(
+          BodyRange(start = 2, length = -3, style = BodyRange.Style.BOLD)
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure story body range with negative start is marked invalid`() {
+    val content = Content(
+      storyMessage = StoryMessage(
+        textAttachment = TextAttachment(text = "abc"),
+        bodyRanges = listOf(
+          BodyRange(start = -1, length = 1, style = BodyRange.Style.BOLD)
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure story body range extending past the end of the text is marked invalid`() {
+    val content = Content(
+      storyMessage = StoryMessage(
+        textAttachment = TextAttachment(text = "abc"),
+        bodyRanges = listOf(
+          BodyRange(start = 2, length = 10, style = BodyRange.Style.BOLD)
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure story style body range missing length is marked invalid`() {
+    val content = Content(
+      storyMessage = StoryMessage(
+        textAttachment = TextAttachment(text = "abc"),
+        bodyRanges = listOf(
+          BodyRange(start = 0, style = BodyRange.Style.BOLD)
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure story body range that exactly covers the text is marked valid`() {
+    val content = Content(
+      storyMessage = StoryMessage(
+        textAttachment = TextAttachment(text = "abc"),
+        bodyRanges = listOf(
+          BodyRange(start = 0, length = 3, style = BodyRange.Style.BOLD)
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Valid)
+  }
+
+  @Test
+  fun `validate - ensure story context with a valid author but missing sentTimestamp is marked invalid`() {
+    val content = Content(
+      dataMessage = DataMessage(
+        timestamp = 1234,
+        reaction = DataMessage.Reaction(
+          emoji = "👍",
+          targetAuthorAci = OTHER_ACI.toString(),
+          targetSentTimestamp = 1
+        ),
+        storyContext = DataMessage.StoryContext(
+          authorAci = OTHER_ACI.toString()
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure story context with a valid author and sentTimestamp is marked valid`() {
+    val content = Content(
+      dataMessage = DataMessage(
+        timestamp = 1234,
+        reaction = DataMessage.Reaction(
+          emoji = "👍",
+          targetAuthorAci = OTHER_ACI.toString(),
+          targetSentTimestamp = 1
+        ),
+        storyContext = DataMessage.StoryContext(
+          authorAci = OTHER_ACI.toString(),
+          sentTimestamp = 1000
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Valid)
+  }
+
+  @Test
+  fun `validate - ensure edit message with mismatched nested timestamp is marked invalid`() {
+    val content = Content(
+      editMessage = EditMessage(
+        targetSentTimestamp = 1000,
+        dataMessage = DataMessage(timestamp = 5678)
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure edit message with missing nested timestamp is marked invalid`() {
+    val content = Content(
+      editMessage = EditMessage(
+        targetSentTimestamp = 1000,
+        dataMessage = DataMessage()
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure edit message with nested timestamp matching the envelope is marked valid`() {
+    val content = Content(
+      editMessage = EditMessage(
+        targetSentTimestamp = 1000,
+        dataMessage = DataMessage(timestamp = 1234)
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Valid)
+  }
+
+  @Test
+  fun `validate - ensure data message body of exactly 2048 bytes is marked valid`() {
+    val content = Content(
+      dataMessage = DataMessage(
+        timestamp = 1234,
+        body = "a".repeat(2048)
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Valid)
+  }
+
+  @Test
+  fun `validate - ensure data message body over 2048 bytes is marked invalid`() {
+    val content = Content(
+      dataMessage = DataMessage(
+        timestamp = 1234,
+        body = "a".repeat(2049)
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure data message body over 2048 UTF-8 bytes is marked invalid`() {
+    val content = Content(
+      dataMessage = DataMessage(
+        timestamp = 1234,
+        body = "é".repeat(1025)
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure edit message body over 2048 bytes is marked invalid`() {
+    val content = Content(
+      editMessage = EditMessage(
+        targetSentTimestamp = 1000,
+        dataMessage = DataMessage(
+          timestamp = 1234,
+          body = "a".repeat(2049)
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure sync sent body over 2048 bytes is marked invalid`() {
+    val envelope = Envelope(sourceServiceId = SELF_ACI.toString(), clientTimestamp = 1234)
+    val content = Content(
+      syncMessage = SyncMessage(
+        sent = SyncMessage.Sent(
+          timestamp = 1234,
+          destinationServiceId = OTHER_ACI.toString(),
+          message = DataMessage(
+            timestamp = 1234,
+            body = "a".repeat(2049)
+          )
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(envelope, content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure sync sent without a timestamp is marked invalid`() {
+    val envelope = Envelope(sourceServiceId = SELF_ACI.toString(), clientTimestamp = 1234)
+    val content = Content(
+      syncMessage = SyncMessage(
+        sent = SyncMessage.Sent(
+          destinationServiceId = OTHER_ACI.toString(),
+          message = DataMessage(timestamp = 1234)
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(envelope, content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure sync sent with a timestamp and valid destination is marked valid`() {
+    val envelope = Envelope(sourceServiceId = SELF_ACI.toString(), clientTimestamp = 1234)
+    val content = Content(
+      syncMessage = SyncMessage(
+        sent = SyncMessage.Sent(
+          timestamp = 1234,
+          destinationServiceId = OTHER_ACI.toString(),
+          message = DataMessage(timestamp = 1234)
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(envelope, content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Valid)
+  }
+
+  @Test
+  fun `validate - ensure sync sent with story recipients but no story message and not a recipient update is marked invalid`() {
+    val envelope = Envelope(sourceServiceId = SELF_ACI.toString(), clientTimestamp = 1234)
+    val content = Content(
+      syncMessage = SyncMessage(
+        sent = SyncMessage.Sent(
+          timestamp = 1234,
+          storyMessageRecipients = listOf(
+            SyncMessage.Sent.StoryMessageRecipient(
+              destinationServiceId = OTHER_ACI.toString(),
+              isAllowedToReply = true
+            )
+          )
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(envelope, content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure sync sent story recipient update without a story message is marked valid`() {
+    val envelope = Envelope(sourceServiceId = SELF_ACI.toString(), clientTimestamp = 1234)
+    val content = Content(
+      syncMessage = SyncMessage(
+        sent = SyncMessage.Sent(
+          timestamp = 1234,
+          isRecipientUpdate = true,
+          storyMessageRecipients = listOf(
+            SyncMessage.Sent.StoryMessageRecipient(
+              destinationServiceId = OTHER_ACI.toString(),
+              isAllowedToReply = true
+            )
+          )
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(envelope, content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Valid)
+  }
+
+  @Test
+  fun `validate - ensure sync sent story recipient with an invalid destination is marked invalid`() {
+    val envelope = Envelope(sourceServiceId = SELF_ACI.toString(), clientTimestamp = 1234)
+    val content = Content(
+      syncMessage = SyncMessage(
+        sent = SyncMessage.Sent(
+          timestamp = 1234,
+          storyMessage = StoryMessage(),
+          storyMessageRecipients = listOf(
+            SyncMessage.Sent.StoryMessageRecipient(
+              destinationServiceId = "not-a-uuid",
+              isAllowedToReply = true
+            )
+          )
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(envelope, content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure sync sent story recipient without isAllowedToReply is marked invalid`() {
+    val envelope = Envelope(sourceServiceId = SELF_ACI.toString(), clientTimestamp = 1234)
+    val content = Content(
+      syncMessage = SyncMessage(
+        sent = SyncMessage.Sent(
+          timestamp = 1234,
+          storyMessage = StoryMessage(),
+          storyMessageRecipients = listOf(
+            SyncMessage.Sent.StoryMessageRecipient(
+              destinationServiceId = OTHER_ACI.toString()
+            )
+          )
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(envelope, content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure sync read without a timestamp is marked invalid`() {
+    val envelope = Envelope(sourceServiceId = SELF_ACI.toString())
+    val content = Content(
+      syncMessage = SyncMessage(
+        read = listOf(
+          SyncMessage.Read(senderAci = OTHER_ACI.toString())
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(envelope, content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure sync read with a valid aci and timestamp is marked valid`() {
+    val envelope = Envelope(sourceServiceId = SELF_ACI.toString())
+    val content = Content(
+      syncMessage = SyncMessage(
+        read = listOf(
+          SyncMessage.Read(senderAci = OTHER_ACI.toString(), timestamp = 1000)
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(envelope, content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Valid)
+  }
+
+  @Test
+  fun `validate - ensure sync outgoing payment with mobileCoin missing required fields is marked invalid`() {
+    val envelope = Envelope(sourceServiceId = SELF_ACI.toString())
+    val content = Content(
+      syncMessage = SyncMessage(
+        outgoingPayment = SyncMessage.OutgoingPayment(
+          recipientServiceId = OTHER_ACI.toString(),
+          mobileCoin = SyncMessage.OutgoingPayment.MobileCoin(
+            recipientAddress = "address".toByteArray().toByteString(),
+            amountPicoMob = 1,
+            feePicoMob = 1,
+            receipt = "receipt".toByteArray().toByteString()
+          )
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(envelope, content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure sync outgoing payment with all mobileCoin fields is marked valid`() {
+    val envelope = Envelope(sourceServiceId = SELF_ACI.toString())
+    val content = Content(
+      syncMessage = SyncMessage(
+        outgoingPayment = SyncMessage.OutgoingPayment(
+          recipientServiceId = OTHER_ACI.toString(),
+          mobileCoin = SyncMessage.OutgoingPayment.MobileCoin(
+            recipientAddress = "address".toByteArray().toByteString(),
+            amountPicoMob = 1,
+            feePicoMob = 1,
+            receipt = "receipt".toByteArray().toByteString(),
+            ledgerBlockIndex = 1
+          )
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(envelope, content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Valid)
+  }
+
+  @Test
+  fun `validate - ensure one-to-one call event with a malformed conversationId is marked invalid`() {
+    val envelope = Envelope(sourceServiceId = SELF_ACI.toString())
+    val content = Content(
+      syncMessage = SyncMessage(
+        callEvent = SyncMessage.CallEvent(
+          callId = 1,
+          type = SyncMessage.CallEvent.Type.AUDIO_CALL,
+          conversationId = "bad".toByteArray().toByteString()
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(envelope, content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure one-to-one call event with a valid aci conversationId is marked valid`() {
+    val envelope = Envelope(sourceServiceId = SELF_ACI.toString())
+    val content = Content(
+      syncMessage = SyncMessage(
+        callEvent = SyncMessage.CallEvent(
+          callId = 1,
+          type = SyncMessage.CallEvent.Type.AUDIO_CALL,
+          conversationId = OTHER_ACI.toByteString()
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(envelope, content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Valid)
+  }
+
+  @Test
+  fun `validate - ensure observed ad-hoc call event without a timestamp is marked invalid`() {
+    val envelope = Envelope(sourceServiceId = SELF_ACI.toString())
+    val content = Content(
+      syncMessage = SyncMessage(
+        callEvent = SyncMessage.CallEvent(
+          callId = 1,
+          type = SyncMessage.CallEvent.Type.AD_HOC_CALL,
+          event = SyncMessage.CallEvent.Event.OBSERVED,
+          direction = SyncMessage.CallEvent.Direction.INCOMING,
+          conversationId = "room".toByteArray().toByteString()
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(envelope, content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure observed ad-hoc call event with a timestamp is marked valid`() {
+    val envelope = Envelope(sourceServiceId = SELF_ACI.toString())
+    val content = Content(
+      syncMessage = SyncMessage(
+        callEvent = SyncMessage.CallEvent(
+          callId = 1,
+          type = SyncMessage.CallEvent.Type.AD_HOC_CALL,
+          event = SyncMessage.CallEvent.Event.OBSERVED,
+          direction = SyncMessage.CallEvent.Direction.INCOMING,
+          conversationId = "room".toByteArray().toByteString(),
+          timestamp = 1000
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(envelope, content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Valid)
+  }
+
+  @Test
+  fun `validate - ensure call message hangup without a type is marked invalid`() {
+    val content = Content(
+      callMessage = CallMessage(
+        hangup = CallMessage.Hangup(id = 1)
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure call message hangup with a type is marked valid`() {
+    val content = Content(
+      callMessage = CallMessage(
+        hangup = CallMessage.Hangup(id = 1, type = CallMessage.Hangup.Type.HANGUP_NORMAL)
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Valid)
+  }
+
+  @Test
+  fun `validate - ensure call message without a hangup is marked valid`() {
+    val content = Content(
+      callMessage = CallMessage(
+        busy = CallMessage.Busy(id = 1)
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Valid)
+  }
+
+  @Test
+  fun `validate - ensure a sync message with no source is marked invalid rather than throwing`() {
+    val content = Content(
+      syncMessage = SyncMessage()
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
   }
 }

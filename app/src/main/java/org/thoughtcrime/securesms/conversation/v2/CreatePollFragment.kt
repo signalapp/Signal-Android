@@ -63,6 +63,7 @@ import org.signal.core.ui.compose.list.ReorderListEvent
 import org.signal.core.ui.compose.list.ReorderableItem
 import org.signal.core.ui.compose.list.rememberReorderableListState
 import org.signal.core.ui.compose.list.reorderableList
+import org.signal.core.ui.enableEdgeToEdge
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.polls.Poll
@@ -77,7 +78,7 @@ class CreatePollFragment : ComposeDialogFragment() {
   companion object {
     private val TAG = Log.tag(CreatePollFragment::class)
 
-    const val MAX_QUESTION_CHARACTER_LENGTH = 200
+    const val MAX_QUESTION_CHARACTER_LENGTH = 100
     const val MAX_CHARACTER_LENGTH = 100
     const val MAX_OPTIONS = 10
     const val MIN_OPTIONS = 2
@@ -97,6 +98,7 @@ class CreatePollFragment : ComposeDialogFragment() {
   override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
     val dialog = super.onCreateDialog(savedInstanceState)
     dialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+    dialog.window?.enableEdgeToEdge()
     return dialog
   }
 

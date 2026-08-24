@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.Util;
-import org.whispersystems.signalservice.internal.configuration.SignalProxy;
+import org.signal.network.config.SignalProxy;
 
 import java.util.Arrays;
 import java.util.List;

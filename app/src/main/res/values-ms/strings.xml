@@ -4,7 +4,7 @@
   ~ SPDX-License-Identifier: AGPL-3.0-only
   -->
 <!-- smartling.instruction_comments_enabled = on -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
   <!-- Removed by excludeNonTranslatables <string name="app_name" translatable="false">Signal</string> -->
 
   <!-- Removed by excludeNonTranslatables <string name="install_url" translatable="false">https://signal.org/install</string> -->
@@ -171,6 +171,8 @@
     <string name="BlockedUsersActivity__block_user">Sekat pengguna?</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" tidak akan boleh untuk memanggil anda atau menghantar anda mesej.</string>
     <string name="BlockedUsersActivity__block">Sekat</string>
+    <!-- Subtitle shown under a blocked user. Placeholder is the time they were blocked-->
+    <string name="BlockedUsersActivity__blocked_on_s">Disekat pada %1$s</string>
 
     <!-- CreditCardFragment -->
     <!-- Title of fragment -->
@@ -292,6 +294,16 @@
     <string name="ClientDeprecatedActivity_warning">Amaran</string>
     <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Versi aplikasi Signal anda telah tamat tempoh. Anda boleh melihat sejarah mesej anda tetapi tidak boleh menghantar dan menerima mesej sehinggalah anda mengemas kini.</string>
 
+    <!-- ClockSkewActivity -->
+    <!-- Title of the full-screen dialog shown when the device clock is too far off from the real time -->
+    <string name="ClockSkewActivity__title">Tarikh tidak tepat</string>
+    <!-- Body text explaining that the device clock is wrong and needs to be fixed -->
+    <string name="ClockSkewActivity__date_inaccurate_description">Tarikh peranti anda tidak tepat.\nLaraskan jam anda dan cuba lagi.</string>
+    <!-- Shows the user the current, inaccurate date and time reported by their device. Placeholder is the formatted date, time, and time zone. -->
+    <string name="ClockSkewActivity__time_prefix">Tarikh dan masa peranti anda ialah:\n%1$s</string>
+    <!-- Button that opens the system date and time settings -->
+    <string name="ClockSkewActivity__adjust_date_button">Laraskan tarikh</string>
+
     <!-- CommunicationActions -->
     <string name="CommunicationActions_no_browser_found">Pelayar web tidak dijumpai.</string>
     <string name="CommunicationActions_send_email">Hantar emel</string>
@@ -386,6 +398,8 @@
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
     <string name="ConversationItem_s_deleted_this_message">%1$s memadam mesej ini</string>
     <string name="ConversationItem_you_deleted_this_message">Anda memadam mesej ini</string>
+    <!-- Tappable text shown on a locally-deleted message tombstone, prompting the user to promote it to a delete-for-everyone -->
+    <string name="ConversationItem_delete_for_everyone_question">Padam untuk semua orang?</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
     <string name="ConversationItem_admin_s_deleted_this_message">Pentadbir %1$s memadam mesej ini</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -414,7 +428,6 @@
     <!-- Accessibility text associated with image button to send an edited message. -->
     <string name="ConversationActivity_send_edit">Edit hantar</string>
     <string name="ConversationActivity_compose_message">Karang mesej</string>
-    <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Maaf, terdapat ralat menetapkan lampiran anda.</string>
     <!-- Toast shown when user is unable to find the recipient when sending a message -->
     <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Penerima bukan SMS atau alamat emel yang sah!</string>
     <string name="ConversationActivity_message_is_empty_exclamation">Mesej kosong!</string>
@@ -567,7 +580,7 @@
     <string name="ConversationFragment_delete">Padam</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">Padam di mana-mana</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Mesej ini akan dipadamkan untuk semua orang dalam sembang jika mereka menggunakan Signal versi terkini. Mereka akan dapat melihat jika anda memadamkan mesej.</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Mesej ini akan dipadamkan untuk semua orang dalam sembang. Mereka boleh melihat yang anda memadamkan mesej.</string>
     <string name="ConversationFragment_quoted_message_not_found">Mesej asal tidak dijumpai</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Mesej asal tidak lagi tersedia</string>
     <string name="ConversationFragment_failed_to_open_message">Gagal untuk membuka mesej</string>
@@ -744,14 +757,23 @@
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">Tiada sembang belum dibaca</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="other">Padam sembang yang dipilih?</item>
+        <item quantity="other">Padam sejarah mesej?</item>
     </plurals>
+    <!-- Dialog message shown when deleting chats, none of which are groups -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="other">Ini akan memadam secara kekal semua %1$d sembang yang dipilih.</item>
+        <item quantity="other">Semua mesej dalam sembang ini akan dipadamkan.</item>
     </plurals>
-    <!-- Dialog message shown when deleting one to many conversations from the chat list and the user has a linked device -->
+    <!-- Dialog message shown when deleting chats, with at least one group -->
+    <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_group">
+        <item quantity="other">Semua mesej dalam sembang ini akan dipadamkan. Anda masih akan menjadi ahli bagi mana-mana kumpulan yang belum anda tinggalkan.</item>
+    </plurals>
+    <!-- Dialog message shown when deleting chats, none of which are groups, and the user has a linked device -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device">
-        <item quantity="other">Ini akan memadamkan semua %1$d sembang yang dipilih secara kekal daripada semua peranti anda.</item>
+        <item quantity="other">Semua mesej dalam sembang ini akan dipadamkan daripada semua peranti anda.</item>
+    </plurals>
+    <!-- Dialog message shown when deleting chats with at least one group, and the user has a linked device -->
+    <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device_group">
+        <item quantity="other">Semua mesej dalam sembang ini akan dipadamkan daripada semua peranti anda. Anda masih akan menjadi ahli bagi mana-mana kumpulan yang belum anda tinggalkan.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Memadam</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
@@ -1019,13 +1041,13 @@
 
     <!-- LinkDeviceFragment -->
     <!-- Description for how Signal will work with a linked device (eg desktop, iPad) -->
-    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Gunakan akaun Signal ini pada desktop atau iPad.</string>
+    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Gunakan akaun Signal ini pada peranti lain.</string>
     <!-- Button prompting users to link a new device to their account -->
     <string name="LinkDeviceFragment__link_a_new_device">Pautkan peranti baharu</string>
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
     <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$s Mesej dan maklumat sembang dilindungi oleh penyulitan hujung ke hujung pada semua peranti</string>
     <!-- Bottom sheet title explaining how Signal works on a linked device -->
-    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal pada Desktop atau iPad</string>
+    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal pada peranti dipautkan</string>
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
     <string name="LinkDeviceFragment__all_messaging_is_private">Semua pemesejan pada peranti terpaut adalah peribadi</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
@@ -1091,6 +1113,8 @@
     <string name="LinkDeviceFragment__edit_name">Edit nama</string>
     <!-- Toast shown when the process of linking a device has been cancelled -->
     <string name="LinkDeviceFragment__linking_cancelled">Pemautan dibatalkan</string>
+    <!-- Snackbar shown when the user tries to link a new device but has already reached the maximum number of linked devices. Placeholder is the maximum count. -->
+    <string name="LinkDeviceFragment__you_can_only_have_d_linked_devices">Anda hanya boleh mempunyai %1$d peranti dipautkan.</string>
     <!-- Message shown in progress dialog telling users to avoid closing the app while messages are being synced -->
     <string name="LinkDeviceFragment__do_not_close">Jangan tutup aplikasi</string>
     <!-- Dialog title shown when a device is unlinked -->
@@ -1137,6 +1161,8 @@
     <string name="AddLinkDeviceFragment__this_qr_code_not_valid">Kod QR ini tidak sah. Sila pastikan anda mengimbas kod QR yang dipaparkan pada peranti yang ingin anda pautkan.</string>
     <!-- Button in dialog to retry linking a device with a qr code -->
     <string name="AddLinkDeviceFragment__retry">Cuba Semula</string>
+    <!-- Text shown in a dialog when the device being linked is too out-of-date to be linked to this account -->
+    <string name="AddLinkDeviceFragment__the_device_you_are_trying_to_link_is_out_of_date">The device you\'re trying to link is out of date. Please upgrade and try again.</string>
 
     <!-- LinkDeviceSyncBottomSheet -->
     <!-- Option in bottom sheet to transfer message history -->
@@ -1504,12 +1530,6 @@
     <!-- Dialog message -->
     <string name="RestoreActivity__no_longer_registered_message">Ini mungkin kerana anda mendaftarkan akaun Signal anda pada peranti lain.</string>
 
-    <!-- GroupMentionSettingDialog -->
-    <string name="GroupMentionSettingDialog_notify_me_for_mentions">Maklumkan saya untuk Sebutan</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Terima pemberitahuan apabila anda disebut dalam sembang yang diredam?</string>
-    <string name="GroupMentionSettingDialog_always_notify_me">Sentiasa memaklumkan saya</string>
-    <string name="GroupMentionSettingDialog_dont_notify_me">Jangan maklumkan saya</string>
-
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Nama Pengguna, kod QR dan pautan anda tidak kelihatan pada profil anda. Hanya kongsi nama pengguna anda dengan orang yang anda percayai.</string>
@@ -1800,9 +1820,6 @@
 
     <!-- MediaPickerActivity -->
     <string name="MediaPickerActivity__menu_open_camera">Membuka kamera</string>
-
-    <!-- MediaSendActivity -->
-    <string name="MediaSendActivity_camera_unavailable">Kamera tidak tersedia.</string>
 
     <!-- MediaRepository -->
     <string name="MediaRepository_all_media">Semua media</string>
@@ -2772,13 +2789,6 @@
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">Hubungi Sokongan</string>
 
-    <!-- RegistrationLockV2Dialog -->
-    <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Hidupkan Kunci Pendaftaran?</string>
-    <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Matikan Kunci Pendaftaran?</string>
-    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Jika anda lupa PIN Signal anda semasa mendaftar dengan Signal semula, anda akan dikunci daripada akaun anda selama 7 hari.</string>
-    <string name="RegistrationLockV2Dialog_turn_on">Hidupkan</string>
-    <string name="RegistrationLockV2Dialog_turn_off">Matikan</string>
-
     <!-- RevealableMessageView -->
     <string name="RevealableMessageView_view_photo">Lihat Foto</string>
     <string name="RevealableMessageView_view_video">Lihat Video</string>
@@ -2972,6 +2982,7 @@
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_locale" translatable="false">Locale:</string> -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_challenge_received" translatable="false">Challenge Received:</string> -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_registered" translatable="false">Registered:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_backups" translatable="false">Backups:</string> -->
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">Kumpulan dikemas kini</string>
@@ -3142,7 +3153,7 @@
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
     <string name="MuteDialog_mute_notifications">Redamkan pemberitahuan</string>
     <!-- Dialog option that, when pressed, will open a time picker to let the user choose how long they\'d like to mute notifications for -->
-    <string name="MuteDialog__mute_until">Redamkan sehingga…</string>
+    <string name="MuteDialog__mute_until">Until…</string>
 
     <!-- MuteUntilTimePickerBottomSheet -->
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
@@ -3971,15 +3982,6 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Terkini</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Mesej Ini</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Digunakan Baru-baru Ini</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Smiley &amp; Orang</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Alam Semula Jadi</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Makanan</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Aktiviti</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Tempat</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Objek</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Simbol</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Bendera</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emotikon</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Tidak ada keputusan dijumpai</string>
 
     <!-- GifQuickSearchOption -->
@@ -3997,10 +3999,10 @@
     <string name="arrays__use_default">Gunakan lalai</string>
     <string name="arrays__use_custom">Gunakan tersuai</string>
 
-    <string name="arrays__mute_for_one_hour">Redamkan selama 1 jam</string>
-    <string name="arrays__mute_for_eight_hours">Redamkan selama 8 jam</string>
-    <string name="arrays__mute_for_one_day">Redamkan selama 1 hari</string>
-    <string name="arrays__mute_for_seven_days">Redamkan selama 7 hari</string>
+    <string name="arrays__mute_for_one_hour">1 jam</string>
+    <string name="arrays__mute_for_eight_hours">8 jam</string>
+    <string name="arrays__mute_for_one_day">1 hari</string>
+    <string name="arrays__mute_for_seven_days">1 minggu</string>
     <string name="arrays__always">Sentiasa</string>
 
     <string name="arrays__settings_default">Tetapan lalai</string>
@@ -4054,6 +4056,10 @@
     <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
     <string name="preferences__inactivity_timeout_interval">Jangka masa tidak aktif tamat masa</string>
     <string name="preferences__notifications">Pemberitahuan</string>
+    <!-- Preference item menu to enable notifications -->
+    <string name="preferences__enable_notifications">Benarkan Pemberitahuan</string>
+    <!-- Preference header for call notifications -->
+    <string name="preferences__call_notifications">Pemberitahuan panggilan</string>
     <string name="preferences__led_color">Warna LED</string>
     <string name="preferences__led_color_unknown">Tidak diketahui</string>
     <string name="preferences__pref_led_blink_title">Corak kelip LED</string>
@@ -4141,12 +4147,10 @@
     <string name="preferences__system_default">Lalai sistem</string>
     <string name="preferences__language">Bahasa</string>
     <string name="preferences__signal_messages_and_calls">Panggilan dan mesej Signal</string>
-    <string name="preferences__advanced_pin_settings">Tetapan PIN lanjutan</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">Tetapan PIN lanjutan</string>
     <string name="preferences__free_private_messages_and_calls">Mesej dan panggilan sulit percuma kepada pengguna Signal</string>
     <string name="preferences__submit_debug_log">Menghantar log debug</string>
-    <string name="preferences__delete_account">Padam akaun</string>
     <string name="preferences__support_wifi_calling">Mod keserasian \'Panggilan WiFI\'</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Dayakan jika peranti anda menggunakan penghantaran SMS/MMS melalui WiFi (hanya dayakan apabila \'Panggilan WiFi\' diaktifkan pada peranti anda)</string>
     <string name="preferences__incognito_keyboard">Papan kekunci incognito</string>
@@ -4211,6 +4215,16 @@
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Menggunakan kurang data mungkin dapat memperbaik panggilan pada rangkaian yang tidak baik.</string>
     <string name="preferences_notifications__in_chat_sounds">Bunyi di dalam sembang</string>
     <string name="preferences_notifications__show">Papar</string>
+    <!-- Preference item to set notification settings when chats are muted -->
+    <string name="preferences_notifications__while_muted">While muted</string>
+    <!-- Option in settings to turn on reaction notifications -->
+    <string name="preferences_notifications__reaction">Reaction notifications</string>
+    <!-- Body option in settings to turn on reaction notifications    -->
+    <string name="preferences_notifications__notify_reaction">Show notifications for reactions to messages you send</string>
+    <!-- Option in settings to turn on unread reminders -->
+    <string name="preferences_notifications__unread">Unread reminders</string>
+    <!-- Body option to turn on unread reminders -->
+    <string name="preferences_notifications__notify_unread">Occasionally notify when there are unread messages in muted chats</string>
     <string name="preferences_notifications__ringtone">Nada dering</string>
     <string name="preferences_chats__message_text_size">Saiz huruf mesej</string>
     <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
@@ -4734,8 +4748,6 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Masukkan PIN yang anda buat untuk akaun anda. Ini berbeza dengan kod pengesahan SMS anda.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Masukkan PIN yang anda buat untuk akaun anda.</string>
-    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
-    <string name="RegistrationLockFragment__switch_keyboard">Tukar papan kekunci</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">PIN tidak betul. Cuba lagi.</string>
     <string name="RegistrationLockFragment__forgot_pin">Terlupa PIN?</string>
     <string name="RegistrationLockFragment__incorrect_pin">PIN tidak betul</string>
@@ -4808,8 +4820,6 @@
     <!-- Text label button to skip restoring -->
     <string name="registration_activity__skip_restore">Langkau pemulihan</string>
     <string name="preferences_chats__chat_backups">Sandaran sembang</string>
-    <string name="preferences_chats__transfer_account">Pindahkan akaun</string>
-    <string name="preferences_chats__transfer_account_to_a_new_android_device">Pindahkan akaun ke peranti Android baharu</string>
     <!-- Title for dialog to enter in the backup passphrase -->
     <string name="RegistrationActivity_enter_backup_passphrase">Masukkan frasa laluan sandaran</string>
     <string name="RegistrationActivity_restore">Memulihkan</string>
@@ -4897,19 +4907,9 @@
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">Kunci skrin tidak aktif tamat masa</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
     <string name="preferences_app_protection__to_use_screen_lock">Untuk menggunakan kunci skrin, tetapkan PIN, corak atau kata laluan pada peranti ini.</string>
-    <string name="preferences_app_protection__signal_pin">PIN Signal</string>
-    <string name="preferences_app_protection__create_a_pin">Cipta PIN</string>
-    <string name="preferences_app_protection__change_your_pin">Tukar PIN anda</string>
-    <string name="preferences_app_protection__pin_reminders">Peringatan PIN</string>
-    <string name="preferences_app_protection__turn_off">Matikan</string>
-    <string name="preferences_app_protection__confirm_pin">Sahkan PIN</string>
-    <string name="preferences_app_protection__confirm_your_signal_pin">Sahkan PIN Signal anda</string>
-    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Pastikan anda menghafal atau menyimpan PIN anda dengan selamat kerana PIN tidak dapat dipulihkan. Sekiranya anda terlupa PIN anda, anda mungkin kehilangan data apabila mendaftar semula akaun Signal anda.</string>
-    <string name="preferences_app_protection__incorrect_pin_try_again">PIN tidak betul. Cuba lagi.</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">Gagal mendayakan kunci pendaftaran.</string>
     <string name="preferences_app_protection__failed_to_disable_registration_lock">Gagal untuk menyahdayakan kunci pendaftaran.</string>
     <string name="AppProtectionPreferenceFragment_none">Tiada</string>
-    <string name="preferences_app_protection__registration_lock">Kunci Pendaftaran</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Anda mesti masukkan PIN Kunci Pendaftaran anda</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">PIN anda mempunyai sekurang-kurangnya %1$d digit atau aksara</string>
     <string name="RegistrationActivity_too_many_attempts">Terlalu banyak percubaan</string>
@@ -4957,48 +4957,34 @@
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
     <string name="Recipient_deleted_account">Akaun dipadamkan</string>
 
-    <!-- Option in settings that will take use to re-register if they are no longer registered -->
-    <string name="preferences_account_reregister">Daftar semula akaun</string>
-    <!-- Option in settings that will take user to our website or playstore to update their expired build -->
-    <string name="preferences_account_update_signal">Kemas Kini Signal</string>
-    <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
-    <string name="preferences_account_delete_all_data">Padamkan semua data</string>
-    <!-- Title for confirmation dialog confirming user wants to delete all their data -->
-    <string name="preferences_account_delete_all_data_confirmation_title">Padamkan semua data?</string>
-    <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_message">Ini akan menetapkan semula aplikasi dan memadam semua mesej. Aplikasi akan ditutup selepas proses ini selesai.</string>
-    <!-- Confirmation action to proceed with application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_proceed">Teruskan</string>
-    <!-- Confirmation action to cancel application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_cancel">Batal</string>
     <!-- Error message shown when we fail to delete the data for some unknown reason -->
     <string name="preferences_account_delete_all_data_failed">Gagal memadamkan data</string>
 
     <!-- LinkedDeviceAccountSettingsFragment -->
     <!-- Title of an informational card shown on the account settings screen of a linked device -->
-    <string name="LinkedDeviceAccountSettingsFragment__this_is_a_linked_device">This is a linked device</string>
+    <string name="LinkedDeviceAccountSettingsFragment__this_is_a_linked_device">Ini ialah peranti dipautkan</string>
     <!-- Body of an informational card explaining that account settings must be managed from the primary device -->
-    <string name="LinkedDeviceAccountSettingsFragment__to_manage_your_account_settings">To manage your account settings, open Signal on your primary device.</string>
+    <string name="LinkedDeviceAccountSettingsFragment__to_manage_your_account_settings">Untuk mengurus tetapan akaun anda, buka Signal pada peranti utama anda.</string>
     <!-- Title of a settings row that deletes all Signal data from this linked device -->
-    <string name="LinkedDeviceAccountSettingsFragment__delete_app_data">Delete app data</string>
+    <string name="LinkedDeviceAccountSettingsFragment__delete_app_data">Padam data aplikasi</string>
     <!-- Subtitle of the delete app data row explaining what it does -->
-    <string name="LinkedDeviceAccountSettingsFragment__this_will_remove_all_data">This will remove all data from the Signal app on this device.</string>
+    <string name="LinkedDeviceAccountSettingsFragment__this_will_remove_all_data">Ini akan mengalih keluar semua data daripada aplikasi Signal pada peranti ini.</string>
     <!-- Title of the confirmation dialog shown when deleting app data from a linked device -->
-    <string name="LinkedDeviceAccountSettingsFragment__delete_app_data_question">Delete app data?</string>
+    <string name="LinkedDeviceAccountSettingsFragment__delete_app_data_question">Padam data aplikasi?</string>
     <!-- Message of the confirmation dialog explaining that only this device\'s data is deleted, not the account -->
-    <string name="LinkedDeviceAccountSettingsFragment__this_will_delete_all_data_and_messages">This will delete all data and messages from the Signal app on this device. Your Signal account and data on your primary device or other linked devices will not be deleted. The app will close after this process is complete.</string>
+    <string name="LinkedDeviceAccountSettingsFragment__this_will_delete_all_data_and_messages">Ini akan memadamkan semua data dan mesej daripada aplikasi Signal pada peranti ini. Akaun Signal dan data anda pada peranti utama atau peranti lain yang dipautkan tidak akan dipadamkan. Aplikasi akan ditutup selepas proses ini selesai.</string>
 
     <!-- LinkedDeviceAccountLearnMoreBottomSheet -->
     <!-- Emphasized lead-in phrase shown in bold at the start of the learn more sheet body. Must appear verbatim within LinkedDeviceAccountLearnMoreBottomSheet__linked_devices_let_you_access. -->
-    <string name="LinkedDeviceAccountLearnMoreBottomSheet__linked_devices">Linked Devices</string>
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__linked_devices">Peranti Dipautkan</string>
     <!-- Body text of the linked devices learn more sheet. The leading \"Linked Devices\" is shown in bold. -->
-    <string name="LinkedDeviceAccountLearnMoreBottomSheet__linked_devices_let_you_access">Linked Devices let you access your Signal account and messages securely on any of your additional devices.</string>
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__linked_devices_let_you_access">Peranti Dipautkan membolehkan anda mengakses akaun Signal dan mesej anda dengan selamat pada mana-mana peranti tambahan anda.</string>
     <!-- Bullet point describing what devices can be linked -->
-    <string name="LinkedDeviceAccountLearnMoreBottomSheet__you_can_link_a_desktop">You can link a desktop, tablet or additional phone</string>
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__you_can_link_a_desktop">Anda boleh memautkan komputer, tablet atau telefon tambahan</string>
     <!-- Bullet point describing that the primary device manages linked devices -->
-    <string name="LinkedDeviceAccountLearnMoreBottomSheet__your_primary_device_manages">Your primary device manages what\'s linked, you can link up to 5 devices.</string>
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__your_primary_device_manages">Peranti utama anda mengurus peranti yang dipautkan, anda boleh memautkan hingga 5 peranti.</string>
     <!-- Bullet point describing that some settings are only available on the primary device -->
-    <string name="LinkedDeviceAccountLearnMoreBottomSheet__some_account_settings">Some account settings are managed on your primary device only, including account settings and backups.</string>
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__some_account_settings">Sesetengah tetapan akaun hanya boleh diurus pada peranti utama anda, termasuk tetapan akaun dan sandaran.</string>
 
     <!-- TransferOrRestoreFragment -->
     <string name="TransferOrRestoreFragment__transfer_or_restore_account">Pindahkan atau pulihkan akaun</string>
@@ -5485,18 +5471,6 @@
     <!-- GroupDescriptionDialog -->
     <string name="GroupDescriptionDialog__group_description">Penerangan kumpulan</string>
 
-    <!-- QualitySelectorBottomSheetDialog -->
-    <!-- Label for our standard quality media conversion. -->
-    <string name="QualitySelectorBottomSheetDialog__standard">Standard</string>
-    <!-- Description for our standard quality media conversion. -->
-    <string name="QualitySelectorBottomSheetDialog__faster_less_data">Lebih cepat, kurang data</string>
-    <!-- Label for our high quality media conversion. This has better quality than standard. -->
-    <string name="QualitySelectorBottomSheetDialog__high">Tinggi</string>
-    <!-- Label for our high quality media conversion. This has better quality than standard. -->
-    <string name="QualitySelectorBottomSheetDialog__slower_more_data">Lebih lambat, lebih banyak data</string>
-    <!-- Title heading for our media conversion quality selector. -->
-    <string name="QualitySelectorBottomSheetDialog__media_quality">Kualiti media</string>
-
     <!-- AppSettingsFragment -->
     <!-- String alerting user that something is wrong with their backups subscription -->
     <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Perbaharui langganan Sandaran Selamat Signal anda</string>
@@ -5514,14 +5488,6 @@
     <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">Menyalin id pelanggan sandaran ke papan keratan</string>
     <!-- String displayed in a toast when a subscriber id is not present for a given type -->
     <string name="AppSettingsFragment__no_subscriber_id_set">Tiada id pelanggan ditetapkan</string>
-
-    <!-- AccountSettingsFragment -->
-    <string name="AccountSettingsFragment__account">Akaun</string>
-    <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Anda akan diminta dengan kurang kerap dari masa ke masa</string>
-    <string name="AccountSettingsFragment__require_your_signal_pin">Memerlukan PIN Signal anda untuk mendaftarkan nombor telefon anda dengan Signal sekali lagi</string>
-    <string name="AccountSettingsFragment__change_phone_number">Tukar nombor telefon</string>
-    <!-- Account setting that allows user to request and export their signal account data -->
-    <string name="AccountSettingsFragment__request_account_data">Data akaun anda</string>
 
     <!-- ExportAccountDataFragment -->
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
@@ -5808,14 +5774,46 @@
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Mesej</string>
     <string name="NotificationsSettingsFragment__calls">Panggilan</string>
-    <string name="NotificationsSettingsFragment__notify_when">Maklumkan apabila…</string>
+    <!-- Notification header for sounds -->
+    <string name="NotificationsSettingsFragment__sounds">Bunyi</string>
     <string name="NotificationsSettingsFragment__contact_joins_signal">Kenalan menyertai Signal</string>
+    <!-- Notification body to get notified when someone joins Signal -->
+    <string name="NotificationsSettingsFragment__notify_contact">Show a notification when a phone contact joins Signal</string>
+    <!-- Option to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset">Reset notification settings</string>
+    <!-- Option body to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_notifications">Reset notification settings to default, including custom settings for your chats</string>
+    <!-- Dialog to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_body">Reset all notification settings to default for all chats?</string>
+    <!-- Confirmation button to reset dialog -->
+    <string name="NotificationsSettingsFragment__reset_confirm">Tetapkan semula</string>
     <!-- Notification preference header -->
     <string name="NotificationsSettingsFragment__notification_profiles">Profil pemberitahuan</string>
     <!-- Notification preference option header -->
     <string name="NotificationsSettingsFragment__profiles">Profil</string>
     <!-- Notification preference summary text -->
     <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Cipta profil untuk menerima pemberitahuan hanya dairpada orang dan kumpulan yang anda pilih.</string>
+
+    <!-- Header to describe screen that shows while muted settings -->
+    <string name="MutedNotificationsFragment__while">While muted</string>
+    <!-- Title for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls">Panggilan</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body_global">Ring or notify when a call is started in muted chats.</string>
+    <!-- Title for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions">Sebutan</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body_global">Notify when you are mentioned in muted chats.</string>
+    <!-- Title for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies">Balasan</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body_global">Notify when someone replies to your message in muted chats.</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body">Ring or notify when a call is started while this chat is muted.</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body">Notify when you are mentioned while this chat is muted.</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body">Notify when someone replies to your message while this chat is muted.</string>
 
     <!-- NotificationProfilesFragment -->
     <!-- Title for notification profiles screen that shows all existing profiles; Title with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -6041,6 +6039,8 @@
     <string name="ConversationSettingsFragment__end_group">Tamatkan kumpulan</string>
     <!-- Banner shown at the top of group settings when the group has been ended -->
     <string name="ConversationSettingsFragment__this_group_was_ended">Kumpulan ini telah ditamatkan.</string>
+    <!-- Subhead under a legacy group\'s name, joining the member count and the "Legacy Group" label. %1$s is the member count, %2$s is the label -->
+    <string name="ConversationSettingsFragment__s_dot_s">%1$s · %2$s</string>
     <!-- Archive chat option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__archive_chat">Arkibkan Sembang</string>
     <!-- Delete chat option in group conversation settings screen -->
@@ -6218,51 +6218,11 @@
     <!-- Positive dialog action when sending a story via an add to group story button -->
     <string name="MediaReviewFragment__add_to_story">Tambah ke cerita</string>
     <string name="MediaReviewFragment__add_a_message">Tambah mesej</string>
-    <!-- Hint text inside of a compose box that is shown when the user is adding media while quoting a message. -->
-    <string name="MediaReviewFragment__add_a_reply">Tambah balasan</string>
     <string name="MediaReviewFragment__send_to">Hantar kepada</string>
-    <string name="MediaReviewFragment__view_once_message">Media lihat sekali</string>
-    <string name="MediaReviewFragment__one_or_more_items_were_too_large">Saiz satu atau lebih item terlalu besar</string>
-    <string name="MediaReviewFragment__one_or_more_items_were_invalid">Satu atau lebih item tidak sah</string>
-    <string name="MediaReviewFragment__too_many_items_selected">Terlalu banyak item dipilih</string>
-    <!-- Small notification presented to the user when they set their video to view-once mode -->
-    <string name="MediaReviewFragment__video_set_to_view_once">Video ditetapkan kepada tonton sekali</string>
-    <!-- Small notification presented to the user when they set their photo to view-once mode -->
-    <string name="MediaReviewFragment__photo_set_to_view_once">Foto ditetapkan untuk lihat sekali</string>
-    <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
-    <string name="MediaReviewFragment__video_set_to_high_quality">Video ditetapkan kepada kualiti tinggi</string>
-    <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
-    <string name="MediaReviewFragment__video_set_to_standard_quality">Video ditetapkan kepada kualiti standard</string>
-    <!-- Small notification presented to the user when they set their still image to be sent in high visual quality. -->
-    <string name="MediaReviewFragment__photo_set_to_high_quality">Foto ditetapkan kepada kualiti tinggi</string>
-    <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
-    <string name="MediaReviewFragment__photo_set_to_standard_quality">Foto ditetapkan kepada kualiti standard</string>
-    <!-- Accessibility label describing the add media button on the Media review screen -->
-    <string name="MediaReviewFragment__add_media_accessibility_label">Tambah Media</string>
-    <!-- Accessibility label describing the brush and pen button on the Media review screen -->
-    <string name="MediaReviewFragment__brush_pen_accessibility_label">Berus dan Pen</string>
-    <!-- Accessibility label describing the crop and rotate button on the Media review screen -->
-    <string name="MediaReviewFragment__crop_rotate_accessibility_label">Potong dan putar</string>
-    <!-- Accessibility label describing the change media quality button on the Media review screen -->
-    <string name="MediaReviewFragment__change_media_quality_accessibility_label">Ubah Kualiti Media</string>
-    <!-- Accessibility label describing the save media button on the Media review screen -->
-    <string name="MediaReviewFragment__save_media_accessibility_label">Simpan Media</string>
-    <!-- Accessibility label describing the toggle emoji keyboard button on the Media review screen -->
-    <string name="MediaReviewFragment__emoji_toggle_accessibility_label">Togol papan kekunci emoji</string>
     <!-- Accessibility label describing the toggle view once button on the Media review screen -->
     <string name="MediaReviewFragment__view_once_toggle_accessibility_label">Togol Lihat Sekali</string>
-    <!-- Accessibility label describing the send media button on the Media review screen -->
-    <string name="MediaReviewFragment__send_media_accessibility_label">Hantar Media</string>
     <!-- Accessibility label describing the finish adding a message button on the Media review screen dialog -->
     <string name="MediaReviewFragment__finish_adding_a_message_accessibility_label">Selesai menambahkan Mesej</string>
-    <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
-    <plurals name="MediaReviewFragment__items_set_to_high_quality">
-        <item quantity="other">%1$d item ditetapkan kepada kualiti tinggi</item>
-    </plurals>
-    <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
-    <plurals name="MediaReviewFragment__items_set_to_standard_quality">
-        <item quantity="other">%1$d item ditetapkan kepada kualiti standard</item>
-    </plurals>
 
     <string name="ImageEditorHud__cancel">Batal</string>
     <string name="ImageEditorHud__draw">Lukis</string>
@@ -6280,27 +6240,9 @@
 
     <string name="MediaCountIndicatorButton__send">Hantar</string>
 
-    <string name="MediaReviewSelectedItem__tap_to_remove">Ketik untuk membuang</string>
-    <string name="MediaReviewSelectedItem__tap_to_select">Ketik untuk dipilih</string>
-
     <string name="MediaReviewImagePageFragment__discard">Buang</string>
     <string name="MediaReviewImagePageFragment__discard_changes">Abaikan perubahan?</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Anda akan kehilangan sebarang perubahan yang dilakukan terhadap foto ini.</string>
-
-    <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_title">%1$s Ditemui</string>
-    <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_body">Mulakan sembang dengan \"%1$s\"</string>
-    <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
-    <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">Pergi ke sembang</string>
-
-    <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_title">Paut peranti?</string>
-    <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_it_looks_like_youre_trying">Nampaknya anda sedang cuba memautkan peranti Signal. Ketik teruskan, kemudian ketik \"Pautkan Peranti Baharu\" dan imbas semula kod QR.</string>
-    <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
-    <string name="MediaCaptureFragment_device_link_dialog_continue">Teruskan</string>
-
 
     <string name="BadgesOverviewFragment__my_badges">Lencana saya</string>
     <string name="BadgesOverviewFragment__featured_badge">Pemberian lencana</string>
@@ -6775,7 +6717,7 @@
     <!-- Donation receipts amount title -->
     <string name="DonationReceiptDetailsFragment__amount">Jumlah</string>
     <!-- Donation receipts thanks -->
-    <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Terima kasih kerana menyokong Signal. Sumbangan anda membantu menampung misi membina teknologi privasi sumber terbuka yang melindungi pernyataan bebas dan membolehkan komunikasi global yang selamat untuk berjuta orang di seluruh dunia. Jika anda penduduk Amerika Syarikat, sila simpan resit ini untuk rekod cukai anda. Signal Technology Foundation merupakan organisasi bukan untung yang dikecualikan cukai di Amerika Syarikat di bawah seksyen 501c3 Kod Hasil dalam Negeri. ID Cukai Persekutuan kami ialah 82-4506840.</string>
+    <string name="DonationReceiptDetailsFragment__thank_you_for_supporting" tools:ignore="TypographyDashes">Terima kasih kerana menyokong Signal. Sumbangan anda membantu menyokong misi melindungi kebebasan bersuara dan membolehkan komunikasi global yang selamat untuk jutaan orang di seluruh dunia, melalui teknologi privasi sumber terbuka. Jika anda penduduk Amerika Syarikat, sila simpan resit ini untuk rekod cukai anda. Signal Technology Foundation merupakan organisasi bukan berasaskan keuntungan yang dikecualikan cukai di Amerika Syarikat di bawah seksyen 501c3 Kod Hasil dalam Negeri. ID Cukai Persekutuan kami ialah 82-4506840. Signal tidak memberikan sebarang barangan atau perkhidmatan sebagai balasan bagi sumbangan ini.</string>
     <!-- Donation reciepts screen empty state title -->
     <string name="DonationReceiptListFragment__no_receipts">Tiada resit</string>
 
@@ -8526,13 +8468,6 @@
     <!-- Body of bottom sheet shown when opening a terminated group -->
     <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">Anda tidak lagi boleh menghantar dan menerima mesej atau panggilan dalam kumpulan ini.</string>
 
-    <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_title">Pemadaman kini disegerakkan merentas semua peranti anda</string>
-    <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_message">Apabila anda memadamkan mesej, media atau sembang, ia akan dipadamkan daripada telefon anda dan semua peranti yang dipautkan.</string>
-    <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_acknowledge_button">OK</string>
-
     <!-- NoManualBackupBottomSheet -->
     <!-- Title for bottom sheet, placeholder is number of days. -->
     <plurals name="NoManualBackupBottomSheet__no_backup_for_d_days">
@@ -8555,7 +8490,7 @@
     <!-- Subtitle for row for no backup ever created -->
     <string name="BackupsSettingsFragment_automatic_backups_with_signals">Sandaran automatik dengan perkhidmatan storan disulitkan hujung ke hujung yang selamat oleh Signal.</string>
     <!-- Subtitle shown on a linked device when backups are off, directing the user to set them up on their phone -->
-    <string name="BackupsSettingsFragment__automatic_backups_get_started_on_your_phone">Automatic backups with Signal\'s secure end-to-end encrypted storage service. Get started on your phone.</string>
+    <string name="BackupsSettingsFragment__automatic_backups_get_started_on_your_phone">Sandaran automatik dengan perkhidmatan storan disulitkan hujung ke hujung yang selamat oleh Signal. Mula di telefon anda.</string>
     <!-- Subtitle for row for backups that are active but subscription not found -->
     <string name="BackupsSettingsFragment_subscription_not_found_on_this_device">"Langganan tidak ditemui pada peranti ini."</string>
     <!-- Action button label to set up backups -->
@@ -8659,15 +8594,15 @@
     <!-- Subtext describing when a backup has never taken place. -->
     <string name="RemoteBackupsSettingsFragment__never">Tidak pernah</string>
     <!-- Subtext on a linked device describing when the primary device last backed up. Placeholder is the formatted date and time. -->
-    <string name="RemoteBackupsSettingsFragment__your_phone_s">Your phone · %1$s</string>
+    <string name="RemoteBackupsSettingsFragment__your_phone_s">Telefon anda · %1$s</string>
     <!-- Message shown on a linked device with a free backup plan explaining that the subscription is managed on the primary device -->
-    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_upgrade_your_subscription_on_your_primary_device">You can manage or upgrade your Signal Secure Backups subscription on your primary device.</string>
+    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_upgrade_your_subscription_on_your_primary_device">Anda boleh mengurus atau menaik taraf langganan Sandaran Selamat Signal pada peranti utama anda.</string>
     <!-- Message shown on a linked device with a paid backup plan explaining that the subscription is managed on the primary device -->
-    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_cancel_your_subscription_on_your_primary_device">You can manage or cancel your Signal Secure Backups subscription on your primary device.</string>
+    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_cancel_your_subscription_on_your_primary_device">Anda boleh mengurus atau membatalkan langganan Sandaran Selamat Signal pada peranti utama anda.</string>
     <!-- Message shown on a linked device with a canceled backup subscription explaining that the subscription is managed on the primary device -->
-    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_renew_your_subscription_on_your_primary_device">You can manage or renew your Signal Secure Backups subscription on your primary device.</string>
+    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_renew_your_subscription_on_your_primary_device">Anda boleh mengurus atau memperbaharui langganan Sandaran Selamat Signal pada peranti utama anda.</string>
     <!-- Message shown on a linked device when backups are off or the subscription was not found, explaining that backups are managed on the primary device -->
-    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_upgrade_backups_on_your_primary_device">You can manage or upgrade Signal Secure Backups on your primary device.</string>
+    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_upgrade_backups_on_your_primary_device">Anda boleh mengurus atau menaik taraf Sandaran Selamat Signal pada peranti utama anda.</string>
     <!-- Button label to perform a backup immediately -->
     <string name="RemoteBackupsSettingsFragment__back_up_now">Sandaran Sekarang</string>
     <!-- Dialog title when confirming whether to turn off and deleting backups -->

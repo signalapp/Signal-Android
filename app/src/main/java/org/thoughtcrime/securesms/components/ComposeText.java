@@ -181,11 +181,8 @@ public class ComposeText extends EmojiEditText {
   }
 
   public void setDraftText(@Nullable CharSequence draftText) {
-    setText("", BufferType.EDITABLE);
-
-    if (draftText != null) {
-      append(draftText);
-    }
+    setText(draftText != null ? draftText : "", BufferType.EDITABLE);
+    setSelection(length());
   }
 
   public void appendInvite(String invite) {

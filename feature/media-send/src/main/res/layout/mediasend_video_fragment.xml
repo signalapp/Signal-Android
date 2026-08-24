@@ -5,6 +5,7 @@
   -->
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:viewBindingIgnore="true"
     android:layout_width="match_parent"
@@ -13,9 +14,10 @@
     <org.signal.video.VideoPlayer
         android:id="@+id/video_player"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        app:playerLayoutId="@layout/mediasend_video_player" />
 
-    <org.signal.mediasend.edit.video.VideoEditorPlayButtonLayout
+    <org.signal.mediasend.screens.edit.video.VideoEditorPlayButtonLayout
         android:id="@+id/video_editor_hud"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

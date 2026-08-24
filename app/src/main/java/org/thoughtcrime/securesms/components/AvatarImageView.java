@@ -292,6 +292,10 @@ public final class AvatarImageView extends AppCompatImageView {
   }
 
   public void disableQuickContact() {
+    if (listener == null && !isClickable() && !hasOnClickListeners()) {
+      return;
+    }
+
     super.setOnClickListener(listener);
     setClickable(listener != null);
   }

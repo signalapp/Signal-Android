@@ -62,6 +62,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentStre
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceEditMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroupV2;
+import org.whispersystems.signalservice.api.messages.SignalServiceMessageLimits;
 import org.whispersystems.signalservice.api.messages.SignalServicePreview;
 import org.whispersystems.signalservice.api.messages.SignalServiceReceiptMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceStoryMessage;
@@ -181,7 +182,7 @@ public class SignalServiceMessageSender {
   private final int                           localDeviceId;
   private final PNI                           localPni;
   private final Optional<EventListener>       eventListener;
-  private final IdentityKeyPair               localPniIdentity;
+  private final @Nullable IdentityKeyPair     localPniIdentity;
 
   private final MessageApi       messageApi;
   private final KeysApi          keysApi;
@@ -217,11 +218,16 @@ public class SignalServiceMessageSender {
     this.eventListener                 = eventListener;
     this.maxEnvelopeSize               = maxEnvelopeSize;
     this.maxIncrementalMacsPerEnvelope = maxIncrementalMacsPerEnvelope;
-    this.localPniIdentity              = store.pni().getIdentityKeyPair();
+    this.localPniIdentity              = localPniIdentity(store);
     this.scheduler                     = Schedulers.from(executor, false, false);
     this.keysApi                       = keysApi;
     this.preKeyRepository              = preKeyRepository;
     this.useRestFallback               = useRestFallback;
+  }
+
+  private static @Nullable IdentityKeyPair localPniIdentity(SignalServiceDataStore store) {
+    SignalServiceAccountDataStore pniStore = store.pniOrNull();
+    return pniStore != null ? pniStore.getIdentityKeyPair() : null;
   }
 
   /**
@@ -906,7 +912,12 @@ public class SignalServiceMessageSender {
     return sendMessage(address, sealedSenderAccess, System.currentTimeMillis(), envelopeContent, false, null, null, false, false);
   }
 
-  public PniSignatureMessage createPniSignatureMessage() {
+  public @Nullable PniSignatureMessage createPniSignatureMessage() {
+    if (localPni == null || localPniIdentity == null) {
+      Log.w(TAG, "Tried to create a PNI signature message, but we have no PNI! Skipping.");
+      return null;
+    }
+
     byte[] signature = localPniIdentity.signAlternateIdentity(aciStore.getIdentityKeyPair().getPublicKey());
 
     return new PniSignatureMessage.Builder()
@@ -994,8 +1005,8 @@ public class SignalServiceMessageSender {
     Content.Builder     container   = new Content.Builder();
     DataMessage.Builder dataMessage = createDataMessage(message);
 
-    if (dataMessage.body != null && Utf8.size(dataMessage.body) > 2048) {
-      throw new ContentTooLargeException(Utf8.size(dataMessage.body), "UTF-8 size of the data message body was over 2048 bytes!");
+    if (dataMessage.body != null && Utf8.size(dataMessage.body) > SignalServiceMessageLimits.MAX_INLINE_BODY_SIZE_BYTES) {
+      throw new ContentTooLargeException(Utf8.size(dataMessage.body), "UTF-8 size of the data message body was over " + SignalServiceMessageLimits.MAX_INLINE_BODY_SIZE_BYTES + " bytes!");
     }
 
     return enforceMaxContentSize(container.dataMessage(dataMessage.build()).build());
@@ -1538,7 +1549,20 @@ public class SignalServiceMessageSender {
 
     blockedMessage.acisBinary(blocked.individuals.stream().filter(a -> a.getAci() != null).map(a -> a.getAci().toByteString()).collect(Collectors.toList()));
     blockedMessage.numbers(blocked.individuals.stream().filter(a -> a.getE164() != null).map(a -> a.getE164()).collect(Collectors.toList()));
-    blockedMessage.groupIds(blocked.groupIds.stream().map(ByteString::of).collect(Collectors.toList()));
+    blockedMessage.groupIds(blocked.groups.stream().map(g -> ByteString.of(g.getGroupId())).collect(Collectors.toList()));
+
+    blockedMessage.blockedE164s(blocked.individuals.stream().filter(a -> a.getE164() != null).map(a -> new SyncMessage.Blocked.BlockedE164.Builder()
+                                                                                                                              .e164(a.getE164())
+                                                                                                                              .timestamp(a.getBlockedAt())
+                                                                                                                              .build()).collect(Collectors.toList()));
+    blockedMessage.blockedAcis(blocked.individuals.stream().filter(a -> a.getAci() != null).map(a -> new SyncMessage.Blocked.BlockedAci.Builder()
+                                                                                                                            .aciBinary(a.getAci().toByteString())
+                                                                                                                            .timestamp(a.getBlockedAt())
+                                                                                                                            .build()).collect(Collectors.toList()));
+    blockedMessage.blockedGroups(blocked.groups.stream().map(g -> new SyncMessage.Blocked.BlockedGroup.Builder()
+                                                                                         .groupId(ByteString.of(g.getGroupId()))
+                                                                                         .timestamp(g.getBlockedAt())
+                                                                                         .build()).collect(Collectors.toList()));
 
     return container.syncMessage(syncMessage.blocked(blockedMessage.build()).build()).build();
   }
@@ -2494,11 +2518,15 @@ public class SignalServiceMessageSender {
       accessBySid.put(addressIterator.next().getServiceId(), accessIterator.next());
     }
 
-    SenderCertificate  senderCertificate  = unidentifiedAccess.stream().filter(Objects::nonNull).findFirst().map(UnidentifiedAccess::getUnidentifiedCertificate).orElse(null);
-    SealedSenderAccess sealedSenderAccess = SealedSenderAccess.forGroupSend(senderCertificate, groupSendEndorsements, story);
+    SenderCertificate senderCertificate       = unidentifiedAccess.stream().filter(Objects::nonNull).findFirst().map(UnidentifiedAccess::getUnidentifiedCertificate).orElse(null);
+    SenderCertificate sealedSenderCertificate = story ? senderCertificate : groupSendEndorsements.getSealedSenderCertificate();
+
+    List<SignalServiceAddress> workingRecipients = new ArrayList<>(recipients);
+    List<SendMessageResult>    deferredResults   = new LinkedList<>();
+    Set<ServiceId>             quarantined       = new HashSet<>();
 
     for (int i = 0; i < RETRY_COUNT; i++) {
-            GroupTargetInfo targetInfo         = buildGroupTargetInfo(recipients);
+            GroupTargetInfo targetInfo         = buildGroupTargetInfo(workingRecipients);
       final GroupTargetInfo targetInfoSnapshot = targetInfo;
 
       Set<SignalProtocolAddress> sharedWith            = aciStore.getSenderKeySharedWith(distributionId);
@@ -2516,7 +2544,7 @@ public class SignalServiceMessageSender {
                                                                                          .collect(Collectors.toList());
 
         List<GroupSendFullToken> needsSenderKeyGroupSendTokens      = groupSendEndorsements != null ? groupSendEndorsements.forIndividuals(needsSenderKeyTargets) : null;
-        List<SealedSenderAccess> needsSenderKeySealedSenderAccesses = SealedSenderAccess.forFanOutGroupSend(needsSenderKeyGroupSendTokens, sealedSenderAccess.getSenderCertificate(), needsSenderKeyAccesses);
+        List<SealedSenderAccess> needsSenderKeySealedSenderAccesses = SealedSenderAccess.forFanOutGroupSend(needsSenderKeyGroupSendTokens, sealedSenderCertificate, needsSenderKeyAccesses);
 
         List<SendMessageResult> results = sendSenderKeyDistributionMessage(distributionId,
                                                                            needsSenderKeyTargets,
@@ -2540,29 +2568,24 @@ public class SignalServiceMessageSender {
 
         int failureCount = results.size() - successes.size();
         if (failureCount > 0) {
-          Log.w(TAG, "[sendGroupMessage][" + timestamp + "] Failed to send sender keys to " + failureCount + " recipients. Sending back failed results now.");
+          Log.w(TAG, "[sendGroupMessage][" + timestamp + "] Failed to send sender keys to " + failureCount + " recipient(s). Quarantining and continuing send to the rest.");
 
-          List<SendMessageResult> trueFailures = results.stream()
-                                                        .filter(r -> !r.isSuccess())
-                                                        .collect(Collectors.toList());
+          for (SendMessageResult failure : results) {
+            if (!failure.isSuccess() && quarantined.add(failure.getAddress().getServiceId())) {
+              deferredResults.add(failure);
+            }
+          }
 
-          Set<ServiceId> failedAddresses = trueFailures.stream()
-                                                       .map(result -> result.getAddress().getServiceId())
-                                                       .collect(Collectors.toSet());
+          workingRecipients = workingRecipients.stream()
+                                               .filter(r -> !quarantined.contains(r.getServiceId()))
+                                               .collect(Collectors.toList());
 
-          List<SendMessageResult> fakeNetworkFailures = recipients.stream()
-                                                                  .filter(r -> !failedAddresses.contains(r.getServiceId()))
-                                                                  .map(SendMessageResult::networkFailure)
-                                                                  .collect(Collectors.toList());
-
-          List<SendMessageResult> modifiedResults = new LinkedList<>();
-          modifiedResults.addAll(trueFailures);
-          modifiedResults.addAll(fakeNetworkFailures);
-
-          return modifiedResults;
-        } else {
-          targetInfo = buildGroupTargetInfo(recipients);
+          if (workingRecipients.isEmpty()) {
+            return deferredResults;
+          }
         }
+
+        targetInfo = buildGroupTargetInfo(workingRecipients);
       }
 
       sendEvents.onSenderKeyShared();
@@ -2571,7 +2594,7 @@ public class SignalServiceMessageSender {
 
       byte[] ciphertext;
       try {
-        ciphertext = cipher.encryptForGroup(distributionId, targetInfo.destinations, targetInfo.sessions, sealedSenderAccess.getSenderCertificate(), content.encode(), contentHint, groupId);
+        ciphertext = cipher.encryptForGroup(distributionId, targetInfo.destinations, targetInfo.sessions, sealedSenderCertificate, content.encode(), contentHint, groupId);
       } catch (org.signal.libsignal.protocol.UntrustedIdentityException e) {
         throw new UntrustedIdentityException("Untrusted during group encrypt", e.getName(), e.getUntrustedIdentity());
       }
@@ -2579,19 +2602,20 @@ public class SignalServiceMessageSender {
       sendEvents.onMessageEncrypted();
 
       MultiRecipientSendAuthorization multiRecipientAuth = story ? MultiRecipientSendAuthorization.Story.INSTANCE
-                                                                 : new MultiRecipientSendAuthorization.GroupSend(groupSendEndorsements.toFullToken());
+                                                                 : new MultiRecipientSendAuthorization.GroupSend(groupSendEndorsements.toFullToken(workingRecipients));
 
       RequestResult<MultiRecipientMessageResponse, MultiRecipientSendFailure> result = messageApi.sendGroupMessage(ciphertext, multiRecipientAuth, timestamp, online, urgent);
 
       if (result instanceof RequestResult.Success) {
-        MultiRecipientMessageResponse response = ((RequestResult.Success<MultiRecipientMessageResponse>) result).getResult();
-        return transformGroupResponseToMessageResults(targetInfo.devices, MessageApiKt.unsentTargets(response), content);
+        MultiRecipientMessageResponse response    = ((RequestResult.Success<MultiRecipientMessageResponse>) result).getResult();
+        List<SendMessageResult>       sendResults = new LinkedList<>(transformGroupResponseToMessageResults(targetInfo.devices, MessageApiKt.unsentTargets(response), content));
+        sendResults.addAll(deferredResults);
+        return sendResults;
       } else if (result instanceof RequestResult.NonSuccess) {
         MultiRecipientSendFailure error = ((RequestResult.NonSuccess<MultiRecipientSendFailure>) result).getError();
         if (error instanceof MismatchedDeviceException) {
           MismatchedDeviceException mismatchedDeviceException = (MismatchedDeviceException) error;
           Log.w(TAG, "[sendGroupMessage][" + timestamp + "] Handling mismatched devices. (" + mismatchedDeviceException.getMessage() + ")");
-          List<SendMessageResult> invalidPreKeyResults = new LinkedList<>();
 
           for (MismatchedDeviceException.Entry entry : mismatchedDeviceException.getEntries()) {
             SignalServiceAddress address = new SignalServiceAddress(ServiceId.fromLibSignal(entry.getAccount()));
@@ -2599,8 +2623,16 @@ public class SignalServiceMessageSender {
             try {
               handleMismatchedDevices(address, devices);
             } catch (InvalidPreKeyException e) {
-              Log.w(TAG, "[sendGroupMessage][" + timestamp + "] Invalid prekey for " + address.getIdentifier() + " during mismatch handling.");
-              invalidPreKeyResults.add(SendMessageResult.invalidPreKeyFailure(address));
+              Log.w(TAG, "[sendGroupMessage][" + timestamp + "] Invalid prekey for " + address.getIdentifier() + " during mismatch handling. Quarantining.");
+              if (quarantined.add(address.getServiceId())) {
+                deferredResults.add(SendMessageResult.invalidPreKeyFailure(address));
+              }
+              continue;
+            } catch (RateLimitException e) {
+              Log.w(TAG, "[sendGroupMessage][" + timestamp + "] Rate limited fetching prekeys for " + address.getIdentifier() + " during mismatch handling. Quarantining.");
+              if (quarantined.add(address.getServiceId())) {
+                deferredResults.add(SendMessageResult.rateLimitFailure(address, e));
+              }
               continue;
             }
             if (entry.getStaleDevices().length > 0) {
@@ -2609,20 +2641,14 @@ public class SignalServiceMessageSender {
             }
           }
 
-          if (!invalidPreKeyResults.isEmpty()) {
-            Set<ServiceId> failedAddresses = invalidPreKeyResults.stream()
-                                                                  .map(r -> r.getAddress().getServiceId())
-                                                                  .collect(Collectors.toSet());
+          if (!quarantined.isEmpty()) {
+            workingRecipients = workingRecipients.stream()
+                                                 .filter(r -> !quarantined.contains(r.getServiceId()))
+                                                 .collect(Collectors.toList());
 
-            List<SendMessageResult> networkFailures = recipients.stream()
-                                                                .filter(r -> !failedAddresses.contains(r.getServiceId()))
-                                                                .map(SendMessageResult::networkFailure)
-                                                                .collect(Collectors.toList());
-
-            List<SendMessageResult> combinedResults = new LinkedList<>();
-            combinedResults.addAll(invalidPreKeyResults);
-            combinedResults.addAll(networkFailures);
-            return combinedResults;
+            if (workingRecipients.isEmpty()) {
+              return deferredResults;
+            }
           }
         } else if (error instanceof RequestUnauthorizedException) {
           Log.w(TAG, "[sendGroupMessage][" + timestamp + "] Invalid access header.");

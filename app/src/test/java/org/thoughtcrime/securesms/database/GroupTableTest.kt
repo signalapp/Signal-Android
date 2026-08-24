@@ -6,6 +6,10 @@
 package org.thoughtcrime.securesms.database
 
 import android.app.Application
+import assertk.assertThat
+import assertk.assertions.isEmpty
+import assertk.assertions.isNotEmpty
+import io.mockk.every
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
@@ -15,6 +19,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import org.signal.core.util.SqlUtil
 import org.signal.core.util.deleteAll
 import org.signal.core.util.readToList
 import org.signal.core.util.requireLong
@@ -38,15 +43,19 @@ class GroupTableTest {
   val recipients = RecipientTestRule()
 
   private lateinit var groupTable: GroupTable
+  private lateinit var threadTable: ThreadTable
   private lateinit var alice: RecipientId
   private lateinit var bob: RecipientId
 
   @Before
   fun setUp() {
     groupTable = SignalDatabase.groups
+    threadTable = SignalDatabase.threads
 
     groupTable.writableDatabase.deleteAll(GroupTable.TABLE_NAME)
     groupTable.writableDatabase.deleteAll(GroupTable.MembershipTable.TABLE_NAME)
+
+    threadTable.writableDatabase.deleteAll(ThreadTable.TABLE_NAME)
 
     alice = recipients.createRecipient("Buddy #0")
     bob = recipients.createRecipient("Buddy #1")
@@ -68,6 +77,146 @@ class GroupTableTest {
     }
 
     assertEquals(2, members.size)
+  }
+
+  @Test
+  fun givenALeftGroup_whenIDeleteGroup_thenIExpectGroupDeleted() {
+    val groupId = insertPushGroup()
+    val threadId = insertThread(groupId)
+
+    groupTable.setMember(groupId, false)
+
+    threadTable.deleteConversation(threadId)
+    groupTable.clearGroupIfLeftAndDeleted(groupId)
+
+    assertFalse(groupTable.getGroup(groupId).isPresent)
+  }
+
+  @Test
+  fun givenATerminatedGroup_whenIDeleteGroup_thenIExpectGroupDeleted() {
+    val groupId = insertPushGroup()
+    val threadId = insertThread(groupId)
+
+    groupTable.setMember(groupId, true)
+    groupTable.setTerminatedBy(groupId, alice)
+    threadTable.deleteConversation(threadId)
+
+    groupTable.clearGroupIfLeftAndDeleted(groupId)
+
+    assertFalse(groupTable.getGroup(groupId).isPresent)
+  }
+
+  @Test
+  fun givenALeftGroup_whenIDeleteGroup_thenIExpectMembershipDeleted() {
+    val groupId = insertPushGroup()
+    val threadId = insertThread(groupId)
+
+    groupTable.setMember(groupId, false)
+    threadTable.deleteConversation(threadId)
+
+    groupTable.clearGroupIfLeftAndDeleted(groupId)
+
+    val remainingMembers = groupTable.getGroupMembers(groupId, GroupTable.MemberSet.FULL_MEMBERS_INCLUDING_SELF)
+
+    assertTrue(remainingMembers.isEmpty())
+  }
+
+  @Test
+  fun givenAGroupWeAreStillAMemberOf_whenIDeleteGroup_thenIExpectGroupRetained() {
+    val groupId = insertPushGroup()
+    val threadId = insertThread(groupId)
+
+    threadTable.deleteConversation(threadId)
+    groupTable.clearGroupIfLeftAndDeleted(groupId)
+
+    assertTrue(groupTable.getGroup(groupId).isPresent)
+  }
+
+  @Test
+  fun givenAGroup_whenILeave_thenIExpectGroupRetained() {
+    val groupId = insertPushGroup()
+    val threadId = insertThread(groupId)
+    SignalDatabase.threads.markAsActiveEarly(threadId)
+    groupTable.setMember(groupId, false)
+
+    groupTable.clearGroupIfLeftAndDeleted(groupId)
+
+    assertTrue(groupTable.getGroup(groupId).isPresent)
+  }
+
+  @Test
+  fun givenALeftGroup_whenIBlockAndDelete_thenIExpectGroupIdRetained() {
+    val groupId = insertPushGroup()
+    val threadId = insertThread(groupId)
+    val recipientId = SignalDatabase.recipients.getByGroupId(groupId).get()
+
+    groupTable.setMember(groupId, false)
+    SignalDatabase.recipients.setBlocked(recipientId, true, 0)
+    SignalDatabase.threads.deleteConversation(threadId)
+
+    groupTable.clearGroupIfLeftAndDeleted(groupId)
+
+    assertEquals(groupId, groupTable.getGroup(groupId).get().id)
+    assertFalse(groupTable.getGroup(groupId).get().hasV2GroupProperties)
+  }
+
+  @Test
+  fun givenALeftGroupOnAMultiDeviceAccount_whenIDelete_thenIExpectGroupStubRetainedWithoutProperties() {
+    val groupId = insertPushGroup()
+    val threadId = insertThread(groupId)
+
+    every { recipients.signalStore.account.isMultiDevice } returns true
+    groupTable.setMember(groupId, false)
+    threadTable.deleteConversation(threadId)
+
+    groupTable.clearGroupIfLeftAndDeleted(groupId)
+
+    val record = groupTable.getGroup(groupId)
+    assertTrue(record.isPresent)
+    assertFalse(record.get().hasV2GroupProperties)
+    assertTrue(SignalDatabase.recipients.getByGroupId(groupId).isPresent)
+  }
+
+  @Test
+  fun givenALeftGroupOnASingleDevice_whenIDelete_thenIExpectRecipientRowAlsoDeleted() {
+    val groupId = insertPushGroup()
+    val threadId = insertThread(groupId)
+
+    groupTable.setMember(groupId, false)
+    threadTable.deleteConversation(threadId)
+
+    groupTable.clearGroupIfLeftAndDeleted(groupId)
+
+    assertFalse(groupTable.getGroup(groupId).isPresent)
+    assertFalse(SignalDatabase.recipients.getByGroupId(groupId).isPresent)
+  }
+
+  @Test
+  fun givenAMemberWithADeletedThread_whenILeaveLater_thenIExpectClearOnlyAfterTheSecondEvent() {
+    val groupId = insertPushGroup()
+    val threadId = insertThread(groupId)
+
+    threadTable.deleteConversation(threadId)
+    groupTable.clearGroupIfLeftAndDeleted(groupId)
+    assertTrue("Still a member, so the deleted thread alone must not clear the group", groupTable.getGroup(groupId).isPresent)
+
+    groupTable.setMember(groupId, false)
+    groupTable.clearGroupIfLeftAndDeleted(groupId)
+    assertFalse("Leaving after the thread was deleted should trigger the clear", groupTable.getGroup(groupId).isPresent)
+  }
+
+  @Test
+  fun givenALeftGroup_whenIClearByRecipientId_thenIExpectGroupDeleted() {
+    val groupId = insertPushGroup()
+    val threadId = insertThread(groupId)
+    val recipientId = SignalDatabase.recipients.getByGroupId(groupId).get()
+
+    groupTable.setMember(groupId, false)
+    threadTable.deleteConversation(threadId)
+
+    groupTable.clearGroupIfLeftAndDeleted(recipientId)
+
+    assertFalse(groupTable.getGroup(groupId).isPresent)
   }
 
   @Test
@@ -343,5 +492,26 @@ class GroupTableTest {
       .build()
 
     return groupTable.create(groupMasterKey, decryptedGroupState, null)!!
+  }
+
+  /**
+   * Guards [GroupTable.clearGroupRecipient]: every group column must be either blanked by [GroupTable.buildClearedGroupValues]
+   * or explicitly listed here as intentionally preserved. Adding a column without categorizing it fails this test so we don't silently leak it.
+   */
+  @Test
+  fun buildClearedGroupValues_accountsForEveryColumn() {
+    val keptColumns = setOf(
+      GroupTable.ID,
+      GroupTable.RECIPIENT_ID,
+      GroupTable.GROUP_ID,
+      GroupTable.V2_MASTER_KEY
+    )
+
+    val clearedColumns = groupTable.buildClearedGroupValues().keySet()
+    val allColumns = SqlUtil.getAllColumns(groupTable.writableDatabase, GroupTable.TABLE_NAME)
+    val uncategorized = allColumns - clearedColumns - keptColumns
+
+    assertThat(allColumns).isNotEmpty()
+    assertThat(uncategorized).isEmpty()
   }
 }

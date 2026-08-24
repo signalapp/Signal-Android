@@ -6,9 +6,11 @@
 package org.thoughtcrime.securesms.testing
 
 import androidx.test.platform.app.InstrumentationRegistry
+import io.mockk.coEvery
 import io.mockk.every
 import org.json.JSONObject
 import org.junit.rules.ExternalResource
+import org.signal.libsignal.net.RequestResult
 import org.signal.network.NetworkResult
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.testing.endpoints.DonationResponses
@@ -94,8 +96,8 @@ class InAppPaymentsRule : ExternalResource() {
   }
 
   private fun initialiseSetArchiveBackupId() {
-    AppDependencies.archiveApi.apply {
-      every { triggerBackupIdReservation(any(), any(), any()) } returns NetworkResult.Success(Unit)
+    AppDependencies.archiveApiV2.apply {
+      coEvery { triggerBackupIdReservation(any(), any(), any()) } returns RequestResult.Success(Unit)
     }
   }
 

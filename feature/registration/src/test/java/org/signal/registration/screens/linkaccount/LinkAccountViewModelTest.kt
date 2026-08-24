@@ -7,6 +7,7 @@ package org.signal.registration.screens.linkaccount
 
 import assertk.assertThat
 import assertk.assertions.contains
+import assertk.assertions.containsExactly
 import assertk.assertions.isEqualTo
 import assertk.assertions.isFalse
 import assertk.assertions.isInstanceOf
@@ -30,6 +31,7 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.signal.libsignal.net.RequestResult
+import org.signal.network.api.RegistrationApiV2.RegisterAsLinkedDeviceError
 import org.signal.registration.LinkAndSyncWaitResult
 import org.signal.registration.LinkedDeviceResult
 import org.signal.registration.NetworkController
@@ -76,6 +78,12 @@ class LinkAccountViewModelTest {
     // Keep the WhileSubscribed state flow hot so state.value reflects updates during the test.
     backgroundScope.launch { viewModel.state.collect {} }
     return viewModel
+  }
+
+  private fun TestScope.collectActions(viewModel: LinkAccountViewModel): List<LinkAccountScreenAction> {
+    val actions = mutableListOf<LinkAccountScreenAction>()
+    backgroundScope.launch(testDispatcher) { viewModel.actions.collect { actions.add(it) } }
+    return actions
   }
 
   @Test
@@ -177,13 +185,23 @@ class LinkAccountViewModelTest {
   fun `failed registration shows error`() = runTest(testDispatcher) {
     val flow = givenProvisioningFlow()
     val message = mockk<NetworkController.LinkDeviceProvisioningMessage>(relaxed = true)
-    coEvery { mockRepository.registerAsLinkedDevice(message, any()) } returns RequestResult.NonSuccess(NetworkController.RegisterAsLinkedDeviceError.MaxLinkedDevices)
+    coEvery { mockRepository.registerAsLinkedDevice(message, any()) } returns RequestResult.NonSuccess(RegisterAsLinkedDeviceError.MaxLinkedDevices)
 
     val viewModel = createViewModel()
     flow.emit(NetworkController.LinkDeviceProvisioningEvent.MessageReceived(message))
 
     assertThat(viewModel.state.value.showError).isTrue()
     assertThat(viewModel.state.value.isRegistering).isFalse()
+  }
+
+  @Test
+  fun `applyEvent GetHelpClick emits an action to open the help article`() = runTest(testDispatcher) {
+    val viewModel = createViewModel()
+    val actions = collectActions(viewModel)
+
+    viewModel.applyEvent(LinkAccountScreenState(), LinkAccountScreenEvent.GetHelpClick, stateEmitter)
+
+    assertThat(actions).containsExactly(LinkAccountScreenAction.OpenGetHelpArticle)
   }
 
   @Test

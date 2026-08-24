@@ -4,6 +4,7 @@ import android.content.Context
 import org.json.JSONObject
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.donations.InAppPaymentType
+import org.signal.emoji.EmojiFiles
 import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.RemoteMegaphoneRecord
@@ -12,7 +13,6 @@ import org.thoughtcrime.securesms.database.model.addLink
 import org.thoughtcrime.securesms.database.model.addStyle
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.emoji.EmojiFiles
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob
 import org.thoughtcrime.securesms.jobs.CreateReleaseChannelJob
 import org.thoughtcrime.securesms.jobs.FetchRemoteMegaphoneImageJob

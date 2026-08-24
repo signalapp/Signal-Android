@@ -13,9 +13,9 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.nullIfBlank
 import org.signal.core.util.select
 import org.signal.core.util.update
-import org.signal.libsignal.zkgroup.InvalidInputException
 import org.thoughtcrime.securesms.backup.v2.exporters.ContactArchiveExporter
 import org.thoughtcrime.securesms.backup.v2.exporters.GroupArchiveExporter
+import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.database.GroupTable
 import org.thoughtcrime.securesms.database.IdentityTable
 import org.thoughtcrime.securesms.database.RecipientTable
@@ -38,6 +38,7 @@ fun RecipientTable.getContactsForBackup(selfId: Long): ContactArchiveExporter {
       "${RecipientTable.TABLE_NAME}.${RecipientTable.USERNAME}",
       "${RecipientTable.TABLE_NAME}.${RecipientTable.E164}",
       "${RecipientTable.TABLE_NAME}.${RecipientTable.BLOCKED}",
+      "${RecipientTable.TABLE_NAME}.${RecipientTable.BLOCKED_AT}",
       "${RecipientTable.TABLE_NAME}.${RecipientTable.HIDDEN}",
       "${RecipientTable.TABLE_NAME}.${RecipientTable.REGISTERED}",
       "${RecipientTable.TABLE_NAME}.${RecipientTable.UNREGISTERED_TIMESTAMP}",
@@ -90,6 +91,7 @@ fun RecipientTable.getGroupsForBackup(selfAci: ServiceId.ACI): GroupArchiveExpor
     .select(
       "${RecipientTable.TABLE_NAME}.${RecipientTable.ID}",
       "${RecipientTable.TABLE_NAME}.${RecipientTable.BLOCKED}",
+      "${RecipientTable.TABLE_NAME}.${RecipientTable.BLOCKED_AT}",
       "${RecipientTable.TABLE_NAME}.${RecipientTable.PROFILE_SHARING}",
       "${RecipientTable.TABLE_NAME}.${RecipientTable.MUTE_UNTIL}",
       "${RecipientTable.TABLE_NAME}.${RecipientTable.EXTRAS}",
@@ -131,10 +133,12 @@ fun RecipientTable.restoreSelfFromBackup(accountData: AccountData, selfId: Recip
     put(RecipientTable.UNREGISTERED_TIMESTAMP, 0)
     put(RecipientTable.EXTRAS, RecipientExtras().encode())
 
-    try {
-      put(RecipientTable.PROFILE_KEY, Base64.encodeWithPadding(accountData.profileKey.toByteArray()).nullIfBlank())
-    } catch (e: InvalidInputException) {
-      Log.w(TAG, "Missing profile key during restore")
+    val profileKey = ProfileKeyUtil.profileKeyOrNull(accountData.profileKey.toByteArray())
+    if (profileKey != null) {
+      put(RecipientTable.PROFILE_KEY, Base64.encodeWithPadding(profileKey.serialize()))
+    } else {
+      // Don't clear the key we already have. A null profile key for self is fatal in a bunch of places (profile uploads, outgoing messages, etc).
+      Log.w(TAG, "Missing profile key during restore! Keeping the existing one.")
     }
 
     put(RecipientTable.USERNAME, accountData.username)

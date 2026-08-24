@@ -5,8 +5,9 @@
 
 package org.thoughtcrime.securesms.jobs
 
+import arrow.core.Either
 import org.signal.core.util.logging.Log
-import org.signal.network.NetworkResult
+import org.signal.network.service.ArchiveError
 import org.thoughtcrime.securesms.backup.DeletionState
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
@@ -15,6 +16,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.Recurring
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.jobmanager.CoroutineJob
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.DeletionNotAwaitingMediaDownloadConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
@@ -30,7 +32,7 @@ import kotlin.time.Duration.Companion.seconds
 class BackupDeleteJob private constructor(
   private var backupDeleteJobData: BackupDeleteJobData,
   parameters: Parameters
-) : Job(parameters) {
+) : CoroutineJob(parameters) {
 
   companion object {
     const val KEY = "BackupDeleteJob"
@@ -51,7 +53,7 @@ class BackupDeleteJob private constructor(
 
   override fun getFactoryKey(): String = KEY
 
-  override fun run(): Result {
+  override suspend fun doRun(): Result {
     if (!SignalStore.account.isRegistered) {
       Log.w(TAG, "User not registered. Exiting without local cleanup.")
       return Result.failure()
@@ -67,7 +69,7 @@ class BackupDeleteJob private constructor(
       return Result.failure()
     }
 
-    val result = doRun()
+    val result = runStages()
 
     if (result.isFailure) {
       clearLocalBackupStateOnFailure()
@@ -77,7 +79,7 @@ class BackupDeleteJob private constructor(
     return result
   }
 
-  private fun doRun(): Result {
+  private suspend fun runStages(): Result {
     if (SignalStore.backup.deletionState == DeletionState.AWAITING_MEDIA_DOWNLOAD) {
       Log.i(TAG, "Awaiting media download. Scheduling retry.")
       return Result.retry(5.seconds.inWholeMilliseconds)
@@ -201,37 +203,37 @@ class BackupDeleteJob private constructor(
     return Result.success()
   }
 
-  private fun deleteMessageBackup(): Result {
+  private suspend fun deleteMessageBackup(): Result {
     if (backupDeleteJobData.completed.contains(BackupDeleteJobData.Stage.DELETE_MESSAGES)) {
       Log.d(TAG, "Already deleted messages.")
       return Result.success()
     }
 
-    val deleteMessageBackupResult: NetworkResult<Unit> = BackupRepository.deleteBackup()
-    if (deleteMessageBackupResult.getCause() != null) {
-      Log.w(TAG, "Failed to delete message backup", deleteMessageBackupResult.getCause())
-      return handleNetworkError(deleteMessageBackupResult)
-    } else {
-      Log.d(TAG, "Deleted message backup.")
+    when (val result = AppDependencies.archiveService.deleteMessageBackup()) {
+      is Either.Right -> Log.d(TAG, "Deleted message backup.")
+      is Either.Left -> {
+        Log.w(TAG, "Failed to delete message backup", result.value.cause)
+        return handleArchiveError(result.value)
+      }
     }
 
     addStageToCompletions(BackupDeleteJobData.Stage.DELETE_MESSAGES)
     return Result.success()
   }
 
-  private fun deleteMediaBackup(): Result {
+  private suspend fun deleteMediaBackup(): Result {
     if (backupDeleteJobData.completed.contains(BackupDeleteJobData.Stage.DELETE_MEDIA)) {
       Log.d(TAG, "Already deleted media.")
       return Result.success()
     }
 
     if (backupDeleteJobData.tier == BackupDeleteJobData.Tier.PAID) {
-      val deleteMediaBackupResult: NetworkResult<Unit> = BackupRepository.deleteMediaBackup()
-      if (deleteMediaBackupResult.getCause() != null) {
-        Log.w(TAG, "Failed to delete media backup", deleteMediaBackupResult.getCause())
-        return handleNetworkError(deleteMediaBackupResult)
-      } else {
-        Log.d(TAG, "Deleted media backup.")
+      when (val result = AppDependencies.archiveService.deleteMediaBackup()) {
+        is Either.Right -> Log.d(TAG, "Deleted media backup.")
+        is Either.Left -> {
+          Log.w(TAG, "Failed to delete media backup", result.value.cause)
+          return handleArchiveError(result.value)
+        }
       }
     }
 
@@ -246,12 +248,10 @@ class BackupDeleteJob private constructor(
     }
 
     Log.d(TAG, "Loading backup tier from service.")
-    val backupTierResult: NetworkResult<MessageBackupTier> = BackupRepository.getBackupTier()
-    if (backupTierResult.getCause() != null) {
-      return handleNetworkError(backupTierResult)
+    val backupTier: MessageBackupTier = when (val result = BackupRepository.getBackupTier()) {
+      is Either.Right -> result.value
+      is Either.Left -> return handleArchiveError(result.value)
     }
-
-    val backupTier: MessageBackupTier = backupTierResult.successOrThrow()
     Log.d(TAG, "Network request returned $backupTier")
     backupDeleteJobData = backupDeleteJobData.newBuilder().tier(
       when (backupTier) {
@@ -290,28 +290,21 @@ class BackupDeleteJob private constructor(
       .build()
   }
 
-  private fun <T> handleNetworkError(networkResult: NetworkResult<T>): Result {
-    Log.d(TAG, "An error occurred.", networkResult.getCause())
+  private fun handleArchiveError(error: ArchiveError.CredentialError): Result {
+    Log.d(TAG, "An error occurred: $error", error.cause)
 
-    if (networkResult.getCause() is org.signal.libsignal.zkgroup.VerificationFailedException) {
-      Log.i(TAG, "ZK Verification failed. Retrying.")
-      return Result.retry(defaultBackoff())
-    }
+    return when (error) {
+      is ArchiveError.CredentialError.ZkVerificationFailed -> {
+        Log.i(TAG, "ZK Verification failed. Retrying.")
+        Result.retry(defaultBackoff())
+      }
+      is ArchiveError.ApplicationError -> (error.exception as? RuntimeException)?.let { Result.fatalFailure(it) } ?: Result.failure()
+      is ArchiveError.NetworkError -> Result.retry(defaultBackoff())
+      is ArchiveError.CredentialError.RateLimited -> Result.retry(error.retryAfter?.inWholeMilliseconds ?: defaultBackoff())
 
-    return when (networkResult) {
-      is NetworkResult.ApplicationError<*> -> (networkResult.getCause() as? RuntimeException)?.let { Result.fatalFailure(it) } ?: Result.failure()
-      is NetworkResult.NetworkError<*> -> Result.retry(defaultBackoff())
-      is NetworkResult.StatusCodeError<*> -> handleStatusCodeError(networkResult)
-      is NetworkResult.Success<*> -> error("Success.")
-    }
-  }
-
-  private fun handleStatusCodeError(statusCodeError: NetworkResult.StatusCodeError<*>): Result {
-    Log.d(TAG, "Status code error: ${statusCodeError.code}")
-
-    return when (statusCodeError.code) {
-      429 -> Result.retry(statusCodeError.retryAfter()?.inWholeMilliseconds ?: defaultBackoff())
-      else -> Result.failure()
+      is ArchiveError.CredentialError.Unauthorized,
+      is ArchiveError.CredentialError.NotFound,
+      is ArchiveError.CredentialError.InvalidRequest -> Result.failure()
     }
   }
 

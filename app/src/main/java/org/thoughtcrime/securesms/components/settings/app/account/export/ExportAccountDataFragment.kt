@@ -46,6 +46,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.SpanUtil
+import org.signal.appsettings.R as AppSettingsR
 
 class ExportAccountDataFragment : ComposeFragment() {
 
@@ -92,7 +93,7 @@ class ExportAccountDataFragment : ComposeFragment() {
     }
 
     Scaffolds.Settings(
-      title = stringResource(id = R.string.AccountSettingsFragment__request_account_data),
+      title = stringResource(id = AppSettingsR.string.AccountSettingsFragment__request_account_data),
       onNavigationClick = onNavigationClick,
       navigationIcon = SignalIcons.ArrowStart.imageVector,
       navigationContentDescription = stringResource(id = R.string.Material3SearchToolbar__close)

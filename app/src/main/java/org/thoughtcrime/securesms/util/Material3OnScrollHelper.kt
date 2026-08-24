@@ -22,8 +22,6 @@ import org.signal.core.ui.R as CoreUiR
  */
 open class Material3OnScrollHelper(
   private val activity: FragmentActivity,
-  private val setStatusBarColor: (Int) -> Unit = { WindowUtil.setStatusBarColor(activity.window, it) },
-  getStatusBarColor: () -> Int = { WindowUtil.getStatusBarColor(activity.window) },
   private val setChatFolderColor: (Int) -> Unit = {},
   private val onSetToolbarColor: (Int) -> Unit = {},
   private val views: List<View> = emptyList(),
@@ -43,16 +41,12 @@ open class Material3OnScrollHelper(
 
   open val activeColorSet: ColorSet = ColorSet(
     toolbarColorRes = CoreUiR.color.signal_colorSurface2,
-    statusBarColorRes = CoreUiR.color.signal_colorSurface2,
     chatFolderColorRes = CoreUiR.color.signal_colorBackground
   )
   open val inactiveColorSet: ColorSet = ColorSet(
     toolbarColorRes = CoreUiR.color.signal_colorBackground,
-    statusBarColorRes = CoreUiR.color.signal_colorBackground,
     chatFolderColorRes = CoreUiR.color.signal_colorSurface2
   )
-
-  protected var previousStatusBarColor: Int = getStatusBarColor()
 
   private var animator: ValueAnimator? = null
   private var active: Boolean? = null
@@ -65,7 +59,6 @@ open class Material3OnScrollHelper(
 
       override fun onDestroy(owner: LifecycleOwner) {
         animator?.cancel()
-        setStatusBarColor(previousStatusBarColor)
       }
     })
   }
@@ -105,7 +98,6 @@ open class Material3OnScrollHelper(
     animator?.cancel()
     val colorSet = if (active == true) activeColorSet else inactiveColorSet
     setToolbarColor(ContextCompat.getColor(activity, colorSet.toolbarColorRes))
-    setStatusBarColor(ContextCompat.getColor(activity, colorSet.statusBarColorRes))
     setChatFolderColor(ContextCompat.getColor(activity, colorSet.chatFolderColorRes))
   }
 
@@ -129,8 +121,6 @@ open class Material3OnScrollHelper(
       if (hadActiveState) {
         val startToolbarColor = ContextCompat.getColor(activity, startColorSet.toolbarColorRes)
         val endToolbarColor = ContextCompat.getColor(activity, endColorSet.toolbarColorRes)
-        val startStatusBarColor = ContextCompat.getColor(activity, startColorSet.statusBarColorRes)
-        val endStatusBarColor = ContextCompat.getColor(activity, endColorSet.statusBarColorRes)
         val startChatFolderColor = ContextCompat.getColor(activity, startColorSet.chatFolderColorRes)
         val endChatFolderColor = ContextCompat.getColor(activity, endColorSet.chatFolderColorRes)
 
@@ -138,7 +128,6 @@ open class Material3OnScrollHelper(
           duration = 200
           addUpdateListener {
             setToolbarColor(ArgbEvaluatorCompat.getInstance().evaluate(it.animatedFraction, startToolbarColor, endToolbarColor))
-            setStatusBarColor(ArgbEvaluatorCompat.getInstance().evaluate(it.animatedFraction, startStatusBarColor, endStatusBarColor))
             setChatFolderColor(ArgbEvaluatorCompat.getInstance().evaluate(it.animatedFraction, startChatFolderColor, endChatFolderColor))
           }
           start()
@@ -174,10 +163,6 @@ open class Material3OnScrollHelper(
    */
   data class ColorSet(
     @ColorRes val toolbarColorRes: Int,
-    @ColorRes val statusBarColorRes: Int,
-    @ColorRes val chatFolderColorRes: Int
-  ) {
-    constructor(@ColorRes color: Int) : this(color, color)
-    constructor(@ColorRes toolbarColorRes: Int, @ColorRes statusBarColorRes: Int) : this(toolbarColorRes, statusBarColorRes, toolbarColorRes)
-  }
+    @ColorRes val chatFolderColorRes: Int = toolbarColorRes
+  )
 }

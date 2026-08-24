@@ -21,6 +21,7 @@ import org.signal.devicetransfer.TransferStatus
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.databinding.FragmentDeviceTransferBinding
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
 import org.thoughtcrime.securesms.util.visible
 
 /**
@@ -63,6 +64,7 @@ abstract class DeviceTransferFragment : LoggingFragment(R.layout.fragment_device
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
+    SystemWindowInsetsSetter.attach(view, viewLifecycleOwner)
     requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
     binding.deviceTransferFragmentCancel.setOnClickListener {

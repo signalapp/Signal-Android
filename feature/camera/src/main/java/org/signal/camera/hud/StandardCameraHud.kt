@@ -7,6 +7,7 @@ package org.signal.camera.hud
 
 import android.content.res.Configuration
 import android.view.KeyEvent
+import android.view.Surface
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.compose.animation.AnimatedVisibility
@@ -14,41 +15,42 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.movableContentOf
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.key.onPreviewKeyEvent
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalViewConfiguration
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -57,7 +59,11 @@ import androidx.compose.ui.unit.sp
 import org.signal.camera.CameraScreenState
 import org.signal.camera.CaptureError
 import org.signal.camera.FlashMode
+import org.signal.camera.R
+import org.signal.core.ui.WindowBreakpoint
+import org.signal.core.ui.compose.AllNightPreviews
 import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.ui.rememberWindowBreakpoint
 import java.util.Locale
 
 /** Default maximum recording duration: 60 seconds */
@@ -114,16 +120,15 @@ fun BoxScope.StandardCameraHud(
   emitter: (StandardCameraHudEvents) -> Unit,
   modifier: Modifier = Modifier,
   maxRecordingDurationMs: Long = DEFAULT_MAX_RECORDING_DURATION_MS,
-  mediaSelectionCount: Int = 0,
   hasAudioPermission: () -> Boolean = { true },
   stringResources: StringResources = StringResources(0, 0)
 ) {
   val context = LocalContext.current
   val focusRequester = remember { FocusRequester() }
   val viewConfiguration = LocalViewConfiguration.current
-  var volumeKeyPressStartTime by remember { mutableStateOf(0L) }
+  var volumeKeyPressStartTime by remember { mutableLongStateOf(0L) }
   var isRecordingFromVolumeKey by remember { mutableStateOf(false) }
-  var activeVolumeKeyCode by remember { mutableStateOf(0) }
+  var activeVolumeKeyCode by remember { mutableIntStateOf(0) }
 
   LaunchedEffect(Unit) {
     focusRequester.requestFocus()
@@ -213,7 +218,6 @@ fun BoxScope.StandardCameraHud(
       emitter = emitter,
       modifier = modifier,
       maxRecordingDurationMs = maxRecordingDurationMs,
-      mediaSelectionCount = mediaSelectionCount,
       hasAudioPermission = hasAudioPermission,
       stringResources = stringResources
     )
@@ -226,23 +230,45 @@ private fun BoxScope.StandardCameraHudContent(
   emitter: (StandardCameraHudEvents) -> Unit,
   modifier: Modifier = Modifier,
   maxRecordingDurationMs: Long = DEFAULT_MAX_RECORDING_DURATION_MS,
-  mediaSelectionCount: Int = 0,
   hasAudioPermission: () -> Boolean = { true },
   stringResources: StringResources = StringResources()
 ) {
-  val configuration = LocalConfiguration.current
-  val isLandscape = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+  val breakpoint = rememberWindowBreakpoint()
+  val orientation = LocalConfiguration.current.orientation
+  val isPortraitPhone = breakpoint is WindowBreakpoint.Small && orientation == Configuration.ORIENTATION_PORTRAIT
+  // The screen stays portrait on small; rotate the HUD icons to match the device so they stay upright.
+  val iconRotation = if (isPortraitPhone) uprightRotationDegrees(state.deviceRotation) else 0f
 
   ShutterOverlay(state.showShutter)
 
-  FlashToggleButton(
-    flashMode = state.flashMode,
-    onToggle = { emitter(StandardCameraHudEvents.ToggleFlash) },
-    stringResources = stringResources,
-    modifier = Modifier
-      .align(if (isLandscape) Alignment.TopStart else Alignment.TopEnd)
+  IconButton(
+    onClick = { emitter(StandardCameraHudEvents.CloseClick) },
+    modifier = modifier
       .padding(16.dp)
-  )
+      .size(48.dp)
+      .background(colorResource(R.color.CameraHud_control_background), shape = CircleShape)
+  ) {
+    Icon(
+      imageVector = SignalIcons.X.imageVector,
+      contentDescription = null,
+      tint = Color.White,
+      modifier = Modifier
+        .size(24.dp)
+        .rotate(iconRotation)
+    )
+  }
+
+  if (isPortraitPhone) {
+    FlashToggleButton(
+      flashMode = state.flashMode,
+      onToggle = { emitter(StandardCameraHudEvents.ToggleFlash) },
+      stringResources = stringResources,
+      modifier = Modifier
+        .align(Alignment.TopEnd)
+        .padding(16.dp)
+        .rotate(iconRotation)
+    )
+  }
 
   if (state.isRecording) {
     RecordingDurationDisplay(
@@ -254,18 +280,19 @@ private fun BoxScope.StandardCameraHudContent(
   }
 
   CameraControls(
-    isLandscape = isLandscape,
+    breakpoint = breakpoint,
+    iconRotation = iconRotation,
+    flashMode = state.flashMode,
     isRecording = state.isRecording,
     recordingProgress = if (maxRecordingDurationMs > 0) {
       (state.recordingDuration.toFloat() / maxRecordingDurationMs).coerceIn(0f, 1f)
     } else {
       0f
     },
-    mediaSelectionCount = mediaSelectionCount,
     emitter = emitter,
     hasAudioPermission = hasAudioPermission,
     stringResources = stringResources,
-    modifier = modifier.align(if (isLandscape) Alignment.CenterEnd else Alignment.BottomCenter)
+    modifier = modifier.align(if (isPortraitPhone) Alignment.BottomCenter else Alignment.CenterEnd)
   )
 }
 
@@ -285,88 +312,195 @@ private fun ShutterOverlay(showFlash: Boolean) {
   }
 }
 
+/** Degrees to rotate a HUD icon so it stays upright at the given committed [Surface] rotation. */
+private fun uprightRotationDegrees(surfaceRotation: Int): Float = when (surfaceRotation) {
+  Surface.ROTATION_90 -> 90f
+  Surface.ROTATION_180 -> 180f
+  Surface.ROTATION_270 -> 270f
+  else -> 0f
+}
+
 /**
  * Camera control buttons layout with center element always truly centered
  * and side elements at fixed distances from edges.
  */
 @Composable
 private fun CameraControls(
-  isLandscape: Boolean,
+  breakpoint: WindowBreakpoint,
+  iconRotation: Float,
   isRecording: Boolean,
   recordingProgress: Float,
-  mediaSelectionCount: Int,
+  flashMode: FlashMode,
   emitter: (StandardCameraHudEvents) -> Unit,
   hasAudioPermission: () -> Boolean,
   stringResources: StringResources,
   modifier: Modifier = Modifier
 ) {
-  val galleryOrMediaCount: @Composable () -> Unit = {
-    if (mediaSelectionCount > 0) {
-      MediaCountIndicator(
-        count = mediaSelectionCount,
-        onClick = { emitter(StandardCameraHudEvents.MediaSelectionClick) },
+  val orientation = LocalConfiguration.current.orientation
+
+  val currentEmitter by rememberUpdatedState(emitter)
+  val currentHasAudioPermission by rememberUpdatedState(hasAudioPermission)
+
+  val gallery: @Composable () -> Unit = remember {
+    movableContentOf {
+      GalleryThumbnailButton(onClick = { currentEmitter(StandardCameraHudEvents.GalleryClick) })
+    }
+  }
+
+  // isRecording/recordingProgress are passed as movable-content parameters so they are read fresh on
+  // every invocation; capturing them in the remembered lambda would freeze them at first composition.
+  val captureButton: @Composable (Boolean, Float) -> Unit = remember {
+    movableContentOf { isRecording, recordingProgress ->
+      CaptureButton(
+        isRecording = isRecording,
+        recordingProgress = recordingProgress,
+        onTap = { currentEmitter(StandardCameraHudEvents.PhotoCaptureTriggered) },
+        onLongPressStart = {
+          if (currentHasAudioPermission()) {
+            currentEmitter(StandardCameraHudEvents.VideoCaptureStarted)
+          } else {
+            currentEmitter(StandardCameraHudEvents.AudioPermissionRequired)
+          }
+        },
+        onLongPressEnd = { currentEmitter(StandardCameraHudEvents.VideoCaptureStopped) },
+        onZoomChange = { currentEmitter(StandardCameraHudEvents.SetZoomLevel(it)) }
+      )
+    }
+  }
+
+  when {
+    breakpoint is WindowBreakpoint.Small && orientation == Configuration.ORIENTATION_PORTRAIT -> {
+      HorizontalControlBar(
+        gallerySlot = gallery,
+        captureSlot = captureButton,
+        isRecording = isRecording,
+        recordingProgress = recordingProgress,
+        iconRotation = iconRotation,
+        stringResources = stringResources,
+        emitter = emitter,
+        modifier = modifier
+      )
+    }
+
+    else -> {
+      VerticalControlBar(
+        flashMode = flashMode,
+        gallerySlot = gallery,
+        captureSlot = captureButton,
+        isRecording = isRecording,
+        recordingProgress = recordingProgress,
+        stringResources = stringResources,
+        emitter = emitter,
+        modifier = modifier
+      )
+    }
+  }
+}
+
+@Composable
+private fun HorizontalControlBar(
+  gallerySlot: @Composable () -> Unit,
+  captureSlot: @Composable (Boolean, Float) -> Unit,
+  isRecording: Boolean,
+  recordingProgress: Float,
+  iconRotation: Float,
+  stringResources: StringResources,
+  emitter: (StandardCameraHudEvents) -> Unit,
+  modifier: Modifier
+) {
+  Box(
+    modifier = modifier
+      .fillMaxWidth()
+      .padding(bottom = 40.dp, start = 40.dp, end = 40.dp)
+  ) {
+    Box(modifier = Modifier.align(Alignment.CenterEnd).rotate(iconRotation)) {
+      CameraSwitchButton(
+        onClick = { emitter(StandardCameraHudEvents.SwitchCamera) },
         stringResources = stringResources
       )
-    } else {
-      GalleryThumbnailButton(onClick = { emitter(StandardCameraHudEvents.GalleryClick) })
+    }
+    Box(modifier = Modifier.align(Alignment.Center).rotate(iconRotation)) {
+      captureSlot(isRecording, recordingProgress)
+    }
+    Box(modifier = Modifier.align(Alignment.CenterStart).rotate(iconRotation)) {
+      gallerySlot()
     }
   }
+}
 
-  val captureButton: @Composable () -> Unit = {
-    CaptureButton(
-      isRecording = isRecording,
-      recordingProgress = recordingProgress,
-      onTap = { emitter(StandardCameraHudEvents.PhotoCaptureTriggered) },
-      onLongPressStart = {
-        if (hasAudioPermission()) {
-          emitter(StandardCameraHudEvents.VideoCaptureStarted)
-        } else {
-          emitter(StandardCameraHudEvents.AudioPermissionRequired)
-        }
-      },
-      onLongPressEnd = { emitter(StandardCameraHudEvents.VideoCaptureStopped) },
-      onZoomChange = { emitter(StandardCameraHudEvents.SetZoomLevel(it)) }
-    )
-  }
-
-  val cameraSwitchButton: @Composable () -> Unit = {
-    CameraSwitchButton(
-      onClick = { emitter(StandardCameraHudEvents.SwitchCamera) },
-      stringResources = stringResources
-    )
-  }
-
-  if (isLandscape) {
+@Composable
+private fun VerticalControlBar(
+  flashMode: FlashMode,
+  gallerySlot: @Composable () -> Unit,
+  captureSlot: @Composable (Boolean, Float) -> Unit,
+  isRecording: Boolean,
+  recordingProgress: Float,
+  stringResources: StringResources,
+  emitter: (StandardCameraHudEvents) -> Unit,
+  modifier: Modifier
+) {
+  Column(
+    horizontalAlignment = Alignment.CenterHorizontally,
+    modifier = modifier
+      .padding(vertical = 16.dp)
+      .fillMaxHeight()
+      .padding(end = 16.dp)
+  ) {
     Box(
-      modifier = modifier
-        .fillMaxHeight()
-        .padding(end = 16.dp, top = 40.dp, bottom = 40.dp)
+      contentAlignment = Alignment.BottomCenter,
+      modifier = Modifier
+        .weight(1f)
+        .padding(bottom = 40.dp)
     ) {
-      Box(modifier = Modifier.align(Alignment.TopCenter)) {
-        galleryOrMediaCount()
-      }
-      Box(modifier = Modifier.align(Alignment.Center)) {
-        captureButton()
-      }
-      Box(modifier = Modifier.align(Alignment.BottomCenter)) {
-        cameraSwitchButton()
-      }
+      FlashAndCameraTogglePill(
+        flashMode = flashMode,
+        emitter = emitter,
+        stringResources = stringResources
+      )
     }
-  } else {
+
+    captureSlot(isRecording, recordingProgress)
+
     Box(
-      modifier = modifier
-        .fillMaxWidth()
-        .padding(bottom = 16.dp, start = 40.dp, end = 40.dp)
+      contentAlignment = Alignment.TopCenter,
+      modifier = Modifier
+        .weight(1f)
+        .padding(top = 40.dp)
     ) {
-      Box(modifier = Modifier.align(Alignment.CenterStart)) {
-        cameraSwitchButton()
-      }
-      Box(modifier = Modifier.align(Alignment.Center)) {
-        captureButton()
-      }
-      Box(modifier = Modifier.align(Alignment.CenterEnd)) {
-        galleryOrMediaCount()
-      }
+      gallerySlot()
+    }
+  }
+}
+
+@Composable
+private fun FlashAndCameraTogglePill(
+  flashMode: FlashMode,
+  stringResources: StringResources,
+  emitter: (StandardCameraHudEvents) -> Unit
+) {
+  Column(
+    modifier = Modifier.background(
+      color = colorResource(R.color.CameraHud_control_background),
+      shape = RoundedCornerShape(50)
+    )
+  ) {
+    IconButton(
+      onClick = { emitter(StandardCameraHudEvents.ToggleFlash) }
+    ) {
+      FlashToggleButtonIcon(
+        flashMode = flashMode,
+        stringResources = stringResources
+      )
+    }
+
+    IconButton(
+      onClick = { emitter(StandardCameraHudEvents.SwitchCamera) }
+    ) {
+      Icon(
+        imageVector = SignalIcons.CameraSwitch.imageVector,
+        contentDescription = if (stringResources.switchCamera != 0) stringResource(stringResources.switchCamera) else null,
+        tint = Color.White
+      )
     }
   }
 }
@@ -382,14 +516,14 @@ private fun RecordingDurationDisplay(
 
   Box(
     modifier = modifier
-      .background(Color.Black.copy(alpha = 0.5f), shape = CircleShape)
-      .padding(horizontal = 16.dp, vertical = 8.dp)
+      .background(colorResource(R.color.CameraHud_control_red_background), shape = CircleShape)
+      .padding(horizontal = 16.dp, vertical = 4.dp)
   ) {
     Text(
       text = timeText,
       color = Color.White,
-      fontSize = 20.sp,
-      fontWeight = FontWeight.Bold
+      fontSize = 18.sp,
+      fontWeight = FontWeight.Medium
     )
   }
 }
@@ -410,14 +544,13 @@ private fun CameraSwitchButton(
     onClick = onClick,
     modifier = modifier
       .size(52.dp)
-      .border(2.dp, Color.White, CircleShape)
-      .background(MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.38f), shape = CircleShape)
+      .background(colorResource(R.color.CameraHud_control_background), shape = CircleShape)
   ) {
     Icon(
-      painter = SignalIcons.CameraSwitch.painter,
+      imageVector = SignalIcons.CameraSwitch.imageVector,
       contentDescription = contentDescription,
       tint = Color.White,
-      modifier = Modifier.size(28.dp)
+      modifier = Modifier.size(24.dp)
     )
   }
 }
@@ -428,6 +561,24 @@ private fun FlashToggleButton(
   onToggle: () -> Unit,
   stringResources: StringResources,
   modifier: Modifier = Modifier
+) {
+  IconButton(
+    onClick = onToggle,
+    modifier = modifier
+      .size(48.dp)
+      .background(colorResource(R.color.CameraHud_control_background), shape = CircleShape)
+  ) {
+    FlashToggleButtonIcon(
+      flashMode = flashMode,
+      stringResources = stringResources
+    )
+  }
+}
+
+@Composable
+private fun FlashToggleButtonIcon(
+  flashMode: FlashMode,
+  stringResources: StringResources
 ) {
   val icon = when (flashMode) {
     FlashMode.Off -> SignalIcons.FlashOff
@@ -447,85 +598,15 @@ private fun FlashToggleButton(
     null
   }
 
-  IconButton(
-    onClick = onToggle,
-    modifier = modifier
-      .size(48.dp)
-      .background(Color.Black.copy(alpha = 0.5f), shape = CircleShape)
-  ) {
-    Icon(
-      painter = icon.painter,
-      contentDescription = contentDescription,
-      tint = Color.White,
-      modifier = Modifier.size(24.dp)
-    )
-  }
+  Icon(
+    painter = icon.painter,
+    contentDescription = contentDescription,
+    tint = Color.White,
+    modifier = Modifier.size(24.dp)
+  )
 }
 
-/** Signal ultramarine blue color for the count badge */
-private val UltramarineBlue = Color(0xFF2C6BED)
-
-/**
- * Media count indicator that shows the number of selected media items.
- * Displays a pill-shaped button with the count in a blue badge and a chevron icon.
- */
-@Composable
-private fun MediaCountIndicator(
-  count: Int,
-  onClick: () -> Unit,
-  stringResources: StringResources,
-  modifier: Modifier = Modifier
-) {
-  val contentDescription = if (stringResources.send != 0) {
-    stringResource(stringResources.send)
-  } else {
-    null
-  }
-
-  Row(
-    modifier = modifier
-      .height(44.dp)
-      .background(
-        color = MaterialTheme.colorScheme.surfaceVariant,
-        shape = RoundedCornerShape(32.dp)
-      )
-      .clip(RoundedCornerShape(32.dp))
-      .clickable(onClick = onClick)
-      .padding(horizontal = 12.dp),
-    verticalAlignment = Alignment.CenterVertically
-  ) {
-    val size = with(LocalDensity.current) {
-      22.sp.toDp()
-    }
-    Box(
-      modifier = Modifier
-        .background(
-          color = UltramarineBlue,
-          shape = CircleShape
-        )
-        .size(size),
-      contentAlignment = Alignment.Center
-    ) {
-      Text(
-        text = if (count > 99) "99+" else count.toString(),
-        color = Color.White,
-        fontSize = 13.sp,
-        fontWeight = FontWeight.Medium
-      )
-    }
-
-    Icon(
-      painter = SignalIcons.ChevronRight.painter,
-      contentDescription = contentDescription,
-      tint = MaterialTheme.colorScheme.onSurface,
-      modifier = Modifier
-        .padding(start = 3.dp)
-        .size(24.dp)
-    )
-  }
-}
-
-@Preview(name = "Default", showBackground = true, backgroundColor = 0xFF444444, widthDp = 360, heightDp = 640)
+@AllNightPreviews
 @Composable
 private fun StandardCameraHudPreview() {
   Box(modifier = Modifier.fillMaxSize()) {
@@ -552,28 +633,9 @@ private fun StandardCameraHudRecordingPreview() {
   }
 }
 
-@Preview(name = "With Media Selected", showBackground = true, backgroundColor = 0xFF444444, widthDp = 360, heightDp = 640)
+@Preview(name = "With Close Button", showBackground = true, backgroundColor = 0xFF444444, widthDp = 360, heightDp = 640)
 @Composable
 private fun StandardCameraHudWithMediaPreview() {
-  Box(modifier = Modifier.fillMaxSize()) {
-    StandardCameraHudContent(
-      state = CameraScreenState(),
-      mediaSelectionCount = 1,
-      emitter = {}
-    )
-  }
-}
-
-@Preview(
-  name = "Landscape",
-  showBackground = true,
-  backgroundColor = 0xFF444444,
-  widthDp = 640,
-  heightDp = 360,
-  device = "spec:width=640dp,height=360dp,orientation=landscape"
-)
-@Composable
-private fun StandardCameraHudLandscapePreview() {
   Box(modifier = Modifier.fillMaxSize()) {
     StandardCameraHudContent(
       state = CameraScreenState(),

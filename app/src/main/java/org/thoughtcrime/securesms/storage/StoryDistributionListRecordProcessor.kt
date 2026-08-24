@@ -84,7 +84,12 @@ class StoryDistributionListRecordProcessor : DefaultStorageRecordProcessor<Signa
         throw InvalidGroupTypeException()
       }
 
-      return StorageSyncModels.localToRemoteRecord(recordForSync).let { it.proto.storyDistributionList!!.toSignalStoryDistributionListRecord(it.id) }.asOptional()
+      val storageId = recordForSync.storageId ?: run {
+        Log.w(TAG, "Distribution list was missing a storage id, generating one. It was likely aged off locally while the remote still had it.")
+        keyGenerator.generate().also { SignalDatabase.recipients.updateStorageId(matching, it) }
+      }
+
+      return StorageSyncModels.localToRemoteRecord(recordForSync, storageId).let { it.proto.storyDistributionList!!.toSignalStoryDistributionListRecord(it.id) }.asOptional()
     } else {
       Log.d(TAG, "Could not find a matching record. Returning an empty.")
       return Optional.empty()

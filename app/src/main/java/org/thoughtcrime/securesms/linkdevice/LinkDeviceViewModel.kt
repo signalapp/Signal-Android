@@ -87,11 +87,13 @@ class LinkDeviceViewModel : ViewModel() {
       val success = LinkDeviceRepository.removeDevice(device.id)
       if (success) {
         loadDevices()
-        _state.value = _state.value.copy(
-          oneTimeEvent = OneTimeEvent.ToastUnlinked(device.name ?: ""),
-          dialogState = DialogState.None,
-          deviceToRemove = null
-        )
+        _state.update {
+          it.copy(
+            oneTimeEvent = OneTimeEvent.ToastUnlinked(device.name ?: ""),
+            dialogState = DialogState.None,
+            deviceToRemove = null
+          )
+        }
       } else {
         _state.update {
           it.copy(
@@ -104,24 +106,23 @@ class LinkDeviceViewModel : ViewModel() {
   }
 
   private fun loadDevices(initialLoad: Boolean = false) {
-    _state.value = _state.value.copy(
-      deviceListLoading = true
-    )
+    _state.update { it.copy(deviceListLoading = true) }
 
     viewModelScope.launch(Dispatchers.IO) {
       val devices = LinkDeviceRepository.loadDevices()
       if (devices == null) {
-        _state.value = _state.value.copy(
-          oneTimeEvent = OneTimeEvent.ToastNetworkFailed,
-          deviceListLoading = false
-        )
+        _state.update {
+          it.copy(
+            oneTimeEvent = OneTimeEvent.ToastNetworkFailed,
+            deviceListLoading = false
+          )
+        }
       } else {
         if (initialLoad) {
           checkForNewDevice(devices)
         }
         _state.update {
           it.copy(
-            oneTimeEvent = OneTimeEvent.None,
             devices = devices,
             deviceListLoading = false
           )
@@ -140,9 +141,7 @@ class LinkDeviceViewModel : ViewModel() {
         delay(5.seconds)
         val devices = LinkDeviceRepository.loadDevices()
         if (devices != null) {
-          _state.value = _state.value.copy(
-            devices = devices
-          )
+          _state.update { it.copy(devices = devices) }
         }
       }
     }
@@ -150,6 +149,10 @@ class LinkDeviceViewModel : ViewModel() {
 
   fun stopExistingPolling() {
     pollJob?.cancel()
+  }
+
+  fun onDeviceLimitReached() {
+    _state.update { it.copy(oneTimeEvent = OneTimeEvent.SnackbarDeviceLimitReached) }
   }
 
   fun markQrEducationSheetSeen() {
@@ -168,9 +171,15 @@ class LinkDeviceViewModel : ViewModel() {
 
     val uri = Uri.parse(url)
     if (LinkDeviceRepository.isValidQr(uri)) {
+      val capabilities = uri.getCapabilities()
+      val qrCodeState = when {
+        Capability.Numberless !in capabilities && SignalStore.account.pni == null -> QrCodeState.OUTDATED_DEVICE
+        Capability.LinkAndSync in capabilities -> QrCodeState.VALID_WITH_SYNC
+        else -> QrCodeState.VALID_WITHOUT_SYNC
+      }
       _state.update {
         it.copy(
-          qrCodeState = if (uri.supportsLinkAndSync()) QrCodeState.VALID_WITH_SYNC else QrCodeState.VALID_WITHOUT_SYNC,
+          qrCodeState = qrCodeState,
           linkUri = uri
         )
       }
@@ -212,7 +221,7 @@ class LinkDeviceViewModel : ViewModel() {
       Log.i(TAG, "Adding device with sync.")
       addDeviceWithSync(linkUri)
     } else {
-      Log.i(TAG, "Adding device without sync. (uri: ${linkUri.supportsLinkAndSync()})")
+      Log.i(TAG, "Adding device without sync. (backup5: ${Capability.LinkAndSync in linkUri.getCapabilities()})")
       addDeviceWithoutSync(linkUri)
     }
   }
@@ -410,9 +419,17 @@ class LinkDeviceViewModel : ViewModel() {
     LinkedDeviceInactiveCheckJob.enqueue()
   }
 
-  private fun Uri.supportsLinkAndSync(): Boolean {
-    val capabilities = this.getQueryParameter("capabilities")?.split(",")?.toSet() ?: emptySet()
-    return "backup5" in capabilities
+  private fun Uri.getCapabilities(): Set<Capability> {
+    return this.getQueryParameter("capabilities")
+      ?.split(",")
+      ?.mapNotNull { value -> Capability.entries.firstOrNull { it.value == value } }
+      ?.toSet()
+      ?: emptySet()
+  }
+
+  private enum class Capability(val value: String) {
+    LinkAndSync("backup5"),
+    Numberless("nopni")
   }
 
   fun onSyncErrorIgnored() = viewModelScope.launch(Dispatchers.IO) {

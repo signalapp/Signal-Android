@@ -87,6 +87,12 @@ sealed class ContactSearchData(val contactSearchKey: ContactSearchKey) {
   class Expand(val sectionKey: ContactSearchConfiguration.SectionKey) : ContactSearchData(ContactSearchKey.Expand(sectionKey))
 
   /**
+   * A row indicating that the section is still being queried. Sections are queried in parallel and
+   * rendered as they finish, so this stands in for a section whose results have not arrived yet.
+   */
+  data class SectionLoading(val sectionKey: ContactSearchConfiguration.SectionKey) : ContactSearchData(ContactSearchKey.SectionLoading(sectionKey))
+
+  /**
    * A row representing arbitrary data tied to a specific section.
    */
   class Arbitrary(val type: String, val data: Bundle? = null) : ContactSearchData(ContactSearchKey.Arbitrary(type))

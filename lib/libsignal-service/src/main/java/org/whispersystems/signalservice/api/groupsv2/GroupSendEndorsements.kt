@@ -11,6 +11,7 @@ import org.signal.libsignal.zkgroup.groups.GroupSecretParams
 import org.signal.libsignal.zkgroup.groupsend.GroupSendEndorsement
 import org.signal.libsignal.zkgroup.groupsend.GroupSendFullToken
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
+import java.io.IOException
 import java.time.Instant
 
 /**
@@ -24,14 +25,13 @@ data class GroupSendEndorsements(
 ) {
 
   private val expiration: Instant by lazy { Instant.ofEpochMilli(expirationMs) }
-  private val combinedEndorsement: GroupSendEndorsement by lazy { GroupSendEndorsement.combine(endorsements.values) }
 
-  fun toFullToken(): GroupSendFullToken {
-    return combinedEndorsement.toFullToken(groupSecretParams, expiration)
-  }
-
-  fun serialize(): ByteArray {
-    return toFullToken().serialize()
+  @Throws(IOException::class)
+  fun toFullToken(addresses: List<SignalServiceAddress>): GroupSendFullToken {
+    val combined = GroupSendEndorsement.combine(
+      addresses.map { endorsements[it.serviceId] ?: throw IOException("Missing group send endorsement for a group-send recipient") }
+    )
+    return combined.toFullToken(groupSecretParams, expiration)
   }
 
   fun forIndividuals(addresses: List<SignalServiceAddress>): List<GroupSendFullToken?> {

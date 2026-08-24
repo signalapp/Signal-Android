@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <!-- Emoji category headers, shown in the emoji keyboard and the react-with-any-emoji sheet -->
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Təbəssüm və insanlar</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Təbiət</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Ərzaq</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Fəaliyyətlər</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Məkanlar</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Obyektlər</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Simvollar</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Bayraqlar</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">İfadələr</string>
+</resources>

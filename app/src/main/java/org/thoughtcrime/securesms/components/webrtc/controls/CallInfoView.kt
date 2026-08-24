@@ -248,7 +248,7 @@ private fun CallInfo(
       }
     }
 
-    if (!participantsState.inCallLobby || participantsState.isOngoing()) {
+    if (controlAndInfoState.callLink == null || !participantsState.inCallLobby || participantsState.isOngoing()) {
       item {
         Box(
           modifier = Modifier

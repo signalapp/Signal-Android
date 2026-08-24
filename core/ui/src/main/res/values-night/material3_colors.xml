@@ -65,4 +65,5 @@
     <color name="signal_colorSurfaceVariant_16_no_alpha">#3F4249</color>
     <color name="signal_colorSurfaceVariant_32_no_alpha">#5D5E62</color>
 
+    <color name="reminder_background">#26221D</color>
 </resources>

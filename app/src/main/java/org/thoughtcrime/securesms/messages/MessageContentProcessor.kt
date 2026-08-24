@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.hasGroupContex
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.hasSignedGroupChange
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.hasStarted
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.isExpirationUpdate
+import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.isGroupV2Update
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.isMediaMessage
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.isValid
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.signedGroupChange
@@ -197,7 +198,7 @@ open class MessageContentProcessor(private val context: Context) {
         val isTextMessage = message.body != null
         val isMediaMessage = message.isMediaMessage
         val isExpireMessage = message.isExpirationUpdate
-        val isGv2Update = message.hasSignedGroupChange
+        val isGv2Update = message.isGroupV2Update
         val isContentMessage = !isGv2Update && !isExpireMessage && (isTextMessage || isMediaMessage)
         val isGroupActive = threadRecipient.isActiveGroup
 
@@ -247,10 +248,11 @@ open class MessageContentProcessor(private val context: Context) {
       senderRecipient: Recipient,
       groupSecretParams: GroupSecretParams? = null,
       serverGuid: String? = null,
-      batchCache: BatchCache? = null
+      batchCache: BatchCache? = null,
+      receivedTime: Long? = null
     ): Gv2PreProcessResult {
       val preUpdateGroupRecord = batchCache?.groupRecordCache[groupId] ?: SignalDatabase.groups.getGroup(groupId)
-      val groupUpdateResult = updateGv2GroupFromServerOrP2PChange(context, timestamp, groupV2, preUpdateGroupRecord, groupSecretParams, serverGuid)
+      val groupUpdateResult = updateGv2GroupFromServerOrP2PChange(context, timestamp, groupV2, preUpdateGroupRecord, groupSecretParams, serverGuid, receivedTime)
       if (groupUpdateResult == null) {
         log(timestamp, "Ignoring GV2 message for group we are not currently in $groupId")
         return Gv2PreProcessResult.IGNORE
@@ -303,13 +305,14 @@ open class MessageContentProcessor(private val context: Context) {
       groupV2: GroupContextV2,
       localRecord: Optional<GroupRecord>,
       groupSecretParams: GroupSecretParams? = null,
-      serverGuid: String? = null
+      serverGuid: String? = null,
+      receivedTime: Long? = null
     ): GroupUpdateResult? {
       return try {
         val signedGroupChange: ByteArray? = if (groupV2.hasSignedGroupChange) groupV2.signedGroupChange else null
         val updatedTimestamp = if (signedGroupChange != null) timestamp else timestamp + 1
         if (groupV2.revision != null) {
-          GroupManager.updateGroupFromServer(context, groupV2.groupMasterKey, localRecord, groupSecretParams, groupV2.revision!!, updatedTimestamp, signedGroupChange, serverGuid)
+          GroupManager.updateGroupFromServer(context, groupV2.groupMasterKey, localRecord, groupSecretParams, groupV2.revision!!, updatedTimestamp, signedGroupChange, serverGuid, receivedTime)
         } else {
           warn(timestamp, "Ignore group update message without a revision")
           null
@@ -496,7 +499,8 @@ open class MessageContentProcessor(private val context: Context) {
           envelope,
           content,
           metadata,
-          if (processingEarlyContent) null else EarlyMessageCacheEntry(envelope, content, metadata, serverDeliveredTimestamp)
+          if (processingEarlyContent) null else EarlyMessageCacheEntry(envelope, content, metadata, serverDeliveredTimestamp),
+          batchCache
         )
       }
 
@@ -551,7 +555,8 @@ open class MessageContentProcessor(private val context: Context) {
           envelope,
           content,
           metadata,
-          if (processingEarlyContent) null else EarlyMessageCacheEntry(envelope, content, metadata, serverDeliveredTimestamp)
+          if (processingEarlyContent) null else EarlyMessageCacheEntry(envelope, content, metadata, serverDeliveredTimestamp),
+          batchCache
         )
       }
 

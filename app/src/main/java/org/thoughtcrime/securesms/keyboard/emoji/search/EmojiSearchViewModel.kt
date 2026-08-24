@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import org.thoughtcrime.securesms.components.emoji.EmojiPageModel
+import org.signal.emoji.EmojiPageModel
 import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel
 import org.thoughtcrime.securesms.keyboard.emoji.toMappingModels
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel

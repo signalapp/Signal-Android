@@ -775,7 +775,7 @@ private enum class CallQualitySheetNavEntry {
 enum class CallQualityIssueCategory(
   @param:DrawableRes val icon: Int
 ) {
-  AUDIO(icon = R.drawable.symbol_speaker_24),
+  AUDIO(icon = CoreUiR.drawable.symbol_speaker_24),
   VIDEO(icon = R.drawable.symbol_video_24),
   CALL_DROPPED(icon = R.drawable.symbol_x_circle_24),
   SOMETHING_ELSE(icon = R.drawable.symbol_error_circle_24)

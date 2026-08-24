@@ -55,6 +55,7 @@ class MiscellaneousValues internal constructor(store: KeyValueStore) : SignalSto
     private const val LAST_SYNC_MESSAGE_SEEN_TIME_MS = "misc.last_sync_message_seen_time"
     private const val LAST_APPLIED_PNI_CHANGE_SERVER_TIMESTAMP = "misc.last_applied_pni_change_server_timestamp"
     private const val LAST_MISSING_PLAY_SERVICES_FCM_VERIFICATION_TIME = "misc.last_missing_play_services_fcm_verification_time"
+    private const val LAST_PROCESSED_SHARE_DATA_TIMESTAMP = "misc.last_processed_share_data_timestamp"
   }
 
   public override fun onFirstEverAppLaunch() {
@@ -360,4 +361,14 @@ class MiscellaneousValues internal constructor(store: KeyValueStore) : SignalSto
    * The last time we tried to get an FCM token for a user reporting missing Play Services.
    */
   var lastMissingPlayServicesFcmVerificationTime: Long by longValue(LAST_MISSING_PLAY_SERVICES_FCM_VERIFICATION_TIME, 0)
+
+  /**
+   * High-water mark of the most recently consumed share payload, as set by
+   * [org.thoughtcrime.securesms.conversation.ConversationArgs.shareDataTimestamp]. Any share whose timestamp is at or
+   * below this has already been handed off to the conversation and must never be replayed.
+   *
+   * This has to outlive the navigation entry carrying the payload, which is persisted and can be restored long after
+   * the activity that consumed it is gone.
+   */
+  var lastProcessedShareDataTimestamp: Long by longValue(LAST_PROCESSED_SHARE_DATA_TIMESTAMP, -1)
 }

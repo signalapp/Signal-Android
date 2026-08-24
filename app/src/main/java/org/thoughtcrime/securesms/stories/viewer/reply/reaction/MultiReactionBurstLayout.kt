@@ -9,8 +9,8 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.FrameLayout
 import androidx.core.view.children
+import org.signal.emoji.EmojiUtil
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.emoji.EmojiUtil
 import org.thoughtcrime.securesms.events.GroupCallReactionEvent
 import kotlin.time.Duration.Companion.seconds
 

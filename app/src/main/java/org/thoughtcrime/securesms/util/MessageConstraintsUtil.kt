@@ -108,12 +108,16 @@ object MessageConstraintsUtil {
       !message.hasGiftBadge() &&
       !message.isPaymentNotification &&
       !message.isPaymentTombstone &&
-      (currentTime - message.dateSent < SEND_THRESHOLD || message.toRecipient.isSelf)
+      (isValidRemoteDeleteSend(message.dateSent, currentTime) || message.toRecipient.isSelf)
+  }
+
+  @JvmStatic
+  fun isValidRemoteDeleteSend(dateSent: Long, currentTime: Long): Boolean {
+    return currentTime - dateSent < SEND_THRESHOLD
   }
 
   fun isValidAdminDeleteSend(message: MessageRecord, currentTime: Long, isAdmin: Boolean, isResend: Boolean): Boolean {
-    return RemoteConfig.sendAdminDelete &&
-      isAdmin &&
+    return isAdmin &&
       !message.isUpdate &&
       message.isPush &&
       (!message.toRecipient.isGroup || message.toRecipient.isActiveGroup) &&

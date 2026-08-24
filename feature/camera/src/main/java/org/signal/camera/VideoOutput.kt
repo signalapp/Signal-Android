@@ -30,10 +30,12 @@ sealed class VideoCaptureResult {
    * Video was successfully captured and saved.
    * @param outputFile The file where the video was saved (for FileOutput)
    * @param fileDescriptor The file descriptor used (for FileDescriptorOutput)
+   * @param durationMs How long the recording ran, as reported by the recorder.
    */
   data class Success(
     val outputFile: File? = null,
-    val fileDescriptor: ParcelFileDescriptor? = null
+    val fileDescriptor: ParcelFileDescriptor? = null,
+    val durationMs: Long = 0
   ) : VideoCaptureResult()
 
   /**

@@ -46,7 +46,6 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
@@ -330,9 +329,9 @@ public class SearchRepository {
       return styledBody;
     }
 
-    String lowerBody  = styledBody.toString().toLowerCase(Locale.ROOT);
+    String lowerBody  = toLowerCasePreservingLength(styledBody);
     for (String query : queries) {
-      int foundIndex = lowerBody.indexOf(query.toLowerCase(Locale.ROOT));
+      int foundIndex = lowerBody.indexOf(toLowerCasePreservingLength(query));
       if (foundIndex != -1) {
         int snippetStart = Math.max(0, Math.max(TextUtils.lastIndexOf(styledBody,' ', foundIndex - 5) + 1, foundIndex - 15));
         int lastSpace    = TextUtils.indexOf(styledBody, ' ', foundIndex + 30);
@@ -353,6 +352,21 @@ public class SearchRepository {
 
     return new SpannableStringBuilder().append(styledBody.subSequence(0, snippetEnd))
                                        .append(SNIPPET_WRAP);
+  }
+
+  /**
+   * Lowercases each UTF-16 code unit individually so the result has the exact same length as the
+   * input. {@code String.toLowerCase} can change the number of code units for certain
+   * characters (e.g. {@code İ}, U+0130, folds to two code units), which would desynchronize match
+   * indices computed on the lowercased text from the positions they are later applied to on the
+   * original {@code styledBody}, producing invalid {@code subSequence} ranges that crash search.
+   */
+  private static @NonNull String toLowerCasePreservingLength(@NonNull CharSequence input) {
+    StringBuilder builder = new StringBuilder(input.length());
+    for (int i = 0; i < input.length(); i++) {
+      builder.append(Character.toLowerCase(input.charAt(i)));
+    }
+    return builder.toString();
   }
 
   private @NonNull <T> List<T> readToList(@Nullable Cursor cursor, @NonNull ModelBuilder<T> builder) {

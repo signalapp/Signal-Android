@@ -398,7 +398,7 @@ class ApiPlugin : Plugin {
       }
 
       SignalDatabase.recipients.setProfileKeyIfAbsent(recipientId, ProfileKeyUtil.createNew())
-      SignalDatabase.recipients.setCapabilities(recipientId, SignalServiceProfile.Capabilities(true, true, true))
+      SignalDatabase.recipients.setCapabilities(recipientId, SignalServiceProfile.Capabilities(true, true, true, false))
       SignalDatabase.recipients.setProfileSharing(recipientId, profileSharing)
 
       if (registered) {
@@ -422,7 +422,7 @@ class ApiPlugin : Plugin {
       }
 
       if (blocked) {
-        SignalDatabase.recipients.setBlocked(recipientId, true)
+        SignalDatabase.recipients.setBlocked(recipientId, true, 0)
       }
 
       if (hidden) {
@@ -484,7 +484,7 @@ class ApiPlugin : Plugin {
       val groupRecipientId = SignalDatabase.recipients.getOrInsertFromGroupId(groupId)
 
       if (blocked) {
-        SignalDatabase.recipients.setBlocked(groupRecipientId, true)
+        SignalDatabase.recipients.setBlocked(groupRecipientId, true, 0)
       }
       SignalDatabase.recipients.setProfileSharing(groupRecipientId, profileSharing)
 

@@ -11,7 +11,9 @@ import android.view.WindowManager
 import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -43,6 +45,7 @@ import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.ComposeDialogFragment
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.ui.enableEdgeToEdge
 import org.signal.core.ui.rememberIsSplitPane
 import org.signal.core.util.BreakIteratorCompat
 import org.thoughtcrime.securesms.R
@@ -68,6 +71,7 @@ class EditCallLinkNameDialogFragment : ComposeDialogFragment() {
   override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
     val dialog = super.onCreateDialog(savedInstanceState)
     dialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+    dialog.window?.enableEdgeToEdge()
     return dialog
   }
 
@@ -143,7 +147,12 @@ private fun EditCallLinkNameScreen(
     val focusRequester = remember { FocusRequester() }
     val breakIterator = remember { BreakIteratorCompat.getInstance() }
 
-    Surface(modifier = Modifier.padding(paddingValues)) {
+    Surface(
+      modifier = Modifier
+        .padding(paddingValues)
+        .consumeWindowInsets(paddingValues)
+        .imePadding()
+    ) {
       Column(
         modifier = Modifier
           .padding(

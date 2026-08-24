@@ -79,6 +79,17 @@ class SearchRepositoryTest {
   }
 
   @Test
+  fun makeSnippetDoesNotCrashWhenCaseFoldingChangesLength() {
+    // İ (U+0130) folds to two UTF-16 code units when lowercased, which previously desynchronized
+    // the match index from styledBody and produced an inverted subSequence range that crashed.
+    val body = "İ".repeat(60) + " needle x"
+
+    val snippet = SearchRepository.makeSnippet(listOf("needle"), body).toString()
+
+    assertThat(snippet).contains("needle")
+  }
+
+  @Test
   fun makeSnippetFallbackReturnsFullBodyUnderMaxSize() {
     val body = "0123456789 0123456789 0123456789 0123456789 0123456789 012"
 

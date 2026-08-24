@@ -6,7 +6,7 @@
 package org.signal.core.ui.compose
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
@@ -73,6 +73,8 @@ object IconButtons {
     enabled: Boolean = true,
     colors: IconButtonColors = iconButtonColors(),
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
+    onLongClick: (() -> Unit)? = null,
+    onLongClickLabel: String? = null,
     content: @Composable () -> Unit
   ) {
     Box(
@@ -81,8 +83,10 @@ object IconButtons {
         .size(size)
         .clip(shape)
         .background(color = colors.containerColor(enabled).value)
-        .clickable(
+        .combinedClickable(
           onClick = onClick,
+          onLongClick = onLongClick,
+          onLongClickLabel = onLongClickLabel,
           enabled = enabled,
           role = Role.Button,
           interactionSource = interactionSource,

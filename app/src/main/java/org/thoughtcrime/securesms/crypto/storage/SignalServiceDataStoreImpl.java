@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.crypto.storage;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.whispersystems.signalservice.api.SignalServiceDataStore;
@@ -16,7 +17,7 @@ public final class SignalServiceDataStoreImpl implements SignalServiceDataStore 
 
   public SignalServiceDataStoreImpl(@NonNull Context context,
                                     @NonNull SignalServiceAccountDataStoreImpl aciStore,
-                                    @NonNull SignalServiceAccountDataStoreImpl pniStore)
+                                    @Nullable SignalServiceAccountDataStoreImpl pniStore)
   {
     this.context  = context;
     this.aciStore = aciStore;
@@ -28,7 +29,7 @@ public final class SignalServiceDataStoreImpl implements SignalServiceDataStore 
     if (accountIdentifier.equals(SignalStore.account().getAci())) {
       return aciStore;
     } else if (accountIdentifier.equals(SignalStore.account().getPni())) {
-      return pniStore;
+      return pni();
     } else {
       throw new IllegalArgumentException("No matching store found for " + accountIdentifier);
     }
@@ -40,7 +41,15 @@ public final class SignalServiceDataStoreImpl implements SignalServiceDataStore 
   }
 
   @Override
-  public SignalServiceAccountDataStoreImpl pni() {
+  public @NonNull SignalServiceAccountDataStoreImpl pni() {
+    if (pniStore == null) {
+      throw new IllegalStateException("No PNI store! Account has no PNI. Use pniOrNull() on paths that tolerate a phone-number-less account.");
+    }
+    return pniStore;
+  }
+
+  @Override
+  public @Nullable SignalServiceAccountDataStoreImpl pniOrNull() {
     return pniStore;
   }
 

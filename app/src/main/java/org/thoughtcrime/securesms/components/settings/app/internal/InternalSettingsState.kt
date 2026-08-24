@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.components.settings.app.internal
 
+import org.signal.emoji.EmojiFiles
 import org.signal.ringrtc.CallManager
-import org.thoughtcrime.securesms.emoji.EmojiFiles
 
 data class InternalSettingsState(
   val seeMoreUserDetails: Boolean,
@@ -12,13 +12,20 @@ data class InternalSettingsState(
   val allowCensorshipSetting: Boolean,
   val callingServer: String,
   val callingDataMode: CallManager.DataMode,
-  val callingDisableTelecom: Boolean,
+  val callingUseTelecom: Boolean,
   val callingSetAudioConfig: Boolean,
   val callingUseOboeAdm: Boolean,
   val callingUseSoftwareAec: Boolean,
   val callingUseSoftwareNs: Boolean,
   val callingUseInputLowLatency: Boolean,
   val callingUseInputVoiceComm: Boolean,
+  val callingSetVideoConfig: Boolean,
+  val callingUseHardwareVp9Encode: Boolean,
+  val callingUseHardwareVp9Decode: Boolean,
+  val callingUseSoftwareVp9Encode: Boolean,
+  val callingUseSoftwareVp9Decode: Boolean,
+  val callingEnableSvc: Boolean,
+  val callingStatsIntervalSecs: Int,
   val useBuiltInEmojiSet: Boolean,
   val emojiVersion: EmojiFiles.Version?,
   val removeSenderKeyMinimium: Boolean,
@@ -30,7 +37,6 @@ data class InternalSettingsState(
   val hasPendingOneTimeDonation: Boolean,
   val forceSplitPane: Boolean,
   val forceSinglePane: Boolean,
-  val useNewMediaActivity: Boolean,
   val disableInternalUser: Boolean,
   val searchQuery: String = ""
 )

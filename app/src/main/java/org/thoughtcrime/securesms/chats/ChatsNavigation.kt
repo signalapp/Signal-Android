@@ -8,8 +8,6 @@ package org.thoughtcrime.securesms.chats
 import android.os.Bundle
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.navigationBarsPadding
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -32,6 +30,7 @@ import kotlinx.coroutines.launch
 import org.signal.core.ui.navigation.TransitionSpecs
 import org.thoughtcrime.securesms.MainNavigator
 import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsNavHostFragment
+import org.thoughtcrime.securesms.compose.AndroidNavHostFragment
 import org.thoughtcrime.securesms.compose.FragmentBackHandler
 import org.thoughtcrime.securesms.compose.FragmentBackPressedState
 import org.thoughtcrime.securesms.conversation.ConversationIntents
@@ -58,7 +57,9 @@ fun EntryProviderScope<NavKey>.chatsNavEntries(
     MessageDetailsEntry(route)
   }
 
-  entry<MainNavigationDetailLocation.Chats.ConversationSettings> { route ->
+  entry<MainNavigationDetailLocation.Chats.ConversationSettings>(
+    metadata = TransitionSpecs.FadeScale.metadata
+  ) { route ->
     ConversationSettingsEntry(route)
   }
 }
@@ -124,8 +125,6 @@ private fun MessageDetailsEntry(route: MainNavigationDetailLocation.Chats.Messag
     modifier = Modifier
       .fillMaxSize()
       .background(MaterialTheme.colorScheme.background)
-      .statusBarsPadding()
-      .navigationBarsPadding()
   )
 }
 
@@ -145,15 +144,13 @@ private fun ConversationSettingsEntry(route: MainNavigationDetailLocation.Chats.
     val backPressedState = remember { FragmentBackPressedState() }
     FragmentBackHandler(backPressedState)
 
-    AndroidFragment(
+    AndroidNavHostFragment(
       clazz = ConversationSettingsNavHostFragment::class.java,
       fragmentState = fragmentState,
       arguments = args,
       modifier = Modifier
         .fillMaxSize()
         .background(MaterialTheme.colorScheme.background)
-        .statusBarsPadding()
-        .navigationBarsPadding()
     ) { fragment ->
       backPressedState.attach(fragment)
     }

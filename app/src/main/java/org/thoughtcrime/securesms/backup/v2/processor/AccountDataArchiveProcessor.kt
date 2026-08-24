@@ -275,7 +275,7 @@ object AccountDataArchiveProcessor {
     SignalStore.story.isFeatureDisabled = settings.storiesDisabled
     SignalStore.story.userHasSeenGroupStoryEducationSheet = settings.hasSeenGroupStoryEducationSheet
     SignalStore.story.viewedReceiptsEnabled = settings.storyViewReceiptsEnabled ?: settings.readReceipts
-    SignalStore.backup.optimizeStorage = settings.optimizeOnDeviceStorage
+    SignalStore.backup.optimizeStorage = !importState.backupMode.isLinkAndSync && settings.optimizeOnDeviceStorage
     SignalStore.backup.backupTier = MessageBackupTier.fromBackupLevel(settings.backupTier)
     SignalStore.settings.sentMediaQuality = settings.defaultSentMediaQuality.toLocalSentMediaQuality()
     SignalStore.settings.setTheme(settings.appTheme.toLocalTheme())

@@ -40,6 +40,9 @@ class DatabaseAttachment : Attachment {
   @JvmField
   val archiveTransferState: AttachmentTable.ArchiveTransferState
 
+  @JvmField
+  val archiveThumbnailTransferState: AttachmentTable.ArchiveTransferState
+
   /** Metadata for this attachment, if null, no attempt was made to load the metadata and does not imply there is none */
   @JvmField
   val metadata: AttachmentMetadata?
@@ -80,6 +83,7 @@ class DatabaseAttachment : Attachment {
     archiveCdn: Int?,
     thumbnailRestoreState: AttachmentTable.ThumbnailRestoreState,
     archiveTransferState: AttachmentTable.ArchiveTransferState,
+    archiveThumbnailTransferState: AttachmentTable.ArchiveTransferState,
     uuid: UUID?,
     quoteTargetContentType: String?,
     metadata: AttachmentMetadata?
@@ -118,6 +122,7 @@ class DatabaseAttachment : Attachment {
     this.archiveCdn = archiveCdn
     this.thumbnailRestoreState = thumbnailRestoreState
     this.archiveTransferState = archiveTransferState
+    this.archiveThumbnailTransferState = archiveThumbnailTransferState
     this.metadata = metadata
   }
 
@@ -131,6 +136,7 @@ class DatabaseAttachment : Attachment {
     archiveCdn = parcel.readInt().takeIf { it != NO_ARCHIVE_CDN }
     thumbnailRestoreState = AttachmentTable.ThumbnailRestoreState.deserialize(parcel.readInt())
     archiveTransferState = AttachmentTable.ArchiveTransferState.deserialize(parcel.readInt())
+    archiveThumbnailTransferState = AttachmentTable.ArchiveTransferState.deserialize(parcel.readInt())
     metadata = ParcelCompat.readParcelable(parcel, AttachmentMetadata::class.java.classLoader, AttachmentMetadata::class.java)
   }
 
@@ -145,6 +151,7 @@ class DatabaseAttachment : Attachment {
     dest.writeInt(archiveCdn ?: NO_ARCHIVE_CDN)
     dest.writeInt(thumbnailRestoreState.value)
     dest.writeInt(archiveTransferState.value)
+    dest.writeInt(archiveThumbnailTransferState.value)
     dest.writeParcelable(metadata, 0)
   }
 

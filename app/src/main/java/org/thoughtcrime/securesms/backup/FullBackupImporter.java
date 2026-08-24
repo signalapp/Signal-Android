@@ -34,7 +34,7 @@ import org.thoughtcrime.securesms.database.LastResortKeyTupleTable;
 import org.thoughtcrime.securesms.database.OneTimePreKeyTable;
 import org.thoughtcrime.securesms.database.SearchTable;
 import org.thoughtcrime.securesms.database.SignedPreKeyTable;
-import org.thoughtcrime.securesms.database.StickerTable;
+import org.thoughtcrime.securesms.database.StickerTables;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.keyvalue.KeyValueDataSet;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -244,7 +244,7 @@ public class FullBackupImporter extends FullBackupBase {
   private static void processSticker(@NonNull Context context, @NonNull AttachmentSecret attachmentSecret, @NonNull SQLiteDatabase db, @NonNull Sticker sticker, BackupRecordInputStream inputStream)
       throws IOException
   {
-    File stickerDirectory = context.getDir(StickerTable.DIRECTORY, Context.MODE_PRIVATE);
+    File stickerDirectory = context.getDir(StickerTables.DIRECTORY, Context.MODE_PRIVATE);
     File dataFile         = File.createTempFile("sticker", ".mms", stickerDirectory);
 
     Pair<byte[], OutputStream> output = ModernEncryptingPartOutputStream.createFor(attachmentSecret, dataFile, false);
@@ -252,12 +252,12 @@ public class FullBackupImporter extends FullBackupBase {
     inputStream.readAttachmentTo(output.getSecond(), sticker.length);
 
     ContentValues contentValues = new ContentValues();
-    contentValues.put(StickerTable.FILE_PATH, dataFile.getAbsolutePath());
-    contentValues.put(StickerTable.FILE_LENGTH, sticker.length);
-    contentValues.put(StickerTable.FILE_RANDOM, output.getFirst());
+    contentValues.put(StickerTables.Sticker.FILE_PATH, dataFile.getAbsolutePath());
+    contentValues.put(StickerTables.Sticker.FILE_LENGTH, sticker.length);
+    contentValues.put(StickerTables.Sticker.FILE_RANDOM, output.getFirst());
 
-    db.update(StickerTable.TABLE_NAME, contentValues,
-              StickerTable.ID + " = ?",
+    db.update(StickerTables.Sticker.TABLE_NAME, contentValues,
+              StickerTables.Sticker.ID + " = ?",
               new String[] {String.valueOf(sticker.rowId)});
   }
 

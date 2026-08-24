@@ -6,27 +6,132 @@
   <string name="MediaSendDialogs__youll_lose_any_changes">תאבד שינויים כלשהם שעשית אל התמונה הזאת.</string>
   <!-- Confirmation button that discards the user\'s image edits. -->
   <string name="MediaSendDialogs__discard">השמט</string>
+  <!-- Dialog title shown when the user tries to close media send while media is selected. -->
+  <string name="MediaSendDialogs__discard_media">למחוק מדיה?</string>
+  <!-- Dialog body explaining that leaving media send will discard the selected media along with any edits. -->
+  <string name="MediaSendDialogs__you_will_lose_any_media">זה יגרום לאובדן כל המדיה שלכדת והשינויים שביצעת.</string>
+  <!-- Dialog title asking to save the media being edited to the phone\'s storage -->
+  <string name="MediaSendDialogs__save_to_phone">לשמור בטלפון?</string>
+  <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other apps. -->
+  <string name="MediaSendDialogs__this_media_will_be_saved">המדיה הזו תישמר באחסון הטלפון שלך. ייתכן שאפליקציות אחרות יוכלו לגשת אליה בהתאם להרשאות הטלפון שלך.</string>
+  <!-- Confirmation button that saves the media being edited to the phone\'s storage. -->
+  <string name="MediaSendDialogs__save">שמירה</string>
+  <!-- Checkbox shown in the save dialog to not show the dialog again in future saves -->
+  <string name="MediaSendDialogs__dont_show_again">לא להציג שוב</string>
+  <!-- Progress dialog message shown while the media being edited is written out to the phone\'s storage. -->
+  <string name="MediaSendDialogs__saving_media">שומרים קבצים מצורפים באחסון…</string>
+  <!-- Dialog message asking the user to confirm that the media should be added to a group\'s story. The placeholder is the group\'s name. -->
+  <string name="MediaSendDialogs__add_to_the_group_story">הוספה לסטורי הקבוצתי ״%1$s״</string>
+  <!-- Confirmation button that adds the media to the group\'s story. -->
+  <string name="MediaSendDialogs__add_to_story">הוספה לסטורי</string>
   <!-- Accessibility label for the row that lets the user add a text message to accompany the media being sent. -->
   <string name="AddAMessageRow__add_a_message">הוסף הודעה</string>
+  <!-- Label and accessibility label used in place of \"Add a message\" when the media is being sent as a reply to another message. -->
+  <string name="AddAMessageRow__add_a_reply">הוסף תשובה</string>
   <!-- Accessibility description for the button that opens the emoji keyboard. -->
   <string name="AddAMessageRow__open_emoji_keyboard">פתיחת מקלדת אימוג׳י</string>
   <!-- Placeholder text shown in the add-a-message row before the user has entered any message text. -->
   <string name="AddAMessageRow__message">הודעה</string>
   <!-- Accessibility description for the button that advances to the next step in the media send flow. -->
   <string name="AddAMessageRow__next">הבא</string>
+  <!-- Accessibility description for the button that sends the media to the already-known recipient. -->
+  <string name="AddAMessageRow__send">שלח</string>
+  <!-- Accessibility description for long-pressing the send button to schedule the send for later. -->
+  <string name="AddAMessageRow__schedule_send">תזמון שליחה</string>
+  <!-- Menu option that opens a picker for choosing the exact date and time to send at. -->
+  <string name="ScheduleSendMenu__pick_date_and_time">בחירת תאריך ושעה</string>
+  <!-- Label shown in place of the add-a-message row when the media has been set to view once, indicating that no message can be attached. -->
+  <string name="AddAMessageRow__view_once_media">מדיה לצפייה חד פעמית</string>
+  <!-- Accessibility label for the button at the end of the add-a-message row that turns view-once mode on and off. -->
+  <string name="AddAMessageRow__toggle_view_once">שינוי מצב צפייה חד פעמית</string>
   <!-- Setting option that can be selected to default media to be sent as high quality by default -->
   <string name="SentMediaQuality__high">גבוה</string>
   <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
   <string name="SentMediaQuality__standard">תקנית</string>
+  <!-- Label for our standard quality media conversion. -->
+  <string name="QualitySelectorBottomSheetDialog__standard">תקנית</string>
+  <!-- Description for our standard quality media conversion. -->
+  <string name="QualitySelectorBottomSheetDialog__faster_less_data">מהירה יותר, פחות נתונים</string>
+  <!-- Label for our high quality media conversion. This has better quality than standard. -->
+  <string name="QualitySelectorBottomSheetDialog__high">גבוה</string>
+  <!-- Label for our high quality media conversion. This has better quality than standard. -->
+  <string name="QualitySelectorBottomSheetDialog__slower_more_data">איטית יותר, יותר נתונים</string>
+  <!-- Title heading for our media conversion quality selector. -->
+  <string name="QualitySelectorBottomSheetDialog__media_quality">איכות מדיה</string>
   <!-- Title of the screen where the user browses their device gallery to pick media to send. -->
   <string name="MediaSelectScreen__gallery">גלריה</string>
   <!-- Accessibility description for the button that advances from media selection to the next step in the send flow. -->
   <string name="MediaSelectScreen__next">הבא</string>
+  <!-- Accessibility description for the button that leaves media selection and opens the camera. -->
+  <string name="MediaSelectScreen__go_to_camera">מעבר למצלמה</string>
+  <!-- Message shown in place of the gallery when the user has not granted permission to read their photos and videos. -->
+  <string name="MediaSelectScreen__signal_needs_permission_to_show_your_photos_and_videos">Signal צריכה הרשאה כדי להציג את התמונות והסרטונים שלך</string>
+  <!-- Label for the button that asks the system for permission to read the user\'s photos and videos. -->
+  <string name="MediaSelectScreen__allow_access">התר גישה</string>
+  <!-- Message shown in place of the gallery when the user only shared selected photos with Signal and none of them can be shown. -->
+  <string name="MediaSelectScreen__no_photos_or_videos_found">לא נמצאו תמונות או סרטונים. ל–Signal יש גישה רק לתמונות וסרטונים שנבחרו על ידך.</string>
+  <!-- Reminder shown above the gallery when the user only shared selected photos with Signal. -->
+  <string name="MediaSelectScreen__signal_has_limited_access">ל–Signal יש גישה מוגבלת לתמונות או לסרטונים</string>
+  <!-- Label for the button that opens the menu for changing which photos and videos Signal can see. -->
+  <string name="MediaSelectScreen__manage">ניהול</string>
+  <!-- Menu option that re-opens the system picker so the user can share more photos and videos with Signal. -->
+  <string name="MediaSelectScreen__select_more_photos">בחירת תמונות נוספות</string>
+  <!-- Menu option that opens Signal\'s permission settings in the system settings app. -->
+  <string name="MediaSelectScreen__go_to_settings">לך אל הגדרות</string>
+  <!-- Title of the sheet shown when the permission to read photos and videos has been permanently denied, directing the user to app settings. -->
+  <string name="MediaSelectScreen__allow_access_to_storage">מתן גישה לאחסון</string>
+  <!-- Subtitle of the sheet shown when the permission to read photos and videos has been permanently denied, introducing the steps that follow. -->
+  <string name="MediaSelectScreen__to_show_photos_and_videos">כדי להציג תמונות וסרטונים:</string>
+  <!-- Snackbar shown when the user denies the permission to read their photos and videos. -->
+  <string name="MediaSelectScreen__signal_needs_access_to_show_your_photos_and_videos">Signal צריכה גישה כדי להציג את התמונות והסרטונים שלך.</string>
+
   <!-- Label for the button that switches the capture screen to the camera. -->
   <string name="MediaCaptureScreen__camera">מצלמה</string>
   <!-- Label for the button that switches the capture screen to the text story editor. -->
-  <string name="MediaCaptureScreen__text_story">סטורי טקסט</string>
+  <string name="MediaCaptureScreen__text">מלל</string>
+    <!-- Label for the pill that displays the media count -->
+    <plurals name="MediaCaptureScreen_n_items">
+        <item quantity="one">פריט %1$d</item>
+        <item quantity="two">%1$d פריטים</item>
+        <item quantity="many">%1$d פריטים</item>
+        <item quantity="other">%1$d פריטים</item>
+    </plurals>
+
+  <!-- Content description for the button that attaches a link to the text story being created -->
+  <string name="TextStoryBar__add_link">הוספת לינק</string>
+
+  <!-- Name shown on the document preview when we cannot read the file\'s name. -->
+  <string name="DocumentPage__unnamed_file">קובץ ללא שם</string>
+
+  <!-- Content description for button to enable highlighter mode -->
+  <string name="DrawModeColorBar__highlighter">מדגש</string>
+  <!-- Content description for button to enable brush mode -->
+  <string name="DrawModeColorBar__brush">מברשת</string>
+
+  <!-- Content description for the crop toggle when the crop area is currently constrained to a fixed aspect ratio. Tapping it removes the constraint. -->
+  <string name="ImageEditorToolbar__aspect_ratio_locked">יחס רוחב–גובה נעול</string>
+  <!-- Content description for the crop toggle when the crop area can currently be resized freely. Tapping it constrains the crop area to a fixed aspect ratio. -->
+  <string name="ImageEditorToolbar__aspect_ratio_unlocked">יחס רוחב–גובה לא נעול</string>
+
+  <!-- Label for the toggle that blurs every face in the image being edited -->
+  <string name="BlurFacesBar__blur_faces">טשטש פרצופים</string>
+
+  <!-- Hint displayed in a pill at the top of the image editor telling the user they can drag anywhere on the image to blur that area -->
+  <string name="DrawAnywhereToBlurPill__draw_anywhere_to_blur">צייר בכל מקום כדי לטשטש</string>
+
+  <!-- Content description for the button that cycles the text being edited between styles -->
+  <string name="TextModeColorBar__toggle_between_text_styles">עורר בין סגנונות מלל</string>
+
+  <!-- Label for the button that undoes every edit made to the image, returning it to its original state -->
+  <string name="ImageEditorClearAllButton__clear_all">נקה הכול</string>
+
+  <!-- Content description for the button that undoes the last edit made to the image -->
+  <string name="ImageEditorUndoRedoButtons__undo_edit">ביטול עריכה</string>
+  <!-- Content description for the button that redoes the last undone edit made to the image -->
+  <string name="ImageEditorUndoRedoButtons__redo_edit">ביצוע מחדש של עריכה</string>
+
   <!-- Video editor play button content description -->
+
   <string name="VideoEditorHud_play_video_description">נגן סרטון</string>
 
   <!-- CameraFragment -->
@@ -90,6 +195,50 @@
   <string name="MediaSendViewModel__error_recording_video">שגיאה בצילום סרטון</string>
   <!-- Displayed when there is an error capturing image -->
   <string name="MediaSendViewModel__error_taking_photo">שגיאה בצילום תמונה</string>
+  <!-- Displayed when a video was automatically trimmed so it fits within the size limit -->
+  <string name="MediaSendViewModel__video_trimmed_to_fit">הסרטון שלך קוצץ כדי להתאים למגבלת הגודל</string>
+  <!-- Displayed when one or more of the selected items could not be added because they exceed the size limit -->
+  <string name="MediaSendViewModel__one_or_more_items_were_too_large">פריט אחד או יותר היו יותר מדי גדולים</string>
+  <!-- Displayed when one or more of the selected items could not be added because they are not a type that can be sent -->
+  <string name="MediaSendViewModel__one_or_more_items_were_invalid">פריט אחד או יותר היו בלתי תקפים</string>
+  <!-- Displayed when the user tries to select more items than can be sent at once -->
+  <string name="MediaSendViewModel__too_many_items_selected">יותר מדי פריטים נבחרו</string>
+  <!-- Displayed after the media being edited was successfully saved to the phone\'s storage -->
+  <string name="MediaSendViewModel__media_saved">מדיה נשמרה</string>
+  <!-- Displayed when the media being edited could not be saved to the phone\'s storage -->
+  <string name="MediaSendViewModel__error_saving_media">שגיאה בעת שמירת קבצים מצורפים באחסון!</string>
+  <!-- Displayed when the media being edited cannot be saved because the storage permission was denied -->
+  <string name="MediaSendViewModel__unable_to_save_without_storage_permission">לא היה ניתן לשמור באחסון חיצוני ללא הרשאות</string>
+  <!-- Small notification presented to the user when they set their photo to view-once mode -->
+  <string name="MediaSendViewModel__photo_set_to_view_once">תמונה מוגדרת לצפייה חד פעמית</string>
+  <!-- Small notification presented to the user when they set their video to view-once mode -->
+  <string name="MediaSendViewModel__video_set_to_view_once">וידאו מוגדר לצפייה חד פעמית</string>
+  <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
+  <string name="MediaReviewFragment__video_set_to_high_quality">וידאו מוגדר לאיכות גבוהה</string>
+  <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
+  <string name="MediaReviewFragment__video_set_to_standard_quality">וידאו מוגדר לאיכות סטנדרטית</string>
+  <!-- Small notification presented to the user when they set their still image to be sent in high visual quality. -->
+  <string name="MediaReviewFragment__photo_set_to_high_quality">תמונה מוגדרת לאיכות גבוהה</string>
+  <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
+  <string name="MediaReviewFragment__photo_set_to_standard_quality">תמונה מוגדרת לאיכות רגילה</string>
+  <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
+  <plurals name="MediaReviewFragment__items_set_to_high_quality">
+        <item quantity="one">פריט %1$d מוגדר לאיכות גבוהה</item>
+        <item quantity="two">%1$d פריטים מוגדרים לאיכות גבוהה</item>
+        <item quantity="many">%1$d פריטים מוגדרים לאיכות גבוהה</item>
+        <item quantity="other">%1$d פריטים מוגדרים לאיכות גבוהה</item>
+    </plurals>
+  <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
+  <plurals name="MediaReviewFragment__items_set_to_standard_quality">
+        <item quantity="one">פריט %1$d מוגדר לאיכות רגילה</item>
+        <item quantity="two">%1$d פריטים מוגדרים לאיכות רגילה</item>
+        <item quantity="many">%1$d פריטים מוגדרים לאיכות רגילה</item>
+        <item quantity="other">%1$d פריטים מוגדרים לאיכות רגילה</item>
+    </plurals>
+  <!-- Message shown when saving the media being edited requires the storage permission, but that permission has been permanently denied by the user. -->
+  <string name="MediaSendViewModel__signal_needs_the_storage_permission">Signal צריך את הרשאת האחסון על מנת לשמור באחסון חיצוני, אבל היא נדחתה לצמיתות. אנא המשך אל הגדרות היישום, בחר \"הרשאות\" ואפשר את \"אחסון\".</string>
+  <!-- Message shown when the user disables audio on a video -->
+  <string name="MediaSendViewModel__video_will_be_sent_without_audio">הסרטון יישלח ללא שמע</string>
 
   <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
   <string name="UsernameScannedDialog__username_dialog_title">מצאנו את %1$s</string>
@@ -104,4 +253,42 @@
   <string name="LinkedDeviceScannedDialog__it_looks_like_youre_trying">נראה שאת/ה מנסה לקשר מכשיר Signal. יש ללחוץ על המשך ואז ללחוץ על ״קישור מכשיר חדש״ ולסרוק שנית את קוד ה–QR.</string>
   <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
   <string name="LinkedDeviceScannedDialog__device_link_dialog_continue">המשך</string>
+
+    <!-- Gif label displayed in a pill in the editor specifying the type of media being sent. -->
+    <plurals name="MediaEditScreen__gif">
+        <item quantity="one">קובץ GIF %1$d</item>
+        <item quantity="two">%1$d קובצי GIF</item>
+        <item quantity="many">%1$d קובצי GIF</item>
+        <item quantity="other">%1$d קובצי GIF</item>
+    </plurals>
+    <!-- Photo label displayed in a pill in the editor specifying the type of media being sent. -->
+    <plurals name="MediaEditScreen__photo">
+        <item quantity="one">תמונה %1$d</item>
+        <item quantity="two">%1$d תמונות</item>
+        <item quantity="many">%1$d תמונות</item>
+        <item quantity="other">%1$d תמונות</item>
+    </plurals>
+    <!-- Video label displayed in a pill in the editor specifying the type of media being sent. -->
+    <plurals name="MediaEditScreen__video">
+        <item quantity="one">סרטון %1$d</item>
+        <item quantity="two">%1$d סרטונים</item>
+        <item quantity="many">%1$d סרטונים</item>
+        <item quantity="other">%1$d סרטונים</item>
+    </plurals>
+    <!-- Document label displayed in a pill in the editor specifying the type of media being sent. -->
+    <plurals name="MediaEditScreen__document">
+        <item quantity="one">מסמך %1$d</item>
+        <item quantity="two">%1$d מסמכים</item>
+        <item quantity="many">%1$d מסמכים</item>
+        <item quantity="other">%1$d מסמכים</item>
+    </plurals>
+    <!-- Item label displayed in a pill in the editor specifying the type of media being sent. -->
+    <plurals name="MediaEditScreen__item">
+        <item quantity="one">פריט %1$d</item>
+        <item quantity="two">%1$d פריטים</item>
+        <item quantity="many">%1$d פריטים</item>
+        <item quantity="other">%1$d פריטים</item>
+    </plurals>
+    <!-- x of y label displayed in a pill in the editor specifying the type of media being sent. First placeholder is selected page, second is total count. -->
+    <string name="MediaEditScreen__d_of_d">%1$d מתוך %2$d</string>
 </resources>

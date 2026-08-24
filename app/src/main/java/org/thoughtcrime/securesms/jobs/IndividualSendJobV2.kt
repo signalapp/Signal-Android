@@ -41,7 +41,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.ratelimit.ProofRequiredExceptionHandler
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientUtil
-import org.thoughtcrime.securesms.util.MessageUtil
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import org.thoughtcrime.securesms.util.isUrgent
@@ -49,6 +48,7 @@ import org.thoughtcrime.securesms.util.toDataMessage
 import org.whispersystems.signalservice.api.crypto.ContentHint
 import org.whispersystems.signalservice.api.crypto.EnvelopeContent
 import org.whispersystems.signalservice.api.messages.SendMessageResult
+import org.whispersystems.signalservice.api.messages.SignalServiceMessageLimits
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.api.push.exceptions.ProofRequiredException
 import org.whispersystems.signalservice.internal.push.Content
@@ -179,8 +179,8 @@ class IndividualSendJobV2 private constructor(parameters: Parameters, private va
       null
     }
 
-    if (message.body.utf8Size() > MessageUtil.MAX_INLINE_BODY_SIZE_BYTES) {
-      Log.w(TAG, "${logPrefix(message.sentTimeMillis)} Body size exceeds limit of ${MessageUtil.MAX_INLINE_BODY_SIZE_BYTES} bytes; failing.")
+    if (message.body.utf8Size() > SignalServiceMessageLimits.MAX_INLINE_BODY_SIZE_BYTES) {
+      Log.w(TAG, "${logPrefix(message.sentTimeMillis)} Body size exceeds limit of ${SignalServiceMessageLimits.MAX_INLINE_BODY_SIZE_BYTES} bytes; failing.")
       return Result.failure()
     }
 
@@ -389,8 +389,9 @@ class IndividualSendJobV2 private constructor(parameters: Parameters, private va
       )
     } else {
       val pniSignature = if (recipient.needsPniSignature) {
-        Log.i(TAG, "${logPrefix(dataMessage.timestamp)} Including PNI signature.")
-        AppDependencies.signalServiceMessageSender.createPniSignatureMessage()
+        AppDependencies.signalServiceMessageSender.createPniSignatureMessage()?.also {
+          Log.i(TAG, "${logPrefix(dataMessage.timestamp)} Including PNI signature.")
+        }
       } else {
         null
       }
@@ -444,6 +445,7 @@ class IndividualSendJobV2 private constructor(parameters: Parameters, private va
           timestamp = timestamp,
           message = dataMessage,
           editMessage = editMessage,
+          expirationStartTimestamp = if ((dataMessage?.expireTimer ?: 0) > 0) System.currentTimeMillis() else null,
           unidentifiedStatus = listOf(
             SyncMessage.Sent.UnidentifiedDeliveryStatus(
               destinationServiceIdBinary = recipientServiceId.toByteString(),

@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.dependencies
 
 import androidx.media3.exoplayer.ExoPlayer
+import io.mockk.every
 import io.mockk.mockk
 import okhttp3.OkHttpClient
 import org.signal.core.util.billing.BillingApi
@@ -19,9 +20,11 @@ import org.signal.network.api.LinkDeviceApi
 import org.signal.network.api.PaymentsApi
 import org.signal.network.api.ProvisioningApi
 import org.signal.network.api.RateLimitChallengeApi
+import org.signal.network.api.RegistrationApiV2
 import org.signal.network.api.RemoteConfigApi
 import org.signal.network.api.SvrBApi
 import org.signal.network.api.UsernameApi
+import org.signal.network.config.SignalServiceConfiguration
 import org.signal.network.rest.SignalRestClient
 import org.signal.video.exo.ExoPlayerPool
 import org.thoughtcrime.securesms.components.TypingStatusRepository
@@ -30,6 +33,7 @@ import org.thoughtcrime.securesms.crypto.storage.SignalServiceDataStoreImpl
 import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.PendingRetryReceiptCache
 import org.thoughtcrime.securesms.jobmanager.JobManager
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.megaphone.MegaphoneRepository
 import org.thoughtcrime.securesms.messages.IncomingMessageObserver
 import org.thoughtcrime.securesms.notifications.MessageNotifier
@@ -66,7 +70,6 @@ import org.whispersystems.signalservice.api.services.DonationsService
 import org.whispersystems.signalservice.api.services.ProfileService
 import org.whispersystems.signalservice.api.storage.StorageServiceApi
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
-import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration
 import org.whispersystems.signalservice.internal.push.PushServiceSocket
 import java.util.function.Supplier
 
@@ -97,6 +100,18 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
     messageApi: MessageApi,
     keysApi: KeysApi
   ): SignalServiceMessageSender {
+    return mockk(relaxed = true)
+  }
+
+  override fun provideArchiveApiV2(
+    authWebSocket: SignalWebSocket.AuthenticatedWebSocket,
+    unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket,
+    signalServiceConfiguration: SignalServiceConfiguration
+  ): org.signal.network.api.ArchiveApiV2 {
+    return mockk(relaxed = true)
+  }
+
+  override fun provideArchiveService(archiveApi: org.signal.network.api.ArchiveApiV2): org.signal.network.service.ArchiveService {
     return mockk(relaxed = true)
   }
 
@@ -205,7 +220,9 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
   }
 
   override fun provideProtocolStore(): SignalServiceDataStoreImpl {
-    return mockk(relaxed = true)
+    return mockk(relaxed = true) {
+      every { pniOrNull() } answers { if (SignalStore.account.pni != null) pni() else null }
+    }
   }
 
   override fun provideGiphyMp4Cache(): GiphyMp4Cache {
@@ -260,7 +277,7 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
     return mockk(relaxed = true)
   }
 
-  override fun provideArchiveApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket, pushServiceSocket: PushServiceSocket, signalServiceConfiguration: SignalServiceConfiguration): ArchiveApi {
+  override fun provideArchiveApi(pushServiceSocket: PushServiceSocket): ArchiveApi {
     return mockk(relaxed = true)
   }
 
@@ -277,6 +294,10 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
   }
 
   override fun provideRegistrationApi(pushServiceSocket: PushServiceSocket): RegistrationApi {
+    return mockk(relaxed = true)
+  }
+
+  override fun provideRegistrationApiV2(signalRestClient: SignalRestClient): RegistrationApiV2 {
     return mockk(relaxed = true)
   }
 

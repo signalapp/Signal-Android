@@ -36,6 +36,7 @@ import org.signal.aesgcmprovider.AesGcmProvider;
 import org.signal.core.util.AppForegroundObserver;
 import org.signal.core.util.DiskUtil;
 import org.signal.core.util.MemoryTracker;
+import org.signal.core.util.PartAuthorityUris;
 import org.signal.core.util.Util;
 import org.signal.core.util.concurrent.AnrDetector;
 import org.signal.core.util.concurrent.SignalExecutors;
@@ -52,6 +53,7 @@ import org.signal.ringrtc.CallManager;
 import org.thoughtcrime.securesms.apkupdate.ApkUpdateRefreshListener;
 import org.thoughtcrime.securesms.avatar.AvatarPickerStorage;
 import org.thoughtcrime.securesms.backup.v2.BackupRepository;
+import org.thoughtcrime.securesms.clockskew.ClockSkewDetector;
 import org.thoughtcrime.securesms.preferences.EditProxyActivity;
 import org.thoughtcrime.securesms.conversation.drafts.DraftBlobs;
 import org.thoughtcrime.securesms.crypto.AppAttachmentSecretStore;
@@ -61,8 +63,8 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.SqlCipherLibraryLoader;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencyProvider;
-import org.thoughtcrime.securesms.emoji.EmojiSource;
-import org.thoughtcrime.securesms.emoji.JumboEmoji;
+import org.signal.emoji.EmojiSource;
+import org.signal.emoji.JumboEmoji;
 import org.thoughtcrime.securesms.gcm.FcmFetchManager;
 import org.thoughtcrime.securesms.glide.SignalGlideComponents;
 import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint;
@@ -104,6 +106,7 @@ import org.thoughtcrime.securesms.mms.SignalGlideModule;
 import org.thoughtcrime.securesms.ratelimit.RateLimitUtil;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.registration.util.RegistrationUtil;
+import org.thoughtcrime.securesms.registration.v2.AppContactSupportController;
 import org.thoughtcrime.securesms.registration.v2.AppRegistrationNetworkController;
 import org.thoughtcrime.securesms.registration.v2.AppRegistrationStorageController;
 import org.thoughtcrime.securesms.ringrtc.RingRtcLogger;
@@ -119,8 +122,7 @@ import org.thoughtcrime.securesms.service.webrtc.AndroidTelecomUtil;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.util.AppStartup;
 import org.thoughtcrime.securesms.util.BatterySnapshotTracker;
-import org.thoughtcrime.securesms.util.CommunicationActions;
-import org.thoughtcrime.securesms.util.DeviceProperties;
+import org.signal.core.util.DeviceProperties;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.Environment;
 import org.signal.core.util.PlayServicesUtil;
@@ -128,7 +130,6 @@ import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 import org.thoughtcrime.securesms.util.SignalUncaughtExceptionHandler;
 import org.thoughtcrime.securesms.util.SqlCipherLogTarget;
-import org.thoughtcrime.securesms.util.SupportEmailUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.VersionTracker;
 import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWrapper;
@@ -166,6 +167,8 @@ public class ApplicationContext extends Application implements AppForegroundObse
 
   @Override
   public void onCreate() {
+    PartAuthorityUris.init(BuildConfig.APPLICATION_ID);
+
     Tracer.getInstance().start("Application#onCreate()");
     AppStartup.getInstance().onApplicationCreate();
     SignalLocalMetrics.ColdStart.start();
@@ -420,6 +423,7 @@ public class ApplicationContext extends Application implements AppForegroundObse
       AppDependencies.init(this, new ApplicationDependencyProvider(this));
     }
     AppForegroundObserver.begin();
+    ClockSkewDetector.beginObserving(this);
 
     if (Environment.USE_NEW_REGISTRATION) {
       initializeRegistrationDependencies();
@@ -429,9 +433,10 @@ public class ApplicationContext extends Application implements AppForegroundObse
   private void initializeRegistrationDependencies() {
     RegistrationDependencies.provide(
       new RegistrationDependencies(
-        new AppRegistrationNetworkController(this, AppDependencies.getPushServiceSocket()),
+        new AppRegistrationNetworkController(this, AppDependencies.getRegistrationApiV2()),
         new AppRegistrationStorageController(this),
         Environment.IS_LINK_AND_SYNC_AVAILABLE,
+        Environment.PHONENUMBERLESS_REGISTRATION,
         null,
         context -> {
           context.startActivity(new Intent(context, SubmitDebugLogActivity.class));
@@ -441,11 +446,7 @@ public class ApplicationContext extends Application implements AppForegroundObse
           context.startActivity(EditProxyActivity.intent(context));
           return Unit.INSTANCE;
         },
-        (context, subject) -> {
-          String body = SupportEmailUtil.generateSupportEmailBody(context, subject, null, null);
-          CommunicationActions.openEmail(context, SupportEmailUtil.getSupportEmailAddress(context), subject, body);
-          return Unit.INSTANCE;
-        }
+        new AppContactSupportController()
       )
     );
   }

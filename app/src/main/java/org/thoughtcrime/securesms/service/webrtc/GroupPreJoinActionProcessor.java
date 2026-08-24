@@ -71,6 +71,7 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
                                                                                AUDIO_LEVELS_INTERVAL,
                                                                                dredDuration,
                                                                                RingRtcDynamicConfiguration.getAudioConfig(),
+                                                                               RingRtcDynamicConfiguration.getSvcConfig(),
                                                                                webRtcInteractor.getGroupCallObserver());
 
     if (groupCall == null) {

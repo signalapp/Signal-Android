@@ -66,6 +66,9 @@ import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.core.ui.fonts.SignalSymbols
+import org.signal.core.ui.fonts.SignalSymbols.buildSignalSymbolAnnotatedString
+import org.signal.core.ui.fonts.SignalSymbols.signalSymbolText
 import org.signal.core.util.BidiUtil
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.AvatarImage
@@ -74,9 +77,6 @@ import org.thoughtcrime.securesms.components.emoji.EmojiTextView
 import org.thoughtcrime.securesms.components.settings.app.subscription.BadgeImageLarge
 import org.thoughtcrime.securesms.conversation.colors.AvatarGradientColors
 import org.thoughtcrime.securesms.conversation.v2.data.AvatarDownloadStateCache
-import org.thoughtcrime.securesms.fonts.SignalSymbols
-import org.thoughtcrime.securesms.fonts.SignalSymbols.buildSignalSymbolAnnotatedString
-import org.thoughtcrime.securesms.fonts.SignalSymbols.signalSymbolText
 import org.thoughtcrime.securesms.groups.v2.GroupDescriptionUtil
 import org.thoughtcrime.securesms.messagerequests.GroupInfo
 import org.thoughtcrime.securesms.messagerequests.MessageRequestRecipientInfo

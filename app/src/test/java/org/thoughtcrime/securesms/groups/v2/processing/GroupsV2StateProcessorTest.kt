@@ -591,6 +591,42 @@ class GroupsV2StateProcessorTest {
   }
 
   @Test
+  fun `when local state is a join-via-link placeholder containing only self, then fetch full first state including other members`() {
+    given {
+      localState(
+        revision = 1,
+        members = listOf(member(selfAci)),
+        isPlaceholderGroup = true
+      )
+      changeSet {
+        changeLog(2) {
+          fullSnapshot(
+            title = "Breaking Signal for Science",
+            members = listOf(member(otherAci), member(selfAci, joinedAt = 2))
+          )
+        }
+      }
+      apiCallParameters(requestedRevision = 2, includeFirst = true)
+      joinedAtRevision = 2
+      expectTableUpdate = true
+    }
+
+    val result = processor.updateLocalGroupToRevision(
+      targetRevision = GroupsV2StateProcessor.LATEST,
+      timestamp = 0
+    )
+
+    assertThat(result.updateStatus, "local should update to server")
+      .isEqualTo(GroupUpdateResult.UpdateStatus.GROUP_UPDATED)
+    assertThat(result.latestServer)
+      .isNotNull()
+      .transform { it.members }
+      .contains(member(otherAci))
+
+    verify { groupTable.update(masterKey, result.latestServer!!, null) }
+  }
+
+  @Test
   fun `when freshly added to a group, with additional group changes after being added, then only update from server at the revision we were added, and then schedule pulling additional changes later`() {
     given {
       changeSet {

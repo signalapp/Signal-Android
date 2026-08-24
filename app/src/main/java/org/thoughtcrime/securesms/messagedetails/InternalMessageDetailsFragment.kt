@@ -20,7 +20,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.SpanStyle
@@ -32,9 +36,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentActivity
+import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.ComposeFullScreenDialogFragment
+import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Dividers
 import org.signal.core.util.Util
+import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.messagedetails.InternalMessageDetailsViewModel.AttachmentInfo
 import org.thoughtcrime.securesms.messagedetails.InternalMessageDetailsViewModel.ViewState
@@ -61,15 +68,32 @@ class InternalMessageDetailsFragment : ComposeFullScreenDialogFragment() {
   @Composable
   override fun DialogContent() {
     val state by viewModel.state
+    val actionResult by viewModel.actionResult
+    val context = LocalContext.current
+
+    LaunchedEffect(actionResult) {
+      actionResult?.let {
+        Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+        viewModel.consumeActionResult()
+      }
+    }
 
     state?.let {
-      Content(it)
+      Content(
+        state = it,
+        onOffloadLocalData = viewModel::offloadLocalData,
+        onDeleteFromCdn = viewModel::deleteFromCdn
+      )
     }
   }
 }
 
 @Composable
-private fun Content(state: ViewState) {
+private fun Content(
+  state: ViewState,
+  onOffloadLocalData: (Long) -> Unit = {},
+  onDeleteFromCdn: (Long, Boolean) -> Unit = { _, _ -> }
+) {
   val context = LocalContext.current
 
   Surface(
@@ -145,7 +169,11 @@ private fun Content(state: ViewState) {
         )
       } else {
         state.attachments.forEachIndexed { i, attachment ->
-          AttachmentBlock(attachment)
+          AttachmentBlock(
+            attachment = attachment,
+            onOffloadLocalData = onOffloadLocalData,
+            onDeleteFromCdn = onDeleteFromCdn
+          )
 
           if (i != state.attachments.lastIndex) {
             Dividers.Default()
@@ -191,7 +219,11 @@ private fun ClickToCopyRow(name: String, value: String, valueToCopy: String = va
 }
 
 @Composable
-private fun AttachmentBlock(attachment: AttachmentInfo) {
+private fun AttachmentBlock(
+  attachment: AttachmentInfo,
+  onOffloadLocalData: (Long) -> Unit,
+  onDeleteFromCdn: (Long, Boolean) -> Unit
+) {
   ClickToCopyRow(
     name = "ID",
     value = attachment.id.toString()
@@ -220,6 +252,128 @@ private fun AttachmentBlock(attachment: AttachmentInfo) {
     name = "Transform Properties",
     value = attachment.transformProperties ?: "null"
   )
+  ClickToCopyRow(
+    name = "Has Local Data",
+    value = attachment.hasLocalData.toString()
+  )
+  ClickToCopyRow(
+    name = "Transfer State",
+    value = attachment.transferState.toString()
+  )
+  ClickToCopyRow(
+    name = "Archive CDN",
+    value = attachment.archiveCdn?.toString() ?: "null"
+  )
+  ClickToCopyRow(
+    name = "Archive Transfer State",
+    value = attachment.archiveTransferState.name
+  )
+  ClickToCopyRow(
+    name = "Archive Thumbnail Transfer State",
+    value = attachment.archiveThumbnailTransferState.name
+  )
+
+  DestructiveActions(
+    attachment = attachment,
+    onOffloadLocalData = onOffloadLocalData,
+    onDeleteFromCdn = onDeleteFromCdn
+  )
+}
+
+/**
+ * Collapsed by default, and each action confirms, because these are irreversible and sit in a list people scroll through to copy values.
+ */
+@Composable
+private fun DestructiveActions(
+  attachment: AttachmentInfo,
+  onOffloadLocalData: (Long) -> Unit,
+  onDeleteFromCdn: (Long, Boolean) -> Unit
+) {
+  var expanded by remember(attachment.id) { mutableStateOf(false) }
+  var pendingAction by remember(attachment.id) { mutableStateOf<PendingAction?>(null) }
+
+  Text(
+    text = if (expanded) "▾ Destructive test actions" else "▸ Destructive test actions",
+    style = MaterialTheme.typography.labelLarge,
+    modifier = Modifier
+      .clickable { expanded = !expanded }
+      .padding(8.dp)
+      .fillMaxWidth()
+  )
+
+  if (!expanded) {
+    return
+  }
+
+  val isArchived = attachment.archiveTransferState == AttachmentTable.ArchiveTransferState.FINISHED && attachment.archiveCdn != null
+
+  Buttons.MediumTonal(
+    onClick = { pendingAction = PendingAction.OFFLOAD },
+    modifier = Modifier
+      .padding(horizontal = 8.dp)
+      .fillMaxWidth()
+  ) {
+    Text(text = "Offload local data")
+  }
+
+  Buttons.MediumTonal(
+    onClick = { pendingAction = PendingAction.DELETE_FULL_SIZE },
+    modifier = Modifier
+      .padding(horizontal = 8.dp)
+      .fillMaxWidth()
+  ) {
+    Text(text = "Delete full-size from CDN")
+  }
+
+  Buttons.MediumTonal(
+    onClick = { pendingAction = PendingAction.DELETE_THUMBNAIL },
+    modifier = Modifier
+      .padding(horizontal = 8.dp)
+      .fillMaxWidth()
+  ) {
+    Text(text = "Delete thumbnail from CDN")
+  }
+
+  when (pendingAction) {
+    null -> Unit
+
+    PendingAction.OFFLOAD -> Dialogs.SimpleAlertDialog(
+      title = "Offload local data?",
+      body = if (isArchived) {
+        "Drops the local bytes for attachment ${attachment.id}. The archive CDN copy stays, so it can be restored by tapping the attachment."
+      } else {
+        "This attachment is NOT on the archive CDN (state ${attachment.archiveTransferState.name}, cdn ${attachment.archiveCdn ?: "null"}). Offloading it deletes the only copy and it cannot be restored."
+      },
+      confirm = if (isArchived) "Offload" else "Delete the only copy",
+      dismiss = "Cancel",
+      onConfirm = { onOffloadLocalData(attachment.id) },
+      onDismiss = { pendingAction = null }
+    )
+
+    PendingAction.DELETE_FULL_SIZE -> Dialogs.SimpleAlertDialog(
+      title = "Delete full-size from CDN?",
+      body = "Immediately and irreversibly removes the full-size copy of attachment ${attachment.id} from the archive CDN. If the local bytes are ever offloaded, the media is gone for good.",
+      confirm = "Delete from CDN",
+      dismiss = "Cancel",
+      onConfirm = { onDeleteFromCdn(attachment.id, false) },
+      onDismiss = { pendingAction = null }
+    )
+
+    PendingAction.DELETE_THUMBNAIL -> Dialogs.SimpleAlertDialog(
+      title = "Delete thumbnail from CDN?",
+      body = "Immediately and irreversibly removes the thumbnail for attachment ${attachment.id} from the archive CDN. The full-size copy is untouched.",
+      confirm = "Delete from CDN",
+      dismiss = "Cancel",
+      onConfirm = { onDeleteFromCdn(attachment.id, true) },
+      onDismiss = { pendingAction = null }
+    )
+  }
+}
+
+private enum class PendingAction {
+  OFFLOAD,
+  DELETE_FULL_SIZE,
+  DELETE_THUMBNAIL
 }
 
 @Preview

@@ -7,9 +7,14 @@ package org.signal.mediasend
 
 import android.content.Context
 import android.net.Uri
+import android.os.Parcelable
 import kotlinx.coroutines.flow.Flow
 import org.signal.core.models.media.Media
 import org.signal.core.models.media.MediaFolder
+import org.signal.imageeditor.core.model.EditorModel
+import org.signal.mediasend.preupload.PreUploadResult
+import org.signal.mediasend.screens.edit.image.BrushWidths
+import org.thoughtcrime.securesms.video.TranscodingConfig
 import java.io.InputStream
 import kotlin.time.Duration
 
@@ -46,9 +51,31 @@ interface MediaSendRepository {
   ): MediaFilterResult
 
   /**
+   * Reads the display information for a document, or null if it could not be read.
+   */
+  suspend fun getDocumentInfo(media: Media): DocumentInfo?
+
+  /**
    * Deletes temporary blob files for the given media.
    */
   suspend fun deleteBlobs(media: List<Media>)
+
+  /**
+   * User's sent-media-quality setting, backed by persistent storage.
+   */
+  var sentMediaQuality: SentMediaQuality
+
+  /**
+   * Whether the user has opted out of the warning shown before media is written to shared device storage.
+   */
+  val hasDismissedSaveToStorageWarning: Boolean
+
+  fun markSaveToStorageWarningDismissed()
+
+  /**
+   * Renders [editorModel], edits included, and writes the result to the device's shared media storage.
+   */
+  suspend fun saveImageToStorage(editorModel: EditorModel): SaveToStorageResult
 
   /**
    * Sends the media with the given parameters.
@@ -58,19 +85,25 @@ interface MediaSendRepository {
   suspend fun send(request: SendRequest): SendResult
 
   /**
-   * Gets the maximum video duration in microseconds based on quality and file size limits.
+   * Gets the maximum video duration in microseconds based on quality.
    *
    * @param quality The sent media quality.
-   * @param maxFileSizeBytes Maximum file size in bytes.
    * @param duration Duration of the video.
    * @return Maximum duration in microseconds.
    */
-  fun getMaxVideoDurationUs(quality: SentMediaQuality, maxFileSizeBytes: Long, duration: Duration): Long
+  fun getMaxVideoDurationUs(quality: SentMediaQuality, duration: Duration): Long
 
   /**
-   * Gets the maximum video file size in bytes.
+   * Gets the maximum allowed duration in seconds for in-app video recording, based on the longest
+   * duration allowed by any transcoding quality tier.
    */
-  fun getVideoMaxSizeBytes(): Long
+  fun getMaxVideoRecordDurationSeconds(): Int
+
+  /**
+   * The transcoding quality tiers that apply when sending video at [quality]. These describe what the transcoder will
+   * target, and are what an estimate of a video's upload size is derived from.
+   */
+  fun getVideoTranscodingTiers(quality: SentMediaQuality): List<TranscodingConfig.QualityTier>
 
   /**
    * Checks if video transcoding is available on this device.
@@ -78,9 +111,12 @@ interface MediaSendRepository {
   fun isVideoTranscodeAvailable(): Boolean
 
   /**
-   * Gets story send requirements for the given media.
+   * Gets the story send requirement for each of the given media, keyed by URI as the selection's stable identity.
+   *
+   * Per-item because pre-upload eligibility is decided per media, while the UI needs the whole selection's
+   * requirement. Deriving the latter from this map keeps duration probing to a single pass.
    */
-  suspend fun getStorySendRequirements(media: List<Media>): StorySendRequirements
+  suspend fun getStorySendRequirements(media: List<Media>): Map<Uri, StorySendRequirements>
 
   /**
    * Checks for untrusted identity records among the given contacts.
@@ -109,9 +145,17 @@ interface MediaSendRepository {
 
   var isCameraFacingFront: Boolean
 
-  fun getMediaConstraints(): MediaConstraints
+  /**
+   * @param quality The quality the constraints should describe, or null for whatever the app would send at by default.
+   */
+  fun getMediaConstraints(quality: SentMediaQuality? = null): MediaConstraints
 
   var storyMaxVideoDuration: Duration
+
+  /**
+   * The image editor's per-tool brush widths, shared with the v2 editor.
+   */
+  var brushWidths: BrushWidths
 }
 
 /**
@@ -123,15 +167,39 @@ data class MediaFilterResult(
 )
 
 /**
- * Errors that can occur during media filtering.
+ * Everything needed to describe a document to the user.
+ *
+ * @param fileName The document's name, or null if the platform did not give us one.
+ * @param fileSize The document's size in bytes.
+ * @param extension The document's file type, e.g. "pdf". Empty when it could not be determined.
+ */
+data class DocumentInfo(
+  val fileName: String?,
+  val fileSize: Long,
+  val extension: String
+)
+
+/**
+ * Outcome of writing media out to the device's shared storage.
+ */
+enum class SaveToStorageResult {
+  SUCCESS,
+  FAILURE,
+  NO_WRITE_ACCESS
+}
+
+/**
+ * Reasons media handed to [MediaSendRepository.validateAndFilterMedia] did not survive filtering.
+ *
+ * There is deliberately no "nothing selected" case: an empty selection is a fact the caller already has from
+ * [MediaFilterResult.filteredMedia], while this type only answers why something was dropped.
+ *
+ * @property media The first item that was rejected, or null when the filtering could not pin one down.
  */
 sealed interface MediaFilterError {
-  data object NoItems : MediaFilterError
-  data class ItemTooLarge(val media: Media) : MediaFilterError
-  data class ItemInvalidType(val media: Media) : MediaFilterError
+  data class ItemTooLarge(val media: Media?) : MediaFilterError
+  data class ItemInvalidType(val media: Media?) : MediaFilterError
   data class TooManyItems(val max: Int) : MediaFilterError
-  data class CannotMixMediaTypes(val message: String) : MediaFilterError
-  data class Other(val message: String) : MediaFilterError
 }
 
 /**
@@ -141,13 +209,17 @@ data class SendRequest(
   val selectedMedia: List<Media>,
   val editorStateMap: Map<Uri, EditorState>,
   val quality: SentMediaQuality,
-  val message: String?,
+  val message: CharSequence?,
   val isViewOnce: Boolean,
   val singleRecipientId: MediaRecipientId?,
-  val recipientIds: List<MediaRecipientId>,
+  val recipients: List<MediaSendRecipient>,
   val scheduledTime: Long,
   val sendType: Int,
-  val isStory: Boolean
+  val isStory: Boolean,
+  /**
+   * Media already pre-uploaded by the flow, so the send does not have to upload it again.
+   */
+  val preUploadResults: List<PreUploadResult> = emptyList()
 )
 
 /**
@@ -157,6 +229,12 @@ sealed interface SendResult {
   data object Success : SendResult
   data class Error(val message: String) : SendResult
   data class UntrustedIdentity(val recipientIds: List<Long>) : SendResult
+
+  /**
+   * Nothing was sent: the caller that launched the flow owns the send and is handed [payload], which is
+   * opaque to this module.
+   */
+  data class ReadyToSend(val payload: Parcelable) : SendResult
 }
 
 /**
@@ -171,4 +249,18 @@ enum class StorySendRequirements {
 
   /** Requires cropping before sending to stories. */
   REQUIRES_CROP
+}
+
+/**
+ * The strictest requirement across [this], which is how a send treats a selection: one item that cannot be sent
+ * blocks the selection, and one item needing a crop makes the selection need one. Empty selections can send.
+ */
+fun Collection<StorySendRequirements>.strictest(): StorySendRequirements {
+  return fold(StorySendRequirements.CAN_SEND) { left, right ->
+    when {
+      left == StorySendRequirements.CAN_NOT_SEND || right == StorySendRequirements.CAN_NOT_SEND -> StorySendRequirements.CAN_NOT_SEND
+      left == StorySendRequirements.REQUIRES_CROP || right == StorySendRequirements.REQUIRES_CROP -> StorySendRequirements.REQUIRES_CROP
+      else -> StorySendRequirements.CAN_SEND
+    }
+  }
 }

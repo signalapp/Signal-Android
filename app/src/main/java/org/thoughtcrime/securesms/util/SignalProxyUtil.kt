@@ -10,12 +10,12 @@ import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.signal.core.util.logging.Log.tag
 import org.signal.core.util.logging.Log.w
+import org.signal.network.config.SignalProxy
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.push.AccountManagerFactory
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
-import org.whispersystems.signalservice.internal.configuration.SignalProxy
 import java.io.IOException
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
@@ -82,7 +82,7 @@ object SignalProxyUtil {
   fun testWebsocketConnection(timeout: Long): Boolean {
     startListeningToWebsocket()
 
-    if (SignalStore.account.e164 == null) {
+    if (!SignalStore.account.isRegistered || SignalStore.account.aci == null) {
       Log.i(TAG, "User is unregistered! Doing simple check.")
       return testWebsocketConnectionUnregistered(timeout)
     }

@@ -56,6 +56,7 @@ dependencies {
 
   // Project dependencies
   api(project(":lib:archive"))
+  api(project(":lib:network"))
   implementation(project(":core:ui"))
   implementation(project(":core:util"))
   implementation(project(":core:models-jvm"))

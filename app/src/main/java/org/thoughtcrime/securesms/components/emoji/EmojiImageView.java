@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
 
 import org.thoughtcrime.securesms.R;
+import org.signal.emoji.EmojiProvider;
 
 public class EmojiImageView extends AppCompatImageView {
 

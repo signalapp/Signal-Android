@@ -1,6 +1,7 @@
 package org.signal.camera
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.ContextWrapper
@@ -10,7 +11,7 @@ import android.graphics.Matrix
 import android.os.Build
 import android.os.VibrationEffect
 import android.os.Vibrator
-import android.view.OrientationEventListener
+import android.util.Size
 import android.view.Surface
 import android.view.Window
 import android.view.WindowManager
@@ -27,7 +28,11 @@ import androidx.camera.core.SurfaceOrientedMeteringPointFactory
 import androidx.camera.core.UseCase
 import androidx.camera.core.resolutionselector.AspectRatioStrategy
 import androidx.camera.core.resolutionselector.ResolutionSelector
+import androidx.camera.core.resolutionselector.ResolutionStrategy
 import androidx.camera.lifecycle.ProcessCameraProvider
+import androidx.camera.video.FallbackStrategy
+import androidx.camera.video.Quality
+import androidx.camera.video.QualitySelector
 import androidx.camera.video.Recorder
 import androidx.camera.video.Recording
 import androidx.camera.video.VideoCapture
@@ -52,6 +57,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.signal.core.util.logging.Log
@@ -59,6 +65,7 @@ import org.signal.core.util.throttleLatest
 import java.lang.ref.WeakReference
 import java.util.EnumMap
 import java.util.concurrent.Executors
+import kotlin.time.Duration.Companion.nanoseconds
 import kotlin.time.Duration.Companion.seconds
 
 private const val TAG = "CameraScreenViewModel"
@@ -75,6 +82,9 @@ class CameraScreenViewModel : ViewModel() {
 
     /** Initial delay between camera binding retries, in milliseconds. Doubles on each subsequent retry. */
     private const val CAMERA_BIND_RETRY_DELAY_MS = 500L
+
+    /** Requested resolution for the QR analysis stream. */
+    private val QR_ANALYSIS_RESOLUTION = Size(1280, 720)
   }
 
   private val _state: MutableState<CameraScreenState> = mutableStateOf(CameraScreenState())
@@ -85,13 +95,15 @@ class CameraScreenViewModel : ViewModel() {
   private var lifecycleOwner: LifecycleOwner? = null
   private var cameraProvider: ProcessCameraProvider? = null
   private var lastSuccessfulAttempt: BindingAttempt? = null
+  private var preview: Preview? = null
   private var imageCapture: ImageCapture? = null
   private var videoCapture: VideoCapture<Recorder>? = null
   private var recording: Recording? = null
   private var captureMode: CameraCaptureMode = CameraCaptureMode.ImageOnly
   private var brightnessBeforeFlash: Float = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE
   private var brightnessWindow: WeakReference<Window>? = null
-  private var orientationListener: OrientationEventListener? = null
+  private var deviceTargetRotation: Int = Surface.ROTATION_0
+  private var surfaceProvider: Preview.SurfaceProvider? = null
   private var recordingStartZoomRatio: Float = 1f
 
   private val _qrCodeDetected = MutableSharedFlow<String>(extraBufferCapacity = 1)
@@ -100,7 +112,9 @@ class CameraScreenViewModel : ViewModel() {
    * Flow of detected QR codes. Observers can collect from this flow to receive QR code detections.
    * The flow filters consecutive duplicates and is throttled to avoid rapid-fire detections.
    */
-  val qrCodeDetected: Flow<String> = _qrCodeDetected.throttleLatest(2.seconds)
+  val qrCodeDetected: Flow<String> = _qrCodeDetected
+    .throttleLatest(2.seconds)
+    .onEach { Log.i(TAG, "Decoded a QR code. payloadLength: ${it.length}") }
 
   private val qrCodeReader = QRCodeReader()
   private val qrCodeHint = EnumMap<DecodeHintType, Any>(DecodeHintType::class.java).apply {
@@ -137,6 +151,9 @@ class CameraScreenViewModel : ViewModel() {
       is CameraScreenEvents.ClearCaptureError -> {
         handleClearCaptureErrorEvent(currentState)
       }
+      is CameraScreenEvents.SetDeviceRotation -> {
+        handleSetDeviceRotation(event.rotation, event.isSmallScreen)
+      }
     }
   }
 
@@ -150,6 +167,7 @@ class CameraScreenViewModel : ViewModel() {
       is CameraScreenEvents.SetFlashMode -> Log.d(TAG, "[Event] SetFlashMode(${event.flashMode})")
       is CameraScreenEvents.NextFlashMode -> Log.d(TAG, "[Event] NextFlashMode")
       is CameraScreenEvents.ClearCaptureError -> Log.d(TAG, "[Event] ClearCaptureError")
+      is CameraScreenEvents.SetDeviceRotation -> Log.d(TAG, "[Event] SetDeviceRotation(rotation=${event.rotation}, isSmallScreen=${event.isSmallScreen})")
     }
   }
 
@@ -249,7 +267,7 @@ class CameraScreenViewModel : ViewModel() {
    * If flash is enabled, turns on the torch for the duration of the recording.
    */
   @androidx.annotation.OptIn(markerClass = [androidx.camera.core.ExperimentalGetImage::class])
-  @android.annotation.SuppressLint("MissingPermission", "RestrictedApi", "NewApi")
+  @SuppressLint("MissingPermission", "RestrictedApi", "NewApi")
   fun startRecording(
     context: Context,
     output: VideoOutput,
@@ -304,12 +322,13 @@ class CameraScreenViewModel : ViewModel() {
 
             val result = if (!recordEvent.hasError()) {
               Log.d(TAG, "Video recording succeeded")
+              val durationMs = recordEvent.recordingStats.recordedDurationNanos.nanoseconds.inWholeMilliseconds
               when (output) {
                 is VideoOutput.FileOutput -> {
-                  VideoCaptureResult.Success(outputFile = output.file)
+                  VideoCaptureResult.Success(outputFile = output.file, durationMs = durationMs)
                 }
                 is VideoOutput.FileDescriptorOutput -> {
-                  VideoCaptureResult.Success(fileDescriptor = output.fileDescriptor)
+                  VideoCaptureResult.Success(fileDescriptor = output.fileDescriptor, durationMs = durationMs)
                 }
               }
             } else {
@@ -401,8 +420,6 @@ class CameraScreenViewModel : ViewModel() {
   override fun onCleared() {
     super.onCleared()
     stopRecording()
-    orientationListener?.disable()
-    orientationListener = null
   }
 
   private fun handleBindCameraEvent(
@@ -462,9 +479,13 @@ class CameraScreenViewModel : ViewModel() {
           Log.w(TAG, "Use case binding succeeded on fallback attempt ${index + 1} of ${bindingAttempts.size}")
         }
 
+        attempt.imageAnalysis?.let { Log.d(TAG, "Bound QR analysis at ${it.resolutionInfo?.resolution}") }
+
         lifecycleOwner = event.lifecycleOwner
         cameraProvider = event.cameraProvider
         lastSuccessfulAttempt = attempt
+        preview = attempt.preview
+        surfaceProvider = event.surfaceProvider
         imageCapture = attempt.imageCapture
         videoCapture = attempt.videoCapture
         captureMode = event.captureMode
@@ -473,7 +494,6 @@ class CameraScreenViewModel : ViewModel() {
         continue
       }
 
-      setupOrientationListener(event.context)
       return true
     }
 
@@ -481,16 +501,18 @@ class CameraScreenViewModel : ViewModel() {
     return false
   }
 
-  @android.annotation.SuppressLint("RestrictedApi")
+  @SuppressLint("RestrictedApi")
   private fun buildVideoCapture(): VideoCapture<Recorder> {
     val recorder = Recorder.Builder()
       .setAspectRatio(AspectRatio.RATIO_16_9)
       .setQualitySelector(
-        androidx.camera.video.QualitySelector.from(
-          androidx.camera.video.Quality.HIGHEST,
-          androidx.camera.video.FallbackStrategy.higherQualityOrLowerThan(androidx.camera.video.Quality.HD)
+        QualitySelector.from(
+          Quality.HD,
+          FallbackStrategy.lowerQualityOrHigherThan(Quality.HD)
         )
       )
+      // Recording at the highest transcoding target means no sent-media quality tier is sourced from a lower-bitrate capture.
+      .setTargetVideoEncodingBitRate(CameraDependencies.getMaxVideoBitrateBps())
       .build()
     return VideoCapture.withOutput(recorder)
   }
@@ -502,16 +524,22 @@ class CameraScreenViewModel : ViewModel() {
       .setAspectRatioStrategy(AspectRatioStrategy.RATIO_16_9_FALLBACK_AUTO_STRATEGY)
       .build()
 
-    // Preview with 16:9 aspect ratio - uses Compose Viewfinder
+    // Target rotation must be set at build time — the compose viewfinder ignores later changes.
     val preview = Preview.Builder()
       .setResolutionSelector(resolutionSelector)
+      .setTargetRotation(deviceTargetRotation)
       .build()
       .also { it.surfaceProvider = event.surfaceProvider }
 
-    // Image capture with 16:9 aspect ratio (optimized for speed)
+    // Image capture with 16:9 aspect ratio (optimized for speed).
+    // The flash mode must be seeded from state: this builds a brand new ImageCapture, and a fresh one
+    // defaults to FLASH_MODE_OFF. Rebinds happen on every camera switch and every re-entry into the
+    // camera, so without this the HUD would keep showing the user's flash selection while the hardware
+    // flash silently stopped firing.
     val imageCapture = ImageCapture.Builder()
       .setCaptureMode(ImageCapture.CAPTURE_MODE_MINIMIZE_LATENCY)
       .setResolutionSelector(resolutionSelector)
+      .setFlashMode(_state.value.flashMode.cameraxMode)
       .build()
 
     val videoCapture: VideoCapture<Recorder>? = if (event.captureMode == CameraCaptureMode.ImageAndVideoSimultaneous && !FORCE_LIMITED_BINDING) {
@@ -521,8 +549,14 @@ class CameraScreenViewModel : ViewModel() {
     }
 
     val qrAnalysis: ImageAnalysis? = if (event.enableQrScanning) {
+      val qrResolutionSelector = ResolutionSelector.Builder()
+        .setAspectRatioStrategy(AspectRatioStrategy.RATIO_16_9_FALLBACK_AUTO_STRATEGY)
+        .setResolutionStrategy(ResolutionStrategy(QR_ANALYSIS_RESOLUTION, ResolutionStrategy.FALLBACK_RULE_CLOSEST_HIGHER_THEN_LOWER))
+        .build()
+
       ImageAnalysis.Builder()
         .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
+        .setResolutionSelector(qrResolutionSelector)
         .build()
         .also {
           it.setAnalyzer(imageAnalysisExecutor) { imageProxy ->
@@ -549,24 +583,66 @@ class CameraScreenViewModel : ViewModel() {
     }
   }
 
-  private fun setupOrientationListener(context: Context) {
-    orientationListener?.disable()
+  /** Single source of truth for rotation: drives capture, the Small-screen icon rotation, and the card/preview. */
+  private fun handleSetDeviceRotation(rotation: Int, isSmallScreen: Boolean) {
+    // Capture always follows the physical rotation so photos are upright, even on a locked-portrait phone.
+    imageCapture?.targetRotation = rotation
+    videoCapture?.targetRotation = rotation
 
-    orientationListener = object : OrientationEventListener(context) {
-      override fun onOrientationChanged(orientation: Int) {
-        if (orientation == ORIENTATION_UNKNOWN) return
+    // Small screens stay portrait (icons rotate instead); only larger screens reorient the card/preview.
+    val effectiveRotation = if (isSmallScreen) Surface.ROTATION_0 else rotation
+    val rebuild = effectiveRotation != deviceTargetRotation
+    deviceTargetRotation = effectiveRotation
 
-        val targetRotation = when {
-          orientation > 315 || orientation < 45 -> Surface.ROTATION_0
-          orientation < 135 -> Surface.ROTATION_270
-          orientation < 225 -> Surface.ROTATION_180
-          else -> Surface.ROTATION_90
-        }
+    _state.value = _state.value.copy(
+      deviceRotation = rotation,
+      isLandscape = isLandscapeRotation(effectiveRotation)
+    )
 
-        imageCapture?.targetRotation = targetRotation
-        videoCapture?.targetRotation = targetRotation
+    if (rebuild) {
+      handleRefreshPreviewRotation()
+    }
+  }
+
+  /**
+   * Rebuilds the preview at the current device rotation. The compose viewfinder only honors a preview's
+   * target rotation at build time, so we rebuild the preview and swap it in — keeping capture bound (no
+   * [ProcessCameraProvider.unbindAll]), which avoids the long black teardown that eventually wedges the HAL.
+   */
+  private fun handleRefreshPreviewRotation() {
+    val cameraProvider = cameraProvider ?: return
+    val lifecycleOwner = lifecycleOwner ?: return
+    val oldPreview = preview ?: return
+    val surfaceProvider = surfaceProvider ?: return
+
+    val resolutionSelector = ResolutionSelector.Builder()
+      .setAspectRatioStrategy(AspectRatioStrategy.RATIO_16_9_FALLBACK_AUTO_STRATEGY)
+      .build()
+
+    val newPreview = Preview.Builder()
+      .setResolutionSelector(resolutionSelector)
+      .setTargetRotation(deviceTargetRotation)
+      .build()
+      .also { it.surfaceProvider = surfaceProvider }
+
+    val cameraSelector = CameraSelector.Builder()
+      .requireLensFacing(_state.value.lensFacing)
+      .build()
+
+    try {
+      cameraProvider.unbind(oldPreview)
+      camera = cameraProvider.bindToLifecycle(lifecycleOwner, cameraSelector, newPreview)
+      preview = newPreview
+      lastSuccessfulAttempt = lastSuccessfulAttempt?.copy(preview = newPreview)
+    } catch (e: Exception) {
+      Log.e(TAG, "Failed to refresh preview rotation", e)
+      // The old preview is already unbound; rebind it so we don't leave the viewfinder on a dead surface.
+      try {
+        camera = cameraProvider.bindToLifecycle(lifecycleOwner, cameraSelector, oldPreview)
+      } catch (restore: Exception) {
+        Log.e(TAG, "Failed to restore preview after rotation failure", restore)
       }
-    }.also { it.enable() }
+    }
   }
 
   private fun handleTapToFocusEvent(

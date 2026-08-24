@@ -8,10 +8,12 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.graphics.Insets;
 import androidx.core.view.DisplayCutoutCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.WindowInsetsControllerCompat;
 
 /**
  * Encapsulates logic to properly show/hide system UI/chrome in a full screen setting. Also
@@ -44,7 +46,7 @@ public final class FullscreenHelper {
 
   public void configureToolbarLayout(@NonNull View spacer, @NonNull View toolbar) {
     ViewCompat.setOnApplyWindowInsetsListener(spacer, (view, insets) -> {
-      setSpacerHeight(view, insets.getSystemWindowInsetTop());
+      setSpacerHeight(view, insets.getInsets(WindowInsetsCompat.Type.systemBars()).top);
       return insets;
     });
 
@@ -57,7 +59,7 @@ public final class FullscreenHelper {
 
   public static void configureBottomBarLayout(@NonNull Activity activity, @NonNull View spacer, @NonNull View bottomBar) {
     ViewCompat.setOnApplyWindowInsetsListener(spacer, (view, insets) -> {
-      setSpacerHeight(view, insets.getSystemWindowInsetBottom());
+      setSpacerHeight(view, insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom);
       return insets;
     });
 
@@ -89,52 +91,87 @@ public final class FullscreenHelper {
     return new int[]{leftPad, rightPad};
   }
 
+  @SuppressWarnings("deprecation")
   public void showAndHideWithSystemUI(@NonNull Window window, @NonNull View... views) {
-    window.getDecorView().setOnSystemUiVisibilityChangeListener(visibility -> {
-      boolean hide = (visibility & View.SYSTEM_UI_FLAG_FULLSCREEN) != 0;
+    if (Build.VERSION.SDK_INT >= 30) {
+      ViewCompat.setOnApplyWindowInsetsListener(window.getDecorView(), (view, insets) -> {
+        animateWithBars(!areBarsVisible(insets), views);
+        return ViewCompat.onApplyWindowInsets(view, insets);
+      });
+    } else {
+      window.getDecorView().setOnSystemUiVisibilityChangeListener(visibility -> {
+        animateWithBars((visibility & View.SYSTEM_UI_FLAG_FULLSCREEN) != 0, views);
+      });
+    }
+  }
 
-      for (View view : views) {
-        if (view == null) {
-          continue;
-        }
+  private static void animateWithBars(boolean hide, @NonNull View... views) {
+    for (View target : views) {
+      if (target == null) {
+        continue;
+      }
 
-        view.animate()
+      target.animate()
             .alpha(hide ? 0 : 1)
             .withStartAction(() -> {
               if (!hide) {
-                view.setVisibility(View.VISIBLE);
+                target.setVisibility(View.VISIBLE);
               }
             })
             .withEndAction(() -> {
               if (hide) {
-                view.setVisibility(View.INVISIBLE);
+                target.setVisibility(View.INVISIBLE);
               }
             })
             .start();
-      }
-    });
+    }
   }
 
   public void toggleUiVisibility() {
     if (isSystemUiVisible()) {
-      showSystemUI();
-    } else {
       hideSystemUI();
+    } else {
+      showSystemUI();
     }
   }
 
+  @SuppressWarnings("deprecation")
   public boolean isSystemUiVisible() {
-    int systemUiVisibility = activity.getWindow().getDecorView().getSystemUiVisibility();
-    return (systemUiVisibility & View.SYSTEM_UI_FLAG_FULLSCREEN) != 0;
+    if (Build.VERSION.SDK_INT >= 30) {
+      return areBarsVisible(ViewCompat.getRootWindowInsets(activity.getWindow().getDecorView()));
+    } else {
+      return (activity.getWindow().getDecorView().getSystemUiVisibility() & View.SYSTEM_UI_FLAG_FULLSCREEN) == 0;
+    }
+  }
+
+  /**
+   * Whether the bars that {@link #showSystemUI()} / {@link #hideSystemUI()} control are currently on screen.
+   * <p>
+   * Only usable on API 30+. Below that, {@link WindowInsetsCompat#isVisible(int)} is emulated off of the inset
+   * sizes, and because we're edge-to-edge (and therefore laid out with {@code SYSTEM_UI_FLAG_LAYOUT_STABLE})
+   * those stay at their full height while the bars are hidden, making everything look permanently visible.
+   * The legacy visibility flags are the reliable signal there.
+   * <p>
+   * Checks the two bars individually rather than {@link WindowInsetsCompat.Type#systemBars()}, which also
+   * covers the caption bar: {@code isVisible} requires every requested type to be visible, and a phone window
+   * has no caption bar source, so the aggregate answer is always "hidden".
+   */
+  private static boolean areBarsVisible(@Nullable WindowInsetsCompat insets) {
+    if (insets == null) {
+      return true;
+    }
+
+    return insets.isVisible(WindowInsetsCompat.Type.statusBars()) || insets.isVisible(WindowInsetsCompat.Type.navigationBars());
   }
 
   public void hideSystemUI() {
-    activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_IMMERSIVE              |
-                                                              View.SYSTEM_UI_FLAG_LAYOUT_STABLE          |
-                                                              View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
-                                                              View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN      |
-                                                              View.SYSTEM_UI_FLAG_HIDE_NAVIGATION        |
-                                                              View.SYSTEM_UI_FLAG_FULLSCREEN);
+    hideSystemUI(activity.getWindow());
+  }
+
+  public static void hideSystemUI(@NonNull Window window) {
+    WindowInsetsControllerCompat controller = controller(window);
+    controller.setSystemBarsBehavior(WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);
+    controller.hide(WindowInsetsCompat.Type.systemBars());
   }
 
   public void showSystemUI() {
@@ -142,8 +179,10 @@ public final class FullscreenHelper {
   }
 
   public static void showSystemUI(@NonNull Window window) {
-    window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE          |
-                                                View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
-                                                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+    controller(window).show(WindowInsetsCompat.Type.systemBars());
+  }
+
+  private static @NonNull WindowInsetsControllerCompat controller(@NonNull Window window) {
+    return new WindowInsetsControllerCompat(window, window.getDecorView());
   }
 }

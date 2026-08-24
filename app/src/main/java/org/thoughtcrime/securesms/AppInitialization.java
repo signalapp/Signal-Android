@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.DeleteAbandonedAttachmentsJob;
@@ -14,6 +15,7 @@ import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.migrations.ApplicationMigrations;
 import org.thoughtcrime.securesms.migrations.QuoteThumbnailBackfillMigrationJob;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.stickers.BlessedPacks;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.signal.core.util.Util;
@@ -58,6 +60,12 @@ public final class AppInitialization {
     AppDependencies.getJobManager().addAll(BlessedPacks.getFirstInstallJobs());
     EmojiSearchIndexDownloadJob.scheduleImmediately();
     DeleteAbandonedAttachmentsJob.enqueue();
+
+    RecipientId.clearCache();
+    SignalDatabase.remappedRecords().clearCache();
+    SignalDatabase.threads().clearCache();
+    AppDependencies.getRecipientCache().clear();
+    AppDependencies.getRecipientCache().clearSelf();
 
     if (SignalStore.misc().startedQuoteThumbnailMigration()) {
       AppDependencies.getJobManager().add(new QuoteThumbnailBackfillJob());

@@ -78,7 +78,7 @@ object SignalServiceProtoUtil {
     get() = delete != null && delete!!.targetSentTimestamp != null
 
   val DataMessage.isGroupV2Update: Boolean
-    get() = !hasRenderableContent && hasSignedGroupChange
+    get() = hasSignedGroupChange && !hasRenderableContent
 
   val DataMessage?.hasGroupContext: Boolean
     get() = this?.groupV2?.masterKey.isNotEmpty()

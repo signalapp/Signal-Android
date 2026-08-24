@@ -93,12 +93,14 @@ private fun Loading() {
 
 @Composable
 private fun Ready(state: GatewaySelectorState.Ready, onEvent: (GatewaySelectorBottomSheetEvent) -> Unit) {
+  Spacer(modifier = Modifier.size(38.dp))
+
   BadgeImage112(
     badge = state.inAppPayment.data.badge!!.let { Badges.fromDatabaseBadge(it) },
-    modifier = Modifier.size(112.dp)
+    modifier = Modifier.size(80.dp)
   )
 
-  Spacer(modifier = Modifier.size(12.dp))
+  Spacer(modifier = Modifier.size(16.dp))
 
   TitleAndSubtitle(state.inAppPayment)
 

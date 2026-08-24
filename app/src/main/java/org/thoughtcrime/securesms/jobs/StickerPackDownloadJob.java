@@ -7,12 +7,13 @@ import androidx.core.util.Preconditions;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.InvalidMessageException;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.database.StickerTable;
+import org.thoughtcrime.securesms.database.StickerTables;
 import org.thoughtcrime.securesms.database.model.IncomingSticker;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
+import org.thoughtcrime.securesms.jobmanager.impl.DataRestoreConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.stickers.BlessedPacks;
 import org.signal.core.util.Hex;
@@ -63,6 +64,7 @@ public class StickerPackDownloadJob extends BaseJob {
   {
     this(new Parameters.Builder()
                        .addConstraint(NetworkConstraint.KEY)
+                       .addConstraint(DataRestoreConstraint.KEY)
                        .setLifespan(TimeUnit.DAYS.toMillis(30))
                        .setQueue("StickerPackDownloadJob_" + packId)
                        .build(),
@@ -116,9 +118,9 @@ public class StickerPackDownloadJob extends BaseJob {
     }
 
     SignalServiceMessageReceiver receiver        = AppDependencies.getSignalServiceMessageReceiver();
-    JobManager   jobManager      = AppDependencies.getJobManager();
-    StickerTable stickerDatabase = SignalDatabase.stickers();
-    byte[]       packIdBytes     = Hex.fromStringCondensed(packId);
+    JobManager    jobManager      = AppDependencies.getJobManager();
+    StickerTables stickerDatabase = SignalDatabase.stickers();
+    byte[]        packIdBytes     = Hex.fromStringCondensed(packId);
     byte[]                       packKeyBytes    = Hex.fromStringCondensed(packKey);
     SignalServiceStickerManifest manifest        = receiver.retrieveStickerManifest(packIdBytes, packKeyBytes);
 

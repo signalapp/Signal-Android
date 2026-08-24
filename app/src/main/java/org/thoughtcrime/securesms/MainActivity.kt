@@ -103,7 +103,6 @@ import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.getSerializableCompat
 import org.signal.core.util.logging.Log
 import org.signal.donations.StripeApi
-import org.signal.mediasend.MediaSendActivityContract
 import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgress
 import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgressState
 import org.thoughtcrime.securesms.backup.v2.ui.CouldNotCompleteBackupRestoreSheet
@@ -135,7 +134,6 @@ import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner
 import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.conversation.NewConversationActivity
 import org.thoughtcrime.securesms.conversation.v2.MotionEventRelay
-import org.thoughtcrime.securesms.conversation.v2.ShareDataTimestampViewModel
 import org.thoughtcrime.securesms.conversationlist.ConversationListArchiveFragment
 import org.thoughtcrime.securesms.conversationlist.ConversationListFragment
 import org.thoughtcrime.securesms.conversationlist.RelinkDevicesReminderBottomSheetFragment
@@ -165,8 +163,7 @@ import org.thoughtcrime.securesms.main.MainToolbarMode
 import org.thoughtcrime.securesms.main.MainToolbarState
 import org.thoughtcrime.securesms.main.MainToolbarViewModel
 import org.thoughtcrime.securesms.main.Material3OnScrollHelperBinder
-import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity
-import org.thoughtcrime.securesms.mediasend.v3.mediaSendLauncher
+import org.thoughtcrime.securesms.mediasend.MediaSendLauncher
 import org.thoughtcrime.securesms.megaphone.Megaphone
 import org.thoughtcrime.securesms.megaphone.MegaphoneActionController
 import org.thoughtcrime.securesms.megaphone.Megaphones
@@ -259,7 +256,6 @@ class MainActivity :
 
   private val toolbarViewModel: MainToolbarViewModel by viewModels()
   private val toolbarCallback = ToolbarCallback()
-  private val shareDataTimestampViewModel: ShareDataTimestampViewModel by viewModels()
 
   private val motionEventRelay: MotionEventRelay by viewModels()
 
@@ -272,8 +268,6 @@ class MainActivity :
 
   override val googlePayRepository: GooglePayRepository by lazy { GooglePayRepository(this) }
   override val googlePayResultPublisher: Subject<GooglePayComponent.GooglePayResult> = PublishSubject.create()
-
-  private lateinit var mediaSendLauncher: ActivityResultLauncher<MediaSendActivityContract.Args>
 
   override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
     return motionEventRelay.offer(ev) || super.dispatchTouchEvent(ev)
@@ -291,8 +285,6 @@ class MainActivity :
 
     super.onCreate(savedInstanceState, ready)
     navigator = MainNavigator(this, mainNavigationViewModel)
-
-    mediaSendLauncher = mediaSendLauncher()
 
     AppForegroundObserver.addListener(object : AppForegroundObserver.Listener {
       override fun onForeground() {
@@ -387,8 +379,6 @@ class MainActivity :
         )
       }
     }
-
-    shareDataTimestampViewModel.setTimestampFromActivityCreation(savedInstanceState, intent)
 
     setContent {
       val mainToolbarState by toolbarViewModel.state.collectAsStateWithLifecycle()
@@ -672,46 +662,54 @@ class MainActivity :
             }
           },
           primaryContent = {
-            when (mainNavigationState.currentListLocation) {
-              MainNavigationListLocation.CHATS, MainNavigationListLocation.ARCHIVE -> {
-                NavDisplay<NavKey>(
-                  backStack = mainNavigationViewModel.chatsBackStackEntries,
-                  onBack = { mainNavigationViewModel.popChatsDetailLocation() },
-                  transitionSpec = { TransitionSpecs.HorizontalSlide.transitionSpec },
-                  popTransitionSpec = { TransitionSpecs.HorizontalSlide.popTransitionSpec },
-                  predictivePopTransitionSpec = { TransitionSpecs.HorizontalSlide.predictivePopTransitionSpec },
-                  entryProvider = entryProvider { chatsNavEntries(convoTransitionState) }
-                )
-              }
+            Box(
+              modifier = Modifier
+                .padding(end = contentLayoutData.detailPaddingEnd)
+                .clip(contentLayoutData.shape)
+                .background(color = MaterialTheme.colorScheme.surface)
+                .fillMaxSize()
+            ) {
+              when (mainNavigationState.currentListLocation) {
+                MainNavigationListLocation.CHATS, MainNavigationListLocation.ARCHIVE -> {
+                  NavDisplay<NavKey>(
+                    backStack = mainNavigationViewModel.chatsBackStackEntries,
+                    onBack = { mainNavigationViewModel.popChatsDetailLocation() },
+                    transitionSpec = { TransitionSpecs.HorizontalSlide.transitionSpec },
+                    popTransitionSpec = { TransitionSpecs.HorizontalSlide.popTransitionSpec },
+                    predictivePopTransitionSpec = { TransitionSpecs.HorizontalSlide.predictivePopTransitionSpec },
+                    entryProvider = entryProvider { chatsNavEntries(convoTransitionState) }
+                  )
+                }
 
-              MainNavigationListLocation.CALLS -> {
-                NavDisplay<NavKey>(
-                  backStack = mainNavigationViewModel.callsBackStackEntries,
-                  onBack = { mainNavigationViewModel.popCallsDetailLocation() },
-                  transitionSpec = { TransitionSpecs.HorizontalSlide.transitionSpec },
-                  popTransitionSpec = { TransitionSpecs.HorizontalSlide.popTransitionSpec },
-                  predictivePopTransitionSpec = { TransitionSpecs.HorizontalSlide.predictivePopTransitionSpec },
-                  entryDecorators = listOf(
-                    rememberSaveableStateHolderNavEntryDecorator(),
-                    rememberViewModelStoreNavEntryDecorator()
-                  ),
-                  entryProvider = entryProvider { callsNavEntries(isSplitPane) }
-                )
-              }
+                MainNavigationListLocation.CALLS -> {
+                  NavDisplay<NavKey>(
+                    backStack = mainNavigationViewModel.callsBackStackEntries,
+                    onBack = { mainNavigationViewModel.popCallsDetailLocation() },
+                    transitionSpec = { TransitionSpecs.HorizontalSlide.transitionSpec },
+                    popTransitionSpec = { TransitionSpecs.HorizontalSlide.popTransitionSpec },
+                    predictivePopTransitionSpec = { TransitionSpecs.HorizontalSlide.predictivePopTransitionSpec },
+                    entryDecorators = listOf(
+                      rememberSaveableStateHolderNavEntryDecorator(),
+                      rememberViewModelStoreNavEntryDecorator()
+                    ),
+                    entryProvider = entryProvider { callsNavEntries(isSplitPane) }
+                  )
+                }
 
-              MainNavigationListLocation.STORIES -> {
-                NavDisplay<NavKey>(
-                  backStack = mainNavigationViewModel.storiesBackStackEntries,
-                  onBack = { mainNavigationViewModel.popStoriesDetailLocation() },
-                  transitionSpec = { TransitionSpecs.HorizontalSlide.transitionSpec },
-                  popTransitionSpec = { TransitionSpecs.HorizontalSlide.popTransitionSpec },
-                  predictivePopTransitionSpec = { TransitionSpecs.HorizontalSlide.predictivePopTransitionSpec },
-                  entryDecorators = listOf(
-                    rememberSaveableStateHolderNavEntryDecorator(),
-                    rememberViewModelStoreNavEntryDecorator()
-                  ),
-                  entryProvider = entryProvider { storiesNavEntries() }
-                )
+                MainNavigationListLocation.STORIES -> {
+                  NavDisplay<NavKey>(
+                    backStack = mainNavigationViewModel.storiesBackStackEntries,
+                    onBack = { mainNavigationViewModel.popStoriesDetailLocation() },
+                    transitionSpec = { TransitionSpecs.HorizontalSlide.transitionSpec },
+                    popTransitionSpec = { TransitionSpecs.HorizontalSlide.popTransitionSpec },
+                    predictivePopTransitionSpec = { TransitionSpecs.HorizontalSlide.predictivePopTransitionSpec },
+                    entryDecorators = listOf(
+                      rememberSaveableStateHolderNavEntryDecorator(),
+                      rememberViewModelStoreNavEntryDecorator()
+                    ),
+                    entryProvider = entryProvider { storiesNavEntries() }
+                  )
+                }
               }
             }
           },
@@ -913,7 +911,9 @@ class MainActivity :
     SplashScreenUtil.setSplashScreenThemeIfNecessary(this, SignalStore.settings.theme)
   }
 
-  override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray, deviceId: Int) {
+  @Suppress("OVERRIDE_DEPRECATION")
+  override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults)
   }
 
@@ -966,7 +966,6 @@ class MainActivity :
       onSetToolbarColor = {
         toolbarViewModel.setToolbarColor(it)
       },
-      setStatusBarColor = {},
       lifecycleOwner = lifecycleOwner
     ).attach(recyclerView)
   }
@@ -976,7 +975,6 @@ class MainActivity :
       activity = this,
       views = listOf(chatFolders),
       viewStubs = listOf(),
-      setStatusBarColor = {},
       onSetToolbarColor = {
         toolbarViewModel.setToolbarColor(it)
       },
@@ -1146,17 +1144,10 @@ class MainActivity :
   private fun onCameraClick(destination: MainNavigationListLocation, isForQuickRestore: Boolean) {
     val onGranted = {
       if (isForQuickRestore) {
-        startActivity(MediaSelectionActivity.cameraForQuickRestore(context = this@MainActivity))
-      } else if (SignalStore.internal.useNewMediaActivity) {
-        mediaSendLauncher.launch(
-          MediaSendActivityContract.Args(
-            isCameraFirst = true,
-            isStory = destination == MainNavigationListLocation.STORIES
-          )
-        )
+        startActivity(MediaSendLauncher.cameraForQuickRestore(context = this@MainActivity))
       } else {
         startActivity(
-          MediaSelectionActivity.camera(
+          MediaSendLauncher.camera(
             context = this@MainActivity,
             isStory = destination == MainNavigationListLocation.STORIES
           )
@@ -1183,16 +1174,16 @@ class MainActivity :
       toolbarViewModel.markAllMessagesRead()
     }
 
-    override fun onInviteFriendsClick() {
-      openSettings.launch(AppSettingsActivity.invite(this@MainActivity))
-    }
-
     override fun onFilterUnreadChatsClick() {
       toolbarViewModel.setChatFilter(ConversationFilter.UNREAD)
     }
 
     override fun onClearUnreadChatsFilterClick() {
       toolbarViewModel.setChatFilter(ConversationFilter.OFF)
+    }
+
+    override fun onOpenArchiveClick() {
+      mainNavigationViewModel.onArchiveSelected()
     }
 
     override fun onStarredMessagesClick() {

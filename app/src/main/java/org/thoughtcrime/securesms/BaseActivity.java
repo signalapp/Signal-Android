@@ -6,6 +6,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,6 +35,7 @@ public abstract class BaseActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     AppStartup.getInstance().onCriticalRenderEventStart();
     logEvent("onCreate()");
+    EdgeToEdge.enable(this);
     super.onCreate(savedInstanceState);
     AppStartup.getInstance().onCriticalRenderEventEnd();
   }

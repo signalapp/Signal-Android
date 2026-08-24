@@ -42,6 +42,7 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
@@ -201,7 +202,7 @@ private fun TwoPaneLayout(
           .verticalScroll(firstPaneScrollState)
           .padding(paddingValues)
       ) {
-        Description()
+        Description(twoPane = true)
       }
     },
     secondPane = { paddingValues ->
@@ -238,10 +239,10 @@ private fun TwoPaneLayout(
 }
 
 @Composable
-private fun Description() {
+private fun Description(twoPane: Boolean = false) {
   Text(
     text = stringResource(R.string.EnterAepScreen__enter_your_recovery_key),
-    style = MaterialTheme.typography.headlineMedium,
+    style = if (twoPane) MaterialTheme.typography.headlineLarge else MaterialTheme.typography.headlineMedium,
     modifier = Modifier
       .fillMaxWidth()
       .attachDebugLogHelper()
@@ -249,7 +250,7 @@ private fun Description() {
 
   Text(
     text = stringResource(R.string.EnterAepScreen__your_recovery_key_is_a_64_character_code),
-    style = MaterialTheme.typography.bodyLarge,
+    style = if (twoPane) MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Normal) else MaterialTheme.typography.bodyLarge,
     color = MaterialTheme.colorScheme.onSurfaceVariant,
     modifier = Modifier
       .fillMaxWidth()

@@ -42,12 +42,7 @@ public class ContactsSyncAdapter extends AbstractThreadedSyncAdapter {
 
     Context context = getContext();
 
-    if (SignalStore.account().getE164() == null) {
-      Log.i(TAG, "No local number set, skipping all sync operations.");
-      return;
-    }
-
-    if (!SignalStore.account().isRegistered()) {
+    if (!SignalStore.account().isRegistered() || SignalStore.account().getAci() == null) {
       Log.i(TAG, "Not push registered. Just syncing contact info.");
       ContactDiscovery.syncRecipientInfoWithSystemContacts(context);
       return;

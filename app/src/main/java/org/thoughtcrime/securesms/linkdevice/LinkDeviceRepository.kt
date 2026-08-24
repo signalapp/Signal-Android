@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.linkdevice
 
 import android.net.Uri
+import androidx.annotation.VisibleForTesting
 import org.signal.core.models.backup.MessageBackupKey
 import org.signal.core.util.Base64
 import org.signal.core.util.Stopwatch
@@ -8,7 +9,6 @@ import org.signal.core.util.crypto.DeviceName
 import org.signal.core.util.crypto.DeviceNameCipher
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
-import org.signal.core.util.logging.logD
 import org.signal.core.util.logging.logI
 import org.signal.core.util.logging.logW
 import org.signal.core.util.toByteArray
@@ -33,6 +33,7 @@ import org.whispersystems.signalservice.api.link.TransferArchiveError
 import org.whispersystems.signalservice.api.link.WaitForLinkedDeviceResponse
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceInfo
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
+import org.whispersystems.signalservice.api.push.exceptions.ResumeLocationInvalidException
 import org.whispersystems.signalservice.internal.push.AttachmentUploadForm
 import java.io.File
 import java.io.FileInputStream
@@ -42,6 +43,7 @@ import java.nio.ByteBuffer
 import java.nio.charset.StandardCharsets
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
+import org.signal.libsignal.net.LinkedDevice as LibSignalLinkedDevice
 
 /**
  * Repository for linked devices and its various actions (linking, unlinking, listing).
@@ -53,31 +55,35 @@ object LinkDeviceRepository {
 
   suspend fun removeDevice(deviceId: Int): Boolean {
     return when (val result = AppDependencies.linkDeviceApi.removeDevice(deviceId)) {
-      is NetworkResult.Success -> {
+      is RequestResult.Success -> {
         LinkedDeviceInactiveCheckJob.enqueue()
         true
       }
-      else -> {
-        Log.w(TAG, "Unable to remove device", result.getCause())
+      is RequestResult.RetryableNetworkError -> {
+        Log.w(TAG, "Unable to remove device", result.networkError)
         false
       }
+      is RequestResult.ApplicationError -> throw result.cause
+      is RequestResult.NonSuccess -> error("Code branch is unreachable")
     }
   }
 
-  fun loadDevices(): List<Device>? {
+  suspend fun loadDevices(): List<Device>? {
     return when (val result = AppDependencies.linkDeviceApi.getDevices()) {
-      is NetworkResult.Success -> {
+      is RequestResult.Success -> {
         result
           .result
-          .filter { d: DeviceInfo -> d.getId() != SignalServiceAddress.DEFAULT_DEVICE_ID }
-          .map { deviceInfo: DeviceInfo -> deviceInfo.toDevice() }
+          .filter { it.id != SignalServiceAddress.DEFAULT_DEVICE_ID }
+          .map { it.toLocalDevice() }
           .sortedBy { it.createdMillis }
           .toList()
       }
-      else -> {
-        Log.w(TAG, "Unable to load device", result.getCause())
+      is RequestResult.RetryableNetworkError -> {
+        Log.w(TAG, "Unable to load device", result.networkError)
         null
       }
+      is RequestResult.ApplicationError -> throw result.cause
+      is RequestResult.NonSuccess -> error("Code branch is unreachable")
     }
   }
 
@@ -89,10 +95,10 @@ object LinkDeviceRepository {
       lastSeen = response.lastSeen
       registrationId = response.registrationId
       createdAtCiphertext = response.createdAtCiphertext
-    }.toDevice()
+    }.toLocalDevice()
   }
 
-  private fun DeviceInfo.toDevice(): Device {
+  private fun DeviceInfo.toLocalDevice(): Device {
     val createdAt = this.getPlaintextCreatedAt()
     val defaultDevice = Device(getId(), getName(), createdAt, getLastSeen(), getRegistrationId())
     try {
@@ -120,11 +126,54 @@ object LinkDeviceRepository {
     return defaultDevice
   }
 
+  private fun LibSignalLinkedDevice.toLocalDevice(): Device {
+    val createdAt = getPlaintextCreatedAt()
+    val defaultDevice = Device(this.id, Base64.encodeWithPadding(this.encryptedName), createdAt, this.lastSeen.toEpochMilli(), this.registrationId)
+    try {
+      if (this.encryptedName.size < 4) {
+        Log.w(TAG, "Invalid LinkedDevice name.")
+        return defaultDevice
+      }
+
+      val deviceName = DeviceName.ADAPTER.decode(this.encryptedName)
+      if (deviceName.ciphertext == null || deviceName.ephemeralPublic == null || deviceName.syntheticIv == null) {
+        Log.w(TAG, "Got a DeviceName that wasn't properly populated.")
+        return defaultDevice
+      }
+
+      val plaintext = DeviceNameCipher.decryptDeviceName(deviceName, SignalStore.account.aciIdentityKey)
+      if (plaintext == null) {
+        Log.w(TAG, "Failed to decrypt device name.")
+        return defaultDevice
+      }
+
+      return Device(id, String(plaintext), createdAt, lastSeen.toEpochMilli(), registrationId)
+    } catch (e: Exception) {
+      Log.w(TAG, "Failed while reading the protobuf.", e)
+    }
+    return defaultDevice
+  }
+
   private fun DeviceInfo.getPlaintextCreatedAt(): Long? {
     return try {
-      val associatedData = byteArrayOf(getId().toByte()) + getRegistrationId().toByteArray()
+      val associatedData = byteArrayOf(getId().toByte()) + this.getRegistrationId().toByteArray()
       val createdAtPlaintext = SignalStore.account.aciIdentityKey.privateKey.open(
-        ciphertext = Base64.decode(getCreatedAtCiphertext().toByteArray()),
+        ciphertext = Base64.decode(this.getCreatedAtCiphertext().toByteArray()),
+        info = DECRYPTION_INFO,
+        associatedData = associatedData
+      )
+      ByteBuffer.wrap(createdAtPlaintext).getLong()
+    } catch (e: Exception) {
+      Log.w(TAG, "Failed while reading the protobuf.", e)
+      null
+    }
+  }
+
+  private fun LibSignalLinkedDevice.getPlaintextCreatedAt(): Long? {
+    return try {
+      val associatedData = byteArrayOf(this.id.toByte()) + this.registrationId.toByteArray()
+      val createdAtPlaintext = SignalStore.account.aciIdentityKey.privateKey.open(
+        ciphertext = this.createdAtCiphertext,
         info = DECRYPTION_INFO,
         associatedData = associatedData
       )
@@ -186,19 +235,20 @@ object LinkDeviceRepository {
     }
 
     val deviceLinkResult = SignalNetwork.linkDevice.linkDevice(
-      e164 = SignalStore.account.e164!!,
+      e164 = SignalStore.account.e164,
       aci = SignalStore.account.aci!!,
-      pni = SignalStore.account.pni!!,
+      pni = SignalStore.account.pni,
       deviceIdentifier = ephemeralId,
       deviceKey = publicKey,
       aciIdentityKeyPair = SignalStore.account.aciIdentityKey,
-      pniIdentityKeyPair = SignalStore.account.pniIdentityKey,
+      pniIdentityKeyPair = SignalStore.account.pniIdentityKeyOrNull,
       profileKey = ProfileKeyUtil.getSelfProfileKey(),
       accountEntropyPool = SignalStore.account.accountEntropyPool,
       masterKey = SignalStore.svr.masterKey,
       code = verificationCodeResult.verificationCode,
       ephemeralMessageBackupKey = ephemeralMessageBackupKey,
-      mediaRootBackupKey = SignalStore.backup.mediaRootBackupKey
+      mediaRootBackupKey = SignalStore.backup.mediaRootBackupKey,
+      authCredentialSalt = SignalStore.account.authCredentialSalt
     )
 
     return when (deviceLinkResult) {
@@ -336,22 +386,9 @@ object LinkDeviceRepository {
       return LinkUploadArchiveResult.BackupCreationCancelled
     }
 
-    Log.d(TAG, "[createAndUploadArchive] Fetching an upload form...")
-    val uploadForm = when (val result = SignalNetwork.attachments.getAttachmentV4UploadForm(tempBackupFile.length())) {
-      is RequestResult.Success -> result.result.logD(TAG, "[createAndUploadArchive] Successfully retrieved upload form.")
-      is RequestResult.ApplicationError -> throw result.cause
-      is RequestResult.RetryableNetworkError -> return LinkUploadArchiveResult.NetworkError(result.networkError).logW(TAG, "[createAndUploadArchive] Network error when fetching form.", result.networkError)
-      is RequestResult.NonSuccess -> return LinkUploadArchiveResult.BadRequest(result.error).logW(TAG, "[createAndUploadArchive] Upload too large when fetching form.", result.error)
-    }
-
-    if (cancellationSignal()) {
-      Log.i(TAG, "[createAndUploadArchive] Backup was cancelled.")
-      sendTransferArchiveError(deviceId, deviceRegistrationId, TransferArchiveError.RELINK_REQUESTED)
-      return LinkUploadArchiveResult.BackupCreationCancelled
-    }
-
-    when (val result = uploadArchive(tempBackupFile, uploadForm)) {
-      is NetworkResult.Success -> Log.i(TAG, "[createAndUploadArchive] Successfully uploaded backup.")
+    Log.d(TAG, "[createAndUploadArchive] Uploading the archive...")
+    val uploadedForm = when (val result = uploadArchive(tempBackupFile)) {
+      is NetworkResult.Success -> result.result.logI(TAG, "[createAndUploadArchive] Successfully uploaded backup.")
       is NetworkResult.NetworkError -> return LinkUploadArchiveResult.NetworkError(result.exception).logW(TAG, "[createAndUploadArchive] Network error when uploading archive.", result.exception)
       is NetworkResult.StatusCodeError -> return LinkUploadArchiveResult.NetworkError(result.exception).logW(TAG, "[createAndUploadArchive] Status code error when uploading archive.", result.exception)
       is NetworkResult.ApplicationError -> throw result.throwable
@@ -369,8 +406,8 @@ object LinkDeviceRepository {
       SignalNetwork.linkDevice.setTransferArchive(
         destinationDeviceId = deviceId,
         destinationDeviceRegistrationId = deviceRegistrationId,
-        cdn = uploadForm.cdn,
-        cdnKey = uploadForm.key
+        cdn = uploadedForm.cdn,
+        cdnKey = uploadedForm.key
       )
     }
 
@@ -392,37 +429,45 @@ object LinkDeviceRepository {
   }
 
   /**
-   * Handles uploading the archive for [createAndUploadArchive]. Handles resumable uploads and making multiple upload attempts.
+   * Fetches an upload form and uploads the archive for [createAndUploadArchive], resuming and retrying as needed.
+   *
+   * Returns the [AttachmentUploadForm] that was actually used, so the caller can point the linked device at the uploaded object. If the
+   * resume location becomes invalid, we drop the form so the next attempt fetches a fresh one (new CDN key) rather than re-creating the
+   * existing object, which the CDN rejects with a 409.
    */
-  private fun uploadArchive(backupFile: File, uploadForm: AttachmentUploadForm): NetworkResult<Unit> {
+  @VisibleForTesting
+  internal fun uploadArchive(backupFile: File): NetworkResult<AttachmentUploadForm> {
     val checksumSha256 = FileInputStream(backupFile).use { AttachmentUploadUtil.computeRawChecksum(it) }
+    var uploadForm: AttachmentUploadForm? = null
     var resumeUrl: String? = null
 
-    val uploadResult = NetworkResult.withRetry(
+    return NetworkResult.withRetry(
       logAttempt = { attempt, maxAttempts -> Log.i(TAG, "Starting upload attempt ${attempt + 1}/$maxAttempts") }
     ) {
+      val form = uploadForm ?: when (val result = SignalNetwork.attachments.getAttachmentV4UploadForm(backupFile.length())) {
+        is RequestResult.Success -> result.result.also { uploadForm = it }
+        is RequestResult.RetryableNetworkError -> return@withRetry NetworkResult.NetworkError<Unit>(result.networkError)
+        is RequestResult.NonSuccess -> return@withRetry NetworkResult.NetworkError<Unit>(result.error)
+        is RequestResult.ApplicationError -> return@withRetry NetworkResult.ApplicationError<Unit>(result.cause)
+      }
+
       FileInputStream(backupFile).use {
-        val result = SignalNetwork.archive.uploadBackupFile(
-          uploadForm = uploadForm,
+        SignalNetwork.archive.uploadBackupFile(
+          uploadForm = form,
           data = it,
           dataLength = backupFile.length(),
           checksumSha256 = checksumSha256,
           existingResumeUrl = resumeUrl,
           onResumeUrlCreated = { url -> resumeUrl = url }
-        )
-        if (result !is NetworkResult.Success) {
-          resumeUrl = null
+        ).also { result ->
+          if (result is NetworkResult.NetworkError && result.exception is ResumeLocationInvalidException) {
+            Log.w(TAG, "Resume location invalid; dropping the form so the retry fetches a fresh one with a new CDN key.")
+            uploadForm = null
+            resumeUrl = null
+          }
         }
-        result
       }
-    }
-
-    return when (uploadResult) {
-      is NetworkResult.Success -> uploadResult
-      is NetworkResult.NetworkError -> uploadResult.logW(TAG, "Network error while uploading.", uploadResult.exception)
-      is NetworkResult.StatusCodeError -> uploadResult.logW(TAG, "Status code error when uploading archive.", uploadResult.exception)
-      is NetworkResult.ApplicationError -> throw uploadResult.throwable
-    }
+    }.map { uploadForm!! }
   }
 
   /**
@@ -446,21 +491,21 @@ object LinkDeviceRepository {
   /**
    * Changes the name of a linked device and sends a sync message if successful
    */
-  fun changeDeviceName(deviceName: String, deviceId: Int): DeviceNameChangeResult {
-    val encryptedDeviceName = Base64.encodeWithoutPadding(DeviceNameCipher.encryptDeviceName(deviceName.toByteArray(StandardCharsets.UTF_8), SignalStore.account.aciIdentityKey))
+  suspend fun changeDeviceName(deviceName: String, deviceId: Int): DeviceNameChangeResult {
+    val encryptedDeviceName = DeviceNameCipher.encryptDeviceName(deviceName.toByteArray(StandardCharsets.UTF_8), SignalStore.account.aciIdentityKey)
     return when (val result = SignalNetwork.linkDevice.setDeviceName(encryptedDeviceName, deviceId)) {
-      is NetworkResult.Success -> {
+      is RequestResult.Success -> {
         AppDependencies.jobManager.add(DeviceNameChangeJob(deviceId))
         DeviceNameChangeResult.Success.logI(TAG, "Successfully changed device name")
       }
-      is NetworkResult.NetworkError -> {
-        DeviceNameChangeResult.NetworkError(result.exception).logW(TAG, "Could not change name due to network error.", result.exception)
+      is RequestResult.NonSuccess -> {
+        DeviceNameChangeResult.NetworkError(result.error).logW(TAG, "Could not change name because the device could not be found.")
       }
-      is NetworkResult.StatusCodeError -> {
-        DeviceNameChangeResult.NetworkError(result.exception).logW(TAG, "Could not change name due to status code error ${result.code}")
+      is RequestResult.RetryableNetworkError -> {
+        DeviceNameChangeResult.NetworkError(result.networkError).logW(TAG, "Could not change name due to network error.", result.networkError)
       }
-      is NetworkResult.ApplicationError -> {
-        throw result.throwable.logW(TAG, "Could not change name due to application error.")
+      is RequestResult.ApplicationError -> {
+        throw result.cause.logW(TAG, "Could not change name due to application error.")
       }
     }
   }

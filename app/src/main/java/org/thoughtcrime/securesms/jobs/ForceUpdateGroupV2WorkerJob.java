@@ -79,6 +79,11 @@ final class ForceUpdateGroupV2WorkerJob extends BaseJob {
       return;
     }
 
+    if (group.isPresent() && !group.get().getHasV2GroupProperties()) {
+      Log.i(TAG, "Group is deleted, skipping force update.");
+      return;
+    }
+
     GroupManager.forceSanityUpdateFromServer(context, group.get().requireV2GroupProperties().getGroupMasterKey(), System.currentTimeMillis());
 
     SignalDatabase.groups().setLastForceUpdateTimestamp(group.get().getId(), System.currentTimeMillis());

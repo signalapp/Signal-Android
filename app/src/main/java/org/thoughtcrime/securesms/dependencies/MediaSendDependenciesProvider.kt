@@ -12,9 +12,11 @@ import org.signal.mediasend.MediaSendQrRepository
 import org.signal.mediasend.MediaSendRepository
 import org.signal.mediasend.preupload.PreUploadRepository
 import org.signal.video.exo.ExoPlayerPool
+import org.thoughtcrime.securesms.media.DecryptableUriMediaInput
 import org.thoughtcrime.securesms.mediasend.v3.MediaSendV3PreUploadRepository
 import org.thoughtcrime.securesms.mediasend.v3.MediaSendV3QrRepository
 import org.thoughtcrime.securesms.mediasend.v3.MediaSendV3Repository
+import org.thoughtcrime.securesms.video.interfaces.MediaInputFactory
 
 object MediaSendDependenciesProvider : MediaSendDependencies.Provider {
   override fun provideMediaSendRepository(): MediaSendRepository = MediaSendV3Repository
@@ -26,4 +28,6 @@ object MediaSendDependenciesProvider : MediaSendDependencies.Provider {
   override fun provideExoPlayerPool(): ExoPlayerPool<ExoPlayer> = AppDependencies.exoPlayerPool
 
   override fun provideBlobs(): BlobProvider = AppDependencies.blobs
+
+  override fun provideMediaInputFactory(): MediaInputFactory = DecryptableUriMediaInput
 }

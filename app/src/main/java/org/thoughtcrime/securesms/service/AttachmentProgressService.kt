@@ -19,6 +19,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.signal.core.util.PendingIntentFlags
+import org.signal.core.util.SafeForegroundService
 import org.signal.core.util.logging.Log
 import org.signal.core.util.throttleLatest
 import org.thoughtcrime.securesms.MainActivity

@@ -111,7 +111,7 @@ annotation class TabletLandscapeNightPreview
 annotation class TabletNightPreviews
 
 @TabletDayPreviews
-@TabletLandscapeNightPreview
+@TabletNightPreviews
 annotation class TabletPreviews
 
 @PhoneNightPreviews

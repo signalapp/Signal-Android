@@ -5,18 +5,18 @@
 
 package org.thoughtcrime.securesms.jobs
 
-import org.signal.core.util.Base64
 import org.signal.core.util.crypto.DeviceName
 import org.signal.core.util.crypto.DeviceNameCipher
 import org.signal.core.util.logging.Log
 import org.signal.core.util.roundedString
+import org.signal.libsignal.net.RequestResult
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.jobmanager.CoroutineJob
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.protos.LeastActiveLinkedDevice
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
-import java.io.IOException
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.DurationUnit
@@ -32,7 +32,7 @@ class LinkedDeviceInactiveCheckJob private constructor(
     .setMaxAttempts(Parameters.UNLIMITED)
     .addConstraint(NetworkConstraint.KEY)
     .build()
-) : Job(parameters) {
+) : CoroutineJob(parameters) {
 
   companion object {
     private val TAG = Log.tag(LinkedDeviceInactiveCheckJob::class.java)
@@ -61,7 +61,7 @@ class LinkedDeviceInactiveCheckJob private constructor(
 
   override fun getFactoryKey(): String = KEY
 
-  override fun run(): Result {
+  override suspend fun doRun(): Result {
     if (!SignalStore.account.isRegistered) {
       Log.i(TAG, "Not registered, skipping.")
       return Result.success()
@@ -72,14 +72,11 @@ class LinkedDeviceInactiveCheckJob private constructor(
       return Result.success()
     }
 
-    val devices = try {
-      AppDependencies
-        .linkDeviceApi
-        .getDevices()
-        .successOrThrow()
-        .filter { it.id != SignalServiceAddress.DEFAULT_DEVICE_ID }
-    } catch (e: IOException) {
-      return Result.retry(defaultBackoff())
+    val devices = when (val result = AppDependencies.linkDeviceApi.getDevices()) {
+      is RequestResult.Success -> result.result.filter { it.id != SignalServiceAddress.DEFAULT_DEVICE_ID }
+      is RequestResult.RetryableNetworkError -> return Result.retry(defaultBackoff())
+      is RequestResult.ApplicationError -> throw result.cause
+      is RequestResult.NonSuccess -> error("Code branch is unreachable")
     }
 
     if (devices.isEmpty()) {
@@ -93,16 +90,16 @@ class LinkedDeviceInactiveCheckJob private constructor(
     }
 
     val leastActiveDevice: LeastActiveLinkedDevice? = devices
-      .filter { it.name != null }
+      .filter { it.encryptedName.isNotEmpty() }
       .minByOrNull { it.lastSeen }
       ?.let {
-        val nameProto = DeviceName.ADAPTER.decode(Base64.decode(it.getName()))
+        val nameProto = DeviceName.ADAPTER.decode(it.encryptedName)
         val decryptedBytes = DeviceNameCipher.decryptDeviceName(nameProto, AppDependencies.protocolStore.aci().identityKeyPair) ?: return@let null
         val name = String(decryptedBytes)
 
         LeastActiveLinkedDevice(
           name = name,
-          lastActiveTimestamp = it.lastSeen
+          lastActiveTimestamp = it.lastSeen.toEpochMilli()
         )
       }
 

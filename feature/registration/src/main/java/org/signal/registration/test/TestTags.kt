@@ -47,6 +47,28 @@ object TestTags {
   const val PHONE_NUMBER_COUNTRY_CODE_FIELD = "phone_number_country_code_field"
   const val PHONE_NUMBER_PHONE_FIELD = "phone_number_phone_field"
   const val PHONE_NUMBER_NEXT_BUTTON = "phone_number_next_button"
+  const val PHONE_NUMBER_REGISTER_WITHOUT_NUMBER_BUTTON = "phone_number_register_without_number_button"
+
+  // Signal Login Payment Screen
+  const val SIGNAL_LOGIN_PAYMENT_SCREEN = "signal_login_payment_screen"
+  const val SIGNAL_LOGIN_PAYMENT_LEARN_MORE_LINK = "signal_login_payment_learn_more_link"
+  const val SIGNAL_LOGIN_PAYMENT_PURCHASE_OPTION = "signal_login_payment_purchase_option"
+  const val SIGNAL_LOGIN_PAYMENT_EXISTING_LOGIN_OPTION = "signal_login_payment_existing_login_option"
+  const val SIGNAL_LOGIN_PAYMENT_CONTINUE_BUTTON = "signal_login_payment_continue_button"
+
+  // Signal Login Info Screen
+  const val SIGNAL_LOGIN_INFO_SCREEN = "signal_login_info_screen"
+  const val SIGNAL_LOGIN_INFO_CREDENTIAL_CARD = "signal_login_info_credential_card"
+  const val SIGNAL_LOGIN_INFO_VIEW_DETAILS_BUTTON = "signal_login_info_view_details_button"
+  const val SIGNAL_LOGIN_INFO_SAVE_TO_PASSWORD_MANAGER_BUTTON = "signal_login_info_save_to_password_manager_button"
+  const val SIGNAL_LOGIN_INFO_SAVE_MANUALLY_BUTTON = "signal_login_info_save_manually_button"
+
+  // Add Username Screen
+  const val ADD_USERNAME_SCREEN = "add_username_screen"
+  const val ADD_USERNAME_FIELD = "add_username_field"
+  const val ADD_USERNAME_LEARN_MORE_LINK = "add_username_learn_more_link"
+  const val ADD_USERNAME_SKIP_BUTTON = "add_username_skip_button"
+  const val ADD_USERNAME_NEXT_BUTTON = "add_username_next_button"
 
   // Verification Code Screen
   const val VERIFICATION_CODE_INPUT = "verification_code_input"

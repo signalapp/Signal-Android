@@ -1,7 +1,6 @@
-/**
- * Copyright (C) 2019 Open Whisper Systems
- *
- * Licensed according to the LICENSE file in this repository.
+/*
+ * Copyright 2020-2021 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
  */
 syntax = "proto3";
 
@@ -50,6 +49,7 @@ message ManifestRecord {
       GROUPV2                 = 3;
       ACCOUNT                 = 4;
       STORY_DISTRIBUTION_LIST = 5;
+      STICKER_PACK            = 6;
       CALL_LINK               = 7;
       CHAT_FOLDER             = 8;
       NOTIFICATION_PROFILE    = 9;
@@ -73,6 +73,7 @@ message StorageRecord {
     GroupV2Record               groupV2               = 3;
     AccountRecord               account               = 4;
     StoryDistributionListRecord storyDistributionList = 5;
+    StickerPackRecord           stickerPack           = 6;
     CallLinkRecord              callLink              = 7;
     ChatFolderRecord            chatFolder            = 8;
     NotificationProfile         notificationProfile   = 9;
@@ -142,7 +143,8 @@ message ContactRecord {
   optional AvatarColor avatarColor      = 24;
   bytes         aciBinary               = 25; // 16-byte UUID
   bytes         pniBinary               = 26; // 16-byte UUID
-  // Next ID: 27
+  uint64        blockedAtTimestamp      = 27; // 0 means the blocked time is unknown
+  // Next ID: 28
 }
 
 message GroupV1Record {
@@ -173,6 +175,7 @@ message GroupV2Record {
   StorySendMode storySendMode                = 10;
   optional AvatarColor avatarColor           = 11;
   bytes         verifiedNameHash             = 12; // SHA-256 of UTF-8 encoded decrypted group title that was last verified
+  uint64        blockedAtTimestamp           = 13; // 0 means the blocked time is unknown
 }
 
 message Payments {
@@ -234,12 +237,6 @@ message AccountRecord {
     }
   }
 
-  message BackupTierHistory {
-    // See zkgroup for integer particular values. Unset if backups are not enabled.
-    optional uint64 backupTier = 1;
-    optional uint64 endedAtTimestamp = 2;
-  }
-
   message NotificationProfileManualOverride {
     message ManuallyEnabled {
       bytes id = 1;
@@ -296,7 +293,7 @@ message AccountRecord {
   optional uint64                            backupTier                                 = 40; // See zkgroup for integer particular values. Unset if backups are not enabled.
            IAPSubscriberData                 backupSubscriberData                       = 41;
   optional AvatarColor                       avatarColor                                = 42;
-           BackupTierHistory                 backupTierHistory                          = 43;
+           reserved                          /* backupTierHistory */                      43;
            NotificationProfileManualOverride notificationProfileManualOverride          = 44;
            bool                              notificationProfileSyncDisabled            = 45;
            bool                              automaticKeyVerificationDisabled           = 46;
@@ -305,6 +302,7 @@ message AccountRecord {
   optional uint64                            releaseNotesChatMutedUntilTimestamp        = 49;
   optional bool                              releaseNotesChatBlocked                    = 50;
   optional bool                              releaseNotesChatMarkedUnread               = 51;
+  optional uint64                            releaseNotesChatBlockedAt                  = 52; // only set if known (>0)
 }
 
 message StoryDistributionListRecord {
@@ -315,6 +313,27 @@ message StoryDistributionListRecord {
            bool   allowsReplies             = 5;
            bool   isBlockList               = 6;
   repeated bytes  recipientServiceIdsBinary = 7; // service ID binary (i.e. 16 byte UUID for ACI, 1 byte prefix + 16 byte UUID for PNI)
+}
+
+message StickerPackRecord {
+  bytes packId = 1; // 16 bytes
+  bytes packKey = 2; // 32 bytes, used to derive the AES-256 key
+  // aesKey = HKDF(
+  //   input = packKey,
+  //   salt = 32 zero bytes,
+  //   info = "Sticker Pack"
+  // )
+  uint32 position = 3; // When displayed sticker packs should be first sorted
+  // in ascending order by zero-based `position` and
+  // then by ascending `packId` (lexicographically,
+  // packId can be treated as a hex string).
+  // When installing a sticker pack the client should find
+  // the maximum `position` among currently known stickers
+  // and use `max_position + 1` as the value for the new
+  // `position`.
+  uint64 deletedAtTimestamp = 4; // Timestamp in milliseconds. When present and
+  // non-zero - `packKey` and `position` should
+  // be unset
 }
 
 message CallLinkRecord {

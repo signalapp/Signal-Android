@@ -4,7 +4,7 @@
   ~ SPDX-License-Identifier: AGPL-3.0-only
   -->
 <!-- smartling.instruction_comments_enabled = on -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
   <!-- Removed by excludeNonTranslatables <string name="app_name" translatable="false">Signal</string> -->
 
   <!-- Removed by excludeNonTranslatables <string name="install_url" translatable="false">https://signal.org/install</string> -->
@@ -100,7 +100,7 @@
     <string name="AttachmentKeyboard_poll">استطلاع</string>
     <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">يحتاج سيجنال إلى إذن لإظهار الصور ومقاطع الفيديو الخاصة بك.</string>
     <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
-    <string name="AttachmentKeyboard_allow_access">إعطاء الصلاحية</string>
+    <string name="AttachmentKeyboard_allow_access">منح الصلاحية</string>
     <string name="AttachmentKeyboard_payment">عملية الدفع</string>
     <!-- Text in a button that allows users to manage which media Signal has access to -->
     <string name="AttachmentKeyboard_manage">إدارة</string>
@@ -171,6 +171,8 @@
     <string name="BlockedUsersActivity__block_user">هل ترغبُ بحظر المُستخدِم؟</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">لن يتمكن \"%1$s\" من الاتصال بك ولا إرسال الرسائل إليك.</string>
     <string name="BlockedUsersActivity__block">حظر</string>
+    <!-- Subtitle shown under a blocked user. Placeholder is the time they were blocked-->
+    <string name="BlockedUsersActivity__blocked_on_s">محظور في %1$s</string>
 
     <!-- CreditCardFragment -->
     <!-- Title of fragment -->
@@ -302,6 +304,16 @@
     <string name="ClientDeprecatedActivity_warning">تحذير</string>
     <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">انتهت صلاحية إصدار سيجنال الخاص بك. يُمكنك عرض سجل الرسائل الخاص بك ولكنك لن تتمكّن من إرسال أو استلام الرسائل إلى حين قيامك بالتحديث.</string>
 
+    <!-- ClockSkewActivity -->
+    <!-- Title of the full-screen dialog shown when the device clock is too far off from the real time -->
+    <string name="ClockSkewActivity__title">التاريخ غير دقيق</string>
+    <!-- Body text explaining that the device clock is wrong and needs to be fixed -->
+    <string name="ClockSkewActivity__date_inaccurate_description">تاريخ جهازك غير دقيق.\nقُم بضبط ساعتك وحاوِل مُجدَّدًا.</string>
+    <!-- Shows the user the current, inaccurate date and time reported by their device. Placeholder is the formatted date, time, and time zone. -->
+    <string name="ClockSkewActivity__time_prefix">التاريخ والوقت الحالي على جهازك:\n%1$s</string>
+    <!-- Button that opens the system date and time settings -->
+    <string name="ClockSkewActivity__adjust_date_button">ضبط التاريخ</string>
+
     <!-- CommunicationActions -->
     <string name="CommunicationActions_no_browser_found">لم يتم العثور على متصفح للإنترنت.</string>
     <string name="CommunicationActions_send_email">إرسال رسالة إلكترونية</string>
@@ -396,6 +408,8 @@
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
     <string name="ConversationItem_s_deleted_this_message">حذفَ %1$s هذه الرسالة</string>
     <string name="ConversationItem_you_deleted_this_message">حذفتَ هذه الرسالة</string>
+    <!-- Tappable text shown on a locally-deleted message tombstone, prompting the user to promote it to a delete-for-everyone -->
+    <string name="ConversationItem_delete_for_everyone_question">الحذف للجميع؟</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
     <string name="ConversationItem_admin_s_deleted_this_message">حذفَ المُشرِف %1$s هذه الرسالة.</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -424,7 +438,6 @@
     <!-- Accessibility text associated with image button to send an edited message. -->
     <string name="ConversationActivity_send_edit">أرسِل التعديل</string>
     <string name="ConversationActivity_compose_message">إنشاء رسالة</string>
-    <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">عذرًا، حصل خطأ أثناء رفع الملف المُرفَق.</string>
     <!-- Toast shown when user is unable to find the recipient when sending a message -->
     <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">المُستلِم ليس رسالة SMS أو عنوان بريد إلكتروني صالح!</string>
     <string name="ConversationActivity_message_is_empty_exclamation">الرسالة فارغة</string>
@@ -627,7 +640,7 @@
     <string name="ConversationFragment_delete">حذف</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">حذف من كل مكان</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">ستُحذَف هذه الرسالة لكل من كان في هذه الدردشة إن كانوا يستخدمون إصدارًا حديثًا مِن سيجنال. سيتمكّنون من رؤية أنك قد حذفت رسالة.</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">ستُحذَف هذه الرسالة لأي شخص في الدردشة. سَيتمكنون من رؤية أنك قُمتَ بحذف رسالة.</string>
     <string name="ConversationFragment_quoted_message_not_found">لم يتم العثور على الرسالة الأصلية.</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">الرسالة الأصلية لم تعد متوفرة.</string>
     <string name="ConversationFragment_failed_to_open_message">فشل في فتح الرسالة</string>
@@ -814,29 +827,48 @@
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">لا توجد دردشات غير مقروءة</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="zero">هل ترغبُ بحذف الدردشات المُحدّدة؟</item>
-        <item quantity="one">هل ترغبُ بحذف الدردشة المُحدّدة؟</item>
-        <item quantity="two">هل ترغبُ بحذف الدردشتين المُحدّدتين؟</item>
-        <item quantity="few">هل ترغبُ بحذف الدردشات المُحدّدة؟</item>
-        <item quantity="many">هل ترغبُ بحذف الدردشات المُحدّدة؟</item>
-        <item quantity="other">هل ترغبُ بحذف الدردشات المُحدّدة؟</item>
+        <item quantity="zero">هل ترغبُ بحذف سجلات الرسائل؟</item>
+        <item quantity="one">هل ترغبُ بحذف سجل الرسائل؟</item>
+        <item quantity="two">هل ترغبُ بحذف سجلات الرسائل؟</item>
+        <item quantity="few">هل ترغبُ بحذف سجلات الرسائل؟</item>
+        <item quantity="many">هل ترغبُ بحذف سجلات الرسائل؟</item>
+        <item quantity="other">هل ترغبُ بحذف سجلات الرسائل؟</item>
     </plurals>
+    <!-- Dialog message shown when deleting chats, none of which are groups -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="zero">سيؤدي هذا إلى حذف %1$d دردشات مختارة بشكل نهائي.</item>
-        <item quantity="one">سيؤدي هذا إلى حذف دردشة واحدة مختارة بشكل نهائي.</item>
-        <item quantity="two">سيؤدي هذا إلى حذف %1$d دردشتين مختارتين بشكل نهائي.</item>
-        <item quantity="few">سيؤدي هذا إلى حذف %1$d دردشات مختارة بشكل نهائي.</item>
-        <item quantity="many">سيؤدي هذا إلى حذف %1$d دردشة مختارة بشكل نهائي.</item>
-        <item quantity="other">سيؤدي هذا إلى حذف %1$d دردشة مختارة بشكل نهائي.</item>
+        <item quantity="zero">ستُحذَف جميع رسائل هذه الدردشات.</item>
+        <item quantity="one">ستُحذَف جميع رسائل هذه الدردشة.</item>
+        <item quantity="two">ستُحذَف جميع رسائل هاتين الدردشتين.</item>
+        <item quantity="few">ستُحذَف جميع رسائل هذه الدردشات.</item>
+        <item quantity="many">ستُحذَف جميع رسائل هذه الدردشات.</item>
+        <item quantity="other">ستُحذَف جميع رسائل هذه الدردشات.</item>
     </plurals>
-    <!-- Dialog message shown when deleting one to many conversations from the chat list and the user has a linked device -->
+    <!-- Dialog message shown when deleting chats, with at least one group -->
+    <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_group">
+        <item quantity="zero">ستُحذَف جميع رسائل هذه الدردشات من جميع أجهزتك. ستبقى عضوًا في أي مجموعات لم تغادرها بعد.</item>
+        <item quantity="one">ستُحذَف جميع رسائل هذه الدردشة من جميع أجهزتك. ستبقى عضوًا في هذه المجموعة.</item>
+        <item quantity="two">ستُحذَف جميع رسائل هذه الدردشات من جميع أجهزتك. ستبقى عضوًا في أي مجموعات لم تغادرها بعد.</item>
+        <item quantity="few">ستُحذَف جميع رسائل هذه الدردشات من جميع أجهزتك. ستبقى عضوًا في أي مجموعات لم تغادرها بعد.</item>
+        <item quantity="many">ستُحذَف جميع رسائل هذه الدردشات من جميع أجهزتك. ستبقى عضوًا في أي مجموعات لم تغادرها بعد.</item>
+        <item quantity="other">ستُحذَف جميع رسائل هذه الدردشات من جميع أجهزتك. ستبقى عضوًا في أي مجموعات لم تغادرها بعد.</item>
+    </plurals>
+    <!-- Dialog message shown when deleting chats, none of which are groups, and the user has a linked device -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device">
-        <item quantity="zero">سَيؤدي هذا إلى حذف كل %1$d الدردشات المُحدَّدة بشكل نهائي من كل أجهزتك.</item>
-        <item quantity="one">سيؤدي هذا إلى حذف الدردشة المُحدَّدة بشكل نهائي من كل أجهزتك.</item>
-        <item quantity="two">سيؤدي هذا إلى حذف كلتا %1$d الدردشتين المُحدَّدتين بشكل نهائي من كل أجهزتك.</item>
-        <item quantity="few">سيؤدي هذا إلى حذف كل الـ %1$d دردشات المُحدَّدة بشكل نهائي من كل أجهزتك.</item>
-        <item quantity="many">سيؤدي هذا إلى حذف كل الـ %1$d دردشة المُحدَّدة بشكل نهائي من كل أجهزتك.</item>
-        <item quantity="other">سيؤدي هذا إلى حذف كل الـ %1$d دردشة المُحدَّدة بشكل نهائي من كل أجهزتك.</item>
+        <item quantity="zero">ستُحذَف جميع رسائل هذه الدردشات من جميع أجهزتك.</item>
+        <item quantity="one">ستُحذَف جميع رسائل هذه الدردشة من جميع أجهزتك.</item>
+        <item quantity="two">ستُحذَف جميع رسائل هذه الدردشات من جميع أجهزتك.</item>
+        <item quantity="few">ستُحذَف جميع رسائل هذه الدردشات من جميع أجهزتك.</item>
+        <item quantity="many">ستُحذَف جميع رسائل هذه الدردشات من جميع أجهزتك.</item>
+        <item quantity="other">ستُحذَف جميع رسائل هذه الدردشات من جميع أجهزتك.</item>
+    </plurals>
+    <!-- Dialog message shown when deleting chats with at least one group, and the user has a linked device -->
+    <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device_group">
+        <item quantity="zero">ستُحذَف جميع رسائل هذه الدردشات من جميع أجهزتك. ستبقى عضوًا في أي مجموعات لم تغادرها بعد.</item>
+        <item quantity="one">ستُحذَف جميع رسائل هذه الدردشة من جميع أجهزتك. ستبقى عضوًا في هذه المجموعة.</item>
+        <item quantity="two">ستُحذَف جميع رسائل هذه الدردشات من جميع أجهزتك. ستبقى عضوًا في أي مجموعات لم تغادرها بعد.</item>
+        <item quantity="few">ستُحذَف جميع رسائل هذه الدردشات من جميع أجهزتك. ستبقى عضوًا في أي مجموعات لم تغادرها بعد.</item>
+        <item quantity="many">ستُحذَف جميع رسائل هذه الدردشات من جميع أجهزتك. ستبقى عضوًا في أي مجموعات لم تغادرها بعد.</item>
+        <item quantity="other">ستُحذَف جميع رسائل هذه الدردشات من جميع أجهزتك. ستبقى عضوًا في أي مجموعات لم تغادرها بعد.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">جارٍالحذف</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
@@ -1154,13 +1186,13 @@
 
     <!-- LinkDeviceFragment -->
     <!-- Description for how Signal will work with a linked device (eg desktop, iPad) -->
-    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">استخدِم حساب سيجنال هذا على الحاسوب أو جهاز الآيباد.</string>
+    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">استخدِم حساب سيجنال هذا على جهازٍ آخر.</string>
     <!-- Button prompting users to link a new device to their account -->
     <string name="LinkDeviceFragment__link_a_new_device">ربط جهاز جديد</string>
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
     <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$s الرسائل والدردشات محمية من خلال التشفير من طرف لِطرف على جميع الأجهزة</string>
     <!-- Bottom sheet title explaining how Signal works on a linked device -->
-    <string name="LinkDeviceFragment__signal_on_desktop_ipad">تطبيق سيجنال على الكمبيوتر المكتبي أو جهاز الآيباد</string>
+    <string name="LinkDeviceFragment__signal_on_desktop_ipad">سيجنال على جهاز مُرتبِط</string>
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
     <string name="LinkDeviceFragment__all_messaging_is_private">تتّسم جميع المراسلات في الأجهزة المُرتبِطة بالخصوصية.</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
@@ -1226,6 +1258,8 @@
     <string name="LinkDeviceFragment__edit_name">تعديل الاسم</string>
     <!-- Toast shown when the process of linking a device has been cancelled -->
     <string name="LinkDeviceFragment__linking_cancelled">أُلغِيَ الاشتراك</string>
+    <!-- Snackbar shown when the user tries to link a new device but has already reached the maximum number of linked devices. Placeholder is the maximum count. -->
+    <string name="LinkDeviceFragment__you_can_only_have_d_linked_devices">لا يمكن ربط أكثر من %1$d جهاز (أجهزة).</string>
     <!-- Message shown in progress dialog telling users to avoid closing the app while messages are being synced -->
     <string name="LinkDeviceFragment__do_not_close">لا تُغلِق التطبيق</string>
     <!-- Dialog title shown when a device is unlinked -->
@@ -1272,6 +1306,8 @@
     <string name="AddLinkDeviceFragment__this_qr_code_not_valid">كود الـ QR هذا غير صالح. تأكَّد من أنك تقوم بمسح كود الـ QR المعروض على الجهاز الذي تريد ربطه.</string>
     <!-- Button in dialog to retry linking a device with a qr code -->
     <string name="AddLinkDeviceFragment__retry">إعادة المُحاولة</string>
+    <!-- Text shown in a dialog when the device being linked is too out-of-date to be linked to this account -->
+    <string name="AddLinkDeviceFragment__the_device_you_are_trying_to_link_is_out_of_date">The device you\'re trying to link is out of date. Please upgrade and try again.</string>
 
     <!-- LinkDeviceSyncBottomSheet -->
     <!-- Option in bottom sheet to transfer message history -->
@@ -1729,12 +1765,6 @@
     <!-- Dialog message -->
     <string name="RestoreActivity__no_longer_registered_message">على الأغلب هذا بسبب قيامك بتسجيل حساب سيجنال الخاص بك على جهاز آخر.</string>
 
-    <!-- GroupMentionSettingDialog -->
-    <string name="GroupMentionSettingDialog_notify_me_for_mentions">نبّهني عندما يذكر أحدهم اسمي</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">هل ترغبُ بتلقِّي الإشعارات عندما يُذكَر اسمك في الدردشات المكتومة؟</string>
-    <string name="GroupMentionSettingDialog_always_notify_me">نبِّهني دومًا</string>
-    <string name="GroupMentionSettingDialog_dont_notify_me">لا تنبّهني</string>
-
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">اسم المُستخدم الخاص بك، وكود الـ QR والرابط ليسوا مرئيين على حسابك الشخصي. شارِك اسم المُستخدم الخاص بك فقط مع الناس الذين تثق بهم.</string>
@@ -2075,9 +2105,6 @@
 
     <!-- MediaPickerActivity -->
     <string name="MediaPickerActivity__menu_open_camera">فتح الكاميرا</string>
-
-    <!-- MediaSendActivity -->
-    <string name="MediaSendActivity_camera_unavailable">الكاميرا غير متاحة.</string>
 
     <!-- MediaRepository -->
     <string name="MediaRepository_all_media">جميع الوسائط</string>
@@ -3242,13 +3269,6 @@
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">الاتصال بالدعم</string>
 
-    <!-- RegistrationLockV2Dialog -->
-    <string name="RegistrationLockV2Dialog_turn_on_registration_lock">هل تريد تشغيل قفل التسجيل؟</string>
-    <string name="RegistrationLockV2Dialog_turn_off_registration_lock">هل تريد إيقاف قفل التسجيل؟</string>
-    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">إدا نسيتَ رقم التعريف الشخصي (PIN) على سيجنال وقُمتَ بالتسجيل مرّة أخرى في سيجنال، سوف يُقفَل حسابك لسبعة أيام.</string>
-    <string name="RegistrationLockV2Dialog_turn_on">تشغيل</string>
-    <string name="RegistrationLockV2Dialog_turn_off">إيقاف</string>
-
     <!-- RevealableMessageView -->
     <string name="RevealableMessageView_view_photo">عرض الصورة</string>
     <string name="RevealableMessageView_view_video">عرض الفيديو</string>
@@ -3462,6 +3482,7 @@
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_locale" translatable="false">Locale:</string> -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_challenge_received" translatable="false">Challenge Received:</string> -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_registered" translatable="false">Registered:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_backups" translatable="false">Backups:</string> -->
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">تمَّ تحديث المجموعة</string>
@@ -3637,7 +3658,7 @@
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
     <string name="MuteDialog_mute_notifications">كتم الإشعارات</string>
     <!-- Dialog option that, when pressed, will open a time picker to let the user choose how long they\'d like to mute notifications for -->
-    <string name="MuteDialog__mute_until">الكتم حتى…</string>
+    <string name="MuteDialog__mute_until">Until…</string>
 
     <!-- MuteUntilTimePickerBottomSheet -->
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
@@ -4576,15 +4597,6 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">الأحدث</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">هذه الرسالة</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">تمَّ الاستخدام مُؤخَّرًا</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">أوجُه سمايلي وأشخاص</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">الطبيعة</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">الطعام</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">الأنشطة</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">الأماكن</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">الأشياء</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">الرموز الخاصة</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">الأعلام</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">الرموز التعبيرية</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">لم يتم العثور على أي نتائج</string>
 
     <!-- GifQuickSearchOption -->
@@ -4602,10 +4614,10 @@
     <string name="arrays__use_default">استخدِم الافتراضي</string>
     <string name="arrays__use_custom">استخدِم التخصيص</string>
 
-    <string name="arrays__mute_for_one_hour">كتم لمدة ساعة</string>
-    <string name="arrays__mute_for_eight_hours">كتم لمدة ثماني ساعات</string>
-    <string name="arrays__mute_for_one_day">كتم لمدة يوم</string>
-    <string name="arrays__mute_for_seven_days">كتم لمدة سبعة أيام</string>
+    <string name="arrays__mute_for_one_hour">ساعة واحدة</string>
+    <string name="arrays__mute_for_eight_hours">ثمانِ ساعات</string>
+    <string name="arrays__mute_for_one_day">يوم واحد</string>
+    <string name="arrays__mute_for_seven_days">أسبوع واحد</string>
     <string name="arrays__always">دائمًا</string>
 
     <string name="arrays__settings_default">الإعدادات الافتراضية</string>
@@ -4664,6 +4676,10 @@
     <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
     <string name="preferences__inactivity_timeout_interval">مدة الصلاحية</string>
     <string name="preferences__notifications">الإشعارات</string>
+    <!-- Preference item menu to enable notifications -->
+    <string name="preferences__enable_notifications">تفعيل الإشعارات</string>
+    <!-- Preference header for call notifications -->
+    <string name="preferences__call_notifications">إشعارات المكالمات</string>
     <string name="preferences__led_color">لون LED</string>
     <string name="preferences__led_color_unknown">مجهول</string>
     <string name="preferences__pref_led_blink_title">نمط وميض LED</string>
@@ -4751,12 +4767,10 @@
     <string name="preferences__system_default">اللغة الافتراضية للنظام</string>
     <string name="preferences__language">اللغة</string>
     <string name="preferences__signal_messages_and_calls">رسائل ومكالمات سيجنال</string>
-    <string name="preferences__advanced_pin_settings">الإعدادات المُتقدِّمة لرقم الـ PIN</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">الإعدادات المُتقدِّمة لرقم الـ PIN</string>
     <string name="preferences__free_private_messages_and_calls">رسائل ومكالمات مجانية وآمنة مع مُستخدِمي سيجنال</string>
     <string name="preferences__submit_debug_log">إرسال سجل الأخطاء</string>
-    <string name="preferences__delete_account">حذف الحساب</string>
     <string name="preferences__support_wifi_calling">وضع التوافق مع \"التواصل بالواي فاي\"</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">يمكنك تفعيل الخاصية إذا كان هاتفك يدعم تسليم رسائل SMS أو رسائل MMS عبر الواي فاي (قُم بالتفعيل فقط في حال تمكين التواصل بالواي فاي بهاتفك)</string>
     <string name="preferences__incognito_keyboard">لوحة مفاتيح في وضع متخفي</string>
@@ -4831,6 +4845,16 @@
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">استخدام بيانات أقل قد يُحسِّن المكالمات على الشبكات الضعيفة.</string>
     <string name="preferences_notifications__in_chat_sounds">أصوات خلال الدردشة</string>
     <string name="preferences_notifications__show">إظهار</string>
+    <!-- Preference item to set notification settings when chats are muted -->
+    <string name="preferences_notifications__while_muted">While muted</string>
+    <!-- Option in settings to turn on reaction notifications -->
+    <string name="preferences_notifications__reaction">Reaction notifications</string>
+    <!-- Body option in settings to turn on reaction notifications    -->
+    <string name="preferences_notifications__notify_reaction">Show notifications for reactions to messages you send</string>
+    <!-- Option in settings to turn on unread reminders -->
+    <string name="preferences_notifications__unread">Unread reminders</string>
+    <!-- Body option to turn on unread reminders -->
+    <string name="preferences_notifications__notify_unread">Occasionally notify when there are unread messages in muted chats</string>
     <string name="preferences_notifications__ringtone">النغمة</string>
     <string name="preferences_chats__message_text_size">حجم الخط في الرسائل</string>
     <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
@@ -5374,8 +5398,6 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">أدخِل رقم التعريف الشخصي (PIN) الذي قمتَ بإنشائه لحسابك. هو مختلف عن كود التحقُّق الذي وصلك عبر رسالة قصيرة.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">أدخِل رقم التعريف الشخصي (PIN) الذي أنشأته لحسابك.</string>
-    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
-    <string name="RegistrationLockFragment__switch_keyboard">تغيير لوحة المفاتيح</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">رقم التعريف الشخصي (PIN) غير صحيح. حاوِل مرّة أخرى.</string>
     <string name="RegistrationLockFragment__forgot_pin">هل نسيت رقم التعريف الشخصي (PIN)؟</string>
     <string name="RegistrationLockFragment__incorrect_pin">رقم التعريف الشخصي (PIN) غير صحيح</string>
@@ -5473,8 +5495,6 @@
     <!-- Text label button to skip restoring -->
     <string name="registration_activity__skip_restore">تخطّي الاستعادة</string>
     <string name="preferences_chats__chat_backups">النسخ الاحتياطية للدردشات</string>
-    <string name="preferences_chats__transfer_account">نقل الحساب</string>
-    <string name="preferences_chats__transfer_account_to_a_new_android_device">نقل الحساب إلى جهاز أندرويد جديد</string>
     <!-- Title for dialog to enter in the backup passphrase -->
     <string name="RegistrationActivity_enter_backup_passphrase">أدخِل العبارة السرية للنسخة الاحتياطية</string>
     <string name="RegistrationActivity_restore">استعادة</string>
@@ -5562,19 +5582,9 @@
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">فترة عدم النشاط لقفل الشاشة</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
     <string name="preferences_app_protection__to_use_screen_lock">لاستخدام قفل الشاشة، قُم بتعيين رقم تعريف شخصي (PIN) أو نمط أو كلمة مرور على هذا الجهاز.</string>
-    <string name="preferences_app_protection__signal_pin">رقم PIN على سيجنال</string>
-    <string name="preferences_app_protection__create_a_pin">إنشاء رقم تعريف شخصي (PIN)</string>
-    <string name="preferences_app_protection__change_your_pin">تغيير رقم الـ PIN</string>
-    <string name="preferences_app_protection__pin_reminders">تذكيرات رقم التعريف الشخصي (PIN)</string>
-    <string name="preferences_app_protection__turn_off">إيقاف</string>
-    <string name="preferences_app_protection__confirm_pin">تأكيد رقم التعريف الشخصي (PIN)</string>
-    <string name="preferences_app_protection__confirm_your_signal_pin">تأكيد رقم PIN على سيجنال</string>
-    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">يجب عليك التأكُّد من حفظ رقم التعريف الشخصي (PIN) أو تخزينه في مكان آمن، لأنه لا يمكن استعادته في حال فقدانه. في حال نسيانك رقم التعريف الشخصي (PIN)، قد تخسر البيانات عند إعادة تسجيل حسابك على سيجنال.</string>
-    <string name="preferences_app_protection__incorrect_pin_try_again">رقم التعريف الشخصي (PIN) غير صحيح. حاوِل مرّة أخرى.</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">تعذَّر تفعيل قفل التسجيل.</string>
     <string name="preferences_app_protection__failed_to_disable_registration_lock">تعذَّر تعطيل قفل التسجيل.</string>
     <string name="AppProtectionPreferenceFragment_none">لا شيء</string>
-    <string name="preferences_app_protection__registration_lock">قفل التسجيل</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">يجب إدخال رقم التعريف الشخصي (PIN) لقفل التسجيل</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">يحوي رقم التعريف الشخصي (PIN) على %1$d أرقام أو حروف على الأقل.</string>
     <string name="RegistrationActivity_too_many_attempts">محاولات كثيرة</string>
@@ -5622,48 +5632,34 @@
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
     <string name="Recipient_deleted_account">حساب محذوف</string>
 
-    <!-- Option in settings that will take use to re-register if they are no longer registered -->
-    <string name="preferences_account_reregister">إعادة تسجيل الحساب</string>
-    <!-- Option in settings that will take user to our website or playstore to update their expired build -->
-    <string name="preferences_account_update_signal">تحديث سيجنال</string>
-    <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
-    <string name="preferences_account_delete_all_data">حذف جميع البيانات</string>
-    <!-- Title for confirmation dialog confirming user wants to delete all their data -->
-    <string name="preferences_account_delete_all_data_confirmation_title">هل ترغبُ بحذف جميع البيانات؟</string>
-    <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_message">سَيُؤدِّي هذا إلى إعادة تعيين التطبيق وحذف كل الرسائل. سيتمُّ إغلاق التطبيق بعد اكتمال هذه العملية.</string>
-    <!-- Confirmation action to proceed with application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_proceed">مواصلة</string>
-    <!-- Confirmation action to cancel application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_cancel">إلغاء</string>
     <!-- Error message shown when we fail to delete the data for some unknown reason -->
     <string name="preferences_account_delete_all_data_failed">فشلت عملية حذف البيانات</string>
 
     <!-- LinkedDeviceAccountSettingsFragment -->
     <!-- Title of an informational card shown on the account settings screen of a linked device -->
-    <string name="LinkedDeviceAccountSettingsFragment__this_is_a_linked_device">This is a linked device</string>
+    <string name="LinkedDeviceAccountSettingsFragment__this_is_a_linked_device">هذا جهاز مُرتبِط</string>
     <!-- Body of an informational card explaining that account settings must be managed from the primary device -->
-    <string name="LinkedDeviceAccountSettingsFragment__to_manage_your_account_settings">To manage your account settings, open Signal on your primary device.</string>
+    <string name="LinkedDeviceAccountSettingsFragment__to_manage_your_account_settings">لإدارة إعدادات حسابك، افتح تطبيق سيجنال على جهازك الأساسي.</string>
     <!-- Title of a settings row that deletes all Signal data from this linked device -->
-    <string name="LinkedDeviceAccountSettingsFragment__delete_app_data">Delete app data</string>
+    <string name="LinkedDeviceAccountSettingsFragment__delete_app_data">حذف بيانات التطبيق</string>
     <!-- Subtitle of the delete app data row explaining what it does -->
-    <string name="LinkedDeviceAccountSettingsFragment__this_will_remove_all_data">This will remove all data from the Signal app on this device.</string>
+    <string name="LinkedDeviceAccountSettingsFragment__this_will_remove_all_data">سيُؤدي هذا إلى إزالة جميع البيانات من تطبيق سيجنال على هذا الجهاز.</string>
     <!-- Title of the confirmation dialog shown when deleting app data from a linked device -->
-    <string name="LinkedDeviceAccountSettingsFragment__delete_app_data_question">Delete app data?</string>
+    <string name="LinkedDeviceAccountSettingsFragment__delete_app_data_question">هل ترغبُ بحذف بيانات التطبيق؟</string>
     <!-- Message of the confirmation dialog explaining that only this device\'s data is deleted, not the account -->
-    <string name="LinkedDeviceAccountSettingsFragment__this_will_delete_all_data_and_messages">This will delete all data and messages from the Signal app on this device. Your Signal account and data on your primary device or other linked devices will not be deleted. The app will close after this process is complete.</string>
+    <string name="LinkedDeviceAccountSettingsFragment__this_will_delete_all_data_and_messages">سيُؤدي هذا إلى حذف جميع البيانات والرسائل من تطبيق سيجنال على هذا الجهاز. لن يتم حذف حساب سيجنال الخاص بك أو بياناتك على جهازك الأساسي أو الأجهزة المُرتبِطة الأخرى. سيتمُّ إغلاق التطبيق بعد اكتمال هذه العملية.</string>
 
     <!-- LinkedDeviceAccountLearnMoreBottomSheet -->
     <!-- Emphasized lead-in phrase shown in bold at the start of the learn more sheet body. Must appear verbatim within LinkedDeviceAccountLearnMoreBottomSheet__linked_devices_let_you_access. -->
-    <string name="LinkedDeviceAccountLearnMoreBottomSheet__linked_devices">Linked Devices</string>
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__linked_devices">الأجهزة المُرتبِطة</string>
     <!-- Body text of the linked devices learn more sheet. The leading \"Linked Devices\" is shown in bold. -->
-    <string name="LinkedDeviceAccountLearnMoreBottomSheet__linked_devices_let_you_access">Linked Devices let you access your Signal account and messages securely on any of your additional devices.</string>
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__linked_devices_let_you_access">تُتيح لك الأجهزة المُرتبِطة الوصول إلى حساب على سيجنال ورسائلك بأمان على أي من أجهزتك الإضافية.</string>
     <!-- Bullet point describing what devices can be linked -->
-    <string name="LinkedDeviceAccountLearnMoreBottomSheet__you_can_link_a_desktop">You can link a desktop, tablet or additional phone</string>
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__you_can_link_a_desktop">يمكنك ربط جهاز كمبيوتر، أو جهاز لوحي، أو هاتف إضافي</string>
     <!-- Bullet point describing that the primary device manages linked devices -->
-    <string name="LinkedDeviceAccountLearnMoreBottomSheet__your_primary_device_manages">Your primary device manages what\'s linked, you can link up to 5 devices.</string>
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__your_primary_device_manages">جهازك الأساسي هو المسؤول عن إدارة الأجهزة المُرتبِطة، ويمكنك ربط حتى 5 أجهزة.</string>
     <!-- Bullet point describing that some settings are only available on the primary device -->
-    <string name="LinkedDeviceAccountLearnMoreBottomSheet__some_account_settings">Some account settings are managed on your primary device only, including account settings and backups.</string>
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__some_account_settings">تُدَار بعض إعدادات الحساب على جهازك الأساسي فقط، بما في ذلك إعدادات الحساب والنسخ الاحتياطية.</string>
 
     <!-- TransferOrRestoreFragment -->
     <string name="TransferOrRestoreFragment__transfer_or_restore_account">نقل أو استعادة الحساب</string>
@@ -6190,18 +6186,6 @@
     <!-- GroupDescriptionDialog -->
     <string name="GroupDescriptionDialog__group_description">وصف المجموعة</string>
 
-    <!-- QualitySelectorBottomSheetDialog -->
-    <!-- Label for our standard quality media conversion. -->
-    <string name="QualitySelectorBottomSheetDialog__standard">قياسية</string>
-    <!-- Description for our standard quality media conversion. -->
-    <string name="QualitySelectorBottomSheetDialog__faster_less_data">أسرع، بيانات أقل</string>
-    <!-- Label for our high quality media conversion. This has better quality than standard. -->
-    <string name="QualitySelectorBottomSheetDialog__high">عالي الدقة</string>
-    <!-- Label for our high quality media conversion. This has better quality than standard. -->
-    <string name="QualitySelectorBottomSheetDialog__slower_more_data">أبطأ، بيانات أكثر</string>
-    <!-- Title heading for our media conversion quality selector. -->
-    <string name="QualitySelectorBottomSheetDialog__media_quality">جودة الوسائط</string>
-
     <!-- AppSettingsFragment -->
     <!-- String alerting user that something is wrong with their backups subscription -->
     <string name="AppSettingsFragment__renew_your_signal_backups_subscription">جدِّد اشتراكك في النسخ الاحتياطية الآمنة لسيجنال</string>
@@ -6219,14 +6203,6 @@
     <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">تمَّ نسخ مُعرِّف المُشترِك للنسخ الاحتياطية إلى الحافظة.</string>
     <!-- String displayed in a toast when a subscriber id is not present for a given type -->
     <string name="AppSettingsFragment__no_subscriber_id_set">لا يوجد أي مجموعة مُعرِّف للمُشترِك</string>
-
-    <!-- AccountSettingsFragment -->
-    <string name="AccountSettingsFragment__account">الحِساب</string>
-    <string name="AccountSettingsFragment__youll_be_asked_less_frequently">سيُطلَب منك بعدد مرّاتٍ أقل مع مرور الوقت.</string>
-    <string name="AccountSettingsFragment__require_your_signal_pin">يتطلَّب ‫رقم التعريف الشخصي‬ الخاص بك على سيجنال لتسجيل رقم هاتفك في سيجنال مرّة أخرى</string>
-    <string name="AccountSettingsFragment__change_phone_number">تغيير رقم الهاتف</string>
-    <!-- Account setting that allows user to request and export their signal account data -->
-    <string name="AccountSettingsFragment__request_account_data">بيانات حسابك</string>
 
     <!-- ExportAccountDataFragment -->
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
@@ -6553,14 +6529,46 @@
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">الرسائل</string>
     <string name="NotificationsSettingsFragment__calls">المكالمات</string>
-    <string name="NotificationsSettingsFragment__notify_when">أخبرني عند…</string>
+    <!-- Notification header for sounds -->
+    <string name="NotificationsSettingsFragment__sounds">اﻷصوات</string>
     <string name="NotificationsSettingsFragment__contact_joins_signal">انضمام جهة اتصال لسيجنال</string>
+    <!-- Notification body to get notified when someone joins Signal -->
+    <string name="NotificationsSettingsFragment__notify_contact">Show a notification when a phone contact joins Signal</string>
+    <!-- Option to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset">Reset notification settings</string>
+    <!-- Option body to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_notifications">Reset notification settings to default, including custom settings for your chats</string>
+    <!-- Dialog to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_body">Reset all notification settings to default for all chats?</string>
+    <!-- Confirmation button to reset dialog -->
+    <string name="NotificationsSettingsFragment__reset_confirm">إعادة التعيين</string>
     <!-- Notification preference header -->
     <string name="NotificationsSettingsFragment__notification_profiles">ملفات الإشعارات</string>
     <!-- Notification preference option header -->
     <string name="NotificationsSettingsFragment__profiles">الملفات</string>
     <!-- Notification preference summary text -->
     <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">أنشِئ ملف لتلقي اﻹشعارات فقط من اﻷفراد والمجموعات التي اخترت.</string>
+
+    <!-- Header to describe screen that shows while muted settings -->
+    <string name="MutedNotificationsFragment__while">While muted</string>
+    <!-- Title for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls">المكالمات</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body_global">Ring or notify when a call is started in muted chats.</string>
+    <!-- Title for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions">الإشارات إلى اﻷفراد</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body_global">Notify when you are mentioned in muted chats.</string>
+    <!-- Title for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies">الردود</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body_global">Notify when someone replies to your message in muted chats.</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body">Ring or notify when a call is started while this chat is muted.</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body">Notify when you are mentioned while this chat is muted.</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body">Notify when someone replies to your message while this chat is muted.</string>
 
     <!-- NotificationProfilesFragment -->
     <!-- Title for notification profiles screen that shows all existing profiles; Title with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -6801,6 +6809,8 @@
     <string name="ConversationSettingsFragment__end_group">إنهاء المجموعة</string>
     <!-- Banner shown at the top of group settings when the group has been ended -->
     <string name="ConversationSettingsFragment__this_group_was_ended">أُغلِقت هذه المجموعة.</string>
+    <!-- Subhead under a legacy group\'s name, joining the member count and the "Legacy Group" label. %1$s is the member count, %2$s is the label -->
+    <string name="ConversationSettingsFragment__s_dot_s">%1$s · %2$s</string>
     <!-- Archive chat option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__archive_chat">أرشفة الدردشة</string>
     <!-- Delete chat option in group conversation settings screen -->
@@ -7008,61 +7018,11 @@
     <!-- Positive dialog action when sending a story via an add to group story button -->
     <string name="MediaReviewFragment__add_to_story">إضافة إلى القصة</string>
     <string name="MediaReviewFragment__add_a_message">إضافة رسالة</string>
-    <!-- Hint text inside of a compose box that is shown when the user is adding media while quoting a message. -->
-    <string name="MediaReviewFragment__add_a_reply">إضافة رد</string>
     <string name="MediaReviewFragment__send_to">إرسال إلى</string>
-    <string name="MediaReviewFragment__view_once_message">وسائط للمُشاهدة مرّة واحدة</string>
-    <string name="MediaReviewFragment__one_or_more_items_were_too_large">عنصر واحد أو أكثر كان كبيرًا جدًا</string>
-    <string name="MediaReviewFragment__one_or_more_items_were_invalid">عنصر واحد أو أكثر غير صالح</string>
-    <string name="MediaReviewFragment__too_many_items_selected">تمَّ تحديد عدد كبير جدًا من العناصر</string>
-    <!-- Small notification presented to the user when they set their video to view-once mode -->
-    <string name="MediaReviewFragment__video_set_to_view_once">تمَّ تحديد عرض الفيديو لمرّة واحدة</string>
-    <!-- Small notification presented to the user when they set their photo to view-once mode -->
-    <string name="MediaReviewFragment__photo_set_to_view_once">تمَّ تحديد عرض الصورة لمرّة واحدة</string>
-    <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
-    <string name="MediaReviewFragment__video_set_to_high_quality">تمَّ تحديد جودة الفيديو للجودة العالية</string>
-    <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
-    <string name="MediaReviewFragment__video_set_to_standard_quality">تمَّ تحديد جودة الفيديو للجودة القياسية</string>
-    <!-- Small notification presented to the user when they set their still image to be sent in high visual quality. -->
-    <string name="MediaReviewFragment__photo_set_to_high_quality">تمَّ تحديد جودة الصورة للجودة العالية</string>
-    <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
-    <string name="MediaReviewFragment__photo_set_to_standard_quality">تمَّ تحديد جودة الصورة للجودة القياسية</string>
-    <!-- Accessibility label describing the add media button on the Media review screen -->
-    <string name="MediaReviewFragment__add_media_accessibility_label">إضافة ملف وسائط</string>
-    <!-- Accessibility label describing the brush and pen button on the Media review screen -->
-    <string name="MediaReviewFragment__brush_pen_accessibility_label">فرشاة وقلم</string>
-    <!-- Accessibility label describing the crop and rotate button on the Media review screen -->
-    <string name="MediaReviewFragment__crop_rotate_accessibility_label">قص وتدوير</string>
-    <!-- Accessibility label describing the change media quality button on the Media review screen -->
-    <string name="MediaReviewFragment__change_media_quality_accessibility_label">تغيير جودة الوسائط</string>
-    <!-- Accessibility label describing the save media button on the Media review screen -->
-    <string name="MediaReviewFragment__save_media_accessibility_label">حفظ الوسائط</string>
-    <!-- Accessibility label describing the toggle emoji keyboard button on the Media review screen -->
-    <string name="MediaReviewFragment__emoji_toggle_accessibility_label">تفعيل لوحة مفاتيح الرموز التعبيرية</string>
     <!-- Accessibility label describing the toggle view once button on the Media review screen -->
     <string name="MediaReviewFragment__view_once_toggle_accessibility_label">تفعيل العرض لمرّة واحدة</string>
-    <!-- Accessibility label describing the send media button on the Media review screen -->
-    <string name="MediaReviewFragment__send_media_accessibility_label">إرسال الوسائط</string>
     <!-- Accessibility label describing the finish adding a message button on the Media review screen dialog -->
     <string name="MediaReviewFragment__finish_adding_a_message_accessibility_label">إنهاء إضافة رسالة</string>
-    <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
-    <plurals name="MediaReviewFragment__items_set_to_high_quality">
-        <item quantity="zero">تمَّ تحديد جودة %1$d عناصر للجودة العالية</item>
-        <item quantity="one">تمَّ تحديد جودة %1$d عنصر للجودة العالية</item>
-        <item quantity="two">تمَّ تحديد جودة %1$d عنصرين للجودة العالية</item>
-        <item quantity="few">تمَّ تحديد جودة %1$d عناصر للجودة العالية</item>
-        <item quantity="many">تمَّ تحديد جودة %1$d عنصرًا للجودة العالية</item>
-        <item quantity="other">تمَّ تحديد جودة %1$d عنصر للجودة العالية</item>
-    </plurals>
-    <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
-    <plurals name="MediaReviewFragment__items_set_to_standard_quality">
-        <item quantity="zero">تمَّ تحديد جودة %1$d عناصر للجودة القياسية</item>
-        <item quantity="one">تمَّ تحديد جودة %1$d عنصر للجودة القياسية</item>
-        <item quantity="two">تمَّ تحديد جودة %1$d عنصرين للجودة القياسية</item>
-        <item quantity="few">تمَّ تحديد جودة %1$d عناصر للجودة القياسية</item>
-        <item quantity="many">تمَّ تحديد جودة %1$d عنصرًا للجودة القياسية</item>
-        <item quantity="other">تمَّ تحديد جودة %1$d عنصر للجودة القياسية</item>
-    </plurals>
 
     <string name="ImageEditorHud__cancel">إلغاء</string>
     <string name="ImageEditorHud__draw">رسم</string>
@@ -7080,27 +7040,9 @@
 
     <string name="MediaCountIndicatorButton__send">إرسال</string>
 
-    <string name="MediaReviewSelectedItem__tap_to_remove">انقر للإزالة</string>
-    <string name="MediaReviewSelectedItem__tap_to_select">أنقر للاختيار</string>
-
     <string name="MediaReviewImagePageFragment__discard">تجاهل</string>
     <string name="MediaReviewImagePageFragment__discard_changes">هل ترغب بتجاهل التغييرات؟</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">سوف تفقد كل التغييرات التي قمتَ بها على هذه الصورة.</string>
-
-    <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_title">تمَّ العثور على %1$s</string>
-    <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_body">ابدأ دردشة مع \"%1$s\"</string>
-    <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
-    <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">انتقِل إلى الدردشة</string>
-
-    <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_title">هل ترغبُ بربط الجهاز؟</string>
-    <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_it_looks_like_youre_trying">يَبدو أنك تُحاول ربط جهاز يستخدم سيجنال. انقر على \"متابعة\" ثم انقر على \"ربط جهاز جديد\" وامسح كود الـ QR من جديد.</string>
-    <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
-    <string name="MediaCaptureFragment_device_link_dialog_continue">متابعة</string>
-
 
     <string name="BadgesOverviewFragment__my_badges">شاراتي</string>
     <string name="BadgesOverviewFragment__featured_badge">شارة مُمَيَّزة</string>
@@ -7575,7 +7517,7 @@
     <!-- Donation receipts amount title -->
     <string name="DonationReceiptDetailsFragment__amount">المبلغ</string>
     <!-- Donation receipts thanks -->
-    <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">نشكرك على دعم سيجنال. تُمكِّننا مساهمتك من الالتزام بمهمة تطوير تقنية خصوصية مفتوحة المصدر تحمي حرية التعبير وتتيح اتصالًا عالميًا آمنًا للملايين عبر العالم. إذا كُنتَ من المقيمين بالولايات المتحدة الأمريكية، يُرجى الاحتفاظ بهذا الوصل للإدلاء به عند مصلحة الضرائب. إن ‫مؤسسة تكنولوجيا سيجنال مؤسسة خيرية عمومية وغير ربحية، أُحدِثَت بالولايات المتحدة اﻷمريكية، وهي معفية من الضرائب. مُعرِّفنا الضريبي هو ‎.82-4506840‎</string>
+    <string name="DonationReceiptDetailsFragment__thank_you_for_supporting" tools:ignore="TypographyDashes">شكرًا لك على دعم سيجنال. تساعدنا مساهمتكم على دعم مهمة حماية حرية التعبير وتمكين التواصل العالمي الآمن لملايين الأشخاص حول العالم، وذلك من خلال تقنية الخصوصية مفتوحة المصدر. إذا كُنتَ من المقيمين بالولايات المتحدة الأمريكية، يُرجى الاحتفاظ بهذا الإيصال لتقديمه إلى مصلحة الضرائب. مؤسسة سيجنال‬ للتكنولوجيا هي منظمة غير ربحية معفاة من الضرائب ومُسجَّلة في الولايات المتحدة ضمن البند 501c3 من قانون الإيرادات الداخلية. مُعرِّفنا الضريبي هو 4506840-82. لا يُقدِّم سيجنال أي بضائع أو خدمات مقابل هذه المساهمة.</string>
     <!-- Donation reciepts screen empty state title -->
     <string name="DonationReceiptListFragment__no_receipts">لا توجد إيصالات</string>
 
@@ -9486,13 +9428,6 @@
     <!-- Body of bottom sheet shown when opening a terminated group -->
     <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">لم يبق بإمكانك إرسال الرسائل واستلامها والتواصل بالمكالمات في هذه المجموعة.</string>
 
-    <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_title">عملية الحذف تتم في تزامن عبر جميع أجهزتك</string>
-    <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_message">عندما تحذف رسائل أو دردشات، سيتمُّ حذفها من هاتفك وكل أجهزتك المُتصلة.</string>
-    <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_acknowledge_button">موافق</string>
-
     <!-- NoManualBackupBottomSheet -->
     <!-- Title for bottom sheet, placeholder is number of days. -->
     <plurals name="NoManualBackupBottomSheet__no_backup_for_d_days">
@@ -9525,7 +9460,7 @@
     <!-- Subtitle for row for no backup ever created -->
     <string name="BackupsSettingsFragment_automatic_backups_with_signals">نسخ احتياطية تلقائية باستخدام خدمة تخزين مُشفَّرة من طرف لطرف على سيجنال.</string>
     <!-- Subtitle shown on a linked device when backups are off, directing the user to set them up on their phone -->
-    <string name="BackupsSettingsFragment__automatic_backups_get_started_on_your_phone">Automatic backups with Signal\'s secure end-to-end encrypted storage service. Get started on your phone.</string>
+    <string name="BackupsSettingsFragment__automatic_backups_get_started_on_your_phone">نسخ احتياطية تلقائية باستخدام خدمة تخزين مُشفَّرة من طرف لطرف على سيجنال. ابدأ العملية على هاتفك.</string>
     <!-- Subtitle for row for backups that are active but subscription not found -->
     <string name="BackupsSettingsFragment_subscription_not_found_on_this_device">"تعذَّر العثور على اشتراك في هذا الجهاز."</string>
     <!-- Action button label to set up backups -->
@@ -9634,15 +9569,15 @@
     <!-- Subtext describing when a backup has never taken place. -->
     <string name="RemoteBackupsSettingsFragment__never">أبدًا</string>
     <!-- Subtext on a linked device describing when the primary device last backed up. Placeholder is the formatted date and time. -->
-    <string name="RemoteBackupsSettingsFragment__your_phone_s">Your phone · %1$s</string>
+    <string name="RemoteBackupsSettingsFragment__your_phone_s">هاتفك · %1$s</string>
     <!-- Message shown on a linked device with a free backup plan explaining that the subscription is managed on the primary device -->
-    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_upgrade_your_subscription_on_your_primary_device">You can manage or upgrade your Signal Secure Backups subscription on your primary device.</string>
+    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_upgrade_your_subscription_on_your_primary_device">يمكنك إدارة اشتراكك في النسخ الاحتياطية الآمنة لسيجنال أو ترقيته من جهازك الأساسي.</string>
     <!-- Message shown on a linked device with a paid backup plan explaining that the subscription is managed on the primary device -->
-    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_cancel_your_subscription_on_your_primary_device">You can manage or cancel your Signal Secure Backups subscription on your primary device.</string>
+    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_cancel_your_subscription_on_your_primary_device">يمكنك إدارة اشتراكك في النسخ الاحتياطية الآمنة لسيجنال أو إلغاؤه من جهازك الأساسي.</string>
     <!-- Message shown on a linked device with a canceled backup subscription explaining that the subscription is managed on the primary device -->
-    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_renew_your_subscription_on_your_primary_device">You can manage or renew your Signal Secure Backups subscription on your primary device.</string>
+    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_renew_your_subscription_on_your_primary_device">يمكنك إدارة اشتراكك في النسخ الاحتياطية الآمنة لسيجنال أو تجديده من جهازك الأساسي.</string>
     <!-- Message shown on a linked device when backups are off or the subscription was not found, explaining that backups are managed on the primary device -->
-    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_upgrade_backups_on_your_primary_device">You can manage or upgrade Signal Secure Backups on your primary device.</string>
+    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_upgrade_backups_on_your_primary_device">يمكنك إدارة النسخ الاحتياطية الآمنة لسيجنال أو ترقيتها من جهازك الأساسي.</string>
     <!-- Button label to perform a backup immediately -->
     <string name="RemoteBackupsSettingsFragment__back_up_now">إنشاء نسخة احتياطية الآن</string>
     <!-- Dialog title when confirming whether to turn off and deleting backups -->

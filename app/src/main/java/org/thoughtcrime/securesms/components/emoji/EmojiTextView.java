@@ -38,12 +38,12 @@ import androidx.core.widget.TextViewCompat;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.components.emoji.parsing.EmojiParser;
+import org.signal.emoji.parsing.EmojiParser;
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
 import org.thoughtcrime.securesms.components.mention.MentionRendererDelegate;
 import org.thoughtcrime.securesms.components.spoiler.SpoilerRendererDelegate;
 import org.thoughtcrime.securesms.conversation.MessageStyler;
-import org.thoughtcrime.securesms.emoji.JumboEmoji;
+import org.signal.emoji.JumboEmoji;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.signal.core.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.SerialMonoLifoExecutor;
@@ -56,6 +56,7 @@ import java.util.Optional;
 import java.util.concurrent.Executor;
 
 import kotlin.Unit;
+import org.signal.emoji.EmojiProvider;
 
 
 public class EmojiTextView extends AppCompatTextView {
@@ -278,8 +279,11 @@ public class EmojiTextView extends AppCompatTextView {
     previousOverflowText         = overflowText;
     useSystemEmoji               = useSystemEmoji();
     previousTransformationMethod = getTransformationMethod();
-    lastSizeChangedWidth         = -1;
-    lastSizeChangedHeight        = -1;
+
+    if (!sizeChangeInProgress) {
+      lastSizeChangedWidth  = -1;
+      lastSizeChangedHeight = -1;
+    }
 
     // Android fails to ellipsize spannable strings. (https://issuetracker.google.com/issues/36991688)
     // We ellipsize them ourselves by manually truncating the appropriate section.
@@ -306,7 +310,7 @@ public class EmojiTextView extends AppCompatTextView {
     if (scaleEmojis &&
         candidates != null &&
         candidates.allEmojis &&
-        (candidates.hasJumboForAll() || JumboEmoji.canDownloadJumbo(getContext())) &&
+        (candidates.hasJumboForAll() || JumboEmoji.canDownloadJumbo()) &&
         (text instanceof Spanned && !MessageStyler.hasStyling((Spanned) text)))
     {
       int   emojis = candidates.size();

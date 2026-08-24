@@ -8,7 +8,7 @@ package org.thoughtcrime.securesms.conversation.v2
 import androidx.lifecycle.ViewModel
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.processors.BehaviorProcessor
-import org.thoughtcrime.securesms.database.model.StickerRecord
+import org.signal.core.models.database.StickerRecord
 import org.thoughtcrime.securesms.stickers.StickerSearchRepository
 
 class StickerSuggestionsViewModel(

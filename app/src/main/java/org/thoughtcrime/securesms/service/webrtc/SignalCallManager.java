@@ -41,6 +41,7 @@ import org.signal.storageservice.storage.protos.groups.ExternalGroupCredential;
 import org.thoughtcrime.securesms.calls.quality.CallQuality;
 import org.thoughtcrime.securesms.components.webrtc.v2.CallIntent;
 import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil;
+import org.thoughtcrime.securesms.crypto.storage.SignalServiceAccountDataStoreImpl;
 import org.thoughtcrime.securesms.database.CallLinkTable;
 import org.thoughtcrime.securesms.database.CallTable;
 import org.thoughtcrime.securesms.database.GroupTable;
@@ -380,6 +381,10 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
     process((s, p) -> p.handleAudioDeviceChangeFailed(s));
   }
 
+  public void onAudioReadyForAccept() {
+    process((s, p) -> p.handleAudioReadyForAccept(s));
+  }
+
   public void onBluetoothPermissionDenied() {
     process((s, p) -> p.handleBluetoothPermissionDenied(s));
   }
@@ -488,7 +493,12 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
 
     keyedExecutor.execute(id.toString(), () -> {
       try {
-        Recipient               group      = Recipient.resolved(id);
+        Recipient group = Recipient.resolved(id);
+        if (!group.getGroupId().isPresent()) {
+          Log.w(TAG, "Recipient " + id + " is no longer a group. Skipping peek.");
+          return;
+        }
+
         GroupId.V2              groupId    = group.requireGroupId().requireV2();
         ExternalGroupCredential credential = GroupManager.getExternalGroupCredential(context, groupId);
 
@@ -562,8 +572,13 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
     });
   }
 
+  /**
+   * Attempts to launch the call screen. On newer OS versions we can only do this when we're already in the
+   * foreground, otherwise the background activity start is blocked and we have to rely on the full screen
+   * intent attached to the CallStyle notification.
+   */
   public boolean startCallCardActivityIfPossible() {
-    if (Build.VERSION.SDK_INT >= CallNotificationBuilder.API_LEVEL_CALL_STYLE) {
+    if (Build.VERSION.SDK_INT >= CallNotificationBuilder.API_LEVEL_CALL_STYLE && !AppForegroundObserver.isForegrounded()) {
       return false;
     }
 
@@ -1342,7 +1357,11 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
 
   private void archiveSessions(@NonNull RecipientId recipientId) {
     AppDependencies.getProtocolStore().aci().sessions().archiveSessions(recipientId);
-    AppDependencies.getProtocolStore().pni().sessions().archiveSessions(recipientId);
+
+    SignalServiceAccountDataStoreImpl pniStore = AppDependencies.getProtocolStore().pniOrNull();
+    if (pniStore != null) {
+      pniStore.sessions().archiveSessions(recipientId);
+    }
   }
 
   public void sendAcceptedCallEventSyncMessage(@NonNull RemotePeer remotePeer, boolean isOutgoing, boolean isVideoCall) {

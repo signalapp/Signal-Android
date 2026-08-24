@@ -4,7 +4,7 @@
   ~ SPDX-License-Identifier: AGPL-3.0-only
   -->
 <!-- smartling.instruction_comments_enabled = on -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
   <!-- Removed by excludeNonTranslatables <string name="app_name" translatable="false">Signal</string> -->
 
   <!-- Removed by excludeNonTranslatables <string name="install_url" translatable="false">https://signal.org/install</string> -->
@@ -171,6 +171,8 @@
     <string name="BlockedUsersActivity__block_user">Kullanıcıyı engelle?</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" sizi arayamayacak veya size ileti gönderemeyecek.</string>
     <string name="BlockedUsersActivity__block">Engelle</string>
+    <!-- Subtitle shown under a blocked user. Placeholder is the time they were blocked-->
+    <string name="BlockedUsersActivity__blocked_on_s">Engellenme saati: %1$s</string>
 
     <!-- CreditCardFragment -->
     <!-- Title of fragment -->
@@ -294,6 +296,16 @@
     <string name="ClientDeprecatedActivity_warning">Uyarı</string>
     <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Sinyal sürümün kullanım dışı kaldı. İleti geçmişini görüntüleyebilirsin ancak sürümünü güncelleyene kadar ileti gönderemez veya alamazsın.</string>
 
+    <!-- ClockSkewActivity -->
+    <!-- Title of the full-screen dialog shown when the device clock is too far off from the real time -->
+    <string name="ClockSkewActivity__title">Tarih hatalı</string>
+    <!-- Body text explaining that the device clock is wrong and needs to be fixed -->
+    <string name="ClockSkewActivity__date_inaccurate_description">Cihaz tarihin hatalı.\nSaatini ayarlayıp tekrar dene.</string>
+    <!-- Shows the user the current, inaccurate date and time reported by their device. Placeholder is the formatted date, time, and time zone. -->
+    <string name="ClockSkewActivity__time_prefix">Cihaz tarihin ve saatin:\n%1$s</string>
+    <!-- Button that opens the system date and time settings -->
+    <string name="ClockSkewActivity__adjust_date_button">Tarih ayarla</string>
+
     <!-- CommunicationActions -->
     <string name="CommunicationActions_no_browser_found">Hiçbir web tarayıcısı bulunamadı.</string>
     <string name="CommunicationActions_send_email">E-posta gönder</string>
@@ -388,6 +400,8 @@
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
     <string name="ConversationItem_s_deleted_this_message">%1$s bu mesajı sildi</string>
     <string name="ConversationItem_you_deleted_this_message">Bu mesajı sildin</string>
+    <!-- Tappable text shown on a locally-deleted message tombstone, prompting the user to promote it to a delete-for-everyone -->
+    <string name="ConversationItem_delete_for_everyone_question">Herkesten silinsin mi?</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
     <string name="ConversationItem_admin_s_deleted_this_message">Yönetici %1$s bu mesajı sildi</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -416,7 +430,6 @@
     <!-- Accessibility text associated with image button to send an edited message. -->
     <string name="ConversationActivity_send_edit">Düzenlemeyi gönder</string>
     <string name="ConversationActivity_compose_message">İleti oluştur</string>
-    <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Üzgünüz, eklentiniz ayarlanırken hata oluştu.</string>
     <!-- Toast shown when user is unable to find the recipient when sending a message -->
     <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Alıcı geçerli bir SMS veya e-posta adresi değil!</string>
     <string name="ConversationActivity_message_is_empty_exclamation">İleti boş!</string>
@@ -579,7 +592,7 @@
     <string name="ConversationFragment_delete">Sil</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">Her yerden sil</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Bu mesaj sohbette güncel bir Signal sürümü kullanan herkesten silinecek. Üyeler bir mesaj sildiğini görebilir.</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Bu mesaj sohbette herkesten silinecek. Bir mesajı sildiğini görebilecekler.</string>
     <string name="ConversationFragment_quoted_message_not_found">İletinin aslı bulunamadı</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">İletinin aslı artık mevcut değil</string>
     <string name="ConversationFragment_failed_to_open_message">İleti açılamadı</string>
@@ -758,17 +771,28 @@
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">Okunmamış sohbet yok</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="one">Seçilen sohbet silinsin mi?</item>
-        <item quantity="other">Seçilen sohbetler silinsin mi?</item>
+        <item quantity="one">Mesaj geçmişi silinsin mi?</item>
+        <item quantity="other">Mesaj geçmişleri silinsin mi?</item>
     </plurals>
+    <!-- Dialog message shown when deleting chats, none of which are groups -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">Bu işlem seçilen sohbeti kalıcı olarak silecektir.</item>
-        <item quantity="other">Bu işlem seçilen %1$d sohbetini kalıcı olarak silecektir.</item>
+        <item quantity="one">Bu sohbetteki tüm mesajlar silinecek.</item>
+        <item quantity="other">Bu sohbetlerdeki tüm mesajlar silinecek.</item>
     </plurals>
-    <!-- Dialog message shown when deleting one to many conversations from the chat list and the user has a linked device -->
+    <!-- Dialog message shown when deleting chats, with at least one group -->
+    <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_group">
+        <item quantity="one">Bu sohbetteki tüm mesajlar silinecek. Hâlen bu grubun bir üyesi olacaksın.</item>
+        <item quantity="other">Bu sohbetlerdeki tüm mesajlar silinecek. Hâlen ayrılmadığın tüm grupların bir üyesi olarak kalacaksın.</item>
+    </plurals>
+    <!-- Dialog message shown when deleting chats, none of which are groups, and the user has a linked device -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device">
-        <item quantity="one">Bu işlem seçilen sohbeti tüm cihazlarından kalıcı olarak silecektir.</item>
-        <item quantity="other">Bu işlem, seçilen %1$d sohbetin tamamını tüm cihazlarından kalıcı olarak silecektir.</item>
+        <item quantity="one">Bu sohbetteki tüm mesajlar tüm cihazlarından silinecektir.</item>
+        <item quantity="other">Bu sohbetlerdeki tüm mesajlar tüm cihazlarından silinecektir.</item>
+    </plurals>
+    <!-- Dialog message shown when deleting chats with at least one group, and the user has a linked device -->
+    <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device_group">
+        <item quantity="one">Bu sohbetteki tüm mesajlar tüm cihazlarından silinecektir. Hâlen bu grubun bir üyesi olacaksın.</item>
+        <item quantity="other">Bu sohbetlerdeki tüm mesajlar tüm cihazlarından silinecektir. Hâlen ayrılmadığın tüm grupların bir üyesi olarak kalacaksın.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Siliniyor</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
@@ -1046,13 +1070,13 @@
 
     <!-- LinkDeviceFragment -->
     <!-- Description for how Signal will work with a linked device (eg desktop, iPad) -->
-    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Bu Signal hesabını masaüstünde veya iPad\'de kullan.</string>
+    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Bu Signal hesabını başka bir cihazda kullan.</string>
     <!-- Button prompting users to link a new device to their account -->
     <string name="LinkDeviceFragment__link_a_new_device">Yeni bir cihaz bağla</string>
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
     <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$s Mesajlar ve sohbet bilgileri tüm cihazlarda uçtan uca şifreleme ile korunmaktadır</string>
     <!-- Bottom sheet title explaining how Signal works on a linked device -->
-    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Desktop veya iPad\'de Signal</string>
+    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Bağlı cihazda Signal</string>
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
     <string name="LinkDeviceFragment__all_messaging_is_private">Bağlı cihazlardaki tüm mesajlaşmalar özeldir</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
@@ -1118,6 +1142,8 @@
     <string name="LinkDeviceFragment__edit_name">İsmi düzenle</string>
     <!-- Toast shown when the process of linking a device has been cancelled -->
     <string name="LinkDeviceFragment__linking_cancelled">Bağlantı iptal edildi</string>
+    <!-- Snackbar shown when the user tries to link a new device but has already reached the maximum number of linked devices. Placeholder is the maximum count. -->
+    <string name="LinkDeviceFragment__you_can_only_have_d_linked_devices">Yalnızca %1$d bağlı cihazın olabilir.</string>
     <!-- Message shown in progress dialog telling users to avoid closing the app while messages are being synced -->
     <string name="LinkDeviceFragment__do_not_close">Uygulamayı kapatma</string>
     <!-- Dialog title shown when a device is unlinked -->
@@ -1164,6 +1190,8 @@
     <string name="AddLinkDeviceFragment__this_qr_code_not_valid">Bu kare kod geçerli değil. Lütfen bağlamak istediğiniz cihazda görüntülenen kare kodu taradığınızdan emin olun.</string>
     <!-- Button in dialog to retry linking a device with a qr code -->
     <string name="AddLinkDeviceFragment__retry">Tekrar dene</string>
+    <!-- Text shown in a dialog when the device being linked is too out-of-date to be linked to this account -->
+    <string name="AddLinkDeviceFragment__the_device_you_are_trying_to_link_is_out_of_date">The device you\'re trying to link is out of date. Please upgrade and try again.</string>
 
     <!-- LinkDeviceSyncBottomSheet -->
     <!-- Option in bottom sheet to transfer message history -->
@@ -1549,12 +1577,6 @@
     <!-- Dialog message -->
     <string name="RestoreActivity__no_longer_registered_message">Bunun nedeni büyük olasılıkla Signal hesabının farklı bir cihazda kaydedilmiş olmasıdır.</string>
 
-    <!-- GroupMentionSettingDialog -->
-    <string name="GroupMentionSettingDialog_notify_me_for_mentions">Bahsedilmeleri bana bildir</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Sessize alınan sohbetlerde senden bahsedildiğinde bildirim gönderilsin mi?</string>
-    <string name="GroupMentionSettingDialog_always_notify_me">Her zaman bana bildir</string>
-    <string name="GroupMentionSettingDialog_dont_notify_me">Bana bildirme</string>
-
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Kullanıcı adın, kare kodun ve bağlantın profilinde görünmez. Kullanıcı adını yalnızca güvendiğin kişilerle paylaş.</string>
@@ -1855,9 +1877,6 @@
 
     <!-- MediaPickerActivity -->
     <string name="MediaPickerActivity__menu_open_camera">Kamerayı aç</string>
-
-    <!-- MediaSendActivity -->
-    <string name="MediaSendActivity_camera_unavailable">Kamera kullanılamıyor.</string>
 
     <!-- MediaRepository -->
     <string name="MediaRepository_all_media">Tüm içerik</string>
@@ -2866,13 +2885,6 @@
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">Destekle İletişime Geç</string>
 
-    <!-- RegistrationLockV2Dialog -->
-    <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Kayıt Kilidi Açılsın mı?</string>
-    <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Kayıt Kilidi Kapatılsın mı?</string>
-    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Signal\'e tekrar kaydolurken Signal PIN\'inizi unutursanız, hesabınıza 7 gün boyunca erişemezsiniz. </string>
-    <string name="RegistrationLockV2Dialog_turn_on">Aç</string>
-    <string name="RegistrationLockV2Dialog_turn_off">Kapat</string>
-
     <!-- RevealableMessageView -->
     <string name="RevealableMessageView_view_photo">Fotoğrafı Görüntüle</string>
     <string name="RevealableMessageView_view_video">Videoyu Görüntüle</string>
@@ -3070,6 +3082,7 @@
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_locale" translatable="false">Locale:</string> -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_challenge_received" translatable="false">Challenge Received:</string> -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_registered" translatable="false">Registered:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_backups" translatable="false">Backups:</string> -->
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">Grup güncellendi</string>
@@ -3241,7 +3254,7 @@
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
     <string name="MuteDialog_mute_notifications">Bildirimleri sessize al</string>
     <!-- Dialog option that, when pressed, will open a time picker to let the user choose how long they\'d like to mute notifications for -->
-    <string name="MuteDialog__mute_until">Şu tarihe kadar sessize al…</string>
+    <string name="MuteDialog__mute_until">Until…</string>
 
     <!-- MuteUntilTimePickerBottomSheet -->
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
@@ -4092,15 +4105,6 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Yakınlarda</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Bu İleti</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Yakınlarda Kullanılmış</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Smileyler &amp; Kişiler</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Doğa</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Gıda</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Etkinlikler</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Mekanlar</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Nesneler</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Semboller</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Bayraklar</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">His simgeleri</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Sonuç bulunamadı</string>
 
     <!-- GifQuickSearchOption -->
@@ -4118,10 +4122,10 @@
     <string name="arrays__use_default">Varsayılanı kullan</string>
     <string name="arrays__use_custom">Özelleştirilmiş kullan</string>
 
-    <string name="arrays__mute_for_one_hour">1 saatliğine sessize al</string>
-    <string name="arrays__mute_for_eight_hours">8 saatliğine sessize al</string>
-    <string name="arrays__mute_for_one_day">1 günlüğüne sessize al</string>
-    <string name="arrays__mute_for_seven_days">7 günlüğüne sessize al</string>
+    <string name="arrays__mute_for_one_hour">1 saat</string>
+    <string name="arrays__mute_for_eight_hours">8 saat</string>
+    <string name="arrays__mute_for_one_day">1 gün</string>
+    <string name="arrays__mute_for_seven_days">1 hafta</string>
     <string name="arrays__always">Her zaman</string>
 
     <string name="arrays__settings_default">Varsayılan ayarlar</string>
@@ -4176,6 +4180,10 @@
     <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
     <string name="preferences__inactivity_timeout_interval">Zaman aşımı süresi</string>
     <string name="preferences__notifications">Bildirimler</string>
+    <!-- Preference item menu to enable notifications -->
+    <string name="preferences__enable_notifications">Bildirimleri etkinleştir</string>
+    <!-- Preference header for call notifications -->
+    <string name="preferences__call_notifications">Arama bildirimleri</string>
     <string name="preferences__led_color">LED rengi</string>
     <string name="preferences__led_color_unknown">Bilinmeyen</string>
     <string name="preferences__pref_led_blink_title">LED yanıp sönme şekli</string>
@@ -4263,12 +4271,10 @@
     <string name="preferences__system_default">Sistem varsayılanı</string>
     <string name="preferences__language">Dil</string>
     <string name="preferences__signal_messages_and_calls">Signal iletileri ve aramaları</string>
-    <string name="preferences__advanced_pin_settings">Gelişmiş PIN ayarları</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">Gelişmiş PIN ayarları</string>
     <string name="preferences__free_private_messages_and_calls">Signal kullanıcılarına ücretsiz özel iletiler ve aramalar</string>
     <string name="preferences__submit_debug_log">Hata ayıklama günlüğünü gönder</string>
-    <string name="preferences__delete_account">Hesabı sil</string>
     <string name="preferences__support_wifi_calling">\'Kablosuz Ağ Üzerinden Arama\' uyumluluk kipi</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Cihazınız kablosuz ağ üzerinden SMS/MMS iletebiliyorsa etkinleştirin (sadece cihazınızda \'Kablosuz Ağ Üzerinden Arama\' seçeneği etkin ise etkinleştirin)</string>
     <string name="preferences__incognito_keyboard">Gizli klavye</string>
@@ -4335,6 +4341,16 @@
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Kötü ağ koşullarında daha az veri kullanmak arama kalitesini arttırabilir.</string>
     <string name="preferences_notifications__in_chat_sounds">Sohbet içi sesler</string>
     <string name="preferences_notifications__show">Göster</string>
+    <!-- Preference item to set notification settings when chats are muted -->
+    <string name="preferences_notifications__while_muted">While muted</string>
+    <!-- Option in settings to turn on reaction notifications -->
+    <string name="preferences_notifications__reaction">Reaction notifications</string>
+    <!-- Body option in settings to turn on reaction notifications    -->
+    <string name="preferences_notifications__notify_reaction">Show notifications for reactions to messages you send</string>
+    <!-- Option in settings to turn on unread reminders -->
+    <string name="preferences_notifications__unread">Unread reminders</string>
+    <!-- Body option to turn on unread reminders -->
+    <string name="preferences_notifications__notify_unread">Occasionally notify when there are unread messages in muted chats</string>
     <string name="preferences_notifications__ringtone">Zil sesi</string>
     <string name="preferences_chats__message_text_size">İleti yazı tipi boyutu</string>
     <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
@@ -4862,8 +4878,6 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Bu hesap için oluşturduğunuz PIN kodunu girin. Bu kod, SMS doğrulama kodunuzdan farklıdır.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Hesabın için oluşturduğun PIN\'i gir.</string>
-    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
-    <string name="RegistrationLockFragment__switch_keyboard">Klavyeyi değiştir</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Yanlış PIN. Tekrar deneyin.</string>
     <string name="RegistrationLockFragment__forgot_pin">PIN\'inizi mi unuttunuz?</string>
     <string name="RegistrationLockFragment__incorrect_pin">Yanlış PIN</string>
@@ -4941,8 +4955,6 @@
     <!-- Text label button to skip restoring -->
     <string name="registration_activity__skip_restore">Geri yüklemeyi atla</string>
     <string name="preferences_chats__chat_backups">Sohbet yedekleri</string>
-    <string name="preferences_chats__transfer_account">Hesabı aktar</string>
-    <string name="preferences_chats__transfer_account_to_a_new_android_device">Hesabı yeni bir Android cihaza aktar</string>
     <!-- Title for dialog to enter in the backup passphrase -->
     <string name="RegistrationActivity_enter_backup_passphrase">Yedek parolasını giriniz</string>
     <string name="RegistrationActivity_restore">Geri yükle</string>
@@ -5030,19 +5042,9 @@
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">Ekran kilidi zaman aşımı</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
     <string name="preferences_app_protection__to_use_screen_lock">Ekran kilidi kullanmak için bu cihazda bir PIN, desen veya parola ayarla.</string>
-    <string name="preferences_app_protection__signal_pin">Signal PIN\'i</string>
-    <string name="preferences_app_protection__create_a_pin">PIN oluştur</string>
-    <string name="preferences_app_protection__change_your_pin">PIN\'inizi değiştirin</string>
-    <string name="preferences_app_protection__pin_reminders">PIN hatırlatıcıları</string>
-    <string name="preferences_app_protection__turn_off">Kapat</string>
-    <string name="preferences_app_protection__confirm_pin">PIN\'i onaylayınız</string>
-    <string name="preferences_app_protection__confirm_your_signal_pin">Signal PIN\'inizi onaylayın</string>
-    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">PIN\'iniz kurtarılamayacağı için ezberlediğinizden veya güvenli bir şekilde sakladığınızdan emin olun. Eğer PIN\'inizi unutursanız, Signal hesabınızı tekrar kaydederken veri kaybı yaşayabilirsiniz.</string>
-    <string name="preferences_app_protection__incorrect_pin_try_again">Yanlış PIN. Tekrar deneyin.</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">Kayıt kilidi etkinleştirme başarısız oldu</string>
     <string name="preferences_app_protection__failed_to_disable_registration_lock">Kayıt kilidi devredışı bırakma başarısız oldu</string>
     <string name="AppProtectionPreferenceFragment_none">Hiçbiri</string>
-    <string name="preferences_app_protection__registration_lock">Kaydolma Kilidi</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Kaydolma Kilidi PIN\'inizi girmek zorundasınız</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">PIN\'iniz en az %1$d haneli veya karakterli</string>
     <string name="RegistrationActivity_too_many_attempts">Çok fazla deneme yapıldı</string>
@@ -5090,48 +5092,34 @@
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
     <string name="Recipient_deleted_account">Silinmiş hesap</string>
 
-    <!-- Option in settings that will take use to re-register if they are no longer registered -->
-    <string name="preferences_account_reregister">Hesabı yeniden kaydet</string>
-    <!-- Option in settings that will take user to our website or playstore to update their expired build -->
-    <string name="preferences_account_update_signal">Signal\'i Güncelle</string>
-    <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
-    <string name="preferences_account_delete_all_data">Tüm verileri sil</string>
-    <!-- Title for confirmation dialog confirming user wants to delete all their data -->
-    <string name="preferences_account_delete_all_data_confirmation_title">Tüm veri silinsin mi?</string>
-    <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_message">Bu işlem uygulamayı sıfırlayacak ve tüm mesajları silecektir. Bu işlem tamamlandıktan sonra uygulama kapanacaktır.</string>
-    <!-- Confirmation action to proceed with application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_proceed">Devam et</string>
-    <!-- Confirmation action to cancel application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_cancel">İptal</string>
     <!-- Error message shown when we fail to delete the data for some unknown reason -->
     <string name="preferences_account_delete_all_data_failed">Veriler silinemedi</string>
 
     <!-- LinkedDeviceAccountSettingsFragment -->
     <!-- Title of an informational card shown on the account settings screen of a linked device -->
-    <string name="LinkedDeviceAccountSettingsFragment__this_is_a_linked_device">This is a linked device</string>
+    <string name="LinkedDeviceAccountSettingsFragment__this_is_a_linked_device">Bu bir bağlı cihazdır</string>
     <!-- Body of an informational card explaining that account settings must be managed from the primary device -->
-    <string name="LinkedDeviceAccountSettingsFragment__to_manage_your_account_settings">To manage your account settings, open Signal on your primary device.</string>
+    <string name="LinkedDeviceAccountSettingsFragment__to_manage_your_account_settings">Hesap ayarlarını yönetmek için ana cihazında Signal\'ı aç.</string>
     <!-- Title of a settings row that deletes all Signal data from this linked device -->
-    <string name="LinkedDeviceAccountSettingsFragment__delete_app_data">Delete app data</string>
+    <string name="LinkedDeviceAccountSettingsFragment__delete_app_data">Uygulama verilerini sil</string>
     <!-- Subtitle of the delete app data row explaining what it does -->
-    <string name="LinkedDeviceAccountSettingsFragment__this_will_remove_all_data">This will remove all data from the Signal app on this device.</string>
+    <string name="LinkedDeviceAccountSettingsFragment__this_will_remove_all_data">Bu işlem, tüm verileri bu cihazdaki Signal uygulamasından kaldıracaktır.</string>
     <!-- Title of the confirmation dialog shown when deleting app data from a linked device -->
-    <string name="LinkedDeviceAccountSettingsFragment__delete_app_data_question">Delete app data?</string>
+    <string name="LinkedDeviceAccountSettingsFragment__delete_app_data_question">Uygulama verileri silinsin mi?</string>
     <!-- Message of the confirmation dialog explaining that only this device\'s data is deleted, not the account -->
-    <string name="LinkedDeviceAccountSettingsFragment__this_will_delete_all_data_and_messages">This will delete all data and messages from the Signal app on this device. Your Signal account and data on your primary device or other linked devices will not be deleted. The app will close after this process is complete.</string>
+    <string name="LinkedDeviceAccountSettingsFragment__this_will_delete_all_data_and_messages">Bu işlem, tüm verileri ve mesajları bu cihazdaki Signal uygulamasından silecektir. Signal hesabın ve ana cihazındaki veya diğer bağlı cihazlarındaki veriler silinmez. Bu işlem tamamlandıktan sonra uygulama kapanacaktır.</string>
 
     <!-- LinkedDeviceAccountLearnMoreBottomSheet -->
     <!-- Emphasized lead-in phrase shown in bold at the start of the learn more sheet body. Must appear verbatim within LinkedDeviceAccountLearnMoreBottomSheet__linked_devices_let_you_access. -->
-    <string name="LinkedDeviceAccountLearnMoreBottomSheet__linked_devices">Linked Devices</string>
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__linked_devices">Bağlı Cihazlar</string>
     <!-- Body text of the linked devices learn more sheet. The leading \"Linked Devices\" is shown in bold. -->
-    <string name="LinkedDeviceAccountLearnMoreBottomSheet__linked_devices_let_you_access">Linked Devices let you access your Signal account and messages securely on any of your additional devices.</string>
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__linked_devices_let_you_access">Bağlı Cihazlar, diğer cihazlarındaki Signal hesabına ve mesajlarına güvenli biçimde erişmeni sağlar.</string>
     <!-- Bullet point describing what devices can be linked -->
-    <string name="LinkedDeviceAccountLearnMoreBottomSheet__you_can_link_a_desktop">You can link a desktop, tablet or additional phone</string>
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__you_can_link_a_desktop">Bir masaüstü, tablet veya ilave telefon bağlayabilirsin</string>
     <!-- Bullet point describing that the primary device manages linked devices -->
-    <string name="LinkedDeviceAccountLearnMoreBottomSheet__your_primary_device_manages">Your primary device manages what\'s linked, you can link up to 5 devices.</string>
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__your_primary_device_manages">Ana cihazın, bağlı cihazları yönetir ve en fazla 5 cihaz bağlayabilirsin.</string>
     <!-- Bullet point describing that some settings are only available on the primary device -->
-    <string name="LinkedDeviceAccountLearnMoreBottomSheet__some_account_settings">Some account settings are managed on your primary device only, including account settings and backups.</string>
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__some_account_settings">Bazı ayarlar, hesap ayarları ve yedeklemeler de dahil olmak üzere yalnızca ana cihazından yönetilir.</string>
 
     <!-- TransferOrRestoreFragment -->
     <string name="TransferOrRestoreFragment__transfer_or_restore_account">Hesabı aktar veya geri yükle</string>
@@ -5626,18 +5614,6 @@
     <!-- GroupDescriptionDialog -->
     <string name="GroupDescriptionDialog__group_description">Grup tanımı</string>
 
-    <!-- QualitySelectorBottomSheetDialog -->
-    <!-- Label for our standard quality media conversion. -->
-    <string name="QualitySelectorBottomSheetDialog__standard">Standart</string>
-    <!-- Description for our standard quality media conversion. -->
-    <string name="QualitySelectorBottomSheetDialog__faster_less_data">Daha hızlı, az veri</string>
-    <!-- Label for our high quality media conversion. This has better quality than standard. -->
-    <string name="QualitySelectorBottomSheetDialog__high">Yüksek</string>
-    <!-- Label for our high quality media conversion. This has better quality than standard. -->
-    <string name="QualitySelectorBottomSheetDialog__slower_more_data">Daha yavaş, daha çok veri</string>
-    <!-- Title heading for our media conversion quality selector. -->
-    <string name="QualitySelectorBottomSheetDialog__media_quality">İçerik kalitesi</string>
-
     <!-- AppSettingsFragment -->
     <!-- String alerting user that something is wrong with their backups subscription -->
     <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Signal Güvenli Yedeklemeler aboneliğini yenile</string>
@@ -5655,14 +5631,6 @@
     <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">Yedekleme abonelik kimliği panoya kopyalandı</string>
     <!-- String displayed in a toast when a subscriber id is not present for a given type -->
     <string name="AppSettingsFragment__no_subscriber_id_set">Abonelik kimliği ayarlanmamış</string>
-
-    <!-- AccountSettingsFragment -->
-    <string name="AccountSettingsFragment__account">Hesap</string>
-    <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Zaman geçtikçe daha az sorulacaktır</string>
-    <string name="AccountSettingsFragment__require_your_signal_pin">Telefon numaran Signal\'e tekrar kaydedilirken Signal PIN\'i istensin.</string>
-    <string name="AccountSettingsFragment__change_phone_number">Telefon numarası değiştir</string>
-    <!-- Account setting that allows user to request and export their signal account data -->
-    <string name="AccountSettingsFragment__request_account_data">Hesap verilerin</string>
 
     <!-- ExportAccountDataFragment -->
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
@@ -5957,14 +5925,46 @@
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">İletiler</string>
     <string name="NotificationsSettingsFragment__calls">Aramalar</string>
-    <string name="NotificationsSettingsFragment__notify_when">Şu durumlarda bildir…</string>
+    <!-- Notification header for sounds -->
+    <string name="NotificationsSettingsFragment__sounds">Sesler</string>
     <string name="NotificationsSettingsFragment__contact_joins_signal">Kişi Signal\'e katılınca</string>
+    <!-- Notification body to get notified when someone joins Signal -->
+    <string name="NotificationsSettingsFragment__notify_contact">Show a notification when a phone contact joins Signal</string>
+    <!-- Option to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset">Reset notification settings</string>
+    <!-- Option body to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_notifications">Reset notification settings to default, including custom settings for your chats</string>
+    <!-- Dialog to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_body">Reset all notification settings to default for all chats?</string>
+    <!-- Confirmation button to reset dialog -->
+    <string name="NotificationsSettingsFragment__reset_confirm">Sıfırla</string>
     <!-- Notification preference header -->
     <string name="NotificationsSettingsFragment__notification_profiles">Bildirim Profilleri</string>
     <!-- Notification preference option header -->
     <string name="NotificationsSettingsFragment__profiles">Profiller</string>
     <!-- Notification preference summary text -->
     <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Sadece seçtiğiniz kişi ve gruplardan bildirim almak için bir profil yaratın.</string>
+
+    <!-- Header to describe screen that shows while muted settings -->
+    <string name="MutedNotificationsFragment__while">While muted</string>
+    <!-- Title for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls">Aramalar</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body_global">Ring or notify when a call is started in muted chats.</string>
+    <!-- Title for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions">Bahsedilmeler</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body_global">Notify when you are mentioned in muted chats.</string>
+    <!-- Title for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies">Yanıtlar</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body_global">Notify when someone replies to your message in muted chats.</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body">Ring or notify when a call is started while this chat is muted.</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body">Notify when you are mentioned while this chat is muted.</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body">Notify when someone replies to your message while this chat is muted.</string>
 
     <!-- NotificationProfilesFragment -->
     <!-- Title for notification profiles screen that shows all existing profiles; Title with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -6193,6 +6193,8 @@
     <string name="ConversationSettingsFragment__end_group">Grubu sonlandır</string>
     <!-- Banner shown at the top of group settings when the group has been ended -->
     <string name="ConversationSettingsFragment__this_group_was_ended">Bu grup sonlandırıldı.</string>
+    <!-- Subhead under a legacy group\'s name, joining the member count and the "Legacy Group" label. %1$s is the member count, %2$s is the label -->
+    <string name="ConversationSettingsFragment__s_dot_s">%1$s · %2$s</string>
     <!-- Archive chat option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__archive_chat">Sohbeti arşivle</string>
     <!-- Delete chat option in group conversation settings screen -->
@@ -6376,53 +6378,11 @@
     <!-- Positive dialog action when sending a story via an add to group story button -->
     <string name="MediaReviewFragment__add_to_story">Hikayeye ekle</string>
     <string name="MediaReviewFragment__add_a_message">İleti ekle</string>
-    <!-- Hint text inside of a compose box that is shown when the user is adding media while quoting a message. -->
-    <string name="MediaReviewFragment__add_a_reply">Yanıt ekle</string>
     <string name="MediaReviewFragment__send_to">Gönder:</string>
-    <string name="MediaReviewFragment__view_once_message">Bir kez görünür medya</string>
-    <string name="MediaReviewFragment__one_or_more_items_were_too_large">Bir veya daha fazla öğe çok büyük</string>
-    <string name="MediaReviewFragment__one_or_more_items_were_invalid">Bir veya daha fazla öğe çok geçersiz</string>
-    <string name="MediaReviewFragment__too_many_items_selected">Çok fazla öğe seçildi</string>
-    <!-- Small notification presented to the user when they set their video to view-once mode -->
-    <string name="MediaReviewFragment__video_set_to_view_once">Video bir kez görüntülenecek şekilde ayarlandı</string>
-    <!-- Small notification presented to the user when they set their photo to view-once mode -->
-    <string name="MediaReviewFragment__photo_set_to_view_once">Fotoğraf bir kez görüntülenecek şekilde ayarlandı</string>
-    <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
-    <string name="MediaReviewFragment__video_set_to_high_quality">Video yüksek kaliteye ayarlandı</string>
-    <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
-    <string name="MediaReviewFragment__video_set_to_standard_quality">Video standart kaliteye ayarlandı</string>
-    <!-- Small notification presented to the user when they set their still image to be sent in high visual quality. -->
-    <string name="MediaReviewFragment__photo_set_to_high_quality">Fotoğraf yüksek kaliteye ayarlandı</string>
-    <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
-    <string name="MediaReviewFragment__photo_set_to_standard_quality">Fotoğraf standart kaliteye ayarlandı</string>
-    <!-- Accessibility label describing the add media button on the Media review screen -->
-    <string name="MediaReviewFragment__add_media_accessibility_label">Medya Ekle</string>
-    <!-- Accessibility label describing the brush and pen button on the Media review screen -->
-    <string name="MediaReviewFragment__brush_pen_accessibility_label">Fırça ve Kalem</string>
-    <!-- Accessibility label describing the crop and rotate button on the Media review screen -->
-    <string name="MediaReviewFragment__crop_rotate_accessibility_label">Kırp ve döndür</string>
-    <!-- Accessibility label describing the change media quality button on the Media review screen -->
-    <string name="MediaReviewFragment__change_media_quality_accessibility_label">Medya Kalitesini Değiştir</string>
-    <!-- Accessibility label describing the save media button on the Media review screen -->
-    <string name="MediaReviewFragment__save_media_accessibility_label">Medyayı Kaydet</string>
-    <!-- Accessibility label describing the toggle emoji keyboard button on the Media review screen -->
-    <string name="MediaReviewFragment__emoji_toggle_accessibility_label">Emoji klavyesini göster/gizle</string>
     <!-- Accessibility label describing the toggle view once button on the Media review screen -->
     <string name="MediaReviewFragment__view_once_toggle_accessibility_label">Görünümü Bir Kez Değiştir</string>
-    <!-- Accessibility label describing the send media button on the Media review screen -->
-    <string name="MediaReviewFragment__send_media_accessibility_label">Medya Gönder</string>
     <!-- Accessibility label describing the finish adding a message button on the Media review screen dialog -->
     <string name="MediaReviewFragment__finish_adding_a_message_accessibility_label">Mesaj eklemeyi bitir</string>
-    <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
-    <plurals name="MediaReviewFragment__items_set_to_high_quality">
-        <item quantity="one">%1$d öge yüksek kaliteye ayarlandı</item>
-        <item quantity="other">%1$d öğe yüksek kaliteye ayarlandı</item>
-    </plurals>
-    <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
-    <plurals name="MediaReviewFragment__items_set_to_standard_quality">
-        <item quantity="one">%1$d öge standart kaliteye ayarlandı</item>
-        <item quantity="other">%1$d öğe standart kaliteye ayarlandı</item>
-    </plurals>
 
     <string name="ImageEditorHud__cancel">İptal</string>
     <string name="ImageEditorHud__draw">Çizim</string>
@@ -6440,27 +6400,9 @@
 
     <string name="MediaCountIndicatorButton__send">Gönder</string>
 
-    <string name="MediaReviewSelectedItem__tap_to_remove">Kaldırmak için dokun</string>
-    <string name="MediaReviewSelectedItem__tap_to_select">Seçmek için dokunun</string>
-
     <string name="MediaReviewImagePageFragment__discard">Vazgeç</string>
     <string name="MediaReviewImagePageFragment__discard_changes">Değişiklikler silinsin mi?</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Bu fotoğrafa yaptığınız değişiklikleri kaybedeceksiniz.</string>
-
-    <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_title">%1$s bulundu</string>
-    <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_body">\"%1$s\" ile bir sohbet başlat</string>
-    <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
-    <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">Sohbete git</string>
-
-    <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_title">Cihaz bağlansın mı?</string>
-    <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_it_looks_like_youre_trying">Signal cihazını bağlamaya çalışıyorsun gibi görünüyor. Devam et\'e dokun ve ardından \"Yeni Bir Cihaz Bağla\"ya dokun ve kare kodu tekrar tara.</string>
-    <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
-    <string name="MediaCaptureFragment_device_link_dialog_continue">Devam et</string>
-
 
     <string name="BadgesOverviewFragment__my_badges">Rozetlerim</string>
     <string name="BadgesOverviewFragment__featured_badge">Öne çıkan rozet</string>
@@ -6935,7 +6877,7 @@
     <!-- Donation receipts amount title -->
     <string name="DonationReceiptDetailsFragment__amount">Tutar</string>
     <!-- Donation receipts thanks -->
-    <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Signal\'i desteklediğiniz için teşekkür ederiz. Katkınız, ifade özgürlüğünü koruyan ve dünya çapında milyonlarca kişi için güvenli küresel iletişim sağlayan açık kaynaklı gizlilik teknolojisi geliştirme misyonunu desteklemeye yardımcı olur. Amerika Birleşik Devletleri\'nde ikamet ediyorsanız, lütfen bu makbuzu vergi kayıtlarınız için saklayın. Signal Technology Foundation, Amerika Birleşik Devletleri\'nde İç Gelir Yasası\'nın 501c3 bölümü kapsamında vergiden muaf, kâr amacı gütmeyen bir kuruluştur. Federal Vergi Kimliğimiz 82–4506840\'tır.</string>
+    <string name="DonationReceiptDetailsFragment__thank_you_for_supporting" tools:ignore="TypographyDashes">Signal\'ı desteklediğin için teşekkürler. Katkın açık kaynak gizlilik teknolojisi aracılığıyla, ifade özgürlüğünü koruma ve dünya çapında milyonlarca kişi için güvenli küresel iletişim sağlama misyonunu desteklemeye yardımcı olur. Amerika Birleşik Devletleri\'nde ikamet ediyorsan, lütfen bu makbuzu vergi kayıtların için sakla. Signal Technology Foundation, Amerika Birleşik Devletleri\'nde İç Gelir Yasası\'nın 501c3 numaralı bölümü kapsamında vergiden muaf, kâr amacı gütmeyen bir kuruluştur. Federal Vergi Kimlik Numaramız 82-4506840\'tır. Signal bu katkı karşılığında herhangi bir mal veya hizmet sağlamamıştır.</string>
     <!-- Donation reciepts screen empty state title -->
     <string name="DonationReceiptListFragment__no_receipts">Alıcı yok</string>
 
@@ -8718,13 +8660,6 @@
     <!-- Body of bottom sheet shown when opening a terminated group -->
     <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">Artık bu gruptan mesaj alıp gönderemez veya arama yapıp alamazsın.</string>
 
-    <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_title">Silme işlemi şu anda tüm cihazlarında senkronize ediliyor</string>
-    <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_message">Mesajları veya sohbetleri sildiğinde, bunlar telefonundan ve bağlı cihazlardan silinecektir.</string>
-    <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_acknowledge_button">TAMAM</string>
-
     <!-- NoManualBackupBottomSheet -->
     <!-- Title for bottom sheet, placeholder is number of days. -->
     <plurals name="NoManualBackupBottomSheet__no_backup_for_d_days">
@@ -8749,7 +8684,7 @@
     <!-- Subtitle for row for no backup ever created -->
     <string name="BackupsSettingsFragment_automatic_backups_with_signals">Signal\'in güvenli uçtan uca şifrelenmiş depolama hizmeti ile otomatik yedeklemeler.</string>
     <!-- Subtitle shown on a linked device when backups are off, directing the user to set them up on their phone -->
-    <string name="BackupsSettingsFragment__automatic_backups_get_started_on_your_phone">Automatic backups with Signal\'s secure end-to-end encrypted storage service. Get started on your phone.</string>
+    <string name="BackupsSettingsFragment__automatic_backups_get_started_on_your_phone">Signal\'ın güvenli uçtan uca şifrelenmiş depolama hizmeti ile otomatik yedeklemeler. Telefonunla başla.</string>
     <!-- Subtitle for row for backups that are active but subscription not found -->
     <string name="BackupsSettingsFragment_subscription_not_found_on_this_device">"Bu cihazda abonelik bulunamadı."</string>
     <!-- Action button label to set up backups -->
@@ -8854,15 +8789,15 @@
     <!-- Subtext describing when a backup has never taken place. -->
     <string name="RemoteBackupsSettingsFragment__never">Asla</string>
     <!-- Subtext on a linked device describing when the primary device last backed up. Placeholder is the formatted date and time. -->
-    <string name="RemoteBackupsSettingsFragment__your_phone_s">Your phone · %1$s</string>
+    <string name="RemoteBackupsSettingsFragment__your_phone_s">Telefonun · %1$s</string>
     <!-- Message shown on a linked device with a free backup plan explaining that the subscription is managed on the primary device -->
-    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_upgrade_your_subscription_on_your_primary_device">You can manage or upgrade your Signal Secure Backups subscription on your primary device.</string>
+    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_upgrade_your_subscription_on_your_primary_device">Signal Güvenli Yedeklemeler aboneliğini ana cihazından yönetebilir veya yükseltebilirsin.</string>
     <!-- Message shown on a linked device with a paid backup plan explaining that the subscription is managed on the primary device -->
-    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_cancel_your_subscription_on_your_primary_device">You can manage or cancel your Signal Secure Backups subscription on your primary device.</string>
+    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_cancel_your_subscription_on_your_primary_device">Signal Güvenli Yedeklemeler aboneliğini ana cihazından yönetebilir veya iptal edebilirsin.</string>
     <!-- Message shown on a linked device with a canceled backup subscription explaining that the subscription is managed on the primary device -->
-    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_renew_your_subscription_on_your_primary_device">You can manage or renew your Signal Secure Backups subscription on your primary device.</string>
+    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_renew_your_subscription_on_your_primary_device">Signal Güvenli Yedeklemeler aboneliğini ana cihazından yönetebilir veya yenileyebilirsin.</string>
     <!-- Message shown on a linked device when backups are off or the subscription was not found, explaining that backups are managed on the primary device -->
-    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_upgrade_backups_on_your_primary_device">You can manage or upgrade Signal Secure Backups on your primary device.</string>
+    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_upgrade_backups_on_your_primary_device">Signal Güvenli Yedeklemeleri ana cihazından yönetebilir veya yükseltebilirsin.</string>
     <!-- Button label to perform a backup immediately -->
     <string name="RemoteBackupsSettingsFragment__back_up_now">Şimdi Yedekle</string>
     <!-- Dialog title when confirming whether to turn off and deleting backups -->

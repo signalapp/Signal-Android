@@ -98,15 +98,14 @@ class IncomingMessage(
       )
     }
 
-    @JvmStatic
-    fun groupUpdate(from: RecipientId, timestamp: Long, groupId: GroupId, update: GV2UpdateDescription, isNotifiable: Boolean, serverGuid: String?): IncomingMessage {
+    fun groupUpdate(from: RecipientId, timestamp: Long, groupId: GroupId, update: GV2UpdateDescription, isNotifiable: Boolean, serverGuid: String?, receivedTime: Long? = null): IncomingMessage {
       val messageExtras = MessageExtras(gv2UpdateDescription = update)
       val groupContext = MessageGroupContext(update.gv2ChangeDescription!!)
 
       return IncomingMessage(
         from = from,
         sentTimeMillis = timestamp,
-        receivedTimeMillis = System.currentTimeMillis(),
+        receivedTimeMillis = receivedTime?.minus(1) ?: System.currentTimeMillis(),
         serverTimeMillis = timestamp,
         serverGuid = serverGuid,
         groupId = groupId,

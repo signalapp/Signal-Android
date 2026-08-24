@@ -5,6 +5,7 @@ import android.content.Context
 import androidx.core.content.contentValuesOf
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.SqlUtil
+import org.signal.core.util.delete
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
 import org.signal.core.util.requireLong
@@ -221,6 +222,15 @@ class StorySendTable(context: Context, databaseHelper: SignalDatabase) : Databas
       .run()
 
     Log.d(TAG, "Remapped $fromId to $toId. count: $count")
+  }
+
+  override fun onDeletedRecipient(recipientId: RecipientId) {
+    val deleted = writableDatabase
+      .delete(TABLE_NAME)
+      .where("$RECIPIENT_ID = ?", recipientId)
+      .run()
+
+    Log.d(TAG, "Deleted recipient: $deleted")
   }
 
   /**

@@ -41,8 +41,8 @@ import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.ServiceUtil
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.account.LinkedDeviceAccountSettingsState.OneTimeEvent
-import org.thoughtcrime.securesms.compose.rememberStatusBarColorNestedScrollModifier
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.signal.appsettings.R as AppSettingsR
 
 /**
  * Account settings shown when the current device is a linked (non-primary) device. Account
@@ -85,14 +85,13 @@ private fun LinkedDeviceAccountSettingsScreen(
   onEvent: (LinkedDeviceAccountSettingsEvent) -> Unit
 ) {
   Scaffolds.Settings(
-    title = stringResource(R.string.AccountSettingsFragment__account),
+    title = stringResource(AppSettingsR.string.AccountSettingsFragment__account),
     onNavigationClick = { onEvent(LinkedDeviceAccountSettingsEvent.NavigateBackClicked) },
     navigationIcon = SignalIcons.ArrowStart.imageVector
   ) { paddingValues ->
     LazyColumn(
       modifier = Modifier
         .padding(paddingValues)
-        .then(rememberStatusBarColorNestedScrollModifier())
     ) {
       item {
         LinkedDeviceCallout(onLearnMoreClick = { onEvent(LinkedDeviceAccountSettingsEvent.LearnMoreClicked) })

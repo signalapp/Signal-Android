@@ -62,6 +62,13 @@ sealed class AudioManagerCommand : Parcelable {
     }
   }
 
+  class PrepareForAccept : AudioManagerCommand() {
+    companion object {
+      @JvmField
+      val CREATOR: Parcelable.Creator<PrepareForAccept> = ParcelCheat { PrepareForAccept() }
+    }
+  }
+
   class Start : AudioManagerCommand() {
     companion object {
       @JvmField

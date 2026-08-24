@@ -19,7 +19,7 @@ import org.signal.core.models.AccountEntropyPool
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.RequestResult
-import org.signal.registration.NetworkController
+import org.signal.network.api.RegistrationApiV2.RestoreMethod
 import org.signal.registration.PendingRestoreOption
 import org.signal.registration.RegistrationFlowEvent
 import org.signal.registration.RegistrationFlowState
@@ -80,7 +80,7 @@ class ArchiveRestoreSelectionViewModel(
       is ArchiveRestoreSelectionScreenEvents.RestoreOptionSelected -> {
         when (event.option) {
           ArchiveRestoreOption.SignalSecureBackup -> {
-            notifyOldDevice(state.restoreMethodToken, NetworkController.RestoreMethod.REMOTE_BACKUP)
+            notifyOldDevice(state.restoreMethodToken, RestoreMethod.REMOTE_BACKUP)
             when {
               registeredState == RegisteredState.NotRegistered -> {
                 parentEventEmitter(RegistrationFlowEvent.PendingRestoreOptionSelected(PendingRestoreOption.RemoteBackup))
@@ -96,7 +96,7 @@ class ArchiveRestoreSelectionViewModel(
             state
           }
           ArchiveRestoreOption.LocalBackup -> {
-            notifyOldDevice(state.restoreMethodToken, NetworkController.RestoreMethod.LOCAL_BACKUP)
+            notifyOldDevice(state.restoreMethodToken, RestoreMethod.LOCAL_BACKUP)
             when (registeredState) {
               RegisteredState.NotRegistered -> {
                 parentEventEmitter(RegistrationFlowEvent.PendingRestoreOptionSelected(PendingRestoreOption.LocalBackup))
@@ -109,7 +109,7 @@ class ArchiveRestoreSelectionViewModel(
             state
           }
           ArchiveRestoreOption.DeviceTransfer -> {
-            notifyOldDevice(state.restoreMethodToken, NetworkController.RestoreMethod.DEVICE_TRANSFER)
+            notifyOldDevice(state.restoreMethodToken, RestoreMethod.DEVICE_TRANSFER)
             parentEventEmitter.navigateTo(RegistrationRoute.DeviceTransferInstructions)
             state
           }
@@ -125,7 +125,7 @@ class ArchiveRestoreSelectionViewModel(
             state.copy(showSkipWarningDialog = false)
           }
           RegisteredState.RegisteredAndPinUnknown -> {
-            notifyOldDevice(state.restoreMethodToken, NetworkController.RestoreMethod.DECLINE)
+            notifyOldDevice(state.restoreMethodToken, RestoreMethod.DECLINE)
             repository.setRestoreDecision(RestoreDecision.SKIPPED)
             if (state.storageCapable) {
               Log.i(TAG, "[ConfirmSkip] Account is storage capable. Navigating to PIN entry to restore the existing PIN.")
@@ -137,7 +137,7 @@ class ArchiveRestoreSelectionViewModel(
             state.copy(showSkipWarningDialog = false)
           }
           RegisteredState.RegisteredAndPinKnown -> {
-            notifyOldDevice(state.restoreMethodToken, NetworkController.RestoreMethod.DECLINE)
+            notifyOldDevice(state.restoreMethodToken, RestoreMethod.DECLINE)
             repository.setRestoreDecision(RestoreDecision.SKIPPED)
             parentEventEmitter(RegistrationFlowEvent.RegistrationComplete)
             state.copy(showSkipWarningDialog = false)
@@ -155,7 +155,7 @@ class ArchiveRestoreSelectionViewModel(
    * If a quick-restore [token] is set, fire-and-forget a network call to update the old device's UI
    * with the user's [method] selection. The old device is long-polling and will pick up the change.
    */
-  private fun notifyOldDevice(token: String?, method: NetworkController.RestoreMethod) {
+  private fun notifyOldDevice(token: String?, method: RestoreMethod) {
     if (token == null) return
     viewModelScope.launch {
       Log.i(TAG, "[notifyOldDevice] Notifying old device of restore method: $method")

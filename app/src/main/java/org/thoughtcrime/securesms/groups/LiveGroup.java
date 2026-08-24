@@ -62,8 +62,12 @@ public final class LiveGroup {
     this.requestingMembers = mapToRequestingMembers(this.groupRecord);
 
     if (groupId.isV2()) {
-      LiveData<GroupTable.V2GroupProperties> v2Properties = Transformations.map(this.groupRecord, GroupRecord::requireV2GroupProperties);
-      this.groupLink = Transformations.map(v2Properties, g -> {
+      this.groupLink = Transformations.map(this.groupRecord, record -> {
+                        if (!record.getHasV2GroupProperties()) {
+                          return GroupLinkUrlAndStatus.NONE;
+                        }
+
+                         GroupTable.V2GroupProperties g                 = record.requireV2GroupProperties();
                          DecryptedGroup               group             = g.getDecryptedGroup();
                          AccessControl.AccessRequired addFromInviteLink = group.accessControl != null ? group.accessControl.addFromInviteLink : new AccessControl().addFromInviteLink;
 
@@ -71,12 +75,11 @@ public final class LiveGroup {
                            return GroupLinkUrlAndStatus.NONE;
                          }
 
-                         boolean enabled       = addFromInviteLink == AccessControl.AccessRequired.ANY || addFromInviteLink == AccessControl.AccessRequired.ADMINISTRATOR;
                          boolean adminApproval = addFromInviteLink == AccessControl.AccessRequired.ADMINISTRATOR;
                          String  url           = GroupInviteLinkUrl.forGroup(g.getGroupMasterKey(), group)
                                                                    .getUrl();
 
-                         return new GroupLinkUrlAndStatus(enabled, adminApproval, url);
+                         return new GroupLinkUrlAndStatus(record.isGroupLinkEnabled(), adminApproval, url);
                        });
     } else {
       this.groupLink = new MutableLiveData<>(GroupLinkUrlAndStatus.NONE);
@@ -98,7 +101,7 @@ public final class LiveGroup {
   protected static LiveData<List<GroupMemberEntry.RequestingMember>> mapToRequestingMembers(@NonNull LiveData<GroupRecord> groupRecord) {
     return LiveDataUtil.mapAsync(groupRecord,
                                  g -> {
-                                   if (!g.isV2Group()) {
+                                   if (!g.getHasV2GroupProperties()) {
                                      return Collections.emptyList();
                                    }
 
@@ -144,7 +147,7 @@ public final class LiveGroup {
   }
 
   public LiveData<Set<ServiceId>> getBannedMembers() {
-    return Transformations.map(groupRecord, g -> g.isV2Group() ? g.requireV2GroupProperties().getBannedMembers() : Collections.emptySet());
+    return Transformations.map(groupRecord, g -> g.getHasV2GroupProperties() ? g.requireV2GroupProperties().getBannedMembers() : Collections.emptySet());
   }
 
   public LiveData<Boolean> isActive() {
@@ -164,12 +167,12 @@ public final class LiveGroup {
   }
 
   public LiveData<Integer> getPendingMemberCount() {
-    return Transformations.map(groupRecord, g -> g.isV2Group() ? g.requireV2GroupProperties().getDecryptedGroup().pendingMembers.size() : 0);
+    return Transformations.map(groupRecord, g -> g.getHasV2GroupProperties() ? g.requireV2GroupProperties().getDecryptedGroup().pendingMembers.size() : 0);
   }
 
   public LiveData<Integer> getPendingAndRequestingMemberCount() {
     return Transformations.map(groupRecord, g -> {
-      if (g.isV2Group()) {
+      if (g.getHasV2GroupProperties()) {
         DecryptedGroup decryptedGroup = g.requireV2GroupProperties().getDecryptedGroup();
 
         return decryptedGroup.pendingMembers.size() + decryptedGroup.requestingMembers.size();

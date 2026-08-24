@@ -6,27 +6,133 @@
   <string name="MediaSendDialogs__youll_lose_any_changes">Caillfidh tú aon athruithe a rinne tú ar an ngrianghraf seo.</string>
   <!-- Confirmation button that discards the user\'s image edits. -->
   <string name="MediaSendDialogs__discard">Cuileáil</string>
+  <!-- Dialog title shown when the user tries to close media send while media is selected. -->
+  <string name="MediaSendDialogs__discard_media">Cuileáil meáin?</string>
+  <!-- Dialog body explaining that leaving media send will discard the selected media along with any edits. -->
+  <string name="MediaSendDialogs__you_will_lose_any_media">Caillfidh tú aon mheáin a ghabh tú agus aon athruithe a rinne tú.</string>
+  <!-- Dialog title asking to save the media being edited to the phone\'s storage -->
+  <string name="MediaSendDialogs__save_to_phone">Sábháil chuig an nguthán?</string>
+  <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other apps. -->
+  <string name="MediaSendDialogs__this_media_will_be_saved">Sábhálfar an meán nó na meáin seo ar stóras do ghutháin. Is féidir go mbeidh aipeanna eile in ann rochtain a dhéanamh ar an meán nó ar na meáin ag brath ar cheadanna do ghutháin.</string>
+  <!-- Confirmation button that saves the media being edited to the phone\'s storage. -->
+  <string name="MediaSendDialogs__save">Sábháil</string>
+  <!-- Checkbox shown in the save dialog to not show the dialog again in future saves -->
+  <string name="MediaSendDialogs__dont_show_again">Ná taispeáin an dialóg arís</string>
+  <!-- Progress dialog message shown while the media being edited is written out to the phone\'s storage. -->
+  <string name="MediaSendDialogs__saving_media">Ceangaltán á shábháil chuig stóras…</string>
+  <!-- Dialog message asking the user to confirm that the media should be added to a group\'s story. The placeholder is the group\'s name. -->
+  <string name="MediaSendDialogs__add_to_the_group_story">Cuir leis an scéal grúpa \"%1$s\"</string>
+  <!-- Confirmation button that adds the media to the group\'s story. -->
+  <string name="MediaSendDialogs__add_to_story">Cuir leis an scéal</string>
   <!-- Accessibility label for the row that lets the user add a text message to accompany the media being sent. -->
   <string name="AddAMessageRow__add_a_message">Cuir teachtaireacht leis</string>
+  <!-- Label and accessibility label used in place of \"Add a message\" when the media is being sent as a reply to another message. -->
+  <string name="AddAMessageRow__add_a_reply">Cuir freagra leis</string>
   <!-- Accessibility description for the button that opens the emoji keyboard. -->
   <string name="AddAMessageRow__open_emoji_keyboard">Oscail an méarchlár emoji</string>
   <!-- Placeholder text shown in the add-a-message row before the user has entered any message text. -->
   <string name="AddAMessageRow__message">Teachtaireacht</string>
   <!-- Accessibility description for the button that advances to the next step in the media send flow. -->
   <string name="AddAMessageRow__next">Ar aghaidh</string>
+  <!-- Accessibility description for the button that sends the media to the already-known recipient. -->
+  <string name="AddAMessageRow__send">Seol</string>
+  <!-- Accessibility description for long-pressing the send button to schedule the send for later. -->
+  <string name="AddAMessageRow__schedule_send">Sceidealaigh seoladh</string>
+  <!-- Menu option that opens a picker for choosing the exact date and time to send at. -->
+  <string name="ScheduleSendMenu__pick_date_and_time">Roghnaigh Dáta agus Am</string>
+  <!-- Label shown in place of the add-a-message row when the media has been set to view once, indicating that no message can be attached. -->
+  <string name="AddAMessageRow__view_once_media">Meáin amhairc aonuaire</string>
+  <!-- Accessibility label for the button at the end of the add-a-message row that turns view-once mode on and off. -->
+  <string name="AddAMessageRow__toggle_view_once">Scoránaigh amharc aonuaire</string>
   <!-- Setting option that can be selected to default media to be sent as high quality by default -->
   <string name="SentMediaQuality__high">Ard</string>
   <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
   <string name="SentMediaQuality__standard">Caighdeánach</string>
+  <!-- Label for our standard quality media conversion. -->
+  <string name="QualitySelectorBottomSheetDialog__standard">Caighdeánach</string>
+  <!-- Description for our standard quality media conversion. -->
+  <string name="QualitySelectorBottomSheetDialog__faster_less_data">Níos tapúla, níos lú sonraí</string>
+  <!-- Label for our high quality media conversion. This has better quality than standard. -->
+  <string name="QualitySelectorBottomSheetDialog__high">Ard</string>
+  <!-- Label for our high quality media conversion. This has better quality than standard. -->
+  <string name="QualitySelectorBottomSheetDialog__slower_more_data">Níos moille, níos mó sonraí</string>
+  <!-- Title heading for our media conversion quality selector. -->
+  <string name="QualitySelectorBottomSheetDialog__media_quality">Caighdeán na meán</string>
   <!-- Title of the screen where the user browses their device gallery to pick media to send. -->
   <string name="MediaSelectScreen__gallery">Gailearaí</string>
   <!-- Accessibility description for the button that advances from media selection to the next step in the send flow. -->
   <string name="MediaSelectScreen__next">Ar aghaidh</string>
+  <!-- Accessibility description for the button that leaves media selection and opens the camera. -->
+  <string name="MediaSelectScreen__go_to_camera">Téigh chuig an gceamara</string>
+  <!-- Message shown in place of the gallery when the user has not granted permission to read their photos and videos. -->
+  <string name="MediaSelectScreen__signal_needs_permission_to_show_your_photos_and_videos">Teastaíonn cead ó Signal chun do ghrianghraif agus físeáin a thaispeáint</string>
+  <!-- Label for the button that asks the system for permission to read the user\'s photos and videos. -->
+  <string name="MediaSelectScreen__allow_access">Ceadaigh Rochtain</string>
+  <!-- Message shown in place of the gallery when the user only shared selected photos with Signal and none of them can be shown. -->
+  <string name="MediaSelectScreen__no_photos_or_videos_found">Níor aimsíodh aon ghrianghraf ná físeán. Níl rochtain ag Signal ach ar ghrianghraif agus físeáin a roghnaigh tú.</string>
+  <!-- Reminder shown above the gallery when the user only shared selected photos with Signal. -->
+  <string name="MediaSelectScreen__signal_has_limited_access">Tá rochtain theoranta ag Signal ar ghrianghraif nó físeáin</string>
+  <!-- Label for the button that opens the menu for changing which photos and videos Signal can see. -->
+  <string name="MediaSelectScreen__manage">Bainistigh</string>
+  <!-- Menu option that re-opens the system picker so the user can share more photos and videos with Signal. -->
+  <string name="MediaSelectScreen__select_more_photos">Roghnaigh tuilleadh grianghraf</string>
+  <!-- Menu option that opens Signal\'s permission settings in the system settings app. -->
+  <string name="MediaSelectScreen__go_to_settings">Socruithe</string>
+  <!-- Title of the sheet shown when the permission to read photos and videos has been permanently denied, directing the user to app settings. -->
+  <string name="MediaSelectScreen__allow_access_to_storage">Ceadaigh rochtain ar stóras</string>
+  <!-- Subtitle of the sheet shown when the permission to read photos and videos has been permanently denied, introducing the steps that follow. -->
+  <string name="MediaSelectScreen__to_show_photos_and_videos">Chun grianghraif agus físeáin a thaispeáint:</string>
+  <!-- Snackbar shown when the user denies the permission to read their photos and videos. -->
+  <string name="MediaSelectScreen__signal_needs_access_to_show_your_photos_and_videos">Teastaíonn rochtain ó Signal chun do ghrianghraif agus físeáin a thaispeáint.</string>
+
   <!-- Label for the button that switches the capture screen to the camera. -->
   <string name="MediaCaptureScreen__camera">Ceamara</string>
   <!-- Label for the button that switches the capture screen to the text story editor. -->
-  <string name="MediaCaptureScreen__text_story">Scéal téacs</string>
+  <string name="MediaCaptureScreen__text">Téacs</string>
+    <!-- Label for the pill that displays the media count -->
+    <plurals name="MediaCaptureScreen_n_items">
+        <item quantity="one">1 cheann</item>
+        <item quantity="two">%1$d cheann</item>
+        <item quantity="few">%1$d cinn</item>
+        <item quantity="many">%1$d gcinn</item>
+        <item quantity="other">%1$d ceann</item>
+    </plurals>
+
+  <!-- Content description for the button that attaches a link to the text story being created -->
+  <string name="TextStoryBar__add_link">Cuir nasc leis</string>
+
+  <!-- Name shown on the document preview when we cannot read the file\'s name. -->
+  <string name="DocumentPage__unnamed_file">Comhad gan ainm</string>
+
+  <!-- Content description for button to enable highlighter mode -->
+  <string name="DrawModeColorBar__highlighter">Aibhsitheoir</string>
+  <!-- Content description for button to enable brush mode -->
+  <string name="DrawModeColorBar__brush">Scuab</string>
+
+  <!-- Content description for the crop toggle when the crop area is currently constrained to a fixed aspect ratio. Tapping it removes the constraint. -->
+  <string name="ImageEditorToolbar__aspect_ratio_locked">Cóimheas treoíochta glasáilte</string>
+  <!-- Content description for the crop toggle when the crop area can currently be resized freely. Tapping it constrains the crop area to a fixed aspect ratio. -->
+  <string name="ImageEditorToolbar__aspect_ratio_unlocked">Cóimheas treoíochta díghlasáilte</string>
+
+  <!-- Label for the toggle that blurs every face in the image being edited -->
+  <string name="BlurFacesBar__blur_faces">Doiléirigh aghaidheanna</string>
+
+  <!-- Hint displayed in a pill at the top of the image editor telling the user they can drag anywhere on the image to blur that area -->
+  <string name="DrawAnywhereToBlurPill__draw_anywhere_to_blur">Tarraing áit ar bith lena dhoiléiriú</string>
+
+  <!-- Content description for the button that cycles the text being edited between styles -->
+  <string name="TextModeColorBar__toggle_between_text_styles">Scoránaigh idir stíleanna téacs</string>
+
+  <!-- Label for the button that undoes every edit made to the image, returning it to its original state -->
+  <string name="ImageEditorClearAllButton__clear_all">Glan gach rud</string>
+
+  <!-- Content description for the button that undoes the last edit made to the image -->
+  <string name="ImageEditorUndoRedoButtons__undo_edit">Cealaigh an cur in eagar</string>
+  <!-- Content description for the button that redoes the last undone edit made to the image -->
+  <string name="ImageEditorUndoRedoButtons__redo_edit">Athdhéan an cur in eagar</string>
+
   <!-- Video editor play button content description -->
+
   <string name="VideoEditorHud_play_video_description">Seinn an físeán</string>
 
   <!-- CameraFragment -->
@@ -90,6 +196,52 @@
   <string name="MediaSendViewModel__error_recording_video">Earráid le físeán a thaifeadadh</string>
   <!-- Displayed when there is an error capturing image -->
   <string name="MediaSendViewModel__error_taking_photo">Earráid le grianghraf a ghlacadh</string>
+  <!-- Displayed when a video was automatically trimmed so it fits within the size limit -->
+  <string name="MediaSendViewModel__video_trimmed_to_fit">Bearradh d\'fhíseán le bheith in oiriúint don teorainn mhéide</string>
+  <!-- Displayed when one or more of the selected items could not be added because they exceed the size limit -->
+  <string name="MediaSendViewModel__one_or_more_items_were_too_large">Bhí mír amháin nó níos mó rómhór</string>
+  <!-- Displayed when one or more of the selected items could not be added because they are not a type that can be sent -->
+  <string name="MediaSendViewModel__one_or_more_items_were_invalid">Bhí mír amháin nó níos mó neamhbhailí</string>
+  <!-- Displayed when the user tries to select more items than can be sent at once -->
+  <string name="MediaSendViewModel__too_many_items_selected">Roghnaíodh an iomarca nithe</string>
+  <!-- Displayed after the media being edited was successfully saved to the phone\'s storage -->
+  <string name="MediaSendViewModel__media_saved">Meáin sábháilte</string>
+  <!-- Displayed when the media being edited could not be saved to the phone\'s storage -->
+  <string name="MediaSendViewModel__error_saving_media">Tharla earráid agus an ceangaltán á sábháil chuig stóras!</string>
+  <!-- Displayed when the media being edited cannot be saved because the storage permission was denied -->
+  <string name="MediaSendViewModel__unable_to_save_without_storage_permission">Ní féidir sábháil chuig stóras seachtrach gan ceadanna</string>
+  <!-- Small notification presented to the user when they set their photo to view-once mode -->
+  <string name="MediaSendViewModel__photo_set_to_view_once">Grianghraf socraithe ag amharc aonuaire</string>
+  <!-- Small notification presented to the user when they set their video to view-once mode -->
+  <string name="MediaSendViewModel__video_set_to_view_once">Físeán socraithe ag amharc aonuaire</string>
+  <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
+  <string name="MediaReviewFragment__video_set_to_high_quality">Físeán socraithe ag ardchaighdeán</string>
+  <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
+  <string name="MediaReviewFragment__video_set_to_standard_quality">Físeán socraithe ag gnáthchaighdeán</string>
+  <!-- Small notification presented to the user when they set their still image to be sent in high visual quality. -->
+  <string name="MediaReviewFragment__photo_set_to_high_quality">Grianghraf socraithe ag ardchaighdeán</string>
+  <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
+  <string name="MediaReviewFragment__photo_set_to_standard_quality">Grianghraf socraithe ag gnáthchaighdeán</string>
+  <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
+  <plurals name="MediaReviewFragment__items_set_to_high_quality">
+        <item quantity="one">%1$d mhír socraithe ag ardchaighdeán</item>
+        <item quantity="two">%1$d mhír socraithe ag ardchaighdeán</item>
+        <item quantity="few">%1$d mhír socraithe ag ardchaighdeán</item>
+        <item quantity="many">%1$d mír socraithe ag ardchaighdeán</item>
+        <item quantity="other">%1$d mír socraithe ag ardchaighdeán</item>
+    </plurals>
+  <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
+  <plurals name="MediaReviewFragment__items_set_to_standard_quality">
+        <item quantity="one">%1$d mhír socraithe ag gnáthchaighdeán</item>
+        <item quantity="two">%1$d mhír socraithe ag gnáthchaighdeán</item>
+        <item quantity="few">%1$d mhír socraithe ag gnáthchaighdeán</item>
+        <item quantity="many">%1$d mír socraithe ag gnáthchaighdeán</item>
+        <item quantity="other">%1$d mír socraithe ag gnáthchaighdeán</item>
+    </plurals>
+  <!-- Message shown when saving the media being edited requires the storage permission, but that permission has been permanently denied by the user. -->
+  <string name="MediaSendViewModel__signal_needs_the_storage_permission">Tá Cead stórála ag teastáil ó Signal chun sábháil chuig stóras seachtrach, ach diúltaíodh go buan dó. Lean ar aghaidh chuig socruithe na haipe, roghnaigh \"Ceadanna\" agus cumasaigh \"Stóras\".</string>
+  <!-- Message shown when the user disables audio on a video -->
+  <string name="MediaSendViewModel__video_will_be_sent_without_audio">Seolfar an físeán gan an fhuaim</string>
 
   <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
   <string name="UsernameScannedDialog__username_dialog_title">Aimsíodh %1$s</string>
@@ -104,4 +256,47 @@
   <string name="LinkedDeviceScannedDialog__it_looks_like_youre_trying">Is cosúil go bhfuil tú ag iarraidh gléas Signal a nascadh. Tapáil \"Ar aghaidh\" agus ansin tapáil \"Nasc Gléas Nua\" agus scan an cód QR athuair.</string>
   <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
   <string name="LinkedDeviceScannedDialog__device_link_dialog_continue">Lean ar aghaidh</string>
+
+    <!-- Gif label displayed in a pill in the editor specifying the type of media being sent. -->
+    <plurals name="MediaEditScreen__gif">
+        <item quantity="one">%1$d GIF</item>
+        <item quantity="two">%1$d GIF</item>
+        <item quantity="few">%1$d GIF</item>
+        <item quantity="many">%1$d GIF</item>
+        <item quantity="other">%1$d GIF</item>
+    </plurals>
+    <!-- Photo label displayed in a pill in the editor specifying the type of media being sent. -->
+    <plurals name="MediaEditScreen__photo">
+        <item quantity="one">%1$d Ghrianghraf</item>
+        <item quantity="two">%1$d Ghrianghraf</item>
+        <item quantity="few">%1$d Ghrianghraf</item>
+        <item quantity="many">%1$d nGrianghraf</item>
+        <item quantity="other">%1$d Grianghraf</item>
+    </plurals>
+    <!-- Video label displayed in a pill in the editor specifying the type of media being sent. -->
+    <plurals name="MediaEditScreen__video">
+        <item quantity="one">%1$d Fhíseán</item>
+        <item quantity="two">%1$d Fhíseán</item>
+        <item quantity="few">%1$d Fhíseán</item>
+        <item quantity="many">%1$d bhFíseán</item>
+        <item quantity="other">%1$d Físeán</item>
+    </plurals>
+    <!-- Document label displayed in a pill in the editor specifying the type of media being sent. -->
+    <plurals name="MediaEditScreen__document">
+        <item quantity="one">%1$d Doiciméad</item>
+        <item quantity="two">%1$d Dhoiciméad</item>
+        <item quantity="few">%1$d Dhoiciméad</item>
+        <item quantity="many">%1$d nDoiciméad</item>
+        <item quantity="other">%1$d Doiciméad</item>
+    </plurals>
+    <!-- Item label displayed in a pill in the editor specifying the type of media being sent. -->
+    <plurals name="MediaEditScreen__item">
+        <item quantity="one">%1$d Mhír</item>
+        <item quantity="two">%1$d Mhír</item>
+        <item quantity="few">%1$d Mhír</item>
+        <item quantity="many">%1$d Mír</item>
+        <item quantity="other">%1$d Mír</item>
+    </plurals>
+    <!-- x of y label displayed in a pill in the editor specifying the type of media being sent. First placeholder is selected page, second is total count. -->
+    <string name="MediaEditScreen__d_of_d">%1$d as %2$d</string>
 </resources>

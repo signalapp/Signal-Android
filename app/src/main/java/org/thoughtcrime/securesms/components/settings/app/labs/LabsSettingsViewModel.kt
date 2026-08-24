@@ -41,9 +41,9 @@ class LabsSettingsViewModel : ViewModel() {
         SignalStore.labs.stickerReplies = event.enabled
         _state.value = _state.value.copy(stickerReplies = event.enabled)
       }
-      is LabsSettingsEvents.ToggleMuteBreakthroughNotifications -> {
-        SignalStore.labs.muteBreakthroughNotifications = event.enabled
-        _state.value = _state.value.copy(muteBreakthroughNotifications = event.enabled)
+      is LabsSettingsEvents.ToggleImprovedMessageDeletion -> {
+        SignalStore.labs.improvedMessageDeletion = event.enabled
+        _state.value = _state.value.copy(improvedMessageDeletion = event.enabled)
       }
     }
   }
@@ -56,7 +56,7 @@ class LabsSettingsViewModel : ViewModel() {
       betterSearch = SignalStore.labs.betterSearch,
       starredMessages = SignalStore.labs.starredMessages,
       stickerReplies = SignalStore.labs.stickerReplies,
-      muteBreakthroughNotifications = SignalStore.labs.muteBreakthroughNotifications
+      improvedMessageDeletion = SignalStore.labs.improvedMessageDeletion
     )
   }
 }

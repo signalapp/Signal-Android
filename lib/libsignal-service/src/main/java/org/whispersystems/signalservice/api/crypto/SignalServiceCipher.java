@@ -54,7 +54,6 @@ import org.whispersystems.signalservice.internal.push.Envelope;
 import org.whispersystems.signalservice.internal.push.OutgoingPushMessage;
 import org.whispersystems.signalservice.internal.push.PushTransportDetails;
 
-import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -139,7 +138,7 @@ public class SignalServiceCipher {
     try {
       if (envelope.content != null) {
         Plaintext plaintext = decryptInternal(envelope, serverDeliveredTimestamp);
-        Content   content   = Content.ADAPTER.decode(plaintext.getData());
+        Content   content   = decodeContent(plaintext.getData());
 
         return new SignalServiceCipherResult(
             content,
@@ -156,7 +155,15 @@ public class SignalServiceCipher {
       } else {
         return null;
       }
-    } catch (IOException | IllegalArgumentException e) {
+    } catch (IllegalArgumentException e) {
+      throw new InvalidMetadataMessageException(e);
+    }
+  }
+
+  private static Content decodeContent(byte[] data) throws InvalidMetadataMessageException {
+    try {
+      return Content.ADAPTER.decode(data);
+    } catch (Exception e) {
       throw new InvalidMetadataMessageException(e);
     }
   }

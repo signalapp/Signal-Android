@@ -10,27 +10,35 @@ import androidx.navigation3.runtime.NavKey
 import org.signal.core.models.media.MediaFolder
 
 internal fun NavBackStack<NavKey>.goToEdit() {
-  goToSingle(MediaSendNavKey.Edit)
+  goToSingle(MediaSendRoute.Edit)
 }
 
 internal fun NavBackStack<NavKey>.goToSend() {
-  goToSingle(MediaSendNavKey.Send)
+  goToSingle(MediaSendRoute.Send)
 }
 
 internal fun NavBackStack<NavKey>.goToFolders() {
-  goToSingle(MediaSendNavKey.Select.Folders)
+  goToSingle(MediaSendRoute.Select.Folders)
 }
 
 internal fun NavBackStack<NavKey>.goToFiles(mediaFolder: MediaFolder) {
-  add(MediaSendNavKey.Select.Files(mediaFolder))
+  add(MediaSendRoute.Select.Files(mediaFolder))
 }
 
 internal fun NavBackStack<NavKey>.goToTextStory() {
-  goToSingle(MediaSendNavKey.Capture.TextStory)
+  goToSingle(MediaSendRoute.Capture.TextStory)
 }
 
 internal fun NavBackStack<NavKey>.goToCamera() {
-  goToSingle(MediaSendNavKey.Capture.Camera)
+  goToSingle(MediaSendRoute.Capture.Camera)
+}
+
+/**
+ * Discards the entire back stack in favor of [key], which becomes the flow's root. Backing out of it leaves the flow.
+ */
+internal fun NavBackStack<NavKey>.resetTo(key: NavKey) {
+  clear()
+  add(key)
 }
 
 internal fun NavBackStack<NavKey>.pop() {

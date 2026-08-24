@@ -36,7 +36,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
@@ -73,7 +72,6 @@ import org.thoughtcrime.securesms.stickers.StickerRemoteUri
 import org.thoughtcrime.securesms.stickers.StickerUrl
 import org.thoughtcrime.securesms.stickers.preview.StickerPackPreviewUiState.ContentState
 import org.thoughtcrime.securesms.stickers.preview.StickerPackPreviewUiState.NavTarget
-import org.thoughtcrime.securesms.util.DeviceProperties
 import org.thoughtcrime.securesms.util.viewModel
 import java.text.NumberFormat
 import kotlin.jvm.optionals.getOrElse
@@ -379,7 +377,7 @@ private fun StickerImage(
   if (!LocalInspectionMode.current) {
     GlideImage(
       model = sticker.imageModel,
-      enableApngAnimation = DeviceProperties.shouldAllowApngStickerAnimation(LocalContext.current),
+      enableApngAnimation = true,
       modifier = modifier
     )
   } else {

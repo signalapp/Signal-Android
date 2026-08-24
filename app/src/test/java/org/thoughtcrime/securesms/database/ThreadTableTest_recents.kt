@@ -37,7 +37,7 @@ class ThreadTableTest_recents {
   fun getRecentConversationList_excludes_blocked_recipients() {
     createActiveThreadFor(recipientId)
 
-    SignalDatabase.recipients.setBlocked(recipientId, true)
+    SignalDatabase.recipients.setBlocked(recipientId, true, 0)
 
     assertFalse(recipientId in getRecentConversationRecipients(limit = 10))
   }

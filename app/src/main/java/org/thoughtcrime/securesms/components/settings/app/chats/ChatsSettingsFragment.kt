@@ -28,7 +28,6 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.isIdle
 import org.thoughtcrime.securesms.backup.v2.ui.status.BackupCreationProgressRow
 import org.thoughtcrime.securesms.components.compose.rememberBiometricsAuthentication
-import org.thoughtcrime.securesms.compose.rememberStatusBarColorNestedScrollModifier
 import org.thoughtcrime.securesms.keyvalue.protos.LocalBackupCreationProgress
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
@@ -162,7 +161,6 @@ private fun ChatsSettingsScreen(
     LazyColumn(
       modifier = Modifier
         .padding(paddingValues)
-        .then(rememberStatusBarColorNestedScrollModifier())
     ) {
       item {
         Rows.ToggleRow(

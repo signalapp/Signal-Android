@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogActivity;
 import org.signal.core.ui.permissions.Permissions;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.SpanUtil;
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.util.Locale;
@@ -71,6 +72,8 @@ public abstract class DeviceTransferSetupFragment extends LoggingFragment {
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    SystemWindowInsetsSetter.attach(view, getViewLifecycleOwner());
+
     requireActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
     Group          progressGroup   = view.findViewById(R.id.device_transfer_setup_fragment_progress_group);

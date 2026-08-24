@@ -187,4 +187,27 @@ class JumpToDateValidatorTest {
 
     assertThat(validator.isValid(june15Utc)).isTrue()
   }
+
+  @Test
+  fun `picker date maps to the same calendar day in a negative-offset zone`() {
+    val newYorkZone = ZoneId.of("America/New_York")
+
+    // Days are keyed by local midnight in the database.
+    val june15NewYorkMidnight = LocalDate.of(2024, 6, 15)
+      .atStartOfDay(newYorkZone)
+      .toInstant()
+      .toEpochMilli()
+
+    val lookup = { dates: Collection<Long> ->
+      dates.associateWith { it == june15NewYorkMidnight }
+    }
+    val validator = createValidator(lookup, zone = newYorkZone)
+
+    // The picker reports June 15 as UTC midnight; it must map to June 15 locally, not June 14.
+    val june15PickerUtc = timestampForDate(2024, 6, 15)
+
+    validator.isValid(june15PickerUtc)
+
+    assertThat(validator.isValid(june15PickerUtc)).isTrue()
+  }
 }

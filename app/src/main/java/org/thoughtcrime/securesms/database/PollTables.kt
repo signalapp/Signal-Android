@@ -172,6 +172,20 @@ class PollTables(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
     Log.d(TAG, "Remapped $fromId to $toId. count from polls: $countFromPoll from poll votes: $countFromVotes")
   }
 
+  override fun onDeletedRecipient(recipientId: RecipientId) {
+    val deletedFromPoll = writableDatabase
+      .delete(PollTable.TABLE_NAME)
+      .where("${PollTable.AUTHOR_ID} = ?", recipientId)
+      .run()
+
+    val deletedFromVotes = writableDatabase
+      .delete(PollVoteTable.TABLE_NAME)
+      .where("${PollVoteTable.VOTER_ID} = ?", recipientId)
+      .run()
+
+    Log.d(TAG, "Deleted recipient: $deletedFromPoll $deletedFromVotes")
+  }
+
   /**
    * Inserts a newly created poll with its options. Returns the newly created row id
    */

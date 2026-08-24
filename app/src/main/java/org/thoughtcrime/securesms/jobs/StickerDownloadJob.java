@@ -3,14 +3,15 @@ package org.thoughtcrime.securesms.jobs;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.signal.core.models.database.StickerRecord;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.database.StickerTable;
+import org.thoughtcrime.securesms.database.StickerTables;
 import org.thoughtcrime.securesms.database.model.IncomingSticker;
-import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.impl.DataRestoreConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.signal.core.util.Hex;
@@ -44,6 +45,7 @@ public class StickerDownloadJob extends BaseJob {
   StickerDownloadJob(@NonNull IncomingSticker sticker, boolean notify) {
     this(new Job.Parameters.Builder()
                            .addConstraint(NetworkConstraint.KEY)
+                           .addConstraint(DataRestoreConstraint.KEY)
                            .setLifespan(TimeUnit.DAYS.toMillis(30))
                            .build(),
         sticker,
@@ -78,7 +80,7 @@ public class StickerDownloadJob extends BaseJob {
 
   @Override
   protected void onRun() throws Exception {
-    StickerTable db = SignalDatabase.stickers();
+    StickerTables db = SignalDatabase.stickers();
 
     StickerRecord stickerRecord = db.getSticker(sticker.getPackId(), sticker.getStickerId(), sticker.isCover());
     if (stickerRecord != null) {

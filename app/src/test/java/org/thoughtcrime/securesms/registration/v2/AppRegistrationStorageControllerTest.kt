@@ -24,6 +24,7 @@ import io.mockk.mockkStatic
 import io.mockk.unmockkAll
 import io.mockk.verify
 import kotlinx.coroutines.runBlocking
+import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.junit.After
 import org.junit.Before
@@ -48,6 +49,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.runJobBlocking
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob
 import org.thoughtcrime.securesms.jobs.PreKeysSyncJob
+import org.thoughtcrime.securesms.jobs.ReclaimUsernameAndLinkJob
 import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob
 import org.thoughtcrime.securesms.jobs.RotateCertificateJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -92,6 +94,7 @@ class AppRegistrationStorageControllerTest {
   private val pniSignedPreKey = PreKeyUtil.generateSignedPreKey(12, pniIdentity.privateKey)
   private val aciLastResortKyberPreKey = PreKeyUtil.generateLastResortKyberPreKey(21, aciIdentity.privateKey)
   private val pniLastResortKyberPreKey = PreKeyUtil.generateLastResortKyberPreKey(22, pniIdentity.privateKey)
+  private val authCredentialSalt = byteArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16)
 
   private val blobData = mutableMapOf<Uri, ByteArray>()
   private var blobCounter = 0
@@ -145,6 +148,7 @@ class AppRegistrationStorageControllerTest {
     assertThat(SignalStore.account.pniIdentityKey.serialize()).isEqualTo(pniIdentity.serialize())
     assertThat(SignalStore.account.accountEntropyPool.value).isEqualTo(aep.value)
     assertThat(SignalStore.account.restoredAccountEntropyPool).isTrue()
+    assertThat(SignalStore.account.authCredentialSalt).isNotNull().isEqualTo(authCredentialSalt)
 
     assertThat(SignalStore.account.aciPreKeys.isSignedPreKeyRegistered).isTrue()
     assertThat(SignalStore.account.aciPreKeys.activeSignedPreKeyId).isEqualTo(11)
@@ -215,6 +219,43 @@ class AppRegistrationStorageControllerTest {
   }
 
   @Test
+  fun `commit - linked device with no phone number - applies aci-only account`() = runBlocking<Unit> {
+    seedInProgressData(
+      RegistrationData(
+        accountData = accountData(
+          linkedDeviceData = LinkedDeviceData(deviceId = 2, deviceName = "device-name")
+        ).newBuilder()
+          .e164("")
+          .pni("")
+          .pniIdentityKeyPair(ByteString.EMPTY)
+          .pniSignedPreKey(ByteString.EMPTY)
+          .pniLastResortKyberPreKey(ByteString.EMPTY)
+          .pniRegistrationId(0)
+          .build(),
+        accountEntropyPool = aep.value
+      )
+    )
+
+    controller.commitRegistrationData()
+
+    assertThat(SignalStore.account.aci).isEqualTo(aci)
+    assertThat(SignalStore.account.pni).isNull()
+    assertThat(SignalStore.account.e164).isNull()
+    assertThat(SignalStore.account.hasPniIdentityKey()).isFalse()
+    assertThat(SignalStore.account.isRegistered).isTrue()
+
+    assertThat(SignalStore.account.aciPreKeys.isSignedPreKeyRegistered).isTrue()
+    assertThat(SignalStore.account.pniPreKeys.isSignedPreKeyRegistered).isFalse()
+
+    val selfRecord = SignalDatabase.recipients.getRecord(SignalDatabase.recipients.getByAci(aci).get())
+    assertThat(selfRecord.e164).isNull()
+    assertThat(selfRecord.pni).isNull()
+    assertThat(selfRecord.registered).isEqualTo(RecipientTable.RegisteredState.REGISTERED)
+
+    assertThat(readInProgressData().accountDataCommitted).isTrue()
+  }
+
+  @Test
   fun `commit - pin opted out - applies svr opt out`() = runBlocking<Unit> {
     seedInProgressData(
       RegistrationData(
@@ -228,6 +269,95 @@ class AppRegistrationStorageControllerTest {
     assertThat(SignalStore.account.isRegistered).isTrue()
     assertThat(SignalStore.svr.pin).isNull()
     assertThat(SignalStore.svr.hasOptedOut()).isTrue()
+  }
+
+  @Test
+  fun `commit - re-registration - requires svrb secret restore before backing up`() = runBlocking<Unit> {
+    seedInProgressData(
+      RegistrationData(
+        accountData = accountData(reRegistration = true),
+        accountEntropyPool = aep.value
+      )
+    )
+
+    controller.commitRegistrationData()
+
+    assertThat(SignalStore.backup.backupSecretRestoreRequired).isTrue()
+  }
+
+  @Test
+  fun `commit - new account - does not require svrb secret restore`() = runBlocking<Unit> {
+    seedInProgressData(
+      RegistrationData(
+        accountData = accountData(reRegistration = false),
+        accountEntropyPool = aep.value
+      )
+    )
+
+    controller.commitRegistrationData()
+
+    assertThat(SignalStore.backup.backupSecretRestoreRequired).isFalse()
+  }
+
+  @Test
+  fun `commit - re-registration - flags that the username needs to be reclaimed`() = runBlocking<Unit> {
+    seedInProgressData(
+      RegistrationData(
+        accountData = accountData(reRegistration = true),
+        accountEntropyPool = aep.value
+      )
+    )
+
+    controller.commitRegistrationData()
+
+    assertThat(SignalStore.misc.needsUsernameRestore).isTrue()
+  }
+
+  @Test
+  fun `commit - new account - does not flag that the username needs to be reclaimed`() = runBlocking<Unit> {
+    seedInProgressData(
+      RegistrationData(
+        accountData = accountData(reRegistration = false),
+        accountEntropyPool = aep.value
+      )
+    )
+
+    controller.commitRegistrationData()
+
+    assertThat(SignalStore.misc.needsUsernameRestore).isFalse()
+  }
+
+  @Test
+  fun `onRegistrationFlowFinished - username reclaim pending - enqueues reclaim job`() = runBlocking<Unit> {
+    SignalStore.misc.needsUsernameRestore = true
+
+    controller.onRegistrationFlowFinished()
+
+    verify { AppDependencies.jobManager.add(ofType<ReclaimUsernameAndLinkJob>()) }
+  }
+
+  @Test
+  fun `onRegistrationFlowFinished - no username reclaim pending - does not enqueue reclaim job`() = runBlocking<Unit> {
+    SignalStore.misc.needsUsernameRestore = false
+
+    controller.onRegistrationFlowFinished()
+
+    verify(exactly = 0) { AppDependencies.jobManager.add(ofType<ReclaimUsernameAndLinkJob>()) }
+  }
+
+  @Test
+  fun `re-registration - commit then flow finished - enqueues reclaim job`() = runBlocking<Unit> {
+    seedInProgressData(
+      RegistrationData(
+        accountData = accountData(reRegistration = true),
+        accountEntropyPool = aep.value
+      )
+    )
+
+    controller.commitRegistrationData()
+    controller.onRegistrationFlowFinished()
+
+    verify { AppDependencies.jobManager.add(ofType<ReclaimUsernameAndLinkJob>()) }
   }
 
   @Test
@@ -396,7 +526,7 @@ class AppRegistrationStorageControllerTest {
 
   private fun readInProgressData(): RegistrationData = runBlocking { controller.readInProgressRegistrationData() }
 
-  private fun accountData(servicePassword: String = SERVICE_PASSWORD, linkedDeviceData: LinkedDeviceData? = null): AccountData {
+  private fun accountData(servicePassword: String = SERVICE_PASSWORD, linkedDeviceData: LinkedDeviceData? = null, reRegistration: Boolean = false): AccountData {
     return AccountData(
       aciIdentityKeyPair = aciIdentity.serialize().toByteString(),
       pniIdentityKeyPair = pniIdentity.serialize().toByteString(),
@@ -410,7 +540,9 @@ class AppRegistrationStorageControllerTest {
       pni = pni.toString(),
       e164 = E164,
       servicePassword = servicePassword,
-      linkedDeviceData = linkedDeviceData
+      linkedDeviceData = linkedDeviceData,
+      reRegistration = reRegistration,
+      authCredentialSalt = authCredentialSalt.toByteString()
     )
   }
 }

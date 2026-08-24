@@ -32,7 +32,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dsl_settings_gutter"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="@dimen/dsl_settings_gutter"
                 android:gravity="center"
                 android:text="@string/SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support"
@@ -58,10 +58,10 @@
 
             <org.thoughtcrime.securesms.badges.BadgeImageView
                 android:id="@+id/thanks_bottom_sheet_badge"
-                android:layout_width="112dp"
-                android:layout_height="112dp"
-                android:layout_marginTop="26dp"
-                app:badge_size="xlarge"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="28dp"
+                app:badge_size="badge_112"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -69,8 +69,8 @@
 
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/thanks_bottom_sheet_lottie"
-                android:layout_width="112dp"
-                android:layout_height="112dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 app:layout_constraintBottom_toBottomOf="@id/thanks_bottom_sheet_badge"
                 app:layout_constraintEnd_toEndOf="@id/thanks_bottom_sheet_badge"
                 app:layout_constraintStart_toStartOf="@id/thanks_bottom_sheet_badge"

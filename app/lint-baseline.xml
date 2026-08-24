@@ -359,7 +359,7 @@
         errorLine1="    zoomingImageView.setImageUri(requestManager, uri, contentType, () -> events.onMediaReady());"
         errorLine2="                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/org/thoughtcrime/securesms/mediapreview/ImageMediaPreviewFragment.java"
+            file="src/main/java/org/thoughtcrime/securesms/mediapreview/ImageMediaPreviewPageFragment.java"
             line="53"
             column="22"/>
     </issue>
@@ -403,7 +403,7 @@
         errorLine1="    bindToolbar(args.fromRecipientId, args.threadRecipientId, args.outgoing, args.showThread, args.date, args.messageId)"
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/org/thoughtcrime/securesms/mediapreview/MediaPreviewV2Fragment.kt"
+            file="src/main/java/org/thoughtcrime/securesms/mediapreview/MediaPreviewFragment.kt"
             line="126"
             column="5"/>
     </issue>
@@ -414,7 +414,7 @@
         errorLine1="    bindTextViews(currentItem, currentState.showThread, currentState.messageBodies)"
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/org/thoughtcrime/securesms/mediapreview/MediaPreviewV2Fragment.kt"
+            file="src/main/java/org/thoughtcrime/securesms/mediapreview/MediaPreviewFragment.kt"
             line="254"
             column="5"/>
     </issue>
@@ -425,7 +425,7 @@
         errorLine1="    bindTextViews(currentItem, currentState.showThread, currentState.messageBodies)"
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/java/org/thoughtcrime/securesms/mediapreview/MediaPreviewV2Fragment.kt"
+            file="src/main/java/org/thoughtcrime/securesms/mediapreview/MediaPreviewFragment.kt"
             line="279"
             column="5"/>
     </issue>

@@ -85,19 +85,18 @@ class MessageBackupsFlowViewModel(
     }
 
     viewModelScope.launch {
-      val result = withContext(SignalDispatchers.IO) {
-        BackupRepository.triggerBackupIdReservation()
-      }
-
-      result.runIfSuccessful {
-        Log.d(TAG, "Successfully triggered backup id reservation.")
-        internalStateFlow.update { it.copy(paymentReadyState = MessageBackupsFlowState.PaymentReadyState.READY) }
-      }
-
-      result.runOnStatusCodeError { code ->
-        Log.w(TAG, "Failed to trigger backup id reservation. ($code)")
-        internalStateFlow.update { it.copy(paymentReadyState = MessageBackupsFlowState.PaymentReadyState.FAILED) }
-      }
+      AppDependencies.archiveService
+        .triggerBackupIdReservation()
+        .onRight {
+          Log.d(TAG, "Successfully triggered backup id reservation.")
+          internalStateFlow.update { it.copy(paymentReadyState = MessageBackupsFlowState.PaymentReadyState.READY) }
+        }
+        .onLeft { error ->
+          if (error.isServerRejection) {
+            Log.w(TAG, "Failed to trigger backup id reservation. (${error::class.simpleName})")
+            internalStateFlow.update { it.copy(paymentReadyState = MessageBackupsFlowState.PaymentReadyState.FAILED) }
+          }
+        }
     }
 
     viewModelScope.launch {
@@ -278,6 +277,11 @@ class MessageBackupsFlowViewModel(
         it.copy(stage = previousScreen)
       }
     }
+  }
+
+  fun onBackupKeySavedToPasswordManager() {
+    SignalStore.backup.lastVerifyKeyTime = System.currentTimeMillis()
+    goToNextStage()
   }
 
   fun goToRecordManually() {

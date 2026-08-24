@@ -3,43 +3,31 @@
 
     <style name="TextSecure.LightTheme" parent="TextSecure.BaseLightTheme">
         <item name="android:windowLightStatusBar">true</item>
-        <item name="android:statusBarColor">@color/signal_colorBackground</item>
-        <item name="android:navigationBarColor">@color/signal_colorBackground</item>
         <item name="android:windowLightNavigationBar">true</item>
     </style>
 
     <style name="TextSecure.DarkTheme" parent="TextSecure.BaseDarkTheme">
-        <item name="android:statusBarColor">@color/signal_colorBackground</item>
         <item name="android:windowLightStatusBar">false</item>
-        <item name="android:navigationBarColor">@color/signal_colorBackground</item>
         <item name="android:windowLightNavigationBar">false</item>
     </style>
 
     <style name="TextSecure.LightRegistrationTheme" parent="TextSecure.LightNoActionBar">
         <item name="android:windowLightStatusBar">true</item>
-        <item name="android:statusBarColor">@color/signal_colorBackground</item>
-        <item name="android:navigationBarColor">@color/signal_colorBackground</item>
         <item name="android:windowLightNavigationBar">true</item>
     </style>
 
     <style name="TextSecure.DarkRegistrationTheme" parent="TextSecure.DarkNoActionBar">
         <item name="android:windowLightStatusBar">false</item>
-        <item name="android:statusBarColor">@color/signal_colorBackground</item>
-        <item name="android:navigationBarColor">@color/signal_colorBackground</item>
         <item name="android:windowLightNavigationBar">false</item>
     </style>
 
     <style name="TextSecure.LightNoActionBar" parent="TextSecure.BaseLightNoActionBar">
-        <item name="android:statusBarColor">@color/signal_colorBackground</item>
         <item name="android:windowLightStatusBar">true</item>
-        <item name="android:navigationBarColor">@color/signal_colorBackground</item>
         <item name="android:windowLightNavigationBar">true</item>
     </style>
 
     <style name="TextSecure.DarkNoActionBar" parent="TextSecure.BaseDarkNoActionBar">
-        <item name="android:statusBarColor">@color/signal_colorBackground</item>
         <item name="android:windowLightStatusBar">false</item>
-        <item name="android:navigationBarColor">@color/signal_colorBackground</item>
         <item name="android:windowLightNavigationBar">false</item>
     </style>
 
@@ -47,7 +35,8 @@
         <item name="android:windowIsFloating">false</item>
         <item name="android:statusBarColor">@color/transparent</item>
         <item name="android:windowLightStatusBar">false</item>
-        <item name="android:navigationBarColor">@color/signal_colorBackground</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:windowLightNavigationBar">false</item>
+        <item name="enableEdgeToEdge">true</item>
     </style>
 </resources>

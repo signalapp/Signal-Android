@@ -1,6 +1,7 @@
 package org.whispersystems.signalservice.api.messages
 
 import okio.ByteString
+import okio.utf8Size
 import org.signal.core.models.ServiceId
 import org.signal.core.models.ServiceId.ACI
 import org.signal.libsignal.protocol.message.CiphertextMessage
@@ -11,6 +12,7 @@ import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
 import org.whispersystems.signalservice.internal.push.AttachmentPointer
 import org.whispersystems.signalservice.internal.push.BodyRange
+import org.whispersystems.signalservice.internal.push.CallMessage
 import org.whispersystems.signalservice.internal.push.Content
 import org.whispersystems.signalservice.internal.push.DataMessage
 import org.whispersystems.signalservice.internal.push.EditMessage
@@ -61,13 +63,13 @@ object EnvelopeContentValidator {
       envelope.story == true && !content.meetsStoryFlagCriteria() -> Result.Invalid("Envelope was flagged as a story, but it did not have any story-related content!")
       content.dataMessage != null -> validateDataMessage(envelope, content.dataMessage)
       content.syncMessage != null -> validateSyncMessage(envelope, content.syncMessage, localAci)
-      content.callMessage != null -> Result.Valid
+      content.callMessage != null -> validateCallMessage(content.callMessage)
       content.nullMessage != null -> Result.Valid
       content.receiptMessage != null -> validateReceiptMessage(content.receiptMessage)
       content.typingMessage != null -> validateTypingMessage(envelope, content.typingMessage)
       content.decryptionErrorMessage != null -> validateDecryptionErrorMessage(content.decryptionErrorMessage.toByteArray())
       content.storyMessage != null -> validateStoryMessage(content.storyMessage)
-      content.editMessage != null -> validateEditMessage(content.editMessage)
+      content.editMessage != null -> validateEditMessage(envelope, content.editMessage)
       content.pniSignatureMessage != null -> Result.Valid
       content.senderKeyDistributionMessage != null -> Result.Valid
       else -> Result.Invalid("Content is empty!")
@@ -88,6 +90,10 @@ object EnvelopeContentValidator {
 
     if (dataMessage.timestamp != envelope.clientTimestamp) {
       return Result.Invalid("[DataMessage] Timestamps don't match! envelope: ${envelope.clientTimestamp}, content: ${dataMessage.timestamp}")
+    }
+
+    if (dataMessage.body.isBodyTooLarge()) {
+      return Result.Invalid("[DataMessage] Body exceeds ${SignalServiceMessageLimits.MAX_INLINE_BODY_SIZE_BYTES} bytes!")
     }
 
     if (dataMessage.quote != null && ACI.parseOrNull(dataMessage.quote.authorAci, dataMessage.quote.authorAciBinary).isNullOrInvalidServiceId()) {
@@ -148,6 +154,10 @@ object EnvelopeContentValidator {
       return Result.Invalid("[DataMessage] Invalid ACI on DataMessage.storyContext!")
     }
 
+    if (dataMessage.storyContext != null && dataMessage.storyContext.sentTimestamp == null) {
+      return Result.Invalid("[DataMessage] Missing sentTimestamp on DataMessage.storyContext!")
+    }
+
     if (dataMessage.giftBadge != null) {
       if (dataMessage.giftBadge.receiptCredentialPresentation == null) {
         return Result.Invalid("[DataMessage] Missing DataMessage.giftBadge.receiptCredentialPresentation!")
@@ -180,7 +190,7 @@ object EnvelopeContentValidator {
       return Result.Invalid("[DataMessage] Invalid poll vote!")
     }
 
-    if (dataMessage.pinMessage != null && (dataMessage.pinMessage.targetAuthorAciBinary.isNullOrInvalidAci() || dataMessage.pinMessage.targetSentTimestamp == null || (dataMessage.pinMessage.pinDurationSeconds == null && dataMessage.pinMessage.pinDurationForever == null))) {
+    if (dataMessage.pinMessage != null && (dataMessage.pinMessage.targetAuthorAciBinary.isNullOrInvalidAci() || dataMessage.pinMessage.targetSentTimestamp == null || (dataMessage.pinMessage.pinDurationSeconds == null && dataMessage.pinMessage.pinDurationForever != true))) {
       return Result.Invalid("[DataMessage] Invalid pin message!")
     }
 
@@ -203,15 +213,27 @@ object EnvelopeContentValidator {
     return this.options.size < MIN_POLL_OPTIONS || this.options.any { option -> option.length > MAX_POLL_CHARACTER_LENGTH }
   }
 
+  private fun validateCallMessage(callMessage: CallMessage): Result {
+    if (callMessage.hangup != null && callMessage.hangup.type == null) {
+      return Result.Invalid("[CallMessage] Missing type on CallMessage.hangup!")
+    }
+
+    return Result.Valid
+  }
+
   private fun validateSyncMessage(envelope: Envelope, syncMessage: SyncMessage, localAci: ACI): Result {
-    // Source serviceId was already determined to be a valid serviceId in general
-    val sourceServiceId = ServiceId.parseOrThrow(envelope.sourceServiceId, envelope.sourceServiceIdBinary)
+    val sourceServiceId = ServiceId.parseOrNull(envelope.sourceServiceId, envelope.sourceServiceIdBinary)
+      ?: return Result.Invalid("[SyncMessage] Missing or invalid source ServiceId!")
 
     if (sourceServiceId != localAci) {
       return Result.Invalid("[SyncMessage] Source was not our own account!")
     }
 
     if (syncMessage.sent != null) {
+      if (syncMessage.sent.timestamp == null) {
+        return Result.Invalid("[SyncMessage] Missing timestamp on SyncMessage.sent!")
+      }
+
       val validAddress = ServiceId.parseOrNull(syncMessage.sent.destinationServiceId, syncMessage.sent.destinationServiceIdBinary) != null
       val hasDataGroup = syncMessage.sent.message?.groupV2 != null
       val hasStoryGroup = syncMessage.sent.storyMessage?.group != null
@@ -240,6 +262,22 @@ object EnvelopeContentValidator {
         }
       }
 
+      for (recipient in syncMessage.sent.storyMessageRecipients) {
+        if (Util.anyNotNull(recipient.destinationServiceId, recipient.destinationServiceIdBinary)) {
+          if (ServiceId.parseOrNull(recipient.destinationServiceId, recipient.destinationServiceIdBinary) == null) {
+            return Result.Invalid("[SyncMessage] Invalid destination ServiceId in SyncMessage.sent.storyMessageRecipients!")
+          }
+
+          if (recipient.isAllowedToReply == null) {
+            return Result.Invalid("[SyncMessage] Missing isAllowedToReply in SyncMessage.sent.storyMessageRecipients!")
+          }
+        }
+      }
+
+      if (hasStoryManifest && syncMessage.sent.storyMessage == null && syncMessage.sent.isRecipientUpdate != true) {
+        return Result.Invalid("[SyncMessage] SyncMessage.sent had story recipients but no story message and was not a recipient update!")
+      }
+
       return if (syncMessage.sent.message != null) {
         validateDataMessage(envelope, syncMessage.sent.message)
       } else if (syncMessage.sent.storyMessage != null) {
@@ -247,7 +285,7 @@ object EnvelopeContentValidator {
       } else if (syncMessage.sent.storyMessageRecipients.isNotEmpty()) {
         Result.Valid
       } else if (syncMessage.sent.editMessage != null) {
-        validateEditMessage(syncMessage.sent.editMessage)
+        validateEditMessage(envelope, syncMessage.sent.editMessage)
       } else {
         Result.Invalid("[SyncMessage] Empty SyncMessage.sent!")
       }
@@ -255,6 +293,10 @@ object EnvelopeContentValidator {
 
     if (syncMessage.read.any { ACI.parseOrNull(it.senderAci, it.senderAciBinary).isNullOrInvalidServiceId() }) {
       return Result.Invalid("[SyncMessage] Invalid ACI in SyncMessage.readList!")
+    }
+
+    if (syncMessage.read.any { it.timestamp == null }) {
+      return Result.Invalid("[SyncMessage] Missing timestamp in SyncMessage.readList!")
     }
 
     if (syncMessage.viewed.any { ACI.parseOrNull(it.senderAci, it.senderAciBinary).isNullOrInvalidServiceId() }) {
@@ -281,8 +323,33 @@ object EnvelopeContentValidator {
       return Result.Invalid("[SyncMessage] Invalid ACI in SyncMessage.messageRequestResponse!")
     }
 
-    if (syncMessage.outgoingPayment != null && syncMessage.outgoingPayment.recipientServiceId.isNullOrInvalidServiceId()) {
-      return Result.Invalid("[SyncMessage] Invalid ServiceId in SyncMessage.outgoingPayment!")
+    if (syncMessage.outgoingPayment != null) {
+      if (syncMessage.outgoingPayment.recipientServiceId.isNullOrInvalidServiceId()) {
+        return Result.Invalid("[SyncMessage] Invalid ServiceId in SyncMessage.outgoingPayment!")
+      }
+
+      val mobileCoin = syncMessage.outgoingPayment.mobileCoin
+      if (mobileCoin != null && (mobileCoin.recipientAddress == null || mobileCoin.amountPicoMob == null || mobileCoin.feePicoMob == null || mobileCoin.receipt == null || mobileCoin.ledgerBlockIndex == null)) {
+        return Result.Invalid("[SyncMessage] Missing required MobileCoin field in SyncMessage.outgoingPayment!")
+      }
+    }
+
+    if (syncMessage.callEvent != null && syncMessage.callEvent.callId != null) {
+      val callEvent = syncMessage.callEvent
+      val isOneToOne = callEvent.type == SyncMessage.CallEvent.Type.AUDIO_CALL || callEvent.type == SyncMessage.CallEvent.Type.VIDEO_CALL
+
+      if (isOneToOne && callEvent.conversationId != null && ACI.parseOrNull(callEvent.conversationId) == null) {
+        return Result.Invalid("[SyncMessage] Invalid ACI conversationId in SyncMessage.callEvent!")
+      }
+
+      if (callEvent.type == SyncMessage.CallEvent.Type.AD_HOC_CALL &&
+        callEvent.event == SyncMessage.CallEvent.Event.OBSERVED &&
+        callEvent.direction == SyncMessage.CallEvent.Direction.INCOMING &&
+        callEvent.conversationId != null &&
+        callEvent.timestamp == null
+      ) {
+        return Result.Invalid("[SyncMessage] Missing timestamp on observed ad-hoc call event in SyncMessage.callEvent!")
+      }
     }
 
     return Result.Valid
@@ -343,10 +410,18 @@ object EnvelopeContentValidator {
       validateGroupContextV2(storyMessage.group, "[StoryMessage]")?.let { return it }
     }
 
+    if (storyMessage.bodyRanges.any { it.isStyleRangeMissingOffsets() }) {
+      return Result.Invalid("[StoryMessage] Style body range is missing a start or length!")
+    }
+
+    if (storyMessage.bodyRanges.hasInvalidBounds(storyMessage.textAttachment?.text)) {
+      return Result.Invalid("[StoryMessage] Body range with out-of-bounds start/length!")
+    }
+
     return Result.Valid
   }
 
-  private fun validateEditMessage(editMessage: EditMessage): Result {
+  private fun validateEditMessage(envelope: Envelope, editMessage: EditMessage): Result {
     if (editMessage.dataMessage == null) {
       return Result.Invalid("[EditMessage] No data message present")
     }
@@ -356,6 +431,18 @@ object EnvelopeContentValidator {
     }
 
     val dataMessage: DataMessage = editMessage.dataMessage
+
+    if (dataMessage.timestamp == null) {
+      return Result.Invalid("[EditMessage] Missing timestamp!")
+    }
+
+    if (dataMessage.timestamp != envelope.clientTimestamp) {
+      return Result.Invalid("[EditMessage] Timestamps don't match! envelope: ${envelope.clientTimestamp}, content: ${dataMessage.timestamp}")
+    }
+
+    if (dataMessage.body.isBodyTooLarge()) {
+      return Result.Invalid("[EditMessage] Body exceeds ${SignalServiceMessageLimits.MAX_INLINE_BODY_SIZE_BYTES} bytes!")
+    }
 
     if (dataMessage.requiredProtocolVersion != null && dataMessage.requiredProtocolVersion > DataMessage.ProtocolVersion.CURRENT.value) {
       return Result.UnsupportedDataMessage(
@@ -404,6 +491,10 @@ object EnvelopeContentValidator {
 
   private fun DataMessage.hasLongTextAttachment(): Boolean {
     return this.attachments.any { it.contentType == LONG_TEXT_CONTENT_TYPE }
+  }
+
+  private fun String?.isBodyTooLarge(): Boolean {
+    return this != null && this.utf8Size() > SignalServiceMessageLimits.MAX_INLINE_BODY_SIZE_BYTES
   }
 
   private fun BodyRange.isStyleRangeMissingOffsets(): Boolean {

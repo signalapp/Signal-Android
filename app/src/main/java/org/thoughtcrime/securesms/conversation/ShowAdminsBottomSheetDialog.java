@@ -108,7 +108,7 @@ public final class ShowAdminsBottomSheetDialog extends BottomSheetDialogFragment
   @WorkerThread
   private static @NonNull List<GroupMemberEntry> getAdmins(@NonNull Context context, @NonNull GroupId groupId) {
     GroupRecord groupRecord = SignalDatabase.groups().getGroup(groupId).orElse(null);
-    if (groupRecord == null) {
+    if (groupRecord == null || !groupRecord.getHasV2GroupProperties()) {
       return Collections.emptyList();
     }
 

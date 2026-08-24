@@ -77,6 +77,15 @@ class GroupInviteLinkUrl_InvalidGroupLinkException_Test {
   }
 
   @Test
+  fun one_character_base64_ref() {
+    val uri = "https://signal.group/#A"
+    assertFailure { GroupInviteLinkUrl.fromUri(uri) }
+      .isInstanceOf<InvalidGroupLinkException>()
+      .rootCause()
+      .isInstanceOf<IllegalArgumentException>()
+  }
+
+  @Test
   fun bad_protobuf() {
     val uri = "https://signal.group/#CAESNAogpQEzURH6BON1bCS264cmTi37Yi6HTOReXZUEHdsBIgSEPCLfiL7k4wCXmwVi31USVY"
     assertFailure {

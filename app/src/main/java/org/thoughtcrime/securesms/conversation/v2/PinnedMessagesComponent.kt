@@ -48,6 +48,8 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.view.doOnPreDraw
 import org.signal.core.ui.compose.DropdownMenus
 import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.core.ui.fonts.SignalSymbols
+import org.signal.core.ui.fonts.SignalSymbols.getSpannedString
 import org.signal.glide.compose.GlideImage
 import org.signal.glide.decryptableuri.DecryptableUri
 import org.thoughtcrime.securesms.R
@@ -55,8 +57,6 @@ import org.thoughtcrime.securesms.components.emoji.EmojiTextView
 import org.thoughtcrime.securesms.contactshare.ContactUtil
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
-import org.thoughtcrime.securesms.fonts.SignalSymbols
-import org.thoughtcrime.securesms.fonts.SignalSymbols.getSpannedString
 import org.thoughtcrime.securesms.mms.AudioSlide
 import org.thoughtcrime.securesms.mms.DocumentSlide
 import org.thoughtcrime.securesms.mms.ImageSlide

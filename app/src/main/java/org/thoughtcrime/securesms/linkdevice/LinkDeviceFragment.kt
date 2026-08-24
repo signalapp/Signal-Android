@@ -26,6 +26,7 @@ import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.text.InlineTextContent
 import androidx.compose.foundation.text.appendInlineContent
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalTextStyle
@@ -74,6 +75,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.linkdevice.LinkDeviceSettingsState.DialogState
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.DateUtils
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SupportEmailUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.signal.core.ui.R as CoreUiR
@@ -129,6 +131,7 @@ class LinkDeviceFragment : ComposeFragment() {
     val state by viewModel.state.collectAsStateWithLifecycle()
     val navController: NavController by remember { mutableStateOf(findNavController()) }
     val context = LocalContext.current
+    val atDeviceLimit = state.devices.size >= RemoteConfig.maxLinkedDevices
 
     LaunchedEffect(state.dialogState) {
       when (state.dialogState) {
@@ -157,6 +160,9 @@ class LinkDeviceFragment : ComposeFragment() {
         }
         LinkDeviceSettingsState.OneTimeEvent.SnackbarLinkCancelled -> {
           Snackbar.make(requireView(), getString(R.string.LinkDeviceFragment__linking_cancelled), Snackbar.LENGTH_LONG).show()
+        }
+        LinkDeviceSettingsState.OneTimeEvent.SnackbarDeviceLimitReached -> {
+          Snackbar.make(requireView(), getString(R.string.LinkDeviceFragment__you_can_only_have_d_linked_devices, RemoteConfig.maxLinkedDevices), Snackbar.LENGTH_LONG).show()
         }
         LinkDeviceSettingsState.OneTimeEvent.ToastNetworkFailed -> {
           Toast.makeText(requireContext(), getString(R.string.DeviceListActivity_network_failed), Toast.LENGTH_LONG).show()
@@ -195,10 +201,15 @@ class LinkDeviceFragment : ComposeFragment() {
       DeviceListScreen(
         state = state,
         modifier = Modifier.padding(contentPadding),
+        atDeviceLimit = atDeviceLimit,
         onLearnMoreClicked = { navController.safeNavigate(R.id.action_linkDeviceFragment_to_linkDeviceLearnMoreBottomSheet) },
         onLinkNewDeviceClicked = {
-          viewModel.stopExistingPolling()
-          navController.navigateToQrScannerIfAuthed()
+          if (atDeviceLimit) {
+            viewModel.onDeviceLimitReached()
+          } else {
+            viewModel.stopExistingPolling()
+            navController.navigateToQrScannerIfAuthed()
+          }
         },
         onDeviceSelectedForRemoval = { device -> viewModel.setDeviceToRemove(device) },
         onDeviceRemovalConfirmed = { device -> viewModel.removeDevice(device) },
@@ -272,6 +283,7 @@ class LinkDeviceFragment : ComposeFragment() {
 fun DeviceListScreen(
   state: LinkDeviceSettingsState,
   modifier: Modifier = Modifier,
+  atDeviceLimit: Boolean = false,
   onLearnMoreClicked: () -> Unit = {},
   onLinkNewDeviceClicked: () -> Unit = {},
   onDeviceSelectedForRemoval: (Device?) -> Unit = {},
@@ -411,8 +423,17 @@ fun DeviceListScreen(
 
     Spacer(modifier = Modifier.size(20.dp))
 
+    val linkButtonColors = ButtonDefaults.filledTonalButtonColors()
     Buttons.LargeTonal(
       onClick = onLinkNewDeviceClicked,
+      colors = if (atDeviceLimit) {
+        linkButtonColors.copy(
+          containerColor = linkButtonColors.disabledContainerColor,
+          contentColor = linkButtonColors.disabledContentColor
+        )
+      } else {
+        linkButtonColors
+      },
       modifier = Modifier
         .defaultMinSize(300.dp)
         .padding(bottom = 8.dp)

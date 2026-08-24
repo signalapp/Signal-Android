@@ -49,6 +49,7 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
     private const val KEY_DEVICE_NAME = "account.device_name"
     private const val KEY_DEVICE_ID = "account.device_id"
     private const val KEY_PNI_REGISTRATION_ID = "account.pni_registration_id"
+    private const val KEY_AUTH_CREDENTIAL_SALT = "account.auth_credential_salt"
 
     private const val KEY_ACI_IDENTITY_PUBLIC_KEY = "account.aci_identity_public_key"
     private const val KEY_ACI_IDENTITY_PRIVATE_KEY = "account.aci_identity_private_key"
@@ -86,6 +87,7 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
 
     private const val KEY_HAS_LINKED_DEVICES = "account.has_linked_devices"
     private const val KEY_HAS_INACTIVE_PRIMARY_DEVICE_ALERT = "account.has_inactive_primary_device_alert"
+    private const val KEY_NOT_SYNCED_ROTATED_SELF_PROFILE_KEY = "account.not_synced_rotated_self_profile_key"
 
     private const val KEY_VERIFICATION_CODE_REQUESTED_AT = "account.verification_code_requested_at"
 
@@ -248,6 +250,26 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
     putString(KEY_E164, e164)
   }
 
+  /** Wipes all local knowledge of the user's E164 and PNI, including the PNI identity and pre-key metadata. */
+  fun clearE164AndPni() {
+    store
+      .beginWrite()
+      .remove(KEY_E164)
+      .remove(KEY_PNI)
+      .remove(KEY_PNI_IDENTITY_PUBLIC_KEY)
+      .remove(KEY_PNI_IDENTITY_PRIVATE_KEY)
+      .remove(KEY_PNI_REGISTRATION_ID)
+      .remove(KEY_PNI_SIGNED_PREKEY_REGISTERED)
+      .remove(KEY_PNI_NEXT_SIGNED_PREKEY_ID)
+      .remove(KEY_PNI_ACTIVE_SIGNED_PREKEY_ID)
+      .remove(KEY_PNI_LAST_SIGNED_PREKEY_ROTATION_TIME)
+      .remove(KEY_PNI_NEXT_ONE_TIME_PREKEY_ID)
+      .remove(KEY_PNI_NEXT_KYBER_PREKEY_ID)
+      .remove(KEY_PNI_LAST_RESORT_KYBER_PREKEY_ID)
+      .remove(KEY_PNI_LAST_RESORT_KYBER_PREKEY_ROTATION_TIME)
+      .commit()
+  }
+
   /** The password for communicating with the Signal service. */
   val servicePassword: String?
     get() = getString(KEY_SERVICE_PASSWORD, null)
@@ -255,6 +277,9 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
   fun setServicePassword(servicePassword: String) {
     putString(KEY_SERVICE_PASSWORD, servicePassword)
   }
+
+  /** Salt used by the service to generate PNI auth credentials. Only present for an account registered without a phone number. */
+  var authCredentialSalt: ByteArray? by nullableBlobValue(KEY_AUTH_CREDENTIAL_SALT, null)
 
   /** A randomly-generated value that represents this registration instance. Helps the server know if you reinstalled. */
   var registrationId: Int by integerValue(KEY_REGISTRATION_ID, 0)
@@ -271,7 +296,7 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
       )
     }
 
-  /** The identity key pair for the PNI identity. */
+  /** The identity key pair for the PNI identity. Will throw if not present -- prefer [pniIdentityKeyOrNull] on paths that tolerate a phone-number-less account. */
   val pniIdentityKey: IdentityKeyPair
     get() {
       require(store.containsKey(KEY_PNI_IDENTITY_PUBLIC_KEY)) { "Not yet set!" }
@@ -280,6 +305,10 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
         ECPrivateKey(getBlob(KEY_PNI_IDENTITY_PRIVATE_KEY, null))
       )
     }
+
+  /** The identity key pair for the PNI identity, or null if the account has no PNI identity. */
+  val pniIdentityKeyOrNull: IdentityKeyPair?
+    get() = if (hasPniIdentityKey()) pniIdentityKey else null
 
   fun hasAciIdentityKey(): Boolean {
     return store.containsKey(KEY_ACI_IDENTITY_PUBLIC_KEY)
@@ -579,6 +608,9 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
    */
   @get:JvmName("isMultiDevice")
   var isMultiDevice by booleanValue(KEY_HAS_LINKED_DEVICES, false)
+
+  /** Our own profile key that is still pending being written to storage service. */
+  var notSyncedRotatedSelfProfileKey: ByteArray? by nullableBlobValue(KEY_NOT_SYNCED_ROTATED_SELF_PROFILE_KEY, null)
 
   /** Server has indicated a verification code was requested for the account at this timestamp (ms since epoch) */
   private val verificationCodeRequestedAtMsValue = longValue(KEY_VERIFICATION_CODE_REQUESTED_AT, 0)

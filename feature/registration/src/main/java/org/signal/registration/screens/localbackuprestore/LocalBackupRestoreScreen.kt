@@ -51,10 +51,13 @@ import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.KeepScreenOnEffect
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.util.mebiBytes
 import org.signal.registration.R
+import org.signal.registration.screens.shared.RestoreProgress
+import org.signal.registration.screens.shared.RestoreProgressDialog
 import org.signal.registration.test.TestTags
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -81,6 +84,10 @@ fun LocalBackupRestoreScreen(
     }
   }
 
+  if (state.restorePhase == LocalBackupRestoreState.RestorePhase.Preparing || state.restorePhase == LocalBackupRestoreState.RestorePhase.InProgress) {
+    KeepScreenOnEffect()
+  }
+
   when (state.restorePhase) {
     LocalBackupRestoreState.RestorePhase.SelectFolder -> {
       SelectFolderContent(onEvent = onEvent, modifier = modifier)
@@ -95,10 +102,18 @@ fun LocalBackupRestoreScreen(
       NoBackupFoundContent(onEvent = onEvent, modifier = modifier)
     }
     LocalBackupRestoreState.RestorePhase.Preparing -> {
-      PreparingContent(modifier = modifier)
+      if (state.backupInfo?.type == LocalBackupInfo.BackupType.V2) {
+        V2RestoreInProgressContent(state = state, onEvent = onEvent, modifier = modifier)
+      } else {
+        V1PreparingContent(modifier = modifier)
+      }
     }
     LocalBackupRestoreState.RestorePhase.InProgress -> {
-      InProgressContent(progressFraction = state.progressFraction, onEvent = onEvent, modifier = modifier)
+      if (state.backupInfo?.type == LocalBackupInfo.BackupType.V2) {
+        V2RestoreInProgressContent(state = state, onEvent = onEvent, modifier = modifier)
+      } else {
+        V1InProgressContent(progressFraction = state.progressFraction, onEvent = onEvent, modifier = modifier)
+      }
     }
     LocalBackupRestoreState.RestorePhase.IncorrectCredential -> {
       IncorrectCredentialContent(backupType = state.backupInfo?.type, onEvent = onEvent, modifier = modifier)
@@ -116,10 +131,11 @@ private fun SelectFolderContent(
 ) {
   LocalBackupRestoreLayout(
     modifier = modifier,
-    description = {
+    description = { twoPane ->
       Description(
         headline = stringResource(R.string.LocalBackupRestoreScreen__restore_on_device_backup),
-        body = stringResource(R.string.LocalBackupRestoreScreen__select_folder_description)
+        body = stringResource(R.string.LocalBackupRestoreScreen__select_folder_description),
+        twoPane = twoPane
       )
     },
     content = {
@@ -187,10 +203,11 @@ private fun BackupFoundContent(
 
   LocalBackupRestoreLayout(
     modifier = modifier,
-    description = {
+    description = { twoPane ->
       Description(
         headline = stringResource(R.string.LocalBackupRestoreScreen__restore_on_device_backup),
-        body = stringResource(R.string.LocalBackupRestoreScreen__backup_found_description)
+        body = stringResource(R.string.LocalBackupRestoreScreen__backup_found_description),
+        twoPane = twoPane
       )
     },
     content = {
@@ -427,10 +444,11 @@ private fun NoBackupFoundContent(
 ) {
   LocalBackupRestoreLayout(
     modifier = modifier,
-    description = {
+    description = { twoPane ->
       Description(
         headline = stringResource(R.string.LocalBackupRestoreScreen__no_backup_found),
-        body = stringResource(R.string.LocalBackupRestoreScreen__no_backup_found_description)
+        body = stringResource(R.string.LocalBackupRestoreScreen__no_backup_found_description),
+        twoPane = twoPane
       )
     },
     content = {},
@@ -488,7 +506,7 @@ private fun BackupOptionCard(
 }
 
 @Composable
-private fun PreparingContent(modifier: Modifier = Modifier) {
+private fun V1PreparingContent(modifier: Modifier = Modifier) {
   Loading(
     label = stringResource(R.string.LocalBackupRestoreScreen__preparing_restore),
     modifier = modifier
@@ -496,17 +514,18 @@ private fun PreparingContent(modifier: Modifier = Modifier) {
 }
 
 @Composable
-private fun InProgressContent(
+private fun V1InProgressContent(
   progressFraction: Float,
   onEvent: (LocalBackupRestoreEvents) -> Unit,
   modifier: Modifier = Modifier
 ) {
   LocalBackupRestoreLayout(
     modifier = modifier,
-    description = {
+    description = { twoPane ->
       Description(
         headline = stringResource(R.string.LocalBackupRestoreScreen__restoring_backup),
-        body = stringResource(R.string.LocalBackupRestoreScreen__restoring_description)
+        body = stringResource(R.string.LocalBackupRestoreScreen__restoring_description),
+        twoPane = twoPane
       )
     },
     content = {
@@ -534,6 +553,22 @@ private fun InProgressContent(
 }
 
 @Composable
+private fun V2RestoreInProgressContent(
+  state: LocalBackupRestoreState,
+  onEvent: (LocalBackupRestoreEvents) -> Unit,
+  modifier: Modifier = Modifier
+) {
+  BackupFoundContent(
+    backupInfo = state.backupInfo!!,
+    allBackups = state.allBackups,
+    onEvent = onEvent,
+    modifier = modifier
+  )
+
+  RestoreProgressDialog(restoreProgress = state.restoreProgress)
+}
+
+@Composable
 private fun IncorrectCredentialContent(
   backupType: LocalBackupInfo.BackupType?,
   onEvent: (LocalBackupRestoreEvents) -> Unit,
@@ -547,10 +582,11 @@ private fun IncorrectCredentialContent(
 
   LocalBackupRestoreLayout(
     modifier = modifier,
-    description = {
+    description = { twoPane ->
       Description(
         headline = headline,
-        body = stringResource(R.string.LocalBackupRestoreScreen__incorrect_credential_description)
+        body = stringResource(R.string.LocalBackupRestoreScreen__incorrect_credential_description),
+        twoPane = twoPane
       )
     },
     content = {},
@@ -576,10 +612,11 @@ private fun ErrorContent(
 ) {
   LocalBackupRestoreLayout(
     modifier = modifier,
-    description = {
+    description = { twoPane ->
       Description(
         headline = stringResource(R.string.LocalBackupRestoreScreen__restore_failed),
-        body = errorMessage ?: stringResource(R.string.LocalBackupRestoreScreen__restore_failed_description)
+        body = errorMessage ?: stringResource(R.string.LocalBackupRestoreScreen__restore_failed_description),
+        twoPane = twoPane
       )
     },
     content = {},
@@ -694,6 +731,31 @@ private fun LocalBackupRestoreScreenInProgressPreview() {
   Previews.Preview {
     LocalBackupRestoreScreen(
       state = LocalBackupRestoreState(restorePhase = LocalBackupRestoreState.RestorePhase.InProgress, progressFraction = 0.65f),
+      onEvent = {}
+    )
+  }
+}
+
+@AllDevicePreviews
+@Composable
+private fun LocalBackupRestoreScreenV2InProgressPreview() {
+  Previews.Preview {
+    LocalBackupRestoreScreen(
+      state = LocalBackupRestoreState(
+        restorePhase = LocalBackupRestoreState.RestorePhase.InProgress,
+        backupInfo = LocalBackupInfo(
+          type = LocalBackupInfo.BackupType.V2,
+          date = LocalDateTime.of(2026, 3, 15, 14, 30, 0),
+          name = "signal-backup-2026-03-15-14-30-00",
+          uri = Uri.EMPTY,
+          sizeBytes = 511.mebiBytes.bytes
+        ),
+        restoreProgress = RestoreProgress(
+          phase = RestoreProgress.Phase.Restoring,
+          bytesCompleted = 332.mebiBytes.bytes,
+          totalBytes = 511.mebiBytes.bytes
+        )
+      ),
       onEvent = {}
     )
   }

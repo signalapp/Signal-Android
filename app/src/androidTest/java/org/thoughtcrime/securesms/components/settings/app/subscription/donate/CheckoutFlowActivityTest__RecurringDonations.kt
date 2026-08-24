@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.testing.DisableAnimationsRule
 import org.thoughtcrime.securesms.testing.GooglePayTestRule
 import org.thoughtcrime.securesms.testing.InAppPaymentsRule
 import org.thoughtcrime.securesms.testing.RxTestSchedulerRule
@@ -58,6 +59,9 @@ class CheckoutFlowActivityTest__RecurringDonations {
 
   @get:Rule
   val composeRule = createEmptyComposeRule()
+
+  @get:Rule
+  val animationsRule = DisableAnimationsRule()
 
   private val intent = CheckoutFlowActivity.createIntent(InstrumentationRegistry.getInstrumentation().targetContext, InAppPaymentType.RECURRING_DONATION)
 

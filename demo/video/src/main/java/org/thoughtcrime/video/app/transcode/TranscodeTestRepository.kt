@@ -46,7 +46,7 @@ class TranscodeTestRepository {
   ): TranscodeResult {
     return doTranscode(context, inputUri, enableFastStart, outputTag, onProgress) { inputFile ->
       val dataSource = FileMediaDataSource(inputFile)
-      StreamingTranscoder(dataSource, null, listOf(quality.qualityTier), DEFAULT_FILE_SIZE_LIMIT, enableAudioRemux)
+      StreamingTranscoder(dataSource, null, listOf(quality.qualityTier), DEFAULT_FILE_SIZE_LIMIT, enableAudioRemux, false)
     }
   }
 
@@ -70,7 +70,8 @@ class TranscodeTestRepository {
         options.videoBitrate,
         options.audioBitrate,
         options.videoResolution.shortEdge,
-        options.enableAudioRemux
+        options.enableAudioRemux,
+        false
       )
     }
   }

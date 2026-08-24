@@ -45,6 +45,10 @@ sealed class VerificationCodeScreenEvents {
 
   data object DismissContactSupport : VerificationCodeScreenEvents()
 
+  data object ContactSupportDialog : VerificationCodeScreenEvents()
+
+  data object DismissContactSupportDialog : VerificationCodeScreenEvents()
+
   /** The network error snackbar was shown and dismissed. */
   data object NetworkErrorSnackbarDismissed : VerificationCodeScreenEvents()
 
@@ -54,11 +58,23 @@ sealed class VerificationCodeScreenEvents {
   /** The rate limited snackbar was shown and dismissed. */
   data object RateLimitedSnackbarDismissed : VerificationCodeScreenEvents()
 
-  /** The unable-to-send-SMS snackbar was shown and dismissed. */
-  data object UnableToSendSmsSnackbarDismissed : VerificationCodeScreenEvents()
+  /** The network error dialog from requesting a code was dismissed. */
+  data object NetworkErrorDialogDismissed : VerificationCodeScreenEvents()
 
-  /** The could-not-request-code-with-selected-transport snackbar was shown and dismissed. */
-  data object CouldNotRequestCodeWithSelectedTransportSnackbarDismissed : VerificationCodeScreenEvents()
+  /** The unknown error dialog from requesting a code was dismissed. */
+  data object UnknownErrorDialogDismissed : VerificationCodeScreenEvents()
+
+  /** The rate limited dialog from requesting a code was dismissed. */
+  data object RateLimitedDialogDismissed : VerificationCodeScreenEvents()
+
+  /** The unable-to-send-SMS dialog was dismissed. */
+  data object UnableToSendSmsDialogDismissed : VerificationCodeScreenEvents()
+
+  /** The could-not-request-code-with-selected-transport dialog was dismissed. */
+  data object CouldNotRequestCodeWithSelectedTransportDialogDismissed : VerificationCodeScreenEvents()
+
+  /** The delivery-provider-rejected dialog was dismissed. */
+  data object ProviderRejectedDialogDismissed : VerificationCodeScreenEvents()
 
   /** The incorrect verification code snackbar was shown and dismissed. */
   data object IncorrectVerificationCodeSnackbarDismissed : VerificationCodeScreenEvents()

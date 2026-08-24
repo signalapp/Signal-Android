@@ -17,6 +17,7 @@ import kotlinx.coroutines.flow.onEach
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.RequestResult
+import org.signal.network.api.RegistrationApiV2.SvrCredentials
 import org.signal.registration.NetworkController
 import org.signal.registration.RegistrationFlowEvent
 import org.signal.registration.RegistrationFlowState
@@ -53,6 +54,10 @@ class PinEntryForSvrRestoreViewModel(
     _state
       .onEach { Log.d(TAG, "[State] $it") }
       .launchIn(viewModelScope)
+
+    parentState
+      .onEach { onEvent(PinEntryScreenEvents.ParentStateChanged(it)) }
+      .launchIn(viewModelScope)
   }
 
   override suspend fun processEvent(event: PinEntryScreenEvents) {
@@ -82,16 +87,23 @@ class PinEntryForSvrRestoreViewModel(
       }
       is PinEntryScreenEvents.ContactSupport -> {
         Log.i(TAG, "[ContactSupport] User opted to contact support after no data was found.")
-        stateEmitter(state.copy(showNoDataToRestoreDialog = false))
+        stateEmitter(state.copy(showNoDataToRestoreDialog = false, showContactSupportDialog = true))
       }
       is PinEntryScreenEvents.ToggleKeyboard,
       is PinEntryScreenEvents.NetworkErrorDialogDismissed,
       is PinEntryScreenEvents.RateLimitedDialogDismissed,
-      is PinEntryScreenEvents.UnknownErrorDialogDismissed -> {
+      is PinEntryScreenEvents.UnknownErrorDialogDismissed,
+      is PinEntryScreenEvents.DismissContactSupport -> {
         stateEmitter(PinEntryScreenEventHandler.applyEvent(state, event))
       }
-      is PinEntryScreenEvents.ParentStateChanged -> Unit
+      is PinEntryScreenEvents.ParentStateChanged -> {
+        stateEmitter(applyParentState(state, event.parentState))
+      }
     }
+  }
+
+  private fun applyParentState(state: PinEntryState, parentState: RegistrationFlowState): PinEntryState {
+    return state.copy(submittedVerificationCode = parentState.submittedVerificationCode)
   }
 
   private suspend fun applyPinEntered(
@@ -102,7 +114,7 @@ class PinEntryForSvrRestoreViewModel(
     Log.d(TAG, "[PinEntered] Attempting to restore master key from SVR...")
 
     val svrCredentials = when (val result = repository.getSvrCredentials()) {
-      is RequestResult.Success<NetworkController.SvrCredentials> -> {
+      is RequestResult.Success<SvrCredentials> -> {
         result.result
       }
       is RequestResult.NonSuccess<NetworkController.GetSvrCredentialsError> -> {
@@ -141,7 +153,7 @@ class PinEntryForSvrRestoreViewModel(
         when (val error = result.error) {
           is NetworkController.RestoreMasterKeyError.WrongPin -> {
             Log.w(TAG, "[PinEntered] Wrong PIN. Tries remaining: ${error.triesRemaining}")
-            state.copy(loading = false, triesRemaining = error.triesRemaining)
+            state.copy(loading = false, triesRemaining = error.triesRemaining, enteredVerificationCode = event.pin == state.submittedVerificationCode)
           }
           is NetworkController.RestoreMasterKeyError.NoDataFound -> {
             Log.w(TAG, "[PinEntered] No SVR data found. Prompting user to create a new PIN.")

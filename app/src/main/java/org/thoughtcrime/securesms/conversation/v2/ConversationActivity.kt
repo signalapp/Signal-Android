@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePayComponent
 import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePayRepository
 import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsNavHostFragment
+import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsNavHostFragment.Companion.setConversationSettingsAnimations
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner
 import org.thoughtcrime.securesms.conversation.ConversationIntents
@@ -51,7 +52,6 @@ open class ConversationActivity : PassphraseRequiredActivity(), VoiceNoteMediaCo
   override val googlePayResultPublisher: Subject<GooglePayComponent.GooglePayResult> = PublishSubject.create()
 
   private val motionEventRelay: MotionEventRelay by viewModels()
-  private val shareDataTimestampViewModel: ShareDataTimestampViewModel by viewModels()
 
   override fun onPreCreate() {
     theme.onCreate(this)
@@ -79,7 +79,6 @@ open class ConversationActivity : PassphraseRequiredActivity(), VoiceNoteMediaCo
     transitionDebouncer.publish { supportStartPostponedEnterTransition() }
     window.requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)
 
-    shareDataTimestampViewModel.setTimestampFromActivityCreation(savedInstanceState, intent)
     setContentView(R.layout.fragment_container)
 
     if (savedInstanceState == null) {
@@ -155,6 +154,7 @@ open class ConversationActivity : PassphraseRequiredActivity(), VoiceNoteMediaCo
           val args = ConversationSettingsNavHostFragment.createArgs(location.recipientId)
           supportFragmentManager
             .beginTransaction()
+            .setConversationSettingsAnimations()
             .replace(R.id.fragment_container, ConversationSettingsNavHostFragment::class.java, args)
             .addToBackStack(null)
             .commit()

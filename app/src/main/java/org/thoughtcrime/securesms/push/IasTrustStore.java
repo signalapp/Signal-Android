@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.push;
 import android.content.Context;
 
 import org.thoughtcrime.securesms.R;
-import org.whispersystems.signalservice.api.push.TrustStore;
+import org.signal.network.config.TrustStore;
 
 import java.io.InputStream;
 

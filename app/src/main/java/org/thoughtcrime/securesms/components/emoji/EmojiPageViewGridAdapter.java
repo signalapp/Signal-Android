@@ -14,6 +14,9 @@ import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory;
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter;
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel;
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder;
+import org.signal.emoji.Emoji;
+import org.signal.emoji.EmojiEventListener;
+import org.signal.emoji.EmojiProvider;
 
 public class EmojiPageViewGridAdapter extends MappingAdapter implements PopupWindow.OnDismissListener {
 

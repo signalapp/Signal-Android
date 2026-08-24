@@ -144,7 +144,7 @@ fun MainScreen(
                 is StandardCameraHudEvents.SetZoomLevel -> {
                   cameraViewModel.onEvent(CameraScreenEvents.LinearZoom(event.zoomLevel))
                 }
-                is StandardCameraHudEvents.MediaSelectionClick -> {
+                is StandardCameraHudEvents.CloseClick -> {
                   // Doesn't need to be handled
                 }
                 is StandardCameraHudEvents.AudioPermissionRequired -> {

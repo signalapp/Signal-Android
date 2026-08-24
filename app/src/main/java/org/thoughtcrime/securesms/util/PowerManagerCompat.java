@@ -20,8 +20,12 @@ public class PowerManagerCompat {
   }
 
   public static void requestIgnoreBatteryOptimizations(@NonNull Context context) {
-    Intent intent = new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS,
-                               Uri.parse("package:" + context.getPackageName()));
-    context.startActivity(intent);
+    context.startActivity(buildRequestIgnoreBatteryOptimizationsIntent(context));
+  }
+
+  @NonNull
+  public static Intent buildRequestIgnoreBatteryOptimizationsIntent(@NonNull Context context) {
+    return new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS,
+                      Uri.parse("package:" + context.getPackageName()));
   }
 }

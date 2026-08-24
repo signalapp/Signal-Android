@@ -58,7 +58,13 @@ public final class GroupInviteLinkUrl {
         throw new InvalidGroupLinkException("No reference was in the uri");
       }
 
-      byte[]          bytes           = Base64.decode(encoding);
+      byte[] bytes;
+      try {
+        bytes = Base64.decode(encoding);
+      } catch (IllegalArgumentException e) {
+        throw new InvalidGroupLinkException(e);
+      }
+
       GroupInviteLink groupInviteLink = GroupInviteLink.ADAPTER.decode(bytes);
 
       //noinspection SwitchStatementWithTooFewBranches

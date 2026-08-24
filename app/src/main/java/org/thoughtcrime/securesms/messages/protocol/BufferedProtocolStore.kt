@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.messages.protocol
 
 import org.signal.core.models.ServiceId
 import org.signal.core.models.ServiceId.PNI
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 
@@ -14,16 +15,16 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
  */
 class BufferedProtocolStore private constructor(
   private val aciStore: Pair<ServiceId, BufferedSignalServiceAccountDataStore>,
-  private val pniStore: Pair<PNI, BufferedSignalServiceAccountDataStore>
+  private val pniStore: Pair<PNI, BufferedSignalServiceAccountDataStore>?
 ) {
 
-  /** The PNI captured when this batch's store was created. Does not refresh if [SignalStore.account.pni] later changes mid-batch. */
-  val pni: PNI get() = pniStore.first
+  /** The PNI captured when this batch's store was created, or null if the account had no PNI. Does not refresh if [SignalStore.account.pni] later changes mid-batch. */
+  val pni: PNI? get() = pniStore?.first
 
   fun get(serviceId: ServiceId): BufferedSignalServiceAccountDataStore {
-    return when (serviceId) {
-      aciStore.first -> aciStore.second
-      pniStore.first -> pniStore.second
+    return when {
+      serviceId == aciStore.first -> aciStore.second
+      pniStore != null && serviceId == pniStore.first -> pniStore.second
       else -> error("No store matching serviceId $serviceId")
     }
   }
@@ -37,17 +38,27 @@ class BufferedProtocolStore private constructor(
    */
   fun flushToDisk() {
     aciStore.second.flushToDisk(AppDependencies.protocolStore.aci())
-    pniStore.second.flushToDisk(AppDependencies.protocolStore.pni())
+
+    if (pniStore != null) {
+      val diskPniStore = AppDependencies.protocolStore.pniOrNull()
+      if (diskPniStore != null) {
+        pniStore.second.flushToDisk(diskPniStore)
+      } else {
+        Log.w(TAG, "Have buffered PNI data, but the account no longer has a PNI store! Discarding it.")
+      }
+    }
   }
 
   companion object {
+    private val TAG = Log.tag(BufferedProtocolStore::class)
+
     fun create(): BufferedProtocolStore {
       val aci = SignalStore.account.requireAci()
-      val pni = SignalStore.account.requirePni()
+      val pni = SignalStore.account.pni
 
       return BufferedProtocolStore(
         aciStore = aci to BufferedSignalServiceAccountDataStore(aci),
-        pniStore = pni to BufferedSignalServiceAccountDataStore(pni)
+        pniStore = pni?.let { it to BufferedSignalServiceAccountDataStore(it) }
       )
     }
   }

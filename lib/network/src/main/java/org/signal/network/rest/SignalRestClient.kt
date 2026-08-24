@@ -5,9 +5,7 @@
 
 package org.signal.network.rest
 
-import kotlinx.coroutines.suspendCancellableCoroutine
 import okhttp3.Call
-import okhttp3.Callback
 import okhttp3.ConnectionPool
 import okhttp3.ConnectionSpec
 import okhttp3.Credentials
@@ -20,6 +18,7 @@ import okhttp3.Request
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.Response
+import okhttp3.coroutines.executeAsync
 import okio.Buffer
 import okio.BufferedSink
 import okio.ByteString
@@ -28,17 +27,17 @@ import okio.buffer
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.BadRequestError
 import org.signal.libsignal.net.RequestResult
+import org.signal.network.config.SignalProxy
+import org.signal.network.config.SignalServiceConfiguration
+import org.signal.network.config.SignalUrl
 import org.signal.network.rest.RequestSpec.Host
 import org.signal.network.util.JsonUtil
+import org.signal.network.util.Tls12SocketFactory
+import org.signal.network.util.TlsProxySocketFactory
 import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment.ProgressListener
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.api.util.CredentialsProvider
-import org.whispersystems.signalservice.api.util.Tls12SocketFactory
-import org.whispersystems.signalservice.api.util.TlsProxySocketFactory
-import org.whispersystems.signalservice.internal.configuration.SignalProxy
-import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration
-import org.whispersystems.signalservice.internal.configuration.SignalUrl
 import org.whispersystems.signalservice.internal.util.BlacklistingTrustManager
 import java.io.IOException
 import java.io.OutputStream
@@ -50,7 +49,6 @@ import java.util.Random
 import java.util.concurrent.TimeUnit
 import javax.net.ssl.SSLContext
 import javax.net.ssl.X509TrustManager
-import kotlin.coroutines.resume
 import kotlin.jvm.Throws
 import kotlin.reflect.KClass
 
@@ -260,7 +258,7 @@ class SignalRestClient @JvmOverloads constructor(
       }
       val httpRequest = buildHttpRequest(spec, holder, effectiveBody, extraHeaders = emptyMap())
       val client = newCallClient(holder)
-      val response = client.newCall(httpRequest).await()
+      val response = client.newCall(httpRequest).executeAsync()
 
       response.use { resp ->
         val body = resp.body.bytes()
@@ -297,7 +295,7 @@ class SignalRestClient @JvmOverloads constructor(
       val httpRequest = buildHttpRequest(spec, holder, body = spec.body, extraHeaders = rangeHeader)
       val client = newCallClient(holder)
       val call = client.newCall(httpRequest)
-      val response = call.await()
+      val response = call.executeAsync()
 
       response.use { resp ->
         val code = resp.code
@@ -494,19 +492,6 @@ class SignalRestClient @JvmOverloads constructor(
     return map
   }
 
-  private suspend fun Call.await(): Response = suspendCancellableCoroutine { cont ->
-    cont.invokeOnCancellation { runCatching { cancel() } }
-    enqueue(object : Callback {
-      override fun onFailure(call: Call, e: IOException) {
-        if (!cont.isCancelled) cont.resumeWith(Result.failure(e))
-      }
-
-      override fun onResponse(call: Call, response: Response) {
-        cont.resume(response)
-      }
-    })
-  }
-
   private data class ConnectionHolder(
     val client: OkHttpClient,
     val url: String,
@@ -546,4 +531,50 @@ class SignalRestClient @JvmOverloads constructor(
       buffered.flush()
     }
   }
+}
+
+/**
+ * Maps a raw REST result into a fully-typed one.
+ */
+inline fun <T, E : BadRequestError> RequestResult<RestResponse, RestStatusCodeError>.toTypedResult(
+  parseSuccess: (RestResponse) -> T,
+  mapError: (RestStatusCodeError) -> E?
+): RequestResult<T, E> {
+  return when (this) {
+    is RequestResult.Success -> {
+      try {
+        RequestResult.Success(parseSuccess(result))
+      } catch (e: IOException) {
+        RequestResult.RetryableNetworkError(e)
+      } catch (e: Exception) {
+        RequestResult.ApplicationError(e)
+      }
+    }
+    is RequestResult.NonSuccess -> {
+      try {
+        when (val mapped = mapError(error)) {
+          null -> RequestResult.ApplicationError(IllegalStateException("Unexpected response code: ${error.statusCode}, body: ${error.bodyString()}"))
+          else -> RequestResult.NonSuccess(mapped)
+        }
+      } catch (e: Exception) {
+        RequestResult.ApplicationError(e)
+      }
+    }
+    is RequestResult.RetryableNetworkError -> this
+    is RequestResult.ApplicationError -> this
+  }
+}
+
+/**
+ * Parses body as a UTF-8 string.
+ */
+fun RestResponse.bodyString(): String {
+  return body.toString(Charsets.UTF_8)
+}
+
+/**
+ * Parses body as a UTF-8 string.
+ */
+fun RestStatusCodeError.bodyString(): String {
+  return body?.toString(Charsets.UTF_8) ?: ""
 }

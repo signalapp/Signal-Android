@@ -4,7 +4,7 @@
   ~ SPDX-License-Identifier: AGPL-3.0-only
   -->
 <!-- smartling.instruction_comments_enabled = on -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
   <!-- Removed by excludeNonTranslatables <string name="app_name" translatable="false">Signal</string> -->
 
   <!-- Removed by excludeNonTranslatables <string name="install_url" translatable="false">https://signal.org/install</string> -->
@@ -171,6 +171,8 @@
     <string name="BlockedUsersActivity__block_user">ഉപയോക്താവിനെ ബ്ലോക്ക് ചെയ്യണോ?</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" എന്നയാൾക്ക് നിങ്ങളെ വിളിക്കാനോ നിങ്ങൾക്ക് സന്ദേശങ്ങള്‍ അയയ്ക്കാനോ കഴിയില്ല.</string>
     <string name="BlockedUsersActivity__block">ബ്ലോക്ക് ചെയ്യുക</string>
+    <!-- Subtitle shown under a blocked user. Placeholder is the time they were blocked-->
+    <string name="BlockedUsersActivity__blocked_on_s">%1$s-ന് ബ്ലോക്ക് ചെയ്തു</string>
 
     <!-- CreditCardFragment -->
     <!-- Title of fragment -->
@@ -294,6 +296,16 @@
     <string name="ClientDeprecatedActivity_warning">മുന്നറിയിപ്പ്</string>
     <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">നിങ്ങളുടെ Signal പതിപ്പ് കാലഹരണപ്പെട്ടിരിക്കുന്നു. നിങ്ങളുടെ സന്ദേശ ചരിത്രം നിങ്ങൾക്ക് കാണാൻ കഴിയും, പക്ഷേ നിങ്ങൾ അപ്‌ഡേറ്റ് ചെയ്യുന്നതുവരെ നിങ്ങൾക്ക് സന്ദേശങ്ങൾ അയയ്‌ക്കാനോ സ്വീകരിക്കാനോ കഴിയില്ല.</string>
 
+    <!-- ClockSkewActivity -->
+    <!-- Title of the full-screen dialog shown when the device clock is too far off from the real time -->
+    <string name="ClockSkewActivity__title">തീയതി കൃത്യമല്ല</string>
+    <!-- Body text explaining that the device clock is wrong and needs to be fixed -->
+    <string name="ClockSkewActivity__date_inaccurate_description">നിങ്ങളുടെ ഉപകരണത്തിലെ തീയതി കൃത്യമല്ല.\nനിങ്ങളുടെ ക്ലോക്ക് ക്രമീകരിച്ച് വീണ്ടും ശ്രമിക്കുക.</string>
+    <!-- Shows the user the current, inaccurate date and time reported by their device. Placeholder is the formatted date, time, and time zone. -->
+    <string name="ClockSkewActivity__time_prefix">നിങ്ങളുടെ ഉപകരണത്തിലെ തീയതിയും സമയവും:\n %1$s</string>
+    <!-- Button that opens the system date and time settings -->
+    <string name="ClockSkewActivity__adjust_date_button">തീയതി ക്രമീകരിക്കുക</string>
+
     <!-- CommunicationActions -->
     <string name="CommunicationActions_no_browser_found">വെബ്‌ബ്രൗസറൊന്നും കണ്ടെത്തിയില്ല.</string>
     <string name="CommunicationActions_send_email">ഇമെയിൽ അയയ്ക്കുക</string>
@@ -388,6 +400,8 @@
     <!-- Conversation message shown when someone deletes their own message. Placeholder is the name of the person. -->
     <string name="ConversationItem_s_deleted_this_message">%1$s ഈ സന്ദേശം ഇല്ലാതാക്കി</string>
     <string name="ConversationItem_you_deleted_this_message">നിങ്ങൾ ഈ സന്ദേശം ഇല്ലാതാക്കി</string>
+    <!-- Tappable text shown on a locally-deleted message tombstone, prompting the user to promote it to a delete-for-everyone -->
+    <string name="ConversationItem_delete_for_everyone_question">എല്ലാവർക്കും ഇല്ലാതാക്കണോ?</string>
     <!-- Conversation message when a message has been deleted by an admin. The placeholder is the admin\'s name. -->
     <string name="ConversationItem_admin_s_deleted_this_message">അഡ്മിൻ %1$s ഈ സന്ദേശം ഇല്ലാതാക്കി</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -416,7 +430,6 @@
     <!-- Accessibility text associated with image button to send an edited message. -->
     <string name="ConversationActivity_send_edit">എഡിറ്റ് ചെയ്തത് അയയ്ക്കുക</string>
     <string name="ConversationActivity_compose_message">സന്ദേശം രചിക്കുക</string>
-    <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">ക്ഷമിക്കണം, നിങ്ങളുടെ അറ്റാച്ചുമെന്റ് ക്രമീകരിക്കുന്നതിൽ ഒരു പിശക് ഉണ്ടായിരുന്നു.</string>
     <!-- Toast shown when user is unable to find the recipient when sending a message -->
     <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">സ്വീകർത്താവ് സാധുവായ ഒരു SMS അല്ലെങ്കിൽ ഇമെയിൽ വിലാസമല്ല!</string>
     <string name="ConversationActivity_message_is_empty_exclamation">സന്ദേശം ശൂന്യമാണ്!</string>
@@ -579,7 +592,7 @@
     <string name="ConversationFragment_delete">ഇല്ലാതാക്കൂ</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">എല്ലായിടത്തും ഇല്ലാതാക്കുക</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">സംഭാഷണത്തിലെ എല്ലാവർ‌ക്കും അവർ‌ Signal-ന്റെ സമീപകാല പതിപ്പിലാണെങ്കിൽ‌ ഈ സന്ദേശം ഇല്ലാതാക്കും. നിങ്ങൾ ഒരു സന്ദേശം ഇല്ലാതാക്കിയത് അവർക്ക് കാണാൻ കഴിയും.</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">ചാറ്റിലുള്ള എല്ലാവർക്കും വേണ്ടി ഈ സന്ദേശം ഇല്ലാതാക്കപ്പെടും. നിങ്ങൾ ഒരു സന്ദേശം ഇല്ലാതാക്കി എന്ന് അവർക്ക് കാണാൻ സാധിക്കും.</string>
     <string name="ConversationFragment_quoted_message_not_found">യഥാർത്ഥ സന്ദേശം കണ്ടെത്തിയില്ല</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">യഥാർത്ഥ സന്ദേശം മേലിൽ ലഭ്യമല്ല</string>
     <string name="ConversationFragment_failed_to_open_message">സന്ദേശം തുറക്കുന്നതിൽ പരാജയപ്പെട്ടു</string>
@@ -758,17 +771,28 @@
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">വായിക്കാത്ത ചാറ്റുകൾ ഒന്നുമില്ല</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="one">തിരഞ്ഞെടുത്ത ചാറ്റ് ഇല്ലാതാക്കണോ?</item>
-        <item quantity="other">തിരഞ്ഞെടുത്ത ചാറ്റുകൾ ഇല്ലാതാക്കണോ?</item>
+        <item quantity="one">സന്ദേശ ചരിത്രം ഇല്ലാതാക്കണോ?</item>
+        <item quantity="other">സന്ദേശ ചരിത്രങ്ങൾ ഇല്ലാതാക്കണോ?</item>
     </plurals>
+    <!-- Dialog message shown when deleting chats, none of which are groups -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">ഇത് തിരഞ്ഞെടുത്ത ചാറ്റിനെ ശാശ്വതമായി ഇല്ലാതാക്കും.</item>
-        <item quantity="other">ഇത് തിരഞ്ഞെടുത്ത %1$d ചാറ്റുകളും ശാശ്വതമായി ഇല്ലാതാക്കും.</item>
+        <item quantity="one">ഈ ചാറ്റിലെ എല്ലാ സന്ദേശങ്ങളും ഇല്ലാതാക്കപ്പെടും.</item>
+        <item quantity="other">ഈ ചാറ്റുകളിലെ എല്ലാ സന്ദേശങ്ങളും ഇല്ലാതാക്കപ്പെടും.</item>
     </plurals>
-    <!-- Dialog message shown when deleting one to many conversations from the chat list and the user has a linked device -->
+    <!-- Dialog message shown when deleting chats, with at least one group -->
+    <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_group">
+        <item quantity="one">ഈ ചാറ്റിലെ എല്ലാ സന്ദേശങ്ങളും ഇല്ലാതാക്കപ്പെടും. നിങ്ങൾ തുടർന്നും ഈ ഗ്രൂപ്പിൽ അംഗമായിരിക്കും.</item>
+        <item quantity="other">ഈ ചാറ്റുകളിലെ എല്ലാ സന്ദേശങ്ങളും ഇല്ലാതാക്കപ്പെടും. നിങ്ങൾ ഇതുവരെ പുറത്തുപോകാത്ത ഏതൊരു ഗ്രൂപ്പിലും തുടർന്നും അംഗമായിരിക്കും.</item>
+    </plurals>
+    <!-- Dialog message shown when deleting chats, none of which are groups, and the user has a linked device -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device">
-        <item quantity="one">ഇത് നിങ്ങളുടെ എല്ലാ ഉപകരണങ്ങളിൽ നിന്നും തിരഞ്ഞെടുത്ത ചാറ്റ് ശാശ്വതമായി ഇല്ലാതാക്കും.</item>
-        <item quantity="other">ഇത് നിങ്ങളുടെ എല്ലാ ഉപകരണങ്ങളിൽ നിന്നും തിരഞ്ഞെടുത്ത %1$d എല്ലാ ചാറ്റുകളും ശാശ്വതമായി ഇല്ലാതാക്കും.</item>
+        <item quantity="one">ഈ ചാറ്റിലെ എല്ലാ സന്ദേശങ്ങളും നിങ്ങളുടെ എല്ലാ ഉപകരണങ്ങളിൽ നിന്നും ഇല്ലാതാക്കപ്പെടും.</item>
+        <item quantity="other">ഈ ചാറ്റുകളിലെ എല്ലാ സന്ദേശങ്ങളും നിങ്ങളുടെ എല്ലാ ഉപകരണങ്ങളിൽ നിന്നും ഇല്ലാതാക്കപ്പെടും.</item>
+    </plurals>
+    <!-- Dialog message shown when deleting chats with at least one group, and the user has a linked device -->
+    <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device_group">
+        <item quantity="one">ഈ ചാറ്റിലെ എല്ലാ സന്ദേശങ്ങളും നിങ്ങളുടെ എല്ലാ ഉപകരണങ്ങളിൽ നിന്നും ഇല്ലാതാക്കപ്പെടും. നിങ്ങൾ തുടർന്നും ഈ ഗ്രൂപ്പിൽ അംഗമായിരിക്കും.</item>
+        <item quantity="other">ഈ ചാറ്റുകളിലെ എല്ലാ സന്ദേശങ്ങളും നിങ്ങളുടെ എല്ലാ ഉപകരണങ്ങളിൽ നിന്നും ഇല്ലാതാക്കപ്പെടും. നിങ്ങൾ ഇതുവരെ പുറത്തുപോകാത്ത ഏതൊരു ഗ്രൂപ്പിലും തുടർന്നും അംഗമായിരിക്കും.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">ഇല്ലാതാക്കുന്നു</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
@@ -1046,13 +1070,13 @@
 
     <!-- LinkDeviceFragment -->
     <!-- Description for how Signal will work with a linked device (eg desktop, iPad) -->
-    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">ഡെസ്ക്ടോപ്പിലോ iPad-ലോ ഈ Signal അക്കൗണ്ട് ഉപയോഗിക്കുക.</string>
+    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">മറ്റൊരു ഉപകരണത്തിൽ ഈ Signal അക്കൗണ്ട് ഉപയോഗിക്കുക.</string>
     <!-- Button prompting users to link a new device to their account -->
     <string name="LinkDeviceFragment__link_a_new_device">ഒരു പുതിയ ഉപകരണം ലിങ്ക് ചെയ്യുക</string>
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
     <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$s എല്ലാ ഉപകരണങ്ങളിലും എൻഡ്-ടു-എൻഡ് എൻക്രിപ്ഷൻ മുഖേന സന്ദേശങ്ങളും ചാറ്റ് വിവരങ്ങളും പരിരക്ഷിച്ചിരിക്കുന്നു</string>
     <!-- Bottom sheet title explaining how Signal works on a linked device -->
-    <string name="LinkDeviceFragment__signal_on_desktop_ipad">ഡെസ്ക്ടോപ്പിലോ iPad-ലോ Signal</string>
+    <string name="LinkDeviceFragment__signal_on_desktop_ipad">ലിങ്ക് ചെയ്‌ത ഉപകരണത്തിലെ Signal</string>
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
     <string name="LinkDeviceFragment__all_messaging_is_private">ലിങ്ക് ചെയ്‌ത ഉപകരണങ്ങളിലെ എല്ലാ സന്ദേശമയയ്‌ക്കലും സ്വകാര്യമാണ്</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
@@ -1118,6 +1142,8 @@
     <string name="LinkDeviceFragment__edit_name">പേര് എഡിറ്റ് ചെയ്യുക</string>
     <!-- Toast shown when the process of linking a device has been cancelled -->
     <string name="LinkDeviceFragment__linking_cancelled">ലിങ്കിംഗ് റദ്ദാക്കി</string>
+    <!-- Snackbar shown when the user tries to link a new device but has already reached the maximum number of linked devices. Placeholder is the maximum count. -->
+    <string name="LinkDeviceFragment__you_can_only_have_d_linked_devices">നിങ്ങൾക്ക് %1$d ലിങ്ക് ചെയ്‌ത ഉപകരണങ്ങൾ മാത്രമേ ഉണ്ടാകാൻ പാടുള്ളൂ.</string>
     <!-- Message shown in progress dialog telling users to avoid closing the app while messages are being synced -->
     <string name="LinkDeviceFragment__do_not_close">ആപ്പ് അടയ്ക്കരുത്</string>
     <!-- Dialog title shown when a device is unlinked -->
@@ -1164,6 +1190,8 @@
     <string name="AddLinkDeviceFragment__this_qr_code_not_valid">ഈ QR കോഡ് സാധുവല്ല.  നിങ്ങൾ ലിങ്ക് ചെയ്യാൻ ആഗ്രഹിക്കുന്ന ഡിവൈസിൽ ഡിസ്പ്ലേ ചെയ്തിരിക്കുന്ന QR കോഡ് തന്നെയാണ് നിങ്ങൾ സ്കാൻ ചെയ്യുന്നതെന്ന് ദയവായി ഉറപ്പാക്കുക.</string>
     <!-- Button in dialog to retry linking a device with a qr code -->
     <string name="AddLinkDeviceFragment__retry">വീണ്ടും ശ്രമിക്കുക</string>
+    <!-- Text shown in a dialog when the device being linked is too out-of-date to be linked to this account -->
+    <string name="AddLinkDeviceFragment__the_device_you_are_trying_to_link_is_out_of_date">The device you\'re trying to link is out of date. Please upgrade and try again.</string>
 
     <!-- LinkDeviceSyncBottomSheet -->
     <!-- Option in bottom sheet to transfer message history -->
@@ -1549,12 +1577,6 @@
     <!-- Dialog message -->
     <string name="RestoreActivity__no_longer_registered_message">നിങ്ങളുടെ Signal അക്കൗണ്ട് മറ്റൊരു ഉപകരണത്തിൽ രജിസ്റ്റർ ചെയ്തതിനാലാകാം ഇത്.</string>
 
-    <!-- GroupMentionSettingDialog -->
-    <string name="GroupMentionSettingDialog_notify_me_for_mentions">സൂചനകൾ എന്നെ അറിയിക്കുക</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">മ്യൂട്ട് ചെയ്ത ചാറ്റുകളിൽ നിങ്ങളെ പരാമർശിക്കുമ്പോൾ അറിയിപ്പുകൾ ലഭിക്കണോ?</string>
-    <string name="GroupMentionSettingDialog_always_notify_me">എന്നെ അറിയിക്കുക</string>
-    <string name="GroupMentionSettingDialog_dont_notify_me">എന്നെ അറിയിക്കരുത്</string>
-
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">നിങ്ങളുടെ ഉപയോക്തൃനാമവും QR കോഡും ലിങ്കും നിങ്ങളുടെ പ്രൊഫൈലിൽ ദൃശ്യമല്ല. നിങ്ങൾക്ക് വിശ്വാസമുള്ള ആളുകളുമായി മാത്രം നിങ്ങളുടെ ഉപയോക്തൃനാമം പങ്കിടുക.</string>
@@ -1855,9 +1877,6 @@
 
     <!-- MediaPickerActivity -->
     <string name="MediaPickerActivity__menu_open_camera">ക്യാമറ തുറക്കുക</string>
-
-    <!-- MediaSendActivity -->
-    <string name="MediaSendActivity_camera_unavailable">ക്യാമറ ലഭ്യമല്ല.</string>
 
     <!-- MediaRepository -->
     <string name="MediaRepository_all_media">എല്ലാ മീഡിയ</string>
@@ -2866,13 +2885,6 @@
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">പിന്തുണയുമായി ബന്ധപ്പെടുക</string>
 
-    <!-- RegistrationLockV2Dialog -->
-    <string name="RegistrationLockV2Dialog_turn_on_registration_lock">രജിസ്ട്രേഷൻ ലോക്ക് ഓണാക്കണോ?</string>
-    <string name="RegistrationLockV2Dialog_turn_off_registration_lock">രജിസ്ട്രേഷൻ ലോക്ക് ഓഫാക്കണോ?</string>
-    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Signal-ൽ വീണ്ടും രജിസ്റ്റർ ചെയ്യുമ്പോൾ നിങ്ങളുടെ Signal PIN മറന്നുപോയിട്ടുണ്ടെങ്കിൽ, നിങ്ങളുടെ അക്കൗണ്ടിൽ നിന്ന് നിങ്ങളെ 7 ദിവസത്തേക്ക് തടയും.</string>
-    <string name="RegistrationLockV2Dialog_turn_on">ഓൺ ചെയ്യുക</string>
-    <string name="RegistrationLockV2Dialog_turn_off">ഓഫ് ആക്കുക</string>
-
     <!-- RevealableMessageView -->
     <string name="RevealableMessageView_view_photo">ഫോട്ടോ കാണുക</string>
     <string name="RevealableMessageView_view_video">വീഡിയോ കാണുക</string>
@@ -3070,6 +3082,7 @@
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_locale" translatable="false">Locale:</string> -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_challenge_received" translatable="false">Challenge Received:</string> -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_registered" translatable="false">Registered:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_backups" translatable="false">Backups:</string> -->
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">ഗ്രൂപ്പ് പുതുക്കി</string>
@@ -3241,7 +3254,7 @@
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
     <string name="MuteDialog_mute_notifications">അറിയിപ്പുകൾ മ്യൂട്ട് ചെയ്യുക</string>
     <!-- Dialog option that, when pressed, will open a time picker to let the user choose how long they\'d like to mute notifications for -->
-    <string name="MuteDialog__mute_until">ഇത് വരെ മ്യൂട്ട് ചെയ്യുക…</string>
+    <string name="MuteDialog__mute_until">Until…</string>
 
     <!-- MuteUntilTimePickerBottomSheet -->
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
@@ -4092,15 +4105,6 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">സമീപകാലത്ത് ഉപയോഗിച്ചവ</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">ഈ സന്ദേശം</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">അടുത്തിടെ ഉപയോഗിച്ചവ</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">സ്മൈലി &amp; ആളുകൾ</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">പ്രകൃതി</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">ഭക്ഷണം</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">പ്രവർത്തനങ്ങൾ</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">സ്ഥലങ്ങൾ</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">വസ്തുക്കൾ</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">ചിഹ്നങ്ങൾ</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">പതാകകൾ</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">ഇമോട്ടിക്കോണുകൾ</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">ഫലങ്ങളൊന്നുമില്ല.</string>
 
     <!-- GifQuickSearchOption -->
@@ -4118,10 +4122,10 @@
     <string name="arrays__use_default">സ്ഥിരസ്ഥിതി ഉപയോഗിക്കുക</string>
     <string name="arrays__use_custom">ഇഷ്‌ടാനുസൃതം ഉപയോഗിക്കുക</string>
 
-    <string name="arrays__mute_for_one_hour">1 മണിക്കൂർ നേരത്തേക്ക് മ്യൂട്ട് ചെയ്യുക</string>
-    <string name="arrays__mute_for_eight_hours">8 മണിക്കൂർ നേരത്തേക്ക് മ്യൂട്ട് ചെയ്യുക</string>
-    <string name="arrays__mute_for_one_day">1 ദിവസത്തേക്ക് മ്യൂട്ട് ചെയ്യുക</string>
-    <string name="arrays__mute_for_seven_days">7 ദിവസത്തേക്ക് മ്യൂട്ട് ചെയ്യുക</string>
+    <string name="arrays__mute_for_one_hour">1 മണിക്കൂർ</string>
+    <string name="arrays__mute_for_eight_hours">8 മണിക്കൂർ</string>
+    <string name="arrays__mute_for_one_day">1 ദിവസം</string>
+    <string name="arrays__mute_for_seven_days">1 ആഴ്ച</string>
     <string name="arrays__always">എല്ലായ്പ്പോഴും</string>
 
     <string name="arrays__settings_default">ക്രമീകരണ സ്ഥിരസ്ഥിതി</string>
@@ -4176,6 +4180,10 @@
     <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
     <string name="preferences__inactivity_timeout_interval">നിഷ്‌ക്രിയത്വ കാലഹരണപ്പെടൽ ഇടവേള</string>
     <string name="preferences__notifications">അറിയിപ്പുകൾ</string>
+    <!-- Preference item menu to enable notifications -->
+    <string name="preferences__enable_notifications">നോട്ടിഫിക്കേഷനുകൾ പ്രവർത്തനക്ഷമമാക്കുക</string>
+    <!-- Preference header for call notifications -->
+    <string name="preferences__call_notifications">കോൾ അറിയിപ്പുകൾ</string>
     <string name="preferences__led_color">LED നിറം</string>
     <string name="preferences__led_color_unknown">അജ്ഞാതം</string>
     <string name="preferences__pref_led_blink_title">LED ബ്ലിങ്ക് പാറ്റേൺ</string>
@@ -4263,12 +4271,10 @@
     <string name="preferences__system_default">സിസ്റ്റം സ്ഥിരസ്ഥിതി</string>
     <string name="preferences__language">ഭാഷ</string>
     <string name="preferences__signal_messages_and_calls">Signal സന്ദേശങ്ങളും കോളുകളും</string>
-    <string name="preferences__advanced_pin_settings">വിപുല PIN ക്രമീകരണങ്ങൾ</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">വിപുലമായ PIN ക്രമീകരണങ്ങൾ</string>
     <string name="preferences__free_private_messages_and_calls">സിഗ്നൽ ഉപയോക്താക്കൾക്ക് സൗജന്യ സ്വകാര്യ സന്ദേശങ്ങളും കോളുകളും</string>
     <string name="preferences__submit_debug_log">ഡീബഗ് ലോഗ് സമർപ്പിക്കുക</string>
-    <string name="preferences__delete_account">അക്കൗണ്ട് ഇല്ലാതാക്കൂ</string>
     <string name="preferences__support_wifi_calling">\'WiFi കോളിംഗ്\' അനുയോജ്യത മോഡ്</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">നിങ്ങളുടെ ഉപകരണം WiFi വഴി SMS/MMS ഡെലിവറി ഉപയോഗിക്കുന്നുവെങ്കിൽ പ്രവർത്തനക്ഷമമാക്കുക (ഉപകരണത്തിൽ \'WiFi കോളിംഗ്\' പ്രാപ്‌തമാക്കിയാൽ മാത്രം ഇത് പ്രവർത്തനക്ഷമമാക്കുക)</string>
     <string name="preferences__incognito_keyboard">ഇൻകോഗ്നിറ്റോ കീബോർഡ്</string>
@@ -4335,6 +4341,16 @@
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">കുറഞ്ഞ ഡാറ്റ ഉപയോഗിക്കുന്നത് മോശം നെറ്റ്‌വർക്കുകളിലും കോളുകൾ മെച്ചപ്പെടുത്താൻ സഹായിച്ചേക്കാം.</string>
     <string name="preferences_notifications__in_chat_sounds">ഇൻ-ചാറ്റ് ശബ്‌ദങ്ങള്‍</string>
     <string name="preferences_notifications__show">കാണിക്കുക</string>
+    <!-- Preference item to set notification settings when chats are muted -->
+    <string name="preferences_notifications__while_muted">While muted</string>
+    <!-- Option in settings to turn on reaction notifications -->
+    <string name="preferences_notifications__reaction">Reaction notifications</string>
+    <!-- Body option in settings to turn on reaction notifications    -->
+    <string name="preferences_notifications__notify_reaction">Show notifications for reactions to messages you send</string>
+    <!-- Option in settings to turn on unread reminders -->
+    <string name="preferences_notifications__unread">Unread reminders</string>
+    <!-- Body option to turn on unread reminders -->
+    <string name="preferences_notifications__notify_unread">Occasionally notify when there are unread messages in muted chats</string>
     <string name="preferences_notifications__ringtone">റിംഗ്‌ടോൺ</string>
     <string name="preferences_chats__message_text_size">സന്ദേശ ഫോണ്ട് വലുപ്പം</string>
     <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
@@ -4862,8 +4878,6 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">നിങ്ങളുടെ അക്കൗണ്ടിനായി നിങ്ങൾ സൃഷ്‌ടിച്ച പിൻ നൽകുക. ഇത് നിങ്ങളുടെ SMS പരിശോധന കോഡിൽ നിന്ന് വ്യത്യസ്തമാണ്.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">നിങ്ങളുടെ അക്കൗണ്ടിനായി സൃഷ്ടിച്ച PIN നൽകുക.</string>
-    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
-    <string name="RegistrationLockFragment__switch_keyboard">കീബോർഡ് സ്വിച്ച് ചെയ്യുക</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">PIN തെറ്റാണ്. വീണ്ടും ശ്രമിക്കുക.</string>
     <string name="RegistrationLockFragment__forgot_pin">PIN മറന്നോ?</string>
     <string name="RegistrationLockFragment__incorrect_pin">PIN തെറ്റാണ്</string>
@@ -4941,8 +4955,6 @@
     <!-- Text label button to skip restoring -->
     <string name="registration_activity__skip_restore">പുനഃസ്ഥാപിക്കൽ ഒഴിവാക്കുക</string>
     <string name="preferences_chats__chat_backups">ചാറ്റ് ബാക്കപ്പുകൾ</string>
-    <string name="preferences_chats__transfer_account">അക്കൗണ്ട് മാറ്റിസ്ഥാപിക്കുക</string>
-    <string name="preferences_chats__transfer_account_to_a_new_android_device">അക്കൌണ്ട് ഒരു പുതിയ ആൻഡ്രോയിഡ് ഉപകരണത്തിലേക്ക് മാറ്റിസ്ഥാപിക്കുക</string>
     <!-- Title for dialog to enter in the backup passphrase -->
     <string name="RegistrationActivity_enter_backup_passphrase">ബാക്കപ്പിന്റെ രഹസ്യവാചകം നൽകുക</string>
     <string name="RegistrationActivity_restore">വീണ്ടെടുക്കൂ</string>
@@ -5016,7 +5028,7 @@
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
     <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">നിങ്ങൾ സന്ദേശമയയ്‌ക്കുകയോ മുമ്പ് ചാറ്റ് ചെയ്തിട്ടുണ്ടെങ്കിലോ മാത്രമേ നിങ്ങൾ Signal-ൽ ഉണ്ടെന്ന് കാണാനാകൂ.</string>
     <!-- Snackbar text when pressing invalid radio item -->
-    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"ഈ ക്രമീകരണം മാറ്റാൻ, 'ആർക്കൊക്കെ എന്റെ നമ്പർ കാണാൻ കഴിയും' എന്നത് 'ആരും കാണണ്ട' എന്ന് സജ്ജീകരിക്കുക."</string>
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"ഈ ക്രമീകരണം മാറ്റാൻ, \'ആർക്കൊക്കെ എന്റെ നമ്പർ കാണാൻ കഴിയും\' എന്നത് \'ആരും കാണണ്ട\' എന്ന് സജ്ജീകരിക്കുക."</string>
     <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
     <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">ഉറപ്പാണോ?</string>
     <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
@@ -5030,19 +5042,9 @@
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">നിഷ്‌ക്രിയത്വത്തിന് ശേഷം സ്‌ക്രീൻ ലോക്കിനുള്ള സമയം</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
     <string name="preferences_app_protection__to_use_screen_lock">സ്‌ക്രീൻ ലോക്ക് ഉപയോഗിക്കുന്നതിന് ഈ ഉപകരണത്തിൽ ഒരു PIN, പാറ്റേൺ അല്ലെങ്കിൽ പാസ്‌വേഡ് സജ്ജീകരിക്കുക.</string>
-    <string name="preferences_app_protection__signal_pin">Signal PIN</string>
-    <string name="preferences_app_protection__create_a_pin">ഒരു പിൻ സൃഷ്ടിക്കുക</string>
-    <string name="preferences_app_protection__change_your_pin">നിങ്ങളുടെ പിൻ മാറ്റുക</string>
-    <string name="preferences_app_protection__pin_reminders">PIN ഓർമ്മപ്പെടുത്തലുകൾ</string>
-    <string name="preferences_app_protection__turn_off">ഓഫ് ആക്കുക</string>
-    <string name="preferences_app_protection__confirm_pin">PIN ഉറപ്പാക്കു</string>
-    <string name="preferences_app_protection__confirm_your_signal_pin">നിങ്ങളുടെ Signal PIN ഉറപ്പാക്കു</string>
-    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">നിങ്ങളുടെ PIN വീണ്ടെടുക്കാൻ കഴിയില്ല, നിങ്ങൾ അത് മന:പാഠമാക്കണം അല്ലെങ്കിൽ സുരക്ഷിതമായി സൂക്ഷിക്കണം. നിങ്ങൾ PIN മറന്നാൽ, നിങ്ങളുടെ Signal അക്കൗണ്ട് വീണ്ടും രജിസ്റ്റർ ചെയ്യുമ്പോൾ നിങ്ങൾക്ക് ഡാറ്റ നഷ്‌ടപ്പെടാം.</string>
-    <string name="preferences_app_protection__incorrect_pin_try_again">PIN തെറ്റാണ്. വീണ്ടും ശ്രമിക്കുക.</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">രജിസ്ട്രേഷൻ ലോക്ക് പ്രവർത്തനക്ഷമമാക്കുന്നതിൽ പരാജയപ്പെട്ടു.</string>
     <string name="preferences_app_protection__failed_to_disable_registration_lock">രജിസ്ട്രേഷൻ ലോക്ക് അപ്രാപ്തമാക്കുന്നതിൽ പരാജയപ്പെട്ടു.</string>
     <string name="AppProtectionPreferenceFragment_none">ഒന്നുമില്ല</string>
-    <string name="preferences_app_protection__registration_lock">രജിസ്ട്രേഷൻ ലോക്ക്</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">നിങ്ങളുടെ രജിസ്ട്രേഷൻ ലോക്ക് പിൻ നൽകണം</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">നിങ്ങളുടെ PIN-ന് കുറഞ്ഞത് %1$d അക്കങ്ങളോ പ്രതീകങ്ങളോ ഉണ്ട്</string>
     <string name="RegistrationActivity_too_many_attempts">വളരെയധികം ശ്രമങ്ങൾ</string>
@@ -5090,48 +5092,34 @@
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
     <string name="Recipient_deleted_account">ഇല്ലാതാക്കിയ അക്കൗണ്ട്</string>
 
-    <!-- Option in settings that will take use to re-register if they are no longer registered -->
-    <string name="preferences_account_reregister">അക്കൗണ്ട് വീണ്ടും രജിസ്റ്റർ ചെയ്യുക</string>
-    <!-- Option in settings that will take user to our website or playstore to update their expired build -->
-    <string name="preferences_account_update_signal">Signal അപ്ഡേറ്റ് ചെയ്യുക</string>
-    <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
-    <string name="preferences_account_delete_all_data">എല്ലാ ഡാറ്റയും ഇല്ലാതാക്കുക</string>
-    <!-- Title for confirmation dialog confirming user wants to delete all their data -->
-    <string name="preferences_account_delete_all_data_confirmation_title">എല്ലാ ഡാറ്റയും ഇല്ലാതാക്കണോ?</string>
-    <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_message">ഇത് ആപ്പ് റീസെറ്റ് ചെയ്യുകയും എല്ലാ സന്ദേശങ്ങളും ഇല്ലാതാക്കുകയും ചെയ്യും. ഈ പ്രോസസ് പൂർത്തിയായതിന് ശേഷം ആപ്പ് അടയ്ക്കും.</string>
-    <!-- Confirmation action to proceed with application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_proceed">തുടരുക</string>
-    <!-- Confirmation action to cancel application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_cancel">റദ്ദാക്കുക</string>
     <!-- Error message shown when we fail to delete the data for some unknown reason -->
     <string name="preferences_account_delete_all_data_failed">ഡാറ്റ ഇല്ലാതാക്കാനായില്ല</string>
 
     <!-- LinkedDeviceAccountSettingsFragment -->
     <!-- Title of an informational card shown on the account settings screen of a linked device -->
-    <string name="LinkedDeviceAccountSettingsFragment__this_is_a_linked_device">This is a linked device</string>
+    <string name="LinkedDeviceAccountSettingsFragment__this_is_a_linked_device">ഇത് ഒരു ലിങ്ക് ചെയ്ത ഉപകരണമാണ്</string>
     <!-- Body of an informational card explaining that account settings must be managed from the primary device -->
-    <string name="LinkedDeviceAccountSettingsFragment__to_manage_your_account_settings">To manage your account settings, open Signal on your primary device.</string>
+    <string name="LinkedDeviceAccountSettingsFragment__to_manage_your_account_settings">നിങ്ങളുടെ അക്കൗണ്ട് ക്രമീകരണങ്ങൾ നിയന്ത്രിക്കാൻ പ്രൈമറി ഉപകരണത്തിൽ Signal തുറക്കുക.</string>
     <!-- Title of a settings row that deletes all Signal data from this linked device -->
-    <string name="LinkedDeviceAccountSettingsFragment__delete_app_data">Delete app data</string>
+    <string name="LinkedDeviceAccountSettingsFragment__delete_app_data">ആപ്പ് ഡാറ്റ ഇല്ലാതാക്കുക</string>
     <!-- Subtitle of the delete app data row explaining what it does -->
-    <string name="LinkedDeviceAccountSettingsFragment__this_will_remove_all_data">This will remove all data from the Signal app on this device.</string>
+    <string name="LinkedDeviceAccountSettingsFragment__this_will_remove_all_data">ഇത് ഈ ഉപകരണത്തിലെ Signal ആപ്പിൽ നിന്നുള്ള എല്ലാ വിവരങ്ങളും നീക്കം ചെയ്യും.</string>
     <!-- Title of the confirmation dialog shown when deleting app data from a linked device -->
-    <string name="LinkedDeviceAccountSettingsFragment__delete_app_data_question">Delete app data?</string>
+    <string name="LinkedDeviceAccountSettingsFragment__delete_app_data_question">ആപ്പ് ഡാറ്റ ഇല്ലാതാക്കണോ?</string>
     <!-- Message of the confirmation dialog explaining that only this device\'s data is deleted, not the account -->
-    <string name="LinkedDeviceAccountSettingsFragment__this_will_delete_all_data_and_messages">This will delete all data and messages from the Signal app on this device. Your Signal account and data on your primary device or other linked devices will not be deleted. The app will close after this process is complete.</string>
+    <string name="LinkedDeviceAccountSettingsFragment__this_will_delete_all_data_and_messages">ഇത്, ഈ ഉപകരണത്തിലെ Signal ആപ്പിൽ നിന്നുള്ള എല്ലാ വിവരങ്ങളും സന്ദേശങ്ങളും ഇല്ലാതാക്കും. നിങ്ങളുടെ പ്രൈമറി ഉപകരണത്തിലെയോ മറ്റ് ലിങ്ക് ചെയ്ത ഉപകരണങ്ങളിലെയോ Signal അക്കൗണ്ടും വിവരങ്ങളും ഇല്ലാതാകില്ല. ഈ പ്രോസസ് പൂർത്തിയായതിന് ശേഷം ആപ്പ് അടയ്ക്കും.</string>
 
     <!-- LinkedDeviceAccountLearnMoreBottomSheet -->
     <!-- Emphasized lead-in phrase shown in bold at the start of the learn more sheet body. Must appear verbatim within LinkedDeviceAccountLearnMoreBottomSheet__linked_devices_let_you_access. -->
-    <string name="LinkedDeviceAccountLearnMoreBottomSheet__linked_devices">Linked Devices</string>
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__linked_devices">ലിങ്ക് ചെയ്തിട്ടുള്ള ഡിവൈസുകൾ</string>
     <!-- Body text of the linked devices learn more sheet. The leading \"Linked Devices\" is shown in bold. -->
-    <string name="LinkedDeviceAccountLearnMoreBottomSheet__linked_devices_let_you_access">Linked Devices let you access your Signal account and messages securely on any of your additional devices.</string>
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__linked_devices_let_you_access">നിങ്ങളുടെ മറ്റ് ഉപകരണങ്ങളിൽ സുരക്ഷിതമായി Signal അക്കൗണ്ടും സന്ദേശങ്ങളും ഉപയോഗിക്കാൻ ലിങ്ക് ചെയ്ത ഉപകരണങ്ങൾ സഹായിക്കുന്നു.</string>
     <!-- Bullet point describing what devices can be linked -->
-    <string name="LinkedDeviceAccountLearnMoreBottomSheet__you_can_link_a_desktop">You can link a desktop, tablet or additional phone</string>
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__you_can_link_a_desktop">നിങ്ങൾക്ക് ഒരു ഡെസ്ക്ടോപ്പ്, ടാബ്‌ലെറ്റ് അല്ലെങ്കിൽ മറ്റൊരു ഫോൺ ലിങ്ക് ചെയ്യാം</string>
     <!-- Bullet point describing that the primary device manages linked devices -->
-    <string name="LinkedDeviceAccountLearnMoreBottomSheet__your_primary_device_manages">Your primary device manages what\'s linked, you can link up to 5 devices.</string>
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__your_primary_device_manages">നിങ്ങളുടെ പ്രൈമറി ഉപകരണമാണ് ലിങ്ക് ചെയ്തവ നിയന്ത്രിക്കുന്നത്, നിങ്ങൾക്ക് 5 ഉപകരണങ്ങൾ വരെ ലിങ്ക് ചെയ്യാം.</string>
     <!-- Bullet point describing that some settings are only available on the primary device -->
-    <string name="LinkedDeviceAccountLearnMoreBottomSheet__some_account_settings">Some account settings are managed on your primary device only, including account settings and backups.</string>
+    <string name="LinkedDeviceAccountLearnMoreBottomSheet__some_account_settings">അക്കൗണ്ട് ക്രമീകരണങ്ങളും ബാക്കപ്പുകളും ഉൾപ്പെടെയുള്ള ചില അക്കൗണ്ട് ക്രമീകരണങ്ങൾ നിങ്ങളുടെ പ്രൈമറി ഉപകരണത്തിൽ മാത്രമേ നിയന്ത്രിക്കാനാകൂ.</string>
 
     <!-- TransferOrRestoreFragment -->
     <string name="TransferOrRestoreFragment__transfer_or_restore_account">അക്കൗണ്ട് കൈമാറുകയോ പുനസ്ഥാപിക്കുകയോ ചെയ്യുക</string>
@@ -5156,7 +5144,7 @@
     <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
     <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">ക്രമീകരണങ്ങൾ തുറക്കുന്നതിന് മുകളിൽ ഇടതുവശത്തുള്ള നിങ്ങളുടെ പ്രൊഫൈൽ ഫോട്ടോയിൽ തൊടുക</string>
     <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_account">"'അക്കൗണ്ട്' എന്നതിൽ തൊടുക"</string>
+    <string name="NewDeviceTransferInstructions__tap_on_account">"\'അക്കൗണ്ട്\' എന്നതിൽ തൊടുക"</string>
     <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
     <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"\"അക്കൗണ്ട് ട്രാൻസ്ഫർ ചെയ്യുക\" തൊടുക, തുടർന്ന് രണ്ട് ഉപകരണങ്ങളിലും \"തുടരുക\""</string>
 
@@ -5626,18 +5614,6 @@
     <!-- GroupDescriptionDialog -->
     <string name="GroupDescriptionDialog__group_description">ഗ്രൂപ്പ് വിവരണം</string>
 
-    <!-- QualitySelectorBottomSheetDialog -->
-    <!-- Label for our standard quality media conversion. -->
-    <string name="QualitySelectorBottomSheetDialog__standard">സ്റ്റാൻഡേർഡ്</string>
-    <!-- Description for our standard quality media conversion. -->
-    <string name="QualitySelectorBottomSheetDialog__faster_less_data">വേഗത്തിൽ, കുറഞ്ഞ ഡാറ്റ</string>
-    <!-- Label for our high quality media conversion. This has better quality than standard. -->
-    <string name="QualitySelectorBottomSheetDialog__high">ഉയർന്നത്</string>
-    <!-- Label for our high quality media conversion. This has better quality than standard. -->
-    <string name="QualitySelectorBottomSheetDialog__slower_more_data">സാവധാനം, കൂടുതൽ ഡാറ്റ</string>
-    <!-- Title heading for our media conversion quality selector. -->
-    <string name="QualitySelectorBottomSheetDialog__media_quality">മീഡിയ നിലവാരം</string>
-
     <!-- AppSettingsFragment -->
     <!-- String alerting user that something is wrong with their backups subscription -->
     <string name="AppSettingsFragment__renew_your_signal_backups_subscription">നിങ്ങളുടെ Signal സുരക്ഷിത ബാക്കപ്പ് സബ്സ്ക്രിപ്ഷൻ പുതുക്കുക</string>
@@ -5655,14 +5631,6 @@
     <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">ബാക്കപ്പ് സബ്‌സ്‌ക്രൈബർ id ക്ലിപ്പ്ബോർഡിലേക്ക് പകർത്തി</string>
     <!-- String displayed in a toast when a subscriber id is not present for a given type -->
     <string name="AppSettingsFragment__no_subscriber_id_set">സബ്‌സ്‌ക്രൈബർ id സജ്ജീകരിച്ചിട്ടില്ല</string>
-
-    <!-- AccountSettingsFragment -->
-    <string name="AccountSettingsFragment__account">അക്കൗണ്ട്</string>
-    <string name="AccountSettingsFragment__youll_be_asked_less_frequently">കാലക്രമേണ നിങ്ങളോട് കുറച്ച് തവണ ചോദിക്കും</string>
-    <string name="AccountSettingsFragment__require_your_signal_pin">നിങ്ങളുടെ ഫോൺ നമ്പർ വീണ്ടും Signal-ൽ രജിസ്റ്റർ ചെയ്യുന്നതിന് നിങ്ങളുടെ Signal പിൻ ആവശ്യമാണ്</string>
-    <string name="AccountSettingsFragment__change_phone_number">ഫോൺ നമ്പർ മാറ്റുക</string>
-    <!-- Account setting that allows user to request and export their signal account data -->
-    <string name="AccountSettingsFragment__request_account_data">നിങ്ങളുടെ അക്കൗണ്ട് ഡാറ്റ</string>
 
     <!-- ExportAccountDataFragment -->
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
@@ -5957,14 +5925,46 @@
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">സന്ദേശങ്ങൾ</string>
     <string name="NotificationsSettingsFragment__calls">കോളുകൾ</string>
-    <string name="NotificationsSettingsFragment__notify_when">എപ്പോൾ അറിയിക്കുക…</string>
+    <!-- Notification header for sounds -->
+    <string name="NotificationsSettingsFragment__sounds">Sounds</string>
     <string name="NotificationsSettingsFragment__contact_joins_signal">കോൺടാക്റ്റ് Signal ചേരുന്നു</string>
+    <!-- Notification body to get notified when someone joins Signal -->
+    <string name="NotificationsSettingsFragment__notify_contact">Show a notification when a phone contact joins Signal</string>
+    <!-- Option to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset">Reset notification settings</string>
+    <!-- Option body to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_notifications">Reset notification settings to default, including custom settings for your chats</string>
+    <!-- Dialog to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_body">Reset all notification settings to default for all chats?</string>
+    <!-- Confirmation button to reset dialog -->
+    <string name="NotificationsSettingsFragment__reset_confirm">പുനഃക്രമീകരിക്കുക</string>
     <!-- Notification preference header -->
     <string name="NotificationsSettingsFragment__notification_profiles">അറിയിപ്പ് രൂപരേഖകള്‍</string>
     <!-- Notification preference option header -->
     <string name="NotificationsSettingsFragment__profiles">പ്രൊഫൈലുകൾ</string>
     <!-- Notification preference summary text -->
     <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">നിങ്ങൾ തിരഞ്ഞെടുക്കുന്ന ആളുകളിൽ നിന്നും ഗ്രൂപ്പുകളിൽ നിന്നും മാത്രം അറിയിപ്പുകൾ ലഭിക്കുന്നതിന് ഒരു രൂപരേഖ സൃഷ്‌ടിക്കുക.</string>
+
+    <!-- Header to describe screen that shows while muted settings -->
+    <string name="MutedNotificationsFragment__while">While muted</string>
+    <!-- Title for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls">കോളുകൾ</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body_global">Ring or notify when a call is started in muted chats.</string>
+    <!-- Title for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions">സൂചനകൾ</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body_global">Notify when you are mentioned in muted chats.</string>
+    <!-- Title for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies">മറുപടികൾ</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body_global">Notify when someone replies to your message in muted chats.</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body">Ring or notify when a call is started while this chat is muted.</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body">Notify when you are mentioned while this chat is muted.</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body">Notify when someone replies to your message while this chat is muted.</string>
 
     <!-- NotificationProfilesFragment -->
     <!-- Title for notification profiles screen that shows all existing profiles; Title with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -6193,6 +6193,8 @@
     <string name="ConversationSettingsFragment__end_group">ഗ്രൂപ്പ് അവസാനിപ്പിക്കുക</string>
     <!-- Banner shown at the top of group settings when the group has been ended -->
     <string name="ConversationSettingsFragment__this_group_was_ended">ഈ ഗ്രൂപ്പ് അവസാനിപ്പിച്ചു.</string>
+    <!-- Subhead under a legacy group\'s name, joining the member count and the "Legacy Group" label. %1$s is the member count, %2$s is the label -->
+    <string name="ConversationSettingsFragment__s_dot_s">%1$s · %2$s</string>
     <!-- Archive chat option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__archive_chat">ചാറ്റ് ആർക്കൈവ് ചെയ്യുക</string>
     <!-- Delete chat option in group conversation settings screen -->
@@ -6376,53 +6378,11 @@
     <!-- Positive dialog action when sending a story via an add to group story button -->
     <string name="MediaReviewFragment__add_to_story">സ്റ്റോറിയിലേക്ക് ചേർക്കുക</string>
     <string name="MediaReviewFragment__add_a_message">ഒരു സന്ദേശം ചേര്‍ക്കുക</string>
-    <!-- Hint text inside of a compose box that is shown when the user is adding media while quoting a message. -->
-    <string name="MediaReviewFragment__add_a_reply">ഒരു മറുപടി ചേർക്കുക</string>
     <string name="MediaReviewFragment__send_to">ഇനിപ്പറയുന്നയാൾക്ക് അയയ്ക്കുക</string>
-    <string name="MediaReviewFragment__view_once_message">ഒറ്റത്തവണ വീഡിയോ കാണുക</string>
-    <string name="MediaReviewFragment__one_or_more_items_were_too_large">ഒന്നോ അതിലധികമോ ഇനങ്ങൾ വളരെ വലുതായിരുന്നു</string>
-    <string name="MediaReviewFragment__one_or_more_items_were_invalid">ഒന്നോ അതിലധികമോ ഇനങ്ങൾ അസാധുവാണ്</string>
-    <string name="MediaReviewFragment__too_many_items_selected">വളരെയധികം ഇനങ്ങൾ തിരഞ്ഞെടുത്തു</string>
-    <!-- Small notification presented to the user when they set their video to view-once mode -->
-    <string name="MediaReviewFragment__video_set_to_view_once">വീഡിയോ ഒരിക്കൽ കാണാൻ സജ്ജമാക്കി</string>
-    <!-- Small notification presented to the user when they set their photo to view-once mode -->
-    <string name="MediaReviewFragment__photo_set_to_view_once">ഫോട്ടോ ഒരിക്കൽ കാണാൻ സജ്ജമാക്കി</string>
-    <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
-    <string name="MediaReviewFragment__video_set_to_high_quality">വീഡിയോ ഉയർന്ന നിലവാരത്തിലേക്ക് സജ്ജമാക്കി</string>
-    <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
-    <string name="MediaReviewFragment__video_set_to_standard_quality">വീഡിയോ സാധാരണ നിലവാരത്തിലേക്ക് സജ്ജമാക്കി</string>
-    <!-- Small notification presented to the user when they set their still image to be sent in high visual quality. -->
-    <string name="MediaReviewFragment__photo_set_to_high_quality">ഫോട്ടോ ഉയർന്ന നിലവാരത്തിലേക്ക് സജ്ജമാക്കി</string>
-    <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
-    <string name="MediaReviewFragment__photo_set_to_standard_quality">ഫോട്ടോ സാധാരണ നിലവാരത്തിലേക്ക് സജ്ജമാക്കി</string>
-    <!-- Accessibility label describing the add media button on the Media review screen -->
-    <string name="MediaReviewFragment__add_media_accessibility_label">ഒരു മീഡിയ ചേർക്കുക</string>
-    <!-- Accessibility label describing the brush and pen button on the Media review screen -->
-    <string name="MediaReviewFragment__brush_pen_accessibility_label">ബ്രഷും പേനയും</string>
-    <!-- Accessibility label describing the crop and rotate button on the Media review screen -->
-    <string name="MediaReviewFragment__crop_rotate_accessibility_label">ക്രോപ്പ് ചെയ്ത് തിരിക്കുക</string>
-    <!-- Accessibility label describing the change media quality button on the Media review screen -->
-    <string name="MediaReviewFragment__change_media_quality_accessibility_label">മീഡിയാ നിലവാരം മാറ്റുക</string>
-    <!-- Accessibility label describing the save media button on the Media review screen -->
-    <string name="MediaReviewFragment__save_media_accessibility_label">മീഡിയ സംരക്ഷിക്കുക</string>
-    <!-- Accessibility label describing the toggle emoji keyboard button on the Media review screen -->
-    <string name="MediaReviewFragment__emoji_toggle_accessibility_label">ഇമോജി കീബോർഡിലേക്ക് മാറുക</string>
     <!-- Accessibility label describing the toggle view once button on the Media review screen -->
     <string name="MediaReviewFragment__view_once_toggle_accessibility_label">ഒരിക്കൽ മാത്രം കാണുക ടോഗിൾ ചെയ്യുക</string>
-    <!-- Accessibility label describing the send media button on the Media review screen -->
-    <string name="MediaReviewFragment__send_media_accessibility_label">മീഡിയ അയയ്ക്കുക</string>
     <!-- Accessibility label describing the finish adding a message button on the Media review screen dialog -->
     <string name="MediaReviewFragment__finish_adding_a_message_accessibility_label">ഒരു സന്ദേശം ചേർക്കുന്നത് പൂർത്തിയാക്കുക</string>
-    <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
-    <plurals name="MediaReviewFragment__items_set_to_high_quality">
-        <item quantity="one">%1$d ഇനം ഉയർന്ന നിലവാരത്തിലേക്ക് സജ്ജമാക്കി</item>
-        <item quantity="other">%1$d ഇനങ്ങൾ ഉയർന്ന നിലവാരത്തിലേക്ക് സജ്ജമാക്കി</item>
-    </plurals>
-    <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
-    <plurals name="MediaReviewFragment__items_set_to_standard_quality">
-        <item quantity="one">%1$d ഇനം സാധാരണ നിലവാരത്തിലേക്ക് സജ്ജമാക്കി</item>
-        <item quantity="other">%1$d ഇനങ്ങൾ സാധാരണ നിലവാരത്തിലേക്ക് സജ്ജമാക്കി</item>
-    </plurals>
 
     <string name="ImageEditorHud__cancel">റദ്ദാക്കൂ</string>
     <string name="ImageEditorHud__draw">വരയ്ക്കുക</string>
@@ -6440,27 +6400,9 @@
 
     <string name="MediaCountIndicatorButton__send">അയയ്‌ക്കുക</string>
 
-    <string name="MediaReviewSelectedItem__tap_to_remove">നീക്കം ചെയ്യാൻ ടാപ്പ് ചെയ്യുക</string>
-    <string name="MediaReviewSelectedItem__tap_to_select">തിരഞ്ഞെടുക്കാൻ ടാപ്പുചെയ്യുക</string>
-
     <string name="MediaReviewImagePageFragment__discard">കളയുക</string>
     <string name="MediaReviewImagePageFragment__discard_changes">മാറ്റങ്ങൾ ഉപേക്ഷിക്കുക?</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">ഈ ഫോട്ടോയിൽ നിങ്ങൾ വരുത്തിയ മാറ്റങ്ങളെല്ലാം നഷ്‌ടമാകും.</string>
-
-    <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_title">%1$s എന്നയാളെ കണ്ടെത്തി</string>
-    <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_body">\"%1$s\" എന്നയാളുമായി ഒരു ചാറ്റ് ആരംഭിക്കുക</string>
-    <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
-    <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">ചാറ്റിലേക്ക് പോകുക</string>
-
-    <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_title">ഉപകരണം ലിങ്ക് ചെയ്യണോ?</string>
-    <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_it_looks_like_youre_trying">നിങ്ങൾ ഒരു Signal ഉപകരണം ലിങ്ക് ചെയ്യാൻ ശ്രമിക്കുന്നതായി തോന്നുന്നു. തുടരുക ടാപ്പ് ചെയ്യുക, തുടർന്ന് \"ഒരു പുതിയ ഉപകരണം ലിങ്ക് ചെയ്യുക\" ടാപ്പ് ചെയ്യുക, തുടർന്ന് QR കോഡ് വീണ്ടും സ്കാൻ ചെയ്യുക.</string>
-    <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
-    <string name="MediaCaptureFragment_device_link_dialog_continue">തുടരുക</string>
-
 
     <string name="BadgesOverviewFragment__my_badges">എന്റെ ബാഡ്‌ജുകൾ</string>
     <string name="BadgesOverviewFragment__featured_badge">ഫീച്ചർ ചെയ്യുന്ന ബാഡ്‌ജ്</string>
@@ -6935,7 +6877,7 @@
     <!-- Donation receipts amount title -->
     <string name="DonationReceiptDetailsFragment__amount">തുക</string>
     <!-- Donation receipts thanks -->
-    <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Signal-നെ പിന്തുണയ്ക്കുന്നതിന് നന്ദി. സംഭാഷണ സ്വാതന്ത്ര്യത്തെ സംരക്ഷിക്കുന്ന ഓപ്പൺ സോഴ്‌സ് സ്വകാര്യതാ സാങ്കേതികവിദ്യ വികസിപ്പിക്കാനും ലോകമെമ്പാടുമുള്ള ദശലക്ഷക്കണക്കിന് ആളുകൾക്ക് സുരക്ഷിതമായ ആഗോള ആശയവിനിമയം സാധ്യമാക്കാനും നിങ്ങളുടെ സംഭാവന സഹായിക്കുന്നു. നിങ്ങൾ യുണൈറ്റ് സ്റ്റേറ്റ്സിൽ താമസിക്കുന്ന ആളാണെങ്കിൽ ഈ രസീത് നിങ്ങളുടെ നികുതി രേഖകൾക്കായി സൂക്ഷിച്ചു വെയ്ക്കുക. Signal ടെക്നോളജി ഫൗണ്ടേഷൻ യുണൈറ്റഡ് സ്റ്റേറ്റ്സിലെ ഇന്‍റേണൽ റെവന്യൂ കോഡിന് കീഴിൽ വരുന്ന സെക്ഷൻ 501സി3 പ്രകാരം നികുതിയില്ലാത്ത ലാഭേതര സ്ഥാപനമാണ്. ഞങ്ങളുടെ ഫെഡറൽ നികുതി ഐഡി 82–4506840 ആണ്.</string>
+    <string name="DonationReceiptDetailsFragment__thank_you_for_supporting" tools:ignore="TypographyDashes">Signal-നെ പിന്തുണച്ചതിന് നന്ദി. സ്വതന്ത്രമായ അഭിപ്രായപ്രകടനം സംരക്ഷിക്കുന്നതിനും ലോകമെമ്പാടുമുള്ള ദശലക്ഷക്കണക്കിന് ആളുകൾക്ക് ഓപ്പൺ സോഴ്‌സ് സ്വകാര്യതാ സാങ്കേതികവിദ്യയിലൂടെ സുരക്ഷിതമായ ആഗോള ആശയവിനിമയം സാധ്യമാക്കുന്നതിനുമുള്ള ദൗത്യത്തിന് നിങ്ങളുടെ സംഭാവന ഇന്ധനം പകരുന്നു. നിങ്ങൾ യുണൈറ്റഡ് സ്റ്റേറ്റ്സിൽ താമസിക്കുന്ന ആളാണെങ്കിൽ, നിങ്ങളുടെ നികുതി രേഖകൾക്കായി ഈ രസീത് സൂക്ഷിക്കുക. Signal ടെക്നോളജി ഫൗണ്ടേഷൻ, ഇന്റേണൽ റവന്യൂ കോഡിന്റെ സെക്ഷൻ 501c3 പ്രകാരം യുണൈറ്റഡ് സ്റ്റേറ്റ്സിലെ നികുതി ഇളവ് ലഭിച്ച ഒരു ലാഭേച്ഛയില്ലാത്ത സ്ഥാപനമാണ്. ഞങ്ങളുടെ ഫെഡറൽ ടാക്സ് ഐഡി 82-4506840 ആണ്. ഈ സംഭാവനയ്ക്ക് പകരമായി Signal യാതൊരു സാധനങ്ങളോ സേവനങ്ങളോ നൽകിയിട്ടില്ല.</string>
     <!-- Donation reciepts screen empty state title -->
     <string name="DonationReceiptListFragment__no_receipts">രസീതുകളൊന്നുമില്ല</string>
 
@@ -8718,13 +8660,6 @@
     <!-- Body of bottom sheet shown when opening a terminated group -->
     <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">നിങ്ങൾക്ക് ഇനി ഈ ഗ്രൂപ്പിൽ സന്ദേശങ്ങളോ കോളുകളോ അയയ്ക്കാനും സ്വീകരിക്കാനും കഴിയില്ല.</string>
 
-    <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_title">ഇല്ലാതാക്കുന്നത് ഇപ്പോൾ നിങ്ങളുടെ എല്ലാ ഉപകരണങ്ങളിലും സമന്വയിപ്പിച്ചിരിക്കുന്നു</string>
-    <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_message">നിങ്ങൾ സന്ദേശങ്ങളോ ചാറ്റുകളോ ഇല്ലാതാക്കുമ്പോൾ, നിങ്ങളുടെ ഫോണിൽ നിന്നും ലിങ്ക് ചെയ്‌ത ഉപകരണങ്ങളിൽ നിന്നും അവ ഇല്ലാതാക്കപ്പെടും.</string>
-    <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_acknowledge_button">ശരി</string>
-
     <!-- NoManualBackupBottomSheet -->
     <!-- Title for bottom sheet, placeholder is number of days. -->
     <plurals name="NoManualBackupBottomSheet__no_backup_for_d_days">
@@ -8749,7 +8684,7 @@
     <!-- Subtitle for row for no backup ever created -->
     <string name="BackupsSettingsFragment_automatic_backups_with_signals">Signal-ൻ്റെ സുരക്ഷിതമായ എൻഡ്-ടു-എൻഡ് എൻക്രിപ്റ്റഡ് സ്റ്റോറേജ് സേവനത്തോടുകൂടിയ സ്വയമേവയുള്ള ബാക്കപ്പുകൾ.</string>
     <!-- Subtitle shown on a linked device when backups are off, directing the user to set them up on their phone -->
-    <string name="BackupsSettingsFragment__automatic_backups_get_started_on_your_phone">Automatic backups with Signal\'s secure end-to-end encrypted storage service. Get started on your phone.</string>
+    <string name="BackupsSettingsFragment__automatic_backups_get_started_on_your_phone">Signal-ൻ്റെ സുരക്ഷിതമായ എൻഡ്-ടു-എൻഡ് എൻക്രിപ്റ്റഡ് സ്റ്റോറേജ് സേവനത്തോടുകൂടിയ സ്വയമേവയുള്ള ബാക്കപ്പുകൾ. നിങ്ങളുടെ ഫോണിൽ ആരംഭിക്കുക.</string>
     <!-- Subtitle for row for backups that are active but subscription not found -->
     <string name="BackupsSettingsFragment_subscription_not_found_on_this_device">"ഈ ഉപകരണത്തിൽ സബ്സ്ക്രിപ്ഷൻ കണ്ടെത്തിയില്ല."</string>
     <!-- Action button label to set up backups -->
@@ -8854,15 +8789,15 @@
     <!-- Subtext describing when a backup has never taken place. -->
     <string name="RemoteBackupsSettingsFragment__never">ഒരിക്കലും വേണ്ട</string>
     <!-- Subtext on a linked device describing when the primary device last backed up. Placeholder is the formatted date and time. -->
-    <string name="RemoteBackupsSettingsFragment__your_phone_s">Your phone · %1$s</string>
+    <string name="RemoteBackupsSettingsFragment__your_phone_s">നിങ്ങളുടെ ഫോൺ · %1$s</string>
     <!-- Message shown on a linked device with a free backup plan explaining that the subscription is managed on the primary device -->
-    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_upgrade_your_subscription_on_your_primary_device">You can manage or upgrade your Signal Secure Backups subscription on your primary device.</string>
+    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_upgrade_your_subscription_on_your_primary_device">നിങ്ങളുടെ പ്രൈമറി ഉപകരണത്തിൽ Signal സുരക്ഷിത ബാക്കപ്പ് സബ്സ്ക്രിപ്ഷൻ നിയന്ത്രിക്കാനോ അപ്‌ഗ്രേഡ് ചെയ്യാനോ കഴിയും.</string>
     <!-- Message shown on a linked device with a paid backup plan explaining that the subscription is managed on the primary device -->
-    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_cancel_your_subscription_on_your_primary_device">You can manage or cancel your Signal Secure Backups subscription on your primary device.</string>
+    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_cancel_your_subscription_on_your_primary_device">നിങ്ങളുടെ പ്രൈമറി ഉപകരണത്തിൽ Signal സുരക്ഷിത ബാക്കപ്പ് സബ്‌സ്‌ക്രിപ്ഷൻ നിയന്ത്രിക്കാനോ റദ്ദാക്കാനോ കഴിയും.</string>
     <!-- Message shown on a linked device with a canceled backup subscription explaining that the subscription is managed on the primary device -->
-    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_renew_your_subscription_on_your_primary_device">You can manage or renew your Signal Secure Backups subscription on your primary device.</string>
+    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_renew_your_subscription_on_your_primary_device">നിങ്ങളുടെ പ്രൈമറി ഉപകരണത്തിൽ Signal സുരക്ഷിത ബാക്കപ്പ് സബ്‌സ്‌ക്രിപ്ഷൻ നിയന്ത്രിക്കാനോ പുതുക്കാനോ കഴിയും.</string>
     <!-- Message shown on a linked device when backups are off or the subscription was not found, explaining that backups are managed on the primary device -->
-    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_upgrade_backups_on_your_primary_device">You can manage or upgrade Signal Secure Backups on your primary device.</string>
+    <string name="RemoteBackupsSettingsFragment__you_can_manage_or_upgrade_backups_on_your_primary_device">നിങ്ങളുടെ പ്രൈമറി ഉപകരണത്തിൽ Signal സുരക്ഷിത ബാക്കപ്പ് നിയന്ത്രിക്കാനോ അപ്‌ഗ്രേഡ് ചെയ്യാനോ കഴിയും.</string>
     <!-- Button label to perform a backup immediately -->
     <string name="RemoteBackupsSettingsFragment__back_up_now">ഇപ്പോൾ ബാക്കപ്പ് ചെയ്യുക</string>
     <!-- Dialog title when confirming whether to turn off and deleting backups -->

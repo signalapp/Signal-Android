@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.DialogFragment
+import org.signal.core.ui.enableEdgeToEdge
 import org.thoughtcrime.securesms.R
 
 /**
@@ -38,6 +39,7 @@ abstract class KeyboardEntryDialogFragment(@LayoutRes contentLayoutId: Int) :
     }
 
     dialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE or WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
+    dialog.window?.enableEdgeToEdge()
 
     return dialog
   }
@@ -47,6 +49,7 @@ abstract class KeyboardEntryDialogFragment(@LayoutRes contentLayoutId: Int) :
 
     val view = super.onCreateView(inflater, container, savedInstanceState)
     return if (view is KeyboardAwareLinearLayout) {
+      view.setInsetPaddingMode(KeyboardAwareLinearLayout.InsetPaddingMode.SAFE_AREA)
       view.addOnKeyboardShownListener(this)
       view.addOnKeyboardHiddenListener(this)
       view

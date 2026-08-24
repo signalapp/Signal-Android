@@ -55,6 +55,11 @@ sealed class ContactSearchKey {
   data class Expand(val sectionKey: ContactSearchConfiguration.SectionKey) : ContactSearchKey()
 
   /**
+   * Key to the loading placeholder shown while a given section is still being queried
+   */
+  data class SectionLoading(val sectionKey: ContactSearchConfiguration.SectionKey) : ContactSearchKey()
+
+  /**
    * Arbitrary takes a string type and will map to exactly one ArbitraryData object.
    *
    * This is used to allow arbitrary extra data to be added to the contact search system.

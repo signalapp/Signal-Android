@@ -10,7 +10,7 @@ import androidx.annotation.StringRes;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.components.emoji.EmojiStrings;
+import org.signal.emoji.EmojiStrings;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
 import org.thoughtcrime.securesms.database.model.MessageRecord;

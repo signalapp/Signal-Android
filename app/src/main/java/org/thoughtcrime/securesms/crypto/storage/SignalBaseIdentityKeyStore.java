@@ -128,8 +128,8 @@ public class SignalBaseIdentityKeyStore {
 
   public boolean isTrustedIdentity(SignalProtocolAddress address, IdentityKey identityKey, IdentityKeyStore.Direction direction) {
     boolean isSelf = address.getName().equals(SignalStore.account().requireAci().toString()) ||
-                     address.getName().equals(SignalStore.account().requirePni().toString()) ||
-                     address.getName().equals(SignalStore.account().getE164());
+                     (SignalStore.account().getPni() != null && address.getName().equals(SignalStore.account().requirePni().toString())) ||
+                     (SignalStore.account().getE164() != null && address.getName().equals(SignalStore.account().getE164()));
 
     if (isSelf) {
       return identityKey.equals(SignalStore.account().getAciIdentityKey().getPublicKey());

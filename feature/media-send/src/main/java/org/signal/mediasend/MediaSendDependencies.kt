@@ -10,6 +10,7 @@ import androidx.media3.exoplayer.ExoPlayer
 import org.signal.core.util.contentproviders.BlobProvider
 import org.signal.mediasend.preupload.PreUploadRepository
 import org.signal.video.exo.ExoPlayerPool
+import org.thoughtcrime.securesms.video.interfaces.MediaInputFactory
 
 /**
  * MediaSend Feature Module dependencies
@@ -46,11 +47,15 @@ object MediaSendDependencies {
   val qrRepository: MediaSendQrRepository
     get() = _provider.provideQrRepository()
 
+  val mediaInputFactory: MediaInputFactory
+    get() = _provider.provideMediaInputFactory()
+
   interface Provider {
     fun provideMediaSendRepository(): MediaSendRepository
     fun providePreUploadRepository(): PreUploadRepository
     fun provideQrRepository(): MediaSendQrRepository
     fun provideExoPlayerPool(): ExoPlayerPool<ExoPlayer>
     fun provideBlobs(): BlobProvider
+    fun provideMediaInputFactory(): MediaInputFactory
   }
 }

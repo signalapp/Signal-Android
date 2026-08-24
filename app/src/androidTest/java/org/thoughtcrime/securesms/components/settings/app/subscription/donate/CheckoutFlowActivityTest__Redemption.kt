@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.database.DonationReceiptTable
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentReceiptRecord
+import org.thoughtcrime.securesms.testing.DisableAnimationsRule
 import org.thoughtcrime.securesms.testing.GooglePayTestRule
 import org.thoughtcrime.securesms.testing.InAppPaymentsRule
 import org.thoughtcrime.securesms.testing.RxTestSchedulerRule
@@ -58,6 +59,9 @@ class CheckoutFlowActivityTest__Redemption {
 
   @get:Rule
   val composeRule = createEmptyComposeRule()
+
+  @get:Rule
+  val animationsRule = DisableAnimationsRule()
 
   private val intent = CheckoutFlowActivity.createIntent(InstrumentationRegistry.getInstrumentation().targetContext, InAppPaymentType.ONE_TIME_DONATION)
 

@@ -145,6 +145,18 @@ object SqlUtil {
   }
 
   @JvmStatic
+  fun getAllColumns(db: SupportSQLiteDatabase, table: String): Set<String> {
+    val columns = mutableSetOf<String>()
+    db.query("PRAGMA table_info($table)", arrayOf()).use { cursor ->
+      val nameColumnIndex = cursor.getColumnIndexOrThrow("name")
+      while (cursor.moveToNext()) {
+        columns += cursor.getString(nameColumnIndex)
+      }
+    }
+    return columns
+  }
+
+  @JvmStatic
   fun buildArgs(vararg objects: Any?): Array<String> {
     return objects.map {
       when (it) {

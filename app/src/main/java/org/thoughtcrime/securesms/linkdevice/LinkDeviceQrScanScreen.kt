@@ -84,6 +84,16 @@ fun LinkDeviceQrScanScreen(
         onDismiss = onQrCodeDismissed
       )
     }
+
+    LinkDeviceSettingsState.QrCodeState.OUTDATED_DEVICE -> {
+      Dialogs.SimpleAlertDialog(
+        title = stringResource(id = R.string.AddLinkDeviceFragment__linking_device_failed),
+        body = stringResource(id = R.string.AddLinkDeviceFragment__the_device_you_are_trying_to_link_is_out_of_date),
+        confirm = stringResource(id = android.R.string.ok),
+        onConfirm = { },
+        onDismiss = onQrCodeDismissed
+      )
+    }
   }
 
   LaunchedEffect(linkDeviceResult) {

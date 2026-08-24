@@ -12,6 +12,7 @@ object DataRestoreConstraint : Constraint {
   const val KEY = "DataRestoreConstraint"
 
   @JvmStatic
+  @Volatile
   var isRestoringData: Boolean = false
     set(value) {
       field = value

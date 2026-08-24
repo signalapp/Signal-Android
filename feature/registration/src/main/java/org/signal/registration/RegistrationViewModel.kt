@@ -101,13 +101,22 @@ class RegistrationViewModel(
       is RegistrationFlowEvent.ResetState -> RegistrationFlowState(isRestoringNavigationState = false)
       is RegistrationFlowEvent.SessionUpdated -> state.copy(sessionMetadata = event.session)
       is RegistrationFlowEvent.E164Chosen -> state.copy(sessionE164 = event.e164)
+      is RegistrationFlowEvent.VerificationCodeAccepted -> state.copy(submittedVerificationCode = event.code)
+      is RegistrationFlowEvent.VerificationCodeRequested -> state.copy(
+        lastSmsVerificationCodeRequest = event.nextSmsAllowedTimestamp?.let { VerificationCodeRequest(event.e164, it) } ?: state.lastSmsVerificationCodeRequest,
+        lastCallVerificationCodeRequest = event.nextCallAllowedTimestamp?.let { VerificationCodeRequest(event.e164, it) } ?: state.lastCallVerificationCodeRequest
+      )
       is RegistrationFlowEvent.Registered -> state.copy(accountEntropyPool = event.accountEntropyPool, storageCapable = event.storageCapable)
       is RegistrationFlowEvent.MasterKeyRestoredFromSvr -> state.copy(temporaryMasterKey = event.masterKey)
       is RegistrationFlowEvent.NavigateToScreen -> applyNavigationToScreenEvent(state, event)
       is RegistrationFlowEvent.NavigateBackToScreen -> applyNavigateBackToScreenEvent(state, event)
       is RegistrationFlowEvent.NavigateBack -> {
         if (state.backStack.size > 1) {
-          state.copy(backStack = state.backStack.dropLast(1))
+          val poppedRoute = state.backStack.last()
+          state.copy(
+            backStack = state.backStack.dropLast(1),
+            pendingRestoreOption = if (poppedRoute.abandonsPendingRestore()) null else state.pendingRestoreOption
+          )
         } else {
           finishChannel.trySend(Unit)
           state
@@ -150,6 +159,23 @@ class RegistrationViewModel(
       is RegistrationRoute.PinEntryForSvrRestore,
       is RegistrationRoute.RemoteRestore -> true
       is RegistrationRoute.ArchiveRestoreSelection -> this.registeredState != RegisteredState.NotRegistered
+      else -> false
+    }
+  }
+
+  /**
+   * Whether backing out of this route means the user is abandoning a restore they selected before phone number entry.
+   * Without clearing [RegistrationFlowState.pendingRestoreOption], re-submitting a phone number would route them right
+   * back into the restore flow they just backed out of, with no way to register over SMS instead.
+   *
+   * [RegistrationRoute.LocalBackupRestore] is intentionally absent: it pops itself when a restore is deferred to SMS
+   * verification, and that flow relies on the still-set pending option to resume the restore after registration.
+   * Abandoning it is instead handled by its explicit cancel action.
+   */
+  private fun RegistrationRoute.abandonsPendingRestore(): Boolean {
+    return when (this) {
+      is RegistrationRoute.PhoneNumberEntry,
+      is RegistrationRoute.EnterAepForRemoteBackupPreRegistration -> true
       else -> false
     }
   }
@@ -221,6 +247,8 @@ class RegistrationViewModel(
       is RegistrationFlowEvent.NavigateBackToScreen,
       is RegistrationFlowEvent.SessionUpdated,
       is RegistrationFlowEvent.E164Chosen,
+      is RegistrationFlowEvent.VerificationCodeAccepted,
+      is RegistrationFlowEvent.VerificationCodeRequested,
       is RegistrationFlowEvent.RecoveryPasswordInvalid,
       is RegistrationFlowEvent.PendingRestoreOptionSelected,
       is RegistrationFlowEvent.RestoreMethodTokenReceived,

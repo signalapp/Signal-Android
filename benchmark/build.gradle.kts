@@ -13,7 +13,10 @@ plugins {
 
 android {
     namespace = "org.signal.benchmark"
-    compileSdkVersion(libs.versions.compileSdk.get())
+
+    compileSdk {
+      version = release(libs.versions.compileSdk.get().toInt())
+    }
 
     compileOptions {
         sourceCompatibility = JavaVersion.toVersion(libs.versions.javaVersion.get())

@@ -5,7 +5,12 @@
 
 package org.signal.registration.screens.welcome
 
+import org.signal.registration.RegistrationFlowState
+
 sealed class WelcomeScreenEvents {
+  /** The parent registration flow state changed and needs to be merged into this screen's state. */
+  data class ParentStateChanged(val parentState: RegistrationFlowState) : WelcomeScreenEvents()
+
   data object Continue : WelcomeScreenEvents()
 
   data object LinkDevice : WelcomeScreenEvents()

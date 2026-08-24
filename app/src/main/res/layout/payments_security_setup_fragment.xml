@@ -16,8 +16,10 @@
         app:titleTextAppearance="@style/TextAppearance.Signal.Body1.Bold" />
 
     <ScrollView
+        android:id="@+id/payments_security_setup_scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:clipToPadding="false"
         android:fillViewport="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout

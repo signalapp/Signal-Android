@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.webrtc.audio
 
 import android.content.Context
+import android.media.AudioManager
 import androidx.annotation.RequiresApi
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -35,10 +36,19 @@ class TelecomAudioManager(context: Context, eventListener: EventListener?) : Sig
     Log.i(TAG, "initialize(): state=$state")
     if (state == State.UNINITIALIZED) {
       savedAudioMode = androidAudioManager.mode
+      requestedMode = savedAudioMode
+      appliedMode = savedAudioMode
       savedIsMicrophoneMute = androidAudioManager.isMicrophoneMute
       setMicrophoneMute(false)
       state = State.PREINITIALIZED
     }
+  }
+
+  override fun onPrepareForAccept() {
+    Log.i(TAG, "onPrepareForAccept(): state=$state, let telecom framework manage the mode")
+    incomingRinger.stop()
+    setMicrophoneMute(false)
+    notifyReadyForAccept("telecom manages the mode")
   }
 
   override fun start() {
@@ -75,6 +85,8 @@ class TelecomAudioManager(context: Context, eventListener: EventListener?) : Sig
     }
 
     state = State.UNINITIALIZED
+    resetAcceptState()
+    appliedMode = AudioManager.MODE_INVALID
   }
 
   override fun setDefaultAudioDevice(recipientId: RecipientId?, newDefaultDevice: AudioDevice, clearUserEarpieceSelection: Boolean) {

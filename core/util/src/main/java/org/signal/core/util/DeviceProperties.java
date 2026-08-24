@@ -1,0 +1,124 @@
+package org.signal.core.util;
+
+import android.app.ActivityManager;
+import android.app.ActivityManager.MemoryInfo;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.os.BatteryManager;
+import android.os.Build;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+
+/**
+ * Easy access to various properties of the device, typically to make performance-related decisions.
+ */
+public final class DeviceProperties {
+
+  public static boolean isLowMemoryDevice(@NonNull Context context) {
+    ActivityManager activityManager = ServiceUtil.getActivityManager(context);
+    return activityManager.isLowRamDevice();
+  }
+
+  public static @NonNull MemoryInfo getMemoryInfo(@NonNull Context context) {
+    MemoryInfo      info            = new MemoryInfo();
+    ActivityManager activityManager = ServiceUtil.getActivityManager(context);
+
+    activityManager.getMemoryInfo(info);
+
+    return info;
+  }
+
+  public static boolean isBackgroundRestricted() {
+    if (Build.VERSION.SDK_INT >= 28) {
+      return isBackgroundRestricted(CoreUtilDependencies.getApplication());
+    }
+    return false;
+  }
+
+  @RequiresApi(28)
+  public static boolean isBackgroundRestricted(@NonNull Context context) {
+    ActivityManager activityManager = ServiceUtil.getActivityManager(context);
+    return activityManager.isBackgroundRestricted();
+  }
+
+  /**
+   * Returns the current battery level as a percentage (0-100), or -1 if unavailable.
+   */
+  public static int getBatteryLevel(@NonNull Context context) {
+    BatteryManager batteryManager = (BatteryManager) context.getSystemService(Context.BATTERY_SERVICE);
+    if (batteryManager != null) {
+      return batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY);
+    }
+    return -1;
+  }
+
+  /**
+   * Returns the remaining battery charge in microampere-hours (µAh), or -1 if unavailable. Unlike
+   * the battery level percentage, this has fine granularity and is well-suited to measuring drain
+   * between two points in time.
+   */
+  public static int getBatteryChargeCounter(@NonNull Context context) {
+    BatteryManager batteryManager = (BatteryManager) context.getSystemService(Context.BATTERY_SERVICE);
+    if (batteryManager != null) {
+      int value = batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CHARGE_COUNTER);
+      return value > 0 ? value : -1;
+    }
+    return -1;
+  }
+
+  /**
+   * Returns whether the device is currently charging.
+   */
+  public static boolean isCharging(@NonNull Context context) {
+    BatteryManager batteryManager = (BatteryManager) context.getSystemService(Context.BATTERY_SERVICE);
+    return batteryManager != null && batteryManager.isCharging();
+  }
+
+  public static DataSaverState getDataSaverState(@NonNull Context context) {
+    if (Build.VERSION.SDK_INT >= 24) {
+      switch (ServiceUtil.getConnectivityManager(context).getRestrictBackgroundStatus()) {
+        case ConnectivityManager.RESTRICT_BACKGROUND_STATUS_ENABLED:
+          return DataSaverState.ENABLED;
+        case ConnectivityManager.RESTRICT_BACKGROUND_STATUS_WHITELISTED:
+          return DataSaverState.ENABLED_BUT_EXEMPTED;
+        case ConnectivityManager.RESTRICT_BACKGROUND_STATUS_DISABLED:
+          return DataSaverState.DISABLED;
+      }
+    }
+
+    return DataSaverState.DISABLED;
+  }
+
+  public enum DataSaverState {
+    /** Data saver is enabled system-wide, and we are subject to the restrictions. */
+    ENABLED(true, true),
+
+    /** Data saver is enabled system-wide, but the user has exempted us by giving us 'unrestricted access' to data in the system settings */
+    ENABLED_BUT_EXEMPTED(true, false),
+
+    /** Data saver is disabled. */
+    DISABLED(false, false);
+
+    private final boolean enabled;
+    private final boolean restricted;
+
+    DataSaverState(boolean enabled, boolean restricted) {
+      this.enabled    = enabled;
+      this.restricted = restricted;
+    }
+
+    /** True if the device has data saver enabled, otherwise false. */
+    public boolean isEnabled() {
+      return enabled;
+    }
+
+    /**
+     * True if we're subject to data saver restrictions, otherwise false.
+     * Even if data saver is enabled device-wide, this could still be false if the user has given us 'unrestricted access' to data in the system settings.
+     */
+    public boolean isRestricted() {
+      return restricted;
+    }
+  }
+}

@@ -74,6 +74,15 @@ final class UndoRedoStacks implements Parcelable {
     unchangedState = ElementStack.getBytes(element);
   }
 
+  /**
+   * Treats {@code element} as the new "unchanged" state without disturbing the undo/redo stacks.
+   * <p>
+   * For state that the model adjusts itself, rather than on the user's behalf, so that it does not read as an edit.
+   */
+  void updateUnchangedState(@NonNull EditorElement element) {
+    unchangedState = ElementStack.getBytes(element);
+  }
+
   boolean isChanged(@NonNull EditorElement element) {
     return !Arrays.equals(ElementStack.getBytes(element), unchangedState);
   }

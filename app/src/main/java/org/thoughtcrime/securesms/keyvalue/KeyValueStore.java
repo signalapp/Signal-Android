@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.keyvalue;
 import androidx.annotation.AnyThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.ThreadUtil;
@@ -14,7 +15,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executor;
 
 /**
  * An replacement for {@link android.content.SharedPreferences} that stores key-value pairs in our
@@ -30,13 +31,18 @@ public final class KeyValueStore implements KeyValueReader {
 
   private static final String TAG = Log.tag(KeyValueStore.class);
 
-  private final ExecutorService           executor;
+  private final Executor                  executor;
   private final KeyValuePersistentStorage storage;
 
   private KeyValueDataSet dataSet;
 
   public KeyValueStore(@NonNull KeyValuePersistentStorage storage) {
-    this.executor = SignalExecutors.newCachedSingleThreadExecutor("signal-KeyValueStore", ThreadUtil.PRIORITY_BACKGROUND_THREAD);
+    this(storage, SignalExecutors.newCachedSingleThreadExecutor("signal-KeyValueStore", ThreadUtil.PRIORITY_BACKGROUND_THREAD));
+  }
+
+  @VisibleForTesting
+  public KeyValueStore(@NonNull KeyValuePersistentStorage storage, @NonNull Executor executor) {
+    this.executor = executor;
     this.storage  = storage;
   }
 

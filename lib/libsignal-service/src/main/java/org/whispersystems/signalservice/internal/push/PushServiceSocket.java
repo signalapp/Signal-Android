@@ -69,12 +69,12 @@ import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserExce
 import org.whispersystems.signalservice.api.registration.RestoreMethodBody;
 import org.whispersystems.signalservice.api.svr.Svr3Credentials;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
-import org.whispersystems.signalservice.api.util.Tls12SocketFactory;
-import org.whispersystems.signalservice.api.util.TlsProxySocketFactory;
-import org.whispersystems.signalservice.internal.configuration.SignalCdnUrl;
-import org.whispersystems.signalservice.internal.configuration.SignalProxy;
-import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
-import org.whispersystems.signalservice.internal.configuration.SignalUrl;
+import org.signal.network.util.Tls12SocketFactory;
+import org.signal.network.util.TlsProxySocketFactory;
+import org.signal.network.config.SignalCdnUrl;
+import org.signal.network.config.SignalProxy;
+import org.signal.network.config.SignalServiceConfiguration;
+import org.signal.network.config.SignalUrl;
 import org.whispersystems.signalservice.internal.crypto.AttachmentDigest;
 import org.whispersystems.signalservice.internal.push.exceptions.ForbiddenException;
 import org.whispersystems.signalservice.internal.push.exceptions.GroupExistsException;
@@ -336,138 +336,6 @@ public class PushServiceSocket {
     return JsonUtil.fromJson(response, VerifyAccountResponse.class);
   }
 
-  /**
-   * V2 API: Creates a verification session and returns the raw Response for manual handling.
-   * Caller is responsible for closing the response.
-   */
-  public Response createVerificationSessionV2(@Nonnull String e164, @Nullable String pushToken, @Nullable String mcc, @Nullable String mnc) throws IOException {
-    final String jsonBody = JsonUtil.toJson(new VerificationSessionMetadataRequestBody(e164, pushToken, mcc, mnc));
-    return makeServiceRequestWithoutValidation(VERIFICATION_SESSION_PATH, "POST", jsonRequestBody(jsonBody), NO_HEADERS, SealedSenderAccess.NONE, false);
-  }
-
-  /**
-   * V2 API: Gets session status and returns the raw Response for manual handling.
-   * Caller is responsible for closing the response.
-   */
-  public Response getSessionStatusV2(String sessionId) throws IOException {
-    String path = VERIFICATION_SESSION_PATH + "/" + sessionId;
-    return makeServiceRequestWithoutValidation(path, "GET", jsonRequestBody(null), NO_HEADERS, SealedSenderAccess.NONE, false);
-  }
-
-  /**
-   * V2 API: Patches verification session and returns the raw Response for manual handling.
-   * Caller is responsible for closing the response.
-   */
-  public Response patchVerificationSessionV2(String sessionId, @Nullable String pushToken, @Nullable String mcc, @Nullable String mnc, @Nullable String captchaToken, @Nullable String pushChallengeToken) throws IOException {
-    String path = VERIFICATION_SESSION_PATH + "/" + sessionId;
-    final UpdateVerificationSessionRequestBody requestBody = new UpdateVerificationSessionRequestBody(captchaToken, pushToken, pushChallengeToken, mcc, mnc);
-    return makeServiceRequestWithoutValidation(path, "PATCH", jsonRequestBody(JsonUtil.toJson(requestBody)), NO_HEADERS, SealedSenderAccess.NONE, false);
-  }
-
-  /**
-   * V2 API: Requests verification code and returns the raw Response for manual handling.
-   * Caller is responsible for closing the response.
-   */
-  public Response requestVerificationCodeV2(String sessionId, Locale locale, boolean androidSmsRetriever, VerificationCodeTransport transport) throws IOException {
-    String path = String.format(VERIFICATION_CODE_PATH, sessionId);
-    Map<String, String> headers = locale != null ? Collections.singletonMap("Accept-Language", locale.getLanguage() + "-" + locale.getCountry()) : NO_HEADERS;
-    Map<String, String> body    = new HashMap<>();
-
-    switch (transport) {
-      case SMS:
-        body.put("transport", "sms");
-        break;
-      case VOICE:
-        body.put("transport", "voice");
-        break;
-    }
-
-    body.put("client", androidSmsRetriever ? "android-2021-03" : "android");
-
-    return makeServiceRequestWithoutValidation(path, "POST", jsonRequestBody(JsonUtil.toJson(body)), headers, SealedSenderAccess.NONE, false);
-  }
-
-  /**
-   * V2 API: Submits verification code and returns the raw Response for manual handling.
-   * Caller is responsible for closing the response.
-   */
-  public Response submitVerificationCodeV2(String sessionId, String verificationCode) throws IOException {
-    String path = String.format(VERIFICATION_CODE_PATH, sessionId);
-    Map<String, String> body = new HashMap<>();
-    body.put("code", verificationCode);
-    return makeServiceRequestWithoutValidation(path, "PUT", jsonRequestBody(JsonUtil.toJson(body)), NO_HEADERS, SealedSenderAccess.NONE, false);
-  }
-
-  /**
-   * V2 API: Checks SVR2 auth credentials and returns the raw Response for manual handling.
-   * Caller is responsible for closing the response.
-   */
-  public Response checkSvr2AuthCredentialsV2(@Nullable String number, @Nonnull List<String> passwords) throws IOException {
-    String jsonBody = JsonUtil.toJson(new BackupAuthCheckRequest(number, passwords));
-    return makeServiceRequestWithoutValidation(BACKUP_AUTH_CHECK_V2, "POST", jsonRequestBody(jsonBody), NO_HEADERS, SealedSenderAccess.NONE, false);
-  }
-
-  /**
-   * V2 API: Submits registration request with explicit credentials and returns the raw Response for manual handling.
-   * Caller is responsible for closing the response.
-   *
-   * @param e164 The phone number in E.164 format (used as username for basic auth)
-   * @param password The password for basic auth
-   */
-  public Response submitRegistrationRequestV2(@Nonnull String e164, @Nonnull String password, @Nullable String sessionId, @Nullable String recoveryPassword, AccountAttributes attributes, PreKeyCollection aciPreKeys, PreKeyCollection pniPreKeys, @Nullable String fcmToken, boolean skipDeviceTransfer) throws IOException {
-    String path = REGISTRATION_PATH;
-    if (sessionId == null && recoveryPassword == null) {
-      throw new IllegalArgumentException("Neither Session ID nor Recovery Password provided.");
-    }
-
-    if (sessionId != null && recoveryPassword != null) {
-      throw new IllegalArgumentException("You must supply one and only one of either: Session ID, or Recovery Password.");
-    }
-
-    GcmRegistrationId gcmRegistrationId;
-    if (attributes.getFetchesMessages()) {
-      gcmRegistrationId = null;
-    } else {
-      gcmRegistrationId = new GcmRegistrationId(fcmToken, true);
-    }
-
-    RegistrationSessionRequestBody body;
-    try {
-      final SignedPreKeyEntity aciSignedPreKey = new SignedPreKeyEntity(Objects.requireNonNull(aciPreKeys.getSignedPreKey()).getId(),
-                                                                        aciPreKeys.getSignedPreKey().getKeyPair().getPublicKey(),
-                                                                        aciPreKeys.getSignedPreKey().getSignature());
-      final SignedPreKeyEntity pniSignedPreKey = new SignedPreKeyEntity(Objects.requireNonNull(pniPreKeys.getSignedPreKey()).getId(),
-                                                                        pniPreKeys.getSignedPreKey().getKeyPair().getPublicKey(),
-                                                                        pniPreKeys.getSignedPreKey().getSignature());
-      final KyberPreKeyEntity aciLastResortKyberPreKey = new KyberPreKeyEntity(Objects.requireNonNull(aciPreKeys.getLastResortKyberPreKey()).getId(),
-                                                                               aciPreKeys.getLastResortKyberPreKey().getKeyPair().getPublicKey(),
-                                                                               aciPreKeys.getLastResortKyberPreKey().getSignature());
-      final KyberPreKeyEntity pniLastResortKyberPreKey = new KyberPreKeyEntity(Objects.requireNonNull(pniPreKeys.getLastResortKyberPreKey()).getId(),
-                                                                               pniPreKeys.getLastResortKyberPreKey().getKeyPair().getPublicKey(),
-                                                                               pniPreKeys.getLastResortKyberPreKey().getSignature());
-
-      body = new RegistrationSessionRequestBody(sessionId,
-                                                recoveryPassword,
-                                                attributes,
-                                                Base64.encodeWithoutPadding(aciPreKeys.getIdentityKey().serialize()),
-                                                Base64.encodeWithoutPadding(pniPreKeys.getIdentityKey().serialize()),
-                                                aciSignedPreKey,
-                                                pniSignedPreKey,
-                                                aciLastResortKyberPreKey,
-                                                pniLastResortKyberPreKey,
-                                                gcmRegistrationId,
-                                                skipDeviceTransfer,
-                                                true);
-    } catch (InvalidKeyException e) {
-      throw new AssertionError("unexpected invalid key", e);
-    }
-
-    String authHeader = "Basic " + Base64.encodeWithPadding((e164 + ":" + password).getBytes("UTF-8"));
-    Map<String, String> headers = Collections.singletonMap("Authorization", authHeader);
-
-    return makeServiceRequestWithoutValidation(path, "POST", jsonRequestBody(JsonUtil.toJson(body)), headers, SealedSenderAccess.NONE, false);
-  }
-
   public void setRestoreMethodChosen(@Nonnull String token, @Nonnull RestoreMethodBody request) throws IOException {
     String body = JsonUtil.toJson(request);
     makeServiceRequest(String.format(Locale.US, SET_RESTORE_METHOD_PATH, urlEncode(token)), "PUT", body, NO_HEADERS, UNOPINIONATED_HANDLER, SealedSenderAccess.NONE);
@@ -480,18 +348,6 @@ public class PushServiceSocket {
   public RegisterAsSecondaryDeviceResponse registerAsSecondaryDevice(RegisterAsSecondaryDeviceRequest request) throws IOException {
     String responseText = makeServiceRequest("/v1/devices/link", "PUT", JsonUtil.toJson(request));
     return JsonUtil.fromJson(responseText, RegisterAsSecondaryDeviceResponse.class);
-  }
-
-  /**
-   * V2 API: Registers as a secondary device, authenticating via basic auth built from the given {@code e164} and {@code password}
-   * rather than the socket's credentials provider
-   * Caller is responsible for closing the response.
-   */
-  public Response registerAsSecondaryDevice(String e164, String password, RegisterAsSecondaryDeviceRequest request) throws IOException {
-    String              authHeader = "Basic " + Base64.encodeWithPadding((e164 + ":" + password).getBytes("UTF-8"));
-    Map<String, String> headers    = Collections.singletonMap("Authorization", authHeader);
-
-    return makeServiceRequestWithoutValidation("/v1/devices/link", "PUT", jsonRequestBody(JsonUtil.toJson(request)), headers, SealedSenderAccess.NONE, false);
   }
 
   public SendMessageResponse sendMessage(OutgoingPushMessageList bundle, @Nullable SealedSenderAccess sealedSenderAccess, boolean story)
@@ -1322,26 +1178,6 @@ public class PushServiceSocket {
     }
   }
 
-  private Response makeServiceRequestWithoutValidation(String urlFragment,
-                                                       String method,
-                                                       RequestBody body,
-                                                       Map<String, String> headers,
-                                                       @Nullable SealedSenderAccess sealedSenderAccess,
-                                                       boolean doNotAddAuthenticationOrUnidentifiedAccessKey)
-      throws PushNetworkException
-  {
-    Response response = null;
-    try {
-      response = getServiceConnection(urlFragment, method, body, headers, sealedSenderAccess, doNotAddAuthenticationOrUnidentifiedAccessKey);
-      return response;
-    } catch (Exception e) {
-      if (response != null && response.body() != null) {
-        response.body().close();
-      }
-      throw e;
-    }
-  }
-
   private Response validateServiceResponse(Response response)
       throws NonSuccessfulResponseCodeException, PushNetworkException, MalformedResponseException {
     int    responseCode    = response.code();
@@ -1773,17 +1609,6 @@ public class PushServiceSocket {
 
 
   public enum VerificationCodeTransport { SMS, VOICE }
-
-  public static class RegistrationLockV2 {
-    @JsonProperty
-    private String registrationLock;
-
-    public RegistrationLockV2() {}
-
-    public RegistrationLockV2(String registrationLock) {
-      this.registrationLock = registrationLock;
-    }
-  }
 
   public static class RegistrationLockFailure {
     @JsonProperty

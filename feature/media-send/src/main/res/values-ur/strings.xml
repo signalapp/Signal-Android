@@ -6,27 +6,130 @@
   <string name="MediaSendDialogs__youll_lose_any_changes">آپ اس تصویر میں کی گئی کسی بھی تبدیلی سے محروم ہو جائیں گے۔</string>
   <!-- Confirmation button that discards the user\'s image edits. -->
   <string name="MediaSendDialogs__discard">مسترد کیجئے</string>
+  <!-- Dialog title shown when the user tries to close media send while media is selected. -->
+  <string name="MediaSendDialogs__discard_media">میڈیا کو ضائع کر دیں؟</string>
+  <!-- Dialog body explaining that leaving media send will discard the selected media along with any edits. -->
+  <string name="MediaSendDialogs__you_will_lose_any_media">آپ کا کیپچر کیا گیا کوئی بھی میڈیا اور آپ کی کی گئی تبدیلیاں ضائع ہو جائیں گی۔</string>
+  <!-- Dialog title asking to save the media being edited to the phone\'s storage -->
+  <string name="MediaSendDialogs__save_to_phone">فون میں محفوظ کریں؟</string>
+  <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other apps. -->
+  <string name="MediaSendDialogs__this_media_will_be_saved">یہ میڈیا آپ کے فون کی اسٹوریج میں محفوظ ہو جائے گا۔ دیگر ایپس آپ اس تک رسائی حاصل کر سکتی ہیں جس کا انحصار آپ کے فون کی اجازتوں پر ہے۔</string>
+  <!-- Confirmation button that saves the media being edited to the phone\'s storage. -->
+  <string name="MediaSendDialogs__save">محفوظ کریں</string>
+  <!-- Checkbox shown in the save dialog to not show the dialog again in future saves -->
+  <string name="MediaSendDialogs__dont_show_again">دوبارہ نہ دکھائیں</string>
+  <!-- Progress dialog message shown while the media being edited is written out to the phone\'s storage. -->
+  <string name="MediaSendDialogs__saving_media">منسلکہ کو اسٹوریج میں محفوظ کیا جا رہا ہے…</string>
+  <!-- Dialog message asking the user to confirm that the media should be added to a group\'s story. The placeholder is the group\'s name. -->
+  <string name="MediaSendDialogs__add_to_the_group_story">گروپ سٹوری \"%1$s\" پر شامل کریں</string>
+  <!-- Confirmation button that adds the media to the group\'s story. -->
+  <string name="MediaSendDialogs__add_to_story">سٹوری میں شامل کریں</string>
   <!-- Accessibility label for the row that lets the user add a text message to accompany the media being sent. -->
   <string name="AddAMessageRow__add_a_message">پیغام شامل کریں</string>
+  <!-- Label and accessibility label used in place of \"Add a message\" when the media is being sent as a reply to another message. -->
+  <string name="AddAMessageRow__add_a_reply">جواب شامل کریں</string>
   <!-- Accessibility description for the button that opens the emoji keyboard. -->
   <string name="AddAMessageRow__open_emoji_keyboard">ایموجی کیی بورڈ کھولیں</string>
   <!-- Placeholder text shown in the add-a-message row before the user has entered any message text. -->
   <string name="AddAMessageRow__message">پیغام</string>
   <!-- Accessibility description for the button that advances to the next step in the media send flow. -->
   <string name="AddAMessageRow__next">اگلا</string>
+  <!-- Accessibility description for the button that sends the media to the already-known recipient. -->
+  <string name="AddAMessageRow__send">بھیجیں</string>
+  <!-- Accessibility description for long-pressing the send button to schedule the send for later. -->
+  <string name="AddAMessageRow__schedule_send">شیڈول بھیجیں</string>
+  <!-- Menu option that opens a picker for choosing the exact date and time to send at. -->
+  <string name="ScheduleSendMenu__pick_date_and_time">تاریخ اور وقت منتخب کریں</string>
+  <!-- Label shown in place of the add-a-message row when the media has been set to view once, indicating that no message can be attached. -->
+  <string name="AddAMessageRow__view_once_media">ایک مرتبہ دیکھا جانے والا میڈیا</string>
+  <!-- Accessibility label for the button at the end of the add-a-message row that turns view-once mode on and off. -->
+  <string name="AddAMessageRow__toggle_view_once">ایک بار دیکھیں کو ٹوگل کریں</string>
   <!-- Setting option that can be selected to default media to be sent as high quality by default -->
   <string name="SentMediaQuality__high">اونچا</string>
   <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
   <string name="SentMediaQuality__standard">معیار</string>
+  <!-- Label for our standard quality media conversion. -->
+  <string name="QualitySelectorBottomSheetDialog__standard">معیار</string>
+  <!-- Description for our standard quality media conversion. -->
+  <string name="QualitySelectorBottomSheetDialog__faster_less_data">تیز ، کم ڈیٹا</string>
+  <!-- Label for our high quality media conversion. This has better quality than standard. -->
+  <string name="QualitySelectorBottomSheetDialog__high">اونچا</string>
+  <!-- Label for our high quality media conversion. This has better quality than standard. -->
+  <string name="QualitySelectorBottomSheetDialog__slower_more_data">آہستہ ، زیادہ ڈیٹا</string>
+  <!-- Title heading for our media conversion quality selector. -->
+  <string name="QualitySelectorBottomSheetDialog__media_quality">میڈیا کوالٹی</string>
   <!-- Title of the screen where the user browses their device gallery to pick media to send. -->
   <string name="MediaSelectScreen__gallery">گیلری</string>
   <!-- Accessibility description for the button that advances from media selection to the next step in the send flow. -->
   <string name="MediaSelectScreen__next">اگلا</string>
+  <!-- Accessibility description for the button that leaves media selection and opens the camera. -->
+  <string name="MediaSelectScreen__go_to_camera">کیمرہ پر جائیں</string>
+  <!-- Message shown in place of the gallery when the user has not granted permission to read their photos and videos. -->
+  <string name="MediaSelectScreen__signal_needs_permission_to_show_your_photos_and_videos">Signal کو آپ کی تصاویر اور ویڈیوز دکھانے کے لیے اجازت کی ضرورت ہوتی ہے</string>
+  <!-- Label for the button that asks the system for permission to read the user\'s photos and videos. -->
+  <string name="MediaSelectScreen__allow_access">رسائی کی اجازت دیں</string>
+  <!-- Message shown in place of the gallery when the user only shared selected photos with Signal and none of them can be shown. -->
+  <string name="MediaSelectScreen__no_photos_or_videos_found">کوئی تصاویر یا ویڈیوز نہیں ملیں۔ Signal کے پاس صرف آپ کی منتخب کردہ تصاویر اور ویڈیوز کی رسائی ہوتی ہے۔</string>
+  <!-- Reminder shown above the gallery when the user only shared selected photos with Signal. -->
+  <string name="MediaSelectScreen__signal_has_limited_access">Signal کے پاس تصاویر اور ویڈیوز تک محدود رسائی ہے</string>
+  <!-- Label for the button that opens the menu for changing which photos and videos Signal can see. -->
+  <string name="MediaSelectScreen__manage">انتظام کریں</string>
+  <!-- Menu option that re-opens the system picker so the user can share more photos and videos with Signal. -->
+  <string name="MediaSelectScreen__select_more_photos">مزید تصاویر کا انتخاب کریں</string>
+  <!-- Menu option that opens Signal\'s permission settings in the system settings app. -->
+  <string name="MediaSelectScreen__go_to_settings">ترتیبات پر جائیں</string>
+  <!-- Title of the sheet shown when the permission to read photos and videos has been permanently denied, directing the user to app settings. -->
+  <string name="MediaSelectScreen__allow_access_to_storage">اسٹوریج تک رسائی کی اجازت دیں</string>
+  <!-- Subtitle of the sheet shown when the permission to read photos and videos has been permanently denied, introducing the steps that follow. -->
+  <string name="MediaSelectScreen__to_show_photos_and_videos">تصاویر اور ویڈیوز دکھانے کے لیے:</string>
+  <!-- Snackbar shown when the user denies the permission to read their photos and videos. -->
+  <string name="MediaSelectScreen__signal_needs_access_to_show_your_photos_and_videos">Signal کو آپ کی تصاویر اور ویڈیوز دکھانے کے لیے رسائی کی ضرورت ہوتی ہے۔</string>
+
   <!-- Label for the button that switches the capture screen to the camera. -->
   <string name="MediaCaptureScreen__camera">کیمرہ</string>
   <!-- Label for the button that switches the capture screen to the text story editor. -->
-  <string name="MediaCaptureScreen__text_story">متنی سٹوری</string>
+  <string name="MediaCaptureScreen__text">متن</string>
+    <!-- Label for the pill that displays the media count -->
+    <plurals name="MediaCaptureScreen_n_items">
+        <item quantity="one">%1$d</item>
+        <item quantity="other">%1$d آئٹمز</item>
+    </plurals>
+
+  <!-- Content description for the button that attaches a link to the text story being created -->
+  <string name="TextStoryBar__add_link">لنک شامل کریں</string>
+
+  <!-- Name shown on the document preview when we cannot read the file\'s name. -->
+  <string name="DocumentPage__unnamed_file">بینام فائل</string>
+
+  <!-- Content description for button to enable highlighter mode -->
+  <string name="DrawModeColorBar__highlighter">ہائی لائیٹر</string>
+  <!-- Content description for button to enable brush mode -->
+  <string name="DrawModeColorBar__brush">برش</string>
+
+  <!-- Content description for the crop toggle when the crop area is currently constrained to a fixed aspect ratio. Tapping it removes the constraint. -->
+  <string name="ImageEditorToolbar__aspect_ratio_locked">تناسبِ پہلو لاک ہے</string>
+  <!-- Content description for the crop toggle when the crop area can currently be resized freely. Tapping it constrains the crop area to a fixed aspect ratio. -->
+  <string name="ImageEditorToolbar__aspect_ratio_unlocked">تناسبِ پہلو ان لاک ہے</string>
+
+  <!-- Label for the toggle that blurs every face in the image being edited -->
+  <string name="BlurFacesBar__blur_faces">دھندلا چہرے</string>
+
+  <!-- Hint displayed in a pill at the top of the image editor telling the user they can drag anywhere on the image to blur that area -->
+  <string name="DrawAnywhereToBlurPill__draw_anywhere_to_blur">دھندلاپن کے لئے کہیں بھی ڈرا کریں</string>
+
+  <!-- Content description for the button that cycles the text being edited between styles -->
+  <string name="TextModeColorBar__toggle_between_text_styles">متن کے اسٹائلز کے درمیان ٹوگل کریں</string>
+
+  <!-- Label for the button that undoes every edit made to the image, returning it to its original state -->
+  <string name="ImageEditorClearAllButton__clear_all">تمام صاف کریں</string>
+
+  <!-- Content description for the button that undoes the last edit made to the image -->
+  <string name="ImageEditorUndoRedoButtons__undo_edit">ترمیم کو کالعدم کریں</string>
+  <!-- Content description for the button that redoes the last undone edit made to the image -->
+  <string name="ImageEditorUndoRedoButtons__redo_edit">ترمیم دوبارہ کریں</string>
+
   <!-- Video editor play button content description -->
+
   <string name="VideoEditorHud_play_video_description">ویڈیو چلائیں</string>
 
   <!-- CameraFragment -->
@@ -90,6 +193,46 @@
   <string name="MediaSendViewModel__error_recording_video">ویڈیو ریکارڈنگ میں خرابی</string>
   <!-- Displayed when there is an error capturing image -->
   <string name="MediaSendViewModel__error_taking_photo">تصویر لینے میں خرابی</string>
+  <!-- Displayed when a video was automatically trimmed so it fits within the size limit -->
+  <string name="MediaSendViewModel__video_trimmed_to_fit">آپ کی ویڈیو کو سائز کی حد کے مطابق بنانے کے لیے چھوٹا کیا گیا تھا</string>
+  <!-- Displayed when one or more of the selected items could not be added because they exceed the size limit -->
+  <string name="MediaSendViewModel__one_or_more_items_were_too_large">ایک یا زائد آئٹمز بہت بڑی تھیں</string>
+  <!-- Displayed when one or more of the selected items could not be added because they are not a type that can be sent -->
+  <string name="MediaSendViewModel__one_or_more_items_were_invalid">ایک یا زائد آئٹمز غلط تھیں</string>
+  <!-- Displayed when the user tries to select more items than can be sent at once -->
+  <string name="MediaSendViewModel__too_many_items_selected">بہت زیادہ آئٹمز منتخب کیے گئے ہیں</string>
+  <!-- Displayed after the media being edited was successfully saved to the phone\'s storage -->
+  <string name="MediaSendViewModel__media_saved">محفوظ کردہ میڈیا</string>
+  <!-- Displayed when the media being edited could not be saved to the phone\'s storage -->
+  <string name="MediaSendViewModel__error_saving_media">اسٹوریج میں منسلکہ کو محفوظ کرتے وقت نقص پیش آیا!</string>
+  <!-- Displayed when the media being edited cannot be saved because the storage permission was denied -->
+  <string name="MediaSendViewModel__unable_to_save_without_storage_permission">اجازت کے بغیر بیرونی ذخیرہ کو محفوظ کرنے کے قابل نہیں</string>
+  <!-- Small notification presented to the user when they set their photo to view-once mode -->
+  <string name="MediaSendViewModel__photo_set_to_view_once">تصویر ایک مرتبہ ویو پر سیٹ کر دی گئی</string>
+  <!-- Small notification presented to the user when they set their video to view-once mode -->
+  <string name="MediaSendViewModel__video_set_to_view_once">ویڈیو صرف ایک بار ویو پر سیٹ کر دی گئی</string>
+  <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
+  <string name="MediaReviewFragment__video_set_to_high_quality">ویڈیو ہائی کوالٹی پر سیٹ کر دی گئی</string>
+  <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
+  <string name="MediaReviewFragment__video_set_to_standard_quality">ویڈیو معیاری کوالٹی پر سیٹ کر دی گئی</string>
+  <!-- Small notification presented to the user when they set their still image to be sent in high visual quality. -->
+  <string name="MediaReviewFragment__photo_set_to_high_quality">تصویر ہائی کوالٹی پر سیٹ کر دی گئی</string>
+  <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
+  <string name="MediaReviewFragment__photo_set_to_standard_quality">تصویر معیاری کوالٹی پر سیٹ کر دی گئی</string>
+  <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
+  <plurals name="MediaReviewFragment__items_set_to_high_quality">
+        <item quantity="one">%1$d آئٹم ہائی کوالٹی پر سیٹ کر دی گئی</item>
+        <item quantity="other">%1$d آئٹمز ہائی کوالٹی پر سیٹ کر دی گئیں</item>
+    </plurals>
+  <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
+  <plurals name="MediaReviewFragment__items_set_to_standard_quality">
+        <item quantity="one">%1$d آئٹم معیاری کوالٹی پر سیٹ کردی گئی</item>
+        <item quantity="other">%1$d آئٹمز معیاری کوالٹی پر سیٹ کر دی گئیں</item>
+    </plurals>
+  <!-- Message shown when saving the media being edited requires the storage permission, but that permission has been permanently denied by the user. -->
+  <string name="MediaSendViewModel__signal_needs_the_storage_permission">Signal کو بیرونی ذخیرہ کو محفوظ کرنے کیلئے اسٹورج کی اجازت کی ضرورت ہے، لیکن اس کو مستقل طور پر رد کر دیا گیا ہے۔ براہ کرم ایپ کی ترتیبات میں جا کر \"اجازت نامہ\" کا انتخاب کریں، اور\"اسٹورج \" کو فعال کریں۔</string>
+  <!-- Message shown when the user disables audio on a video -->
+  <string name="MediaSendViewModel__video_will_be_sent_without_audio">ویڈیو آڈیو کے بغیر بھیجی جائے گی</string>
 
   <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
   <string name="UsernameScannedDialog__username_dialog_title">%1$s ملا ہے</string>
@@ -104,4 +247,32 @@
   <string name="LinkedDeviceScannedDialog__it_looks_like_youre_trying">ایسا لگتا ہے کہ آپ Signal ڈیوائس کو لنک کرنے کی کوشش کر رہے ہیں۔ جاری رکھیں پر ٹیپ کریں اور پھر \"نئی ڈیوائس لنک کریں\" پر ٹیپ کریں اور QR کوڈ کو دوبارہ اسکین کریں۔</string>
   <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
   <string name="LinkedDeviceScannedDialog__device_link_dialog_continue">جاری رکھیں</string>
+
+    <!-- Gif label displayed in a pill in the editor specifying the type of media being sent. -->
+    <plurals name="MediaEditScreen__gif">
+        <item quantity="one">%1$d Gif</item>
+        <item quantity="other">%1$d Gifs</item>
+    </plurals>
+    <!-- Photo label displayed in a pill in the editor specifying the type of media being sent. -->
+    <plurals name="MediaEditScreen__photo">
+        <item quantity="one">%1$d تصویر</item>
+        <item quantity="other">%1$d تصاویر</item>
+    </plurals>
+    <!-- Video label displayed in a pill in the editor specifying the type of media being sent. -->
+    <plurals name="MediaEditScreen__video">
+        <item quantity="one">%1$d ویڈیو</item>
+        <item quantity="other">%1$d ویڈیوز</item>
+    </plurals>
+    <!-- Document label displayed in a pill in the editor specifying the type of media being sent. -->
+    <plurals name="MediaEditScreen__document">
+        <item quantity="one">%1$d دستاویز</item>
+        <item quantity="other">%1$d دستاویزات</item>
+    </plurals>
+    <!-- Item label displayed in a pill in the editor specifying the type of media being sent. -->
+    <plurals name="MediaEditScreen__item">
+        <item quantity="one">%1$d</item>
+        <item quantity="other">%1$dاشیاء</item>
+    </plurals>
+    <!-- x of y label displayed in a pill in the editor specifying the type of media being sent. First placeholder is selected page, second is total count. -->
+    <string name="MediaEditScreen__d_of_d">%1$dکا%2$d</string>
 </resources>

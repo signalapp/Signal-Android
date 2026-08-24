@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.registration.v2
 
 import android.content.Context
+import arrow.core.Either
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.awaitClose
@@ -15,50 +16,57 @@ import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import kotlinx.serialization.json.Json
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.MasterKey
 import org.signal.core.models.ServiceId.ACI
-import org.signal.core.models.ServiceId.PNI
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.ecc.ECPrivateKey
+import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
+import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialRequest
 import org.signal.network.NetworkResult
+import org.signal.network.api.ArchiveApiV2
+import org.signal.network.api.RegistrationApiV2
+import org.signal.network.api.RegistrationApiV2.AccountAttributes
+import org.signal.network.api.RegistrationApiV2.CheckSvrCredentialsError
+import org.signal.network.api.RegistrationApiV2.CheckSvrCredentialsResponse
+import org.signal.network.api.RegistrationApiV2.CreateLoginReceiptCredentialError
+import org.signal.network.api.RegistrationApiV2.CreateLoginReceiptCredentialResult
+import org.signal.network.api.RegistrationApiV2.CreateSessionError
+import org.signal.network.api.RegistrationApiV2.DeviceAttributes
+import org.signal.network.api.RegistrationApiV2.GetSessionStatusError
+import org.signal.network.api.RegistrationApiV2.LinkDeviceResponse
+import org.signal.network.api.RegistrationApiV2.LoginPurchasePaymentProvider
+import org.signal.network.api.RegistrationApiV2.PreKeyCollection
+import org.signal.network.api.RegistrationApiV2.RegisterAccountError
+import org.signal.network.api.RegistrationApiV2.RegisterAccountResponse
+import org.signal.network.api.RegistrationApiV2.RegisterAccountWithoutPhoneNumberError
+import org.signal.network.api.RegistrationApiV2.RegisterAsLinkedDeviceError
+import org.signal.network.api.RegistrationApiV2.RequestVerificationCodeError
+import org.signal.network.api.RegistrationApiV2.RestoreMethod
+import org.signal.network.api.RegistrationApiV2.SessionMetadata
+import org.signal.network.api.RegistrationApiV2.SetRestoreMethodError
+import org.signal.network.api.RegistrationApiV2.SubmitVerificationCodeError
+import org.signal.network.api.RegistrationApiV2.SvrCredentials
+import org.signal.network.api.RegistrationApiV2.UpdateSessionError
+import org.signal.network.api.RegistrationApiV2.VerificationCodeTransport
+import org.signal.network.service.ArchiveError
 import org.signal.registration.LinkAndSyncWaitResult
 import org.signal.registration.NetworkController
-import org.signal.registration.NetworkController.AccountAttributes
 import org.signal.registration.NetworkController.BackupMasterKeyError
-import org.signal.registration.NetworkController.CheckSvrCredentialsError
-import org.signal.registration.NetworkController.CheckSvrCredentialsResponse
-import org.signal.registration.NetworkController.CreateSessionError
-import org.signal.registration.NetworkController.DeviceAttributes
-import org.signal.registration.NetworkController.GetSessionStatusError
 import org.signal.registration.NetworkController.GetSvrCredentialsError
 import org.signal.registration.NetworkController.LinkDeviceProvisioningEvent
 import org.signal.registration.NetworkController.LinkDeviceProvisioningMessage
-import org.signal.registration.NetworkController.LinkDeviceResponse
-import org.signal.registration.NetworkController.PreKeyCollection
 import org.signal.registration.NetworkController.ProvisioningEvent
 import org.signal.registration.NetworkController.ProvisioningMessage
-import org.signal.registration.NetworkController.RegisterAccountError
-import org.signal.registration.NetworkController.RegisterAccountResponse
-import org.signal.registration.NetworkController.RegisterAsLinkedDeviceError
-import org.signal.registration.NetworkController.RegistrationLockResponse
-import org.signal.registration.NetworkController.RequestVerificationCodeError
+import org.signal.registration.NetworkController.ReserveBackupIdError
 import org.signal.registration.NetworkController.RestoreAccountRecordError
 import org.signal.registration.NetworkController.RestoreMasterKeyError
-import org.signal.registration.NetworkController.SessionMetadata
 import org.signal.registration.NetworkController.SetAccountAttributesError
 import org.signal.registration.NetworkController.SetProfileError
 import org.signal.registration.NetworkController.SetRegistrationLockError
-import org.signal.registration.NetworkController.SetRestoreMethodError
-import org.signal.registration.NetworkController.SubmitVerificationCodeError
-import org.signal.registration.NetworkController.SvrCredentials
-import org.signal.registration.NetworkController.ThirdPartyServiceErrorResponse
-import org.signal.registration.NetworkController.UpdateSessionError
-import org.signal.registration.NetworkController.VerificationCodeTransport
 import org.signal.registration.NetworkController.VerifyBackupKeyError
 import org.signal.registration.proto.RegistrationProvisionMessage
 import org.thoughtcrime.securesms.BuildConfig
@@ -84,22 +92,17 @@ import org.thoughtcrime.securesms.registration.fcm.PushChallengeRequest
 import org.thoughtcrime.securesms.registration.ui.restore.StorageServiceRestore
 import org.thoughtcrime.securesms.registration.util.RegistrationUtil
 import org.thoughtcrime.securesms.registration.viewmodel.SvrAuthCredentialSet
+import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.SvrNoDataException
-import org.whispersystems.signalservice.api.archive.ArchiveServiceAccess
 import org.whispersystems.signalservice.api.link.TransferArchiveResponse
 import org.whispersystems.signalservice.api.messages.multidevice.RequestMessage
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage
 import org.whispersystems.signalservice.api.provisioning.ProvisioningSocket
-import org.whispersystems.signalservice.api.push.SignedPreKeyEntity
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.BackupResponse
 import org.whispersystems.signalservice.internal.crypto.SecondaryProvisioningCipher
 import org.whispersystems.signalservice.internal.push.AuthCredentials
-import org.whispersystems.signalservice.internal.push.GcmRegistrationId
-import org.whispersystems.signalservice.internal.push.KyberPreKeyEntity
 import org.whispersystems.signalservice.internal.push.ProvisionMessage
-import org.whispersystems.signalservice.internal.push.PushServiceSocket
-import org.whispersystems.signalservice.internal.push.RegisterAsSecondaryDeviceRequest
 import org.whispersystems.signalservice.internal.push.SyncMessage
 import java.io.Closeable
 import java.io.IOException
@@ -107,19 +110,15 @@ import java.util.Locale
 import kotlin.coroutines.coroutineContext
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.hours
-import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
 import org.whispersystems.signalservice.api.account.AccountAttributes as ServiceAccountAttributes
-import org.whispersystems.signalservice.api.account.DeviceAttributes as ServiceDeviceAttributes
-import org.whispersystems.signalservice.api.account.PreKeyCollection as ServicePreKeyCollection
-import org.whispersystems.signalservice.api.provisioning.RestoreMethod as ServiceRestoreMethod
 
 /**
  * Implementation of [NetworkController] that bridges to the app's existing network infrastructure.
  */
 class AppRegistrationNetworkController(
   private val context: Context,
-  private val pushServiceSocket: PushServiceSocket
+  private val registrationApi: RegistrationApiV2
 ) : NetworkController {
 
   companion object {
@@ -128,107 +127,29 @@ class AppRegistrationNetworkController(
     private val RETRY_BACKOFF = 5.seconds
   }
 
-  private val json = Json { ignoreUnknownKeys = true }
-
   override suspend fun createSession(
     e164: String,
     fcmToken: String?,
     mcc: String?,
     mnc: String?
-  ): RequestResult<SessionMetadata, CreateSessionError> = withContext(Dispatchers.IO) {
-    try {
-      pushServiceSocket.createVerificationSessionV2(e164, fcmToken, mcc, mnc).use { response ->
-        when (response.code) {
-          200 -> {
-            val session = json.decodeFromString<SessionMetadata>(response.body.string())
-            RequestResult.Success(session)
-          }
-          422 -> {
-            RequestResult.NonSuccess(CreateSessionError.InvalidRequest(response.body.string()))
-          }
-          429 -> {
-            RequestResult.NonSuccess(CreateSessionError.RateLimited(response.retryAfter()))
-          }
-          else -> {
-            RequestResult.ApplicationError(IllegalStateException("Unexpected response code: ${response.code}, body: ${response.body.string()}"))
-          }
-        }
-      }
-    } catch (e: IOException) {
-      RequestResult.RetryableNetworkError(e)
-    } catch (e: Exception) {
-      RequestResult.ApplicationError(e)
-    }
+  ): RequestResult<SessionMetadata, CreateSessionError> {
+    return registrationApi.createVerificationSession(e164, fcmToken, mcc, mnc)
   }
 
-  override suspend fun getSession(sessionId: String): RequestResult<SessionMetadata, GetSessionStatusError> = withContext(Dispatchers.IO) {
-    try {
-      pushServiceSocket.getSessionStatusV2(sessionId).use { response ->
-        when (response.code) {
-          200 -> {
-            val session = json.decodeFromString<SessionMetadata>(response.body.string())
-            RequestResult.Success(session)
-          }
-          400 -> {
-            RequestResult.NonSuccess(GetSessionStatusError.InvalidRequest(response.body.string()))
-          }
-          404 -> {
-            RequestResult.NonSuccess(GetSessionStatusError.SessionNotFound(response.body.string()))
-          }
-          422 -> {
-            RequestResult.NonSuccess(GetSessionStatusError.InvalidSessionId(response.body.string()))
-          }
-          else -> {
-            RequestResult.ApplicationError(IllegalStateException("Unexpected response code: ${response.code}, body: ${response.body.string()}"))
-          }
-        }
-      }
-    } catch (e: IOException) {
-      RequestResult.RetryableNetworkError(e)
-    } catch (e: Exception) {
-      RequestResult.ApplicationError(e)
-    }
+  override suspend fun getSession(sessionId: String): RequestResult<SessionMetadata, GetSessionStatusError> {
+    return registrationApi.getSessionStatus(sessionId)
   }
 
   override suspend fun updateSession(
-    sessionId: String?,
+    sessionId: String,
     pushChallengeToken: String?,
     captchaToken: String?
-  ): RequestResult<SessionMetadata, UpdateSessionError> = withContext(Dispatchers.IO) {
-    try {
-      pushServiceSocket.patchVerificationSessionV2(
-        sessionId,
-        null,
-        null,
-        null,
-        captchaToken,
-        pushChallengeToken
-      ).use { response ->
-        when (response.code) {
-          200 -> {
-            val session = json.decodeFromString<SessionMetadata>(response.body.string())
-            RequestResult.Success(session)
-          }
-          400 -> {
-            RequestResult.NonSuccess(UpdateSessionError.InvalidRequest(response.body.string()))
-          }
-          409 -> {
-            RequestResult.NonSuccess(UpdateSessionError.RejectedUpdate(response.body.string()))
-          }
-          429 -> {
-            val session = json.decodeFromString<SessionMetadata>(response.body.string())
-            RequestResult.NonSuccess(UpdateSessionError.RateLimited(response.retryAfter(), session))
-          }
-          else -> {
-            RequestResult.ApplicationError(IllegalStateException("Unexpected response code: ${response.code}, body: ${response.body.string()}"))
-          }
-        }
-      }
-    } catch (e: IOException) {
-      RequestResult.RetryableNetworkError(e)
-    } catch (e: Exception) {
-      RequestResult.ApplicationError(e)
-    }
+  ): RequestResult<SessionMetadata, UpdateSessionError> {
+    return registrationApi.updateVerificationSession(
+      sessionId = sessionId,
+      captchaToken = captchaToken,
+      pushChallengeToken = pushChallengeToken
+    )
   }
 
   override suspend fun requestVerificationCode(
@@ -236,93 +157,15 @@ class AppRegistrationNetworkController(
     locale: Locale?,
     androidSmsRetrieverSupported: Boolean,
     transport: VerificationCodeTransport
-  ): RequestResult<SessionMetadata, RequestVerificationCodeError> = withContext(Dispatchers.IO) {
-    try {
-      val socketTransport = when (transport) {
-        VerificationCodeTransport.SMS -> PushServiceSocket.VerificationCodeTransport.SMS
-        VerificationCodeTransport.VOICE -> PushServiceSocket.VerificationCodeTransport.VOICE
-      }
-
-      pushServiceSocket.requestVerificationCodeV2(
-        sessionId,
-        locale,
-        androidSmsRetrieverSupported,
-        socketTransport
-      ).use { response ->
-        when (response.code) {
-          200 -> {
-            val session = json.decodeFromString<SessionMetadata>(response.body.string())
-            RequestResult.Success(session)
-          }
-          400 -> {
-            RequestResult.NonSuccess(RequestVerificationCodeError.InvalidSessionId(response.body.string()))
-          }
-          404 -> {
-            RequestResult.NonSuccess(RequestVerificationCodeError.SessionNotFound(response.body.string()))
-          }
-          409 -> {
-            val session = json.decodeFromString<SessionMetadata>(response.body.string())
-            RequestResult.NonSuccess(RequestVerificationCodeError.MissingRequestInformationOrAlreadyVerified(session))
-          }
-          418 -> {
-            val session = json.decodeFromString<SessionMetadata>(response.body.string())
-            RequestResult.NonSuccess(RequestVerificationCodeError.CouldNotFulfillWithRequestedTransport(session))
-          }
-          429 -> {
-            val session = json.decodeFromString<SessionMetadata>(response.body.string())
-            RequestResult.NonSuccess(RequestVerificationCodeError.RateLimited(response.retryAfter(), session))
-          }
-          440 -> {
-            val errorBody = json.decodeFromString<ThirdPartyServiceErrorResponse>(response.body.string())
-            RequestResult.NonSuccess(RequestVerificationCodeError.ThirdPartyServiceError(errorBody))
-          }
-          else -> {
-            RequestResult.ApplicationError(IllegalStateException("Unexpected response code: ${response.code}, body: ${response.body.string()}"))
-          }
-        }
-      }
-    } catch (e: IOException) {
-      RequestResult.RetryableNetworkError(e)
-    } catch (e: Exception) {
-      RequestResult.ApplicationError(e)
-    }
+  ): RequestResult<SessionMetadata, RequestVerificationCodeError> {
+    return registrationApi.requestVerificationCode(sessionId, locale, androidSmsRetrieverSupported, transport)
   }
 
   override suspend fun submitVerificationCode(
     sessionId: String,
     verificationCode: String
-  ): RequestResult<SessionMetadata, SubmitVerificationCodeError> = withContext(Dispatchers.IO) {
-    try {
-      pushServiceSocket.submitVerificationCodeV2(sessionId, verificationCode).use { response ->
-        when (response.code) {
-          200 -> {
-            val session = json.decodeFromString<SessionMetadata>(response.body.string())
-            RequestResult.Success(session)
-          }
-          400 -> {
-            RequestResult.NonSuccess(SubmitVerificationCodeError.InvalidSessionIdOrVerificationCode(response.body.string()))
-          }
-          404 -> {
-            RequestResult.NonSuccess(SubmitVerificationCodeError.SessionNotFound(response.body.string()))
-          }
-          409 -> {
-            val session = json.decodeFromString<SessionMetadata>(response.body.string())
-            RequestResult.NonSuccess(SubmitVerificationCodeError.SessionAlreadyVerifiedOrNoCodeRequested(session))
-          }
-          429 -> {
-            val session = json.decodeFromString<SessionMetadata>(response.body.string())
-            RequestResult.NonSuccess(SubmitVerificationCodeError.RateLimited(response.retryAfter(), session))
-          }
-          else -> {
-            RequestResult.ApplicationError(IllegalStateException("Unexpected response code: ${response.code}, body: ${response.body.string()}"))
-          }
-        }
-      }
-    } catch (e: IOException) {
-      RequestResult.RetryableNetworkError(e)
-    } catch (e: Exception) {
-      RequestResult.ApplicationError(e)
-    }
+  ): RequestResult<SessionMetadata, SubmitVerificationCodeError> {
+    return registrationApi.submitVerificationCode(sessionId, verificationCode)
   }
 
   override suspend fun registerAccount(
@@ -335,56 +178,37 @@ class AppRegistrationNetworkController(
     pniPreKeys: PreKeyCollection,
     fcmToken: String?,
     skipDeviceTransfer: Boolean
-  ): RequestResult<RegisterAccountResponse, RegisterAccountError> = withContext(Dispatchers.IO) {
-    check(sessionId != null || recoveryPassword != null) { "Either sessionId or recoveryPassword must be provided" }
-    check(sessionId == null || recoveryPassword == null) { "Either sessionId or recoveryPassword must be provided, but not both" }
+  ): RequestResult<RegisterAccountResponse, RegisterAccountError> {
+    return registrationApi.registerAccount(
+      e164 = e164,
+      password = password,
+      sessionId = sessionId,
+      recoveryPassword = recoveryPassword,
+      attributes = attributes,
+      aciPreKeys = aciPreKeys,
+      pniPreKeys = pniPreKeys,
+      fcmToken = fcmToken,
+      skipDeviceTransfer = skipDeviceTransfer
+    )
+  }
 
-    try {
-      pushServiceSocket.submitRegistrationRequestV2(
-        e164,
-        password,
-        sessionId,
-        recoveryPassword,
-        attributes.toServiceAccountAttributes(),
-        aciPreKeys.toServicePreKeyCollection(),
-        pniPreKeys.toServicePreKeyCollection(),
-        fcmToken,
-        skipDeviceTransfer
-      ).use { response ->
-        when (response.code) {
-          200 -> {
-            val result = json.decodeFromString<RegisterAccountResponse>(response.body.string())
-            RequestResult.Success(result)
-          }
-          401 -> {
-            RequestResult.NonSuccess(RegisterAccountError.SessionNotFoundOrNotVerified(response.body.string()))
-          }
-          403 -> {
-            RequestResult.NonSuccess(RegisterAccountError.RegistrationRecoveryPasswordIncorrect(response.body.string()))
-          }
-          409 -> {
-            RequestResult.NonSuccess(RegisterAccountError.DeviceTransferPossible)
-          }
-          422 -> {
-            RequestResult.NonSuccess(RegisterAccountError.InvalidRequest(response.body.string()))
-          }
-          423 -> {
-            val lockResponse = json.decodeFromString<RegistrationLockResponse>(response.body.string())
-            RequestResult.NonSuccess(RegisterAccountError.RegistrationLock(lockResponse))
-          }
-          429 -> {
-            RequestResult.NonSuccess(RegisterAccountError.RateLimited(response.retryAfter()))
-          }
-          else -> {
-            RequestResult.ApplicationError(IllegalStateException("Unexpected response code: ${response.code}, body: ${response.body.string()}"))
-          }
-        }
-      }
-    } catch (e: IOException) {
-      RequestResult.RetryableNetworkError(e)
-    } catch (e: Exception) {
-      RequestResult.ApplicationError(e)
-    }
+  override suspend fun createLoginPurchaseReceiptCredential(
+    purchaseIdentifier: String,
+    receiptCredentialRequest: ReceiptCredentialRequest,
+    paymentProvider: LoginPurchasePaymentProvider
+  ): RequestResult<CreateLoginReceiptCredentialResult, CreateLoginReceiptCredentialError> {
+    throw NotImplementedError()
+  }
+
+  override suspend fun registerAccountWithoutPhoneNumber(
+    password: String,
+    receiptCredentialPresentation: ReceiptCredentialPresentation,
+    attributes: AccountAttributes,
+    aciPreKeys: PreKeyCollection,
+    fcmToken: String?,
+    skipDeviceTransfer: Boolean
+  ): RequestResult<RegisterAccountResponse, RegisterAccountWithoutPhoneNumberError> {
+    throw NotImplementedError()
   }
 
   override suspend fun getFcmToken(): String? {
@@ -500,32 +324,11 @@ class AppRegistrationNetworkController(
       return@withContext RequestResult.NonSuccess(SetRegistrationLockError.NoPinSet)
     }
 
-    when (val result = SignalNetwork.account.enableRegistrationLock(masterKey.deriveRegistrationLock())) {
-      is NetworkResult.Success -> RequestResult.Success(Unit)
-      is NetworkResult.StatusCodeError -> {
-        when (result.code) {
-          401 -> RequestResult.NonSuccess(SetRegistrationLockError.Unauthorized)
-          422 -> RequestResult.NonSuccess(SetRegistrationLockError.InvalidRequest(result.toString()))
-          else -> RequestResult.ApplicationError(IllegalStateException("Unexpected response code: ${result.code}"))
-        }
-      }
-      is NetworkResult.NetworkError -> RequestResult.RetryableNetworkError(result.exception)
-      is NetworkResult.ApplicationError -> RequestResult.ApplicationError(result.throwable)
-    }
+    SignalNetwork.account.enableRegistrationLock(masterKey)
   }
 
   override suspend fun disableRegistrationLock(): RequestResult<Unit, SetRegistrationLockError> = withContext(Dispatchers.IO) {
-    when (val result = SignalNetwork.account.disableRegistrationLock()) {
-      is NetworkResult.Success -> RequestResult.Success(Unit)
-      is NetworkResult.StatusCodeError -> {
-        when (result.code) {
-          401 -> RequestResult.NonSuccess(SetRegistrationLockError.Unauthorized)
-          else -> RequestResult.ApplicationError(IllegalStateException("Unexpected response code: ${result.code}"))
-        }
-      }
-      is NetworkResult.NetworkError -> RequestResult.RetryableNetworkError(result.exception)
-      is NetworkResult.ApplicationError -> RequestResult.ApplicationError(result.throwable)
-    }
+    SignalNetwork.account.disableRegistrationLock()
   }
 
   override suspend fun getSvrCredentials(): RequestResult<SvrCredentials, GetSvrCredentialsError> = withContext(Dispatchers.IO) {
@@ -543,31 +346,8 @@ class AppRegistrationNetworkController(
   override suspend fun checkSvrCredentials(
     e164: String,
     credentials: List<SvrCredentials>
-  ): RequestResult<CheckSvrCredentialsResponse, CheckSvrCredentialsError> = withContext(Dispatchers.IO) {
-    try {
-      val tokens = credentials.map { "${it.username}:${it.password}" }
-      pushServiceSocket.checkSvr2AuthCredentialsV2(e164, tokens).use { response ->
-        when (response.code) {
-          200 -> {
-            val result = json.decodeFromString<CheckSvrCredentialsResponse>(response.body.string())
-            RequestResult.Success(result)
-          }
-          400, 422 -> {
-            RequestResult.NonSuccess(CheckSvrCredentialsError.InvalidRequest(response.body.string()))
-          }
-          401 -> {
-            RequestResult.NonSuccess(CheckSvrCredentialsError.Unauthorized)
-          }
-          else -> {
-            RequestResult.ApplicationError(IllegalStateException("Unexpected response code: ${response.code}, body: ${response.body.string()}"))
-          }
-        }
-      }
-    } catch (e: IOException) {
-      RequestResult.RetryableNetworkError(e)
-    } catch (e: Exception) {
-      RequestResult.ApplicationError(e)
-    }
+  ): RequestResult<CheckSvrCredentialsResponse, CheckSvrCredentialsError> {
+    return registrationApi.checkSvr2AuthCredentials(e164, credentials)
   }
 
   override suspend fun setAccountAttributes(
@@ -590,52 +370,41 @@ class AppRegistrationNetworkController(
   override suspend fun getRemoteBackupInfo(aep: AccountEntropyPool): RequestResult<NetworkController.GetBackupInfoResponse, NetworkController.GetBackupInfoError> = withContext(Dispatchers.IO) {
     val aci = SignalStore.account.aci ?: return@withContext RequestResult.ApplicationError(IllegalStateException("ACI not available"))
 
-    val currentTime = System.currentTimeMillis()
-    val messageBackupKey = aep.deriveMessageBackupKey()
-    val messageCredential = SignalStore.backup.messageCredentials.byDay.getForCurrentTime(currentTime.milliseconds)
-
-    val access = if (messageCredential != null) {
-      ArchiveServiceAccess(messageCredential, messageBackupKey)
-    } else {
-      when (val credResult = SignalNetwork.archive.getServiceCredentials(currentTime)) {
-        is NetworkResult.Success -> {
-          SignalStore.backup.messageCredentials.add(credResult.result.messageCredentials)
-          SignalStore.backup.messageCredentials.clearOlderThan(currentTime)
-          val credential = SignalStore.backup.messageCredentials.byDay.getForCurrentTime(currentTime.milliseconds)
-            ?: return@withContext RequestResult.ApplicationError(IllegalStateException("Failed to obtain backup credentials after fetch"))
-          ArchiveServiceAccess(credential, messageBackupKey)
-        }
-        is NetworkResult.StatusCodeError -> return@withContext RequestResult.ApplicationError(IllegalStateException("Failed to fetch backup credentials: ${credResult.code}"))
-        is NetworkResult.NetworkError -> return@withContext RequestResult.RetryableNetworkError(credResult.exception)
-        is NetworkResult.ApplicationError -> return@withContext RequestResult.ApplicationError(credResult.throwable)
-      }
-    }
-
-    when (val result = SignalNetwork.archive.getBackupInfo(aci, access)) {
-      is NetworkResult.Success -> {
-        val info = result.result
-        RequestResult.Success(
-          NetworkController.GetBackupInfoResponse(
-            cdn = info.cdn,
-            backupDir = info.backupDir,
-            mediaDir = info.mediaDir,
-            backupName = info.backupName,
-            usedSpace = info.usedSpace
+    AppDependencies.archiveService
+      .getMessageBackupInfoForKey(aci, aep.deriveMessageBackupKey())
+      .fold(
+        ifRight = { info ->
+          RequestResult.Success(
+            NetworkController.GetBackupInfoResponse(
+              cdn = info.cdn,
+              backupDir = info.backupDir,
+              mediaDir = null,
+              backupName = info.backupName,
+              usedSpace = null
+            )
           )
-        )
+        },
+        ifLeft = { it.toGetBackupInfoError() }
+      )
+  }
+
+  override suspend fun reserveBackupId(aep: AccountEntropyPool): RequestResult<Unit, ReserveBackupIdError> = withContext(Dispatchers.IO) {
+    val aci = SignalStore.account.aci ?: return@withContext RequestResult.ApplicationError(IllegalStateException("ACI not available"))
+
+    // Uses API directly because ArchiveService uses stored key
+    when (val result = SignalNetwork.archiveV2.triggerBackupIdReservation(messageBackupKey = aep.deriveMessageBackupKey(), mediaRootBackupKey = null, aci = aci)) {
+      is RequestResult.Success -> {
+        // Anything cached was issued against the backup-id we just replaced, so it can never verify.
+        SignalStore.backup.messageCredentials.clearAll()
+        RequestResult.Success(Unit)
       }
-      is NetworkResult.StatusCodeError -> {
-        when (result.code) {
-          400 -> RequestResult.NonSuccess(NetworkController.GetBackupInfoError.BadArguments(result.stringBody))
-          401 -> RequestResult.NonSuccess(NetworkController.GetBackupInfoError.BadAuthCredential(result.stringBody))
-          403 -> RequestResult.NonSuccess(NetworkController.GetBackupInfoError.Forbidden(result.stringBody))
-          404 -> RequestResult.NonSuccess(NetworkController.GetBackupInfoError.NoBackup)
-          429 -> RequestResult.NonSuccess(NetworkController.GetBackupInfoError.RateLimited(0.seconds))
-          else -> RequestResult.ApplicationError(IllegalStateException("Unexpected response code: ${result.code}"))
-        }
+      is RequestResult.NonSuccess -> when (val error = result.error) {
+        ArchiveApiV2.SetBackupIdError.InvalidCredential -> RequestResult.NonSuccess(ReserveBackupIdError.InvalidCredential)
+        ArchiveApiV2.SetBackupIdError.Unauthorized -> RequestResult.NonSuccess(ReserveBackupIdError.Unauthorized)
+        is ArchiveApiV2.SetBackupIdError.RateLimited -> RequestResult.NonSuccess(ReserveBackupIdError.RateLimited(error.retryAfter))
       }
-      is NetworkResult.NetworkError -> RequestResult.RetryableNetworkError(result.exception)
-      is NetworkResult.ApplicationError -> RequestResult.ApplicationError(result.throwable)
+      is RequestResult.RetryableNetworkError -> RequestResult.RetryableNetworkError(result.networkError)
+      is RequestResult.ApplicationError -> RequestResult.ApplicationError(result.cause)
     }
   }
 
@@ -697,24 +466,8 @@ class AppRegistrationNetworkController(
     }
   }
 
-  override suspend fun setRestoreMethod(token: String, method: NetworkController.RestoreMethod): RequestResult<Unit, SetRestoreMethodError> = withContext(Dispatchers.IO) {
-    val serviceMethod = when (method) {
-      NetworkController.RestoreMethod.REMOTE_BACKUP -> ServiceRestoreMethod.REMOTE_BACKUP
-      NetworkController.RestoreMethod.LOCAL_BACKUP -> ServiceRestoreMethod.LOCAL_BACKUP
-      NetworkController.RestoreMethod.DEVICE_TRANSFER -> ServiceRestoreMethod.DEVICE_TRANSFER
-      NetworkController.RestoreMethod.DECLINE -> ServiceRestoreMethod.DECLINE
-    }
-    when (val result = AppDependencies.registrationApi.setRestoreMethod(token, serviceMethod)) {
-      is NetworkResult.Success -> RequestResult.Success(Unit)
-      is NetworkResult.StatusCodeError -> {
-        when (result.code) {
-          429 -> RequestResult.NonSuccess(SetRestoreMethodError.RateLimited(0.seconds))
-          else -> RequestResult.NonSuccess(SetRestoreMethodError.InvalidRequest("HTTP ${result.code}"))
-        }
-      }
-      is NetworkResult.NetworkError -> RequestResult.RetryableNetworkError(result.exception)
-      is NetworkResult.ApplicationError -> RequestResult.ApplicationError(result.throwable)
-    }
+  override suspend fun setRestoreMethod(token: String, method: RestoreMethod): RequestResult<Unit, SetRestoreMethodError> {
+    return registrationApi.setRestoreMethod(token, method)
   }
 
   override suspend fun getBackupFileLastModified(
@@ -722,30 +475,35 @@ class AppRegistrationNetworkController(
     backupInfo: NetworkController.GetBackupInfoResponse
   ): RequestResult<Long, NetworkController.GetBackupInfoError> = withContext(Dispatchers.IO) {
     val aci = SignalStore.account.aci ?: return@withContext RequestResult.ApplicationError(IllegalStateException("ACI not available"))
-    val cdn = backupInfo.cdn ?: return@withContext RequestResult.ApplicationError(IllegalStateException("CDN number not available"))
-    val backupDir = backupInfo.backupDir ?: return@withContext RequestResult.ApplicationError(IllegalStateException("Backup dir not available"))
-    val backupName = backupInfo.backupName ?: return@withContext RequestResult.ApplicationError(IllegalStateException("Backup name not available"))
 
-    val currentTime = System.currentTimeMillis()
-    val messageCredential = SignalStore.backup.messageCredentials.byDay.getForCurrentTime(currentTime.milliseconds)
-      ?: return@withContext RequestResult.ApplicationError(IllegalStateException("No message credential available"))
-
-    val access = ArchiveServiceAccess(messageCredential, aep.deriveMessageBackupKey())
-
-    val cdnCredentials = when (val cdnResult = SignalNetwork.archive.getCdnReadCredentials(cdn, aci, access)) {
-      is NetworkResult.Success -> cdnResult.result.headers
-      is NetworkResult.StatusCodeError -> return@withContext RequestResult.ApplicationError(IllegalStateException("Failed to get CDN credentials: ${cdnResult.code}"))
-      is NetworkResult.NetworkError -> return@withContext RequestResult.RetryableNetworkError(cdnResult.exception)
-      is NetworkResult.ApplicationError -> return@withContext RequestResult.ApplicationError(cdnResult.throwable)
+    val location = when (val result = AppDependencies.archiveService.getMessageBackupFileLocationForKey(aci, aep.deriveMessageBackupKey())) {
+      is Either.Right -> result.value
+      is Either.Left -> return@withContext result.value.toGetBackupInfoError()
     }
 
     try {
-      val lastModified = AppDependencies.signalServiceMessageReceiver.getCdnLastModifiedTime(cdn, cdnCredentials, "backups/$backupDir/$backupName")
+      val lastModified = AppDependencies.signalServiceMessageReceiver.getCdnLastModifiedTime(location.cdn, location.cdnCredentials, location.path)
       RequestResult.Success(lastModified.toInstant().toEpochMilli())
     } catch (e: IOException) {
       RequestResult.RetryableNetworkError(e)
     } catch (e: Exception) {
       RequestResult.ApplicationError(e)
+    }
+  }
+
+  private fun <T> ArchiveError.CredentialError.toGetBackupInfoError(): RequestResult<T, NetworkController.GetBackupInfoError> {
+    return when (this) {
+      // The server doesn't distinguish an invalid credential from a backup-id that was never provisioned, so a rejected credential means "backups aren't set up".
+      is ArchiveError.CredentialError.Unauthorized,
+      is ArchiveError.CredentialError.NotFound -> RequestResult.NonSuccess(NetworkController.GetBackupInfoError.NoBackup)
+      is ArchiveError.CredentialError.InvalidRequest -> RequestResult.NonSuccess(NetworkController.GetBackupInfoError.BadArguments(cause?.message))
+      is ArchiveError.CredentialError.RateLimited -> when (val retryAfter = retryAfter) {
+        null -> RequestResult.RetryableNetworkError(IOException(cause))
+        else -> RequestResult.NonSuccess(NetworkController.GetBackupInfoError.RateLimited(retryAfter))
+      }
+      is ArchiveError.CredentialError.ZkVerificationFailed -> RequestResult.NonSuccess(NetworkController.GetBackupInfoError.CredentialVerificationFailed)
+      is ArchiveError.NetworkError -> RequestResult.RetryableNetworkError(exception)
+      is ArchiveError.ApplicationError -> RequestResult.ApplicationError(exception)
     }
   }
 
@@ -774,7 +532,7 @@ class AppRegistrationNetworkController(
     val notificationData = org.signal.devicetransfer.DeviceToDeviceTransferService.TransferNotificationData(
       org.thoughtcrime.securesms.notifications.NotificationIds.DEVICE_TRANSFER,
       org.thoughtcrime.securesms.notifications.NotificationChannels.getInstance().BACKUPS,
-      org.thoughtcrime.securesms.R.drawable.ic_signal_backup
+      org.signal.core.ui.R.drawable.ic_signal_backup
     )
     org.signal.devicetransfer.DeviceToDeviceTransferService.startServer(
       context,
@@ -889,17 +647,14 @@ class AppRegistrationNetworkController(
         if (result is SecondaryProvisioningCipher.ProvisioningDecryptResult.Success) {
           val msg = result.message
           val aci = msg.aciBinary?.let { ACI.parseOrThrow(it) } ?: ACI.parseOrThrow(msg.aci)
-          val pni = msg.pniBinary?.let { PNI.parseOrThrow(it) } ?: PNI.parseOrThrow(msg.pni)
 
           trySend(
             LinkDeviceProvisioningEvent.MessageReceived(
               LinkDeviceProvisioningMessage(
-                e164 = msg.number!!,
                 provisioningCode = msg.provisioningCode!!,
                 aci = aci.toString(),
-                pni = pni.toString(),
                 aciIdentityKeyPair = IdentityKeyPair(IdentityKey(msg.aciIdentityKeyPublic!!.toByteArray()), ECPrivateKey(msg.aciIdentityKeyPrivate!!.toByteArray())),
-                pniIdentityKeyPair = IdentityKeyPair(IdentityKey(msg.pniIdentityKeyPublic!!.toByteArray()), ECPrivateKey(msg.pniIdentityKeyPrivate!!.toByteArray())),
+                phoneNumberData = LinkDeviceProvisioningMessage.PhoneNumberData.fromProvisionMessage(msg),
                 profileKey = msg.profileKey!!.toByteArray(),
                 ephemeralBackupKey = msg.ephemeralBackupKey,
                 accountEntropyPool = msg.accountEntropyPool,
@@ -947,45 +702,23 @@ class AppRegistrationNetworkController(
   }
 
   override suspend fun registerAsLinkedDevice(
-    e164: String,
+    aci: ACI,
     password: String,
     provisioningCode: String,
     deviceAttributes: DeviceAttributes,
     aciPreKeys: PreKeyCollection,
-    pniPreKeys: PreKeyCollection,
+    pniPreKeys: PreKeyCollection?,
     fcmToken: String?
-  ): RequestResult<LinkDeviceResponse, RegisterAsLinkedDeviceError> = withContext(Dispatchers.IO) {
-    try {
-      pushServiceSocket.registerAsSecondaryDevice(
-        e164,
-        password,
-        RegisterAsSecondaryDeviceRequest(
-          verificationCode = provisioningCode,
-          accountAttributes = deviceAttributes.toServiceDeviceAttributes(),
-          aciSignedPreKey = SignedPreKeyEntity(aciPreKeys.signedPreKey.id.toLong(), aciPreKeys.signedPreKey.keyPair.publicKey, aciPreKeys.signedPreKey.signature),
-          pniSignedPreKey = SignedPreKeyEntity(pniPreKeys.signedPreKey.id.toLong(), pniPreKeys.signedPreKey.keyPair.publicKey, pniPreKeys.signedPreKey.signature),
-          aciPqLastResortPreKey = KyberPreKeyEntity(aciPreKeys.lastResortKyberPreKey.id.toLong(), aciPreKeys.lastResortKyberPreKey.keyPair.publicKey, aciPreKeys.lastResortKyberPreKey.signature),
-          pniPqLastResortPreKey = KyberPreKeyEntity(pniPreKeys.lastResortKyberPreKey.id.toLong(), pniPreKeys.lastResortKyberPreKey.keyPair.publicKey, pniPreKeys.lastResortKyberPreKey.signature),
-          gcmToken = fcmToken?.let { GcmRegistrationId(it, true) }
-        )
-      ).use { response ->
-        when (response.code) {
-          200 -> RequestResult.Success(json.decodeFromString<LinkDeviceResponse>(response.body.string()))
-          403 -> RequestResult.NonSuccess(RegisterAsLinkedDeviceError.IncorrectVerification)
-          409 -> RequestResult.NonSuccess(RegisterAsLinkedDeviceError.MissingCapability)
-          411 -> RequestResult.NonSuccess(RegisterAsLinkedDeviceError.MaxLinkedDevices)
-          422 -> RequestResult.NonSuccess(RegisterAsLinkedDeviceError.InvalidRequest(response.body.string()))
-          429 -> RequestResult.NonSuccess(RegisterAsLinkedDeviceError.RateLimited(response.retryAfter()))
-          else -> RequestResult.ApplicationError(IllegalStateException("Unexpected response code: ${response.code}, body: ${response.body.string()}"))
-        }
-      }
-    } catch (e: IOException) {
-      RequestResult.RetryableNetworkError(e)
-    } catch (e: CancellationException) {
-      throw e
-    } catch (e: Exception) {
-      RequestResult.ApplicationError(e)
-    }
+  ): RequestResult<LinkDeviceResponse, RegisterAsLinkedDeviceError> {
+    return registrationApi.registerAsSecondaryDevice(
+      aci = aci,
+      password = password,
+      verificationCode = provisioningCode,
+      attributes = deviceAttributes,
+      aciPreKeys = aciPreKeys,
+      pniPreKeys = pniPreKeys,
+      fcmToken = fcmToken
+    )
   }
 
   override suspend fun onLinkedDeviceRegistered() = withContext(Dispatchers.IO) {
@@ -1112,6 +845,11 @@ class AppRegistrationNetworkController(
   }
 
   private fun AccountAttributes.toServiceAccountAttributes(): ServiceAccountAttributes {
+    if (!Environment.PHONENUMBERLESS_REGISTRATION) {
+      checkNotNull(discoverableByPhoneNumber) { "Missing phone number discoverability for an account that must have a phone number!" }
+      checkNotNull(pniRegistrationId) { "Missing PNI registration ID for an account that must have a phone number!" }
+    }
+
     return ServiceAccountAttributes(
       signalingKey,
       registrationId,
@@ -1120,9 +858,10 @@ class AppRegistrationNetworkController(
       unidentifiedAccessKey,
       unrestrictedUnidentifiedAccess,
       capabilities?.toServiceCapabilities(),
-      discoverableByPhoneNumber,
+      // The legacy service entity can't express "no phone number".
+      discoverableByPhoneNumber ?: false,
       null,
-      pniRegistrationId,
+      pniRegistrationId ?: 0,
       recoveryPassword
     )
   }
@@ -1133,29 +872,8 @@ class AppRegistrationNetworkController(
       versionedExpirationTimer,
       attachmentBackfill,
       spqr,
-      usernameChangeSyncMessage
+      usernameChangeSyncMessage,
+      optionalPhoneNumber
     )
-  }
-
-  private fun DeviceAttributes.toServiceDeviceAttributes(): ServiceDeviceAttributes {
-    return ServiceDeviceAttributes(
-      fetchesMessages = fetchesMessages,
-      registrationId = registrationId,
-      pniRegistrationId = pniRegistrationId,
-      name = name,
-      capabilities = capabilities?.toServiceCapabilities()
-    )
-  }
-
-  private fun PreKeyCollection.toServicePreKeyCollection(): ServicePreKeyCollection {
-    return ServicePreKeyCollection(
-      identityKey = identityKey,
-      signedPreKey = signedPreKey,
-      lastResortKyberPreKey = lastResortKyberPreKey
-    )
-  }
-
-  private fun okhttp3.Response.retryAfter(): Duration {
-    return this.header("Retry-After")?.toLongOrNull()?.seconds ?: 0.seconds
   }
 }

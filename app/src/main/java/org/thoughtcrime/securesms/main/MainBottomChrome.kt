@@ -72,6 +72,7 @@ fun MainBottomChrome(
     modifier = modifier
       .fillMaxWidth()
       .animateContentSize()
+      .then(if (navigationType == NavigationType.RAIL) Modifier.navigationBarsPadding() else Modifier)
   ) {
     if (state.mainToolbarMode == MainToolbarMode.FULL && navigationType != NavigationType.RAIL) {
       Box(
@@ -97,7 +98,7 @@ fun MainBottomChrome(
       return@Column
     }
 
-    val snackBarModifier = if (state.mainToolbarMode == MainToolbarMode.BASIC) {
+    val snackBarModifier = if (state.mainToolbarMode == MainToolbarMode.BASIC && navigationType != NavigationType.RAIL) {
       Modifier.navigationBarsPadding()
     } else {
       Modifier

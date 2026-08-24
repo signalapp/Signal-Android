@@ -18,6 +18,9 @@ sealed interface CameraScreenEvents {
     val enableQrScanning: Boolean = false
   ) : CameraScreenEvents
 
+  /** Device rotation changed; drives capture + Small-screen icon rotation, and the card/preview when not small. */
+  data class SetDeviceRotation(val rotation: Int, val isSmallScreen: Boolean) : CameraScreenEvents
+
   /** Focuses the camera on a point. */
   data class TapToFocus(
     val viewX: Float,

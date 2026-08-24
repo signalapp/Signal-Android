@@ -12,7 +12,7 @@ import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.model.StickerRecord;
+import org.signal.core.models.database.StickerRecord;
 import org.signal.glide.decryptableuri.DecryptableUri;
 
 import java.util.ArrayList;

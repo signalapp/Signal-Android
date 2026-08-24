@@ -194,6 +194,15 @@ class GroupReceiptTable(context: Context?, databaseHelper: SignalDatabase?) : Da
     Log.d(TAG, "Remapped $fromId to $toId. count: $count")
   }
 
+  override fun onDeletedRecipient(recipientId: RecipientId) {
+    val deleted = writableDatabase
+      .delete(TABLE_NAME)
+      .where("$RECIPIENT_ID = ?", recipientId)
+      .run()
+
+    Log.d(TAG, "Deleted recipient: $deleted")
+  }
+
   private fun Cursor.toGroupReceiptInfo(): GroupReceiptInfo {
     return GroupReceiptInfo(
       recipientId = RecipientId.from(this.requireLong(RECIPIENT_ID)),

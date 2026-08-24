@@ -65,4 +65,6 @@
     <!-- Core color alpha variants without alpha channel -->
     <color name="signal_colorSurfaceVariant_16_no_alpha">#D5D8DE</color>
     <color name="signal_colorSurfaceVariant_32_no_alpha">#B8BCC5</color>
+
+    <color name="reminder_background">#faf0dc</color>
 </resources>

@@ -18,19 +18,20 @@ import androidx.transition.AutoTransition
 import androidx.transition.TransitionManager
 import org.signal.core.util.ByteLimitInputFilter
 import org.signal.core.util.dp
+import org.signal.emoji.Emoji
+import org.signal.emoji.EmojiEventListener
+import org.signal.emoji.EmojiPageModel
+import org.signal.emoji.EmojiSource
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ComposeText
 import org.thoughtcrime.securesms.components.InputAwareLayout
-import org.thoughtcrime.securesms.components.emoji.Emoji
-import org.thoughtcrime.securesms.components.emoji.EmojiEventListener
-import org.thoughtcrime.securesms.components.emoji.EmojiPageModel
+import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout
 import org.thoughtcrime.securesms.components.emoji.EmojiPageView
 import org.thoughtcrime.securesms.components.emoji.EmojiToggle
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboard
 import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel
 import org.thoughtcrime.securesms.database.model.Mention
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
-import org.thoughtcrime.securesms.emoji.EmojiSource
 import org.thoughtcrime.securesms.keyboard.emoji.toMappingModels
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDialogFragment
@@ -168,6 +169,10 @@ class StoryReplyComposer @JvmOverloads constructor(
     input.setText("")
 
     return Input(trimmedText, mentions, bodyRanges)
+  }
+
+  fun setInsetPaddingMode(mode: KeyboardAwareLinearLayout.InsetPaddingMode) {
+    inputAwareLayout.setInsetPaddingMode(mode)
   }
 
   fun openEmojiSearch() {

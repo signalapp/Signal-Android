@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ShareCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -25,12 +26,13 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.SignalProxyUtil;
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;
 import org.signal.core.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton;
 import org.thoughtcrime.securesms.util.views.LearnMoreTextView;
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState;
-import org.whispersystems.signalservice.internal.configuration.SignalProxy;
+import org.signal.network.config.SignalProxy;
 
 import java.util.Optional;
 
@@ -63,12 +65,17 @@ public class EditProxyFragment extends Fragment {
       }
     });
 
+    toolbar.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
+    SystemWindowInsetsSetter.attach(toolbar, getViewLifecycleOwner(), WindowInsetsCompat.Type.statusBars());
+
     this.proxySwitch = view.findViewById(R.id.edit_proxy_switch);
     this.proxyTitle  = view.findViewById(R.id.edit_proxy_address_title);
     this.proxyText   = view.findViewById(R.id.edit_proxy_host);
     this.proxyStatus = view.findViewById(R.id.edit_proxy_status);
     this.saveButton  = view.findViewById(R.id.edit_proxy_save);
     this.shareButton = view.findViewById(R.id.edit_proxy_share);
+
+    SystemWindowInsetsSetter.attach(saveButton, getViewLifecycleOwner(), WindowInsetsCompat.Type.navigationBars() | WindowInsetsCompat.Type.ime(), SystemWindowInsetsSetter.ApplyMode.MARGIN);
 
     lifecycleDisposable = new LifecycleDisposable();
     lifecycleDisposable.bindTo(getViewLifecycleOwner());

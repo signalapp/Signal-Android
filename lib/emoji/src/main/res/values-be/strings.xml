@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <!-- Emoji category headers, shown in the emoji keyboard and the react-with-any-emoji sheet -->
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Смайлікі &amp; людзі</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Прырода</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Ежа</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Мерапрыемствы</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Месцы</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Аб\'екты</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Сімвалы</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Сцягі</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Смайлікі</string>
+</resources>

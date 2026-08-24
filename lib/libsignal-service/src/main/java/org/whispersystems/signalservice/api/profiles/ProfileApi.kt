@@ -8,6 +8,8 @@ package org.whispersystems.signalservice.api.profiles
 import org.signal.core.models.ServiceId
 import org.signal.core.util.Hex
 import org.signal.core.util.logging.Log
+import org.signal.libsignal.net.RequestResult
+import org.signal.libsignal.net.UnauthProfilesService
 import org.signal.libsignal.zkgroup.VerificationFailedException
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations
 import org.signal.libsignal.zkgroup.profiles.ExpiringProfileKeyCredential
@@ -181,6 +183,17 @@ class ProfileApi(
           predicate = { it is NetworkResult.StatusCodeError && it.code == 401 },
           fallback = { NetworkResult.fromWebSocketSuspend(converter) { authWebSocket.requestSuspend(request) } }
         )
+    }
+  }
+
+  /**
+   * Whether an account with the given ACI or PNI exists. This is an unauthenticated request.
+   *
+   * Note that we normally learn this from a 404 on a profile fetch instead.
+   */
+  suspend fun accountExists(serviceId: ServiceId): RequestResult<Boolean, Nothing> {
+    return unauthWebSocket.runCatchingWithChatConnection { connection ->
+      UnauthProfilesService(connection).accountExists(serviceId.libSignalServiceId)
     }
   }
 

@@ -5,16 +5,23 @@
 
 package org.signal.core.ui.compose
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.DialogFragment
 import org.signal.core.ui.R
 import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.core.ui.enableEdgeToEdge
 import org.signal.core.ui.initializeScreenshotSecurity
 import org.signal.core.ui.util.ThemeUtil
 
@@ -32,12 +39,20 @@ abstract class ComposeFullScreenDialogFragment : DialogFragment() {
     setStyle(STYLE_NO_FRAME, fullScreenDialogStyle)
   }
 
+  override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+    return super.onCreateDialog(savedInstanceState).apply {
+      window?.enableEdgeToEdge()
+    }
+  }
+
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
     return ComposeView(requireContext()).apply {
       setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
       setContent {
         SignalTheme {
-          DialogContent()
+          Box(modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing)) {
+            DialogContent()
+          }
         }
       }
     }

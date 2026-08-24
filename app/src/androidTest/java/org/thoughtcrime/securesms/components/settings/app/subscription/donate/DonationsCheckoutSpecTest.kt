@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.database.DonationReceiptTable
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentReceiptRecord
+import org.thoughtcrime.securesms.testing.DisableAnimationsRule
 import org.thoughtcrime.securesms.testing.GooglePayTestRule
 import org.thoughtcrime.securesms.testing.InAppPaymentsRule
 import org.thoughtcrime.securesms.testing.RawFlag
@@ -68,6 +69,9 @@ class DonationsCheckoutSpecTest(private val spec: DonationsCheckoutTestSpec) {
 
   @get:Rule
   val composeRule = createEmptyComposeRule()
+
+  @get:Rule
+  val animationsRule = DisableAnimationsRule()
 
   @Before
   fun setUp() {

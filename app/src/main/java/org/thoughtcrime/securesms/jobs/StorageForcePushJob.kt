@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.database.ChatFolderTables.ChatFolderTable
 import org.thoughtcrime.securesms.database.NotificationProfileTables
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.StickerPackId
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
@@ -60,7 +61,7 @@ class StorageForcePushJob private constructor(parameters: Parameters) : BaseJob(
       return
     }
 
-    if (!SignalStore.account.isRegistered || SignalStore.account.e164 == null) {
+    if (!SignalStore.account.isRegistered || SignalStore.account.aci == null) {
       Log.w(TAG, "User not registered. Skipping.")
       return
     }
@@ -124,6 +125,15 @@ class StorageForcePushJob private constructor(parameters: Parameters) : BaseJob(
     inserts.addAll(newNotificationProfileInserts)
     allNewStorageIds.addAll(newNotificationProfileStorageIds.values)
 
+    val oldStickerPackStorageIds = SignalDatabase.stickers.getStorageSyncIdsMap()
+    val newStickerPackStorageIds = generateStickerPackStorageIds(oldStickerPackStorageIds)
+    val newStickerPackInserts: List<SignalStorageRecord> = oldStickerPackStorageIds.keys
+      .mapNotNull { SignalDatabase.stickers.getPackForStorageSync(it) }
+      .map { record -> StorageSyncModels.localToRemoteRecord(record, newStickerPackStorageIds[record.packId]!!.raw) }
+
+    inserts.addAll(newStickerPackInserts)
+    allNewStorageIds.addAll(newStickerPackStorageIds.values)
+
     Log.i(TAG, "Generating and including a new recordIkm.")
     val recordIkm: RecordIkm = RecordIkm.generate()
 
@@ -157,10 +167,12 @@ class StorageForcePushJob private constructor(parameters: Parameters) : BaseJob(
     Log.i(TAG, "Force push succeeded. Updating local manifest version to: $newVersion")
     SignalStore.storageService.manifest = manifest
     SignalStore.svr.masterKeyForInitialDataRestore = null
+    StorageSyncHelper.clearRotatedProfileKeyIfSynced(inserts)
     SignalDatabase.recipients.applyStorageIdUpdates(newContactStorageIds)
     SignalDatabase.recipients.applyStorageIdUpdates(Collections.singletonMap(Recipient.self().id, accountRecord.id))
     SignalDatabase.chatFolders.applyStorageIdUpdates(newChatFolderStorageIds)
     SignalDatabase.notificationProfiles.applyStorageIdUpdates(newNotificationProfileStorageIds)
+    SignalDatabase.stickers.applyStorageIdUpdates(newStickerPackStorageIds)
     SignalDatabase.unknownStorageIds.deleteAll()
   }
 
@@ -191,6 +203,12 @@ class StorageForcePushJob private constructor(parameters: Parameters) : BaseJob(
   }
 
   private fun generateNotificationProfileStorageIds(oldKeys: Map<NotificationProfileId, StorageId>): Map<NotificationProfileId, StorageId> {
+    return oldKeys.mapValues { (_, value) ->
+      value.withNewBytes(StorageSyncHelper.generateKey())
+    }
+  }
+
+  private fun generateStickerPackStorageIds(oldKeys: Map<StickerPackId, StorageId>): Map<StickerPackId, StorageId> {
     return oldKeys.mapValues { (_, value) ->
       value.withNewBytes(StorageSyncHelper.generateKey())
     }
