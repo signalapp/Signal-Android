@@ -108,8 +108,8 @@ object EnvelopeContentValidator {
       return Result.Invalid("[DataMessage] Style body range on quote is missing a start or length!")
     }
 
-    if (dataMessage.quote != null && dataMessage.quote.bodyRanges.hasInvalidBounds(dataMessage.quote.text)) {
-      return Result.Invalid("[DataMessage] Quote body range with out-of-bounds start/length!")
+    if (dataMessage.quote != null && dataMessage.quote.bodyRanges.hasInvalidBounds(dataMessage.quote.text, allowOutOfBounds = true)) {
+      return Result.Invalid("[DataMessage] Quote body range with negative start/length!")
     }
 
     if (dataMessage.contact.any { it.avatar != null && it.avatar.avatar.isPresentAndInvalid() }) {
