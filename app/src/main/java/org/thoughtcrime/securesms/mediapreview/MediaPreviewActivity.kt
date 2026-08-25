@@ -1,11 +1,14 @@
 package org.thoughtcrime.securesms.mediapreview
 
 import android.content.Context
+import android.content.pm.ActivityInfo
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup.LayoutParams
 import android.widget.ImageView
 import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.transition.addListener
 import androidx.core.view.animation.PathInterpolatorCompat
@@ -14,12 +17,15 @@ import androidx.fragment.app.commit
 import com.google.android.material.shape.ShapeAppearanceModel
 import com.google.android.material.transition.platform.MaterialContainerTransform
 import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import org.signal.core.util.concurrent.LifecycleDisposable
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner
 import org.thoughtcrime.securesms.util.WindowUtil
+import java.util.concurrent.TimeUnit
 
 class MediaPreviewActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner {
 
@@ -32,6 +38,8 @@ class MediaPreviewActivity : PassphraseRequiredActivity(), VoiceNoteMediaControl
   }
 
   private lateinit var transitionImageView: ImageView
+
+  private var isWindowStarted = false
 
   override fun attachBaseContext(newBase: Context) {
     delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_YES
@@ -84,6 +92,7 @@ class MediaPreviewActivity : PassphraseRequiredActivity(), VoiceNoteMediaControl
     }
 
     super.onCreate(savedInstanceState, ready)
+    lifecycleDisposable.bindTo(this)
     setTheme(R.style.TextSecure_MediaPreview)
     setContentView(R.layout.activity_media_preview)
 
@@ -127,6 +136,17 @@ class MediaPreviewActivity : PassphraseRequiredActivity(), VoiceNoteMediaControl
       viewModel.setIsInSharedAnimation(false)
     }
 
+    if (Build.VERSION.SDK_INT >= 35) {
+      // ViewPager2 reports the selected page while the settle animation is still running, and writing the color
+      // mode rebuilds the HWUI surface. Debouncing collapses a flick through a mixed album into a single write.
+      // A delayed write can never strand the window in HDR, since it only raises HDR while isWindowStarted.
+      lifecycleDisposable += viewModel.state
+        .map { it.shouldRenderHdr }
+        .distinctUntilChanged()
+        .debounce(COLOR_MODE_SETTLE_DELAY_MS, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
+        .subscribe { applyWindowColorMode(it) }
+    }
+
     voiceNoteMediaController = VoiceNoteMediaController(this, false)
 
     WindowUtil.clearLightStatusBar(window)
@@ -142,12 +162,27 @@ class MediaPreviewActivity : PassphraseRequiredActivity(), VoiceNoteMediaControl
     }
   }
 
+  override fun onStart() {
+    super.onStart()
+    isWindowStarted = true
+    applyWindowColorMode(viewModel.shouldRenderHdr)
+  }
+
+  override fun onStop() {
+    isWindowStarted = false
+    applyWindowColorMode(false)
+    super.onStop()
+  }
+
   override fun onPause() {
     super.onPause()
     MediaPreviewCache.drawable = null
   }
 
   override fun finishAfterTransition() {
+    // Deliberately not applyWindowColorMode(false): that would rebuild the HWUI surface on the first frame of the
+    // exit transition. onStop() clears it once the transition has finished.
+    isWindowStarted = false
     if (viewModel.shouldFinishAfterTransition(args.initialMediaUri)) {
       super.finishAfterTransition()
     } else {
@@ -155,8 +190,53 @@ class MediaPreviewActivity : PassphraseRequiredActivity(), VoiceNoteMediaControl
     }
   }
 
+  /**
+   * Applies the desired window color mode. This activity is the sole writer of [android.view.Window.setColorMode].
+   *
+   * The API 35 floor is [android.view.Window.setDesiredHdrHeadroom], and matches the one
+   * [org.thoughtcrime.securesms.components.subsampling.UltraHdrSupport.isEligible] applies at decode time.
+   */
+  private fun applyWindowColorMode(wantHdr: Boolean) {
+    if (Build.VERSION.SDK_INT < 35) {
+      return
+    }
+
+    val target = if (wantHdr && isWindowStarted && isDisplayHdrCapable()) {
+      ActivityInfo.COLOR_MODE_HDR
+    } else {
+      ActivityInfo.COLOR_MODE_DEFAULT
+    }
+
+    if (window.colorMode == target) {
+      return
+    }
+
+    Log.i(TAG, "Changing window color mode. hdr=${target == ActivityInfo.COLOR_MODE_HDR}")
+    window.colorMode = target
+    window.desiredHdrHeadroom = if (target == ActivityInfo.COLOR_MODE_HDR) MIXED_CONTENT_HDR_HEADROOM else 0f
+  }
+
+  /** The API 34 floor is [android.view.Display.isHdrSdrRatioAvailable]'s own, not the preview's. */
+  @RequiresApi(34)
+  private fun isDisplayHdrCapable(): Boolean {
+    return try {
+      display?.isHdrSdrRatioAvailable == true
+    } catch (e: Exception) {
+      Log.w(TAG, "Unable to query display HDR capability.", e)
+      false
+    }
+  }
+
   companion object {
+    private val TAG = Log.tag(MediaPreviewActivity::class)
+
     private const val FRAGMENT_TAG = "media_preview_fragment"
     const val SHARED_ELEMENT_TRANSITION_NAME = "thumb"
+
+    /** Google's published "mixed content, mostly HDR" headroom. The preview keeps SDR chrome in the same window. */
+    private const val MIXED_CONTENT_HDR_HEADROOM = 3f
+
+    /** How long the page selection must stay put before we pay for a color mode change. */
+    private const val COLOR_MODE_SETTLE_DELAY_MS = 200L
   }
 }

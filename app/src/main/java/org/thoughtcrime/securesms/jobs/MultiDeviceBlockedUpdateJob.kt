@@ -51,10 +51,10 @@ class MultiDeviceBlockedUpdateJob private constructor(parameters: Parameters) : 
     }
 
     val blocked: List<RecipientRecord> = SignalDatabase.recipients.getBlocked()
-    val blockedGroups = blocked.mapNotNull { it.groupId?.decodedId }
+    val blockedGroups = blocked.mapNotNull { record -> record.groupId?.decodedId?.let { BlockedListMessage.Group(it, record.blockedAt) } }
     val blockedIndividuals = blocked
       .filter { it.aci != null || it.e164 != null }
-      .map { BlockedListMessage.Individual(it.aci, it.e164) }
+      .map { BlockedListMessage.Individual(it.aci, it.e164, it.blockedAt) }
 
     AppDependencies.signalServiceMessageSender.sendSyncMessage(
       SignalServiceSyncMessage.forBlocked(BlockedListMessage(blockedIndividuals, blockedGroups))

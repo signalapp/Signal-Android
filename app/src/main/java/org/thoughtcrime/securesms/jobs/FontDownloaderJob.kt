@@ -1,13 +1,13 @@
 package org.thoughtcrime.securesms.jobs
 
 import android.graphics.Typeface
+import org.signal.core.util.FutureTaskListener
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.fonts.Fonts
 import org.thoughtcrime.securesms.fonts.SupportedScript
 import org.thoughtcrime.securesms.fonts.TextFont
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
-import org.thoughtcrime.securesms.util.FutureTaskListener
 import org.thoughtcrime.securesms.util.LocaleUtil
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.ExecutionException

@@ -27,6 +27,8 @@ import org.signal.network.service.ArchiveError
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.ArchivedMediaObject
 import org.thoughtcrime.securesms.database.AttachmentTable
+import org.thoughtcrime.securesms.database.AttachmentTable.ArchiveTransferStateResetResult
+import org.thoughtcrime.securesms.database.AttachmentTable.MediaNameParts
 import org.thoughtcrime.securesms.database.BackupMediaSnapshotTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -40,8 +42,10 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.wallpaper.WallpaperStorage
+import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.hours
+import kotlin.time.Duration.Companion.milliseconds
 
 /**
  * We do our best to keep our local attachments in sync with the archive CDN, but we still want to have a backstop that periodically
@@ -82,6 +86,21 @@ class ArchiveAttachmentReconciliationJob private constructor(
       } else {
         Log.i(TAG, "Skip enqueueing reconciliation job: attempt limit exceeded.")
       }
+    }
+
+    /**
+     * Rate-limited because the caller runs after every backup.
+     */
+    fun enqueueToVerifyMediaBeforeOffloading(minTimeBetweenAttempts: Duration) {
+      val sinceLastAttempt = (System.currentTimeMillis() - SignalStore.backup.lastForcedReconciliationAttemptTime).milliseconds
+
+      if (sinceLastAttempt > Duration.ZERO && sinceLastAttempt < minTimeBetweenAttempts) {
+        Log.i(TAG, "Already forced a reconciliation $sinceLastAttempt ago. Waiting before forcing another.")
+        return
+      }
+
+      Log.i(TAG, "Forcing a reconciliation so we can verify our media against the archive CDN.", true)
+      AppDependencies.jobManager.add(ArchiveAttachmentReconciliationJob(forced = true))
     }
 
     /**
@@ -143,7 +162,7 @@ class ArchiveAttachmentReconciliationJob private constructor(
       return Result.success()
     }
 
-    if (!AppDependencies.jobManager.areQueuesEmpty(UploadAttachmentToArchiveJob.QUEUES)) {
+    if (!AppDependencies.jobManager.areQueuesEmpty(UploadAttachmentToArchiveJob.QUEUES + ArchiveThumbnailUploadJob.QUEUES)) {
       Log.i(TAG, "There are still uploads in progress. Retrying later.")
       return Result.retry(defaultBackoff())
     }
@@ -151,6 +170,12 @@ class ArchiveAttachmentReconciliationJob private constructor(
     // It's possible a new backup could be started while this job is running. If we don't keep a consistent view of the snapshot version, the logic
     // we use to determine which attachments need to be re-uploaded will possibly result in us unnecessarily re-uploading attachments.
     snapshotVersion = snapshotVersion ?: SignalDatabase.backupMediaSnapshots.getCurrentSnapshotVersion()
+
+    // Only spend the forced-attempt budget on a crawl that could actually open the offload gate. Without a snapshot it can't, and the rate limit would then keep
+    // us from retrying once a backup has built one.
+    if (forced && snapshotVersion!! > 0) {
+      SignalStore.backup.lastForcedReconciliationAttemptTime = System.currentTimeMillis()
+    }
 
     syncDataFromCdn(snapshotVersion!!)?.let { return it }
 
@@ -164,7 +189,7 @@ class ArchiveAttachmentReconciliationJob private constructor(
    */
   private fun clearPendingLocalRestoreReconcile() {
     if (SignalStore.backup.localRestoreReconcilePending) {
-      Log.i(TAG, "Local restore reconciliation complete. Clearing the pending flag and enqueueing a backup to upload any remaining media.", true)
+      Log.i(TAG, "Local restore reconciliation complete. Clearing the pending flag and enqueueing a backup to track and upload any remaining media.", true)
       SignalStore.backup.localRestoreReconcilePending = false
       BackupMessagesJob.enqueue()
     }
@@ -237,49 +262,42 @@ class ArchiveAttachmentReconciliationJob private constructor(
     if (mayNeedReUploadCount > 0) {
       Log.w(TAG, "Found $mayNeedReUploadCount attachments that are present in the target snapshot, but could not be found on the CDN. This could be a bookkeeping error, or the upload may still be in progress. Checking.", true)
 
-      var newBackupJobRequired = false
-      var bookkeepingErrorCount = 0
-
-      var fullSizeMismatchFound = false
-      var thumbnailMismatchFound = false
+      val tally = RepairTally()
+      val batch = ArrayList<BackupMediaSnapshotTable.MediaEntry>(AttachmentTable.ARCHIVE_MEDIA_KEY_BATCH_SIZE)
 
       mediaObjectsThatMayNeedReUpload.forEach { mediaObjectCursor ->
         val entry = BackupMediaSnapshotTable.MediaEntry.fromCursor(mediaObjectCursor)
+        batch += entry
 
         if (internalUser) {
           mediaIdsThatNeedUpload += MediaId(entry.mediaId)
         }
 
-        val mediaIdLog = if (internalUser) "[${MediaId(entry.mediaId)}]" else ""
-
-        if (entry.isThumbnail) {
-          thumbnailMismatchFound = true
-          val wasReset = SignalDatabase.attachments.resetArchiveThumbnailTransferStateByPlaintextHashAndRemoteKeyIfNecessary(entry.plaintextHash, entry.remoteKey)
-          if (wasReset) {
-            Log.w(TAG, "[Thumbnail]$mediaIdLog Reset transfer state by hash/key.", true)
-            newBackupJobRequired = true
-            bookkeepingErrorCount++
-          } else {
-            Log.i(TAG, "[Thumbnail]$mediaIdLog Did not need to reset the transfer state by hash/key because the thumbnail either no longer exists or the upload is already in-progress.", true)
-          }
-        } else {
-          fullSizeMismatchFound = true
-          val wasReset = SignalDatabase.attachments.resetArchiveTransferStateByPlaintextHashAndRemoteKeyIfNecessary(entry.plaintextHash, entry.remoteKey)
-          if (wasReset) {
-            Log.w(TAG, "[Fullsize]$mediaIdLog Reset transfer state by hash/key.", true)
-            newBackupJobRequired = true
-            bookkeepingErrorCount++
-          } else {
-            Log.i(TAG, "[Fullsize]$mediaIdLog Did not need to reset the transfer state by hash/key because the attachment either no longer exists or the upload is already in-progress.", true)
-          }
+        if (batch.size >= AttachmentTable.ARCHIVE_MEDIA_KEY_BATCH_SIZE) {
+          repairBatch(batch, tally, internalUser)
+          batch.clear()
         }
       }
+      repairBatch(batch, tally, internalUser)
       stopwatch.split("mark-reupload")
 
-      if (bookkeepingErrorCount > 0) {
-        Log.w(TAG, "Found that $bookkeepingErrorCount/$mayNeedReUploadCount of the CDN mismatches were bookkeeping errors.", true)
+      if (tally.resetCount > 0) {
+        Log.w(TAG, "Found that ${tally.resetCount}/$mayNeedReUploadCount of the CDN mismatches were bookkeeping errors.", true)
+        maybePostReconciliationFailureNotification()
       } else {
         Log.i(TAG, "None of the $mayNeedReUploadCount CDN mismatches were bookkeeping errors.", true)
+      }
+
+      if (tally.unrecoverableCount > 0) {
+        Log.w(TAG, "Found that ${tally.unrecoverableCount}/$mayNeedReUploadCount of the CDN mismatches have no local data to re-upload. That media is not recoverable from this device.", true)
+      }
+
+      if (tally.markedUnrecoverableCount > 0) {
+        Log.w(TAG, "Marked ${tally.markedUnrecoverableCount}/$mayNeedReUploadCount of the CDN mismatches as permanently failed thumbnails, since there is no local data to rebuild them from. They will stop being tracked until the media is restored.", true)
+      }
+
+      if (tally.notNeededCount > 0) {
+        Log.i(TAG, "Did not need to reset ${tally.notNeededCount}/$mayNeedReUploadCount of the CDN mismatches, because they either no longer exist or an upload is already in-progress.", true)
       }
 
       Log.d(TAG, "AFTER:\n" + SignalDatabase.attachments.debugGetAttachmentStats().shortPrettyString(), true)
@@ -302,26 +320,38 @@ class ArchiveAttachmentReconciliationJob private constructor(
         stopwatch.split("internal-lookup")
       }
 
-      if (newBackupJobRequired) {
-        Log.w(TAG, "Some of the errors require re-uploading a new backup job to resolve.", true)
-        maybePostReconciliationFailureNotification()
-        BackupMessagesJob.enqueue()
-      } else {
-        if (fullSizeMismatchFound) {
-          Log.d(TAG, "Full size mismatch found. Enqueuing an attachment backfill job to be safe.", true)
-          AppDependencies.jobManager.add(ArchiveAttachmentBackfillJob())
-        }
-        if (thumbnailMismatchFound) {
-          Log.d(TAG, "Thumbnail mismatch found. Enqueuing a thumbnail backfill job to be safe.", true)
-          AppDependencies.jobManager.add(ArchiveThumbnailBackfillJob())
-        }
+      // No backup is started here on purpose. Re-uploading is the whole repair, and [ArchiveUploadProgress] is what decides whether the resulting CDN numbers
+      // warrant a fresh export once the backfill finishes uploading.
+      if (tally.fullSizeReUploadNeeded) {
+        Log.d(TAG, "Full size mismatch found. Enqueuing an attachment backfill job.", true)
+        AppDependencies.jobManager.add(ArchiveAttachmentBackfillJob())
+      }
+      if (tally.thumbnailReUploadNeeded) {
+        Log.d(TAG, "Thumbnail mismatch found. Enqueuing a thumbnail backfill job.", true)
+        AppDependencies.jobManager.add(ArchiveThumbnailBackfillJob())
       }
     } else {
       Log.d(TAG, "No attachments need to be repaired.", true)
     }
 
+    if (snapshotVersion > 0) {
+      val prunedCount = SignalDatabase.backupMediaSnapshots.deleteOldMediaObjectsNeverSeenOnCdn(snapshotVersion)
+      if (prunedCount > 0) {
+        Log.i(TAG, "Pruned $prunedCount snapshot entries that left the latest snapshot and have never been seen on the CDN.", true)
+      }
+    }
+    stopwatch.split("prune-absent")
+
+    val completionTime = System.currentTimeMillis()
+
     SignalStore.backup.remoteStorageGarbageCollectionPending = false
-    SignalStore.backup.lastAttachmentReconciliationTime = System.currentTimeMillis()
+    SignalStore.backup.lastAttachmentReconciliationTime = completionTime
+
+    // A crawl with no snapshot to compare against verified nothing, so it must not satisfy the gate that lets us delete local copies of media.
+    if (snapshotVersion > 0) {
+      SignalStore.backup.lastCompletedReconciliationSnapshotVersion = snapshotVersion
+      SignalStore.backup.lastCompletedReconciliationTime = completionTime
+    }
 
     stopwatch.stop(TAG)
 
@@ -368,6 +398,13 @@ class ArchiveAttachmentReconciliationJob private constructor(
         Log.i(TAG, "Marked $markedFinished media object group(s) as finished after confirming they are present on the CDN.", true)
       }
     }
+
+    // TODO [cody] Fix perf problems of calling setArchiveThumbnailFinishedForMatchingMediaObjects
+    // Takes the whole listing, since a restored device has no thumbnail snapshot rows yet
+//    val thumbnailsMarkedFinished = SignalDatabase.attachments.setArchiveThumbnailFinishedForMatchingMediaObjects(mediaObjects.toSet())
+//    if (thumbnailsMarkedFinished > 0) {
+//      Log.i(TAG, "Marked $thumbnailsMarkedFinished thumbnail group(s) as finished after finding them on the CDN.", true)
+//    }
 
     return mediaOnRemoteButNotLocal
   }
@@ -422,8 +459,8 @@ class ArchiveAttachmentReconciliationJob private constructor(
     }
 
     val stopwatch = Stopwatch("remote-delete")
-    val validatedDeletes: MutableSet<ArchivedMediaObject> = SignalDatabase.attachments.getMediaObjectsThatCantBeFound(deletes).toMutableSet()
-    Log.d(TAG, "Found that ${validatedDeletes.size}/${deletes.size} requested remote deletes have no data at all locally, and are therefore safe to delete.", true)
+    val validatedDeletes: MutableSet<ArchivedMediaObject> = SignalDatabase.attachments.getMediaObjectsThatCantBeFound(deletes, SignalStore.backup.lastUsedMessageCutoffTime).toMutableSet()
+    Log.d(TAG, "Found that ${validatedDeletes.size}/${deletes.size} requested remote deletes are no longer referenced by any attachment, and are therefore safe to delete.", true)
     stopwatch.split("validate")
 
     // Fix archive state for attachments that are found locally but weren't in the latest snapshot.
@@ -474,9 +511,60 @@ class ArchiveAttachmentReconciliationJob private constructor(
     }
     stopwatch.split("network")
 
+    // Any snapshot row left behind here would keep claiming an object we just removed, and reviving that row would present it as still CDN-confirmed.
+    SignalDatabase.backupMediaSnapshots.deleteOldMediaObjects(validatedDeletes.map { it.mediaId })
+
     stopwatch.stop(TAG)
 
     return null
+  }
+
+  /**
+   * Clears the archive transfer state for a batch of media objects that a crawl couldn't find on the CDN, so they get re-uploaded, folding the outcomes into
+   * [tally].
+   */
+  private fun repairBatch(batch: List<BackupMediaSnapshotTable.MediaEntry>, tally: RepairTally, internalUser: Boolean) {
+    if (batch.isEmpty()) {
+      return
+    }
+
+    for ((isThumbnail, entries) in batch.groupBy { it.isThumbnail }) {
+      val mediaNames = entries.map { MediaNameParts.fromBytes(plaintextHash = it.plaintextHash, remoteKey = it.remoteKey) }
+
+      val results = if (isThumbnail) {
+        SignalDatabase.attachments.resetArchiveThumbnailTransferStateByPlaintextHashAndRemoteKeyIfNecessary(mediaNames)
+      } else {
+        SignalDatabase.attachments.resetArchiveTransferStateByPlaintextHashAndRemoteKeyIfNecessary(mediaNames)
+      }
+
+      for ((entry, result) in entries.zip(results)) {
+        when (result) {
+          ArchiveTransferStateResetResult.RESET -> {
+            val mediaIdLog = if (internalUser) "[${MediaId(entry.mediaId)}]" else ""
+            val logPrefix = if (isThumbnail) "[Thumbnail]$mediaIdLog" else "[Fullsize]$mediaIdLog"
+            Log.w(TAG, "$logPrefix Reset transfer state by hash/key.", true)
+
+            tally.resetCount++
+            tally.markReUploadNeeded(isThumbnail)
+          }
+
+          ArchiveTransferStateResetResult.SKIPPED_NO_LOCAL_DATA -> {
+            tally.unrecoverableCount++
+          }
+
+          ArchiveTransferStateResetResult.MARKED_UNRECOVERABLE -> {
+            tally.markedUnrecoverableCount++
+          }
+
+          ArchiveTransferStateResetResult.NOT_NEEDED -> {
+            tally.notNeededCount++
+
+            // Deliberately not done for SKIPPED_NO_LOCAL_DATA, since the precautionary backfills these drive could never upload media that has no local bytes.
+            tally.markReUploadNeeded(isThumbnail)
+          }
+        }
+      }
+    }
   }
 
   private fun maybePostReconciliationFailureNotification() {
@@ -496,6 +584,23 @@ class ArchiveAttachmentReconciliationJob private constructor(
       .build()
 
     NotificationManagerCompat.from(context).notify(NotificationIds.RECONCILIATION_ERROR, notification)
+  }
+
+  private class RepairTally {
+    var resetCount = 0
+    var unrecoverableCount = 0
+    var markedUnrecoverableCount = 0
+    var notNeededCount = 0
+    var fullSizeReUploadNeeded = false
+    var thumbnailReUploadNeeded = false
+
+    fun markReUploadNeeded(isThumbnail: Boolean) {
+      if (isThumbnail) {
+        thumbnailReUploadNeeded = true
+      } else {
+        fullSizeReUploadNeeded = true
+      }
+    }
   }
 
   class Factory : Job.Factory<ArchiveAttachmentReconciliationJob> {

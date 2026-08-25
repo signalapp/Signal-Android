@@ -5,6 +5,7 @@
 
 package org.signal.mediasend.screens.select
 
+import androidx.activity.compose.BackHandler
 import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateDpAsState
@@ -54,10 +55,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
@@ -74,6 +77,12 @@ import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
 import androidx.lifecycle.compose.LifecycleResumeEffect
 import androidx.window.core.layout.WindowSizeClass
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.currentCoroutineContext
+import kotlinx.coroutines.ensureActive
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.emptyFlow
+import kotlinx.coroutines.flow.first
 import org.signal.core.models.media.Media
 import org.signal.core.models.media.MediaFolder
 import org.signal.core.ui.compose.AllDevicePreviews
@@ -94,11 +103,14 @@ import org.signal.core.ui.compose.list.rememberReorderBuffer
 import org.signal.core.ui.compose.list.rememberReorderableListState
 import org.signal.core.ui.compose.list.reorderableList
 import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.core.util.ContentTypeUtil
 import org.signal.glide.compose.GlideImage
 import org.signal.mediasend.R
 import org.signal.mediasend.screens.MediaSendMetrics
 import org.signal.mediasend.screens.edit.rememberPreviewMedia
 import org.signal.mediasend.test.TestTags
+import org.signal.mediasend.util.formatAsClock
+import kotlin.time.Duration.Companion.milliseconds
 import org.signal.core.ui.permissions.Permissions as PermissionsUtil
 
 /** How many empty tiles stand in for the gallery we are not allowed to show. Matches the v2 gallery. */
@@ -111,7 +123,8 @@ private const val PLACEHOLDER_COUNT = 100
 @Composable
 internal fun MediaSelectScreen(
   state: MediaSelectState,
-  onEvent: (MediaSelectScreenEvents) -> Unit
+  onEvent: (MediaSelectScreenEvents) -> Unit,
+  selectionAdditions: Flow<Media> = emptyFlow()
 ) {
   // Without read access there is nothing to browse, and with selected-photos access and nothing selected there is
   // nothing yet. Both show the placeholder grid behind a call to action, so both use the denser file grid.
@@ -124,6 +137,12 @@ internal fun MediaSelectScreen(
 
   val gridState = rememberLazyGridState()
   val dragToSelectState = rememberDragToSelectMediaState(state, onEvent, gridState)
+
+  // Only an empty selection can leave an editor with nothing to edit behind us. Every other back press is left to the
+  // navigation default, which keeps its predictive-back gesture.
+  BackHandler(enabled = state.selectedMedia.isEmpty()) {
+    onEvent(MediaSelectScreenEvents.NavigateBack)
+  }
 
   // Once the selection starts refusing items there is nothing left for the drag to do, and letting it run on would
   // raise a refusal for every further tile it crosses.
@@ -240,6 +259,7 @@ internal fun MediaSelectScreen(
         ) {
           SelectedMediaRow(
             selectedMedia = state.selectedMedia,
+            selectionAdditions = selectionAdditions,
             alignment = gridConfiguration.bottomBarAlignment,
             onEvent = onEvent,
             modifier = Modifier
@@ -568,8 +588,12 @@ private fun MediaTile(
     }
   )
 
+  val outerCornerClip by animateDpAsState(
+    if (selectionIndex >= 0) 0.dp else 2.dp
+  )
+
   val cornerClip by animateDpAsState(
-    if (selectionIndex >= 0) 12.dp else 0.dp
+    if (selectionIndex >= 0) 12.dp else 2.dp
   )
 
   // Square regardless of what is in it. The thumbnail emits nothing until it has loaded, so a tile sized by its content
@@ -578,33 +602,37 @@ private fun MediaTile(
     modifier = Modifier
       .fillMaxWidth()
       .aspectRatio(1f)
-      .background(color = MaterialTheme.colorScheme.surfaceVariant)
+      .background(color = MaterialTheme.colorScheme.surfaceVariant, shape = RoundedCornerShape(outerCornerClip))
       .clickable(
         onClick = { onEvent(MediaSelectScreenEvents.MediaClick(media)) },
         onClickLabel = media.fileName,
         role = Role.Button
       )
   ) {
-    if (LocalInspectionMode.current) {
-      Box(
-        modifier = Modifier
-          .scale(scale)
-          .background(color = Previews.rememberRandomColor(), shape = RoundedCornerShape(cornerClip))
-          .fillMaxWidth()
-          .aspectRatio(1f)
-      )
-    } else {
-      val width = maxWidth
-      val height = maxHeight
+    val width = maxWidth
+    val height = maxHeight
 
-      GlideImage(
-        model = media.uri,
-        imageSize = DpSize(width, height),
-        modifier = Modifier
-          .aspectRatio(1f)
-          .scale(scale)
-          .clip(RoundedCornerShape(cornerClip))
-      )
+    Box(
+      modifier = Modifier
+        .aspectRatio(1f)
+        .scale(scale)
+        .clip(RoundedCornerShape(cornerClip))
+    ) {
+      if (LocalInspectionMode.current) {
+        Box(
+          modifier = Modifier
+            .background(color = Previews.rememberRandomColor())
+            .fillMaxWidth()
+        )
+      } else {
+        GlideImage(
+          model = media.uri,
+          imageSize = DpSize(width, height),
+          modifier = Modifier.aspectRatio(1f)
+        )
+      }
+
+      MediaTileVideoOverlay(media)
     }
   }
 
@@ -626,6 +654,32 @@ private fun MediaTile(
           color = if (recipientChatColor != null) SignalTheme.colors.colorOnCustom else MaterialTheme.colorScheme.onPrimary
         )
       }
+    }
+  }
+}
+
+@Composable
+private fun MediaTileVideoOverlay(
+  media: Media
+) {
+  if (ContentTypeUtil.isVideo(media.contentType) && !media.isVideoGif) {
+    Box(
+      contentAlignment = Alignment.TopEnd,
+      modifier = Modifier
+        .fillMaxWidth()
+        .background(
+          brush = Brush.verticalGradient(
+            0f to Color.Black.copy(alpha = 0.4f),
+            1f to Color.Transparent
+          )
+        )
+        .padding(top = 8.dp, end = 8.dp, bottom = 26.dp)
+    ) {
+      Text(
+        text = remember(media.duration) { media.duration.milliseconds.formatAsClock() },
+        style = MaterialTheme.typography.labelLarge,
+        color = SignalTheme.colors.colorOnCustom
+      )
     }
   }
 }
@@ -661,6 +715,7 @@ private fun NextButton(mediaSelectionCount: Int, recipientChatColor: Color? = nu
 @Composable
 private fun SelectedMediaRow(
   selectedMedia: List<Media>,
+  selectionAdditions: Flow<Media>,
   alignment: Alignment.Horizontal,
   onEvent: (MediaSelectScreenEvents) -> Unit,
   modifier: Modifier = Modifier
@@ -677,6 +732,26 @@ private fun SelectedMediaRow(
     onEvent = reorderBuffer::onReorderListEvent
   )
 
+  LaunchedEffect(listState, selectionAdditions) {
+    selectionAdditions.collect { addition ->
+      // Located in the order the rail is rendering rather than in the selection, which a drag in progress is holding
+      // back. The addition is also announced with the state that carries it, ahead of the layout that measures it, and a
+      // list asked for an item it has not measured yet believes it is already at its end and gives up without moving.
+      val index = snapshotFlow {
+        val index = reorderBuffer.items.indexOfFirst { it.uri == addition.uri }
+        if (index < listState.layoutInfo.totalItemsCount) index else -1
+      }.first { it >= 0 }
+
+      try {
+        listState.animateScrollToItem(index)
+      } catch (e: CancellationException) {
+        // A touch on the rail preempts the scroll and cancels it. That is the user taking the rail over, and it ends
+        // this scroll rather than our interest in the next addition.
+        currentCoroutineContext().ensureActive()
+      }
+    }
+  }
+
   LazyRow(
     state = listState,
     modifier = modifier.reorderableList(reorderableListState),
@@ -684,7 +759,10 @@ private fun SelectedMediaRow(
   ) {
     itemsIndexed(reorderBuffer.items, key = { _, media -> media.uri }) { index, media ->
       ReorderableItem(reorderableListState, index) {
-        MediaThumbnail(media) {
+        MediaThumbnail(
+          media = media,
+          modifier = Modifier.testTag(TestTags.selectedMediaThumbnail(media.uri.toString()))
+        ) {
           onEvent(MediaSelectScreenEvents.SetFocusedMedia(media))
           onEvent(MediaSelectScreenEvents.NavigateToEdit)
         }
@@ -699,22 +777,28 @@ private fun MediaThumbnail(
   modifier: Modifier = Modifier,
   onClick: () -> Unit
 ) {
-  if (LocalInspectionMode.current) {
-    Box(
-      modifier = modifier
-        .size(MediaSendMetrics.SelectedMediaPreviewSize)
-        .background(color = Previews.rememberRandomColor(), shape = RoundedCornerShape(8.dp))
-        .clickable(onClick = onClick, onClickLabel = media.fileName, role = Role.Button)
-    )
-  } else {
-    GlideImage(
-      model = media.uri,
-      imageSize = MediaSendMetrics.SelectedMediaPreviewSize,
-      modifier = modifier
-        .size(MediaSendMetrics.SelectedMediaPreviewSize)
-        .clip(RoundedCornerShape(8.dp))
-        .clickable(onClick = onClick, onClickLabel = media.fileName, role = Role.Button)
-    )
+  // Sized by the box rather than by what ends up in it. The thumbnail emits nothing at all until it has loaded, and an
+  // item with no width until then is one the rail cannot lay out, scroll to, or show.
+  Box(
+    modifier = modifier
+      .size(MediaSendMetrics.SelectedMediaPreviewSize)
+      .clip(RoundedCornerShape(8.dp))
+      .background(color = MaterialTheme.colorScheme.surfaceVariant)
+      .clickable(onClick = onClick, onClickLabel = media.fileName, role = Role.Button)
+  ) {
+    if (LocalInspectionMode.current) {
+      Box(
+        modifier = Modifier
+          .fillMaxSize()
+          .background(color = Previews.rememberRandomColor())
+      )
+    } else {
+      GlideImage(
+        model = media.uri,
+        imageSize = MediaSendMetrics.SelectedMediaPreviewSize,
+        modifier = Modifier.fillMaxSize()
+      )
+    }
   }
 }
 

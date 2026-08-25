@@ -9,11 +9,14 @@ import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.receiveAsFlow
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
 import org.signal.registration.RegistrationFlowEvent
@@ -40,6 +43,9 @@ class WelcomeScreenViewModel(
 
   private val _state = MutableStateFlow(WelcomeScreenState(isLinkAndSyncAvailable = repository.isLinkAndSyncAvailable, showRestoreOrTransfer = false))
   val state: StateFlow<WelcomeScreenState> = _state.asStateFlow()
+
+  private val _actions = Channel<WelcomeScreenActions>(Channel.BUFFERED)
+  val actions: Flow<WelcomeScreenActions> = _actions.receiveAsFlow()
 
   init {
     _state
@@ -69,7 +75,7 @@ class WelcomeScreenViewModel(
           parentEventEmitter.navigateTo(RegistrationRoute.AllowNotifications(RegistrationRoute.LinkAccount()))
         }
       }
-      WelcomeScreenEvents.ViewTermsAndPrivacy -> error("This event is handled in the nav-entry.")
+      WelcomeScreenEvents.ViewTermsAndPrivacy -> _actions.trySend(WelcomeScreenActions.ViewTermsAndPrivacy)
     }
   }
 

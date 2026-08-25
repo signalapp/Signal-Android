@@ -47,7 +47,6 @@ import org.thoughtcrime.securesms.stickers.BlessedPacks
 import org.thoughtcrime.securesms.stickers.StickerPackInstallEvent
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.MediaUtil
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.storage.SignalStickerPackRecord
 import org.whispersystems.signalservice.api.storage.StorageId
 import java.io.Closeable
@@ -573,13 +572,13 @@ class StickerTables(
   }
 
   /**
-   * Removes storage ids from packs that have been deleted for longer than the message queue time.
+   * Removes storage ids from packs that were deleted before [deletedBefore].
    */
-  fun removeStorageIdsFromOldDeletedPacks(now: Long): Int {
+  fun removeStorageIdsFromOldDeletedPacks(deletedBefore: Long): Int {
     return writableDatabase
       .update(Pack.TABLE_NAME)
       .values(Pack.STORAGE_SERVICE_ID to null)
-      .where("${Pack.STORAGE_SERVICE_ID} NOT NULL AND ${Pack.DELETED_TIMESTAMP_MS} > 0 AND ${Pack.DELETED_TIMESTAMP_MS} < ?", now - RemoteConfig.messageQueueTime)
+      .where("${Pack.STORAGE_SERVICE_ID} NOT NULL AND ${Pack.DELETED_TIMESTAMP_MS} > 0 AND ${Pack.DELETED_TIMESTAMP_MS} < ?", deletedBefore)
       .run()
   }
 

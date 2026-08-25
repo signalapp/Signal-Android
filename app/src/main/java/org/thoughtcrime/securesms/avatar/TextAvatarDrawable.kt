@@ -11,7 +11,7 @@ import android.text.SpannableString
 import android.text.StaticLayout
 import android.text.TextPaint
 import androidx.core.graphics.withTranslation
-import org.thoughtcrime.securesms.components.emoji.EmojiProvider
+import org.signal.emoji.EmojiProvider
 
 class TextAvatarDrawable(
   private val context: Context,

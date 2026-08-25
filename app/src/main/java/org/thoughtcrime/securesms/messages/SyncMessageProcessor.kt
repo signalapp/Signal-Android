@@ -14,6 +14,7 @@ import org.signal.core.util.Util
 import org.signal.core.util.UuidUtil
 import org.signal.core.util.isNotEmpty
 import org.signal.core.util.orNull
+import org.signal.emoji.EmojiUtil
 import org.signal.libsignal.net.KeyTransparency
 import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.IdentityKeyPair
@@ -28,7 +29,6 @@ import org.signal.ringrtc.CallLinkRootKey
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.attachments.TombstoneAttachment
-import org.thoughtcrime.securesms.components.emoji.EmojiUtil
 import org.thoughtcrime.securesms.components.settings.app.changenumber.ChangeNumberRepository
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.database.AttachmentTable
@@ -40,6 +40,7 @@ import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.MessageTable.MarkedMessageInfo
 import org.thoughtcrime.securesms.database.NoSuchMessageException
 import org.thoughtcrime.securesms.database.PaymentMetaDataUtil
+import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SentStorySyncManifest
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.DistributionListId
@@ -76,7 +77,6 @@ import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob
 import org.thoughtcrime.securesms.jobs.MultiDeviceKeysUpdateJob
 import org.thoughtcrime.securesms.jobs.MultiDeviceStickerPackSyncJob
 import org.thoughtcrime.securesms.jobs.PreKeysSyncJob
-import org.thoughtcrime.securesms.jobs.PushProcessEarlyMessagesJob
 import org.thoughtcrime.securesms.jobs.RefreshCallLinkDetailsJob
 import org.thoughtcrime.securesms.jobs.RefreshDonationSubscriptionStatusJob
 import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob
@@ -167,16 +167,17 @@ object SyncMessageProcessor {
     envelope: Envelope,
     content: Content,
     metadata: EnvelopeMetadata,
-    earlyMessageCacheEntry: EarlyMessageCacheEntry?
+    earlyMessageCacheEntry: EarlyMessageCacheEntry?,
+    batchCache: BatchCache
   ) {
     val syncMessage = content.syncMessage!!
 
     when {
-      syncMessage.sent != null -> handleSynchronizeSentMessage(context, envelope, content, metadata, syncMessage.sent!!, senderRecipient, threadRecipient, earlyMessageCacheEntry)
+      syncMessage.sent != null -> handleSynchronizeSentMessage(context, envelope, content, metadata, syncMessage.sent!!, senderRecipient, threadRecipient, earlyMessageCacheEntry, batchCache)
       syncMessage.request != null -> handleSynchronizeRequestMessage(context, syncMessage.request!!, envelope.clientTimestamp!!)
-      syncMessage.read.isNotEmpty() -> handleSynchronizeReadMessage(context, syncMessage.read, envelope.clientTimestamp!!, earlyMessageCacheEntry)
+      syncMessage.read.isNotEmpty() -> handleSynchronizeReadMessage(context, syncMessage.read, envelope.clientTimestamp!!, earlyMessageCacheEntry, batchCache)
       syncMessage.viewed.isNotEmpty() -> handleSynchronizeViewedMessage(context, syncMessage.viewed, envelope.clientTimestamp!!)
-      syncMessage.viewOnceOpen != null -> handleSynchronizeViewOnceOpenMessage(context, syncMessage.viewOnceOpen!!, envelope.clientTimestamp!!, earlyMessageCacheEntry)
+      syncMessage.viewOnceOpen != null -> handleSynchronizeViewOnceOpenMessage(context, syncMessage.viewOnceOpen!!, envelope.clientTimestamp!!, earlyMessageCacheEntry, batchCache)
       syncMessage.verified != null -> handleSynchronizeVerifiedMessage(context, syncMessage.verified!!)
       syncMessage.stickerPackOperation.isNotEmpty() -> handleSynchronizeStickerPackOperation(syncMessage.stickerPackOperation, envelope.clientTimestamp!!)
       syncMessage.configuration != null -> handleSynchronizeConfigurationMessage(context, syncMessage.configuration!!, envelope.clientTimestamp!!)
@@ -190,7 +191,7 @@ object SyncMessageProcessor {
       syncMessage.callEvent != null -> handleSynchronizeCallEvent(syncMessage.callEvent!!, envelope.clientTimestamp!!)
       syncMessage.callLinkUpdate != null -> handleSynchronizeCallLink(syncMessage.callLinkUpdate!!, envelope.clientTimestamp!!)
       syncMessage.callLogEvent != null -> handleSynchronizeCallLogEvent(syncMessage.callLogEvent!!, envelope.clientTimestamp!!)
-      syncMessage.deleteForMe != null -> handleSynchronizeDeleteForMe(context, syncMessage.deleteForMe!!, envelope.clientTimestamp!!, earlyMessageCacheEntry)
+      syncMessage.deleteForMe != null -> handleSynchronizeDeleteForMe(context, syncMessage.deleteForMe!!, envelope.clientTimestamp!!, earlyMessageCacheEntry, batchCache)
       syncMessage.attachmentBackfillRequest != null -> handleSynchronizeAttachmentBackfillRequest(syncMessage.attachmentBackfillRequest!!, envelope.clientTimestamp!!)
       syncMessage.attachmentBackfillResponse != null -> handleSynchronizeAttachmentBackfillResponse(syncMessage.attachmentBackfillResponse!!, envelope.clientTimestamp!!)
       syncMessage.usernameChange != null -> handleSynchronizeUsernameChange(envelope.clientTimestamp!!)
@@ -207,7 +208,8 @@ object SyncMessageProcessor {
     sent: Sent,
     senderRecipient: Recipient,
     threadRecipient: Recipient,
-    earlyMessageCacheEntry: EarlyMessageCacheEntry?
+    earlyMessageCacheEntry: EarlyMessageCacheEntry?,
+    batchCache: BatchCache
   ) {
     log(envelope.clientTimestamp!!, "Processing sent transcript for message with ID ${sent.timestamp!!}")
 
@@ -221,7 +223,7 @@ object SyncMessageProcessor {
       }
 
       if (sent.editMessage != null) {
-        handleSynchronizeSentEditMessage(context, envelope, sent, senderRecipient, earlyMessageCacheEntry)
+        handleSynchronizeSentEditMessage(context, envelope, sent, senderRecipient, earlyMessageCacheEntry, batchCache)
         SignalStore.misc.lastSyncMessageSeenTimeMs = System.currentTimeMillis()
         return
       }
@@ -257,27 +259,27 @@ object SyncMessageProcessor {
         dataMessage.isExpirationUpdate -> threadId = handleSynchronizeSentExpirationUpdate(sent)
         dataMessage.storyContext != null -> threadId = handleSynchronizeSentStoryReply(sent, envelope.clientTimestamp!!)
         dataMessage.reaction != null -> {
-          DataMessageProcessor.handleReaction(context, envelope, dataMessage, senderRecipient.id, earlyMessageCacheEntry)
+          DataMessageProcessor.handleReaction(context, envelope, dataMessage, senderRecipient.id, earlyMessageCacheEntry, batchCache)
           threadId = SignalDatabase.threads.getOrCreateThreadIdFor(getSyncMessageDestination(sent))
         }
-        dataMessage.hasRemoteDelete -> DataMessageProcessor.handleRemoteDelete(context, envelope, dataMessage, senderRecipient.id, earlyMessageCacheEntry)
+        dataMessage.hasRemoteDelete -> DataMessageProcessor.handleRemoteDelete(context, envelope, dataMessage, senderRecipient.id, earlyMessageCacheEntry, batchCache)
         dataMessage.payment != null -> log(envelope.clientTimestamp!!, "Ignoring payment notification/activation from sync transcript; payment row arrives via SyncMessage.OutgoingPayment.")
         dataMessage.isMediaMessage -> threadId = handleSynchronizeSentMediaMessage(context, sent, envelope.clientTimestamp!!, senderRecipient)
         dataMessage.pollCreate != null -> threadId = handleSynchronizedPollCreate(envelope, dataMessage, sent, senderRecipient)
         dataMessage.pollVote != null -> {
           val destination = getSyncMessageDestination(sent)
-          DataMessageProcessor.handlePollVote(context, envelope, dataMessage, senderRecipient, destination, earlyMessageCacheEntry)
+          DataMessageProcessor.handlePollVote(context, envelope, dataMessage, senderRecipient, destination, earlyMessageCacheEntry, batchCache)
           threadId = SignalDatabase.threads.getOrCreateThreadIdFor(getSyncMessageDestination(sent))
         }
-        dataMessage.pollTerminate != null -> threadId = handleSynchronizedPollEnd(envelope, dataMessage, sent, senderRecipient, earlyMessageCacheEntry)
-        dataMessage.pinMessage != null -> threadId = handleSynchronizedPinMessage(envelope, dataMessage, sent, senderRecipient, earlyMessageCacheEntry)
+        dataMessage.pollTerminate != null -> threadId = handleSynchronizedPollEnd(envelope, dataMessage, sent, senderRecipient, earlyMessageCacheEntry, batchCache)
+        dataMessage.pinMessage != null -> threadId = handleSynchronizedPinMessage(envelope, dataMessage, sent, senderRecipient, earlyMessageCacheEntry, batchCache)
         dataMessage.unpinMessage != null -> {
           val destination = getSyncMessageDestination(sent)
-          DataMessageProcessor.handleUnpinMessage(envelope, dataMessage, senderRecipient, destination, earlyMessageCacheEntry)
+          DataMessageProcessor.handleUnpinMessage(envelope, dataMessage, senderRecipient, destination, earlyMessageCacheEntry, batchCache)
           threadId = SignalDatabase.threads.getOrCreateThreadIdFor(destination)
         }
         dataMessage.adminDelete != null -> {
-          DataMessageProcessor.handleAdminRemoteDelete(context, envelope, dataMessage, senderRecipient, threadRecipient, earlyMessageCacheEntry)
+          DataMessageProcessor.handleAdminRemoteDelete(context, envelope, dataMessage, senderRecipient, threadRecipient, earlyMessageCacheEntry, batchCache)
           threadId = SignalDatabase.threads.getOrCreateThreadIdFor(getSyncMessageDestination(sent))
         }
         else -> threadId = handleSynchronizeSentTextMessage(sent, envelope.clientTimestamp!!)
@@ -352,7 +354,8 @@ object SyncMessageProcessor {
     envelope: Envelope,
     sent: Sent,
     senderRecipient: Recipient,
-    earlyMessageCacheEntry: EarlyMessageCacheEntry?
+    earlyMessageCacheEntry: EarlyMessageCacheEntry?,
+    batchCache: BatchCache
   ) {
     val editMessage: EditMessage = sent.editMessage!!
     val targetSentTimestamp: Long = editMessage.targetSentTimestamp!!
@@ -363,7 +366,7 @@ object SyncMessageProcessor {
       warn(envelope.clientTimestamp!!, "[handleSynchronizeSentEditMessage] Could not find matching message! targetTimestamp: $targetSentTimestamp  author: $senderRecipientId")
       if (earlyMessageCacheEntry != null) {
         AppDependencies.earlyMessageCache.store(senderRecipientId, targetSentTimestamp, earlyMessageCacheEntry)
-        PushProcessEarlyMessagesJob.enqueue()
+        batchCache.requiresEarlyMessageProcessing()
       }
     } else if (MessageConstraintsUtil.isValidEditMessageReceive(targetMessage, senderRecipient, envelope.serverTimestamp!!)) {
       val message: DataMessage = editMessage.dataMessage!!
@@ -1004,7 +1007,8 @@ object SyncMessageProcessor {
     context: Context,
     readMessages: List<Read>,
     envelopeTimestamp: Long,
-    earlyMessageCacheEntry: EarlyMessageCacheEntry?
+    earlyMessageCacheEntry: EarlyMessageCacheEntry?,
+    batchCache: BatchCache
   ) {
     log(envelopeTimestamp, "Synchronize read message. Count: ${readMessages.size}, Timestamps: ${readMessages.map { it.timestamp }}")
 
@@ -1025,7 +1029,7 @@ object SyncMessageProcessor {
     }
 
     if (unhandled.isNotEmpty() && earlyMessageCacheEntry != null) {
-      PushProcessEarlyMessagesJob.enqueue()
+      batchCache.requiresEarlyMessageProcessing()
     }
 
     SignalStore.misc.lastSyncMessageSeenTimeMs = System.currentTimeMillis()
@@ -1073,7 +1077,7 @@ object SyncMessageProcessor {
     }
   }
 
-  private fun handleSynchronizeViewOnceOpenMessage(context: Context, openMessage: ViewOnceOpen, envelopeTimestamp: Long, earlyMessageCacheEntry: EarlyMessageCacheEntry?) {
+  private fun handleSynchronizeViewOnceOpenMessage(context: Context, openMessage: ViewOnceOpen, envelopeTimestamp: Long, earlyMessageCacheEntry: EarlyMessageCacheEntry?, batchCache: BatchCache) {
     log(envelopeTimestamp, "Handling a view-once open for message: " + openMessage.timestamp)
 
     val author: RecipientId = Recipient.externalPush(ACI.parseOrThrow(openMessage.senderAci, openMessage.senderAciBinary)).id
@@ -1091,7 +1095,7 @@ object SyncMessageProcessor {
       warn(envelopeTimestamp.toString(), "Got a view-once open message for a message we don't have!")
       if (earlyMessageCacheEntry != null) {
         AppDependencies.earlyMessageCache.store(author, timestamp, earlyMessageCacheEntry)
-        PushProcessEarlyMessagesJob.enqueue()
+        batchCache.requiresEarlyMessageProcessing()
       }
     }
 
@@ -1150,12 +1154,33 @@ object SyncMessageProcessor {
   }
 
   private fun handleSynchronizeBlockedListMessage(blockMessage: Blocked, envelopeTimestamp: Long) {
-    val blockedAcis = if (blockMessage.acisBinary.isNotEmpty()) { blockMessage.acisBinary.mapNotNull { ACI.parseOrNull(it) } } else blockMessage.acis.mapNotNull { ACI.parseOrNull(it) }
-    val blockedE164s = blockMessage.numbers
-    val blockedGroupIds = blockMessage.groupIds.map { it.toByteArray() }
-    log(envelopeTimestamp, "Synchronize block message. Counts: (ACI: ${blockedAcis.size}, E164: ${blockedE164s.size}, Group: ${blockedGroupIds.size})")
+    val blockedAcis = if (blockMessage.blockedAcis.isNotEmpty()) {
+      blockMessage.blockedAcis.mapNotNull { blockedAci -> ACI.parseOrNull(blockedAci.aciBinary)?.let { aci -> RecipientTable.BlockedAci(aci, blockedAci.timestamp ?: 0) } }
+    } else if (blockMessage.acisBinary.isNotEmpty()) {
+      blockMessage.acisBinary.mapNotNull { ACI.parseOrNull(it)?.let { aci -> RecipientTable.BlockedAci(aci) } }
+    } else {
+      emptyList()
+    }
 
-    SignalDatabase.recipients.applyBlockedUpdate(blockedE164s, blockedAcis, blockedGroupIds)
+    val blockedE164s = if (blockMessage.blockedE164s.isNotEmpty()) {
+      blockMessage.blockedE164s.mapNotNull { blockedE164 -> blockedE164.e164?.let { RecipientTable.BlockedE164(it, blockedE164.timestamp ?: 0) } }
+    } else if (blockMessage.numbers.isNotEmpty()) {
+      blockMessage.numbers.map { RecipientTable.BlockedE164(it) }
+    } else {
+      emptyList()
+    }
+
+    val blockedGroups = if (blockMessage.blockedGroups.isNotEmpty()) {
+      blockMessage.blockedGroups.mapNotNull { group -> group.groupId?.toByteArray()?.let { RecipientTable.BlockedGroup(it, group.timestamp ?: 0) } }
+    } else if (blockMessage.groupIds.isNotEmpty()) {
+      blockMessage.groupIds.map { RecipientTable.BlockedGroup(it.toByteArray(), 0) }
+    } else {
+      emptyList()
+    }
+
+    log(envelopeTimestamp, "Synchronize block message. Counts: (ACI: ${blockedAcis.size}, E164: ${blockedE164s.size}, Group: ${blockedGroups.size})")
+
+    SignalDatabase.recipients.applyBlockedUpdate(blockedE164s, blockedAcis, blockedGroups)
   }
 
   private fun handleSynchronizeFetchMessage(fetchType: FetchLatest.Type, envelopeTimestamp: Long) {
@@ -1188,7 +1213,7 @@ object SyncMessageProcessor {
       MessageRequestResponse.Type.ACCEPT -> {
         val wasBlocked = recipient.isBlocked
         SignalDatabase.recipients.setProfileSharing(recipient.id, true)
-        SignalDatabase.recipients.setBlocked(recipient.id, false)
+        SignalDatabase.recipients.setBlocked(recipient.id, false, 0)
         if (wasBlocked) {
           SignalDatabase.messages.insertMessageOutbox(
             message = OutgoingMessage.unblockedMessage(recipient, System.currentTimeMillis(), TimeUnit.SECONDS.toMillis(recipient.expiresInSeconds.toLong())),
@@ -1208,7 +1233,7 @@ object SyncMessageProcessor {
         }
       }
       MessageRequestResponse.Type.BLOCK -> {
-        SignalDatabase.recipients.setBlocked(recipient.id, true)
+        SignalDatabase.recipients.setBlocked(recipient.id, true, envelopeTimestamp)
         RecipientUtil.updateProfileSharingAfterBlock(recipient, true)
         SignalDatabase.messages.insertMessageOutbox(
           message = OutgoingMessage.blockedMessage(recipient, System.currentTimeMillis(), TimeUnit.SECONDS.toMillis(recipient.expiresInSeconds.toLong())),
@@ -1216,7 +1241,7 @@ object SyncMessageProcessor {
         )
       }
       MessageRequestResponse.Type.BLOCK_AND_DELETE -> {
-        SignalDatabase.recipients.setBlocked(recipient.id, true)
+        SignalDatabase.recipients.setBlocked(recipient.id, true, envelopeTimestamp)
         RecipientUtil.updateProfileSharingAfterBlock(recipient, true)
         if (threadId > 0) {
           SignalDatabase.threads.deleteConversation(threadId, syncThreadDelete = false)
@@ -1229,7 +1254,7 @@ object SyncMessageProcessor {
         )
       }
       MessageRequestResponse.Type.BLOCK_AND_SPAM -> {
-        SignalDatabase.recipients.setBlocked(recipient.id, true)
+        SignalDatabase.recipients.setBlocked(recipient.id, true, envelopeTimestamp)
         RecipientUtil.updateProfileSharingAfterBlock(recipient, true)
         SignalDatabase.messages.insertMessageOutbox(
           message = OutgoingMessage.reportSpamMessage(recipient, System.currentTimeMillis(), TimeUnit.SECONDS.toMillis(recipient.expiresInSeconds.toLong())),
@@ -1581,11 +1606,11 @@ object SyncMessageProcessor {
     return Recipient.resolved(callLink.recipientId)
   }
 
-  private fun handleSynchronizeDeleteForMe(context: Context, deleteForMe: SyncMessage.DeleteForMe, envelopeTimestamp: Long, earlyMessageCacheEntry: EarlyMessageCacheEntry?) {
+  private fun handleSynchronizeDeleteForMe(context: Context, deleteForMe: SyncMessage.DeleteForMe, envelopeTimestamp: Long, earlyMessageCacheEntry: EarlyMessageCacheEntry?, batchCache: BatchCache) {
     log(envelopeTimestamp, "Synchronize delete message messageDeletes=${deleteForMe.messageDeletes.size} conversationDeletes=${deleteForMe.conversationDeletes.size} localOnlyConversationDeletes=${deleteForMe.localOnlyConversationDeletes.size}")
 
     if (deleteForMe.messageDeletes.isNotEmpty()) {
-      handleSynchronizeMessageDeletes(deleteForMe.messageDeletes, envelopeTimestamp, earlyMessageCacheEntry)
+      handleSynchronizeMessageDeletes(deleteForMe.messageDeletes, envelopeTimestamp, earlyMessageCacheEntry, batchCache)
     }
 
     if (deleteForMe.conversationDeletes.isNotEmpty()) {
@@ -1597,13 +1622,13 @@ object SyncMessageProcessor {
     }
 
     if (deleteForMe.attachmentDeletes.isNotEmpty()) {
-      handleSynchronizeAttachmentDeletes(deleteForMe.attachmentDeletes, envelopeTimestamp, earlyMessageCacheEntry)
+      handleSynchronizeAttachmentDeletes(deleteForMe.attachmentDeletes, envelopeTimestamp, earlyMessageCacheEntry, batchCache)
     }
 
     AppDependencies.messageNotifier.updateNotification(context)
   }
 
-  private fun handleSynchronizeMessageDeletes(messageDeletes: List<SyncMessage.DeleteForMe.MessageDeletes>, envelopeTimestamp: Long, earlyMessageCacheEntry: EarlyMessageCacheEntry?) {
+  private fun handleSynchronizeMessageDeletes(messageDeletes: List<SyncMessage.DeleteForMe.MessageDeletes>, envelopeTimestamp: Long, earlyMessageCacheEntry: EarlyMessageCacheEntry?, batchCache: BatchCache) {
     val messagesToDelete: List<MessageTable.SyncMessageId> = messageDeletes
       .asSequence()
       .map { it.messages }
@@ -1621,7 +1646,7 @@ object SyncMessageProcessor {
     }
 
     if (unhandled.isNotEmpty() && earlyMessageCacheEntry != null) {
-      PushProcessEarlyMessagesJob.enqueue()
+      batchCache.requiresEarlyMessageProcessing()
     }
   }
 
@@ -1685,7 +1710,7 @@ object SyncMessageProcessor {
     }
   }
 
-  private fun handleSynchronizeAttachmentDeletes(attachmentDeletes: List<SyncMessage.DeleteForMe.AttachmentDelete>, envelopeTimestamp: Long, earlyMessageCacheEntry: EarlyMessageCacheEntry?) {
+  private fun handleSynchronizeAttachmentDeletes(attachmentDeletes: List<SyncMessage.DeleteForMe.AttachmentDelete>, envelopeTimestamp: Long, earlyMessageCacheEntry: EarlyMessageCacheEntry?, batchCache: BatchCache) {
     val toDelete: List<AttachmentTable.SyncAttachmentId> = attachmentDeletes
       .mapNotNull { delete ->
         delete.toSyncAttachmentId(delete.targetMessage?.toSyncMessageId(envelopeTimestamp), envelopeTimestamp)
@@ -1701,7 +1726,7 @@ object SyncMessageProcessor {
     }
 
     if (unhandled.isNotEmpty() && earlyMessageCacheEntry != null) {
-      PushProcessEarlyMessagesJob.enqueue()
+      batchCache.requiresEarlyMessageProcessing()
     }
   }
 
@@ -2041,7 +2066,8 @@ object SyncMessageProcessor {
     message: DataMessage,
     sent: Sent,
     senderRecipient: Recipient,
-    earlyMessageCacheEntry: EarlyMessageCacheEntry?
+    earlyMessageCacheEntry: EarlyMessageCacheEntry?,
+    batchCache: BatchCache
   ): Long {
     log(envelope.clientTimestamp!!, "Synchronize sent poll terminate message")
 
@@ -2059,7 +2085,7 @@ object SyncMessageProcessor {
       warn(envelope.clientTimestamp!!, "Unable to find target message for poll termination. Putting in early message cache.")
       if (earlyMessageCacheEntry != null) {
         AppDependencies.earlyMessageCache.store(senderRecipient.id, pollTerminate.targetSentTimestamp!!, earlyMessageCacheEntry)
-        PushProcessEarlyMessagesJob.enqueue()
+        batchCache.requiresEarlyMessageProcessing()
       }
       return -1
     }
@@ -2108,7 +2134,8 @@ object SyncMessageProcessor {
     message: DataMessage,
     sent: Sent,
     senderRecipient: Recipient,
-    earlyMessageCacheEntry: EarlyMessageCacheEntry?
+    earlyMessageCacheEntry: EarlyMessageCacheEntry?,
+    batchCache: BatchCache
   ): Long {
     log(envelope.clientTimestamp!!, "Synchronize pinned message")
 
@@ -2133,7 +2160,7 @@ object SyncMessageProcessor {
       warn(envelope.clientTimestamp!!, "Unable to find target message for sync message. Putting in early message cache.")
       if (earlyMessageCacheEntry != null) {
         AppDependencies.earlyMessageCache.store(senderRecipient.id, pinMessage.targetSentTimestamp!!, earlyMessageCacheEntry)
-        PushProcessEarlyMessagesJob.enqueue()
+        batchCache.requiresEarlyMessageProcessing()
       }
       return -1
     }

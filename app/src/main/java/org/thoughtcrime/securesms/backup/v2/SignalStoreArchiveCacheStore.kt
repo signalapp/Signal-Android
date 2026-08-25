@@ -39,10 +39,16 @@ object SignalStoreArchiveCacheStore : ArchiveCacheStore {
   override val mediaCredentials: ArchiveCacheStore.CredentialCache
     get() = CredentialCache(SignalStore.backup.mediaCredentials)
 
-  override var backupsInitialized: Boolean
-    get() = SignalStore.backup.backupsInitialized
+  override var messageBackupInitialized: Boolean
+    get() = SignalStore.backup.messageBackupInitialized
     set(value) {
-      SignalStore.backup.backupsInitialized = value
+      SignalStore.backup.messageBackupInitialized = value
+    }
+
+  override var mediaBackupInitialized: Boolean
+    get() = SignalStore.backup.mediaBackupInitialized
+    set(value) {
+      SignalStore.backup.mediaBackupInitialized = value
     }
 
   override var cachedMediaCdnPath: String?

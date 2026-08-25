@@ -26,6 +26,7 @@ import org.signal.core.models.media.Media
 import org.signal.core.ui.logging.LoggingFragment
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.getParcelableCompat
+import org.signal.emoji.EmojiUtil
 import org.thoughtcrime.securesms.AvatarPreviewActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.Avatars.getForegroundColor
@@ -33,7 +34,6 @@ import org.thoughtcrime.securesms.avatar.Avatars.getTextSizeForLength
 import org.thoughtcrime.securesms.avatar.picker.AvatarPickerFragment
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.badges.self.none.BecomeASustainerFragment.Companion.show
-import org.thoughtcrime.securesms.components.emoji.EmojiUtil
 import org.thoughtcrime.securesms.databinding.EditProfileFragmentBinding
 import org.thoughtcrime.securesms.keyvalue.AccountValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore

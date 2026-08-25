@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.giph.mp4;
 
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
-import org.thoughtcrime.securesms.util.DeviceProperties;
+import org.signal.core.util.DeviceProperties;
 
 import java.util.concurrent.TimeUnit;
 

@@ -121,7 +121,7 @@ class ConversationActivityResultContracts(private val fragment: Fragment, privat
   private object MediaSelection : ActivityResultContract<MediaSelectionInput, MediaSendActivityResult?>() {
     override fun createIntent(context: Context, input: MediaSelectionInput): Intent {
       val (media, recipientId, text) = input
-      return MediaSendLauncher.editor(context, MessageSendType.SignalMessageSendType, media, recipientId, text)
+      return MediaSendLauncher.editor(context, media, recipientId, text)
     }
 
     override fun parseResult(resultCode: Int, intent: Intent?): MediaSendActivityResult? {
@@ -132,7 +132,7 @@ class ConversationActivityResultContracts(private val fragment: Fragment, privat
   private object MediaCapture : ActivityResultContract<MediaSelectionInput, MediaSendActivityResult?>() {
     override fun createIntent(context: Context, input: MediaSelectionInput): Intent {
       val (_, recipientId, _, isReply) = input
-      return MediaSendLauncher.camera(context, MessageSendType.SignalMessageSendType, recipientId, isReply)
+      return MediaSendLauncher.camera(context, recipientId, isReply)
     }
 
     override fun parseResult(resultCode: Int, intent: Intent?): MediaSendActivityResult? {
@@ -143,7 +143,7 @@ class ConversationActivityResultContracts(private val fragment: Fragment, privat
   private object MediaGallery : ActivityResultContract<MediaSelectionInput, MediaSendActivityResult?>() {
     override fun createIntent(context: Context, input: MediaSelectionInput): Intent {
       val (media, recipientId, text, isReply) = input
-      return MediaSendLauncher.gallery(context, MessageSendType.SignalMessageSendType, media, recipientId, text, isReply)
+      return MediaSendLauncher.gallery(context, media, recipientId, text, isReply)
     }
 
     override fun parseResult(resultCode: Int, intent: Intent?): MediaSendActivityResult? {

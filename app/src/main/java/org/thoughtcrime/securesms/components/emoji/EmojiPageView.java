@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel;
 
 import java.util.List;
 import java.util.Optional;
+import org.signal.emoji.EmojiEventListener;
 
 public class EmojiPageView extends RecyclerView implements VariationSelectorListener {
 

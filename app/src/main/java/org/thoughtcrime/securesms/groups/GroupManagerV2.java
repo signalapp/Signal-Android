@@ -21,6 +21,7 @@ import org.signal.libsignal.zkgroup.groups.GroupSecretParams;
 import org.signal.libsignal.zkgroup.groups.UuidCiphertext;
 import org.signal.libsignal.zkgroup.profiles.ExpiringProfileKeyCredential;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
+import org.signal.network.exceptions.NonSuccessfulResponseCodeException;
 import org.signal.storageservice.storage.protos.groups.AccessControl;
 import org.signal.storageservice.storage.protos.groups.ExternalGroupCredential;
 import org.signal.storageservice.storage.protos.groups.GroupChange;
@@ -887,6 +888,9 @@ final class GroupManagerV2 {
     }
   }
 
+  /**
+   * A 400 from the group service means a submitted profile key credential was expired.
+   */
   @WorkerThread
   private @NonNull DecryptedGroupResponse createGroupOnServer(@NonNull GroupSecretParams groupSecretParams,
                                                               @Nullable String name,
@@ -895,11 +899,39 @@ final class GroupManagerV2 {
                                                               int disappearingMessageTimerSeconds)
       throws GroupChangeFailedException, IOException, MembershipNotSuitableForV2Exception, GroupAlreadyExistsException
   {
+    try {
+      return createGroupOnServer(groupSecretParams, name, avatar, members, disappearingMessageTimerSeconds, false);
+    } catch (NonSuccessfulResponseCodeException e) {
+      if (e.code != 400) {
+        throw e;
+      }
+
+      Log.w(TAG, "[createGroupOnServer] Group was not accepted, refreshing all profile key credentials and retrying", e);
+
+      return createGroupOnServer(groupSecretParams, name, avatar, members, disappearingMessageTimerSeconds, true);
+    }
+  }
+
+  @WorkerThread
+  private @NonNull DecryptedGroupResponse createGroupOnServer(@NonNull GroupSecretParams groupSecretParams,
+                                                              @Nullable String name,
+                                                              @Nullable byte[] avatar,
+                                                              @NonNull Collection<RecipientId> members,
+                                                              int disappearingMessageTimerSeconds,
+                                                              boolean forceRefreshProfileKeyCredentials)
+      throws GroupChangeFailedException, IOException, MembershipNotSuitableForV2Exception, GroupAlreadyExistsException
+  {
     if (!GroupsV2CapabilityChecker.allAndSelfHaveServiceId(members)) {
       throw new MembershipNotSuitableForV2Exception("At least one potential new member does not support GV2 capability or we don't have their UUID");
     }
 
     SignalDatabase.recipients().clearProfileKeyCredential(Recipient.self().getId());
+
+    if (forceRefreshProfileKeyCredentials) {
+      for (RecipientId member : members) {
+        SignalDatabase.recipients().clearProfileKeyCredential(member);
+      }
+    }
 
     GroupCandidate      self       = groupCandidateHelper.recipientIdToCandidate(Recipient.self().getId());
     Set<GroupCandidate> candidates = new HashSet<>(groupCandidateHelper.recipientIdsToCandidates(members));

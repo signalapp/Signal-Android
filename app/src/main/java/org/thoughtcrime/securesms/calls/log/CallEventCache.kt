@@ -40,6 +40,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil
 import java.util.concurrent.Executor
+import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.time.Duration.Companion.hours
@@ -137,7 +138,7 @@ class CallEventCache(
     }
 
     private fun isWithinTimeout(parent: CacheRecord, child: CacheRecord): Boolean {
-      return (child.timestamp - parent.timestamp) <= 4.hours.inWholeMilliseconds
+      return abs(parent.timestamp - child.timestamp) <= 4.hours.inWholeMilliseconds
     }
 
     private fun canUserBeginCall(peer: Recipient, decryptedGroup: ByteArray?): CallLogRow.CanStartCall {

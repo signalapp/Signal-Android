@@ -27,7 +27,6 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.provider.Browser
 import android.provider.ContactsContract
 import android.provider.Settings
 import android.text.Editable
@@ -57,6 +56,7 @@ import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.pm.ShortcutManagerCompat
+import androidx.core.net.toUri
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.doOnPreDraw
@@ -129,12 +129,14 @@ import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.concurrent.ListenableFuture
 import org.signal.core.util.concurrent.addTo
 import org.signal.core.util.dp
+import org.signal.core.util.encourageNewBrowserTab
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.signal.core.util.requireDrawable
 import org.signal.core.util.requireParcelableCompat
 import org.signal.core.util.setActionItemTint
 import org.signal.donations.InAppPaymentType
+import org.signal.emoji.EmojiEventListener
 import org.signal.ringrtc.CallLinkRootKey
 import org.thoughtcrime.securesms.BlockUnblockDialog
 import org.thoughtcrime.securesms.MainActivity
@@ -164,8 +166,6 @@ import org.thoughtcrime.securesms.components.SendButton
 import org.thoughtcrime.securesms.components.SignalProgressDialog
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.components.compose.ActionModeTopBarView
-import org.thoughtcrime.securesms.components.compose.DeleteSyncEducationDialog
-import org.thoughtcrime.securesms.components.emoji.EmojiEventListener
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboard
 import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel
 import org.thoughtcrime.securesms.components.location.SignalPlace
@@ -898,10 +898,6 @@ class ConversationFragment :
   }
 
   override fun startActivity(intent: Intent) {
-    if (intent.getStringArrayExtra(Browser.EXTRA_APPLICATION_ID) != null) {
-      intent.removeExtra(Browser.EXTRA_APPLICATION_ID)
-    }
-
     try {
       super.startActivity(intent)
     } catch (e: ActivityNotFoundException) {
@@ -911,6 +907,10 @@ class ConversationFragment :
         toastDuration = Toast.LENGTH_LONG
       )
     }
+  }
+
+  private fun openLink(url: String) {
+    startActivity(Intent(Intent.ACTION_VIEW, url.toUri()).encourageNewBrowserTab())
   }
 
   //endregion
@@ -3155,15 +3155,6 @@ class ConversationFragment :
   }
 
   private fun handleDeleteMessages(messageParts: Set<MultiselectPart>) {
-    if (DeleteSyncEducationDialog.shouldShow()) {
-      DeleteSyncEducationDialog
-        .show(childFragmentManager)
-        .subscribe { handleDeleteMessages(messageParts) }
-        .addTo(disposables)
-
-      return
-    }
-
     val records = messageParts.map(MultiselectPart::getMessageRecord).toSet()
 
     disposables += DeleteDialog.show(
@@ -3550,8 +3541,8 @@ class ConversationFragment :
     }
 
     override fun onLinkPreviewClicked(linkPreview: LinkPreview) {
-      val activity = activity ?: return
-      CommunicationActions.openBrowserLink(activity, linkPreview.url)
+      activity ?: return
+      openLink(linkPreview.url)
     }
 
     override fun onQuotedIndicatorClicked(messageRecord: MessageRecord) {
@@ -3940,8 +3931,14 @@ class ConversationFragment :
     override fun onScheduledIndicatorClicked(view: View, conversationMessage: ConversationMessage) = Unit
 
     override fun onUrlClicked(url: String): Boolean {
-      return CommunicationActions.handlePotentialGroupLinkUrl(requireActivity(), url) ||
+      if (CommunicationActions.handlePotentialGroupLinkUrl(requireActivity(), url) ||
         CommunicationActions.handlePotentialProxyLinkUrl(requireActivity(), url)
+      ) {
+        return true
+      }
+
+      openLink(url)
+      return true
     }
 
     override fun onViewGiftBadgeClicked(messageRecord: MessageRecord) {
@@ -5097,6 +5094,10 @@ class ConversationFragment :
               sendKeyboardImage(uri, contentType!!, it)
             },
             onComplete = {
+              sendKeyboardImage(uri, contentType!!, null)
+            },
+            onError = {
+              Log.w(TAG, "Failed to read details for the keyboard image. Continuing without them.", it)
               sendKeyboardImage(uri, contentType!!, null)
             }
           )

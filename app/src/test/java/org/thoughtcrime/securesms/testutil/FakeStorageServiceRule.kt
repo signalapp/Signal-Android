@@ -19,6 +19,7 @@ import org.signal.network.service.StorageServiceService
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues.PhoneNumberSharingMode
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.keyvalue.protos.StorageSyncLoopState
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.storage.RecordIkm
@@ -108,14 +109,22 @@ class FakeStorageServiceRule(val storageKey: StorageKey = StorageKey(Util.getSec
    */
   fun stubDefaults(store: MockSignalStoreRule) {
     var localManifest = SignalStorageManifest.EMPTY
+    var syncLoopState = StorageSyncLoopState()
+    var notSyncedRotatedSelfProfileKey: ByteArray? = null
 
     every { store.storageService.manifest } answers { localManifest }
     every { store.storageService.manifest = any() } answers { localManifest = firstArg() }
     every { store.storageService.storageKey } returns storageKey
     every { store.storageService.storageKeyForInitialDataRestore } returns null
 
+    every { store.storageService.syncLoopState } answers { syncLoopState }
+    every { store.storageService.syncLoopState = any() } answers { syncLoopState = firstArg() }
+
     every { store.svr.hasPin() } returns true
     every { store.svr.hasOptedOut() } returns false
+
+    every { store.account.notSyncedRotatedSelfProfileKey } answers { notSyncedRotatedSelfProfileKey }
+    every { store.account.notSyncedRotatedSelfProfileKey = any() } answers { notSyncedRotatedSelfProfileKey = firstArg() }
 
     every { store.account.isRegistered } returns true
     every { store.account.isPrimaryDevice } returns true

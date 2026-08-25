@@ -3,14 +3,17 @@ package org.thoughtcrime.securesms.components.settings.app.subscription
 import android.app.Application
 import androidx.test.core.app.ApplicationProvider
 import io.mockk.every
+import io.mockk.mockk
 import io.mockk.mockkStatic
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertTrue
+import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import org.signal.core.util.CoreUtilDependencies
 import org.signal.network.util.JsonUtil
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
@@ -22,6 +25,11 @@ class SubscriptionsConfigurationExtensionsKtTest {
 
   private val testData: String = javaClass.classLoader!!.getResourceAsStream("donations_configuration_test_data.json").bufferedReader().readText()
   private val testSubject = JsonUtil.fromJson(testData, SubscriptionsConfiguration::class.java)
+
+  @Before
+  fun setUp() {
+    CoreUtilDependencies.init(ApplicationProvider.getApplicationContext(), mockk(relaxed = true), CoreUtilDependencies.BuildInfo(0, 0))
+  }
 
   @Test
   fun `Given all methods are available, when I getSubscriptionAmounts, then I expect all currencies`() {

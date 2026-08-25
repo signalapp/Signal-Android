@@ -6,10 +6,13 @@
 package org.signal.mediasend.screens.edit.image
 
 import androidx.compose.foundation.layout.Arrangement.Absolute.spacedBy
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -18,7 +21,6 @@ import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.SignalIcons
-import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.imageeditor.core.model.EditorModel
 import org.signal.mediasend.R
 import org.signal.mediasend.screens.edit.ImageController
@@ -27,14 +29,14 @@ import org.signal.mediasend.screens.edit.MediaEditControl
 @Composable
 internal fun ImageEditorUndoRedoButtons(
   imageEditorController: ImageController?,
-  isDragging: Boolean,
+  faded: Boolean,
   modifier: Modifier = Modifier,
   canUndo: Boolean = imageEditorController?.imageEditorState?.undoAvailable ?: false,
   canRedo: Boolean = imageEditorController?.imageEditorState?.redoAvailable ?: false
 ) {
   MediaEditControl(
-    visible = imageEditorController != null && imageEditorController.mode != ImageController.Mode.NONE && (canUndo || canRedo),
-    faded = isDragging,
+    visible = imageEditorController != null && imageEditorController.isUserInEdit && (canUndo || canRedo),
+    faded = faded,
     modifier = modifier
   ) {
     Row(horizontalArrangement = spacedBy(8.dp)) {
@@ -43,7 +45,7 @@ internal fun ImageEditorUndoRedoButtons(
         onClick = {
           imageEditorController?.undo()
         },
-        colors = IconButtonDefaults.iconButtonColors(containerColor = SignalTheme.colors.colorSurface5)
+        colors = IconButtonDefaults.iconButtonColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
       ) {
         Icon(
           imageVector = SignalIcons.Undo.imageVector,
@@ -56,7 +58,7 @@ internal fun ImageEditorUndoRedoButtons(
         onClick = {
           imageEditorController?.redo()
         },
-        colors = IconButtonDefaults.iconButtonColors(containerColor = SignalTheme.colors.colorSurface5)
+        colors = IconButtonDefaults.iconButtonColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
       ) {
         Icon(
           imageVector = SignalIcons.Redo.imageVector,
@@ -71,15 +73,17 @@ internal fun ImageEditorUndoRedoButtons(
 @Composable
 private fun ImageEditorUndoRedoButtonsPreview() {
   Previews.Preview {
-    ImageEditorUndoRedoButtons(
-      imageEditorController = remember {
-        ImageController(EditorModel.create(0x0)).apply {
-          enterDrawMode()
-        }
-      },
-      isDragging = false,
-      canUndo = true,
-      canRedo = true
-    )
+    Box(modifier = Modifier.fillMaxSize()) {
+      ImageEditorUndoRedoButtons(
+        imageEditorController = remember {
+          ImageController(EditorModel.create(0x0)).apply {
+            enterDrawMode()
+          }
+        },
+        faded = false,
+        canUndo = true,
+        canRedo = true
+      )
+    }
   }
 }

@@ -30,7 +30,6 @@ import org.signal.libsignal.net.ServerSideErrorException
 import org.signal.libsignal.net.UnauthBackupsService
 import org.signal.libsignal.net.UnauthenticatedChatConnection
 import org.signal.libsignal.net.UploadForm
-import org.signal.libsignal.net.toRequestResult
 import org.signal.libsignal.protocol.ecc.ECPrivateKey
 import org.signal.libsignal.zkgroup.GenericServerPublicParams
 import org.signal.libsignal.zkgroup.InvalidInputException
@@ -38,6 +37,7 @@ import org.signal.libsignal.zkgroup.VerificationFailedException
 import org.signal.libsignal.zkgroup.backups.BackupAuthCredential
 import org.signal.libsignal.zkgroup.backups.BackupAuthCredentialRequestContext
 import org.signal.libsignal.zkgroup.backups.BackupAuthCredentialResponse
+import org.signal.network.toRequestResult
 import org.signal.network.websocket.WebSocketRequestMessage
 import org.signal.network.websocket.WebsocketResponse
 import org.signal.network.websocket.get

@@ -5,12 +5,7 @@
 
 package org.signal.mediasend.screens.capture
 
-import androidx.compose.animation.AnimatedContent
-import androidx.compose.animation.ContentTransform
-import androidx.compose.animation.EnterTransition
-import androidx.compose.animation.ExitTransition
-import androidx.compose.animation.slideInHorizontally
-import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement.spacedBy
@@ -42,6 +37,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalInspectionMode
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
@@ -55,11 +51,11 @@ import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.glide.compose.GlideImage
 import org.signal.glide.decryptableuri.DecryptableUri
 import org.signal.mediasend.MediaSendFlowActivityContract
-import org.signal.mediasend.MediaSendFlowState
 import org.signal.mediasend.MediaSendRoute
+import org.signal.mediasend.PreviewMediaConstraints
 import org.signal.mediasend.R
-import org.signal.mediasend.rememberPreviewState
 import org.signal.mediasend.screens.edit.rememberPreviewMedia
+import org.signal.mediasend.test.TestTags
 
 /**
  * The text story editor slides in over a stationary camera, so it always sits on top.
@@ -71,9 +67,8 @@ private const val TEXT_STORY_Z_INDEX = 1f
  * Screen that allows user to capture the media they will send using a camera or text story
  */
 @Composable
-fun MediaCaptureScreen(
-  selectedCaptureScreen: MediaSendRoute.Capture,
-  state: MediaSendFlowState,
+internal fun MediaCaptureScreen(
+  state: MediaCaptureState,
   onEvent: (MediaCaptureScreenEvents) -> Unit,
   textStoryEditorSlot: @Composable () -> Unit
 ) {
@@ -81,24 +76,10 @@ fun MediaCaptureScreen(
     modifier = Modifier
       .fillMaxSize()
       .background(color = Color.Black)
+      .testTag(TestTags.MEDIA_CAPTURE_SCREEN)
   ) {
-    AnimatedContent(
-      targetState = selectedCaptureScreen,
-      transitionSpec = {
-        if (targetState is MediaSendRoute.Capture.TextStory) {
-          ContentTransform(
-            targetContentEnter = slideInHorizontally { width -> width },
-            initialContentExit = ExitTransition.KeepUntilTransitionsFinished,
-            targetContentZIndex = TEXT_STORY_Z_INDEX
-          )
-        } else {
-          ContentTransform(
-            targetContentEnter = EnterTransition.None,
-            initialContentExit = slideOutHorizontally { width -> width },
-            targetContentZIndex = CAMERA_Z_INDEX
-          )
-        }
-      }
+    Crossfade(
+      targetState = state.selectedCaptureScreen
     ) { captureScreen ->
       when (captureScreen) {
         is MediaSendRoute.Capture.TextStory -> textStoryEditorSlot()
@@ -111,12 +92,11 @@ fun MediaCaptureScreen(
       }
     }
 
-    val canDisplayBottomBar = rememberCanDisplayBottomBar(state)
-    if (canDisplayBottomBar) {
+    if (state.canDisplayBottomBar) {
       MediaCaptureBottomBar(
-        canDisplayMediaBar = state.selectedMedia.isNotEmpty(),
-        canDisplayToggleSwitch = state.selectedMedia.isEmpty(),
-        selectedCaptureScreen = selectedCaptureScreen,
+        canDisplayMediaBar = state.canDisplayMediaBar,
+        canDisplayToggleSwitch = state.canDisplayToggleSwitch,
+        selectedCaptureScreen = state.selectedCaptureScreen,
         selectedMedia = state.selectedMedia,
         onEvent = onEvent,
         modifier = Modifier
@@ -124,14 +104,6 @@ fun MediaCaptureScreen(
           .navigationBarsPadding()
       )
     }
-  }
-}
-
-@Composable
-private fun rememberCanDisplayBottomBar(state: MediaSendFlowState): Boolean {
-  return remember(state) {
-    val isSingleStory = state.mode == MediaSendFlowActivityContract.Mode.SingleRecipient && state.isStory
-    state.isCameraFirst && state.storiesEnabled && (state.mode == MediaSendFlowActivityContract.Mode.ChooseAfterMediaSelection || isSingleStory)
   }
 }
 
@@ -176,14 +148,16 @@ private fun MediaCaptureToggleBar(
   ) {
     SegmentedBarButton(
       selected = selectedCaptureScreen == MediaSendRoute.Capture.Camera,
-      onClick = { onEvent(MediaCaptureScreenEvents.ShowCamera) }
+      onClick = { onEvent(MediaCaptureScreenEvents.ShowCamera) },
+      modifier = Modifier.testTag(TestTags.MEDIA_CAPTURE_CAMERA_TOGGLE)
     ) {
       Text(text = stringResource(R.string.MediaCaptureScreen__camera))
     }
 
     SegmentedBarButton(
       selected = selectedCaptureScreen == MediaSendRoute.Capture.TextStory,
-      onClick = { onEvent(MediaCaptureScreenEvents.ShowTextStory) }
+      onClick = { onEvent(MediaCaptureScreenEvents.ShowTextStory) },
+      modifier = Modifier.testTag(TestTags.MEDIA_CAPTURE_TEXT_STORY_TOGGLE)
     ) {
       Text(text = stringResource(R.string.MediaCaptureScreen__text))
     }
@@ -194,11 +168,13 @@ private fun MediaCaptureToggleBar(
 private fun SingleChoiceSegmentedButtonRowScope.SegmentedBarButton(
   selected: Boolean,
   onClick: () -> Unit,
+  modifier: Modifier = Modifier,
   content: @Composable () -> Unit
 ) {
   SegmentedButton(
     selected = selected,
     onClick = onClick,
+    modifier = modifier,
     shape = RoundedCornerShape(percent = 50),
     icon = {},
     border = BorderStroke(0.dp, Color.Transparent),
@@ -247,7 +223,8 @@ private fun MediaCaptureMediaBar(
 
       Text(
         text = pluralStringResource(R.plurals.MediaCaptureScreen_n_items, selectedMedia.size, selectedMedia.size),
-        color = SignalTheme.colors.colorOnCustom
+        color = SignalTheme.colors.colorOnCustom,
+        modifier = Modifier.testTag(TestTags.MEDIA_CAPTURE_MEDIA_COUNT)
       )
     }
 
@@ -271,6 +248,7 @@ private fun NextButton(
       .padding(bottom = cameraDisplay.getNextPaddingBottom().dp, end = cameraDisplay.getNextPaddingEnd().dp)
       .size(48.dp)
       .background(colorResource(org.signal.camera.R.color.CameraHud_control_background), shape = CircleShape)
+      .testTag(TestTags.MEDIA_CAPTURE_NEXT_BUTTON)
   ) {
     Icon(
       imageVector = SignalIcons.ArrowEnd.imageVector,
@@ -283,16 +261,10 @@ private fun NextButton(
 
 @NightPreview
 @Composable
-fun MediaCaptureScreenPreview() {
+private fun MediaCaptureScreenPreview() {
   Previews.Preview {
     MediaCaptureScreen(
-      selectedCaptureScreen = MediaSendRoute.Capture.Camera,
-      state = rememberPreviewState()
-        .copy(
-          isCameraFirst = true,
-          storiesEnabled = true,
-          mode = MediaSendFlowActivityContract.Mode.ChooseAfterMediaSelection
-        ),
+      state = rememberPreviewCaptureState(),
       onEvent = {},
       textStoryEditorSlot = {}
     )
@@ -301,23 +273,26 @@ fun MediaCaptureScreenPreview() {
 
 @NightPreview
 @Composable
-fun MediaCaptureScreenWithSelectedMediaPreview() {
+private fun MediaCaptureScreenWithSelectedMediaPreview() {
   val selectedMedia = rememberPreviewMedia(1)
 
   Previews.Preview {
     MediaCaptureScreen(
-      selectedCaptureScreen = MediaSendRoute.Capture.Camera,
-      state = rememberPreviewState()
-        .copy(
-          isCameraFirst = true,
-          storiesEnabled = true,
-          mode = MediaSendFlowActivityContract.Mode.ChooseAfterMediaSelection,
-          selectedMedia = selectedMedia
-        ),
+      state = rememberPreviewCaptureState().copy(selectedMedia = selectedMedia),
       onEvent = {},
       textStoryEditorSlot = {}
     )
   }
+}
+
+@Composable
+private fun rememberPreviewCaptureState(): MediaCaptureState = remember {
+  MediaCaptureState(
+    isCameraFirst = true,
+    storiesEnabled = true,
+    mode = MediaSendFlowActivityContract.Mode.ChooseAfterMediaSelection,
+    mediaConstraints = PreviewMediaConstraints
+  )
 }
 
 @NightPreview

@@ -11,6 +11,8 @@ import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.animation.scaleIn
+import androidx.compose.animation.scaleOut
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutHorizontally
@@ -53,6 +55,47 @@ object TransitionSpecs {
     override val transitionSpec: ContentTransform = Transition.NONE
     override val popTransitionSpec: ContentTransform = Transition.NONE
     override val predictivePopTransitionSpec: ContentTransform = Transition.NONE
+  }
+
+  /**
+   * Screens fade in place, without any directional movement.
+   */
+  object Fade : Transition {
+    private const val DURATION = 200
+
+    override val transitionSpec: ContentTransform =
+      (
+        fadeIn(animationSpec = tween(DURATION))
+        ) togetherWith
+        (
+          fadeOut(animationSpec = tween(DURATION))
+          )
+
+    override val popTransitionSpec: ContentTransform = transitionSpec
+
+    override val predictivePopTransitionSpec: ContentTransform = transitionSpec
+  }
+
+  /**
+   * Screens fade and zoom in place, without any directional movement.
+   */
+  object FadeScale : Transition {
+    private const val DURATION = 200
+    private const val SCALE = 0.92f
+
+    override val transitionSpec: ContentTransform =
+      (
+        fadeIn(animationSpec = tween(DURATION)) +
+          scaleIn(initialScale = SCALE, animationSpec = tween(DURATION))
+        ) togetherWith
+        (
+          fadeOut(animationSpec = tween(DURATION)) +
+            scaleOut(targetScale = SCALE, animationSpec = tween(DURATION))
+          )
+
+    override val popTransitionSpec: ContentTransform = transitionSpec
+
+    override val predictivePopTransitionSpec: ContentTransform = transitionSpec
   }
 
   /**

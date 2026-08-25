@@ -7,6 +7,7 @@ import android.os.Build
 import android.os.PowerManager
 import android.os.Process
 import android.os.SystemClock
+import org.signal.core.util.DeviceProperties
 import org.signal.core.util.bytes
 import org.signal.core.util.logging.Log
 import java.util.Locale

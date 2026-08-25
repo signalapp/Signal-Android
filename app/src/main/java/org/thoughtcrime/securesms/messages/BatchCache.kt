@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.jobmanager.Job
+import org.thoughtcrime.securesms.jobs.PushProcessEarlyMessagesJob
 import org.thoughtcrime.securesms.jobs.SendDeliveryReceiptJob
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.groupMasterKey
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.hasGroupContext
@@ -70,6 +71,10 @@ abstract class BatchCache {
     AppDependencies.jobManager.add(job)
   }
 
+  protected fun flushEarlyMessageProcessing() {
+    PushProcessEarlyMessagesJob.enqueue()
+  }
+
   protected fun flushIncomingMessageInsertThreadUpdate(threadId: Long) {
     SignalDatabase.threads.updateForMessageInsert(threadId, unarchive = true)
   }
@@ -86,6 +91,7 @@ abstract class BatchCache {
   abstract fun addIncomingMessageInsertThreadUpdate(threadId: Long)
   abstract fun addMslDelete(recipientId: RecipientId, device: Int, timestamps: List<Long>)
   abstract fun addDeliveryReceipt(recipientId: RecipientId, groupId: GroupId.V2?, timestamp: Long, messageId: MessageId)
+  abstract fun requiresEarlyMessageProcessing()
 }
 
 /**
@@ -110,6 +116,10 @@ class OneTimeBatchCache : BatchCache() {
   override fun addDeliveryReceipt(recipientId: RecipientId, groupId: GroupId.V2?, timestamp: Long, messageId: MessageId) {
     flushDeliveryReceipt(recipientId, timestamp, messageId)
   }
+
+  override fun requiresEarlyMessageProcessing() {
+    flushEarlyMessageProcessing()
+  }
 }
 
 /**
@@ -129,6 +139,7 @@ class ReusedBatchCache : BatchCache() {
   private val threadUpdates = HashSet<Long>(BATCH_SIZE)
   private val mslDeletes = HashMap<Pair<RecipientId, Int>, MutableList<Long>>(BATCH_SIZE)
   private val deliveryReceipts = HashMap<Pair<RecipientId, GroupId.V2?>, DeliveryReceiptAccumulator>(BATCH_SIZE)
+  private var earlyMessageProcessingNeeded = false
 
   override fun addJob(job: Job) {
     batchedJobs += job
@@ -148,6 +159,10 @@ class ReusedBatchCache : BatchCache() {
     accumulator.messageIds += messageId
   }
 
+  override fun requiresEarlyMessageProcessing() {
+    earlyMessageProcessingNeeded = true
+  }
+
   override fun flushAndClear() {
     super.flushAndClear()
 
@@ -160,6 +175,11 @@ class ReusedBatchCache : BatchCache() {
       AppDependencies.jobManager.addAll(batchedJobs)
     }
     batchedJobs.clear()
+
+    if (earlyMessageProcessingNeeded) {
+      flushEarlyMessageProcessing()
+    }
+    earlyMessageProcessingNeeded = false
 
     if (threadUpdates.isNotEmpty() || mslDeletes.isNotEmpty()) {
       SignalDatabase.runInTransaction {

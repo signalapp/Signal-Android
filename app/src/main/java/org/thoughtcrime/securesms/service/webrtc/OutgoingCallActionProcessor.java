@@ -62,7 +62,7 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
 
   @Override
   protected @NonNull WebRtcServiceState handleStartOutgoingCall(@NonNull WebRtcServiceState currentState, @NonNull RemotePeer remotePeer, @NonNull OfferMessage.Type offerType) {
-    Log.i(TAG, "handleStartOutgoingCall():");
+    Log.i(TAG, "handleStartOutgoingCall(): offerType: " + offerType);
     WebRtcServiceStateBuilder builder = currentState.builder();
 
     remotePeer.dialing();
@@ -165,7 +165,8 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
                                                 NetworkUtil.getCallingDataMode(context),
                                                 AUDIO_LEVELS_INTERVAL,
                                                 dredDuration,
-                                                currentState.getCallSetupState(activePeer).isEnableVideoOnCreate());
+                                                currentState.getCallSetupState(activePeer).isEnableVideoOnCreate(),
+                                                RingRtcDynamicConfiguration.getStatsIntervalSecs());
     } catch (CallException e) {
       return callFailure(currentState, "Unable to proceed with call: ", e);
     }

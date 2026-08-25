@@ -11,11 +11,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancelAndJoin
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.EventDrivenViewModel
@@ -45,6 +48,9 @@ class MessageSyncViewModel(
 
   private val _state = MutableStateFlow(MessageSyncScreenState())
   val state: StateFlow<MessageSyncScreenState> = _state.asStateFlow()
+
+  private val _actions = Channel<MessageSyncScreenAction>(Channel.BUFFERED)
+  val actions: Flow<MessageSyncScreenAction> = _actions.receiveAsFlow()
 
   private var restoreJob: Job? = null
   private var finishJob: Job? = null
@@ -112,7 +118,10 @@ class MessageSyncViewModel(
   @VisibleForTesting
   suspend fun applyEvent(state: MessageSyncScreenState, event: MessageSyncScreenEvent, stateEmitter: (MessageSyncScreenState) -> Unit) {
     val result = when (event) {
-      MessageSyncScreenEvent.LearnMoreClick -> error("This event is handled in the nav-entry.")
+      MessageSyncScreenEvent.LearnMoreClick -> {
+        _actions.trySend(MessageSyncScreenAction.OpenLearnMoreArticle)
+        state
+      }
       MessageSyncScreenEvent.CancelClick -> {
         Log.i(TAG, "[MessageSync] User cancelled message sync; awaiting restore cancellation, then restoring from storage service and completing.")
         stateEmitter(state.copy(stage = Stage.Finishing))

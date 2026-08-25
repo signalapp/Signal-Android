@@ -216,7 +216,32 @@
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
             app:popExitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_accountSettingsFragment_to_authenticatorSetupFragment"
+            app:destination="@id/authenticatorSetupFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
     </fragment>
+
+    <fragment
+        android:id="@+id/authenticatorSetupFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.account.authenticator.AuthenticatorSetupFragment"
+        android:label="authenticator_setup_fragment">
+        <action
+            android:id="@+id/action_authenticatorSetupFragment_to_authenticatorCodeEntryFragment"
+            app:destination="@id/authenticatorCodeEntryFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/authenticatorCodeEntryFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.account.authenticator.AuthenticatorCodeEntryFragment"
+        android:label="authenticator_code_entry_fragment" />
 
     <fragment
         android:id="@+id/linkedDeviceAccountSettingsFragment"
@@ -527,6 +552,14 @@
         <action
             android:id="@+id/action_notificationsSettingsFragment_to_notificationProfilesFragment"
             app:destination="@id/notificationProfilesFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+
+        <action
+            android:id="@+id/action_notificationsSettingsFragment_to_mutedNotificationsFragment"
+            app:destination="@id/mutedNotificationsFragment"
             app:enterAnim="@anim/fragment_open_enter"
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
@@ -1073,6 +1106,10 @@
     <include app:graph="@navigation/manage_badges" />
 
     <!-- endregion -->
+
+    <fragment
+        android:id="@+id/mutedNotificationsFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.notifications.GlobalMutedNotificationsFragment" />
 
     <!-- Notification Profiles -->
     <fragment

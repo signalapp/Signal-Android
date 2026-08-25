@@ -58,7 +58,8 @@ class RegistrationUtilTest {
     initialize(logRecorder)
 
     every { SignalStore.backup.backupTier } returns null
-    every { SignalStore.backup.backupsInitialized = any() } answers { }
+    every { SignalStore.backup.messageBackupInitialized = any() } answers { }
+    every { SignalStore.backup.mediaBackupInitialized = any() } answers { }
     every { SignalStore.backup.cachedMediaCdnPath = any() } answers { }
     every { SignalStore.backup.mediaCredentials } returns mockk {
       every { clearAll() } answers {}

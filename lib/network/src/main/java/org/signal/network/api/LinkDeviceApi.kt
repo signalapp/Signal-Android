@@ -112,7 +112,8 @@ class LinkDeviceApi(
     masterKey: MasterKey,
     mediaRootBackupKey: MediaRootBackupKey,
     code: String,
-    ephemeralMessageBackupKey: MessageBackupKey?
+    ephemeralMessageBackupKey: MessageBackupKey?,
+    authCredentialSalt: ByteArray?
   ): NetworkResult<Unit> {
     val sendPhoneNumberData = e164 != null && pni != null && pniIdentityKeyPair != null
     if (!sendPhoneNumberData && (e164 != null || pni != null || pniIdentityKeyPair != null)) {
@@ -140,7 +141,8 @@ class LinkDeviceApi(
       accountEntropyPool = accountEntropyPool.value,
       mediaRootBackupKey = mediaRootBackupKey.value.toByteString(),
       aciBinary = aci.toByteString(),
-      pniBinary = sentPni?.toByteStringWithoutPrefix()
+      pniBinary = sentPni?.toByteStringWithoutPrefix(),
+      authCredentialSalt = authCredentialSalt?.toByteString()
     )
     val ciphertext: ByteArray = cipher.encrypt(message)
     val body = ProvisioningMessage(Base64.encodeWithPadding(ciphertext))

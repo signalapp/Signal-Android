@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <!-- Emoji category headers, shown in the emoji keyboard and the react-with-any-emoji sheet -->
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">स्माइली और लोग</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">नेचर</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">खान-पान</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">गतिविधियां</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">जगहें</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">सामान</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">चिह्न</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">झंडे</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">इमोजी</string>
+</resources>

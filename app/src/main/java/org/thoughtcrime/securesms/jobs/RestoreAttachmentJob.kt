@@ -336,7 +336,8 @@ class RestoreAttachmentJob private constructor(
     messageId: Long,
     attachmentId: AttachmentId,
     attachment: DatabaseAttachment,
-    forceTransitTier: Boolean = false
+    forceTransitTier: Boolean = false,
+    forceFallbackArchiveCdn: Boolean = false
   ) {
     val maxReceiveSize: Long = RemoteConfig.maxAttachmentReceiveSizeBytes
     val attachmentFile: File = ArchiveDatabaseExecutor.runBlocking {
@@ -366,7 +367,8 @@ class RestoreAttachmentJob private constructor(
       }
 
       val messageReceiver = AppDependencies.signalServiceMessageReceiver
-      val pointer = attachment.createArchiveAttachmentPointer(useArchiveCdn)
+      val archiveCdnOverride = RemoteConfig.backupFallbackArchiveCdn.takeIf { forceFallbackArchiveCdn }
+      val pointer = attachment.createArchiveAttachmentPointer(useArchiveCdn, archiveCdnOverride)
 
       val progressListener = object : SignalServiceAttachment.ProgressListener {
         override fun onAttachmentProgress(progress: AttachmentTransferProgress) {
@@ -380,7 +382,7 @@ class RestoreAttachmentJob private constructor(
 
       ArchiveRestoreProgress.onDownloadStart(attachmentId)
       val decryptingStream = if (useArchiveCdn) {
-        val cdnCredentials = runBlocking { AppDependencies.archiveService.getCdnReadCredentials(ArchiveService.CredentialType.MEDIA, attachment.archiveCdn ?: RemoteConfig.backupFallbackArchiveCdn) }.successOrThrow().headers
+        val cdnCredentials = runBlocking { AppDependencies.archiveService.getCdnReadCredentials(ArchiveService.CredentialType.MEDIA, pointer.cdnNumber) }.successOrThrow().headers
 
         messageReceiver
           .retrieveArchivedAttachment(
@@ -419,7 +421,8 @@ class RestoreAttachmentJob private constructor(
         ArchiveDatabaseExecutor.throttledNotifyAttachmentAndChatListObservers()
       }
 
-      if (useArchiveCdn && attachment.archiveCdn == null) {
+      if (useArchiveCdn && attachment.archiveCdn != pointer.cdnNumber) {
+        Log.i(TAG, "[$attachmentId] Recording the archive CDN we actually downloaded from. Was: ${attachment.archiveCdn}, now: ${pointer.cdnNumber}")
         ArchiveDatabaseExecutor.runBlocking {
           SignalDatabase.attachments.setArchiveCdn(attachmentId, pointer.cdnNumber)
         }
@@ -447,6 +450,10 @@ class RestoreAttachmentJob private constructor(
             }
             markPermanentlyFailed(attachmentId)
             return
+          } else if (useArchiveCdn && !forceFallbackArchiveCdn && attachment.archiveCdn != null && attachment.archiveCdn != RemoteConfig.backupFallbackArchiveCdn) {
+            // A stored CDN can be stale
+            Log.w(TAG, "[$attachmentId] Archive CDN ${attachment.archiveCdn} returned a 404. Retrying against the fallback CDN before falling back to transit.")
+            return retrieveAttachment(messageId, attachmentId, attachment, forceFallbackArchiveCdn = true)
           } else if (SignalStore.backup.backsUpMedia && attachment.remoteLocation.isNotNullOrBlank()) {
             Log.w(TAG, "[$attachmentId] Failed to download attachment from the archive CDN! Retrying download from transit CDN. hasPlaintextHash: ${attachment.dataHash != null}")
             if (attachment.dataHash != null) {

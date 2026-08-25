@@ -61,18 +61,6 @@ fun MediaSendScreen(
           )
         }
 
-        viewModel.saveToStorageDialog.Content { _, onDismissRequest, onConfirm, _, _ ->
-          MediaEditScreenDialogs.SaveToStorageConfirmationDialog(
-            onSave = { doNotShowAgain ->
-              if (doNotShowAgain) {
-                viewModel.markSaveToStorageWarningDismissed()
-              }
-              onConfirm()
-            },
-            onDismissRequest = onDismissRequest
-          )
-        }
-
         viewModel.addToGroupStoryDialog.Content { recipientId, onDismissRequest, onConfirm, _, onDeny ->
           val groupName: String by LocalDisplayNameProvider.current(recipientId.id)
 
@@ -83,8 +71,6 @@ fun MediaSendScreen(
             onDismissRequest = onDismissRequest
           )
         }
-
-        viewModel.writeStoragePermission.Content()
 
         MediaSendNavigation(
           viewModel = viewModel,

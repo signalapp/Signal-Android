@@ -54,4 +54,9 @@ sealed interface SoundsAndNotificationsEvent {
    * [custom notifications settings screen][org.thoughtcrime.securesms.components.settings.conversation.sounds.custom.CustomNotificationsSettingsFragment].
    */
   data object NavigateToCustomNotifications : SoundsAndNotificationsEvent
+
+  /**
+   * User tapped "When Muted" and navigates to [MutedNotificationsFragment]
+   */
+  data object NavigateToMutedNotifications : SoundsAndNotificationsEvent
 }

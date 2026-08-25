@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <!-- Emoji category headers, shown in the emoji keyboard and the react-with-any-emoji sheet -->
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Emotikonid &amp; inimesed</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Loodus</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Toit</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Hobitegevused</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Kohad</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Objektid</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Sümbolid</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Lipud</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emotikonid</string>
+</resources>

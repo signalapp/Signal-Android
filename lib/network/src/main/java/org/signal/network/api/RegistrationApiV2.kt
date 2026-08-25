@@ -9,6 +9,7 @@ import kotlinx.serialization.EncodeDefault
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
 import okhttp3.Credentials
 import okhttp3.MediaType.Companion.toMediaType
@@ -28,6 +29,9 @@ import org.signal.libsignal.protocol.ecc.ECPublicKey
 import org.signal.libsignal.protocol.kem.KEMPublicKey
 import org.signal.libsignal.protocol.state.KyberPreKeyRecord
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord
+import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
+import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialRequest
+import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialResponse
 import org.signal.network.rest.RequestSpec
 import org.signal.network.rest.RestStatusCodeError
 import org.signal.network.rest.SignalRestClient
@@ -35,6 +39,7 @@ import org.signal.network.rest.bodyString
 import org.signal.network.rest.toTypedResult
 import java.net.URLEncoder
 import java.util.Locale
+import java.util.UUID
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
@@ -43,8 +48,14 @@ import kotlin.time.Duration.Companion.seconds
  *
  * These endpoints are used before the account is registered, so they are either unauthenticated
  * or authenticate with explicitly-provided credentials rather than any stored on the client.
+ *
+ * @param phonenumberlessRegistrationAllowed Whether this build may register accounts that have no phone number. When
+ *   false, the endpoints that only exist for that flow fail fast rather than talking to the service.
  */
-class RegistrationApiV2(private val restClient: SignalRestClient) {
+class RegistrationApiV2(
+  private val restClient: SignalRestClient,
+  private val phonenumberlessRegistrationAllowed: Boolean
+) {
 
   companion object {
     private val APPLICATION_JSON = "application/json".toMediaType()
@@ -291,6 +302,8 @@ class RegistrationApiV2(private val restClient: SignalRestClient) {
     skipDeviceTransfer: Boolean
   ): RequestResult<RegisterAccountResponse, RegisterAccountError> {
     require((sessionId != null) xor (recoveryPassword != null)) { "You must supply one and only one of either: Session ID, or Recovery Password." }
+    require(attributes.pniRegistrationId != null) { "Must send PNI key material when registering with a phone number." }
+    require(attributes.discoverableByPhoneNumber != null) { "Must set phone number discoverability when registering with a phone number." }
 
     val body = RegisterAccountRequestBody(
       sessionId = sessionId,
@@ -326,6 +339,138 @@ class RegistrationApiV2(private val restClient: SignalRestClient) {
           422 -> RegisterAccountError.InvalidRequest(error.bodyString())
           423 -> RegisterAccountError.RegistrationLock(SignalJson.json.decodeFromString<RegistrationLockResponse>(error.bodyString()))
           429 -> RegisterAccountError.RateLimited(error.retryAfter())
+          else -> null
+        }
+      }
+    )
+  }
+
+  /**
+   * Verifies a completed one-time Signal Login purchase with the payment provider and issues a receipt credential that
+   * can be redeemed via [registerAccountWithoutPhoneNumber] to create an account that has no phone number.
+   *
+   * Must be called on an unauthenticated connection. Retries for the same [purchaseIdentifier] must reuse the same
+   * [receiptCredentialRequest].
+   *
+   * Callers must apply the same validations to the returned credential as they do to one-time donation receipts. The
+   * expected receipt expiration is `purchaseDate + 5 * 366` days, plus padding for clock skew.
+   *
+   * `POST /v1/login-purchase/receipt_credentials`
+   * - 200: Success, body is the receipt credential response
+   * - 204: The purchase is still pending with the payment provider, and the client may retry later
+   * - 400: Request is invalid, the purchase is not for a Signal Login, or login purchases are not currently enabled
+   * - 402: The purchase did not complete successfully, body may contain charge failure details
+   * - 403: The request was made on an authenticated channel
+   * - 404: The payment provider has no purchase with the given identifier
+   * - 409: The purchase was already redeemed with a different receipt credential request
+   * - 429: Rate limited
+   */
+  suspend fun createLoginPurchaseReceiptCredential(
+    purchaseIdentifier: String,
+    receiptCredentialRequest: ReceiptCredentialRequest,
+    paymentProvider: LoginPurchasePaymentProvider
+  ): RequestResult<CreateLoginReceiptCredentialResult, CreateLoginReceiptCredentialError> {
+    check(phonenumberlessRegistrationAllowed) { "Phone-number-less registration is not allowed in this build!" }
+
+    val result = restClient.request(
+      RequestSpec(
+        method = RequestSpec.Method.POST,
+        host = RequestSpec.Host.Service,
+        path = "/v1/login-purchase/receipt_credentials",
+        body = CreateLoginReceiptCredentialRequestBody(
+          purchaseIdentifier = purchaseIdentifier,
+          receiptCredentialRequest = receiptCredentialRequest.serialize(),
+          paymentProvider = paymentProvider
+        ).toJsonRequestBody()
+      )
+    )
+
+    return result.toTypedResult(
+      parseSuccess = { response ->
+        if (response.statusCode == 204) {
+          CreateLoginReceiptCredentialResult.PurchasePending
+        } else {
+          val body = SignalJson.json.decodeFromString<CreateLoginReceiptCredentialResponse>(response.bodyString())
+          CreateLoginReceiptCredentialResult.Issued(ReceiptCredentialResponse(body.receiptCredentialResponse))
+        }
+      },
+      mapError = { error ->
+        when (error.statusCode) {
+          400 -> CreateLoginReceiptCredentialError.InvalidRequest(error.bodyString())
+          402 -> CreateLoginReceiptCredentialError.PaymentFailed(error.parseChargeFailureOrNull())
+          403 -> CreateLoginReceiptCredentialError.MustBeUnauthenticated
+          404 -> CreateLoginReceiptCredentialError.PurchaseNotFound
+          409 -> CreateLoginReceiptCredentialError.AlreadyRedeemed
+          429 -> CreateLoginReceiptCredentialError.RateLimited(error.retryAfter())
+          else -> null
+        }
+      }
+    )
+  }
+
+  /**
+   * Registers an account that has no phone number, redeeming the [receiptCredentialPresentation] issued by
+   * [createLoginPurchaseReceiptCredential].
+   *
+   * The basic auth username is ignored by the service for a fresh numberless registration but must not be empty, so a
+   * random one is generated here. (Re-registering an existing numberless account authenticates by ACI instead; the
+   * service has not defined that flow yet.)
+   *
+   * PNI key material must not be sent for an account with no phone number, so [attributes] must have a null
+   * `pniRegistrationId` and a null `discoverableByPhoneNumber`.
+   *
+   * `POST /v1/registration`
+   * - 200: Success, body is the account response
+   * - 400: Receipt credential presentation is invalid
+   * - 409: Device transfer is possible
+   * - 422: Request is invalid
+   * - 429: Rate limited
+   *
+   * @param password The password for basic auth
+   */
+  suspend fun registerAccountWithoutPhoneNumber(
+    password: String,
+    receiptCredentialPresentation: ReceiptCredentialPresentation,
+    attributes: AccountAttributes,
+    aciPreKeys: PreKeyCollection,
+    fcmToken: String?,
+    skipDeviceTransfer: Boolean
+  ): RequestResult<RegisterAccountResponse, RegisterAccountWithoutPhoneNumberError> {
+    check(phonenumberlessRegistrationAllowed) { "Phone-number-less registration is not allowed in this build!" }
+    require(attributes.pniRegistrationId == null) { "Must not send PNI key material when registering without a phone number." }
+    require(attributes.discoverableByPhoneNumber == null) { "Must not set phone number discoverability when registering without a phone number." }
+
+    val body = RegisterAccountRequestBody(
+      receiptCredentialPresentation = Base64.encodeWithPadding(receiptCredentialPresentation.serialize()),
+      accountAttributes = attributes,
+      aciIdentityKey = Base64.encodeWithoutPadding(aciPreKeys.identityKey.serialize()),
+      pniIdentityKey = null,
+      aciSignedPreKey = aciPreKeys.signedPreKey.toSignedPreKeyEntity(),
+      pniSignedPreKey = null,
+      aciPqLastResortPreKey = aciPreKeys.lastResortKyberPreKey.toKyberPreKeyEntity(),
+      pniPqLastResortPreKey = null,
+      gcmToken = if (attributes.fetchesMessages) null else fcmToken?.let { GcmRegistrationId(it, true) },
+      skipDeviceTransfer = skipDeviceTransfer
+    )
+
+    val result = restClient.request(
+      RequestSpec(
+        method = RequestSpec.Method.POST,
+        host = RequestSpec.Host.Service,
+        path = "/v1/registration",
+        body = body.toJsonRequestBodyOmittingNulls(),
+        auth = RequestSpec.Auth.Header("Authorization", basicAuth(UUID.randomUUID().toString(), password))
+      )
+    )
+
+    return result.toTypedResult(
+      parseSuccess = { SignalJson.json.decodeFromString<RegisterAccountResponse>(it.bodyString()) },
+      mapError = { error ->
+        when (error.statusCode) {
+          400 -> RegisterAccountWithoutPhoneNumberError.InvalidReceiptCredentialPresentation(error.bodyString())
+          409 -> RegisterAccountWithoutPhoneNumberError.DeviceTransferPossible
+          422 -> RegisterAccountWithoutPhoneNumberError.InvalidRequest(error.bodyString())
+          429 -> RegisterAccountWithoutPhoneNumberError.RateLimited(error.retryAfter())
           else -> null
         }
       }
@@ -454,6 +599,15 @@ class RegistrationApiV2(private val restClient: SignalRestClient) {
     return headers["retry-after"]?.toLongOrNull()?.seconds ?: 0.seconds
   }
 
+  /** The service only sometimes includes charge failure details, so a body we can't parse just means we have no details. */
+  private fun RestStatusCodeError.parseChargeFailureOrNull(): ChargeFailureResponse? {
+    return try {
+      SignalJson.json.decodeFromString<ChargeFailureResponse>(bodyString())
+    } catch (_: SerializationException) {
+      null
+    }
+  }
+
   private fun basicAuth(username: String, password: String): String {
     return Credentials.basic(username, password, Charsets.UTF_8)
   }
@@ -501,10 +655,12 @@ class RegistrationApiV2(private val restClient: SignalRestClient) {
     @Serializable(with = ByteArrayToBase64Serializer::class)
     val unidentifiedAccessKey: ByteArray?,
     val unrestrictedUnidentifiedAccess: Boolean,
-    val discoverableByPhoneNumber: Boolean,
+    /** Null for an account with no phone number, which may not set discoverability, in which case it is omitted from the request. */
+    val discoverableByPhoneNumber: Boolean?,
     val capabilities: Capabilities?,
     val name: String? = null,
-    val pniRegistrationId: Int,
+    /** Null for an account with no PNI, in which case it is omitted from the request. */
+    val pniRegistrationId: Int?,
     val recoveryPassword: String?
   ) {
 
@@ -514,7 +670,9 @@ class RegistrationApiV2(private val restClient: SignalRestClient) {
       val versionedExpirationTimer: Boolean,
       val attachmentBackfill: Boolean,
       val spqr: Boolean,
-      val usernameChangeSyncMessage: Boolean
+      val usernameChangeSyncMessage: Boolean,
+      /** Required of every device on an account that has no phone number. */
+      val optionalPhoneNumber: Boolean
     )
   }
 
@@ -528,15 +686,21 @@ class RegistrationApiV2(private val restClient: SignalRestClient) {
     val capabilities: AccountAttributes.Capabilities?
   )
 
+  /**
+   * The `POST /v1/registration` success body. The phone-number-linked properties are absent from the response for an
+   * account registered without a phone number, so they default to null rather than being required keys.
+   */
   @Serializable
   data class RegisterAccountResponse(
     @SerialName("uuid") val aci: String,
-    val pni: String,
-    @SerialName("number") val e164: String,
+    val pni: String? = null,
+    @SerialName("number") val e164: String? = null,
     val usernameHash: String?,
     val usernameLinkHandle: String?,
     val storageCapable: Boolean,
     val entitlements: Entitlements?,
+    /** Base64 salt used to generate PNI auth credentials for an account with no phone number. */
+    val authCredentialSalt: String? = null,
     val reregistration: Boolean
   ) {
     @Serializable
@@ -557,6 +721,40 @@ class RegistrationApiV2(private val restClient: SignalRestClient) {
       val backupLevel: Long,
       val expirationSeconds: Long
     )
+  }
+
+  /**
+   * Outcome of a successful call to [createLoginPurchaseReceiptCredential]. The service reports a purchase that has not
+   * settled yet as a success with no body, so "still pending" is a success rather than an error.
+   */
+  sealed interface CreateLoginReceiptCredentialResult {
+    data class Issued(val receiptCredentialResponse: ReceiptCredentialResponse) : CreateLoginReceiptCredentialResult
+    data object PurchasePending : CreateLoginReceiptCredentialResult
+  }
+
+  /**
+   * Charge failure details, which the service includes on some payment failures. Meaningfully interpreting the fields
+   * requires inspecting [processor] first -- Braintree leaves the outcome properties null, and IAP processors never
+   * include charge failure information at all.
+   */
+  @Serializable
+  data class ChargeFailureResponse(
+    val processor: String? = null,
+    val chargeFailure: ChargeFailure? = null
+  )
+
+  @Serializable
+  data class ChargeFailure(
+    val code: String? = null,
+    val message: String? = null,
+    val outcomeNetworkStatus: String? = null,
+    val outcomeReason: String? = null,
+    val outcomeType: String? = null
+  )
+
+  /** The payment provider that processed a Signal Login purchase. */
+  enum class LoginPurchasePaymentProvider {
+    STRIPE, BRAINTREE, GOOGLE_PLAY_BILLING, APPLE_APP_STORE
   }
 
   @Serializable
@@ -669,22 +867,38 @@ class RegistrationApiV2(private val restClient: SignalRestClient) {
     val code: String
   )
 
+  /** The PNI properties are all null when registering an account that has no phone number, in which case they are omitted from the request. */
   @OptIn(ExperimentalSerializationApi::class)
   @Serializable
   private class RegisterAccountRequestBody(
     val sessionId: String? = null,
     val recoveryPassword: String? = null,
+    val receiptCredentialPresentation: String? = null,
     val accountAttributes: AccountAttributes,
     val aciIdentityKey: String,
-    val pniIdentityKey: String,
+    val pniIdentityKey: String?,
     val aciSignedPreKey: SignedPreKeyEntity,
-    val pniSignedPreKey: SignedPreKeyEntity,
+    val pniSignedPreKey: SignedPreKeyEntity?,
     val aciPqLastResortPreKey: KyberPreKeyEntity,
-    val pniPqLastResortPreKey: KyberPreKeyEntity,
+    val pniPqLastResortPreKey: KyberPreKeyEntity?,
     val gcmToken: GcmRegistrationId? = null,
     val skipDeviceTransfer: Boolean,
     @EncodeDefault(EncodeDefault.Mode.ALWAYS)
     val requireAtomic: Boolean = true
+  )
+
+  @Serializable
+  private class CreateLoginReceiptCredentialRequestBody(
+    val purchaseIdentifier: String,
+    @Serializable(with = ByteArrayToBase64Serializer::class)
+    val receiptCredentialRequest: ByteArray,
+    val paymentProvider: LoginPurchasePaymentProvider
+  )
+
+  @Serializable
+  private class CreateLoginReceiptCredentialResponse(
+    @Serializable(with = ByteArrayToBase64Serializer::class)
+    val receiptCredentialResponse: ByteArray
   )
 
   @Serializable
@@ -769,6 +983,25 @@ class RegistrationApiV2(private val restClient: SignalRestClient) {
     data class InvalidRequest(val message: String) : RegisterAccountError()
     data class RegistrationLock(val data: RegistrationLockResponse) : RegisterAccountError()
     data class RateLimited(val retryAfter: Duration) : RegisterAccountError()
+  }
+
+  sealed class RegisterAccountWithoutPhoneNumberError : BadRequestError {
+    data class InvalidReceiptCredentialPresentation(val message: String) : RegisterAccountWithoutPhoneNumberError()
+    data object DeviceTransferPossible : RegisterAccountWithoutPhoneNumberError()
+    data class InvalidRequest(val message: String) : RegisterAccountWithoutPhoneNumberError()
+    data class RateLimited(val retryAfter: Duration) : RegisterAccountWithoutPhoneNumberError()
+  }
+
+  sealed class CreateLoginReceiptCredentialError : BadRequestError {
+    /** The request was malformed, failed zkgroup verification, was not for a Signal Login, or login purchases are disabled. */
+    data class InvalidRequest(val message: String) : CreateLoginReceiptCredentialError()
+    data class PaymentFailed(val chargeFailure: ChargeFailureResponse?) : CreateLoginReceiptCredentialError()
+    data object MustBeUnauthenticated : CreateLoginReceiptCredentialError()
+    data object PurchaseNotFound : CreateLoginReceiptCredentialError()
+
+    /** The purchase was already redeemed, but for a different receipt credential request. */
+    data object AlreadyRedeemed : CreateLoginReceiptCredentialError()
+    data class RateLimited(val retryAfter: Duration) : CreateLoginReceiptCredentialError()
   }
 
   sealed class CheckSvrCredentialsError : BadRequestError {

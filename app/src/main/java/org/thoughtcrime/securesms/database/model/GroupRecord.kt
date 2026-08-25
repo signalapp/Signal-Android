@@ -116,6 +116,22 @@ class GroupRecord(
       }
     }
 
+  /** Whether this group's invite link exists and is currently open to anyone holding it. */
+  val isGroupLinkEnabled: Boolean
+    get() {
+      if (!hasV2GroupProperties) {
+        return false
+      }
+
+      val decryptedGroup = requireV2GroupProperties().decryptedGroup
+      if (decryptedGroup.inviteLinkPassword.size == 0) {
+        return false
+      }
+
+      val addFromInviteLink = decryptedGroup.accessControl?.addFromInviteLink ?: return false
+      return addFromInviteLink == AccessControl.AccessRequired.ANY || addFromInviteLink == AccessControl.AccessRequired.ADMINISTRATOR
+    }
+
   /** Who is allowed to modify the attributes of this group, name/avatar/timer etc. */
   val attributesAccessControl: GroupAccessControl
     get() {

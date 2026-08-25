@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.jobs
 
+import androidx.annotation.VisibleForTesting
 import org.signal.core.util.DiskUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgress
@@ -12,7 +13,10 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.util.RemoteConfig
+import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days
+import kotlin.time.Duration.Companion.milliseconds
 
 /**
  * Optimizes media storage by relying on backups for full copies of files and only keeping thumbnails locally.
@@ -22,6 +26,11 @@ class OptimizeMediaJob private constructor(parameters: Parameters) : Job(paramet
   companion object {
     private val TAG = Log.tag(OptimizeMediaJob::class)
     const val KEY = "OptimizeMediaJob"
+
+    private const val LOW_STORAGE_THRESHOLD_PERCENT = 5f
+
+    /** How many reconciliation intervals a completed crawl stays trustworthy for. */
+    private const val EVIDENCE_AGE_INTERVAL_MULTIPLIER = 4
 
     fun enqueue() {
       if (!SignalStore.backup.optimizeStorage || !SignalStore.backup.backsUpMedia) {
@@ -61,23 +70,54 @@ class OptimizeMediaJob private constructor(parameters: Parameters) : Job(paramet
       RestoreAttachmentJob.Queues.OFFLOAD_RESTORE.forEach { queue -> AppDependencies.jobManager.add(CheckRestoreMediaLeftJob(queue)) }
     }
 
-    Log.i(TAG, "Optimizing media in the db")
-
     val available = DiskUtil.getAvailableSpace(context).bytes.toFloat()
     val total = DiskUtil.getTotalDiskSize(context).bytes.toFloat()
-    val remaining = (total - available) / total * 100
+    val percentAvailable = if (total > 0f) available / total * 100 else 100f
+    val minimumAge = if (percentAvailable > LOW_STORAGE_THRESHOLD_PERCENT) 30.days else 15.days
 
-    val minimumAge = if (remaining > 5f) 30.days else 15.days
+    Log.i(TAG, "${"%.1f".format(percentAvailable)}% storage available")
 
-    Log.i(TAG, "${"%.1f".format(remaining)}% storage available, optimizing attachments older than $minimumAge")
+    offloadVerifiedMedia(minimumAge, RemoteConfig.archiveReconciliationSyncInterval)
 
-    SignalDatabase.attachments.markEligibleAttachmentsAsOptimized(minimumAge)
-
+    // Reclaims files nothing references anymore, which doesn't depend on CDN confirmation, so it has to run even when offloading is gated off.
     Log.i(TAG, "Deleting abandoned attachment files")
     val count = SignalDatabase.attachments.deleteAbandonedAttachmentFiles()
     Log.i(TAG, "Deleted $count attachments")
 
     return Result.success()
+  }
+
+  /** Offloads the local copy of media the archive CDN confirmed during a completed crawl, and nothing else. */
+  @VisibleForTesting
+  internal fun offloadVerifiedMedia(minimumAge: Duration, reconciliationInterval: Duration) {
+    val crawlInterval = reconciliationInterval.coerceAtLeast(1.days)
+    val lastCompletedCrawlVersion = SignalStore.backup.lastCompletedReconciliationSnapshotVersion
+
+    if (lastCompletedCrawlVersion < 0) {
+      Log.w(TAG, "No archive reconciliation has completed on this device yet. Not offloading anything until our media has been verified against the archive CDN.", true)
+      ArchiveAttachmentReconciliationJob.enqueueToVerifyMediaBeforeOffloading(crawlInterval)
+      return
+    }
+
+    val maxEvidenceAge = crawlInterval * EVIDENCE_AGE_INTERVAL_MULTIPLIER
+    val evidenceAge = (System.currentTimeMillis() - SignalStore.backup.lastCompletedReconciliationTime).milliseconds
+
+    // Refusing alone isn't enough here: a far-future timestamp keeps reading as untrustworthy until the clock catches up to it, which could be years.
+    if (evidenceAge.isNegative()) {
+      Log.w(TAG, "The last completed archive reconciliation is timestamped ${-evidenceAge} in the future, likely from a clock change. Discarding our verification state so a fresh crawl has to confirm our media again.", true)
+      SignalStore.backup.clearArchiveVerificationState()
+      ArchiveAttachmentReconciliationJob.enqueueToVerifyMediaBeforeOffloading(crawlInterval)
+      return
+    }
+
+    if (evidenceAge > maxEvidenceAge) {
+      Log.w(TAG, "The last completed archive reconciliation is $evidenceAge old, past the $maxEvidenceAge we trust. Not offloading anything until our media has been verified again.", true)
+      ArchiveAttachmentReconciliationJob.enqueueToVerifyMediaBeforeOffloading(crawlInterval)
+      return
+    }
+
+    Log.i(TAG, "Optimizing attachments older than $minimumAge")
+    SignalDatabase.attachments.markEligibleAttachmentsAsOptimized(lastCompletedCrawlVersion, minimumAge)
   }
 
   override fun serialize(): ByteArray? = null

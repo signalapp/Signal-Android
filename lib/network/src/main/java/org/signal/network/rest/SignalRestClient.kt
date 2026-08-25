@@ -5,9 +5,7 @@
 
 package org.signal.network.rest
 
-import kotlinx.coroutines.suspendCancellableCoroutine
 import okhttp3.Call
-import okhttp3.Callback
 import okhttp3.ConnectionPool
 import okhttp3.ConnectionSpec
 import okhttp3.Credentials
@@ -20,6 +18,7 @@ import okhttp3.Request
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.Response
+import okhttp3.coroutines.executeAsync
 import okio.Buffer
 import okio.BufferedSink
 import okio.ByteString
@@ -50,7 +49,6 @@ import java.util.Random
 import java.util.concurrent.TimeUnit
 import javax.net.ssl.SSLContext
 import javax.net.ssl.X509TrustManager
-import kotlin.coroutines.resume
 import kotlin.jvm.Throws
 import kotlin.reflect.KClass
 
@@ -260,7 +258,7 @@ class SignalRestClient @JvmOverloads constructor(
       }
       val httpRequest = buildHttpRequest(spec, holder, effectiveBody, extraHeaders = emptyMap())
       val client = newCallClient(holder)
-      val response = client.newCall(httpRequest).await()
+      val response = client.newCall(httpRequest).executeAsync()
 
       response.use { resp ->
         val body = resp.body.bytes()
@@ -297,7 +295,7 @@ class SignalRestClient @JvmOverloads constructor(
       val httpRequest = buildHttpRequest(spec, holder, body = spec.body, extraHeaders = rangeHeader)
       val client = newCallClient(holder)
       val call = client.newCall(httpRequest)
-      val response = call.await()
+      val response = call.executeAsync()
 
       response.use { resp ->
         val code = resp.code
@@ -492,19 +490,6 @@ class SignalRestClient @JvmOverloads constructor(
       map[name(i).lowercase()] = value(i)
     }
     return map
-  }
-
-  private suspend fun Call.await(): Response = suspendCancellableCoroutine { cont ->
-    cont.invokeOnCancellation { runCatching { cancel() } }
-    enqueue(object : Callback {
-      override fun onFailure(call: Call, e: IOException) {
-        if (!cont.isCancelled) cont.resumeWith(Result.failure(e))
-      }
-
-      override fun onResponse(call: Call, response: Response) {
-        cont.resume(response)
-      }
-    })
   }
 
   private data class ConnectionHolder(

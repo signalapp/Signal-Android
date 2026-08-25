@@ -9,7 +9,6 @@ import assertk.assertions.isNotEqualTo
 import assertk.assertions.isNotNull
 import assertk.assertions.isNull
 import assertk.assertions.isTrue
-import io.mockk.every
 import okio.ByteString.Companion.toByteString
 import org.junit.Before
 import org.junit.Rule
@@ -24,7 +23,6 @@ import org.thoughtcrime.securesms.database.model.IncomingSticker
 import org.thoughtcrime.securesms.database.model.StickerPackId
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.testutil.RecipientTestRule
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.storage.SignalStickerPackRecord
 import org.whispersystems.signalservice.api.storage.StorageId
 import java.io.ByteArrayInputStream
@@ -48,8 +46,6 @@ class StickerTablesTest {
 
   @Before
   fun setUp() {
-    every { RemoteConfig.messageQueueTime } returns TimeUnit.DAYS.toMillis(45)
-
     SignalDatabase.stickers.writableDatabase.deleteAll(StickerTables.Sticker.TABLE_NAME)
     SignalDatabase.stickers.writableDatabase.deleteAll(StickerTables.Pack.TABLE_NAME)
   }
@@ -209,7 +205,7 @@ class StickerTablesTest {
     installPack(packId1, packKey1)
     SignalDatabase.stickers.uninstallPack(packId1)
 
-    SignalDatabase.stickers.removeStorageIdsFromOldDeletedPacks(System.currentTimeMillis() + TimeUnit.DAYS.toMillis(46))
+    SignalDatabase.stickers.removeStorageIdsFromOldDeletedPacks(System.currentTimeMillis() + TimeUnit.DAYS.toMillis(1))
 
     assertThat(SignalDatabase.stickers.getStorageSyncIds()).isEmpty()
     assertThat(SignalDatabase.stickers.getPackForStorageSync(StickerPackId(packId1))!!.storageServiceId).isNull()

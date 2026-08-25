@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <!-- Emoji category headers, shown in the emoji keyboard and the react-with-any-emoji sheet -->
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Smajlíci a lidé</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Příroda</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Jídlo</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Činnosti</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Místa</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Objekty</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Symboly</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Vlajky</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emotikony</string>
+</resources>

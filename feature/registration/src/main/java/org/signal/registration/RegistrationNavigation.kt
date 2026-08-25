@@ -39,6 +39,7 @@ import kotlinx.parcelize.Parcelize
 import kotlinx.parcelize.TypeParceler
 import kotlinx.serialization.Serializable
 import org.signal.core.models.AccountEntropyPool
+import org.signal.core.ui.compose.CollectActions
 import org.signal.core.ui.navigation.ResultEffect
 import org.signal.core.ui.navigation.TransitionSpecs
 import org.signal.core.util.LinkActions
@@ -50,7 +51,7 @@ import org.signal.registration.screens.accountlocked.AccountLockedScreen
 import org.signal.registration.screens.accountlocked.AccountLockedScreenEvents
 import org.signal.registration.screens.accountlocked.AccountLockedState
 import org.signal.registration.screens.addusername.AddUsernameScreen
-import org.signal.registration.screens.addusername.AddUsernameScreenEvents
+import org.signal.registration.screens.addusername.AddUsernameScreenActions
 import org.signal.registration.screens.addusername.AddUsernameViewModel
 import org.signal.registration.screens.aepentry.EnterAepForLocalBackupResult
 import org.signal.registration.screens.aepentry.EnterAepForLocalBackupViewModel
@@ -79,7 +80,7 @@ import org.signal.registration.screens.devicetransfer.setup.DeviceTransferSetupV
 import org.signal.registration.screens.discoverability.PhoneNumberDiscoverabilityScreen
 import org.signal.registration.screens.discoverability.PhoneNumberDiscoverabilityViewModel
 import org.signal.registration.screens.linkaccount.LinkAccountScreen
-import org.signal.registration.screens.linkaccount.LinkAccountScreenEvent
+import org.signal.registration.screens.linkaccount.LinkAccountScreenAction
 import org.signal.registration.screens.linkaccount.LinkAccountViewModel
 import org.signal.registration.screens.localbackuprestore.EnterLocalBackupV1PassphaseScreen
 import org.signal.registration.screens.localbackuprestore.LocalBackupRestoreEvents
@@ -87,14 +88,14 @@ import org.signal.registration.screens.localbackuprestore.LocalBackupRestoreResu
 import org.signal.registration.screens.localbackuprestore.LocalBackupRestoreScreen
 import org.signal.registration.screens.localbackuprestore.LocalBackupRestoreViewModel
 import org.signal.registration.screens.messagesync.MessageSyncScreen
-import org.signal.registration.screens.messagesync.MessageSyncScreenEvent
+import org.signal.registration.screens.messagesync.MessageSyncScreenAction
 import org.signal.registration.screens.messagesync.MessageSyncViewModel
 import org.signal.registration.screens.permissions.PermissionsScreen
 import org.signal.registration.screens.phonenumber.PhoneNumberEntryScreenEvents
 import org.signal.registration.screens.phonenumber.PhoneNumberEntryViewModel
 import org.signal.registration.screens.phonenumber.PhoneNumberScreen
 import org.signal.registration.screens.pincreation.PinCreationScreen
-import org.signal.registration.screens.pincreation.PinCreationScreenEvents
+import org.signal.registration.screens.pincreation.PinCreationScreenActions
 import org.signal.registration.screens.pincreation.PinCreationViewModel
 import org.signal.registration.screens.pinentry.PinEntryForRegistrationLockViewModel
 import org.signal.registration.screens.pinentry.PinEntryForSmsBypassViewModel
@@ -111,14 +112,14 @@ import org.signal.registration.screens.restoreselection.RegisteredState
 import org.signal.registration.screens.signallogininfo.SignalLoginInfoScreen
 import org.signal.registration.screens.signallogininfo.SignalLoginInfoViewModel
 import org.signal.registration.screens.signalloginpayment.SignalLoginPaymentScreen
-import org.signal.registration.screens.signalloginpayment.SignalLoginPaymentScreenEvents
+import org.signal.registration.screens.signalloginpayment.SignalLoginPaymentScreenActions
 import org.signal.registration.screens.signalloginpayment.SignalLoginPaymentViewModel
 import org.signal.registration.screens.util.navigateBack
 import org.signal.registration.screens.util.navigateTo
 import org.signal.registration.screens.verificationcode.VerificationCodeScreen
 import org.signal.registration.screens.verificationcode.VerificationCodeViewModel
 import org.signal.registration.screens.welcome.WelcomeScreen
-import org.signal.registration.screens.welcome.WelcomeScreenEvents
+import org.signal.registration.screens.welcome.WelcomeScreenActions
 import org.signal.registration.screens.welcome.WelcomeScreenViewModel
 import org.signal.registration.util.AccountEntropyPoolParceler
 import org.signal.registration.util.RegistrationCredentialManager
@@ -443,15 +444,15 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
       )
     )
     val state by viewModel.state.collectAsStateWithLifecycle()
+    CollectActions(viewModel.actions) { action ->
+      when (action) {
+        WelcomeScreenActions.ViewTermsAndPrivacy -> openUrl(context, termsAndPrivacyUrl)
+      }
+    }
 
     WelcomeScreen(
       state = state,
-      onEvent = { event ->
-        when (event) {
-          WelcomeScreenEvents.ViewTermsAndPrivacy -> openUrl(context, termsAndPrivacyUrl)
-          else -> viewModel.onEvent(event)
-        }
-      }
+      onEvent = { viewModel.onEvent(it) }
     )
   }
 
@@ -496,15 +497,15 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
     val state by viewModel.state.collectAsStateWithLifecycle()
     val context = LocalContext.current
     val url = "https://support.signal.org/hc/en-us/articles/360007320551"
+    CollectActions(viewModel.actions) { action ->
+      when (action) {
+        LinkAccountScreenAction.OpenGetHelpArticle -> openUrl(context, url)
+      }
+    }
 
     LinkAccountScreen(
       state = state,
-      onEvent = {
-        when (it) {
-          LinkAccountScreenEvent.GetHelpClick -> openUrl(context, url)
-          else -> viewModel.onEvent(it)
-        }
-      }
+      onEvent = { viewModel.onEvent(it) }
     )
   }
 
@@ -520,15 +521,15 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
     val state by viewModel.state.collectAsStateWithLifecycle()
     val context = LocalContext.current
     val url = "https://support.signal.org/hc/articles/360007320391"
+    CollectActions(viewModel.actions) { action ->
+      when (action) {
+        MessageSyncScreenAction.OpenLearnMoreArticle -> openUrl(context, url)
+      }
+    }
 
     MessageSyncScreen(
       state = state,
-      onEvent = {
-        when (it) {
-          MessageSyncScreenEvent.LearnMoreClick -> openUrl(context, url)
-          else -> viewModel.onEvent(it)
-        }
-      }
+      onEvent = { viewModel.onEvent(it) }
     )
   }
 
@@ -634,15 +635,15 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
     )
     val state by viewModel.state.collectAsStateWithLifecycle()
     val context = LocalContext.current
+    CollectActions(viewModel.actions) { action ->
+      when (action) {
+        SignalLoginPaymentScreenActions.OpenLearnMoreArticle -> openUrl(context, SIGNAL_LOGIN_LEARN_MORE_URL)
+      }
+    }
 
     SignalLoginPaymentScreen(
       state = state,
-      onEvent = { event ->
-        when (event) {
-          SignalLoginPaymentScreenEvents.LearnMoreClicked -> openUrl(context, SIGNAL_LOGIN_LEARN_MORE_URL)
-          else -> viewModel.onEvent(event)
-        }
-      }
+      onEvent = { viewModel.onEvent(it) }
     )
   }
 
@@ -674,15 +675,15 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
     )
     val state by viewModel.state.collectAsStateWithLifecycle()
     val context = LocalContext.current
+    CollectActions(viewModel.actions) { action ->
+      when (action) {
+        AddUsernameScreenActions.OpenLearnMoreArticle -> openUrl(context, USERNAME_LEARN_MORE_URL)
+      }
+    }
 
     AddUsernameScreen(
       state = state,
-      onEvent = { event ->
-        when (event) {
-          AddUsernameScreenEvents.LearnMoreClicked -> openUrl(context, USERNAME_LEARN_MORE_URL)
-          else -> viewModel.onEvent(event)
-        }
-      }
+      onEvent = { viewModel.onEvent(it) }
     )
   }
 
@@ -714,16 +715,15 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
     )
     val state by viewModel.state.collectAsStateWithLifecycle()
     val context = LocalContext.current
+    CollectActions(viewModel.actions) { action ->
+      when (action) {
+        PinCreationScreenActions.OpenLearnMoreArticle -> openUrl(context, PIN_LEARN_MORE_URL)
+      }
+    }
 
     PinCreationScreen(
       state = state,
-      onEvent = { event ->
-        when (event) {
-          PinCreationScreenEvents.LearnMore -> openUrl(context, PIN_LEARN_MORE_URL)
-
-          else -> viewModel.onEvent(event)
-        }
-      }
+      onEvent = { viewModel.onEvent(it) }
     )
   }
 

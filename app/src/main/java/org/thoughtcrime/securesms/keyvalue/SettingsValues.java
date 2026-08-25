@@ -60,6 +60,10 @@ public final class SettingsValues extends SignalStoreValues {
   public static final  String MESSAGE_IN_CHAT_SOUNDS_ENABLED          = "settings.message.in.chats.sounds.enabled";
   public static final  String MESSAGE_REPEAT_ALERTS                   = "settings.message.repeat.alerts";
   public static final  String MESSAGE_NOTIFICATION_PRIVACY            = "settings.message.notification.privacy";
+  public static final  String MESSAGE_NOTIFICATION_REACTION           = "settings.message.notification.reaction";
+  public static final  String MESSAGE_NOTIFICATION_MUTED_CALLS        = "settings.message.notifications.muted.call";
+  public static final  String MESSAGE_NOTIFICATION_MUTED_MENTIONS     = "settings.message.notifications.muted.mentions";
+  public static final  String MESSAGE_NOTIFICATION_MUTED_REPLIES      = "settings.message.notifications.muted.replies";
   public static final  String CALL_NOTIFICATIONS_ENABLED              = "settings.call.notifications.enabled";
   public static final  String CALL_RINGTONE                           = "settings.call.ringtone";
   public static final  String CALL_VIBRATE_ENABLED                    = "settings.call.vibrate.enabled";
@@ -441,6 +445,38 @@ public final class SettingsValues extends SignalStoreValues {
 
   public void setMessageNotificationsPrivacy(@NonNull NotificationPrivacyPreference messageNotificationsPrivacy) {
     putString(MESSAGE_NOTIFICATION_PRIVACY, messageNotificationsPrivacy.toString());
+  }
+
+  public boolean getReactionNotifications() {
+    return getBoolean(MESSAGE_NOTIFICATION_REACTION, true);
+  }
+
+  public void setReactionNotifications(boolean show) {
+    putBoolean(MESSAGE_NOTIFICATION_REACTION, show);
+  }
+
+  public boolean getAllowCallsWhileMuted() {
+    return getBoolean(MESSAGE_NOTIFICATION_MUTED_CALLS, false);
+  }
+
+  public void setAllowCallsWhileMuted(boolean allow) {
+    putBoolean(MESSAGE_NOTIFICATION_MUTED_CALLS, allow);
+  }
+
+  public boolean getAllowMentionsWhileMuted() {
+    return getBoolean(MESSAGE_NOTIFICATION_MUTED_MENTIONS, true);
+  }
+
+  public void setAllowMentionsWhileMuted(boolean allow) {
+    putBoolean(MESSAGE_NOTIFICATION_MUTED_MENTIONS, allow);
+  }
+
+  public boolean getAllowRepliesWhileMuted() {
+    return getBoolean(MESSAGE_NOTIFICATION_MUTED_REPLIES, true);
+  }
+
+  public void setAllowRepliesWhileMuted(boolean allow) {
+    putBoolean(MESSAGE_NOTIFICATION_MUTED_REPLIES, allow);
   }
 
   public boolean isCallNotificationsEnabled() {

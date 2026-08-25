@@ -73,41 +73,6 @@ class PreUploadController {
   }
 
   /**
-   * Given a map of old->new, cancel medias that were changed and upload their replacements. Will
-   * also upload any media in the map that wasn't yet uploaded.
-   *
-   * @param oldToNew A mapping of prior media objects to their updated equivalents.
-   * @param recipientId Optional recipient identifier. Used by the callback to apply recipient-specific behavior.
-   */
-  fun applyMediaUpdates(oldToNew: Map<Media, Media>, recipientId: MediaRecipientId?) {
-    executor.execute {
-      for ((oldMedia, newMedia) in oldToNew) {
-        val same = oldMedia == newMedia && hasSameTransformProperties(oldMedia, newMedia)
-
-        if (!same || !uploadResults.containsKey(newMedia.uri)) {
-          Log.d(TAG, "Canceling existing preuploads.")
-          cancelUploadInternal(oldMedia.uri)
-          Log.d(TAG, "Applying media updates.")
-          uploadMediaInternal(newMedia, recipientId)
-        }
-      }
-    }
-  }
-
-  private fun hasSameTransformProperties(oldMedia: Media, newMedia: Media): Boolean {
-    val oldProperties = oldMedia.transformProperties
-    val newProperties = newMedia.transformProperties
-
-    if (oldProperties == null || newProperties == null) {
-      return oldProperties == newProperties
-    }
-
-    // Matches legacy behavior: if the new media is "video edited", we treat it as different.
-    // Otherwise, we treat it as the same if only the sent quality matches.
-    return !newProperties.videoEdited && oldProperties.sentMediaQuality == newProperties.sentMediaQuality
-  }
-
-  /**
    * Cancels the pre-upload (if present) for [media] and deletes any associated attachment state.
    *
    * @param media The media item to cancel.

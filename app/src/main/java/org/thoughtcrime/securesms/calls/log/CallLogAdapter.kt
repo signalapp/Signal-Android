@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.database.CallTable
 import org.thoughtcrime.securesms.database.MessageTypes
+import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.databinding.CallLogAdapterItemBinding
 import org.thoughtcrime.securesms.databinding.CallLogCreateCallLinkItemBinding
 import org.thoughtcrime.securesms.databinding.ConversationListItemClearFilterBinding
@@ -335,7 +336,7 @@ class CallLogAdapter(
       binding.callRecipientAvatar.setAvatar(Glide.with(binding.callRecipientAvatar), recipient, false)
       binding.callRecipientAvatar.setOnClickListener { onCallClicked(call) }
       binding.callRecipientBadge.setBadgeFromRecipient(recipient)
-      binding.callRecipientName.text = if (searchQuery != null) {
+      binding.callRecipientName.text = if (!searchQuery.isNullOrEmpty()) {
         SearchUtil.getHighlightedSpan(
           Locale.getDefault(),
           { arrayOf(TextAppearanceSpan(context, CoreUiR.style.Signal_Text_TitleSmall)) },
@@ -346,6 +347,7 @@ class CallLogAdapter(
       } else {
         recipient.getDisplayName(context)
       }
+      binding.callRecipientMuted.visible = recipient.isMuted && recipient.callNotificationSetting == RecipientTable.NotificationSetting.DO_NOT_NOTIFY
     }
 
     private fun presentCallInfo(call: CallLogRow.Call, date: Long) {

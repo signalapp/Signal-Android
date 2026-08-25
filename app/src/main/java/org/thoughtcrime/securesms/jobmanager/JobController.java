@@ -298,6 +298,11 @@ class JobController {
   }
 
   @WorkerThread
+  synchronized List<MinimalJobSpec> findMinimalJobs(@NonNull Predicate<MinimalJobSpec> predicate) {
+    return jobStorage.getAllMinimalJobSpecsMatchingFilter(predicate);
+  }
+
+  @WorkerThread
   synchronized void onRetry(@NonNull Job job, long backoffInterval) {
     if (backoffInterval < 0) {
       throw new IllegalArgumentException("Invalid backoff interval! " + backoffInterval);

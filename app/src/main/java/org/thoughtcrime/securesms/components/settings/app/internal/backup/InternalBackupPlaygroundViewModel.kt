@@ -290,6 +290,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
   fun wipeAllDataAndRestoreFromRemote(afterDbRestoreCallback: () -> Unit) {
     SignalExecutors.BOUNDED_IO.execute {
       SignalStore.backup.restoreWithCellular = false
+      SignalStore.backup.clearArchiveVerificationState()
       restoreFromRemote(afterDbRestoreCallback)
     }
   }
@@ -388,7 +389,8 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
 
     when (val result = AppDependencies.archiveService.deleteMessageBackup()) {
       is Either.Right -> {
-        SignalStore.backup.backupsInitialized = false
+        SignalStore.backup.messageBackupInitialized = false
+        SignalStore.backup.mediaBackupInitialized = false
         SignalStore.backup.messageCredentials.clearAll()
         SignalStore.backup.mediaCredentials.clearAll()
         SignalStore.backup.cachedMediaCdnPath = null

@@ -39,11 +39,13 @@ import org.thoughtcrime.securesms.glide.cache.EncryptedApngResourceEncoder;
 import org.thoughtcrime.securesms.glide.cache.EncryptedBitmapResourceEncoder;
 import org.thoughtcrime.securesms.glide.cache.EncryptedCacheDecoder;
 import org.thoughtcrime.securesms.glide.cache.EncryptedCacheEncoder;
+import org.thoughtcrime.securesms.glide.cache.EncryptedCacheStreamFactoryDecoder;
 import org.thoughtcrime.securesms.glide.cache.EncryptedGifDrawableResourceEncoder;
 import org.thoughtcrime.securesms.glide.cache.InputStreamFactoryBitmapDecoder;
 import org.thoughtcrime.securesms.glide.cache.StreamBitmapDecoder;
 import org.thoughtcrime.securesms.glide.cache.StreamFactoryGifDecoder;
 import org.thoughtcrime.securesms.glide.cache.WebpSanDecoder;
+import org.thoughtcrime.securesms.glide.cache.WebpSanStreamFactoryDecoder;
 import org.thoughtcrime.securesms.mms.RegisterGlideComponents;
 import org.thoughtcrime.securesms.mms.SignalGlideModule;
 import org.thoughtcrime.securesms.stickers.StickerRemoteUri;
@@ -67,11 +69,14 @@ public class SignalGlideComponents implements RegisterGlideComponents {
 
     registry.prepend(File.class, File.class, UnitModelLoader.Factory.getInstance());
 
+    WebpSanStreamFactoryDecoder webpSanStreamFactoryDecoder = new WebpSanStreamFactoryDecoder();
     registry.prepend(InputStream.class, Bitmap.class, new WebpSanDecoder());
+    registry.prepend(InputStreamFactory.class, Bitmap.class, webpSanStreamFactoryDecoder);
 
     registry.prepend(InputStream.class, new EncryptedCacheEncoder(secret, glide.getArrayPool()));
 
     registry.prepend(File.class, Bitmap.class, new EncryptedCacheDecoder<>(secret, new StreamBitmapDecoder(context, glide, registry)));
+    registry.prepend(File.class, Bitmap.class, new EncryptedCacheStreamFactoryDecoder<>(secret, webpSanStreamFactoryDecoder));
 
     StreamGifDecoder        streamGifDecoder        = new StreamGifDecoder(registry.getImageHeaderParsers(), new ByteBufferGifDecoder(context, registry.getImageHeaderParsers(), glide.getBitmapPool(), glide.getArrayPool()), glide.getArrayPool());
     StreamFactoryGifDecoder streamFactoryGifDecoder = new StreamFactoryGifDecoder(streamGifDecoder);

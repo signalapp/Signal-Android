@@ -134,6 +134,7 @@ class AttachmentBackfillTest {
       archiveCdn = null,
       thumbnailRestoreState = AttachmentTable.ThumbnailRestoreState.NONE,
       archiveTransferState = AttachmentTable.ArchiveTransferState.NONE,
+      archiveThumbnailTransferState = AttachmentTable.ArchiveTransferState.NONE,
       uuid = null,
       quoteTargetContentType = null,
       metadata = null

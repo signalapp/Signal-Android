@@ -32,8 +32,8 @@ import org.signal.core.ui.compose.LargeFontPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.fonts.SignalSymbols
 import org.signal.core.ui.fonts.SignalSymbols.SignalSymbol
+import org.signal.emoji.Emojifier
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.emoji.Emojifier
 
 private const val VERIFIED_BADGE_ID = "verified_badge"
 

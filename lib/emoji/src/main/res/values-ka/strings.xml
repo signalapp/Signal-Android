@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <!-- Emoji category headers, shown in the emoji keyboard and the react-with-any-emoji sheet -->
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">სმაილები &amp; ადამიანები</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">ბუნება</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">საკვები</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">აქტივობები</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">ადგილები</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">ობიექტები</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">სიმბოლოები</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">დროშები</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">ემოციები</string>
+</resources>

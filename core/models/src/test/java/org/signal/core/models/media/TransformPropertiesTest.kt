@@ -18,7 +18,7 @@ class TransformPropertiesTest {
     val properties = TransformProperties.empty()
 
     Assert.assertEquals(
-      "{\"skipTransform\":false,\"videoTrim\":false,\"videoTrimStartTimeUs\":0,\"videoTrimEndTimeUs\":0,\"sentMediaQuality\":0,\"mp4Faststart\":false,\"videoEdited\":false}",
+      "{\"skipTransform\":false,\"videoTrim\":false,\"videoTrimStartTimeUs\":0,\"videoTrimEndTimeUs\":0,\"sentMediaQuality\":0,\"mp4Faststart\":false,\"videoMuted\":false,\"videoEdited\":false}",
       Json.encodeToString(properties)
     )
   }
@@ -42,7 +42,7 @@ class TransformPropertiesTest {
     val encoded = objectMapper.writeValueAsString(properties)
 
     Assert.assertEquals(
-      "{\"skipTransform\":false,\"videoTrim\":false,\"videoTrimStartTimeUs\":0,\"videoTrimEndTimeUs\":0,\"sentMediaQuality\":0,\"mp4Faststart\":false,\"videoEdited\":false}",
+      "{\"skipTransform\":false,\"videoTrim\":false,\"videoTrimStartTimeUs\":0,\"videoTrimEndTimeUs\":0,\"sentMediaQuality\":0,\"mp4Faststart\":false,\"videoMuted\":false,\"videoEdited\":false}",
       encoded
     )
   }
@@ -57,5 +57,22 @@ class TransformPropertiesTest {
     Assert.assertEquals(true, parsed.mp4FastStart)
     Assert.assertEquals(false, parsed.videoTrim)
     Assert.assertEquals(false, parsed.videoEdited)
+  }
+
+  @Test
+  fun `parsing json without videoMuted defaults to false`() {
+    val json = "{\"skipTransform\":false,\"videoTrim\":false,\"videoTrimStartTimeUs\":0,\"videoTrimEndTimeUs\":0,\"sentMediaQuality\":0,\"mp4Faststart\":false,\"videoEdited\":false}"
+
+    Assert.assertEquals(false, Json.decodeFromString<TransformProperties>(json).videoMuted)
+    Assert.assertEquals(false, ObjectMapper().registerKotlinModule().readValue(json, TransformProperties::class.java).videoMuted)
+  }
+
+  @Test
+  fun `videoMuted implies videoEdited`() {
+    val properties = TransformProperties.empty().copy(videoMuted = true)
+
+    Assert.assertEquals(true, properties.videoEdited)
+    Assert.assertEquals(false, properties.videoTrim)
+    Assert.assertEquals(true, Json.decodeFromString<TransformProperties>(Json.encodeToString(properties)).videoMuted)
   }
 }

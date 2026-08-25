@@ -141,6 +141,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     const val REGISTERED = "registered"
     const val UNREGISTERED_TIMESTAMP = "unregistered_timestamp"
     const val BLOCKED = "blocked"
+    const val BLOCKED_AT = "blocked_at"
     const val HIDDEN = "hidden"
     const val PROFILE_KEY = "profile_key"
     const val EXPIRING_PROFILE_KEY_CREDENTIAL = "profile_key_credential"
@@ -246,7 +247,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         $SEALED_SENDER_MODE INTEGER DEFAULT 0, 
         $STORAGE_SERVICE_ID TEXT UNIQUE DEFAULT NULL, 
         $STORAGE_SERVICE_PROTO TEXT DEFAULT NULL,
-        $MENTION_SETTING INTEGER DEFAULT ${NotificationSetting.ALWAYS_NOTIFY.id},
+        $MENTION_SETTING INTEGER DEFAULT ${NotificationSetting.SYSTEM_DEFAULT.id},
         $CAPABILITIES INTEGER DEFAULT 0,
         $LAST_SESSION_RESET BLOB DEFAULT NULL,
         $WALLPAPER BLOB DEFAULT NULL,
@@ -270,8 +271,9 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         $NOTE TEXT DEFAULT NULL,
         $MESSAGE_EXPIRATION_TIME_VERSION INTEGER DEFAULT 1 NOT NULL,
         $KEY_TRANSPARENCY_DATA BLOB DEFAULT NULL,
-        $CALL_NOTIFICATION_SETTING INTEGER DEFAULT ${NotificationSetting.ALWAYS_NOTIFY.id},
-        $REPLY_NOTIFICATION_SETTING INTEGER DEFAULT ${NotificationSetting.ALWAYS_NOTIFY.id}
+        $CALL_NOTIFICATION_SETTING INTEGER DEFAULT ${NotificationSetting.SYSTEM_DEFAULT.id},
+        $REPLY_NOTIFICATION_SETTING INTEGER DEFAULT ${NotificationSetting.SYSTEM_DEFAULT.id},
+        $BLOCKED_AT INTEGER DEFAULT 0
       )
       """
 
@@ -294,6 +296,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       CALL_LINK_ROOM_ID,
       REGISTERED,
       BLOCKED,
+      BLOCKED_AT,
       HIDDEN,
       PROFILE_KEY,
       EXPIRING_PROFILE_KEY_CREDENTIAL,
@@ -424,6 +427,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       var value: Long = 0
       value = Bitmask.update(value, Capabilities.STORAGE_SERVICE_ENCRYPTION_V2, Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isStorageServiceEncryptionV2).serialize().toLong())
       value = Bitmask.update(value, Capabilities.USERNAME_SYNC_MESSAGES, Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isUsernameSyncMessages).serialize().toLong())
+      value = Bitmask.update(value, Capabilities.OPTIONAL_PHONE_NUMBER, Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isOptionalPhoneNumber).serialize().toLong())
       return value
     }
   }
@@ -1140,18 +1144,18 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   }
 
   /**
-   * Removes storageIds from unregistered recipients who were unregistered more than [RemoteConfig.messageQueueTime] ago.
+   * Removes storageIds from unregistered recipients who were unregistered before [unregisteredBefore].
    *
    * Never touches self: our own storageId backs the ACCOUNT record, so it always needs to be present. If self ever ends up with a stale
    * [UNREGISTERED_TIMESTAMP], clearing it here would leave us regenerating our storageId on every single storage sync.
    *
    * @return The number of rows affected.
    */
-  fun removeStorageIdsFromOldUnregisteredRecipients(now: Long): Int {
+  fun removeStorageIdsFromOldUnregisteredRecipients(unregisteredBefore: Long): Int {
     return writableDatabase
       .update(TABLE_NAME)
       .values(STORAGE_SERVICE_ID to null)
-      .where("$STORAGE_SERVICE_ID NOT NULL AND $ID != ${Recipient.self().id.toLong()} AND $UNREGISTERED_TIMESTAMP > 0 AND $UNREGISTERED_TIMESTAMP < ?", now - RemoteConfig.messageQueueTime)
+      .where("$STORAGE_SERVICE_ID NOT NULL AND $ID != ${Recipient.self().id.toLong()} AND $UNREGISTERED_TIMESTAMP > 0 AND $UNREGISTERED_TIMESTAMP < ?", unregisteredBefore)
       .run()
   }
 
@@ -1484,9 +1488,10 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
   }
 
-  fun setBlocked(id: RecipientId, blocked: Boolean) {
+  fun setBlocked(id: RecipientId, blocked: Boolean, blockedAt: Long) {
     val values = ContentValues().apply {
       put(BLOCKED, if (blocked) 1 else 0)
+      put(BLOCKED_AT, if (blocked) blockedAt else 0)
     }
     if (update(id, values)) {
       rotateStorageId(id)
@@ -1972,8 +1977,13 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   /**
    * Applies multiple profile fields in a single UPDATE statement. Calls [rotateStorageId] and
    * [notifyRecipientChanged] at most once. Designed for bulk profile fetches.
+   *
+   * Of these fields, only the profile name and username live on the storage service contact record, so
+   * the storage id is only rotated when one of those actually changes.
    */
   fun applyProfileUpdate(id: RecipientId, update: ProfileUpdate) {
+    val clearsUsername = update.clearUsername && hasUsername(id)
+
     val contentValues = ContentValues().apply {
       update.profileName?.let {
         put(PROFILE_GIVEN_NAME, it.givenName.nullIfBlank())
@@ -2004,7 +2014,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
           .build()
         put(EXPIRING_PROFILE_KEY_CREDENTIAL, Base64.encodeWithPadding(columnData.encode()))
       }
-      if (update.clearUsername) {
+      if (clearsUsername) {
         putNull(USERNAME)
       }
     }
@@ -2014,12 +2024,19 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
 
     if (update(id, contentValues)) {
-      val needsStorageRotation = update.profileName != null || update.clearUsername
+      val needsStorageRotation = update.profileName != null || clearsUsername
       if (needsStorageRotation) {
         rotateStorageId(id)
       }
       AppDependencies.databaseObserver.notifyRecipientChanged(id)
     }
+  }
+
+  private fun hasUsername(id: RecipientId): Boolean {
+    return readableDatabase
+      .exists(TABLE_NAME)
+      .where("$ID = ? AND $USERNAME NOT NULL", id.serialize())
+      .run()
   }
 
   fun setProfileName(id: RecipientId, profileName: ProfileName) {
@@ -3782,7 +3799,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   /**
    * Queries all contacts without an active thread.
    */
-  fun getAllContactsWithoutThreads(inputQuery: String): Cursor {
+  fun getAllContactsWithoutThreads(inputQuery: String, limit: Int): Cursor {
     val query = SqlUtil.buildCaseInsensitiveGlobPattern(inputQuery)
 
     //language=sql
@@ -3790,14 +3807,15 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       SELECT ${searchProjection(IncludeSelfMode.Exclude).joinToString(", ")} FROM $TABLE_NAME
       WHERE $BLOCKED = ? AND $HIDDEN = ? AND $REGISTERED != ? AND NOT EXISTS (SELECT 1 FROM ${ThreadTable.TABLE_NAME} WHERE ${ThreadTable.TABLE_NAME}.${ThreadTable.ACTIVE} = 1 AND ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} = $TABLE_NAME.$ID LIMIT 1)
       AND (
-          $SORT_NAME GLOB ? OR 
-          $USERNAME GLOB ? OR 
-          ${ContactSearchSelection.E164_SEARCH} OR 
+          $SORT_NAME GLOB ? OR
+          $USERNAME GLOB ? OR
+          ${ContactSearchSelection.E164_SEARCH} OR
           $EMAIL GLOB ?
       )
+      LIMIT ?
     """
 
-    return readableDatabase.query(subquery, SqlUtil.buildArgs(0, 0, RegisteredState.NOT_REGISTERED.id, query, query, query, query))
+    return readableDatabase.query(subquery, SqlUtil.buildArgs(0, 0, RegisteredState.NOT_REGISTERED.id, query, query, query, query, limit))
   }
 
   @JvmOverloads
@@ -3891,7 +3909,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
   }
 
-  fun applyBlockedUpdate(blockedE164s: List<String>, blockedAcis: List<ACI>, blockedGroupIds: List<ByteArray?>) {
+  fun applyBlockedUpdate(blockedE164s: List<BlockedE164>, blockedAcis: List<BlockedAci>, blockedGroups: List<BlockedGroup>) {
     val oldBlockedGV1: Set<GroupId> = readableDatabase
       .select(GROUP_ID)
       .from(TABLE_NAME)
@@ -3909,53 +3927,48 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       .toSet()
 
     writableDatabase.withinTransaction { db ->
-      db.update(TABLE_NAME)
-        .values(BLOCKED to 0)
-        .where("$TYPE != ?", RecipientType.GV2.id)
-        .run()
-
-      val blockValues = contentValuesOf(
-        BLOCKED to 1,
-        PROFILE_SHARING to 0
-      )
-
-      if (blockedE164s.isNotEmpty()) {
-        val e164Query = SqlUtil.buildFastCollectionQuery(E164, blockedE164s)
+      if (SignalStore.releaseChannel.releaseChannelRecipientId != null) {
         db.update(TABLE_NAME)
-          .values(blockValues)
-          .where(e164Query.where, e164Query.whereArgs)
+          .values(BLOCKED to 0, BLOCKED_AT to 0)
+          .where("$TYPE != ? AND $ID != ?", RecipientType.GV2.id, SignalStore.releaseChannel.releaseChannelRecipientId!!.toLong())
+          .run()
+      } else {
+        db.update(TABLE_NAME)
+          .values(BLOCKED to 0, BLOCKED_AT to 0)
+          .where("$TYPE != ?", RecipientType.GV2.id)
           .run()
       }
 
-      if (blockedAcis.isNotEmpty()) {
-        val aciQuery = SqlUtil.buildFastCollectionQuery(ACI_COLUMN, blockedAcis.map { it.toString() })
+      for (blockedE164 in blockedE164s) {
         db.update(TABLE_NAME)
-          .values(blockValues)
-          .where(aciQuery.where, aciQuery.whereArgs)
+          .values(BLOCKED to 1, BLOCKED_AT to blockedE164.blockedAt, PROFILE_SHARING to 0)
+          .where("$E164 = ?", blockedE164.e164)
           .run()
       }
 
-      if (blockedGroupIds.isNotEmpty()) {
-        val groupV1Ids: List<GroupId.V1> = blockedGroupIds.filterNotNull().mapNotNull { raw ->
-          try {
-            raw?.let { GroupId.v1(it) }
-          } catch (e: BadGroupIdException) {
-            Log.w(TAG, "[applyBlockedUpdate] Bad GV1 ID!")
-            null
-          }
-        }
+      for (blockedAci in blockedAcis) {
+        db.update(TABLE_NAME)
+          .values(BLOCKED to 1, BLOCKED_AT to blockedAci.blockedAt, PROFILE_SHARING to 0)
+          .where("$ACI_COLUMN = ?", blockedAci.aci.toString())
+          .run()
+      }
 
-        if (groupV1Ids.isNotEmpty()) {
-          val groupIdQuery = SqlUtil.buildFastCollectionQuery(GROUP_ID, groupV1Ids.map { it.toString() })
+      val groupV1Ids: List<V1> = blockedGroups.filter { it.groupId != null }.mapNotNull { blockedGroup ->
+        try {
+          val groupV1Id = GroupId.v1(blockedGroup.groupId!!)
           db.update(TABLE_NAME)
-            .values(blockValues)
-            .where(groupIdQuery.where, groupIdQuery.whereArgs)
+            .values(BLOCKED to 1, BLOCKED_AT to blockedGroup.blockedAt, PROFILE_SHARING to 0)
+            .where("$GROUP_ID = ?", groupV1Id)
             .run()
-
-          for (groupId in oldBlockedGV1 - groupV1Ids.toSet()) {
-            groups.clearGroupIfLeftAndDeleted(groupId)
-          }
+          groupV1Id
+        } catch (e: BadGroupIdException) {
+          Log.w(TAG, "[applyBlockedUpdate] Bad GV1 ID!")
+          null
         }
+      }
+
+      for (groupId in oldBlockedGV1 - groupV1Ids.toSet()) {
+        groups.clearGroupIfLeftAndDeleted(groupId)
       }
     }
 
@@ -4358,6 +4371,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       ACI_COLUMN to (primaryRecord.aci ?: secondaryRecord.aci)?.toString(),
       PNI_COLUMN to (newPni ?: secondaryRecord.pni ?: primaryRecord.pni)?.toString(),
       BLOCKED to (secondaryRecord.isBlocked || primaryRecord.isBlocked),
+      BLOCKED_AT to max(primaryRecord.blockedAt, secondaryRecord.blockedAt),
       MESSAGE_RINGTONE to Optional.ofNullable(primaryRecord.messageRingtone).or(Optional.ofNullable(secondaryRecord.messageRingtone)).map { obj: Uri? -> obj.toString() }.orElse(null),
       MESSAGE_VIBRATE to if (primaryRecord.messageVibrateState != VibrateState.DEFAULT) primaryRecord.messageVibrateState.id else secondaryRecord.messageVibrateState.id,
       CALL_RINGTONE to Optional.ofNullable(primaryRecord.callRingtone).or(Optional.ofNullable(secondaryRecord.callRingtone)).map { obj: Uri? -> obj.toString() }.orElse(null),
@@ -4445,6 +4459,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       put(USERNAME, if (TextUtils.isEmpty(username)) null else username)
       put(PROFILE_SHARING, contact.proto.whitelisted.toInt())
       put(BLOCKED, contact.proto.blocked.toInt())
+      put(BLOCKED_AT, contact.proto.blockedAtTimestamp)
       put(MUTE_UNTIL, contact.proto.mutedUntilTimestamp)
       put(STORAGE_SERVICE_ID, Base64.encodeWithPadding(contact.id.raw))
       put(HIDDEN, contact.proto.hidden)
@@ -4486,6 +4501,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       put(TYPE, RecipientType.GV2.id)
       put(PROFILE_SHARING, if (groupV2.proto.whitelisted) "1" else "0")
       put(BLOCKED, if (groupV2.proto.blocked) "1" else "0")
+      put(BLOCKED_AT, groupV2.proto.blockedAtTimestamp)
       put(MUTE_UNTIL, groupV2.proto.mutedUntilTimestamp)
       put(STORAGE_SERVICE_ID, Base64.encodeWithPadding(groupV2.id.raw))
       put(MENTION_SETTING, if (groupV2.proto.dontNotifyForMentionsIfMuted) NotificationSetting.DO_NOT_NOTIFY.id else NotificationSetting.ALWAYS_NOTIFY.id)
@@ -4506,7 +4522,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   }
 
   /**
-   * Blanks out every column for a group's recipient row except [ID], [GROUP_ID], [TYPE], [BLOCKED], and [STORAGE_SERVICE_ID].
+   * Blanks out every column for a group's recipient row except [ID], [GROUP_ID], [TYPE], [BLOCKED], [BLOCKED_AT], and [STORAGE_SERVICE_ID].
    */
   fun clearGroupRecipient(recipientId: RecipientId, keepIdentifier: Boolean): Boolean {
     val cleared = if (keepIdentifier) {
@@ -4575,9 +4591,9 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       MESSAGE_EXPIRATION_TIME_VERSION to 1,
       SEALED_SENDER_MODE to 0,
       STORAGE_SERVICE_PROTO to null,
-      MENTION_SETTING to NotificationSetting.ALWAYS_NOTIFY.id,
-      CALL_NOTIFICATION_SETTING to NotificationSetting.ALWAYS_NOTIFY.id,
-      REPLY_NOTIFICATION_SETTING to NotificationSetting.ALWAYS_NOTIFY.id,
+      MENTION_SETTING to NotificationSetting.SYSTEM_DEFAULT.id,
+      CALL_NOTIFICATION_SETTING to NotificationSetting.SYSTEM_DEFAULT.id,
+      REPLY_NOTIFICATION_SETTING to NotificationSetting.SYSTEM_DEFAULT.id,
       CAPABILITIES to 0,
       LAST_SESSION_RESET to null,
       WALLPAPER to null,
@@ -5092,6 +5108,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 //    const val VERSIONED_EXPIRATION_TIMER = 10
     const val STORAGE_SERVICE_ENCRYPTION_V2 = 11
     const val USERNAME_SYNC_MESSAGES = 12
+    const val OPTIONAL_PHONE_NUMBER = 13
 
     // IMPORTANT: We cannot store more than 32 capabilities in the bitmask.
   }
@@ -5169,12 +5186,21 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   }
 
   enum class NotificationSetting(val id: Int) {
-    ALWAYS_NOTIFY(0),
-    DO_NOT_NOTIFY(1);
+    SYSTEM_DEFAULT(0),
+    DO_NOT_NOTIFY(1),
+    ALWAYS_NOTIFY(2);
 
     companion object {
       fun fromId(id: Int): NotificationSetting {
         return entries[id]
+      }
+
+      fun resolve(setting: NotificationSetting, allowedByDefault: Boolean): NotificationSetting {
+        return if (setting == SYSTEM_DEFAULT) {
+          if (allowedByDefault) ALWAYS_NOTIFY else DO_NOT_NOTIFY
+        } else {
+          setting
+        }
       }
     }
   }
@@ -5244,4 +5270,10 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   )
 
   data class RecipientNotificationData(val id: RecipientId, val channel: String)
+
+  data class BlockedE164(val e164: String, val blockedAt: Long = 0)
+
+  data class BlockedAci(val aci: ACI, val blockedAt: Long = 0)
+
+  data class BlockedGroup(val groupId: ByteArray?, val blockedAt: Long)
 }

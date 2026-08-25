@@ -11,10 +11,12 @@ import org.signal.libsignal.protocol.InvalidKeyException
 import org.signal.network.service.StorageServiceService
 import org.signal.network.service.StorageServiceService.ManifestIfDifferentVersionResult
 import org.thoughtcrime.securesms.database.ChatFolderTables.ChatFolderTable
+import org.thoughtcrime.securesms.database.IssueReporter
 import org.thoughtcrime.securesms.database.NotificationProfileTables
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.StickerTables
+import org.thoughtcrime.securesms.database.model.IssuePriority
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
@@ -31,6 +33,7 @@ import org.thoughtcrime.securesms.storage.NotificationProfileRecordProcessor
 import org.thoughtcrime.securesms.storage.StickerPackRecordProcessor
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.storage.StorageSyncHelper.WriteOperationResult
+import org.thoughtcrime.securesms.storage.StorageSyncLoopDetector
 import org.thoughtcrime.securesms.storage.StorageSyncModels
 import org.thoughtcrime.securesms.storage.StorageSyncValidations
 import org.thoughtcrime.securesms.storage.StoryDistributionListRecordProcessor
@@ -64,6 +67,7 @@ import org.whispersystems.signalservice.internal.storage.protos.ManifestRecord
 import java.io.IOException
 import java.util.concurrent.TimeUnit
 import java.util.stream.Collectors
+import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
 
 /**
@@ -257,7 +261,8 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
     val repository = StorageServiceService(SignalNetwork.storageService)
 
     val localManifest = SignalStore.storageService.manifest
-    val remoteManifest = if (localManifestOutOfDate || localManifest.version < 1 || runAttempt >= 3) {
+    val fetchRemoteManifest = localManifestOutOfDate || localManifest.version < 1 || runAttempt >= 3
+    val remoteManifest = if (fetchRemoteManifest) {
       Log.i(TAG, "Local manifest is invalid. Fetching remote manifest. (localManifestOutOfDate: $localManifestOutOfDate, localManifest.version: ${localManifest.version}, runAttempt: $runAttempt)")
       when (val result = repository.getStorageManifestIfDifferentVersion(storageServiceKey, localManifest.version)) {
         is ManifestIfDifferentVersionResult.DifferentVersion -> result.manifest
@@ -302,9 +307,11 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
         val updatedFolders = SignalDatabase.chatFolders.removeStorageIdsFromLocalOnlyDeletedFolders(idDifference.localOnlyIds)
         val updatedProfiles = SignalDatabase.notificationProfiles.removeStorageIdsFromLocalOnlyDeletedProfiles(idDifference.localOnlyIds)
         val updatedPacks = SignalDatabase.stickers.removeStorageIdsFromLocalOnlyDeletedPacks(idDifference.localOnlyIds)
+        val updatedLists = SignalDatabase.distributionLists.removeStorageIdsFromLocalOnlyDeletedLists(idDifference.localOnlyIds)
+        val updatedCallLinks = SignalDatabase.callLinks.removeStorageIdsFromLocalOnlyDeletedCallLinks(idDifference.localOnlyIds)
 
-        if (updatedRecipients > 0 || updatedFolders > 0 || updatedProfiles > 0 || updatedPacks > 0) {
-          Log.w(TAG, "Found $updatedRecipients recipients, $updatedFolders folders, $updatedProfiles notification profiles, $updatedPacks sticker packs that were deleted remotely but only marked unregistered/deleted locally. Removed those from local store. Recalculating diff.")
+        if (updatedRecipients > 0 || updatedFolders > 0 || updatedProfiles > 0 || updatedPacks > 0 || updatedLists > 0 || updatedCallLinks > 0) {
+          Log.w(TAG, "Found $updatedRecipients recipients, $updatedFolders folders, $updatedProfiles notification profiles, $updatedPacks sticker packs, $updatedLists distribution lists, $updatedCallLinks call links that were deleted remotely but only marked unregistered/deleted locally. Removed those from local store. Recalculating diff.")
 
           localStorageIdsBeforeMerge = getAllLocalStorageIds(self)
           idDifference = StorageSyncHelper.findIdDifference(remoteManifest.storageIds, localStorageIdsBeforeMerge)
@@ -396,12 +403,16 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
     stopwatch.split("known-unknowns")
 
     val remoteWriteOperation: WriteOperationResult = db.withinTransaction {
-      val removedUnregistered = SignalDatabase.recipients.removeStorageIdsFromOldUnregisteredRecipients(System.currentTimeMillis())
-      val removedDeletedFolders = SignalDatabase.chatFolders.removeStorageIdsFromOldDeletedFolders(System.currentTimeMillis())
-      val removedDeletedProfiles = SignalDatabase.notificationProfiles.removeStorageIdsFromOldDeletedProfiles(System.currentTimeMillis())
-      val removedDeletedPacks = SignalDatabase.stickers.removeStorageIdsFromOldDeletedPacks(System.currentTimeMillis())
-      if (removedUnregistered > 0 || removedDeletedFolders > 0 || removedDeletedProfiles > 0 || removedDeletedPacks > 0) {
-        Log.i(TAG, "Removed $removedUnregistered unregistered, $removedDeletedFolders folders, $removedDeletedProfiles notification profiles, $removedDeletedPacks sticker packs from storage service that have been deleted for longer than ${RemoteConfig.messageQueueTime.milliseconds.inWholeDays} days.")
+      val expiredBefore = System.currentTimeMillis() - RemoteConfig.messageQueueTime
+      val removedUnregistered = SignalDatabase.recipients.removeStorageIdsFromOldUnregisteredRecipients(expiredBefore)
+      val removedDeletedFolders = SignalDatabase.chatFolders.removeStorageIdsFromOldDeletedFolders(expiredBefore)
+      val removedDeletedProfiles = SignalDatabase.notificationProfiles.removeStorageIdsFromOldDeletedProfiles(expiredBefore)
+      val removedDeletedPacks = SignalDatabase.stickers.removeStorageIdsFromOldDeletedPacks(expiredBefore)
+      val removedDeletedLists = SignalDatabase.distributionLists.removeStorageIdsFromOldDeletedLists(expiredBefore)
+      val removedDeletedCallLinks = SignalDatabase.callLinks.removeStorageIdsFromOldDeletedCallLinks(expiredBefore)
+
+      if (removedUnregistered > 0 || removedDeletedFolders > 0 || removedDeletedProfiles > 0 || removedDeletedPacks > 0 || removedDeletedLists > 0 || removedDeletedCallLinks > 0) {
+        Log.i(TAG, "Removed $removedUnregistered unregistered, $removedDeletedFolders folders, $removedDeletedProfiles notification profiles, $removedDeletedPacks sticker packs, $removedDeletedLists distribution lists, $removedDeletedCallLinks call links from storage service that have been deleted for longer than ${RemoteConfig.messageQueueTime.milliseconds.inWholeDays} days.")
       }
 
       self = freshSelf()
@@ -444,7 +455,26 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
     }
     stopwatch.split("local-data-transaction")
 
-    if (!remoteWriteOperation.isEmpty) {
+    val loopCheck = if (remoteWriteOperation.isEmpty) {
+      StorageSyncLoopDetector.Decision.Allowed
+    } else {
+      StorageSyncLoopDetector.onWriteAttempt(remoteWriteOperation, fetchRemoteManifest, isRetry = runAttempt > 0)
+    }
+
+    if (remoteWriteOperation.isEmpty) {
+      Log.i(TAG, "No remote writes needed. Still at version: " + remoteManifest.versionString)
+      StorageSyncLoopDetector.onConverged()
+    } else if (loopCheck is StorageSyncLoopDetector.Decision.Denied) {
+      Log.w(TAG, "Skipping remote write, another device is likely undoing it. Cause: ${loopCheck.cause}, level: ${loopCheck.level}. WriteOperationResult :: $remoteWriteOperation")
+
+      IssueReporter.report(
+        name = IssueReporter.ISSUE_STORAGE_SYNC_LOOP,
+        description = "Throttling storage service writes. Cause: ${loopCheck.cause}, level: ${loopCheck.level}. $remoteWriteOperation",
+        throwable = Throwable(),
+        priority = IssuePriority.HIGH,
+        notifyCooldown = 3.days
+      )
+    } else {
       Log.i(TAG, "We have something to write remotely.")
       Log.i(TAG, "WriteOperationResult :: $remoteWriteOperation")
 
@@ -452,9 +482,16 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
 
       when (val result = repository.writeStorageRecords(storageServiceKey, remoteWriteOperation.manifest, remoteWriteOperation.inserts, remoteWriteOperation.deletes)) {
         StorageServiceService.WriteStorageRecordsResult.Success -> Unit
-        is StorageServiceService.WriteStorageRecordsResult.StatusCodeError -> throw result.exception
-        is StorageServiceService.WriteStorageRecordsResult.NetworkError -> throw result.exception
+        is StorageServiceService.WriteStorageRecordsResult.StatusCodeError -> {
+          StorageSyncLoopDetector.onWriteFailed()
+          throw result.exception
+        }
+        is StorageServiceService.WriteStorageRecordsResult.NetworkError -> {
+          StorageSyncLoopDetector.onWriteFailed()
+          throw result.exception
+        }
         StorageServiceService.WriteStorageRecordsResult.ConflictError -> {
+          StorageSyncLoopDetector.onWriteFailed()
           Log.w(TAG, "Hit a conflict when trying to resolve the conflict! Retrying.")
           localManifestOutOfDate = true
           throw RetryLaterException()
@@ -465,11 +502,11 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
       SignalStore.storageService.manifest = remoteWriteOperation.manifest
       SignalStore.svr.masterKeyForInitialDataRestore = null
 
+      StorageSyncHelper.clearRotatedProfileKeyIfSynced(remoteWriteOperation.inserts)
+
       stopwatch.split("remote-write")
 
       needsMultiDeviceSync = true
-    } else {
-      Log.i(TAG, "No remote writes needed. Still at version: " + remoteManifest.versionString)
     }
 
     if (needsForcePush && SignalStore.account.isPrimaryDevice) {

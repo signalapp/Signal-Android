@@ -65,13 +65,46 @@ class IncomingCallActionProcessorTest {
   }
 
   @Test
-  fun `Given a ringing video call, when I handleAcceptCall, then I expect the call setup state to be accepted`() {
+  fun `Given a ringing video call, when I handleAcceptCall, then I expect the audio to be prepared before accepting`() {
     val state = incomingRingingCall()
 
     val result = processor.handleAcceptCall(state, true)
 
     assertThat(result.getCallSetupState(CALL_ID).isAccepted).isTrue()
+    verify { webRtcInteractor.prepareAudioForAccept() }
+    verify(exactly = 0) { callManager.acceptCall(any()) }
+  }
+
+  @Test
+  fun `Given an accepted call, when the audio is ready, then I expect the call to be accepted`() {
+    val state = processor.handleAcceptCall(incomingRingingCall(), true)
+
+    processor.handleAudioReadyForAccept(state)
+
     verify { callManager.acceptCall(CALL_ID) }
+  }
+
+  @Test
+  fun `Given a call denied while the audio was preparing, when the audio is ready, then I expect no accept`() {
+    val accepted = processor.handleAcceptCall(incomingRingingCall(), true)
+    val denied = processor.handleDenyCall(accepted)
+
+    processor.handleAudioReadyForAccept(denied)
+
+    assertThat(denied.callInfoState.activePeer).isNull()
+    verify(exactly = 0) { callManager.acceptCall(any()) }
+  }
+
+  @Test
+  fun `Given an accepted call still waiting on audio, when I handleDenyCall, then I expect the call to be rejected`() {
+    val state = processor.handleAcceptCall(incomingRingingCall(), true)
+    val activePeer = state.callInfoState.requireActivePeer()
+
+    val result = processor.handleDenyCall(state)
+
+    verify { webRtcInteractor.rejectIncomingCall(activePeer.id) }
+    verify { callManager.hangup() }
+    assertThat(result.callInfoState.activePeer).isNull()
   }
 
   @Test

@@ -10,6 +10,7 @@ import android.text.method.PasswordTransformationMethod
 import android.widget.EditText
 import com.google.android.material.button.MaterialButton
 import org.thoughtcrime.securesms.R
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * The available keyboard input types for Signal PIN entry.
@@ -35,7 +36,7 @@ enum class PinKeyboardType(val code: String) {
 
   private val toggleIconResource: Int by lazy {
     when (this) {
-      NUMERIC -> R.drawable.ic_number_pad_conversation_filter_24
+      NUMERIC -> CoreUiR.drawable.ic_number_pad_conversation_filter_24
       ALPHA_NUMERIC -> R.drawable.ic_keyboard_24
     }
   }

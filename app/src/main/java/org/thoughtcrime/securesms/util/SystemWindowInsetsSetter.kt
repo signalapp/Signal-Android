@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.util
 
-import android.os.Build
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.graphics.Insets
@@ -96,15 +95,18 @@ object SystemWindowInsetsSetter {
   }
 
   /**
-   * Resolves the insets to apply for [insetType], falling back to [ViewUtil] bar heights on the older
-   * API levels / IME cases where [ViewCompat.getRootWindowInsets] cannot be trusted.
+   * Resolves the insets to apply for [insetType], falling back to [ViewUtil] bar heights when
+   * [ViewCompat.getRootWindowInsets] reports nothing.
+   *
+   * On API < 30 there is no platform IME inset, but [WindowInsetsCompat] derives one from the difference between
+   * the system window insets and the stable insets, which is exactly what the (edge-to-edge, and therefore never
+   * resized) window reports while the keyboard is up.
    */
   private fun resolveInsets(view: View, @WindowInsetsCompat.Type.InsetsType insetType: Int): Insets {
     val rootInsets = ViewCompat.getRootWindowInsets(view)
     val insets: Insets? = rootInsets?.getInsets(insetType)
-    val canTrustInsets = Build.VERSION.SDK_INT > 29 || (WindowInsetsCompat.Type.ime() and insetType == 0)
 
-    if (canTrustInsets && insets != null && (!insets.isEmpty() || ViewUtil.isGestureNavigation(view.resources, rootInsets))) {
+    if (insets != null && (!insets.isEmpty() || ViewUtil.isGestureNavigation(view.resources, rootInsets))) {
       return insets
     }
 

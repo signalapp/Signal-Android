@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.annotation.StringRes
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -35,6 +36,8 @@ class ChangeNumberVerifyFragment : LoggingFragment(R.layout.fragment_change_phon
 
   private val viewModel by activityViewModels<ChangeNumberViewModel>()
   private var dialogVisible: Boolean = false
+  private var errorDialog: AlertDialog? = null
+  private var navigatingAway: Boolean = false
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     val toolbar: Toolbar = view.findViewById(R.id.toolbar)
@@ -52,12 +55,25 @@ class ChangeNumberVerifyFragment : LoggingFragment(R.layout.fragment_change_phon
     requestCode()
   }
 
+  override fun onDestroyView() {
+    errorDialog?.dismiss()
+    errorDialog = null
+    dialogVisible = false
+    super.onDestroyView()
+  }
+
   private fun navigateUp() {
+    if (!isAdded) {
+      Log.w(TAG, "Fragment is no longer attached, ignoring navigateUp request.")
+      return
+    }
+
     if (SignalStore.misc.isChangeNumberLocked) {
       Log.d(TAG, "Change number locked, navigateUp")
       startActivity(ChangeNumberLockActivity.createIntent(requireContext()))
     } else {
       Log.d(TAG, "navigateUp")
+      navigatingAway = true
       findNavController().navigateUp()
     }
   }
@@ -158,19 +174,24 @@ class ChangeNumberVerifyFragment : LoggingFragment(R.layout.fragment_change_phon
   }
 
   private fun showErrorDialog(@StringRes message: Int) {
+    if (navigatingAway) {
+      Log.i(TAG, "Already leaving the screen, failed to display dialog with message ${getString(message)}")
+      return
+    }
+
     if (dialogVisible) {
       Log.i(TAG, "Dialog already being shown, failed to display dialog with message ${getString(message)}")
       return
     }
 
-    MaterialAlertDialogBuilder(requireContext()).apply {
-      setMessage(message)
-      setPositiveButton(android.R.string.ok) { _, _ ->
+    errorDialog = MaterialAlertDialogBuilder(requireContext())
+      .setMessage(message)
+      .setPositiveButton(android.R.string.ok) { _, _ ->
         navigateUp()
         viewModel.resetLocalSessionState()
       }
-      show()
-      dialogVisible = true
-    }
+      .show()
+
+    dialogVisible = true
   }
 }

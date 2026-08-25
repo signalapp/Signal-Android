@@ -8,6 +8,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.exifinterface.media.ExifInterface;
@@ -24,14 +25,18 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.subsampling.AttachmentBitmapDecoder;
 import org.thoughtcrime.securesms.components.subsampling.AttachmentRegionDecoder;
+import org.thoughtcrime.securesms.components.subsampling.GainmapReporter;
+import org.thoughtcrime.securesms.components.subsampling.UltraHdrSupport;
 import org.signal.glide.decryptableuri.DecryptableUri;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.util.ActionRequestListener;
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.bitmaps.BitmapUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 
 public class ZoomingImageView extends FrameLayout {
@@ -50,6 +55,8 @@ public class ZoomingImageView extends FrameLayout {
 
   private final PhotoView                 gifView;
   private final SubsamplingScaleImageView subsamplingImageView;
+
+  private @Nullable OnGainmapDetectedListener gainmapDetectedListener;
 
   public ZoomingImageView(Context context) {
     this(context, null);
@@ -84,6 +91,16 @@ public class ZoomingImageView extends FrameLayout {
     this.subsamplingImageView.setOnLongClickListener(l);
   }
 
+  /** Fired at most once per loaded image, if the decoded image carried an UltraHDR gain map. */
+  public void setOnGainmapDetectedListener(@Nullable OnGainmapDetectedListener listener) {
+    this.gainmapDetectedListener = listener;
+  }
+
+  public interface OnGainmapDetectedListener {
+    @MainThread
+    void onGainmapDetected();
+  }
+
   @SuppressLint("StaticFieldLeak")
   public void setImageUri(@NonNull RequestManager requestManager, @NonNull Uri uri, @NonNull String contentType, @NonNull Runnable onMediaReady) {
     if (MediaUtil.isGif(contentType)) {
@@ -91,7 +108,7 @@ public class ZoomingImageView extends FrameLayout {
       setImageViewUri(requestManager, uri, onMediaReady);
     } else {
       Log.i(TAG, "Loading in subsampling image view...");
-      setSubsamplingImageViewUri(uri);
+      setSubsamplingImageViewUri(uri, contentType);
       onMediaReady.run();
     }
   }
@@ -108,9 +125,17 @@ public class ZoomingImageView extends FrameLayout {
                  .into(gifView);
   }
 
-  private void setSubsamplingImageViewUri(@NonNull Uri uri) {
-    subsamplingImageView.setBitmapDecoderFactory(new AttachmentBitmapDecoderFactory());
-    subsamplingImageView.setRegionDecoderFactory(new AttachmentRegionDecoderFactory());
+  private void setSubsamplingImageViewUri(@NonNull Uri uri, @NonNull String contentType) {
+    final GainmapReporter reporter;
+    if (UltraHdrSupport.isEligible(uri, contentType)) {
+      Log.i(TAG, "Checking for an Ultra HDR gain map on this image.");
+      reporter = new GainmapLatch(this);
+    } else {
+      reporter = null;
+    }
+
+    subsamplingImageView.setBitmapDecoderFactory(new AttachmentBitmapDecoderFactory(reporter));
+    subsamplingImageView.setRegionDecoderFactory(new AttachmentRegionDecoderFactory(reporter));
 
     subsamplingImageView.setVisibility(View.VISIBLE);
     gifView.setVisibility(View.GONE);
@@ -143,17 +168,53 @@ public class ZoomingImageView extends FrameLayout {
     subsamplingImageView.recycle();
   }
 
+  @MainThread
+  private void notifyGainmapDetected() {
+    Log.i(TAG, "Ultra HDR gain map present in preview image.");
+    if (gainmapDetectedListener != null) {
+      gainmapDetectedListener.onGainmapDetected();
+    }
+  }
+
+  private static class GainmapLatch implements GainmapReporter {
+    private final ZoomingImageView view;
+    private final AtomicBoolean    reported = new AtomicBoolean(false);
+
+    GainmapLatch(@NonNull ZoomingImageView view) {
+      this.view = view;
+    }
+
+    @Override
+    public void onGainmapPresent() {
+      if (reported.compareAndSet(false, true)) {
+        ThreadUtil.runOnMain(view::notifyGainmapDetected);
+      }
+    }
+  }
+
   private static class AttachmentBitmapDecoderFactory implements DecoderFactory<AttachmentBitmapDecoder> {
+    private final @Nullable GainmapReporter reporter;
+
+    AttachmentBitmapDecoderFactory(@Nullable GainmapReporter reporter) {
+      this.reporter = reporter;
+    }
+
     @Override
     public AttachmentBitmapDecoder make() throws IllegalAccessException, InstantiationException {
-      return new AttachmentBitmapDecoder();
+      return new AttachmentBitmapDecoder(reporter);
     }
   }
 
   private static class AttachmentRegionDecoderFactory implements DecoderFactory<AttachmentRegionDecoder> {
+    private final @Nullable GainmapReporter reporter;
+
+    AttachmentRegionDecoderFactory(@Nullable GainmapReporter reporter) {
+      this.reporter = reporter;
+    }
+
     @Override
     public AttachmentRegionDecoder make() throws IllegalAccessException, InstantiationException {
-      return new AttachmentRegionDecoder();
+      return new AttachmentRegionDecoder(reporter);
     }
   }
 

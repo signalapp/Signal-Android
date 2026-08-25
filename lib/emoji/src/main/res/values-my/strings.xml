@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <!-- Emoji category headers, shown in the emoji keyboard and the react-with-any-emoji sheet -->
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">အပြုံးမျက်နှာများနှင့် လူများ</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">သဘာဝ</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">အစားအစာ</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">လှုပ်ရှားမှုများ</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">နေရာများ</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">အရာဝတ္ထုများ</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">သင်္ကေတများ</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">အလံများ</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">ရုပ်ပြောင်များ</string>
+</resources>

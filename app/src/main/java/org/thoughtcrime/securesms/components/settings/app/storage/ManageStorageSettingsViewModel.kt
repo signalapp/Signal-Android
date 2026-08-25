@@ -24,7 +24,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.media
 import org.thoughtcrime.securesms.database.ThreadTable
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.jobs.OptimizeMediaJob
+import org.thoughtcrime.securesms.jobs.BackupMessagesJob
 import org.thoughtcrime.securesms.jobs.RestoreOptimizedMediaJob
 import org.thoughtcrime.securesms.keyvalue.KeepMessagesDuration
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -37,7 +37,8 @@ class ManageStorageSettingsViewModel : ViewModel() {
       lengthLimit = if (SignalStore.settings.isTrimByLengthEnabled) SignalStore.settings.threadTrimLength else ManageStorageState.NO_LIMIT,
       syncTrimDeletes = SignalStore.settings.shouldSyncThreadTrimDeletes(),
       localBackupsEnabled = SignalStore.backup.newLocalBackupsEnabled,
-      isPrimary = SignalStore.account.isPrimaryDevice
+      isPrimary = SignalStore.account.isPrimaryDevice,
+      initialOptimizeStorage = SignalStore.backup.optimizeStorage
     )
   )
   val state = store.asStateFlow()
@@ -121,7 +122,7 @@ class ManageStorageSettingsViewModel : ViewModel() {
         store.update {
           it.copy(
             onDeviceStorageOptimizationState = if (enabled) OnDeviceStorageOptimizationState.ENABLED else OnDeviceStorageOptimizationState.DISABLED,
-            storageOptimizationStateChanged = true
+            storageOptimizationStateChanged = enabled != it.initialOptimizeStorage
           )
         }
       }
@@ -146,7 +147,10 @@ class ManageStorageSettingsViewModel : ViewModel() {
     if (state.value.storageOptimizationStateChanged) {
       when (state.value.onDeviceStorageOptimizationState) {
         OnDeviceStorageOptimizationState.DISABLED -> RestoreOptimizedMediaJob.enqueue()
-        OnDeviceStorageOptimizationState.ENABLED -> OptimizeMediaJob.enqueue()
+
+        // Backing up first guarantees a media snapshot exists to reconcile against, and the backup enqueues the offload for us once it succeeds
+        OnDeviceStorageOptimizationState.ENABLED -> BackupMessagesJob.enqueue()
+
         else -> Unit
       }
     }
@@ -184,7 +188,8 @@ class ManageStorageSettingsViewModel : ViewModel() {
     val storageOptimizationStateChanged: Boolean = false,
     val isPaidTierPending: Boolean = false,
     val localBackupsEnabled: Boolean = false,
-    val isPrimary: Boolean = true
+    val isPrimary: Boolean = true,
+    val initialOptimizeStorage: Boolean = false
   ) {
     companion object {
       const val NO_LIMIT = 0

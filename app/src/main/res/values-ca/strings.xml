@@ -171,6 +171,8 @@
     <string name="BlockedUsersActivity__block_user">Vols bloquejar l\'usuari?</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">%1$s no us podrà trucar ni enviar missatges.</string>
     <string name="BlockedUsersActivity__block">Bloquejar</string>
+    <!-- Subtitle shown under a blocked user. Placeholder is the time they were blocked-->
+    <string name="BlockedUsersActivity__blocked_on_s">Bloquejat el %1$s</string>
 
     <!-- CreditCardFragment -->
     <!-- Title of fragment -->
@@ -428,7 +430,6 @@
     <!-- Accessibility text associated with image button to send an edited message. -->
     <string name="ConversationActivity_send_edit">Enviar versió editada</string>
     <string name="ConversationActivity_compose_message">Escriviu un missatge</string>
-    <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">S\'ha produït un error en afegir el fitxer adjunt.</string>
     <!-- Toast shown when user is unable to find the recipient when sending a message -->
     <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">El destinatari no és una adreça electrònica o SMS vàlid!</string>
     <string name="ConversationActivity_message_is_empty_exclamation">El missatge és buit.</string>
@@ -1069,13 +1070,13 @@
 
     <!-- LinkDeviceFragment -->
     <!-- Description for how Signal will work with a linked device (eg desktop, iPad) -->
-    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Use this Signal account on another device.</string>
+    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Utilitza aquest compte de Signal en un altre dispositiu.</string>
     <!-- Button prompting users to link a new device to their account -->
     <string name="LinkDeviceFragment__link_a_new_device">Vincular un nou dispositiu</string>
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
     <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$s Els missatges i la informació del xat estan protegits mitjançant una codificació d\'extrem a extrem a tots els dispositius</string>
     <!-- Bottom sheet title explaining how Signal works on a linked device -->
-    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal per a Escriptori o iPad</string>
+    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal a un dispositiu vinculat</string>
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
     <string name="LinkDeviceFragment__all_messaging_is_private">Tots els missatges dels dispositius connectats són privats</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
@@ -1189,6 +1190,8 @@
     <string name="AddLinkDeviceFragment__this_qr_code_not_valid">Aquest codi QR no és vàlid. Si us plau, assegureu-vos que escanegeu el codi QR que es mostra al dispositiu que voleu enllaçar.</string>
     <!-- Button in dialog to retry linking a device with a qr code -->
     <string name="AddLinkDeviceFragment__retry">Torna a provar-ho</string>
+    <!-- Text shown in a dialog when the device being linked is too out-of-date to be linked to this account -->
+    <string name="AddLinkDeviceFragment__the_device_you_are_trying_to_link_is_out_of_date">The device you\'re trying to link is out of date. Please upgrade and try again.</string>
 
     <!-- LinkDeviceSyncBottomSheet -->
     <!-- Option in bottom sheet to transfer message history -->
@@ -1574,12 +1577,6 @@
     <!-- Dialog message -->
     <string name="RestoreActivity__no_longer_registered_message">Segurament vas registrar el teu compte de Signal a un altre dispositiu.</string>
 
-    <!-- GroupMentionSettingDialog -->
-    <string name="GroupMentionSettingDialog_notify_me_for_mentions">Notifica\'m les mencions</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Vols rebre notificacions quan se\'t mencioni en xats silenciats?</string>
-    <string name="GroupMentionSettingDialog_always_notify_me">Notifica-m\'ho sempre</string>
-    <string name="GroupMentionSettingDialog_dont_notify_me">No m\'ho notifiquis mai</string>
-
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">El teu àlies, codi QR i enllaç no són visibles al teu perfil. Comparteix el teu àlies només amb persones de confiança.</string>
@@ -1880,9 +1877,6 @@
 
     <!-- MediaPickerActivity -->
     <string name="MediaPickerActivity__menu_open_camera">Obre la càmera</string>
-
-    <!-- MediaSendActivity -->
-    <string name="MediaSendActivity_camera_unavailable">Càmera no disponible</string>
 
     <!-- MediaRepository -->
     <string name="MediaRepository_all_media">Tot el contingut</string>
@@ -2891,13 +2885,6 @@
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">Posar-se en contacte amb el servei d\'assistència</string>
 
-    <!-- RegistrationLockV2Dialog -->
-    <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Voleu activar el bloqueig de registre?</string>
-    <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Voleu desactivar el bloqueig de registre?</string>
-    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Si heu oblidat el PIN quan us torneu a registrar al Signal, se us blocarà el compte durant 7 dies.</string>
-    <string name="RegistrationLockV2Dialog_turn_on">Activa</string>
-    <string name="RegistrationLockV2Dialog_turn_off">Desactiva</string>
-
     <!-- RevealableMessageView -->
     <string name="RevealableMessageView_view_photo">Mostra la fotografia</string>
     <string name="RevealableMessageView_view_video">Mostra el vídeo</string>
@@ -3267,7 +3254,7 @@
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
     <string name="MuteDialog_mute_notifications">Silencia les notificacions</string>
     <!-- Dialog option that, when pressed, will open a time picker to let the user choose how long they\'d like to mute notifications for -->
-    <string name="MuteDialog__mute_until">Silenciar fins a…</string>
+    <string name="MuteDialog__mute_until">Until…</string>
 
     <!-- MuteUntilTimePickerBottomSheet -->
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
@@ -4118,15 +4105,6 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Recents</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Aquest missatge</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Usat recentment</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Emoticones somrients i gent</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Natura</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Menjar</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Activitats</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Llocs</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Objectes</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Símbols</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Banderes</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emoticona</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">No s\'ha trobat cap resultat.</string>
 
     <!-- GifQuickSearchOption -->
@@ -4144,10 +4122,10 @@
     <string name="arrays__use_default">Per defecte</string>
     <string name="arrays__use_custom">Personalitzat</string>
 
-    <string name="arrays__mute_for_one_hour">Silencia-ho durant 1 hora</string>
-    <string name="arrays__mute_for_eight_hours">Silencia-ho durant 8 hores</string>
-    <string name="arrays__mute_for_one_day">Silencia-ho durant 1 dia</string>
-    <string name="arrays__mute_for_seven_days">Silencia-ho durant 7 dies</string>
+    <string name="arrays__mute_for_one_hour">1 hora</string>
+    <string name="arrays__mute_for_eight_hours">8 hores</string>
+    <string name="arrays__mute_for_one_day">1 dia</string>
+    <string name="arrays__mute_for_seven_days">1 setmana</string>
     <string name="arrays__always">Sempre</string>
 
     <string name="arrays__settings_default">Configuració predeterminada</string>
@@ -4202,6 +4180,10 @@
     <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
     <string name="preferences__inactivity_timeout_interval">Interval d\'inactivitat</string>
     <string name="preferences__notifications">Notificacions</string>
+    <!-- Preference item menu to enable notifications -->
+    <string name="preferences__enable_notifications">Habilita les notificacions</string>
+    <!-- Preference header for call notifications -->
+    <string name="preferences__call_notifications">Notificacions de trucades</string>
     <string name="preferences__led_color">Color del LED</string>
     <string name="preferences__led_color_unknown">Desconegut</string>
     <string name="preferences__pref_led_blink_title">Patró lluminós per al LED</string>
@@ -4289,12 +4271,10 @@
     <string name="preferences__system_default">Per defecte del sistema</string>
     <string name="preferences__language">Llengua</string>
     <string name="preferences__signal_messages_and_calls">Missatges i trucades del Signal</string>
-    <string name="preferences__advanced_pin_settings">Configuració avançada del PIN</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">Configuració avançada del PIN</string>
     <string name="preferences__free_private_messages_and_calls">Missatges i trucades privades gratuïtes per als usuaris del Signal</string>
     <string name="preferences__submit_debug_log">Envia un registre de depuració</string>
-    <string name="preferences__delete_account">Eliminar el compte</string>
     <string name="preferences__support_wifi_calling">Compatibilitat «Trucada per WiFi»</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Activeu-ho si el dispositiu fa servir SMS / MMS per WiFi (feu-ho només si la «Trucada per WiFi» està activada al dispositiu)</string>
     <string name="preferences__incognito_keyboard">Teclat d\'incògnit</string>
@@ -4361,6 +4341,16 @@
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">L\'ús de menys dades pot millorar les trucades en xarxes dèbils.</string>
     <string name="preferences_notifications__in_chat_sounds">Sons del xat</string>
     <string name="preferences_notifications__show">Mostra</string>
+    <!-- Preference item to set notification settings when chats are muted -->
+    <string name="preferences_notifications__while_muted">While muted</string>
+    <!-- Option in settings to turn on reaction notifications -->
+    <string name="preferences_notifications__reaction">Reaction notifications</string>
+    <!-- Body option in settings to turn on reaction notifications    -->
+    <string name="preferences_notifications__notify_reaction">Show notifications for reactions to messages you send</string>
+    <!-- Option in settings to turn on unread reminders -->
+    <string name="preferences_notifications__unread">Unread reminders</string>
+    <!-- Body option to turn on unread reminders -->
+    <string name="preferences_notifications__notify_unread">Occasionally notify when there are unread messages in muted chats</string>
     <string name="preferences_notifications__ringtone">To de trucada</string>
     <string name="preferences_chats__message_text_size">Mida de la lletra dels missatges</string>
     <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
@@ -4888,8 +4878,6 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Marqueu el PIN que heu creat per al compte. Això és diferent del codi de verificació d\'SMS.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Introdueix el PIN que has creat per al teu compte.</string>
-    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
-    <string name="RegistrationLockFragment__switch_keyboard">Canviar teclat</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">PIN incorrecte. Torneu-ho a provar.</string>
     <string name="RegistrationLockFragment__forgot_pin">Heu oblidat el PIN?</string>
     <string name="RegistrationLockFragment__incorrect_pin">PIN incorrecte</string>
@@ -4967,8 +4955,6 @@
     <!-- Text label button to skip restoring -->
     <string name="registration_activity__skip_restore">Ometre la restauració</string>
     <string name="preferences_chats__chat_backups">Còpies de seguretat de xats</string>
-    <string name="preferences_chats__transfer_account">Transfereix el compte</string>
-    <string name="preferences_chats__transfer_account_to_a_new_android_device">Transfereix el compte a un dispositiu d\'Android nou</string>
     <!-- Title for dialog to enter in the backup passphrase -->
     <string name="RegistrationActivity_enter_backup_passphrase">Escriviu la contrasenya de la còpia de seguretat.</string>
     <string name="RegistrationActivity_restore">Restaura</string>
@@ -5056,19 +5042,9 @@
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">Temps d\'inactivitat per al bloqueig de pantalla</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
     <string name="preferences_app_protection__to_use_screen_lock">Per utilitzar el bloqueig de pantalla, estableix un PIN, un patró o una contrasenya en aquest dispositiu.</string>
-    <string name="preferences_app_protection__signal_pin">PIN del Signal</string>
-    <string name="preferences_app_protection__create_a_pin">Crea un PIN</string>
-    <string name="preferences_app_protection__change_your_pin">Canvieu el PIN</string>
-    <string name="preferences_app_protection__pin_reminders">Recordatoris del PIN</string>
-    <string name="preferences_app_protection__turn_off">Desactiva</string>
-    <string name="preferences_app_protection__confirm_pin">Confirmeu-lo</string>
-    <string name="preferences_app_protection__confirm_your_signal_pin">Confirmeu el PIN del Signal</string>
-    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Assegureu-vos de memoritzar o desar de forma segura el PIN, ja que no es pot recuperar. Si l\'oblideu, podríeu perdre dades quan torneu a registrar el compte del Signal.</string>
-    <string name="preferences_app_protection__incorrect_pin_try_again">PIN incorrecte. Torneu-ho a provar.</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">Ha fallat activar el bloqueig de registre.</string>
     <string name="preferences_app_protection__failed_to_disable_registration_lock">Ha fallat desactivar el bloqueig de registre.</string>
     <string name="AppProtectionPreferenceFragment_none">Cap</string>
-    <string name="preferences_app_protection__registration_lock">Bloqueig del registre</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Heu d\'escriure el PIN de bloqueig del registre</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">El PIN té un mínim de %1$d dígits o caràcters.</string>
     <string name="RegistrationActivity_too_many_attempts">Massa intents</string>
@@ -5116,20 +5092,6 @@
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
     <string name="Recipient_deleted_account">Eliminar el compte</string>
 
-    <!-- Option in settings that will take use to re-register if they are no longer registered -->
-    <string name="preferences_account_reregister">Torna a registrar el compte</string>
-    <!-- Option in settings that will take user to our website or playstore to update their expired build -->
-    <string name="preferences_account_update_signal">Actualitza el Signal</string>
-    <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
-    <string name="preferences_account_delete_all_data">Suprimeix totes les dades</string>
-    <!-- Title for confirmation dialog confirming user wants to delete all their data -->
-    <string name="preferences_account_delete_all_data_confirmation_title">Vols suprimir totes les dades?</string>
-    <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_message">Això restablirà l\'app eliminant tots els missatges. L\'app es tancarà un cop finalitzat aquest procés.</string>
-    <!-- Confirmation action to proceed with application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_proceed">Continua</string>
-    <!-- Confirmation action to cancel application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_cancel">Cancel·lar</string>
     <!-- Error message shown when we fail to delete the data for some unknown reason -->
     <string name="preferences_account_delete_all_data_failed">No s\'han pogut eliminar les dades</string>
 
@@ -5670,14 +5632,6 @@
     <!-- String displayed in a toast when a subscriber id is not present for a given type -->
     <string name="AppSettingsFragment__no_subscriber_id_set">No s\'ha establert cap identificador de subscriptor</string>
 
-    <!-- AccountSettingsFragment -->
-    <string name="AccountSettingsFragment__account">Compte</string>
-    <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Amb el temps se us demanarà amb menys freqüència</string>
-    <string name="AccountSettingsFragment__require_your_signal_pin">Sol·licita el PIN del Signal per tornar-hi a registrar el número de telèfon</string>
-    <string name="AccountSettingsFragment__change_phone_number">Canvia el número de telèfon</string>
-    <!-- Account setting that allows user to request and export their signal account data -->
-    <string name="AccountSettingsFragment__request_account_data">Les dades del teu compte</string>
-
     <!-- ExportAccountDataFragment -->
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
     <string name="ExportAccountDataFragment__your_account_data">Les dades del teu compte</string>
@@ -5971,14 +5925,46 @@
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Missatges</string>
     <string name="NotificationsSettingsFragment__calls">Trucades</string>
-    <string name="NotificationsSettingsFragment__notify_when">Notifica quan…</string>
+    <!-- Notification header for sounds -->
+    <string name="NotificationsSettingsFragment__sounds">Sons</string>
     <string name="NotificationsSettingsFragment__contact_joins_signal">El contacte s\'afegeix al Signal</string>
+    <!-- Notification body to get notified when someone joins Signal -->
+    <string name="NotificationsSettingsFragment__notify_contact">Show a notification when a phone contact joins Signal</string>
+    <!-- Option to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset">Reset notification settings</string>
+    <!-- Option body to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_notifications">Reset notification settings to default, including custom settings for your chats</string>
+    <!-- Dialog to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_body">Reset all notification settings to default for all chats?</string>
+    <!-- Confirmation button to reset dialog -->
+    <string name="NotificationsSettingsFragment__reset_confirm">Restableix</string>
     <!-- Notification preference header -->
     <string name="NotificationsSettingsFragment__notification_profiles">Perfils de notificacions</string>
     <!-- Notification preference option header -->
     <string name="NotificationsSettingsFragment__profiles">Perfils</string>
     <!-- Notification preference summary text -->
     <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Creeu un perfil per rebre notificacions només de les persones i els grups que trieu.</string>
+
+    <!-- Header to describe screen that shows while muted settings -->
+    <string name="MutedNotificationsFragment__while">While muted</string>
+    <!-- Title for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls">Trucades</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body_global">Ring or notify when a call is started in muted chats.</string>
+    <!-- Title for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions">Mencions</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body_global">Notify when you are mentioned in muted chats.</string>
+    <!-- Title for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies">Respostes</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body_global">Notify when someone replies to your message in muted chats.</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body">Ring or notify when a call is started while this chat is muted.</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body">Notify when you are mentioned while this chat is muted.</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body">Notify when someone replies to your message while this chat is muted.</string>
 
     <!-- NotificationProfilesFragment -->
     <!-- Title for notification profiles screen that shows all existing profiles; Title with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -6207,6 +6193,8 @@
     <string name="ConversationSettingsFragment__end_group">Tancar grup</string>
     <!-- Banner shown at the top of group settings when the group has been ended -->
     <string name="ConversationSettingsFragment__this_group_was_ended">S\'ha tancat el grup.</string>
+    <!-- Subhead under a legacy group\'s name, joining the member count and the "Legacy Group" label. %1$s is the member count, %2$s is the label -->
+    <string name="ConversationSettingsFragment__s_dot_s">%1$s · %2$s</string>
     <!-- Archive chat option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__archive_chat">Arxivar xat</string>
     <!-- Delete chat option in group conversation settings screen -->
@@ -6390,34 +6378,9 @@
     <!-- Positive dialog action when sending a story via an add to group story button -->
     <string name="MediaReviewFragment__add_to_story">Afegeix-ho a la història</string>
     <string name="MediaReviewFragment__add_a_message">Afegiu-hi un missatge</string>
-    <!-- Hint text inside of a compose box that is shown when the user is adding media while quoting a message. -->
-    <string name="MediaReviewFragment__add_a_reply">Afegiu-hi una resposta</string>
     <string name="MediaReviewFragment__send_to">Enviar a</string>
-    <string name="MediaReviewFragment__view_once_message">Contingut d\'una sola visualització</string>
-    <string name="MediaReviewFragment__one_or_more_items_were_too_large">Un o més elements eren massa grossos.</string>
-    <string name="MediaReviewFragment__one_or_more_items_were_invalid">Un o més elements no eren vàlids.</string>
-    <string name="MediaReviewFragment__too_many_items_selected">Massa elements seleccionats</string>
-    <string name="MediaReviewFragment__video_trimmed_to_fit">S\'ha retallat el teu vídeo perquè estigui dins del límit de la mida</string>
-    <!-- Small notification presented to the user when they set their video to view-once mode -->
-    <string name="MediaReviewFragment__video_set_to_view_once">Vídeo configurat amb una sola visualització</string>
-    <!-- Small notification presented to the user when they set their photo to view-once mode -->
-    <string name="MediaReviewFragment__photo_set_to_view_once">Foto configurada amb una sola visualització</string>
-    <!-- Accessibility label describing the add media button on the Media review screen -->
-    <string name="MediaReviewFragment__add_media_accessibility_label">Afegir Arxius multimèdia</string>
-    <!-- Accessibility label describing the brush and pen button on the Media review screen -->
-    <string name="MediaReviewFragment__brush_pen_accessibility_label">Pinzell i bolígraf</string>
-    <!-- Accessibility label describing the crop and rotate button on the Media review screen -->
-    <string name="MediaReviewFragment__crop_rotate_accessibility_label">Retalla i gira</string>
-    <!-- Accessibility label describing the change media quality button on the Media review screen -->
-    <string name="MediaReviewFragment__change_media_quality_accessibility_label">Canviar la qualitat de l\'arxiu</string>
-    <!-- Accessibility label describing the save media button on the Media review screen -->
-    <string name="MediaReviewFragment__save_media_accessibility_label">Guardar Arxius multimèdia</string>
-    <!-- Accessibility label describing the toggle emoji keyboard button on the Media review screen -->
-    <string name="MediaReviewFragment__emoji_toggle_accessibility_label">Canvia al teclat d\'emojis</string>
     <!-- Accessibility label describing the toggle view once button on the Media review screen -->
     <string name="MediaReviewFragment__view_once_toggle_accessibility_label">Activar visualització única</string>
-    <!-- Accessibility label describing the send media button on the Media review screen -->
-    <string name="MediaReviewFragment__send_media_accessibility_label">Enviar Arxius multimèdia</string>
     <!-- Accessibility label describing the finish adding a message button on the Media review screen dialog -->
     <string name="MediaReviewFragment__finish_adding_a_message_accessibility_label">Finalitzar Afegir missatge</string>
 
@@ -6437,27 +6400,9 @@
 
     <string name="MediaCountIndicatorButton__send">Envia</string>
 
-    <string name="MediaReviewSelectedItem__tap_to_remove">Toqueu per suprimir</string>
-    <string name="MediaReviewSelectedItem__tap_to_select">Feu un toc per seleccionar-ho</string>
-
     <string name="MediaReviewImagePageFragment__discard">Descarta</string>
     <string name="MediaReviewImagePageFragment__discard_changes">Voleu descartar-ne els canvis?</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Perdreu qualsevol canvi que hàgiu fet en aquesta fotografia.</string>
-
-    <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_title">%1$s trobat</string>
-    <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_body">Iniciar un xat amb \"%1$s\"</string>
-    <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
-    <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">Ves al xat</string>
-
-    <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_title">Enllaçar un dispositiu?</string>
-    <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_it_looks_like_youre_trying">Sembla que estàs intentant enllaçar un dispositiu a Signal. Toca \"Continuar\", selecciona \"Vincular un nou dispositiu\" i torna a escanejar el codi QR.</string>
-    <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
-    <string name="MediaCaptureFragment_device_link_dialog_continue">Continuar</string>
-
 
     <string name="BadgesOverviewFragment__my_badges">Les meves insígnies</string>
     <string name="BadgesOverviewFragment__featured_badge">Insígnia inclosa</string>
@@ -8714,13 +8659,6 @@
     <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">S\'ha tancat el grup.</string>
     <!-- Body of bottom sheet shown when opening a terminated group -->
     <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">Ja no pots enviar ni rebre missatges o trucades en aquest grup.</string>
-
-    <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_title">L\'eliminació de continguts ara es sincronitza ara a tots els teus dispositius</string>
-    <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_message">Quan elimines missatges o xats, s\'eliminen del teu telèfon i dels dispositius connectats.</string>
-    <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_acknowledge_button">D\'acord</string>
 
     <!-- NoManualBackupBottomSheet -->
     <!-- Title for bottom sheet, placeholder is number of days. -->

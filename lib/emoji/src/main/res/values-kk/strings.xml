@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <!-- Emoji category headers, shown in the emoji keyboard and the react-with-any-emoji sheet -->
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Смайлдар және Адамдар</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Табиғат</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Азық-түлік</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Іс-әрекет</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Орындар</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Заттар</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Белгілер</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Жалаушалар</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Эмотикондар</string>
+</resources>

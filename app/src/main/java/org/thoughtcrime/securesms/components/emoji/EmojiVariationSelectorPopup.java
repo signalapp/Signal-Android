@@ -13,6 +13,8 @@ import androidx.core.content.ContextCompat;
 import org.thoughtcrime.securesms.R;
 
 import java.util.List;
+import org.signal.emoji.EmojiEventListener;
+import org.signal.emoji.EmojiProvider;
 
 public class EmojiVariationSelectorPopup extends PopupWindow {
 

@@ -79,6 +79,7 @@ import org.thoughtcrime.securesms.jobs.CheckKeyTransparencyJob
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob
 import org.thoughtcrime.securesms.jobs.LocalBackupRestoreMediaJob
 import org.thoughtcrime.securesms.jobs.PreKeysSyncJob
+import org.thoughtcrime.securesms.jobs.ReclaimUsernameAndLinkJob
 import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob
 import org.thoughtcrime.securesms.jobs.RotateCertificateJob
 import org.thoughtcrime.securesms.keyvalue.Completed
@@ -284,6 +285,11 @@ class AppRegistrationStorageController(private val context: Context) : StorageCo
   }
 
   override suspend fun onRegistrationFlowFinished() = withContext(Dispatchers.Default) {
+    if (SignalStore.misc.needsUsernameRestore) {
+      Log.i(TAG, "[onRegistrationFlowFinished] Username reclaim is still pending. Enqueuing a job to handle it.")
+      AppDependencies.jobManager.add(ReclaimUsernameAndLinkJob())
+    }
+
     if (Environment.MOCK_PHONE_NUMBERLESS_REGISTRATION) {
       Log.w(TAG, "[onRegistrationFlowFinished] Mocking a phone-number-less account. Wiping all local knowledge of the E164 and PNI.")
 
@@ -752,7 +758,7 @@ class AppRegistrationStorageController(private val context: Context) : StorageCo
 
     val aci = ACI.parseOrThrow(accountData.aci)
     val pni = PNI.parseOrNull(accountData.pni)
-    val e164 = accountData.e164.nullIfBlank()
+    val e164 = accountData.e164?.nullIfBlank()
     val isAciChanged = SignalStore.account.aci != aci
 
     if (pni == null) {
@@ -786,6 +792,7 @@ class AppRegistrationStorageController(private val context: Context) : StorageCo
     recipientTable.markRegisteredOrThrow(selfId, aci)
     recipientTable.linkIdsForSelf(aci, pni, e164)
     recipientTable.setProfileKey(selfId, profileKey)
+    SignalStore.account.notSyncedRotatedSelfProfileKey = null
 
     AppDependencies.recipientCache.clearSelf()
 
@@ -808,6 +815,14 @@ class AppRegistrationStorageController(private val context: Context) : StorageCo
       // the remote metadata during the first BackupMessagesJob) we must not start a new chain, or the existing remote backup becomes unrestorable.
       Log.i(TAG, "[applyAccountData] Re-registration. Marking that we need to restore SVRB secrets before backing up.")
       SignalStore.backup.backupSecretRestoreRequired = true
+
+      // Registering releases any username we previously held, so it has to be re-reserved once storage service tells us what it was.
+      Log.i(TAG, "[applyAccountData] Re-registration. Marking that we need to reclaim our username and link.")
+      SignalStore.misc.needsUsernameRestore = true
+    }
+
+    accountData.authCredentialSalt?.let {
+      SignalStore.account.authCredentialSalt = it.toByteArray()
     }
 
     SignalStore.account.setServicePassword(accountData.servicePassword)

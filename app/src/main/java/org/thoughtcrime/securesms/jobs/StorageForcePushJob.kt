@@ -167,6 +167,7 @@ class StorageForcePushJob private constructor(parameters: Parameters) : BaseJob(
     Log.i(TAG, "Force push succeeded. Updating local manifest version to: $newVersion")
     SignalStore.storageService.manifest = manifest
     SignalStore.svr.masterKeyForInitialDataRestore = null
+    StorageSyncHelper.clearRotatedProfileKeyIfSynced(inserts)
     SignalDatabase.recipients.applyStorageIdUpdates(newContactStorageIds)
     SignalDatabase.recipients.applyStorageIdUpdates(Collections.singletonMap(Recipient.self().id, accountRecord.id))
     SignalDatabase.chatFolders.applyStorageIdUpdates(newChatFolderStorageIds)

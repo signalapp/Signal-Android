@@ -29,6 +29,18 @@ object GroupMemberOrder {
     getDisplayName: (T) -> String
   ): Comparator<T> = compareBy<T> { !isSelf(it) }
     .thenBy { !isAdmin(it) }
-    .thenBy { !hasDisplayName(it) }
+    .then(displayNameComparator(hasDisplayName, getDisplayName))
+
+  /**
+   * Creates a [Comparator] for just the display-name portion of the canonical order: members with a user-set display name
+   * first, then alphabetically by display name using locale-aware collation.
+   *
+   * Useful for member lists that have no notion of self-first or admin-first ordering.
+   */
+  @JvmStatic
+  fun <T> displayNameComparator(
+    hasDisplayName: (T) -> Boolean,
+    getDisplayName: (T) -> String
+  ): Comparator<T> = compareBy<T> { !hasDisplayName(it) }
     .thenBy { collator.getCollationKey(getDisplayName(it)) }
 }

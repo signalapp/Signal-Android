@@ -211,6 +211,11 @@ public class WebRtcServiceStateBuilder {
       return this;
     }
 
+    public @NonNull CallSetupStateBuilder waitForAudio(boolean waitForAudio) {
+      toBuild.setWaitForAudio(waitForAudio);
+      return this;
+    }
+
     public @NonNull CallSetupStateBuilder sentJoinedMessage(boolean sentJoinedMessage) {
       toBuild.setSentJoinedMessage(sentJoinedMessage);
       return this;

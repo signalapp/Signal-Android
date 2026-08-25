@@ -41,7 +41,7 @@ import org.signal.core.util.nullIfBlank
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.PushContactSelectionActivity
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsEvent
+import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsAction
 import org.thoughtcrime.securesms.contacts.SelectedContact
 import org.thoughtcrime.securesms.database.model.GroupRecord
 import org.thoughtcrime.securesms.groups.GroupId
@@ -68,12 +68,12 @@ class AddMembersActivity : PassphraseRequiredActivity() {
 
     fun createIntent(
       context: Context,
-      event: ConversationSettingsEvent.AddMembersToGroup
+      action: ConversationSettingsAction.AddMembersToGroup
     ): Intent {
       return Intent(context, AddMembersActivity::class.java).apply {
-        putExtra(EXTRA_GROUP_ID, event.groupId)
-        putExtra(EXTRA_SELECTION_LIMITS, event.selectionLimits)
-        putParcelableArrayListExtra(EXTRA_PRESELECTED_RECIPIENTS, ArrayList(event.groupMembersWithoutSelf))
+        putExtra(EXTRA_GROUP_ID, action.groupId)
+        putExtra(EXTRA_SELECTION_LIMITS, action.selectionLimits)
+        putParcelableArrayListExtra(EXTRA_PRESELECTED_RECIPIENTS, ArrayList(action.groupMembersWithoutSelf))
       }
     }
   }

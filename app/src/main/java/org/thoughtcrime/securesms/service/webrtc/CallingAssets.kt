@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.service.webrtc
 import android.content.Context
 import okio.IOException
 import org.signal.core.util.logging.Log
+import org.signal.ringrtc.CallException
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.s3.S3
 import java.io.File
@@ -60,6 +61,10 @@ object CallingAssets {
         }
       } catch (e: IOException) {
         Log.e(TAG, "Failed to register calling asset ${entry.name}", e)
+      } catch (e: CallException) {
+        Log.w(TAG, "RingRTC rejected calling asset ${entry.name}: ${e.message}")
+        // Asset couldn't be registered, don't retry for this process.
+        registeredLog.add(entry.name)
       }
     }
   }

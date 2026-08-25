@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.util.MediaUtil;
 public final class ImageMediaPreviewPageFragment extends MediaPreviewPageFragment {
 
   private MediaPreviewPlayerControlView bottomBarControlView;
+  private ZoomingImageView              zoomingImageView;
 
   private MediaPreviewViewModel viewModel;
   private LifecycleDisposable   lifecycleDisposable;
@@ -33,13 +34,13 @@ public final class ImageMediaPreviewPageFragment extends MediaPreviewPageFragmen
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState)
   {
-    View             view             = inflater.inflate(R.layout.media_preview_image_fragment, container, false);
-    RequestManager   requestManager   = Glide.with(requireActivity());
-    Bundle           arguments        = requireArguments();
-    Uri              uri              = arguments.getParcelable(DATA_URI);
-    String           contentType      = arguments.getString(DATA_CONTENT_TYPE);
-    ZoomingImageView zoomingImageView = view.findViewById(R.id.zooming_image_view);
+    View           view           = inflater.inflate(R.layout.media_preview_image_fragment, container, false);
+    RequestManager requestManager = Glide.with(requireActivity());
+    Bundle         arguments      = requireArguments();
+    Uri            uri            = arguments.getParcelable(DATA_URI);
+    String         contentType    = arguments.getString(DATA_CONTENT_TYPE);
 
+    zoomingImageView    = view.findViewById(R.id.zooming_image_view);
     viewModel           = new ViewModelProvider(requireActivity()).get(MediaPreviewViewModel.class);
     lifecycleDisposable = new LifecycleDisposable();
 
@@ -48,6 +49,8 @@ public final class ImageMediaPreviewPageFragment extends MediaPreviewPageFragmen
     if (!MediaUtil.isImageType(contentType)) {
       throw new AssertionError("This fragment can only display images");
     }
+
+    zoomingImageView.setOnGainmapDetectedListener(() -> viewModel.setHdrCapable(uri));
 
     //noinspection ConstantConditions
     zoomingImageView.setImageUri(requestManager, uri, contentType, () -> events.onMediaReady());
@@ -60,6 +63,15 @@ public final class ImageMediaPreviewPageFragment extends MediaPreviewPageFragmen
     }));
 
     return view;
+  }
+
+  @Override
+  public void onDestroyView() {
+    if (zoomingImageView != null) {
+      zoomingImageView.setOnGainmapDetectedListener(null);
+      zoomingImageView = null;
+    }
+    super.onDestroyView();
   }
 
   @Override

@@ -18,6 +18,9 @@ interface JobStorage {
   fun getAllMatchingFilter(predicate: Predicate<JobSpec>): List<JobSpec>
 
   @WorkerThread
+  fun getAllMinimalJobSpecsMatchingFilter(predicate: Predicate<MinimalJobSpec>): List<MinimalJobSpec>
+
+  @WorkerThread
   fun getNextEligibleJob(currentTime: Long, filter: (MinimalJobSpec) -> Boolean): JobSpec?
 
   @WorkerThread

@@ -39,6 +39,10 @@ class FakeStorageController : StorageController {
   var restoreDecision: RestoreDecision? = null
     private set
 
+  /** How many times [onRegistrationFlowFinished] has been called. The app hangs post-registration bookkeeping off of this. */
+  var registrationFlowFinishedCount: Int = 0
+    private set
+
   /** Simulates a previously-registered device, which the flow will try to re-register via recovery password. */
   var preExistingRegistrationData: PreExistingRegistrationData? = null
 
@@ -94,7 +98,7 @@ class FakeStorageController : StorageController {
   override suspend fun commitRegistrationData() {
     synchronized(dataLock) {
       val accountData = inProgressData.accountData
-      val accountDataComplete = accountData != null && accountData.e164.isNotEmpty() && accountData.aci.isNotEmpty() && accountData.pni.isNotEmpty() && accountData.servicePassword.isNotEmpty()
+      val accountDataComplete = accountData != null && !accountData.e164.isNullOrEmpty() && accountData.aci.isNotEmpty() && !accountData.pni.isNullOrEmpty() && accountData.servicePassword.isNotEmpty()
       if (!inProgressData.accountDataCommitted && accountDataComplete) {
         inProgressData = inProgressData.newBuilder().accountDataCommitted(true).build()
       }
@@ -102,7 +106,9 @@ class FakeStorageController : StorageController {
     }
   }
 
-  override suspend fun onRegistrationFlowFinished() = Unit
+  override suspend fun onRegistrationFlowFinished() {
+    registrationFlowFinishedCount++
+  }
 
   override suspend fun setRestoreDecision(decision: RestoreDecision) {
     // Mirrors the real controller: only the first decision sticks, later ones are ignored

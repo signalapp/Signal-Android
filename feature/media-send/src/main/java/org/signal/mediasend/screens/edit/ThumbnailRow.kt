@@ -29,7 +29,6 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -37,13 +36,12 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalInspectionMode
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.drop
-import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
 import org.signal.core.models.media.Media
 import org.signal.core.ui.compose.DayNightPreviews
@@ -56,6 +54,7 @@ import org.signal.core.ui.compose.list.reorderableList
 import org.signal.core.util.ContentTypeUtil
 import org.signal.glide.compose.GlideImage
 import org.signal.mediasend.screens.MediaSendMetrics
+import org.signal.mediasend.test.TestTags
 import kotlin.math.abs
 import kotlin.math.floor
 import kotlin.math.roundToInt
@@ -67,12 +66,14 @@ private val MAX_PADDING = 8.dp
 /**
  * Horizontally scrollable thumbnail strip that syncs with [pagerState].
  * Features fish-eye padding effect where the centered item has more padding.
+ *
+ * Dragging the strip scrolls the pager, and which media the settled page focuses is reported by the caller from
+ * [pagerState] rather than from here, since this row is only one of the chromes the pager can be swiped beneath.
  */
 @Composable
 internal fun ThumbnailRow(
   selectedMedia: List<Media>,
   pagerState: PagerState,
-  onFocusedMediaChange: (Media) -> Unit,
   onThumbnailClick: (Int) -> Unit = {},
   onReorder: (fromIndex: Int, toIndex: Int) -> Unit = { _, _ -> },
   enabled: Boolean = true
@@ -97,25 +98,18 @@ internal fun ThumbnailRow(
   )
   val isReordering = reorderableListState.draggingItemIndex != null
 
+  // A thumbnail's page has to be looked up by identity rather than taken from its slot in the row: for the length of a
+  // drag the row renders the order that drag has built up while the pager is still on the pre-drag one, so the two
+  // disagree about what any given index refers to. Everything keyed off the pager - the delete affordance and the
+  // fish-eye - has to follow the media rather than the index, or it lands on whatever the drag has shuffled into the
+  // pager's slot and only corrects itself once the new order arrives.
+  val pageIndices = remember(selectedMedia) {
+    selectedMedia.withIndex().associate { (index, media) -> media.uri to index }
+  }
+
   val draggableState = rememberDraggableState { delta ->
     val scaledDelta = delta * (pagerPageSize.toFloat() / itemStride)
     pagerState.dispatchRawDelta(-scaledDelta)
-  }
-
-  // Read through the latest selection rather than the one captured when the effect started, since reordering changes
-  // which media a settled page refers to without restarting the effect.
-  val currentSelectedMedia by rememberUpdatedState(selectedMedia)
-
-  LaunchedEffect(pagerState) {
-    snapshotFlow { pagerState.isScrollInProgress }
-      .filter { !it }
-      .drop(1)
-      .collectLatest {
-        val settledPage = pagerState.currentPage
-        if (settledPage in currentSelectedMedia.indices) {
-          onFocusedMediaChange(currentSelectedMedia[settledPage])
-        }
-      }
   }
 
   // The rail's scroll position belongs to the drag rather than the pager from the moment an item is picked up until the
@@ -169,10 +163,6 @@ internal fun ThumbnailRow(
               else -> pagerState.currentPage
             }
             pagerState.animateScrollToPage(targetPage)
-
-            if (targetPage in selectedMedia.indices) {
-              onFocusedMediaChange(selectedMedia[targetPage])
-            }
           }
         }
       )
@@ -191,10 +181,12 @@ internal fun ThumbnailRow(
       modifier = if (enabled) Modifier.reorderableList(reorderableListState) else Modifier
     ) {
       itemsIndexed(reorderBuffer.items, key = { _, media -> media.uri }) { index, media ->
-        val padding by remember(index) {
+        val pageIndex = pageIndices[media.uri] ?: index
+
+        val padding by remember(pageIndex) {
           derivedStateOf {
             val currentPosition = pagerState.currentPage + pagerState.currentPageOffsetFraction
-            val distanceFromCenter = abs(index - currentPosition).coerceIn(0f, 1f)
+            val distanceFromCenter = abs(pageIndex - currentPosition).coerceIn(0f, 1f)
             lerp(MAX_PADDING, MIN_PADDING, distanceFromCenter)
           }
         }
@@ -205,13 +197,14 @@ internal fun ThumbnailRow(
           modifier = Modifier.clip(MediaSendMetrics.SelectedMediaPreviewShape)
         ) {
           DeleteBox(
-            enabled = pagerState.currentPage == index
+            enabled = pagerState.currentPage == pageIndex,
+            testTag = TestTags.thumbnailRowDeleteIcon(media.uri.toString())
           ) {
             Thumbnail(
               media = media,
               modifier = Modifier
                 .padding(horizontal = padding)
-                .clickable(enabled = enabled) { onThumbnailClick(index) }
+                .clickable(enabled = enabled) { onThumbnailClick(pageIndex) }
             )
           }
         }
@@ -227,6 +220,7 @@ private fun lerp(start: Dp, stop: Dp, fraction: Float): Dp {
 @Composable
 private fun DeleteBox(
   enabled: Boolean,
+  testTag: String? = null,
   content: @Composable () -> Unit
 ) {
   Box {
@@ -242,6 +236,7 @@ private fun DeleteBox(
           .size(MediaSendMetrics.SelectedMediaPreviewSize)
           .padding(10.dp)
           .align(Alignment.Center)
+          .then(if (testTag != null) Modifier.testTag(testTag) else Modifier)
       )
     }
   }
@@ -275,8 +270,7 @@ private fun ThumbnailRowPreview() {
   Previews.Preview {
     ThumbnailRow(
       selectedMedia = media,
-      pagerState = pagerState,
-      onFocusedMediaChange = { }
+      pagerState = pagerState
     )
   }
 }

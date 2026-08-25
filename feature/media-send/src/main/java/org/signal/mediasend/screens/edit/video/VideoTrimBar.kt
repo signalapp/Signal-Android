@@ -50,6 +50,7 @@ fun VideoTrimBar(
   videoTrimData: VideoTrimData,
   maxSelectableDurationUs: Long = 0L,
   playbackPositionUs: Long = 0L,
+  modifier: Modifier = Modifier,
   onEvent: (MediaEditScreenEvents) -> Unit = {}
 ) {
   val currentOnEvent by rememberUpdatedState(onEvent)
@@ -129,7 +130,7 @@ fun VideoTrimBar(
       selectorView.unregisterDragListener()
       selectorView.registerEditorOnRangeChangeListener(null)
     },
-    modifier = Modifier
+    modifier = modifier
       .horizontalGutters()
       .height(48.dp)
       .fillMaxWidth()

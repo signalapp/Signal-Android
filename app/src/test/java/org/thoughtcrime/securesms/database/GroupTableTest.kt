@@ -151,7 +151,7 @@ class GroupTableTest {
     val recipientId = SignalDatabase.recipients.getByGroupId(groupId).get()
 
     groupTable.setMember(groupId, false)
-    SignalDatabase.recipients.setBlocked(recipientId, true)
+    SignalDatabase.recipients.setBlocked(recipientId, true, 0)
     SignalDatabase.threads.deleteConversation(threadId)
 
     groupTable.clearGroupIfLeftAndDeleted(groupId)

@@ -313,6 +313,7 @@ class IncomingMessageObserver(
     webSocketStateDisposable.dispose()
     clockSkewScope.cancel()
     terminated = true
+    authWebSocket.removeKeepAliveToken(WEB_SOCKET_KEEP_ALIVE_TOKEN)
     authWebSocket.disconnect()
   }
 
@@ -582,7 +583,7 @@ class IncomingMessageObserver(
     /**
      * Attempts to process the entire batch in a single transaction for performance.
      *
-     * @return true if the transaction committed, false if it the batch was rolled back.
+     * @return true if the transaction committed, false if the batch was rolled back.
      */
     private fun processBatchInTransaction(batch: List<EnvelopeResponse>): Boolean {
       val allFollowUpOperations = mutableListOf<FollowUpOperation>()
@@ -594,7 +595,15 @@ class IncomingMessageObserver(
       val committed = SignalDatabase.tryRunInTransaction {
         for (response in batch) {
           SignalTrace.beginSection("IncomingMessageObserver#perMessageTransaction")
-          val result = processEnvelope(bufferedStore, response.envelope, response.serverDeliveredTimestamp, batchCache)
+          val result = when (response) {
+            is EnvelopeResponse.Parsed -> {
+              processEnvelope(bufferedStore, response.envelope, response.serverDeliveredTimestamp, batchCache)
+            }
+            is EnvelopeResponse.Unparseable -> {
+              Log.w(TAG, "Unparseable envelope. Nothing to process, but we'll still ack it.")
+              null
+            }
+          }
           bufferedStore.flushToDisk()
           SignalTrace.endSection()
 
@@ -643,10 +652,16 @@ class IncomingMessageObserver(
 
       for ((index, response) in batch.withIndex()) {
         SignalTrace.beginSection("IncomingMessageObserver#perMessageTransaction")
-        val results = SignalDatabase.runInTransaction {
-          val result = processEnvelope(bufferedStore, response.envelope, response.serverDeliveredTimestamp, batchCache)
-          bufferedStore.flushToDisk()
-          result
+        val results = when (response) {
+          is EnvelopeResponse.Parsed -> SignalDatabase.runInTransaction {
+            val result = processEnvelope(bufferedStore, response.envelope, response.serverDeliveredTimestamp, batchCache)
+            bufferedStore.flushToDisk()
+            result
+          }
+          is EnvelopeResponse.Unparseable -> {
+            Log.w(TAG, "Unparseable envelope. Nothing to process, but we'll still ack it.")
+            null
+          }
         }
         SignalTrace.endSection()
 

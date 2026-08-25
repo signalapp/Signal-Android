@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ProvideTextStyle
@@ -24,9 +23,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
-import org.thoughtcrime.securesms.components.emoji.Emojifier
+import org.signal.emoji.Emojifier
 
-private val defaultLabelModifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp)
 private val defaultLabelTextStyle: @Composable () -> TextStyle = { MaterialTheme.typography.bodySmall }
 
 /**
@@ -50,7 +48,7 @@ fun SenderNameWithLabel(
         emoji = label.emoji,
         text = label.displayText,
         tintColor = senderColor,
-        modifier = defaultLabelModifier,
+        contentPadding = MemberLabelPill.contentPaddingCompact,
         textStyle = defaultLabelTextStyle()
       )
     }
@@ -81,7 +79,7 @@ fun SenderNameWithLabel(
         text = label.displayText,
         textColor = labelTextColor,
         backgroundColor = labelBackgroundColor,
-        modifier = defaultLabelModifier,
+        contentPadding = MemberLabelPill.contentPaddingCompact,
         textStyle = defaultLabelTextStyle()
       )
     }

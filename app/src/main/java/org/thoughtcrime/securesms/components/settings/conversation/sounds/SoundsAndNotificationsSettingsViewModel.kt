@@ -1,60 +1,98 @@
 package org.thoughtcrime.securesms.components.settings.conversation.sounds
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import org.thoughtcrime.securesms.database.RecipientTable
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import org.thoughtcrime.securesms.database.RecipientTable.NotificationSetting
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.recipients.RecipientForeverObserver
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.livedata.Store
 
 class SoundsAndNotificationsSettingsViewModel(
-  private val recipientId: RecipientId,
-  private val repository: SoundsAndNotificationsSettingsRepository
-) : ViewModel() {
+  private val recipientId: RecipientId
+) : ViewModel(), RecipientForeverObserver {
 
-  private val store = Store(SoundsAndNotificationsSettingsState())
+  private val _state = MutableStateFlow(SoundsAndNotificationsSettingsState())
+  val state: StateFlow<SoundsAndNotificationsSettingsState> = _state
 
-  val state: LiveData<SoundsAndNotificationsSettingsState> = store.stateLiveData
+  private val liveRecipient = Recipient.live(recipientId)
 
   init {
-    store.update(Recipient.live(recipientId).liveData) { recipient, state ->
-      state.copy(
+    liveRecipient.observeForever(this)
+    onRecipientChanged(liveRecipient.get())
+
+    viewModelScope.launch(Dispatchers.IO) {
+      if (NotificationChannels.supported()) {
+        NotificationChannels.getInstance().ensureCustomChannelConsistency()
+      }
+      _state.update { it.copy(channelConsistencyCheckComplete = true) }
+    }
+  }
+
+  override fun onRecipientChanged(recipient: Recipient) {
+    _state.update {
+      it.copy(
         recipientId = recipientId,
         muteUntil = if (recipient.isMuted) recipient.muteUntil else 0L,
         mentionSetting = recipient.mentionSetting,
+        callNotificationSetting = recipient.callNotificationSetting,
+        replyNotificationSetting = recipient.replyNotificationSetting,
         hasMentionsSupport = recipient.isPushV2Group,
         hasCustomNotificationSettings = recipient.notificationChannel != null || !NotificationChannels.supported()
       )
     }
   }
 
-  fun setMuteUntil(muteUntil: Long) {
-    repository.setMuteUntil(recipientId, muteUntil)
+  override fun onCleared() {
+    liveRecipient.removeForeverObserver(this)
   }
 
-  fun unmute() {
-    repository.setMuteUntil(recipientId, 0L)
-  }
-
-  fun setMentionSetting(mentionSetting: RecipientTable.NotificationSetting) {
-    repository.setMentionSetting(recipientId, mentionSetting)
-  }
-
-  fun channelConsistencyCheck() {
-    store.update { s -> s.copy(channelConsistencyCheckComplete = false) }
-    repository.ensureCustomChannelConsistency {
-      store.update { s -> s.copy(channelConsistencyCheckComplete = true) }
+  fun onEvent(event: SoundsAndNotificationsEvent) {
+    when (event) {
+      is SoundsAndNotificationsEvent.SetMuteUntil -> applySetMuteUntil(event.muteUntil)
+      is SoundsAndNotificationsEvent.Unmute -> applySetMuteUntil(0L)
+      is SoundsAndNotificationsEvent.SetMentionSetting -> applySetMentionSetting(event.setting)
+      is SoundsAndNotificationsEvent.SetCallNotificationSetting -> applySetCallNotificationSetting(event.setting)
+      is SoundsAndNotificationsEvent.SetReplyNotificationSetting -> applySetReplyNotificationSetting(event.setting)
+      is SoundsAndNotificationsEvent.NavigateToCustomNotifications -> Unit // Navigation handled by UI
+      is SoundsAndNotificationsEvent.NavigateToMutedNotifications -> Unit // Navigation handled by UI
     }
   }
 
-  class Factory(
-    private val recipientId: RecipientId,
-    private val repository: SoundsAndNotificationsSettingsRepository
-  ) : ViewModelProvider.Factory {
+  private fun applySetMuteUntil(muteUntil: Long) {
+    viewModelScope.launch(Dispatchers.Default) {
+      SignalDatabase.recipients.setMuted(recipientId, muteUntil)
+    }
+  }
+
+  private fun applySetMentionSetting(setting: NotificationSetting) {
+    viewModelScope.launch(Dispatchers.Default) {
+      SignalDatabase.recipients.setMentionSetting(recipientId, setting)
+    }
+  }
+
+  private fun applySetCallNotificationSetting(setting: NotificationSetting) {
+    viewModelScope.launch(Dispatchers.Default) {
+      SignalDatabase.recipients.setCallNotificationSetting(recipientId, setting)
+    }
+  }
+
+  private fun applySetReplyNotificationSetting(setting: NotificationSetting) {
+    viewModelScope.launch(Dispatchers.Default) {
+      SignalDatabase.recipients.setReplyNotificationSetting(recipientId, setting)
+    }
+  }
+
+  class Factory(private val recipientId: RecipientId) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return requireNotNull(modelClass.cast(SoundsAndNotificationsSettingsViewModel(recipientId, repository)))
+      return requireNotNull(modelClass.cast(SoundsAndNotificationsSettingsViewModel(recipientId)))
     }
   }
 }

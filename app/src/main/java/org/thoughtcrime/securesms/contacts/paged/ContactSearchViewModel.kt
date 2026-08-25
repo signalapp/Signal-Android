@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.contacts.paged
 
+import androidx.annotation.WorkerThread
 import androidx.compose.runtime.Stable
 import androidx.lifecycle.AbstractSavedStateViewModelFactory
 import androidx.lifecycle.Lifecycle
@@ -14,11 +15,14 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.subjects.PublishSubject
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.drop
@@ -97,7 +101,11 @@ class ContactSearchViewModel(
   val isDisplayingContextMenu: StateFlow<Boolean> = internalDisplayingContextMenu
   val scrollRequests: SharedFlow<ScrollRequest> = internalScrollRequests
 
-  /** True while a [setConfiguration] call is fetching results off the main thread. Suitable for driving a loading indicator. */
+  /**
+   * True while a [setConfiguration] call has yet to publish anything for the current configuration. Suitable for driving a
+   * whole-list loading indicator. Goes false as soon as the first results are published, even if slower sections are still
+   * running -- those render their own placeholder.
+   */
   val searchInProgress: StateFlow<Boolean> = internalSearchInProgress
 
   val query: StateFlow<String?> = rawQuery
@@ -154,23 +162,102 @@ class ContactSearchViewModel(
     internalScrollRequests.tryEmit(ScrollRequest(position))
   }
 
+  /**
+   * Builds the results for [contactSearchConfiguration] and publishes them to [pagedData].
+   *
+   * Each query-driven section runs its own database query, and how long those take varies wildly --
+   * a message search can take an order of magnitude longer than a contact search. So rather than
+   * hold every section back until the slowest one finishes, they are queried concurrently and
+   * published as they land. A section that hasn't reported yet renders as a loading placeholder, so
+   * an outstanding section can't be mistaken for an empty one.
+   *
+   * Nothing is published until the topmost section finishes, even if a lower one is ready sooner.
+   * Publishing earlier would put a placeholder above the results and then shove them down when it
+   * resolves, which on a device where the whole search takes a few milliseconds reads as a flicker.
+   * Until then [searchInProgress] covers the gap, and sections that finish together are published
+   * together for the same reason.
+   */
   suspend fun setConfiguration(contactSearchConfiguration: ContactSearchConfiguration) {
     internalSearchInProgress.value = true
     try {
-      val (pagedDataSource, size) = withContext(Dispatchers.Default) {
-        val source = ContactSearchPagedDataSource(
-          contactSearchConfiguration,
-          arbitraryRepository = arbitraryRepository,
-          searchRepository = searchRepository,
-          contactSearchPagedDataSourceRepository = contactSearchPagedDataSourceRepository
-        )
-        source to source.size()
+      val query = contactSearchConfiguration.query?.takeIf { it.isNotEmpty() }
+      val parallelSections = if (query == null) emptyList() else contactSearchConfiguration.sections.filter { it.isQueriedInParallel() }
+
+      if (query == null || parallelSections.isEmpty()) {
+        publish(contactSearchConfiguration, ContactSearchSectionResults())
+        return
       }
-      internalTotalCount.value = size
-      pagedData.value = PagedData.createForStateFlow(pagedDataSource, pagingConfig, data.value)
+
+      coroutineScope {
+        val completedSections = Channel<ContactSearchSectionResult>(capacity = parallelSections.size)
+
+        parallelSections.forEach { section ->
+          launch(Dispatchers.Default) {
+            completedSections.send(querySection(section, query, contactSearchConfiguration.searchFilter))
+          }
+        }
+
+        val topSection = parallelSections.first().sectionKey
+        var results = ContactSearchSectionResults(pending = parallelSections.mapTo(mutableSetOf()) { it.sectionKey })
+
+        while (results.pending.isNotEmpty()) {
+          results = results.withSection(completedSections.receive())
+
+          generateSequence { completedSections.tryReceive().getOrNull() }
+            .forEach { results = results.withSection(it) }
+
+          if (topSection !in results.pending) {
+            publish(contactSearchConfiguration, results)
+            internalSearchInProgress.value = false
+          }
+        }
+      }
     } finally {
       internalSearchInProgress.value = false
     }
+  }
+
+  /**
+   * Whether [querySection] can produce this section's rows up front. The rest are left to
+   * [ContactSearchPagedDataSource], which reads them a page at a time off of a cursor -- either
+   * because they're unbounded, or because they aren't query-driven and so aren't what a search is
+   * waiting on.
+   */
+  private fun ContactSearchConfiguration.Section.isQueriedInParallel(): Boolean {
+    return when (this) {
+      is ContactSearchConfiguration.Section.Chats,
+      is ContactSearchConfiguration.Section.Messages,
+      is ContactSearchConfiguration.Section.GroupsWithMembers,
+      is ContactSearchConfiguration.Section.ContactsWithoutThreads -> true
+
+      else -> false
+    }
+  }
+
+  @WorkerThread
+  private fun querySection(section: ContactSearchConfiguration.Section, query: String, searchFilter: SearchFilter): ContactSearchSectionResult {
+    return when (section) {
+      is ContactSearchConfiguration.Section.Chats -> ContactSearchSectionResult.Chats(searchRepository.queryThreadsSync(query, section.isUnreadOnly).results)
+      is ContactSearchConfiguration.Section.Messages -> ContactSearchSectionResult.Messages(searchRepository.queryMessagesSync(query, searchFilter).results)
+      is ContactSearchConfiguration.Section.GroupsWithMembers -> ContactSearchSectionResult.GroupsWithMembers(contactSearchPagedDataSourceRepository.getGroupsWithMembers(query))
+      is ContactSearchConfiguration.Section.ContactsWithoutThreads -> ContactSearchSectionResult.ContactsWithoutThreads(contactSearchPagedDataSourceRepository.getContactsWithoutThreads(query))
+      else -> error("Section ${section.sectionKey} is not queried in parallel.")
+    }
+  }
+
+  private suspend fun publish(contactSearchConfiguration: ContactSearchConfiguration, sectionResults: ContactSearchSectionResults) {
+    val (pagedDataSource, size) = withContext(Dispatchers.Default) {
+      val source = ContactSearchPagedDataSource(
+        contactSearchConfiguration,
+        arbitraryRepository = arbitraryRepository,
+        searchRepository = searchRepository,
+        contactSearchPagedDataSourceRepository = contactSearchPagedDataSourceRepository,
+        sectionResults = sectionResults
+      )
+      source to source.size()
+    }
+    internalTotalCount.value = size
+    pagedData.value = PagedData.createForStateFlow(pagedDataSource, pagingConfig, data.value)
   }
 
   fun setQuery(query: String?) {
@@ -322,7 +409,7 @@ fun ContactSearchViewModel.bindAdapterToLifecycle(
     lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
       launch { mappingModels.collect { adapter.submitList(it) } }
       launch { controller.collect { it?.let { c -> adapter.setPagingController(c) } } }
-      launch { configurationState.collect { setConfiguration(mapStateToConfiguration(it)) } }
+      launch { configurationState.collectLatest { setConfiguration(mapStateToConfiguration(it)) } }
     }
   }
 }

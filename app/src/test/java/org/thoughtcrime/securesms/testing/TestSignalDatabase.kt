@@ -15,8 +15,9 @@ import net.zetetic.database.sqlcipher.SQLiteDatabase as SQLCipherSQLiteDatabase
 class TestSignalDatabase(
   context: Application,
   val supportReadableDatabase: SupportSQLiteDatabase,
-  val supportWritableDatabase: SupportSQLiteDatabase
-) : SignalDatabase(context, DatabaseSecret(ByteArray(32).apply { SecureRandom().nextBytes(this) }), AttachmentSecret(null, null, ByteArray(32).apply { SecureRandom().nextBytes(this) })) {
+  val supportWritableDatabase: SupportSQLiteDatabase,
+  name: String = SignalDatabase.DATABASE_NAME
+) : SignalDatabase(context, DatabaseSecret(ByteArray(32).apply { SecureRandom().nextBytes(this) }), AttachmentSecret(null, null, ByteArray(32).apply { SecureRandom().nextBytes(this) }), name) {
 
   constructor(context: Application, testOpenHelper: SupportSQLiteOpenHelper) : this(context, testOpenHelper.readableDatabase, testOpenHelper.writableDatabase)
 

@@ -26,6 +26,7 @@ dependencies {
 
   testImplementation(testLibs.junit.junit)
   testImplementation(testLibs.assertk)
+  testImplementation(testLibs.mockk)
   testImplementation(testLibs.robolectric.robolectric)
 }
 

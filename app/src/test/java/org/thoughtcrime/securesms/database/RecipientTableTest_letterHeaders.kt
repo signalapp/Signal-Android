@@ -48,7 +48,7 @@ class RecipientTableTest_letterHeaders {
   fun `blocked contact is not a letter header anchor`() {
     recipients.createRecipient("Alice Anderson")
     val blocked = recipients.createRecipient("Carrolyn Carter")
-    SignalDatabase.recipients.setBlocked(blocked, true)
+    SignalDatabase.recipients.setBlocked(blocked, true, 0)
 
     assertHeaderAnchorsAreVisible()
   }

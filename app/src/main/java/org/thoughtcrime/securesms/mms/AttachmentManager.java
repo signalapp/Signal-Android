@@ -265,7 +265,7 @@ public class AttachmentManager {
                .request(PermissionCompat.forImagesAndVideos())
                .ifNecessary()
                .withPermanentDenialDialog(fragment.getString(R.string.AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio))
-               .onAllGranted(() -> fragment.startActivityForResult(MediaSendLauncher.gallery(fragment.requireContext(), messageSendType, Collections.emptyList(), recipient.getId(), body, hasQuote), requestCode))
+               .onAllGranted(() -> fragment.startActivityForResult(MediaSendLauncher.gallery(fragment.requireContext(), Collections.emptyList(), recipient.getId(), body, hasQuote), requestCode))
                .execute();
   }
 

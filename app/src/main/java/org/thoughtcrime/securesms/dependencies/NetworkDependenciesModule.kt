@@ -6,9 +6,6 @@
 package org.thoughtcrime.securesms.dependencies
 
 import android.app.Application
-import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.kotlin.plusAssign
-import io.reactivex.rxjava3.subjects.Subject
 import okhttp3.ConnectionSpec
 import okhttp3.OkHttpClient
 import org.signal.core.util.logging.Log
@@ -60,13 +57,13 @@ import org.whispersystems.signalservice.api.services.DonationsService
 import org.whispersystems.signalservice.api.services.ProfileService
 import org.whispersystems.signalservice.api.storage.StorageServiceApi
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
-import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
 import org.whispersystems.signalservice.api.websocket.WebSocketUnavailableException
 import org.whispersystems.signalservice.internal.push.PushServiceSocket
 import org.whispersystems.signalservice.internal.util.BlacklistingTrustManager
 import org.whispersystems.signalservice.internal.util.Util
 import java.security.KeyManagementException
 import java.security.NoSuchAlgorithmException
+import java.util.function.Supplier
 import javax.net.ssl.SSLContext
 import javax.net.ssl.X509TrustManager
 
@@ -77,14 +74,14 @@ import javax.net.ssl.X509TrustManager
 class NetworkDependenciesModule(
   private val application: Application,
   private val provider: AppDependencies.Provider,
-  private val webSocketStateSubject: Subject<WebSocketConnectionState>
+  private val authWebSocket: SignalWebSocket.AuthenticatedWebSocket,
+  private val unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket,
+  private val libsignalNetworkSupplier: Supplier<Network>
 ) {
 
   companion object {
     private val TAG = "NetworkDependencies"
   }
-
-  private val disposables: CompositeDisposable = CompositeDisposable()
 
   val signalServiceNetworkAccess: SignalServiceNetworkAccess by lazy {
     provider.provideSignalServiceNetworkAccess()
@@ -120,20 +117,6 @@ class NetworkDependenciesModule(
 
   val signalServiceAccountManager: SignalServiceAccountManager by lazy {
     provider.provideSignalServiceAccountManager(authWebSocket, accountApi, pushServiceSocket, groupsV2Operations)
-  }
-
-  val libsignalNetwork: Network by lazy {
-    provider.provideLibsignalNetwork(signalServiceNetworkAccess.getConfiguration())
-  }
-
-  val authWebSocket: SignalWebSocket.AuthenticatedWebSocket by lazy {
-    provider.provideAuthWebSocket({ signalServiceNetworkAccess.getConfiguration() }, { libsignalNetwork }).also {
-      disposables += it.state.subscribe { s -> webSocketStateSubject.onNext(s) }
-    }
-  }
-
-  val unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket by lazy {
-    provider.provideUnauthWebSocket({ signalServiceNetworkAccess.getConfiguration() }, { libsignalNetwork })
   }
 
   val groupsV2Authorization: GroupsV2Authorization by lazy {
@@ -244,7 +227,7 @@ class NetworkDependenciesModule(
   }
 
   val svrBApi: SvrBApi by lazy {
-    provider.provideSvrBApi(libsignalNetwork)
+    provider.provideSvrBApi(libsignalNetworkSupplier.get())
   }
 
   val keyTransparencyApi: KeyTransparencyApi by lazy {
@@ -288,7 +271,6 @@ class NetworkDependenciesModule(
       signalServiceMessageSender.cancelInFlightRequests()
     }
     unauthWebSocket.disconnect()
-    disposables.clear()
   }
 
   fun openConnections() {

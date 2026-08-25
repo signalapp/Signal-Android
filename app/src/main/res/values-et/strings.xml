@@ -171,6 +171,8 @@
     <string name="BlockedUsersActivity__block_user">Blokeerid kasutaja?</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">Kasutajal %1$s pole võimalik sulle helistada ega sõnumeid saata.</string>
     <string name="BlockedUsersActivity__block">Blokeeri</string>
+    <!-- Subtitle shown under a blocked user. Placeholder is the time they were blocked-->
+    <string name="BlockedUsersActivity__blocked_on_s">Blokeerimise aeg: %1$s</string>
 
     <!-- CreditCardFragment -->
     <!-- Title of fragment -->
@@ -428,7 +430,6 @@
     <!-- Accessibility text associated with image button to send an edited message. -->
     <string name="ConversationActivity_send_edit">Saada muudatus</string>
     <string name="ConversationActivity_compose_message">Koosta sõnum</string>
-    <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Vabandust, sinu manuse seadmisega tekkis viga.</string>
     <!-- Toast shown when user is unable to find the recipient when sending a message -->
     <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Saaja ei ole sobiv SMS või e-posti aadress!</string>
     <string name="ConversationActivity_message_is_empty_exclamation">Sõnum on tühi!</string>
@@ -1069,13 +1070,13 @@
 
     <!-- LinkDeviceFragment -->
     <!-- Description for how Signal will work with a linked device (eg desktop, iPad) -->
-    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Use this Signal account on another device.</string>
+    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Kasuta seda Signali kontot teises seadmes.</string>
     <!-- Button prompting users to link a new device to their account -->
     <string name="LinkDeviceFragment__link_a_new_device">Lingi uus seade</string>
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
     <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$s Sõnumid ja vestluse info on kaitstud kõigis seadmetes otspunktkrüpteeringuga</string>
     <!-- Bottom sheet title explaining how Signal works on a linked device -->
-    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal arvutis või iPadis</string>
+    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal lingitud seadmes</string>
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
     <string name="LinkDeviceFragment__all_messaging_is_private">Kogu sõnumivahetus lingitud seadmetes on privaatne</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
@@ -1189,6 +1190,8 @@
     <string name="AddLinkDeviceFragment__this_qr_code_not_valid">See ei ole kehtiv QR-kood. Palun kontrolli, et skannid QR-koodi selle seadme ekraanilt, mida soovid ühendada.</string>
     <!-- Button in dialog to retry linking a device with a qr code -->
     <string name="AddLinkDeviceFragment__retry">Proovi uuesti</string>
+    <!-- Text shown in a dialog when the device being linked is too out-of-date to be linked to this account -->
+    <string name="AddLinkDeviceFragment__the_device_you_are_trying_to_link_is_out_of_date">The device you\'re trying to link is out of date. Please upgrade and try again.</string>
 
     <!-- LinkDeviceSyncBottomSheet -->
     <!-- Option in bottom sheet to transfer message history -->
@@ -1574,12 +1577,6 @@
     <!-- Dialog message -->
     <string name="RestoreActivity__no_longer_registered_message">Tõenäoliselt on see seepärast, et sa registreerisid oma Signali konto teises seadmes.</string>
 
-    <!-- GroupMentionSettingDialog -->
-    <string name="GroupMentionSettingDialog_notify_me_for_mentions">Teavita mind mainimise korral</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Kas soovid saada teavitusi, kui sind mainitakse vaigistatud vestlustes?</string>
-    <string name="GroupMentionSettingDialog_always_notify_me">Teavita mind alati</string>
-    <string name="GroupMentionSettingDialog_dont_notify_me">Ära teavita mind</string>
-
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Sinu kasutajanimi, QR-kood ega link ei ole su profiilil nähtavad. Jaga oma kasutajanime ainult inimestega, keda usaldad.</string>
@@ -1880,9 +1877,6 @@
 
     <!-- MediaPickerActivity -->
     <string name="MediaPickerActivity__menu_open_camera">Ava kaamera</string>
-
-    <!-- MediaSendActivity -->
-    <string name="MediaSendActivity_camera_unavailable">Kaamera pole saadaval.</string>
 
     <!-- MediaRepository -->
     <string name="MediaRepository_all_media">Kogu meedia</string>
@@ -2891,13 +2885,6 @@
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">Võta ühendust kasutajatoega</string>
 
-    <!-- RegistrationLockV2Dialog -->
-    <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Kas lülitada registreerimislukk sisse?</string>
-    <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Kas lülitada registreerimislukk välja?</string>
-    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Kui unustad Signaliga uuesti registreerumisel oma Signal PIN-koodi, lukustatakse sind 7 päevaks oma kontolt.</string>
-    <string name="RegistrationLockV2Dialog_turn_on">Lülita sisse</string>
-    <string name="RegistrationLockV2Dialog_turn_off">Lülita välja</string>
-
     <!-- RevealableMessageView -->
     <string name="RevealableMessageView_view_photo">Vaata pilti</string>
     <string name="RevealableMessageView_view_video">Vaata videot</string>
@@ -3267,7 +3254,7 @@
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
     <string name="MuteDialog_mute_notifications">Vaigista teavitused</string>
     <!-- Dialog option that, when pressed, will open a time picker to let the user choose how long they\'d like to mute notifications for -->
-    <string name="MuteDialog__mute_until">Vaigista kuni …</string>
+    <string name="MuteDialog__mute_until">Until…</string>
 
     <!-- MuteUntilTimePickerBottomSheet -->
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
@@ -4118,15 +4105,6 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Hiljutised</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">See sõnum</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Hiljuti kasutatud</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Emotikonid &amp; inimesed</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Loodus</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Toit</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Hobitegevused</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Kohad</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Objektid</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Sümbolid</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Lipud</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emotikonid</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Tulemusi ei leitud</string>
 
     <!-- GifQuickSearchOption -->
@@ -4144,10 +4122,10 @@
     <string name="arrays__use_default">Kasuta vaikeväärtust</string>
     <string name="arrays__use_custom">Kasuta kohandatud väärtust</string>
 
-    <string name="arrays__mute_for_one_hour">Vaigista 1 tunniks</string>
-    <string name="arrays__mute_for_eight_hours">Vaigista 8 tunniks</string>
-    <string name="arrays__mute_for_one_day">Vaigista 1 päevaks</string>
-    <string name="arrays__mute_for_seven_days">Vaigista 7 päevaks</string>
+    <string name="arrays__mute_for_one_hour">1 tund</string>
+    <string name="arrays__mute_for_eight_hours">8 tundi</string>
+    <string name="arrays__mute_for_one_day">1 päev</string>
+    <string name="arrays__mute_for_seven_days">1 nädal</string>
     <string name="arrays__always">Alati</string>
 
     <string name="arrays__settings_default">Seadete vaikeväärtus</string>
@@ -4202,6 +4180,10 @@
     <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
     <string name="preferences__inactivity_timeout_interval">Ebaaktiivsuse ajalõpu pikkus</string>
     <string name="preferences__notifications">Teavitused</string>
+    <!-- Preference item menu to enable notifications -->
+    <string name="preferences__enable_notifications">Teavituste lubamine</string>
+    <!-- Preference header for call notifications -->
+    <string name="preferences__call_notifications">Kõneteavitused</string>
     <string name="preferences__led_color">LEDi värv</string>
     <string name="preferences__led_color_unknown">Tundmatu</string>
     <string name="preferences__pref_led_blink_title">LEDi välkumismuster</string>
@@ -4289,12 +4271,10 @@
     <string name="preferences__system_default">Süsteemi vaikeväärtus</string>
     <string name="preferences__language">Keel</string>
     <string name="preferences__signal_messages_and_calls">Signali sõnumid ja kõned</string>
-    <string name="preferences__advanced_pin_settings">Täpsemad PINi seaded</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">Täpsemad PIN-koodi sätted</string>
     <string name="preferences__free_private_messages_and_calls">Tasuta privaatsõnumid ja kõned Signali kasutajatele</string>
     <string name="preferences__submit_debug_log">Saada silumislogi</string>
-    <string name="preferences__delete_account">Kustuta konto</string>
     <string name="preferences__support_wifi_calling">\"WiFi kõnede\" ühilduvusrežiim</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Luba, kui su seade kasutab SMS/MMS kohaletoimetamist üle WiFi (luba ainult siis, kui \"WiFi kõned\" on sinu seadmes lubatud)</string>
     <string name="preferences__incognito_keyboard">Inkognito klaviatuur</string>
@@ -4361,6 +4341,16 @@
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Väiksema andmemahu kasutamine võib kehvades võrkudes parendada kõnekvaliteeti.</string>
     <string name="preferences_notifications__in_chat_sounds">Vestlusesisesed helid</string>
     <string name="preferences_notifications__show">Kuva</string>
+    <!-- Preference item to set notification settings when chats are muted -->
+    <string name="preferences_notifications__while_muted">While muted</string>
+    <!-- Option in settings to turn on reaction notifications -->
+    <string name="preferences_notifications__reaction">Reaction notifications</string>
+    <!-- Body option in settings to turn on reaction notifications    -->
+    <string name="preferences_notifications__notify_reaction">Show notifications for reactions to messages you send</string>
+    <!-- Option in settings to turn on unread reminders -->
+    <string name="preferences_notifications__unread">Unread reminders</string>
+    <!-- Body option to turn on unread reminders -->
+    <string name="preferences_notifications__notify_unread">Occasionally notify when there are unread messages in muted chats</string>
     <string name="preferences_notifications__ringtone">Helin</string>
     <string name="preferences_chats__message_text_size">Sõnumi fondisuurus</string>
     <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
@@ -4888,8 +4878,6 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Sisesta PIN-kood, mille tegid enda konto jaoks. See erineb SMS-kontrollkoodist.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Sisesta PIN-kood, mille oled oma konto jaoks loonud.</string>
-    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
-    <string name="RegistrationLockFragment__switch_keyboard">Vaheta klaviatuuri</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Lubamatu PIN-kood. Proovi uuesti.</string>
     <string name="RegistrationLockFragment__forgot_pin">Unustasid PIN-koodi?</string>
     <string name="RegistrationLockFragment__incorrect_pin">Sobimatu PIN-kood</string>
@@ -4967,8 +4955,6 @@
     <!-- Text label button to skip restoring -->
     <string name="registration_activity__skip_restore">Jäta taastamine vahele</string>
     <string name="preferences_chats__chat_backups">Vestluste varukoopiad</string>
-    <string name="preferences_chats__transfer_account">Kanna konto üle</string>
-    <string name="preferences_chats__transfer_account_to_a_new_android_device">Kanna konto üle uude Android-seadmesse</string>
     <!-- Title for dialog to enter in the backup passphrase -->
     <string name="RegistrationActivity_enter_backup_passphrase">Sisesta varukoopia salasõna</string>
     <string name="RegistrationActivity_restore">Taasta</string>
@@ -5056,19 +5042,9 @@
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">Ekraaniluku ebaaktiivsuse ajalõpp</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
     <string name="preferences_app_protection__to_use_screen_lock">Ekraanilukustuse kasutamiseks seadista selles seadmes PIN-kood, muster või parool.</string>
-    <string name="preferences_app_protection__signal_pin">Signali PIN-kood</string>
-    <string name="preferences_app_protection__create_a_pin">Loo PIN-kood</string>
-    <string name="preferences_app_protection__change_your_pin">Muuda enda PIN-koodi</string>
-    <string name="preferences_app_protection__pin_reminders">PIN-koodi meeldetuletused</string>
-    <string name="preferences_app_protection__turn_off">Lülita välja</string>
-    <string name="preferences_app_protection__confirm_pin">Kinnita PIN-kood</string>
-    <string name="preferences_app_protection__confirm_your_signal_pin">Kinnita Signali PIN-kood</string>
-    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Jäta kindlasti meelde või salvesta PIN-kood turvaliselt, kuna seda pole võimalik taastada. Kui unustad PIN-koodi, võid Signali kontot uuesti registreerides enda andmed kaotada.</string>
-    <string name="preferences_app_protection__incorrect_pin_try_again">Lubamatu PIN-kood. Proovi uuesti.</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">Registreerimisluku lubamine ei õnnestunud.</string>
     <string name="preferences_app_protection__failed_to_disable_registration_lock">Registreerimisluku keelamine ei õnnestunud.</string>
     <string name="AppProtectionPreferenceFragment_none">Puudub</string>
-    <string name="preferences_app_protection__registration_lock">Registreerimislukk</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Sa pead sisestama oma registreerimisluku PIN-koodi</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Sinu PIN-koodil on vähemalt %1$d numbrit või tähemärki</string>
     <string name="RegistrationActivity_too_many_attempts">Liiga palju katseid</string>
@@ -5116,20 +5092,6 @@
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
     <string name="Recipient_deleted_account">Kustutatud konto</string>
 
-    <!-- Option in settings that will take use to re-register if they are no longer registered -->
-    <string name="preferences_account_reregister">Registreeri konto uuesti</string>
-    <!-- Option in settings that will take user to our website or playstore to update their expired build -->
-    <string name="preferences_account_update_signal">Uuenda Signalit</string>
-    <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
-    <string name="preferences_account_delete_all_data">Kustuta kõik andmed</string>
-    <!-- Title for confirmation dialog confirming user wants to delete all their data -->
-    <string name="preferences_account_delete_all_data_confirmation_title">Kas kustutada kõik andmed?</string>
-    <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_message">See lähtestab rakenduse ja kustutab kõik sõnumid. Rakendus sulgub pärast selle protsessi lõpuleviimist.</string>
-    <!-- Confirmation action to proceed with application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_proceed">Jätka</string>
-    <!-- Confirmation action to cancel application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_cancel">Loobu</string>
     <!-- Error message shown when we fail to delete the data for some unknown reason -->
     <string name="preferences_account_delete_all_data_failed">Andmete kustutamine nurjus</string>
 
@@ -5670,14 +5632,6 @@
     <!-- String displayed in a toast when a subscriber id is not present for a given type -->
     <string name="AppSettingsFragment__no_subscriber_id_set">Tellija ID-d pole määratud</string>
 
-    <!-- AccountSettingsFragment -->
-    <string name="AccountSettingsFragment__account">Konto</string>
-    <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Aja möödudes hakatakse seda sinult harvemini küsima</string>
-    <string name="AccountSettingsFragment__require_your_signal_pin">Nõua sinu telefoninumbri Signalis uuesti registreerimiseks Signali PIN-koodi.</string>
-    <string name="AccountSettingsFragment__change_phone_number">Muuda telefoninumbrit</string>
-    <!-- Account setting that allows user to request and export their signal account data -->
-    <string name="AccountSettingsFragment__request_account_data">Sinu konto andmed</string>
-
     <!-- ExportAccountDataFragment -->
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
     <string name="ExportAccountDataFragment__your_account_data">Sinu konto andmed</string>
@@ -5971,14 +5925,46 @@
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Sõnumid</string>
     <string name="NotificationsSettingsFragment__calls">Kõned</string>
-    <string name="NotificationsSettingsFragment__notify_when">Teavita kui…</string>
+    <!-- Notification header for sounds -->
+    <string name="NotificationsSettingsFragment__sounds">Sounds</string>
     <string name="NotificationsSettingsFragment__contact_joins_signal">Kontakt liitub Signaliga</string>
+    <!-- Notification body to get notified when someone joins Signal -->
+    <string name="NotificationsSettingsFragment__notify_contact">Show a notification when a phone contact joins Signal</string>
+    <!-- Option to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset">Reset notification settings</string>
+    <!-- Option body to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_notifications">Reset notification settings to default, including custom settings for your chats</string>
+    <!-- Dialog to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_body">Reset all notification settings to default for all chats?</string>
+    <!-- Confirmation button to reset dialog -->
+    <string name="NotificationsSettingsFragment__reset_confirm">Lähtesta</string>
     <!-- Notification preference header -->
     <string name="NotificationsSettingsFragment__notification_profiles">Teavitusprofiilid</string>
     <!-- Notification preference option header -->
     <string name="NotificationsSettingsFragment__profiles">Profiilid</string>
     <!-- Notification preference summary text -->
     <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Loo profiil, et saada teavitusi ainult oma valitud inimestelt ja gruppidelt.</string>
+
+    <!-- Header to describe screen that shows while muted settings -->
+    <string name="MutedNotificationsFragment__while">While muted</string>
+    <!-- Title for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls">Kõned</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body_global">Ring or notify when a call is started in muted chats.</string>
+    <!-- Title for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions">Mainimised</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body_global">Notify when you are mentioned in muted chats.</string>
+    <!-- Title for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies">Vastused</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body_global">Notify when someone replies to your message in muted chats.</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body">Ring or notify when a call is started while this chat is muted.</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body">Notify when you are mentioned while this chat is muted.</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body">Notify when someone replies to your message while this chat is muted.</string>
 
     <!-- NotificationProfilesFragment -->
     <!-- Title for notification profiles screen that shows all existing profiles; Title with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -6207,6 +6193,8 @@
     <string name="ConversationSettingsFragment__end_group">Lõpeta grupp</string>
     <!-- Banner shown at the top of group settings when the group has been ended -->
     <string name="ConversationSettingsFragment__this_group_was_ended">Grupp on lõppenud.</string>
+    <!-- Subhead under a legacy group\'s name, joining the member count and the "Legacy Group" label. %1$s is the member count, %2$s is the label -->
+    <string name="ConversationSettingsFragment__s_dot_s">%1$s · %2$s</string>
     <!-- Archive chat option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__archive_chat">Arhiveeri vestlus</string>
     <!-- Delete chat option in group conversation settings screen -->
@@ -6390,34 +6378,9 @@
     <!-- Positive dialog action when sending a story via an add to group story button -->
     <string name="MediaReviewFragment__add_to_story">Lisa loosse</string>
     <string name="MediaReviewFragment__add_a_message">Lisa sõnum</string>
-    <!-- Hint text inside of a compose box that is shown when the user is adding media while quoting a message. -->
-    <string name="MediaReviewFragment__add_a_reply">Lisa vastus</string>
     <string name="MediaReviewFragment__send_to">Vali saaja</string>
-    <string name="MediaReviewFragment__view_once_message">Ühekordselt vaadatav meediasisu</string>
-    <string name="MediaReviewFragment__one_or_more_items_were_too_large">Üks või mitu üksust olid liiga suured</string>
-    <string name="MediaReviewFragment__one_or_more_items_were_invalid">Üks või mitu üksust olid kehtetud</string>
-    <string name="MediaReviewFragment__too_many_items_selected">Liiga palju elemente valitud</string>
-    <string name="MediaReviewFragment__video_trimmed_to_fit">Sinu videot lühendati, et see mahuks suurusepiirangusse</string>
-    <!-- Small notification presented to the user when they set their video to view-once mode -->
-    <string name="MediaReviewFragment__video_set_to_view_once">Video on seadistatud üks kord vaatamiseks</string>
-    <!-- Small notification presented to the user when they set their photo to view-once mode -->
-    <string name="MediaReviewFragment__photo_set_to_view_once">Foto on seadistatud üks kord vaatamiseks</string>
-    <!-- Accessibility label describing the add media button on the Media review screen -->
-    <string name="MediaReviewFragment__add_media_accessibility_label">Lisa meedia</string>
-    <!-- Accessibility label describing the brush and pen button on the Media review screen -->
-    <string name="MediaReviewFragment__brush_pen_accessibility_label">Pintsel ja pliiats</string>
-    <!-- Accessibility label describing the crop and rotate button on the Media review screen -->
-    <string name="MediaReviewFragment__crop_rotate_accessibility_label">Lõika ja pööra</string>
-    <!-- Accessibility label describing the change media quality button on the Media review screen -->
-    <string name="MediaReviewFragment__change_media_quality_accessibility_label">Muuda meedia kvaliteeti</string>
-    <!-- Accessibility label describing the save media button on the Media review screen -->
-    <string name="MediaReviewFragment__save_media_accessibility_label">Salvesta meedia</string>
-    <!-- Accessibility label describing the toggle emoji keyboard button on the Media review screen -->
-    <string name="MediaReviewFragment__emoji_toggle_accessibility_label">Lülita emotikonide klaviatuur sisse/välja</string>
     <!-- Accessibility label describing the toggle view once button on the Media review screen -->
     <string name="MediaReviewFragment__view_once_toggle_accessibility_label">Lülita ühekordne vaatamine sisse/välja</string>
-    <!-- Accessibility label describing the send media button on the Media review screen -->
-    <string name="MediaReviewFragment__send_media_accessibility_label">Saada meedia</string>
     <!-- Accessibility label describing the finish adding a message button on the Media review screen dialog -->
     <string name="MediaReviewFragment__finish_adding_a_message_accessibility_label">Lõpeta sõnumi lisamine</string>
 
@@ -6437,27 +6400,9 @@
 
     <string name="MediaCountIndicatorButton__send">Saada</string>
 
-    <string name="MediaReviewSelectedItem__tap_to_remove">Klõpsa eemaldamiseks</string>
-    <string name="MediaReviewSelectedItem__tap_to_select">Koputa valimiseks</string>
-
     <string name="MediaReviewImagePageFragment__discard">Keeldu</string>
     <string name="MediaReviewImagePageFragment__discard_changes">Kas loobuda muudatustest?</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Sa kaotad kõik sellele fotole tehtud muudatused</string>
-
-    <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_title">Leitud kasutaja %1$s</string>
-    <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_body">Alusta vestlust kasutajaga %1$s</string>
-    <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
-    <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">Mine vestlusse</string>
-
-    <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_title">Kas linkida seade?</string>
-    <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_it_looks_like_youre_trying">Tundub, et üritad Signali seadet linkida. Toksa, et jätkata, seejärel toksa „Lingi uus seade“ ning skanni QR-kood uuesti.</string>
-    <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
-    <string name="MediaCaptureFragment_device_link_dialog_continue">Jätka</string>
-
 
     <string name="BadgesOverviewFragment__my_badges">Minu märgid</string>
     <string name="BadgesOverviewFragment__featured_badge">Esiletõstetud märk</string>
@@ -8714,13 +8659,6 @@
     <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">Grupp on lõppenud.</string>
     <!-- Body of bottom sheet shown when opening a terminated group -->
     <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">Sa ei saa enam selles grupis sõnumeid saada ega saata ega ka kõnesid teha.</string>
-
-    <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_title">Kustutamine on nüüd kõigi su seadmete üleselt sünkroniseeritud</string>
-    <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_message">Kui kustutad sõnumid või vestlused, kustutatakse need sinu telefonist ja lingitud seadmetest.</string>
-    <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_acknowledge_button">OK</string>
 
     <!-- NoManualBackupBottomSheet -->
     <!-- Title for bottom sheet, placeholder is number of days. -->

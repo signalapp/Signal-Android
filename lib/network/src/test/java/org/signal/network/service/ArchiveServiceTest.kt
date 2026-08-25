@@ -25,6 +25,8 @@ import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import org.signal.core.models.backup.MediaName
+import org.signal.core.models.backup.MediaRootBackupKey
+import org.signal.core.models.backup.MessageBackupKey
 import org.signal.libsignal.net.CopyBackupMediaOutcome
 import org.signal.libsignal.net.DeleteBackupMediaItem
 import org.signal.libsignal.net.MediaBackupInfo
@@ -94,33 +96,119 @@ class ArchiveServiceTest {
 
   // endregion
 
-  // region Failed zk derivation clears the credential caches, regardless of which request produced it
+  // region Failed zk derivation resets the initialized state of whichever archive it came from
 
   @Test
-  fun `zk verification failure on a downstream request clears both credential caches`() = runTest {
-    val store = storeWithCredentials()
+  fun `zk verification failure on a message request resets only the message initialized state`() = runTest {
+    val store = storeWithCredentials(cachedMediaCdnPath = "dir/media")
 
-    // libsignal surfaces a failed derivation as an ApplicationError, from any anonymous endpoint.
+    // libsignal surfaces a failed derivation as an ApplicationError, from any anonymous endpoint. This one is the message credential.
     coEvery { archiveApi.getSvrBAuthorization(any(), any()) } returns RequestResult.ApplicationError(VerificationFailedException())
 
     val result = serviceFor(store).getSvrBAuth()
 
-    assertThat(result.error()).isInstanceOf(ArchiveError.CredentialError.ZkVerificationFailed::class)
+    val error = result.error()
+    assertThat(error).isInstanceOf(ArchiveError.CredentialError.ZkVerificationFailed::class)
+    assertThat((error as ArchiveError.CredentialError.ZkVerificationFailed).credentialType).isEqualTo(ArchiveService.CredentialType.MESSAGE)
+
+    // Re-fetching can only produce another credential issued against the stale backupId, so the initialized state has to go too, or the next call fails the same
+    // way forever.
+    assertThat(store.messageBackupInitialized).isFalse()
     assertThat(store.messageCredentials.isEmpty).isTrue()
-    assertThat(store.mediaCredentials.isEmpty).isTrue()
+
+    // The media backupId is derived from an independent key, so it's still good.
+    assertThat(store.mediaBackupInitialized).isTrue()
+    assertThat(store.mediaCredentials.isEmpty).isFalse()
+    assertThat(store.cachedMediaCdnPath).isEqualTo("dir/media")
   }
 
   @Test
-  fun `zk verification failure while deriving the backup level clears both credential caches`() = runTest {
-    val store = storeWithCredentials()
+  fun `zk verification failure on a media request resets only the media initialized state`() = runTest {
+    val store = storeWithCredentials(cachedMediaCdnPath = "dir/media")
+
+    coEvery { archiveApi.copyMediaToArchive(any(), any(), any()) } returns RequestResult.ApplicationError(VerificationFailedException())
+
+    val result = serviceFor(store).copyToArchive(2, "location", 100, MediaName("name"))
+
+    val error = result.error()
+    assertThat(error).isInstanceOf(ArchiveError.CredentialError.ZkVerificationFailed::class)
+    assertThat((error as ArchiveError.CredentialError.ZkVerificationFailed).credentialType).isEqualTo(ArchiveService.CredentialType.MEDIA)
+
+    assertThat(store.mediaBackupInitialized).isFalse()
+    assertThat(store.mediaCredentials.isEmpty).isTrue()
+    assertThat(store.cachedMediaCdnPath).isNull()
+
+    assertThat(store.messageBackupInitialized).isTrue()
+    assertThat(store.messageCredentials.isEmpty).isFalse()
+  }
+
+  @Test
+  fun `zk verification failure while deriving the backup level resets the message initialized state`() = runTest {
+    val store = storeWithCredentials(cachedMediaCdnPath = "dir/media")
 
     every { archiveApi.getZkCredential(any(), any()) } returns ArchiveApiV2.ZkCredentialResult.Failure.VerificationFailed(VerificationFailedException())
 
     val result = serviceFor(store).getBackupLevel()
 
+    // The level is read off the message credential, so that's the only side implicated.
     assertThat(result.error()).isInstanceOf(ArchiveError.CredentialError.ZkVerificationFailed::class)
+    assertThat(store.messageBackupInitialized).isFalse()
     assertThat(store.messageCredentials.isEmpty).isTrue()
-    assertThat(store.mediaCredentials.isEmpty).isTrue()
+    assertThat(store.mediaBackupInitialized).isTrue()
+    assertThat(store.cachedMediaCdnPath).isEqualTo("dir/media")
+  }
+
+  @Test
+  fun `zk verification failure while checking the backup level without downgrade leaves local state alone`() = runTest {
+    val store = storeWithCredentials(cachedMediaCdnPath = "dir/media")
+
+    every { archiveApi.getZkCredential(any(), any()) } returns ArchiveApiV2.ZkCredentialResult.Failure.VerificationFailed(VerificationFailedException())
+
+    val result = serviceFor(store).getBackupLevelWithoutDowngrade()
+
+    // This check exists to run periodically without changing anything, so it's exempt from the healing every other path gets.
+    assertThat(result.error()).isInstanceOf(ArchiveError.CredentialError.ZkVerificationFailed::class)
+    assertThat(store.messageBackupInitialized).isTrue()
+    assertThat(store.mediaBackupInitialized).isTrue()
+    assertThat(store.messageCredentials.isEmpty).isFalse()
+    assertThat(store.cachedMediaCdnPath).isEqualTo("dir/media")
+  }
+
+  @Test
+  fun `zk verification failure for a caller-supplied key leaves initialized state alone`() = runTest {
+    val store = storeWithCredentials(cachedMediaCdnPath = "dir/media")
+    val startOfDay = System.currentTimeMillis().milliseconds.inWholeDays.days.inWholeSeconds
+
+    coEvery { archiveApi.getServiceCredentials(any()) } returns RequestResult.Success(
+      ArchiveApiV2.ArchiveCredentials(
+        messageCredentials = listOf(credential(redemptionTime = startOfDay)),
+        mediaCredentials = emptyList()
+      )
+    )
+    coEvery { archiveApi.getMessageBackupInfo(any(), any()) } returns RequestResult.ApplicationError(VerificationFailedException())
+
+    val result = serviceFor(store).getMessageBackupInfoForKey(store.aci, MessageBackupKey(ByteArray(32) { 9 }))
+
+    // The key came from the caller, so a failure here says that key doesn't belong to the account. Re-committing our own backupId over it could strand the very
+    // backup the caller was reaching for.
+    assertThat(result.error()).isInstanceOf(ArchiveError.CredentialError.ZkVerificationFailed::class)
+    assertThat(store.messageBackupInitialized).isTrue()
+    assertThat(store.mediaBackupInitialized).isTrue()
+    assertThat(store.cachedMediaCdnPath).isEqualTo("dir/media")
+  }
+
+  @Test
+  fun `zk verification failure during pre-restore leaves initialized state alone`() = runTest {
+    val store = storeWithCredentials(isPreRestoreDuringRegistration = true)
+
+    coEvery { archiveApi.getSvrBAuthorization(any(), any()) } returns RequestResult.ApplicationError(VerificationFailedException())
+
+    val result = serviceFor(store).getSvrBAuth()
+
+    // The stored key isn't necessarily the one the backup belongs to until restore finishes, so registration heals this itself.
+    assertThat(result.error()).isInstanceOf(ArchiveError.CredentialError.ZkVerificationFailed::class)
+    assertThat(store.messageBackupInitialized).isTrue()
+    assertThat(store.messageCredentials.isEmpty).isFalse()
   }
 
   // endregion
@@ -135,8 +223,10 @@ class ArchiveServiceTest {
 
     val result = serviceFor(store).getArchiveServiceAccess()
 
+    // Our account auth was rejected rather than one archive's credential, so there's nothing to scope the cleanup to.
     assertThat(result.error()).isInstanceOf(ArchiveError.CredentialError.Unauthorized::class)
-    assertThat(store.backupsInitialized).isFalse()
+    assertThat(store.messageBackupInitialized).isFalse()
+    assertThat(store.mediaBackupInitialized).isFalse()
     assertThat(store.messageCredentials.isEmpty).isTrue()
     assertThat(store.mediaCredentials.isEmpty).isTrue()
     assertThat(store.cachedMediaCdnPath).isNull()
@@ -145,7 +235,8 @@ class ArchiveServiceTest {
   @Test
   fun `unauthorized while fetching service credentials during pre-restore leaves local state alone`() = runTest {
     val store = FakeArchiveCacheStore(
-      backupsInitialized = false,
+      messageBackupInitialized = false,
+      mediaBackupInitialized = false,
       isPreRestoreDuringRegistration = true,
       cachedMediaCdnPath = "dir/media"
     )
@@ -160,18 +251,21 @@ class ArchiveServiceTest {
   }
 
   @Test
-  fun `unauthorized while using an established credential resets initialized state and caches`() = runTest {
+  fun `unauthorized while using an established message credential resets only the message initialized state`() = runTest {
     val store = storeWithCredentials(cachedMediaCdnPath = "dir/media")
 
     coEvery { archiveApi.getSvrBAuthorization(any(), any()) } returns RequestResult.NonSuccess(RequestUnauthorizedException("nope"))
 
     val result = serviceFor(store).getSvrBAuth()
 
-    assertThat(result.error()).isInstanceOf(ArchiveError.CredentialError.Unauthorized::class)
-    assertThat(store.backupsInitialized).isFalse()
+    val error = result.error()
+    assertThat(error).isInstanceOf(ArchiveError.CredentialError.Unauthorized::class)
+    assertThat((error as ArchiveError.CredentialError.Unauthorized).credentialType).isEqualTo(ArchiveService.CredentialType.MESSAGE)
+    assertThat(store.messageBackupInitialized).isFalse()
     assertThat(store.messageCredentials.isEmpty).isTrue()
-    assertThat(store.mediaCredentials.isEmpty).isTrue()
-    assertThat(store.cachedMediaCdnPath).isNull()
+    assertThat(store.mediaBackupInitialized).isTrue()
+    assertThat(store.mediaCredentials.isEmpty).isFalse()
+    assertThat(store.cachedMediaCdnPath).isEqualTo("dir/media")
   }
 
   @Test
@@ -186,7 +280,8 @@ class ArchiveServiceTest {
 
     // This read exists to discover whether a backup exists at all, and the server can't distinguish a bad credential from an unprovisioned backupId. Callers read
     // a rejection here as "backups aren't set up", so it must not look like our credential went bad.
-    assertThat(store.backupsInitialized).isTrue()
+    assertThat(store.messageBackupInitialized).isTrue()
+    assertThat(store.mediaBackupInitialized).isTrue()
     assertThat(store.messageCredentials.isEmpty).isFalse()
     assertThat(store.cachedMediaCdnPath).isEqualTo("dir/media")
   }
@@ -202,12 +297,13 @@ class ArchiveServiceTest {
     val result = serviceFor(store).getBackupLevelWithoutDowngrade()
 
     assertThat(result.error()).isInstanceOf(ArchiveError.CredentialError.Unauthorized::class)
-    assertThat(store.backupsInitialized).isTrue()
+    assertThat(store.messageBackupInitialized).isTrue()
+    assertThat(store.mediaBackupInitialized).isTrue()
     assertThat(store.cachedMediaCdnPath).isEqualTo("dir/media")
   }
 
   @Test
-  fun `unauthorized while copying media resets initialized state and caches`() = runTest {
+  fun `unauthorized while copying media resets only the media initialized state`() = runTest {
     val store = storeWithCredentials(cachedMediaCdnPath = "dir/media")
 
     coEvery { archiveApi.copyMediaToArchive(any(), any(), any()) } returns RequestResult.NonSuccess(RequestUnauthorizedException("nope"))
@@ -215,8 +311,10 @@ class ArchiveServiceTest {
     val result = serviceFor(store).copyToArchive(2, "location", 100, MediaName("name"))
 
     assertThat(result.error()).isInstanceOf(ArchiveError.CredentialError.Unauthorized::class)
-    assertThat(store.backupsInitialized).isFalse()
+    assertThat(store.mediaBackupInitialized).isFalse()
     assertThat(store.cachedMediaCdnPath).isNull()
+    assertThat(store.messageBackupInitialized).isTrue()
+    assertThat(store.messageCredentials.isEmpty).isFalse()
   }
 
   @Test
@@ -228,7 +326,8 @@ class ArchiveServiceTest {
     val result = serviceFor(store).getSvrBAuth()
 
     assertThat(result.error()).isInstanceOf(ArchiveError.NetworkError::class)
-    assertThat(store.backupsInitialized).isTrue()
+    assertThat(store.messageBackupInitialized).isTrue()
+    assertThat(store.mediaBackupInitialized).isTrue()
     assertThat(store.messageCredentials.isEmpty).isFalse()
     assertThat(store.mediaCredentials.isEmpty).isFalse()
     assertThat(store.cachedMediaCdnPath).isEqualTo("dir/media")
@@ -332,7 +431,7 @@ class ArchiveServiceTest {
 
   @Test
   fun `uninitialized account reserves the backupId, sets both public keys, and marks initialized`() = runTest {
-    val store = FakeArchiveCacheStore(backupsInitialized = false)
+    val store = FakeArchiveCacheStore(messageBackupInitialized = false, mediaBackupInitialized = false)
 
     coEvery { archiveApi.triggerBackupIdReservation(any(), any(), any()) } returns RequestResult.Success(Unit)
     coEvery { archiveApi.getServiceCredentials(any()) } returns RequestResult.Success(
@@ -343,7 +442,8 @@ class ArchiveServiceTest {
     val result = serviceFor(store).getArchiveServiceAccess()
 
     assertThat(result.isRight()).isTrue()
-    assertThat(store.backupsInitialized).isTrue()
+    assertThat(store.messageBackupInitialized).isTrue()
+    assertThat(store.mediaBackupInitialized).isTrue()
     coVerifyOrder {
       archiveApi.triggerBackupIdReservation(store.messageBackupKey, store.mediaRootBackupKey, store.aci)
       archiveApi.getServiceCredentials(any())
@@ -355,7 +455,7 @@ class ArchiveServiceTest {
 
   @Test
   fun `a failure while setting the public key does not mark backups initialized`() = runTest {
-    val store = FakeArchiveCacheStore(backupsInitialized = false)
+    val store = FakeArchiveCacheStore(messageBackupInitialized = false, mediaBackupInitialized = false)
 
     coEvery { archiveApi.triggerBackupIdReservation(any(), any(), any()) } returns RequestResult.Success(Unit)
     coEvery { archiveApi.getServiceCredentials(any()) } returns RequestResult.Success(
@@ -366,7 +466,46 @@ class ArchiveServiceTest {
     val result = serviceFor(store).getArchiveServiceAccess()
 
     assertThat(result.error()).isInstanceOf(ArchiveError.CredentialError.Unauthorized::class)
-    assertThat(store.backupsInitialized).isFalse()
+    assertThat(store.messageBackupInitialized).isFalse()
+    assertThat(store.mediaBackupInitialized).isFalse()
+  }
+
+  @Test
+  fun `an account that only needs media initialization reserves just the media key`() = runTest {
+    val store = FakeArchiveCacheStore(messageBackupInitialized = true, mediaBackupInitialized = false)
+
+    coEvery { archiveApi.triggerBackupIdReservation(any(), any(), any()) } returns RequestResult.Success(Unit)
+    coEvery { archiveApi.getServiceCredentials(any()) } returns RequestResult.Success(
+      ArchiveApiV2.ArchiveCredentials(listOf(credential()), listOf(credential()))
+    )
+    coEvery { archiveApi.setPublicKey(any(), any()) } returns RequestResult.Success(Unit)
+
+    val result = serviceFor(store).getArchiveServiceAccess()
+
+    assertThat(result.isRight()).isTrue()
+    assertThat(store.mediaBackupInitialized).isTrue()
+
+    coVerify(exactly = 1) { archiveApi.triggerBackupIdReservation(null, store.mediaRootBackupKey, store.aci) }
+    coVerify(exactly = 1) { archiveApi.setPublicKey(any(), any()) }
+  }
+
+  @Test
+  fun `a media failure during initialization keeps the message side initialized`() = runTest {
+    val store = FakeArchiveCacheStore(messageBackupInitialized = false, mediaBackupInitialized = false)
+
+    coEvery { archiveApi.triggerBackupIdReservation(any(), any(), any()) } returns RequestResult.Success(Unit)
+    coEvery { archiveApi.getServiceCredentials(any()) } returns RequestResult.Success(
+      ArchiveApiV2.ArchiveCredentials(listOf(credential()), listOf(credential()))
+    )
+    coEvery { archiveApi.setPublicKey(any(), match { it.backupKey is MessageBackupKey }) } returns RequestResult.Success(Unit)
+    coEvery { archiveApi.setPublicKey(any(), match { it.backupKey is MediaRootBackupKey }) } returns RequestResult.RetryableNetworkError(IOException("down"))
+
+    val result = serviceFor(store).getArchiveServiceAccess()
+
+    // The retry has only the media side left to do.
+    assertThat(result.error()).isInstanceOf(ArchiveError.NetworkError::class)
+    assertThat(store.messageBackupInitialized).isTrue()
+    assertThat(store.mediaBackupInitialized).isFalse()
   }
 
   @Test
@@ -443,7 +582,8 @@ class ArchiveServiceTest {
 
     assertThat(result.error()).isInstanceOf(ArchiveError.CredentialError.Unauthorized::class)
     assertThat(store.mediaCredentials.isEmpty).isTrue()
-    assertThat(store.backupsInitialized).isFalse()
+    assertThat(store.mediaBackupInitialized).isFalse()
+    assertThat(store.messageBackupInitialized).isTrue()
     assertThat(store.notEntitledCount).isEqualTo(0)
   }
 
@@ -679,8 +819,8 @@ class ArchiveServiceTest {
 
   // region Helpers
 
-  private fun storeWithCredentials(cachedMediaCdnPath: String? = null): FakeArchiveCacheStore {
-    return FakeArchiveCacheStore(cachedMediaCdnPath = cachedMediaCdnPath).apply {
+  private fun storeWithCredentials(cachedMediaCdnPath: String? = null, isPreRestoreDuringRegistration: Boolean = false): FakeArchiveCacheStore {
+    return FakeArchiveCacheStore(cachedMediaCdnPath = cachedMediaCdnPath, isPreRestoreDuringRegistration = isPreRestoreDuringRegistration).apply {
       messageCredentials.add(listOf(credential()))
       mediaCredentials.add(listOf(credential()))
     }

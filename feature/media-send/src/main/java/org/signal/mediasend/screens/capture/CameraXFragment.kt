@@ -18,6 +18,7 @@ import android.system.Os
 import android.system.OsConstants
 import android.widget.Toast
 import androidx.camera.core.CameraSelector
+import androidx.camera.viewfinder.core.ImplementationMode
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
@@ -461,7 +462,8 @@ fun CameraXScreen(
   onCheckPermissions: () -> Unit,
   hasCameraPermission: () -> Boolean,
   onRequestMicPermission: () -> Unit,
-  storiesEnabled: Boolean = CameraDependencies.isStoriesFeatureEnabled()
+  storiesEnabled: Boolean = CameraDependencies.isStoriesFeatureEnabled(),
+  implementationMode: ImplementationMode = ImplementationMode.EXTERNAL
 ) {
   val context = LocalContext.current
 
@@ -634,6 +636,7 @@ fun CameraXScreen(
         captureMode = captureMode,
         enableQrScanning = state.isQrScanEnabled,
         landscape = cameraState.isLandscape,
+        implementationMode = implementationMode,
         modifier = Modifier.padding(bottom = viewportBottomMargin)
       ) {
         if (isPortraitPhone) {

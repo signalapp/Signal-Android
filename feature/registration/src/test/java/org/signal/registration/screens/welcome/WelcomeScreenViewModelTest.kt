@@ -6,6 +6,7 @@
 package org.signal.registration.screens.welcome
 
 import assertk.assertThat
+import assertk.assertions.containsExactly
 import assertk.assertions.isEqualTo
 import assertk.assertions.isFalse
 import assertk.assertions.isInstanceOf
@@ -16,8 +17,11 @@ import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
+import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.After
 import org.junit.Before
@@ -152,6 +156,22 @@ class WelcomeScreenViewModelTest {
       .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
       .prop(RegistrationFlowEvent.NavigateToScreen::route)
       .isInstanceOf<RegistrationRoute.AllowNotifications>()
+  }
+
+  @Test
+  fun `ViewTermsAndPrivacy emits an action to open the terms and privacy page`() = runTest(testDispatcher) {
+    val viewModel = createViewModel()
+    val actions = collectActions(viewModel)
+
+    viewModel.applyEvent(WelcomeScreenState(), WelcomeScreenEvents.ViewTermsAndPrivacy, parentEventEmitter, stateEmitter)
+
+    assertThat(actions).containsExactly(WelcomeScreenActions.ViewTermsAndPrivacy)
+  }
+
+  private fun TestScope.collectActions(viewModel: WelcomeScreenViewModel): List<WelcomeScreenActions> {
+    val actions = mutableListOf<WelcomeScreenActions>()
+    backgroundScope.launch(testDispatcher) { viewModel.actions.collect { actions.add(it) } }
+    return actions
   }
 
   private fun createViewModel(

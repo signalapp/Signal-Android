@@ -49,6 +49,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.runJobBlocking
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob
 import org.thoughtcrime.securesms.jobs.PreKeysSyncJob
+import org.thoughtcrime.securesms.jobs.ReclaimUsernameAndLinkJob
 import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob
 import org.thoughtcrime.securesms.jobs.RotateCertificateJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -93,6 +94,7 @@ class AppRegistrationStorageControllerTest {
   private val pniSignedPreKey = PreKeyUtil.generateSignedPreKey(12, pniIdentity.privateKey)
   private val aciLastResortKyberPreKey = PreKeyUtil.generateLastResortKyberPreKey(21, aciIdentity.privateKey)
   private val pniLastResortKyberPreKey = PreKeyUtil.generateLastResortKyberPreKey(22, pniIdentity.privateKey)
+  private val authCredentialSalt = byteArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16)
 
   private val blobData = mutableMapOf<Uri, ByteArray>()
   private var blobCounter = 0
@@ -146,6 +148,7 @@ class AppRegistrationStorageControllerTest {
     assertThat(SignalStore.account.pniIdentityKey.serialize()).isEqualTo(pniIdentity.serialize())
     assertThat(SignalStore.account.accountEntropyPool.value).isEqualTo(aep.value)
     assertThat(SignalStore.account.restoredAccountEntropyPool).isTrue()
+    assertThat(SignalStore.account.authCredentialSalt).isNotNull().isEqualTo(authCredentialSalt)
 
     assertThat(SignalStore.account.aciPreKeys.isSignedPreKeyRegistered).isTrue()
     assertThat(SignalStore.account.aciPreKeys.activeSignedPreKeyId).isEqualTo(11)
@@ -294,6 +297,67 @@ class AppRegistrationStorageControllerTest {
     controller.commitRegistrationData()
 
     assertThat(SignalStore.backup.backupSecretRestoreRequired).isFalse()
+  }
+
+  @Test
+  fun `commit - re-registration - flags that the username needs to be reclaimed`() = runBlocking<Unit> {
+    seedInProgressData(
+      RegistrationData(
+        accountData = accountData(reRegistration = true),
+        accountEntropyPool = aep.value
+      )
+    )
+
+    controller.commitRegistrationData()
+
+    assertThat(SignalStore.misc.needsUsernameRestore).isTrue()
+  }
+
+  @Test
+  fun `commit - new account - does not flag that the username needs to be reclaimed`() = runBlocking<Unit> {
+    seedInProgressData(
+      RegistrationData(
+        accountData = accountData(reRegistration = false),
+        accountEntropyPool = aep.value
+      )
+    )
+
+    controller.commitRegistrationData()
+
+    assertThat(SignalStore.misc.needsUsernameRestore).isFalse()
+  }
+
+  @Test
+  fun `onRegistrationFlowFinished - username reclaim pending - enqueues reclaim job`() = runBlocking<Unit> {
+    SignalStore.misc.needsUsernameRestore = true
+
+    controller.onRegistrationFlowFinished()
+
+    verify { AppDependencies.jobManager.add(ofType<ReclaimUsernameAndLinkJob>()) }
+  }
+
+  @Test
+  fun `onRegistrationFlowFinished - no username reclaim pending - does not enqueue reclaim job`() = runBlocking<Unit> {
+    SignalStore.misc.needsUsernameRestore = false
+
+    controller.onRegistrationFlowFinished()
+
+    verify(exactly = 0) { AppDependencies.jobManager.add(ofType<ReclaimUsernameAndLinkJob>()) }
+  }
+
+  @Test
+  fun `re-registration - commit then flow finished - enqueues reclaim job`() = runBlocking<Unit> {
+    seedInProgressData(
+      RegistrationData(
+        accountData = accountData(reRegistration = true),
+        accountEntropyPool = aep.value
+      )
+    )
+
+    controller.commitRegistrationData()
+    controller.onRegistrationFlowFinished()
+
+    verify { AppDependencies.jobManager.add(ofType<ReclaimUsernameAndLinkJob>()) }
   }
 
   @Test
@@ -477,7 +541,8 @@ class AppRegistrationStorageControllerTest {
       e164 = E164,
       servicePassword = servicePassword,
       linkedDeviceData = linkedDeviceData,
-      reRegistration = reRegistration
+      reRegistration = reRegistration,
+      authCredentialSalt = authCredentialSalt.toByteString()
     )
   }
 }

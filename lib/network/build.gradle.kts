@@ -48,6 +48,7 @@ dependencies {
 
   implementation(libs.libsignal.client)
   api(libs.square.okio)
+  implementation(libs.square.okhttp3.coroutines)
 
   api(libs.rxjava3.rxjava)
 

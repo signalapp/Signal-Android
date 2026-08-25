@@ -105,7 +105,6 @@ import org.thoughtcrime.securesms.banner.banners.UnauthorizedBanner;
 import org.thoughtcrime.securesms.banner.banners.UsernameOutOfSyncBanner;
 import org.thoughtcrime.securesms.components.RatingManager;
 import org.thoughtcrime.securesms.components.SignalProgressDialog;
-import org.thoughtcrime.securesms.components.compose.DeleteSyncEducationDialog;
 import org.thoughtcrime.securesms.components.menu.ActionItem;
 import org.thoughtcrime.securesms.components.menu.SignalBottomActionBar;
 import org.thoughtcrime.securesms.components.menu.SignalContextMenu;
@@ -836,10 +835,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
         new UnauthorizedBanner(requireContext()),
         new ServiceOutageBanner(requireContext()),
         new OutdatedBuildBanner(),
-        new DozeBanner(requireContext(), () -> {
-          bannerManager.updateContent(bannerView.get());
-          return Unit.INSTANCE;
-        }),
+        new DozeBanner(requireContext()),
         new CdsTemporaryErrorBanner(getChildFragmentManager()),
         new CdsPermanentErrorBanner(getChildFragmentManager()),
         new UsernameOutOfSyncBanner((usernameSyncState) -> {
@@ -1194,15 +1190,6 @@ public class ConversationListFragment extends MainFragment implements Conversati
 
   @SuppressLint("StaticFieldLeak")
   private void handleDelete(@NonNull Collection<Long> ids, boolean containsActiveGroup) {
-    if (DeleteSyncEducationDialog.shouldShow()) {
-      lifecycleDisposable.add(
-          DeleteSyncEducationDialog.show(getChildFragmentManager())
-                                   .subscribe(() -> handleDelete(ids, containsActiveGroup))
-      );
-
-      return;
-    }
-
     int                        conversationsCount = ids.size();
     MaterialAlertDialogBuilder alert              = new MaterialAlertDialogBuilder(requireActivity());
     Context                    context            = requireContext();

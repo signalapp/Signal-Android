@@ -157,13 +157,36 @@ class ArchiveThumbnailUploadJob private constructor(
       return Result.success()
     }
 
-    // TODO [backups] Determine if we actually need to upload or are reusing a thumbnail from another attachment
+    val alreadyArchived = SignalDatabase.attachments.getArchiveThumbnailTransferState(attachmentId) == AttachmentTable.ArchiveTransferState.FINISHED
+
+    // Attachments sharing a mediaName are enqueued individually, but finalizing fills in the whole group, so by now a sibling may have done the work for us.
+    if (alreadyArchived && SignalDatabase.attachments.hasThumbnailFile(attachmentId)) {
+      Log.i(TAG, "[$attachmentId] Thumbnail is already archived and present locally. Nothing to do.")
+      return Result.success()
+    }
 
     val thumbnailResult = generateThumbnailIfPossible(attachment)
     if (thumbnailResult == null) {
       Log.w(TAG, "Unable to generate a thumbnail result for $attachmentId")
       ArchiveDatabaseExecutor.runBlocking {
-        SignalDatabase.attachments.setArchiveThumbnailTransferState(attachmentId, AttachmentTable.ArchiveTransferState.PERMANENT_FAILURE)
+        if (alreadyArchived) {
+          SignalDatabase.attachments.markThumbnailPermanentlyFailedIfUnrestorable(attachmentId)
+        } else {
+          SignalDatabase.attachments.setArchiveThumbnailTransferState(attachmentId, AttachmentTable.ArchiveTransferState.PERMANENT_FAILURE)
+        }
+      }
+      return Result.success()
+    }
+
+    if (alreadyArchived) {
+      Log.i(TAG, "[$attachmentId] Thumbnail is already on the archive CDN. Saving the generated copy locally rather than uploading it again.")
+      ArchiveDatabaseExecutor.runBlocking {
+        SignalDatabase.attachments.finalizeAttachmentThumbnailAfterUpload(
+          attachmentId = attachmentId,
+          attachmentPlaintextHash = attachment.dataHash,
+          attachmentRemoteKey = attachment.remoteKey,
+          data = thumbnailResult.data
+        )
       }
       return Result.success()
     }
@@ -306,6 +329,11 @@ class ArchiveThumbnailUploadJob private constructor(
   }
 
   override fun onFailure() {
+    if (SignalDatabase.attachments.getArchiveThumbnailTransferState(attachmentId) == AttachmentTable.ArchiveTransferState.FINISHED) {
+      Log.w(TAG, "[$attachmentId] Job didn't finish, but the thumbnail is already archived. Leaving the transfer state alone so we don't re-upload it.")
+      return
+    }
+
     if (this.isCanceled) {
       Log.w(TAG, "[$attachmentId] Job was canceled, updating archive thumbnail transfer state to ${AttachmentTable.ArchiveTransferState.NONE}.")
       ArchiveDatabaseExecutor.runBlocking {

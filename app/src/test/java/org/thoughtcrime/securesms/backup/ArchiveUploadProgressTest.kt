@@ -365,18 +365,44 @@ class ArchiveUploadProgressTest {
     assertThat(state.mediaUploadedBytes).isEqualTo(0L)
   }
 
+  /**
+   * A backup exports before its media finishes uploading, so that file can carry empty CDNs. The follow-up export is what keeps it from staying that way, and
+   * reaching the media phase from [State.UploadBackupFile] is what identifies a backup as the cause.
+   */
   @Test
-  fun `progress flow - completes when no pending bytes remain`() {
-    setUploadProgress(ArchiveUploadProgressState(state = State.UploadMedia, mediaTotalBytes = 1000, mediaUploadedBytes = 0))
+  fun `progress flow - enqueues another backup when media upload followed a backup file upload`() {
+    setUploadProgress(ArchiveUploadProgressState(state = State.UploadBackupFile, backupFileTotalBytes = 500))
     backsUpMedia = true
-    pendingArchiveUploadBytes = 0
+    pendingArchiveUploadBytes = 1000
+    ArchiveUploadProgress.onAttachmentSectionStarted(totalAttachmentBytes = 1000)
 
+    pendingArchiveUploadBytes = 0
     ArchiveUploadProgress.triggerUpdate()
 
     val state = awaitUploadProgress { it.state == State.None }
     assertThat(state.mediaUploadedBytes).isEqualTo(1000L)
     verify { backup.finishedInitialBackup = true }
-    verify { BackupMessagesJob.enqueue() }
+    verify(exactly = 1) { BackupMessagesJob.enqueue() }
+  }
+
+  /**
+   * A reconciliation repair enqueues the backfill directly, so the media phase begins from [State.None] with no backup in flight. There is no new backup file
+   * whose CDNs could be missing, so chaining an export would re-upload the whole database for nothing.
+   */
+  @Test
+  fun `progress flow - completes without another backup when media upload began with no backup in flight`() {
+    setUploadProgress(ArchiveUploadProgressState(state = State.None))
+    backsUpMedia = true
+    pendingArchiveUploadBytes = 1000
+    ArchiveUploadProgress.onAttachmentSectionStarted(totalAttachmentBytes = 1000)
+
+    pendingArchiveUploadBytes = 0
+    ArchiveUploadProgress.triggerUpdate()
+
+    val state = awaitUploadProgress { it.state == State.None }
+    assertThat(state.mediaUploadedBytes).isEqualTo(1000L)
+    verify { backup.finishedInitialBackup = true }
+    verify(exactly = 0) { BackupMessagesJob.enqueue() }
   }
 
   @Test

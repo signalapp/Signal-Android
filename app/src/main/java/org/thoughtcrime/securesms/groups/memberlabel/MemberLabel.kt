@@ -9,7 +9,7 @@ import androidx.annotation.ColorInt
 import org.signal.core.util.BidiUtil
 import org.signal.core.util.BreakIteratorCompat
 import org.signal.core.util.StringUtil
-import org.thoughtcrime.securesms.components.emoji.EmojiUtil
+import org.signal.emoji.EmojiUtil
 import org.thoughtcrime.securesms.conversation.colors.NameColor
 import org.thoughtcrime.securesms.recipients.Recipient
 

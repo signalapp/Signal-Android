@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePayComponent
 import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePayRepository
 import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsNavHostFragment
+import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsNavHostFragment.Companion.setConversationSettingsAnimations
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner
 import org.thoughtcrime.securesms.conversation.ConversationIntents
@@ -153,6 +154,7 @@ open class ConversationActivity : PassphraseRequiredActivity(), VoiceNoteMediaCo
           val args = ConversationSettingsNavHostFragment.createArgs(location.recipientId)
           supportFragmentManager
             .beginTransaction()
+            .setConversationSettingsAnimations()
             .replace(R.id.fragment_container, ConversationSettingsNavHostFragment::class.java, args)
             .addToBackStack(null)
             .commit()

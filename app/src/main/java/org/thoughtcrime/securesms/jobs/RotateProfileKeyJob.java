@@ -3,14 +3,17 @@ package org.thoughtcrime.securesms.jobs;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.signal.core.util.logging.Log;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
 public class RotateProfileKeyJob extends BaseJob {
+
+  private static final String TAG = Log.tag(RotateProfileKeyJob.class);
 
   public static String KEY = "RotateProfileKeyJob";
 
@@ -37,9 +40,15 @@ public class RotateProfileKeyJob extends BaseJob {
 
   @Override
   public void onRun() {
+    if (SignalStore.account().isLinkedDevice()) {
+      Log.i(TAG, "Linked device, skipping.");
+      return;
+    }
+
     ProfileKey newProfileKey = ProfileKeyUtil.createNew();
     Recipient  self          = Recipient.self();
 
+    SignalStore.account().setNotSyncedRotatedSelfProfileKey(newProfileKey.serialize());
     SignalDatabase.recipients().setProfileKey(self.getId(), newProfileKey);
   }
 

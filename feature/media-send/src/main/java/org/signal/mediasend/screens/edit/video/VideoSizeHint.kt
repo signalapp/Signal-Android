@@ -14,9 +14,9 @@ import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.util.bytes
 import org.signal.mediasend.MediaConstraints
+import org.signal.mediasend.util.formatAsClock
 import org.thoughtcrime.securesms.video.TranscodingConfig
 import org.thoughtcrime.securesms.video.TranscodingQuality
-import java.util.Locale
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
@@ -39,10 +39,9 @@ internal fun VideoSizeHint(
 
   // A trim drag emits a flood of recompositions, and formatting is the only work that has to follow each one.
   val text = remember(transcodingTiers, duration) {
-    val seconds = duration.inWholeSeconds
     val byteCountEstimate = TranscodingQuality.createFromQualityTiers(transcodingTiers, duration.inWholeMilliseconds).byteCountEstimate
 
-    String.format(Locale.getDefault(), "%d:%02d • %s", seconds / 60, seconds % 60, byteCountEstimate.bytes.toUnitString())
+    "${duration.formatAsClock()} • ${byteCountEstimate.bytes.toUnitString()}"
   }
 
   Text(

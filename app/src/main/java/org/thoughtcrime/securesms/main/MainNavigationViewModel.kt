@@ -33,6 +33,7 @@ import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.reactive.asFlow
 import kotlinx.coroutines.rx3.asObservable
@@ -168,6 +169,15 @@ class MainNavigationViewModel(
   private var earlyFocusedPaneRequested: ThreePaneScaffoldRole? = null
 
   /**
+   * The navigator and its scope are owned by the MainActivity composition. That composition is disposed (and its scope
+   * cancelled) whenever the activity is recreated, but this view-model survives, so we can be left holding a navigator
+   * that can no longer do anything. Requests that arrive in that window have to be deferred until [wrapNavigator]
+   * hands us a live one, otherwise they're silently dropped.
+   */
+  private val hasLiveNavigator: Boolean
+    get() = navigator != null && navigatorScope?.isActive == true
+
+  /**
    * Which pane we display to the user at a given time should be driven solely by user intention. There are cases
    * where the user can change configurations (such as opening a foldable) and we will restore state and errantly
    * take them back into a PRIMARY pane. This boolean helps avoid these cases.
@@ -247,7 +257,7 @@ class MainNavigationViewModel(
       role
     }
 
-    if (navigator == null) {
+    if (!hasLiveNavigator) {
       earlyFocusedPaneRequested = roleToGoTo
       return
     }
@@ -315,7 +325,7 @@ class MainNavigationViewModel(
   private fun goToConversation(location: MainNavigationDetailLocation.Conversation) {
     val captureSnapshot = captureChatListSnapshot
 
-    if (captureSnapshot == null) {
+    if (captureSnapshot == null || !hasLiveNavigator) {
       // share intent or process restore - push synchronously, since there's no chat-list snapshot to capture and no need to preload a wallpaper
       pushChatsDetailLocation(location)
     } else {

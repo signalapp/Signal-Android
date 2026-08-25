@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.groups.memberlabel
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -28,9 +29,12 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
-import org.thoughtcrime.securesms.components.emoji.Emojifier
+import org.signal.emoji.Emojifier
 
 object MemberLabelPill {
+  val contentPaddingNormal = PaddingValues(horizontal = 12.dp, vertical = 5.dp)
+  val contentPaddingCompact = PaddingValues(horizontal = 8.dp, vertical = 2.dp)
+
   @get:Composable
   val textStyleCompact: TextStyle
     get() = MaterialTheme.typography.bodySmall.copy(fontWeight = FontWeight.Normal)
@@ -40,8 +44,6 @@ object MemberLabelPill {
     get() = MaterialTheme.typography.bodyLarge
 }
 
-private val defaultModifier = Modifier.padding(horizontal = 12.dp, vertical = 5.dp)
-
 /**
  * Displays member label text with an optional emoji.
  */
@@ -50,7 +52,8 @@ fun MemberLabelPill(
   emoji: String?,
   text: String,
   tintColor: Color,
-  modifier: Modifier = defaultModifier,
+  modifier: Modifier = Modifier,
+  contentPadding: PaddingValues = MemberLabelPill.contentPaddingNormal,
   textStyle: TextStyle = MemberLabelPill.textStyleCompact,
   maxLines: Int = 1
 ) {
@@ -73,6 +76,7 @@ fun MemberLabelPill(
     textColor = textColor,
     backgroundColor = backgroundColor,
     modifier = modifier,
+    contentPadding = contentPadding,
     textStyle = textStyle,
     maxLines = maxLines
   )
@@ -87,20 +91,21 @@ fun MemberLabelPill(
   text: String,
   textColor: Color,
   backgroundColor: Color,
-  modifier: Modifier = defaultModifier,
+  modifier: Modifier = Modifier,
+  contentPadding: PaddingValues = MemberLabelPill.contentPaddingNormal,
   textStyle: TextStyle = MemberLabelPill.textStyleCompact,
   maxLines: Int = 1
 ) {
   val shape = if (maxLines > 1) RoundedCornerShape(24.dp) else RoundedCornerShape(percent = 50)
 
   Row(
-    modifier = Modifier
+    modifier = modifier
       .clip(shape)
       .background(
         color = backgroundColor,
         shape = shape
       )
-      .then(modifier),
+      .padding(contentPadding),
     verticalAlignment = Alignment.CenterVertically
   ) {
     ProvideTextStyle(textStyle) {

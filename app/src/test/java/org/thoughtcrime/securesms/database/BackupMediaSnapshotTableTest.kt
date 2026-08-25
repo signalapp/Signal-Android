@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.database
 
 import android.app.Application
 import assertk.assertThat
+import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
 import org.junit.Rule
 import org.junit.Test
@@ -108,8 +109,8 @@ class BackupMediaSnapshotTableTest {
     SignalDatabase.backupMediaSnapshots.writePendingMediaEntries(generateArchiveMediaItemSequence(count = additionalCount))
     SignalDatabase.backupMediaSnapshots.commitPendingRows()
 
-    val page = SignalDatabase.backupMediaSnapshots.getPageOfOldMediaObjects(pageSize = 1_000)
-    SignalDatabase.backupMediaSnapshots.deleteOldMediaObjects(page)
+    val page = SignalDatabase.backupMediaSnapshots.getPageOfOldMediaEntries(pageSize = 1_000)
+    SignalDatabase.backupMediaSnapshots.deleteOldMediaObjects(page.map { it.mediaId })
 
     val total = getTotalItemCount(includeThumbnails = false)
 
@@ -249,6 +250,71 @@ class BackupMediaSnapshotTableTest {
     val expectedOldCount = (initialCount * 2) - (markSeenCount * 2)
 
     assertThat(notSeenCount).isEqualTo(expectedOldCount)
+  }
+
+  /**
+   * A reconciliation that completes while the snapshot is empty records version 0, and 0 is also the never-confirmed default, so the minimum must not be
+   * satisfiable by rows the CDN has never confirmed. Otherwise offloading would delete the only local copy of unconfirmed media.
+   */
+  @Test
+  fun getMediaIdsConfirmedOnCdn_neverSeenOnRemoteIsNotConfirmedEvenWhenMinimumIsZero() {
+    val items = generateArchiveMediaItemSequence(count = 10)
+
+    SignalDatabase.backupMediaSnapshots.writePendingMediaEntries(items)
+    SignalDatabase.backupMediaSnapshots.commitPendingRows()
+
+    val confirmed = SignalDatabase.backupMediaSnapshots.getMediaIdsConfirmedOnCdn(items.map { it.mediaId }, minimumLastSeenSnapshotVersion = 0)
+
+    assertThat(confirmed).isEmpty()
+  }
+
+  @Test
+  fun getMediaIdsConfirmedOnCdn_seenOnRemoteIsConfirmed() {
+    val items = generateArchiveMediaItemSequence(count = 10)
+
+    SignalDatabase.backupMediaSnapshots.writePendingMediaEntries(items)
+    SignalDatabase.backupMediaSnapshots.commitPendingRows()
+    SignalDatabase.backupMediaSnapshots.markSeenOnRemote(items.map { it.mediaId }, 1)
+
+    val confirmed = SignalDatabase.backupMediaSnapshots.getMediaIdsConfirmedOnCdn(items.map { it.mediaId }, minimumLastSeenSnapshotVersion = 1)
+
+    assertThat(confirmed.size).isEqualTo(items.size)
+  }
+
+  /**
+   * A reconciliation captures its snapshot version once and can resume days later, after further backups have committed. Replaying the version it captured must
+   * not walk a confirmation backwards, and least of all to 0, which the prune reads as "the CDN has never had this".
+   */
+  @Test
+  fun markSeenOnRemote_staleVersionDoesNotEraseNewerConfirmation() {
+    val items = generateArchiveMediaItemSequence(count = 10)
+    val mediaIds = items.map { it.mediaId }
+
+    SignalDatabase.backupMediaSnapshots.writePendingMediaEntries(items)
+    SignalDatabase.backupMediaSnapshots.commitPendingRows()
+    SignalDatabase.backupMediaSnapshots.markSeenOnRemote(mediaIds, 1)
+
+    SignalDatabase.backupMediaSnapshots.markSeenOnRemote(mediaIds, 0)
+
+    val confirmed = SignalDatabase.backupMediaSnapshots.getMediaIdsConfirmedOnCdn(mediaIds, minimumLastSeenSnapshotVersion = 1)
+
+    assertThat(confirmed.size).isEqualTo(items.size)
+  }
+
+  @Test
+  fun markSeenOnRemote_newerVersionAdvancesConfirmation() {
+    val items = generateArchiveMediaItemSequence(count = 10)
+    val mediaIds = items.map { it.mediaId }
+
+    SignalDatabase.backupMediaSnapshots.writePendingMediaEntries(items)
+    SignalDatabase.backupMediaSnapshots.commitPendingRows()
+    SignalDatabase.backupMediaSnapshots.markSeenOnRemote(mediaIds, 1)
+
+    SignalDatabase.backupMediaSnapshots.markSeenOnRemote(mediaIds, 2)
+
+    val confirmed = SignalDatabase.backupMediaSnapshots.getMediaIdsConfirmedOnCdn(mediaIds, minimumLastSeenSnapshotVersion = 2)
+
+    assertThat(confirmed.size).isEqualTo(items.size)
   }
 
   private fun getTotalItemCount(includeThumbnails: Boolean): Int {

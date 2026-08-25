@@ -708,10 +708,10 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       SELECT COUNT(${RecipientTable.MUTE_UNTIL})
       FROM $TABLE_NAME
         LEFT OUTER JOIN ${RecipientTable.TABLE_NAME} ON $TABLE_NAME.$RECIPIENT_ID = ${RecipientTable.TABLE_NAME}.${RecipientTable.ID}
-      WHERE 
+      WHERE
         $ARCHIVED = 0 AND
-        ${RecipientTable.MUTE_UNTIL} = 0
-        $chatFolderQuery 
+        ${RecipientTable.MUTE_UNTIL} < ${System.currentTimeMillis()}
+        $chatFolderQuery
       """
 
     return readableDatabase.rawQuery(unmutedChats, null).readToSingleBoolean()
@@ -2365,7 +2365,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     }
 
     if (!this.showMutedChats) {
-      fullQuery.add("${RecipientTable.TABLE_NAME}.${RecipientTable.MUTE_UNTIL} = 0")
+      fullQuery.add("${RecipientTable.TABLE_NAME}.${RecipientTable.MUTE_UNTIL} < ${System.currentTimeMillis()}")
     }
 
     return "AND ${fullQuery.joinToString(" AND ") { "($it)" }}"

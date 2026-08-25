@@ -15,6 +15,7 @@ import org.signal.core.models.MasterKey
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BuildConfig
+import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.JobTracker
 import org.thoughtcrime.securesms.jobs.MultiDeviceKeysUpdateJob
@@ -372,6 +373,7 @@ object SvrRepository {
 
       if (rotateAep) {
         SignalStore.account.rotateAccountEntropyPool(AccountEntropyPool.generate())
+        BackupRepository.resetSvrBChain()
         AppDependencies.jobManager.add(MultiDeviceKeysUpdateJob())
       }
 

@@ -5,7 +5,6 @@ import android.content.Context
 import org.signal.core.util.Stopwatch
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.jobs.PushProcessEarlyMessagesJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.messages.MessageContentProcessor.Companion.log
 import org.thoughtcrime.securesms.messages.MessageContentProcessor.Companion.warn
@@ -30,7 +29,7 @@ object ReceiptMessageProcessor {
     when (receiptMessage.type) {
       ReceiptMessage.Type.DELIVERY -> handleDeliveryReceipt(envelope, metadata, receiptMessage, senderRecipient.id, batchCache)
       ReceiptMessage.Type.READ -> handleReadReceipt(context, senderRecipient.id, envelope, metadata, receiptMessage, earlyMessageCacheEntry, batchCache)
-      ReceiptMessage.Type.VIEWED -> handleViewedReceipt(context, envelope, metadata, receiptMessage, senderRecipient.id, earlyMessageCacheEntry)
+      ReceiptMessage.Type.VIEWED -> handleViewedReceipt(context, envelope, metadata, receiptMessage, senderRecipient.id, earlyMessageCacheEntry, batchCache)
       else -> warn(envelope.clientTimestamp!!, "Unknown recipient message type ${receiptMessage.type}")
     }
   }
@@ -56,7 +55,7 @@ object ReceiptMessageProcessor {
     }
 
     if (missingTargetTimestamps.isNotEmpty()) {
-      PushProcessEarlyMessagesJob.enqueue()
+      batchCache.requiresEarlyMessageProcessing()
     }
 
     SignalDatabase.pendingPniSignatureMessages.acknowledgeReceipts(senderRecipientId, deliveryReceipt.timestamp, metadata.sourceDeviceId)
@@ -101,7 +100,7 @@ object ReceiptMessageProcessor {
     }
 
     if (missingTargetTimestamps.isNotEmpty() && earlyMessageCacheEntry != null) {
-      PushProcessEarlyMessagesJob.enqueue()
+      batchCache.requiresEarlyMessageProcessing()
     }
   }
 
@@ -111,7 +110,8 @@ object ReceiptMessageProcessor {
     metadata: EnvelopeMetadata,
     viewedReceipt: ReceiptMessage,
     senderRecipientId: RecipientId,
-    earlyMessageCacheEntry: EarlyMessageCacheEntry?
+    earlyMessageCacheEntry: EarlyMessageCacheEntry?,
+    batchCache: BatchCache
   ) {
     val readReceipts = TextSecurePreferences.isReadReceiptsEnabled(context)
     val storyViewedReceipts = SignalStore.story.viewedReceiptsEnabled
@@ -146,7 +146,7 @@ object ReceiptMessageProcessor {
     }
 
     if (missingTargetTimestamps.isNotEmpty() && earlyMessageCacheEntry != null) {
-      PushProcessEarlyMessagesJob.enqueue()
+      batchCache.requiresEarlyMessageProcessing()
     }
   }
 }

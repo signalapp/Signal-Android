@@ -99,7 +99,7 @@ class CheckKeyTransparencyJob private constructor(
       } else if (!SignalStore.settings.automaticVerificationEnabled) {
         Log.i(TAG, "Automatic verification disabled. Exiting.")
         false
-      } else if (SignalStore.account.usernameSyncState != AccountValues.UsernameSyncState.IN_SYNC) {
+      } else if (SignalStore.account.usernameSyncState != AccountValues.UsernameSyncState.IN_SYNC || SignalStore.account.usernameSyncErrorCount > 0) {
         Log.i(TAG, "Username is in a bad state. Exiting.")
         false
       } else if (!Recipient.self().hasAci || !Recipient.self().hasE164) {

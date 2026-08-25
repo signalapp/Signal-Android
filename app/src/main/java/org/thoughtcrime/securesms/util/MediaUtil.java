@@ -554,10 +554,13 @@ public class MediaUtil {
   }
 
   public static boolean isInstantVideoSupported(Slide slide) {
-    final Attachment attachment                        = slide.asAttachment();
-    final boolean    isIncremental                     = attachment.getIncrementalDigest() != null;
-    final boolean    hasIncrementalMacChunkSizeDefined = attachment.incrementalMacChunkSize > 0;
-    final boolean    contentTypeSupported              = isVideoType(slide.getContentType());
+    return isInstantVideoSupported(slide.asAttachment());
+  }
+
+  public static boolean isInstantVideoSupported(Attachment attachment) {
+    final boolean isIncremental                     = attachment.getIncrementalDigest() != null;
+    final boolean hasIncrementalMacChunkSizeDefined = attachment.incrementalMacChunkSize > 0;
+    final boolean contentTypeSupported              = isVideoType(attachment.contentType);
     return isIncremental && contentTypeSupported && hasIncrementalMacChunkSizeDefined;
   }
 

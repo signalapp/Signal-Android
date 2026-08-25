@@ -2,6 +2,7 @@ package org.signal.imageeditor.core;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Point;
@@ -9,8 +10,10 @@ import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.os.Build;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.graphics.ColorUtils;
 
 import org.signal.imageeditor.core.model.EditorElement;
 
@@ -49,6 +52,10 @@ public final class RendererContext {
   private float fade = 1f;
 
   private boolean isEditing = true;
+
+  @ColorInt
+  @Nullable
+  private Integer blackoutColor;
 
   private List<EditorElement> children = Collections.emptyList();
   private Paint               maskPaint;
@@ -96,6 +103,24 @@ public final class RendererContext {
 
   public int getAlpha(int alpha) {
     return Math.max(0, Math.min(255, (int) (fade * alpha)));
+  }
+
+  /**
+   * Overrides the blackout color the model was created with for this render, so that a caller whose background can
+   * change after the model exists -- a theme switch, for example -- can keep the two in step. Pass null to fall back to
+   * the model's own color.
+   */
+  public void setBlackoutColor(@ColorInt @Nullable Integer blackoutColor) {
+    this.blackoutColor = blackoutColor;
+  }
+
+  /**
+   * Resolves a color derived from the model's blackout color against any override set for this render, preserving the
+   * alpha the caller baked in.
+   */
+  @ColorInt
+  public int resolveBlackoutColor(@ColorInt int modelColor) {
+    return blackoutColor == null ? modelColor : ColorUtils.setAlphaComponent(blackoutColor, Color.alpha(modelColor));
   }
 
   /**

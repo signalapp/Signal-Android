@@ -36,7 +36,6 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.storage.StorageSyncModels
 import org.thoughtcrime.securesms.storage.StorageSyncModels.toLocal
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.storage.SignalNotificationProfileRecord
 import org.whispersystems.signalservice.api.storage.StorageId
 import java.time.DayOfWeek
@@ -492,13 +491,13 @@ class NotificationProfileTables(context: Context, databaseHelper: SignalDatabase
   }
 
   /**
-   * Removes storageIds from notification profiles that have been deleted for [RemoteConfig.messageQueueTime].
+   * Removes storageIds from notification profiles that were deleted before [deletedBefore].
    */
-  fun removeStorageIdsFromOldDeletedProfiles(now: Long): Int {
+  fun removeStorageIdsFromOldDeletedProfiles(deletedBefore: Long): Int {
     return writableDatabase
       .update(NotificationProfileTable.TABLE_NAME)
       .values(NotificationProfileTable.STORAGE_SERVICE_ID to null)
-      .where("${NotificationProfileTable.STORAGE_SERVICE_ID} NOT NULL AND ${NotificationProfileTable.DELETED_TIMESTAMP_MS} > 0 AND ${NotificationProfileTable.DELETED_TIMESTAMP_MS} < ?", now - RemoteConfig.messageQueueTime)
+      .where("${NotificationProfileTable.STORAGE_SERVICE_ID} NOT NULL AND ${NotificationProfileTable.DELETED_TIMESTAMP_MS} > 0 AND ${NotificationProfileTable.DELETED_TIMESTAMP_MS} < ?", deletedBefore)
       .run()
   }
 

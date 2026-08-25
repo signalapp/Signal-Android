@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <!-- Emoji category headers, shown in the emoji keyboard and the react-with-any-emoji sheet -->
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">웃는 얼굴 &amp; 사람</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">자연</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">음식</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">활동</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">장소</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">사물</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">부호</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">국기</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">이모티콘</string>
+</resources>

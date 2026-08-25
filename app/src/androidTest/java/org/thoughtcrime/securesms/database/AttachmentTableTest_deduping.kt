@@ -113,6 +113,33 @@ class AttachmentTableTest_deduping {
       assertDataFilesAreDifferent(id1, id2)
       assertDataHashStartMatches(id1, id2)
     }
+
+    // Non-matching muted flag
+    test {
+      val id1 = insertWithData(DATA_A, TransformProperties())
+      val id2 = insertWithData(DATA_A, TransformProperties(videoMuted = true))
+
+      assertDataFilesAreDifferent(id1, id2)
+      assertDataHashStartMatches(id1, id2)
+    }
+
+    // Non-matching muted flag, otherwise-identical trims
+    test {
+      val id1 = insertWithData(DATA_A, TransformProperties(videoTrim = true, videoTrimStartTimeUs = 1, videoTrimEndTimeUs = 2))
+      val id2 = insertWithData(DATA_A, TransformProperties(videoTrim = true, videoTrimStartTimeUs = 1, videoTrimEndTimeUs = 2, videoMuted = true))
+
+      assertDataFilesAreDifferent(id1, id2)
+      assertDataHashStartMatches(id1, id2)
+    }
+
+    // Non-matching muted flag, otherwise-identical high quality
+    test {
+      val id1 = insertWithData(DATA_A, TransformProperties(sentMediaQuality = SentMediaQuality.HIGH.code))
+      val id2 = insertWithData(DATA_A, TransformProperties(sentMediaQuality = SentMediaQuality.HIGH.code, videoMuted = true))
+
+      assertDataFilesAreDifferent(id1, id2)
+      assertDataHashStartMatches(id1, id2)
+    }
   }
 
   /**
@@ -153,6 +180,16 @@ class AttachmentTableTest_deduping {
     test {
       val id1 = insertWithData(DATA_A, TransformProperties(videoTrim = true, videoTrimStartTimeUs = 1, videoTrimEndTimeUs = 2))
       val id2 = insertWithData(DATA_A, TransformProperties(videoTrim = true, videoTrimStartTimeUs = 1, videoTrimEndTimeUs = 2))
+
+      assertDataFilesAreTheSame(id1, id2)
+      assertDataHashStartMatches(id1, id2)
+      assertSkipTransform(id1, false)
+      assertSkipTransform(id2, false)
+    }
+
+    test {
+      val id1 = insertWithData(DATA_A, TransformProperties(videoMuted = true))
+      val id2 = insertWithData(DATA_A, TransformProperties(videoMuted = true))
 
       assertDataFilesAreTheSame(id1, id2)
       assertDataHashStartMatches(id1, id2)
@@ -318,6 +355,35 @@ class AttachmentTableTest_deduping {
       upload(id1, uploadTimestamp = System.currentTimeMillis())
 
       val id2 = insertWithData(DATA_A_COMPRESSED, TransformProperties(videoTrim = true, videoTrimStartTimeUs = 1, videoTrimEndTimeUs = 2))
+
+      assertDataFilesAreDifferent(id1, id2)
+      assertSkipTransform(id1, true)
+      assertSkipTransform(id2, false)
+      assertDoesNotHaveRemoteFields(id2)
+    }
+
+    // This represents what would happen if you sent a video, then forwarded it, but *muted the forwarded video*. We should not dedupe.
+    test {
+      val id1 = insertWithData(DATA_A)
+      compress(id1, DATA_A_COMPRESSED)
+      upload(id1, uploadTimestamp = System.currentTimeMillis())
+
+      val id2 = insertWithData(DATA_A_COMPRESSED, TransformProperties(videoMuted = true))
+
+      assertDataFilesAreDifferent(id1, id2)
+      assertSkipTransform(id1, true)
+      assertSkipTransform(id2, false)
+      assertDoesNotHaveRemoteFields(id2)
+    }
+
+    // Muting a video means it must be transcoded, so the compressed output of a muted send must not be re-used by a
+    // later, unmuted send of the same source data.
+    test {
+      val id1 = insertWithData(DATA_A, TransformProperties(videoMuted = true))
+      compress(id1, DATA_A_COMPRESSED)
+      upload(id1, uploadTimestamp = System.currentTimeMillis())
+
+      val id2 = insertWithData(DATA_A)
 
       assertDataFilesAreDifferent(id1, id2)
       assertSkipTransform(id1, true)

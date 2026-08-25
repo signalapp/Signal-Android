@@ -95,13 +95,12 @@ class MediaSelectionRepository(context: Context) {
     }
 
     val isSendingToStories = singleContact?.isStory == true || contacts.any { it.isStory }
-    val sentMediaQuality = if (isSendingToStories) SentMediaQuality.STANDARD else quality
 
     return Maybe.create { emitter ->
       val trimmedBody: String = if (isViewOnce) "" else getTruncatedBody(message?.toString()?.trim()) ?: ""
       val trimmedMentions: List<Mention> = if (isViewOnce) emptyList() else mentions
       val trimmedBodyRanges: BodyRangeList? = if (isViewOnce) null else bodyRanges
-      val modelsToTransform: Map<Media, MediaTransform> = buildModelsToTransform(selectedMedia, stateMap, sentMediaQuality)
+      val modelsToTransform: Map<Media, MediaTransform> = buildModelsToTransform(selectedMedia, stateMap, quality)
       val oldToNewMediaMap: Map<Media, Media> = MediaRepository.transformMediaSync(context, selectedMedia, modelsToTransform)
       val updatedMedia = oldToNewMediaMap.values.toList()
 
@@ -265,7 +264,7 @@ class MediaSelectionRepository(context: Context) {
         }
       }
 
-      if (state is VideoTrimData && state.isDurationEdited) {
+      if (state is VideoTrimData && (state.isDurationEdited || state.isMuted)) {
         modelsToRender[it] = VideoTrimTransform(state)
       }
 

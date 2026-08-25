@@ -60,6 +60,9 @@ object ArchiveUploadProgress {
 
   private val attachmentProgress: MutableMap<AttachmentId, AttachmentProgressDetails> = ConcurrentHashMap()
 
+  /** Whether the media upload in flight began as part of a backup export. Not persisted, so a restart mid-upload defers CDN recording to the next backup. */
+  private var mediaUploadStartedByBackup: Boolean = false
+
   private var debugAttachmentStartTime: Long = 0
   private val debugTotalAttachments: AtomicInteger = AtomicInteger(0)
   private val debugTotalBytes: AtomicLong = AtomicLong(0)
@@ -91,8 +94,10 @@ object ArchiveUploadProgress {
       if (pendingMediaUploadBytes <= 0) {
         Log.i(TAG, "No more pending bytes. Done!")
         Log.d(TAG, "Upload finished! " + buildDebugStats(debugAttachmentStartTime, debugTotalAttachments.get(), debugTotalBytes.get()))
-        if (uploadProgress.mediaTotalBytes > 0) {
+
+        if (uploadProgress.mediaTotalBytes > 0 && mediaUploadStartedByBackup) {
           Log.i(TAG, "We uploaded media as part of the backup. We should enqueue another backup now to ensure that CDN info is properly written.")
+          mediaUploadStartedByBackup = false
           BackupMessagesJob.enqueue()
         }
         SignalStore.backup.finishedInitialBackup = true
@@ -201,6 +206,10 @@ object ArchiveUploadProgress {
   fun onAttachmentSectionStarted(totalAttachmentBytes: Long) {
     debugAttachmentStartTime = System.currentTimeMillis()
     attachmentProgress.clear()
+
+    // Only a backup walks the export/upload states on its way here
+    mediaUploadStartedByBackup = uploadProgress.state == ArchiveUploadProgressState.State.Export || uploadProgress.state == ArchiveUploadProgressState.State.UploadBackupFile
+
     updateState {
       ArchiveUploadProgressState(
         state = ArchiveUploadProgressState.State.UploadMedia,

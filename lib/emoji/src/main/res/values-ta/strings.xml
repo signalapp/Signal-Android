@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <!-- Emoji category headers, shown in the emoji keyboard and the react-with-any-emoji sheet -->
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">உணர்வு ஓவியங்கள் &amp; மக்கள்</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">இயற்கை</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">உணவு</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">செயல்பாடுகள்</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">இடங்கள்</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">பொருள்கள்</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">சின்னங்கள்</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">கொடிகள்</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">உணர்வு ஓவியங்கள்</string>
+</resources>

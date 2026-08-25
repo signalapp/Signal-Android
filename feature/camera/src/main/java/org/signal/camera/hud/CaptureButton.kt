@@ -42,9 +42,6 @@ private object CaptureButtonColors {
   /** Background fill: custom control color (0xCC333333) */
   val Background = Color(0xCC333333)
 
-  /** Outer ring stroke: pure white (0xFFFFFFFF) */
-  val Arc = Color.White
-
   /** Inner fill: pure white (0xFFFFFFFF) */
   val CaptureFill = Color.White
 

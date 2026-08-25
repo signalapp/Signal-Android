@@ -34,6 +34,7 @@ sealed interface MediaSelectScreenEvents {
   data class ReorderSelectedMedia(val fromIndex: Int, val toIndex: Int) : MediaSelectScreenEvents
   data object NavigateToEdit : MediaSelectScreenEvents
   data object NavigateToCamera : MediaSelectScreenEvents
+  data object NavigateBack : MediaSelectScreenEvents
 
   /** Re-read the gallery and the current permission level, e.g. after coming back from app settings. */
   data object Refresh : MediaSelectScreenEvents

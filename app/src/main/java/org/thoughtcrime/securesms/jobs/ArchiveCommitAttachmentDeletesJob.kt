@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.jobs
 
+import androidx.annotation.VisibleForTesting
 import arrow.core.Either
 import org.signal.core.models.backup.MediaId
 import org.signal.core.util.Base64
@@ -12,6 +13,7 @@ import org.signal.core.util.logging.Log
 import org.signal.network.service.ArchiveError
 import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.backup.v2.ArchivedMediaObject
+import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.BackupMediaSnapshotTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -19,7 +21,6 @@ import org.thoughtcrime.securesms.jobmanager.CoroutineJob
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.RemoteConfig
-import java.lang.RuntimeException
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.hours
 
@@ -36,7 +37,8 @@ class ArchiveCommitAttachmentDeletesJob private constructor(parameters: Paramete
     const val KEY = "ArchiveCommitAttachmentDeletesJob"
     const val ARCHIVE_ATTACHMENT_QUEUE = "ArchiveAttachmentQueue"
 
-    private const val REMOTE_DELETE_BATCH_SIZE = 1_000
+    @VisibleForTesting
+    internal const val REMOTE_DELETE_BATCH_SIZE = 1_000
 
     /**
      * Deletes the provided attachments from the CDN.
@@ -116,24 +118,74 @@ class ArchiveCommitAttachmentDeletesJob private constructor(parameters: Paramete
       return Result.success()
     }
 
-    var mediaObjects = SignalDatabase.backupMediaSnapshots.getPageOfOldMediaObjects(REMOTE_DELETE_BATCH_SIZE)
+    // Read once so every page judges against the same threshold, even if a backup finishes while we're paging.
+    val messageInclusionCutoffTime = SignalStore.backup.lastUsedMessageCutoffTime
 
-    while (mediaObjects.isNotEmpty()) {
+    var retainedCount = 0
+    var unknownCdnCount = 0
+    var lastId = 0L
+    var page = SignalDatabase.backupMediaSnapshots.getPageOfOldMediaEntries(pageSize = REMOTE_DELETE_BATCH_SIZE, afterId = lastId)
+
+    while (page.isNotEmpty()) {
       if (isCanceled) {
         Log.w(TAG, "Job cancelled while processing media objects for deletion.")
         return Result.failure()
       }
 
-      deleteMediaObjectsFromCdn(TAG, mediaObjects, this::defaultBackoff, this::isCanceled)?.let { result -> return result }
-      SignalDatabase.backupMediaSnapshots.deleteOldMediaObjects(mediaObjects)
+      lastId = page.last().id
 
-      mediaObjects = SignalDatabase.backupMediaSnapshots.getPageOfOldMediaObjects(REMOTE_DELETE_BATCH_SIZE)
+      // Full-size and thumbnail rows share a mediaName, so they have to be judged separately. A surviving attachment keeps its full-size object alive but says
+      // nothing about whether that attachment still wants a thumbnail archived.
+      val (thumbnailPage, fullSizePage) = page.partition { it.isThumbnail }
+
+      val fullSizeByMediaName = fullSizePage.groupBy { it.mediaNameParts() }
+      val unreferencedFullSizeNames = SignalDatabase.attachments.getMediaNamesWithNoAttachment(fullSizeByMediaName.keys, messageInclusionCutoffTime)
+      val unreferencedFullSize = fullSizeByMediaName.filterKeys { it in unreferencedFullSizeNames }.values.flatten()
+
+      val thumbnailsByMediaName = thumbnailPage.groupBy { it.mediaNameParts() }
+      val unreferencedThumbnailNames = SignalDatabase.attachments.getMediaNamesWithNoEligibleThumbnail(thumbnailsByMediaName.keys, messageInclusionCutoffTime)
+      val unreferencedThumbnails = thumbnailsByMediaName.filterKeys { it in unreferencedThumbnailNames }.values.flatten()
+
+      val unreferencedEntries = unreferencedFullSize + unreferencedThumbnails
+
+      val safeToDelete = unreferencedEntries.mapNotNull { entry -> entry.cdn?.let { ArchivedMediaObject(mediaId = entry.mediaId, cdn = it) } }.toSet()
+
+      retainedCount += page.size - unreferencedEntries.size
+      unknownCdnCount += unreferencedEntries.size - safeToDelete.size
+
+      if (safeToDelete.isNotEmpty()) {
+        deleteMediaObjectsFromCdn(
+          tag = TAG,
+          attachmentsToDelete = safeToDelete,
+          backoffGenerator = this::defaultBackoff,
+          cancellationSignal = this::isCanceled
+        )?.let { result -> return result }
+
+        SignalDatabase.backupMediaSnapshots.deleteOldMediaObjects(safeToDelete.map { it.mediaId })
+      }
+
+      page = SignalDatabase.backupMediaSnapshots.getPageOfOldMediaEntries(pageSize = REMOTE_DELETE_BATCH_SIZE, afterId = lastId)
+    }
+
+    if (retainedCount > 0) {
+      Log.w(TAG, "Retained $retainedCount media objects that dropped out of the latest snapshot but are still referenced by an attachment. They stay tracked and will be reconsidered after the next backup.", true)
+    }
+
+    if (unknownCdnCount > 0) {
+      Log.w(TAG, "Retained $unknownCdnCount unreferenced media objects that have no recorded CDN, will get resolved during reconciliation rather than here.", true)
     }
 
     return Result.success()
   }
 
   override fun onFailure() = Unit
+
+  private fun BackupMediaSnapshotTable.ExistingMediaEntry.mediaNameParts(): AttachmentTable.MediaNameParts {
+    return AttachmentTable.MediaNameParts(
+      plaintextHash = Base64.encodeWithPadding(plaintextHash),
+      remoteKey = Base64.encodeWithPadding(remoteKey)
+    )
+  }
 
   class Factory : Job.Factory<ArchiveCommitAttachmentDeletesJob> {
     override fun create(parameters: Parameters, serializedData: ByteArray?): ArchiveCommitAttachmentDeletesJob {

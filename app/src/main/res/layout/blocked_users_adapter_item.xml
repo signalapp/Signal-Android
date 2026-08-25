@@ -34,9 +34,20 @@
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.Signal.Body2"
         android:textColor="@color/signal_text_secondary"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/blocked_at"
         app:layout_constraintStart_toStartOf="@id/display_name"
         app:layout_constraintTop_toBottomOf="@id/display_name"
         tools:text="1 234 567 8901" />
+
+    <TextView
+        android:id="@+id/blocked_at"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.Signal.Body2"
+        android:textColor="@color/signal_text_secondary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/display_name"
+        app:layout_constraintTop_toBottomOf="@id/username"
+        tools:text="Blocked on Aug 5, 12:30pm" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,6 +9,8 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.net.Uri;
 
+import androidx.annotation.Nullable;
+
 import com.davemorrissey.labs.subscaleview.decoder.ImageRegionDecoder;
 import com.davemorrissey.labs.subscaleview.decoder.SkiaImageRegionDecoder;
 
@@ -21,9 +23,15 @@ public class AttachmentRegionDecoder implements ImageRegionDecoder {
 
   private static final String TAG = Log.tag(AttachmentRegionDecoder.class);
 
+  private final @Nullable GainmapReporter reporter;
+
   private SkiaImageRegionDecoder passthrough;
 
   private BitmapRegionDecoder bitmapRegionDecoder;
+
+  public AttachmentRegionDecoder(@Nullable GainmapReporter reporter) {
+    this.reporter = reporter;
+  }
 
   @Override
   public Point init(Context context, Uri uri) throws Exception {
@@ -58,6 +66,12 @@ public class AttachmentRegionDecoder implements ImageRegionDecoder {
 
       if (bitmap == null) {
         throw new RuntimeException("Skia image decoder returned null bitmap - image format may not be supported");
+      }
+
+      // Both decoders report: initialiseBaseLayer() only keeps this one for images too large to fit at
+      // native resolution.
+      if (reporter != null && UltraHdrSupport.hasGainmap(bitmap)) {
+        reporter.onGainmapPresent();
       }
 
       return bitmap;

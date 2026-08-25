@@ -24,6 +24,8 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
+import org.signal.emoji.Emoji;
+import org.signal.emoji.EmojiPageModel;
 
 public class RecentEmojiPageModel implements EmojiPageModel {
   private static final String TAG            = Log.tag(RecentEmojiPageModel.class);
@@ -62,7 +64,7 @@ public class RecentEmojiPageModel implements EmojiPageModel {
   }
 
   @Override public int getIconAttr() {
-    return R.attr.emoji_category_recent;
+    return org.signal.emoji.R.attr.emoji_category_recent;
   }
 
   @Override public List<String> getEmoji() {

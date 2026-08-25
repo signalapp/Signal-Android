@@ -1,11 +1,11 @@
 package org.thoughtcrime.securesms.keyboard.emoji
 
-import org.thoughtcrime.securesms.components.emoji.EmojiPageModel
+import org.signal.emoji.EmojiCategory
+import org.signal.emoji.EmojiPageModel
+import org.signal.emoji.EmojiSource
+import org.signal.emoji.parsing.EmojiTree
 import org.thoughtcrime.securesms.components.emoji.EmojiPageViewGridAdapter
 import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel
-import org.thoughtcrime.securesms.components.emoji.parsing.EmojiTree
-import org.thoughtcrime.securesms.emoji.EmojiCategory
-import org.thoughtcrime.securesms.emoji.EmojiSource
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
 
 fun EmojiPageModel.toMappingModels(): List<MappingModel<*>> {

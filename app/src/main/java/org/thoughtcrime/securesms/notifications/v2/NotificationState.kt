@@ -12,7 +12,12 @@ import org.thoughtcrime.securesms.recipients.Recipient
 /**
  * Hold all state for notifications for all conversations.
  */
-data class NotificationState(val conversations: List<NotificationConversation>, val muteFilteredMessages: List<FilteredMessage>, val profileFilteredMessages: List<FilteredMessage>) {
+data class NotificationState(
+  val conversations: List<NotificationConversation>,
+  val muteFilteredMessages: List<FilteredMessage>,
+  val profileFilteredMessages: List<FilteredMessage>,
+  val reactionsDisabledFilteredMessages: List<FilteredMessage>
+) {
 
   val threadCount: Int = conversations.size
   val isEmpty: Boolean = conversations.isEmpty()
@@ -89,6 +94,6 @@ data class NotificationState(val conversations: List<NotificationConversation>, 
   data class FilteredMessage(val id: Long, val isMms: Boolean)
 
   companion object {
-    val EMPTY = NotificationState(emptyList(), emptyList(), emptyList())
+    val EMPTY = NotificationState(emptyList(), emptyList(), emptyList(), emptyList())
   }
 }

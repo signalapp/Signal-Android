@@ -911,7 +911,9 @@ class MainActivity :
     SplashScreenUtil.setSplashScreenThemeIfNecessary(this, SignalStore.settings.theme)
   }
 
-  override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray, deviceId: Int) {
+  @Suppress("OVERRIDE_DEPRECATION")
+  override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults)
   }
 
@@ -1172,16 +1174,16 @@ class MainActivity :
       toolbarViewModel.markAllMessagesRead()
     }
 
-    override fun onInviteFriendsClick() {
-      openSettings.launch(AppSettingsActivity.invite(this@MainActivity))
-    }
-
     override fun onFilterUnreadChatsClick() {
       toolbarViewModel.setChatFilter(ConversationFilter.UNREAD)
     }
 
     override fun onClearUnreadChatsFilterClick() {
       toolbarViewModel.setChatFilter(ConversationFilter.OFF)
+    }
+
+    override fun onOpenArchiveClick() {
+      mainNavigationViewModel.onArchiveSelected()
     }
 
     override fun onStarredMessagesClick() {

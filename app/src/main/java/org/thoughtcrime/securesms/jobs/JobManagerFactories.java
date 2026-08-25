@@ -157,6 +157,7 @@ public final class JobManagerFactories {
       put(BackupMessagesJob.KEY,                       new BackupMessagesJob.Factory());
       put(BackupRestoreMediaJob.KEY,                   new BackupRestoreMediaJob.Factory());
       put(BackupSubscriptionCheckJob.KEY,              new BackupSubscriptionCheckJob.Factory());
+      put(BackupTierDowngradeCheckJob.KEY,             new BackupTierDowngradeCheckJob.Factory());
       put(BuildExpirationConfirmationJob.KEY,          new BuildExpirationConfirmationJob.Factory());
       put(CallingAssetsDownloadJob.KEY,                new CallingAssetsDownloadJob.Factory());
       put(CallLinkPeekJob.KEY,                         new CallLinkPeekJob.Factory());

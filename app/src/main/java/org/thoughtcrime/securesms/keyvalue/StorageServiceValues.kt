@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.keyvalue
 
 import org.signal.core.models.storageservice.StorageKey
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.keyvalue.protos.StorageSyncLoopState
 import org.whispersystems.signalservice.api.storage.SignalStorageManifest
 
 class StorageServiceValues internal constructor(store: KeyValueStore) : SignalStoreValues(store) {
@@ -11,6 +12,7 @@ class StorageServiceValues internal constructor(store: KeyValueStore) : SignalSt
     private const val LAST_SYNC_TIME = "storage.last_sync_time"
     private const val NEEDS_ACCOUNT_RESTORE = "storage.needs_account_restore"
     private const val MANIFEST = "storage.manifest"
+    private const val SYNC_LOOP_STATE = "storage.sync_loop_state"
   }
 
   public override fun onFirstEverAppLaunch() = Unit
@@ -25,6 +27,9 @@ class StorageServiceValues internal constructor(store: KeyValueStore) : SignalSt
   var lastSyncTime: Long by longValue(LAST_SYNC_TIME, 0)
 
   var needsAccountRestore: Boolean by booleanValue(NEEDS_ACCOUNT_RESTORE, false)
+
+  /** Owned by [org.thoughtcrime.securesms.storage.StorageSyncLoopDetector] */
+  var syncLoopState: StorageSyncLoopState by protoValue(SYNC_LOOP_STATE, StorageSyncLoopState(), StorageSyncLoopState.ADAPTER)
 
   var manifest: SignalStorageManifest
     get() {

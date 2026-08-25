@@ -145,7 +145,10 @@ interface MediaSendRepository {
 
   var isCameraFacingFront: Boolean
 
-  fun getMediaConstraints(): MediaConstraints
+  /**
+   * @param quality The quality the constraints should describe, or null for whatever the app would send at by default.
+   */
+  fun getMediaConstraints(quality: SentMediaQuality? = null): MediaConstraints
 
   var storyMaxVideoDuration: Duration
 

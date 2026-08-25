@@ -38,6 +38,7 @@ fun RecipientTable.getContactsForBackup(selfId: Long): ContactArchiveExporter {
       "${RecipientTable.TABLE_NAME}.${RecipientTable.USERNAME}",
       "${RecipientTable.TABLE_NAME}.${RecipientTable.E164}",
       "${RecipientTable.TABLE_NAME}.${RecipientTable.BLOCKED}",
+      "${RecipientTable.TABLE_NAME}.${RecipientTable.BLOCKED_AT}",
       "${RecipientTable.TABLE_NAME}.${RecipientTable.HIDDEN}",
       "${RecipientTable.TABLE_NAME}.${RecipientTable.REGISTERED}",
       "${RecipientTable.TABLE_NAME}.${RecipientTable.UNREGISTERED_TIMESTAMP}",
@@ -90,6 +91,7 @@ fun RecipientTable.getGroupsForBackup(selfAci: ServiceId.ACI): GroupArchiveExpor
     .select(
       "${RecipientTable.TABLE_NAME}.${RecipientTable.ID}",
       "${RecipientTable.TABLE_NAME}.${RecipientTable.BLOCKED}",
+      "${RecipientTable.TABLE_NAME}.${RecipientTable.BLOCKED_AT}",
       "${RecipientTable.TABLE_NAME}.${RecipientTable.PROFILE_SHARING}",
       "${RecipientTable.TABLE_NAME}.${RecipientTable.MUTE_UNTIL}",
       "${RecipientTable.TABLE_NAME}.${RecipientTable.EXTRAS}",

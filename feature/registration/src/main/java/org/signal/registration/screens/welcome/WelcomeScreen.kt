@@ -262,7 +262,7 @@ private fun LargeLayout(
     content = {
       Row(
         horizontalArrangement = SpaceAround,
-        modifier = Modifier.padding(vertical = 56.dp)
+        modifier = Modifier.padding(horizontal = 32.dp, vertical = 56.dp)
       ) {
         HeroImage(
           modifier = Modifier

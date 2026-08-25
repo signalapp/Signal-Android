@@ -171,6 +171,8 @@
     <string name="BlockedUsersActivity__block_user">Vil du blokkere brukeren?</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" vil ikke kunne ringe deg eller sende deg meldinger.</string>
     <string name="BlockedUsersActivity__block">Blokker</string>
+    <!-- Subtitle shown under a blocked user. Placeholder is the time they were blocked-->
+    <string name="BlockedUsersActivity__blocked_on_s">Blokkert %1$s</string>
 
     <!-- CreditCardFragment -->
     <!-- Title of fragment -->
@@ -428,7 +430,6 @@
     <!-- Accessibility text associated with image button to send an edited message. -->
     <string name="ConversationActivity_send_edit">Send redigering</string>
     <string name="ConversationActivity_compose_message">Skriv melding</string>
-    <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Beklager, det oppstod en feil under vedlegging av filen.</string>
     <!-- Toast shown when user is unable to find the recipient when sending a message -->
     <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Mottaker er ikke et gyldig nummer eller e-post-adresse.</string>
     <string name="ConversationActivity_message_is_empty_exclamation">Meldingen er tom!</string>
@@ -1075,7 +1076,7 @@
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
     <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$s Meldinger og samtaleinnhold beskyttes av ende-til-ende-kryptering på alle enheter</string>
     <!-- Bottom sheet title explaining how Signal works on a linked device -->
-    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal på datamaskin eller iPad</string>
+    <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal på en tilkoblet enhet</string>
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
     <string name="LinkDeviceFragment__all_messaging_is_private">Alle meldingene på de tilkoblede enhetene er private</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
@@ -1189,6 +1190,8 @@
     <string name="AddLinkDeviceFragment__this_qr_code_not_valid">Denne QR-koden er ikke gyldig. Du må skanne QR-koden som vises på enheten du vil koble til.</string>
     <!-- Button in dialog to retry linking a device with a qr code -->
     <string name="AddLinkDeviceFragment__retry">Prøv på nytt</string>
+    <!-- Text shown in a dialog when the device being linked is too out-of-date to be linked to this account -->
+    <string name="AddLinkDeviceFragment__the_device_you_are_trying_to_link_is_out_of_date">The device you\'re trying to link is out of date. Please upgrade and try again.</string>
 
     <!-- LinkDeviceSyncBottomSheet -->
     <!-- Option in bottom sheet to transfer message history -->
@@ -1574,12 +1577,6 @@
     <!-- Dialog message -->
     <string name="RestoreActivity__no_longer_registered_message">Dette skyldes sannsynligvis at du registrerte Signal-kontoen din på en annen enhet.</string>
 
-    <!-- GroupMentionSettingDialog -->
-    <string name="GroupMentionSettingDialog_notify_me_for_mentions">Varsle meg om omtaler</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Vil du motta varsler når du blir nevnt i dempede samtaler?</string>
-    <string name="GroupMentionSettingDialog_always_notify_me">Varsle meg alltid</string>
-    <string name="GroupMentionSettingDialog_dont_notify_me">Ikke varsle meg</string>
-
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Brukernavnet, QR-koden og lenken er ikke synlige i profilen din. Ikke del brukernavnet ditt med personer du ikke stoler på.</string>
@@ -1880,9 +1877,6 @@
 
     <!-- MediaPickerActivity -->
     <string name="MediaPickerActivity__menu_open_camera">Åpne kamera</string>
-
-    <!-- MediaSendActivity -->
-    <string name="MediaSendActivity_camera_unavailable">Kamera utilgjengelig.</string>
 
     <!-- MediaRepository -->
     <string name="MediaRepository_all_media">Alle medier</string>
@@ -2891,13 +2885,6 @@
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">Kontakt brukerstøtte</string>
 
-    <!-- RegistrationLockV2Dialog -->
-    <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Aktiver registreringslås?</string>
-    <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Deaktiver registreringslås?</string>
-    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Hvis du glemmer din Signal PIN-kode når du registrerer deg med Signal igjen, blir du låst ute av kontoen din i 7 dager.</string>
-    <string name="RegistrationLockV2Dialog_turn_on">Slå på</string>
-    <string name="RegistrationLockV2Dialog_turn_off">Skru av</string>
-
     <!-- RevealableMessageView -->
     <string name="RevealableMessageView_view_photo">Se bilde</string>
     <string name="RevealableMessageView_view_video">Se video</string>
@@ -3267,7 +3254,7 @@
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
     <string name="MuteDialog_mute_notifications">Ikke vis varsler</string>
     <!-- Dialog option that, when pressed, will open a time picker to let the user choose how long they\'d like to mute notifications for -->
-    <string name="MuteDialog__mute_until">Deaktiver til …</string>
+    <string name="MuteDialog__mute_until">Until…</string>
 
     <!-- MuteUntilTimePickerBottomSheet -->
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
@@ -4118,15 +4105,6 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Sist brukte</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Denne meldingen</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nylig brukt</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Smilefjes og mennesker</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Natur</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Mat</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Aktiviteter</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Steder</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Objekter</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Symboler</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Flagg</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emoticons</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Ingen resultater</string>
 
     <!-- GifQuickSearchOption -->
@@ -4144,10 +4122,10 @@
     <string name="arrays__use_default">Bruk forvalgt</string>
     <string name="arrays__use_custom">Bruk selvvalgt</string>
 
-    <string name="arrays__mute_for_one_hour">Demp i 1 time</string>
-    <string name="arrays__mute_for_eight_hours">Demp i 8 timer</string>
-    <string name="arrays__mute_for_one_day">Demp i 1 dag</string>
-    <string name="arrays__mute_for_seven_days">Demp i 7 dager</string>
+    <string name="arrays__mute_for_one_hour">1 time</string>
+    <string name="arrays__mute_for_eight_hours">8 timer</string>
+    <string name="arrays__mute_for_one_day">1 dag</string>
+    <string name="arrays__mute_for_seven_days">1 uke</string>
     <string name="arrays__always">Evig tid</string>
 
     <string name="arrays__settings_default">Standardoppsett</string>
@@ -4202,6 +4180,10 @@
     <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
     <string name="preferences__inactivity_timeout_interval">Tidsavbrudd ved inaktivitet</string>
     <string name="preferences__notifications">Varsler</string>
+    <!-- Preference item menu to enable notifications -->
+    <string name="preferences__enable_notifications">Slå på varsler</string>
+    <!-- Preference header for call notifications -->
+    <string name="preferences__call_notifications">Anropsvarsler</string>
     <string name="preferences__led_color">LED-farge</string>
     <string name="preferences__led_color_unknown">Ukjent</string>
     <string name="preferences__pref_led_blink_title">LED-blinkemønster</string>
@@ -4289,12 +4271,10 @@
     <string name="preferences__system_default">System standard</string>
     <string name="preferences__language">Språk</string>
     <string name="preferences__signal_messages_and_calls">Meldinger og anrop i Signal</string>
-    <string name="preferences__advanced_pin_settings">Avanserte PIN-kode instillinger</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">Avanserte innstillinger for PIN-kode</string>
     <string name="preferences__free_private_messages_and_calls">Gratis private meldinger og anrop til Signal-brukere</string>
     <string name="preferences__submit_debug_log">Send inn feilsøkingslogg</string>
-    <string name="preferences__delete_account">Slett kontoen</string>
     <string name="preferences__support_wifi_calling">«Wi-Fi-anrop»-tilbakefallsmodus</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Bruk dette hvis enheten leverer SMS / MMS via Wi-Fi (og «Wi-Fi-anrop» er slått på)</string>
     <string name="preferences__incognito_keyboard">Inkognito-tastatur</string>
@@ -4361,6 +4341,16 @@
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Lavere dataforbruk kan gi bedre kvalitet i telefonsamtaler på dårlige nettverk.</string>
     <string name="preferences_notifications__in_chat_sounds">Samtalelyder</string>
     <string name="preferences_notifications__show">Vis</string>
+    <!-- Preference item to set notification settings when chats are muted -->
+    <string name="preferences_notifications__while_muted">While muted</string>
+    <!-- Option in settings to turn on reaction notifications -->
+    <string name="preferences_notifications__reaction">Reaction notifications</string>
+    <!-- Body option in settings to turn on reaction notifications    -->
+    <string name="preferences_notifications__notify_reaction">Show notifications for reactions to messages you send</string>
+    <!-- Option in settings to turn on unread reminders -->
+    <string name="preferences_notifications__unread">Unread reminders</string>
+    <!-- Body option to turn on unread reminders -->
+    <string name="preferences_notifications__notify_unread">Occasionally notify when there are unread messages in muted chats</string>
     <string name="preferences_notifications__ringtone">Ringetone</string>
     <string name="preferences_chats__message_text_size">Skriftstørrelse i meldinger</string>
     <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
@@ -4888,8 +4878,6 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Skriv inn PIN-koden du opprettet for kontoen din. Dette er forskjellig fra SMS-bekreftelseskoden.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Angi PIN-koden som er knyttet til kontoen din.</string>
-    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
-    <string name="RegistrationLockFragment__switch_keyboard">Bytt tastatur</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Feil PIN-kode. Prøv igjen.</string>
     <string name="RegistrationLockFragment__forgot_pin">Har du glemt PIN-koden?</string>
     <string name="RegistrationLockFragment__incorrect_pin">Feil PIN-kode</string>
@@ -4967,8 +4955,6 @@
     <!-- Text label button to skip restoring -->
     <string name="registration_activity__skip_restore">Hopp over gjenoppretting</string>
     <string name="preferences_chats__chat_backups">Sikkerhetskopi av samtaler</string>
-    <string name="preferences_chats__transfer_account">Overfør konto</string>
-    <string name="preferences_chats__transfer_account_to_a_new_android_device">Overfør konto til ny Android-enhet</string>
     <!-- Title for dialog to enter in the backup passphrase -->
     <string name="RegistrationActivity_enter_backup_passphrase">Skriv inn passordfrase for sikkerhetskopi</string>
     <string name="RegistrationActivity_restore">Gjenopprett</string>
@@ -5056,19 +5042,9 @@
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">Tidsavbrudd for skjermlås ved inaktivitet.</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
     <string name="preferences_app_protection__to_use_screen_lock">Du må velge et mønster, et passord eller en PIN-kode på enheten for å bruke skjermlås.</string>
-    <string name="preferences_app_protection__signal_pin">Signal-PIN</string>
-    <string name="preferences_app_protection__create_a_pin">Lag en PIN</string>
-    <string name="preferences_app_protection__change_your_pin">Endre PIN-koden</string>
-    <string name="preferences_app_protection__pin_reminders">PIN-kode påminnelser</string>
-    <string name="preferences_app_protection__turn_off">Skru av</string>
-    <string name="preferences_app_protection__confirm_pin">Bekreft PIN-koden</string>
-    <string name="preferences_app_protection__confirm_your_signal_pin">Bekreft Signal PIN-kode</string>
-    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Pass på at du husker eller lagrer PIN-koden sikkert, da den ikke kan gjenopprettes. Hvis du glemmer PIN-koden, risikerer du å miste data når du registrerer Signal-kontoen på nytt.</string>
-    <string name="preferences_app_protection__incorrect_pin_try_again">Feil PIN-kode. Prøv igjen.</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">Kunne ikke skru på registreringslås.</string>
     <string name="preferences_app_protection__failed_to_disable_registration_lock">Kunne ikke skru av registreringslås.</string>
     <string name="AppProtectionPreferenceFragment_none">Ingen</string>
-    <string name="preferences_app_protection__registration_lock">Registreringslås</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Du må skrive inn registrerings-PIN-koden</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">PIN-koden har minst %1$d sifre eller tegn</string>
     <string name="RegistrationActivity_too_many_attempts">For mange forsøk</string>
@@ -5116,20 +5092,6 @@
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
     <string name="Recipient_deleted_account">Slettet konto</string>
 
-    <!-- Option in settings that will take use to re-register if they are no longer registered -->
-    <string name="preferences_account_reregister">Registrer kontoen din på nytt</string>
-    <!-- Option in settings that will take user to our website or playstore to update their expired build -->
-    <string name="preferences_account_update_signal">Oppdater Signal</string>
-    <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
-    <string name="preferences_account_delete_all_data">Slett alle dataene</string>
-    <!-- Title for confirmation dialog confirming user wants to delete all their data -->
-    <string name="preferences_account_delete_all_data_confirmation_title">Vil du slette alle dataene?</string>
-    <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_message">Dette tilbakestiller appen og sletter alle meldingene. Appen lukkes når prosessen er fullført.</string>
-    <!-- Confirmation action to proceed with application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_proceed">Fortsett</string>
-    <!-- Confirmation action to cancel application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_cancel">Avbryt</string>
     <!-- Error message shown when we fail to delete the data for some unknown reason -->
     <string name="preferences_account_delete_all_data_failed">Kunne ikke slette data</string>
 
@@ -5670,14 +5632,6 @@
     <!-- String displayed in a toast when a subscriber id is not present for a given type -->
     <string name="AppSettingsFragment__no_subscriber_id_set">Abonnent-ID mangler</string>
 
-    <!-- AccountSettingsFragment -->
-    <string name="AccountSettingsFragment__account">Konto</string>
-    <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Du vil bli spurt sjeldnere over tid</string>
-    <string name="AccountSettingsFragment__require_your_signal_pin">Krev Signal-PIN for å registrere telefonnummeret på nytt hos Signal</string>
-    <string name="AccountSettingsFragment__change_phone_number">Endre telefonnummer</string>
-    <!-- Account setting that allows user to request and export their signal account data -->
-    <string name="AccountSettingsFragment__request_account_data">Dine brukerdata</string>
-
     <!-- ExportAccountDataFragment -->
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
     <string name="ExportAccountDataFragment__your_account_data">Dine brukerdata</string>
@@ -5971,14 +5925,46 @@
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Meldinger</string>
     <string name="NotificationsSettingsFragment__calls">Samtaler</string>
-    <string name="NotificationsSettingsFragment__notify_when">Varsle når…</string>
+    <!-- Notification header for sounds -->
+    <string name="NotificationsSettingsFragment__sounds">Lyder</string>
     <string name="NotificationsSettingsFragment__contact_joins_signal">Kontakt blir med på Signal</string>
+    <!-- Notification body to get notified when someone joins Signal -->
+    <string name="NotificationsSettingsFragment__notify_contact">Show a notification when a phone contact joins Signal</string>
+    <!-- Option to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset">Reset notification settings</string>
+    <!-- Option body to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_notifications">Reset notification settings to default, including custom settings for your chats</string>
+    <!-- Dialog to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_body">Reset all notification settings to default for all chats?</string>
+    <!-- Confirmation button to reset dialog -->
+    <string name="NotificationsSettingsFragment__reset_confirm">Tilbakestill</string>
     <!-- Notification preference header -->
     <string name="NotificationsSettingsFragment__notification_profiles">Varslingsprofiler</string>
     <!-- Notification preference option header -->
     <string name="NotificationsSettingsFragment__profiles">Profiler</string>
     <!-- Notification preference summary text -->
     <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Lag en profil for å motta varsler fra bare de personene og gruppene du ønsker å høre fra.</string>
+
+    <!-- Header to describe screen that shows while muted settings -->
+    <string name="MutedNotificationsFragment__while">While muted</string>
+    <!-- Title for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls">Anrop</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body_global">Ring or notify when a call is started in muted chats.</string>
+    <!-- Title for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions">Mentions</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body_global">Notify when you are mentioned in muted chats.</string>
+    <!-- Title for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies">Svar</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body_global">Notify when someone replies to your message in muted chats.</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body">Ring or notify when a call is started while this chat is muted.</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body">Notify when you are mentioned while this chat is muted.</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body">Notify when someone replies to your message while this chat is muted.</string>
 
     <!-- NotificationProfilesFragment -->
     <!-- Title for notification profiles screen that shows all existing profiles; Title with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -6207,6 +6193,8 @@
     <string name="ConversationSettingsFragment__end_group">Steng gruppen</string>
     <!-- Banner shown at the top of group settings when the group has been ended -->
     <string name="ConversationSettingsFragment__this_group_was_ended">Gruppen er stengt.</string>
+    <!-- Subhead under a legacy group\'s name, joining the member count and the "Legacy Group" label. %1$s is the member count, %2$s is the label -->
+    <string name="ConversationSettingsFragment__s_dot_s">%1$s · %2$s</string>
     <!-- Archive chat option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__archive_chat">Arkiver samtalen</string>
     <!-- Delete chat option in group conversation settings screen -->
@@ -6390,34 +6378,9 @@
     <!-- Positive dialog action when sending a story via an add to group story button -->
     <string name="MediaReviewFragment__add_to_story">Legg til i story</string>
     <string name="MediaReviewFragment__add_a_message">Legg til en melding</string>
-    <!-- Hint text inside of a compose box that is shown when the user is adding media while quoting a message. -->
-    <string name="MediaReviewFragment__add_a_reply">Legg til et svar</string>
     <string name="MediaReviewFragment__send_to">Send til</string>
-    <string name="MediaReviewFragment__view_once_message">Mediefiler som vises én gang</string>
-    <string name="MediaReviewFragment__one_or_more_items_were_too_large">Elementene er for store</string>
-    <string name="MediaReviewFragment__one_or_more_items_were_invalid">Elementene er ugyldige</string>
-    <string name="MediaReviewFragment__too_many_items_selected">For mange valgte elementer</string>
-    <string name="MediaReviewFragment__video_trimmed_to_fit">Videoen ble klippet fordi den var for stor</string>
-    <!-- Small notification presented to the user when they set their video to view-once mode -->
-    <string name="MediaReviewFragment__video_set_to_view_once">Videoen er satt til «vis én gang»</string>
-    <!-- Small notification presented to the user when they set their photo to view-once mode -->
-    <string name="MediaReviewFragment__photo_set_to_view_once">Bildet er satt til «vis én gang»</string>
-    <!-- Accessibility label describing the add media button on the Media review screen -->
-    <string name="MediaReviewFragment__add_media_accessibility_label">Legg til en mediefil</string>
-    <!-- Accessibility label describing the brush and pen button on the Media review screen -->
-    <string name="MediaReviewFragment__brush_pen_accessibility_label">Pensel og blyant</string>
-    <!-- Accessibility label describing the crop and rotate button on the Media review screen -->
-    <string name="MediaReviewFragment__crop_rotate_accessibility_label">Beskjær og roter</string>
-    <!-- Accessibility label describing the change media quality button on the Media review screen -->
-    <string name="MediaReviewFragment__change_media_quality_accessibility_label">Endre kvaliteten på mediefilen</string>
-    <!-- Accessibility label describing the save media button on the Media review screen -->
-    <string name="MediaReviewFragment__save_media_accessibility_label">Lagre mediefilen</string>
-    <!-- Accessibility label describing the toggle emoji keyboard button on the Media review screen -->
-    <string name="MediaReviewFragment__emoji_toggle_accessibility_label">Slå av/på emoji-tastatur</string>
     <!-- Accessibility label describing the toggle view once button on the Media review screen -->
     <string name="MediaReviewFragment__view_once_toggle_accessibility_label">Slå av/på flyktig mediefil</string>
-    <!-- Accessibility label describing the send media button on the Media review screen -->
-    <string name="MediaReviewFragment__send_media_accessibility_label">Send mediefilen</string>
     <!-- Accessibility label describing the finish adding a message button on the Media review screen dialog -->
     <string name="MediaReviewFragment__finish_adding_a_message_accessibility_label">Lagre meldingen</string>
 
@@ -6437,27 +6400,9 @@
 
     <string name="MediaCountIndicatorButton__send">Send</string>
 
-    <string name="MediaReviewSelectedItem__tap_to_remove">Trykk for å fjerne</string>
-    <string name="MediaReviewSelectedItem__tap_to_select">Trykk for å velge</string>
-
     <string name="MediaReviewImagePageFragment__discard">Kast</string>
     <string name="MediaReviewImagePageFragment__discard_changes">Vil du forkaste endringene?</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Dette vil slette alle endringene du har gjort i dette bildet.</string>
-
-    <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_title">Fant %1$s</string>
-    <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_body">Start en samtale med %1$s</string>
-    <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
-    <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">Gå til samtale</string>
-
-    <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_title">Koble til enheten?</string>
-    <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_it_looks_like_youre_trying">Det ser ut til at du prøver å koble til en enhet med Signal. Trykk på «Fortsett» og så «Koble til ny enhet», og skann deretter QR-koden på nytt.</string>
-    <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
-    <string name="MediaCaptureFragment_device_link_dialog_continue">Fortsett</string>
-
 
     <string name="BadgesOverviewFragment__my_badges">Mine merker</string>
     <string name="BadgesOverviewFragment__featured_badge">Utvalgt merke</string>
@@ -8714,13 +8659,6 @@
     <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">Gruppen er stengt.</string>
     <!-- Body of bottom sheet shown when opening a terminated group -->
     <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">Du kan verken sende eller motta meldinger og anrop i denne gruppen.</string>
-
-    <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_title">Sletting er nå synkronisert på alle enhetene dine</string>
-    <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_message">Meldinger og samtaler som slettes her, slettes også fra mobilen din og alle andre tilkoblede enheter.</string>
-    <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_acknowledge_button">OK</string>
 
     <!-- NoManualBackupBottomSheet -->
     <!-- Title for bottom sheet, placeholder is number of days. -->

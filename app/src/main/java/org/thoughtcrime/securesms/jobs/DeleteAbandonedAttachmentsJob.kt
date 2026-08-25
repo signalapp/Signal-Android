@@ -9,6 +9,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.attachments
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
+import org.thoughtcrime.securesms.jobmanager.impl.DataRestoreConstraint
 import kotlin.time.Duration.Companion.days
 
 /**
@@ -30,6 +31,7 @@ class DeleteAbandonedAttachmentsJob private constructor(parameters: Parameters) 
     parameters = Parameters.Builder()
       .setMaxInstancesForFactory(2)
       .setLifespan(1.days.inWholeMilliseconds)
+      .addConstraint(DataRestoreConstraint.KEY)
       .build()
   )
 

@@ -9,6 +9,7 @@ import android.app.Application
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.longClick
 import androidx.compose.ui.test.onNodeWithTag
+import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTouchInput
 import androidx.test.core.app.ApplicationProvider
@@ -25,7 +26,7 @@ import org.signal.mediasend.test.TestTags
 
 /**
  * Covers the send affordance's two gestures: a tap advances the flow, while a long press offers the schedule menu when
- * the flow allows scheduling.
+ * the flow allows scheduling. Also covers when the row falls back to its placeholder.
  */
 @RunWith(RobolectricTestRunner::class)
 @Config(application = Application::class)
@@ -74,14 +75,43 @@ class AddAMessageRowTest {
     assertEquals(emptyList<MediaEditScreenEvents>(), events)
   }
 
-  private fun setContent(canScheduleSend: Boolean) {
+  @Test
+  fun `Given a blank message, when the row is displayed, then the placeholder is shown`() {
+    setContent(message = "   ")
+
+    composeTestRule.onNodeWithText("Message").assertExists()
+  }
+
+  @Test
+  fun `Given a message, when the row is displayed, then the message is shown`() {
+    setContent(message = "Check this out")
+
+    composeTestRule.onNodeWithText("Check this out").assertExists()
+  }
+
+  @Test
+  fun `Given a reply flow with no message, when the row is displayed, then the reply placeholder is shown`() {
+    setContent(isReply = true)
+
+    composeTestRule.onNodeWithText("Add a reply").assertExists()
+  }
+
+  @Test
+  fun `Given a reply flow with a message, when the row is displayed, then the message is shown`() {
+    setContent(message = "Check this out", isReply = true)
+
+    composeTestRule.onNodeWithText("Check this out").assertExists()
+  }
+
+  private fun setContent(canScheduleSend: Boolean = false, message: CharSequence? = null, isReply: Boolean = false) {
     composeTestRule.setContent {
       SignalTheme {
         AddAMessageRow(
-          message = null,
+          message = message,
           onEvent = { events += it },
           onNextClick = { nextClicks++ },
-          canScheduleSend = canScheduleSend
+          canScheduleSend = canScheduleSend,
+          isReply = isReply
         )
       }
     }

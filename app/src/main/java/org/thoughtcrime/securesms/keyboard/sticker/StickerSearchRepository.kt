@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.keyboard.sticker
 
 import androidx.annotation.WorkerThread
 import org.signal.core.models.database.StickerRecord
-import org.thoughtcrime.securesms.components.emoji.EmojiUtil
+import org.signal.emoji.EmojiUtil
 import org.thoughtcrime.securesms.database.EmojiSearchTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.StickerTables

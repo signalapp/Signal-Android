@@ -40,6 +40,7 @@ import org.signal.network.service.ArchiveError.CopyMediaError
 import org.signal.network.service.ArchiveError.CredentialError
 import org.signal.network.service.ArchiveError.EntitlementError
 import org.signal.network.service.ArchiveError.UploadFormError
+import org.signal.network.service.ArchiveService.CredentialType
 import org.whispersystems.signalservice.api.archive.ArchiveServiceAccess
 import org.whispersystems.signalservice.api.archive.ArchiveServiceAccessPair
 import org.whispersystems.signalservice.api.archive.ArchiveServiceCredential
@@ -142,7 +143,7 @@ class ArchiveService(
    * [getBackupLevel] without any of the error handling that clears local state, and without initializing backups as a side effect. Lets a periodic check run
    * without risking rolling the user back.
    */
-  suspend fun getBackupLevelWithoutDowngrade(): Either<CredentialError, BackupLevel> = request {
+  suspend fun getBackupLevelWithoutDowngrade(): Either<CredentialError, BackupLevel> = request(selfHeal = false) {
     backupLevelOf(fetchArchiveServiceAccessPair())
   }
 
@@ -163,19 +164,20 @@ class ArchiveService(
    * This is how you check whether an AEP the user typed in actually belongs to [aci]: a key that isn't associated with the account fails zk verification while
    * deriving the credential, surfacing as [ArchiveError.CredentialError.ZkVerificationFailed].
    */
-  suspend fun getMessageBackupFileLocationForKey(aci: ACI, messageBackupKey: MessageBackupKey): Either<CredentialError, BackupFileLocation> = request {
-    val currentTime = System.currentTimeMillis()
-    val response = fetchServiceCredentials(currentTime)
-
-    val credential: ArchiveServiceCredential = response.messageCredentials
-      .associateBy { it.redemptionTime }[startOfDay(currentTime)]
-      ?: raise(ArchiveError.ApplicationError(IllegalStateException("No credential available for the current time.")))
-
-    val access = ArchiveServiceAccess(credential, messageBackupKey)
+  suspend fun getMessageBackupFileLocationForKey(aci: ACI, messageBackupKey: MessageBackupKey): Either<CredentialError, BackupFileLocation> = request(selfHeal = false) {
+    val access = freshMessageBackupAccess(messageBackupKey)
     val info = fetchMessageBackupInfo(access, aci)
     val credentials = fetchCdnReadCredentials(access, info.cdn, aci)
 
     BackupFileLocation(info, credentials.headers)
+  }
+
+  /**
+   * Metadata about the message backup, fetched with a freshly-derived credential for [messageBackupKey]. Carries the same zk verification semantics as
+   * [getMessageBackupFileLocationForKey], and the same 401 caveat as [ArchiveApiV2.getMessageBackupInfo].
+   */
+  suspend fun getMessageBackupInfoForKey(aci: ACI, messageBackupKey: MessageBackupKey): Either<CredentialError, MessageBackupInfo> = request(selfHeal = false) {
+    fetchMessageBackupInfo(freshMessageBackupAccess(messageBackupKey), aci)
   }
 
   /**
@@ -263,7 +265,7 @@ class ArchiveService(
       encryptionKey = mediaSecrets.macKey + mediaSecrets.aesKey
     )
     val outcomes: List<CopyBackupMediaOutcome> = withRejectedCredentialActions {
-      bindSimpleRequest(archiveApi.copyMediaToArchive(store.aci, access.mediaBackupAccess, listOf(item)))
+      bindSimpleRequest(archiveApi.copyMediaToArchive(store.aci, access.mediaBackupAccess, listOf(item)), access.mediaBackupAccess.credentialType)
     }
 
     when (val outcome = outcomes.firstOrNull()) {
@@ -318,7 +320,7 @@ class ArchiveService(
   suspend fun getSvrBAuth(): Either<CredentialError, AuthCredentials> = request {
     val access = initBackupAndFetchAuth()
     withRejectedCredentialActions {
-      bindSimpleRequest(archiveApi.getSvrBAuthorization(store.aci, access.messageBackupAccess))
+      bindSimpleRequest(archiveApi.getSvrBAuthorization(store.aci, access.messageBackupAccess), access.messageBackupAccess.credentialType)
     }
   }
 
@@ -334,7 +336,7 @@ class ArchiveService(
       }
 
       is RequestResult.RetryableNetworkError -> raise(result.toArchiveError())
-      is RequestResult.ApplicationError -> raise(result.toArchiveError())
+      is RequestResult.ApplicationError -> raise(result.toArchiveError(credentialType = null))
     }
   }
 
@@ -378,7 +380,10 @@ class ArchiveService(
    * See [getArchiveServiceAccess].
    */
   private suspend fun Raise<CredentialError>.initBackupAndFetchAuth(): ArchiveServiceAccessPair {
-    return if (store.backupsInitialized || store.isLinkedDevice) {
+    val needsMessageInit = !store.messageBackupInitialized
+    val needsMediaInit = !store.mediaBackupInitialized
+
+    return if (store.isLinkedDevice || (store.messageBackupInitialized && store.mediaBackupInitialized)) {
       withAuthErrorActions {
         fetchArchiveServiceAccessPair()
       }
@@ -389,16 +394,33 @@ class ArchiveService(
       }
     } else {
       withAuthErrorActions {
-        reserveBackupId(store.messageBackupKey, store.mediaRootBackupKey)
+        Log.i(TAG, "Initializing backups. message: $needsMessageInit, media: $needsMediaInit")
 
-        store.messageCredentials.clearAll()
-        store.mediaCredentials.clearAll()
+        // Only the sides that actually need it, since the service rate-limits media reservations far more aggressively than message ones.
+        reserveBackupId(
+          messageBackupKey = if (needsMessageInit) store.messageBackupKey else null,
+          mediaRootBackupKey = if (needsMediaInit) store.mediaRootBackupKey else null
+        )
+
+        if (needsMessageInit) {
+          store.messageCredentials.clearAll()
+        }
+        if (needsMediaInit) {
+          store.mediaCredentials.clearAll()
+        }
 
         val access = fetchArchiveServiceAccessPair()
-        setPublicKey(access.messageBackupAccess)
-        setPublicKey(access.mediaBackupAccess)
 
-        store.backupsInitialized = true
+        // Marked one at a time so that a failure on the second side doesn't cost us the reservation we just spent on the first.
+        if (needsMessageInit) {
+          setPublicKey(access.messageBackupAccess)
+          store.messageBackupInitialized = true
+        }
+        if (needsMediaInit) {
+          setPublicKey(access.mediaBackupAccess)
+          store.mediaBackupInitialized = true
+        }
+
         access
       }
     }
@@ -441,18 +463,15 @@ class ArchiveService(
    * Applies the local state cleanup that a rejected credential implies. Scoped to the credential-fetching portion of an operation, because a 401 from, say,
    * fetching backup metadata says something different than a 401 while establishing the credential itself.
    *
-   * A failed zk derivation is handled in [request] instead, since it isn't endpoint-dependent the way a 401 is.
+   * A failed zk derivation gets the same cleanup, but is handled in [request] instead, since it isn't endpoint-dependent the way a 401 is.
    *
    * Pass false for [includeUnauthorizedActions] to log a rejected credential without acting on it, which is what registration wants before keys are restored.
    */
   private inline fun <T> Raise<CredentialError>.withAuthErrorActions(includeUnauthorizedActions: Boolean = true, block: Raise<CredentialError>.() -> T): T {
     return recover({ block() }) { error ->
       if (error is CredentialError.Unauthorized && includeUnauthorizedActions) {
-        Log.w(TAG, "Credential rejected. Resetting initialized state + auth credentials.", error.cause)
-        store.backupsInitialized = false
-        store.messageCredentials.clearAll()
-        store.mediaCredentials.clearAll()
-        store.cachedMediaCdnPath = null
+        Log.w(TAG, "Credential rejected (${error.credentialType.describe()}). Resetting initialized state + auth credentials.", error.cause)
+        resetInitializedState(error.credentialType)
       }
 
       raise(error)
@@ -469,11 +488,8 @@ class ArchiveService(
   private inline fun <E : ArchiveError, T> Raise<E>.withRejectedCredentialActions(block: Raise<E>.() -> T): T {
     return recover({ block() }) { error ->
       if (error is CredentialError.Unauthorized) {
-        Log.w(TAG, "Anonymous credential rejected. Resetting initialized state + auth credentials.", error.cause)
-        store.backupsInitialized = false
-        store.messageCredentials.clearAll()
-        store.mediaCredentials.clearAll()
-        store.cachedMediaCdnPath = null
+        Log.w(TAG, "Anonymous credential rejected (${error.credentialType.describe()}). Resetting initialized state + auth credentials.", error.cause)
+        resetInitializedState(error.credentialType)
       }
 
       raise(error)
@@ -499,10 +515,21 @@ class ArchiveService(
   private fun Raise<CredentialError>.backupLevelOf(access: ArchiveServiceAccessPair): BackupLevel {
     return when (val result = archiveApi.getZkCredential(store.aci, access.messageBackupAccess)) {
       is ZkCredentialResult.Success -> result.value.backupLevel
-      is ZkCredentialResult.Failure.VerificationFailed -> raise(CredentialError.ZkVerificationFailed(result.exception))
+      is ZkCredentialResult.Failure.VerificationFailed -> raise(CredentialError.ZkVerificationFailed(result.exception, access.messageBackupAccess.credentialType))
       is ZkCredentialResult.Failure.MalformedCredential -> raise(ArchiveError.ApplicationError(result.exception))
     }
   }
+
+  /**
+   * Which archive an access belongs to, so that an error raised while using it can be attributed to one side. [BackupKey] isn't sealed, so an unrecognized key
+   * reports null and takes the both-sides cleanup rather than guessing.
+   */
+  private val ArchiveServiceAccess<*>.credentialType: CredentialType?
+    get() = when (backupKey) {
+      is MessageBackupKey -> CredentialType.MESSAGE
+      is MediaRootBackupKey -> CredentialType.MEDIA
+      else -> null
+    }
 
   private fun ArchiveCacheStore.cacheFor(credentialType: CredentialType): ArchiveCacheStore.CredentialCache {
     return when (credentialType) {
@@ -517,15 +544,16 @@ class ArchiveService(
 
   /**
    * The general cruft we need to do for every request -- run on IO, map to an Either, and handle common verification errors.
+   *
+   * Pass false for [selfHeal] to keep a zk failure from touching the initialized state: either the credential came from a key the caller handed us rather than
+   * the account's own, or the operation is one that must never change local state. See [onZkVerificationFailed].
    */
-  private suspend fun <E : ArchiveError, T> request(block: suspend Raise<E>.() -> T): Either<E, T> {
+  private suspend fun <E : ArchiveError, T> request(selfHeal: Boolean = true, block: suspend Raise<E>.() -> T): Either<E, T> {
     return withContext(Dispatchers.IO) {
       either {
         recover({ block() }) { error ->
           if (error is CredentialError.ZkVerificationFailed) {
-            Log.w(TAG, "Unable to verify/receive credentials, clearing cache to fetch new.", error.exception)
-            store.messageCredentials.clearAll()
-            store.mediaCredentials.clearAll()
+            onZkVerificationFailed(error, selfHeal)
           }
 
           raise(error)
@@ -533,6 +561,52 @@ class ArchiveService(
       }
     }
   }
+
+  /**
+   * Handles a ZK verification failure by resetting initialization state when appropriate.
+   */
+  private fun onZkVerificationFailed(error: CredentialError.ZkVerificationFailed, selfHeal: Boolean) {
+    if (!selfHeal || store.isPreRestoreDuringRegistration) {
+      Log.w(TAG, "Unable to verify/receive credentials (${error.credentialType.describe()}). Leaving local state alone.", error.exception)
+      return
+    }
+
+    Log.w(TAG, "Unable to verify/receive credentials for our own key (${error.credentialType.describe()}). Our backupId is likely stale. Resetting initialized state + auth credentials.", error.exception)
+    resetInitializedState(error.credentialType)
+  }
+
+  private fun resetInitializedState(credentialType: CredentialType?) {
+    when (credentialType) {
+      CredentialType.MESSAGE -> {
+        store.messageBackupInitialized = false
+      }
+      CredentialType.MEDIA -> {
+        store.mediaBackupInitialized = false
+        store.cachedMediaCdnPath = null
+      }
+      null -> {
+        store.messageBackupInitialized = false
+        store.mediaBackupInitialized = false
+        store.cachedMediaCdnPath = null
+      }
+    }
+
+    clearCredentials(credentialType)
+  }
+
+  private fun clearCredentials(credentialType: CredentialType?) {
+    when (credentialType) {
+      null -> {
+        store.messageCredentials.clearAll()
+        store.mediaCredentials.clearAll()
+      }
+      else -> {
+        store.cacheFor(credentialType).clearAll()
+      }
+    }
+  }
+
+  private fun CredentialType?.describe(): String = this?.name ?: "unattributed"
 
   /**
    * Reserves the backupIds for the keys provided. Pass null for either to skip reserving it.
@@ -548,7 +622,7 @@ class ArchiveService(
         is ArchiveApiV2.SetBackupIdError.RateLimited -> raise(CredentialError.RateLimited(error.retryAfter))
       }
       is RequestResult.RetryableNetworkError -> raise(result.toArchiveError())
-      is RequestResult.ApplicationError -> raise(result.toArchiveError())
+      is RequestResult.ApplicationError -> raise(result.toArchiveError(credentialType = null))
     }
   }
 
@@ -564,39 +638,54 @@ class ArchiveService(
         is ArchiveApiV2.GetServiceCredentialsError.RateLimited -> raise(CredentialError.RateLimited(error.retryAfter))
       }
       is RequestResult.RetryableNetworkError -> raise(result.toArchiveError())
-      is RequestResult.ApplicationError -> raise(result.toArchiveError())
+      is RequestResult.ApplicationError -> raise(result.toArchiveError(credentialType = null))
     }
   }
 
   private suspend fun Raise<CredentialError>.setPublicKey(access: ArchiveServiceAccess<*>) {
-    bindSimpleRequest(archiveApi.setPublicKey(store.aci, access))
+    bindSimpleRequest(archiveApi.setPublicKey(store.aci, access), access.credentialType)
   }
 
   /**
    * Tells the service that the backup behind [access] is still in use, so it doesn't get cleaned up.
    */
   private suspend fun Raise<CredentialError>.refreshBackupAccess(access: ArchiveServiceAccess<*>) {
-    bindSimpleRequest(archiveApi.refreshBackup(store.aci, access))
+    bindSimpleRequest(archiveApi.refreshBackup(store.aci, access), access.credentialType)
+  }
+
+  /**
+   * Access built from a credential fetched right now for [messageBackupKey], bypassing the cache entirely. The cache is keyed to the account's stored key, so a
+   * caller checking some other key (like one the user typed) must neither read from it nor write to it.
+   */
+  private suspend fun Raise<CredentialError>.freshMessageBackupAccess(messageBackupKey: MessageBackupKey): ArchiveServiceAccess<MessageBackupKey> {
+    val currentTime = System.currentTimeMillis()
+    val response = fetchServiceCredentials(currentTime)
+
+    val credential: ArchiveServiceCredential = response.messageCredentials
+      .associateBy { it.redemptionTime }[startOfDay(currentTime)]
+      ?: raise(ArchiveError.ApplicationError(IllegalStateException("No credential available for the current time.")))
+
+    return ArchiveServiceAccess(credential, messageBackupKey)
   }
 
   private suspend fun Raise<CredentialError>.fetchMessageBackupInfo(access: ArchiveServiceAccess<MessageBackupKey>, aci: ACI = store.aci): MessageBackupInfo {
-    return bindSimpleRequest(archiveApi.getMessageBackupInfo(aci, access))
+    return bindSimpleRequest(archiveApi.getMessageBackupInfo(aci, access), access.credentialType)
   }
 
   private suspend fun Raise<CredentialError>.fetchMediaBackupInfo(access: ArchiveServiceAccess<MediaRootBackupKey>): MediaBackupInfo {
-    return bindSimpleRequest(archiveApi.getMediaBackupInfo(store.aci, access))
+    return bindSimpleRequest(archiveApi.getMediaBackupInfo(store.aci, access), access.credentialType)
   }
 
   private suspend fun Raise<CredentialError>.fetchCdnReadCredentials(access: ArchiveServiceAccess<*>, cdnNumber: Int, aci: ACI = store.aci): GetArchiveCdnCredentialsResponse {
-    return bindSimpleRequest(archiveApi.getCdnReadCredentials(cdnNumber, aci, access))
+    return bindSimpleRequest(archiveApi.getCdnReadCredentials(cdnNumber, aci, access), access.credentialType)
   }
 
   private suspend fun Raise<UploadFormError>.fetchMessageBackupUploadForm(access: ArchiveServiceAccess<MessageBackupKey>, backupFileSize: Long): AttachmentUploadForm {
-    return bindUploadForm(archiveApi.getMessageBackupUploadForm(store.aci, access, backupFileSize))
+    return bindUploadForm(archiveApi.getMessageBackupUploadForm(store.aci, access, backupFileSize), access.credentialType)
   }
 
   private suspend fun Raise<UploadFormError>.fetchMediaUploadForm(access: ArchiveServiceAccess<MediaRootBackupKey>, uploadLength: Long): AttachmentUploadForm {
-    return bindUploadForm(archiveApi.getMediaUploadForm(store.aci, access, uploadLength))
+    return bindUploadForm(archiveApi.getMediaUploadForm(store.aci, access, uploadLength), access.credentialType)
   }
 
   private suspend fun Raise<EntitlementError>.fetchMediaItemsPage(access: ArchiveServiceAccess<MediaRootBackupKey>, limit: Int, cursor: String?): ArchiveApiV2.MediaItemsPage {
@@ -606,47 +695,47 @@ class ArchiveService(
       is RequestResult.Success -> result.result
       is RequestResult.NonSuccess -> when (val error = result.error) {
         ArchiveApiV2.GetMediaItemsError.InvalidRequest -> raise(CredentialError.InvalidRequest())
-        ArchiveApiV2.GetMediaItemsError.Unauthorized -> raise(CredentialError.Unauthorized())
+        ArchiveApiV2.GetMediaItemsError.Unauthorized -> raise(CredentialError.Unauthorized(credentialType = access.credentialType))
         ArchiveApiV2.GetMediaItemsError.Forbidden -> raise(EntitlementError.NotEntitled())
         is ArchiveApiV2.GetMediaItemsError.RateLimited -> raise(CredentialError.RateLimited(error.retryAfter))
       }
       is RequestResult.RetryableNetworkError -> raise(result.toArchiveError())
-      is RequestResult.ApplicationError -> raise(result.toArchiveError())
+      is RequestResult.ApplicationError -> raise(result.toArchiveError(access.credentialType))
     }
   }
 
   private suspend fun Raise<CredentialError>.deleteArchivedMediaChunk(access: ArchiveServiceAccess<MediaRootBackupKey>, chunk: List<DeleteBackupMediaItem>): List<DeleteBackupMediaItem> {
-    return bindSimpleRequest(archiveApi.deleteArchivedMedia(store.aci, access, chunk))
+    return bindSimpleRequest(archiveApi.deleteArchivedMedia(store.aci, access, chunk), access.credentialType)
   }
 
   private suspend fun Raise<CredentialError>.deleteBackup(access: ArchiveServiceAccess<*>) {
-    bindSimpleRequest(archiveApi.deleteBackup(store.aci, access))
+    bindSimpleRequest(archiveApi.deleteBackup(store.aci, access), access.credentialType)
   }
 
   /**
    * The majority of archive endpoints, whose only modeled non-success is a rejected credential.
    */
-  private fun <T> Raise<CredentialError>.bindSimpleRequest(result: RequestResult<T, RequestUnauthorizedException>): T {
+  private fun <T> Raise<CredentialError>.bindSimpleRequest(result: RequestResult<T, RequestUnauthorizedException>, credentialType: CredentialType?): T {
     return when (result) {
       is RequestResult.Success -> result.result
-      is RequestResult.NonSuccess -> raise(CredentialError.Unauthorized(result.error))
+      is RequestResult.NonSuccess -> raise(CredentialError.Unauthorized(result.error, credentialType))
       is RequestResult.RetryableNetworkError -> raise(result.toArchiveError())
-      is RequestResult.ApplicationError -> raise(result.toArchiveError())
+      is RequestResult.ApplicationError -> raise(result.toArchiveError(credentialType))
     }
   }
 
   /**
    * [bindSimpleRequest] for the upload-form endpoints, which can additionally reject the requested size.
    */
-  private fun <T> Raise<UploadFormError>.bindUploadForm(result: RequestResult<T, GetUploadFormError>): T {
+  private fun <T> Raise<UploadFormError>.bindUploadForm(result: RequestResult<T, GetUploadFormError>, credentialType: CredentialType?): T {
     return when (result) {
       is RequestResult.Success -> result.result
       is RequestResult.NonSuccess -> when (val error = result.error) {
         is UploadTooLargeException -> raise(UploadFormError.TooLarge(error))
-        is RequestUnauthorizedException -> raise(CredentialError.Unauthorized(error))
+        is RequestUnauthorizedException -> raise(CredentialError.Unauthorized(error, credentialType))
       }
       is RequestResult.RetryableNetworkError -> raise(result.toArchiveError())
-      is RequestResult.ApplicationError -> raise(result.toArchiveError())
+      is RequestResult.ApplicationError -> raise(result.toArchiveError(credentialType))
     }
   }
 
@@ -666,9 +755,9 @@ class ArchiveService(
    * A local failure means the same thing on every endpoint too. Failing to derive a zk credential arrives here, but means something far more specific than
    * "unexpected": the backup key doesn't belong to this account.
    */
-  private fun RequestResult.ApplicationError.toArchiveError(): CredentialError {
+  private fun RequestResult.ApplicationError.toArchiveError(credentialType: CredentialType?): CredentialError {
     return when (val failure = cause) {
-      is VerificationFailedException -> CredentialError.ZkVerificationFailed(failure)
+      is VerificationFailedException -> CredentialError.ZkVerificationFailed(failure, credentialType)
       else -> ArchiveError.ApplicationError(failure)
     }
   }
@@ -698,7 +787,8 @@ class ArchiveService(
   )
 
   /**
-   * Which of the two archives an operation applies to. The service issues separate credentials for each.
+   * Which of the two archives an operation applies to. The service issues separate credentials for each, keyed to separate backupIds, so nearly everything in
+   * this file is scoped to one of them.
    */
   enum class CredentialType {
     MESSAGE, MEDIA
@@ -809,8 +899,13 @@ sealed interface ArchiveError {
    * By implementing all of these other error collection interfaces, we're saying that all of those collections include [CredentialError].
    */
   sealed interface CredentialError : ArchiveError, UploadFormError, CopyMediaError, EntitlementError, BackupFileError {
-    /** The server rejected our credential. */
-    data class Unauthorized(override val cause: Throwable? = null) : CredentialError
+    /**
+     * The server rejected our credential.
+     *
+     * [credentialType] is which archive's credential was rejected, or null when the rejection wasn't attributable to one -- our account auth, or a cdn file
+     * download mapped by [toArchiveResult]. Local cleanup is scoped to it, since the two archives have independent backupIds.
+     */
+    data class Unauthorized(override val cause: Throwable? = null, val credentialType: CredentialType? = null) : CredentialError
 
     /** Nothing exists at the requested location. */
     data class NotFound(override val cause: Throwable? = null) : CredentialError
@@ -821,8 +916,12 @@ sealed interface ArchiveError {
     /** You're rate-limited. Use [retryAfter] for your backoff. */
     data class RateLimited(val retryAfter: Duration?, override val cause: Throwable? = null) : CredentialError
 
-    /** The zkgroup credential could not be derived or verified. It could mean the backup key is incorrect, or some other state-tracking error. */
-    data class ZkVerificationFailed(val exception: VerificationFailedException) : CredentialError {
+    /**
+     * The zkgroup credential could not be derived or verified. It could mean the backup key is incorrect, or some other state-tracking error.
+     *
+     * [credentialType] carries the same meaning as it does on [Unauthorized].
+     */
+    data class ZkVerificationFailed(val exception: VerificationFailedException, val credentialType: CredentialType? = null) : CredentialError {
       override val cause: Throwable get() = exception
     }
   }

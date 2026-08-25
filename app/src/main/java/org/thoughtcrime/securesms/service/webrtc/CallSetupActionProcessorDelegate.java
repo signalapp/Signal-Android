@@ -5,7 +5,6 @@ import androidx.annotation.NonNull;
 import org.signal.core.util.logging.Log;
 import org.signal.ringrtc.CallException;
 import org.signal.ringrtc.CallManager;
-import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.ringrtc.OutgoingVideoSourceRouter;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
@@ -34,7 +33,7 @@ public class CallSetupActionProcessorDelegate extends WebRtcActionProcessor {
       return currentState;
     }
 
-    Log.i(tag, "handleCallConnected(): call_id: " + remotePeer.getCallId());
+    Log.i(tag, "handleCallConnected(): call_id: " + remotePeer.getCallId() + " callState: " + currentState.getCallInfoState().getCallState());
 
     RemotePeer activePeer = currentState.getCallInfoState().requireActivePeer();
 

@@ -171,6 +171,8 @@
     <string name="BlockedUsersActivity__block_user">کاربر مسدود شود؟</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">«%1$s» امکان برقراری تماس یا ارسال پیام به شما را نخواهد داشت.</string>
     <string name="BlockedUsersActivity__block">مسدود کردن</string>
+    <!-- Subtitle shown under a blocked user. Placeholder is the time they were blocked-->
+    <string name="BlockedUsersActivity__blocked_on_s">مسدودشده در %1$s</string>
 
     <!-- CreditCardFragment -->
     <!-- Title of fragment -->
@@ -428,7 +430,6 @@
     <!-- Accessibility text associated with image button to send an edited message. -->
     <string name="ConversationActivity_send_edit">ارسال ویرایش</string>
     <string name="ConversationActivity_compose_message">نگارش پیام</string>
-    <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">پوزش، در تنظیم پیوست شما خطایی رخ داد.</string>
     <!-- Toast shown when user is unable to find the recipient when sending a message -->
     <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">گیرنده یک نشانی ایمیل یا پیامک معتبر نیست!</string>
     <string name="ConversationActivity_message_is_empty_exclamation">پیام خالی است!</string>
@@ -1075,7 +1076,7 @@
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
     <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$s پیام‌ها و اطلاعات گفتگو با رمزگذاری سرتاسری در همه دستگاه‌ها محافظت می‌شوند</string>
     <!-- Bottom sheet title explaining how Signal works on a linked device -->
-    <string name="LinkDeviceFragment__signal_on_desktop_ipad">سیگنال روی دسک‌تاپ یا آی‌پد</string>
+    <string name="LinkDeviceFragment__signal_on_desktop_ipad">سیگنال در دستگاه متصل</string>
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
     <string name="LinkDeviceFragment__all_messaging_is_private">همۀ پیام‌ها در دستگاه‌های متصل خصوصی هستند</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
@@ -1189,6 +1190,8 @@
     <string name="AddLinkDeviceFragment__this_qr_code_not_valid">کد QR معتبر نمی باشد. لطفا مطمئن شوید که در حال اسکن کد QR نمایش داده روی دستگاهی که قصد پیوند به آن را دارید می باشید.</string>
     <!-- Button in dialog to retry linking a device with a qr code -->
     <string name="AddLinkDeviceFragment__retry">تلاش مجدد</string>
+    <!-- Text shown in a dialog when the device being linked is too out-of-date to be linked to this account -->
+    <string name="AddLinkDeviceFragment__the_device_you_are_trying_to_link_is_out_of_date">The device you\'re trying to link is out of date. Please upgrade and try again.</string>
 
     <!-- LinkDeviceSyncBottomSheet -->
     <!-- Option in bottom sheet to transfer message history -->
@@ -1574,12 +1577,6 @@
     <!-- Dialog message -->
     <string name="RestoreActivity__no_longer_registered_message">دلیلش احتمالاً این است که حساب سیگنال خود را در دستگاه دیگری ثبت کرده‌اید.</string>
 
-    <!-- GroupMentionSettingDialog -->
-    <string name="GroupMentionSettingDialog_notify_me_for_mentions">برای اشاره‌ها من را آگاه کن</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">می‌خواهید وقتی در گفتگوهای بی‌صداشده به شما اشاره می‌شود، اعلان دریافت کنید؟</string>
-    <string name="GroupMentionSettingDialog_always_notify_me">همیشه من را آگاه کن</string>
-    <string name="GroupMentionSettingDialog_dont_notify_me">من را آگاه نکن</string>
-
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">نام کاربری، کد QR و پیوند شما در نمایۀ شما قابل مشاهده نیست. نام کاربری خود را فقط با افراد مورد اعتمادتان به اشتراک بگذارید.</string>
@@ -1880,9 +1877,6 @@
 
     <!-- MediaPickerActivity -->
     <string name="MediaPickerActivity__menu_open_camera">باز کردن دوربین</string>
-
-    <!-- MediaSendActivity -->
-    <string name="MediaSendActivity_camera_unavailable">دوربین در دسترس نیست.</string>
 
     <!-- MediaRepository -->
     <string name="MediaRepository_all_media">همهٔ رسانه‌ها</string>
@@ -2891,13 +2885,6 @@
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">تماس با پشتیبانی</string>
 
-    <!-- RegistrationLockV2Dialog -->
-    <string name="RegistrationLockV2Dialog_turn_on_registration_lock">روشن کردن قفل ثبت‌نام؟</string>
-    <string name="RegistrationLockV2Dialog_turn_off_registration_lock">خاموش کردن قفل ثبت‌نام؟</string>
-    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">اگر شما پین سیگنال خود را هنگام ثبت‌نام دوباره فراموش کنید، حساب کاربری شما به مدت ۷ روز قفل خواهد شد و قادر به استفاده از آن نخواهید بود.</string>
-    <string name="RegistrationLockV2Dialog_turn_on">روشن</string>
-    <string name="RegistrationLockV2Dialog_turn_off">خاموش</string>
-
     <!-- RevealableMessageView -->
     <string name="RevealableMessageView_view_photo">مشاهدهٔ عکس</string>
     <string name="RevealableMessageView_view_video">مشاهدهٔ ویدئو</string>
@@ -3267,7 +3254,7 @@
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
     <string name="MuteDialog_mute_notifications">بی‌صدا کردن اعلان‌‌ها</string>
     <!-- Dialog option that, when pressed, will open a time picker to let the user choose how long they\'d like to mute notifications for -->
-    <string name="MuteDialog__mute_until">بی‌صدا کردن تا…</string>
+    <string name="MuteDialog__mute_until">Until…</string>
 
     <!-- MuteUntilTimePickerBottomSheet -->
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
@@ -4118,15 +4105,6 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">تماس‌های اخیر</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">این پیام</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">به‌تازگی استفاده شده</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">لبخندها و آدم‌ها</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">طبیعت</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">غذا</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">فعالیت‌ها</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">مکان‌ها</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">اشیا</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">نمادها</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">پرچم‌ها</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">شکلک‌ها</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">هیچ نتیجه‌ای پیدا نشد</string>
 
     <!-- GifQuickSearchOption -->
@@ -4144,10 +4122,10 @@
     <string name="arrays__use_default">استفاده از پیش‌فرض سیستم</string>
     <string name="arrays__use_custom">استفاده از سفارشی</string>
 
-    <string name="arrays__mute_for_one_hour">بی‌صدا برای ۱ ساعت</string>
-    <string name="arrays__mute_for_eight_hours">بی‌صدا برای ۸ ساعت</string>
-    <string name="arrays__mute_for_one_day">بی‌صدا برای ۱ روز</string>
-    <string name="arrays__mute_for_seven_days">بی‌صدا برای ۷ روز</string>
+    <string name="arrays__mute_for_one_hour">۱ ساعت</string>
+    <string name="arrays__mute_for_eight_hours">۸ ساعت</string>
+    <string name="arrays__mute_for_one_day">۱ روز</string>
+    <string name="arrays__mute_for_seven_days">۱ هفته</string>
     <string name="arrays__always">همیشه</string>
 
     <string name="arrays__settings_default">تنظیمات پیش‌فرض سیستم</string>
@@ -4202,6 +4180,10 @@
     <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
     <string name="preferences__inactivity_timeout_interval">بازهٔ زمان عدم فعالیت</string>
     <string name="preferences__notifications">اعلان‌ها</string>
+    <!-- Preference item menu to enable notifications -->
+    <string name="preferences__enable_notifications">فعال کردن اعلان‌ها</string>
+    <!-- Preference header for call notifications -->
+    <string name="preferences__call_notifications">اعلان‌های تماس</string>
     <string name="preferences__led_color">رنگ LED</string>
     <string name="preferences__led_color_unknown">ناشناخته</string>
     <string name="preferences__pref_led_blink_title">الگوی چشمک زدن LED</string>
@@ -4289,12 +4271,10 @@
     <string name="preferences__system_default">پیش‌فرض سیستم</string>
     <string name="preferences__language">زبان</string>
     <string name="preferences__signal_messages_and_calls">تماس‌ها و پیام‌های سیگنال</string>
-    <string name="preferences__advanced_pin_settings">تنظیمات پیشرفتهٔ پین</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">تنظیمات پیشرفتهٔ پین</string>
     <string name="preferences__free_private_messages_and_calls">تماس‌ها و پیام‌های خصوصی رایگان برای کاربران سیگنال</string>
     <string name="preferences__submit_debug_log">ارسال گزارش عیب‌یابی</string>
-    <string name="preferences__delete_account">پاک کردن حساب</string>
     <string name="preferences__support_wifi_calling">حالت سازگاری «تماس WiFi»</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">اگر دستگاه شما از تحویل پیامک/پیام چندرسانه‌ای بر روی شبکهٔ WiFi استفاده می‌کند، این گزینه را فعال کنید (فقط زمانی فعال کنید، که «تماس WiFi» بر روی دستگاه شما فعال است)</string>
     <string name="preferences__incognito_keyboard">صفحه‌کلید ناشناس</string>
@@ -4361,6 +4341,16 @@
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">استفادهٔ کمتر داده‌ها ممکن است کیفیت تماس‌ها را بر روی شبکه‌های ضعیف بهبود ببخشد.</string>
     <string name="preferences_notifications__in_chat_sounds">صداها در حین گفتگو</string>
     <string name="preferences_notifications__show">نمایش</string>
+    <!-- Preference item to set notification settings when chats are muted -->
+    <string name="preferences_notifications__while_muted">While muted</string>
+    <!-- Option in settings to turn on reaction notifications -->
+    <string name="preferences_notifications__reaction">Reaction notifications</string>
+    <!-- Body option in settings to turn on reaction notifications    -->
+    <string name="preferences_notifications__notify_reaction">Show notifications for reactions to messages you send</string>
+    <!-- Option in settings to turn on unread reminders -->
+    <string name="preferences_notifications__unread">Unread reminders</string>
+    <!-- Body option to turn on unread reminders -->
+    <string name="preferences_notifications__notify_unread">Occasionally notify when there are unread messages in muted chats</string>
     <string name="preferences_notifications__ringtone">صدای زنگ</string>
     <string name="preferences_chats__message_text_size">اندازهٔ قلم پیام</string>
     <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
@@ -4888,8 +4878,6 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">پین ایجاد شده برای حساب کاربری خود را وارد کنید. این کد با کد وارسی پیامکی شما تفاوت دارد.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">پینی که برای حسابتان ساخته‌اید را وارد کنید.</string>
-    <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
-    <string name="RegistrationLockFragment__switch_keyboard">تغییر صفحه‌کلید</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">پین نادرست. دوباره تلاش کنید.</string>
     <string name="RegistrationLockFragment__forgot_pin">پین را فراموش کرده‌اید؟</string>
     <string name="RegistrationLockFragment__incorrect_pin">پین نادرست</string>
@@ -4967,8 +4955,6 @@
     <!-- Text label button to skip restoring -->
     <string name="registration_activity__skip_restore">رد کردن بازیابی</string>
     <string name="preferences_chats__chat_backups">نسخه‌های پشتیبان گفتگو</string>
-    <string name="preferences_chats__transfer_account">انتقال حساب کاربری</string>
-    <string name="preferences_chats__transfer_account_to_a_new_android_device">انتقال حساب کاربری به یک دستگاه اندروید‌ی جدید</string>
     <!-- Title for dialog to enter in the backup passphrase -->
     <string name="RegistrationActivity_enter_backup_passphrase">وارد کردن گذرواژهٔ پشتیبان</string>
     <string name="RegistrationActivity_restore">بازیابی</string>
@@ -5056,19 +5042,9 @@
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">مهلت قفل صفحه</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
     <string name="preferences_app_protection__to_use_screen_lock">برای استفاده از قفل صفحه، یک پین، الگو یا رمز عبور را در این دستگاه تنظیم کنید.</string>
-    <string name="preferences_app_protection__signal_pin">پین سیگنال</string>
-    <string name="preferences_app_protection__create_a_pin">یک پین جدید ایجاد کنید</string>
-    <string name="preferences_app_protection__change_your_pin">پین خود را تغییر دهید</string>
-    <string name="preferences_app_protection__pin_reminders">یاد‌آورهای پین</string>
-    <string name="preferences_app_protection__turn_off">خاموش</string>
-    <string name="preferences_app_protection__confirm_pin">پین را تأیید کنید</string>
-    <string name="preferences_app_protection__confirm_your_signal_pin">پین سیگنال خود را تأیید کنید</string>
-    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">مطمئن شوید که پین خود را بخاطر سپرده یا آن را به صورت امن نگهداری می‌کنید، چون قابل بازیابی نیست. اگر پین‌ خود را فراموش کردید، ممکن است در زمان ثبت‌نام دوبارهٔ حساب کاربری سیگنال خود اطلاعاتی را از دست بدهید.</string>
-    <string name="preferences_app_protection__incorrect_pin_try_again">پین نادرست. دوباره امتحان کنید.</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">فعال‌سازی قفل ثبت‌نام ناموفق بود.</string>
     <string name="preferences_app_protection__failed_to_disable_registration_lock">غیرفعال‌سازی قفل ثبت‌نام ناموفق بود.</string>
     <string name="AppProtectionPreferenceFragment_none">هیچ‌کدام</string>
-    <string name="preferences_app_protection__registration_lock">قفل ثبت‌نام</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">شما باید پین قفل ثبت‌نام خود را وارد کنید</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">پین حداقل شامل %1$d رقم یا نویسه است</string>
     <string name="RegistrationActivity_too_many_attempts">تلاش‌های بیش از حد</string>
@@ -5116,20 +5092,6 @@
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
     <string name="Recipient_deleted_account">حساب پاک‌شده</string>
 
-    <!-- Option in settings that will take use to re-register if they are no longer registered -->
-    <string name="preferences_account_reregister">ثبت دوبارۀ حساب</string>
-    <!-- Option in settings that will take user to our website or playstore to update their expired build -->
-    <string name="preferences_account_update_signal">به‌روزرسانی سیگنال</string>
-    <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
-    <string name="preferences_account_delete_all_data">پاک کردن همه اطلاعات</string>
-    <!-- Title for confirmation dialog confirming user wants to delete all their data -->
-    <string name="preferences_account_delete_all_data_confirmation_title">پاک کردن همه اطلاعات؟</string>
-    <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_message">این کار موجب بازنشانی برنامه و پاک شدن همۀ پیام‌ها می‌شود. پس از اتمام این فرایند، برنامه بسته خواهد شد.</string>
-    <!-- Confirmation action to proceed with application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_proceed">ادامه دادن</string>
-    <!-- Confirmation action to cancel application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_cancel">لغو</string>
     <!-- Error message shown when we fail to delete the data for some unknown reason -->
     <string name="preferences_account_delete_all_data_failed">اطلاعات پاک نشد</string>
 
@@ -5670,14 +5632,6 @@
     <!-- String displayed in a toast when a subscriber id is not present for a given type -->
     <string name="AppSettingsFragment__no_subscriber_id_set">شناسه اشتراک تنظیم نشده است</string>
 
-    <!-- AccountSettingsFragment -->
-    <string name="AccountSettingsFragment__account">حساب کاربری</string>
-    <string name="AccountSettingsFragment__youll_be_asked_less_frequently">به مرور زمان از شما کمتر پرسیده خواهد شد</string>
-    <string name="AccountSettingsFragment__require_your_signal_pin">درخواست پین سیگنال شما برای ثبت‌نام دوباره با شماره تلفن شما در سیگنال</string>
-    <string name="AccountSettingsFragment__change_phone_number">تغییر شماره تلفن</string>
-    <!-- Account setting that allows user to request and export their signal account data -->
-    <string name="AccountSettingsFragment__request_account_data">اطلاعات حساب شما</string>
-
     <!-- ExportAccountDataFragment -->
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
     <string name="ExportAccountDataFragment__your_account_data">اطلاعات حساب شما</string>
@@ -5971,14 +5925,46 @@
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">پیام‌ها</string>
     <string name="NotificationsSettingsFragment__calls">تماس‌ها</string>
-    <string name="NotificationsSettingsFragment__notify_when">آگاه کردن هنگام…</string>
+    <!-- Notification header for sounds -->
+    <string name="NotificationsSettingsFragment__sounds">صداها</string>
     <string name="NotificationsSettingsFragment__contact_joins_signal">مخاطب به سیگنال می‌پیوندد</string>
+    <!-- Notification body to get notified when someone joins Signal -->
+    <string name="NotificationsSettingsFragment__notify_contact">Show a notification when a phone contact joins Signal</string>
+    <!-- Option to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset">Reset notification settings</string>
+    <!-- Option body to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_notifications">Reset notification settings to default, including custom settings for your chats</string>
+    <!-- Dialog to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_body">Reset all notification settings to default for all chats?</string>
+    <!-- Confirmation button to reset dialog -->
+    <string name="NotificationsSettingsFragment__reset_confirm">بازنشانی</string>
     <!-- Notification preference header -->
     <string name="NotificationsSettingsFragment__notification_profiles">پروفایل‌های اعلان</string>
     <!-- Notification preference option header -->
     <string name="NotificationsSettingsFragment__profiles">پروفایل‌ها</string>
     <!-- Notification preference summary text -->
     <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">یک پروفایل برای دریافت اعلان‌ها فقط از افراد و گروه‌هایی که انتخاب می‌کنید بسازید.</string>
+
+    <!-- Header to describe screen that shows while muted settings -->
+    <string name="MutedNotificationsFragment__while">While muted</string>
+    <!-- Title for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls">تماس‌ها</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body_global">Ring or notify when a call is started in muted chats.</string>
+    <!-- Title for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions">اشاره‌ها</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body_global">Notify when you are mentioned in muted chats.</string>
+    <!-- Title for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies">پاسخ‌ها</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body_global">Notify when someone replies to your message in muted chats.</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body">Ring or notify when a call is started while this chat is muted.</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body">Notify when you are mentioned while this chat is muted.</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body">Notify when someone replies to your message while this chat is muted.</string>
 
     <!-- NotificationProfilesFragment -->
     <!-- Title for notification profiles screen that shows all existing profiles; Title with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -6207,6 +6193,8 @@
     <string name="ConversationSettingsFragment__end_group">پایان دادن به گروه</string>
     <!-- Banner shown at the top of group settings when the group has been ended -->
     <string name="ConversationSettingsFragment__this_group_was_ended">این گروه پایان یافته است.</string>
+    <!-- Subhead under a legacy group\'s name, joining the member count and the "Legacy Group" label. %1$s is the member count, %2$s is the label -->
+    <string name="ConversationSettingsFragment__s_dot_s">%1$s · %2$s</string>
     <!-- Archive chat option in group conversation settings screen -->
     <string name="ConversationSettingsFragment__archive_chat">بایگانی گفتگو</string>
     <!-- Delete chat option in group conversation settings screen -->
@@ -6390,34 +6378,9 @@
     <!-- Positive dialog action when sending a story via an add to group story button -->
     <string name="MediaReviewFragment__add_to_story">افزودن به استوری</string>
     <string name="MediaReviewFragment__add_a_message">افزودن یک پیام</string>
-    <!-- Hint text inside of a compose box that is shown when the user is adding media while quoting a message. -->
-    <string name="MediaReviewFragment__add_a_reply">یک پاسخ اضافه کنید</string>
     <string name="MediaReviewFragment__send_to">ارسال به</string>
-    <string name="MediaReviewFragment__view_once_message">فایل رسانه با قابلیت یک‌بار مشاهده</string>
-    <string name="MediaReviewFragment__one_or_more_items_were_too_large">یک یا چند مورد بسیار بزرگ بودند</string>
-    <string name="MediaReviewFragment__one_or_more_items_were_invalid">یک یا چند مورد نامعتبر بودند</string>
-    <string name="MediaReviewFragment__too_many_items_selected">موارد بسیار زیادی انتخاب شده است</string>
-    <string name="MediaReviewFragment__video_trimmed_to_fit">ویدیوی شما برای رعایت محدودیت حجم فایل، کوتاه شد</string>
-    <!-- Small notification presented to the user when they set their video to view-once mode -->
-    <string name="MediaReviewFragment__video_set_to_view_once">ویدیو روی یک بار مصرف تنظیم شد</string>
-    <!-- Small notification presented to the user when they set their photo to view-once mode -->
-    <string name="MediaReviewFragment__photo_set_to_view_once">عکس روی یک بار مصرف تنظیم شد</string>
-    <!-- Accessibility label describing the add media button on the Media review screen -->
-    <string name="MediaReviewFragment__add_media_accessibility_label">افزودن رسانه</string>
-    <!-- Accessibility label describing the brush and pen button on the Media review screen -->
-    <string name="MediaReviewFragment__brush_pen_accessibility_label">قلم‌مو و قلم</string>
-    <!-- Accessibility label describing the crop and rotate button on the Media review screen -->
-    <string name="MediaReviewFragment__crop_rotate_accessibility_label">برش و چرخش</string>
-    <!-- Accessibility label describing the change media quality button on the Media review screen -->
-    <string name="MediaReviewFragment__change_media_quality_accessibility_label">تغییر کیفیت رسانه</string>
-    <!-- Accessibility label describing the save media button on the Media review screen -->
-    <string name="MediaReviewFragment__save_media_accessibility_label">ذخیره رسانه</string>
-    <!-- Accessibility label describing the toggle emoji keyboard button on the Media review screen -->
-    <string name="MediaReviewFragment__emoji_toggle_accessibility_label">تعویض صفحه‌کلید ایموجی</string>
     <!-- Accessibility label describing the toggle view once button on the Media review screen -->
     <string name="MediaReviewFragment__view_once_toggle_accessibility_label">تغییر قابلیت یک‌بار مشاهده</string>
-    <!-- Accessibility label describing the send media button on the Media review screen -->
-    <string name="MediaReviewFragment__send_media_accessibility_label">ارسال رسانه</string>
     <!-- Accessibility label describing the finish adding a message button on the Media review screen dialog -->
     <string name="MediaReviewFragment__finish_adding_a_message_accessibility_label">پایان افزودن پیام</string>
 
@@ -6437,27 +6400,9 @@
 
     <string name="MediaCountIndicatorButton__send">ارسال</string>
 
-    <string name="MediaReviewSelectedItem__tap_to_remove">برای حذف کردن ضربه بزنید</string>
-    <string name="MediaReviewSelectedItem__tap_to_select">برای انتخاب ضربه بزنید</string>
-
     <string name="MediaReviewImagePageFragment__discard">دور انداختن</string>
     <string name="MediaReviewImagePageFragment__discard_changes">نادیده گرفتن تغییرات</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">شما هر تغییری که روی این عکس انجام داده‌اید را از دست خواهید داد.</string>
-
-    <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_title">‏%1$s پیدا شد</string>
-    <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_body">شروع یک گفتگو با «%1$s»</string>
-    <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
-    <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">به گفتگو بروید</string>
-
-    <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_title">دستگاه متصل شود؟</string>
-    <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_it_looks_like_youre_trying">به نظر می‌رسد می‌خواهید یک دستگاه سیگنال را متصل کنید. روی ادامه و سپس روی «اتصال دستگاه جدید» ضربه بزنید و دوباره کد QR را اسکن کنید.</string>
-    <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
-    <string name="MediaCaptureFragment_device_link_dialog_continue">ادامه</string>
-
 
     <string name="BadgesOverviewFragment__my_badges">نشان‌های من</string>
     <string name="BadgesOverviewFragment__featured_badge">نشان ویژه</string>
@@ -8714,13 +8659,6 @@
     <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">این گروه پایان یافته است.</string>
     <!-- Body of bottom sheet shown when opening a terminated group -->
     <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">دیگر نمی‌توانید پیام یا تماسی در این گروه دریافت یا ارسال کنید.</string>
-
-    <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_title">اکنون حذف در همه دستگاه‌های شما همگام‌سازی می‌شود</string>
-    <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_message">وقتی پیام‌ها یا گفتگوها را پاک می‌کنید، از تلفن شما و دستگاه‌های متصل پاک می‌شوند.</string>
-    <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
-    <string name="DeleteSyncEducation_acknowledge_button">تأیید</string>
 
     <!-- NoManualBackupBottomSheet -->
     <!-- Title for bottom sheet, placeholder is number of days. -->

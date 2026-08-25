@@ -91,32 +91,40 @@ public final class FullscreenHelper {
     return new int[]{leftPad, rightPad};
   }
 
+  @SuppressWarnings("deprecation")
   public void showAndHideWithSystemUI(@NonNull Window window, @NonNull View... views) {
-    ViewCompat.setOnApplyWindowInsetsListener(window.getDecorView(), (view, insets) -> {
-      boolean hide = !areBarsVisible(insets);
+    if (Build.VERSION.SDK_INT >= 30) {
+      ViewCompat.setOnApplyWindowInsetsListener(window.getDecorView(), (view, insets) -> {
+        animateWithBars(!areBarsVisible(insets), views);
+        return ViewCompat.onApplyWindowInsets(view, insets);
+      });
+    } else {
+      window.getDecorView().setOnSystemUiVisibilityChangeListener(visibility -> {
+        animateWithBars((visibility & View.SYSTEM_UI_FLAG_FULLSCREEN) != 0, views);
+      });
+    }
+  }
 
-      for (View target : views) {
-        if (target == null) {
-          continue;
-        }
-
-        target.animate()
-              .alpha(hide ? 0 : 1)
-              .withStartAction(() -> {
-                if (!hide) {
-                  target.setVisibility(View.VISIBLE);
-                }
-              })
-              .withEndAction(() -> {
-                if (hide) {
-                  target.setVisibility(View.INVISIBLE);
-                }
-              })
-              .start();
+  private static void animateWithBars(boolean hide, @NonNull View... views) {
+    for (View target : views) {
+      if (target == null) {
+        continue;
       }
 
-      return ViewCompat.onApplyWindowInsets(view, insets);
-    });
+      target.animate()
+            .alpha(hide ? 0 : 1)
+            .withStartAction(() -> {
+              if (!hide) {
+                target.setVisibility(View.VISIBLE);
+              }
+            })
+            .withEndAction(() -> {
+              if (hide) {
+                target.setVisibility(View.INVISIBLE);
+              }
+            })
+            .start();
+    }
   }
 
   public void toggleUiVisibility() {
@@ -127,12 +135,22 @@ public final class FullscreenHelper {
     }
   }
 
+  @SuppressWarnings("deprecation")
   public boolean isSystemUiVisible() {
-    return areBarsVisible(ViewCompat.getRootWindowInsets(activity.getWindow().getDecorView()));
+    if (Build.VERSION.SDK_INT >= 30) {
+      return areBarsVisible(ViewCompat.getRootWindowInsets(activity.getWindow().getDecorView()));
+    } else {
+      return (activity.getWindow().getDecorView().getSystemUiVisibility() & View.SYSTEM_UI_FLAG_FULLSCREEN) == 0;
+    }
   }
 
   /**
    * Whether the bars that {@link #showSystemUI()} / {@link #hideSystemUI()} control are currently on screen.
+   * <p>
+   * Only usable on API 30+. Below that, {@link WindowInsetsCompat#isVisible(int)} is emulated off of the inset
+   * sizes, and because we're edge-to-edge (and therefore laid out with {@code SYSTEM_UI_FLAG_LAYOUT_STABLE})
+   * those stay at their full height while the bars are hidden, making everything look permanently visible.
+   * The legacy visibility flags are the reliable signal there.
    * <p>
    * Checks the two bars individually rather than {@link WindowInsetsCompat.Type#systemBars()}, which also
    * covers the caption bar: {@code isVisible} requires every requested type to be visible, and a phone window

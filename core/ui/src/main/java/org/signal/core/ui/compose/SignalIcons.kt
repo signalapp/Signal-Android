@@ -31,6 +31,7 @@ import org.signal.core.ui.R
  * Signal icon library with all available icons.
  */
 enum class SignalIcons(private val icon: SignalIcon) : SignalIcon by icon {
+  AlbumPlus(icon(R.drawable.symbol_album_plus_24)),
   ArrowStart(icon(R.drawable.symbol_arrow_start_24)),
   ArrowEnd(icon(R.drawable.symbol_arrow_end_24)),
   At(icon(R.drawable.symbol_at_24)),
@@ -64,6 +65,7 @@ enum class SignalIcons(private val icon: SignalIcon) : SignalIcon by icon {
   FolderDisplay(icon(R.drawable.symbol_folder_display_48)),
   Forward(icon(R.drawable.symbol_forward_24)),
   Info(icon(R.drawable.symbol_info_24)),
+  Key(icon(R.drawable.symbol_key_24)),
   Keyboard(icon(R.drawable.ic_keyboard_24)),
   Link(icon(R.drawable.symbol_link_24)),
   Lock(icon(R.drawable.symbol_lock_24)),
@@ -72,6 +74,8 @@ enum class SignalIcons(private val icon: SignalIcon) : SignalIcon by icon {
   MobileNextDisplay(icon(R.drawable.symbol_mobile_next_display_48)),
   MoreVertical(icon(R.drawable.symbol_more_vertical_24)),
   Nighttime(icon(R.drawable.ic_nighttime_26)),
+  NumberPad(icon(R.drawable.ic_number_pad_conversation_filter_24)),
+  Open(icon(R.drawable.symbol_open_24)),
   PersonCircle(icon(R.drawable.symbol_person_circle_24)),
   Phone(icon(R.drawable.symbol_phone_24)),
   Plus(icon(R.drawable.symbol_plus_24)),
@@ -86,6 +90,8 @@ enum class SignalIcons(private val icon: SignalIcon) : SignalIcon by icon {
   Settings(icon(R.drawable.symbol_settings_android_24)),
   Share(icon(R.drawable.symbol_share_android_24)),
   SignalBackupsDisplay(icon(R.drawable.symbol_signal_backups_display_48)),
+  Speaker(icon(R.drawable.symbol_speaker_24)),
+  SpeakerSlash(icon(R.drawable.symbol_speaker_slash_24)),
   Sticker(icon(R.drawable.symbol_sticker_24)),
   Text(icon(R.drawable.symbol_text_24)),
   TextSquare(icon(R.drawable.symbol_text_square_24)),

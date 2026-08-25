@@ -20,6 +20,7 @@ import org.signal.core.util.readToSingleLong
 import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireInt
 import org.signal.core.util.requireIntOrNull
+import org.signal.core.util.requireLong
 import org.signal.core.util.requireNonNullBlob
 import org.signal.core.util.requireNonNullString
 import org.signal.core.util.select
@@ -195,22 +196,44 @@ class BackupMediaSnapshotTable(context: Context, database: SignalDatabase) : Dat
       .readToSingleLong(0)
   }
 
-  fun getPageOfOldMediaObjects(pageSize: Int): Set<ArchivedMediaObject> {
-    return readableDatabase.select(MEDIA_ID, CDN)
+  /**
+   * Media objects that have dropped out of the most recent snapshot. Carries the hash/key so callers can check whether anything in the [AttachmentTable] still
+   * refers to them before deleting them off of the CDN.
+   */
+  fun getPageOfOldMediaEntries(pageSize: Int, afterId: Long = 0): List<ExistingMediaEntry> {
+    return readableDatabase.select(ID, MEDIA_ID, CDN, PLAINTEXT_HASH, REMOTE_KEY, IS_THUMBNAIL)
       .from(TABLE_NAME)
-      .where("$SNAPSHOT_VERSION < $MAX_VERSION AND $IS_PENDING = 0")
+      .where("$SNAPSHOT_VERSION < $MAX_VERSION AND $IS_PENDING = 0 AND $ID > $afterId")
+      .orderBy("$ID ASC")
       .limit(pageSize)
       .run()
-      .readToSet {
-        ArchivedMediaObject(mediaId = it.requireNonNullString(MEDIA_ID), cdn = it.requireInt(CDN))
-      }
+      .readToList { ExistingMediaEntry.fromCursor(it) }
+  }
+
+  /**
+   * Of the given mediaIds, the ones present in the most recent snapshot that a reconciliation crawl has since seen on the archive CDN. Being in the snapshot
+   * only reflects our own bookkeeping, so [LAST_SEEN_ON_REMOTE_SNAPSHOT_VERSION] > 0 is the only part of this that the server told us.
+   */
+  fun getMediaIdsConfirmedOnCdn(mediaIds: Collection<String>, minimumLastSeenSnapshotVersion: Long): Set<String> {
+    if (mediaIds.isEmpty()) {
+      return emptySet()
+    }
+
+    val query = SqlUtil.buildFastCollectionQuery(MEDIA_ID, mediaIds)
+
+    return readableDatabase
+      .select(MEDIA_ID)
+      .from(TABLE_NAME)
+      .where("${query.where} AND $SNAPSHOT_VERSION = $MAX_VERSION AND $LAST_SEEN_ON_REMOTE_SNAPSHOT_VERSION > 0 AND $LAST_SEEN_ON_REMOTE_SNAPSHOT_VERSION >= $minimumLastSeenSnapshotVersion", query.whereArgs)
+      .run()
+      .readToSet { it.requireNonNullString(MEDIA_ID) }
   }
 
   /**
    * This will remove any old snapshot entries with matching mediaId's. No pending entries or entries in the latest snapshot will be affected.
    */
-  fun deleteOldMediaObjects(mediaObjects: Collection<ArchivedMediaObject>) {
-    val query = SqlUtil.buildFastCollectionQuery(MEDIA_ID, mediaObjects.map { it.mediaId })
+  fun deleteOldMediaObjects(mediaIds: Collection<String>) {
+    val query = SqlUtil.buildFastCollectionQuery(MEDIA_ID, mediaIds)
 
     writableDatabase.delete(TABLE_NAME)
       .where("$SNAPSHOT_VERSION < $MAX_VERSION AND $IS_PENDING = 0 AND " + query.where, query.whereArgs)
@@ -251,32 +274,6 @@ class BackupMediaSnapshotTable(context: Context, database: SignalDatabase) : Dat
     return objectsByMediaId.values.toSet()
   }
 
-  fun getMediaEntriesForObjects(objects: List<ArchivedMediaObject>): Set<MediaEntry> {
-    if (objects.isEmpty()) {
-      return emptySet()
-    }
-
-    val queries: List<SqlUtil.Query> = SqlUtil.buildCollectionQuery(
-      column = MEDIA_ID,
-      values = objects.map { it.mediaId },
-      collectionOperator = SqlUtil.CollectionOperator.IN,
-      prefix = "$SNAPSHOT_VERSION = $MAX_VERSION AND "
-    )
-
-    val entries: MutableSet<MediaEntry> = mutableSetOf()
-
-    for (query in queries) {
-      entries += readableDatabase
-        .select(MEDIA_ID, CDN, PLAINTEXT_HASH, REMOTE_KEY, IS_THUMBNAIL)
-        .from("$TABLE_NAME JOIN ${AttachmentTable.TABLE_NAME}")
-        .where(query.where, query.whereArgs)
-        .run()
-        .readToList { MediaEntry.fromCursor(it) }
-    }
-
-    return entries.toSet()
-  }
-
   /**
    * Given a list of media objects, find the ones that are present in the most recent snapshot, but have a different CDN than the one passed in.
    * This will ignore thumbnails, as the results are intended to be used to update CDNs, which we do not track for thumbnails.
@@ -309,7 +306,24 @@ class BackupMediaSnapshotTable(context: Context, database: SignalDatabase) : Dat
   }
 
   /**
+   * Limited to rows *no* crawl has ever confirmed, so we never contradict our own earlier evidence that an object existed. Only valid after a *completed* crawl,
+   * since on a partial one an unstamped row may simply not have been paged yet, and deleting it would orphan the object it tracks.
+   *
+   * @param crawlSnapshotVersion The version the crawl pinned itself to. Rows above it were committed after the crawl fixed its view, so an upload that landed
+   * behind the cursor still looks unconfirmed. Dropping those would leave an object on the CDN with nothing left tracking it.
+   */
+  fun deleteOldMediaObjectsNeverSeenOnCdn(crawlSnapshotVersion: Long): Int {
+    return writableDatabase
+      .delete(TABLE_NAME)
+      .where("$SNAPSHOT_VERSION < $MAX_VERSION AND $SNAPSHOT_VERSION <= $crawlSnapshotVersion AND $IS_PENDING = 0 AND $LAST_SEEN_ON_REMOTE_SNAPSHOT_VERSION = 0")
+      .run()
+  }
+
+  /**
    * Indicate the time that the set of media objects were seen on the archive CDN. Can be used to reconcile our local state with the server state.
+   *
+   * The write only moves forward: a resumed crawl can carry a version older than what later backups have committed, and 0 doubles as the "never confirmed"
+   * default, so a stale write would make confirmed rows look like they had never been seen.
    */
   fun markSeenOnRemote(mediaIdBatch: Collection<String>, snapshotVersion: Long) {
     if (mediaIdBatch.isEmpty()) {
@@ -320,7 +334,7 @@ class BackupMediaSnapshotTable(context: Context, database: SignalDatabase) : Dat
     writableDatabase
       .update(TABLE_NAME)
       .values(LAST_SEEN_ON_REMOTE_SNAPSHOT_VERSION to snapshotVersion)
-      .where(query.where, query.whereArgs)
+      .where("${query.where} AND $LAST_SEEN_ON_REMOTE_SNAPSHOT_VERSION < $snapshotVersion", query.whereArgs)
       .run()
   }
 
@@ -373,6 +387,31 @@ class BackupMediaSnapshotTable(context: Context, database: SignalDatabase) : Dat
     val remoteKey: ByteArray,
     val cdn: Int
   )
+
+  class ExistingMediaEntry(
+    val id: Long,
+    val mediaEntry: MediaEntry
+  ) {
+    val mediaId: String
+      get() = mediaEntry.mediaId
+    val cdn: Int?
+      get() = mediaEntry.cdn
+    val plaintextHash: ByteArray
+      get() = mediaEntry.plaintextHash
+    val remoteKey: ByteArray
+      get() = mediaEntry.remoteKey
+    val isThumbnail: Boolean
+      get() = mediaEntry.isThumbnail
+
+    companion object {
+      fun fromCursor(cursor: Cursor): ExistingMediaEntry {
+        return ExistingMediaEntry(
+          id = cursor.requireLong(ID),
+          mediaEntry = MediaEntry.fromCursor(cursor)
+        )
+      }
+    }
+  }
 
   class MediaEntry(
     val mediaId: String,
