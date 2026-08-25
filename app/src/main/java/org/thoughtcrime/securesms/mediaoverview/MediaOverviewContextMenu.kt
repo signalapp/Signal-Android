@@ -14,7 +14,6 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
-import org.json.JSONArray
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.dp
 import org.signal.core.util.logging.Log
@@ -26,7 +25,6 @@ import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectFor
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
 import org.thoughtcrime.securesms.database.MediaTable
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.sharing.v2.ShareActivity
 import org.signal.core.ui.R as CoreUiR
@@ -66,7 +64,7 @@ class MediaOverviewContextMenu(
   }
 
   private fun getForwardActionItem(mediaRecord: MediaTable.MediaRecord): ActionItem? {
-    if (mediaRecord.linkPreviewJson != null) {
+    if (mediaRecord.linkUrl != null) {
       return null
     }
 
@@ -87,7 +85,7 @@ class MediaOverviewContextMenu(
   }
 
   private fun getShareActionItem(mediaRecord: MediaTable.MediaRecord): ActionItem? {
-    if (mediaRecord.linkPreviewJson != null) {
+    if (mediaRecord.linkUrl != null) {
       return getShareLinkActionItem(mediaRecord)
     }
 
@@ -119,13 +117,7 @@ class MediaOverviewContextMenu(
   }
 
   private fun getShareLinkActionItem(mediaRecord: MediaTable.MediaRecord): ActionItem? {
-    val url = try {
-      val jsonPreviews = JSONArray(mediaRecord.linkPreviewJson)
-      LinkPreview.deserialize(jsonPreviews.getJSONObject(0).toString()).url
-    } catch (e: Exception) {
-      Log.w(TAG, "Failed to deserialize link preview", e)
-      return null
-    }
+    val url = mediaRecord.linkUrl ?: return null
 
     return ActionItem(
       iconRes = CoreUiR.drawable.symbol_share_android_24,
