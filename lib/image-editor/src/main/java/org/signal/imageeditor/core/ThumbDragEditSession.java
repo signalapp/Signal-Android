@@ -18,9 +18,10 @@ class ThumbDragEditSession extends ElementEditSession {
   private final PointF  oppositeControlPoint                = new PointF();
   private final float[] oppositeControlPointOnControlParent = new float[2];
   private final float[] oppositeControlPointOnElement       = new float[2];
+
   private final RotationSnapListener rotationSnapListener;
-  private final float   initialRotationRadians;
-  private boolean wasRotationSnapped;
+  private final float                initialRotationRadians;
+  private       boolean              wasRotationSnapped;
 
   @NonNull
   private final          ThumbRenderer.ControlPoint controlPoint;

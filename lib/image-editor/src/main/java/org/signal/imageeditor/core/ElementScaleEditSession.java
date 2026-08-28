@@ -15,8 +15,8 @@ import org.signal.imageeditor.core.model.EditorElement;
 final class ElementScaleEditSession extends ElementEditSession {
 
   private final RotationSnapListener rotationSnapListener;
-  private final float initialRotationRadians;
-  private boolean wasRotationSnapped;
+  private final float                initialRotationRadians;
+  private       boolean              wasRotationSnapped;
 
   private ElementScaleEditSession(@NonNull EditorElement selected, @NonNull Matrix inverseMatrix, @NonNull RotationSnapListener rotationSnapListener, float initialRotationRadians) {
     super(selected, inverseMatrix);

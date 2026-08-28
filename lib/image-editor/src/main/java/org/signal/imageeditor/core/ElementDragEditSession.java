@@ -11,7 +11,7 @@ final class ElementDragEditSession extends ElementEditSession {
 
   private final RotationSnapListener rotationSnapListener;
 
-  private ElementDragEditSession(@NonNull EditorElement selected, @NonNull Matrix inverseMatrix, RotationSnapListener rotationSnapListener) {
+  private ElementDragEditSession(@NonNull EditorElement selected, @NonNull Matrix inverseMatrix, @NonNull RotationSnapListener rotationSnapListener) {
     super(selected, inverseMatrix);
     this.rotationSnapListener = rotationSnapListener;
   }
