@@ -21,7 +21,7 @@ class ThumbDragEditSession extends ElementEditSession {
 
   private final RotationSnapListener rotationSnapListener;
   private final float                initialRotationRadians;
-  private       boolean              wasRotationSnapped;
+  private       boolean              wasRotationSnapped = true; // skip triggering listener on start of session
 
   @NonNull
   private final          ThumbRenderer.ControlPoint controlPoint;
