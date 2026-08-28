@@ -8,24 +8,33 @@ import kotlin.math.PI
 import kotlin.math.abs
 import kotlin.math.round
 
+internal data class RotationSnapResult(
+  val angleRadians: Double,
+  val snapped: Boolean
+)
+
 internal object RotationSnap {
   private const val SNAP_ANGLE_RADIANS = PI / 2.0 // 90 degrees in radians
   private val SNAP_THRESHOLD_RADIANS = Math.toRadians(5.0)
 
-  private fun snapToAngle(angleRadians: Double): Double {
+  private fun snapToAngle(angleRadians: Double): RotationSnapResult {
     val snappedAngle: Double = round(angleRadians / SNAP_ANGLE_RADIANS) * SNAP_ANGLE_RADIANS
 
-    if (abs(angleRadians - snappedAngle) <= SNAP_THRESHOLD_RADIANS) {
-      return snappedAngle
+    return if (isCloseEnoughToSnap(angleRadians, snappedAngle)) {
+      RotationSnapResult(snappedAngle, true)
+    } else {
+      RotationSnapResult(angleRadians, false)
     }
+  }
 
-    return angleRadians
+  private fun isCloseEnoughToSnap(angleRadians: Double, snappedAngle: Double): Boolean {
+    return abs(angleRadians - snappedAngle) <= SNAP_THRESHOLD_RADIANS
   }
 
   @JvmStatic
-  fun snapToAngle(baseAngleRadians: Double, relativeAngleRadians: Double): Double {
+  fun snapToAngle(baseAngleRadians: Double, relativeAngleRadians: Double): RotationSnapResult {
     val absoluteAngle = baseAngleRadians + relativeAngleRadians
     val snappedAbsoluteAngle = snapToAngle(absoluteAngle)
-    return snappedAbsoluteAngle - baseAngleRadians
+    return RotationSnapResult(snappedAbsoluteAngle.angleRadians - baseAngleRadians, snappedAbsoluteAngle.snapped)
   }
 }

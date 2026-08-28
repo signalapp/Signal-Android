@@ -24,7 +24,9 @@ import org.signal.imageeditor.core.renderers.TrashRenderer
  * Usage: call the on* methods in order as pointer events arrive. The handler manages
  * edit session state internally.
  */
-class ImageEditorTouchHandler {
+class ImageEditorTouchHandler(
+  private val rotationSnapListener: RotationSnapListener
+) {
 
   private var drawing: Boolean = false
   private var blur: Boolean = false
@@ -159,7 +161,7 @@ class ImageEditorTouchHandler {
     point: PointF,
     selected: EditorElement?
   ): EditSession? {
-    val session = startMoveAndResizeSession(model, viewMatrix, inverse, point, selected)
+    val session = startMoveAndResizeSession(model, viewMatrix, inverse, point, selected, rotationSnapListener)
     if (session == null && drawing) {
       drawingSession = true
       return startDrawingSession(model, viewMatrix, point)
@@ -191,7 +193,8 @@ class ImageEditorTouchHandler {
       viewMatrix: Matrix,
       inverse: Matrix,
       point: PointF,
-      selected: EditorElement?
+      selected: EditorElement?,
+      rotationSnapListener: RotationSnapListener
     ): EditSession? {
       if (selected == null) return null
 
@@ -209,14 +212,15 @@ class ImageEditorTouchHandler {
             elementInverseMatrix,
             thumbContainerRelativeMatrix,
             thumb.controlPoint,
-            point
+            point,
+            rotationSnapListener
           )
         } else {
           null
         }
       }
 
-      return ElementDragEditSession.startDrag(selected, inverse, point)
+      return ElementDragEditSession.startDrag(selected, inverse, point, rotationSnapListener)
     }
   }
 }

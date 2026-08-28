@@ -87,7 +87,9 @@ internal fun ImageEditor(
         .matchParentSize()
         .clipToBounds()
         .onSizeChanged { state.setCanvasSize(it.width.toFloat(), it.height.toFloat()) }
-        .imageEditorPointerInput(state, controller, scope)
+        .imageEditorPointerInput(state, controller, scope) {
+          hapticFeedback.performHapticFeedback(HapticFeedbackType.SegmentTick)
+        }
     ) {
       state.revision
 
@@ -151,9 +153,9 @@ private fun HiddenTextInput(controller: ImageController) {
 /** How far a finger travels before a touch on an element counts as a drag. */
 private const val MAX_MOVE_SQUARED_BEFORE_DRAG = 10f
 
-private fun Modifier.imageEditorPointerInput(state: ImageEditorState, controller: ImageController, scope: CoroutineScope): Modifier {
+private fun Modifier.imageEditorPointerInput(state: ImageEditorState, controller: ImageController, scope: CoroutineScope, onRotationSnap: () -> Unit): Modifier {
   return this.pointerInput(controller, controller.textEditingElement) {
-    val touchHandler = ImageEditorTouchHandler()
+    val touchHandler = ImageEditorTouchHandler(onRotationSnap)
 
     // The tap that a second one has to land on, and beat the timeout from, to count as a double tap.
     var lastTapElement: EditorElement? = null
