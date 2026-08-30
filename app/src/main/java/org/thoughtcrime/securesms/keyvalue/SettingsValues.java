@@ -31,6 +31,8 @@ public final class SettingsValues extends SignalStoreValues {
   public static final String LINK_PREVIEWS          = "settings.link_previews";
   public static final String KEEP_MESSAGES_DURATION = "settings.keep_messages_duration";
 
+  public static final String STRIP_LINK_TRACKING = "settings.strip_link_tracking_parameters";
+
   public static final String PREFER_SYSTEM_CONTACT_PHOTOS = "settings.prefer.system.contact.photos";
 
   private static final String SIGNAL_BACKUP_DIRECTORY        = "settings.signal.backup.directory";
@@ -127,6 +129,7 @@ public final class SettingsValues extends SignalStoreValues {
   @Override
   @NonNull List<String> getKeysToIncludeInBackup() {
     return Arrays.asList(LINK_PREVIEWS,
+                         STRIP_LINK_TRACKING,
                          KEEP_MESSAGES_DURATION,
                          PREFER_SYSTEM_CONTACT_PHOTOS,
                          CALL_DATA_MODE,
@@ -172,6 +175,19 @@ public final class SettingsValues extends SignalStoreValues {
 
   public void setLinkPreviewsEnabled(boolean enabled) {
     putBoolean(LINK_PREVIEWS, enabled);
+  }
+
+  /**
+   * Whether known tracking parameters are stripped from links before they are opened,
+   * copied, or fetched for a preview. Defaults to true so that existing installs get
+   * the protection on upgrade without having to find the setting.
+   */
+  public boolean isStripLinkTrackingParametersEnabled() {
+    return getBoolean(STRIP_LINK_TRACKING, true);
+  }
+
+  public void setStripLinkTrackingParametersEnabled(boolean enabled) {
+    putBoolean(STRIP_LINK_TRACKING, enabled);
   }
 
   public @NonNull KeepMessagesDuration getKeepMessagesDuration() {

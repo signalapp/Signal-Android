@@ -100,6 +100,7 @@ import org.thoughtcrime.securesms.util.LongClickCopySpan
 import org.thoughtcrime.securesms.util.LongClickMovementMethod
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.Projection
+import org.thoughtcrime.securesms.util.TrackingParameters
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.views.TouchInterceptingFrameLayout
@@ -1013,7 +1014,8 @@ class StoryViewerPageFragment :
       val end = spannable.getSpanEnd(urlSpan)
       spannable.removeSpan(urlSpan)
       if (LinkUtil.isLegalUrl(url)) {
-        spannable.setSpan(LongClickCopySpan(url), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        val target = TrackingParameters.stripIfEnabled(url)
+        spannable.setSpan(LongClickCopySpan(target), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
       }
     }
   }

@@ -55,6 +55,7 @@ import org.thoughtcrime.securesms.util.Projection
 import org.thoughtcrime.securesms.util.ProjectionList
 import org.thoughtcrime.securesms.util.SearchUtil
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
+import org.thoughtcrime.securesms.util.TrackingParameters
 import org.thoughtcrime.securesms.util.VibrateUtil
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
@@ -455,7 +456,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
         val start = messageBody.getSpanStart(placeholder)
         val end = messageBody.getSpanEnd(placeholder)
         val span: URLSpan = InterceptableLongClickCopyLinkSpan(
-          placeholder.value,
+          TrackingParameters.stripIfEnabled(placeholder.value),
           conversationContext.clickListener::onUrlClicked,
           linkColor,
           underline

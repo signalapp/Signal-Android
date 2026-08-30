@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.nicknames
 
 import android.os.Bundle
 import android.text.SpannableString
+import android.text.style.URLSpan
 import android.text.util.Linkify
 import androidx.activity.result.ActivityResultLauncher
 import androidx.compose.foundation.layout.Column
@@ -42,6 +43,7 @@ import org.signal.core.util.getParcelableCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.util.TrackingParameters
 import org.thoughtcrime.securesms.util.viewModel
 import org.signal.core.ui.R as CoreUiR
 
@@ -163,7 +165,9 @@ private fun ViewNoteBottomSheetContent(
       if (!isInspection) {
         LinkifyCompat.addLinks(spannable, Linkify.EMAIL_ADDRESSES or Linkify.PHONE_NUMBERS)
       }
-      spannable.addDetectedLinks()
+      spannable.addDetectedLinks(
+        spanFactory = { link -> URLSpan(TrackingParameters.stripIfEnabled(link.url)) }
+      )
       it.text = spannable
     }
   }

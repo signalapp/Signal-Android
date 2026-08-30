@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
 import org.thoughtcrime.securesms.util.LinkUtil;
 import org.thoughtcrime.securesms.util.LongClickCopySpan;
+import org.thoughtcrime.securesms.util.TrackingParameters;
 
 public final class GroupDescriptionUtil {
 
@@ -46,7 +47,11 @@ public final class GroupDescriptionUtil {
         int    end   = descriptionSpannable.getSpanEnd(urlSpan);
         descriptionSpannable.removeSpan(urlSpan);
         if (LinkUtil.isLegalUrl(url)) {
-          descriptionSpannable.setSpan(new LongClickCopySpan(url), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+          String target = TrackingParameters.stripIfEnabled(url);
+          descriptionSpannable.setSpan(new LongClickCopySpan(target),
+                                       start,
+                                       end,
+                                       Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
       }
     }

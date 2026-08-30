@@ -155,6 +155,7 @@ import org.thoughtcrime.securesms.util.ProjectionList;
 import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.SearchUtil;
 import org.thoughtcrime.securesms.util.SpanUtil;
+import org.thoughtcrime.securesms.util.TrackingParameters;
 import org.thoughtcrime.securesms.util.UrlClickHandler;
 import org.thoughtcrime.securesms.util.VibrateUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -1819,7 +1820,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       for (PlaceholderURLSpan placeholder : messageBody.getSpans(0, messageBody.length(), PlaceholderURLSpan.class)) {
         int start = messageBody.getSpanStart(placeholder);
         int end   = messageBody.getSpanEnd(placeholder);
-        URLSpan span = new InterceptableLongClickCopyLinkSpan(placeholder.getValue(),
+        String target = TrackingParameters.stripIfEnabled(placeholder.getValue());
+        URLSpan span = new InterceptableLongClickCopyLinkSpan(target,
                                                               urlClickListener,
                                                               ContextCompat.getColor(getContext(), isReleaseNotes ? R.color.release_notes_bubble_text : R.color.signal_accent_primary),
                                                               isReleaseNotes);
