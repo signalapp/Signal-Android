@@ -70,6 +70,25 @@ class BufferedKyberPreKeyStoreTest {
     )
   }
 
+  @Test(expected = ReusedBaseKeyException::class)
+  fun givenALastResortKeyUsedInAnEarlierBatch_whenIMarkKyberPreKeyUsed_thenIExpectException() {
+    insertLastResortKey(id = 1)
+    val publicKey = generateECPublicKey()
+
+    SignalDatabase.kyberPreKeys.handleMarkKyberPreKeyUsed(
+      serviceId = aci,
+      kyberPreKeyId = 1,
+      signedPreKeyId = 2,
+      baseKey = publicKey
+    )
+
+    testSubject.markKyberPreKeyUsed(
+      kyberPreKeyId = 1,
+      signedPreKeyId = 2,
+      publicKey = publicKey
+    )
+  }
+
   @Test
   fun givenAMarkedLastResortKey_whenIFlushTwice_thenIExpectOnlyOneWrite() {
     insertLastResortKey(id = 1)
