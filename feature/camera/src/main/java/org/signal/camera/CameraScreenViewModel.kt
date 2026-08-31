@@ -176,6 +176,8 @@ class CameraScreenViewModel : ViewModel() {
     } else if (zoomRange != _state.value.zoomRange) {
       Log.d(TAG, "Bound lens reaches $zoomRange")
       _state.value = _state.value.copy(zoomRange = zoomRange)
+    } else if (zoomState.zoomRatio != _state.value.zoomRatio) {
+      _state.value = _state.value.copy(zoomRatio = zoomState.zoomRatio)
     }
   }
 
