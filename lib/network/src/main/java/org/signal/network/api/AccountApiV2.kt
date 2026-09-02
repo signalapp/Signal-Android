@@ -17,6 +17,12 @@ import org.signal.libsignal.net.AuthAccountsService
 import org.signal.libsignal.net.AuthDevicesService
 import org.signal.libsignal.net.AuthUsernamesService
 import org.signal.libsignal.net.BadRequestError
+import org.signal.libsignal.net.ConfirmTotpKeyError
+import org.signal.libsignal.net.ConfirmedMfaKey
+import org.signal.libsignal.net.GenerateTotpKeyError
+import org.signal.libsignal.net.MfaKeyNotFoundException
+import org.signal.libsignal.net.MfaMetadata
+import org.signal.libsignal.net.PendingTotpKey
 import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.net.SvrKey
 import org.signal.libsignal.net.UsernameNotAvailableException
@@ -181,6 +187,64 @@ class AccountApiV2(private val authWebSocket: SignalWebSocket.AuthenticatedWebSo
   suspend fun setRegistrationRecoveryPassword(masterKey: MasterKey): RequestResult<Unit, Nothing> {
     return authWebSocket.runCatchingWithChatConnection { connection ->
       AuthAccountsService(connection).setRegistrationRecoveryPassword(SvrKey(masterKey.serialize()))
+    }
+  }
+
+  /**
+   * Generates and stores a new pending TOTP key for the account, replacing any pending key already there. The key
+   * doesn't take effect, or show up in [listMfaKeys], until [confirmTotpKey] proves the caller kept a copy of it,
+   * which must happen within 24 hours. This is the only time the key material is ever handed out.
+   *
+   * A [TooManyTotpKeysException][org.signal.libsignal.net.TooManyTotpKeysException] or
+   * [TooManyMfaKeysException][org.signal.libsignal.net.TooManyMfaKeysException] means the account is at its limit,
+   * and a key has to be removed before another can be added.
+   */
+  suspend fun generateTotpKey(): RequestResult<PendingTotpKey, GenerateTotpKeyError> {
+    return authWebSocket.runCatchingWithChatConnection { connection ->
+      AuthAccountsService(connection).generateTotpKey()
+    }
+  }
+
+  /**
+   * Confirms the pending TOTP key by proving a one-time password can be derived from it, and attaches [metadata] to
+   * it, returning the id the service assigned. The metadata is encrypted under a key derived from [masterKey], so the
+   * service never sees it.
+   *
+   * A [OneTimePasswordNotVerifiedException][org.signal.libsignal.net.OneTimePasswordNotVerifiedException] means the
+   * password was wrong, the clocks are too far apart, or there was no pending key -- the service can't tell us which.
+   */
+  suspend fun confirmTotpKey(oneTimePassword: Int, metadata: MfaMetadata, masterKey: MasterKey): RequestResult<Int, ConfirmTotpKeyError> {
+    return authWebSocket.runCatchingWithChatConnection { connection ->
+      AuthAccountsService(connection).confirmTotpKey(oneTimePassword = oneTimePassword, metadata = metadata, svrKey = SvrKey(masterKey.serialize()))
+    }
+  }
+
+  /**
+   * The confirmed MFA keys on the account. Key material is never returned, only metadata and parameters. A key whose
+   * metadata can't be decrypted under [masterKey] comes back with null metadata rather than being dropped.
+   */
+  suspend fun listMfaKeys(masterKey: MasterKey): RequestResult<List<ConfirmedMfaKey>, Nothing> {
+    return authWebSocket.runCatchingWithChatConnection { connection ->
+      AuthAccountsService(connection).listMfaKeys(SvrKey(masterKey.serialize()))
+    }
+  }
+
+  /**
+   * Replaces the metadata attached to a confirmed MFA key, encrypted under a key derived from [masterKey].
+   */
+  suspend fun setMfaKeyMetadata(keyId: Int, metadata: MfaMetadata, masterKey: MasterKey): RequestResult<Unit, MfaKeyNotFoundException> {
+    return authWebSocket.runCatchingWithChatConnection { connection ->
+      AuthAccountsService(connection).setMfaKeyMetadata(keyId = keyId, metadata = metadata, svrKey = SvrKey(masterKey.serialize()))
+    }
+  }
+
+  /**
+   * Removes an MFA key, which also succeeds when there's no key with that id, so retries look the same as the
+   * first try.
+   */
+  suspend fun removeMfaKey(keyId: Int): RequestResult<Unit, Nothing> {
+    return authWebSocket.runCatchingWithChatConnection { connection ->
+      AuthAccountsService(connection).removeMfaKey(keyId)
     }
   }
 
