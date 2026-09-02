@@ -11,10 +11,11 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Transformations;
 
+import java.util.stream.Collectors;
+
 import org.signal.core.ui.fonts.SignalSymbols;
-import org.signal.core.ui.fonts.SignalSymbols.Glyph;
-import org.signal.core.ui.fonts.SignalSymbols.Weight;
 import org.signal.core.ui.util.ThemeUtil;
+import org.signal.core.util.BidiUtil;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.SpanUtil;
@@ -60,9 +61,9 @@ public final class LiveUpdateMessage {
   }
 
   private static @NonNull SpannableString toSpannable(@NonNull Context context, @NonNull UpdateDescription updateDescription, @NonNull Spannable string, @ColorInt int defaultTint, boolean adjustPosition) {
-    boolean isDarkTheme = ThemeUtil.isDarkTheme(context);
-    Glyph   glyph       = updateDescription.getGlyph();
-    int     tint        = isDarkTheme ? updateDescription.getDarkTint() : updateDescription.getLightTint();
+    boolean             isDarkTheme = ThemeUtil.isDarkTheme(context);
+    SignalSymbols.Glyph glyph       = updateDescription.getGlyph();
+    int                 tint        = isDarkTheme ? updateDescription.getDarkTint() : updateDescription.getLightTint();
 
     if (tint == 0) {
       tint = defaultTint;
@@ -72,9 +73,11 @@ public final class LiveUpdateMessage {
       return new SpannableString(string);
     } else {
       SpannableStringBuilder builder   = new SpannableStringBuilder();
-      CharSequence           glyphChar = SignalSymbols.getSpannedString(context, Weight.REGULAR, glyph, -1);
+      CharSequence           glyphChar = SignalSymbols.getSpannedString(context, SignalSymbols.Weight.REGULAR, glyph, -1);
 
+      builder.append(BidiUtil.BidiCodepoint.LRI);
       builder.append(glyphChar);
+      builder.append(BidiUtil.BidiCodepoint.PDI);
       builder.append(" ");
       builder.append(string);
 

@@ -823,7 +823,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     return Transformations.map(description, sequence -> {
       SpannableString spannable = new SpannableString(sequence);
       spannable.setSpan(new StyleSpan(Typeface.ITALIC),
-                        hasGlyph ? 1 : 0,
+                        hasGlyph ? 3 : 0,
                         sequence.length(),
                         Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
       return spannable;
