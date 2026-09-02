@@ -451,6 +451,24 @@ class SignalLoginCredentialEntryViewModelTest {
     }
   }
 
+  @Test
+  fun `TwoFactorCodeEntered for a screen whose recovery key is gone does not attempt a login`() = runTest(testDispatcher) {
+    val state = SignalLoginCredentialEntryState(accountId = VALID_ACCOUNT_ID)
+
+    applyEvent(state, SignalLoginCredentialEntryScreenEvents.TwoFactorCodeEntered("123456"))
+
+    assertThat(emittedStates).isEmpty()
+    assertThat(emittedParentEvents).isEmpty()
+    coVerify(exactly = 0) { mockRepository.reRegisterAccountWithoutPhoneNumber(any(), any(), any(), any(), any(), any()) }
+  }
+
+  @Test
+  fun `TwoFactorCodeEntered while the login is already in flight does not attempt a second login`() = runTest(testDispatcher) {
+    applyEvent(completeState().copy(isLoggingIn = true), SignalLoginCredentialEntryScreenEvents.TwoFactorCodeEntered("123456"))
+
+    coVerify(exactly = 0) { mockRepository.reRegisterAccountWithoutPhoneNumber(any(), any(), any(), any(), any(), any()) }
+  }
+
   @Test(expected = IllegalStateException::class)
   fun `NextClicked with SessionNotFoundOrNotVerified throws`() = runTest(testDispatcher) {
     coEvery { mockRepository.reRegisterAccountWithoutPhoneNumber(any(), any(), any(), any(), any()) } returns

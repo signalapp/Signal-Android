@@ -107,7 +107,11 @@ class SignalLoginCredentialEntryViewModel(
       }
 
       is SignalLoginCredentialEntryScreenEvents.TwoFactorCodeEntered -> {
-        applyNextClicked(state, totp = event.code.toIntOrNull(), parentEventEmitter, stateEmitter)
+        if (state.isNextEnabled) {
+          applyNextClicked(state, totp = event.code.toIntOrNull(), parentEventEmitter, stateEmitter)
+        } else {
+          Log.w(TAG, "[TwoFactorCodeEntered] Got a two-factor code, but the login on screen is no longer submittable. Leaving the user on the credential screen to re-enter it.")
+        }
       }
     }
   }
@@ -140,6 +144,12 @@ class SignalLoginCredentialEntryViewModel(
     }
   }
 
+  /**
+   * Submits the login currently on screen. Callers are expected to have checked [SignalLoginCredentialEntryState.isNextEnabled]
+   * first, but the incomplete cases are handled rather than asserted: a two-factor code can arrive from the TOTP screen
+   * long after this view model was recreated with empty fields (e.g. after process death), so an incomplete login here is
+   * something to log and drop, not a crash.
+   */
   private suspend fun applyNextClicked(
     state: SignalLoginCredentialEntryState,
     totp: Int?,
@@ -153,7 +163,10 @@ class SignalLoginCredentialEntryViewModel(
       return
     }
 
-    check(state.recoveryKey.isValid) { "Recovery key is not valid, should not have gotten here." }
+    if (!state.recoveryKey.isValid) {
+      Log.w(TAG, "[Next] The recovery key on screen isn't complete, so there is nothing to submit.")
+      return
+    }
 
     val aep = AccountEntropyPool(state.recoveryKey.normalized)
 
