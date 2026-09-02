@@ -187,13 +187,15 @@ class CopyAttachmentToArchiveJob private constructor(private val attachmentId: A
             Log.w(TAG, "[$attachmentId]$mediaIdLog Something is invalid about our request. Possibly the length. Scheduling a re-upload.")
             setArchiveTransferStateWithDelayedNotification(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
             AppDependencies.jobManager.add(UploadAttachmentToArchiveJob(attachmentId, canReuseUpload = false))
-            Result.success()
+            // Returning immediately to avoid marking the attachment as finished.
+            return Result.success()
           }
           is ArchiveError.CopyMediaError.SourceNotFound -> {
             Log.w(TAG, "[$attachmentId]$mediaIdLog The attachment no longer exists on the transit tier. Scheduling a re-upload.")
             setArchiveTransferStateWithDelayedNotification(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
             AppDependencies.jobManager.add(UploadAttachmentToArchiveJob(attachmentId, canReuseUpload = false))
-            Result.success()
+            // Returning immediately to avoid marking the attachment as finished.
+            return Result.success()
           }
           is ArchiveError.CopyMediaError.OutOfRemoteSpace -> {
             Log.w(TAG, "[$attachmentId]$mediaIdLog Insufficient storage space! Can't upload!")

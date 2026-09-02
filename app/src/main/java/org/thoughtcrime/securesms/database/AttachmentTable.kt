@@ -4564,7 +4564,7 @@ class AttachmentTable(
         appendLine("Media names with thumbnails count: $mediaNamesWithThumbnailsCount")
         appendLine("Pending attachment upload bytes: $pendingAttachmentUploadBytes")
         appendLine("Last snapshot full-size count: $lastSnapshotFullSizeCount")
-        appendLine("Last snapshot thumbnail count : $lastSnapshotFullSizeCount")
+        appendLine("Last snapshot thumbnail count : $lastSnapshotThumbnailCount")
         appendLine("Uploaded attachment bytes: $uploadedAttachmentBytes")
         appendLine("Uploaded thumbnail bytes: $uploadedThumbnailBytes")
         appendLine("Total upload count: $totalUploadCount")
@@ -4592,7 +4592,7 @@ class AttachmentTable(
         appendLine("Total unique data files: $totalUniqueDataFiles")
         appendLine("Total unique media names: $totalUniqueMediaNames")
         appendLine("Last snapshot full-size count: $lastSnapshotFullSizeCount")
-        appendLine("Last snapshot thumbnail count : $lastSnapshotFullSizeCount")
+        appendLine("Last snapshot thumbnail count : $lastSnapshotThumbnailCount")
         appendLine("Pending attachment upload bytes: $pendingAttachmentUploadBytes")
 
         if (archiveStatusMediaNameCounts.isNotEmpty()) {
