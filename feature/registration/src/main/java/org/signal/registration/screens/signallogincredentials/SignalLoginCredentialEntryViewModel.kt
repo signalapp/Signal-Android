@@ -49,7 +49,12 @@ class SignalLoginCredentialEntryViewModel(
     private val TAG = Log.tag(SignalLoginCredentialEntryViewModel::class)
   }
 
-  private val _state = MutableStateFlow(SignalLoginCredentialEntryState(accountId = prefilledAccountId ?: ""))
+  private val _state = MutableStateFlow(
+    SignalLoginCredentialEntryState(
+      accountId = prefilledAccountId ?: "",
+      isAccountIdPrefilled = !prefilledAccountId.isNullOrEmpty()
+    )
+  )
   val state: StateFlow<SignalLoginCredentialEntryState> = _state.asStateFlow()
 
   private val _actions = Channel<SignalLoginCredentialEntryScreenActions>(Channel.BUFFERED)
@@ -79,7 +84,7 @@ class SignalLoginCredentialEntryViewModel(
 
       is SignalLoginCredentialEntryScreenEvents.AccountIdChanged -> {
         val accountId = AccountIdFormat.normalize(event.value)
-        stateEmitter(state.copy(accountId = accountId, accountIdError = AccountIdFormat.validate(accountId), areCredentialsIncorrect = false))
+        stateEmitter(state.copy(accountId = accountId, accountIdError = AccountIdFormat.validate(accountId), isAccountIdPrefilled = false, areCredentialsIncorrect = false))
       }
 
       is SignalLoginCredentialEntryScreenEvents.RecoveryKeyChanged -> {
@@ -126,10 +131,11 @@ class SignalLoginCredentialEntryViewModel(
     parentEventEmitter: (RegistrationFlowEvent) -> Unit,
     stateEmitter: (SignalLoginCredentialEntryState) -> Unit
   ) {
-    val accountId = AccountIdFormat.normalize(event.accountId)
+    val accountId = AccountIdFormat.normalize(event.accountId).ifEmpty { state.accountId }
     val filledState = state.copy(
       accountId = accountId,
       accountIdError = AccountIdFormat.validate(accountId),
+      isAccountIdPrefilled = false,
       recoveryKey = AepInput.from(event.recoveryKey),
       areCredentialsIncorrect = false
     )

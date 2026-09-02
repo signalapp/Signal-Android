@@ -96,6 +96,41 @@ class SignalLoginCredentialEntryViewModelTest {
   }
 
   @Test
+  fun `a prefilled account ID does not count as user input, so the password manager can still be offered`() = runTest(testDispatcher) {
+    val prefilled = SignalLoginCredentialEntryViewModel(repository = mockRepository, parentEventEmitter = parentEventEmitter, prefilledAccountId = VALID_ACCOUNT_ID)
+
+    assertThat(prefilled.state.value.isAccountIdPrefilled).isTrue()
+    assertThat(prefilled.state.value.canPromptPasswordManager).isTrue()
+  }
+
+  @Test
+  fun `without a prefilled account ID the screen starts empty and the password manager can be offered`() = runTest(testDispatcher) {
+    assertThat(viewModel.state.value.isAccountIdPrefilled).isFalse()
+    assertThat(viewModel.state.value.canPromptPasswordManager).isTrue()
+  }
+
+  @Test
+  fun `an account ID the user typed themselves stops the password manager from being offered`() = runTest(testDispatcher) {
+    applyEvent(
+      SignalLoginCredentialEntryState(accountId = VALID_ACCOUNT_ID, isAccountIdPrefilled = true),
+      SignalLoginCredentialEntryScreenEvents.AccountIdChanged("a6b28482")
+    )
+
+    assertThat(emittedStates.last().isAccountIdPrefilled).isFalse()
+    assertThat(emittedStates.last().canPromptPasswordManager).isFalse()
+  }
+
+  @Test
+  fun `an entered recovery key stops the password manager from being offered`() = runTest(testDispatcher) {
+    applyEvent(
+      SignalLoginCredentialEntryState(accountId = VALID_ACCOUNT_ID, isAccountIdPrefilled = true),
+      SignalLoginCredentialEntryScreenEvents.RecoveryKeyChanged("uy38")
+    )
+
+    assertThat(emittedStates.last().canPromptPasswordManager).isFalse()
+  }
+
+  @Test
   fun `BackClicked navigates back`() = runTest(testDispatcher) {
     applyEvent(SignalLoginCredentialEntryState(), SignalLoginCredentialEntryScreenEvents.BackClicked)
 
@@ -189,6 +224,19 @@ class SignalLoginCredentialEntryViewModelTest {
     assertThat(emittedParentEvents).isEmpty()
     assertThat(emittedStates.last().isNextEnabled).isFalse()
     coVerify(exactly = 0) { mockRepository.reRegisterAccountWithoutPhoneNumber(any(), any(), any(), any(), any()) }
+  }
+
+  @Test
+  fun `PasswordManagerCredentialSelected keeps a prefilled account ID when the credential has no username`() = runTest(testDispatcher) {
+    stubSuccessfulLogin(AccountEntropyPool(VALID_AEP))
+
+    applyEvent(
+      SignalLoginCredentialEntryState(accountId = VALID_ACCOUNT_ID, isAccountIdPrefilled = true),
+      SignalLoginCredentialEntryScreenEvents.PasswordManagerCredentialSelected(accountId = "", recoveryKey = VALID_AEP)
+    )
+
+    assertThat(emittedStates.first().accountId).isEqualTo(VALID_ACCOUNT_ID)
+    coVerify { mockRepository.reRegisterAccountWithoutPhoneNumber(any(), any(), any(), any(), any()) }
   }
 
   @Test

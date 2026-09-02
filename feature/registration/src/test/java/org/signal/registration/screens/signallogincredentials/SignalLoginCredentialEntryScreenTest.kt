@@ -84,6 +84,28 @@ class SignalLoginCredentialEntryScreenTest {
   }
 
   @Test
+  fun `when a field is tapped with only a prefilled account ID, the password manager is still prompted`() {
+    stubPasswordManager()
+    setContent(SignalLoginCredentialEntryState(accountId = VALID_ACCOUNT_ID, isAccountIdPrefilled = true))
+
+    composeTestRule.onNodeWithTag(TestTags.SIGNAL_LOGIN_CREDENTIAL_ACCOUNT_ID_FIELD).performClick()
+    composeTestRule.waitForIdle()
+
+    assertThat(events).contains(SignalLoginCredentialEntryScreenEvents.PasswordManagerCredentialSelected(accountId = VALID_ACCOUNT_ID, recoveryKey = VALID_RECOVERY_KEY))
+  }
+
+  @Test
+  fun `when a field is tapped with a user-typed account ID, the password manager is not prompted`() {
+    stubPasswordManager()
+    setContent(SignalLoginCredentialEntryState(accountId = VALID_ACCOUNT_ID))
+
+    composeTestRule.onNodeWithTag(TestTags.SIGNAL_LOGIN_CREDENTIAL_ACCOUNT_ID_FIELD).performClick()
+    composeTestRule.waitForIdle()
+
+    coVerify(exactly = 0) { SignalCredentialManager.getCredential(any()) }
+  }
+
+  @Test
   fun `the account ID field is tagged for autofill as the username`() {
     setContent(SignalLoginCredentialEntryState())
 

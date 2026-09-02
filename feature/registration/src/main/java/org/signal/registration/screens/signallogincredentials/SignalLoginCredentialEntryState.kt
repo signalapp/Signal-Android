@@ -20,6 +20,8 @@ import org.signal.registration.screens.shared.AccountIdFormat
 data class SignalLoginCredentialEntryState(
   val accountId: String = "",
   val accountIdError: AccountIdError? = null,
+  /** Whether [accountId] was handed to the screen by the flow rather than typed by the user, and so isn't user input. */
+  val isAccountIdPrefilled: Boolean = false,
   val recoveryKey: AepInput = AepInput(),
   /** Whether the recovery key is spelled out rather than masked like a password. */
   val isRecoveryKeyRevealed: Boolean = false,
@@ -38,7 +40,11 @@ data class SignalLoginCredentialEntryState(
       !areCredentialsIncorrect &&
       !isLoggingIn
 
-  override fun toString(): String = "SignalLoginCredentialEntryState(accountId=${accountId.censor()}, accountIdError=$accountIdError, recoveryKey=$recoveryKey, isRecoveryKeyRevealed=$isRecoveryKeyRevealed, areCredentialsIncorrect=$areCredentialsIncorrect, isLoggingIn=$isLoggingIn, loginError=$loginError)"
+  /** Allow prompting if it's empty or came pre-filled */
+  val canPromptPasswordManager: Boolean
+    get() = recoveryKey.enteredText.isEmpty() && (accountId.isEmpty() || isAccountIdPrefilled)
+
+  override fun toString(): String = "SignalLoginCredentialEntryState(accountId=${accountId.censor()}, accountIdError=$accountIdError, isAccountIdPrefilled=$isAccountIdPrefilled, recoveryKey=$recoveryKey, isRecoveryKeyRevealed=$isRecoveryKeyRevealed, areCredentialsIncorrect=$areCredentialsIncorrect, isLoggingIn=$isLoggingIn, loginError=$loginError)"
 }
 
 /** A login failure that the text fields can't express, so it gets a dialog instead. */

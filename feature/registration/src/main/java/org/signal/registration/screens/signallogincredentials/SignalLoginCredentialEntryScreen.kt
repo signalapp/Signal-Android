@@ -252,8 +252,8 @@ private fun CredentialTextFields(
 
 /**
  * Builds a modifier that prompts the password manager the first time either credential field is tapped, so a saved
- * login can fill both halves at once. Only fires while the fields are still empty, and only once per screen so a
- * dismissed prompt doesn't keep coming back.
+ * login can fill both halves at once. Only fires while the user hasn't filled anything in themselves, and only once
+ * per screen so a dismissed prompt doesn't keep coming back.
  */
 @Composable
 private fun passwordManagerPromptOnFocus(
@@ -265,8 +265,7 @@ private fun passwordManagerPromptOnFocus(
   var hasPrompted by rememberSaveable { mutableStateOf(false) }
 
   return Modifier.onFocusChanged { focusState ->
-    val fieldsAreEmpty = state.accountId.isEmpty() && state.recoveryKey.enteredText.isEmpty()
-    if (focusState.isFocused && !hasPrompted && fieldsAreEmpty && SignalCredentialManager.isSupported(context)) {
+    if (focusState.isFocused && !hasPrompted && state.canPromptPasswordManager && SignalCredentialManager.isSupported(context)) {
       hasPrompted = true
       coroutineScope.launch {
         val credential = SignalCredentialManager.getCredential(context)
