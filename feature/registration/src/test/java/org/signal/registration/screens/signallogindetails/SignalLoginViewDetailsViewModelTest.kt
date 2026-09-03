@@ -90,4 +90,25 @@ class SignalLoginViewDetailsViewModelTest {
 
     assertThat(actions).containsExactly(SignalLoginViewDetailsScreenActions.LaunchSaveAsPdf)
   }
+
+  @Test
+  fun `AccountIdLongClicked copies the account key to the clipboard`() = runTest(testDispatcher) {
+    val actions = mutableListOf<SignalLoginViewDetailsScreenActions>()
+    backgroundScope.launch { viewModel.actions.toList(actions) }
+
+    viewModel.onEvent(SignalLoginViewDetailsScreenEvents.AccountIdLongClicked("A6B28482-2E32-83D0-7F23-91360A4C2B91"))
+
+    assertThat(actions).containsExactly(SignalLoginViewDetailsScreenActions.CopyTextToClipboard("A6B28482-2E32-83D0-7F23-91360A4C2B91"))
+  }
+
+  @Test
+  fun `RecoveryKeyLongClicked copies the recovery key to the clipboard`() = runTest(testDispatcher) {
+    val recoveryKey = AccountEntropyPool.generate().displayValue
+    val actions = mutableListOf<SignalLoginViewDetailsScreenActions>()
+    backgroundScope.launch { viewModel.actions.toList(actions) }
+
+    viewModel.onEvent(SignalLoginViewDetailsScreenEvents.RecoveryKeyLongClicked(recoveryKey))
+
+    assertThat(actions).containsExactly(SignalLoginViewDetailsScreenActions.CopyTextToClipboard(recoveryKey))
+  }
 }

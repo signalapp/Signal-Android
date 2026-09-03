@@ -64,6 +64,16 @@ class SignalLoginViewDetailsViewModel(
         // TODO [phonenumberless] Render the credentials to a PDF and hand it to the user.
         Log.i(TAG, "Save as PDF clicked, but the flow isn't implemented yet.")
       }
+
+      is SignalLoginViewDetailsScreenEvents.AccountIdLongClicked -> {
+        // TODO [phonenumberless] Copy the account key to the clipboard.
+        Log.i(TAG, "Account key long clicked, but the copy flow isn't implemented yet.")
+      }
+
+      is SignalLoginViewDetailsScreenEvents.RecoveryKeyLongClicked -> {
+        // TODO [phonenumberless] Copy the recovery key to the clipboard.
+        Log.i(TAG, "Recovery key long clicked, but the copy flow isn't implemented yet.")
+      }
     }
   }
 

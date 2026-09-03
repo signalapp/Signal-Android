@@ -49,6 +49,7 @@ import org.signal.core.ui.navigation.TransitionSpecs
 import org.signal.core.util.LinkActions
 import org.signal.core.util.LinkActions.OpenUrlError
 import org.signal.core.util.Result
+import org.signal.core.util.Util
 import org.signal.core.util.censor
 import org.signal.core.util.serialization.AccountEntropyPoolSerializer
 import org.signal.network.api.RegistrationApiV2.SessionMetadata
@@ -387,6 +388,7 @@ private const val LOCAL_BACKUP_RESTORE_RESULT = "local_backup_restore_result"
 private const val PHONE_NUMBER_DISCOVERABILITY_RESULT = "phone_number_discoverability_result"
 private const val TWO_FACTOR_CODE_RESULT = "two_factor_code_result"
 private const val PIN_LEARN_MORE_URL = "https://support.signal.org/hc/articles/360007059792"
+private const val CLIPBOARD_TIMEOUT_SECONDS = 60
 
 // TODO [phonenumberless] Point at the real support article once it exists.
 private const val SIGNAL_LOGIN_LEARN_MORE_URL = "https://support.signal.org/"
@@ -767,6 +769,8 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
         }
 
         SignalLoginViewDetailsScreenActions.LaunchSaveAsPdf -> savePdfLauncher.launch(SignalLoginPdfRenderer.suggestedFileName(context))
+
+        is SignalLoginViewDetailsScreenActions.CopyTextToClipboard -> Util.copyToClipboard(context, action.text, CLIPBOARD_TIMEOUT_SECONDS)
       }
     }
 

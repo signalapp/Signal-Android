@@ -7,6 +7,7 @@ package org.signal.signallogin.viewdetails
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -103,11 +104,19 @@ fun SignalLoginViewDetailsScreen(
 
         Texts.SectionHeader(text = stringResource(R.string.SignalLoginViewDetailsScreen__account_key))
 
-        KeyBlock(text = state.accountKey)
+        KeyBlock(
+          text = state.accountKey,
+          onEvent = onEvent,
+          modifier = Modifier.testTag(SignalLoginTestTags.VIEW_DETAILS_ACCOUNT_KEY_BLOCK)
+        )
 
         Texts.SectionHeader(text = stringResource(R.string.SignalLoginViewDetailsScreen__recovery_key))
 
-        RecoveryKeyBlock(groups = state.recoveryKeyGroups)
+        RecoveryKeyBlock(
+          groups = state.recoveryKeyGroups,
+          onEvent = onEvent,
+          modifier = Modifier.testTag(SignalLoginTestTags.VIEW_DETAILS_RECOVERY_KEY_BLOCK)
+        )
       }
 
       Footer(onEvent = onEvent)
@@ -136,9 +145,10 @@ private fun MiniCard(modifier: Modifier = Modifier) {
 @Composable
 private fun KeyBlock(
   text: String,
+  onEvent: (SignalLoginViewDetailsScreenEvents) -> Unit,
   modifier: Modifier = Modifier
 ) {
-  Box(modifier = modifier.keyBlockSurface()) {
+  Box(modifier = modifier.keyBlockSurface(onLongClick = { onEvent(SignalLoginViewDetailsScreenEvents.AccountIdLongClicked(text)) })) {
     Text(
       text = text,
       style = keyTextStyle()
@@ -154,9 +164,10 @@ private fun KeyBlock(
 @Composable
 private fun RecoveryKeyBlock(
   groups: List<String>,
+  onEvent: (SignalLoginViewDetailsScreenEvents) -> Unit,
   modifier: Modifier = Modifier
 ) {
-  BoxWithConstraints(modifier = modifier.keyBlockSurface()) {
+  BoxWithConstraints(modifier = modifier.keyBlockSurface(onLongClick = { onEvent(SignalLoginViewDetailsScreenEvents.RecoveryKeyLongClicked(groups.joinToString(separator = ""))) })) {
     val style = keyTextStyle()
     val textMeasurer = rememberTextMeasurer()
     val maxWidth = constraints.maxWidth
@@ -196,12 +207,16 @@ private fun RecoveryKeyBlock(
 }
 
 @Composable
-private fun Modifier.keyBlockSurface(): Modifier {
+private fun Modifier.keyBlockSurface(onLongClick: () -> Unit): Modifier {
   return this
     .horizontalGutters()
     .fillMaxWidth()
     .clip(RoundedCornerShape(18.dp))
     .background(SignalTheme.colors.colorSurface2)
+    .combinedClickable(
+      onLongClick = onLongClick,
+      onClick = {}
+    )
     .padding(horizontal = 28.dp, vertical = 20.dp)
 }
 

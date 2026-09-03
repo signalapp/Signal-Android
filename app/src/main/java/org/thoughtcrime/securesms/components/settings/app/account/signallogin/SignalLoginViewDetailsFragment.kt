@@ -17,6 +17,7 @@ import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.CollectActions
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.util.Result
+import org.signal.core.util.Util
 import org.signal.passwordmanager.SignalCredentialManager
 import org.signal.signallogin.pdf.SignalLoginPdfRenderer
 import org.signal.signallogin.viewdetails.SignalLoginViewDetailsScreen
@@ -25,6 +26,10 @@ import org.signal.signallogin.viewdetails.SignalLoginViewDetailsScreen
  * Shows the account and recovery keys that make up the user's Signal Login, the same way registration does.
  */
 class SignalLoginViewDetailsFragment : ComposeFragment() {
+
+  companion object {
+    private const val CLIPBOARD_TIMEOUT_SECONDS = 60
+  }
 
   private val viewModel: SignalLoginViewDetailsViewModel by viewModels()
 
@@ -65,6 +70,7 @@ class SignalLoginViewDetailsFragment : ComposeFragment() {
         }
       }
       SignalLoginViewDetailsAction.LaunchSaveAsPdf -> savePdfLauncher.launch(SignalLoginPdfRenderer.suggestedFileName(requireContext()))
+      is SignalLoginViewDetailsAction.CopyTextToClipboard -> Util.copyToClipboard(requireContext(), action.text, CLIPBOARD_TIMEOUT_SECONDS)
     }
   }
 }

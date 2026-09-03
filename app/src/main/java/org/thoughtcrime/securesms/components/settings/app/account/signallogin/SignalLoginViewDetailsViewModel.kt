@@ -50,6 +50,12 @@ class SignalLoginViewDetailsViewModel(
       SignalLoginViewDetailsScreenEvents.SaveAsPdfClicked -> {
         _actions.send(SignalLoginViewDetailsAction.LaunchSaveAsPdf)
       }
+      is SignalLoginViewDetailsScreenEvents.AccountIdLongClicked -> {
+        _actions.send(SignalLoginViewDetailsAction.CopyTextToClipboard(event.aci))
+      }
+      is SignalLoginViewDetailsScreenEvents.RecoveryKeyLongClicked -> {
+        _actions.send(SignalLoginViewDetailsAction.CopyTextToClipboard(event.aep))
+      }
     }
   }
 }
