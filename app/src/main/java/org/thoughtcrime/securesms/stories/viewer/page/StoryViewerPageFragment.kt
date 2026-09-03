@@ -982,6 +982,10 @@ class StoryViewerPageFragment :
     storyCaptionBottomGradient.visible = displayBody.isNotEmpty()
 
     caption.text = displayBody
+    caption.post {
+      caption.scrollX = 0
+      caption.scrollY = 0
+    }
     largeCaption.text = displayBody
     caption.visible = displayBody.isNotEmpty()
     caption.requestLayout()
