@@ -301,6 +301,16 @@ class ConversationViewModel(
       )
     }
 
+    disposables += recipientRepository
+      .groupRecord
+      .filter { it.isPresent && it.get().isV2Group }
+      .map { it.get().requireV2GroupProperties().memberLabelsByAci() }
+      .distinctUntilChanged()
+      .skip(1)
+      .subscribeBy(onNext = {
+        pagingController.onDataInvalidated()
+      })
+
     _inputReadyState = Observable.combineLatest(
       recipientRepository.conversationRecipient,
       recipientRepository.groupRecord
