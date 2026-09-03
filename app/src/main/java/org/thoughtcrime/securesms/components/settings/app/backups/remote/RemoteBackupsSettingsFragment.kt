@@ -1377,6 +1377,7 @@ private fun SubscriptionNotFoundCard(
       ) {
         Buttons.MediumTonal(
           onClick = onRenewClick,
+          enabled = isRenewEnabled,
           colors = ButtonDefaults.filledTonalButtonColors().copy(
             containerColor = SignalTheme.colors.colorTransparent5,
             contentColor = colorResource(CoreUiR.color.signal_light_colorOnSurface)
@@ -1392,7 +1393,6 @@ private fun SubscriptionNotFoundCard(
 
         Buttons.MediumTonal(
           onClick = onLearnMoreClick,
-          enabled = isRenewEnabled,
           colors = ButtonDefaults.filledTonalButtonColors().copy(
             containerColor = SignalTheme.colors.colorTransparent5,
             contentColor = colorResource(CoreUiR.color.signal_light_colorOnSurface)
@@ -1420,8 +1420,14 @@ private fun SubscriptionMismatchMissingGooglePlayCard(
 ) {
   val days by rememberUpdatedState((state.renewalTime - System.currentTimeMillis().milliseconds).inWholeDays)
 
+  val title = if (state.isBilledThroughOtherStore || days <= 0) {
+    stringResource(R.string.RemoteBackupsSettingsFragment__your_subscription_was_not_found)
+  } else {
+    pluralStringResource(R.plurals.RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid, days.toInt(), days)
+  }
+
   SubscriptionNotFoundCard(
-    title = pluralStringResource(R.plurals.RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid, days.toInt(), days),
+    title = title,
     isRenewEnabled = isRenewEnabled,
     isLinkedDevice = isLinkedDevice,
     onRenewClick = onRenewClick,
@@ -2025,6 +2031,25 @@ private fun SubscriptionMismatchMissingGooglePlayCardPreview() {
           mediaTtl = 30.days
         ),
         renewalTime = System.currentTimeMillis().milliseconds + 30.days
+      ),
+      isRenewEnabled = true
+    )
+  }
+}
+
+@DayNightPreviews
+@Composable
+private fun SubscriptionMismatchBilledThroughOtherStoreCardPreview() {
+  Previews.Preview {
+    SubscriptionMismatchMissingGooglePlayCard(
+      state = BackupState.SubscriptionMismatchMissingGooglePlay(
+        messageBackupsType = MessageBackupsType.Paid(
+          pricePerMonth = FiatMoney(BigDecimal.valueOf(3), Currency.getInstance("CAD")),
+          storageAllowanceBytes = 100_000_000,
+          mediaTtl = 30.days
+        ),
+        renewalTime = System.currentTimeMillis().milliseconds + 30.days,
+        isBilledThroughOtherStore = true
       ),
       isRenewEnabled = true
     )

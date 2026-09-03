@@ -191,7 +191,8 @@ class BackupStateObserver(
       Log.d(TAG, "[getDatabaseBackupState] We have a subscription state mismatch with Google Play.")
       return BackupState.SubscriptionMismatchMissingGooglePlay(
         messageBackupsType = paidBackupType,
-        renewalTime = latestPayment.endOfPeriod
+        renewalTime = latestPayment.endOfPeriod,
+        isBilledThroughOtherStore = InAppPaymentsRepository.isBackupBilledThroughOtherStore()
       )
     }
 
@@ -312,7 +313,8 @@ class BackupStateObserver(
           Log.d(TAG, "[getNetworkBackupState][subscriptionMismatchDetected] found a subscription mismatch and successfully loaded configuration.")
           return BackupState.SubscriptionMismatchMissingGooglePlay(
             messageBackupsType = type,
-            renewalTime = activeSubscription.activeSubscription.endOfCurrentPeriod.seconds
+            renewalTime = activeSubscription.activeSubscription.endOfCurrentPeriod.seconds,
+            isBilledThroughOtherStore = InAppPaymentsRepository.isBackupBilledThroughOtherStore(activeSubscription.activeSubscription)
           )
         }
 

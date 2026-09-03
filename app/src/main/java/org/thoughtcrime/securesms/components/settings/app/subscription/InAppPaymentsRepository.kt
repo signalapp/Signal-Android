@@ -49,6 +49,7 @@ import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
+import org.whispersystems.signalservice.api.storage.IAPSubscriptionId
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
 import org.whispersystems.signalservice.internal.push.DonationProcessor
@@ -566,6 +567,24 @@ object InAppPaymentsRepository {
     Log.d(TAG, "Attempting to retrieve subscriber of type $type for ${currency.currencyCode}")
 
     return getRecurringDonationSubscriber(currency)
+  }
+
+  /**
+   * Whether the user's backup subscription is billed through a store other than Google Play. This happens when they
+   * transferred from another platform and we restored that platform's subscriber record out of their backup, in which
+   * case Google Play will never report a purchase for it.
+   *
+   * @param subscription The active subscription, when available. The service reports the billing platform directly,
+   *                     which covers us before we've restored or synced that platform's subscriber record. A locally
+   *                     known Apple record is never overridden by the service report.
+   */
+  @WorkerThread
+  fun isBackupBilledThroughOtherStore(subscription: ActiveSubscription.Subscription? = null): Boolean {
+    if (subscription?.paymentMethod == ActiveSubscription.PaymentMethod.APPLE_APP_STORE) {
+      return true
+    }
+
+    return getSubscriber(InAppPaymentSubscriberRecord.Type.BACKUP)?.iapSubscriptionId is IAPSubscriptionId.AppleIAPOriginalTransactionId
   }
 
   /**
