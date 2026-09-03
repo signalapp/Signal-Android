@@ -101,6 +101,7 @@ object AccountSettingsTestTags {
   const val DIALOG_CONFIRM_REGISTRATION_LOCK = "dialog-confirm-registration-lock"
   const val DIALOG_CONFIRM_REMOVE_TOTP_APP = "dialog-confirm-remove-totp-app"
   const val DIALOG_MAX_TOTP_APPS_REACHED = "dialog-max-totp-apps-reached"
+  const val DIALOG_MAX_MFA_KEYS_REACHED = "dialog-max-mfa-keys-reached"
   const val PIN_INPUT = "pin-input"
   const val PIN_KEYBOARD_TOGGLE = "pin-keyboard-toggle"
 }
@@ -369,6 +370,7 @@ fun AccountSettingsScreen(
     }
     is Dialog.ConfirmRemoveTotpApp -> ConfirmRemoveTotpAppDialog(appId = dialog.appId, onEvent = onEvent)
     Dialog.MaxTotpAppsReached -> MaxTotpAppsReachedDialog(maxApps = state.signalLogin?.maxTotpApps ?: 0, onEvent = onEvent)
+    Dialog.MaxMfaKeysReached -> MaxMfaKeysReachedDialog(maxMfaKeys = state.signalLogin?.maxMfaKeys ?: 0, onEvent = onEvent)
   }
 }
 
@@ -645,6 +647,25 @@ private fun MaxTotpAppsReachedDialog(
   )
 }
 
+/** Shown when there's still room for another authenticator app, but not for another second factor of any kind. */
+@Composable
+private fun MaxMfaKeysReachedDialog(
+  maxMfaKeys: Int,
+  onEvent: (AccountSettingsEvent) -> Unit
+) {
+  Dialogs.SimpleAlertDialog(
+    title = stringResource(R.string.AccountSettingsFragment__cant_add_authenticator_app),
+    body = stringResource(R.string.AccountSettingsFragment__you_cant_add_more_than_d_two_factor_methods, maxMfaKeys),
+    confirm = stringResource(android.R.string.ok),
+    onConfirm = {},
+    onDismiss = { onEvent(AccountSettingsEvent.DialogDismissed) },
+    dismiss = stringResource(R.string.AccountSettingsFragment__learn_more),
+    onDeny = { onEvent(AccountSettingsEvent.LearnMoreClicked("https://support.signal.org/hc/articles/11228705649690")) },
+    onDismissRequest = { onEvent(AccountSettingsEvent.DialogDismissed) },
+    modifier = Modifier.testTag(AccountSettingsTestTags.DIALOG_MAX_MFA_KEYS_REACHED)
+  )
+}
+
 @Composable
 private fun RegistrationLockConfirmationDialog(
   dialog: Dialog.ConfirmRegistrationLock,
@@ -890,6 +911,14 @@ private fun ConfirmRemoveTotpAppDialogPreview() {
 private fun MaxTotpAppsReachedDialogPreview() {
   Previews.Preview {
     MaxTotpAppsReachedDialog(maxApps = 2, onEvent = {})
+  }
+}
+
+@DayNightPreviews
+@Composable
+private fun MaxMfaKeysReachedDialogPreview() {
+  Previews.Preview {
+    MaxMfaKeysReachedDialog(maxMfaKeys = 10, onEvent = {})
   }
 }
 

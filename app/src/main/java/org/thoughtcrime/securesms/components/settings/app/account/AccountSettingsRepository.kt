@@ -52,6 +52,8 @@ class AccountSettingsRepository {
 
   fun getMaxTotpApps(): Int = totpRepository.getMaxApps()
 
+  fun getMaxMfaKeys(): Int = totpRepository.getMaxMfaKeys()
+
   /**
    * Every second factor on the account, authenticator apps first, or a failure if we couldn't find out. Passkeys are
    * mocked for now, so only the authenticator apps can actually fail to load.

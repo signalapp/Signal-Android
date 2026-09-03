@@ -430,6 +430,17 @@ class AccountSettingsScreenTest {
   }
 
   @Test
+  fun givenTheMaxMfaKeysDialog_whenIClickLearnMore_thenIExpectLearnMoreAndDismissEvents() {
+    setContent(createState(signalLogin = signalLogin(), dialog = Dialog.MaxMfaKeysReached))
+
+    composeTestRule.onNodeWithTag(AccountSettingsTestTags.DIALOG_MAX_MFA_KEYS_REACHED).assertIsDisplayed()
+    composeTestRule.onNodeWithTag(Dialogs.TEST_TAG_ALERT_DIALOG_DISMISS_BUTTON).performClick()
+
+    assertThat(events).contains(AccountSettingsEvent.LearnMoreClicked("https://support.signal.org/hc/articles/11228705649690"))
+    assertThat(events).contains(AccountSettingsEvent.DialogDismissed)
+  }
+
+  @Test
   fun whenIClickTheSignalLoginLearnMore_thenIExpectLearnMoreForTheSignalLoginArticle() {
     setContent(createState(signalLogin = signalLogin()))
 
@@ -496,9 +507,10 @@ class AccountSettingsScreenTest {
   private fun signalLogin(
     twoFactorMethods: List<TwoFactorMethod> = emptyList(),
     loadState: LoadState = LoadState.LOADED,
-    maxTotpApps: Int = 2
+    maxTotpApps: Int = 2,
+    maxMfaKeys: Int = 10
   ): AccountSettingsState.SignalLogin {
-    return AccountSettingsState.SignalLogin(twoFactorMethods = twoFactorMethods, loadState = loadState, maxTotpApps = maxTotpApps)
+    return AccountSettingsState.SignalLogin(twoFactorMethods = twoFactorMethods, loadState = loadState, maxTotpApps = maxTotpApps, maxMfaKeys = maxMfaKeys)
   }
 
   /** Links inside an [androidx.compose.ui.text.AnnotatedString] have no bounds to tap, so their click action is invoked directly. */

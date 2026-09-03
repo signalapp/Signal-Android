@@ -1471,5 +1471,22 @@ object RemoteConfig {
     defaultValue = 3.days.inWholeSeconds,
     hotSwappable = true
   )
+
+  /** The maximum number of authenticator apps a user can have on their account. */
+  val maxTotpApps: Int by remoteInt(
+    key = "global.maxTotpApps",
+    defaultValue = 2,
+    hotSwappable = true
+  )
+
+  /**
+   * The maximum number of two-factor methods of every kind, authenticator apps and passkeys alike, a user can have on
+   * their account. Every method counts against this, so it's the limit on the total rather than on any one kind.
+   */
+  val maxMfaKeys: Int by remoteInt(
+    key = "global.maxMfaKeys",
+    defaultValue = 10,
+    hotSwappable = true
+  )
   // endregion
 }

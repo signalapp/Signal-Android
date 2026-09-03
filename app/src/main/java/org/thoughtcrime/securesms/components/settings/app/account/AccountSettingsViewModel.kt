@@ -184,10 +184,11 @@ class AccountSettingsViewModel(
   }
 
   private suspend fun applyAddTotpAppClicked() {
-    if (_state.value.signalLogin?.atMaxTotpApps == true) {
-      _state.update { it.copy(dialog = Dialog.MaxTotpAppsReached) }
-    } else {
-      _actions.send(AccountSettingsAction.NavigateToTotpSetup)
+    val signalLogin = _state.value.signalLogin
+    when {
+      signalLogin?.atMaxTotpApps == true -> _state.update { it.copy(dialog = Dialog.MaxTotpAppsReached) }
+      signalLogin?.atMaxMfaKeys == true -> _state.update { it.copy(dialog = Dialog.MaxMfaKeysReached) }
+      else -> _actions.send(AccountSettingsAction.NavigateToTotpSetup)
     }
   }
 
@@ -242,7 +243,7 @@ class AccountSettingsViewModel(
         clientDeprecated = repository.isClientDeprecated(),
         isPhoneNumberless = isPhoneNumberless,
         // Held onto across refreshes so a resume doesn't drop the list back to its loading state.
-        signalLogin = if (isPhoneNumberless) it.signalLogin ?: SignalLogin(maxTotpApps = repository.getMaxTotpApps()) else null
+        signalLogin = if (isPhoneNumberless) it.signalLogin ?: SignalLogin(maxTotpApps = repository.getMaxTotpApps(), maxMfaKeys = repository.getMaxMfaKeys()) else null
       )
     }
 

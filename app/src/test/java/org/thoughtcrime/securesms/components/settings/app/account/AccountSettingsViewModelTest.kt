@@ -74,6 +74,7 @@ class AccountSettingsViewModelTest {
     every { repository.getPinKeyboardType() } returns PinKeyboardType.NUMERIC
     every { repository.isPhoneNumberless() } returns false
     every { repository.getMaxTotpApps() } returns 2
+    every { repository.getMaxMfaKeys() } returns 10
     coEvery { repository.getTwoFactorMethods() } returns AccountSettingsRepository.TwoFactorMethodsResult.Success(emptyList())
     coEvery { repository.removeTotpApp(any()) } returns true
     every { repository.verifyLocalPin(any()) } answers { firstArg<String>() == CORRECT_PIN }
@@ -322,6 +323,7 @@ class AccountSettingsViewModelTest {
     assertThat(viewModel.state.value.signalLogin!!.twoFactorMethods).containsExactly(TOTP_APP, PASSKEY)
     assertThat(viewModel.state.value.signalLogin?.loadState).isEqualTo(LoadState.LOADED)
     assertThat(viewModel.state.value.signalLogin?.maxTotpApps).isEqualTo(2)
+    assertThat(viewModel.state.value.signalLogin?.maxMfaKeys).isEqualTo(10)
   }
 
   /** An empty list says nothing on its own, so the screen leans on the load state to know we haven't heard back yet. */
@@ -373,7 +375,7 @@ class AccountSettingsViewModelTest {
     assertThat(actions.last()).isEqualTo(AccountSettingsAction.NavigateToTotpSetup)
   }
 
-  /** Passkeys share the list but not the limit, so they can't be what stops another app from being added. */
+  /** The app limit is the more specific of the two, so it's what an account with room to spare overall is told about. */
   @Test
   fun `AddTotpAppClicked explains the limit when there's no room for another app`() = runTest(testDispatcher) {
     every { repository.isPhoneNumberless() } returns true
@@ -385,6 +387,22 @@ class AccountSettingsViewModelTest {
     viewModel.onEvent(AccountSettingsEvent.AddTotpAppClicked)
 
     assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.MaxTotpAppsReached)
+    assertThat(actions).isEmpty()
+  }
+
+  /** Every second factor counts against one overall limit, so a passkey can be what leaves no room for another app. */
+  @Test
+  fun `AddTotpAppClicked explains the overall limit when there's no room for another second factor`() = runTest(testDispatcher) {
+    every { repository.isPhoneNumberless() } returns true
+    every { repository.getMaxMfaKeys() } returns 2
+    coEvery { repository.getTwoFactorMethods() } returns methods(TOTP_APP, PASSKEY)
+
+    val viewModel = createViewModel()
+    val actions = collectActions(viewModel.actions)
+
+    viewModel.onEvent(AccountSettingsEvent.AddTotpAppClicked)
+
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.MaxMfaKeysReached)
     assertThat(actions).isEmpty()
   }
 

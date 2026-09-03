@@ -19,6 +19,7 @@ import org.signal.libsignal.net.TotpParameters
 import org.signal.network.api.AccountApiV2
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
+import org.thoughtcrime.securesms.util.RemoteConfig
 import java.net.URLEncoder
 import java.time.Instant
 
@@ -38,12 +39,6 @@ class TotpRepository(
   companion object {
     private val TAG = Log.tag(TotpRepository::class)
 
-    /**
-     * How many authenticator apps an account may have, which the service enforces. libsignal reports hitting the
-     * limit but doesn't expose the number, so the screens that want to show it get it from here.
-     */
-    const val MAX_APPS = 2
-
     private const val ISSUER = "Signal"
 
     /** The algorithm names the Key Uri Format defines, keyed by what [TotpParameters.algorithm] calls them. */
@@ -60,8 +55,20 @@ class TotpRepository(
     const val MAX_NAME_LENGTH_GRAPHEMES = 30
   }
 
+  /**
+   * How many authenticator apps the account is allowed at once. libsignal reports hitting the limit but doesn't expose
+   * the number, so the screens that want to show it get it from here.
+   */
   fun getMaxApps(): Int {
-    return MAX_APPS
+    return RemoteConfig.maxTotpApps
+  }
+
+  /**
+   * How many two-factor methods of every kind the account is allowed at once. Authenticator apps share this limit with
+   * passkeys, so it can be reached even when there's room left under [getMaxApps].
+   */
+  fun getMaxMfaKeys(): Int {
+    return RemoteConfig.maxMfaKeys
   }
 
   /**
