@@ -7,7 +7,6 @@ package org.signal.registration.screens.addusername
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
@@ -25,7 +24,6 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -40,7 +38,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.testTag
@@ -63,7 +60,6 @@ import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.util.UsernameUtil
 import org.signal.libsignal.usernames.Username
 import org.signal.registration.R
@@ -73,11 +69,8 @@ import org.signal.registration.screens.TwoPaneRegistrationScaffold
 import org.signal.registration.screens.attachDebugLogHelper
 import org.signal.registration.test.TestTags
 
-/** Size of the avatar artwork, whose sphere occupies the inner 72dp of its 80dp box. */
-private val AVATAR_SIZE = 80.dp
-
-/** Size of the glyph centered on the avatar, per the design's 36dp icon box. */
-private val AVATAR_GLYPH_SIZE = 36.dp
+/** Size of the avatar artwork, whose sphere fills its box edge to edge. */
+private val AVATAR_SIZE = 72.dp
 
 /** The discriminator field is sized to its content, but never narrower than this many digits. */
 private const val DISCRIMINATOR_MIN_WIDTH_TEMPLATE = "00"
@@ -371,28 +364,15 @@ private fun DiscriminatorField(
 }
 
 /**
- * The designed avatar sphere with the "@" glyph on top. The sphere art is shared, so the glyph is drawn separately
- * rather than baked into the drawable.
+ * The designed avatar sphere with the "@" glyph baked in.
  */
 @Composable
 private fun UsernameAvatar(modifier: Modifier = Modifier) {
-  Box(
-    contentAlignment = Alignment.Center,
+  Image(
+    painter = painterResource(R.drawable.image_registration_usernames),
+    contentDescription = null,
     modifier = modifier.size(AVATAR_SIZE)
-  ) {
-    Image(
-      painter = painterResource(R.drawable.image_signal_login_avatar_background),
-      contentDescription = null,
-      modifier = Modifier.fillMaxSize()
-    )
-
-    Icon(
-      painter = SignalIcons.At.painter,
-      contentDescription = null,
-      tint = Color.White,
-      modifier = Modifier.size(AVATAR_GLYPH_SIZE)
-    )
-  }
+  )
 }
 
 @Composable

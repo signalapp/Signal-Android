@@ -211,7 +211,7 @@ private fun Header(twoPane: Boolean = false) {
   Image(
     painter = painterResource(R.drawable.image_signal_login_ring),
     contentDescription = null,
-    modifier = Modifier.size(64.dp)
+    modifier = Modifier.size(72.dp)
   )
 
   Spacer(modifier = Modifier.height(20.dp))

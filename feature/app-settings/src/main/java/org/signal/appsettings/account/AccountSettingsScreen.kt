@@ -32,7 +32,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
@@ -350,12 +349,9 @@ private fun SignalLoginCard(
     verticalAlignment = Alignment.CenterVertically
   ) {
     Image(
-      painter = painterResource(R.drawable.image_signal_login_card),
+      painter = painterResource(R.drawable.image_signal_login_card_small),
       contentDescription = null,
-      contentScale = ContentScale.FillBounds,
-      modifier = Modifier
-        .size(width = 91.dp, height = 52.dp)
-        .clip(RoundedCornerShape(8.dp))
+      modifier = Modifier.size(width = 91.dp, height = 52.dp)
     )
 
     Text(

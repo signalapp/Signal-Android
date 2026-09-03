@@ -189,12 +189,12 @@ private fun TopBar(scrollBehavior: TopAppBarScrollBehavior) {
 @Composable
 private fun ColumnScope.Header(twoPane: Boolean = false) {
   Image(
-    painter = painterResource(R.drawable.image_signal_login_key),
+    painter = painterResource(R.drawable.image_signal_login_keys_checkmark),
     contentDescription = null,
     modifier = Modifier
       .padding(bottom = 24.dp)
       .align(Alignment.CenterHorizontally)
-      .size(width = 84.dp, height = 92.dp)
+      .size(96.dp)
   )
 
   Text(
