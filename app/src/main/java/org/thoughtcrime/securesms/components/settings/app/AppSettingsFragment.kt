@@ -586,6 +586,7 @@ private fun BioRow(
   callbacks: Callbacks
 ) {
   val hasUsername by rememberUpdatedState(self.username.isNotBlank())
+  val hasPhoneNumber by rememberUpdatedState(self.e164.isNotBlank())
 
   Row(
     verticalAlignment = Alignment.CenterVertically,
@@ -629,21 +630,23 @@ private fun BioRow(
         )
       }
 
-      val prettyPhoneNumber = if (LocalInspectionMode.current) {
-        self.e164
-      } else {
-        remember(self.e164) {
-          SignalE164Util.prettyPrint(self.e164)
+      if (hasPhoneNumber) {
+        val prettyPhoneNumber = if (LocalInspectionMode.current) {
+          self.e164
+        } else {
+          remember(self.e164) {
+            SignalE164Util.prettyPrint(self.e164)
+          }
         }
-      }
 
-      Text(
-        text = prettyPhoneNumber,
-        color = MaterialTheme.colorScheme.onSurfaceVariant,
-        style = TextStyle(
-          textDirection = TextDirection.ContentOrLtr
+        Text(
+          text = prettyPhoneNumber,
+          color = MaterialTheme.colorScheme.onSurfaceVariant,
+          style = TextStyle(
+            textDirection = TextDirection.ContentOrLtr
+          )
         )
-      )
+      }
 
       if (hasUsername) {
         Text(
@@ -771,6 +774,27 @@ private fun BioRowPreview() {
           profileName = ProfileName.fromParts("Miles", "Morales ❤\uFE0F"),
           isSelf = true,
           e164Value = "+15555555555",
+          usernameValue = "miles.98",
+          aboutEmoji = "❤\uFE0F",
+          about = "About",
+          isResolving = false
+        )
+      ),
+      callbacks = EmptyCallbacks
+    )
+  }
+}
+
+@DayNightPreviews
+@Composable
+private fun BioRowNoPhoneNumberPreview() {
+  Previews.Preview {
+    BioRow(
+      self = BioRecipientState(
+        Recipient(
+          systemContactName = "Miles Morales",
+          profileName = ProfileName.fromParts("Miles", "Morales ❤\uFE0F"),
+          isSelf = true,
           usernameValue = "miles.98",
           aboutEmoji = "❤\uFE0F",
           about = "About",
