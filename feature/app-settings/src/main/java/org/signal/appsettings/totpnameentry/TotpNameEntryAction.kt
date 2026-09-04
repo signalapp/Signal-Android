@@ -16,8 +16,8 @@ sealed interface TotpNameEntryAction {
   /** Leave the screen. */
   data object NavigateBack : TotpNameEntryAction
 
-  /** The app has a name now, so go back to the list of authenticator apps. */
-  data object NavigateToTotpAppList : TotpNameEntryAction
+  /** The app has a name now, so go back to the account settings screen that lists it. */
+  data object NavigateToAccountSettings : TotpNameEntryAction
 
   /** Tell the user their authenticator app was set up. */
   data object ShowTotpAppSetUp : TotpNameEntryAction

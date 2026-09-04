@@ -29,7 +29,7 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.signal.appsettings.totpapplist.TotpApp
+import org.signal.appsettings.totp.TotpApp
 import org.signal.appsettings.totpnameentry.TotpNameEntryAction
 import org.signal.appsettings.totpnameentry.TotpNameEntryEvent
 import org.thoughtcrime.securesms.testing.CoroutineDispatcherRule
@@ -104,7 +104,7 @@ class TotpNameEntryViewModelTest {
 
     coVerify { repository.nameNewTotpApp(NEW_APP_ID, "Bitwarden Authenticator") }
     assertThat(actions).contains(TotpNameEntryAction.ShowTotpAppSetUp)
-    assertThat(actions.last()).isEqualTo(TotpNameEntryAction.NavigateToTotpAppList)
+    assertThat(actions.last()).isEqualTo(TotpNameEntryAction.NavigateToAccountSettings)
   }
 
   @Test
@@ -117,7 +117,7 @@ class TotpNameEntryViewModelTest {
 
     coVerify { repository.renameTotpApp(EXISTING_APP, "Work Authenticator") }
     assertThat(actions).contains(TotpNameEntryAction.ShowTotpAppRenamed)
-    assertThat(actions.last()).isEqualTo(TotpNameEntryAction.NavigateToTotpAppList)
+    assertThat(actions.last()).isEqualTo(TotpNameEntryAction.NavigateToAccountSettings)
   }
 
   @Test

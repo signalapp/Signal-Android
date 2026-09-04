@@ -224,15 +224,15 @@
             app:popEnterAnim="@anim/fragment_close_enter"
             app:popExitAnim="@anim/fragment_close_exit" />
         <action
-            android:id="@+id/action_accountSettingsFragment_to_authenticatorAppsFragment"
-            app:destination="@id/authenticatorAppsFragment"
+            android:id="@+id/action_accountSettingsFragment_to_authenticatorSetupFragment"
+            app:destination="@id/authenticatorSetupFragment"
             app:enterAnim="@anim/fragment_open_enter"
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
             app:popExitAnim="@anim/fragment_close_exit" />
         <action
-            android:id="@+id/action_accountSettingsFragment_to_passkeysFragment"
-            app:destination="@id/passkeysFragment"
+            android:id="@+id/action_accountSettingsFragment_to_authenticatorNameFragment"
+            app:destination="@id/authenticatorNameFragment"
             app:enterAnim="@anim/fragment_open_enter"
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
@@ -243,26 +243,6 @@
         android:id="@+id/signalLoginViewDetailsFragment"
         android:name="org.thoughtcrime.securesms.components.settings.app.account.signallogin.SignalLoginViewDetailsFragment"
         android:label="signal_login_view_details_fragment" />
-
-    <fragment
-        android:id="@+id/authenticatorAppsFragment"
-        android:name="org.thoughtcrime.securesms.components.settings.app.account.authenticator.TotpAppListFragment"
-        android:label="authenticator_apps_fragment">
-        <action
-            android:id="@+id/action_authenticatorAppsFragment_to_authenticatorSetupFragment"
-            app:destination="@id/authenticatorSetupFragment"
-            app:enterAnim="@anim/fragment_open_enter"
-            app:exitAnim="@anim/fragment_open_exit"
-            app:popEnterAnim="@anim/fragment_close_enter"
-            app:popExitAnim="@anim/fragment_close_exit" />
-        <action
-            android:id="@+id/action_authenticatorAppsFragment_to_authenticatorNameFragment"
-            app:destination="@id/authenticatorNameFragment"
-            app:enterAnim="@anim/fragment_open_enter"
-            app:exitAnim="@anim/fragment_open_exit"
-            app:popEnterAnim="@anim/fragment_close_enter"
-            app:popExitAnim="@anim/fragment_close_exit" />
-    </fragment>
 
     <fragment
         android:id="@+id/authenticatorSetupFragment"
@@ -310,11 +290,6 @@
             android:defaultValue="-1L"
             app:argType="long" />
     </fragment>
-
-    <fragment
-        android:id="@+id/passkeysFragment"
-        android:name="org.thoughtcrime.securesms.components.settings.app.account.passkeys.PasskeysFragment"
-        android:label="passkeys_fragment" />
 
     <fragment
         android:id="@+id/linkedDeviceAccountSettingsFragment"

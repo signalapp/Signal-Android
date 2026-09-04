@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
-import org.signal.appsettings.totpapplist.TotpApp
+import org.signal.appsettings.totp.TotpApp
 import org.signal.appsettings.totpnameentry.TotpNameEntryAction
 import org.signal.appsettings.totpnameentry.TotpNameEntryEvent
 import org.signal.appsettings.totpnameentry.TotpNameEntryState
@@ -72,11 +72,11 @@ class TotpNameEntryViewModel(
         when (result) {
           TotpRepository.UpdateResult.Success -> {
             _actions.send(if (renamedApp != null) TotpNameEntryAction.ShowTotpAppRenamed else TotpNameEntryAction.ShowTotpAppSetUp)
-            _actions.send(TotpNameEntryAction.NavigateToTotpAppList)
+            _actions.send(TotpNameEntryAction.NavigateToAccountSettings)
           }
           TotpRepository.UpdateResult.AppNotFound -> {
-            Log.w(TAG, "Asked to name an app the service doesn't have. Going back to the list rather than stranding the user here.")
-            _actions.send(TotpNameEntryAction.NavigateToTotpAppList)
+            Log.w(TAG, "Asked to name an app the service doesn't have. Going back to account settings rather than stranding the user here.")
+            _actions.send(TotpNameEntryAction.NavigateToAccountSettings)
           }
           TotpRepository.UpdateResult.NetworkFailure -> {
             _state.update { it.copy(submitting = false) }

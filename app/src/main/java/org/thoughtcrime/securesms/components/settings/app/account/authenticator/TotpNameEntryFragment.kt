@@ -49,7 +49,7 @@ class TotpNameEntryFragment : ComposeFragment() {
   private fun handleAction(action: TotpNameEntryAction) {
     when (action) {
       TotpNameEntryAction.NavigateBack -> requireActivity().onBackPressedDispatcher.onBackPressed()
-      TotpNameEntryAction.NavigateToTotpAppList -> findNavController().popBackStack(R.id.authenticatorAppsFragment, false)
+      TotpNameEntryAction.NavigateToAccountSettings -> findNavController().popBackStack(R.id.accountSettingsFragment, false)
       TotpNameEntryAction.ShowTotpAppSetUp -> toast(AppSettingsR.string.TotpNameEntryScreen__authenticator_app_set_up)
       TotpNameEntryAction.ShowTotpAppRenamed -> toast(AppSettingsR.string.TotpNameEntryScreen__authenticator_app_renamed)
       TotpNameEntryAction.ShowNameNotSaved -> toast(AppSettingsR.string.TotpNameEntryScreen__couldnt_save_name)

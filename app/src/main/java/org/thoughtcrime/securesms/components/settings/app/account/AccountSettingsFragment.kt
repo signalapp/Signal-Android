@@ -24,18 +24,25 @@ import org.signal.appsettings.account.AccountSettingsScreen
 import org.signal.core.ui.compose.CollectActions
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.util.ServiceUtil
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.settings.app.account.authenticator.TotpNavArgs
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.lock.v2.CreateSvrPinActivity
 import org.thoughtcrime.securesms.registration.ui.RegistrationActivity
 import org.thoughtcrime.securesms.util.PlayStoreUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
+import org.signal.appsettings.R as AppSettingsR
 
 /**
  * Account settings shown on a primary device. Carries out the [AccountSettingsAction]s that need an Activity or the
  * legacy nav graph.
  */
 class AccountSettingsFragment : ComposeFragment() {
+
+  companion object {
+    private val TAG = Log.tag(AccountSettingsFragment::class)
+  }
 
   private val viewModel: AccountSettingsViewModel by viewModels()
 
@@ -75,8 +82,17 @@ class AccountSettingsFragment : ComposeFragment() {
       AccountSettingsAction.LaunchChangePinFlow -> pinFlowLauncher.launch(CreateSvrPinActivity.getIntentForPinChangeFromSettings(requireContext()))
       AccountSettingsAction.ShowPinCreatedConfirmation -> Snackbar.make(requireView(), R.string.ConfirmKbsPinFragment__pin_created, Snackbar.LENGTH_LONG).show()
       AccountSettingsAction.NavigateToSignalLoginDetails -> findNavController().safeNavigate(R.id.action_accountSettingsFragment_to_signalLoginViewDetailsFragment)
-      AccountSettingsAction.NavigateToTotpAppList -> findNavController().safeNavigate(R.id.action_accountSettingsFragment_to_authenticatorAppsFragment)
-      AccountSettingsAction.NavigateToPasskeys -> findNavController().safeNavigate(R.id.action_accountSettingsFragment_to_passkeysFragment)
+      AccountSettingsAction.NavigateToTotpSetup -> findNavController().safeNavigate(R.id.action_accountSettingsFragment_to_authenticatorSetupFragment)
+      is AccountSettingsAction.NavigateToRenameTotpApp -> {
+        findNavController().safeNavigate(
+          R.id.action_accountSettingsFragment_to_authenticatorNameFragment,
+          Bundle().apply { TotpNavArgs.putRenamedApp(this, action.app) }
+        )
+      }
+      AccountSettingsAction.ShowTotpAppRemoved -> toast(AppSettingsR.string.AccountSettingsFragment__authenticator_app_removed)
+      AccountSettingsAction.ShowTotpAppRemovalFailed -> toast(AppSettingsR.string.AccountSettingsFragment__couldnt_remove_authenticator_app)
+      // TODO Open the two-factor authentication support article once one exists.
+      AccountSettingsAction.OpenLearnMore -> Log.w(TAG, "There's no support article to open yet.")
       AccountSettingsAction.NavigateToAdvancedPinSettings -> findNavController().safeNavigate(R.id.action_accountSettingsFragment_to_advancedPinSettingsActivity)
       AccountSettingsAction.NavigateToChangePhoneNumber -> findNavController().safeNavigate(R.id.action_accountSettingsFragment_to_changePhoneNumberFragment)
       AccountSettingsAction.NavigateToDeviceTransfer -> findNavController().safeNavigate(R.id.action_accountSettingsFragment_to_oldDeviceTransferActivity)

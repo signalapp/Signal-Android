@@ -26,10 +26,28 @@ data class AccountSettingsState(
    * the sections aren't shown at all.
    */
   data class SignalLogin(
-    /** How many authenticator apps are on the account, or null while we don't know -- see `getTotpAppCount`. */
-    val totpAppCount: Int?,
-    val passkeyCount: Int
-  )
+    /** The second factors on the account, which only mean anything once [loadState] is [LoadState.LOADED]. */
+    val twoFactorMethods: List<TwoFactorMethod> = emptyList(),
+    /** How the last look at the account went, which decides what the two-factor list shows in place of rows. */
+    val loadState: LoadState = LoadState.LOADING,
+    /** How many authenticator apps the account is allowed to have at once. */
+    val maxTotpApps: Int = 0
+  ) {
+
+    val atMaxTotpApps: Boolean
+      get() = twoFactorMethods.count { it.kind == TwoFactorMethod.Kind.AUTHENTICATOR_APP } >= maxTotpApps
+  }
+
+  /** How the last attempt to read the account's second factors went, since an empty list can't say on its own. */
+  enum class LoadState {
+    /** We haven't heard back about the account yet. */
+    LOADING,
+
+    LOADED,
+
+    /** We couldn't reach the service, which is worth another try. */
+    NETWORK_FAILURE
+  }
 
   /** Whichever dialog the screen is showing, if any. Only one is ever up at a time. */
   sealed interface Dialog {
@@ -56,5 +74,11 @@ data class AccountSettingsState(
       val enable: Boolean,
       val inProgress: Boolean = false
     ) : Dialog
+
+    /** Confirms removing [appId], which still has to be backed up by a code from the app itself. */
+    data class ConfirmRemoveTotpApp(val appId: Long) : Dialog
+
+    /** Explains that the account already has as many authenticator apps as it's allowed. */
+    data object MaxTotpAppsReached : Dialog
   }
 }

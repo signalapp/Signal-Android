@@ -5,6 +5,8 @@
 
 package org.signal.appsettings.account
 
+import org.signal.appsettings.totp.TotpApp
+
 /**
  * One-shot side effects that need an Activity or the legacy nav graph, and therefore have to be carried out by
  * [AccountSettingsFragment] rather than the screen itself.
@@ -28,11 +30,20 @@ sealed interface AccountSettingsAction {
   /** Open the screen that shows the account and recovery keys that make up the Signal Login. */
   data object NavigateToSignalLoginDetails : AccountSettingsAction
 
-  /** Open the screen listing the account's authenticator apps. */
-  data object NavigateToTotpAppList : AccountSettingsAction
+  /** Open the flow that pairs a new authenticator app. */
+  data object NavigateToTotpSetup : AccountSettingsAction
 
-  /** Open the passkeys screen. */
-  data object NavigateToPasskeys : AccountSettingsAction
+  /** Open the screen that renames [app]. */
+  data class NavigateToRenameTotpApp(val app: TotpApp) : AccountSettingsAction
+
+  /** Tell the user their authenticator app was removed. */
+  data object ShowTotpAppRemoved : AccountSettingsAction
+
+  /** Tell the user the removal didn't go through, so they know the app is still on the account. */
+  data object ShowTotpAppRemovalFailed : AccountSettingsAction
+
+  /** Send the user to a support article about two-factor authentication. */
+  data object OpenLearnMore : AccountSettingsAction
 
   /** Open the advanced PIN settings screen. */
   data object NavigateToAdvancedPinSettings : AccountSettingsAction

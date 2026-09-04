@@ -14,7 +14,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
-import org.signal.appsettings.totpapplist.TotpApp
+import org.signal.appsettings.totp.TotpApp
 
 @RunWith(RobolectricTestRunner::class)
 @Config(application = Application::class)

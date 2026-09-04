@@ -3,10 +3,10 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.signal.appsettings.totpapplist
+package org.signal.appsettings.totp
 
 /**
- * A single authenticator app configured on the user's account, as shown on [TotpAppListScreen].
+ * A single authenticator app configured on the user's account, as shown on the account settings screen.
  */
 data class TotpApp(
   val id: Long,

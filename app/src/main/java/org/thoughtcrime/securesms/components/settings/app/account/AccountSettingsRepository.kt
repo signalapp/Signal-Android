@@ -6,6 +6,8 @@
 package org.thoughtcrime.securesms.components.settings.app.account
 
 import kotlinx.coroutines.withContext
+import org.signal.appsettings.account.TwoFactorMethod
+import org.signal.appsettings.totp.TotpApp
 import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.components.settings.app.account.authenticator.TotpRepository
@@ -48,14 +50,31 @@ class AccountSettingsRepository {
 
   fun isPhoneNumberless(): Boolean = SignalStore.account.isPhoneNumberless
 
+  fun getMaxTotpApps(): Int = totpRepository.getMaxApps()
+
   /**
-   * How many authenticator apps are on the account, or null if we couldn't find out.
+   * Every second factor on the account, authenticator apps first, or a failure if we couldn't find out. Passkeys are
+   * mocked for now, so only the authenticator apps can actually fail to load.
    */
-  suspend fun getTotpAppCount(): Int? {
-    return (totpRepository.getTotpApps() as? TotpRepository.AppsResult.Success)?.apps?.size
+  suspend fun getTwoFactorMethods(): TwoFactorMethodsResult {
+    val apps = when (val result = totpRepository.getTotpApps()) {
+      is TotpRepository.AppsResult.Success -> result.apps
+      TotpRepository.AppsResult.NetworkFailure -> return TwoFactorMethodsResult.NetworkFailure
+    }
+
+    return TwoFactorMethodsResult.Success(apps.map { it.toTwoFactorMethod() } + passkeysRepository.getPasskeys())
   }
 
-  fun getPasskeyCount(): Int = passkeysRepository.getPasskeys().size
+  /**
+   * Removes an authenticator app from the account, returning whether it's gone. An app the service has already
+   * forgotten counts as gone, since that's the outcome the user asked for.
+   */
+  suspend fun removeTotpApp(appId: Long): Boolean {
+    return when (totpRepository.removeTotpApp(appId)) {
+      TotpRepository.UpdateResult.Success, TotpRepository.UpdateResult.AppNotFound -> true
+      TotpRepository.UpdateResult.NetworkFailure -> false
+    }
+  }
 
   fun verifyLocalPin(pin: String): Boolean {
     val localPinHash = SignalStore.svr.localPinHash
@@ -82,5 +101,15 @@ class AccountSettingsRepository {
       Log.w(TAG, "Failed to ${if (enabled) "enable" else "disable"} registration lock.", e)
       false
     }
+  }
+
+  private fun TotpApp.toTwoFactorMethod(): TwoFactorMethod {
+    return TwoFactorMethod(id = id, kind = TwoFactorMethod.Kind.AUTHENTICATOR_APP, name = name, createdAt = createdAt)
+  }
+
+  sealed interface TwoFactorMethodsResult {
+    data class Success(val methods: List<TwoFactorMethod>) : TwoFactorMethodsResult
+
+    data object NetworkFailure : TwoFactorMethodsResult
   }
 }

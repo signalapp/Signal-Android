@@ -216,7 +216,7 @@ private fun SetupDialog(
 ) {
   val message = when (dialog) {
     TotpSetupState.Dialog.None -> return
-    is TotpSetupState.Dialog.MaxAppsReached -> stringResource(R.string.TotpAppListScreen__you_cant_add_more_than_d, dialog.maxApps)
+    is TotpSetupState.Dialog.MaxAppsReached -> stringResource(R.string.TotpSetupScreen__you_cant_add_more_than_d, dialog.maxApps)
     TotpSetupState.Dialog.NetworkFailure -> stringResource(R.string.TotpSetupScreen__couldnt_reach_signal)
   }
 

@@ -18,6 +18,10 @@ import org.signal.appsettings.account.AccountSettingsAction
 import org.signal.appsettings.account.AccountSettingsEvent
 import org.signal.appsettings.account.AccountSettingsState
 import org.signal.appsettings.account.AccountSettingsState.Dialog
+import org.signal.appsettings.account.AccountSettingsState.LoadState
+import org.signal.appsettings.account.AccountSettingsState.SignalLogin
+import org.signal.appsettings.account.TwoFactorMethod
+import org.signal.appsettings.totp.TotpApp
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.lock.v2.PinKeyboardType
@@ -61,13 +65,7 @@ class AccountSettingsViewModel(
         _actions.send(AccountSettingsAction.ShowPinCreatedConfirmation)
       }
       is AccountSettingsEvent.PinRemindersToggled -> {
-        if (event.enabled) {
-          repository.setPinRemindersEnabled(true)
-          refresh()
-        } else {
-          val keyboardType = repository.getPinKeyboardType()
-          _state.update { it.copy(dialog = Dialog.ConfirmPinToDisableReminders(isAlphanumericKeyboard = keyboardType == PinKeyboardType.ALPHA_NUMERIC)) }
-        }
+        applyPinRemindersToggled(event.enabled)
       }
       is AccountSettingsEvent.PinEntryChanged -> {
         updatePinDialog { it.copy(pin = event.pin, incorrectPin = false, canSubmit = canSubmit(event.pin)) }
@@ -76,41 +74,31 @@ class AccountSettingsViewModel(
         updatePinDialog { it.copy(pin = "", isAlphanumericKeyboard = !it.isAlphanumericKeyboard, incorrectPin = false, canSubmit = false) }
       }
       AccountSettingsEvent.DisablePinRemindersConfirmed -> {
-        val dialog = _state.value.dialog as? Dialog.ConfirmPinToDisableReminders ?: return
-
-        if (repository.verifyLocalPin(dialog.pin)) {
-          repository.setPinRemindersEnabled(false)
-          _state.update { it.copy(dialog = Dialog.None) }
-          refresh()
-        } else {
-          updatePinDialog { it.copy(incorrectPin = true) }
-        }
+        applyDisablePinRemindersConfirmed()
       }
       is AccountSettingsEvent.RegistrationLockToggled -> {
         _state.update { it.copy(dialog = Dialog.ConfirmRegistrationLock(enable = event.enabled)) }
       }
       AccountSettingsEvent.RegistrationLockConfirmed -> {
-        val dialog = _state.value.dialog as? Dialog.ConfirmRegistrationLock ?: return
-
-        _state.update { it.copy(dialog = dialog.copy(inProgress = true)) }
-        val success = repository.setRegistrationLockEnabled(dialog.enable)
-        _state.update { it.copy(dialog = Dialog.None) }
-        refresh()
-
-        if (!success) {
-          _actions.send(
-            if (dialog.enable) AccountSettingsAction.ShowRegistrationLockEnableFailed else AccountSettingsAction.ShowRegistrationLockDisableFailed
-          )
-        }
+        applyRegistrationLockConfirmed()
       }
       AccountSettingsEvent.AccountAndRecoveryClicked -> {
         _actions.send(AccountSettingsAction.NavigateToSignalLoginDetails)
       }
-      AccountSettingsEvent.TotpAppClicked -> {
-        _actions.send(AccountSettingsAction.NavigateToTotpAppList)
+      AccountSettingsEvent.AddTotpAppClicked -> {
+        applyAddTotpAppClicked()
       }
-      AccountSettingsEvent.PasskeysClicked -> {
-        _actions.send(AccountSettingsAction.NavigateToPasskeys)
+      AccountSettingsEvent.LearnMoreClicked -> {
+        _actions.send(AccountSettingsAction.OpenLearnMore)
+      }
+      is AccountSettingsEvent.RenameMethodClicked -> {
+        applyRenameMethodClicked(event.method)
+      }
+      is AccountSettingsEvent.RemoveMethodClicked -> {
+        applyRemoveMethodClicked(event.method)
+      }
+      AccountSettingsEvent.RemoveTotpAppConfirmed -> {
+        applyRemoveTotpAppConfirmed()
       }
       AccountSettingsEvent.AdvancedPinSettingsClicked -> {
         _actions.send(AccountSettingsAction.NavigateToAdvancedPinSettings)
@@ -149,9 +137,93 @@ class AccountSettingsViewModel(
     }
   }
 
+  private suspend fun applyPinRemindersToggled(enabled: Boolean) {
+    if (enabled) {
+      repository.setPinRemindersEnabled(true)
+      refresh()
+    } else {
+      val keyboardType = repository.getPinKeyboardType()
+      _state.update { it.copy(dialog = Dialog.ConfirmPinToDisableReminders(isAlphanumericKeyboard = keyboardType == PinKeyboardType.ALPHA_NUMERIC)) }
+    }
+  }
+
+  private suspend fun applyDisablePinRemindersConfirmed() {
+    val dialog = _state.value.dialog as? Dialog.ConfirmPinToDisableReminders ?: return
+
+    if (repository.verifyLocalPin(dialog.pin)) {
+      repository.setPinRemindersEnabled(false)
+      _state.update { it.copy(dialog = Dialog.None) }
+      refresh()
+    } else {
+      updatePinDialog { it.copy(incorrectPin = true) }
+    }
+  }
+
+  private suspend fun applyRegistrationLockConfirmed() {
+    val dialog = _state.value.dialog as? Dialog.ConfirmRegistrationLock ?: return
+
+    _state.update { it.copy(dialog = dialog.copy(inProgress = true)) }
+    val success = repository.setRegistrationLockEnabled(dialog.enable)
+    _state.update { it.copy(dialog = Dialog.None) }
+    refresh()
+
+    if (!success) {
+      _actions.send(
+        if (dialog.enable) AccountSettingsAction.ShowRegistrationLockEnableFailed else AccountSettingsAction.ShowRegistrationLockDisableFailed
+      )
+    }
+  }
+
+  private suspend fun applyAddTotpAppClicked() {
+    if (_state.value.signalLogin?.atMaxTotpApps == true) {
+      _state.update { it.copy(dialog = Dialog.MaxTotpAppsReached) }
+    } else {
+      _actions.send(AccountSettingsAction.NavigateToTotpSetup)
+    }
+  }
+
+  private suspend fun applyRenameMethodClicked(method: TwoFactorMethod) {
+    when (method.kind) {
+      TwoFactorMethod.Kind.AUTHENTICATOR_APP -> {
+        val app = TotpApp(id = method.id, name = method.name, createdAt = method.createdAt)
+        _actions.send(AccountSettingsAction.NavigateToRenameTotpApp(app))
+      }
+      TwoFactorMethod.Kind.PASSKEY -> {
+        Log.w(TAG, "Passkey renaming isn't implemented yet.")
+      }
+    }
+  }
+
+  private fun applyRemoveMethodClicked(method: TwoFactorMethod) {
+    when (method.kind) {
+      TwoFactorMethod.Kind.AUTHENTICATOR_APP -> {
+        _state.update { it.copy(dialog = Dialog.ConfirmRemoveTotpApp(method.id)) }
+      }
+      TwoFactorMethod.Kind.PASSKEY -> {
+        Log.w(TAG, "Passkey removal isn't implemented yet.")
+      }
+    }
+  }
+
+  private suspend fun applyRemoveTotpAppConfirmed() {
+    val dialog = _state.value.dialog as? Dialog.ConfirmRemoveTotpApp ?: return
+
+    _state.update { it.copy(dialog = Dialog.None) }
+    removeTotpApp(dialog.appId)
+  }
+
+  private suspend fun removeTotpApp(appId: Long) {
+    if (repository.removeTotpApp(appId)) {
+      _actions.send(AccountSettingsAction.ShowTotpAppRemoved)
+      refreshTwoFactorMethods()
+    } else {
+      Log.w(TAG, "Couldn't remove the authenticator app. Leaving it in the list, where it still is.")
+      _actions.send(AccountSettingsAction.ShowTotpAppRemovalFailed)
+    }
+  }
+
   private suspend fun refresh() {
     val isPhoneNumberless = repository.isPhoneNumberless()
-    val totpAppCount = repository.getTotpAppCount()
 
     _state.update {
       it.copy(
@@ -162,15 +234,28 @@ class AccountSettingsViewModel(
         userUnregistered = repository.isUserUnregistered(),
         clientDeprecated = repository.isClientDeprecated(),
         isPhoneNumberless = isPhoneNumberless,
-        signalLogin = if (isPhoneNumberless) {
-          AccountSettingsState.SignalLogin(
-            totpAppCount = totpAppCount,
-            passkeyCount = repository.getPasskeyCount()
-          )
-        } else {
-          null
-        }
+        // Held onto across refreshes so a resume doesn't drop the list back to its loading state.
+        signalLogin = if (isPhoneNumberless) it.signalLogin ?: SignalLogin(maxTotpApps = repository.getMaxTotpApps()) else null
       )
+    }
+
+    if (isPhoneNumberless) {
+      refreshTwoFactorMethods()
+    }
+  }
+
+  private suspend fun refreshTwoFactorMethods() {
+    val (methods, loadState) = when (val result = repository.getTwoFactorMethods()) {
+      is AccountSettingsRepository.TwoFactorMethodsResult.Success -> result.methods to LoadState.LOADED
+      AccountSettingsRepository.TwoFactorMethodsResult.NetworkFailure -> {
+        Log.w(TAG, "Couldn't reach the service to list the account's second factors.")
+        emptyList<TwoFactorMethod>() to LoadState.NETWORK_FAILURE
+      }
+    }
+
+    _state.update { state ->
+      val signalLogin = state.signalLogin ?: return@update state
+      state.copy(signalLogin = signalLogin.copy(twoFactorMethods = methods, loadState = loadState))
     }
   }
 

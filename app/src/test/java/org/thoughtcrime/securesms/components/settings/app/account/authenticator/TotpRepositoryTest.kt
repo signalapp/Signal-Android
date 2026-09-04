@@ -19,7 +19,7 @@ import io.mockk.slot
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
-import org.signal.appsettings.totpapplist.TotpApp
+import org.signal.appsettings.totp.TotpApp
 import org.signal.core.models.MasterKey
 import org.signal.libsignal.net.ConfirmedMfaKey
 import org.signal.libsignal.net.MfaKeyKind

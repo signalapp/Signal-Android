@@ -45,11 +45,20 @@ sealed interface AccountSettingsEvent {
   /** The user confirmed turning registration lock on or off. */
   data object RegistrationLockConfirmed : AccountSettingsEvent
 
-  /** The user tapped the authenticator app row in the two-factor authentication section. */
-  data object TotpAppClicked : AccountSettingsEvent
+  /** The user tapped the authenticator app option in the two-factor set-up menu. */
+  data object AddTotpAppClicked : AccountSettingsEvent
 
-  /** The user tapped the passkeys row in the two-factor authentication section. */
-  data object PasskeysClicked : AccountSettingsEvent
+  /** The user tapped the learn more link on the dialog explaining the authenticator app limit. */
+  data object LearnMoreClicked : AccountSettingsEvent
+
+  /** The user tapped the rename option in [method]'s overflow menu. */
+  data class RenameMethodClicked(val method: TwoFactorMethod) : AccountSettingsEvent
+
+  /** The user tapped the remove option in [method]'s overflow menu, which asks them to confirm first. */
+  data class RemoveMethodClicked(val method: TwoFactorMethod) : AccountSettingsEvent
+
+  /** The user confirmed removing the authenticator app named by the open dialog, which removes it. */
+  data object RemoveTotpAppConfirmed : AccountSettingsEvent
 
   /** The user tapped the advanced PIN settings row. */
   data object AdvancedPinSettingsClicked : AccountSettingsEvent

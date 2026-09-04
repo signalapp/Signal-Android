@@ -6,7 +6,7 @@
 package org.thoughtcrime.securesms.components.settings.app.account.authenticator
 
 import android.os.Bundle
-import org.signal.appsettings.totpapplist.TotpApp
+import org.signal.appsettings.totp.TotpApp
 
 /**
  * The nav arguments the authenticator app screens pass between each other, and the parsing that turns them back into

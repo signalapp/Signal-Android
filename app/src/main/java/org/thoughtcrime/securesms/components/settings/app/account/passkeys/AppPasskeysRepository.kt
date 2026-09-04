@@ -5,21 +5,18 @@
 
 package org.thoughtcrime.securesms.components.settings.app.account.passkeys
 
-import org.signal.appsettings.passkeys.Passkey
-import org.signal.appsettings.passkeys.PasskeysRepository
+import org.signal.appsettings.account.TwoFactorMethod
 
 /**
- * Stand-in for wherever passkeys will eventually be read from. Nothing is fetched from the service yet, so the
- * passkeys are mocked.
+ * Stand-in for wherever passkeys will eventually be read from. Nothing is fetched from the service yet, so there are
+ * never any passkeys.
  */
-class AppPasskeysRepository : PasskeysRepository {
+class AppPasskeysRepository {
 
   companion object {
-    private val MOCK_PASSKEYS = listOf(
-      Passkey(id = 1, name = "My Security Key", createdAt = System.currentTimeMillis()),
-      Passkey(id = 2, name = "My Pixel Phone", createdAt = System.currentTimeMillis())
-    )
+    /** Empty so nothing fake reaches a real account. Fill it in locally to see passkey rows while testing. */
+    private val MOCK_PASSKEYS = emptyList<TwoFactorMethod>()
   }
 
-  override fun getPasskeys(): List<Passkey> = MOCK_PASSKEYS
+  fun getPasskeys(): List<TwoFactorMethod> = MOCK_PASSKEYS
 }

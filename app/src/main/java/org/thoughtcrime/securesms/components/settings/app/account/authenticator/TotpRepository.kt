@@ -5,7 +5,7 @@
 
 package org.thoughtcrime.securesms.components.settings.app.account.authenticator
 
-import org.signal.appsettings.totpapplist.TotpApp
+import org.signal.appsettings.totp.TotpApp
 import org.signal.core.models.MasterKey
 import org.signal.core.util.Base32
 import org.signal.core.util.logging.Log
