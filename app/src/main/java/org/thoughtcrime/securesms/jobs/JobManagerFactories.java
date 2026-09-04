@@ -62,6 +62,7 @@ import org.thoughtcrime.securesms.migrations.BadE164MigrationJob;
 import org.thoughtcrime.securesms.migrations.BlobStorageLocationMigrationJob;
 import org.thoughtcrime.securesms.migrations.CachedAttachmentsMigrationJob;
 import org.thoughtcrime.securesms.migrations.ClearGlideCacheMigrationJob;
+import org.thoughtcrime.securesms.migrations.ClearZkCredentialsMigrationJob;
 import org.thoughtcrime.securesms.migrations.ContactLinkRebuildMigrationJob;
 import org.thoughtcrime.securesms.migrations.CopyUsernameToSignalStoreMigrationJob;
 import org.thoughtcrime.securesms.migrations.DatabaseMigrationJob;
@@ -337,6 +338,7 @@ public final class JobManagerFactories {
       put(BlobStorageLocationMigrationJob.KEY,            new BlobStorageLocationMigrationJob.Factory());
       put(CachedAttachmentsMigrationJob.KEY,              new CachedAttachmentsMigrationJob.Factory());
       put(ClearGlideCacheMigrationJob.KEY,                new ClearGlideCacheMigrationJob.Factory());
+      put(ClearZkCredentialsMigrationJob.KEY,             new ClearZkCredentialsMigrationJob.Factory());
       put(ContactLinkRebuildMigrationJob.KEY,             new ContactLinkRebuildMigrationJob.Factory());
       put(CopyUsernameToSignalStoreMigrationJob.KEY,      new CopyUsernameToSignalStoreMigrationJob.Factory());
       put(DatabaseMigrationJob.KEY,                       new DatabaseMigrationJob.Factory());

@@ -20,14 +20,14 @@ object GroupsV2ApiHelper {
   /**
    * Provides 7 days of credentials, which you should cache.
    *
-   * GET /v1/certificate/auth/group?redemptionStartSeconds=[todaySeconds]&redemptionEndSeconds=`todaySecondsPlus7DaysOfSeconds`
+   * GET /v1/certificate/auth/group?redemptionStartSeconds=[todaySeconds]&redemptionEndSeconds=`todaySecondsPlus7DaysOfSeconds`&v101=true
    * - 200: Success
    */
   @JvmStatic
   @Throws(IOException::class)
   fun getCredentials(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, todaySeconds: Long): CredentialResponse {
     val todayPlus7 = todaySeconds + 7.days.inWholeSeconds
-    val request = WebSocketRequestMessage.get("/v1/certificate/auth/group?redemptionStartSeconds=$todaySeconds&redemptionEndSeconds=$todayPlus7")
+    val request = WebSocketRequestMessage.get("/v1/certificate/auth/group?redemptionStartSeconds=$todaySeconds&redemptionEndSeconds=$todayPlus7&v101=true")
     return NetworkResult.fromWebSocketRequest(authWebSocket, request, CredentialResponse::class).successOrThrow()
   }
 }
