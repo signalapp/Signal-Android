@@ -4,11 +4,15 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.database.Cursor
 import androidx.compose.runtime.Immutable
+import org.json.JSONArray
+import org.json.JSONException
+import org.json.JSONObject
 import org.signal.core.util.logging.Log
 import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireString
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
+import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.MediaUtil.SlideType
@@ -67,6 +71,7 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
         ${MessageTable.TABLE_NAME}.${MessageTable.THREAD_ID},
         ${MessageTable.TABLE_NAME}.${MessageTable.FROM_RECIPIENT_ID},
         ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} as $THREAD_RECIPIENT_ID,
+        ${MessageTable.TABLE_NAME}.${MessageTable.BODY},
         ${MessageTable.TABLE_NAME}.${MessageTable.LINK_PREVIEWS},
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.MESSAGE_ID} as $MEDIA_MESSAGE_ID
       FROM
@@ -173,6 +178,7 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
         ${MessageTable.TABLE_NAME}.${MessageTable.THREAD_ID},
         ${MessageTable.TABLE_NAME}.${MessageTable.FROM_RECIPIENT_ID},
         ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} as $THREAD_RECIPIENT_ID,
+        ${MessageTable.TABLE_NAME}.${MessageTable.BODY},
         ${MessageTable.TABLE_NAME}.${MessageTable.LINK_PREVIEWS},
         ${MessageTable.TABLE_NAME}.${MessageTable.ID} as $MEDIA_MESSAGE_ID
       FROM
@@ -183,7 +189,10 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
         LEFT JOIN ${ThreadTable.TABLE_NAME} ON ${ThreadTable.TABLE_NAME}.${ThreadTable.ID} = ${MessageTable.TABLE_NAME}.${MessageTable.THREAD_ID}
       WHERE
         ${MessageTable.TABLE_NAME}.${MessageTable.THREAD_ID} __EQUALITY__ ? AND
-        ${MessageTable.TABLE_NAME}.${MessageTable.LINK_PREVIEWS} IS NOT NULL AND
+        (
+          ${MessageTable.TABLE_NAME}.${MessageTable.LINK_PREVIEWS} IS NOT NULL OR
+          __BODY_LINK_FILTER__
+        ) AND
         ${MessageTable.TABLE_NAME}.${MessageTable.VIEW_ONCE} = 0 AND
         ${MessageTable.TABLE_NAME}.${MessageTable.STORY_TYPE} = 0 AND
         ${MessageTable.TABLE_NAME}.${MessageTable.LATEST_REVISION_ID} IS NULL AND
@@ -207,6 +216,21 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
           )
         )"""
     )
+
+    private fun applyBodyLinkFilter(query: String, includeBodyLinks: Boolean): String {
+      val filter = if (includeBodyLinks) {
+        """
+          (
+            ${AttachmentTable.TABLE_NAME}.${AttachmentTable.ID} IS NULL AND
+            ${MessageTable.TABLE_NAME}.${MessageTable.BODY} LIKE '%https://%'
+          )
+        """.trimIndent()
+      } else {
+        "0"
+      }
+
+      return query.replace("__BODY_LINK_FILTER__", filter)
+    }
 
     private fun applyEqualityOperator(threadId: Long, query: String): String {
       val isAllThreads = threadId == ALL_THREADS.toLong()
@@ -270,7 +294,7 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
       Sorting.Oldest -> " ORDER BY ${MessageTable.TABLE_NAME}.${MessageTable.DATE_SENT} ASC"
       Sorting.Largest -> " ORDER BY ${AttachmentTable.TABLE_NAME}.${AttachmentTable.DATA_SIZE} DESC"
     }
-    val query = applyEqualityOperator(threadId, LINK_MEDIA_QUERY) + orderBy
+    val query = applyEqualityOperator(threadId, applyBodyLinkFilter(LINK_MEDIA_QUERY, includeBodyLinks = true)) + orderBy
     val args = arrayOf(threadId.toString())
     return readableDatabase.rawQuery(query, args)
   }
@@ -278,7 +302,7 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
   @JvmOverloads
   fun getAllMediaForThread(threadId: Long, sorting: Sorting, limit: Int = 0): Cursor {
     val allMediaSubquery = applyEqualityOperator(threadId, applyIndexHint(ALL_MEDIA_QUERY, threadId, sorting))
-    val linkSubquery = applyEqualityOperator(threadId, LINK_MEDIA_QUERY)
+    val linkSubquery = applyEqualityOperator(threadId, applyBodyLinkFilter(LINK_MEDIA_QUERY, includeBodyLinks = true))
 
     val orderBy = when (sorting) {
       Sorting.Newest -> " ORDER BY $MEDIA_MESSAGE_ID DESC"
@@ -348,7 +372,8 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
     val messageId: Long,
     val date: Long,
     val isOutgoing: Boolean,
-    val linkPreviewJson: String? = null
+    val linkUrl: String? = null,
+    val linkTitle: String? = null
   ) {
 
     val contentType: String?
@@ -357,9 +382,11 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
     companion object {
       @JvmStatic
       fun from(cursor: Cursor): MediaRecord {
-        val linkPreviewIdx = cursor.getColumnIndex(MessageTable.LINK_PREVIEWS)
         val attachmentIdIdx = cursor.getColumnIndex(AttachmentTable.ID)
         val hasAttachment = attachmentIdIdx != -1 && !cursor.isNull(attachmentIdIdx)
+        val storedPreview: JSONObject? = parseStoredPreview(cursor.optionalString(MessageTable.LINK_PREVIEWS))
+        val storedUrl: String? = storedPreview?.nonEmptyString("url")
+
         return MediaRecord(
           attachment = if (hasAttachment) SignalDatabase.attachments.getAttachment(cursor) else null,
           recipientId = RecipientId.from(cursor.requireLong(MessageTable.FROM_RECIPIENT_ID)),
@@ -372,8 +399,40 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
             cursor.requireLong(MessageTable.DATE_RECEIVED)
           },
           isOutgoing = MessageTypes.isOutgoingMessageType(cursor.requireLong(MessageTable.TYPE)),
-          linkPreviewJson = if (linkPreviewIdx != -1) cursor.getString(linkPreviewIdx) else null
+          linkUrl = storedUrl ?: findLinkInBody(cursor.optionalString(MessageTable.BODY)),
+          linkTitle = if (storedUrl != null) storedPreview?.nonEmptyString("title") else null
         )
+      }
+
+      private fun parseStoredPreview(serialized: String?): JSONObject? {
+        if (serialized.isNullOrEmpty()) {
+          return null
+        }
+
+        return try {
+          val previews = JSONArray(serialized)
+          if (previews.length() > 0) previews.getJSONObject(0) else null
+        } catch (e: JSONException) {
+          Log.w(TAG, "Unable to parse stored link previews.", e)
+          null
+        }
+      }
+
+      private fun findLinkInBody(body: String?): String? {
+        if (body.isNullOrEmpty()) {
+          return null
+        }
+
+        return LinkPreviewUtil.findValidPreviewUrls(body).findFirst().map { it.url }.orElse(null)
+      }
+
+      private fun JSONObject.nonEmptyString(name: String): String? {
+        return optString(name, "").takeIf { it.isNotEmpty() }
+      }
+
+      private fun Cursor.optionalString(column: String): String? {
+        val index = getColumnIndex(column)
+        return if (index != -1) getString(index) else null
       }
     }
   }

@@ -36,9 +36,6 @@ import java.util.stream.Collectors;
 import com.bumptech.glide.RequestManager;
 import com.codewaves.stickyheadergrid.StickyHeaderGridAdapter;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.signal.core.util.ByteSize;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
@@ -155,7 +152,7 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
   public int getSectionItemViewType(int section, int offset) {
     MediaTable.MediaRecord mediaRecord = media.get(section, offset);
 
-    if (mediaRecord.getLinkPreviewJson() != null) return LINK_DETAIL;
+    if (mediaRecord.getLinkUrl() != null) return LINK_DETAIL;
     if (mediaRecord.getAttachment() == null) return 0;
 
     Slide slide = MediaUtil.getSlideForAttachment(mediaRecord.getAttachment());
@@ -697,7 +694,9 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
 
     @Override
     public void bind(@NonNull Context context, @NonNull MediaTable.MediaRecord mediaRecord, @Nullable Slide slide) {
-      parseLinkPreview(mediaRecord);
+      this.linkUrl   = mediaRecord.getLinkUrl();
+      this.linkTitle = mediaRecord.getLinkTitle();
+
       super.bind(context, mediaRecord, slide);
       this.slide = slide;
 
@@ -754,23 +753,6 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
         thumbnailView.clear(requestManager);
       }
       super.unbind();
-    }
-
-    private void parseLinkPreview(@NonNull MediaTable.MediaRecord mediaRecord) {
-      linkUrl   = "";
-      linkTitle = "";
-      if (mediaRecord.getLinkPreviewJson() != null) {
-        try {
-          JSONArray json = new JSONArray(mediaRecord.getLinkPreviewJson());
-          if (json.length() > 0) {
-            JSONObject preview = json.getJSONObject(0);
-            linkUrl   = preview.optString("url", "");
-            linkTitle = preview.optString("title", "");
-          }
-        } catch (JSONException e) {
-          // ignore
-        }
-      }
     }
   }
 
