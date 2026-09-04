@@ -14,9 +14,13 @@
     <!-- Content description for the back arrow in the top app bar. -->
     <string name="SignalLoginViewDetailsScreen__navigate_back">Navigate back</string>
     <!-- Section header above the account key. -->
-    <string name="SignalLoginViewDetailsScreen__account_key">Account key</string>
+    <string name="SignalLoginViewDetailsScreen__account_id">Account ID</string>
     <!-- Section header above the recovery key. -->
     <string name="SignalLoginViewDetailsScreen__recovery_key">Recovery key</string>
+    <!-- Content description for the button that copies the account key to the clipboard. -->
+    <string name="SignalLoginViewDetailsScreen__copy_account_id">Copy account ID</string>
+    <!-- Content description for the button that copies the recovery key to the clipboard. -->
+    <string name="SignalLoginViewDetailsScreen__copy_recovery_key">Copy recovery key</string>
     <!-- Action button that stores the Signal Login in the device password manager. -->
     <string name="SignalLoginViewDetailsScreen__save_to_password_manager">Save to password manager</string>
     <!-- Action button that saves the Signal Login as a PDF. -->

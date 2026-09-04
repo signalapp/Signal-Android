@@ -17,17 +17,17 @@ sealed class SignalLoginViewDetailsScreenEvents {
   /** The user chose to save the credentials as a PDF. */
   data object SaveAsPdfClicked : SignalLoginViewDetailsScreenEvents()
 
-  /** User long clicked the account ID field. */
-  data class AccountIdLongClicked(val aci: String) : SignalLoginViewDetailsScreenEvents() {
+  /** The user tapped the copy button on the account ID field. */
+  data class CopyAccountIdClicked(val aci: String) : SignalLoginViewDetailsScreenEvents() {
     override fun toString(): String {
-      return "AccountIdLongClicked(aci=${aci.censor()})"
+      return "CopyAccountIdClicked(aci=${aci.censor()})"
     }
   }
 
-  /** User long clicked the recovery key field. */
-  data class RecoveryKeyLongClicked(val aep: String) : SignalLoginViewDetailsScreenEvents() {
+  /** The user tapped the copy button on the recovery key field. */
+  data class CopyRecoveryKeyClicked(val aep: String) : SignalLoginViewDetailsScreenEvents() {
     override fun toString(): String {
-      return "RecoveryKeyLongClicked(aep=${aep.censor()})"
+      return "CopyRecoveryKeyClicked(aep=${aep.censor()})"
     }
   }
 }

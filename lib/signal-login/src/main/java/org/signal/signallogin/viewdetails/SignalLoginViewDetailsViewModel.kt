@@ -63,14 +63,14 @@ class SignalLoginViewDetailsViewModel(
         Log.i(TAG, "Save as PDF clicked, but the flow isn't implemented yet.")
       }
 
-      is SignalLoginViewDetailsScreenEvents.AccountIdLongClicked -> {
+      is SignalLoginViewDetailsScreenEvents.CopyAccountIdClicked -> {
         // TODO [phonenumberless] Copy the account key to the clipboard.
-        Log.i(TAG, "Account key long clicked, but the copy flow isn't implemented yet.")
+        Log.i(TAG, "Account key copy clicked, but the copy flow isn't implemented yet.")
       }
 
-      is SignalLoginViewDetailsScreenEvents.RecoveryKeyLongClicked -> {
+      is SignalLoginViewDetailsScreenEvents.CopyRecoveryKeyClicked -> {
         // TODO [phonenumberless] Copy the recovery key to the clipboard.
-        Log.i(TAG, "Recovery key long clicked, but the copy flow isn't implemented yet.")
+        Log.i(TAG, "Recovery key copy clicked, but the copy flow isn't implemented yet.")
       }
     }
   }

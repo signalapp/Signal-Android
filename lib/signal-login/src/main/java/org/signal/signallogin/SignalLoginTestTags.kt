@@ -16,4 +16,6 @@ object SignalLoginTestTags {
   const val VIEW_DETAILS_SAVE_AS_PDF_BUTTON = "signal_login_view_details_save_as_pdf_button"
   const val VIEW_DETAILS_ACCOUNT_KEY_BLOCK = "signal_login_view_details_account_key_block"
   const val VIEW_DETAILS_RECOVERY_KEY_BLOCK = "signal_login_view_details_recovery_key_block"
+  const val VIEW_DETAILS_ACCOUNT_KEY_COPY_BUTTON = "signal_login_view_details_account_key_copy_button"
+  const val VIEW_DETAILS_RECOVERY_KEY_COPY_BUTTON = "signal_login_view_details_recovery_key_copy_button"
 }

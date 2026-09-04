@@ -7,10 +7,9 @@ package org.signal.registration.screens.signallogindetails
 
 import android.app.Application
 import androidx.compose.ui.test.junit4.createComposeRule
-import androidx.compose.ui.test.longClick
 import androidx.compose.ui.test.onNodeWithTag
+import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
-import androidx.compose.ui.test.performTouchInput
 import androidx.test.core.app.ApplicationProvider
 import assertk.assertThat
 import assertk.assertions.contains
@@ -44,21 +43,21 @@ class SignalLoginViewDetailsScreenTest {
   private val events = mutableListOf<SignalLoginViewDetailsScreenEvents>()
 
   @Test
-  fun `when the account key is long clicked, AccountIdLongClicked is emitted`() {
+  fun `when the account key copy button is clicked, CopyAccountIdClicked is emitted`() {
     setContent()
 
-    composeTestRule.onNodeWithTag(SignalLoginTestTags.VIEW_DETAILS_ACCOUNT_KEY_BLOCK).performScrollTo().performTouchInput { longClick() }
+    composeTestRule.onNodeWithTag(SignalLoginTestTags.VIEW_DETAILS_ACCOUNT_KEY_COPY_BUTTON).performScrollTo().performClick()
 
-    assertThat(events).contains(SignalLoginViewDetailsScreenEvents.AccountIdLongClicked(ACCOUNT_KEY))
+    assertThat(events).contains(SignalLoginViewDetailsScreenEvents.CopyAccountIdClicked(ACCOUNT_KEY))
   }
 
   @Test
-  fun `when the recovery key is long clicked, RecoveryKeyLongClicked is emitted`() {
+  fun `when the recovery key copy button is clicked, CopyRecoveryKeyClicked is emitted`() {
     setContent()
 
-    composeTestRule.onNodeWithTag(SignalLoginTestTags.VIEW_DETAILS_RECOVERY_KEY_BLOCK).performScrollTo().performTouchInput { longClick() }
+    composeTestRule.onNodeWithTag(SignalLoginTestTags.VIEW_DETAILS_RECOVERY_KEY_COPY_BUTTON).performScrollTo().performClick()
 
-    assertThat(events).contains(SignalLoginViewDetailsScreenEvents.RecoveryKeyLongClicked(RECOVERY_KEY))
+    assertThat(events).contains(SignalLoginViewDetailsScreenEvents.CopyRecoveryKeyClicked(RECOVERY_KEY))
   }
 
   private fun setContent() {

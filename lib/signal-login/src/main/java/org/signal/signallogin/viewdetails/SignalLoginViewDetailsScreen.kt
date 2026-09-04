@@ -7,9 +7,7 @@ package org.signal.signallogin.viewdetails
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -24,6 +22,8 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -67,6 +67,13 @@ private const val GROUPS_PER_ROW = 4
 /** The least amount of space allowed between recovery key groups before falling back to natural text wrapping. */
 private val MIN_GROUP_SPACING = 12.dp
 
+private val KEY_BLOCK_TEXT_PADDING_HORIZONTAL = 28.dp
+private val KEY_BLOCK_TEXT_PADDING_VERTICAL = 20.dp
+
+/** Insets that center the copy button's icon on the first line of key text and put it 16dp from the block's end edge, accounting for the button's own 12dp of internal padding. */
+private val COPY_BUTTON_PADDING_TOP = 10.dp
+private val COPY_BUTTON_PADDING_END = 4.dp
+
 /**
  * Shows the user the full keys that make up their Signal Login and offers ways to save them.
  */
@@ -102,9 +109,9 @@ fun SignalLoginViewDetailsScreen(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        Texts.SectionHeader(text = stringResource(R.string.SignalLoginViewDetailsScreen__account_key))
+        Texts.SectionHeader(text = stringResource(R.string.SignalLoginViewDetailsScreen__account_id))
 
-        KeyBlock(
+        AccountIdBlock(
           text = state.accountKey,
           onEvent = onEvent,
           modifier = Modifier.testTag(SignalLoginTestTags.VIEW_DETAILS_ACCOUNT_KEY_BLOCK)
@@ -143,15 +150,27 @@ private fun MiniCard(modifier: Modifier = Modifier) {
  * A full credential rendered in the special monospace font on a rounded surface.
  */
 @Composable
-private fun KeyBlock(
+private fun AccountIdBlock(
   text: String,
   onEvent: (SignalLoginViewDetailsScreenEvents) -> Unit,
   modifier: Modifier = Modifier
 ) {
-  Box(modifier = modifier.keyBlockSurface(onLongClick = { onEvent(SignalLoginViewDetailsScreenEvents.AccountIdLongClicked(text)) })) {
+  Row(
+    verticalAlignment = Alignment.Top,
+    modifier = modifier.keyBlockSurface()
+  ) {
     Text(
       text = text,
-      style = keyTextStyle()
+      style = keyTextStyle(),
+      modifier = Modifier
+        .weight(1f)
+        .padding(start = KEY_BLOCK_TEXT_PADDING_HORIZONTAL, top = KEY_BLOCK_TEXT_PADDING_VERTICAL, bottom = KEY_BLOCK_TEXT_PADDING_VERTICAL)
+    )
+
+    CopyButton(
+      contentDescription = stringResource(R.string.SignalLoginViewDetailsScreen__copy_account_id),
+      onClick = { onEvent(SignalLoginViewDetailsScreenEvents.CopyAccountIdClicked(text)) },
+      modifier = Modifier.testTag(SignalLoginTestTags.VIEW_DETAILS_ACCOUNT_KEY_COPY_BUTTON)
     )
   }
 }
@@ -167,57 +186,88 @@ private fun RecoveryKeyBlock(
   onEvent: (SignalLoginViewDetailsScreenEvents) -> Unit,
   modifier: Modifier = Modifier
 ) {
-  BoxWithConstraints(modifier = modifier.keyBlockSurface(onLongClick = { onEvent(SignalLoginViewDetailsScreenEvents.RecoveryKeyLongClicked(groups.joinToString(separator = ""))) })) {
-    val style = keyTextStyle()
-    val textMeasurer = rememberTextMeasurer()
-    val maxWidth = constraints.maxWidth
+  Row(
+    verticalAlignment = Alignment.Top,
+    modifier = modifier.keyBlockSurface()
+  ) {
+    BoxWithConstraints(
+      modifier = Modifier
+        .weight(1f)
+        .padding(start = KEY_BLOCK_TEXT_PADDING_HORIZONTAL, top = KEY_BLOCK_TEXT_PADDING_VERTICAL, bottom = KEY_BLOCK_TEXT_PADDING_VERTICAL)
+    ) {
+      val style = keyTextStyle()
+      val textMeasurer = rememberTextMeasurer()
+      val maxWidth = constraints.maxWidth
 
-    val groupWidth = remember(groups, style) {
-      groups.maxOfOrNull { group -> textMeasurer.measure(text = group, style = style).size.width } ?: 0
-    }
+      val groupWidth = remember(groups, style) {
+        groups.maxOfOrNull { group -> textMeasurer.measure(text = group, style = style).size.width } ?: 0
+      }
 
-    val minSpacing = with(LocalDensity.current) { MIN_GROUP_SPACING.roundToPx() }
-    val fitsFourPerRow = groupWidth * GROUPS_PER_ROW + minSpacing * (GROUPS_PER_ROW - 1) <= maxWidth
+      val minSpacing = with(LocalDensity.current) { MIN_GROUP_SPACING.roundToPx() }
+      val fitsFourPerRow = groupWidth * GROUPS_PER_ROW + minSpacing * (GROUPS_PER_ROW - 1) <= maxWidth
 
-    if (fitsFourPerRow) {
-      val spacing = with(LocalDensity.current) { ((maxWidth - groupWidth * GROUPS_PER_ROW) / (GROUPS_PER_ROW - 1)).toDp() }
+      if (fitsFourPerRow) {
+        val spacing = with(LocalDensity.current) { ((maxWidth - groupWidth * GROUPS_PER_ROW) / (GROUPS_PER_ROW - 1)).toDp() }
 
-      Column {
-        groups.chunked(GROUPS_PER_ROW).forEach { row ->
-          Row(
-            horizontalArrangement = Arrangement.spacedBy(spacing),
-            modifier = Modifier.fillMaxWidth()
-          ) {
-            row.forEach { group ->
-              Text(
-                text = group,
-                style = style
-              )
+        Column {
+          groups.chunked(GROUPS_PER_ROW).forEach { row ->
+            Row(
+              horizontalArrangement = Arrangement.spacedBy(spacing),
+              modifier = Modifier.fillMaxWidth()
+            ) {
+              row.forEach { group ->
+                Text(
+                  text = group,
+                  style = style
+                )
+              }
             }
           }
         }
+      } else {
+        Text(
+          text = groups.joinToString(separator = " "),
+          style = style
+        )
       }
-    } else {
-      Text(
-        text = groups.joinToString(separator = " "),
-        style = style
-      )
     }
+
+    CopyButton(
+      contentDescription = stringResource(R.string.SignalLoginViewDetailsScreen__copy_recovery_key),
+      onClick = { onEvent(SignalLoginViewDetailsScreenEvents.CopyRecoveryKeyClicked(groups.joinToString(separator = ""))) },
+      modifier = Modifier.testTag(SignalLoginTestTags.VIEW_DETAILS_RECOVERY_KEY_COPY_BUTTON)
+    )
+  }
+}
+
+/**
+ * The button in the top-end corner of a key block that copies the key to the clipboard.
+ */
+@Composable
+private fun CopyButton(
+  contentDescription: String,
+  onClick: () -> Unit,
+  modifier: Modifier = Modifier
+) {
+  IconButton(
+    onClick = onClick,
+    modifier = modifier.padding(top = COPY_BUTTON_PADDING_TOP, end = COPY_BUTTON_PADDING_END)
+  ) {
+    Icon(
+      painter = SignalIcons.Copy.painter,
+      contentDescription = contentDescription,
+      tint = MaterialTheme.colorScheme.onSurfaceVariant
+    )
   }
 }
 
 @Composable
-private fun Modifier.keyBlockSurface(onLongClick: () -> Unit): Modifier {
+private fun Modifier.keyBlockSurface(): Modifier {
   return this
     .horizontalGutters()
     .fillMaxWidth()
     .clip(RoundedCornerShape(18.dp))
     .background(SignalTheme.colors.colorSurface2)
-    .combinedClickable(
-      onLongClick = onLongClick,
-      onClick = {}
-    )
-    .padding(horizontal = 28.dp, vertical = 20.dp)
 }
 
 @Composable
