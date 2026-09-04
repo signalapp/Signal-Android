@@ -14,10 +14,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -32,18 +32,19 @@ import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
 import org.signal.core.ui.R as CoreUiR
 
 /**
  * Educational content which allows user to proceed to set up automatic backups
- * or navigate to a support page to learn more.
+ * or leave the flow without enabling them.
  */
 @Composable
 fun MessageBackupsEducationScreen(
   onNavigationClick: () -> Unit,
   onEnableBackups: () -> Unit,
-  onLearnMore: () -> Unit
+  onNotNow: () -> Unit
 ) {
   Scaffolds.Settings(
     onNavigationClick = onNavigationClick,
@@ -65,7 +66,7 @@ fun MessageBackupsEducationScreen(
       ) {
         item {
           Image(
-            painter = painterResource(id = R.drawable.image_signal_backups),
+            painter = painterResource(id = R.drawable.image_signal_backups_clock),
             contentDescription = null,
             modifier = Modifier
               .padding(top = 24.dp)
@@ -119,18 +120,22 @@ fun MessageBackupsEducationScreen(
         modifier = Modifier.fillMaxWidth()
       ) {
         Text(
-          text = stringResource(id = R.string.MessageBackupsEducationScreen__enable_backups)
+          text = stringResource(id = R.string.MessageBackupsEducationScreen__continue)
         )
       }
 
-      TextButton(
-        onClick = onLearnMore,
+      Buttons.LargeTonal(
+        onClick = onNotNow,
+        colors = ButtonDefaults.filledTonalButtonColors(
+          containerColor = SignalTheme.colors.colorSurface2,
+          contentColor = MaterialTheme.colorScheme.onPrimaryContainer
+        ),
         modifier = Modifier
           .fillMaxWidth()
-          .padding(bottom = 16.dp)
+          .padding(top = 16.dp, bottom = 16.dp)
       ) {
         Text(
-          text = stringResource(id = R.string.MessageBackupsEducationScreen__learn_more)
+          text = stringResource(id = R.string.MessageBackupsEducationScreen__not_now)
         )
       }
     }
@@ -144,7 +149,7 @@ private fun MessageBackupsEducationSheetPreview() {
     MessageBackupsEducationScreen(
       onNavigationClick = {},
       onEnableBackups = {},
-      onLearnMore = {}
+      onNotNow = {}
     )
   }
 }

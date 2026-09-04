@@ -9016,10 +9016,6 @@
     <string name="MessageBackupsEducationScreen__optional_always">Секогаш незадолжително</string>
     <!-- Backups feature label for informing the user that they can delete their backup at any time -->
     <string name="MessageBackupsEducationScreen__delete_your_backup_anytime">Можете да ја избришете вашата резерва копија во секое време</string>
-    <!-- Action button label to proceed with backups activation -->
-    <string name="MessageBackupsEducationScreen__enable_backups">Вклучи резервна копија</string>
-    <!-- Action button label to learn more -->
-    <string name="MessageBackupsEducationScreen__learn_more">Дознајте повеќе</string>
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->

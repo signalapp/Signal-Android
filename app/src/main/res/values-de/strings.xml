@@ -9016,10 +9016,6 @@
     <string name="MessageBackupsEducationScreen__optional_always">Optional</string>
     <!-- Backups feature label for informing the user that they can delete their backup at any time -->
     <string name="MessageBackupsEducationScreen__delete_your_backup_anytime">Lösche dein Backup jederzeit</string>
-    <!-- Action button label to proceed with backups activation -->
-    <string name="MessageBackupsEducationScreen__enable_backups">Backups aktivieren</string>
-    <!-- Action button label to learn more -->
-    <string name="MessageBackupsEducationScreen__learn_more">Mehr erfahren</string>
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->

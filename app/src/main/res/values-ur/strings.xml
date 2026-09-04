@@ -9016,10 +9016,6 @@
     <string name="MessageBackupsEducationScreen__optional_always">اختیاری، ہمیشہ</string>
     <!-- Backups feature label for informing the user that they can delete their backup at any time -->
     <string name="MessageBackupsEducationScreen__delete_your_backup_anytime">اپنا بیک اپ کسی بھی وقت حذف کریں</string>
-    <!-- Action button label to proceed with backups activation -->
-    <string name="MessageBackupsEducationScreen__enable_backups">بیک اپ فعال کریں</string>
-    <!-- Action button label to learn more -->
-    <string name="MessageBackupsEducationScreen__learn_more">مزید جانیں</string>
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->

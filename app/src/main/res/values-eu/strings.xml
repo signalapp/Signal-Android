@@ -9016,10 +9016,6 @@
     <string name="MessageBackupsEducationScreen__optional_always">Aukerakoa, beti</string>
     <!-- Backups feature label for informing the user that they can delete their backup at any time -->
     <string name="MessageBackupsEducationScreen__delete_your_backup_anytime">Ezabatu babeskopia nahi duzunean</string>
-    <!-- Action button label to proceed with backups activation -->
-    <string name="MessageBackupsEducationScreen__enable_backups">Gaitu babeskopiak</string>
-    <!-- Action button label to learn more -->
-    <string name="MessageBackupsEducationScreen__learn_more">Informazio gehiago</string>
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->

@@ -43,6 +43,18 @@ import kotlin.random.Random
 import kotlin.random.nextInt
 import org.signal.core.ui.R as CoreUiR
 
+enum class MessageBackupsKeyVerifyScreenMode {
+  /**
+   * Displayed when the user recorded their recovery key earlier in this same flow.
+   */
+  DEFAULT,
+
+  /**
+   * Displayed when the user's recovery key came with their Signal Login rather than being recorded in this flow.
+   */
+  SIGNAL_LOGIN
+}
+
 /**
  * Prompt user to re-enter backup key (AEP) to confirm they have it still.
  */
@@ -51,7 +63,8 @@ import org.signal.core.ui.R as CoreUiR
 fun MessageBackupsKeyVerifyScreen(
   backupKey: String,
   onNavigationClick: () -> Unit = {},
-  onNextClick: () -> Unit = {}
+  onNextClick: () -> Unit = {},
+  mode: MessageBackupsKeyVerifyScreenMode = MessageBackupsKeyVerifyScreenMode.DEFAULT
 ) {
   val coroutineScope = rememberCoroutineScope()
   val sheetState = rememberModalBottomSheetState(
@@ -72,7 +85,10 @@ fun MessageBackupsKeyVerifyScreen(
       },
       captionContent = {
         Text(
-          text = stringResource(R.string.MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded),
+          text = when (mode) {
+            MessageBackupsKeyVerifyScreenMode.DEFAULT -> stringResource(R.string.MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded)
+            MessageBackupsKeyVerifyScreenMode.SIGNAL_LOGIN -> stringResource(R.string.MessageBackupsKeyVerifyScreen__enter_the_recovery_key_from_your_signal_login)
+          },
           style = MaterialTheme.typography.bodyLarge.copy(color = MaterialTheme.colorScheme.onSurfaceVariant)
         )
       },

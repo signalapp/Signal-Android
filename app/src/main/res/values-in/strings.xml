@@ -8818,10 +8818,6 @@
     <string name="MessageBackupsEducationScreen__optional_always">Opsional, selalu</string>
     <!-- Backups feature label for informing the user that they can delete their backup at any time -->
     <string name="MessageBackupsEducationScreen__delete_your_backup_anytime">Hapus cadangan Anda kapan saja</string>
-    <!-- Action button label to proceed with backups activation -->
-    <string name="MessageBackupsEducationScreen__enable_backups">Aktifkan pencadangan</string>
-    <!-- Action button label to learn more -->
-    <string name="MessageBackupsEducationScreen__learn_more">Pelajari selengkapnya</string>
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->

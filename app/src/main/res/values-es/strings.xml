@@ -9016,10 +9016,6 @@
     <string name="MessageBackupsEducationScreen__optional_always">Servicio opcional, en todo momento</string>
     <!-- Backups feature label for informing the user that they can delete their backup at any time -->
     <string name="MessageBackupsEducationScreen__delete_your_backup_anytime">Copias de seguridad que puedes eliminar en cualquier momento</string>
-    <!-- Action button label to proceed with backups activation -->
-    <string name="MessageBackupsEducationScreen__enable_backups">Habilitar copias de seguridad</string>
-    <!-- Action button label to learn more -->
-    <string name="MessageBackupsEducationScreen__learn_more">Más información</string>
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->

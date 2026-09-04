@@ -9016,10 +9016,6 @@
     <string name="MessageBackupsEducationScreen__optional_always">விருப்பத்தேர்வுக்குரியது, எப்போதும்</string>
     <!-- Backups feature label for informing the user that they can delete their backup at any time -->
     <string name="MessageBackupsEducationScreen__delete_your_backup_anytime">உங்கள் காப்புப்பிரதியை எப்போது வேண்டுமானாலும் அழிக்கலாம்</string>
-    <!-- Action button label to proceed with backups activation -->
-    <string name="MessageBackupsEducationScreen__enable_backups">காப்புப்பிரதிகளை இயக்கு</string>
-    <!-- Action button label to learn more -->
-    <string name="MessageBackupsEducationScreen__learn_more">மேலும் அறிக</string>
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->

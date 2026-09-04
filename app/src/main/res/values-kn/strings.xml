@@ -9016,10 +9016,6 @@
     <string name="MessageBackupsEducationScreen__optional_always">ಐಚ್ಛಿಕ, ಯಾವಾಗಲೂ</string>
     <!-- Backups feature label for informing the user that they can delete their backup at any time -->
     <string name="MessageBackupsEducationScreen__delete_your_backup_anytime">ನಿಮ್ಮ ಬ್ಯಾಕಪ್ ಅನ್ನು ಯಾವಾಗ ಬೇಕಾದರೂ ಅಳಿಸಿ</string>
-    <!-- Action button label to proceed with backups activation -->
-    <string name="MessageBackupsEducationScreen__enable_backups">ಬ್ಯಾಕಪ್‌ಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
-    <!-- Action button label to learn more -->
-    <string name="MessageBackupsEducationScreen__learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->

@@ -8818,10 +8818,6 @@
     <string name="MessageBackupsEducationScreen__optional_always">필수가 아닌 선택 사항</string>
     <!-- Backups feature label for informing the user that they can delete their backup at any time -->
     <string name="MessageBackupsEducationScreen__delete_your_backup_anytime">언제나 백업 삭제 가능</string>
-    <!-- Action button label to proceed with backups activation -->
-    <string name="MessageBackupsEducationScreen__enable_backups">백업 활성화</string>
-    <!-- Action button label to learn more -->
-    <string name="MessageBackupsEducationScreen__learn_more">자세히 알아보기</string>
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->

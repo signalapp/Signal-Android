@@ -9412,10 +9412,6 @@
     <string name="MessageBackupsEducationScreen__optional_always">Dla chętnych (jak zwykle)</string>
     <!-- Backups feature label for informing the user that they can delete their backup at any time -->
     <string name="MessageBackupsEducationScreen__delete_your_backup_anytime">Możliwość usunięcia kopii zapasowej w dowolnym momencie</string>
-    <!-- Action button label to proceed with backups activation -->
-    <string name="MessageBackupsEducationScreen__enable_backups">Włącz kopie zapasowe</string>
-    <!-- Action button label to learn more -->
-    <string name="MessageBackupsEducationScreen__learn_more">Dowiedz się więcej</string>
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->

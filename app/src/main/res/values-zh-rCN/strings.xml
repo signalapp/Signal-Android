@@ -8818,10 +8818,6 @@
     <string name="MessageBackupsEducationScreen__optional_always">始终任选</string>
     <!-- Backups feature label for informing the user that they can delete their backup at any time -->
     <string name="MessageBackupsEducationScreen__delete_your_backup_anytime">可随时删除备份</string>
-    <!-- Action button label to proceed with backups activation -->
-    <string name="MessageBackupsEducationScreen__enable_backups">启用备份</string>
-    <!-- Action button label to learn more -->
-    <string name="MessageBackupsEducationScreen__learn_more">了解详情</string>
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->

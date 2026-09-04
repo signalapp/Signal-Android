@@ -9610,10 +9610,6 @@
     <string name="MessageBackupsEducationScreen__optional_always">Roghnach, i gcónaí</string>
     <!-- Backups feature label for informing the user that they can delete their backup at any time -->
     <string name="MessageBackupsEducationScreen__delete_your_backup_anytime">Scrios do chúltaca ag am ar bith</string>
-    <!-- Action button label to proceed with backups activation -->
-    <string name="MessageBackupsEducationScreen__enable_backups">Cumasaigh cúltacaithe</string>
-    <!-- Action button label to learn more -->
-    <string name="MessageBackupsEducationScreen__learn_more">Tuilleadh faisnéise</string>
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->

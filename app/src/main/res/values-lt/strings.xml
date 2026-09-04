@@ -9412,10 +9412,6 @@
     <string name="MessageBackupsEducationScreen__optional_always">Neprivaloma</string>
     <!-- Backups feature label for informing the user that they can delete their backup at any time -->
     <string name="MessageBackupsEducationScreen__delete_your_backup_anytime">Atsarginę kopiją galima bet kada ištrinti</string>
-    <!-- Action button label to proceed with backups activation -->
-    <string name="MessageBackupsEducationScreen__enable_backups">Įjungti atsargines kopijas</string>
-    <!-- Action button label to learn more -->
-    <string name="MessageBackupsEducationScreen__learn_more">Sužinoti daugiau</string>
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->

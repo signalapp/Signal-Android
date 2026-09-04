@@ -9016,10 +9016,6 @@
     <string name="MessageBackupsEducationScreen__optional_always">По желание, винаги</string>
     <!-- Backups feature label for informing the user that they can delete their backup at any time -->
     <string name="MessageBackupsEducationScreen__delete_your_backup_anytime">Можете да изтриете резервното копие по всяко време</string>
-    <!-- Action button label to proceed with backups activation -->
-    <string name="MessageBackupsEducationScreen__enable_backups">Активиране на архиви</string>
-    <!-- Action button label to learn more -->
-    <string name="MessageBackupsEducationScreen__learn_more">Научете повече</string>
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->

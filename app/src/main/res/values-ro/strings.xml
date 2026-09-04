@@ -9214,10 +9214,6 @@
     <string name="MessageBackupsEducationScreen__optional_always">Opțional, întotdeauna</string>
     <!-- Backups feature label for informing the user that they can delete their backup at any time -->
     <string name="MessageBackupsEducationScreen__delete_your_backup_anytime">Șterge oricând copia ta de rezervă</string>
-    <!-- Action button label to proceed with backups activation -->
-    <string name="MessageBackupsEducationScreen__enable_backups">Activează backup-urile</string>
-    <!-- Action button label to learn more -->
-    <string name="MessageBackupsEducationScreen__learn_more">Află mai multe</string>
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->

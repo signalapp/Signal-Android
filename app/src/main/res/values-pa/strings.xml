@@ -9016,10 +9016,6 @@
     <string name="MessageBackupsEducationScreen__optional_always">ਵਿਕਲਪਿਕ, ਹਮੇਸ਼ਾ</string>
     <!-- Backups feature label for informing the user that they can delete their backup at any time -->
     <string name="MessageBackupsEducationScreen__delete_your_backup_anytime">ਕਿਸੇ ਵੀ ਸਮੇਂ ਆਪਣਾ ਬੈਕਅੱਪ ਮਿਟਾਓ</string>
-    <!-- Action button label to proceed with backups activation -->
-    <string name="MessageBackupsEducationScreen__enable_backups">ਬੈਕਅੱਪ ਨੂੰ ਸਮਰੱਥ ਕਰੋ</string>
-    <!-- Action button label to learn more -->
-    <string name="MessageBackupsEducationScreen__learn_more">ਹੋਰ ਜਾਣੋ</string>
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->

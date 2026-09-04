@@ -9016,10 +9016,6 @@
     <string name="MessageBackupsEducationScreen__optional_always">İsteğe bağlı, daima</string>
     <!-- Backups feature label for informing the user that they can delete their backup at any time -->
     <string name="MessageBackupsEducationScreen__delete_your_backup_anytime">Yedeklemeni istediğin zaman sil</string>
-    <!-- Action button label to proceed with backups activation -->
-    <string name="MessageBackupsEducationScreen__enable_backups">Yedekleri etkinleştir</string>
-    <!-- Action button label to learn more -->
-    <string name="MessageBackupsEducationScreen__learn_more">Daha fazlasını öğren</string>
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->

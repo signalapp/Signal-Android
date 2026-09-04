@@ -9412,10 +9412,6 @@
     <string name="MessageBackupsEducationScreen__optional_always">Ніколи не буде обов\'язковим</string>
     <!-- Backups feature label for informing the user that they can delete their backup at any time -->
     <string name="MessageBackupsEducationScreen__delete_your_backup_anytime">Резервну копію можна видалити коли завгодно</string>
-    <!-- Action button label to proceed with backups activation -->
-    <string name="MessageBackupsEducationScreen__enable_backups">Увімкнути</string>
-    <!-- Action button label to learn more -->
-    <string name="MessageBackupsEducationScreen__learn_more">Дізнатися більше</string>
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->

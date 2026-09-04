@@ -8818,10 +8818,6 @@
     <string name="MessageBackupsEducationScreen__optional_always">任意でいつでも利用できます</string>
     <!-- Backups feature label for informing the user that they can delete their backup at any time -->
     <string name="MessageBackupsEducationScreen__delete_your_backup_anytime">バックアップはいつでも消去可能です</string>
-    <!-- Action button label to proceed with backups activation -->
-    <string name="MessageBackupsEducationScreen__enable_backups">バックアップを有効にする</string>
-    <!-- Action button label to learn more -->
-    <string name="MessageBackupsEducationScreen__learn_more">詳しく見る</string>
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->

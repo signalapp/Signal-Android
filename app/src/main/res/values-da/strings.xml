@@ -9016,10 +9016,6 @@
     <string name="MessageBackupsEducationScreen__optional_always">Altid valgfrit</string>
     <!-- Backups feature label for informing the user that they can delete their backup at any time -->
     <string name="MessageBackupsEducationScreen__delete_your_backup_anytime">Slet din sikkerhedskopi når som helst</string>
-    <!-- Action button label to proceed with backups activation -->
-    <string name="MessageBackupsEducationScreen__enable_backups">Aktivér sikkerhedskopier</string>
-    <!-- Action button label to learn more -->
-    <string name="MessageBackupsEducationScreen__learn_more">Få mere at vide</string>
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->

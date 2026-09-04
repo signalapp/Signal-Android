@@ -9016,10 +9016,6 @@
     <string name="MessageBackupsEducationScreen__optional_always">Opsioneel, altyd</string>
     <!-- Backups feature label for informing the user that they can delete their backup at any time -->
     <string name="MessageBackupsEducationScreen__delete_your_backup_anytime">Skrap jou rugsteun te eniger tyd</string>
-    <!-- Action button label to proceed with backups activation -->
-    <string name="MessageBackupsEducationScreen__enable_backups">Aktiveer rugsteun</string>
-    <!-- Action button label to learn more -->
-    <string name="MessageBackupsEducationScreen__learn_more">Vind meer uit</string>
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->

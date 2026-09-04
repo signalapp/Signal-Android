@@ -8818,10 +8818,6 @@
     <string name="MessageBackupsEducationScreen__optional_always">ជាជម្រើសជានិច្ច</string>
     <!-- Backups feature label for informing the user that they can delete their backup at any time -->
     <string name="MessageBackupsEducationScreen__delete_your_backup_anytime">លុបការបម្រុងទុករបស់អ្នកនៅពេលណាក៏បាន</string>
-    <!-- Action button label to proceed with backups activation -->
-    <string name="MessageBackupsEducationScreen__enable_backups">បើកការបម្រុងទុក</string>
-    <!-- Action button label to learn more -->
-    <string name="MessageBackupsEducationScreen__learn_more">ស្វែងយល់បន្ថែម</string>
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->

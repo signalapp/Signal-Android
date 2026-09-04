@@ -8818,10 +8818,6 @@
     <string name="MessageBackupsEducationScreen__optional_always">Lựa chọn không bắt buộc</string>
     <!-- Backups feature label for informing the user that they can delete their backup at any time -->
     <string name="MessageBackupsEducationScreen__delete_your_backup_anytime">Xóa bản sao lưu bất kỳ lúc nào</string>
-    <!-- Action button label to proceed with backups activation -->
-    <string name="MessageBackupsEducationScreen__enable_backups">Bật sao lưu</string>
-    <!-- Action button label to learn more -->
-    <string name="MessageBackupsEducationScreen__learn_more">Tìm hiểu thêm</string>
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->

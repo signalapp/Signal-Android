@@ -8818,10 +8818,6 @@
     <string name="MessageBackupsEducationScreen__optional_always">เลือกสมัครใช้บริการได้ตลอด</string>
     <!-- Backups feature label for informing the user that they can delete their backup at any time -->
     <string name="MessageBackupsEducationScreen__delete_your_backup_anytime">เลือกลบข้อมูลสำรองได้ทุกเมื่อ</string>
-    <!-- Action button label to proceed with backups activation -->
-    <string name="MessageBackupsEducationScreen__enable_backups">เปิดใช้การสำรองข้อมูล</string>
-    <!-- Action button label to learn more -->
-    <string name="MessageBackupsEducationScreen__learn_more">เรียนรู้เพิ่มเติม</string>
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->

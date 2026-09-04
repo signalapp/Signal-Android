@@ -6,10 +6,12 @@
 package org.thoughtcrime.securesms.backup.v2.ui.subscription
 
 import android.app.Activity
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.VisibleForTesting
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -18,6 +20,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.core.os.bundleOf
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -29,15 +32,21 @@ import com.google.android.gms.common.GoogleApiAvailability
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.rx3.asFlowable
+import org.signal.core.ui.compose.CollectActions
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.Dialogs
+import org.signal.core.util.Result
 import org.signal.core.util.Util
 import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.getSerializableCompat
 import org.signal.passwordmanager.SignalCredentialManager
+import org.signal.signallogin.pdf.SignalLoginPdfRenderer
+import org.signal.signallogin.viewdetails.SignalLoginViewDetailsScreen
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.DeletionState
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
+import org.thoughtcrime.securesms.components.settings.app.account.signallogin.SignalLoginViewDetailsAction
+import org.thoughtcrime.securesms.components.settings.app.account.signallogin.SignalLoginViewDetailsViewModel
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentCheckoutDelegate
 import org.thoughtcrime.securesms.compose.Nav
 import org.thoughtcrime.securesms.database.InAppPaymentTable
@@ -58,6 +67,8 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
     const val TIER = "tier"
     const val CLIPBOARD_TIMEOUT_SECONDS = 60
 
+    private const val PDF_MIME_TYPE = "application/pdf"
+
     fun create(messageBackupTier: MessageBackupTier?): MessageBackupsFlowFragment {
       return MessageBackupsFlowFragment().apply {
         arguments = bundleOf(TIER to messageBackupTier)
@@ -69,8 +80,23 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
     MessageBackupsFlowViewModel(
       initialTierSelection = requireArguments().getSerializableCompat(TIER, MessageBackupTier::class.java),
       googlePlayApiAvailability = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(requireContext()),
-      isCredentialManagerSupported = SignalCredentialManager.isSupported(requireContext())
+      isCredentialManagerSupported = SignalCredentialManager.isSupported(requireContext()),
+      isPhoneNumberless = SignalStore.account.isPhoneNumberless
     )
+  }
+
+  private val signalLoginViewDetailsViewModel: SignalLoginViewDetailsViewModel by viewModels()
+
+  private val savePdfLauncher = registerForActivityResult(ActivityResultContracts.CreateDocument(PDF_MIME_TYPE)) { uri: Uri? ->
+    if (uri != null) {
+      val context = requireContext().applicationContext
+      lifecycleScope.launch {
+        val result = SignalLoginPdfRenderer.renderTo(context, uri, signalLoginViewDetailsViewModel.state.value)
+        if (result is Result.Failure) {
+          Toast.makeText(context, result.failure.userMessageRes, Toast.LENGTH_LONG).show()
+        }
+      }
+    }
   }
 
   private val errorHandler = InAppPaymentCheckoutDelegate.ErrorHandler()
@@ -134,9 +160,7 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
         MessageBackupsEducationScreen(
           onNavigationClick = viewModel::goToPreviousStage,
           onEnableBackups = viewModel::goToNextStage,
-          onLearnMore = {
-            CommunicationActions.openBrowserLink(requireContext(), getString(R.string.remote_backup_support_url))
-          }
+          onNotNow = viewModel::goToPreviousStage
         )
       }
 
@@ -201,7 +225,34 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
         MessageBackupsKeyVerifyScreen(
           backupKey = state.accountEntropyPool.displayValue,
           onNavigationClick = viewModel::goToPreviousStage,
-          onNextClick = viewModel::goToNextStage
+          onNextClick = viewModel::goToNextStage,
+          mode = if (state.isPhoneNumberless) {
+            MessageBackupsKeyVerifyScreenMode.SIGNAL_LOGIN
+          } else {
+            MessageBackupsKeyVerifyScreenMode.DEFAULT
+          }
+        )
+      }
+
+      composable(route = MessageBackupsStage.Route.CONFIRM_RECOVERY_KEY.name) {
+        MessageBackupsConfirmRecoveryKeyScreen(
+          aci = state.aci,
+          aep = state.accountEntropyPool,
+          onNavigationClick = viewModel::goToPreviousStage,
+          onViewDetailsClick = viewModel::goToSignalLoginViewDetails,
+          onConfirmed = viewModel::onRecoveryKeyConfirmed,
+          onEnterManuallyClick = viewModel::goToEnterRecoveryKeyManually
+        )
+      }
+
+      composable(route = MessageBackupsStage.Route.SIGNAL_LOGIN_VIEW_DETAILS.name) {
+        val signalLoginState by signalLoginViewDetailsViewModel.state.collectAsStateWithLifecycle()
+
+        CollectActions(signalLoginViewDetailsViewModel.actions) { action -> handleSignalLoginViewDetailsAction(action) }
+
+        SignalLoginViewDetailsScreen(
+          state = signalLoginState,
+          onEvent = signalLoginViewDetailsViewModel::onEvent
         )
       }
 
@@ -270,6 +321,23 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
         dismiss = stringResource(android.R.string.ok),
         onDismiss = { requireActivity().finishAfterTransition() }
       )
+    }
+  }
+
+  private fun handleSignalLoginViewDetailsAction(action: SignalLoginViewDetailsAction) {
+    when (action) {
+      SignalLoginViewDetailsAction.NavigateBack -> viewModel.goToPreviousStage()
+      SignalLoginViewDetailsAction.LaunchSaveToPasswordManager -> {
+        lifecycleScope.launch {
+          SignalCredentialManager.saveCredential(
+            activityContext = requireActivity(),
+            username = signalLoginViewDetailsViewModel.state.value.accountKey,
+            password = signalLoginViewDetailsViewModel.state.value.recoveryKey
+          )
+        }
+      }
+      SignalLoginViewDetailsAction.LaunchSaveAsPdf -> savePdfLauncher.launch(SignalLoginPdfRenderer.suggestedFileName(requireContext()))
+      is SignalLoginViewDetailsAction.CopyTextToClipboard -> Util.copyToClipboard(requireContext(), action.text, CLIPBOARD_TIMEOUT_SECONDS)
     }
   }
 
