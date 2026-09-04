@@ -210,7 +210,7 @@ object NotificationFactory {
   private fun shouldAlert(conversation: NotificationConversation, lastNotificationTimestamp: Long, alertOverride: Boolean): Boolean {
     val throttle: Duration = when {
       !AppDependencies.incomingMessageObserver.decryptionDrained -> STILL_DECRYPTING_THROTTLE
-      conversation.recipient.isGroup && (conversation.mostRecentNotification as? MessageNotification)?.hasSelfMention == false -> GROUP_THROTTLE
+      conversation.recipient.isGroup && (conversation.mostRecentNotification as? MessageNotification)?.hasSelfMention != true && (conversation.mostRecentNotification as? MessageNotification)?.isReplyToSelf != true -> GROUP_THROTTLE
       else -> INDIVIDUAL_THROTTLE
     }
     val canAlertBasedOnTime: Boolean = lastNotificationTimestamp < System.currentTimeMillis() - throttle.inWholeMilliseconds || lastNotificationTimestamp > System.currentTimeMillis()

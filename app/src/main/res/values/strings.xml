@@ -3307,6 +3307,8 @@
     <!-- MessageNotifier -->
     <!-- Text shown in a system notification that is used to summarize your notification. The first placeholder is a pluralized string that describes how many messages (e.g. "3 messages"), and the second placeholder is a pluralized string that describes the number of unique chats those message appear in (e.g. "2 chats"). -->
     <string name="MessageNotifier_s_in_s">%1$s in %2$s</string>
+    <!-- Subtext shown in a group chat notification when the most recent message is a direct reply to a message you sent. -->
+    <string name="MessageNotifier_replied_to_you">Replied to you: %1$s</string>
     <!-- Text shown in a system notification that is used to summary how many messages you received. -->
     <plurals name="MessageNotifier_d_messages">
         <item quantity="one">%1$d message</item>
