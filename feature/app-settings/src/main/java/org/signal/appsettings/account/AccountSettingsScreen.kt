@@ -375,7 +375,7 @@ fun AccountSettingsScreen(
         RegistrationLockConfirmationDialog(dialog, onEvent)
       }
     }
-    is Dialog.ConfirmRemoveTotpApp -> ConfirmRemoveTotpAppDialog(onEvent = onEvent)
+    is Dialog.ConfirmRemoveTotpApp -> ConfirmRemoveTotpAppDialog(appId = dialog.appId, onEvent = onEvent)
     Dialog.MaxTotpAppsReached -> MaxTotpAppsReachedDialog(maxApps = state.signalLogin?.maxTotpApps ?: 0, onEvent = onEvent)
   }
 }
@@ -617,13 +617,14 @@ private fun DeleteAllDataConfirmationDialog(
 
 @Composable
 private fun ConfirmRemoveTotpAppDialog(
+  appId: Long,
   onEvent: (AccountSettingsEvent) -> Unit
 ) {
   Dialogs.SimpleAlertDialog(
     title = stringResource(R.string.AccountSettingsFragment__remove_authenticator_app),
     body = stringResource(R.string.AccountSettingsFragment__you_wont_be_able_to_use_this_app),
     confirm = stringResource(R.string.AccountSettingsFragment__remove),
-    onConfirm = { onEvent(AccountSettingsEvent.RemoveTotpAppConfirmed) },
+    onConfirm = { onEvent(AccountSettingsEvent.RemoveTotpAppConfirmed(appId)) },
     onDismiss = { onEvent(AccountSettingsEvent.DialogDismissed) },
     dismiss = stringResource(android.R.string.cancel),
     onDismissRequest = { onEvent(AccountSettingsEvent.DialogDismissed) },
@@ -885,7 +886,7 @@ private fun ConfirmPinToDisableRemindersDialogPreview() {
 @Composable
 private fun ConfirmRemoveTotpAppDialogPreview() {
   Previews.Preview {
-    ConfirmRemoveTotpAppDialog(onEvent = {})
+    ConfirmRemoveTotpAppDialog(appId = 1, onEvent = {})
   }
 }
 

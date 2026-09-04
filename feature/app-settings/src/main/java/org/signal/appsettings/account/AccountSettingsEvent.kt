@@ -66,8 +66,8 @@ sealed interface AccountSettingsEvent {
   /** The screen lock turned the user away, so whatever asked for it goes no further. */
   data object AuthenticationFailed : AccountSettingsEvent
 
-  /** The user confirmed removing the authenticator app named by the open dialog, which removes it. */
-  data object RemoveTotpAppConfirmed : AccountSettingsEvent
+  /** The user confirmed removing the authenticator app with [appId], which removes it. */
+  data class RemoveTotpAppConfirmed(val appId: Long) : AccountSettingsEvent
 
   /** The user tapped the advanced PIN settings row. */
   data object AdvancedPinSettingsClicked : AccountSettingsEvent

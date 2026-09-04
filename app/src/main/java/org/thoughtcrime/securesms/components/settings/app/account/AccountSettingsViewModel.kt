@@ -106,8 +106,8 @@ class AccountSettingsViewModel(
       AccountSettingsEvent.AuthenticationFailed -> {
         _actions.send(AccountSettingsAction.ShowAuthenticationFailed)
       }
-      AccountSettingsEvent.RemoveTotpAppConfirmed -> {
-        applyRemoveTotpAppConfirmed()
+      is AccountSettingsEvent.RemoveTotpAppConfirmed -> {
+        applyRemoveTotpAppConfirmed(event.appId)
       }
       AccountSettingsEvent.AdvancedPinSettingsClicked -> {
         _actions.send(AccountSettingsAction.NavigateToAdvancedPinSettings)
@@ -214,11 +214,9 @@ class AccountSettingsViewModel(
     }
   }
 
-  private suspend fun applyRemoveTotpAppConfirmed() {
-    val dialog = _state.value.dialog as? Dialog.ConfirmRemoveTotpApp ?: return
-
+  private suspend fun applyRemoveTotpAppConfirmed(appId: Long) {
     _state.update { it.copy(dialog = Dialog.None) }
-    removeTotpApp(dialog.appId)
+    removeTotpApp(appId)
   }
 
   private suspend fun removeTotpApp(appId: Long) {

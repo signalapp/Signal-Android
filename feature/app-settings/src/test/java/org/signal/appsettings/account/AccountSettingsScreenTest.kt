@@ -416,7 +416,7 @@ class AccountSettingsScreenTest {
     composeTestRule.onNodeWithTag(AccountSettingsTestTags.DIALOG_CONFIRM_REMOVE_TOTP_APP).assertIsDisplayed()
     composeTestRule.onNodeWithTag(Dialogs.TEST_TAG_ALERT_DIALOG_CONFIRM_BUTTON).performClick()
 
-    assertThat(events).contains(AccountSettingsEvent.RemoveTotpAppConfirmed)
+    assertThat(events).contains(AccountSettingsEvent.RemoveTotpAppConfirmed(METHODS[0].id))
   }
 
   @Test

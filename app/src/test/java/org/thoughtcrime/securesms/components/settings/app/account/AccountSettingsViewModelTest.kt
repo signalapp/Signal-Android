@@ -480,25 +480,29 @@ class AccountSettingsViewModelTest {
     val actions = collectActions(viewModel.actions)
 
     viewModel.onEvent(AccountSettingsEvent.MethodRemovalAuthenticated(TOTP_APP))
-    viewModel.onEvent(AccountSettingsEvent.RemoveTotpAppConfirmed)
+    viewModel.onEvent(AccountSettingsEvent.RemoveTotpAppConfirmed(TOTP_APP.id))
 
     coVerify { repository.removeTotpApp(TOTP_APP.id) }
     assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.None)
     assertThat(actions.last()).isEqualTo(AccountSettingsAction.ShowTotpAppRemoved)
   }
 
-  /** The open dialog is what says which app is being removed, so a confirmation without one has no app to act on. */
+  /** The dialog dismisses itself before it confirms, so the removal has to survive the dismissal that lands first. */
   @Test
-  fun `RemoveTotpAppConfirmed without the confirmation dialog removes nothing`() = runTest(testDispatcher) {
+  fun `RemoveTotpAppConfirmed removes the app even though the dialog dismissed itself first`() = runTest(testDispatcher) {
     every { repository.isPhoneNumberless() } returns true
     coEvery { repository.getTwoFactorMethods() } returns methods(TOTP_APP)
 
     val viewModel = createViewModel()
+    val actions = collectActions(viewModel.actions)
 
-    viewModel.onEvent(AccountSettingsEvent.RemoveTotpAppConfirmed)
+    viewModel.onEvent(AccountSettingsEvent.MethodRemovalAuthenticated(TOTP_APP))
+    viewModel.onEvent(AccountSettingsEvent.DialogDismissed)
+    viewModel.onEvent(AccountSettingsEvent.RemoveTotpAppConfirmed(TOTP_APP.id))
 
-    coVerify(exactly = 0) { repository.removeTotpApp(any()) }
-    assertThat(viewModel.state.value.signalLogin!!.twoFactorMethods).containsExactly(TOTP_APP)
+    coVerify { repository.removeTotpApp(TOTP_APP.id) }
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.None)
+    assertThat(actions.last()).isEqualTo(AccountSettingsAction.ShowTotpAppRemoved)
   }
 
   /** The list is what tells the user the app is gone, so it has to be read again rather than assumed. */
@@ -512,7 +516,7 @@ class AccountSettingsViewModelTest {
     viewModel.onEvent(AccountSettingsEvent.MethodRemovalAuthenticated(TOTP_APP))
 
     coEvery { repository.getTwoFactorMethods() } returns methods()
-    viewModel.onEvent(AccountSettingsEvent.RemoveTotpAppConfirmed)
+    viewModel.onEvent(AccountSettingsEvent.RemoveTotpAppConfirmed(TOTP_APP.id))
 
     assertThat(viewModel.state.value.signalLogin!!.twoFactorMethods).isEmpty()
   }
@@ -527,7 +531,7 @@ class AccountSettingsViewModelTest {
     val actions = collectActions(viewModel.actions)
 
     viewModel.onEvent(AccountSettingsEvent.MethodRemovalAuthenticated(TOTP_APP))
-    viewModel.onEvent(AccountSettingsEvent.RemoveTotpAppConfirmed)
+    viewModel.onEvent(AccountSettingsEvent.RemoveTotpAppConfirmed(TOTP_APP.id))
 
     assertThat(actions.last()).isEqualTo(AccountSettingsAction.ShowTotpAppRemovalFailed)
     assertThat(viewModel.state.value.signalLogin!!.twoFactorMethods).containsExactly(TOTP_APP)
