@@ -48,8 +48,17 @@ class AttachmentSaver(private val host: Host) {
   }
 
   suspend fun saveAttachments(record: MmsMessageRecord) {
-    val attachments = record.slideDeck.slides
-      .filter { it.uri != null && (it.hasImage() || it.hasVideo() || it.hasAudio() || it.hasDocument()) }
+    val saveableSlides = record.slideDeck.slides.filter { it.uri != null && (it.hasImage() || it.hasVideo() || it.hasAudio() || it.hasDocument()) }
+
+    // If a message contains a voice note, that's the only attachment we render, so it's the only one we should save.
+    val voiceNote = saveableSlides.firstOrNull { it.asAttachment().voiceNote }
+    val slidesToSave = if (voiceNote != null) {
+      listOf(voiceNote)
+    } else {
+      saveableSlides
+    }
+
+    val attachments = slidesToSave
       .map { SaveAttachment(it.uri!!, it.contentType, record.dateSent, it.fileName.orNull()) }
       .toSet()
     saveAttachments(attachments)

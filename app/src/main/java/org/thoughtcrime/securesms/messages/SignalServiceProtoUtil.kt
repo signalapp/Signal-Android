@@ -178,7 +178,14 @@ object SignalServiceProtoUtil {
   }
 
   fun List<AttachmentPointer>.toPointersWithinLimit(): List<Attachment> {
-    return mapNotNull { it.toPointer() }.take(RemoteConfig.maxAttachmentCount)
+    val pointers = mapNotNull { it.toPointer() }.take(RemoteConfig.maxAttachmentCount)
+
+    val voiceNote = pointers.firstOrNull { it.voiceNote }
+    return if (voiceNote != null) {
+      listOf(voiceNote)
+    } else {
+      pointers
+    }
   }
 
   fun AttachmentPointer.toPointer(stickerLocator: StickerLocator? = null): Attachment? {
