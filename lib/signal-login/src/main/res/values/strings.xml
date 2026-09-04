@@ -27,4 +27,14 @@
     <string name="SignalLoginViewDetailsScreen__unable_to_save_pdf">Unable to save PDF. Please try again.</string>
     <!-- Toast shown when the location the user picked for the Signal Login PDF refuses the write. -->
     <string name="SignalLoginViewDetailsScreen__cant_save_pdf_to_the_selected_location">Can\'t save PDF to the selected location.</string>
+
+    <!-- Signal Login PDF -->
+    <!-- Title at the top of the PDF that holds the user's Signal Login. -->
+    <string name="SignalLoginPdf__your_signal_login">Your Signal Login</string>
+    <!-- Explainer below the title of the PDF that holds the user's Signal Login. -->
+    <string name="SignalLoginPdf__store_this_in_a_safe_place">Store this in a safe place, your login info is required to recover your account and data. Never share it with anyone.</string>
+    <!-- Section header above the account key in the PDF. -->
+    <string name="SignalLoginPdf__account_id">Account ID</string>
+    <!-- Section header above the recovery key in the PDF. -->
+    <string name="SignalLoginPdf__recovery_key">Recovery Key</string>
 </resources>
