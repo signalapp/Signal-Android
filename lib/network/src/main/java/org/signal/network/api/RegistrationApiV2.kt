@@ -453,6 +453,40 @@ class RegistrationApiV2(
   }
 
   /**
+   * Fetches the service's configuration for one-time Signal Login purchases: which product to sell, and the receipt
+   * level a purchase of it is worth.
+   *
+   * Must be called on an unauthenticated connection, which is always the case during registration.
+   *
+   * `GET /v1/subscription/configuration`
+   * - 200: Success, body is the full subscription configuration
+   */
+  suspend fun getLoginConfiguration(): RequestResult<LoginConfiguration, GetLoginConfigurationError> {
+    check(phonenumberlessRegistrationAllowed) { "Phone-number-less registration is not allowed in this build!" }
+
+    val result = restClient.request(
+      RequestSpec(
+        method = RequestSpec.Method.GET,
+        host = RequestSpec.Host.Service,
+        path = "/v1/subscription/configuration"
+      )
+    )
+
+    return result.toTypedResult(
+      parseSuccess = { response ->
+        SignalJson.json.decodeFromString<SubscriptionConfigurationResponse>(response.bodyString()).login
+          ?: throw SerializationException("The service returned no Signal Login configuration.")
+      },
+      mapError = { error ->
+        when (error.statusCode) {
+          429 -> GetLoginConfigurationError.RateLimited(error.retryAfter())
+          else -> null
+        }
+      }
+    )
+  }
+
+  /**
    * Validates the provided SVR2 auth credentials, returning information on their usability.
    *
    * `POST /v2/svr/auth/check`
@@ -727,6 +761,25 @@ class RegistrationApiV2(
     val outcomeType: String? = null
   )
 
+  /**
+   * Configuration for one-time Signal Login purchases, from the service's subscription configuration.
+   *
+   * @param level The receipt level a Signal Login purchase is worth, which an issued receipt credential must match.
+   * @param playProductId The Google Play product to sell. The purchase option within it is a client-side constant.
+   * @param appStoreProductId The App Store product to sell. Present for iOS; unused here.
+   */
+  @Serializable
+  data class LoginConfiguration(
+    val level: Long,
+    val playProductId: String,
+    val appStoreProductId: String? = null
+  )
+
+  @Serializable
+  private class SubscriptionConfigurationResponse(
+    val login: LoginConfiguration? = null
+  )
+
   /** The payment provider that processed a Signal Login purchase. */
   enum class LoginPurchasePaymentProvider {
     STRIPE, BRAINTREE, GOOGLE_PLAY_BILLING, APPLE_APP_STORE
@@ -971,6 +1024,10 @@ class RegistrationApiV2(
 
     /** The receipt credential presentation redeemed for a registration with no phone number was invalid. */
     data class InvalidReceiptCredentialPresentation(val message: String) : RegisterAccountError()
+  }
+
+  sealed class GetLoginConfigurationError : BadRequestError {
+    data class RateLimited(val retryAfter: Duration) : GetLoginConfigurationError()
   }
 
   sealed class CreateLoginReceiptCredentialError : BadRequestError {

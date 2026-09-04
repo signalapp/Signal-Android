@@ -10,6 +10,7 @@ package org.signal.registration
 import android.content.Context
 import android.os.Parcelable
 import android.widget.Toast
+import androidx.activity.compose.LocalActivity
 import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -51,6 +52,7 @@ import org.signal.core.util.LinkActions
 import org.signal.core.util.LinkActions.OpenUrlError
 import org.signal.core.util.Result
 import org.signal.core.util.Util
+import org.signal.core.util.billing.OneTimePurchaseResult
 import org.signal.core.util.censor
 import org.signal.core.util.serialization.AccountEntropyPoolSerializer
 import org.signal.network.api.RegistrationApiV2.SessionMetadata
@@ -127,6 +129,7 @@ import org.signal.registration.screens.signallogininfo.SignalLoginInfoScreen
 import org.signal.registration.screens.signallogininfo.SignalLoginInfoViewModel
 import org.signal.registration.screens.signalloginpayment.SignalLoginPaymentScreen
 import org.signal.registration.screens.signalloginpayment.SignalLoginPaymentScreenActions
+import org.signal.registration.screens.signalloginpayment.SignalLoginPaymentScreenEvents
 import org.signal.registration.screens.signalloginpayment.SignalLoginPaymentViewModel
 import org.signal.registration.screens.totpentry.TotpEntryScreen
 import org.signal.registration.screens.totpentry.TotpEntryViewModel
@@ -703,9 +706,22 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
     }
     val state by viewModel.state.collectAsStateWithLifecycle()
     val context = LocalContext.current
+    val activity = LocalActivity.current
+    val purchaseScope = rememberCoroutineScope()
     CollectActions(viewModel.actions) { action ->
       when (action) {
         SignalLoginPaymentScreenActions.OpenLearnMoreArticle -> openUrl(context, SIGNAL_LOGIN_LEARN_MORE_URL)
+
+        is SignalLoginPaymentScreenActions.LaunchPurchaseFlow -> {
+          purchaseScope.launch {
+            val result = if (activity != null) {
+              action.launcher.launch(activity)
+            } else {
+              OneTimePurchaseResult.Unavailable
+            }
+            viewModel.onEvent(SignalLoginPaymentScreenEvents.PurchaseFlowCompleted(result))
+          }
+        }
       }
     }
 

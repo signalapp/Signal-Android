@@ -9,11 +9,9 @@ import android.app.Activity
 import com.android.billingclient.api.BillingClient
 import com.android.billingclient.api.BillingClient.BillingResponseCode
 import com.android.billingclient.api.BillingClient.ProductType
-import com.android.billingclient.api.BillingClientStateListener
 import com.android.billingclient.api.BillingFlowParams
 import com.android.billingclient.api.BillingFlowParams.ProductDetailsParams
 import com.android.billingclient.api.BillingResult
-import com.android.billingclient.api.PendingPurchasesParams
 import com.android.billingclient.api.ProductDetails
 import com.android.billingclient.api.ProductDetailsResult
 import com.android.billingclient.api.Purchase
@@ -27,10 +25,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.filter
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.signal.core.util.billing.BillingApi
@@ -67,9 +61,7 @@ internal class BillingApiImpl(
   private var productDetailsExpiration: Duration = 0.days
   private var productDetailsResult: ProductDetailsResult? = null
 
-  private val connectionState = MutableStateFlow<State>(State.Init)
   private val coroutineScope = CoroutineScope(Dispatchers.Default)
-  private val connectionStateDispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
 
   private val internalResults = MutableSharedFlow<BillingPurchaseResult>()
 
@@ -79,14 +71,8 @@ internal class BillingApiImpl(
     coroutineScope.launch { internalResults.emit(result) }
   }
 
-  private val billingClient: BillingClient = BillingClient.newBuilder(billingDependencies.context)
-    .setListener(purchasesUpdatedListener)
-    .enablePendingPurchases(
-      PendingPurchasesParams.newBuilder()
-        .enableOneTimeProducts()
-        .build()
-    )
-    .build()
+  private val connection = BillingClientConnection(billingDependencies.context, purchasesUpdatedListener)
+  private val billingClient: BillingClient get() = connection.client
 
   override fun getBillingPurchaseResults(): Flow<BillingPurchaseResult> {
     return internalResults
@@ -122,7 +108,7 @@ internal class BillingApiImpl(
       .setProductType(ProductType.SUBS)
       .build()
 
-    val result = doOnConnectionReady("queryPurchases") {
+    val result = connection.withConnection("queryPurchases") {
       billingClient.queryPurchasesAsync(param)
     }
 
@@ -167,7 +153,7 @@ internal class BillingApiImpl(
       .setProductDetailsParamsList(productDetailParamsList)
       .build()
 
-    doOnConnectionReady("launchBillingFlow") {
+    connection.withConnection("launchBillingFlow") {
       withContext(Dispatchers.Main) {
         billingClient.launchBillingFlow(activity, billingFlowParams)
       }
@@ -180,7 +166,7 @@ internal class BillingApiImpl(
    */
   override suspend fun getApiAvailability(): org.signal.core.util.billing.BillingResponseCode {
     return try {
-      doOnConnectionReady("isApiAvailable") {
+      connection.withConnection("isApiAvailable") {
         org.signal.core.util.billing.BillingResponseCode.fromBillingLibraryResponseCode(billingClient.isFeatureSupported(BillingClient.FeatureType.SUBSCRIPTIONS).responseCode)
       }
     } catch (e: BillingError) {
@@ -217,7 +203,7 @@ internal class BillingApiImpl(
         .setProductList(productList)
         .build()
 
-      val result = doOnConnectionReady("queryProductsInternal") {
+      val result = connection.withConnection("queryProductsInternal") {
         billingClient.queryProductDetails(params)
       }
 
@@ -226,56 +212,6 @@ internal class BillingApiImpl(
       productDetailsExpiration = now + CACHE_LIFESPAN
 
       return@withContext result
-    }
-  }
-
-  private suspend fun <T> doOnConnectionReady(caller: String, block: suspend () -> T): T {
-    Log.d(TAG, "Awaiting connection from $caller... (current state: ${connectionState.value})", true)
-    startBillingClientConnectionIfNecessary()
-
-    val state = connectionState
-      .filter { it == State.Connected || it is State.Failure }
-      .first()
-
-    Log.d(TAG, "Handling block from $caller.. (current state: ${connectionState.value})", true)
-    return when (state) {
-      State.Connected -> block()
-      is State.Failure -> throw state.billingError
-      else -> error("Unexpected state: $state")
-    }
-  }
-
-  private suspend fun startBillingClientConnectionIfNecessary() {
-    withContext(connectionStateDispatcher) {
-      val billingConnectionState = billingClient.connectionState
-      when (billingConnectionState) {
-        BillingClient.ConnectionState.DISCONNECTED -> {
-          Log.d(TAG, "BillingClient is disconnected. Starting connection attempt.", true)
-          connectionState.update { State.Connecting }
-          billingClient.startConnection(
-            BillingListener(
-              onStateUpdate = { new ->
-                connectionState.update { old ->
-                  Log.d(TAG, "Moving from state $old -> $new", true)
-                  new
-                }
-              }
-            )
-          )
-        }
-
-        BillingClient.ConnectionState.CONNECTING -> {
-          Log.d(TAG, "BillingClient is already connecting. Nothing to do.", true)
-        }
-
-        BillingClient.ConnectionState.CONNECTED -> {
-          Log.d(TAG, "BillingClient is already connected. Nothing to do.", true)
-        }
-
-        BillingClient.ConnectionState.CLOSED -> {
-          Log.w(TAG, "BillingClient was permanently closed. Cannot proceed.", true)
-        }
-      }
     }
   }
 
@@ -364,37 +300,4 @@ internal class BillingApiImpl(
       }
     }
   }
-
-  private class BillingListener(
-    private val onStateUpdate: (State) -> Unit
-  ) : BillingClientStateListener {
-    override fun onBillingServiceDisconnected() {
-      Log.d(TAG, "BillingListener#onBillingServiceDisconnected", true)
-      onStateUpdate(State.Disconnected)
-    }
-
-    override fun onBillingSetupFinished(billingResult: BillingResult) {
-      Log.d(TAG, "BillingListener#onBillingSetupFinished: ${billingResult.responseCode}", true)
-      if (billingResult.responseCode == BillingResponseCode.OK) {
-        Log.d(TAG, "BillingListener#onBillingSetupFinished: ready", true)
-        onStateUpdate(State.Connected)
-      } else {
-        Log.d(TAG, "BillingListener#onBillingSetupFinished: failure", true)
-        val billingError = BillingError(
-          billingResponseCode = billingResult.responseCode
-        )
-        onStateUpdate(State.Failure(billingError))
-      }
-    }
-  }
-
-  private sealed interface State {
-    data object Init : State
-    data object Connecting : State
-    data object Connected : State
-    data object Disconnected : State
-    data class Failure(val billingError: BillingError) : State
-  }
-
-  private class RetryException : Exception()
 }

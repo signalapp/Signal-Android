@@ -21,6 +21,7 @@ import org.junit.Before
 import org.junit.Test
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.ServiceId.ACI
+import org.signal.core.util.billing.OneTimePurchaseApi
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.protocol.IdentityKeyPair
@@ -63,14 +64,16 @@ class RegistrationRepositoryTest {
       context = mockk<Context>(relaxed = true),
       networkController = networkController,
       storageController = storageController,
-      isLinkAndSyncAvailable = false
+      isLinkAndSyncAvailable = false,
+      signalLoginPurchaseApi = OneTimePurchaseApi.Empty
     )
     numberlessRepository = RegistrationRepository(
       context = mockk<Context>(relaxed = true),
       networkController = networkController,
       storageController = storageController,
       isLinkAndSyncAvailable = false,
-      isPhoneNumberlessRegistrationAvailable = true
+      isPhoneNumberlessRegistrationAvailable = true,
+      signalLoginPurchaseApi = OneTimePurchaseApi.Empty
     )
   }
 

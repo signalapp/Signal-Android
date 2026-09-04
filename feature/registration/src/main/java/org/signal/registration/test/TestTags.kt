@@ -52,6 +52,7 @@ object TestTags {
   const val SIGNAL_LOGIN_PAYMENT_SCREEN = "signal_login_payment_screen"
   const val SIGNAL_LOGIN_PAYMENT_LEARN_MORE_LINK = "signal_login_payment_learn_more_link"
   const val SIGNAL_LOGIN_PAYMENT_PURCHASE_OPTION = "signal_login_payment_purchase_option"
+  const val SIGNAL_LOGIN_PAYMENT_PRICE_RETRY_BUTTON = "signal_login_payment_price_retry_button"
   const val SIGNAL_LOGIN_PAYMENT_EXISTING_LOGIN_OPTION = "signal_login_payment_existing_login_option"
   const val SIGNAL_LOGIN_PAYMENT_CONTINUE_BUTTON = "signal_login_payment_continue_button"
   const val SIGNAL_LOGIN_PAYMENT_RECEIPT_CREDENTIAL_FIELD = "signal_login_payment_receipt_credential_field"

@@ -643,6 +643,16 @@
     <string name="SignalLoginPaymentScreen__continue">Continue</string>
     <!-- Error shown when the purchase does not go through. -->
     <string name="SignalLoginPaymentScreen__your_purchase_could_not_be_completed">Your purchase could not be completed. You have not been charged.</string>
+    <!-- Shown in place of the price when Google Play cannot offer the purchase. -->
+    <string name="SignalLoginPaymentScreen__unavailable">Unavailable</string>
+    <!-- Label for the button that retries loading the purchase price after it failed to load. -->
+    <string name="SignalLoginPaymentScreen__retry">Retry</string>
+    <!-- Shown in place of the price when the user already paid for a Signal Login but it was never redeemed. -->
+    <string name="SignalLoginPaymentScreen__already_paid">Already paid</string>
+    <!-- Error shown when Signal Login cannot be purchased on this device, for example because the Google Play Store is unavailable. -->
+    <string name="SignalLoginPaymentScreen__signal_login_cant_be_purchased">Signal Login can\'t be purchased on this device right now. Try again later.</string>
+    <!-- Message shown when the user's payment has gone through but has not finished processing yet. -->
+    <string name="SignalLoginPaymentScreen__your_payment_is_still_processing">Your payment is still processing. Come back and tap continue once it goes through, and you won\'t be charged again.</string>
     <!-- Label for the internal-testing text field where a receipt credential can be pasted to skip payment. Not shown to real users. -->
     <string name="SignalLoginPaymentScreen__paste_a_receipt_credential" translatable="false">Paste a receipt credential (testing)</string>
     <!-- Error shown when a manually-pasted receipt credential can\'t be parsed or is rejected. Internal testing only. -->

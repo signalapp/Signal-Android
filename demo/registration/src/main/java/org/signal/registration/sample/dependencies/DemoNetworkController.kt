@@ -31,6 +31,7 @@ import org.signal.core.util.Base64
 import org.signal.core.util.Hex
 import org.signal.core.util.SleepTimer
 import org.signal.core.util.UsernameUtil
+import org.signal.core.util.Util
 import org.signal.core.util.logging.Log
 import org.signal.devicetransfer.DeviceToDeviceTransferService
 import org.signal.libsignal.net.Network
@@ -49,6 +50,9 @@ import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredential
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialRequest
+import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialRequestContext
+import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialResponse
+import org.signal.libsignal.zkgroup.receipts.ReceiptSerial
 import org.signal.libsignal.zkgroup.receipts.ServerZkReceiptOperations
 import org.signal.network.NetworkResult
 import org.signal.network.api.LinkDeviceApi
@@ -59,8 +63,10 @@ import org.signal.network.api.RegistrationApiV2.CheckSvrCredentialsResponse
 import org.signal.network.api.RegistrationApiV2.CreateLoginReceiptCredentialResult
 import org.signal.network.api.RegistrationApiV2.CreateSessionError
 import org.signal.network.api.RegistrationApiV2.DeviceAttributes
+import org.signal.network.api.RegistrationApiV2.GetLoginConfigurationError
 import org.signal.network.api.RegistrationApiV2.GetSessionStatusError
 import org.signal.network.api.RegistrationApiV2.LinkDeviceResponse
+import org.signal.network.api.RegistrationApiV2.LoginConfiguration
 import org.signal.network.api.RegistrationApiV2.PreKeyCollection
 import org.signal.network.api.RegistrationApiV2.RegisterAccountError
 import org.signal.network.api.RegistrationApiV2.RegisterAccountResponse
@@ -83,6 +89,7 @@ import org.signal.registration.LinkAndSyncWaitResult
 import org.signal.registration.NetworkController
 import org.signal.registration.NetworkController.ProvisioningEvent
 import org.signal.registration.NetworkController.ProvisioningMessage
+import org.signal.registration.ReceiptCredentialResult
 import org.signal.registration.proto.RegistrationProvisionMessage
 import org.signal.registration.sample.MainActivity
 import org.signal.registration.sample.fcm.FcmUtil
@@ -107,6 +114,7 @@ import org.whispersystems.signalservice.internal.util.StaticCredentialsProvider
 import org.whispersystems.signalservice.internal.websocket.LibSignalChatConnection
 import java.io.Closeable
 import java.io.IOException
+import java.security.SecureRandom
 import java.time.Instant
 import java.time.temporal.ChronoUnit
 import java.util.Locale
@@ -132,7 +140,12 @@ class DemoNetworkController(
     const val DEVICE_TRANSFER_NOTIFICATION_CHANNEL_ID = "device_transfer"
     private const val DEVICE_TRANSFER_NOTIFICATION_ID = 4321
     private const val USER_AGENT = "Signal-Android-Registration-Sample"
-    private const val LOGIN_PURCHASE_RECEIPT_LEVEL = 1L
+
+    /** The receipt level a Signal Login purchase is worth, per the service's subscription configuration. */
+    private const val LOGIN_PURCHASE_RECEIPT_LEVEL = 300L
+
+    /** The Google Play product a Signal Login is sold as. */
+    private const val LOGIN_PURCHASE_PLAY_PRODUCT_ID = "signup"
   }
 
   private val json = Json { ignoreUnknownKeys = true }
@@ -238,6 +251,11 @@ class DemoNetworkController(
    * credential is issued by throwaway server params, so it is internally consistent but will not verify against the
    * real server's public params.
    */
+  override suspend fun getLoginConfiguration(): RequestResult<LoginConfiguration, GetLoginConfigurationError> {
+    Log.i(TAG, "[getLoginConfiguration] Returning a locally-defined Signal Login configuration.")
+    return RequestResult.Success(LoginConfiguration(level = LOGIN_PURCHASE_RECEIPT_LEVEL, playProductId = LOGIN_PURCHASE_PLAY_PRODUCT_ID))
+  }
+
   override suspend fun createLoginPurchaseReceiptCredential(
     purchaseIdentifier: String,
     receiptCredentialRequest: ReceiptCredentialRequest,
@@ -251,8 +269,27 @@ class DemoNetworkController(
     return RequestResult.Success(CreateLoginReceiptCredentialResult.Issued(response))
   }
 
-  override fun createReceiptCredentialPresentation(receiptCredential: ReceiptCredential): ReceiptCredentialPresentation {
-    return ClientZkReceiptOperations(demoReceiptServerSecretParams.publicParams).createReceiptCredentialPresentation(receiptCredential)
+  override fun createReceiptCredentialRequestContext(): ReceiptCredentialRequestContext {
+    val receiptSerial = ReceiptSerial(Util.getSecretBytes(ReceiptSerial.SIZE))
+    return ClientZkReceiptOperations(demoReceiptServerSecretParams.publicParams).createReceiptCredentialRequestContext(SecureRandom(), receiptSerial)
+  }
+
+  override fun receiveReceiptCredential(requestContext: ReceiptCredentialRequestContext, response: ReceiptCredentialResponse): ReceiptCredentialResult<ReceiptCredential> {
+    return try {
+      ReceiptCredentialResult.Success(ClientZkReceiptOperations(demoReceiptServerSecretParams.publicParams).receiveReceiptCredential(requestContext, response))
+    } catch (e: VerificationFailedException) {
+      Log.w(TAG, "Could not verify the issued receipt credential.", e)
+      ReceiptCredentialResult.VerificationFailed
+    }
+  }
+
+  override fun createReceiptCredentialPresentation(receiptCredential: ReceiptCredential): ReceiptCredentialResult<ReceiptCredentialPresentation> {
+    return try {
+      ReceiptCredentialResult.Success(ClientZkReceiptOperations(demoReceiptServerSecretParams.publicParams).createReceiptCredentialPresentation(receiptCredential))
+    } catch (e: VerificationFailedException) {
+      Log.w(TAG, "Could not verify the receipt credential while building its presentation.", e)
+      ReceiptCredentialResult.VerificationFailed
+    }
   }
 
   override suspend fun getFcmToken(): String? {

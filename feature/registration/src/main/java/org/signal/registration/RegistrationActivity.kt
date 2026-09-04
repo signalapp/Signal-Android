@@ -13,6 +13,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.core.content.IntentCompat
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import org.signal.billing.BillingFactory
 import org.signal.core.ui.compose.theme.SignalTheme
 
 /**
@@ -53,15 +54,21 @@ class RegistrationActivity : ComponentActivity() {
     }
   }
 
-  private val repository: RegistrationRepository by lazy {
+  private val repositoryLazy = lazy {
     RegistrationRepository(
       context = this.application,
       networkController = RegistrationDependencies.get().networkController,
       storageController = RegistrationDependencies.get().storageController,
       isLinkAndSyncAvailable = RegistrationDependencies.get().isLinkAndSyncAvailable,
-      isPhoneNumberlessRegistrationAvailable = RegistrationDependencies.get().isPhoneNumberlessRegistrationAvailable
+      isPhoneNumberlessRegistrationAvailable = RegistrationDependencies.get().isPhoneNumberlessRegistrationAvailable,
+      isGooglePlayBillingAvailable = RegistrationDependencies.get().isGooglePlayBillingAvailable,
+      signalLoginPurchaseApi = BillingFactory.createOneTimePurchaseApi(
+        context = this.application,
+        isAvailable = RegistrationDependencies.get().isGooglePlayBillingAvailable
+      )
     )
   }
+  private val repository: RegistrationRepository by repositoryLazy
 
   @OptIn(ExperimentalPermissionsApi::class)
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -89,6 +96,13 @@ class RegistrationActivity : ComponentActivity() {
           )
         }
       }
+    }
+  }
+
+  override fun onDestroy() {
+    super.onDestroy()
+    if (repositoryLazy.isInitialized()) {
+      repository.close()
     }
   }
 

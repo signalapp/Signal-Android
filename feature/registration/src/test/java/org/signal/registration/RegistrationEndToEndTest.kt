@@ -52,6 +52,7 @@ import org.signal.core.models.ServiceId.PNI
 import org.signal.core.ui.CoreUiDependenciesRule
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.core.util.billing.OneTimePurchaseApi
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.protocol.IdentityKeyPair
@@ -120,7 +121,7 @@ class RegistrationEndToEndTest {
 
     networkController = FakeNetworkController()
     storageController = FakeStorageController()
-    repository = RegistrationRepository(context, networkController, storageController, isLinkAndSyncAvailable = false)
+    repository = RegistrationRepository(context, networkController, storageController, isLinkAndSyncAvailable = false, signalLoginPurchaseApi = OneTimePurchaseApi.Empty)
   }
 
   @Test

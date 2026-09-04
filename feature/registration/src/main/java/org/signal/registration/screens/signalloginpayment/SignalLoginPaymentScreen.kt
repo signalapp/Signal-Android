@@ -37,6 +37,7 @@ import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
@@ -69,6 +70,7 @@ import org.signal.registration.test.TestTags
 
 private val CARD_SHAPE = RoundedCornerShape(18.dp)
 private val CARD_BORDER_WIDTH = 3.5.dp
+private const val DISABLED_CARD_ALPHA = 0.5f
 
 /**
  * Lets the user buy a Signal Login so they can register without a phone number, or indicate that they already have one.
@@ -82,6 +84,8 @@ fun SignalLoginPaymentScreen(
   val simpleError: Pair<String, SignalLoginPaymentScreenEvents>? = when {
     state.dialogs.networkError -> stringResource(R.string.VerificationCodeScreen__network_error) to SignalLoginPaymentScreenEvents.NetworkErrorDialogDismissed
     state.dialogs.purchaseFailed -> stringResource(R.string.SignalLoginPaymentScreen__your_purchase_could_not_be_completed) to SignalLoginPaymentScreenEvents.PurchaseFailedDialogDismissed
+    state.dialogs.purchaseUnavailable -> stringResource(R.string.SignalLoginPaymentScreen__signal_login_cant_be_purchased) to SignalLoginPaymentScreenEvents.PurchaseUnavailableDialogDismissed
+    state.dialogs.purchasePending -> stringResource(R.string.SignalLoginPaymentScreen__your_payment_is_still_processing) to SignalLoginPaymentScreenEvents.PurchasePendingDialogDismissed
     state.dialogs.unknownError -> stringResource(R.string.VerificationCodeScreen__an_unexpected_error_occurred) to SignalLoginPaymentScreenEvents.UnknownErrorDialogDismissed
     state.dialogs.invalidReceiptCredential -> stringResource(R.string.SignalLoginPaymentScreen__this_receipt_credential_is_invalid) to SignalLoginPaymentScreenEvents.InvalidReceiptCredentialDialogDismissed
     else -> null
@@ -245,18 +249,48 @@ private fun OptionCards(
 ) {
   OptionCard(
     title = {
-      if (state.formattedPrice != null) {
-        Text(text = state.formattedPrice, style = MaterialTheme.typography.titleMedium)
-      } else {
-        CircularProgressIndicator(
-          strokeWidth = 2.dp,
-          modifier = Modifier.size(20.dp)
-        )
+      // A purchase the user already paid for is what they will continue with, so the price no longer gates the card.
+      when {
+        state.price is SignalLoginPaymentState.Price.Available -> {
+          Text(text = state.price.formattedPrice, style = MaterialTheme.typography.titleMedium)
+        }
+
+        state.hasUnredeemedPurchase -> {
+          Text(
+            text = stringResource(R.string.SignalLoginPaymentScreen__already_paid),
+            style = MaterialTheme.typography.titleMedium
+          )
+        }
+
+        state.price is SignalLoginPaymentState.Price.TransientError -> {
+          Buttons.Small(
+            onClick = { onEvent(SignalLoginPaymentScreenEvents.PriceRetryClicked) },
+            modifier = Modifier.testTag(TestTags.SIGNAL_LOGIN_PAYMENT_PRICE_RETRY_BUTTON)
+          ) {
+            Text(text = stringResource(R.string.SignalLoginPaymentScreen__retry))
+          }
+        }
+
+        state.price is SignalLoginPaymentState.Price.Unavailable -> {
+          Text(
+            text = stringResource(R.string.SignalLoginPaymentScreen__unavailable),
+            style = MaterialTheme.typography.titleMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant
+          )
+        }
+
+        else -> {
+          CircularProgressIndicator(
+            strokeWidth = 2.dp,
+            modifier = Modifier.size(20.dp)
+          )
+        }
       }
     },
     subtitle = stringResource(R.string.SignalLoginPaymentScreen__one_time_purchase),
     selected = state.selectedOption == Option.Purchase,
     onClick = { onEvent(SignalLoginPaymentScreenEvents.OptionSelected(Option.Purchase)) },
+    enabled = state.isPurchaseOptionEnabled,
     modifier = Modifier.testTag(TestTags.SIGNAL_LOGIN_PAYMENT_PURCHASE_OPTION)
   ) {
     FeatureRow(painterResource(R.drawable.symbol_no_phone_44), stringResource(R.string.SignalLoginPaymentScreen__no_phone_number_needed))
@@ -313,13 +347,15 @@ private fun OptionCard(
   selected: Boolean,
   onClick: () -> Unit,
   modifier: Modifier = Modifier,
+  enabled: Boolean = true,
   features: @Composable ColumnScope.() -> Unit
 ) {
   Column(
     modifier = modifier
       .fillMaxWidth()
       .clip(CARD_SHAPE)
-      .selectable(selected = selected, role = Role.RadioButton, onClick = onClick)
+      .selectable(selected = selected, enabled = enabled, role = Role.RadioButton, onClick = onClick)
+      .alpha(if (enabled) 1f else DISABLED_CARD_ALPHA)
       .border(
         width = CARD_BORDER_WIDTH,
         color = if (selected) MaterialTheme.colorScheme.primary else Color.Transparent,
@@ -407,7 +443,8 @@ private fun Footer(
             text = when {
               state.manualReceiptCredential.isNotBlank -> stringResource(R.string.SignalLoginPaymentScreen__continue)
               state.selectedOption == Option.ExistingLogin -> stringResource(R.string.SignalLoginPaymentScreen__continue)
-              state.formattedPrice != null -> stringResource(R.string.SignalLoginPaymentScreen__pay_s, state.formattedPrice)
+              state.hasUnredeemedPurchase -> stringResource(R.string.SignalLoginPaymentScreen__continue)
+              state.price is SignalLoginPaymentState.Price.Available -> stringResource(R.string.SignalLoginPaymentScreen__pay_s, state.price.formattedPrice)
               else -> stringResource(R.string.SignalLoginPaymentScreen__pay)
             }
           )
@@ -422,7 +459,7 @@ private fun Footer(
 private fun SignalLoginPaymentScreenPreview() {
   Previews.Preview {
     SignalLoginPaymentScreen(
-      state = SignalLoginPaymentState(formattedPrice = "$1.99"),
+      state = SignalLoginPaymentState(price = SignalLoginPaymentState.Price.Available("$1.99")),
       onEvent = {}
     )
   }
@@ -434,7 +471,7 @@ private fun SignalLoginPaymentScreenExistingLoginPreview() {
   Previews.Preview {
     SignalLoginPaymentScreen(
       state = SignalLoginPaymentState(
-        formattedPrice = "$1.99",
+        price = SignalLoginPaymentState.Price.Available("$1.99"),
         selectedOption = Option.ExistingLogin
       ),
       onEvent = {}
@@ -448,7 +485,7 @@ private fun SignalLoginPaymentScreenManualReceiptCredentialPreview() {
   Previews.Preview {
     SignalLoginPaymentScreen(
       state = SignalLoginPaymentState(
-        formattedPrice = "$1.99",
+        price = SignalLoginPaymentState.Price.Available("$1.99"),
         manualReceiptCredential = ManualReceiptCredential("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
       ),
       onEvent = {}

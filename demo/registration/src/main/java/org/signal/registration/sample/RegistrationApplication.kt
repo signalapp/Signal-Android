@@ -89,7 +89,9 @@ class RegistrationApplication : Application() {
           }
         },
         isLinkAndSyncAvailable = true,
-        isPhoneNumberlessRegistrationAvailable = true
+        isPhoneNumberlessRegistrationAvailable = true,
+        // The demo app is not published to the Play Store, so it can never complete a real purchase.
+        isGooglePlayBillingAvailable = false
       )
     )
 

@@ -46,6 +46,7 @@ import androidx.navigation3.ui.NavDisplay
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import kotlinx.serialization.Serializable
 import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.core.util.billing.OneTimePurchaseApi
 import org.signal.registration.RegistrationDependencies
 import org.signal.registration.RegistrationNavHost
 import org.signal.registration.RegistrationRepository
@@ -137,7 +138,9 @@ private fun SampleNavHost(
       networkController = registrationDependencies.networkController,
       storageController = registrationDependencies.storageController,
       isLinkAndSyncAvailable = registrationDependencies.isLinkAndSyncAvailable,
-      isPhoneNumberlessRegistrationAvailable = registrationDependencies.isPhoneNumberlessRegistrationAvailable
+      isPhoneNumberlessRegistrationAvailable = registrationDependencies.isPhoneNumberlessRegistrationAvailable,
+      // The demo app is never published to the Play Store, so there is nothing to buy from.
+      signalLoginPurchaseApi = OneTimePurchaseApi.Empty
     )
   }
 

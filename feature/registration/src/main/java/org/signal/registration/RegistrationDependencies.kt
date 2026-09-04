@@ -16,6 +16,8 @@ import org.signal.registration.util.SensitiveLog
  *   with a purchased Signal Login instead of a phone number) is offered. The screens are always present in the
  *   navigation graph; this only gates them off at runtime while the flow is unfinished. Also gates linking to an
  *   account that has no phone number.
+ * @param isGooglePlayBillingAvailable Whether this build can use Google Play billing at all, which buying a Signal
+ *   Login requires.
  * @param sensitiveLogger A logger for logging sensitive material. The intention is this would only be used in the demo app for testing + debugging, while
  *   the actual app would just pass null.
  * @param debugLogCallback Callback to launch the debug log viewer. The actual app provides the real implementation.
@@ -27,6 +29,7 @@ class RegistrationDependencies(
   val storageController: StorageController,
   val isLinkAndSyncAvailable: Boolean,
   val isPhoneNumberlessRegistrationAvailable: Boolean,
+  val isGooglePlayBillingAvailable: Boolean,
   val sensitiveLogger: Log.Logger?,
   val debugLogCallback: ((Context) -> Unit)?,
   val proxyConfigCallback: ((Context) -> Unit)?,

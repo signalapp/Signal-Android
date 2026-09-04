@@ -61,6 +61,7 @@ dependencies {
   implementation(project(":core:util"))
   implementation(project(":core:models-jvm"))
   implementation(project(":core:serialization"))
+  implementation(project(":lib:billing"))
   implementation(project(":lib:device-transfer"))
   implementation(project(":lib:password-manager"))
   implementation(project(":lib:signal-login"))

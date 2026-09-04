@@ -438,6 +438,7 @@ public class ApplicationContext extends Application implements AppForegroundObse
         new AppRegistrationStorageController(this),
         Environment.IS_LINK_AND_SYNC_AVAILABLE,
         Environment.PHONENUMBERLESS_REGISTRATION,
+        Environment.supportsGooglePlayBilling(),
         null,
         context -> {
           context.startActivity(new Intent(context, SubmitDebugLogActivity.class));

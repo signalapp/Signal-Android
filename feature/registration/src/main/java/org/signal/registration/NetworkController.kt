@@ -22,6 +22,8 @@ import org.signal.libsignal.usernames.Username
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredential
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialRequest
+import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialRequestContext
+import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialResponse
 import org.signal.network.api.RegistrationApiV2.AccountAttributes
 import org.signal.network.api.RegistrationApiV2.CheckSvrCredentialsError
 import org.signal.network.api.RegistrationApiV2.CheckSvrCredentialsResponse
@@ -29,8 +31,10 @@ import org.signal.network.api.RegistrationApiV2.CreateLoginReceiptCredentialErro
 import org.signal.network.api.RegistrationApiV2.CreateLoginReceiptCredentialResult
 import org.signal.network.api.RegistrationApiV2.CreateSessionError
 import org.signal.network.api.RegistrationApiV2.DeviceAttributes
+import org.signal.network.api.RegistrationApiV2.GetLoginConfigurationError
 import org.signal.network.api.RegistrationApiV2.GetSessionStatusError
 import org.signal.network.api.RegistrationApiV2.LinkDeviceResponse
+import org.signal.network.api.RegistrationApiV2.LoginConfiguration
 import org.signal.network.api.RegistrationApiV2.LoginPurchasePaymentProvider
 import org.signal.network.api.RegistrationApiV2.PreKeyCollection
 import org.signal.network.api.RegistrationApiV2.RegisterAccountError
@@ -131,6 +135,14 @@ interface NetworkController {
   ): RequestResult<RegisterAccountResponse, RegisterAccountError>
 
   /**
+   * Fetches the service's configuration for one-time Signal Login purchases: which product to sell, and the receipt
+   * level a purchase of it is worth.
+   *
+   * `GET /v1/subscription/configuration`
+   */
+  suspend fun getLoginConfiguration(): RequestResult<LoginConfiguration, GetLoginConfigurationError>
+
+  /**
    * Redeems a completed one-time Signal Login purchase for a receipt credential, which can then be presented to
    * [registerAccount] to create an account that has no phone number.
    *
@@ -148,12 +160,23 @@ interface NetworkController {
   ): RequestResult<CreateLoginReceiptCredentialResult, CreateLoginReceiptCredentialError>
 
   /**
+   * Generates the request context whose [ReceiptCredentialRequestContext.getRequest] is sent to
+   * [createLoginPurchaseReceiptCredential], and which is needed again by [receiveReceiptCredential] to unblind the
+   * response. Retries for the same purchase must reuse the context they started with, so callers are expected to
+   * persist it.
+   */
+  fun createReceiptCredentialRequestContext(): ReceiptCredentialRequestContext
+
+  /**
+   * Unblinds the response from [createLoginPurchaseReceiptCredential] into the credential it issued.
+   */
+  fun receiveReceiptCredential(requestContext: ReceiptCredentialRequestContext, response: ReceiptCredentialResponse): ReceiptCredentialResult<ReceiptCredential>
+
+  /**
    * Builds the presentation for [receiptCredential] that a numberless [registerAccount] redeems. Lives here
    * because it requires the zkgroup server public params for the environment this controller talks to.
-   *
-   * @throws org.signal.libsignal.zkgroup.VerificationFailedException if the credential was not issued by this environment's service.
    */
-  fun createReceiptCredentialPresentation(receiptCredential: ReceiptCredential): ReceiptCredentialPresentation
+  fun createReceiptCredentialPresentation(receiptCredential: ReceiptCredential): ReceiptCredentialResult<ReceiptCredentialPresentation>
 
   /**
    * Retrieves an FCM token, if possible. Null means that this device does not support FCM.

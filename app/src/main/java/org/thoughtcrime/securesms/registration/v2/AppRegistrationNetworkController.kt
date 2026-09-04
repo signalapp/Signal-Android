@@ -19,15 +19,20 @@ import kotlinx.coroutines.withContext
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.MasterKey
 import org.signal.core.models.ServiceId.ACI
+import org.signal.core.util.Util
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.ecc.ECPrivateKey
 import org.signal.libsignal.usernames.Username
+import org.signal.libsignal.zkgroup.VerificationFailedException
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredential
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialRequest
+import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialRequestContext
+import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialResponse
+import org.signal.libsignal.zkgroup.receipts.ReceiptSerial
 import org.signal.network.NetworkResult
 import org.signal.network.api.ArchiveApiV2
 import org.signal.network.api.RegistrationApiV2
@@ -38,8 +43,10 @@ import org.signal.network.api.RegistrationApiV2.CreateLoginReceiptCredentialErro
 import org.signal.network.api.RegistrationApiV2.CreateLoginReceiptCredentialResult
 import org.signal.network.api.RegistrationApiV2.CreateSessionError
 import org.signal.network.api.RegistrationApiV2.DeviceAttributes
+import org.signal.network.api.RegistrationApiV2.GetLoginConfigurationError
 import org.signal.network.api.RegistrationApiV2.GetSessionStatusError
 import org.signal.network.api.RegistrationApiV2.LinkDeviceResponse
+import org.signal.network.api.RegistrationApiV2.LoginConfiguration
 import org.signal.network.api.RegistrationApiV2.LoginPurchasePaymentProvider
 import org.signal.network.api.RegistrationApiV2.PreKeyCollection
 import org.signal.network.api.RegistrationApiV2.RegisterAccountError
@@ -72,6 +79,7 @@ import org.signal.registration.NetworkController.SetAccountAttributesError
 import org.signal.registration.NetworkController.SetProfileError
 import org.signal.registration.NetworkController.SetRegistrationLockError
 import org.signal.registration.NetworkController.VerifyBackupKeyError
+import org.signal.registration.ReceiptCredentialResult
 import org.signal.registration.proto.RegistrationProvisionMessage
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
@@ -110,6 +118,7 @@ import org.whispersystems.signalservice.internal.push.ProvisionMessage
 import org.whispersystems.signalservice.internal.push.SyncMessage
 import java.io.Closeable
 import java.io.IOException
+import java.security.SecureRandom
 import java.util.Locale
 import kotlin.coroutines.coroutineContext
 import kotlin.time.Duration
@@ -202,6 +211,10 @@ class AppRegistrationNetworkController(
     )
   }
 
+  override suspend fun getLoginConfiguration(): RequestResult<LoginConfiguration, GetLoginConfigurationError> {
+    return registrationApi.getLoginConfiguration()
+  }
+
   override suspend fun createLoginPurchaseReceiptCredential(
     purchaseIdentifier: String,
     receiptCredentialRequest: ReceiptCredentialRequest,
@@ -214,8 +227,27 @@ class AppRegistrationNetworkController(
     )
   }
 
-  override fun createReceiptCredentialPresentation(receiptCredential: ReceiptCredential): ReceiptCredentialPresentation {
-    return AppDependencies.clientZkReceiptOperations.createReceiptCredentialPresentation(receiptCredential)
+  override fun createReceiptCredentialRequestContext(): ReceiptCredentialRequestContext {
+    val receiptSerial = ReceiptSerial(Util.getSecretBytes(ReceiptSerial.SIZE))
+    return AppDependencies.clientZkReceiptOperations.createReceiptCredentialRequestContext(SecureRandom(), receiptSerial)
+  }
+
+  override fun receiveReceiptCredential(requestContext: ReceiptCredentialRequestContext, response: ReceiptCredentialResponse): ReceiptCredentialResult<ReceiptCredential> {
+    return try {
+      ReceiptCredentialResult.Success(AppDependencies.clientZkReceiptOperations.receiveReceiptCredential(requestContext, response))
+    } catch (e: VerificationFailedException) {
+      Log.w(TAG, "Could not verify the issued receipt credential.", e)
+      ReceiptCredentialResult.VerificationFailed
+    }
+  }
+
+  override fun createReceiptCredentialPresentation(receiptCredential: ReceiptCredential): ReceiptCredentialResult<ReceiptCredentialPresentation> {
+    return try {
+      ReceiptCredentialResult.Success(AppDependencies.clientZkReceiptOperations.createReceiptCredentialPresentation(receiptCredential))
+    } catch (e: VerificationFailedException) {
+      Log.w(TAG, "Could not verify the receipt credential while building its presentation.", e)
+      ReceiptCredentialResult.VerificationFailed
+    }
   }
 
   override suspend fun getFcmToken(): String? {
