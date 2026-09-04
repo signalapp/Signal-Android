@@ -76,13 +76,13 @@ internal fun MediaSendNavigation(
     ) { key ->
       when (key) {
         is MediaSendRoute.Capture -> NavEntry(MediaSendRoute.Capture.Chrome) {
-          val captureViewModel: MediaCaptureViewModel = viewModel(
-            factory = MediaCaptureViewModel.Factory(
+          val captureViewModel: MediaCaptureViewModel = viewModel {
+            MediaCaptureViewModel(
               parentState = viewModel.state,
               parentEventEmitter = viewModel::onEvent,
               selectedCaptureScreen = key
             )
-          )
+          }
           val state by captureViewModel.state.collectAsStateWithLifecycle()
 
           // Toggling between the camera and the text story editor is navigation, so it arrives as a new key on an
@@ -102,14 +102,14 @@ internal fun MediaSendNavigation(
         }
 
         MediaSendRoute.Select.Folders -> NavEntry(key) {
-          val selectViewModel: MediaSelectViewModel = viewModel(
-            factory = MediaSelectViewModel.Factory(
+          val selectViewModel: MediaSelectViewModel = viewModel {
+            MediaSelectViewModel(
               parentState = viewModel.state,
               parentEventEmitter = viewModel::onEvent,
               mediaFolder = null,
               selectionAdditions = viewModel.selectionAdditions
             )
-          )
+          }
           val state by selectViewModel.state.collectAsStateWithLifecycle()
 
           selectViewModel.readMediaPermission.Content()
@@ -122,14 +122,14 @@ internal fun MediaSendNavigation(
         }
 
         is MediaSendRoute.Select.Files -> NavEntry(key) {
-          val selectViewModel: MediaSelectViewModel = viewModel(
-            factory = MediaSelectViewModel.Factory(
+          val selectViewModel: MediaSelectViewModel = viewModel {
+            MediaSelectViewModel(
               parentState = viewModel.state,
               parentEventEmitter = viewModel::onEvent,
               mediaFolder = key.folder,
               selectionAdditions = viewModel.selectionAdditions
             )
-          )
+          }
           val state by selectViewModel.state.collectAsStateWithLifecycle()
 
           selectViewModel.readMediaPermission.Content()
@@ -142,12 +142,12 @@ internal fun MediaSendNavigation(
         }
 
         is MediaSendRoute.Edit -> NavEntry(MediaSendRoute.Edit) {
-          val editViewModel: MediaEditViewModel = viewModel(
-            factory = MediaEditViewModel.Factory(
+          val editViewModel: MediaEditViewModel = viewModel {
+            MediaEditViewModel(
               parentState = viewModel.state,
               parentEventEmitter = viewModel::onEvent
             )
-          )
+          }
           val state by editViewModel.state.collectAsStateWithLifecycle()
 
           SaveToStorageDialog(editViewModel)

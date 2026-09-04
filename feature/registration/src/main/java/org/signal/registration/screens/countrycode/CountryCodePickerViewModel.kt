@@ -5,8 +5,6 @@
 
 package org.signal.registration.screens.countrycode
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -100,18 +98,6 @@ class CountryCodePickerViewModel(
           startingIndex = startingIndex
         )
       }
-    }
-  }
-
-  class Factory(
-    private val repository: CountryCodePickerRepository,
-    private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
-    private val resultBus: ResultEventBus,
-    private val resultKey: String,
-    private val initialCountry: Country? = null
-  ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return CountryCodePickerViewModel(repository, parentEventEmitter, resultBus, resultKey, initialCountry) as T
     }
   }
 }

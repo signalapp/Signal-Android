@@ -5,8 +5,6 @@
 
 package org.signal.appsettings.passkeys
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -47,14 +45,6 @@ class PasskeysViewModel(
       is PasskeysEvent.RenamePasskeyClicked, is PasskeysEvent.RemovePasskeyClicked -> {
         // Nothing to do yet -- rename and remove haven't been built.
       }
-    }
-  }
-
-  class Factory(
-    private val repository: PasskeysRepository
-  ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return PasskeysViewModel(repository) as T
     }
   }
 }

@@ -6,8 +6,6 @@
 package org.signal.registration.screens.signallogindetails
 
 import androidx.annotation.VisibleForTesting
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
@@ -81,16 +79,6 @@ class SignalLoginViewDetailsViewModel(
       is SignalLoginViewDetailsScreenEvents.RecoveryKeyLongClicked -> {
         _actions.trySend(SignalLoginViewDetailsScreenActions.CopyTextToClipboard(event.aep))
       }
-    }
-  }
-
-  class Factory(
-    private val parentState: StateFlow<RegistrationFlowState>,
-    private val parentEventEmitter: (RegistrationFlowEvent) -> Unit
-  ) : ViewModelProvider.Factory {
-    @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return SignalLoginViewDetailsViewModel(parentState, parentEventEmitter) as T
     }
   }
 }

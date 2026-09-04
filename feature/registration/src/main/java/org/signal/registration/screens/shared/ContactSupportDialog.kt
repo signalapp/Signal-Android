@@ -50,7 +50,7 @@ fun ContactSupportDialog(
   onDismiss: () -> Unit
 ) {
   val controller = RegistrationDependencies.get().contactSupportController ?: throw AssertionError("Missing support controller")
-  val viewModel: ContactSupportViewModel = viewModel(factory = ContactSupportViewModel.Factory(controller))
+  val viewModel: ContactSupportViewModel = viewModel { ContactSupportViewModel(controller) }
   val state by viewModel.state.collectAsStateWithLifecycle()
 
   val context = LocalContext.current

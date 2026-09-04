@@ -6,8 +6,6 @@
 package org.signal.registration.screens.signallogincredentials
 
 import androidx.annotation.VisibleForTesting
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
@@ -293,17 +291,6 @@ class SignalLoginCredentialEntryViewModel(
         Log.w(TAG, "[hasRemoteBackup] Could not determine whether a remote backup exists ($result). Offering it anyway.")
         true
       }
-    }
-  }
-
-  class Factory(
-    private val repository: RegistrationRepository,
-    private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
-    private val prefilledAccountId: String? = null
-  ) : ViewModelProvider.Factory {
-    @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return SignalLoginCredentialEntryViewModel(repository, parentEventEmitter, prefilledAccountId) as T
     }
   }
 }

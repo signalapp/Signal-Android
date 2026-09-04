@@ -7,8 +7,6 @@ package org.signal.registration.screens.aepentry
 
 import androidx.annotation.VisibleForTesting
 import androidx.core.net.toUri
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -213,21 +211,6 @@ class EnterAepForLocalBackupViewModel(
     parentEventEmitter(RegistrationFlowEvent.RecoveryPasswordInvalid)
     resultBus.sendResult(resultKey, EnterAepForLocalBackupResult.RegistrationDeferredToSms)
     parentEventEmitter.navigateBack()
-  }
-
-  class Factory(
-    private val isPreRegistration: Boolean,
-    private val backupUri: String?,
-    private val repository: RegistrationRepository,
-    private val parentState: StateFlow<RegistrationFlowState>,
-    private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
-    private val resultBus: ResultEventBus,
-    private val resultKey: String,
-    private val isPasswordManagerAvailable: Boolean = false
-  ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return EnterAepForLocalBackupViewModel(isPreRegistration, backupUri, repository, parentState, parentEventEmitter, resultBus, resultKey, isPasswordManagerAvailable) as T
-    }
   }
 }
 

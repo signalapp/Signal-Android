@@ -5,8 +5,6 @@
 
 package org.signal.registration.screens.totpentry
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -140,16 +138,6 @@ class TotpEntryViewModel(
     if (state.isComplete) {
       resultBus.sendResult(resultKey, state.code)
       parentEventEmitter(RegistrationFlowEvent.NavigateBackToScreen(RegistrationRoute.SignalLoginCredentialEntry()))
-    }
-  }
-
-  class Factory(
-    private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
-    private val resultBus: ResultEventBus,
-    private val resultKey: String
-  ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return TotpEntryViewModel(parentEventEmitter, resultBus, resultKey) as T
     }
   }
 }

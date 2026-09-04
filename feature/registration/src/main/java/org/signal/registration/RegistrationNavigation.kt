@@ -26,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
 import androidx.navigation3.runtime.EntryProviderScope
@@ -425,9 +426,9 @@ fun RegistrationNavHost(
   modifier: Modifier = Modifier,
   onRegistrationComplete: () -> Unit = {}
 ) {
-  val viewModel: RegistrationViewModel = registrationViewModel ?: viewModel(
-    factory = RegistrationViewModel.Factory(registrationRepository, startDestination, startFresh)
-  )
+  val viewModel: RegistrationViewModel = registrationViewModel ?: viewModel {
+    RegistrationViewModel(registrationRepository, createSavedStateHandle(), startDestination, startFresh)
+  }
 
   val registrationState by viewModel.state.collectAsStateWithLifecycle()
 
@@ -501,15 +502,15 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
   entry<RegistrationRoute.Welcome> {
     val context = LocalContext.current
     val termsAndPrivacyUrl = stringResource(R.string.terms_and_privacy_policy_url)
-    val viewModel: WelcomeScreenViewModel = viewModel(
-      factory = WelcomeScreenViewModel.Factory(
+    val viewModel: WelcomeScreenViewModel = viewModel {
+      WelcomeScreenViewModel(
         repository = registrationRepository,
         parentState = registrationViewModel.state,
         parentEventEmitter = registrationViewModel::onEvent,
         hasPermissions = { RegistrationPermissions.hasAllRequiredPermissions(context) },
         getRequiredLinkedDevicePermission = { registrationViewModel.getRequiredLinkedDevicePermission() }
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
     CollectActions(viewModel.actions) { action ->
       when (action) {
@@ -553,14 +554,14 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
 
   // --- Link account Screen
   entry<RegistrationRoute.LinkAccount> { key ->
-    val viewModel: LinkAccountViewModel = viewModel(
-      factory = LinkAccountViewModel.Factory(
+    val viewModel: LinkAccountViewModel = viewModel {
+      LinkAccountViewModel(
         repository = registrationRepository,
         parentState = registrationViewModel.state,
         parentEventEmitter = registrationViewModel::onEvent,
         showCreateAccount = key.showCreateAccount
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
     val context = LocalContext.current
     val url = "https://support.signal.org/hc/en-us/articles/360007320551"
@@ -578,13 +579,13 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
 
   // --- Message Sync Screen
   entry<RegistrationRoute.MessageSync> {
-    val viewModel: MessageSyncViewModel = viewModel(
-      factory = MessageSyncViewModel.Factory(
+    val viewModel: MessageSyncViewModel = viewModel {
+      MessageSyncViewModel(
         repository = registrationRepository,
         parentState = registrationViewModel.state,
         parentEventEmitter = registrationViewModel::onEvent
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
     val context = LocalContext.current
     val url = "https://support.signal.org/hc/articles/360007320391"
@@ -602,13 +603,13 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
 
   // -- Phone Number Entry Screen
   entry<RegistrationRoute.PhoneNumberEntry> {
-    val viewModel: PhoneNumberEntryViewModel = viewModel(
-      factory = PhoneNumberEntryViewModel.Factory(
+    val viewModel: PhoneNumberEntryViewModel = viewModel {
+      PhoneNumberEntryViewModel(
         repository = registrationRepository,
         parentState = registrationViewModel.state,
         parentEventEmitter = registrationViewModel::onEvent
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     ResultEffect<String?>(registrationViewModel.resultBus, CAPTCHA_RESULT) { captchaToken ->
@@ -635,15 +636,15 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
 
   // -- Country Code Picker
   entry<RegistrationRoute.CountryCodePicker>(metadata = TransitionSpecs.VerticalSlide.metadata) { key ->
-    val viewModel: CountryCodePickerViewModel = viewModel(
-      factory = CountryCodePickerViewModel.Factory(
+    val viewModel: CountryCodePickerViewModel = viewModel {
+      CountryCodePickerViewModel(
         repository = CountryCodePickerRepository(),
         parentEventEmitter = parentEventEmitter,
         resultBus = registrationViewModel.resultBus,
         resultKey = COUNTRY_CODE_RESULT,
         initialCountry = key.country
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     CountryCodePickerScreen(
@@ -676,14 +677,14 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
   // -- Verification Code Entry Screen
   entry<RegistrationRoute.VerificationCodeEntry> {
     val context = LocalContext.current.applicationContext
-    val viewModel: VerificationCodeViewModel = viewModel(
-      factory = VerificationCodeViewModel.Factory(
-        context = context,
+    val viewModel: VerificationCodeViewModel = viewModel {
+      VerificationCodeViewModel(
         repository = registrationRepository,
         parentState = registrationViewModel.state,
-        parentEventEmitter = registrationViewModel::onEvent
+        parentEventEmitter = registrationViewModel::onEvent,
+        smsCodeEvents = VerificationCodeViewModel.smsCodeFlow(context)
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     VerificationCodeScreen(
@@ -694,12 +695,12 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
 
   // -- Signal Login Payment Screen
   entry<RegistrationRoute.SignalLoginPayment> {
-    val viewModel: SignalLoginPaymentViewModel = viewModel(
-      factory = SignalLoginPaymentViewModel.Factory(
+    val viewModel: SignalLoginPaymentViewModel = viewModel {
+      SignalLoginPaymentViewModel(
         repository = registrationRepository,
         parentEventEmitter = registrationViewModel::onEvent
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
     val context = LocalContext.current
     CollectActions(viewModel.actions) { action ->
@@ -717,14 +718,14 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
   // -- Signal Login Info Screen
   entry<RegistrationRoute.SignalLoginInfo> {
     val context = LocalContext.current
-    val viewModel: SignalLoginInfoViewModel = viewModel(
-      factory = SignalLoginInfoViewModel.Factory(
+    val viewModel: SignalLoginInfoViewModel = viewModel {
+      SignalLoginInfoViewModel(
         repository = registrationRepository,
         parentState = registrationViewModel.state,
         parentEventEmitter = registrationViewModel::onEvent,
         isPasswordManagerAvailable = SignalCredentialManager.isSupported(context)
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     SignalLoginInfoScreen(
@@ -737,12 +738,12 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
   entry<RegistrationRoute.SignalLoginViewDetails> {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
-    val viewModel: SignalLoginViewDetailsViewModel = viewModel(
-      factory = SignalLoginViewDetailsViewModel.Factory(
+    val viewModel: SignalLoginViewDetailsViewModel = viewModel {
+      SignalLoginViewDetailsViewModel(
         parentState = registrationViewModel.state,
         parentEventEmitter = registrationViewModel::onEvent
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     val savePdfLauncher = rememberLauncherForActivityResult(ActivityResultContracts.CreateDocument("application/pdf")) { uri ->
@@ -782,13 +783,13 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
 
   // -- Signal Login Credential Entry Screen
   entry<RegistrationRoute.SignalLoginCredentialEntry> { key ->
-    val viewModel: SignalLoginCredentialEntryViewModel = viewModel(
-      factory = SignalLoginCredentialEntryViewModel.Factory(
+    val viewModel: SignalLoginCredentialEntryViewModel = viewModel {
+      SignalLoginCredentialEntryViewModel(
         repository = registrationRepository,
         parentEventEmitter = registrationViewModel::onEvent,
         prefilledAccountId = key.prefilledAccountId
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
     val context = LocalContext.current
     CollectActions(viewModel.actions) { action ->
@@ -809,12 +810,12 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
 
   // -- Two-Factor Method Selection Screen
   entry<RegistrationRoute.TwoFactorSelection> { key ->
-    val viewModel: TwoFactorSelectionViewModel = viewModel(
-      factory = TwoFactorSelectionViewModel.Factory(
+    val viewModel: TwoFactorSelectionViewModel = viewModel {
+      TwoFactorSelectionViewModel(
         methods = key.methods,
         parentEventEmitter = parentEventEmitter
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
     CollectActions(viewModel.actions) { action ->
       when (action) {
@@ -830,13 +831,13 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
 
   // -- TOTP Code Entry Screen
   entry<RegistrationRoute.TotpEntry> {
-    val viewModel: TotpEntryViewModel = viewModel(
-      factory = TotpEntryViewModel.Factory(
+    val viewModel: TotpEntryViewModel = viewModel {
+      TotpEntryViewModel(
         parentEventEmitter = parentEventEmitter,
         resultBus = registrationViewModel.resultBus,
         resultKey = TWO_FACTOR_CODE_RESULT
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     TotpEntryScreen(
@@ -847,12 +848,12 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
 
   // -- Add Username Screen
   entry<RegistrationRoute.AddUsername> {
-    val viewModel: AddUsernameViewModel = viewModel(
-      factory = AddUsernameViewModel.Factory(
+    val viewModel: AddUsernameViewModel = viewModel {
+      AddUsernameViewModel(
         repository = registrationRepository,
         parentEventEmitter = registrationViewModel::onEvent
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     AddUsernameScreen(
@@ -863,13 +864,13 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
 
   // -- SVR Restore PIN Entry Screen (for users with existing backup data)
   entry<RegistrationRoute.PinEntryForSvrRestore> {
-    val viewModel: PinEntryForSvrRestoreViewModel = viewModel(
-      factory = PinEntryForSvrRestoreViewModel.Factory(
+    val viewModel: PinEntryForSvrRestoreViewModel = viewModel {
+      PinEntryForSvrRestoreViewModel(
         repository = registrationRepository,
         parentState = registrationViewModel.state,
         parentEventEmitter = registrationViewModel::onEvent
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     PinEntryScreen(
@@ -880,13 +881,13 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
 
   // -- PIN Creation Screen (for new users creating their first PIN)
   entry<RegistrationRoute.PinCreate> {
-    val viewModel: PinCreationViewModel = viewModel(
-      factory = PinCreationViewModel.Factory(
+    val viewModel: PinCreationViewModel = viewModel {
+      PinCreationViewModel(
         repository = registrationRepository,
         parentState = registrationViewModel.state,
         parentEventEmitter = registrationViewModel::onEvent
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
     val context = LocalContext.current
     CollectActions(viewModel.actions) { action ->
@@ -903,15 +904,15 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
 
   // -- Registration Lock PIN Entry Screen
   entry<RegistrationRoute.PinEntryForRegistrationLock> { key ->
-    val viewModel: PinEntryForRegistrationLockViewModel = viewModel(
-      factory = PinEntryForRegistrationLockViewModel.Factory(
+    val viewModel: PinEntryForRegistrationLockViewModel = viewModel {
+      PinEntryForRegistrationLockViewModel(
         repository = registrationRepository,
         parentState = registrationViewModel.state,
         parentEventEmitter = registrationViewModel::onEvent,
         timeRemaining = key.timeRemaining,
         svrCredentials = key.svrCredentials
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     PinEntryScreen(
@@ -922,14 +923,14 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
 
   // -- SMS Bypass PIN Entry Screen
   entry<RegistrationRoute.PinEntryForSmsBypass> { key ->
-    val viewModel: PinEntryForSmsBypassViewModel = viewModel(
-      factory = PinEntryForSmsBypassViewModel.Factory(
+    val viewModel: PinEntryForSmsBypassViewModel = viewModel {
+      PinEntryForSmsBypassViewModel(
         repository = registrationRepository,
         parentState = registrationViewModel.state,
         parentEventEmitter = registrationViewModel::onEvent,
         svrCredentials = key.svrCredentials
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     PinEntryScreen(
@@ -960,8 +961,8 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
 
   // -- Archive Restore Selection for Quick Restore Screen
   entry<RegistrationRoute.ArchiveRestoreSelection> { key ->
-    val viewModel: ArchiveRestoreSelectionViewModel = viewModel(
-      factory = ArchiveRestoreSelectionViewModel.Factory(
+    val viewModel: ArchiveRestoreSelectionViewModel = viewModel {
+      ArchiveRestoreSelectionViewModel(
         restoreOptions = key.restoreOptions,
         registeredState = key.registeredState,
         knownAep = key.aep,
@@ -969,7 +970,7 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
         parentState = registrationViewModel.state,
         parentEventEmitter = registrationViewModel::onEvent
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     ArchiveRestoreSelectionScreen(
@@ -980,15 +981,15 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
 
   // -- Remote Restore Screen
   entry<RegistrationRoute.RemoteRestore> { key ->
-    val viewModel: RemoteBackupRestoreViewModel = viewModel(
-      factory = RemoteBackupRestoreViewModel.Factory(
+    val viewModel: RemoteBackupRestoreViewModel = viewModel {
+      RemoteBackupRestoreViewModel(
         aep = key.aep,
         canNavigateBackwards = key.backwardNavigationAllowed,
         repository = registrationRepository,
         parentState = registrationViewModel.state,
         parentEventEmitter = registrationViewModel::onEvent
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     RemoteRestoreScreen(
@@ -999,8 +1000,8 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
 
   // -- Local Backup Restore Screen
   entry<RegistrationRoute.LocalBackupRestore> { key ->
-    val viewModel: LocalBackupRestoreViewModel = viewModel(
-      factory = LocalBackupRestoreViewModel.Factory(
+    val viewModel: LocalBackupRestoreViewModel = viewModel {
+      LocalBackupRestoreViewModel(
         repository = registrationRepository,
         parentState = registrationViewModel.state,
         parentEventEmitter = registrationViewModel::onEvent,
@@ -1009,7 +1010,7 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
         resultBus = registrationViewModel.resultBus,
         resultKey = LOCAL_BACKUP_RESTORE_RESULT
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     ResultEffect<String?>(registrationViewModel.resultBus, BACKUP_CREDENTIAL_RESULT) { passphrase ->
@@ -1049,8 +1050,8 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
   // -- Enter AEP
   entry<RegistrationRoute.EnterAepForLocalBackup> { key ->
     val context = LocalContext.current
-    val viewModel: EnterAepForLocalBackupViewModel = viewModel(
-      factory = EnterAepForLocalBackupViewModel.Factory(
+    val viewModel: EnterAepForLocalBackupViewModel = viewModel {
+      EnterAepForLocalBackupViewModel(
         isPreRegistration = key.isPreRegistration,
         backupUri = key.backupUri,
         repository = registrationRepository,
@@ -1060,7 +1061,7 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
         resultKey = AEP_FOR_LOCAL_BACKUP_RESULT,
         isPasswordManagerAvailable = SignalCredentialManager.isSupported(context)
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     EnterAepScreen(
@@ -1071,14 +1072,14 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
 
   entry<RegistrationRoute.EnterAepForRemoteBackupPreRegistration> { key ->
     val context = LocalContext.current
-    val viewModel: EnterAepForRemoteBackupPreRegistrationViewModel = viewModel(
-      factory = EnterAepForRemoteBackupPreRegistrationViewModel.Factory(
+    val viewModel: EnterAepForRemoteBackupPreRegistrationViewModel = viewModel {
+      EnterAepForRemoteBackupPreRegistrationViewModel(
         e164 = key.e164,
         repository = registrationRepository,
         parentEventEmitter = registrationViewModel::onEvent,
         isPasswordManagerAvailable = SignalCredentialManager.isSupported(context)
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     EnterAepScreen(
@@ -1089,13 +1090,13 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
 
   entry<RegistrationRoute.EnterAepForRemoteBackupPostRegistration> {
     val context = LocalContext.current
-    val viewModel: EnterAepForRemoteBackupPostRegistrationViewModel = viewModel(
-      factory = EnterAepForRemoteBackupPostRegistrationViewModel.Factory(
+    val viewModel: EnterAepForRemoteBackupPostRegistrationViewModel = viewModel {
+      EnterAepForRemoteBackupPostRegistrationViewModel(
         repository = registrationRepository,
         parentEventEmitter = registrationViewModel::onEvent,
         isPasswordManagerAvailable = SignalCredentialManager.isSupported(context)
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     EnterAepScreen(
@@ -1105,12 +1106,12 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
   }
 
   entry<RegistrationRoute.QuickRestoreQrScan> {
-    val viewModel: QuickRestoreQrViewModel = viewModel(
-      factory = QuickRestoreQrViewModel.Factory(
+    val viewModel: QuickRestoreQrViewModel = viewModel {
+      QuickRestoreQrViewModel(
         repository = registrationRepository,
         parentEventEmitter = registrationViewModel::onEvent
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     QuickRestoreQrScreen(
@@ -1125,9 +1126,9 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
 
   // -- Device Transfer: Instructions
   entry<RegistrationRoute.DeviceTransferInstructions> {
-    val viewModel: DeviceTransferInstructionsViewModel = viewModel(
-      factory = DeviceTransferInstructionsViewModel.Factory(parentEventEmitter)
-    )
+    val viewModel: DeviceTransferInstructionsViewModel = viewModel {
+      DeviceTransferInstructionsViewModel(parentEventEmitter)
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
     DeviceTransferInstructionsScreen(
       state = state,
@@ -1138,15 +1139,15 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
   // -- Device Transfer: Setup (permissions, wifi, verify SAS)
   entry<RegistrationRoute.DeviceTransferSetup> {
     val context = LocalContext.current.applicationContext
-    val viewModel: DeviceTransferSetupViewModel = viewModel(
-      factory = DeviceTransferSetupViewModel.Factory(
+    val viewModel: DeviceTransferSetupViewModel = viewModel {
+      DeviceTransferSetupViewModel(
         context = context,
         networkController = RegistrationDependencies.get().networkController,
         setupEvents = DeviceTransferSetupViewModel.transferStatusFlow(),
         parentState = registrationViewModel.state,
         parentEventEmitter = parentEventEmitter
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
     DeviceTransferSetupScreen(
       state = state,
@@ -1157,13 +1158,13 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
   // -- Device Transfer: Progress (receiving + importing)
   entry<RegistrationRoute.DeviceTransferProgress> {
     val context = LocalContext.current.applicationContext
-    val viewModel: DeviceTransferProgressViewModel = viewModel(
-      factory = DeviceTransferProgressViewModel.Factory(
+    val viewModel: DeviceTransferProgressViewModel = viewModel {
+      DeviceTransferProgressViewModel(
         context = context,
         progressEvents = DeviceTransferProgressViewModel.restoreStatusFlow(),
         parentEventEmitter = parentEventEmitter
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
     val showCancelDialog by viewModel.showCancelDialog.collectAsState()
     DeviceTransferProgressScreen(
@@ -1175,9 +1176,9 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
 
   // -- Device Transfer: Complete
   entry<RegistrationRoute.DeviceTransferComplete> {
-    val viewModel: DeviceTransferCompleteViewModel = viewModel(
-      factory = DeviceTransferCompleteViewModel.Factory(registrationRepository, parentEventEmitter)
-    )
+    val viewModel: DeviceTransferCompleteViewModel = viewModel {
+      DeviceTransferCompleteViewModel(registrationRepository, parentEventEmitter)
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
     DeviceTransferCompleteScreen(
       state = state,
@@ -1186,12 +1187,12 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
   }
 
   entry<RegistrationRoute.Profile> {
-    val viewModel: CreateProfileViewModel = viewModel(
-      factory = CreateProfileViewModel.Factory(
+    val viewModel: CreateProfileViewModel = viewModel {
+      CreateProfileViewModel(
         repository = registrationRepository,
         parentEventEmitter = registrationViewModel::onEvent
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     ResultEffect<Boolean>(registrationViewModel.resultBus, PHONE_NUMBER_DISCOVERABILITY_RESULT) { discoverable ->
@@ -1205,14 +1206,14 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
   }
 
   entry<RegistrationRoute.PhoneNumberDiscoverability> { key ->
-    val viewModel: PhoneNumberDiscoverabilityViewModel = viewModel(
-      factory = PhoneNumberDiscoverabilityViewModel.Factory(
+    val viewModel: PhoneNumberDiscoverabilityViewModel = viewModel {
+      PhoneNumberDiscoverabilityViewModel(
         initialDiscoverable = key.initialDiscoverable,
         parentEventEmitter = registrationViewModel::onEvent,
         resultBus = registrationViewModel.resultBus,
         resultKey = PHONE_NUMBER_DISCOVERABILITY_RESULT
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     PhoneNumberDiscoverabilityScreen(

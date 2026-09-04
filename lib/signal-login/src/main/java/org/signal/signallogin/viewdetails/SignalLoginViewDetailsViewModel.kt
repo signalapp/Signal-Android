@@ -5,8 +5,6 @@
 
 package org.signal.signallogin.viewdetails
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -74,16 +72,6 @@ class SignalLoginViewDetailsViewModel(
         // TODO [phonenumberless] Copy the recovery key to the clipboard.
         Log.i(TAG, "Recovery key long clicked, but the copy flow isn't implemented yet.")
       }
-    }
-  }
-
-  class Factory(
-    private val aci: ServiceId.ACI,
-    private val aep: AccountEntropyPool
-  ) : ViewModelProvider.Factory {
-    @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return SignalLoginViewDetailsViewModel(aci, aep) as T
     }
   }
 }

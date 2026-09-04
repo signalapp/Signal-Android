@@ -6,8 +6,6 @@
 package org.signal.registration.screens.addusername
 
 import androidx.annotation.VisibleForTesting
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.Job
@@ -315,16 +313,6 @@ class AddUsernameViewModel(
       UsernameUtil.InvalidReason.INVALID_NUMBER_00 -> AddUsernameState.ValidationError.DISCRIMINATOR_CANNOT_BE_00
       UsernameUtil.InvalidReason.INVALID_NUMBER_PREFIX_0 -> AddUsernameState.ValidationError.DISCRIMINATOR_CANNOT_START_WITH_ZERO
       else -> AddUsernameState.ValidationError.DISCRIMINATOR_INVALID_CHARACTERS
-    }
-  }
-
-  class Factory(
-    private val repository: RegistrationRepository,
-    private val parentEventEmitter: (RegistrationFlowEvent) -> Unit
-  ) : ViewModelProvider.Factory {
-    @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return AddUsernameViewModel(repository, parentEventEmitter) as T
     }
   }
 }

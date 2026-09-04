@@ -6,8 +6,6 @@
 package org.signal.registration.screens.pinentry
 
 import androidx.annotation.VisibleForTesting
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -225,22 +223,6 @@ class PinEntryForSmsBypassViewModel(
           }
         }
       }
-    }
-  }
-
-  class Factory(
-    private val repository: RegistrationRepository,
-    private val parentState: StateFlow<RegistrationFlowState>,
-    private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
-    private val svrCredentials: SvrCredentials
-  ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return PinEntryForSmsBypassViewModel(
-        repository = repository,
-        parentState = parentState,
-        parentEventEmitter = parentEventEmitter,
-        svrCredentials = svrCredentials
-      ) as T
     }
   }
 }

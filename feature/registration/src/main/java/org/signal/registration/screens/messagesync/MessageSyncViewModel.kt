@@ -6,8 +6,6 @@
 package org.signal.registration.screens.messagesync
 
 import androidx.annotation.VisibleForTesting
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancelAndJoin
@@ -144,16 +142,6 @@ class MessageSyncViewModel(
 
   override fun onCleared() {
     restoreJob?.cancel()
-  }
-
-  class Factory(
-    private val repository: RegistrationRepository,
-    private val parentState: StateFlow<RegistrationFlowState>,
-    private val parentEventEmitter: (RegistrationFlowEvent) -> Unit
-  ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return MessageSyncViewModel(repository, parentState, parentEventEmitter) as T
-    }
   }
 }
 

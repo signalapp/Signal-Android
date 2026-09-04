@@ -6,8 +6,6 @@
 package org.signal.registration.screens.restoreselection
 
 import androidx.annotation.VisibleForTesting
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -169,19 +167,6 @@ class ArchiveRestoreSelectionViewModel(
       } else {
         Log.w(TAG, "[notifyOldDevice] Failed to notify old device: $result")
       }
-    }
-  }
-
-  class Factory(
-    private val restoreOptions: List<ArchiveRestoreOption>,
-    private val registeredState: RegisteredState,
-    private val knownAep: AccountEntropyPool?,
-    private val repository: RegistrationRepository,
-    private val parentState: StateFlow<RegistrationFlowState>,
-    private val parentEventEmitter: (RegistrationFlowEvent) -> Unit
-  ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return ArchiveRestoreSelectionViewModel(restoreOptions, registeredState, repository, parentState, parentEventEmitter, knownAep) as T
     }
   }
 }

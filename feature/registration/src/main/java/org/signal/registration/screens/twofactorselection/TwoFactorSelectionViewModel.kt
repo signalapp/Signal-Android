@@ -5,8 +5,6 @@
 
 package org.signal.registration.screens.twofactorselection
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
@@ -58,15 +56,6 @@ class TwoFactorSelectionViewModel(
       TwoFactorSelectionScreenEvents.CancelClicked -> {
         parentEventEmitter.navigateBack()
       }
-    }
-  }
-
-  class Factory(
-    private val methods: List<TwoFactorMethod>,
-    private val parentEventEmitter: (RegistrationFlowEvent) -> Unit
-  ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return TwoFactorSelectionViewModel(methods, parentEventEmitter) as T
     }
   }
 }

@@ -6,8 +6,6 @@
 package org.signal.registration.screens.signalloginpayment
 
 import androidx.annotation.VisibleForTesting
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
@@ -170,16 +168,6 @@ class SignalLoginPaymentViewModel(
         Log.w(TAG, "[ManualReceipt] Application error.", result.cause)
         state.copy(dialogs = state.dialogs.copy(unknownError = true))
       }
-    }
-  }
-
-  class Factory(
-    private val repository: RegistrationRepository,
-    private val parentEventEmitter: (RegistrationFlowEvent) -> Unit
-  ) : ViewModelProvider.Factory {
-    @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return SignalLoginPaymentViewModel(repository, parentEventEmitter) as T
     }
   }
 }

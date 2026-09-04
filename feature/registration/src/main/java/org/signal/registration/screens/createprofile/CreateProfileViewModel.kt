@@ -6,8 +6,6 @@
 package org.signal.registration.screens.createprofile
 
 import androidx.annotation.VisibleForTesting
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -136,16 +134,6 @@ class CreateProfileViewModel(
         Log.w(TAG, "[submitProfile] Application error saving profile.", result.cause)
         stateEmitter(state.copy(isSubmitting = false, showUploadFailedDialog = true))
       }
-    }
-  }
-
-  class Factory(
-    private val repository: RegistrationRepository,
-    private val parentEventEmitter: (RegistrationFlowEvent) -> Unit
-  ) : ViewModelProvider.Factory {
-    @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return CreateProfileViewModel(repository, parentEventEmitter) as T
     }
   }
 }

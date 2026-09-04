@@ -6,8 +6,6 @@
 package org.signal.registration.screens.aepentry
 
 import androidx.annotation.VisibleForTesting
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -105,16 +103,6 @@ class EnterAepForRemoteBackupPostRegistrationViewModel(
         Log.w(TAG, "[Submit] Application error.", result.cause)
         stateEmitter(inputState.copy(isRegistering = false, registrationError = RegistrationError.UnknownError))
       }
-    }
-  }
-
-  class Factory(
-    private val repository: RegistrationRepository,
-    private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
-    private val isPasswordManagerAvailable: Boolean = false
-  ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return EnterAepForRemoteBackupPostRegistrationViewModel(repository, parentEventEmitter, isPasswordManagerAvailable) as T
     }
   }
 }

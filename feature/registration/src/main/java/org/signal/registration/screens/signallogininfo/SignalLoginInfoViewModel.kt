@@ -6,8 +6,6 @@
 package org.signal.registration.screens.signallogininfo
 
 import androidx.annotation.VisibleForTesting
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -86,18 +84,6 @@ class SignalLoginInfoViewModel(
       is SignalLoginInfoScreenEvents.UnknownErrorDialogDismissed -> {
         stateEmitter(state.copy(dialogs = state.dialogs.copy(unknownError = false)))
       }
-    }
-  }
-
-  class Factory(
-    private val repository: RegistrationRepository,
-    private val parentState: StateFlow<RegistrationFlowState>,
-    private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
-    private val isPasswordManagerAvailable: Boolean
-  ) : ViewModelProvider.Factory {
-    @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return SignalLoginInfoViewModel(repository, parentState, parentEventEmitter, isPasswordManagerAvailable) as T
     }
   }
 }

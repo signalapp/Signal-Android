@@ -6,8 +6,6 @@
 package org.signal.registration.screens.devicetransfer.complete
 
 import androidx.annotation.VisibleForTesting
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -55,16 +53,6 @@ class DeviceTransferCompleteViewModel(
         repository.restoreAccountRecord()
         parentEventEmitter(RegistrationFlowEvent.RegistrationComplete)
       }
-    }
-  }
-
-  class Factory(
-    private val repository: RegistrationRepository,
-    private val parentEventEmitter: (RegistrationFlowEvent) -> Unit
-  ) : ViewModelProvider.Factory {
-    @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return DeviceTransferCompleteViewModel(repository, parentEventEmitter) as T
     }
   }
 }

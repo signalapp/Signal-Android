@@ -6,8 +6,6 @@
 package org.signal.registration.screens.discoverability
 
 import androidx.annotation.VisibleForTesting
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -72,18 +70,6 @@ class PhoneNumberDiscoverabilityViewModel(
       PhoneNumberDiscoverabilityScreenEvents.BackClicked -> {
         parentEventEmitter.navigateBack()
       }
-    }
-  }
-
-  class Factory(
-    private val initialDiscoverable: Boolean,
-    private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
-    private val resultBus: ResultEventBus,
-    private val resultKey: String
-  ) : ViewModelProvider.Factory {
-    @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return PhoneNumberDiscoverabilityViewModel(initialDiscoverable, parentEventEmitter, resultBus, resultKey) as T
     }
   }
 }

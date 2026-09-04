@@ -7,8 +7,6 @@ package org.signal.registration.screens.devicetransfer.progress
 
 import android.content.Context
 import androidx.annotation.VisibleForTesting
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.awaitClose
@@ -132,16 +130,5 @@ class DeviceTransferProgressViewModel(
   private fun stopService() {
     DeviceToDeviceTransferService.stop(context)
     EventBus.getDefault().removeStickyEvent(TransferStatus::class.java)
-  }
-
-  class Factory(
-    private val context: Context,
-    private val progressEvents: Flow<NewDeviceRestoreStatus>,
-    private val parentEventEmitter: (RegistrationFlowEvent) -> Unit
-  ) : ViewModelProvider.Factory {
-    @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return DeviceTransferProgressViewModel(context, progressEvents, parentEventEmitter) as T
-    }
   }
 }

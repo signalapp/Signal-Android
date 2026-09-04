@@ -7,7 +7,6 @@ package org.thoughtcrime.securesms.components.settings.app.account.passkeys
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.signal.appsettings.passkeys.PasskeysAction
 import org.signal.appsettings.passkeys.PasskeysScreen
@@ -15,6 +14,7 @@ import org.signal.appsettings.passkeys.PasskeysViewModel
 import org.signal.core.ui.compose.CollectActions
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.util.viewModel
 
 /**
  * Explains passkeys and lets the user start creating one. Carries out the [PasskeysAction]s that need an Activity or
@@ -26,9 +26,7 @@ class PasskeysFragment : ComposeFragment() {
     private val TAG = Log.tag(PasskeysFragment::class)
   }
 
-  private val viewModel: PasskeysViewModel by viewModels {
-    PasskeysViewModel.Factory(AppPasskeysRepository())
-  }
+  private val viewModel: PasskeysViewModel by viewModel { PasskeysViewModel(AppPasskeysRepository()) }
 
   @Composable
   override fun FragmentContent() {

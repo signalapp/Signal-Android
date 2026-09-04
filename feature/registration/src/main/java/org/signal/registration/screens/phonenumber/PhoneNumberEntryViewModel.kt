@@ -6,8 +6,6 @@
 package org.signal.registration.screens.phonenumber
 
 import androidx.annotation.VisibleForTesting
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.google.i18n.phonenumbers.AsYouTypeFormatter
 import com.google.i18n.phonenumbers.NumberParseException
@@ -994,16 +992,6 @@ class PhoneNumberEntryViewModel(
       copy(isNumberPossible = isNumberPossible, isNumberInvalid = isNumberInvalid)
     } else {
       this
-    }
-  }
-
-  class Factory(
-    val repository: RegistrationRepository,
-    val parentState: StateFlow<RegistrationFlowState>,
-    val parentEventEmitter: (RegistrationFlowEvent) -> Unit
-  ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return PhoneNumberEntryViewModel(repository, parentState, parentEventEmitter) as T
     }
   }
 }

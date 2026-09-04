@@ -6,8 +6,6 @@
 package org.signal.registration.screens.remotebackuprestore
 
 import androidx.annotation.VisibleForTesting
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -284,18 +282,6 @@ class RemoteBackupRestoreViewModel(
           _state.value = _state.value.copy(loadState = RemoteBackupRestoreState.LoadState.Failure)
         }
       }
-    }
-  }
-
-  class Factory(
-    private val aep: AccountEntropyPool,
-    private val canNavigateBackwards: Boolean,
-    private val repository: RegistrationRepository,
-    private val parentState: StateFlow<RegistrationFlowState>,
-    private val parentEventEmitter: (RegistrationFlowEvent) -> Unit
-  ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return RemoteBackupRestoreViewModel(aep, canNavigateBackwards, repository, parentState, parentEventEmitter) as T
     }
   }
 }

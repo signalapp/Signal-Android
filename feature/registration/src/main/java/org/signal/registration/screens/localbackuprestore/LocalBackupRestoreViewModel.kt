@@ -7,8 +7,6 @@ package org.signal.registration.screens.localbackuprestore
 
 import android.net.Uri
 import androidx.annotation.VisibleForTesting
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -265,20 +263,6 @@ class LocalBackupRestoreViewModel(
           }
         }
       }
-    }
-  }
-
-  class Factory(
-    private val repository: RegistrationRepository,
-    private val parentState: StateFlow<RegistrationFlowState>,
-    private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
-    private val isPreRegistration: Boolean,
-    private val knownAep: AccountEntropyPool?,
-    private val resultBus: ResultEventBus,
-    private val resultKey: String
-  ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return LocalBackupRestoreViewModel(repository, parentState, parentEventEmitter, isPreRegistration, resultBus, resultKey, knownAep) as T
     }
   }
 }

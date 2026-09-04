@@ -11,8 +11,6 @@ import android.content.Intent
 import android.content.IntentFilter
 import androidx.annotation.VisibleForTesting
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.google.android.gms.auth.api.phone.SmsRetriever
 import com.google.android.gms.common.api.CommonStatusCodes
@@ -570,31 +568,5 @@ class VerificationCodeViewModel(
       smsResendTimeRemaining = nextSmsAvailableAt?.minus(now)?.coerceAtLeast(0.seconds),
       callRequestTimeRemaining = nextCallAvailableAt?.minus(now)?.coerceAtLeast(0.seconds)
     )
-  }
-
-  /**
-   * @param smsCodeEvents The stream of auto-retrieved verification codes. Tests can inject codes directly; production
-   *   should use the [Context]-based constructor, which builds a real SMS retriever flow.
-   */
-  class Factory(
-    private val repository: RegistrationRepository,
-    private val parentState: StateFlow<RegistrationFlowState>,
-    private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
-    private val smsCodeEvents: Flow<String>
-  ) : ViewModelProvider.Factory {
-
-    /**
-     * Builds a real SMS retriever flow from [context]. Prefer the application context.
-     */
-    constructor(
-      context: Context,
-      repository: RegistrationRepository,
-      parentState: StateFlow<RegistrationFlowState>,
-      parentEventEmitter: (RegistrationFlowEvent) -> Unit
-    ) : this(repository, parentState, parentEventEmitter, smsCodeFlow(context))
-
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return VerificationCodeViewModel(repository, parentState, parentEventEmitter, smsCodeEvents) as T
-    }
   }
 }
