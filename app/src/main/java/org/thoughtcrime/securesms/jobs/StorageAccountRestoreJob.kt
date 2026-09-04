@@ -110,12 +110,12 @@ class StorageAccountRestoreJob private constructor(parameters: Parameters) : Bas
     val accountRecord = SignalAccountRecord(record.id, record.proto.account!!)
 
     Log.i(TAG, "Applying changes locally...")
-    SignalDatabase.rawDatabase.beginTransaction()
+    SignalDatabase.writableDatabase.beginTransaction()
     try {
       StorageSyncHelper.applyAccountStorageSyncUpdates(context, self().fresh(), accountRecord, false)
-      SignalDatabase.rawDatabase.setTransactionSuccessful()
+      SignalDatabase.writableDatabase.setTransactionSuccessful()
     } finally {
-      SignalDatabase.rawDatabase.endTransaction()
+      SignalDatabase.writableDatabase.endTransaction()
     }
 
     // We will try to reclaim the username here, as early as possible, but the registration flow also enqueues a username restore job,
