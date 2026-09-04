@@ -108,7 +108,7 @@ public class RefreshAttributesJob extends BaseJob {
     if (SignalStore.account().isPrimaryDevice()) {
       setPrimaryDeviceAttributes(svrValues, capabilities);
     } else {
-      boolean phoneNumberDiscoverable = SignalStore.phoneNumberPrivacy().getPhoneNumberDiscoverabilityMode() == PhoneNumberDiscoverabilityMode.DISCOVERABLE;
+      boolean phoneNumberDiscoverable = !SignalStore.account().isPhoneNumberless() && SignalStore.phoneNumberPrivacy().getPhoneNumberDiscoverabilityMode() == PhoneNumberDiscoverabilityMode.DISCOVERABLE;
       Log.i(TAG, "Linked device, refreshing device capabilities and phone number discoverability. Capabilities: " + capabilities + ", discoverable: " + phoneNumberDiscoverable);
       RequestResultUtil.successOrThrow(SignalNetwork.account().setCapabilities(capabilities));
       RequestResultUtil.successOrThrowNoError(SignalNetwork.account().setPhoneNumberDiscoverability(phoneNumberDiscoverable));
@@ -130,7 +130,7 @@ public class RefreshAttributesJob extends BaseJob {
       registrationLockV2 = svrValues.getRegistrationLockToken();
     }
 
-    boolean phoneNumberDiscoverable = SignalStore.phoneNumberPrivacy().getPhoneNumberDiscoverabilityMode() == PhoneNumberDiscoverabilityMode.DISCOVERABLE;
+    boolean phoneNumberDiscoverable = !SignalStore.account().isPhoneNumberless() && SignalStore.phoneNumberPrivacy().getPhoneNumberDiscoverabilityMode() == PhoneNumberDiscoverabilityMode.DISCOVERABLE;
 
     String deviceName = SignalStore.account().getDeviceName();
     byte[] encryptedDeviceName = (deviceName == null) ? null : DeviceNameCipher.encryptDeviceName(deviceName.getBytes(StandardCharsets.UTF_8), SignalStore.account().getAciIdentityKey());

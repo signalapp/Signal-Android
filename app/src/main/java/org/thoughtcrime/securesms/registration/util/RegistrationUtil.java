@@ -44,7 +44,7 @@ public final class RegistrationUtil {
       SignalStore.registration().setLocalRegistrationMetadata(null);
       SignalStore.registration().setRestoreMethodToken(null);
 
-      if (SignalStore.phoneNumberPrivacy().getPhoneNumberDiscoverabilityMode() == PhoneNumberDiscoverabilityMode.UNDECIDED) {
+      if (SignalStore.phoneNumberPrivacy().getPhoneNumberDiscoverabilityMode() == PhoneNumberDiscoverabilityMode.UNDECIDED && !SignalStore.account().isPhoneNumberless()) {
         Log.w(TAG, "Phone number discoverability mode is still UNDECIDED. Setting to DISCOVERABLE.");
         SignalStore.phoneNumberPrivacy().setPhoneNumberDiscoverabilityMode(PhoneNumberDiscoverabilityMode.DISCOVERABLE);
       }
