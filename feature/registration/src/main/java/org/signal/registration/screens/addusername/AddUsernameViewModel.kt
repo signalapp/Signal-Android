@@ -88,7 +88,9 @@ class AddUsernameViewModel(
       is AddUsernameScreenEvents.ReservationCompleted -> applyReservationCompleted(state, event, stateEmitter)
       is AddUsernameScreenEvents.LearnMoreClicked -> stateEmitter(state.copy(dialogs = state.dialogs.copy(learnMore = true)))
       is AddUsernameScreenEvents.LearnMoreDialogDismissed -> stateEmitter(state.copy(dialogs = state.dialogs.copy(learnMore = false)))
-      is AddUsernameScreenEvents.SkipClicked -> applySkipClicked(parentEventEmitter)
+      is AddUsernameScreenEvents.SkipClicked -> stateEmitter(state.copy(dialogs = state.dialogs.copy(confirmSkip = true)))
+      is AddUsernameScreenEvents.SkipConfirmed -> applySkipConfirmed(parentEventEmitter)
+      is AddUsernameScreenEvents.SkipDialogDismissed -> stateEmitter(state.copy(dialogs = state.dialogs.copy(confirmSkip = false)))
       is AddUsernameScreenEvents.NextClicked -> applyNextClicked(state, parentEventEmitter, stateEmitter)
       is AddUsernameScreenEvents.NetworkErrorDialogDismissed -> applyDialogDismissed(state, stateEmitter) { it.copy(networkError = false) }
       is AddUsernameScreenEvents.UnknownErrorDialogDismissed -> applyDialogDismissed(state, stateEmitter) { it.copy(unknownError = false) }
@@ -222,7 +224,7 @@ class AddUsernameViewModel(
     }
   }
 
-  private fun applySkipClicked(parentEventEmitter: (RegistrationFlowEvent) -> Unit) {
+  private fun applySkipConfirmed(parentEventEmitter: (RegistrationFlowEvent) -> Unit) {
     Log.i(TAG, "Skipping username creation.")
     parentEventEmitter(RegistrationFlowEvent.RegistrationComplete)
   }

@@ -354,8 +354,30 @@ class AddUsernameViewModelTest {
   }
 
   @Test
-  fun `SkipClicked completes registration`() = runTest(testDispatcher) {
+  fun `SkipClicked shows the confirmation dialog without completing registration`() = runTest(testDispatcher) {
     viewModel.onEvent(AddUsernameScreenEvents.SkipClicked)
+    advanceUntilIdle()
+
+    assertThat(viewModel.state.value.dialogs.confirmSkip).isTrue()
+    assertThat(parentEvents).isEmpty()
+  }
+
+  @Test
+  fun `dismissing the skip confirmation dialog keeps the user on the screen`() = runTest(testDispatcher) {
+    viewModel.onEvent(AddUsernameScreenEvents.SkipClicked)
+    advanceUntilIdle()
+    viewModel.onEvent(AddUsernameScreenEvents.SkipDialogDismissed)
+    advanceUntilIdle()
+
+    assertThat(viewModel.state.value.dialogs.confirmSkip).isFalse()
+    assertThat(parentEvents).isEmpty()
+  }
+
+  @Test
+  fun `SkipConfirmed completes registration`() = runTest(testDispatcher) {
+    viewModel.onEvent(AddUsernameScreenEvents.SkipClicked)
+    advanceUntilIdle()
+    viewModel.onEvent(AddUsernameScreenEvents.SkipConfirmed)
     advanceUntilIdle()
 
     assertThat(parentEvents).containsExactly(RegistrationFlowEvent.RegistrationComplete)

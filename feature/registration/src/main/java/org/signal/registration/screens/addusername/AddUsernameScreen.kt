@@ -104,6 +104,17 @@ fun AddUsernameScreen(
     )
   }
 
+  if (state.dialogs.confirmSkip) {
+    Dialogs.SimpleAlertDialog(
+      title = stringResource(R.string.AddUsernameScreen__are_you_sure),
+      body = stringResource(R.string.AddUsernameScreen__without_a_username_people_wont_be_able_to_find_you),
+      confirm = stringResource(R.string.AddUsernameScreen__continue),
+      dismiss = stringResource(R.string.AddUsernameScreen__cancel),
+      onConfirm = { onEvent(AddUsernameScreenEvents.SkipConfirmed) },
+      onDismiss = { onEvent(AddUsernameScreenEvents.SkipDialogDismissed) }
+    )
+  }
+
   if (state.dialogs.learnMore) {
     Dialogs.SimpleMessageDialog(
       title = stringResource(R.string.AddUsernameScreen__what_is_this_number),
@@ -465,6 +476,17 @@ private fun AddUsernameScreenReservedPreview() {
         showDiscriminator = true,
         reservation = Username("alice.45")
       ),
+      onEvent = {}
+    )
+  }
+}
+
+@AllDevicePreviews
+@Composable
+private fun AddUsernameScreenConfirmSkipPreview() {
+  Previews.Preview {
+    AddUsernameScreen(
+      state = AddUsernameState(dialogs = AddUsernameState.Dialogs(confirmSkip = true)),
       onEvent = {}
     )
   }

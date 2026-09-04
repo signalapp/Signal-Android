@@ -40,8 +40,14 @@ sealed class AddUsernameScreenEvents {
   /** The user dismissed the dialog explaining the digits after the username. */
   data object LearnMoreDialogDismissed : AddUsernameScreenEvents()
 
-  /** The user opted out of choosing a username. */
+  /** The user tapped the skip button, asking to opt out of choosing a username. */
   data object SkipClicked : AddUsernameScreenEvents()
+
+  /** The user confirmed they want to skip choosing a username. */
+  data object SkipConfirmed : AddUsernameScreenEvents()
+
+  /** The user dismissed the dialog confirming they want to skip choosing a username. */
+  data object SkipDialogDismissed : AddUsernameScreenEvents()
 
   /** The user submitted the entered username. */
   data object NextClicked : AddUsernameScreenEvents()

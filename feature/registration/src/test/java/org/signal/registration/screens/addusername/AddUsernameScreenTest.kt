@@ -14,6 +14,8 @@ import androidx.compose.ui.test.performTextInput
 import androidx.compose.ui.test.performTextReplacement
 import androidx.test.core.app.ApplicationProvider
 import assertk.assertThat
+import assertk.assertions.contains
+import assertk.assertions.containsExactly
 import assertk.assertions.isEqualTo
 import assertk.assertions.isNotNull
 import org.junit.Rule
@@ -22,6 +24,7 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.signal.core.ui.CoreUiDependenciesRule
+import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.libsignal.usernames.Username
 import org.signal.registration.test.TestTags
@@ -112,5 +115,41 @@ class AddUsernameScreenTest {
     composeTestRule.onNodeWithTag(TestTags.ADD_USERNAME_SKIP_BUTTON).performClick()
 
     assertThat(emittedEvent).isEqualTo(AddUsernameScreenEvents.SkipClicked)
+  }
+
+  @Test
+  fun `confirming the skip dialog emits SkipConfirmed`() {
+    val emittedEvents = mutableListOf<AddUsernameScreenEvents>()
+
+    composeTestRule.setContent {
+      SignalTheme {
+        AddUsernameScreen(
+          state = AddUsernameState(dialogs = AddUsernameState.Dialogs(confirmSkip = true)),
+          onEvent = { emittedEvents.add(it) }
+        )
+      }
+    }
+
+    composeTestRule.onNodeWithTag(Dialogs.TEST_TAG_ALERT_DIALOG_CONFIRM_BUTTON).performClick()
+
+    assertThat(emittedEvents).contains(AddUsernameScreenEvents.SkipConfirmed)
+  }
+
+  @Test
+  fun `cancelling the skip dialog emits SkipDialogDismissed`() {
+    val emittedEvents = mutableListOf<AddUsernameScreenEvents>()
+
+    composeTestRule.setContent {
+      SignalTheme {
+        AddUsernameScreen(
+          state = AddUsernameState(dialogs = AddUsernameState.Dialogs(confirmSkip = true)),
+          onEvent = { emittedEvents.add(it) }
+        )
+      }
+    }
+
+    composeTestRule.onNodeWithTag(Dialogs.TEST_TAG_ALERT_DIALOG_DISMISS_BUTTON).performClick()
+
+    assertThat(emittedEvents).containsExactly(AddUsernameScreenEvents.SkipDialogDismissed)
   }
 }
