@@ -161,6 +161,15 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
         }
       )
 
+      switchPref(
+        title = DSLSettingsText.from(R.string.preferences__remove_link_tracking),
+        summary = DSLSettingsText.from(R.string.preferences__remove_tracking_parameters_from_links),
+        isChecked = state.stripLinkTrackingParameters,
+        onClick = {
+          viewModel.setStripLinkTrackingParametersEnabled(!state.stripLinkTrackingParameters)
+        }
+      )
+
       dividerPref()
 
       sectionHeaderPref(R.string.PrivacySettingsFragment__disappearing_messages)

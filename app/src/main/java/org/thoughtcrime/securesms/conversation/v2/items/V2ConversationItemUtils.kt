@@ -15,6 +15,7 @@ import org.signal.core.util.addDetectedLinks
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.util.InterceptableLongClickCopyLinkSpan
 import org.thoughtcrime.securesms.util.LinkUtil
+import org.thoughtcrime.securesms.util.TrackingParameters
 import org.thoughtcrime.securesms.util.UrlClickHandler
 import org.thoughtcrime.securesms.util.hasOnlyThumbnail
 
@@ -42,7 +43,13 @@ object V2ConversationItemUtils {
       val end = messageBody.getSpanEnd(urlSpan)
       messageBody.removeSpan(urlSpan)
       if (LinkUtil.isLegalUrl(url)) {
-        messageBody.setSpan(InterceptableLongClickCopyLinkSpan(url, urlClickHandler), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        val target = TrackingParameters.stripIfEnabled(url)
+        messageBody.setSpan(
+          InterceptableLongClickCopyLinkSpan(target, urlClickHandler),
+          start,
+          end,
+          Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
       }
     }
   }

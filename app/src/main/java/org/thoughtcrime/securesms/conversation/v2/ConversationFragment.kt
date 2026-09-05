@@ -372,6 +372,7 @@ import org.thoughtcrime.securesms.util.PlayStoreUtil
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.thoughtcrime.securesms.util.TrackingParameters
 import org.thoughtcrime.securesms.util.UriUtil
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.atMidnight
@@ -3592,7 +3593,7 @@ class ConversationFragment :
 
     override fun onLinkPreviewClicked(linkPreview: LinkPreview) {
       activity ?: return
-      openLink(linkPreview.url)
+      openLink(TrackingParameters.stripIfEnabled(linkPreview.url))
     }
 
     override fun onQuotedIndicatorClicked(messageRecord: MessageRecord) {

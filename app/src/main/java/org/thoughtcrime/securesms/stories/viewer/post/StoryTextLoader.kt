@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.stories.StoryTextPostView
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.FragmentDialogs.displayInDialogAboveAnchor
+import org.thoughtcrime.securesms.util.TrackingParameters
 
 /**
  * Render logic for story text posts
@@ -49,7 +50,8 @@ class StoryTextLoader(
 
     contentView.findViewById<TextView>(R.id.url).text = linkPreview.url
     contentView.setOnClickListener {
-      CommunicationActions.openBrowserLink(fragment.requireContext(), linkPreview.url)
+      val target = TrackingParameters.stripIfEnabled(linkPreview.url)
+      CommunicationActions.openBrowserLink(fragment.requireContext(), target)
     }
 
     contentView.measure(

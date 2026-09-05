@@ -54,6 +54,7 @@ import org.thoughtcrime.securesms.util.ImageCompressionUtil;
 import org.thoughtcrime.securesms.util.LinkUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.OkHttpUtil;
+import org.thoughtcrime.securesms.util.TrackingParameters;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.groupsv2.GroupLinkNotActiveException;
 import org.whispersystems.signalservice.api.messages.SignalServiceStickerManifest;
@@ -171,7 +172,14 @@ public class LinkPreviewRepository {
   }
 
   private @NonNull RequestController fetchMetadata(@NonNull String url, Consumer<Metadata> callback) {
-    Call call = client.newCall(new Request.Builder().url(url).cacheControl(NO_CACHE).build());
+    // Strip tracking parameters from the outbound request so that generating a
+    // preview doesn't hand the site the sharer's attribution token. Only the request
+    // is cleaned: the URL stored on the LinkPreview has to stay byte-identical to the
+    // one in the message body, because the recipient discards any preview whose URL
+    // isn't present in the body (see DataMessageProcessor.getLinkPreviews).
+    String  requestUrl = TrackingParameters.stripIfEnabled(url);
+    Request request    = new Request.Builder().url(requestUrl).cacheControl(NO_CACHE).build();
+    Call    call       = client.newCall(request);
 
     call.enqueue(new okhttp3.Callback() {
       @Override
