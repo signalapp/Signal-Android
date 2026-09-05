@@ -21,11 +21,13 @@ import org.thoughtcrime.securesms.conversationlist.model.Conversation
 object ConversationListAccessibilityHelper {
 
   @JvmStatic
+  @JvmOverloads
   fun addConversationActions(
     info: AccessibilityNodeInfo,
     context: Context,
     conversation: Conversation,
-    isInSelectionMode: Boolean
+    isInSelectionMode: Boolean,
+    includeSelect: Boolean = true
   ) {
     if (isInSelectionMode) {
       return
@@ -69,11 +71,13 @@ object ConversationListAccessibilityHelper {
       )
     }
 
-    addAction(
-      info,
-      R.id.conversation_list_accessibility_select_action,
-      context.getString(R.string.ConversationListFragment_select)
-    )
+    if (includeSelect) {
+      addAction(
+        info,
+        R.id.conversation_list_accessibility_select_action,
+        context.getString(R.string.ConversationListFragment_select)
+      )
+    }
 
     addAction(
       info,

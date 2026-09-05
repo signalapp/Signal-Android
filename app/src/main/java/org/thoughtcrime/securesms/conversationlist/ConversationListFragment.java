@@ -357,7 +357,8 @@ public class ConversationListFragment extends MainFragment implements Conversati
         },
         ContactSearchAdapter.EmptyCallButtonClickCallbacks.INSTANCE,
         getViewLifecycleOwner(),
-        Glide.with(this)
+        Glide.with(this),
+        (conversation, action) -> onConversationAccessibilityAction(conversation, action)
     );
 
     ContactSearchViewModelKt.bindAdapterToLifecycle(contactSearchViewModel, getViewLifecycleOwner(), searchAdapter, this::mapSearchStateToConfiguration);
