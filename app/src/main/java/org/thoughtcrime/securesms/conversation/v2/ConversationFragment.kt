@@ -2316,6 +2316,7 @@ class ConversationFragment :
   private fun initializeConversationThreadUi() {
     layoutManager = ConversationLayoutManager(requireContext())
     binding.conversationItemRecycler.setHasFixedSize(false)
+    binding.conversationItemRecycler.setItemViewCacheSize(10)
     binding.conversationItemRecycler.layoutManager = layoutManager
     scrollListener = ScrollListener()
     binding.conversationItemRecycler.addOnScrollListener(scrollListener!!)

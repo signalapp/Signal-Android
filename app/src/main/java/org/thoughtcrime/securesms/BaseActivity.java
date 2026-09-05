@@ -36,6 +36,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     AppStartup.getInstance().onCriticalRenderEventStart();
     logEvent("onCreate()");
     EdgeToEdge.enable(this);
+    WindowUtil.initializeHighRefreshRate(this, getWindow());
     super.onCreate(savedInstanceState);
     AppStartup.getInstance().onCriticalRenderEventEnd();
   }
