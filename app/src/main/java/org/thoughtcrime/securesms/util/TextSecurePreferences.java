@@ -24,6 +24,7 @@ import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.backup.proto.SharedPreference;
+import org.thoughtcrime.securesms.backup.v2.BackupRepository;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
@@ -385,6 +386,7 @@ public class TextSecurePreferences {
       if (value) {
         notifyUnregisteredReceived(context);
         clearLocalCredentials(context);
+        BackupRepository.haltBackupWritesForDeregistration();
       }
     }
   }

@@ -238,6 +238,16 @@ object BackupRepository {
     SignalStore.backup.backupSecretRestoreRequired = false
   }
 
+  @JvmStatic
+  fun haltBackupWritesForDeregistration() {
+    Log.w(TAG, "Deregistered. Canceling backup upload jobs and clearing cached archive credentials.", true)
+
+    ArchiveUploadProgress.cancel()
+
+    SignalStore.backup.messageCredentials.clearAll()
+    SignalStore.backup.mediaCredentials.clearAll()
+  }
+
   fun resetInitializedStateAndAuthCredentials() {
     SignalStore.backup.messageBackupInitialized = false
     SignalStore.backup.mediaBackupInitialized = false

@@ -160,7 +160,7 @@ class ArchiveUploadProgressTest {
     verify { BackupMessagesJob.cancel() }
     verify { AppDependencies.jobManager.cancelAllInQueue(ArchiveCommitAttachmentDeletesJob.ARCHIVE_ATTACHMENT_QUEUE) }
     verify { AppDependencies.jobManager.cancelAllInQueues(UploadAttachmentToArchiveJob.QUEUES) }
-    verify { AppDependencies.jobManager.cancelAllInQueue(ArchiveThumbnailUploadJob.KEY) }
+    verify { AppDependencies.jobManager.cancelAllInQueues(ArchiveThumbnailUploadJob.QUEUES) }
   }
 
   @Test

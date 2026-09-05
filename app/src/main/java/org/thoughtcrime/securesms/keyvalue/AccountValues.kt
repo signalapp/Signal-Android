@@ -18,6 +18,7 @@ import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.ecc.ECPrivateKey
 import org.signal.libsignal.protocol.util.Medium
+import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.crypto.MasterCipher
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.crypto.storage.PreKeyMetadataStore
@@ -499,6 +500,7 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
 
     if (previous && !registered) {
       clearLocalCredentials()
+      BackupRepository.haltBackupWritesForDeregistration()
     }
 
     if ((previous && !registered) || isAciChanged) {

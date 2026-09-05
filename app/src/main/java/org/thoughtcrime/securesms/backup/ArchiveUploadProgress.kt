@@ -163,7 +163,7 @@ object ArchiveUploadProgress {
 
     AppDependencies.jobManager.cancelAllInQueue(ArchiveCommitAttachmentDeletesJob.ARCHIVE_ATTACHMENT_QUEUE)
     AppDependencies.jobManager.cancelAllInQueues(UploadAttachmentToArchiveJob.QUEUES)
-    AppDependencies.jobManager.cancelAllInQueue(ArchiveThumbnailUploadJob.KEY)
+    AppDependencies.jobManager.cancelAllInQueues(ArchiveThumbnailUploadJob.QUEUES)
   }
 
   @WorkerThread

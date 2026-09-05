@@ -56,6 +56,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.RemoteConfig
+import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
 import org.whispersystems.signalservice.api.push.exceptions.ResumeLocationInvalidException
@@ -88,8 +89,17 @@ class BackupMessagesJob private constructor(
 
     const val KEY = "BackupMessagesJob"
 
+    private fun isRegistered(): Boolean {
+      return SignalStore.account.isRegistered && !TextSecurePreferences.isUnauthorizedReceived(AppDependencies.application)
+    }
+
     private fun isBackupAllowed(): Boolean {
       return when {
+        !isRegistered() -> {
+          Log.w(TAG, "Backup not allowed: not registered.", true)
+          false
+        }
+
         SignalStore.registration.restoreDecisionState.isDecisionPending -> {
           Log.i(TAG, "Backup not allowed: a restore decision is pending.", true)
           false
@@ -216,6 +226,12 @@ class BackupMessagesJob private constructor(
 
       // We're building a new file, so whatever the previous attempt left behind is dead, including any SVRB state we may advance past below.
       clearPendingBackupFile()
+
+      if (!isRegistered()) {
+        Log.w(TAG, "Deregistered before storing to SVRB. Aborting.", true)
+        backupErrorHandled = true
+        return Result.failure()
+      }
 
       val auth = when (val result = AppDependencies.archiveService.getSvrBAuth()) {
         is Either.Right -> result.value
