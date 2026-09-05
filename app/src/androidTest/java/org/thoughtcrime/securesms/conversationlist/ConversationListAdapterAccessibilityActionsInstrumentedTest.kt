@@ -200,6 +200,48 @@ class ConversationListAdapterAccessibilityActionsInstrumentedTest {
     }
   }
 
+  @Test
+  fun searchResultRow_exposesActionsButNotSelect() {
+    val other = Recipient.resolved(harness.others.first())
+    insertIncomingText(other, "searchable conversation message")
+
+    val scenario: ActivityScenario<MainActivity> = ActivityScenario.launch(Intent(harness.context, MainActivity::class.java))
+    try {
+      // Wait for the conversation list to load
+      assertTrue("Conversation should appear in list",
+        waitForAction(scenario, R.id.conversation_list_accessibility_select_action, 15_000))
+
+      // Open search and enter query that matches the conversation
+      scenario.onActivity { activity ->
+        val toolbarViewModel = androidx.lifecycle.ViewModelProvider(activity)
+          .get(org.thoughtcrime.securesms.main.MainToolbarViewModel::class.java)
+        toolbarViewModel.setToolbarMode(org.thoughtcrime.securesms.main.MainToolbarMode.SEARCH)
+        toolbarViewModel.setSearchQuery(other.getDisplayName(activity))
+      }
+
+      InstrumentationRegistry.getInstrumentation().waitForIdleSync()
+      SystemClock.sleep(1_000)
+
+      // Search results should expose read, pin, mute, archive, delete
+      assertTrue("Search result should expose read action",
+        waitForAction(scenario, R.id.conversation_list_accessibility_read_action, 10_000))
+      assertTrue("Search result should expose pin action",
+        waitForAction(scenario, R.id.conversation_list_accessibility_pin_action, 300))
+      assertTrue("Search result should expose mute action",
+        waitForAction(scenario, R.id.conversation_list_accessibility_mute_action, 300))
+      assertTrue("Search result should expose archive action",
+        waitForAction(scenario, R.id.conversation_list_accessibility_archive_action, 300))
+      assertTrue("Search result should expose delete action",
+        waitForAction(scenario, R.id.conversation_list_accessibility_delete_action, 300))
+
+      // Search results should NOT expose select action
+      assertFalse("Search result should not expose select action",
+        waitForAction(scenario, R.id.conversation_list_accessibility_select_action, 300))
+    } finally {
+      scenario.close()
+    }
+  }
+
   private fun insertIncomingText(other: Recipient, body: String): Long {
     val now = System.currentTimeMillis()
     val message = IncomingMessage(
