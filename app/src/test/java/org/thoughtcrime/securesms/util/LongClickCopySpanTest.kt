@@ -19,8 +19,8 @@ import org.robolectric.Shadows.shadowOf
 import org.robolectric.annotation.Config
 
 /**
- * [LongClickCopySpan] is the click target for links in the story viewer, the long-message view, message details and starred messages —
- * every surface whose [UrlClickHandler] declines the click. [android.text.style.URLSpan]'s default launch omits
+ * [LongClickCopySpan] is the click target for links in the story viewer's captions and the submit-debug-log dialog,
+ * which install it directly with no [UrlClickHandler]. [android.text.style.URLSpan]'s default launch omits
  * [Intent.FLAG_ACTIVITY_NEW_TASK], which would push the handling app onto our own task.
  */
 @RunWith(RobolectricTestRunner::class)
