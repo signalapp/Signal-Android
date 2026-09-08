@@ -80,29 +80,23 @@ class SignalLoginCredentialEntryViewModel(
         parentEventEmitter.navigateBack()
       }
 
-      is SignalLoginCredentialEntryScreenEvents.AccountIdChanged -> {
-        val accountId = AccountIdFormat.normalize(event.value)
-        stateEmitter(state.copy(accountId = accountId, accountIdError = AccountIdFormat.validate(accountId), isAccountIdPrefilled = false, areCredentialsIncorrect = false))
-      }
-
-      is SignalLoginCredentialEntryScreenEvents.RecoveryKeyChanged -> {
-        stateEmitter(state.copy(recoveryKey = AepInput.from(event.value, state.recoveryKey.error), areCredentialsIncorrect = false))
+      is SignalLoginCredentialEntryScreenEvents.AccountIdChanged,
+      is SignalLoginCredentialEntryScreenEvents.RecoveryKeyChanged,
+      is SignalLoginCredentialEntryScreenEvents.RecoveryKeyVisibilityToggled,
+      is SignalLoginCredentialEntryScreenEvents.DismissError -> {
+        stateEmitter(SignalLoginCredentialEntryScreenEventHandler.applyEvent(state, event))
       }
 
       is SignalLoginCredentialEntryScreenEvents.PasswordManagerCredentialSelected -> {
         applyPasswordManagerCredentialSelected(state, event, parentEventEmitter, stateEmitter)
       }
 
-      is SignalLoginCredentialEntryScreenEvents.RecoveryKeyVisibilityToggled -> {
-        stateEmitter(state.copy(isRecoveryKeyRevealed = !state.isRecoveryKeyRevealed))
-      }
-
       is SignalLoginCredentialEntryScreenEvents.NeedHelpClicked -> {
         _actions.trySend(SignalLoginCredentialEntryScreenActions.OpenNeedHelpArticle)
       }
 
-      is SignalLoginCredentialEntryScreenEvents.DismissError -> {
-        stateEmitter(state.copy(loginError = null))
+      is SignalLoginCredentialEntryScreenEvents.ShowLoginInfoAgainClicked -> {
+        error("There is no 'show login info again' button in ${SignalLoginCredentialEntryState.Mode.Login} mode, so this event can't happen.")
       }
 
       is SignalLoginCredentialEntryScreenEvents.NextClicked -> {

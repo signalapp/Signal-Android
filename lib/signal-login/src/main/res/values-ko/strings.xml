@@ -16,7 +16,7 @@
     <!-- Section header above the account key. -->
     <string name="SignalLoginViewDetailsScreen__account_key">계정 키</string>
     <!-- Section header above the recovery key. -->
-    <string name="SignalLoginViewDetailsScreen__recovery_key">복구 키</string>
+    <string name="SignalLoginKeyDetails__recovery_key">복구 키</string>
     <!-- Action button that stores the Signal Login in the device password manager. -->
     <string name="SignalLoginViewDetailsScreen__save_to_password_manager">비밀번호 관리자에 저장</string>
     <!-- Action button that saves the Signal Login as a PDF. -->

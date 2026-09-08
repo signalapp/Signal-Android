@@ -16,7 +16,7 @@
     <!-- Section header above the account key. -->
     <string name="SignalLoginViewDetailsScreen__account_key">Mã khóa tài khoản</string>
     <!-- Section header above the recovery key. -->
-    <string name="SignalLoginViewDetailsScreen__recovery_key">Mã khóa khôi phục</string>
+    <string name="SignalLoginKeyDetails__recovery_key">Mã khóa khôi phục</string>
     <!-- Action button that stores the Signal Login in the device password manager. -->
     <string name="SignalLoginViewDetailsScreen__save_to_password_manager">Lưu vào công cụ quản lý mật khẩu</string>
     <!-- Action button that saves the Signal Login as a PDF. -->

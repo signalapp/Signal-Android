@@ -37,7 +37,7 @@ class SignalLoginViewDetailsFragment : ComposeFragment() {
     if (uri != null) {
       val context = requireContext().applicationContext
       lifecycleScope.launch {
-        val result = SignalLoginPdfRenderer.renderTo(context, uri, viewModel.state.value)
+        val result = SignalLoginPdfRenderer.renderTo(context, uri, viewModel.state.value.accountKey, viewModel.state.value.recoveryKeyGroups)
         if (result is Result.Failure) {
           Toast.makeText(context, result.failure.userMessageRes, Toast.LENGTH_LONG).show()
         }

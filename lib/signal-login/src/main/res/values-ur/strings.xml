@@ -16,7 +16,7 @@
     <!-- Section header above the account key. -->
     <string name="SignalLoginViewDetailsScreen__account_key">اکاؤنٹ کیی</string>
     <!-- Section header above the recovery key. -->
-    <string name="SignalLoginViewDetailsScreen__recovery_key">ریکوری کیی</string>
+    <string name="SignalLoginKeyDetails__recovery_key">ریکوری کیی</string>
     <!-- Action button that stores the Signal Login in the device password manager. -->
     <string name="SignalLoginViewDetailsScreen__save_to_password_manager">پاسورڈ مینیجر میں محفوظ کریں</string>
     <!-- Action button that saves the Signal Login as a PDF. -->

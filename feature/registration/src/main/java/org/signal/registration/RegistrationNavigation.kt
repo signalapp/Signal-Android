@@ -123,10 +123,14 @@ import org.signal.registration.screens.signallogincredentials.SignalLoginCredent
 import org.signal.registration.screens.signallogincredentials.SignalLoginCredentialEntryScreenActions
 import org.signal.registration.screens.signallogincredentials.SignalLoginCredentialEntryScreenEvents
 import org.signal.registration.screens.signallogincredentials.SignalLoginCredentialEntryViewModel
+import org.signal.registration.screens.signallogincredentials.SignalLoginManualSaveConfirmationViewModel
 import org.signal.registration.screens.signallogindetails.SignalLoginViewDetailsScreenActions
 import org.signal.registration.screens.signallogindetails.SignalLoginViewDetailsViewModel
 import org.signal.registration.screens.signallogininfo.SignalLoginInfoScreen
 import org.signal.registration.screens.signallogininfo.SignalLoginInfoViewModel
+import org.signal.registration.screens.signalloginmanualsave.SignalLoginViewDetailsForManualSaveScreen
+import org.signal.registration.screens.signalloginmanualsave.SignalLoginViewDetailsForManualSaveScreenActions
+import org.signal.registration.screens.signalloginmanualsave.SignalLoginViewDetailsForManualSaveViewModel
 import org.signal.registration.screens.signalloginpayment.SignalLoginPaymentScreen
 import org.signal.registration.screens.signalloginpayment.SignalLoginPaymentScreenActions
 import org.signal.registration.screens.signalloginpayment.SignalLoginPaymentScreenEvents
@@ -192,6 +196,14 @@ sealed interface RegistrationRoute : NavKey, Parcelable {
   /** Shows the full keys that make up the user's Signal Login and offers ways to save them. */
   @Serializable
   data object SignalLoginViewDetails : RegistrationRoute
+
+  /** Spells out a freshly-purchased Signal Login so the user can record it themselves. */
+  @Serializable
+  data object SignalLoginViewDetailsForManualSave : RegistrationRoute
+
+  /** Typing back a freshly-purchased Signal Login to prove it was recorded correctly. */
+  @Serializable
+  data object SignalLoginManualSaveConfirmation : RegistrationRoute
 
   /**
    * Logging in with a Signal Login the user already owns: the account ID and the recovery key that pairs with it.
@@ -765,7 +777,7 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
     val savePdfLauncher = rememberLauncherForActivityResult(ActivityResultContracts.CreateDocument("application/pdf")) { uri ->
       if (uri != null) {
         scope.launch {
-          val result = SignalLoginPdfRenderer.renderTo(context, uri, viewModel.state.value)
+          val result = SignalLoginPdfRenderer.renderTo(context, uri, viewModel.state.value.accountKey, viewModel.state.value.recoveryKeyGroups)
           if (result is Result.Failure) {
             Toast.makeText(context, result.failure.userMessageRes, Toast.LENGTH_LONG).show()
           }
@@ -792,6 +804,59 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
     }
 
     SignalLoginViewDetailsScreen(
+      state = state,
+      onEvent = { viewModel.onEvent(it) }
+    )
+  }
+
+  // -- Signal Login View Details For Manual Save Screen
+  entry<RegistrationRoute.SignalLoginViewDetailsForManualSave> {
+    val context = LocalContext.current
+    val scope = rememberCoroutineScope()
+    val viewModel: SignalLoginViewDetailsForManualSaveViewModel = viewModel {
+      SignalLoginViewDetailsForManualSaveViewModel(
+        parentState = registrationViewModel.state,
+        parentEventEmitter = registrationViewModel::onEvent
+      )
+    }
+    val state by viewModel.state.collectAsStateWithLifecycle()
+
+    val savePdfLauncher = rememberLauncherForActivityResult(ActivityResultContracts.CreateDocument("application/pdf")) { uri ->
+      if (uri != null) {
+        scope.launch {
+          val result = SignalLoginPdfRenderer.renderTo(context, uri, viewModel.state.value.accountId, viewModel.state.value.recoveryKeyGroups)
+          if (result is Result.Failure) {
+            Toast.makeText(context, result.failure.userMessageRes, Toast.LENGTH_LONG).show()
+          }
+        }
+      }
+    }
+
+    CollectActions(viewModel.actions) { action ->
+      when (action) {
+        SignalLoginViewDetailsForManualSaveScreenActions.LaunchSaveAsPdf -> savePdfLauncher.launch(SignalLoginPdfRenderer.suggestedFileName(context))
+
+        is SignalLoginViewDetailsForManualSaveScreenActions.CopyTextToClipboard -> Util.copyToClipboard(context, action.text, CLIPBOARD_TIMEOUT_SECONDS)
+      }
+    }
+
+    SignalLoginViewDetailsForManualSaveScreen(
+      state = state,
+      onEvent = { viewModel.onEvent(it) }
+    )
+  }
+
+  // -- Signal Login Manual Save Confirmation Screen
+  entry<RegistrationRoute.SignalLoginManualSaveConfirmation> {
+    val viewModel: SignalLoginManualSaveConfirmationViewModel = viewModel {
+      SignalLoginManualSaveConfirmationViewModel(
+        parentState = registrationViewModel.state,
+        parentEventEmitter = registrationViewModel::onEvent
+      )
+    }
+    val state by viewModel.state.collectAsStateWithLifecycle()
+
+    SignalLoginCredentialEntryScreen(
       state = state,
       onEvent = { viewModel.onEvent(it) }
     )

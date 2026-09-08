@@ -23,8 +23,8 @@ import kotlinx.coroutines.withContext
 import org.signal.core.util.Result
 import org.signal.core.util.logging.Log
 import org.signal.signallogin.R
+import org.signal.signallogin.RecoveryKeyGroups
 import org.signal.signallogin.fonts.MonoTypeface
-import org.signal.signallogin.viewdetails.SignalLoginViewDetailsState
 import java.io.ByteArrayOutputStream
 import java.io.IOException
 import kotlin.math.ceil
@@ -90,12 +90,12 @@ object SignalLoginPdfRenderer {
   private const val BODY_TEXT_COLOR = 0xFF4D4D4D.toInt()
 
   /**
-   * Renders the credentials in [state] to a PDF and writes it to [uri].
+   * Renders the given credentials to a PDF and writes it to [uri].
    */
-  suspend fun renderTo(context: Context, uri: Uri, state: SignalLoginViewDetailsState): Result<Unit, SignalLoginPdfError> {
+  suspend fun renderTo(context: Context, uri: Uri, accountId: String, recoveryKeyGroups: RecoveryKeyGroups): Result<Unit, SignalLoginPdfError> {
     return withContext(Dispatchers.IO) {
       try {
-        val bytes = render(context, state)
+        val bytes = render(context, accountId, recoveryKeyGroups)
         val stream = context.contentResolver.openOutputStream(uri)
         if (stream == null) {
           Log.w(TAG, "Could not open an output stream for the chosen location.")
@@ -114,11 +114,11 @@ object SignalLoginPdfRenderer {
     }
   }
 
-  fun render(context: Context, state: SignalLoginViewDetailsState): ByteArray {
+  fun render(context: Context, accountId: String, recoveryKeyGroups: RecoveryKeyGroups): ByteArray {
     val document = PdfDocument()
     try {
       val page = document.startPage(PdfDocument.PageInfo.Builder(PAGE_WIDTH, PAGE_HEIGHT, 1).create())
-      drawPage(context, page.canvas, state)
+      drawPage(context, page.canvas, accountId, recoveryKeyGroups)
       document.finishPage(page)
 
       return ByteArrayOutputStream().use { stream ->
@@ -130,7 +130,7 @@ object SignalLoginPdfRenderer {
     }
   }
 
-  private fun drawPage(context: Context, canvas: Canvas, state: SignalLoginViewDetailsState) {
+  private fun drawPage(context: Context, canvas: Canvas, accountId: String, recoveryKeyGroups: RecoveryKeyGroups) {
     val titlePaint = textPaint(TITLE_TEXT_SIZE, TITLE_LETTER_SPACING_EM, TEXT_COLOR, semiBold = true)
     val bodyPaint = textPaint(BODY_TEXT_SIZE, BODY_LETTER_SPACING_EM, BODY_TEXT_COLOR, semiBold = false)
     val headerPaint = textPaint(HEADER_TEXT_SIZE, HEADER_LETTER_SPACING_EM, TEXT_COLOR, semiBold = true)
@@ -168,7 +168,7 @@ object SignalLoginPdfRenderer {
     y = drawKeyBlock(canvas, top = y, rowCount = 1, lineHeight = ACCOUNT_KEY_LINE_HEIGHT) { contentTop ->
       drawText(
         canvas = canvas,
-        text = state.accountKey,
+        text = accountId,
         paint = keyPaint,
         left = CONTENT_LEFT,
         top = contentTop,
@@ -178,7 +178,7 @@ object SignalLoginPdfRenderer {
       )
     }
 
-    val rows = state.recoveryKeyGroups.chunked(GROUPS_PER_ROW)
+    val rows = recoveryKeyGroups.rows(GROUPS_PER_ROW)
     y = drawSectionHeader(canvas, headerPaint, context.getString(R.string.SignalLoginPdf__recovery_key), top = y)
     drawKeyBlock(canvas, top = y, rowCount = rows.size, lineHeight = RECOVERY_KEY_LINE_HEIGHT) { contentTop ->
       drawRecoveryKeyGroups(canvas, keyPaint, rows, contentTop)

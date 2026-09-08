@@ -16,7 +16,7 @@
     <!-- Section header above the account key. -->
     <string name="SignalLoginViewDetailsScreen__account_key">கணக்குக் குறியீடு</string>
     <!-- Section header above the recovery key. -->
-    <string name="SignalLoginViewDetailsScreen__recovery_key">மீட்புக் குறியீடு</string>
+    <string name="SignalLoginKeyDetails__recovery_key">மீட்புக் குறியீடு</string>
     <!-- Action button that stores the Signal Login in the device password manager. -->
     <string name="SignalLoginViewDetailsScreen__save_to_password_manager">கடவுச்சொல் மேலாளரில் சேமித்திடுக</string>
     <!-- Action button that saves the Signal Login as a PDF. -->

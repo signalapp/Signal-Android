@@ -16,7 +16,7 @@
     <!-- Section header above the account key. -->
     <string name="SignalLoginViewDetailsScreen__account_key">Konta atslēga</string>
     <!-- Section header above the recovery key. -->
-    <string name="SignalLoginViewDetailsScreen__recovery_key">Atkopšanas atslēga</string>
+    <string name="SignalLoginKeyDetails__recovery_key">Atkopšanas atslēga</string>
     <!-- Action button that stores the Signal Login in the device password manager. -->
     <string name="SignalLoginViewDetailsScreen__save_to_password_manager">Saglabāt paroļu pārvaldniekā</string>
     <!-- Action button that saves the Signal Login as a PDF. -->

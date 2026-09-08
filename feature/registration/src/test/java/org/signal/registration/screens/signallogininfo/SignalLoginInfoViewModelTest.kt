@@ -89,11 +89,11 @@ class SignalLoginInfoViewModelTest {
   }
 
   @Test
-  fun `SaveManuallyClicked advances to the add username screen`() = runTest(testDispatcher) {
+  fun `SaveManuallyClicked advances to the save your login screen`() = runTest(testDispatcher) {
     val parentEvents = mutableListOf<RegistrationFlowEvent>()
 
     viewModel.applyEvent(SignalLoginInfoState(), SignalLoginInfoScreenEvents.SaveManuallyClicked, { parentEvents.add(it) }) {}
 
-    assertThat(parentEvents).containsExactly(RegistrationFlowEvent.NavigateToScreen(RegistrationRoute.AddUsername))
+    assertThat(parentEvents).containsExactly(RegistrationFlowEvent.NavigateToScreen(RegistrationRoute.SignalLoginViewDetailsForManualSave))
   }
 }

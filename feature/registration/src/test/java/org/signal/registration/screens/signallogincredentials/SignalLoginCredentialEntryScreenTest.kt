@@ -156,6 +156,16 @@ class SignalLoginCredentialEntryScreenTest {
   }
 
   @Test
+  fun `in confirm-saved mode, Show login info again takes the place of Need help`() {
+    setContent(SignalLoginCredentialEntryState(mode = SignalLoginCredentialEntryState.Mode.ConfirmSaved))
+
+    composeTestRule.onNodeWithTag(TestTags.SIGNAL_LOGIN_CREDENTIAL_NEED_HELP_BUTTON).assertDoesNotExist()
+    composeTestRule.onNodeWithTag(TestTags.SIGNAL_LOGIN_CREDENTIAL_SHOW_LOGIN_INFO_AGAIN_BUTTON).performClick()
+
+    assertThat(events).contains(SignalLoginCredentialEntryScreenEvents.ShowLoginInfoAgainClicked)
+  }
+
+  @Test
   fun `when Next is clicked with a complete login, NextClicked is emitted`() {
     setContent(completeState())
 

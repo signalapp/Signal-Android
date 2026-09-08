@@ -29,8 +29,11 @@ sealed class SignalLoginCredentialEntryScreenEvents {
   /** The user tapped the eye button that switches the recovery key between masked and spelled out. */
   data object RecoveryKeyVisibilityToggled : SignalLoginCredentialEntryScreenEvents()
 
-  /** The user tapped "Need help?". */
+  /** The user tapped "Need help?". Only reachable in [SignalLoginCredentialEntryState.Mode.Login]. */
   data object NeedHelpClicked : SignalLoginCredentialEntryScreenEvents()
+
+  /** The user tapped "Show login info again". Only reachable in [SignalLoginCredentialEntryState.Mode.ConfirmSaved]. */
+  data object ShowLoginInfoAgainClicked : SignalLoginCredentialEntryScreenEvents()
 
   /** The user submitted the login, either with the next button or the keyboard's done action. */
   data object NextClicked : SignalLoginCredentialEntryScreenEvents()

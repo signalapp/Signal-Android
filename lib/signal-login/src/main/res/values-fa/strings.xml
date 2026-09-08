@@ -16,7 +16,7 @@
     <!-- Section header above the account key. -->
     <string name="SignalLoginViewDetailsScreen__account_key">رمز حساب</string>
     <!-- Section header above the recovery key. -->
-    <string name="SignalLoginViewDetailsScreen__recovery_key">رمز بازیابی</string>
+    <string name="SignalLoginKeyDetails__recovery_key">رمز بازیابی</string>
     <!-- Action button that stores the Signal Login in the device password manager. -->
     <string name="SignalLoginViewDetailsScreen__save_to_password_manager">ذخیره در مدیر رمز عبور</string>
     <!-- Action button that saves the Signal Login as a PDF. -->

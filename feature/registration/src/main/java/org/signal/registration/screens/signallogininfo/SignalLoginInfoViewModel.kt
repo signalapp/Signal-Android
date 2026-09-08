@@ -73,8 +73,7 @@ class SignalLoginInfoViewModel(
       }
 
       is SignalLoginInfoScreenEvents.SaveManuallyClicked -> {
-        // TODO [phonenumberless] Advance to the confirm-you-saved-it step instead of skipping straight ahead.
-        parentEventEmitter.navigateTo(RegistrationRoute.AddUsername)
+        parentEventEmitter.navigateTo(RegistrationRoute.SignalLoginViewDetailsForManualSave)
       }
 
       is SignalLoginInfoScreenEvents.SaveFailedDialogDismissed -> {

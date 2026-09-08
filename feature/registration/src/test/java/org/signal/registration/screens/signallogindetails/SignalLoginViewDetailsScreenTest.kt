@@ -46,7 +46,7 @@ class SignalLoginViewDetailsScreenTest {
   fun `when the account key copy button is clicked, CopyAccountIdClicked is emitted`() {
     setContent()
 
-    composeTestRule.onNodeWithTag(SignalLoginTestTags.VIEW_DETAILS_ACCOUNT_KEY_COPY_BUTTON).performScrollTo().performClick()
+    composeTestRule.onNodeWithTag(SignalLoginTestTags.KEY_DETAILS_ACCOUNT_ID_COPY_BUTTON).performScrollTo().performClick()
 
     assertThat(events).contains(SignalLoginViewDetailsScreenEvents.CopyAccountIdClicked(ACCOUNT_KEY))
   }
@@ -55,7 +55,7 @@ class SignalLoginViewDetailsScreenTest {
   fun `when the recovery key copy button is clicked, CopyRecoveryKeyClicked is emitted`() {
     setContent()
 
-    composeTestRule.onNodeWithTag(SignalLoginTestTags.VIEW_DETAILS_RECOVERY_KEY_COPY_BUTTON).performScrollTo().performClick()
+    composeTestRule.onNodeWithTag(SignalLoginTestTags.KEY_DETAILS_RECOVERY_KEY_COPY_BUTTON).performScrollTo().performClick()
 
     assertThat(events).contains(SignalLoginViewDetailsScreenEvents.CopyRecoveryKeyClicked(RECOVERY_KEY))
   }
