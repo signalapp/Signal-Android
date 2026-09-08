@@ -106,7 +106,14 @@ class PreKeysSyncJob private constructor(
     Parameters.Builder()
       .setQueue("PreKeysSyncJob")
       .addConstraint(NetworkConstraint.KEY)
-      .setMaxInstancesForFactory(1)
+      .apply {
+        if (forceRotation) {
+          setMaxInstancesForFactory(Parameters.UNLIMITED)
+          setMaxInstancesForQueue(2)
+        } else {
+          setMaxInstancesForFactory(1)
+        }
+      }
       .setMaxAttempts(Parameters.UNLIMITED)
       .setLifespan(TimeUnit.DAYS.toMillis(30))
       .build(),
