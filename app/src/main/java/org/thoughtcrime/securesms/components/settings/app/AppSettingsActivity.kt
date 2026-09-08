@@ -22,7 +22,6 @@ import org.thoughtcrime.securesms.help.HelpFragment
 import org.thoughtcrime.securesms.keyvalue.SettingsValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.profiles.manage.UsernameEditMode
-import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.service.KeyCachingService
 import org.thoughtcrime.securesms.util.CachedInflater
 import org.thoughtcrime.securesms.util.DynamicTheme
@@ -128,7 +127,7 @@ class AppSettingsActivity : DSLSettingsActivity(), GooglePayComponent {
       when (intent.getStringExtra(EXTRA_PERFORM_ACTION_ON_CREATE)) {
         ACTION_CHANGE_NUMBER_SUCCESS -> {
           MaterialAlertDialogBuilder(this)
-            .setMessage(getString(R.string.ChangeNumber__your_phone_number_has_changed_to_s, SignalE164Util.prettyPrint(Recipient.self().requireE164())))
+            .setMessage(getString(R.string.ChangeNumber__your_phone_number_has_changed_to_s, SignalE164Util.prettyPrint(SignalStore.account.requireE164())))
             .setPositiveButton(R.string.ChangeNumber__okay, null)
             .show()
         }

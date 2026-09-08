@@ -35,7 +35,7 @@ class ManageStorageSettingsViewModel : ViewModel() {
     ManageStorageState(
       keepMessagesDuration = SignalStore.settings.keepMessagesDuration,
       lengthLimit = if (SignalStore.settings.isTrimByLengthEnabled) SignalStore.settings.threadTrimLength else ManageStorageState.NO_LIMIT,
-      syncTrimDeletes = SignalStore.settings.shouldSyncThreadTrimDeletes(),
+      syncTrimDeletes = SignalStore.settings.syncThreadTrimDeletes,
       localBackupsEnabled = SignalStore.backup.newLocalBackupsEnabled,
       isPrimary = SignalStore.account.isPrimaryDevice,
       initialOptimizeStorage = SignalStore.backup.optimizeStorage
@@ -73,7 +73,7 @@ class ManageStorageSettingsViewModel : ViewModel() {
   }
 
   fun setKeepMessagesDuration(newDuration: KeepMessagesDuration) {
-    SignalStore.settings.setKeepMessagesForDuration(newDuration)
+    SignalStore.settings.keepMessagesDuration = newDuration
     AppDependencies.trimThreadsByDateManager.scheduleIfNecessary()
 
     store.update { it.copy(keepMessagesDuration = newDuration) }
@@ -86,7 +86,7 @@ class ManageStorageSettingsViewModel : ViewModel() {
   fun setChatLengthLimit(newLimit: Int) {
     val restrictingChange = isRestrictingLengthLimitChange(newLimit)
 
-    SignalStore.settings.setThreadTrimByLengthEnabled(newLimit != ManageStorageState.NO_LIMIT)
+    SignalStore.settings.isTrimByLengthEnabled = newLimit != ManageStorageState.NO_LIMIT
     SignalStore.settings.threadTrimLength = newLimit
     store.update { it.copy(lengthLimit = newLimit) }
 
@@ -110,7 +110,7 @@ class ManageStorageSettingsViewModel : ViewModel() {
   }
 
   fun setSyncTrimDeletes(syncTrimDeletes: Boolean) {
-    SignalStore.settings.setSyncThreadTrimDeletes(syncTrimDeletes)
+    SignalStore.settings.syncThreadTrimDeletes = syncTrimDeletes
     store.update { it.copy(syncTrimDeletes = syncTrimDeletes) }
   }
 

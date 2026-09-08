@@ -70,7 +70,7 @@ class RestoreLocalBackupFragment : LoggingFragment(R.layout.fragment_restore_loc
           Log.i(TAG, "Re-enabling backups with new directory")
           val takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
 
-          SignalStore.settings.setSignalBackupDirectory(backupDirectoryUri)
+          SignalStore.settings.signalBackupDirectory = backupDirectoryUri
           requireContext().contentResolver.takePersistableUriPermission(backupDirectoryUri, takeFlags)
 
           enableLocalBackups(requireContext())

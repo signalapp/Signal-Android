@@ -120,7 +120,7 @@ object AccountDataArchiveProcessor {
             storiesDisabled = signalStore.storyValues.isFeatureDisabled,
             hasViewedOnboardingStory = signalStore.storyValues.userHasViewedOnboardingStory,
             hasSetMyStoriesPrivacy = signalStore.storyValues.userHasBeenNotifiedAboutStories,
-            keepMutedChatsArchived = signalStore.settingsValues.shouldKeepMutedChatsArchived(),
+            keepMutedChatsArchived = signalStore.settingsValues.keepMutedChatsArchived,
             displayBadgesOnProfile = signalStore.inAppPaymentValues.getDisplayBadgesOnProfile(),
             hasSeenGroupStoryEducationSheet = signalStore.storyValues.userHasSeenGroupStoryEducationSheet,
             hasCompletedUsernameOnboarding = signalStore.uiHintValues.hasCompletedUsernameOnboarding(),
@@ -277,7 +277,7 @@ object AccountDataArchiveProcessor {
     SignalStore.settings.universalExpireTimer = settings.universalExpireTimerSeconds
     SignalStore.emoji.reactions = settings.preferredReactionEmoji
     SignalStore.inAppPayments.setDisplayBadgesOnProfile(settings.displayBadgesOnProfile)
-    SignalStore.settings.setKeepMutedChatsArchived(settings.keepMutedChatsArchived)
+    SignalStore.settings.keepMutedChatsArchived = settings.keepMutedChatsArchived
     SignalStore.story.userHasBeenNotifiedAboutStories = settings.hasSetMyStoriesPrivacy
     SignalStore.story.userHasViewedOnboardingStory = settings.hasViewedOnboardingStory
     SignalStore.story.isFeatureDisabled = settings.storiesDisabled
@@ -286,8 +286,8 @@ object AccountDataArchiveProcessor {
     SignalStore.backup.optimizeStorage = !importState.backupMode.isLinkAndSync && settings.optimizeOnDeviceStorage
     SignalStore.backup.backupTier = MessageBackupTier.fromBackupLevel(settings.backupTier)
     SignalStore.settings.sentMediaQuality = settings.defaultSentMediaQuality.toLocalSentMediaQuality()
-    SignalStore.settings.setTheme(settings.appTheme.toLocalTheme())
-    SignalStore.settings.setCallDataMode(settings.callsUseLessDataSetting.toLocalCallDataMode())
+    SignalStore.settings.theme = settings.appTheme.toLocalTheme()
+    SignalStore.settings.callDataMode = settings.callsUseLessDataSetting.toLocalCallDataMode()
     SignalStore.settings.automaticVerificationEnabled = settings.allowAutomaticKeyVerification
     SignalStore.settings.setUnreadBadgeType(settings.unreadBadgeType.value)
     SignalStore.settings.setIncludeMutedInBadgeCount(settings.includeMutedChatsInBadge ?: false)

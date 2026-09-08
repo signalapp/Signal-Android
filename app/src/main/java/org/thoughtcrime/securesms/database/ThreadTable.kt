@@ -295,7 +295,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
   }
 
   private fun allowedToUnarchive(threadId: Long): Boolean {
-    if (!SignalStore.settings.shouldKeepMutedChatsArchived()) {
+    if (!SignalStore.settings.keepMutedChatsArchived) {
       return true
     }
 
@@ -353,7 +353,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       return
     }
 
-    val syncThreadTrimDeletes = SignalStore.settings.shouldSyncThreadTrimDeletes()
+    val syncThreadTrimDeletes = SignalStore.settings.syncThreadTrimDeletes
     val threadTrimsToSync = mutableListOf<ThreadDeleteSyncInfo>()
 
     readableDatabase

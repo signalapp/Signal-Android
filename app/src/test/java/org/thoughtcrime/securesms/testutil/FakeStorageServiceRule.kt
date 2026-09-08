@@ -167,7 +167,7 @@ class FakeStorageServiceRule(val storageKey: StorageKey = StorageKey(Util.getSec
     every { store.settings.isLinkPreviewsEnabled } returns true
     every { store.settings.isPreferSystemContactPhotos } returns false
     every { store.settings.universalExpireTimer } returns 0
-    every { store.settings.shouldKeepMutedChatsArchived() } returns false
+    every { store.settings.keepMutedChatsArchived } returns false
     every { store.settings.automaticVerificationEnabled } returns true
 
     mockkObject(RemoteConfig)

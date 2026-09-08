@@ -29,7 +29,7 @@ class ChatsSettingsViewModel @JvmOverloads constructor(
     ChatsSettingsState(
       generateLinkPreviews = SignalStore.settings.isLinkPreviewsEnabled,
       useAddressBook = SignalStore.settings.isPreferSystemContactPhotos,
-      keepMutedChatsArchived = SignalStore.settings.shouldKeepMutedChatsArchived(),
+      keepMutedChatsArchived = SignalStore.settings.keepMutedChatsArchived,
       useSystemEmoji = SignalStore.settings.isPreferSystemEmoji,
       enterKeySends = SignalStore.settings.isEnterKeySends,
       localBackupsEnabled = SignalStore.settings.isBackupEnabled && BackupUtil.canUserAccessBackupDirectory(AppDependencies.application),
@@ -97,7 +97,7 @@ class ChatsSettingsViewModel @JvmOverloads constructor(
 
   fun setKeepMutedChatsArchived(enabled: Boolean) {
     store.update { it.copy(keepMutedChatsArchived = enabled) }
-    SignalStore.settings.setKeepMutedChatsArchived(enabled)
+    SignalStore.settings.keepMutedChatsArchived = enabled
     repository.syncKeepMutedChatsArchivedState()
   }
 

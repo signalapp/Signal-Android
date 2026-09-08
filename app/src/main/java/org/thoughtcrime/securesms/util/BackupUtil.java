@@ -161,7 +161,7 @@ public class BackupUtil {
         return;
       }
 
-      SignalStore.settings().clearSignalBackupDirectory();
+      SignalStore.settings().setSignalBackupDirectory(null);
 
       try {
         context.getContentResolver()

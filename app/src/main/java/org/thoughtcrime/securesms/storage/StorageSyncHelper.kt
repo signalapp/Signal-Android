@@ -180,7 +180,7 @@ object StorageSyncHelper {
       preferredReactionEmoji = SignalStore.emoji.reactions
       displayBadgesOnProfile = SignalStore.inAppPayments.getDisplayBadgesOnProfile()
       subscriptionManuallyCancelled = isUserManuallyCancelled(InAppPaymentSubscriberRecord.Type.DONATION)
-      keepMutedChatsArchived = SignalStore.settings.shouldKeepMutedChatsArchived()
+      keepMutedChatsArchived = SignalStore.settings.keepMutedChatsArchived
       hasSetMyStoriesPrivacy = SignalStore.story.userHasBeenNotifiedAboutStories
       hasViewedOnboardingStory = SignalStore.story.userHasViewedOnboardingStory
       storiesDisabled = SignalStore.story.isFeatureDisabled
@@ -280,7 +280,7 @@ object StorageSyncHelper {
     SignalStore.settings.universalExpireTimer = update.new.proto.universalExpireTimer
     SignalStore.emoji.reactions = update.new.proto.preferredReactionEmoji
     SignalStore.inAppPayments.setDisplayBadgesOnProfile(update.new.proto.displayBadgesOnProfile)
-    SignalStore.settings.setKeepMutedChatsArchived(update.new.proto.keepMutedChatsArchived)
+    SignalStore.settings.keepMutedChatsArchived = update.new.proto.keepMutedChatsArchived
     SignalStore.story.userHasBeenNotifiedAboutStories = update.new.proto.hasSetMyStoriesPrivacy
     SignalStore.story.userHasViewedOnboardingStory = update.new.proto.hasViewedOnboardingStory
     SignalStore.story.isFeatureDisabled = update.new.proto.storiesDisabled
