@@ -127,6 +127,8 @@ import org.signal.registration.screens.signallogincredentials.SignalLoginManualS
 import org.signal.registration.screens.signallogindetails.SignalLoginViewDetailsScreenActions
 import org.signal.registration.screens.signallogindetails.SignalLoginViewDetailsViewModel
 import org.signal.registration.screens.signallogininfo.SignalLoginInfoScreen
+import org.signal.registration.screens.signallogininfo.SignalLoginInfoScreenActions
+import org.signal.registration.screens.signallogininfo.SignalLoginInfoScreenEvents
 import org.signal.registration.screens.signallogininfo.SignalLoginInfoViewModel
 import org.signal.registration.screens.signalloginmanualsave.SignalLoginViewDetailsForManualSaveScreen
 import org.signal.registration.screens.signalloginmanualsave.SignalLoginViewDetailsForManualSaveScreenActions
@@ -746,6 +748,7 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
   // -- Signal Login Info Screen
   entry<RegistrationRoute.SignalLoginInfo> {
     val context = LocalContext.current
+    val credentialManagerScope = rememberCoroutineScope()
     val viewModel: SignalLoginInfoViewModel = viewModel {
       SignalLoginInfoViewModel(
         repository = registrationRepository,
@@ -755,6 +758,28 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
       )
     }
     val state by viewModel.state.collectAsStateWithLifecycle()
+
+    CollectActions(viewModel.actions) { action ->
+      when (action) {
+        is SignalLoginInfoScreenActions.SaveToPasswordManager -> {
+          credentialManagerScope.launch {
+            val result = SignalCredentialManager.saveCredential(
+              activityContext = context,
+              username = action.accountId,
+              password = action.recoveryKey
+            )
+            viewModel.onEvent(SignalLoginInfoScreenEvents.SaveToPasswordManagerCompleted(result))
+          }
+        }
+
+        is SignalLoginInfoScreenActions.ReadBackFromPasswordManager -> {
+          credentialManagerScope.launch {
+            val credential = SignalCredentialManager.getCredential(activityContext = context, id = action.accountId)
+            viewModel.onEvent(SignalLoginInfoScreenEvents.SavedCredentialRetrieved(credential))
+          }
+        }
+      }
+    }
 
     SignalLoginInfoScreen(
       state = state,

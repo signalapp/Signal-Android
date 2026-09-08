@@ -71,6 +71,9 @@ object TestTags {
   const val SIGNAL_LOGIN_INFO_CREDENTIAL_CARD = "signal_login_info_credential_card"
   const val SIGNAL_LOGIN_INFO_SAVE_TO_PASSWORD_MANAGER_BUTTON = "signal_login_info_save_to_password_manager_button"
   const val SIGNAL_LOGIN_INFO_SAVE_MANUALLY_BUTTON = "signal_login_info_save_manually_button"
+  const val CONFIRM_LOGIN_SAVED_TO_PASSWORD_MANAGER_SHEET = "confirm_login_saved_to_password_manager_sheet"
+  const val CONFIRM_LOGIN_SAVED_TO_PASSWORD_MANAGER_CONFIRM_BUTTON = "confirm_login_saved_to_password_manager_confirm_button"
+  const val CONFIRM_LOGIN_SAVED_TO_PASSWORD_MANAGER_SEE_LOGIN_INFO_AGAIN_BUTTON = "confirm_login_saved_to_password_manager_see_login_info_again_button"
 
   // Save Signal Login Screen
   const val SIGNAL_LOGIN_MANUAL_SAVE_SCREEN = "signal_login_manual_save_screen"

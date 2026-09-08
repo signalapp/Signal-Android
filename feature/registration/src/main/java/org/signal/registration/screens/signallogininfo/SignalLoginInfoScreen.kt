@@ -76,16 +76,49 @@ fun SignalLoginInfoScreen(
     )
   }
 
+  if (state.dialogs.saveNotConfirmed) {
+    SaveNotConfirmedDialog(onEvent)
+  }
+
+  val params = RegistrationScaffold.rememberLayoutParams()
+
+  if (state.showConfirmSavedSheet) {
+    ConfirmLoginSavedToPasswordManagerBottomSheet(
+      maxButtonWidth = params.maxButtonWidth,
+      onConfirm = { onEvent(SignalLoginInfoScreenEvents.ConfirmSavedContinueClicked) },
+      onSeeLoginInfoAgain = { onEvent(SignalLoginInfoScreenEvents.SeeLoginInfoAgainClicked) },
+      onDismiss = { onEvent(SignalLoginInfoScreenEvents.ConfirmSavedSheetDismissed) }
+    )
+  }
+
   Surface(
     modifier = modifier
       .fillMaxSize()
       .testTag(TestTags.SIGNAL_LOGIN_INFO_SCREEN)
   ) {
-    when (val params = RegistrationScaffold.rememberLayoutParams()) {
+    when (params) {
       is RegistrationScaffold.Params.OnePane -> OnePaneLayout(params, state, onEvent)
       is RegistrationScaffold.Params.TwoPane -> TwoPaneLayout(params, state, onEvent)
     }
   }
+}
+
+/**
+ * Offered when the login we just handed to the password manager isn't there when we go looking for it, so the user can
+ * either try the save again or record it themselves.
+ */
+@Composable
+private fun SaveNotConfirmedDialog(onEvent: (SignalLoginInfoScreenEvents) -> Unit) {
+  Dialogs.AdvancedAlertDialog(
+    title = stringResource(R.string.SignalLoginInfoScreen__error_confirming_login_info),
+    body = stringResource(R.string.SignalLoginInfoScreen__your_signal_login_could_not_be_confirmed),
+    positive = stringResource(R.string.SignalLoginInfoScreen__save_to_password_manager),
+    onPositive = { onEvent(SignalLoginInfoScreenEvents.SaveToPasswordManagerClicked) },
+    neutral = stringResource(R.string.SignalLoginInfoScreen__save_manually),
+    onNeutral = { onEvent(SignalLoginInfoScreenEvents.SaveManuallyClicked) },
+    negative = stringResource(android.R.string.cancel),
+    onNegative = { onEvent(SignalLoginInfoScreenEvents.SaveNotConfirmedDialogDismissed) }
+  )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
