@@ -14,6 +14,7 @@ fun Intent.encourageNewBrowserTab(): Intent {
   return apply {
     putExtra(Browser.EXTRA_APPLICATION_ID, UUID.randomUUID().toString())
     putExtra(Browser.EXTRA_CREATE_NEW_TAB, true)
+    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
   }
 }
 
