@@ -33,6 +33,7 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
     const val CALLING_USE_SOFTWARE_VP9_DECODE: String = "internal.calling_use_software_vp9_decode"
     const val CALLING_ENABLE_SVC: String = "internal.calling_enable_svc"
     const val CALLING_STATS_INTERVAL_SECS: String = "internal.calling_stats_interval_secs"
+    const val CALLING_MINIMUM_CAPTURE_FPS: String = "internal.calling_minimum_capture_fps"
     const val SHAKE_TO_REPORT: String = "internal.shake_to_report"
     const val DISABLE_STORAGE_SERVICE: String = "internal.disable_storage_service"
     const val LAST_SCROLL_POSITION: String = "internal.last_scroll_position"
@@ -195,6 +196,11 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
    * How often, in seconds, RingRTC should report call stats. Zero means use the default interval.
    */
   var callingStatsIntervalSecs: Int by integerValue(CALLING_STATS_INTERVAL_SECS, 0).defaultForExternalUsers()
+
+  /**
+   * Minimum fps for the camera's capture framerate range. Zero means use default logic
+   */
+  var callingMinimumCaptureFps: Int by integerValue(CALLING_MINIMUM_CAPTURE_FPS, 0).defaultForExternalUsers()
 
   var lastScrollPosition: Int by integerValue(LAST_SCROLL_POSITION, 0).defaultForExternalUsers()
 

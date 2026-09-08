@@ -77,6 +77,7 @@ import org.thoughtcrime.securesms.payments.DataExportUtil
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.registration.data.QuickstartCredentialExporter
+import org.thoughtcrime.securesms.ringrtc.CameraFpsRanges
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.ConversationUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
@@ -99,6 +100,8 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
   private lateinit var viewModel: InternalSettingsViewModel
   private var searchMenuItem: MenuItem? = null
+
+  private val cameraFpsRangeDescription: String? by lazy { CameraFpsRanges.captureCameraRangesDescription(requireContext()) }
 
   private var scrollToPosition: Int = 0
   private val layoutManager: LinearLayoutManager?
@@ -832,6 +835,25 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
             initialValue = state.callingStatsIntervalSecs.takeIf { it > 0 }
           ) { intervalSecs ->
             viewModel.setInternalCallingStatsIntervalSecs(intervalSecs ?: 0)
+          }
+        }
+      )
+
+      clickPref(
+        title = DSLSettingsText.from("Minimum Capture FPS"),
+        summary = DSLSettingsText.from(
+          buildString {
+            append(if (state.callingMinimumCaptureFps > 0) "${state.callingMinimumCaptureFps} fps" else "Default")
+            cameraFpsRangeDescription?.let { append("\n$it") }
+          }
+        ),
+        onClick = {
+          promptUserForInt(
+            title = "Minimum Capture FPS",
+            message = "Floor for the camera's capture framerate range. 0 for default logic. Applies on next call start.",
+            initialValue = state.callingMinimumCaptureFps.takeIf { it > 0 }
+          ) { minimumFps ->
+            viewModel.setInternalCallingMinimumCaptureFps(minimumFps ?: 0)
           }
         }
       )

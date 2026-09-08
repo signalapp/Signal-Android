@@ -177,6 +177,11 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     refresh()
   }
 
+  fun setInternalCallingMinimumCaptureFps(minimumFps: Int) {
+    preferenceDataStore.putInt(InternalValues.CALLING_MINIMUM_CAPTURE_FPS, minimumFps)
+    refresh()
+  }
+
   fun setUseConversationItemV2Media(enabled: Boolean) {
     SignalStore.internal.useConversationItemV2Media = enabled
     refresh()
@@ -265,6 +270,7 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     callingUseSoftwareVp9Decode = SignalStore.internal.callingUseSoftwareVp9Decode,
     callingEnableSvc = SignalStore.internal.callingEnableSvc,
     callingStatsIntervalSecs = SignalStore.internal.callingStatsIntervalSecs,
+    callingMinimumCaptureFps = SignalStore.internal.callingMinimumCaptureFps,
     useBuiltInEmojiSet = SignalStore.internal.forceBuiltInEmoji,
     emojiVersion = null,
     removeSenderKeyMinimium = SignalStore.internal.removeSenderKeyMinimum,
