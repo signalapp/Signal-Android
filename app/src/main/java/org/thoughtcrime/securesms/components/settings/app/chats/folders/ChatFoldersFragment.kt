@@ -74,6 +74,13 @@ class ChatFoldersFragment : ComposeFragment() {
     val navController: NavController by remember { mutableStateOf(findNavController()) }
     viewModel.loadCurrentFolders(requireContext())
 
+    LaunchedEffect(Unit) {
+      if (viewModel.shouldShowEducationSheet()) {
+        SignalStore.uiHints.hasSeenChatFoldersEducationSheet = true
+        navController.safeNavigate(R.id.action_chatFoldersFragment_to_chatFoldersEducationSheet)
+      }
+    }
+
     Scaffolds.Settings(
       title = stringResource(id = R.string.ChatsSettingsFragment__chat_folders),
       onNavigationClick = { requireActivity().onNavigateUp() },
@@ -82,7 +89,6 @@ class ChatFoldersFragment : ComposeFragment() {
     ) { contentPadding: PaddingValues ->
       FoldersScreen(
         state = state,
-        navController = navController,
         modifier = Modifier.padding(contentPadding),
         onFolderClicked = {
           navController.safeNavigate(ChatFoldersFragmentDirections.actionChatFoldersFragmentToCreateFoldersFragment(it.id, null))
@@ -116,7 +122,6 @@ class ChatFoldersFragment : ComposeFragment() {
 @Composable
 fun FoldersScreen(
   state: ChatFoldersSettingsState,
-  navController: NavController? = null,
   modifier: Modifier = Modifier,
   onFolderClicked: (ChatFolderRecord) -> Unit = {},
   onAdd: (ChatFolderRecord) -> Unit = {},
@@ -127,13 +132,6 @@ fun FoldersScreen(
 ) {
   val listState = rememberLazyListState()
   val reorderableListState = rememberReorderableListState(listState, includeHeader = true, includeFooter = true, onEvent = onReorderListEvent)
-
-  LaunchedEffect(Unit) {
-    if (!SignalStore.uiHints.hasSeenChatFoldersEducationSheet) {
-      SignalStore.uiHints.hasSeenChatFoldersEducationSheet = true
-      navController?.safeNavigate(R.id.action_chatFoldersFragment_to_chatFoldersEducationSheet)
-    }
-  }
 
   if (state.showDeleteDialog) {
     Dialogs.SimpleAlertDialog(

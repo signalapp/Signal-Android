@@ -106,7 +106,7 @@ class CreateFoldersFragment : ComposeFragment() {
     }
 
     LaunchedEffect(Unit) {
-      if (!SignalStore.uiHints.hasSeenChatFoldersEducationSheet) {
+      if (viewModel.shouldShowEducationSheet()) {
         SignalStore.uiHints.hasSeenChatFoldersEducationSheet = true
         navController.safeNavigate(R.id.action_createFoldersFragment_to_chatFoldersEducationSheet)
       }
