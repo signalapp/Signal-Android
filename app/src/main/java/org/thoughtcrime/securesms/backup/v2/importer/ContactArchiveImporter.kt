@@ -48,6 +48,11 @@ object ContactArchiveImporter {
       e164 = e164
     )
 
+    if (id == Recipient.self().id) {
+      Log.w(TAG, ImportSkips.contactMatchesSelf())
+      return id
+    }
+
     val profileKey = contact.profileKey?.toByteArray()
     val values = contentValuesOf(
       RecipientTable.BLOCKED to contact.blocked,
