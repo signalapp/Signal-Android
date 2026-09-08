@@ -15,7 +15,6 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 import org.thoughtcrime.securesms.notifications.v2.DefaultMessageNotifier;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.BubbleUtil;
 import org.thoughtcrime.securesms.util.ConversationUtil;
 import org.signal.core.util.ServiceUtil;
 
@@ -111,8 +110,9 @@ public final class NotificationCancellationHelper {
   }
 
   /**
-   * Attempts to cancel the given notification. If the notification is allowed to be displayed as a
-   * bubble, we do not cancel it.
+   * Attempts to cancel the given notification. Notifications tied to an expanded bubble are left
+   * untouched; notifications tied to a collapsed bubble are suppressed rather than cancelled, so
+   * the bubble itself is preserved.
    *
    * @return Whether or not the notification is considered cancelled.
    */
@@ -138,26 +138,16 @@ public final class NotificationCancellationHelper {
    * Cancel method which first checks whether the notification in question is tied to a bubble that
    * may or may not be displayed by the user.
    *
-   * @return true if the notification was cancelled.
+   * Cancelling a notification also dismisses its bubble, so collapsed bubble notifications are
+   * re-posted with suppression instead: removed from the shade and badge cleared, bubble kept.
+   *
+   * @return true if the notification was cancelled. Bubble notifications are reported as not
+   * cancelled so the summary stays alive; cancelling the summary can cancel its bubbled children.
    */
   @RequiresApi(ConversationUtil.CONVERSATION_SUPPORT_VERSION)
   private static boolean cancelWithConversationSupport(@NonNull Context context, int notificationId) {
     Log.d(TAG, "cancelWithConversationSupport() called with: notificationId = [" + notificationId + "]");
-    if (isCancellable(context, notificationId)) {
-      cancelLegacy(context, notificationId);
-      return true;
-    } else {
-      return false;
-    }
-  }
 
-  /**
-   * Checks whether the conversation for the given notification is allowed to be represented as a bubble.
-   *
-   * see {@link BubbleUtil#canBubble} for more information.
-   */
-  @RequiresApi(ConversationUtil.CONVERSATION_SUPPORT_VERSION)
-  private static boolean isCancellable(@NonNull Context context, int notificationId) {
     NotificationManager     manager       = ServiceUtil.getNotificationManager(context);
     StatusBarNotification[] notifications = manager.getActiveNotifications();
     Notification            notification  = Stream.of(notifications)
@@ -166,16 +156,19 @@ public final class NotificationCancellationHelper {
                                                   .map(StatusBarNotification::getNotification)
                                                   .orElse(null);
 
-    if (notification == null                     ||
-        notification.getShortcutId() == null     ||
-        notification.getBubbleMetadata() == null) {
-      Log.d(TAG, "isCancellable: bubbles not available or notification does not exist");
+    if (notification == null                 ||
+        notification.getShortcutId() == null ||
+        notification.getBubbleMetadata() == null)
+    {
+      Log.d(TAG, "cancelWithConversationSupport: bubbles not available or notification does not exist, cancelling.");
+      cancelLegacy(context, notificationId);
       return true;
     }
 
     RecipientId recipientId = ConversationUtil.getRecipientId(notification.getShortcutId());
     if (recipientId == null) {
-      Log.d(TAG, "isCancellable: Unable to get recipient from shortcut id");
+      Log.d(TAG, "cancelWithConversationSupport: unable to get recipient from shortcut id, cancelling.");
+      cancelLegacy(context, notificationId);
       return true;
     }
 
@@ -185,10 +178,75 @@ public final class NotificationCancellationHelper {
     Long                     focusedGroupStoryId = focusedThread.map(ConversationId::getGroupStoryId).orElse(null);
 
     if (Objects.equals(threadId, focusedThreadId) && focusedGroupStoryId == null) {
-      Log.d(TAG, "isCancellable: user entered full screen thread.");
+      Log.d(TAG, "cancelWithConversationSupport: user entered full screen thread, cancelling.");
+      cancelLegacy(context, notificationId);
       return true;
     }
 
-    return !BubbleUtil.canBubble(context, recipientId, threadId);
+    ConversationId activeBubble         = AppDependencies.getMessageNotifier().getVisibleBubbleThread();
+    Long           activeBubbleThreadId = activeBubble != null ? activeBubble.getThreadId() : null;
+
+    if (Objects.equals(threadId, activeBubbleThreadId)) {
+      Log.d(TAG, "cancelWithConversationSupport: bubble is currently expanded, not cancelling.");
+      return false;
+    }
+
+    if ((notification.flags & Notification.FLAG_BUBBLE) == 0) {
+      // No active bubble to preserve; suppression only has an effect while bubbled.
+      Log.d(TAG, "cancelWithConversationSupport: not currently bubbled, cancelling.");
+      cancelLegacy(context, notificationId);
+      return true;
+    }
+
+    if (notification.getBubbleMetadata().isNotificationSuppressed()) {
+      Log.d(TAG, "cancelWithConversationSupport: bubble notification already suppressed.");
+      return false;
+    }
+
+    if (Build.VERSION.SDK_INT < 31) {
+      // Background suppression has no effect on API 30, preserve previous behaviour.
+      Log.d(TAG, "cancelWithConversationSupport: background suppression unsupported on API 30, not cancelling.");
+      return false;
+    }
+
+    Log.d(TAG, "cancelWithConversationSupport: suppressing collapsed bubble notification.");
+    suppressNotification(context, notificationId, notification);
+    return false;
+  }
+
+  /**
+   * Re-posts the notification with suppression flags set: removed from the shade, bubble kept.
+   * Mirrors the system-handled swipe-dismiss of a bubbled notification. The original metadata is
+   * cloned with only the presentation flags changed.
+   */
+  @RequiresApi(31)
+  private static void suppressNotification(@NonNull Context context, int notificationId, @NonNull Notification notification) {
+    Notification.BubbleMetadata original = notification.getBubbleMetadata();
+    if (original == null) {
+      Log.w(TAG, "suppressNotification: no bubble metadata, skipping.");
+      return;
+    }
+
+    Notification.BubbleMetadata.Builder bubbleBuilder;
+    if (original.getIntent() != null && original.getIcon() != null) {
+      bubbleBuilder = new Notification.BubbleMetadata.Builder(original.getIntent(), original.getIcon());
+    } else if (original.getShortcutId() != null) {
+      bubbleBuilder = new Notification.BubbleMetadata.Builder(original.getShortcutId());
+    } else {
+      Log.w(TAG, "suppressNotification: bubble metadata incomplete, skipping.");
+      return;
+    }
+
+    Notification.BubbleMetadata bubbleMetadata = bubbleBuilder.setAutoExpandBubble(false)
+                                                              .setSuppressNotification(true)
+                                                              .setDesiredHeight(original.getDesiredHeight())
+                                                              .setDeleteIntent(original.getDeleteIntent())
+                                                              .build();
+
+    Notification.Builder builder = Notification.Builder.recoverBuilder(context, notification)
+                                                       .setBubbleMetadata(bubbleMetadata)
+                                                       .setOnlyAlertOnce(true);
+
+    ServiceUtil.getNotificationManager(context).notify(notificationId, builder.build());
   }
 }

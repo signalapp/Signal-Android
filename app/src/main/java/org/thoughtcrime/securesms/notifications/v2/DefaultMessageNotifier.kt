@@ -93,6 +93,8 @@ class DefaultMessageNotifier(context: Application) : MessageNotifier {
     setVisibleBubbleThread(null)
   }
 
+  override fun getVisibleBubbleThread(): ConversationId? = visibleBubbleThread
+
   override fun notifyMessageDeliveryFailed(context: Context, recipient: Recipient, conversationId: ConversationId) {
     NotificationFactory.notifyMessageDeliveryFailed(context, recipient, conversationId, visibleThread.get(), visibleBubbleThread)
   }
