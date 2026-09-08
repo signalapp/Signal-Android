@@ -1644,6 +1644,39 @@ class RegistrationEndToEndTest {
   }
 
   @Test
+  fun `the error confirming a login does not come back when the user returns from recording the login by hand`() {
+    enableSignalLoginRegistration()
+    stubPasswordManager()
+    coEvery { SignalCredentialManager.getCredential(any(), any()) } returns null
+
+    launchRegistrationFlow()
+
+    startSignalLoginRegistration()
+    buySignalLogin()
+
+    waitForTag(TestTags.SIGNAL_LOGIN_INFO_SCREEN)
+    composeTestRule.onNodeWithTag(TestTags.SIGNAL_LOGIN_INFO_SAVE_TO_PASSWORD_MANAGER_BUTTON).performClick()
+    waitForTag(TestTags.CONFIRM_LOGIN_SAVED_TO_PASSWORD_MANAGER_CONFIRM_BUTTON)
+    composeTestRule.onNodeWithTag(TestTags.CONFIRM_LOGIN_SAVED_TO_PASSWORD_MANAGER_CONFIRM_BUTTON).performClick()
+
+    val context = ApplicationProvider.getApplicationContext<Application>()
+    val warning = context.getString(R.string.SignalLoginInfoScreen__your_signal_login_could_not_be_confirmed)
+    waitForText(warning)
+
+    // Recording it by hand is taken straight from the warning rather than by dismissing it first
+    composeTestRule.onNodeWithTag(Dialogs.TEST_TAG_ADVANCED_ALERT_DIALOG_NEUTRAL_BUTTON).performClick()
+    waitForTag(TestTags.SIGNAL_LOGIN_MANUAL_SAVE_SCREEN)
+
+    pressSystemBack()
+
+    // Nothing failed on the way back, so the user is not warned all over again
+    waitForTag(TestTags.SIGNAL_LOGIN_INFO_SCREEN)
+    assert(composeTestRule.onAllNodesWithText(warning).fetchSemanticsNodes().isEmpty()) {
+      "Expected the warning to be gone after coming back from recording the login by hand"
+    }
+  }
+
+  @Test
   fun `typing back a login that is not the one the user was shown is rejected until the real one is entered`() {
     enableSignalLoginRegistration()
 

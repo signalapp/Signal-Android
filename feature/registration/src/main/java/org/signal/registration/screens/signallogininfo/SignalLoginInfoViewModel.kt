@@ -104,6 +104,7 @@ class SignalLoginInfoViewModel(
       }
 
       is SignalLoginInfoScreenEvents.SaveManuallyClicked -> {
+        stateEmitter(state.copy(dialogs = SignalLoginInfoState.Dialogs()))
         parentEventEmitter.navigateTo(RegistrationRoute.SignalLoginViewDetailsForManualSave)
       }
 

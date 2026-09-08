@@ -272,6 +272,32 @@ class SignalLoginInfoViewModelTest {
   }
 
   @Test
+  fun `SaveManuallyClicked from the not-confirmed dialog clears it on the way out`() = runTest(testDispatcher) {
+    val parentEvents = mutableListOf<RegistrationFlowEvent>()
+    var emittedState: SignalLoginInfoState? = null
+
+    viewModel.applyEvent(
+      SignalLoginInfoState(dialogs = SignalLoginInfoState.Dialogs(saveNotConfirmed = true)),
+      SignalLoginInfoScreenEvents.SaveManuallyClicked,
+      { parentEvents.add(it) }
+    ) { emittedState = it }
+
+    assertThat(emittedState?.dialogs).isEqualTo(SignalLoginInfoState.Dialogs())
+    assertThat(parentEvents).containsExactly(RegistrationFlowEvent.NavigateToScreen(RegistrationRoute.SignalLoginViewDetailsForManualSave))
+  }
+
+  @Test
+  fun `SaveManuallyClicked leaves nothing behind in the view model that outlives the navigation`() = runTest(testDispatcher) {
+    viewModel.onEvent(SignalLoginInfoScreenEvents.SavedCredentialRetrieved(null))
+
+    assertThat(viewModel.state.value.dialogs.saveNotConfirmed).isEqualTo(true)
+
+    viewModel.onEvent(SignalLoginInfoScreenEvents.SaveManuallyClicked)
+
+    assertThat(viewModel.state.value.dialogs.saveNotConfirmed).isEqualTo(false)
+  }
+
+  @Test
   fun `SaveNotConfirmedDialogDismissed clears the not-confirmed dialog`() = runTest(testDispatcher) {
     var emittedState: SignalLoginInfoState? = null
 

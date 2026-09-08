@@ -77,6 +77,9 @@ object Dialogs {
   const val TEST_TAG_ALERT_DIALOG_CONFIRM_BUTTON = "dialog-confirm-button"
   const val TEST_TAG_ALERT_DIALOG_DISMISS_BUTTON = "dialog-dismiss-button"
   const val TEST_TAG_MESSAGE_DIALOG_DISMISS_BUTTON = "dialog-message-dismiss-button"
+  const val TEST_TAG_ADVANCED_ALERT_DIALOG_POSITIVE_BUTTON = "dialog-advanced-positive-button"
+  const val TEST_TAG_ADVANCED_ALERT_DIALOG_NEUTRAL_BUTTON = "dialog-advanced-neutral-button"
+  const val TEST_TAG_ADVANCED_ALERT_DIALOG_NEGATIVE_BUTTON = "dialog-advanced-negative-button"
 
   object Defaults {
     val shape: Shape @Composable get() = RoundedCornerShape(28.dp)
@@ -802,13 +805,13 @@ object Dialogs {
             horizontalAlignment = Alignment.End,
             modifier = Modifier.fillMaxWidth()
           ) {
-            TextButton(onClick = onPositive) {
+            TextButton(onClick = onPositive, modifier = Modifier.testTag(TEST_TAG_ADVANCED_ALERT_DIALOG_POSITIVE_BUTTON)) {
               Text(text = positive)
             }
-            TextButton(onClick = onNeutral) {
+            TextButton(onClick = onNeutral, modifier = Modifier.testTag(TEST_TAG_ADVANCED_ALERT_DIALOG_NEUTRAL_BUTTON)) {
               Text(text = neutral)
             }
-            TextButton(onClick = onNegative) {
+            TextButton(onClick = onNegative, modifier = Modifier.testTag(TEST_TAG_ADVANCED_ALERT_DIALOG_NEGATIVE_BUTTON)) {
               Text(text = negative)
             }
           }
