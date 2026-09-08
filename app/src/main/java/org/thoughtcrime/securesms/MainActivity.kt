@@ -791,6 +791,10 @@ class MainActivity :
       )
       mainNavigationViewModel.onEvent(MainNavigationEvents.MegaphoneSnoozed(Megaphones.Event.VERIFY_BACKUP_KEY))
     }
+
+    if (requestCode == AppSettingsActivity.REQUEST_CODE_UPGRADE_LOCAL_BACKUPS) {
+      mainNavigationViewModel.onEvent(MainNavigationEvents.MegaphoneSnoozed(Megaphones.Event.USE_NEW_ON_DEVICE_BACKUPS))
+    }
   }
 
   override fun onFirstRender() {

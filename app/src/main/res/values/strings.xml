@@ -8210,15 +8210,6 @@
     <!-- Primary button on the setup complete bottom sheet -->
     <string name="BackupSetupCompleteBottomSheet__back_up_now">Back up now</string>
 
-    <!-- Title of a megaphone shown to prompt the user to upgrade to the new local backups type -->
-    <string name="UseNewOnDeviceBackups__title">Use new on-device backups</string>
-    <!-- Body of a megaphone shown to prompt the user to upgrade to the new local backups type -->
-    <string name="UseNewOnDeviceBackups__body">On-device backups now save faster and use less data.</string>
-    <!-- Button of a megaphone that will take the user to the upgrade flow -->
-    <string name="UseNewOnDeviceBackups__upgrade">Upgrade</string>
-    <!-- Button of a megaphone that will snooze the reminder to upgrade to the new local backups type -->
-    <string name="UseNewOnDeviceBackups__not_now">Not now</string>
-
     <!-- Title of a megaphone shown to prompt the user to open Signal on their primary device -->
     <string name="InactivePrimary__title">Open Signal on your phone</string>
     <!-- Body of a megaphone shown to prompt the user to open Signal on their primary device -->

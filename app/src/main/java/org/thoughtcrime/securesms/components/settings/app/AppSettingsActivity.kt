@@ -165,6 +165,8 @@ class AppSettingsActivity : DSLSettingsActivity(), GooglePayComponent {
   companion object {
     const val ACTION_CHANGE_NUMBER_SUCCESS = "action_change_number_success"
 
+    const val REQUEST_CODE_UPGRADE_LOCAL_BACKUPS = 1205
+
     @JvmStatic
     @JvmOverloads
     fun home(context: Context, action: String? = null): Intent {
