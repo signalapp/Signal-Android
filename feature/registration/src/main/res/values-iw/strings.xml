@@ -729,8 +729,6 @@
     <string name="AddUsernameScreen__enter_a_minimum_of_d_digits">שם משתמש לא חוקי, יש להזין לפחות %1$d ספרות.</string>
     <!-- Validation error shown when the number the user entered after their username has too many digits. -->
     <string name="AddUsernameScreen__enter_a_maximum_of_d_digits">שם משתמש לא חוקי, יש להזין עד %1$d ספרות.</string>
-    <!-- Validation error shown when the number the user entered after their username contains something other than digits. -->
-    <string name="AddUsernameScreen__numbers_can_only_contain_digits">שם משתמש לא חוקי, מספרים יכולים להכיל ספרות בלבד.</string>
     <!-- Validation error shown when the number the user entered after their username is 00. -->
     <string name="AddUsernameScreen__this_number_cant_be_00">המספר הזה לא יכול להיות 00. יש להזין ספרה בין 9–1</string>
     <!-- Validation error shown when the number the user entered after their username has a leading zero. -->

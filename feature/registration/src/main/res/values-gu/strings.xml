@@ -725,8 +725,6 @@
     <string name="AddUsernameScreen__enter_a_minimum_of_d_digits">અમાન્ય યુઝરનેમ, ઓછામાં ઓછા %1$d અંકો દાખલ કરો.</string>
     <!-- Validation error shown when the number the user entered after their username has too many digits. -->
     <string name="AddUsernameScreen__enter_a_maximum_of_d_digits">અમાન્ય યુઝરનેમ, વધુમાં વધુ %1$d અંકો દાખલ કરો.</string>
-    <!-- Validation error shown when the number the user entered after their username contains something other than digits. -->
-    <string name="AddUsernameScreen__numbers_can_only_contain_digits">અમાન્ય યુઝરનેમ, સંખ્યામાં ફક્ત અંક જ હોવા જોઈએ.</string>
     <!-- Validation error shown when the number the user entered after their username is 00. -->
     <string name="AddUsernameScreen__this_number_cant_be_00">આ નંબર 00 ન હોઈ શકે. 1-9ની વચ્ચેનો અંક દાખલ કરો</string>
     <!-- Validation error shown when the number the user entered after their username has a leading zero. -->

@@ -727,8 +727,6 @@
     <string name="AddUsernameScreen__enter_a_minimum_of_d_digits">Nume de utilizator nevalid, introdu minimum %1$d cifre.</string>
     <!-- Validation error shown when the number the user entered after their username has too many digits. -->
     <string name="AddUsernameScreen__enter_a_maximum_of_d_digits">Nume de utilizator nevalid, introdu maximum %1$d cifre.</string>
-    <!-- Validation error shown when the number the user entered after their username contains something other than digits. -->
-    <string name="AddUsernameScreen__numbers_can_only_contain_digits">Nume de utilizator invalid, numerele pot conține doar cifre.</string>
     <!-- Validation error shown when the number the user entered after their username is 00. -->
     <string name="AddUsernameScreen__this_number_cant_be_00">Acest număr nu poate fi 00. Introdu o cifră între 1–9</string>
     <!-- Validation error shown when the number the user entered after their username has a leading zero. -->

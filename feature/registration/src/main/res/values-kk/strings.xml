@@ -725,8 +725,6 @@
     <string name="AddUsernameScreen__enter_a_minimum_of_d_digits">Пайдаланушы аты дұрыс емес, кемінде %1$d сан енгізіңіз.</string>
     <!-- Validation error shown when the number the user entered after their username has too many digits. -->
     <string name="AddUsernameScreen__enter_a_maximum_of_d_digits">Пайдаланушы аты дұрыс емес, ең көбі %1$d сан енгізіңіз.</string>
-    <!-- Validation error shown when the number the user entered after their username contains something other than digits. -->
-    <string name="AddUsernameScreen__numbers_can_only_contain_digits">Пайдаланушы аты дұрыс емес, нөмірлерде тек цифрлар болуы керек.</string>
     <!-- Validation error shown when the number the user entered after their username is 00. -->
     <string name="AddUsernameScreen__this_number_cant_be_00">Бұл нөмір 00 болмауы керек. 1 және 9 аралығындағы санды енгізіңіз</string>
     <!-- Validation error shown when the number the user entered after their username has a leading zero. -->

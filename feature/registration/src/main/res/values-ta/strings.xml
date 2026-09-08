@@ -725,8 +725,6 @@
     <string name="AddUsernameScreen__enter_a_minimum_of_d_digits">தவறான பயனர் பெயர், குறைந்தபட்சம் %1$d இலக்கங்களை உள்ளிடவும்.</string>
     <!-- Validation error shown when the number the user entered after their username has too many digits. -->
     <string name="AddUsernameScreen__enter_a_maximum_of_d_digits">தவறான பயனர் பெயர், அதிகபட்சம் %1$d இலக்கங்களை உள்ளிடவும்.</string>
-    <!-- Validation error shown when the number the user entered after their username contains something other than digits. -->
-    <string name="AddUsernameScreen__numbers_can_only_contain_digits">தவறான பயனர் பெயர், எண்களில் இலக்கங்கள் மட்டுமே இருக்க வேண்டும்.</string>
     <!-- Validation error shown when the number the user entered after their username is 00. -->
     <string name="AddUsernameScreen__this_number_cant_be_00">இந்த எண் 00 ஆக இருக்கக் கூடாது. 1–9 க்கு இடையேயுள்ள ஒரு எண்ணை உள்ளிடவும்</string>
     <!-- Validation error shown when the number the user entered after their username has a leading zero. -->

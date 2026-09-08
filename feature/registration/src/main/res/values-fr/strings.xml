@@ -725,8 +725,6 @@
     <string name="AddUsernameScreen__enter_a_minimum_of_d_digits">Nom d\'utilisateur incorrect. Veuillez saisir au moins %1$d chiffres.</string>
     <!-- Validation error shown when the number the user entered after their username has too many digits. -->
     <string name="AddUsernameScreen__enter_a_maximum_of_d_digits">Nom d\'utilisateur incorrect. Veuillez saisir %1$d chiffres maximum.</string>
-    <!-- Validation error shown when the number the user entered after their username contains something other than digits. -->
-    <string name="AddUsernameScreen__numbers_can_only_contain_digits">Nom d\'utilisateur non valide. Vous ne pouvez saisir que des chiffres.</string>
     <!-- Validation error shown when the number the user entered after their username is 00. -->
     <string name="AddUsernameScreen__this_number_cant_be_00">Ce chiffre ne peut pas être 00. Il doit être compris entre 1 et 9.</string>
     <!-- Validation error shown when the number the user entered after their username has a leading zero. -->

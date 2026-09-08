@@ -725,8 +725,6 @@
     <string name="AddUsernameScreen__enter_a_minimum_of_d_digits">Erabiltzaile-izenak ez du balio; idatzi gutxienez %1$d digitu.</string>
     <!-- Validation error shown when the number the user entered after their username has too many digits. -->
     <string name="AddUsernameScreen__enter_a_maximum_of_d_digits">Erabiltzaile-izenak ez du balio; idatzi gehienez %1$d digitu.</string>
-    <!-- Validation error shown when the number the user entered after their username contains something other than digits. -->
-    <string name="AddUsernameScreen__numbers_can_only_contain_digits">Erabiltzaile-izen okerra; zenbakiek digituak bakarrik izan ditzakete.</string>
     <!-- Validation error shown when the number the user entered after their username is 00. -->
     <string name="AddUsernameScreen__this_number_cant_be_00">Zenbaki hau ezin da 00 izan. Idatzi 1 eta 9 arteko digitu bat</string>
     <!-- Validation error shown when the number the user entered after their username has a leading zero. -->

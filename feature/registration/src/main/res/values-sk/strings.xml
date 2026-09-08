@@ -729,8 +729,6 @@
     <string name="AddUsernameScreen__enter_a_minimum_of_d_digits">Neplatné používateľské meno, zadajte minimálne %1$d číslice.</string>
     <!-- Validation error shown when the number the user entered after their username has too many digits. -->
     <string name="AddUsernameScreen__enter_a_maximum_of_d_digits">Neplatné používateľské meno, zadajte maximálne %1$d číslic.</string>
-    <!-- Validation error shown when the number the user entered after their username contains something other than digits. -->
-    <string name="AddUsernameScreen__numbers_can_only_contain_digits">Neplatné používateľské meno, čísla môžu obsahovať iba číslice.</string>
     <!-- Validation error shown when the number the user entered after their username is 00. -->
     <string name="AddUsernameScreen__this_number_cant_be_00">Toto číslo nemôže byť 00. Zadajte číslicu medzi 1–9</string>
     <!-- Validation error shown when the number the user entered after their username has a leading zero. -->

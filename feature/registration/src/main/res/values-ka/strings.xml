@@ -725,8 +725,6 @@
     <string name="AddUsernameScreen__enter_a_minimum_of_d_digits">მომხმარებლის სახელი არასწორია, შეიყვანე მინიმუმ %1$d ციფრი.</string>
     <!-- Validation error shown when the number the user entered after their username has too many digits. -->
     <string name="AddUsernameScreen__enter_a_maximum_of_d_digits">მომხმარებლის სახელი არასწორია, შეიყვანე მინიმუმ %1$d ციფრი.</string>
-    <!-- Validation error shown when the number the user entered after their username contains something other than digits. -->
-    <string name="AddUsernameScreen__numbers_can_only_contain_digits">არასწორი მომხმარებლის სახელი, რიცხვები მხოლოდ ციფრებს შეიძლება შეიცავდნენ.</string>
     <!-- Validation error shown when the number the user entered after their username is 00. -->
     <string name="AddUsernameScreen__this_number_cant_be_00">ეს რიცხვი ვერ იქნება 00. შეიყვანე ციფრი 1–9-მდე</string>
     <!-- Validation error shown when the number the user entered after their username has a leading zero. -->

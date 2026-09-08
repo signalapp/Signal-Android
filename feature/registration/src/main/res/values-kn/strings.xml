@@ -725,8 +725,6 @@
     <string name="AddUsernameScreen__enter_a_minimum_of_d_digits">ಅಮಾನ್ಯ ಯೂಸರ್‌ನೇಮ್, ಕನಿಷ್ಠ %1$d ಅಂಕಿಗಳನ್ನು ನಮೂದಿಸಿ.</string>
     <!-- Validation error shown when the number the user entered after their username has too many digits. -->
     <string name="AddUsernameScreen__enter_a_maximum_of_d_digits">ಅಮಾನ್ಯ ಯೂಸರ್‌ನೇಮ್, ಗರಿಷ್ಠ %1$d ಅಂಕಿಗಳನ್ನು ನಮೂದಿಸಿ.</string>
-    <!-- Validation error shown when the number the user entered after their username contains something other than digits. -->
-    <string name="AddUsernameScreen__numbers_can_only_contain_digits">ಅಮಾನ್ಯ ಯೂಸರ್‌ನೇಮ್‌, ಸಂಖ್ಯೆಗಳು ಅಂಕಿಗಳನ್ನು ಮಾತ್ರ ಒಳಗೊಂಡಿರಬೇಕು.</string>
     <!-- Validation error shown when the number the user entered after their username is 00. -->
     <string name="AddUsernameScreen__this_number_cant_be_00">ಈ ಸಂಖ್ಯೆ 00 ಆಗಿರುವಂತಿಲ್ಲ. 1-9 ರ ನಡುವಿನ ಅಂಕಿಯನ್ನು ನಮೂದಿಸಿ</string>
     <!-- Validation error shown when the number the user entered after their username has a leading zero. -->

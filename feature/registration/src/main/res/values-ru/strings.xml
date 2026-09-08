@@ -729,8 +729,6 @@
     <string name="AddUsernameScreen__enter_a_minimum_of_d_digits">Неверное имя пользователя, введите минимум %1$d цифры.</string>
     <!-- Validation error shown when the number the user entered after their username has too many digits. -->
     <string name="AddUsernameScreen__enter_a_maximum_of_d_digits">Неверное имя пользователя, введите максимум %1$d цифр.</string>
-    <!-- Validation error shown when the number the user entered after their username contains something other than digits. -->
-    <string name="AddUsernameScreen__numbers_can_only_contain_digits">Неверное имя пользователя, числа могут содержать только цифры.</string>
     <!-- Validation error shown when the number the user entered after their username is 00. -->
     <string name="AddUsernameScreen__this_number_cant_be_00">Этот номер не может быть 00. Введите цифру от 1 до 9</string>
     <!-- Validation error shown when the number the user entered after their username has a leading zero. -->

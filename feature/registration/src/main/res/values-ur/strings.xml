@@ -725,8 +725,6 @@
     <string name="AddUsernameScreen__enter_a_minimum_of_d_digits">غلط یوزر نیم، کم از کم %1$d ہندسے درج کریں۔</string>
     <!-- Validation error shown when the number the user entered after their username has too many digits. -->
     <string name="AddUsernameScreen__enter_a_maximum_of_d_digits">غلط یوزر نیم، زیادہ سے زیادہ %1$d ہندسے درج کریں۔</string>
-    <!-- Validation error shown when the number the user entered after their username contains something other than digits. -->
-    <string name="AddUsernameScreen__numbers_can_only_contain_digits">یوزر نیم غلط ہے، نمبرز میں صرف ہندسے شامل ہو سکتے ہیں۔</string>
     <!-- Validation error shown when the number the user entered after their username is 00. -->
     <string name="AddUsernameScreen__this_number_cant_be_00">یہ نمبر 00 نہیں ہو سکتا۔ 1–9 کے درمیان کا کوئی ہندسہ درج کریں</string>
     <!-- Validation error shown when the number the user entered after their username has a leading zero. -->

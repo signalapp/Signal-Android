@@ -725,8 +725,6 @@
     <string name="AddUsernameScreen__enter_a_minimum_of_d_digits">Invalid username, maglagay ng minimum na %1$d digits.</string>
     <!-- Validation error shown when the number the user entered after their username has too many digits. -->
     <string name="AddUsernameScreen__enter_a_maximum_of_d_digits">Invalid username, maglagay ng maximum na %1$d digits.</string>
-    <!-- Validation error shown when the number the user entered after their username contains something other than digits. -->
-    <string name="AddUsernameScreen__numbers_can_only_contain_digits">Hindi valid ang username, ang numbers ay maaari lamang maglaman ng digits.</string>
     <!-- Validation error shown when the number the user entered after their username is 00. -->
     <string name="AddUsernameScreen__this_number_cant_be_00">Hindi pwedeng 00 ang number na ito. Maglagay ng number mula 1–9</string>
     <!-- Validation error shown when the number the user entered after their username has a leading zero. -->

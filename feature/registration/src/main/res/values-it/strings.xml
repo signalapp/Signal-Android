@@ -725,8 +725,6 @@
     <string name="AddUsernameScreen__enter_a_minimum_of_d_digits">Nome utente non valido, inserisci almeno %1$d caratteri.</string>
     <!-- Validation error shown when the number the user entered after their username has too many digits. -->
     <string name="AddUsernameScreen__enter_a_maximum_of_d_digits">Nome utente non valido, inserisci al massimo %1$d caratteri.</string>
-    <!-- Validation error shown when the number the user entered after their username contains something other than digits. -->
-    <string name="AddUsernameScreen__numbers_can_only_contain_digits">Nome utente non valido: i numeri possono includere solo cifre.</string>
     <!-- Validation error shown when the number the user entered after their username is 00. -->
     <string name="AddUsernameScreen__this_number_cant_be_00">Questo numero non può essere 00. Inserisci una cifra tra 1-9</string>
     <!-- Validation error shown when the number the user entered after their username has a leading zero. -->

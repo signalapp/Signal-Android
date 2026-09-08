@@ -725,8 +725,6 @@
     <string name="AddUsernameScreen__enter_a_minimum_of_d_digits">Geçersiz kullanıcı adı, minimum %1$d hane gir.</string>
     <!-- Validation error shown when the number the user entered after their username has too many digits. -->
     <string name="AddUsernameScreen__enter_a_maximum_of_d_digits">Geçersiz kullanıcı adı, maksimum %1$d hane gir.</string>
-    <!-- Validation error shown when the number the user entered after their username contains something other than digits. -->
-    <string name="AddUsernameScreen__numbers_can_only_contain_digits">Geçersiz kullanıcı adı; sayılar yalnızca rakamlardan oluşabilir.</string>
     <!-- Validation error shown when the number the user entered after their username is 00. -->
     <string name="AddUsernameScreen__this_number_cant_be_00">Bu sayı 00 olamaz. 1-9 arasında bir rakam gir</string>
     <!-- Validation error shown when the number the user entered after their username has a leading zero. -->

@@ -733,8 +733,6 @@
     <string name="AddUsernameScreen__enter_a_minimum_of_d_digits">اسم مُستخدِم غير صحيح. أدخِل %1$d رمز (رموز) كحد أدنى.</string>
     <!-- Validation error shown when the number the user entered after their username has too many digits. -->
     <string name="AddUsernameScreen__enter_a_maximum_of_d_digits">اسم مُستخدِم غير صحيح. أدخِل %1$d رمز (رموز) كحد أقصى.</string>
-    <!-- Validation error shown when the number the user entered after their username contains something other than digits. -->
-    <string name="AddUsernameScreen__numbers_can_only_contain_digits">اسم المُستخدِم غير صالح، يجب أن تحتوي الأرقام على خانات رقمية فقط.</string>
     <!-- Validation error shown when the number the user entered after their username is 00. -->
     <string name="AddUsernameScreen__this_number_cant_be_00">لا يُمكن لهذا الرقم أن يكون 00. أدخِل رقمًا بين 1 –9</string>
     <!-- Validation error shown when the number the user entered after their username has a leading zero. -->

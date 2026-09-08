@@ -723,8 +723,6 @@
     <string name="AddUsernameScreen__enter_a_minimum_of_d_digits">用户名无效，请至少输入 %1$d 位数。</string>
     <!-- Validation error shown when the number the user entered after their username has too many digits. -->
     <string name="AddUsernameScreen__enter_a_maximum_of_d_digits">用户名无效，请至多输入 %1$d 位数。</string>
-    <!-- Validation error shown when the number the user entered after their username contains something other than digits. -->
-    <string name="AddUsernameScreen__numbers_can_only_contain_digits">用户名无效，数字部分只能包含数字。</string>
     <!-- Validation error shown when the number the user entered after their username is 00. -->
     <string name="AddUsernameScreen__this_number_cant_be_00">该数字不能为 00。请输入 1 – 9 之间的数字</string>
     <!-- Validation error shown when the number the user entered after their username has a leading zero. -->

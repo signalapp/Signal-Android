@@ -729,8 +729,6 @@
     <string name="AddUsernameScreen__enter_a_minimum_of_d_digits">Неналежне ім\'я користувача, введіть мінімум %1$d цифри.</string>
     <!-- Validation error shown when the number the user entered after their username has too many digits. -->
     <string name="AddUsernameScreen__enter_a_maximum_of_d_digits">Неналежне ім\'я користувача, введіть максимум %1$d цифр.</string>
-    <!-- Validation error shown when the number the user entered after their username contains something other than digits. -->
-    <string name="AddUsernameScreen__numbers_can_only_contain_digits">Недійсне ім\'я користувача: частина з цифрами має містити лише цифри.</string>
     <!-- Validation error shown when the number the user entered after their username is 00. -->
     <string name="AddUsernameScreen__this_number_cant_be_00">Ви не можете обрати цифри 00. Введіть цифру від 1 до 9</string>
     <!-- Validation error shown when the number the user entered after their username has a leading zero. -->

@@ -725,8 +725,6 @@
     <string name="AddUsernameScreen__enter_a_minimum_of_d_digits">Невалидно потребителско име, въведете най-малко %1$d цифри.</string>
     <!-- Validation error shown when the number the user entered after their username has too many digits. -->
     <string name="AddUsernameScreen__enter_a_maximum_of_d_digits">Невалидно потребителско име, въведете най-много %1$d цифри.</string>
-    <!-- Validation error shown when the number the user entered after their username contains something other than digits. -->
-    <string name="AddUsernameScreen__numbers_can_only_contain_digits">Невалидно потребителско име, числата могат да съдържат само цифри.</string>
     <!-- Validation error shown when the number the user entered after their username is 00. -->
     <string name="AddUsernameScreen__this_number_cant_be_00">Този номер не може да бъде 00. Въведете цифра между 1–9</string>
     <!-- Validation error shown when the number the user entered after their username has a leading zero. -->

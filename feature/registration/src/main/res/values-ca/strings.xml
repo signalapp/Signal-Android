@@ -725,8 +725,6 @@
     <string name="AddUsernameScreen__enter_a_minimum_of_d_digits">Àlies no vàlid, introdueix %1$d dígits com a mínim.</string>
     <!-- Validation error shown when the number the user entered after their username has too many digits. -->
     <string name="AddUsernameScreen__enter_a_maximum_of_d_digits">Àlies no vàlid, introdueix %1$d dígits com a màxim.</string>
-    <!-- Validation error shown when the number the user entered after their username contains something other than digits. -->
-    <string name="AddUsernameScreen__numbers_can_only_contain_digits">Àlies no vàlid, els números només poden contenir dígits.</string>
     <!-- Validation error shown when the number the user entered after their username is 00. -->
     <string name="AddUsernameScreen__this_number_cant_be_00">El número no pot ser 00. Introdueix un dígit entre 1 i 9</string>
     <!-- Validation error shown when the number the user entered after their username has a leading zero. -->

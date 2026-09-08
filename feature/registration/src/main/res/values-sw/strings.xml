@@ -725,8 +725,6 @@
     <string name="AddUsernameScreen__enter_a_minimum_of_d_digits">Jina la mtumiaji lisilo sahihi, weka tarakimu zisizopungua %1$d.</string>
     <!-- Validation error shown when the number the user entered after their username has too many digits. -->
     <string name="AddUsernameScreen__enter_a_maximum_of_d_digits">Jina la mtumiaji lisilo sahihi, weka tarakimu zisizozidi %1$d.</string>
-    <!-- Validation error shown when the number the user entered after their username contains something other than digits. -->
-    <string name="AddUsernameScreen__numbers_can_only_contain_digits">Jina la Mtumiaji si sahihi, namba zinapaswa kuwa na tarakimu tu.</string>
     <!-- Validation error shown when the number the user entered after their username is 00. -->
     <string name="AddUsernameScreen__this_number_cant_be_00">Nambari hii haiwezi kuwa 00. Ingiza tarakimu kati ya 1–9</string>
     <!-- Validation error shown when the number the user entered after their username has a leading zero. -->

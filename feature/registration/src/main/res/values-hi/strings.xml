@@ -725,8 +725,6 @@
     <string name="AddUsernameScreen__enter_a_minimum_of_d_digits">यूज़रनेम सही नहीं है, कम से कम %1$d डिजिट होने चाहिए।</string>
     <!-- Validation error shown when the number the user entered after their username has too many digits. -->
     <string name="AddUsernameScreen__enter_a_maximum_of_d_digits">यूज़रनेम सही नहीं है, ज़्यादा से ज़्यादा %1$d डिजिट होने चाहिए।</string>
-    <!-- Validation error shown when the number the user entered after their username contains something other than digits. -->
-    <string name="AddUsernameScreen__numbers_can_only_contain_digits">यूज़रनेम गलत है, नंबर में सिर्फ़ अंक होने चाहिए।</string>
     <!-- Validation error shown when the number the user entered after their username is 00. -->
     <string name="AddUsernameScreen__this_number_cant_be_00">यह संख्या 00 नहीं हो सकती। 1-9 के बीच का कोई डिजिट डालें</string>
     <!-- Validation error shown when the number the user entered after their username has a leading zero. -->

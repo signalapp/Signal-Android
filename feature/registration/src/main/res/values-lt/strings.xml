@@ -729,8 +729,6 @@
     <string name="AddUsernameScreen__enter_a_minimum_of_d_digits">Netinkamas naudotojo vardas, įveskite bent %1$d skaitmenis.</string>
     <!-- Validation error shown when the number the user entered after their username has too many digits. -->
     <string name="AddUsernameScreen__enter_a_maximum_of_d_digits">Netinkamas naudotojo vardas, įveskite daugiausia %1$d skaitmenų.</string>
-    <!-- Validation error shown when the number the user entered after their username contains something other than digits. -->
-    <string name="AddUsernameScreen__numbers_can_only_contain_digits">Negaliojantis naudotojo vardas, numerius gali sudaryti tik skaičiai.</string>
     <!-- Validation error shown when the number the user entered after their username is 00. -->
     <string name="AddUsernameScreen__this_number_cant_be_00">Šis skaičius negali būti 00. Įvesk skaitmenį nuo 1 iki 9</string>
     <!-- Validation error shown when the number the user entered after their username has a leading zero. -->

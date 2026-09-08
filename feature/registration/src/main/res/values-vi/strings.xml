@@ -723,8 +723,6 @@
     <string name="AddUsernameScreen__enter_a_minimum_of_d_digits">Tên người dùng không hợp lệ, nhập tối thiểu %1$d số.</string>
     <!-- Validation error shown when the number the user entered after their username has too many digits. -->
     <string name="AddUsernameScreen__enter_a_maximum_of_d_digits">Tên người dùng không hợp lệ, nhập tối đa %1$d số.</string>
-    <!-- Validation error shown when the number the user entered after their username contains something other than digits. -->
-    <string name="AddUsernameScreen__numbers_can_only_contain_digits">Tên người dùng không hợp lệ, số chỉ có thể chứa chữ số.</string>
     <!-- Validation error shown when the number the user entered after their username is 00. -->
     <string name="AddUsernameScreen__this_number_cant_be_00">Số này không thể là 00. Nhập một ký tự trong khoảng 1–9</string>
     <!-- Validation error shown when the number the user entered after their username has a leading zero. -->

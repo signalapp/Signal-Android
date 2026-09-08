@@ -723,8 +723,6 @@
     <string name="AddUsernameScreen__enter_a_minimum_of_d_digits">잘못된 사용자 이름입니다. %1$d자 이상으로 입력해 주세요.</string>
     <!-- Validation error shown when the number the user entered after their username has too many digits. -->
     <string name="AddUsernameScreen__enter_a_maximum_of_d_digits">잘못된 사용자 이름입니다. %1$d자 이하로 입력해 주세요.</string>
-    <!-- Validation error shown when the number the user entered after their username contains something other than digits. -->
-    <string name="AddUsernameScreen__numbers_can_only_contain_digits">잘못된 사용자 이름입니다. 숫자는 숫자(0-9)로만 입력해 주세요.</string>
     <!-- Validation error shown when the number the user entered after their username is 00. -->
     <string name="AddUsernameScreen__this_number_cant_be_00">00은 일련번호로 사용할 수 없습니다. 1~9 중 하나를 입력하세요.</string>
     <!-- Validation error shown when the number the user entered after their username has a leading zero. -->

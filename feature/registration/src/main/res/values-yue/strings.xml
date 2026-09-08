@@ -723,8 +723,6 @@
     <string name="AddUsernameScreen__enter_a_minimum_of_d_digits">用戶名稱無效，請輸入至少 %1$d 位數字。</string>
     <!-- Validation error shown when the number the user entered after their username has too many digits. -->
     <string name="AddUsernameScreen__enter_a_maximum_of_d_digits">用戶名稱無效，請輸入最多 %1$d 位數字。</string>
-    <!-- Validation error shown when the number the user entered after their username contains something other than digits. -->
-    <string name="AddUsernameScreen__numbers_can_only_contain_digits">無效嘅用戶名稱，數字部分只可以係數字字元。</string>
     <!-- Validation error shown when the number the user entered after their username is 00. -->
     <string name="AddUsernameScreen__this_number_cant_be_00">呢個數字唔可以係 00。請輸入 1–9 之間嘅數字</string>
     <!-- Validation error shown when the number the user entered after their username has a leading zero. -->

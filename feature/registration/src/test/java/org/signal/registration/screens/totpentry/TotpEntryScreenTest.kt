@@ -42,7 +42,7 @@ class TotpEntryScreenTest {
     setContent(TotpEntryState())
 
     composeTestRule.onNodeWithText("Two-factor authentication").assertIsDisplayed()
-    composeTestRule.onNodeWithText("To continue enter the 6-digit code from your authenticator app.").assertIsDisplayed()
+    composeTestRule.onNodeWithText("To continue, enter the 6-digit code from your authenticator app.").assertIsDisplayed()
   }
 
   @Test

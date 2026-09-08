@@ -729,8 +729,6 @@
     <string name="AddUsernameScreen__enter_a_minimum_of_d_digits">Nevažeće korisničko ime, unesite najmanje %1$d cifre.</string>
     <!-- Validation error shown when the number the user entered after their username has too many digits. -->
     <string name="AddUsernameScreen__enter_a_maximum_of_d_digits">Nevažeće korisničko ime, unesite najviše %1$d cifri.</string>
-    <!-- Validation error shown when the number the user entered after their username contains something other than digits. -->
-    <string name="AddUsernameScreen__numbers_can_only_contain_digits">Nevažeće korisničko ime, brojevi mogu sadržavati samo cifre.</string>
     <!-- Validation error shown when the number the user entered after their username is 00. -->
     <string name="AddUsernameScreen__this_number_cant_be_00">Ovaj broj ne može biti 00. Unesite brojku između 1-9</string>
     <!-- Validation error shown when the number the user entered after their username has a leading zero. -->

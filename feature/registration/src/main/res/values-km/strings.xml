@@ -723,8 +723,6 @@
     <string name="AddUsernameScreen__enter_a_minimum_of_d_digits">ឈ្មោះអ្នកប្រើមិនត្រឹមត្រូវ។ សូមបញ្ចូលលេខយ៉ាងតិចបំផុត %1$d ខ្ទង់។</string>
     <!-- Validation error shown when the number the user entered after their username has too many digits. -->
     <string name="AddUsernameScreen__enter_a_maximum_of_d_digits">ឈ្មោះអ្នកប្រើមិនត្រឹមត្រូវ។ សូមបញ្ចូលលេខយ៉ាងច្រើនបំផុត %1$d ខ្ទង់។</string>
-    <!-- Validation error shown when the number the user entered after their username contains something other than digits. -->
-    <string name="AddUsernameScreen__numbers_can_only_contain_digits">ឈ្មោះអ្នកប្រើមិនត្រឹមត្រូវ សម្រាប់លេខអាចវាយបញ្ចូលបានតែលេខប៉ុណ្ណោះ។</string>
     <!-- Validation error shown when the number the user entered after their username is 00. -->
     <string name="AddUsernameScreen__this_number_cant_be_00">លេខនេះមិនអាចជា 00 ទេ។ បញ្ចូលលេខមួយខ្ទង់ចន្លោះពី 1–9</string>
     <!-- Validation error shown when the number the user entered after their username has a leading zero. -->

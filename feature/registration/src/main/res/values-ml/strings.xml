@@ -725,8 +725,6 @@
     <string name="AddUsernameScreen__enter_a_minimum_of_d_digits">ഉപയോക്തൃനാമം അസാധുവാണ്, കുറഞ്ഞത് %1$d അക്കങ്ങൾ നൽകുക.</string>
     <!-- Validation error shown when the number the user entered after their username has too many digits. -->
     <string name="AddUsernameScreen__enter_a_maximum_of_d_digits">ഉപയോക്തൃനാമം അസാധുവാണ്, പരമാവധി %1$d അക്കങ്ങൾ നൽകുക.</string>
-    <!-- Validation error shown when the number the user entered after their username contains something other than digits. -->
-    <string name="AddUsernameScreen__numbers_can_only_contain_digits">അസാധുവായ ഉപയോക്തൃനാമം, നമ്പറുകളിൽ അക്കങ്ങൾ മാത്രമേ ഉണ്ടാകാവൂ.</string>
     <!-- Validation error shown when the number the user entered after their username is 00. -->
     <string name="AddUsernameScreen__this_number_cant_be_00">ഈ സംഖ്യ 00 ആകാൻ പാടില്ല. 1-നും 9-നും ഇടയിലുള്ള ഒരു അക്കം നൽകുക</string>
     <!-- Validation error shown when the number the user entered after their username has a leading zero. -->

@@ -723,8 +723,6 @@
     <string name="AddUsernameScreen__enter_a_minimum_of_d_digits">သုံးစွဲသူအမည် မမှန်ကန်ပါ၊ အနည်းဆုံး ဂဏန်း %1$d လုံး ရိုက်ထည့်ပါ။</string>
     <!-- Validation error shown when the number the user entered after their username has too many digits. -->
     <string name="AddUsernameScreen__enter_a_maximum_of_d_digits">သုံးစွဲသူအမည် မမှန်ကန်ပါ၊ အများဆုံး ဂဏန်း %1$d လုံး ရိုက်ထည့်ပါ။</string>
-    <!-- Validation error shown when the number the user entered after their username contains something other than digits. -->
-    <string name="AddUsernameScreen__numbers_can_only_contain_digits">အသုံးပြုသူအမည် မမှန်ကန်ပါ၊ နံပါတ်များတွင် ဂဏန်းများသာ ထည့်နိုင်ပါသည်။</string>
     <!-- Validation error shown when the number the user entered after their username is 00. -->
     <string name="AddUsernameScreen__this_number_cant_be_00">ဤနံပါတ်သည် 00 ဖြစ်၍မရပါ။ 1–9 ကြား ကိန်းဂဏန်းတစ်ခု ရိုက်ထည့်ပါ</string>
     <!-- Validation error shown when the number the user entered after their username has a leading zero. -->

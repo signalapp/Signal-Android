@@ -725,8 +725,6 @@
     <string name="AddUsernameScreen__enter_a_minimum_of_d_digits">Ongeldige gebruikernaam, voer \'n minimum van %1$d syfers in.</string>
     <!-- Validation error shown when the number the user entered after their username has too many digits. -->
     <string name="AddUsernameScreen__enter_a_maximum_of_d_digits">Ongeldige gebruikersnaam, voer \'n maksimum van %1$d syfers in.</string>
-    <!-- Validation error shown when the number the user entered after their username contains something other than digits. -->
-    <string name="AddUsernameScreen__numbers_can_only_contain_digits">Ongeldige gebruikersnaam, nommers mag slegs syfers bevat.</string>
     <!-- Validation error shown when the number the user entered after their username is 00. -->
     <string name="AddUsernameScreen__this_number_cant_be_00">Hierdie nommer kan nie 00 wees nie. Voer \'n syfer tussen 1 en 9 in</string>
     <!-- Validation error shown when the number the user entered after their username has a leading zero. -->

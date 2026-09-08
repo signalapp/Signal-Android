@@ -437,7 +437,6 @@ private fun AddUsernameState.ValidationError.message(): String = when (this) {
   AddUsernameState.ValidationError.NOT_AVAILABLE -> stringResource(R.string.AddUsernameScreen__this_username_is_not_available)
   AddUsernameState.ValidationError.DISCRIMINATOR_TOO_SHORT -> stringResource(R.string.AddUsernameScreen__enter_a_minimum_of_d_digits, UsernameUtil.MIN_DISCRIMINATOR_LENGTH)
   AddUsernameState.ValidationError.DISCRIMINATOR_TOO_LONG -> stringResource(R.string.AddUsernameScreen__enter_a_maximum_of_d_digits, UsernameUtil.MAX_DISCRIMINATOR_LENGTH)
-  AddUsernameState.ValidationError.DISCRIMINATOR_INVALID_CHARACTERS -> stringResource(R.string.AddUsernameScreen__numbers_can_only_contain_digits)
   AddUsernameState.ValidationError.DISCRIMINATOR_CANNOT_BE_00 -> stringResource(R.string.AddUsernameScreen__this_number_cant_be_00)
   AddUsernameState.ValidationError.DISCRIMINATOR_CANNOT_START_WITH_ZERO -> stringResource(R.string.AddUsernameScreen__this_number_cant_start_with_0)
   AddUsernameState.ValidationError.DISCRIMINATOR_NOT_AVAILABLE -> stringResource(R.string.AddUsernameScreen__this_username_is_not_available_try_another_number)
