@@ -416,8 +416,9 @@ class AccountSettingsViewModelTest {
     assertThat(actions).isEmpty()
   }
 
+  /** Removing a second factor is guarded by the screen lock, so nothing happens until the user gets past it. */
   @Test
-  fun `RemoveMethodClicked asks the user to confirm first`() = runTest(testDispatcher) {
+  fun `RemoveMethodClicked asks for the screen lock first`() = runTest(testDispatcher) {
     every { repository.isPhoneNumberless() } returns true
     coEvery { repository.getTwoFactorMethods() } returns methods(TOTP_APP)
 
@@ -426,18 +427,46 @@ class AccountSettingsViewModelTest {
 
     viewModel.onEvent(AccountSettingsEvent.RemoveMethodClicked(TOTP_APP))
 
-    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.ConfirmRemoveTotpApp(TOTP_APP.id))
-    assertThat(actions).isEmpty()
+    assertThat(actions.last()).isEqualTo(AccountSettingsAction.AuthenticateToRemoveMethod(TOTP_APP))
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.None)
   }
 
   @Test
-  fun `RemoveMethodClicked for an unsupported passkey does nothing`() = runTest(testDispatcher) {
+  fun `MethodRemovalAuthenticated asks the user to confirm before removing`() = runTest(testDispatcher) {
+    every { repository.isPhoneNumberless() } returns true
+    coEvery { repository.getTwoFactorMethods() } returns methods(TOTP_APP)
+
+    val viewModel = createViewModel()
+
+    viewModel.onEvent(AccountSettingsEvent.MethodRemovalAuthenticated(TOTP_APP))
+
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.ConfirmRemoveTotpApp(TOTP_APP.id))
+  }
+
+  @Test
+  fun `MethodRemovalAuthenticationFailed says so and removes nothing`() = runTest(testDispatcher) {
+    every { repository.isPhoneNumberless() } returns true
+    coEvery { repository.getTwoFactorMethods() } returns methods(TOTP_APP)
+
+    val viewModel = createViewModel()
+    val actions = collectActions(viewModel.actions)
+
+    viewModel.onEvent(AccountSettingsEvent.RemoveMethodClicked(TOTP_APP))
+    viewModel.onEvent(AccountSettingsEvent.MethodRemovalAuthenticationFailed)
+
+    assertThat(actions.last()).isEqualTo(AccountSettingsAction.ShowRemovalAuthenticationFailed)
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.None)
+    coVerify(exactly = 0) { repository.removeTotpApp(any()) }
+  }
+
+  @Test
+  fun `MethodRemovalAuthenticated for an unsupported passkey does nothing`() = runTest(testDispatcher) {
     every { repository.isPhoneNumberless() } returns true
     coEvery { repository.getTwoFactorMethods() } returns methods(PASSKEY)
 
     val viewModel = createViewModel()
 
-    viewModel.onEvent(AccountSettingsEvent.RemoveMethodClicked(PASSKEY))
+    viewModel.onEvent(AccountSettingsEvent.MethodRemovalAuthenticated(PASSKEY))
 
     assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.None)
   }
@@ -450,7 +479,7 @@ class AccountSettingsViewModelTest {
     val viewModel = createViewModel()
     val actions = collectActions(viewModel.actions)
 
-    viewModel.onEvent(AccountSettingsEvent.RemoveMethodClicked(TOTP_APP))
+    viewModel.onEvent(AccountSettingsEvent.MethodRemovalAuthenticated(TOTP_APP))
     viewModel.onEvent(AccountSettingsEvent.RemoveTotpAppConfirmed)
 
     coVerify { repository.removeTotpApp(TOTP_APP.id) }
@@ -480,7 +509,7 @@ class AccountSettingsViewModelTest {
 
     val viewModel = createViewModel()
 
-    viewModel.onEvent(AccountSettingsEvent.RemoveMethodClicked(TOTP_APP))
+    viewModel.onEvent(AccountSettingsEvent.MethodRemovalAuthenticated(TOTP_APP))
 
     coEvery { repository.getTwoFactorMethods() } returns methods()
     viewModel.onEvent(AccountSettingsEvent.RemoveTotpAppConfirmed)
@@ -497,7 +526,7 @@ class AccountSettingsViewModelTest {
     val viewModel = createViewModel()
     val actions = collectActions(viewModel.actions)
 
-    viewModel.onEvent(AccountSettingsEvent.RemoveMethodClicked(TOTP_APP))
+    viewModel.onEvent(AccountSettingsEvent.MethodRemovalAuthenticated(TOTP_APP))
     viewModel.onEvent(AccountSettingsEvent.RemoveTotpAppConfirmed)
 
     assertThat(actions.last()).isEqualTo(AccountSettingsAction.ShowTotpAppRemovalFailed)

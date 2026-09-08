@@ -36,6 +36,12 @@ sealed interface AccountSettingsAction {
   /** Open the screen that renames [app]. */
   data class NavigateToRenameTotpApp(val app: TotpApp) : AccountSettingsAction
 
+  /** Ask the user to get past their screen lock before we remove [method] from the account. */
+  data class AuthenticateToRemoveMethod(val method: TwoFactorMethod) : AccountSettingsAction
+
+  /** Tell the user we couldn't confirm it was them, so nothing was removed. */
+  data object ShowRemovalAuthenticationFailed : AccountSettingsAction
+
   /** Tell the user their authenticator app was removed. */
   data object ShowTotpAppRemoved : AccountSettingsAction
 

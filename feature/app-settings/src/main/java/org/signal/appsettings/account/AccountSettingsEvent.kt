@@ -54,8 +54,14 @@ sealed interface AccountSettingsEvent {
   /** The user tapped the rename option in [method]'s overflow menu. */
   data class RenameMethodClicked(val method: TwoFactorMethod) : AccountSettingsEvent
 
-  /** The user tapped the remove option in [method]'s overflow menu, which asks them to confirm first. */
+  /** The user tapped the remove option in [method]'s overflow menu, which asks for the screen lock first. */
   data class RemoveMethodClicked(val method: TwoFactorMethod) : AccountSettingsEvent
+
+  /** The user got past their screen lock, so we can go on asking them to confirm removing [method]. */
+  data class MethodRemovalAuthenticated(val method: TwoFactorMethod) : AccountSettingsEvent
+
+  /** The screen lock turned the user away, so [RemoveMethodClicked] goes no further. */
+  data object MethodRemovalAuthenticationFailed : AccountSettingsEvent
 
   /** The user confirmed removing the authenticator app named by the open dialog, which removes it. */
   data object RemoveTotpAppConfirmed : AccountSettingsEvent

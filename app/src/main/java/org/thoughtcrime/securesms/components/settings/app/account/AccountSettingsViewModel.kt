@@ -95,7 +95,13 @@ class AccountSettingsViewModel(
         applyRenameMethodClicked(event.method)
       }
       is AccountSettingsEvent.RemoveMethodClicked -> {
-        applyRemoveMethodClicked(event.method)
+        _actions.send(AccountSettingsAction.AuthenticateToRemoveMethod(event.method))
+      }
+      is AccountSettingsEvent.MethodRemovalAuthenticated -> {
+        applyMethodRemovalAuthenticated(event.method)
+      }
+      AccountSettingsEvent.MethodRemovalAuthenticationFailed -> {
+        _actions.send(AccountSettingsAction.ShowRemovalAuthenticationFailed)
       }
       AccountSettingsEvent.RemoveTotpAppConfirmed -> {
         applyRemoveTotpAppConfirmed()
@@ -194,7 +200,7 @@ class AccountSettingsViewModel(
     }
   }
 
-  private fun applyRemoveMethodClicked(method: TwoFactorMethod) {
+  private fun applyMethodRemovalAuthenticated(method: TwoFactorMethod) {
     when (method.kind) {
       TwoFactorMethod.Kind.AUTHENTICATOR_APP -> {
         _state.update { it.copy(dialog = Dialog.ConfirmRemoveTotpApp(method.id)) }

@@ -72,6 +72,12 @@
     <string name="AccountSettingsFragment__remove_authenticator_app">Remove authenticator app?</string>
     <!-- Body of the dialog confirming removal of an authenticator app -->
     <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_app">You won\'t be able to use this app for one-time verification codes when you sign in.</string>
+    <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
+    <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">Unlock to remove two-factor method</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
+    <string name="AccountSettingsFragment__to_remove_this_method_confirm_its_you">To remove this method, confirm it\'s you</string>
+    <!-- Toast shown when the device screen lock wasn\'t confirmed, so nothing was removed -->
+    <string name="AccountSettingsFragment__authentication_required">Authentication required</string>
     <!-- Title of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
     <string name="AccountSettingsFragment__cant_add_authenticator_app">Can\'t add authenticator app</string>
     <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->

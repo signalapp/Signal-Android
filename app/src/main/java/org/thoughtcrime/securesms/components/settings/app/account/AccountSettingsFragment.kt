@@ -14,6 +14,7 @@ import androidx.activity.result.contract.ActivityResultContracts.StartActivityFo
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.res.stringResource
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
@@ -26,6 +27,8 @@ import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.util.ServiceUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.compose.BiometricsAuthentication
+import org.thoughtcrime.securesms.components.compose.rememberBiometricsAuthentication
 import org.thoughtcrime.securesms.components.settings.app.account.authenticator.TotpNavArgs
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.lock.v2.CreateSvrPinActivity
@@ -67,7 +70,13 @@ class AccountSettingsFragment : ComposeFragment() {
   override fun FragmentContent() {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
-    CollectActions(viewModel.actions) { action -> handleAction(action) }
+    val removalBiometrics = rememberBiometricsAuthentication(
+      promptTitle = stringResource(AppSettingsR.string.AccountSettingsFragment__unlock_to_remove_two_factor_method),
+      educationSheetMessage = stringResource(AppSettingsR.string.AccountSettingsFragment__to_remove_this_method_confirm_its_you),
+      onAuthenticationFailed = { viewModel.onEvent(AccountSettingsEvent.MethodRemovalAuthenticationFailed) }
+    )
+
+    CollectActions(viewModel.actions) { action -> handleAction(action, removalBiometrics) }
 
     AccountSettingsScreen(
       state = state,
@@ -75,7 +84,7 @@ class AccountSettingsFragment : ComposeFragment() {
     )
   }
 
-  private fun handleAction(action: AccountSettingsAction) {
+  private fun handleAction(action: AccountSettingsAction, removalBiometrics: BiometricsAuthentication) {
     when (action) {
       AccountSettingsAction.NavigateBack -> requireActivity().onBackPressedDispatcher.onBackPressed()
       AccountSettingsAction.LaunchCreatePinFlow -> pinFlowLauncher.launch(CreateSvrPinActivity.getIntentForPinCreate(requireContext()))
@@ -89,6 +98,12 @@ class AccountSettingsFragment : ComposeFragment() {
           Bundle().apply { TotpNavArgs.putRenamedApp(this, action.app) }
         )
       }
+      is AccountSettingsAction.AuthenticateToRemoveMethod -> {
+        removalBiometrics.withBiometricsAuthentication {
+          viewModel.onEvent(AccountSettingsEvent.MethodRemovalAuthenticated(action.method))
+        }
+      }
+      AccountSettingsAction.ShowRemovalAuthenticationFailed -> toast(AppSettingsR.string.AccountSettingsFragment__authentication_required)
       AccountSettingsAction.ShowTotpAppRemoved -> toast(AppSettingsR.string.AccountSettingsFragment__authenticator_app_removed)
       AccountSettingsAction.ShowTotpAppRemovalFailed -> toast(AppSettingsR.string.AccountSettingsFragment__couldnt_remove_authenticator_app)
       // TODO Open the two-factor authentication support article once one exists.
