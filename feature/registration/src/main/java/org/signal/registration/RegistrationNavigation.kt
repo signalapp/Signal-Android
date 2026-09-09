@@ -423,8 +423,8 @@ private fun openUrl(context: Context, url: String) {
 /**
  * Sets up the navigation graph for the registration flow using Navigation 3.
  *
- * @param registrationRepository The repository for registration data.
- * @param registrationViewModel Optional ViewModel for testing. If null, creates one internally.
+ * @param registrationViewModel Optional ViewModel for testing. If null, creates one internally, along with the
+ *   [RegistrationRepository] it owns.
  * @param startFresh When true, any persisted registration data is not restored and the user starts the flow fresh from
  *   the beginning.
  * @param permissionsState Optional permissions state for testing. If null, creates one internally.
@@ -435,7 +435,6 @@ private fun openUrl(context: Context, url: String) {
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun RegistrationNavHost(
-  registrationRepository: RegistrationRepository,
   registrationViewModel: RegistrationViewModel? = null,
   startFresh: Boolean = false,
   permissionsState: MultiplePermissionsState? = null,
@@ -443,8 +442,9 @@ fun RegistrationNavHost(
   modifier: Modifier = Modifier,
   onRegistrationComplete: () -> Unit = {}
 ) {
+  val context = LocalContext.current
   val viewModel: RegistrationViewModel = registrationViewModel ?: viewModel {
-    RegistrationViewModel(registrationRepository, createSavedStateHandle(), startDestination, startFresh)
+    RegistrationViewModel(RegistrationRepository.create(context), createSavedStateHandle(), startDestination, startFresh)
   }
 
   val registrationState by viewModel.state.collectAsStateWithLifecycle()
@@ -465,7 +465,7 @@ fun RegistrationNavHost(
 
   val entryProvider = entryProvider {
     navigationEntries(
-      registrationRepository = registrationRepository,
+      registrationRepository = viewModel.repository,
       registrationViewModel = viewModel,
       permissionsState = permissionsState,
       onRegistrationComplete = onRegistrationComplete

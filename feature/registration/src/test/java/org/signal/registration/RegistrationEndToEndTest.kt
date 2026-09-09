@@ -2045,7 +2045,6 @@ class RegistrationEndToEndTest {
       SignalTheme {
         ActivityResultInterceptor(folderPickerResult) {
           RegistrationNavHost(
-            registrationRepository = repository,
             registrationViewModel = viewModel,
             permissionsState = createMockPermissionsState(),
             onRegistrationComplete = onRegistrationComplete

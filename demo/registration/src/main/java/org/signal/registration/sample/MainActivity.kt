@@ -29,9 +29,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.LifecycleResumeEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -46,10 +44,8 @@ import androidx.navigation3.ui.NavDisplay
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import kotlinx.serialization.Serializable
 import org.signal.core.ui.compose.theme.SignalTheme
-import org.signal.core.util.billing.OneTimePurchaseApi
 import org.signal.registration.RegistrationDependencies
 import org.signal.registration.RegistrationNavHost
-import org.signal.registration.RegistrationRepository
 import org.signal.registration.sample.debug.NetworkDebugOverlay
 import org.signal.registration.sample.screens.RegistrationCompleteScreen
 import org.signal.registration.sample.screens.main.MainScreen
@@ -130,20 +126,6 @@ private fun SampleNavHost(
   backStack: NavBackStack<NavKey>,
   modifier: Modifier = Modifier
 ) {
-  val context = LocalContext.current
-
-  val registrationRepository = remember {
-    RegistrationRepository(
-      context = context.applicationContext,
-      networkController = registrationDependencies.networkController,
-      storageController = registrationDependencies.storageController,
-      isLinkAndSyncAvailable = registrationDependencies.isLinkAndSyncAvailable,
-      isPhoneNumberlessRegistrationAvailable = registrationDependencies.isPhoneNumberlessRegistrationAvailable,
-      // The demo app is never published to the Play Store, so there is nothing to buy from.
-      signalLoginPurchaseApi = OneTimePurchaseApi.Empty
-    )
-  }
-
   val entryProvider: (NavKey) -> NavEntry<NavKey> = entryProvider {
     entry<SampleRoute.Main> {
       val viewModel: MainScreenViewModel = viewModel(
@@ -170,7 +152,6 @@ private fun SampleNavHost(
 
     entry<SampleRoute.Registration> {
       RegistrationNavHost(
-        registrationRepository,
         modifier = Modifier.fillMaxSize(),
         onRegistrationComplete = {
           backStack.add(SampleRoute.RegistrationComplete)

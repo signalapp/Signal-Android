@@ -27,7 +27,7 @@ import org.signal.registration.screens.restoreselection.RegisteredState
  * Manages state and logic for registration screens.
  */
 class RegistrationViewModel(
-  private val repository: RegistrationRepository,
+  val repository: RegistrationRepository,
   private val savedStateHandle: SavedStateHandle,
   startDestination: RegistrationRoute? = null,
   private val startFresh: Boolean = false
@@ -84,6 +84,10 @@ class RegistrationViewModel(
         }
       }
     }
+  }
+
+  override fun onCleared() {
+    repository.close()
   }
 
   override suspend fun processEvent(event: RegistrationFlowEvent) {

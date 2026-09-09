@@ -6,6 +6,10 @@
 package org.signal.registration
 
 import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelStore
+import androidx.lifecycle.viewmodel.initializer
+import androidx.lifecycle.viewmodel.viewModelFactory
 import assertk.assertThat
 import assertk.assertions.isEqualTo
 import assertk.assertions.isNotNull
@@ -14,6 +18,7 @@ import assertk.assertions.isTrue
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
+import io.mockk.verify
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.StandardTestDispatcher
@@ -910,6 +915,26 @@ class RegistrationViewModelTest {
     assertThat(viewModel.state.value.isRestoringNavigationState).isTrue()
 
     advanceUntilIdle()
+  }
+
+  // ==================== Repository Ownership Tests ====================
+
+  @Test
+  fun `repository is closed when the view model is cleared`() = runTest(testDispatcher) {
+    val store = ViewModelStore()
+    val provider = ViewModelProvider.create(
+      store,
+      viewModelFactory {
+        initializer { RegistrationViewModel(mockRepository, SavedStateHandle()) }
+      }
+    )
+
+    provider[RegistrationViewModel::class]
+    advanceUntilIdle()
+    verify(exactly = 0) { mockRepository.close() }
+
+    store.clear()
+    verify(exactly = 1) { mockRepository.close() }
   }
 
   // ==================== Helpers ====================

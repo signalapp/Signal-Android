@@ -32,6 +32,7 @@ import kotlinx.serialization.json.Json
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.signal.archive.LocalBackupRestoreProgress
+import org.signal.billing.BillingFactory
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.MasterKey
 import org.signal.core.models.ServiceId.ACI
@@ -131,6 +132,25 @@ class RegistrationRepository(
   companion object {
     private val TAG = Log.tag(RegistrationRepository::class)
     private val json = Json { ignoreUnknownKeys = true }
+
+    /** Builds a repository from the module's injected [RegistrationDependencies]. */
+    fun create(context: Context): RegistrationRepository {
+      val dependencies = RegistrationDependencies.get()
+      val application = context.applicationContext
+
+      return RegistrationRepository(
+        context = application,
+        networkController = dependencies.networkController,
+        storageController = dependencies.storageController,
+        isLinkAndSyncAvailable = dependencies.isLinkAndSyncAvailable,
+        isPhoneNumberlessRegistrationAvailable = dependencies.isPhoneNumberlessRegistrationAvailable,
+        isGooglePlayBillingAvailable = dependencies.isGooglePlayBillingAvailable,
+        signalLoginPurchaseApi = BillingFactory.createOneTimePurchaseApi(
+          context = application,
+          isAvailable = dependencies.isGooglePlayBillingAvailable
+        )
+      )
+    }
 
     /**
      * The purchase option to buy within the service-provided Signal Login product. The service names the product but
