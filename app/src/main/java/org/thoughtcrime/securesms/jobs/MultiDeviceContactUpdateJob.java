@@ -243,9 +243,9 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
       Recipient self       = Recipient.self();
       byte[]    profileKey = self.getProfileKey();
 
-      if (profileKey != null) {
-        out.write(new DeviceContact(Optional.of(SignalStore.account().getAci()),
-                                    Optional.of(SignalStore.account().getE164()),
+      if (profileKey != null && (self.getHasAci() || self.getHasE164())) {
+        out.write(new DeviceContact(self.getAci(),
+                                    self.getE164(),
                                     Optional.empty(),
                                     Optional.empty(),
                                     self.getExpiresInSeconds() > 0 ? Optional.of(self.getExpiresInSeconds()) : Optional.empty(),
