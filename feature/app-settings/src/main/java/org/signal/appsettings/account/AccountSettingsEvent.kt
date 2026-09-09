@@ -16,8 +16,11 @@ sealed interface AccountSettingsEvent {
   /** The user tapped the navigation (back) icon. */
   data object NavigateBackClicked : AccountSettingsEvent
 
-  /** The user tapped the Signal Login card, which shows the account and recovery keys. */
+  /** The user tapped the Signal Login card, which asks for the screen lock before showing the account and recovery keys. */
   data object AccountAndRecoveryClicked : AccountSettingsEvent
+
+  /** The user got past their screen lock, so we can show them the account and recovery keys. */
+  data object SignalLoginDetailsAuthenticated : AccountSettingsEvent
 
   /** The user tapped the row that either creates or changes their PIN. */
   data object ModifyPinClicked : AccountSettingsEvent
@@ -60,8 +63,8 @@ sealed interface AccountSettingsEvent {
   /** The user got past their screen lock, so we can go on asking them to confirm removing [method]. */
   data class MethodRemovalAuthenticated(val method: TwoFactorMethod) : AccountSettingsEvent
 
-  /** The screen lock turned the user away, so [RemoveMethodClicked] goes no further. */
-  data object MethodRemovalAuthenticationFailed : AccountSettingsEvent
+  /** The screen lock turned the user away, so whatever asked for it goes no further. */
+  data object AuthenticationFailed : AccountSettingsEvent
 
   /** The user confirmed removing the authenticator app named by the open dialog, which removes it. */
   data object RemoveTotpAppConfirmed : AccountSettingsEvent

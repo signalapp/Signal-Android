@@ -21,6 +21,7 @@ import org.signal.core.util.Util
 import org.signal.passwordmanager.SignalCredentialManager
 import org.signal.signallogin.pdf.SignalLoginPdfRenderer
 import org.signal.signallogin.viewdetails.SignalLoginViewDetailsScreen
+import org.thoughtcrime.securesms.components.TemporaryScreenshotSecurity
 
 /**
  * Shows the account and recovery keys that make up the user's Signal Login, the same way registration does.
@@ -48,6 +49,8 @@ class SignalLoginViewDetailsFragment : ComposeFragment() {
   @Composable
   override fun FragmentContent() {
     val state by viewModel.state.collectAsStateWithLifecycle()
+
+    TemporaryScreenshotSecurity.bind()
 
     CollectActions(viewModel.actions) { action -> handleAction(action) }
 

@@ -73,10 +73,16 @@ class AccountSettingsFragment : ComposeFragment() {
     val removalBiometrics = rememberBiometricsAuthentication(
       promptTitle = stringResource(AppSettingsR.string.AccountSettingsFragment__unlock_to_remove_two_factor_method),
       educationSheetMessage = stringResource(AppSettingsR.string.AccountSettingsFragment__to_remove_this_method_confirm_its_you),
-      onAuthenticationFailed = { viewModel.onEvent(AccountSettingsEvent.MethodRemovalAuthenticationFailed) }
+      onAuthenticationFailed = { viewModel.onEvent(AccountSettingsEvent.AuthenticationFailed) }
     )
 
-    CollectActions(viewModel.actions) { action -> handleAction(action, removalBiometrics) }
+    val signalLoginBiometrics = rememberBiometricsAuthentication(
+      promptTitle = stringResource(AppSettingsR.string.AccountSettingsFragment__unlock_to_view_signal_login),
+      educationSheetMessage = stringResource(AppSettingsR.string.AccountSettingsFragment__to_view_your_signal_login_confirm_its_you),
+      onAuthenticationFailed = { viewModel.onEvent(AccountSettingsEvent.AuthenticationFailed) }
+    )
+
+    CollectActions(viewModel.actions) { action -> handleAction(action, removalBiometrics, signalLoginBiometrics) }
 
     AccountSettingsScreen(
       state = state,
@@ -84,12 +90,17 @@ class AccountSettingsFragment : ComposeFragment() {
     )
   }
 
-  private fun handleAction(action: AccountSettingsAction, removalBiometrics: BiometricsAuthentication) {
+  private fun handleAction(action: AccountSettingsAction, removalBiometrics: BiometricsAuthentication, signalLoginBiometrics: BiometricsAuthentication) {
     when (action) {
       AccountSettingsAction.NavigateBack -> requireActivity().onBackPressedDispatcher.onBackPressed()
       AccountSettingsAction.LaunchCreatePinFlow -> pinFlowLauncher.launch(CreateSvrPinActivity.getIntentForPinCreate(requireContext()))
       AccountSettingsAction.LaunchChangePinFlow -> pinFlowLauncher.launch(CreateSvrPinActivity.getIntentForPinChangeFromSettings(requireContext()))
       AccountSettingsAction.ShowPinCreatedConfirmation -> Snackbar.make(requireView(), R.string.ConfirmKbsPinFragment__pin_created, Snackbar.LENGTH_LONG).show()
+      AccountSettingsAction.AuthenticateToViewSignalLoginDetails -> {
+        signalLoginBiometrics.withBiometricsAuthentication {
+          viewModel.onEvent(AccountSettingsEvent.SignalLoginDetailsAuthenticated)
+        }
+      }
       AccountSettingsAction.NavigateToSignalLoginDetails -> findNavController().safeNavigate(R.id.action_accountSettingsFragment_to_signalLoginViewDetailsFragment)
       AccountSettingsAction.NavigateToTotpSetup -> findNavController().safeNavigate(R.id.action_accountSettingsFragment_to_authenticatorSetupFragment)
       is AccountSettingsAction.NavigateToRenameTotpApp -> {
@@ -103,7 +114,7 @@ class AccountSettingsFragment : ComposeFragment() {
           viewModel.onEvent(AccountSettingsEvent.MethodRemovalAuthenticated(action.method))
         }
       }
-      AccountSettingsAction.ShowRemovalAuthenticationFailed -> toast(AppSettingsR.string.AccountSettingsFragment__authentication_required)
+      AccountSettingsAction.ShowAuthenticationFailed -> toast(AppSettingsR.string.AccountSettingsFragment__authentication_required)
       AccountSettingsAction.ShowTotpAppRemoved -> toast(AppSettingsR.string.AccountSettingsFragment__authenticator_app_removed)
       AccountSettingsAction.ShowTotpAppRemovalFailed -> toast(AppSettingsR.string.AccountSettingsFragment__couldnt_remove_authenticator_app)
       // TODO Open the two-factor authentication support article once one exists.

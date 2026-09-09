@@ -27,6 +27,9 @@ sealed interface AccountSettingsAction {
   /** Tell the user their PIN was created. */
   data object ShowPinCreatedConfirmation : AccountSettingsAction
 
+  /** Ask the user to get past their screen lock before we show them the account and recovery keys. */
+  data object AuthenticateToViewSignalLoginDetails : AccountSettingsAction
+
   /** Open the screen that shows the account and recovery keys that make up the Signal Login. */
   data object NavigateToSignalLoginDetails : AccountSettingsAction
 
@@ -39,8 +42,8 @@ sealed interface AccountSettingsAction {
   /** Ask the user to get past their screen lock before we remove [method] from the account. */
   data class AuthenticateToRemoveMethod(val method: TwoFactorMethod) : AccountSettingsAction
 
-  /** Tell the user we couldn't confirm it was them, so nothing was removed. */
-  data object ShowRemovalAuthenticationFailed : AccountSettingsAction
+  /** Tell the user we couldn't confirm it was them, so whatever they asked for didn't happen. */
+  data object ShowAuthenticationFailed : AccountSettingsAction
 
   /** Tell the user their authenticator app was removed. */
   data object ShowTotpAppRemoved : AccountSettingsAction

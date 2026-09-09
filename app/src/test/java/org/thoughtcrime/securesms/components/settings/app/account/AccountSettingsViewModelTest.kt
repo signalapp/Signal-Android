@@ -444,7 +444,7 @@ class AccountSettingsViewModelTest {
   }
 
   @Test
-  fun `MethodRemovalAuthenticationFailed says so and removes nothing`() = runTest(testDispatcher) {
+  fun `AuthenticationFailed says so and removes nothing`() = runTest(testDispatcher) {
     every { repository.isPhoneNumberless() } returns true
     coEvery { repository.getTwoFactorMethods() } returns methods(TOTP_APP)
 
@@ -452,9 +452,9 @@ class AccountSettingsViewModelTest {
     val actions = collectActions(viewModel.actions)
 
     viewModel.onEvent(AccountSettingsEvent.RemoveMethodClicked(TOTP_APP))
-    viewModel.onEvent(AccountSettingsEvent.MethodRemovalAuthenticationFailed)
+    viewModel.onEvent(AccountSettingsEvent.AuthenticationFailed)
 
-    assertThat(actions.last()).isEqualTo(AccountSettingsAction.ShowRemovalAuthenticationFailed)
+    assertThat(actions.last()).isEqualTo(AccountSettingsAction.ShowAuthenticationFailed)
     assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.None)
     coVerify(exactly = 0) { repository.removeTotpApp(any()) }
   }
@@ -546,13 +546,25 @@ class AccountSettingsViewModelTest {
   }
 
   @Test
-  fun `AccountAndRecoveryClicked opens the Signal Login details screen`() = runTest(testDispatcher) {
+  fun `AccountAndRecoveryClicked asks for the screen lock first`() = runTest(testDispatcher) {
     every { repository.isPhoneNumberless() } returns true
 
     val viewModel = createViewModel()
     val actions = collectActions(viewModel.actions)
 
     viewModel.onEvent(AccountSettingsEvent.AccountAndRecoveryClicked)
+
+    assertThat(actions.last()).isEqualTo(AccountSettingsAction.AuthenticateToViewSignalLoginDetails)
+  }
+
+  @Test
+  fun `SignalLoginDetailsAuthenticated opens the Signal Login details screen`() = runTest(testDispatcher) {
+    every { repository.isPhoneNumberless() } returns true
+
+    val viewModel = createViewModel()
+    val actions = collectActions(viewModel.actions)
+
+    viewModel.onEvent(AccountSettingsEvent.SignalLoginDetailsAuthenticated)
 
     assertThat(actions.last()).isEqualTo(AccountSettingsAction.NavigateToSignalLoginDetails)
   }

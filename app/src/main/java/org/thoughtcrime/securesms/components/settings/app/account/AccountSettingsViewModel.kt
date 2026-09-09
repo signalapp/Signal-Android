@@ -83,6 +83,9 @@ class AccountSettingsViewModel(
         applyRegistrationLockConfirmed()
       }
       AccountSettingsEvent.AccountAndRecoveryClicked -> {
+        _actions.send(AccountSettingsAction.AuthenticateToViewSignalLoginDetails)
+      }
+      AccountSettingsEvent.SignalLoginDetailsAuthenticated -> {
         _actions.send(AccountSettingsAction.NavigateToSignalLoginDetails)
       }
       AccountSettingsEvent.AddTotpAppClicked -> {
@@ -100,8 +103,8 @@ class AccountSettingsViewModel(
       is AccountSettingsEvent.MethodRemovalAuthenticated -> {
         applyMethodRemovalAuthenticated(event.method)
       }
-      AccountSettingsEvent.MethodRemovalAuthenticationFailed -> {
-        _actions.send(AccountSettingsAction.ShowRemovalAuthenticationFailed)
+      AccountSettingsEvent.AuthenticationFailed -> {
+        _actions.send(AccountSettingsAction.ShowAuthenticationFailed)
       }
       AccountSettingsEvent.RemoveTotpAppConfirmed -> {
         applyRemoveTotpAppConfirmed()
