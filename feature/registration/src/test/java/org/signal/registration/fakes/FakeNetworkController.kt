@@ -309,10 +309,11 @@ class FakeNetworkController(
   fun registerAccountResponse(
     e164: String?,
     storageCapable: Boolean = false,
-    reregistration: Boolean = false
+    reregistration: Boolean = false,
+    aci: String = UUID.randomUUID().toString()
   ): RegisterAccountResponse {
     return RegisterAccountResponse(
-      aci = UUID.randomUUID().toString(),
+      aci = aci,
       // An account with no phone number has no PNI, exactly as the service reports it.
       pni = if (e164 != null) UUID.randomUUID().toString() else null,
       e164 = e164,
