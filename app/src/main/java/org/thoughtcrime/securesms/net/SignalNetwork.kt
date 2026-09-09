@@ -29,85 +29,182 @@ import org.whispersystems.signalservice.api.storage.StorageServiceApi
 
 /**
  * A convenient way to access network operations, similar to [org.thoughtcrime.securesms.database.SignalDatabase] and [org.thoughtcrime.securesms.keyvalue.SignalStore].
+ *
+ * Everything is served out of a single instance, which can be swapped out via [init] to inject custom implementations.
  */
-object SignalNetwork {
-  @JvmStatic
-  @get:JvmName("account")
-  val account: AccountApi
+open class SignalNetwork {
+
+  open val account: AccountApi
     get() = AppDependencies.accountApi
 
-  val accountV2: AccountApiV2
+  open val accountV2: AccountApiV2
     get() = AppDependencies.accountApiV2
 
-  val archive: ArchiveApi
+  open val archive: ArchiveApi
     get() = AppDependencies.archiveApi
 
-  val archiveV2: ArchiveApiV2
+  open val archiveV2: ArchiveApiV2
     get() = AppDependencies.archiveApiV2
 
-  val attachments: AttachmentApi
+  open val attachments: AttachmentApi
     get() = AppDependencies.attachmentApi
 
-  @JvmStatic
-  @get:JvmName("calling")
-  val calling: CallingApi
+  open val calling: CallingApi
     get() = AppDependencies.callingApi
 
-  val cdsApi: CdsApi
+  open val cdsApi: CdsApi
     get() = AppDependencies.cdsApi
 
-  @JvmStatic
-  @get:JvmName("certificate")
-  val certificate: CertificateApi
+  open val certificate: CertificateApi
     get() = AppDependencies.certificateApi
 
-  @JvmStatic
-  @get:JvmName("keys")
-  val keys: KeysApi
+  open val keys: KeysApi
     get() = AppDependencies.keysApi
 
-  val linkDevice: LinkDeviceApi
+  open val keyTransparency: KeyTransparencyApi
+    get() = AppDependencies.keyTransparencyApi
+
+  open val linkDevice: LinkDeviceApi
     get() = AppDependencies.linkDeviceApi
 
-  @JvmStatic
-  @get:JvmName("message")
-  val message: MessageApi
+  open val message: MessageApi
     get() = AppDependencies.messageApi
 
-  @JvmStatic
-  @get:JvmName("payments")
-  val payments: PaymentsApi
+  open val payments: PaymentsApi
     get() = AppDependencies.paymentsApi
 
-  @JvmStatic
-  @get:JvmName("profile")
-  val profile: ProfileApi
+  open val profile: ProfileApi
     get() = AppDependencies.profileApi
 
-  val provisioning: ProvisioningApi
+  open val provisioning: ProvisioningApi
     get() = AppDependencies.provisioningApi
 
-  @JvmStatic
-  @get:JvmName("rateLimitChallenge")
-  val rateLimitChallenge: RateLimitChallengeApi
+  open val rateLimitChallenge: RateLimitChallengeApi
     get() = AppDependencies.rateLimitChallengeApi
 
-  @JvmStatic
-  @get:JvmName("remoteConfig")
-  val remoteConfig: RemoteConfigApi
+  open val remoteConfig: RemoteConfigApi
     get() = AppDependencies.remoteConfigApi
 
-  val storageService: StorageServiceApi
+  open val storageService: StorageServiceApi
     get() = AppDependencies.storageServiceApi
 
-  @JvmStatic
-  @get:JvmName("username")
-  val username: UsernameApi
-    get() = AppDependencies.usernameApi
-
-  val svrB: SvrBApi
+  open val svrB: SvrBApi
     get() = AppDependencies.svrBApi
 
-  val keyTransparency: KeyTransparencyApi
-    get() = AppDependencies.keyTransparencyApi
+  open val username: UsernameApi
+    get() = AppDependencies.usernameApi
+
+  companion object {
+
+    private var instance: SignalNetwork = SignalNetwork()
+
+    /**
+     * Swaps out the instance that serves every api. Lets us inject custom implementations, including mocks in tests.
+     */
+    @JvmStatic
+    @Synchronized
+    fun init(instance: SignalNetwork) {
+      Companion.instance = instance
+    }
+
+    @JvmStatic
+    @get:JvmName("account")
+    val account: AccountApi
+      get() = instance.account
+
+    @JvmStatic
+    @get:JvmName("accountV2")
+    val accountV2: AccountApiV2
+      get() = instance.accountV2
+
+    @JvmStatic
+    @get:JvmName("archive")
+    val archive: ArchiveApi
+      get() = instance.archive
+
+    @JvmStatic
+    @get:JvmName("archiveV2")
+    val archiveV2: ArchiveApiV2
+      get() = instance.archiveV2
+
+    @JvmStatic
+    @get:JvmName("attachments")
+    val attachments: AttachmentApi
+      get() = instance.attachments
+
+    @JvmStatic
+    @get:JvmName("calling")
+    val calling: CallingApi
+      get() = instance.calling
+
+    @JvmStatic
+    @get:JvmName("cdsApi")
+    val cdsApi: CdsApi
+      get() = instance.cdsApi
+
+    @JvmStatic
+    @get:JvmName("certificate")
+    val certificate: CertificateApi
+      get() = instance.certificate
+
+    @JvmStatic
+    @get:JvmName("keys")
+    val keys: KeysApi
+      get() = instance.keys
+
+    @JvmStatic
+    @get:JvmName("keyTransparency")
+    val keyTransparency: KeyTransparencyApi
+      get() = instance.keyTransparency
+
+    @JvmStatic
+    @get:JvmName("linkDevice")
+    val linkDevice: LinkDeviceApi
+      get() = instance.linkDevice
+
+    @JvmStatic
+    @get:JvmName("message")
+    val message: MessageApi
+      get() = instance.message
+
+    @JvmStatic
+    @get:JvmName("payments")
+    val payments: PaymentsApi
+      get() = instance.payments
+
+    @JvmStatic
+    @get:JvmName("profile")
+    val profile: ProfileApi
+      get() = instance.profile
+
+    @JvmStatic
+    @get:JvmName("provisioning")
+    val provisioning: ProvisioningApi
+      get() = instance.provisioning
+
+    @JvmStatic
+    @get:JvmName("rateLimitChallenge")
+    val rateLimitChallenge: RateLimitChallengeApi
+      get() = instance.rateLimitChallenge
+
+    @JvmStatic
+    @get:JvmName("remoteConfig")
+    val remoteConfig: RemoteConfigApi
+      get() = instance.remoteConfig
+
+    @JvmStatic
+    @get:JvmName("storageService")
+    val storageService: StorageServiceApi
+      get() = instance.storageService
+
+    @JvmStatic
+    @get:JvmName("svrB")
+    val svrB: SvrBApi
+      get() = instance.svrB
+
+    @JvmStatic
+    @get:JvmName("username")
+    val username: UsernameApi
+      get() = instance.username
+  }
 }

@@ -91,12 +91,14 @@ class FakeStorageServiceRule(val storageKey: StorageKey = StorageKey(Util.getSec
     every { api.readStorageItems(any(), any()) } answers { readStorageItems(secondArg()) }
     every { api.writeStorageItems(any(), any()) } answers { writeStorageItems(secondArg()) }
 
-    mockkObject(SignalNetwork)
-    every { SignalNetwork.storageService } returns api
+    val signalApi = mockk<SignalNetwork>()
+    every { signalApi.storageService } returns api
+
+    SignalNetwork.init(signalApi)
   }
 
   override fun after() {
-    unmockkObject(SignalNetwork)
+    SignalNetwork.init(SignalNetwork())
     unmockkObject(RemoteConfig)
   }
 
