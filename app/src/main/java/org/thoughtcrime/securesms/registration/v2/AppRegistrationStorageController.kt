@@ -439,7 +439,7 @@ class AppRegistrationStorageController(private val context: Context) : StorageCo
         val selfPni = SignalStore.account.pni
         val selfE164 = SignalStore.account.e164
 
-        if (selfAci == null || selfPni == null || selfE164 == null) {
+        if (selfAci == null) {
           trySend(LocalBackupRestoreProgress.Error(IllegalStateException("Account not registered, cannot restore V2 backup")))
           return@launch
         }

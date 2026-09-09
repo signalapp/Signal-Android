@@ -185,7 +185,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
 
     val self = Recipient.self()
     val aci = customCredentials?.aci ?: self.aci.get()
-    val selfData = BackupRepository.SelfData(aci, self.pni.get(), self.e164.get(), ProfileKey(self.profileKey))
+    val selfData = BackupRepository.SelfData(aci, self.pni.orElse(null), self.e164.orElse(null), ProfileKey(self.profileKey))
     val backupKey = customCredentials?.messageBackupKey ?: SignalStore.backup.messageBackupKey
 
     disposables += Single.fromCallable { BackupRepository.importForDebugging(length, inputStreamFactory, selfData, backupKey) }

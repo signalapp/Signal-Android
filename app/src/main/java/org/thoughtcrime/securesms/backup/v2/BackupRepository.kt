@@ -1730,8 +1730,8 @@ object BackupRepository {
 
   data class SelfData(
     val aci: ACI,
-    val pni: PNI,
-    val e164: String,
+    val pni: PNI?,
+    val e164: String?,
     val profileKey: ProfileKey
   )
 
@@ -1838,7 +1838,7 @@ object BackupRepository {
     }
 
     val self = Recipient.self()
-    val selfData = SelfData(self.aci.get(), self.pni.get(), self.e164.get(), ProfileKey(self.profileKey))
+    val selfData = SelfData(self.aci.get(), self.pni.orElse(null), self.e164.orElse(null), ProfileKey(self.profileKey))
     Log.i(TAG, "[remoteRestore] Importing backup")
     val result = importSignalBackup(
       length = tempBackupFile.length(),
@@ -1924,7 +1924,7 @@ object BackupRepository {
     )
 
     val self = Recipient.self()
-    val selfData = SelfData(self.aci.get(), self.pni.get(), self.e164.get(), ProfileKey(self.profileKey))
+    val selfData = SelfData(self.aci.get(), self.pni.orElse(null), self.e164.orElse(null), ProfileKey(self.profileKey))
     Log.i(TAG, "[restoreLinkAndSyncBackup] Importing backup")
     val result = importLinkAndSyncSignalBackup(
       length = tempBackupFile.length(),

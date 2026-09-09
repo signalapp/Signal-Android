@@ -82,7 +82,7 @@ class BackupPlugin : Plugin {
     }
 
     val self = Recipient.self()
-    val selfData = BackupRepository.SelfData(self.aci.get(), self.pni.get(), self.e164.get(), ProfileKey(self.profileKey))
+    val selfData = BackupRepository.SelfData(self.aci.get(), self.pni.orElse(null), self.e164.orElse(null), ProfileKey(self.profileKey))
 
     val backupKey = SignalStore.backup.messageBackupKey
 
@@ -116,7 +116,7 @@ class BackupPlugin : Plugin {
     val snapshotFS = SnapshotFileSystem(AppDependencies.application, snapshot.file)
 
     val self = Recipient.self()
-    val selfData = BackupRepository.SelfData(self.aci.get(), self.pni.get(), self.e164.get(), ProfileKey(self.profileKey))
+    val selfData = BackupRepository.SelfData(self.aci.get(), self.pni.orElse(null), self.e164.orElse(null), ProfileKey(self.profileKey))
 
     val backupKey = SignalStore.backup.messageBackupKey
 

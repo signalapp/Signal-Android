@@ -132,7 +132,7 @@ class QuickstartRestoreActivity : BaseActivity() {
     lifecycleScope.launch(Dispatchers.IO) {
       try {
         val self = Recipient.self()
-        val selfData = BackupRepository.SelfData(self.aci.get(), self.pni.get(), self.e164.get(), ProfileKey(self.profileKey))
+        val selfData = BackupRepository.SelfData(self.aci.get(), self.pni.orElse(null), self.e164.orElse(null), ProfileKey(self.profileKey))
 
         val backupDir = QuickstartInitializer.pendingBackupDir!!
 
