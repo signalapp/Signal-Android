@@ -31,12 +31,15 @@ import java.util.regex.Pattern
 /**
  * Record processor for [SignalContactRecord].
  * Handles merging and updating our local store when processing remote contact storage records.
+ *
+ * @param identityConflictsPendingRepair Populated with storage ids where the only difference is identity key
  */
 class ContactRecordProcessor(
   private val selfAci: ACI?,
   private val selfPni: PNI?,
   private val selfE164: String?,
-  private val recipientTable: RecipientTable
+  private val recipientTable: RecipientTable,
+  val identityConflictsPendingRepair: MutableSet<StorageId>
 ) : DefaultStorageRecordProcessor<SignalContactRecord>() {
 
   companion object {
@@ -51,11 +54,12 @@ class ContactRecordProcessor(
 
   private var rotateProfileKeyOnBlock = true
 
-  constructor() : this(
+  constructor(identityConflictsPendingRepair: MutableSet<StorageId>) : this(
     selfAci = SignalStore.account.aci,
     selfPni = SignalStore.account.pni,
     selfE164 = SignalStore.account.e164,
-    recipientTable = SignalDatabase.recipients
+    recipientTable = SignalDatabase.recipients,
+    identityConflictsPendingRepair = identityConflictsPendingRepair
   )
 
   /**
@@ -232,7 +236,7 @@ class ContactRecordProcessor(
       if (conflictAci != null) {
         Log.w(TAG, "Identity keys conflict for $conflictAci. Enqueueing a profile fetch.")
         SignalDatabase.runPostSuccessfulTransaction {
-          RetrieveProfileJob.enqueue(Recipient.trustedPush(conflictAci, mergedPni, mergedE164).id, true)
+          RetrieveProfileJob.enqueueToResolveIdentityKeyConflict(Recipient.trustedPush(conflictAci, mergedPni, mergedE164).id)
         }
       } else {
         Log.w(TAG, "Identity keys conflict for $localPni. No ACI, so no profile fetch is possible.")
@@ -279,6 +283,9 @@ class ContactRecordProcessor(
     return if (matchesRemote) {
       remote
     } else if (matchesLocal) {
+      if (identityKeysExistsAndConflict && conflictAci != null) {
+        identityConflictsPendingRepair += local.id
+      }
       local
     } else {
       merged

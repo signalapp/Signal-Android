@@ -52,7 +52,7 @@ class ContactRecordProcessorTest {
     )
 
     // WHEN
-    val subject = ContactRecordProcessor()
+    val subject = ContactRecordProcessor(mutableSetOf())
     subject.process(listOf(remote1, remote2), StorageSyncHelper.KEY_GENERATOR)
 
     // THEN
@@ -81,7 +81,7 @@ class ContactRecordProcessorTest {
     )
 
     // WHEN
-    val subject = ContactRecordProcessor()
+    val subject = ContactRecordProcessor(mutableSetOf())
     subject.process(listOf(remote), StorageSyncHelper.KEY_GENERATOR)
 
     // THEN
@@ -119,7 +119,7 @@ class ContactRecordProcessorTest {
     )
 
     // WHEN
-    val subject = ContactRecordProcessor()
+    val subject = ContactRecordProcessor(mutableSetOf())
     subject.process(listOf(remote1, remote2), StorageSyncHelper.KEY_GENERATOR)
 
     // THEN

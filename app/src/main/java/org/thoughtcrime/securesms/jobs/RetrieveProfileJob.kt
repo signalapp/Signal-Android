@@ -58,8 +58,8 @@ import kotlin.time.Duration.Companion.minutes
 /**
  * Retrieves a users profile and sets the appropriate local fields.
  */
-class RetrieveProfileJob private constructor(parameters: Parameters, private val recipientIds: MutableSet<RecipientId>, private val skipDebounce: Boolean) : BaseJob(parameters) {
-  private constructor(recipientIds: Set<RecipientId>, skipDebounce: Boolean) : this(
+class RetrieveProfileJob private constructor(parameters: Parameters, private val recipientIds: MutableSet<RecipientId>, private val skipDebounce: Boolean, private val syncConfirmedIdentityKey: Boolean) : BaseJob(parameters) {
+  private constructor(recipientIds: Set<RecipientId>, skipDebounce: Boolean, syncConfirmedIdentityKey: Boolean = false) : this(
     parameters = Parameters.Builder()
       .addConstraint(NetworkConstraint.KEY)
       .addConstraint(DataRestoreConstraint.KEY)
@@ -72,13 +72,15 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
       .setMaxAttempts(3)
       .build(),
     recipientIds = recipientIds.toMutableSet(),
-    skipDebounce = skipDebounce
+    skipDebounce = skipDebounce,
+    syncConfirmedIdentityKey = syncConfirmedIdentityKey
   )
 
   override fun serialize(): ByteArray? {
     return JsonJobData.Builder()
       .putStringListAsArray(KEY_RECIPIENTS, recipientIds.map { it.serialize() })
       .putBoolean(KEY_SKIP_DEBOUNCE, skipDebounce)
+      .putBoolean(KEY_SYNC_CONFIRMED_IDENTITY_KEY, syncConfirmedIdentityKey)
       .serialize()
   }
 
@@ -361,6 +363,11 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
       }
 
       if (existingIdentityKey == identityKey) {
+        if (syncConfirmedIdentityKey) {
+          Log.i(TAG, "Server confirmed our identity key for ${recipient.id}. Syncing it so the conflicting peer record is replaced.")
+          SignalDatabase.recipients.markNeedsSync(recipient.id)
+          StorageSyncHelper.scheduleSyncForDataChange()
+        }
         return
       }
 
@@ -538,8 +545,9 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
       val data = JsonJobData.deserialize(serializedData)
       val recipientIds: MutableSet<RecipientId> = data.getStringArray(KEY_RECIPIENTS).map { RecipientId.from(it) }.toMutableSet()
       val skipDebounce: Boolean = data.getBooleanOrDefault(KEY_SKIP_DEBOUNCE, false)
+      val syncConfirmedIdentityKey: Boolean = data.getBooleanOrDefault(KEY_SYNC_CONFIRMED_IDENTITY_KEY, false)
 
-      return RetrieveProfileJob(parameters, recipientIds, skipDebounce)
+      return RetrieveProfileJob(parameters, recipientIds, skipDebounce, syncConfirmedIdentityKey)
     }
   }
 
@@ -548,6 +556,7 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
     private val TAG = Log.tag(RetrieveProfileJob::class.java)
     private const val KEY_RECIPIENTS = "recipients"
     private const val KEY_SKIP_DEBOUNCE = "skip_debounce"
+    private const val KEY_SYNC_CONFIRMED_IDENTITY_KEY = "sync_confirmed_identity_key"
     private const val QUEUE_PREFIX = "RetrieveProfileJob_"
 
     private val PROFILE_FETCH_DEBOUNCE_TIME = 5.minutes
@@ -608,6 +617,15 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
           add(RetrieveProfileJob(combined, skipDebounce))
         }
       }
+    }
+
+    /**
+     * Only to be used when confirming an identity key change indicated by storage service. The recipient must be an individual and is used as-is. If
+     * the identity key matches we will write to storage service.
+     */
+    @WorkerThread
+    fun enqueueToResolveIdentityKeyConflict(recipientId: RecipientId) {
+      AppDependencies.jobManager.add(RetrieveProfileJob(setOf(recipientId), skipDebounce = true, syncConfirmedIdentityKey = true))
     }
 
     /**

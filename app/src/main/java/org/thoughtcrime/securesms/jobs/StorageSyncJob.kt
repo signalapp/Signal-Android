@@ -280,6 +280,7 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
     var self = freshSelf()
     var needsMultiDeviceSync = false
     var needsForcePush = false
+    val identityConflictsPendingRepair = mutableSetOf<StorageId>()
 
     if (self.storageId == null) {
       Log.w(TAG, "No storageId for self. Generating.")
@@ -342,7 +343,7 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
         try {
           Log.i(TAG, "[Remote Sync] Remote-Only :: Contacts: ${remoteOnly.contacts.size}, GV2: ${remoteOnly.gv2.size}, Account: ${remoteOnly.account.size}, DLists: ${remoteOnly.storyDistributionLists.size}, call links: ${remoteOnly.callLinkRecords.size}, chat folders: ${remoteOnly.chatFolderRecords.size}, notification profiles: ${remoteOnly.notificationProfileRecords.size}, sticker packs: ${remoteOnly.stickerPackRecords.size}")
 
-          processKnownRecords(context, remoteOnly)
+          processKnownRecords(context, remoteOnly, identityConflictsPendingRepair)
 
           val unknownInserts: List<SignalStorageRecord> = remoteOnly.unknown
           val unknownDeletes = idDifference.localOnlyIds.stream().filter { obj: StorageId -> obj.isUnknown }.collect(Collectors.toList())
@@ -395,7 +396,7 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
       Log.i(TAG, "Found ${remote.size} of the known-unknowns remotely.")
 
       db.withinTransaction {
-        processKnownRecords(context, records)
+        processKnownRecords(context, records, identityConflictsPendingRepair)
         SignalDatabase.unknownStorageIds.deleteAllWithTypes(knownTypes)
       }
     }
@@ -455,7 +456,9 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
     }
     stopwatch.split("local-data-transaction")
 
-    val loopCheck = if (remoteWriteOperation.isEmpty) {
+    val onlyIdentityConflictsPendingRepair = remoteWriteOperation.inserts.isNotEmpty() && remoteWriteOperation.inserts.all { it.id in identityConflictsPendingRepair }
+
+    val loopCheck = if (remoteWriteOperation.isEmpty || onlyIdentityConflictsPendingRepair) {
       StorageSyncLoopDetector.Decision.Allowed
     } else {
       StorageSyncLoopDetector.onWriteAttempt(remoteWriteOperation, fetchRemoteManifest, isRetry = runAttempt > 0)
@@ -464,6 +467,8 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
     if (remoteWriteOperation.isEmpty) {
       Log.i(TAG, "No remote writes needed. Still at version: " + remoteManifest.versionString)
       StorageSyncLoopDetector.onConverged()
+    } else if (onlyIdentityConflictsPendingRepair) {
+      Log.w(TAG, "Deferring remote write until the profile fetch says whose identity key is correct. WriteOperationResult :: $remoteWriteOperation")
     } else if (loopCheck is StorageSyncLoopDetector.Decision.Denied) {
       Log.w(TAG, "Skipping remote write, another device is likely undoing it. Cause: ${loopCheck.cause}, level: ${loopCheck.level}. WriteOperationResult :: $remoteWriteOperation")
 
@@ -519,8 +524,8 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
   }
 
   @Throws(IOException::class)
-  private fun processKnownRecords(context: Context, records: StorageRecordCollection) {
-    ContactRecordProcessor().process(records.contacts, StorageSyncHelper.KEY_GENERATOR)
+  private fun processKnownRecords(context: Context, records: StorageRecordCollection, identityConflictsPendingRepair: MutableSet<StorageId>) {
+    ContactRecordProcessor(identityConflictsPendingRepair).process(records.contacts, StorageSyncHelper.KEY_GENERATOR)
     GroupV2RecordProcessor().process(records.gv2, StorageSyncHelper.KEY_GENERATOR)
     NotificationProfileRecordProcessor().process(records.notificationProfileRecords, StorageSyncHelper.KEY_GENERATOR)
     AccountRecordProcessor(context, freshSelf()).process(records.account, StorageSyncHelper.KEY_GENERATOR)
