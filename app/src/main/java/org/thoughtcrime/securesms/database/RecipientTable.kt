@@ -4614,6 +4614,19 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
    * Blanks out every column for a group's recipient row except [ID], [GROUP_ID], [TYPE], [BLOCKED], [BLOCKED_AT], and [STORAGE_SERVICE_ID].
    */
   fun clearGroupRecipient(recipientId: RecipientId, keepIdentifier: Boolean): Boolean {
+    readableDatabase
+      .select(NOTIFICATION_CHANNEL)
+      .from(TABLE_NAME)
+      .where("$ID = ? AND $NOTIFICATION_CHANNEL IS NOT NULL", recipientId)
+      .run()
+      .use { cursor ->
+        if (cursor.moveToFirst()) {
+          NotificationChannels.getInstance().deleteChannel(cursor.requireString(NOTIFICATION_CHANNEL))
+        } else {
+          null
+        }
+      }
+
     val cleared = if (keepIdentifier) {
       writableDatabase
         .update(TABLE_NAME)
