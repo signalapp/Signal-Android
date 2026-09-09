@@ -52,23 +52,47 @@
     <string name="AccountSettingsFragment__your_signal_login_is_used_to_recover">Signal Login របស់អ្នកត្រូវបានប្រើដើម្បីសង្គ្រោះ និងស្ដារគណនីរបស់អ្នកមកវិញ។ សូមរក្សាទុកសោទាំងនេះដោយសុវត្ថិភាពនៅក្នុងកម្មវិធីគ្រប់គ្រងពាក្យសម្ងាត់ដែលអ្នកទុកចិត្ត។</string>
     <!-- Section header for the two-factor authentication section of account settings -->
     <string name="AccountSettingsFragment__two_factor_authentication">ការផ្ទៀងផ្ទាត់ពីរជំហាន</string>
-    <!-- Account setting that takes the user to the authenticator app setup flow -->
+    <!-- Row that opens the menu of second factors the user can add -->
+    <string name="AccountSettingsFragment__set_up">Set up</string>
+    <!-- Menu option that starts setting up an authenticator app -->
     <string name="AccountSettingsFragment__authenticator_app">កម្មវិធីផ្ទៀងផ្ទាត់</string>
-    <!-- Description of the authenticator app setting when none are configured -->
+    <!-- Description of the authenticator app menu option -->
     <string name="AccountSettingsFragment__one_time_verification_codes">លេខកូដផ្ទៀងផ្ទាត់ដែលប្រើតែម្តង</string>
-    <!-- Description of the authenticator app setting saying how many are configured -->
-    <plurals name="AccountSettingsFragment__d_configured">
-        <item quantity="other">%1$d ត្រូវបានកំណត់រចនាសម្ព័ន្ធ</item>
-    </plurals>
-    <!-- Account setting that takes the user to the passkeys screen -->
-    <string name="AccountSettingsFragment__passkeys">សោសម្ងាត់</string>
-    <!-- Description of the passkeys setting when none exist -->
-    <string name="AccountSettingsFragment__device_biometrics_or_fido2_security_key">ជីវមាត្រឧបករណ៍ ឬសោសុវត្ថិភាព FIDO2</string>
-    <!-- Description of the passkeys setting saying how many exist -->
-    <plurals name="AccountSettingsFragment__d_passkeys">
-        <item quantity="other">%1$d សោសម្ងាត់</item>
-    </plurals>
-    <!-- Description of two-factor authentication, shown below the two-factor authentication rows -->
+    <!-- Name of a passkey in the list of second factors on the account -->
+    <string name="AccountSettingsFragment__passkey">Passkey</string>
+    <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
+    <string name="AccountSettingsFragment__s_added_s">%1$s · Added %2$s</string>
+    <!-- Content description of the button that opens a second factor\'s options -->
+    <string name="AccountSettingsFragment__open_two_factor_options">Open two-factor authentication options</string>
+    <!-- Menu option that renames a second factor -->
+    <string name="AccountSettingsFragment__rename">Rename</string>
+    <!-- Menu option that removes a second factor -->
+    <string name="AccountSettingsFragment__remove">Remove</string>
+    <!-- Title of the dialog confirming removal of an authenticator app -->
+    <string name="AccountSettingsFragment__remove_authenticator_app">Remove authenticator app?</string>
+    <!-- Body of the dialog confirming removal of an authenticator app -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_app">You won\'t be able to use this app for one-time verification codes when you sign in.</string>
+    <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
+    <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">Unlock to remove two-factor method</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
+    <string name="AccountSettingsFragment__to_remove_this_method_confirm_its_you">To remove this method, confirm it\'s you</string>
+    <!-- Title of the device screen lock prompt shown before the Signal Login details can be viewed -->
+    <string name="AccountSettingsFragment__unlock_to_view_signal_login">Unlock to view Signal Login</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before the Signal Login details can be viewed -->
+    <string name="AccountSettingsFragment__to_view_your_signal_login_confirm_its_you">To view your Signal Login, confirm it\'s you</string>
+    <!-- Toast shown when the device screen lock wasn\'t confirmed, so nothing happened -->
+    <string name="AccountSettingsFragment__authentication_required">Authentication required</string>
+    <!-- Title of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="AccountSettingsFragment__cant_add_authenticator_app">Can\'t add authenticator app</string>
+    <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d">You can\'t add more than %1$d authenticator apps. Try removing one first.</string>
+    <!-- Shown in place of the list when we couldn\'t work out which second factors are on the account -->
+    <string name="AccountSettingsFragment__couldnt_load_your_two_factor_methods">Couldn\'t load your two-factor authentication methods. Check your connection and try again.</string>
+    <!-- Toast shown after an authenticator app has been removed -->
+    <string name="AccountSettingsFragment__authenticator_app_removed">Authenticator app removed</string>
+    <!-- Toast shown when an authenticator app couldn\'t be removed -->
+    <string name="AccountSettingsFragment__couldnt_remove_authenticator_app">Couldn\'t remove authenticator app. Check your connection and try again.</string>
+    <!-- Description of two-factor authentication, shown below the two-factor authentication list -->
     <string name="AccountSettingsFragment__use_a_second_form_of_authentication">ប្រើទម្រង់ផ្ទៀងផ្ទាត់ទីពីរ ដើម្បីការពារគណនីរបស់អ្នក នៅពេលប្រើ Signal Login របស់អ្នកនៅលើឧបករណ៍ថ្មី។</string>
     <!-- Clickable text that takes the user to a support article -->
     <string name="AccountSettingsFragment__learn_more">ស្វែងយល់បន្ថែម</string>
@@ -98,6 +122,8 @@
     <string name="TotpSetupScreen__copied_to_clipboard">បានចម្លងទៅឃ្លីបបត</string>
     <!-- Toast shown when there is no app installed that can handle the authenticator setup link -->
     <string name="TotpSetupScreen__no_authenticator_app_found">រកមិនឃើញកម្មវិធីផ្ទៀងផ្ទាត់ទេ</string>
+    <!-- Dialog message shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="TotpSetupScreen__you_cant_add_more_than_d">You can\'t add more than %1$d authenticator apps. Try removing one first.</string>
     <!-- Dialog message shown when we couldn\'t reach the service to start setting up an authenticator app -->
     <string name="TotpSetupScreen__couldnt_reach_signal">មិនអាចទាក់ទង Signal បានទេ។ សូមពិនិត្យមើលសេវាអ៊ីនធឺណិតរបស់អ្នក រួចព្យាយាមម្តងទៀត។</string>
     <!-- Header of the third step of authenticator app setup -->
@@ -106,34 +132,6 @@
     <string name="TotpSetupScreen__copy_the_code_thats_generated">ចម្លងកូដដែលបានបង្កើត ហើយត្រឡប់មកទីនេះវិញដើម្បីបន្ត។</string>
     <!-- Button that advances from the setup instructions to entering a code -->
     <string name="TotpSetupScreen__continue">បន្ត</string>
-
-    <!-- PasskeysScreen -->
-    <!-- Title of the screen where the user sets up passkeys -->
-    <string name="PasskeysScreen__passkeys">សោសម្ងាត់</string>
-    <!-- Description of passkeys shown at the top of the screen -->
-    <string name="PasskeysScreen__with_passkeys_you_can_easily_add">ជាមួយសោសម្ងាត់ អ្នកអាចបញ្ចូលទម្រង់ផ្ទៀងផ្ទាត់ទីពីរដែលមានសុវត្ថិភាពទៅក្នុងគណនីរបស់អ្នកបានយ៉ាងងាយស្រួល។ សោសម្ងាត់អាចប្រើជីវមាត្រឧបករណ៍របស់អ្នក ឬសោសុវត្ថិភាព FIDO2 ដែលអាចប្រើជាមួយគ្នាបាន។</string>
-    <!-- Clickable text that takes the user to a support article -->
-    <string name="PasskeysScreen__learn_more">ស្វែងយល់បន្ថែម</string>
-    <!-- Bullet point explaining that a passkey can be given a name -->
-    <string name="PasskeysScreen__give_your_passkey_a_friendly_name">ដាក់ឈ្មោះងាយចាំឱ្យសោសម្ងាត់របស់អ្នកដើម្បីស្រួលរកវា</string>
-    <!-- Bullet point explaining how a passkey is stored -->
-    <string name="PasskeysScreen__use_your_devices_biometrics">ប្រើជីវមាត្រឧបករណ៍របស់អ្នក ឬសោសុវត្ថិភាព FIDO2 ដើម្បីរក្សាទុកសោសម្ងាត់របស់អ្នក</string>
-    <!-- Bullet point explaining that passkeys can be added and removed -->
-    <string name="PasskeysScreen__add_or_remove_passkeys_at_anytime">បញ្ចូល ឬដកសោសម្ងាត់ចេញនៅពេលណាក៏បាន។</string>
-    <!-- Button that starts creating a passkey -->
-    <string name="PasskeysScreen__set_up_a_passkey">រៀបចំសោសម្ងាត់</string>
-    <!-- Description of passkeys shown at the top of the screen once some already exist -->
-    <string name="PasskeysScreen__set_up_a_passkey_with">រៀបចំសោសម្ងាត់ដោយប្រើជីវមាត្រឧបករណ៍របស់អ្នក ឬសោសុវត្ថិភាព FIDO2 ដែលអាចប្រើជាមួយគ្នាបាន។</string>
-    <!-- Button that starts creating a passkey once some already exist -->
-    <string name="PasskeysScreen__add_a_new_passkey">បញ្ចូលសោសម្ងាត់ថ្មី</string>
-    <!-- Label under a passkey\'s name saying when it was added. The placeholder is a relative time like "today, 11:00 AM" -->
-    <string name="PasskeysScreen__added_s">បានបញ្ចូល %1$s</string>
-    <!-- Accessibility description of the button that opens a passkey\'s menu -->
-    <string name="PasskeysScreen__open_passkey_options">បើកជម្រើសសោសម្ងាត់</string>
-    <!-- Menu option that renames a passkey -->
-    <string name="PasskeysScreen__rename">ប្តូរឈ្មោះ</string>
-    <!-- Menu option that removes a passkey -->
-    <string name="PasskeysScreen__remove">ដកចេញ</string>
 
     <!-- TotpCodeEntryScreen -->
     <!-- Title of the screen where the user enters the code from their authenticator app -->
@@ -148,42 +146,6 @@
     <string name="TotpCodeEntryScreen__incorrect_code">លេខកូដមិនត្រឹមត្រូវ។ សូមបញ្ចូលលេខកូដដែលបង្ហាញនៅក្នុងកម្មវិធីផ្ទៀងផ្ទាត់របស់អ្នកឥឡូវនេះ។</string>
     <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->
     <string name="TotpCodeEntryScreen__couldnt_reach_signal">មិនអាចទាក់ទង Signal បានទេ។ សូមពិនិត្យមើលសេវាអ៊ីនធឺណិតរបស់អ្នក រួចព្យាយាមម្តងទៀត។</string>
-    <!-- TotpAppListScreen -->
-    <!-- Title of the screen listing the authenticator apps on the account -->
-    <string name="TotpAppListScreen__authenticator_app">កម្មវិធីផ្ទៀងផ្ទាត់</string>
-    <!-- Description of what an authenticator app is for, shown at the top of the screen -->
-    <string name="TotpAppListScreen__set_up_an_authenticator_app">រៀបចំកម្មវិធីផ្ទៀងផ្ទាត់ដើម្បីបង្កើតលេខកូដផ្ទៀងផ្ទាត់ដែលប្រើតែម្តង</string>
-    <!-- Clickable text that takes the user to a support article -->
-    <string name="TotpAppListScreen__learn_more">ស្វែងយល់បន្ថែម</string>
-    <!-- Button that starts setting up another authenticator app -->
-    <string name="TotpAppListScreen__add_authenticator_app">បញ្ចូលកម្មវិធីផ្ទៀងផ្ទាត់</string>
-    <!-- Section header above the list of configured authenticator apps -->
-    <string name="TotpAppListScreen__authenticator_apps">កម្មវិធីផ្ទៀងផ្ទាត់</string>
-    <!-- Shown in place of the list when no authenticator apps are configured -->
-    <string name="TotpAppListScreen__no_authenticator_apps">មិនមានកម្មវិធីផ្ទៀងផ្ទាត់</string>
-    <!-- Subtitle of an authenticator app row saying when it was configured. Placeholder is a date or time. -->
-    <string name="TotpAppListScreen__added_s">បានបញ្ចូល %1$s</string>
-    <!-- Content description of the button that opens an authenticator app\'s options -->
-    <string name="TotpAppListScreen__open_authenticator_app_options">បើកជម្រើសកម្មវិធីផ្ទៀងផ្ទាត់</string>
-    <!-- Menu option that renames an authenticator app -->
-    <string name="TotpAppListScreen__rename">ប្តូរឈ្មោះ</string>
-    <!-- Menu option that removes an authenticator app -->
-    <string name="TotpAppListScreen__remove">ដកចេញ</string>
-    <!-- Title of the dialog confirming removal of an authenticator app -->
-    <string name="TotpAppListScreen__remove_authenticator_app">ដកកម្មវិធីផ្ទៀងផ្ទាត់ចេញ?</string>
-    <!-- Body of the dialog confirming removal of an authenticator app -->
-    <string name="TotpAppListScreen__you_wont_be_able_to_use_this_app">អ្នកនឹងមិនអាចប្រើកម្មវិធីនេះសម្រាប់លេខកូដផ្ទៀងផ្ទាត់ដែលប្រើតែម្តងបានទេ នៅពេលអ្នកចូលគណនី។</string>
-    <!-- Title of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
-    <string name="TotpAppListScreen__cant_add_authenticator_app">មិនអាចបញ្ចូលកម្មវិធីផ្ទៀងផ្ទាត់បានទេ</string>
-    <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
-    <string name="TotpAppListScreen__you_cant_add_more_than_d">អ្នកមិនអាចបញ្ចូលកម្មវិធីផ្ទៀងផ្ទាត់លើសពី %1$d បានទេ។ សាកល្បងដកមួយចេញសិន។</string>
-    <!-- Dialog message shown when we couldn\'t work out which authenticator apps are on the account -->
-    <string name="TotpAppListScreen__couldnt_load_authenticator_apps">មិនអាចផ្ទុកកម្មវិធីផ្ទៀងផ្ទាត់របស់អ្នកបានទេ។ សូមពិនិត្យមើលសេវាអ៊ីនធឺណិតរបស់អ្នក រួចព្យាយាមម្តងទៀត។</string>
-    <!-- Toast shown after an authenticator app has been removed -->
-    <string name="TotpAppListScreen__authenticator_app_removed">បានលុបកម្មវិធីផ្ទៀងផ្ទាត់</string>
-    <!-- Toast shown when an authenticator app couldn\'t be removed -->
-    <string name="TotpAppListScreen__couldnt_remove_authenticator_app">មិនអាចលុបកម្មវិធីផ្ទៀងផ្ទាត់បានទេ។ សូមពិនិត្យមើលសេវាអ៊ីនធឺណិតរបស់អ្នក រួចព្យាយាមម្តងទៀត។</string>
-
     <!-- TotpNameEntryScreen -->
     <!-- Title of the screen where the user names an authenticator app -->
     <string name="TotpNameEntryScreen__choose_a_name">ជ្រើសរើសឈ្មោះ</string>

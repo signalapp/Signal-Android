@@ -3302,6 +3302,8 @@
     <!-- MessageNotifier -->
     <!-- Text shown in a system notification that is used to summarize your notification. The first placeholder is a pluralized string that describes how many messages (e.g. "3 messages"), and the second placeholder is a pluralized string that describes the number of unique chats those message appear in (e.g. "2 chats"). -->
     <string name="MessageNotifier_s_in_s">%1$s %2$s-ში</string>
+    <!-- Subtext shown in a group chat notification when the most recent message is a direct reply to a message you sent. -->
+    <string name="MessageNotifier_replied_to_you">Replied to you: %1$s</string>
     <!-- Text shown in a system notification that is used to summary how many messages you received. -->
     <plurals name="MessageNotifier_d_messages">
         <item quantity="one">%1$d შეტყობინება</item>
@@ -4164,8 +4166,8 @@
     <!-- preferences.xml -->
     <string name="preferences_beta">ბეტა ვერსია</string>
     <string name="preferences__sms_mms">SMS-ი და MMS-ი</string>
-    <string name="preferences__pref_use_address_book_photos">მისამართების წიგნაკის ფოტოების გამოყენება</string>
-    <string name="preferences__display_contact_photos_from_your_address_book_if_available">აჩვენე საკონტაქტო ფოტოები შენი მისამართების წიგნიდან, თუ ეს შესაძლებელია</string>
+    <string name="preferences__pref_use_address_book_photos">Prefer address book photos</string>
+    <string name="preferences__display_contact_photos_from_your_address_book_if_available">Prefer contact photos from your address book if available</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__pref_keep_muted_chats_archived">შეინახე დადუმებული ჩატები არქივში</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
@@ -7515,16 +7517,16 @@
     <!-- Fourth step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_4">4</string>
     <!-- BackupSchedulePermission Megaphone -->
-    <!-- The title on an alert window that explains to the user that we are unable to backup their messages -->
-    <string name="BackupSchedulePermissionMegaphone__cant_back_up_chats">ჩატების სარეზერვო კოპიების გაკეთება ვერ მოხერხდა</string>
-    <!-- The body text of an alert window that tells the user that we are unable to backup their messages -->
-    <string name="BackupSchedulePermissionMegaphone__your_chats_are_no_longer_being_automatically_backed_up">შენი ჩატების სარეზერვო კოპიები ავტომატურად აღარ გაკეთდება.</string>
-    <!-- The text on a button in an alert window that, when clicked, will take the user to a screen to re-enable backups -->
-    <string name="BackupSchedulePermissionMegaphone__back_up_chats">ჩატების სარეზერვო კოპიების შექმნა</string>
+    <!-- The title on an alert window that asks the user to grant the alarms permission so that automatic backups run more reliably -->
+    <string name="BackupSchedulePermissionMegaphone__improve_backup_reliability">Improve backup reliability</string>
+    <!-- The body text of an alert window that asks the user to grant the alarms permission so that automatic backups run more reliably -->
+    <string name="BackupSchedulePermissionMegaphone__allow_the_alarms_permission_to_improve_automatic_daily_backups">Allow the \"alarms\" permission to improve automatic daily backups.</string>
+    <!-- The text on a button in an alert window that, when clicked, will take the user to a screen to grant the alarms permission -->
+    <string name="BackupSchedulePermissionMegaphone__allow">Allow</string>
     <!-- The text on a button in an alert window that, when clicked, will take the user to a screen to re-enable backups -->
     <string name="BackupSchedulePermissionMegaphone__not_now">ახლა არა</string>
-    <!-- Re-enable backup permission bottom sheet title -->
-    <string name="BackupSchedulePermissionMegaphone__to_reenable_backups">სარეზერვო კოპიების ხელახლა ჩასართავად:</string>
+    <!-- Alarms permission bottom sheet title, followed by a numbered list of instructions -->
+    <string name="BackupSchedulePermissionMegaphone__to_allow_permission">To allow permission:</string>
     <!-- Re-enable backups permission bottom sheet instruction 1 text -->
     <string name="BackupSchedulePermissionMegaphone__tap_the_go_to_settings_button_below">დააჭირე \"პარამეტრებში გადასვლა\"-ს ღილაკს დაბლა</string>
     <!-- Re-enable backups permission bottom sheet instruction 2 text -->
@@ -8202,15 +8204,6 @@
     <string name="BackupSetupCompleteBottomSheet__optimize_subtitle">გამოუყენებელი მედია ფაილები გაქრება, მაგრამ მათი სათადარიგო ასლების გადმოწერას ნებისმიერ დროს შეძლებ.</string>
     <!-- Primary button on the setup complete bottom sheet -->
     <string name="BackupSetupCompleteBottomSheet__back_up_now">სარეზერვო კოპიის ახლავე შექმნა</string>
-
-    <!-- Title of a megaphone shown to prompt the user to upgrade to the new local backups type -->
-    <string name="UseNewOnDeviceBackups__title">გამოიყენე ახალი მოწყობილობის სათადარიგო ასლები</string>
-    <!-- Body of a megaphone shown to prompt the user to upgrade to the new local backups type -->
-    <string name="UseNewOnDeviceBackups__body">მოწყობილობის სათადარიგო ასლები ახლა უფრო სწრაფად ინახება და ნაკლებ მონაცემს იყენებს.</string>
-    <!-- Button of a megaphone that will take the user to the upgrade flow -->
-    <string name="UseNewOnDeviceBackups__upgrade">Upgrade</string>
-    <!-- Button of a megaphone that will snooze the reminder to upgrade to the new local backups type -->
-    <string name="UseNewOnDeviceBackups__not_now">ახლა არა</string>
 
     <!-- Title of a megaphone shown to prompt the user to open Signal on their primary device -->
     <string name="InactivePrimary__title">გახსენი Signal-ი შენს ტელეფონში</string>
@@ -9016,6 +9009,10 @@
     <string name="MessageBackupsEducationScreen__optional_always">ყოველთვის ნებაყოფლობითი</string>
     <!-- Backups feature label for informing the user that they can delete their backup at any time -->
     <string name="MessageBackupsEducationScreen__delete_your_backup_anytime">წაშალე შენი სარეზერვო კოპიები ნებისმიერ დროს</string>
+    <!-- Action button label to proceed with backups activation -->
+    <string name="MessageBackupsEducationScreen__continue">Continue</string>
+    <!-- Action button label to leave the backups activation flow without enabling backups -->
+    <string name="MessageBackupsEducationScreen__not_now">Not now</string>
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
@@ -9149,6 +9146,26 @@
     <string name="MessageBackupsKeyVerifyScreen__see_key_again">გასაღების თავიდან ნახვა</string>
     <!-- Confirm your key button text to move onto next screen in flow -->
     <string name="MessageBackupsKeyVerifyScreen__next">შემდეგი</string>
+    <!-- Confirm your key subtitle shown to users whose recovery key came with their Signal Login rather than being recorded during this flow -->
+    <string name="MessageBackupsKeyVerifyScreen__enter_the_recovery_key_from_your_signal_login">Enter the recovery key from your Signal Login</string>
+
+    <!-- MessageBackupsConfirmRecoveryKeyScreen -->
+    <!-- Screen headline asking the user to confirm the recovery key they received with their Signal Login -->
+    <string name="MessageBackupsConfirmRecoveryKeyScreen__confirm_your_recovery_key">Confirm your recovery key</string>
+    <!-- Screen subtitle explaining what the recovery key is and why it is needed -->
+    <string name="MessageBackupsConfirmRecoveryKeyScreen__your_recovery_key_is_a_64_character_code">Your recovery key is a 64-character code you received with your Signal Login. It\'s required to restore your backup. If you forget your key, you will not be able to recover your account.</string>
+    <!-- Caption above the action buttons warning the user that the password manager will prompt them next -->
+    <string name="MessageBackupsConfirmRecoveryKeyScreen__you_will_be_prompted_with_your_saved_password">You will be prompted with your saved password in the next step.</string>
+    <!-- Action button label to confirm the recovery key using the saved password manager credential -->
+    <string name="MessageBackupsConfirmRecoveryKeyScreen__confirm_recovery_key">Confirm recovery key</string>
+    <!-- Action button label to type the recovery key in by hand instead of using the password manager -->
+    <string name="MessageBackupsConfirmRecoveryKeyScreen__enter_manually">Enter manually</string>
+    <!-- Title of the dialog shown when the recovery key from the password manager did not match -->
+    <string name="MessageBackupsConfirmRecoveryKeyScreen__error_confirming_recovery_key">Error confirming recovery key</string>
+    <!-- Body of the dialog shown when the recovery key from the password manager did not match -->
+    <string name="MessageBackupsConfirmRecoveryKeyScreen__your_recovery_key_could_not_be_confirmed">Your recovery key could not be confirmed. Make sure you\'ve saved your Signal Login in your password manager, or enter your recovery key manually.</string>
+    <!-- Toast shown when the recovery key from the password manager matched -->
+    <string name="MessageBackupsConfirmRecoveryKeyScreen__recovery_key_confirmed">Recovery key confirmed</string>
 
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">შეიყვანე შენი აღდგენის გასაღები</string>

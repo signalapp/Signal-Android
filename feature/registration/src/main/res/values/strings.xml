@@ -651,7 +651,7 @@
     <string name="SignalLoginPaymentScreen__already_paid">Already paid</string>
     <!-- Error shown when Signal Login cannot be purchased on this device, for example because the Google Play Store is unavailable. -->
     <string name="SignalLoginPaymentScreen__signal_login_cant_be_purchased">Signal Login can\'t be purchased on this device right now. Try again later.</string>
-    <!-- Message shown when the user's payment has gone through but has not finished processing yet. -->
+    <!-- Message shown when the user\'s payment has gone through but has not finished processing yet. -->
     <string name="SignalLoginPaymentScreen__your_payment_is_still_processing">Your payment is still processing. Come back and tap continue once it goes through, and you won\'t be charged again.</string>
     <!-- Label for the internal-testing text field where a receipt credential can be pasted to skip payment. Not shown to real users. -->
     <string name="SignalLoginPaymentScreen__paste_a_receipt_credential" translatable="false">Paste a receipt credential (testing)</string>
@@ -731,9 +731,9 @@
     <string name="SignalLoginCredentialEntryScreen__incorrect_account_id_or_recovery_key">Incorrect account ID or recovery key</string>
     <!-- Description shown instead when the user is typing back the Signal Login they were just given, to check they recorded it correctly. -->
     <string name="SignalLoginCredentialEntryScreen__enter_your_signal_login_to_confirm_it_was_recorded_correctly">Enter your Signal Login to confirm it was recorded correctly.</string>
-    <!-- Button that takes the user back to their Signal Login if they can't remember what they recorded. -->
+    <!-- Button that takes the user back to their Signal Login if they can\'t remember what they recorded. -->
     <string name="SignalLoginCredentialEntryScreen__show_login_info_again">Show login info again</string>
-    <!-- Error shown when what the user typed back doesn't match the Signal Login they were given. -->
+    <!-- Error shown when what the user typed back doesn\'t match the Signal Login they were given. -->
     <string name="SignalLoginCredentialEntryScreen__that_doesnt_match_the_signal_login_you_were_shown">That doesn\'t match the Signal Login you were shown</string>
 
     <!-- Add username screen -->

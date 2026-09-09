@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
+    <!-- Signal Login beta labeling -->
+    <!-- Tag shown beside the title of Signal Login screens, marking the feature as unfinished. Keep it short. -->
+    <string name="SignalLoginBeta__beta">BETA</string>
+    <!-- Disclaimer shown on Signal Login screens, warning that the feature is still changing. -->
+    <string name="SignalLoginBeta__this_is_a_beta_feature_that_will_be_updated">This is a Beta feature that will be updated on an ongoing basis.</string>
+
     <!-- Signal Login credential card -->
     <!-- Label for the account portion of the Signal Login on the credential card. -->
     <string name="SignalLoginCard__account">帳號</string>
@@ -14,9 +20,13 @@
     <!-- Content description for the back arrow in the top app bar. -->
     <string name="SignalLoginViewDetailsScreen__navigate_back">導向返回</string>
     <!-- Section header above the account key. -->
-    <string name="SignalLoginViewDetailsScreen__account_key">帳戶金鑰</string>
+    <string name="SignalLoginKeyDetails__account_id">Account ID</string>
     <!-- Section header above the recovery key. -->
-    <string name="SignalLoginKeyDetails__recovery_key">恢復金鑰</string>
+    <string name="SignalLoginKeyDetails__recovery_key">Recovery key</string>
+    <!-- Content description for the button that copies the account key to the clipboard. -->
+    <string name="SignalLoginKeyDetails__copy_account_id">Copy account ID</string>
+    <!-- Content description for the button that copies the recovery key to the clipboard. -->
+    <string name="SignalLoginKeyDetails__copy_recovery_key">Copy recovery key</string>
     <!-- Action button that stores the Signal Login in the device password manager. -->
     <string name="SignalLoginViewDetailsScreen__save_to_password_manager">儲存至密碼管理器</string>
     <!-- Action button that saves the Signal Login as a PDF. -->
@@ -27,4 +37,14 @@
     <string name="SignalLoginViewDetailsScreen__unable_to_save_pdf">無法儲存 PDF。請重試。</string>
     <!-- Toast shown when the location the user picked for the Signal Login PDF refuses the write. -->
     <string name="SignalLoginViewDetailsScreen__cant_save_pdf_to_the_selected_location">無法將 PDF 儲存至所選位置。</string>
+
+    <!-- Signal Login PDF -->
+    <!-- Title at the top of the PDF that holds the user\'s Signal Login. -->
+    <string name="SignalLoginPdf__your_signal_login">Your Signal Login</string>
+    <!-- Explainer below the title of the PDF that holds the user\'s Signal Login. -->
+    <string name="SignalLoginPdf__store_this_in_a_safe_place">Store this in a safe place, your login info is required to recover your account and data. Never share it with anyone.</string>
+    <!-- Section header above the account key in the PDF. -->
+    <string name="SignalLoginPdf__account_id">Account ID</string>
+    <!-- Section header above the recovery key in the PDF. -->
+    <string name="SignalLoginPdf__recovery_key">Recovery Key</string>
 </resources>
