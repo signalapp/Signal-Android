@@ -74,6 +74,7 @@ import org.signal.camera.R
 import org.signal.camera.test.TestTags
 import org.signal.core.ui.WindowBreakpoint
 import org.signal.core.ui.compose.AllNightPreviews
+import org.signal.core.ui.compose.Chrome
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.rememberWindowBreakpoint
 import java.util.Locale
@@ -93,7 +94,7 @@ private val ZOOM_BAR_SIDE_MARGIN = 16.dp
 /** How long the time and the paused label take to trade the recording red between them. */
 private const val PAUSED_TRANSITION_MS = 200
 
-/** The close and flash buttons along the top of the window, which the recording pill lines its middle up with. */
+/** The close and flash buttons along the top of the window, whose middle the recording pill lines itself up with. */
 private val TOP_CONTROL_SIZE = 48.dp
 
 /** How far the top controls sit in from the edges of the window. */
@@ -285,38 +286,44 @@ private fun BoxScope.StandardCameraHudContent(
 
   ShutterOverlay(state.showShutter)
 
-  IconButton(
-    onClick = { emitter(StandardCameraHudEvents.CloseClick) },
-    enabled = !isRecordingHeld,
-    modifier = modifier
-      .padding(TOP_CONTROL_MARGIN)
-      .size(TOP_CONTROL_SIZE)
-      .fadedIn(!isRecordingHeld)
-      .background(colorResource(R.color.CameraHud_control_background), shape = CircleShape)
-      .testTag(TestTags.CAMERA_HUD_CLOSE_BUTTON)
+  Chrome.Control(
+    faded = isRecordingHeld,
+    modifier = modifier.padding(TOP_CONTROL_MARGIN)
   ) {
-    Icon(
-      imageVector = SignalIcons.X.imageVector,
-      contentDescription = null,
-      tint = colorResource(R.color.CameraHud_control_foreground),
+    IconButton(
+      onClick = { emitter(StandardCameraHudEvents.CloseClick) },
+      enabled = !isRecordingHeld,
       modifier = Modifier
-        .size(24.dp)
-        .rotate(iconRotation)
-    )
+        .size(TOP_CONTROL_SIZE)
+        .background(colorResource(R.color.CameraHud_control_background), shape = CircleShape)
+        .testTag(TestTags.CAMERA_HUD_CLOSE_BUTTON)
+    ) {
+      Icon(
+        imageVector = SignalIcons.X.imageVector,
+        contentDescription = null,
+        tint = colorResource(R.color.CameraHud_control_foreground),
+        modifier = Modifier
+          .size(24.dp)
+          .rotate(iconRotation)
+      )
+    }
   }
 
   if (isPortraitPhone) {
-    FlashToggleButton(
-      flashMode = state.flashMode,
-      onToggle = { emitter(StandardCameraHudEvents.ToggleFlash) },
-      stringResources = stringResources,
-      enabled = !isRecordingHeld,
+    // The flash belongs to a photo the camera has yet to take, so the button goes for as long as a recording runs.
+    Chrome.Control(
+      visible = !state.isRecording,
       modifier = Modifier
         .align(Alignment.TopEnd)
         .padding(TOP_CONTROL_MARGIN)
-        .fadedIn(!isRecordingHeld)
-        .rotate(iconRotation)
-    )
+    ) {
+      FlashToggleButton(
+        flashMode = state.flashMode,
+        onToggle = { emitter(StandardCameraHudEvents.ToggleFlash) },
+        stringResources = stringResources,
+        modifier = Modifier.rotate(iconRotation)
+      )
+    }
   }
 
   if (state.isRecording) {
@@ -395,17 +402,6 @@ private fun Offset.rotatedBy(degrees: Float): Offset {
   val sine = sin(radians)
 
   return Offset(x = x * cosine - y * sine, y = x * sine + y * cosine)
-}
-
-/**
- * Fades a piece of chrome in or out in place. It keeps its space in the layout while it is gone, so what is around it
- * cannot move out from under a finger that is midway through a gesture.
- */
-@Composable
-private fun Modifier.fadedIn(visible: Boolean): Modifier {
-  val chromeAlpha by animateFloatAsState(targetValue = if (visible) 1f else 0f, label = "HudChromeAlpha")
-
-  return graphicsLayer { alpha = chromeAlpha }
 }
 
 /** Degrees to rotate a HUD icon so it stays upright at the given committed [Surface] rotation. */
@@ -657,10 +653,8 @@ private fun BoxScope.CameraSwitchCorner(
   stringResources: StringResources,
   emitter: (StandardCameraHudEvents) -> Unit
 ) {
-  AnimatedVisibility(
+  Chrome.Control(
     visible = !isRecording,
-    enter = fadeIn(),
-    exit = fadeOut(),
     modifier = Modifier.align(Alignment.CenterEnd)
   ) {
     Box(modifier = Modifier.rotate(iconRotation)) {
@@ -695,14 +689,14 @@ private fun VerticalControlBar(
         .weight(1f)
         .padding(bottom = 40.dp)
     ) {
-      FlashAndCameraTogglePill(
-        flashMode = flashMode,
-        emitter = emitter,
-        stringResources = stringResources,
-        isRecording = captureButtonState.isRecording,
-        enabled = captureButtonState != CaptureButtonState.RECORDING_HELD,
-        modifier = Modifier.fadedIn(captureButtonState != CaptureButtonState.RECORDING_HELD)
-      )
+      // Neither the flash nor the camera switch has anything to offer a running recording, so the pill goes whole.
+      Chrome.Control(visible = !captureButtonState.isRecording) {
+        FlashAndCameraTogglePill(
+          flashMode = flashMode,
+          emitter = emitter,
+          stringResources = stringResources
+        )
+      }
     }
 
     captureSlot(captureButtonState)
@@ -723,8 +717,6 @@ private fun FlashAndCameraTogglePill(
   flashMode: FlashMode,
   stringResources: StringResources,
   emitter: (StandardCameraHudEvents) -> Unit,
-  isRecording: Boolean,
-  enabled: Boolean = true,
   modifier: Modifier = Modifier
 ) {
   Column(
@@ -735,7 +727,6 @@ private fun FlashAndCameraTogglePill(
   ) {
     IconButton(
       onClick = { emitter(StandardCameraHudEvents.ToggleFlash) },
-      enabled = enabled,
       modifier = Modifier.testTag(TestTags.CAMERA_HUD_FLASH_BUTTON)
     ) {
       FlashToggleButtonIcon(
@@ -744,20 +735,15 @@ private fun FlashAndCameraTogglePill(
       )
     }
 
-    // The camera cannot be swapped out from under a running recording, so the pill gives the button up and closes
-    // around the flash for as long as one runs.
-    AnimatedVisibility(visible = !isRecording) {
-      IconButton(
-        onClick = { emitter(StandardCameraHudEvents.SwitchCamera) },
-        enabled = enabled,
-        modifier = Modifier.testTag(TestTags.CAMERA_HUD_SWITCH_BUTTON)
-      ) {
-        Icon(
-          imageVector = SignalIcons.CameraSwitch.imageVector,
-          contentDescription = if (stringResources.switchCamera != 0) stringResource(stringResources.switchCamera) else null,
-          tint = colorResource(R.color.CameraHud_control_foreground)
-        )
-      }
+    IconButton(
+      onClick = { emitter(StandardCameraHudEvents.SwitchCamera) },
+      modifier = Modifier.testTag(TestTags.CAMERA_HUD_SWITCH_BUTTON)
+    ) {
+      Icon(
+        imageVector = SignalIcons.CameraSwitch.imageVector,
+        contentDescription = if (stringResources.switchCamera != 0) stringResource(stringResources.switchCamera) else null,
+        tint = colorResource(R.color.CameraHud_control_foreground)
+      )
     }
   }
 }
@@ -865,12 +851,10 @@ private fun FlashToggleButton(
   flashMode: FlashMode,
   onToggle: () -> Unit,
   stringResources: StringResources,
-  enabled: Boolean = true,
   modifier: Modifier = Modifier
 ) {
   IconButton(
     onClick = onToggle,
-    enabled = enabled,
     modifier = modifier
       .size(TOP_CONTROL_SIZE)
       .background(colorResource(R.color.CameraHud_control_background), shape = CircleShape)

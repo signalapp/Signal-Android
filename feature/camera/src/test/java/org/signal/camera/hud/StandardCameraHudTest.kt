@@ -90,16 +90,29 @@ class StandardCameraHudTest {
     setContent(state = heldRecording())
 
     composeTestRule.onNodeWithTag(TestTags.CAMERA_HUD_CLOSE_BUTTON).assertIsNotEnabled()
-    composeTestRule.onNodeWithTag(TestTags.CAMERA_HUD_FLASH_BUTTON).assertIsNotEnabled()
   }
 
-  /** A locked recording leaves the hand free, so nothing but the camera switch has to be taken away. */
+  /** A locked recording leaves the hand free, so nothing but the flash and the camera switch has to be taken away. */
   @Test
   fun `Given a recording that is locked, when displayed, then the chrome around it can still be used`() {
     setContent(state = lockedRecording())
 
     composeTestRule.onNodeWithTag(TestTags.CAMERA_HUD_CLOSE_BUTTON).assertIsEnabled()
-    composeTestRule.onNodeWithTag(TestTags.CAMERA_HUD_FLASH_BUTTON).assertIsEnabled()
+  }
+
+  /** The flash is for a photo the camera is not going to take, however the recording was started. */
+  @Test
+  fun `Given a recording, when displayed, then the flash is gone`() {
+    setContent(state = lockedRecording())
+
+    composeTestRule.onNodeWithTag(TestTags.CAMERA_HUD_FLASH_BUTTON).assertDoesNotExist()
+  }
+
+  @Test
+  fun `Given a recording that is being held, when displayed, then the flash is gone`() {
+    setContent(state = heldRecording())
+
+    composeTestRule.onNodeWithTag(TestTags.CAMERA_HUD_FLASH_BUTTON).assertDoesNotExist()
   }
 
   /** The camera cannot be swapped out from under a running recording, however that recording was started. */
@@ -259,7 +272,6 @@ class StandardCameraHudTest {
     setContent(state = heldRecording())
 
     composeTestRule.onNodeWithTag(TestTags.CAMERA_HUD_CLOSE_BUTTON).performClick()
-    composeTestRule.onNodeWithTag(TestTags.CAMERA_HUD_FLASH_BUTTON).performClick()
 
     assertThat(events).isEmpty()
   }
@@ -339,20 +351,22 @@ class StandardCameraHudTest {
     assertThat(events).containsExactly(StandardCameraHudEvents.ToggleFlash, StandardCameraHudEvents.SwitchCamera)
   }
 
+  /** Neither of the two has anything to offer a running recording, so the pill goes rather than empties. */
   @Test
   @Config(qualifiers = "w840dp-h1000dp")
-  fun `Given a window too large for the bottom bar, when a recording is held, then the pill cannot be used`() {
-    setContent(state = heldRecording())
-
-    composeTestRule.onNodeWithTag(TestTags.CAMERA_HUD_FLASH_BUTTON).assertIsNotEnabled()
-  }
-
-  /** The pill gives the switch up and closes around the flash, the same as the bottom bar drops it. */
-  @Test
-  @Config(qualifiers = "w840dp-h1000dp")
-  fun `Given a window too large for the bottom bar, when a recording runs, then the pill has no camera switch`() {
+  fun `Given a window too large for the bottom bar, when a recording runs, then the pill is gone`() {
     setContent(state = lockedRecording())
 
+    composeTestRule.onNodeWithTag(TestTags.CAMERA_HUD_FLASH_BUTTON).assertDoesNotExist()
+    composeTestRule.onNodeWithTag(TestTags.CAMERA_HUD_SWITCH_BUTTON).assertDoesNotExist()
+  }
+
+  @Test
+  @Config(qualifiers = "w840dp-h1000dp")
+  fun `Given a window too large for the bottom bar, when a recording is held, then the pill is gone`() {
+    setContent(state = heldRecording())
+
+    composeTestRule.onNodeWithTag(TestTags.CAMERA_HUD_FLASH_BUTTON).assertDoesNotExist()
     composeTestRule.onNodeWithTag(TestTags.CAMERA_HUD_SWITCH_BUTTON).assertDoesNotExist()
   }
 
