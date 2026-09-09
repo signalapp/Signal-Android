@@ -45,7 +45,7 @@
     <string name="RegistrationActivity_select_a_country">Selecciona un país</string>
     <string name="RegistrationActivity_phone_number_description">Número de teléfono</string>
     <!-- Label the phone number field takes on when what has been typed reads as an account ID rather than a number -->
-    <string name="RegistrationActivity_account_id">Account ID</string>
+    <string name="RegistrationActivity_account_id">ID de la cuenta</string>
     <!-- Error shown beneath the phone number field when the entered number is not valid -->
     <string name="RegistrationActivity_not_a_valid_phone_number">No es un número de teléfono válido</string>
     <!-- Dialog title shown when the entered phone number is rejected as invalid -->
@@ -247,7 +247,7 @@
     <!-- Title of the dialog shown when the entered recovery key is correct, but the account has no Signal Backup to restore -->
     <string name="EnterAepScreen__no_backup_found">No se ha encontrado ninguna copia de seguridad</string>
     <!-- Body of the dialog shown when the entered recovery key is correct, but the account has no Signal Backup to restore -->
-    <string name="EnterAepScreen__no_backup_found_body">Your recovery key is correct, but there\'s no Signal Backup for this account. Go back to choose another way to restore, or continue without restoring.</string>
+    <string name="EnterAepScreen__no_backup_found_body">Tu clave de recuperación es correcta, pero no hay ninguna copia de seguridad de Signal asociada a esta cuenta. Regresa y selecciona otra opción de restauración o continúa sin restaurar tus datos.</string>
     <!-- Text shown while preparing the restore -->
     <string name="LocalBackupRestoreScreen__preparing_restore">Preparando la restauración…</string>
     <!-- Title shown while restore is in progress -->
@@ -614,9 +614,9 @@
 
     <!-- Signal Login purchase screen -->
     <!-- Title of the screen where the user buys a Signal Login to register without a phone number. -->
-    <string name="SignalLoginPaymentScreen__signal_login">Login de Signal</string>
+    <string name="SignalLoginPaymentScreen__signal_login">Signal Login</string>
     <!-- Description of what a Signal Login is. Followed by a "learn more" link. -->
-    <string name="SignalLoginPaymentScreen__register_without_a_phone_number">Regístrate sin un número de teléfono con el login de Signal. Con una compra única, recibirás una clave de cuenta para iniciar sesión.</string>
+    <string name="SignalLoginPaymentScreen__register_without_a_phone_number">Regístrate con el login de Signal, sin necesidad de usar un número de teléfono. Con una compra única, recibirás una clave de cuenta para crear tu cuenta.</string>
     <!-- Link at the end of the description that opens a support article about Signal Login. -->
     <string name="SignalLoginPaymentScreen__learn_more">Más información</string>
     <!-- Subtitle of the purchase option, clarifying the price is not a subscription. -->
@@ -628,7 +628,7 @@
     <!-- Selling point of the purchase option: the purchase supports Signal. -->
     <string name="SignalLoginPaymentScreen__signal_is_a_non_profit">Signal es una organización sin ánimo de lucro: tu compra nos ayuda a llevar a cabo nuestra misión</string>
     <!-- Title of the option for users who already bought a Signal Login. -->
-    <string name="SignalLoginPaymentScreen__i_have_a_signal_login">Tengo un login de Signal</string>
+    <string name="SignalLoginPaymentScreen__i_have_a_signal_login">Tengo un Signal Login</string>
     <!-- Subtitle of the existing-login option. -->
     <string name="SignalLoginPaymentScreen__use_your_existing_account_key">Usa tu clave de cuenta actual</string>
     <!-- Selling point of the existing-login option: the account can be restored. -->
@@ -650,41 +650,41 @@
 
     <!-- Signal Login details screen -->
     <!-- Title of the screen that shows the user their newly purchased Signal Login. -->
-    <string name="SignalLoginInfoScreen__your_signal_login">Tu login de Signal</string>
+    <string name="SignalLoginInfoScreen__your_signal_login">Tu Signal Login</string>
     <!-- Description warning the user that a lost Signal Login cannot be recovered. -->
-    <string name="SignalLoginInfoScreen__thanks_for_your_purchase">Gracias por tu compra. Usa tu login de Signal para registrarte y restaurar tu cuenta. Si olvidas tu clave, no podrás recuperar tu cuenta.</string>
+    <string name="SignalLoginInfoScreen__thanks_for_your_purchase">Gracias por tu compra. Usa tu Signal Login para registrarte y restaurar tu cuenta. Si olvidas tu clave, no podrás recuperar tu cuenta.</string>
     <!-- Action button that stores the Signal Login in the device password manager. -->
     <string name="SignalLoginInfoScreen__save_to_password_manager">Guardar en el gestor de contraseñas</string>
     <!-- Action button for users who would rather write the Signal Login down themselves. -->
     <string name="SignalLoginInfoScreen__save_manually">Guardar manualmente</string>
     <!-- Error shown when the Signal Login could not be stored in the password manager. -->
-    <string name="SignalLoginInfoScreen__your_signal_login_could_not_be_saved">No se ha podido guardar tu login de Signal. Guárdalo de forma manual.</string>
+    <string name="SignalLoginInfoScreen__your_signal_login_could_not_be_saved">No se ha podido guardar tu Signal Login. Guárdalo de forma manual.</string>
 
     <!-- Errors shown beneath an account ID text field, wherever one is offered -->
     <!-- Error shown when too many characters were entered in an account ID field. First placeholder is how many were entered, second is the maximum. -->
     <string name="AccountIdField__too_long">Demasiado largo. %1$d/%2$d caracteres.</string>
     <!-- Error shown when the entered account ID contains characters that can\'t appear in one. -->
-    <string name="AccountIdField__invalid_account_id">Invalid account ID</string>
+    <string name="AccountIdField__invalid_account_id">ID de la cuenta no válida</string>
 
     <!-- Signal Login credential entry screen -->
     <!-- Title of the screen where a user with an existing Signal Login types it in to log back in. -->
-    <string name="SignalLoginCredentialEntryScreen__signal_login">Login de Signal</string>
+    <string name="SignalLoginCredentialEntryScreen__signal_login">Signal Login</string>
     <!-- Description telling the user what to enter to log in. -->
-    <string name="SignalLoginCredentialEntryScreen__enter_your_account_id_followed_by_your_recovery_key">Enter your account ID followed by your recovery key to restore your account.</string>
+    <string name="SignalLoginCredentialEntryScreen__enter_your_account_id_followed_by_your_recovery_key">Introduce la ID de tu cuenta seguida de tu clave de recuperación para restaurar tu cuenta.</string>
     <!-- Label of the text field the account ID is typed into. -->
-    <string name="SignalLoginCredentialEntryScreen__account_id">Account ID</string>
+    <string name="SignalLoginCredentialEntryScreen__account_id">ID de la cuenta</string>
     <!-- Label of the text field the recovery key is typed into. -->
     <string name="SignalLoginCredentialEntryScreen__recovery_key">Clave de recuperación</string>
     <!-- Description of the button that spells out the typed recovery key instead of masking it. -->
-    <string name="SignalLoginCredentialEntryScreen__show_recovery_key">Show recovery key</string>
+    <string name="SignalLoginCredentialEntryScreen__show_recovery_key">Mostrar clave de recuperación</string>
     <!-- Description of the button that masks the typed recovery key. -->
-    <string name="SignalLoginCredentialEntryScreen__hide_recovery_key">Hide recovery key</string>
+    <string name="SignalLoginCredentialEntryScreen__hide_recovery_key">Ocultar clave de recuperación</string>
     <!-- Button that opens a support article for users who can\'t find their Signal Login. -->
     <string name="SignalLoginCredentialEntryScreen__need_help">¿Necesitas ayuda?</string>
     <!-- Action button that submits the entered Signal Login. -->
     <string name="SignalLoginCredentialEntryScreen__next">Siguiente</string>
     <!-- Error shown when the service rejects the entered login, which means one of the two halves is wrong. -->
-    <string name="SignalLoginCredentialEntryScreen__incorrect_account_id_or_recovery_key">Incorrect account ID or recovery key</string>
+    <string name="SignalLoginCredentialEntryScreen__incorrect_account_id_or_recovery_key">ID de la cuenta o clave de recuperación incorrecta</string>
 
     <!-- Add username screen -->
     <!-- Title of the screen offering the user an optional username. -->
@@ -726,11 +726,11 @@
     <!-- Validation error shown when the number the user entered after their username has too many digits. -->
     <string name="AddUsernameScreen__enter_a_maximum_of_d_digits">Alias no válido. Ingresa un máximo de %1$d dígitos.</string>
     <!-- Validation error shown when the number the user entered after their username contains something other than digits. -->
-    <string name="AddUsernameScreen__numbers_can_only_contain_digits">Invalid username, numbers can only contain digits.</string>
+    <string name="AddUsernameScreen__numbers_can_only_contain_digits">Alias no válido. Los números solo pueden contener dígitos.</string>
     <!-- Validation error shown when the number the user entered after their username is 00. -->
     <string name="AddUsernameScreen__this_number_cant_be_00">Este número no puede ser 00. Introduce un dígito del 1 al 9.</string>
     <!-- Validation error shown when the number the user entered after their username has a leading zero. -->
-    <string name="AddUsernameScreen__this_number_cant_start_with_0">Los números con más de 2 dígitos no pueden comenzar con 0</string>
+    <string name="AddUsernameScreen__this_number_cant_start_with_0">Los números con más de 2 dígitos no pueden comenzar con 0.</string>
 
     <!-- ContactSupportDialog -->
     <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->
@@ -746,7 +746,7 @@
     <!-- Title of the two-factor authentication code entry screen -->
     <string name="TotpEntryScreen__two_factor_authentication">Autenticación de dos factores</string>
     <!-- Subtitle explaining where to find the code -->
-    <string name="TotpEntryScreen__to_continue_enter_the_code">To continue enter the 6-digit code from your authenticator app.</string>
+    <string name="TotpEntryScreen__to_continue_enter_the_code">Para continuar, introduce la clave de 6 dígitos de tu aplicación de autenticación.</string>
     <!-- Button text to cancel entering a code -->
     <string name="TotpEntryScreen__cancel">Cancelar</string>
 
@@ -754,15 +754,15 @@
     <!-- Title of the two-factor authentication method selection screen -->
     <string name="TwoFactorSelectionScreen__two_factor_authentication">Autenticación de dos factores</string>
     <!-- Subtitle telling the user to pick one of the methods listed below -->
-    <string name="TwoFactorSelectionScreen__choose_a_method_below">Choose a method below to verify your account.</string>
+    <string name="TwoFactorSelectionScreen__choose_a_method_below">Elige uno de los siguientes métodos para verificar tu cuenta.</string>
     <!-- Title of the card for verifying with a passkey -->
-    <string name="TwoFactorSelectionScreen__passkey">Passkey</string>
+    <string name="TwoFactorSelectionScreen__passkey">Llave de acceso</string>
     <!-- Description of the card for verifying with a passkey -->
-    <string name="TwoFactorSelectionScreen__tap_to_use_your_device_biometrics">Tap to use your device biometrics or FIDO2 passkey</string>
+    <string name="TwoFactorSelectionScreen__tap_to_use_your_device_biometrics">Toca para usar los datos biométricos de tu dispositivo o la llave de acceso FIDO2</string>
     <!-- Title of the card for verifying with a code from an authenticator app -->
     <string name="TwoFactorSelectionScreen__authenticator_app">Aplicación de autenticación</string>
     <!-- Description of the card for verifying with a code from an authenticator app -->
-    <string name="TwoFactorSelectionScreen__enter_a_one_time_code">Enter a one-time code generated by your authenticator app.</string>
+    <string name="TwoFactorSelectionScreen__enter_a_one_time_code">Introduce la clave de un solo uso de tu aplicación de autenticación.</string>
     <!-- Button text to cancel two-factor authentication -->
     <string name="TwoFactorSelectionScreen__cancel">Cancelar</string>
 </resources>

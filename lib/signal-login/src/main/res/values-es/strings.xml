@@ -10,7 +10,7 @@
 
     <!-- Signal Login view details screen -->
     <!-- Title of the screen that shows the user the full keys that make up their Signal Login. -->
-    <string name="SignalLoginViewDetailsScreen__signal_login">Login de Signal</string>
+    <string name="SignalLoginViewDetailsScreen__signal_login">Signal Login</string>
     <!-- Content description for the back arrow in the top app bar. -->
     <string name="SignalLoginViewDetailsScreen__navigate_back">Volver</string>
     <!-- Section header above the account key. -->
@@ -24,7 +24,7 @@
     <!-- Suggested file name prefilled in the system save dialog when saving the Signal Login as a PDF. Keep the .pdf extension. -->
     <string name="SignalLoginViewDetailsScreen__signal_login_pdf">Signal Login.pdf</string>
     <!-- Toast shown when saving the Signal Login PDF fails. -->
-    <string name="SignalLoginViewDetailsScreen__unable_to_save_pdf">Unable to save PDF. Please try again.</string>
+    <string name="SignalLoginViewDetailsScreen__unable_to_save_pdf">No se ha podido guardar el PDF. Inténtalo de nuevo.</string>
     <!-- Toast shown when the location the user picked for the Signal Login PDF refuses the write. -->
-    <string name="SignalLoginViewDetailsScreen__cant_save_pdf_to_the_selected_location">Can\'t save PDF to the selected location.</string>
+    <string name="SignalLoginViewDetailsScreen__cant_save_pdf_to_the_selected_location">No se puede guardar el PDF en la ubicación seleccionada.</string>
 </resources>

@@ -101,7 +101,7 @@
     <!-- Toast shown when there is no app installed that can handle the authenticator setup link -->
     <string name="TotpSetupScreen__no_authenticator_app_found">Nessuna app di autenticazione trovata</string>
     <!-- Dialog message shown when we couldn\'t reach the service to start setting up an authenticator app -->
-    <string name="TotpSetupScreen__couldnt_reach_signal">Couldn\'t reach Signal. Check your connection and try again.</string>
+    <string name="TotpSetupScreen__couldnt_reach_signal">Impossibile collegarsi a Signal. Controlla la tua connessione e riprova.</string>
     <!-- Header of the third step of authenticator app setup -->
     <string name="TotpSetupScreen__step_3">Passaggio 3</string>
     <!-- Body of the third step of authenticator app setup -->
@@ -147,9 +147,9 @@
     <!-- Button that submits the entered code -->
     <string name="TotpCodeEntryScreen__done">Fatto</string>
     <!-- Error shown under the code field when the code the user entered was rejected -->
-    <string name="TotpCodeEntryScreen__incorrect_code">Incorrect code. Enter the code showing in your authenticator app now.</string>
+    <string name="TotpCodeEntryScreen__incorrect_code">Codice errato. Inserisci il codice mostrato ora nella tua app di autenticazione.</string>
     <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->
-    <string name="TotpCodeEntryScreen__couldnt_reach_signal">Couldn\'t reach Signal. Check your connection and try again.</string>
+    <string name="TotpCodeEntryScreen__couldnt_reach_signal">Impossibile collegarsi a Signal. Controlla la tua connessione e riprova.</string>
     <!-- TotpAppListScreen -->
     <!-- Title of the screen listing the authenticator apps on the account -->
     <string name="TotpAppListScreen__authenticator_app">App per l\'autenticazione</string>
@@ -174,17 +174,17 @@
     <!-- Title of the dialog confirming removal of an authenticator app -->
     <string name="TotpAppListScreen__remove_authenticator_app">Rimuovere l\'app per l\'autenticazione?</string>
     <!-- Body of the dialog confirming removal of an authenticator app -->
-    <string name="TotpAppListScreen__you_wont_be_able_to_use_this_app">You won\'t be able to use this app for one-time verification codes when you sign in.</string>
+    <string name="TotpAppListScreen__you_wont_be_able_to_use_this_app">Non potrai utilizzare quest\'app per ricevere i codici di verifica monouso quando accedi.</string>
     <!-- Title of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
     <string name="TotpAppListScreen__cant_add_authenticator_app">Non puoi aggiungere l\'app per l\'autenticazione</string>
     <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
     <string name="TotpAppListScreen__you_cant_add_more_than_d">Non puoi aggiungere più di %1$d app per l\'autenticazione. Prova prima a rimuoverne una.</string>
     <!-- Dialog message shown when we couldn\'t work out which authenticator apps are on the account -->
-    <string name="TotpAppListScreen__couldnt_load_authenticator_apps">Couldn\'t load your authenticator apps. Check your connection and try again.</string>
+    <string name="TotpAppListScreen__couldnt_load_authenticator_apps">Impossibile caricare le tue app di autenticazione. Controlla la tua connessione e riprova.</string>
     <!-- Toast shown after an authenticator app has been removed -->
     <string name="TotpAppListScreen__authenticator_app_removed">App per l\'autenticazione rimossa</string>
     <!-- Toast shown when an authenticator app couldn\'t be removed -->
-    <string name="TotpAppListScreen__couldnt_remove_authenticator_app">Couldn\'t remove authenticator app. Check your connection and try again.</string>
+    <string name="TotpAppListScreen__couldnt_remove_authenticator_app">Impossibile rimuovere la tua app di autenticazione. Controlla la tua connessione e riprova.</string>
 
     <!-- TotpNameEntryScreen -->
     <!-- Title of the screen where the user names an authenticator app -->
@@ -202,5 +202,5 @@
     <!-- Toast shown after an authenticator app has been renamed -->
     <string name="TotpNameEntryScreen__authenticator_app_renamed">App per l\'autenticazione rinominata</string>
     <!-- Toast shown when we couldn\'t reach the service to save the name -->
-    <string name="TotpNameEntryScreen__couldnt_save_name">Couldn\'t save name. Check your connection and try again.</string>
+    <string name="TotpNameEntryScreen__couldnt_save_name">Impossibile salvare il nome. Controlla la tua connessione e riprova.</string>
 </resources>

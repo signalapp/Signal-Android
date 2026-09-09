@@ -3268,7 +3268,7 @@
     <!-- Subtitle in a dialog that describes the timezone the user is picking times in. The first placeholder is a UTC offset, and the second placeholder is a user-friendly name for the timezone, e.g. "All times in (GMT-05:00) Eastern Standard Time" -->
     <string name="MuteUntilTimePickerBottomSheet__timezone_disclaimer">Todas las horas se muestran en (%1$s) %2$s</string>
     <!-- Toast shown when choosing an invalid date to mute until (eg a date in the past) -->
-    <string name="MuteUntilTimePickerBottomSheet__invalid">Invalid time</string>
+    <string name="MuteUntilTimePickerBottomSheet__invalid">Fecha u hora no válidos</string>
 
     <!-- KeyCachingService -->
     <string name="KeyCachingService_signal_passphrase_cached">Toca para abrir.</string>
@@ -5931,7 +5931,7 @@
     <string name="NotificationsSettingsFragment__calls">Llamadas</string>
     <!-- Notification header for sounds -->
     <string name="NotificationsSettingsFragment__sounds">Sonidos</string>
-    <string name="NotificationsSettingsFragment__contact_joins_signal">Alguien comienza a usar Signal</string>
+    <string name="NotificationsSettingsFragment__contact_joins_signal">Nuevos contactos en Signal</string>
     <!-- Notification body to get notified when someone joins Signal -->
     <string name="NotificationsSettingsFragment__notify_contact">Mostrar una notificación cuando un contacto de tu teléfono se una a Signal.</string>
     <!-- Option to reset their notification settings -->
@@ -5939,7 +5939,7 @@
     <!-- Option body to reset their notification settings -->
     <string name="NotificationsSettingsFragment__reset_notifications">Se restablecerán los ajustes de notificaciones a su configuración por defecto, incluidos los ajustes personalizados de tus chats.</string>
     <!-- Dialog to reset their notification settings -->
-    <string name="NotificationsSettingsFragment__reset_body">¿Restablecer todos los ajustes de notificaciones a su configuración por defecto para todos los chats?</string>
+    <string name="NotificationsSettingsFragment__reset_body">¿Restablecer los ajustes de notificaciones predeterminados para todos los chats?</string>
     <!-- Confirmation button to reset dialog -->
     <string name="NotificationsSettingsFragment__reset_confirm">Restablecer</string>
     <!-- Notification preference header -->
@@ -9955,13 +9955,13 @@
     <string name="RecoveryKeyWarningDialog__dont_share">No compartir</string>
 
     <!-- Notification body for unread reminders. First placeholder is unread messages, second is a summary of unread mentions or replies -->
-    <string name="UnreadReminderJob__unread_one_summary">You have %1$s, including %2$s.</string>
+    <string name="UnreadReminderJob__unread_one_summary">Tienes %1$s, incluyendo %2$s.</string>
     <!-- Notification body for unread reminders. First placeholder is unread messages, second is a summary of unread mentions, third replies -->
-    <string name="UnreadReminderJob__unread_both_summary">You have %1$s, including %2$s and %3$s.</string>
+    <string name="UnreadReminderJob__unread_both_summary">Tienes %1$s, incluyendo %2$s y %3$s.</string>
     <!-- Notification body for unread reminders. First placeholder is unread messages, second is a list of people who sent them -->
-    <string name="UnreadReminderJob__calls_or_unread_author">You have %1$s from %2$s.</string>
+    <string name="UnreadReminderJob__calls_or_unread_author">Tienes %1$s de %2$s.</string>
     <!-- Notification body for unread reminders. First placeholder is unread messages -->
-    <string name="UnreadReminderJob__calls_or_unread">You have %1$s.</string>
+    <string name="UnreadReminderJob__calls_or_unread">Tienes %1$s.</string>
     <!-- Notification placeholder for unread messages -->
     <plurals name="UnreadReminderJob__messages">
         <item quantity="one">%1$d mensaje no leído</item>
@@ -9972,49 +9972,49 @@
     <!-- Notification placeholder for two recipients who sent unread messages -->
     <string name="UnreadReminderJob__authors_two">%1$s y %2$s</string>
     <!-- Notification placeholder for three or more recipients who sent unread messages -->
-    <string name="UnreadReminderJob__authors_many">%1$s and others</string>
+    <string name="UnreadReminderJob__authors_many">%1$s y otras personas</string>
     <!-- Notification placeholder that sums up a single unread mention. Placeholder is the name of the person who sent the message -->
-    <string name="UnreadReminderJob__mentions_one">a mention of you by %1$s</string>
+    <string name="UnreadReminderJob__mentions_one">mención de %1$s</string>
     <!-- Notification placeholder that sums up unread mentions from two people. First placeholder is the number of mentions, second and third are the names of the people who sent them -->
     <plurals name="UnreadReminderJob__mentions_two">
-        <item quantity="one">%1$d mentions of you by %2$s and %3$s</item>
-        <item quantity="other">%1$d mentions of you by %2$s and %3$s</item>
+        <item quantity="one">%1$d menciones de %2$s y %3$s</item>
+        <item quantity="other">%1$d menciones de %2$s y %3$s</item>
     </plurals>
     <!-- Notification placeholder that sums up unread mentions from three or more people. First placeholder is the number of mentions, second is the name of one person who sent them -->
     <plurals name="UnreadReminderJob__mentions_many">
-        <item quantity="one">%1$d mentions of you by %2$s and others</item>
-        <item quantity="other">%1$d mentions of you by %2$s and others</item>
+        <item quantity="one">%1$d menciones de %2$s y otras personas</item>
+        <item quantity="other">%1$d menciones de %2$s y otras personas</item>
     </plurals>
     <!-- Notification placeholder that sums up a single unread reply. Placeholder is the name of the person who sent the message -->
-    <string name="UnreadReminderJob__replies_one">a reply from %1$s</string>
+    <string name="UnreadReminderJob__replies_one">una respuesta de %1$s</string>
     <!-- Notification placeholder that sums up unread replies from two people. First placeholder is the number of replies, second and third are the names of the people who sent them -->
     <plurals name="UnreadReminderJob__replies_two">
-        <item quantity="one">%1$d replies from %2$s and %3$s</item>
-        <item quantity="other">%1$d replies from %2$s and %3$s</item>
+        <item quantity="one">%1$d respuestas de %2$s y %3$s</item>
+        <item quantity="other">%1$d respuestas de %2$s y %3$s</item>
     </plurals>
     <!-- Notification placeholder that sums up unread replies from three or more people. First placeholder is the number of replies, second is the name of one person who sent them -->
     <plurals name="UnreadReminderJob__replies_many">
-        <item quantity="one">%1$d replies from %2$s and others</item>
-        <item quantity="other">%1$d replies from %2$s and others</item>
+        <item quantity="one">%1$d respuestas de %2$s y otras personas</item>
+        <item quantity="other">%1$d respuestas de %2$s y otras personas</item>
     </plurals>
 
     <!-- Title of the screen where the user chooses which parts of a contact to share -->
     <string name="ShareContactScreen__share_contact">Compartir contacto</string>
 
     <!-- Label beneath the company name of the contact being shared -->
-    <string name="ShareContactScreen__company">Company</string>
+    <string name="ShareContactScreen__company">Empresa</string>
     <!-- Label beneath a shared nickname value -->
     <string name="ShareContactScreen__nickname">Apodo</string>
     <!-- Label beneath a shared note value -->
     <string name="ShareContactScreen__notes">Notas</string>
     <!-- Title of the sheet where the user picks which photo to share -->
-    <string name="ShareContactScreen__select_a_photo_to_share">Select a photo to share</string>
+    <string name="ShareContactScreen__select_a_photo_to_share">Selecciona una foto para compartir</string>
     <!-- Button that confirms the chosen photo and closes the photo picker sheet -->
     <string name="ShareContactScreen__done">Listo</string>
     <!-- Accessibility label for the button that sends the contact card -->
     <string name="ShareContactScreen__send">Enviar</string>
     <!-- Accessibility label for the button that opens the photo picker -->
-    <string name="ShareContactScreen__change_photo">Modificar foto</string>
+    <string name="ShareContactScreen__change_photo">Cambiar foto</string>
     <!-- Accessibility label for the button that opens the name editor -->
     <string name="ShareContactScreen__edit_name">Editar nombre</string>
     <!-- Title of the screen where the user edits the name on a shared contact card -->
@@ -10023,17 +10023,17 @@
     <string name="EditContactNameScreen__done">Listo</string>
 
     <!-- Button that opens a chat with a shared contact -->
-    <string name="SharedContactDetailsScreen__message">Enviar mensaje</string>
+    <string name="SharedContactDetailsScreen__message">Mensaje</string>
     <!-- Button that starts a video call with a shared contact -->
-    <string name="SharedContactDetailsScreen__video">Vídeo</string>
+    <string name="SharedContactDetailsScreen__video">Videollamada</string>
     <!-- Button that starts an audio call with a shared contact -->
-    <string name="SharedContactDetailsScreen__audio">Audio</string>
+    <string name="SharedContactDetailsScreen__audio">Llamada</string>
     <!-- Context menu entry that starts a video call -->
     <string name="SharedContactDetailsScreen__video_call">Videollamada</string>
     <!-- Context menu entry that starts an audio call -->
-    <string name="SharedContactDetailsScreen__audio_call">Llamar</string>
+    <string name="SharedContactDetailsScreen__audio_call">Llamada</string>
     <!-- Context menu entry that opens a shared postal address in a map app -->
-    <string name="SharedContactDetailsScreen__open_in_maps">Abrir en Mapas</string>
+    <string name="SharedContactDetailsScreen__open_in_maps">Abrir en Maps</string>
     <!-- Context menu entry that copies a shared contact detail to the clipboard -->
     <string name="SharedContactDetailsScreen__copy">Copiar</string>
     <!-- Row that invites a shared contact who is not yet on Signal -->
@@ -10043,13 +10043,13 @@
     <!-- Row that adds a shared contact to a Signal group -->
     <string name="SharedContactDetailsScreen__add_to_a_group">Añadir a un grupo</string>
     <!-- Toast shown after copying a shared contact detail -->
-    <string name="SharedContactDetailsScreen__copied">Copied</string>
+    <string name="SharedContactDetailsScreen__copied">Copiado</string>
     <!-- Toast shown when there is no contacts app to save a shared contact into -->
-    <string name="SharedContactDetailsScreen__couldnt_open_contacts">Couldn\'t open Contacts</string>
+    <string name="SharedContactDetailsScreen__couldnt_open_contacts">No se ha podido abrir la app Contactos</string>
     <!-- Toast shown when there is no map app to open a shared address in -->
-    <string name="SharedContactDetailsScreen__couldnt_open_maps">Couldn\'t open maps</string>
+    <string name="SharedContactDetailsScreen__couldnt_open_maps">No se ha podido abrir la app Maps</string>
     <!-- Subject line of an email invitation to Signal -->
-    <string name="SharedContactDetailsScreen__join_me_on_signal">Join me on Signal</string>
+    <string name="SharedContactDetailsScreen__join_me_on_signal">¿Nos pasamos a Signal?</string>
 
     <!-- EOF -->
 </resources>

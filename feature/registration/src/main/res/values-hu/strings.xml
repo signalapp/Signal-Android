@@ -652,7 +652,7 @@
     <!-- Title of the screen that shows the user their newly purchased Signal Login. -->
     <string name="SignalLoginInfoScreen__your_signal_login">A Signal Loginod</string>
     <!-- Description warning the user that a lost Signal Login cannot be recovered. -->
-    <string name="SignalLoginInfoScreen__thanks_for_your_purchase">Köszönjük a vásárlást! Használd a Signal Logint a regisztrációhoz és a fiókod helyreállításához. Ha elfelejted a kulcsodat, nem tudod helyreállítani a fiókodat.</string>
+    <string name="SignalLoginInfoScreen__thanks_for_your_purchase">Köszönjük a vásárlást! Használd a Signal Logint a regisztrációhoz és a fiókod helyreállításához. Ha elfelejted a kulcsaidat, nem tudod helyreállítani a fiókodat.</string>
     <!-- Action button that stores the Signal Login in the device password manager. -->
     <string name="SignalLoginInfoScreen__save_to_password_manager">Mentés a jelszókezelőbe</string>
     <!-- Action button for users who would rather write the Signal Login down themselves. -->

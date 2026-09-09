@@ -20,9 +20,9 @@
 
     <!-- ListDetailPane -->
     <!-- Content description for the draggable divider between the list and detail panes on large screens -->
-    <string name="ListDetailPane__accessibility_pane_divider">Resize panes</string>
+    <string name="ListDetailPane__accessibility_pane_divider">Redimensionner les panneaux</string>
     <!-- Accessibility action label for moving the divider between the list and detail panes to its next position -->
-    <string name="ListDetailPane__accessibility_move_pane_divider">Move divider</string>
+    <string name="ListDetailPane__accessibility_move_pane_divider">Déplacer le séparateur</string>
 
     <!-- StorageUtil -->
     <!-- Format string for displaying a storage path as volume/filename -->

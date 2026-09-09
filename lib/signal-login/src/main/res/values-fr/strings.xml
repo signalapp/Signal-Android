@@ -22,9 +22,9 @@
     <!-- Action button that saves the Signal Login as a PDF. -->
     <string name="SignalLoginViewDetailsScreen__save_as_pdf">Enregistrer au format PDF</string>
     <!-- Suggested file name prefilled in the system save dialog when saving the Signal Login as a PDF. Keep the .pdf extension. -->
-    <string name="SignalLoginViewDetailsScreen__signal_login_pdf">Signal Login.pdf</string>
+    <string name="SignalLoginViewDetailsScreen__signal_login_pdf">Identifiant Signal.pdf</string>
     <!-- Toast shown when saving the Signal Login PDF fails. -->
-    <string name="SignalLoginViewDetailsScreen__unable_to_save_pdf">Unable to save PDF. Please try again.</string>
+    <string name="SignalLoginViewDetailsScreen__unable_to_save_pdf">Impossible d\'enregistrer le PDF. Veuillez réessayer.</string>
     <!-- Toast shown when the location the user picked for the Signal Login PDF refuses the write. -->
-    <string name="SignalLoginViewDetailsScreen__cant_save_pdf_to_the_selected_location">Can\'t save PDF to the selected location.</string>
+    <string name="SignalLoginViewDetailsScreen__cant_save_pdf_to_the_selected_location">Impossible d\'enregistrer le PDF à l\'emplacement sélectionné.</string>
 </resources>

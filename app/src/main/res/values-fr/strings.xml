@@ -3268,7 +3268,7 @@
     <!-- Subtitle in a dialog that describes the timezone the user is picking times in. The first placeholder is a UTC offset, and the second placeholder is a user-friendly name for the timezone, e.g. "All times in (GMT-05:00) Eastern Standard Time" -->
     <string name="MuteUntilTimePickerBottomSheet__timezone_disclaimer">Toutes les heures sont indiquées en %2$s (%1$s).</string>
     <!-- Toast shown when choosing an invalid date to mute until (eg a date in the past) -->
-    <string name="MuteUntilTimePickerBottomSheet__invalid">Invalid time</string>
+    <string name="MuteUntilTimePickerBottomSheet__invalid">Date non valide</string>
 
     <!-- KeyCachingService -->
     <string name="KeyCachingService_signal_passphrase_cached">Touchez l\'écran pour ouvrir Signal.</string>
@@ -9955,13 +9955,13 @@
     <string name="RecoveryKeyWarningDialog__dont_share">Ne pas partager la clé</string>
 
     <!-- Notification body for unread reminders. First placeholder is unread messages, second is a summary of unread mentions or replies -->
-    <string name="UnreadReminderJob__unread_one_summary">You have %1$s, including %2$s.</string>
+    <string name="UnreadReminderJob__unread_one_summary">Vous avez %1$s, dont %2$s.</string>
     <!-- Notification body for unread reminders. First placeholder is unread messages, second is a summary of unread mentions, third replies -->
-    <string name="UnreadReminderJob__unread_both_summary">You have %1$s, including %2$s and %3$s.</string>
+    <string name="UnreadReminderJob__unread_both_summary">Vous avez %1$s, dont %2$s et %3$s.</string>
     <!-- Notification body for unread reminders. First placeholder is unread messages, second is a list of people who sent them -->
-    <string name="UnreadReminderJob__calls_or_unread_author">You have %1$s from %2$s.</string>
+    <string name="UnreadReminderJob__calls_or_unread_author">Vous avez %1$s de %2$s.</string>
     <!-- Notification body for unread reminders. First placeholder is unread messages -->
-    <string name="UnreadReminderJob__calls_or_unread">You have %1$s.</string>
+    <string name="UnreadReminderJob__calls_or_unread">Vous avez %1$s.</string>
     <!-- Notification placeholder for unread messages -->
     <plurals name="UnreadReminderJob__messages">
         <item quantity="one">%1$d message non lu</item>
@@ -9972,43 +9972,43 @@
     <!-- Notification placeholder for two recipients who sent unread messages -->
     <string name="UnreadReminderJob__authors_two">%1$s et %2$s</string>
     <!-- Notification placeholder for three or more recipients who sent unread messages -->
-    <string name="UnreadReminderJob__authors_many">%1$s and others</string>
+    <string name="UnreadReminderJob__authors_many">%1$s et d\'autres</string>
     <!-- Notification placeholder that sums up a single unread mention. Placeholder is the name of the person who sent the message -->
-    <string name="UnreadReminderJob__mentions_one">a mention of you by %1$s</string>
+    <string name="UnreadReminderJob__mentions_one">une mention par %1$s</string>
     <!-- Notification placeholder that sums up unread mentions from two people. First placeholder is the number of mentions, second and third are the names of the people who sent them -->
     <plurals name="UnreadReminderJob__mentions_two">
-        <item quantity="one">%1$d mentions of you by %2$s and %3$s</item>
-        <item quantity="other">%1$d mentions of you by %2$s and %3$s</item>
+        <item quantity="one">%1$d mentions par %2$s et %3$s</item>
+        <item quantity="other">%1$d mentions par %2$s et %3$s</item>
     </plurals>
     <!-- Notification placeholder that sums up unread mentions from three or more people. First placeholder is the number of mentions, second is the name of one person who sent them -->
     <plurals name="UnreadReminderJob__mentions_many">
-        <item quantity="one">%1$d mentions of you by %2$s and others</item>
-        <item quantity="other">%1$d mentions of you by %2$s and others</item>
+        <item quantity="one">%1$d mentions par %2$s et d\'autres</item>
+        <item quantity="other">%1$d mentions par %2$s et d\'autres</item>
     </plurals>
     <!-- Notification placeholder that sums up a single unread reply. Placeholder is the name of the person who sent the message -->
-    <string name="UnreadReminderJob__replies_one">a reply from %1$s</string>
+    <string name="UnreadReminderJob__replies_one">une réponse de %1$s</string>
     <!-- Notification placeholder that sums up unread replies from two people. First placeholder is the number of replies, second and third are the names of the people who sent them -->
     <plurals name="UnreadReminderJob__replies_two">
-        <item quantity="one">%1$d replies from %2$s and %3$s</item>
-        <item quantity="other">%1$d replies from %2$s and %3$s</item>
+        <item quantity="one">%1$d réponses de %2$s et %3$s</item>
+        <item quantity="other">%1$d réponses de %2$s et %3$s</item>
     </plurals>
     <!-- Notification placeholder that sums up unread replies from three or more people. First placeholder is the number of replies, second is the name of one person who sent them -->
     <plurals name="UnreadReminderJob__replies_many">
-        <item quantity="one">%1$d replies from %2$s and others</item>
-        <item quantity="other">%1$d replies from %2$s and others</item>
+        <item quantity="one">%1$d réponses de %2$s et d\'autres</item>
+        <item quantity="other">%1$d réponses de %2$s et d\'autres</item>
     </plurals>
 
     <!-- Title of the screen where the user chooses which parts of a contact to share -->
     <string name="ShareContactScreen__share_contact">Partager ce contact</string>
 
     <!-- Label beneath the company name of the contact being shared -->
-    <string name="ShareContactScreen__company">Company</string>
+    <string name="ShareContactScreen__company">Entreprise</string>
     <!-- Label beneath a shared nickname value -->
     <string name="ShareContactScreen__nickname">Pseudo</string>
     <!-- Label beneath a shared note value -->
     <string name="ShareContactScreen__notes">Notes</string>
     <!-- Title of the sheet where the user picks which photo to share -->
-    <string name="ShareContactScreen__select_a_photo_to_share">Select a photo to share</string>
+    <string name="ShareContactScreen__select_a_photo_to_share">Sélectionner une photo à partager</string>
     <!-- Button that confirms the chosen photo and closes the photo picker sheet -->
     <string name="ShareContactScreen__done">OK</string>
     <!-- Accessibility label for the button that sends the contact card -->
@@ -10043,13 +10043,13 @@
     <!-- Row that adds a shared contact to a Signal group -->
     <string name="SharedContactDetailsScreen__add_to_a_group">Ajouter à un groupe</string>
     <!-- Toast shown after copying a shared contact detail -->
-    <string name="SharedContactDetailsScreen__copied">Copied</string>
+    <string name="SharedContactDetailsScreen__copied">Copié</string>
     <!-- Toast shown when there is no contacts app to save a shared contact into -->
-    <string name="SharedContactDetailsScreen__couldnt_open_contacts">Couldn\'t open Contacts</string>
+    <string name="SharedContactDetailsScreen__couldnt_open_contacts">Impossible d\'ouvrir l\'appli Contacts</string>
     <!-- Toast shown when there is no map app to open a shared address in -->
-    <string name="SharedContactDetailsScreen__couldnt_open_maps">Couldn\'t open maps</string>
+    <string name="SharedContactDetailsScreen__couldnt_open_maps">Impossible d\'ouvrir la carte</string>
     <!-- Subject line of an email invitation to Signal -->
-    <string name="SharedContactDetailsScreen__join_me_on_signal">Join me on Signal</string>
+    <string name="SharedContactDetailsScreen__join_me_on_signal">Rejoignez-moi sur Signal</string>
 
     <!-- EOF -->
 </resources>

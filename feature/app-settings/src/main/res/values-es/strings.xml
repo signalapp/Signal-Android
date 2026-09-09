@@ -45,33 +45,33 @@
     <!-- Account setting that allows user to request and export their signal account data -->
     <string name="AccountSettingsFragment__request_account_data">Datos de tu cuenta</string>
     <!-- Section header for the Signal Login section of account settings -->
-    <string name="AccountSettingsFragment__signal_login">Login de Signal</string>
+    <string name="AccountSettingsFragment__signal_login">Signal Login</string>
     <!-- Title of the card that opens the user\'s Signal Login account and recovery keys -->
     <string name="AccountSettingsFragment__account_and_recovery">Cuenta y recuperación</string>
     <!-- Description of what a Signal Login is, shown below the Signal Login card -->
-    <string name="AccountSettingsFragment__your_signal_login_is_used_to_recover">Tu login de Signal sirve para recuperar y restaurar tu cuenta. Guarda estas claves en un gestor de contraseñas de confianza para protegerlas.</string>
+    <string name="AccountSettingsFragment__your_signal_login_is_used_to_recover">Tu Signal Login sirve para recuperar y restaurar tu cuenta. Guarda estas claves en un gestor de contraseñas de confianza para mantenerlas seguras.</string>
     <!-- Section header for the two-factor authentication section of account settings -->
     <string name="AccountSettingsFragment__two_factor_authentication">Autenticación de dos factores</string>
     <!-- Account setting that takes the user to the authenticator app setup flow -->
     <string name="AccountSettingsFragment__authenticator_app">Aplicación de autenticación</string>
     <!-- Description of the authenticator app setting when none are configured -->
-    <string name="AccountSettingsFragment__one_time_verification_codes">Claves de verificación de un solo uso</string>
+    <string name="AccountSettingsFragment__one_time_verification_codes">Códigos de verificación de un solo uso</string>
     <!-- Description of the authenticator app setting saying how many are configured -->
     <plurals name="AccountSettingsFragment__d_configured">
         <item quantity="one">%1$d configurada</item>
         <item quantity="other">%1$d configuradas</item>
     </plurals>
     <!-- Account setting that takes the user to the passkeys screen -->
-    <string name="AccountSettingsFragment__passkeys">Llaves de acceso</string>
+    <string name="AccountSettingsFragment__passkeys">Claves de acceso</string>
     <!-- Description of the passkeys setting when none exist -->
-    <string name="AccountSettingsFragment__device_biometrics_or_fido2_security_key">Datos biométricos de tu dispositivo o llave de seguridad FIDO2</string>
+    <string name="AccountSettingsFragment__device_biometrics_or_fido2_security_key">Datos biométricos de tu dispositivo o clave de seguridad FIDO2</string>
     <!-- Description of the passkeys setting saying how many exist -->
     <plurals name="AccountSettingsFragment__d_passkeys">
-        <item quantity="one">%1$d llave de acceso</item>
-        <item quantity="other">%1$d llaves de acceso</item>
+        <item quantity="one">%1$d clave de acceso</item>
+        <item quantity="other">%1$d claves de acceso</item>
     </plurals>
     <!-- Description of two-factor authentication, shown below the two-factor authentication rows -->
-    <string name="AccountSettingsFragment__use_a_second_form_of_authentication">Usa una segunda forma de autenticación para proteger tu cuenta cuando uses tu login de Signal en un nuevo dispositivo.</string>
+    <string name="AccountSettingsFragment__use_a_second_form_of_authentication">Usa una segunda forma de autenticación para proteger tu cuenta al usar tu Signal Login en un dispositivo nuevo.</string>
     <!-- Clickable text that takes the user to a support article -->
     <string name="AccountSettingsFragment__learn_more">Más información</string>
 
@@ -101,7 +101,7 @@
     <!-- Toast shown when there is no app installed that can handle the authenticator setup link -->
     <string name="TotpSetupScreen__no_authenticator_app_found">No se ha encontrado ninguna aplicación de autenticación</string>
     <!-- Dialog message shown when we couldn\'t reach the service to start setting up an authenticator app -->
-    <string name="TotpSetupScreen__couldnt_reach_signal">Couldn\'t reach Signal. Check your connection and try again.</string>
+    <string name="TotpSetupScreen__couldnt_reach_signal">No se ha podido conectar con Signal. Comprueba tu conexión e inténtalo de nuevo.</string>
     <!-- Header of the third step of authenticator app setup -->
     <string name="TotpSetupScreen__step_3">Paso 3</string>
     <!-- Body of the third step of authenticator app setup -->
@@ -111,27 +111,27 @@
 
     <!-- PasskeysScreen -->
     <!-- Title of the screen where the user sets up passkeys -->
-    <string name="PasskeysScreen__passkeys">Llaves de acceso</string>
+    <string name="PasskeysScreen__passkeys">Claves de acceso</string>
     <!-- Description of passkeys shown at the top of the screen -->
-    <string name="PasskeysScreen__with_passkeys_you_can_easily_add">Con las llaves de acceso, puedes añadir fácilmente una segunda forma segura de autenticación. Las llaves de acceso pueden usar los datos biométricos de tu dispositivo o una llave de seguridad FIDO2 compatible.</string>
+    <string name="PasskeysScreen__with_passkeys_you_can_easily_add">Con las claves de acceso, puedes añadir fácilmente una segunda forma segura de autenticación. Las claves de acceso pueden usar los datos biométricos de tu dispositivo o una clave de seguridad FIDO2 compatible.</string>
     <!-- Clickable text that takes the user to a support article -->
     <string name="PasskeysScreen__learn_more">Más información</string>
     <!-- Bullet point explaining that a passkey can be given a name -->
-    <string name="PasskeysScreen__give_your_passkey_a_friendly_name">Dale un nombre fácil de identificar a tu llave de acceso</string>
+    <string name="PasskeysScreen__give_your_passkey_a_friendly_name">Asigna un nombre a tu clave de acceso para identificarla con facilidad.</string>
     <!-- Bullet point explaining how a passkey is stored -->
-    <string name="PasskeysScreen__use_your_devices_biometrics">Usa los datos biométricos de tu dispositivo o una llave de seguridad FIDO2 compatible para guardar tu llave de acceso</string>
+    <string name="PasskeysScreen__use_your_devices_biometrics">Usa los datos biométricos de tu dispositivo o una clave de seguridad FIDO2 compatible para guardar tu clave de acceso.</string>
     <!-- Bullet point explaining that passkeys can be added and removed -->
-    <string name="PasskeysScreen__add_or_remove_passkeys_at_anytime">Añadir o eliminar una llave de acceso en cualquier momento.</string>
+    <string name="PasskeysScreen__add_or_remove_passkeys_at_anytime">Añade o elimina una clave de acceso en cualquier momento.</string>
     <!-- Button that starts creating a passkey -->
-    <string name="PasskeysScreen__set_up_a_passkey">Configurar una llave de acceso</string>
+    <string name="PasskeysScreen__set_up_a_passkey">Configurar clave de acceso</string>
     <!-- Description of passkeys shown at the top of the screen once some already exist -->
-    <string name="PasskeysScreen__set_up_a_passkey_with">Configura una llave de acceso con los datos biométricos de tu dispositivo o una llave de seguridad FIDO2 compatible.</string>
+    <string name="PasskeysScreen__set_up_a_passkey_with">Configura una clave de acceso con los datos biométricos de tu dispositivo o una clave de seguridad FIDO2 compatible.</string>
     <!-- Button that starts creating a passkey once some already exist -->
-    <string name="PasskeysScreen__add_a_new_passkey">Añadir una nueva llave de acceso</string>
+    <string name="PasskeysScreen__add_a_new_passkey">Añadir una nueva clave de acceso</string>
     <!-- Label under a passkey\'s name saying when it was added. The placeholder is a relative time like "today, 11:00 AM" -->
-    <string name="PasskeysScreen__added_s">Se ha añadido a %1$s</string>
+    <string name="PasskeysScreen__added_s">Añadido %1$s</string>
     <!-- Accessibility description of the button that opens a passkey\'s menu -->
-    <string name="PasskeysScreen__open_passkey_options">Abrir opciones de llave de acceso</string>
+    <string name="PasskeysScreen__open_passkey_options">Abrir opciones de clave de acceso</string>
     <!-- Menu option that renames a passkey -->
     <string name="PasskeysScreen__rename">Cambiar nombre</string>
     <!-- Menu option that removes a passkey -->
@@ -147,9 +147,9 @@
     <!-- Button that submits the entered code -->
     <string name="TotpCodeEntryScreen__done">Listo</string>
     <!-- Error shown under the code field when the code the user entered was rejected -->
-    <string name="TotpCodeEntryScreen__incorrect_code">Incorrect code. Enter the code showing in your authenticator app now.</string>
+    <string name="TotpCodeEntryScreen__incorrect_code">Clave incorrecta. Introduce ahora la clave de tu aplicación de autenticación.</string>
     <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->
-    <string name="TotpCodeEntryScreen__couldnt_reach_signal">Couldn\'t reach Signal. Check your connection and try again.</string>
+    <string name="TotpCodeEntryScreen__couldnt_reach_signal">No se ha podido conectar con Signal. Comprueba tu conexión e inténtalo de nuevo.</string>
     <!-- TotpAppListScreen -->
     <!-- Title of the screen listing the authenticator apps on the account -->
     <string name="TotpAppListScreen__authenticator_app">Aplicación de autenticación</string>
@@ -164,9 +164,9 @@
     <!-- Shown in place of the list when no authenticator apps are configured -->
     <string name="TotpAppListScreen__no_authenticator_apps">No hay aplicaciones de autenticación</string>
     <!-- Subtitle of an authenticator app row saying when it was configured. Placeholder is a date or time. -->
-    <string name="TotpAppListScreen__added_s">Se ha añadido a %1$s</string>
+    <string name="TotpAppListScreen__added_s">Se ha añadido %1$s</string>
     <!-- Content description of the button that opens an authenticator app\'s options -->
-    <string name="TotpAppListScreen__open_authenticator_app_options">Abrir las opciones de la aplicación de autenticación</string>
+    <string name="TotpAppListScreen__open_authenticator_app_options">Abrir las opciones de aplicación de autenticación</string>
     <!-- Menu option that renames an authenticator app -->
     <string name="TotpAppListScreen__rename">Cambiar nombre</string>
     <!-- Menu option that removes an authenticator app -->
@@ -174,17 +174,17 @@
     <!-- Title of the dialog confirming removal of an authenticator app -->
     <string name="TotpAppListScreen__remove_authenticator_app">¿Eliminar aplicación de autenticación?</string>
     <!-- Body of the dialog confirming removal of an authenticator app -->
-    <string name="TotpAppListScreen__you_wont_be_able_to_use_this_app">You won\'t be able to use this app for one-time verification codes when you sign in.</string>
+    <string name="TotpAppListScreen__you_wont_be_able_to_use_this_app">No podrás usar esta aplicación para claves de verificación de un solo uso al iniciar sesión.</string>
     <!-- Title of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
-    <string name="TotpAppListScreen__cant_add_authenticator_app">No se pueden añadir la aplicación de autenticación</string>
+    <string name="TotpAppListScreen__cant_add_authenticator_app">No se puede añadir la aplicación de autenticación</string>
     <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
-    <string name="TotpAppListScreen__you_cant_add_more_than_d">No puedes añadir más de %1$d aplicaciones de autenticación. Prueba a eliminar una antes.</string>
+    <string name="TotpAppListScreen__you_cant_add_more_than_d">No puedes añadir más de %1$d aplicaciones de autenticación. Prueba a eliminar una primero.</string>
     <!-- Dialog message shown when we couldn\'t work out which authenticator apps are on the account -->
-    <string name="TotpAppListScreen__couldnt_load_authenticator_apps">Couldn\'t load your authenticator apps. Check your connection and try again.</string>
+    <string name="TotpAppListScreen__couldnt_load_authenticator_apps">No se han podido cargar tus aplicaciones de autenticación. Comprueba tu conexión e inténtalo de nuevo.</string>
     <!-- Toast shown after an authenticator app has been removed -->
     <string name="TotpAppListScreen__authenticator_app_removed">Aplicación de autenticación eliminada</string>
     <!-- Toast shown when an authenticator app couldn\'t be removed -->
-    <string name="TotpAppListScreen__couldnt_remove_authenticator_app">Couldn\'t remove authenticator app. Check your connection and try again.</string>
+    <string name="TotpAppListScreen__couldnt_remove_authenticator_app">No se ha podido eliminar tu aplicación de autenticación. Comprueba tu conexión e inténtalo de nuevo.</string>
 
     <!-- TotpNameEntryScreen -->
     <!-- Title of the screen where the user names an authenticator app -->
@@ -192,7 +192,7 @@
     <!-- Instructions shown above the name field when renaming an authenticator app -->
     <string name="TotpNameEntryScreen__choose_a_unique_name">Elige un nombre único para esta aplicación de autenticación.</string>
     <!-- Instructions shown above the name field when naming a newly configured authenticator app -->
-    <string name="TotpNameEntryScreen__choose_a_unique_name_to_help_you_identify_it">Elige un nombre único para esta aplicación de autenticación para identificarla más tarde.</string>
+    <string name="TotpNameEntryScreen__choose_a_unique_name_to_help_you_identify_it">Elige un nombre único para esta aplicación de autenticación que te permita identificarla más tarde.</string>
     <!-- Label of the name field -->
     <string name="TotpNameEntryScreen__name">Nombre</string>
     <!-- Button that submits the entered name -->
@@ -202,5 +202,5 @@
     <!-- Toast shown after an authenticator app has been renamed -->
     <string name="TotpNameEntryScreen__authenticator_app_renamed">Se ha cambiado el nombre de la aplicación de autenticación</string>
     <!-- Toast shown when we couldn\'t reach the service to save the name -->
-    <string name="TotpNameEntryScreen__couldnt_save_name">Couldn\'t save name. Check your connection and try again.</string>
+    <string name="TotpNameEntryScreen__couldnt_save_name">No se ha podido guardar el nombre. Comprueba tu conexión e inténtalo de nuevo.</string>
 </resources>

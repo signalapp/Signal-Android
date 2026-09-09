@@ -1623,7 +1623,7 @@
     <!-- Progress dialog label when finishing a backup restore -->
     <string name="RemoteRestoreActivity__finishing_restore">Сканчаем…</string>
     <!-- Progress dialog label while awaiting updates -->
-    <string name="RemoteRestoreActivity__restoring">Аднаўленне…</string>
+    <string name="RemoteRestoreActivity__restoring">Аднаўленне...</string>
     <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
     <string name="RemoteRestoreActivity__s_of_s_s">%1$s з %2$s (%3$s)</string>
     <!-- Feature list media label for paid tier -->

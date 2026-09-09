@@ -45,7 +45,7 @@
     <string name="RegistrationActivity_select_a_country">Sélectionner un pays</string>
     <string name="RegistrationActivity_phone_number_description">Numéro de téléphone</string>
     <!-- Label the phone number field takes on when what has been typed reads as an account ID rather than a number -->
-    <string name="RegistrationActivity_account_id">Account ID</string>
+    <string name="RegistrationActivity_account_id">Identifiant de compte</string>
     <!-- Error shown beneath the phone number field when the entered number is not valid -->
     <string name="RegistrationActivity_not_a_valid_phone_number">Numéro de téléphone non valide</string>
     <!-- Dialog title shown when the entered phone number is rejected as invalid -->
@@ -247,7 +247,7 @@
     <!-- Title of the dialog shown when the entered recovery key is correct, but the account has no Signal Backup to restore -->
     <string name="EnterAepScreen__no_backup_found">Sauvegarde introuvable</string>
     <!-- Body of the dialog shown when the entered recovery key is correct, but the account has no Signal Backup to restore -->
-    <string name="EnterAepScreen__no_backup_found_body">Your recovery key is correct, but there\'s no Signal Backup for this account. Go back to choose another way to restore, or continue without restoring.</string>
+    <string name="EnterAepScreen__no_backup_found_body">Votre clé de récupération est correcte, mais aucune sauvegarde Signal n\'est associée à ce compte. Retournez à l\'étape précédente pour choisir une autre méthode de restauration, ou poursuivez sans restaurer votre compte.</string>
     <!-- Text shown while preparing the restore -->
     <string name="LocalBackupRestoreScreen__preparing_restore">Préparation de la restauration…</string>
     <!-- Title shown while restore is in progress -->
@@ -664,27 +664,27 @@
     <!-- Error shown when too many characters were entered in an account ID field. First placeholder is how many were entered, second is the maximum. -->
     <string name="AccountIdField__too_long">Saisie trop longue. %1$d/%2$d caractères.</string>
     <!-- Error shown when the entered account ID contains characters that can\'t appear in one. -->
-    <string name="AccountIdField__invalid_account_id">Invalid account ID</string>
+    <string name="AccountIdField__invalid_account_id">Identifiant de compte non valide</string>
 
     <!-- Signal Login credential entry screen -->
     <!-- Title of the screen where a user with an existing Signal Login types it in to log back in. -->
     <string name="SignalLoginCredentialEntryScreen__signal_login">Identifiant Signal</string>
     <!-- Description telling the user what to enter to log in. -->
-    <string name="SignalLoginCredentialEntryScreen__enter_your_account_id_followed_by_your_recovery_key">Enter your account ID followed by your recovery key to restore your account.</string>
+    <string name="SignalLoginCredentialEntryScreen__enter_your_account_id_followed_by_your_recovery_key">Saisissez votre identifiant de compte suivi de votre clé de récupération pour restaurer votre compte.</string>
     <!-- Label of the text field the account ID is typed into. -->
-    <string name="SignalLoginCredentialEntryScreen__account_id">Account ID</string>
+    <string name="SignalLoginCredentialEntryScreen__account_id">Identifiant de compte</string>
     <!-- Label of the text field the recovery key is typed into. -->
     <string name="SignalLoginCredentialEntryScreen__recovery_key">Clé de récupération</string>
     <!-- Description of the button that spells out the typed recovery key instead of masking it. -->
-    <string name="SignalLoginCredentialEntryScreen__show_recovery_key">Show recovery key</string>
+    <string name="SignalLoginCredentialEntryScreen__show_recovery_key">Afficher la clé de récupération</string>
     <!-- Description of the button that masks the typed recovery key. -->
-    <string name="SignalLoginCredentialEntryScreen__hide_recovery_key">Hide recovery key</string>
+    <string name="SignalLoginCredentialEntryScreen__hide_recovery_key">Masquer la clé de récupération</string>
     <!-- Button that opens a support article for users who can\'t find their Signal Login. -->
     <string name="SignalLoginCredentialEntryScreen__need_help">Besoin d\'aide ?</string>
     <!-- Action button that submits the entered Signal Login. -->
     <string name="SignalLoginCredentialEntryScreen__next">Suivant</string>
     <!-- Error shown when the service rejects the entered login, which means one of the two halves is wrong. -->
-    <string name="SignalLoginCredentialEntryScreen__incorrect_account_id_or_recovery_key">Incorrect account ID or recovery key</string>
+    <string name="SignalLoginCredentialEntryScreen__incorrect_account_id_or_recovery_key">Clé de récupération ou identifiant de compte incorrects</string>
 
     <!-- Add username screen -->
     <!-- Title of the screen offering the user an optional username. -->
@@ -726,7 +726,7 @@
     <!-- Validation error shown when the number the user entered after their username has too many digits. -->
     <string name="AddUsernameScreen__enter_a_maximum_of_d_digits">Nom d\'utilisateur incorrect. Veuillez saisir %1$d chiffres maximum.</string>
     <!-- Validation error shown when the number the user entered after their username contains something other than digits. -->
-    <string name="AddUsernameScreen__numbers_can_only_contain_digits">Invalid username, numbers can only contain digits.</string>
+    <string name="AddUsernameScreen__numbers_can_only_contain_digits">Nom d\'utilisateur non valide. Vous ne pouvez saisir que des chiffres.</string>
     <!-- Validation error shown when the number the user entered after their username is 00. -->
     <string name="AddUsernameScreen__this_number_cant_be_00">Ce chiffre ne peut pas être 00. Il doit être compris entre 1 et 9.</string>
     <!-- Validation error shown when the number the user entered after their username has a leading zero. -->
@@ -746,7 +746,7 @@
     <!-- Title of the two-factor authentication code entry screen -->
     <string name="TotpEntryScreen__two_factor_authentication">Authentification à deux facteurs</string>
     <!-- Subtitle explaining where to find the code -->
-    <string name="TotpEntryScreen__to_continue_enter_the_code">To continue enter the 6-digit code from your authenticator app.</string>
+    <string name="TotpEntryScreen__to_continue_enter_the_code">Pour continuer, saisissez le code à 6 chiffres généré par votre appli d\'authentification.</string>
     <!-- Button text to cancel entering a code -->
     <string name="TotpEntryScreen__cancel">Annuler</string>
 
@@ -754,15 +754,15 @@
     <!-- Title of the two-factor authentication method selection screen -->
     <string name="TwoFactorSelectionScreen__two_factor_authentication">Authentification à deux facteurs</string>
     <!-- Subtitle telling the user to pick one of the methods listed below -->
-    <string name="TwoFactorSelectionScreen__choose_a_method_below">Choose a method below to verify your account.</string>
+    <string name="TwoFactorSelectionScreen__choose_a_method_below">Choisissez l\'une des méthodes ci-dessous pour vérifier votre compte.</string>
     <!-- Title of the card for verifying with a passkey -->
-    <string name="TwoFactorSelectionScreen__passkey">Passkey</string>
+    <string name="TwoFactorSelectionScreen__passkey">Clé d\'accès</string>
     <!-- Description of the card for verifying with a passkey -->
-    <string name="TwoFactorSelectionScreen__tap_to_use_your_device_biometrics">Tap to use your device biometrics or FIDO2 passkey</string>
+    <string name="TwoFactorSelectionScreen__tap_to_use_your_device_biometrics">Utilisez l\'authentification biométrique de votre appareil ou une clé d\'accès FIDO2.</string>
     <!-- Title of the card for verifying with a code from an authenticator app -->
     <string name="TwoFactorSelectionScreen__authenticator_app">Appli d\'authentification</string>
     <!-- Description of the card for verifying with a code from an authenticator app -->
-    <string name="TwoFactorSelectionScreen__enter_a_one_time_code">Enter a one-time code generated by your authenticator app.</string>
+    <string name="TwoFactorSelectionScreen__enter_a_one_time_code">Saisissez le code à usage unique généré par votre appli d\'authentification.</string>
     <!-- Button text to cancel two-factor authentication -->
     <string name="TwoFactorSelectionScreen__cancel">Annuler</string>
 </resources>

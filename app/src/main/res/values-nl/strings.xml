@@ -9977,24 +9977,24 @@
     <string name="UnreadReminderJob__mentions_one">een vermelding door %1$s</string>
     <!-- Notification placeholder that sums up unread mentions from two people. First placeholder is the number of mentions, second and third are the names of the people who sent them -->
     <plurals name="UnreadReminderJob__mentions_two">
-        <item quantity="one">%1$d vermelding door %2$s en %3$s</item>
+        <item quantity="one">%1$d vermeldingen door %2$s en %3$s</item>
         <item quantity="other">%1$d vermeldingen door %2$s en %3$s</item>
     </plurals>
     <!-- Notification placeholder that sums up unread mentions from three or more people. First placeholder is the number of mentions, second is the name of one person who sent them -->
     <plurals name="UnreadReminderJob__mentions_many">
-        <item quantity="one">%1$d vermelding door %2$s en anderen</item>
+        <item quantity="one">%1$d vermeldingen door %2$s en anderen</item>
         <item quantity="other">%1$d vermeldingen door %2$s en anderen</item>
     </plurals>
     <!-- Notification placeholder that sums up a single unread reply. Placeholder is the name of the person who sent the message -->
     <string name="UnreadReminderJob__replies_one">een antwoord van %1$s</string>
     <!-- Notification placeholder that sums up unread replies from two people. First placeholder is the number of replies, second and third are the names of the people who sent them -->
     <plurals name="UnreadReminderJob__replies_two">
-        <item quantity="one">%1$d antwoord van %2$s en %3$s</item>
+        <item quantity="one">%1$d antwoorden van %2$s en %3$s</item>
         <item quantity="other">%1$d antwoorden van %2$s en %3$s</item>
     </plurals>
     <!-- Notification placeholder that sums up unread replies from three or more people. First placeholder is the number of replies, second is the name of one person who sent them -->
     <plurals name="UnreadReminderJob__replies_many">
-        <item quantity="one">%1$d antwoord van %2$s en anderen</item>
+        <item quantity="one">%1$d antwoorden van %2$s en anderen</item>
         <item quantity="other">%1$d antwoorden van %2$s en anderen</item>
     </plurals>
 
