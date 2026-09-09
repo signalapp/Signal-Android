@@ -7522,16 +7522,16 @@
     <!-- Fourth step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_4">4</string>
     <!-- BackupSchedulePermission Megaphone -->
-    <!-- The title on an alert window that explains to the user that we are unable to backup their messages -->
-    <string name="BackupSchedulePermissionMegaphone__cant_back_up_chats">Can\'t back up chats</string>
-    <!-- The body text of an alert window that tells the user that we are unable to backup their messages -->
-    <string name="BackupSchedulePermissionMegaphone__your_chats_are_no_longer_being_automatically_backed_up">Your chats are no longer being automatically backed up.</string>
-    <!-- The text on a button in an alert window that, when clicked, will take the user to a screen to re-enable backups -->
-    <string name="BackupSchedulePermissionMegaphone__back_up_chats">Back up chats</string>
+    <!-- The title on an alert window that asks the user to grant the alarms permission so that automatic backups run more reliably -->
+    <string name="BackupSchedulePermissionMegaphone__improve_backup_reliability">Improve backup reliability</string>
+    <!-- The body text of an alert window that asks the user to grant the alarms permission so that automatic backups run more reliably -->
+    <string name="BackupSchedulePermissionMegaphone__allow_the_alarms_permission_to_improve_automatic_daily_backups">Allow the \"alarms\" permission to improve automatic daily backups.</string>
+    <!-- The text on a button in an alert window that, when clicked, will take the user to a screen to grant the alarms permission -->
+    <string name="BackupSchedulePermissionMegaphone__allow">Allow</string>
     <!-- The text on a button in an alert window that, when clicked, will take the user to a screen to re-enable backups -->
     <string name="BackupSchedulePermissionMegaphone__not_now">Not now</string>
-    <!-- Re-enable backup permission bottom sheet title -->
-    <string name="BackupSchedulePermissionMegaphone__to_reenable_backups">To re-enable backups:</string>
+    <!-- Alarms permission bottom sheet title, followed by a numbered list of instructions -->
+    <string name="BackupSchedulePermissionMegaphone__to_allow_permission">To allow permission:</string>
     <!-- Re-enable backups permission bottom sheet instruction 1 text -->
     <string name="BackupSchedulePermissionMegaphone__tap_the_go_to_settings_button_below">Tap the \"Go to settings\" button below</string>
     <!-- Re-enable backups permission bottom sheet instruction 2 text -->

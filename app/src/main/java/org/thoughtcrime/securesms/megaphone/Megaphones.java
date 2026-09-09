@@ -410,10 +410,10 @@ public final class Megaphones {
   @SuppressLint("InlinedApi")
   private static Megaphone buildBackupPermissionMegaphone(@NonNull Context context) {
     return new Megaphone.Builder(Event.BACKUP_SCHEDULE_PERMISSION, Megaphone.Style.BASIC)
-        .setTitle(R.string.BackupSchedulePermissionMegaphone__cant_back_up_chats)
-        .setImage(R.drawable.ic_cant_backup_megaphone)
-        .setBody(R.string.BackupSchedulePermissionMegaphone__your_chats_are_no_longer_being_automatically_backed_up)
-        .setActionButton(R.string.BackupSchedulePermissionMegaphone__back_up_chats, (megaphone, controller) -> {
+        .setTitle(R.string.BackupSchedulePermissionMegaphone__improve_backup_reliability)
+        .setImage(R.drawable.ic_improve_backup_reliability_megaphone)
+        .setBody(R.string.BackupSchedulePermissionMegaphone__allow_the_alarms_permission_to_improve_automatic_daily_backups)
+        .setActionButton(R.string.BackupSchedulePermissionMegaphone__allow, (megaphone, controller) -> {
           controller.onMegaphoneDialogFragmentRequested(new ReenableBackupsDialogFragment());
         })
         .setSecondaryButton(R.string.BackupSchedulePermissionMegaphone__not_now, (megaphone, controller) -> {
