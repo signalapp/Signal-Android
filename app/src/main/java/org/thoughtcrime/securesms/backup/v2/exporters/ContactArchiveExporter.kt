@@ -114,12 +114,12 @@ private fun Cursor.readNickname(): Contact.Name? {
   val given = this.requireString(RecipientTable.NICKNAME_GIVEN_NAME)
   val family = this.requireString(RecipientTable.NICKNAME_FAMILY_NAME)
 
-  if (given.isNullOrEmpty()) {
+  if (given.isNullOrEmpty() && family.isNullOrEmpty()) {
     return null
   }
 
   return Contact.Name(
-    given = given,
+    given = given ?: "",
     family = family ?: ""
   )
 }
