@@ -4171,8 +4171,8 @@
     <!-- preferences.xml -->
     <string name="preferences_beta">Beta</string>
     <string name="preferences__sms_mms">SMS and MMS</string>
-    <string name="preferences__pref_use_address_book_photos">Use address book photos</string>
-    <string name="preferences__display_contact_photos_from_your_address_book_if_available">Display contact photos from your address book if available</string>
+    <string name="preferences__pref_use_address_book_photos">Prefer address book photos</string>
+    <string name="preferences__display_contact_photos_from_your_address_book_if_available">Prefer contact photos from your address book if available</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__pref_keep_muted_chats_archived">Keep muted chats archived</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
