@@ -82,6 +82,7 @@ import org.signal.registration.screens.shared.BackTopAppBar
 import org.signal.registration.screens.shared.accountIdTextStyle
 import org.signal.registration.test.TestTags
 import org.signal.signallogin.RecoveryKeyGroups
+import org.signal.signallogin.beta.SignalLoginBetaTag
 
 /**
  * Collects a Signal Login -- the account ID and the recovery key that pairs with it. What happens with the pair depends
@@ -220,14 +221,22 @@ private fun Header(mode: SignalLoginCredentialEntryState.Mode, twoPane: Boolean 
 
   Spacer(modifier = Modifier.height(20.dp))
 
-  Text(
-    text = stringResource(R.string.SignalLoginCredentialEntryScreen__signal_login),
-    style = if (twoPane) MaterialTheme.typography.headlineLarge else MaterialTheme.typography.headlineMedium,
-    textAlign = TextAlign.Center,
-    modifier = Modifier
-      .fillMaxWidth()
-      .attachDebugLogHelper()
-  )
+  Row(
+    horizontalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterHorizontally),
+    verticalAlignment = Alignment.CenterVertically,
+    modifier = Modifier.fillMaxWidth()
+  ) {
+    Text(
+      text = stringResource(R.string.SignalLoginCredentialEntryScreen__signal_login),
+      style = if (twoPane) MaterialTheme.typography.headlineLarge else MaterialTheme.typography.headlineMedium,
+      textAlign = TextAlign.Center,
+      modifier = Modifier
+        .weight(1f, fill = false)
+        .attachDebugLogHelper()
+    )
+
+    SignalLoginBetaTag()
+  }
 
   Spacer(modifier = Modifier.height(12.dp))
 

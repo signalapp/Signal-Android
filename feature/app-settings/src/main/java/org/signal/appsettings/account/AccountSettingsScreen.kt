@@ -65,6 +65,8 @@ import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.Texts
 import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.signallogin.beta.SignalLoginBetaDisclaimer
+import org.signal.signallogin.beta.SignalLoginBetaTag
 import org.signal.core.ui.R as CoreUiR
 
 @VisibleForTesting
@@ -117,7 +119,16 @@ fun AccountSettingsScreen(
       if (state.signalLogin != null) {
         item {
           Texts.SectionHeader(
-            text = stringResource(R.string.AccountSettingsFragment__signal_login)
+            text = stringResource(R.string.AccountSettingsFragment__signal_login),
+            trailingContent = { SignalLoginBetaTag() }
+          )
+        }
+
+        item {
+          SignalLoginBetaDisclaimer(
+            modifier = Modifier
+              .padding(horizontal = dimensionResource(CoreUiR.dimen.gutter))
+              .padding(bottom = 12.dp)
           )
         }
 

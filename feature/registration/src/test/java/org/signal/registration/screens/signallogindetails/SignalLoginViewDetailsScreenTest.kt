@@ -6,6 +6,7 @@
 package org.signal.registration.screens.signallogindetails
 
 import android.app.Application
+import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
@@ -41,6 +42,13 @@ class SignalLoginViewDetailsScreenTest {
   val coreUiDependenciesRule = CoreUiDependenciesRule(ApplicationProvider.getApplicationContext())
 
   private val events = mutableListOf<SignalLoginViewDetailsScreenEvents>()
+
+  @Test
+  fun `when the screen is displayed, the title is labelled beta`() {
+    setContent()
+
+    composeTestRule.onNodeWithTag(SignalLoginTestTags.BETA_TAG).assertIsDisplayed()
+  }
 
   @Test
   fun `when the account key copy button is clicked, CopyAccountIdClicked is emitted`() {

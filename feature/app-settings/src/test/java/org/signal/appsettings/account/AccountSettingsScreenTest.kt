@@ -31,6 +31,7 @@ import org.signal.appsettings.R
 import org.signal.appsettings.account.AccountSettingsState.Dialog
 import org.signal.appsettings.account.AccountSettingsState.LoadState
 import org.signal.core.ui.compose.Dialogs
+import org.signal.signallogin.SignalLoginTestTags
 
 @RunWith(RobolectricTestRunner::class)
 @Config(application = Application::class)
@@ -321,6 +322,14 @@ class AccountSettingsScreenTest {
 
     composeTestRule.onNodeWithTag(AccountSettingsTestTags.CARD_SIGNAL_LOGIN).assertDoesNotExist()
     composeTestRule.onNodeWithTag(AccountSettingsTestTags.ROW_SET_UP_TWO_FACTOR).assertDoesNotExist()
+  }
+
+  @Test
+  fun givenASignalLogin_whenScreenDisplayed_thenTheSectionIsLabelledBeta() {
+    setContent(createState(signalLogin = signalLogin()))
+
+    composeTestRule.onNodeWithTag(SignalLoginTestTags.BETA_TAG).assertIsDisplayed()
+    composeTestRule.onNodeWithTag(SignalLoginTestTags.BETA_DISCLAIMER).assertIsDisplayed()
   }
 
   @Test

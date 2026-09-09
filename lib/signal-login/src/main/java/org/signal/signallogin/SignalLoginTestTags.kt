@@ -9,6 +9,9 @@ package org.signal.signallogin
  * Test tags for the composables in this module, so UI tests can find them.
  */
 object SignalLoginTestTags {
+  const val BETA_TAG = "signal_login_beta_tag"
+  const val BETA_DISCLAIMER = "signal_login_beta_disclaimer"
+
   const val CARD_VIEW_DETAILS_BUTTON = "signal_login_card_view_details_button"
 
   const val VIEW_DETAILS_SCREEN = "signal_login_view_details_screen"

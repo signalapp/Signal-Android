@@ -23,6 +23,7 @@ dependencies {
   // Project dependencies
   implementation(project(":core:ui"))
   implementation(project(":core:util"))
+  implementation(project(":lib:signal-login"))
 
   // Compose BOM
   implementation(platform(libs.androidx.compose.bom))

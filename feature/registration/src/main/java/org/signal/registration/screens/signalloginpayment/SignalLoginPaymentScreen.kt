@@ -9,7 +9,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
@@ -67,6 +66,8 @@ import org.signal.registration.screens.attachDebugLogHelper
 import org.signal.registration.screens.shared.BackTopAppBar
 import org.signal.registration.screens.signalloginpayment.SignalLoginPaymentState.Option
 import org.signal.registration.test.TestTags
+import org.signal.signallogin.beta.SignalLoginBetaDisclaimer
+import org.signal.signallogin.beta.SignalLoginBetaTag
 
 private val CARD_SHAPE = RoundedCornerShape(18.dp)
 private val CARD_BORDER_WIDTH = 3.5.dp
@@ -207,14 +208,22 @@ private fun Header(
 
   Spacer(modifier = Modifier.height(20.dp))
 
-  Text(
-    text = stringResource(R.string.SignalLoginPaymentScreen__signal_login),
-    style = if (twoPane) MaterialTheme.typography.headlineLarge else MaterialTheme.typography.headlineMedium,
-    textAlign = TextAlign.Center,
-    modifier = Modifier
-      .fillMaxWidth()
-      .attachDebugLogHelper()
-  )
+  Row(
+    horizontalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterHorizontally),
+    verticalAlignment = Alignment.CenterVertically,
+    modifier = Modifier.fillMaxWidth()
+  ) {
+    Text(
+      text = stringResource(R.string.SignalLoginPaymentScreen__signal_login),
+      style = if (twoPane) MaterialTheme.typography.headlineLarge else MaterialTheme.typography.headlineMedium,
+      textAlign = TextAlign.Center,
+      modifier = Modifier
+        .weight(1f, fill = false)
+        .attachDebugLogHelper()
+    )
+
+    SignalLoginBetaTag()
+  }
 
   Spacer(modifier = Modifier.height(12.dp))
 
@@ -414,12 +423,20 @@ private fun Footer(
   onEvent: (SignalLoginPaymentScreenEvents) -> Unit
 ) {
   RegistrationScaffold.FooterSurface(isElevated = isElevated) {
-    Box(
+    Column(
+      horizontalAlignment = Alignment.CenterHorizontally,
+      verticalArrangement = Arrangement.spacedBy(16.dp),
       modifier = Modifier
         .fillMaxWidth()
-        .padding(params.footerPadding),
-      contentAlignment = Alignment.Center
+        .padding(params.footerPadding)
     ) {
+      SignalLoginBetaDisclaimer(
+        textAlign = TextAlign.Center,
+        modifier = Modifier
+          .widthIn(max = params.maxButtonWidth)
+          .fillMaxWidth()
+      )
+
       Buttons.LargeTonal(
         onClick = { onEvent(SignalLoginPaymentScreenEvents.ContinueClicked) },
         enabled = state.isActionEnabled,

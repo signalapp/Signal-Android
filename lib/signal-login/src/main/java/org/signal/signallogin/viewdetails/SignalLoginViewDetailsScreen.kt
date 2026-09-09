@@ -8,6 +8,7 @@ package org.signal.signallogin.viewdetails
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -37,6 +38,7 @@ import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.signallogin.R
 import org.signal.signallogin.SignalLoginTestTags
+import org.signal.signallogin.beta.SignalLoginBetaTag
 import org.signal.signallogin.details.SignalLoginKeyDetails
 
 /** Size of the miniature credential card artwork shown at the top of the screen, from the design. */
@@ -62,6 +64,7 @@ fun SignalLoginViewDetailsScreen(
     onNavigationClick = { onEvent(SignalLoginViewDetailsScreenEvents.BackClicked) },
     navigationIcon = SignalIcons.ArrowStart.imageVector,
     navigationContentDescription = stringResource(R.string.SignalLoginViewDetailsScreen__navigate_back),
+    titleContent = { _, title -> TitleWithBetaTag(title) },
     modifier = modifier.testTag(SignalLoginTestTags.VIEW_DETAILS_SCREEN)
   ) { paddingValues ->
     Column(
@@ -93,6 +96,22 @@ fun SignalLoginViewDetailsScreen(
 
       Footer(onEvent = onEvent)
     }
+  }
+}
+
+@Composable
+private fun TitleWithBetaTag(title: String) {
+  Row(
+    verticalAlignment = Alignment.CenterVertically,
+    horizontalArrangement = Arrangement.spacedBy(8.dp)
+  ) {
+    Text(
+      text = title,
+      style = MaterialTheme.typography.titleLarge,
+      modifier = Modifier.weight(1f, fill = false)
+    )
+
+    SignalLoginBetaTag()
   }
 }
 

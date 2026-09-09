@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Signal Login beta labeling -->
+    <!-- Tag shown beside the title of Signal Login screens, marking the feature as unfinished. Keep it short. -->
+    <string name="SignalLoginBeta__beta">BETA</string>
+    <!-- Disclaimer shown on Signal Login screens, warning that the feature is still changing. -->
+    <string name="SignalLoginBeta__this_is_a_beta_feature_that_will_be_updated">This is a Beta feature that will be updated on an ongoing basis.</string>
+
     <!-- Signal Login credential card -->
     <!-- Label for the account portion of the Signal Login on the credential card. -->
     <string name="SignalLoginCard__account">Account</string>

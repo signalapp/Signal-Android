@@ -9,6 +9,7 @@ import android.app.Application
 import androidx.compose.ui.autofill.ContentType
 import androidx.compose.ui.semantics.SemanticsProperties
 import androidx.compose.ui.semantics.getOrNull
+import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsEnabled
 import androidx.compose.ui.test.assertIsNotEnabled
 import androidx.compose.ui.test.junit4.createComposeRule
@@ -38,6 +39,7 @@ import org.signal.passwordmanager.UsernamePasswordCredential
 import org.signal.registration.screens.aepentry.AepInput
 import org.signal.registration.screens.shared.AccountIdError
 import org.signal.registration.test.TestTags
+import org.signal.signallogin.SignalLoginTestTags
 
 @RunWith(RobolectricTestRunner::class)
 @Config(application = Application::class)
@@ -59,6 +61,13 @@ class SignalLoginCredentialEntryScreenTest {
   @After
   fun tearDown() {
     unmockkAll()
+  }
+
+  @Test
+  fun `when the screen is displayed, the title is labelled beta`() {
+    setContent(SignalLoginCredentialEntryState())
+
+    composeTestRule.onNodeWithTag(SignalLoginTestTags.BETA_TAG).assertIsDisplayed()
   }
 
   @Test
