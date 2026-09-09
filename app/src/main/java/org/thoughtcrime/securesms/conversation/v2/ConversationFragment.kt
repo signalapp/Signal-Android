@@ -42,6 +42,7 @@ import android.view.ViewTreeObserver
 import android.view.WindowManager
 import android.view.animation.AnimationUtils
 import android.view.inputmethod.EditorInfo
+import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
@@ -98,6 +99,7 @@ import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -670,6 +672,23 @@ class ConversationFragment :
 
   private val scheduledMessagesStub: Stub<View> by lazy { Stub(binding.scheduledMessagesStub) }
 
+  /**
+   * The long press waiting on the keyboards to clear before the overlay can measure itself. The list
+   * has to stop taking taps for that whole wait, or a tap lands on a message that is about to be
+   * covered by the overlay.
+   */
+  private var pendingReactionOverlayJob: Job? = null
+
+  private val isReactionOverlayPending: Boolean
+    get() = pendingReactionOverlayJob?.isActive == true
+
+  /** Swallows list touches for the length of [pendingReactionOverlayJob]. */
+  private val pendingReactionOverlayTouchGuard = object : RecyclerView.OnItemTouchListener {
+    override fun onInterceptTouchEvent(recyclerView: RecyclerView, event: MotionEvent): Boolean = isReactionOverlayPending
+    override fun onTouchEvent(recyclerView: RecyclerView, event: MotionEvent) = Unit
+    override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) = Unit
+  }
+
   private val reactionDelegate: ConversationReactionDelegate by lazy(LazyThreadSafetyMode.NONE) {
     val conversationReactionStub = Stub<ConversationReactionOverlay>(binding.conversationReactionScrubberStub)
     val delegate = ConversationReactionDelegate(conversationReactionStub)
@@ -899,6 +918,10 @@ class ConversationFragment :
 
   override fun onPause() {
     super.onPause()
+
+    // Abandoned rather than resumed on the way back in, where the long press is no longer the last
+    // thing the user did.
+    pendingReactionOverlayJob?.cancel()
 
     ConversationUtil.refreshRecipientShortcuts()
 
@@ -2319,6 +2342,7 @@ class ConversationFragment :
     binding.conversationItemRecycler.layoutManager = layoutManager
     scrollListener = ScrollListener()
     binding.conversationItemRecycler.addOnScrollListener(scrollListener!!)
+    binding.conversationItemRecycler.addOnItemTouchListener(pendingReactionOverlayTouchGuard)
 
     adapter = ConversationAdapterV2(
       lifecycleOwner = viewLifecycleOwner,
@@ -3400,6 +3424,17 @@ class ConversationFragment :
     return isScrolledToBottom() || layoutManager.findFirstVisibleItemPosition() <= 0
   }
 
+  /**
+   * The open search view's text field, or null when search is closed. Focusing the [SearchView] itself
+   * does not bring the keyboard up, since the keyboard follows the focused field rather than its host.
+   */
+  private fun expandedSearchField(): EditText? {
+    return searchMenuItem
+      ?.takeIf { it.isActionViewExpanded }
+      ?.actionView
+      ?.findViewById(androidx.appcompat.R.id.search_src_text)
+  }
+
   private fun closeChatSearch() {
     isSearchRequested = false
     searchViewModel.onSearchClosed()
@@ -4132,8 +4167,9 @@ class ConversationFragment :
 
           // The overlay sizes itself to the content area, so every keyboard has to be all the way
           // out before it measures. Mid-animation it has half a screen to fit the menu into.
-          viewLifecycleOwner.lifecycleScope.launch {
-            container.hideAllAndAwaitSettled(composeText)
+          pendingReactionOverlayJob?.cancel()
+          pendingReactionOverlayJob = viewLifecycleOwner.lifecycleScope.launch {
+            container.hideAllAndAwaitSettled(composeText, conversationContent)
             showReactionOverlay(itemView, item, target, focusedView)
           }
         }
@@ -4230,7 +4266,11 @@ class ConversationFragment :
             multiselectItemDecoration.hideShade(binding.conversationItemRecycler)
             ViewUtil.fadeOut(binding.reactionsShade, resources.getInteger(R.integer.reaction_scrubber_hide_duration), View.GONE)
 
-            if (focusedView == composeText || searchMenuItem?.isActionViewExpanded == true) {
+            val searchField = expandedSearchField()
+            if (searchField != null && focusedView == searchField) {
+              // The input panel is gone while search is open, so composeText cannot take the keyboard back.
+              container.showSoftkey(searchField)
+            } else if (focusedView == composeText) {
               container.showSoftkey(composeText)
             }
           }

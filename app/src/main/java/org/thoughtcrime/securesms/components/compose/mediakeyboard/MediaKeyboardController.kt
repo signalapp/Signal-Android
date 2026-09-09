@@ -30,7 +30,7 @@ class MediaKeyboardController(initialKeyboardHeightPx: Int = 0) {
   var current: MediaKeyboardKey? by mutableStateOf(null)
     private set
 
-  /** Whether the system keyboard is up, as reported by the IME inset. */
+  /** Whether the system keyboard is up, as reported by the target of the IME inset animation. */
   var isSystemKeyboardVisible: Boolean by mutableStateOf(false)
     internal set
 

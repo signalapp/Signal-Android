@@ -11,6 +11,8 @@ import androidx.core.view.doOnNextLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.findFragment
 import androidx.lifecycle.Lifecycle
+import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlin.coroutines.resume
 
 var View.visible: Boolean
   get() {
@@ -46,6 +48,22 @@ inline fun View.doAfterNextLayout(crossinline action: () -> Unit) {
   doOnNextLayout {
     post { action() }
   }
+}
+
+/**
+ * The suspending form of [doAfterNextLayout]. Resumes once the traversal that laid this view out has
+ * finished, so a caller both reads the size it was just handed and is free to touch the hierarchy.
+ */
+suspend fun View.awaitAfterNextLayout(): Unit = suspendCancellableCoroutine { continuation ->
+  val listener = object : View.OnLayoutChangeListener {
+    override fun onLayoutChange(view: View, left: Int, top: Int, right: Int, bottom: Int, oldLeft: Int, oldTop: Int, oldRight: Int, oldBottom: Int) {
+      view.removeOnLayoutChangeListener(this)
+      view.post { continuation.resume(Unit) }
+    }
+  }
+
+  addOnLayoutChangeListener(listener)
+  continuation.invokeOnCancellation { removeOnLayoutChangeListener(listener) }
 }
 
 fun TextView.setRelativeDrawables(

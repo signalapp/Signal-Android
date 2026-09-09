@@ -19,9 +19,8 @@ import androidx.compose.foundation.layout.displayCutout
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.imeAnimationSource
+import androidx.compose.foundation.layout.ime
 import androidx.compose.foundation.layout.imeAnimationTarget
-import androidx.compose.foundation.layout.isImeVisible
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.onConsumedWindowInsetsChanged
 import androidx.compose.foundation.layout.safeDrawing
@@ -37,6 +36,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -58,7 +58,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.drop
+import kotlinx.coroutines.flow.dropWhile
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
 import org.signal.core.ui.getWindowSizeClass
@@ -108,7 +108,7 @@ fun MediaKeyboardScaffold(
   val registry = remember(keyboardsProvider) { MediaKeyboardRegistry().apply(keyboardsProvider) }
 
   val density = LocalDensity.current
-  val imeAnimationSource = WindowInsets.imeAnimationSource
+  val imeInsets = WindowInsets.ime
   val imeAnimationTarget = WindowInsets.imeAnimationTarget
   val windowHeightPx = LocalWindowInfo.current.containerSize.height
 
@@ -121,9 +121,16 @@ fun MediaKeyboardScaffold(
 
   val activeKey = controller.current?.takeIf { registry.isEnabled(it) }
 
-  // The target state, so it does not read as hidden for the whole closing animation.
-  val systemKeyboardVisible = WindowInsets.isImeVisible
-  val systemKeyboardAnimating = imeAnimationSource.getBottom(density) != imeAnimationTarget.getBottom(density)
+  // The target, so a hide reads as gone the moment it is asked for rather than a whole animation later.
+  val systemKeyboardVisible = imeAnimationTarget.getBottom(density) > 0
+
+  // Whether the live inset has yet to catch up with the target. Deliberately not imeAnimationSource,
+  // which the platform leaves behind whenever an animation ends without a duration to run down, and
+  // which would then read as animating until the next keyboard came and went. Derived, so the frames
+  // the live inset walks through are not each a recomposition.
+  val systemKeyboardAnimating by remember(imeInsets, imeAnimationTarget, density) {
+    derivedStateOf { imeInsets.getBottom(density) != imeAnimationTarget.getBottom(density) }
+  }
 
   // Written together, so nothing waiting on the controller can see a keyboard that is neither
   // visible nor still animating out.
@@ -162,11 +169,13 @@ fun MediaKeyboardScaffold(
       }
   }
 
-  LaunchedEffect(imeAnimationSource, imeAnimationTarget, density) {
-    snapshotFlow { imeAnimationSource.getBottom(density) == imeAnimationTarget.getBottom(density) }
+  // dropWhile rather than drop, so a composition that starts mid-animation still reports the settle
+  // it is in the middle of instead of swallowing it as the initial state.
+  LaunchedEffect(imeInsets, imeAnimationTarget, density) {
+    snapshotFlow { imeInsets.getBottom(density) == imeAnimationTarget.getBottom(density) }
       .distinctUntilChanged()
+      .dropWhile { settled -> settled }
       .filter { settled -> settled }
-      .drop(1)
       .collect {
         controller.awaitingSystemKeyboard = false
         onEvent(MediaKeyboardEvents.SystemKeyboardAnimationEnded)
@@ -232,7 +241,7 @@ fun MediaKeyboardScaffold(
   }
 
   val systemKeyboardTakingOverSpace = activeKey == null &&
-    (controller.awaitingSystemKeyboard || (imeAnimationTarget.getBottom(density) > 0 && systemKeyboardAnimating))
+    (controller.awaitingSystemKeyboard || (systemKeyboardVisible && systemKeyboardAnimating))
 
   val claimedBottomPx = {
     if (activeKey != null) {
