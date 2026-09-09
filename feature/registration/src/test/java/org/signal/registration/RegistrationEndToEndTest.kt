@@ -1896,36 +1896,6 @@ class RegistrationEndToEndTest {
   }
 
   @Test
-  fun `a reglock the entered recovery key cannot derive falls back to asking for the pin`() {
-    enableSignalLoginRegistration()
-    val login = SignalLogin(ACI.from(UUID.randomUUID()), AccountEntropyPool.generate())
-
-    networkController.onRegisterAccount = {
-      RequestResult.NonSuccess(
-        RegisterAccountError.RegistrationLock(
-          RegistrationLockResponse(
-            timeRemaining = 14.days.inWholeMilliseconds,
-            svr2Credentials = SvrCredentials(username = "svr-user", password = "svr-pass")
-          )
-        )
-      )
-    }
-
-    launchRegistrationFlow()
-
-    startSignalLoginRegistration()
-    useExistingSignalLogin()
-    enterSignalLogin(login)
-
-    // The account's reglock isn't the one the recovery key derives, so the PIN behind it is the only way in
-    waitForTag(TestTags.PIN_ENTRY_SCREEN)
-    assert(networkController.lastRegisterAccountRequest?.registrationLock == login.aep.deriveMasterKey().deriveRegistrationLock()) {
-      "Expected the derived reglock to have been tried before falling back but was ${networkController.lastRegisterAccountRequest}"
-    }
-    assert(storageController.committedData == null) { "Expected no registration data to be committed while still locked out" }
-  }
-
-  @Test
   fun `restoring a remote backup after logging in with a signal login completes registration without a pin`() {
     enableSignalLoginRegistration()
     val login = signalLoginFor(reregistration = true)

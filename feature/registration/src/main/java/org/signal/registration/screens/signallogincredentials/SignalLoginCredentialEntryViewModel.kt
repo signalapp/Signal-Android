@@ -225,19 +225,12 @@ class SignalLoginCredentialEntryViewModel(
             stateEmitter(inputState.copy(isLoggingIn = false, areCredentialsIncorrect = true))
           }
           is RegisterAccountError.RegistrationLock -> {
-            if (provideRegistrationLock) {
-              Log.w(TAG, "[Next] Still registration locked after providing the reglock token derived from the recovery key. Falling back to PIN entry.")
-              stateEmitter(inputState.copy(isLoggingIn = false))
-              parentEventEmitter.navigateTo(
-                RegistrationRoute.PinEntryForRegistrationLock(
-                  timeRemaining = error.data.timeRemaining,
-                  svrCredentials = error.data.svr2Credentials
-                )
-              )
-            } else {
-              Log.w(TAG, "[Next] Registration locked. Retrying with the reglock token derived from the recovery key.")
-              attemptToLogIn(inputState, aci, aep, totp, provideRegistrationLock = true, parentEventEmitter, stateEmitter)
-            }
+            // An account with no phone number can't have a registration lock enabled in the first place, and the only
+            // PIN that could clear one is behind a phone number we don't have. There is nothing to fall back to.
+            check(!provideRegistrationLock) { "[Next] Still registration locked after providing the reglock derived from the recovery key. A phone-numberless account cannot be registration locked!" }
+
+            Log.w(TAG, "[Next] Registration locked. Retrying with the reglock token derived from the recovery key.")
+            attemptToLogIn(inputState, aci, aep, totp, provideRegistrationLock = true, parentEventEmitter, stateEmitter)
           }
           is RegisterAccountError.RateLimited -> {
             Log.w(TAG, "[Next] Rate limited (retryAfter: ${error.retryAfter}).")

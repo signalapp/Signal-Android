@@ -5,6 +5,7 @@
 
 package org.signal.registration.screens.signallogincredentials
 
+import assertk.assertFailure
 import assertk.assertThat
 import assertk.assertions.containsExactly
 import assertk.assertions.hasSize
@@ -411,18 +412,13 @@ class SignalLoginCredentialEntryViewModelTest {
   }
 
   @Test
-  fun `NextClicked still registration locked after providing the reglock token falls back to PIN entry`() = runTest(testDispatcher) {
+  fun `NextClicked still registration locked after providing the reglock token throws, since there is nothing to fall back to`() = runTest(testDispatcher) {
     coEvery { mockRepository.reRegisterAccountWithoutPhoneNumber(any(), any(), any(), any(), any()) } returns
       RequestResult.NonSuccess(RegisterAccountError.RegistrationLock(registrationLockResponse()))
 
-    applyEvent(completeState(), SignalLoginCredentialEntryScreenEvents.NextClicked)
-
-    assertThat(emittedStates.last().isLoggingIn).isEqualTo(false)
-    assertThat(emittedParentEvents).hasSize(2)
-    assertThat(emittedParentEvents[1])
-      .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
-      .prop(RegistrationFlowEvent.NavigateToScreen::route)
-      .isInstanceOf<RegistrationRoute.PinEntryForRegistrationLock>()
+    assertFailure {
+      applyEvent(completeState(), SignalLoginCredentialEntryScreenEvents.NextClicked)
+    }.isInstanceOf<IllegalStateException>()
   }
 
   @Test
