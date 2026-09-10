@@ -90,6 +90,7 @@ import org.thoughtcrime.securesms.webrtc.CallParticipantsViewState
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager.ChosenAudioDeviceIdentifier
 import org.whispersystems.signalservice.api.messages.calls.HangupMessage
+import kotlin.math.roundToInt
 import kotlin.time.Duration.Companion.seconds
 
 /** Conversion */
@@ -103,6 +104,14 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
     private const val CUSTOM_REACTION_BOTTOM_SHEET_TAG = "CallReaction"
     private const val SAVED_STATE_PIP_ASPECT_RATIO = "pip_aspect_ratio"
     private const val SAVED_STATE_LOCAL_PARTICIPANT_LANDSCAPE = "local_participant_landscape"
+
+    /**
+     * The system rejects picture-in-picture aspect ratios outside of [1/2.39, 2.39] with an
+     * IllegalArgumentException. We stay a hair inside those bounds so that rounding when converting
+     * to a [Rational] can never push us back over the line.
+     */
+    private const val MIN_PIP_ASPECT_RATIO = 0.42f
+    private const val MAX_PIP_ASPECT_RATIO = 2.38f
   }
 
   private lateinit var callScreen: CallScreenMediator
@@ -694,7 +703,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
     // Ignore invalid aspect ratios (uninitialized texture view, video off, etc.)
     if (aspectRatio <= 0f) return
 
-    val clampedAspectRatio = aspectRatio.coerceIn(0.41f, 2.39f)
+    val clampedAspectRatio = aspectRatio.coerceIn(MIN_PIP_ASPECT_RATIO, MAX_PIP_ASPECT_RATIO)
 
     // Only update if aspect ratio changed meaningfully (>10%) to avoid feedback loops from noise
     val changeRatio = if (lastPipAspectRatio > 0f) {
@@ -713,7 +722,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
 
   private fun floatToRational(value: Float): Rational {
     val denominator = 1000
-    val numerator = (value * denominator).toInt()
+    val numerator = (value.coerceIn(MIN_PIP_ASPECT_RATIO, MAX_PIP_ASPECT_RATIO) * denominator).roundToInt()
     return Rational(numerator, denominator)
   }
 
