@@ -17,7 +17,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.debounce
-import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -70,7 +69,6 @@ class AddUsernameViewModel(
       .launchIn(viewModelScope)
 
     entryChanges
-      .distinctUntilChanged()
       .debounce(ENTRY_DEBOUNCE)
       .onEach { onEvent(it) }
       .launchIn(viewModelScope)
@@ -90,6 +88,7 @@ class AddUsernameViewModel(
     when (event) {
       is AddUsernameScreenEvents.UsernameChanged -> applyUsernameChanged(state, event.value, stateEmitter)
       is AddUsernameScreenEvents.DiscriminatorChanged -> applyDiscriminatorChanged(state, event.value, stateEmitter)
+      is AddUsernameScreenEvents.DiscriminatorFocusLost -> applyDiscriminatorFocusLost(state)
       is AddUsernameScreenEvents.EntrySettled -> applyEntrySettled(state, event, stateEmitter)
       is AddUsernameScreenEvents.ReservationCompleted -> applyReservationCompleted(state, event, stateEmitter)
       is AddUsernameScreenEvents.LearnMoreClicked -> _actions.trySend(AddUsernameScreenActions.OpenLearnMoreArticle)
@@ -124,8 +123,9 @@ class AddUsernameViewModel(
   }
 
   /**
-   * Non-digits are dropped as they're typed, since a discriminator can only ever be digits. A blank discriminator hands
-   * control back to the service, matching the behavior of clearing the field in the app's username editor.
+   * Non-digits are dropped as they're typed, since a discriminator can only ever be digits.
+   *
+   * Emptying the field hands control back to the service once the field loses focus (see [applyDiscriminatorFocusLost]).
    */
   private fun applyDiscriminatorChanged(state: AddUsernameState, discriminator: String, stateEmitter: (AddUsernameState) -> Unit) {
     val digitsOnly = discriminator.filter { it in '0'..'9' }
@@ -141,14 +141,31 @@ class AddUsernameViewModel(
       discriminator = digitsOnly,
       isDiscriminatorUserSet = isUserSet,
       validationError = null,
-      reservation = null,
+      reservation = if (isUserSet) null else state.reservation,
       isReserving = false
     )
 
     stateEmitter(updated)
-    scheduleReservation(updated)
+
+    if (isUserSet) {
+      scheduleReservation(updated)
+    }
   }
 
+  /**
+   * Reserves right away rather than through [scheduleReservation], since focus loss already means the user is done
+   * typing and there is nothing left to debounce.
+   */
+  private fun applyDiscriminatorFocusLost(state: AddUsernameState) {
+    if (state.discriminator.isBlank() && state.username.isNotBlank()) {
+      onEvent(AddUsernameScreenEvents.EntrySettled(state.username, null))
+    }
+  }
+
+  /**
+   * Deliberately not de-duplicated: the entry can travel away from a pair and back to it, and those repeats still need
+   * a fresh reservation.
+   */
   private fun scheduleReservation(state: AddUsernameState) {
     if (state.username.isNotBlank()) {
       entryChanges.tryEmit(AddUsernameScreenEvents.EntrySettled(state.username, state.requestedDiscriminator))

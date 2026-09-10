@@ -33,13 +33,18 @@ import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -334,6 +339,8 @@ private fun DiscriminatorField(
 ) {
   val textStyle = LocalTextStyle.current.copy(color = MaterialTheme.colorScheme.onSurface)
   val textMeasurer = rememberTextMeasurer()
+  val focusManager = LocalFocusManager.current
+  var wasFocused by remember { mutableStateOf(false) }
 
   val width = with(LocalDensity.current) {
     val content = textMeasurer.measure(state.discriminator, textStyle).size.width
@@ -354,13 +361,21 @@ private fun DiscriminatorField(
     ),
     keyboardActions = KeyboardActions(
       onDone = {
-        if (state.isSubmittable) {
+        if (state.discriminator.isBlank()) {
+          focusManager.clearFocus()
+        } else if (state.isSubmittable) {
           onEvent(AddUsernameScreenEvents.NextClicked)
         }
       }
     ),
     modifier = Modifier
       .width(width)
+      .onFocusChanged { focusState ->
+        if (wasFocused && !focusState.isFocused) {
+          onEvent(AddUsernameScreenEvents.DiscriminatorFocusLost)
+        }
+        wasFocused = focusState.isFocused
+      }
       .testTag(TestTags.ADD_USERNAME_DISCRIMINATOR_FIELD)
   )
 }

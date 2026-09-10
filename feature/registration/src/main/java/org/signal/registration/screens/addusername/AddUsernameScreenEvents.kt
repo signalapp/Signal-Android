@@ -21,6 +21,9 @@ sealed class AddUsernameScreenEvents {
     override fun toString(): String = "DiscriminatorChanged(value=${value.censor()})"
   }
 
+  /** The discriminator field lost focus, settling whatever the user left in it. */
+  data object DiscriminatorFocusLost : AddUsernameScreenEvents()
+
   /**
    * Internal: the user paused typing long enough for the entered username to be validated and reserved. A null
    * [discriminator] means the service should assign one.
