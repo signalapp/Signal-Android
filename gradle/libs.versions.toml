@@ -34,6 +34,7 @@ nanohttpd = "2.3.1"
 navigation-safe-args-gradle-plugin = "2.9.8"
 protobuf-gradle-plugin = "0.10.0"
 ktlint = "14.2.0"
+wire-gradle-plugin = "6.4.5"
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "android-gradle-plugin" }
@@ -50,6 +51,7 @@ kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", vers
 gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
 android-library = { module = "com.android.library:com.android.library.gradle.plugin", version.ref = "android-gradle-plugin" }
 android-application = { module = "com.android.application:com.android.application.gradle.plugin", version.ref = "android-gradle-plugin" }
+wire-plugin = { module = "com.squareup.wire:wire-gradle-plugin", version.ref = "wire-gradle-plugin" }
 androidx-benchmark-gradle-plugin = "androidx.benchmark:benchmark-gradle-plugin:1.4.1"
 
 # Compose
