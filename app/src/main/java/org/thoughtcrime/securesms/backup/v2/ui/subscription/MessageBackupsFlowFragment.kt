@@ -65,7 +65,6 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
 
     @VisibleForTesting
     const val TIER = "tier"
-    const val CLIPBOARD_TIMEOUT_SECONDS = 60
 
     private const val PDF_MIME_TYPE = "application/pdf"
 
@@ -192,7 +191,7 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
               onSaveSuccessful = viewModel::onBackupKeySavedToPasswordManager
             )
           },
-          onCopyToClipboardClick = { Util.copyToClipboard(context, it, CLIPBOARD_TIMEOUT_SECONDS) },
+          onCopyToClipboardClick = { Util.copyToClipboardSensitive(context, it) },
           onRequestSaveToPasswordManager = viewModel::onBackupKeySaveRequested,
           onConfirmSaveToPasswordManager = viewModel::onBackupKeySaveConfirmed,
           onSaveStateCleared = viewModel::onBackupKeySaveStateCleared,
@@ -212,7 +211,7 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
           canOpenPasswordManagerSettings = passwordManagerSettingsIntent != null,
           onNavigationClick = viewModel::goToPreviousStage,
           mode = remember { MessageBackupsKeyRecordMode.Next(viewModel::goToNextStage) },
-          onCopyToClipboardClick = { Util.copyToClipboard(context, it, CLIPBOARD_TIMEOUT_SECONDS) },
+          onCopyToClipboardClick = { Util.copyToClipboardSensitive(context, it) },
           onRequestSaveToPasswordManager = viewModel::onBackupKeySaveRequested,
           onConfirmSaveToPasswordManager = viewModel::onBackupKeySaveConfirmed,
           onSaveToPasswordManagerComplete = viewModel::onBackupKeySaveCompleted,
@@ -337,7 +336,7 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
         }
       }
       SignalLoginViewDetailsAction.LaunchSaveAsPdf -> savePdfLauncher.launch(SignalLoginPdfRenderer.suggestedFileName(requireContext()))
-      is SignalLoginViewDetailsAction.CopyTextToClipboard -> Util.copyToClipboard(requireContext(), action.text, CLIPBOARD_TIMEOUT_SECONDS)
+      is SignalLoginViewDetailsAction.CopyTextToClipboard -> Util.copyToClipboardSensitive(requireContext(), action.text)
     }
   }
 

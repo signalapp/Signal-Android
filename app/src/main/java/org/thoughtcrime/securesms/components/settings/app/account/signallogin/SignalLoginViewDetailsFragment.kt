@@ -28,10 +28,6 @@ import org.thoughtcrime.securesms.components.TemporaryScreenshotSecurity
  */
 class SignalLoginViewDetailsFragment : ComposeFragment() {
 
-  companion object {
-    private const val CLIPBOARD_TIMEOUT_SECONDS = 60
-  }
-
   private val viewModel: SignalLoginViewDetailsViewModel by viewModels()
 
   private val savePdfLauncher = registerForActivityResult(ActivityResultContracts.CreateDocument("application/pdf")) { uri: Uri? ->
@@ -73,7 +69,7 @@ class SignalLoginViewDetailsFragment : ComposeFragment() {
         }
       }
       SignalLoginViewDetailsAction.LaunchSaveAsPdf -> savePdfLauncher.launch(SignalLoginPdfRenderer.suggestedFileName(requireContext()))
-      is SignalLoginViewDetailsAction.CopyTextToClipboard -> Util.copyToClipboard(requireContext(), action.text, CLIPBOARD_TIMEOUT_SECONDS)
+      is SignalLoginViewDetailsAction.CopyTextToClipboard -> Util.copyToClipboardSensitive(requireContext(), action.text)
     }
   }
 }

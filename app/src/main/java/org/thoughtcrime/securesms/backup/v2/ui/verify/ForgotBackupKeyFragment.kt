@@ -16,10 +16,6 @@ import org.thoughtcrime.securesms.util.viewModel
  */
 class ForgotBackupKeyFragment : ComposeFragment() {
 
-  companion object {
-    const val CLIPBOARD_TIMEOUT_SECONDS = 60
-  }
-
   private val viewModel: ForgotBackupKeyViewModel by viewModel { ForgotBackupKeyViewModel() }
 
   @Composable

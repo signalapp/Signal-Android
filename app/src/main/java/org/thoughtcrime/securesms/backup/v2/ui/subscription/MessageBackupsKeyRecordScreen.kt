@@ -91,8 +91,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.signal.core.ui.R as CoreUiR
 
-private const val CLIPBOARD_TIMEOUT_SECONDS = 60
-
 @Stable
 sealed interface MessageBackupsKeyRecordMode {
   data class Next(val onNextClick: () -> Unit) : MessageBackupsKeyRecordMode
@@ -133,7 +131,7 @@ fun MessageBackupsKeyRecordScreen(
     keySaveState = keySaveState,
     canOpenPasswordManagerSettings = passwordManagerSettingsIntent != null,
     onNavigationClick = { onBackPressedDispatcher?.onBackPressed() },
-    onCopyToClipboardClick = { Util.copyToClipboard(context, it, CLIPBOARD_TIMEOUT_SECONDS) },
+    onCopyToClipboardClick = { Util.copyToClipboardSensitive(context, it) },
     onRequestSaveToPasswordManager = backupKeyCredentialManagerHandler::onBackupKeySaveRequested,
     onConfirmSaveToPasswordManager = backupKeyCredentialManagerHandler::onBackupKeySaveConfirmed,
     onSaveToPasswordManagerComplete = backupKeyCredentialManagerHandler::onBackupKeySaveCompleted,

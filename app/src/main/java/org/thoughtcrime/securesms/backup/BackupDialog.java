@@ -2,8 +2,6 @@ package org.thoughtcrime.securesms.backup;
 
 
 import android.content.ActivityNotFoundException;
-import android.content.ClipData;
-import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -38,6 +36,7 @@ import org.thoughtcrime.securesms.util.text.AfterTextChanged;
 public class BackupDialog {
 
   private static final String TAG = Log.tag(BackupDialog.class);
+
 
   public static void showEnableBackupDialog(@NonNull Context context,
                                             @Nullable Intent backupDirectorySelectionIntent,
@@ -103,7 +102,7 @@ public class BackupDialog {
     textView.setOnClickListener(v -> checkBox.toggle());
 
     dialog.findViewById(R.id.number_table).setOnClickListener(v -> {
-      ((ClipboardManager)context.getSystemService(Context.CLIPBOARD_SERVICE)).setPrimaryClip(ClipData.newPlainText("text", Util.join(password, " ")));
+      Util.copyToClipboardSensitive(context, Util.join(password, " "));
       Toast.makeText(context, R.string.BackupDialog_copied_to_clipboard, Toast.LENGTH_LONG).show();
     });
 

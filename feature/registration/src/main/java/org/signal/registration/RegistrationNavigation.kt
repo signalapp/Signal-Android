@@ -411,7 +411,6 @@ private const val AEP_FOR_LOCAL_BACKUP_RESULT = "aep_for_local_backup_result"
 private const val LOCAL_BACKUP_RESTORE_RESULT = "local_backup_restore_result"
 private const val PHONE_NUMBER_DISCOVERABILITY_RESULT = "phone_number_discoverability_result"
 private const val TWO_FACTOR_CODE_RESULT = "two_factor_code_result"
-private const val CLIPBOARD_TIMEOUT_SECONDS = 60
 
 /** Opens [url] in a browser, surfacing a toast if the device has none. */
 private fun openUrl(context: Context, url: String) {
@@ -852,7 +851,7 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
 
         SignalLoginViewDetailsScreenActions.LaunchSaveAsPdf -> savePdfLauncher.launch(SignalLoginPdfRenderer.suggestedFileName(context))
 
-        is SignalLoginViewDetailsScreenActions.CopyTextToClipboard -> Util.copyToClipboard(context, action.text, CLIPBOARD_TIMEOUT_SECONDS)
+        is SignalLoginViewDetailsScreenActions.CopyTextToClipboard -> Util.copyToClipboardSensitive(context, action.text)
       }
     }
 
@@ -889,7 +888,7 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
       when (action) {
         SignalLoginViewDetailsForManualSaveScreenActions.LaunchSaveAsPdf -> savePdfLauncher.launch(SignalLoginPdfRenderer.suggestedFileName(context))
 
-        is SignalLoginViewDetailsForManualSaveScreenActions.CopyTextToClipboard -> Util.copyToClipboard(context, action.text, CLIPBOARD_TIMEOUT_SECONDS)
+        is SignalLoginViewDetailsForManualSaveScreenActions.CopyTextToClipboard -> Util.copyToClipboardSensitive(context, action.text)
       }
     }
 
