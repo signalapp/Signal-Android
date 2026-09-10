@@ -33,6 +33,7 @@ public class UiHintValues extends SignalStoreValues {
   private static final String HAS_SEEN_VERIFY_AUTO_SHEET                        = "uihints.has_seen_verify_auto_sheet";
   private static final String HAS_DISMISSED_MEMBER_LABEL_ABOUT_OVERRIDE_WARNING = "uihints.has_dismissed_member_label_about_override_warning";
   private static final String HAS_SEEN_ADMIN_DELETE_EDUCATION_DIALOG            = "uihints.has_seen_admin_delete_education_dialog";
+  private static final String DISMISSED_SET_UP_USERNAME_BANNER                  = "uihints.dismissed_set_up_username_banner";
 
   UiHintValues(@NonNull KeyValueStore store) {
     super(store);
@@ -70,6 +71,14 @@ public class UiHintValues extends SignalStoreValues {
 
   public boolean hasConfirmedDeleteForEveryoneOnce() {
     return getBoolean(HAS_CONFIRMED_DELETE_FOR_EVERYONE_ONCE, false);
+  }
+
+  public void markHasDismissedSetUpUsernameBanner() {
+    putBoolean(DISMISSED_SET_UP_USERNAME_BANNER, true);
+  }
+
+  public boolean hasDismissedSetUpUsernameBanner() {
+    return getBoolean(DISMISSED_SET_UP_USERNAME_BANNER, false);
   }
 
   public boolean hasSetOrSkippedUsernameCreation() {

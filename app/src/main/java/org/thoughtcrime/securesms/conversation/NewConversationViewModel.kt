@@ -34,7 +34,13 @@ class NewConversationViewModel : ViewModel() {
     private val TAG = Log.tag(NewConversationViewModel::class)
   }
 
-  private val internalUiState = MutableStateFlow(NewConversationUiState())
+  private val internalUiState = MutableStateFlow(
+    NewConversationUiState(
+      showSetUpUsernameBanner = SignalStore.account.isPhoneNumberless &&
+        SignalStore.account.username == null &&
+        !SignalStore.uiHints.hasDismissedSetUpUsernameBanner()
+    )
+  )
   val uiState: StateFlow<NewConversationUiState> = internalUiState.asStateFlow()
 
   private val contactsManagementRepo = ContactsManagementRepository(AppDependencies.application)
@@ -176,6 +182,11 @@ class NewConversationViewModel : ViewModel() {
   fun clearUserMessage() {
     internalUiState.update { it.copy(userMessage = null) }
   }
+
+  fun dismissSetUpUsernameBanner() {
+    SignalStore.uiHints.markHasDismissedSetUpUsernameBanner()
+    internalUiState.update { it.copy(showSetUpUsernameBanner = false) }
+  }
 }
 
 data class NewConversationUiState(
@@ -184,7 +195,8 @@ data class NewConversationUiState(
   val isRefreshingContacts: Boolean = false,
   val shouldResetContactsList: Boolean = false,
   val pendingDestination: RecipientId? = null,
-  val userMessage: UserMessage? = null
+  val userMessage: UserMessage? = null,
+  val showSetUpUsernameBanner: Boolean = false
 ) {
   sealed interface UserMessage {
     sealed interface Info : UserMessage {

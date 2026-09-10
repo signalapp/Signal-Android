@@ -3513,6 +3513,14 @@
     <!-- Button label that dismisses the screen without creating a username -->
     <string name="ConnectWithUsernamesDialogFragment__not_now">Not now</string>
 
+    <!-- SetUpUsernameBanner -->
+    <!-- Body of a banner on the new message screen prompting the user to create a username -->
+    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">Choose a username so others can connect with you.</string>
+    <!-- Button label that takes the user to the username creation screen -->
+    <string name="SetUpUsernameBanner__set_up">Set up</string>
+    <!-- Accessibility label for the button that permanently dismisses the banner -->
+    <string name="SetUpUsernameBanner__dismiss">Dismiss</string>
+
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">Play video</string>
     <!-- Content description to describe an icon that indicates a video has captions -->

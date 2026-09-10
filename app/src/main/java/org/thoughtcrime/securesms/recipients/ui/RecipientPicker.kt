@@ -83,7 +83,8 @@ fun RecipientPicker(
   listBottomPadding: Dp? = null,
   clipListToPadding: Boolean = ContactSelectionArguments.Defaults.RECYCLER_CHILD_CLIPPING,
   callbacks: RecipientPickerCallbacks,
-  modifier: Modifier = Modifier
+  modifier: Modifier = Modifier,
+  belowSearchBar: @Composable () -> Unit = {}
 ) {
   Column(
     modifier = modifier
@@ -113,6 +114,8 @@ fun RecipientPicker(
         .fillMaxWidth()
         .padding(horizontal = 16.dp)
     )
+
+    belowSearchBar()
 
     RecipientSearchResultsList(
       displayModes = displayModes,
