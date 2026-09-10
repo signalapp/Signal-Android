@@ -21,15 +21,12 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -41,7 +38,6 @@ import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.registration.R
 import org.signal.registration.screens.OnePaneRegistrationScaffold
@@ -121,7 +117,6 @@ private fun SaveNotConfirmedDialog(onEvent: (SignalLoginInfoScreenEvents) -> Uni
   )
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun OnePaneLayout(
   params: RegistrationScaffold.Params.OnePane,
@@ -129,16 +124,13 @@ private fun OnePaneLayout(
   onEvent: (SignalLoginInfoScreenEvents) -> Unit
 ) {
   val scrollState = rememberScrollState()
-  val topBarScrollBehavior = RegistrationScaffold.rememberTopBarScrollBehavior()
 
   OnePaneRegistrationScaffold(
     params = params,
-    topBar = { TopBar(scrollBehavior = topBarScrollBehavior) },
     content = { paddingValues ->
       Column(
         modifier = Modifier
           .fillMaxSize()
-          .nestedScroll(topBarScrollBehavior.nestedScrollConnection)
           .verticalScroll(scrollState)
           .padding(paddingValues)
       ) {
@@ -157,7 +149,6 @@ private fun OnePaneLayout(
   )
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun TwoPaneLayout(
   params: RegistrationScaffold.Params.TwoPane,
@@ -166,17 +157,14 @@ private fun TwoPaneLayout(
 ) {
   val firstPaneScrollState = rememberScrollState()
   val secondPaneScrollState = rememberScrollState()
-  val topBarScrollBehavior = RegistrationScaffold.rememberTopBarScrollBehavior()
 
   TwoPaneRegistrationScaffold(
     params = params,
-    topBar = { TopBar(scrollBehavior = topBarScrollBehavior) },
     firstPane = { paddingValues ->
       Column(
         modifier = Modifier
           .weight(1f)
           .fillMaxHeight()
-          .nestedScroll(topBarScrollBehavior.nestedScrollConnection)
           .verticalScroll(firstPaneScrollState)
           .padding(paddingValues)
       ) {
@@ -187,7 +175,6 @@ private fun TwoPaneLayout(
       Column(
         modifier = Modifier
           .weight(1f)
-          .nestedScroll(topBarScrollBehavior.nestedScrollConnection)
           .verticalScroll(secondPaneScrollState)
           .padding(paddingValues),
         verticalArrangement = Arrangement.Center
@@ -200,22 +187,6 @@ private fun TwoPaneLayout(
       }
     },
     footer = { Footer(params, state, firstPaneScrollState.canScrollForward || secondPaneScrollState.canScrollForward, onEvent) }
-  )
-}
-
-/**
- * Title-less top app bar with no navigation icon: registration is already complete at this point, so there is nothing
- * to go back to.
- */
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-private fun TopBar(scrollBehavior: TopAppBarScrollBehavior) {
-  Scaffolds.DefaultTopAppBar(
-    title = "",
-    titleContent = { _, _ -> },
-    onNavigationClick = { },
-    navigationIcon = null,
-    scrollBehavior = scrollBehavior
   )
 }
 
