@@ -81,6 +81,11 @@ object Dialogs {
   const val TEST_TAG_ADVANCED_ALERT_DIALOG_NEUTRAL_BUTTON = "dialog-advanced-neutral-button"
   const val TEST_TAG_ADVANCED_ALERT_DIALOG_NEGATIVE_BUTTON = "dialog-advanced-negative-button"
 
+  /** Suffixed with the index of the option the row renders. */
+  const val TEST_TAG_RADIO_LIST_DIALOG_OPTION = "dialog-radio-list-option"
+
+  fun testTagRadioListDialogOption(index: Int) = "$TEST_TAG_RADIO_LIST_DIALOG_OPTION:$index"
+
   object Defaults {
     val shape: Shape @Composable get() = RoundedCornerShape(28.dp)
     val containerColor: Color @Composable get() = SignalTheme.colors.colorSurface1
@@ -601,6 +606,7 @@ object Dialogs {
                     }
                   )
                   .horizontalGutters()
+                  .testTag(testTagRadioListDialogOption(index))
               ) {
                 RadioButton(
                   enabled = true,

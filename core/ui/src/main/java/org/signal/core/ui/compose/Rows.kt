@@ -153,6 +153,7 @@ object Rows {
     values: Array<String>,
     selectedValue: String,
     onSelected: (String) -> Unit,
+    modifier: Modifier = Modifier,
     enabled: Boolean = true
   ) {
     RadioListRow(
@@ -173,6 +174,7 @@ object Rows {
       values = values,
       selectedValue = selectedValue,
       onSelected = onSelected,
+      modifier = modifier,
       enabled = enabled
     )
   }
@@ -185,6 +187,7 @@ object Rows {
     values: Array<String>,
     selectedValue: String,
     onSelected: (String) -> Unit,
+    modifier: Modifier = Modifier,
     enabled: Boolean = true
   ) {
     val selectedIndex = values.indexOf(selectedValue)
@@ -196,7 +199,7 @@ object Rows {
       onClick = {
         displayDialog = true
       },
-      modifier = Modifier.alpha(if (enabled) 1f else DISABLED_ALPHA)
+      modifier = modifier.alpha(if (enabled) 1f else DISABLED_ALPHA)
     )
 
     if (displayDialog) {
