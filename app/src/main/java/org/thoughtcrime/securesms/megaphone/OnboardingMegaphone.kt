@@ -8,11 +8,16 @@ package org.thoughtcrime.securesms.megaphone
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.VisibilityThreshold
+import androidx.compose.animation.core.spring
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -20,7 +25,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -43,6 +48,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.IconButtons
@@ -97,9 +103,15 @@ fun OnboardingMegaphone(
     }
 
     LazyRow(
-      modifier = Modifier.padding(top = 10.dp)
+      contentPadding = PaddingValues(start = 16.dp),
+      modifier = Modifier
+        .fillMaxWidth()
+        .padding(top = 10.dp)
     ) {
-      itemsIndexed(items = onboardingItems) { idx, item ->
+      items(
+        items = onboardingItems,
+        key = { it.name }
+      ) { item ->
         OnboardingMegaphoneListItem(
           onboardingListItem = item,
           onActionClick = {
@@ -108,7 +120,11 @@ fun OnboardingMegaphone(
           onCloseClick = {
             onboardingState.onItemCloseClick(item)
           },
-          modifier = if (idx == 0) Modifier.padding(start = 16.dp) else Modifier
+          modifier = Modifier.animateItem(
+            fadeInSpec = tween(durationMillis = 150),
+            fadeOutSpec = tween(durationMillis = 150),
+            placementSpec = spring(stiffness = Spring.StiffnessMediumLow, visibilityThreshold = IntOffset.VisibilityThreshold)
+          )
         )
       }
     }
