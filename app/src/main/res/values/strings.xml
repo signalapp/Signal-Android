@@ -1583,7 +1583,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Your username, QR code and link aren\'t visible on your profile. Only share your username with people you trust.</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-    <string name="ManageProfileFragment__username_footer_no_username">People can now message you using your optional username so you don\'t have to give out your phone number. </string>
+    <string name="ManageProfileFragment__username_footer_no_username">People can message you using an optional username instead of a phone number. Usernames have a unique QR code and link you can share with friends.</string>
     <string name="ManageProfileFragment_profile_name">Profile name</string>
     <string name="ManageProfileFragment_username">Username</string>
     <string name="ManageProfileFragment_about">About</string>
@@ -3195,7 +3195,7 @@
     <string name="UsernameEditFragment_username_is_invalid">Username is invalid.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Usernames must be between %1$d and %2$d characters.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">Usernames are always paired with a set of numbers.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">People can message you using your optional username instead of a phone number. Usernames are always paired with a set of numbers.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">What is this number?</string>
     <string name="UsernameEditFragment__these_digits_help_keep">These digits help keep your username private so you can avoid unwanted messages. Share your username with only the people and groups you\'d like to chat with. If you change usernames you\'ll get a new set of digits.</string>
