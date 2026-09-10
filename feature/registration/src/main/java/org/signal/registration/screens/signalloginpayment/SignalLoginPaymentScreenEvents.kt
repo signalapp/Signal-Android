@@ -11,6 +11,9 @@ sealed class SignalLoginPaymentScreenEvents {
   /** Emitted once when the screen is created to load initial data (namely the purchase price) into the state. */
   data object Initialize : SignalLoginPaymentScreenEvents()
 
+  /** The screen came back to the foreground, which is the cue to re-check anything the user went off to fix. */
+  data object Foregrounded : SignalLoginPaymentScreenEvents()
+
   /** The user tapped the back arrow. */
   data object BackClicked : SignalLoginPaymentScreenEvents()
 
@@ -52,4 +55,13 @@ sealed class SignalLoginPaymentScreenEvents {
 
   /** The user dismissed the invalid-receipt-credential dialog. */
   data object InvalidReceiptCredentialDialogDismissed : SignalLoginPaymentScreenEvents()
+
+  /** The user asked to install or update Google Play services from the dialog explaining that it is not usable. */
+  data object MakeGooglePlayServicesAvailableClicked : SignalLoginPaymentScreenEvents()
+
+  /** The user asked to open the Play Store so they can sign into it. */
+  data object OpenPlayStoreClicked : SignalLoginPaymentScreenEvents()
+
+  /** The user dismissed the dialog explaining that Google Play cannot take a payment. */
+  data object PaymentUnavailableDialogDismissed : SignalLoginPaymentScreenEvents()
 }

@@ -6,6 +6,7 @@
 package org.signal.registration.fakes
 
 import org.signal.core.util.billing.BillingPurchaseState
+import org.signal.core.util.billing.BillingResponseCode
 import org.signal.core.util.billing.OneTimeProduct
 import org.signal.core.util.billing.OneTimeProductId
 import org.signal.core.util.billing.OneTimeProductResult
@@ -35,6 +36,11 @@ class FakeOneTimePurchaseApi(
   /** What [queryProduct] reports when [formattedPrice] is null -- lets a test pick a retryable failure over a terminal one. */
   var productResultWhenUnpriced: OneTimeProductResult = OneTimeProductResult.Unavailable
   var launchCount: Int = 0
+
+  /** What [getApiAvailability] reports. Anything but OK means Google Play cannot be reached. */
+  var apiAvailability: BillingResponseCode = BillingResponseCode.OK
+
+  override suspend fun getApiAvailability(): BillingResponseCode = apiAvailability
 
   override suspend fun queryProduct(product: OneTimeProductId): OneTimeProductResult {
     requestedProducts += product

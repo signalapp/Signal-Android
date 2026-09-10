@@ -11,6 +11,12 @@ package org.signal.core.util.billing
 interface OneTimePurchaseApi {
 
   /**
+   * Whether Google Play billing can be reached right now. [BillingResponseCode.BILLING_UNAVAILABLE] most often means
+   * nobody is signed into the Play Store.
+   */
+  suspend fun getApiAvailability(): BillingResponseCode = BillingResponseCode.FEATURE_NOT_SUPPORTED
+
+  /**
    * Localized pricing for [product].
    */
   suspend fun queryProduct(product: OneTimeProductId): OneTimeProductResult = OneTimeProductResult.Unavailable

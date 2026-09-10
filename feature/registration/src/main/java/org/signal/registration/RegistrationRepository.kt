@@ -13,6 +13,7 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import androidx.core.content.ContextCompat
 import com.google.android.gms.auth.api.phone.SmsRetriever
+import com.google.android.gms.common.GoogleApiAvailability
 import com.google.i18n.phonenumbers.PhoneNumberUtil
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Deferred
@@ -41,6 +42,7 @@ import org.signal.core.util.Base64
 import org.signal.core.util.Hex
 import org.signal.core.util.Util
 import org.signal.core.util.billing.BillingPurchaseState
+import org.signal.core.util.billing.BillingResponseCode
 import org.signal.core.util.billing.OneTimeProductId
 import org.signal.core.util.billing.OneTimeProductResult
 import org.signal.core.util.billing.OneTimePurchase
@@ -97,6 +99,7 @@ import org.signal.registration.screens.countrycode.CountryUtils
 import org.signal.registration.screens.localbackuprestore.LocalBackupInfo
 import org.signal.registration.screens.messagesync.LinkAndSyncProgress
 import org.signal.registration.screens.remotebackuprestore.RemoteBackupRestoreProgress
+import org.signal.registration.screens.signalloginpayment.PaymentAvailability
 import org.signal.registration.util.SensitiveLog
 import java.nio.charset.StandardCharsets
 import java.security.SecureRandom
@@ -113,8 +116,9 @@ class RegistrationRepository(
   val storageController: StorageController,
   val isLinkAndSyncAvailable: Boolean,
   val isPhoneNumberlessRegistrationAvailable: Boolean = false,
-  val isGooglePlayBillingAvailable: Boolean = false,
-  private val signalLoginPurchaseApi: OneTimePurchaseApi
+  private val isGooglePlayBillingAvailable: Boolean = false,
+  private val signalLoginPurchaseApi: OneTimePurchaseApi,
+  private val googlePlayServicesStatus: () -> PaymentAvailability = { PaymentAvailability.fromConnectionResult(GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(context)) }
 ) {
 
   /** Gates debug-only affordances, like the manual receipt credential entry field on the Signal Login purchase screen. */
@@ -452,6 +456,32 @@ class RegistrationRepository(
    * [SignalLoginPriceResult.Unavailable], since the configuration fetch is not cached on failure and so a retry can
    * still succeed.
    */
+  /** Whether Google Play can take a payment for a Signal Login right now, and if not, what is wrong with it. */
+  suspend fun getPaymentAvailability(): PaymentAvailability = withContext(Dispatchers.IO) {
+    val services = googlePlayServicesStatus()
+    if (!services.isAvailable) {
+      Log.w(TAG, "[getPaymentAvailability] Google Play services cannot be used: $services")
+      return@withContext services
+    }
+
+    if (!isGooglePlayBillingAvailable) {
+      Log.w(TAG, "[getPaymentAvailability] This build has no Google Play billing, so nothing can be bought here.")
+      return@withContext PaymentAvailability.PurchasesUnavailable
+    }
+
+    when (val billing = signalLoginPurchaseApi.getApiAvailability()) {
+      BillingResponseCode.OK -> PaymentAvailability.Available
+      BillingResponseCode.BILLING_UNAVAILABLE -> {
+        Log.w(TAG, "[getPaymentAvailability] Google Play services works but billing does not, most likely because nobody is signed into the Play Store.")
+        PaymentAvailability.NotSignedIn
+      }
+      else -> {
+        Log.w(TAG, "[getPaymentAvailability] Unexpected billing availability: $billing. Letting the purchase attempt speak for itself.")
+        PaymentAvailability.Available
+      }
+    }
+  }
+
   suspend fun getSignalLoginPrice(): SignalLoginPriceResult = withContext(Dispatchers.IO) {
     val product = fetchSignalLoginConfiguration()?.toProductId()
     if (product == null) {

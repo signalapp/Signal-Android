@@ -84,6 +84,7 @@ import org.signal.registration.fakes.FakeStorageController
 import org.signal.registration.fakes.SystemOutLogger
 import org.signal.registration.proto.SvrCredential
 import org.signal.registration.screens.remotebackuprestore.RemoteBackupRestoreProgress
+import org.signal.registration.screens.signalloginpayment.PaymentAvailability
 import org.signal.registration.screens.util.MockMultiplePermissionsState
 import org.signal.registration.screens.util.MockPermissionsState
 import org.signal.registration.test.TestTags
@@ -1961,7 +1962,10 @@ class RegistrationEndToEndTest {
    * Rebuilds the repository with phone-numberless registration turned on, which is what puts the Signal Login screens
    * in front of the user at all.
    */
-  private fun enableSignalLoginRegistration(isGooglePlayBillingAvailable: Boolean = true) {
+  private fun enableSignalLoginRegistration(
+    isGooglePlayBillingAvailable: Boolean = true,
+    googlePlayServicesStatus: PaymentAvailability = PaymentAvailability.Available
+  ) {
     repository = RegistrationRepository(
       context = ApplicationProvider.getApplicationContext<Application>(),
       networkController = networkController,
@@ -1969,7 +1973,8 @@ class RegistrationEndToEndTest {
       isLinkAndSyncAvailable = false,
       isPhoneNumberlessRegistrationAvailable = true,
       isGooglePlayBillingAvailable = isGooglePlayBillingAvailable,
-      signalLoginPurchaseApi = purchaseApi
+      signalLoginPurchaseApi = purchaseApi,
+      googlePlayServicesStatus = { googlePlayServicesStatus }
     )
   }
 

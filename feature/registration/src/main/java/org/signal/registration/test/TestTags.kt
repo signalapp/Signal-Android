@@ -56,6 +56,7 @@ object TestTags {
   const val SIGNAL_LOGIN_PAYMENT_EXISTING_LOGIN_OPTION = "signal_login_payment_existing_login_option"
   const val SIGNAL_LOGIN_PAYMENT_CONTINUE_BUTTON = "signal_login_payment_continue_button"
   const val SIGNAL_LOGIN_PAYMENT_RECEIPT_CREDENTIAL_FIELD = "signal_login_payment_receipt_credential_field"
+  const val SIGNAL_LOGIN_PAYMENT_UNAVAILABLE_DIALOG = "signal_login_payment_unavailable_dialog"
 
   // Signal Login Credential Entry Screen
   const val SIGNAL_LOGIN_CREDENTIAL_ENTRY_SCREEN = "signal_login_credential_entry_screen"

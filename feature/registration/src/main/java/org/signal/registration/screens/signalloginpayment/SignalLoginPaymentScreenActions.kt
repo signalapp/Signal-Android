@@ -16,4 +16,10 @@ sealed interface SignalLoginPaymentScreenActions {
    * outcome back as [SignalLoginPaymentScreenEvents.PurchaseFlowCompleted].
    */
   data class LaunchPurchaseFlow(val launcher: PurchaseLauncher) : SignalLoginPaymentScreenActions
+
+  /** Ask Google Play services to make itself available, installing or updating itself as needed. */
+  data object MakeGooglePlayServicesAvailable : SignalLoginPaymentScreenActions
+
+  /** Open the Play Store, so the user can sign into it. */
+  data object OpenPlayStore : SignalLoginPaymentScreenActions
 }

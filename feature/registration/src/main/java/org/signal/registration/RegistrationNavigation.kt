@@ -7,7 +7,10 @@
 
 package org.signal.registration
 
+import android.app.Activity
+import android.content.ActivityNotFoundException
 import android.content.Context
+import android.content.Intent
 import android.os.Parcelable
 import android.widget.Toast
 import androidx.activity.compose.LocalActivity
@@ -26,6 +29,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.core.net.toUri
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -40,6 +44,7 @@ import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.MultiplePermissionsState
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import com.google.accompanist.permissions.rememberPermissionState
+import com.google.android.gms.common.GoogleApiAvailability
 import kotlinx.coroutines.launch
 import kotlinx.parcelize.Parcelize
 import kotlinx.parcelize.TypeParceler
@@ -417,6 +422,22 @@ private fun openUrl(context: Context, url: String) {
   }
 }
 
+/** Opens the Play Store app so the user can sign into it, falling back to the web store when it is not installed. */
+private fun openPlayStore(context: Context) {
+  val intent = Intent(Intent.ACTION_VIEW, "market://details?id=com.android.vending".toUri()).apply {
+    setPackage("com.android.vending")
+    if (context !is Activity) {
+      addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+    }
+  }
+
+  try {
+    context.startActivity(intent)
+  } catch (_: ActivityNotFoundException) {
+    openUrl(context, "https://play.google.com/store/apps/")
+  }
+}
+
 /**
  * Sets up the navigation graph for the registration flow using Navigation 3.
  *
@@ -733,6 +754,16 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
             viewModel.onEvent(SignalLoginPaymentScreenEvents.PurchaseFlowCompleted(result))
           }
         }
+
+        SignalLoginPaymentScreenActions.MakeGooglePlayServicesAvailable -> {
+          if (activity != null) {
+            GoogleApiAvailability.getInstance()
+              .makeGooglePlayServicesAvailable(activity)
+              .addOnCompleteListener { viewModel.onEvent(SignalLoginPaymentScreenEvents.Foregrounded) }
+          }
+        }
+
+        SignalLoginPaymentScreenActions.OpenPlayStore -> openPlayStore(context)
       }
     }
 

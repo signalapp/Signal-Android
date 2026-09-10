@@ -52,8 +52,11 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withLink
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LifecycleEventEffect
 import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.SignalIcons
@@ -98,6 +101,14 @@ fun SignalLoginPaymentScreen(
       dismiss = stringResource(android.R.string.ok),
       onDismiss = { onEvent(dismissedEvent) }
     )
+  }
+
+  if (state.dialogs.paymentUnavailable) {
+    PaymentUnavailableDialog(availability = state.paymentAvailability, onEvent = onEvent)
+  }
+
+  LifecycleEventEffect(Lifecycle.Event.ON_RESUME) {
+    onEvent(SignalLoginPaymentScreenEvents.Foregrounded)
   }
 
   Surface(
@@ -249,6 +260,111 @@ private fun Header(
       .fillMaxWidth()
       .testTag(TestTags.SIGNAL_LOGIN_PAYMENT_LEARN_MORE_LINK)
   )
+}
+
+/**
+ * Explains why Google Play cannot take a payment for a Signal Login, and offers whatever fix matches the problem.
+ */
+@Composable
+private fun PaymentUnavailableDialog(
+  availability: PaymentAvailability,
+  onEvent: (SignalLoginPaymentScreenEvents) -> Unit
+) {
+  val onDismiss = { onEvent(SignalLoginPaymentScreenEvents.PaymentUnavailableDialogDismissed) }
+  val onMakeAvailable = { onEvent(SignalLoginPaymentScreenEvents.MakeGooglePlayServicesAvailableClicked) }
+  val onLearnMore = { onEvent(SignalLoginPaymentScreenEvents.LearnMoreClicked) }
+
+  val dialogModifier = Modifier.testTag(TestTags.SIGNAL_LOGIN_PAYMENT_UNAVAILABLE_DIALOG)
+
+  when (availability) {
+    PaymentAvailability.Available -> Unit
+
+    PaymentAvailability.ServiceUpdateRequired -> {
+      Dialogs.SimpleAlertDialog(
+        title = stringResource(R.string.SignalLoginPaymentScreen__update_google_play_services),
+        body = stringResource(R.string.SignalLoginPaymentScreen__to_purchase_a_signal_login_update_google_play_services),
+        confirm = stringResource(R.string.SignalLoginPaymentScreen__update),
+        dismiss = stringResource(android.R.string.cancel),
+        onConfirm = onMakeAvailable,
+        onDismiss = onDismiss,
+        modifier = dialogModifier
+      )
+    }
+
+    PaymentAvailability.ServiceMissing -> {
+      Dialogs.SimpleAlertDialog(
+        title = stringResource(R.string.SignalLoginPaymentScreen__google_play_services_missing),
+        body = stringResource(R.string.SignalLoginPaymentScreen__to_purchase_a_signal_login_google_play_services_needs_to_be_installed),
+        confirm = stringResource(R.string.SignalLoginPaymentScreen__install_play_services),
+        dismiss = stringResource(android.R.string.cancel),
+        onConfirm = onMakeAvailable,
+        onDismiss = onDismiss,
+        modifier = dialogModifier
+      )
+    }
+
+    PaymentAvailability.ServiceUpdating -> {
+      Dialogs.SimpleAlertDialog(
+        title = stringResource(R.string.SignalLoginPaymentScreen__google_play_services_are_updating),
+        body = stringResource(R.string.SignalLoginPaymentScreen__to_purchase_a_signal_login_wait_for_google_play_services),
+        confirm = stringResource(android.R.string.ok),
+        onConfirm = {},
+        onDismiss = onDismiss,
+        modifier = dialogModifier
+      )
+    }
+
+    PaymentAvailability.ServiceDisabled -> {
+      Dialogs.SimpleAlertDialog(
+        title = stringResource(R.string.SignalLoginPaymentScreen__google_play_is_required),
+        body = stringResource(R.string.SignalLoginPaymentScreen__to_purchase_a_signal_login_enable_google_play_services),
+        confirm = stringResource(android.R.string.ok),
+        dismiss = stringResource(R.string.SignalLoginPaymentScreen__learn_more),
+        onConfirm = {},
+        onDeny = onLearnMore,
+        onDismiss = onDismiss,
+        modifier = dialogModifier
+      )
+    }
+
+    PaymentAvailability.ServiceInvalid -> {
+      Dialogs.SimpleAlertDialog(
+        title = stringResource(R.string.SignalLoginPaymentScreen__google_play_is_required),
+        body = stringResource(R.string.SignalLoginPaymentScreen__you_cant_purchase_a_signal_login_on_this_device),
+        confirm = stringResource(android.R.string.ok),
+        dismiss = stringResource(R.string.SignalLoginPaymentScreen__learn_more),
+        onConfirm = {},
+        onDeny = onLearnMore,
+        onDismiss = onDismiss,
+        modifier = dialogModifier
+      )
+    }
+
+    PaymentAvailability.PurchasesUnavailable -> {
+      Dialogs.SimpleAlertDialog(
+        title = stringResource(R.string.SignalLoginPaymentScreen__google_play_is_required),
+        body = stringResource(R.string.SignalLoginPaymentScreen__you_cant_purchase_a_signal_login_in_this_version),
+        confirm = stringResource(android.R.string.ok),
+        dismiss = stringResource(R.string.SignalLoginPaymentScreen__learn_more),
+        onConfirm = {},
+        onDeny = onLearnMore,
+        onDismiss = onDismiss,
+        modifier = dialogModifier
+      )
+    }
+
+    PaymentAvailability.NotSignedIn -> {
+      Dialogs.SimpleAlertDialog(
+        title = stringResource(R.string.SignalLoginPaymentScreen__google_play_is_required),
+        body = stringResource(R.string.SignalLoginPaymentScreen__to_purchase_a_signal_login_sign_into_the_google_play_store),
+        confirm = stringResource(R.string.SignalLoginPaymentScreen__open_play_store),
+        dismiss = stringResource(android.R.string.cancel),
+        onConfirm = { onEvent(SignalLoginPaymentScreenEvents.OpenPlayStoreClicked) },
+        onDismiss = onDismiss,
+        modifier = dialogModifier
+      )
+    }
+  }
 }
 
 @Composable
@@ -519,4 +635,61 @@ private fun SignalLoginPaymentScreenLoadingPricePreview() {
       onEvent = {}
     )
   }
+}
+
+@Composable
+private fun PaymentUnavailablePreview(availability: PaymentAvailability) {
+  Previews.Preview {
+    SignalLoginPaymentScreen(
+      state = SignalLoginPaymentState(
+        price = if (availability.isTerminal) SignalLoginPaymentState.Price.Unavailable else SignalLoginPaymentState.Price.TransientError,
+        selectedOption = if (availability.isTerminal) Option.ExistingLogin else Option.Purchase,
+        paymentAvailability = availability,
+        dialogs = SignalLoginPaymentState.Dialogs(paymentUnavailable = true)
+      ),
+      onEvent = {}
+    )
+  }
+}
+
+@DayNightPreviews
+@Composable
+private fun ServiceUpdateRequiredPreview() {
+  PaymentUnavailablePreview(PaymentAvailability.ServiceUpdateRequired)
+}
+
+@DayNightPreviews
+@Composable
+private fun ServiceMissingPreview() {
+  PaymentUnavailablePreview(PaymentAvailability.ServiceMissing)
+}
+
+@DayNightPreviews
+@Composable
+private fun ServiceUpdatingPreview() {
+  PaymentUnavailablePreview(PaymentAvailability.ServiceUpdating)
+}
+
+@DayNightPreviews
+@Composable
+private fun ServiceDisabledPreview() {
+  PaymentUnavailablePreview(PaymentAvailability.ServiceDisabled)
+}
+
+@DayNightPreviews
+@Composable
+private fun ServiceInvalidPreview() {
+  PaymentUnavailablePreview(PaymentAvailability.ServiceInvalid)
+}
+
+@DayNightPreviews
+@Composable
+private fun NotSignedInPreview() {
+  PaymentUnavailablePreview(PaymentAvailability.NotSignedIn)
+}
+
+@DayNightPreviews
+@Composable
+private fun PurchasesUnavailablePreview() {
+  PaymentUnavailablePreview(PaymentAvailability.PurchasesUnavailable)
 }
