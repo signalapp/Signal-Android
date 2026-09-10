@@ -65,7 +65,7 @@ public class PassphraseCreateActivity extends PassphraseActivity {
       if (SignalStore.account().getPni() != null) {
         SignalStore.account().generatePniIdentityKeyIfNecessary();
       }
-      VersionTracker.updateLastSeenVersion(PassphraseCreateActivity.this);
+      VersionTracker.updateLastSeenVersion();
 
       return null;
     }

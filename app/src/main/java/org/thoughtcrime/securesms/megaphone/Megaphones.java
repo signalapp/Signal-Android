@@ -562,7 +562,7 @@ public final class Megaphones {
                          !NotificationChannels.getInstance().isMessagesChannelGroupEnabled() ||
                          !NotificationChannels.getInstance().areNotificationsEnabled();
     if (shouldShow) {
-      Locale locale = DynamicLanguageContextWrapper.getUsersSelectedLocale(context);
+      Locale locale = DynamicLanguageContextWrapper.getUsersSelectedLocale();
       if (!new TranslationDetection(context, locale)
           .textExistsInUsersLanguage(R.string.NotificationsMegaphone_turn_on_notifications,
                                      R.string.NotificationsMegaphone_never_miss_a_message,

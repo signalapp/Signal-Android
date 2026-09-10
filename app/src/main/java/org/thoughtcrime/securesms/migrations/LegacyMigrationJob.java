@@ -95,7 +95,7 @@ public class LegacyMigrationJob extends MigrationJob {
   @Override
   void performMigration() throws RetryLaterException {
     Log.i(TAG, "Running background upgrade..");
-    int          lastSeenVersion = VersionTracker.getLastSeenVersion(context);
+    int          lastSeenVersion = VersionTracker.getLastSeenVersion();
 
     if (lastSeenVersion < NO_V1_VERSION) {
       File v1sessions = new File(context.getFilesDir(), "sessions");

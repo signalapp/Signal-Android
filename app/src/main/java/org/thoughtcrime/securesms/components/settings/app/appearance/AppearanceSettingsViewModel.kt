@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.update
 import org.signal.core.util.AppUtil
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.EmojiSearchIndexDownloadJob
+import org.thoughtcrime.securesms.keyvalue.PlainTextKeyValueStore
 import org.thoughtcrime.securesms.keyvalue.SettingsValues.Theme
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.SplashScreenUtil
@@ -28,7 +29,7 @@ class AppearanceSettingsViewModel : ViewModel() {
 
   fun setLanguage(language: String) {
     store.update { it.copy(language = language) }
-    SignalStore.settings.language = language
+    PlainTextKeyValueStore.language = language
     EmojiSearchIndexDownloadJob.scheduleImmediately()
     AppUtil.restart(AppDependencies.application)
   }
@@ -42,7 +43,7 @@ class AppearanceSettingsViewModel : ViewModel() {
     return AppearanceSettingsState(
       SignalStore.settings.theme,
       SignalStore.settings.messageFontSize,
-      SignalStore.settings.language,
+      PlainTextKeyValueStore.language,
       SignalStore.settings.useCompactNavigationBar
     )
   }

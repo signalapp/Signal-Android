@@ -37,7 +37,6 @@ class SettingsValues internal constructor(store: KeyValueStore, context: Context
 
     const val THEME = "settings.theme"
     const val MESSAGE_FONT_SIZE = "settings.message.font.size"
-    const val LANGUAGE = "settings.language"
     const val PREFER_SYSTEM_EMOJI = "settings.use.system.emoji"
     const val ENTER_KEY_SENDS = "settings.enter.key.sends"
     const val BACKUPS_ENABLED = "settings.backups.enabled"
@@ -113,7 +112,6 @@ class SettingsValues internal constructor(store: KeyValueStore, context: Context
     CALL_DATA_MODE,
     THREAD_TRIM_LENGTH,
     THREAD_TRIM_ENABLED,
-    LANGUAGE,
     THEME,
     MESSAGE_FONT_SIZE,
     PREFER_SYSTEM_EMOJI,
@@ -221,13 +219,6 @@ class SettingsValues internal constructor(store: KeyValueStore, context: Context
 
     return possibleQuoteSizes[sizeIndex]
   }
-
-  var language: String
-    get() = TextSecurePreferences.getLanguage(AppDependencies.application)
-    set(value) {
-      TextSecurePreferences.setLanguage(AppDependencies.application, value)
-      configurationSettingChanged.postValue(LANGUAGE)
-    }
 
   var isPreferSystemEmoji: Boolean
     get() = getBoolean(PREFER_SYSTEM_EMOJI, TextSecurePreferences.isSystemEmojiPreferred(AppDependencies.application))

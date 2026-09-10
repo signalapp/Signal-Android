@@ -7,22 +7,22 @@ package org.thoughtcrime.securesms.crypto
 
 import android.content.Context
 import org.signal.core.util.crypto.AttachmentSecretStore
-import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.thoughtcrime.securesms.keyvalue.PlainTextKeyValueStore
 
 object AppAttachmentSecretStore : AttachmentSecretStore {
   override fun getAttachmentUnencryptedSecret(context: Context): String? {
-    return TextSecurePreferences.getAttachmentUnencryptedSecret(context)
+    return PlainTextKeyValueStore.attachmentLegacyUnencryptedSecret
   }
 
   override fun getAttachmentEncryptedSecret(context: Context): String? {
-    return TextSecurePreferences.getAttachmentEncryptedSecret(context)
+    return PlainTextKeyValueStore.attachmentEncryptedSecret
   }
 
   override fun setAttachmentEncryptedSecret(context: Context, secret: String) {
-    TextSecurePreferences.setAttachmentEncryptedSecret(context, secret)
+    PlainTextKeyValueStore.attachmentEncryptedSecret = secret
   }
 
   override fun setAttachmentUnencryptedSecret(context: Context, secret: String?) {
-    TextSecurePreferences.setAttachmentUnencryptedSecret(context, secret)
+    PlainTextKeyValueStore.attachmentLegacyUnencryptedSecret = secret
   }
 }

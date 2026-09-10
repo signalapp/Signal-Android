@@ -21,7 +21,6 @@ import org.greenrobot.eventbus.EventBus;
 import org.signal.core.util.PendingIntentFlags;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
-import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.backup.proto.SharedPreference;
 import org.thoughtcrime.securesms.backup.v2.BackupRepository;
@@ -52,7 +51,6 @@ public class TextSecurePreferences {
   public  static final String LANGUAGE_PREF                    = "pref_language";
   public  static final String ENABLE_MANUAL_MMS_PREF           = "pref_enable_manual_mms";
 
-  private static final String LAST_VERSION_CODE_PREF           = "last_version_code";
   public  static final String RINGTONE_PREF                    = "pref_key_ringtone";
   public  static final String VIBRATE_PREF                     = "pref_key_vibrate";
   private static final String NOTIFICATION_PREF                = "pref_key_enable_notifications";
@@ -93,11 +91,6 @@ public class TextSecurePreferences {
   public  static final String INCOGNITO_KEYBOARD_PREF          = "pref_incognito_keyboard";
   public  static final String UNAUTHORIZED_RECEIVED            = "pref_unauthorized_received";
   private static final String SUCCESSFUL_DIRECTORY_PREF        = "pref_successful_directory";
-
-  private static final String DATABASE_ENCRYPTED_SECRET     = "pref_database_encrypted_secret";
-  private static final String DATABASE_UNENCRYPTED_SECRET   = "pref_database_unencrypted_secret";
-  private static final String ATTACHMENT_ENCRYPTED_SECRET   = "pref_attachment_encrypted_secret";
-  private static final String ATTACHMENT_UNENCRYPTED_SECRET = "pref_attachment_unencrypted_secret";
 
   public static final String CALL_NOTIFICATIONS_PREF = "pref_call_notifications";
   public static final String CALL_RINGTONE_PREF      = "pref_call_ringtone";
@@ -146,8 +139,6 @@ public class TextSecurePreferences {
   public  static final String RECENT_STORAGE_KEY  = "pref_recent_emoji2";
 
   private static final String JOB_MANAGER_VERSION = "pref_job_manager_version";
-
-  private static final String APP_MIGRATION_VERSION = "pref_app_migration_version";
 
   private static final String FIRST_INSTALL_VERSION = "pref_first_install_version";
 
@@ -336,38 +327,6 @@ public class TextSecurePreferences {
     return getLongPreference(context, BACKUP_TIME, -1);
   }
 
-  public static void setAttachmentEncryptedSecret(@NonNull Context context, @NonNull String secret) {
-    setStringPreference(context, ATTACHMENT_ENCRYPTED_SECRET, secret);
-  }
-
-  public static void setAttachmentUnencryptedSecret(@NonNull Context context, @Nullable String secret) {
-    setStringPreference(context, ATTACHMENT_UNENCRYPTED_SECRET, secret);
-  }
-
-  public static @Nullable String getAttachmentEncryptedSecret(@NonNull Context context) {
-    return getStringPreference(context, ATTACHMENT_ENCRYPTED_SECRET, null);
-  }
-
-  public static @Nullable String getAttachmentUnencryptedSecret(@NonNull Context context) {
-    return getStringPreference(context, ATTACHMENT_UNENCRYPTED_SECRET, null);
-  }
-
-  public static void setDatabaseEncryptedSecret(@NonNull Context context, @NonNull String secret) {
-    setStringPreference(context, DATABASE_ENCRYPTED_SECRET, secret);
-  }
-
-  public static void setDatabaseUnencryptedSecret(@NonNull Context context, @Nullable String secret) {
-    setStringPreference(context, DATABASE_UNENCRYPTED_SECRET, secret);
-  }
-
-  public static @Nullable String getDatabaseUnencryptedSecret(@NonNull Context context) {
-    return getStringPreference(context, DATABASE_UNENCRYPTED_SECRET, null);
-  }
-
-  public static @Nullable String getDatabaseEncryptedSecret(@NonNull Context context) {
-    return getStringPreference(context, DATABASE_ENCRYPTED_SECRET, null);
-  }
-
   public static void setHasSuccessfullyRetrievedDirectory(Context context, boolean value) {
     setBooleanPreference(context, SUCCESSFUL_DIRECTORY_PREF, value);
   }
@@ -549,38 +508,12 @@ public class TextSecurePreferences {
     return getBooleanPreference(context, ENABLE_MANUAL_MMS_PREF, false);
   }
 
-  public static int getLastVersionCode(Context context) {
-    return getIntegerPreference(context, LAST_VERSION_CODE_PREF, BuildConfig.VERSION_CODE);
-  }
-
-  public static void setLastVersionCode(Context context, int versionCode) {
-    if (!setIntegerPrefrenceBlocking(context, LAST_VERSION_CODE_PREF, versionCode)) {
-      throw new AssertionError("couldn't write version code to sharedpreferences");
-    }
-  }
-
   /**
    * @deprecated Use {@link SettingsValues#getTheme()} via {@link org.thoughtcrime.securesms.keyvalue.SignalStore} instead.
    */
   @Deprecated
   public static String getTheme(Context context) {
     return getStringPreference(context, THEME_PREF, DynamicTheme.systemThemeAvailable() ? "system" : "light");
-  }
-
-  /**
-   * @deprecated Use {@link SettingsValues#getLanguage()} via {@link org.thoughtcrime.securesms.keyvalue.SignalStore} instead.
-   */
-  @Deprecated
-  public static String getLanguage(Context context) {
-    return getStringPreference(context, LANGUAGE_PREF, "zz");
-  }
-
-  /**
-   * @deprecated Use {@link SettingsValues#setLanguage(String)} via {@link org.thoughtcrime.securesms.keyvalue.SignalStore} instead.
-   */
-  @Deprecated
-  public static void setLanguage(Context context, String language) {
-    getSharedPreferences(context).edit().putString(LANGUAGE_PREF, language).commit();
   }
 
   @Deprecated
@@ -786,14 +719,6 @@ public class TextSecurePreferences {
     return getIntegerPreference(contex, JOB_MANAGER_VERSION, 1);
   }
 
-  public static void setAppMigrationVersion(Context context, int version) {
-    setIntegerPrefrence(context, APP_MIGRATION_VERSION, version);
-  }
-
-  public static int getAppMigrationVersion(Context context) {
-    return getIntegerPreference(context, APP_MIGRATION_VERSION, 1);
-  }
-
   public static void setFirstInstallVersion(Context context, int version) {
     setIntegerPrefrence(context, FIRST_INSTALL_VERSION, version);
   }
@@ -840,10 +765,6 @@ public class TextSecurePreferences {
 
   private static void setIntegerPrefrence(Context context, String key, int value) {
     getSharedPreferences(context).edit().putInt(key, value).apply();
-  }
-
-  private static boolean setIntegerPrefrenceBlocking(Context context, String key, int value) {
-    return getSharedPreferences(context).edit().putInt(key, value).commit();
   }
 
   public static long getLongPreference(Context context, String key, long defaultValue) {

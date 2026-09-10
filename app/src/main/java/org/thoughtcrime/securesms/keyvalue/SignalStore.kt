@@ -40,8 +40,6 @@ class SignalStore(context: Application, private val store: KeyValueStore) {
   val callQualityValues = CallQualityValues(store)
   val labsValues = LabsValues(store)
 
-  val plainTextValues = PlainTextSharedPrefsDataStore(context)
-
   companion object {
 
     private var instance: SignalStore? = null
@@ -292,9 +290,6 @@ class SignalStore(context: Application, private val store: KeyValueStore) {
 
     val groupsV2AciAuthorizationCache: GroupsV2AuthorizationSignalStoreCache
       get() = GroupsV2AuthorizationSignalStoreCache.createAciCache(instance!!.store)
-
-    val plaintext: PlainTextSharedPrefsDataStore
-      get() = instance!!.plainTextValues
 
     fun getPreferenceDataStore(): PreferenceDataStore {
       return SignalPreferenceDataStore(instance!!.store)

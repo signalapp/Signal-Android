@@ -87,7 +87,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
   @Override
   public void applyOverrideConfiguration(@NonNull Configuration overrideConfiguration) {
-    DynamicLanguageContextWrapper.prepareOverrideConfiguration(this, overrideConfiguration);
+    DynamicLanguageContextWrapper.prepareOverrideConfiguration(overrideConfiguration);
     super.applyOverrideConfiguration(overrideConfiguration);
   }
 

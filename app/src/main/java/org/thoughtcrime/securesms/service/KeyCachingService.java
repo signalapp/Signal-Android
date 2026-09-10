@@ -49,7 +49,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.migrations.ApplicationMigrations;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.signal.core.util.AppForegroundObserver;
-import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.signal.core.util.ServiceUtil;
 
 import java.util.Objects;
@@ -74,9 +73,6 @@ public class KeyCachingService extends Service {
   private static final String PASSPHRASE_EXPIRED_EVENT = BuildConfig.APPLICATION_ID + ".service.action.PASSPHRASE_EXPIRED_EVENT";
   public  static final String CLEAR_KEY_ACTION         = BuildConfig.APPLICATION_ID + ".service.action.CLEAR_KEY";
   public  static final String DISABLE_ACTION           = BuildConfig.APPLICATION_ID + ".service.action.DISABLE";
-  public  static final String LOCALE_CHANGE_EVENT      = BuildConfig.APPLICATION_ID + ".service.action.LOCALE_CHANGE_EVENT";
-
-  private DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   private final IBinder binder  = new KeySetBinder();
 
@@ -143,7 +139,6 @@ public class KeyCachingService extends Service {
         case CLEAR_KEY_ACTION:         handleClearKey();        break;
         case PASSPHRASE_EXPIRED_EVENT: handleClearKey();        break;
         case DISABLE_ACTION:           handleDisableService();  break;
-        case LOCALE_CHANGE_EVENT:      handleLocaleChanged();   break;
         case LOCK_TOGGLED_EVENT:       handleLockToggled();     break;
       }
     }
@@ -217,11 +212,6 @@ public class KeyCachingService extends Service {
     {
       stopForeground(true);
     }
-  }
-
-  private void handleLocaleChanged() {
-    dynamicLanguage.updateServiceLocale(this);
-    foregroundService();
   }
 
   private static void startTimeoutIfAppropriate(@NonNull Context context) {

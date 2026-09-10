@@ -200,7 +200,6 @@ class MainActivity :
     private const val KEY_STARTING_TAB = "STARTING_TAB"
     private const val KEY_DETAIL_LOCATION = "DETAIL_LOCATION"
     private const val KEY_EXIT_DETAIL = "EXIT_DETAIL"
-    const val RESULT_CONFIG_CHANGED = RESULT_FIRST_USER + 901
 
     /** Width the navigation rail occupies inside the list pane. */
     private val RAIL_WIDTH = 80.dp
@@ -249,11 +248,7 @@ class MainActivity :
     VitalsViewModel(application)
   }
 
-  private val openSettings: ActivityResultLauncher<Intent> = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-    if (result.resultCode == RESULT_CONFIG_CHANGED) {
-      recreate()
-    }
-  }
+  private val openSettings: ActivityResultLauncher<Intent> = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { }
 
   private val toolbarViewModel: MainToolbarViewModel by viewModels()
   private val toolbarCallback = ToolbarCallback()
@@ -762,10 +757,6 @@ class MainActivity :
 
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     super.onActivityResult(requestCode, resultCode, data)
-    if (requestCode == MainNavigator.REQUEST_CONFIG_CHANGES && resultCode == RESULT_CONFIG_CHANGED) {
-      recreate()
-    }
-
     if (resultCode == RESULT_OK && requestCode == CreateSvrPinActivity.REQUEST_NEW_PIN) {
       mainNavigationViewModel.snackbarRegistry.emit(SnackbarState(message = getString(R.string.ConfirmKbsPinFragment__pin_created), hostKey = MainSnackbarHostKey.MainChrome))
       mainNavigationViewModel.onEvent(MainNavigationEvents.MegaphoneCompleted(Megaphones.Event.PINS_FOR_ALL))

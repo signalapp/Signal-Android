@@ -95,6 +95,7 @@ import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
 import org.thoughtcrime.securesms.jobs.RetrieveRemoteAnnouncementsJob;
 import org.thoughtcrime.securesms.jobs.StoryOnboardingDownloadJob;
 import org.thoughtcrime.securesms.keyvalue.KeepMessagesDuration;
+import org.thoughtcrime.securesms.keyvalue.PlainTextKeyValueStore;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logging.CustomSignalProtocolLogger;
 import org.thoughtcrime.securesms.logging.PersistentLogger;
@@ -638,6 +639,7 @@ public class ApplicationContext extends Application implements AppForegroundObse
 
   @Override
   protected void attachBaseContext(Context base) {
+    PlainTextKeyValueStore.init(base);
     DynamicLanguageContextWrapper.updateContext(base);
     super.attachBaseContext(base);
   }

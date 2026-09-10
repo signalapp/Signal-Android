@@ -13,9 +13,9 @@ import org.greenrobot.eventbus.ThreadMode;
 import org.signal.core.util.Util;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
+import org.thoughtcrime.securesms.keyvalue.PlainTextKeyValueStore;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.stickers.BlessedPacks;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.VersionTracker;
 
 import java.util.Currency;
@@ -227,20 +227,20 @@ public class ApplicationMigrations {
    */
   public static void onApplicationCreate(@NonNull Context context, @NonNull JobManager jobManager) {
     if (isLegacyUpdate(context)) {
-      Log.i(TAG, "Detected the need for a legacy update. Last seen canonical version: " + VersionTracker.getLastSeenVersion(context));
-      TextSecurePreferences.setAppMigrationVersion(context, 0);
+      Log.i(TAG, "Detected the need for a legacy update. Last seen canonical version: " + VersionTracker.getLastSeenVersion());
+      PlainTextKeyValueStore.setAppMigrationVersion(0);
     }
 
     if (!isUpdate(context)) { // this returned false
       Log.d(TAG, "Not an update. Skipping.");
-      VersionTracker.updateLastSeenVersion(context);
+      VersionTracker.updateLastSeenVersion();
       return;
     } else {
       Log.d(TAG, "About to update. Clearing deprecation flag.", true);
       SignalStore.misc().setClientDeprecated(false);
     }
 
-    final int lastSeenVersion = TextSecurePreferences.getAppMigrationVersion(context);
+    final int lastSeenVersion = PlainTextKeyValueStore.getAppMigrationVersion();
     Log.d(TAG, "currentVersion: " + CURRENT_VERSION + ",  lastSeenVersion: " + lastSeenVersion);
 
     LinkedHashMap<Integer, MigrationJob> migrationJobs = getMigrationJobs(context, lastSeenVersion);
@@ -285,13 +285,13 @@ public class ApplicationMigrations {
           }
 
           Log.i(TAG, "Updating last migration version to " + event.getVersion());
-          TextSecurePreferences.setAppMigrationVersion(context, event.getVersion());
+          PlainTextKeyValueStore.setAppMigrationVersion(event.getVersion());
 
           if (event.getVersion() == CURRENT_VERSION) {
             Log.i(TAG, "Migration complete. Took " + (System.currentTimeMillis() - startTime) + " ms.");
             EventBus.getDefault().unregister(this);
 
-            VersionTracker.updateLastSeenVersion(context);
+            VersionTracker.updateLastSeenVersion();
             UI_BLOCKING_MIGRATION_RUNNING.setValue(false);
           } else if (event.getVersion() >= uiVersion) {
             Log.i(TAG, "Version is >= the UI-blocking version. Posting 'false'.");
@@ -301,8 +301,8 @@ public class ApplicationMigrations {
       });
     } else {
       Log.d(TAG, "No migrations.");
-      TextSecurePreferences.setAppMigrationVersion(context, CURRENT_VERSION);
-      VersionTracker.updateLastSeenVersion(context);
+      PlainTextKeyValueStore.setAppMigrationVersion(CURRENT_VERSION);
+      VersionTracker.updateLastSeenVersion();
       UI_BLOCKING_MIGRATION_RUNNING.setValue(false);
     }
   }
@@ -328,7 +328,7 @@ public class ApplicationMigrations {
    * current version.
    */
   public static boolean isUpdate(@NonNull Context context) {
-    return isLegacyUpdate(context) || TextSecurePreferences.getAppMigrationVersion(context) < CURRENT_VERSION;
+    return isLegacyUpdate(context) || PlainTextKeyValueStore.getAppMigrationVersion() < CURRENT_VERSION;
   }
 
   private static LinkedHashMap<Integer, MigrationJob> getMigrationJobs(@NonNull Context context, int lastSeenVersion) {
@@ -1005,6 +1005,6 @@ public class ApplicationMigrations {
   }
 
   private static boolean isLegacyUpdate(@NonNull Context context) {
-    return VersionTracker.getLastSeenVersion(context) < LEGACY_CANONICAL_VERSION;
+    return VersionTracker.getLastSeenVersion() < LEGACY_CANONICAL_VERSION;
   }
 }

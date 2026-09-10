@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.jobs.DeleteAbandonedAttachmentsJob;
 import org.thoughtcrime.securesms.jobs.EmojiSearchIndexDownloadJob;
 import org.thoughtcrime.securesms.jobs.QuoteThumbnailBackfillJob;
 import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob;
+import org.thoughtcrime.securesms.keyvalue.PlainTextKeyValueStore;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.migrations.ApplicationMigrations;
 import org.thoughtcrime.securesms.migrations.QuoteThumbnailBackfillMigrationJob;
@@ -34,9 +35,9 @@ public final class AppInitialization {
   public static void onFirstEverAppLaunch(@NonNull Context context) {
     Log.i(TAG, "onFirstEverAppLaunch()");
 
-    TextSecurePreferences.setAppMigrationVersion(context, ApplicationMigrations.CURRENT_VERSION);
+    PlainTextKeyValueStore.setAppMigrationVersion(ApplicationMigrations.CURRENT_VERSION);
     TextSecurePreferences.setJobManagerVersion(context, JobManager.CURRENT_VERSION);
-    TextSecurePreferences.setLastVersionCode(context, BuildConfig.VERSION_CODE);
+    PlainTextKeyValueStore.setLastVersionCode(BuildConfig.VERSION_CODE);
     TextSecurePreferences.setHasSeenStickerIntroTooltip(context, true);
     SignalStore.settings().setPassphraseDisabled(true);
     TextSecurePreferences.setReadReceiptsEnabled(context, true);
@@ -80,9 +81,9 @@ public final class AppInitialization {
   public static void onRepairFirstEverAppLaunch(@NonNull Context context) {
     Log.w(TAG, "onRepairFirstEverAppLaunch()");
 
-    TextSecurePreferences.setAppMigrationVersion(context, ApplicationMigrations.CURRENT_VERSION);
+    PlainTextKeyValueStore.setAppMigrationVersion(ApplicationMigrations.CURRENT_VERSION);
     TextSecurePreferences.setJobManagerVersion(context, JobManager.CURRENT_VERSION);
-    TextSecurePreferences.setLastVersionCode(context, BuildConfig.VERSION_CODE);
+    PlainTextKeyValueStore.setLastVersionCode(BuildConfig.VERSION_CODE);
     TextSecurePreferences.setHasSeenStickerIntroTooltip(context, true);
     SignalStore.settings().setPassphraseDisabled(true);
     AppDependencies.getMegaphoneRepository().onFirstEverAppLaunch();
