@@ -60,6 +60,7 @@ import org.thoughtcrime.securesms.groups.ui.creategroup.CreateGroupActivity
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.main.EmptyMegaphoneActionController
 import org.thoughtcrime.securesms.profiles.manage.EditProfileActivity
+import org.thoughtcrime.securesms.profiles.username.ConnectWithUsernamesDialogFragment
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaperActivity
 import org.signal.core.ui.R as CoreUiR
 
@@ -226,6 +227,11 @@ enum class OnboardingListItem(
   @DrawableRes val icon: Int,
   @ColorRes val cardColor: Int
 ) {
+  SET_UP_USERNAME(
+    title = R.string.Megaphones_set_up_username,
+    icon = CoreUiR.drawable.symbol_at_24,
+    cardColor = R.color.onboarding_background_5
+  ),
   GROUP(
     title = R.string.Megaphones_new_group,
     icon = R.drawable.symbol_group_24,
@@ -291,6 +297,7 @@ abstract class OnboardingState private constructor(
    */
   private object Preview : OnboardingState(
     initialState = DisplayState(
+      shouldShowSetUpUsername = true,
       shouldShowNewGroup = true,
       shouldShowInviteFriends = true,
       shouldShowAddPhoto = true,
@@ -300,6 +307,7 @@ abstract class OnboardingState private constructor(
   ) {
     override fun onItemCloseClick(onboardingListItem: OnboardingListItem) {
       displayState = when (onboardingListItem) {
+        OnboardingListItem.SET_UP_USERNAME -> displayState.copy(shouldShowSetUpUsername = false)
         OnboardingListItem.GROUP -> displayState.copy(shouldShowNewGroup = false)
         OnboardingListItem.INVITE -> displayState.copy(shouldShowInviteFriends = false)
         OnboardingListItem.ADD_PHOTO -> displayState.copy(shouldShowAddPhoto = false)
@@ -316,6 +324,7 @@ abstract class OnboardingState private constructor(
   private class Real(megaphoneActionController: MegaphoneActionController) : OnboardingState(megaphoneActionController = megaphoneActionController) {
     override fun onItemCloseClick(onboardingListItem: OnboardingListItem) {
       when (onboardingListItem) {
+        OnboardingListItem.SET_UP_USERNAME -> SignalStore.onboarding.setShowSetUpUsername(false)
         OnboardingListItem.GROUP -> SignalStore.onboarding.setShowNewGroup(false)
         OnboardingListItem.INVITE -> SignalStore.onboarding.setShowInviteFriends(false)
         OnboardingListItem.ADD_PHOTO -> SignalStore.onboarding.setShowAddPhoto(false)
@@ -331,6 +340,7 @@ abstract class OnboardingState private constructor(
 
     override fun onItemActionClick(onboardingListItem: OnboardingListItem) {
       when (onboardingListItem) {
+        OnboardingListItem.SET_UP_USERNAME -> megaphoneActionController.onMegaphoneDialogFragmentRequested(ConnectWithUsernamesDialogFragment())
         OnboardingListItem.GROUP -> megaphoneActionController.onMegaphoneNavigationRequested(CreateGroupActivity.createIntent(megaphoneActionController.megaphoneActivity))
         OnboardingListItem.INVITE -> megaphoneActionController.onMegaphoneNavigationRequested(AppSettingsActivity.invite(megaphoneActionController.megaphoneActivity))
         OnboardingListItem.ADD_PHOTO -> {
@@ -355,15 +365,17 @@ abstract class OnboardingState private constructor(
    * Simple display state, driven by [SignalStore] by default.
    */
   data class DisplayState(
+    private val shouldShowSetUpUsername: Boolean = SignalStore.onboarding.shouldShowSetUpUsername() && SignalStore.account.isPhoneNumberless && SignalStore.account.username == null,
     private val shouldShowNewGroup: Boolean = SignalStore.onboarding.shouldShowNewGroup(),
     private val shouldShowInviteFriends: Boolean = SignalStore.onboarding.shouldShowInviteFriends(),
     private val shouldShowAddPhoto: Boolean = SignalStore.onboarding.shouldShowAddPhoto() && !SignalStore.misc.hasEverHadAnAvatar,
     private val shouldShowAppearance: Boolean = SignalStore.onboarding.shouldShowAppearance()
   ) {
-    fun hasNoVisibleContent(): Boolean = !(shouldShowNewGroup || shouldShowInviteFriends || shouldShowAddPhoto || shouldShowAppearance)
+    fun hasNoVisibleContent(): Boolean = !(shouldShowSetUpUsername || shouldShowNewGroup || shouldShowInviteFriends || shouldShowAddPhoto || shouldShowAppearance)
 
     fun shouldDisplayListItem(onboardingListItem: OnboardingListItem): Boolean {
       return when (onboardingListItem) {
+        OnboardingListItem.SET_UP_USERNAME -> shouldShowSetUpUsername
         OnboardingListItem.GROUP -> shouldShowNewGroup
         OnboardingListItem.INVITE -> shouldShowInviteFriends
         OnboardingListItem.ADD_PHOTO -> shouldShowAddPhoto
