@@ -33,6 +33,7 @@ import androidx.compose.material3.SheetState
 import androidx.compose.material3.SheetValue
 import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
@@ -132,11 +133,16 @@ fun MediaKeyboardScaffold(
     derivedStateOf { imeInsets.getBottom(density) != imeAnimationTarget.getBottom(density) }
   }
 
-  // Written together, so nothing waiting on the controller can see a keyboard that is neither
-  // visible nor still animating out.
   SideEffect {
     controller.isSystemKeyboardVisible = systemKeyboardVisible
-    controller.isSystemKeyboardAnimating = systemKeyboardAnimating
+  }
+
+  // The controller outlives us. current is left set so a rebuilt view restores its keyboard.
+  DisposableEffect(controller) {
+    onDispose {
+      controller.isSystemKeyboardVisible = false
+      controller.awaitingSystemKeyboard = false
+    }
   }
 
   var hasReportedKeyboardVisibility by remember { mutableStateOf(false) }

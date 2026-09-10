@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  The long press overlay and its shade, drawn above the scaffold so a closing keyboard never resizes them.
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/reactions_shade"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/reactions_screen_light_shade_color"
+        android:foreground="@color/reactions_screen_dark_shade_color"
+        android:visibility="gone" />
+
+    <ViewStub
+        android:id="@+id/conversation_reaction_scrubber_stub"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:inflatedId="@+id/conversation_reaction_scrubber"
+        android:layout="@layout/conversation_reaction_scrubber" />
+
+</FrameLayout>

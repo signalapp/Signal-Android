@@ -204,10 +204,15 @@ public final class ConversationReactionOverlay extends FrameLayout {
                                @NonNull PointF lastSeenDownPoint,
                                boolean isMessageOnLeft)
   {
+    // A hide can land between show() and this layout pass.
+    if (overlayState == OverlayState.HIDDEN) {
+      return;
+    }
+
     contextMenu = new ConversationContextMenu(dropdownAnchor, getMenuActionItems(conversationMessage));
 
-    conversationItem.setX(selectedConversationModel.getSnapshotMetrics().getSnapshotOffset());
-    conversationItem.setY(selectedConversationModel.getItemY() + selectedConversationModel.getBubbleY() - statusBarHeight);
+    conversationItem.setX(selectedConversationModel.getBubbleX());
+    conversationItem.setY(selectedConversationModel.getBubbleY());
 
     Bitmap  conversationItemSnapshot = selectedConversationModel.getBitmap();
     boolean isWideLayout             = contextMenu.getMaxWidth() + scrubberWidth < getWidth();
@@ -215,7 +220,7 @@ public final class ConversationReactionOverlay extends FrameLayout {
     int overlayHeight = getHeight() - bottomNavigationBarHeight;
     int bubbleWidth   = selectedConversationModel.getBubbleWidth();
 
-    float endX           = selectedConversationModel.getSnapshotMetrics().getSnapshotOffset();
+    float endX           = selectedConversationModel.getBubbleX();
     float endY           = conversationItem.getY();
     float endApparentTop = endY;
     float endScale       = 1f;
@@ -251,8 +256,8 @@ public final class ConversationReactionOverlay extends FrameLayout {
       boolean everythingFitsVertically = contextMenu.getMaxHeight() + conversationItemSnapshot.getHeight() + menuPadding + spaceForReactionBar < overlayHeight;
 
       if (everythingFitsVertically) {
-        float   bubbleBottom      = selectedConversationModel.getItemY() + selectedConversationModel.getBubbleY() + conversationItemSnapshot.getHeight();
-        boolean menuFitsBelowItem = bubbleBottom + menuPadding + contextMenu.getMaxHeight() <= overlayHeight + statusBarHeight;
+        float   bubbleBottom      = selectedConversationModel.getBubbleY() + conversationItemSnapshot.getHeight();
+        boolean menuFitsBelowItem = bubbleBottom + menuPadding + contextMenu.getMaxHeight() <= overlayHeight;
 
         if (menuFitsBelowItem) {
           if (conversationItem.getY() < 0) {
@@ -289,8 +294,8 @@ public final class ConversationReactionOverlay extends FrameLayout {
         boolean fitsVertically = menuHeight + conversationItem.getHeight() + menuPadding * 2 + reactionBarHeight + reactionBarTopPadding < overlayHeight;
 
         if (fitsVertically) {
-          float   bubbleBottom      = selectedConversationModel.getItemY() + selectedConversationModel.getBubbleY() + conversationItemSnapshot.getHeight();
-          boolean menuFitsBelowItem = bubbleBottom + menuPadding + menuHeight <= overlayHeight + statusBarHeight;
+          float   bubbleBottom      = selectedConversationModel.getBubbleY() + conversationItemSnapshot.getHeight();
+          boolean menuFitsBelowItem = bubbleBottom + menuPadding + menuHeight <= overlayHeight;
 
           if (menuFitsBelowItem) {
             reactionBarBackgroundY = conversationItem.getY() - menuPadding - reactionBarHeight;
@@ -346,7 +351,7 @@ public final class ConversationReactionOverlay extends FrameLayout {
       float offsetX       = isMessageOnLeft ? scrubberRight + menuPadding : scrubberX - contextMenu.getMaxWidth() - menuPadding;
       contextMenu.show((int) offsetX, (int) Math.min(backgroundView.getY(), overlayHeight - contextMenu.getMaxHeight()));
     } else {
-      float contentX = selectedConversationModel.getSnapshotMetrics().getContextMenuPadding();
+      float contentX = selectedConversationModel.getContextMenuX();
       float offsetX  = isMessageOnLeft ? contentX : -contextMenu.getMaxWidth() + contentX + bubbleWidth;
 
       float menuTop = endApparentTop + (conversationItemSnapshot.getHeight() * endScale);
@@ -423,12 +428,23 @@ public final class ConversationReactionOverlay extends FrameLayout {
         if (onHideListener != null) {
           onHideListener.onHide();
         }
+
+        if (overlayState == OverlayState.HIDDEN) {
+          releaseSelection();
+        }
       }
     });
 
     if (contextMenu != null) {
       contextMenu.dismiss();
     }
+  }
+
+  /** Drops the snapshot bitmap, model and menu the last long press left behind. */
+  private void releaseSelection() {
+    selectedConversationModel = null;
+    contextMenu               = null;
+    conversationItem.setBackground(null);
   }
 
   public boolean isShowing() {
@@ -843,16 +859,21 @@ public final class ConversationReactionOverlay extends FrameLayout {
     itemScaleYAnim.setDuration(duration);
     animators.add(itemScaleYAnim);
 
+    // Where the row is now, not where the press started. Null once it is gone.
+    PointF returnPosition = selectedConversationModel.getReturnPosition().get();
+    float  returnX        = returnPosition != null ? returnPosition.x : selectedConversationModel.getBubbleX();
+    float  returnY        = returnPosition != null ? returnPosition.y : selectedConversationModel.getBubbleY();
+
     ObjectAnimator itemXAnim = new ObjectAnimator();
     itemXAnim.setProperty(View.X);
-    itemXAnim.setFloatValues(selectedConversationModel.getSnapshotMetrics().getSnapshotOffset());
+    itemXAnim.setFloatValues(returnX);
     itemXAnim.setTarget(conversationItem);
     itemXAnim.setDuration(duration);
     animators.add(itemXAnim);
 
     ObjectAnimator itemYAnim = new ObjectAnimator();
     itemYAnim.setProperty(View.Y);
-    itemYAnim.setFloatValues(selectedConversationModel.getItemY() + selectedConversationModel.getBubbleY() - statusBarHeight);
+    itemYAnim.setFloatValues(returnY);
     itemYAnim.setTarget(conversationItem);
     itemYAnim.setDuration(duration);
     animators.add(itemYAnim);

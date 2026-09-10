@@ -336,14 +336,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <FrameLayout
-        android:id="@+id/reactions_shade"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/reactions_screen_light_shade_color"
-        android:foreground="@color/reactions_screen_dark_shade_color"
-        android:visibility="gone" />
-
     <org.thoughtcrime.securesms.components.menu.SignalBottomActionBar
         android:id="@+id/conversation_bottom_action_bar"
         android:layout_width="0dp"
@@ -354,16 +346,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <ViewStub
-        android:id="@+id/conversation_reaction_scrubber_stub"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:inflatedId="@+id/conversation_reaction_scrubber"
-        android:layout="@layout/conversation_reaction_scrubber"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

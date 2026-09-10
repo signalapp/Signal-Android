@@ -9,15 +9,19 @@ import android.view.View
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.WindowInsetsSides
+import androidx.compose.foundation.layout.add
 import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.exclude
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.ime
 import androidx.compose.foundation.layout.navigationBars
+import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.windowInsetsBottomHeight
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.layout.windowInsetsTopHeight
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -50,6 +54,7 @@ private const val BUBBLE_HEIGHT_FRACTION = 0.55f
  * @param isBubble Whether we're displaying content in a bubble
  * @param backgroundView The chat wallpaper
  * @param contentView The area that actually moves up when the keyboards appear
+ * @param overlayView The long press overlay, which a keyboard neither covers nor resizes
  */
 @Composable
 fun ChatScreen(
@@ -59,6 +64,7 @@ fun ChatScreen(
   isBubble: Boolean,
   backgroundView: View,
   contentView: View,
+  overlayView: View,
   modifier: Modifier = Modifier
 ) {
   val minimumHeight = dimensionResource(R.dimen.default_custom_keyboard_size)
@@ -137,5 +143,14 @@ fun ChatScreen(
         modifier = Modifier.fillMaxSize()
       )
     }
+
+    // Above the scaffold so a closing keyboard neither covers nor resizes it. The bottom inset is
+    // left on; the overlay subtracts the navigation bar itself.
+    AndroidView(
+      factory = { overlayView },
+      modifier = Modifier
+        .fillMaxSize()
+        .windowInsetsPadding(WindowInsets.statusBars.add(WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal)))
+    )
   }
 }
