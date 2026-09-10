@@ -186,12 +186,12 @@ class IndividualSendJobV2 private constructor(parameters: Parameters, private va
 
     val recipient = message.threadRecipient.fresh().validated(message.sentTimeMillis).getOrElse { return it }
 
+    RecipientUtil.shareProfileIfFirstSecureMessage(message.threadRecipient)
+
     val dataMessage = message.toDataMessage().getOrElse { error ->
       Log.w(TAG, "${logPrefix(message.sentTimeMillis)} Failed to create a data message! Reason: $error")
       return Result.failure()
     }
-
-    RecipientUtil.shareProfileIfFirstSecureMessage(message.threadRecipient)
 
     Log.i(TAG, "${logPrefix(message.sentTimeMillis)} Sending message. Recipient: ${message.threadRecipient.id}, Thread: $threadId, Attachments: ${buildAttachmentString(message.attachments)}, Editing: ${originalEditedMessage?.dateSent ?: "N/A"}")
     SignalLocalMetrics.IndividualMessageSend.onDeliveryStarted(messageId, message.sentTimeMillis)

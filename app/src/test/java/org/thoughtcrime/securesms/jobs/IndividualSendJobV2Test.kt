@@ -26,6 +26,7 @@ import io.mockk.runs
 import io.mockk.slot
 import io.mockk.unmockkAll
 import io.mockk.verify
+import okio.ByteString.Companion.toByteString
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -345,6 +346,39 @@ class IndividualSendJobV2Test {
     verify { threads.updateSilently(threadId, false) }
     verify { messageLog.insertIfPossible(recipientId, sentTime, any(), ContentHint.RESENDABLE, MessageId(messageId), any()) }
     verify { ConversationShortcutRankingUpdateJob.enqueueForOutgoingIfNecessary(recipient) }
+  }
+
+  @Test
+  fun `Given a first send to a recipient we are not yet sharing our profile with, when run, then the sent message includes our profile key`() {
+    val profileKey = ByteArray(32) { 7 }
+    var profileSharing = false
+
+    every { RecipientUtil.shareProfileIfFirstSecureMessage(recipient) } answers { profileSharing = true }
+    every { outgoingMessage.toDataMessage() } answers {
+      DataMessage(timestamp = sentTime, profileKey = if (profileSharing) profileKey.toByteString() else null).right()
+    }
+
+    val sentSlot = slot<EnvelopeContent>()
+    coEvery {
+      messageService.sendMessage(
+        serviceId = any(),
+        envelopeContent = capture(sentSlot),
+        timestamp = any(),
+        sealedSenderAccess = any(),
+        story = any(),
+        isOnline = any(),
+        urgent = any(),
+        onEncrypted = any()
+      )
+    } returns MessageService.SendSuccess(
+      envelopeContent = EnvelopeContent.encrypted(Content(dataMessage = dataMessage), ContentHint.RESENDABLE, Optional.empty()),
+      sentSealedSender = false,
+      devices = listOf(1)
+    ).right()
+
+    createAndRunJob()
+
+    assertThat(sentSlot.captured.content.get().dataMessage!!.profileKey).isNotNull().isEqualTo(profileKey.toByteString())
   }
 
   @Test
