@@ -1,6 +1,7 @@
 # Signal Android
 
 Signal is a simple, powerful, and secure messenger that uses your phone's data connection (WiFi/4G/5G) to communicate securely.
+Signal is a messaging app for simple private communication with friends
 
 Millions of people use Signal every day for free and instantaneous communication anywhere in the world. Send and receive high-fidelity messages, participate in HD voice/video calls, and explore a growing set of new features that help you stay connected. 
 
@@ -14,6 +15,8 @@ Also available on [iOS](https://github.com/signalapp/signal-ios) and [Desktop](h
 
 ## Contributing Bug Reports
 We use GitHub for bug tracking. Please search the existing issues for your bug and create a new one if the issue is not yet tracked!
+## Contributing Bug reports
+We use GitHub for bug tracking. Please search the existing issues for your bug and create a new one if the issue is not yet tracked.
 
 https://github.com/signalapp/Signal-Android/issues
 
