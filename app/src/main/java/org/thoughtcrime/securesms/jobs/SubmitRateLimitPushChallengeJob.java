@@ -52,7 +52,7 @@ public final class SubmitRateLimitPushChallengeJob extends BaseJob {
 
   @Override
   protected void onRun() throws Exception {
-    NetworkResultUtil.toBasicLegacy(SignalNetwork.rateLimitChallenge().submitPushChallenge(challenge));
+    NetworkResultUtil.toBasicLegacy(SignalNetwork.rateLimitChallengeApi().submitPushChallenge(challenge));
     SignalStore.rateLimit().onProofAccepted();
     EventBus.getDefault().post(new SuccessEvent());
     RateLimitUtil.retryAllRateLimitedMessages(context);

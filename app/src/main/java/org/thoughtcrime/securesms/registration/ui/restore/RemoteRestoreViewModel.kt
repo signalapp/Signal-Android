@@ -25,10 +25,10 @@ import org.thoughtcrime.securesms.backup.v2.RemoteRestoreResult
 import org.thoughtcrime.securesms.backup.v2.RestoreTimestampResult
 import org.thoughtcrime.securesms.backup.v2.RestoreV2Event
 import org.thoughtcrime.securesms.database.model.databaseprotos.RestoreDecisionState
-import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.Completed
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.Skipped
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.registration.data.QuickRegistrationRepository
 import org.whispersystems.signalservice.api.provisioning.RestoreMethod
 import kotlin.time.Duration
@@ -63,7 +63,7 @@ class RemoteRestoreViewModel(isOnlyRestoreOption: Boolean) : ViewModel() {
 
       if (result is RestoreTimestampResult.VerificationFailure && SignalStore.account.restoredAccountEntropyPool) {
         Log.w(TAG, "Resetting backup id reservation due to zk verification failure with restored AEP")
-        result = when (val triggerResult = AppDependencies.archiveService.triggerBackupIdReservation(includeMedia = false)) {
+        result = when (val triggerResult = SignalNetwork.archiveService.triggerBackupIdReservation(includeMedia = false)) {
           is Either.Right -> {
             Log.i(TAG, "Reset successful, trying to restore timestamp")
             BackupRepository.restoreBackupFileTimestamp()

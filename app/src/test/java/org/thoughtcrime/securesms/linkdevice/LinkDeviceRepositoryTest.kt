@@ -40,11 +40,11 @@ class LinkDeviceRepositoryTest {
   fun setUp() {
     Log.initialize(SystemOutLogger())
 
-    val signalApi = mockk<SignalNetwork>()
-    every { signalApi.attachments } returns attachments
-    every { signalApi.archive } returns archive
+    val signalNetwork = mockk<SignalNetwork>()
+    every { signalNetwork.attachmentApi } returns attachments
+    every { signalNetwork.archiveApi } returns archive
 
-    SignalNetwork.init(signalApi)
+    SignalNetwork.init(signalNetwork)
   }
 
   @After

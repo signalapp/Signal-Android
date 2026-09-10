@@ -395,7 +395,7 @@ object SvrRepository {
       check(SignalStore.svr.hasPin() && !SignalStore.svr.hasOptedOut()) { "Must have a PIN to set a registration lock!" }
 
       Log.i(TAG, "[enableRegistrationLockForUserWithPin] Enabling registration lock.", true)
-      SignalNetwork.account.enableRegistrationLock(SignalStore.svr.masterKey).successOrThrow()
+      SignalNetwork.accountApi.enableRegistrationLock(SignalStore.svr.masterKey).successOrThrow()
       SignalStore.svr.isRegistrationLockEnabled = true
       Log.i(TAG, "[enableRegistrationLockForUserWithPin] Registration lock successfully enabled.", true)
     }
@@ -409,7 +409,7 @@ object SvrRepository {
       check(SignalStore.svr.hasPin() && !SignalStore.svr.hasOptedOut()) { "Must have a PIN to disable registration lock!" }
 
       Log.i(TAG, "[disableRegistrationLockForUserWithPin] Disabling registration lock.", true)
-      SignalNetwork.account.disableRegistrationLock().successOrThrow()
+      SignalNetwork.accountApi.disableRegistrationLock().successOrThrow()
       SignalStore.svr.isRegistrationLockEnabled = false
       Log.i(TAG, "[disableRegistrationLockForUserWithPin] Registration lock successfully disabled.", true)
     }

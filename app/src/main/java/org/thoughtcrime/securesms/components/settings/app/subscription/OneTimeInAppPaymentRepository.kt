@@ -14,8 +14,8 @@ import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
-import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.InAppPaymentOneTimeContextJob
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import java.util.Currency
@@ -76,7 +76,7 @@ object OneTimeInAppPaymentRepository {
    * based on platform and payment method availability.
    */
   fun getBoosts(): Single<Map<Currency, List<Boost>>> {
-    return Single.fromCallable { AppDependencies.donationsService.getDonationsConfiguration(Locale.getDefault()) }
+    return Single.fromCallable { SignalNetwork.donationsService.getDonationsConfiguration(Locale.getDefault()) }
       .subscribeOn(Schedulers.io())
       .timeout(InAppPaymentsRepository.DONATIONS_CONFIGURATION_TIMEOUT_SECONDS, TimeUnit.SECONDS)
       .flatMap { it.flattenResult() }
@@ -95,7 +95,7 @@ object OneTimeInAppPaymentRepository {
   fun getBoostBadge(): Single<Badge> {
     return Single
       .fromCallable {
-        AppDependencies.donationsService
+        SignalNetwork.donationsService
           .getDonationsConfiguration(Locale.getDefault())
       }
       .subscribeOn(Schedulers.io())
@@ -109,7 +109,7 @@ object OneTimeInAppPaymentRepository {
    * signal service. This is scheduled on the io thread-pool.
    */
   fun getMinimumDonationAmounts(): Single<Map<Currency, FiatMoney>> {
-    return Single.fromCallable { AppDependencies.donationsService.getDonationsConfiguration(Locale.getDefault()) }
+    return Single.fromCallable { SignalNetwork.donationsService.getDonationsConfiguration(Locale.getDefault()) }
       .subscribeOn(Schedulers.io())
       .timeout(InAppPaymentsRepository.DONATIONS_CONFIGURATION_TIMEOUT_SECONDS, TimeUnit.SECONDS)
       .flatMap { it.flattenResult() }

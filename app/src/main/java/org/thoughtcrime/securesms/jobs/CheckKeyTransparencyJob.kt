@@ -128,7 +128,7 @@ class CheckKeyTransparencyJob private constructor(
 
     val recipient = SignalDatabase.recipients.getRecord(Recipient.self().id)
 
-    val result = SignalNetwork.keyTransparency.check(
+    val result = SignalNetwork.keyTransparencyApi.check(
       checkMode = CheckMode.Self(isE164Discoverable = SignalStore.phoneNumberPrivacy.phoneNumberDiscoverabilityMode == PhoneNumberDiscoverabilityMode.DISCOVERABLE),
       aci = recipient.aci!!.libSignalAci,
       aciIdentityKey = SignalStore.account.aciIdentityKey.publicKey,

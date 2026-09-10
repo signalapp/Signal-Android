@@ -110,7 +110,7 @@ public class RecaptchaProofActivity extends PassphraseRequiredActivity {
       try {
         for (int i = 0; i < 3; i++) {
           try {
-            NetworkResultUtil.toBasicLegacy(SignalNetwork.rateLimitChallenge().submitCaptchaChallenge(challenge, token));
+            NetworkResultUtil.toBasicLegacy(SignalNetwork.rateLimitChallengeApi().submitCaptchaChallenge(challenge, token));
             RateLimitUtil.retryAllRateLimitedMessages(this);
             Log.i(TAG, "Successfully completed reCAPTCHA.");
             return new TokenResult(true, true);

@@ -395,7 +395,7 @@ public final class ProfileUtil {
     }
 
     ProfileKey            profileKey = ProfileKeyUtil.getSelfProfileKey();
-    NetworkResult<String> result     = SignalNetwork.profile().setVersionedProfile(SignalStore.account().requireAci(),
+    NetworkResult<String> result     = SignalNetwork.profileApi().setVersionedProfile(SignalStore.account().requireAci(),
                                                                                    profileKey,
                                                                                    profileName.serialize(),
                                                                                    about,

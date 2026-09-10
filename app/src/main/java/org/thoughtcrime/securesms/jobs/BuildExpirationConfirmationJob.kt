@@ -56,7 +56,7 @@ class BuildExpirationConfirmationJob private constructor(params: Parameters) : J
       return Result.success()
     }
 
-    return when (val result: NetworkResult<RemoteConfigResult> = SignalNetwork.remoteConfig.getRemoteConfig()) {
+    return when (val result: NetworkResult<RemoteConfigResult> = SignalNetwork.remoteConfigApi.getRemoteConfig()) {
       is NetworkResult.Success -> {
         val serverTimeMs = result.result.serverEpochTimeMilliseconds
         SignalStore.misc.setLastKnownServerTime(serverTimeMs, System.currentTimeMillis())

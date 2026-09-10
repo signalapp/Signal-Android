@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint
 import org.thoughtcrime.securesms.jobs.protos.IndividualSendJobV2Data
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.ratelimit.ProofRequiredExceptionHandler
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientUtil
@@ -410,7 +411,7 @@ class IndividualSendJobV2 private constructor(parameters: Parameters, private va
       return MessageService.SendSuccess(envelopeContent, true, listOf(SignalServiceAddress.DEFAULT_DEVICE_ID))
     }
 
-    return AppDependencies.messageService.sendMessage(
+    return SignalNetwork.messageService.sendMessage(
       serviceId = recipient.requireServiceId(),
       envelopeContent = envelopeContent,
       timestamp = dataMessage.timestamp!!,
@@ -458,7 +459,7 @@ class IndividualSendJobV2 private constructor(parameters: Parameters, private va
     )
     val syncEnvelope = EnvelopeContent.encrypted(syncContent, ContentHint.IMPLICIT, Optional.empty())
 
-    return AppDependencies.messageService.sendSyncMessage(
+    return SignalNetwork.messageService.sendSyncMessage(
       envelopeContent = syncEnvelope,
       timestamp = timestamp,
       urgent = true,

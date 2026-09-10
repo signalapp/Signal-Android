@@ -190,7 +190,7 @@ object BackupRepository {
   private val MANUAL_BACKUP_NOTIFICATION_THRESHOLD = 30.days
 
   private val archiveService: ArchiveService
-    get() = AppDependencies.archiveService
+    get() = SignalNetwork.archiveService
 
   /**
    * Generates a new AEP that the user can choose to confirm.
@@ -1607,7 +1607,7 @@ object BackupRepository {
 
     Log.w(TAG, "Resetting backup id reservation due to zk verification failure")
 
-    return when (val triggerResult = runBlocking { SignalNetwork.archiveV2.triggerBackupIdReservation(aep.deriveMessageBackupKey(), null, aci) }) {
+    return when (val triggerResult = runBlocking { SignalNetwork.archiveApiV2.triggerBackupIdReservation(aep.deriveMessageBackupKey(), null, aci) }) {
       is RequestResult.Success -> {
         Log.i(TAG, "Reset successful, retrying aep verification")
         SignalStore.backup.messageCredentials.clearAll()
@@ -1666,7 +1666,7 @@ object BackupRepository {
 
   @WorkerThread
   fun getBackupLevelConfiguration(): NetworkResult<SubscriptionsConfiguration.BackupLevelConfiguration> {
-    return AppDependencies.donationsService
+    return SignalNetwork.donationsService
       .getDonationsConfiguration(Locale.getDefault())
       .toNetworkResult()
       .then {
@@ -1681,7 +1681,7 @@ object BackupRepository {
 
   @WorkerThread
   fun getFreeType(): NetworkResult<MessageBackupsType.Free> {
-    return AppDependencies.donationsService
+    return SignalNetwork.donationsService
       .getDonationsConfiguration(Locale.getDefault())
       .toNetworkResult()
       .map {
@@ -1808,7 +1808,7 @@ object BackupRepository {
       }
     }
 
-    val forwardSecrecyToken = when (val result = SignalNetwork.svrB.restore(svrBAuth, messageBackupKey, forwardSecrecyMetadata)) {
+    val forwardSecrecyToken = when (val result = SignalNetwork.svrBApi.restore(svrBAuth, messageBackupKey, forwardSecrecyMetadata)) {
       is SvrBApi.RestoreResult.Success -> {
         SignalStore.backup.nextBackupSecretData = result.data.nextBackupSecretData
         result.data.forwardSecrecyToken

@@ -995,7 +995,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
         headerPairs = Collections.emptyList();
       }
 
-      NetworkResult<CallingResponse> result = SignalNetwork.calling()
+      NetworkResult<CallingResponse> result = SignalNetwork.callingApi()
                                                            .makeCallingRequest(requestId, url, httpMethod.name(), headerPairs, body);
 
       CallingResponse response = ((NetworkResult.Success<CallingResponse>) result).getResult();
@@ -1172,7 +1172,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
           return;
         }
 
-        List<TurnServerInfo> turnServerInfos = NetworkResultUtil.toBasicLegacy(SignalNetwork.calling().getTurnServerInfo());
+        List<TurnServerInfo> turnServerInfos = NetworkResultUtil.toBasicLegacy(SignalNetwork.callingApi().getTurnServerInfo());
 
         // Find *any* provided ttl values as long as they are valid.
         long minTtl = turnServerInfos.stream()

@@ -47,6 +47,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.PendingOneTimeDo
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.whispersystems.signalservice.api.storage.IAPSubscriptionId
@@ -531,7 +532,7 @@ object InAppPaymentsRepository {
     }
 
     if (latestSubscriber != null) {
-      val remoteState = AppDependencies.donationsService.getSubscription(latestSubscriber.subscriberId)
+      val remoteState = SignalNetwork.donationsService.getSubscription(latestSubscriber.subscriberId)
       val result = remoteState.result.getOrNull() ?: return localState
 
       return result.activeSubscription?.isCanceled ?: localState

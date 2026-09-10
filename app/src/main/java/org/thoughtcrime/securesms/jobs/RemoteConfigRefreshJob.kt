@@ -50,7 +50,7 @@ class RemoteConfigRefreshJob private constructor(parameters: Parameters) : Job(p
       return Result.success()
     }
 
-    return when (val result = SignalNetwork.remoteConfig.getRemoteConfig(SignalStore.remoteConfig.eTag)) {
+    return when (val result = SignalNetwork.remoteConfigApi.getRemoteConfig(SignalStore.remoteConfig.eTag)) {
       is NetworkResult.Success -> {
         RemoteConfig.update(result.result.config)
         SignalStore.misc.setLastKnownServerTime(result.result.serverEpochTimeMilliseconds, System.currentTimeMillis())

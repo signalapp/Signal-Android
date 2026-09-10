@@ -27,6 +27,7 @@ import org.signal.network.api.SvrBApi
 import org.signal.network.api.UsernameApi
 import org.signal.network.config.SignalServiceConfiguration
 import org.signal.network.rest.SignalRestClient
+import org.signal.network.service.StorageServiceService
 import org.signal.network.service.UsernameService
 import org.signal.video.exo.ExoPlayerPool
 import org.thoughtcrime.securesms.components.TypingStatusRepository
@@ -115,6 +116,10 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
   }
 
   override fun provideArchiveService(archiveApi: org.signal.network.api.ArchiveApiV2): org.signal.network.service.ArchiveService {
+    return mockk(relaxed = true)
+  }
+
+  override fun provideStorageService(storageServiceApi: StorageServiceApi): StorageServiceService {
     return mockk(relaxed = true)
   }
 

@@ -16,8 +16,8 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.getBoostB
 import org.thoughtcrime.securesms.components.settings.app.subscription.getGiftBadges
 import org.thoughtcrime.securesms.components.settings.app.subscription.getSubscriptionLevels
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
-import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import java.util.Locale
 import kotlin.concurrent.withLock
@@ -30,7 +30,7 @@ class InternalDonorErrorConfigurationViewModel : ViewModel() {
 
   init {
     viewModelScope.launch(SignalDispatchers.IO) {
-      val configuration = AppDependencies.donationsService.getDonationsConfiguration(Locale.getDefault()).toNetworkResult().successOrNull() ?: return@launch
+      val configuration = SignalNetwork.donationsService.getDonationsConfiguration(Locale.getDefault()).toNetworkResult().successOrNull() ?: return@launch
       val giftBadges = configuration.getGiftBadges()
       val boostBadges = configuration.getBoostBadges()
       val subscriptionBadges = configuration.getSubscriptionLevels().values.map { Badges.fromServiceBadge(it.badge) }

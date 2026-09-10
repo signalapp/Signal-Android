@@ -44,6 +44,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.InAppPaymentPurchaseTokenJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.whispersystems.signalservice.api.storage.IAPSubscriptionId
@@ -87,7 +88,7 @@ class MessageBackupsFlowViewModel(
     }
 
     viewModelScope.launch {
-      AppDependencies.archiveService
+      SignalNetwork.archiveService
         .triggerBackupIdReservation()
         .onRight {
           Log.d(TAG, "Successfully triggered backup id reservation.")

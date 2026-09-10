@@ -185,7 +185,7 @@ class PreKeysSyncJob private constructor(
       return
     }
 
-    val availablePreKeyCounts = SignalNetwork.keys.getAvailablePreKeyCountsSync(serviceIdType).successOrThrow()
+    val availablePreKeyCounts = SignalNetwork.keysApi.getAvailablePreKeyCountsSync(serviceIdType).successOrThrow()
 
     val signedPreKeyToUpload: SignedPreKeyRecord? = signedPreKeyUploadIfNeeded(serviceIdType, protocolStore, metadataStore, forceRotation)
 
@@ -209,7 +209,7 @@ class PreKeysSyncJob private constructor(
 
     if (signedPreKeyToUpload != null || oneTimeEcPreKeysToUpload != null || lastResortKyberPreKeyToUpload != null || oneTimeKyberPreKeysToUpload != null) {
       log(serviceIdType, "Something to upload. SignedPreKey: ${signedPreKeyToUpload != null}, OneTimeEcPreKeys: ${oneTimeEcPreKeysToUpload != null}, LastResortKyberPreKey: ${lastResortKyberPreKeyToUpload != null}, OneTimeKyberPreKeys: ${oneTimeKyberPreKeysToUpload != null}")
-      SignalNetwork.keys.setPreKeysSync(
+      SignalNetwork.keysApi.setPreKeysSync(
         PreKeyUpload(
           serviceIdType = serviceIdType,
           signedPreKey = signedPreKeyToUpload,
@@ -278,7 +278,7 @@ class PreKeysSyncJob private constructor(
   @Throws(IOException::class)
   private fun checkPreKeyConsistency(serviceIdType: ServiceIdType, protocolStore: SignalServiceAccountDataStore, metadataStore: PreKeyMetadataStore): Boolean {
     val result: NetworkResult<Unit> = try {
-      SignalNetwork.keys.checkRepeatedUseKeysSync(
+      SignalNetwork.keysApi.checkRepeatedUseKeysSync(
         serviceIdType = serviceIdType,
         identityKey = protocolStore.identityKeyPair.publicKey,
         signedPreKeyId = metadataStore.activeSignedPreKeyId,

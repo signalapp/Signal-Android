@@ -178,7 +178,7 @@ class AttachmentUploadJob private constructor(
       val ciphertextLength = AttachmentCipherStreamUtil.getCiphertextLength(PaddingInputStream.getPaddedSize(databaseAttachment.size))
 
       val uploadForm = if (existingSpec == null) {
-        when (val result = SignalNetwork.attachments.getAttachmentV4UploadForm(ciphertextLength)) {
+        when (val result = SignalNetwork.attachmentApi.getAttachmentV4UploadForm(ciphertextLength)) {
           is RequestResult.Success -> result.result
           is RequestResult.NonSuccess -> throw result.error
           is RequestResult.RetryableNetworkError -> throw RetryLaterException(result.retryAfter ?: defaultBackoff().milliseconds.toJavaDuration())
@@ -201,7 +201,7 @@ class AttachmentUploadJob private constructor(
 
       getAttachmentNotificationIfNeeded(databaseAttachment).use { notification ->
         buildAttachmentStream(databaseAttachment, notification).use { localAttachment ->
-          val uploadResult: AttachmentUploadResult = SignalNetwork.attachments.uploadAttachmentV4(
+          val uploadResult: AttachmentUploadResult = SignalNetwork.attachmentApi.uploadAttachmentV4(
             form = uploadForm,
             key = key,
             iv = iv,

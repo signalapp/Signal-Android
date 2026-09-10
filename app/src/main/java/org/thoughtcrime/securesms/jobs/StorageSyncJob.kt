@@ -258,7 +258,7 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
   private fun performSync(storageServiceKey: StorageKey): Boolean {
     val stopwatch = Stopwatch("StorageSync")
     val db = SignalDatabase.writableDatabase
-    val repository = StorageServiceService(SignalNetwork.storageService)
+    val repository = SignalNetwork.storageService
 
     val localManifest = SignalStore.storageService.manifest
     val fetchRemoteManifest = localManifestOutOfDate || localManifest.version < 1 || runAttempt >= 3

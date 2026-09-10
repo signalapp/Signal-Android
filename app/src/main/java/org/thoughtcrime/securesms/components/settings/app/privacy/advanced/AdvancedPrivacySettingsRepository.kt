@@ -25,7 +25,7 @@ private val TAG = Log.tag(AdvancedPrivacySettingsRepository::class.java)
 class AdvancedPrivacySettingsRepository(private val context: Context) {
 
   suspend fun disablePushMessages(): DisablePushMessagesResult = withContext(Dispatchers.IO) {
-    val clearTokenError: Throwable? = when (val result = SignalNetwork.account.clearFcmToken()) {
+    val clearTokenError: Throwable? = when (val result = SignalNetwork.accountApi.clearFcmToken()) {
       is RequestResult.Success, is RequestResult.NonSuccess -> null
       is RequestResult.RetryableNetworkError -> result.networkError
       is RequestResult.ApplicationError -> result.cause

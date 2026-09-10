@@ -16,8 +16,8 @@ import org.signal.network.service.successOrThrow
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.attachments.InvalidAttachmentException
 import org.thoughtcrime.securesms.database.AttachmentTable
-import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId
@@ -115,7 +115,7 @@ fun DatabaseAttachment.createArchiveAttachmentPointer(useArchiveCdn: Boolean, ar
   return try {
     val (remoteId, cdnNumber) = if (useArchiveCdn) {
       val mediaRootBackupKey = SignalStore.backup.mediaRootBackupKey
-      val mediaCdnPath = runBlocking { AppDependencies.archiveService.getArchivedMediaCdnPath() }.successOrThrow()
+      val mediaCdnPath = runBlocking { SignalNetwork.archiveService.getArchivedMediaCdnPath() }.successOrThrow()
 
       val id = SignalServiceAttachmentRemoteId.Backup(
         mediaCdnPath = mediaCdnPath,
@@ -171,7 +171,7 @@ fun DatabaseAttachment.createArchiveThumbnailPointer(): SignalServiceAttachmentP
   }
 
   val mediaRootBackupKey = SignalStore.backup.mediaRootBackupKey
-  val mediaCdnPath = runBlocking { AppDependencies.archiveService.getArchivedMediaCdnPath() }.successOrThrow()
+  val mediaCdnPath = runBlocking { SignalNetwork.archiveService.getArchivedMediaCdnPath() }.successOrThrow()
   return try {
     val key = mediaRootBackupKey.deriveThumbnailTransitKey(requireThumbnailMediaName())
     val mediaId = mediaRootBackupKey.deriveMediaId(requireThumbnailMediaName()).encode()

@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import org.whispersystems.signalservice.internal.EmptyResponse
 import org.whispersystems.signalservice.internal.ServiceResponse
@@ -131,12 +132,12 @@ class InAppPaymentKeepAliveJob private constructor(
       return
     }
 
-    val response: ServiceResponse<EmptyResponse> = AppDependencies.donationsService.putSubscription(subscriber.subscriberId)
+    val response: ServiceResponse<EmptyResponse> = SignalNetwork.donationsService.putSubscription(subscriber.subscriberId)
 
     verifyResponse(response)
     info(type, "Successful call to putSubscription")
 
-    val activeSubscriptionResponse: ServiceResponse<ActiveSubscription> = AppDependencies.donationsService.getSubscription(subscriber.subscriberId)
+    val activeSubscriptionResponse: ServiceResponse<ActiveSubscription> = SignalNetwork.donationsService.getSubscription(subscriber.subscriberId)
 
     verifyResponse(activeSubscriptionResponse)
     info(type, "Successful call to GET active subscription")
@@ -292,7 +293,7 @@ class InAppPaymentKeepAliveJob private constructor(
 
       val badge = if (oldInAppPayment == null) {
         info(type, "Old payment not found in database. Loading badge / label information from donations configuration.")
-        val configuration = AppDependencies.donationsService.getDonationsConfiguration(Locale.getDefault())
+        val configuration = SignalNetwork.donationsService.getDonationsConfiguration(Locale.getDefault())
         if (configuration.result.isPresent) {
           val subscriptionConfig = configuration.result.get().levels[subscription.level]
           if (subscriptionConfig == null) {

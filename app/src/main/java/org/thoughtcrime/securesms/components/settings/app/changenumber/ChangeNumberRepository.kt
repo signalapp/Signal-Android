@@ -140,7 +140,7 @@ class ChangeNumberRepository(
     Log.i(TAG, "Submitting prekeys with PNI identity key: ${pniIdentityKeyPair.publicKey.fingerprint}")
 
     retryChangeLocalNumberNetworkOperation {
-      SignalNetwork.keys.setPreKeysSync(
+      SignalNetwork.keysApi.setPreKeysSync(
         PreKeyUpload(
           serviceIdType = ServiceIdType.PNI,
           signedPreKey = signedPreKey,
@@ -227,8 +227,8 @@ class ChangeNumberRepository(
 
     for (certificateType in certificateTypes) {
       val certificate: ByteArray? = when (certificateType) {
-        CertificateType.ACI_AND_E164 -> retryChangeLocalNumberNetworkOperation { SignalNetwork.certificate.getSenderCertificate() }.successOrThrow()
-        CertificateType.ACI_ONLY -> retryChangeLocalNumberNetworkOperation { SignalNetwork.certificate.getSenderCertificateForPhoneNumberPrivacy() }.successOrThrow()
+        CertificateType.ACI_AND_E164 -> retryChangeLocalNumberNetworkOperation { SignalNetwork.certificateApi.getSenderCertificate() }.successOrThrow()
+        CertificateType.ACI_ONLY -> retryChangeLocalNumberNetworkOperation { SignalNetwork.certificateApi.getSenderCertificateForPhoneNumberPrivacy() }.successOrThrow()
         else -> throw AssertionError()
       }
 
@@ -308,7 +308,7 @@ class ChangeNumberRepository(
       SignalStore.misc.setPendingChangeNumberMetadata(metadata)
       SignalStore.misc.lockChangeNumber()
       withContext(Dispatchers.IO) {
-        result = SignalNetwork.account.changeNumber(request)
+        result = SignalNetwork.accountApi.changeNumber(request)
       }
 
       if (result is NetworkResult.StatusCodeError && result.code == 409) {

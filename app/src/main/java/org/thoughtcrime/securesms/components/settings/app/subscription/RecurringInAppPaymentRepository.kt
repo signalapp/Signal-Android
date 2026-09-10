@@ -20,11 +20,11 @@ import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
-import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.InAppPaymentKeepAliveJob
 import org.thoughtcrime.securesms.jobs.InAppPaymentRecurringContextJob
 import org.thoughtcrime.securesms.jobs.MultiDeviceSubscriptionSyncRequestJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.subscription.LevelUpdate
@@ -49,7 +49,7 @@ object RecurringInAppPaymentRepository {
 
   private val TAG = Log.tag(RecurringInAppPaymentRepository::class.java)
 
-  private val donationsService = AppDependencies.donationsService
+  private val donationsService = SignalNetwork.donationsService
 
   /**
    * Passthrough Rx wrapper for [getActiveSubscriptionSync] dispatching on io thread-pool.
@@ -289,7 +289,7 @@ object RecurringInAppPaymentRepository {
 
       Log.d(TAG, "Attempting to set user subscription level to $subscriptionLevel", true)
 
-      val response = AppDependencies.donationsService.updateSubscriptionLevel(
+      val response = SignalNetwork.donationsService.updateSubscriptionLevel(
         subscriber.subscriberId,
         subscriptionLevel,
         subscriber.currency!!.currencyCode,

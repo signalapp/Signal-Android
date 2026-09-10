@@ -30,7 +30,7 @@ import java.time.Instant
  * all this layer does is hand the master key over and map the results into what the screens show.
  */
 class TotpRepository(
-  private val api: AccountApiV2 = SignalNetwork.accountV2,
+  private val api: AccountApiV2 = SignalNetwork.accountApiV2,
   private val masterKeyProvider: () -> MasterKey = { SignalStore.svr.masterKey },
   private val clock: () -> Long = System::currentTimeMillis
 ) {

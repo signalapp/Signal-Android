@@ -124,7 +124,7 @@ object RemoteConfig {
   @WorkerThread
   @Throws(IOException::class)
   fun refreshSync() {
-    val result = NetworkResultUtil.toBasicLegacy(SignalNetwork.remoteConfig.getRemoteConfig())
+    val result = NetworkResultUtil.toBasicLegacy(SignalNetwork.remoteConfigApi.getRemoteConfig())
     update(result.config)
   }
 

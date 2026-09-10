@@ -12,10 +12,10 @@ import org.thoughtcrime.securesms.database.NotificationProfileTables
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.StickerPackId
-import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfileId
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -72,7 +72,7 @@ class StorageForcePushJob private constructor(parameters: Parameters) : BaseJob(
     }
 
     val storageServiceKey = SignalStore.storageService.storageKey
-    val repository = StorageServiceService(AppDependencies.storageServiceApi)
+    val repository = SignalNetwork.storageService
 
     val currentVersion: Long = when (val result = repository.getManifestVersion()) {
       is NetworkResult.Success -> result.result

@@ -36,7 +36,7 @@ import java.util.Currency
 import kotlin.time.Duration.Companion.days
 
 /**
- * An in-memory stand-in for the storage service, installed over [SignalNetwork.storageService].
+ * An in-memory stand-in for the storage service, installed over [SignalNetwork.storageApi].
  *
  * Records are stored encrypted with [storageKey], exactly as they would be remotely, so tests get a real
  * encrypt/decrypt round-trip. Seed remote state with [setRemoteState], and inspect the results of a sync
@@ -91,10 +91,11 @@ class FakeStorageServiceRule(val storageKey: StorageKey = StorageKey(Util.getSec
     every { api.readStorageItems(any(), any()) } answers { readStorageItems(secondArg()) }
     every { api.writeStorageItems(any(), any()) } answers { writeStorageItems(secondArg()) }
 
-    val signalApi = mockk<SignalNetwork>()
-    every { signalApi.storageService } returns api
+    val signalNetwork = mockk<SignalNetwork>()
+    every { signalNetwork.storageApi } returns api
+    every { signalNetwork.storageService } returns service
 
-    SignalNetwork.init(signalApi)
+    SignalNetwork.init(signalNetwork)
   }
 
   override fun after() {

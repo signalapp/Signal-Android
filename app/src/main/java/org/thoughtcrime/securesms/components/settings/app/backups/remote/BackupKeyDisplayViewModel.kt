@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.backup.v2.StagedBackupKeyRotations
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.RestoreOptimizedMediaJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.net.SignalNetwork
 
 class BackupKeyDisplayViewModel : ViewModel(), BackupKeyCredentialManagerHandler {
 
@@ -73,7 +74,7 @@ class BackupKeyDisplayViewModel : ViewModel(), BackupKeyCredentialManagerHandler
 
   fun getKeyRotationLimit() {
     viewModelScope.launch(SignalDispatchers.IO) {
-      AppDependencies.archiveService
+      SignalNetwork.archiveService
         .getKeyRotationLimit()
         .onRight { limit ->
           internalUiState.update { it.copy(canRotateKey = limit.hasPermitsRemaining ?: true) }

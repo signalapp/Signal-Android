@@ -8,11 +8,11 @@ package org.thoughtcrime.securesms.jobs
 import arrow.core.Either
 import org.signal.core.util.logging.Log
 import org.signal.network.service.ArchiveError
-import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.CoroutineJob
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 
@@ -59,7 +59,7 @@ class ArchiveBackupIdReservationJob private constructor(parameters: Parameters) 
       return Result.success()
     }
 
-    return when (val result = AppDependencies.archiveService.triggerBackupIdReservation()) {
+    return when (val result = SignalNetwork.archiveService.triggerBackupIdReservation()) {
       is Either.Right -> Result.success()
       is Either.Left -> when (val error = result.value) {
         is ArchiveError.NetworkError -> {

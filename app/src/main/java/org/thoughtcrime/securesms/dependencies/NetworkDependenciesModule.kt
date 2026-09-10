@@ -34,6 +34,7 @@ import org.signal.network.config.TrustStore
 import org.signal.network.rest.SignalRestClient
 import org.signal.network.service.ArchiveService
 import org.signal.network.service.MessageService
+import org.signal.network.service.StorageServiceService
 import org.signal.network.service.UsernameService
 import org.signal.network.util.Tls12SocketFactory
 import org.signal.network.util.TlsProxySocketFactory
@@ -179,6 +180,8 @@ class NetworkDependenciesModule(
   val storageServiceApi: StorageServiceApi by lazy {
     provider.provideStorageServiceApi(authWebSocket, pushServiceSocket)
   }
+
+  val storageService: StorageServiceService by lazy { provider.provideStorageService(storageServiceApi) }
 
   val accountApi: AccountApi by lazy {
     provider.provideAccountApi(authWebSocket)

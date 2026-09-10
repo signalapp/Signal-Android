@@ -132,7 +132,7 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
 
     val response: ProfileFetchResult<RecipientId> = runBlocking {
       withContext(Dispatchers.IO) {
-        ProfileRepository(SignalNetwork.profile).fetchProfiles(requests)
+        ProfileRepository(SignalNetwork.profileApi).fetchProfiles(requests)
       }
     }
     stopwatch.split("responses")

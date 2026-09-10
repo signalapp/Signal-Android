@@ -53,7 +53,7 @@ internal class FixChangeNumberErrorMigrationJob(
       return
     }
 
-    when (val result = SignalNetwork.account.whoAmI()) {
+    when (val result = SignalNetwork.accountApi.whoAmI()) {
       is NetworkResult.Success<WhoAmIResponse> -> {
         val serverPni = result.result.pni?.let { ServiceId.PNI.parseOrNull(it) } ?: return
         val serverE164 = result.result.number
@@ -94,7 +94,7 @@ internal class FixChangeNumberErrorMigrationJob(
       return false
     }
 
-    val serverIdentityKey: IdentityKey = when (val profileResult = runBlocking { SignalNetwork.profile.getUnversionedProfile(pni, null) }) {
+    val serverIdentityKey: IdentityKey = when (val profileResult = runBlocking { SignalNetwork.profileApi.getUnversionedProfile(pni, null) }) {
       is NetworkResult.Success -> {
         val identityKey = profileResult.result.identityKey
         if (identityKey == null) {

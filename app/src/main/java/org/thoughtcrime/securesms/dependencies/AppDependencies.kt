@@ -43,6 +43,7 @@ import org.signal.network.config.SignalServiceConfiguration
 import org.signal.network.rest.SignalRestClient
 import org.signal.network.service.ArchiveService
 import org.signal.network.service.MessageService
+import org.signal.network.service.StorageServiceService
 import org.signal.network.service.UsernameService
 import org.signal.video.exo.ExoPlayerPool
 import org.thoughtcrime.securesms.BuildConfig
@@ -409,6 +410,9 @@ object AppDependencies {
   val storageServiceApi: StorageServiceApi
     get() = networkModule.storageServiceApi
 
+  val storageService: StorageServiceService
+    get() = networkModule.storageService
+
   val accountApi: AccountApi
     get() = networkModule.accountApi
 
@@ -556,6 +560,7 @@ object AppDependencies {
     fun provideRegistrationApi(pushServiceSocket: PushServiceSocket): RegistrationApi
     fun provideRegistrationApiV2(signalRestClient: SignalRestClient): RegistrationApiV2
     fun provideStorageServiceApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, pushServiceSocket: PushServiceSocket): StorageServiceApi
+    fun provideStorageService(storageServiceApi: StorageServiceApi): StorageServiceService
     fun provideAuthWebSocket(signalServiceConfigurationSupplier: Supplier<SignalServiceConfiguration>, libSignalNetworkSupplier: Supplier<Network>): SignalWebSocket.AuthenticatedWebSocket
     fun provideUnauthWebSocket(signalServiceConfigurationSupplier: Supplier<SignalServiceConfiguration>, libSignalNetworkSupplier: Supplier<Network>): SignalWebSocket.UnauthenticatedWebSocket
     fun provideAccountApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket): AccountApi

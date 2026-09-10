@@ -259,7 +259,7 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
     if (activeSubscription?.willCancelAtPeriodEnd() == true && activeSubscription.activeSubscription != null) {
       Log.i(TAG, "Subscription either has a payment failure or has been canceled.")
 
-      val response = SignalNetwork.account.whoAmI()
+      val response = SignalNetwork.accountApi.whoAmI()
       response.runIfSuccessful { whoAmI ->
         val backupExpiration = whoAmI.entitlements?.backup?.expirationSeconds?.seconds
         if (backupExpiration != null) {

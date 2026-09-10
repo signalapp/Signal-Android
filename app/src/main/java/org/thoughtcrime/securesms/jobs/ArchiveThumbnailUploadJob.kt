@@ -200,7 +200,7 @@ class ArchiveThumbnailUploadJob private constructor(
 
     val ciphertextLength = AttachmentCipherStreamUtil.getCiphertextLength(PaddingInputStream.getPaddedSize(thumbnailResult.data.size.toLong()))
 
-    val form: AttachmentUploadForm = when (val formResult = AppDependencies.archiveService.getMediaUploadForm(ciphertextLength)) {
+    val form: AttachmentUploadForm = when (val formResult = SignalNetwork.archiveService.getMediaUploadForm(ciphertextLength)) {
       is Either.Right -> formResult.value
       is Either.Left -> return when (val error = formResult.value) {
         is ArchiveError.ApplicationError -> {
@@ -249,7 +249,7 @@ class ArchiveThumbnailUploadJob private constructor(
 
     val attachmentPointer = try {
       val uploadResult: AttachmentUploadResult = buildSignalServiceAttachmentStream(thumbnailResult).use { stream ->
-        when (val result = SignalNetwork.attachments.uploadAttachmentV4(form, key, iv, checksumSha256, stream)) {
+        when (val result = SignalNetwork.attachmentApi.uploadAttachmentV4(form, key, iv, checksumSha256, stream)) {
           is NetworkResult.Success -> result.result
           is NetworkResult.ApplicationError -> throw result.throwable
           is NetworkResult.NetworkError -> throw result.exception
@@ -271,7 +271,7 @@ class ArchiveThumbnailUploadJob private constructor(
       return Result.failure()
     }
 
-    val copyResult = AppDependencies.archiveService.copyToArchive(
+    val copyResult = SignalNetwork.archiveService.copyToArchive(
       cdnNumber = attachmentPointer.cdnNumber,
       remoteLocation = attachmentPointer.remoteLocation,
       plaintextSize = attachmentPointer.size,

@@ -50,6 +50,7 @@ import org.signal.network.api.UsernameApi;
 import org.signal.network.rest.SignalRestClient;
 import org.signal.network.service.ArchiveService;
 import org.signal.network.service.MessageService;
+import org.signal.network.service.StorageServiceService;
 import org.signal.network.service.UsernameService;
 import org.signal.video.exo.ExoPlayerPool;
 import org.thoughtcrime.securesms.backup.v2.SignalStoreArchiveCacheStore;
@@ -614,6 +615,11 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   @Override
   public @NonNull StorageServiceApi provideStorageServiceApi(@NonNull SignalWebSocket.AuthenticatedWebSocket authWebSocket, @NonNull PushServiceSocket pushServiceSocket) {
     return new StorageServiceApi(authWebSocket, pushServiceSocket);
+  }
+
+  @Override
+  public @NonNull StorageServiceService provideStorageService(@NonNull StorageServiceApi storageServiceApi) {
+    return new StorageServiceService(storageServiceApi);
   }
 
   @Override

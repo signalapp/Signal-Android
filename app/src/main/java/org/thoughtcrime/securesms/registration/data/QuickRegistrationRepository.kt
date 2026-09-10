@@ -71,7 +71,7 @@ object QuickRegistrationRepository {
       val publicKey = ECPublicKey(decode(publicKeyEncoded))
 
       SignalNetwork
-        .provisioning
+        .provisioningApi
         .sendReRegisterDeviceProvisioningMessage(
           ephemeralId,
           publicKey,
@@ -150,7 +150,7 @@ object QuickRegistrationRepository {
     Log.d(TAG, "Waiting for restore method with token: ***${restoreMethodToken.takeLast(4)}")
     while (retries-- > 0 && result !is NetworkResult.Success && coroutineContext.isActive) {
       Log.d(TAG, "Waiting, remaining tries: $retries")
-      result = SignalNetwork.provisioning.waitForRestoreMethod(restoreMethodToken)
+      result = SignalNetwork.provisioningApi.waitForRestoreMethod(restoreMethodToken)
       Log.d(TAG, "Result: $result")
     }
 

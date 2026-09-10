@@ -32,7 +32,7 @@ object VerifySafetyNumberRepository {
 
     val aciIdentityKey = identityRecord.get().identityKey
 
-    val result = SignalNetwork.keyTransparency.check(
+    val result = SignalNetwork.keyTransparencyApi.check(
       checkMode = CheckMode.Contact,
       aci = recipient.requireAci().libSignalAci,
       aciIdentityKey = aciIdentityKey,

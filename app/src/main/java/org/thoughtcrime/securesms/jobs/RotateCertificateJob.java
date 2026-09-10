@@ -76,8 +76,8 @@ public final class RotateCertificateJob extends BaseJob {
 
         try {
           switch (certificateType) {
-            case ACI_AND_E164: certificate = NetworkResultUtil.toBasicLegacy(SignalNetwork.certificate().getSenderCertificate()); break;
-            case ACI_ONLY    : certificate = NetworkResultUtil.toBasicLegacy(SignalNetwork.certificate().getSenderCertificateForPhoneNumberPrivacy()); break;
+            case ACI_AND_E164: certificate = NetworkResultUtil.toBasicLegacy(SignalNetwork.certificateApi().getSenderCertificate()); break;
+            case ACI_ONLY    : certificate = NetworkResultUtil.toBasicLegacy(SignalNetwork.certificateApi().getSenderCertificateForPhoneNumberPrivacy()); break;
             default          : throw new AssertionError();
           }
         } catch (NonSuccessfulResponseCodeException e) {

@@ -315,7 +315,7 @@ class RefreshOwnProfileJob private constructor(parameters: Parameters) : BaseJob
 
         var isDueToPaymentFailure = false
         if (subscriber != null) {
-          val response = AppDependencies.donationsService
+          val response = SignalNetwork.donationsService
             .getSubscription(subscriber.subscriberId)
 
           if (response.getResult().isPresent()) {
@@ -439,7 +439,7 @@ class RefreshOwnProfileJob private constructor(parameters: Parameters) : BaseJob
 
     val localUsernameLink = SignalStore.account.usernameLink ?: return
 
-    when (val usernameFetchResult = SignalNetwork.username.getDecryptedUsernameFromLinkServerIdAndEntropy(localUsernameLink.serverId, localUsernameLink.entropy)) {
+    when (val usernameFetchResult = SignalNetwork.usernameApi.getDecryptedUsernameFromLinkServerIdAndEntropy(localUsernameLink.serverId, localUsernameLink.entropy)) {
       is RequestResult.Success -> {
         val remoteUsername = usernameFetchResult.result
 

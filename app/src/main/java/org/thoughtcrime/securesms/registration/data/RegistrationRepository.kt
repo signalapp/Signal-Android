@@ -705,7 +705,7 @@ object RegistrationRepository {
     while (timeRemaining > 0 && coroutineContext.isActive) {
       Log.d(TAG, "[waitForLinkAndSyncBackupDetails] Willing to wait for $timeRemaining ms...")
 
-      when (val result = SignalNetwork.linkDevice.waitForPrimaryDevice(timeout = 60.seconds)) {
+      when (val result = SignalNetwork.linkDeviceApi.waitForPrimaryDevice(timeout = 60.seconds)) {
         is NetworkResult.Success -> {
           // The primary has responded: either with an archive location, or an error telling us not to expect one.
           Log.i(TAG, "[waitForLinkAndSyncBackupDetails] Primary responded (hasArchive=${result.result.hasArchive}, error=${result.result.error})")

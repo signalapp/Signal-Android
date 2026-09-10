@@ -213,7 +213,7 @@ object LinkDeviceRepository {
       return LinkDeviceResult.BadCode
     }
 
-    val verificationCodeResult: LinkedDeviceVerificationCodeResponse = when (val result = SignalNetwork.linkDevice.getDeviceVerificationCode()) {
+    val verificationCodeResult: LinkedDeviceVerificationCodeResponse = when (val result = SignalNetwork.linkDeviceApi.getDeviceVerificationCode()) {
       is NetworkResult.Success -> result.result
       is NetworkResult.ApplicationError -> throw result.throwable
       is NetworkResult.NetworkError -> return LinkDeviceResult.NetworkError(result.exception)
@@ -234,7 +234,7 @@ object LinkDeviceRepository {
       return LinkDeviceResult.KeyError
     }
 
-    val deviceLinkResult = SignalNetwork.linkDevice.linkDevice(
+    val deviceLinkResult = SignalNetwork.linkDeviceApi.linkDevice(
       e164 = SignalStore.account.e164,
       aci = SignalStore.account.aci!!,
       pni = SignalStore.account.pni,
@@ -284,7 +284,7 @@ object LinkDeviceRepository {
 
     while (timeRemaining > 0) {
       Log.d(TAG, "[waitForDeviceToBeLinked] Willing to wait for $timeRemaining ms...")
-      val result = SignalNetwork.linkDevice.waitForLinkedDevice(
+      val result = SignalNetwork.linkDeviceApi.waitForLinkedDevice(
         token = token,
         timeout = timeRemaining.milliseconds
       )
@@ -403,7 +403,7 @@ object LinkDeviceRepository {
 
     Log.d(TAG, "[createAndUploadArchive] Setting the transfer archive...")
     val transferSetResult = NetworkResult.withRetry {
-      SignalNetwork.linkDevice.setTransferArchive(
+      SignalNetwork.linkDeviceApi.setTransferArchive(
         destinationDeviceId = deviceId,
         destinationDeviceRegistrationId = deviceRegistrationId,
         cdn = uploadedForm.cdn,
@@ -444,7 +444,7 @@ object LinkDeviceRepository {
     return NetworkResult.withRetry(
       logAttempt = { attempt, maxAttempts -> Log.i(TAG, "Starting upload attempt ${attempt + 1}/$maxAttempts") }
     ) {
-      val form = uploadForm ?: when (val result = SignalNetwork.attachments.getAttachmentV4UploadForm(backupFile.length())) {
+      val form = uploadForm ?: when (val result = SignalNetwork.attachmentApi.getAttachmentV4UploadForm(backupFile.length())) {
         is RequestResult.Success -> result.result.also { uploadForm = it }
         is RequestResult.RetryableNetworkError -> return@withRetry NetworkResult.NetworkError<Unit>(result.networkError)
         is RequestResult.NonSuccess -> return@withRetry NetworkResult.NetworkError<Unit>(result.error)
@@ -452,7 +452,7 @@ object LinkDeviceRepository {
       }
 
       FileInputStream(backupFile).use {
-        SignalNetwork.archive.uploadBackupFile(
+        SignalNetwork.archiveApi.uploadBackupFile(
           uploadForm = form,
           data = it,
           dataLength = backupFile.length(),
@@ -474,7 +474,7 @@ object LinkDeviceRepository {
    * If [createAndUploadArchive] is cancelled or fails to upload an archive, alert the linked device of the failure and if the user will try again
    */
   fun sendTransferArchiveError(deviceId: Int, deviceRegistrationId: Int, error: TransferArchiveError) {
-    val archiveErrorResult = SignalNetwork.linkDevice.setTransferArchiveError(
+    val archiveErrorResult = SignalNetwork.linkDeviceApi.setTransferArchiveError(
       destinationDeviceId = deviceId,
       destinationDeviceRegistrationId = deviceRegistrationId,
       error = error
@@ -493,7 +493,7 @@ object LinkDeviceRepository {
    */
   suspend fun changeDeviceName(deviceName: String, deviceId: Int): DeviceNameChangeResult {
     val encryptedDeviceName = DeviceNameCipher.encryptDeviceName(deviceName.toByteArray(StandardCharsets.UTF_8), SignalStore.account.aciIdentityKey)
-    return when (val result = SignalNetwork.linkDevice.setDeviceName(encryptedDeviceName, deviceId)) {
+    return when (val result = SignalNetwork.linkDeviceApi.setDeviceName(encryptedDeviceName, deviceId)) {
       is RequestResult.Success -> {
         AppDependencies.jobManager.add(DeviceNameChangeJob(deviceId))
         DeviceNameChangeResult.Success.logI(TAG, "Successfully changed device name")

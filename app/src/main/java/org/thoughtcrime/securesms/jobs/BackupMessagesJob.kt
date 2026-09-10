@@ -233,7 +233,7 @@ class BackupMessagesJob private constructor(
         return Result.failure()
       }
 
-      val auth = when (val result = AppDependencies.archiveService.getSvrBAuth()) {
+      val auth = when (val result = SignalNetwork.archiveService.getSvrBAuth()) {
         is Either.Right -> result.value
         is Either.Left -> when (val error = result.value) {
           is ArchiveError.CredentialError.RateLimited -> {
@@ -283,7 +283,7 @@ class BackupMessagesJob private constructor(
         }
 
         if (forwardSecrecyMetadata != null) {
-          when (val result = SignalNetwork.svrB.restore(auth, SignalStore.backup.messageBackupKey, forwardSecrecyMetadata)) {
+          when (val result = SignalNetwork.svrBApi.restore(auth, SignalStore.backup.messageBackupKey, forwardSecrecyMetadata)) {
             is SvrBApi.RestoreResult.Success -> {
               Log.i(TAG, "[svrb-restore] Remote secrecy data restored successfully.")
               SignalStore.backup.nextBackupSecretData = result.data.nextBackupSecretData
@@ -322,12 +322,12 @@ class BackupMessagesJob private constructor(
 
       val backupSecretData = SignalStore.backup.nextBackupSecretData ?: run {
         Log.i(TAG, "First SVRB backup! Creating new backup chain.", true)
-        val secretData = SignalNetwork.svrB.createNewBackupChain(auth, SignalStore.backup.messageBackupKey)
+        val secretData = SignalNetwork.svrBApi.createNewBackupChain(auth, SignalStore.backup.messageBackupKey)
         SignalStore.backup.nextBackupSecretData = secretData
         secretData
       }
 
-      val svrBMetadata: SvrBStoreResponse = when (val result = SignalNetwork.svrB.store(auth, SignalStore.backup.messageBackupKey, backupSecretData)) {
+      val svrBMetadata: SvrBStoreResponse = when (val result = SignalNetwork.svrBApi.store(auth, SignalStore.backup.messageBackupKey, backupSecretData)) {
         is SvrBApi.StoreResult.Success -> result.data
         is SvrBApi.StoreResult.NetworkError -> return Result.retry(result.retryAfter?.inWholeMilliseconds ?: defaultBackoff()).logW(TAG, "SVRB transient network error.", result.exception, true)
         is SvrBApi.StoreResult.SvrError -> return Result.retry(defaultBackoff()).logW(TAG, "SVRB error.", result.throwable, true)
@@ -366,7 +366,7 @@ class BackupMessagesJob private constructor(
 
     val existingSpec = resumableMessagesBackupUploadSpec
     val form: AttachmentUploadForm = if (existingSpec == null) {
-      when (val result = AppDependencies.archiveService.getMessageBackupUploadForm(tempBackupFile.length())) {
+      when (val result = SignalNetwork.archiveService.getMessageBackupUploadForm(tempBackupFile.length())) {
         is Either.Right -> result.value
         is Either.Left -> when (val error = result.value) {
           is ArchiveError.NetworkError -> {
@@ -421,7 +421,7 @@ class BackupMessagesJob private constructor(
     }
 
     val uploadResult = FileInputStream(tempBackupFile).use { fileStream ->
-      SignalNetwork.archive.uploadBackupFile(
+      SignalNetwork.archiveApi.uploadBackupFile(
         uploadForm = form,
         data = fileStream,
         dataLength = tempBackupFile.length(),

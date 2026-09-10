@@ -223,12 +223,12 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
         throw IOException("Failed to read forward secrecy metadata!")
       }
 
-      val svrBAuth = when (val result = runBlocking { AppDependencies.archiveService.getSvrBAuth() }) {
+      val svrBAuth = when (val result = runBlocking { SignalNetwork.archiveService.getSvrBAuth() }) {
         is Either.Right -> result.value
         is Either.Left -> throw IOException("Failed to read forward secrecy metadata!")
       }
 
-      val forwardSecrecyToken = when (val result = SignalNetwork.svrB.restore(svrBAuth, SignalStore.backup.messageBackupKey, forwardSecrecyMetadata)) {
+      val forwardSecrecyToken = when (val result = SignalNetwork.svrBApi.restore(svrBAuth, SignalStore.backup.messageBackupKey, forwardSecrecyMetadata)) {
         is SvrBApi.RestoreResult.Success -> result.data.forwardSecrecyToken
         else -> throw IOException("Failed to read forward secrecy metadata! $result")
       }
@@ -263,7 +263,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
     disposables += Single
       .fromCallable {
         BackupRepository.restoreBackupFileTimestamp()
-        runBlocking { AppDependencies.archiveService.debugGetRemoteBackupState() }
+        runBlocking { SignalNetwork.archiveService.debugGetRemoteBackupState() }
       }
       .subscribeOn(Schedulers.io())
       .subscribe { result ->
@@ -369,7 +369,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
     viewModelScope.launch(Dispatchers.IO) {
       launch {
         statsState.update { it.copy(loadingRemoteStats = true) }
-        val (remoteState: DebugBackupMetadata?, errorMsg: String?) = when (val result = AppDependencies.archiveService.debugGetRemoteBackupState()) {
+        val (remoteState: DebugBackupMetadata?, errorMsg: String?) = when (val result = SignalNetwork.archiveService.debugGetRemoteBackupState()) {
           is Either.Right -> result.value to null
           is Either.Left -> null to result.value.toString()
         }
@@ -387,7 +387,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
       }
     }
 
-    when (val result = AppDependencies.archiveService.deleteMessageBackup()) {
+    when (val result = SignalNetwork.archiveService.deleteMessageBackup()) {
       is Either.Right -> {
         SignalStore.backup.messageBackupInitialized = false
         SignalStore.backup.mediaBackupInitialized = false

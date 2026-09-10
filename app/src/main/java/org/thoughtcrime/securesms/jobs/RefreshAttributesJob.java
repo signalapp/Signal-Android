@@ -110,8 +110,8 @@ public class RefreshAttributesJob extends BaseJob {
     } else {
       boolean phoneNumberDiscoverable = !SignalStore.account().isPhoneNumberless() && SignalStore.phoneNumberPrivacy().getPhoneNumberDiscoverabilityMode() == PhoneNumberDiscoverabilityMode.DISCOVERABLE;
       Log.i(TAG, "Linked device, refreshing device capabilities and phone number discoverability. Capabilities: " + capabilities + ", discoverable: " + phoneNumberDiscoverable);
-      RequestResultUtil.successOrThrow(SignalNetwork.account().setCapabilities(capabilities));
-      RequestResultUtil.successOrThrowNoError(SignalNetwork.account().setPhoneNumberDiscoverability(phoneNumberDiscoverable));
+      RequestResultUtil.successOrThrow(SignalNetwork.accountApi().setCapabilities(capabilities));
+      RequestResultUtil.successOrThrowNoError(SignalNetwork.accountApi().setPhoneNumberDiscoverability(phoneNumberDiscoverable));
     }
 
     hasRefreshedThisAppCycle = true;
@@ -155,7 +155,7 @@ public class RefreshAttributesJob extends BaseJob {
         recoveryPassword
     );
 
-    NetworkResultUtil.toBasicLegacy(SignalNetwork.account().setAccountAttributes(accountAttributes));
+    NetworkResultUtil.toBasicLegacy(SignalNetwork.accountApi().setAccountAttributes(accountAttributes));
   }
 
   @Override

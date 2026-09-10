@@ -363,11 +363,11 @@ class AppRegistrationNetworkController(
       return@withContext RequestResult.NonSuccess(SetRegistrationLockError.NoPinSet)
     }
 
-    SignalNetwork.account.enableRegistrationLock(masterKey)
+    SignalNetwork.accountApi.enableRegistrationLock(masterKey)
   }
 
   override suspend fun disableRegistrationLock(): RequestResult<Unit, SetRegistrationLockError> = withContext(Dispatchers.IO) {
-    SignalNetwork.account.disableRegistrationLock()
+    SignalNetwork.accountApi.disableRegistrationLock()
   }
 
   override suspend fun getSvrCredentials(): RequestResult<SvrCredentials, GetSvrCredentialsError> = withContext(Dispatchers.IO) {
@@ -392,7 +392,7 @@ class AppRegistrationNetworkController(
   override suspend fun setAccountAttributes(
     attributes: AccountAttributes
   ): RequestResult<Unit, SetAccountAttributesError> = withContext(Dispatchers.IO) {
-    when (val result = SignalNetwork.account.setAccountAttributes(attributes.toServiceAccountAttributes())) {
+    when (val result = SignalNetwork.accountApi.setAccountAttributes(attributes.toServiceAccountAttributes())) {
       is NetworkResult.Success -> RequestResult.Success(Unit)
       is NetworkResult.StatusCodeError -> {
         when (result.code) {
@@ -409,7 +409,7 @@ class AppRegistrationNetworkController(
   override suspend fun getRemoteBackupInfo(aep: AccountEntropyPool): RequestResult<NetworkController.GetBackupInfoResponse, NetworkController.GetBackupInfoError> = withContext(Dispatchers.IO) {
     val aci = SignalStore.account.aci ?: return@withContext RequestResult.ApplicationError(IllegalStateException("ACI not available"))
 
-    AppDependencies.archiveService
+    SignalNetwork.archiveService
       .getMessageBackupInfoForKey(aci, aep.deriveMessageBackupKey())
       .fold(
         ifRight = { info ->
@@ -431,7 +431,7 @@ class AppRegistrationNetworkController(
     val aci = SignalStore.account.aci ?: return@withContext RequestResult.ApplicationError(IllegalStateException("ACI not available"))
 
     // Uses API directly because ArchiveService uses stored key
-    when (val result = SignalNetwork.archiveV2.triggerBackupIdReservation(messageBackupKey = aep.deriveMessageBackupKey(), mediaRootBackupKey = null, aci = aci)) {
+    when (val result = SignalNetwork.archiveApiV2.triggerBackupIdReservation(messageBackupKey = aep.deriveMessageBackupKey(), mediaRootBackupKey = null, aci = aci)) {
       is RequestResult.Success -> {
         // Anything cached was issued against the backup-id we just replaced, so it can never verify.
         SignalStore.backup.messageCredentials.clearAll()
@@ -492,11 +492,11 @@ class AppRegistrationNetworkController(
   }
 
   override suspend fun reserveUsername(nickname: String, discriminator: String?): RequestResult<Username, ReserveUsernameError> {
-    return AppDependencies.usernameService.reserveUsername(nickname, discriminator)
+    return SignalNetwork.usernameService.reserveUsername(nickname, discriminator)
   }
 
   override suspend fun confirmUsername(username: Username): RequestResult<ConfirmedUsername, ConfirmUsernameError> {
-    return AppDependencies.usernameService.confirmUsername(username)
+    return SignalNetwork.usernameService.confirmUsername(username)
   }
 
   override suspend fun restoreAccountRecord(
@@ -523,7 +523,7 @@ class AppRegistrationNetworkController(
   ): RequestResult<Long, NetworkController.GetBackupInfoError> = withContext(Dispatchers.IO) {
     val aci = SignalStore.account.aci ?: return@withContext RequestResult.ApplicationError(IllegalStateException("ACI not available"))
 
-    val location = when (val result = AppDependencies.archiveService.getMessageBackupFileLocationForKey(aci, aep.deriveMessageBackupKey())) {
+    val location = when (val result = SignalNetwork.archiveService.getMessageBackupFileLocationForKey(aci, aep.deriveMessageBackupKey())) {
       is Either.Right -> result.value
       is Either.Left -> return@withContext result.value.toGetBackupInfoError()
     }
@@ -853,7 +853,7 @@ class AppRegistrationNetworkController(
     while (timeRemaining > 0 && coroutineContext.isActive) {
       Log.d(TAG, "[awaitTransferArchiveFromPrimary] Willing to wait for $timeRemaining ms...")
 
-      when (val result = SignalNetwork.linkDevice.waitForPrimaryDevice(timeout = 60.seconds)) {
+      when (val result = SignalNetwork.linkDeviceApi.waitForPrimaryDevice(timeout = 60.seconds)) {
         is NetworkResult.Success -> {
           Log.i(TAG, "[awaitTransferArchiveFromPrimary] Primary responded (hasArchive=${result.result.hasArchive}, error=${result.result.error})")
           return result.result

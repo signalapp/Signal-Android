@@ -107,7 +107,7 @@ class DeleteAccountRepository {
       Log.i(TAG, "deleteAccount: attempting to delete account from server...");
 
       try {
-        NetworkResultUtil.toBasicLegacy(SignalNetwork.account().deleteAccount());
+        NetworkResultUtil.toBasicLegacy(SignalNetwork.accountApi().deleteAccount());
       } catch (IOException e) {
         if (e instanceof NonSuccessfulResponseCodeException && ((NonSuccessfulResponseCodeException) e).code == 4401) {
           Log.i(TAG, "deleteAccount: WebSocket closed with expected status after delete account, moving forward as delete was successful");

@@ -101,7 +101,7 @@ public class FcmRefreshJob extends BaseJob {
         Log.i(TAG, "Token didn't change.");
       }
 
-      RequestResultUtil.successOrThrowNoError(SignalNetwork.account().setFcmToken(token.get()));
+      RequestResultUtil.successOrThrowNoError(SignalNetwork.accountApi().setFcmToken(token.get()));
       SignalStore.account().setFcmToken(token.get());
 
       if (!SignalStore.account().isFcmEnabled()) {
