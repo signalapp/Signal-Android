@@ -62,6 +62,7 @@ import org.signal.registration.screens.accountlocked.AccountLockedScreen
 import org.signal.registration.screens.accountlocked.AccountLockedScreenEvents
 import org.signal.registration.screens.accountlocked.AccountLockedState
 import org.signal.registration.screens.addusername.AddUsernameScreen
+import org.signal.registration.screens.addusername.AddUsernameScreenActions
 import org.signal.registration.screens.addusername.AddUsernameViewModel
 import org.signal.registration.screens.aepentry.EnterAepForLocalBackupResult
 import org.signal.registration.screens.aepentry.EnterAepForLocalBackupViewModel
@@ -405,11 +406,7 @@ private const val AEP_FOR_LOCAL_BACKUP_RESULT = "aep_for_local_backup_result"
 private const val LOCAL_BACKUP_RESTORE_RESULT = "local_backup_restore_result"
 private const val PHONE_NUMBER_DISCOVERABILITY_RESULT = "phone_number_discoverability_result"
 private const val TWO_FACTOR_CODE_RESULT = "two_factor_code_result"
-private const val PIN_LEARN_MORE_URL = "https://support.signal.org/hc/articles/360007059792"
 private const val CLIPBOARD_TIMEOUT_SECONDS = 60
-
-// TODO [phonenumberless] Point at the real support article once it exists.
-private const val SIGNAL_LOGIN_LEARN_MORE_URL = "https://support.signal.org/"
 
 /** Opens [url] in a browser, surfacing a toast if the device has none. */
 private fun openUrl(context: Context, url: String) {
@@ -724,7 +721,7 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
     val purchaseScope = rememberCoroutineScope()
     CollectActions(viewModel.actions) { action ->
       when (action) {
-        SignalLoginPaymentScreenActions.OpenLearnMoreArticle -> openUrl(context, SIGNAL_LOGIN_LEARN_MORE_URL)
+        SignalLoginPaymentScreenActions.OpenLearnMoreArticle -> openUrl(context, "https://support.signal.org/hc/articles/11197884108826")
 
         is SignalLoginPaymentScreenActions.LaunchPurchaseFlow -> {
           purchaseScope.launch {
@@ -900,7 +897,7 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
     val context = LocalContext.current
     CollectActions(viewModel.actions) { action ->
       when (action) {
-        SignalLoginCredentialEntryScreenActions.OpenNeedHelpArticle -> openUrl(context, SIGNAL_LOGIN_LEARN_MORE_URL)
+        SignalLoginCredentialEntryScreenActions.OpenNeedHelpArticle -> openUrl(context, "https://support.signal.org/hc/articles/11197884108826")
       }
     }
 
@@ -961,6 +958,12 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
       )
     }
     val state by viewModel.state.collectAsStateWithLifecycle()
+    val context = LocalContext.current
+    CollectActions(viewModel.actions) { action ->
+      when (action) {
+        AddUsernameScreenActions.OpenLearnMoreArticle -> openUrl(context, "https://support.signal.org/hc/articles/6712070553754")
+      }
+    }
 
     AddUsernameScreen(
       state = state,
@@ -998,7 +1001,7 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
     val context = LocalContext.current
     CollectActions(viewModel.actions) { action ->
       when (action) {
-        PinCreationScreenActions.OpenLearnMoreArticle -> openUrl(context, PIN_LEARN_MORE_URL)
+        PinCreationScreenActions.OpenLearnMoreArticle -> openUrl(context, "https://support.signal.org/hc/articles/360007059792")
       }
     }
 

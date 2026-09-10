@@ -37,9 +37,6 @@ sealed class AddUsernameScreenEvents {
   /** The user tapped the "learn more" link under the username field. */
   data object LearnMoreClicked : AddUsernameScreenEvents()
 
-  /** The user dismissed the dialog explaining the digits after the username. */
-  data object LearnMoreDialogDismissed : AddUsernameScreenEvents()
-
   /** The user tapped the skip button, asking to opt out of choosing a username. */
   data object SkipClicked : AddUsernameScreenEvents()
 

@@ -747,12 +747,8 @@
     <string name="AddUsernameScreen__username">Username</string>
     <!-- Helper text below the username field. Followed by a "learn more" link. -->
     <string name="AddUsernameScreen__usernames_are_always_paired_with_a_set_of_numbers">Usernames are always paired with a set of numbers.</string>
-    <!-- Link in the helper text that opens an explanation of the digits paired with a username. -->
+    <!-- Link in the helper text that opens a support article about usernames. -->
     <string name="AddUsernameScreen__learn_more">Learn more</string>
-    <!-- Title of the dialog explaining the digits paired with a username. -->
-    <string name="AddUsernameScreen__what_is_this_number">What is this number?</string>
-    <!-- Body of the dialog explaining the digits paired with a username. -->
-    <string name="AddUsernameScreen__these_digits_help_keep">These digits help keep your username private so you can avoid unwanted messages. Share your username with only the people and groups you\'d like to chat with. If you change usernames you\'ll get a new set of digits.</string>
     <!-- Button that skips choosing a username. -->
     <string name="AddUsernameScreen__skip">Skip</string>
     <!-- Button that submits the chosen username. -->

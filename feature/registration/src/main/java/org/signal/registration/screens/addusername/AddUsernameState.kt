@@ -58,8 +58,6 @@ data class AddUsernameState(
   }
 
   data class Dialogs(
-    /** Explains what the digits after the username are for. */
-    val learnMore: Boolean = false,
     /** Confirms the user wants to skip choosing a username. */
     val confirmSkip: Boolean = false,
     val networkError: Boolean = false,

@@ -7,6 +7,7 @@ package org.signal.appsettings.account
 
 import android.app.Application
 import android.text.format.DateUtils
+import androidx.compose.ui.semantics.SemanticsActions
 import androidx.compose.ui.test.assertHasClickAction
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsEnabled
@@ -15,10 +16,13 @@ import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
+import androidx.compose.ui.test.onChildren
+import androidx.compose.ui.test.onFirst
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollToNode
+import androidx.compose.ui.test.performSemanticsAction
 import assertk.assertThat
 import assertk.assertions.contains
 import org.junit.Rule
@@ -422,8 +426,28 @@ class AccountSettingsScreenTest {
     composeTestRule.onNodeWithTag(AccountSettingsTestTags.DIALOG_MAX_TOTP_APPS_REACHED).assertIsDisplayed()
     composeTestRule.onNodeWithTag(Dialogs.TEST_TAG_ALERT_DIALOG_DISMISS_BUTTON).performClick()
 
-    assertThat(events).contains(AccountSettingsEvent.LearnMoreClicked)
+    assertThat(events).contains(AccountSettingsEvent.LearnMoreClicked("https://support.signal.org/hc/articles/11228705649690"))
     assertThat(events).contains(AccountSettingsEvent.DialogDismissed)
+  }
+
+  @Test
+  fun whenIClickTheSignalLoginLearnMore_thenIExpectLearnMoreForTheSignalLoginArticle() {
+    setContent(createState(signalLogin = signalLogin()))
+
+    scrollTo(AccountSettingsTestTags.LINK_SIGNAL_LOGIN_LEARN_MORE)
+    clickLink(AccountSettingsTestTags.LINK_SIGNAL_LOGIN_LEARN_MORE)
+
+    assertThat(events).contains(AccountSettingsEvent.LearnMoreClicked("https://support.signal.org/hc/articles/11197884108826"))
+  }
+
+  @Test
+  fun whenIClickTheTwoFactorLearnMore_thenIExpectLearnMoreForTheTwoFactorArticle() {
+    setContent(createState(signalLogin = signalLogin()))
+
+    scrollTo(AccountSettingsTestTags.LINK_TWO_FACTOR_LEARN_MORE)
+    clickLink(AccountSettingsTestTags.LINK_TWO_FACTOR_LEARN_MORE)
+
+    assertThat(events).contains(AccountSettingsEvent.LearnMoreClicked("https://support.signal.org/hc/articles/11228705649690"))
   }
 
   @Test
@@ -476,6 +500,14 @@ class AccountSettingsScreenTest {
     maxTotpApps: Int = 2
   ): AccountSettingsState.SignalLogin {
     return AccountSettingsState.SignalLogin(twoFactorMethods = twoFactorMethods, loadState = loadState, maxTotpApps = maxTotpApps)
+  }
+
+  /** Links inside an [androidx.compose.ui.text.AnnotatedString] have no bounds to tap, so their click action is invoked directly. */
+  private fun clickLink(testTag: String) {
+    composeTestRule.onNodeWithTag(testTag)
+      .onChildren()
+      .onFirst()
+      .performSemanticsAction(SemanticsActions.OnClick)
   }
 
   private fun scrollTo(testTag: String) {

@@ -10,6 +10,8 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.BufferOverflow
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -18,6 +20,7 @@ import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.UsernameUtil
@@ -53,6 +56,9 @@ class AddUsernameViewModel(
   private val _state = MutableStateFlow(AddUsernameState())
   val state: StateFlow<AddUsernameState> = _state.asStateFlow()
 
+  private val _actions = Channel<AddUsernameScreenActions>(Channel.BUFFERED)
+  val actions: Flow<AddUsernameScreenActions> = _actions.receiveAsFlow()
+
   private val entryChanges = MutableSharedFlow<AddUsernameScreenEvents.EntrySettled>(extraBufferCapacity = 1, onBufferOverflow = BufferOverflow.DROP_OLDEST)
 
   /** The in-flight reservation request. Only one may be live at a time -- starting a new one cancels the old one. */
@@ -86,8 +92,7 @@ class AddUsernameViewModel(
       is AddUsernameScreenEvents.DiscriminatorChanged -> applyDiscriminatorChanged(state, event.value, stateEmitter)
       is AddUsernameScreenEvents.EntrySettled -> applyEntrySettled(state, event, stateEmitter)
       is AddUsernameScreenEvents.ReservationCompleted -> applyReservationCompleted(state, event, stateEmitter)
-      is AddUsernameScreenEvents.LearnMoreClicked -> stateEmitter(state.copy(dialogs = state.dialogs.copy(learnMore = true)))
-      is AddUsernameScreenEvents.LearnMoreDialogDismissed -> stateEmitter(state.copy(dialogs = state.dialogs.copy(learnMore = false)))
+      is AddUsernameScreenEvents.LearnMoreClicked -> _actions.trySend(AddUsernameScreenActions.OpenLearnMoreArticle)
       is AddUsernameScreenEvents.SkipClicked -> stateEmitter(state.copy(dialogs = state.dialogs.copy(confirmSkip = true)))
       is AddUsernameScreenEvents.SkipConfirmed -> applySkipConfirmed(parentEventEmitter)
       is AddUsernameScreenEvents.SkipDialogDismissed -> stateEmitter(state.copy(dialogs = state.dialogs.copy(confirmSkip = false)))

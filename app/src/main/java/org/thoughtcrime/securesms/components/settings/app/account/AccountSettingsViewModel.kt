@@ -91,8 +91,8 @@ class AccountSettingsViewModel(
       AccountSettingsEvent.AddTotpAppClicked -> {
         applyAddTotpAppClicked()
       }
-      AccountSettingsEvent.LearnMoreClicked -> {
-        _actions.send(AccountSettingsAction.OpenLearnMore)
+      is AccountSettingsEvent.LearnMoreClicked -> {
+        _actions.send(AccountSettingsAction.OpenSupportArticle(event.url))
       }
       is AccountSettingsEvent.RenameMethodClicked -> {
         applyRenameMethodClicked(event.method)

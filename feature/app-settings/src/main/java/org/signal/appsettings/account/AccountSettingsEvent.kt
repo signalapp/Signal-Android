@@ -51,8 +51,8 @@ sealed interface AccountSettingsEvent {
   /** The user tapped the authenticator app option in the two-factor set-up menu. */
   data object AddTotpAppClicked : AccountSettingsEvent
 
-  /** The user tapped the learn more link on the dialog explaining the authenticator app limit. */
-  data object LearnMoreClicked : AccountSettingsEvent
+  /** The user tapped a learn more link that should open the support article at [url]. */
+  data class LearnMoreClicked(val url: String) : AccountSettingsEvent
 
   /** The user tapped the rename option in [method]'s overflow menu. */
   data class RenameMethodClicked(val method: TwoFactorMethod) : AccountSettingsEvent

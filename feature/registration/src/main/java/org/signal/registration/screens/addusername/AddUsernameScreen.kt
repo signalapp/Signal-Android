@@ -115,15 +115,6 @@ fun AddUsernameScreen(
     )
   }
 
-  if (state.dialogs.learnMore) {
-    Dialogs.SimpleMessageDialog(
-      title = stringResource(R.string.AddUsernameScreen__what_is_this_number),
-      message = stringResource(R.string.AddUsernameScreen__these_digits_help_keep),
-      dismiss = stringResource(android.R.string.ok),
-      onDismiss = { onEvent(AddUsernameScreenEvents.LearnMoreDialogDismissed) }
-    )
-  }
-
   Surface(
     modifier = modifier
       .fillMaxSize()

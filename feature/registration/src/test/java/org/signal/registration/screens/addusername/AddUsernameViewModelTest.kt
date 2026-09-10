@@ -17,6 +17,7 @@ import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.resetMain
@@ -61,16 +62,14 @@ class AddUsernameViewModelTest {
   }
 
   @Test
-  fun `LearnMoreClicked shows the dialog explaining the discriminator`() = runTest(testDispatcher) {
+  fun `LearnMoreClicked emits an action to open the learn more article`() = runTest(testDispatcher) {
+    val actions = mutableListOf<AddUsernameScreenActions>()
+    backgroundScope.launch(testDispatcher) { viewModel.actions.collect { actions.add(it) } }
+
     viewModel.onEvent(AddUsernameScreenEvents.LearnMoreClicked)
     advanceUntilIdle()
 
-    assertThat(viewModel.state.value.dialogs.learnMore).isTrue()
-
-    viewModel.onEvent(AddUsernameScreenEvents.LearnMoreDialogDismissed)
-    advanceUntilIdle()
-
-    assertThat(viewModel.state.value.dialogs.learnMore).isFalse()
+    assertThat(actions).containsExactly(AddUsernameScreenActions.OpenLearnMoreArticle)
   }
 
   @Test

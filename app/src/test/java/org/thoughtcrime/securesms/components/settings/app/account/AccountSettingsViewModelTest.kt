@@ -540,9 +540,9 @@ class AccountSettingsViewModelTest {
     val viewModel = createViewModel()
     val actions = collectActions(viewModel.actions)
 
-    viewModel.onEvent(AccountSettingsEvent.LearnMoreClicked)
+    viewModel.onEvent(AccountSettingsEvent.LearnMoreClicked("https://support.signal.org/hc/articles/11228705649690"))
 
-    assertThat(actions.last()).isEqualTo(AccountSettingsAction.OpenLearnMore)
+    assertThat(actions.last()).isEqualTo(AccountSettingsAction.OpenSupportArticle("https://support.signal.org/hc/articles/11228705649690"))
   }
 
   @Test

@@ -43,12 +43,14 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.LinkAnnotation
 import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.TextLinkStyles
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.text.withLink
 import androidx.compose.ui.unit.dp
 import org.signal.appsettings.R
 import org.signal.appsettings.account.AccountSettingsState.Dialog
@@ -73,6 +75,7 @@ import org.signal.core.ui.R as CoreUiR
 object AccountSettingsTestTags {
   const val SCROLLER = "scroller"
   const val CARD_SIGNAL_LOGIN = "card-signal-login"
+  const val LINK_SIGNAL_LOGIN_LEARN_MORE = "link-signal-login-learn-more"
   const val ROW_SET_UP_TWO_FACTOR = "row-set-up-two-factor"
   const val MENU_ITEM_AUTHENTICATOR_APP = "menu-item-authenticator-app"
   const val ROW_TWO_FACTOR_METHOD = "row-two-factor-method"
@@ -81,6 +84,7 @@ object AccountSettingsTestTags {
   const val MENU_ITEM_REMOVE = "menu-item-remove"
   const val TWO_FACTOR_LOADING = "two-factor-loading"
   const val TWO_FACTOR_LOAD_FAILED_MESSAGE = "two-factor-load-failed-message"
+  const val LINK_TWO_FACTOR_LEARN_MORE = "link-two-factor-learn-more"
   const val ROW_MODIFY_PIN = "row-modify-pin"
   const val ROW_PIN_REMINDER = "row-pin-reminder"
   const val ROW_REGISTRATION_LOCK = "row-registration-lock"
@@ -139,7 +143,12 @@ fun AccountSettingsScreen(
         }
 
         item {
-          SectionFooter(text = stringResource(R.string.AccountSettingsFragment__your_signal_login_is_used_to_recover))
+          SectionFooter(
+            text = stringResource(R.string.AccountSettingsFragment__your_signal_login_is_used_to_recover),
+            url = "https://support.signal.org/hc/articles/11197884108826",
+            onEvent = onEvent,
+            modifier = Modifier.testTag(AccountSettingsTestTags.LINK_SIGNAL_LOGIN_LEARN_MORE)
+          )
         }
 
         item {
@@ -192,7 +201,12 @@ fun AccountSettingsScreen(
         }
 
         item {
-          SectionFooter(text = stringResource(R.string.AccountSettingsFragment__use_a_second_form_of_authentication))
+          SectionFooter(
+            text = stringResource(R.string.AccountSettingsFragment__use_a_second_form_of_authentication),
+            url = "https://support.signal.org/hc/articles/11228705649690",
+            onEvent = onEvent,
+            modifier = Modifier.testTag(AccountSettingsTestTags.LINK_TWO_FACTOR_LEARN_MORE)
+          )
         }
 
         item {
@@ -556,24 +570,28 @@ private fun SignalLoginCard(
 }
 
 /**
- * Explanatory text shown underneath a section, ending in a "Learn more" link that has nowhere to go yet.
+ * Explanatory text shown underneath a section, ending in a "Learn more" link that opens the support article at [url].
  */
 @Composable
 private fun SectionFooter(
   text: String,
+  url: String,
+  onEvent: (AccountSettingsEvent) -> Unit,
   modifier: Modifier = Modifier
 ) {
-  val learnMore = stringResource(R.string.AccountSettingsFragment__learn_more)
-  val primaryColor = MaterialTheme.colorScheme.primary
-
   Text(
-    text = remember(text, learnMore, primaryColor) {
-      buildAnnotatedString {
-        append(text)
-        append(" ")
-        withStyle(SpanStyle(color = primaryColor)) {
-          append(learnMore)
-        }
+    text = buildAnnotatedString {
+      append(text)
+      append(" ")
+
+      withLink(
+        LinkAnnotation.Clickable(
+          tag = "learn-more",
+          styles = TextLinkStyles(style = SpanStyle(color = MaterialTheme.colorScheme.primary)),
+          linkInteractionListener = { onEvent(AccountSettingsEvent.LearnMoreClicked(url)) }
+        )
+      ) {
+        append(stringResource(R.string.AccountSettingsFragment__learn_more))
       }
     },
     style = MaterialTheme.typography.bodyMedium,
@@ -625,7 +643,7 @@ private fun MaxTotpAppsReachedDialog(
     onConfirm = {},
     onDismiss = { onEvent(AccountSettingsEvent.DialogDismissed) },
     dismiss = stringResource(R.string.AccountSettingsFragment__learn_more),
-    onDeny = { onEvent(AccountSettingsEvent.LearnMoreClicked) },
+    onDeny = { onEvent(AccountSettingsEvent.LearnMoreClicked("https://support.signal.org/hc/articles/11228705649690")) },
     onDismissRequest = { onEvent(AccountSettingsEvent.DialogDismissed) },
     modifier = Modifier.testTag(AccountSettingsTestTags.DIALOG_MAX_TOTP_APPS_REACHED)
   )

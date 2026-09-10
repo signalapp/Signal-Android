@@ -25,7 +25,6 @@ import org.signal.appsettings.account.AccountSettingsScreen
 import org.signal.core.ui.compose.CollectActions
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.util.ServiceUtil
-import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.compose.BiometricsAuthentication
 import org.thoughtcrime.securesms.components.compose.rememberBiometricsAuthentication
@@ -33,6 +32,7 @@ import org.thoughtcrime.securesms.components.settings.app.account.authenticator.
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.lock.v2.CreateSvrPinActivity
 import org.thoughtcrime.securesms.registration.ui.RegistrationActivity
+import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.PlayStoreUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.signal.appsettings.R as AppSettingsR
@@ -42,10 +42,6 @@ import org.signal.appsettings.R as AppSettingsR
  * legacy nav graph.
  */
 class AccountSettingsFragment : ComposeFragment() {
-
-  companion object {
-    private val TAG = Log.tag(AccountSettingsFragment::class)
-  }
 
   private val viewModel: AccountSettingsViewModel by viewModels()
 
@@ -117,8 +113,7 @@ class AccountSettingsFragment : ComposeFragment() {
       AccountSettingsAction.ShowAuthenticationFailed -> toast(AppSettingsR.string.AccountSettingsFragment__authentication_required)
       AccountSettingsAction.ShowTotpAppRemoved -> toast(AppSettingsR.string.AccountSettingsFragment__authenticator_app_removed)
       AccountSettingsAction.ShowTotpAppRemovalFailed -> toast(AppSettingsR.string.AccountSettingsFragment__couldnt_remove_authenticator_app)
-      // TODO Open the two-factor authentication support article once one exists.
-      AccountSettingsAction.OpenLearnMore -> Log.w(TAG, "There's no support article to open yet.")
+      is AccountSettingsAction.OpenSupportArticle -> CommunicationActions.openBrowserLink(requireContext(), action.url)
       AccountSettingsAction.NavigateToAdvancedPinSettings -> findNavController().safeNavigate(R.id.action_accountSettingsFragment_to_advancedPinSettingsActivity)
       AccountSettingsAction.NavigateToChangePhoneNumber -> findNavController().safeNavigate(R.id.action_accountSettingsFragment_to_changePhoneNumberFragment)
       AccountSettingsAction.NavigateToDeviceTransfer -> findNavController().safeNavigate(R.id.action_accountSettingsFragment_to_oldDeviceTransferActivity)
