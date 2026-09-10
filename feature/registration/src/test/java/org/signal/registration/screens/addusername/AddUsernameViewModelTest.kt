@@ -206,6 +206,42 @@ class AddUsernameViewModelTest {
   }
 
   @Test
+  fun `emptying a user-typed discriminator drops its reservation`() = runTest(testDispatcher) {
+    coEvery { mockRepository.reserveUsername("maya") } returns RequestResult.Success(Username("maya.45"))
+    coEvery { mockRepository.reserveUsername("maya", "77") } returns RequestResult.Success(Username("maya.77"))
+
+    viewModel.onEvent(AddUsernameScreenEvents.UsernameChanged("maya"))
+    advanceUntilIdle()
+    viewModel.onEvent(AddUsernameScreenEvents.DiscriminatorChanged("77"))
+    advanceUntilIdle()
+    viewModel.onEvent(AddUsernameScreenEvents.DiscriminatorChanged(""))
+    advanceUntilIdle()
+
+    assertThat(viewModel.state.value.discriminator).isEmpty()
+    assertThat(viewModel.state.value.isDiscriminatorUserSet).isFalse()
+    assertThat(viewModel.state.value.reservation).isNull()
+    assertThat(viewModel.state.value.isSubmittable).isFalse()
+  }
+
+  @Test
+  fun `NextClicked cannot confirm a discriminator the user just erased`() = runTest(testDispatcher) {
+    coEvery { mockRepository.reserveUsername("maya") } returns RequestResult.Success(Username("maya.45"))
+    coEvery { mockRepository.reserveUsername("maya", "77") } returns RequestResult.Success(Username("maya.77"))
+
+    viewModel.onEvent(AddUsernameScreenEvents.UsernameChanged("maya"))
+    advanceUntilIdle()
+    viewModel.onEvent(AddUsernameScreenEvents.DiscriminatorChanged("77"))
+    advanceUntilIdle()
+    viewModel.onEvent(AddUsernameScreenEvents.DiscriminatorChanged(""))
+    advanceUntilIdle()
+    viewModel.onEvent(AddUsernameScreenEvents.NextClicked)
+    advanceUntilIdle()
+
+    coVerify(exactly = 0) { mockRepository.confirmUsername(any()) }
+    assertThat(parentEvents).isEmpty()
+  }
+
+  @Test
   fun `losing focus with an empty discriminator hands it back to the service`() = runTest(testDispatcher) {
     coEvery { mockRepository.reserveUsername("maya") } returns RequestResult.Success(Username("maya.45")) andThen RequestResult.Success(Username("maya.99"))
 

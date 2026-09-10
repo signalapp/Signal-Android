@@ -126,6 +126,9 @@ class AddUsernameViewModel(
    * Non-digits are dropped as they're typed, since a discriminator can only ever be digits.
    *
    * Emptying the field hands control back to the service once the field loses focus (see [applyDiscriminatorFocusLost]).
+   * Until then we hold onto a service-assigned reservation, since that pairing is still the one the entry is showing.
+   * A user-typed reservation, on the other hand, is dropped as soon as its digits are erased -- the user asked for that
+   * exact number and no longer wants it, so there is nothing left to submit until the field settles.
    */
   private fun applyDiscriminatorChanged(state: AddUsernameState, discriminator: String, stateEmitter: (AddUsernameState) -> Unit) {
     val digitsOnly = discriminator.filter { it in '0'..'9' }
@@ -141,7 +144,7 @@ class AddUsernameViewModel(
       discriminator = digitsOnly,
       isDiscriminatorUserSet = isUserSet,
       validationError = null,
-      reservation = if (isUserSet) null else state.reservation,
+      reservation = state.reservation.takeIf { !isUserSet && !state.isDiscriminatorUserSet },
       isReserving = false
     )
 
