@@ -134,8 +134,10 @@ object RecipientArchiveProcessor {
         null
       }
     }
-    if (newId != null) {
+    if (newId != null && !newId.isUnknown) {
       importState.remoteToLocalRecipientId[recipient.id] = newId
+    } else if (newId != null) {
+      Log.w(TAG, "Importer returned unknown id for recipient ${recipient.id}, leaving unmapped.")
     }
   }
 }

@@ -6,10 +6,13 @@
 package org.thoughtcrime.securesms.backup.v2.importer
 
 import android.content.ContentValues
+import android.database.sqlite.SQLiteConstraintException
 import org.signal.archive.proto.Group
 import org.signal.core.models.ServiceId
 import org.signal.core.util.Base64
+import org.signal.core.util.logging.Log
 import org.signal.core.util.toInt
+import org.thoughtcrime.securesms.backup.v2.ImportSkips
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.signal.libsignal.zkgroup.groups.GroupSecretParams
 import org.signal.storageservice.storage.protos.groups.AccessControl
@@ -40,6 +43,8 @@ import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations
  * Handles the importing of [ArchiveGroup] models into the local database.
  */
 object GroupArchiveImporter {
+  private val TAG = Log.tag(GroupArchiveImporter::class.java)
+
   fun import(group: ArchiveGroup): RecipientId {
     val masterKey = GroupMasterKey(group.masterKey.toByteArray())
     val groupId = GroupId.v2(masterKey)
@@ -52,22 +57,69 @@ object GroupArchiveImporter {
       snapshot.toLocal(operations)
     }
 
-    val values = ContentValues().apply {
-      put(RecipientTable.GROUP_ID, groupId.toString())
-      put(RecipientTable.AVATAR_COLOR, AvatarColorHash.forGroupId(groupId).serialize())
-      put(RecipientTable.PROFILE_SHARING, group.whitelisted.toInt())
-      put(RecipientTable.BLOCKED, group.blocked.toInt())
-      put(RecipientTable.BLOCKED_AT, group.blockedAtTimestamp)
-      put(RecipientTable.TYPE, RecipientTable.RecipientType.GV2.id)
-      put(RecipientTable.STORAGE_SERVICE_ID, Base64.encodeWithPadding(StorageSyncHelper.generateKey()))
-      put(RecipientTable.AVATAR_COLOR, group.avatarColor?.toLocal()?.serialize())
-      if (group.hideStory) {
-        val extras = RecipientExtras.Builder().hideStory(true).build()
-        put(RecipientTable.EXTRAS, extras.encode())
+    // Idempotent restore: the group may already exist (transfer + restore overlap).
+    val preExisting = SignalDatabase.recipients.getByGroupId(groupId)
+    if (preExisting.isPresent) {
+      Log.i(TAG, "Group $groupId already exists as ${preExisting.get()}, reusing.")
+      return preExisting.get()
+    }
+
+    var attempts = 0
+    var recipientId: Long = -1
+    var lastStorageKey: String? = null
+    while (attempts < StorageSyncHelper.MAX_STORAGE_ID_ATTEMPTS) {
+      val values = ContentValues().apply {
+        put(RecipientTable.GROUP_ID, groupId.toString())
+        put(RecipientTable.PROFILE_SHARING, group.whitelisted.toInt())
+        put(RecipientTable.BLOCKED, group.blocked.toInt())
+        put(RecipientTable.BLOCKED_AT, group.blockedAtTimestamp)
+        put(RecipientTable.TYPE, RecipientTable.RecipientType.GV2.id)
+        val storageKey = Base64.encodeWithPadding(StorageSyncHelper.generateUniqueStorageId())
+        lastStorageKey = storageKey
+        put(RecipientTable.STORAGE_SERVICE_ID, storageKey)
+        put(RecipientTable.AVATAR_COLOR, group.avatarColor?.toLocal()?.serialize())
+        if (group.hideStory) {
+          val extras = RecipientExtras.Builder().hideStory(true).build()
+          put(RecipientTable.EXTRAS, extras.encode())
+        }
+      }
+
+      // Some database wrappers throw on constraint violation instead of returning -1.
+      // Treat a thrown duplicate exactly like a failed insert.
+      recipientId = try {
+        SignalDatabase.writableDatabase.insert(RecipientTable.TABLE_NAME, null, values)
+      } catch (e: SQLiteConstraintException) {
+        Log.w(TAG, "Insert threw for group $groupId, treating as failed insert: ${e.message}")
+        -1L
+      }
+      if (recipientId != -1L) {
+        break
+      }
+
+      // Distinguish storage collision vs other constraint via SELECT (no string parsing)
+      val lastKeyBytes = try { lastStorageKey?.let { Base64.decode(it) } } catch (e: Exception) { null }
+      val storageExists = lastKeyBytes != null && SignalDatabase.recipients.getByStorageId(lastKeyBytes) != null
+      if (!storageExists) {
+        val existingByGroup = SignalDatabase.recipients.getByGroupId(groupId)
+        if (existingByGroup.isPresent) {
+          Log.w(TAG, "Insert failed for group $groupId - group already exists as ${existingByGroup.get()}, reusing.")
+          return existingByGroup.get()
+        }
+        Log.w(TAG, "Insert failed for group $groupId, storage key not found - not a storage collision, skipping")
+        break
+      }
+      Log.w(TAG, ImportSkips.duplicateStorageId() + " attempt ${attempts + 1}/${StorageSyncHelper.MAX_STORAGE_ID_ATTEMPTS} for group $groupId")
+      attempts++
+      if (attempts >= StorageSyncHelper.MAX_STORAGE_ID_ATTEMPTS) {
+        break
       }
     }
 
-    val recipientId = SignalDatabase.writableDatabase.insert(RecipientTable.TABLE_NAME, null, values)
+    if (recipientId == -1L) {
+      Log.w(TAG, "Failed to import group $groupId after $attempts attempts due to constraints. Skipping.")
+      return RecipientId.UNKNOWN
+    }
+
     val restoredId = SignalDatabase.groups.create(masterKey, decryptedState, groupSendEndorsements = null)
     if (restoredId != null) {
       SignalDatabase.groups.setShowAsStoryState(restoredId, group.storySendMode.toLocal())

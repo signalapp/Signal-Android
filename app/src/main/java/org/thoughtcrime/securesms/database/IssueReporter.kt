@@ -45,6 +45,7 @@ object IssueReporter {
   const val ISSUE_SLOW_DATABASE_READ = "Slow Database Read"
   const val ISSUE_SLOW_DATABASE_LOCK = "Slow Database Lock"
   const val ISSUE_STORAGE_SYNC_LOOP = "Storage Sync Loop"
+  const val ISSUE_STORAGE_ID_COLLISION_EXHAUSTED = "Storage ID Collision Exhausted"
 
   const val SLOW_WRITE_LOW_PRIORITY_MS = 1_000L
   const val SLOW_WRITE_MEDIUM_PRIORITY_MS = 5_000L

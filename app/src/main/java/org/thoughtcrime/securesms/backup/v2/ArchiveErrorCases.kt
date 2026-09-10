@@ -311,6 +311,10 @@ object ImportSkips {
     return log(sentTimestamp, "Missing admin delete recipient for chat $chatId")
   }
 
+  fun duplicateStorageId(): String {
+    return log(0, "Duplicate storage_service_id encountered during import. Retrying with new key.")
+  }
+
   private fun log(sentTimestamp: Long, message: String): String {
     return "[SKIP][$sentTimestamp] $message"
   }

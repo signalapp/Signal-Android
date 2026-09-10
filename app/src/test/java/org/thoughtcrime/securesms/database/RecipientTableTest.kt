@@ -9,12 +9,19 @@ import android.app.Application
 import assertk.assertThat
 import assertk.assertions.isEmpty
 import assertk.assertions.isNotEmpty
+import io.mockk.Runs
+import io.mockk.every
+import io.mockk.just
+import io.mockk.mockkObject
+import io.mockk.unmockkObject
+import org.junit.Assert.assertArrayEquals
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
+import org.junit.Assert.fail
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -25,9 +32,17 @@ import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.ServiceId.PNI
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.SqlUtil
+import org.signal.core.util.Util
+import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.storage.StorageKeyGenerator
+import org.thoughtcrime.securesms.storage.StorageRecordUpdate
+import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.testutil.RecipientTestRule
+import org.whispersystems.signalservice.api.storage.SignalAccountRecord
+import org.whispersystems.signalservice.api.storage.StorageId
+import org.whispersystems.signalservice.internal.storage.protos.AccountRecord
 import java.util.UUID
 
 @RunWith(RobolectricTestRunner::class)
@@ -297,9 +312,96 @@ class RecipientTableTest {
     )
   }
 
+  @Test
+  fun givenAccountUpdateTargetIdHeldByAnotherRecipient_whenApplyingAccountUpdate_thenSelfTakesTargetAndSquatterIsRehomed() {
+    val oldId: ByteArray = Util.getSecretBytes(16)
+    val targetId: ByteArray = Util.getSecretBytes(16)
+
+    SignalDatabase.recipients.updateStorageId(recipients.self, oldId)
+    SignalDatabase.recipients.updateStorageId(other, targetId)
+
+    val update = StorageRecordUpdate(
+      SignalAccountRecord(StorageId.forAccount(oldId), AccountRecord()),
+      SignalAccountRecord(StorageId.forAccount(targetId), AccountRecord())
+    )
+
+    SignalDatabase.recipients.applyStorageSyncAccountUpdate(update)
+
+    val selfStorageId: ByteArray? = SignalDatabase.recipients.getRecord(recipients.self).storageId
+    assertNotNull("Self should hold the target id after the update", selfStorageId)
+    assertArrayEquals(targetId, selfStorageId)
+
+    val squatterStorageId: ByteArray? = SignalDatabase.recipients.getRecord(other).storageId
+    assertNotNull("Squatter should have been re-homed, not left null", squatterStorageId)
+    assertFalse("Squatter must no longer hold the target id", targetId.contentEquals(squatterStorageId))
+  }
+
+  @Test
+  fun givenTakenStorageKey_whenInsertingRecipient_thenSkipsTakenKeyAndSucceeds() {
+    val takenKey: ByteArray = Util.getSecretBytes(16)
+    val freshKey: ByteArray = Util.getSecretBytes(16)
+
+    StorageSyncHelper.setTestKeyGenerator(ScriptedKeyGenerator(takenKey))
+    val first: RecipientId = try {
+      SignalDatabase.recipients.getOrInsertFromDistributionListId(DistributionListId.from(101L))
+    } finally {
+      StorageSyncHelper.setTestKeyGenerator(null)
+    }
+    assertArrayEquals(takenKey, SignalDatabase.recipients.getRecord(first).storageId)
+
+    StorageSyncHelper.setTestKeyGenerator(ScriptedKeyGenerator(takenKey, freshKey))
+    val second: RecipientId = try {
+      SignalDatabase.recipients.getOrInsertFromDistributionListId(DistributionListId.from(102L))
+    } finally {
+      StorageSyncHelper.setTestKeyGenerator(null)
+    }
+    assertArrayEquals(freshKey, SignalDatabase.recipients.getRecord(second).storageId)
+  }
+
+  @Test
+  fun givenPermanentlyTakenStorageKey_whenInsertingRecipient_thenFailsLoudlyInsteadOfLoopingForever() {
+    // The exhaustion path also files an internal issue report, which drags the
+    // RemoteConfig/SignalStore machinery in. Silence only the reporter here;
+    // this test asserts the bounded-loud behavior, not the telemetry.
+    mockkObject(IssueReporter)
+    every { IssueReporter.report(any(), any(), any(), any(), any(), any()) } just Runs
+    try {
+      val takenKey: ByteArray = Util.getSecretBytes(16)
+
+      StorageSyncHelper.setTestKeyGenerator(ScriptedKeyGenerator(takenKey))
+      try {
+        SignalDatabase.recipients.getOrInsertFromDistributionListId(DistributionListId.from(201L))
+      } finally {
+        StorageSyncHelper.setTestKeyGenerator(null)
+      }
+
+      StorageSyncHelper.setTestKeyGenerator(StorageKeyGenerator { takenKey })
+      try {
+        SignalDatabase.recipients.getOrInsertFromDistributionListId(DistributionListId.from(202L))
+        fail("Expected bounded retries to exhaust loudly rather than spin forever")
+      } catch (e: AssertionError) {
+        // expected: retries are bounded, total failure is loud so crash reporting flags a broken generator
+      } finally {
+        StorageSyncHelper.setTestKeyGenerator(null)
+      }
+    } finally {
+      unmockkObject(IssueReporter)
+    }
+  }
+
   companion object {
     val ACI_A = ACI.from(UUID.fromString("aaaa0000-5a76-47fa-a98a-7e72c948a82e"))
     val PNI_A = PNI.from(UUID.fromString("aaaa1111-c960-4f6c-8385-671ad2ffb999"))
     const val E164_A = "+12222222222"
   }
+}
+
+/**
+ * Key generator that returns scripted keys in order, then falls back to random keys.
+ * Lets tests force storage id collisions deterministically.
+ */
+private class ScriptedKeyGenerator(vararg keys: ByteArray) : StorageKeyGenerator {
+  private val queue: ArrayDeque<ByteArray> = ArrayDeque(keys.toList())
+
+  override fun generate(): ByteArray = queue.removeFirstOrNull() ?: Util.getSecretBytes(16)
 }

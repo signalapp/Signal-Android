@@ -68,6 +68,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase.Companion.runPostSucce
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.sessions
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.threads
 import org.thoughtcrime.securesms.database.model.DistributionListId
+import org.thoughtcrime.securesms.database.model.IssuePriority
 import org.thoughtcrime.securesms.database.model.KeyTransparencyStore
 import org.thoughtcrime.securesms.database.model.RecipientRecord
 import org.thoughtcrime.securesms.database.model.ThreadWithRecipient
@@ -1137,9 +1138,51 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         .run()
     }
 
-    val updateCount = writableDatabase.update(TABLE_NAME, values, "$STORAGE_SERVICE_ID = ?", arrayOf(Base64.encodeWithPadding(update.old.id.raw)))
-    if (updateCount < 1) {
-      throw AssertionError("Account update didn't match any rows!")
+    val targetStorageIdStr = Base64.encodeWithPadding(update.new.id.raw)
+    val oldStorageIdStr = Base64.encodeWithPadding(update.old.id.raw)
+
+    writableDatabase.beginTransaction()
+    try {
+      // Free the target ID first. NULL never violates the UNIQUE constraint,
+      // so the self update below cannot fail with 2067 no matter who holds the target ID.
+      val targetKeyBytes = try { Base64.decode(targetStorageIdStr) } catch (e: Exception) { null }
+      val conflictingRecord = targetKeyBytes?.let { getByStorageId(it) }
+      val squatter = if (conflictingRecord != null && conflictingRecord.id != Recipient.self().id) conflictingRecord else null
+      if (squatter != null) {
+        val nullOut = ContentValues().apply { putNull(STORAGE_SERVICE_ID) }
+        writableDatabase.update(TABLE_NAME, nullOut, "$ID = ?", arrayOf(squatter.id.serialize()))
+        Log.w(TAG, "Freed conflicting storage_service_id held by recipient ${squatter.id} for account update.")
+      }
+
+      val updateCount = writableDatabase.update(TABLE_NAME, values, "$STORAGE_SERVICE_ID = ?", arrayOf(oldStorageIdStr))
+      if (updateCount < 1) {
+        throw AssertionError("Account update didn't match any rows!")
+      }
+
+      // Re-home the squatter with a checked direct update. On exhaustion the row
+      // stays NULL and the next storage sync repairs it (group/self/contact healers).
+      if (squatter != null) {
+        var rehomed = false
+        for (attempt in 1..StorageSyncHelper.MAX_STORAGE_ID_ATTEMPTS) {
+          val candidate = StorageSyncHelper.generateKey()
+          if (getByStorageId(candidate) != null) {
+            Log.w(TAG, duplicateStorageIdMessage() + " re-home pre-check hit, retry $attempt/${StorageSyncHelper.MAX_STORAGE_ID_ATTEMPTS} for recipient ${squatter.id}")
+            continue
+          }
+          writableDatabase.update(TABLE_NAME, contentValuesOf(STORAGE_SERVICE_ID to Base64.encodeWithPadding(candidate)), "$ID = ?", arrayOf(squatter.id.serialize()))
+          Log.w(TAG, "Resolved storage_service_id collision: recipient ${squatter.id} re-homed.")
+          rehomed = true
+          break
+        }
+        if (!rehomed) {
+          Log.w(TAG, "Could not re-home recipient ${squatter.id} after 5 attempts; leaving storage_service_id NULL for storage sync repair.")
+          IssueReporter.report(IssueReporter.ISSUE_STORAGE_ID_COLLISION_EXHAUSTED, "recipient=${squatter.id}", priority = IssuePriority.HIGH)
+        }
+      }
+
+      writableDatabase.setTransactionSuccessful()
+    } finally {
+      writableDatabase.endTransaction()
     }
 
     if (remoteKey != localKey) {
@@ -4378,6 +4421,10 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
   }
 
+  private fun duplicateStorageIdMessage(): String {
+    return "Duplicate storage_service_id encountered, retrying with new key."
+  }
+
   private fun getOrInsertByColumn(column: String, value: String, contentValues: ContentValues = contentValuesOf(column to value)): GetOrInsertResult {
     if (TextUtils.isEmpty(value)) {
       throw AssertionError("$column cannot be empty.")
@@ -4388,17 +4435,51 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     if (existing.isPresent) {
       return GetOrInsertResult(existing.get(), false)
     } else {
-      val id = writableDatabase.insert(TABLE_NAME, null, contentValues)
-      if (id < 0) {
+      var attempts = 0
+      var mutableValues = ContentValues(contentValues)
+      while (attempts < StorageSyncHelper.MAX_STORAGE_ID_ATTEMPTS) {
+        // Some database wrappers throw on constraint violation instead of returning -1.
+        // Treat a thrown duplicate exactly like a failed insert; anything else stays loud below.
+        val id = try {
+          writableDatabase.insert(TABLE_NAME, null, mutableValues)
+        } catch (e: SQLiteConstraintException) {
+          Log.w(TAG, "Insert threw for $column=$value, treating as failed insert: ${e.message}")
+          -1L
+        }
+        if (id >= 0) {
+          return GetOrInsertResult(RecipientId.from(id), true)
+        }
+
         existing = getByColumn(column, value)
         if (existing.isPresent) {
           return GetOrInsertResult(existing.get(), false)
+        }
+
+        if (mutableValues.containsKey(STORAGE_SERVICE_ID)) {
+          val lastKeyStr = mutableValues.getAsString(STORAGE_SERVICE_ID)
+          val lastKeyBytes = try { Base64.decode(lastKeyStr) } catch (e: Exception) { null }
+          val storageExists = lastKeyBytes != null && getByStorageId(lastKeyBytes) != null
+          if (!storageExists) {
+            Log.w(TAG, "Insert failed for $column=$value, storage $lastKeyStr not found - not a storage collision. Failing fast.")
+            throw AssertionError("Failed to insert recipient! insert returned -1 and storage not found for $column")
+          }
+          val newKey = StorageSyncHelper.generateUniqueStorageId()
+          val newKeyStr = Base64.encodeWithPadding(newKey)
+          mutableValues.put(STORAGE_SERVICE_ID, newKeyStr)
+          Log.w(TAG, duplicateStorageIdMessage() + " attempt ${attempts + 1}/${StorageSyncHelper.MAX_STORAGE_ID_ATTEMPTS} for $column=$value -> retrying")
+          attempts++
+          continue
         } else {
           throw AssertionError("Failed to insert recipient!")
         }
-      } else {
-        return GetOrInsertResult(RecipientId.from(id), true)
       }
+      // Last resort re-check: a concurrent writer may have won the race while we retried.
+      existing = getByColumn(column, value)
+      if (existing.isPresent) {
+        return GetOrInsertResult(existing.get(), false)
+      }
+      IssueReporter.report(IssueReporter.ISSUE_STORAGE_ID_COLLISION_EXHAUSTED, "column=$column attempts=$attempts", priority = IssuePriority.HIGH)
+      throw AssertionError("Failed to insert recipient after $attempts retries due to storage_service_id collisions!")
     }
   }
 

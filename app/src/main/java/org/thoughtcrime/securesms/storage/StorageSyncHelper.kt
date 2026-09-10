@@ -56,6 +56,12 @@ object StorageSyncHelper {
 
   val KEY_GENERATOR: StorageKeyGenerator = StorageKeyGenerator { Util.getSecretBytes(16) }
 
+  /**
+   * How many times callers retry with a fresh storage key after a UNIQUE 2067 collision
+   * before giving up. Shared so the policy stays consistent across all insert paths.
+   */
+  const val MAX_STORAGE_ID_ATTEMPTS = 5
+
   private var keyGenerator = KEY_GENERATOR
 
   private val REFRESH_INTERVAL = TimeUnit.HOURS.toMillis(2)
@@ -101,9 +107,30 @@ object StorageSyncHelper {
     return IdDifferenceResult(remoteOnlyKeys, localOnlyKeys, hasTypeMismatch)
   }
 
+  /**
+   * Raw random key, no uniqueness guarantee. For DB inserts into [RecipientTable.STORAGE_SERVICE_ID],
+   * use [generateUniqueStorageId] instead to avoid UNIQUE 2067 (see PR 14973).
+   */
   @JvmStatic
   fun generateKey(): ByteArray {
     return keyGenerator.generate()
+  }
+
+  /**
+   * Generates a storage key that does not already exist in the recipient table.
+   * Use this instead of [generateKey] directly when inserting [RecipientTable.STORAGE_SERVICE_ID].
+   * Future writers must use this helper to avoid UNIQUE 2067 collisions (see PR 14973).
+   * Still requires caller to handle `insert() == -1` race - see [RecipientTable.getOrInsertByColumn].
+   */
+  @JvmStatic
+  fun generateUniqueStorageId(): ByteArray {
+    repeat(MAX_STORAGE_ID_ATTEMPTS) {
+      val key = generateKey()
+      if (SignalDatabase.recipients.getByStorageId(key) == null) return key
+      Log.w(TAG, "Duplicate storage_service_id found in pre-check, retry ${it + 1}/$MAX_STORAGE_ID_ATTEMPTS")
+    }
+    Log.w(TAG, "generateUniqueStorageId: all $MAX_STORAGE_ID_ATTEMPTS pre-check retries exhausted, returning unverified key. Caller must handle insert collision.")
+    return generateKey()
   }
 
   @JvmStatic
