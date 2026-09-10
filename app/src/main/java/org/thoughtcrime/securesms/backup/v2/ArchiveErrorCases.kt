@@ -179,6 +179,10 @@ object ExportSkips {
     return log(sentTimestamp, "Donation request not in Release Notes chat.")
   }
 
+  fun invalidGroupMasterKey(recipientId: Long): String {
+    return log(0, "Group had invalid master key (null or wrong length) for recipientId::$recipientId. Skipping group.")
+  }
+
   private fun log(sentTimestamp: Long, message: String): String {
     return "[SKIP][$sentTimestamp] $message"
   }

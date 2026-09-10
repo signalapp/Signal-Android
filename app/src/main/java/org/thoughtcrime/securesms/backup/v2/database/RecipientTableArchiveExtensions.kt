@@ -111,6 +111,7 @@ fun RecipientTable.getGroupsForBackup(selfAci: ServiceId.ACI): GroupArchiveExpor
     .where(
       """
       ${GroupTable.TABLE_NAME}.${GroupTable.V2_MASTER_KEY} IS NOT NULL AND
+      LENGTH(${GroupTable.TABLE_NAME}.${GroupTable.V2_MASTER_KEY}) = 32 AND
       ${GroupTable.TABLE_NAME}.${GroupTable.V2_REVISION} >= 0
       """
     )
