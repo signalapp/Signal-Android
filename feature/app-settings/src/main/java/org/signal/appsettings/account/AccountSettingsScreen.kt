@@ -13,6 +13,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -415,7 +416,10 @@ private fun SetUpTwoFactorRow(
       modifier = Modifier.testTag(AccountSettingsTestTags.ROW_SET_UP_TWO_FACTOR)
     )
 
-    DropdownMenus.Menu(controller = menuController) { controller ->
+    DropdownMenus.Menu(
+      controller = menuController,
+      contentPadding = PaddingValues(vertical = 12.dp)
+    ) { controller ->
       DropdownMenus.Item(
         leadingIconResId = CoreUiR.drawable.symbol_device_phone_24,
         text = {
