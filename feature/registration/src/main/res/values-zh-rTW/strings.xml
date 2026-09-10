@@ -642,9 +642,9 @@
     <!-- Error shown when the purchase does not go through. -->
     <string name="SignalLoginPaymentScreen__your_purchase_could_not_be_completed">你的交易未能完成。你尚未被扣款。</string>
     <!-- Shown in place of the price when Google Play cannot offer the purchase. -->
-    <string name="SignalLoginPaymentScreen__unavailable">Unavailable</string>
+    <string name="SignalLoginPaymentScreen__unavailable">不可用</string>
     <!-- Label for the button that retries loading the purchase price after it failed to load. -->
-    <string name="SignalLoginPaymentScreen__retry">Retry</string>
+    <string name="SignalLoginPaymentScreen__retry">重試</string>
     <!-- Shown in place of the price when the user already paid for a Signal Login but it was never redeemed. -->
     <string name="SignalLoginPaymentScreen__already_paid">Already paid</string>
     <!-- Error shown when Signal Login cannot be purchased on this device, for example because the Google Play Store is unavailable. -->
@@ -688,9 +688,9 @@
     <!-- Description telling the user to keep their Signal Login somewhere safe and private. -->
     <string name="SignalLoginViewDetailsForManualSaveScreen__store_your_signal_login_somewhere_safe">Store your Signal Login somewhere safe and secure. Never share your login info with anyone.</string>
     <!-- Action button that saves the Signal Login to a PDF file. -->
-    <string name="SignalLoginViewDetailsForManualSaveScreen__save_as_pdf">Save as PDF</string>
+    <string name="SignalLoginViewDetailsForManualSaveScreen__save_as_pdf">另存為 PDF</string>
     <!-- Action button for users who are done recording their Signal Login. -->
-    <string name="SignalLoginViewDetailsForManualSaveScreen__continue">Continue</string>
+    <string name="SignalLoginViewDetailsForManualSaveScreen__continue">繼續</string>
 
     <!-- Sheet that double-checks the user really saved their Signal Login -->
     <!-- Title of the sheet asking the user to confirm they saved their Signal Login. -->
@@ -698,7 +698,7 @@
     <!-- Description warning the user that they are about to be asked for their Signal Login and that it cannot be recovered. -->
     <string name="ConfirmLoginSavedBottomSheet__you_will_be_prompted_to_sign_in">You will be prompted to sign in with your Signal Login next. Make sure you\'ve saved or copied these details. Signal will not be able to help you recover your account.</string>
     <!-- Action button confirming the Signal Login is saved. -->
-    <string name="ConfirmLoginSavedBottomSheet__continue">Continue</string>
+    <string name="ConfirmLoginSavedBottomSheet__continue">繼續</string>
     <!-- Action button that sends the user back to their Signal Login. -->
     <string name="ConfirmLoginSavedBottomSheet__show_login_info_again">Show login info again</string>
 
@@ -778,13 +778,13 @@
     <!-- Validation error shown when the number the user entered after their username has a leading zero. -->
     <string name="AddUsernameScreen__this_number_cant_start_with_0">超過 2 位數的數字不能以 0 為首</string>
     <!-- Title of the dialog confirming the user wants to skip choosing a username. -->
-    <string name="AddUsernameScreen__are_you_sure">Are you sure?</string>
+    <string name="AddUsernameScreen__are_you_sure">你確定嗎？</string>
     <!-- Body of the dialog confirming the user wants to skip choosing a username. -->
     <string name="AddUsernameScreen__without_a_username_people_wont_be_able_to_find_you">Without a username people won\'t be able to find you on Signal.</string>
     <!-- Button in the skip-username confirmation dialog that returns to the screen without skipping. -->
-    <string name="AddUsernameScreen__cancel">Cancel</string>
+    <string name="AddUsernameScreen__cancel">取消</string>
     <!-- Button in the skip-username confirmation dialog that skips choosing a username. -->
-    <string name="AddUsernameScreen__continue">Continue</string>
+    <string name="AddUsernameScreen__continue">繼續</string>
 
     <!-- ContactSupportDialog -->
     <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->

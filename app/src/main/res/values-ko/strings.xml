@@ -8812,9 +8812,9 @@
     <!-- Backups feature label for informing the user that they can delete their backup at any time -->
     <string name="MessageBackupsEducationScreen__delete_your_backup_anytime">언제나 백업 삭제 가능</string>
     <!-- Action button label to proceed with backups activation -->
-    <string name="MessageBackupsEducationScreen__continue">Continue</string>
+    <string name="MessageBackupsEducationScreen__continue">계속</string>
     <!-- Action button label to leave the backups activation flow without enabling backups -->
-    <string name="MessageBackupsEducationScreen__not_now">Not now</string>
+    <string name="MessageBackupsEducationScreen__not_now">나중에</string>
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
@@ -8953,21 +8953,21 @@
 
     <!-- MessageBackupsConfirmRecoveryKeyScreen -->
     <!-- Screen headline asking the user to confirm the recovery key they received with their Signal Login -->
-    <string name="MessageBackupsConfirmRecoveryKeyScreen__confirm_your_recovery_key">Confirm your recovery key</string>
+    <string name="MessageBackupsConfirmRecoveryKeyScreen__confirm_your_recovery_key">복구 키를 확인하세요</string>
     <!-- Screen subtitle explaining what the recovery key is and why it is needed -->
     <string name="MessageBackupsConfirmRecoveryKeyScreen__your_recovery_key_is_a_64_character_code">Your recovery key is a 64-character code you received with your Signal Login. It\'s required to restore your backup. If you forget your key, you will not be able to recover your account.</string>
     <!-- Caption above the action buttons warning the user that the password manager will prompt them next -->
     <string name="MessageBackupsConfirmRecoveryKeyScreen__you_will_be_prompted_with_your_saved_password">You will be prompted with your saved password in the next step.</string>
     <!-- Action button label to confirm the recovery key using the saved password manager credential -->
-    <string name="MessageBackupsConfirmRecoveryKeyScreen__confirm_recovery_key">Confirm recovery key</string>
+    <string name="MessageBackupsConfirmRecoveryKeyScreen__confirm_recovery_key">복구 키 확인</string>
     <!-- Action button label to type the recovery key in by hand instead of using the password manager -->
-    <string name="MessageBackupsConfirmRecoveryKeyScreen__enter_manually">Enter manually</string>
+    <string name="MessageBackupsConfirmRecoveryKeyScreen__enter_manually">수동으로 입력</string>
     <!-- Title of the dialog shown when the recovery key from the password manager did not match -->
-    <string name="MessageBackupsConfirmRecoveryKeyScreen__error_confirming_recovery_key">Error confirming recovery key</string>
+    <string name="MessageBackupsConfirmRecoveryKeyScreen__error_confirming_recovery_key">복구 키 확인 오류</string>
     <!-- Body of the dialog shown when the recovery key from the password manager did not match -->
     <string name="MessageBackupsConfirmRecoveryKeyScreen__your_recovery_key_could_not_be_confirmed">Your recovery key could not be confirmed. Make sure you\'ve saved your Signal Login in your password manager, or enter your recovery key manually.</string>
     <!-- Toast shown when the recovery key from the password manager matched -->
-    <string name="MessageBackupsConfirmRecoveryKeyScreen__recovery_key_confirmed">Recovery key confirmed</string>
+    <string name="MessageBackupsConfirmRecoveryKeyScreen__recovery_key_confirmed">복구 키가 확인되었습니다</string>
 
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">복구 키를 입력하세요</string>

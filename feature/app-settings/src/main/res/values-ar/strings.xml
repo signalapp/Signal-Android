@@ -53,25 +53,25 @@
     <!-- Section header for the two-factor authentication section of account settings -->
     <string name="AccountSettingsFragment__two_factor_authentication">المصادقة الثنائية</string>
     <!-- Row that opens the menu of second factors the user can add -->
-    <string name="AccountSettingsFragment__set_up">Set up</string>
+    <string name="AccountSettingsFragment__set_up">إعداد</string>
     <!-- Menu option that starts setting up an authenticator app -->
     <string name="AccountSettingsFragment__authenticator_app">تطبيق المصادقة</string>
     <!-- Description of the authenticator app menu option -->
     <string name="AccountSettingsFragment__one_time_verification_codes">كودات تحقُّق أحادية الاستخدام</string>
     <!-- Name of a passkey in the list of second factors on the account -->
-    <string name="AccountSettingsFragment__passkey">Passkey</string>
+    <string name="AccountSettingsFragment__passkey">مفتاح المرور</string>
     <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
     <string name="AccountSettingsFragment__s_added_s">%1$s · Added %2$s</string>
     <!-- Content description of the button that opens a second factor\'s options -->
     <string name="AccountSettingsFragment__open_two_factor_options">Open two-factor authentication options</string>
     <!-- Menu option that renames a second factor -->
-    <string name="AccountSettingsFragment__rename">Rename</string>
+    <string name="AccountSettingsFragment__rename">إعادة التسمية</string>
     <!-- Menu option that removes a second factor -->
-    <string name="AccountSettingsFragment__remove">Remove</string>
+    <string name="AccountSettingsFragment__remove">إزالة</string>
     <!-- Title of the dialog confirming removal of an authenticator app -->
-    <string name="AccountSettingsFragment__remove_authenticator_app">Remove authenticator app?</string>
+    <string name="AccountSettingsFragment__remove_authenticator_app">هل تريد إزالة تطبيق المصادقة؟</string>
     <!-- Body of the dialog confirming removal of an authenticator app -->
-    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_app">You won\'t be able to use this app for one-time verification codes when you sign in.</string>
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_app">لن تتمكَّن من استخدام هذا التطبيق لرموز التحقُّق أحادية الاستخدام عند تسجيل الدخول.</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
     <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">Unlock to remove two-factor method</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
@@ -81,17 +81,17 @@
     <!-- Title of the sheet explaining that the device screen lock is needed before the Signal Login details can be viewed -->
     <string name="AccountSettingsFragment__to_view_your_signal_login_confirm_its_you">To view your Signal Login, confirm it\'s you</string>
     <!-- Toast shown when the device screen lock wasn\'t confirmed, so nothing happened -->
-    <string name="AccountSettingsFragment__authentication_required">Authentication required</string>
+    <string name="AccountSettingsFragment__authentication_required">المُصادقة مطلوبة</string>
     <!-- Title of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
-    <string name="AccountSettingsFragment__cant_add_authenticator_app">Can\'t add authenticator app</string>
+    <string name="AccountSettingsFragment__cant_add_authenticator_app">تعذَّرت إضافة تطبيق المصادقة</string>
     <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
-    <string name="AccountSettingsFragment__you_cant_add_more_than_d">You can\'t add more than %1$d authenticator apps. Try removing one first.</string>
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d">لا يمكنك إضافة أكثر من %1$d من تطبيقات المصادقة. احذف أحد التطبيقات أولًا.</string>
     <!-- Shown in place of the list when we couldn\'t work out which second factors are on the account -->
     <string name="AccountSettingsFragment__couldnt_load_your_two_factor_methods">Couldn\'t load your two-factor authentication methods. Check your connection and try again.</string>
     <!-- Toast shown after an authenticator app has been removed -->
-    <string name="AccountSettingsFragment__authenticator_app_removed">Authenticator app removed</string>
+    <string name="AccountSettingsFragment__authenticator_app_removed">تمَّت إزالة تطبيق المصادقة</string>
     <!-- Toast shown when an authenticator app couldn\'t be removed -->
-    <string name="AccountSettingsFragment__couldnt_remove_authenticator_app">Couldn\'t remove authenticator app. Check your connection and try again.</string>
+    <string name="AccountSettingsFragment__couldnt_remove_authenticator_app">تعذَّر حذف تطبيق المصادقة. تحقَّق من اتصالك بالشبكة ثم حاوِل مُجدَّدًا.</string>
     <!-- Description of two-factor authentication, shown below the two-factor authentication list -->
     <string name="AccountSettingsFragment__use_a_second_form_of_authentication">استخدِم وسيلة مصادقة ثانية لحماية حسابك عند استخدام Signal Login الخاص بك على جهاز جديد.</string>
     <!-- Clickable text that takes the user to a support article -->
@@ -123,7 +123,7 @@
     <!-- Toast shown when there is no app installed that can handle the authenticator setup link -->
     <string name="TotpSetupScreen__no_authenticator_app_found">لم يتم العثور على أي تطبيق مصادقة</string>
     <!-- Dialog message shown when the account already has as many authenticator apps as it\'s allowed -->
-    <string name="TotpSetupScreen__you_cant_add_more_than_d">You can\'t add more than %1$d authenticator apps. Try removing one first.</string>
+    <string name="TotpSetupScreen__you_cant_add_more_than_d">لا يمكنك إضافة أكثر من %1$d من تطبيقات المصادقة. احذف أحد التطبيقات أولًا.</string>
     <!-- Dialog message shown when we couldn\'t reach the service to start setting up an authenticator app -->
     <string name="TotpSetupScreen__couldnt_reach_signal">تعذَّر الوصول إلى سيجنال. تحقَّق من اتصالك بالشبكة ثم حاوِل مُجدَّدًا.</string>
     <!-- Header of the third step of authenticator app setup -->
