@@ -55,7 +55,7 @@ fun MultiselectForwardBottomBar(
   val gutter = dimensionResource(org.signal.core.ui.R.dimen.gutter)
 
   Column(
-    modifier = modifier
+    modifier = modifier.padding(bottom = 12.dp)
   ) {
     HorizontalDivider(
       modifier = Modifier.padding(bottom = 12.dp)

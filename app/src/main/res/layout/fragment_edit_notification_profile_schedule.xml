@@ -10,6 +10,7 @@
     <include layout="@layout/dsl_settings_toolbar" />
 
     <ScrollView
+        android:id="@+id/edit_notification_profile_schedule_scroll_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"

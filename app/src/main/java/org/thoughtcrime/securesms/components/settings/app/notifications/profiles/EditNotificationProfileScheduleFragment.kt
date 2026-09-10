@@ -7,12 +7,15 @@ import android.text.SpannableString
 import android.text.format.DateFormat
 import android.text.style.AbsoluteSizeSpan
 import android.view.View
+import android.view.ViewGroup
 import android.widget.CheckedTextView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.materialswitch.MaterialSwitch
@@ -23,6 +26,7 @@ import org.signal.core.ui.logging.LoggingFragment
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.EditNotificationProfileScheduleViewModel.SaveScheduleResult
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.formatHours
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
@@ -59,6 +63,10 @@ class EditNotificationProfileScheduleFragment : LoggingFragment(R.layout.fragmen
     super.onViewCreated(view, savedInstanceState)
     val toolbar: Toolbar = view.findViewById(R.id.toolbar)
     toolbar.setNavigationOnClickListener { findNavController().navigateUp() }
+
+    toolbar.updateLayoutParams { height = ViewGroup.LayoutParams.WRAP_CONTENT }
+    SystemWindowInsetsSetter.attach(toolbar, viewLifecycleOwner, WindowInsetsCompat.Type.statusBars())
+    SystemWindowInsetsSetter.attach(view.findViewById(R.id.edit_notification_profile_schedule_scroll_view), viewLifecycleOwner, WindowInsetsCompat.Type.navigationBars())
 
     val title: View = view.findViewById(R.id.edit_notification_profile_schedule_title)
     val description: View = view.findViewById(R.id.edit_notification_profile_schedule_description)
