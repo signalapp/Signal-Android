@@ -1873,8 +1873,15 @@ public class ConversationListFragment extends MainFragment implements Conversati
       float absoluteDx = Math.abs(dX);
 
       if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
+        View itemView = viewHolder.itemView;
+
+        if (!itemView.isAttachedToWindow()) {
+          itemView.setTranslationX(0);
+          ViewCompat.setElevation(itemView, 0);
+          return;
+        }
+
         Resources resources       = getResources();
-        View      itemView        = viewHolder.itemView;
         float     percentDx       = absoluteDx / viewHolder.itemView.getWidth();
         int       color           = ArgbEvaluatorCompat.getInstance().evaluate(Math.min(1f, percentDx * (1 / 0.25f)), archiveColorStart, archiveColorEnd);
         float     scaleStartPoint = DimensionUnit.DP.toPixels(48f);
