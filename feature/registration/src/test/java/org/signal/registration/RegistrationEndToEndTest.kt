@@ -589,6 +589,7 @@ class RegistrationEndToEndTest {
     assert(committed!!.accountData?.e164 == E164) { "Expected committed e164 $E164 but was ${committed.accountData?.e164}" }
     assert(committed.accountEntropyPool == aep.value) { "Expected the committed AEP to be the one from the restored backup" }
     assert(committed.pin == PIN) { "Expected committed pin $PIN but was ${committed.pin}" }
+    assert(storageController.restoreDecision == RestoreDecision.COMPLETED) { "Expected COMPLETED restore decision but was ${storageController.restoreDecision}" }
   }
 
   @Test
@@ -641,6 +642,7 @@ class RegistrationEndToEndTest {
     assert(committed!!.accountData?.e164 == E164) { "Expected committed e164 $E164 but was ${committed.accountData?.e164}" }
     assert(committed.accountEntropyPool == aep.value) { "Expected the committed AEP to be the provisioned one" }
     assert(committed.pin == PIN) { "Expected the pin from the restored backup but was ${committed.pin}" }
+    assert(storageController.restoreDecision == RestoreDecision.COMPLETED) { "Expected COMPLETED restore decision but was ${storageController.restoreDecision}" }
   }
 
   @Test
@@ -671,8 +673,10 @@ class RegistrationEndToEndTest {
     assert(committed.pin == PIN) { "Expected committed pin $PIN but was ${committed.pin}" }
     assert(committed.accountData?.reRegistration == true) { "Expected the committed account data to be flagged as a re-registration" }
 
-    // The re-registration flag is what tells the app to reclaim the username we just released, and the flow-finished
-    // hook is where it enqueues the job that does it. See AppRegistrationStorageController.
+    // The re-registration flag is what tells the app that this is an established account rather than someone new to
+    // Signal, which is what suppresses the get-started onboarding megaphone and drives the reclaim of the username we
+    // just released. The flow-finished hook is where it enqueues the job that does the reclaim.
+    // See AppRegistrationStorageController.
     assert(storageController.registrationFlowFinishedCount == 1) { "Expected the flow-finished hook to fire exactly once but fired ${storageController.registrationFlowFinishedCount} times" }
   }
 
@@ -808,6 +812,7 @@ class RegistrationEndToEndTest {
     assert(committed != null) { "Expected registration data to be committed" }
     assert(committed!!.accountData?.e164 == E164) { "Expected committed e164 $E164 but was ${committed.accountData?.e164}" }
     assert(committed.pin == PIN) { "Expected committed pin $PIN but was ${committed.pin}" }
+    assert(committed.accountData?.reRegistration == true) { "Expected the committed account data to be flagged as a re-registration" }
   }
 
   @Test
@@ -955,6 +960,7 @@ class RegistrationEndToEndTest {
     assert(committed!!.accountData?.e164 == E164) { "Expected committed e164 $E164 but was ${committed.accountData?.e164}" }
     assert(committed.accountEntropyPool == aep.value) { "Expected the committed AEP to be the one from the restored backup" }
     assert(committed.pin == PIN) { "Expected committed pin $PIN but was ${committed.pin}" }
+    assert(storageController.restoreDecision == RestoreDecision.COMPLETED) { "Expected COMPLETED restore decision but was ${storageController.restoreDecision}" }
   }
 
   @Test
@@ -987,6 +993,9 @@ class RegistrationEndToEndTest {
     assert(committed != null) { "Expected registration data to be committed" }
     assert(committed!!.accountEntropyPool == aep.value) { "Expected the committed AEP to be the one the user entered" }
     assert(committed.pin == PIN) { "Expected the pin from the restored backup but was ${committed.pin}" }
+
+    // A COMPLETED decision is what tells the app the user brought their data with them, which is what suppresses the
+    // get-started onboarding megaphone. See AppRegistrationStorageController.setRestoreDecision.
     assert(storageController.restoreDecision == RestoreDecision.COMPLETED) { "Expected COMPLETED restore decision but was ${storageController.restoreDecision}" }
   }
 
@@ -1475,6 +1484,7 @@ class RegistrationEndToEndTest {
     assert(committed!!.accountData?.e164 == E164) { "Expected committed e164 $E164 but was ${committed.accountData?.e164}" }
     assert(committed.accountEntropyPool == aep.value) { "Expected the committed AEP to be the provisioned one" }
     assert(committed.pin == PIN) { "Expected committed pin $PIN but was ${committed.pin}" }
+    assert(storageController.restoreDecision == RestoreDecision.COMPLETED) { "Expected COMPLETED restore decision but was ${storageController.restoreDecision}" }
   }
 
   @Test

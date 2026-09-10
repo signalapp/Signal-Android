@@ -308,6 +308,11 @@ class AppRegistrationStorageController(private val context: Context) : StorageCo
       RestoreDecision.COMPLETED -> RestoreDecisionState.Completed
     }
 
+    if (decision == RestoreDecision.COMPLETED) {
+      Log.i(TAG, "[setRestoreDecision] Data was restored. Clearing onboarding state.")
+      SignalStore.onboarding.clearAll()
+    }
+
     RegistrationUtil.maybeMarkRegistrationComplete()
   }
 
@@ -807,6 +812,9 @@ class AppRegistrationStorageController(private val context: Context) : StorageCo
       // Registering releases any username we previously held, so it has to be re-reserved once storage service tells us what it was.
       Log.i(TAG, "[applyAccountData] Re-registration. Marking that we need to reclaim our username and link.")
       SignalStore.misc.needsUsernameRestore = true
+
+      Log.i(TAG, "[applyAccountData] Re-registration. Clearing onboarding state.")
+      SignalStore.onboarding.clearAll()
     }
 
     accountData.authCredentialSalt?.let {
