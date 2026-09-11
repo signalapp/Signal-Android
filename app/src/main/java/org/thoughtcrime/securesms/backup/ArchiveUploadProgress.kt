@@ -38,6 +38,7 @@ import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.atomic.AtomicInteger
 import java.util.concurrent.atomic.AtomicLong
+import java.util.concurrent.atomic.AtomicReference
 import kotlin.math.max
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
@@ -54,8 +55,8 @@ object ArchiveUploadProgress {
 
   private val _progress: MutableSharedFlow<Unit> = MutableSharedFlow(replay = 1)
 
-  private var uploadProgress: ArchiveUploadProgressState = SignalStore.backup.archiveUploadState ?: ArchiveUploadProgressState(
-    state = ArchiveUploadProgressState.State.None
+  private val uploadProgress: AtomicReference<ArchiveUploadProgressState> = AtomicReference(
+    SignalStore.backup.archiveUploadState ?: ArchiveUploadProgressState(state = ArchiveUploadProgressState.State.None)
   )
 
   private val attachmentProgress: MutableMap<AttachmentId, AttachmentProgressDetails> = ConcurrentHashMap()
@@ -72,58 +73,65 @@ object ArchiveUploadProgress {
    */
   val progress: SharedFlow<ArchiveUploadProgressState> = _progress
     .throttleLatest(500.milliseconds) {
-      uploadProgress.state == ArchiveUploadProgressState.State.None ||
-        (uploadProgress.state == ArchiveUploadProgressState.State.UploadBackupFile && uploadProgress.backupFileUploadedBytes == 0L) ||
-        (uploadProgress.state == ArchiveUploadProgressState.State.UploadMedia && uploadProgress.mediaUploadedBytes == 0L)
+      val current = uploadProgress.get()
+      current.state == ArchiveUploadProgressState.State.None ||
+        (current.state == ArchiveUploadProgressState.State.UploadBackupFile && current.backupFileUploadedBytes == 0L) ||
+        (current.state == ArchiveUploadProgressState.State.UploadMedia && current.mediaUploadedBytes == 0L)
     }
     .map {
-      if (uploadProgress.state != ArchiveUploadProgressState.State.UploadMedia) {
-        return@map uploadProgress
-      }
+      val snapshot = uploadProgress.get()
 
-      if (!SignalStore.backup.backsUpMedia) {
+      val updated = if (snapshot.state != ArchiveUploadProgressState.State.UploadMedia) {
+        snapshot
+      } else if (!SignalStore.backup.backsUpMedia) {
         Log.i(TAG, "Doesn't upload media. Done!")
         SignalStore.backup.finishedInitialBackup = true
-        return@map uploadProgress.copy(
+        snapshot.copy(
           state = ArchiveUploadProgressState.State.None,
           backupPhase = ArchiveUploadProgressState.BackupPhase.BackupPhaseNone
         )
-      }
+      } else {
+        val pendingMediaUploadBytes = SignalDatabase.attachments.getPendingArchiveUploadBytes() - attachmentProgress.values.sumOf { it.bytesUploaded }
+        if (pendingMediaUploadBytes <= 0) {
+          Log.i(TAG, "No more pending bytes. Done!")
+          Log.d(TAG, "Upload finished! " + buildDebugStats(debugAttachmentStartTime, debugTotalAttachments.get(), debugTotalBytes.get()))
 
-      val pendingMediaUploadBytes = SignalDatabase.attachments.getPendingArchiveUploadBytes() - attachmentProgress.values.sumOf { it.bytesUploaded }
-      if (pendingMediaUploadBytes <= 0) {
-        Log.i(TAG, "No more pending bytes. Done!")
-        Log.d(TAG, "Upload finished! " + buildDebugStats(debugAttachmentStartTime, debugTotalAttachments.get(), debugTotalBytes.get()))
+          if (snapshot.mediaTotalBytes > 0 && mediaUploadStartedByBackup) {
+            Log.i(TAG, "We uploaded media as part of the backup. We should enqueue another backup now to ensure that CDN info is properly written.")
+            mediaUploadStartedByBackup = false
+            BackupMessagesJob.enqueue()
+          }
+          SignalStore.backup.finishedInitialBackup = true
+          snapshot.copy(
+            state = ArchiveUploadProgressState.State.None,
+            backupPhase = ArchiveUploadProgressState.BackupPhase.BackupPhaseNone,
+            mediaUploadedBytes = snapshot.mediaTotalBytes
+          )
+        } else {
+          // It's possible that new attachments may be pending upload after we start a backup.
+          // If we wanted the most accurate progress possible, we could maintain a new database flag that indicates whether an attachment has been flagged as part
+          // of the current upload batch. However, this gets us pretty close while keeping things simple and not having to juggle extra flags, with the caveat that
+          // the progress bar may occasionally be including media that is not actually referenced in the active backup file.
+          val totalMediaUploadBytes = max(snapshot.mediaTotalBytes, pendingMediaUploadBytes)
 
-        if (uploadProgress.mediaTotalBytes > 0 && mediaUploadStartedByBackup) {
-          Log.i(TAG, "We uploaded media as part of the backup. We should enqueue another backup now to ensure that CDN info is properly written.")
-          mediaUploadStartedByBackup = false
-          BackupMessagesJob.enqueue()
+          snapshot.copy(
+            state = ArchiveUploadProgressState.State.UploadMedia,
+            mediaUploadedBytes = totalMediaUploadBytes - pendingMediaUploadBytes,
+            mediaTotalBytes = totalMediaUploadBytes
+          )
         }
-        SignalStore.backup.finishedInitialBackup = true
-        return@map uploadProgress.copy(
-          state = ArchiveUploadProgressState.State.None,
-          backupPhase = ArchiveUploadProgressState.BackupPhase.BackupPhaseNone,
-          mediaUploadedBytes = uploadProgress.mediaTotalBytes
-        )
       }
 
-      // It's possible that new attachments may be pending upload after we start a backup.
-      // If we wanted the most accurate progress possible, we could maintain a new database flag that indicates whether an attachment has been flagged as part
-      // of the current upload batch. However, this gets us pretty close while keeping things simple and not having to juggle extra flags, with the caveat that
-      // the progress bar may occasionally be including media that is not actually referenced in the active backup file.
-      val totalMediaUploadBytes = max(uploadProgress.mediaTotalBytes, pendingMediaUploadBytes)
-
-      uploadProgress.copy(
-        state = ArchiveUploadProgressState.State.UploadMedia,
-        mediaUploadedBytes = totalMediaUploadBytes - pendingMediaUploadBytes,
-        mediaTotalBytes = totalMediaUploadBytes
-      )
+      snapshot to updated
     }
-    .onEach { updated ->
-      updateState(notify = false) { updated }
+    .onEach { (snapshot, updated) ->
+      // If anything else moved the state while we were computing, this result is stale. Drop it, the next emission recomputes.
+      if (updated != snapshot && uploadProgress.compareAndSet(snapshot, updated)) {
+        SignalStore.backup.archiveUploadState = updated
+      }
     }
-    .onStart { emit(uploadProgress) }
+    .map { uploadProgress.get() }
+    .onStart { emit(uploadProgress.get()) }
     .flowOn(Dispatchers.Default)
     .shareIn(scope, SharingStarted.Eagerly, replay = 1)
 
@@ -132,7 +140,7 @@ object ArchiveUploadProgress {
   }
 
   val inProgress
-    get() = uploadProgress.state != ArchiveUploadProgressState.State.None && uploadProgress.state != ArchiveUploadProgressState.State.UserCanceled
+    get() = uploadProgress.get().state != ArchiveUploadProgressState.State.None && uploadProgress.get().state != ArchiveUploadProgressState.State.UserCanceled
 
   fun begin() {
     if (!SignalStore.backup.finishedInitialBackup) {
@@ -208,7 +216,7 @@ object ArchiveUploadProgress {
     attachmentProgress.clear()
 
     // Only a backup walks the export/upload states on its way here
-    mediaUploadStartedByBackup = uploadProgress.state == ArchiveUploadProgressState.State.Export || uploadProgress.state == ArchiveUploadProgressState.State.UploadBackupFile
+    mediaUploadStartedByBackup = uploadProgress.get().state == ArchiveUploadProgressState.State.Export || uploadProgress.get().state == ArchiveUploadProgressState.State.UploadBackupFile
 
     updateState {
       ArchiveUploadProgressState(
@@ -272,20 +280,20 @@ object ArchiveUploadProgress {
     overrideCancel: Boolean = false,
     transform: (ArchiveUploadProgressState) -> ArchiveUploadProgressState
   ) {
-    val newState = transform(uploadProgress).let { state ->
-      val oldArchiveState = uploadProgress.state
-      if (oldArchiveState == ArchiveUploadProgressState.State.UserCanceled && !overrideCancel) {
+    val current = uploadProgress.get()
+    val newState = transform(current).let { state ->
+      if (current.state == ArchiveUploadProgressState.State.UserCanceled && !overrideCancel) {
         state.copy(state = ArchiveUploadProgressState.State.UserCanceled)
       } else {
         state
       }
     }
 
-    if (uploadProgress == newState) {
+    if (current == newState) {
       return
     }
 
-    uploadProgress = newState
+    uploadProgress.set(newState)
     SignalStore.backup.archiveUploadState = newState
 
     if (notify) {
