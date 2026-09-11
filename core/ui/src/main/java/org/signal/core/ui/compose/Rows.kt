@@ -146,6 +146,10 @@ object Rows {
     }
   }
 
+  /**
+   * @param requireConfirmation Whether the dialog's choice only takes effect once the user confirms it, rather than as
+   *                            soon as they tap it.
+   */
   @Composable
   fun RadioListRow(
     text: String,
@@ -154,7 +158,8 @@ object Rows {
     selectedValue: String,
     onSelected: (String) -> Unit,
     modifier: Modifier = Modifier,
-    enabled: Boolean = true
+    enabled: Boolean = true,
+    requireConfirmation: Boolean = false
   ) {
     RadioListRow(
       text = { selectedIndex ->
@@ -175,10 +180,15 @@ object Rows {
       selectedValue = selectedValue,
       onSelected = onSelected,
       modifier = modifier,
-      enabled = enabled
+      enabled = enabled,
+      requireConfirmation = requireConfirmation
     )
   }
 
+  /**
+   * @param requireConfirmation Whether the dialog's choice only takes effect once the user confirms it, rather than as
+   *                            soon as they tap it.
+   */
   @Composable
   fun RadioListRow(
     text: @Composable RowScope.(Int) -> Unit,
@@ -188,7 +198,8 @@ object Rows {
     selectedValue: String,
     onSelected: (String) -> Unit,
     modifier: Modifier = Modifier,
-    enabled: Boolean = true
+    enabled: Boolean = true,
+    requireConfirmation: Boolean = false
   ) {
     val selectedIndex = values.indexOf(selectedValue)
     var displayDialog by remember { mutableStateOf(false) }
@@ -203,16 +214,29 @@ object Rows {
     )
 
     if (displayDialog) {
-      Dialogs.RadioListDialog(
-        onDismissRequest = { displayDialog = false },
-        labels = labels,
-        values = values,
-        selectedIndex = selectedIndex,
-        title = dialogTitle,
-        onSelected = {
-          onSelected(values[it])
-        }
-      )
+      if (requireConfirmation) {
+        Dialogs.RadioListConfirmationDialog(
+          onDismissRequest = { displayDialog = false },
+          labels = labels,
+          values = values,
+          selectedIndex = selectedIndex,
+          title = dialogTitle,
+          onConfirm = {
+            onSelected(values[it])
+          }
+        )
+      } else {
+        Dialogs.RadioListDialog(
+          onDismissRequest = { displayDialog = false },
+          labels = labels,
+          values = values,
+          selectedIndex = selectedIndex,
+          title = dialogTitle,
+          onSelected = {
+            onSelected(values[it])
+          }
+        )
+      }
     }
   }
 

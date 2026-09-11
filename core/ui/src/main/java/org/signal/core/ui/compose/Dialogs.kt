@@ -38,6 +38,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -55,6 +56,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.PreviewWrapper
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
@@ -83,6 +85,9 @@ object Dialogs {
 
   /** Suffixed with the index of the option the row renders. */
   const val TEST_TAG_RADIO_LIST_DIALOG_OPTION = "dialog-radio-list-option"
+
+  const val TEST_TAG_RADIO_LIST_DIALOG_CONFIRM_BUTTON = "dialog-radio-list-confirm-button"
+  const val TEST_TAG_RADIO_LIST_DIALOG_DISMISS_BUTTON = "dialog-radio-list-dismiss-button"
 
   fun testTagRadioListDialogOption(index: Int) = "$TEST_TAG_RADIO_LIST_DIALOG_OPTION:$index"
 
@@ -551,6 +556,9 @@ object Dialogs {
     }
   }
 
+  /**
+   * Radio list whose choice takes effect as soon as the user taps it.
+   */
   @Composable
   fun RadioListDialog(
     onDismissRequest: () -> Unit,
@@ -560,6 +568,85 @@ object Dialogs {
     values: Array<String>,
     selectedIndex: Int,
     onSelected: (Int) -> Unit
+  ) {
+    RadioList(
+      onDismissRequest = onDismissRequest,
+      properties = properties,
+      title = title,
+      labels = labels,
+      values = values,
+      selectedIndex = selectedIndex,
+      onOptionClick = { index ->
+        onSelected(index)
+        onDismissRequest()
+      }
+    )
+  }
+
+  /**
+   * Radio list whose choice only takes effect once the user confirms it, for changes worth guarding against a
+   * mistaken tap. Dismissing the dialog leaves the original selection alone.
+   */
+  @Composable
+  fun RadioListConfirmationDialog(
+    onDismissRequest: () -> Unit,
+    title: String,
+    labels: Array<String>,
+    values: Array<String>,
+    selectedIndex: Int,
+    onConfirm: (Int) -> Unit,
+    properties: DialogProperties = DialogProperties(),
+    confirm: String = stringResource(R.string.ok),
+    dismiss: String = stringResource(R.string.cancel)
+  ) {
+    // Deliberately unkeyed: the caller's selection can change underneath an open dialog, and the user's own pick
+    // should survive that. Dismissing takes the dialog out of composition, so the next one starts fresh.
+    var pendingIndex by remember { mutableIntStateOf(selectedIndex) }
+
+    RadioList(
+      onDismissRequest = onDismissRequest,
+      properties = properties,
+      title = title,
+      labels = labels,
+      values = values,
+      selectedIndex = pendingIndex,
+      onOptionClick = { pendingIndex = it },
+      buttons = {
+        TextButton(
+          onClick = onDismissRequest,
+          modifier = Modifier.testTag(TEST_TAG_RADIO_LIST_DIALOG_DISMISS_BUTTON)
+        ) {
+          Text(text = dismiss)
+        }
+
+        TextButton(
+          onClick = {
+            onConfirm(pendingIndex)
+            onDismissRequest()
+          },
+          modifier = Modifier.testTag(TEST_TAG_RADIO_LIST_DIALOG_CONFIRM_BUTTON),
+          enabled = pendingIndex in values.indices
+        ) {
+          Text(text = confirm)
+        }
+      }
+    )
+  }
+
+  /**
+   * The list itself, shared by both radio list dialogs. [buttons] is laid out below the options, for the variants that
+   * have any.
+   */
+  @Composable
+  private fun RadioList(
+    onDismissRequest: () -> Unit,
+    properties: DialogProperties,
+    title: String,
+    labels: Array<String>,
+    values: Array<String>,
+    selectedIndex: Int,
+    onOptionClick: (Int) -> Unit,
+    buttons: (@Composable () -> Unit)? = null
   ) {
     Dialog(
       onDismissRequest = onDismissRequest,
@@ -584,7 +671,9 @@ object Dialogs {
           )
 
           LazyColumn(
-            modifier = Modifier.padding(top = 24.dp, bottom = 16.dp),
+            modifier = Modifier
+              .weight(1f, fill = false)
+              .padding(top = 24.dp, bottom = 16.dp),
             state = rememberLazyListState(
               initialFirstVisibleItemIndex = max(selectedIndex, 0)
             )
@@ -600,10 +689,7 @@ object Dialogs {
                   .defaultMinSize(minHeight = 48.dp)
                   .clickable(
                     enabled = true,
-                    onClick = {
-                      onSelected(index)
-                      onDismissRequest()
-                    }
+                    onClick = { onOptionClick(index) }
                   )
                   .horizontalGutters()
                   .testTag(testTagRadioListDialogOption(index))
@@ -617,6 +703,17 @@ object Dialogs {
 
                 Text(text = labels[index])
               }
+            }
+          }
+
+          if (buttons != null) {
+            FlowRow(
+              horizontalArrangement = Arrangement.End,
+              modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 16.dp)
+            ) {
+              buttons()
             }
           }
         }
@@ -947,4 +1044,18 @@ private fun RadioListDialogPreview() {
       onSelected = {}
     )
   }
+}
+
+@PreviewWrapper(SignalPreviewWrapper::class)
+@DayNightPreviews
+@Composable
+private fun RadioListConfirmationDialogPreview() {
+  Dialogs.RadioListConfirmationDialog(
+    onDismissRequest = {},
+    title = "TestDialog",
+    labels = arrayOf("Only admins", "All members"),
+    values = arrayOf("only_admins", "all_members"),
+    selectedIndex = 0,
+    onConfirm = {}
+  )
 }

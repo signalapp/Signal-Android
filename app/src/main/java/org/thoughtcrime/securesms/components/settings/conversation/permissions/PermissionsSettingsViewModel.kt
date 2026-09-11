@@ -1,83 +1,110 @@
+/*
+ * Copyright 2026 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 package org.thoughtcrime.securesms.components.settings.conversation.permissions
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import org.signal.core.ui.compose.EventDrivenViewModel
+import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.components.settings.conversation.permissions.PermissionsSettingsState.Dialog
 import org.thoughtcrime.securesms.groups.GroupAccessControl
 import org.thoughtcrime.securesms.groups.GroupId
-import org.thoughtcrime.securesms.groups.LiveGroup
-import org.thoughtcrime.securesms.util.SingleLiveEvent
-import org.thoughtcrime.securesms.util.livedata.LiveDataUtil
-import org.thoughtcrime.securesms.util.livedata.Store
+import org.thoughtcrime.securesms.groups.ui.GroupChangeResult
 
+/**
+ * View model behind [PermissionsSettingsScreen].
+ */
 class PermissionsSettingsViewModel(
   private val groupId: GroupId,
-  private val repository: PermissionsSettingsRepository,
-  liveGroup: LiveGroup = LiveGroup(groupId)
-) : ViewModel() {
+  private val repository: PermissionsSettingsRepository = PermissionsSettingsRepository()
+) : EventDrivenViewModel<PermissionsSettingsEvents>(TAG) {
 
-  private val store = Store(PermissionsSettingsState())
-  private val internalEvents = SingleLiveEvent<PermissionsSettingsEvents>()
+  companion object {
+    private val TAG = Log.tag(PermissionsSettingsViewModel::class)
+  }
 
-  val state: LiveData<PermissionsSettingsState> = store.stateLiveData
-  val events: LiveData<PermissionsSettingsEvents> = internalEvents
+  private val _state = MutableStateFlow(PermissionsSettingsState())
+
+  val state: StateFlow<PermissionsSettingsState> = _state.asStateFlow()
 
   init {
-    store.update(LiveDataUtil.combineLatest(liveGroup.isSelfAdmin, liveGroup.isActive) { admin, active -> admin && active }) { canEdit, state ->
-      state.copy(selfCanEditSettings = canEdit)
-    }
+    repository
+      .observePermissions(groupId)
+      .onEach { onEvent(PermissionsSettingsEvents.PermissionsChanged(it)) }
+      .launchIn(viewModelScope)
+  }
 
-    store.update(liveGroup.membershipAdditionAccessControl) { membershipAdditionAccessControl, state ->
-      state.copy(nonAdminCanAddMembers = membershipAdditionAccessControl == GroupAccessControl.ALL_MEMBERS)
-    }
+  override suspend fun processEvent(event: PermissionsSettingsEvents) {
+    when (event) {
+      is PermissionsSettingsEvents.PermissionsChanged -> {
+        _state.update {
+          it.copy(
+            selfCanEditSettings = event.permissions.selfCanEditSettings,
+            nonAdminCanAddMembers = event.permissions.nonAdminCanAddMembers,
+            nonAdminCanEditGroupInfo = event.permissions.nonAdminCanEditGroupInfo,
+            nonAdminCanSendMessages = event.permissions.nonAdminCanSendMessages,
+            nonAdminCanSetMemberLabel = event.permissions.nonAdminCanSetMemberLabel,
+            nonAdminsHaveMemberLabels = event.permissions.nonAdminsHaveMemberLabels
+          )
+        }
+      }
 
-    store.update(liveGroup.attributesAccessControl) { attributesAccessControl, state ->
-      state.copy(nonAdminCanEditGroupInfo = attributesAccessControl == GroupAccessControl.ALL_MEMBERS)
-    }
+      is PermissionsSettingsEvents.SetNonAdminCanAddMembers -> {
+        applyChange { repository.applyMembershipRightsChange(groupId, event.allowed.asGroupAccessControl()) }
+      }
 
-    store.update(liveGroup.isAnnouncementGroup) { isAnnouncementGroup, state ->
-      state.copy(announcementGroup = isAnnouncementGroup)
-    }
+      is PermissionsSettingsEvents.SetNonAdminCanEditGroupInfo -> {
+        applyChange { repository.applyAttributesRightsChange(groupId, event.allowed.asGroupAccessControl()) }
+      }
 
-    store.update(liveGroup.memberLabelAccessControl) { memberLabelAccessControl, state ->
-      state.copy(nonAdminCanSetMemberLabel = memberLabelAccessControl == GroupAccessControl.ALL_MEMBERS)
+      is PermissionsSettingsEvents.SetNonAdminCanSendMessages -> {
+        applyChange { repository.applyAnnouncementGroupChange(groupId, isAnnouncementGroup = !event.allowed) }
+      }
+
+      is PermissionsSettingsEvents.SetNonAdminCanSetMemberLabel -> {
+        if (!event.allowed && _state.value.nonAdminsHaveMemberLabels) {
+          _state.update { it.copy(dialog = Dialog.MemberLabelsWillBeCleared) }
+        } else {
+          applyChange { repository.applyMemberLabelRightsChange(groupId, event.allowed.asGroupAccessControl()) }
+        }
+      }
+
+      PermissionsSettingsEvents.MemberLabelsWillBeClearedConfirmed -> {
+        _state.update { it.copy(dialog = Dialog.None) }
+        applyChange { repository.applyMemberLabelRightsChange(groupId, GroupAccessControl.ONLY_ADMINS) }
+      }
+
+      PermissionsSettingsEvents.DialogDismissed -> {
+        _state.update { it.copy(dialog = Dialog.None) }
+      }
+
+      PermissionsSettingsEvents.SnackbarDismissed -> {
+        _state.update { it.copy(groupChangeError = null) }
+      }
     }
   }
 
-  fun setNonAdminCanAddMembers(nonAdminCanAddMembers: Boolean) {
-    repository.applyMembershipRightsChange(groupId, nonAdminCanAddMembers.asGroupAccessControl()) { reason ->
-      internalEvents.postValue(PermissionsSettingsEvents.GroupChangeError(reason))
-    }
-  }
+  /**
+   * Submits a group change without waiting for it, since events are processed one at a time and a change takes a
+   * network round trip. Waiting would leave whatever the user does next -- another permission, or the dialog that
+   * warns them about clearing member labels -- sitting in the queue looking like it did nothing.
+   */
+  private fun applyChange(change: suspend () -> GroupChangeResult) {
+    viewModelScope.launch {
+      val result = change()
 
-  fun setNonAdminCanEditGroupInfo(nonAdminCanEditGroupInfo: Boolean) {
-    repository.applyAttributesRightsChange(groupId, nonAdminCanEditGroupInfo.asGroupAccessControl()) { reason ->
-      internalEvents.postValue(PermissionsSettingsEvents.GroupChangeError(reason))
-    }
-  }
-
-  fun setAnnouncementGroup(announcementGroup: Boolean) {
-    repository.applyAnnouncementGroupChange(groupId, announcementGroup) { reason ->
-      internalEvents.postValue(PermissionsSettingsEvents.GroupChangeError(reason))
-    }
-  }
-
-  fun onMemberLabelPermissionChangeRequested(nonAdminCanSetMemberLabel: Boolean) {
-    if (!nonAdminCanSetMemberLabel && repository.hasNonAdminMembersWithLabels(groupId)) {
-      internalEvents.postValue(PermissionsSettingsEvents.ShowMemberLabelsWillBeRemovedWarning)
-    } else {
-      setNonAdminCanSetMemberLabel(nonAdminCanSetMemberLabel)
-    }
-  }
-
-  fun onRestrictMemberLabelsToAdminsConfirmed() = setNonAdminCanSetMemberLabel(false)
-
-  private fun setNonAdminCanSetMemberLabel(nonAdminCanSetMemberLabel: Boolean) {
-    repository.applyMemberLabelRightsChange(
-      groupId = groupId,
-      newRights = nonAdminCanSetMemberLabel.asGroupAccessControl()
-    ) { failureReason ->
-      internalEvents.postValue(PermissionsSettingsEvents.GroupChangeError(failureReason))
+      if (!result.isSuccess) {
+        _state.update { it.copy(groupChangeError = result.failureReason) }
+      }
     }
   }
 
@@ -86,15 +113,6 @@ class PermissionsSettingsViewModel(
       GroupAccessControl.ALL_MEMBERS
     } else {
       GroupAccessControl.ONLY_ADMINS
-    }
-  }
-
-  class Factory(
-    private val groupId: GroupId,
-    private val repository: PermissionsSettingsRepository
-  ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return requireNotNull(modelClass.cast(PermissionsSettingsViewModel(groupId, repository)))
     }
   }
 }
