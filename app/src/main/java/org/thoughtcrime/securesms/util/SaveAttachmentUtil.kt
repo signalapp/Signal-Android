@@ -17,6 +17,7 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.webkit.MimeTypeMap
 import androidx.core.content.contentValuesOf
+import androidx.exifinterface.media.ExifInterface
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.signal.core.ui.util.StorageUtil
@@ -26,11 +27,13 @@ import org.signal.core.util.logging.logI
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.mms.PartAuthority
+import org.thoughtcrime.securesms.video.Mp4TimestampUtil
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
+import java.util.Locale
 import java.util.concurrent.TimeUnit
 
 /**
@@ -89,6 +92,18 @@ object SaveAttachmentUtil {
         }
       }
 
+      if (contentType == "image/jpeg" ||
+          contentType == "image/png" ||
+          contentType == "image/webp") {
+        writeExifDateTime(AppDependencies.application, mediaUri, attachment.date)
+      } else if (contentType == "video/mp4" ||
+                 contentType == "video/3gpp" ||
+                 contentType == "video/3gpp2" ||
+                 contentType == "video/mp2ts" ||
+                 contentType == "video/quicktime") {
+        writeMp4CreationTime(AppDependencies.application, mediaUri, attachment.date)
+      }
+
       if (Build.VERSION.SDK_INT > 28) {
         updateValues.put(MediaStore.MediaColumns.IS_PENDING, 0)
       }
@@ -105,6 +120,43 @@ object SaveAttachmentUtil {
     } catch (e: IOException) {
       Log.w(TAG, "Failed to save attachment", e)
       return@withContext SaveAttachmentResult.ErrorSavingFile
+    }
+  }
+
+  private fun writeExifDateTime(context: Context, mediaUri: Uri, timestamp: Long) {
+    try {
+      val dateFormat = SimpleDateFormat("yyyy:MM:dd HH:mm:ss", Locale.US)
+      val formattedDate = dateFormat.format(timestamp)
+
+      if (mediaUri.scheme == ContentResolver.SCHEME_FILE) {
+        applyExifTimestamps(ExifInterface(mediaUri.path!!), formattedDate)
+      } else {
+        context.contentResolver.openFileDescriptor(mediaUri, "rw")?.use { pfd ->
+          applyExifTimestamps(ExifInterface(pfd.fileDescriptor), formattedDate)
+        }
+      }
+    } catch (e: Exception) {
+      Log.w(TAG, "Failed to write EXIF date metadata", e)
+    }
+  }
+
+  private fun applyExifTimestamps(exif: ExifInterface, formattedDate: String) {
+    exif.setAttribute(ExifInterface.TAG_DATETIME, formattedDate)
+    exif.setAttribute(ExifInterface.TAG_DATETIME_ORIGINAL, formattedDate)
+    exif.saveAttributes()
+  }
+
+  private fun writeMp4CreationTime(context: Context, mediaUri: Uri, timestamp: Long) {
+    try {
+      if (mediaUri.scheme == ContentResolver.SCHEME_FILE) {
+        Mp4TimestampUtil.setCreationTime(File(mediaUri.path!!), timestamp)
+      } else {
+        context.contentResolver.openFileDescriptor(mediaUri, "rw")?.use { pfd ->
+          Mp4TimestampUtil.setCreationTime(pfd.fileDescriptor, timestamp)
+        }
+      }
+    } catch (e: Exception) {
+      Log.w(TAG, "Failed to write MP4 creation time", e)
     }
   }
 
