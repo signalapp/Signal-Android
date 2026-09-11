@@ -5,6 +5,9 @@
 
 package org.signal.appsettings.totpcodeentry
 
+import org.signal.uicomponents.codeentryfield.CodeEntryFieldEvents
+import org.signal.uicomponents.codeentryfield.CodeEntryFieldState
+
 /**
  * Reminder that these events are logged, so don't include anything sensitive in the toString.
  */
@@ -13,11 +16,12 @@ sealed interface TotpCodeEntryEvent {
   /** The user tapped the navigation (back) icon. */
   data object NavigateBackClicked : TotpCodeEntryEvent
 
-  /** The user typed in the code field. */
-  data class CodeChanged(val code: String) : TotpCodeEntryEvent {
-    override fun toString(): String = "CodeChanged(length=${code.length})"
-  }
+  /** Received an event from the code field that we want to forward. */
+  data class CodeEntryEvent(val event: CodeEntryFieldEvents) : TotpCodeEntryEvent
+
+  /** The code field's presenter emitted new state for us to mirror. */
+  data class CodeEntryStateChanged(val codeEntryState: CodeEntryFieldState) : TotpCodeEntryEvent
 
   /** The user submitted the code they entered. */
-  data object DoneClicked : TotpCodeEntryEvent
+  data object NextClicked : TotpCodeEntryEvent
 }

@@ -138,10 +138,8 @@
     <string name="TotpCodeEntryScreen__enter_your_code">Enter your code</string>
     <!-- Instructions shown above the code entry field -->
     <string name="TotpCodeEntryScreen__enter_the_6_digit_code">Enter the 6-digit code from your authenticator app.</string>
-    <!-- Label of the code entry field -->
-    <string name="TotpCodeEntryScreen__code">Code</string>
     <!-- Button that submits the entered code -->
-    <string name="TotpCodeEntryScreen__done">Done</string>
+    <string name="TotpCodeEntryScreen__next">Next</string>
     <!-- Error shown under the code field when the code the user entered was rejected -->
     <string name="TotpCodeEntryScreen__incorrect_code">Incorrect code. Enter the code showing in your authenticator app now.</string>
     <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->

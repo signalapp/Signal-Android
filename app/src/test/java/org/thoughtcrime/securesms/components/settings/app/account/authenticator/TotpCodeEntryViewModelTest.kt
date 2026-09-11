@@ -28,6 +28,7 @@ import org.junit.Test
 import org.signal.appsettings.totpcodeentry.TotpCodeEntryAction
 import org.signal.appsettings.totpcodeentry.TotpCodeEntryEvent
 import org.signal.appsettings.totpcodeentry.TotpCodeEntryState.Error
+import org.signal.uicomponents.codeentryfield.CodeEntryFieldEvents
 import org.thoughtcrime.securesms.testing.CoroutineDispatcherRule
 
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -58,24 +59,15 @@ class TotpCodeEntryViewModelTest {
   }
 
   @Test
-  fun `non-digits are dropped and the code is capped at six digits`() = runTest(testDispatcher) {
-    val viewModel = createViewModel()
-
-    viewModel.onEvent(TotpCodeEntryEvent.CodeChanged("12a34 5678"))
-
-    assertThat(viewModel.state.value.code).isEqualTo(FULL_CODE)
-  }
-
-  @Test
   fun `a partial code can't be submitted`() = runTest(testDispatcher) {
     val viewModel = createViewModel()
     val actions = collectActions(viewModel.actions)
 
-    viewModel.onEvent(TotpCodeEntryEvent.CodeChanged("123"))
+    enterCode(viewModel, "123")
 
     assertThat(viewModel.state.value.canSubmit).isFalse()
 
-    viewModel.onEvent(TotpCodeEntryEvent.DoneClicked)
+    viewModel.onEvent(TotpCodeEntryEvent.NextClicked)
 
     assertThat(actions).isEmpty()
   }
@@ -124,7 +116,7 @@ class TotpCodeEntryViewModelTest {
     val viewModel = createViewModel()
     submit(viewModel)
 
-    viewModel.onEvent(TotpCodeEntryEvent.CodeChanged("1"))
+    enterCode(viewModel, "1")
 
     assertThat(viewModel.state.value.error).isEqualTo(Error.None)
   }
@@ -140,8 +132,14 @@ class TotpCodeEntryViewModelTest {
   }
 
   private fun submit(viewModel: TotpCodeEntryViewModel) {
-    viewModel.onEvent(TotpCodeEntryEvent.CodeChanged(FULL_CODE))
-    viewModel.onEvent(TotpCodeEntryEvent.DoneClicked)
+    enterCode(viewModel, FULL_CODE)
+    viewModel.onEvent(TotpCodeEntryEvent.NextClicked)
+  }
+
+  private fun enterCode(viewModel: TotpCodeEntryViewModel, code: String) {
+    code.forEachIndexed { index, digit ->
+      viewModel.onEvent(TotpCodeEntryEvent.CodeEntryEvent(CodeEntryFieldEvents.DigitChanged(index, digit.toString())))
+    }
   }
 
   private fun createViewModel() = TotpCodeEntryViewModel(repository = repository)

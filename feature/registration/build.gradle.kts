@@ -65,6 +65,7 @@ dependencies {
   implementation(project(":lib:device-transfer"))
   implementation(project(":lib:password-manager"))
   implementation(project(":lib:signal-login"))
+  implementation(project(":lib:ui-components"))
   implementation(libs.libsignal.android)
 
   // Compose BOM

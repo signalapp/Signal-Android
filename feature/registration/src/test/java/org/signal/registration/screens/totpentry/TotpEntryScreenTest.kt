@@ -7,7 +7,6 @@ package org.signal.registration.screens.totpentry
 
 import android.app.Application
 import androidx.compose.ui.test.assertIsDisplayed
-import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
@@ -24,6 +23,8 @@ import org.robolectric.annotation.Config
 import org.signal.core.ui.CoreUiDependenciesRule
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.registration.test.TestTags
+import org.signal.uicomponents.codeentryfield.CodeEntryFieldEvents
+import org.signal.uicomponents.codeentryfield.CodeEntryFieldTestTags
 
 @RunWith(RobolectricTestRunner::class)
 @Config(application = Application::class)
@@ -46,45 +47,20 @@ class TotpEntryScreenTest {
   }
 
   @Test
-  fun `screen displays all six digit fields`() {
+  fun `screen displays the code field`() {
     setContent(TotpEntryState())
 
-    composeTestRule.onNodeWithTag(TestTags.TOTP_ENTRY_DIGIT_0).assertIsDisplayed()
-    composeTestRule.onNodeWithTag(TestTags.TOTP_ENTRY_DIGIT_1).assertIsDisplayed()
-    composeTestRule.onNodeWithTag(TestTags.TOTP_ENTRY_DIGIT_2).assertIsDisplayed()
-    composeTestRule.onNodeWithTag(TestTags.TOTP_ENTRY_DIGIT_3).assertIsDisplayed()
-    composeTestRule.onNodeWithTag(TestTags.TOTP_ENTRY_DIGIT_4).assertIsDisplayed()
-    composeTestRule.onNodeWithTag(TestTags.TOTP_ENTRY_DIGIT_5).assertIsDisplayed()
+    composeTestRule.onNodeWithTag(CodeEntryFieldTestTags.ROOT).assertIsDisplayed()
   }
 
   @Test
-  fun `entering a digit emits DigitChanged for that field`() {
+  fun `entering a digit forwards a code field event`() {
     setContent(TotpEntryState())
 
-    composeTestRule.onNodeWithTag(TestTags.TOTP_ENTRY_DIGIT_0).performTextInput("4")
-    composeTestRule.onNodeWithTag(TestTags.TOTP_ENTRY_DIGIT_1).performTextInput("1")
+    composeTestRule.onNodeWithTag(CodeEntryFieldTestTags.digit(0)).performTextInput("4")
     composeTestRule.waitForIdle()
 
-    assertThat(events).contains(TotpEntryScreenEvents.DigitChanged(0, "4"))
-    assertThat(events).contains(TotpEntryScreenEvents.DigitChanged(1, "1"))
-  }
-
-  @Test
-  fun `pasting into a field emits DigitChanged with the raw text`() {
-    setContent(TotpEntryState())
-
-    composeTestRule.onNodeWithTag(TestTags.TOTP_ENTRY_DIGIT_0).performTextInput("418-372")
-    composeTestRule.waitForIdle()
-
-    assertThat(events).contains(TotpEntryScreenEvents.DigitChanged(0, "418-372"))
-  }
-
-  @Test
-  fun `screen renders the digits from state`() {
-    setContent(TotpEntryState(digits = listOf("4", "1", "8", "3", "7", "2")))
-
-    composeTestRule.onNodeWithTag(TestTags.TOTP_ENTRY_DIGIT_0).assertTextEquals("4")
-    composeTestRule.onNodeWithTag(TestTags.TOTP_ENTRY_DIGIT_5).assertTextEquals("2")
+    assertThat(events).contains(TotpEntryScreenEvents.CodeEntryEvent(CodeEntryFieldEvents.DigitChanged(0, "4")))
   }
 
   @Test

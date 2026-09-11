@@ -88,6 +88,7 @@ import org.signal.registration.screens.signalloginpayment.PaymentAvailability
 import org.signal.registration.screens.util.MockMultiplePermissionsState
 import org.signal.registration.screens.util.MockPermissionsState
 import org.signal.registration.test.TestTags
+import org.signal.uicomponents.codeentryfield.CodeEntryFieldTestTags
 import java.time.Duration
 import java.util.UUID
 import kotlin.time.Duration.Companion.days
@@ -1908,8 +1909,8 @@ class RegistrationEndToEndTest {
     // The service wants a second factor, so the user picks one and enters a code from it
     waitForTag(TestTags.TWO_FACTOR_SELECTION_AUTHENTICATOR_APP_OPTION)
     composeTestRule.onNodeWithTag(TestTags.TWO_FACTOR_SELECTION_AUTHENTICATOR_APP_OPTION).performClick()
-    waitForTag(TestTags.TOTP_ENTRY_DIGIT_0)
-    composeTestRule.onNodeWithTag(TestTags.TOTP_ENTRY_DIGIT_0).performTextInput(totp)
+    waitForTag(CodeEntryFieldTestTags.digit(0))
+    composeTestRule.onNodeWithTag(CodeEntryFieldTestTags.digit(0)).performTextInput(totp)
 
     waitFor("registration to complete") { registrationComplete }
 

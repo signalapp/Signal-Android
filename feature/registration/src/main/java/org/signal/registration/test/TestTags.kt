@@ -204,13 +204,6 @@ object TestTags {
 
   // Totp Entry Screen
   const val TOTP_ENTRY_SCREEN = "totp_entry_screen"
-  const val TOTP_ENTRY_INPUT = "totp_entry_input"
-  const val TOTP_ENTRY_DIGIT_0 = "totp_entry_digit_0"
-  const val TOTP_ENTRY_DIGIT_1 = "totp_entry_digit_1"
-  const val TOTP_ENTRY_DIGIT_2 = "totp_entry_digit_2"
-  const val TOTP_ENTRY_DIGIT_3 = "totp_entry_digit_3"
-  const val TOTP_ENTRY_DIGIT_4 = "totp_entry_digit_4"
-  const val TOTP_ENTRY_DIGIT_5 = "totp_entry_digit_5"
   const val TOTP_ENTRY_CANCEL_BUTTON = "totp_entry_cancel_button"
 
   // Two Factor Selection Screen
