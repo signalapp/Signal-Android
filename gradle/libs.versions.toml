@@ -53,7 +53,7 @@ android-application = { module = "com.android.application:com.android.applicatio
 androidx-benchmark-gradle-plugin = "androidx.benchmark:benchmark-gradle-plugin:1.4.1"
 
 # Compose
-androidx-compose-bom = "androidx.compose:compose-bom:2026.06.01"
+androidx-compose-bom = "androidx.compose:compose-bom:2026.09.00"
 androidx-compose-material3 = { module = "androidx.compose.material3:material3" }
 androidx-compose-material3-adaptive = { module = "androidx.compose.material3.adaptive:adaptive"}
 androidx-compose-material-icons-extended = "androidx.compose.material:material-icons-extended:1.7.8"
