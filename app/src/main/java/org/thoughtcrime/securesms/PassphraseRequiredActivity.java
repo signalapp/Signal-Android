@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -66,6 +68,7 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
 
   private SignalServiceNetworkAccess networkAccess;
   private BroadcastReceiver          clearKeyReceiver;
+  private ActivityResultLauncher<Intent> promptPassphraseLauncher;
 
   @Override
   protected final void onCreate(Bundle savedInstanceState) {
@@ -73,6 +76,19 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
     AppStartup.getInstance().onCriticalRenderEventStart();
     this.networkAccess = AppDependencies.getSignalServiceNetworkAccess();
     onPreCreate();
+
+    if (shouldStayAliveOnLock()) {
+      this.promptPassphraseLauncher = registerForActivityResult(
+        new ActivityResultContracts.StartActivityForResult(),
+        result -> {
+          if (result.getResultCode() == RESULT_OK) {
+            onAppUnlocked();
+          } else {
+            finish();
+          }
+        }
+      );
+    }
 
     final boolean locked = KeyCachingService.isLocked(this);
     routeApplicationState(locked);
@@ -82,6 +98,9 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
     if (!isFinishing()) {
       initializeClearKeyReceiver();
       onCreate(savedInstanceState, true);
+      if (!locked) {
+        onAppUnlocked();
+      }
     }
 
     AppStartup.getInstance().onCriticalRenderEventEnd();
@@ -90,6 +109,15 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
 
   protected void onPreCreate() {}
   protected void onCreate(Bundle savedInstanceState, boolean ready) {}
+
+  /**
+   * Called once the application is unlocked and the activity is ready.
+   */
+  protected void onAppUnlocked() {}
+
+  protected boolean shouldStayAliveOnLock() {
+    return false;
+  }
 
   @Override
   protected void onDestroy() {
@@ -138,6 +166,12 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
 
   private void routeApplicationState(boolean locked) {
     final int applicationState = getApplicationState(locked);
+    if (applicationState == STATE_PROMPT_PASSPHRASE && shouldStayAliveOnLock() && promptPassphraseLauncher != null) {
+      Intent intent = new Intent(this, PassphrasePromptActivity.class);
+      intent.putExtra(PassphrasePromptActivity.FROM_FOREGROUND, AppForegroundObserver.isForegrounded());
+      promptPassphraseLauncher.launch(intent);
+      return;
+    }
     Intent    intent           = getIntentForState(applicationState);
     if (intent != null) {
       Log.d(TAG, "routeApplicationState(), intent: " + intent.getComponent());

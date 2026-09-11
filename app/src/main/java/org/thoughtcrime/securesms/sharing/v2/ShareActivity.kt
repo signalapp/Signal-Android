@@ -66,7 +66,7 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
 
   private lateinit var finishOnOkResultLauncher: ActivityResultLauncher<Intent>
   private lateinit var unresolvedShareData: UnresolvedShareData
-
+  private var isShareInitialized: Boolean = false
   private val viewModel: ShareViewModel by viewModels {
     ShareViewModel.Factory(unresolvedShareData, ShareRepository(this))
   }
@@ -76,12 +76,31 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
       .let { ConversationUtil.getRecipientId(it) }
       ?.takeUnless { it.isUnknown }
 
+  override fun shouldStayAliveOnLock(): Boolean = true
+
   override fun onPreCreate() {
     super.onPreCreate()
     dynamicTheme.onCreate(this)
   }
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
+    super.onCreate(savedInstanceState, ready)
+
+    finishOnOkResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+      if (it.resultCode == Activity.RESULT_OK) {
+        finish()
+      }
+    }
+  }
+
+  override fun onAppUnlocked() {
+    initializeShare()
+  }
+
+  private fun initializeShare() {
+    if (isShareInitialized) return
+    isShareInitialized = true
+
     setContentView(R.layout.multiselect_forward_activity)
 
     val isIntentValid = getUnresolvedShareData().either(
@@ -98,12 +117,6 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
     if (!isIntentValid) {
       finish()
       return
-    }
-
-    finishOnOkResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-      if (it.resultCode == Activity.RESULT_OK) {
-        finish()
-      }
     }
 
     lifecycleDisposable.bindTo(this)
