@@ -144,6 +144,7 @@ private fun BackupsSettingsContent(
   Scaffolds.Settings(
     title = stringResource(R.string.preferences_chats__backups),
     navigationIcon = SignalIcons.ArrowStart.imageVector,
+    navigationContentDescription = stringResource(R.string.CallScreenTopBar__go_back),
     onNavigationClick = onNavigationClick
   ) { paddingValues ->
     LazyColumn(

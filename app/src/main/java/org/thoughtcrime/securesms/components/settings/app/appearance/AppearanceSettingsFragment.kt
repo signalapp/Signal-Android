@@ -108,7 +108,8 @@ private fun AppearanceSettingsScreen(
   Scaffolds.Settings(
     title = stringResource(R.string.preferences__appearance),
     onNavigationClick = callbacks::onNavigationClick,
-    navigationIcon = SignalIcons.ArrowStart.imageVector
+    navigationIcon = SignalIcons.ArrowStart.imageVector,
+    navigationContentDescription = stringResource(R.string.CallScreenTopBar__go_back),
   ) { paddingValues ->
     LazyColumn(
       modifier = Modifier

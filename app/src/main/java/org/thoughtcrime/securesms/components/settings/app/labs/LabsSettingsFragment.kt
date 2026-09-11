@@ -20,6 +20,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -55,7 +56,7 @@ private fun LabsSettingsContent(
 ) {
   Scaffolds.Settings(
     title = "Labs",
-    navigationContentDescription = "Go back",
+    navigationContentDescription = stringResource(R.string.CallScreenTopBar__go_back),
     navigationIcon = SignalIcons.ArrowStart.imageVector,
     onNavigationClick = onNavigationClick
   ) { contentPadding ->
