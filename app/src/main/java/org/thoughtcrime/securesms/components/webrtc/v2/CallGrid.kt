@@ -46,6 +46,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.IntSize
@@ -91,7 +92,8 @@ data class GridConfig(
   val rows: Int,
   val columns: Int,
   val itemsInLastRow: Int,
-  val outerPadding: Dp,
+  val outerPaddingHorizontal: Dp,
+  val outerPaddingVertical: Dp,
   val innerSpacing: Dp,
   val cornerRadius: Dp,
   val aspectRatio: Float?,
@@ -137,7 +139,8 @@ sealed class CallGridStrategy(val maxTiles: Int) {
         rows = rows,
         columns = cols,
         itemsInLastRow = lastRowItems,
-        outerPadding = if (count == 1) 0.dp else 16.dp,
+        outerPaddingHorizontal = if (count == 1) 0.dp else 16.dp,
+        outerPaddingVertical = if (count == 1) 0.dp else 16.dp,
         innerSpacing = if (count == 1) 0.dp else 12.dp,
         cornerRadius = if (count == 1) 0.dp else 32.dp,
         aspectRatio = null
@@ -160,7 +163,8 @@ sealed class CallGridStrategy(val maxTiles: Int) {
         rows = rows,
         columns = cols,
         itemsInLastRow = lastRowItems,
-        outerPadding = if (count == 1) 0.dp else 16.dp,
+        outerPaddingHorizontal = if (count == 1) 0.dp else 16.dp,
+        outerPaddingVertical = if (count == 1) 0.dp else 16.dp,
         innerSpacing = if (count == 1) 0.dp else 12.dp,
         cornerRadius = if (count == 1) 0.dp else 32.dp,
         aspectRatio = null,
@@ -186,7 +190,8 @@ sealed class CallGridStrategy(val maxTiles: Int) {
         rows = rows,
         columns = cols,
         itemsInLastRow = lastRowItems,
-        outerPadding = 24.dp,
+        outerPaddingHorizontal = if (count == 1) 0.dp else 24.dp,
+        outerPaddingVertical = 0.dp,
         innerSpacing = 12.dp,
         cornerRadius = 32.dp,
         aspectRatio = if (count == 1) 9f / 16f else 5f / 4f
@@ -214,7 +219,8 @@ sealed class CallGridStrategy(val maxTiles: Int) {
         rows = rows,
         columns = cols,
         itemsInLastRow = lastRowItems,
-        outerPadding = 24.dp,
+        outerPaddingHorizontal = if (count == 1) 0.dp else 24.dp,
+        outerPaddingVertical = 0.dp,
         innerSpacing = 12.dp,
         cornerRadius = 32.dp,
         aspectRatio = if (count == 1) 9f / 16f else 5f / 4f
@@ -302,21 +308,24 @@ private fun calculateGridCells(
   config: GridConfig,
   containerWidth: Float,
   containerHeight: Float,
-  itemCount: Int
+  itemCount: Int,
+  density: Density
 ): List<GridCell> {
   if (itemCount == 0) return emptyList()
 
-  val padding = config.outerPadding.value
-  val spacing = config.innerSpacing.value
-  val availableWidth = containerWidth - (padding * 2)
-  val availableHeight = containerHeight - (padding * 2)
+  val paddingHorizontal = with(density) { config.outerPaddingHorizontal.toPx() }
+  val paddingVertical = with(density) { config.outerPaddingVertical.toPx() }
+  val spacing = with(density) { config.innerSpacing.toPx() }
+  val availableWidth = containerWidth - (paddingHorizontal * 2)
+  val availableHeight = containerHeight - (paddingVertical * 2)
 
   if (config.lastColumnSpansFullHeight && itemCount > 1) {
     return calculateGridCellsWithSpanningColumn(
       config = config,
       availableWidth = availableWidth,
       availableHeight = availableHeight,
-      padding = padding,
+      paddingHorizontal = paddingHorizontal,
+      paddingVertical = paddingVertical,
       spacing = spacing,
       itemCount = itemCount
     )
@@ -343,8 +352,8 @@ private fun calculateGridCells(
   val totalGridWidth = (config.columns * itemWidth) + ((config.columns - 1) * spacing)
   val totalGridHeight = (config.rows * itemHeight) + ((config.rows - 1) * spacing)
 
-  val gridStartX = padding + (availableWidth - totalGridWidth) / 2
-  val gridStartY = padding + (availableHeight - totalGridHeight) / 2
+  val gridStartX = paddingHorizontal + (availableWidth - totalGridWidth) / 2
+  val gridStartY = paddingVertical + (availableHeight - totalGridHeight) / 2
 
   val cells = mutableListOf<GridCell>()
 
@@ -397,7 +406,8 @@ private fun calculateGridCellsWithSpanningColumn(
   config: GridConfig,
   availableWidth: Float,
   availableHeight: Float,
-  padding: Float,
+  paddingHorizontal: Float,
+  paddingVertical: Float,
   spacing: Float,
   itemCount: Int
 ): List<GridCell> {
@@ -412,8 +422,8 @@ private fun calculateGridCellsWithSpanningColumn(
   val totalGridWidth = (config.columns * cellWidth) + ((config.columns - 1) * spacing)
   val totalGridHeight = (config.rows * cellHeight) + ((config.rows - 1) * spacing)
 
-  val gridStartX = padding + (availableWidth - totalGridWidth) / 2
-  val gridStartY = padding + (availableHeight - totalGridHeight) / 2
+  val gridStartX = paddingHorizontal + (availableWidth - totalGridWidth) / 2
+  val gridStartY = paddingVertical + (availableHeight - totalGridHeight) / 2
 
   var index = 0
   for (col in 0 until columnsForRegularItems) {
@@ -502,13 +512,14 @@ fun <T> CallGrid(
   var containerSize by remember { mutableStateOf(IntSize.Zero) }
   val density = LocalDensity.current
 
-  val cells = remember(config, containerSize, displayCount) {
+  val cells = remember(config, containerSize, displayCount, density) {
     if (containerSize == IntSize.Zero) emptyList()
     else calculateGridCells(
       config = config,
       containerWidth = containerSize.width.toFloat(),
       containerHeight = containerSize.height.toFloat(),
-      itemCount = displayCount
+      itemCount = displayCount,
+      density = density
     )
   }
 

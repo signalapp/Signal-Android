@@ -10,15 +10,12 @@ import android.content.pm.PackageManager
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement.spacedBy
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.navigationBars
+import androidx.compose.foundation.layout.navigationBarsIgnoringVisibility
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
@@ -42,6 +39,7 @@ import org.thoughtcrime.securesms.util.RemoteConfig
  * Renders the button strip / start call button in the call screen
  * bottom sheet.
  */
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun CallControls(
   displayVideoTooltip: Boolean,
@@ -55,14 +53,7 @@ fun CallControls(
   val isPortrait = LocalConfiguration.current.orientation == Configuration.ORIENTATION_PORTRAIT
 
   val density = LocalDensity.current
-  val padBottom = with(density) { WindowInsets.navigationBars.getBottom(density).toDp() }
-  var bottom by remember {
-    mutableStateOf(padBottom)
-  }
-
-  if (padBottom != 0.dp) {
-    bottom = padBottom
-  }
+  val bottom = with(density) { WindowInsets.navigationBarsIgnoringVisibility.getBottom(density).toDp() }
 
   Column(
     horizontalAlignment = Alignment.CenterHorizontally,

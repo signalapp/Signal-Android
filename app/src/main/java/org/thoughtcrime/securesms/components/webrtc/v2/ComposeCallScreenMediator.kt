@@ -14,6 +14,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -40,6 +41,7 @@ import org.thoughtcrime.securesms.calls.links.EditCallLinkNameDialogFragment
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantListUpdate
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantsState
 import org.thoughtcrime.securesms.components.webrtc.WebRtcControls
+import org.thoughtcrime.securesms.components.webrtc.WebRtcLocalRenderState
 import org.thoughtcrime.securesms.components.webrtc.controls.CallInfoView
 import org.thoughtcrime.securesms.components.webrtc.controls.ControlsAndInfoViewModel
 import org.thoughtcrime.securesms.components.webrtc.controls.RaiseHandSnackbar
@@ -118,6 +120,20 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
       val overflowParticipants = remember(callParticipantsState.allRemoteParticipants, callGridStrategy) {
         callParticipantsState.allRemoteParticipants.drop(callGridStrategy.maxTiles)
       }
+
+      // The state machine shrinks the pip past one other participant; the spec holds the normal size until
+      // the grid is crowded. Focusing a participant still shrinks it regardless of count.
+      val callScreenMetrics = rememberCallScreenMetrics()
+      val isFullBleedCall = rememberIsFullBleedCall(callParticipantsState.allRemoteParticipants.size)
+      val shouldShrinkPip = callParticipantsState.isViewingFocusedParticipant ||
+        callParticipantsState.allRemoteParticipants.size >= callScreenMetrics.selfPipShrinkThreshold
+
+      val localRenderState = if (callParticipantsState.localRenderState == WebRtcLocalRenderState.SMALLER_RECTANGLE && !shouldShrinkPip) {
+        WebRtcLocalRenderState.SMALL_RECTANGLE
+      } else {
+        callParticipantsState.localRenderState
+      }
+
       val callParticipantsPagerState = remember(gridParticipants, callParticipantsState) {
         CallParticipantsPagerState(
           callParticipants = gridParticipants,
@@ -145,12 +161,13 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
       }
 
       val callControlsVisibilityListener by controlsVisibilityListener.collectAsStateWithLifecycle()
+      val isFullBleedCallState = rememberUpdatedState(isFullBleedCall)
       val onControlsToggled: (Boolean) -> Unit = remember(controlsVisibilityListener) {
         {
           if (it) {
             callControlsVisibilityListener.onShown()
           } else {
-            callControlsVisibilityListener.onHidden()
+            callControlsVisibilityListener.onHidden(isFullBleedCallState.value)
           }
         }
       }
@@ -207,7 +224,7 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
           pendingParticipantsListener = pendingParticipantsListener,
           overflowParticipants = overflowParticipants,
           localParticipant = callParticipantsState.localParticipant,
-          localRenderState = callParticipantsState.localRenderState,
+          localRenderState = localRenderState,
           reactions = callParticipantsState.reactions,
           callScreenDialogType = dialog,
           callInfoView = {

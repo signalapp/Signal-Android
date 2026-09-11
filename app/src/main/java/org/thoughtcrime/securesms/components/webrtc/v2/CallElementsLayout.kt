@@ -9,11 +9,15 @@ import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsIgnoringVisibility
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsIgnoringVisibility
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -23,6 +27,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpSize
@@ -56,10 +61,14 @@ private class BarDimensions {
  * @param callOverflowSlot Overflow participants strip.
  * @param audioIndicatorSlot Participant audio indicator content.
  * @param bottomInset Bottom inset used to keep content clear of anchored UI.
+ * @param pipBottomInset How far the pip must lift beyond the system bars, which it clears itself.
+ * @param isLocalVideoLandscape Whether the local video is landscape, and so whether the pip is rotated.
+ * @param pipMargin Inset the pip renders with. With [isLocalVideoLandscape], gives its real footprint.
  * @param bottomSheetWidth Maximum width of centered bottom content.
  * @param localRenderState Current local renderer mode.
  * @param modifier Modifier applied to the root layout.
  */
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun CallElementsLayout(
   callGridSlot: @Composable () -> Unit,
@@ -70,7 +79,10 @@ fun CallElementsLayout(
   callOverflowSlot: @Composable () -> Unit,
   audioIndicatorSlot: @Composable () -> Unit,
   bottomInset: Dp,
+  pipBottomInset: Dp = bottomInset,
   bottomSheetWidth: Dp,
+  isLocalVideoLandscape: Boolean = false,
+  pipMargin: Dp = PipMargin,
   localRenderState: WebRtcLocalRenderState,
   modifier: Modifier = Modifier
 ) {
@@ -87,10 +99,16 @@ fun CallElementsLayout(
 
   val density = LocalDensity.current
   val pipSizePx = with(density) {
-    (rememberSelfPipSize(localRenderState) + DpSize(32.dp, 0.dp)).toSize()
+    val pipSize = rememberSelfPipSize(localRenderState).rotateForVideoOrientation(isLocalVideoLandscape)
+    (pipSize + DpSize(pipMargin * 2, 0.dp)).toSize()
   }
 
   val bottomInsetPx = with(density) { bottomInset.roundToPx() }
+  val navigationBarInsets = WindowInsets.navigationBarsIgnoringVisibility
+  val navigationBarBottomPx = navigationBarInsets.getBottom(density)
+  val navigationBarEndPx = navigationBarInsets.getRight(density, LocalLayoutDirection.current)
+  val statusBarTopPx = WindowInsets.statusBarsIgnoringVisibility.getTop(density)
+  val pipBottomInsetPx = with(density) { pipBottomInset.roundToPx() }
 
   val bottomSheetWidthPx = with(density) {
     bottomSheetWidth.roundToPx()
@@ -105,6 +123,9 @@ fun CallElementsLayout(
           isFocused = isFocused,
           isPortrait = isPortrait,
           bottomInsetPx = bottomInsetPx,
+          navigationBarBottomPx = navigationBarBottomPx,
+          navigationBarEndPx = navigationBarEndPx,
+          statusBarTopPx = statusBarTopPx,
           bottomSheetWidthPx = bottomSheetWidthPx,
           barsSlot = { Bars() },
           callGridSlot = callGridSlot,
@@ -121,7 +142,7 @@ fun CallElementsLayout(
         PipLayer(
           pictureInPictureSlot = pictureInPictureSlot,
           localRenderState = localRenderState,
-          bottomInsetPx = bottomInsetPx,
+          bottomInsetPx = pipBottomInsetPx,
           barDimensions = barDimensions,
           pipSizePx = pipSizePx,
           bottomSheetWidthPx = bottomSheetWidthPx
@@ -153,6 +174,9 @@ private fun BlurrableContentLayer(
   isFocused: Boolean,
   isPortrait: Boolean,
   bottomInsetPx: Int,
+  navigationBarBottomPx: Int,
+  navigationBarEndPx: Int,
+  statusBarTopPx: Int,
   bottomSheetWidthPx: Int,
   barsSlot: @Composable () -> Unit,
   callGridSlot: @Composable () -> Unit,
@@ -179,18 +203,20 @@ private fun BlurrableContentLayer(
 
       val (overflowMeasurables, gridMeasurables, barsMeasurables, reactionsMeasurables, audioIndicatorMeasurables) = measurables
 
-      val overflowPlaceables = overflowMeasurables.map { it.measure(looseConstraints) }
+      val overflowConstraints = looseConstraints.offset(
+        horizontal = -navigationBarEndPx,
+        vertical = -(statusBarTopPx + navigationBarBottomPx)
+      )
+      val overflowPlaceables = overflowMeasurables.map { it.measure(overflowConstraints) }
       val constrainedHeightOffset = if (isPortrait) overflowPlaceables.maxOfOrNull { it.height } ?: 0 else 0
       val constrainedWidthOffset = if (isPortrait) 0 else overflowPlaceables.maxOfOrNull { it.width } ?: 0
 
       val nonOverflowConstraints = looseConstraints.offset(horizontal = -constrainedWidthOffset, vertical = -constrainedHeightOffset)
       val gridPlaceables = gridMeasurables.map { it.measure(nonOverflowConstraints) }
 
-      val barConstraints = if (bottomInsetPx > constrainedHeightOffset) {
-        looseConstraints.offset(-constrainedWidthOffset, -bottomInsetPx)
-      } else {
-        nonOverflowConstraints
-      }
+      // The strip sits above the nav bar, so bars must clear its top edge rather than just its height.
+      val overflowTopOffset = if (constrainedHeightOffset > 0) constrainedHeightOffset + navigationBarBottomPx else 0
+      val barConstraints = looseConstraints.offset(-constrainedWidthOffset, -maxOf(bottomInsetPx, overflowTopOffset))
 
       val barsMaxWidth = minOf(barConstraints.maxWidth, bottomSheetWidthPx)
       val barsConstrainedToSheet = barConstraints.copy(maxWidth = barsMaxWidth)
@@ -209,11 +235,11 @@ private fun BlurrableContentLayer(
       layout(looseConstraints.maxWidth, looseConstraints.maxHeight) {
         if (isPortrait) {
           overflowPlaceables.forEach {
-            it.place(0, looseConstraints.maxHeight - it.height)
+            it.place(0, looseConstraints.maxHeight - navigationBarBottomPx - it.height)
           }
         } else {
           overflowPlaceables.forEach {
-            it.place(looseConstraints.maxWidth - it.width, 0)
+            it.place(looseConstraints.maxWidth - navigationBarEndPx - it.width, statusBarTopPx)
           }
         }
 
@@ -234,7 +260,7 @@ private fun BlurrableContentLayer(
           val gutterWidth = (looseConstraints.maxWidth - bottomSheetWidthPx) / 2
           val fitsInGutter = gutterWidth >= it.width
           val y = if (fitsInGutter) {
-            looseConstraints.maxHeight - it.height
+            looseConstraints.maxHeight - navigationBarBottomPx - it.height
           } else {
             looseConstraints.maxHeight - bottomInsetPx - barsHeightPx - it.height
           }
@@ -263,8 +289,8 @@ private fun PipLayer(
     val centeredContentWidthPx = maxOf(barDimensions.widthPx, bottomSheetWidthPx)
 
     val pictureInPictureConstraints: Constraints = when (localRenderState) {
-      WebRtcLocalRenderState.GONE, WebRtcLocalRenderState.SMALLER_RECTANGLE, WebRtcLocalRenderState.LARGE, WebRtcLocalRenderState.LARGE_NO_VIDEO, WebRtcLocalRenderState.FOCUSED -> constraints
-      WebRtcLocalRenderState.SMALL_RECTANGLE, WebRtcLocalRenderState.EXPANDED -> {
+      WebRtcLocalRenderState.GONE, WebRtcLocalRenderState.LARGE, WebRtcLocalRenderState.LARGE_NO_VIDEO, WebRtcLocalRenderState.FOCUSED -> constraints
+      WebRtcLocalRenderState.SMALL_RECTANGLE, WebRtcLocalRenderState.SMALLER_RECTANGLE, WebRtcLocalRenderState.EXPANDED -> {
         val spaceOnEachSide = (looseConstraints.maxWidth - centeredContentWidthPx) / 2
         val shouldOffset = centeredContentWidthPx > 0 && spaceOnEachSide < pipSizePx.width
         val offsetAmount = bottomInsetPx + barDimensions.heightPx

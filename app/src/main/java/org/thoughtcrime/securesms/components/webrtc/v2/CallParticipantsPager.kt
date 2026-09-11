@@ -6,9 +6,12 @@
 package org.thoughtcrime.securesms.components.webrtc.v2
 
 import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.displayCutoutPadding
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.systemBarsIgnoringVisibility
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.VerticalPager
 import androidx.compose.material3.Surface
@@ -32,6 +35,7 @@ import org.thoughtcrime.securesms.events.CallParticipantId
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun CallParticipantsPager(
   callParticipantsPagerState: CallParticipantsPagerState,
@@ -51,11 +55,20 @@ fun CallParticipantsPager(
     callParticipantsPagerState.callParticipants.firstOrNull()?.videoSink
   )
 
+  // Inset so that CallGrid's outer padding is measured from the system bars, not the screen edge.
+  val isFullBleed = rememberIsFullBleedCall(callParticipantsPagerState.callParticipants.size)
+
+  val insetModifier = if (isFullBleed) {
+    Modifier
+  } else {
+    Modifier
+      .displayCutoutPadding()
+      .windowInsetsPadding(WindowInsets.systemBarsIgnoringVisibility)
+  }
+
   VerticalPager(
     state = pagerState,
-    modifier = modifier
-      .displayCutoutPadding()
-      .statusBarsPadding()
+    modifier = modifier.then(insetModifier)
   ) { page ->
     when (page) {
       0 -> {

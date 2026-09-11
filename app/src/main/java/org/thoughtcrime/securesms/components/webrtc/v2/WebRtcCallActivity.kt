@@ -40,8 +40,10 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.Disposable
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -579,6 +581,19 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
 
         launch {
           viewModel.getCallParticipantListUpdate().collectLatest(callScreen::onParticipantListUpdate)
+        }
+
+        launch {
+          viewModel.callParticipantsState
+            .map { it.allRemoteParticipants.size > 1 }
+            .distinctUntilChanged()
+            .collectLatest { hasMultipleRemoteParticipants ->
+              // A call that grows past a single remote participant can no longer be edge to edge, even if
+              // we already went immersive back when it was one-to-one.
+              if (hasMultipleRemoteParticipants) {
+                FullscreenHelper.showSystemUI(window)
+              }
+            }
         }
 
         launch {
@@ -1293,12 +1308,19 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
       fullScreenHelper.showSystemUI()
     }
 
-    override fun onHidden() {
+    override fun onHidden(isFullBleedCall: Boolean) {
       val controlState = viewModel.getWebRtcControls().value
-      if (!controlState.displayErrorControls()) {
-        fullScreenHelper.hideSystemUI()
-        videoTooltip?.dismiss()
+      if (controlState.displayErrorControls()) {
+        return
       }
+
+      // Only an edge-to-edge call goes immersive with the controls. Anything else keeps the system bars
+      // up and pads around them instead, so the grid doesn't reflow every time the controls fade.
+      if (isFullBleedCall) {
+        fullScreenHelper.hideSystemUI()
+      }
+
+      videoTooltip?.dismiss()
     }
   }
 
