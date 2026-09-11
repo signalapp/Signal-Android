@@ -8,6 +8,7 @@ import android.os.Build;
 import android.os.ResultReceiver;
 
 import androidx.annotation.AnyThread;
+import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -144,6 +145,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
   private WebRtcServiceState            serviceState;
   private RxStore<WebRtcEphemeralState> ephemeralStateStore;
   private boolean                       needsToSetSelfUuid = true;
+  private RelaunchListener              pipRelaunchListener;
 
   private RxStore<Map<RecipientId, CallLinkPeekInfo>> linkPeekInfoStore;
 
@@ -1422,8 +1424,30 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
     callManager.addAsset(assetGroup, content);
   }
 
+  /**
+   * Schedules the call activity to be relaunched in PiP the next time the app is foregrounded. Only relevant if the call activity did not survive being
+   * backgrounded, e.g. the user dismissed the PiP window or another app's PiP evicted it. If it did survive, {@link #cancelPipRelaunch()} should be called
+   * to cancel this.
+   */
+  @MainThread
   public void relaunchPipOnForeground() {
-    AppForegroundObserver.addListener(new RelaunchListener(AppForegroundObserver.isForegrounded()));
+    cancelPipRelaunch();
+
+    pipRelaunchListener = new RelaunchListener(AppForegroundObserver.isForegrounded());
+    AppForegroundObserver.addListener(pipRelaunchListener);
+  }
+
+  /**
+   * Cancels any pending PiP relaunch scheduled via {@link #relaunchPipOnForeground()}. Relaunching while the call activity is still alive delivers a
+   * launch-in-PiP intent to it, which pulls it out of PiP and into fullscreen, or forces a deliberately expanded call back into PiP. The former is both
+   * unprompted and, if it happens while the keyguard is going away, can leave the device wedged in a partially-locked state.
+   */
+  @MainThread
+  public void cancelPipRelaunch() {
+    if (pipRelaunchListener != null) {
+      AppForegroundObserver.removeListener(pipRelaunchListener);
+      pipRelaunchListener = null;
+    }
   }
 
   private void processSendMessageFailureWithChangeDetection(@NonNull RemotePeer remotePeer,
@@ -1471,6 +1495,9 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
           });
         }
         AppForegroundObserver.removeListener(this);
+        if (pipRelaunchListener == this) {
+          pipRelaunchListener = null;
+        }
       }
     }
 

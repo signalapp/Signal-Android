@@ -16,6 +16,7 @@ public class LockManager {
   private static final String TAG = Log.tag(LockManager.class);
 
   private final PowerManager.WakeLock fullLock;
+  private final PowerManager.WakeLock fullWakeUpLock;
   private final PowerManager.WakeLock partialLock;
   private final WifiManager.WifiLock  wifiLock;
   private final ProximityLock         proximityLock;
@@ -33,6 +34,7 @@ public class LockManager {
 
   private enum LockState {
     FULL,
+    FULL_WAKE_UP,
     PARTIAL,
     SLEEP,
     PROXIMITY
@@ -40,7 +42,10 @@ public class LockManager {
 
   public LockManager(Context context) {
     PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
-    fullLock = pm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP, "signal:full");
+    // These differ only in ACQUIRE_CAUSES_WAKEUP, and must stay separate: these locks are not reference counted, so every acquire() reaches
+    // PowerManagerService even when already held, and re-applying ACQUIRE_CAUSES_WAKEUP turns the screen back on after the user powered it off.
+    fullLock = pm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK, "signal:full");
+    fullWakeUpLock = pm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP, "signal:full-wakeup");
     partialLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "signal:partial");
     proximityLock = new ProximityLock(pm);
 
@@ -48,6 +53,7 @@ public class LockManager {
     wifiLock = wm.createWifiLock(WifiManager.WIFI_MODE_FULL_HIGH_PERF, "signal:wifi");
 
     fullLock.setReferenceCounted(false);
+    fullWakeUpLock.setReferenceCounted(false);
     partialLock.setReferenceCounted(false);
     wifiLock.setReferenceCounted(false);
   }
@@ -69,7 +75,7 @@ public class LockManager {
         setLockState(LockState.PARTIAL);
         break;
       case INTERACTIVE:
-        setLockState(LockState.FULL);
+        setLockState(LockState.FULL_WAKE_UP);
         break;
       case IN_HANDS_FREE_CALL:
         setLockState(LockState.PARTIAL);
@@ -92,16 +98,26 @@ public class LockManager {
         fullLock.acquire();
         partialLock.acquire();
         wifiLock.acquire();
+        fullWakeUpLock.release();
+        proximityLock.release();
+        break;
+      case FULL_WAKE_UP:
+        fullWakeUpLock.acquire();
+        partialLock.acquire();
+        wifiLock.acquire();
+        fullLock.release();
         proximityLock.release();
         break;
       case PARTIAL:
         partialLock.acquire();
         wifiLock.acquire();
         fullLock.release();
+        fullWakeUpLock.release();
         proximityLock.release();
         break;
       case SLEEP:
         fullLock.release();
+        fullWakeUpLock.release();
         partialLock.release();
         wifiLock.release();
         proximityLock.release();
@@ -111,6 +127,7 @@ public class LockManager {
         proximityLock.acquire();
         wifiLock.acquire();
         fullLock.release();
+        fullWakeUpLock.release();
         break;
       default:
         throw new IllegalArgumentException("Unhandled Mode: " + newState);

@@ -253,6 +253,10 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
   }
 
   override fun onStart() {
+    // This instance outlived being backgrounded (e.g. the screen was turned off and back on), so any relaunch scheduled in onStop() is unnecessary.
+    // Cancel it before super.onStart() dispatches the app-foregrounded event, otherwise it would yank the call out of PiP and into fullscreen.
+    AppDependencies.signalCallManager.cancelPipRelaunch()
+
     super.onStart()
 
     ephemeralStateDisposable = AppDependencies.signalCallManager
