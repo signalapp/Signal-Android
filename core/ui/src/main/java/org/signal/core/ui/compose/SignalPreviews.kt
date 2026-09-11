@@ -14,6 +14,7 @@ private const val SMALL_FOLDABLE_PORTRAIT = "spec:width=620dp,height=720dp,orien
 private const val SMALL_FOLDABLE_LANDSCAPE = "spec:width=720dp,height=620dp,orientation=landscape"
 private const val FOLDABLE_PORTRAIT = "spec:width=850dp,height=881dp,orientation=portrait"
 private const val FOLDABLE_LANDSCAPE = "spec:width=881dp,height=850dp,orientation=landscape"
+private const val SMALL_TABLET_LANDSCAPE = "spec:width=960dp,height=600dp,orientation=landscape"
 private const val TABLET_PORTRAIT = "spec:width=800dp,height=1280dp,orientation=portrait"
 private const val TABLET_LANDSCAPE = "spec:width=1280dp,height=800dp,orientation=landscape"
 
@@ -56,6 +57,13 @@ annotation class FoldablePortraitNightPreview
 
 @Preview(name = "foldable landscape (day)", uiMode = Configuration.UI_MODE_NIGHT_NO, device = FOLDABLE_LANDSCAPE)
 annotation class FoldableLandscapeDayPreview
+
+/**
+ * A small tablet in landscape: expanded width, but the shortest height of any non-phone window, which is where
+ * fixed-height content runs out of room first.
+ */
+@Preview(name = "small tablet landscape (day)", uiMode = Configuration.UI_MODE_NIGHT_NO, device = SMALL_TABLET_LANDSCAPE)
+annotation class SmallTabletLandscapeDayPreview
 
 @Preview(name = "tablet portrait (day)", uiMode = Configuration.UI_MODE_NIGHT_NO, device = TABLET_PORTRAIT)
 annotation class TabletPortraitDayPreview
