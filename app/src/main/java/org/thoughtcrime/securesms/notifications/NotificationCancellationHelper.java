@@ -7,6 +7,7 @@ import android.os.Build;
 import android.service.notification.StatusBarNotification;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import org.signal.core.util.logging.Log;
@@ -15,7 +16,6 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 import org.thoughtcrime.securesms.notifications.v2.DefaultMessageNotifier;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.BubbleUtil;
 import org.thoughtcrime.securesms.util.ConversationUtil;
 import org.signal.core.util.ServiceUtil;
 
@@ -111,8 +111,8 @@ public final class NotificationCancellationHelper {
   }
 
   /**
-   * Attempts to cancel the given notification. If the notification is allowed to be displayed as a
-   * bubble, we do not cancel it.
+   * Attempts to cancel the given notification. If the notification is backing a bubble the user
+   * currently has open, we do not cancel it.
    *
    * @return Whether or not the notification is considered cancelled.
    */
@@ -135,8 +135,8 @@ public final class NotificationCancellationHelper {
   }
 
   /**
-   * Cancel method which first checks whether the notification in question is tied to a bubble that
-   * may or may not be displayed by the user.
+   * Cancel method which first checks whether the notification in question is tied to a bubble the
+   * user currently has open.
    *
    * @return true if the notification was cancelled.
    */
@@ -152,9 +152,8 @@ public final class NotificationCancellationHelper {
   }
 
   /**
-   * Checks whether the conversation for the given notification is allowed to be represented as a bubble.
-   *
-   * see {@link BubbleUtil#canBubble} for more information.
+   * Cancelling a notification tears down the bubble it backs, so we hold off while the user has that
+   * conversation open as a bubble.
    */
   @RequiresApi(ConversationUtil.CONVERSATION_SUPPORT_VERSION)
   private static boolean isCancellable(@NonNull Context context, int notificationId) {
@@ -179,16 +178,27 @@ public final class NotificationCancellationHelper {
       return true;
     }
 
-    Long                     threadId            = SignalDatabase.threads().getThreadIdFor(recipientId);
-    Optional<ConversationId> focusedThread       = AppDependencies.getMessageNotifier().getVisibleThread();
-    Long                     focusedThreadId     = focusedThread.map(ConversationId::getThreadId).orElse(null);
-    Long                     focusedGroupStoryId = focusedThread.map(ConversationId::getGroupStoryId).orElse(null);
+    Long threadId = SignalDatabase.threads().getThreadIdFor(recipientId);
 
-    if (Objects.equals(threadId, focusedThreadId) && focusedGroupStoryId == null) {
+    if (isVisible(AppDependencies.getMessageNotifier().getVisibleThread(), threadId)) {
       Log.d(TAG, "isCancellable: user entered full screen thread.");
       return true;
     }
 
-    return !BubbleUtil.canBubble(context, recipientId, threadId);
+    if (isVisible(AppDependencies.getMessageNotifier().getVisibleBubbleThread(), threadId)) {
+      Log.d(TAG, "isCancellable: conversation is currently open as a bubble.");
+      return false;
+    }
+
+    return true;
+  }
+
+  /**
+   * @return whether the given conversation is the non-story conversation the user is currently looking at.
+   */
+  private static boolean isVisible(@NonNull Optional<ConversationId> visibleThread, @Nullable Long threadId) {
+    ConversationId visible = visibleThread.orElse(null);
+
+    return visible != null && visible.getGroupStoryId() == null && Objects.equals(threadId, visible.getThreadId());
   }
 }

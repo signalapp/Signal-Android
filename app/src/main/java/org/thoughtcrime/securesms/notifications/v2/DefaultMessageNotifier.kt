@@ -89,6 +89,10 @@ class DefaultMessageNotifier(context: Application) : MessageNotifier {
     visibleBubbleThread = conversationId
   }
 
+  override fun getVisibleBubbleThread(): Optional<ConversationId> {
+    return Optional.ofNullable(visibleBubbleThread)
+  }
+
   override fun clearVisibleBubbleThread() {
     setVisibleBubbleThread(null)
   }

@@ -931,6 +931,7 @@ class ConversationFragment :
       AppDependencies.messageNotifier.clearVisibleThread(ConversationId.forConversation(args.threadId))
     } else {
       AppDependencies.messageNotifier.clearVisibleBubbleThread()
+      AppDependencies.messageNotifier.updateNotification(requireContext())
     }
 
     if (activity?.isFinishing == true) {
