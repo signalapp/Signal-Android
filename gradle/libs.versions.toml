@@ -10,9 +10,9 @@ minSdk = "23"
 ndk = "28.0.13004108"
 javaVersion = "21"
 kotlinJvmTarget = "21"
-gradle = "9.2.1"
+gradle = "9.4.0"
 kotlin = "2.2.20"
-android-gradle-plugin = "9.2.1"
+android-gradle-plugin = "9.4.0"
 
 # Other versions
 androidx-appcompat = "1.7.1"
@@ -160,7 +160,7 @@ google-ez-vcard = "com.googlecode.ez-vcard:ez-vcard:0.9.11"
 google-jsr305 = "com.google.code.findbugs:jsr305:3.0.2"
 google-guava-android = "com.google.guava:guava:33.6.0-android"
 google-flexbox = "com.google.android.flexbox:flexbox:3.0.0"
-com-google-devtools-ksp-gradle-plugin = "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:2.3.2"
+com-google-devtools-ksp-gradle-plugin = "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:2.3.6"
 
 # Firebase
 firebase-messaging = "com.google.firebase:firebase-messaging:25.0.1"
