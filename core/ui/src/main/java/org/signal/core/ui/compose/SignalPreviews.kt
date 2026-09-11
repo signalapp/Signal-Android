@@ -28,7 +28,11 @@ annotation class NightPreview()
 @NightPreview
 annotation class DayNightPreviews
 
-@Preview(name = "rtl", locale = "ar")
+/**
+ * Renders with English strings in a right-to-left layout. The Arab script forces RTL while the language stays
+ * English, so these screenshots don't churn when new translations land.
+ */
+@Preview(name = "rtl", locale = "b+en+Arab")
 annotation class RtlPreview
 
 @Preview(name = "phone portrait (day)", uiMode = Configuration.UI_MODE_NIGHT_NO, device = PHONE_PORTRAIT)
@@ -121,7 +125,7 @@ annotation class BreakpointPreviews
 
 /**
  * The screenshot test matrix, sized to catch UI regressions rather than to enumerate configurations: each device
- * in both orientations, a dark-mode pass over one representative size per device, and an RTL locale.
+ * in both orientations, a dark-mode pass over one representative size per device, and a right-to-left pass.
  */
 @PhonePortraitDayPreview
 @PhoneLandscapeDayPreview
