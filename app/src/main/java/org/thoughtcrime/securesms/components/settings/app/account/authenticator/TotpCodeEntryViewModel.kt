@@ -21,6 +21,7 @@ import org.signal.appsettings.totpcodeentry.TotpCodeEntryState
 import org.signal.appsettings.totpcodeentry.TotpCodeEntryState.Error
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
+import org.signal.uicomponents.codeentryfield.CodeEntryFieldAction
 import org.signal.uicomponents.codeentryfield.CodeEntryFieldPresenter
 
 /**
@@ -48,6 +49,11 @@ class TotpCodeEntryViewModel(
       .state
       .onEach { onEvent(TotpCodeEntryEvent.CodeEntryStateChanged(it)) }
       .launchIn(viewModelScope)
+
+    codeEntryPresenter
+      .actions
+      .onEach { onEvent(TotpCodeEntryEvent.CodeEntryAction(it)) }
+      .launchIn(viewModelScope)
   }
 
   override suspend fun processEvent(event: TotpCodeEntryEvent) {
@@ -61,6 +67,12 @@ class TotpCodeEntryViewModel(
       }
       is TotpCodeEntryEvent.CodeEntryStateChanged -> {
         _state.update { it.copy(codeEntry = event.codeEntryState) }
+      }
+      is TotpCodeEntryEvent.CodeEntryAction -> {
+        when (event.action) {
+          // The user submits with the Next button, so a finished code doesn't need anything done with it here.
+          is CodeEntryFieldAction.CodeEntered -> Unit
+        }
       }
       TotpCodeEntryEvent.NextClicked -> {
         if (!_state.value.canSubmit) {

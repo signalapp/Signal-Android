@@ -5,6 +5,7 @@
 
 package org.signal.appsettings.totpcodeentry
 
+import org.signal.uicomponents.codeentryfield.CodeEntryFieldAction
 import org.signal.uicomponents.codeentryfield.CodeEntryFieldEvents
 import org.signal.uicomponents.codeentryfield.CodeEntryFieldState
 
@@ -21,6 +22,9 @@ sealed interface TotpCodeEntryEvent {
 
   /** The code field's presenter emitted new state for us to mirror. */
   data class CodeEntryStateChanged(val codeEntryState: CodeEntryFieldState) : TotpCodeEntryEvent
+
+  /** The code field's presenter emitted an action for us to carry out. */
+  data class CodeEntryAction(val action: CodeEntryFieldAction) : TotpCodeEntryEvent
 
   /** The user submitted the code they entered. */
   data object NextClicked : TotpCodeEntryEvent
