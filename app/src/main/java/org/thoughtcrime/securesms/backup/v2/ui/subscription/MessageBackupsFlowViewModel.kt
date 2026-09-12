@@ -185,7 +185,7 @@ class MessageBackupsFlowViewModel(
         }
 
         activeSubscription.runIfSuccessful { subscription ->
-          if (subscription.willCancelAtPeriodEnd()) {
+          if (subscription.willCancelAtPeriodEnd) {
             Log.d(TAG, "Active subscription is cancelled. Clearing tier.")
             internalStateFlow.update {
               it.copy(

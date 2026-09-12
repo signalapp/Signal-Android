@@ -42,7 +42,7 @@ class InternalPendingOneTimeDonationConfigurationViewModel : ViewModel() {
     .subscribeOn(Schedulers.io())
     .observeOn(AndroidSchedulers.mainThread())
     .subscribe { config ->
-      val badge = Badges.fromServiceBadge(config.levels.values.first().badge)
+      val badge = Badges.fromServiceBadge(config.levels.values.first().badge!!)
       state.value = state.value.copy(badge = Badges.toDatabaseBadge(badge))
     }
 

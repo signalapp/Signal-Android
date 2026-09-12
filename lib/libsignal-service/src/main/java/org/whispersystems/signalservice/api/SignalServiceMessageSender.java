@@ -2041,7 +2041,7 @@ public class SignalServiceMessageSender {
 
         try {
           SendMessageResponse response = NetworkResultUtil.toMessageSendLegacy(messages.getDestination(), messageApi.sendMessage(messages, sealedSenderAccess, story));
-          return SendMessageResult.success(recipient, messages.getDevices(), response.sentUnidentified(), response.getNeedsSync() || aciStore.isMultiDevice(), System.currentTimeMillis() - startTime, content.getContent());
+          return SendMessageResult.success(recipient, messages.getDevices(), response.getSentUnidentified(), response.getNeedsSync() || aciStore.isMultiDevice(), System.currentTimeMillis() - startTime, content.getContent());
         } catch (AuthorizationFailedException |
                  UnregisteredUserException |
                  MismatchedDevicesException |
@@ -2080,7 +2080,7 @@ public class SignalServiceMessageSender {
 
         SendMessageResponse response = socket.sendMessage(messages, sealedSenderAccess, story);
 
-        return SendMessageResult.success(recipient, messages.getDevices(), response.sentUnidentified(), response.getNeedsSync() || aciStore.isMultiDevice(), System.currentTimeMillis() - startTime, content.getContent());
+        return SendMessageResult.success(recipient, messages.getDevices(), response.getSentUnidentified(), response.getNeedsSync() || aciStore.isMultiDevice(), System.currentTimeMillis() - startTime, content.getContent());
 
       } catch (InvalidKeyException ike) {
         Log.w(TAG, ike);
@@ -2302,7 +2302,7 @@ public class SignalServiceMessageSender {
             SendMessageResult   result   = SendMessageResult.success(
                 recipient,
                 messages.getDevices(),
-                response.sentUnidentified(),
+                response.getSentUnidentified(),
                 response.getNeedsSync() || aciStore.isMultiDevice(),
                 System.currentTimeMillis() - startTime,
                 content.getContent()
@@ -2345,7 +2345,7 @@ public class SignalServiceMessageSender {
               return SendMessageResult.success(
                   recipient,
                   messages.getDevices(),
-                  response.sentUnidentified(),
+                  response.getSentUnidentified(),
                   response.getNeedsSync() || aciStore.isMultiDevice(),
                   System.currentTimeMillis() - startTime,
                   content.getContent()

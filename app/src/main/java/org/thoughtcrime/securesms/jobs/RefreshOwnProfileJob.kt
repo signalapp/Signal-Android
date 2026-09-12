@@ -108,10 +108,10 @@ class RefreshOwnProfileJob private constructor(parameters: Parameters) : BaseJob
 
     val profile = profileAndCredential.getProfile()
 
-    if (Util.isEmpty(profile.getName()) &&
-      Util.isEmpty(profile.getAvatar()) &&
-      Util.isEmpty(profile.getAbout()) &&
-      Util.isEmpty(profile.getAboutEmoji())
+    if (Util.isEmpty(profile.name) &&
+      Util.isEmpty(profile.avatar) &&
+      Util.isEmpty(profile.about) &&
+      Util.isEmpty(profile.aboutEmoji)
     ) {
       Log.w(TAG, "The profile we retrieved was empty! Ignoring it.")
 
@@ -125,13 +125,13 @@ class RefreshOwnProfileJob private constructor(parameters: Parameters) : BaseJob
       return
     }
 
-    setProfileName(profile.getName())
-    setProfileAbout(profile.getAbout(), profile.getAboutEmoji())
-    setProfileAvatar(profile.getAvatar())
-    setProfileCapabilities(profile.getCapabilities())
-    setProfileBadges(profile.getBadges())
-    ensureUnidentifiedAccessCorrect(profile.getUnidentifiedAccess(), profile.isUnrestrictedUnidentifiedAccess())
-    ensurePhoneNumberSharingIsCorrect(profile.getPhoneNumberSharing())
+    setProfileName(profile.name)
+    setProfileAbout(profile.about, profile.aboutEmoji)
+    setProfileAvatar(profile.avatar)
+    setProfileCapabilities(profile.capabilities)
+    setProfileBadges(profile.badges)
+    ensureUnidentifiedAccessCorrect(profile.unidentifiedAccess, profile.unrestrictedUnidentifiedAccess)
+    ensurePhoneNumberSharingIsCorrect(profile.phoneNumberSharing)
 
     profileAndCredential.getExpiringProfileKeyCredential()
       .ifPresent { setExpiringProfileKeyCredential(self, ProfileKeyUtil.getSelfProfileKey(), it) }
@@ -287,8 +287,8 @@ class RefreshOwnProfileJob private constructor(parameters: Parameters) : BaseJob
       .toSet()
 
     val remoteDonorBadgeIds = badges
-      .filter { it.getCategory() == Badge.Category.Donor.code }
-      .map { it.getId() }
+      .filter { it.category == Badge.Category.Donor.code }
+      .map { it.id }
       .toSet()
 
     val remoteHasSubscriptionBadges = remoteDonorBadgeIds.any { isSubscription(it) }
@@ -320,13 +320,14 @@ class RefreshOwnProfileJob private constructor(parameters: Parameters) : BaseJob
 
           if (response.getResult().isPresent()) {
             val activeSubscription = response.getResult().get()
-            if (activeSubscription.isFailedPayment()) {
+            if (activeSubscription.isFailedPayment) {
               Log.d(TAG, "Unexpected expiry due to payment failure.", true)
               isDueToPaymentFailure = true
             }
 
-            if (activeSubscription.getChargeFailure() != null) {
-              Log.d(TAG, "Active payment contains a charge failure: " + activeSubscription.getChargeFailure().getCode(), true)
+            val chargeFailure = activeSubscription.chargeFailure
+            if (chargeFailure != null) {
+              Log.d(TAG, "Active payment contains a charge failure: " + chargeFailure.code, true)
             }
           }
 
@@ -376,8 +377,8 @@ class RefreshOwnProfileJob private constructor(parameters: Parameters) : BaseJob
       SignalStore.inAppPayments.setExpiredGiftBadge(null)
     }
 
-    val userHasVisibleBadges = badges.any { it.isVisible() }
-    val userHasInvisibleBadges = badges.any { !it.isVisible() }
+    val userHasVisibleBadges = badges.any { it.visible }
+    val userHasInvisibleBadges = badges.any { !it.visible }
 
     val appBadges = badges.map { Badges.fromServiceBadge(it) }
 

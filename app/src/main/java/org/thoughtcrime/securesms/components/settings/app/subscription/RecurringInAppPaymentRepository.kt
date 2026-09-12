@@ -95,7 +95,7 @@ object RecurringInAppPaymentRepository {
 
     response.result.ifPresent { result ->
       val lastEndOfPeriod = SignalDatabase.inAppPayments.getByLatestEndOfPeriod(type.inAppPaymentType)?.endOfPeriodSeconds ?: 0L
-      if (result.isActive && result.activeSubscription.endOfCurrentPeriod > lastEndOfPeriod) {
+      if (result.isActive && result.activeSubscription!!.endOfCurrentPeriod > lastEndOfPeriod) {
         InAppPaymentKeepAliveJob.enqueueAndTrackTime(System.currentTimeMillis().milliseconds)
       }
     }
@@ -118,7 +118,7 @@ object RecurringInAppPaymentRepository {
           Subscription(
             id = level.toString(),
             level = level,
-            badge = Badges.fromServiceBadge(levelConfig.badge),
+            badge = Badges.fromServiceBadge(levelConfig.badge!!),
             prices = config.getSubscriptionAmounts(level)
           )
         }

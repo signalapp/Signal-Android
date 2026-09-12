@@ -22,7 +22,7 @@ class DonationReceiptListRepository {
         val subBadges = config.getSubscriptionLevels().map {
           DonationReceiptBadge(
             level = it.key,
-            badge = Badges.fromServiceBadge(it.value.badge),
+            badge = Badges.fromServiceBadge(it.value.badge!!),
             type = InAppPaymentReceiptRecord.Type.RECURRING_DONATION
           )
         }

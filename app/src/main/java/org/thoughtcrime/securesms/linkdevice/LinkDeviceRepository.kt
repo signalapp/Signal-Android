@@ -88,26 +88,26 @@ object LinkDeviceRepository {
   }
 
   fun WaitForLinkedDeviceResponse.getPlaintextDevice(): Device {
-    val response = this
-    return DeviceInfo().apply {
-      id = response.id
-      name = response.name
-      lastSeen = response.lastSeen
-      registrationId = response.registrationId
-      createdAtCiphertext = response.createdAtCiphertext
-    }.toLocalDevice()
+    return DeviceInfo(
+      id = id,
+      name = name,
+      lastSeen = lastSeen,
+      registrationId = registrationId,
+      createdAtCiphertext = createdAtCiphertext
+    ).toLocalDevice()
   }
 
   private fun DeviceInfo.toLocalDevice(): Device {
     val createdAt = this.getPlaintextCreatedAt()
-    val defaultDevice = Device(getId(), getName(), createdAt, getLastSeen(), getRegistrationId())
+    val encodedName = name
+    val defaultDevice = Device(id, encodedName, createdAt, lastSeen, registrationId)
     try {
-      if (getName().isNullOrEmpty() || getName().length < 4) {
+      if (encodedName.isNullOrEmpty() || encodedName.length < 4) {
         Log.w(TAG, "Invalid DeviceInfo name.")
         return defaultDevice
       }
 
-      val deviceName = DeviceName.ADAPTER.decode(Base64.decode(getName()))
+      val deviceName = DeviceName.ADAPTER.decode(Base64.decode(encodedName))
       if (deviceName.ciphertext == null || deviceName.ephemeralPublic == null || deviceName.syntheticIv == null) {
         Log.w(TAG, "Got a DeviceName that wasn't properly populated.")
         return defaultDevice
@@ -119,7 +119,7 @@ object LinkDeviceRepository {
         return defaultDevice
       }
 
-      return Device(getId(), String(plaintext), createdAt, getLastSeen(), getRegistrationId())
+      return Device(id, String(plaintext), createdAt, lastSeen, registrationId)
     } catch (e: Exception) {
       Log.w(TAG, "Failed while reading the protobuf.", e)
     }
@@ -156,9 +156,9 @@ object LinkDeviceRepository {
 
   private fun DeviceInfo.getPlaintextCreatedAt(): Long? {
     return try {
-      val associatedData = byteArrayOf(getId().toByte()) + this.getRegistrationId().toByteArray()
+      val associatedData = byteArrayOf(id.toByte()) + registrationId.toByteArray()
       val createdAtPlaintext = SignalStore.account.aciIdentityKey.privateKey.open(
-        ciphertext = Base64.decode(this.getCreatedAtCiphertext().toByteArray()),
+        ciphertext = Base64.decode(createdAtCiphertext!!.toByteArray()),
         info = DECRYPTION_INFO,
         associatedData = associatedData
       )

@@ -245,11 +245,12 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
       return true
     }
 
-    if (localRecipientRecord.badges != remoteProfile.badges.map { Badges.fromServiceBadge(it) }) {
+    if (localRecipientRecord.badges != remoteProfile.badges.orEmpty().map { Badges.fromServiceBadge(it) }) {
       return true
     }
 
-    if (localRecipientRecord.capabilities.rawBits != maskCapabilitiesToLong(remoteProfile.capabilities)) {
+    val remoteCapabilities = remoteProfile.capabilities
+    if (remoteCapabilities != null && localRecipientRecord.capabilities.rawBits != maskCapabilitiesToLong(remoteCapabilities)) {
       return true
     }
 
@@ -257,7 +258,7 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
     val accessMode = deriveUnidentifiedAccessMode(
       profileKey = profileKey,
       unidentifiedAccessVerifier = remoteProfile.unidentifiedAccess,
-      unrestrictedUnidentifiedAccess = remoteProfile.isUnrestrictedUnidentifiedAccess
+      unrestrictedUnidentifiedAccess = remoteProfile.unrestrictedUnidentifiedAccess
     )
 
     if (localRecipientRecord.sealedSenderAccessMode != accessMode) {
@@ -297,7 +298,7 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
     val recipientProfileKey = ProfileKeyUtil.profileKeyOrNull(recipient.profileKey)
 
     val badges = profile.badges?.map { Badges.fromServiceBadge(it) }
-    val accessMode = deriveUnidentifiedAccessMode(recipientProfileKey, profile.unidentifiedAccess, profile.isUnrestrictedUnidentifiedAccess)
+    val accessMode = deriveUnidentifiedAccessMode(recipientProfileKey, profile.unidentifiedAccess, profile.unrestrictedUnidentifiedAccess)
 
     if (badges != null && badges.size != recipient.badges.size) {
       Log.i(TAG, "Likely change in badges for ${recipient.id}. Going from ${recipient.badges.size} badge(s) to ${badges.size}.")

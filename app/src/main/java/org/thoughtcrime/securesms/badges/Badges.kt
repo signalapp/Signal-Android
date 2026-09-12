@@ -123,7 +123,7 @@ object Badges {
       uriAndDensity.first,
       uriAndDensity.second,
       serviceBadge.expiration?.let { getTimestamp(it) } ?: 0,
-      serviceBadge.isVisible,
+      serviceBadge.visible,
       TimeUnit.SECONDS.toMillis(serviceBadge.duration)
     )
   }

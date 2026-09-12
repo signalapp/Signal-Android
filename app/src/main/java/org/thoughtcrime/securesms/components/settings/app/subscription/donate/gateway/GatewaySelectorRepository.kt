@@ -31,7 +31,7 @@ object GatewaySelectorRepository {
 
         GatewayConfiguration(
           availableGateways = available,
-          sepaEuroMaximum = if (configuration.sepaMaximumEuros != null) FiatMoney(configuration.sepaMaximumEuros, CurrencyUtil.EURO) else null
+          sepaEuroMaximum = configuration.sepaMaximumEuros?.let { FiatMoney(it, CurrencyUtil.EURO) }
         )
       }
   }

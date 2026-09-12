@@ -334,9 +334,9 @@ class ChangeNumberRepository(
     return ChangeNumberResult.from(
       result.map { accountRegistrationResponse: VerifyAccountResponse ->
         NumberChangeResult(
-          uuid = accountRegistrationResponse.uuid,
-          pni = accountRegistrationResponse.pni,
-          number = accountRegistrationResponse.number
+          uuid = accountRegistrationResponse.uuid!!,
+          pni = accountRegistrationResponse.pni!!,
+          number = accountRegistrationResponse.number!!
         )
       }
     )
@@ -353,11 +353,11 @@ class ChangeNumberRepository(
       if (whoAmI.number == newE164 && whoAmI.pni != null) {
         Log.w(TAG, "Change number request did not succeed, but whoami reports the new number is already active. Treating the change as successful.")
         NetworkResult.Success(
-          VerifyAccountResponse().apply {
-            uuid = whoAmI.aci
-            pni = whoAmI.pni
+          VerifyAccountResponse(
+            uuid = whoAmI.aci,
+            pni = whoAmI.pni,
             number = whoAmI.number
-          }
+          )
         )
       } else {
         Log.i(TAG, "Change number request did not succeed and whoami does not report the new number; treating as a genuine failure.")

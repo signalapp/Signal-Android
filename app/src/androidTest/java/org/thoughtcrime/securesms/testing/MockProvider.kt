@@ -15,7 +15,7 @@ import org.whispersystems.signalservice.internal.push.DeviceInfoList
 import org.whispersystems.signalservice.internal.push.PreKeyEntity
 import org.whispersystems.signalservice.internal.push.PreKeyResponse
 import org.whispersystems.signalservice.internal.push.PreKeyResponseItem
-import org.whispersystems.signalservice.internal.push.PushServiceSocket
+import org.whispersystems.signalservice.internal.push.RegistrationLockFailure
 import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataJson
 import org.whispersystems.signalservice.internal.push.VerifyAccountResponse
 import org.whispersystems.signalservice.internal.push.WhoAmIResponse
@@ -26,18 +26,16 @@ import java.security.SecureRandom
  */
 object MockProvider {
 
-  val lockedFailure = PushServiceSocket.RegistrationLockFailure().apply {
-    svr1Credentials = AuthCredentials.create("username", "password")
+  val lockedFailure = RegistrationLockFailure(
+    svr1Credentials = AuthCredentials.create("username", "password"),
     svr2Credentials = AuthCredentials.create("username", "password")
-  }
+  )
 
-  val primaryOnlyDeviceList = DeviceInfoList().apply {
+  val primaryOnlyDeviceList = DeviceInfoList(
     devices = listOf(
-      DeviceInfo().apply {
-        id = 1
-      }
+      DeviceInfo(id = 1)
     )
-  }
+  )
 
   val sessionMetadataJson = RegistrationSessionMetadataJson(
     id = "asdfasdfasdfasdf",
@@ -50,11 +48,11 @@ object MockProvider {
   )
 
   fun createVerifyAccountResponse(aci: ServiceId, newPni: ServiceId): VerifyAccountResponse {
-    return VerifyAccountResponse().apply {
-      uuid = aci.toString()
-      pni = newPni.toString()
+    return VerifyAccountResponse(
+      uuid = aci.toString(),
+      pni = newPni.toString(),
       storageCapable = false
-    }
+    )
   }
 
   fun createWhoAmIResponse(aci: ServiceId, pni: ServiceId, e164: String): WhoAmIResponse {
@@ -69,16 +67,16 @@ object MockProvider {
     val signedPreKeyRecord = PreKeyUtil.generateSignedPreKey(SecureRandom().nextInt(Medium.MAX_VALUE), identity.privateKey)
     val oneTimePreKey = PreKeyRecord(SecureRandom().nextInt(Medium.MAX_VALUE), ECKeyPair.generate())
 
-    val device = PreKeyResponseItem().apply {
-      this.deviceId = deviceId
-      registrationId = KeyHelper.generateRegistrationId(false)
-      signedPreKey = SignedPreKeyEntity(signedPreKeyRecord.id.toLong(), signedPreKeyRecord.keyPair.publicKey, signedPreKeyRecord.signature)
+    val device = PreKeyResponseItem(
+      deviceId = deviceId,
+      registrationId = KeyHelper.generateRegistrationId(false),
+      signedPreKey = SignedPreKeyEntity(signedPreKeyRecord.id.toLong(), signedPreKeyRecord.keyPair.publicKey, signedPreKeyRecord.signature),
       preKey = PreKeyEntity(oneTimePreKey.id.toLong(), oneTimePreKey.keyPair.publicKey)
-    }
+    )
 
-    return PreKeyResponse().apply {
-      identityKey = identity.publicKey
+    return PreKeyResponse(
+      identityKey = identity.publicKey,
       devices = listOf(device)
-    }
+    )
   }
 }

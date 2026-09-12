@@ -33,7 +33,7 @@ class InternalDonorErrorConfigurationViewModel : ViewModel() {
       val configuration = SignalNetwork.donationsService.getDonationsConfiguration(Locale.getDefault()).toNetworkResult().successOrNull() ?: return@launch
       val giftBadges = configuration.getGiftBadges()
       val boostBadges = configuration.getBoostBadges()
-      val subscriptionBadges = configuration.getSubscriptionLevels().values.map { Badges.fromServiceBadge(it.badge) }
+      val subscriptionBadges = configuration.getSubscriptionLevels().values.map { Badges.fromServiceBadge(it.badge!!) }
 
       store.update { it.copy(badges = giftBadges + boostBadges + subscriptionBadges) }
     }

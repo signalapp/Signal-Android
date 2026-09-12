@@ -53,7 +53,7 @@ class BadgesOverviewViewModel(
       RecurringInAppPaymentRepository.getActiveSubscription(InAppPaymentSubscriberRecord.Type.DONATION),
       RecurringInAppPaymentRepository.getSubscriptions()
     ) { active, all ->
-      if (!active.isActive && active.activeSubscription?.willCancelAtPeriodEnd() == true) {
+      if (!active.isActive && active.activeSubscription?.willCancelAtPeriodEnd == true) {
         Optional.ofNullable<String>(all.firstOrNull { it.level == active.activeSubscription?.level }?.badge?.id)
       } else {
         Optional.empty()

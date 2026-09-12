@@ -300,7 +300,7 @@ class InAppPaymentKeepAliveJob private constructor(
             info(type, "Failed to load subscription configuration for level ${subscription.level} for type $type")
             null
           } else {
-            Badges.toDatabaseBadge(Badges.fromServiceBadge(subscriptionConfig.badge))
+            Badges.toDatabaseBadge(Badges.fromServiceBadge(subscriptionConfig.badge!!))
           }
         } else {
           warn(TAG, "Failed to load configuration while processing $type")

@@ -297,13 +297,13 @@ class BackupStateObserver(
         }
       }
 
-      val signalServiceSubscriptionIsActiveAndWillRenew = activeSubscription?.isActive == true && (!activeSubscription.isCanceled || activeSubscription.willCancelAtPeriodEnd())
+      val signalServiceSubscriptionIsActiveAndWillRenew = activeSubscription?.isActive == true && (!activeSubscription.isCanceled || activeSubscription.willCancelAtPeriodEnd)
 
       Log.d(TAG, "[getNetworkBackupState][subscriptionStateMismatchDetected] signalServiceSubscriptionIsActiveAndWillRenew: $signalServiceSubscriptionIsActiveAndWillRenew")
 
       when {
         signalServiceSubscriptionIsActiveAndWillRenew && !googlePlayBillingSubscriptionIsActiveAndWillRenew -> {
-          val type = buildPaidTypeFromSubscription(activeSubscription.activeSubscription)
+          val type = buildPaidTypeFromSubscription(activeSubscription.activeSubscription!!)
 
           if (type == null) {
             Log.d(TAG, "[getNetworkBackupState][subscriptionMismatchDetected] failed to load backup configuration. Likely a network error.")
@@ -313,8 +313,8 @@ class BackupStateObserver(
           Log.d(TAG, "[getNetworkBackupState][subscriptionMismatchDetected] found a subscription mismatch and successfully loaded configuration.")
           return BackupState.SubscriptionMismatchMissingGooglePlay(
             messageBackupsType = type,
-            renewalTime = activeSubscription.activeSubscription.endOfCurrentPeriod.seconds,
-            isBilledThroughOtherStore = InAppPaymentsRepository.isBackupBilledThroughOtherStore(activeSubscription.activeSubscription)
+            renewalTime = activeSubscription.activeSubscription!!.endOfCurrentPeriod.seconds,
+            isBilledThroughOtherStore = InAppPaymentsRepository.isBackupBilledThroughOtherStore(activeSubscription.activeSubscription!!)
           )
         }
 
@@ -397,7 +397,7 @@ class BackupStateObserver(
           getStateOnError()
         } else {
           when {
-            (subscription.isCanceled || subscription.willCancelAtPeriodEnd()) && subscription.isActive -> {
+            (subscription.isCanceled || subscription.willCancelAtPeriodEnd) && subscription.isActive -> {
               Log.d(TAG, "[getPaidBackupState] Found a canceled subscription.")
               InAppPaymentsRepository.updateBackupInAppPaymentWithCancelation(activeSubscription.successOrThrow())
 

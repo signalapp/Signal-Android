@@ -98,7 +98,7 @@ object InAppPaymentsRepository {
    * This operation will only be performed if we find a latest payment for the given subscriber id in the END state without cancelation data.
    */
   fun updateInAppPaymentWithCancelation(activeSubscription: ActiveSubscription, subscriberType: InAppPaymentSubscriberRecord.Type) {
-    if (activeSubscription.isCanceled || (subscriberType == InAppPaymentSubscriberRecord.Type.BACKUP && activeSubscription.willCancelAtPeriodEnd()) || activeSubscription.isFailedPayment) {
+    if (activeSubscription.isCanceled || (subscriberType == InAppPaymentSubscriberRecord.Type.BACKUP && activeSubscription.willCancelAtPeriodEnd) || activeSubscription.isFailedPayment) {
       writeCancelation(subscriberType, activeSubscription.chargeFailure)
     }
   }
@@ -145,7 +145,7 @@ object InAppPaymentsRepository {
    * This operation will only be performed if we find a latest payment for the given subscriber id in the END state with cancelation data
    */
   fun clearCancelation(activeSubscription: ActiveSubscription) {
-    if (!activeSubscription.isCanceled && !activeSubscription.willCancelAtPeriodEnd()) {
+    if (!activeSubscription.isCanceled && !activeSubscription.willCancelAtPeriodEnd) {
       val subscriber = getSubscriber(InAppPaymentSubscriberRecord.Type.BACKUP) ?: return
 
       val latestPayment = SignalDatabase.inAppPayments.getLatestBySubscriberId(subscriber.subscriberId) ?: return

@@ -384,7 +384,7 @@ class DonateToSignalViewModel(
 
   private fun resolveSelectedSubscription(activeSubscription: ActiveSubscription, subscriptions: List<Subscription>): Subscription? {
     return if (activeSubscription.isActive) {
-      subscriptions.firstOrNull { it.level == activeSubscription.activeSubscription.level }
+      subscriptions.firstOrNull { it.level == activeSubscription.activeSubscription!!.level }
     } else {
       subscriptions.firstOrNull()
     }

@@ -464,10 +464,10 @@ object RegistrationRepository {
     val result: NetworkResult<AccountRegistrationResult> = api.registerAccount(sessionId, registrationData.recoveryPassword, accountAttributes, aciPreKeyCollection, pniPreKeyCollection, registrationData.fcmToken, true)
       .map { accountRegistrationResponse: VerifyAccountResponse ->
         AccountRegistrationResult(
-          uuid = accountRegistrationResponse.uuid,
-          pni = accountRegistrationResponse.pni,
+          uuid = accountRegistrationResponse.uuid!!,
+          pni = accountRegistrationResponse.pni!!,
           storageCapable = accountRegistrationResponse.storageCapable,
-          number = accountRegistrationResponse.number,
+          number = accountRegistrationResponse.number!!,
           masterKey = masterKey,
           pin = pin,
           aciPreKeyCollection = aciPreKeyCollection,

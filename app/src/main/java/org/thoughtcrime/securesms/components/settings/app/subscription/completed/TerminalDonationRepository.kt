@@ -22,7 +22,7 @@ class TerminalDonationRepository(
       .fromCallable { donationsService.getDonationsConfiguration(Locale.getDefault()) }
       .flatMap { it.flattenResult() }
       .map { it.levels[terminalDonation.level.toInt()]!! }
-      .map { Badges.fromServiceBadge(it.badge) }
+      .map { Badges.fromServiceBadge(it.badge!!) }
       .subscribeOn(Schedulers.io())
   }
 }

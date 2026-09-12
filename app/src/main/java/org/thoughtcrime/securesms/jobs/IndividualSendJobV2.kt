@@ -289,15 +289,15 @@ class IndividualSendJobV2 private constructor(parameters: Parameters, private va
 
           is MessageService.SendError.ChallengeRequired -> {
             Log.w(TAG, "${logPrefix(message.sentTimeMillis)} Challenge required (options=${error.options})", error)
-            val proofResponse = ProofRequiredResponse().apply {
-              token = error.token
+            val proofResponse = ProofRequiredResponse(
+              token = error.token,
               options = error.options.map {
                 when (it) {
                   ChallengeOption.PUSH_CHALLENGE -> "pushChallenge"
                   ChallengeOption.CAPTCHA -> "captcha"
                 }
               }
-            }
+            )
             val proofException = ProofRequiredException(proofResponse, error.retryAfter?.inWholeSeconds ?: 0L)
             val threadRecipient = SignalDatabase.threads.getRecipientForThreadId(threadId)
             when (ProofRequiredExceptionHandler.handle(context, proofException, threadRecipient, threadId, messageId)) {
