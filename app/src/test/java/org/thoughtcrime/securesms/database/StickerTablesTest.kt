@@ -266,6 +266,28 @@ class StickerTablesTest {
     assertThat(installedPackIds()).isEqualTo(listOf(packId1, packId3, packId2))
   }
 
+  @Test
+  fun `given a sticker with no emoji, when I insert it, then I expect an empty emoji`() {
+    installPack(packId1, packKey1)
+
+    insertSticker(packId1, packKey1, stickerId = 1, emoji = null)
+
+    assertThat(SignalDatabase.stickers.getSticker(packId1, 1, false)!!.emoji).isEqualTo("")
+  }
+
+  @Test
+  fun `given a sticker with no emoji, when I search by emoji, then I expect only the sticker that has one`() {
+    installPack(packId1, packKey1)
+    insertSticker(packId1, packKey1, stickerId = 1, emoji = null)
+    insertSticker(packId1, packKey1, stickerId = 2, emoji = "\uD83D\uDC4D")
+
+    val results = StickerTables.StickerRecordReader(SignalDatabase.stickers.getStickersByEmoji("\uD83D\uDC4D")).use { reader ->
+      generateSequence { reader.getNext() }.map { it.stickerId }.toList()
+    }
+
+    assertThat(results).isEqualTo(listOf(2))
+  }
+
   private fun installedPackIds(): List<String> {
     return StickerTables.StickerPackRecordReader(SignalDatabase.stickers.getInstalledStickerPacks()).use { reader ->
       reader.asSequence().map { it.packId }.toList()
@@ -273,16 +295,20 @@ class StickerTablesTest {
   }
 
   private fun installPack(packId: String, packKey: String) {
+    insertSticker(packId, packKey, stickerId = 0, emoji = "", isCover = true)
+  }
+
+  private fun insertSticker(packId: String, packKey: String, stickerId: Int, emoji: String?, isCover: Boolean = false) {
     SignalDatabase.stickers.insertSticker(
       sticker = IncomingSticker(
         packId = packId,
         packKey = packKey,
         packTitle = "Title",
         packAuthor = "Author",
-        stickerId = 0,
-        emoji = "",
+        stickerId = stickerId,
+        emoji = emoji,
         contentType = "image/webp",
-        isCover = true,
+        isCover = isCover,
         isInstalled = true
       ),
       dataStream = ByteArrayInputStream(byteArrayOf(1, 2, 3, 4)),

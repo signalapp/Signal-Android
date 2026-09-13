@@ -6,7 +6,7 @@ data class IncomingSticker(
   val packTitle: String,
   val packAuthor: String,
   val stickerId: Int,
-  val emoji: String,
+  val emoji: String?,
   val contentType: String?,
   val isCover: Boolean,
   val isInstalled: Boolean

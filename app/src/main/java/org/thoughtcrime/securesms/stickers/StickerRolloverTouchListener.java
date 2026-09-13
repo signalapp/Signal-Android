@@ -100,7 +100,7 @@ public class StickerRolloverTouchListener implements RecyclerView.OnItemTouchLis
     }
   }
 
-  private void showSticker(@NonNull RecyclerView recyclerView, @NonNull Object toLoad, @NonNull String emoji) {
+  private void showSticker(@NonNull RecyclerView recyclerView, @NonNull Object toLoad, @Nullable String emoji) {
     if (!popup.isShowing()) {
       popup.showAtLocation(recyclerView, Gravity.NO_GRAVITY, 0, 0);
       eventListener.onStickerPopupStarted();

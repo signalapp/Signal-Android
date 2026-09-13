@@ -2,6 +2,8 @@ package org.whispersystems.signalservice.api.messages;
 
 
 
+import javax.annotation.Nullable;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -42,7 +44,7 @@ public class SignalServiceStickerManifest {
     private final String emoji;
     private final String contentType;
 
-    public StickerInfo(int id, String emoji, String contentType) {
+    public StickerInfo(int id, @Nullable String emoji, String contentType) {
       this.id          = id;
       this.emoji       = emoji;
       this.contentType = contentType;
@@ -52,7 +54,7 @@ public class SignalServiceStickerManifest {
       return id;
     }
 
-    public String getEmoji() {
+    public @Nullable String getEmoji() {
       return emoji;
     }
 

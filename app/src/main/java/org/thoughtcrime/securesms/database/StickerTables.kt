@@ -171,7 +171,7 @@ class StickerTables(
       val values = contentValuesOf(
         Sticker.PACK_ID to sticker.packId,
         Sticker.STICKER_ID to sticker.stickerId,
-        Sticker.EMOJI to sticker.emoji,
+        Sticker.EMOJI to (sticker.emoji ?: ""),
         Sticker.CONTENT_TYPE to sticker.contentType,
         Sticker.COVER to if (sticker.isCover) 1 else 0,
         Sticker.FILE_PATH to fileInfo.file.absolutePath,
