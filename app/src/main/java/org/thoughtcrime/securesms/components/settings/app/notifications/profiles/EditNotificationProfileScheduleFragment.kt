@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.materialswitch.MaterialSwitch
@@ -23,6 +24,7 @@ import org.signal.core.ui.logging.LoggingFragment
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.EditNotificationProfileScheduleViewModel.SaveScheduleResult
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.formatHours
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
@@ -76,6 +78,7 @@ class EditNotificationProfileScheduleFragment : LoggingFragment(R.layout.fragmen
     val endTime: TextView = view.findViewById(R.id.edit_notification_profile_schedule_end_time)
 
     val next: CircularProgressMaterialButton = view.findViewById(R.id.edit_notification_profile_schedule__next)
+    SystemWindowInsetsSetter.attach(next, viewLifecycleOwner, WindowInsetsCompat.Type.navigationBars(), SystemWindowInsetsSetter.ApplyMode.MARGIN)
     next.setOnClickListener {
       lifecycleDisposable += viewModel.save(createMode)
         .subscribeBy(
