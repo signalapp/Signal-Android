@@ -48,6 +48,8 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration
 import org.thoughtcrime.securesms.util.fragments.findListener
+import org.thoughtcrime.securesms.util.hasPoll
+import org.thoughtcrime.securesms.util.hasSharedContact
 import org.thoughtcrime.securesms.util.hasTextSlide
 import org.thoughtcrime.securesms.util.requireTextSlide
 import java.io.IOException
@@ -165,14 +167,26 @@ class ScheduledMessagesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment
 
   private fun getMenuActionItems(message: ConversationMessage): List<ActionItem> {
     val canCopy = message.multiselectCollection.toSet().any { it !is Attachments && message.messageRecord.body.isNotEmpty() }
+    val canEdit = message.messageRecord.body.isNotEmpty() &&
+      !(message.messageRecord as MmsMessageRecord).containsMediaSlide() &&
+      !message.messageRecord.hasSharedContact() &&
+      !message.messageRecord.hasPoll()
     val items: MutableList<ActionItem> = ArrayList()
     items.add(ActionItem(CoreUiR.drawable.symbol_trash_24, resources.getString(R.string.conversation_selection__menu_delete), action = { handleDeleteMessage(message.messageRecord) }))
     if (canCopy) {
       items.add(ActionItem(CoreUiR.drawable.symbol_copy_android_24, resources.getString(R.string.conversation_selection__menu_copy), action = { handleCopyMessage(message) }))
     }
+    if (canEdit) {
+      items.add(ActionItem(CoreUiR.drawable.symbol_edit_24, resources.getString(R.string.conversation_selection__menu_edit), action = { handleEditMessage(message) }))
+    }
     items.add(ActionItem(R.drawable.symbol_send_24, resources.getString(R.string.ScheduledMessagesBottomSheet_menu_send_now), action = { handleSendMessageNow(message.messageRecord) }))
     items.add(ActionItem(R.drawable.symbol_calendar_24, resources.getString(R.string.ScheduledMessagesBottomSheet_menu_reschedule), action = { handleRescheduleMessage(message.messageRecord) }))
     return items
+  }
+
+  private fun handleEditMessage(message: ConversationMessage) {
+    dismissAllowingStateLoss()
+    callback.edit(message)
   }
 
   private fun handleRescheduleMessage(messageRecord: MessageRecord) {
