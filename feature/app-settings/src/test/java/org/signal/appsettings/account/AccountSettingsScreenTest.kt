@@ -333,7 +333,6 @@ class AccountSettingsScreenTest {
     setContent(createState(signalLogin = signalLogin()))
 
     composeTestRule.onNodeWithTag(SignalLoginTestTags.BETA_TAG).assertIsDisplayed()
-    composeTestRule.onNodeWithTag(SignalLoginTestTags.BETA_DISCLAIMER).assertIsDisplayed()
   }
 
   @Test

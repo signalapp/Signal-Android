@@ -51,6 +51,13 @@ class SignalLoginViewDetailsScreenTest {
   }
 
   @Test
+  fun `when the screen is displayed, the beta disclaimer is shown`() {
+    setContent()
+
+    composeTestRule.onNodeWithTag(SignalLoginTestTags.BETA_DISCLAIMER).assertIsDisplayed()
+  }
+
+  @Test
   fun `when the account key copy button is clicked, CopyAccountIdClicked is emitted`() {
     setContent()
 

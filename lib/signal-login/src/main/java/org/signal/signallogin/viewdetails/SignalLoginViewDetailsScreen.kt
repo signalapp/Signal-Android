@@ -28,6 +28,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -38,8 +39,10 @@ import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.signallogin.R
 import org.signal.signallogin.SignalLoginTestTags
+import org.signal.signallogin.beta.SignalLoginBetaDisclaimer
 import org.signal.signallogin.beta.SignalLoginBetaTag
 import org.signal.signallogin.details.SignalLoginKeyDetails
+import org.signal.core.ui.R as CoreUiR
 
 /** Size of the miniature credential card artwork shown at the top of the screen, from the design. */
 private val MINI_CARD_WIDTH = 175.dp
@@ -78,10 +81,14 @@ fun SignalLoginViewDetailsScreen(
           .fillMaxWidth()
           .verticalScroll(rememberScrollState())
       ) {
+        SignalLoginBetaDisclaimer(
+          modifier = Modifier.padding(horizontal = dimensionResource(CoreUiR.dimen.gutter), vertical = 12.dp)
+        )
+
         MiniCard(
           modifier = Modifier
             .align(Alignment.CenterHorizontally)
-            .padding(top = 20.dp)
+            .padding(top = 8.dp)
         )
 
         Spacer(modifier = Modifier.height(16.dp))
