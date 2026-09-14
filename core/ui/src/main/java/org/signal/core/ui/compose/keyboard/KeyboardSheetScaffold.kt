@@ -278,6 +278,14 @@ fun KeyboardSheetScaffold(
   // This just makes sure the previously visible state doesn't go away too early while we're mid swap.
   var visibleKey by remember { mutableStateOf<KeyboardSheetKey?>(null) }
 
+  // True from the moment a back gesture commits until the keyboard is actually put away, which the
+  // settle animation makes a window wide enough to gesture in again.
+  var dismissingByBack by remember { mutableStateOf(false) }
+
+  LaunchedEffect(activeKey) {
+    dismissingByBack = false
+  }
+
   // Set while one of ours is coming up in place of the system keyboard. The sheet's rise is not that
   // keyboard's fall, so the space is held flat for the crossing rather than tracking either curve.
   var handingOverFromSystemKeyboard by remember { mutableStateOf(false) }
@@ -399,17 +407,24 @@ fun KeyboardSheetScaffold(
       }
   }
 
-  PredictiveBackHandler(enabled = activeKey != null) { progress ->
+  // Disabled the moment a gesture commits, so a second one during the settle goes to whoever is
+  // behind us rather than starting this dismissal over.
+  PredictiveBackHandler(enabled = activeKey != null && !dismissingByBack) { progress ->
     try {
       progress.collect { backEvent -> backProgress.snapTo(BACK_TRACKING_EASING.transform(backEvent.progress)) }
-
-      backProgress.animateTo(1f, BACK_SETTLE_MOTION)
-      controller.hide()
-      onAction(KeyboardSheetAction.DismissedByBack)
     } catch (cancelled: CancellationException) {
       // PredictiveBackHandler cancels this job, so the unwind must run somewhere that outlives it.
       scope.launch { backProgress.animateTo(0f, BACK_SETTLE_MOTION) }
       throw cancelled
+    }
+
+    dismissingByBack = true
+
+    // Outside the gesture's job, which the next gesture cancels before this one has put the keyboard away.
+    scope.launch {
+      backProgress.animateTo(1f, BACK_SETTLE_MOTION)
+      controller.hide()
+      currentOnAction(KeyboardSheetAction.DismissedByBack)
     }
   }
 
