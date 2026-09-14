@@ -52,6 +52,10 @@ data class PhoneNumberEntryState(
       null
     }
 
+  /** Whether the user already told us they have an account to restore, which lets us skip past the Signal Login purchase screen. */
+  val hasExistingAccount: Boolean
+    get() = pendingRestoreOption != null
+
   /** Whether what has been entered is complete enough to submit, be it a phone number or an account ID. */
   val isNextEnabled: Boolean
     get() {

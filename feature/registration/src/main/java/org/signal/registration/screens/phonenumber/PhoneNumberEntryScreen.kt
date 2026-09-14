@@ -82,6 +82,7 @@ import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.util.Util
 import org.signal.core.util.logging.Log
+import org.signal.registration.PendingRestoreOption
 import org.signal.registration.R
 import org.signal.registration.RegistrationDependencies
 import org.signal.registration.screens.OnePaneRegistrationScaffold
@@ -413,7 +414,15 @@ private fun NextButton(
         enabled = !state.showSpinner,
         modifier = Modifier.testTag(TestTags.PHONE_NUMBER_REGISTER_WITHOUT_NUMBER_BUTTON)
       ) {
-        Text(stringResource(R.string.RegistrationActivity_register_without_number))
+        Text(
+          stringResource(
+            if (state.hasExistingAccount) {
+              R.string.RegistrationActivity_use_account_id
+            } else {
+              R.string.RegistrationActivity_register_without_number
+            }
+          )
+        )
       }
 
       Spacer(modifier = Modifier.weight(1f))
@@ -641,6 +650,20 @@ private fun PhoneNumberScreenRegisterWithoutNumberPreview() {
   Previews.Preview {
     PhoneNumberScreen(
       state = PhoneNumberEntryState(isPhoneNumberlessRegistrationAvailable = true),
+      onEvent = {}
+    )
+  }
+}
+
+@AllDevicePreviews
+@Composable
+private fun PhoneNumberScreenUseAccountIdPreview() {
+  Previews.Preview {
+    PhoneNumberScreen(
+      state = PhoneNumberEntryState(
+        isPhoneNumberlessRegistrationAvailable = true,
+        pendingRestoreOption = PendingRestoreOption.RemoteBackup
+      ),
       onEvent = {}
     )
   }

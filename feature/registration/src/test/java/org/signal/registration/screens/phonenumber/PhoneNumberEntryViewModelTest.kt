@@ -46,6 +46,7 @@ import org.signal.network.api.RegistrationApiV2.SvrCredentials
 import org.signal.network.api.RegistrationApiV2.ThirdPartyServiceErrorResponse
 import org.signal.network.api.RegistrationApiV2.UpdateSessionError
 import org.signal.registration.KeyMaterial
+import org.signal.registration.PendingRestoreOption
 import org.signal.registration.PreExistingRegistrationData
 import org.signal.registration.RegisteredAccountData
 import org.signal.registration.RegistrationFlowEvent
@@ -447,6 +448,38 @@ class PhoneNumberEntryViewModelTest {
       .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
       .prop(RegistrationFlowEvent.NavigateToScreen::route)
       .isInstanceOf<RegistrationRoute.LinkAccount>()
+  }
+
+  @Test
+  fun `RegisterWithoutNumber navigates to the Signal Login payment screen`() = runTest {
+    viewModel.applyEvent(
+      PhoneNumberEntryState(),
+      PhoneNumberEntryScreenEvents.RegisterWithoutNumber,
+      parentEventEmitter,
+      stateEmitter
+    )
+
+    assertThat(emittedEvents).hasSize(1)
+    assertThat(emittedEvents.first())
+      .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
+      .prop(RegistrationFlowEvent.NavigateToScreen::route)
+      .isInstanceOf<RegistrationRoute.SignalLoginPayment>()
+  }
+
+  @Test
+  fun `RegisterWithoutNumber skips payment and goes straight to credential entry when a restore is pending`() = runTest {
+    viewModel.applyEvent(
+      PhoneNumberEntryState(pendingRestoreOption = PendingRestoreOption.RemoteBackup),
+      PhoneNumberEntryScreenEvents.RegisterWithoutNumber,
+      parentEventEmitter,
+      stateEmitter
+    )
+
+    assertThat(emittedEvents).hasSize(1)
+    assertThat(emittedEvents.first())
+      .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
+      .prop(RegistrationFlowEvent.NavigateToScreen::route)
+      .isEqualTo(RegistrationRoute.SignalLoginCredentialEntry())
   }
 
   @Test

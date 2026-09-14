@@ -25,6 +25,7 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.signal.core.ui.CoreUiDependenciesRule
 import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.registration.PendingRestoreOption
 import org.signal.registration.R
 import org.signal.registration.screens.shared.AccountIdError
 import org.signal.registration.test.TestTags
@@ -324,6 +325,42 @@ class PhoneNumberScreenTest {
     assert(emittedEvent == null) {
       "Expected no event when tapping the country code in account ID mode but got $emittedEvent"
     }
+  }
+
+  @Test
+  fun `the numberless button offers to register without a number when there is no pending restore`() {
+    // Given
+    composeTestRule.setContent {
+      SignalTheme {
+        PhoneNumberScreen(
+          state = PhoneNumberEntryState(isPhoneNumberlessRegistrationAvailable = true),
+          onEvent = {}
+        )
+      }
+    }
+
+    // Then
+    composeTestRule.onNodeWithText(context.getString(R.string.RegistrationActivity_register_without_number)).assertExists()
+  }
+
+  @Test
+  fun `the numberless button offers to use an account ID when a restore is pending`() {
+    // Given
+    composeTestRule.setContent {
+      SignalTheme {
+        PhoneNumberScreen(
+          state = PhoneNumberEntryState(
+            isPhoneNumberlessRegistrationAvailable = true,
+            pendingRestoreOption = PendingRestoreOption.RemoteBackup
+          ),
+          onEvent = {}
+        )
+      }
+    }
+
+    // Then
+    composeTestRule.onNodeWithText(context.getString(R.string.RegistrationActivity_use_account_id)).assertExists()
+    composeTestRule.onNodeWithText(context.getString(R.string.RegistrationActivity_register_without_number)).assertDoesNotExist()
   }
 
   private fun accountIdState(accountId: String = "a6b284822e3283d07f2391360a4c2b91") = PhoneNumberEntryState(
