@@ -4189,14 +4189,22 @@ class ConversationFragment :
         return
       }
 
+      if (reactionDelegate.isShowing()) {
+        // The overlay ignores a show while it is up, and nothing below would be undone by a hide that never comes.
+        Log.w(TAG, "Long press while the reaction overlay is still showing. Ignoring.")
+        return
+      }
+
       val messageRecord = item.getMessageRecord()
 
       // Held, not re-read: teardown has to work from a screen that is already going.
       val recycler = binding.conversationItemRecycler
+      val overlay = conversationOverlay
       val shade = overlayBinding.reactionsShade
 
       multiselectItemDecoration.setFocusedItem(MultiselectPart.Message(item.conversationMessage))
       recycler.invalidateItemDecorations()
+      overlay.visibility = View.VISIBLE
       shade.visibility = View.VISIBLE
       recycler.suppressLayout(true)
 
@@ -4281,8 +4289,10 @@ class ConversationFragment :
           override fun onHide() {
             viewModel.setIsReactionDelegateShowing(false)
 
-            // Likewise: otherwise the list stays frozen and the message invisible.
+            // Likewise: otherwise the list stays frozen, the message invisible, and the idle
+            // overlay in front of the chat for touch purposes.
             recycler.suppressLayout(false)
+            overlay.visibility = View.INVISIBLE
             multiselectItemDecoration.setFocusedItem(null)
             recycler.invalidateItemDecorations()
             bodyBubble.visibility = View.VISIBLE

@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?><!--
   The long press overlay and its shade, drawn above the scaffold so a closing keyboard never resizes them.
+
+  Invisible rather than gone while idle: invisible keeps this laid out, which the overlay needs in order
+  to measure itself and to project a row's position into its coordinate space, but takes it out of touch
+  dispatch so an idle overlay cannot swallow a gesture meant for the chat beneath it.
 -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:visibility="invisible">
 
     <FrameLayout
         android:id="@+id/reactions_shade"
