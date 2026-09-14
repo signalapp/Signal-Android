@@ -2763,20 +2763,22 @@
         <item quantity="one">%1$s selected</item>
         <item quantity="other">%1$s selected</item>
     </plurals>
-    <!-- Label for the sticker management screen tab which shows the stickers that are available to install. -->
-    <string name="StickerManagement_available_tab_label">Available</string>
+    <!-- Label for the sticker management screen tab which shows all of the sticker packs. -->
+    <string name="StickerManagement_all_tab_label">All</string>
     <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
-    <string name="StickerManagement_installed_tab_label">Installed</string>
-    <!-- Shown when there are no sticker packs available for installation. -->
-    <string name="StickerManagement_available_tab_empty_text">No sticker packs are available</string>
+    <string name="StickerManagement_my_stickers_tab_label">My Stickers</string>
+    <!-- Shown when there are no sticker packs to show. -->
+    <string name="StickerManagement_all_tab_empty_text">No sticker packs are available</string>
     <!-- Shown when there are no sticker packs currently installed. -->
-    <string name="StickerManagement_installed_tab_empty_text">No sticker packs are installed</string>
+    <string name="StickerManagement_installed_tab_empty_text">No sticker packs, add stickers to send to your friends.</string>
     <!-- Message shown when the author of the sticker pack is unknown. -->
     <string name="StickerManagement_author_unknown">Unknown</string>
     <!-- Sticker pack list section header for packs that are already installed. -->
     <string name="StickerManagement_installed_stickers_header">Installed stickers</string>
     <!-- Sticker pack list section header for packs that have been received from incoming messages. -->
-    <string name="StickerManagement_stickers_you_received_header">Stickers you received</string>
+    <string name="StickerManagement_shared_with_you_header">Shared with you</string>
+    <!-- Sticker pack description for packs that have been sent to you -->
+    <string name="StickerManagement_when_you_receive">When you receive a sticker from someone, the sticker pack will appear here.</string>
     <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
     <string name="StickerManagement_signal_artist_series_header">Signal artist series</string>
     <!-- Title shown when sharing a sticker pack with another user. -->
@@ -2789,8 +2791,13 @@
     <string name="StickerManagement_action_delete_selected">Delete</string>
     <!-- Confirmation message shown before uninstalling sticker packs. The placeholder is the number of items to delete. -->
     <plurals name="StickerManagement_delete_n_packs_confirmation">
-        <item quantity="one">Remove %1$s sticker pack</item>
-        <item quantity="other">Remove %1$s sticker packs</item>
+        <item quantity="one">Remove %1$s sticker pack?</item>
+        <item quantity="other">Remove %1$s sticker packs?</item>
+    </plurals>
+    <!-- Body of the confirmation dialog shown before uninstalling sticker packs. -->
+    <plurals name="StickerManagement_delete_n_packs_confirmation_body">
+        <item quantity="one">This will remove the sticker pack. You can\'t add it again without a link or sticker message.</item>
+        <item quantity="other">This will remove these sticker packs. You can\'t add it again without a link or sticker message.</item>
     </plurals>
     <!-- Message shown after installing a sticker pack. The placeholder is the name of the sticker pack that was installed. -->
     <string name="StickerManagement_installed_pack_s">Installed %1$s.</string>
@@ -2806,6 +2813,8 @@
         <item quantity="one">%1$s sticker</item>
         <item quantity="other">%1$s stickers</item>
     </plurals>
+    <!-- Message shown after copying a sticker pack link. -->
+    <string name="StickerManagement_copied">Link copied</string>
 
     <!-- Sticker pack list dropdown menu label for the button to forward a sticker pack to another user. -->
     <string name="StickerManagement_menu_forward_pack">Forward</string>
@@ -2817,6 +2826,14 @@
     <string name="StickerManagement_menu_remove_pack">Remove</string>
     <!-- Sticker management screen dropdown menu label for the button to enter multi-select mode. -->
     <string name="StickerManagement_menu_select_packs">Select sticker packs</string>
+    <!-- Sticker pack list dropdown menu label for sending a sticker pack. -->
+    <string name="StickerManagement_menu_send_pack">Send</string>
+    <!-- Sticker pack list dropdown menu label for copying a sticker link. -->
+    <string name="StickerManagement_menu_copy_pack">Copy link</string>
+    <!-- Hint text shown in the sticker management search field. -->
+    <string name="StickerManagement_search">Search</string>
+    <!-- Shown when no stickers match the search. The placeholder what was searched. -->
+    <string name="StickerManagement_search_no_results_s">No results found for \'%1$s\'</string>
 
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
     <string name="StickerManagement_accessibility_download_pack">Download %s sticker pack</string>
@@ -2832,6 +2849,14 @@
     <string name="StickerManagement_accessibility_open_context_menu">Open context menu</string>
     <!-- Accessibility label for opening the context menu for a sticker pack row item. -->
     <string name="StickerManagement_accessibility_exit_multi_select_mode">Exit selection mode and clear selections</string>
+    <!-- Label for the button that expands the list to show every sticker pack in a section. -->
+    <string name="StickerManagement__see_all">See all</string>
+    <!-- Button that takes you to the list of sticker packs you can install. -->
+    <string name="StickerManagement__add_stickers">Add stickers</string>
+    <!-- Accessibility label to close the search field. -->
+    <string name="StickerManagement_accessibility_close_search">Close search</string>
+    <!-- Accessibility label to clear the search field. -->
+    <string name="StickerManagement_accessibility_clear_search">Clear search</string>
 
     <!-- StickerManagementAdapter -->
     <string name="StickerManagementAdapter_untitled">Untitled</string>

@@ -56,11 +56,17 @@ class StickerManagementBottomSheet : ComposeBottomSheetDialogFragment() {
 
   private val viewModel by viewModel { StickerManagementViewModel() }
 
-  private val multiSelectBackPressCallback = object : OnBackPressedCallback(enabled = false) {
+  private val backPressCallback = object : OnBackPressedCallback(enabled = false) {
     override fun handleOnBackPressed() {
-      viewModel.setMultiSelectEnabled(false)
+      if (viewModel.uiState.value.multiSelectEnabled) {
+        viewModel.setMultiSelectEnabled(false)
+      } else {
+        viewModel.setSearchModeEnabled(false)
+      }
     }
   }
+
+  override val applyImePadding = false
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -77,7 +83,7 @@ class StickerManagementBottomSheet : ComposeBottomSheetDialogFragment() {
     return dialog.apply {
       behavior.skipCollapsed = true
       behavior.state = BottomSheetBehavior.STATE_EXPANDED
-      onBackPressedDispatcher.addCallback(multiSelectBackPressCallback)
+      onBackPressedDispatcher.addCallback(backPressCallback)
     }
   }
 
@@ -85,8 +91,8 @@ class StickerManagementBottomSheet : ComposeBottomSheetDialogFragment() {
   override fun SheetContent() {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-    LaunchedEffect(uiState.multiSelectEnabled) {
-      multiSelectBackPressCallback.isEnabled = uiState.multiSelectEnabled
+    LaunchedEffect(uiState.multiSelectEnabled, uiState.searchMode) {
+      backPressCallback.isEnabled = uiState.multiSelectEnabled || uiState.searchMode
     }
 
     Column {
@@ -102,23 +108,22 @@ class StickerManagementBottomSheet : ComposeBottomSheetDialogFragment() {
       StickerManagementScreen(
         uiState = uiState,
         showNavigateBack = false,
+        applyWindowInsets = false,
         onNavigateBack = ::dismiss,
         onSetMultiSelectModeEnabled = viewModel::setMultiSelectEnabled,
+        onSetSearchModeEnabled = viewModel::setSearchModeEnabled,
+        onSearchQueryChange = viewModel::onSearchQueryChanged,
         onSnackbarDismiss = viewModel::onSnackbarDismiss,
-        availableTabCallbacks = remember {
-          object : AvailableStickersContentCallbacks {
-            override fun onForwardClick(pack: AvailableStickerPack) = openShareSheet(pack.id, pack.key)
-            override fun onInstallClick(pack: AvailableStickerPack) = viewModel.installStickerPack(pack)
-            override fun onShowPreviewClick(pack: AvailableStickerPack) = navigateToStickerPreview(pack.id, pack.key)
-          }
-        },
-        installedTabCallbacks = remember {
-          object : InstalledStickersContentCallbacks {
-            override fun onForwardClick(pack: InstalledStickerPack) = openShareSheet(pack.id, pack.key)
+        callbacks = remember {
+          object : StickerManagementContentCallbacks {
+            override fun onForwardClick(pack: StickerPack) = openShareSheet(pack.id, pack.key)
+            override fun onInstallClick(pack: StickerPack) = viewModel.installStickerPack(pack)
+            override fun onShowPreviewClick(pack: StickerPack) = navigateToStickerPreview(pack.id, pack.key)
+            override fun onCopyClick(pack: StickerPack) = viewModel.onCopyPack(pack.id, pack.key)
             override fun onRemoveClick(packIds: Set<StickerPackId>) = viewModel.onUninstallStickerPacksRequested(packIds)
             override fun onRemoveStickerPacksConfirmed(packIds: Set<StickerPackId>) = viewModel.onUninstallStickerPacksConfirmed(packIds)
             override fun onRemoveStickerPacksCanceled() = viewModel.onUninstallStickerPacksCanceled()
-            override fun onSelectionToggle(pack: InstalledStickerPack) = viewModel.toggleSelection(pack)
+            override fun onSelectionToggle(pack: StickerPack) = viewModel.toggleSelection(pack)
             override fun onSelectAllToggle() = viewModel.toggleSelectAll()
             override fun onReorderableEvent(event: ReorderListEvent) {
               when (event) {
@@ -127,8 +132,6 @@ class StickerManagementBottomSheet : ComposeBottomSheetDialogFragment() {
                 is ReorderListEvent.DragCanceled -> {}
               }
             }
-
-            override fun onShowPreviewClick(pack: InstalledStickerPack) = navigateToStickerPreview(pack.id, pack.key)
           }
         }
       )
