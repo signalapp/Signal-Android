@@ -2277,11 +2277,30 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
     return readableDatabase.select(ID)
       .from(TABLE_NAME)
-      .where("($TABLE_NAME.$ID = ? OR $TABLE_NAME.$ORIGINAL_MESSAGE_ID = ?) AND $TABLE_NAME.$ID < ?", originalMessageId, originalMessageId, messageId)
+      .where("$ORIGINAL_MESSAGE_ID = ? AND $ID < ?", originalMessageId, messageId)
       .orderBy("$ID DESC")
       .limit(1)
       .run()
+      .readToSingleLong(originalMessageId)
+  }
+
+  /** Building an edit off anything but the newest revision leaves the chain with more than one visible message. */
+  private fun getLatestRevisionId(messageId: Long): Long {
+    val chainOriginalId = readableDatabase
+      .select(ORIGINAL_MESSAGE_ID)
+      .from(TABLE_NAME)
+      .where(ID_WHERE, messageId)
+      .run()
       .readToSingleLong(0)
+
+    return readableDatabase
+      .select(ID)
+      .from(TABLE_NAME)
+      .where("$ORIGINAL_MESSAGE_ID = ?", if (chainOriginalId > 0) chainOriginalId else messageId)
+      .orderBy("$ID DESC")
+      .limit(1)
+      .run()
+      .readToSingleLong(messageId)
   }
 
   fun getMessages(messageIds: Collection<Long?>): MmsReader {
@@ -3576,7 +3595,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     var editedMessage: MessageRecord? = null
     if (message.isMessageEdit) {
       try {
-        editedMessage = getMessageRecord(message.messageToEdit)
+        editedMessage = getMessageRecord(getLatestRevisionId(message.messageToEdit))
         if (!MessageConstraintsUtil.isValidEditMessageSend(editedMessage)) {
           throw MmsException("Message is not valid to edit")
         }
@@ -3727,12 +3746,11 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         .values(QUOTE_ID to message.sentTimeMillis)
         .where("$QUOTE_ID = ?", editedMessage.dateSent)
         .run()
-    }
 
-    if (message.messageToEdit > 0) {
+      val chainOriginalId = editedMessage.getOriginalOrOwnMessageId().id
       writableDatabase.update(TABLE_NAME)
         .values(LATEST_REVISION_ID to messageId)
-        .where("$ID_WHERE OR $LATEST_REVISION_ID = ?", message.messageToEdit, message.messageToEdit)
+        .where("$ID != ? AND ($ID = ? OR $ORIGINAL_MESSAGE_ID = ?)", messageId, chainOriginalId, chainOriginalId)
         .run()
 
       val textAttachments = (editedMessage as? MmsMessageRecord)?.slideDeck?.asAttachments()?.filter { it.contentType == MediaUtil.LONG_TEXT }?.mapNotNull { (it as? DatabaseAttachment)?.attachmentId?.id } ?: emptyList()
@@ -3740,10 +3758,10 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       val excludeIds = HashSet<Long>()
       excludeIds += textAttachments
       excludeIds += linkPreviewAttachments
-      attachments.duplicateAttachmentsForMessage(messageId, message.messageToEdit, excludeIds)
+      attachments.duplicateAttachmentsForMessage(messageId, editedMessage.id, excludeIds)
 
-      reactions.moveReactionsToNewMessage(messageId, message.messageToEdit)
-      movePinnedDetailsToNewMessage(newMessageId = messageId, previousId = message.messageToEdit)
+      reactions.moveReactionsToNewMessage(messageId, editedMessage.id)
+      movePinnedDetailsToNewMessage(newMessageId = messageId, previousId = editedMessage.id)
     }
 
     val hasCollapsed = maybeCollapseMessage(db = writableDatabase, messageId = messageId, threadId = threadId, dateReceived = dateReceived, messageExtras = message.messageExtras, messageType = type)
