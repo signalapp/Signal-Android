@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.fragment.findNavController
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.ui.logging.LoggingFragment
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 /**
@@ -28,7 +30,9 @@ class NotificationProfileCreatedFragment : LoggingFragment(R.layout.fragment_not
     val bottomIcon: ImageView = view.findViewById(R.id.notification_profile_created_bottom_image)
     val bottomText: TextView = view.findViewById(R.id.notification_profile_created_bottom_text)
 
-    view.findViewById<View>(R.id.notification_profile_created_done).setOnClickListener {
+    val doneButton = view.findViewById<View>(R.id.notification_profile_created_done)
+    SystemWindowInsetsSetter.attach(doneButton, viewLifecycleOwner, WindowInsetsCompat.Type.navigationBars(), SystemWindowInsetsSetter.ApplyMode.MARGIN)
+    doneButton.setOnClickListener {
       findNavController().safeNavigate(NotificationProfileCreatedFragmentDirections.actionNotificationProfileCreatedFragmentToNotificationProfileDetailsFragment(profileId))
     }
 
