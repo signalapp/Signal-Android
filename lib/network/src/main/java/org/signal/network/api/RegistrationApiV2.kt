@@ -10,7 +10,6 @@ import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerializationException
-import kotlinx.serialization.json.Json
 import okhttp3.Credentials
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody
@@ -61,10 +60,6 @@ class RegistrationApiV2(
 
     /** Basic auth username for a fresh registration of an account that has no phone number. Must not parse as an e164 or a UUID. */
     private const val NO_NUMBER_AUTH_USERNAME = "no_number"
-
-    /** Drops null properties instead of emitting explicit nulls, for bodies where a field is meant to be absent entirely. */
-    @OptIn(ExperimentalSerializationApi::class)
-    private val JSON_OMITTING_NULLS = Json(SignalJson.json) { explicitNulls = false }
   }
 
   /**
@@ -626,7 +621,7 @@ class RegistrationApiV2(
   }
 
   private inline fun <reified T> T.toJsonRequestBodyOmittingNulls(): RequestBody {
-    return JSON_OMITTING_NULLS.encodeToString(this).toRequestBody(APPLICATION_JSON)
+    return SignalJson.jsonOmitNulls.encodeToString(this).toRequestBody(APPLICATION_JSON)
   }
 
   private fun SignedPreKeyRecord.toSignedPreKeyEntity(): SignedPreKeyEntity {

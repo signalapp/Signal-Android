@@ -5,6 +5,7 @@
 
 package org.whispersystems.signalservice.api
 
+import kotlinx.serialization.DeserializationStrategy
 import org.signal.network.NetworkResult
 import org.signal.network.websocket.WebSocketRequestMessage
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
@@ -42,6 +43,25 @@ fun <T : Any> NetworkResult.Companion.fromWebSocketRequest(
     request = request,
     timeout = timeout,
     webSocketResponseConverter = NetworkResult.DefaultWebSocketConverter(clazz)
+  )
+}
+
+/**
+ * A convenience method to convert a websocket request into a network result, parsing the response body with the
+ * provided kotlinx.serialization [deserializer].
+ * Common HTTP errors will be translated to [NetworkResult.StatusCodeError]s.
+ */
+fun <T : Any> NetworkResult.Companion.fromWebSocketRequest(
+  signalWebSocket: SignalWebSocket,
+  request: WebSocketRequestMessage,
+  deserializer: DeserializationStrategy<T>,
+  timeout: Duration = WebSocketConnection.DEFAULT_SEND_TIMEOUT
+): NetworkResult<T> {
+  return fromWebSocketRequest(
+    signalWebSocket = signalWebSocket,
+    request = request,
+    timeout = timeout,
+    webSocketResponseConverter = NetworkResult.DefaultWebSocketConverter(deserializer)
   )
 }
 
