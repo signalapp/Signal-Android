@@ -67,13 +67,21 @@ class CallEventCache(
         return emptyList()
       }
 
+      // Only the newest call per group is kept up to date; compute it before filtering so filtered views can't promote an older row.
+      val newestGroupCallRowIds = hashSetOf<Long>()
+      val groupPeersSeen = hashSetOf<Long>()
+      for (record in records) {
+        if (record.type == Type.GROUP_CALL.code && groupPeersSeen.add(record.peer)) {
+          newestGroupCallRowIds += record.rowId
+        }
+      }
+
       val output = mutableListOf<CallLogRow.Call>()
-      val groupCallStateMap = mutableMapOf<Long, CallLogRow.GroupCallState>()
       val canUserBeginCallMap = mutableMapOf<Long, CallLogRow.CanStartCall>()
       val callLinksSeen = hashSetOf<Long>()
 
       while (recordIterator.hasNext()) {
-        val log = recordIterator.readNextCallLog(filterState, groupCallStateMap, canUserBeginCallMap, callLinksSeen)
+        val log = recordIterator.readNextCallLog(filterState, newestGroupCallRowIds, canUserBeginCallMap, callLinksSeen)
         if (log != null) {
           output += log
         }
@@ -86,7 +94,7 @@ class CallEventCache(
 
     private fun ListIterator<CacheRecord>.readNextCallLog(
       filterState: FilterState,
-      groupCallStateMap: MutableMap<Long, CallLogRow.GroupCallState>,
+      newestGroupCallRowIds: Set<Long>,
       canUserBeginCallMap: MutableMap<Long, CallLogRow.CanStartCall>,
       callLinksSeen: MutableSet<Long>
     ): CallLogRow.Call? {
@@ -109,7 +117,7 @@ class CallEventCache(
         }
       }
 
-      return createParentCallLogRow(parent, children, filterState, groupCallStateMap, canUserBeginCallMap, isActiveCallLinkRow)
+      return createParentCallLogRow(parent, children, filterState, newestGroupCallRowIds, canUserBeginCallMap, isActiveCallLinkRow)
     }
 
     private fun readDataFromDatabase(): List<CacheRecord> {
@@ -166,7 +174,7 @@ class CallEventCache(
       parent: CacheRecord,
       children: Set<Long>,
       filterState: FilterState,
-      groupCallStateCache: MutableMap<Long, CallLogRow.GroupCallState>,
+      newestGroupCallRowIds: Set<Long>,
       canUserBeginCallMap: MutableMap<Long, CallLogRow.CanStartCall>,
       isActiveCallLinkRow: Boolean
     ): CallLogRow.Call {
@@ -187,8 +195,8 @@ class CallEventCache(
         ),
         date = parent.timestamp,
         peer = peer,
-        groupCallState = if (peer.isGroup) {
-          groupCallStateCache.getOrPut(parent.peer) { getGroupCallState(parent.body) }
+        groupCallState = if (peer.isGroup && parent.rowId in newestGroupCallRowIds) {
+          getGroupCallState(parent.body)
         } else {
           CallLogRow.GroupCallState.NONE
         },
