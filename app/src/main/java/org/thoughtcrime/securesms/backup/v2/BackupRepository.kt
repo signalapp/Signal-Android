@@ -14,6 +14,7 @@ import androidx.core.app.NotificationCompat
 import arrow.core.Either
 import arrow.core.flatMap
 import arrow.core.left
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
@@ -1768,6 +1769,9 @@ object BackupRepository {
         }
         return@withContext result
       }
+    } catch (e: CancellationException) {
+      ArchiveRestoreProgress.onRestoreCanceled()
+      throw e
     } finally {
       DataRestoreConstraint.isRestoringData = false
     }
@@ -1889,10 +1893,17 @@ object BackupRepository {
     try {
       DataRestoreConstraint.isRestoringData = true
       return withContext(Dispatchers.IO) {
-        return@withContext BackupProgressService.start(context, context.getString(RegistrationR.string.MessageSyncScreen__syncing_messages)).use {
+        val result = BackupProgressService.start(context, context.getString(RegistrationR.string.MessageSyncScreen__syncing_messages)).use {
           restoreLinkAndSyncBackup(response, ephemeralBackupKey, controller = it, cancellationSignal = { !isActive })
         }
+        if (result !is RemoteRestoreResult.Success) {
+          ArchiveRestoreProgress.onRestoreFailed()
+        }
+        return@withContext result
       }
+    } catch (e: CancellationException) {
+      ArchiveRestoreProgress.onRestoreCanceled()
+      throw e
     } finally {
       DataRestoreConstraint.isRestoringData = false
     }
