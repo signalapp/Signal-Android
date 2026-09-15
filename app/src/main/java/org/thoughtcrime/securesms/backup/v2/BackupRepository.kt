@@ -604,7 +604,7 @@ object BackupRepository {
     }
 
     // We make a copy of the database within a transaction to ensure that no writes occur while we're copying the file
-    return SignalDatabase.rawDatabase.withinTransaction {
+    return SignalDatabase.writableDatabase.withinTransaction {
       val context = AppDependencies.application
 
       val existingDbFile = context.getDatabasePath(SignalDatabase.DATABASE_NAME)
@@ -898,7 +898,7 @@ object BackupRepository {
         eventTimer.emit("header")
 
         // We're using a snapshot, so the transaction is more for perf than correctness
-        dbSnapshot.rawWritableDatabase.withinTransaction {
+        dbSnapshot.signalWritableDatabase.withinTransaction {
           progressEmitter?.onAccount()
           AccountDataArchiveProcessor.export(dbSnapshot, signalStoreSnapshot, exportState) { frame ->
             writer.write(frame)
@@ -1164,19 +1164,19 @@ object BackupRepository {
       // SQLite optimizes deletes if there's no foreign keys, triggers, or WHERE clause, so that's the environment we're gonna create.
 
       Log.d(TAG, "[import] Disabling foreign keys...")
-      SignalDatabase.rawDatabase.forceForeignKeyConstraintsEnabled(false)
+      SignalDatabase.writableDatabase.forceForeignKeyConstraintsEnabled(false)
 
       Log.d(TAG, "[import] Acquiring transaction...")
-      SignalDatabase.rawDatabase.beginTransaction()
+      SignalDatabase.writableDatabase.beginTransaction()
 
       Log.d(TAG, "[import] Inside transaction.")
       stopwatch.split("get-transaction")
 
       Log.d(TAG, "[import] --- Dropping all indices ---")
-      val indexMetadata = SignalDatabase.rawDatabase.getAllIndexDefinitions()
+      val indexMetadata = SignalDatabase.writableDatabase.getAllIndexDefinitions()
       for (index in indexMetadata) {
         Log.d(TAG, "[import] Dropping index ${index.name}...")
-        SignalDatabase.rawDatabase.execSQL("DROP INDEX IF EXISTS ${index.name}")
+        SignalDatabase.writableDatabase.execSQL("DROP INDEX IF EXISTS ${index.name}")
       }
       stopwatch.split("drop-indices")
 
@@ -1185,10 +1185,10 @@ object BackupRepository {
       }
 
       Log.d(TAG, "[import] --- Dropping all triggers ---")
-      val triggerMetadata = SignalDatabase.rawDatabase.getAllTriggerDefinitions()
+      val triggerMetadata = SignalDatabase.writableDatabase.getAllTriggerDefinitions()
       for (trigger in triggerMetadata) {
         Log.d(TAG, "[import] Dropping trigger ${trigger.name}...")
-        SignalDatabase.rawDatabase.execSQL("DROP TRIGGER IF EXISTS ${trigger.name}")
+        SignalDatabase.writableDatabase.execSQL("DROP TRIGGER IF EXISTS ${trigger.name}")
       }
       stopwatch.split("drop-triggers")
 
@@ -1207,7 +1207,7 @@ object BackupRepository {
           add(SessionTable.TABLE_NAME)
         }
       }
-      val tableMetadata = SignalDatabase.rawDatabase.getAllTableDefinitions().filter { !it.name.startsWith(SearchTable.FTS_TABLE_NAME + "_") }
+      val tableMetadata = SignalDatabase.writableDatabase.getAllTableDefinitions().filter { !it.name.startsWith(SearchTable.FTS_TABLE_NAME + "_") }
       for (table in tableMetadata) {
         if (skipTables.contains(table.name)) {
           Log.d(TAG, "[import] Skipping drop/create of table ${table.name}")
@@ -1215,10 +1215,10 @@ object BackupRepository {
         }
 
         Log.d(TAG, "[import] Dropping table ${table.name}...")
-        SignalDatabase.rawDatabase.execSQL("DROP TABLE IF EXISTS ${table.name}")
+        SignalDatabase.writableDatabase.execSQL("DROP TABLE IF EXISTS ${table.name}")
 
         Log.d(TAG, "[import] Creating table ${table.name}...")
-        SignalDatabase.rawDatabase.execSQL(table.statement)
+        SignalDatabase.writableDatabase.execSQL(table.statement)
       }
 
       RecipientId.clearCache()
@@ -1340,14 +1340,14 @@ object BackupRepository {
       Log.d(TAG, "[import] --- Recreating indices ---")
       for (index in indexMetadata) {
         Log.d(TAG, "[import] Creating index ${index.name}...")
-        SignalDatabase.rawDatabase.execSQL(index.statement)
+        SignalDatabase.writableDatabase.execSQL(index.statement)
       }
       stopwatch.split("recreate-indices")
 
       Log.d(TAG, "[import] --- Recreating triggers ---")
       for (trigger in triggerMetadata) {
         Log.d(TAG, "[import] Creating trigger ${trigger.name}...")
-        SignalDatabase.rawDatabase.execSQL(trigger.statement)
+        SignalDatabase.writableDatabase.execSQL(trigger.statement)
       }
       stopwatch.split("recreate-triggers")
 
@@ -1357,17 +1357,17 @@ object BackupRepository {
       }
       stopwatch.split("thread-updates")
 
-      val foreignKeyViolations = SignalDatabase.rawDatabase.getForeignKeyViolations()
+      val foreignKeyViolations = SignalDatabase.writableDatabase.getForeignKeyViolations()
       if (foreignKeyViolations.isNotEmpty()) {
         throw IllegalStateException("Foreign key check failed! Violations: $foreignKeyViolations")
       }
       stopwatch.split("fk-check")
 
-      SignalDatabase.rawDatabase.setTransactionSuccessful()
+      SignalDatabase.writableDatabase.setTransactionSuccessful()
       transactionSuccessful = true
     } finally {
-      if (SignalDatabase.rawDatabase.inTransaction()) {
-        SignalDatabase.rawDatabase.endTransaction()
+      if (SignalDatabase.writableDatabase.inTransaction()) {
+        SignalDatabase.writableDatabase.endTransaction()
       }
 
       if (!transactionSuccessful) {
@@ -1376,7 +1376,7 @@ object BackupRepository {
       }
 
       Log.d(TAG, "[import] Re-enabling foreign keys...")
-      SignalDatabase.rawDatabase.forceForeignKeyConstraintsEnabled(true)
+      SignalDatabase.writableDatabase.forceForeignKeyConstraintsEnabled(true)
     }
 
     SignalDatabase.remappedRecords.clearCache()

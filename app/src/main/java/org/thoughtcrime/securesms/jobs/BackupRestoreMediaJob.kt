@@ -139,7 +139,7 @@ class BackupRestoreMediaJob private constructor(parameters: Parameters) : BaseJo
         }
       }
 
-      SignalDatabase.rawDatabase.withinTransaction {
+      SignalDatabase.writableDatabase.withinTransaction {
         // Mark not restorable thumbnails and attachments as failed
         SignalDatabase.attachments.setThumbnailRestoreState(notRestorable, AttachmentTable.ThumbnailRestoreState.PERMANENT_FAILURE)
         SignalDatabase.attachments.setRestoreTransferState(notRestorable, AttachmentTable.TRANSFER_PROGRESS_FAILED)

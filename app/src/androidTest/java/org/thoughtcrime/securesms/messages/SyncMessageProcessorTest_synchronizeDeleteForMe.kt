@@ -516,7 +516,7 @@ class SyncMessageProcessorTest_synchronizeDeleteForMe {
     SignalDatabase.messages.deleteMessage(messageId = oneToOnePlaceHolderMessage, threadId = aliceThreadId, notify = false, updateThread = false)
     SignalDatabase.messages.deleteMessage(messageId = groupPlaceholderMessage, threadId = aliceThreadId, notify = false, updateThread = false)
 
-    SignalDatabase.rawDatabase.withinTransaction {
+    SignalDatabase.writableDatabase.withinTransaction {
       assertThat(SignalDatabase.messages.getMessageCountForThread(aliceThreadId)).isEqualTo(16)
       assertThat(SignalDatabase.messages.getMessageCountForThread(groupThreadId)).isEqualTo(10)
     }

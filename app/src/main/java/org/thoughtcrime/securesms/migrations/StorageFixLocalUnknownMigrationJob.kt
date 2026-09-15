@@ -37,7 +37,7 @@ internal class StorageFixLocalUnknownMigrationJob(
 
     Log.w(TAG, "Removing ${danglingLocalUnknownIds.size} dangling unknown ids")
 
-    SignalDatabase.rawDatabase.withinTransaction {
+    SignalDatabase.writableDatabase.withinTransaction {
       SignalDatabase.unknownStorageIds.delete(danglingLocalUnknownIds)
     }
 

@@ -51,7 +51,7 @@ class BackfillDigestsForDataFileJob private constructor(
   override fun getFactoryKey(): String = KEY
 
   override fun run(): Result {
-    val (originalKey, decryptingStream) = SignalDatabase.rawDatabase.withinTransaction {
+    val (originalKey, decryptingStream) = SignalDatabase.writableDatabase.withinTransaction {
       val attachment = SignalDatabase.attachments.getMostRecentValidAttachmentUsingDataFile(dataFile)
       if (attachment == null) {
         Log.w(TAG, "No attachments using file $dataFile exist anymore! Skipping.")

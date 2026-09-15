@@ -79,7 +79,7 @@ internal class E164FormattingMigrationJob(
           val existing: Optional<RecipientId> = SignalDatabase.recipients.getByE164(formattedE164)
           if (existing.isPresent) {
             Log.w(TAG, "Merging ${existing.get()} and $id", true)
-            SignalDatabase.rawDatabase.withinTransaction {
+            SignalDatabase.writableDatabase.withinTransaction {
               SignalDatabase.recipients.mergeForMigration(existing.get(), id)
             }
             Log.w(TAG, "Successfully merged ${existing.get()} and $id", true)
