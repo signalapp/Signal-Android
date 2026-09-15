@@ -473,7 +473,11 @@ private fun RemoteBackupsSettingsContent(
       }
 
       if (state.isLinkedDevice) {
-        appendReducedBackupDetailsItems(state)
+        appendReducedBackupDetailsItems(
+          state = state,
+          backupRestoreState = backupRestoreState,
+          contentCallbacks = contentCallbacks
+        )
       } else if (backupDeleteState != DeletionState.NONE && backupDeleteState != DeletionState.CLEAR_LOCAL_STATE) {
         appendBackupDeletionItems(
           backupDeleteState = backupDeleteState,
@@ -969,7 +973,9 @@ private fun LazyListScope.appendBackupDetailsItems(
 }
 
 private fun LazyListScope.appendReducedBackupDetailsItems(
-  state: RemoteBackupsSettingsState
+  state: RemoteBackupsSettingsState,
+  backupRestoreState: BackupRestoreState,
+  contentCallbacks: ContentCallbacks
 ) {
   item {
     Dividers.Default()
@@ -977,6 +983,14 @@ private fun LazyListScope.appendReducedBackupDetailsItems(
 
   item {
     Texts.SectionHeader(text = stringResource(id = R.string.RemoteBackupsSettingsFragment__backup_details))
+  }
+
+  if (backupRestoreState is BackupRestoreState.Restoring) {
+    appendRestoreFromBackupStatusData(
+      backupRestoreState = backupRestoreState,
+      canRestoreUsingCellular = state.canRestoreUsingCellular,
+      contentCallbacks = contentCallbacks
+    )
   }
 
   item {
