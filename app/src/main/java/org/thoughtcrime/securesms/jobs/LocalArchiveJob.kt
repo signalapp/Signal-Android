@@ -91,6 +91,7 @@ class LocalArchiveJob internal constructor(parameters: Parameters) : Job(paramet
       stopwatch.split("create-snapshot")
 
       try {
+        SignalDatabase.attachments.createRemoteKeyForAttachmentsThatNeedArchiveUpload()
         SignalDatabase.attachmentMetadata.insertNewKeysForExistingAttachments()
 
         val progressScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)

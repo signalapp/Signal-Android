@@ -108,6 +108,7 @@ class LocalPlaintextArchiveJob internal constructor(
       stopwatch.split("create-dir")
 
       try {
+        SignalDatabase.attachments.createRemoteKeyForAttachmentsThatNeedArchiveUpload()
         SignalDatabase.attachmentMetadata.insertNewKeysForExistingAttachments()
 
         val progressScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
