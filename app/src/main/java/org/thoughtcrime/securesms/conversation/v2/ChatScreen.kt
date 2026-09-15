@@ -52,9 +52,9 @@ private const val BUBBLE_HEIGHT_FRACTION = 0.55f
  * @param onEvent The MediaKeyboard events stream for interacting with the media keyboard
  * @param scrim The color information for the top and bottom scrim
  * @param isBubble Whether we're displaying content in a bubble
- * @param backgroundView The chat wallpaper
- * @param contentView The area that actually moves up when the keyboards appear
- * @param overlayView The long press overlay, which a keyboard neither covers nor resizes
+ * @param conversationView The conversation's own view hierarchy, and the only interop view here.
+ *   A second one sharing pointer input would leave this one without its ACTION_HOVER_EXIT, which is
+ *   why the long press overlay is Compose. See stylus-hover-interop.md.
  */
 @Composable
 fun ChatScreen(
@@ -62,9 +62,8 @@ fun ChatScreen(
   onEvent: (MediaKeyboardEvents) -> Unit,
   scrims: ChatScrimState,
   isBubble: Boolean,
-  backgroundView: View,
-  contentView: View,
-  overlayView: View,
+  conversationView: View,
+  overlayController: ChatReactionOverlayController,
   modifier: Modifier = Modifier
 ) {
   val minimumHeight = dimensionResource(R.dimen.default_custom_keyboard_size)
@@ -91,11 +90,6 @@ fun ChatScreen(
       // that one inset has to survive or nothing lifts the input off the system keyboard.
       .then(if (isBubble) Modifier.consumeWindowInsets(WindowInsets.safeDrawing.exclude(WindowInsets.ime)) else Modifier)
   ) {
-    AndroidView(
-      factory = { backgroundView },
-      modifier = Modifier.fillMaxSize()
-    )
-
     Box(
       modifier = Modifier
         .align(Alignment.TopCenter)
@@ -139,15 +133,15 @@ fun ChatScreen(
       keyboardHeight = keyboardHeight
     ) {
       AndroidView(
-        factory = { contentView },
+        factory = { conversationView },
         modifier = Modifier.fillMaxSize()
       )
     }
 
     // Above the scaffold so a closing keyboard neither covers nor resizes it. The bottom inset is
-    // left on; the overlay subtracts the navigation bar itself.
-    AndroidView(
-      factory = { overlayView },
+    // left on; the placement subtracts the navigation bar itself.
+    ChatReactionOverlay(
+      controller = overlayController,
       modifier = Modifier
         .fillMaxSize()
         .windowInsetsPadding(WindowInsets.statusBars.add(WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal)))

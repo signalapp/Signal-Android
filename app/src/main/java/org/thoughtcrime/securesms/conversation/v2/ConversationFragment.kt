@@ -44,8 +44,10 @@ import android.view.WindowManager
 import android.view.animation.AnimationUtils
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
+import android.widget.FrameLayout
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.Space
 import android.widget.TextView
 import android.widget.TextView.OnEditorActionListener
 import android.widget.Toast
@@ -56,6 +58,8 @@ import androidx.annotation.StringRes
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.SearchView
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.constraintlayout.widget.ConstraintSet
@@ -209,10 +213,6 @@ import org.thoughtcrime.securesms.conversation.ConversationItemSelection
 import org.thoughtcrime.securesms.conversation.ConversationItemSwipeCallback
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.ConversationOptionsMenu
-import org.thoughtcrime.securesms.conversation.ConversationReactionDelegate
-import org.thoughtcrime.securesms.conversation.ConversationReactionOverlay
-import org.thoughtcrime.securesms.conversation.ConversationReactionOverlay.OnActionSelectedListener
-import org.thoughtcrime.securesms.conversation.ConversationReactionOverlay.OnHideListener
 import org.thoughtcrime.securesms.conversation.ConversationSearchViewModel
 import org.thoughtcrime.securesms.conversation.ConversationUpdateTick
 import org.thoughtcrime.securesms.conversation.MarkReadHelper
@@ -220,6 +220,7 @@ import org.thoughtcrime.securesms.conversation.MenuState
 import org.thoughtcrime.securesms.conversation.MessageSendType
 import org.thoughtcrime.securesms.conversation.MessageStyler.getStyling
 import org.thoughtcrime.securesms.conversation.PinnedMessagesBottomSheet
+import org.thoughtcrime.securesms.conversation.ReactionAction
 import org.thoughtcrime.securesms.conversation.ReenableScheduledMessagesDialogFragment
 import org.thoughtcrime.securesms.conversation.ScheduleMessageContextMenu
 import org.thoughtcrime.securesms.conversation.ScheduleMessageDialogCallback
@@ -227,7 +228,6 @@ import org.thoughtcrime.securesms.conversation.ScheduleMessageTimePickerBottomSh
 import org.thoughtcrime.securesms.conversation.ScheduleMessageTimePickerBottomSheet.Companion.showSchedule
 import org.thoughtcrime.securesms.conversation.ScheduledMessagesBottomSheet
 import org.thoughtcrime.securesms.conversation.ScheduledMessagesRepository
-import org.thoughtcrime.securesms.conversation.SelectedConversationModel
 import org.thoughtcrime.securesms.conversation.ShowAdminsBottomSheetDialog
 import org.thoughtcrime.securesms.conversation.clicklisteners.PollVotesFragment
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
@@ -270,7 +270,6 @@ import org.thoughtcrime.securesms.database.model.Quote
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.databinding.V2ConversationBackgroundBinding
 import org.thoughtcrime.securesms.databinding.V2ConversationFragmentBinding
-import org.thoughtcrime.securesms.databinding.V2ConversationOverlayBinding
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.events.GroupCallPeekEvent
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ItemDecoration
@@ -478,7 +477,6 @@ class ConversationFragment :
 
   private val disposables = LifecycleDisposable()
   private val backgroundBinding by ViewBinderDelegate(bindingFactory = { V2ConversationBackgroundBinding.bind(conversationBackground) })
-  private val overlayBinding by ViewBinderDelegate(bindingFactory = { V2ConversationOverlayBinding.bind(conversationOverlay) })
   private val binding by ViewBinderDelegate(bindingFactory = { V2ConversationFragmentBinding.bind(conversationContent) }, onBindingWillBeDestroyed = { _binding ->
     _binding.conversationInputPanel.embeddedTextEditor.apply {
       setOnEditorActionListener(null)
@@ -636,9 +634,6 @@ class ConversationFragment :
   /** The wallpaper, drawn behind [conversationContent]. */
   private lateinit var conversationBackground: View
 
-  /** The long press overlay, drawn above [conversationContent]. */
-  private lateinit var conversationOverlay: View
-
   private val chatScreenViewModel: ChatScreenViewModel by viewModels()
 
   /** Stable across recomposition, so view code can ask for a keyboard from a click listener. */
@@ -681,13 +676,31 @@ class ConversationFragment :
 
   private val scheduledMessagesStub: Stub<View> by lazy { Stub(binding.scheduledMessagesStub) }
 
-  private val reactionDelegate: ConversationReactionDelegate by lazy(LazyThreadSafetyMode.NONE) {
-    val conversationReactionStub = Stub<ConversationReactionOverlay>(overlayBinding.conversationReactionScrubberStub)
-    val delegate = ConversationReactionDelegate(conversationReactionStub)
-    delegate.setOnReactionSelectedListener(OnReactionsSelectedListener())
-
-    delegate
+  private val reactionOverlay: ChatReactionOverlayController by lazy(LazyThreadSafetyMode.NONE) {
+    ChatReactionOverlayController(
+      context = requireContext(),
+      hapticView = { chatHost },
+      menuAnchor = { reactionMenuAnchor },
+      onReactionSelected = { messageRecord, emoji ->
+        reactionOverlay.hide()
+        disposables += viewModel.updateReaction(messageRecord, emoji).subscribe()
+      },
+      onCustomReactionSelected = { messageRecord, hasAddedCustomEmoji ->
+        reactionOverlay.hide()
+        onCustomReactionSelected(messageRecord, hasAddedCustomEmoji)
+      },
+      onActionSelected = { action -> reactionActionListener?.onActionSelected(action) },
+      onStartHide = { focusedView -> reactionHideListener?.startHide(focusedView) },
+      onHidden = { reactionHideListener?.onHide() }
+    )
   }
+
+  /** Set for the life of one long press, so the overlay's callbacks reach that message. */
+  private var reactionActionListener: ReactionsToolbarListener? = null
+  private var reactionHideListener: ReactionOverlayHideListener? = null
+
+  private lateinit var reactionMenuAnchor: View
+  private lateinit var chatHost: ViewGroup
 
   private lateinit var voiceMessageRecordingDelegate: VoiceMessageRecordingDelegate
 
@@ -710,9 +723,8 @@ class ConversationFragment :
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
     conversationBackground = inflater.inflate(R.layout.v2_conversation_background, container, false)
     conversationContent = inflater.inflate(R.layout.v2_conversation_fragment, container, false)
-    conversationOverlay = inflater.inflate(R.layout.v2_conversation_overlay, container, false)
 
-    return ComposeView(requireContext()).apply {
+    val composition = ComposeView(requireContext()).apply {
       setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
       setContent {
         SignalTheme {
@@ -721,24 +733,44 @@ class ConversationFragment :
             onEvent = ::onMediaKeyboardEvent,
             scrims = chatScrims,
             isBubble = args.conversationScreenType == ConversationScreenType.BUBBLE,
-            backgroundView = conversationBackground,
-            contentView = conversationContent,
-            overlayView = conversationOverlay
+            conversationView = conversationContent,
+            overlayController = reactionOverlay
           )
         }
       }
     }
+
+    // Not the ComposeView itself: showAsDropDown measures from an anchor's bottom and flips a popup
+    // that will not fit below it.
+    reactionMenuAnchor = Space(requireContext())
+
+    // Behind the composition rather than inside it: an AndroidView would put the wallpaper in
+    // Compose's hit path, and a second interop view there costs the conversation its
+    // ACTION_HOVER_EXIT. See stylus-hover-interop.md.
+    chatHost = FrameLayout(requireContext()).apply {
+      addView(conversationBackground)
+      addView(composition)
+      addView(reactionMenuAnchor, FrameLayout.LayoutParams(0, 0))
+    }
+
+    return chatHost
   }
 
   /**
    * Where [target]'s row sits in the overlay's coordinate space. [Projection] walks the layout
    * positions; translations are not part of that walk, so they are added here.
+   *
+   * The overlay is a composition, so there is nothing to project into. It reports where it starts
+   * instead, which is the only reliable measure of its padding: a bubble consumes the insets it is
+   * padded by, leaving it flush with the root.
    */
   private fun overlayOriginOf(target: InteractiveConversationElement, recycler: RecyclerView): PointF {
-    val projection = Projection.relativeToViewWithCommonRoot(target.root, conversationOverlay, null)
+    val projection = Projection.relativeToViewWithCommonRoot(target.root, chatHost, null)
+    val hostOrigin = IntArray(2).also { chatHost.getLocationInWindow(it) }
+    val overlayOrigin = reactionOverlay.originInWindow
     val origin = PointF(
-      projection.x + target.root.translationX,
-      projection.y + target.root.translationY + recycler.translationY
+      projection.x + target.root.translationX - (overlayOrigin.x - hostOrigin[0]),
+      projection.y + target.root.translationY + recycler.translationY - (overlayOrigin.y - hostOrigin[1])
     )
     projection.release()
 
@@ -1028,11 +1060,11 @@ class ConversationFragment :
   }
 
   override fun onReactWithAnyEmojiDialogDismissed() {
-    reactionDelegate.hide()
+    reactionOverlay.hide()
   }
 
   override fun onReactWithAnyEmojiSelected(emoji: String) {
-    reactionDelegate.hide()
+    reactionOverlay.hide()
   }
 
   override fun onReactionsDialogDismissed() {
@@ -1176,7 +1208,7 @@ class ConversationFragment :
     val state = viewModel.backPressedState.value
 
     when {
-      state.isReactionDelegateShowing -> reactionDelegate.hide()
+      state.isReactionDelegateShowing -> reactionOverlay.hide()
 
       state.isSearchRequested -> searchMenuItem?.collapseActionView()
 
@@ -2963,13 +2995,17 @@ class ConversationFragment :
 
   private fun handleReaction(
     conversationMessage: ConversationMessage,
-    onActionSelectedListener: OnActionSelectedListener,
-    selectedConversationModel: SelectedConversationModel,
-    onHideListener: OnHideListener
+    snapshot: ReactionOverlaySnapshot,
+    focusedView: View?
   ) {
-    reactionDelegate.setOnActionSelectedListener(onActionSelectedListener)
-    reactionDelegate.setOnHideListener(onHideListener)
-    reactionDelegate.show(requireActivity(), viewModel.recipientSnapshot!!, conversationMessage, conversationGroupViewModel.isNonAdminInAnnouncementGroup(), selectedConversationModel, conversationGroupViewModel.canEditGroupInfo())
+    reactionOverlay.show(
+      conversationRecipient = viewModel.recipientSnapshot!!,
+      conversationMessage = conversationMessage,
+      snapshot = snapshot,
+      isNonAdminInAnnouncementGroup = conversationGroupViewModel.isNonAdminInAnnouncementGroup(),
+      canEditGroupInfo = conversationGroupViewModel.canEditGroupInfo(),
+      focusedView = focusedView
+    )
     viewModel.setIsReactionDelegateShowing(true)
     composeText.clearFocus()
   }
@@ -4204,8 +4240,8 @@ class ConversationFragment :
         return
       }
 
-      if (reactionDelegate.isShowing()) {
-        // The overlay ignores a show while it is up, and nothing below would be undone by a hide that never comes.
+      if (reactionOverlay.isShowing) {
+        // Nothing below would be undone by a hide that never comes.
         Log.w(TAG, "Long press while the reaction overlay is still showing. Ignoring.")
         return
       }
@@ -4214,13 +4250,9 @@ class ConversationFragment :
 
       // Held, not re-read: teardown has to work from a screen that is already going.
       val recycler = binding.conversationItemRecycler
-      val overlay = conversationOverlay
-      val shade = overlayBinding.reactionsShade
 
       multiselectItemDecoration.setFocusedItem(MultiselectPart.Message(item.conversationMessage))
       recycler.invalidateItemDecorations()
-      overlay.visibility = View.VISIBLE
-      shade.visibility = View.VISIBLE
       recycler.suppressLayout(true)
 
       val audioUri = messageRecord.getAudioUriForLongClick()
@@ -4249,21 +4281,19 @@ class ConversationFragment :
       )
 
       val origin = overlayOriginOf(target, recycler)
-      val selectedConversationModel = SelectedConversationModel(
-        bitmap = snapshot,
+      val overlaySnapshot = ReactionOverlaySnapshot(
+        bitmap = snapshot.asImageBitmap(),
         bubbleX = origin.x + snapshotMetrics.snapshotOffset,
         bubbleY = origin.y + bodyBubble.y,
         bubbleWidth = bodyBubble.width,
         contextMenuX = origin.x + snapshotMetrics.contextMenuPadding,
-        audioUri = audioUri,
-        isOutgoing = messageRecord.isOutgoing,
-        focusedView = focusedView,
-        returnPosition = SelectedConversationModel.ReturnPosition {
+        isMessageOnLeft = messageRecord.isOutgoing xor ViewUtil.isLtr(recycler),
+        returnPosition = {
           if (view == null || target.root.parent == null || target.conversationMessage.messageRecord.id != messageRecord.id) {
             null
           } else {
             val current = overlayOriginOf(target, recycler)
-            PointF(current.x + snapshotMetrics.snapshotOffset, current.y + bodyBubble.y)
+            Offset(current.x + snapshotMetrics.snapshotOffset, current.y + bodyBubble.y)
           }
         }
       )
@@ -4278,61 +4308,56 @@ class ConversationFragment :
 
       viewModel.setHideScrollButtonsForReactionOverlay(true)
 
-      handleReaction(
-        item.conversationMessage,
-        ReactionsToolbarListener(item.conversationMessage),
-        selectedConversationModel,
-        object : OnHideListener {
-          override fun startHide(focusedView: View?) {
-            // Ahead of the started check: a dismiss while stopped would leave the chat dimmed.
-            multiselectItemDecoration.hideShade(recycler)
-            ViewUtil.fadeOut(shade, resources.getInteger(R.integer.reaction_scrubber_hide_duration), View.GONE)
+      reactionActionListener = ReactionsToolbarListener(item.conversationMessage)
+      reactionHideListener = object : ReactionOverlayHideListener {
+        override fun startHide(focusedView: View?) {
+          // Ahead of the started check: a dismiss while stopped would leave the chat dimmed.
+          multiselectItemDecoration.hideShade(recycler)
 
-            if (!lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED) || activity == null || activity?.isFinishing == true) {
-              return
-            }
-
-            val searchField = expandedSearchField()
-            if (searchField != null && focusedView == searchField) {
-              // The input panel is gone while search is open, so composeText cannot take the keyboard back.
-              container.showSoftkey(searchField)
-            } else if (focusedView == composeText) {
-              container.showSoftkey(composeText)
-            }
+          if (!lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED) || activity == null || activity?.isFinishing == true) {
+            return
           }
 
-          override fun onHide() {
-            viewModel.setIsReactionDelegateShowing(false)
-
-            // Likewise: otherwise the list stays frozen, the message invisible, and the idle
-            // overlay in front of the chat for touch purposes.
-            recycler.suppressLayout(false)
-            overlay.visibility = View.INVISIBLE
-            multiselectItemDecoration.setFocusedItem(null)
-            recycler.invalidateItemDecorations()
-            bodyBubble.visibility = View.VISIBLE
-            target.reactionsView.visibility = View.VISIBLE
-            viewModel.setHideScrollButtonsForReactionOverlay(false)
-
-            if (quotedIndicatorVisible && target.quotedIndicatorView != null) {
-              ViewUtil.fadeIn(target.quotedIndicatorView!!, 150)
-            }
-
-            if (!lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED) || activity == null || activity?.isFinishing == true) {
-              return
-            }
-
-            if (selectedConversationModel.audioUri != null) {
-              getVoiceNoteMediaController().resumePlayback(selectedConversationModel.audioUri, messageRecord.id)
-            }
-
-            if (mp4Holder != null) {
-              mp4Holder.show()
-              mp4Holder.resume()
-            }
+          val searchField = expandedSearchField()
+          if (searchField != null && focusedView == searchField) {
+            // The input panel is gone while search is open, so composeText cannot take the keyboard back.
+            container.showSoftkey(searchField)
+          } else if (focusedView == composeText) {
+            container.showSoftkey(composeText)
           }
         }
-      )
+
+        override fun onHide() {
+          viewModel.setIsReactionDelegateShowing(false)
+
+          // Likewise: otherwise the list stays frozen and the message invisible.
+          recycler.suppressLayout(false)
+          multiselectItemDecoration.setFocusedItem(null)
+          recycler.invalidateItemDecorations()
+          bodyBubble.visibility = View.VISIBLE
+          target.reactionsView.visibility = View.VISIBLE
+          viewModel.setHideScrollButtonsForReactionOverlay(false)
+
+          if (quotedIndicatorVisible && target.quotedIndicatorView != null) {
+            ViewUtil.fadeIn(target.quotedIndicatorView!!, 150)
+          }
+
+          if (!lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED) || activity == null || activity?.isFinishing == true) {
+            return
+          }
+
+          if (audioUri != null) {
+            getVoiceNoteMediaController().resumePlayback(audioUri, messageRecord.id)
+          }
+
+          if (mp4Holder != null) {
+            mp4Holder.show()
+            mp4Holder.resume()
+          }
+        }
+      }
+
+      handleReaction(item.conversationMessage, overlaySnapshot, focusedView)
     }
 
     override fun onShowGroupDescriptionClicked(groupName: String, description: String, shouldLinkifyWebLinks: Boolean) {
@@ -4639,27 +4664,16 @@ class ConversationFragment :
     }
   }
 
-  private inner class OnReactionsSelectedListener : ConversationReactionOverlay.OnReactionSelectedListener {
-    override fun onReactionSelected(messageRecord: MessageRecord, emoji: String?) {
-      reactionDelegate.hide()
-
-      if (emoji != null) {
-        disposables += viewModel.updateReaction(messageRecord, emoji).subscribe()
-      }
-    }
-
-    override fun onCustomReactionSelected(messageRecord: MessageRecord, hasAddedCustomEmoji: Boolean) {
-      reactionDelegate.hide()
-      disposables += viewModel.updateCustomReaction(messageRecord, hasAddedCustomEmoji)
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribeBy(
-          onSuccess = {
-            ReactWithAnyEmojiBottomSheetDialogFragment
-              .createForMessageRecord(messageRecord, -1)
-              .show(childFragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
-          }
-        )
-    }
+  private fun onCustomReactionSelected(messageRecord: MessageRecord, hasAddedCustomEmoji: Boolean) {
+    disposables += viewModel.updateCustomReaction(messageRecord, hasAddedCustomEmoji)
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribeBy(
+        onSuccess = {
+          ReactWithAnyEmojiBottomSheetDialogFragment
+            .createForMessageRecord(messageRecord, -1)
+            .show(childFragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
+        }
+      )
   }
 
   private inner class MotionEventRelayDrain(lifecycleOwner: LifecycleOwner) : MotionEventRelay.Drain {
@@ -4667,7 +4681,7 @@ class ConversationFragment :
 
     override fun accept(motionEvent: MotionEvent): Boolean {
       return if (lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)) {
-        reactionDelegate.applyTouchEvent(motionEvent)
+        reactionOverlay.applyTouchEvent(motionEvent)
       } else {
         false
       }
@@ -4676,24 +4690,24 @@ class ConversationFragment :
 
   private inner class ReactionsToolbarListener(
     private val conversationMessage: ConversationMessage
-  ) : OnActionSelectedListener {
-    override fun onActionSelected(action: ConversationReactionOverlay.Action) {
+  ) {
+    fun onActionSelected(action: ReactionAction) {
       when (action) {
-        ConversationReactionOverlay.Action.REPLY -> handleReplyToMessage(conversationMessage)
-        ConversationReactionOverlay.Action.EDIT -> handleEditMessage(conversationMessage)
-        ConversationReactionOverlay.Action.FORWARD -> handleForwardMessageParts(conversationMessage.multiselectCollection.toSet())
-        ConversationReactionOverlay.Action.RESEND -> handleResend(conversationMessage)
-        ConversationReactionOverlay.Action.DOWNLOAD -> handleSaveAttachment(conversationMessage.messageRecord as MmsMessageRecord)
-        ConversationReactionOverlay.Action.COPY -> handleCopyMessage(conversationMessage.multiselectCollection.toSet())
-        ConversationReactionOverlay.Action.MULTISELECT -> handleEnterMultiselect(conversationMessage)
-        ConversationReactionOverlay.Action.PAYMENT_DETAILS -> handleViewPaymentDetails(conversationMessage)
-        ConversationReactionOverlay.Action.VIEW_INFO -> handleDisplayDetails(conversationMessage)
-        ConversationReactionOverlay.Action.DELETE -> handleDeleteMessages(conversationMessage.multiselectCollection.toSet())
-        ConversationReactionOverlay.Action.END_POLL -> handleEndPoll(conversationMessage.messageRecord.getPoll()?.id)
-        ConversationReactionOverlay.Action.PIN_MESSAGE -> handlePinMessage(conversationMessage)
-        ConversationReactionOverlay.Action.UNPIN_MESSAGE -> handleUnpinMessage(conversationMessage.messageRecord.id)
-        ConversationReactionOverlay.Action.STAR_MESSAGE -> handleStarMessages(setOf(conversationMessage.messageRecord.id))
-        ConversationReactionOverlay.Action.UNSTAR_MESSAGE -> handleUnstarMessages(setOf(conversationMessage.messageRecord.id))
+        ReactionAction.REPLY -> handleReplyToMessage(conversationMessage)
+        ReactionAction.EDIT -> handleEditMessage(conversationMessage)
+        ReactionAction.FORWARD -> handleForwardMessageParts(conversationMessage.multiselectCollection.toSet())
+        ReactionAction.RESEND -> handleResend(conversationMessage)
+        ReactionAction.DOWNLOAD -> handleSaveAttachment(conversationMessage.messageRecord as MmsMessageRecord)
+        ReactionAction.COPY -> handleCopyMessage(conversationMessage.multiselectCollection.toSet())
+        ReactionAction.MULTISELECT -> handleEnterMultiselect(conversationMessage)
+        ReactionAction.PAYMENT_DETAILS -> handleViewPaymentDetails(conversationMessage)
+        ReactionAction.VIEW_INFO -> handleDisplayDetails(conversationMessage)
+        ReactionAction.DELETE -> handleDeleteMessages(conversationMessage.multiselectCollection.toSet())
+        ReactionAction.END_POLL -> handleEndPoll(conversationMessage.messageRecord.getPoll()?.id)
+        ReactionAction.PIN_MESSAGE -> handlePinMessage(conversationMessage)
+        ReactionAction.UNPIN_MESSAGE -> handleUnpinMessage(conversationMessage.messageRecord.id)
+        ReactionAction.STAR_MESSAGE -> handleStarMessages(setOf(conversationMessage.messageRecord.id))
+        ReactionAction.UNSTAR_MESSAGE -> handleUnstarMessages(setOf(conversationMessage.messageRecord.id))
       }
     }
   }
