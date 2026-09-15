@@ -91,6 +91,10 @@ public final class MicrophoneRecorderView extends FrameLayout implements View.On
     return state == State.RUNNING_LOCKED;
   }
 
+  public boolean isRecording() {
+    return state != State.NOT_RUNNING;
+  }
+
   private void lockAction() {
     if (state == State.RUNNING_HELD) {
       state = State.RUNNING_LOCKED;

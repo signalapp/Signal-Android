@@ -2530,7 +2530,8 @@ class ConversationFragment :
         inlineAttachment.hide(false)
       }
 
-      draftViewModel.voiceNoteDraft != null -> {
+      // An in-progress recording snapshots itself into the draft, but its UI lives in quickAttachment and must stay visible.
+      draftViewModel.voiceNoteDraft != null && !inputPanel.isRecordingInProgress -> {
         buttonToggle.display(sendButton)
         quickAttachment.hide(true)
         inlineAttachment.hide(true)

@@ -741,6 +741,10 @@ public class InputPanel extends ConstraintLayout
     return microphoneRecorderView.isRecordingLocked();
   }
 
+  public boolean isRecordingInProgress() {
+    return microphoneRecorderView.isRecording();
+  }
+
   public void releaseRecordingLockAndSend() {
     microphoneRecorderView.unlockAction();
   }
