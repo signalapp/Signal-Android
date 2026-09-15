@@ -98,7 +98,8 @@ sealed interface MessageBackupsKeyRecordMode {
     val onCreateNewKeyClick: () -> Unit,
     val onTurnOffAndDownloadClick: () -> Unit,
     val isOptimizedStorageEnabled: Boolean,
-    val canRotateKey: Boolean
+    val canRotateKey: Boolean,
+    val areBackupsEnabled: Boolean
   ) : MessageBackupsKeyRecordMode
   data class Passkey(
     val onSaveToPasswordManager: () -> Unit,
@@ -548,6 +549,7 @@ private fun CreateNewKeyButton(
 
   if (displayKeyLimitDialog) {
     KeyLimitExceededDialog(
+      areBackupsEnabled = mode.areBackupsEnabled,
       onClick = { displayKeyLimitDialog = false }
     )
   }
@@ -710,34 +712,6 @@ private fun ColumnScope.CreateNewBackupKeySheetContent(
 }
 
 @Composable
-private fun DownloadMediaDialog(
-  onTurnOffAndDownloadClick: () -> Unit = {},
-  onCancelClick: () -> Unit = {}
-) {
-  Dialogs.SimpleAlertDialog(
-    title = stringResource(R.string.MessageBackupsKeyRecordScreen__download_media),
-    body = stringResource(R.string.MessageBackupsKeyRecordScreen__to_create_a_new_backup_key),
-    confirm = stringResource(R.string.MessageBackupsKeyRecordScreen__turn_off_and_download),
-    dismiss = stringResource(android.R.string.cancel),
-    onConfirm = onTurnOffAndDownloadClick,
-    onDeny = onCancelClick
-  )
-}
-
-@Composable
-private fun KeyLimitExceededDialog(
-  onClick: () -> Unit = {}
-) {
-  Dialogs.SimpleAlertDialog(
-    title = stringResource(R.string.MessageBackupsKeyRecordScreen__limit_exceeded_title),
-    body = stringResource(R.string.MessageBackupsKeyRecordScreen__limit_exceeded_body),
-    confirm = stringResource(R.string.MessageBackupsKeyRecordScreen__ok),
-    onConfirm = {},
-    onDismiss = onClick
-  )
-}
-
-@Composable
 private fun ConfirmationFailureDialog(mode: MessageBackupsKeyRecordMode, onDismiss: () -> Unit) {
   Dialogs.AdvancedAlertDialog(
     title = stringResource(R.string.MessageBackupsKeyRecordScreen__recover_key_error),
@@ -786,7 +760,8 @@ private fun MessageBackupsKeyRecordScreenPreview() {
         onCreateNewKeyClick = {},
         onTurnOffAndDownloadClick = {},
         isOptimizedStorageEnabled = true,
-        canRotateKey = true
+        canRotateKey = true,
+        areBackupsEnabled = true
       )
     )
   }
@@ -844,21 +819,5 @@ private fun CreateNewBackupKeySheetContentPreview() {
     Column {
       CreateNewBackupKeySheetContent()
     }
-  }
-}
-
-@DayNightPreviews
-@Composable
-private fun DownloadMediaDialogPreview() {
-  Previews.Preview {
-    DownloadMediaDialog()
-  }
-}
-
-@DayNightPreviews
-@Composable
-private fun KeyLimitExceededDialogPreview() {
-  Previews.Preview {
-    KeyLimitExceededDialog()
   }
 }

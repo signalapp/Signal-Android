@@ -7,6 +7,7 @@ package org.signal.registration.screens.signallogindetails
 
 import android.app.Application
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.assertIsNotDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
@@ -75,13 +76,39 @@ class SignalLoginViewDetailsScreenTest {
     assertThat(events).contains(SignalLoginViewDetailsScreenEvents.CopyRecoveryKeyClicked(RECOVERY_KEY))
   }
 
-  private fun setContent() {
+  @Test
+  fun `when the screen cannot reset the recovery key, the reset button is not shown`() {
+    setContent()
+
+    composeTestRule.onNodeWithTag(SignalLoginTestTags.VIEW_DETAILS_RESET_RECOVERY_KEY_BUTTON).assertIsNotDisplayed()
+  }
+
+  @Test
+  fun `when the reset recovery key button is clicked, ResetRecoveryKeyClicked is emitted`() {
+    setContent(showResetRecoveryKeyButton = true)
+
+    composeTestRule.onNodeWithTag(SignalLoginTestTags.VIEW_DETAILS_RESET_RECOVERY_KEY_BUTTON).performClick()
+
+    assertThat(events).contains(SignalLoginViewDetailsScreenEvents.ResetRecoveryKeyClicked)
+  }
+
+  @Test
+  fun `when the reset limit is still loading, a spinner replaces the reset button`() {
+    setContent(showResetRecoveryKeyButton = true, resetRecoveryKeyButtonLoading = true)
+
+    composeTestRule.onNodeWithTag(SignalLoginTestTags.VIEW_DETAILS_RESET_RECOVERY_KEY_SPINNER).assertIsDisplayed()
+    composeTestRule.onNodeWithTag(SignalLoginTestTags.VIEW_DETAILS_RESET_RECOVERY_KEY_BUTTON).assertIsNotDisplayed()
+  }
+
+  private fun setContent(showResetRecoveryKeyButton: Boolean = false, resetRecoveryKeyButtonLoading: Boolean = false) {
     composeTestRule.setContent {
       SignalTheme {
         SignalLoginViewDetailsScreen(
           state = SignalLoginViewDetailsState(
             accountKey = ACCOUNT_KEY,
-            recoveryKey = RECOVERY_KEY
+            recoveryKey = RECOVERY_KEY,
+            showResetRecoveryKeyButton = showResetRecoveryKeyButton,
+            resetRecoveryKeyButtonLoading = resetRecoveryKeyButtonLoading
           ),
           onEvent = { events += it }
         )

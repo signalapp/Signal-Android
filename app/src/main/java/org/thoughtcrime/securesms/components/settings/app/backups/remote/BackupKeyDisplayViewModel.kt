@@ -18,15 +18,12 @@ import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.StagedBackupKeyRotations
-import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.jobs.RestoreOptimizedMediaJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.net.SignalNetwork
 
 class BackupKeyDisplayViewModel : ViewModel(), BackupKeyCredentialManagerHandler {
 
   companion object {
-    private val TAG = Log.tag(BackupKeyDisplayViewModel::class.java)
+    private val TAG = Log.tag(BackupKeyDisplayViewModel::class)
   }
 
   private val internalUiState = MutableStateFlow(BackupKeyDisplayUiState())
@@ -40,8 +37,32 @@ class BackupKeyDisplayViewModel : ViewModel(), BackupKeyCredentialManagerHandler
     getKeyRotationLimit()
   }
 
+  /**
+   * Generates a replacement AEP, provided the user is still allowed to. Callers can be several screens removed from the
+   * checks that gate this, so everything is re-verified here rather than trusted.
+   */
   fun rotateBackupKey() {
     viewModelScope.launch {
+      if (internalUiState.value.rotationState != BackupKeyRotationState.NOT_STARTED) {
+        Log.w(TAG, "Rotation already underway. Ignoring.")
+        return@launch
+      }
+
+      val canRotateKey = BackupRepository.canRotateBackupKey()
+      val isOptimizedStorageEnabled = SignalStore.backup.optimizeStorage
+
+      if (!canRotateKey || isOptimizedStorageEnabled) {
+        Log.w(TAG, "Refusing to rotate the backup key. canRotateKey: $canRotateKey, isOptimizedStorageEnabled: $isOptimizedStorageEnabled")
+        internalUiState.update {
+          it.copy(
+            canRotateKey = canRotateKey,
+            isOptimizedStorageEnabled = isOptimizedStorageEnabled,
+            rotationState = BackupKeyRotationState.NOT_ALLOWED
+          )
+        }
+        return@launch
+      }
+
       internalUiState.update { it.copy(rotationState = BackupKeyRotationState.GENERATING_KEY) }
 
       val stagedKeyRotations = withContext(SignalDispatchers.Default) {
@@ -73,22 +94,20 @@ class BackupKeyDisplayViewModel : ViewModel(), BackupKeyCredentialManagerHandler
   }
 
   fun getKeyRotationLimit() {
-    viewModelScope.launch(SignalDispatchers.IO) {
-      SignalNetwork.archiveService
-        .getKeyRotationLimit()
-        .onRight { limit ->
-          internalUiState.update { it.copy(canRotateKey = limit.hasPermitsRemaining ?: true) }
-        }
-        .onLeft { error ->
-          Log.w(TAG, "Error while getting rotation limit: ${error::class.simpleName}. Default to allowing key rotations.")
-        }
+    viewModelScope.launch {
+      val canRotateKey = BackupRepository.canRotateBackupKey()
+      internalUiState.update { it.copy(canRotateKey = canRotateKey) }
     }
   }
 
+  /** The user dismissed the dialog explaining why we refused to rotate their key. */
+  fun onRotationRefusalAcknowledged() {
+    internalUiState.update { it.copy(rotationState = BackupKeyRotationState.NOT_STARTED) }
+  }
+
   fun turnOffOptimizedStorageAndDownloadMedia() {
-    SignalStore.backup.optimizeStorage = false
     // TODO - flag to notify when complete.
-    AppDependencies.jobManager.add(RestoreOptimizedMediaJob())
+    BackupRepository.turnOffOptimizedStorageAndDownloadMedia()
   }
 }
 
@@ -98,11 +117,15 @@ data class BackupKeyDisplayUiState(
   val isOptimizedStorageEnabled: Boolean = SignalStore.backup.optimizeStorage,
   val rotationState: BackupKeyRotationState = BackupKeyRotationState.NOT_STARTED,
   val stagedKeyRotations: StagedBackupKeyRotations? = null,
-  val canRotateKey: Boolean = true
+  val canRotateKey: Boolean = true,
+  val areBackupsEnabled: Boolean = SignalStore.backup.areBackupsEnabled
 )
 
 enum class BackupKeyRotationState {
   NOT_STARTED,
+
+  /** We refused to start a rotation because the user is out of permits or still has storage optimization on. */
+  NOT_ALLOWED,
   GENERATING_KEY,
   USER_VERIFICATION,
   COMMITTING_KEY,

@@ -97,7 +97,7 @@ class AccountSettingsFragment : ComposeFragment() {
           viewModel.onEvent(AccountSettingsEvent.SignalLoginDetailsAuthenticated)
         }
       }
-      AccountSettingsAction.NavigateToSignalLoginDetails -> findNavController().safeNavigate(R.id.action_accountSettingsFragment_to_signalLoginViewDetailsFragment)
+      AccountSettingsAction.NavigateToSignalLoginDetails -> findNavController().safeNavigate(R.id.action_accountSettingsFragment_to_settingsSignalLoginDetailsFragment)
       AccountSettingsAction.NavigateToTotpSetup -> findNavController().safeNavigate(R.id.action_accountSettingsFragment_to_authenticatorSetupFragment)
       is AccountSettingsAction.NavigateToRenameTotpApp -> {
         findNavController().safeNavigate(

@@ -24,7 +24,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.reactive.asFlow
 import kotlinx.coroutines.withContext
 import org.signal.core.util.bytes
-import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.logging.Log
 import org.signal.core.util.mebiBytes
 import org.signal.core.util.throttleLatest
@@ -49,7 +48,6 @@ import org.thoughtcrime.securesms.jobmanager.impl.BackupMessagesConstraint
 import org.thoughtcrime.securesms.jobs.BackupMessagesJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
-import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.TextSecurePreferences
@@ -282,18 +280,8 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
   }
 
   fun getKeyRotationLimit() {
-    viewModelScope.launch(SignalDispatchers.IO) {
-      val canRotateKey = SignalNetwork.archiveService
-        .getKeyRotationLimit()
-        .fold(
-          ifRight = { it.hasPermitsRemaining!! },
-          ifLeft = { error ->
-            Log.w(TAG, "Error while getting rotation limit: ${error::class.simpleName}. Default to allowing key rotations.")
-            true
-          }
-        )
-
-      if (!canRotateKey) {
+    viewModelScope.launch {
+      if (!BackupRepository.canRotateBackupKey()) {
         requestDialog(RemoteBackupsSettingsState.Dialog.KEY_ROTATION_LIMIT_REACHED)
       }
     }

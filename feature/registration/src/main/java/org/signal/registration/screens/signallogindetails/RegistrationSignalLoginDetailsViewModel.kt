@@ -27,13 +27,13 @@ import org.signal.signallogin.viewdetails.SignalLoginViewDetailsState
 /**
  * View model backing [SignalLoginViewDetailsScreen] within the registration flow.
  */
-class SignalLoginViewDetailsViewModel(
+class RegistrationSignalLoginDetailsViewModel(
   parentState: StateFlow<RegistrationFlowState>,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit
 ) : EventDrivenViewModel<SignalLoginViewDetailsScreenEvents>(TAG) {
 
   companion object {
-    private val TAG = Log.tag(SignalLoginViewDetailsViewModel::class)
+    private val TAG = Log.tag(RegistrationSignalLoginDetailsViewModel::class)
   }
 
   private val _state = MutableStateFlow(
@@ -44,8 +44,8 @@ class SignalLoginViewDetailsViewModel(
   )
   val state: StateFlow<SignalLoginViewDetailsState> = _state.asStateFlow()
 
-  private val _actions = Channel<SignalLoginViewDetailsScreenActions>(Channel.BUFFERED)
-  val actions: Flow<SignalLoginViewDetailsScreenActions> = _actions.receiveAsFlow()
+  private val _actions = Channel<RegistrationSignalLoginDetailsAction>(Channel.BUFFERED)
+  val actions: Flow<RegistrationSignalLoginDetailsAction> = _actions.receiveAsFlow()
 
   init {
     _state
@@ -65,19 +65,23 @@ class SignalLoginViewDetailsViewModel(
       }
 
       is SignalLoginViewDetailsScreenEvents.SaveToPasswordManagerClicked -> {
-        _actions.trySend(SignalLoginViewDetailsScreenActions.LaunchSaveToPasswordManager)
+        _actions.trySend(RegistrationSignalLoginDetailsAction.LaunchSaveToPasswordManager)
       }
 
       is SignalLoginViewDetailsScreenEvents.SaveAsPdfClicked -> {
-        _actions.trySend(SignalLoginViewDetailsScreenActions.LaunchSaveAsPdf)
+        _actions.trySend(RegistrationSignalLoginDetailsAction.LaunchSaveAsPdf)
+      }
+
+      is SignalLoginViewDetailsScreenEvents.ResetRecoveryKeyClicked -> {
+        Log.w(TAG, "Recovery key resets aren't offered during registration.")
       }
 
       is SignalLoginViewDetailsScreenEvents.CopyAccountIdClicked -> {
-        _actions.trySend(SignalLoginViewDetailsScreenActions.CopyTextToClipboard(event.aci))
+        _actions.trySend(RegistrationSignalLoginDetailsAction.CopyTextToClipboard(event.aci))
       }
 
       is SignalLoginViewDetailsScreenEvents.CopyRecoveryKeyClicked -> {
-        _actions.trySend(SignalLoginViewDetailsScreenActions.CopyTextToClipboard(event.aep))
+        _actions.trySend(RegistrationSignalLoginDetailsAction.CopyTextToClipboard(event.aep))
       }
     }
   }

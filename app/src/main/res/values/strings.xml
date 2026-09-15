@@ -9598,5 +9598,16 @@
     <!-- Subject line of an email invitation to Signal -->
     <string name="SharedContactDetailsScreen__join_me_on_signal">Join me on Signal</string>
 
+    <!-- Title of the bottom sheet that confirms the user wants a brand new recovery key. -->
+    <string name="ResetRecoveryKeyBottomSheet__reset_your_recovery_key">Reset your recovery key</string>
+    <!-- First paragraph of the bottom sheet body, explaining what a reset does. -->
+    <string name="ResetRecoveryKeyBottomSheet__resetting_your_recovery_key_will_create_a_new_key">Resetting your recovery key will create a new key for your Signal Login. This is only necessary if someone else knows your key.</string>
+    <!-- Second paragraph of the bottom sheet body, explaining what a reset means for backups. -->
+    <string name="ResetRecoveryKeyBottomSheet__if_backups_are_enabled_you_will_have_to_re_upload">If backups are enabled you will have to re-upload your backup, including media. If you are using \"Optimize Signal storage\" you will have to download offloaded media first.</string>
+    <!-- Bottom sheet action that continues on to reset the recovery key. -->
+    <string name="ResetRecoveryKeyBottomSheet__continue">Continue</string>
+    <!-- Dialog body shown when the recovery key change limit is exhausted and the user does not have backups enabled. -->
+    <string name="BackupKeyRotationDialogs__limit_exceeded_body_no_backups">You\'ve exhausted the number of new keys you can create. You will be able to create a new recovery key in 7 days.</string>
+
     <!-- EOF -->
 </resources>

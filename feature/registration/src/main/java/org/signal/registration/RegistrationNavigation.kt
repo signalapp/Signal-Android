@@ -130,8 +130,8 @@ import org.signal.registration.screens.signallogincredentials.SignalLoginCredent
 import org.signal.registration.screens.signallogincredentials.SignalLoginCredentialEntryScreenEvents
 import org.signal.registration.screens.signallogincredentials.SignalLoginCredentialEntryViewModel
 import org.signal.registration.screens.signallogincredentials.SignalLoginManualSaveConfirmationViewModel
-import org.signal.registration.screens.signallogindetails.SignalLoginViewDetailsScreenActions
-import org.signal.registration.screens.signallogindetails.SignalLoginViewDetailsViewModel
+import org.signal.registration.screens.signallogindetails.RegistrationSignalLoginDetailsAction
+import org.signal.registration.screens.signallogindetails.RegistrationSignalLoginDetailsViewModel
 import org.signal.registration.screens.signallogininfo.SignalLoginInfoScreen
 import org.signal.registration.screens.signallogininfo.SignalLoginInfoScreenActions
 import org.signal.registration.screens.signallogininfo.SignalLoginInfoScreenEvents
@@ -820,8 +820,8 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
   entry<RegistrationRoute.SignalLoginViewDetails> {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
-    val viewModel: SignalLoginViewDetailsViewModel = viewModel {
-      SignalLoginViewDetailsViewModel(
+    val viewModel: RegistrationSignalLoginDetailsViewModel = viewModel {
+      RegistrationSignalLoginDetailsViewModel(
         parentState = registrationViewModel.state,
         parentEventEmitter = registrationViewModel::onEvent
       )
@@ -841,7 +841,7 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
 
     CollectActions(viewModel.actions) { action ->
       when (action) {
-        SignalLoginViewDetailsScreenActions.LaunchSaveToPasswordManager -> {
+        RegistrationSignalLoginDetailsAction.LaunchSaveToPasswordManager -> {
           scope.launch {
             SignalCredentialManager.saveCredential(
               activityContext = context,
@@ -851,9 +851,9 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
           }
         }
 
-        SignalLoginViewDetailsScreenActions.LaunchSaveAsPdf -> savePdfLauncher.launch(SignalLoginPdfRenderer.suggestedFileName(context))
+        RegistrationSignalLoginDetailsAction.LaunchSaveAsPdf -> savePdfLauncher.launch(SignalLoginPdfRenderer.suggestedFileName(context))
 
-        is SignalLoginViewDetailsScreenActions.CopyTextToClipboard -> Util.copyToClipboardSensitive(context, action.text)
+        is RegistrationSignalLoginDetailsAction.CopyTextToClipboard -> Util.copyToClipboardSensitive(context, action.text)
       }
     }
 

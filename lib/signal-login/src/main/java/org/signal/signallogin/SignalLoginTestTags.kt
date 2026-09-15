@@ -17,6 +17,8 @@ object SignalLoginTestTags {
   const val VIEW_DETAILS_SCREEN = "signal_login_view_details_screen"
   const val VIEW_DETAILS_SAVE_TO_PASSWORD_MANAGER_BUTTON = "signal_login_view_details_save_to_password_manager_button"
   const val VIEW_DETAILS_SAVE_AS_PDF_BUTTON = "signal_login_view_details_save_as_pdf_button"
+  const val VIEW_DETAILS_RESET_RECOVERY_KEY_BUTTON = "signal_login_view_details_reset_recovery_key_button"
+  const val VIEW_DETAILS_RESET_RECOVERY_KEY_SPINNER = "signal_login_view_details_reset_recovery_key_spinner"
 
   const val KEY_DETAILS_ACCOUNT_ID_BLOCK = "signal_login_key_details_account_id_block"
   const val KEY_DETAILS_RECOVERY_KEY_BLOCK = "signal_login_key_details_recovery_key_block"

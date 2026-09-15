@@ -7,6 +7,7 @@ package org.signal.registration.screens.signallogindetails
 
 import assertk.assertThat
 import assertk.assertions.containsExactly
+import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -28,16 +29,16 @@ import org.signal.signallogin.viewdetails.SignalLoginViewDetailsScreenEvents
 import java.util.UUID
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class SignalLoginViewDetailsViewModelTest {
+class RegistrationSignalLoginDetailsViewModelTest {
 
   private val testDispatcher = UnconfinedTestDispatcher()
 
-  private lateinit var viewModel: SignalLoginViewDetailsViewModel
+  private lateinit var viewModel: RegistrationSignalLoginDetailsViewModel
 
   @Before
   fun setup() {
     Dispatchers.setMain(testDispatcher)
-    viewModel = SignalLoginViewDetailsViewModel(
+    viewModel = RegistrationSignalLoginDetailsViewModel(
       parentState = MutableStateFlow(RegistrationFlowState()),
       parentEventEmitter = {}
     )
@@ -53,7 +54,7 @@ class SignalLoginViewDetailsViewModelTest {
     val aci = ACI.from(UUID.fromString("a6b28482-2e32-83d0-7f23-91360a4c2b91"))
     val aep = AccountEntropyPool.generate()
 
-    val viewModel = SignalLoginViewDetailsViewModel(
+    val viewModel = RegistrationSignalLoginDetailsViewModel(
       parentState = MutableStateFlow(RegistrationFlowState(aci = aci, accountEntropyPool = aep)),
       parentEventEmitter = {}
     )
@@ -73,42 +74,52 @@ class SignalLoginViewDetailsViewModelTest {
 
   @Test
   fun `SaveToPasswordManagerClicked launches the save to password manager flow`() = runTest(testDispatcher) {
-    val actions = mutableListOf<SignalLoginViewDetailsScreenActions>()
+    val actions = mutableListOf<RegistrationSignalLoginDetailsAction>()
     backgroundScope.launch { viewModel.actions.toList(actions) }
 
     viewModel.onEvent(SignalLoginViewDetailsScreenEvents.SaveToPasswordManagerClicked)
 
-    assertThat(actions).containsExactly(SignalLoginViewDetailsScreenActions.LaunchSaveToPasswordManager)
+    assertThat(actions).containsExactly(RegistrationSignalLoginDetailsAction.LaunchSaveToPasswordManager)
   }
 
   @Test
   fun `SaveAsPdfClicked launches the save as PDF flow`() = runTest(testDispatcher) {
-    val actions = mutableListOf<SignalLoginViewDetailsScreenActions>()
+    val actions = mutableListOf<RegistrationSignalLoginDetailsAction>()
     backgroundScope.launch { viewModel.actions.toList(actions) }
 
     viewModel.onEvent(SignalLoginViewDetailsScreenEvents.SaveAsPdfClicked)
 
-    assertThat(actions).containsExactly(SignalLoginViewDetailsScreenActions.LaunchSaveAsPdf)
+    assertThat(actions).containsExactly(RegistrationSignalLoginDetailsAction.LaunchSaveAsPdf)
+  }
+
+  @Test
+  fun `ResetRecoveryKeyClicked produces no action`() = runTest(testDispatcher) {
+    val actions = mutableListOf<RegistrationSignalLoginDetailsAction>()
+    backgroundScope.launch { viewModel.actions.toList(actions) }
+
+    viewModel.onEvent(SignalLoginViewDetailsScreenEvents.ResetRecoveryKeyClicked)
+
+    assertThat(actions).isEmpty()
   }
 
   @Test
   fun `CopyAccountIdClicked copies the account key to the clipboard`() = runTest(testDispatcher) {
-    val actions = mutableListOf<SignalLoginViewDetailsScreenActions>()
+    val actions = mutableListOf<RegistrationSignalLoginDetailsAction>()
     backgroundScope.launch { viewModel.actions.toList(actions) }
 
     viewModel.onEvent(SignalLoginViewDetailsScreenEvents.CopyAccountIdClicked("A6B28482-2E32-83D0-7F23-91360A4C2B91"))
 
-    assertThat(actions).containsExactly(SignalLoginViewDetailsScreenActions.CopyTextToClipboard("A6B28482-2E32-83D0-7F23-91360A4C2B91"))
+    assertThat(actions).containsExactly(RegistrationSignalLoginDetailsAction.CopyTextToClipboard("A6B28482-2E32-83D0-7F23-91360A4C2B91"))
   }
 
   @Test
   fun `CopyRecoveryKeyClicked copies the recovery key to the clipboard`() = runTest(testDispatcher) {
     val recoveryKey = AccountEntropyPool.generate().displayValue
-    val actions = mutableListOf<SignalLoginViewDetailsScreenActions>()
+    val actions = mutableListOf<RegistrationSignalLoginDetailsAction>()
     backgroundScope.launch { viewModel.actions.toList(actions) }
 
     viewModel.onEvent(SignalLoginViewDetailsScreenEvents.CopyRecoveryKeyClicked(recoveryKey))
 
-    assertThat(actions).containsExactly(SignalLoginViewDetailsScreenActions.CopyTextToClipboard(recoveryKey))
+    assertThat(actions).containsExactly(RegistrationSignalLoginDetailsAction.CopyTextToClipboard(recoveryKey))
   }
 }

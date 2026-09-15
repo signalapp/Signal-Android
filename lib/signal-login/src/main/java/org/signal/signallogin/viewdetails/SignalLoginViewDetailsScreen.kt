@@ -7,6 +7,7 @@ package org.signal.signallogin.viewdetails
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -20,8 +21,10 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -101,7 +104,11 @@ fun SignalLoginViewDetailsScreen(
         )
       }
 
-      Footer(onEvent = onEvent)
+      Footer(
+        showResetRecoveryKeyButton = state.showResetRecoveryKeyButton,
+        resetRecoveryKeyButtonLoading = state.resetRecoveryKeyButtonLoading,
+        onEvent = onEvent
+      )
     }
   }
 }
@@ -138,7 +145,11 @@ private fun MiniCard(modifier: Modifier = Modifier) {
 }
 
 @Composable
-private fun Footer(onEvent: (SignalLoginViewDetailsScreenEvents) -> Unit) {
+private fun Footer(
+  showResetRecoveryKeyButton: Boolean,
+  resetRecoveryKeyButtonLoading: Boolean,
+  onEvent: (SignalLoginViewDetailsScreenEvents) -> Unit
+) {
   Column(
     horizontalAlignment = Alignment.CenterHorizontally,
     verticalArrangement = Arrangement.spacedBy(16.dp),
@@ -173,6 +184,32 @@ private fun Footer(onEvent: (SignalLoginViewDetailsScreenEvents) -> Unit) {
     ) {
       Text(stringResource(R.string.SignalLoginViewDetailsScreen__save_as_pdf))
     }
+
+    if (showResetRecoveryKeyButton) {
+      if (resetRecoveryKeyButtonLoading) {
+        Box(
+          contentAlignment = Alignment.Center,
+          modifier = Modifier
+            .height(ButtonDefaults.MinHeight)
+            .testTag(SignalLoginTestTags.VIEW_DETAILS_RESET_RECOVERY_KEY_SPINNER)
+        ) {
+          CircularProgressIndicator(
+            strokeWidth = 3.dp,
+            modifier = Modifier.size(24.dp)
+          )
+        }
+      } else {
+        TextButton(
+          onClick = { onEvent(SignalLoginViewDetailsScreenEvents.ResetRecoveryKeyClicked) },
+          modifier = Modifier
+            .widthIn(max = BUTTON_MAX_WIDTH)
+            .fillMaxWidth()
+            .testTag(SignalLoginTestTags.VIEW_DETAILS_RESET_RECOVERY_KEY_BUTTON)
+        ) {
+          Text(stringResource(R.string.SignalLoginViewDetailsScreen__reset_recovery_key))
+        }
+      }
+    }
   }
 }
 
@@ -184,6 +221,37 @@ private fun SignalLoginViewDetailsScreenPreview() {
       state = SignalLoginViewDetailsState(
         accountKey = "A6B28482-2E32-83D0-7F23-91360A4C2B91",
         recoveryKey = "UY38JH2778HJJHJ8LK19GA61S672JSJ=89R=23S6A578=9BAP92J2YH5T326VV7T"
+      ),
+      onEvent = {}
+    )
+  }
+}
+
+@DayNightPreviews
+@Composable
+private fun SignalLoginViewDetailsScreenWithResetPreview() {
+  Previews.Preview {
+    SignalLoginViewDetailsScreen(
+      state = SignalLoginViewDetailsState(
+        accountKey = "A6B28482-2E32-83D0-7F23-91360A4C2B91",
+        recoveryKey = "UY38JH2778HJJHJ8LK19GA61S672JSJ=89R=23S6A578=9BAP92J2YH5T326VV7T",
+        showResetRecoveryKeyButton = true
+      ),
+      onEvent = {}
+    )
+  }
+}
+
+@DayNightPreviews
+@Composable
+private fun SignalLoginViewDetailsScreenWithResetLoadingPreview() {
+  Previews.Preview {
+    SignalLoginViewDetailsScreen(
+      state = SignalLoginViewDetailsState(
+        accountKey = "A6B28482-2E32-83D0-7F23-91360A4C2B91",
+        recoveryKey = "UY38JH2778HJJHJ8LK19GA61S672JSJ=89R=23S6A578=9BAP92J2YH5T326VV7T",
+        showResetRecoveryKeyButton = true,
+        resetRecoveryKeyButtonLoading = true
       ),
       onEvent = {}
     )

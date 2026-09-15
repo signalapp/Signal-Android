@@ -204,6 +204,32 @@ object BackupRepository {
   }
 
   /**
+   * Whether the user has any key rotation permits left. If the limit can't be fetched, we assume they do.
+   */
+  suspend fun canRotateBackupKey(): Boolean {
+    return withContext(SignalDispatchers.IO) {
+      archiveService
+        .getKeyRotationLimit()
+        .fold(
+          ifRight = { it.hasPermitsRemaining ?: true },
+          ifLeft = { error ->
+            Log.w(TAG, "Error while getting rotation limit: ${error::class.simpleName}. Default to allowing key rotations.")
+            true
+          }
+        )
+    }
+  }
+
+  /**
+   * Turns off storage optimization and starts pulling down everything that was offloaded. Required before the user can
+   * rotate their AEP.
+   */
+  fun turnOffOptimizedStorageAndDownloadMedia() {
+    SignalStore.backup.optimizeStorage = false
+    RestoreOptimizedMediaJob.enqueue()
+  }
+
+  /**
    * Saves the AEP to the local storage and kicks off a backup upload.
    */
   suspend fun commitAEPKeyRotation(stagedKeyRotations: StagedBackupKeyRotations) {

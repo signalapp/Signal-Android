@@ -46,7 +46,6 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.DeletionState
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.components.settings.app.account.signallogin.SignalLoginViewDetailsAction
-import org.thoughtcrime.securesms.components.settings.app.account.signallogin.SignalLoginViewDetailsViewModel
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentCheckoutDelegate
 import org.thoughtcrime.securesms.compose.Nav
 import org.thoughtcrime.securesms.database.InAppPaymentTable
@@ -84,13 +83,13 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
     )
   }
 
-  private val signalLoginViewDetailsViewModel: SignalLoginViewDetailsViewModel by viewModels()
+  private val signalLoginDetailsViewModel: MessageBackupsSignalLoginDetailsViewModel by viewModels()
 
   private val savePdfLauncher = registerForActivityResult(ActivityResultContracts.CreateDocument(PDF_MIME_TYPE)) { uri: Uri? ->
     if (uri != null) {
       val context = requireContext().applicationContext
       lifecycleScope.launch {
-        val result = SignalLoginPdfRenderer.renderTo(context, uri, signalLoginViewDetailsViewModel.state.value.accountKey, signalLoginViewDetailsViewModel.state.value.recoveryKeyGroups)
+        val result = SignalLoginPdfRenderer.renderTo(context, uri, signalLoginDetailsViewModel.state.value.accountKey, signalLoginDetailsViewModel.state.value.recoveryKeyGroups)
         if (result is Result.Failure) {
           Toast.makeText(context, result.failure.userMessageRes, Toast.LENGTH_LONG).show()
         }
@@ -245,13 +244,13 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
       }
 
       composable(route = MessageBackupsStage.Route.SIGNAL_LOGIN_VIEW_DETAILS.name) {
-        val signalLoginState by signalLoginViewDetailsViewModel.state.collectAsStateWithLifecycle()
+        val signalLoginState by signalLoginDetailsViewModel.state.collectAsStateWithLifecycle()
 
-        CollectActions(signalLoginViewDetailsViewModel.actions) { action -> handleSignalLoginViewDetailsAction(action) }
+        CollectActions(signalLoginDetailsViewModel.actions) { action -> handleSignalLoginViewDetailsAction(action) }
 
         SignalLoginViewDetailsScreen(
           state = signalLoginState,
-          onEvent = signalLoginViewDetailsViewModel::onEvent
+          onEvent = signalLoginDetailsViewModel::onEvent
         )
       }
 
@@ -323,15 +322,15 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
     }
   }
 
-  private fun handleSignalLoginViewDetailsAction(action: SignalLoginViewDetailsAction) {
+  private fun handleSignalLoginViewDetailsAction(action: SignalLoginViewDetailsAction.Shared) {
     when (action) {
       SignalLoginViewDetailsAction.NavigateBack -> viewModel.goToPreviousStage()
       SignalLoginViewDetailsAction.LaunchSaveToPasswordManager -> {
         lifecycleScope.launch {
           SignalCredentialManager.saveCredential(
             activityContext = requireActivity(),
-            username = signalLoginViewDetailsViewModel.state.value.accountKey,
-            password = signalLoginViewDetailsViewModel.state.value.recoveryKey
+            username = signalLoginDetailsViewModel.state.value.accountKey,
+            password = signalLoginDetailsViewModel.state.value.recoveryKey
           )
         }
       }
