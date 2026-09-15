@@ -219,7 +219,6 @@ fun MessageBackupsKeyRecordScreen(
   var displayConfirmKey by remember { mutableStateOf(false) }
   if (displayConfirmKey) {
     val context = LocalContext.current
-    val credentialId = stringResource(R.string.MessageBackupsKeyRecordScreen__backup_key_password_manager_id)
     val successMessage = stringResource(R.string.MessageBackupsKeyRecordScreen__recover_key_confirmed)
     ModalBottomSheet(
       sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true),
@@ -229,7 +228,7 @@ fun MessageBackupsKeyRecordScreen(
       ConfirmRecoveryKeySheet(
         onConfirm = {
           coroutineScope.launch {
-            val retrieved = getKeyFromCredentialManager(context, credentialId)
+            val retrieved = getKeyFromCredentialManager(context)
             if (retrieved == backupKey) {
               Toast.makeText(context, successMessage, Toast.LENGTH_SHORT).show()
               (mode as? MessageBackupsKeyRecordMode.Passkey)?.onSaveSuccessful()
@@ -764,16 +763,15 @@ private suspend fun saveKeyToCredentialManager(
 ): CredentialManagerResult {
   return SignalCredentialManager.saveCredential(
     activityContext = activityContext,
-    username = activityContext.getString(R.string.MessageBackupsKeyRecordScreen__backup_key_password_manager_id),
+    username = SignalStore.account.requireAci().toString().uppercase(),
     password = backupKey
   )
 }
 
 private suspend fun getKeyFromCredentialManager(
-  @UiContext activityContext: Context,
-  id: String
+  @UiContext activityContext: Context
 ): String? {
-  return SignalCredentialManager.getCredential(activityContext, id)?.password
+  return SignalCredentialManager.getCredential(activityContext, SignalStore.account.requireAci().toString().uppercase())?.password
 }
 
 @DayNightPreviews

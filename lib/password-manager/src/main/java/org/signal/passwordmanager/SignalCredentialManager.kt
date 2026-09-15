@@ -56,6 +56,9 @@ object SignalCredentialManager {
   /**
    * Prompts the user to save a password credential to their password manager. Must be called with
    * an Activity context so the Credential Manager UI can be shown.
+   *
+   * [username] is always the local ACI, formatted the way it is displayed, so that everything we store
+   * is filed under the same account.
    */
   suspend fun saveCredential(
     @UiContext activityContext: Context,
