@@ -4,7 +4,7 @@
     <!-- Tag shown beside the title of Signal Login screens, marking the feature as unfinished. Keep it short. -->
     <string name="SignalLoginBeta__beta">BÉITE</string>
     <!-- Disclaimer shown on Signal Login screens, warning that the feature is still changing. -->
-    <string name="SignalLoginBeta__this_is_a_beta_feature_that_will_be_updated">This is a Beta feature that will be updated on an ongoing basis.</string>
+    <string name="SignalLoginBeta__this_is_a_beta_feature_that_will_be_updated">Is gné Bhéite é seo a ndéanfar nuashonrú air ar bhonn leanúnach.</string>
 
     <!-- Signal Login credential card -->
     <!-- Label for the account portion of the Signal Login on the credential card. -->
@@ -24,13 +24,15 @@
     <!-- Section header above the recovery key. -->
     <string name="SignalLoginKeyDetails__recovery_key">Eochair athshlánaithe</string>
     <!-- Content description for the button that copies the account key to the clipboard. -->
-    <string name="SignalLoginKeyDetails__copy_account_id">Copy account ID</string>
+    <string name="SignalLoginKeyDetails__copy_account_id">Cóipeáil aitheantas an chuntais</string>
     <!-- Content description for the button that copies the recovery key to the clipboard. -->
-    <string name="SignalLoginKeyDetails__copy_recovery_key">Copy recovery key</string>
+    <string name="SignalLoginKeyDetails__copy_recovery_key">Cóipeáil an eochair athshlánaithe</string>
     <!-- Action button that stores the Signal Login in the device password manager. -->
     <string name="SignalLoginViewDetailsScreen__save_to_password_manager">Sábháil chuig an mbainisteoir pasfhocal</string>
     <!-- Action button that saves the Signal Login as a PDF. -->
     <string name="SignalLoginViewDetailsScreen__save_as_pdf">Sábháil mar PDF</string>
+    <!-- Action button that starts the flow to replace the recovery key with a newly-generated one. -->
+    <string name="SignalLoginViewDetailsScreen__reset_recovery_key">Reset recovery key</string>
     <!-- Suggested file name prefilled in the system save dialog when saving the Signal Login as a PDF. Keep the .pdf extension. -->
     <string name="SignalLoginViewDetailsScreen__signal_login_pdf">Signal Login.pdf</string>
     <!-- Toast shown when saving the Signal Login PDF fails. -->
@@ -42,7 +44,7 @@
     <!-- Title at the top of the PDF that holds the user\'s Signal Login. -->
     <string name="SignalLoginPdf__your_signal_login">Signal Login agat</string>
     <!-- Explainer below the title of the PDF that holds the user\'s Signal Login. -->
-    <string name="SignalLoginPdf__store_this_in_a_safe_place">Store this in a safe place, your login info is required to recover your account and data. Never share it with anyone.</string>
+    <string name="SignalLoginPdf__store_this_in_a_safe_place">Stóráil in áit shábháilte é; éilítear d\'fhaisnéis logáil isteach le do chuntas agus do shonraí a athshlánú. Ná comhroinn le duine ar bith choíche é. Ná comhroinn le duine ar bith choíche é.</string>
     <!-- Section header above the account key in the PDF. -->
     <string name="SignalLoginPdf__account_id">ID an chuntais</string>
     <!-- Section header above the recovery key in the PDF. -->

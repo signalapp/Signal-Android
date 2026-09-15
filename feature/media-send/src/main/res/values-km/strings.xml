@@ -133,12 +133,6 @@
   <!-- Toasted when user device does not support video recording -->
   <string name="CameraFragment__video_recording_is_not_supported_on_your_device">ការថតវីដេអូមិនអាចធ្វើបាននៅលើឧបករណ៍របស់អ្នកទេ</string>
 
-  <!-- CameraXFragment -->
-  <string name="CameraXFragment_tap_for_photo_hold_for_video">ចុចសម្រាប់រូបភាព សង្កត់សម្រាប់វីដេអូ</string>
-  <!-- Accessibility content description to describe the capture button when taking an image/video -->
-  <string name="CameraXFragment_capture_description">ថត</string>
-  <string name="CameraXFragment_change_camera_description">ប្តូរកាមេរ៉ា</string>
-  <string name="CameraXFragment_open_gallery_description">បើកវិចិត្រសាល</string>
   <!-- Button text asking for access to camera permissions -->
   <string name="CameraXFragment_allow_access">អនុញ្ញាតឱ្យចូលប្រើ</string>
   <!-- Dialog title asking users for camera and microphone permission -->
@@ -173,16 +167,6 @@
   <string name="CameraXFragment_photo_capture_failed">មិនអាចថតរូបបានទេ។ សូមព្យាយាមម្តងទៀត។</string>
   <!-- Error message shown when we try to take a photo, but fail when trying to process it (convert it into something the user can see). -->
   <string name="CameraXFragment_photo_processing_failed">មិនអាចដំណើរការរូបថតបានទេ។ សូមព្យាយាមម្តងទៀត។</string>
-  <!-- Accessibility label for the switch camera button -->
-  <string name="CameraXFragment_switch_camera">ប្តូរកាមេរ៉ា</string>
-  <!-- Accessibility label for flash button when flash is off -->
-  <string name="CameraXFragment_flash_off">បិទពិល</string>
-  <!-- Accessibility label for flash button when flash is on -->
-  <string name="CameraXFragment_flash_on">បើកពិល</string>
-  <!-- Accessibility label for flash button when flash is set to auto -->
-  <string name="CameraXFragment_flash_auto">បើកពិលដោយស្វ័យប្រវត្តិ</string>
-  <!-- Accessibility label for the send button in media selection -->
-  <string name="CameraXFragment_send">ផ្ញើ</string>
   <!-- Label shown below the elapsed time while a video recording is paused -->
   <string name="CameraXFragment_paused">បានផ្អាក</string>
   <!-- Displayed in a permissions dialog when the user has denied access to hardware for image and video capture. -->

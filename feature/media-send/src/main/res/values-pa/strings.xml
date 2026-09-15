@@ -133,12 +133,6 @@
   <!-- Toasted when user device does not support video recording -->
   <string name="CameraFragment__video_recording_is_not_supported_on_your_device">ਤੁਹਾਡੇ ਡਿਵਾਈਸ ਵਿੱਚ ਵੀਡੀਓ ਰਿਕਾਰਡਿੰਗ ਕੰਮ ਨਹੀਂ ਕਰਦੀ ਹੈ</string>
 
-  <!-- CameraXFragment -->
-  <string name="CameraXFragment_tap_for_photo_hold_for_video">ਫ਼ੋਟੋ ਖਿੱਚਣ ਲਈ ਟੈਪ ਕਰੋ, ਵੀਡੀਓ ਬਣਾਉਣ ਲਈ ਦਬਾ ਕੇ ਰੱਖੋ</string>
-  <!-- Accessibility content description to describe the capture button when taking an image/video -->
-  <string name="CameraXFragment_capture_description">ਤਸਵੀਰ ਖਿੱਚੋ</string>
-  <string name="CameraXFragment_change_camera_description">ਕੈਮਰਾ ਬਦਲੋ</string>
-  <string name="CameraXFragment_open_gallery_description">ਗੈਲਰੀ ਖੋਲ੍ਹੋ</string>
   <!-- Button text asking for access to camera permissions -->
   <string name="CameraXFragment_allow_access">ਪਹੁੰਚ ਕਰਨ ਦੀ ਇਜਾਜ਼ਤ ਦਿਓ</string>
   <!-- Dialog title asking users for camera and microphone permission -->
@@ -173,16 +167,6 @@
   <string name="CameraXFragment_photo_capture_failed">ਫ਼ੋਟੋ ਕੈਪਚਰ ਕਰਨਾ ਅਸਫਲ ਰਿਹਾ। ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
   <!-- Error message shown when we try to take a photo, but fail when trying to process it (convert it into something the user can see). -->
   <string name="CameraXFragment_photo_processing_failed">ਫ਼ੋਟੋ ਉੱਤੇ ਕਾਰਵਾਈ ਕਰਨਾ ਅਸਫਲ ਰਿਹਾ। ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
-  <!-- Accessibility label for the switch camera button -->
-  <string name="CameraXFragment_switch_camera">ਕੈਮਰਾ ਬਦਲੋ</string>
-  <!-- Accessibility label for flash button when flash is off -->
-  <string name="CameraXFragment_flash_off">ਫਲੈਸ਼ ਬੰਦ</string>
-  <!-- Accessibility label for flash button when flash is on -->
-  <string name="CameraXFragment_flash_on">ਫਲੈਸ਼ ਚਾਲੂ</string>
-  <!-- Accessibility label for flash button when flash is set to auto -->
-  <string name="CameraXFragment_flash_auto">ਫਲੈਸ਼ ਆਟੋ</string>
-  <!-- Accessibility label for the send button in media selection -->
-  <string name="CameraXFragment_send">ਭੇਜੋ</string>
   <!-- Label shown below the elapsed time while a video recording is paused -->
   <string name="CameraXFragment_paused">ਰੋਕਿਆ ਗਿਆ</string>
   <!-- Displayed in a permissions dialog when the user has denied access to hardware for image and video capture. -->

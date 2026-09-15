@@ -16,9 +16,7 @@
   <!-- Removed by excludeNonTranslatables <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string> -->
   <!-- Removed by excludeNonTranslatables <string name="google_pay_url" translatable="false">https://pay.google.com</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string> -->
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/5389476324250</string> -->
   <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
   <!-- Removed by excludeNonTranslatables <string name="pending_transfer_url" translatable="false">https://support.signal.org/hc/articles/360031949872#pending</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donate_faq_url" translatable="false">https://support.signal.org/hc/articles/360031949872#donate</string> -->
@@ -31,7 +29,6 @@
     <string name="yes">Oo</string>
     <string name="no">Hindi</string>
     <string name="delete">Burahin</string>
-    <string name="please_wait">Please wait…</string>
     <string name="save">I-save</string>
     <string name="note_to_self">Note to Self</string>
 
@@ -362,17 +359,11 @@
     <string name="ContactNameEditActivity_middle_name">Panggitnang Pangalan</string>
 
     <!-- ContactShareEditActivity -->
-    <!-- ContactShareEditActivity toolbar title -->
-    <string name="ContactShareEditActivity__send_contact">Ipadala ang contact</string>
     <string name="ContactShareEditActivity_type_home">Bahay</string>
     <string name="ContactShareEditActivity_type_mobile">Mobile</string>
     <string name="ContactShareEditActivity_type_work">Trabaho</string>
     <string name="ContactShareEditActivity_type_missing">Iba pa</string>
     <string name="ContactShareEditActivity_invalid_contact">Ang napiling kontak ay invalid</string>
-    <!-- Content description for name edit button on contact share edit activity -->
-    <string name="ContactShareEditActivity__edit_name">I-edit ang pangalan</string>
-    <!-- Content description for user avatar in edit activity -->
-    <string name="ContactShareEditActivity__avatar">Avatar</string>
 
     <!-- ConversationItem -->
     <string name="ConversationItem_error_not_sent_tap_for_details">Hindi na-send, i-tap para sa karagdagang detalye</string>
@@ -384,9 +375,6 @@
     <string name="ConversationItem_error_delete_failed">Failed ang pagbura, i-tap para sa iba pang detalye</string>
     <string name="ConversationItem_group_action_left">Umalis si %1$s sa grupo.</string>
     <string name="ConversationItem_send_paused">Naka-pause ang pag-send</string>
-    <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Fallback sa hindi naka-encrypt na SMS?</string>
-    <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Fallback sa hindi naka-encrypt na MMS?</string>
-    <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ang mensaheng ito ay <b>hindi</b> magiging encrypted dahil ang tatanggap ay hindi na gumagamit ng Signal.\n\nMagpadala ng hindi secure na mensahe?</string>
     <string name="ConversationItem_unable_to_open_media">Walang mahanap na app na makakapagbukas sa media na ito.</string>
     <string name="ConversationItem_copied_text">Kumopya ng %1$s</string>
     <string name="ConversationItem_from_s">mula kay %1$s</string>
@@ -448,17 +436,10 @@
     <string name="ConversationActivity_added_to_home_screen">Naidagdag sa home screen</string>
     <string name="ConversationActivity_calls_not_supported">Hindi suportado ang mga tawag</string>
     <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Mukhang hindi suportado ng device na ito ang mga pag-dial na aksyon.</string>
-    <string name="ConversationActivity_transport_insecure_sms">Hindi secure na SMS</string>
-    <!-- A title for the option to send an SMS with a placeholder to put the name of their SIM card -->
-    <string name="ConversationActivity_transport_insecure_sms_with_sim">Hindi secured ang SMS (%1$s)</string>
-    <string name="ConversationActivity_transport_insecure_mms">Hindi secure na MMS</string>
-    <!-- A title for the option to send an SMS with a placeholder to put the name of their SIM card -->
-    <string name="ConversationActivity_transport_signal">Signal message</string>
     <!-- The content description for button to send a message in a conversation -->
     <string name="ConversationActivity_send_message_content_description">Mag-send ng message</string>
     <string name="ConversationActivity_lets_switch_to_signal">Lumipat tayo sa Signal %1$s</string>
     <string name="ConversationActivity_specify_recipient">Pumili ng kontak</string>
-    <string name="ConversationActivity_attachment_exceeds_size_limits">Ang kalakip ay lampas sa limitasyon ng laki para sa uri ng mensahe na ipinapadala mo.</string>
     <string name="ConversationActivity_unable_to_record_audio">Hindi makapag-record ng audio!</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">Hindi ka maaaring mag-send ng messages sa group na ito dahil hindi ka na member.</string>
   <!-- Removed by excludeNonTranslatables <string name="DisabledInputView__incognito_mode" translatable="false">Incognito mode (Labs)</string> -->
@@ -482,15 +463,7 @@
     <string name="ConversationActivity_signal_needs_microphone_access_voice_message">Kailangan ng Signal ng access sa microphone para makapag-record ng voice message.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Kailangan ng Signal ang pahintulot sa Mikropono upang makapagpadala ng mensaheng audio, ngunit permanente itong ipinagbabawal. Pumunta sa app settings, piliin ang \"Mga Pahintulot\", at i-enable ang \"Mikropono\".</string>
 
-    <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Kailangan ng Signal ang pahintulot sa Mikropono at Camera upang matawagan si %1$s, ngunit ito ay permaneteng ipinagbabawal. Pumunta sa app settings, piliin ang \"Pahintulot\", at i-enable ang \"Mikropono\" at \"Camera\".</string>
-    <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Upang makakuha ng larawan at video, payagan ang Signal na gamitin ang camera.</string>
-    <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Kailangan ng Signal ang pahintulot sa Camera upang makakuha ng mga larawan at video, ngunit ito ay permaneteng ipinagbabawal. Pumunta sa app settings, piliin ang \"Pahintulot\", at i-enable ang \"Camera\".</string>
-    <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Kailangan ng Signal ang pahintulot sa Camera upang makakuha ng mga larawan o video</string>
-    <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">I-enable ang pahintulot sa mikropono upang makakuha ng mga video na may tunog.</string>
-    <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Kailangan ng Signal ng mga pahintulot sa mikropono upang makapag-record ng mga video.</string>
-
     <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
-    <string name="ConversationActivity_no">Hindi</string>
     <string name="ConversationActivity_search_position">%1$d sa %2$d</string>
     <string name="ConversationActivity_no_results">Walang resulta</string>
 
@@ -527,8 +500,6 @@
     <string name="ConversationActivity__this_person_is_no_longer_using_signal">Hindi na gumagamit ng Signal ang taong ito. I-invite siya sa Signal para mapanatili ang convo niyo rito.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">Imbitahan sa Signal</string>
-    <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
-    <string name="ConversationActivity__you_will_be_reminded_again_soon">I-re-remind ka ulit sa susunod tungkol dito.</string>
     <!-- Toast message shown when trying to record a voice message during an ongoing call -->
     <string name="ConversationFragment_cannot_record_voice_message_during_call">Hindi ka makakapag-record ng voice message habang tumatawag.</string>
 
@@ -544,15 +515,6 @@
     <plurals name="ConversationFragment_delete_selected_messages">
         <item quantity="one">Burahin ang piniling message?</item>
         <item quantity="other">Burahin ang mga piniling message?</item>
-    </plurals>
-    <string name="ConversationFragment_save_to_sd_card">I-save sa storage?</string>
-    <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-        <item quantity="one">Ma-access ng iba pang apps sa device mo ang media na ito sa storage kapag sinave mo ito.\n\nGusto mo bang magpatuloy?</item>
-        <item quantity="other">Ma-access ng iba pang apps sa device mo ang %1$d media sa storage kapag sinave mo ito.\n\nGusto mo bang magpatuloy?</item>
-    </plurals>
-    <plurals name="ConversationFragment_saving_n_attachments">
-        <item quantity="one">Sine-save ang attachment</item>
-        <item quantity="other">Sine-save ang %1$d attachments</item>
     </plurals>
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
         <item quantity="one">Sine-save ang attachment sa storage…</item>
@@ -586,12 +548,8 @@
         <item quantity="one">Makikita ng group member na may pinakabagong version ng Signal na binura mo ang message na ito.</item>
         <item quantity="other">Makikita ng group members na may pinakabagong versions ng Signal na binura mo ang message na ito.</item>
     </plurals>
-    <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
-    <string name="ConversationFragment_delete_on_this_device">Burahin sa device na ito</string>
     <!-- Dialog button for deleting one or more note-to-self messages that will be sync\'d to other devices -->
     <string name="ConversationFragment_delete">Burahin</string>
-    <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
-    <string name="ConversationFragment_delete_everywhere">Burahin sa lahat ng devices</string>
     <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Buburahin ang message na ito para sa lahat ng nasa chat. Makikita nila na nagbura ka ng message.</string>
     <string name="ConversationFragment_quoted_message_not_found">Ang orihinal na mensahe ay hindi mahanap</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Ang orihinal na mensahe ay wala na</string>
@@ -606,7 +564,6 @@
         <item quantity="one">%1$d group member ang may magkaparehong pangalan.</item>
         <item quantity="other">%1$d group members ang may magkaparehong pangalan.</item>
     </plurals>
-    <string name="ConversationFragment__tap_to_review">I-tap para ma-review</string>
     <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
     <string name="ConversationFragment__review_banner_body">May kaparehong pangalan sa contacts mo ang user na ito</string>
     <string name="ConversationFragment_contact_us">Kontakin kami</string>
@@ -658,8 +615,6 @@
     <string name="ConversationFragment_reported_as_spam_and_blocked">Iniulat bilang spam at hinarang na</string>
     <!-- Dialog message shown after accepting a message request and tapping on options from the conversation event -->
     <string name="ConversationFragment_you_accepted_a_message_request_from_s">Tinanggap mo ang message request mula kay %1$s. Kung nagkamali ka lang, maaari kang pumili ng isang aksyon sa ibaba.</string>
-    <!-- Text shown in conversation header when in a message request state and to carefully review the user -->
-    <string name="ConversationFragment_review_carefully">Suriing mabuti</string>
     <!-- Text shown in conversation header when in a message request state that the name is not verified -->
     <string name="ConversationFragment_name_not_verified">Hindi verified ang pangalan</string>
     <!-- Label for official chat pill shown in the Note to Self conversation header -->
@@ -763,8 +718,6 @@
     <string name="ProfileNameBottomSheet__group_names_on_signal">Ang %1$s ay pinili ng members ng group.</string>
     <!-- Bottom sheet text explaining that groups can impersonate organizations and to be cautious -->
     <string name="ProfileNameBottomSheet__be_cautious_of_groups">Mag-ingat sa groups na nagpapanggap bilang mga organisasyon at negosyo</string>
-    <!-- Bottom sheet text explaining that profile names of group members are not verified -->
-    <string name="ProfileNameBottomSheet__profile_names_in_groups">Ang profile names ng group members ay hindi verified</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">I-clear ang filter</string>
@@ -907,7 +860,6 @@
     <string name="ChooseBackupFragment__icon_content_description">I-restore mula sa backup icon</string>
     <string name="ChooseBackupFragment__choose_backup">Pumili ng backup</string>
     <string name="ChooseBackupFragment__learn_more">Matuto pa</string>
-    <string name="ChooseBackupFragment__no_file_browser_available">Walang available na file browser</string>
 
     <!-- RestoreBackupFragment -->
     <string name="RestoreBackupFragment__restore_complete">Restore complete</string>
@@ -928,41 +880,6 @@
     <string name="CreateBackupBottomSheet__depending_on_the_size">Depende sa size ng backup mo, maaari itong tumagal. Maaari mong gamitin ang iyong phone as usual habang isinasagawa ang backup.</string>
     <!-- Bottom sheet free message -->
     <string name="CreateBackupBottomSheet__free_tier">Idinadagdag ang media sa backup mo habang nagpapadala at tumatanggap ka ng messages.</string>
-
-    <!-- Headline text for a bottom sheet dialog shown when the restoration of the media backup fails. -->
-    <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">Hindi ma-restore ang media</string>
-    <!-- Help text for a bottom sheet dialog shown when the restoration of the media backup fails, displayed while the app is calculating the amount of disk space required. -->
-    <string name="RestoreMediaFailedBottomSheet__Your_device_does_not_have_enough_free_space_placeholder">Walang sapat na free space ang iyong device. Magbawas ng storage space para ma-restore ang iyong media.\n\nKapag pinili mo ang \"I-skip ang restore\" mabubura ang media sa backup mo sa susunod na pag-backup ng iyong device.</string>
-    <!-- Help text for a bottom sheet dialog shown when the restoration of the media backup fails, displayed once the app knows how much disk space is required. The placeholder is a filesize, such as "1.23 GB." -->
-    <string name="RestoreMediaFailedBottomSheet__Your_device_does_not_have_enough_free_space">Walang sapat na free space ang iyong device. Magbawas ng %1$s ng space para ma-restore ang iyong media.\n\nKapag pinili mo ang \"I-skip ang restore\" mabubura ang media sa backup mo sa susunod na pag-backup ng iyong device.</string>
-    <!-- Confirmation button to dismiss bottom sheet dialog without aborting the restoration process. -->
-    <string name="RestoreMediaFailedBottomSheet__Okay">OK</string>
-    <!-- Negative button on a bottom sheet dialog shown when the restoration of the media backup fails. This aborts the restoration process. -->
-    <string name="RestoreMediaFailedBottomSheet__Skip_restore">I-skip ang restore</string>
-    <!-- Accessibility content description for the "Backup Error" icon -->
-    <string name="RestoreMediaFailedBottomSheet__Backup_error_icon_content_description">Backup error icon</string>
-
-    <!-- Banner text that is displayed at the top of the app when trying to restore more media than the device\'s memory has space for. -->
-    <string name="RestoreMediaErrorBanner__Free_up_storage_space">Magbawas ng storage space para ma-restore ang iyong media.</string>
-    <!-- Banner text that is displayed at the top of the app when trying to restore more media than the device\'s memory has space for. The placeholder is a filesize, such as "1.23 GB." -->
-    <string name="RestoreMediaErrorBanner__Free_up_of_space">Magbawas ng %1$s ng space para ma-restore ang iyong media.</string>
-
-    <!-- Remote media restoration in-process status title. -->
-    <string name="RestoreMediaReminder__Restoring_media">Nire-restore ang media</string>
-    <!-- Remote media restoration in-process description. The first to placeholders are filesizes, such as "865 MB" and "2.3 GB". The final placeholder is a whole number representing the percentage progress. -->
-    <string name="RestoreMediaReminder__Progress_filesize">%1$s ng %2$s (%3$d%%)</string>
-    <!-- Remote media restoration paused status title. -->
-    <string name="RestoreMediaReminder__Restoring_media_paused">Naka-pause ang pagre-restore ng media</string>
-    <!-- Remote media restoration paused status description for when the restore is paused because unmetered connectivity, such as WiFi, is unavailable. -->
-    <string name="RestoreMediaReminder__Waiting_for_Wifi">Naghihintay ng WiFi…</string>
-    <!-- Remote media restoration paused status description for when the restore is paused because internet is unavailable. -->
-    <string name="RestoreMediaReminder__Waiting_for_internet_connection">Naghihintay ng Internet connection…</string>
-    <!-- Remote media restoration paused status description for when the device\'s battery is low -->
-    <string name="RestoreMediaReminder__low_battery">Low battery. I-charge ang device mo.</string>
-    <!-- Remote media restoration call to action when the device is out of space. The placeholder string is a file size, such as "1.23 GB". -->
-    <string name="RestoreMediaReminder__Free_up_space">Magbawas ng %1$s ng space para ma-restore ang iyong media.</string>
-    <!-- Button label to abort media restoration -->
-    <string name="RestoreMediaReminder__Skip_restore">I-skip ang restore</string>
 
     <!-- BackupsPreferenceFragment -->
     <string name="BackupsPreferenceFragment__chat_backups">Chat backups</string>
@@ -994,9 +911,6 @@
     <string name="CustomDefaultPreference_using_custom">Custom ang ginagamit: %1$s</string>
     <string name="CustomDefaultPreference_using_default">Default ang ginagamit: %1$s</string>
     <string name="CustomDefaultPreference_none">Wala</string>
-
-    <!-- AvatarSelectionBottomSheetDialogFragment -->
-    <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">Ang pag-view ng iyong gallery ay nangangailangan ng storage permission.</string>
 
     <!-- DateUtils -->
     <string name="DateUtils_just_now">Ngayon</string>
@@ -1094,10 +1008,6 @@
     <string name="LinkDeviceFragment__s_linked">Na-link ang \"%1$s\"</string>
     <!-- Progress dialog message indicating that a device is currently being linked with an account -->
     <string name="LinkDeviceFragment__linking_device">Nili-link ang device…</string>
-    <!-- Toast message shown after a device has been linked -->
-    <string name="LinkDeviceFragment__device_approved">Aprubado ang device</string>
-    <!-- Progress dialog message indicating that the list of linked devices is currently loading -->
-    <string name="LinkDeviceFragment__loading">Naglo-load…</string>
     <!-- Progress dialog message indicating that you are syncing messages to your linked device -->
     <string name="LinkDeviceFragment__syncing_messages">Sini-sync ang messages…</string>
     <!-- Text message shown when the user has no linked devices -->
@@ -1213,11 +1123,7 @@
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">Gusto mo bang i-unlink ang \"%1$s\"?</string>
     <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Sa pamamagitan ng pag-unlink sa device na ito, hindi na ito makakapagpadala o makakatanggap ng mga mensahe.</string>
-    <string name="DeviceListActivity_network_connection_failed">Nabigo ang koneksyon sa network</string>
-    <!-- Button label on an alert dialog. The dialog informs the user they have network issues. If pressed, we will retry the network request. -->
-    <string name="DeviceListActivity_try_again">Subukang muli</string>
     <string name="DeviceListActivity_unlinking_device">Ina-unlik ang device…</string>
-    <string name="DeviceListActivity_unlinking_device_no_ellipsis">Ina-unlink ang device</string>
     <string name="DeviceListActivity_network_failed">Nabigo ang network!</string>
 
     <!-- DeviceListItem -->
@@ -1313,22 +1219,6 @@
     <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
         <item quantity="one">Ang member na ito\'y tinanggal mula sa group at hindi na pwedeng mag-rejoin hanggang sa mag-upgrade siya:</item>
         <item quantity="other">Ang members na ito\'y tinanggal mula sa group at hindi na pwedeng mag-rejoin hanggang sa mag-upgrade sila:</item>
-    </plurals>
-
-    <!-- GroupsV1MigrationInitiationBottomSheetDialogFragment -->
-    <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Mag-upgrade sa New Group</string>
-    <string name="GroupsV1MigrationInitiation_upgrade_this_group">I-upgrade ang group na ito</string>
-    <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Ang Bagong Groups ay may features tulad ng @mentions at group admins, at magdadagdagan pa ito ng ibang features sa hinaharap.</string>
-    <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Iingatan ang lahat ng message history at media bago mangyari ang upgrade.</string>
-    <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Encountered a network error. Subukan ulit mamaya.</string>
-    <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Failed to upgrade.</string>
-    <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
-        <item quantity="one">Ang member na ito\'y kinakailangang mag-accept ng invite para maka-join ulit sa group na ito at hindi siya makakatanggap ng group messages hanggang i-accept niya ito.</item>
-        <item quantity="other">Ang members na ito\'y kinakailangang mag-accept ng invite para maka-join ulit sa group na ito at hindi sila makakatanggap ng group messages hanggang i-accept nila ito.</item>
-    </plurals>
-    <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
-        <item quantity="one">Ang member na ito\'y hindi kayang mag-join sa New Groups, at matatanggal mula sa group:</item>
-        <item quantity="other">Ang members na ito\'y hindi kayang mag-join sa New Groups, at matatanggal mula sa group:</item>
     </plurals>
 
     <!-- GroupsV1MigrationSuggestionsReminder -->
@@ -1459,7 +1349,7 @@
 
     <!-- Confirmation text when adding members to a group. %1$d is the number of members added. %2$s is the name of the group. -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="one">Gusto mo bang i-add si \"{2}\" sa \"%2$s\"?</item>
+        <item quantity="one">Gusto mo bang i-add si \"%2$s\" sa \"%1$d\"?</item>
         <item quantity="other">Gusto mo bang i-add ang %1$d members sa \"%2$s\"?</item>
     </plurals>
 
@@ -1486,8 +1376,6 @@
     <string name="AddGroupDetailsFragment__if_you_continue_to_the_group_s_your_changes_wont_be_saved">Kapag magpatuloy ka sa group \"%1$s\" hindi mase-save ang changes na ginawa mo.</string>
     <!-- Label for the button that confirms discarding the in-progress group and navigating to an existing group -->
     <string name="AddGroupDetailsFragment__discard">I-discard</string>
-    <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Pumili ka ng contact na hindi suportado ang Signal groups, kaya ang group na ito\'y magiging MMS. Ang custom MMS group names at photos ay magiging visible lang sa\'yo.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Pumili ka ng contact na hindi sinusuportahan ang Signal groups, kaya ang group na ito\'y magiging MMS. Ikaw lang ang makakakita ng custom MMS group names at photos. Malapit nang alisin ang pagsuporta sa MMS groups para makapag-focus sa encrypted messaging.</string>
 
@@ -1512,10 +1400,6 @@
     <string name="ManageGroupActivity_legacy_group">Legacy Group</string>
     <!-- This is placed inside a "Learn More" text view, which automatically appends LearnMoreTextView_learn_more in code -->
     <string name="ManageGroupActivity_legacy_group_learn_more">Ito\'y isang Legacy Group. Ang features tulad ng group admins ay available lamang sa New Groups.</string>
-    <!-- This is placed inside a "Learn More" text view, which automatically appends LearnMoreTextView_learn_more in code to the end of the string -->
-    <string name="ManageGroupActivity_legacy_group_upgrade">Ito\'y isang Legacy Group. Para magka-access sa new features tulad ng @mentions at admins,</string>
-    <string name="ManageGroupActivity_legacy_group_too_large">Ang Legacy Group na ito\'y hindi pwedeng i-upgrade sa New Group dahil masyado itong malaki. Ang maximum na group size ay %1$d.</string>
-    <string name="ManageGroupActivity_upgrade_this_group">i-upgrade ang group na ito.</string>
     <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Ito\'y hindi secured na MMS Group. Para makipag-chat privately, i-invite ang contacts mo dito sa Signal.</string>
     <string name="ManageGroupActivity_invite_now">Mag-invite na</string>
     <string name="ManageGroupActivity_more">iba pa</string>
@@ -1581,7 +1465,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Hindi makakakita ang iyong username, QR code at link sa profile mo. I-share lamang ang iyong username sa mga taong pinagkakatiwalaan mo.</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-    <string name="ManageProfileFragment__username_footer_no_username">Pwede ka na nilang i-message gamit ang optional username mo para hindi mo na ibigay ang iyong phone number. </string>
+    <string name="ManageProfileFragment__username_footer_no_username">People can message you using an optional username instead of a phone number. Usernames have a unique QR code and link you can share with friends.</string>
     <string name="ManageProfileFragment_profile_name">Profile name</string>
     <string name="ManageProfileFragment_username">Username</string>
     <string name="ManageProfileFragment_about">About</string>
@@ -1738,18 +1622,9 @@
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">Ibahagi</string>
-    <string name="InviteActivity_share_with_contacts">Ibahagi sa mga kontak</string>
-    <string name="InviteActivity_share_via">I-share via…</string>
 
     <string name="InviteActivity_cancel">Kanselahin</string>
-    <string name="InviteActivity_sending">Ipinapadala…</string>
-    <string name="InviteActivity_invitations_sent">Naipadala na ang mga imbitasyon!</string>
     <string name="InviteActivity_invite_to_signal">Imbitahan sa Signal</string>
-    <string name="InviteActivity_send_sms">Mag-send ng SMS (%1$d)</string>
-    <plurals name="InviteActivity_send_sms_invites">
-        <item quantity="one">Mapadala ng %1$d SMS na imbitasyon?</item>
-        <item quantity="other">Mapadala ng %1$d SMS na imbitasyon?</item>
-    </plurals>
     <string name="InviteActivity_lets_switch_to_signal">Lumipat tayo sa Signal: %1$s</string>
     <!-- Toast shown when Signal is unable to find an external app to share the Invite text string to -->
     <string name="InviteActivity_no_app_to_share_to">Mukhang wala kang anumang app na maaaring bahaginan.</string>
@@ -1784,7 +1659,6 @@
         <item quantity="other">Permanenteng mabubura ang %1$d piniling files. Anumang message ang kaugnay ng files ay made-delete rin.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Binubura</string>
-    <string name="MediaOverviewActivity_Media_delete_progress_message">Binubura ang mga mensahe…</string>
     <!-- Format string showing current vs. total items being deleted, e.g. "12 of 207" -->
     <string name="MediaOverviewActivity_Media_delete_progress_count">%1$d ng %2$d</string>
     <string name="MediaOverviewActivity_Sort_by">Pasunud-sunurin ayon sa</string>
@@ -1825,8 +1699,6 @@
     <string name="MediaOverviewActivity_this_media_is_not_sent_yet">Hindi pa na-send ang media na ito.</string>
     <string name="MediaOverviewActivity_jump_to_message">Pumunta sa message</string>
 
-    <!-- Megaphones -->
-    <string name="Megaphones_remind_me_later">Paalalahanan ako sa ibang pagkakataon</string>
     <string name="Megaphones_verify_your_signal_pin">Beripikahin ang PIN ng iyong Signal</string>
     <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Paminsan-minsa\'y hihingin namin sa iyong beripikahin ang iyong PIN upang matandaan mo ito.</string>
     <string name="Megaphones_verify_pin">Beripikahin ang PIN</string>
@@ -1836,6 +1708,8 @@
     <string name="Megaphones_invite_friends">Invite friends</string>
     <string name="Megaphones_chat_colors">Colors ng chat</string>
     <string name="Megaphones_add_a_profile_photo">Profile photo</string>
+    <!-- Text in a card view prompting the user to choose a username as part of the onboarding megaphone -->
+    <string name="Megaphones_set_up_username">Set up username</string>
 
     <!-- Message body of megaphone telling users that a device was linked to their account. %1$s is the time it was linked -->
     <string name="NewLinkedDeviceMegaphone__a_new_device_was_linked">Isang bagong device ang ni-link sa account mo %1$s.</string>
@@ -1870,11 +1744,6 @@
     <string name="NotificationsMegaphone_turn_on">Buksan</string>
     <string name="NotificationsMegaphone_not_now">Hindi ngayon</string>
 
-    <!-- NotificationMmsMessageRecord -->
-    <string name="NotificationMmsMessageRecord_multimedia_message">Multimedia na mensahe</string>
-    <string name="NotificationMmsMessageRecord_downloading_mms_message">Dina-download ang MMS na mensahe</string>
-    <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Nagka-error sa pag-download ng MMS na mensahe, pindutin upang subukang muli</string>
-
     <!-- MediaPickerActivity -->
     <string name="MediaPickerActivity__menu_open_camera">Buksan ang camera</string>
 
@@ -1884,7 +1753,6 @@
 
     <!-- MessageRecord -->
     <string name="MessageRecord_unknown">Hindi alam</string>
-    <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Nakatanggap ng mensaheng na-encrypt gamit ang isang lumang bersyon ng Signal na hindi na suportado. Pakisabi sa nagpadala na mag-update sa pinakabagong bersyon at muling ipadala ang mensahe.</string>
     <string name="MessageRecord_left_group">Nakaalis ka na sa grupo.</string>
     <string name="MessageRecord_you_updated_group">In-update mo ang grupo.</string>
     <string name="MessageRecord_the_group_was_updated">Ang group na ito\'y updated na.</string>
@@ -2198,8 +2066,6 @@
     </plurals>
 
     <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->
-    <string name="MessageRecord__you_will_no_longer_be_able_to_send_sms_messages_from_signal_soon">Malapit ka nang hindi makapag-send ng SMS messages mula sa Signal. I-invite si %1$s sa Signal para mapanatili ang convo niyo dito.</string>
-    <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->
     <string name="MessageRecord__you_can_no_longer_send_sms_messages_in_signal">Hindi ka na pwedeng mag-send ng SMS messages sa Signal. I-invite si %1$s sa Signal para mapanatili ang convo niyo dito.</string>
     <!-- Body for quote when message being quoted is an in-app payment message -->
     <string name="MessageRecord__payment_s">Payment: %1$s</string>
@@ -2232,8 +2098,6 @@
     <string name="MessageRequestBottomView_delete">Burahin</string>
     <string name="MessageRequestBottomView_block">I-block</string>
     <string name="MessageRequestBottomView_unblock">I-unblock</string>
-    <!-- Text explaining a message request from someone you\'ve removed before -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">Payagan si %1$s na mag-message sa \'yo at i-share ang pangalan at photo mo sa kanya? Tinanggal mo na dati ang taong ito.</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Payagan ang taong ito na mag-message sa \'yo at ipakita sa kanya ang pangalan at photo mo? Hindi niya malalaman na nakita mo ang kanyang message hanggang hindi mo ito ina-accept.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Hayaang mag-message si %1$s sa \'yo at i-share sa kanya ang pangalan at photo mo? Hindi ka makakatanggap ng anumang message hanggang sa i-unblock mo siya.</string>
@@ -2241,11 +2105,8 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Hayaang mag-message si %1$s sa\'yo? Hindi ka makakatanggap ng anumang message hanggang sa i-unblock mo siya.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock the Signal release notes channel -->
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Gusto mo bang makakuha ng updates at news mula kay %1$s? Hindi ka makakatanggap ng anumang update hanggang sa i-unblock mo siya.</string>
-    <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Gusto mo bang ipagpatuloy ang iyong chat sa group na ito at i-share ang pangalan at photo mo sa members nito?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Hindi na magagamit ang Legacy Group na ito. Gumawa ng bagong group para ma-activate ang bagong features gaya ng @mentions at admins.</string>
-    <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Ang Legacy Group na ito\'y hindi na pwedeng gamitin dahil masyado na itong malaki. Ang maximum group size ay %1$d.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Gusto mo bang ipagpatuloy ang chat ninyo ni %1$s at i-share ang pangalan at photo mo sa kanya?</string>
-    <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Gusto mo bang mag-join sa group na ito at i-share sa members ang pangalan at photo mo? Hindi nila malalaman na nakita mo ang kanilang messages hanggang sa i-accept mo ito.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Gusto mo bang mag-join sa group na ito at i-share sa members ang pangalan at photo mo? Hindi mo makikita ang kanilang messages hanggang sa i-accept mo ito.</string>
     <!-- Shown when you are invited to a group and explains that until you accept the invitation to the group, members will not know that you have seen their messages. -->
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Gusto mo bang mag-join sa group na ito? Hindi nila malalaman na nakita mo ang kanilang messages hanggang sa i-accept mo ito.</string>
@@ -2274,20 +2135,12 @@
         <item quantity="one">%1$d additional group</item>
         <item quantity="other">%1$d additional groups</item>
     </plurals>
-    <!-- Describes the names of members in a group. MessageRequestProfileView_group_members_* is nested in the first parentheses. MessageRequestProfileView_invited is nested in the second -->
-    <string name="MessageRequestProfileView_member_names_and_invited">%1$s (%2$s)</string>
     <!-- Text for an empty group or when you are the only member -->
     <string name="MessageRequestProfileView_group_members_zero">Wala pang ibang group members</string>
-    <!-- Text for a group with one member (not you). %1$s is their name -->
-    <string name="MessageRequestProfileView_group_members_one">%1$s</string>
     <!-- Text for a 2 member group you are in. %1$s is the name of the other member -->
     <string name="MessageRequestProfileView_group_members_one_and_you">Ikaw at si %1$s</string>
-    <!-- Text for a 2 member group you are not in. %1$s and %2$s are the members\' names -->
-    <string name="MessageRequestProfileView_group_members_two">%1$s at %2$s</string>
     <!-- Text for a 3 member group you are in. %1$s and %2$s are the members\' names -->
     <string name="MessageRequestProfileView_group_members_two_and_you">Ikaw at sina %1$s, at %2$s</string>
-    <!-- Text for a 3 member group you are not in. %1$s, %2$s, %3$s are the names of the other members. -->
-    <string name="MessageRequestProfileView_group_members_three">%1$s, %2$s, at %3$s</string>
     <!-- Text for a 3+ member group. %1$s, %2$s, %3$s are member names. %4$s is the string key MessageRequestProfileView_other_members-->
     <string name="MessageRequestProfileView_group_members_other">%1$s, %2$s, %3$s, at %4$s</string>
     <!-- Nested in MessageRequestProfileView_group_members_other that shows how many members (besides three) are in the group -->
@@ -2299,8 +2152,6 @@
     <string name="MessageRequestBottomView_report">I-report</string>
     <!-- Alert dialog title to accept a message request -->
     <string name="MessageRequestBottomView_accept_request">Tanggapin ang request?</string>
-    <!-- Alert dialog body to review the message request carefully -->
-    <string name="MessageRequestBottomView_review_requests_carefully">Suriin nang maigi ang requests. Ang profile names ay pinili ng may-ari ng account at hindi verified.</string>
     <!-- Alert dialog body for accepting a message request. Contains bold substring placeholder -->
     <string name="MessageRequestBottomView_accept_request_body">Tanggapin lang ang requests mula sa mga taong pinagkakatiwalaan mo. %1$s magme-message tungkol sa registration code, PIN, o recovery key.</string>
     <!-- Bold substring used in accept request body: "Signal will never" -->
@@ -2321,13 +2172,6 @@
     <string name="DeviceProvisioningActivity_link_this_device">I-link ang device na ito?</string>
     <string name="DeviceProvisioningActivity_continue">Magpatuloy</string>
 
-    <string name="DeviceProvisioningActivity_content_intro">Magagawa nitong</string>
-    <string name="DeviceProvisioningActivity_content_bullets">
-        • Basahin ang lahat ng iyong mensahe \n• Magpadala ng mga mensahe sa ngalan mo
-    </string>
-    <string name="DeviceProvisioningActivity_content_progress_title">Nili-link ang device</string>
-    <string name="DeviceProvisioningActivity_content_progress_content">Nili-link ang bagong device…</string>
-    <string name="DeviceProvisioningActivity_content_progress_success">Aprubado ang device!</string>
     <string name="DeviceProvisioningActivity_content_progress_no_device">Walang device na nahanap.</string>
     <string name="DeviceProvisioningActivity_content_progress_network_error">Nagka-error sa network.</string>
     <string name="DeviceProvisioningActivity_content_progress_key_error">Hindi valid ang QR code.</string>
@@ -2337,11 +2181,6 @@
     <string name="DeviceProvisioningActivity_link_a_signal_device">Mag-link ng Signal na device?</string>
     <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">Para mag-link ng desktop o iPad sa Signal account na ito, pumunta sa Linked Devices at i-tap ang \"Mag-link ng Bagong Device\" at i-scan ulit ang QR code. Siguraduhing i-scan lang ang QR codes na direktang nanggaling sa Signal.</string>
 
-    <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Kailangan ng Signal ang pahintulot sa Camera upang makapag-scan ng QR code, ngunit ito ay permanenteng ipinagbabawal. Pumunta sa app settings, piliin ang \"Mga Pahintulot\", at i-enable ang \"Camera\".</string>
-    <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Hindi makapag-scan ng QR code nang walang pahintulot sa Camera.</string>
-
-    <!-- OutdatedBuildReminder -->
-    <string name="OutdatedBuildReminder_update_now">I-update na</string>
     <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Itong version ng Signal ay mage-expire ngayon. Mag-update sa most recent version.</string>
     <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
         <item quantity="one">Mag-e-expire na bukas ang version na ito ng Signal. Mag-update sa pinakabagong version.</item>
@@ -2468,12 +2307,9 @@
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">I-tap dito upang buksan ang iyong video</string>
-    <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Para matawagan si %1$s, kailangan ng Signal ng access sa iyong camera</string>
     <!-- Subtitle shown at top of call where %s is the elapsed time of the call -->
     <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
     <string name="WebRtcCallActivity__calling">Calling…</string>
-    <!-- Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect -->
-    <string name="WebRtcCallActivity__reconnecting">Kumukonektang muli…</string>
     <!-- Title for dialog warning about lacking bluetooth permissions during a call -->
     <string name="WebRtcCallActivity__bluetooth_permission_denied">Bluetooth permission denied</string>
     <!-- Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name -->
@@ -2558,7 +2394,6 @@
     <string name="WebRtcCallView__join_call">Mag-join sa Call</string>
     <string name="WebRtcCallView__call_is_full">Puno na ang call</string>
     <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Ang maximum number ng %1$d participants ay naabot na sa call na ito. Subukan ulit mamaya.</string>
-    <string name="WebRtcCallView__your_video_is_off">Naka-off ang iyong video</string>
     <string name="WebRtcCallView__reconnecting">Kumukonektang muli…</string>
     <string name="WebRtcCallView__joining">Joining…</string>
     <string name="WebRtcCallView__disconnected">Disconnected</string>
@@ -2611,10 +2446,6 @@
         <item quantity="other">Sila %1$s, %2$s, at %3$d others ay nasa call na ito</item>
     </plurals>
 
-    <!-- Toggle content description for toggling camera direction  -->
-    <string name="WebRtcCallView__toggle_camera_direction">I-adjust ang camera direction</string>
-    <!-- Toggle content description for toggling audio output  -->
-    <string name="WebRtcCallView__toggle_speaker">I-adjust ang speaker</string>
     <!-- Toggle content description for toggling camera state  -->
     <string name="WebRtcCallView__toggle_camera">I-adjust ang camera</string>
     <!-- Toggle content description for toggling mute state  -->
@@ -2637,8 +2468,6 @@
     <!-- Toast message shown when user is auto-muted because they are joining a large group call. -->
     <string name="WebRtcCallView__youve_been_muted_large_group">Na-mute ka dahil maraming participants ang call na ito.</string>
 
-    <!-- Error message when the developer added a button in the wrong place. -->
-    <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">Nagkaroon ng UI error. Paki-report ang error na ito sa developers.</string>
     <!-- Error message when the user is trying to change audio outputs but none are present. -->
     <string name="WebRtcAudioOutputToggleButton_no_eligible_audio_i_o_detected">Walang eligible audio I/O detected.</string>
     <!-- A text description of the bluetooth icon, used for accessibility. -->
@@ -2652,8 +2481,6 @@
 
     <!-- A clickable button to "raise your hand" in a group call to signify you have something to say -->
     <string name="CallOverflowPopupWindow__raise_hand">Itaas ang Kamay</string>
-    <!-- A description of a clickable image representing a raised hand -->
-    <string name="CallOverflowPopupWindow__raise_hand_illustration_content_description">Itaas ang Kamay</string>
     <!-- A dialog prompt to confirm you want to lower your hand -->
     <string name="CallOverflowPopupWindow__lower_your_hand">Gusto mo bang ibaba ang iyong kamay?</string>
     <!-- A dialog button to confirm you would like to lower your hand -->
@@ -2771,10 +2598,7 @@
     <!-- CallParticipantView -->
     <string name="CallParticipantView__s_is_blocked">Naka-block si %1$s</string>
     <string name="CallParticipantView__more_info">Mas marami pang Info</string>
-    <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Hindi mo mare-receive ang kanyang audio o video at hindi niya rin mare-receive ang audio o video na galing sa\'yo.</string>
     <string name="CallParticipantView__cant_receive_audio_video_from_s">Hindi ma-receive ang audio at video galing kay %1$s</string>
-    <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Hindi ma-receive ang audio at video galing kay %1$s</string>
-    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Maaaring ito ay dahil hindi niya na-verify ang iyong safety number change, may problema sa kanyang device, o binlock ka n\'ya.</string>
 
     <!-- SwitchCameraButton -->
     <!-- Content description for the button that switches between front and back camera during a call -->
@@ -2805,9 +2629,6 @@
 
     <!-- RegistrationActivity -->
     <string name="RegistrationActivity_select_your_country">Piliin ang iyong bansa</string>
-    <string name="RegistrationActivity_you_must_specify_your_country_code">Kailangan mong tukuyin ang iyong country code
-    </string>
-    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">Maglagay ng valid phone number para makapag-register.</string>
     <string name="RegistrationActivity_invalid_number">Hindi valid ang numero</string>
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Ang numerong iyong tinukoy (%1$s) ay hindi valid.
     </string>
@@ -2824,15 +2645,12 @@
     <string name="RegistrationActivity_select_a_country">Pumili ng bansa</string>
     <!-- Hint text explaining that this is where the country code should go -->
     <string name="RegistrationActivity_default_country_code">0</string>
-    <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Makakatanggap ka ng tawag upang beripikahin ang numerong ito.</string>
     <string name="RegistrationActivity_edit_number">I-edit ang numero</string>
     <string name="RegistrationActivity_missing_google_play_services">Nawawala ang Google Play Services</string>
     <string name="RegistrationActivity_this_device_is_missing_google_play_services">Nawawala sa device na ito ang Google Play Services. Maaari mo pa ring gamitin ang Signal, ngunit ang configuration na ito ay maaaring magresulta sa kabawasan sa pagiging maaasahan o paggana.\n\nKung ikaw ay advanced na user, hindi gumagamit ng aftermarket na Android ROM, o kaya\'y naniniwala kang hindi mo dapat ito nakikita, makipag-ugnayan sa support@signal.org para makatulong kami sa pag-troubleshoot.</string>
     <string name="RegistrationActivity_i_understand">Nauunawaan ko</string>
     <string name="RegistrationActivity_play_services_error">Nagka-error sa Play Services</string>
     <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Ang Google Play Services ay nag-u-update o kaya\'y pansamantalang hindi available. Pakisubukang muli.</string>
-    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Kinakailangan ng Signal ng pahintulot para ma-access ang contacts at media para maka-connect ka sa friends mo at makapag-send ng message. Ina-upload ang contacts mo gamit ang private contact discovery ng Signal, kung saan end-to-end encrypted ang mga ito at hindi kailanman makikita ng Signal service.</string>
-    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Kinakailangan ng Signal ng pahintulot para ma-access ang contacts para maka-connect ka sa friends mo. Ina-upload ang contacts mo gamit ang private contact discovery ng Signal, kung saan end-to-end encrypted ang mga ito at hindi kailanman makikita ng Signal service.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Nakagawa ka ng napakaraming pagtatangkang irehistro ang numerong ito. Pakiusap na subukang muli kinalaunan.</string>
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">Masyadong maraming beses mo nang sinubukang i-register ang number na ito. Subukan ulit pagkatapos ng %1$s.</string>
@@ -2847,12 +2665,6 @@
     <!-- Dialog message shown to confirm when entering phone number (first placeholder) is normalized and formatted differently by the app (second placeholder). -->
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Ang number na nilagay mo (%1$s) ay mukhang isang non-standard format.\n\nDid you mean %2$s?</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Phone Number Format</string>
-    <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
-    <string name="RegistrationActivity_call_requested">Call requested</string>
-    <!--    Small "toast" notification to the user confirming that they have requested a new code via SMS.-->
-    <string name="RegistrationActivity_sms_requested">Nag-request ng SMS</string>
-    <!--    Small "toast" notification to the user confirming that they have requested a new code (through an unspecified channel).-->
-    <string name="RegistrationActivity_code_requested">Nag-request ng verification code</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="one">Ikaw ngayon ay %1$d layong-hakbang na lang sa pagsusumite ng debug log.</item>
         <item quantity="other">%1$d hakbang ka pa para makapagsumite ng debug log.</item>
@@ -2865,8 +2677,6 @@
     <string name="RegistrationActivity_next">Susunod</string>
     <!-- Title of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_phone_number">Phone number</string>
-    <!-- Subtitle of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Ilagay ang iyong phone number para magsimula.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Ilagay ang code na ipinadala namin sa %1$s</string>
 
     <string name="RegistrationActivity_phone_number_description">Phone number</string>
@@ -2910,12 +2720,6 @@
   <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_success" translatable="false">Success!</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_share" translatable="false">Share</string> -->
 
-    <!-- SharedContactDetailsActivity -->
-    <string name="SharedContactDetailsActivity_add_to_contacts">Idagdag sa Mga Kontak</string>
-    <string name="SharedContactDetailsActivity_invite_to_signal">Imbitahan sa Signal</string>
-    <string name="SharedContactDetailsActivity_signal_message">Mensahe sa Signal</string>
-    <string name="SharedContactDetailsActivity_signal_call">Tawag sa Signal</string>
-
     <!-- SharedContactView -->
     <string name="SharedContactView_add_to_contacts">Idagdag sa Mga Kontak</string>
     <string name="SharedContactView_invite_to_signal">Imbitahan sa Signal</string>
@@ -2948,7 +2752,6 @@
     <!-- SmsMessageRecord -->
     <string name="SmsMessageRecord_secure_session_reset">Ni-reset mo ang secure na sesyon.</string>
     <string name="SmsMessageRecord_secure_session_reset_s">Ni-reset ni %1$s ang secure na sesyon.</string>
-    <string name="SmsMessageRecord_duplicate_message">Dobleng mensahe.</string>
 
     <!-- Sticker management screen default title. -->
     <string name="StickerManagement_title_stickers">Mga Sticker</string>
@@ -2957,20 +2760,22 @@
         <item quantity="one">%1$s selected</item>
         <item quantity="other">%1$s selected</item>
     </plurals>
-    <!-- Label for the sticker management screen tab which shows the stickers that are available to install. -->
-    <string name="StickerManagement_available_tab_label">Available</string>
+    <!-- Label for the sticker management screen tab which shows all of the sticker packs. -->
+    <string name="StickerManagement_all_tab_label">All</string>
     <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
-    <string name="StickerManagement_installed_tab_label">Incoming voice call…</string>
-    <!-- Shown when there are no sticker packs available for installation. -->
-    <string name="StickerManagement_available_tab_empty_text">Walang available na sticker packs</string>
+    <string name="StickerManagement_my_stickers_tab_label">My Stickers</string>
+    <!-- Shown when there are no sticker packs to show. -->
+    <string name="StickerManagement_all_tab_empty_text">No sticker packs are available</string>
     <!-- Shown when there are no sticker packs currently installed. -->
-    <string name="StickerManagement_installed_tab_empty_text">Walang naka-install na sticker packs</string>
+    <string name="StickerManagement_installed_tab_empty_text">No sticker packs, add stickers to send to your friends.</string>
     <!-- Message shown when the author of the sticker pack is unknown. -->
     <string name="StickerManagement_author_unknown">Hindi tukoy</string>
     <!-- Sticker pack list section header for packs that are already installed. -->
     <string name="StickerManagement_installed_stickers_header">Mga Naka-install na Sticker</string>
     <!-- Sticker pack list section header for packs that have been received from incoming messages. -->
-    <string name="StickerManagement_stickers_you_received_header">Mga Sticker na Natanggap Mo</string>
+    <string name="StickerManagement_shared_with_you_header">Shared with you</string>
+    <!-- Sticker pack description for packs that have been sent to you -->
+    <string name="StickerManagement_when_you_receive">When you receive a sticker from someone, the sticker pack will appear here.</string>
     <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
     <string name="StickerManagement_signal_artist_series_header">Signal Artist Series</string>
     <!-- Title shown when sharing a sticker pack with another user. -->
@@ -2983,8 +2788,13 @@
     <string name="StickerManagement_action_delete_selected">Burahin</string>
     <!-- Confirmation message shown before uninstalling sticker packs. The placeholder is the number of items to delete. -->
     <plurals name="StickerManagement_delete_n_packs_confirmation">
-        <item quantity="one">Alisin ang %1$s sticker pack</item>
-        <item quantity="other">Alisin ang %1$s sticker packs</item>
+        <item quantity="one">Remove %1$s sticker pack?</item>
+        <item quantity="other">Remove %1$s sticker packs?</item>
+    </plurals>
+    <!-- Body of the confirmation dialog shown before uninstalling sticker packs. -->
+    <plurals name="StickerManagement_delete_n_packs_confirmation_body">
+        <item quantity="one">This will remove the sticker pack. You can\'t add it again without a link or sticker message.</item>
+        <item quantity="other">This will remove these sticker packs. You can\'t add it again without a link or sticker message.</item>
     </plurals>
     <!-- Message shown after installing a sticker pack. The placeholder is the name of the sticker pack that was installed. -->
     <string name="StickerManagement_installed_pack_s">Naka-install na ang %1$s.</string>
@@ -3000,6 +2810,8 @@
         <item quantity="one">%1$s sticker</item>
         <item quantity="other">%1$s stickers</item>
     </plurals>
+    <!-- Message shown after copying a sticker pack link. -->
+    <string name="StickerManagement_copied">Link copied</string>
 
     <!-- Sticker pack list dropdown menu label for the button to forward a sticker pack to another user. -->
     <string name="StickerManagement_menu_forward_pack">Ipasa</string>
@@ -3011,6 +2823,14 @@
     <string name="StickerManagement_menu_remove_pack">Tanggalin</string>
     <!-- Sticker management screen dropdown menu label for the button to enter multi-select mode. -->
     <string name="StickerManagement_menu_select_packs">Pumili ng sticker packs</string>
+    <!-- Sticker pack list dropdown menu label for sending a sticker pack. -->
+    <string name="StickerManagement_menu_send_pack">Send</string>
+    <!-- Sticker pack list dropdown menu label for copying a sticker link. -->
+    <string name="StickerManagement_menu_copy_pack">Copy link</string>
+    <!-- Hint text shown in the sticker management search field. -->
+    <string name="StickerManagement_search">Search</string>
+    <!-- Shown when no stickers match the search. The placeholder what was searched. -->
+    <string name="StickerManagement_search_no_results_s">No results found for \'%1$s\'</string>
 
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
     <string name="StickerManagement_accessibility_download_pack">I-download ang %1$s sticker pack</string>
@@ -3026,6 +2846,14 @@
     <string name="StickerManagement_accessibility_open_context_menu">Buksan ang context menu</string>
     <!-- Accessibility label for opening the context menu for a sticker pack row item. -->
     <string name="StickerManagement_accessibility_exit_multi_select_mode">Lumabas sa selection mode at tanggalin ang mga pinili</string>
+    <!-- Label for the button that expands the list to show every sticker pack in a section. -->
+    <string name="StickerManagement__see_all">See all</string>
+    <!-- Button that takes you to the list of sticker packs you can install. -->
+    <string name="StickerManagement__add_stickers">Add stickers</string>
+    <!-- Accessibility label to close the search field. -->
+    <string name="StickerManagement_accessibility_close_search">Close search</string>
+    <!-- Accessibility label to clear the search field. -->
+    <string name="StickerManagement_accessibility_clear_search">Clear search</string>
 
     <!-- StickerManagementAdapter -->
     <string name="StickerManagementAdapter_untitled">Walang pamagat</string>
@@ -3039,16 +2867,12 @@
     <string name="StickerPackPreviewActivity_stickers">Mga Sticker</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Nabigong i-load ang sticker pack</string>
 
-    <!-- SubmitDebugLogActivity -->
-    <string name="SubmitDebugLogActivity_edit">I-edit</string>
-    <string name="SubmitDebugLogActivity_done">Tapos na</string>
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">I-save</string>
     <!-- Error that is show in a toast when we fail to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_failed_to_save">Hindi na-save</string>
     <!-- Toast that is show to notify that we have saved the debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save_complete">Tapos na ang pag-save</string>
-    <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Pindutin ang linya upang burahin ito</string>
     <string name="SubmitDebugLogActivity_submit">Isumite</string>
     <string name="SubmitDebugLogActivity_failed_to_submit_logs">Bigo na ipadala ang mga log</string>
     <string name="SubmitDebugLogActivity_success">Tagumpay!</string>
@@ -3056,7 +2880,6 @@
     <string name="SubmitDebugLogActivity_share">Ibahagi</string>
     <!-- Displayed when entering activity in view-only mode -->
     <string name="SubmitDebugLogActivity_close">Isara</string>
-    <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">This log will be posted publicly online para ma-view ng contributors. Pwede mo itong i-examine before uploading.</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">Kapag na-click mo na ang Submit, ang iyong log ay ipo-post sa isang unique, unpublished URL online sa loob ng 30 days. Maaari mo muna itong i-Save locally.</string>
     <!-- Debug log level names to filter by levels. -->
@@ -3172,8 +2995,6 @@
     <!-- UsernameEditFragment -->
     <!-- Placeholder text for custom discriminator -->
     <string name="UsernameEditFragment__00">00</string>
-    <!-- Toolbar title when entering from registration -->
-    <string name="UsernameEditFragment__add_a_username">Mag-add ng username</string>
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">Pumili ng username mo</string>
     <string name="UsernameEditFragment_username">Username</string>
@@ -3188,10 +3009,7 @@
     <string name="UsernameEditFragment_username_is_invalid">Ang username ay hindi valid.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Ang mga username ay kailangang nasa pagitan ng %1$d at %2$d ang bilang ng mga character.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">Ang usernames ay palaging may kasamang numero.</string>
-    <!-- Dialog title for explanation about numbers at the end of the username -->
-    <string name="UsernameEditFragment__what_is_this_number">Para saan ang number na ito?</string>
-    <string name="UsernameEditFragment__these_digits_help_keep">Ang numbers na ito\'y nakatutulong para mapanatiling private ang username mo at makaiwas ka sa anumang mensaheng hindi mo gustong matanggap. I-share lamang ang iyong username sa mga tao at groups na gusto mong maka-chat. Kung magpapalit ka ng username, magkakaroon ka ng bagong set of digits.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">People can message you using your optional username instead of a phone number. Usernames are always paired with a set of numbers.</string>
     <!-- Button to allow user to skip -->
     <string name="UsernameEditFragment__skip">Laktawan</string>
     <!-- Content description for done button -->
@@ -3222,15 +3040,12 @@
     <!-- Explanation of what the sheet enables the user to do -->
     <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Kopyahin o i-share ang isang username link</string>
 
-    <!-- VerifyIdentityActivity -->
-    <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Ang iyong kontak ay gumagamit ng mas bagong bersyon ng Signal na may hindi katugma na format ng QR code. Mag-update para tumugma.</string>
     <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Ang na-scan na QR code ay hindi verification code ng numerong pangkaligtasan na na-format nang tama. Pakisubukang i-scan muli.</string>
     <string name="VerifyIdentityActivity_share_safety_number_via">Ibahagi ang numerong pangkaligtasan sa pamamagitan ng…</string>
     <string name="VerifyIdentityActivity_our_signal_safety_number">Aming numerong pangkaligtasan sa Signal:</string>
     <string name="VerifyIdentityActivity_no_app_to_share_to">Mukhang wala kang anumang app na maaaring bahaginan.</string>
     <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Walang tumutugmang numerong pangkaligtasan na nahanap sa clipboard</string>
     <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Kailangan ng Signal ang pahintulot sa Camera upang makapag-scan ng QR code, ngunit ito ay permanenteng ipinagbabawal. Pumunta sa app settings, piliin ang \"Mga Pahintulot\", at i-enable ang \"Camera\".</string>
-    <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Hindi makapag-scan ng QR code nang walang pahintulot sa Camera.</string>
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Kailangan mo munang mag-exchange ng messages para makita ang safety number ni %1$s.</string>
     <!-- Dialog message explaining to user they must exchange messages first to create a safety number -->
     <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">Gagawa ng safety number para sa taong ito pagkatapos n\'yong magpalitan ng messages.</string>
@@ -3238,17 +3053,12 @@
     <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_ok">OK</string>
     <!-- Learn more option for dialog explaining to user they must exchange messages first to create a safety number  -->
     <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_learn_more">Matuto pa</string>
-    <!-- Confirmation button on scan result dialogs -->
-    <string name="VerifyDisplayFragment__scan_result_dialog_ok">OK</string>
 
     <!-- ViewOnceMessageActivity -->
   <!-- Removed by excludeNonTranslatables <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string> -->
 
     <!-- AudioView -->
   <!-- Removed by excludeNonTranslatables <string name="AudioView_duration" translatable="false">%1$d:%2$02d</string> -->
-
-    <!-- MessageDisplayHelper -->
-    <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Ang mensahe ay naka-encrypt para sa hindi-umiiral na sesyon.</string>
 
     <!-- MuteDialog -->
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
@@ -3303,7 +3113,7 @@
     <!-- Text shown in a system notification that is used to summarize your notification. The first placeholder is a pluralized string that describes how many messages (e.g. "3 messages"), and the second placeholder is a pluralized string that describes the number of unique chats those message appear in (e.g. "2 chats"). -->
     <string name="MessageNotifier_s_in_s">%1$s in %2$s</string>
     <!-- Subtext shown in a group chat notification when the most recent message is a direct reply to a message you sent. -->
-    <string name="MessageNotifier_replied_to_you">Replied to you: %1$s</string>
+    <string name="MessageNotifier_replied_to_you">Nag-reply sa \'yo: %1$s</string>
     <!-- Text shown in a system notification that is used to summary how many messages you received. -->
     <plurals name="MessageNotifier_d_messages">
         <item quantity="one">%1$d message</item>
@@ -3393,10 +3203,6 @@
     <!-- Notification channel name for unread reminder notifications -->
     <string name="NotificationChannel_unread_reminders">Unread reminders</string>
 
-    <!-- QuickResponseService -->
-    <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Ang mabilisang tugon ay hindi gagana kapag naka-lock ang Signal!</string>
-    <string name="QuickResponseService_problem_sending_message">May problema sa pagpapadala ng mensahe!</string>
-
     <!-- A toast notification that is shown when the app does not have sufficient permissions to save media files to the device storage. -->
     <string name="SaveAttachment_unable_to_write_to_sd_card_exclamation">Hindi makapagsulat sa storage!</string>
 
@@ -3449,7 +3255,6 @@
     <string name="SearchToolbar_search">Maghanap</string>
     <!-- Hint when searching filtered chat content -->
     <string name="SearchToolbar_search_unread_chats">I-search ang unread chats</string>
-    <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Mag-search ng chats, contacts, at messages</string>
 
     <!-- Material3 Search Toolbar -->
     <string name="Material3SearchToolbar__close">Isara</string>
@@ -3485,6 +3290,34 @@
     <string name="NewWaysToConnectDialogFragment__not_now">Hindi na muna</string>
     <!-- Button label for continue -->
     <string name="NewWaysToConnectDialogFragment__set_up_your_username">Mag-set up ng username</string>
+
+    <!-- ConnectWithUsernamesDialogFragment -->
+    <!-- Title of the username education screen shown to accounts registered without a phone number -->
+    <string name="ConnectWithUsernamesDialogFragment__connect_with_usernames">Connect with usernames</string>
+    <!-- Title of the usernames section -->
+    <string name="ConnectWithUsernamesDialogFragment__usernames">Usernames</string>
+    <!-- Description of the usernames section -->
+    <string name="ConnectWithUsernamesDialogFragment__people_can_message_you_using_your_optional_username">People can message you using your optional username instead of a phone number. Usernames aren\'t visible on your profile.</string>
+    <!-- Title of the QR code section -->
+    <string name="ConnectWithUsernamesDialogFragment__qr_codes_and_links">QR codes and links</string>
+    <!-- Description of the QR code section -->
+    <string name="ConnectWithUsernamesDialogFragment__usernames_have_a_unique_qr_code">Usernames have a unique QR code and link you can share with friends to quickly start a chat with you.</string>
+    <!-- Title of the discoverability section -->
+    <string name="ConnectWithUsernamesDialogFragment__stay_discoverable">Stay discoverable</string>
+    <!-- Description of the discoverability section -->
+    <string name="ConnectWithUsernamesDialogFragment__without_a_phone_number_usernames_and_links">Without a phone number, usernames and links are the only way others can connect with you.</string>
+    <!-- Button label that takes the user to the username creation screen -->
+    <string name="ConnectWithUsernamesDialogFragment__set_up_username">Set up username</string>
+    <!-- Button label that dismisses the screen without creating a username -->
+    <string name="ConnectWithUsernamesDialogFragment__not_now">Not now</string>
+
+    <!-- SetUpUsernameBanner -->
+    <!-- Body of a banner on the new message screen prompting the user to create a username -->
+    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">Choose a username so others can connect with you.</string>
+    <!-- Button label that takes the user to the username creation screen -->
+    <string name="SetUpUsernameBanner__set_up">Set up</string>
+    <!-- Accessibility label for the button that permanently dismisses the banner -->
+    <string name="SetUpUsernameBanner__dismiss">Dismiss</string>
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">I-play ang video</string>
@@ -3523,21 +3356,11 @@
     <string name="EnclaveFailureReminder_update_signal">I-update ang Signal app para patuloy na magamit ang payments. Maaaring hindi updated ang balance mo.</string>
     <!-- Banner button to update now -->
 
-    <!-- WebRtcCallActivity -->
-    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">To answer the call, bigyan ng access ang Signal sa iyong microphone.</string>
-    <!-- Message shown in permission dialog when attempting to answer a video call without camera or microphone permissions already granted. -->
-    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">Para sagutin ang video call, bigyan ng access ang Signal sa microphone at camera mo.</string>
-    <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Kailangan ng Signal ang pahintulot sa Mikropono at Camera upang tumawag at sumagot ng tawag, ngunit ito ay permanenteng ipinagbabawal. Pumunta sa app settings, piliin ang \"Mga Pahintulot\", at i-enable ang \"Mikropono\" at \"Camera\".</string>
     <string name="WebRtcCallActivity__answered_on_a_linked_device">Answered on a linked device.</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">Declined on a linked device.</string>
     <string name="WebRtcCallActivity__busy_on_a_linked_device">Busy on a linked device.</string>
-    <!-- Tooltip message shown first time user is in a video call after switch camera button moved -->
-    <string name="WebRtcCallActivity__flip_camera_tooltip">Nilipat dito ang Flip Camera, i-tap ang video mo para subukan ito</string>
 
     <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">May nag-join sa call na may bagong safety number.</string>
-
-    <!-- WebRtcCallScreen -->
-    <string name="WebRtcCallScreen_swipe_up_to_change_views">I-swipe up to change views</string>
 
     <!-- WebRtcCallScreen V2 -->
     <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -3565,9 +3388,6 @@
     <string name="WebRtcAudioOutputToggle__wired_headset">Wired Headset</string>
     <!-- Audio output option referring to an external headset connected via a USB-C data cable -->
     <string name="WebRtcAudioOutputToggle__wired_headset_usb">Wired Headset (USB)</string>
-
-    <string name="WebRtcCallControls_answer_call_description">Sagutin ang tawag</string>
-    <string name="WebRtcCallControls_reject_call_description">Tanggihan ang tawag</string>
 
     <!-- change_passphrase_activity -->
     <string name="change_passphrase_activity__old_passphrase">Lumang passphrase</string>
@@ -3629,25 +3449,8 @@
     <!-- Text asking for user\'s contact permission -->
     <string name="ContactSelectionListFragment__allow_access_to_your_contacts_encrypted">Magbigay ng access sa contacts mo. Encrypted ang contacts mo at hindi ito makikita ng Signal service.</string>
 
-    <!-- contact_selection_list_fragment -->
-    <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Kailangan ng Signal ng access sa iyong mga kontak upang maipakita ang mga ito.</string>
-    <string name="contact_selection_list_fragment__show_contacts">Ipakita ang mga kontak</string>
-
-    <!-- contact_selection_list_item -->
-    <plurals name="contact_selection_list_item__number_of_members">
-        <item quantity="one">%1$d member</item>
-        <item quantity="other">%1$d members</item>
-    </plurals>
-    <!-- Displays number of viewers for a story -->
-    <plurals name="contact_selection_list_item__number_of_viewers">
-        <item quantity="one">%1$d viewer</item>
-        <item quantity="other">%1$d viewers</item>
-    </plurals>
-
     <!-- conversation_activity -->
     <string name="conversation_activity__type_message_push">Mensahe sa Signal</string>
-    <string name="conversation_activity__type_message_sms_insecure">Hindi secure na SMS</string>
-    <string name="conversation_activity__type_message_mms_insecure">Hindi secure na MMS</string>
     <!-- Option in send button context menu to schedule the message instead of sending it directly -->
     <string name="conversation_activity__sim_n">SIM %1$d</string>
     <string name="conversation_activity__send">Ipadala</string>
@@ -3701,7 +3504,6 @@
     <string name="ConversationUpdateItem_block_request">I-block ang request</string>
     <!-- Text shown in conversation header that the account messaging the user does not have any groups in common with them -->
     <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Walang parehong grupo</string>
-    <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Walang contacts sa group na ito. Tignan nang mabuti ang requests.</string>
     <string name="ConversationUpdateItem_view">Tingnan</string>
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Ang disappearing message time ay ise-set sa %1$s kapag nag-message ka sa kanya.</string>
     <!-- Update item button text to show to boost a feature -->
@@ -3804,16 +3606,7 @@
     <!-- country_selection_fragment -->
     <string name="country_selection_fragment__loading_countries">Nilo-load ang mga bansa…</string>
     <string name="country_selection_fragment__search">Maghanap</string>
-    <string name="country_selection_fragment__no_matching_countries">No matching countries</string>
 
-    <!-- device_add_fragment -->
-    <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">I-scan ang QR code na makikita sa device upang i-link</string>
-
-    <!-- device_link_fragment -->
-    <string name="device_link_fragment__link_device">I-link ang device</string>
-
-    <!-- device_list_fragment -->
-    <string name="device_list_fragment__no_devices_linked">Walang naka-link na device</string>
     <string name="device_list_fragment__link_new_device">Mag-link ng bagong device</string>
 
     <!-- expiration -->
@@ -3903,10 +3696,6 @@
 
     <!-- prompt_passphrase_activity -->
     <string name="prompt_passphrase_activity__unlock">I-unlock</string>
-
-    <!-- prompt_mms_activity -->
-    <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Kailangan ng Signal ang settings ng MMS upang maipadala ang mga media at mensaheng panggrupo sa pamamagitan ng iyong wireless carrier. Hinahadlangan ng iyong device na magamit ang mga impormasyong ito, na kadalasang kaso sa mga naka-lock na device at iba pang naghihigpit na configuration.</string>
-    <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Upang makapagpadala ng media at mga mensaheng panggrupo, pindutin ang \'OK\' at kumpletuhin ang mga hinihinging setting. Ang settings ng MMS para sa iyong carrier ay karaniwang matatagpuan sa pamamagitan ng paghahanap ng \'your APN carrier\'. Isang beses mo lang ito kailangang gawin.</string>
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">Delivery Issue</string>
@@ -4024,10 +3813,6 @@
     <!-- verity_scan_fragment -->
     <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">I-scan ang QR Code sa device ng iyong kontak.</string>
 
-    <!-- webrtc_answer_decline_button -->
-    <string name="webrtc_answer_decline_button__swipe_up_to_answer">I-swipe pataas upang sagutin</string>
-    <string name="webrtc_answer_decline_button__swipe_down_to_reject">I-swipe pababa upang tanggihan</string>
-
     <!-- message_details_header -->
     <string name="message_details_header__issues_need_your_attention">May ilang isyu na nangangailangan ng iyong atensyon.</string>
     <string name="message_details_header_sent">Sent</string>
@@ -4058,7 +3843,6 @@
     <string name="AndroidManifest__verify_safety_number">Beripikahin ang numerong pangkaligtasan</string>
     <string name="AndroidManifest__media_preview">Preview ng media</string>
     <string name="AndroidManifest__message_details">Mga detalye ng mensahe</string>
-    <string name="AndroidManifest__linked_devices">Mga naka-link na device</string>
     <string name="AndroidManifest__invite_friends">Imbitahan ang mga kaibigan</string>
     <string name="AndroidManifest_archived_conversations">Archived Chats</string>
 
@@ -4113,8 +3897,6 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Recently Used</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">No results found</string>
 
-    <!-- GifQuickSearchOption -->
-    <string name="GifQuickSearchOption__recents">Recents</string>
     <string name="GifQuickSearchOption__trending">Trending</string>
     <string name="GifQuickSearchOption__celebrate">Celebrate</string>
     <string name="GifQuickSearchOption__love">Love</string>
@@ -4163,11 +3945,8 @@
         <item quantity="other">%1$do</item>
     </plurals>
 
-    <!-- preferences.xml -->
-    <string name="preferences_beta">Beta</string>
-    <string name="preferences__sms_mms">SMS at MMS</string>
-    <string name="preferences__pref_use_address_book_photos">Prefer address book photos</string>
-    <string name="preferences__display_contact_photos_from_your_address_book_if_available">Prefer contact photos from your address book if available</string>
+    <string name="preferences__pref_use_address_book_photos">Piliin ang address book photos</string>
+    <string name="preferences__display_contact_photos_from_your_address_book_if_available">Piliin ang contact photo mula sa address book mo kung available ito</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__pref_keep_muted_chats_archived">Panatilihing Naka-archive ang Muted Chats</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
@@ -4227,15 +4006,6 @@
     <string name="preferences__privacy">Pagkapribado</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Stories</string>
-    <string name="preferences__mms_user_agent">MMS User Agent</string>
-    <string name="preferences__advanced_mms_access_point_names">Manwal na settings ng MMS</string>
-    <string name="preferences__mmsc_url">MMSC URL</string>
-    <string name="preferences__mms_proxy_host">MMS Proxy Host</string>
-    <string name="preferences__mms_proxy_port">MMS Proxy Port</string>
-    <string name="preferences__mmsc_username">MMSC Username</string>
-    <string name="preferences__mmsc_password">MMSC Password</string>
-    <string name="preferences__sms_delivery_reports">Mga ulat ng paghahatid ng SMS</string>
-    <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Humingi ng ulat ng paghahatid para sa bawat mensaheng SMS na iyong ipinapadala</string>
     <string name="preferences__data_and_storage">Data at storage</string>
     <string name="preferences__storage">Storage</string>
     <string name="preferences__payments">Payments</string>
@@ -4243,7 +4013,6 @@
     <string name="preferences__payment_lock">Seguridad sa pagbayad</string>
     <string name="preferences__conversation_length_limit">Chat length limit</string>
     <string name="preferences__keep_messages">Keep messages</string>
-    <string name="preferences__clear_message_history">I-clear ang message history</string>
     <string name="preferences__linked_devices">Mga naka-link na device</string>
     <string name="preferences__light_theme">Maliwanag</string>
     <string name="preferences__dark_theme">Madilim</string>
@@ -4276,13 +4045,9 @@
     <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PINs keep information stored with Signal encrypted kaya ikaw lang ang may access dito. Ang iyong profile, settings, at contacts ay mare-restore when you reinstall. Hindi mo kailangan ng PIN para i-open ang app.</string>
     <string name="preferences__system_default">Default ng sistema</string>
     <string name="preferences__language">Wika</string>
-    <string name="preferences__signal_messages_and_calls">Mga mensahe at tawag sa Signal</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
-    <string name="preferences__free_private_messages_and_calls">Mga libreng pribadong mensahe at tawag para sa mga gumagamit ng Signal</string>
     <string name="preferences__submit_debug_log">Isumite ang debug log</string>
-    <string name="preferences__support_wifi_calling">\'WiFi Calling\' compatibility mode</string>
-    <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">I-enable kung gumagamit ang iyong device ng paghahatid ng SMS/MMS sa pamamagitan ng WiFi (i-enable lang kapag naka-enable ang \'WiFi Calling\' sa iyong device)</string>
     <string name="preferences__incognito_keyboard">Incognito na keyboard</string>
     <string name="preferences__read_receipts">Read receipts</string>
     <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Kung naka-disable ang read receipts, hindi ka makakakita ng mga read receipt mula sa iba.</string>
@@ -4295,7 +4060,6 @@
     <string name="preferences_chats__when_using_wifi">Kapag gumagamit ng WI-FI</string>
     <string name="preferences_chats__when_roaming">Kapag roaming</string>
     <string name="preferences_chats__media_auto_download">Awtomatikong pag-download ng media</string>
-    <string name="preferences_chats__message_history">Message history</string>
     <string name="preferences_storage__storage_usage">Pagkakagamit ng storage</string>
     <string name="preferences_storage__photos">Mga larawan</string>
     <string name="preferences_storage__videos">Mga video</string>
@@ -4409,8 +4173,6 @@
     <!-- Preference summary for automatic key verification -->
     <string name="preferences_automatic_key_verification_body">Kapag naka-enable ito, susubukan ng Signal na i-verify automatically ang encryption ng 1:1 chats.</string>
 
-
-    <string name="configurable_single_select__customize_option">I-customize ang option</string>
 
     <!-- Internal only preferences -->
   <!-- Removed by excludeNonTranslatables <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string> -->
@@ -4549,9 +4311,7 @@
     <string name="PaymentsTransferFragment__check_the_wallet_address">I-check ang wallet address kung saan mo sinusubukang mag-transfer and try again.</string>
     <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">Hindi ka pwedeng mag-transfer sa sarili mong Signal wallet address. I-enter sa isang supported exchange ang wallet address mula sa account mo.</string>
     <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">Para mag-scan ng isang QR code, kailangan ng Signal ng access sa iyong camera.</string>
-    <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Kailangan ng Signal ang Camera permission para ma-capture ang QR code. Pumunta sa settings, i-select ang \"Permissions\", at i-enable ang \"Camera\".</string>
     <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">Para mag-scan ng isang QR code, kailangan ng Signal ng access sa iyong camera.</string>
-    <string name="PaymentsTransferFragment__settings">Settings</string>
 
     <!-- PaymentsTransferQrScanFragment -->
     <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">I-scan ang Address QR Code</string>
@@ -4627,12 +4387,8 @@
     <!-- contact_selection_list -->
     <!-- Displayed in a row on the new call screen when searching by phone number. -->
     <string name="contact_selection_list__new_call">Bagong call kay…</string>
-    <string name="contact_selection_list__unknown_contact">Bagong mensahe para kay…</string>
     <string name="contact_selection_list__unknown_contact_block">I-block ang user</string>
     <string name="contact_selection_list__unknown_contact_add_to_group">I-add sa group</string>
-
-    <!-- conversation_callable_insecure -->
-    <string name="conversation_callable_insecure__menu_call">Tawagan</string>
 
     <!-- conversation_callable_secure -->
     <string name="conversation_callable_secure__menu_call">Tawag sa Signal</string>
@@ -4758,12 +4514,6 @@
         <item quantity="other">%1$d messages ang na-schedule</item>
     </plurals>
 
-    <!-- conversation_group_options -->
-    <string name="conversation_group_options__delivery">Paghahatid</string>
-    <!-- Label for a menu item that appears after pressing the three-dot icon in a  -->
-    <string name="conversation_group_options__conversation">Chat</string>
-    <string name="conversation_group_options__broadcast">Broadcast</string>
-
     <!-- DoubleTapEditEducationSheet -->
     <!-- Displayed as the title of the education bottom sheet -->
     <string name="DoubleTapEditEducationSheet__double_tap_edit_title">Mag-double tap para mag-edit</string>
@@ -4791,7 +4541,6 @@
 
     <!-- reminder_header -->
     <string name="reminder_header_service_outage_text">Nakakaranas ng mga teknikal na problema ang Signal. Nagsisikap kaming ibalik ang serbisyo sa lalong madaling panahon.</string>
-    <string name="reminder_header_progress">%1$d%%</string>
     <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user\'s contacts -->
     <string name="reminder_cds_warning_body">Pansamantalang hindi maproseso ng private contact discovery ng Signal ang phone contacts mo.</string>
     <!-- Label for a button in a banner to learn more about why we temporarily can\'t process the user\'s contacts -->
@@ -4849,8 +4598,6 @@
     <string name="ConfirmKbsPinFragment__pin_created">Nalikha na ang PIN.</string>
     <string name="ConfirmKbsPinFragment__re_enter_your_pin">Re-enter your PIN</string>
     <string name="ConfirmKbsPinFragment__creating_pin">Lumilikha ng PIN…</string>
-    <!-- ID used when saving the PIN to the device password manager. -->
-    <string name="ConfirmKbsPinFragment__pin_password_manager_id">PIN ng Signal</string>
 
     <!-- KbsSplashFragment -->
     <string name="KbsSplashFragment__introducing_pins">Ipinakikilala ang mga PIN</string>
@@ -4924,13 +4671,6 @@
     <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PINs keep information that\'s stored with Signal encrypted.</string>
     <string name="KbsMegaphone__create_pin">Lumikha ng PIN</string>
 
-    <!-- Title for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
-    <string name="UpdatePinMegaphone__update_signal_pin">I-update ang Signal PIN</string>
-    <!-- Message for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
-    <string name="UpdatePinMegaphone__message">I-update ang iyong Signal PIN para makumpleto ang account registration.</string>
-    <!-- Button text for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
-    <string name="UpdatePinMegaphone__update_pin">I-update ang PIN</string>
-
     <!-- CallNotificationBuilder -->
     <!-- Displayed in a notification when a Signal voice call is ringing -->
     <string name="CallNotificationBuilder__incoming_signal_voice_call">Incoming Signal voice call</string>
@@ -4945,22 +4685,15 @@
     <!-- Displayed in a notification when a Signal group call is in progress -->
     <string name="CallNotificationBuilder__ongoing_signal_group_call">Ongoing Signal group call</string>
 
-    <!-- transport_selection_list_item -->
-    <string name="ConversationListFragment_loading">Naglo-load…</string>
     <string name="CallNotificationBuilder_connecting">Kumokonekta…</string>
-    <string name="SQLCipherMigrationHelper_migrating_signal_database">Inililipat ang database ng Signal</string>
     <string name="enter_backup_passphrase_dialog__backup_passphrase">I-backup ang passphrase</string>
     <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Ang mga backup ay ise-save sa panlabas na storage at gagawing encrypted gamit ang passphrase sa ibaba. Kailangang nasa iyo ang passphrase na ito upang mag-restore ng backup.</string>
     <string name="backup_enable_dialog__you_must_have_this_passphrase">You must have this passphrase para makapag-restore ka ng backup.</string>
     <string name="backup_enable_dialog__folder">Folder</string>
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Naisulat ko na ang passphrase na ito. Kung wala ito, hindi ako makakapag-restore ng backup.</string>
     <string name="registration_activity__restore_backup">Mag-restore ng backup</string>
-    <string name="registration_activity__transfer_or_restore_account">Transfer or restore account</string>
-    <string name="registration_activity__transfer_account">Transfer account</string>
-    <string name="registration_activity__skip">Laktawan</string>
     <!-- Text label button to skip restoring -->
     <string name="registration_activity__skip_restore">I-skip ang restore</string>
-    <string name="preferences_chats__chat_backups">Chat backups</string>
     <!-- Title for dialog to enter in the backup passphrase -->
     <string name="RegistrationActivity_enter_backup_passphrase">Ilagay ang passphrase ng backup</string>
     <string name="RegistrationActivity_restore">I-restore</string>
@@ -5044,13 +4777,10 @@
     <string name="PhoneNumberPrivacy_everyone">Everyone</string>
     <string name="PhoneNumberPrivacy_nobody">Nobody</string>
     <string name="preferences_app_protection__screen_lock">Lock ng Screen</string>
-    <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">I-lock ang access sa Signal gamit ang lock ng screen o fingerprint ng Android</string>
-    <string name="preferences_app_protection__screen_lock_inactivity_timeout">Timeout ng kawalang-aktibidad para sa lock ng screen</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
     <string name="preferences_app_protection__to_use_screen_lock">Para gamitin ang screen lock, mag-set ng PIN, pattern, o password sa device na ito.</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">Bigo na paganahin ang registration lock.</string>
     <string name="preferences_app_protection__failed_to_disable_registration_lock">Bigo na patayin ang registration lock?</string>
-    <string name="AppProtectionPreferenceFragment_none">Wala</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Kailangan mong ilagay ang iyong Lock PIN sa Pagpaparehistro</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Ang iyong PIN ay may bilang na hindi bababa sa %1$d numero o mga character</string>
     <string name="RegistrationActivity_too_many_attempts">Masyadong maraming pagtatangka</string>
@@ -5079,8 +4809,6 @@
     <string name="ScreenLockSettingsFragment__your_android_device">Kakailanganin ang Android device lock settings mo para ma-unlock ang Signal kapag umalis o lumipat ka sa ibang app. Kapag naka-lock ang Signal, hindi ipapakita ng notification previews ang message content.</string>
     <!-- Title text explaining when users should start the screen lock -->
     <string name="ScreenLockSettingsFragment__start_screen_lock">Simulan ang screen lock</string>
-    <!-- Option text explaining that screen lock should start immediately -->
-    <string name="ScreenLockSettingsFragment__immediately">Kaagad</string>
     <!-- Option text explaining that screen lock should start after 1 minute of inactivity -->
     <string name="ScreenLockSettingsFragment__after_1_min">Pagkatapos ng 1 minuto</string>
     <!-- Option text explaining that screen lock should start after 5 minutes of inactivity -->
@@ -5132,17 +4860,8 @@
     <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Kung nakapag-register ka na sa isang Signal account previously, pwede mong i-transfer o i-restore ang account at messages mo</string>
     <string name="TransferOrRestoreFragment__transfer_from_android_device">I-transfer mula sa Android device</string>
     <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">I-transfer ang iyong account at messages mula sa old Android device mo. Kailangan mo lang ng access sa\'yong old device.</string>
-    <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Kailangan mo ng access sa\'yong old device.</string>
-    <string name="TransferOrRestoreFragment__restore_from_backup">Mag-restore mula sa backup</string>
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">I-restore ang messages mo mula sa isang local backup. Kung hindi ka magre-restore ngayon, hindi ka na pwedeng mag-restore mamaya.</string>
     <string name="TransferOrRestoreFragment__restore_from_local_backup">I-restore ang local backup</string>
-    <string name="TransferOrRestoreFragment__restore_from_signal_backup">I-restore ang Signal backup</string>
-    <!-- Button label for more options -->
-    <string name="TransferOrRestoreFragment__more_options">Karagdagang options</string>
-
-    <string name="TransferOrRestoreFragment__cancel">I-cancel</string>
-    <string name="TransferOrRestoreFragment__skip_transfer">Mag-log in nang hindi nililipat</string>
-    <string name="TransferOrRestoreFragment__skip_transfer_description">Magpatuloy nang hindi nililipat ang messages at media mo</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
     <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Buksan ang Signal sa old Android phone mo.</string>
@@ -5292,7 +5011,6 @@
     <!-- Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin -->
     <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Gusto mo bang tanggalin si %1$s mula sa group? Hindi na siya pwedeng mag-rejoin gamit ang group link.</string>
     <string name="RecipientBottomSheet_remove">Tanggalin</string>
-    <string name="RecipientBottomSheet_copied_to_clipboard">Copied to clipboard</string>
 
     <string name="GroupRecipientListItem_admin">Admin</string>
     <!-- Button text to approve a user that has requested to join a group -->
@@ -5361,9 +5079,6 @@
     <string name="ReviewCardDialogFragment__remove">Tanggalin</string>
     <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Hindi matanggal ang group member.</string>
 
-    <!-- ReviewCard -->
-    <string name="ReviewCard__request">Request</string>
-    <string name="ReviewCard__your_contact">Your contact</string>
     <string name="ReviewCard__remove_from_group">Tanggalin mula sa group</string>
     <string name="ReviewCard__update_contact">I-update ang contact</string>
     <string name="ReviewCard__block">I-block</string>
@@ -5608,12 +5323,6 @@
     <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Para makapag-send ng payment sa user na ito, kailangan niyang i-accept ang message request mula sa\'yo. Send them a message para makapag-create ng message request.</string>
     <string name="CanNotSendPaymentDialog__send_a_message">Send a message</string>
 
-    <!-- GroupsInCommonMessageRequest -->
-    <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">You have no groups in common with this person. I-review ang requests carefully bago mag-accept para makaiwas sa unwanted messages.</string>
-    <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Wala kang contact o ka-chat sa group na ito. I-review ang requests nang mabuti bago mag-accept para makaiwas sa unwanted messages.</string>
-    <string name="GroupsInCommonMessageRequest__about_message_requests">About message requests</string>
-    <string name="GroupsInCommonMessageRequest__okay">Okay</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Narito ang preview ng chat color.</string>
     <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">Ang color na ito\'y visible lang sa\'yo.</string>
 
@@ -5635,8 +5344,6 @@
     <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">Kinopya sa clipboard ang donor subscriber id</string>
     <!-- String displayed in a toast when we successfully copy the backups subscriber id to the clipboard -->
     <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">Kinopya sa clipboard ang backups subscriber id</string>
-    <!-- String displayed in a toast when a subscriber id is not present for a given type -->
-    <string name="AppSettingsFragment__no_subscriber_id_set">Walang naka-set na subscriber id</string>
 
     <!-- ExportAccountDataFragment -->
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
@@ -5731,7 +5438,6 @@
     <string name="ChangeNumberVerifyFragment__change_number">Change Number</string>
     <!-- Text shown when verifying a new phone number where %1$s is the number being changed -->
     <string name="ChangeNumberVerifyFragment__verifying_s">Verifying %1$s</string>
-    <string name="ChangeNumberVerifyFragment__captcha_required">Captcha required</string>
 
     <!-- ChangeNumberConfirmFragment -->
     <string name="ChangeNumberConfirmFragment__change_number">Change number</string>
@@ -5923,13 +5629,9 @@
     <string name="CreateFoldersFragment__please_enter_name">Bigyan ng pangalan ng folder</string>
 
     <!-- ChooseChatsFragment -->
-    <!-- Section title representing chat types that can be added to the folder  -->
-    <string name="ChooseChatsFragment__chat_types">Chat types</string>
     <!-- Done button label to save selected chats to folder -->
     <string name="ChooseChatsFragment__done">Done</string>
 
-    <!-- NotificationsSettingsFragment -->
-    <string name="NotificationsSettingsFragment__messages">Mga Mensahe</string>
     <string name="NotificationsSettingsFragment__calls">Mga Tawag</string>
     <!-- Notification header for sounds -->
     <string name="NotificationsSettingsFragment__sounds">Sounds</string>
@@ -5946,8 +5648,6 @@
     <string name="NotificationsSettingsFragment__reset_confirm">I-reset</string>
     <!-- Notification preference header -->
     <string name="NotificationsSettingsFragment__notification_profiles">Notification profiles</string>
-    <!-- Notification preference option header -->
-    <string name="NotificationsSettingsFragment__profiles">Profiles</string>
     <!-- Notification preference summary text -->
     <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Mag-create ng profile para maka-receive ng notifications mula sa people at groups na napili mo.</string>
 
@@ -6093,15 +5793,6 @@
 
     <!-- ChatColorGradientTool -->
 
-    <!-- Title text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_donate_to_signal">Mag-donate sa Signal</string>
-    <!-- Body text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal is powered by people like you. Mag-donate monthly para maka-receive ng badge.</string>
-    <!-- Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_donate">Mag-donate</string>
-    <!-- Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_not_now">Hindi sa Ngayon</string>
-
     <!-- EditReactionsFragment -->
     <string name="EditReactionsFragment__customize_reactions">I-customize ang reactions</string>
     <string name="EditReactionsFragment__tap_to_replace_an_emoji">I-tap para palitan ang emoji</string>
@@ -6118,10 +5809,6 @@
 
     <!-- BecomeASustainerMegaphone -->
     <string name="BecomeASustainerMegaphone__become_a_sustainer">Become a Sustainer</string>
-    <!-- Displayed in the Become a Sustainer megaphone -->
-    <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal is powered by people like you. Mag-donate para maka-receive ng badge.</string>
-    <string name="BecomeASustainerMegaphone__not_now">Hindi ngayon</string>
-    <string name="BecomeASustainerMegaphone__donate">Mag-donate</string>
 
     <!-- KeyboardPagerFragment -->
     <string name="KeyboardPagerFragment_emoji">Emoji</string>
@@ -6194,8 +5881,6 @@
     <string name="ConversationSettingsFragment__conversation_muted_forever">Naka-mute ang chat forever</string>
     <!-- Subtitle when conversation is muted forever -->
     <string name="ConversationSettingsFragment__conversation_muted_always">Palagi</string>
-    <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Copied phone number to clipboard.</string>
-    <string name="ConversationSettingsFragment__phone_number">Phone number</string>
     <string name="ConversationSettingsFragment__get_badges">Makakuha ng badges para sa profile mo sa pamamagitan ng pagsuporta sa Signal. I-tap ang isang badge para matuto pa tungkol dito.</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
     <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">Hindi pa na-send ang media na ito.</string>
@@ -6240,8 +5925,6 @@
     <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">I-mute ang notifications</string>
     <!-- Summary text shown when a conversation is not muted -->
     <string name="SoundsAndNotificationsSettingsFragment__not_muted">Hindi naka-mute</string>
-    <!-- Label for the mentions notification setting in conversation sounds and notifications -->
-    <string name="SoundsAndNotificationsSettingsFragment__mentions">Mentions</string>
     <!-- Dialog option to always send notifications for the selected category even when the conversation is muted -->
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">Always notify</string>
     <!-- Dialog option to not send notifications for the selected category when the conversation is muted -->
@@ -6250,16 +5933,6 @@
     <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Custom na mga notipikasyon</string>
     <!-- Section header for settings that control which notifications still come through when a conversation is muted -->
     <string name="SoundsAndNotificationsSettingsFragment__when_muted">Habang naka-mute</string>
-    <!-- Label for the calls notification setting in conversation sounds and notifications -->
-    <string name="SoundsAndNotificationsSettingsFragment__calls">Calls</string>
-    <!-- Explanatory text shown in the calls notification setting dialog describing what the setting controls -->
-    <string name="SoundsAndNotificationsSettingsFragment__calls_dialog_message">Mag-ring at makatanggap ng notifications kapag may tumawag sa muted chats.</string>
-    <!-- Explanatory text shown in the mentions notification setting dialog describing what the setting controls -->
-    <string name="SoundsAndNotificationsSettingsFragment__mentions_dialog_message">Makatanggap ng notifications kapag na-mention ka sa muted chats.</string>
-    <!-- Label for the replies notification setting in conversation sounds and notifications -->
-    <string name="SoundsAndNotificationsSettingsFragment__replies_to_you">Mga reply sa \'yo</string>
-    <!-- Explanatory text shown in the replies notification setting dialog describing what the setting controls -->
-    <string name="SoundsAndNotificationsSettingsFragment__replies_dialog_message">Makatanggap ng notifications kapag may nag-reply sa messages mo sa muted chats.</string>
 
     <!-- StickerKeyboard -->
     <string name="StickerKeyboard__recently_used">Recently used</string>
@@ -6293,8 +5966,6 @@
     <string name="NewConversationActivity__s_has_been_removed">Natanggal na si %1$s</string>
     <!-- Snackbar message after blocking a contact -->
     <string name="NewConversationActivity__s_has_been_blocked">Na-block na si %1$s</string>
-    <!-- Snackbar message when blocking a contact has failed -->
-    <string name="NewConversationActivity__block_failed">Failed ang pag-block</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
     <string name="RecipientLookup_error__s_is_not_a_signal_user">Hindi Signal user si %1$s</string>
     <!-- Accessibility label for opening the screen specific dropdown menu. -->
@@ -6456,8 +6127,6 @@
 
     <!-- Title of learn more sheet -->
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_different">Bilang isang independent nonprofit, ang Signal ay committed sa private messaging and calls. Walang ads, walang trackers, at walang surveillance. Mag-donate ngayon para suportahan ang Signal.</string>
-    <!-- First small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__private_messaging">No ads, no trackers, no surveillance. Donate today to support Signal.</string>
     <!-- Second small text blurb on learn more sheet -->
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__donate_and_get_badge">Makakakuha ka ng optional badge sa profile mo kapag nag-donate ka</string>
     <!-- Third small text blurb on learn more sheet -->
@@ -6485,7 +6154,6 @@
     <!-- Heading for receipts area of manage subscriptions page -->
     <!-- Heading for my subscription area of manage subscriptions page -->
     <string name="ManageDonationsFragment__my_support">Suporta ko</string>
-    <string name="ManageDonationsFragment__manage_subscription">I-manage ang subscription</string>
     <!-- Label for Donation Receipts button -->
     <string name="ManageDonationsFragment__donation_receipts">Donation Receipts</string>
     <string name="ManageDonationsFragment__badges">Badges</string>
@@ -6552,27 +6220,12 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Become a Sustainer</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Mag-add ng Boost</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Hindi ngayon</string>
-    <!-- Copy displayed when badge expires after user inactivity -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Automatic na na-cancel ang iyong monthly donation dahil matagal kang naging inactive. Ang iyong %1$s badge ay hindi na makikita sa profile mo.</string>
-    <!-- Copy displayed when badge expires after payment failure -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Na-cancel ang iyong monthly donation dahil hindi namin ma-process ang payment mo. Ang iyong badge ay hindi na makikita sa profile mo.</string>
-    <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Na-cancel ang iyong monthly donation. %1$s Ang iyong %2$s badge ay hindi na makikita sa profile mo.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Pwede mo pa ring gamitin ang Signal, pero para masuportahan ang app at ma-reactivate ang iyong badge, mag-renew na ngayon.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">I-renew ang subscription</string>
-    <!-- Button label to send user to Google Pay website -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Go to Google Pay</string>
-
-    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Hindi ma-process ang subscription payment</string>
-    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">We\'re having trouble collecting your Signal Sustainer payment. Siguraduhin na ang payment method mo ay up to date. Kung hindi pa, i-update ito sa Google Pay. Susubukan ulit ng Signal na i-process ang payment in a few days.</string>
-    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">\'Wag nang ipakita ito</string>
 
     <string name="Subscription__contact_support">Makipag-ugnayan sa Suporta</string>
     <string name="Subscription__get_a_s_badge">Kumuha ng %1$s badge</string>
 
     <!-- *PaymentInProgressFragment strings -->
     <string name="InAppPaymentInProgressFragment__processing_donation">Pina-process ang donation…</string>
-    <string name="InAppPaymentInProgressFragment__processing_payment">Processing payment…</string>
 
     <!--InAppDonations -->
     <!-- Label displayed in google play and on receipts for recurring subscriptions. Placeholder is level -->
@@ -6626,8 +6279,6 @@
     <string name="DonationsErrors__cannot_send_donation">Hindi ma-send ang donation</string>
     <!-- Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting -->
     <string name="DonationsErrors__this_user_cant_receive_donations_until">Kailangang i-upgrade ng user na ito ang kanyang Signal app bago siya makatanggap ng donation.</string>
-    <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
-    <string name="DonationsErrors__your_donation_could_not_be_sent">Hindi maipadala ang donation mo dahil sa network error. I-check ang iyong connection at subukan ulit.</string>
     <!-- Displayed as a dialog message when the user encounters an error during an iDEAL donation -->
     <string name="DonationsErrors__your_ideal_wero_couldnt_be_processed">Hindi maproseso ang iyong iDEAL | Wero donation. Subukan ang ibang payment method o tawagan ang iyong bangko para sa karagdagang impormasyon.</string>
 
@@ -6861,8 +6512,6 @@
     <string name="ReleaseNotes__this_is_official_chat">Ito ang opisyal at natatanging chat mula sa Signal</string>
     <!-- Text description in Signal Release channel details explaining what the channel is for -->
     <string name="ReleaseNotes__keep_up_to_date">Maging updated sa mga balita at release notes</string>
-    <!-- Subtitle for the Signal Release channel explaining that it is the only chat from Signal -->
-    <string name="ReleaseNotes__official_only_chat">Opisyal at natatanging Signal chat</string>
 
     <!-- Donation receipts activity title -->
     <string name="DonationReceiptListFragment__all_activity">All activity</string>
@@ -7151,10 +6800,6 @@
     <string name="TextStoryPostTextEntryFragment__add_text">Mag-add ng text</string>
     <!-- Content description for \'done\' button when adding text to a story post -->
     <string name="TextStoryPostTextEntryFragment__done_adding_text">Done adding text</string>
-    <!-- Text label for media selection toggle -->
-    <string name="MediaSelectionActivity__text">Text</string>
-    <!-- Camera label for media selection toggle -->
-    <string name="MediaSelectionActivity__camera">Camera</string>
     <!-- Hint for entering a URL for a text post -->
     <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">Type or paste a URL</string>
     <!-- Displayed prior to the user entering a URL for a text post -->
@@ -7512,21 +7157,17 @@
     <string name="ChooseANewDefaultSmsAppFragment__bullet_1">1</string>
     <!-- Second step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_2">2</string>
-    <!-- Third step number/bullet for choose new default sms app instructions -->
-    <string name="ChooseANewDefaultSmsAppFragment__bullet_3">3</string>
-    <!-- Fourth step number/bullet for choose new default sms app instructions -->
-    <string name="ChooseANewDefaultSmsAppFragment__bullet_4">4</string>
     <!-- BackupSchedulePermission Megaphone -->
     <!-- The title on an alert window that asks the user to grant the alarms permission so that automatic backups run more reliably -->
-    <string name="BackupSchedulePermissionMegaphone__improve_backup_reliability">Improve backup reliability</string>
+    <string name="BackupSchedulePermissionMegaphone__improve_backup_reliability">I-improve ang backup reliability</string>
     <!-- The body text of an alert window that asks the user to grant the alarms permission so that automatic backups run more reliably -->
-    <string name="BackupSchedulePermissionMegaphone__allow_the_alarms_permission_to_improve_automatic_daily_backups">Allow the \"alarms\" permission to improve automatic daily backups.</string>
+    <string name="BackupSchedulePermissionMegaphone__allow_the_alarms_permission_to_improve_automatic_daily_backups">Payagan ang \"alarms\" permission para mapabuti ang automatic daily backups.</string>
     <!-- The text on a button in an alert window that, when clicked, will take the user to a screen to grant the alarms permission -->
-    <string name="BackupSchedulePermissionMegaphone__allow">Allow</string>
+    <string name="BackupSchedulePermissionMegaphone__allow">Payagan</string>
     <!-- The text on a button in an alert window that, when clicked, will take the user to a screen to re-enable backups -->
     <string name="BackupSchedulePermissionMegaphone__not_now">Hindi ngayon</string>
     <!-- Alarms permission bottom sheet title, followed by a numbered list of instructions -->
-    <string name="BackupSchedulePermissionMegaphone__to_allow_permission">To allow permission:</string>
+    <string name="BackupSchedulePermissionMegaphone__to_allow_permission">Para magbigay ng pahintulot:</string>
     <!-- Re-enable backups permission bottom sheet instruction 1 text -->
     <string name="BackupSchedulePermissionMegaphone__tap_the_go_to_settings_button_below">I-tap ang \"Go to settings\" button sa baba</string>
     <!-- Re-enable backups permission bottom sheet instruction 2 text -->
@@ -7635,8 +7276,6 @@
     <string name="BankTransferDetailsFragment__invalid_email_address">Invalid email address</string>
 
     <!-- IdealTransferDetailsFragment -->
-    <!-- Title of the screen, displayed in the toolbar -->
-    <string name="IdealTransferDetailsFragment__ideal">iDEAL</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
     <string name="IdealTransferDetailsFragment__enter_your_bank">Ilagay ang pangalan at email mo. Gagamitin ng Stripe ang email na ito para padalhan ka ng updates tungkol sa donation mo. %1$s</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
@@ -7647,8 +7286,6 @@
     <string name="IdealTransferDetailsFragment__name_on_bank_account">Pangalan sa bank account</string>
     <!-- Hint label for text entry box for email -->
     <string name="IdealTransferDetailsFragment__email">email</string>
-    <!-- Default label for bank selection -->
-    <string name="IdealTransferDetailsFragment__choose_your_bank">Piliin ang iyong bangko</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
     <string name="IdealTransferDetailsFragment__confirm_your_donation_with_ideal_wero">I-confirm ang donation mo sa iDEAL | Wero</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
@@ -7657,8 +7294,6 @@
     <string name="IdealTransferDetailsFragment__continue">Magpatuloy</string>
 
     <!-- IdealTransferDetailsBankSelectionDialogFragment -->
-    <!-- Title of the screen, displayed in the toolbar -->
-    <string name="IdealTransferDetailsBankSelectionDialogFragment__choose_your_bank">Piliin ang iyong bangko</string>
 
     <!-- Title of bottom sheet for finding account information -->
     <string name="FindAccountInfoSheet__find_your_account_information">Hanapin ang iyong account information</string>
@@ -7691,8 +7326,6 @@
     <string name="DonationCompletedBottomSheet__donation_complete">Kumpleto na ang Donation</string>
     <!-- Text block of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed -->
     <string name="DonationCompleteBottomSheet__your_bank_transfer_was_received">Natanggap na namin ang iyong bank transfer. Pwede mo nang i-display ang badge na ito sa iyong profile para ipakita ang suporta mo.</string>
-    <!-- Button text of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed to dismiss sheet -->
-    <string name="DonationCompleteBottomSheet__done">Done</string>
 
     <!-- StripePaymentInProgressFragment -->
     <string name="StripePaymentInProgressFragment__cancelling">Kina-cancel…</string>
@@ -7744,7 +7377,6 @@
     <string name="GroupStoryEducationSheet__all_group_chat_members">Pwedeng makita ng lahat ng group chat members ang story replies.</string>
     <!-- Button label to dismiss sheet -->
     <string name="GroupStoryEducationSheet__next">Susunod</string>
-    <string name="Registration_country_code_entry_hint">+0</string>
 
     <!-- PaypalCompleteOrderBottomSheet -->
     <string name="PaypalCompleteOrderBottomSheet__donate">Mag-donate</string>
@@ -7759,8 +7391,6 @@
     <string name="ChatFilter__tip_pull_down">Tip: I-drag pababa ang chat list para mag-filter</string>
 
     <!-- Set up your username megaphone -->
-    <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__set_up_your_signal_username">I-set up ang iyong Signal username</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__introducing_phone_number_privacy">Ipinakikilala ang phone number privacy, optional usernames, at links.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
@@ -7814,8 +7444,6 @@
     <string name="CallLogAdapter__incoming">Incoming</string>
     <!-- Displayed for outgoing calls -->
     <string name="CallLogAdapter__outgoing">Outgoing</string>
-    <!-- Displayed for outgoing calls that were not accepted by the remote party -->
-    <string name="CallLogAdapter__unanswered">Hindi nasagot</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">Missed</string>
     <!-- Displayed for one missed call declined by notification profile -->
@@ -7922,13 +7550,6 @@
     <string name="CallStateUpdatePopupWindow__speaker_on">Naka-on ang speaker</string>
     <!-- Displayed when the user turns off their speakerphone -->
     <string name="CallStateUpdatePopupWindow__speaker_off">Naka-off ang speaker</string>
-
-    <!-- Accessibility label describing the capture button on the camera screen -->
-    <string name="CameraControls_capture_button_accessibility_label">Button sa Pagkuha ng Photo</string>
-    <!-- Accessibility label describing the continue button on the camera screen -->
-    <string name="CameraControls_continue_button_accessibility_label">Button Para Magpatuloy</string>
-    <!-- Accessibility label describing the flash Mode toggle button on the camera screen -->
-    <string name="CameraControls_toggle_flash_mode_accessibility_label">Mag-switch sa Flash Mode</string>
 
     <!-- CallPreference -->
     <!-- Generic group call in call info -->
@@ -8277,8 +7898,6 @@
     <string name="FindByActivity__enter_username_description">Magsulat ng username at sundan ng tuldok at ng hanay ng mga numero nito.</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">Susunod</string>
-    <!-- Placeholder text for search input for selecting country code -->
-    <string name="FindByActivity__search">Maghanap</string>
     <!-- Dialog title for invalid username -->
     <string name="FindByActivity__invalid_username">Invalid username</string>
     <!-- Dialog title for invalid phone number -->
@@ -8411,14 +8030,6 @@
     <string name="BackupAlertBottomSheet__not_now">Hindi na muna</string>
     <!-- Secondary action button to dismiss could not complete backup sheet -->
     <string name="BackupAlertBottomSheet__try_later">Subukan mamaya</string>
-    <!-- Dialog title for last chance to download backup -->
-    <string name="BackupAlertBottomSheet__media_will_be_deleted">Mabubura ang media</string>
-    <!-- Dialog message for last chance to download backup -->
-    <string name="BackupAlertBottomSheet__the_media_stored_in_your_backup">Ang media na nasa backup mo ay permanenteng mabubura ngayong araw. Ito na ang huling chance mo para i-download ito.</string>
-    <!-- Dialog action to download now -->
-    <string name="BackupAlertBottomSheet__download">I-download</string>
-    <!-- Dialog action to not download now -->
-    <string name="BackupAlertBottomSheet__dont_download">\'Wag i-download</string>
     <!-- Dialog action to skip media download -->
     <string name="BackupAlertBottomSheet__skip">Laktawan</string>
     <!-- Dialog title for skipping media restore -->
@@ -8538,25 +8149,7 @@
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
-    <string name="BackupsTypeSettingsFragment__google_play">Google Play</string>
-    <!-- Displayed as the user\'s payment method as a label in a preference row -->
-    <string name="BackupsTypeSettingsFragment__credit_or_debit_card">Credit o debit card</string>
-    <!-- Displayed as the user\'s payment method as a label in a preference row -->
-    <string name="BackupsTypeSettingsFragment__iDEAL">iDEAL</string>
-    <!-- Displayed as the user\'s payment method as a label in a preference row -->
-    <string name="BackupsTypeSettingsFragment__google_pay">Google Pay</string>
-    <!-- Displayed as the user\'s payment method as a label in a preference row -->
-    <string name="BackupsTypeSettingsFragment__bank_transfer">Bank transfer</string>
-    <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__paypal">PayPal</string>
-    <!-- Displayed as the user\'s payment method as a label in a preference row -->
-    <string name="BackupsTypeSettingsFragment__unknown">Hindi tukoy</string>
-    <!-- Row title for entering payment history -->
-    <string name="BackupsTypeSettingsFragment__payment_history">Payment history</string>
-    <!-- Row description detailing renewal information. First placeholder is formatted price. Second placeholder is formatted date. -->
-    <string name="BackupsTypeSettingsFragment__s_month_renews_s">%1$s/month · Renews %2$s</string>
-    <!-- Row title to change or cancel subscription -->
-    <string name="BackupsTypeSettingsFragment__change_or_cancel_subscription">Palitan o i-cancel ang subscription</string>
 
     <!-- GooglePlayServicesAvailability -->
     <!-- Dialog title when Google Play services are missing from the device -->
@@ -8706,8 +8299,6 @@
     <string name="RemoteBackupsSettingsFragment__off">Naka-off</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
     <string name="RemoteBackupsSettingsFragment__authentication_required">Required ang authentication</string>
-    <!-- Row label to launch payment history screen -->
-    <string name="RemoteBackupsSettingsFragment__payment_history">Payment history</string>
     <!-- Section header for backup information -->
     <string name="RemoteBackupsSettingsFragment__backup_details">Backup details</string>
     <!-- Row label to allow the restoration of a backup to occur while on cellular connection -->
@@ -8753,10 +8344,6 @@
     <string name="RemoteBackupsSettingsFragment__subscription_inactive">Inactive ang subscription</string>
     <!-- Text displayed in card when free tier is inactive -->
     <string name="RemoteBackupsSettingsFragment__you_turned_off_backups">In-off mo ang backups</string>
-    <!-- Title text in row detailing selected backup type -->
-    <string name="RemoteBackupsSettingsFragment__backup_plan">Backup plan</string>
-    <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
-    <string name="RemoteBackupsSettingsFragment__backups_disabled">Naka-disable ang backups</string>
     <!-- Format string for backup and cost. First placeholder is cost per month. -->
     <string name="RemoteBackupsSettingsFragment__s_per_month">%1$s/buwan</string>
     <!-- Displayed in card at top of screen while payment processing is pending -->
@@ -8783,8 +8370,6 @@
     <string name="RemoteBackupsSettingsFragment__manage_or_cancel">I-manage o kanselahin</string>
     <!-- button label to upgrade backups -->
     <string name="RemoteBackupsSettingsFragment__upgrade">Upgrade</string>
-    <!-- Progress indicator subtext displayed when a backup is in progress -->
-    <string name="RemoteBackupsSettingsFragment__d_slash_d">%1$d/%2$d</string>
     <!-- Title text in row detailing last backup -->
     <string name="RemoteBackupsSettingsFragment__last_backup">Huling backup</string>
     <!-- Subtext describing when a backup took place. First placeholder is the day, second is time. -->
@@ -8813,20 +8398,6 @@
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">I-off at burahin</string>
     <!-- Text on dialog while user backup is being deleted -->
     <string name="RemoteBackupsSettingsFragment__deleting_backup">Binubura ang backup…</string>
-    <!-- Text on dialog when user backup is deleted -->
-    <string name="RemoteBackupsSettingsFragment__backup_deleted">Binura na ang backup</string>
-    <!-- Subtitle for frequency option MANUAL for backup frequency -->
-    <string name="RemoteBackupsSettingsFragment__by_tapping_back_up_now">"Sa pamamagitan ng pag-tap sa Back up now"</string>
-    <!-- Title for frequency option DAILY for backup frequency -->
-    <string name="RemoteBackupsSettingsFragment__daily">Araw-araw</string>
-    <!-- Title for frequency option DAILY for backup frequency -->
-    <string name="RemoteBackupsSettingsFragment__weekly">Lingguhan</string>
-    <!-- Title for frequency option DAILY for backup frequency -->
-    <string name="RemoteBackupsSettingsFragment__monthly">Buwanan</string>
-    <!-- Title for frequency option DAILY for backup frequency -->
-    <string name="RemoteBackupsSettingsFragment__manually_back_up">Manual na pag backup</string>
-    <!-- The body of an alert dialog shown when we detect the user may be confused by the lock screen -->
-    <string name="PassphrasePromptActivity_help_prompt_body">Ilagay ang iyong device pin, password o pattern.</string>
     <!-- Button label to re-enable backups (launches into checkout flow) -->
     <string name="RemoteBackupsSettingsFragment__reenable_backups">I-enable ulit ang backups</string>
     <!-- Notice displayed when backups have been disabled and deleted -->
@@ -8906,8 +8477,6 @@
     <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data">In-off ang backups at buburahin ang iyong data mula sa secure storage service ng Signal.</string>
     <!-- Text displayed after we have deleted a user\'s backup -->
     <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data_has_been_deleted">In-off ang backups at binura ang iyong data mula sa secure storage service ng Signal.</string>
-    <!-- Text displayed while downloading backup during deletion. First placeholder is amount downloaded, second is amount remaining, last is percentage. -->
-    <string name="RemoteBackupsSettingsFragment__downloading_s_of_s_d">Nagda-download: %1$s ng %2$s (%3$d%%)</string>
     <!-- Text displayed when user is out of storage space. Placeholder is storage limit in human readable form (ex. 1GB) -->
     <string name="RemoteBackupsSettingsFragment__youve_reached_the_s_storage_limit">Naabot mo na ang %1$s na storage limit na kasama sa backup plan mo. Para mag-backup ng bagong chats at media, magbura ng files.</string>
     <!-- Button label to open storage management screen -->
@@ -9081,8 +8650,6 @@
     <string name="MessageBackupsKeyRecordScreen__keep_your_key_safe">Panatilihing ligtas ang iyong key</string>
     <!-- Bottom sheet subtitle -->
     <string name="MessageBackupsKeyRecordScreen__signal_will_not">Hindi ka matutulungan ng Signal na i-restore ang backup mo kapag nawala mo ang iyong key. Ilagay ito sa ligtas na lugar, at huwag itong i-share sa iba.</string>
-    <!-- Checkbox label -->
-    <string name="MessageBackupsKeyRecordScreen__ive_recorded_my_key">Na-record ko na ang aking key</string>
     <!-- Sheet action button label -->
     <string name="MessageBackupsKeyRecordScreen__continue">Magpatuloy</string>
     <!-- Sheet secondary action button label -->
@@ -9144,28 +8711,26 @@
     <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">Mali ang recovery key</string>
     <!-- Confirm your key button text to return to record key screen. -->
     <string name="MessageBackupsKeyVerifyScreen__see_key_again">Tingnan ulit ang key</string>
-    <!-- Confirm your key button text to move onto next screen in flow -->
-    <string name="MessageBackupsKeyVerifyScreen__next">Susunod</string>
     <!-- Confirm your key subtitle shown to users whose recovery key came with their Signal Login rather than being recorded during this flow -->
-    <string name="MessageBackupsKeyVerifyScreen__enter_the_recovery_key_from_your_signal_login">Enter the recovery key from your Signal Login</string>
+    <string name="MessageBackupsKeyVerifyScreen__enter_the_recovery_key_from_your_signal_login">Ilagay ang recovery key mula sa Signal Login mo</string>
 
     <!-- MessageBackupsConfirmRecoveryKeyScreen -->
     <!-- Screen headline asking the user to confirm the recovery key they received with their Signal Login -->
     <string name="MessageBackupsConfirmRecoveryKeyScreen__confirm_your_recovery_key">Kumpirmahin ang iyong recovery key</string>
     <!-- Screen subtitle explaining what the recovery key is and why it is needed -->
-    <string name="MessageBackupsConfirmRecoveryKeyScreen__your_recovery_key_is_a_64_character_code">Your recovery key is a 64-character code you received with your Signal Login. It\'s required to restore your backup. If you forget your key, you will not be able to recover your account.</string>
+    <string name="MessageBackupsConfirmRecoveryKeyScreen__your_recovery_key_is_a_64_character_code">Ang recovery key mo ay isang 64-character code na matatanggap mo kasama ng iyong Signal Login. Kailangan ito para ma-restore ang backup mo. Kapag nakalimutan mo ang iyong key, hindi mo na maaaring ma-recover ang iyong account.</string>
     <!-- Caption above the action buttons warning the user that the password manager will prompt them next -->
-    <string name="MessageBackupsConfirmRecoveryKeyScreen__you_will_be_prompted_with_your_saved_password">You will be prompted with your saved password in the next step.</string>
+    <string name="MessageBackupsConfirmRecoveryKeyScreen__you_will_be_prompted_with_your_saved_password">Kailangan mong ilagay ang iyong naka-save na password sa susunod na step.</string>
     <!-- Action button label to confirm the recovery key using the saved password manager credential -->
-    <string name="MessageBackupsConfirmRecoveryKeyScreen__confirm_recovery_key">Kumpirmahin ang iyong recovery key</string>
+    <string name="MessageBackupsConfirmRecoveryKeyScreen__confirm_recovery_key">Kumpirmahin ang recovery key</string>
     <!-- Action button label to type the recovery key in by hand instead of using the password manager -->
-    <string name="MessageBackupsConfirmRecoveryKeyScreen__enter_manually">Enter manually</string>
+    <string name="MessageBackupsConfirmRecoveryKeyScreen__enter_manually">Ilagay manually</string>
     <!-- Title of the dialog shown when the recovery key from the password manager did not match -->
     <string name="MessageBackupsConfirmRecoveryKeyScreen__error_confirming_recovery_key">Nagkaroon ng error sa pag-confirm ng recovery key</string>
     <!-- Body of the dialog shown when the recovery key from the password manager did not match -->
-    <string name="MessageBackupsConfirmRecoveryKeyScreen__your_recovery_key_could_not_be_confirmed">Your recovery key could not be confirmed. Make sure you\'ve saved your Signal Login in your password manager, or enter your recovery key manually.</string>
+    <string name="MessageBackupsConfirmRecoveryKeyScreen__your_recovery_key_could_not_be_confirmed">Hindi makumpirma ang recovery key mo. Siguraduhing naitago mo ang iyong Signal Login sa password manager mo, o ilagay manually ang iyong recover key.</string>
     <!-- Toast shown when the recovery key from the password manager matched -->
-    <string name="MessageBackupsConfirmRecoveryKeyScreen__recovery_key_confirmed">Confirmed ang recovery key</string>
+    <string name="MessageBackupsConfirmRecoveryKeyScreen__recovery_key_confirmed">Kumpirmado ang recovery key</string>
 
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">Ilagay ang iyong recovery key</string>
@@ -9191,8 +8756,6 @@
     <string name="MessageBackupsTypeSelectionScreen__change_backup_type">Palitan ang uri ng backup</string>
     <!-- Primary action button label when selecting paid tier when Google Play API isn\'t available -->
     <string name="MessageBackupsTypeSelectionScreen__more_about_this_plan">Higit pang info tungkol sa plan na ito</string>
-    <!-- Secondary action button label when selecting a backup tier with a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__cancel_subscription">I-cancel ang Subscription</string>
     <!-- MessageBackupsType block amount for free tier -->
     <string name="MessageBackupsTypeSelectionScreen__free">Free</string>
     <!-- MessageBackupsType block amount for paid tier when no pricing is available -->
@@ -9221,25 +8784,8 @@
     </plurals>
     <!-- Text designating that an option is your current plan -->
     <string name="MessageBackupsTypeSelectionScreen__current_plan">Current plan</string>
-    <!-- Dialog title when user can\'t upgrade plan due to missing Google Services -->
-    <string name="MessageBackupsTypeSelectionScreen__cant_upgrade_plan">Hindi ma-upgrade ng plan</string>
-    <!-- Dialog body text explaining Google Services requirement for backup subscription -->
-    <string name="MessageBackupsTypeSelectionScreen__to_subscribe_to_signal_secure_backups">Para mag-subscribe sa Signal Secure Backups, dapat naka-enable ang Google Services sa phone mo at naka-sign in ka sa Google Play Store.</string>
 
     <!-- ConfirmBackupCancellationDialog -->
-    <!-- Dialog title -->
-    <string name="ConfirmBackupCancellationDialog__confirm_cancellation">I-confirm ang cancellation</string>
-    <!-- Dialog body -->
-    <string name="ConfirmBackupCancellationDialog__you_wont_be_charged_again">Hindi ka na ulit sisingilin. Ititigil ang backups sa katapusan ng iyong billing cycle. Pagkatapos ng araw na iyon, magkakaroon ka ng 30 araw para i-download ang media na kasalukuyang bina-back up mo.</string>
-    <!-- Action button label to cancel subscription and download now -->
-    <string name="ConfirmBackupCancellationDialog__confirm_and_download_now">I-confirm at i-download ngayon</string>
-    <!-- Action button label to cancel subscription and download later -->
-    <string name="ConfirmBackupCancellationDialog__confirm_and_download_later">I-confirm at i-download mamaya</string>
-    <!-- Action button label to keep current subscription -->
-    <string name="ConfirmBackupCancellationDialog__keep_subscription">Panatilihin ang subscription</string>
-
-    <!-- Accessible content description for the reminder view, describing the icon in the view. -->
-    <string name="ReminderView_icon_content_description">Reminder icon</string>
 
     <!-- Row title for restore/transfer using a previous registered phone/device -->
     <string name="WelcomeFragment_restore_action_i_have_my_old_phone">Nasa akin ang lumang phone ko</string>
@@ -9263,10 +8809,6 @@
     <string name="SelectRestoreMethodFragment__restore_on_device_backup">I-restore ang on-device backup</string>
     <!-- Option subtitle fdor restoring via a local backup file or folder -->
     <string name="SelectRestoreMethodFragment__restore_your_messages_from">I-restore ang messages mo mula sa backup na naka-save sa iyong device.</string>
-    <!-- Option title for restoring via a local backup file -->
-    <string name="SelectRestoreMethodFragment__from_a_backup_file">Mula sa isang backup file</string>
-    <!-- Option subtitle for restoring via a local backup -->
-    <string name="SelectRestoreMethodFragment__choose_a_backup_youve_saved">Pumili ng backup na na-save mo</string>
     <!-- Option title for restoring via device transfer -->
     <string name="SelectRestoreMethodFragment__from_your_old_phone">Mula sa lumang phone mo</string>
     <!-- Option subtitle for restoring via device transfer -->
@@ -9277,11 +8819,6 @@
     <string name="SelectRestoreMethodFragment__skip_restore_warning">Kung hindi ka mag-restore ngayon, hindi mo na ito magagawa mamaya. Kung i-enable mo ulit ang backups pagkatapos mong laktawan ang pag-restore, ang current backup mo ay mapapalitan ng bagong messaging history mo.</string>
     <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore">I-skip ang restore</string>
-
-    <!-- Screen title for restore via local backup -->
-    <string name="RestoreLocalBackup_title">I-restore ang local backup</string>
-    <!-- Screen subtitle for restore via local backup -->
-    <string name="RestoreLocalBackup_subtitle">I-restore ang messages mo mula sa backup na naka-save sa iyong device. Kung hindi ka mag-restore ngayon, hindi mo na ito magagawa sa susunod.</string>
 
     <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
     <string name="EnterBackupKey_title">Ilagay ang iyong recovery key</string>
@@ -9515,8 +9052,6 @@
     <string name="PrepareDevice_title">Hinahanda ang device mo</string>
     <!-- Prepare Device screen body text explaining backup recommendation -->
     <string name="PrepareDevice_body">Mag-back up na ngayon bago maglipat. Maaaring may natanggap kang messages na hindi pa na-back up.</string>
-    <!-- Prepare Device screen last backup text format, %1$s is the date and %2$s is the time -->
-    <string name="PrepareDevice_last_backup">Huli kang nag-backup noong %1$s nang %2$s.</string>
     <!-- Prepare Device screen back up now button -->
     <string name="PrepareDevice_back_up_now">Mag-back up na ngayon</string>
     <!-- Prepare Device screen skip and continue button -->
@@ -9608,16 +9143,6 @@
     <string name="Notification_backup_failed">Backup failed</string>
     <!-- Notification body for when initial backup failed -->
     <string name="Notification_an_error_occurred_and_your_backup">Nagkaroon ng error at hindi natapos ang pag-backup. I-tap para sa karagdagang detalye.</string>
-    <!-- Notification title for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->
-    <plurals name="Notification_no_backup_for_d_days">
-        <item quantity="one">Walang backup nitong nakaraang %1$d araw</item>
-        <item quantity="other">Walang backup nitong nakaraang %1$d araw</item>
-    </plurals>
-    <!-- Notification body for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->
-    <plurals name="Notification_you_have_not_completed_a_backup">
-        <item quantity="one">Hindi ka nakapag-backup nitong nakaraang %1$d araw. Mag-backup ngayon.</item>
-        <item quantity="other">Hindi ka nakapag-backup nitong nakaraang %1$d araw. Mag-backup ngayon.</item>
-    </plurals>
 
     <!-- Polls -->
     <!-- Caption in poll message to select an option  -->
@@ -9642,10 +9167,6 @@
     <string name="Poll__poll_end">Tinapos ni %1$s ang poll na: \"%2$s\"</string>
     <!-- Thread body message when a poll ends. %1$s is the question of the poll -->
     <string name="Poll__you_poll_end">Tinapos mo ang poll: \"%1$s\"</string>
-    <!-- Notification message sent when someone votes in the poll. %1$s is the voter. %2$s is the question of the poll -->
-    <string name="Poll__poll_voted">Si %1$s ay bumoto sa poll na: \"%2$s\"</string>
-    <!-- Option in settings to configure notifications for polls -->
-    <string name="Poll__poll">Polls</string>
     <!-- Title of screen that shows the poll results of a poll after it has ended-->
     <string name="Poll__poll_results">Poll results</string>
     <!-- Title of screen that shows the poll details of a poll -->
@@ -9768,8 +9289,6 @@
     <string name="CallQualitySheet__view_debug_log">Tignan ang debug log</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">I-share ang debug log</string>
-    <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
-    <string name="CallQualitySheet__debug_log_privacy_notice">Ang debug logs ay naglalaman ng mababang level ng impormasyon ng app at hindi nagpapakita ng anumang nilalaman ng messages mo.</string>
     <!-- Button to submit the call quality feedback -->
     <string name="CallQualitySheet__submit">Isumite</string>
     <!-- Displayed as a snackbar after submitting feedback -->
@@ -9954,19 +9473,6 @@
     <!-- Button indicating the user wants to proceed with sharing/pasting the recovery key, which shows a final confirmation -->
     <string name="RecoveryKeyWarningSheetContent__share_key">I-share ang key</string>
 
-    <!-- Title of the final confirmation dialog shown before pasting a recovery key -->
-    <string name="RecoveryKeyWarningDialog__do_not_share_recovery_key">Huwag i-share ang recovery key</string>
-    <!-- First sentence of the final confirmation dialog body warning against sharing the recovery key -->
-    <string name="RecoveryKeyWarningDialog__do_not_share_your_recovery_key_with_anyone">Huwag i-share ang iyong recovery key sa kahit kanino. Aangkinin nila ang account mo.</string>
-    <!-- Bolded middle sentence of the final confirmation dialog body -->
-    <string name="RecoveryKeyWarningDialog__signal_will_never_message_you_for_your_recovery_key">Hindi ka ime-message ng Signal para makuha ang iyong recovery key.</string>
-    <!-- Final sentence of the final confirmation dialog body -->
-    <string name="RecoveryKeyWarningDialog__never_respond_to_a_chat">Huwag mag-reply sa chats na nagpapanggap na Signal o Signal Support.</string>
-    <!-- Button confirming the user wants to paste the recovery key -->
-    <string name="RecoveryKeyWarningDialog__paste_key">I-paste ang key</string>
-    <!-- Button declining to paste the recovery key -->
-    <string name="RecoveryKeyWarningDialog__dont_share">Huwag i-share</string>
-
     <!-- Notification body for unread reminders. First placeholder is unread messages, second is a summary of unread mentions or replies -->
     <string name="UnreadReminderJob__unread_one_summary">Mayroon kang %1$s, kasama ang %2$s.</string>
     <!-- Notification body for unread reminders. First placeholder is unread messages, second is a summary of unread mentions, third replies -->
@@ -10010,6 +9516,35 @@
         <item quantity="one">%1$d replies mula kanila %2$s at iba pa</item>
         <item quantity="other">%1$d replies mula kanila %2$s at iba pa</item>
     </plurals>
+
+    <!-- Title of the screen for picking a contact to share -->
+    <string name="SelectContactScreen__select_contact">Select contact</string>
+    <!-- Placeholder in the search field on the contact picker -->
+    <string name="SelectContactScreen__search">Search</string>
+    <!-- Content description for the button that clears the contact search field -->
+    <string name="SelectContactScreen__clear_search">Clear search</string>
+    <!-- Content description for the badge shown next to a contact that is in the phone\'s address book -->
+    <string name="SelectContactScreen__in_your_contacts">In your contacts</string>
+    <!-- Title of the prompt asking for permission to read the user\'s phone contacts -->
+    <string name="SelectContactScreen__find_people_you_know_on_signal">Find people you know on Signal</string>
+    <!-- Explanation shown when Signal does not have permission to read the user\'s phone contacts -->
+    <string name="SelectContactScreen__allow_access_to_your_contacts">Allow access to your contacts. Your contacts are encrypted and not visible to the Signal service.</string>
+    <!-- Button that asks the system for permission to read the user\'s phone contacts -->
+    <string name="SelectContactScreen__allow_access">Allow access</string>
+    <!-- Button that dismisses the request for permission to read the user\'s phone contacts -->
+    <string name="SelectContactScreen__no_thanks">No thanks</string>
+    <!-- Button that opens the phone\'s own contact picker, used when Signal cannot ask for contacts permission -->
+    <string name="SelectContactScreen__open_phone_contacts">Open phone contacts</string>
+    <!-- Note at the bottom of the contact picker when contacts permission was denied on the device. Placeholder is the "Learn more" link text. -->
+    <string name="SelectContactScreen__to_see_your_phone_contacts_here">To see your phone contacts here, allow access in your device settings. %1$s</string>
+    <!-- Link that opens instructions for granting contacts permission from the device settings -->
+    <string name="SelectContactScreen__learn_more">Learn more</string>
+    <!-- Title of the sheet explaining how to grant contacts permission from the device settings -->
+    <string name="SelectContactScreen__allow_access_to_contacts">Allow access to contacts</string>
+    <!-- Subtitle of the sheet explaining how to grant contacts permission from the device settings -->
+    <string name="SelectContactScreen__to_find_people_you_know_on_signal">To find people you know on Signal:</string>
+    <!-- Toast shown when a selected contact can no longer be read -->
+    <string name="SelectContactScreen__couldnt_open_contact">Couldn\'t open that contact</string>
 
     <!-- Title of the screen where the user chooses which parts of a contact to share -->
     <string name="ShareContactScreen__share_contact">I-share ang contact</string>
@@ -10063,6 +9598,17 @@
     <string name="SharedContactDetailsScreen__couldnt_open_maps">Hindi mabuksan ang maps</string>
     <!-- Subject line of an email invitation to Signal -->
     <string name="SharedContactDetailsScreen__join_me_on_signal">Samahan ako sa Signal</string>
+
+    <!-- Title of the bottom sheet that confirms the user wants a brand new recovery key. -->
+    <string name="ResetRecoveryKeyBottomSheet__reset_your_recovery_key">Reset your recovery key</string>
+    <!-- First paragraph of the bottom sheet body, explaining what a reset does. -->
+    <string name="ResetRecoveryKeyBottomSheet__resetting_your_recovery_key_will_create_a_new_key">Resetting your recovery key will create a new key for your Signal Login. This is only necessary if someone else knows your key.</string>
+    <!-- Second paragraph of the bottom sheet body, explaining what a reset means for backups. -->
+    <string name="ResetRecoveryKeyBottomSheet__if_backups_are_enabled_you_will_have_to_re_upload">If backups are enabled you will have to re-upload your backup, including media. If you are using \"Optimize Signal storage\" you will have to download offloaded media first.</string>
+    <!-- Bottom sheet action that continues on to reset the recovery key. -->
+    <string name="ResetRecoveryKeyBottomSheet__continue">Continue</string>
+    <!-- Dialog body shown when the recovery key change limit is exhausted and the user does not have backups enabled. -->
+    <string name="BackupKeyRotationDialogs__limit_exceeded_body_no_backups">You\'ve exhausted the number of new keys you can create. You will be able to create a new recovery key in 7 days.</string>
 
     <!-- EOF -->
 </resources>

@@ -133,12 +133,6 @@
   <!-- Toasted when user device does not support video recording -->
   <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Hindi suportado ng iyong device ang video recording</string>
 
-  <!-- CameraXFragment -->
-  <string name="CameraXFragment_tap_for_photo_hold_for_video">I-tap para sa photo, i-hold para sa video</string>
-  <!-- Accessibility content description to describe the capture button when taking an image/video -->
-  <string name="CameraXFragment_capture_description">Kunan</string>
-  <string name="CameraXFragment_change_camera_description">Magpalit ng Camera</string>
-  <string name="CameraXFragment_open_gallery_description">Buksan ang gallery</string>
   <!-- Button text asking for access to camera permissions -->
   <string name="CameraXFragment_allow_access">Allow Access</string>
   <!-- Dialog title asking users for camera and microphone permission -->
@@ -173,16 +167,6 @@
   <string name="CameraXFragment_photo_capture_failed">Hindi nakakuha ng photo. Subukan ulit.</string>
   <!-- Error message shown when we try to take a photo, but fail when trying to process it (convert it into something the user can see). -->
   <string name="CameraXFragment_photo_processing_failed">Failed ang pagproseso ng photo. Subukan ulit.</string>
-  <!-- Accessibility label for the switch camera button -->
-  <string name="CameraXFragment_switch_camera">I-switch ang camera</string>
-  <!-- Accessibility label for flash button when flash is off -->
-  <string name="CameraXFragment_flash_off">Naka-off ang flash</string>
-  <!-- Accessibility label for flash button when flash is on -->
-  <string name="CameraXFragment_flash_on">Naka-on ang flash</string>
-  <!-- Accessibility label for flash button when flash is set to auto -->
-  <string name="CameraXFragment_flash_auto">Naka-auto ang flash</string>
-  <!-- Accessibility label for the send button in media selection -->
-  <string name="CameraXFragment_send">Ipadala</string>
   <!-- Label shown below the elapsed time while a video recording is paused -->
   <string name="CameraXFragment_paused">Naka-pause</string>
   <!-- Displayed in a permissions dialog when the user has denied access to hardware for image and video capture. -->

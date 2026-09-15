@@ -16,9 +16,7 @@
   <!-- Removed by excludeNonTranslatables <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string> -->
   <!-- Removed by excludeNonTranslatables <string name="google_pay_url" translatable="false">https://pay.google.com</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string> -->
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/5389476324250</string> -->
   <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
   <!-- Removed by excludeNonTranslatables <string name="pending_transfer_url" translatable="false">https://support.signal.org/hc/articles/360031949872#pending</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donate_faq_url" translatable="false">https://support.signal.org/hc/articles/360031949872#donate</string> -->
@@ -31,7 +29,6 @@
     <string name="yes">Bai</string>
     <string name="no">Ez</string>
     <string name="delete">Ezabatu</string>
-    <string name="please_wait">Itxaron, mesedez…</string>
     <string name="save">Gorde</string>
     <string name="note_to_self">Norberarentzako oharra</string>
 
@@ -362,17 +359,11 @@
     <string name="ContactNameEditActivity_middle_name">Bigarren izena</string>
 
     <!-- ContactShareEditActivity -->
-    <!-- ContactShareEditActivity toolbar title -->
-    <string name="ContactShareEditActivity__send_contact">Bidali kontaktua</string>
     <string name="ContactShareEditActivity_type_home">Sorlekua</string>
     <string name="ContactShareEditActivity_type_mobile">Telefono mugikorra</string>
     <string name="ContactShareEditActivity_type_work">Lana</string>
     <string name="ContactShareEditActivity_type_missing">Besteak</string>
     <string name="ContactShareEditActivity_invalid_contact">Aukeratutako kontaktua baliogabea da</string>
-    <!-- Content description for name edit button on contact share edit activity -->
-    <string name="ContactShareEditActivity__edit_name">Editatu izena</string>
-    <!-- Content description for user avatar in edit activity -->
-    <string name="ContactShareEditActivity__avatar">Abatarra</string>
 
     <!-- ConversationItem -->
     <string name="ConversationItem_error_not_sent_tap_for_details">Ez da bidali; sakatu xehetasunak ikusteko.</string>
@@ -384,9 +375,6 @@
     <string name="ConversationItem_error_delete_failed">Ezin izan da ezabatu; sakatu xehetasunak ikusteko</string>
     <string name="ConversationItem_group_action_left">%1$s taldea utzi du</string>
     <string name="ConversationItem_send_paused">Bidalketa eten egin da</string>
-    <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Alternatiba gisa, enkriptatu gabeko SMS mezuak erabili?</string>
-    <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Enkriptatu gabeko MMSaz baliatu?</string>
-    <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Mezu hau <b>ez</b> da enkriptatuko: hartzailea ez da jada Signal aplikazioaren erabiltzailea.\n\nSegurtasunik gabeko mezua bidali?</string>
     <string name="ConversationItem_unable_to_open_media">Ez da euskarri hau irekitzeko gai den aplikaziorik aurkitu.</string>
     <string name="ConversationItem_copied_text">Kopiatuta %1$s</string>
     <string name="ConversationItem_from_s">%1$s-(e)tik</string>
@@ -448,17 +436,10 @@
     <string name="ConversationActivity_added_to_home_screen">Hasiera pantailara gehituta</string>
     <string name="ConversationActivity_calls_not_supported">Deiak ez daude onartuta</string>
     <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Badirudi gailu honek ez duela onartzen telefono deiekin lotutako ekintzak.</string>
-    <string name="ConversationActivity_transport_insecure_sms">SMS ez segurua</string>
-    <!-- A title for the option to send an SMS with a placeholder to put the name of their SIM card -->
-    <string name="ConversationActivity_transport_insecure_sms_with_sim">SMS ez-segurua (%1$s)</string>
-    <string name="ConversationActivity_transport_insecure_mms">MMS ez segurua</string>
-    <!-- A title for the option to send an SMS with a placeholder to put the name of their SIM card -->
-    <string name="ConversationActivity_transport_signal">Signal mezua</string>
     <!-- The content description for button to send a message in a conversation -->
     <string name="ConversationActivity_send_message_content_description">Bidali mezua</string>
     <string name="ConversationActivity_lets_switch_to_signal">Signalera aldatu dezagun %1$s</string>
     <string name="ConversationActivity_specify_recipient">Kontaktu bat aukeratu, mesedez</string>
-    <string name="ConversationActivity_attachment_exceeds_size_limits">Eranskina handiegia da bidaltzen ari zaren mezu motarako.</string>
     <string name="ConversationActivity_unable_to_record_audio">Ezgai audioa grabatzeko!</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">Ezin diozu talde honi mezurik bidali dagoeneko kide ez zarelako.</string>
   <!-- Removed by excludeNonTranslatables <string name="DisabledInputView__incognito_mode" translatable="false">Incognito mode (Labs)</string> -->
@@ -482,15 +463,7 @@
     <string name="ConversationActivity_signal_needs_microphone_access_voice_message">Signal-ek mikrofonoa atzitu behar du ahots-mezua grabatzeko.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signalek Mikrofonorako baimena behar du audio mezuak bidaltzeko, baina ukatu egin diozu. Joan aplikazioaren ezarpenetara, aukeratu \"Baimenak\" eta aktibatu \"Mikrofonoa\"</string>
 
-    <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal aplikazioak Mikronofoa eta Kamera baimenak behar ditu %1$skontaktuari deitzeko, baina ukatu egin dizkiozu. Joan aplikazioaren ezarpenetara, aukeratu \"Baimenak\" eta aktibatu \"Mikrofonoa\" eta \"Kamera\"</string>
-    <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Argazkiak eta bideoak grabatzeko, eman baimena Signali kamera erabiltzeko.</string>
-    <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal aplikazioak Kamera baimena behar du argazkiak eta bideoak egiteko, baina ukatu egin diozu. Joan aplikazioaren ezarpenetara, aukeratu \"Baimenak\" eta aktibatu \"Kamera\".</string>
-    <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signalek Kamera baimena behar du argazkiak eta bideoak egiteko</string>
-    <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Gaitu mikrofonorako baimena soinua duten bideoak grabatu ahal izateko.</string>
-    <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal aplikazioak mikrofonorako baimena behar du bideoak grabatu ahal izateko.</string>
-
     <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
-    <string name="ConversationActivity_no">Ez</string>
     <string name="ConversationActivity_search_position">%1$d / %2$d</string>
     <string name="ConversationActivity_no_results">Ez da emaitzarik aurkitu.</string>
 
@@ -527,8 +500,6 @@
     <string name="ConversationActivity__this_person_is_no_longer_using_signal">Pertsona honek jada ez du Signal erabiltzen. Harekin duzun elkarrizketa mantentzeko, gonbida ezazu Signal-era.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">Gonbidatu Signal erabiltzera</string>
-    <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
-    <string name="ConversationActivity__you_will_be_reminded_again_soon">Laster gogoraraziko zaizu berriro.</string>
     <!-- Toast message shown when trying to record a voice message during an ongoing call -->
     <string name="ConversationFragment_cannot_record_voice_message_during_call">Deietan zehar ezin dira grabatu ahots-mezuak.</string>
 
@@ -544,15 +515,6 @@
     <plurals name="ConversationFragment_delete_selected_messages">
         <item quantity="one">Hautatutako mezua ezabatu nahi duzu?</item>
         <item quantity="other">Hautatutako mezuak ezabatu nahi dituzu?</item>
-    </plurals>
-    <string name="ConversationFragment_save_to_sd_card">Biltegian gorde?</string>
-    <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-        <item quantity="one">Multimedia-eduki hauek memorian gordetzen badituzu, telefonoan duzun beste edozein aplikaziok ikusi ahal izango ditu.\n\nAurrera egin nahi duzu?</item>
-        <item quantity="other">%1$d multimedia-edukiak memorian gordetzen badituzu, telefonoan duzun beste edozein aplikaziok ikusi ahal izango ditu.\n\nAurrera egin nahi duzu?</item>
-    </plurals>
-    <plurals name="ConversationFragment_saving_n_attachments">
-        <item quantity="one">Eraskinak gordetzen</item>
-        <item quantity="other">%1$d eranskin gordetzen</item>
     </plurals>
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
         <item quantity="one">Eraskinak biltegian gordetzen…</item>
@@ -586,12 +548,8 @@
         <item quantity="one">Signal-eko azken bertsioetako taldeko kideek mezu hau ezabatu duzula ikusiko dute.</item>
         <item quantity="other">Signal-eko azken bertsioetako taldeko kideek mezu hauek ezabatu dituzula ikusiko dute.</item>
     </plurals>
-    <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
-    <string name="ConversationFragment_delete_on_this_device">Ezabatu gailu honetan</string>
     <!-- Dialog button for deleting one or more note-to-self messages that will be sync\'d to other devices -->
     <string name="ConversationFragment_delete">Ezabatu</string>
-    <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
-    <string name="ConversationFragment_delete_everywhere">Ezabatu gailu guztietan</string>
     <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Mezu hau txateko guztientzat ezabatuko da. Mezua ezabatu duzula ikusi ahalko dute.</string>
     <string name="ConversationFragment_quoted_message_not_found">Jatorrizko mezua ez da aurkitu</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Jatorrizko mezua ez dago eskuragarri jada</string>
@@ -606,7 +564,6 @@
         <item quantity="one">Taldeko %1$d kidek izen bera du.</item>
         <item quantity="other">Taldeko %1$d kidek izen bera dute.</item>
     </plurals>
-    <string name="ConversationFragment__tap_to_review">Sakatu berrikusteko</string>
     <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
     <string name="ConversationFragment__review_banner_body">Pertsona honek eta beste kontaktu batek izen bera dute</string>
     <string name="ConversationFragment_contact_us">Harremanetan jarri gurekin</string>
@@ -658,8 +615,6 @@
     <string name="ConversationFragment_reported_as_spam_and_blocked">Spama dela salatu, eta blokeatu egin da</string>
     <!-- Dialog message shown after accepting a message request and tapping on options from the conversation event -->
     <string name="ConversationFragment_you_accepted_a_message_request_from_s">%1$s erabiltzailearen mezu-eskaera onartu duzu. Akats bat izan bada, beheko ekintzetako bat hauta dezakezu.</string>
-    <!-- Text shown in conversation header when in a message request state and to carefully review the user -->
-    <string name="ConversationFragment_review_carefully">Berrikusi kontu handiz</string>
     <!-- Text shown in conversation header when in a message request state that the name is not verified -->
     <string name="ConversationFragment_name_not_verified">Izena ez da egiaztatu</string>
     <!-- Label for official chat pill shown in the Note to Self conversation header -->
@@ -763,8 +718,6 @@
     <string name="ProfileNameBottomSheet__group_names_on_signal">%1$s taldeko kideek aukeratzen dituzte.</string>
     <!-- Bottom sheet text explaining that groups can impersonate organizations and to be cautious -->
     <string name="ProfileNameBottomSheet__be_cautious_of_groups">Kontuz ibili erakunde eta enpresen identitatea ordezten duten taldeekin</string>
-    <!-- Bottom sheet text explaining that profile names of group members are not verified -->
-    <string name="ProfileNameBottomSheet__profile_names_in_groups">Taldeetako kideen profileko izenak ez dira egiaztatzen</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Garbitu iragazkia</string>
@@ -907,7 +860,6 @@
     <string name="ChooseBackupFragment__icon_content_description">Babeskopiaren ikonotik leheneratu</string>
     <string name="ChooseBackupFragment__choose_backup">Aukeratu babeskopia</string>
     <string name="ChooseBackupFragment__learn_more">Gehiago jakin</string>
-    <string name="ChooseBackupFragment__no_file_browser_available">Ez dago fitxategi-arakatzailerik erabilgarri</string>
 
     <!-- RestoreBackupFragment -->
     <string name="RestoreBackupFragment__restore_complete">Leheneratzea osatuta</string>
@@ -928,41 +880,6 @@
     <string name="CreateBackupBottomSheet__depending_on_the_size">Babeskopiaren tamainaren arabera, baliteke luze jotzea. Babeskopia sortu bitartean, telefonoa normaltasunez erabil dezakezu.</string>
     <!-- Bottom sheet free message -->
     <string name="CreateBackupBottomSheet__free_tier">Mezuak bidali eta jaso ahala, babeskopian multimedia-edukia gehitzen da.</string>
-
-    <!-- Headline text for a bottom sheet dialog shown when the restoration of the media backup fails. -->
-    <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">Ezin da leheneratu multimedia-edukia</string>
-    <!-- Help text for a bottom sheet dialog shown when the restoration of the media backup fails, displayed while the app is calculating the amount of disk space required. -->
-    <string name="RestoreMediaFailedBottomSheet__Your_device_does_not_have_enough_free_space_placeholder">Zure gailuak ez du leku libre nahikorik. Multimedia-edukia leheneratzeko, egin lekua.\n\n\"Saltatu leheneratzeko aukera\" hautatzen baduzu, babeskopiako multimedia-edukia ezabatu egingo da gailuak babeskopia bat egiten duen hurrengoan.</string>
-    <!-- Help text for a bottom sheet dialog shown when the restoration of the media backup fails, displayed once the app knows how much disk space is required. The placeholder is a filesize, such as "1.23 GB." -->
-    <string name="RestoreMediaFailedBottomSheet__Your_device_does_not_have_enough_free_space">Zure gailuak ez du leku libre nahikorik. Multimedia-edukia leheneratzeko, utzi %1$s libre.\n\n\"Saltatu leheneratzeko aukera\" hautatzen baduzu, babeskopiako multimedia-edukia ezabatu egingo da gailuak babeskopia bat egiten duen hurrengoan.</string>
-    <!-- Confirmation button to dismiss bottom sheet dialog without aborting the restoration process. -->
-    <string name="RestoreMediaFailedBottomSheet__Okay">Ados</string>
-    <!-- Negative button on a bottom sheet dialog shown when the restoration of the media backup fails. This aborts the restoration process. -->
-    <string name="RestoreMediaFailedBottomSheet__Skip_restore">Saltatu leheneratzeko aukera</string>
-    <!-- Accessibility content description for the "Backup Error" icon -->
-    <string name="RestoreMediaFailedBottomSheet__Backup_error_icon_content_description">Babeskopiaren errore-ikonoa</string>
-
-    <!-- Banner text that is displayed at the top of the app when trying to restore more media than the device\'s memory has space for. -->
-    <string name="RestoreMediaErrorBanner__Free_up_storage_space">Multimedia-edukia leheneratzeko, egin lekua.</string>
-    <!-- Banner text that is displayed at the top of the app when trying to restore more media than the device\'s memory has space for. The placeholder is a filesize, such as "1.23 GB." -->
-    <string name="RestoreMediaErrorBanner__Free_up_of_space">Multimedia-edukia leheneratzeko, utzi %1$s libre.</string>
-
-    <!-- Remote media restoration in-process status title. -->
-    <string name="RestoreMediaReminder__Restoring_media">Multimedia-edukia leheneratzen</string>
-    <!-- Remote media restoration in-process description. The first to placeholders are filesizes, such as "865 MB" and "2.3 GB". The final placeholder is a whole number representing the percentage progress. -->
-    <string name="RestoreMediaReminder__Progress_filesize">%1$s / %2$s (%% %3$d)</string>
-    <!-- Remote media restoration paused status title. -->
-    <string name="RestoreMediaReminder__Restoring_media_paused">Multimedia-edukia leheneratzeko prozesua pausatuta dago</string>
-    <!-- Remote media restoration paused status description for when the restore is paused because unmetered connectivity, such as WiFi, is unavailable. -->
-    <string name="RestoreMediaReminder__Waiting_for_Wifi">Wifiaren zain…</string>
-    <!-- Remote media restoration paused status description for when the restore is paused because internet is unavailable. -->
-    <string name="RestoreMediaReminder__Waiting_for_internet_connection">Interneteko konexioaren zain…</string>
-    <!-- Remote media restoration paused status description for when the device\'s battery is low -->
-    <string name="RestoreMediaReminder__low_battery">Bateria gutxi duzu. Kargatu gailua.</string>
-    <!-- Remote media restoration call to action when the device is out of space. The placeholder string is a file size, such as "1.23 GB". -->
-    <string name="RestoreMediaReminder__Free_up_space">Multimedia-edukia leheneratzeko, utzi %1$s libre.</string>
-    <!-- Button label to abort media restoration -->
-    <string name="RestoreMediaReminder__Skip_restore">Saltatu leheneratzeko aukera</string>
 
     <!-- BackupsPreferenceFragment -->
     <string name="BackupsPreferenceFragment__chat_backups">Txaten babeskopiak</string>
@@ -994,9 +911,6 @@
     <string name="CustomDefaultPreference_using_custom">Pertsonalizatua: %1$s</string>
     <string name="CustomDefaultPreference_using_default">Lehenetsia: %1$s</string>
     <string name="CustomDefaultPreference_none">Bat ere ez</string>
-
-    <!-- AvatarSelectionBottomSheetDialogFragment -->
-    <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">Zure galeria ikusteko biltegian sartzeko baimena behar da.</string>
 
     <!-- DateUtils -->
     <string name="DateUtils_just_now">Orain</string>
@@ -1094,10 +1008,6 @@
     <string name="LinkDeviceFragment__s_linked">Lotu da \"%1$s\"</string>
     <!-- Progress dialog message indicating that a device is currently being linked with an account -->
     <string name="LinkDeviceFragment__linking_device">Gailua lotzen…</string>
-    <!-- Toast message shown after a device has been linked -->
-    <string name="LinkDeviceFragment__device_approved">Gailua onartu da</string>
-    <!-- Progress dialog message indicating that the list of linked devices is currently loading -->
-    <string name="LinkDeviceFragment__loading">Kargatzen…</string>
     <!-- Progress dialog message indicating that you are syncing messages to your linked device -->
     <string name="LinkDeviceFragment__syncing_messages">Mezuak sinkronizatzen…</string>
     <!-- Text message shown when the user has no linked devices -->
@@ -1213,11 +1123,7 @@
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">\"%1$s\" gailuari lotura kendu nahi diozu?</string>
     <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Gailu hau desparekatu ondoren ezin ditzakezu mezuak bidal eta jaso.</string>
-    <string name="DeviceListActivity_network_connection_failed">Internetera konektatzeak huts egin du</string>
-    <!-- Button label on an alert dialog. The dialog informs the user they have network issues. If pressed, we will retry the network request. -->
-    <string name="DeviceListActivity_try_again">Saiatu berriro</string>
     <string name="DeviceListActivity_unlinking_device">Gailuarekin lotura ezabatzen…</string>
-    <string name="DeviceListActivity_unlinking_device_no_ellipsis">Gailuarekin lotura ezabatzen</string>
     <string name="DeviceListActivity_network_failed">Sareak huts egin du!</string>
 
     <!-- DeviceListItem -->
@@ -1313,22 +1219,6 @@
     <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
         <item quantity="one">Kide hau taldetik kendu da, eta ezingo da berriz sartu aplikazioa bertsio-berritzen duen arte:</item>
         <item quantity="other">Kide hauek taldetik kendu dira, eta ezingo dira berriz sartu aplikazioa bertsio-berritzen duten arte:</item>
-    </plurals>
-
-    <!-- GroupsV1MigrationInitiationBottomSheetDialogFragment -->
-    <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Eguneratu Talde Berrira</string>
-    <string name="GroupsV1MigrationInitiation_upgrade_this_group">Eguneratu talde hau</string>
-    <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Talde Berriek ezaugarri berriak dituzte, hala nola, @aipamenak eta talde administrazaileak; etorkizunean ezaugarri gahiago izango dituzte.</string>
-    <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Eguneratu aurreko mezuen historia eta multimedia-eduki guztiak mantenduko dira.</string>
-    <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Sare errore bat izan da. Saia zaitez beranduago.</string>
-    <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Ezin izan da eguneratu.</string>
-    <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
-        <item quantity="one">Talde honetan berriro sartzeko, kide honek gonbidapena onartu beharko du; ez du talde mezurik jasoko onartu arte:</item>
-        <item quantity="other">Talde honetan berriro sartzeko, kide hauek gonbidapena onartu beharko dute; ez dute talde mezurik jasoko onartu arte:</item>
-    </plurals>
-    <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
-        <item quantity="one">Kide hau ezin da talde berrietan sartu, eta talde honetatik kenduko da:</item>
-        <item quantity="other">Kide hauek ezin dira talde berrietan sartu, eta talde honetatik kenduko dira:</item>
     </plurals>
 
     <!-- GroupsV1MigrationSuggestionsReminder -->
@@ -1459,7 +1349,7 @@
 
     <!-- Confirmation text when adding members to a group. %1$d is the number of members added. %2$s is the name of the group. -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="one">\"%2$s\" taldean gehitu nahi duzu \"{2}\"?</item>
+        <item quantity="one">\"%1$d\" taldean gehitu nahi duzu \"%2$s\"?</item>
         <item quantity="other">\"%2$s\" taldean gehitu nahi dituzu %1$d kide?</item>
     </plurals>
 
@@ -1486,8 +1376,6 @@
     <string name="AddGroupDetailsFragment__if_you_continue_to_the_group_s_your_changes_wont_be_saved">\"%1$s\" taldera bazoaz, aldaketak ez dira gordeko.</string>
     <!-- Label for the button that confirms discarding the in-progress group and navigating to an existing group -->
     <string name="AddGroupDetailsFragment__discard">Baztertu</string>
-    <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Signal-eko taldeak onartzen ez dituen kontaktu bat hautatu duzu; beraz, talde hau MMS bidezkoa izango da. MMS taldeen izen pertsonalizatu eta argazkiak zuk bakarrik ikusi ahalko dituzu.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Signal-eko taldeak erabiltzeko aukera ez duen kontaktu bat hautatu duzu; hortaz talde hau MMS bidezkoa izango da. MMS bidezko taldeen izen pertsonalizatuak eta irudiak zuk bakarrik ikusi ahalko dituzu. Laster, MMS bidezko taldeak erabiltzeko aukera emateari utzi, eta mezu enkriptatuetan jarriko dugu arreta osoa.</string>
 
@@ -1512,10 +1400,6 @@
     <string name="ManageGroupActivity_legacy_group">Jarauntsitako Taldea</string>
     <!-- This is placed inside a "Learn More" text view, which automatically appends LearnMoreTextView_learn_more in code -->
     <string name="ManageGroupActivity_legacy_group_learn_more">Hau Jarauntsitako Talde bat da. Talde administratzaile moduko ezaugarriak Talde Berrietan erabil daitezke bakarrik.</string>
-    <!-- This is placed inside a "Learn More" text view, which automatically appends LearnMoreTextView_learn_more in code to the end of the string -->
-    <string name="ManageGroupActivity_legacy_group_upgrade">Hau Jarauntsitako Talde bat da. Talde administratzaile eta @aipamenak moduko ezaugarriak erabili ahal izateko,</string>
-    <string name="ManageGroupActivity_legacy_group_too_large">Jarauntsitako Talde Hau ezin da Talde Berrira eguneratu oso handia delako. Gehienezko talde tamaina %1$d da.</string>
-    <string name="ManageGroupActivity_upgrade_this_group">eguneratu talde hau.</string>
     <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Hau segurtasunik gabeko MMS talde bat da. Modu pribatuan txateatzeko, gonbidatu kontaktuak Signal-era.</string>
     <string name="ManageGroupActivity_invite_now">Gonbidatu orain</string>
     <string name="ManageGroupActivity_more">gehiago</string>
@@ -1581,7 +1465,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Erabiltzaile-izena, QR kodea eta esteka ez daude ikusgai profilean. Partekatu erabiltzaile-izena pertsona fidagarriekin bakarrik.</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-    <string name="ManageProfileFragment__username_footer_no_username">Orain, jendeak zure hautazko erabiltzaile-izena erabil dezake zuri mezuak bidaltzeko; horrela, ez duzu telefono-zenbakia ematen ibili beharko. </string>
+    <string name="ManageProfileFragment__username_footer_no_username">People can message you using an optional username instead of a phone number. Usernames have a unique QR code and link you can share with friends.</string>
     <string name="ManageProfileFragment_profile_name">Profileko izena</string>
     <string name="ManageProfileFragment_username">Erabiltzaile-izena</string>
     <string name="ManageProfileFragment_about">Honi buruz</string>
@@ -1738,18 +1622,9 @@
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">Partekatu</string>
-    <string name="InviteActivity_share_with_contacts">Partekatu kontaktuekin</string>
-    <string name="InviteActivity_share_via">Partekatu honen bidez…</string>
 
     <string name="InviteActivity_cancel">Utzi</string>
-    <string name="InviteActivity_sending">Bidaltzen…</string>
-    <string name="InviteActivity_invitations_sent">Gonbidapenak bidali dira!</string>
     <string name="InviteActivity_invite_to_signal">Gonbidatu Signal erabiltzera</string>
-    <string name="InviteActivity_send_sms">Bidali SMS bat (%1$d)</string>
-    <plurals name="InviteActivity_send_sms_invites">
-        <item quantity="one">Bidali SMS gonbidapen %1$d?</item>
-        <item quantity="other">Bidali %1$d SMS gonbidapen?</item>
-    </plurals>
     <string name="InviteActivity_lets_switch_to_signal">Signalera alda dezagun: %1$s</string>
     <!-- Toast shown when Signal is unable to find an external app to share the Invite text string to -->
     <string name="InviteActivity_no_app_to_share_to">Dirudienez ez duzu partekatzeko aplikazio bakar bat ere.</string>
@@ -1784,7 +1659,6 @@
         <item quantity="other">Ekintza honen bidez, betiko ezabatuko dira hautatutako %1$d fitxategiak. Haiekin lotutako mezuak ere ezabatuko dira.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Ezabatzen</string>
-    <string name="MediaOverviewActivity_Media_delete_progress_message">Mezuak ezabatzen…</string>
     <!-- Format string showing current vs. total items being deleted, e.g. "12 of 207" -->
     <string name="MediaOverviewActivity_Media_delete_progress_count">%1$d / %2$d</string>
     <string name="MediaOverviewActivity_Sort_by">Ordenatu honen arabera</string>
@@ -1825,8 +1699,6 @@
     <string name="MediaOverviewActivity_this_media_is_not_sent_yet">Multimedia-eduki hau ez da bidali oraindik.</string>
     <string name="MediaOverviewActivity_jump_to_message">Joan mezura</string>
 
-    <!-- Megaphones -->
-    <string name="Megaphones_remind_me_later">Gogorarazi iezadazu beranduago</string>
     <string name="Megaphones_verify_your_signal_pin">Zure Signal PINa egiaztatu</string>
     <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Noizean behin eskatuko dizugu zure PINa egiaztatzeko, gogora dezazun.</string>
     <string name="Megaphones_verify_pin">Egiaztatu PINa</string>
@@ -1836,6 +1708,8 @@
     <string name="Megaphones_invite_friends">Gonbidatu</string>
     <string name="Megaphones_chat_colors">Tx.-koloreak</string>
     <string name="Megaphones_add_a_profile_photo">Profileko a.</string>
+    <!-- Text in a card view prompting the user to choose a username as part of the onboarding megaphone -->
+    <string name="Megaphones_set_up_username">Set up username</string>
 
     <!-- Message body of megaphone telling users that a device was linked to their account. %1$s is the time it was linked -->
     <string name="NewLinkedDeviceMegaphone__a_new_device_was_linked">Gailu berri bat lotu da kontuarekin (%1$s).</string>
@@ -1870,11 +1744,6 @@
     <string name="NotificationsMegaphone_turn_on">Aktibatu</string>
     <string name="NotificationsMegaphone_not_now">Orain ez</string>
 
-    <!-- NotificationMmsMessageRecord -->
-    <string name="NotificationMmsMessageRecord_multimedia_message">Multimedia-mezua</string>
-    <string name="NotificationMmsMessageRecord_downloading_mms_message">MMS mezu berria deskargatzen</string>
-    <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Errore bat gertatu da MMS mezua deskargatzean; sakatu berriro saiatzeko</string>
-
     <!-- MediaPickerActivity -->
     <string name="MediaPickerActivity__menu_open_camera">Ireki kamera</string>
 
@@ -1884,7 +1753,6 @@
 
     <!-- MessageRecord -->
     <string name="MessageRecord_unknown">Ezezaguna</string>
-    <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Signal bertsio zaharregitik jaso da mezu zifratua. Eskatu igorleari birbidaltzeko mesedez bere Signal egiaztatu ondoren.</string>
     <string name="MessageRecord_left_group">Taldea utzi duzu.</string>
     <string name="MessageRecord_you_updated_group">Taldea eguneratu duzu</string>
     <string name="MessageRecord_the_group_was_updated">Taldea eguneratu egin da.</string>
@@ -2198,8 +2066,6 @@
     </plurals>
 
     <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->
-    <string name="MessageRecord__you_will_no_longer_be_able_to_send_sms_messages_from_signal_soon">Laster, ezin izango duzu SMS mezurik bidali Signal-etik. %1$s(r)ekin duzun elkarrizketa mantentzeko, gonbida ezazu Signal-era.</string>
-    <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->
     <string name="MessageRecord__you_can_no_longer_send_sms_messages_in_signal">Jada ezin duzu SMS mezurik bidali Signal-en. %1$s(r)ekin duzun elkarrizketa mantentzeko, gonbida ezazu Signal-era.</string>
     <!-- Body for quote when message being quoted is an in-app payment message -->
     <string name="MessageRecord__payment_s">Ordainketa: %1$s</string>
@@ -2232,8 +2098,6 @@
     <string name="MessageRequestBottomView_delete">Ezabatu</string>
     <string name="MessageRequestBottomView_block">Blokeatu</string>
     <string name="MessageRequestBottomView_unblock">Desblokeatu</string>
-    <!-- Text explaining a message request from someone you\'ve removed before -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">%1$s erabiltzaileari mezua bidaltzen utzi eta zure izena eta argazkia haiekin partekatu nahi dituzu? Pertsona hau iraganean kendu duzu.</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Pertsona honi zuri mezuak bidaltzeko eta zure izena eta argazkia ikusteko baimena eman nahi diozu? Zuk onartu arte, ez du jakingo haren mezua ikusi duzunik.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Zuri mezuak bidaltzeko baimena eman nahi diozu %1$s erabiltzaileari, eta zure izena eta argazkia harekin partzekatu? Desblokeatu arte, ez duzu jasoko haren mezurik.</string>
@@ -2241,11 +2105,8 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Zuri mezuak bidaltzeko baimena eman nahi diozu %1$s erabiltzaileari? Desblokeatu arte, ez duzu jasoko haren mezurik.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock the Signal release notes channel -->
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">%1$s erabiltzailearen berritasun eta albisteak jaso nahi dituzu? Desblokeatzen duzun arte, ez duzu eguneratzerik jasoko.</string>
-    <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Talde honekin duzun txatean jarraitu, eta zure izena eta argazkia hartako kideekin partekatu nahi dituzu?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Jarauntsitako talde hau ezin da erabili jada. Sortu beste talde bat eginbide berriak aktibatzeko; esaterako, @aipamenak eta administratzaileak.</string>
-    <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Jarauntsitako Talde Hau ezin da erabili jadanik oso handia delako. Gehienezko talde tamaina %1$d da.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">%1$s erabiltzailearekin txateatzen jarraitu, eta zure izena eta argazkia harekin partekatu nahi dituzu?</string>
-    <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Talde honetara sartu eta zure izena eta argazkia kideekin partekatu nahi duzu? Zuk onartu arte, ez dute jakingo beraien mezuak ikusi duzunik.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Talde honetan sartu, eta izena eta argazkia bertako kideekin partekatu nahi duzu? Onartu arte, ez duzu haien mezurik ikusiko.</string>
     <!-- Shown when you are invited to a group and explains that until you accept the invitation to the group, members will not know that you have seen their messages. -->
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Talde honetara sartu nahi duzu? Onartu arte ez dute jakingo beraien mezuak ikusi dituzunik.</string>
@@ -2274,20 +2135,12 @@
         <item quantity="one">talde %1$d gehiago</item>
         <item quantity="other">%1$d talde gehiago</item>
     </plurals>
-    <!-- Describes the names of members in a group. MessageRequestProfileView_group_members_* is nested in the first parentheses. MessageRequestProfileView_invited is nested in the second -->
-    <string name="MessageRequestProfileView_member_names_and_invited">%1$s (%2$s)</string>
     <!-- Text for an empty group or when you are the only member -->
     <string name="MessageRequestProfileView_group_members_zero">Oraindik ez dago beste taldekiderik</string>
-    <!-- Text for a group with one member (not you). %1$s is their name -->
-    <string name="MessageRequestProfileView_group_members_one">%1$s</string>
     <!-- Text for a 2 member group you are in. %1$s is the name of the other member -->
     <string name="MessageRequestProfileView_group_members_one_and_you">%1$s eta zu</string>
-    <!-- Text for a 2 member group you are not in. %1$s and %2$s are the members\' names -->
-    <string name="MessageRequestProfileView_group_members_two">%1$s eta %2$s</string>
     <!-- Text for a 3 member group you are in. %1$s and %2$s are the members\' names -->
     <string name="MessageRequestProfileView_group_members_two_and_you">%1$s, %2$s, eta zu</string>
-    <!-- Text for a 3 member group you are not in. %1$s, %2$s, %3$s are the names of the other members. -->
-    <string name="MessageRequestProfileView_group_members_three">%1$s, %2$s, eta %3$s</string>
     <!-- Text for a 3+ member group. %1$s, %2$s, %3$s are member names. %4$s is the string key MessageRequestProfileView_other_members-->
     <string name="MessageRequestProfileView_group_members_other">%1$s, %2$s, %3$s eta %4$s</string>
     <!-- Nested in MessageRequestProfileView_group_members_other that shows how many members (besides three) are in the group -->
@@ -2299,8 +2152,6 @@
     <string name="MessageRequestBottomView_report">Salatu</string>
     <!-- Alert dialog title to accept a message request -->
     <string name="MessageRequestBottomView_accept_request">Eskaera onartu nahi duzu?</string>
-    <!-- Alert dialog body to review the message request carefully -->
-    <string name="MessageRequestBottomView_review_requests_carefully">Berrikusi eskaerak kontu handiz. Profileko izenak kontuen jabeek aukeratzen dituzte eta ez dira egiaztatzen.</string>
     <!-- Alert dialog body for accepting a message request. Contains bold substring placeholder -->
     <string name="MessageRequestBottomView_accept_request_body">Onartu konfiantzazko pertsonen eskaerak soilik %1$s zurekin harremanetan jarriko erregistro-kodea, PINa edo berreskuratzeko PINa eskatzeko.</string>
     <!-- Bold substring used in accept request body: "Signal will never" -->
@@ -2321,13 +2172,6 @@
     <string name="DeviceProvisioningActivity_link_this_device">Lotu gailu hau?</string>
     <string name="DeviceProvisioningActivity_continue">Jarraitu</string>
 
-    <string name="DeviceProvisioningActivity_content_intro">Hau egiteko gai izango da</string>
-    <string name="DeviceProvisioningActivity_content_bullets">
-        • Irakurri zure mezu guztiak \n• Bidali mezuak zuk gisa
-    </string>
-    <string name="DeviceProvisioningActivity_content_progress_title">Gailua lotzen</string>
-    <string name="DeviceProvisioningActivity_content_progress_content">Gailu berria lotzen…</string>
-    <string name="DeviceProvisioningActivity_content_progress_success">Gailua onartuta!</string>
     <string name="DeviceProvisioningActivity_content_progress_no_device">Ez da gailurik aurkitu.</string>
     <string name="DeviceProvisioningActivity_content_progress_network_error">Sare errorea.</string>
     <string name="DeviceProvisioningActivity_content_progress_key_error">Baliogabeko QR kodea.</string>
@@ -2337,11 +2181,6 @@
     <string name="DeviceProvisioningActivity_link_a_signal_device">Lotu Signal gailu bat?</string>
     <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">Mahaigaineko ordenagailu bat edo iPad bat Signal-eko kontu honekin lotzeko, joan lotutako gailuetara eta sakatu \"Lotu beste gailu bat\". Ondoren, eskaneatu QR kodea berriro. Eskaneatu Signal-etik datozen QR kodeak bakarrik.</string>
 
-    <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signalek Kamera baimena behar du QR kodea eskaneatzeko baina ukatu egin diozu. Joan aplikazioaren ezarpenetara, aukeratu \"Baimenak\" eta aktibatu \"Kamera\".</string>
-    <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Ezin da QR koderik eskaneatu Kamera baimen gabe</string>
-
-    <!-- OutdatedBuildReminder -->
-    <string name="OutdatedBuildReminder_update_now">Eguneratu orain</string>
     <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Singalen bertsio hau gaur iraungiko da. Eguneratu azken bertsiora.</string>
     <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
         <item quantity="one">Signal-en bertsio hau bihar iraungiko da. Eguneratu azken bertsiora.</item>
@@ -2468,12 +2307,9 @@
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Sakatu hau bideoa aktibatzeko</string>
-    <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">%1$s erabiltzaileari deitzeko, Signalek zure kamera erabiltzeko baimena behar du</string>
     <!-- Subtitle shown at top of call where %s is the elapsed time of the call -->
     <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
     <string name="WebRtcCallActivity__calling">Deitzen…</string>
-    <!-- Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect -->
-    <string name="WebRtcCallActivity__reconnecting">Berriro konektatzen…</string>
     <!-- Title for dialog warning about lacking bluetooth permissions during a call -->
     <string name="WebRtcCallActivity__bluetooth_permission_denied">Ez da eman Bluetootha erabiltzeko baimena</string>
     <!-- Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name -->
@@ -2558,7 +2394,6 @@
     <string name="WebRtcCallView__join_call">Deira Sartu</string>
     <string name="WebRtcCallView__call_is_full">Deia beteta dago</string>
     <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Dei hau gehienezko erabiltzaile kopurura, %1$d, iritsi da. Saiatu beranduago.</string>
-    <string name="WebRtcCallView__your_video_is_off">Zure bideoa itzalita dago</string>
     <string name="WebRtcCallView__reconnecting">Berriro konektatzen…</string>
     <string name="WebRtcCallView__joining">Batzen…</string>
     <string name="WebRtcCallView__disconnected">Deskonektatuta</string>
@@ -2611,10 +2446,6 @@
         <item quantity="other">%1$s, %2$s, eta beste %3$d dei honetan daude.</item>
     </plurals>
 
-    <!-- Toggle content description for toggling camera direction  -->
-    <string name="WebRtcCallView__toggle_camera_direction">Aktibatu/Desaktibatu kameraren norabidea</string>
-    <!-- Toggle content description for toggling audio output  -->
-    <string name="WebRtcCallView__toggle_speaker">Aktibatu/Desaktibatu bozgorailua</string>
     <!-- Toggle content description for toggling camera state  -->
     <string name="WebRtcCallView__toggle_camera">Aktibatu/Desaktibatu kamera</string>
     <!-- Toggle content description for toggling mute state  -->
@@ -2637,8 +2468,6 @@
     <!-- Toast message shown when user is auto-muted because they are joining a large group call. -->
     <string name="WebRtcCallView__youve_been_muted_large_group">Zure audioa desaktibatuta dago, dei honek parte-hartzaile asko dituelako.</string>
 
-    <!-- Error message when the developer added a button in the wrong place. -->
-    <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">UI errore bat gertatu da. Mesedez, jakinarazi errore hau garatzaileei.</string>
     <!-- Error message when the user is trying to change audio outputs but none are present. -->
     <string name="WebRtcAudioOutputToggleButton_no_eligible_audio_i_o_detected">Ez da audio-I/O hautagarririk detektatu.</string>
     <!-- A text description of the bluetooth icon, used for accessibility. -->
@@ -2652,8 +2481,6 @@
 
     <!-- A clickable button to "raise your hand" in a group call to signify you have something to say -->
     <string name="CallOverflowPopupWindow__raise_hand">Jaso eskua</string>
-    <!-- A description of a clickable image representing a raised hand -->
-    <string name="CallOverflowPopupWindow__raise_hand_illustration_content_description">Jaso eskua</string>
     <!-- A dialog prompt to confirm you want to lower your hand -->
     <string name="CallOverflowPopupWindow__lower_your_hand">Eskua jaitsi nahi duzu?</string>
     <!-- A dialog button to confirm you would like to lower your hand -->
@@ -2771,10 +2598,7 @@
     <!-- CallParticipantView -->
     <string name="CallParticipantView__s_is_blocked">%1$s blokeatuta dago</string>
     <string name="CallParticipantView__more_info">Informazio gehiago</string>
-    <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Ez duzu bere audio edo bideorik jasoko eta ez dute zurerik jasoko.</string>
     <string name="CallParticipantView__cant_receive_audio_video_from_s">Ezin da %1$s erabiltzailearen audio eta bideorik jaso.</string>
-    <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Ezin da %1$s erabiltzailearen audio eta bideorik jaso.</string>
-    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Beharbada ez duzu egiaztatu segurtasun-zenbakiaren aldaketa, arazoren bat du gailuan, edo blokeatu egin zaituzte.</string>
 
     <!-- SwitchCameraButton -->
     <!-- Content description for the button that switches between front and back camera during a call -->
@@ -2805,9 +2629,6 @@
 
     <!-- RegistrationActivity -->
     <string name="RegistrationActivity_select_your_country">Aukeratu zure herrialdea</string>
-    <string name="RegistrationActivity_you_must_specify_your_country_code">Zure herrialdearen kodea zehaztu behar duzu
-    </string>
-    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">Erregistratzeko, idatzi balio duen telefono-zenbaki bat.</string>
     <string name="RegistrationActivity_invalid_number">Zenbaki baliogabea</string>
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Zehaztu duzun zenbakia (%1$s) baliogabea da.
     </string>
@@ -2824,15 +2645,12 @@
     <string name="RegistrationActivity_select_a_country">Hautatu herrialdea</string>
     <!-- Hint text explaining that this is where the country code should go -->
     <string name="RegistrationActivity_default_country_code">0</string>
-    <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Zenbaki hau egiaztatzeko deia jasoko duzu.</string>
     <string name="RegistrationActivity_edit_number">Zenbakia editatu</string>
     <string name="RegistrationActivity_missing_google_play_services">Ez dira topatzen Google Play-ren zerbitzuak</string>
     <string name="RegistrationActivity_this_device_is_missing_google_play_services">Ez dago Google Play Services-ik gailu honetan. Signal erabili dezakezu, baina konfigurazio honek fidagarritasuna edo errendimendua gutxiagotu dezake.\n\nErabiltzaile aurreratua ez bazara, jatorrizkoa ez den Android ROM bat erabiltzen ari ez bazara edo hau errore bat dela uste baduzu, mesedez jarri zaitez harremanetan support@signal.org helbidean.</string>
     <string name="RegistrationActivity_i_understand">Ulertzen dut</string>
     <string name="RegistrationActivity_play_services_error">Play Services-en Errorea</string>
     <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services eguneratzen ari da edo tenporalki ez dago erabilgarri. Mesedez, berriro saia zaitez.</string>
-    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Lagunekin konektatzeko eta mezuak bidali ahal izan ditzazun, Signal-ek kontaktuak eta multimedia-edukia atzitzeko baimena behar du. Signal-en kontaktuak aurkitzeko aukera pribatuaren bidez kargatzen dira kontaktuak; hau da, muturretik muturrera enkriptatuta daude, eta Signal zerbitzuak ezin ditu ikusi.</string>
-    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Lagunekin konektatzeko, Signal-ek kontaktuak eta multimedia-edukia atzitzeko baimena behar du. Signal-en kontaktuak aurkitzeko aukera pribatuaren bidez kargatzen dira kontaktuak; hau da, muturretik muturrera enkriptatuta daude, eta Signal zerbitzuak ezin ditu ikusi.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Zenbakia erregistratzeko saiakera gehiegi egin dituzu. Mesedez, saia zaitez beranduago.</string>
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">Saiakera gehiegi egin dituzu zenbaki hau erregistratzeko. Saiatu berriro denbora hau igarotakoan: %1$s.</string>
@@ -2847,12 +2665,6 @@
     <!-- Dialog message shown to confirm when entering phone number (first placeholder) is normalized and formatted differently by the app (second placeholder). -->
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Idatzi duzun zenbakiak (%1$s) formatu ez-estandar bat du.\n\n%2$s esan nahi al zenuen?</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Telefono-zenbakien formatua</string>
-    <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
-    <string name="RegistrationActivity_call_requested">Deia eskatu da</string>
-    <!--    Small "toast" notification to the user confirming that they have requested a new code via SMS.-->
-    <string name="RegistrationActivity_sms_requested">SMSa eskatu da</string>
-    <!--    Small "toast" notification to the user confirming that they have requested a new code (through an unspecified channel).-->
-    <string name="RegistrationActivity_code_requested">Egiaztapen-kodea eskatu da</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="one">Hurrats %1$d falta zaizu arazterko txosten bat bidaltzeko.</item>
         <item quantity="other">%1$d hurrats falta zaizkizu arazterko txosten bat bidaltzeko.</item>
@@ -2865,8 +2677,6 @@
     <string name="RegistrationActivity_next">Hurrengoa</string>
     <!-- Title of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_phone_number">Telefono-zenbakia</string>
-    <!-- Subtitle of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Hasteko, idatzi zure telefono-zenbakia.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Sartu %1$s telefonora bidali dugun kodea.</string>
 
     <string name="RegistrationActivity_phone_number_description">Telefono-zenbakia</string>
@@ -2910,12 +2720,6 @@
   <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_success" translatable="false">Success!</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_share" translatable="false">Share</string> -->
 
-    <!-- SharedContactDetailsActivity -->
-    <string name="SharedContactDetailsActivity_add_to_contacts">Gehitu kontaktu-zerrendan</string>
-    <string name="SharedContactDetailsActivity_invite_to_signal">Gonbidatu Signal erabiltzera</string>
-    <string name="SharedContactDetailsActivity_signal_message">Signal mezua</string>
-    <string name="SharedContactDetailsActivity_signal_call">Signal deia</string>
-
     <!-- SharedContactView -->
     <string name="SharedContactView_add_to_contacts">Gehitu kontaktu-zerrendan</string>
     <string name="SharedContactView_invite_to_signal">Gonbidatu Signal erabiltzera</string>
@@ -2948,7 +2752,6 @@
     <!-- SmsMessageRecord -->
     <string name="SmsMessageRecord_secure_session_reset">Saio segurua berrezarri duzu.</string>
     <string name="SmsMessageRecord_secure_session_reset_s">%1$s berrezarri saio segurua.</string>
-    <string name="SmsMessageRecord_duplicate_message">Mezu bikoiztua.</string>
 
     <!-- Sticker management screen default title. -->
     <string name="StickerManagement_title_stickers">Eranskailuak</string>
@@ -2957,20 +2760,22 @@
         <item quantity="one">%1$s hautatua</item>
         <item quantity="other">%1$s hautatua</item>
     </plurals>
-    <!-- Label for the sticker management screen tab which shows the stickers that are available to install. -->
-    <string name="StickerManagement_available_tab_label">Eskuragarri</string>
+    <!-- Label for the sticker management screen tab which shows all of the sticker packs. -->
+    <string name="StickerManagement_all_tab_label">All</string>
     <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
-    <string name="StickerManagement_installed_tab_label">Instalatua</string>
-    <!-- Shown when there are no sticker packs available for installation. -->
-    <string name="StickerManagement_available_tab_empty_text">Ez dago eranskailu-paketerik erabilgarri</string>
+    <string name="StickerManagement_my_stickers_tab_label">My Stickers</string>
+    <!-- Shown when there are no sticker packs to show. -->
+    <string name="StickerManagement_all_tab_empty_text">No sticker packs are available</string>
     <!-- Shown when there are no sticker packs currently installed. -->
-    <string name="StickerManagement_installed_tab_empty_text">Ez dago eranskailu-paketerik instalatuta</string>
+    <string name="StickerManagement_installed_tab_empty_text">No sticker packs, add stickers to send to your friends.</string>
     <!-- Message shown when the author of the sticker pack is unknown. -->
     <string name="StickerManagement_author_unknown">Ezezaguna</string>
     <!-- Sticker pack list section header for packs that are already installed. -->
     <string name="StickerManagement_installed_stickers_header">Instalatutako eranskailuak</string>
     <!-- Sticker pack list section header for packs that have been received from incoming messages. -->
-    <string name="StickerManagement_stickers_you_received_header">Jaso dituzun eranskailuak</string>
+    <string name="StickerManagement_shared_with_you_header">Shared with you</string>
+    <!-- Sticker pack description for packs that have been sent to you -->
+    <string name="StickerManagement_when_you_receive">When you receive a sticker from someone, the sticker pack will appear here.</string>
     <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
     <string name="StickerManagement_signal_artist_series_header">Signal artisten serieak</string>
     <!-- Title shown when sharing a sticker pack with another user. -->
@@ -2983,8 +2788,13 @@
     <string name="StickerManagement_action_delete_selected">Ezabatu</string>
     <!-- Confirmation message shown before uninstalling sticker packs. The placeholder is the number of items to delete. -->
     <plurals name="StickerManagement_delete_n_packs_confirmation">
-        <item quantity="one">Kendu %1$s eranskailu-pakete</item>
-        <item quantity="other">Kendu %1$s eranskailu-pakete</item>
+        <item quantity="one">Remove %1$s sticker pack?</item>
+        <item quantity="other">Remove %1$s sticker packs?</item>
+    </plurals>
+    <!-- Body of the confirmation dialog shown before uninstalling sticker packs. -->
+    <plurals name="StickerManagement_delete_n_packs_confirmation_body">
+        <item quantity="one">This will remove the sticker pack. You can\'t add it again without a link or sticker message.</item>
+        <item quantity="other">This will remove these sticker packs. You can\'t add it again without a link or sticker message.</item>
     </plurals>
     <!-- Message shown after installing a sticker pack. The placeholder is the name of the sticker pack that was installed. -->
     <string name="StickerManagement_installed_pack_s">Instalatu da %1$s.</string>
@@ -3000,6 +2810,8 @@
         <item quantity="one">%1$s eranskailu</item>
         <item quantity="other">%1$s eranskailu</item>
     </plurals>
+    <!-- Message shown after copying a sticker pack link. -->
+    <string name="StickerManagement_copied">Link copied</string>
 
     <!-- Sticker pack list dropdown menu label for the button to forward a sticker pack to another user. -->
     <string name="StickerManagement_menu_forward_pack">Birbidali</string>
@@ -3011,6 +2823,14 @@
     <string name="StickerManagement_menu_remove_pack">Kendu</string>
     <!-- Sticker management screen dropdown menu label for the button to enter multi-select mode. -->
     <string name="StickerManagement_menu_select_packs">Hautatu eranskailu-paketeak</string>
+    <!-- Sticker pack list dropdown menu label for sending a sticker pack. -->
+    <string name="StickerManagement_menu_send_pack">Send</string>
+    <!-- Sticker pack list dropdown menu label for copying a sticker link. -->
+    <string name="StickerManagement_menu_copy_pack">Copy link</string>
+    <!-- Hint text shown in the sticker management search field. -->
+    <string name="StickerManagement_search">Search</string>
+    <!-- Shown when no stickers match the search. The placeholder what was searched. -->
+    <string name="StickerManagement_search_no_results_s">No results found for \'%1$s\'</string>
 
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
     <string name="StickerManagement_accessibility_download_pack">Deskargatu %1$s eranskailu-paketea</string>
@@ -3026,6 +2846,14 @@
     <string name="StickerManagement_accessibility_open_context_menu">Ireki laster-menua</string>
     <!-- Accessibility label for opening the context menu for a sticker pack row item. -->
     <string name="StickerManagement_accessibility_exit_multi_select_mode">Irten hautapen-modutik eta garbitu hautapenak</string>
+    <!-- Label for the button that expands the list to show every sticker pack in a section. -->
+    <string name="StickerManagement__see_all">See all</string>
+    <!-- Button that takes you to the list of sticker packs you can install. -->
+    <string name="StickerManagement__add_stickers">Add stickers</string>
+    <!-- Accessibility label to close the search field. -->
+    <string name="StickerManagement_accessibility_close_search">Close search</string>
+    <!-- Accessibility label to clear the search field. -->
+    <string name="StickerManagement_accessibility_clear_search">Clear search</string>
 
     <!-- StickerManagementAdapter -->
     <string name="StickerManagementAdapter_untitled">Izenbururi gabe</string>
@@ -3039,16 +2867,12 @@
     <string name="StickerPackPreviewActivity_stickers">Eranskailuak</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Huts egin du eranskailuen multzoa kargatzean</string>
 
-    <!-- SubmitDebugLogActivity -->
-    <string name="SubmitDebugLogActivity_edit">Editatu</string>
-    <string name="SubmitDebugLogActivity_done">Eginda</string>
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">Gorde</string>
     <!-- Error that is show in a toast when we fail to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_failed_to_save">Ezin izan da gorde</string>
     <!-- Toast that is show to notify that we have saved the debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save_complete">Gorde da</string>
-    <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Lerro bat ezabatzeko, uki ezazu</string>
     <string name="SubmitDebugLogActivity_submit">Bidali</string>
     <string name="SubmitDebugLogActivity_failed_to_submit_logs">Errorea arazteko erregistroak bidaltzerakoan</string>
     <string name="SubmitDebugLogActivity_success">Arrakasta!</string>
@@ -3056,7 +2880,6 @@
     <string name="SubmitDebugLogActivity_share">Elkarbanatu</string>
     <!-- Displayed when entering activity in view-only mode -->
     <string name="SubmitDebugLogActivity_close">Itxi</string>
-    <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Erregistro hau publikoki argitaratuko da, laguntzaileek ikus dezaten. Kargatu aurretik azter dezakezu.</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">\"Bidali\" sakatzen duzunean, erregistroa sarera kargatuko da 30 egunez, argitaratu gabeko URL esklusibo batean. Lehenik, gailuan gorde dezakezu.</string>
     <!-- Debug log level names to filter by levels. -->
@@ -3172,8 +2995,6 @@
     <!-- UsernameEditFragment -->
     <!-- Placeholder text for custom discriminator -->
     <string name="UsernameEditFragment__00">00</string>
-    <!-- Toolbar title when entering from registration -->
-    <string name="UsernameEditFragment__add_a_username">Gehitu erabiltzaile-izen bat</string>
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">Aukeratu erabiltzaile-izena</string>
     <string name="UsernameEditFragment_username">Erabiltzaile-izena</string>
@@ -3188,10 +3009,7 @@
     <string name="UsernameEditFragment_username_is_invalid">Erabiltzaile-izena baliogabea da.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Erabiltzaile-izenek %1$d eta %2$d karaktere bitartean egon behar dira.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">Erabiltzaile-izen bakoitza zenbaki-multzo batekin parekatzen da.</string>
-    <!-- Dialog title for explanation about numbers at the end of the username -->
-    <string name="UsernameEditFragment__what_is_this_number">Zer da zenbaki hau?</string>
-    <string name="UsernameEditFragment__these_digits_help_keep">Digitu hauei esker, zure erabiltzaile-izena pribatu mantentzen da, nahi ez dituzun mezuak saihestu ahal izateko. Partekatu erabiltzaile-izena zurekin txateatzea nahi duzun pertsonekin eta taldeekin soilik. Erabiltzaile-izena aldatzen baduzu, digitu-multzo berri bat jasoko duzu.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">People can message you using your optional username instead of a phone number. Usernames are always paired with a set of numbers.</string>
     <!-- Button to allow user to skip -->
     <string name="UsernameEditFragment__skip">Saltatu</string>
     <!-- Content description for done button -->
@@ -3222,15 +3040,12 @@
     <!-- Explanation of what the sheet enables the user to do -->
     <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Kopiatu edo partekatu erabiltzaile-izenaren esteka</string>
 
-    <!-- VerifyIdentityActivity -->
-    <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Zure kontaktua Signal aplikazioaren bertsio berriago bat erabiltzen ari da eta horrek QR kode formatua eguneratu du. Eguneratu konparazioa egiteko.</string>
     <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Eskaneatutako QR kodea ez da formato zuzena duen segurtasun berifikazio kode batena. Mesedez, saia zaitez berriro eskaneatzen.</string>
     <string name="VerifyIdentityActivity_share_safety_number_via">Segurtasun zenbakia partekatu honen bidez…</string>
     <string name="VerifyIdentityActivity_our_signal_safety_number">Gure Signal-en segurtasun zenbakia:</string>
     <string name="VerifyIdentityActivity_no_app_to_share_to">Dirudienez ez duzu partekatzeko aplikazio bakar bat ere.</string>
     <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Ez da aurkitu konparantzeko segurtasun zenbakirik arbelean</string>
     <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signalek Kamera baimena behar du QR kodea eskaneatzeko baina ukatu egin diozu. Joan aplikazioaren ezarpenetara, aukeratu \"Baimenak\" eta aktibatu \"Kamera\".</string>
-    <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Ezin da QR kodea eskaneatu Kamera baimen gabe</string>
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Mezuak trukatu behar duzu %1$s erabiltzailearen segurtasun zenbakia ikusi ahal izateko.</string>
     <!-- Dialog message explaining to user they must exchange messages first to create a safety number -->
     <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">Pertsona honekin segurtasun-zenbaki bat sortuko da zurekin mezuak trukatu ondoren.</string>
@@ -3238,17 +3053,12 @@
     <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_ok">Ados</string>
     <!-- Learn more option for dialog explaining to user they must exchange messages first to create a safety number  -->
     <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_learn_more">Informazio gehiago</string>
-    <!-- Confirmation button on scan result dialogs -->
-    <string name="VerifyDisplayFragment__scan_result_dialog_ok">Ados</string>
 
     <!-- ViewOnceMessageActivity -->
   <!-- Removed by excludeNonTranslatables <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string> -->
 
     <!-- AudioView -->
   <!-- Removed by excludeNonTranslatables <string name="AudioView_duration" translatable="false">%1$d:%2$02d</string> -->
-
-    <!-- MessageDisplayHelper -->
-    <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Existitzen ez den bertsio baterako enkriptatutako mezua</string>
 
     <!-- MuteDialog -->
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
@@ -3303,7 +3113,7 @@
     <!-- Text shown in a system notification that is used to summarize your notification. The first placeholder is a pluralized string that describes how many messages (e.g. "3 messages"), and the second placeholder is a pluralized string that describes the number of unique chats those message appear in (e.g. "2 chats"). -->
     <string name="MessageNotifier_s_in_s">%1$s  %2$s taldean</string>
     <!-- Subtext shown in a group chat notification when the most recent message is a direct reply to a message you sent. -->
-    <string name="MessageNotifier_replied_to_you">Replied to you: %1$s</string>
+    <string name="MessageNotifier_replied_to_you">Erantzun dizu: %1$s</string>
     <!-- Text shown in a system notification that is used to summary how many messages you received. -->
     <plurals name="MessageNotifier_d_messages">
         <item quantity="one">%1$d mezu</item>
@@ -3393,10 +3203,6 @@
     <!-- Notification channel name for unread reminder notifications -->
     <string name="NotificationChannel_unread_reminders">Irakurri gabeko gogorarazpenak</string>
 
-    <!-- QuickResponseService -->
-    <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Erantzun bizkorra eskuraezina Signal blokeatuta badago!</string>
-    <string name="QuickResponseService_problem_sending_message">Arazoa mezua bidaltzen!</string>
-
     <!-- A toast notification that is shown when the app does not have sufficient permissions to save media files to the device storage. -->
     <string name="SaveAttachment_unable_to_write_to_sd_card_exclamation">Ezgai biltegian idazteko!</string>
 
@@ -3449,7 +3255,6 @@
     <string name="SearchToolbar_search">Bilatu</string>
     <!-- Hint when searching filtered chat content -->
     <string name="SearchToolbar_search_unread_chats">Bilatu irakurri gabeko txatak</string>
-    <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Bilatu txatak, kontaktuak eta mezuak</string>
 
     <!-- Material3 Search Toolbar -->
     <string name="Material3SearchToolbar__close">Itxi</string>
@@ -3485,6 +3290,34 @@
     <string name="NewWaysToConnectDialogFragment__not_now">Orain ez</string>
     <!-- Button label for continue -->
     <string name="NewWaysToConnectDialogFragment__set_up_your_username">Konfiguratu erabiltzaile-izena</string>
+
+    <!-- ConnectWithUsernamesDialogFragment -->
+    <!-- Title of the username education screen shown to accounts registered without a phone number -->
+    <string name="ConnectWithUsernamesDialogFragment__connect_with_usernames">Connect with usernames</string>
+    <!-- Title of the usernames section -->
+    <string name="ConnectWithUsernamesDialogFragment__usernames">Usernames</string>
+    <!-- Description of the usernames section -->
+    <string name="ConnectWithUsernamesDialogFragment__people_can_message_you_using_your_optional_username">People can message you using your optional username instead of a phone number. Usernames aren\'t visible on your profile.</string>
+    <!-- Title of the QR code section -->
+    <string name="ConnectWithUsernamesDialogFragment__qr_codes_and_links">QR codes and links</string>
+    <!-- Description of the QR code section -->
+    <string name="ConnectWithUsernamesDialogFragment__usernames_have_a_unique_qr_code">Usernames have a unique QR code and link you can share with friends to quickly start a chat with you.</string>
+    <!-- Title of the discoverability section -->
+    <string name="ConnectWithUsernamesDialogFragment__stay_discoverable">Stay discoverable</string>
+    <!-- Description of the discoverability section -->
+    <string name="ConnectWithUsernamesDialogFragment__without_a_phone_number_usernames_and_links">Without a phone number, usernames and links are the only way others can connect with you.</string>
+    <!-- Button label that takes the user to the username creation screen -->
+    <string name="ConnectWithUsernamesDialogFragment__set_up_username">Set up username</string>
+    <!-- Button label that dismisses the screen without creating a username -->
+    <string name="ConnectWithUsernamesDialogFragment__not_now">Not now</string>
+
+    <!-- SetUpUsernameBanner -->
+    <!-- Body of a banner on the new message screen prompting the user to create a username -->
+    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">Choose a username so others can connect with you.</string>
+    <!-- Button label that takes the user to the username creation screen -->
+    <string name="SetUpUsernameBanner__set_up">Set up</string>
+    <!-- Accessibility label for the button that permanently dismisses the banner -->
+    <string name="SetUpUsernameBanner__dismiss">Dismiss</string>
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">Erreproduzitu bideoa</string>
@@ -3523,21 +3356,11 @@
     <string name="EnclaveFailureReminder_update_signal">Eguneratu Signal ordainketak erabiltzen jarraitzeko. Baliteke saldoa eguneratuta ez egotea.</string>
     <!-- Banner button to update now -->
 
-    <!-- WebRtcCallActivity -->
-    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Deiari erantzuteko, eman Signal-i mikrofonoa atzitzeko baimena.</string>
-    <!-- Message shown in permission dialog when attempting to answer a video call without camera or microphone permissions already granted. -->
-    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">Bideo-deiari erantzuteko, eman Signal-i mikrofonorako eta kamerarako sarbidea.</string>
-    <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signalek Mikronofoa eta Kamera baimenak behar ditu deiak egin edo jasotzeko baina ukatu egin dizkiozu. Joan aplikazioaren ezarpenetara, aukeratu \"Baimenak\" eta aktibatu \"Mikrofonoa\" eta \"Kamera\"</string>
     <string name="WebRtcCallActivity__answered_on_a_linked_device">Erantzunda lotutako gailu batean.</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">Ukatuta lotutako gailu batean.</string>
     <string name="WebRtcCallActivity__busy_on_a_linked_device">Okupatuta lotutako gailu batean.</string>
-    <!-- Tooltip message shown first time user is in a video call after switch camera button moved -->
-    <string name="WebRtcCallActivity__flip_camera_tooltip">Kamera aldatzeko botoia hemen dago orain; probatzeko, sakatu bideoa</string>
 
     <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">Dei honetara sartu den norbaiten segurtasun zenbakia aldatu egin da.</string>
-
-    <!-- WebRtcCallScreen -->
-    <string name="WebRtcCallScreen_swipe_up_to_change_views">Egin gora bista aldatzeko</string>
 
     <!-- WebRtcCallScreen V2 -->
     <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -3565,9 +3388,6 @@
     <string name="WebRtcAudioOutputToggle__wired_headset">Kabledun entzungailuak</string>
     <!-- Audio output option referring to an external headset connected via a USB-C data cable -->
     <string name="WebRtcAudioOutputToggle__wired_headset_usb">Kabledun entzungailuak (USB)</string>
-
-    <string name="WebRtcCallControls_answer_call_description">Erantzun deia</string>
-    <string name="WebRtcCallControls_reject_call_description">Ezetsi deia</string>
 
     <!-- change_passphrase_activity -->
     <string name="change_passphrase_activity__old_passphrase">Aurreko pasaesaldia</string>
@@ -3629,25 +3449,8 @@
     <!-- Text asking for user\'s contact permission -->
     <string name="ContactSelectionListFragment__allow_access_to_your_contacts_encrypted">Eman kontaktuetarako sarbidea. Zure kontaktuak enkriptatuta daude eta ez daude ikusgai Signal zerbitzuan.</string>
 
-    <!-- contact_selection_list_fragment -->
-    <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Singalek zure kontaktuak lortzeko baimena behar du erakutsi ahal izateko.</string>
-    <string name="contact_selection_list_fragment__show_contacts">Kontaktuak erakutsi</string>
-
-    <!-- contact_selection_list_item -->
-    <plurals name="contact_selection_list_item__number_of_members">
-        <item quantity="one">kide %1$d</item>
-        <item quantity="other">%1$d kide</item>
-    </plurals>
-    <!-- Displays number of viewers for a story -->
-    <plurals name="contact_selection_list_item__number_of_viewers">
-        <item quantity="one">Ikusle %1$d</item>
-        <item quantity="other">%1$d ikusle</item>
-    </plurals>
-
     <!-- conversation_activity -->
     <string name="conversation_activity__type_message_push">Signal mezua</string>
-    <string name="conversation_activity__type_message_sms_insecure">SMS ez segurua</string>
-    <string name="conversation_activity__type_message_mms_insecure">MMS ez segurua</string>
     <!-- Option in send button context menu to schedule the message instead of sending it directly -->
     <string name="conversation_activity__sim_n">%1$d SIM-a</string>
     <string name="conversation_activity__send">Bidali</string>
@@ -3701,7 +3504,6 @@
     <string name="ConversationUpdateItem_block_request">Blokeatu eskaera</string>
     <!-- Text shown in conversation header that the account messaging the user does not have any groups in common with them -->
     <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Ez dago zuen artean komuna den talderik</string>
-    <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Talde honetan ez dago kontakturik. Berrikusi eskaerak arretaz.</string>
     <string name="ConversationUpdateItem_view">Ikusi</string>
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Mezuak bidaltzen dizkiozunean, %1$s-an ezarriko da desagertzen diren mezuen tenporizadorea.</string>
     <!-- Update item button text to show to boost a feature -->
@@ -3804,16 +3606,7 @@
     <!-- country_selection_fragment -->
     <string name="country_selection_fragment__loading_countries">Herrialdeak kargatzen…</string>
     <string name="country_selection_fragment__search">Bilatu</string>
-    <string name="country_selection_fragment__no_matching_countries">Ez dago bat datorren herrialderik</string>
 
-    <!-- device_add_fragment -->
-    <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Eskaneatu gailuan erakutsitako QR kodea parekatzeko.</string>
-
-    <!-- device_link_fragment -->
-    <string name="device_link_fragment__link_device">Lotu gailua</string>
-
-    <!-- device_list_fragment -->
-    <string name="device_list_fragment__no_devices_linked">Lotuta dagoen gailurik ez dago.</string>
     <string name="device_list_fragment__link_new_device">Lotu gailu berria</string>
 
     <!-- expiration -->
@@ -3903,10 +3696,6 @@
 
     <!-- prompt_passphrase_activity -->
     <string name="prompt_passphrase_activity__unlock">Desblokeatu</string>
-
-    <!-- prompt_mms_activity -->
-    <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signalek MMS ezarpenak behar ditu media eta taldeko mezuak banatu ahal izateko zure hari-gabeko hornitzailearen bitartez. Zure gailuak ez dauka informazio hau eskuragarri. Hau batzuetan gertatzen da blokeatuta dauden eta beste konfigurazio murrizgarriak dituzten gailuetan.</string>
-    <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Multimedia-edukiak eta taldeko mezuak bidaltzeko, sakatu \"Ados\" eta osatu beharrezkoak diren ezarpenak. Operadorearen MMS ezarpenak \"zure operadorearen APNa\" bilatuta aurki daitezke, normalean. Behin bakarrik egin beharko duzu hori.</string>
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">Entregarekin erlazionatutako arazoa</string>
@@ -4024,10 +3813,6 @@
     <!-- verity_scan_fragment -->
     <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Eskaneatu QR kodea zure kontaktuaren gailuan.</string>
 
-    <!-- webrtc_answer_decline_button -->
-    <string name="webrtc_answer_decline_button__swipe_up_to_answer">Egin gora erantzuteko</string>
-    <string name="webrtc_answer_decline_button__swipe_down_to_reject">Egin behera ukatzeko</string>
-
     <!-- message_details_header -->
     <string name="message_details_header__issues_need_your_attention">Arazo batzuk daude.</string>
     <string name="message_details_header_sent">Bidalita</string>
@@ -4058,7 +3843,6 @@
     <string name="AndroidManifest__verify_safety_number">Segurtasun zenbakia baieztatu</string>
     <string name="AndroidManifest__media_preview">Multimediaren aurrebista</string>
     <string name="AndroidManifest__message_details">Mezuaren xehetasunak</string>
-    <string name="AndroidManifest__linked_devices">Lotutako gailuak</string>
     <string name="AndroidManifest__invite_friends">Gonbidatu lagunak</string>
     <string name="AndroidManifest_archived_conversations">Artxibatutako txatak</string>
 
@@ -4113,8 +3897,6 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Arestian erabilia</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Ez da emaitzarik aurkitu</string>
 
-    <!-- GifQuickSearchOption -->
-    <string name="GifQuickSearchOption__recents">Azkenaldikoak</string>
     <string name="GifQuickSearchOption__trending">Joerak</string>
     <string name="GifQuickSearchOption__celebrate">Ospakizunak</string>
     <string name="GifQuickSearchOption__love">Maitasuna</string>
@@ -4163,11 +3945,8 @@
         <item quantity="other">%1$do</item>
     </plurals>
 
-    <!-- preferences.xml -->
-    <string name="preferences_beta">Beta</string>
-    <string name="preferences__sms_mms">SMS eta MMS</string>
-    <string name="preferences__pref_use_address_book_photos">Prefer address book photos</string>
-    <string name="preferences__display_contact_photos_from_your_address_book_if_available">Prefer contact photos from your address book if available</string>
+    <string name="preferences__pref_use_address_book_photos">Hobetsi kontaktuen-zerrendako irudiak</string>
+    <string name="preferences__display_contact_photos_from_your_address_book_if_available">Hobetsi sistemaren kontaktuen irudiak, baldin badaude</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__pref_keep_muted_chats_archived">Mantendu jakinarazpenak desaktibatuta dauzkaten txatak artxibatuta</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
@@ -4227,15 +4006,6 @@
     <string name="preferences__privacy">Pribatutasuna</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Istorioak</string>
-    <string name="preferences__mms_user_agent">MMS erabiltzaile-agentea</string>
-    <string name="preferences__advanced_mms_access_point_names">MMS eskuzko ezarpenak</string>
-    <string name="preferences__mmsc_url">MMSC URLa</string>
-    <string name="preferences__mms_proxy_host">MMS Proxy Ostalaria</string>
-    <string name="preferences__mms_proxy_port">MMS Proxy Ataka:</string>
-    <string name="preferences__mmsc_username">MMSC erabiltzaile-izena</string>
-    <string name="preferences__mmsc_password">MMSC Pasaesaldia</string>
-    <string name="preferences__sms_delivery_reports">SMS banaketaren txostenak</string>
-    <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Bidaltzen duzun SMS mezu bakoitzeko banaketa txosten bat eskatu</string>
     <string name="preferences__data_and_storage">Datuak eta Biltegiratzea</string>
     <string name="preferences__storage">Biltegia</string>
     <string name="preferences__payments">Ordainketak</string>
@@ -4243,7 +4013,6 @@
     <string name="preferences__payment_lock">Ordainketen babesa</string>
     <string name="preferences__conversation_length_limit">Txataren gehieneko luzera</string>
     <string name="preferences__keep_messages">Mezuak gorde</string>
-    <string name="preferences__clear_message_history">Garbitu mezuen historia</string>
     <string name="preferences__linked_devices">Lotutako gailuak</string>
     <string name="preferences__light_theme">Argia</string>
     <string name="preferences__dark_theme">Iluna</string>
@@ -4276,13 +4045,9 @@
     <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN-ek zure Signal kontuarekin batera gordetako informazioa enkriptatuta mantentzen dute, zuk bakarrik eskuratu ahal izateko. Zure profila, ezarpenak eta kontaktuak Signal berrinstalatzen duzunean berreskuratuko dira. Ez duzu PINa behar aplikazioa irekitzeko.</string>
     <string name="preferences__system_default">Sisteman lehenetsia</string>
     <string name="preferences__language">Hizkuntza</string>
-    <string name="preferences__signal_messages_and_calls">Signal mezu eta deiak</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">PINarekin loturiko ezarpen aurreratuak</string>
-    <string name="preferences__free_private_messages_and_calls">Mezu eta dei pribatu doanak Signal erabiltzaileri.</string>
     <string name="preferences__submit_debug_log">Arazketaren informazioa bidali</string>
-    <string name="preferences__support_wifi_calling">\'WiFi Calling\' bateragarritasunerako modua</string>
-    <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktibatu zure gailuak WiFi bidezko SMS/MMS banaketa erabiltzen badu (bakarrik aktibatu \'WiFi Calling\' aktibatuta badago zure gailuan).</string>
     <string name="preferences__incognito_keyboard">Ezkutuko teklatua</string>
     <string name="preferences__read_receipts">Irakurketaren hartu-agiriak</string>
     <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Irakurketaren hartu-agiriak desaktibatuta badaude, ezingo dituzu besteenak ikusi</string>
@@ -4295,7 +4060,6 @@
     <string name="preferences_chats__when_using_wifi">Wi-Fia erabiltzerakoan</string>
     <string name="preferences_chats__when_roaming">Ibiltaritzako datuak erabiltzerakoan</string>
     <string name="preferences_chats__media_auto_download">Multimedia edukien deskargatze automatikoa</string>
-    <string name="preferences_chats__message_history">Mezuen historia</string>
     <string name="preferences_storage__storage_usage">Biltegiaren erabilera</string>
     <string name="preferences_storage__photos">Argazkiak</string>
     <string name="preferences_storage__videos">Bideoak</string>
@@ -4409,8 +4173,6 @@
     <!-- Preference summary for automatic key verification -->
     <string name="preferences_automatic_key_verification_body">Gaitzen baduzu, Signal automatikoki saiatuko da banakako txaten enkriptatzea egiaztatzen.</string>
 
-
-    <string name="configurable_single_select__customize_option">Pertsonalizatu aukera</string>
 
     <!-- Internal only preferences -->
   <!-- Removed by excludeNonTranslatables <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string> -->
@@ -4549,9 +4311,7 @@
     <string name="PaymentsTransferFragment__check_the_wallet_address">Begiratu tranferentzia egin nahi duzun diru-zorroaren helbidea eta saiatu berriro.</string>
     <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">Ezin duzu zure Signal diru-zorroaren helbidera transferitu. Sartu diru-zorroaren helbidean zure kontutik, baliozko trukean.</string>
     <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">QR kode bat eskaneatzeko, Signal-ek zure kamera erabiltzeko baimena behar du</string>
-    <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signal-ek kamera erabiltzeko baimena behar du QR kode bat harrapatzeko. Joan ezarpenetara, aukeratu \"baimenak\" eta ahalbidetu \"kamera\".</string>
     <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">QR kode bat eskaneatzeko, Signalek zure kamera erabiltzeko baimena behar du</string>
-    <string name="PaymentsTransferFragment__settings">Ezarpenak</string>
 
     <!-- PaymentsTransferQrScanFragment -->
     <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">QR helbide kodea eskaneatu</string>
@@ -4627,12 +4387,8 @@
     <!-- contact_selection_list -->
     <!-- Displayed in a row on the new call screen when searching by phone number. -->
     <string name="contact_selection_list__new_call">Dei berria honi…</string>
-    <string name="contact_selection_list__unknown_contact">Mezu berria honi…</string>
     <string name="contact_selection_list__unknown_contact_block">Blokeatu erabiltzailea</string>
     <string name="contact_selection_list__unknown_contact_add_to_group">Gehitu taldera</string>
-
-    <!-- conversation_callable_insecure -->
-    <string name="conversation_callable_insecure__menu_call">Deitu</string>
 
     <!-- conversation_callable_secure -->
     <string name="conversation_callable_secure__menu_call">Signal deia</string>
@@ -4758,12 +4514,6 @@
         <item quantity="other">%1$d mezu programatuta</item>
     </plurals>
 
-    <!-- conversation_group_options -->
-    <string name="conversation_group_options__delivery">Banatu</string>
-    <!-- Label for a menu item that appears after pressing the three-dot icon in a  -->
-    <string name="conversation_group_options__conversation">Txata</string>
-    <string name="conversation_group_options__broadcast">Difusioa</string>
-
     <!-- DoubleTapEditEducationSheet -->
     <!-- Displayed as the title of the education bottom sheet -->
     <string name="DoubleTapEditEducationSheet__double_tap_edit_title">Sakatu birritan editatzeko</string>
@@ -4791,7 +4541,6 @@
 
     <!-- reminder_header -->
     <string name="reminder_header_service_outage_text">Signal arazo teknikoak izaten ari da. Gogor ari gara lanean zerbitzua ahal bezain laster berriro martxan jartzeko.</string>
-    <string name="reminder_header_progress">%1$d%%</string>
     <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user\'s contacts -->
     <string name="reminder_cds_warning_body">Signal-en kontaktu pribatuak bilatzeko aukerak ezin ditu prozesatu telefonoko kontaktuak aldi baterako.</string>
     <!-- Label for a button in a banner to learn more about why we temporarily can\'t process the user\'s contacts -->
@@ -4849,8 +4598,6 @@
     <string name="ConfirmKbsPinFragment__pin_created">PIN-a sortua.</string>
     <string name="ConfirmKbsPinFragment__re_enter_your_pin">Idatzi berriro zure PIN-a</string>
     <string name="ConfirmKbsPinFragment__creating_pin">PINa sortzen…</string>
-    <!-- ID used when saving the PIN to the device password manager. -->
-    <string name="ConfirmKbsPinFragment__pin_password_manager_id">Signal PIN</string>
 
     <!-- KbsSplashFragment -->
     <string name="KbsSplashFragment__introducing_pins">PIN-ak sartzen</string>
@@ -4924,13 +4671,6 @@
     <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN-ek Signalekin batera gordetako informazioa enkriptatuta mantentzen dute.</string>
     <string name="KbsMegaphone__create_pin">PINa sortu</string>
 
-    <!-- Title for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
-    <string name="UpdatePinMegaphone__update_signal_pin">Eguneratu Signal-eko PINa</string>
-    <!-- Message for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
-    <string name="UpdatePinMegaphone__message">Kontua erregistratzen amaitzeko, eguneratu Signal-eko PINa.</string>
-    <!-- Button text for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
-    <string name="UpdatePinMegaphone__update_pin">Eguneratu PIN-a</string>
-
     <!-- CallNotificationBuilder -->
     <!-- Displayed in a notification when a Signal voice call is ringing -->
     <string name="CallNotificationBuilder__incoming_signal_voice_call">Signal-eko sarrerako ahots-deia</string>
@@ -4945,22 +4685,15 @@
     <!-- Displayed in a notification when a Signal group call is in progress -->
     <string name="CallNotificationBuilder__ongoing_signal_group_call">Signal-eko taldeko dei bat abian</string>
 
-    <!-- transport_selection_list_item -->
-    <string name="ConversationListFragment_loading">Kargatzen…</string>
     <string name="CallNotificationBuilder_connecting">Konektatzen…</string>
-    <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal-en datu-basea migratzen</string>
     <string name="enter_backup_passphrase_dialog__backup_passphrase">Babeskopiaren pasaesaldia</string>
     <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Babeskopiak kanpoko memoria batean gordeko dira beheko pasaesaldiarekin enkriptatuta. Pasaesaldi hau eduki behar duzu babeskopia bat berreskuratzeko.</string>
     <string name="backup_enable_dialog__you_must_have_this_passphrase">Pasaesaldi hau eduki behar duzu babeskopia bat leheneratzeko.</string>
     <string name="backup_enable_dialog__folder">Karpeta</string>
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Pasaesaldia gorde dut. Hori gabe, ezin izango dut babeskopia bat berreskuratu.</string>
     <string name="registration_activity__restore_backup">Berreskuratu babeskopia</string>
-    <string name="registration_activity__transfer_or_restore_account">Transferitu edo berrezarri kontua</string>
-    <string name="registration_activity__transfer_account">Transferitu kontua</string>
-    <string name="registration_activity__skip">Saltatu</string>
     <!-- Text label button to skip restoring -->
     <string name="registration_activity__skip_restore">Saltatu leheneratzeko aukera</string>
-    <string name="preferences_chats__chat_backups">Txaten babeskopiak</string>
     <!-- Title for dialog to enter in the backup passphrase -->
     <string name="RegistrationActivity_enter_backup_passphrase">Idatzi babeskopiaren pasaesaldia</string>
     <string name="RegistrationActivity_restore">Berreskuratu</string>
@@ -5044,13 +4777,10 @@
     <string name="PhoneNumberPrivacy_everyone">Guztiak</string>
     <string name="PhoneNumberPrivacy_nobody">Inor ez</string>
     <string name="preferences_app_protection__screen_lock">Blokeo-pantaila</string>
-    <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Blokeatu Signal-era sartzea Androiden pantaila-blokeoa edo hatz-markak erabiliz</string>
-    <string name="preferences_app_protection__screen_lock_inactivity_timeout">Blokeo-pantailaren inaktibitate denbora-muga</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
     <string name="preferences_app_protection__to_use_screen_lock">Pantaila-blokeoa erabiltzeko, ezarri PIN, eredu edo pasahitz bat gailu honetan.</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">Erresgistratzea blokeatzea aktibatzeak huts egin du.</string>
     <string name="preferences_app_protection__failed_to_disable_registration_lock">Erresgistratzea blokeatzea desaktibatzeak huts egin du.</string>
-    <string name="AppProtectionPreferenceFragment_none">Bat ere ez</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Erregistratzea blokeatzeko zure PINa idatzi behar duzu</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Zure PINak gutxienez %1$d zenbaki edo karaktere dauzka</string>
     <string name="RegistrationActivity_too_many_attempts">Saikera gehiegi</string>
@@ -5079,8 +4809,6 @@
     <string name="ScreenLockSettingsFragment__your_android_device">Aplikazioetatik irteten zarenean edo aplikazioz aldatzen zarenean, Android-eko gailuaren blokeatze-ezarpenek Signal desblokeatu beharko dute. Blokeatuta dagoen bitartean, jakinarazpenen aurrebistetan ez da ikusiko mezuen edukia.</string>
     <!-- Title text explaining when users should start the screen lock -->
     <string name="ScreenLockSettingsFragment__start_screen_lock">Aktibatu pantaila-blokeoa</string>
-    <!-- Option text explaining that screen lock should start immediately -->
-    <string name="ScreenLockSettingsFragment__immediately">Berehala</string>
     <!-- Option text explaining that screen lock should start after 1 minute of inactivity -->
     <string name="ScreenLockSettingsFragment__after_1_min">Minutu baten buruan</string>
     <!-- Option text explaining that screen lock should start after 5 minutes of inactivity -->
@@ -5132,17 +4860,8 @@
     <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Aurretik Signal kontu bat erregistratu baduzu, zure kontua eta mezuak transferitu edo leheneratu ditzakezu</string>
     <string name="TransferOrRestoreFragment__transfer_from_android_device">Transferitu Android gailu berri batetik</string>
     <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">Transferitu zure kontua eta mezuak zure Android gailu zaharretik. Zure gailu zaharrerako sarbidea behar duzu.</string>
-    <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Zure gailu zaharrerako sarbidea behar duzu.</string>
-    <string name="TransferOrRestoreFragment__restore_from_backup">Babeskopia berreskuratu</string>
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Berreskuratu babeskopia lokal bateko mezuak. Orain ez baduzu egiten, ezingo duzu geroago berreskuratu.</string>
     <string name="TransferOrRestoreFragment__restore_from_local_backup">Leheneratu babeskopia lokala</string>
-    <string name="TransferOrRestoreFragment__restore_from_signal_backup">Leheneratu Signal-en babeskopia</string>
-    <!-- Button label for more options -->
-    <string name="TransferOrRestoreFragment__more_options">Aukera gehiago</string>
-
-    <string name="TransferOrRestoreFragment__cancel">Utzi</string>
-    <string name="TransferOrRestoreFragment__skip_transfer">Hasi saioa transferitu gabe</string>
-    <string name="TransferOrRestoreFragment__skip_transfer_description">Jarraitu zure mezuak eta artxiboak transferitu gabe</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
     <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Ireki Signal zure Android telefono zaharrean</string>
@@ -5292,7 +5011,6 @@
     <!-- Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin -->
     <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">%1$s taldetik kendu nahi duzu? Ezin izango da berriro sartu taldearen estekaren bidez.</string>
     <string name="RecipientBottomSheet_remove">Kendu</string>
-    <string name="RecipientBottomSheet_copied_to_clipboard">Arbelera kopiatuta</string>
 
     <string name="GroupRecipientListItem_admin">Administratzailea</string>
     <!-- Button text to approve a user that has requested to join a group -->
@@ -5361,9 +5079,6 @@
     <string name="ReviewCardDialogFragment__remove">Kendu</string>
     <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Ezin izan da kendu taldeko kidea.</string>
 
-    <!-- ReviewCard -->
-    <string name="ReviewCard__request">Eskaera</string>
-    <string name="ReviewCard__your_contact">Zure kontaktua</string>
     <string name="ReviewCard__remove_from_group">Kendu taldetik</string>
     <string name="ReviewCard__update_contact">Eguneratu kontaktua</string>
     <string name="ReviewCard__block">Blokeatu</string>
@@ -5608,12 +5323,6 @@
     <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Erabiltzaile honi ordainketa bat bidaltzeko, zure mezu-eskaera onartu behar du. Bidali mezu bat mezu eskaera bat sortzeko.</string>
     <string name="CanNotSendPaymentDialog__send_a_message">Bidali mezua</string>
 
-    <!-- GroupsInCommonMessageRequest -->
-    <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">Ez duzu talde komunik pertsona honekin. Eskaerak onartu aurretik, azter itzazu ondo, nahi ez diren mezuak saihesteko.</string>
-    <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Talde honetan ez dago kontakturik edo zurekin txateatzen duen inor. Berrikusi eskaerak arretaz haiek onartu aurretik, nahi ez dituzun mezuak saihesteko.</string>
-    <string name="GroupsInCommonMessageRequest__about_message_requests">Mezu-eskaerei buruz</string>
-    <string name="GroupsInCommonMessageRequest__okay">Ados</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Hona hemen txat-kolorearen aurrebista.</string>
     <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">Kolorea zuk bakarrik ikusten duzu.</string>
 
@@ -5635,8 +5344,6 @@
     <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">Kopiatu da arbelean dohaintza-emailearen harpidedun IDa</string>
     <!-- String displayed in a toast when we successfully copy the backups subscriber id to the clipboard -->
     <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">Kopiatu da arbelean babeskopien harpidedun IDa</string>
-    <!-- String displayed in a toast when a subscriber id is not present for a given type -->
-    <string name="AppSettingsFragment__no_subscriber_id_set">Ez da ezarri harpidedun IDrik</string>
 
     <!-- ExportAccountDataFragment -->
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
@@ -5731,7 +5438,6 @@
     <string name="ChangeNumberVerifyFragment__change_number">Aldatu zenbakia</string>
     <!-- Text shown when verifying a new phone number where %1$s is the number being changed -->
     <string name="ChangeNumberVerifyFragment__verifying_s">%1$segiaztatzen</string>
-    <string name="ChangeNumberVerifyFragment__captcha_required">Captcha behar da</string>
 
     <!-- ChangeNumberConfirmFragment -->
     <string name="ChangeNumberConfirmFragment__change_number">Aldatu zenbakia</string>
@@ -5923,13 +5629,9 @@
     <string name="CreateFoldersFragment__please_enter_name">Idatzi karpetaren izena</string>
 
     <!-- ChooseChatsFragment -->
-    <!-- Section title representing chat types that can be added to the folder  -->
-    <string name="ChooseChatsFragment__chat_types">Txat motak</string>
     <!-- Done button label to save selected chats to folder -->
     <string name="ChooseChatsFragment__done">Eginda</string>
 
-    <!-- NotificationsSettingsFragment -->
-    <string name="NotificationsSettingsFragment__messages">Mezuak</string>
     <string name="NotificationsSettingsFragment__calls">Deiak</string>
     <!-- Notification header for sounds -->
     <string name="NotificationsSettingsFragment__sounds">Soinuak</string>
@@ -5946,8 +5648,6 @@
     <string name="NotificationsSettingsFragment__reset_confirm">Berrezarri</string>
     <!-- Notification preference header -->
     <string name="NotificationsSettingsFragment__notification_profiles">Jakinarazpen profilak</string>
-    <!-- Notification preference option header -->
-    <string name="NotificationsSettingsFragment__profiles">Profilak</string>
     <!-- Notification preference summary text -->
     <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Sortu profil bat aukeratzen dituzun pertsonen eta taldeen jakinarazpenak soilik jasotzeko.</string>
 
@@ -6093,15 +5793,6 @@
 
     <!-- ChatColorGradientTool -->
 
-    <!-- Title text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_donate_to_signal">Egin dohaintza bat Signal-i</string>
-    <!-- Body text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal zure moduko jendeari esker da posible. Egin dohaintzak hilero eta jaso bereizgarri bat.</string>
-    <!-- Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_donate">Egin dohaintza</string>
-    <!-- Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_not_now">Orain ez</string>
-
     <!-- EditReactionsFragment -->
     <string name="EditReactionsFragment__customize_reactions">Pertsonalizatu erreakzioak</string>
     <string name="EditReactionsFragment__tap_to_replace_an_emoji">Emoji bat ordezkatzeko, saka ezazu</string>
@@ -6118,10 +5809,6 @@
 
     <!-- BecomeASustainerMegaphone -->
     <string name="BecomeASustainerMegaphone__become_a_sustainer">Bilaka zaitez sostengatzaile</string>
-    <!-- Displayed in the Become a Sustainer megaphone -->
-    <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal zure moduko jendeari esker da posible. Lagundu eta jaso bereizgarri bat.</string>
-    <string name="BecomeASustainerMegaphone__not_now">Orain ez</string>
-    <string name="BecomeASustainerMegaphone__donate">Egin dohaintza</string>
 
     <!-- KeyboardPagerFragment -->
     <string name="KeyboardPagerFragment_emoji">Emoji</string>
@@ -6194,8 +5881,6 @@
     <string name="ConversationSettingsFragment__conversation_muted_forever">Txataren jakinarazpenak betiko desaktibatuta daude</string>
     <!-- Subtitle when conversation is muted forever -->
     <string name="ConversationSettingsFragment__conversation_muted_always">Beti</string>
-    <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Telefono-zenbakia arbelean kopiatu da.</string>
-    <string name="ConversationSettingsFragment__phone_number">Telefono-zenbakia</string>
     <string name="ConversationSettingsFragment__get_badges">Lortu zure profilerako bereizgarriak Signal-i lagunduz. Sakatu bereizgarri bat gehiago jakiteko.</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
     <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">Multimedia-eduki hau ez da bidali oraindik.</string>
@@ -6240,8 +5925,6 @@
     <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Desaktibatu jakinarazpenak</string>
     <!-- Summary text shown when a conversation is not muted -->
     <string name="SoundsAndNotificationsSettingsFragment__not_muted">Jakinarazpenak ez daude desaktibatuta</string>
-    <!-- Label for the mentions notification setting in conversation sounds and notifications -->
-    <string name="SoundsAndNotificationsSettingsFragment__mentions">Aipamenak</string>
     <!-- Dialog option to always send notifications for the selected category even when the conversation is muted -->
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">Jakinarazi beti</string>
     <!-- Dialog option to not send notifications for the selected category when the conversation is muted -->
@@ -6250,16 +5933,6 @@
     <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Jakinarazpen pertsonalizatuak</string>
     <!-- Section header for settings that control which notifications still come through when a conversation is muted -->
     <string name="SoundsAndNotificationsSettingsFragment__when_muted">Jakinarazpenak desaktibatuta daudenean</string>
-    <!-- Label for the calls notification setting in conversation sounds and notifications -->
-    <string name="SoundsAndNotificationsSettingsFragment__calls">Deiak</string>
-    <!-- Explanatory text shown in the calls notification setting dialog describing what the setting controls -->
-    <string name="SoundsAndNotificationsSettingsFragment__calls_dialog_message">Jakinarazpenak desaktibatuta dauzkaten txatetan deiak hastean, jo tonua eta jaso jakinarazpenak.</string>
-    <!-- Explanatory text shown in the mentions notification setting dialog describing what the setting controls -->
-    <string name="SoundsAndNotificationsSettingsFragment__mentions_dialog_message">Jakinarazpenak desaktibatuta dauzkaten txatetan aipatzen zaituztenean, jaso jakinarazpenak.</string>
-    <!-- Label for the replies notification setting in conversation sounds and notifications -->
-    <string name="SoundsAndNotificationsSettingsFragment__replies_to_you">Erantzuten dizu</string>
-    <!-- Explanatory text shown in the replies notification setting dialog describing what the setting controls -->
-    <string name="SoundsAndNotificationsSettingsFragment__replies_dialog_message">Jakinarazpenak desaktibatuta dauzkaten txatetan norbaitek zure mezuei erantzuten dienean, jaso jakinarazpenak.</string>
 
     <!-- StickerKeyboard -->
     <string name="StickerKeyboard__recently_used">Duela gutxi erabilia</string>
@@ -6293,8 +5966,6 @@
     <string name="NewConversationActivity__s_has_been_removed">Kendu da %1$s</string>
     <!-- Snackbar message after blocking a contact -->
     <string name="NewConversationActivity__s_has_been_blocked">%1$s blokeatu da</string>
-    <!-- Snackbar message when blocking a contact has failed -->
-    <string name="NewConversationActivity__block_failed">Ezin izan da blokeatu</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
     <string name="RecipientLookup_error__s_is_not_a_signal_user">%1$s ez da Signal-en erabiltzailea</string>
     <!-- Accessibility label for opening the screen specific dropdown menu. -->
@@ -6456,8 +6127,6 @@
 
     <!-- Title of learn more sheet -->
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_different">Irabazi asmorik agbeko erakunde independente gisa, Signal-ek konpromisoa du mezu pribatuekiko. Iragarkirik gabe, jarraipen-tresnarik gabe, zaintzarik gabe. Egin dohaintza bat gaur Signal-i laguntzeko.</string>
-    <!-- First small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__private_messaging">No ads, no trackers, no surveillance. Donate today to support Signal.</string>
     <!-- Second small text blurb on learn more sheet -->
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__donate_and_get_badge">Lortu profilerako aukerako bereizgarri bat dohaintza egitean</string>
     <!-- Third small text blurb on learn more sheet -->
@@ -6485,7 +6154,6 @@
     <!-- Heading for receipts area of manage subscriptions page -->
     <!-- Heading for my subscription area of manage subscriptions page -->
     <string name="ManageDonationsFragment__my_support">My Support</string>
-    <string name="ManageDonationsFragment__manage_subscription">Kudeatu harpidetza</string>
     <!-- Label for Donation Receipts button -->
     <string name="ManageDonationsFragment__donation_receipts">Dohaintzen ordainagiriak</string>
     <string name="ManageDonationsFragment__badges">Bereizgarriak</string>
@@ -6552,27 +6220,12 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Bilaka zaitez sostengatzaile</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Egin dohaintza bat</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Orain ez</string>
-    <!-- Copy displayed when badge expires after user inactivity -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Hileroko dohaintza bertan behera utzi da automatikoki, denbora gehiegi egon baitzara inaktibo. %1$s bereizgarria jada ez dago ikusgai profilean.</string>
-    <!-- Copy displayed when badge expires after payment failure -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Hileroko dohaintza bertan behera utzi da, ezin izan dugulako prozesatu ordainketa. Bereizgarria jada ez dago ikusgai profilean.</string>
-    <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Hileroko dohaintza bertan behera utzi da. %1$s Aurrerantzean, %2$s bereizgarria ez da ikusgai egongo profilean.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signal erabiltzen jarrai dezakezu, baina, aplikazioari laguntzeko eta bereizgarria berriro aktibatzeko, berritu orain.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Berritu harpidetza</string>
-    <!-- Button label to send user to Google Pay website -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Joan Google Pay-ra</string>
-
-    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Ezin da prozesatu harpidetzaren ordainketa</string>
-    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Arazoak ditugu Signal sostengatzaile ordainketa kobratzeko. Ziurtatu ordainketa-metodoa eguneratuta dagoela. Hala ez bada, eguneratu Google Pay-n. Signal ordainketa berriro prozesatzen saiatuko da egun batzuk barru.</string>
-    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Ez erakutsi hau berriro</string>
 
     <string name="Subscription__contact_support">Harremanetan jarri laguntza taldearekin</string>
     <string name="Subscription__get_a_s_badge">Lortu %1$s bereizgarria</string>
 
     <!-- *PaymentInProgressFragment strings -->
     <string name="InAppPaymentInProgressFragment__processing_donation">Dohaintza prozesatzen…</string>
-    <string name="InAppPaymentInProgressFragment__processing_payment">Ordainketa prozesatzen…</string>
 
     <!--InAppDonations -->
     <!-- Label displayed in google play and on receipts for recurring subscriptions. Placeholder is level -->
@@ -6626,8 +6279,6 @@
     <string name="DonationsErrors__cannot_send_donation">Ezin da bidali dohaintza</string>
     <!-- Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting -->
     <string name="DonationsErrors__this_user_cant_receive_donations_until">Signal berritzen duen arte, erabiltzaile honek ezin du dohaintzarik jaso.</string>
-    <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
-    <string name="DonationsErrors__your_donation_could_not_be_sent">Sareko errore bat dela eta, ezin izan da bidali dohaintza. Egiaztatu Internetera konektatuta zaudela eta saiatu berriro.</string>
     <!-- Displayed as a dialog message when the user encounters an error during an iDEAL donation -->
     <string name="DonationsErrors__your_ideal_wero_couldnt_be_processed">Ezin izan da prozesatu iDEAL | Wero-ko dohaintza Saiatu berriro beste ordainketa-metodo batekin edo jarri harremanetan zure bankuarekin informazio gehiago lortzeko.</string>
 
@@ -6861,8 +6512,6 @@
     <string name="ReleaseNotes__this_is_official_chat">Signal-en txat ofiziala eta bakarra da hau</string>
     <!-- Text description in Signal Release channel details explaining what the channel is for -->
     <string name="ReleaseNotes__keep_up_to_date">Jaso azken albiste eta kaleratze-oharrak</string>
-    <!-- Subtitle for the Signal Release channel explaining that it is the only chat from Signal -->
-    <string name="ReleaseNotes__official_only_chat">Signal-en txat ofizial eta bakarra</string>
 
     <!-- Donation receipts activity title -->
     <string name="DonationReceiptListFragment__all_activity">Jarduera guztiak</string>
@@ -7151,10 +6800,6 @@
     <string name="TextStoryPostTextEntryFragment__add_text">Gehitu testua</string>
     <!-- Content description for \'done\' button when adding text to a story post -->
     <string name="TextStoryPostTextEntryFragment__done_adding_text">Testua gehitzen amaitu da</string>
-    <!-- Text label for media selection toggle -->
-    <string name="MediaSelectionActivity__text">Testua</string>
-    <!-- Camera label for media selection toggle -->
-    <string name="MediaSelectionActivity__camera">Kamera</string>
     <!-- Hint for entering a URL for a text post -->
     <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">Idatzi edo itsatsi URL bat</string>
     <!-- Displayed prior to the user entering a URL for a text post -->
@@ -7512,21 +7157,17 @@
     <string name="ChooseANewDefaultSmsAppFragment__bullet_1">1</string>
     <!-- Second step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_2">2</string>
-    <!-- Third step number/bullet for choose new default sms app instructions -->
-    <string name="ChooseANewDefaultSmsAppFragment__bullet_3">3</string>
-    <!-- Fourth step number/bullet for choose new default sms app instructions -->
-    <string name="ChooseANewDefaultSmsAppFragment__bullet_4">4</string>
     <!-- BackupSchedulePermission Megaphone -->
     <!-- The title on an alert window that asks the user to grant the alarms permission so that automatic backups run more reliably -->
-    <string name="BackupSchedulePermissionMegaphone__improve_backup_reliability">Improve backup reliability</string>
+    <string name="BackupSchedulePermissionMegaphone__improve_backup_reliability">Hobetu babeskopien fidagarritasuna</string>
     <!-- The body text of an alert window that asks the user to grant the alarms permission so that automatic backups run more reliably -->
-    <string name="BackupSchedulePermissionMegaphone__allow_the_alarms_permission_to_improve_automatic_daily_backups">Allow the \"alarms\" permission to improve automatic daily backups.</string>
+    <string name="BackupSchedulePermissionMegaphone__allow_the_alarms_permission_to_improve_automatic_daily_backups">Onartu \"alarmak\" baimena eguneroko babeskopia automatikoak hobetzeko.</string>
     <!-- The text on a button in an alert window that, when clicked, will take the user to a screen to grant the alarms permission -->
-    <string name="BackupSchedulePermissionMegaphone__allow">Allow</string>
+    <string name="BackupSchedulePermissionMegaphone__allow">Onartu</string>
     <!-- The text on a button in an alert window that, when clicked, will take the user to a screen to re-enable backups -->
     <string name="BackupSchedulePermissionMegaphone__not_now">Orain ez</string>
     <!-- Alarms permission bottom sheet title, followed by a numbered list of instructions -->
-    <string name="BackupSchedulePermissionMegaphone__to_allow_permission">To allow permission:</string>
+    <string name="BackupSchedulePermissionMegaphone__to_allow_permission">Baimena emateko:</string>
     <!-- Re-enable backups permission bottom sheet instruction 1 text -->
     <string name="BackupSchedulePermissionMegaphone__tap_the_go_to_settings_button_below">Sakatu beheko \"Joan ezarpenetara\" botoia.</string>
     <!-- Re-enable backups permission bottom sheet instruction 2 text -->
@@ -7635,8 +7276,6 @@
     <string name="BankTransferDetailsFragment__invalid_email_address">Helbide elektronikoak ez du balio</string>
 
     <!-- IdealTransferDetailsFragment -->
-    <!-- Title of the screen, displayed in the toolbar -->
-    <string name="IdealTransferDetailsFragment__ideal">iDEAL</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
     <string name="IdealTransferDetailsFragment__enter_your_bank">Idatzi zure izena eta e-maila. Dohaintzari buruzko informazio eguneratua bidaltzeko erabiliko du Stripe-k helbide hori. %1$s</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
@@ -7647,8 +7286,6 @@
     <string name="IdealTransferDetailsFragment__name_on_bank_account">Izena banku-kontuan</string>
     <!-- Hint label for text entry box for email -->
     <string name="IdealTransferDetailsFragment__email">Emaila</string>
-    <!-- Default label for bank selection -->
-    <string name="IdealTransferDetailsFragment__choose_your_bank">Aukeratu zure bankua</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
     <string name="IdealTransferDetailsFragment__confirm_your_donation_with_ideal_wero">Berretsi dohaintza iDEAL | Wero-rekin</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
@@ -7657,8 +7294,6 @@
     <string name="IdealTransferDetailsFragment__continue">Jarraitu</string>
 
     <!-- IdealTransferDetailsBankSelectionDialogFragment -->
-    <!-- Title of the screen, displayed in the toolbar -->
-    <string name="IdealTransferDetailsBankSelectionDialogFragment__choose_your_bank">Aukeratu zure bankua</string>
 
     <!-- Title of bottom sheet for finding account information -->
     <string name="FindAccountInfoSheet__find_your_account_information">Bilatu zure kontuaren informazioa</string>
@@ -7691,8 +7326,6 @@
     <string name="DonationCompletedBottomSheet__donation_complete">Dohaintza egin da</string>
     <!-- Text block of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed -->
     <string name="DonationCompleteBottomSheet__your_bank_transfer_was_received">Zure banku-transferentzia jaso da. Zure profilean bereizgarri hau bistaratzea aukera dezakezu zure laguntza erakusteko.</string>
-    <!-- Button text of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed to dismiss sheet -->
-    <string name="DonationCompleteBottomSheet__done">Eginda</string>
 
     <!-- StripePaymentInProgressFragment -->
     <string name="StripePaymentInProgressFragment__cancelling">Bertan behera uzten…</string>
@@ -7744,7 +7377,6 @@
     <string name="GroupStoryEducationSheet__all_group_chat_members">Taldeko txateko kide guztiek istorioaren erantzunak ikus ditzakete.</string>
     <!-- Button label to dismiss sheet -->
     <string name="GroupStoryEducationSheet__next">Hurrengoa</string>
-    <string name="Registration_country_code_entry_hint">+0</string>
 
     <!-- PaypalCompleteOrderBottomSheet -->
     <string name="PaypalCompleteOrderBottomSheet__donate">Egin dohaintza</string>
@@ -7759,8 +7391,6 @@
     <string name="ChatFilter__tip_pull_down">Aholkua: iragazteko, tiratu beherantz txat-zerrendan</string>
 
     <!-- Set up your username megaphone -->
-    <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__set_up_your_signal_username">Konfiguratu Signal-eko erabiltzaile-izena</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__introducing_phone_number_privacy">Berria: telefono-zenbakiaren pribatutasuna, hautazko erabiltzaile-izenak eta estekak.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
@@ -7814,8 +7444,6 @@
     <string name="CallLogAdapter__incoming">Sarrerako</string>
     <!-- Displayed for outgoing calls -->
     <string name="CallLogAdapter__outgoing">Irteerakoak</string>
-    <!-- Displayed for outgoing calls that were not accepted by the remote party -->
-    <string name="CallLogAdapter__unanswered">Erantzun gabe</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">Galduak</string>
     <!-- Displayed for one missed call declined by notification profile -->
@@ -7922,13 +7550,6 @@
     <string name="CallStateUpdatePopupWindow__speaker_on">Piztu da bozgorailua</string>
     <!-- Displayed when the user turns off their speakerphone -->
     <string name="CallStateUpdatePopupWindow__speaker_off">Itzali da bozgorailua</string>
-
-    <!-- Accessibility label describing the capture button on the camera screen -->
-    <string name="CameraControls_capture_button_accessibility_label">Pantaila-argazkia ateratzeko botoia</string>
-    <!-- Accessibility label describing the continue button on the camera screen -->
-    <string name="CameraControls_continue_button_accessibility_label">Aurrera egiteko botoia</string>
-    <!-- Accessibility label describing the flash Mode toggle button on the camera screen -->
-    <string name="CameraControls_toggle_flash_mode_accessibility_label">Aktibatu eta desaktibatu flash modua</string>
 
     <!-- CallPreference -->
     <!-- Generic group call in call info -->
@@ -8277,8 +7898,6 @@
     <string name="FindByActivity__enter_username_description">Idatzi erabiltzaile-izen bat eta, jarraian, puntu bat eta hari dagokion zenbaki multzoa.</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">Hurrengoa</string>
-    <!-- Placeholder text for search input for selecting country code -->
-    <string name="FindByActivity__search">Bilatu</string>
     <!-- Dialog title for invalid username -->
     <string name="FindByActivity__invalid_username">Erabiltzaile-izenak ez du balio</string>
     <!-- Dialog title for invalid phone number -->
@@ -8411,14 +8030,6 @@
     <string name="BackupAlertBottomSheet__not_now">Orain ez</string>
     <!-- Secondary action button to dismiss could not complete backup sheet -->
     <string name="BackupAlertBottomSheet__try_later">Saiatu geroago</string>
-    <!-- Dialog title for last chance to download backup -->
-    <string name="BackupAlertBottomSheet__media_will_be_deleted">Multimedia-edukia ezabatu egingo da</string>
-    <!-- Dialog message for last chance to download backup -->
-    <string name="BackupAlertBottomSheet__the_media_stored_in_your_backup">Babeskopian gordetako multimedia-edukia betiko ezabatuko da gaur. Hura deskargatzeko azken aukera duzu hau.</string>
-    <!-- Dialog action to download now -->
-    <string name="BackupAlertBottomSheet__download">Deskargatu</string>
-    <!-- Dialog action to not download now -->
-    <string name="BackupAlertBottomSheet__dont_download">Ez deskargatu</string>
     <!-- Dialog action to skip media download -->
     <string name="BackupAlertBottomSheet__skip">Saltatu</string>
     <!-- Dialog title for skipping media restore -->
@@ -8538,25 +8149,7 @@
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
-    <string name="BackupsTypeSettingsFragment__google_play">Google Play</string>
-    <!-- Displayed as the user\'s payment method as a label in a preference row -->
-    <string name="BackupsTypeSettingsFragment__credit_or_debit_card">Kreditu- edo zordunketa-txartela</string>
-    <!-- Displayed as the user\'s payment method as a label in a preference row -->
-    <string name="BackupsTypeSettingsFragment__iDEAL">iDEAL</string>
-    <!-- Displayed as the user\'s payment method as a label in a preference row -->
-    <string name="BackupsTypeSettingsFragment__google_pay">Google Pay</string>
-    <!-- Displayed as the user\'s payment method as a label in a preference row -->
-    <string name="BackupsTypeSettingsFragment__bank_transfer">Banku-transferentzia</string>
-    <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__paypal">PayPal</string>
-    <!-- Displayed as the user\'s payment method as a label in a preference row -->
-    <string name="BackupsTypeSettingsFragment__unknown">Ezezaguna</string>
-    <!-- Row title for entering payment history -->
-    <string name="BackupsTypeSettingsFragment__payment_history">Ordainketen historia</string>
-    <!-- Row description detailing renewal information. First placeholder is formatted price. Second placeholder is formatted date. -->
-    <string name="BackupsTypeSettingsFragment__s_month_renews_s">%1$s/hilabetea · Berrikuntzak %2$s</string>
-    <!-- Row title to change or cancel subscription -->
-    <string name="BackupsTypeSettingsFragment__change_or_cancel_subscription">Aldatu harpidetza edo utzi bertan behera</string>
 
     <!-- GooglePlayServicesAvailability -->
     <!-- Dialog title when Google Play services are missing from the device -->
@@ -8706,8 +8299,6 @@
     <string name="RemoteBackupsSettingsFragment__off">Desaktibatuta</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
     <string name="RemoteBackupsSettingsFragment__authentication_required">Zeure burua autentifikatu behar duzu.</string>
-    <!-- Row label to launch payment history screen -->
-    <string name="RemoteBackupsSettingsFragment__payment_history">Ordainketen historia</string>
     <!-- Section header for backup information -->
     <string name="RemoteBackupsSettingsFragment__backup_details">Babeskopiaren xehetasunak</string>
     <!-- Row label to allow the restoration of a backup to occur while on cellular connection -->
@@ -8753,10 +8344,6 @@
     <string name="RemoteBackupsSettingsFragment__subscription_inactive">Harpidetza inaktibo dago</string>
     <!-- Text displayed in card when free tier is inactive -->
     <string name="RemoteBackupsSettingsFragment__you_turned_off_backups">Babeskopiak desaktibatuta dauzkazu</string>
-    <!-- Title text in row detailing selected backup type -->
-    <string name="RemoteBackupsSettingsFragment__backup_plan">Babeskopia-plana</string>
-    <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
-    <string name="RemoteBackupsSettingsFragment__backups_disabled">Babeskopiak desgaituta daude</string>
     <!-- Format string for backup and cost. First placeholder is cost per month. -->
     <string name="RemoteBackupsSettingsFragment__s_per_month">%1$s/hilabete</string>
     <!-- Displayed in card at top of screen while payment processing is pending -->
@@ -8783,8 +8370,6 @@
     <string name="RemoteBackupsSettingsFragment__manage_or_cancel">Kudeatu edo utzi bertan behera</string>
     <!-- button label to upgrade backups -->
     <string name="RemoteBackupsSettingsFragment__upgrade">Hobetu</string>
-    <!-- Progress indicator subtext displayed when a backup is in progress -->
-    <string name="RemoteBackupsSettingsFragment__d_slash_d">%1$d / %2$d</string>
     <!-- Title text in row detailing last backup -->
     <string name="RemoteBackupsSettingsFragment__last_backup">Azken babeskopia</string>
     <!-- Subtext describing when a backup took place. First placeholder is the day, second is time. -->
@@ -8813,20 +8398,6 @@
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">Itzali eta ezabatu</string>
     <!-- Text on dialog while user backup is being deleted -->
     <string name="RemoteBackupsSettingsFragment__deleting_backup">Babeskopia ezabatzen…</string>
-    <!-- Text on dialog when user backup is deleted -->
-    <string name="RemoteBackupsSettingsFragment__backup_deleted">Babeskopia ezabatu da</string>
-    <!-- Subtitle for frequency option MANUAL for backup frequency -->
-    <string name="RemoteBackupsSettingsFragment__by_tapping_back_up_now">"Babeskopia orain sakatuta"</string>
-    <!-- Title for frequency option DAILY for backup frequency -->
-    <string name="RemoteBackupsSettingsFragment__daily">Egunero</string>
-    <!-- Title for frequency option DAILY for backup frequency -->
-    <string name="RemoteBackupsSettingsFragment__weekly">Astero</string>
-    <!-- Title for frequency option DAILY for backup frequency -->
-    <string name="RemoteBackupsSettingsFragment__monthly">Hilero</string>
-    <!-- Title for frequency option DAILY for backup frequency -->
-    <string name="RemoteBackupsSettingsFragment__manually_back_up">Egin babeskopiak eskuz</string>
-    <!-- The body of an alert dialog shown when we detect the user may be confused by the lock screen -->
-    <string name="PassphrasePromptActivity_help_prompt_body">Sartu gailuaren PIN, pasahitz edo patroia.</string>
     <!-- Button label to re-enable backups (launches into checkout flow) -->
     <string name="RemoteBackupsSettingsFragment__reenable_backups">Gaitu babeskopiak berriro</string>
     <!-- Notice displayed when backups have been disabled and deleted -->
@@ -8906,8 +8477,6 @@
     <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data">Babeskopiak desaktibatu egin dira, eta zure datuak ezabatu egingo dira Signal-en biltegiratze-zerbitzu segurutik.</string>
     <!-- Text displayed after we have deleted a user\'s backup -->
     <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data_has_been_deleted">Babeskopiak desaktibatu egin dira, eta zure datuak ezabatu egin dira Signal-en biltegiratze-zerbitzu segurutik.</string>
-    <!-- Text displayed while downloading backup during deletion. First placeholder is amount downloaded, second is amount remaining, last is percentage. -->
-    <string name="RemoteBackupsSettingsFragment__downloading_s_of_s_d">%1$s/%2$s deskargatzen (%% %3$d)</string>
     <!-- Text displayed when user is out of storage space. Placeholder is storage limit in human readable form (ex. 1GB) -->
     <string name="RemoteBackupsSettingsFragment__youve_reached_the_s_storage_limit">Babeskopia-planaren biltegiratze-mugara (%1$s) iritsi zara. Txat eta multimedia-eduki gehiagoren babeskopiak egiteko, egin tokia.</string>
     <!-- Button label to open storage management screen -->
@@ -9081,8 +8650,6 @@
     <string name="MessageBackupsKeyRecordScreen__keep_your_key_safe">Mantendu gakoa seguru</string>
     <!-- Bottom sheet subtitle -->
     <string name="MessageBackupsKeyRecordScreen__signal_will_not">Gakoa galduz gero, Signal-ek ezingo dizu lagundu babeskopia leheneratzen. Gorde ezazu toki seguru batean, eta ez ezazu inorekin partekatu.</string>
-    <!-- Checkbox label -->
-    <string name="MessageBackupsKeyRecordScreen__ive_recorded_my_key">Apuntatu dut gakoa</string>
     <!-- Sheet action button label -->
     <string name="MessageBackupsKeyRecordScreen__continue">Jarraitu</string>
     <!-- Sheet secondary action button label -->
@@ -9144,18 +8711,16 @@
     <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">Berreskuratze-gakoa okerra da</string>
     <!-- Confirm your key button text to return to record key screen. -->
     <string name="MessageBackupsKeyVerifyScreen__see_key_again">Ikusi gakoa berriro</string>
-    <!-- Confirm your key button text to move onto next screen in flow -->
-    <string name="MessageBackupsKeyVerifyScreen__next">Hurrengoa</string>
     <!-- Confirm your key subtitle shown to users whose recovery key came with their Signal Login rather than being recorded during this flow -->
-    <string name="MessageBackupsKeyVerifyScreen__enter_the_recovery_key_from_your_signal_login">Enter the recovery key from your Signal Login</string>
+    <string name="MessageBackupsKeyVerifyScreen__enter_the_recovery_key_from_your_signal_login">Idatzi Signal Login-eko berreskuratze-gakoa</string>
 
     <!-- MessageBackupsConfirmRecoveryKeyScreen -->
     <!-- Screen headline asking the user to confirm the recovery key they received with their Signal Login -->
     <string name="MessageBackupsConfirmRecoveryKeyScreen__confirm_your_recovery_key">Berretsi berreskuratze-gakoa</string>
     <!-- Screen subtitle explaining what the recovery key is and why it is needed -->
-    <string name="MessageBackupsConfirmRecoveryKeyScreen__your_recovery_key_is_a_64_character_code">Your recovery key is a 64-character code you received with your Signal Login. It\'s required to restore your backup. If you forget your key, you will not be able to recover your account.</string>
+    <string name="MessageBackupsConfirmRecoveryKeyScreen__your_recovery_key_is_a_64_character_code">Zure berreskuratze-gakoa 64 karaktereko kodea da, Signal Login-ekin jaso duzuna. Babeskopia leheneratzeko behar duzu. Gakoa ahaztuz gero, ezingo duzu berreskuratu kontua.</string>
     <!-- Caption above the action buttons warning the user that the password manager will prompt them next -->
-    <string name="MessageBackupsConfirmRecoveryKeyScreen__you_will_be_prompted_with_your_saved_password">You will be prompted with your saved password in the next step.</string>
+    <string name="MessageBackupsConfirmRecoveryKeyScreen__you_will_be_prompted_with_your_saved_password">Hurrengo urratsean, gordetako pasahitza eskatuko zaizu.</string>
     <!-- Action button label to confirm the recovery key using the saved password manager credential -->
     <string name="MessageBackupsConfirmRecoveryKeyScreen__confirm_recovery_key">Berretsi berreskuratze-gakoa</string>
     <!-- Action button label to type the recovery key in by hand instead of using the password manager -->
@@ -9163,7 +8728,7 @@
     <!-- Title of the dialog shown when the recovery key from the password manager did not match -->
     <string name="MessageBackupsConfirmRecoveryKeyScreen__error_confirming_recovery_key">Errore bat izan da berreskuratze-gako berrestean</string>
     <!-- Body of the dialog shown when the recovery key from the password manager did not match -->
-    <string name="MessageBackupsConfirmRecoveryKeyScreen__your_recovery_key_could_not_be_confirmed">Your recovery key could not be confirmed. Make sure you\'ve saved your Signal Login in your password manager, or enter your recovery key manually.</string>
+    <string name="MessageBackupsConfirmRecoveryKeyScreen__your_recovery_key_could_not_be_confirmed">Ezin izan da berretsi berreskuratze-gakoa. Ziurtatu Signal Login gorde duzula pasahitz-kudeatzailean, edo idatzi berreskuratze-gakoa eskuz.</string>
     <!-- Toast shown when the recovery key from the password manager matched -->
     <string name="MessageBackupsConfirmRecoveryKeyScreen__recovery_key_confirmed">Berretsi da berreskuratze-gakoa</string>
 
@@ -9191,8 +8756,6 @@
     <string name="MessageBackupsTypeSelectionScreen__change_backup_type">Aldatu babeskopia mota</string>
     <!-- Primary action button label when selecting paid tier when Google Play API isn\'t available -->
     <string name="MessageBackupsTypeSelectionScreen__more_about_this_plan">Plan honi buruzko informazio gehiago</string>
-    <!-- Secondary action button label when selecting a backup tier with a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__cancel_subscription">Ezereztu harpidetza</string>
     <!-- MessageBackupsType block amount for free tier -->
     <string name="MessageBackupsTypeSelectionScreen__free">Doan</string>
     <!-- MessageBackupsType block amount for paid tier when no pricing is available -->
@@ -9221,25 +8784,8 @@
     </plurals>
     <!-- Text designating that an option is your current plan -->
     <string name="MessageBackupsTypeSelectionScreen__current_plan">Oraingo plana</string>
-    <!-- Dialog title when user can\'t upgrade plan due to missing Google Services -->
-    <string name="MessageBackupsTypeSelectionScreen__cant_upgrade_plan">Ezin da mailaz igo plana</string>
-    <!-- Dialog body text explaining Google Services requirement for backup subscription -->
-    <string name="MessageBackupsTypeSelectionScreen__to_subscribe_to_signal_secure_backups">Babeskopia seguruetara harpidetzeko, Google-ren zerbitzuak gaituta eduki behar dituzu telefonoan, eta Google Play Store-n saioa hasi.</string>
 
     <!-- ConfirmBackupCancellationDialog -->
-    <!-- Dialog title -->
-    <string name="ConfirmBackupCancellationDialog__confirm_cancellation">Berretsi bertan behera uzteko ekintza</string>
-    <!-- Dialog body -->
-    <string name="ConfirmBackupCancellationDialog__you_wont_be_charged_again">Ez zaizu berriro kobratuko. Babeskopiak fakturazio-zikloaren amaieran desaktibatuko dira. Data horren ondoren, 30 egun izango dituzu babeskopietan daukazun multimedia-edukia deskargatzeko.</string>
-    <!-- Action button label to cancel subscription and download now -->
-    <string name="ConfirmBackupCancellationDialog__confirm_and_download_now">Berretsi eta deskargatu orain</string>
-    <!-- Action button label to cancel subscription and download later -->
-    <string name="ConfirmBackupCancellationDialog__confirm_and_download_later">Berretsi eta deskargatu geroago</string>
-    <!-- Action button label to keep current subscription -->
-    <string name="ConfirmBackupCancellationDialog__keep_subscription">Mantendu harpidetza</string>
-
-    <!-- Accessible content description for the reminder view, describing the icon in the view. -->
-    <string name="ReminderView_icon_content_description">Gogorarazpen-ikonoa</string>
 
     <!-- Row title for restore/transfer using a previous registered phone/device -->
     <string name="WelcomeFragment_restore_action_i_have_my_old_phone">Telefono zaharra daukat</string>
@@ -9263,10 +8809,6 @@
     <string name="SelectRestoreMethodFragment__restore_on_device_backup">Leheneratu gailuko babeskopia</string>
     <!-- Option subtitle fdor restoring via a local backup file or folder -->
     <string name="SelectRestoreMethodFragment__restore_your_messages_from">Leheneratu gailuan gordetako babeskopiako mezuak.</string>
-    <!-- Option title for restoring via a local backup file -->
-    <string name="SelectRestoreMethodFragment__from_a_backup_file">Babeskopia-fitxategi batetik</string>
-    <!-- Option subtitle for restoring via a local backup -->
-    <string name="SelectRestoreMethodFragment__choose_a_backup_youve_saved">Aukeratu gordetako babeskopia bat</string>
     <!-- Option title for restoring via device transfer -->
     <string name="SelectRestoreMethodFragment__from_your_old_phone">Telefono zaharretik</string>
     <!-- Option subtitle for restoring via device transfer -->
@@ -9277,11 +8819,6 @@
     <string name="SelectRestoreMethodFragment__skip_restore_warning">Orain leheneratu ezean, ezingo dituzu geroago leheneratu. Leheneratzeko urratsa saltatu ondoren birgaitzen badituzu babeskopiak, oraingo babeskopia mezu-historia berriarekin ordeztuko da.</string>
     <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore">Saltatu leheneratzeko aukera</string>
-
-    <!-- Screen title for restore via local backup -->
-    <string name="RestoreLocalBackup_title">Leheneratu babeskopia lokala</string>
-    <!-- Screen subtitle for restore via local backup -->
-    <string name="RestoreLocalBackup_subtitle">Leheneratu gailuan gordetako babeskopiako mezuak. Orain leheneratu ezean, ezingo dituzu geroago leheneratu.</string>
 
     <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
     <string name="EnterBackupKey_title">Idatzi berreskuratze-gakoa</string>
@@ -9515,8 +9052,6 @@
     <string name="PrepareDevice_title">Gailua prestatzen</string>
     <!-- Prepare Device screen body text explaining backup recommendation -->
     <string name="PrepareDevice_body">Transferitu aurretik, egin babeskopia. Agian oraindik babeskopiarik ez duten mezuak jaso dituzu.</string>
-    <!-- Prepare Device screen last backup text format, %1$s is the date and %2$s is the time -->
-    <string name="PrepareDevice_last_backup">Azken babeskopia: %1$s (%2$s).</string>
     <!-- Prepare Device screen back up now button -->
     <string name="PrepareDevice_back_up_now">Egin babeskopia</string>
     <!-- Prepare Device screen skip and continue button -->
@@ -9608,16 +9143,6 @@
     <string name="Notification_backup_failed">Babeskopiak huts egin du</string>
     <!-- Notification body for when initial backup failed -->
     <string name="Notification_an_error_occurred_and_your_backup">Errore bat gertatu da eta ezin izan da osatu babeskopia. Sakatu xehetasunak ikusteko.</string>
-    <!-- Notification title for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->
-    <plurals name="Notification_no_backup_for_d_days">
-        <item quantity="one">Ez da babeskopiarik egin %1$d egunez</item>
-        <item quantity="other">Ez da babeskopiarik egin %1$d egunez</item>
-    </plurals>
-    <!-- Notification body for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->
-    <plurals name="Notification_you_have_not_completed_a_backup">
-        <item quantity="one">Ez duzu babeskopiarik egin %1$d egunez. Sortu babeskopia bat orain.</item>
-        <item quantity="other">Ez duzu babeskopiarik egin %1$d egunez. Sortu babeskopia bat orain.</item>
-    </plurals>
 
     <!-- Polls -->
     <!-- Caption in poll message to select an option  -->
@@ -9642,10 +9167,6 @@
     <string name="Poll__poll_end">%1$s erabiltzaileak galdeketa hau amaitu du: \"%2$s\"</string>
     <!-- Thread body message when a poll ends. %1$s is the question of the poll -->
     <string name="Poll__you_poll_end">Galdeketa hau amaitu duzu: \"%1$s\"</string>
-    <!-- Notification message sent when someone votes in the poll. %1$s is the voter. %2$s is the question of the poll -->
-    <string name="Poll__poll_voted">%1$s erabiltzaileak galdeketa honetan bozkatu du: \"%2$s\"</string>
-    <!-- Option in settings to configure notifications for polls -->
-    <string name="Poll__poll">Galdeketak</string>
     <!-- Title of screen that shows the poll results of a poll after it has ended-->
     <string name="Poll__poll_results">Galdeketaren emaitzak</string>
     <!-- Title of screen that shows the poll details of a poll -->
@@ -9768,8 +9289,6 @@
     <string name="CallQualitySheet__view_debug_log">Ikusi arazketa-erregistroa</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">Partekatu arazketa-erregistroa</string>
-    <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
-    <string name="CallQualitySheet__debug_log_privacy_notice">Arazketa-erregistroek aplikazioari buruzko maila baxuko informazioa dute, eta ez dute mezuetako edukirik.</string>
     <!-- Button to submit the call quality feedback -->
     <string name="CallQualitySheet__submit">Bidali</string>
     <!-- Displayed as a snackbar after submitting feedback -->
@@ -9954,19 +9473,6 @@
     <!-- Button indicating the user wants to proceed with sharing/pasting the recovery key, which shows a final confirmation -->
     <string name="RecoveryKeyWarningSheetContent__share_key">Partekatu gakoa</string>
 
-    <!-- Title of the final confirmation dialog shown before pasting a recovery key -->
-    <string name="RecoveryKeyWarningDialog__do_not_share_recovery_key">Ez partekatu berreskuratze-gakoa</string>
-    <!-- First sentence of the final confirmation dialog body warning against sharing the recovery key -->
-    <string name="RecoveryKeyWarningDialog__do_not_share_your_recovery_key_with_anyone">Ez partekatu berreskuratze-gakoa inorekin. Partekatuz gero, kontua lapurtu ahalko dizute.</string>
-    <!-- Bolded middle sentence of the final confirmation dialog body -->
-    <string name="RecoveryKeyWarningDialog__signal_will_never_message_you_for_your_recovery_key">Signal-ek ez dizu inoiz mezurik bidaliko berreskuratze-gakoa eskatzeko.</string>
-    <!-- Final sentence of the final confirmation dialog body -->
-    <string name="RecoveryKeyWarningDialog__never_respond_to_a_chat">Ez erantzun Signal izatearen plantak egiten dituzten txatei.</string>
-    <!-- Button confirming the user wants to paste the recovery key -->
-    <string name="RecoveryKeyWarningDialog__paste_key">Itsatsi gakoa</string>
-    <!-- Button declining to paste the recovery key -->
-    <string name="RecoveryKeyWarningDialog__dont_share">Ez partekatu</string>
-
     <!-- Notification body for unread reminders. First placeholder is unread messages, second is a summary of unread mentions or replies -->
     <string name="UnreadReminderJob__unread_one_summary">%1$s dauzkazu, %2$s barne.</string>
     <!-- Notification body for unread reminders. First placeholder is unread messages, second is a summary of unread mentions, third replies -->
@@ -10010,6 +9516,35 @@
         <item quantity="one">%2$s(r)en eta beste batzuen %1$d erantzun</item>
         <item quantity="other">%2$s(r)en eta beste batzuen %1$d erantzun</item>
     </plurals>
+
+    <!-- Title of the screen for picking a contact to share -->
+    <string name="SelectContactScreen__select_contact">Select contact</string>
+    <!-- Placeholder in the search field on the contact picker -->
+    <string name="SelectContactScreen__search">Search</string>
+    <!-- Content description for the button that clears the contact search field -->
+    <string name="SelectContactScreen__clear_search">Clear search</string>
+    <!-- Content description for the badge shown next to a contact that is in the phone\'s address book -->
+    <string name="SelectContactScreen__in_your_contacts">In your contacts</string>
+    <!-- Title of the prompt asking for permission to read the user\'s phone contacts -->
+    <string name="SelectContactScreen__find_people_you_know_on_signal">Find people you know on Signal</string>
+    <!-- Explanation shown when Signal does not have permission to read the user\'s phone contacts -->
+    <string name="SelectContactScreen__allow_access_to_your_contacts">Allow access to your contacts. Your contacts are encrypted and not visible to the Signal service.</string>
+    <!-- Button that asks the system for permission to read the user\'s phone contacts -->
+    <string name="SelectContactScreen__allow_access">Allow access</string>
+    <!-- Button that dismisses the request for permission to read the user\'s phone contacts -->
+    <string name="SelectContactScreen__no_thanks">No thanks</string>
+    <!-- Button that opens the phone\'s own contact picker, used when Signal cannot ask for contacts permission -->
+    <string name="SelectContactScreen__open_phone_contacts">Open phone contacts</string>
+    <!-- Note at the bottom of the contact picker when contacts permission was denied on the device. Placeholder is the "Learn more" link text. -->
+    <string name="SelectContactScreen__to_see_your_phone_contacts_here">To see your phone contacts here, allow access in your device settings. %1$s</string>
+    <!-- Link that opens instructions for granting contacts permission from the device settings -->
+    <string name="SelectContactScreen__learn_more">Learn more</string>
+    <!-- Title of the sheet explaining how to grant contacts permission from the device settings -->
+    <string name="SelectContactScreen__allow_access_to_contacts">Allow access to contacts</string>
+    <!-- Subtitle of the sheet explaining how to grant contacts permission from the device settings -->
+    <string name="SelectContactScreen__to_find_people_you_know_on_signal">To find people you know on Signal:</string>
+    <!-- Toast shown when a selected contact can no longer be read -->
+    <string name="SelectContactScreen__couldnt_open_contact">Couldn\'t open that contact</string>
 
     <!-- Title of the screen where the user chooses which parts of a contact to share -->
     <string name="ShareContactScreen__share_contact">Partekatu kontaktua</string>
@@ -10063,6 +9598,17 @@
     <string name="SharedContactDetailsScreen__couldnt_open_maps">Ezin izan da ireki mapa</string>
     <!-- Subject line of an email invitation to Signal -->
     <string name="SharedContactDetailsScreen__join_me_on_signal">Bat egin nirekin Signal-en</string>
+
+    <!-- Title of the bottom sheet that confirms the user wants a brand new recovery key. -->
+    <string name="ResetRecoveryKeyBottomSheet__reset_your_recovery_key">Reset your recovery key</string>
+    <!-- First paragraph of the bottom sheet body, explaining what a reset does. -->
+    <string name="ResetRecoveryKeyBottomSheet__resetting_your_recovery_key_will_create_a_new_key">Resetting your recovery key will create a new key for your Signal Login. This is only necessary if someone else knows your key.</string>
+    <!-- Second paragraph of the bottom sheet body, explaining what a reset means for backups. -->
+    <string name="ResetRecoveryKeyBottomSheet__if_backups_are_enabled_you_will_have_to_re_upload">If backups are enabled you will have to re-upload your backup, including media. If you are using \"Optimize Signal storage\" you will have to download offloaded media first.</string>
+    <!-- Bottom sheet action that continues on to reset the recovery key. -->
+    <string name="ResetRecoveryKeyBottomSheet__continue">Continue</string>
+    <!-- Dialog body shown when the recovery key change limit is exhausted and the user does not have backups enabled. -->
+    <string name="BackupKeyRotationDialogs__limit_exceeded_body_no_backups">You\'ve exhausted the number of new keys you can create. You will be able to create a new recovery key in 7 days.</string>
 
     <!-- EOF -->
 </resources>

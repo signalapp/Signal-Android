@@ -4,7 +4,7 @@
     <!-- Tag shown beside the title of Signal Login screens, marking the feature as unfinished. Keep it short. -->
     <string name="SignalLoginBeta__beta">பீட்டா</string>
     <!-- Disclaimer shown on Signal Login screens, warning that the feature is still changing. -->
-    <string name="SignalLoginBeta__this_is_a_beta_feature_that_will_be_updated">This is a Beta feature that will be updated on an ongoing basis.</string>
+    <string name="SignalLoginBeta__this_is_a_beta_feature_that_will_be_updated">இது ஒரு பீட்டா அம்சமாகும், இது தொடர்ந்து புதுப்பிக்கப்படும்.</string>
 
     <!-- Signal Login credential card -->
     <!-- Label for the account portion of the Signal Login on the credential card. -->
@@ -24,13 +24,15 @@
     <!-- Section header above the recovery key. -->
     <string name="SignalLoginKeyDetails__recovery_key">மீட்புக் குறியீடு</string>
     <!-- Content description for the button that copies the account key to the clipboard. -->
-    <string name="SignalLoginKeyDetails__copy_account_id">Copy account ID</string>
+    <string name="SignalLoginKeyDetails__copy_account_id">கணக்கு IDஐ நகலெடு</string>
     <!-- Content description for the button that copies the recovery key to the clipboard. -->
-    <string name="SignalLoginKeyDetails__copy_recovery_key">Copy recovery key</string>
+    <string name="SignalLoginKeyDetails__copy_recovery_key">மீட்புக் குறியீட்டை நகலெடு</string>
     <!-- Action button that stores the Signal Login in the device password manager. -->
     <string name="SignalLoginViewDetailsScreen__save_to_password_manager">கடவுச்சொல் மேலாளரில் சேமித்திடுக</string>
     <!-- Action button that saves the Signal Login as a PDF. -->
     <string name="SignalLoginViewDetailsScreen__save_as_pdf">PDF ஆகச் சேமி</string>
+    <!-- Action button that starts the flow to replace the recovery key with a newly-generated one. -->
+    <string name="SignalLoginViewDetailsScreen__reset_recovery_key">Reset recovery key</string>
     <!-- Suggested file name prefilled in the system save dialog when saving the Signal Login as a PDF. Keep the .pdf extension. -->
     <string name="SignalLoginViewDetailsScreen__signal_login_pdf">Signal Login.pdf</string>
     <!-- Toast shown when saving the Signal Login PDF fails. -->
@@ -42,7 +44,7 @@
     <!-- Title at the top of the PDF that holds the user\'s Signal Login. -->
     <string name="SignalLoginPdf__your_signal_login">உங்களின் Signal Login</string>
     <!-- Explainer below the title of the PDF that holds the user\'s Signal Login. -->
-    <string name="SignalLoginPdf__store_this_in_a_safe_place">Store this in a safe place, your login info is required to recover your account and data. Never share it with anyone.</string>
+    <string name="SignalLoginPdf__store_this_in_a_safe_place">இதனைப் பாதுகாப்பான இடத்தில் சேமித்து வைக்கவும், உங்கள் கணக்கையும் தரவையும் மீட்டெடுக்க உங்கள் உள்நுழைவுத் தகவல் தேவை. இதை ஒருபோதும் யாருடனும் பகிர வேண்டாம்.</string>
     <!-- Section header above the account key in the PDF. -->
     <string name="SignalLoginPdf__account_id">கணக்கு ID</string>
     <!-- Section header above the recovery key in the PDF. -->

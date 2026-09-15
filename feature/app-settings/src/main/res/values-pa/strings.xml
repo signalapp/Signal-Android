@@ -51,7 +51,7 @@
     <!-- Description of what a Signal Login is, shown below the Signal Login card -->
     <string name="AccountSettingsFragment__your_signal_login_is_used_to_recover">ਤੁਹਾਡੇ ਖਾਤੇ ਨੂੰ ਰਿਕਵਰ ਅਤੇ ਰੀਸਟੋਰ ਕਰਨ ਲਈ ਤੁਹਾਡੇ Signal Login ਦੀ ਵਰਤੋਂ ਕੀਤੀ ਜਾਂਦੀ ਹੈ। ਇਹਨਾਂ ਕੁੰਜੀਆਂ ਨੂੰ ਆਪਣੇ ਭਰੋਸੇਯੋਗ ਪਾਸਵਰਡ ਮੈਨੇਜਰ ਵਿੱਚ ਸੁਰੱਖਿਅਤ ਢੰਗ ਨਾਲ ਸਟੋਰ ਕਰਕੇ ਰੱਖੋ।</string>
     <!-- Section header for the two-factor authentication section of account settings -->
-    <string name="AccountSettingsFragment__two_factor_authentication">ਦੋ-ਕਾਰਕ ਪ੍ਰਮਾਣੀਕਰਨ</string>
+    <string name="AccountSettingsFragment__two_factor_authentication">ਦੋ-ਪੜਾਵੀ ਪ੍ਰਮਾਣੀਕਰਨ</string>
     <!-- Row that opens the menu of second factors the user can add -->
     <string name="AccountSettingsFragment__set_up">ਸੈੱਟ ਅੱਪ ਕਰੋ</string>
     <!-- Menu option that starts setting up an authenticator app -->
@@ -61,9 +61,9 @@
     <!-- Name of a passkey in the list of second factors on the account -->
     <string name="AccountSettingsFragment__passkey">ਪਾਸਕੀ</string>
     <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
-    <string name="AccountSettingsFragment__s_added_s">%1$s · Added %2$s</string>
+    <string name="AccountSettingsFragment__s_added_s">%1$s · %2$s ਨੂੰ ਸ਼ਾਮਲ ਕੀਤੀ ਗਈ</string>
     <!-- Content description of the button that opens a second factor\'s options -->
-    <string name="AccountSettingsFragment__open_two_factor_options">Open two-factor authentication options</string>
+    <string name="AccountSettingsFragment__open_two_factor_options">ਦੋ-ਪੜਾਵੀ ਪ੍ਰਮਾਣੀਕਰਨ ਦੇ ਵਿਕਲਪਾਂ ਨੂੰ ਖੋਲ੍ਹੋ</string>
     <!-- Menu option that renames a second factor -->
     <string name="AccountSettingsFragment__rename">ਨਾਂ ਬਦਲੋ</string>
     <!-- Menu option that removes a second factor -->
@@ -73,21 +73,23 @@
     <!-- Body of the dialog confirming removal of an authenticator app -->
     <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_app">ਜਦੋਂ ਤੁਸੀਂ ਸਾਈਨ ਇਨ ਕਰੋਗੇ ਤਾਂ ਤੁਸੀਂ ਇਸ ਐਪ ਨੂੰ ਇੱਕ-ਵਾਰੀ ਵਰਤਣ ਵਾਲੇ ਤਸਦੀਕ ਕੋਡ ਲਈ ਵਰਤ ਨਹੀਂ ਸਕੋਗੇ।</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
-    <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">Unlock to remove two-factor method</string>
+    <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">ਦੋ-ਪੜਾਵੀ ਵਿਧੀ ਨੂੰ ਹਟਾਉਣ ਲਈ ਅਨਲੌਕ ਕਰੋ</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
-    <string name="AccountSettingsFragment__to_remove_this_method_confirm_its_you">To remove this method, confirm it\'s you</string>
+    <string name="AccountSettingsFragment__to_remove_this_method_confirm_its_you">ਇਸ ਵਿਧੀ ਨੂੰ ਹਟਾਉਣ ਲਈ, ਪੁਸ਼ਟੀ ਕਰੋ ਕਿ ਇਹ ਤੁਸੀਂ ਹੀ ਕਰ ਰਹੇ ਹੋ</string>
     <!-- Title of the device screen lock prompt shown before the Signal Login details can be viewed -->
-    <string name="AccountSettingsFragment__unlock_to_view_signal_login">Unlock to view Signal Login</string>
+    <string name="AccountSettingsFragment__unlock_to_view_signal_login">Signal Login ਨੂੰ ਦੇਖਣ ਲਈ ਅਨਲੌਕ ਕਰੋ</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before the Signal Login details can be viewed -->
-    <string name="AccountSettingsFragment__to_view_your_signal_login_confirm_its_you">To view your Signal Login, confirm it\'s you</string>
+    <string name="AccountSettingsFragment__to_view_your_signal_login_confirm_its_you">ਆਪਣੇ Signal Login ਨੂੰ ਦੇਖਣ ਲਈ, ਪੁਸ਼ਟੀ ਕਰੋ ਕਿ ਇਹ ਤੁਸੀਂ ਹੀ ਕਰ ਰਹੇ ਹੋ</string>
     <!-- Toast shown when the device screen lock wasn\'t confirmed, so nothing happened -->
     <string name="AccountSettingsFragment__authentication_required">ਪ੍ਰਮਾਣੀਕਰਨ ਲੋੜੀਂਦਾ ਹੈ</string>
     <!-- Title of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
     <string name="AccountSettingsFragment__cant_add_authenticator_app">ਪ੍ਰਮਾਣੀਕਰਨ ਐਪ ਸ਼ਾਮਲ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕਦੀ</string>
     <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
     <string name="AccountSettingsFragment__you_cant_add_more_than_d">ਤੁਸੀਂ %1$d ਤੋਂ ਵੱਧ ਪ੍ਰਮਾਣੀਕਰਨ ਐਪਾਂ ਸ਼ਾਮਲ ਨਹੀਂ ਕਰ ਸਕਦੇ। ਪਹਿਲਾਂ ਇੱਕ ਐਪ ਨੂੰ ਹਟਾਉਣ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
+    <!-- Body of the dialog shown when the account has room for another authenticator app but already has as many two-factor methods of all kinds as it\'s allowed -->
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d_two_factor_methods">You can\'t add more than %1$d two-factor authentication methods. Try removing one first.</string>
     <!-- Shown in place of the list when we couldn\'t work out which second factors are on the account -->
-    <string name="AccountSettingsFragment__couldnt_load_your_two_factor_methods">Couldn\'t load your two-factor authentication methods. Check your connection and try again.</string>
+    <string name="AccountSettingsFragment__couldnt_load_your_two_factor_methods">ਤੁਹਾਡੇ ਦੋ-ਪੜਾਵੀ ਪ੍ਰਮਾਣੀਕਰਨ ਦੀਆਂ ਵਿਧੀਆਂ ਨੂੰ ਲੋਡ ਨਹੀਂ ਕਰ ਸਕੇ। ਆਪਣੇ ਕਨੈਕਸ਼ਨ ਦੀ ਜਾਂਚ ਕਰੋ ਅਤੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
     <!-- Toast shown after an authenticator app has been removed -->
     <string name="AccountSettingsFragment__authenticator_app_removed">ਪ੍ਰਮਾਣੀਕਰਨ ਐਪ ਹਟਾਈ ਗਈ</string>
     <!-- Toast shown when an authenticator app couldn\'t be removed -->
@@ -138,14 +140,16 @@
     <string name="TotpCodeEntryScreen__enter_your_code">ਆਪਣਾ ਕੋਡ ਦਰਜ ਕਰੋ</string>
     <!-- Instructions shown above the code entry field -->
     <string name="TotpCodeEntryScreen__enter_the_6_digit_code">ਆਪਣੀ ਪ੍ਰਮਾਣੀਕਰਨ ਐਪ ਤੋਂ 6 ਅੰਕਾਂ ਵਾਲਾ ਕੋਡ ਦਰਜ ਕਰੋ।</string>
-    <!-- Label of the code entry field -->
-    <string name="TotpCodeEntryScreen__code">ਕੋਡ</string>
     <!-- Button that submits the entered code -->
-    <string name="TotpCodeEntryScreen__done">ਮੁਕੰਮਲ</string>
+    <string name="TotpCodeEntryScreen__next">Next</string>
     <!-- Error shown under the code field when the code the user entered was rejected -->
     <string name="TotpCodeEntryScreen__incorrect_code">ਕੋਡ ਗਲਤ ਹੈ। ਤੁਹਾਡੀ ਪ੍ਰਮਾਣੀਕਰਨ ਐਪ ਵਿੱਚ ਇਸ ਵੇਲੇ ਦਿਖ ਰਿਹਾ ਕੋਡ ਦਰਜ ਕਰੋ।</string>
     <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->
     <string name="TotpCodeEntryScreen__couldnt_reach_signal">Signal ਤੱਕ ਪਹੁੰਚ ਨਹੀਂ ਸਕੇ। ਆਪਣੇ ਕਨੈਕਸ਼ਨ ਦੀ ਜਾਂਚ ਕਰੋ ਅਤੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
+
+    <!-- Default name given to an authenticator app the moment it\'s set up, before the user chooses their own name for it -->
+    <string name="TotpRepository__authenticator">Authenticator</string>
+
     <!-- TotpNameEntryScreen -->
     <!-- Title of the screen where the user names an authenticator app -->
     <string name="TotpNameEntryScreen__choose_a_name">ਇੱਕ ਨਾਂ ਚੁਣੋ</string>

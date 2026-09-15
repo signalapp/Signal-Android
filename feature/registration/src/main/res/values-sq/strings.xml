@@ -55,6 +55,8 @@
     <string name="RegistrationActivity_next">Tjetër</string>
     <!-- Button on the phone number screen that starts registering with a purchased Signal Login instead of a phone number -->
     <string name="RegistrationActivity_register_without_number">Regjistrohu pa numër</string>
+    <!-- Button on the phone number screen, shown when the user already said they have an account to restore, that goes straight to entering their existing Signal Login -->
+    <string name="RegistrationActivity_use_account_id">Use account ID</string>
     <!-- Dialog title to confirm phone number -->
     <string name="RegistrationActivity_is_the_phone_number">A është i saktë numri i telefonit më poshtë?</string>
     <!-- Dialog body to confirm phone number -->
@@ -161,12 +163,6 @@
     <string name="ArchiveRestoreSelectionScreen__skip_restore_title">Vazhdo pa transferuar</string>
     <!-- Description for an option that, when clicked, will take the user to a flow to restore form a local backup -->
     <string name="ArchiveRestoreSelectionScreen__skip_restore_description">Mesazhet dhe media nuk do të transferohen</string>
-    <!-- Title for the backup folder option card (V2 format) -->
-    <string name="ArchiveRestoreSelectionScreen__from_a_backup_folder">Nga një dosje kopjeruajtjeje</string>
-    <!-- Title for the backup file option card (V1 legacy format) -->
-    <string name="ArchiveRestoreSelectionScreen__from_a_backup_file">Nga një skedar kopjeruajtjeje</string>
-    <!-- Subtitle for the backup folder/file option cards -->
-    <string name="ArchiveRestoreSelectionScreen__choose_a_backup_youve_saved">Zgjidh kopjeruajtjen që ke ruajtur</string>
     <!-- Title for the device transfer option card -->
     <string name="ArchiveRestoreSelectionScreen__from_your_old_phone">Nga telefoni i vjetër</string>
     <!-- Subtitle for the device transfer option card -->
@@ -211,8 +207,6 @@
     <string name="LocalBackupRestoreScreen__enter_backup_passphrase">Jepni frazëkalim kopjeruajtjeje</string>
     <!-- Description for V1 passphrase entry screen -->
     <string name="LocalBackupRestoreScreen__enter_the_30_digit_passphrase">Frazëkalimi lokal i kopjeruajtjeve është një kod 30-shifror që kërkohet për të rikthyer llogarinë dhe të dhënat.</string>
-    <!-- Label for the recovery key text field -->
-    <string name="LocalBackupRestoreScreen__recovery_key">Kodi i rikthimit</string>
     <!-- Label for the backup passphrase text field -->
     <string name="LocalBackupRestoreScreen__passphrase">Frazë-kalimi</string>
     <!-- Error text when passphrase is too long -->
@@ -254,8 +248,6 @@
     <string name="LocalBackupRestoreScreen__restoring_backup">Po rikthehet kopjeruajtja</string>
     <!-- Description shown while restore is in progress -->
     <string name="LocalBackupRestoreScreen__restoring_description">Të lutem, prit teksa mesazhet dhe të dhënat po rikthehen.</string>
-    <!-- Description shown when restore is complete -->
-    <string name="LocalBackupRestoreScreen__restore_complete_description">Your messages and account data have been restored successfully.</string>
     <!-- Continue button text after restore is complete -->
     <string name="LocalBackupRestoreScreen__continue_button">Vazhdo</string>
     <!-- Title shown when restore fails -->
@@ -616,7 +608,7 @@
     <!-- Title of the screen where the user buys a Signal Login to register without a phone number. -->
     <string name="SignalLoginPaymentScreen__signal_login">Signal Login</string>
     <!-- Description of what a Signal Login is. Followed by a "learn more" link. -->
-    <string name="SignalLoginPaymentScreen__register_without_a_phone_number">Regjistrohu pa numër telefoni duke përdorur Signal Login. Me një blerje të vetëm një here, do të marrësh një kod llogarie për të filluar.</string>
+    <string name="SignalLoginPaymentScreen__register_without_a_phone_number">Register without a phone number using Signal Login. With a one-time purchase, you\'ll receive an account ID to get started.</string>
     <!-- Link at the end of the description that opens a support article about Signal Login. -->
     <string name="SignalLoginPaymentScreen__learn_more">Mëso më shumë</string>
     <!-- Subtitle of the purchase option, clarifying the price is not a subscription. -->
@@ -630,7 +622,7 @@
     <!-- Title of the option for users who already bought a Signal Login. -->
     <string name="SignalLoginPaymentScreen__i_have_a_signal_login">Unë kam Signal Login</string>
     <!-- Subtitle of the existing-login option. -->
-    <string name="SignalLoginPaymentScreen__use_your_existing_account_key">Përdor kodin ekzistues të llogarisë</string>
+    <string name="SignalLoginPaymentScreen__use_your_existing_account_key">Use your existing login info</string>
     <!-- Selling point of the existing-login option: the account can be restored. -->
     <string name="SignalLoginPaymentScreen__login_and_restore_your_account">Hyr dhe rikthe llogarinë</string>
     <!-- Selling point of the existing-login option, thanking the user for their previous purchase. -->
@@ -644,19 +636,47 @@
     <!-- Error shown when the purchase does not go through. -->
     <string name="SignalLoginPaymentScreen__your_purchase_could_not_be_completed">Blerja nuk mund të përfundohej. Nuk je tarifuar.</string>
     <!-- Shown in place of the price when Google Play cannot offer the purchase. -->
-    <string name="SignalLoginPaymentScreen__unavailable">Unavailable</string>
+    <string name="SignalLoginPaymentScreen__unavailable">I padisponueshëm</string>
     <!-- Label for the button that retries loading the purchase price after it failed to load. -->
     <string name="SignalLoginPaymentScreen__retry">Riprovo</string>
     <!-- Shown in place of the price when the user already paid for a Signal Login but it was never redeemed. -->
-    <string name="SignalLoginPaymentScreen__already_paid">Already paid</string>
+    <string name="SignalLoginPaymentScreen__already_paid">Tashmë e paguar</string>
     <!-- Error shown when Signal Login cannot be purchased on this device, for example because the Google Play Store is unavailable. -->
-    <string name="SignalLoginPaymentScreen__signal_login_cant_be_purchased">Signal Login can\'t be purchased on this device right now. Try again later.</string>
+    <string name="SignalLoginPaymentScreen__signal_login_cant_be_purchased">Signal Login nuk mund të blihet në këtë pajisje për momentin. Provo sërish më vonë.</string>
     <!-- Message shown when the user\'s payment has gone through but has not finished processing yet. -->
-    <string name="SignalLoginPaymentScreen__your_payment_is_still_processing">Your payment is still processing. Come back and tap continue once it goes through, and you won\'t be charged again.</string>
+    <string name="SignalLoginPaymentScreen__your_payment_is_still_processing">Pagesa është ende në proces. Kthehu dhe prek \"Vazhdo“ sapo të përfundojë procesi dhe nuk do të tarifohesh përsëri.</string>
     <!-- Label for the internal-testing text field where a receipt credential can be pasted to skip payment. Not shown to real users. -->
   <!-- Removed by excludeNonTranslatables <string name="SignalLoginPaymentScreen__paste_a_receipt_credential" translatable="false">Paste a receipt credential (testing)</string> -->
     <!-- Error shown when a manually-pasted receipt credential can\'t be parsed or is rejected. Internal testing only. -->
   <!-- Removed by excludeNonTranslatables <string name="SignalLoginPaymentScreen__this_receipt_credential_is_invalid" translatable="false">This receipt credential is invalid.</string> -->
+    <!-- Title of the dialog shown when Google Play services is too old to take a payment. -->
+    <string name="SignalLoginPaymentScreen__update_google_play_services">Update Google Play services</string>
+    <!-- Body of the dialog shown when Google Play services is too old to take a payment. -->
+    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_update_google_play_services">To purchase a Signal Login, update Google Play services on this device.</string>
+    <!-- Button that updates Google Play services. -->
+    <string name="SignalLoginPaymentScreen__update">Update</string>
+    <!-- Title of the dialog shown when Google Play services is not installed. -->
+    <string name="SignalLoginPaymentScreen__google_play_services_missing">Google Play services missing</string>
+    <!-- Body of the dialog shown when Google Play services is not installed. -->
+    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_google_play_services_needs_to_be_installed">To purchase a Signal Login, Google Play services needs to be installed.</string>
+    <!-- Button that installs Google Play services. -->
+    <string name="SignalLoginPaymentScreen__install_play_services">Install Play Services</string>
+    <!-- Title of the dialog shown while Google Play services is updating itself. -->
+    <string name="SignalLoginPaymentScreen__google_play_services_are_updating">Google Play services are updating</string>
+    <!-- Body of the dialog shown while Google Play services is updating itself. -->
+    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_wait_for_google_play_services">To purchase a Signal Login please wait for Google Play services to finish updating.</string>
+    <!-- Title of the dialog shown when Google Play cannot be used to take a payment. -->
+    <string name="SignalLoginPaymentScreen__google_play_is_required">Google Play is required</string>
+    <!-- Body of the dialog shown when Google Play services is installed but turned off. -->
+    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_enable_google_play_services">To purchase a Signal Login, enable Google Play services on this device and sign into the Google Play store.</string>
+    <!-- Body of the dialog shown when the device cannot run Google Play services at all. -->
+    <string name="SignalLoginPaymentScreen__you_cant_purchase_a_signal_login_on_this_device">You can\'t purchase a Signal Login because this device does not support Google Play services. Contact the phone manufacturer for assistance.</string>
+    <!-- Body of the dialog shown when Google Play services works but nobody is signed into the Play Store. -->
+    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_sign_into_the_google_play_store">To purchase a Signal Login, please sign into the Google Play store.</string>
+    <!-- Body of the dialog shown when this version of Signal cannot make Google Play purchases at all. -->
+    <string name="SignalLoginPaymentScreen__you_cant_purchase_a_signal_login_in_this_version">You can\'t purchase a Signal Login in this version of Signal. Install Signal from the Google Play store to buy one.</string>
+    <!-- Button that opens the Google Play store so the user can sign into it. -->
+    <string name="SignalLoginPaymentScreen__open_play_store">Open Play Store</string>
 
     <!-- Signal Login details screen -->
     <!-- Title of the screen that shows the user their newly purchased Signal Login. -->
@@ -670,25 +690,25 @@
     <!-- Error shown when the Signal Login could not be stored in the password manager. -->
     <string name="SignalLoginInfoScreen__your_signal_login_could_not_be_saved">Signal Login nuk mund të ruhej. Ruaj manualisht.</string>
     <!-- Title of the dialog shown when the Signal Login could not be found in the password manager after saving it. -->
-    <string name="SignalLoginInfoScreen__error_confirming_login_info">Error confirming login info</string>
+    <string name="SignalLoginInfoScreen__error_confirming_login_info">Gabim gjatë konfirmimit të të dhënave të hyrjes</string>
     <!-- Description telling the user that the Signal Login we saved could not be read back out of their password manager. -->
-    <string name="SignalLoginInfoScreen__your_signal_login_could_not_be_confirmed">Your Signal Login could not be confirmed. Make sure you\'ve saved it in your password manager, or save it manually.</string>
+    <string name="SignalLoginInfoScreen__your_signal_login_could_not_be_confirmed">Signal Login nuk mund të konfirmohej. Sigurohu që e ke ruajtur në menaxherin e fjalëkalimeve ose ruaje manualisht.</string>
 
     <!-- Sheet that double-checks the user\'s Signal Login really made it into their password manager -->
     <!-- Title of the sheet asking the user to confirm their Signal Login was saved to their password manager. -->
-    <string name="ConfirmLoginSavedToPasswordManagerBottomSheet__confirm_your_login_info_is_saved">Confirm your login info is saved</string>
+    <string name="ConfirmLoginSavedToPasswordManagerBottomSheet__confirm_your_login_info_is_saved">Konfirmo që të dhënat e hyrjes janë ruajtur</string>
     <!-- Description telling the user they are about to be asked to fill in the Signal Login they just saved. -->
-    <string name="ConfirmLoginSavedToPasswordManagerBottomSheet__confirm_that_your_login_info_was_saved">Confirm that your Signal Login was saved correctly. You will be prompted to fill in your saved password in the next step.</string>
+    <string name="ConfirmLoginSavedToPasswordManagerBottomSheet__confirm_that_your_login_info_was_saved">Konfirmo që Signal Login është ruajtur saktë. Do të të kërkohet të vendosësh fjalëkalimin e ruajtur në hapin tjetër.</string>
     <!-- Action button that starts checking the password manager for the Signal Login. -->
-    <string name="ConfirmLoginSavedToPasswordManagerBottomSheet__confirm_login_info">Confirm login info</string>
+    <string name="ConfirmLoginSavedToPasswordManagerBottomSheet__confirm_login_info">Konfirmo të dhënat e hyrjes</string>
     <!-- Action button that sends the user back to their Signal Login. -->
-    <string name="ConfirmLoginSavedToPasswordManagerBottomSheet__see_login_info_again">See login info again</string>
+    <string name="ConfirmLoginSavedToPasswordManagerBottomSheet__see_login_info_again">Shiko përsëri të dhënat e hyrjes</string>
 
     <!-- Save Signal Login screen -->
     <!-- Title of the screen that spells out the Signal Login so the user can record it themselves. -->
-    <string name="SignalLoginViewDetailsForManualSaveScreen__save_your_signal_login">Save your Signal Login</string>
+    <string name="SignalLoginViewDetailsForManualSaveScreen__save_your_signal_login">Ruaj Signal Login</string>
     <!-- Description telling the user to keep their Signal Login somewhere safe and private. -->
-    <string name="SignalLoginViewDetailsForManualSaveScreen__store_your_signal_login_somewhere_safe">Store your Signal Login somewhere safe and secure. Never share your login info with anyone.</string>
+    <string name="SignalLoginViewDetailsForManualSaveScreen__store_your_signal_login_somewhere_safe">Ruaji të dhënat e Signal Login në një vend të sigurt. Mos ia jep të dhënat e hyrjes askujt.</string>
     <!-- Action button that saves the Signal Login to a PDF file. -->
     <string name="SignalLoginViewDetailsForManualSaveScreen__save_as_pdf">Ruaj si PDF</string>
     <!-- Action button for users who are done recording their Signal Login. -->
@@ -696,13 +716,13 @@
 
     <!-- Sheet that double-checks the user really saved their Signal Login -->
     <!-- Title of the sheet asking the user to confirm they saved their Signal Login. -->
-    <string name="ConfirmLoginSavedBottomSheet__confirm_your_login_info_is_saved">Confirm your login info is saved</string>
+    <string name="ConfirmLoginSavedBottomSheet__confirm_your_login_info_is_saved">Konfirmo që të dhënat e hyrjes janë ruajtur</string>
     <!-- Description warning the user that they are about to be asked for their Signal Login and that it cannot be recovered. -->
-    <string name="ConfirmLoginSavedBottomSheet__you_will_be_prompted_to_sign_in">You will be prompted to sign in with your Signal Login next. Make sure you\'ve saved or copied these details. Signal will not be able to help you recover your account.</string>
+    <string name="ConfirmLoginSavedBottomSheet__you_will_be_prompted_to_sign_in">Më pas, do të të kërkohet të identifikohesh me Signal Login. Sigurohu që t’i kesh ruajtur ose kopjuar këto të dhëna. Signal nuk do të jetë në gjendje të të ndihmojë të rikthesh llogarinë.</string>
     <!-- Action button confirming the Signal Login is saved. -->
     <string name="ConfirmLoginSavedBottomSheet__continue">Vazhdo</string>
     <!-- Action button that sends the user back to their Signal Login. -->
-    <string name="ConfirmLoginSavedBottomSheet__show_login_info_again">Show login info again</string>
+    <string name="ConfirmLoginSavedBottomSheet__show_login_info_again">Shfaq përsëri të dhënat e hyrjes</string>
 
     <!-- Errors shown beneath an account ID text field, wherever one is offered -->
     <!-- Error shown when too many characters were entered in an account ID field. First placeholder is how many were entered, second is the maximum. -->
@@ -730,11 +750,11 @@
     <!-- Error shown when the service rejects the entered login, which means one of the two halves is wrong. -->
     <string name="SignalLoginCredentialEntryScreen__incorrect_account_id_or_recovery_key">ID-ja e llogarisë ose kodi i rikthimit është i pasaktë</string>
     <!-- Description shown instead when the user is typing back the Signal Login they were just given, to check they recorded it correctly. -->
-    <string name="SignalLoginCredentialEntryScreen__enter_your_signal_login_to_confirm_it_was_recorded_correctly">Enter your Signal Login to confirm it was recorded correctly.</string>
+    <string name="SignalLoginCredentialEntryScreen__enter_your_signal_login_to_confirm_it_was_recorded_correctly">Vendos të dhënat e Signal Login për të konfirmuar se është regjistruar saktë.</string>
     <!-- Button that takes the user back to their Signal Login if they can\'t remember what they recorded. -->
-    <string name="SignalLoginCredentialEntryScreen__show_login_info_again">Show login info again</string>
+    <string name="SignalLoginCredentialEntryScreen__show_login_info_again">Shfaq përsëri të dhënat e hyrjes</string>
     <!-- Error shown when what the user typed back doesn\'t match the Signal Login they were given. -->
-    <string name="SignalLoginCredentialEntryScreen__that_doesnt_match_the_signal_login_you_were_shown">That doesn\'t match the Signal Login you were shown</string>
+    <string name="SignalLoginCredentialEntryScreen__that_doesnt_match_the_signal_login_you_were_shown">Kjo nuk përputhet me të dhënat e Signal Login që t\'u shfaqën</string>
 
     <!-- Add username screen -->
     <!-- Title of the screen offering the user an optional username. -->
@@ -747,12 +767,8 @@
     <string name="AddUsernameScreen__username">Emri i përdoruesit</string>
     <!-- Helper text below the username field. Followed by a "learn more" link. -->
     <string name="AddUsernameScreen__usernames_are_always_paired_with_a_set_of_numbers">Emrat e përdoruesve bashkohen gjithmonë me një grup numrash.</string>
-    <!-- Link in the helper text that opens an explanation of the digits paired with a username. -->
+    <!-- Link in the helper text that opens a support article about usernames. -->
     <string name="AddUsernameScreen__learn_more">Mëso më shumë</string>
-    <!-- Title of the dialog explaining the digits paired with a username. -->
-    <string name="AddUsernameScreen__what_is_this_number">Çfarë është ky numër?</string>
-    <!-- Body of the dialog explaining the digits paired with a username. -->
-    <string name="AddUsernameScreen__these_digits_help_keep">Këto shifra ndihmojnë të ruash fshehtësinë e emrit tënd të përdoruesit, që të shmangësh mesazhet e padëshiruara. Ndaj emrin e përdoruesit vetëm me personat dhe grupet me të cilat dëshiron të bisedosh. Nëse ndryshon emrin e përdoruesit, atëherë do të marrësh një bashkësi të re shifrash.</string>
     <!-- Button that skips choosing a username. -->
     <string name="AddUsernameScreen__skip">Kapërce</string>
     <!-- Button that submits the chosen username. -->
@@ -782,7 +798,7 @@
     <!-- Title of the dialog confirming the user wants to skip choosing a username. -->
     <string name="AddUsernameScreen__are_you_sure">Je i sigurt?</string>
     <!-- Body of the dialog confirming the user wants to skip choosing a username. -->
-    <string name="AddUsernameScreen__without_a_username_people_wont_be_able_to_find_you">Without a username people won\'t be able to find you on Signal.</string>
+    <string name="AddUsernameScreen__without_a_username_people_wont_be_able_to_find_you">Pa një emër përdoruesi, njerëzit nuk do të mund të të gjejnë në Signal.</string>
     <!-- Button in the skip-username confirmation dialog that returns to the screen without skipping. -->
     <string name="AddUsernameScreen__cancel">Anulo</string>
     <!-- Button in the skip-username confirmation dialog that skips choosing a username. -->
@@ -802,7 +818,7 @@
     <!-- Title of the two-factor authentication code entry screen -->
     <string name="TotpEntryScreen__two_factor_authentication">Autentifikimi me dy faktorë</string>
     <!-- Subtitle explaining where to find the code -->
-    <string name="TotpEntryScreen__to_continue_enter_the_code">To continue, enter the 6-digit code from your authenticator app.</string>
+    <string name="TotpEntryScreen__to_continue_enter_the_code">Për të vazhduar, vendos kodin 6-shifror nga aplikacioni i autentifikimit.</string>
     <!-- Button text to cancel entering a code -->
     <string name="TotpEntryScreen__cancel">Anulo</string>
 

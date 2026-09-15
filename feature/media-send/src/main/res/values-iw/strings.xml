@@ -133,12 +133,6 @@
   <!-- Toasted when user device does not support video recording -->
   <string name="CameraFragment__video_recording_is_not_supported_on_your_device">הקלטת וידאו לא נתמכת במכשיר שלך</string>
 
-  <!-- CameraXFragment -->
-  <string name="CameraXFragment_tap_for_photo_hold_for_video">הקש עבור תצלום, החזק עבור סרטון</string>
-  <!-- Accessibility content description to describe the capture button when taking an image/video -->
-  <string name="CameraXFragment_capture_description">לכוד</string>
-  <string name="CameraXFragment_change_camera_description">שנה מצלמה</string>
-  <string name="CameraXFragment_open_gallery_description">פתח גלריה</string>
   <!-- Button text asking for access to camera permissions -->
   <string name="CameraXFragment_allow_access">התר גישה</string>
   <!-- Dialog title asking users for camera and microphone permission -->
@@ -173,16 +167,6 @@
   <string name="CameraXFragment_photo_capture_failed">לכידת התמונה נכשלה. נא לנסות שוב.</string>
   <!-- Error message shown when we try to take a photo, but fail when trying to process it (convert it into something the user can see). -->
   <string name="CameraXFragment_photo_processing_failed">עיבוד התמונה נכשל. נא לנסות שוב.</string>
-  <!-- Accessibility label for the switch camera button -->
-  <string name="CameraXFragment_switch_camera">החלפת מצלמה</string>
-  <!-- Accessibility label for flash button when flash is off -->
-  <string name="CameraXFragment_flash_off">פלאש כבוי</string>
-  <!-- Accessibility label for flash button when flash is on -->
-  <string name="CameraXFragment_flash_on">פלאש פועל</string>
-  <!-- Accessibility label for flash button when flash is set to auto -->
-  <string name="CameraXFragment_flash_auto">פלאש אוטומטי</string>
-  <!-- Accessibility label for the send button in media selection -->
-  <string name="CameraXFragment_send">שלח</string>
   <!-- Label shown below the elapsed time while a video recording is paused -->
   <string name="CameraXFragment_paused">מושהה</string>
   <!-- Displayed in a permissions dialog when the user has denied access to hardware for image and video capture. -->

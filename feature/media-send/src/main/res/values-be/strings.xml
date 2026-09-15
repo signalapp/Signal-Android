@@ -133,12 +133,6 @@
   <!-- Toasted when user device does not support video recording -->
   <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Запіс відэа не падтрымліваецца на вашай прыладзе</string>
 
-  <!-- CameraXFragment -->
-  <string name="CameraXFragment_tap_for_photo_hold_for_video">Націсніце для фота, утрымлівайце для відэа</string>
-  <!-- Accessibility content description to describe the capture button when taking an image/video -->
-  <string name="CameraXFragment_capture_description">Здымак</string>
-  <string name="CameraXFragment_change_camera_description">Змяніць камеру</string>
-  <string name="CameraXFragment_open_gallery_description">Адкрыць галерэю</string>
   <!-- Button text asking for access to camera permissions -->
   <string name="CameraXFragment_allow_access">Дазволіць доступ</string>
   <!-- Dialog title asking users for camera and microphone permission -->
@@ -173,16 +167,6 @@
   <string name="CameraXFragment_photo_capture_failed">Не атрымалася зрабіць фота. Паўтарыце спробу.</string>
   <!-- Error message shown when we try to take a photo, but fail when trying to process it (convert it into something the user can see). -->
   <string name="CameraXFragment_photo_processing_failed">Не атрымалася апрацаваць фота. Паўтарыце спробу.</string>
-  <!-- Accessibility label for the switch camera button -->
-  <string name="CameraXFragment_switch_camera">Пераключыць камеру</string>
-  <!-- Accessibility label for flash button when flash is off -->
-  <string name="CameraXFragment_flash_off">Успышка адключана</string>
-  <!-- Accessibility label for flash button when flash is on -->
-  <string name="CameraXFragment_flash_on">Успышка ўключана</string>
-  <!-- Accessibility label for flash button when flash is set to auto -->
-  <string name="CameraXFragment_flash_auto">Аўтаматычная ўспышка</string>
-  <!-- Accessibility label for the send button in media selection -->
-  <string name="CameraXFragment_send">Адправіць</string>
   <!-- Label shown below the elapsed time while a video recording is paused -->
   <string name="CameraXFragment_paused">Прыпынена</string>
   <!-- Displayed in a permissions dialog when the user has denied access to hardware for image and video capture. -->

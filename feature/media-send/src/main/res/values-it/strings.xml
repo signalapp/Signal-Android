@@ -133,12 +133,6 @@
   <!-- Toasted when user device does not support video recording -->
   <string name="CameraFragment__video_recording_is_not_supported_on_your_device">La registrazione video non è supportata sul tuo dispositivo</string>
 
-  <!-- CameraXFragment -->
-  <string name="CameraXFragment_tap_for_photo_hold_for_video">Tocca per foto, tieni premuto per video</string>
-  <!-- Accessibility content description to describe the capture button when taking an image/video -->
-  <string name="CameraXFragment_capture_description">Scatta</string>
-  <string name="CameraXFragment_change_camera_description">Cambia fotocamera</string>
-  <string name="CameraXFragment_open_gallery_description">Apri galleria</string>
   <!-- Button text asking for access to camera permissions -->
   <string name="CameraXFragment_allow_access">Consenti accesso</string>
   <!-- Dialog title asking users for camera and microphone permission -->
@@ -173,16 +167,6 @@
   <string name="CameraXFragment_photo_capture_failed">Impossibile scattare la foto. Riprova.</string>
   <!-- Error message shown when we try to take a photo, but fail when trying to process it (convert it into something the user can see). -->
   <string name="CameraXFragment_photo_processing_failed">Impossibile elaborare la foto. Riprova.</string>
-  <!-- Accessibility label for the switch camera button -->
-  <string name="CameraXFragment_switch_camera">Cambia fotocamera</string>
-  <!-- Accessibility label for flash button when flash is off -->
-  <string name="CameraXFragment_flash_off">Flash disattivato</string>
-  <!-- Accessibility label for flash button when flash is on -->
-  <string name="CameraXFragment_flash_on">Flash attivato</string>
-  <!-- Accessibility label for flash button when flash is set to auto -->
-  <string name="CameraXFragment_flash_auto">Flash automatico</string>
-  <!-- Accessibility label for the send button in media selection -->
-  <string name="CameraXFragment_send">Invia</string>
   <!-- Label shown below the elapsed time while a video recording is paused -->
   <string name="CameraXFragment_paused">In pausa</string>
   <!-- Displayed in a permissions dialog when the user has denied access to hardware for image and video capture. -->

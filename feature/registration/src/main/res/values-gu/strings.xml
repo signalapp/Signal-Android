@@ -55,6 +55,8 @@
     <string name="RegistrationActivity_next">આગળ</string>
     <!-- Button on the phone number screen that starts registering with a purchased Signal Login instead of a phone number -->
     <string name="RegistrationActivity_register_without_number">નંબર વગર રજીસ્ટર કરો</string>
+    <!-- Button on the phone number screen, shown when the user already said they have an account to restore, that goes straight to entering their existing Signal Login -->
+    <string name="RegistrationActivity_use_account_id">Use account ID</string>
     <!-- Dialog title to confirm phone number -->
     <string name="RegistrationActivity_is_the_phone_number">શું નીચેનો ફોન નંબર સાચો છે?</string>
     <!-- Dialog body to confirm phone number -->
@@ -161,12 +163,6 @@
     <string name="ArchiveRestoreSelectionScreen__skip_restore_title">ટ્રાન્સફર કર્યા વિના ચાલુ રાખો</string>
     <!-- Description for an option that, when clicked, will take the user to a flow to restore form a local backup -->
     <string name="ArchiveRestoreSelectionScreen__skip_restore_description">મેસેજ અને મીડિયા ટ્રાન્સફર નહીં થાય</string>
-    <!-- Title for the backup folder option card (V2 format) -->
-    <string name="ArchiveRestoreSelectionScreen__from_a_backup_folder">બેકઅપ ફોલ્ડરમાંથી</string>
-    <!-- Title for the backup file option card (V1 legacy format) -->
-    <string name="ArchiveRestoreSelectionScreen__from_a_backup_file">બેકઅપ ફાઇલમાંથી</string>
-    <!-- Subtitle for the backup folder/file option cards -->
-    <string name="ArchiveRestoreSelectionScreen__choose_a_backup_youve_saved">તમે સેવ કરેલ બેકઅપ પસંદ કરો</string>
     <!-- Title for the device transfer option card -->
     <string name="ArchiveRestoreSelectionScreen__from_your_old_phone">તમારા જૂના ફોનમાંથી</string>
     <!-- Subtitle for the device transfer option card -->
@@ -211,8 +207,6 @@
     <string name="LocalBackupRestoreScreen__enter_backup_passphrase">બેકઅપ પાસફ્રેઝ દાખલ કરો</string>
     <!-- Description for V1 passphrase entry screen -->
     <string name="LocalBackupRestoreScreen__enter_the_30_digit_passphrase">તમારો સ્થાનિક બેકઅપ પાસફ્રેઝ એ તમારા એકાઉન્ટ અને ડેટાને રિકવર કરવા માટે જરૂરી એવો 30-અંકનો કોડ છે.</string>
-    <!-- Label for the recovery key text field -->
-    <string name="LocalBackupRestoreScreen__recovery_key">રિકવરી કી</string>
     <!-- Label for the backup passphrase text field -->
     <string name="LocalBackupRestoreScreen__passphrase">પાસફ્રેઝ</string>
     <!-- Error text when passphrase is too long -->
@@ -254,8 +248,6 @@
     <string name="LocalBackupRestoreScreen__restoring_backup">બેકઅપ રિસ્ટોર કરી રહ્યાં છીએ</string>
     <!-- Description shown while restore is in progress -->
     <string name="LocalBackupRestoreScreen__restoring_description">તમારા મેસેજ અને ડેટા રિસ્ટોર થઈ રહ્યાં છે ત્યાં સુધી રાહ જુઓ.</string>
-    <!-- Description shown when restore is complete -->
-    <string name="LocalBackupRestoreScreen__restore_complete_description">Your messages and account data have been restored successfully.</string>
     <!-- Continue button text after restore is complete -->
     <string name="LocalBackupRestoreScreen__continue_button">ચાલુ રાખો</string>
     <!-- Title shown when restore fails -->
@@ -616,7 +608,7 @@
     <!-- Title of the screen where the user buys a Signal Login to register without a phone number. -->
     <string name="SignalLoginPaymentScreen__signal_login">Signal Login</string>
     <!-- Description of what a Signal Login is. Followed by a "learn more" link. -->
-    <string name="SignalLoginPaymentScreen__register_without_a_phone_number">Signal Loginનો ઉપયોગ કરીને ફોન નંબર વગર રજિસ્ટર કરો. એક-વખતની ખરીદી સાથે, શરૂઆત કરવા માટે તમે એક એકાઉન્ટ કી મેળવશો.</string>
+    <string name="SignalLoginPaymentScreen__register_without_a_phone_number">Register without a phone number using Signal Login. With a one-time purchase, you\'ll receive an account ID to get started.</string>
     <!-- Link at the end of the description that opens a support article about Signal Login. -->
     <string name="SignalLoginPaymentScreen__learn_more">વધુ જાણો</string>
     <!-- Subtitle of the purchase option, clarifying the price is not a subscription. -->
@@ -630,7 +622,7 @@
     <!-- Title of the option for users who already bought a Signal Login. -->
     <string name="SignalLoginPaymentScreen__i_have_a_signal_login">મારી પાસે Signal Login છે</string>
     <!-- Subtitle of the existing-login option. -->
-    <string name="SignalLoginPaymentScreen__use_your_existing_account_key">તમારી અસ્તિત્વમાં રહેલી એકાઉન્ટ કી વાપરો</string>
+    <string name="SignalLoginPaymentScreen__use_your_existing_account_key">Use your existing login info</string>
     <!-- Selling point of the existing-login option: the account can be restored. -->
     <string name="SignalLoginPaymentScreen__login_and_restore_your_account">લૉગ ઇન કરો અને તમારું એકાઉન્ટ રિસ્ટોર કરો</string>
     <!-- Selling point of the existing-login option, thanking the user for their previous purchase. -->
@@ -648,15 +640,43 @@
     <!-- Label for the button that retries loading the purchase price after it failed to load. -->
     <string name="SignalLoginPaymentScreen__retry">ફરી પ્રયાસ કરો</string>
     <!-- Shown in place of the price when the user already paid for a Signal Login but it was never redeemed. -->
-    <string name="SignalLoginPaymentScreen__already_paid">Already paid</string>
+    <string name="SignalLoginPaymentScreen__already_paid">પહેલાથી જ ચુકવણી થઈ ગઈ</string>
     <!-- Error shown when Signal Login cannot be purchased on this device, for example because the Google Play Store is unavailable. -->
-    <string name="SignalLoginPaymentScreen__signal_login_cant_be_purchased">Signal Login can\'t be purchased on this device right now. Try again later.</string>
+    <string name="SignalLoginPaymentScreen__signal_login_cant_be_purchased">Signal Login આ ડિવાઇસ પર હમણાં ખરીદી શકાતું નથી. પછી ફરી પ્રયાસ કરો.</string>
     <!-- Message shown when the user\'s payment has gone through but has not finished processing yet. -->
-    <string name="SignalLoginPaymentScreen__your_payment_is_still_processing">Your payment is still processing. Come back and tap continue once it goes through, and you won\'t be charged again.</string>
+    <string name="SignalLoginPaymentScreen__your_payment_is_still_processing">તમારી ચુકવણીની પ્રક્રિયા હજી ચાલુ છે. તે પૂર્ણ થઈ જાય પછી પાછા આવો અને ચાલુ રાખો પર ટેપ કરો અને તમારી પાસેથી ફરીથી શુલ્ક લેવામાં આવશે નહીં.</string>
     <!-- Label for the internal-testing text field where a receipt credential can be pasted to skip payment. Not shown to real users. -->
   <!-- Removed by excludeNonTranslatables <string name="SignalLoginPaymentScreen__paste_a_receipt_credential" translatable="false">Paste a receipt credential (testing)</string> -->
     <!-- Error shown when a manually-pasted receipt credential can\'t be parsed or is rejected. Internal testing only. -->
   <!-- Removed by excludeNonTranslatables <string name="SignalLoginPaymentScreen__this_receipt_credential_is_invalid" translatable="false">This receipt credential is invalid.</string> -->
+    <!-- Title of the dialog shown when Google Play services is too old to take a payment. -->
+    <string name="SignalLoginPaymentScreen__update_google_play_services">Update Google Play services</string>
+    <!-- Body of the dialog shown when Google Play services is too old to take a payment. -->
+    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_update_google_play_services">To purchase a Signal Login, update Google Play services on this device.</string>
+    <!-- Button that updates Google Play services. -->
+    <string name="SignalLoginPaymentScreen__update">Update</string>
+    <!-- Title of the dialog shown when Google Play services is not installed. -->
+    <string name="SignalLoginPaymentScreen__google_play_services_missing">Google Play services missing</string>
+    <!-- Body of the dialog shown when Google Play services is not installed. -->
+    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_google_play_services_needs_to_be_installed">To purchase a Signal Login, Google Play services needs to be installed.</string>
+    <!-- Button that installs Google Play services. -->
+    <string name="SignalLoginPaymentScreen__install_play_services">Install Play Services</string>
+    <!-- Title of the dialog shown while Google Play services is updating itself. -->
+    <string name="SignalLoginPaymentScreen__google_play_services_are_updating">Google Play services are updating</string>
+    <!-- Body of the dialog shown while Google Play services is updating itself. -->
+    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_wait_for_google_play_services">To purchase a Signal Login please wait for Google Play services to finish updating.</string>
+    <!-- Title of the dialog shown when Google Play cannot be used to take a payment. -->
+    <string name="SignalLoginPaymentScreen__google_play_is_required">Google Play is required</string>
+    <!-- Body of the dialog shown when Google Play services is installed but turned off. -->
+    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_enable_google_play_services">To purchase a Signal Login, enable Google Play services on this device and sign into the Google Play store.</string>
+    <!-- Body of the dialog shown when the device cannot run Google Play services at all. -->
+    <string name="SignalLoginPaymentScreen__you_cant_purchase_a_signal_login_on_this_device">You can\'t purchase a Signal Login because this device does not support Google Play services. Contact the phone manufacturer for assistance.</string>
+    <!-- Body of the dialog shown when Google Play services works but nobody is signed into the Play Store. -->
+    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_sign_into_the_google_play_store">To purchase a Signal Login, please sign into the Google Play store.</string>
+    <!-- Body of the dialog shown when this version of Signal cannot make Google Play purchases at all. -->
+    <string name="SignalLoginPaymentScreen__you_cant_purchase_a_signal_login_in_this_version">You can\'t purchase a Signal Login in this version of Signal. Install Signal from the Google Play store to buy one.</string>
+    <!-- Button that opens the Google Play store so the user can sign into it. -->
+    <string name="SignalLoginPaymentScreen__open_play_store">Open Play Store</string>
 
     <!-- Signal Login details screen -->
     <!-- Title of the screen that shows the user their newly purchased Signal Login. -->
@@ -670,25 +690,25 @@
     <!-- Error shown when the Signal Login could not be stored in the password manager. -->
     <string name="SignalLoginInfoScreen__your_signal_login_could_not_be_saved">તમારું Signal Login સેવ ન થઈ શક્યું. તેના બદલે તેને જાતે સેવ કરો.</string>
     <!-- Title of the dialog shown when the Signal Login could not be found in the password manager after saving it. -->
-    <string name="SignalLoginInfoScreen__error_confirming_login_info">Error confirming login info</string>
+    <string name="SignalLoginInfoScreen__error_confirming_login_info">લૉગ ઇન માહિતીની ખાતરી કરવામાં એરર</string>
     <!-- Description telling the user that the Signal Login we saved could not be read back out of their password manager. -->
-    <string name="SignalLoginInfoScreen__your_signal_login_could_not_be_confirmed">Your Signal Login could not be confirmed. Make sure you\'ve saved it in your password manager, or save it manually.</string>
+    <string name="SignalLoginInfoScreen__your_signal_login_could_not_be_confirmed">તમારા Signal Loginની ખાતરી થઈ શકી ન હતી. ખાતરી કરો કે તમે તેને તમારા પાસવર્ડ મેનેજરમાં સેવ કરી છે કે તેને જાતે સેવ કરી લો.</string>
 
     <!-- Sheet that double-checks the user\'s Signal Login really made it into their password manager -->
     <!-- Title of the sheet asking the user to confirm their Signal Login was saved to their password manager. -->
-    <string name="ConfirmLoginSavedToPasswordManagerBottomSheet__confirm_your_login_info_is_saved">Confirm your login info is saved</string>
+    <string name="ConfirmLoginSavedToPasswordManagerBottomSheet__confirm_your_login_info_is_saved">ખાતરી કરો કે તમારી લૉગ ઇન માહિતી સેવ થઈ ગઈ છે</string>
     <!-- Description telling the user they are about to be asked to fill in the Signal Login they just saved. -->
-    <string name="ConfirmLoginSavedToPasswordManagerBottomSheet__confirm_that_your_login_info_was_saved">Confirm that your Signal Login was saved correctly. You will be prompted to fill in your saved password in the next step.</string>
+    <string name="ConfirmLoginSavedToPasswordManagerBottomSheet__confirm_that_your_login_info_was_saved">ખાતરી કરો કે તમારું Signal Login યોગ્ય રીતે રેકોર્ડ થઈ ગયું છે. પછીના પગલામાં તમને તમારો સેવ કરેલો પાસવર્ડ ભરવાનું કહેવામાં આવશે.</string>
     <!-- Action button that starts checking the password manager for the Signal Login. -->
-    <string name="ConfirmLoginSavedToPasswordManagerBottomSheet__confirm_login_info">Confirm login info</string>
+    <string name="ConfirmLoginSavedToPasswordManagerBottomSheet__confirm_login_info">લૉગ ઇન માહિતીની ખાતરી કરો</string>
     <!-- Action button that sends the user back to their Signal Login. -->
-    <string name="ConfirmLoginSavedToPasswordManagerBottomSheet__see_login_info_again">See login info again</string>
+    <string name="ConfirmLoginSavedToPasswordManagerBottomSheet__see_login_info_again">લૉગ ઇન માહિતી ફરીથી જુઓ</string>
 
     <!-- Save Signal Login screen -->
     <!-- Title of the screen that spells out the Signal Login so the user can record it themselves. -->
-    <string name="SignalLoginViewDetailsForManualSaveScreen__save_your_signal_login">Save your Signal Login</string>
+    <string name="SignalLoginViewDetailsForManualSaveScreen__save_your_signal_login">તમારું Signal Login સેવ કરો</string>
     <!-- Description telling the user to keep their Signal Login somewhere safe and private. -->
-    <string name="SignalLoginViewDetailsForManualSaveScreen__store_your_signal_login_somewhere_safe">Store your Signal Login somewhere safe and secure. Never share your login info with anyone.</string>
+    <string name="SignalLoginViewDetailsForManualSaveScreen__store_your_signal_login_somewhere_safe">તમારા Signal Loginને કોઈક સલામત અને સુરક્ષિત જગ્યાએ સ્ટોર કરો. તમારી લૉગ ઇન માહિતી કોઈની સાથે શેર કરશો નહીં.</string>
     <!-- Action button that saves the Signal Login to a PDF file. -->
     <string name="SignalLoginViewDetailsForManualSaveScreen__save_as_pdf">PDF તરીક સેવ કરો</string>
     <!-- Action button for users who are done recording their Signal Login. -->
@@ -696,13 +716,13 @@
 
     <!-- Sheet that double-checks the user really saved their Signal Login -->
     <!-- Title of the sheet asking the user to confirm they saved their Signal Login. -->
-    <string name="ConfirmLoginSavedBottomSheet__confirm_your_login_info_is_saved">Confirm your login info is saved</string>
+    <string name="ConfirmLoginSavedBottomSheet__confirm_your_login_info_is_saved">ખાતરી કરો કે તમારી લૉગ ઇન માહિતી સેવ થઈ ગઈ છે</string>
     <!-- Description warning the user that they are about to be asked for their Signal Login and that it cannot be recovered. -->
-    <string name="ConfirmLoginSavedBottomSheet__you_will_be_prompted_to_sign_in">You will be prompted to sign in with your Signal Login next. Make sure you\'ve saved or copied these details. Signal will not be able to help you recover your account.</string>
+    <string name="ConfirmLoginSavedBottomSheet__you_will_be_prompted_to_sign_in">પછી તમારા Signal Login વડે સાઇન ઇન કરવાનું તમને કહેવામાં આવશે. ખાતરી કરો કે તમે આ વિગતો સેવ અથવા કૉપિ કરી છે. Signal તમારા એકાઉન્ટને રિકવર કરવામાં મદદ નહીં કરી શકે.</string>
     <!-- Action button confirming the Signal Login is saved. -->
     <string name="ConfirmLoginSavedBottomSheet__continue">ચાલુ રાખો</string>
     <!-- Action button that sends the user back to their Signal Login. -->
-    <string name="ConfirmLoginSavedBottomSheet__show_login_info_again">Show login info again</string>
+    <string name="ConfirmLoginSavedBottomSheet__show_login_info_again">લૉગ ઇન માહિતી ફરી બતાવો</string>
 
     <!-- Errors shown beneath an account ID text field, wherever one is offered -->
     <!-- Error shown when too many characters were entered in an account ID field. First placeholder is how many were entered, second is the maximum. -->
@@ -730,11 +750,11 @@
     <!-- Error shown when the service rejects the entered login, which means one of the two halves is wrong. -->
     <string name="SignalLoginCredentialEntryScreen__incorrect_account_id_or_recovery_key">ખોટી એકાઉન્ટ ID અથવા રિકવરી કી</string>
     <!-- Description shown instead when the user is typing back the Signal Login they were just given, to check they recorded it correctly. -->
-    <string name="SignalLoginCredentialEntryScreen__enter_your_signal_login_to_confirm_it_was_recorded_correctly">Enter your Signal Login to confirm it was recorded correctly.</string>
+    <string name="SignalLoginCredentialEntryScreen__enter_your_signal_login_to_confirm_it_was_recorded_correctly">તમારું Signal Login સાચી રીતે રેકોર્ડ થયું હતું તેની ખાતરી કરવા તેને દાખલ કરો.</string>
     <!-- Button that takes the user back to their Signal Login if they can\'t remember what they recorded. -->
-    <string name="SignalLoginCredentialEntryScreen__show_login_info_again">Show login info again</string>
+    <string name="SignalLoginCredentialEntryScreen__show_login_info_again">લૉગ ઇન માહિતી ફરી બતાવો</string>
     <!-- Error shown when what the user typed back doesn\'t match the Signal Login they were given. -->
-    <string name="SignalLoginCredentialEntryScreen__that_doesnt_match_the_signal_login_you_were_shown">That doesn\'t match the Signal Login you were shown</string>
+    <string name="SignalLoginCredentialEntryScreen__that_doesnt_match_the_signal_login_you_were_shown">તે તમને બતાવવામાં આવેલ Signal Login સાથે મેચ થતું નથી</string>
 
     <!-- Add username screen -->
     <!-- Title of the screen offering the user an optional username. -->
@@ -747,12 +767,8 @@
     <string name="AddUsernameScreen__username">યુઝરનેમ</string>
     <!-- Helper text below the username field. Followed by a "learn more" link. -->
     <string name="AddUsernameScreen__usernames_are_always_paired_with_a_set_of_numbers">યુઝરનેમમાં હંમેશા બે સંખ્યાઓની જોડી હોય છે.</string>
-    <!-- Link in the helper text that opens an explanation of the digits paired with a username. -->
+    <!-- Link in the helper text that opens a support article about usernames. -->
     <string name="AddUsernameScreen__learn_more">વધુ જાણો</string>
-    <!-- Title of the dialog explaining the digits paired with a username. -->
-    <string name="AddUsernameScreen__what_is_this_number">આ નંબર શું છે?</string>
-    <!-- Body of the dialog explaining the digits paired with a username. -->
-    <string name="AddUsernameScreen__these_digits_help_keep">આ અંકો તમારા યુઝરનેમને ખાનગી રાખવામાં મદદ કરે છે જેથી તમે અનિચ્છનીય મેસેજને ટાળી શકો. તમારું યુઝરનેમ ફક્ત એ લોકો અને ગ્રૂપ સાથે જ શેર કરો જેમની સાથે તમે ચેટ કરવું ગમે છે. જો તમે યુઝરનેમ બદલો છો તો તમને નવા અંકો મળશે.</string>
     <!-- Button that skips choosing a username. -->
     <string name="AddUsernameScreen__skip">અવગણો</string>
     <!-- Button that submits the chosen username. -->
@@ -782,7 +798,7 @@
     <!-- Title of the dialog confirming the user wants to skip choosing a username. -->
     <string name="AddUsernameScreen__are_you_sure">તમને ખાતરી છે?</string>
     <!-- Body of the dialog confirming the user wants to skip choosing a username. -->
-    <string name="AddUsernameScreen__without_a_username_people_wont_be_able_to_find_you">Without a username people won\'t be able to find you on Signal.</string>
+    <string name="AddUsernameScreen__without_a_username_people_wont_be_able_to_find_you">યુઝરનેમ વિના લોકો તમને Signal પર શોધી શકશે નહીં.</string>
     <!-- Button in the skip-username confirmation dialog that returns to the screen without skipping. -->
     <string name="AddUsernameScreen__cancel">રદ કરો</string>
     <!-- Button in the skip-username confirmation dialog that skips choosing a username. -->
@@ -802,7 +818,7 @@
     <!-- Title of the two-factor authentication code entry screen -->
     <string name="TotpEntryScreen__two_factor_authentication">બે-પગલાંની ખાતરી</string>
     <!-- Subtitle explaining where to find the code -->
-    <string name="TotpEntryScreen__to_continue_enter_the_code">To continue, enter the 6-digit code from your authenticator app.</string>
+    <string name="TotpEntryScreen__to_continue_enter_the_code">ચાલુ રાખવા માટે તમારી પ્રમાણીકરણ ઍપમાંથી 6-અંકનો કોડ દાખલ કરો.</string>
     <!-- Button text to cancel entering a code -->
     <string name="TotpEntryScreen__cancel">રદ કરો</string>
 

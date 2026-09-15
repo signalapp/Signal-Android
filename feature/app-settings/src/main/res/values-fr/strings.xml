@@ -45,11 +45,11 @@
     <!-- Account setting that allows user to request and export their signal account data -->
     <string name="AccountSettingsFragment__request_account_data">Données du compte</string>
     <!-- Section header for the Signal Login section of account settings -->
-    <string name="AccountSettingsFragment__signal_login">Identifiant Signal</string>
+    <string name="AccountSettingsFragment__signal_login">Login Signal</string>
     <!-- Title of the card that opens the user\'s Signal Login account and recovery keys -->
     <string name="AccountSettingsFragment__account_and_recovery">Compte et récupération</string>
     <!-- Description of what a Signal Login is, shown below the Signal Login card -->
-    <string name="AccountSettingsFragment__your_signal_login_is_used_to_recover">Votre identifiant Signal vous permet d\'accéder à votre compte et de le restaurer. Conservez ces clés en lieu sûr, dans un gestionnaire de mots de passe fiable.</string>
+    <string name="AccountSettingsFragment__your_signal_login_is_used_to_recover">Votre login Signal vous permet d\'identifier votre compte et de le restaurer. Conservez ces clés en lieu sûr, dans un gestionnaire de mots de passe fiable.</string>
     <!-- Section header for the two-factor authentication section of account settings -->
     <string name="AccountSettingsFragment__two_factor_authentication">Authentification à deux facteurs</string>
     <!-- Row that opens the menu of second factors the user can add -->
@@ -61,39 +61,41 @@
     <!-- Name of a passkey in the list of second factors on the account -->
     <string name="AccountSettingsFragment__passkey">Clé d\'accès</string>
     <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
-    <string name="AccountSettingsFragment__s_added_s">%1$s · Added %2$s</string>
+    <string name="AccountSettingsFragment__s_added_s">%1$s · ajouté le %2$s</string>
     <!-- Content description of the button that opens a second factor\'s options -->
-    <string name="AccountSettingsFragment__open_two_factor_options">Open two-factor authentication options</string>
+    <string name="AccountSettingsFragment__open_two_factor_options">Accéder aux options d\'authentification à deux facteurs</string>
     <!-- Menu option that renames a second factor -->
     <string name="AccountSettingsFragment__rename">Renommer</string>
     <!-- Menu option that removes a second factor -->
-    <string name="AccountSettingsFragment__remove">Retirer</string>
+    <string name="AccountSettingsFragment__remove">Supprimer</string>
     <!-- Title of the dialog confirming removal of an authenticator app -->
     <string name="AccountSettingsFragment__remove_authenticator_app">Supprimer l\'appli d\'authentification ?</string>
     <!-- Body of the dialog confirming removal of an authenticator app -->
     <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_app">Vous ne pourrez plus utiliser cette appli pour générer des codes de vérification à usage unique lorsque vous vous connectez à Signal.</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
-    <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">Unlock to remove two-factor method</string>
+    <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">Déverrouiller l\'écran pour continuer</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
-    <string name="AccountSettingsFragment__to_remove_this_method_confirm_its_you">To remove this method, confirm it\'s you</string>
+    <string name="AccountSettingsFragment__to_remove_this_method_confirm_its_you">Pour supprimer cette méthode, authentifiez-vous.</string>
     <!-- Title of the device screen lock prompt shown before the Signal Login details can be viewed -->
-    <string name="AccountSettingsFragment__unlock_to_view_signal_login">Unlock to view Signal Login</string>
+    <string name="AccountSettingsFragment__unlock_to_view_signal_login">Déverrouiller l\'appli pour afficher le login Signal</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before the Signal Login details can be viewed -->
-    <string name="AccountSettingsFragment__to_view_your_signal_login_confirm_its_you">To view your Signal Login, confirm it\'s you</string>
+    <string name="AccountSettingsFragment__to_view_your_signal_login_confirm_its_you">Pour afficher votre login Signal, authentifiez-vous.</string>
     <!-- Toast shown when the device screen lock wasn\'t confirmed, so nothing happened -->
     <string name="AccountSettingsFragment__authentication_required">Authentification requise</string>
     <!-- Title of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
     <string name="AccountSettingsFragment__cant_add_authenticator_app">Impossible d\'ajouter l\'appli d\'authentification</string>
     <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
     <string name="AccountSettingsFragment__you_cant_add_more_than_d">Vous ne pouvez pas ajouter plus de %1$d applis d\'authentification. Supprimez-en une, puis réessayez.</string>
+    <!-- Body of the dialog shown when the account has room for another authenticator app but already has as many two-factor methods of all kinds as it\'s allowed -->
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d_two_factor_methods">You can\'t add more than %1$d two-factor authentication methods. Try removing one first.</string>
     <!-- Shown in place of the list when we couldn\'t work out which second factors are on the account -->
-    <string name="AccountSettingsFragment__couldnt_load_your_two_factor_methods">Couldn\'t load your two-factor authentication methods. Check your connection and try again.</string>
+    <string name="AccountSettingsFragment__couldnt_load_your_two_factor_methods">Impossible de charger vos applis d\'authentification à deux facteurs. Veuillez vérifier votre connexion et réessayer.</string>
     <!-- Toast shown after an authenticator app has been removed -->
     <string name="AccountSettingsFragment__authenticator_app_removed">Appli d\'authentification supprimée</string>
     <!-- Toast shown when an authenticator app couldn\'t be removed -->
     <string name="AccountSettingsFragment__couldnt_remove_authenticator_app">Impossible de supprimer l\'appli d\'authentification. Veuillez vérifier votre connexion et réessayer.</string>
     <!-- Description of two-factor authentication, shown below the two-factor authentication list -->
-    <string name="AccountSettingsFragment__use_a_second_form_of_authentication">Activez la vérification en deux étapes pour protéger votre compte lorsque vous vous connectez à Signal depuis un nouvel appareil.</string>
+    <string name="AccountSettingsFragment__use_a_second_form_of_authentication">Activez la vérification en deux étapes pour protéger votre compte lorsque vous saisissez votre login Signal sur un nouvel appareil.</string>
     <!-- Clickable text that takes the user to a support article -->
     <string name="AccountSettingsFragment__learn_more">En savoir plus</string>
 
@@ -138,14 +140,16 @@
     <string name="TotpCodeEntryScreen__enter_your_code">Saisissez votre code</string>
     <!-- Instructions shown above the code entry field -->
     <string name="TotpCodeEntryScreen__enter_the_6_digit_code">Saisissez le code à 6 chiffres généré par votre appli d\'authentification.</string>
-    <!-- Label of the code entry field -->
-    <string name="TotpCodeEntryScreen__code">Code</string>
     <!-- Button that submits the entered code -->
-    <string name="TotpCodeEntryScreen__done">OK</string>
+    <string name="TotpCodeEntryScreen__next">Next</string>
     <!-- Error shown under the code field when the code the user entered was rejected -->
     <string name="TotpCodeEntryScreen__incorrect_code">Code incorrect. Saisissez le code qui s\'affiche actuellement sur votre appli d\'authentification.</string>
     <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->
     <string name="TotpCodeEntryScreen__couldnt_reach_signal">Impossible d\'accéder à Signal. Veuillez vérifier votre connexion et réessayer.</string>
+
+    <!-- Default name given to an authenticator app the moment it\'s set up, before the user chooses their own name for it -->
+    <string name="TotpRepository__authenticator">Authenticator</string>
+
     <!-- TotpNameEntryScreen -->
     <!-- Title of the screen where the user names an authenticator app -->
     <string name="TotpNameEntryScreen__choose_a_name">Choisissez un nom</string>

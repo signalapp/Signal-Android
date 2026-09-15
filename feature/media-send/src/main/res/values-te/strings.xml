@@ -133,12 +133,6 @@
   <!-- Toasted when user device does not support video recording -->
   <string name="CameraFragment__video_recording_is_not_supported_on_your_device">మీ పరికరంపై వీడియో రికార్డింగుకు మద్దతు లేదు</string>
 
-  <!-- CameraXFragment -->
-  <string name="CameraXFragment_tap_for_photo_hold_for_video">ఫోటో కోసం నొక్కండి, వీడియో కోసం పట్టుకోండి</string>
-  <!-- Accessibility content description to describe the capture button when taking an image/video -->
-  <string name="CameraXFragment_capture_description">క్యాప్చర్</string>
-  <string name="CameraXFragment_change_camera_description">కెమెరాను మార్చండి</string>
-  <string name="CameraXFragment_open_gallery_description">చిత్రశాల ను తెరువు</string>
   <!-- Button text asking for access to camera permissions -->
   <string name="CameraXFragment_allow_access">ప్రాప్యతను అనుమతించు</string>
   <!-- Dialog title asking users for camera and microphone permission -->
@@ -173,16 +167,6 @@
   <string name="CameraXFragment_photo_capture_failed">ఫోటో తీయడంలో విఫలమైంది. దయచేసి మళ్ళీ ప్రయత్నించండి.</string>
   <!-- Error message shown when we try to take a photo, but fail when trying to process it (convert it into something the user can see). -->
   <string name="CameraXFragment_photo_processing_failed">ఫోటోను ప్రాసెస్ చేయడంలో విఫలమైంది. దయచేసి మళ్ళీ ప్రయత్నించండి.</string>
-  <!-- Accessibility label for the switch camera button -->
-  <string name="CameraXFragment_switch_camera">కెమెరాను మార్చండి</string>
-  <!-- Accessibility label for flash button when flash is off -->
-  <string name="CameraXFragment_flash_off">ఫ్లాష్ ఆఫ్</string>
-  <!-- Accessibility label for flash button when flash is on -->
-  <string name="CameraXFragment_flash_on">ఫ్లాష్ ఆన్</string>
-  <!-- Accessibility label for flash button when flash is set to auto -->
-  <string name="CameraXFragment_flash_auto">ఫ్లాష్ ఆటో</string>
-  <!-- Accessibility label for the send button in media selection -->
-  <string name="CameraXFragment_send">పంపు</string>
   <!-- Label shown below the elapsed time while a video recording is paused -->
   <string name="CameraXFragment_paused">నిలిపివేయబడింది</string>
   <!-- Displayed in a permissions dialog when the user has denied access to hardware for image and video capture. -->

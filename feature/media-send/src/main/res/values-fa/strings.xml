@@ -133,12 +133,6 @@
   <!-- Toasted when user device does not support video recording -->
   <string name="CameraFragment__video_recording_is_not_supported_on_your_device">ضبط تصویر روی دستگاه شما پشتیبانی نمی‌شود</string>
 
-  <!-- CameraXFragment -->
-  <string name="CameraXFragment_tap_for_photo_hold_for_video">برای عکس ضربه بزنید، برای ویدئو نگه دارید</string>
-  <!-- Accessibility content description to describe the capture button when taking an image/video -->
-  <string name="CameraXFragment_capture_description">گرفتن تصویر</string>
-  <string name="CameraXFragment_change_camera_description">تغییر دوربین</string>
-  <string name="CameraXFragment_open_gallery_description">باز کردن گالری</string>
   <!-- Button text asking for access to camera permissions -->
   <string name="CameraXFragment_allow_access">اجازۀ دسترسی بدهید</string>
   <!-- Dialog title asking users for camera and microphone permission -->
@@ -173,16 +167,6 @@
   <string name="CameraXFragment_photo_capture_failed">ثبت عکس ناموفق بود. لطفاً دوباره امتحان کنید.</string>
   <!-- Error message shown when we try to take a photo, but fail when trying to process it (convert it into something the user can see). -->
   <string name="CameraXFragment_photo_processing_failed">پردازش عکس ناموفق بود. لطفاً دوباره امتحان کنید.</string>
-  <!-- Accessibility label for the switch camera button -->
-  <string name="CameraXFragment_switch_camera">تغییر جهت دوربین</string>
-  <!-- Accessibility label for flash button when flash is off -->
-  <string name="CameraXFragment_flash_off">فلش خاموش</string>
-  <!-- Accessibility label for flash button when flash is on -->
-  <string name="CameraXFragment_flash_on">فلش روشن</string>
-  <!-- Accessibility label for flash button when flash is set to auto -->
-  <string name="CameraXFragment_flash_auto">فلش خودکار</string>
-  <!-- Accessibility label for the send button in media selection -->
-  <string name="CameraXFragment_send">ارسال</string>
   <!-- Label shown below the elapsed time while a video recording is paused -->
   <string name="CameraXFragment_paused">متوقف شد</string>
   <!-- Displayed in a permissions dialog when the user has denied access to hardware for image and video capture. -->

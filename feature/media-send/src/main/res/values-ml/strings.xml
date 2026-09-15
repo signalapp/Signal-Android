@@ -133,12 +133,6 @@
   <!-- Toasted when user device does not support video recording -->
   <string name="CameraFragment__video_recording_is_not_supported_on_your_device">നിങ്ങളുടെ ഉപകരണത്തിൽ വീഡിയോ റെക്കോർഡിംഗ് പിന്തുണയില്ല</string>
 
-  <!-- CameraXFragment -->
-  <string name="CameraXFragment_tap_for_photo_hold_for_video">ഫോട്ടോയ്‌ക്കായി അമർത്തുക, വീഡിയോയ്‌ക്കായി പിടിക്കുക</string>
-  <!-- Accessibility content description to describe the capture button when taking an image/video -->
-  <string name="CameraXFragment_capture_description">ക്യാപ്‌ചർ ചെയ്യുക</string>
-  <string name="CameraXFragment_change_camera_description">ക്യാമറ മാറ്റുക</string>
-  <string name="CameraXFragment_open_gallery_description">ഗാലറി തുറക്കുക</string>
   <!-- Button text asking for access to camera permissions -->
   <string name="CameraXFragment_allow_access">ആക്സസ് അനുവദിക്കുക</string>
   <!-- Dialog title asking users for camera and microphone permission -->
@@ -173,16 +167,6 @@
   <string name="CameraXFragment_photo_capture_failed">ഫോട്ടോ എടുക്കാനായില്ല. വീണ്ടും ശ്രമിക്കുക.</string>
   <!-- Error message shown when we try to take a photo, but fail when trying to process it (convert it into something the user can see). -->
   <string name="CameraXFragment_photo_processing_failed">ഫോട്ടോ പ്രോസസ്സ് ചെയ്യുന്നതിൽ പരാജയപ്പെട്ടു. വീണ്ടും ശ്രമിക്കുക.</string>
-  <!-- Accessibility label for the switch camera button -->
-  <string name="CameraXFragment_switch_camera">ക്യാമറ മാറുക</string>
-  <!-- Accessibility label for flash button when flash is off -->
-  <string name="CameraXFragment_flash_off">ഫ്ലാഷ് ഓഫാണ്</string>
-  <!-- Accessibility label for flash button when flash is on -->
-  <string name="CameraXFragment_flash_on">ഫ്ലാഷ് ഓണാണ്</string>
-  <!-- Accessibility label for flash button when flash is set to auto -->
-  <string name="CameraXFragment_flash_auto">ഫ്ലാഷ് ഓട്ടോ</string>
-  <!-- Accessibility label for the send button in media selection -->
-  <string name="CameraXFragment_send">അയയ്‌ക്കുക</string>
   <!-- Label shown below the elapsed time while a video recording is paused -->
   <string name="CameraXFragment_paused">താൽക്കാലികമായി നിർത്തി</string>
   <!-- Displayed in a permissions dialog when the user has denied access to hardware for image and video capture. -->

@@ -61,9 +61,9 @@
     <!-- Name of a passkey in the list of second factors on the account -->
     <string name="AccountSettingsFragment__passkey">పాస్ కీ</string>
     <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
-    <string name="AccountSettingsFragment__s_added_s">%1$s · Added %2$s</string>
+    <string name="AccountSettingsFragment__s_added_s">%1$s %2$s ను జోడించారు</string>
     <!-- Content description of the button that opens a second factor\'s options -->
-    <string name="AccountSettingsFragment__open_two_factor_options">Open two-factor authentication options</string>
+    <string name="AccountSettingsFragment__open_two_factor_options">రెండు-కారకాల ప్రామాణీకరణ ఎంపికలను తెరవండి</string>
     <!-- Menu option that renames a second factor -->
     <string name="AccountSettingsFragment__rename">పేరు మార్చండి</string>
     <!-- Menu option that removes a second factor -->
@@ -73,21 +73,23 @@
     <!-- Body of the dialog confirming removal of an authenticator app -->
     <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_app">మీరు సైన్ ఇన్ చేసినప్పుడు వన్-టైమ్ ధృవీకరణ కోడ్‌ల కోసం ఈ యాప్‌ను ఉపయోగించలేరు.</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
-    <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">Unlock to remove two-factor method</string>
+    <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">రెండు-కారకాల పద్ధతిని తొలగించడానికి అన్ లాక్ చేయండి</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
-    <string name="AccountSettingsFragment__to_remove_this_method_confirm_its_you">To remove this method, confirm it\'s you</string>
+    <string name="AccountSettingsFragment__to_remove_this_method_confirm_its_you">ఈ పద్ధతిని తొలగించడానికి, అది మీరేనని నిర్ధారించండి</string>
     <!-- Title of the device screen lock prompt shown before the Signal Login details can be viewed -->
-    <string name="AccountSettingsFragment__unlock_to_view_signal_login">Unlock to view Signal Login</string>
+    <string name="AccountSettingsFragment__unlock_to_view_signal_login">Signal Login వీక్షించేందుకు అన్ లాక్ చేయండి</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before the Signal Login details can be viewed -->
-    <string name="AccountSettingsFragment__to_view_your_signal_login_confirm_its_you">To view your Signal Login, confirm it\'s you</string>
+    <string name="AccountSettingsFragment__to_view_your_signal_login_confirm_its_you">మీ Signal Login ను వీక్షించడానికి, అది మీరేనని నిర్ధారించండి</string>
     <!-- Toast shown when the device screen lock wasn\'t confirmed, so nothing happened -->
     <string name="AccountSettingsFragment__authentication_required">ప్రమాణీకరణ అవసరం</string>
     <!-- Title of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
     <string name="AccountSettingsFragment__cant_add_authenticator_app">అథెంటికేటర్ యాప్‌ను జోడించలేకపోతున్నాను</string>
     <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
     <string name="AccountSettingsFragment__you_cant_add_more_than_d">మీరు %1$d కంటే ఎక్కువ అథెంటికేటర్ యాప్‌లను జోడించలేరు. ముందుగా ఒకదాన్ని తీసివేయడానికి ప్రయత్నించండి.</string>
+    <!-- Body of the dialog shown when the account has room for another authenticator app but already has as many two-factor methods of all kinds as it\'s allowed -->
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d_two_factor_methods">You can\'t add more than %1$d two-factor authentication methods. Try removing one first.</string>
     <!-- Shown in place of the list when we couldn\'t work out which second factors are on the account -->
-    <string name="AccountSettingsFragment__couldnt_load_your_two_factor_methods">Couldn\'t load your two-factor authentication methods. Check your connection and try again.</string>
+    <string name="AccountSettingsFragment__couldnt_load_your_two_factor_methods">మీ రెండు-కారకాల ప్రామాణీకరణ పద్ధతులను లోడ్ చేయలేకపోయాము. మీ కనెక్షన్‌ను తనిఖీ చేసి, మళ్ళీ ప్రయత్నించండి.</string>
     <!-- Toast shown after an authenticator app has been removed -->
     <string name="AccountSettingsFragment__authenticator_app_removed">అథెంటికేటర్ యాప్ తొలగించబడింది</string>
     <!-- Toast shown when an authenticator app couldn\'t be removed -->
@@ -138,14 +140,16 @@
     <string name="TotpCodeEntryScreen__enter_your_code">మీ కోడ్‌ను ఎంటర్ చేయండి</string>
     <!-- Instructions shown above the code entry field -->
     <string name="TotpCodeEntryScreen__enter_the_6_digit_code">మీ అథెంటికేటర్ యాప్ నుండి 6-అంకెల కోడ్‌ను ఎంటర్ చేయండి.</string>
-    <!-- Label of the code entry field -->
-    <string name="TotpCodeEntryScreen__code">కోడ్</string>
     <!-- Button that submits the entered code -->
-    <string name="TotpCodeEntryScreen__done">పూర్తయింది</string>
+    <string name="TotpCodeEntryScreen__next">Next</string>
     <!-- Error shown under the code field when the code the user entered was rejected -->
     <string name="TotpCodeEntryScreen__incorrect_code">తప్పు కోడ్. ఇప్పుడు మీ ఆథెంటికేటర్ యాప్‌లో ప్రస్తుతం కనిపిస్తున్న కోడ్‌ను నమోదు చేయండి.</string>
     <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->
     <string name="TotpCodeEntryScreen__couldnt_reach_signal">Signal‌ను చేరుకోలేకపోయాము. మీ కనెక్షన్‌ను తనిఖీ చేసి, మళ్ళీ ప్రయత్నించండి.</string>
+
+    <!-- Default name given to an authenticator app the moment it\'s set up, before the user chooses their own name for it -->
+    <string name="TotpRepository__authenticator">Authenticator</string>
+
     <!-- TotpNameEntryScreen -->
     <!-- Title of the screen where the user names an authenticator app -->
     <string name="TotpNameEntryScreen__choose_a_name">ఒక పేరును ఎంచుకోండి</string>

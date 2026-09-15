@@ -133,12 +133,6 @@
   <!-- Toasted when user device does not support video recording -->
   <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Înregistrarea video nu este acceptată pe dispozitivul tău</string>
 
-  <!-- CameraXFragment -->
-  <string name="CameraXFragment_tap_for_photo_hold_for_video">Atinge pentru poză, ține apăsat pentru videoclip</string>
-  <!-- Accessibility content description to describe the capture button when taking an image/video -->
-  <string name="CameraXFragment_capture_description">Capturează</string>
-  <string name="CameraXFragment_change_camera_description">Schimbă camera</string>
-  <string name="CameraXFragment_open_gallery_description">Deschide galerie</string>
   <!-- Button text asking for access to camera permissions -->
   <string name="CameraXFragment_allow_access">Permite accesul</string>
   <!-- Dialog title asking users for camera and microphone permission -->
@@ -173,16 +167,6 @@
   <string name="CameraXFragment_photo_capture_failed">Nu s-a putut face fotografia. Încearcă din nou.</string>
   <!-- Error message shown when we try to take a photo, but fail when trying to process it (convert it into something the user can see). -->
   <string name="CameraXFragment_photo_processing_failed">Fotografia nu a putut fi procesată. Încearcă din nou.</string>
-  <!-- Accessibility label for the switch camera button -->
-  <string name="CameraXFragment_switch_camera">Schimbă camera</string>
-  <!-- Accessibility label for flash button when flash is off -->
-  <string name="CameraXFragment_flash_off">Bliț oprit</string>
-  <!-- Accessibility label for flash button when flash is on -->
-  <string name="CameraXFragment_flash_on">Bliț activat</string>
-  <!-- Accessibility label for flash button when flash is set to auto -->
-  <string name="CameraXFragment_flash_auto">Bliț automat</string>
-  <!-- Accessibility label for the send button in media selection -->
-  <string name="CameraXFragment_send">Trimite</string>
   <!-- Label shown below the elapsed time while a video recording is paused -->
   <string name="CameraXFragment_paused">A fost pus în pauză</string>
   <!-- Displayed in a permissions dialog when the user has denied access to hardware for image and video capture. -->

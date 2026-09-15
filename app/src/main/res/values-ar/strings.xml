@@ -16,9 +16,7 @@
   <!-- Removed by excludeNonTranslatables <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string> -->
   <!-- Removed by excludeNonTranslatables <string name="google_pay_url" translatable="false">https://pay.google.com</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string> -->
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/5389476324250</string> -->
   <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
   <!-- Removed by excludeNonTranslatables <string name="pending_transfer_url" translatable="false">https://support.signal.org/hc/articles/360031949872#pending</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donate_faq_url" translatable="false">https://support.signal.org/hc/articles/360031949872#donate</string> -->
@@ -31,7 +29,6 @@
     <string name="yes">نعم</string>
     <string name="no">لا</string>
     <string name="delete">حذف</string>
-    <string name="please_wait">يُرجى الانتظار…</string>
     <string name="save">حفظ</string>
     <string name="note_to_self">ملاحظات شخصية</string>
 
@@ -370,17 +367,11 @@
     <string name="ContactNameEditActivity_middle_name">الاسم الأوسَط</string>
 
     <!-- ContactShareEditActivity -->
-    <!-- ContactShareEditActivity toolbar title -->
-    <string name="ContactShareEditActivity__send_contact">إرسال جهة الاتصال</string>
     <string name="ContactShareEditActivity_type_home">المنزل</string>
     <string name="ContactShareEditActivity_type_mobile">الهاتف</string>
     <string name="ContactShareEditActivity_type_work">العمل</string>
     <string name="ContactShareEditActivity_type_missing">غير ذلك</string>
     <string name="ContactShareEditActivity_invalid_contact">جهة الاتصال التي تمَّ اختيارها غير صالحة.</string>
-    <!-- Content description for name edit button on contact share edit activity -->
-    <string name="ContactShareEditActivity__edit_name">تعديل الاسم</string>
-    <!-- Content description for user avatar in edit activity -->
-    <string name="ContactShareEditActivity__avatar">الصورة الرمزية</string>
 
     <!-- ConversationItem -->
     <string name="ConversationItem_error_not_sent_tap_for_details">لم يتم الإرسال. انقر للمزيد من التفاصيل.</string>
@@ -392,9 +383,6 @@
     <string name="ConversationItem_error_delete_failed">تعذَّرت عملية الحذف، انقر للتفاصيل.</string>
     <string name="ConversationItem_group_action_left">غادر المُستخدِم %1$s المجموعة.</string>
     <string name="ConversationItem_send_paused">الإرسال متوقف مؤقتًا</string>
-    <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">هل ترغبُ بالعودة إلى الرسائل القصيرة غير المُشفَّرة؟</string>
-    <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">هل ترغبُ بالعودة إلى وسائط متعددة غير مُشفَّرة؟</string>
-    <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">هذه الرسالة ستكون <b>غير</b> مُشفَّرة لأن المُستلِم لم يعد مُستخدِمًا ‏لسيجنال‏ .\n\nهل لديك الرغبة في إرسالها غير آمنة؟</string>
     <string name="ConversationItem_unable_to_open_media">لم يتم العثور على تطبيق قادر على فتح الملف.</string>
     <string name="ConversationItem_copied_text">تم نسخ %1$s</string>
     <string name="ConversationItem_from_s">من %1$s</string>
@@ -464,17 +452,10 @@
     <string name="ConversationActivity_added_to_home_screen">تمت الإضافة للشاشة الرئيسية</string>
     <string name="ConversationActivity_calls_not_supported">المكالمات غير مدعمة</string>
     <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">هذا الجهاز لا يدعم خاصية الاتصال.</string>
-    <string name="ConversationActivity_transport_insecure_sms">رسالة SMS غير آمنة</string>
-    <!-- A title for the option to send an SMS with a placeholder to put the name of their SIM card -->
-    <string name="ConversationActivity_transport_insecure_sms_with_sim">رسالة SMS غير آمنة (%1$s)</string>
-    <string name="ConversationActivity_transport_insecure_mms">رسالة وسائط متعددة غير آمنة</string>
-    <!-- A title for the option to send an SMS with a placeholder to put the name of their SIM card -->
-    <string name="ConversationActivity_transport_signal">‫إرسال رسالة عبر سيجنال</string>
     <!-- The content description for button to send a message in a conversation -->
     <string name="ConversationActivity_send_message_content_description">إرسال الرسالة</string>
     <string name="ConversationActivity_lets_switch_to_signal">هيا ننتقل إلى سيجنال %1$s</string>
     <string name="ConversationActivity_specify_recipient">يُرجى اختيار جهة اتصال</string>
-    <string name="ConversationActivity_attachment_exceeds_size_limits">تجاوز حجم الملف المُرفَق الحد المسموح به لهذا الصنف من الرسائل.</string>
     <string name="ConversationActivity_unable_to_record_audio">تعذَّر تسجيل الصوت!</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">لا تستطيع إرسال الرسائل لهذه المجموعة لأنك لم تعد عضوًا فيها.</string>
   <!-- Removed by excludeNonTranslatables <string name="DisabledInputView__incognito_mode" translatable="false">Incognito mode (Labs)</string> -->
@@ -498,15 +479,7 @@
     <string name="ConversationActivity_signal_needs_microphone_access_voice_message">يحتاج سيجنال إلى الوصول للميكروفون لتسجيل رسالة صوتية.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">يحتاج سيجنال إلى إذن الوصول إلى الميكروفون لإرسال الرسائل الصوتية، ولكن تمَّ إيقاف الإذن على نحو دائم. يُرجى الاطِّلاع على إعدادات التطبيق ثم اختيار \"الأذونات\" وتفعيل \"الميكروفون\".</string>
 
-    <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">يحتاج سيجنال إلى إذنَي الوصول إلى الميكروفون والكاميرا من أجل الاتصال بـ %1$s، ولكن تمَّ إيقافهما على نحو دائم. يُرجى الاطِّلاع على إعدادات التطبيق ثم اختيار \"الأذونات\" وتفعيل \"الميكروفون\" و\"الكاميرا\".</string>
-    <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">لالتقاط الصور ومقاطع الفيديو، يُرجى السماح لسيجنال بالوصول إلى الكاميرا.</string>
-    <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">يحتاج سيجنال إلى إذن الوصول إلى الكاميرا من أجل التقاط الصور ومقاطع الفيديو، ولكن تمَّ إيقاف الإذن على نحو دائم. يُرجى الاطِّلاع على إعدادات التطبيق واختيار \"الأذونات\"، ثم تفعيل \"الكاميرا\".</string>
-    <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">يحتاج سيجنال إلى إذن الوصول إلى الكاميرا لالتقاط الصور أو تسجيل مقاطع الفيديو.</string>
-    <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">يُرجى تفعيل الإذن للميكروفون للتمكُّن من تسجيل مقاطع الفيديو مع الصوت.</string>
-    <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">يحتاج سيجنال إلى إذن الوصول إلى الميكروفون لتسجيل مقاطع الفيديو.</string>
-
     <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
-    <string name="ConversationActivity_no">لا</string>
     <string name="ConversationActivity_search_position">%1$d من %2$d</string>
     <string name="ConversationActivity_no_results">لا يوجد نتائج</string>
 
@@ -543,8 +516,6 @@
     <string name="ConversationActivity__this_person_is_no_longer_using_signal">‫لم يعُد هذا الشخص يستخدم سيجنال. ادْعُه إلى سيجنال لإبقاء الدردشة هنا.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">اُدْعُ إلى سيجنال</string>
-    <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
-    <string name="ConversationActivity__you_will_be_reminded_again_soon">سنُذكّرك مرة أخرى قريبًا.</string>
     <!-- Toast message shown when trying to record a voice message during an ongoing call -->
     <string name="ConversationFragment_cannot_record_voice_message_during_call">لا يُمكن تسجيل رسالة صوتية خلال المكالمة.</string>
 
@@ -568,23 +539,6 @@
         <item quantity="few">هل ترغبُ بحذف الرسائل المُحدَّدة؟</item>
         <item quantity="many">هل ترغبُ بحذف الرسائل المُحدَّدة؟</item>
         <item quantity="other">هل ترغبُ بحذف الرسائل المُحدَّدة؟</item>
-    </plurals>
-    <string name="ConversationFragment_save_to_sd_card">هل ترغبُ بالحفظ في الذاكرة؟</string>
-    <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-        <item quantity="zero">إن حفظ أي ملف متعدد الوسائط في سعة التخزين سَيسمح لأي تطبيق آخر على جهازك بالوصول إليه.\n\n استمرار؟</item>
-        <item quantity="one">إن حفظ ملف متعدد الوسائط هذا في سعة التخزين سَيسمح لأي تطبيق آخر على جهازك بالوصول إليه.\n\n استمرار؟</item>
-        <item quantity="two">إن حفظ ملفين متعددين الوسائط في سعة التخزين سَيسمح لأي تطبيق آخر على جهازك بالوصول إليها.\n\n استمرار؟</item>
-        <item quantity="few">إن حفظ %1$d ملفات متعددة الوسائط في سعة التخزين سيسمح لأي تطبيق آخر على جهازك بالوصول إليها.\n\n استمرار؟</item>
-        <item quantity="many">إن حفظ %1$d ملفًا متعدد الوسائط في سعة التخزين سَيسمح لأي تطبيق آخر على جهازك بالوصول إليها.\n\n استمرار؟</item>
-        <item quantity="other">إن حفظ %1$d ملفٍ متعدد الوسائط في سعة التخزين سَيسمح لأي تطبيق آخر على جهازك بالوصول إليها.\n\n استمرار؟</item>
-    </plurals>
-    <plurals name="ConversationFragment_saving_n_attachments">
-        <item quantity="zero">جارٍ حفظ ملف مُرفَق</item>
-        <item quantity="one">جارٍ حفظ ملف مُرفَق واحد</item>
-        <item quantity="two">جارٍ حفظ ملفين مُرفَقين</item>
-        <item quantity="few">جارٍ حفظ %1$d ملفات مُرفَقة</item>
-        <item quantity="many">جارٍ حفظ %1$d ملفًا مُرفَقًا</item>
-        <item quantity="other">جارٍ حفظ %1$d ملفٍ مُرفَقٍ</item>
     </plurals>
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
         <item quantity="zero">جارٍ حفظ ملف مُرفَق في ذاكرة التخزين…</item>
@@ -634,12 +588,8 @@
         <item quantity="many">سيرى أعضاء المجموعة الذين يستخدمون آخر الإصدارات من سيجنال أنك حذفت هذه الرسائل.</item>
         <item quantity="other">سيرى أعضاء المجموعة الذين يستخدمون آخر الإصدارات من سيجنال أنك حذفت هذه الرسائل.</item>
     </plurals>
-    <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
-    <string name="ConversationFragment_delete_on_this_device">حذف من هذا الجهاز</string>
     <!-- Dialog button for deleting one or more note-to-self messages that will be sync\'d to other devices -->
     <string name="ConversationFragment_delete">حذف</string>
-    <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
-    <string name="ConversationFragment_delete_everywhere">حذف من كل مكان</string>
     <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">ستُحذَف هذه الرسالة لأي شخص في الدردشة. سَيتمكنون من رؤية أنك قُمتَ بحذف رسالة.</string>
     <string name="ConversationFragment_quoted_message_not_found">لم يتم العثور على الرسالة الأصلية.</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">الرسالة الأصلية لم تعد متوفرة.</string>
@@ -658,7 +608,6 @@
         <item quantity="many">%1$d عضوًا بالمجموعة لهم نفس الاسم.</item>
         <item quantity="other">%1$d عضوٍ بالمجموعة لهم نفس اﻻسم.</item>
     </plurals>
-    <string name="ConversationFragment__tap_to_review">انقر للمراجعة</string>
     <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
     <string name="ConversationFragment__review_banner_body">هذا الشخص له نفس الاسم الذي لدى جهة اتصال أخرى.</string>
     <string name="ConversationFragment_contact_us">تواصَل معنا</string>
@@ -710,8 +659,6 @@
     <string name="ConversationFragment_reported_as_spam_and_blocked">تمَّ الإبلاغ والحظر</string>
     <!-- Dialog message shown after accepting a message request and tapping on options from the conversation event -->
     <string name="ConversationFragment_you_accepted_a_message_request_from_s">قبلتَ طلب مراسلة من %1$s. إذا حدث هذا عن طريق الخطأ، يمكنك اختيار أحد الإجراءات التالية.</string>
-    <!-- Text shown in conversation header when in a message request state and to carefully review the user -->
-    <string name="ConversationFragment_review_carefully">راجِع بحذر</string>
     <!-- Text shown in conversation header when in a message request state that the name is not verified -->
     <string name="ConversationFragment_name_not_verified">الاسم غير مُتحقَّق منه</string>
     <!-- Label for official chat pill shown in the Note to Self conversation header -->
@@ -819,8 +766,6 @@
     <string name="ProfileNameBottomSheet__group_names_on_signal">يقوم أفراد المجموعات باختيار %1$s.</string>
     <!-- Bottom sheet text explaining that groups can impersonate organizations and to be cautious -->
     <string name="ProfileNameBottomSheet__be_cautious_of_groups">كُن حذرًا من المجموعات التي تنتحل صفات المنظمات والشركات.</string>
-    <!-- Bottom sheet text explaining that profile names of group members are not verified -->
-    <string name="ProfileNameBottomSheet__profile_names_in_groups">أسماء الحسابات الشخصية الخاصة بأعضاء المجموعات لم يتم التحقُّق منها.</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">إزالة الفلتر</string>
@@ -1011,7 +956,6 @@
     <string name="ChooseBackupFragment__icon_content_description">الاستعادة من أيقونة النسخة الاحتياطية</string>
     <string name="ChooseBackupFragment__choose_backup">اختيار النسخة الاحتياطية</string>
     <string name="ChooseBackupFragment__learn_more">اعرف المزيد</string>
-    <string name="ChooseBackupFragment__no_file_browser_available">مدير الملفات غير متاح</string>
 
     <!-- RestoreBackupFragment -->
     <string name="RestoreBackupFragment__restore_complete">اكتملَت عملية الاستعادة.</string>
@@ -1032,41 +976,6 @@
     <string name="CreateBackupBottomSheet__depending_on_the_size">قد يستغرق هذا وقتًا طويلًا حسب حجم النسخة الاحتياطية الخاصة بك. يُمكنك استخدام هاتفك بشكل اعتيادي أثناء إجراء عملية النسخ الاحتياطي.</string>
     <!-- Bottom sheet free message -->
     <string name="CreateBackupBottomSheet__free_tier">تتمُّ إضافة ملفات الوسائط إلى نسختك الاحتياطية كلما أرسلتَ أو استلمتَ رسائل.</string>
-
-    <!-- Headline text for a bottom sheet dialog shown when the restoration of the media backup fails. -->
-    <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">تعذَّر استرجاع الوسائط.</string>
-    <!-- Help text for a bottom sheet dialog shown when the restoration of the media backup fails, displayed while the app is calculating the amount of disk space required. -->
-    <string name="RestoreMediaFailedBottomSheet__Your_device_does_not_have_enough_free_space_placeholder">لا يتوفَّر في جهازك مساحة كافية. وفِّر مساحة تخزين لاسترجاع وسائطك.\n\nإذا اخترت \"تخطِّي الاستعادة\"، فسيتمُّ حذف الوسائط في نسختك الاحتياطية في المرة القادمة التي يُكمل فيها جهازك حفظ نسخة احتياطية جديدة.</string>
-    <!-- Help text for a bottom sheet dialog shown when the restoration of the media backup fails, displayed once the app knows how much disk space is required. The placeholder is a filesize, such as "1.23 GB." -->
-    <string name="RestoreMediaFailedBottomSheet__Your_device_does_not_have_enough_free_space">لا يتوفَّر في جهازك مساحة كافية. وفِّر %1$s من المساحة لاسترجاع وسائطك.\n\nإذا اخترتَ \"تخطِّي الاستعادة\"، فسَيمُّ حذف الوسائط في نسختك الاحتياطية في المرة القادمة التي يُكمل فيها جهازك حفظ نسخة احتياطية جديدة.</string>
-    <!-- Confirmation button to dismiss bottom sheet dialog without aborting the restoration process. -->
-    <string name="RestoreMediaFailedBottomSheet__Okay">موافق</string>
-    <!-- Negative button on a bottom sheet dialog shown when the restoration of the media backup fails. This aborts the restoration process. -->
-    <string name="RestoreMediaFailedBottomSheet__Skip_restore">تخطِّي الاستعادة</string>
-    <!-- Accessibility content description for the "Backup Error" icon -->
-    <string name="RestoreMediaFailedBottomSheet__Backup_error_icon_content_description">أيقونة خطأ في النسخ الاحتياطي</string>
-
-    <!-- Banner text that is displayed at the top of the app when trying to restore more media than the device\'s memory has space for. -->
-    <string name="RestoreMediaErrorBanner__Free_up_storage_space">وفِّر مساحة تخزين لاسترجاع وسائطك.</string>
-    <!-- Banner text that is displayed at the top of the app when trying to restore more media than the device\'s memory has space for. The placeholder is a filesize, such as "1.23 GB." -->
-    <string name="RestoreMediaErrorBanner__Free_up_of_space">حرِّر %1$s من المساحة لاسترجاع وسائطك.</string>
-
-    <!-- Remote media restoration in-process status title. -->
-    <string name="RestoreMediaReminder__Restoring_media">جارٍ استرجاع الوسائط</string>
-    <!-- Remote media restoration in-process description. The first to placeholders are filesizes, such as "865 MB" and "2.3 GB". The final placeholder is a whole number representing the percentage progress. -->
-    <string name="RestoreMediaReminder__Progress_filesize">%1$s من %2$s (%3$d%%)</string>
-    <!-- Remote media restoration paused status title. -->
-    <string name="RestoreMediaReminder__Restoring_media_paused">تمَّ إيقاف استرجاع الوسائط مؤقَّتًا</string>
-    <!-- Remote media restoration paused status description for when the restore is paused because unmetered connectivity, such as WiFi, is unavailable. -->
-    <string name="RestoreMediaReminder__Waiting_for_Wifi">في انتظار الاتصال بالواي فاي…</string>
-    <!-- Remote media restoration paused status description for when the restore is paused because internet is unavailable. -->
-    <string name="RestoreMediaReminder__Waiting_for_internet_connection">في انتظار اتصال بالإنترنت…</string>
-    <!-- Remote media restoration paused status description for when the device\'s battery is low -->
-    <string name="RestoreMediaReminder__low_battery">البطارية منخفضة. يُرجى شحن جهازك.</string>
-    <!-- Remote media restoration call to action when the device is out of space. The placeholder string is a file size, such as "1.23 GB". -->
-    <string name="RestoreMediaReminder__Free_up_space">وفِّر %1$s لاسترجاع وسائطك.</string>
-    <!-- Button label to abort media restoration -->
-    <string name="RestoreMediaReminder__Skip_restore">تخطِّي الاستعادة</string>
 
     <!-- BackupsPreferenceFragment -->
     <string name="BackupsPreferenceFragment__chat_backups">النسخ الاحتياطية للدردشات</string>
@@ -1098,9 +1007,6 @@
     <string name="CustomDefaultPreference_using_custom">استخدام التخصيص: %1$s</string>
     <string name="CustomDefaultPreference_using_default">الاستخدام الافتراضي: %1$s</string>
     <string name="CustomDefaultPreference_none">لا شيء</string>
-
-    <!-- AvatarSelectionBottomSheetDialogFragment -->
-    <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">الوصول إلى معرض الصور يتطلَّب إذن الوصول إلى ذاكرة التخزين.</string>
 
     <!-- DateUtils -->
     <string name="DateUtils_just_now">الآن</string>
@@ -1210,10 +1116,6 @@
     <string name="LinkDeviceFragment__s_linked">تمَّ الربط بـ \"%1$s\"</string>
     <!-- Progress dialog message indicating that a device is currently being linked with an account -->
     <string name="LinkDeviceFragment__linking_device">جارٍ ربط جهاز…</string>
-    <!-- Toast message shown after a device has been linked -->
-    <string name="LinkDeviceFragment__device_approved">تمَّت الموافقة على الجهاز</string>
-    <!-- Progress dialog message indicating that the list of linked devices is currently loading -->
-    <string name="LinkDeviceFragment__loading">جارٍ التحميل…</string>
     <!-- Progress dialog message indicating that you are syncing messages to your linked device -->
     <string name="LinkDeviceFragment__syncing_messages">جارٍ مزامنة الرسائل…</string>
     <!-- Text message shown when the user has no linked devices -->
@@ -1329,11 +1231,7 @@
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">هل ترغبُ بفصل الربط بـ \"%1$s\"؟</string>
     <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">لن يكون إرسال واستقبال الرسائل مُمكِنًا بمُجرَّد إلغاء ربط الجهاز.</string>
-    <string name="DeviceListActivity_network_connection_failed">فَشِلَ الاتصال بالشبكة</string>
-    <!-- Button label on an alert dialog. The dialog informs the user they have network issues. If pressed, we will retry the network request. -->
-    <string name="DeviceListActivity_try_again">حاوِل مرّة أخرى.</string>
     <string name="DeviceListActivity_unlinking_device">جارٍ إلغاء الارتباط بالجهاز…</string>
-    <string name="DeviceListActivity_unlinking_device_no_ellipsis">جارٍ إلغاء الارتباط بالجهاز</string>
     <string name="DeviceListActivity_network_failed">فَشِلَ الاتصال بالشبكة!</string>
 
     <!-- DeviceListItem -->
@@ -1445,30 +1343,6 @@
         <item quantity="few">تمَّت إزالة هؤلاء الأعضاء من المجموعة ولن يتمكنوا من الانضمام إليها مرة أخرى حتى يقوموا بالترقية:</item>
         <item quantity="many">تمَّت إزالة هؤلاء الأعضاء من المجموعة ولن يتمكنوا من الانضمام إليها مرة أخرى حتى يقوموا بالترقية:</item>
         <item quantity="other">تمَّت إزالة هؤلاء الأعضاء من المجموعة ولن يتمكنوا من الانضمام إليها مرة أخرى حتى يقوموا بالترقية:</item>
-    </plurals>
-
-    <!-- GroupsV1MigrationInitiationBottomSheetDialogFragment -->
-    <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">قُم بالترقية إلى مجموعة جديدة</string>
-    <string name="GroupsV1MigrationInitiation_upgrade_this_group">قُم بترقية هذه المجموعة</string>
-    <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">تحوي المجموعات الجديدة ميزات كالإشارة بتاغ ‎@mentions‎ والمُشرِفين على المجموعة، كما ستدعم مستقبلًا المزيد من الميزات.</string>
-    <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">سيُحتفَظ بكل سجل الرسائل والوسائط التي كانت قبل الترقية.</string>
-    <string name="GroupsV1MigrationInitiation_encountered_a_network_error">حدث خطأ في الشبكة. حاوِل مرّة أخرى لاحقًا.</string>
-    <string name="GroupsV1MigrationInitiation_failed_to_upgrade">فشلت الترقية.</string>
-    <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
-        <item quantity="zero">يحتاج هذا العضو إلى قبول دعوة الانضمام إلى هذه المجموعة مرة أخرى، ولن تصله أي رسائل من المجموعة إلى حين موافقته على الانضمام إليها:</item>
-        <item quantity="one">يحتاج هذا العضو إلى قبول دعوة الانضمام إلى هذه المجموعة مرة أخرى، ولن تصله أي رسائل من المجموعة إلى حين موافقته على الانضمام إليها:</item>
-        <item quantity="two">يحتاج هذان العضوان إلى قبول دعوة الانضمام إلى هذه المجموعة مرة أخرى، ولن تصلهما أي رسائل من المجموعة إلى حين موافقتهما على الانضمام إليها:</item>
-        <item quantity="few">يحتاج هؤﻻء اﻷعضاء إلى قبول دعوة الانضمام إلى هذه المجموعة مرة أخرى، ولن تصلهم أي رسائل من المجموعة إلى حين موافقتهم على الانضمام إليها:</item>
-        <item quantity="many">يحتاج هؤﻻء اﻷعضاء إلى قبول دعوة الانضمام إلى هذه المجموعة مرة أخرى، ولن تصلهم أي رسائل من المجموعة إلى حين موافقتهم على الانضمام إليها:</item>
-        <item quantity="other">يحتاج هؤﻻء اﻷعضاء إلى قبول دعوة الانضمام إلى هذه المجموعة مرة أخرى، ولن تصلهم أي رسائل من المجموعة إلى حين موافقتهم على الانضمام إليها:</item>
-    </plurals>
-    <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
-        <item quantity="zero">هذا العضو غير قادر على الانضمام إلى المجموعات الجديدة، وستتم إزالته من المجموعة:</item>
-        <item quantity="one">هذا العضو غير قادر على الانضمام إلى المجموعات الجديدة، وستتم إزالته من المجموعة:</item>
-        <item quantity="two">هذان العضوان غير قادرين على الانضمام إلى المجموعات الجديدة، وستتم إزالتهما من المجموعة:</item>
-        <item quantity="few">هؤلاء الأعضاء غير قادرين على الانضمام إلى المجموعات الجديدة، وستتم إزالتهم من المجموعة:</item>
-        <item quantity="many">هؤلاء الأعضاء غير قادرين على الانضمام إلى المجموعات الجديدة، وستتم إزالتهم من المجموعة:</item>
-        <item quantity="other">هؤلاء الأعضاء غير قادرين على الانضمام إلى المجموعات الجديدة، وستتم إزالتهم من المجموعة:</item>
     </plurals>
 
     <!-- GroupsV1MigrationSuggestionsReminder -->
@@ -1640,7 +1514,7 @@
     <!-- Confirmation text when adding members to a group. %1$d is the number of members added. %2$s is the name of the group. -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
         <item quantity="zero">هل ترغبُ بإضافة %1$d عضوًا إلى \"%2$s\"؟</item>
-        <item quantity="one">هل ترغبُ بإضافة \"{2}\" إلى \"%2$s\"؟</item>
+        <item quantity="one">هل ترغبُ بإضافة \"%2$s\" إلى \"%1$d\"؟</item>
         <item quantity="two">هل ترغبُ بإضافة %1$d عضوين إلى \"%2$s\"؟</item>
         <item quantity="few">هل ترغبُ بإضافة %1$d أعضاء إلى \"%2$s\"؟</item>
         <item quantity="many">هل ترغبُ بإضافة %1$d عضوًا إلى \"%2$s\"؟</item>
@@ -1670,8 +1544,6 @@
     <string name="AddGroupDetailsFragment__if_you_continue_to_the_group_s_your_changes_wont_be_saved">إذا واصلت إلى المجموعة \"%1$s\" فلن يتم حفظ تغييراتك.‑</string>
     <!-- Label for the button that confirms discarding the in-progress group and navigating to an existing group -->
     <string name="AddGroupDetailsFragment__discard">تجاهل</string>
-    <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">حدّدتَ جهة اتصال لا تدعم مجموعات سيجنال، لذلك ستُحوّل هذه المجموعة إلى رسائل الوسائط المتعددة المخصصة (MMS). ستكون أسماء وصور مجموعة رسائل الوسائط المتعددة المخصصة (MMS) مرئية لك فقط.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">اخترتَ جهة اتصال لا تدعم مجموعات سيجنال، لذلك فهذه المجموعة ستتواصل بتقنية MMS. أسماء وصور مجموعة MMS المُخصصة ستكون مرئية لك فقط. سَتتم إزالة دعم مجموعات MMS قريبًا للتركيز على الرسائل المشفرة.</string>
 
@@ -1700,10 +1572,6 @@
     <string name="ManageGroupActivity_legacy_group">مجموعة بنمط سابق</string>
     <!-- This is placed inside a "Learn More" text view, which automatically appends LearnMoreTextView_learn_more in code -->
     <string name="ManageGroupActivity_legacy_group_learn_more">هذه مجموعة ذات نمط سابق. إن الميزات مثل خاصية المُشرِفين على المجموعة متاحة فقط في المجموعات الجديدة.</string>
-    <!-- This is placed inside a "Learn More" text view, which automatically appends LearnMoreTextView_learn_more in code to the end of the string -->
-    <string name="ManageGroupActivity_legacy_group_upgrade">هذه مجموعة ذات نمط سابق. للوصول إلى ميزات جديدة مثل الإشارة بتاغ ‎@mentions‏ والمُشرِفين،</string>
-    <string name="ManageGroupActivity_legacy_group_too_large">لا يمكن ترقية هذه المجموعة ذات النمط السابق إلى مجموعة بنمط جديد لأنها كبيرة جدًا. الحد الأقصى للمجموعة هو %1$d.</string>
-    <string name="ManageGroupActivity_upgrade_this_group">قُم بترقية هذه المجموعة.</string>
     <string name="ManageGroupActivity_this_is_an_insecure_mms_group">هذه المجموعة التي تعمل بنمط MMS غير آمنة. للتحدُّث بخصوصية، يُرجى دعوة جهات اتصالك إلى سيجنال.</string>
     <string name="ManageGroupActivity_invite_now">الدعوة اﻵن</string>
     <string name="ManageGroupActivity_more">المزيد</string>
@@ -1769,7 +1637,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">اسم المُستخدم الخاص بك، وكود الـ QR والرابط ليسوا مرئيين على حسابك الشخصي. شارِك اسم المُستخدم الخاص بك فقط مع الناس الذين تثق بهم.</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-    <string name="ManageProfileFragment__username_footer_no_username">يُمكن للناس مراسلتك الآن باستخدام اسم المُستخدم الاختياري الخاص بك، بحيث لا تحتاج إلى إعطاء رقم هاتفك. </string>
+    <string name="ManageProfileFragment__username_footer_no_username">People can message you using an optional username instead of a phone number. Usernames have a unique QR code and link you can share with friends.</string>
     <string name="ManageProfileFragment_profile_name">اسم الحساب</string>
     <string name="ManageProfileFragment_username">اسم المُستخدم</string>
     <string name="ManageProfileFragment_about">حول</string>
@@ -1942,22 +1810,9 @@
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">مشاركة</string>
-    <string name="InviteActivity_share_with_contacts">مشاركة مع جهات الاتصال</string>
-    <string name="InviteActivity_share_via">مشاركة عبر…</string>
 
     <string name="InviteActivity_cancel">إلغاء</string>
-    <string name="InviteActivity_sending">جارٍ الإرسال…</string>
-    <string name="InviteActivity_invitations_sent">تمَّ إرسال الدعوات!</string>
     <string name="InviteActivity_invite_to_signal">اُدْعُ إلى سيجنال</string>
-    <string name="InviteActivity_send_sms">إرسال رسالة قصيرة (%1$d)</string>
-    <plurals name="InviteActivity_send_sms_invites">
-        <item quantity="zero">هل تريد إرسال %1$d دعوات عبر الرسائل القصيرة ؟</item>
-        <item quantity="one">هل تريد إرسال %1$d دعوات عبر الرسائل القصيرة ؟</item>
-        <item quantity="two">هل تريد إرسال %1$d دعوات عبر الرسائل القصيرة ؟</item>
-        <item quantity="few">هل تريد إرسال %1$d دعوات عبر الرسائل القصيرة ؟</item>
-        <item quantity="many">هل تريد إرسال %1$d دعوات عبر الرسائل القصيرة ؟</item>
-        <item quantity="other">هل تريد إرسال %1$d دعوات عبر رسائل SMS؟</item>
-    </plurals>
     <string name="InviteActivity_lets_switch_to_signal">هيا ننتقل إلى سيجنال %1$s</string>
     <!-- Toast shown when Signal is unable to find an external app to share the Invite text string to -->
     <string name="InviteActivity_no_app_to_share_to">يبدو عدم وجود أي تطبيقات لديك للمشاركة من خلالها.</string>
@@ -2000,7 +1855,6 @@
         <item quantity="other">هذا سيحذف جميع الـ %1$d ملف التي تمّ اختيارها. سيتم حذف أيضًا أي رسالة نصية ذات صلة بهذه العناصر.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">جارٍ الحذف</string>
-    <string name="MediaOverviewActivity_Media_delete_progress_message">جارٍ حذف الرسائل…</string>
     <!-- Format string showing current vs. total items being deleted, e.g. "12 of 207" -->
     <string name="MediaOverviewActivity_Media_delete_progress_count">%1$d من %2$d</string>
     <string name="MediaOverviewActivity_Sort_by">الترتيب بحسب</string>
@@ -2053,8 +1907,6 @@
     <string name="MediaOverviewActivity_this_media_is_not_sent_yet">لم يتم إرسال ملف الوسائط بعد.</string>
     <string name="MediaOverviewActivity_jump_to_message">الانتقال إلى الرسالة…</string>
 
-    <!-- Megaphones -->
-    <string name="Megaphones_remind_me_later">ذكِّرني لاحقًا</string>
     <string name="Megaphones_verify_your_signal_pin">التحقُّق من ‫رقم التعريف الشخصي (PIN) على سيجنال</string>
     <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">قد نسألك أحيانًا للتحقُّق من رقم التعريف الشخصي (PIN) ليصبح بإمكانك تذكُّره.</string>
     <string name="Megaphones_verify_pin">التحقُّق من رقم التعريف الشخصي (PIN)</string>
@@ -2064,6 +1916,8 @@
     <string name="Megaphones_invite_friends">اُدْعُ الأصدقاء</string>
     <string name="Megaphones_chat_colors">لون الدردشة</string>
     <string name="Megaphones_add_a_profile_photo">إضافة صورة للحساب</string>
+    <!-- Text in a card view prompting the user to choose a username as part of the onboarding megaphone -->
+    <string name="Megaphones_set_up_username">Set up username</string>
 
     <!-- Message body of megaphone telling users that a device was linked to their account. %1$s is the time it was linked -->
     <string name="NewLinkedDeviceMegaphone__a_new_device_was_linked">تمَّ ربط جهاز جديد بِحسابك %1$s.</string>
@@ -2098,11 +1952,6 @@
     <string name="NotificationsMegaphone_turn_on">تشغيل</string>
     <string name="NotificationsMegaphone_not_now">ليس الآن</string>
 
-    <!-- NotificationMmsMessageRecord -->
-    <string name="NotificationMmsMessageRecord_multimedia_message">رسالة وسائط</string>
-    <string name="NotificationMmsMessageRecord_downloading_mms_message">تنزيل رسالة متعددة الوسائط</string>
-    <string name="NotificationMmsMessageRecord_error_downloading_mms_message">خطأ في تنزيل رسالة متعددة الوسائط، انقر لإعادة المحاولة</string>
-
     <!-- MediaPickerActivity -->
     <string name="MediaPickerActivity__menu_open_camera">فتح الكاميرا</string>
 
@@ -2112,7 +1961,6 @@
 
     <!-- MessageRecord -->
     <string name="MessageRecord_unknown">غير معروف</string>
-    <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">استلمتَ رسالةً مُشفَّرة من نسخة سيجنال قديمة كان قد توقَّف دعمها. يُرجى أن تطلب من المُرسِل تحديث نسخة التطبيق ومن ثمّ إعادة إرسال الرسالة.</string>
     <string name="MessageRecord_left_group">تركتَ المجموعة.</string>
     <string name="MessageRecord_you_updated_group">قمتَ بتحديث المجموعة.</string>
     <string name="MessageRecord_the_group_was_updated">تمَّ تحديث المجموعة.</string>
@@ -2466,8 +2314,6 @@
     </plurals>
 
     <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->
-    <string name="MessageRecord__you_will_no_longer_be_able_to_send_sms_messages_from_signal_soon">لن تتمكن قريبًا من إرسال رسائل SMS من سيجنال. قُم بدعوة %1$s إلى سيجنال لإبقاء المحادثة هنا.</string>
-    <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->
     <string name="MessageRecord__you_can_no_longer_send_sms_messages_in_signal">لن تتمكن بعد الآن من إرسال رسائل SMS من سيجنال. قُم بدعوة %1$s إلى سيجنال لإبقاء المحادثة هنا.</string>
     <!-- Body for quote when message being quoted is an in-app payment message -->
     <string name="MessageRecord__payment_s">المدفوعات: %1$s</string>
@@ -2500,8 +2346,6 @@
     <string name="MessageRequestBottomView_delete">حذف</string>
     <string name="MessageRequestBottomView_block">حظر</string>
     <string name="MessageRequestBottomView_unblock">رفع الحظر</string>
-    <!-- Text explaining a message request from someone you\'ve removed before -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">هل ترغبُ بالسماح لجهة الاتصال %1$s بمراسلتك وهل ترغبُ بمشاركة اسمك وصورتك معها؟ حذفتَ هذا الشخص في الماضي.</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">هل تود السماح لهذا الشخص بمراسلتك ومشاركة اسمك وصورتك معه؟ لن يعلم الطرف الآخر أنك رأيت رسالته إلّا بعد قبول الطلب.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">هل ترغبُ بالسماح لجهة الاتصال %1$s بمراسلتك وهل ترغب بمشاركة اسمك وصورتك معها؟ لن تستقبل أي رسائل حتى تزيل الحظر عنها.</string>
@@ -2509,11 +2353,8 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">هل تود السماح لـ %1$s بإرسال رسالة لك؟ لن تتلقى أي رسالة منه حتى تُلغي حظرك له.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock the Signal release notes channel -->
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">هل ترغبُ بالحصول على الأخبار والتحديثات من %1$s؟ لن تصلك أي تحديثات حتى ترفع الحظر عنه.</string>
-    <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">هل ترغبُ بمتابعة الدردشة مع هذه المجموعة ومُشاركة اسمك وصورتك مع أعضاءها؟</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">لم يعد ممكنًا استخدام هذه المجموعة ذات النمط القديم. أنشِئ مجموعة جديدة لتفعيل المزايا الجديدة مثل الإشارة بتاغ @mentions والمُشرِفين.</string>
-    <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">لا يمكن استخدام هذه المجموعة ذات النمط السابق لأنها كبيرة جدًا. الحد الأقصى للمجموعة هو %1$d.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">هل ترغبُ بمتابعة هذه الدردشة مع %1$s وهل ترغبُ بمشاركة اسمك وصورتك معه؟</string>
-    <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">هل ترغبُ بالانضمام إلى هذه المجموعة ومشاركة اسمك وصورتك مع أعضائها؟ لن يعرفوا أنك قرأتَ رسائلهم حتى تقبل بذلك.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">هل ترغبُ بالانضمام إلى هذه المجموعة ومشاركة اسمك وصورتك مع أعضائها؟ لن تظهر لك رسائلهم حتى تقبل بذلك.</string>
     <!-- Shown when you are invited to a group and explains that until you accept the invitation to the group, members will not know that you have seen their messages. -->
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">هل ترغبُ بالانضمام إلى هذه المجموعة؟ لن يعرفوا أنك قرأت رسائلهم حتى تقبل بذلك.</string>
@@ -2558,20 +2399,12 @@
         <item quantity="many">%1$d مجموعة إضافية</item>
         <item quantity="other">%1$d مجموعة إضافية</item>
     </plurals>
-    <!-- Describes the names of members in a group. MessageRequestProfileView_group_members_* is nested in the first parentheses. MessageRequestProfileView_invited is nested in the second -->
-    <string name="MessageRequestProfileView_member_names_and_invited">%1$s (%2$s)</string>
     <!-- Text for an empty group or when you are the only member -->
     <string name="MessageRequestProfileView_group_members_zero">لا يوجد أعضاء آخرون في المجموعة حتى الآن.</string>
-    <!-- Text for a group with one member (not you). %1$s is their name -->
-    <string name="MessageRequestProfileView_group_members_one">%1$s</string>
     <!-- Text for a 2 member group you are in. %1$s is the name of the other member -->
     <string name="MessageRequestProfileView_group_members_one_and_you">%1$s وأنت</string>
-    <!-- Text for a 2 member group you are not in. %1$s and %2$s are the members\' names -->
-    <string name="MessageRequestProfileView_group_members_two">%1$s و%2$s</string>
     <!-- Text for a 3 member group you are in. %1$s and %2$s are the members\' names -->
     <string name="MessageRequestProfileView_group_members_two_and_you">%1$s، و%2$s وأنت</string>
-    <!-- Text for a 3 member group you are not in. %1$s, %2$s, %3$s are the names of the other members. -->
-    <string name="MessageRequestProfileView_group_members_three">%1$s، و%2$s و%3$s</string>
     <!-- Text for a 3+ member group. %1$s, %2$s, %3$s are member names. %4$s is the string key MessageRequestProfileView_other_members-->
     <string name="MessageRequestProfileView_group_members_other">%1$s، و%2$s، و%3$s، و%4$s</string>
     <!-- Nested in MessageRequestProfileView_group_members_other that shows how many members (besides three) are in the group -->
@@ -2587,8 +2420,6 @@
     <string name="MessageRequestBottomView_report">إبلاغ</string>
     <!-- Alert dialog title to accept a message request -->
     <string name="MessageRequestBottomView_accept_request">هل ترغبُ بقبول الطلب؟</string>
-    <!-- Alert dialog body to review the message request carefully -->
-    <string name="MessageRequestBottomView_review_requests_carefully">راجِع الطلبات بعناية. يتم تعيين أسماء الحسابات الشخصية من قبل أصحابها، وهي غير خاضعة لعملية التحقُّق.</string>
     <!-- Alert dialog body for accepting a message request. Contains bold substring placeholder -->
     <string name="MessageRequestBottomView_accept_request_body">لا تُقبَل الطلبات إلّا من الأشخاص الذين تثق بهم. %1$s رسالة يطلب فيها كود التسجيل أو رقم التعريف الشخصي (PIN) أو مفتاح الاستعادة.</string>
     <!-- Bold substring used in accept request body: "Signal will never" -->
@@ -2609,13 +2440,6 @@
     <string name="DeviceProvisioningActivity_link_this_device">هل ترغبُ بربط هذا الجهاز؟</string>
     <string name="DeviceProvisioningActivity_continue">متابعة</string>
 
-    <string name="DeviceProvisioningActivity_content_intro">سوف يتمكن من</string>
-    <string name="DeviceProvisioningActivity_content_bullets">
-        • قراءة جميع الرسائل \n• إرسال الرسائل باسمك
-    </string>
-    <string name="DeviceProvisioningActivity_content_progress_title">ربط الجهاز</string>
-    <string name="DeviceProvisioningActivity_content_progress_content">يجري ربط الجهاز الجديد…</string>
-    <string name="DeviceProvisioningActivity_content_progress_success">تمَّت المصادقة على الجهاز.</string>
     <string name="DeviceProvisioningActivity_content_progress_no_device">لم يتم العثور على أي جهاز.</string>
     <string name="DeviceProvisioningActivity_content_progress_network_error">خطأ في الشبكة.</string>
     <string name="DeviceProvisioningActivity_content_progress_key_error">كود الـ QR غير صالح.</string>
@@ -2625,11 +2449,6 @@
     <string name="DeviceProvisioningActivity_link_a_signal_device">هل ترغبُ بربط جهاز يستخدم سيجنال؟</string>
     <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">لِربط حاسوب أو جهاز آيباد بحساب سيجنال هذا، انتقِل إلى \"الأجهزة المُرتبِطة\" وانقر على \"ربط جهاز جديد\" وامسح ضوئيًا كود الـ QR من جديد. تأكَّد من مسح كود الـ QR الصادر مباشرًة من سيجنال فقط.</string>
 
-    <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">يحتاج سيجنال إلى إذن الوصول إلى الكاميرا من أجل مسح كود الـ QR ضوئيًا، ولكن رُفِض الإذن بشكلٍ دائم. يُرجى زيارة \"الإعدادات\" في جهازك، وتحديد \"التطبيقات\"، ثم اختيار \"الأذونات\"، ثم تفعيل \"الكاميرا\".</string>
-    <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">لا يمكن مسح كود الـ QR بدون منح إذن الوصول إلى الكاميرا.</string>
-
-    <!-- OutdatedBuildReminder -->
-    <string name="OutdatedBuildReminder_update_now">حدِّث الآن</string>
     <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">تنتهي اليوم صلاحية إصدار سيجنال. قُم بتثبيت النسخة الأحدث.</string>
     <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
         <item quantity="zero">تنتهي صلاحية إصدار سيجنال خلال %1$d يوم. يُرجى التحديث لآخر إصدار.</item>
@@ -2764,12 +2583,9 @@
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">يُرجى النقر هنا لتشغيل مكالمة الفيديو لديك.</string>
-    <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">للاتصال بـ %1$s، يحتاج سيجنال صلاحية الوصول إلى الكاميرا</string>
     <!-- Subtitle shown at top of call where %s is the elapsed time of the call -->
     <string name="WebRtcCallActivity__signal_s">سيجنال‏ %1$s</string>
     <string name="WebRtcCallActivity__calling">جارٍ الاتصال…</string>
-    <!-- Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect -->
-    <string name="WebRtcCallActivity__reconnecting">جارٍ إعادة الاتصال…</string>
     <!-- Title for dialog warning about lacking bluetooth permissions during a call -->
     <string name="WebRtcCallActivity__bluetooth_permission_denied">تمَّ رفض إذن بلوتوث</string>
     <!-- Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name -->
@@ -2878,7 +2694,6 @@
     <string name="WebRtcCallView__join_call">الانضمام للمكالمة</string>
     <string name="WebRtcCallView__call_is_full">المكالمة ممتلئة</string>
     <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">وصلَ عدد المشاركين إلى %1$d مُشارِكًا، وهو الحد الأقصى في هذه المكالمة. حاوِل مرّة أخرى لاحقًا.</string>
-    <string name="WebRtcCallView__your_video_is_off">توقَّف الفيديو لديك</string>
     <string name="WebRtcCallView__reconnecting">جارٍ إعادة الاتصال…</string>
     <string name="WebRtcCallView__joining">يجري الانضمام…</string>
     <string name="WebRtcCallView__disconnected">توقَّف الاتصال</string>
@@ -2951,10 +2766,6 @@
         <item quantity="other">الأعضاء %1$s و %2$s و%3$d آخرون موجودون في هذه المكالمة</item>
     </plurals>
 
-    <!-- Toggle content description for toggling camera direction  -->
-    <string name="WebRtcCallView__toggle_camera_direction">تبديل اتجاه الكاميرا</string>
-    <!-- Toggle content description for toggling audio output  -->
-    <string name="WebRtcCallView__toggle_speaker">تبديل مكبر الصوت</string>
     <!-- Toggle content description for toggling camera state  -->
     <string name="WebRtcCallView__toggle_camera">تبديل الكاميرا</string>
     <!-- Toggle content description for toggling mute state  -->
@@ -2977,8 +2788,6 @@
     <!-- Toast message shown when user is auto-muted because they are joining a large group call. -->
     <string name="WebRtcCallView__youve_been_muted_large_group">تمَّ كتم صوتك لأن هذه المُكالمة تضُم العديد من المُشارِكين.</string>
 
-    <!-- Error message when the developer added a button in the wrong place. -->
-    <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">حدث خطأ في واجهة المُستخدِم. يُرجى الإبلاغ عن هذا الخطأ للمطوِّرين.</string>
     <!-- Error message when the user is trying to change audio outputs but none are present. -->
     <string name="WebRtcAudioOutputToggleButton_no_eligible_audio_i_o_detected">تعذّر اكتشاف إدخال/إخراج صوتي مُؤهَّل.</string>
     <!-- A text description of the bluetooth icon, used for accessibility. -->
@@ -2992,8 +2801,6 @@
 
     <!-- A clickable button to "raise your hand" in a group call to signify you have something to say -->
     <string name="CallOverflowPopupWindow__raise_hand">رفع اليد</string>
-    <!-- A description of a clickable image representing a raised hand -->
-    <string name="CallOverflowPopupWindow__raise_hand_illustration_content_description">رفع اليد</string>
     <!-- A dialog prompt to confirm you want to lower your hand -->
     <string name="CallOverflowPopupWindow__lower_your_hand">هل تريد خفض يدك؟</string>
     <!-- A dialog button to confirm you would like to lower your hand -->
@@ -3151,10 +2958,7 @@
     <!-- CallParticipantView -->
     <string name="CallParticipantView__s_is_blocked">تمَّ حظر %1$s</string>
     <string name="CallParticipantView__more_info">المزيد من المعلومات</string>
-    <string name="CallParticipantView__you_wont_receive_their_audio_or_video">كلاكما لن يتلقَّى الصوت أو الفيديو من الآخر.</string>
     <string name="CallParticipantView__cant_receive_audio_video_from_s">لا يمكن تلقِّي الصوت والفيديو من %1$s</string>
-    <string name="CallParticipantView__cant_receive_audio_and_video_from_s">لا يمكن تلقِّي الصوت والفيديو من %1$s</string>
-    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">ربما يكون ذلك بسبب عدم تحقُّق الشخص من تغيير رقم الامان الخاص بك أو بسبب وجود مشكلة في جهازه أو بسبب قيامه بحظرك.</string>
 
     <!-- SwitchCameraButton -->
     <!-- Content description for the button that switches between front and back camera during a call -->
@@ -3185,9 +2989,6 @@
 
     <!-- RegistrationActivity -->
     <string name="RegistrationActivity_select_your_country">يجب عليك تحديد بلدك</string>
-    <string name="RegistrationActivity_you_must_specify_your_country_code">يجب عليك تحديد كود دولتك.
-    </string>
-    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">يُرجى إدخال رقم هاتف صحيح للتسجيل.</string>
     <string name="RegistrationActivity_invalid_number">الرقم غير صحيح</string>
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">الرقم الذي حددته (%1$s) غير صحيح.
     </string>
@@ -3204,15 +3005,12 @@
     <string name="RegistrationActivity_select_a_country">اختر بلدًا</string>
     <!-- Hint text explaining that this is where the country code should go -->
     <string name="RegistrationActivity_default_country_code">0</string>
-    <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">ستأتيك مكالمة هاتفية للتحقُّق من هذا الرقم.</string>
     <string name="RegistrationActivity_edit_number">تعديل الرقم</string>
     <string name="RegistrationActivity_missing_google_play_services">خدمات Google Play غير موجودة</string>
     <string name="RegistrationActivity_this_device_is_missing_google_play_services">خدمات Google Play غير موجودة في هذا الجهاز. لا زال بإمكانك استخدام سيجنال، ولكن هذا الضبط قد يؤدي إلى ضعف في الموثوقية أو الأداء. إن لم تكن مُستخدِمًا مُتقدمًا، أو لم تكن مُشغِّلًا لـ Android ROM من جهة خارجية، أو تعتقد أن رؤيتك لهذه الرسالة ناجمة عن خطأ، يُرجى التواصل مع support@signal.org للمساعدة في اكتشاف الأخطاء وإصلاحها.</string>
     <string name="RegistrationActivity_i_understand">فهمت</string>
     <string name="RegistrationActivity_play_services_error">خطأ في خدمات Google Play</string>
     <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">جارٍ تحديث خدمات Google Play أو أنها غير موجودة مؤقتًا. حاوِل مرّة أخرى.</string>
-    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">يحتاج سيجنال إلى أذونات جهات الاتصال والوسائط للمساعدة في التواصل مع أصدقائك وإرسال الرسائل. يتم تحميل جهات اتصالك باستخدام نظام اكتشاف جهة الاتصال الخاص في سيجنال، وهذا يعني أنها مُشفَّرة من الطرفين وغير مرئية على الإطلاق لخدمة سيجنال.</string>
-    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">يحتاج سيجنال إلى أذونات جهات الاتصال للمساعدة في التواصل مع أصدقائك. يتمُّ تحميل جهات اتصالك باستخدام نظام اكتشاف جهة الاتصال الخاص في سيجنال، وهذا يعني أنها مُشفَّرة من الطرفين وغير مرئية على الإطلاق لخدمة سيجنال.</string>
     <string name="RegistrationActivity_rate_limited_to_service">قُمتَ بمحاولاتٍ كثيرة للتسجيل بهذا الرقم. يُرجى المحاولة لاحقًا.</string>
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">قُمتَ بمحاولاتٍ كثيرة للتسجيل بهذا الرقم. يُرجى المحاولة لاحقًا %1$s.</string>
@@ -3227,12 +3025,6 @@
     <!-- Dialog message shown to confirm when entering phone number (first placeholder) is normalized and formatted differently by the app (second placeholder). -->
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">‫يظهر أن العدد الذي قمتَ بإدخاله (%1$s) ليس بتنسيق قياسي.\n\nهل تقصد هو %2$s؟</string>
     <string name="RegistrationActivity_signal_android_phone_number_format">سيجنال أندرويد - تنسيق رقم الهاتف</string>
-    <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
-    <string name="RegistrationActivity_call_requested">طُلِبَت مكالمة</string>
-    <!--    Small "toast" notification to the user confirming that they have requested a new code via SMS.-->
-    <string name="RegistrationActivity_sms_requested">تمَّ طلب رسالة قصيرة</string>
-    <!--    Small "toast" notification to the user confirming that they have requested a new code (through an unspecified channel).-->
-    <string name="RegistrationActivity_code_requested">تمَّ طلب كود التحقُّق</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="zero">أنت الآن على بعد %1$d خطوة من إرسال سجل الأخطاء.</item>
         <item quantity="one">أنت الآن على بعد %1$d خطوة من إرسال سجل الأخطاء.</item>
@@ -3249,8 +3041,6 @@
     <string name="RegistrationActivity_next">التالي</string>
     <!-- Title of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_phone_number">رقم الهاتف</string>
-    <!-- Subtitle of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">أدخِل رقم هاتفك للبدء.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">أدخِل الكود الذي أرسلناه إلى %1$s</string>
 
     <string name="RegistrationActivity_phone_number_description">رقم الهاتف</string>
@@ -3294,12 +3084,6 @@
   <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_success" translatable="false">Success!</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_share" translatable="false">Share</string> -->
 
-    <!-- SharedContactDetailsActivity -->
-    <string name="SharedContactDetailsActivity_add_to_contacts">إضافة إلى جهات الاتصال</string>
-    <string name="SharedContactDetailsActivity_invite_to_signal">اُدْعُ إلى سيجنال</string>
-    <string name="SharedContactDetailsActivity_signal_message">‫رسالة سيجنال</string>
-    <string name="SharedContactDetailsActivity_signal_call">مكالمة سيجنال</string>
-
     <!-- SharedContactView -->
     <string name="SharedContactView_add_to_contacts">الإضافة إلى جهات الاتصال</string>
     <string name="SharedContactView_invite_to_signal">اُدْعُ إلى سيجنال</string>
@@ -3332,7 +3116,6 @@
     <!-- SmsMessageRecord -->
     <string name="SmsMessageRecord_secure_session_reset">قمتَ بإعادة ضبط المحادثة الآمنة.</string>
     <string name="SmsMessageRecord_secure_session_reset_s">%1$s أعاد ضبط المحادثة الآمنة.</string>
-    <string name="SmsMessageRecord_duplicate_message">رسالة مُكرَّرة.</string>
 
     <!-- Sticker management screen default title. -->
     <string name="StickerManagement_title_stickers">المُلصَقات</string>
@@ -3345,20 +3128,22 @@
         <item quantity="many">‫%1$s محدَّدة</item>
         <item quantity="other">‫%1$s محدَّدة</item>
     </plurals>
-    <!-- Label for the sticker management screen tab which shows the stickers that are available to install. -->
-    <string name="StickerManagement_available_tab_label">متاحة</string>
+    <!-- Label for the sticker management screen tab which shows all of the sticker packs. -->
+    <string name="StickerManagement_all_tab_label">All</string>
     <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
-    <string name="StickerManagement_installed_tab_label">مُثبَّتة</string>
-    <!-- Shown when there are no sticker packs available for installation. -->
-    <string name="StickerManagement_available_tab_empty_text">لا توجد حزم مُلصَقات متوفرة</string>
+    <string name="StickerManagement_my_stickers_tab_label">My Stickers</string>
+    <!-- Shown when there are no sticker packs to show. -->
+    <string name="StickerManagement_all_tab_empty_text">No sticker packs are available</string>
     <!-- Shown when there are no sticker packs currently installed. -->
-    <string name="StickerManagement_installed_tab_empty_text">لا توجد حزم مُلصَقات مُثبَّتة</string>
+    <string name="StickerManagement_installed_tab_empty_text">No sticker packs, add stickers to send to your friends.</string>
     <!-- Message shown when the author of the sticker pack is unknown. -->
     <string name="StickerManagement_author_unknown">غير معروف</string>
     <!-- Sticker pack list section header for packs that are already installed. -->
     <string name="StickerManagement_installed_stickers_header">المُلصَقات المُثبَّتة</string>
     <!-- Sticker pack list section header for packs that have been received from incoming messages. -->
-    <string name="StickerManagement_stickers_you_received_header">المُلصَقات المستلمة</string>
+    <string name="StickerManagement_shared_with_you_header">Shared with you</string>
+    <!-- Sticker pack description for packs that have been sent to you -->
+    <string name="StickerManagement_when_you_receive">When you receive a sticker from someone, the sticker pack will appear here.</string>
     <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
     <string name="StickerManagement_signal_artist_series_header">سلسلة فناني سيجنال</string>
     <!-- Title shown when sharing a sticker pack with another user. -->
@@ -3371,12 +3156,21 @@
     <string name="StickerManagement_action_delete_selected">حذف</string>
     <!-- Confirmation message shown before uninstalling sticker packs. The placeholder is the number of items to delete. -->
     <plurals name="StickerManagement_delete_n_packs_confirmation">
-        <item quantity="zero">إزالة %1$s حزمة مُلصَقات</item>
-        <item quantity="one">إزالة %1$s حزمة مُلصَقات</item>
-        <item quantity="two">إزالة %1$s حزمتي مُلصَقات</item>
-        <item quantity="few">إزالة %1$s حزم مُلصَقات</item>
-        <item quantity="many">إزالة %1$s حزمة مُلصَقات</item>
-        <item quantity="other">إزالة %1$s حزمة مُلصَقات</item>
+        <item quantity="zero">Remove %1$s sticker packs?</item>
+        <item quantity="one">Remove %1$s sticker pack?</item>
+        <item quantity="two">Remove %1$s sticker packs?</item>
+        <item quantity="few">Remove %1$s sticker packs?</item>
+        <item quantity="many">Remove %1$s sticker packs?</item>
+        <item quantity="other">Remove %1$s sticker packs?</item>
+    </plurals>
+    <!-- Body of the confirmation dialog shown before uninstalling sticker packs. -->
+    <plurals name="StickerManagement_delete_n_packs_confirmation_body">
+        <item quantity="zero">This will remove these sticker packs. You can\'t add it again without a link or sticker message.</item>
+        <item quantity="one">This will remove the sticker pack. You can\'t add it again without a link or sticker message.</item>
+        <item quantity="two">This will remove these sticker packs. You can\'t add it again without a link or sticker message.</item>
+        <item quantity="few">This will remove these sticker packs. You can\'t add it again without a link or sticker message.</item>
+        <item quantity="many">This will remove these sticker packs. You can\'t add it again without a link or sticker message.</item>
+        <item quantity="other">This will remove these sticker packs. You can\'t add it again without a link or sticker message.</item>
     </plurals>
     <!-- Message shown after installing a sticker pack. The placeholder is the name of the sticker pack that was installed. -->
     <string name="StickerManagement_installed_pack_s">تمَّ تثبيت %1$s.</string>
@@ -3400,6 +3194,8 @@
         <item quantity="many">%1$s مُلصَق</item>
         <item quantity="other">%1$s مُلصَق</item>
     </plurals>
+    <!-- Message shown after copying a sticker pack link. -->
+    <string name="StickerManagement_copied">Link copied</string>
 
     <!-- Sticker pack list dropdown menu label for the button to forward a sticker pack to another user. -->
     <string name="StickerManagement_menu_forward_pack">إعادة توجيه</string>
@@ -3411,6 +3207,14 @@
     <string name="StickerManagement_menu_remove_pack">إزالة</string>
     <!-- Sticker management screen dropdown menu label for the button to enter multi-select mode. -->
     <string name="StickerManagement_menu_select_packs">حدِّد مجموعات المُلصقات</string>
+    <!-- Sticker pack list dropdown menu label for sending a sticker pack. -->
+    <string name="StickerManagement_menu_send_pack">Send</string>
+    <!-- Sticker pack list dropdown menu label for copying a sticker link. -->
+    <string name="StickerManagement_menu_copy_pack">Copy link</string>
+    <!-- Hint text shown in the sticker management search field. -->
+    <string name="StickerManagement_search">Search</string>
+    <!-- Shown when no stickers match the search. The placeholder what was searched. -->
+    <string name="StickerManagement_search_no_results_s">No results found for \'%1$s\'</string>
 
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
     <string name="StickerManagement_accessibility_download_pack">نزِّل حزمة المُلصَقات \"%1$s\"</string>
@@ -3426,6 +3230,14 @@
     <string name="StickerManagement_accessibility_open_context_menu">فتح قائمة السياق</string>
     <!-- Accessibility label for opening the context menu for a sticker pack row item. -->
     <string name="StickerManagement_accessibility_exit_multi_select_mode">الخروج من وضع التحديد وإزالة التحديدات</string>
+    <!-- Label for the button that expands the list to show every sticker pack in a section. -->
+    <string name="StickerManagement__see_all">See all</string>
+    <!-- Button that takes you to the list of sticker packs you can install. -->
+    <string name="StickerManagement__add_stickers">Add stickers</string>
+    <!-- Accessibility label to close the search field. -->
+    <string name="StickerManagement_accessibility_close_search">Close search</string>
+    <!-- Accessibility label to clear the search field. -->
+    <string name="StickerManagement_accessibility_clear_search">Clear search</string>
 
     <!-- StickerManagementAdapter -->
     <string name="StickerManagementAdapter_untitled">بدون عنوان</string>
@@ -3439,16 +3251,12 @@
     <string name="StickerPackPreviewActivity_stickers">ملصقات</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">فشل في تحميل مجموعة المُلصَقات</string>
 
-    <!-- SubmitDebugLogActivity -->
-    <string name="SubmitDebugLogActivity_edit">تعديل</string>
-    <string name="SubmitDebugLogActivity_done">تم</string>
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">حفظ</string>
     <!-- Error that is show in a toast when we fail to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_failed_to_save">فشل الحفظ</string>
     <!-- Toast that is show to notify that we have saved the debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save_complete">اكتمل الحفظ</string>
-    <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">انقر على الخط لحذفه</string>
     <string name="SubmitDebugLogActivity_submit">إرسال</string>
     <string name="SubmitDebugLogActivity_failed_to_submit_logs">فشل إرسال السجلات</string>
     <string name="SubmitDebugLogActivity_success">تمَّ بنجاح!</string>
@@ -3456,7 +3264,6 @@
     <string name="SubmitDebugLogActivity_share">مشاركة</string>
     <!-- Displayed when entering activity in view-only mode -->
     <string name="SubmitDebugLogActivity_close">إغلاق</string>
-    <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">سيتمُّ نشر هذا السّجل علنًا على الانترنت حتى يتمكن المساهمون من الاطِّلاع عليه. يمكنك فحصه أو تعديله قبل تحميله.</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">‫عند النقر على زر \"إرسال\"، سوف يُنشَر السجل على الإنترنت لمدة 30 يومًا في عنوان URL فريد غير منشور. يمكنك حفظه محليًا أولًا.</string>
     <!-- Debug log level names to filter by levels. -->
@@ -3572,8 +3379,6 @@
     <!-- UsernameEditFragment -->
     <!-- Placeholder text for custom discriminator -->
     <string name="UsernameEditFragment__00">00</string>
-    <!-- Toolbar title when entering from registration -->
-    <string name="UsernameEditFragment__add_a_username">إضافة اسم مُستخدم</string>
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">اختر اسم مُستخدِم خاص بك</string>
     <string name="UsernameEditFragment_username">اسم المُستخدم</string>
@@ -3588,10 +3393,7 @@
     <string name="UsernameEditFragment_username_is_invalid">اسم المُستخدم غير صالح.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">اسم المُستخدم لا بد أن يكون بين %1$d و%2$d رمز.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">يتم دائمًا إقران أسماء المُستخدِمين بمجموعة من الأرقام.</string>
-    <!-- Dialog title for explanation about numbers at the end of the username -->
-    <string name="UsernameEditFragment__what_is_this_number">ماذا يعني هذا الرقم؟</string>
-    <string name="UsernameEditFragment__these_digits_help_keep">تُساعد هذه الأرقام في الحفاظ على خصوصية اسم المُستخدِم الخاص بك حتى تتجنَّب الرسائل غير المرغوب فيها. شارِك اسم المُستخدِم الخاص بك مع الأشخاص والمجموعات الذين ترغب في الدردشة معهم. إذا قمتَ بتغيير أسماء المُستخدِمين، سَتحصل على مجموعة جديدة من الأرقام.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">People can message you using your optional username instead of a phone number. Usernames are always paired with a set of numbers.</string>
     <!-- Button to allow user to skip -->
     <string name="UsernameEditFragment__skip">تخطّي</string>
     <!-- Content description for done button -->
@@ -3626,15 +3428,12 @@
     <!-- Explanation of what the sheet enables the user to do -->
     <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">نسخ أو مشاركة رابط اسم المُستخدم</string>
 
-    <!-- VerifyIdentityActivity -->
-    <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">جهة الاتصال هذه تستخدم نسخة أحدث من تطبيق سيجنال وكود الـ QR فيها لا يتوافق مع نسختك. يُرجى تحديث النسخة للمقارنة.</string>
     <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">كود الـ QR الذي تمَّ مسحه ليس بكود تحقُّق لرقم أمان تمَّت صياغته بشكلٍ صحيح. يُرجى محاولة المسح من جديد.</string>
     <string name="VerifyIdentityActivity_share_safety_number_via">شارِك رقم الأمان من خلال…</string>
     <string name="VerifyIdentityActivity_our_signal_safety_number">رقم الأمان الخاص بنا في سيجنال:</string>
     <string name="VerifyIdentityActivity_no_app_to_share_to">يبدو عدم وجود أي تطبيقات لديك للمشاركة من خلالها.</string>
     <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">لم يُعثَر في الحافظة على رقم أمان يمكن مقارنته.</string>
     <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">يحتاج سيجنال إلى إذن الكاميرا من أجل مسح كود الـ QR، ولكن تمَّ إيقاف الإذن على نحو دائم. الرجاء زيارة إعدادات التطبيق واختيار \"الأذونات\"، ثم تفعيل \"الكاميرا\".</string>
-    <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">لا يمكن مسح كود الـ QR بدون إذن استخدام الكاميرا.</string>
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">يجب عليك أولًا تبادل الرسائل لإظهار رقم الأمان الخاص بـ %1$s.</string>
     <!-- Dialog message explaining to user they must exchange messages first to create a safety number -->
     <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">سيتم إنشاء رقم أمان مع هذا الشخص بعد تبادل الرسائل معه.</string>
@@ -3642,17 +3441,12 @@
     <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_ok">موافق</string>
     <!-- Learn more option for dialog explaining to user they must exchange messages first to create a safety number  -->
     <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_learn_more">اعرف المزيد</string>
-    <!-- Confirmation button on scan result dialogs -->
-    <string name="VerifyDisplayFragment__scan_result_dialog_ok">حسنًا</string>
 
     <!-- ViewOnceMessageActivity -->
   <!-- Removed by excludeNonTranslatables <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string> -->
 
     <!-- AudioView -->
   <!-- Removed by excludeNonTranslatables <string name="AudioView_duration" translatable="false">%1$d:%2$02d</string> -->
-
-    <!-- MessageDisplayHelper -->
-    <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">تمَّ تشفير الرسالة لجلسة غير موجودة.</string>
 
     <!-- MuteDialog -->
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
@@ -3707,7 +3501,7 @@
     <!-- Text shown in a system notification that is used to summarize your notification. The first placeholder is a pluralized string that describes how many messages (e.g. "3 messages"), and the second placeholder is a pluralized string that describes the number of unique chats those message appear in (e.g. "2 chats"). -->
     <string name="MessageNotifier_s_in_s">%1$s في %2$s</string>
     <!-- Subtext shown in a group chat notification when the most recent message is a direct reply to a message you sent. -->
-    <string name="MessageNotifier_replied_to_you">Replied to you: %1$s</string>
+    <string name="MessageNotifier_replied_to_you">ردّ عليك: %1$s</string>
     <!-- Text shown in a system notification that is used to summary how many messages you received. -->
     <plurals name="MessageNotifier_d_messages">
         <item quantity="zero">%1$d رسائل</item>
@@ -3805,10 +3599,6 @@
     <!-- Notification channel name for unread reminder notifications -->
     <string name="NotificationChannel_unread_reminders">تذكيرات عدم القراءة</string>
 
-    <!-- QuickResponseService -->
-    <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">الردود السريعة غير متاحة عند قفل سيجنال!</string>
-    <string name="QuickResponseService_problem_sending_message">مشكلة في إرسال الرسائل!</string>
-
     <!-- A toast notification that is shown when the app does not have sufficient permissions to save media files to the device storage. -->
     <string name="SaveAttachment_unable_to_write_to_sd_card_exclamation">تعذَّرت الإضافة إلى الذاكرة!</string>
 
@@ -3877,7 +3667,6 @@
     <string name="SearchToolbar_search">بحث</string>
     <!-- Hint when searching filtered chat content -->
     <string name="SearchToolbar_search_unread_chats">البحث في الدردشات غير المقروءة</string>
-    <string name="SearchToolbar_search_for_conversations_contacts_and_messages">البحث عن الدردشات، وجهات الاتصال، والرسائل</string>
 
     <!-- Material3 Search Toolbar -->
     <string name="Material3SearchToolbar__close">إغلاق</string>
@@ -3913,6 +3702,34 @@
     <string name="NewWaysToConnectDialogFragment__not_now">ليس الآن</string>
     <!-- Button label for continue -->
     <string name="NewWaysToConnectDialogFragment__set_up_your_username">إعداد اسم المُستخدم</string>
+
+    <!-- ConnectWithUsernamesDialogFragment -->
+    <!-- Title of the username education screen shown to accounts registered without a phone number -->
+    <string name="ConnectWithUsernamesDialogFragment__connect_with_usernames">Connect with usernames</string>
+    <!-- Title of the usernames section -->
+    <string name="ConnectWithUsernamesDialogFragment__usernames">Usernames</string>
+    <!-- Description of the usernames section -->
+    <string name="ConnectWithUsernamesDialogFragment__people_can_message_you_using_your_optional_username">People can message you using your optional username instead of a phone number. Usernames aren\'t visible on your profile.</string>
+    <!-- Title of the QR code section -->
+    <string name="ConnectWithUsernamesDialogFragment__qr_codes_and_links">QR codes and links</string>
+    <!-- Description of the QR code section -->
+    <string name="ConnectWithUsernamesDialogFragment__usernames_have_a_unique_qr_code">Usernames have a unique QR code and link you can share with friends to quickly start a chat with you.</string>
+    <!-- Title of the discoverability section -->
+    <string name="ConnectWithUsernamesDialogFragment__stay_discoverable">Stay discoverable</string>
+    <!-- Description of the discoverability section -->
+    <string name="ConnectWithUsernamesDialogFragment__without_a_phone_number_usernames_and_links">Without a phone number, usernames and links are the only way others can connect with you.</string>
+    <!-- Button label that takes the user to the username creation screen -->
+    <string name="ConnectWithUsernamesDialogFragment__set_up_username">Set up username</string>
+    <!-- Button label that dismisses the screen without creating a username -->
+    <string name="ConnectWithUsernamesDialogFragment__not_now">Not now</string>
+
+    <!-- SetUpUsernameBanner -->
+    <!-- Body of a banner on the new message screen prompting the user to create a username -->
+    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">Choose a username so others can connect with you.</string>
+    <!-- Button label that takes the user to the username creation screen -->
+    <string name="SetUpUsernameBanner__set_up">Set up</string>
+    <!-- Accessibility label for the button that permanently dismisses the banner -->
+    <string name="SetUpUsernameBanner__dismiss">Dismiss</string>
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">شغِّل الفيديو</string>
@@ -3955,21 +3772,11 @@
     <string name="EnclaveFailureReminder_update_signal">قُم بتحديث سيجنال للاستمرار في استخدام عمليات الدفع. قد لا يكون رصيدك مُحدَّثًا.</string>
     <!-- Banner button to update now -->
 
-    <!-- WebRtcCallActivity -->
-    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">للإجابة على المكالمة، اسمح لسيجنال بالوصول إلى الميكروفون على جهازك.</string>
-    <!-- Message shown in permission dialog when attempting to answer a video call without camera or microphone permissions already granted. -->
-    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">للردّ على مكالمة الفيديو، اسمح لسيجنال بالوصول إلى الميكروفون و الكاميرا على هاتفك.</string>
-    <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">يحتاج سيجنال إلى أذونات الوصول إلى الميكروفون والكاميرا من أجل استقبال أو إجراء المكالمات، ولكن الإذن تمَّ رفضه بشكلٍ دائم. يُرجى زيارة \"إعدادات التطبيق\"، واختيار \"الأذونات\"، ثم تفعيل \"الميكروفون\" و\"الكاميرا\".</string>
     <string name="WebRtcCallActivity__answered_on_a_linked_device">تمَّت الإجابة عبر جهاز مُرتبِط.</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">تمَّ الرفض عبر جهاز مُرتبِط.</string>
     <string name="WebRtcCallActivity__busy_on_a_linked_device">مشغول على جهاز مُرتبِط.</string>
-    <!-- Tooltip message shown first time user is in a video call after switch camera button moved -->
-    <string name="WebRtcCallActivity__flip_camera_tooltip">نُقِلَ زر \"قلب الكاميرا\" إلى هنا. انقر على الفيديو لديك لتُجرِّبه.</string>
 
     <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">انضم شخص لهذه المكالمة برقم أمان مختلف.</string>
-
-    <!-- WebRtcCallScreen -->
-    <string name="WebRtcCallScreen_swipe_up_to_change_views">اسحب للأعلى لتغيير نمط العرض</string>
 
     <!-- WebRtcCallScreen V2 -->
     <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -3997,9 +3804,6 @@
     <string name="WebRtcAudioOutputToggle__wired_headset">سماعة رأس سلكية</string>
     <!-- Audio output option referring to an external headset connected via a USB-C data cable -->
     <string name="WebRtcAudioOutputToggle__wired_headset_usb">سماعة رأس سلكية (USB)</string>
-
-    <string name="WebRtcCallControls_answer_call_description">الرد على المكالمة</string>
-    <string name="WebRtcCallControls_reject_call_description">رفض المكالمة</string>
 
     <!-- change_passphrase_activity -->
     <string name="change_passphrase_activity__old_passphrase">العبارة السرية القديمة</string>
@@ -4065,33 +3869,8 @@
     <!-- Text asking for user\'s contact permission -->
     <string name="ContactSelectionListFragment__allow_access_to_your_contacts_encrypted">اسمح بالوصول إلى جهات الاتصال على جهازك. جهات اتصالك مُشفَّرة وغير مرئية لخدمة سيجنال.</string>
 
-    <!-- contact_selection_list_fragment -->
-    <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">سيجنال بحاجة إلى الوصول إلى جهات الاتصال لديك وذلك بغرض عرضها.</string>
-    <string name="contact_selection_list_fragment__show_contacts">إظهار جهات الإتصال</string>
-
-    <!-- contact_selection_list_item -->
-    <plurals name="contact_selection_list_item__number_of_members">
-        <item quantity="zero">%1$d عضو</item>
-        <item quantity="one">%1$d عضو</item>
-        <item quantity="two">%1$d عضوان</item>
-        <item quantity="few">%1$d أعضاء</item>
-        <item quantity="many">%1$d عضوًا</item>
-        <item quantity="other">%1$d عضوٍ</item>
-    </plurals>
-    <!-- Displays number of viewers for a story -->
-    <plurals name="contact_selection_list_item__number_of_viewers">
-        <item quantity="zero">لا مشاهدة (%1$d)</item>
-        <item quantity="one">مشاهدة واحدة (%1$d)</item>
-        <item quantity="two">مشاهدتان (%1$d)</item>
-        <item quantity="few">%1$d مشاهدات</item>
-        <item quantity="many">%1$d مشاهدة</item>
-        <item quantity="other">%1$d مشاهدة</item>
-    </plurals>
-
     <!-- conversation_activity -->
     <string name="conversation_activity__type_message_push">‫رسالة سيجنال</string>
-    <string name="conversation_activity__type_message_sms_insecure">رسالة قصيرة غير مؤمَّنة</string>
-    <string name="conversation_activity__type_message_mms_insecure">رسالة متعدّدة الوسائط غير مؤمنة</string>
     <!-- Option in send button context menu to schedule the message instead of sending it directly -->
     <string name="conversation_activity__sim_n">SIM %1$d</string>
     <string name="conversation_activity__send">إرسال</string>
@@ -4145,7 +3924,6 @@
     <string name="ConversationUpdateItem_block_request">حظر الطلب</string>
     <!-- Text shown in conversation header that the account messaging the user does not have any groups in common with them -->
     <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">لا توجد مجموعات مُشتركة</string>
-    <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">لا يوجود جهات اتصال في هذه المجموعة. يُرجى مراجعة الطلبات بعناية.</string>
     <string name="ConversationUpdateItem_view">إظهار</string>
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">سيتمُّ تعيين توقيت إخفاء الرسائل إلى %1$s عندما تقوم بمراسلته.</string>
     <!-- Update item button text to show to boost a feature -->
@@ -4264,16 +4042,7 @@
     <!-- country_selection_fragment -->
     <string name="country_selection_fragment__loading_countries">جارٍ تحميل البلدان…</string>
     <string name="country_selection_fragment__search">بحث</string>
-    <string name="country_selection_fragment__no_matching_countries">لا توجد دول مطابقة</string>
 
-    <!-- device_add_fragment -->
-    <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">مسح كود الـ QR الظاهر على الجهاز لربطه.</string>
-
-    <!-- device_link_fragment -->
-    <string name="device_link_fragment__link_device">ربط الجهاز</string>
-
-    <!-- device_list_fragment -->
-    <string name="device_list_fragment__no_devices_linked">لا توجد أجهزة موصولة</string>
     <string name="device_list_fragment__link_new_device">ربط جهاز جديد</string>
 
     <!-- expiration -->
@@ -4392,10 +4161,6 @@
     <!-- prompt_passphrase_activity -->
     <string name="prompt_passphrase_activity__unlock">فتح القفل</string>
 
-    <!-- prompt_mms_activity -->
-    <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">يتطلب سيجنال إعدادات الرسائل متعددة الوسائط (MMS) من أجل تسليم الملفّات متعدّدة الوسائط ورسائل المجموعات عبر شركة الاتصالات اللاسلكية المُستخدَمة. جهازك لا يوفِّر هذه المعلومات، وهذا ما يحدث أحيانًا في الهواتف المقفولة أو ذات الإعدادات المُقيَّدة.</string>
-    <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">من اجل إرسال وسائط مُتعدِّدة ورسائل إلى مجموعات، اضغط على \"تم\" وأكمِل الإعدادات المطلوبة. يمكن العثور على إعدادات رسائل الوسائط المُتعدِّدة الخاصة بمُشغِّل شبكة الجوال الخاص بك بالبحث عن \"اسم المُشغِّل APN\". سوف تحتاج إلى القيام بهذه الخطوة مرّة واحدة.</string>
-
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">مشكل في التوصيل</string>
     <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">لم يتمكَّن %1$s من توصيل رسالة نصية أو مُلصَق أو تفاعُل أو إيصال تأكيد القراءة إليك. يُحتمَل أنه أُرسلَها إليك مباشرةً أو أنهُ أرسلها في مجموعة.</string>
@@ -4512,10 +4277,6 @@
     <!-- verity_scan_fragment -->
     <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">امسح كود الـ QR المعروض على جهاز جهة اتصالك.</string>
 
-    <!-- webrtc_answer_decline_button -->
-    <string name="webrtc_answer_decline_button__swipe_up_to_answer">اسحَب للأعلى للإجابة</string>
-    <string name="webrtc_answer_decline_button__swipe_down_to_reject">اسحَب للأسفل للرفض</string>
-
     <!-- message_details_header -->
     <string name="message_details_header__issues_need_your_attention">بعض المشاكل تتطلَّب انتباهك.</string>
     <string name="message_details_header_sent">أُرسِلَت</string>
@@ -4546,7 +4307,6 @@
     <string name="AndroidManifest__verify_safety_number">التحقُّق من رقم اﻷمان</string>
     <string name="AndroidManifest__media_preview">معاينة الوسائط</string>
     <string name="AndroidManifest__message_details">تفاصيل الرسالة</string>
-    <string name="AndroidManifest__linked_devices">الأجهزة المُرتبِطة</string>
     <string name="AndroidManifest__invite_friends">اُدْعُ الأصدقاء</string>
     <string name="AndroidManifest_archived_conversations">الدردشات المؤرشفة</string>
 
@@ -4605,8 +4365,6 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">تمَّ الاستخدام مُؤخَّرًا</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">لم يتم العثور على أي نتائج</string>
 
-    <!-- GifQuickSearchOption -->
-    <string name="GifQuickSearchOption__recents">الأحدث</string>
     <string name="GifQuickSearchOption__trending">الرائج</string>
     <string name="GifQuickSearchOption__celebrate">الاحتفال</string>
     <string name="GifQuickSearchOption__love">الحب</string>
@@ -4659,11 +4417,8 @@
         <item quantity="other">%1$d ساعة</item>
     </plurals>
 
-    <!-- preferences.xml -->
-    <string name="preferences_beta">الإصدار التجريبي</string>
-    <string name="preferences__sms_mms">رسائل SMS ورسائل MMS</string>
-    <string name="preferences__pref_use_address_book_photos">Prefer address book photos</string>
-    <string name="preferences__display_contact_photos_from_your_address_book_if_available">Prefer contact photos from your address book if available</string>
+    <string name="preferences__pref_use_address_book_photos">تفضيل صور دفتر العناوين</string>
+    <string name="preferences__display_contact_photos_from_your_address_book_if_available">تفضيل صور جهات الاتصال من دفتر العناوين لديك إن توفّرت</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__pref_keep_muted_chats_archived">إبقاء الدردشات المكتومة مُؤرشفة</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
@@ -4723,15 +4478,6 @@
     <string name="preferences__privacy">الخصوصية</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">القِصَص</string>
-    <string name="preferences__mms_user_agent">وكيل المُستخدِم لرسائل الوسائط المتعددة</string>
-    <string name="preferences__advanced_mms_access_point_names">الإعدادات اليدوية لرسائل الوسائط المتعددة</string>
-    <string name="preferences__mmsc_url">رابط MMSC</string>
-    <string name="preferences__mms_proxy_host">مستضيف بروكسي MMS</string>
-    <string name="preferences__mms_proxy_port">منفذ بروكسي MMS</string>
-    <string name="preferences__mmsc_username">اسم المُستخدم MMSC</string>
-    <string name="preferences__mmsc_password">كلمة السر لمركز MMSC</string>
-    <string name="preferences__sms_delivery_reports">تقارير تسليم رسائل SMS</string>
-    <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">طلب تقرير تسليم لكل رسالة SMS ترسلها</string>
     <string name="preferences__data_and_storage">البيانات والتخزين</string>
     <string name="preferences__storage">التخزين</string>
     <string name="preferences__payments">عمليات الدفع</string>
@@ -4739,7 +4485,6 @@
     <string name="preferences__payment_lock">قفل عملية الدفع</string>
     <string name="preferences__conversation_length_limit">الحد الأقصى للرسائل في الدردشة</string>
     <string name="preferences__keep_messages">احتفظ بالرسائل</string>
-    <string name="preferences__clear_message_history">إزالة سجل الرسائل</string>
     <string name="preferences__linked_devices">الأجهزة المُرتبِطة</string>
     <string name="preferences__light_theme">فاتح</string>
     <string name="preferences__dark_theme">داكن</string>
@@ -4772,13 +4517,9 @@
     <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">أرقام التعريف الشخصية (PIN) تُبقي المعلومات المحفوظة في سيجنال مُشفَّرة لكي لا يستطيع أحدٌ غيرك الوصول إليها. سيتمُّ استرجاع حسابك الشخصي، إعداداتك، وجهات اتصالك عند إعادة تثبيت التطبيق. لن تكون لك حاجة بعدها لرقم التعريف الشخصي لفتح التطبيق.</string>
     <string name="preferences__system_default">اللغة الافتراضية للنظام</string>
     <string name="preferences__language">اللغة</string>
-    <string name="preferences__signal_messages_and_calls">رسائل ومكالمات سيجنال</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">الإعدادات المُتقدِّمة لرقم الـ PIN</string>
-    <string name="preferences__free_private_messages_and_calls">رسائل ومكالمات مجانية وآمنة مع مُستخدِمي سيجنال</string>
     <string name="preferences__submit_debug_log">إرسال سجل الأخطاء</string>
-    <string name="preferences__support_wifi_calling">وضع التوافق مع \"التواصل بالواي فاي\"</string>
-    <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">يمكنك تفعيل الخاصية إذا كان هاتفك يدعم تسليم رسائل SMS أو رسائل MMS عبر الواي فاي (قُم بالتفعيل فقط في حال تمكين التواصل بالواي فاي بهاتفك)</string>
     <string name="preferences__incognito_keyboard">لوحة مفاتيح في وضع متخفي</string>
     <string name="preferences__read_receipts">إيصالات تأكيد القراءة</string>
     <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">إن قُمتَ بإلغاء تفعيل إيصالات تأكيد القراءة، فلن يمكنك رؤية إيصالات تأكيد القراءة من الآخرين.</string>
@@ -4791,7 +4532,6 @@
     <string name="preferences_chats__when_using_wifi">عند استخدام الواي فاي</string>
     <string name="preferences_chats__when_roaming">عند استخدام التجوال</string>
     <string name="preferences_chats__media_auto_download">التنزيل التلقائي للوسائط</string>
-    <string name="preferences_chats__message_history">سجل الرسائل</string>
     <string name="preferences_storage__storage_usage">استخدام مساحة التخزين</string>
     <string name="preferences_storage__photos">الصور</string>
     <string name="preferences_storage__videos">الفيديوهات</string>
@@ -4913,8 +4653,6 @@
     <!-- Preference summary for automatic key verification -->
     <string name="preferences_automatic_key_verification_body">عند التفعيل، سَيحاول سيجنال التحقُّق تلقائيًا من تشفير المحاثات الفردية.</string>
 
-
-    <string name="configurable_single_select__customize_option">تخصيص الخيارات</string>
 
     <!-- Internal only preferences -->
   <!-- Removed by excludeNonTranslatables <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string> -->
@@ -5053,9 +4791,7 @@
     <string name="PaymentsTransferFragment__check_the_wallet_address">يُرجى التحقُّق من عنوان المحفظة عند محاولة إرسال مبالغ إلى أحد ما، ثم حاوِل مرّة أخرى.</string>
     <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">لا يمكنك الإرسال إلى عنوان محفظتك بسيجنال. يُرجى إدخال عنوان المحفظة انطلاقًا من حسابك في منصة تداول تدعم ذلك.</string>
     <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">لقراءة كود الـ QR، يحتاج سيجنال إلى صلاحية الوصول إلى الكاميرا.</string>
-    <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">يحتاج سيجنال إلى إذن الوصول إلى الكاميرا من أجل قراءة كود الـ QR. انتقِل إلى الإعدادات في جهازك، ثم قُم باختيار \"الأذونات\"، ثم تفعيل \"الكاميرا\".</string>
     <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">لقراءة كود الـ QR، يحتاج سيجنال إلى صلاحية الوصول إلى الكاميرا.</string>
-    <string name="PaymentsTransferFragment__settings">الإعدادات</string>
 
     <!-- PaymentsTransferQrScanFragment -->
     <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">امسح ضوئيًا كود الـ QR للعنوان</string>
@@ -5131,12 +4867,8 @@
     <!-- contact_selection_list -->
     <!-- Displayed in a row on the new call screen when searching by phone number. -->
     <string name="contact_selection_list__new_call">مكالمة جديدة إلى…</string>
-    <string name="contact_selection_list__unknown_contact">رسالة جديدة إلى…</string>
     <string name="contact_selection_list__unknown_contact_block">حظر المُستخدم</string>
     <string name="contact_selection_list__unknown_contact_add_to_group">إضافة إلى مجموعة</string>
-
-    <!-- conversation_callable_insecure -->
-    <string name="conversation_callable_insecure__menu_call">اتصل</string>
 
     <!-- conversation_callable_secure -->
     <string name="conversation_callable_secure__menu_call">مكالمة سيجنال</string>
@@ -5270,12 +5002,6 @@
         <item quantity="other">%1$d رسالة مُجَدولة</item>
     </plurals>
 
-    <!-- conversation_group_options -->
-    <string name="conversation_group_options__delivery">تسليم</string>
-    <!-- Label for a menu item that appears after pressing the three-dot icon in a  -->
-    <string name="conversation_group_options__conversation">دردشة</string>
-    <string name="conversation_group_options__broadcast">بث</string>
-
     <!-- DoubleTapEditEducationSheet -->
     <!-- Displayed as the title of the education bottom sheet -->
     <string name="DoubleTapEditEducationSheet__double_tap_edit_title">انقر مرّتين للتعديل</string>
@@ -5303,7 +5029,6 @@
 
     <!-- reminder_header -->
     <string name="reminder_header_service_outage_text">يواجه سيجنال بعض المشاكل التقنيّة حاليًا. نعمل بجد لإعادة الخدمة بأسرع وقتٍ ممكن.</string>
-    <string name="reminder_header_progress">%1$d%%</string>
     <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user\'s contacts -->
     <string name="reminder_cds_warning_body">لا يُمكن لميزة اكتشاف جهات الاتصال الخاصة في سيجنال مُعالجة جهات اتصال هاتفك مؤقتًا.</string>
     <!-- Label for a button in a banner to learn more about why we temporarily can\'t process the user\'s contacts -->
@@ -5369,8 +5094,6 @@
     <string name="ConfirmKbsPinFragment__pin_created">تمَّ إنشاء رقم تعريف شخصي (PIN).</string>
     <string name="ConfirmKbsPinFragment__re_enter_your_pin">أعِد إدخال رقم PIN</string>
     <string name="ConfirmKbsPinFragment__creating_pin">جارٍإنشاء رقم التعريف الشخصي (PIN)…</string>
-    <!-- ID used when saving the PIN to the device password manager. -->
-    <string name="ConfirmKbsPinFragment__pin_password_manager_id">رقم PIN على سيجنال</string>
 
     <!-- KbsSplashFragment -->
     <string name="KbsSplashFragment__introducing_pins">نقدم لكم أرقام التعريف الشخصية (PINs)</string>
@@ -5464,13 +5187,6 @@
     <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">أرقام التعريف الشخصية (PINs) تجعل المعلومات المُخزَّنة في سيجنال مُشفَّرة.</string>
     <string name="KbsMegaphone__create_pin">إنشاء رقم التعريف الشخصي (PIN)</string>
 
-    <!-- Title for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
-    <string name="UpdatePinMegaphone__update_signal_pin">تحديث رقم التعريف الشخصي (PIN) على سيجنال</string>
-    <!-- Message for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
-    <string name="UpdatePinMegaphone__message">حدِّث رقم التعريف الشخصي (PIN) الخاص بك على سيجنال لإكمال عملية تسجيل الحساب.</string>
-    <!-- Button text for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
-    <string name="UpdatePinMegaphone__update_pin">تحديث رقم PIN</string>
-
     <!-- CallNotificationBuilder -->
     <!-- Displayed in a notification when a Signal voice call is ringing -->
     <string name="CallNotificationBuilder__incoming_signal_voice_call">مكالمة صوتية واردة على سيجنال</string>
@@ -5485,22 +5201,15 @@
     <!-- Displayed in a notification when a Signal group call is in progress -->
     <string name="CallNotificationBuilder__ongoing_signal_group_call">مكالمة جماعية جارية على سيجنال</string>
 
-    <!-- transport_selection_list_item -->
-    <string name="ConversationListFragment_loading">جارٍ التحميل…</string>
     <string name="CallNotificationBuilder_connecting">جار الرّبط…</string>
-    <string name="SQLCipherMigrationHelper_migrating_signal_database">جارٍ نقل قاعدة بيانات سيجنال</string>
     <string name="enter_backup_passphrase_dialog__backup_passphrase">العبارة السرية للنسخة الاحتياطية</string>
     <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">سيتمُّ حفظ النسخ الاحتياطية في مساحة التخزين الخارجية، وستكون مُشفَّرة بالعبارة السرية أدناه. من الضروري حفظ هذه العبارة من أجل استعادة أي نسخة احتياطية.</string>
     <string name="backup_enable_dialog__you_must_have_this_passphrase">يجب أن تكون لديك العبارة السرية هذه لاستعادة نسخة احتياطية.</string>
     <string name="backup_enable_dialog__folder">المجلد</string>
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">قمتُ بتدوين هذه العبارة السرية. بدونها، لن يمكنني استعادة أي نسخة احتياطية.</string>
     <string name="registration_activity__restore_backup">استعادة النسخة الاحتياطية</string>
-    <string name="registration_activity__transfer_or_restore_account">نقل أو استعادة الحساب</string>
-    <string name="registration_activity__transfer_account">نقل الحساب</string>
-    <string name="registration_activity__skip">تخطّي</string>
     <!-- Text label button to skip restoring -->
     <string name="registration_activity__skip_restore">تخطّي الاستعادة</string>
-    <string name="preferences_chats__chat_backups">النسخ الاحتياطية للدردشات</string>
     <!-- Title for dialog to enter in the backup passphrase -->
     <string name="RegistrationActivity_enter_backup_passphrase">أدخِل العبارة السرية للنسخة الاحتياطية</string>
     <string name="RegistrationActivity_restore">استعادة</string>
@@ -5584,13 +5293,10 @@
     <string name="PhoneNumberPrivacy_everyone">الجميع</string>
     <string name="PhoneNumberPrivacy_nobody">لا أحد</string>
     <string name="preferences_app_protection__screen_lock">قفل الشاشة</string>
-    <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">منع الوصول إلى سيجنال عبر قفل الشاشة للأندرويد أو بصمة الإصبع</string>
-    <string name="preferences_app_protection__screen_lock_inactivity_timeout">فترة عدم النشاط لقفل الشاشة</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
     <string name="preferences_app_protection__to_use_screen_lock">لاستخدام قفل الشاشة، قُم بتعيين رقم تعريف شخصي (PIN) أو نمط أو كلمة مرور على هذا الجهاز.</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">تعذَّر تفعيل قفل التسجيل.</string>
     <string name="preferences_app_protection__failed_to_disable_registration_lock">تعذَّر تعطيل قفل التسجيل.</string>
-    <string name="AppProtectionPreferenceFragment_none">لا شيء</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">يجب إدخال رقم التعريف الشخصي (PIN) لقفل التسجيل</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">يحوي رقم التعريف الشخصي (PIN) على %1$d أرقام أو حروف على الأقل.</string>
     <string name="RegistrationActivity_too_many_attempts">محاولات كثيرة</string>
@@ -5619,8 +5325,6 @@
     <string name="ScreenLockSettingsFragment__your_android_device">سَتكون إعدادات قفل جاهز الأندرويد الخاص بك مطلوبة لفتح قفل سيجنال عند مغادرة أو تبديل التطبيقات. عندما يكون سيجنال مقفولًا، لن تُظهِر معاينة الإشعارات محتوى الرسائل.</string>
     <!-- Title text explaining when users should start the screen lock -->
     <string name="ScreenLockSettingsFragment__start_screen_lock">ابدأ قفل الشاشة</string>
-    <!-- Option text explaining that screen lock should start immediately -->
-    <string name="ScreenLockSettingsFragment__immediately">على الفور</string>
     <!-- Option text explaining that screen lock should start after 1 minute of inactivity -->
     <string name="ScreenLockSettingsFragment__after_1_min">بعد 1 دقيقة</string>
     <!-- Option text explaining that screen lock should start after 5 minutes of inactivity -->
@@ -5672,17 +5376,8 @@
     <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">إذا سبق لك التسجيل بحساب سيجنال، يمكنك نقل أو استعادة حسابك وكذلك رسائلك.</string>
     <string name="TransferOrRestoreFragment__transfer_from_android_device">نقل من جهاز أندرويد</string>
     <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">يمكنك نقل حسابك ورسائلك من جهاز أندرويد القديم. أنت بحاجة إلى الوصول إلى جهازك القديم.</string>
-    <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">يلزمك الوصول إلى جهازك القديم.</string>
-    <string name="TransferOrRestoreFragment__restore_from_backup">استعادة مِن نسخة احتياطية</string>
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">استعِد رسائلك من نسخة احتياطية محلية. إذا تجاهلت الاستعادة الآن، فسيتعذَّر عليك الاستعادة لاحقًا.</string>
     <string name="TransferOrRestoreFragment__restore_from_local_backup">استعادة نسخة احتياطية محلية</string>
-    <string name="TransferOrRestoreFragment__restore_from_signal_backup">استعادة النسخة الاحتياطية على سيجنال</string>
-    <!-- Button label for more options -->
-    <string name="TransferOrRestoreFragment__more_options">خيارات أكثر</string>
-
-    <string name="TransferOrRestoreFragment__cancel">إلغاء</string>
-    <string name="TransferOrRestoreFragment__skip_transfer">تسجيل الدخول بدون نقل</string>
-    <string name="TransferOrRestoreFragment__skip_transfer_description">اِستِمر دون نقل رسائلك والوسائط</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
     <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">افتح تطبيق سيجنال في هاتف أندرويد القديم الخاص بك</string>
@@ -5832,7 +5527,6 @@
     <!-- Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin -->
     <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">هل ترغبُ بإزالة المُستخدِم %1$s من المجموعة؟ لن يتمكن من إعادة الانضمام عبر رابط المجموعة.</string>
     <string name="RecipientBottomSheet_remove">إزالة</string>
-    <string name="RecipientBottomSheet_copied_to_clipboard">تمَّ النسخ إلى الحافظة</string>
 
     <string name="GroupRecipientListItem_admin">مُشرِف</string>
     <!-- Button text to approve a user that has requested to join a group -->
@@ -5917,9 +5611,6 @@
     <string name="ReviewCardDialogFragment__remove">إزالة</string>
     <string name="ReviewCardDialogFragment__failed_to_remove_group_member">فشلت إزالة عضو من المجموعة.</string>
 
-    <!-- ReviewCard -->
-    <string name="ReviewCard__request">الطلب</string>
-    <string name="ReviewCard__your_contact">جهة اتصالك</string>
     <string name="ReviewCard__remove_from_group">إزالة من المجموعة</string>
     <string name="ReviewCard__update_contact">تحديث جهة الاتصال</string>
     <string name="ReviewCard__block">حظر</string>
@@ -6180,12 +5871,6 @@
     <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">لإرسال مبلغ إلى هذا المُستخدِم، يحتاج للموافقة على طلب المراسلة منك. أرسِل رسالة إليه لإنشاء طلب مراسلة.</string>
     <string name="CanNotSendPaymentDialog__send_a_message">إرسال رسالة</string>
 
-    <!-- GroupsInCommonMessageRequest -->
-    <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">ليس لديك أي مجموعة مشتركة مع هذا الشخص. يُرجى مراجعة الطلبات بعناية قبل قبولها لتفادي أي رسائل غير مرغوب فيها.</string>
-    <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">ليس لديك أي جهات اتصال ولا أي شخص سبق لك التواصل معه في هذه المجموعة. يُرجى مراجعة الطلبات بعناية قبل قبولها لتفادي أي رسائل غير مرغوب فيها.</string>
-    <string name="GroupsInCommonMessageRequest__about_message_requests">حول طلبات المراسلة</string>
-    <string name="GroupsInCommonMessageRequest__okay">حسنًا</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">إليك معاينة للون الدردشة.</string>
     <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">اللون يظهر لك فقط.</string>
 
@@ -6207,8 +5892,6 @@
     <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">تمّ نسخ مُعرِّف المُشترِك المُتبرِّع إلى الحافظة.</string>
     <!-- String displayed in a toast when we successfully copy the backups subscriber id to the clipboard -->
     <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">تمَّ نسخ مُعرِّف المُشترِك للنسخ الاحتياطية إلى الحافظة.</string>
-    <!-- String displayed in a toast when a subscriber id is not present for a given type -->
-    <string name="AppSettingsFragment__no_subscriber_id_set">لا يوجد أي مجموعة مُعرِّف للمُشترِك</string>
 
     <!-- ExportAccountDataFragment -->
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
@@ -6319,7 +6002,6 @@
     <string name="ChangeNumberVerifyFragment__change_number">تغيير الرقم</string>
     <!-- Text shown when verifying a new phone number where %1$s is the number being changed -->
     <string name="ChangeNumberVerifyFragment__verifying_s">جارٍ التحقُّق من %1$s</string>
-    <string name="ChangeNumberVerifyFragment__captcha_required">حل الاختبار مطلوب</string>
 
     <!-- ChangeNumberConfirmFragment -->
     <string name="ChangeNumberConfirmFragment__change_number">تغيير الرقم</string>
@@ -6527,13 +6209,9 @@
     <string name="CreateFoldersFragment__please_enter_name">يُرجى إدخال اسم مجلد</string>
 
     <!-- ChooseChatsFragment -->
-    <!-- Section title representing chat types that can be added to the folder  -->
-    <string name="ChooseChatsFragment__chat_types">أنواع الدردشات</string>
     <!-- Done button label to save selected chats to folder -->
     <string name="ChooseChatsFragment__done">تم</string>
 
-    <!-- NotificationsSettingsFragment -->
-    <string name="NotificationsSettingsFragment__messages">الرسائل</string>
     <string name="NotificationsSettingsFragment__calls">المكالمات</string>
     <!-- Notification header for sounds -->
     <string name="NotificationsSettingsFragment__sounds">اﻷصوات</string>
@@ -6550,8 +6228,6 @@
     <string name="NotificationsSettingsFragment__reset_confirm">إعادة التعيين</string>
     <!-- Notification preference header -->
     <string name="NotificationsSettingsFragment__notification_profiles">ملفات الإشعارات</string>
-    <!-- Notification preference option header -->
-    <string name="NotificationsSettingsFragment__profiles">الملفات</string>
     <!-- Notification preference summary text -->
     <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">أنشِئ ملف لتلقي اﻹشعارات فقط من اﻷفراد والمجموعات التي اخترت.</string>
 
@@ -6709,15 +6385,6 @@
 
     <!-- ChatColorGradientTool -->
 
-    <!-- Title text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_donate_to_signal">تبرَّع لسيجنال</string>
-    <!-- Body text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">تستمد سيجنال دعمها من أشخاص مثلك. تبرَّع شهريًا واحصل على شارة.</string>
-    <!-- Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_donate">تبرَّع</string>
-    <!-- Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_not_now">ليس الآن</string>
-
     <!-- EditReactionsFragment -->
     <string name="EditReactionsFragment__customize_reactions">تخصيص التفاعلات</string>
     <string name="EditReactionsFragment__tap_to_replace_an_emoji">انقر لاستبدال الرمز التعبيري (الإيموجي)</string>
@@ -6734,10 +6401,6 @@
 
     <!-- BecomeASustainerMegaphone -->
     <string name="BecomeASustainerMegaphone__become_a_sustainer">كُن من الداعمين</string>
-    <!-- Displayed in the Become a Sustainer megaphone -->
-    <string name="BecomeASustainerMegaphone__signal_is_powered_by">تستمد سيجنال دعمها من أشخاص مثلك. تبرَّع شهريًا واحصل على شارة.</string>
-    <string name="BecomeASustainerMegaphone__not_now">ليس الآن</string>
-    <string name="BecomeASustainerMegaphone__donate">تبرَّع</string>
 
     <!-- KeyboardPagerFragment -->
     <string name="KeyboardPagerFragment_emoji">رمز تعبيري (إيموجي)</string>
@@ -6810,8 +6473,6 @@
     <string name="ConversationSettingsFragment__conversation_muted_forever">الدردشة مكتومة للأبد</string>
     <!-- Subtitle when conversation is muted forever -->
     <string name="ConversationSettingsFragment__conversation_muted_always">دائمًا</string>
-    <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">نُسخَ رقم الهاتف إلى الحافظة.</string>
-    <string name="ConversationSettingsFragment__phone_number">رقم الهاتف</string>
     <string name="ConversationSettingsFragment__get_badges">يمكنك الحصول على شارات لحسابك الشخصي عبر دعم سيجنال. يكفي النقر على شارة لمعرفة المزيد.</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
     <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">لم يتم إرسال ملف الوسائط بعد.</string>
@@ -6860,8 +6521,6 @@
     <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">كتم الإشعارات</string>
     <!-- Summary text shown when a conversation is not muted -->
     <string name="SoundsAndNotificationsSettingsFragment__not_muted">غير مكتومة</string>
-    <!-- Label for the mentions notification setting in conversation sounds and notifications -->
-    <string name="SoundsAndNotificationsSettingsFragment__mentions">الإشارات إلى اﻷفراد</string>
     <!-- Dialog option to always send notifications for the selected category even when the conversation is muted -->
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">نبِّه دومًا</string>
     <!-- Dialog option to not send notifications for the selected category when the conversation is muted -->
@@ -6870,16 +6529,6 @@
     <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">إشعارات مُخصَّصة</string>
     <!-- Section header for settings that control which notifications still come through when a conversation is muted -->
     <string name="SoundsAndNotificationsSettingsFragment__when_muted">عند الكتم</string>
-    <!-- Label for the calls notification setting in conversation sounds and notifications -->
-    <string name="SoundsAndNotificationsSettingsFragment__calls">المكالمات</string>
-    <!-- Explanatory text shown in the calls notification setting dialog describing what the setting controls -->
-    <string name="SoundsAndNotificationsSettingsFragment__calls_dialog_message">يرن الهاتف وتتلقى إشعارات عند بدء مكالمة في المحادثات المكتومة.</string>
-    <!-- Explanatory text shown in the mentions notification setting dialog describing what the setting controls -->
-    <string name="SoundsAndNotificationsSettingsFragment__mentions_dialog_message">تتلقى الإشعارات عندما يُذكَر اسمك في الدردشات المكتومة.</string>
-    <!-- Label for the replies notification setting in conversation sounds and notifications -->
-    <string name="SoundsAndNotificationsSettingsFragment__replies_to_you">الردود الواردة</string>
-    <!-- Explanatory text shown in the replies notification setting dialog describing what the setting controls -->
-    <string name="SoundsAndNotificationsSettingsFragment__replies_dialog_message">تتلقى الإشعارات عند ورود ردود على رسائلك في المحادثات المكتومة.</string>
 
     <!-- StickerKeyboard -->
     <string name="StickerKeyboard__recently_used">استُخدِمَت مؤخَّرًا</string>
@@ -6913,8 +6562,6 @@
     <string name="NewConversationActivity__s_has_been_removed">تمَّ حذف %1$s</string>
     <!-- Snackbar message after blocking a contact -->
     <string name="NewConversationActivity__s_has_been_blocked">تمَّ حظر %1$s</string>
-    <!-- Snackbar message when blocking a contact has failed -->
-    <string name="NewConversationActivity__block_failed">تعذّر الحظر</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
     <string name="RecipientLookup_error__s_is_not_a_signal_user">ليس %1$s من مُستخدِمي سيجنال.</string>
     <!-- Accessibility label for opening the screen specific dropdown menu. -->
@@ -7096,8 +6743,6 @@
 
     <!-- Title of learn more sheet -->
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_different">بصفتها شركة غير ربحية، سيجنال ملتزمة بتقديم مراسلة ومكالمات خاصة. بدون إعلانات، وبدون تعقُّب، وبدون مراقبة. تبرَّع اليوم لدعم سيجنال.</string>
-    <!-- First small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__private_messaging">No ads, no trackers, no surveillance. Donate today to support Signal.</string>
     <!-- Second small text blurb on learn more sheet -->
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__donate_and_get_badge">احصل على شارة اختيارية على حسابك الشخصي عند التبرُّع.</string>
     <!-- Third small text blurb on learn more sheet -->
@@ -7125,7 +6770,6 @@
     <!-- Heading for receipts area of manage subscriptions page -->
     <!-- Heading for my subscription area of manage subscriptions page -->
     <string name="ManageDonationsFragment__my_support">الدعم الخاص بي</string>
-    <string name="ManageDonationsFragment__manage_subscription">إدارة الاشتراك</string>
     <!-- Label for Donation Receipts button -->
     <string name="ManageDonationsFragment__donation_receipts">إيصالات التبرُّعات</string>
     <string name="ManageDonationsFragment__badges">الشارات</string>
@@ -7192,27 +6836,12 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">كُن من الداعمين</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">أضِف دعمًا</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ليس الآن</string>
-    <!-- Copy displayed when badge expires after user inactivity -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">تمَّ إلغاء تبرُّعك الشهري الدوري تلقائيًا، بسبب غياب نشاطك لفترة طويلة. لم تعد تظهر شارة %1$s في حسابك.</string>
-    <!-- Copy displayed when badge expires after payment failure -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">تمَّ إلغاء تبرُّعك الشهري الدوري تلقائيًا، لأنه تعذَّر علينا معالجة عمليات الدفع الخاصة بك. لم تعد تظهر شارتك في حسابك.</string>
-    <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">تمَّ إلغاء تبرُّعك الشهري الدوري. %1$s لم تعد شارتك %2$s تظهر على حسابك الشخصي.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">يُمكنك الاستمرار في استخدام سيجنال، ولكن يُرجى التجديد الآن لدعم التطبيق وإعادة تفعيل شارتك.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">تجديد الاشتراك</string>
-    <!-- Button label to send user to Google Pay website -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">انتقِل إلى Google Pay</string>
-
-    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">تعذَّرت معالجة عملية الدفع لاشتراكك</string>
-    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">نواجه مشاكل في جمع مدفوعات دعمك لسيجنال. يُرجى التأكُّد من أن طريقة الدفع الخاصة بك حديثة. إن لم تكن كذلك، يُرجى تحديثها في Google Pay. سوف يحاول سيجنال معالجة مدفوعاتك لاحقًا خلال بضع أيام.</string>
-    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">لا تُظهِر هذا مُجدَّدًا</string>
 
     <string name="Subscription__contact_support">الاتصال بالدعم</string>
     <string name="Subscription__get_a_s_badge">احصل على شارة %1$s</string>
 
     <!-- *PaymentInProgressFragment strings -->
     <string name="InAppPaymentInProgressFragment__processing_donation">جارٍ معالجة التبرُّع…</string>
-    <string name="InAppPaymentInProgressFragment__processing_payment">تجري معالجة الدفوعات…</string>
 
     <!--InAppDonations -->
     <!-- Label displayed in google play and on receipts for recurring subscriptions. Placeholder is level -->
@@ -7266,8 +6895,6 @@
     <string name="DonationsErrors__cannot_send_donation">تعذَّر إرسال التبرُّع</string>
     <!-- Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting -->
     <string name="DonationsErrors__this_user_cant_receive_donations_until">لا يُمكن لهذا المُستخدم تلقّي التبرُّعات حتى يقوم بترقية تطبيق سيجنال.</string>
-    <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
-    <string name="DonationsErrors__your_donation_could_not_be_sent">تعذَّر إرسال تبرُّعك بسبب خطأ في الشبكة. تحقّق من اتصالك بالشبكة ثم حاوِل مرّة أخرى.</string>
     <!-- Displayed as a dialog message when the user encounters an error during an iDEAL donation -->
     <string name="DonationsErrors__your_ideal_wero_couldnt_be_processed">لم يتم التمكُّن من معالجة تبرُّع iDEAL | Wero الخاص بك. جرِّب طريقة دفع أخرى أو تواصَل مع المصرف الذي تتعامل معه للمزيد من المعلومات.</string>
 
@@ -7501,8 +7128,6 @@
     <string name="ReleaseNotes__this_is_official_chat">هذه هي الدردشة الوحيدة والرسمية من سيجنال.</string>
     <!-- Text description in Signal Release channel details explaining what the channel is for -->
     <string name="ReleaseNotes__keep_up_to_date">ابقَ على اطِّلاع على آخر الأخبار وملاحظات الإصدارات</string>
-    <!-- Subtitle for the Signal Release channel explaining that it is the only chat from Signal -->
-    <string name="ReleaseNotes__official_only_chat">دردشة سيجنال الرسمية والوحيدة</string>
 
     <!-- Donation receipts activity title -->
     <string name="DonationReceiptListFragment__all_activity">كل النشاطات</string>
@@ -7823,10 +7448,6 @@
     <string name="TextStoryPostTextEntryFragment__add_text">أضِف نصًا</string>
     <!-- Content description for \'done\' button when adding text to a story post -->
     <string name="TextStoryPostTextEntryFragment__done_adding_text">انتهت إضافة النص</string>
-    <!-- Text label for media selection toggle -->
-    <string name="MediaSelectionActivity__text">نص</string>
-    <!-- Camera label for media selection toggle -->
-    <string name="MediaSelectionActivity__camera">الكاميرا</string>
     <!-- Hint for entering a URL for a text post -->
     <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">اكتُب أو الصُق عنوان الـ URL</string>
     <!-- Displayed prior to the user entering a URL for a text post -->
@@ -8236,21 +7857,17 @@
     <string name="ChooseANewDefaultSmsAppFragment__bullet_1">1</string>
     <!-- Second step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_2">2</string>
-    <!-- Third step number/bullet for choose new default sms app instructions -->
-    <string name="ChooseANewDefaultSmsAppFragment__bullet_3">3</string>
-    <!-- Fourth step number/bullet for choose new default sms app instructions -->
-    <string name="ChooseANewDefaultSmsAppFragment__bullet_4">4</string>
     <!-- BackupSchedulePermission Megaphone -->
     <!-- The title on an alert window that asks the user to grant the alarms permission so that automatic backups run more reliably -->
-    <string name="BackupSchedulePermissionMegaphone__improve_backup_reliability">Improve backup reliability</string>
+    <string name="BackupSchedulePermissionMegaphone__improve_backup_reliability">تحسين موثوقية النسخ الاحتياطي</string>
     <!-- The body text of an alert window that asks the user to grant the alarms permission so that automatic backups run more reliably -->
-    <string name="BackupSchedulePermissionMegaphone__allow_the_alarms_permission_to_improve_automatic_daily_backups">Allow the \"alarms\" permission to improve automatic daily backups.</string>
+    <string name="BackupSchedulePermissionMegaphone__allow_the_alarms_permission_to_improve_automatic_daily_backups">السماح بإذن \"التنبيهات\" لتحسين عمليات النسخ الاحتياطي اليومية التلقائية.</string>
     <!-- The text on a button in an alert window that, when clicked, will take the user to a screen to grant the alarms permission -->
-    <string name="BackupSchedulePermissionMegaphone__allow">Allow</string>
+    <string name="BackupSchedulePermissionMegaphone__allow">السماح</string>
     <!-- The text on a button in an alert window that, when clicked, will take the user to a screen to re-enable backups -->
     <string name="BackupSchedulePermissionMegaphone__not_now">ليس الآن</string>
     <!-- Alarms permission bottom sheet title, followed by a numbered list of instructions -->
-    <string name="BackupSchedulePermissionMegaphone__to_allow_permission">To allow permission:</string>
+    <string name="BackupSchedulePermissionMegaphone__to_allow_permission">للسماح بالإذن:</string>
     <!-- Re-enable backups permission bottom sheet instruction 1 text -->
     <string name="BackupSchedulePermissionMegaphone__tap_the_go_to_settings_button_below">انقر على زر \"انتقِل إلى الإعدادات\" أدناه</string>
     <!-- Re-enable backups permission bottom sheet instruction 2 text -->
@@ -8363,8 +7980,6 @@
     <string name="BankTransferDetailsFragment__invalid_email_address">عنوان بريد إلكتروني غير صحيح</string>
 
     <!-- IdealTransferDetailsFragment -->
-    <!-- Title of the screen, displayed in the toolbar -->
-    <string name="IdealTransferDetailsFragment__ideal">iDEAL</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
     <string name="IdealTransferDetailsFragment__enter_your_bank">أدخِل اسمك وبريدك الإلكتروني. يستخدم Stripe هذا البريد الإلكتروني لإرسال تحديثات متعلقة بتبرُّعاتك. %1$s</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
@@ -8375,8 +7990,6 @@
     <string name="IdealTransferDetailsFragment__name_on_bank_account">الاسم كما يظهر في الحساب المصرفي</string>
     <!-- Hint label for text entry box for email -->
     <string name="IdealTransferDetailsFragment__email">البريد الإلكتروني</string>
-    <!-- Default label for bank selection -->
-    <string name="IdealTransferDetailsFragment__choose_your_bank">حدِّد مصرفك</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
     <string name="IdealTransferDetailsFragment__confirm_your_donation_with_ideal_wero">قُم بتأكيد تبرُّع iDEAL | Wero الخاص بك</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
@@ -8385,8 +7998,6 @@
     <string name="IdealTransferDetailsFragment__continue">متابعة</string>
 
     <!-- IdealTransferDetailsBankSelectionDialogFragment -->
-    <!-- Title of the screen, displayed in the toolbar -->
-    <string name="IdealTransferDetailsBankSelectionDialogFragment__choose_your_bank">حدِّد مصرفك</string>
 
     <!-- Title of bottom sheet for finding account information -->
     <string name="FindAccountInfoSheet__find_your_account_information">العثور على معلومات حسابك</string>
@@ -8419,8 +8030,6 @@
     <string name="DonationCompletedBottomSheet__donation_complete">اكتمل التبرُّع</string>
     <!-- Text block of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed -->
     <string name="DonationCompleteBottomSheet__your_bank_transfer_was_received">تمَّ استلام حوالتك المصرفية. يُمكنك اختيار عرض هذه الشارة على حسابك الشخصي لإظهار دعمك.</string>
-    <!-- Button text of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed to dismiss sheet -->
-    <string name="DonationCompleteBottomSheet__done">تمّ</string>
 
     <!-- StripePaymentInProgressFragment -->
     <string name="StripePaymentInProgressFragment__cancelling">جارٍ الإلغاء…</string>
@@ -8476,7 +8085,6 @@
     <string name="GroupStoryEducationSheet__all_group_chat_members">يُمكن لِجميع أعضاء الدردشة الجماعية مشاهدة ردود القصة.</string>
     <!-- Button label to dismiss sheet -->
     <string name="GroupStoryEducationSheet__next">التالي</string>
-    <string name="Registration_country_code_entry_hint">+0</string>
 
     <!-- PaypalCompleteOrderBottomSheet -->
     <string name="PaypalCompleteOrderBottomSheet__donate">تبرَّع</string>
@@ -8491,8 +8099,6 @@
     <string name="ChatFilter__tip_pull_down">نصيحة: اِسحب الدردشة للأسفل للفلترة</string>
 
     <!-- Set up your username megaphone -->
-    <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__set_up_your_signal_username">إعداد اسمُ المُستخدِم الخاص بك على سيجنال</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__introducing_phone_number_privacy">نُقدم لكم خصوصية رقم الهاتف وأسماء المُستخدِمين الاختيارية والروابط.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
@@ -8546,8 +8152,6 @@
     <string name="CallLogAdapter__incoming">واردة</string>
     <!-- Displayed for outgoing calls -->
     <string name="CallLogAdapter__outgoing">صادرة</string>
-    <!-- Displayed for outgoing calls that were not accepted by the remote party -->
-    <string name="CallLogAdapter__unanswered">لم يتم الرد عليه</string>
     <!-- Displayed for missed calls -->
     <string name="CallLogAdapter__missed">فائتة</string>
     <!-- Displayed for one missed call declined by notification profile -->
@@ -8666,13 +8270,6 @@
     <string name="CallStateUpdatePopupWindow__speaker_on">مُكبِّر الصوت مُشغَّل</string>
     <!-- Displayed when the user turns off their speakerphone -->
     <string name="CallStateUpdatePopupWindow__speaker_off">مُكبِّر الصوت غير مُشغَّل</string>
-
-    <!-- Accessibility label describing the capture button on the camera screen -->
-    <string name="CameraControls_capture_button_accessibility_label">زر الالتقاط</string>
-    <!-- Accessibility label describing the continue button on the camera screen -->
-    <string name="CameraControls_continue_button_accessibility_label">زر المتابعة</string>
-    <!-- Accessibility label describing the flash Mode toggle button on the camera screen -->
-    <string name="CameraControls_toggle_flash_mode_accessibility_label">تفعيل وضع الفلاش</string>
 
     <!-- CallPreference -->
     <!-- Generic group call in call info -->
@@ -9029,8 +8626,6 @@
     <string name="FindByActivity__enter_username_description">أدخِل اسم مُستخدِم متبوعًا بنقطة ومجموعة من الأرقام الخاصة به.</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">التالي</string>
-    <!-- Placeholder text for search input for selecting country code -->
-    <string name="FindByActivity__search">بحث</string>
     <!-- Dialog title for invalid username -->
     <string name="FindByActivity__invalid_username">اسم مُستخدم غير صحيح</string>
     <!-- Dialog title for invalid phone number -->
@@ -9175,14 +8770,6 @@
     <string name="BackupAlertBottomSheet__not_now">ليس الآن</string>
     <!-- Secondary action button to dismiss could not complete backup sheet -->
     <string name="BackupAlertBottomSheet__try_later">حاوِل مرّة أخرى</string>
-    <!-- Dialog title for last chance to download backup -->
-    <string name="BackupAlertBottomSheet__media_will_be_deleted">سيتمُّ حذف الوسائط</string>
-    <!-- Dialog message for last chance to download backup -->
-    <string name="BackupAlertBottomSheet__the_media_stored_in_your_backup">سيتمُّ حذف الوسائط الموجودة في نسختك الاحتياطية بشكلٍ دائم اليوم. هذه فرصتك الأخيرة لتنزيلها.</string>
-    <!-- Dialog action to download now -->
-    <string name="BackupAlertBottomSheet__download">تنزيل</string>
-    <!-- Dialog action to not download now -->
-    <string name="BackupAlertBottomSheet__dont_download">لا تقُم بالتنزيل</string>
     <!-- Dialog action to skip media download -->
     <string name="BackupAlertBottomSheet__skip">تخطّي</string>
     <!-- Dialog title for skipping media restore -->
@@ -9302,25 +8889,7 @@
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
-    <string name="BackupsTypeSettingsFragment__google_play">Google Play</string>
-    <!-- Displayed as the user\'s payment method as a label in a preference row -->
-    <string name="BackupsTypeSettingsFragment__credit_or_debit_card">بطاقة الائتمان أو الخصم</string>
-    <!-- Displayed as the user\'s payment method as a label in a preference row -->
-    <string name="BackupsTypeSettingsFragment__iDEAL">iDEAL</string>
-    <!-- Displayed as the user\'s payment method as a label in a preference row -->
-    <string name="BackupsTypeSettingsFragment__google_pay">Google Pay</string>
-    <!-- Displayed as the user\'s payment method as a label in a preference row -->
-    <string name="BackupsTypeSettingsFragment__bank_transfer">تحويل مصرفي</string>
-    <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__paypal">PayPal</string>
-    <!-- Displayed as the user\'s payment method as a label in a preference row -->
-    <string name="BackupsTypeSettingsFragment__unknown">غير معروف</string>
-    <!-- Row title for entering payment history -->
-    <string name="BackupsTypeSettingsFragment__payment_history">تاريخ الدفع</string>
-    <!-- Row description detailing renewal information. First placeholder is formatted price. Second placeholder is formatted date. -->
-    <string name="BackupsTypeSettingsFragment__s_month_renews_s">%1$s/شهريًا · يُجدَّد في %2$s</string>
-    <!-- Row title to change or cancel subscription -->
-    <string name="BackupsTypeSettingsFragment__change_or_cancel_subscription">تغيير أو إلغاء الاشتراك</string>
 
     <!-- GooglePlayServicesAvailability -->
     <!-- Dialog title when Google Play services are missing from the device -->
@@ -9482,8 +9051,6 @@
     <string name="RemoteBackupsSettingsFragment__off">في حالة إيقاف</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
     <string name="RemoteBackupsSettingsFragment__authentication_required">المُصادقة مطلوبة</string>
-    <!-- Row label to launch payment history screen -->
-    <string name="RemoteBackupsSettingsFragment__payment_history">تاريخ الدفع</string>
     <!-- Section header for backup information -->
     <string name="RemoteBackupsSettingsFragment__backup_details">تفاصيل النسخ الاحتياطي</string>
     <!-- Row label to allow the restoration of a backup to occur while on cellular connection -->
@@ -9533,10 +9100,6 @@
     <string name="RemoteBackupsSettingsFragment__subscription_inactive">الاشتراك غير فعَّال</string>
     <!-- Text displayed in card when free tier is inactive -->
     <string name="RemoteBackupsSettingsFragment__you_turned_off_backups">أوقفتَ النسخ الاحتياطية</string>
-    <!-- Title text in row detailing selected backup type -->
-    <string name="RemoteBackupsSettingsFragment__backup_plan">خطة النسخ الاحتياطي</string>
-    <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
-    <string name="RemoteBackupsSettingsFragment__backups_disabled">تعطيل النسخة الاحتياطية</string>
     <!-- Format string for backup and cost. First placeholder is cost per month. -->
     <string name="RemoteBackupsSettingsFragment__s_per_month">%1$s/شهريًا</string>
     <!-- Displayed in card at top of screen while payment processing is pending -->
@@ -9563,8 +9126,6 @@
     <string name="RemoteBackupsSettingsFragment__manage_or_cancel">إدارة أو إلغاء</string>
     <!-- button label to upgrade backups -->
     <string name="RemoteBackupsSettingsFragment__upgrade">ترقية</string>
-    <!-- Progress indicator subtext displayed when a backup is in progress -->
-    <string name="RemoteBackupsSettingsFragment__d_slash_d">%1$d/%2$d</string>
     <!-- Title text in row detailing last backup -->
     <string name="RemoteBackupsSettingsFragment__last_backup">آخِر نسخة احتياطية</string>
     <!-- Subtext describing when a backup took place. First placeholder is the day, second is time. -->
@@ -9593,20 +9154,6 @@
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">إيقاف وحذف</string>
     <!-- Text on dialog while user backup is being deleted -->
     <string name="RemoteBackupsSettingsFragment__deleting_backup">جارٍ حذف النسخ الاحتياطية…</string>
-    <!-- Text on dialog when user backup is deleted -->
-    <string name="RemoteBackupsSettingsFragment__backup_deleted">تمَّ حذف النسخ الاحتياطية</string>
-    <!-- Subtitle for frequency option MANUAL for backup frequency -->
-    <string name="RemoteBackupsSettingsFragment__by_tapping_back_up_now">"بالنقر على \"إنشاء نسخة احتياطية الآن\""</string>
-    <!-- Title for frequency option DAILY for backup frequency -->
-    <string name="RemoteBackupsSettingsFragment__daily">يوميًا</string>
-    <!-- Title for frequency option DAILY for backup frequency -->
-    <string name="RemoteBackupsSettingsFragment__weekly">أسبوعيًا</string>
-    <!-- Title for frequency option DAILY for backup frequency -->
-    <string name="RemoteBackupsSettingsFragment__monthly">شهريًا</string>
-    <!-- Title for frequency option DAILY for backup frequency -->
-    <string name="RemoteBackupsSettingsFragment__manually_back_up">نسخ احتياطي يدويًا</string>
-    <!-- The body of an alert dialog shown when we detect the user may be confused by the lock screen -->
-    <string name="PassphrasePromptActivity_help_prompt_body">يُرجى إدخال رقم تعريف الجهاز أو كلمة المرور أو نمط كلمة المرور لجهازك.</string>
     <!-- Button label to re-enable backups (launches into checkout flow) -->
     <string name="RemoteBackupsSettingsFragment__reenable_backups">إعادة تفعيل النسخ الاحتياطية</string>
     <!-- Notice displayed when backups have been disabled and deleted -->
@@ -9698,8 +9245,6 @@
     <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data">تمَّ إيقاف النُسخ الاحتياطية، وسيتمَّ حذف بياناتك من خدمة التخزين الآمنة لسيجنال.</string>
     <!-- Text displayed after we have deleted a user\'s backup -->
     <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data_has_been_deleted">تمَّ إيقاف النُسخ الاحتياطية، وتمَّ حذف بياناتك من خدمة التخزين الآمنة الخاصة بسيجنال.</string>
-    <!-- Text displayed while downloading backup during deletion. First placeholder is amount downloaded, second is amount remaining, last is percentage. -->
-    <string name="RemoteBackupsSettingsFragment__downloading_s_of_s_d">يتم تنزيل: %1$s من %2$s (%3$d%%)</string>
     <!-- Text displayed when user is out of storage space. Placeholder is storage limit in human readable form (ex. 1GB) -->
     <string name="RemoteBackupsSettingsFragment__youve_reached_the_s_storage_limit">بلغتَ حد التخزين %1$s المُضمَّن في خطة النسخ الاحتياطي الخاصة بك. لتُنشِئ نسخة احتياطية للدردشات والوسائط، قُم بتحرير مساحة.</string>
     <!-- Button label to open storage management screen -->
@@ -9873,8 +9418,6 @@
     <string name="MessageBackupsKeyRecordScreen__keep_your_key_safe">حافظ على مفتاحك في مكانٍ آمن.</string>
     <!-- Bottom sheet subtitle -->
     <string name="MessageBackupsKeyRecordScreen__signal_will_not">لن يتمكّن سيجنال من مُساعدتك على استعادة نسختك الاحتياطية إذا فقدتَ مفتاحك. احتفِظ بمفتاحك في مكانٍ آمن، ولا تُشاركه مع أي أحد.</string>
-    <!-- Checkbox label -->
-    <string name="MessageBackupsKeyRecordScreen__ive_recorded_my_key">احتفظتُ بمفتاحي</string>
     <!-- Sheet action button label -->
     <string name="MessageBackupsKeyRecordScreen__continue">متابعة</string>
     <!-- Sheet secondary action button label -->
@@ -9936,18 +9479,16 @@
     <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">مفتاح الاستعادة خاطئ</string>
     <!-- Confirm your key button text to return to record key screen. -->
     <string name="MessageBackupsKeyVerifyScreen__see_key_again">اطَّلِع على المفتاح مُجدَّدًا</string>
-    <!-- Confirm your key button text to move onto next screen in flow -->
-    <string name="MessageBackupsKeyVerifyScreen__next">التالي</string>
     <!-- Confirm your key subtitle shown to users whose recovery key came with their Signal Login rather than being recorded during this flow -->
-    <string name="MessageBackupsKeyVerifyScreen__enter_the_recovery_key_from_your_signal_login">Enter the recovery key from your Signal Login</string>
+    <string name="MessageBackupsKeyVerifyScreen__enter_the_recovery_key_from_your_signal_login">أدخِل مفتاح الاستعادة الخاص بـ Signal Login</string>
 
     <!-- MessageBackupsConfirmRecoveryKeyScreen -->
     <!-- Screen headline asking the user to confirm the recovery key they received with their Signal Login -->
     <string name="MessageBackupsConfirmRecoveryKeyScreen__confirm_your_recovery_key">قُم بتأكيد مفتاح الاستعادة الخاص بك</string>
     <!-- Screen subtitle explaining what the recovery key is and why it is needed -->
-    <string name="MessageBackupsConfirmRecoveryKeyScreen__your_recovery_key_is_a_64_character_code">Your recovery key is a 64-character code you received with your Signal Login. It\'s required to restore your backup. If you forget your key, you will not be able to recover your account.</string>
+    <string name="MessageBackupsConfirmRecoveryKeyScreen__your_recovery_key_is_a_64_character_code">مفتاح الاستعادة الخاص بك هو كود مُكوَّن من 64 رمز تلقيته مع Signal Login الخاص بك. هذا الكود مطلوب لاستعادة نسختك الاحتياطية. إذا نسيت مفتاحك، فلن تتمكّن من استعادة حسابك.</string>
     <!-- Caption above the action buttons warning the user that the password manager will prompt them next -->
-    <string name="MessageBackupsConfirmRecoveryKeyScreen__you_will_be_prompted_with_your_saved_password">You will be prompted with your saved password in the next step.</string>
+    <string name="MessageBackupsConfirmRecoveryKeyScreen__you_will_be_prompted_with_your_saved_password">ستُطلَب منك كلمة المرور المحفوظة في الخطوة التالية.</string>
     <!-- Action button label to confirm the recovery key using the saved password manager credential -->
     <string name="MessageBackupsConfirmRecoveryKeyScreen__confirm_recovery_key">أكِّد مفتاح الاستعادة الخاص بك</string>
     <!-- Action button label to type the recovery key in by hand instead of using the password manager -->
@@ -9955,7 +9496,7 @@
     <!-- Title of the dialog shown when the recovery key from the password manager did not match -->
     <string name="MessageBackupsConfirmRecoveryKeyScreen__error_confirming_recovery_key">حدث خطأ أثناء تأكيد مفتاح الاستعادة.</string>
     <!-- Body of the dialog shown when the recovery key from the password manager did not match -->
-    <string name="MessageBackupsConfirmRecoveryKeyScreen__your_recovery_key_could_not_be_confirmed">Your recovery key could not be confirmed. Make sure you\'ve saved your Signal Login in your password manager, or enter your recovery key manually.</string>
+    <string name="MessageBackupsConfirmRecoveryKeyScreen__your_recovery_key_could_not_be_confirmed">تعذَّر تأكيد مفتاح الاستعادة الخاص بك. تأكَّد من حفظ Signal Login في مدير كلمات المرور، أو أدخِل مفتاح الاستعادة يدويًا.</string>
     <!-- Toast shown when the recovery key from the password manager matched -->
     <string name="MessageBackupsConfirmRecoveryKeyScreen__recovery_key_confirmed">تم تأكيد مفتاح الاستعادة.</string>
 
@@ -9983,8 +9524,6 @@
     <string name="MessageBackupsTypeSelectionScreen__change_backup_type">تغيير نوع النسخ الاحتياطية</string>
     <!-- Primary action button label when selecting paid tier when Google Play API isn\'t available -->
     <string name="MessageBackupsTypeSelectionScreen__more_about_this_plan">المزيد بخصوص هذه الخطة</string>
-    <!-- Secondary action button label when selecting a backup tier with a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__cancel_subscription">إلغاء الاشتراك</string>
     <!-- MessageBackupsType block amount for free tier -->
     <string name="MessageBackupsTypeSelectionScreen__free">مجانًا</string>
     <!-- MessageBackupsType block amount for paid tier when no pricing is available -->
@@ -10021,25 +9560,8 @@
     </plurals>
     <!-- Text designating that an option is your current plan -->
     <string name="MessageBackupsTypeSelectionScreen__current_plan">الخطة الحالية</string>
-    <!-- Dialog title when user can\'t upgrade plan due to missing Google Services -->
-    <string name="MessageBackupsTypeSelectionScreen__cant_upgrade_plan">تتعذَّر ترقية الخطة</string>
-    <!-- Dialog body text explaining Google Services requirement for backup subscription -->
-    <string name="MessageBackupsTypeSelectionScreen__to_subscribe_to_signal_secure_backups">للتسجيل في النسخ الاحتياطية الآمنة لسيجنال، عليك تفعيل خدمات Google Play على هاتفك وتسجيل الدخول إلى متجر Google Play.</string>
 
     <!-- ConfirmBackupCancellationDialog -->
-    <!-- Dialog title -->
-    <string name="ConfirmBackupCancellationDialog__confirm_cancellation">تأكيد الإلغاء</string>
-    <!-- Dialog body -->
-    <string name="ConfirmBackupCancellationDialog__you_wont_be_charged_again">لن تُحصَّل أي رسوم منك مرّة أخرى. سيتمُّ إيقاف النسخ الاحتياطية في نهاية المدة الزمنية لإعداد الفواتير. وبعد هذا التاريخ، سَيكون أمامك 30 يومًا لتنزيل الوسائط التي تقوم بنسخها احتياطيًا حاليًا.</string>
-    <!-- Action button label to cancel subscription and download now -->
-    <string name="ConfirmBackupCancellationDialog__confirm_and_download_now">التأكيد والتنزيل الآن</string>
-    <!-- Action button label to cancel subscription and download later -->
-    <string name="ConfirmBackupCancellationDialog__confirm_and_download_later">التأكيد والتنزيل لاحقًا</string>
-    <!-- Action button label to keep current subscription -->
-    <string name="ConfirmBackupCancellationDialog__keep_subscription">الاستمرار في الاشتراك</string>
-
-    <!-- Accessible content description for the reminder view, describing the icon in the view. -->
-    <string name="ReminderView_icon_content_description">أيقونة تذكير</string>
 
     <!-- Row title for restore/transfer using a previous registered phone/device -->
     <string name="WelcomeFragment_restore_action_i_have_my_old_phone">هاتفي القديم بحوزتي</string>
@@ -10063,10 +9585,6 @@
     <string name="SelectRestoreMethodFragment__restore_on_device_backup">استعادة النسخة الاحتياطية على الجهاز</string>
     <!-- Option subtitle fdor restoring via a local backup file or folder -->
     <string name="SelectRestoreMethodFragment__restore_your_messages_from">استعِد رسائلك من النسخة الاحتياطية التي حفظتها على جهازك.</string>
-    <!-- Option title for restoring via a local backup file -->
-    <string name="SelectRestoreMethodFragment__from_a_backup_file">من ملف النسخة الاحتياطية</string>
-    <!-- Option subtitle for restoring via a local backup -->
-    <string name="SelectRestoreMethodFragment__choose_a_backup_youve_saved">اختر نسخة احتياطية حفظتها</string>
     <!-- Option title for restoring via device transfer -->
     <string name="SelectRestoreMethodFragment__from_your_old_phone">من جهازك القديم</string>
     <!-- Option subtitle for restoring via device transfer -->
@@ -10077,11 +9595,6 @@
     <string name="SelectRestoreMethodFragment__skip_restore_warning">إذا قُمتَ بتخطي الاستعادة الآن، فلن تتمكّن من الاستعادة لاحقًا. إذا فعّلتَ النسخ الاحتياطية من جديد لاحقًا بعد تخطي الاستعادة، فسيتم استبدال نسختك الاحتياطية الحالية بسجل الرسائل الخاص بك الجديد.</string>
     <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore">تخطِّي الاستعادة</string>
-
-    <!-- Screen title for restore via local backup -->
-    <string name="RestoreLocalBackup_title">استعادة نسخة احتياطية محلية</string>
-    <!-- Screen subtitle for restore via local backup -->
-    <string name="RestoreLocalBackup_subtitle">استعِد رسائلك من النسخة الاحتياطية التي حفظتها على جهازك. إذا لم تقُم بالاستعادة الآن، فسيتعذَّر عليك الاستعادة لاحقًا.</string>
 
     <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
     <string name="EnterBackupKey_title">أدخِل مفتاح الاستعادة الخاص بك.</string>
@@ -10315,8 +9828,6 @@
     <string name="PrepareDevice_title">جارٍ تجهيز جهازك</string>
     <!-- Prepare Device screen body text explaining backup recommendation -->
     <string name="PrepareDevice_body">أنشِئ نسخة احتياطية الآن قبل النقل. قد تكون قد تلقيتَ رسائل لم يتم نسخها احتياطيًا بعد.</string>
-    <!-- Prepare Device screen last backup text format, %1$s is the date and %2$s is the time -->
-    <string name="PrepareDevice_last_backup">أُجريَتْ آخِر نسخة احتياطية في %1$s عند الساعة %2$s.</string>
     <!-- Prepare Device screen back up now button -->
     <string name="PrepareDevice_back_up_now">إنشاء نسخة احتياطية الآن</string>
     <!-- Prepare Device screen skip and continue button -->
@@ -10408,24 +9919,6 @@
     <string name="Notification_backup_failed">فشل النسخ الاحتياطي</string>
     <!-- Notification body for when initial backup failed -->
     <string name="Notification_an_error_occurred_and_your_backup">حدث خطأ منعَ إكمال عملية النسخ الاحتياطي التي بدأتَ بها. انقر للمزيد من التفاصيل.</string>
-    <!-- Notification title for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->
-    <plurals name="Notification_no_backup_for_d_days">
-        <item quantity="zero">لم يُجرَ نسخ احتياطي منذ %1$d أيام.</item>
-        <item quantity="one">لم يُجرَ نسخ احتياطي منذ %1$d يوم.</item>
-        <item quantity="two">لم يُجرَ نسخ احتياطي منذ %1$d يومين.</item>
-        <item quantity="few">لم يُجرَ نسخ احتياطي منذ %1$d أيام.</item>
-        <item quantity="many">لم يُجرَ نسخ احتياطي منذ %1$d يومًا.</item>
-        <item quantity="other">لم يُجرَ نسخ احتياطي منذ %1$d يوم.</item>
-    </plurals>
-    <!-- Notification body for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->
-    <plurals name="Notification_you_have_not_completed_a_backup">
-        <item quantity="zero">لم تُكمِل نسخة احتياطية منذ %1$d أيام. أنشِئ نسخة احتياطية الآن.</item>
-        <item quantity="one">لم تُكمِل نسخة احتياطية منذ %1$d يوم. أنشِئ نسخة احتياطية الآن.</item>
-        <item quantity="two">لم تُكمِل نسخة احتياطية منذ %1$d يومين. أنشِئ نسخة احتياطية الآن.</item>
-        <item quantity="few">لم تُكمِل نسخة احتياطية منذ %1$d أيام. أنشِئ نسخة احتياطية الآن.</item>
-        <item quantity="many">لم تُكمِل نسخة احتياطية منذ %1$d يومًا. أنشِئ نسخة احتياطية الآن.</item>
-        <item quantity="other">لم تُكمِل نسخة احتياطية منذ %1$d يوم. أنشِئ نسخة احتياطية الآن.</item>
-    </plurals>
 
     <!-- Polls -->
     <!-- Caption in poll message to select an option  -->
@@ -10450,10 +9943,6 @@
     <string name="Poll__poll_end">%1$s أنهى الاستطلاع: \"%2$s\"</string>
     <!-- Thread body message when a poll ends. %1$s is the question of the poll -->
     <string name="Poll__you_poll_end">أنهيتَ الاستطلاع: \"%1$s\"</string>
-    <!-- Notification message sent when someone votes in the poll. %1$s is the voter. %2$s is the question of the poll -->
-    <string name="Poll__poll_voted">%1$s صوت في الاستطلاع: \"%2$s\"</string>
-    <!-- Option in settings to configure notifications for polls -->
-    <string name="Poll__poll">الاستطلاعات</string>
     <!-- Title of screen that shows the poll results of a poll after it has ended-->
     <string name="Poll__poll_results">نتائج الاستطلاع</string>
     <!-- Title of screen that shows the poll details of a poll -->
@@ -10580,8 +10069,6 @@
     <string name="CallQualitySheet__view_debug_log">عرض سِجل الأخطاء</string>
     <!-- Toggle label for sharing debug log -->
     <string name="CallQualitySheet__share_debug_log">مشاركة سجل الأخطاء</string>
-    <!-- Privacy notice explaining what debug logs contain and why they are helpful -->
-    <string name="CallQualitySheet__debug_log_privacy_notice">تحتوي سجلات الأخطاء على معلومات التطبيق منخفضة المستوى ولا تكشف عن أي من محتويات رسالتك.</string>
     <!-- Button to submit the call quality feedback -->
     <string name="CallQualitySheet__submit">تقديم</string>
     <!-- Displayed as a snackbar after submitting feedback -->
@@ -10770,19 +10257,6 @@
     <!-- Button indicating the user wants to proceed with sharing/pasting the recovery key, which shows a final confirmation -->
     <string name="RecoveryKeyWarningSheetContent__share_key">شارِك المفتاح</string>
 
-    <!-- Title of the final confirmation dialog shown before pasting a recovery key -->
-    <string name="RecoveryKeyWarningDialog__do_not_share_recovery_key">لا تشارِك مفتاح الاستعادة</string>
-    <!-- First sentence of the final confirmation dialog body warning against sharing the recovery key -->
-    <string name="RecoveryKeyWarningDialog__do_not_share_your_recovery_key_with_anyone">لا تشارِك مفتاح الاستعادة الخاص بك مع أي أحد. سيمكنه هذا من الاستيلاء على حسابك.</string>
-    <!-- Bolded middle sentence of the final confirmation dialog body -->
-    <string name="RecoveryKeyWarningDialog__signal_will_never_message_you_for_your_recovery_key">لن يُرسِل لك سيجنال أبدًا رسالة يطلب فيها مفتاح الاستعادة.</string>
-    <!-- Final sentence of the final confirmation dialog body -->
-    <string name="RecoveryKeyWarningDialog__never_respond_to_a_chat">تجنَّب الرد نهائيًا على الدردشات التي تدعي أنها مُرسَلة من طرف سيجنال.</string>
-    <!-- Button confirming the user wants to paste the recovery key -->
-    <string name="RecoveryKeyWarningDialog__paste_key">لصق المفتاح</string>
-    <!-- Button declining to paste the recovery key -->
-    <string name="RecoveryKeyWarningDialog__dont_share">لا تشارِك</string>
-
     <!-- Notification body for unread reminders. First placeholder is unread messages, second is a summary of unread mentions or replies -->
     <string name="UnreadReminderJob__unread_one_summary">لديك %1$s، بما في ذلك %2$s.</string>
     <!-- Notification body for unread reminders. First placeholder is unread messages, second is a summary of unread mentions, third replies -->
@@ -10847,6 +10321,35 @@
         <item quantity="other">%1$d ردّ من طرف %2$s وآخرين</item>
     </plurals>
 
+    <!-- Title of the screen for picking a contact to share -->
+    <string name="SelectContactScreen__select_contact">Select contact</string>
+    <!-- Placeholder in the search field on the contact picker -->
+    <string name="SelectContactScreen__search">Search</string>
+    <!-- Content description for the button that clears the contact search field -->
+    <string name="SelectContactScreen__clear_search">Clear search</string>
+    <!-- Content description for the badge shown next to a contact that is in the phone\'s address book -->
+    <string name="SelectContactScreen__in_your_contacts">In your contacts</string>
+    <!-- Title of the prompt asking for permission to read the user\'s phone contacts -->
+    <string name="SelectContactScreen__find_people_you_know_on_signal">Find people you know on Signal</string>
+    <!-- Explanation shown when Signal does not have permission to read the user\'s phone contacts -->
+    <string name="SelectContactScreen__allow_access_to_your_contacts">Allow access to your contacts. Your contacts are encrypted and not visible to the Signal service.</string>
+    <!-- Button that asks the system for permission to read the user\'s phone contacts -->
+    <string name="SelectContactScreen__allow_access">Allow access</string>
+    <!-- Button that dismisses the request for permission to read the user\'s phone contacts -->
+    <string name="SelectContactScreen__no_thanks">No thanks</string>
+    <!-- Button that opens the phone\'s own contact picker, used when Signal cannot ask for contacts permission -->
+    <string name="SelectContactScreen__open_phone_contacts">Open phone contacts</string>
+    <!-- Note at the bottom of the contact picker when contacts permission was denied on the device. Placeholder is the "Learn more" link text. -->
+    <string name="SelectContactScreen__to_see_your_phone_contacts_here">To see your phone contacts here, allow access in your device settings. %1$s</string>
+    <!-- Link that opens instructions for granting contacts permission from the device settings -->
+    <string name="SelectContactScreen__learn_more">Learn more</string>
+    <!-- Title of the sheet explaining how to grant contacts permission from the device settings -->
+    <string name="SelectContactScreen__allow_access_to_contacts">Allow access to contacts</string>
+    <!-- Subtitle of the sheet explaining how to grant contacts permission from the device settings -->
+    <string name="SelectContactScreen__to_find_people_you_know_on_signal">To find people you know on Signal:</string>
+    <!-- Toast shown when a selected contact can no longer be read -->
+    <string name="SelectContactScreen__couldnt_open_contact">Couldn\'t open that contact</string>
+
     <!-- Title of the screen where the user chooses which parts of a contact to share -->
     <string name="ShareContactScreen__share_contact">مشاركة جهة الاتصال</string>
 
@@ -10899,6 +10402,17 @@
     <string name="SharedContactDetailsScreen__couldnt_open_maps">تعذَّر فتح الخريطة</string>
     <!-- Subject line of an email invitation to Signal -->
     <string name="SharedContactDetailsScreen__join_me_on_signal">انضم إليّ على سيجنال</string>
+
+    <!-- Title of the bottom sheet that confirms the user wants a brand new recovery key. -->
+    <string name="ResetRecoveryKeyBottomSheet__reset_your_recovery_key">Reset your recovery key</string>
+    <!-- First paragraph of the bottom sheet body, explaining what a reset does. -->
+    <string name="ResetRecoveryKeyBottomSheet__resetting_your_recovery_key_will_create_a_new_key">Resetting your recovery key will create a new key for your Signal Login. This is only necessary if someone else knows your key.</string>
+    <!-- Second paragraph of the bottom sheet body, explaining what a reset means for backups. -->
+    <string name="ResetRecoveryKeyBottomSheet__if_backups_are_enabled_you_will_have_to_re_upload">If backups are enabled you will have to re-upload your backup, including media. If you are using \"Optimize Signal storage\" you will have to download offloaded media first.</string>
+    <!-- Bottom sheet action that continues on to reset the recovery key. -->
+    <string name="ResetRecoveryKeyBottomSheet__continue">Continue</string>
+    <!-- Dialog body shown when the recovery key change limit is exhausted and the user does not have backups enabled. -->
+    <string name="BackupKeyRotationDialogs__limit_exceeded_body_no_backups">You\'ve exhausted the number of new keys you can create. You will be able to create a new recovery key in 7 days.</string>
 
     <!-- EOF -->
 </resources>
