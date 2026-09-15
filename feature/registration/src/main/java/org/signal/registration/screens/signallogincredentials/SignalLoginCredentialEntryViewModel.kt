@@ -30,6 +30,7 @@ import org.signal.registration.screens.aepentry.AepInput
 import org.signal.registration.screens.shared.AccountIdError
 import org.signal.registration.screens.shared.AccountIdFormat
 import org.signal.registration.screens.twofactorselection.TwoFactorMethod
+import org.signal.registration.screens.twofactorselection.toAuthenticationRoute
 import org.signal.registration.screens.util.navigateBack
 import org.signal.registration.screens.util.navigateTo
 
@@ -244,10 +245,13 @@ class SignalLoginCredentialEntryViewModel(
           }
           RegisterAccountError.TotpMissingOrIncorrect -> {
             // For now this error only means TOTP, but in the future it will indicate that some two-factor method is
-            // required, so we treat it generically and route through the method selection screen.
-            Log.w(TAG, "[Next] A two-factor code is required. Sending the user to two-factor method selection.")
+            // required, so we treat it generically and let the method list decide where to go.
+            val methods = listOf(TwoFactorMethod.AuthenticatorApp)
+            val route = methods.toAuthenticationRoute()
+
+            Log.w(TAG, "[Next] A two-factor code is required. Sending the user to $route.")
             stateEmitter(inputState.copy(isLoggingIn = false))
-            parentEventEmitter.navigateTo(RegistrationRoute.TwoFactorSelection(methods = listOf(TwoFactorMethod.AuthenticatorApp)))
+            parentEventEmitter.navigateTo(route)
           }
           is RegisterAccountError.InvalidRequest,
           is RegisterAccountError.InvalidReceiptCredentialPresentation,

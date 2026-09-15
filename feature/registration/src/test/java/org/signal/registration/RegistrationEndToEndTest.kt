@@ -1938,13 +1938,15 @@ class RegistrationEndToEndTest {
     useExistingSignalLogin()
     enterSignalLogin(login)
 
-    // The service wants a second factor, so the user picks one and enters a code from it
-    waitForTag(TestTags.TWO_FACTOR_SELECTION_AUTHENTICATOR_APP_OPTION)
-    composeTestRule.onNodeWithTag(TestTags.TWO_FACTOR_SELECTION_AUTHENTICATOR_APP_OPTION).performClick()
+    // The authenticator app is the only second factor available, so the user lands straight on code entry
     waitForTag(CodeEntryFieldTestTags.digit(0))
     composeTestRule.onNodeWithTag(CodeEntryFieldTestTags.digit(0)).performTextInput(totp)
 
     waitFor("registration to complete") { registrationComplete }
+
+    assert(composeTestRule.onAllNodesWithTag(TestTags.TWO_FACTOR_SELECTION_AUTHENTICATOR_APP_OPTION).fetchSemanticsNodes().isEmpty()) {
+      "There was only one two-factor method, so the selection screen should have been skipped"
+    }
 
     assert(networkController.lastRegisterAccountRequest?.totp == totp.toInt()) { "Expected the entered code to be sent with the login but was ${networkController.lastRegisterAccountRequest}" }
     assert(storageController.committedData?.accountData?.e164 == null) { "Expected an account with no phone number" }

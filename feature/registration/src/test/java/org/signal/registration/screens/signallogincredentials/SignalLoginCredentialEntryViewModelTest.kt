@@ -50,7 +50,6 @@ import org.signal.registration.screens.aepentry.AepInput
 import org.signal.registration.screens.restoreselection.ArchiveRestoreOption
 import org.signal.registration.screens.restoreselection.RegisteredState
 import org.signal.registration.screens.shared.AccountIdError
-import org.signal.registration.screens.twofactorselection.TwoFactorMethod
 import java.io.IOException
 import java.util.UUID
 import kotlin.time.Duration
@@ -462,7 +461,7 @@ class SignalLoginCredentialEntryViewModelTest {
   }
 
   @Test
-  fun `NextClicked requiring a two-factor code navigates to two-factor selection offering only the authenticator app`() = runTest(testDispatcher) {
+  fun `NextClicked requiring a two-factor code navigates directly to TOTP entry`() = runTest(testDispatcher) {
     coEvery { mockRepository.reRegisterAccountWithoutPhoneNumber(any(), any(), any(), any(), any()) } returns
       RequestResult.NonSuccess(RegisterAccountError.TotpMissingOrIncorrect)
 
@@ -472,9 +471,7 @@ class SignalLoginCredentialEntryViewModelTest {
     assertThat(emittedParentEvents.last())
       .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
       .prop(RegistrationFlowEvent.NavigateToScreen::route)
-      .isInstanceOf<RegistrationRoute.TwoFactorSelection>()
-      .prop(RegistrationRoute.TwoFactorSelection::methods)
-      .containsExactly(TwoFactorMethod.AuthenticatorApp)
+      .isEqualTo(RegistrationRoute.TotpEntry)
   }
 
   @Test
