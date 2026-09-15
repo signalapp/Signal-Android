@@ -68,6 +68,7 @@ import org.thoughtcrime.securesms.migrations.CopyUsernameToSignalStoreMigrationJ
 import org.thoughtcrime.securesms.migrations.DatabaseMigrationJob;
 import org.thoughtcrime.securesms.migrations.DeleteDeprecatedLogsMigrationJob;
 import org.thoughtcrime.securesms.migrations.DirectoryRefreshMigrationJob;
+import org.thoughtcrime.securesms.migrations.DisableUnreadReminderMigrationJob;
 import org.thoughtcrime.securesms.migrations.DuplicateE164MigrationJob;
 import org.thoughtcrime.securesms.migrations.E164FormattingMigrationJob;
 import org.thoughtcrime.securesms.migrations.EmojiDownloadMigrationJob;
@@ -344,6 +345,7 @@ public final class JobManagerFactories {
       put(DatabaseMigrationJob.KEY,                       new DatabaseMigrationJob.Factory());
       put(DeleteDeprecatedLogsMigrationJob.KEY,           new DeleteDeprecatedLogsMigrationJob.Factory());
       put(DirectoryRefreshMigrationJob.KEY,               new DirectoryRefreshMigrationJob.Factory());
+      put(DisableUnreadReminderMigrationJob.KEY,          new DisableUnreadReminderMigrationJob.Factory());
       put(DuplicateE164MigrationJob.KEY,                  new DuplicateE164MigrationJob.Factory());
       put(E164FormattingMigrationJob.KEY,                 new E164FormattingMigrationJob.Factory());
       put(EmojiDownloadMigrationJob.KEY,                  new EmojiDownloadMigrationJob.Factory());

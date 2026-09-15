@@ -216,9 +216,10 @@ public class ApplicationMigrations {
     static final int ENABLE_MUTED_CALL_SETTING     = 171;
     static final int CLEAR_ZK_CREDENTIALS          = 172;
     static final int SVR2_ENCLAVE_UPDATE_7         = 173;
+    static final int DISABLE_UNREAD_REMINDER       = 174;
   }
 
-  public static final int CURRENT_VERSION = 173;
+  public static final int CURRENT_VERSION = 174;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -999,6 +1000,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.SVR2_ENCLAVE_UPDATE_7) {
       jobs.put(Version.SVR2_ENCLAVE_UPDATE_7, new Svr2MirrorMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.DISABLE_UNREAD_REMINDER) {
+      jobs.put(Version.DISABLE_UNREAD_REMINDER, new DisableUnreadReminderMigrationJob());
     }
 
     return jobs;
