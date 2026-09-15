@@ -20,6 +20,9 @@ sealed class SignalLoginPaymentScreenEvents {
   /** The user tapped the "learn more" link in the description. */
   data object LearnMoreClicked : SignalLoginPaymentScreenEvents()
 
+  /** The user tapped "learn more" on the dialog explaining that Google Play cannot take a payment. */
+  data object PaymentUnavailableLearnMoreClicked : SignalLoginPaymentScreenEvents()
+
   /** The user selected one of the two options. */
   data class OptionSelected(val option: SignalLoginPaymentState.Option) : SignalLoginPaymentScreenEvents()
 

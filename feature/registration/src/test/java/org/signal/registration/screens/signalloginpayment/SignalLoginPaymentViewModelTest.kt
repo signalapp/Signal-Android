@@ -92,6 +92,15 @@ class SignalLoginPaymentViewModelTest {
   }
 
   @Test
+  fun `PaymentUnavailableLearnMoreClicked emits an action to open the payment unavailable article`() = runTest(testDispatcher) {
+    val actions = collectActions()
+
+    viewModel.applyEvent(SignalLoginPaymentState(), SignalLoginPaymentScreenEvents.PaymentUnavailableLearnMoreClicked, parentEventEmitter) {}
+
+    assertThat(actions).containsExactly(SignalLoginPaymentScreenActions.OpenPaymentUnavailableArticle)
+  }
+
+  @Test
   fun `Initialize loads the price from the billing library`() = runTest(testDispatcher) {
     coEvery { mockRepository.getSignalLoginPrice() } returns SignalLoginPriceResult.Available("$1.99")
     coEvery { mockRepository.hasUnredeemedSignalLoginPurchase() } returns false

@@ -145,6 +145,10 @@ class SignalLoginPaymentViewModel(
         _actions.trySend(SignalLoginPaymentScreenActions.OpenLearnMoreArticle)
       }
 
+      is SignalLoginPaymentScreenEvents.PaymentUnavailableLearnMoreClicked -> {
+        _actions.trySend(SignalLoginPaymentScreenActions.OpenPaymentUnavailableArticle)
+      }
+
       is SignalLoginPaymentScreenEvents.OptionSelected -> {
         if (event.option == SignalLoginPaymentState.Option.Purchase && !state.isPurchaseOptionEnabled) {
           Log.w(TAG, "[OptionSelected] Ignoring a purchase selection that cannot be acted on.")

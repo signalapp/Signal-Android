@@ -11,6 +11,9 @@ sealed interface SignalLoginPaymentScreenActions {
   /** Open the article explaining Signal Login. */
   data object OpenLearnMoreArticle : SignalLoginPaymentScreenActions
 
+  /** Open the article explaining why Google Play is required to buy a Signal Login. */
+  data object OpenPaymentUnavailableArticle : SignalLoginPaymentScreenActions
+
   /**
    * Launch the Google Play purchase sheet. The UI layer owns the activity, launches [launcher], and reports the
    * outcome back as [SignalLoginPaymentScreenEvents.PurchaseFlowCompleted].

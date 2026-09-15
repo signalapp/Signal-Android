@@ -743,6 +743,8 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
       when (action) {
         SignalLoginPaymentScreenActions.OpenLearnMoreArticle -> openUrl(context, "https://support.signal.org/hc/articles/11197884108826")
 
+        SignalLoginPaymentScreenActions.OpenPaymentUnavailableArticle -> openUrl(context, "https://support.signal.org/hc/articles/11228705649690")
+
         is SignalLoginPaymentScreenActions.LaunchPurchaseFlow -> {
           purchaseScope.launch {
             val result = if (activity != null) {

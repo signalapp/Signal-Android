@@ -272,7 +272,7 @@ private fun PaymentUnavailableDialog(
 ) {
   val onDismiss = { onEvent(SignalLoginPaymentScreenEvents.PaymentUnavailableDialogDismissed) }
   val onMakeAvailable = { onEvent(SignalLoginPaymentScreenEvents.MakeGooglePlayServicesAvailableClicked) }
-  val onLearnMore = { onEvent(SignalLoginPaymentScreenEvents.LearnMoreClicked) }
+  val onLearnMore = { onEvent(SignalLoginPaymentScreenEvents.PaymentUnavailableLearnMoreClicked) }
 
   val dialogModifier = Modifier.testTag(TestTags.SIGNAL_LOGIN_PAYMENT_UNAVAILABLE_DIALOG)
 
