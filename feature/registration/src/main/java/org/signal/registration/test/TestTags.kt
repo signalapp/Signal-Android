@@ -112,6 +112,7 @@ object TestTags {
   const val ARCHIVE_RESTORE_SELECTION_FROM_BACKUP_FILE = "archive_restore_selection_from_backup_file"
   const val ARCHIVE_RESTORE_SELECTION_DEVICE_TRANSFER = "archive_restore_selection_device_transfer"
   const val ARCHIVE_RESTORE_SELECTION_NONE = "archive_restore_selection_none"
+  const val ARCHIVE_RESTORE_SELECTION_SPINNER = "archive_restore_selection_spinner"
 
   // Local Backup Restore Screen
   const val LOCAL_BACKUP_RESTORE_SCREEN = "local_backup_restore_screen"
