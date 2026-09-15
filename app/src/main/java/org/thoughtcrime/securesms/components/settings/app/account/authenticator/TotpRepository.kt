@@ -17,11 +17,13 @@ import org.signal.libsignal.net.TooManyMfaKeysException
 import org.signal.libsignal.net.TooManyTotpKeysException
 import org.signal.libsignal.net.TotpParameters
 import org.signal.network.api.AccountApiV2
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.util.RemoteConfig
 import java.net.URLEncoder
 import java.time.Instant
+import org.signal.appsettings.R as AppSettingsR
 
 /**
  * Everything the authenticator app screens need, sitting between them and the TOTP endpoints on [AccountApiV2].
@@ -33,7 +35,8 @@ import java.time.Instant
 class TotpRepository(
   private val api: AccountApiV2 = SignalNetwork.accountApiV2,
   private val masterKeyProvider: () -> MasterKey = { SignalStore.svr.masterKey },
-  private val clock: () -> Long = System::currentTimeMillis
+  private val clock: () -> Long = System::currentTimeMillis,
+  private val defaultAppName: () -> String = { AppDependencies.application.getString(AppSettingsR.string.TotpRepository__authenticator) }
 ) {
 
   companion object {
@@ -111,14 +114,14 @@ class TotpRepository(
   /**
    * Confirms the pending key with a code from the user's authenticator app.
    *
-   * The key is confirmed without a name, because the service wants metadata at confirmation time and the user doesn't
-   * name their app until the screen after this one. Naming it later means a brief window where a key has no name, which
-   * is a better failure than a window where the second factor isn't active yet.
+   * The key is confirmed with a default name, because the service wants metadata at confirmation time and the user
+   * doesn't name their app until the screen after this one. Anything that lists keys in that window shows the default
+   * rather than a nameless entry.
    */
   suspend fun confirmPendingApp(code: String): ConfirmResult {
     val oneTimePassword = code.toIntOrNull() ?: return ConfirmResult.IncorrectCode
 
-    val metadata = MfaMetadata(name = "", createdAt = Instant.ofEpochMilli(clock()))
+    val metadata = MfaMetadata(name = defaultAppName(), createdAt = Instant.ofEpochMilli(clock()))
 
     return when (val result = api.confirmTotpKey(oneTimePassword = oneTimePassword, metadata = metadata, masterKey = masterKeyProvider())) {
       is RequestResult.Success -> {
@@ -179,7 +182,7 @@ class TotpRepository(
     return setMetadata(app.id, MfaMetadata(name = name, createdAt = Instant.ofEpochMilli(app.createdAt)))
   }
 
-  /** Names a newly confirmed app, which was confirmed without one moments ago. */
+  /** Names a newly confirmed app, replacing the default name it was confirmed with moments ago. */
   suspend fun nameNewTotpApp(appId: Long, name: String): UpdateResult {
     return setMetadata(appId, MfaMetadata(name = name, createdAt = Instant.ofEpochMilli(clock())))
   }

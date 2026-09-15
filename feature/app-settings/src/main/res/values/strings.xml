@@ -146,6 +146,10 @@
     <string name="TotpCodeEntryScreen__incorrect_code">Incorrect code. Enter the code showing in your authenticator app now.</string>
     <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->
     <string name="TotpCodeEntryScreen__couldnt_reach_signal">Couldn\'t reach Signal. Check your connection and try again.</string>
+
+    <!-- Default name given to an authenticator app the moment it\'s set up, before the user chooses their own name for it -->
+    <string name="TotpRepository__authenticator">Authenticator</string>
+
     <!-- TotpNameEntryScreen -->
     <!-- Title of the screen where the user names an authenticator app -->
     <string name="TotpNameEntryScreen__choose_a_name">Choose a name</string>

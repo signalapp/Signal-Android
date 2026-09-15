@@ -46,6 +46,7 @@ class TotpRepositoryTest {
     private const val NOW = 1_700_000_000_000L
     private const val ACCOUNT_NAME = "8B4A1F0C"
     private const val CODE = "123456"
+    private const val DEFAULT_NAME = "Authenticator"
     private const val KEY_ID = 1
 
     private val KEY = ByteArray(32) { it.toByte() }
@@ -58,7 +59,7 @@ class TotpRepositoryTest {
 
   private var now = NOW
   private val api = mockk<AccountApiV2>()
-  private val repository = TotpRepository(api = api, masterKeyProvider = { MASTER_KEY }, clock = { now })
+  private val repository = TotpRepository(api = api, masterKeyProvider = { MASTER_KEY }, clock = { now }, defaultAppName = { DEFAULT_NAME })
 
   @Before
   fun setUp() {
@@ -181,13 +182,13 @@ class TotpRepositoryTest {
 
   /** The service wants metadata at confirmation time, and the user hasn't been asked for a name yet. */
   @Test
-  fun `a key is confirmed without a name, stamped with the time it was confirmed`() = runTest {
+  fun `a key is confirmed with a default name, stamped with the time it was confirmed`() = runTest {
     val metadata = slot<MfaMetadata>()
     coEvery { api.confirmTotpKey(any(), capture(metadata), any()) } returns RequestResult.Success(KEY_ID)
 
     repository.confirmPendingApp(CODE)
 
-    assertThat(metadata.captured.name).isEqualTo("")
+    assertThat(metadata.captured.name).isEqualTo(DEFAULT_NAME)
     assertThat(metadata.captured.createdAt).isEqualTo(Instant.ofEpochMilli(NOW))
   }
 
