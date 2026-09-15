@@ -9516,6 +9516,35 @@
         <item quantity="other">%1$d replies from %2$s and others</item>
     </plurals>
 
+    <!-- Title of the screen for picking a contact to share -->
+    <string name="SelectContactScreen__select_contact">Select contact</string>
+    <!-- Placeholder in the search field on the contact picker -->
+    <string name="SelectContactScreen__search">Search</string>
+    <!-- Content description for the button that clears the contact search field -->
+    <string name="SelectContactScreen__clear_search">Clear search</string>
+    <!-- Content description for the badge shown next to a contact that is in the phone's address book -->
+    <string name="SelectContactScreen__in_your_contacts">In your contacts</string>
+    <!-- Title of the prompt asking for permission to read the user's phone contacts -->
+    <string name="SelectContactScreen__find_people_you_know_on_signal">Find people you know on Signal</string>
+    <!-- Explanation shown when Signal does not have permission to read the user's phone contacts -->
+    <string name="SelectContactScreen__allow_access_to_your_contacts">Allow access to your contacts. Your contacts are encrypted and not visible to the Signal service.</string>
+    <!-- Button that asks the system for permission to read the user's phone contacts -->
+    <string name="SelectContactScreen__allow_access">Allow access</string>
+    <!-- Button that dismisses the request for permission to read the user's phone contacts -->
+    <string name="SelectContactScreen__no_thanks">No thanks</string>
+    <!-- Button that opens the phone's own contact picker, used when Signal cannot ask for contacts permission -->
+    <string name="SelectContactScreen__open_phone_contacts">Open phone contacts</string>
+    <!-- Note at the bottom of the contact picker when contacts permission was denied on the device. Placeholder is the "Learn more" link text. -->
+    <string name="SelectContactScreen__to_see_your_phone_contacts_here">To see your phone contacts here, allow access in your device settings. %1$s</string>
+    <!-- Link that opens instructions for granting contacts permission from the device settings -->
+    <string name="SelectContactScreen__learn_more">Learn more</string>
+    <!-- Title of the sheet explaining how to grant contacts permission from the device settings -->
+    <string name="SelectContactScreen__allow_access_to_contacts">Allow access to contacts</string>
+    <!-- Subtitle of the sheet explaining how to grant contacts permission from the device settings -->
+    <string name="SelectContactScreen__to_find_people_you_know_on_signal">To find people you know on Signal:</string>
+    <!-- Toast shown when a selected contact can no longer be read -->
+    <string name="SelectContactScreen__couldnt_open_contact">Couldn\'t open that contact</string>
+
     <!-- Title of the screen where the user chooses which parts of a contact to share -->
     <string name="ShareContactScreen__share_contact">Share contact</string>
 

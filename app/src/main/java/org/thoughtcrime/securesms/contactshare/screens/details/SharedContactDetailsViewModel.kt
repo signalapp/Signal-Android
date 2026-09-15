@@ -41,7 +41,9 @@ class SharedContactDetailsViewModel(
         if (hasAnythingToSave) {
           add(ContactAction.ADD_TO_PHONE_CONTACTS)
         }
-        // ADD_TO_GROUP is not wired up yet, so it is deliberately not offered.
+        if (isOnSignal) {
+          add(ContactAction.ADD_TO_GROUP)
+        }
       }
     }
 
@@ -87,18 +89,22 @@ class SharedContactDetailsViewModel(
   }
 
   private suspend fun onActionClicked(contactAction: ContactAction) {
-    val action = when (contactAction) {
-      ContactAction.INVITE_TO_SIGNAL -> inviteAction()
-      ContactAction.ADD_TO_PHONE_CONTACTS -> SharedContactDetailsAction.AddToPhoneContacts
-      ContactAction.ADD_TO_GROUP -> SharedContactDetailsAction.AddToGroup
-    }
+    when (contactAction) {
+      ContactAction.ADD_TO_GROUP -> sendForRecipient { SharedContactDetailsAction.AddToGroup(it) }
 
-    if (action == null) {
-      Log.w(TAG, "Nothing on the card to send an invite to.")
-      return
-    }
+      ContactAction.ADD_TO_PHONE_CONTACTS -> _actions.send(SharedContactDetailsAction.AddToPhoneContacts)
 
-    _actions.send(action)
+      ContactAction.INVITE_TO_SIGNAL -> {
+        val action = inviteAction()
+
+        if (action == null) {
+          Log.w(TAG, "Nothing on the card to send an invite to.")
+          return
+        }
+
+        _actions.send(action)
+      }
+    }
   }
 
   private fun onDetailPressed(id: String) {
@@ -131,12 +137,17 @@ class SharedContactDetailsViewModel(
       return
     }
 
+    when (detailAction) {
+      DetailAction.MESSAGE -> return sendForRecipient { SharedContactDetailsAction.StartChat(it) }
+      DetailAction.VIDEO_CALL -> return sendForRecipient { SharedContactDetailsAction.StartVideoCall(it) }
+      DetailAction.AUDIO_CALL -> return sendForRecipient { SharedContactDetailsAction.StartAudioCall(it) }
+      else -> Unit
+    }
+
     val action = when (detailAction) {
-      DetailAction.MESSAGE -> current.signalRecipientId?.let { SharedContactDetailsAction.StartChat(it) }
-      DetailAction.VIDEO_CALL -> current.signalRecipientId?.let { SharedContactDetailsAction.StartVideoCall(it) }
-      DetailAction.AUDIO_CALL -> current.signalRecipientId?.let { SharedContactDetailsAction.StartAudioCall(it) }
       DetailAction.OPEN_IN_MAPS -> SharedContactDetailsAction.OpenInMaps(detail.copyText)
       DetailAction.COPY -> SharedContactDetailsAction.CopyToClipboard(detail.copyText)
+      else -> null
     }
 
     if (action == null) {
@@ -148,13 +159,14 @@ class SharedContactDetailsViewModel(
   }
 
   private suspend fun sendForRecipient(action: (RecipientId) -> SharedContactDetailsAction) {
-    val recipientId = _state.value.signalRecipientId
+    val recipientId = repository.resolveOrCreateRecipient(contact)
 
     if (recipientId == null) {
       Log.w(TAG, "No matched recipient to act on.")
       return
     }
 
+    _state.update { it.copy(signalRecipientId = recipientId) }
     _actions.send(action(recipientId))
   }
 

@@ -23,7 +23,8 @@ data class ShareContactState(
 
   data class AvatarSelection(
     val isSelected: Boolean,
-    val photo: ContactPhoto,
+    /** Null renders the name's initials, and shares no photo. */
+    val photo: ContactPhoto?,
     val isEditable: Boolean
   )
 
@@ -49,7 +50,8 @@ data class ShareContactState(
 
   data class PhotoOption(
     val id: String,
-    val photo: ContactPhoto
+    /** Null for the "no photo" choice, which the picker draws as the initials fallback. */
+    val photo: ContactPhoto?
   )
 
   /** Profile photos are blobbed first, so sharing one is no different from an address book photo. */

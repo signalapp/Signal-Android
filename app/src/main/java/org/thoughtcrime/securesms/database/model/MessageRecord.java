@@ -553,8 +553,10 @@ public abstract class MessageRecord extends DisplayRecord {
         String previouslyKnownAs;
         if (!Util.isEmpty(profileChangeDetails.learnedProfileName.e164)) {
           previouslyKnownAs = SignalE164Util.prettyPrint(profileChangeDetails.learnedProfileName.e164);
-        } else {
+        } else if (!Util.isEmpty(profileChangeDetails.learnedProfileName.username)) {
           previouslyKnownAs = profileChangeDetails.learnedProfileName.username;
+        } else {
+          previouslyKnownAs = profileChangeDetails.learnedProfileName.sharedName;
         }
 
         if (!Util.isEmpty(previouslyKnownAs)) {

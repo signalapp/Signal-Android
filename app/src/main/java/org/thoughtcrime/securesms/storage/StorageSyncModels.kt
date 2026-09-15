@@ -223,6 +223,7 @@ object StorageSyncModels {
       pniSignatureVerified = recipient.pni?.isValid == true && recipient.syncExtras.pniSignatureVerified
       nickname = recipient.nickname.takeUnless { it.isEmpty }?.let { ContactRecord.Name(given = it.givenName, family = it.familyName) }
       note = recipient.note ?: ""
+      sharedName = recipient.sharedName.takeUnless { it.isEmpty }?.let { ContactRecord.Name(given = it.givenName, family = it.familyName) }
       avatarColor = localToRemoteAvatarColor(recipient.avatarColor)
       notifyForCallsIfMuted = RecipientTable.NotificationSetting.toOptionalBool(recipient.callNotificationSetting)
       showUnreadReminders = RecipientTable.NotificationSetting.toOptionalBool(recipient.unreadReminder)

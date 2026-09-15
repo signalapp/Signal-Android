@@ -7,7 +7,6 @@ package org.thoughtcrime.securesms.contactshare
 
 import android.app.Activity
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.compose.BackHandler
@@ -24,7 +23,6 @@ import androidx.lifecycle.createSavedStateHandle
 import org.signal.core.ui.compose.CollectActions
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.LocalChatColorProvider
-import org.signal.core.util.getParcelableArrayListCompat
 import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
@@ -48,13 +46,13 @@ class ContactShareEditFragment : ComposeFragment() {
   companion object {
     private val TAG = Log.tag(ContactShareEditFragment::class)
 
-    private const val ARG_CONTACT_URIS = "contact_uris"
+    private const val ARG_SOURCE = "source"
     private const val ARG_RECIPIENT_ID = "recipient_id"
 
-    fun create(contactUris: List<Uri>, recipientId: RecipientId): ContactShareEditFragment {
+    fun create(source: SharedContactSource, recipientId: RecipientId): ContactShareEditFragment {
       return ContactShareEditFragment().apply {
         arguments = Bundle().apply {
-          putParcelableArrayList(ARG_CONTACT_URIS, ArrayList(contactUris))
+          putParcelable(ARG_SOURCE, source)
           putParcelable(ARG_RECIPIENT_ID, recipientId)
         }
       }
@@ -68,7 +66,7 @@ class ContactShareEditFragment : ComposeFragment() {
 
   private val viewModel: ShareContactViewModel by viewModel {
     ShareContactViewModel(
-      uris = arguments?.getParcelableArrayListCompat(ARG_CONTACT_URIS, Uri::class.java) ?: emptyList(),
+      contactSource = arguments?.getParcelableCompat(ARG_SOURCE, SharedContactSource::class.java),
       recipientId = recipientId,
       repository = ShareContactRepository(),
       savedState = it.createSavedStateHandle()
@@ -112,7 +110,7 @@ class ContactShareEditFragment : ComposeFragment() {
 
   private fun handleAction(action: ShareContactAction, onEditName: (ContactNameParts?) -> Unit) {
     when (action) {
-      ShareContactAction.Exit -> requireActivity().finish()
+      ShareContactAction.Exit -> requireActivity().onBackPressedDispatcher.onBackPressed()
 
       ShareContactAction.InvalidContact -> {
         Toast.makeText(requireContext(), R.string.ContactShareEditActivity_invalid_contact, Toast.LENGTH_SHORT).show()

@@ -91,7 +91,7 @@ public final class VCardUtil {
                     vPostalAddress.getCountry()));
         }
 
-        return new Contact(name, organization, phoneNumbers, emails, postalAddresses, null);
+        return new Contact(name, organization, phoneNumbers, emails, postalAddresses, null, null, null, null);
     }
 
     static Contact.Phone.Type phoneTypeFromContactType(int type) {

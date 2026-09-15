@@ -207,7 +207,7 @@ class MessageDetailsFragment : Fragment(), MessageDetailsAdapter.Callbacks {
     Log.w(TAG, "Not yet implemented!", Exception())
   }
 
-  override fun onMessageSharedContactClicked(choices: MutableList<Recipient>) {
+  override fun onMessageSharedContactClicked(contact: Contact, choices: MutableList<Recipient>) {
     Log.w(TAG, "Not yet implemented!", Exception())
   }
 

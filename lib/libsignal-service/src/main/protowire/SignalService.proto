@@ -319,12 +319,22 @@ message DataMessage {
       optional bool isProfile = 2;
     }
 
+    message SignalNickname {
+      optional string given = 1;
+      optional string family = 2;
+    }
+
     optional Name name = 1;
+    reserved 2;
     repeated Phone number = 3;
     repeated Email email = 4;
     repeated PostalAddress address = 5;
     optional Avatar avatar = 6;
     optional string organization = 7;
+    optional bytes aciBinary = 8; // 16-byte UUID
+    optional SignalNickname nickname = 9;
+    optional string note = 10;
+    // Next ID: 11
   }
 
   message Sticker {

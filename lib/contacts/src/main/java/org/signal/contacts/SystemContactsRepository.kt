@@ -4,6 +4,7 @@ import android.accounts.Account
 import android.accounts.AccountManager
 import android.content.ContentProviderOperation
 import android.content.ContentResolver
+import android.content.ContentUris
 import android.content.Context
 import android.content.OperationApplicationException
 import android.database.Cursor
@@ -155,6 +156,99 @@ object SystemContactsRepository {
 
     val cursor: Cursor = context.contentResolver.query(uri, projection, where, args, orderBy) ?: return EmptyContactIterator()
     return CursorContactIterator(cursor, e164Formatter)
+  }
+
+  /**
+   * A cursor over one row per aggregated contact, carrying only the fields a contact list needs.
+   *
+   * This queries [ContactsContract.Contacts] rather than [ContactsContract.Data], which matters for
+   * three reasons: it is one row per contact rather than one per phone number, it includes contacts
+   * with no phone number at all, and [ContactsContract.Contacts.DISPLAY_NAME_PRIMARY] already falls
+   * back to the company name so business entries need no separate Organization query.
+   *
+   * Caller is expected to sort.
+   */
+  @JvmStatic
+  fun getAllContactsForList(context: Context): Cursor? {
+    val projection = arrayOf(
+      ContactsContract.Contacts._ID,
+      ContactsContract.Contacts.LOOKUP_KEY,
+      ContactsContract.Contacts.DISPLAY_NAME_PRIMARY,
+      ContactsContract.Contacts.DISPLAY_NAME_SOURCE,
+      ContactsContract.Contacts.HAS_PHONE_NUMBER,
+      ContactsContract.Contacts.PHOTO_URI
+    )
+
+    return context.contentResolver.query(ContactsContract.Contacts.CONTENT_URI, projection, null, null, null)
+  }
+
+  /**
+   * Resolves a lookup key to the contact URI the rest of the app expects, whose last path segment is
+   * a real contact id.
+   *
+   * Contact ids change when the provider re-aggregates, so a stored id can point at the wrong person
+   * or at nothing. The lookup key is stable, and [ContactsContract.Contacts.lookupContact] is what
+   * turns it back into a currently valid id. Returns null when the contact is gone.
+   */
+  @JvmStatic
+  fun currentContactUri(context: Context, lookupKey: String, contactId: Long): Uri? {
+    val lookupUri = ContactsContract.Contacts.getLookupUri(contactId, lookupKey)
+    return ContactsContract.Contacts.lookupContact(context.contentResolver, lookupUri)
+  }
+
+  /**
+   * The thumbnail URI for a contact, built from its id rather than stored.
+   *
+   * Callers should only use this when they know the contact has a photo, since the provider returns
+   * nothing for one that does not.
+   */
+  @JvmStatic
+  fun photoUriForContact(contactId: Long): Uri {
+    return Uri.withAppendedPath(
+      ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI, contactId),
+      ContactsContract.Contacts.Photo.CONTENT_DIRECTORY
+    )
+  }
+
+  /**
+   * Whether a contact's display name is a personal name rather than a stand in for one.
+   *
+   * There is no "this is a company" flag in the contacts provider. Organization is a field you hang
+   * on a contact that already has a name, so a person who works somewhere is not a company. What can
+   * be told apart is where the provider had to *source* the display name from: a contact with no
+   * structured name falls back to its company, email, or phone number, and that fallback is what the
+   * A-Z list files under "#".
+   *
+   * Nicknames and phonetic names are still names, so they are personal names here even though they
+   * are not [ContactsContract.DisplayNameSources.STRUCTURED_NAME].
+   */
+  @JvmStatic
+  fun isPersonalDisplayName(displayNameSource: Int): Boolean {
+    return when (displayNameSource) {
+      ContactsContract.DisplayNameSources.STRUCTURED_NAME,
+      ContactsContract.DisplayNameSources.STRUCTURED_PHONETIC_NAME,
+      ContactsContract.DisplayNameSources.NICKNAME -> true
+      else -> false
+    }
+  }
+
+  /**
+   * Pulls the lookup key out of a contact lookup URI.
+   *
+   * Note this reads the segment after "lookup" rather than the last segment. [readAllPhones] builds
+   * these URIs with a Data row id in the trailing position instead of a contact id, so the trailing
+   * segment cannot be trusted, while the lookup key is both correct and stable across contact edits.
+   */
+  @JvmStatic
+  fun lookupKeyFromLookupUri(uri: String?): String? {
+    if (uri.isNullOrBlank()) {
+      return null
+    }
+
+    val segments = Uri.parse(uri).pathSegments
+    val lookupIndex = segments.indexOf("lookup")
+
+    return if (lookupIndex >= 0 && lookupIndex + 1 < segments.size) segments[lookupIndex + 1] else null
   }
 
   /**
@@ -362,6 +456,36 @@ object SystemContactsRepository {
     }
 
     return phoneDetails
+  }
+
+  /**
+   * Reads the one data row a system phone number picker handed back.
+   *
+   * [dataUri] carries its own read grant, so this needs no `READ_CONTACTS`. The grant covers that row alone.
+   */
+  @JvmStatic
+  fun getPickedPhone(context: Context, dataUri: Uri): PickedPhone? {
+    val projection = arrayOf(
+      ContactsContract.CommonDataKinds.Phone.NUMBER,
+      ContactsContract.CommonDataKinds.Phone.TYPE,
+      ContactsContract.CommonDataKinds.Phone.LABEL,
+      ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME_PRIMARY
+    )
+
+    context.contentResolver.query(dataUri, projection, null, null, null)?.use { cursor ->
+      if (cursor.moveToFirst()) {
+        val number = cursor.requireString(ContactsContract.CommonDataKinds.Phone.NUMBER) ?: return null
+
+        return PickedPhone(
+          number = number,
+          type = cursor.requireInt(ContactsContract.CommonDataKinds.Phone.TYPE),
+          label = cursor.requireString(ContactsContract.CommonDataKinds.Phone.LABEL),
+          displayName = cursor.requireString(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME_PRIMARY)
+        )
+      }
+    }
+
+    return null
   }
 
   @JvmStatic
@@ -837,6 +961,14 @@ object SystemContactsRepository {
     val number: String?,
     val type: Int,
     val label: String?
+  )
+
+  /** The single row behind a uri handed back by the system phone number picker. */
+  data class PickedPhone(
+    val number: String,
+    val type: Int,
+    val label: String?,
+    val displayName: String?
   )
 
   data class EmailDetails(

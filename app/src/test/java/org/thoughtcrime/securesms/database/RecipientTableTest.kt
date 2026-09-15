@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.database
 
 import android.app.Application
+import androidx.test.core.app.ApplicationProvider
 import assertk.assertThat
 import assertk.assertions.isEmpty
 import assertk.assertions.isNotEmpty
@@ -25,7 +26,9 @@ import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.ServiceId.PNI
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.SqlUtil
+import org.signal.core.util.update
 import org.thoughtcrime.securesms.profiles.ProfileName
+import org.thoughtcrime.securesms.recipients.RecipientCreator
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.testutil.RecipientTestRule
 import java.util.UUID
@@ -296,6 +299,102 @@ class RecipientTableTest {
       originalStorageId!!.contentEquals(SignalDatabase.recipients.getRecord(target).storageId)
     )
   }
+
+  @Test
+  fun givenAContactWithNoSharedName_whenAProfileUpdateOnlyChangesFieldsAbsentFromTheContactRecord_thenIExpectNoStorageIdRotation() {
+    SignalDatabase.recipients.setStorageIdIfNotSet(target)
+    val originalStorageId: ByteArray? = SignalDatabase.recipients.getRecord(target).storageId
+    assertNotNull("Precondition: contact should have a storage id", originalStorageId)
+    assertTrue("Precondition: contact should have no shared name", SignalDatabase.recipients.getRecord(target).sharedName.isEmpty)
+
+    SignalDatabase.recipients.applyProfileUpdate(
+      target,
+      RecipientTable.ProfileUpdate(
+        sealedSenderAccessMode = RecipientTable.SealedSenderAccessMode.ENABLED,
+        clearSharedName = true
+      )
+    )
+
+    assertTrue(
+      "Storage id must not rotate for a shared name that was never set, otherwise we republish identical content under a fresh id",
+      originalStorageId!!.contentEquals(SignalDatabase.recipients.getRecord(target).storageId)
+    )
+  }
+
+  @Test
+  fun givenAContactWithASharedName_whenAProfileUpdateClearsIt_thenIExpectAStorageIdRotation() {
+    val cardStarted = recipients.createRecipient(ProfileName.EMPTY)
+    SignalDatabase.recipients.setSharedName(cardStarted, ProfileName.fromParts("Shared", "Name"))
+    SignalDatabase.recipients.setStorageIdIfNotSet(cardStarted)
+
+    val originalStorageId: ByteArray? = SignalDatabase.recipients.getRecord(cardStarted).storageId
+    assertNotNull("Precondition: contact should have a storage id", originalStorageId)
+    assertFalse("Precondition: contact should have a shared name", SignalDatabase.recipients.getRecord(cardStarted).sharedName.isEmpty)
+
+    SignalDatabase.recipients.applyProfileUpdate(
+      cardStarted,
+      RecipientTable.ProfileUpdate(
+        sealedSenderAccessMode = RecipientTable.SealedSenderAccessMode.ENABLED,
+        clearSharedName = true
+      )
+    )
+
+    assertTrue("Shared name should be cleared", SignalDatabase.recipients.getRecord(cardStarted).sharedName.isEmpty)
+    assertFalse(
+      "Storage id should rotate when the shared name is actually cleared",
+      originalStorageId!!.contentEquals(SignalDatabase.recipients.getRecord(cardStarted).storageId)
+    )
+  }
+
+  @Test
+  fun givenARecipientWithASharedNameAndAnE164_whenICheckForAnOutrankingName_thenIExpectFalse() {
+    val cardStarted = SignalDatabase.recipients.getOrInsertFromE164("+15551234567")
+    SignalDatabase.recipients.setSharedName(cardStarted, ProfileName.fromParts("Shared", "Name"))
+    assertFalse("Precondition: shared name should be set", recipientFor(cardStarted).sharedName.isEmpty)
+
+    assertFalse(
+      "An e164 must not outrank a shared name, otherwise a card-started chat regresses to showing a phone number",
+      recipientFor(cardStarted).hasDisplayNameOutrankingSharedName()
+    )
+  }
+
+  @Test
+  fun givenARecipientWithASharedNameAndANickname_whenICheckForAnOutrankingName_thenIExpectTrue() {
+    val cardStarted = recipients.createRecipient(ProfileName.EMPTY)
+    SignalDatabase.recipients.setSharedName(cardStarted, ProfileName.fromParts("Shared", "Name"))
+    assertFalse("Precondition: shared name should be set", recipientFor(cardStarted).sharedName.isEmpty)
+
+    SignalDatabase.recipients.setNicknameAndNote(cardStarted, ProfileName.fromParts("Nick", "Name"), "")
+
+    assertTrue(
+      "A nickname outranks a shared name, so the shared name is dead weight and should be retired",
+      recipientFor(cardStarted).hasDisplayNameOutrankingSharedName()
+    )
+  }
+
+  @Test
+  fun givenARecipientWithASharedNameAndOnlyASystemGivenName_whenICheckForAnOutrankingName_thenIExpectTrue() {
+    val cardStarted = recipients.createRecipient(ProfileName.EMPTY)
+    SignalDatabase.recipients.setSharedName(cardStarted, ProfileName.fromParts("Shared", "Name"))
+    assertFalse("Precondition: shared name should be set", recipientFor(cardStarted).sharedName.isEmpty)
+
+    // Written directly because ContactArchiveImporter populates the given name and leaves the joined name null.
+    SignalDatabase.recipients.writableDatabase
+      .update(RecipientTable.TABLE_NAME)
+      .values(RecipientTable.SYSTEM_GIVEN_NAME to "Sys")
+      .where("${RecipientTable.ID} = ?", cardStarted)
+      .run()
+
+    assertTrue(
+      "A system given name outranks a shared name even with no joined name, matching what setSharedName refuses to write over",
+      recipientFor(cardStarted).hasDisplayNameOutrankingSharedName()
+    )
+  }
+
+  private fun recipientFor(id: RecipientId) = RecipientCreator.forRecord(
+    ApplicationProvider.getApplicationContext(),
+    SignalDatabase.recipients.getRecord(id)
+  )
 
   companion object {
     val ACI_A = ACI.from(UUID.fromString("aaaa0000-5a76-47fa-a98a-7e72c948a82e"))

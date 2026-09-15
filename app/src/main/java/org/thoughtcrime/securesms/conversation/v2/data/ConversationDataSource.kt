@@ -141,7 +141,8 @@ class ConversationDataSource(
         extraData.mentionsById[record.id],
         extraData.hasBeenQuoted.contains(record.id),
         threadRecipient,
-        extraData.memberLabels
+        extraData.memberLabels,
+        extraData.sharedContacts[record.id]
       ).toMappingModel()
     }
 
@@ -210,7 +211,8 @@ class ConversationDataSource(
           extraData.mentionsById[record.id],
           extraData.hasBeenQuoted.contains(record.id),
           threadRecipient,
-          extraData.memberLabels
+          extraData.memberLabels,
+          extraData.sharedContacts[record.id]
         ).toMappingModel()
       }
     } finally {

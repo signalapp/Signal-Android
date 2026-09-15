@@ -206,6 +206,7 @@ object RecipientCreator {
       phoneNumberSharing = record.phoneNumberSharing,
       nickname = record.nickname,
       note = record.note,
+      sharedName = record.sharedName,
       keyTransparencyData = record.keyTransparencyData
     )
   }

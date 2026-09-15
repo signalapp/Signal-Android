@@ -3,10 +3,12 @@ package org.thoughtcrime.securesms.contactshare;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.signal.core.models.ServiceId.ACI;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.Cdn;
 import org.thoughtcrime.securesms.attachments.PointerAttachment;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.whispersystems.signalservice.api.InvalidMessageStructureException;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
@@ -68,11 +70,31 @@ public class ContactModelMapper {
                                                               .setMiddle(contact.getName().getMiddleName())
                                                               .build();
 
-    return new SharedContact.Builder().setName(name)
-                                      .withOrganization(contact.getOrganization())
-                                      .withPhones(phoneNumbers)
-                                      .withEmails(emails)
-                                      .withAddresses(postalAddresses);
+    SharedContact.Builder builder = new SharedContact.Builder().setName(name)
+                                                               .withOrganization(contact.getOrganization())
+                                                               .withPhones(phoneNumbers)
+                                                               .withEmails(emails)
+                                                               .withAddresses(postalAddresses);
+
+    if (!RemoteConfig.getContactSharingV2()) {
+      return builder;
+    }
+
+    builder.withNote(contact.getNote());
+
+    ACI aci = ACI.parseOrNull(contact.getAci());
+    if (aci != null) {
+      builder.withAci(aci);
+    }
+
+    Contact.SignalNickname nickname = contact.getNickname();
+    if (nickname != null && !nickname.isEmpty()) {
+      builder.withNickname(new SharedContact.Nickname.Builder().setGiven(nickname.getGiven())
+                                                               .setFamily(nickname.getFamily())
+                                                               .build());
+    }
+
+    return builder;
   }
 
   public static Contact remoteToLocal(@NonNull DataMessage.Contact contact) {
@@ -134,7 +156,30 @@ public class ContactModelMapper {
       }
     }
 
-    return new Contact(name, contact.organization, phoneNumbers, emails, postalAddresses, avatar);
+    if (!RemoteConfig.getContactSharingV2()) {
+      return new Contact(name, contact.organization, phoneNumbers, emails, postalAddresses, avatar, null, null, null);
+    }
+
+    ACI aci = ACI.parseOrNull(contact.aciBinary);
+    if (aci != null && !aci.isValid()) {
+      aci = null;
+    }
+
+    Contact.SignalNickname nickname = null;
+    if (contact.nickname != null) {
+      Contact.SignalNickname parsed = new Contact.SignalNickname(contact.nickname.given, contact.nickname.family);
+      nickname = parsed.isEmpty() ? null : parsed;
+    }
+
+    return new Contact(name,
+                       contact.organization,
+                       phoneNumbers,
+                       emails,
+                       postalAddresses,
+                       avatar,
+                       aci != null ? aci.toString() : null,
+                       nickname,
+                       contact.note);
   }
 
   private static Phone.Type remoteToLocalType(@Nullable DataMessage.Contact.Phone.Type type) {

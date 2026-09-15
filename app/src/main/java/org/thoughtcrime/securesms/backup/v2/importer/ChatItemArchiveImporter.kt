@@ -33,6 +33,7 @@ import org.signal.core.util.UuidUtil
 import org.signal.core.util.asList
 import org.signal.core.util.forEach
 import org.signal.core.util.logging.Log
+import org.signal.core.util.nullIfBlank
 import org.signal.core.util.orNull
 import org.signal.core.util.requireLong
 import org.signal.core.util.toInt
@@ -438,7 +439,10 @@ class ChatItemArchiveImporter(
               address.country
             )
           },
-          Contact.Avatar(null, backupContact.avatar.toLocalAttachment(voiceNote = false, borderless = false, gif = false, wasDownloaded = true), true)
+          Contact.Avatar(null, backupContact.avatar.toLocalAttachment(voiceNote = false, borderless = false, gif = false, wasDownloaded = true), true),
+          ServiceId.ACI.parseOrNull(backupContact.aci)?.takeIf { it.isValid }?.toString(),
+          backupContact.nickname.toLocal(),
+          backupContact.note.nullIfBlank()
         )
       }
 
@@ -924,7 +928,7 @@ class ChatItemArchiveImporter(
       }
       learnedProfileChange != null -> {
         typeFlags = MessageTypes.PROFILE_CHANGE_TYPE
-        val profileChangeDetails = ProfileChangeDetails(learnedProfileName = ProfileChangeDetails.LearnedProfileName(e164 = learnedProfileChange.e164?.toString(), username = learnedProfileChange.username))
+        val profileChangeDetails = ProfileChangeDetails(learnedProfileName = ProfileChangeDetails.LearnedProfileName(e164 = learnedProfileChange.e164?.toString(), username = learnedProfileChange.username, sharedName = learnedProfileChange.sharedName))
         val messageExtras = MessageExtras(profileChangeDetails = profileChangeDetails).encode()
         put(MessageTable.MESSAGE_EXTRAS, messageExtras)
       }
@@ -1299,6 +1303,14 @@ class ChatItemArchiveImporter(
 
   private fun ContactAttachment.Name?.toLocal(): Contact.Name {
     return Contact.Name(this?.givenName, this?.familyName, this?.prefix, this?.suffix, this?.middleName, this?.nickname)
+  }
+
+  private fun ContactAttachment.SignalNickname?.toLocal(): Contact.SignalNickname? {
+    if (this == null) {
+      return null
+    }
+
+    return Contact.SignalNickname(given, family).takeUnless { it.isEmpty }
   }
 
   private fun ContactAttachment.Phone.Type?.toLocal(): Contact.Phone.Type {

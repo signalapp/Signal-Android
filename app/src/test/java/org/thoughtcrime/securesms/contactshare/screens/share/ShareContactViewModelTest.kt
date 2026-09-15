@@ -32,6 +32,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.thoughtcrime.securesms.contactshare.Contact
+import org.thoughtcrime.securesms.contactshare.SharedContactSource
 import org.thoughtcrime.securesms.contactshare.screens.editname.ContactNameParts
 import org.thoughtcrime.securesms.testing.CoroutineDispatcherRule
 
@@ -58,7 +59,8 @@ class ShareContactViewModelTest {
 
   private val photoOptions = listOf(
     ShareContactState.PhotoOption("address-book", addressBookPhoto),
-    ShareContactState.PhotoOption("signal-profile", profilePhoto)
+    ShareContactState.PhotoOption("signal-profile", profilePhoto),
+    ShareContactState.PhotoOption("none", null)
   )
 
   private val nameParts = ContactNameParts(givenName = "Paige", familyName = "Hall")
@@ -179,6 +181,69 @@ class ShareContactViewModelTest {
     assertThat(viewModel.state.value.photoPicker).isNull()
   }
 
+  /** One photo plus the option to decline it is still a choice, which is what makes the badge appear. */
+  @Test
+  fun `a single photo alongside the no photo option can still be edited`() = runTest(testDispatcher) {
+    val viewModel = createViewModel(options = listOf(photoOptions.first(), ShareContactState.PhotoOption("none", null)))
+
+    viewModel.onEvent(ShareContactEvent.EditPhotoClicked)
+
+    assertThat(viewModel.state.value.photoPicker?.selectedId).isEqualTo("address-book")
+  }
+
+  @Test
+  fun `choosing no photo drops the avatar back to the fallback`() = runTest(testDispatcher) {
+    val viewModel = createViewModel()
+
+    viewModel.onEvent(ShareContactEvent.EditPhotoClicked)
+    viewModel.onEvent(ShareContactEvent.PhotoSelected("none"))
+    viewModel.onEvent(ShareContactEvent.PhotoPickerConfirmed)
+
+    assertThat(viewModel.state.value.avatar?.photo).isNull()
+    assertThat(viewModel.state.value.avatar?.isSelected).isEqualTo(true)
+  }
+
+  @Test
+  fun `choosing no photo sends the card without one`() = runTest(testDispatcher) {
+    val viewModel = createViewModel()
+    val events = viewModel.collectActions(this)
+
+    viewModel.onEvent(ShareContactEvent.EditPhotoClicked)
+    viewModel.onEvent(ShareContactEvent.PhotoSelected("none"))
+    viewModel.onEvent(ShareContactEvent.PhotoPickerConfirmed)
+    viewModel.onEvent(ShareContactEvent.SendClicked)
+
+    assertThat(events.single()).isInstanceOf(ShareContactAction.Send::class)
+    assertThat(selectionSlot.captured.photo).isNull()
+  }
+
+  /** Reopening must land on the no photo option rather than reverting to the first real photo. */
+  @Test
+  fun `the picker reopens on the no photo option once it is chosen`() = runTest(testDispatcher) {
+    val viewModel = createViewModel()
+
+    viewModel.onEvent(ShareContactEvent.EditPhotoClicked)
+    viewModel.onEvent(ShareContactEvent.PhotoSelected("none"))
+    viewModel.onEvent(ShareContactEvent.PhotoPickerConfirmed)
+    viewModel.onEvent(ShareContactEvent.EditPhotoClicked)
+
+    assertThat(viewModel.state.value.photoPicker?.selectedId).isEqualTo("none")
+  }
+
+  @Test
+  fun `a chosen no photo survives the view model being rebuilt after process death`() = runTest(testDispatcher) {
+    val savedState = SavedStateHandle()
+
+    val before = createViewModel(savedState = savedState)
+    before.onEvent(ShareContactEvent.EditPhotoClicked)
+    before.onEvent(ShareContactEvent.PhotoSelected("none"))
+    before.onEvent(ShareContactEvent.PhotoPickerConfirmed)
+
+    val after = createViewModel(savedState = savedState)
+
+    assertThat(after.state.value.avatar?.photo).isNull()
+  }
+
   @Test
   fun `confirming the photo picker commits the choice`() = runTest(testDispatcher) {
     val viewModel = createViewModel()
@@ -271,7 +336,7 @@ class ShareContactViewModelTest {
     every { repository.buildCard(any(), capture(selectionSlot)) } returns mockk(relaxed = true)
 
     return ShareContactViewModel(
-      uris = emptyList(),
+      contactSource = mockk<SharedContactSource>(),
       recipientId = null,
       repository = repository,
       savedState = savedState

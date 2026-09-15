@@ -534,10 +534,11 @@ private fun previewState(
     displayName = "Paige Hall",
     photoUri = "",
     signalRecipientId = if (isOnSignal) RecipientId.from(1L) else null,
-    actions = buildList {
-      if (!isOnSignal) add(ContactAction.INVITE_TO_SIGNAL)
-      if (withDetails) add(ContactAction.ADD_TO_PHONE_CONTACTS)
-    },
+    actions = SharedContactDetailsViewModel.contactActionsFor(
+      isOnSignal = isOnSignal,
+      hasInviteTarget = withDetails,
+      hasAnythingToSave = withDetails
+    ),
     details = details
   )
 }

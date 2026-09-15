@@ -85,6 +85,7 @@ data class RecipientRecord(
   val phoneNumberSharing: PhoneNumberSharingState,
   val nickname: ProfileName,
   val note: String?,
+  val sharedName: ProfileName,
   val keyTransparencyData: ByteArray? = null
 ) {
 

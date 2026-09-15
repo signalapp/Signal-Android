@@ -316,7 +316,8 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
       val profileNameResult = resolveProfileName(recipient, recipientProfileKey, profile.name)
       val aboutResult = resolveProfileAbout(recipientProfileKey, profile.about, profile.aboutEmoji)
       val phoneNumberSharing = resolvePhoneNumberSharing(recipient, recipientProfileKey, profile.phoneNumberSharing)
-      val clearUsername = (recipient.username.isPresent && recipient.hasNonUsernameDisplayName(context)) || profileNameResult?.changed == true
+      val clearUsername = (recipient.username.isPresent && recipient.hasPersistentDisplayName(context)) || profileNameResult?.changed == true
+      val clearSharedName = (!recipient.sharedName.isEmpty && recipient.hasDisplayNameOutrankingSharedName()) || profileNameResult?.changed == true
 
       val update = RecipientTable.ProfileUpdate(
         profileName = if (profileNameResult?.changed == true) profileNameResult.remoteProfileName else null,
@@ -326,7 +327,8 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
         sealedSenderAccessMode = if (accessMode != recipient.sealedSenderAccessMode) accessMode else null,
         phoneNumberSharing = phoneNumberSharing,
         expiringProfileKeyCredential = expiringCredential?.let { Pair(recipientProfileKey, it) },
-        clearUsername = clearUsername
+        clearUsername = clearUsername,
+        clearSharedName = clearSharedName
       )
 
       SignalDatabase.recipients.applyProfileUpdate(recipient.id, update)
@@ -421,17 +423,18 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
         !recipient.isGroup &&
         !recipient.isSelf
 
-      var username: String? = null
-      var e164: String? = null
-      if (learnedFirstTime) {
-        username = SignalDatabase.recipients.getUsername(recipient.id)
-        e164 = if (username == null) SignalDatabase.recipients.getE164sForIds(listOf(recipient.id)).firstOrNull() else null
+      val previousName: PreviousName? = if (learnedFirstTime) {
+        recipient.sharedName.takeUnless { it.isEmpty }?.let { PreviousName.SharedName(it.toString()) }
+          ?: SignalDatabase.recipients.getUsername(recipient.id)?.let { PreviousName.Username(it) }
+          ?: SignalDatabase.recipients.getE164sForIds(listOf(recipient.id)).firstOrNull()?.let { PreviousName.E164(it) }
+      } else {
+        null
       }
 
       return if (changed) {
-        ProfileNameResult(remoteProfileName, localProfileName, changed = true, learnedFirstTime, username, e164)
+        ProfileNameResult(remoteProfileName, localProfileName, changed = true, learnedFirstTime, previousName)
       } else if (learnedFirstTime) {
-        ProfileNameResult(remoteProfileName, localProfileName, changed = false, learnedFirstTime, username, e164)
+        ProfileNameResult(remoteProfileName, localProfileName, changed = false, learnedFirstTime, previousName)
       } else {
         null
       }
@@ -478,11 +481,16 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
 
   private fun handleProfileNameSideEffects(recipient: Recipient, result: ProfileNameResult) {
     if (result.learnedFirstTime) {
-      if (result.username != null || result.e164 != null) {
-        Log.i(TAG, "Learned profile name for first time, inserting event")
-        SignalDatabase.messages.insertLearnedProfileNameChangeMessage(recipient, result.e164, result.username)
+      val previous = result.previousName
+      if (previous == null) {
+        Log.w(TAG, "Learned profile name for first time, but have no previous name for ${recipient.id}")
       } else {
-        Log.w(TAG, "Learned profile name for first time, but do not have username or e164 for ${recipient.id}")
+        Log.i(TAG, "Learned profile name for first time, inserting event")
+        when (previous) {
+          is PreviousName.SharedName -> SignalDatabase.messages.insertLearnedProfileNameChangeMessage(recipient, sharedName = previous.sharedName)
+          is PreviousName.Username -> SignalDatabase.messages.insertLearnedProfileNameChangeMessage(recipient, username = previous.username)
+          is PreviousName.E164 -> SignalDatabase.messages.insertLearnedProfileNameChangeMessage(recipient, e164 = previous.e164)
+        }
       }
     }
 
@@ -537,9 +545,15 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
     val localProfileName: ProfileName,
     val changed: Boolean,
     val learnedFirstTime: Boolean,
-    val username: String?,
-    val e164: String?
+    val previousName: PreviousName?
   )
+
+  /** The name a chat displayed before we learned a profile name. */
+  private sealed interface PreviousName {
+    data class SharedName(val sharedName: String) : PreviousName
+    data class Username(val username: String) : PreviousName
+    data class E164(val e164: String) : PreviousName
+  }
 
   class Factory : Job.Factory<RetrieveProfileJob?> {
     override fun create(parameters: Parameters, serializedData: ByteArray?): RetrieveProfileJob {

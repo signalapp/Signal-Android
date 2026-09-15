@@ -9,9 +9,9 @@ import android.app.Application
 import androidx.core.net.toUri
 import androidx.test.core.app.ApplicationProvider
 import assertk.assertThat
-import assertk.assertions.hasSize
-import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
+import assertk.assertions.isNotNull
+import assertk.assertions.isNull
 import io.mockk.every
 import io.mockk.mockkStatic
 import io.mockk.unmockkStatic
@@ -56,22 +56,17 @@ class ContactCardReaderTest {
   }
 
   @Test
-  fun `no uris reads nothing`() {
-    assertThat(reader.read(emptyList())).isEmpty()
-  }
-
-  @Test
   fun `an empty vcard is skipped rather than throwing`() {
     givenVcard("")
 
-    assertThat(reader.read(listOf(VCARD_URI))).isEmpty()
+    assertThat(reader.readVCard(VCARD_URI)).isNull()
   }
 
   @Test
   fun `an unparseable vcard is skipped rather than throwing`() {
     givenVcard("this is not a vcard at all")
 
-    assertThat(reader.read(listOf(VCARD_URI))).isEmpty()
+    assertThat(reader.readVCard(VCARD_URI)).isNull()
   }
 
   @Test
@@ -87,11 +82,11 @@ class ContactCardReaderTest {
       """.trimIndent()
     )
 
-    val contacts = reader.read(listOf(VCARD_URI))
+    val contact = reader.readVCard(VCARD_URI)
 
-    assertThat(contacts).hasSize(1)
-    assertThat(ContactUtil.getDisplayName(contacts.first())).isEqualTo("Paige Hall")
-    assertThat(contacts.first().phoneNumbers.first().number).isEqualTo("+15105550101")
+    assertThat(contact).isNotNull()
+    assertThat(ContactUtil.getDisplayName(contact!!)).isEqualTo("Paige Hall")
+    assertThat(contact.phoneNumbers.first().number).isEqualTo("+15105550101")
   }
 
   private fun givenVcard(body: String) {

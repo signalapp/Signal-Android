@@ -5,12 +5,21 @@
 
 package org.thoughtcrime.securesms.contactshare
 
+import android.app.Application
+import android.net.Uri
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
+import org.thoughtcrime.securesms.contacts.index.ContactIndexRecord
+import org.thoughtcrime.securesms.contacts.index.ContactIndexType
 import org.thoughtcrime.securesms.contactshare.screens.details.SharedContactDetailsAction
 import org.thoughtcrime.securesms.contactshare.screens.details.SharedContactDetailsEvent
 import org.thoughtcrime.securesms.contactshare.screens.editname.ContactNameParts
 import org.thoughtcrime.securesms.contactshare.screens.editname.EditContactNameEvent
 import org.thoughtcrime.securesms.contactshare.screens.editname.EditContactNameResult
+import org.thoughtcrime.securesms.contactshare.screens.selectcontact.SelectContactAction
+import org.thoughtcrime.securesms.contactshare.screens.selectcontact.SelectContactEvent
 import org.thoughtcrime.securesms.contactshare.screens.share.ShareContactAction
 import org.thoughtcrime.securesms.contactshare.screens.share.ShareContactEvent
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -20,7 +29,11 @@ import kotlin.reflect.full.primaryConstructor
 
 /**
  * EventDrivenViewModel logs every event so try to enforce clean logs via reflection.
+ *
+ * Robolectric only so that a [Uri] can be built for the [SharedContactSource] sample.
  */
+@RunWith(RobolectricTestRunner::class)
+@Config(application = Application::class)
 class ShareContactPiiLoggingTest {
 
   @Test
@@ -80,7 +93,10 @@ class ShareContactPiiLoggingTest {
       classifier == String::class -> SECRET_TEXT
       classifier == ContactNameParts::class -> secretNameParts()
       classifier == Contact::class -> secretContact()
+      classifier == ContactIndexRecord::class -> secretContactRow()
       classifier == RecipientId::class -> RecipientId.from(1L)
+      classifier == SharedContactSource::class -> secretSource()
+      classifier == Uri::class -> secretContactUri()
       classifier?.java?.isEnum == true -> classifier.java.enumConstants.first()
       else -> throw AssertionError(
         "No sample value for ${classifier?.simpleName} on ${member.qualifiedName}. Add one to " +
@@ -100,6 +116,30 @@ class ShareContactPiiLoggingTest {
     )
   }
 
+  private fun secretContactRow(): ContactIndexRecord {
+    return ContactIndexRecord(
+      position = 1,
+      type = ContactIndexType.BOTH,
+      section = SECRET_TEXT,
+      displayName = SECRET_TEXT,
+      recipientId = RecipientId.from(1L),
+      lookupKey = SECRET_TEXT,
+      contactId = 1L,
+      hasPersonalName = true,
+      hasPhoto = false
+    )
+  }
+
+  /** A lookup key can carry the contact's own name, so the uri counts as private. */
+  private fun secretSource(): SharedContactSource {
+    return SharedContactSource.AddressBook(secretContactUri())
+  }
+
+  /** A lookup key is built out of the contact's own details, so the uri names the person. */
+  private fun secretContactUri(): Uri {
+    return Uri.parse("content://com.android.contacts/contacts/lookup/$SECRET_TEXT/1")
+  }
+
   private fun secretContact(): Contact {
     return Contact(
       Contact.Name(SECRET_TEXT, SECRET_TEXT, SECRET_TEXT, SECRET_TEXT, SECRET_TEXT, SECRET_TEXT),
@@ -107,7 +147,10 @@ class ShareContactPiiLoggingTest {
       listOf(Contact.Phone(SECRET_NUMBER, Contact.Phone.Type.MOBILE, SECRET_TEXT)),
       listOf(Contact.Email(SECRET_EMAIL, Contact.Email.Type.HOME, SECRET_TEXT)),
       listOf(Contact.PostalAddress(Contact.PostalAddress.Type.HOME, SECRET_TEXT, SECRET_TEXT, null, null, null, null, null, null)),
-      null
+      null,
+      null,
+      Contact.SignalNickname(SECRET_TEXT, SECRET_TEXT),
+      SECRET_TEXT
     )
   }
 
@@ -124,7 +167,9 @@ class ShareContactPiiLoggingTest {
       SharedContactDetailsEvent::class,
       SharedContactDetailsAction::class,
       EditContactNameEvent::class,
-      EditContactNameResult::class
+      EditContactNameResult::class,
+      SelectContactEvent::class,
+      SelectContactAction::class
     )
 
     /** Payloads whose only string is an internal identifier, so logging it verbatim is useful and safe. */

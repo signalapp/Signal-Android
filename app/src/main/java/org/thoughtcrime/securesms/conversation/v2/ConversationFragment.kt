@@ -132,6 +132,7 @@ import org.signal.core.util.Result
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.concurrent.ListenableFuture
+import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.concurrent.addTo
 import org.signal.core.util.dp
 import org.signal.core.util.encourageNewBrowserTab
@@ -193,6 +194,8 @@ import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey.RecipientSearc
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.contactshare.ContactUtil
 import org.thoughtcrime.securesms.contactshare.SharedContactDetailsActivityV2
+import org.thoughtcrime.securesms.contactshare.SharedContactSource
+import org.thoughtcrime.securesms.contactshare.resolveOrCreateSignalRecipient
 import org.thoughtcrime.securesms.conversation.AttachmentKeyboardButton
 import org.thoughtcrime.securesms.conversation.BadDecryptLearnMoreDialog
 import org.thoughtcrime.securesms.conversation.ConversationAdapter
@@ -1741,7 +1744,7 @@ class ConversationFragment :
     val recipientId: RecipientId = viewModel.recipientSnapshot?.id ?: return
 
     if (mediaType == SlideFactory.MediaType.VCARD) {
-      conversationActivityResultContracts.launchContactShareEditor(uri, recipientId)
+      conversationActivityResultContracts.launchVCardShareEditor(uri, recipientId)
     } else {
       val mimeType = MediaUtil.getMimeType(requireContext(), uri) ?: mediaType.toFallbackMimeType()
       val media = Media(
@@ -3698,10 +3701,21 @@ class ConversationFragment :
       )
     }
 
-    override fun onMessageSharedContactClicked(choices: MutableList<Recipient>) {
+    override fun onMessageSharedContactClicked(contact: Contact, choices: MutableList<Recipient>) {
       val context = context ?: return
-      ContactUtil.selectRecipientThroughDialog(context, choices, Locale.getDefault()) { recipient: Recipient ->
-        CommunicationActions.startConversation(context, recipient, null)
+
+      if (choices.isNotEmpty()) {
+        ContactUtil.selectRecipientThroughDialog(context, choices, Locale.getDefault()) { recipient: Recipient ->
+          CommunicationActions.startConversation(context, recipient, null)
+        }
+        return
+      }
+
+      // A card that carries only an ACI has nobody to pick between and no row yet, so tapping it is
+      // what seeds one.
+      viewLifecycleOwner.lifecycleScope.launch {
+        val recipientId = withContext(SignalDispatchers.IO) { contact.resolveOrCreateSignalRecipient() } ?: return@launch
+        CommunicationActions.startConversation(context, Recipient.resolved(recipientId), null)
       }
     }
 
@@ -4770,10 +4784,10 @@ class ConversationFragment :
       )
     }
 
-    override fun onContactSelect(uri: Uri?) {
+    override fun onContactSelect(source: SharedContactSource?) {
       val recipient = viewModel.recipientSnapshot
-      if (uri != null && recipient != null) {
-        conversationActivityResultContracts.launchContactShareEditor(uri, recipient.id)
+      if (source != null && recipient != null) {
+        conversationActivityResultContracts.launchContactShareEditor(source, recipient.id)
       }
     }
 

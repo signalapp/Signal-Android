@@ -1296,9 +1296,9 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     }
   }
 
-  fun insertLearnedProfileNameChangeMessage(recipient: Recipient, e164: String?, username: String?) {
-    if ((e164 == null && username == null) || (e164 != null && username != null)) {
-      Log.w(TAG, "Learn profile event expects an e164 or username")
+  fun insertLearnedProfileNameChangeMessage(recipient: Recipient, e164: String? = null, username: String? = null, sharedName: String? = null) {
+    if (listOfNotNull(e164, username, sharedName).size != 1) {
+      Log.w(TAG, "Learn profile event expects exactly one of an e164, username, or shared name")
       return
     }
 
@@ -1307,7 +1307,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     if (threadId != null) {
       val now = System.currentTimeMillis()
       val extras = MessageExtras(
-        profileChangeDetails = ProfileChangeDetails(learnedProfileName = ProfileChangeDetails.LearnedProfileName(e164 = e164, username = username))
+        profileChangeDetails = ProfileChangeDetails(learnedProfileName = ProfileChangeDetails.LearnedProfileName(e164 = e164, username = username, sharedName = sharedName))
       )
 
       val messageId = writableDatabase

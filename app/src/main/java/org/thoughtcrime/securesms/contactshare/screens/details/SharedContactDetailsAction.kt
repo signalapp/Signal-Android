@@ -32,6 +32,5 @@ sealed interface SharedContactDetailsAction {
   data class StartChat(val recipientId: RecipientId) : SharedContactDetailsAction
   data class StartVideoCall(val recipientId: RecipientId) : SharedContactDetailsAction
   data class StartAudioCall(val recipientId: RecipientId) : SharedContactDetailsAction
-
-  data object AddToGroup : SharedContactDetailsAction
+  data class AddToGroup(val recipientId: RecipientId) : SharedContactDetailsAction
 }

@@ -100,7 +100,11 @@ class AddToGroupsViewModel(
           when (result) {
             is GroupAddMembersResult.Success -> {
               internalUiState.update {
-                it.copy(userMessage = UserMessage.AddedRecipientToGroup(recipient, groupRecipient))
+                if (result.newMembersInvited.isNotEmpty()) {
+                  it.copy(userMessage = UserMessage.InvitedRecipientToGroup(recipient, groupRecipient))
+                } else {
+                  it.copy(userMessage = UserMessage.AddedRecipientToGroup(recipient, groupRecipient))
+                }
               }
             }
 
@@ -138,6 +142,7 @@ data class AddToGroupsUiState(
   sealed interface UserMessage {
     data class ConfirmAddToGroup(val recipientToAdd: Recipient, val targetGroup: Recipient) : UserMessage
     data class AddedRecipientToGroup(val recipient: Recipient, val targetGroup: Recipient) : UserMessage
+    data class InvitedRecipientToGroup(val recipient: Recipient, val targetGroup: Recipient) : UserMessage
     data object CantAddRecipientToLegacyGroup : UserMessage
     data class GroupUpdateError(val failureReason: GroupChangeFailureReason) : UserMessage
   }

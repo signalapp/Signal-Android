@@ -76,10 +76,17 @@ class SharedContactDetailsViewModelTest {
   }
 
   @Test
-  fun `on Signal with a number offers save, but no invite`() {
+  fun `on Signal with a number offers save and group, but no invite`() {
     val actions = SharedContactDetailsViewModel.contactActionsFor(isOnSignal = true, hasInviteTarget = true, hasAnythingToSave = true)
 
-    assertThat(actions).containsExactly(ContactAction.ADD_TO_PHONE_CONTACTS)
+    assertThat(actions).containsExactly(ContactAction.ADD_TO_PHONE_CONTACTS, ContactAction.ADD_TO_GROUP)
+  }
+
+  @Test
+  fun `a card on Signal with nothing to save is still offered a group`() {
+    val actions = SharedContactDetailsViewModel.contactActionsFor(isOnSignal = true, hasInviteTarget = false, hasAnythingToSave = false)
+
+    assertThat(actions).containsExactly(ContactAction.ADD_TO_GROUP)
   }
 
   @Test
@@ -264,7 +271,7 @@ class SharedContactDetailsViewModelTest {
     assertThat(events).containsExactly(
       SharedContactDetailsAction.InviteBySms("+14045550185"),
       SharedContactDetailsAction.AddToPhoneContacts,
-      SharedContactDetailsAction.AddToGroup
+      SharedContactDetailsAction.AddToGroup(RECIPIENT_ID)
     )
   }
 
@@ -287,7 +294,7 @@ class SharedContactDetailsViewModelTest {
       photoUri = null,
       signalRecipientId = if (isOnSignal) RECIPIENT_ID else null,
       actions = if (isOnSignal) {
-        listOf(ContactAction.ADD_TO_PHONE_CONTACTS)
+        listOf(ContactAction.ADD_TO_PHONE_CONTACTS, ContactAction.ADD_TO_GROUP)
       } else {
         listOf(ContactAction.INVITE_TO_SIGNAL, ContactAction.ADD_TO_PHONE_CONTACTS)
       },
@@ -296,6 +303,7 @@ class SharedContactDetailsViewModelTest {
 
     val repository: SharedContactDetailsRepository = mockk()
     coEvery { repository.loadState(any()) } returns state
+    coEvery { repository.resolveOrCreateRecipient(any()) } returns if (isOnSignal) RECIPIENT_ID else null
 
     return SharedContactDetailsViewModel(contact = contact, repository = repository)
   }

@@ -46,7 +46,7 @@ data class SharedContactDetailsState(
   enum class DetailKind {
     PHONE,
 
-    /** Only ever from the card, never from our own recipient. Waiting on the wire fields. */
+    /** Only ever from the card, never from our own recipient. */
     NICKNAME,
     NOTE,
 

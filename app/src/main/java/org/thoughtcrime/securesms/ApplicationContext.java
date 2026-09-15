@@ -54,6 +54,7 @@ import org.thoughtcrime.securesms.apkupdate.ApkUpdateRefreshListener;
 import org.thoughtcrime.securesms.avatar.AvatarPickerStorage;
 import org.thoughtcrime.securesms.backup.v2.BackupRepository;
 import org.thoughtcrime.securesms.clockskew.ClockSkewDetector;
+import org.thoughtcrime.securesms.contacts.index.ContactIndexRepository;
 import org.thoughtcrime.securesms.preferences.EditProxyActivity;
 import org.thoughtcrime.securesms.conversation.drafts.DraftBlobs;
 import org.thoughtcrime.securesms.crypto.AppAttachmentSecretStore;
@@ -242,6 +243,7 @@ public class ApplicationContext extends Application implements AppForegroundObse
               .addPostRender(() -> DownloadLatestEmojiDataJob.scheduleIfNecessary(this))
               .addPostRender(EmojiSearchIndexDownloadJob::scheduleIfNecessary)
               .addPostRender(MessageSendLogCleanupJob::enqueue)
+              .addPostRender(() -> ContactIndexRepository.deleteAbandonedIndex(this))
               .addPostRender(() -> JumboEmoji.updateCurrentVersion(this))
               .addPostRender(RetrieveRemoteAnnouncementsJob::enqueue)
               .addPostRender(AndroidTelecomUtil::registerPhoneAccount)

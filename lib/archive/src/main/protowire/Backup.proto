@@ -182,6 +182,10 @@ message AccountData {
     NavigationBarSize navigationBarSize = 3; // If unset, treat the same as "Unknown" case
   }
 
+  message IOSSpecificSettings {
+    bool isSystemCallLogEnabled = 1;
+  }
+
   bytes profileKey = 1;
   optional string username = 2;
   UsernameLink usernameLink = 3;
@@ -196,7 +200,8 @@ message AccountData {
   AndroidSpecificSettings androidSpecificSettings = 12;
   string bioText = 13;
   string bioEmoji = 14;
-  reserved /*keyTransparencyData*/ 15; // No longer want to persist self-KT data
+  reserved /*keyTransparencyData*/ 15;
+  IOSSpecificSettings iosSpecificSettings = 16;
 }
 
 message Recipient {
@@ -285,8 +290,10 @@ message Contact {
   string systemFamilyName = 19;
   string systemNickname = 20;
   optional AvatarColor avatarColor = 21;
+  // Opaque blob containing key transparency data for the contact
   optional bytes keyTransparencyData = 22;
   uint64 blockedAtTimestamp = 23; // if `blocked` is true, 0 means unknown block time
+  Name sharedName = 24; // absent iff both `given` and `family` are empty, name provided by third party
 }
 
 message Group {
@@ -322,8 +329,8 @@ message Group {
     repeated MemberPendingProfileKey membersPendingProfileKey = 8;
     repeated MemberPendingAdminApproval membersPendingAdminApproval = 9;
     bytes inviteLinkPassword = 10;
-    bool announcements_only = 12;
-    repeated MemberBanned members_banned = 13;
+    bool announcementsOnly = 12;
+    repeated MemberBanned membersBanned = 13;
     bool terminated = 14;
   }
 
@@ -687,6 +694,12 @@ message ContactAttachment {
     string nickname = 6;
   }
 
+  // The sharer's Signal nickname for this contact
+  message SignalNickname {
+    string given = 1;
+    string family = 2;
+  }
+
   message Phone {
     enum Type {
       UNKNOWN = 0; // Interpret as "Home"
@@ -735,11 +748,15 @@ message ContactAttachment {
   }
 
   optional Name name = 1;
+  reserved 2;
   repeated Phone number = 3;
   repeated Email email = 4;
   repeated PostalAddress address = 5;
   optional FilePointer avatar = 6;
   string organization = 7;
+  bytes aci = 8; // should be 16 bytes
+  optional SignalNickname nickname = 9; // absent iff both `given` and `family` are empty
+  string note = 10;
 }
 
 message StickerMessage {
@@ -1049,6 +1066,7 @@ message LearnedProfileChatUpdate {
   oneof previousName {
     uint64 e164 = 1;
     string username = 2;
+    string sharedName = 3;
   }
 }
 
@@ -1146,18 +1164,14 @@ message GroupMembershipAccessLevelChangeUpdate {
   GroupV2AccessLevel accessLevel = 2;
 }
 
-message GroupAttributesAccessLevelChangeUpdate {
-  optional bytes updaterAci = 1;
-  GroupV2AccessLevel accessLevel = 2;
-}
-
 message GroupMemberLabelAccessLevelChangeUpdate {
   optional bytes updaterAci = 1;
   GroupV2AccessLevel accessLevel = 2;
 }
 
-message GroupTerminateChangeUpdate {
+message GroupAttributesAccessLevelChangeUpdate {
   optional bytes updaterAci = 1;
+  GroupV2AccessLevel accessLevel = 2;
 }
 
 message GroupAnnouncementOnlyChangeUpdate {
@@ -1318,6 +1332,10 @@ message GroupExpirationTimerUpdate {
   optional bytes updaterAci = 2;
 }
 
+message GroupTerminateChangeUpdate {
+  optional bytes updaterAci = 1;
+}
+
 message PollTerminateUpdate {
   uint64 targetSentTimestamp = 1;
   string question = 2; // Between 1-100 characters
@@ -1335,6 +1353,12 @@ message StickerPack {
 
 message ChatStyle {
   message Gradient {
+    // Color ordering:
+    //   0   degrees: bottom-to-top
+    //   90  degrees: left-to-right
+    //   180 degrees: top-to-bottom
+    //   270 degrees: right-to-left
+
     uint32 angle = 1; // degrees
     repeated fixed32 colors = 2; // 0xAARRGGBB
     repeated float positions = 3; // percent from 0 to 1

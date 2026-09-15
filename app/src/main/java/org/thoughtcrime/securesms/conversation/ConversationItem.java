@@ -1374,7 +1374,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       if (joinCallLinkStub.resolved()) joinCallLinkStub.get().setVisibility(View.GONE);
       paymentViewStub.setVisibility(View.GONE);
 
-      sharedContactStub.get().setContact(((MmsMessageRecord) messageRecord).getSharedContacts().get(0), requestManager, locale);
+      sharedContactStub.get().setContact(((MmsMessageRecord) messageRecord).getSharedContacts().get(0), conversationMessage.getSharedContactPresentation(), requestManager, locale);
       sharedContactStub.get().setEventListener(sharedContactEventListener);
       sharedContactStub.get().setOnClickListener(sharedContactClickListener);
       sharedContactStub.get().setOnLongClickListener(passthroughClickListener);
@@ -2770,9 +2770,9 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     }
 
     @Override
-    public void onMessageClicked(@NonNull List<Recipient> choices) {
+    public void onMessageClicked(@NonNull Contact contact, @NonNull List<Recipient> choices) {
       if (eventListener != null && batchSelected.isEmpty()) {
-        eventListener.onMessageSharedContactClicked(choices);
+        eventListener.onMessageSharedContactClicked(contact, choices);
       } else {
         passthroughClickListener.onClick(sharedContactStub.get());
       }

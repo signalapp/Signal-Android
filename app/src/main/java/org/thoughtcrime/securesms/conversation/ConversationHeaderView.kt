@@ -113,10 +113,12 @@ class ConversationHeaderView : AbstractComposeView {
     val isReleaseNotes = recipient.isReleaseNotes
     val isOfficialAccount = recipient.showVerified
 
+    val hasUsernameOrSharedName = recipient.hasUsernameOrSharedName
+
     val showUnverifiedName = if (recipient.isGroup) {
       !info.groupInfo.nameVerified
     } else if (!isOfficialAccount) {
-      recipient.nickname.isEmpty && !recipient.isSystemContact
+      recipient.nickname.isEmpty && !recipient.isSystemContact && !hasUsernameOrSharedName
     } else {
       false
     }
@@ -139,6 +141,7 @@ class ConversationHeaderView : AbstractComposeView {
         isReleaseNotes = isReleaseNotes,
         badge = if (!isOfficialAccount) recipient.featuredBadge else null,
         showUnverifiedName = showUnverifiedName,
+        hasUsernameOrSharedName = hasUsernameOrSharedName,
         isGroup = recipient.isGroup,
         hasWallpaper = recipient.hasWallpaper,
         phoneNumber = phoneNumber,
@@ -188,6 +191,7 @@ private fun ConversationHeaderContent(
   isReleaseNotes: Boolean = false,
   badge: Badge?,
   showUnverifiedName: Boolean,
+  hasUsernameOrSharedName: Boolean = false,
   isGroup: Boolean,
   hasWallpaper: Boolean = false,
   phoneNumber: String? = null,
@@ -291,7 +295,9 @@ private fun ConversationHeaderContent(
         )
       }
 
-      if (!isSelf && !isReleaseNotes && (sharedGroups.isNotEmpty() || !isGroup)) {
+      val showSharedGroups = sharedGroups.isNotEmpty() || (!isGroup && !hasUsernameOrSharedName)
+
+      if (!isSelf && !isReleaseNotes && showSharedGroups) {
         SharedGroupsDescription(
           sharedGroups = sharedGroups,
           modifier = Modifier.padding(top = 8.dp)

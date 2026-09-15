@@ -147,7 +147,8 @@ object RecipientDatabaseTestUtils {
       callLinkRoomId = null,
       phoneNumberSharing = RecipientTable.PhoneNumberSharingState.UNKNOWN,
       nickname = ProfileName.EMPTY,
-      note = null
+      note = null,
+      sharedName = ProfileName.EMPTY
     ),
     participantIds = participants,
     isReleaseChannel = isReleaseChannel,

@@ -9,15 +9,22 @@ import android.content.Context
 import kotlinx.coroutines.withContext
 import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.nullIfBlank
+import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contactshare.ADDRESS_PREFIX
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.contactshare.ContactUtil
 import org.thoughtcrime.securesms.contactshare.EMAIL_PREFIX
+import org.thoughtcrime.securesms.contactshare.NICKNAME_ID
+import org.thoughtcrime.securesms.contactshare.NOTE_ID
 import org.thoughtcrime.securesms.contactshare.PHONE_PREFIX
 import org.thoughtcrime.securesms.contactshare.displayLines
+import org.thoughtcrime.securesms.contactshare.displayText
+import org.thoughtcrime.securesms.contactshare.isOnSignal
 import org.thoughtcrime.securesms.contactshare.labelText
+import org.thoughtcrime.securesms.contactshare.resolveOrCreateSignalRecipient
 import org.thoughtcrime.securesms.contactshare.resolveSignalRecipient
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.recipients.RecipientId
 import java.util.Locale
 
 /** Maps a received card into details screen state. */
@@ -30,9 +37,13 @@ class SharedContactDetailsRepository(
     toState(contact)
   }
 
+  suspend fun resolveOrCreateRecipient(contact: Contact): RecipientId? = withContext(SignalDispatchers.IO) {
+    contact.resolveOrCreateSignalRecipient()
+  }
+
   private fun toState(contact: Contact): SharedContactDetailsState {
+    val isOnSignal = contact.isOnSignal
     val signalRecipient = contact.resolveSignalRecipient()
-    val isOnSignal = signalRecipient != null
     val displayName = ContactUtil.getDisplayName(contact)
 
     return SharedContactDetailsState(
@@ -62,6 +73,24 @@ class SharedContactDetailsRepository(
         lines = listOf(ContactUtil.getPrettyPhoneNumber(phone, locale)),
         label = phone.labelText(context),
         kind = SharedContactDetailsState.DetailKind.PHONE
+      )
+    }
+
+    this.nickname?.takeUnless { it.isEmpty }?.let { nickname ->
+      rows += SharedContactDetailsState.DetailRow(
+        id = NICKNAME_ID,
+        lines = listOf(nickname.displayText()),
+        label = context.getString(R.string.ShareContactScreen__nickname),
+        kind = SharedContactDetailsState.DetailKind.NICKNAME
+      )
+    }
+
+    this.note.nullIfBlank()?.let { note ->
+      rows += SharedContactDetailsState.DetailRow(
+        id = NOTE_ID,
+        lines = listOf(note),
+        label = context.getString(R.string.ShareContactScreen__notes),
+        kind = SharedContactDetailsState.DetailKind.NOTE
       )
     }
 

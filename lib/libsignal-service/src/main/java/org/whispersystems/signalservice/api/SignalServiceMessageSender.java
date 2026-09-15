@@ -1933,6 +1933,28 @@ public class SignalServiceMessageSender {
         contactBuilder.organization(contact.getOrganization().get());
       }
 
+      if (contact.getAci().isPresent()) {
+        contactBuilder.aciBinary(contact.getAci().get().toByteString());
+      }
+
+      if (contact.getNickname().isPresent() && !contact.getNickname().get().isEmpty()) {
+        DataMessage.Contact.SignalNickname.Builder nicknameBuilder = new DataMessage.Contact.SignalNickname.Builder();
+
+        if (contact.getNickname().get().getGiven().isPresent()) {
+          nicknameBuilder.given(contact.getNickname().get().getGiven().get());
+        }
+
+        if (contact.getNickname().get().getFamily().isPresent()) {
+          nicknameBuilder.family(contact.getNickname().get().getFamily().get());
+        }
+
+        contactBuilder.nickname(nicknameBuilder.build());
+      }
+
+      if (contact.getNote().isPresent()) {
+        contactBuilder.note(contact.getNote().get());
+      }
+
       results.add(contactBuilder.build());
     }
 

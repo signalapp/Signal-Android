@@ -32,7 +32,10 @@ import org.thoughtcrime.securesms.contactshare.screens.details.SharedContactDeta
 import org.thoughtcrime.securesms.contactshare.screens.details.SharedContactDetailsScreen
 import org.thoughtcrime.securesms.contactshare.screens.details.SharedContactDetailsViewModel
 import org.thoughtcrime.securesms.conversation.v2.AddToContactsContract
+import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.groups.ui.addtogroup.AddToGroupsActivity
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.viewModel
 
@@ -78,7 +81,7 @@ class SharedContactDetailsFragment : ComposeFragment() {
 
   private fun handleAction(action: SharedContactDetailsAction) {
     when (action) {
-      SharedContactDetailsAction.Exit -> requireActivity().finish()
+      SharedContactDetailsAction.Exit -> requireActivity().onBackPressedDispatcher.onBackPressed()
 
       is SharedContactDetailsAction.CopyToClipboard -> {
         requireContext().getSystemService<ClipboardManager>()?.setPrimaryClip(ClipData.newPlainText(null, action.text))
@@ -127,7 +130,20 @@ class SharedContactDetailsFragment : ComposeFragment() {
         }
       }
 
-      SharedContactDetailsAction.AddToGroup -> Log.i(TAG, "Not yet implemented: $action")
+      is SharedContactDetailsAction.AddToGroup -> addToGroup(action.recipientId)
+    }
+  }
+
+  private fun addToGroup(recipientId: RecipientId) {
+    lifecycleScope.launch {
+      val existingGroups = withContext(SignalDispatchers.IO) {
+        SignalDatabase.groups.getPushGroupsContainingMember(recipientId).map { it.recipientId }
+      }
+
+      launchIntent(
+        intent = AddToGroupsActivity.createIntent(requireContext(), recipientId, existingGroups),
+        missingAppMessage = null
+      )
     }
   }
 

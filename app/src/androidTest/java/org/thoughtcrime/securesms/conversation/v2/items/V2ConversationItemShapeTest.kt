@@ -251,7 +251,7 @@ class V2ConversationItemShapeTest {
 
     override fun onAddToContactsClicked(contact: Contact) = Unit
 
-    override fun onMessageSharedContactClicked(choices: MutableList<Recipient>) = Unit
+    override fun onMessageSharedContactClicked(contact: Contact, choices: MutableList<Recipient>) = Unit
 
     override fun onInviteSharedContactClicked(contact: Contact) = Unit
 

@@ -590,6 +590,16 @@ object RemoteConfig {
     !value.asBoolean(false)
   }
 
+  /**
+   * Whether to use the rewritten contact sharing flow, which lists Signal connections alongside the address book and can share a contact by ACI.
+   */
+  @JvmStatic
+  val contactSharingV2: Boolean by remoteBoolean(
+    key = "android.contactSharingV2",
+    defaultValue = false,
+    hotSwappable = true
+  )
+
   /** Whether or not to use the UUID in verification codes.  */
   val verifyV2: Boolean by remoteBoolean(
     key = "android.verifyV2",

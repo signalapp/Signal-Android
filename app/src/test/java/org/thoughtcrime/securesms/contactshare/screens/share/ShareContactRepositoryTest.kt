@@ -6,9 +6,11 @@
 package org.thoughtcrime.securesms.contactshare.screens.share
 
 import android.app.Application
+import android.net.Uri
 import androidx.test.core.app.ApplicationProvider
 import assertk.assertThat
 import assertk.assertions.containsExactly
+import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
 import assertk.assertions.isNull
 import io.mockk.every
@@ -25,10 +27,12 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.contactshare.ContactCardReader
+import org.thoughtcrime.securesms.contactshare.SharedContactSource
 import org.thoughtcrime.securesms.contactshare.screens.editname.ContactNameParts
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.keyvalue.AccountValues
 import org.thoughtcrime.securesms.testutil.MockSignalStoreRule
+import org.thoughtcrime.securesms.util.RemoteConfig
 import java.util.Locale
 import java.util.Optional
 
@@ -48,6 +52,9 @@ class ShareContactRepositoryTest {
   fun setUp() {
     every { signalStore.account.e164 } returns "+15105550000"
 
+    mockkObject(RemoteConfig)
+    every { RemoteConfig.contactSharingV2 } returns true
+
     mockkObject(SignalDatabase)
     every { SignalDatabase.recipients } returns mockk {
       every { getByE164(any()) } returns Optional.empty()
@@ -56,7 +63,32 @@ class ShareContactRepositoryTest {
 
   @After
   fun tearDown() {
+    unmockkObject(RemoteConfig)
     unmockkObject(SignalDatabase)
+  }
+
+  @Test
+  fun `a card with a photo offers that photo and the choice to send none`() = runTest {
+    val loaded = load(contact(name = Contact.Name("Paige", "Hall", null, null, null, null), avatar = Contact.Avatar(Uri.parse("content://address-book/1"), false)))
+
+    assertThat(loaded.photoOptions.map { it.id }).containsExactly("address-book", "none")
+    assertThat(loaded.photoOptions.last().photo).isNull()
+  }
+
+  /** One photo is enough to make the row editable, since declining it is the second choice. */
+  @Test
+  fun `a card with a single photo is still editable`() = runTest {
+    val loaded = load(contact(name = Contact.Name("Paige", "Hall", null, null, null, null), avatar = Contact.Avatar(Uri.parse("content://address-book/1"), false)))
+
+    assertThat(loaded.state.avatar?.isEditable).isEqualTo(true)
+  }
+
+  @Test
+  fun `a card with no photo offers nothing to choose`() = runTest {
+    val loaded = load(contact(name = Contact.Name("Paige", "Hall", null, null, null, null)))
+
+    assertThat(loaded.photoOptions).isEmpty()
+    assertThat(loaded.state.avatar).isNull()
   }
 
   @Test
@@ -156,16 +188,86 @@ class ShareContactRepositoryTest {
     assertThat(loaded.state.details.map { it.id }).containsExactly("phone:0")
   }
 
+  @Test
+  fun `the nickname and note are offered as rows, unselected`() = runTest {
+    val loaded = load(
+      contact(
+        name = Contact.Name("Paige", "Hall", null, null, null, null),
+        phones = listOf("+15105550101"),
+        nickname = Contact.SignalNickname("Paige", "H"),
+        note = "Met in 2017"
+      )
+    )
+
+    val selectedById = loaded.state.details.associate { it.id to it.isSelected }
+
+    assertThat(selectedById).isEqualTo(
+      mapOf(
+        "phone:0" to true,
+        "nickname" to false,
+        "note" to false
+      )
+    )
+  }
+
+  @Test
+  fun `the nickname row shows both parts joined`() = runTest {
+    val loaded = load(contact(nickname = Contact.SignalNickname("Paige", "H"), phones = listOf("+15105550101")))
+
+    assertThat(loaded.state.details.first { it.id == "nickname" }.lines).containsExactly("Paige H")
+  }
+
+  @Test
+  fun `an empty nickname and a blank note are not offered at all`() = runTest {
+    val loaded = load(
+      contact(
+        phones = listOf("+15105550101"),
+        nickname = Contact.SignalNickname(null, null),
+        note = "   "
+      )
+    )
+
+    assertThat(loaded.state.details.map { it.id }).containsExactly("phone:0")
+  }
+
+  @Test
+  fun `the nickname and note are dropped from the card when their rows are deselected`() {
+    val contact = contact(
+      name = Contact.Name("Paige", "Hall", null, null, null, null),
+      nickname = Contact.SignalNickname("Paige", "H"),
+      note = "Met in 2017"
+    )
+
+    val card = repository.buildCard(contact, selection(detailIds = emptySet()))
+
+    assertThat(card.nickname).isNull()
+    assertThat(card.note).isNull()
+  }
+
+  @Test
+  fun `the nickname and note reach the card when their rows are selected`() {
+    val contact = contact(
+      name = Contact.Name("Paige", "Hall", null, null, null, null),
+      nickname = Contact.SignalNickname("Paige", "H"),
+      note = "Met in 2017"
+    )
+
+    val card = repository.buildCard(contact, selection(detailIds = setOf("nickname", "note")))
+
+    assertThat(card.nickname?.given).isEqualTo("Paige")
+    assertThat(card.note).isEqualTo("Met in 2017")
+  }
+
   /** Drives the real load path with a stubbed reader, so the defaults come from buildDetails. */
   private suspend fun load(contact: Contact): LoadedContact {
-    val reader: ContactCardReader = mockk { every { read(any()) } returns listOf(contact) }
+    val reader: ContactCardReader = mockk { every { readSystemContact(any()) } returns contact }
     val repository = ShareContactRepository(
       context = ApplicationProvider.getApplicationContext(),
       locale = Locale.US,
       reader = reader
     )
 
-    return repository.load(uris = emptyList(), recipientId = null)!!
+    return repository.load(source = SharedContactSource.AddressBook(Uri.EMPTY), recipientId = null)!!
   }
 
   private fun selection(
@@ -179,7 +281,10 @@ class ShareContactRepositoryTest {
     name: Contact.Name? = null,
     organization: String? = null,
     phones: List<String> = emptyList(),
-    emails: List<String> = emptyList()
+    emails: List<String> = emptyList(),
+    nickname: Contact.SignalNickname? = null,
+    note: String? = null,
+    avatar: Contact.Avatar? = null
   ): Contact {
     return Contact(
       name ?: Contact.Name(null, null, null, null, null, null),
@@ -187,7 +292,10 @@ class ShareContactRepositoryTest {
       phones.map { Contact.Phone(it, Contact.Phone.Type.MOBILE, null) },
       emails.map { Contact.Email(it, Contact.Email.Type.HOME, null) },
       emptyList(),
-      null
+      avatar,
+      null,
+      nickname,
+      note
     )
   }
 }
