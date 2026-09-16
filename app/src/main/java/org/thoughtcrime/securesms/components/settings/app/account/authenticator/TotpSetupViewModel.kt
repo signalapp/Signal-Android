@@ -21,19 +21,19 @@ import org.signal.appsettings.totpsetup.TotpSetupState
 import org.signal.appsettings.totpsetup.TotpSetupState.Dialog
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.keyvalue.SignalStore
-import java.util.UUID
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class TotpSetupViewModel(
   private val repository: TotpRepository = TotpRepository(),
-  private val accountName: String = accountNameFor(SignalStore.account.aci?.rawUuid)
+  private val accountName: String = accountNameFor(LocalDateTime.now())
 ) : EventDrivenViewModel<TotpSetupEvent>(TAG) {
 
   companion object {
     private val TAG = Log.tag(TotpSetupViewModel::class)
 
     @VisibleForTesting
-    fun accountNameFor(aci: UUID?): String = aci?.toString()?.substringBefore('-')?.uppercase().orEmpty()
+    fun accountNameFor(time: LocalDateTime): String = time.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
   }
 
   private val _state = MutableStateFlow(TotpSetupState())

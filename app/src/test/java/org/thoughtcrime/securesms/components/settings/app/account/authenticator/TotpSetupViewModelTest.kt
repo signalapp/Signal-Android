@@ -30,13 +30,13 @@ import org.signal.appsettings.totpsetup.TotpSetupAction
 import org.signal.appsettings.totpsetup.TotpSetupEvent
 import org.signal.appsettings.totpsetup.TotpSetupState.Dialog
 import org.thoughtcrime.securesms.testing.CoroutineDispatcherRule
-import java.util.UUID
+import java.time.LocalDateTime
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class TotpSetupViewModelTest {
 
   companion object {
-    private const val ACCOUNT_NAME = "8B4A1F0C"
+    private const val ACCOUNT_NAME = "2026-09-15"
     private const val SETUP_URI = "otpauth://totp/Signal:%2B15551234567?secret=MZXW6YTBOI"
     private const val DISPLAY_KEY = "MZXW 6YTB OI"
     private const val CLIPBOARD_KEY = "MZXW6YTBOI"
@@ -161,15 +161,17 @@ class TotpSetupViewModelTest {
   }
 
   @Test
-  fun `accountNameFor - takes the first hunk of the ACI, uppercased`() {
-    val aci = UUID.fromString("8b4a1f0c-2d3e-4a5b-9c7d-1e2f3a4b5c6d")
+  fun `accountNameFor - names the app after the day it was set up, without the time of day`() {
+    val time = LocalDateTime.of(2026, 9, 15, 13, 45, 30)
 
-    assertThat(TotpSetupViewModel.accountNameFor(aci)).isEqualTo("8B4A1F0C")
+    assertThat(TotpSetupViewModel.accountNameFor(time)).isEqualTo("2026-09-15")
   }
 
   @Test
-  fun `accountNameFor - has nothing to say without an ACI, which leaves the issuer as the whole label`() {
-    assertThat(TotpSetupViewModel.accountNameFor(null)).isEqualTo("")
+  fun `accountNameFor - pads single-digit months and days so the names sort`() {
+    val time = LocalDateTime.of(2026, 1, 2, 0, 0)
+
+    assertThat(TotpSetupViewModel.accountNameFor(time)).isEqualTo("2026-01-02")
   }
 
   private fun createViewModel() = TotpSetupViewModel(repository = repository, accountName = ACCOUNT_NAME)
