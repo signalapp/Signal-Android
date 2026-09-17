@@ -711,6 +711,7 @@ dependencies {
   implementation(project(":feature:app-settings"))
   implementation(project(":feature:camera"))
   implementation(project(":feature:chat-settings"))
+  implementation(project(":feature:media-keyboard"))
   implementation(project(":feature:registration"))
 
   implementation(libs.androidx.fragment.ktx)

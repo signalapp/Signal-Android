@@ -850,7 +850,7 @@ class ConversationViewModel(
     data object Cancelled : PlaintextExportState
   }
 
-  /** A media keyboard is absent by design: MediaKeyboardScaffold registers its own back handler. */
+  /** A media keyboard is absent by design: KeyboardSheetScaffold registers its own back handler. */
   data class BackPressedState(
     val isReactionDelegateShowing: Boolean = false,
     val isSearchRequested: Boolean = false,

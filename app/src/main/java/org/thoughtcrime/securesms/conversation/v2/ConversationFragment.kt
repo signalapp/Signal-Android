@@ -55,8 +55,13 @@ import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.annotation.MainThread
 import androidx.annotation.StringRes
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.SearchView
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.ComposeView
@@ -75,7 +80,6 @@ import androidx.core.view.updatePadding
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentResultListener
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.Lifecycle
@@ -121,6 +125,8 @@ import org.signal.core.models.database.StickerRecord
 import org.signal.core.models.media.Media
 import org.signal.core.models.media.TransformProperties
 import org.signal.core.ui.BottomSheetUtil
+import org.signal.core.ui.compose.keyboard.KeyboardSheetAction
+import org.signal.core.ui.compose.keyboard.KeyboardSheetController
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.ui.getWindowSizeClass
 import org.signal.core.ui.isSplitPane
@@ -146,6 +152,8 @@ import org.signal.core.util.requireParcelableCompat
 import org.signal.core.util.setActionItemTint
 import org.signal.donations.InAppPaymentType
 import org.signal.emoji.EmojiEventListener
+import org.signal.mediakeyboard.MediaKeyboardAction
+import org.signal.mediakeyboard.MediaKeyboardTab
 import org.signal.ringrtc.CallLinkRootKey
 import org.thoughtcrime.securesms.BlockUnblockDialog
 import org.thoughtcrime.securesms.MainActivity
@@ -173,10 +181,6 @@ import org.thoughtcrime.securesms.components.SendButton
 import org.thoughtcrime.securesms.components.SignalProgressDialog
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.components.compose.ActionModeTopBarView
-import org.thoughtcrime.securesms.components.compose.mediakeyboard.MediaKeyboardController
-import org.thoughtcrime.securesms.components.compose.mediakeyboard.MediaKeyboardEvents
-import org.thoughtcrime.securesms.components.compose.mediakeyboard.MediaKeyboardKey
-import org.thoughtcrime.securesms.components.emoji.MediaKeyboard
 import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel
 import org.thoughtcrime.securesms.components.location.SignalPlace
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation
@@ -259,6 +263,7 @@ import org.thoughtcrime.securesms.conversation.v2.items.ChatColorsDrawable
 import org.thoughtcrime.securesms.conversation.v2.items.InteractiveConversationElement
 import org.thoughtcrime.securesms.conversation.v2.keyboard.AttachmentKeyboardFragment
 import org.thoughtcrime.securesms.database.DraftTable
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord
 import org.thoughtcrime.securesms.database.model.Mention
@@ -278,6 +283,8 @@ import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackController
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicy
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ProjectionPlayerHolder
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ProjectionRecycler
+import org.thoughtcrime.securesms.giph.mp4.GiphyMp4SaveResult
+import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ViewModel
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange
 import org.thoughtcrime.securesms.groups.memberlabel.MemberLabelActivity
@@ -295,12 +302,7 @@ import org.thoughtcrime.securesms.invites.InviteActions
 import org.thoughtcrime.securesms.jobs.AttachmentBackfill
 import org.thoughtcrime.securesms.jobs.ServiceOutageDetectionJob
 import org.thoughtcrime.securesms.keyboard.KeyboardPage
-import org.thoughtcrime.securesms.keyboard.KeyboardPagerViewModel
 import org.thoughtcrime.securesms.keyboard.KeyboardUtil
-import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageFragment
-import org.thoughtcrime.securesms.keyboard.emoji.search.EmojiSearchFragment
-import org.thoughtcrime.securesms.keyboard.gif.GifKeyboardPageFragment
-import org.thoughtcrime.securesms.keyboard.sticker.StickerKeyboardPageFragment
 import org.thoughtcrime.securesms.keyboard.sticker.StickerSearchDialogFragment
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
@@ -312,6 +314,7 @@ import org.thoughtcrime.securesms.main.MainNavigationEventSink
 import org.thoughtcrime.securesms.main.MainNavigationEvents
 import org.thoughtcrime.securesms.main.MainNavigationViewModel
 import org.thoughtcrime.securesms.main.MainSnackbarHostKey
+import org.thoughtcrime.securesms.mediakeyboard.SignalMediaKeyboardRepository
 import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory
 import org.thoughtcrime.securesms.mediapreview.MediaPreviewActivity
@@ -397,6 +400,7 @@ import org.thoughtcrime.securesms.util.padding
 import org.thoughtcrime.securesms.util.setIncognitoKeyboardEnabled
 import org.thoughtcrime.securesms.util.toMillis
 import org.thoughtcrime.securesms.util.viewModel
+import org.thoughtcrime.securesms.util.views.SimpleProgressDialog
 import org.thoughtcrime.securesms.util.visible
 import org.thoughtcrime.securesms.verify.VerifyIdentityActivity
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
@@ -419,13 +423,9 @@ class ConversationFragment :
   LoggingFragment(),
   ReactWithAnyEmojiBottomSheetDialogFragment.Callback,
   ReactionsBottomSheetDialogFragment.Callback,
-  EmojiKeyboardPageFragment.Callback,
   EmojiEventListener,
-  GifKeyboardPageFragment.Host,
   StickerEventListener,
-  StickerKeyboardPageFragment.Callback,
-  MediaKeyboard.MediaKeyboardListener,
-  EmojiSearchFragment.Callback,
+  StickerSearchDialogFragment.Callback,
   ScheduleMessageTimePickerBottomSheet.ScheduleCallback,
   ScheduleMessageDialogCallback,
   ConversationBottomSheetCallback,
@@ -442,8 +442,10 @@ class ConversationFragment :
 
     private const val ACTION_PINNED_SHORTCUT = "action_pinned_shortcut"
     private const val SAVED_STATE_IS_SEARCH_REQUESTED = "is_search_requested"
-    private const val EMOJI_SEARCH_FRAGMENT_TAG = "EmojiSearchFragment"
     private const val MESSAGE_DETAILS_TAG = "MessageDetailsFragment"
+
+    /** Message rows the expanded media keyboard has to leave in view. */
+    private const val MINIMUM_VISIBLE_MESSAGES_DP: Int = 96
 
     private const val SCROLL_HEADER_ANIMATION_DURATION: Long = 100L
     private const val SCROLL_HEADER_CLOSE_DELAY: Long = SCROLL_HEADER_ANIMATION_DURATION * 4
@@ -540,8 +542,6 @@ class ConversationFragment :
     ConversationSearchViewModel(getString(R.string.note_to_self))
   }
 
-  private val keyboardPagerViewModel: KeyboardPagerViewModel by activityViewModels()
-
   private val stickerViewModel: StickerSuggestionsViewModel by viewModel {
     StickerSuggestionsViewModel()
   }
@@ -603,14 +603,13 @@ class ConversationFragment :
       viewModel.setIsSearchRequested(value)
     }
 
+  /** The keyboard the toggle showed before edit mode forced it to emoji. */
   private var previousPage: KeyboardPage? = null
-  private var previousPages: Set<KeyboardPage>? = null
   private var reShowScheduleMessagesBar: Boolean = false
   private var composeTextEventsListener: ComposeTextEventsListener? = null
   private var dataObserver: DataObserver? = null
   private var menuProvider: ConversationOptionsMenu.Provider? = null
   private var scrollListener: ScrollListener? = null
-  private var keyboardEvents: KeyboardEvents? = null
   private var progressDialog: ProgressCardDialogFragment? = null
   private var firstPinRender: Boolean = true
   private var skipNextBackPressHandling: Boolean = false
@@ -638,8 +637,8 @@ class ConversationFragment :
   private val chatScreenViewModel: ChatScreenViewModel by viewModels()
 
   /** Stable across recomposition, so view code can ask for a keyboard from a click listener. */
-  private val mediaKeyboardController: MediaKeyboardController by lazy(LazyThreadSafetyMode.NONE) {
-    MediaKeyboardController(
+  private val mediaKeyboardController: KeyboardSheetController by lazy(LazyThreadSafetyMode.NONE) {
+    KeyboardSheetController(
       initialKeyboardHeightPx = chatScreenViewModel.getStoredKeyboardHeight(
         isLandscape = isLandscape(),
         minimumPx = resources.getDimensionPixelSize(R.dimen.default_custom_keyboard_size)
@@ -649,6 +648,101 @@ class ConversationFragment :
 
   /** Colours for the scrims ChatScreen paints. */
   private val chatScrims = ChatScrimState()
+
+  /**
+   * Narrows the media keyboard while editing a message, where an edit can only carry text, so
+   * stickers and gifs have nothing to do. Null the rest of the time.
+   */
+  private var mediaKeyboardTabs by mutableStateOf<Set<MediaKeyboardTab>?>(null)
+
+  /**
+   * How much room the expanded media keyboard has to leave the conversation. The toolbar and input
+   * panel are views, so only the fragment can measure them; the rest is message rows.
+   */
+  private var minimumVisibleContentPx by mutableIntStateOf(MINIMUM_VISIBLE_MESSAGES_DP.dp)
+
+  private fun updateMinimumVisibleContent() {
+    if (view == null) {
+      return
+    }
+
+    minimumVisibleContentPx = MINIMUM_VISIBLE_MESSAGES_DP.dp + binding.toolbar.bottom.coerceAtLeast(0) + inputPanel.height
+  }
+
+  private val mediaKeyboardRepository: SignalMediaKeyboardRepository by lazy(LazyThreadSafetyMode.NONE) {
+    SignalMediaKeyboardRepository(requireContext(), recentEmojis)
+  }
+
+  private fun onMediaKeyboardAction(action: MediaKeyboardAction) {
+    when (action) {
+      is MediaKeyboardAction.EmojiSelected -> inputPanel.onEmojiSelected(action.emoji)
+
+      MediaKeyboardAction.Backspace -> inputPanel.onKeyEvent(KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL))
+
+      is MediaKeyboardAction.StickerSelected -> {
+        viewLifecycleOwner.lifecycleScope.launch {
+          val record = withContext(Dispatchers.Default) {
+            SignalDatabase.stickers.getSticker(action.sticker.packId, action.sticker.stickerId.toInt(), false)
+          }
+
+          if (record != null) {
+            sendSticker(stickerRecord = record, clearCompose = false)
+          }
+        }
+      }
+
+      is MediaKeyboardAction.GifSelected -> {
+        val image = mediaKeyboardRepository.gifs.getGiphyImage(action.gif.id)
+        if (image != null) {
+          container.hideInput()
+          giphyMp4ViewModel.saveToBlob(image)
+        }
+      }
+
+      MediaKeyboardAction.StickerManagementClicked -> {
+        StickerManagementScreen.show(this)
+        container.hideInput()
+      }
+
+      // A child of this fragment so the dialog's own listener lookups land back here.
+      MediaKeyboardAction.StickerSearchClicked -> {
+        container.onHostWindowShown()
+        StickerSearchDialogFragment.show(childFragmentManager)
+      }
+
+      is MediaKeyboardAction.ViewStickerPackClicked -> {
+        startActivity(StickerPackPreviewActivityV2.createIntent(StickerPackId(action.packId), StickerPackKey(action.packKey)))
+      }
+
+      // A screen of its own rather than a window over this one, and picking a gif carries on into
+      // media send, so the keyboard has no reason to still be up on the way back.
+      MediaKeyboardAction.GifSearchClicked -> {
+        val recipientId = viewModel.recipientSnapshot?.id ?: return
+        container.hideInput()
+        conversationActivityResultContracts.launchGifSearch(recipientId, composeText.textTrimmed)
+      }
+
+      // Moves the input panel's toggle icon and persists the mode, so the keyboard opens on this tab
+      // next time.
+      is MediaKeyboardAction.TabSelected -> onKeyboardChanged(
+        when (action.tab) {
+          MediaKeyboardTab.EMOJI -> KeyboardPage.EMOJI
+          MediaKeyboardTab.STICKER -> KeyboardPage.STICKER
+          MediaKeyboardTab.GIF -> KeyboardPage.GIF
+        }
+      )
+    }
+  }
+
+  /** Turns a gif picked from the media keyboard into a blob the composer can attach. */
+  private val giphyMp4ViewModel: GiphyMp4ViewModel by activityViewModels { GiphyMp4ViewModel.Factory(isMms()) }
+
+  private var gifProgressDialog: AlertDialog? = null
+
+  private fun dismissGifProgressDialog() {
+    gifProgressDialog?.dismiss()
+    gifProgressDialog = null
+  }
 
   private val container: ChatInputController by lazy(LazyThreadSafetyMode.NONE) {
     ChatInputController(requireContext(), mediaKeyboardController)
@@ -725,13 +819,22 @@ class ConversationFragment :
     conversationBackground = inflater.inflate(R.layout.v2_conversation_background, container, false)
     conversationContent = inflater.inflate(R.layout.v2_conversation_fragment, container, false)
 
+    // Read once here rather than in composition: it only matters when the keyboard's view model is
+    // first created, and it comes from disk.
+    val initialKeyboardTab = preferredKeyboardPage().toMediaKeyboardTab()
+
     val composition = ComposeView(requireContext()).apply {
       setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
       setContent {
         SignalTheme {
           ChatScreen(
             controller = mediaKeyboardController,
-            onEvent = ::onMediaKeyboardEvent,
+            onScaffoldAction = ::onKeyboardSheetAction,
+            mediaKeyboardRepository = mediaKeyboardRepository,
+            onMediaKeyboardAction = ::onMediaKeyboardAction,
+            mediaKeyboardTabs = mediaKeyboardTabs,
+            mediaKeyboardInitialTab = initialKeyboardTab,
+            minimumVisibleContentPx = minimumVisibleContentPx,
             scrims = chatScrims,
             isBubble = args.conversationScreenType == ConversationScreenType.BUBBLE,
             conversationView = conversationContent,
@@ -778,14 +881,43 @@ class ConversationFragment :
     return origin
   }
 
-  private fun onMediaKeyboardEvent(event: MediaKeyboardEvents) {
-    when (event) {
-      is MediaKeyboardEvents.SystemKeyboardVisibilityChanged -> container.onKeyboardVisibilityChanged(event.visible)
-      MediaKeyboardEvents.SystemKeyboardAnimationEnded -> container.onKeyboardAnimationEnded()
-      is MediaKeyboardEvents.SystemKeyboardHeightMeasured -> chatScreenViewModel.setKeyboardHeight(isLandscape(), event.heightPx)
-      is MediaKeyboardEvents.KeyboardShown -> container.onInputShown(event.key)
-      MediaKeyboardEvents.KeyboardHidden -> container.onInputHidden()
-      MediaKeyboardEvents.DismissedByBack -> Unit
+  private fun onKeyboardSheetAction(action: KeyboardSheetAction) {
+    when (action) {
+      is KeyboardSheetAction.SystemKeyboardVisibilityChanged -> {
+        // The toggle follows what is on screen: the system keyboard can cover one of ours, not just
+        // replace it.
+        inputPanel.setMediaKeyboardToggleOffersIme(!action.visible && container.isInputShowing)
+
+        // The open search field owns the keyboard, so it follows it in and out.
+        if (searchMenuItem?.isActionViewExpanded == true) {
+          val searchView = searchMenuItem?.actionView
+          if (action.visible && searchView?.hasFocus() == false) {
+            searchView.requestFocus()
+          } else if (!action.visible && searchView?.hasFocus() == true) {
+            searchView.clearFocus()
+          }
+        }
+
+        container.onKeyboardVisibilityChanged(action.visible)
+      }
+
+      is KeyboardSheetAction.SystemKeyboardHeightMeasured -> chatScreenViewModel.setKeyboardHeight(isLandscape(), action.heightPx)
+
+      is KeyboardSheetAction.KeyboardShown -> {
+        if (action.key == ChatKeyboards.Media) {
+          onShown()
+        }
+      }
+
+      KeyboardSheetAction.KeyboardHidden -> {
+        setNavBarBackgroundColor(viewModel.wallpaperSnapshot != null || viewModel.recipientSnapshot?.isReleaseNotes == true)
+        onHidden()
+        container.onInputHidden()
+      }
+
+      // Nothing hangs off these, but a scaffold has every reason to report them.
+      KeyboardSheetAction.SystemKeyboardAnimationEnded,
+      KeyboardSheetAction.DismissedByBack -> Unit
     }
   }
 
@@ -902,9 +1034,33 @@ class ConversationFragment :
       }
       applyToolbarPaddingRunnable = runnable
       rv.post(runnable)
+
+      updateMinimumVisibleContent()
+    }
+
+    inputPanel.addOnLayoutChangeListener { _, _, _, _, _, _, _, _, _ ->
+      updateMinimumVisibleContent()
     }
 
     binding.conversationItemRecycler.addItemDecoration(ChatColorsDrawable.ChatColorsItemDecoration)
+
+    giphyMp4ViewModel.saveResultEvents.observe(viewLifecycleOwner) { result ->
+      when (result) {
+        is GiphyMp4SaveResult.Success -> {
+          dismissGifProgressDialog()
+          onGifSelectSuccess(result.blobUri, result.width, result.height)
+        }
+
+        is GiphyMp4SaveResult.Error -> {
+          dismissGifProgressDialog()
+          toast(R.string.GiphyActivity_error_while_retrieving_full_resolution_gif, toastDuration = Toast.LENGTH_LONG)
+        }
+
+        else -> {
+          gifProgressDialog = SimpleProgressDialog.show(requireContext())
+        }
+      }
+    }
   }
 
   override fun onViewStateRestored(savedInstanceState: Bundle?) {
@@ -986,14 +1142,10 @@ class ConversationFragment :
 
   override fun onDestroyView() {
     viewModel.collapseAllEvents()
-    keyboardEvents?.let {
-      container.removeInputListener(it)
-      container.removeKeyboardStateListener(it)
-    }
-    keyboardEvents = null
-
     // Fragment-scoped, so anything still waiting on a hide would outlive the binding.
-    container.clearListeners()
+    container.clearPendingActions()
+
+    dismissGifProgressDialog()
 
     if (!requireActivity().isChangingConfigurations) {
       (requireActivity().supportFragmentManager.findFragmentByTag(MESSAGE_DETAILS_TAG) as? DialogFragment)?.dismissAllowingStateLoss()
@@ -1072,24 +1224,6 @@ class ConversationFragment :
     clearFocusedItem()
   }
 
-  override fun openEmojiSearch() {
-    val fragment = childFragmentManager.findFragmentByTag(EMOJI_SEARCH_FRAGMENT_TAG)
-    if (fragment == null) {
-      childFragmentManager.commit {
-        add(R.id.emoji_search_container, EmojiSearchFragment(), EMOJI_SEARCH_FRAGMENT_TAG)
-      }
-    }
-  }
-
-  override fun closeEmojiSearch() {
-    val fragment = childFragmentManager.findFragmentByTag(EMOJI_SEARCH_FRAGMENT_TAG)
-    if (fragment != null) {
-      childFragmentManager.commit(allowStateLoss = true) {
-        remove(fragment)
-      }
-    }
-  }
-
   override fun onEmojiSelected(emoji: String?) {
     if (emoji != null) {
       inputPanel.onEmojiSelected(emoji)
@@ -1103,10 +1237,6 @@ class ConversationFragment :
     }
   }
 
-  override fun openStickerSearch() {
-    StickerSearchDialogFragment.show(childFragmentManager)
-  }
-
   override fun onStickerSelected(sticker: StickerRecord) {
     sendSticker(
       stickerRecord = sticker,
@@ -1114,21 +1244,20 @@ class ConversationFragment :
     )
   }
 
+  override fun onStickerSearchDismissed() {
+    container.onHostWindowHidden()
+  }
+
   override fun onStickerManagementClicked() {
     StickerManagementScreen.show(this)
     container.hideInput()
   }
 
-  override fun isMms(): Boolean {
+  private fun isMms(): Boolean {
     return false
   }
 
-  override fun openGifSearch() {
-    val recipientId = viewModel.recipientSnapshot?.id ?: return
-    conversationActivityResultContracts.launchGifSearch(recipientId, composeText.textTrimmed)
-  }
-
-  override fun onGifSelectSuccess(blobUri: Uri, width: Int, height: Int) {
+  private fun onGifSelectSuccess(blobUri: Uri, width: Int, height: Int) {
     setMedia(
       uri = blobUri,
       mediaType = SlideFactory.MediaType.from(AppDependencies.blobs.getMimeType(blobUri))!!,
@@ -1138,16 +1267,15 @@ class ConversationFragment :
     )
   }
 
-  override fun onShown() {
+  private fun onShown() {
     inputPanel.mediaKeyboardListener.onShown()
   }
 
-  override fun onHidden() {
+  private fun onHidden() {
     inputPanel.mediaKeyboardListener.onHidden()
-    closeEmojiSearch()
   }
 
-  override fun onKeyboardChanged(page: KeyboardPage) {
+  private fun onKeyboardChanged(page: KeyboardPage) {
     inputPanel.mediaKeyboardListener.onKeyboardChanged(page)
   }
 
@@ -1445,11 +1573,6 @@ class ConversationFragment :
 
     dataObserver = DataObserver()
     adapter.registerAdapterDataObserver(dataObserver!!)
-
-    keyboardEvents = KeyboardEvents().also {
-      container.addInputListener(it)
-      container.addKeyboardStateListener(it)
-    }
 
     childFragmentManager.setFragmentResultListener(AttachmentKeyboardFragment.RESULT_KEY, viewLifecycleOwner, AttachmentKeyboardFragmentListener())
     motionEventRelay.setDrain(MotionEventRelayDrain(this))
@@ -2505,21 +2628,28 @@ class ConversationFragment :
       .addTo(disposables)
   }
 
-  private fun initializeMediaKeyboard() {
-    val keyboardMode: TextSecurePreferences.MediaKeyboardMode = TextSecurePreferences.getMediaKeyboardMode(requireContext())
-    val stickerIntro: Boolean = !TextSecurePreferences.hasSeenStickerIntroTooltip(requireContext())
+  private fun KeyboardPage.toMediaKeyboardTab(): MediaKeyboardTab {
+    return when (this) {
+      KeyboardPage.EMOJI -> MediaKeyboardTab.EMOJI
+      KeyboardPage.STICKER -> MediaKeyboardTab.STICKER
+      KeyboardPage.GIF -> MediaKeyboardTab.GIF
+    }
+  }
 
-    keyboardPagerViewModel.resetPages()
-    inputPanel.showMediaKeyboardToggle(true)
-
-    val keyboardPage = when (keyboardMode) {
+  /** Which keyboard the toggle should offer, from the mode remembered across runs. */
+  private fun preferredKeyboardPage(): KeyboardPage {
+    return when (TextSecurePreferences.getMediaKeyboardMode(requireContext())) {
       TextSecurePreferences.MediaKeyboardMode.EMOJI -> KeyboardPage.EMOJI
       TextSecurePreferences.MediaKeyboardMode.STICKER -> KeyboardPage.STICKER
       TextSecurePreferences.MediaKeyboardMode.GIF -> if (RemoteConfig.gifSearchAvailable) KeyboardPage.GIF else KeyboardPage.STICKER
     }
+  }
 
-    inputPanel.setMediaKeyboardToggleMode(keyboardPage)
-    keyboardPagerViewModel.switchToPage(keyboardPage)
+  private fun initializeMediaKeyboard() {
+    val stickerIntro: Boolean = !TextSecurePreferences.hasSeenStickerIntroTooltip(requireContext())
+
+    inputPanel.showMediaKeyboardToggle(true)
+    inputPanel.setMediaKeyboardToggleMode(preferredKeyboardPage())
 
     if (stickerIntro) {
       TextSecurePreferences.setMediaKeyboardMode(requireContext(), TextSecurePreferences.MediaKeyboardMode.STICKER)
@@ -5228,9 +5358,9 @@ class ConversationFragment :
 
     override fun onEnterEditMode() {
       updateToggleButtonState()
-      previousPage = keyboardPagerViewModel.page().value
-      previousPages = keyboardPagerViewModel.pages().value
-      keyboardPagerViewModel.setOnlyPage(KeyboardPage.EMOJI)
+      previousPage = preferredKeyboardPage()
+      mediaKeyboardTabs = setOf(MediaKeyboardTab.EMOJI)
+      // Also persists the mode, so read [previousPage] before this and restore it on the way out.
       onKeyboardChanged(KeyboardPage.EMOJI)
       stickerViewModel.onInputTextUpdated("")
       updateLinkPreviewState()
@@ -5239,13 +5369,9 @@ class ConversationFragment :
     override fun onExitEditMode() {
       updateToggleButtonState()
       draftViewModel.deleteMessageEditDraft()
-      if (previousPages != null) {
-        keyboardPagerViewModel.setPages(previousPages!!)
-        previousPages = null
-      }
-      if (previousPage != null) {
-        keyboardPagerViewModel.switchToPage(previousPage!!)
-        onKeyboardChanged(previousPage!!)
+      mediaKeyboardTabs = null
+      previousPage?.let {
+        onKeyboardChanged(it)
         previousPage = null
       }
       updateLinkPreviewState()
@@ -5350,49 +5476,6 @@ class ConversationFragment :
       }
 
       container.hideInput()
-    }
-  }
-
-  private inner class KeyboardEvents :
-    ChatInputController.Listener,
-    ChatInputController.KeyboardStateListener {
-
-    override fun onInputShown(key: MediaKeyboardKey) {
-      if (key == ChatKeyboards.Media) {
-        onShown()
-      }
-    }
-
-    override fun onInputHidden() {
-      setNavBarBackgroundColor(viewModel.wallpaperSnapshot != null || viewModel.recipientSnapshot?.isReleaseNotes == true)
-      onHidden()
-    }
-
-    override fun onKeyboardShown() {
-      // The toggle follows what is on screen: the system keyboard can cover one of ours, not just
-      // replace it.
-      inputPanel.setMediaKeyboardToggleOffersIme(false)
-
-      if (searchMenuItem?.isActionViewExpanded == true && searchMenuItem?.actionView?.hasFocus() == false) {
-        searchMenuItem?.actionView?.requestFocus()
-      }
-    }
-
-    override fun onKeyboardHidden() {
-      inputPanel.setMediaKeyboardToggleOffersIme(container.isInputShowing)
-
-      if (searchMenuItem?.isActionViewExpanded == true && searchMenuItem?.actionView?.hasFocus() == true) {
-        searchMenuItem?.actionView?.clearFocus()
-      }
-    }
-
-    override fun onKeyboardAnimationEnded() {
-      if (view == null) {
-        return
-      }
-      if (!container.isKeyboardShowing) {
-        closeEmojiSearch()
-      }
     }
   }
 

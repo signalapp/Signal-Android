@@ -8,12 +8,12 @@ package org.thoughtcrime.securesms.conversation.v2
 import android.content.Context
 import android.view.View
 import android.widget.EditText
-import org.thoughtcrime.securesms.components.compose.mediakeyboard.MediaKeyboardController
-import org.thoughtcrime.securesms.components.compose.mediakeyboard.MediaKeyboardKey
+import org.signal.core.ui.compose.keyboard.KeyboardSheetController
+import org.signal.core.ui.compose.keyboard.KeyboardSheetKey
 import org.thoughtcrime.securesms.util.ViewUtil
 
 /**
- * Adapts [MediaKeyboardController] to the conversation's view code, which asks for keyboards from
+ * Adapts [KeyboardSheetController] to the conversation's view code, which asks for keyboards from
  * click listeners rather than from composition.
  *
  * @param context Used to hide the system keyboard.
@@ -21,13 +21,10 @@ import org.thoughtcrime.securesms.util.ViewUtil
  */
 class ChatInputController(
   private val context: Context,
-  private val controller: MediaKeyboardController
+  private val controller: KeyboardSheetController
 ) {
 
   private var wasKeyboardVisibleBeforeToggle: Boolean = false
-
-  private val listeners: MutableSet<Listener> = mutableSetOf()
-  private val keyboardStateListeners: MutableSet<KeyboardStateListener> = mutableSetOf()
 
   /** What [runAfterAllHidden] is waiting on. */
   private var pendingHiddenAction: (() -> Unit)? = null
@@ -38,49 +35,34 @@ class ChatInputController(
   val isKeyboardShowing: Boolean
     get() = controller.isSystemKeyboardVisible
 
-  fun addInputListener(listener: Listener) {
-    listeners.add(listener)
+  /** See [KeyboardSheetController.onHostWindowShown]. */
+  fun onHostWindowShown() {
+    controller.onHostWindowShown()
   }
 
-  fun removeInputListener(listener: Listener) {
-    listeners.remove(listener)
+  /** See [KeyboardSheetController.onHostWindowHidden]. */
+  fun onHostWindowHidden() {
+    controller.onHostWindowHidden()
   }
 
-  fun addKeyboardStateListener(listener: KeyboardStateListener) {
-    keyboardStateListeners.add(listener)
-  }
-
-  fun removeKeyboardStateListener(listener: KeyboardStateListener) {
-    keyboardStateListeners.remove(listener)
-  }
-
-  /** Drops everything still listening, for a host whose view is going away. */
-  fun clearListeners() {
-    listeners.clear()
-    keyboardStateListeners.clear()
+  /** Drops anything still waiting on a hide, for a host whose view is going away. */
+  fun clearPendingActions() {
     pendingHiddenAction = null
+    controller.onHostWindowHidden()
   }
 
+  /**
+   * Told rather than observed: the host handles the scaffold's own stream, and only passes on the
+   * two things [runAfterAllHidden] has to wait for.
+   */
   fun onKeyboardVisibilityChanged(visible: Boolean) {
-    keyboardStateListeners.toList().forEach {
-      if (visible) it.onKeyboardShown() else it.onKeyboardHidden()
-    }
-
     if (!visible) {
       runPendingHiddenAction()
     }
   }
 
-  fun onKeyboardAnimationEnded() {
-    keyboardStateListeners.toList().forEach { it.onKeyboardAnimationEnded() }
-  }
-
-  fun onInputShown(key: MediaKeyboardKey) {
-    listeners.toList().forEach { it.onInputShown(key) }
-  }
-
+  /** See [onKeyboardVisibilityChanged]. */
   fun onInputHidden() {
-    listeners.toList().forEach { it.onInputHidden() }
     runPendingHiddenAction()
   }
 
@@ -135,7 +117,7 @@ class ChatInputController(
    * @param imeTarget The field the system keyboard belongs to.
    * @param showSoftKeyOnHide Whether the system keyboard replaces [key] when it is taken away.
    */
-  fun toggleInput(key: MediaKeyboardKey, imeTarget: EditText, showSoftKeyOnHide: Boolean = wasKeyboardVisibleBeforeToggle) {
+  fun toggleInput(key: KeyboardSheetKey, imeTarget: EditText, showSoftKeyOnHide: Boolean = wasKeyboardVisibleBeforeToggle) {
     // Ours can sit behind the system keyboard rather than in place of it, where hiding it would act
     // on something the user cannot see. The system keyboard goes instead.
     if (controller.current == key && !isKeyboardShowing) {
@@ -149,16 +131,5 @@ class ChatInputController(
       controller.show(key)
       ViewUtil.hideKeyboard(context, imeTarget)
     }
-  }
-
-  interface Listener {
-    fun onInputShown(key: MediaKeyboardKey)
-    fun onInputHidden()
-  }
-
-  interface KeyboardStateListener {
-    fun onKeyboardShown()
-    fun onKeyboardHidden()
-    fun onKeyboardAnimationEnded() = Unit
   }
 }

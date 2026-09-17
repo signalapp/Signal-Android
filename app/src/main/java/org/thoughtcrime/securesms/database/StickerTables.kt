@@ -370,6 +370,17 @@ class StickerTables(
     notifyStickerPackListeners()
   }
 
+  fun updateStickerLastUsedTime(packId: String, stickerId: Int, lastUsed: Long) {
+    writableDatabase
+      .update(Sticker.TABLE_NAME)
+      .values(Sticker.LAST_USED to lastUsed)
+      .where("${Sticker.PACK_ID} = ? AND ${Sticker.STICKER_ID} = ? AND ${Sticker.COVER} = 0", packId, stickerId)
+      .run()
+
+    notifyStickerListeners()
+    notifyStickerPackListeners()
+  }
+
   fun markPackAsInstalled(packId: String, notify: Boolean) {
     val transitioned = updatePackInstalled(
       db = databaseHelper.signalWritableDatabase,
@@ -830,7 +841,7 @@ class StickerTables(
     val random: ByteArray
   )
 
-  class StickerRecordReader(private val cursor: Cursor) : Closeable {
+  class StickerRecordReader(private val cursor: Cursor) : Closeable, Iterable<StickerRecord> {
 
     fun getNext(): StickerRecord? {
       if (!cursor.moveToNext()) {
@@ -853,8 +864,30 @@ class StickerTables(
       )
     }
 
+    fun asSequence(): Sequence<StickerRecord> = sequence {
+      var record = getNext()
+      while (record != null) {
+        yield(record)
+        record = getNext()
+      }
+    }
+
     override fun close() {
       cursor.close()
+    }
+
+    override fun iterator(): Iterator<StickerRecord> {
+      return ReaderIterator()
+    }
+
+    private inner class ReaderIterator : Iterator<StickerRecord> {
+      override fun hasNext(): Boolean {
+        return cursor.count != 0 && !cursor.isLast
+      }
+
+      override fun next(): StickerRecord {
+        return getNext() ?: throw NoSuchElementException()
+      }
     }
   }
 
@@ -882,8 +915,10 @@ class StickerTables(
     }
 
     fun asSequence(): Sequence<StickerPackRecord> = sequence {
-      while (getNext() != null) {
-        yield(getCurrent())
+      var record = getNext()
+      while (record != null) {
+        yield(record)
+        record = getNext()
       }
     }
 

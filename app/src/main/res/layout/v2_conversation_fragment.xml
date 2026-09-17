@@ -289,13 +289,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/conversation_input_panel_barrier"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="top"
-        app:constraint_referenced_ids="emoji_search_container" />
-
     <TextView
         android:id="@+id/conversation_input_space_left"
         android:layout_width="0dp"
@@ -304,7 +297,7 @@
         android:paddingStart="5dp"
         android:paddingEnd="5dp"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@id/conversation_input_panel_barrier"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:text="160/160 (1)"
@@ -319,14 +312,6 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@id/conversation_bottom_panel_barrier"
         tools:visibility="visible" />
-
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/emoji_search_container"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/polls_create"

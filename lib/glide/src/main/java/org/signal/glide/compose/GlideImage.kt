@@ -5,7 +5,10 @@
 
 package org.signal.glide.compose
 
+import android.graphics.Outline
 import android.graphics.drawable.Drawable
+import android.view.View
+import android.view.ViewOutlineProvider
 import android.widget.ImageView
 import androidx.compose.foundation.Image
 import androidx.compose.runtime.Composable
@@ -34,6 +37,8 @@ import org.signal.glide.apng.ApngOptions
  *
  * @param contentScale How the loaded drawable is scaled into the available space. Ignored when [enableApngAnimation] is
  *   set, as that path hands scaling to the underlying [ImageView] via [scaleType].
+ * @param skipMemoryCache Set this when the same model is loaded at several sizes, so that a stateful resource such as
+ *   an APNG frame decoder is not shared across differently-sized targets.
  */
 @Composable
 fun <T> GlideImage(
@@ -46,7 +51,8 @@ fun <T> GlideImage(
   transition: TransitionOptions<*, Drawable>? = null,
   diskCacheStrategy: DiskCacheStrategy = DiskCacheStrategy.ALL,
   contentScale: ContentScale = ContentScale.Crop,
-  enableApngAnimation: Boolean = false
+  enableApngAnimation: Boolean = false,
+  skipMemoryCache: Boolean = false
 ) {
   if (enableApngAnimation) {
     val density = LocalDensity.current
@@ -54,14 +60,20 @@ fun <T> GlideImage(
     AndroidView(
       factory = { context -> ImageView(context) },
       update = { imageView ->
+        // Request-level transforms don't reach the animated APNG resource, so scaling/clipping is done on
+        // the view. Set in update (not factory) so a recycled view picks up a changed scaleType.
+        imageView.scaleType = scaleType.toImageViewScaleType()
+        imageView.outlineProvider = if (scaleType == GlideImageScaleType.CIRCLE_CROP) CircleOutlineProvider else null
+        imageView.clipToOutline = scaleType == GlideImageScaleType.CIRCLE_CROP
+
         Glide.with(imageView.context)
           .load(model)
           .fallback(fallback)
           .error(error)
           .diskCacheStrategy(diskCacheStrategy)
           .set(ApngOptions.ANIMATE, enableApngAnimation)
+          .skipMemoryCache(skipMemoryCache)
           .apply {
-            scaleType.applyTo(this)
             transition?.let(this::transition)
 
             if (imageSize != null) {
@@ -87,6 +99,7 @@ fun <T> GlideImage(
       transition = transition,
       diskCacheStrategy = diskCacheStrategy,
       contentScale = contentScale,
+      skipMemoryCache = skipMemoryCache,
       modifier = modifier
     )
   }
@@ -102,7 +115,8 @@ private fun <T> GlideImage(
   error: Drawable? = fallback,
   transition: TransitionOptions<*, Drawable>? = null,
   diskCacheStrategy: DiskCacheStrategy = DiskCacheStrategy.ALL,
-  contentScale: ContentScale = ContentScale.Crop
+  contentScale: ContentScale = ContentScale.Crop,
+  skipMemoryCache: Boolean = false
 ) {
   var drawable by remember {
     mutableStateOf<Drawable?>(null)
@@ -122,13 +136,14 @@ private fun <T> GlideImage(
 
   val density = LocalDensity.current
   val context = LocalContext.current
-  DisposableEffect(model, fallback, error, diskCacheStrategy, density, imageSize) {
+  DisposableEffect(model, fallback, error, diskCacheStrategy, density, imageSize, skipMemoryCache) {
     val requestManager = Glide.with(context)
     val builder = requestManager
       .load(model)
       .fallback(fallback)
       .error(error)
       .diskCacheStrategy(diskCacheStrategy)
+      .skipMemoryCache(skipMemoryCache)
       .apply {
         scaleType.applyTo(this)
         transition?.let(this::transition)
@@ -160,6 +175,19 @@ private fun <T> GlideImage(
   }
 }
 
+/**
+ * Clips a view to the largest circle that fits it, centred, matching what
+ * [com.bumptech.glide.request.RequestOptions.circleCrop] would have produced.
+ */
+private object CircleOutlineProvider : ViewOutlineProvider() {
+  override fun getOutline(view: View, outline: Outline) {
+    val diameter = minOf(view.width, view.height)
+    val left = (view.width - diameter) / 2
+    val top = (view.height - diameter) / 2
+    outline.setOval(left, top, left + diameter, top + diameter)
+  }
+}
+
 enum class GlideImageScaleType {
   /** @see [com.bumptech.glide.request.RequestOptions.fitCenter] */
   FIT_CENTER,
@@ -179,6 +207,18 @@ enum class GlideImageScaleType {
       CENTER_INSIDE -> builder.centerInside()
       CENTER_CROP -> builder.centerCrop()
       CIRCLE_CROP -> builder.circleCrop()
+    }
+  }
+
+  /**
+   * [CIRCLE_CROP] scales like [CENTER_CROP] here; the circle itself is clipped from the view, since
+   * an [ImageView] scaleType cannot describe one.
+   */
+  fun toImageViewScaleType(): ImageView.ScaleType {
+    return when (this) {
+      FIT_CENTER -> ImageView.ScaleType.FIT_CENTER
+      CENTER_INSIDE -> ImageView.ScaleType.CENTER_INSIDE
+      CENTER_CROP, CIRCLE_CROP -> ImageView.ScaleType.CENTER_CROP
     }
   }
 }

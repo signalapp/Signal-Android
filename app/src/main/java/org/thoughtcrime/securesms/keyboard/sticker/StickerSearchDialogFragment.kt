@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.keyboard.sticker
 
 import android.app.Dialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -119,6 +120,16 @@ class StickerSearchDialogFragment : DialogFragment(), KeyboardStickerListAdapter
   }
 
   override fun onStickerLongClicked(sticker: KeyboardStickerListAdapter.Sticker) = Unit
+
+  override fun onDismiss(dialog: DialogInterface) {
+    super.onDismiss(dialog)
+    findListener<Callback>()?.onStickerSearchDismissed()
+  }
+
+  /** For a host that has to put something back once this window is gone. */
+  interface Callback {
+    fun onStickerSearchDismissed()
+  }
 
   companion object {
     @JvmStatic

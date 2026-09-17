@@ -107,6 +107,7 @@ enum class SignalIcons(private val icon: SignalIcon) : SignalIcon by icon {
   Speaker(icon(R.drawable.symbol_speaker_24)),
   SpeakerSlash(icon(R.drawable.symbol_speaker_slash_24)),
   Sticker(icon(R.drawable.symbol_sticker_24)),
+  StickerPack(icon(R.drawable.symbol_stickerpack_24)),
   Text(icon(R.drawable.symbol_text_24)),
   TextSquare(icon(R.drawable.symbol_text_square_24)),
   Transfer(icon(R.drawable.symbol_transfer_24)),
