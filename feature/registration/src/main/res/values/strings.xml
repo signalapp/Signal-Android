@@ -224,8 +224,6 @@
     <string name="EnterAepScreen__recovery_key">Recovery key</string>
     <!-- Link for users who don\'t have their recovery key -->
     <string name="EnterAepScreen__no_recovery_key">No recovery key?</string>
-    <!-- Error text when key is too long -->
-    <string name="EnterAepScreen__too_long">Too long (%1$d/%2$d)</string>
     <!-- Error text when key is invalid -->
     <string name="EnterAepScreen__invalid_recovery_key">Invalid recovery key</string>
     <!-- Error text when key is correct format but does not match account -->
@@ -725,8 +723,6 @@
     <string name="ConfirmLoginSavedBottomSheet__show_login_info_again">Show login info again</string>
 
     <!-- Errors shown beneath an account ID text field, wherever one is offered -->
-    <!-- Error shown when too many characters were entered in an account ID field. First placeholder is how many were entered, second is the maximum. -->
-    <string name="AccountIdField__too_long">Too long. %1$d/%2$d characters.</string>
     <!-- Error shown when the entered account ID contains characters that can\'t appear in one. -->
     <string name="AccountIdField__invalid_account_id">Invalid account ID</string>
 

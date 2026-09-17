@@ -28,9 +28,13 @@ internal object AccountIdFormat {
   /** Strips the formatting a user may have typed or pasted, leaving the raw form the account ID is stored in. */
   fun normalize(input: String): String = input.replace(FORMATTING_CHARACTERS, "").lowercase()
 
+  /** [normalize]s [input] and cuts it down to [ACCOUNT_ID_LENGTH], since nothing longer than a complete ID can be entered. */
+  fun normalizeAndTruncate(input: String): String = normalize(input).take(ACCOUNT_ID_LENGTH)
+
   /**
-   * Reads [input] as a raw account ID, or null if it doesn't read as one. Only text that couldn't plausibly be a phone
-   * number qualifies: it has to be entirely hex, and either contain a letter or be longer than any E164 number.
+   * Reads [input] as a raw account ID, truncated to [ACCOUNT_ID_LENGTH], or null if it doesn't read as one. Only text
+   * that couldn't plausibly be a phone number qualifies: it has to be entirely hex, and either contain a letter or be
+   * longer than any E164 number.
    */
   fun asAccountIdOrNull(input: String): String? {
     val raw = normalize(input)
@@ -40,7 +44,7 @@ internal object AccountIdFormat {
     }
 
     return if (raw.any { !it.isDigit() } || raw.length > MAX_PHONE_NUMBER_DIGITS) {
-      raw
+      raw.take(ACCOUNT_ID_LENGTH)
     } else {
       null
     }
@@ -51,10 +55,10 @@ internal object AccountIdFormat {
 
   /** Why [accountId] can't be submitted, or null if there's nothing wrong with it. A too-short ID is not an error, since the user may be mid-entry. */
   fun validate(accountId: String): AccountIdError? {
-    return when {
-      accountId.length > ACCOUNT_ID_LENGTH -> AccountIdError.TooLong(accountId.length)
-      !containsOnlyAccountIdCharacters(accountId) -> AccountIdError.Invalid
-      else -> null
+    return if (containsOnlyAccountIdCharacters(accountId)) {
+      null
+    } else {
+      AccountIdError.Invalid
     }
   }
 

@@ -162,11 +162,11 @@ class SignalLoginCredentialEntryViewModelTest {
   }
 
   @Test
-  fun `AccountIdChanged reports an over-long ID as too long`() = runTest(testDispatcher) {
+  fun `AccountIdChanged ignores anything typed past a complete ID`() = runTest(testDispatcher) {
     val state = applyAccountId(VALID_ACCOUNT_ID + "ab")
 
-    assertThat(state.accountIdError).isEqualTo(AccountIdError.TooLong(34))
-    assertThat(state.isNextEnabled).isFalse()
+    assertThat(state.accountId).isEqualTo(VALID_ACCOUNT_ID)
+    assertThat(state.accountIdError).isNull()
   }
 
   @Test
@@ -174,6 +174,15 @@ class SignalLoginCredentialEntryViewModelTest {
     applyEvent(SignalLoginCredentialEntryState(), SignalLoginCredentialEntryScreenEvents.RecoveryKeyChanged(VALID_AEP.uppercase()))
 
     assertThat(emittedStates.last().recoveryKey.normalized).isEqualTo(VALID_AEP)
+    assertThat(emittedStates.last().recoveryKey.isValid).isTrue()
+  }
+
+  @Test
+  fun `RecoveryKeyChanged ignores anything typed past a complete key`() = runTest(testDispatcher) {
+    applyEvent(SignalLoginCredentialEntryState(), SignalLoginCredentialEntryScreenEvents.RecoveryKeyChanged(VALID_AEP + "abc"))
+
+    assertThat(emittedStates.last().recoveryKey.normalized).isEqualTo(VALID_AEP)
+    assertThat(emittedStates.last().recoveryKey.error).isNull()
     assertThat(emittedStates.last().recoveryKey.isValid).isTrue()
   }
 

@@ -100,7 +100,7 @@ class SignalLoginManualSaveConfirmationViewModel(
     parentEventEmitter: (RegistrationFlowEvent) -> Unit,
     stateEmitter: (SignalLoginCredentialEntryState) -> Unit
   ) {
-    val accountId = AccountIdFormat.normalize(event.accountId).ifEmpty { state.accountId }
+    val accountId = AccountIdFormat.normalizeAndTruncate(event.accountId).ifEmpty { state.accountId }
     val filledState = state.copy(
       accountId = accountId,
       accountIdError = AccountIdFormat.validate(accountId),

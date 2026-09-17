@@ -76,7 +76,6 @@ import org.signal.registration.screens.OnePaneRegistrationScaffold
 import org.signal.registration.screens.RegistrationScaffold
 import org.signal.registration.screens.TwoPaneRegistrationScaffold
 import org.signal.registration.screens.aepentry.AepInput
-import org.signal.registration.screens.aepentry.AepValidationError
 import org.signal.registration.screens.aepentry.AepVisualTransformation
 import org.signal.registration.screens.attachDebugLogHelper
 import org.signal.registration.screens.shared.AccountIdErrorText
@@ -397,12 +396,10 @@ private fun RecoveryKeyTextField(
         }
       },
       supportingText = {
-        val error = state.recoveryKey.error
         when {
           state.areCredentialsIncorrect && state.mode == SignalLoginCredentialEntryState.Mode.ConfirmSaved -> Text(stringResource(R.string.SignalLoginCredentialEntryScreen__that_doesnt_match_the_signal_login_you_were_shown))
           state.areCredentialsIncorrect -> Text(stringResource(R.string.SignalLoginCredentialEntryScreen__incorrect_account_id_or_recovery_key))
-          error is AepValidationError.TooLong -> Text(stringResource(R.string.EnterAepScreen__too_long, error.count, error.max))
-          error != null -> Text(stringResource(R.string.EnterAepScreen__invalid_recovery_key))
+          state.recoveryKey.error != null -> Text(stringResource(R.string.EnterAepScreen__invalid_recovery_key))
         }
       },
       isError = isError,

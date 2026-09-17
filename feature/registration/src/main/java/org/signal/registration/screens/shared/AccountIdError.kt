@@ -7,9 +7,6 @@ package org.signal.registration.screens.shared
 
 /** Why the entered account ID can't be submitted. Shown beneath the text field rather than in a dialog. */
 sealed interface AccountIdError {
-  /** More than [AccountIdFormat.ACCOUNT_ID_LENGTH] characters were entered. */
-  data class TooLong(val count: Int) : AccountIdError
-
   /** The entered text contains characters that can't appear in an account ID. */
   data object Invalid : AccountIdError
 }

@@ -311,8 +311,7 @@ private fun RecoveryKeyTextField(state: EnterAepState, onEvent: (EnterAepEvents)
       }
     ),
     supportingText = {
-      when (val error = state.recoveryKey.error) {
-        is AepValidationError.TooLong -> Text(stringResource(R.string.EnterAepScreen__too_long, error.count, error.max))
+      when (state.recoveryKey.error) {
         is AepValidationError.Invalid -> Text(stringResource(R.string.EnterAepScreen__invalid_recovery_key))
         is AepValidationError.Incorrect -> Text(stringResource(R.string.EnterAepScreen__incorrect_recovery_key))
         null -> {}

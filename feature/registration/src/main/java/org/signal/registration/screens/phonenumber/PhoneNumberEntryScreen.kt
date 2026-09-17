@@ -91,6 +91,7 @@ import org.signal.registration.screens.RegistrationScaffold
 import org.signal.registration.screens.TwoPaneRegistrationScaffold
 import org.signal.registration.screens.attachDebugLogHelper
 import org.signal.registration.screens.shared.AccountIdErrorText
+import org.signal.registration.screens.shared.AccountIdFormat
 import org.signal.registration.screens.shared.AccountIdVisualTransformation
 import org.signal.registration.screens.shared.accountIdTextStyle
 import org.signal.registration.test.TestTags
@@ -590,8 +591,11 @@ private fun PhoneNumberInputFields(
     TextField(
       value = phoneNumberTextFieldValue,
       onValueChange = { newValue ->
-        onEvent(PhoneNumberEntryScreenEvents.NationalNumberChanged(oldValue = phoneNumberTextFieldValue.text, newValue = newValue.text))
-        phoneNumberTextFieldValue = newValue
+        // An account ID that is already complete leaves the state untouched, so there is no re-sync to lean on: the
+        // field has to turn away the extra characters itself.
+        val accepted = if (isAccountId) newValue.copy(text = AccountIdFormat.normalizeAndTruncate(newValue.text)) else newValue
+        onEvent(PhoneNumberEntryScreenEvents.NationalNumberChanged(oldValue = phoneNumberTextFieldValue.text, newValue = accepted.text))
+        phoneNumberTextFieldValue = accepted
       },
       modifier = Modifier
         .weight(1f)

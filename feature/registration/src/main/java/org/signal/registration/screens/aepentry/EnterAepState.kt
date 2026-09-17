@@ -19,7 +19,6 @@ data class EnterAepState(
 }
 
 sealed interface AepValidationError {
-  data class TooLong(val count: Int, val max: Int) : AepValidationError
   data object Invalid : AepValidationError
   data object Incorrect : AepValidationError
 }

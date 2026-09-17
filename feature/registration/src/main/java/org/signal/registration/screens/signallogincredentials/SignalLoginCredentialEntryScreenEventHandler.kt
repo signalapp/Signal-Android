@@ -17,7 +17,7 @@ object SignalLoginCredentialEntryScreenEventHandler {
   fun applyEvent(state: SignalLoginCredentialEntryState, event: SignalLoginCredentialEntryScreenEvents): SignalLoginCredentialEntryState {
     return when (event) {
       is SignalLoginCredentialEntryScreenEvents.AccountIdChanged -> {
-        val accountId = AccountIdFormat.normalize(event.value)
+        val accountId = AccountIdFormat.normalizeAndTruncate(event.value)
         state.copy(accountId = accountId, accountIdError = AccountIdFormat.validate(accountId), isAccountIdPrefilled = false, areCredentialsIncorrect = false)
       }
 

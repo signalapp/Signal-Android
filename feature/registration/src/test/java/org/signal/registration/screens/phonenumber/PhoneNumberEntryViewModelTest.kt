@@ -2250,7 +2250,7 @@ class PhoneNumberEntryViewModelTest {
   }
 
   @Test
-  fun `NationalNumberChanged with an over-long account ID reports the error rather than silently refusing to submit`() = runTest {
+  fun `NationalNumberChanged with an over-long account ID keeps only a complete ID`() = runTest {
     val initialState = PhoneNumberEntryState(isPhoneNumberlessRegistrationAvailable = true)
 
     viewModel.applyEvent(
@@ -2260,8 +2260,9 @@ class PhoneNumberEntryViewModelTest {
       stateEmitter
     )
 
-    assertThat(emittedStates.last().accountIdError).isEqualTo(AccountIdError.TooLong(34))
-    assertThat(emittedStates.last().isNextEnabled).isFalse()
+    assertThat(emittedStates.last().enteredAccountId).isEqualTo("a6b284822e3283d07f2391360a4c2b91")
+    assertThat(emittedStates.last().accountIdError).isNull()
+    assertThat(emittedStates.last().isNextEnabled).isTrue()
   }
 
   @Test
