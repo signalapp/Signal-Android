@@ -22,6 +22,7 @@ class ReactionScrubberTest {
 
   companion object {
     private const val EMOJI_COUNT = 7
+    private const val DEAD_ZONE_SIZE = 20f
 
     /** Seven 100 wide segments from 100 to 800, a short strip band and a tall scrub band. */
     private val LTR = ReactionScrubber.Geometry(
@@ -31,7 +32,6 @@ class ReactionScrubberTest {
       stripBottom = 300f,
       scrubTop = 200f,
       scrubBottom = 900f,
-      deadZoneSize = 20f,
       isStripVisible = true
     )
 
@@ -40,7 +40,7 @@ class ReactionScrubberTest {
   }
 
   private fun scrubber(geometry: ReactionScrubber.Geometry = LTR): ReactionScrubber {
-    val scrubber = ReactionScrubber(EMOJI_COUNT)
+    val scrubber = ReactionScrubber(EMOJI_COUNT, DEAD_ZONE_SIZE)
     scrubber.geometry = geometry
     scrubber.open()
 
@@ -214,8 +214,27 @@ class ReactionScrubberTest {
     assertThat(outcome).isInstanceOf(ReactionScrubber.Outcome.Dismiss::class)
   }
 
+  /**
+   * A message that takes no reactions never lays a strip out, so the dead zone cannot come from the
+   * geometry. Lifting after a little drift has to leave the context menu up rather than dismiss it.
+   */
+  @Test
+  fun `a jittery lift holds the dead zone even with no strip laid out`() {
+    val scrubber = ReactionScrubber(EMOJI_COUNT, DEAD_ZONE_SIZE)
+    scrubber.geometry = ReactionScrubber.Geometry()
+    scrubber.open()
+
+    scrubber.apply(MotionEvent.ACTION_MOVE, 400f, 1000f)
+    val outcome = scrubber.apply(MotionEvent.ACTION_UP, 403f, 1002f)
+
+    assertThat(scrubber.phase).isEqualTo(ReactionScrubber.Phase.TAP)
+    assertThat(outcome).isInstanceOf(ReactionScrubber.Outcome.Scrubbing::class)
+    assertThat(outcome.consumed).isFalse()
+    assertThat(scrubber.isShowing).isTrue()
+  }
+
   @Test(expected = IllegalStateException::class)
   fun `events before open are a programming error`() {
-    ReactionScrubber(EMOJI_COUNT).apply(MotionEvent.ACTION_MOVE, 250f, 250f)
+    ReactionScrubber(EMOJI_COUNT, DEAD_ZONE_SIZE).apply(MotionEvent.ACTION_MOVE, 250f, 250f)
   }
 }

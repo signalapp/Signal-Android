@@ -12,8 +12,12 @@ import kotlin.math.abs
  * The scrub gesture behind the reaction overlay
  *
  * @param emojiCount Slots in the strip. The last opens the full picker.
+ * @param deadZoneSize How far a pointer may drift before a tap becomes a scrub. Deliberately not
+ *   part of [Geometry]: it owes nothing to where the strip landed, and a message that takes no
+ *   reactions never lays one out, so a geometry-carried value would stay zero and turn every lift
+ *   into a dismiss.
  */
-class ReactionScrubber(private val emojiCount: Int) {
+class ReactionScrubber(private val emojiCount: Int, private val deadZoneSize: Float) {
 
   /**
    * Where the strip ended up, in the coordinate space the gesture arrives in.
@@ -23,7 +27,6 @@ class ReactionScrubber(private val emojiCount: Int) {
    * decides which emoji an x belongs to.
    *
    * @param scrubTop Top of the taller band a scrub may wander through, down to [scrubBottom].
-   * @param deadZoneSize How far a pointer may drift before a tap becomes a scrub.
    * @param isStripVisible False for a message that takes no reactions, making every point a miss.
    */
   data class Geometry(
@@ -33,7 +36,6 @@ class ReactionScrubber(private val emojiCount: Int) {
     val stripBottom: Float = 0f,
     val scrubTop: Float = 0f,
     val scrubBottom: Float = 0f,
-    val deadZoneSize: Float = 0f,
     val isStripVisible: Boolean = false
   )
 
@@ -101,7 +103,7 @@ class ReactionScrubber(private val emojiCount: Int) {
     }
 
     if (phase == Phase.DEADZONE) {
-      val escapedDeadZone = abs(deadZoneX - x) > geometry.deadZoneSize || abs(deadZoneY - y) > geometry.deadZoneSize
+      val escapedDeadZone = abs(deadZoneX - x) > deadZoneSize || abs(deadZoneY - y) > deadZoneSize
 
       if (escapedDeadZone) {
         phase = Phase.SCRUB

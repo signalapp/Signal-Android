@@ -69,7 +69,10 @@ class ChatReactionOverlayController(
   var originInWindow: Offset by mutableStateOf(Offset.Zero)
     private set
 
-  val scrubber = ReactionScrubber(REACTION_EMOJI_COUNT)
+  val scrubber = ReactionScrubber(
+    emojiCount = REACTION_EMOJI_COUNT,
+    deadZoneSize = context.resources.getDimensionPixelSize(R.dimen.conversation_reaction_touch_deadzone_size).toFloat()
+  )
 
   val isShowing: Boolean
     get() = selection != null

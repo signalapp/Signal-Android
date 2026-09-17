@@ -134,7 +134,6 @@ fun ChatReactionOverlay(
   val scrubberWidth = dimensionResource(R.dimen.reaction_scrubber_width)
   val scrubberHeight = dimensionResource(R.dimen.conversation_reaction_scrubber_height)
   val horizontalMargin = dimensionResource(R.dimen.conversation_reaction_scrub_horizontal_margin)
-  val deadZoneSize = dimensionResource(R.dimen.conversation_reaction_touch_deadzone_size)
   val scrubDistanceBelowTouch = dimensionResource(R.dimen.conversation_reaction_scrub_deadzone_distance_from_touch_bottom)
 
   val barHeightPx = remember(context) {
@@ -204,7 +203,6 @@ fun ChatReactionOverlay(
     }
 
     val bounds = remember(selection) { StripBounds() }
-    val deadZonePx = with(density) { deadZoneSize.toPx() }
 
     val pushGeometry = {
       scrubber.geometry = ReactionScrubber.Geometry(
@@ -214,7 +212,6 @@ fun ChatReactionOverlay(
         stripBottom = bounds.barBottom,
         scrubTop = bounds.barTop,
         scrubBottom = selection.lastSeenDownY + scrubBelowTouchPx,
-        deadZoneSize = deadZonePx,
         isStripVisible = selection.canReact
       )
     }
