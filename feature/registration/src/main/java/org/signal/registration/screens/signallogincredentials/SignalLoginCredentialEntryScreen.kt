@@ -46,6 +46,7 @@ import androidx.compose.ui.autofill.contentType
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
@@ -83,6 +84,11 @@ import org.signal.registration.screens.shared.accountIdTextStyle
 import org.signal.registration.test.TestTags
 import org.signal.signallogin.RecoveryKeyGroups
 import org.signal.signallogin.beta.SignalLoginBetaTag
+
+private val REVEAL_BUTTON_SIZE = 48.dp
+private val RECOVERY_KEY_LINE_HEIGHT = 36.sp
+private val TEXT_FIELD_TOP_PADDING = 8.dp
+private val MINIMIZED_LABEL_LINE_HEIGHT = 16.sp
 
 /**
  * Collects a Signal Login -- the account ID and the recovery key that pairs with it. What happens with the pair depends
@@ -337,70 +343,105 @@ private fun RecoveryKeyTextField(
   val visualTransformation = remember(revealed) {
     if (revealed) AepVisualTransformation(RecoveryKeyGroups.GROUP_SIZE) else PasswordVisualTransformation()
   }
+  val isError = state.recoveryKey.error != null || state.areCredentialsIncorrect
+  val minimizedLabelHeight = MaterialTheme.typography.bodySmall.lineHeight.takeIf { it.isSp } ?: MINIMIZED_LABEL_LINE_HEIGHT
+  val firstLineCenterY = with(LocalDensity.current) {
+    TEXT_FIELD_TOP_PADDING + minimizedLabelHeight.toDp() + RECOVERY_KEY_LINE_HEIGHT.toDp() / 2
+  }
 
-  TextField(
-    value = state.recoveryKey.enteredText,
-    onValueChange = {
-      onEvent(SignalLoginCredentialEntryScreenEvents.RecoveryKeyChanged(it))
-      autoFillHelper.onValueChanged(it)
-    },
-    label = { Text(stringResource(R.string.SignalLoginCredentialEntryScreen__recovery_key)) },
-    singleLine = !revealed,
-    minLines = if (revealed) 3 else 1,
-    textStyle = MaterialTheme.typography.bodyLarge.copy(
-      fontFamily = MonoTypeface.fontFamily(),
-      lineHeight = 36.sp
-    ),
-    colors = TextFieldDefaults.colors(
-      unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
-      focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
-      errorContainerColor = MaterialTheme.colorScheme.surfaceVariant
-    ),
-    keyboardOptions = KeyboardOptions(
-      keyboardType = KeyboardType.Password,
-      capitalization = KeyboardCapitalization.None,
-      imeAction = ImeAction.Done,
-      autoCorrectEnabled = false
-    ),
-    keyboardActions = KeyboardActions(
-      onDone = {
-        if (state.isNextEnabled) {
-          keyboardController?.hide()
-          onEvent(SignalLoginCredentialEntryScreenEvents.NextClicked)
+  Box {
+    TextField(
+      value = state.recoveryKey.enteredText,
+      onValueChange = {
+        onEvent(SignalLoginCredentialEntryScreenEvents.RecoveryKeyChanged(it))
+        autoFillHelper.onValueChanged(it)
+      },
+      label = { Text(stringResource(R.string.SignalLoginCredentialEntryScreen__recovery_key)) },
+      singleLine = !revealed,
+      minLines = if (revealed) 3 else 1,
+      textStyle = MaterialTheme.typography.bodyLarge.copy(
+        fontFamily = MonoTypeface.fontFamily(),
+        lineHeight = RECOVERY_KEY_LINE_HEIGHT
+      ),
+      colors = TextFieldDefaults.colors(
+        unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+        focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+        errorContainerColor = MaterialTheme.colorScheme.surfaceVariant
+      ),
+      keyboardOptions = KeyboardOptions(
+        keyboardType = KeyboardType.Password,
+        capitalization = KeyboardCapitalization.None,
+        imeAction = ImeAction.Done,
+        autoCorrectEnabled = false
+      ),
+      keyboardActions = KeyboardActions(
+        onDone = {
+          if (state.isNextEnabled) {
+            keyboardController?.hide()
+            onEvent(SignalLoginCredentialEntryScreenEvents.NextClicked)
+          }
         }
-      }
-    ),
-    trailingIcon = { RevealRecoveryKeyButton(revealed, onEvent) },
-    supportingText = {
-      val error = state.recoveryKey.error
-      when {
-        state.areCredentialsIncorrect && state.mode == SignalLoginCredentialEntryState.Mode.ConfirmSaved -> Text(stringResource(R.string.SignalLoginCredentialEntryScreen__that_doesnt_match_the_signal_login_you_were_shown))
-        state.areCredentialsIncorrect -> Text(stringResource(R.string.SignalLoginCredentialEntryScreen__incorrect_account_id_or_recovery_key))
-        error is AepValidationError.TooLong -> Text(stringResource(R.string.EnterAepScreen__too_long, error.count, error.max))
-        error != null -> Text(stringResource(R.string.EnterAepScreen__invalid_recovery_key))
-      }
-    },
-    isError = state.recoveryKey.error != null || state.areCredentialsIncorrect,
-    visualTransformation = visualTransformation,
-    modifier = modifier
-      .fillMaxWidth()
-      .contentType(ContentType.Password)
-      .testTag(TestTags.SIGNAL_LOGIN_CREDENTIAL_RECOVERY_KEY_FIELD)
-      .attachPasswordAutoFillHelper(autoFillHelper)
-  )
+      ),
+      trailingIcon = {
+        if (revealed) {
+          Spacer(modifier = Modifier.size(REVEAL_BUTTON_SIZE))
+        } else {
+          RevealRecoveryKeyButton(revealed = revealed, isError = isError, onEvent = onEvent)
+        }
+      },
+      supportingText = {
+        val error = state.recoveryKey.error
+        when {
+          state.areCredentialsIncorrect && state.mode == SignalLoginCredentialEntryState.Mode.ConfirmSaved -> Text(stringResource(R.string.SignalLoginCredentialEntryScreen__that_doesnt_match_the_signal_login_you_were_shown))
+          state.areCredentialsIncorrect -> Text(stringResource(R.string.SignalLoginCredentialEntryScreen__incorrect_account_id_or_recovery_key))
+          error is AepValidationError.TooLong -> Text(stringResource(R.string.EnterAepScreen__too_long, error.count, error.max))
+          error != null -> Text(stringResource(R.string.EnterAepScreen__invalid_recovery_key))
+        }
+      },
+      isError = isError,
+      visualTransformation = visualTransformation,
+      modifier = modifier
+        .fillMaxWidth()
+        .contentType(ContentType.Password)
+        .testTag(TestTags.SIGNAL_LOGIN_CREDENTIAL_RECOVERY_KEY_FIELD)
+        .attachPasswordAutoFillHelper(autoFillHelper)
+    )
+
+    if (revealed) {
+      RevealRecoveryKeyButton(
+        revealed = revealed,
+        isError = isError,
+        onEvent = onEvent,
+        modifier = Modifier
+          .align(Alignment.TopEnd)
+          .padding(top = firstLineCenterY - REVEAL_BUTTON_SIZE / 2)
+      )
+    }
+  }
 }
 
+/**
+ * Sits in the recovery key field's trailing slot while collapsed, where centering it vertically is correct. Once
+ * revealed, the field grows to three lines and the hard-coded centering puts this far too low, so it gets overlaid at
+ * the first line instead.
+ */
 @Composable
-private fun RevealRecoveryKeyButton(revealed: Boolean, onEvent: (SignalLoginCredentialEntryScreenEvents) -> Unit) {
+private fun RevealRecoveryKeyButton(
+  revealed: Boolean,
+  isError: Boolean,
+  onEvent: (SignalLoginCredentialEntryScreenEvents) -> Unit,
+  modifier: Modifier = Modifier
+) {
   IconButton(
     onClick = { onEvent(SignalLoginCredentialEntryScreenEvents.RecoveryKeyVisibilityToggled) },
-    modifier = Modifier.testTag(TestTags.SIGNAL_LOGIN_CREDENTIAL_REVEAL_RECOVERY_KEY_BUTTON)
+    modifier = modifier.testTag(TestTags.SIGNAL_LOGIN_CREDENTIAL_REVEAL_RECOVERY_KEY_BUTTON)
   ) {
     Icon(
       painter = if (revealed) SignalIcons.VisibleSlash.painter else SignalIcons.Visible.painter,
       contentDescription = stringResource(
         if (revealed) R.string.SignalLoginCredentialEntryScreen__hide_recovery_key else R.string.SignalLoginCredentialEntryScreen__show_recovery_key
-      )
+      ),
+      tint = if (isError) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.onSurfaceVariant
     )
   }
 }
