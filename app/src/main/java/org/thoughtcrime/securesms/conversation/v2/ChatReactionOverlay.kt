@@ -21,6 +21,7 @@ import androidx.compose.foundation.layout.absoluteOffset
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBars
+import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
@@ -402,7 +403,8 @@ private fun ReactionEmoji(
     if (isApplied) {
       Box(
         modifier = Modifier
-          .size(SELECTION_INDICATOR_SIZE)
+          // Required so the indicator keeps its full circle rather than being squeezed into the slot.
+          .requiredSize(SELECTION_INDICATOR_SIZE)
           .graphicsLayer { alpha = indicatorAlpha }
           .background(
             color = colorResource(CoreUiR.color.signal_colorSurfaceVariant_16_no_alpha),
