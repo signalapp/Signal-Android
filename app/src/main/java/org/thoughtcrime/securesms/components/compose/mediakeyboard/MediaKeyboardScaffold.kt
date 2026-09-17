@@ -21,10 +21,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.ime
 import androidx.compose.foundation.layout.imeAnimationTarget
-import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.onConsumedWindowInsetsChanged
-import androidx.compose.foundation.layout.safeDrawing
-import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.BottomSheetScaffold
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -62,6 +59,9 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.dropWhile
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
+import org.signal.core.ui.compose.navigationBarsCompat
+import org.signal.core.ui.compose.safeDrawingCompat
+import org.signal.core.ui.compose.systemBarsCompat
 import org.signal.core.ui.getWindowSizeClass
 import org.signal.core.ui.isHeightCompact
 import kotlin.coroutines.cancellation.CancellationException
@@ -260,12 +260,12 @@ fun MediaKeyboardScaffold(
   }
 
   var ancestorConsumedBottomPx by remember { mutableIntStateOf(0) }
-  val safeDrawingInsets = WindowInsets.safeDrawing
+  val safeDrawingInsets = WindowInsets.safeDrawingCompat
 
   val windowInsets = if (adjustContentForInput) {
     safeDrawingInsets
   } else {
-    WindowInsets.systemBars.add(WindowInsets.displayCutout)
+    WindowInsets.systemBarsCompat.add(WindowInsets.displayCutout)
   }
 
   Box(modifier = modifier.fillMaxSize()) {
@@ -286,7 +286,7 @@ fun MediaKeyboardScaffold(
             .height(height)
             .graphicsLayer { translationY = backProgress.value * heightPx }
             .background(registry.containerColorFor(visibleKey).takeOrElse { MaterialTheme.colorScheme.surfaceContainerLow })
-            .navigationBarsPadding()
+            .windowInsetsPadding(WindowInsets.navigationBarsCompat)
         ) {
           registry.contentFor(visibleKey)?.invoke()
         }

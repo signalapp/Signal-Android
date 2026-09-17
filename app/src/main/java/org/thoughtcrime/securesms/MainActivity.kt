@@ -36,11 +36,8 @@ import androidx.compose.foundation.layout.add
 import androidx.compose.foundation.layout.displayCutout
 import androidx.compose.foundation.layout.displayCutoutPadding
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.navigationBars
-import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -82,6 +79,7 @@ import kotlinx.coroutines.withContext
 import org.signal.core.ui.BottomSheetUtil
 import org.signal.core.ui.NavigationType
 import org.signal.core.ui.compose.Snackbars
+import org.signal.core.ui.compose.navigationBarsCompat
 import org.signal.core.ui.compose.split.ListDetailEvents
 import org.signal.core.ui.compose.split.ListDetailNavDisplay
 import org.signal.core.ui.compose.split.ListDetailPaneLayout
@@ -90,6 +88,7 @@ import org.signal.core.ui.compose.split.ListPaneChrome
 import org.signal.core.ui.compose.split.PaneAnchor
 import org.signal.core.ui.compose.split.rememberListDetailPaneLayout
 import org.signal.core.ui.compose.split.rememberListDetailPaneMetrics
+import org.signal.core.ui.compose.systemBarsCompat
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.ui.permissions.Permissions
 import org.signal.core.ui.rememberIsSplitPane
@@ -478,7 +477,7 @@ class MainActivity :
               MainSnackbar(
                 hostKey = SnackbarHostKey.Global,
                 onDismissed = mainBottomChromeCallback::onSnackbarDismissed,
-                modifier = Modifier.navigationBarsPadding()
+                modifier = Modifier.windowInsetsPadding(WindowInsets.navigationBarsCompat)
               )
             }
           },
@@ -630,7 +629,7 @@ class MainActivity :
             )
 
             if (!isSplitPane) {
-              Spacer(Modifier.navigationBarsPadding())
+              Spacer(Modifier.windowInsetsPadding(WindowInsets.navigationBarsCompat))
             }
           }
         }
@@ -653,14 +652,14 @@ class MainActivity :
         val modifier = when {
           isSplitPane -> {
             Modifier
-              .systemBarsPadding()
+              .windowInsetsPadding(WindowInsets.systemBarsCompat)
               .displayCutoutPadding()
           }
 
           else ->
             Modifier
               .windowInsetsPadding(
-                WindowInsets.navigationBars.only(WindowInsetsSides.Horizontal)
+                WindowInsets.navigationBarsCompat.only(WindowInsetsSides.Horizontal)
                   .add(WindowInsets.displayCutout.only(WindowInsetsSides.Horizontal))
               )
         }

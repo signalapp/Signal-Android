@@ -16,10 +16,7 @@ import androidx.compose.foundation.layout.exclude
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.ime
-import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.only
-import androidx.compose.foundation.layout.safeDrawing
-import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.windowInsetsBottomHeight
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.layout.windowInsetsTopHeight
@@ -32,6 +29,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.fragment.compose.AndroidFragment
+import org.signal.core.ui.compose.navigationBarsCompat
+import org.signal.core.ui.compose.safeDrawingCompat
+import org.signal.core.ui.compose.statusBarsCompat
 import org.signal.core.ui.util.ThemeUtil
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.compose.mediakeyboard.MediaKeyboardController
@@ -88,13 +88,13 @@ fun ChatScreen(
       .fillMaxSize()
       // A bubble's host has already accounted for the system bars, but not for the keyboard, so
       // that one inset has to survive or nothing lifts the input off the system keyboard.
-      .then(if (isBubble) Modifier.consumeWindowInsets(WindowInsets.safeDrawing.exclude(WindowInsets.ime)) else Modifier)
+      .then(if (isBubble) Modifier.consumeWindowInsets(WindowInsets.safeDrawingCompat.exclude(WindowInsets.ime)) else Modifier)
   ) {
     Box(
       modifier = Modifier
         .align(Alignment.TopCenter)
         .fillMaxWidth()
-        .windowInsetsTopHeight(WindowInsets.statusBars)
+        .windowInsetsTopHeight(WindowInsets.statusBarsCompat)
         .background(Color(scrims.statusBarColor))
     )
 
@@ -102,7 +102,7 @@ fun ChatScreen(
       modifier = Modifier
         .align(Alignment.BottomCenter)
         .fillMaxWidth()
-        .windowInsetsBottomHeight(WindowInsets.navigationBars)
+        .windowInsetsBottomHeight(WindowInsets.navigationBarsCompat)
         .background(Color(scrims.navigationBarColor))
     )
 
@@ -144,7 +144,7 @@ fun ChatScreen(
       controller = overlayController,
       modifier = Modifier
         .fillMaxSize()
-        .windowInsetsPadding(WindowInsets.statusBars.add(WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal)))
+        .windowInsetsPadding(WindowInsets.statusBarsCompat.add(WindowInsets.safeDrawingCompat.only(WindowInsetsSides.Horizontal)))
     )
   }
 }

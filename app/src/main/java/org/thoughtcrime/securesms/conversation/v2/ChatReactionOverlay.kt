@@ -20,7 +20,6 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.absoluteOffset
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -53,6 +52,7 @@ import androidx.compose.ui.unit.dp
 import com.google.accompanist.drawablepainter.rememberDrawablePainter
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
+import org.signal.core.ui.compose.navigationBarsCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.ConversationItem
 import org.thoughtcrime.securesms.conversation.ReactionOverlayPlacement
@@ -165,7 +165,7 @@ fun ChatReactionOverlay(
     val overlayWidthPx = with(density) { maxWidth.roundToPx() }
     val overlayHeightPx = with(density) { maxHeight.roundToPx() }
     val statusBarPx = overlayTop.floatValue.roundToInt()
-    val navigationBarPx = WindowInsets.navigationBars.getBottom(density)
+    val navigationBarPx = WindowInsets.navigationBarsCompat.getBottom(density)
     val scrubBelowTouchPx = with(density) { scrubDistanceBelowTouch.toPx() }
 
     val placement = remember(
