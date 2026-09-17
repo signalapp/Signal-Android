@@ -25,7 +25,6 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.signal.core.ui.CoreUiDependenciesRule
 import org.signal.core.ui.compose.theme.SignalTheme
-import org.signal.registration.PendingRestoreOption
 import org.signal.registration.R
 import org.signal.registration.screens.shared.AccountIdError
 import org.signal.registration.test.TestTags
@@ -328,7 +327,7 @@ class PhoneNumberScreenTest {
   }
 
   @Test
-  fun `the numberless button offers to register without a number when there is no pending restore`() {
+  fun `the numberless button offers to register without a number when the user has no existing account`() {
     // Given
     composeTestRule.setContent {
       SignalTheme {
@@ -344,14 +343,14 @@ class PhoneNumberScreenTest {
   }
 
   @Test
-  fun `the numberless button offers to use an account ID when a restore is pending`() {
+  fun `the numberless button offers to use an account ID when the user has an existing account`() {
     // Given
     composeTestRule.setContent {
       SignalTheme {
         PhoneNumberScreen(
           state = PhoneNumberEntryState(
             isPhoneNumberlessRegistrationAvailable = true,
-            pendingRestoreOption = PendingRestoreOption.RemoteBackup
+            sawArchiveRestoreSelectionScreen = true
           ),
           onEvent = {}
         )

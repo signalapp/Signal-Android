@@ -84,7 +84,6 @@ import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.TextFields
 import org.signal.core.util.Util
 import org.signal.core.util.logging.Log
-import org.signal.registration.PendingRestoreOption
 import org.signal.registration.R
 import org.signal.registration.RegistrationDependencies
 import org.signal.registration.screens.OnePaneRegistrationScaffold
@@ -419,7 +418,7 @@ private fun NextButton(
       ) {
         Text(
           stringResource(
-            if (state.hasExistingAccount) {
+            if (state.sawArchiveRestoreSelectionScreen) {
               R.string.RegistrationActivity_use_account_id
             } else {
               R.string.RegistrationActivity_register_without_number
@@ -667,7 +666,7 @@ private fun PhoneNumberScreenUseAccountIdPreview() {
     PhoneNumberScreen(
       state = PhoneNumberEntryState(
         isPhoneNumberlessRegistrationAvailable = true,
-        pendingRestoreOption = PendingRestoreOption.RemoteBackup
+        sawArchiveRestoreSelectionScreen = true
       ),
       onEvent = {}
     )

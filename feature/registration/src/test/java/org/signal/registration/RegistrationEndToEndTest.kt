@@ -1873,6 +1873,40 @@ class RegistrationEndToEndTest {
   }
 
   @Test
+  fun `skipping the restore still turns the numberless button into a direct jump to signal login entry`() {
+    enableSignalLoginRegistration()
+    val login = signalLoginFor(reregistration = true)
+
+    var registrationComplete = false
+    launchRegistrationFlow(onRegistrationComplete = { registrationComplete = true })
+
+    // Declining the restore doesn't change the fact that the user told us they have an account to restore
+    startManualRestore()
+    chooseRestoreOption(TestTags.ARCHIVE_RESTORE_SELECTION_NONE)
+    waitForTag(Dialogs.TEST_TAG_ALERT_DIALOG_CONFIRM_BUTTON)
+    composeTestRule.onNodeWithTag(Dialogs.TEST_TAG_ALERT_DIALOG_CONFIRM_BUTTON).performClick()
+
+    waitForTag(TestTags.PHONE_NUMBER_SCREEN)
+    composeTestRule.onNodeWithTag(TestTags.PHONE_NUMBER_REGISTER_WITHOUT_NUMBER_BUTTON).performClick()
+    waitForTag(TestTags.SIGNAL_LOGIN_CREDENTIAL_ENTRY_SCREEN)
+    assert(composeTestRule.onAllNodesWithTag(TestTags.SIGNAL_LOGIN_PAYMENT_SCREEN).fetchSemanticsNodes().isEmpty()) {
+      "Expected the Signal Login payment screen to be skipped for a user who came through the restore flow"
+    }
+
+    enterSignalLogin(login)
+
+    chooseRestoreOption(TestTags.ARCHIVE_RESTORE_SELECTION_NONE)
+    waitForTag(Dialogs.TEST_TAG_ALERT_DIALOG_CONFIRM_BUTTON)
+    composeTestRule.onNodeWithTag(Dialogs.TEST_TAG_ALERT_DIALOG_CONFIRM_BUTTON).performClick()
+
+    waitFor("registration to complete") { registrationComplete }
+
+    assert(purchaseApi.launchCount == 0) { "A user with an existing login should never hit Google Play" }
+    assert(networkController.lastCreateSessionE164 == null) { "Expected no verification session for a numberless login" }
+    assert(networkController.lastRegisterAccountRequest?.aci == login.aci) { "Expected the entered login to be reclaimed but was ${networkController.lastRegisterAccountRequest}" }
+  }
+
+  @Test
   fun `typing an account id into the phone number field goes straight to signal login entry with it filled in`() {
     enableSignalLoginRegistration()
     val login = signalLoginFor(reregistration = false)

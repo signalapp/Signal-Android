@@ -46,7 +46,6 @@ import org.signal.network.api.RegistrationApiV2.SvrCredentials
 import org.signal.network.api.RegistrationApiV2.ThirdPartyServiceErrorResponse
 import org.signal.network.api.RegistrationApiV2.UpdateSessionError
 import org.signal.registration.KeyMaterial
-import org.signal.registration.PendingRestoreOption
 import org.signal.registration.PreExistingRegistrationData
 import org.signal.registration.RegisteredAccountData
 import org.signal.registration.RegistrationFlowEvent
@@ -467,9 +466,9 @@ class PhoneNumberEntryViewModelTest {
   }
 
   @Test
-  fun `RegisterWithoutNumber skips payment and goes straight to credential entry when a restore is pending`() = runTest {
+  fun `RegisterWithoutNumber skips payment and goes straight to credential entry when the user has an existing account`() = runTest {
     viewModel.applyEvent(
-      PhoneNumberEntryState(pendingRestoreOption = PendingRestoreOption.RemoteBackup),
+      PhoneNumberEntryState(sawArchiveRestoreSelectionScreen = true),
       PhoneNumberEntryScreenEvents.RegisterWithoutNumber,
       parentEventEmitter,
       stateEmitter
