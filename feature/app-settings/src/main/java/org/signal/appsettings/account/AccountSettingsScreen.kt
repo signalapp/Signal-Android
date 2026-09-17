@@ -387,21 +387,7 @@ private fun SetUpTwoFactorRow(
 
   Box(modifier = modifier) {
     Rows.TextRow(
-      icon = {
-        Box(
-          contentAlignment = Alignment.Center,
-          modifier = Modifier
-            .size(40.dp)
-            .clip(CircleShape)
-            .background(MaterialTheme.colorScheme.surfaceVariant)
-        ) {
-          Icon(
-            imageVector = SignalIcons.Plus.imageVector,
-            contentDescription = null,
-            tint = MaterialTheme.colorScheme.onSurface
-          )
-        }
-      },
+      icon = { TwoFactorRowIcon(icon = SignalIcons.Plus) },
       text = {
         TextAndLabel(text = stringResource(R.string.AccountSettingsFragment__set_up))
       },
@@ -458,13 +444,7 @@ private fun TwoFactorMethodRow(
   }
 
   Rows.TextRow(
-    icon = {
-      Icon(
-        painter = icon.painter,
-        contentDescription = null,
-        tint = MaterialTheme.colorScheme.onSurface
-      )
-    },
+    icon = { TwoFactorRowIcon(icon = icon) },
     text = {
       TextAndLabel(
         text = method.name,
@@ -478,6 +458,30 @@ private fun TwoFactorMethodRow(
     },
     modifier = modifier.testTag(AccountSettingsTestTags.ROW_TWO_FACTOR_METHOD)
   )
+}
+
+/**
+ * The circled icon shared by every row in the two-factor list, so that all of the row text lines up regardless of
+ * which icon the row uses.
+ */
+@Composable
+private fun TwoFactorRowIcon(
+  icon: SignalIcons,
+  modifier: Modifier = Modifier
+) {
+  Box(
+    contentAlignment = Alignment.Center,
+    modifier = modifier
+      .size(40.dp)
+      .clip(CircleShape)
+      .background(MaterialTheme.colorScheme.surfaceVariant)
+  ) {
+    Icon(
+      painter = icon.painter,
+      contentDescription = null,
+      tint = MaterialTheme.colorScheme.onSurface
+    )
+  }
 }
 
 @Composable
