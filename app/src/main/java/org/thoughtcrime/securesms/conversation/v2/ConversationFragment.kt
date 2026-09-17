@@ -5368,12 +5368,18 @@ class ConversationFragment :
     }
 
     override fun onKeyboardShown() {
+      // The toggle follows what is on screen: the system keyboard can cover one of ours, not just
+      // replace it.
+      inputPanel.setMediaKeyboardToggleOffersIme(false)
+
       if (searchMenuItem?.isActionViewExpanded == true && searchMenuItem?.actionView?.hasFocus() == false) {
         searchMenuItem?.actionView?.requestFocus()
       }
     }
 
     override fun onKeyboardHidden() {
+      inputPanel.setMediaKeyboardToggleOffersIme(container.isInputShowing)
+
       if (searchMenuItem?.isActionViewExpanded == true && searchMenuItem?.actionView?.hasFocus() == true) {
         searchMenuItem?.actionView?.clearFocus()
       }

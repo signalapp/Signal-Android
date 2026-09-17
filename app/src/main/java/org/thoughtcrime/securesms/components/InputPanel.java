@@ -82,7 +82,6 @@ import java.util.concurrent.TimeUnit;
 
 public class InputPanel extends ConstraintLayout
     implements AudioRecordingHandler,
-               KeyboardAwareLinearLayout.OnKeyboardShownListener,
                EmojiEventListener,
                ConversationStickerSuggestionAdapter.EventListener
 {
@@ -398,6 +397,15 @@ public class InputPanel extends ConstraintLayout
     return mediaKeyboard.isStickerMode();
   }
 
+  /** True only while a keyboard of ours is the one on screen. */
+  public void setMediaKeyboardToggleOffersIme(boolean offersIme) {
+    if (offersIme) {
+      mediaKeyboard.setToIme();
+    } else {
+      mediaKeyboard.setToMedia();
+    }
+  }
+
   public View getMediaKeyboardToggleAnchorView() {
     return mediaKeyboard;
   }
@@ -709,11 +717,6 @@ public class InputPanel extends ConstraintLayout
     });
 
     return elapsedTime;
-  }
-
-  @Override
-  public void onKeyboardShown() {
-    mediaKeyboard.setToMedia();
   }
 
   @Override

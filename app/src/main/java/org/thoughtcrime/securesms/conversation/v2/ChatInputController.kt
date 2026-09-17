@@ -136,7 +136,9 @@ class ChatInputController(
    * @param showSoftKeyOnHide Whether the system keyboard replaces [key] when it is taken away.
    */
   fun toggleInput(key: MediaKeyboardKey, imeTarget: EditText, showSoftKeyOnHide: Boolean = wasKeyboardVisibleBeforeToggle) {
-    if (controller.current == key) {
+    // Ours can sit behind the system keyboard rather than in place of it, where hiding it would act
+    // on something the user cannot see. The system keyboard goes instead.
+    if (controller.current == key && !isKeyboardShowing) {
       if (showSoftKeyOnHide) {
         showSoftkey(imeTarget)
       } else {
