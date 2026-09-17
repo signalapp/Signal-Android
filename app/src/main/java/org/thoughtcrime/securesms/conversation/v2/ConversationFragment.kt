@@ -1047,6 +1047,10 @@ class ConversationFragment :
     handleUnpinMessage(conversationMessage.messageRecord.id)
   }
 
+  override fun edit(conversationMessage: ConversationMessage) {
+    handleEditMessage(conversationMessage)
+  }
+
   override fun copy(conversationMessage: ConversationMessage) {
     handleCopyMessage(conversationMessage.multiselectCollection.toSet())
   }
@@ -2352,7 +2356,9 @@ class ConversationFragment :
       return
     }
 
-    if (!isValidEditMessageSend(editMessage, System.currentTimeMillis())) {
+    val scheduledDate = (editMessage as? MmsMessageRecord)?.scheduledDate ?: -1L
+
+    if (scheduledDate == -1L && !isValidEditMessageSend(editMessage, System.currentTimeMillis())) {
       Log.i(TAG, "Edit message no longer valid")
       val editDurationHours = getEditMessageThresholdHours()
       Dialogs.showAlertDialog(requireContext(), null, resources.getQuantityString(R.plurals.ConversationActivity_edit_message_too_old, editDurationHours, editDurationHours))
@@ -2366,6 +2372,15 @@ class ConversationFragment :
     ) {
       Log.d(TAG, "Updated message matches original, exiting edit mode")
       inputPanel.exitEditMessageMode()
+      return
+    }
+
+    if (scheduledDate != -1L) {
+      // A scheduled message has not been sent yet, so there is no remote message to edit.
+      // Schedule the updated message in its place and drop the original.
+      sendMessage(messageToEdit = null, scheduledDate = scheduledDate) {
+        viewModel.deleteScheduledMessage(editMessage.id)
+      }
       return
     }
 
