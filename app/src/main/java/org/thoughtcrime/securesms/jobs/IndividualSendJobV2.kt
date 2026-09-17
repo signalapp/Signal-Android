@@ -114,6 +114,11 @@ class IndividualSendJobV2 private constructor(parameters: Parameters, private va
       )
     }
 
+    @JvmStatic
+    fun getMessageId(serializedData: ByteArray?): Long {
+      return IndividualSendJobV2Data.ADAPTER.decode(serializedData!!).messageId
+    }
+
     private fun logPrefix(sentTimestamp: Long? = null, messageId: Long): String = "[${sentTimestamp ?: "?"}][$messageId]"
   }
 
@@ -256,6 +261,12 @@ class IndividualSendJobV2 private constructor(parameters: Parameters, private va
         }
 
         ConversationShortcutRankingUpdateJob.enqueueForOutgoingIfNecessary(recipient)
+
+        if (SignalStore.rateLimit.needsRecaptcha()) {
+          Log.i(TAG, "${logPrefix(message.sentTimeMillis)} Successfully sent message. Assuming reCAPTCHA no longer needed.")
+          SignalStore.rateLimit.onProofAccepted()
+        }
+
         Log.i(TAG, "${logPrefix(message.sentTimeMillis)} Sent message.")
         Result.success()
       },
@@ -302,8 +313,14 @@ class IndividualSendJobV2 private constructor(parameters: Parameters, private va
             val threadRecipient = SignalDatabase.threads.getRecipientForThreadId(threadId)
             when (ProofRequiredExceptionHandler.handle(context, proofException, threadRecipient, threadId, messageId)) {
               ProofRequiredExceptionHandler.Result.RETRY_NOW -> Result.retry(0L)
-              ProofRequiredExceptionHandler.Result.RETRY_LATER,
-              ProofRequiredExceptionHandler.Result.RETHROW -> Result.retry(nextRunAttemptBackoff(runAttempt + 1))
+              ProofRequiredExceptionHandler.Result.RETRY_LATER -> Result.retry(nextRunAttemptBackoff(runAttempt + 1))
+              ProofRequiredExceptionHandler.Result.RETHROW -> {
+                val defaultBackoff = nextRunAttemptBackoff(runAttempt + 1)
+                val serverBackoff = error.retryAfter?.inWholeMilliseconds ?: 0L
+                val backoff = maxOf(defaultBackoff, serverBackoff)
+                Log.w(TAG, "${logPrefix(message.sentTimeMillis)} Unresolved challenge, retryAfter=${error.retryAfter}, using backoff=${backoff}ms")
+                Result.retry(backoff)
+              }
             }
           }
 
