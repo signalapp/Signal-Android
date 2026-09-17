@@ -62,8 +62,11 @@ class TotpSetupFragment : ComposeFragment() {
   }
 
   private fun launchTotpApp(uri: String) {
+    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
+      .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+
     try {
-      startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(uri)))
+      startActivity(intent)
     } catch (e: ActivityNotFoundException) {
       Log.w(TAG, "No app is willing to handle the authenticator setup link.", e)
       viewModel.onEvent(TotpSetupEvent.NoTotpAppFound)
