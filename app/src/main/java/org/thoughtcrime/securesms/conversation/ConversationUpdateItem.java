@@ -465,8 +465,8 @@ public final class ConversationUpdateItem extends FrameLayout
   }
 
   private int getCollapsedButtonBottom() {
-    Projection projection = Projection.relativeToViewRoot(collapsedButton, null);
-    int        bottom     = (int) projection.getY() + projection.getHeight();
+    Projection projection = Projection.relativeToParent(this, collapsedButton, null);
+    int        bottom     = (int) projection.getY() + projection.getHeight() + getTop();
     projection.release();
     return bottom;
   }
