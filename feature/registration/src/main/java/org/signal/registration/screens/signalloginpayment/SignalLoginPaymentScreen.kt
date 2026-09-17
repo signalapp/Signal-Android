@@ -139,6 +139,7 @@ private fun OnePaneLayout(
   OnePaneRegistrationScaffold(
     params = params,
     topBar = { BackTopAppBar(scrollBehavior = topBarScrollBehavior, onBackClick = { onEvent(SignalLoginPaymentScreenEvents.BackClicked) }) },
+    includeTopInset = false,
     content = { paddingValues ->
       Column(
         horizontalAlignment = Alignment.CenterHorizontally,
