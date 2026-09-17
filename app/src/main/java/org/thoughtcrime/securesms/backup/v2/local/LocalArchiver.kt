@@ -186,7 +186,7 @@ object LocalArchiver {
         val prefixDirs = HashMap<String, DocumentFile>()
         for (attachment in attachments) {
           if (cancellationSignal()) break
-          val mediaName = MediaName.forLocalBackupFilename(attachment.plaintextHash, attachment.localBackupKey.key)
+          val mediaName = MediaName.forPlaintextExportFilename(attachment.plaintextHash)
 
           try {
             val ext = attachment.contentType

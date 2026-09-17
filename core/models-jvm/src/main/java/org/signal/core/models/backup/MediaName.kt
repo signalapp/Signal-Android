@@ -21,6 +21,11 @@ value class MediaName(val name: String) {
     fun forLocalBackupFilename(plaintextHash: ByteArray, localKey: ByteArray) = MediaName(Hex.toStringCondensed(CryptoUtil.sha256(plaintextHash + localKey)))
 
     /**
+     * Since these are unencrypted, we don't want to create them via the local key.
+     */
+    fun forPlaintextExportFilename(plaintextHash: ByteArray) = MediaName(Hex.toStringCondensed(plaintextHash))
+
+    /**
      * For java, since it struggles with value classes.
      */
     @JvmStatic
