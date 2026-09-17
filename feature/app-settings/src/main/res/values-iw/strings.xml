@@ -141,7 +141,7 @@
     <!-- Instructions shown above the code entry field -->
     <string name="TotpCodeEntryScreen__enter_the_6_digit_code">יש להזין קוד בן 6 ספרות מאפליקציית האימות שלך.</string>
     <!-- Button that submits the entered code -->
-    <string name="TotpCodeEntryScreen__next">Next</string>
+    <string name="TotpCodeEntryScreen__next">הבא</string>
     <!-- Error shown under the code field when the code the user entered was rejected -->
     <string name="TotpCodeEntryScreen__incorrect_code">קוד שגוי. יש להזין את הקוד שמופיע באפליקציית האימות שלך כעת.</string>
     <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->

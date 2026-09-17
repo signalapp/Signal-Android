@@ -141,7 +141,7 @@
     <!-- Instructions shown above the code entry field -->
     <string name="TotpCodeEntryScreen__enter_the_6_digit_code">Inserisci il codice a 6 cifre dalla tua app di autenticazione.</string>
     <!-- Button that submits the entered code -->
-    <string name="TotpCodeEntryScreen__next">Next</string>
+    <string name="TotpCodeEntryScreen__next">Avanti</string>
     <!-- Error shown under the code field when the code the user entered was rejected -->
     <string name="TotpCodeEntryScreen__incorrect_code">Codice errato. Inserisci il codice mostrato ora nella tua app di autenticazione.</string>
     <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->

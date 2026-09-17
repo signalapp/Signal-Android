@@ -141,7 +141,7 @@
     <!-- Instructions shown above the code entry field -->
     <string name="TotpCodeEntryScreen__enter_the_6_digit_code">Vnesite 6-mestno kodo iz svoje aplikacije za preverjanje pristnosti.</string>
     <!-- Button that submits the entered code -->
-    <string name="TotpCodeEntryScreen__next">Next</string>
+    <string name="TotpCodeEntryScreen__next">Naprej</string>
     <!-- Error shown under the code field when the code the user entered was rejected -->
     <string name="TotpCodeEntryScreen__incorrect_code">Napačna koda. Vnesite kodo, prikazano v vaši aplikaciji za preverjanje pristnosti.</string>
     <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->

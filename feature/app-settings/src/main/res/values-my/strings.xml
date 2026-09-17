@@ -141,7 +141,7 @@
     <!-- Instructions shown above the code entry field -->
     <string name="TotpCodeEntryScreen__enter_the_6_digit_code">သင့် အတည်ပြုကုဒ်ထုတ်ပေးသည့် အက်ပ်မှ ရရှိသော ဂဏန်း 6 လုံးပါ ကုဒ်ကို ထည့်ပါ။</string>
     <!-- Button that submits the entered code -->
-    <string name="TotpCodeEntryScreen__next">Next</string>
+    <string name="TotpCodeEntryScreen__next">ဆက်သွားမည်</string>
     <!-- Error shown under the code field when the code the user entered was rejected -->
     <string name="TotpCodeEntryScreen__incorrect_code">ကုဒ် မှားနေပါသည်။ ယခု သင့်အတည်ပြုကုဒ်ထုတ်ပေးသည့် အက်ပ်မှာ ပြသနေသော ကုဒ်ကို ထည့်ပါ။</string>
     <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->

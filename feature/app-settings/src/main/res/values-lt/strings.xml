@@ -141,7 +141,7 @@
     <!-- Instructions shown above the code entry field -->
     <string name="TotpCodeEntryScreen__enter_the_6_digit_code">Įveskite 6 skaitmenų kodą iš autentifikavimo programėlės.</string>
     <!-- Button that submits the entered code -->
-    <string name="TotpCodeEntryScreen__next">Next</string>
+    <string name="TotpCodeEntryScreen__next">Kitas</string>
     <!-- Error shown under the code field when the code the user entered was rejected -->
     <string name="TotpCodeEntryScreen__incorrect_code">Neteisingas kodas. Įveskite kodą, šiuo metu rodomą jūsų autentifikavimo programėlėje.</string>
     <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->

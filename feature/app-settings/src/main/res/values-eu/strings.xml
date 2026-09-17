@@ -141,7 +141,7 @@
     <!-- Instructions shown above the code entry field -->
     <string name="TotpCodeEntryScreen__enter_the_6_digit_code">Idatzi 6 digituko kodea autentifikatzeko aplikaziotik.</string>
     <!-- Button that submits the entered code -->
-    <string name="TotpCodeEntryScreen__next">Next</string>
+    <string name="TotpCodeEntryScreen__next">Hurrengoa</string>
     <!-- Error shown under the code field when the code the user entered was rejected -->
     <string name="TotpCodeEntryScreen__incorrect_code">Kode okerra. Idatzi une honetan autentifikazio-aplikazioan ikusgai dagoen kodea.</string>
     <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->

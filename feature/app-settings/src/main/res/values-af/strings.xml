@@ -141,7 +141,7 @@
     <!-- Instructions shown above the code entry field -->
     <string name="TotpCodeEntryScreen__enter_the_6_digit_code">Voer die 6-syfer-kode vanaf jou bevestigingstoepassing in.</string>
     <!-- Button that submits the entered code -->
-    <string name="TotpCodeEntryScreen__next">Next</string>
+    <string name="TotpCodeEntryScreen__next">Volgende</string>
     <!-- Error shown under the code field when the code the user entered was rejected -->
     <string name="TotpCodeEntryScreen__incorrect_code">Verkeerde kode. Sleutel nou die kode in wat in jou bevestigingstoepassing gewys word.</string>
     <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->

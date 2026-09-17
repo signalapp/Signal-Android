@@ -141,7 +141,7 @@
     <!-- Instructions shown above the code entry field -->
     <string name="TotpCodeEntryScreen__enter_the_6_digit_code">Внесете го кодот од 6 цифри од вашата апликација за автентикација.</string>
     <!-- Button that submits the entered code -->
-    <string name="TotpCodeEntryScreen__next">Next</string>
+    <string name="TotpCodeEntryScreen__next">Следно</string>
     <!-- Error shown under the code field when the code the user entered was rejected -->
     <string name="TotpCodeEntryScreen__incorrect_code">Погрешен код. Внесете го кодот кој се прикажува во вашата апликација за автентикација сега.</string>
     <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->

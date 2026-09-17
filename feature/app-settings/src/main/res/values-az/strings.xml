@@ -141,7 +141,7 @@
     <!-- Instructions shown above the code entry field -->
     <string name="TotpCodeEntryScreen__enter_the_6_digit_code">Autentifikasiya tətbiqində yaradılmış 6 rəqəmli kodu daxil edin.</string>
     <!-- Button that submits the entered code -->
-    <string name="TotpCodeEntryScreen__next">Next</string>
+    <string name="TotpCodeEntryScreen__next">Növbəti</string>
     <!-- Error shown under the code field when the code the user entered was rejected -->
     <string name="TotpCodeEntryScreen__incorrect_code">Səhv kod. Hazırda autentifikasiya tətbiqində göstərilən kodu daxil edin.</string>
     <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->

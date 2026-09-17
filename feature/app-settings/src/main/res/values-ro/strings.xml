@@ -141,7 +141,7 @@
     <!-- Instructions shown above the code entry field -->
     <string name="TotpCodeEntryScreen__enter_the_6_digit_code">Introdu un cod de 6 cifre din aplicația de autentificare.</string>
     <!-- Button that submits the entered code -->
-    <string name="TotpCodeEntryScreen__next">Next</string>
+    <string name="TotpCodeEntryScreen__next">Următorul</string>
     <!-- Error shown under the code field when the code the user entered was rejected -->
     <string name="TotpCodeEntryScreen__incorrect_code">Cod incorect. Introdu codul care apare în aplicația ta de autentificare acum.</string>
     <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->

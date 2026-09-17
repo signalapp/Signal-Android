@@ -141,9 +141,9 @@
     <!-- Instructions shown above the code entry field -->
     <string name="TotpCodeEntryScreen__enter_the_6_digit_code">Saisissez le code à 6 chiffres généré par votre appli d\'authentification.</string>
     <!-- Button that submits the entered code -->
-    <string name="TotpCodeEntryScreen__next">Next</string>
+    <string name="TotpCodeEntryScreen__next">Suivant</string>
     <!-- Error shown under the code field when the code the user entered was rejected -->
-    <string name="TotpCodeEntryScreen__incorrect_code">Code incorrect. Saisissez le code qui s\'affiche actuellement sur votre appli d\'authentification.</string>
+    <string name="TotpCodeEntryScreen__incorrect_code">Code incorrect. Saisissez le code actuellement affiché sur votre appli d\'authentification.</string>
     <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->
     <string name="TotpCodeEntryScreen__couldnt_reach_signal">Impossible d\'accéder à Signal. Veuillez vérifier votre connexion et réessayer.</string>
 
@@ -152,11 +152,11 @@
 
     <!-- TotpNameEntryScreen -->
     <!-- Title of the screen where the user names an authenticator app -->
-    <string name="TotpNameEntryScreen__choose_a_name">Choisissez un nom</string>
+    <string name="TotpNameEntryScreen__choose_a_name">Nommer l\'application</string>
     <!-- Instructions shown above the name field when renaming an authenticator app -->
     <string name="TotpNameEntryScreen__choose_a_unique_name">Donnez un nom à cette appli d\'authentification.</string>
     <!-- Instructions shown above the name field when naming a newly configured authenticator app -->
-    <string name="TotpNameEntryScreen__choose_a_unique_name_to_help_you_identify_it">Donnez un nom à cette appli d\'authentification pour pouvoir l\'identifier facilement.</string>
+    <string name="TotpNameEntryScreen__choose_a_unique_name_to_help_you_identify_it">Nommez cette appli d\'authentification afin de l\'identifier facilement.</string>
     <!-- Label of the name field -->
     <string name="TotpNameEntryScreen__name">Nom</string>
     <!-- Button that submits the entered name -->

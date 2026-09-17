@@ -141,7 +141,7 @@
     <!-- Instructions shown above the code entry field -->
     <string name="TotpCodeEntryScreen__enter_the_6_digit_code">Add meg a 6 jegyű kódot a hitelesítő alkalmazásból.</string>
     <!-- Button that submits the entered code -->
-    <string name="TotpCodeEntryScreen__next">Next</string>
+    <string name="TotpCodeEntryScreen__next">Tovább</string>
     <!-- Error shown under the code field when the code the user entered was rejected -->
     <string name="TotpCodeEntryScreen__incorrect_code">Helytelen kód! Add meg most a hitelesítő alkalmazásodban megjelenő kódot.</string>
     <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->

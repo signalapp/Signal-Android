@@ -141,7 +141,7 @@
     <!-- Instructions shown above the code entry field -->
     <string name="TotpCodeEntryScreen__enter_the_6_digit_code">Introdueix la clau de 6 dígits de la teva app d\'autenticació.</string>
     <!-- Button that submits the entered code -->
-    <string name="TotpCodeEntryScreen__next">Next</string>
+    <string name="TotpCodeEntryScreen__next">Següent</string>
     <!-- Error shown under the code field when the code the user entered was rejected -->
     <string name="TotpCodeEntryScreen__incorrect_code">Clau incorrecta. Introdueix ara la clau de la teva app d\'autenticació.</string>
     <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->

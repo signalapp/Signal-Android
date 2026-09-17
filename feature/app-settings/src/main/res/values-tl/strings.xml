@@ -141,7 +141,7 @@
     <!-- Instructions shown above the code entry field -->
     <string name="TotpCodeEntryScreen__enter_the_6_digit_code">Ilagay ang 6-digit code mula sa authenticator app mo.</string>
     <!-- Button that submits the entered code -->
-    <string name="TotpCodeEntryScreen__next">Next</string>
+    <string name="TotpCodeEntryScreen__next">Susunod</string>
     <!-- Error shown under the code field when the code the user entered was rejected -->
     <string name="TotpCodeEntryScreen__incorrect_code">Maling code. Ilagay ang code na nakikita mo sa authenticator app ngayon.</string>
     <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->

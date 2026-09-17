@@ -141,7 +141,7 @@
     <!-- Instructions shown above the code entry field -->
     <string name="TotpCodeEntryScreen__enter_the_6_digit_code">Γράψε τον 6-ψηφιο κωδικό από την εφαρμογή επαλήθευσης.</string>
     <!-- Button that submits the entered code -->
-    <string name="TotpCodeEntryScreen__next">Next</string>
+    <string name="TotpCodeEntryScreen__next">Επόμενο</string>
     <!-- Error shown under the code field when the code the user entered was rejected -->
     <string name="TotpCodeEntryScreen__incorrect_code">Λάθος κωδικός. Γράψε τον κωδικό από την εφαρμογή επαλήθευσης τώρα.</string>
     <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->

@@ -141,7 +141,7 @@
     <!-- Instructions shown above the code entry field -->
     <string name="TotpCodeEntryScreen__enter_the_6_digit_code">Zadejte 6číselný kód ze své ověřovací aplikace.</string>
     <!-- Button that submits the entered code -->
-    <string name="TotpCodeEntryScreen__next">Next</string>
+    <string name="TotpCodeEntryScreen__next">Další</string>
     <!-- Error shown under the code field when the code the user entered was rejected -->
     <string name="TotpCodeEntryScreen__incorrect_code">Nesprávný kód. Zadejte kód, který se právě zobrazuje ve vaší ověřovací aplikaci.</string>
     <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->

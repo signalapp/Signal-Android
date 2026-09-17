@@ -141,7 +141,7 @@
     <!-- Instructions shown above the code entry field -->
     <string name="TotpCodeEntryScreen__enter_the_6_digit_code">আপনার অথেন্টিকেটর অ্যাপ থেকে ৬-সংখ্যার কোডটি লিখুন।</string>
     <!-- Button that submits the entered code -->
-    <string name="TotpCodeEntryScreen__next">Next</string>
+    <string name="TotpCodeEntryScreen__next">পরবর্তী</string>
     <!-- Error shown under the code field when the code the user entered was rejected -->
     <string name="TotpCodeEntryScreen__incorrect_code">ভুল কোড। এখন আপনার অথেনটিকেটর অ্যাপে দেখানো কোডটি লিখুন।</string>
     <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->

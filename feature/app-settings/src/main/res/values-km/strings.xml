@@ -141,7 +141,7 @@
     <!-- Instructions shown above the code entry field -->
     <string name="TotpCodeEntryScreen__enter_the_6_digit_code">សូមបញ្ចូលលេខកូដ 6 ខ្ទង់ពីកម្មវិធីផ្ទៀងផ្ទាត់របស់អ្នក។</string>
     <!-- Button that submits the entered code -->
-    <string name="TotpCodeEntryScreen__next">Next</string>
+    <string name="TotpCodeEntryScreen__next">បន្ទាប់</string>
     <!-- Error shown under the code field when the code the user entered was rejected -->
     <string name="TotpCodeEntryScreen__incorrect_code">លេខកូដមិនត្រឹមត្រូវ។ សូមបញ្ចូលលេខកូដដែលបង្ហាញនៅក្នុងកម្មវិធីផ្ទៀងផ្ទាត់របស់អ្នកឥឡូវនេះ។</string>
     <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->

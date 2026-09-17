@@ -141,7 +141,7 @@
     <!-- Instructions shown above the code entry field -->
     <string name="TotpCodeEntryScreen__enter_the_6_digit_code">أدخِل الكود المُكوَّن من 6 أرقام من تطبيق المصادقة لديك.</string>
     <!-- Button that submits the entered code -->
-    <string name="TotpCodeEntryScreen__next">Next</string>
+    <string name="TotpCodeEntryScreen__next">التالي</string>
     <!-- Error shown under the code field when the code the user entered was rejected -->
     <string name="TotpCodeEntryScreen__incorrect_code">كود غير صحيح. أدخِل الكود الذي يظهر في تطبيق المصادقة الآن.</string>
     <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->

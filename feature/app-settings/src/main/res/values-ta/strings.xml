@@ -141,7 +141,7 @@
     <!-- Instructions shown above the code entry field -->
     <string name="TotpCodeEntryScreen__enter_the_6_digit_code">உங்கள் அங்கீகரிப்புச் செயலியில் உள்ள 6 இலக்கக் குறியீட்டை உள்ளிடவும்.</string>
     <!-- Button that submits the entered code -->
-    <string name="TotpCodeEntryScreen__next">Next</string>
+    <string name="TotpCodeEntryScreen__next">அடுத்தது</string>
     <!-- Error shown under the code field when the code the user entered was rejected -->
     <string name="TotpCodeEntryScreen__incorrect_code">தவறான குறியீடு. உங்கள் அங்கீகரிப்புச் செயலியில் இப்போது காட்டப்படும் குறியீட்டை உள்ளிடவும்.</string>
     <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->

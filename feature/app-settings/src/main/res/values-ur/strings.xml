@@ -141,7 +141,7 @@
     <!-- Instructions shown above the code entry field -->
     <string name="TotpCodeEntryScreen__enter_the_6_digit_code">اپنی توثیق کار ایپ سے 6 ہندسوں کا کوڈ درج کریں۔</string>
     <!-- Button that submits the entered code -->
-    <string name="TotpCodeEntryScreen__next">Next</string>
+    <string name="TotpCodeEntryScreen__next">اگلا</string>
     <!-- Error shown under the code field when the code the user entered was rejected -->
     <string name="TotpCodeEntryScreen__incorrect_code">غلط کوڈ۔ اب اپنی توثیق کار ایپ میں دکھایا جانے والا کوڈ درج کریں۔</string>
     <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->

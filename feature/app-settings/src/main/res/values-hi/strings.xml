@@ -141,7 +141,7 @@
     <!-- Instructions shown above the code entry field -->
     <string name="TotpCodeEntryScreen__enter_the_6_digit_code">अपने ऑथेंटिकेटर ऐप में दिख रहा 6-अंकों वाला कोड डालें।</string>
     <!-- Button that submits the entered code -->
-    <string name="TotpCodeEntryScreen__next">Next</string>
+    <string name="TotpCodeEntryScreen__next">अगला</string>
     <!-- Error shown under the code field when the code the user entered was rejected -->
     <string name="TotpCodeEntryScreen__incorrect_code">कोड गलत है। अपने ऑथेंटिकेटर ऐप में अभी दिखाई दे रहा कोड डालें।</string>
     <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->

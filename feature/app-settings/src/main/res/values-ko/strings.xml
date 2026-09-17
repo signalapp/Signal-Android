@@ -141,7 +141,7 @@
     <!-- Instructions shown above the code entry field -->
     <string name="TotpCodeEntryScreen__enter_the_6_digit_code">인증 앱에 표시된 6자리 코드를 입력하세요.</string>
     <!-- Button that submits the entered code -->
-    <string name="TotpCodeEntryScreen__next">Next</string>
+    <string name="TotpCodeEntryScreen__next">다음</string>
     <!-- Error shown under the code field when the code the user entered was rejected -->
     <string name="TotpCodeEntryScreen__incorrect_code">올바르지 않은 코드입니다. 지금 인증 앱에 표시된 코드를 입력하세요.</string>
     <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->

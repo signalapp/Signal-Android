@@ -141,7 +141,7 @@
     <!-- Instructions shown above the code entry field -->
     <string name="TotpCodeEntryScreen__enter_the_6_digit_code">ਆਪਣੀ ਪ੍ਰਮਾਣੀਕਰਨ ਐਪ ਤੋਂ 6 ਅੰਕਾਂ ਵਾਲਾ ਕੋਡ ਦਰਜ ਕਰੋ।</string>
     <!-- Button that submits the entered code -->
-    <string name="TotpCodeEntryScreen__next">Next</string>
+    <string name="TotpCodeEntryScreen__next">ਅੱਗੇ</string>
     <!-- Error shown under the code field when the code the user entered was rejected -->
     <string name="TotpCodeEntryScreen__incorrect_code">ਕੋਡ ਗਲਤ ਹੈ। ਤੁਹਾਡੀ ਪ੍ਰਮਾਣੀਕਰਨ ਐਪ ਵਿੱਚ ਇਸ ਵੇਲੇ ਦਿਖ ਰਿਹਾ ਕੋਡ ਦਰਜ ਕਰੋ।</string>
     <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->

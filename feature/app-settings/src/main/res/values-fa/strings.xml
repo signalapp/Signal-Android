@@ -141,7 +141,7 @@
     <!-- Instructions shown above the code entry field -->
     <string name="TotpCodeEntryScreen__enter_the_6_digit_code">کد ۶ رقمی را از برنامه احراز هویت خود وارد کنید.</string>
     <!-- Button that submits the entered code -->
-    <string name="TotpCodeEntryScreen__next">Next</string>
+    <string name="TotpCodeEntryScreen__next">بعدی</string>
     <!-- Error shown under the code field when the code the user entered was rejected -->
     <string name="TotpCodeEntryScreen__incorrect_code">کد نادرست است. اکنون کد نمایش‌داده‌شده در برنامه احراز هویت خود را وارد کنید.</string>
     <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->

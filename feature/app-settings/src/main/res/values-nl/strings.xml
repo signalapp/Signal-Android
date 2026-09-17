@@ -141,7 +141,7 @@
     <!-- Instructions shown above the code entry field -->
     <string name="TotpCodeEntryScreen__enter_the_6_digit_code">Voer de 6-cijferige code uit je authenticatie-app in.</string>
     <!-- Button that submits the entered code -->
-    <string name="TotpCodeEntryScreen__next">Next</string>
+    <string name="TotpCodeEntryScreen__next">Volgende</string>
     <!-- Error shown under the code field when the code the user entered was rejected -->
     <string name="TotpCodeEntryScreen__incorrect_code">Onjuiste code. Voer de code in die nu in je authenticatie-app wordt weergegeven.</string>
     <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->

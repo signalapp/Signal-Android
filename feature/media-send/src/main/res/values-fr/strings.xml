@@ -168,7 +168,7 @@
   <!-- Error message shown when we try to take a photo, but fail when trying to process it (convert it into something the user can see). -->
   <string name="CameraXFragment_photo_processing_failed">Impossible de traiter la photo. Veuillez réessayer.</string>
   <!-- Label shown below the elapsed time while a video recording is paused -->
-  <string name="CameraXFragment_paused">Mis en pause</string>
+  <string name="CameraXFragment_paused">En pause</string>
   <!-- Displayed in a permissions dialog when the user has denied access to hardware for image and video capture. -->
   <string name="CameraXFragment_signal_needs_the_recording_permissions_to_capture_video">Pour enregistrer des vidéos, Signal doit accéder à l\'application Microphone, mais vous lui en avez interdit l\'accès. Dans les paramètres Android, touchez Applications &gt; Signal &gt; Autorisations, puis activez \"Microphone\" et \"Appareil photo\".</string>
 

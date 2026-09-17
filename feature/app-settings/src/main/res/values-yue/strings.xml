@@ -141,7 +141,7 @@
     <!-- Instructions shown above the code entry field -->
     <string name="TotpCodeEntryScreen__enter_the_6_digit_code">輸入驗證 APP 入面嘅 6 位數驗證碼。</string>
     <!-- Button that submits the entered code -->
-    <string name="TotpCodeEntryScreen__next">Next</string>
+    <string name="TotpCodeEntryScreen__next">下一步</string>
     <!-- Error shown under the code field when the code the user entered was rejected -->
     <string name="TotpCodeEntryScreen__incorrect_code">個驗證碼唔啱。輸入而家驗證 APP 入面嘅驗證碼。</string>
     <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->

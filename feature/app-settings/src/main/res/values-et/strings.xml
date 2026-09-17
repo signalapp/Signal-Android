@@ -141,7 +141,7 @@
     <!-- Instructions shown above the code entry field -->
     <string name="TotpCodeEntryScreen__enter_the_6_digit_code">Sisesta oma autentimise äpist 6-kohaline kood.</string>
     <!-- Button that submits the entered code -->
-    <string name="TotpCodeEntryScreen__next">Next</string>
+    <string name="TotpCodeEntryScreen__next">Edasi</string>
     <!-- Error shown under the code field when the code the user entered was rejected -->
     <string name="TotpCodeEntryScreen__incorrect_code">Vale kood. Sisesta praegu autentimisäpis kuvatav kood.</string>
     <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->

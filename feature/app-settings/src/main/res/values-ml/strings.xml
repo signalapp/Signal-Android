@@ -141,7 +141,7 @@
     <!-- Instructions shown above the code entry field -->
     <string name="TotpCodeEntryScreen__enter_the_6_digit_code">നിങ്ങളുടെ ഓതന്റിക്കേറ്റർ ആപ്പിൽ നിന്നുള്ള 6 അക്ക കോഡ് നൽകുക.</string>
     <!-- Button that submits the entered code -->
-    <string name="TotpCodeEntryScreen__next">Next</string>
+    <string name="TotpCodeEntryScreen__next">അടുത്തത്</string>
     <!-- Error shown under the code field when the code the user entered was rejected -->
     <string name="TotpCodeEntryScreen__incorrect_code">കോഡ് തെറ്റാണ്. നിങ്ങളുടെ ഓതൻ്റിക്കേറ്റർ ആപ്പിൽ ഇപ്പോൾ കാണിക്കുന്ന കോഡ് നൽകുക.</string>
     <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->
