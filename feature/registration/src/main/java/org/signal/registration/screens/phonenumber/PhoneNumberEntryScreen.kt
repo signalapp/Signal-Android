@@ -14,6 +14,7 @@ import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -80,6 +81,7 @@ import org.signal.core.ui.compose.IconButtons.IconButton
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.ui.compose.TextFields
 import org.signal.core.util.Util
 import org.signal.core.util.logging.Log
 import org.signal.registration.PendingRestoreOption
@@ -515,6 +517,7 @@ private fun PhoneNumberInputFields(
 ) {
   var phoneNumberTextFieldValue by remember { mutableStateOf(TextFieldValue(state.formattedNumber)) }
   val focusRequester = remember { FocusRequester() }
+  val interactionSource = remember { MutableInteractionSource() }
   val hasValidCountry = state.countryName.isNotEmpty()
   val isAccountId = state.enteredAccountId != null
   val label = if (isAccountId) R.string.RegistrationActivity_account_id else R.string.RegistrationActivity_phone_number_description
@@ -594,7 +597,8 @@ private fun PhoneNumberInputFields(
         .weight(1f)
         .focusRequester(focusRequester)
         .testTag(TestTags.PHONE_NUMBER_PHONE_FIELD),
-      label = { Text(stringResource(label)) },
+      label = { TextFields.Label(stringResource(label), phoneNumberTextFieldValue.text.isNotEmpty(), interactionSource) },
+      interactionSource = interactionSource,
       isError = state.isNumberInvalid || state.accountIdError != null,
       supportingText = supportingText,
       keyboardOptions = if (isAccountId) {

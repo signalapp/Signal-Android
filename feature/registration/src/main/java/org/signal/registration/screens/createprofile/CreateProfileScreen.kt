@@ -11,6 +11,7 @@ import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -50,6 +51,7 @@ import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.ui.compose.TextFields
 import org.signal.core.ui.rememberWindowBreakpoint
 import org.signal.registration.R
 import org.signal.registration.screens.RegistrationScaffold
@@ -113,6 +115,9 @@ private fun CompactLayout(
   onAvatarClick: () -> Unit,
   modifier: Modifier = Modifier
 ) {
+  val givenNameInteractionSource = remember { MutableInteractionSource() }
+  val familyNameInteractionSource = remember { MutableInteractionSource() }
+
   RegistrationScaffold(
     modifier = modifier
       .fillMaxSize()
@@ -152,7 +157,8 @@ private fun CompactLayout(
         OutlinedTextField(
           value = state.givenName,
           onValueChange = { onEvent(CreateProfileScreenEvents.GivenNameChanged(it)) },
-          label = { Text(stringResource(R.string.CreateProfileScreen__first_name_required)) },
+          label = { TextFields.Label(stringResource(R.string.CreateProfileScreen__first_name_required), state.givenName.isNotEmpty(), givenNameInteractionSource) },
+          interactionSource = givenNameInteractionSource,
           singleLine = true,
           enabled = !state.isSubmitting,
           keyboardOptions = KeyboardOptions(
@@ -169,7 +175,8 @@ private fun CompactLayout(
         OutlinedTextField(
           value = state.familyName,
           onValueChange = { onEvent(CreateProfileScreenEvents.FamilyNameChanged(it)) },
-          label = { Text(stringResource(R.string.CreateProfileScreen__last_name_optional)) },
+          label = { TextFields.Label(stringResource(R.string.CreateProfileScreen__last_name_optional), state.familyName.isNotEmpty(), familyNameInteractionSource) },
+          interactionSource = familyNameInteractionSource,
           singleLine = true,
           enabled = !state.isSubmitting,
           keyboardOptions = KeyboardOptions(

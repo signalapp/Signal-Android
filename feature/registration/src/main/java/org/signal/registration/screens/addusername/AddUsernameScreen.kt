@@ -6,6 +6,7 @@
 package org.signal.registration.screens.addusername
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -65,6 +66,7 @@ import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.TextFields
 import org.signal.core.util.UsernameUtil
 import org.signal.libsignal.usernames.Username
 import org.signal.registration.R
@@ -221,6 +223,7 @@ private fun ColumnScope.UsernameEntry(
   onEvent: (AddUsernameScreenEvents) -> Unit
 ) {
   val focusRequester = remember { FocusRequester() }
+  val interactionSource = remember { MutableInteractionSource() }
   val validationMessage: String? = state.validationError?.message()
 
   LaunchedEffect(Unit) {
@@ -244,7 +247,8 @@ private fun ColumnScope.UsernameEntry(
   TextField(
     value = state.username,
     onValueChange = { onEvent(AddUsernameScreenEvents.UsernameChanged(it)) },
-    label = { Text(stringResource(R.string.AddUsernameScreen__username)) },
+    label = { TextFields.Label(stringResource(R.string.AddUsernameScreen__username), state.username.isNotEmpty(), interactionSource) },
+    interactionSource = interactionSource,
     singleLine = true,
     enabled = !state.showSpinner,
     isError = state.validationError != null,

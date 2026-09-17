@@ -6,6 +6,7 @@
 package org.signal.registration.screens.signallogincredentials
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -65,6 +66,7 @@ import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.ui.compose.TextFields
 import org.signal.passwordmanager.SignalCredentialManager
 import org.signal.passwordmanager.compose.attachPasswordAutoFillHelper
 import org.signal.passwordmanager.compose.passwordAutoFillHelper
@@ -302,10 +304,13 @@ private fun AccountIdTextField(
   onEvent: (SignalLoginCredentialEntryScreenEvents) -> Unit,
   modifier: Modifier = Modifier
 ) {
+  val interactionSource = remember { MutableInteractionSource() }
+
   TextField(
     value = state.accountId,
     onValueChange = { onEvent(SignalLoginCredentialEntryScreenEvents.AccountIdChanged(it)) },
-    label = { Text(stringResource(R.string.SignalLoginCredentialEntryScreen__account_id)) },
+    label = { TextFields.Label(stringResource(R.string.SignalLoginCredentialEntryScreen__account_id), state.accountId.isNotEmpty(), interactionSource) },
+    interactionSource = interactionSource,
     singleLine = true,
     textStyle = accountIdTextStyle(),
     colors = TextFieldDefaults.colors(
@@ -344,6 +349,7 @@ private fun RecoveryKeyTextField(
     if (revealed) AepVisualTransformation(RecoveryKeyGroups.GROUP_SIZE) else PasswordVisualTransformation()
   }
   val isError = state.recoveryKey.error != null || state.areCredentialsIncorrect
+  val interactionSource = remember { MutableInteractionSource() }
   val minimizedLabelHeight = MaterialTheme.typography.bodySmall.lineHeight.takeIf { it.isSp } ?: MINIMIZED_LABEL_LINE_HEIGHT
   val firstLineCenterY = with(LocalDensity.current) {
     TEXT_FIELD_TOP_PADDING + minimizedLabelHeight.toDp() + RECOVERY_KEY_LINE_HEIGHT.toDp() / 2
@@ -356,7 +362,8 @@ private fun RecoveryKeyTextField(
         onEvent(SignalLoginCredentialEntryScreenEvents.RecoveryKeyChanged(it))
         autoFillHelper.onValueChanged(it)
       },
-      label = { Text(stringResource(R.string.SignalLoginCredentialEntryScreen__recovery_key)) },
+      label = { TextFields.Label(stringResource(R.string.SignalLoginCredentialEntryScreen__recovery_key), state.recoveryKey.enteredText.isNotEmpty(), interactionSource) },
+      interactionSource = interactionSource,
       singleLine = !revealed,
       minLines = if (revealed) 3 else 1,
       textStyle = MaterialTheme.typography.bodyLarge.copy(

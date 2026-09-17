@@ -8,6 +8,7 @@ package org.signal.registration.screens.signalloginpayment
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -34,6 +35,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -60,6 +62,7 @@ import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.ui.compose.TextFields
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.registration.R
 import org.signal.registration.screens.OnePaneRegistrationScaffold
@@ -451,12 +454,15 @@ private fun ManualReceiptCredentialEntry(
   state: SignalLoginPaymentState,
   onEvent: (SignalLoginPaymentScreenEvents) -> Unit
 ) {
+  val interactionSource = remember { MutableInteractionSource() }
+
   Spacer(modifier = Modifier.height(16.dp))
 
   TextField(
     value = state.manualReceiptCredential.value,
     onValueChange = { onEvent(SignalLoginPaymentScreenEvents.ManualReceiptCredentialChanged(ManualReceiptCredential(it))) },
-    label = { Text(stringResource(R.string.SignalLoginPaymentScreen__paste_a_receipt_credential)) },
+    label = { TextFields.Label(stringResource(R.string.SignalLoginPaymentScreen__paste_a_receipt_credential), state.manualReceiptCredential.value.isNotEmpty(), interactionSource) },
+    interactionSource = interactionSource,
     enabled = !state.showSpinner,
     maxLines = 3,
     modifier = Modifier

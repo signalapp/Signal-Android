@@ -6,7 +6,9 @@
 package org.signal.core.ui.compose
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.interaction.InteractionSource
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsFocusedAsState
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.relocation.BringIntoViewRequester
@@ -20,6 +22,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldColors
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
@@ -38,6 +41,7 @@ import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.takeOrElse
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
@@ -186,6 +190,26 @@ object TextFields {
         }
       )
     }
+  }
+
+  /**
+   * A text field label that sits at Label Medium weight once it has minimized above the input, which is what happens
+   * when the field is focused or already has text in it.
+   *
+   * [interactionSource] must be the same instance given to the text field.
+   */
+  @Composable
+  fun Label(
+    text: String,
+    hasText: Boolean,
+    interactionSource: InteractionSource
+  ) {
+    val isFocused by interactionSource.collectIsFocusedAsState()
+
+    Text(
+      text = text,
+      fontWeight = if (isFocused || hasText) FontWeight.Medium else FontWeight.Normal
+    )
   }
 
   private fun String.createSelection(): TextRange {

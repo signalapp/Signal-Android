@@ -6,6 +6,7 @@
 package org.signal.appsettings.totpnameentry
 
 import androidx.annotation.VisibleForTesting
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -36,6 +37,7 @@ import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.ui.compose.TextFields
 
 @VisibleForTesting
 object TotpNameEntryTestTags {
@@ -53,6 +55,7 @@ fun TotpNameEntryScreen(
   onEvent: (TotpNameEntryEvent) -> Unit
 ) {
   val focusRequester = remember { FocusRequester() }
+  val interactionSource = remember { MutableInteractionSource() }
 
   LaunchedEffect(Unit) {
     focusRequester.requestFocus()
@@ -86,7 +89,8 @@ fun TotpNameEntryScreen(
       TextField(
         value = state.name,
         onValueChange = { onEvent(TotpNameEntryEvent.NameChanged(it)) },
-        label = { Text(text = stringResource(R.string.TotpNameEntryScreen__name)) },
+        label = { TextFields.Label(stringResource(R.string.TotpNameEntryScreen__name), state.name.isNotEmpty(), interactionSource) },
+        interactionSource = interactionSource,
         singleLine = true,
         enabled = !state.submitting,
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text, imeAction = ImeAction.Done),
