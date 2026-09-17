@@ -270,7 +270,7 @@ private fun OnePaneLayout(
       RegistrationScaffold.FooterSurface(
         isElevated = scrollState.canScrollForward
       ) {
-        NextButton(state, onEvent)
+        NextButton(params, state, onEvent)
       }
     }
   )
@@ -320,7 +320,7 @@ private fun TwoPaneLayout(
       RegistrationScaffold.FooterSurface(
         isElevated = firstPaneScrollState.canScrollForward || secondPaneScrollState.canScrollForward
       ) {
-        NextButton(state, onEvent)
+        NextButton(params, state, onEvent)
       }
     }
   )
@@ -400,13 +400,14 @@ private fun Description(twoPane: Boolean = false) {
 
 @Composable
 private fun NextButton(
+  params: RegistrationScaffold.Params,
   state: PhoneNumberEntryState,
   onEvent: (PhoneNumberEntryScreenEvents) -> Unit
 ) {
   Row(
     modifier = Modifier
       .fillMaxWidth()
-      .padding(horizontal = 32.dp, vertical = 16.dp),
+      .padding(params.footerPadding),
     horizontalArrangement = Arrangement.End,
     verticalAlignment = Alignment.CenterVertically
   ) {
