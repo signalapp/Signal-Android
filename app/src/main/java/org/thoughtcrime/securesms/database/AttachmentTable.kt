@@ -624,7 +624,7 @@ class AttachmentTable(
         LocalArchivableAttachment(
           attachmentId = AttachmentId(it.requireLong(ID)),
           file = File(it.requireNonNullString(DATA_FILE)),
-          random = it.requireNonNullBlob(DATA_RANDOM),
+          random = it.requireBlob(DATA_RANDOM),
           size = it.requireLong(DATA_SIZE),
           localBackupKey = AttachmentMetadataTable.getMetadata(it)!!.localBackupKey!!,
           plaintextHash = Base64.decode(it.requireNonNullString(DATA_HASH_END)),
@@ -648,7 +648,7 @@ class AttachmentTable(
         LocalArchivableAttachment(
           attachmentId = AttachmentId(it.requireLong(ID)),
           file = File(it.requireNonNullString(DATA_FILE)),
-          random = it.requireNonNullBlob(DATA_RANDOM),
+          random = it.requireBlob(DATA_RANDOM),
           size = it.requireLong(DATA_SIZE),
           localBackupKey = AttachmentMetadataTable.getMetadata(it)!!.localBackupKey!!,
           plaintextHash = Base64.decode(it.requireNonNullString(DATA_HASH_END)),
@@ -3046,9 +3046,9 @@ class AttachmentTable(
   }
 
   @Throws(FileNotFoundException::class)
-  private fun getDataStream(file: File, random: ByteArray, offset: Long): InputStream? {
+  private fun getDataStream(file: File, random: ByteArray?, offset: Long): InputStream? {
     return try {
-      if (random.size == 32) {
+      if (random != null && random.size == 32) {
         ModernDecryptingPartInputStream.createFor(attachmentSecret, random, file, offset)
       } else {
         val stream = ClassicDecryptingPartInputStream.createFor(attachmentSecret, file)
@@ -4479,7 +4479,8 @@ class AttachmentTable(
   class LocalArchivableAttachment(
     val attachmentId: AttachmentId,
     val file: File,
-    val random: ByteArray,
+    /** Null (or non-32-byte) for very old attachments encrypted with the classic scheme — see [getDataStream]. */
+    val random: ByteArray?,
     val size: Long,
     val plaintextHash: ByteArray,
     val localBackupKey: LocalBackupKey,
