@@ -780,6 +780,36 @@ class EnvelopeContentValidatorTest {
   }
 
   @Test
+  fun `validate - ensure story body range within the bounds of the file attachment caption is marked valid`() {
+    val content = Content(
+      storyMessage = StoryMessage(
+        fileAttachment = AttachmentPointer(cdnKey = "key", caption = "abc"),
+        bodyRanges = listOf(
+          BodyRange(start = 0, length = 3, style = BodyRange.Style.ITALIC)
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Valid)
+  }
+
+  @Test
+  fun `validate - ensure story body range extending past the end of the file attachment caption is marked invalid`() {
+    val content = Content(
+      storyMessage = StoryMessage(
+        fileAttachment = AttachmentPointer(cdnKey = "key", caption = "abc"),
+        bodyRanges = listOf(
+          BodyRange(start = 2, length = 10, style = BodyRange.Style.ITALIC)
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
   fun `validate - ensure story context with a valid author but missing sentTimestamp is marked invalid`() {
     val content = Content(
       dataMessage = DataMessage(

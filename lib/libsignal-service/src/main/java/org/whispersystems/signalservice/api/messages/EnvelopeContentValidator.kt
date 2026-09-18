@@ -414,7 +414,10 @@ object EnvelopeContentValidator {
       return Result.Invalid("[StoryMessage] Style body range is missing a start or length!")
     }
 
-    if (storyMessage.bodyRanges.hasInvalidBounds(storyMessage.textAttachment?.text)) {
+    // Body ranges apply to the text of a text story, or to the caption of a media story.
+    val storyText: String? = storyMessage.textAttachment?.text ?: storyMessage.fileAttachment?.caption
+
+    if (storyMessage.bodyRanges.hasInvalidBounds(storyText)) {
       return Result.Invalid("[StoryMessage] Body range with out-of-bounds start/length!")
     }
 
