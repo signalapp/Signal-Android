@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.components.settings.app.privacy
 
 data class PrivacySettingsState(
+  val hasPhoneNumber: Boolean,
   val blockedCount: Int,
   val readReceipts: Boolean,
   val typingIndicators: Boolean,

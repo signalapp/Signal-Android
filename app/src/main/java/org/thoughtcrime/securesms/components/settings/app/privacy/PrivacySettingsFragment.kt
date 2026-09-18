@@ -119,16 +119,18 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
 
   private fun getConfiguration(state: PrivacySettingsState): DSLConfiguration {
     return configure {
-      clickPref(
-        title = DSLSettingsText.from(R.string.preferences_app_protection__phone_number),
-        summary = DSLSettingsText.from(R.string.preferences_app_protection__choose_who_can_see),
-        onClick = {
-          Navigation.findNavController(requireView())
-            .safeNavigate(R.id.action_privacySettingsFragment_to_phoneNumberPrivacySettingsFragment)
-        }
-      )
+      if (state.hasPhoneNumber) {
+        clickPref(
+          title = DSLSettingsText.from(R.string.preferences_app_protection__phone_number),
+          summary = DSLSettingsText.from(R.string.preferences_app_protection__choose_who_can_see),
+          onClick = {
+            Navigation.findNavController(requireView())
+              .safeNavigate(R.id.action_privacySettingsFragment_to_phoneNumberPrivacySettingsFragment)
+          }
+        )
 
-      dividerPref()
+        dividerPref()
+      }
 
       clickPref(
         title = DSLSettingsText.from(R.string.PrivacySettingsFragment__blocked),

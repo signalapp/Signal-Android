@@ -68,6 +68,7 @@ class PrivacySettingsViewModel(
 
   private fun getState(): PrivacySettingsState {
     return PrivacySettingsState(
+      hasPhoneNumber = !SignalStore.account.isPhoneNumberless,
       blockedCount = 0,
       readReceipts = TextSecurePreferences.isReadReceiptsEnabled(AppDependencies.application),
       typingIndicators = TextSecurePreferences.isTypingIndicatorsEnabled(AppDependencies.application),
