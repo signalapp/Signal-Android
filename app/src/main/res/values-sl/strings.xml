@@ -1474,13 +1474,14 @@
         <item quantity="other">Dodanih je bilo toliko članov_ic: %1$d.</item>
     </plurals>
 
-    <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Nimate pooblastil za to</string>
-    <string name="ManageGroupActivity_not_capable">Nekdo, ki ste ga dodali, uporablja zastarelo različico aplikacije Signal, ki ne podpira novih skupin, in jo mora nadgraditi</string>
-    <string name="ManageGroupActivity_not_announcement_capable">Nekdo izmed dodanih ne podpira skupin za obveščanje in mora najprej posodobiti Signal</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group">Posodobitev skupine ni uspela</string>
-    <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Niste član_ica skupine</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Posodobitev skupine ni uspela, poskusite znova kasneje</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Posodobitev skupine ni uspela zaradi omrežne napake, poskusite znova kasneje</string>
+    <string name="GroupErrors__the_group_was_terminated">Skupina je zaključena.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">Nimate pooblastil za to</string>
+    <string name="GroupErrors__not_capable">Nekdo, ki ste ga dodali, uporablja zastarelo različico aplikacije Signal, ki ne podpira novih skupin, in jo mora nadgraditi</string>
+    <string name="GroupErrors__not_announcement_capable">Nekdo izmed dodanih ne podpira skupin za obveščanje in mora najprej posodobiti Signal</string>
+    <string name="GroupErrors__failed_to_update_the_group">Posodobitev skupine ni uspela</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">Niste član_ica skupine</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Posodobitev skupine ni uspela, poskusite znova kasneje</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Posodobitev skupine ni uspela zaradi omrežne napake, poskusite znova kasneje</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">Uredi ime in sliko</string>
     <string name="ManageGroupActivity_legacy_group">Stara oblika skupine</string>
@@ -6168,26 +6169,6 @@
         <item quantity="few">%1$d nekdanji_e člani_ice</item>
         <item quantity="other">%1$d nekdanjih članov_ic</item>
     </plurals>
-
-    <!-- PermissionsSettingsFragment -->
-    <string name="PermissionsSettingsFragment__add_members">Dodaj člane_ice</string>
-    <string name="PermissionsSettingsFragment__edit_group_info">Urejanje podatkov o skupini</string>
-    <string name="PermissionsSettingsFragment__send_messages">Pošilja sporočila</string>
-    <string name="PermissionsSettingsFragment__all_members">Vsi člani</string>
-    <string name="PermissionsSettingsFragment__only_admins">Samo skrbniki_ce</string>
-    <string name="PermissionsSettingsFragment__who_can_add_new_members">Kdo lahko dodaja nove člane?</string>
-    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Kdo lahko ureja informacije o skupini</string>
-    <string name="PermissionsSettingsFragment__who_can_send_messages">Kdo lahko pošilja sporočila in začenja klice?</string>
-    <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">Dodaj vlogo člana</string>
-    <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">Kdo lahko dodaja vloge članov?</string>
-    <!-- Warning title shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">Vloge članov bodo izbrisane</string>
-    <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"Če to dovoljenje spremenite na Samo skrbniki, boste izbrisali vloge članov, ki so jih v tej skupini nastavili neskrbniki."</string>
-    <!-- Confirm button for changing member label permission after warning. -->
-    <string name="PermissionsSettingsFragment__change_permission">Spremeni dovoljenje</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->

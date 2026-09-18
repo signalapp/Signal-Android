@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <!-- Title of the screen where a group admin picks which actions non-admins can take. -->
+  <string name="GroupPermissionsScreen__permissions">Дозволе</string>
+  <!-- Content description of the button that navigates back off of the group permissions screen. -->
+  <string name="GroupPermissionsScreen__go_back">Иди назад</string>
+  <string name="GroupPermissionsScreen__add_members">Додај чланове</string>
+  <string name="GroupPermissionsScreen__edit_group_info">Уреди информације о групи</string>
+  <string name="GroupPermissionsScreen__send_messages">Слање порука</string>
+  <string name="GroupPermissionsScreen__all_members">Сви чланови</string>
+  <string name="GroupPermissionsScreen__only_admins">Само администратори</string>
+  <string name="GroupPermissionsScreen__who_can_add_new_members">Ко може да додаје нове чланове?</string>
+  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">Ко може да уређује информације о групи?</string>
+  <string name="GroupPermissionsScreen__who_can_send_messages">Ко може да шаље поруке и започиње позиве?</string>
+  <!-- Label for the member labels permission button in the group permissions settings screen. -->
+  <string name="GroupPermissionsScreen__add_member_labels">Додајте ознаку члана</string>
+  <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
+  <string name="GroupPermissionsScreen__who_can_add_member_labels">Ко може да додаје ознаке чланова?</string>
+  <!-- Warning title shown before restricting member labels to admins only. -->
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_title">Ознаке чланова ће бити обрисане</string>
+  <!-- Warning body shown before restricting member labels to admins only. -->
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_body">"Променом ове дозволе у „Само администратори“ ћете обрисати све ознаке чланова које нису поставили администратори ове групе."</string>
+  <!-- Confirm button for changing member label permission after warning. -->
+  <string name="GroupPermissionsScreen__change_permission">Промени дозволу</string>
+</resources>

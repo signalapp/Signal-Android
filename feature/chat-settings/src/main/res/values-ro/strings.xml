@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <!-- Title of the screen where a group admin picks which actions non-admins can take. -->
+  <string name="GroupPermissionsScreen__permissions">Permisiuni</string>
+  <!-- Content description of the button that navigates back off of the group permissions screen. -->
+  <string name="GroupPermissionsScreen__go_back">Înapoi</string>
+  <string name="GroupPermissionsScreen__add_members">Adăugare membri</string>
+  <string name="GroupPermissionsScreen__edit_group_info">Editare informații despre grup</string>
+  <string name="GroupPermissionsScreen__send_messages">Trimitere mesaje</string>
+  <string name="GroupPermissionsScreen__all_members">Toți membri</string>
+  <string name="GroupPermissionsScreen__only_admins">Doar administratorii</string>
+  <string name="GroupPermissionsScreen__who_can_add_new_members">Cine poate adăuga membri?</string>
+  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">Cine poate edita informațiile grupului?</string>
+  <string name="GroupPermissionsScreen__who_can_send_messages">Cine poate trimite mesaje și iniția apeluri?</string>
+  <!-- Label for the member labels permission button in the group permissions settings screen. -->
+  <string name="GroupPermissionsScreen__add_member_labels">Adaugă roluri de membri</string>
+  <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
+  <string name="GroupPermissionsScreen__who_can_add_member_labels">Cine poate adăuga roluri de membri?</string>
+  <!-- Warning title shown before restricting member labels to admins only. -->
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_title">Rolurile de membru vor fi șterse</string>
+  <!-- Warning body shown before restricting member labels to admins only. -->
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_body">"Schimbarea acestei permisiuni la Numai administratori va șterge rolurile de membru setate de persoanele care nu au drept de administrator în acest grup."</string>
+  <!-- Confirm button for changing member label permission after warning. -->
+  <string name="GroupPermissionsScreen__change_permission">Schimbă permisiunea</string>
+</resources>

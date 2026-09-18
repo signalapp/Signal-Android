@@ -8,6 +8,7 @@ import androidx.annotation.WorkerThread;
 
 import org.signal.core.models.ServiceId;
 import org.signal.core.util.Util;
+import org.signal.core.util.groups.GroupChangeException;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.metadata.certificate.SenderCertificate;
 import org.signal.libsignal.protocol.InvalidKeyException;
@@ -26,7 +27,6 @@ import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.database.model.GroupSendEndorsementRecords;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
-import org.thoughtcrime.securesms.groups.GroupChangeException;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob;

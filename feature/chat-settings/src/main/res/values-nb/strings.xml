@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <!-- Title of the screen where a group admin picks which actions non-admins can take. -->
+  <string name="GroupPermissionsScreen__permissions">Tillatelser</string>
+  <!-- Content description of the button that navigates back off of the group permissions screen. -->
+  <string name="GroupPermissionsScreen__go_back">Gå tilbake</string>
+  <string name="GroupPermissionsScreen__add_members">Legg til medlemmer</string>
+  <string name="GroupPermissionsScreen__edit_group_info">Rediger gruppe info</string>
+  <string name="GroupPermissionsScreen__send_messages">Send meldinger</string>
+  <string name="GroupPermissionsScreen__all_members">Alle medlemmer</string>
+  <string name="GroupPermissionsScreen__only_admins">Kun administratorer</string>
+  <string name="GroupPermissionsScreen__who_can_add_new_members">Hvem kan legge til nye medlemmer?</string>
+  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">Hvem kan redigere gruppens info?</string>
+  <string name="GroupPermissionsScreen__who_can_send_messages">Hvem kan sende meldinger og foreta anrop?</string>
+  <!-- Label for the member labels permission button in the group permissions settings screen. -->
+  <string name="GroupPermissionsScreen__add_member_labels">Legg til medlemsmerker</string>
+  <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
+  <string name="GroupPermissionsScreen__who_can_add_member_labels">Hvem kan legge til medlemsmerker?</string>
+  <!-- Warning title shown before restricting member labels to admins only. -->
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_title">Medlemsmerker slettes</string>
+  <!-- Warning body shown before restricting member labels to admins only. -->
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_body">"Hvis du velger at kun administratorer kan opprette medlemsmerker, fjernes merkene som er valgt av medlemmer uten administratortilgang."</string>
+  <!-- Confirm button for changing member label permission after warning. -->
+  <string name="GroupPermissionsScreen__change_permission">Endre tillatelsen</string>
+</resources>

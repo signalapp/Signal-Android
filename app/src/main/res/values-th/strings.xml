@@ -1345,13 +1345,14 @@
         <item quantity="other">%1$d สมาชิกถูกเพิ่ม</item>
     </plurals>
 
-    <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">คุณไม่มีสิทธิ์ทำสิ่งนี้</string>
-    <string name="ManageGroupActivity_not_capable">บุคคลที่คุณเพิ่มเข้ากลุ่ม ใช้กลุ่มแบบใหม่ไม่ได้ และจะต้องปรับรุ่น Signal</string>
-    <string name="ManageGroupActivity_not_announcement_capable">บุคคลที่คุณเพิ่มไม่รองรับกลุ่มประกาศ และต้องปรับปรุง Signal</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group">ปรับปรุงกลุ่มไม่สำเร็จ</string>
-    <string name="ManageGroupActivity_youre_not_a_member_of_the_group">คุณไม่ใช่สมาชิกของกลุ่มนี้</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">ปรับปรุงกลุ่มไม่สำเร็จ โปรดลองอีกครั้งในภายหลัง</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">ปรับปรุงกลุ่มไม่สำเร็จเนื่องจากความผิดพลาดของเครือข่าย โปรดลองอีกครั้งในภายหลัง</string>
+    <string name="GroupErrors__the_group_was_terminated">กลุ่มถูกปิดแล้ว</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">คุณไม่มีสิทธิ์ทำสิ่งนี้</string>
+    <string name="GroupErrors__not_capable">บุคคลที่คุณเพิ่มเข้ากลุ่ม ใช้กลุ่มแบบใหม่ไม่ได้ และจะต้องปรับรุ่น Signal</string>
+    <string name="GroupErrors__not_announcement_capable">บุคคลที่คุณเพิ่มไม่รองรับกลุ่มประกาศ และต้องปรับปรุง Signal</string>
+    <string name="GroupErrors__failed_to_update_the_group">ปรับปรุงกลุ่มไม่สำเร็จ</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">คุณไม่ใช่สมาชิกของกลุ่มนี้</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">ปรับปรุงกลุ่มไม่สำเร็จ โปรดลองอีกครั้งในภายหลัง</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">ปรับปรุงกลุ่มไม่สำเร็จเนื่องจากความผิดพลาดของเครือข่าย โปรดลองอีกครั้งในภายหลัง</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">แก้ไขชื่อและภาพ</string>
     <string name="ManageGroupActivity_legacy_group">กลุ่มแบบเก่า</string>
@@ -5721,26 +5722,6 @@
     <plurals name="ConversationSettingsFragment__d_former_members">
         <item quantity="other">%1$d คนที่เคยเป็นสมาชิก</item>
     </plurals>
-
-    <!-- PermissionsSettingsFragment -->
-    <string name="PermissionsSettingsFragment__add_members">เพิ่มสมาชิก</string>
-    <string name="PermissionsSettingsFragment__edit_group_info">แก้ไขข้อมูลกลุ่ม</string>
-    <string name="PermissionsSettingsFragment__send_messages">ส่งข้อความ</string>
-    <string name="PermissionsSettingsFragment__all_members">สมาชิกทุกคน</string>
-    <string name="PermissionsSettingsFragment__only_admins">เฉพาะผู้ดูแล</string>
-    <string name="PermissionsSettingsFragment__who_can_add_new_members">ใครสามารถเพิ่มสมาชิกใหม่?</string>
-    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">ใครสามารถแก้ไขข้อมูลของกลุ่มนี้ได้?</string>
-    <string name="PermissionsSettingsFragment__who_can_send_messages">เลือกอนุญาตสิทธิ์ในการส่งข้อความและเริ่มการโทร</string>
-    <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">เพิ่มป้ายกำกับสมาชิก</string>
-    <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">ใครบ้างที่สามารถเพิ่มป้ายกำกับสมาชิก</string>
-    <!-- Warning title shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">ป้ายกำกับสมาชิกจะถูกล้าง</string>
-    <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"เมื่อเปลี่ยนการตั้งค่าสิทธิ์นี้เป็นเฉพาะผู้ดูแล ป้ายกำกับสมาชิกที่ไม่ได้กำหนดโดยผู้ดูแลกลุ่มนี้จะถูกล้าง"</string>
-    <!-- Confirm button for changing member label permission after warning. -->
-    <string name="PermissionsSettingsFragment__change_permission">เปลี่ยนการตั้งค่าสิทธิ์</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->

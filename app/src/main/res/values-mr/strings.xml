@@ -1388,13 +1388,14 @@
         <item quantity="other">%1$d सदस्य जोडले.</item>
     </plurals>
 
-    <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">आपल्याकडे हे करण्याचे अधिकार नाहीत</string>
-    <string name="ManageGroupActivity_not_capable">आपण जोडलेला कोणीतरी नवीन गटांना समर्थन देत नाही आणि Signal अद्यतनित करण्याची आवश्यकता आहे</string>
-    <string name="ManageGroupActivity_not_announcement_capable">आपण जोडलेला कोणीतरी घोषणा गटांना समर्थन देत नाही आणि Signal अद्यतनित करण्याची आवश्यकता आहे</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group">गट अद्यतनित करण्यात अयशस्वी</string>
-    <string name="ManageGroupActivity_youre_not_a_member_of_the_group">आपण या गटाचे सदस्य नाही</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">गट अद्यतनित करण्यात अयशस्वी कृपया नंतर पुन्हा प्रयत्न करा</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">नेटवर्क त्रुटीमुळे गट अद्यतनित करण्यात अयशस्वी, कृपया नंतर पुन्हा प्रयत्न करा</string>
+    <string name="GroupErrors__the_group_was_terminated">गट बंद झाला.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">आपल्याकडे हे करण्याचे अधिकार नाहीत</string>
+    <string name="GroupErrors__not_capable">आपण जोडलेला कोणीतरी नवीन गटांना समर्थन देत नाही आणि Signal अद्यतनित करण्याची आवश्यकता आहे</string>
+    <string name="GroupErrors__not_announcement_capable">आपण जोडलेला कोणीतरी घोषणा गटांना समर्थन देत नाही आणि Signal अद्यतनित करण्याची आवश्यकता आहे</string>
+    <string name="GroupErrors__failed_to_update_the_group">गट अद्यतनित करण्यात अयशस्वी</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">आपण या गटाचे सदस्य नाही</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">गट अद्यतनित करण्यात अयशस्वी कृपया नंतर पुन्हा प्रयत्न करा</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">नेटवर्क त्रुटीमुळे गट अद्यतनित करण्यात अयशस्वी, कृपया नंतर पुन्हा प्रयत्न करा</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">नाव आणि चित्र संपादित करा</string>
     <string name="ManageGroupActivity_legacy_group">लेगसी गट</string>
@@ -5870,26 +5871,6 @@
         <item quantity="one">%1$d भूतपूर्व सदस्य</item>
         <item quantity="other">%1$d भूतपूर्व सदस्य</item>
     </plurals>
-
-    <!-- PermissionsSettingsFragment -->
-    <string name="PermissionsSettingsFragment__add_members">सदस्य जोडा</string>
-    <string name="PermissionsSettingsFragment__edit_group_info">गट माहिती संपादित करा</string>
-    <string name="PermissionsSettingsFragment__send_messages">संदेश पाठवा</string>
-    <string name="PermissionsSettingsFragment__all_members">सर्व सदस्य</string>
-    <string name="PermissionsSettingsFragment__only_admins">केवळ प्रशासक</string>
-    <string name="PermissionsSettingsFragment__who_can_add_new_members">नवीन सदस्य कोण जोडू शकतो?</string>
-    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">या गटाची माहिती कोण संपादित करू शकतो?</string>
-    <string name="PermissionsSettingsFragment__who_can_send_messages">संदेश कोण पाठवू शकतात आणि कॉल सुरू करू शकतात?</string>
-    <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">सदस्य लेबल्स समाविष्ट करा</string>
-    <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">सदस्य लेबल्स कोण समाविष्ट करू शकते?</string>
-    <!-- Warning title shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">सदस्य लेबल्स नाहीशी होतील</string>
-    <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"ही अनुमती बदलून केवळ अ‍ॅडमिन्स केल्याने या गटात अ‍ॅडमिन्स नसणाऱ्यांनी सेट केलेली सदस्य लेबल्स नाहीशी होतील."</string>
-    <!-- Confirm button for changing member label permission after warning. -->
-    <string name="PermissionsSettingsFragment__change_permission">अनुमती बदला</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->

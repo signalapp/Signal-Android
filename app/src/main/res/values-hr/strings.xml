@@ -1474,13 +1474,14 @@
         <item quantity="other">Dodano je %1$d članova.</item>
     </plurals>
 
-    <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Nemate prava na ovo</string>
-    <string name="ManageGroupActivity_not_capable">Netko koga ste dodali ne podržava nove grupe i mora ažurirati Signal</string>
-    <string name="ManageGroupActivity_not_announcement_capable">Netko koga ste dodali ne podržava grupne najave i mora ažurirati Signal</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group">Ažuriranje grupe nije uspjelo</string>
-    <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Vi niste član ove grupe</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Ažuriranje grupe nije uspjelo, pokušajte ponovno</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Ažuriranje grupe nije uspjelo zbog mrežne pogreške, pokušajte ponovno</string>
+    <string name="GroupErrors__the_group_was_terminated">Grupni razgovor je zatvoren.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">Nemate prava na ovo</string>
+    <string name="GroupErrors__not_capable">Netko koga ste dodali ne podržava nove grupe i mora ažurirati Signal</string>
+    <string name="GroupErrors__not_announcement_capable">Netko koga ste dodali ne podržava grupne najave i mora ažurirati Signal</string>
+    <string name="GroupErrors__failed_to_update_the_group">Ažuriranje grupe nije uspjelo</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">Vi niste član ove grupe</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Ažuriranje grupe nije uspjelo, pokušajte ponovno</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Ažuriranje grupe nije uspjelo zbog mrežne pogreške, pokušajte ponovno</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">Uredi naziv i sliku</string>
     <string name="ManageGroupActivity_legacy_group">Naslijeđena grupa</string>
@@ -6168,26 +6169,6 @@
         <item quantity="many">%1$d bivših članova</item>
         <item quantity="other">%1$d bivša člana</item>
     </plurals>
-
-    <!-- PermissionsSettingsFragment -->
-    <string name="PermissionsSettingsFragment__add_members">Dodaj članove</string>
-    <string name="PermissionsSettingsFragment__edit_group_info">Uredi detalje o grupi</string>
-    <string name="PermissionsSettingsFragment__send_messages">Slanje poruka</string>
-    <string name="PermissionsSettingsFragment__all_members">Svi članovi</string>
-    <string name="PermissionsSettingsFragment__only_admins">Samo administratori</string>
-    <string name="PermissionsSettingsFragment__who_can_add_new_members">Tko može dodati nove članove?</string>
-    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Tko može urediti detalje o grupi?</string>
-    <string name="PermissionsSettingsFragment__who_can_send_messages">Tko može slati poruke i započinjati pozive?</string>
-    <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">Dodavanje uloga članova</string>
-    <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">Tko može dodati uloge članova?</string>
-    <!-- Warning title shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">Uloge članova bit će poništene</string>
-    <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"Promjenom ovog dopuštenja u „Samo administratori“ izbrisat će se uloge članova koje su postavili članovi grupe koji nisu administratori."</string>
-    <!-- Confirm button for changing member label permission after warning. -->
-    <string name="PermissionsSettingsFragment__change_permission">Promijeni dopuštenje</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->

@@ -14,12 +14,12 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.signal.core.util.StringUtil
 import org.signal.core.util.concurrent.SignalDispatchers
+import org.signal.core.util.groups.GroupInsufficientRightsException
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.network.NetworkResult
 import org.thoughtcrime.securesms.conversation.colors.NameColor
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
-import org.thoughtcrime.securesms.groups.GroupInsufficientRightsException
 import org.thoughtcrime.securesms.groups.memberlabel.MemberLabelUiState.SaveState
 import org.thoughtcrime.securesms.groups.ui.GroupMemberOrder
 import org.thoughtcrime.securesms.recipients.Recipient

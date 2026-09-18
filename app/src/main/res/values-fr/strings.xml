@@ -1388,13 +1388,14 @@
         <item quantity="other">%1$d membres ajoutés.</item>
     </plurals>
 
-    <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Vous n’avez pas les droits pour ce faire</string>
-    <string name="ManageGroupActivity_not_capable">Un des membres que vous avez ajoutés ne peut utiliser les Nouveaux groupes et doit installer la dernière version de Signal.</string>
-    <string name="ManageGroupActivity_not_announcement_capable">Un des membres que vous avez ajoutés ne peut utiliser les groupes de diffusion et doit installer la dernière version de Signal.</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group">Échec de la mise à jour du groupe</string>
-    <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Vous ne faites pas partie de ce groupe</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Échec de la mise à jour du groupe. Veuillez réessayer plus tard.</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Une erreur réseau nous empêche de mettre à jour le groupe. Veuillez réessayer plus tard.</string>
+    <string name="GroupErrors__the_group_was_terminated">Le groupe a été désactivé.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">Vous n’avez pas les droits pour ce faire</string>
+    <string name="GroupErrors__not_capable">Un des membres que vous avez ajoutés ne peut utiliser les Nouveaux groupes et doit installer la dernière version de Signal.</string>
+    <string name="GroupErrors__not_announcement_capable">Un des membres que vous avez ajoutés ne peut utiliser les groupes de diffusion et doit installer la dernière version de Signal.</string>
+    <string name="GroupErrors__failed_to_update_the_group">Échec de la mise à jour du groupe</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">Vous ne faites pas partie de ce groupe</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Échec de la mise à jour du groupe. Veuillez réessayer plus tard.</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Une erreur réseau nous empêche de mettre à jour le groupe. Veuillez réessayer plus tard.</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">Changer d\'image et renommer</string>
     <string name="ManageGroupActivity_legacy_group">Groupe hérité</string>
@@ -5870,26 +5871,6 @@
         <item quantity="one">%1$d ancien membre</item>
         <item quantity="other">%1$d anciens membres</item>
     </plurals>
-
-    <!-- PermissionsSettingsFragment -->
-    <string name="PermissionsSettingsFragment__add_members">Ajouter des membres</string>
-    <string name="PermissionsSettingsFragment__edit_group_info">Modifier les infos du groupe</string>
-    <string name="PermissionsSettingsFragment__send_messages">Envoyer des messages</string>
-    <string name="PermissionsSettingsFragment__all_members">Tous les membres</string>
-    <string name="PermissionsSettingsFragment__only_admins">Les administrateurs</string>
-    <string name="PermissionsSettingsFragment__who_can_add_new_members">Qui peut ajouter de nouveaux membres ?</string>
-    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Qui peut modifier les infos de ce groupe ?</string>
-    <string name="PermissionsSettingsFragment__who_can_send_messages">Qui peut envoyer des messages et passer des appels ?</string>
-    <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">Créer des étiquettes de membre</string>
-    <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">Qui peut créer des étiquettes de membre ?</string>
-    <!-- Warning title shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">Les étiquettes de membre seront supprimées</string>
-    <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"Si vous définissez cette autorisation sur \"Les administrateurs\", toutes les étiquettes créées par d\'autres membres que les admins seront supprimées de ce groupe."</string>
-    <!-- Confirm button for changing member label permission after warning. -->
-    <string name="PermissionsSettingsFragment__change_permission">Modifier l\'autorisation</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->

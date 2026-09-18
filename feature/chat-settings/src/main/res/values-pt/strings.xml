@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <!-- Title of the screen where a group admin picks which actions non-admins can take. -->
+  <string name="GroupPermissionsScreen__permissions">Permissões</string>
+  <!-- Content description of the button that navigates back off of the group permissions screen. -->
+  <string name="GroupPermissionsScreen__go_back">Voltar</string>
+  <string name="GroupPermissionsScreen__add_members">Adicionar membros</string>
+  <string name="GroupPermissionsScreen__edit_group_info">Editar informação do grupo</string>
+  <string name="GroupPermissionsScreen__send_messages">Enviar mensagens</string>
+  <string name="GroupPermissionsScreen__all_members">Todos os membros</string>
+  <string name="GroupPermissionsScreen__only_admins">Apenas administradores</string>
+  <string name="GroupPermissionsScreen__who_can_add_new_members">Quem pode adicionar novos membros?</string>
+  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">Quem pode editar a informação do grupo?</string>
+  <string name="GroupPermissionsScreen__who_can_send_messages">Quem é que pode enviar mensagens e iniciar chamadas?</string>
+  <!-- Label for the member labels permission button in the group permissions settings screen. -->
+  <string name="GroupPermissionsScreen__add_member_labels">Adicionar etiqueta de membro</string>
+  <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
+  <string name="GroupPermissionsScreen__who_can_add_member_labels">Quem pode adicionar etiquetas de membros?</string>
+  <!-- Warning title shown before restricting member labels to admins only. -->
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_title">As etiquetas dos membros serão apagadas</string>
+  <!-- Warning body shown before restricting member labels to admins only. -->
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_body">"Alterar esta permissão para \"Apenas administradores\" irá apagar as etiquetas de membros definidas por não administradores neste grupo."</string>
+  <!-- Confirm button for changing member label permission after warning. -->
+  <string name="GroupPermissionsScreen__change_permission">Alterar permissão</string>
+</resources>

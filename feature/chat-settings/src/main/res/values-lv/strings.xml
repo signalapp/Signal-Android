@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <!-- Title of the screen where a group admin picks which actions non-admins can take. -->
+  <string name="GroupPermissionsScreen__permissions">Atļaujas</string>
+  <!-- Content description of the button that navigates back off of the group permissions screen. -->
+  <string name="GroupPermissionsScreen__go_back">Atgriezties</string>
+  <string name="GroupPermissionsScreen__add_members">Pievienot dalībniekus</string>
+  <string name="GroupPermissionsScreen__edit_group_info">Rediģēt grupas informāciju</string>
+  <string name="GroupPermissionsScreen__send_messages">Nosūtīt ziņas</string>
+  <string name="GroupPermissionsScreen__all_members">Visi lietotāji</string>
+  <string name="GroupPermissionsScreen__only_admins">Tikai administratori</string>
+  <string name="GroupPermissionsScreen__who_can_add_new_members">Ka var pievienot jaunus lietotājus?</string>
+  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">Kas var rediģēt šīs grupas informāciju?</string>
+  <string name="GroupPermissionsScreen__who_can_send_messages">Kurš var nosūtīt ziņas un uzsākt zvanus?</string>
+  <!-- Label for the member labels permission button in the group permissions settings screen. -->
+  <string name="GroupPermissionsScreen__add_member_labels">Pievienot lietotāja emblēmu</string>
+  <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
+  <string name="GroupPermissionsScreen__who_can_add_member_labels">Kas var pievienot lietotāja emblēmas?</string>
+  <!-- Warning title shown before restricting member labels to admins only. -->
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_title">Lietotāja emblēmas tiks dzēstas</string>
+  <!-- Warning body shown before restricting member labels to admins only. -->
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_body">"Mainot šo atļauju uz \"Tikai administratori\", tiks dzēstas lietotāja emblēmas, ko šajā grupā iestatījušas personas, kas nav administratori."</string>
+  <!-- Confirm button for changing member label permission after warning. -->
+  <string name="GroupPermissionsScreen__change_permission">Mainīt atļauju</string>
+</resources>

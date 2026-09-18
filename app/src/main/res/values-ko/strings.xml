@@ -1345,13 +1345,14 @@
         <item quantity="other">멤버 %1$d명이 추가됨.</item>
     </plurals>
 
-    <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">이 작업을 수행할 권한이 없습니다.</string>
-    <string name="ManageGroupActivity_not_capable">추가한 사용자가 새 그룹을 지원하지 않으며, Signal을 업데이트해야 합니다.</string>
-    <string name="ManageGroupActivity_not_announcement_capable">추가한 사용자가 알림 그룹을 지원하지 않으며, Signal을 업데이트해야 합니다.</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group">그룹을 업데이트하지 못했습니다</string>
-    <string name="ManageGroupActivity_youre_not_a_member_of_the_group">그룹의 멤버가 아닙니다.</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">그룹을 업데이트하지 못했습니다. 나중에 다시 시도해 주세요.</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">네트워크 오류로 인해 그룹을 업데이트하지 못했습니다. 나중에 다시 시도해 주세요.</string>
+    <string name="GroupErrors__the_group_was_terminated">그룹이 종료되었습니다.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">이 작업을 수행할 권한이 없습니다.</string>
+    <string name="GroupErrors__not_capable">추가한 사용자가 새 그룹을 지원하지 않으며, Signal을 업데이트해야 합니다.</string>
+    <string name="GroupErrors__not_announcement_capable">추가한 사용자가 알림 그룹을 지원하지 않으며, Signal을 업데이트해야 합니다.</string>
+    <string name="GroupErrors__failed_to_update_the_group">그룹을 업데이트하지 못했습니다</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">그룹의 멤버가 아닙니다.</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">그룹을 업데이트하지 못했습니다. 나중에 다시 시도해 주세요.</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">네트워크 오류로 인해 그룹을 업데이트하지 못했습니다. 나중에 다시 시도해 주세요.</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">이름 및 사진 수정하기</string>
     <string name="ManageGroupActivity_legacy_group">레거시 그룹</string>
@@ -5721,26 +5722,6 @@
     <plurals name="ConversationSettingsFragment__d_former_members">
         <item quantity="other">이전 멤버 %1$d명</item>
     </plurals>
-
-    <!-- PermissionsSettingsFragment -->
-    <string name="PermissionsSettingsFragment__add_members">멤버 추가</string>
-    <string name="PermissionsSettingsFragment__edit_group_info">그룹 정보 수정</string>
-    <string name="PermissionsSettingsFragment__send_messages">메시지 보내기</string>
-    <string name="PermissionsSettingsFragment__all_members">모든 멤버</string>
-    <string name="PermissionsSettingsFragment__only_admins">관리자</string>
-    <string name="PermissionsSettingsFragment__who_can_add_new_members">새로운 멤버를 추가할 수 있는 사용자를 선택하세요.</string>
-    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">그룹 정보를 수정할 수 있는 사용자를 선택하세요.</string>
-    <string name="PermissionsSettingsFragment__who_can_send_messages">메시지를 보내고 통화를 시작할 수 있는 사용자를 선택하세요.</string>
-    <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">멤버 라벨 추가</string>
-    <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">멤버 라벨을 추가할 수 있는 사람을 선택하세요.</string>
-    <!-- Warning title shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">멤버 라벨이 제거됩니다</string>
-    <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"이 권한을 \'관리자\'로 변경하면 이 그룹에서 관리자가 아닌 멤버가 설정한 라벨이 모두 제거됩니다."</string>
-    <!-- Confirm button for changing member label permission after warning. -->
-    <string name="PermissionsSettingsFragment__change_permission">권한 변경</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->

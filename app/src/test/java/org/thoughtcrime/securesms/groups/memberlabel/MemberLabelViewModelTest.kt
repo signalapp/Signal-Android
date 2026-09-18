@@ -19,10 +19,10 @@ import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.signal.core.util.groups.GroupInsufficientRightsException
 import org.signal.network.NetworkResult
 import org.thoughtcrime.securesms.conversation.colors.NameColor
 import org.thoughtcrime.securesms.groups.GroupId
-import org.thoughtcrime.securesms.groups.GroupInsufficientRightsException
 import org.thoughtcrime.securesms.groups.memberlabel.MemberLabelUiState.SaveState
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId

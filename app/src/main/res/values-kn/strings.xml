@@ -1388,13 +1388,14 @@
         <item quantity="other">%1$d ಸದಸ್ಯರನ್ನು ಸೇರಿಸಲಾಗಿದೆ.</item>
     </plurals>
 
-    <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">ಇದನ್ನು ಮಾಡಲು ನಿಮಗೆ ಅನುಮತಿ ಇಲ್ಲ</string>
-    <string name="ManageGroupActivity_not_capable">ನೀವು ಸೇರಿಸಿದ ಯಾರೋ ಹೊಸ ಗ್ರೂಪ್‌ಗಳನ್ನು ಬೆಂಬಲಿಸುವುದಿಲ್ಲ ಮತ್ತು ಅವರು Signal ಅಪ್‌ಡೇಟ್‌ ಮಾಡಬೇಕಿದೆ</string>
-    <string name="ManageGroupActivity_not_announcement_capable">ನೀವು ಸೇರಿಸಿದ ಯಾರೋ ಘೋಷಣಾ ಗ್ರೂಪ್‌ಗಳನ್ನು ಬೆಂಬಲಿಸುವುದಿಲ್ಲ ಮತ್ತು ಅವರು Signal ನವೀಕರಿಸಬೇಕಿದೆ</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group">ಗ್ರೂಪ್‌ ಅಪ್‌ಡೇಟ್ ಮಾಡಲು ವಿಫಲವಾಗಿದೆ</string>
-    <string name="ManageGroupActivity_youre_not_a_member_of_the_group">ನೀವು ಈ ಗುಂಪಿನ ಸದಸ್ಯರಲ್ಲ</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">ಗ್ರೂಪ್‌ ಅಪ್‌ಡೇಟ್‌ ಮಾಡಲು ವಿಫಲವಾಗಿದೆ. ದಯವಿಟ್ಟು ನಂತರ ಪುನಃ ಪ್ರಯತ್ನಿಸಿ</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">ನೆಟ್‌ವರ್ಕ್‌ ದೋಷದಿಂದಾಗಿ ಗ್ರೂಪ್ ಅಪ್‌ಡೇಟ್ ಮಾಡಲು ವಿಫಲವಾಗಿದೆ, ದಯವಿಟ್ಟು ನಂತರ ಪುನಃ ಪ್ರಯತ್ನಿಸಿ</string>
+    <string name="GroupErrors__the_group_was_terminated">ಈ ಗುಂಪು ಕೊನೆಗೊಂಡಿದೆ.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">ಇದನ್ನು ಮಾಡಲು ನಿಮಗೆ ಅನುಮತಿ ಇಲ್ಲ</string>
+    <string name="GroupErrors__not_capable">ನೀವು ಸೇರಿಸಿದ ಯಾರೋ ಹೊಸ ಗ್ರೂಪ್‌ಗಳನ್ನು ಬೆಂಬಲಿಸುವುದಿಲ್ಲ ಮತ್ತು ಅವರು Signal ಅಪ್‌ಡೇಟ್‌ ಮಾಡಬೇಕಿದೆ</string>
+    <string name="GroupErrors__not_announcement_capable">ನೀವು ಸೇರಿಸಿದ ಯಾರೋ ಘೋಷಣಾ ಗ್ರೂಪ್‌ಗಳನ್ನು ಬೆಂಬಲಿಸುವುದಿಲ್ಲ ಮತ್ತು ಅವರು Signal ನವೀಕರಿಸಬೇಕಿದೆ</string>
+    <string name="GroupErrors__failed_to_update_the_group">ಗ್ರೂಪ್‌ ಅಪ್‌ಡೇಟ್ ಮಾಡಲು ವಿಫಲವಾಗಿದೆ</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">ನೀವು ಈ ಗುಂಪಿನ ಸದಸ್ಯರಲ್ಲ</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">ಗ್ರೂಪ್‌ ಅಪ್‌ಡೇಟ್‌ ಮಾಡಲು ವಿಫಲವಾಗಿದೆ. ದಯವಿಟ್ಟು ನಂತರ ಪುನಃ ಪ್ರಯತ್ನಿಸಿ</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">ನೆಟ್‌ವರ್ಕ್‌ ದೋಷದಿಂದಾಗಿ ಗ್ರೂಪ್ ಅಪ್‌ಡೇಟ್ ಮಾಡಲು ವಿಫಲವಾಗಿದೆ, ದಯವಿಟ್ಟು ನಂತರ ಪುನಃ ಪ್ರಯತ್ನಿಸಿ</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">ಹೆಸರು ಮತ್ತು ಚಿತ್ರವನ್ನು ಎಡಿಟ್ ಮಾಡಿ</string>
     <string name="ManageGroupActivity_legacy_group">ಹಳೆಯ ಗುಂಪು</string>
@@ -5870,26 +5871,6 @@
         <item quantity="one">%1$d ಮಾಜಿ ಸದಸ್ಯರು</item>
         <item quantity="other">%1$d ಮಾಜಿ ಸದಸ್ಯರುಗಳು</item>
     </plurals>
-
-    <!-- PermissionsSettingsFragment -->
-    <string name="PermissionsSettingsFragment__add_members">ಸದಸ್ಯರನ್ನು ಸೇರಿಸಿ</string>
-    <string name="PermissionsSettingsFragment__edit_group_info">ಗುಂಪಿನ ಮಾಹಿತಿಯನ್ನು ಎಡಿಟ್ ಮಾಡಿ</string>
-    <string name="PermissionsSettingsFragment__send_messages">ಸಂದೇಶಗಳನ್ನು ಕಳಿಸಿ</string>
-    <string name="PermissionsSettingsFragment__all_members">ಎಲ್ಲಾ ಸದಸ್ಯರು</string>
-    <string name="PermissionsSettingsFragment__only_admins">ಆಡ್ಮಿನ್‌‌ಗಳು ಮಾತ್ರ</string>
-    <string name="PermissionsSettingsFragment__who_can_add_new_members">ಯಾರು ಹೊಸ ಸದಸ್ಯರನ್ನು ಸೇರಿಸಬಹುದು?</string>
-    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">ಗುಂಪಿನ ಮಾಹಿತಿಯನ್ನು ಯಾರು ತಿದ್ದಬಹುದು?</string>
-    <string name="PermissionsSettingsFragment__who_can_send_messages">ಯಾರು ಮೆಸೇಜ್‌ಗಳನ್ನು ಕಳುಹಿಸಬಹುದು ಮತ್ತು ಕರೆಗಳನ್ನು ಪ್ರಾರಂಭಿಸಬಹುದು?</string>
-    <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">ಸದಸ್ಯರ ಲೇಬಲ್‌ಗಳನ್ನು ಸೇರಿಸಿ</string>
-    <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">ಸದಸ್ಯರ ಲೇಬಲ್‌ಗಳನ್ನು ಯಾರು ಸೇರಿಸಬಹುದು?</string>
-    <!-- Warning title shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">ಸದಸ್ಯರ ಲೇಬಲ್‌ಗಳನ್ನು ತೆರವುಗೊಳಿಸಲಾಗುತ್ತದೆ</string>
-    <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"ಈ ಅನುಮತಿಯನ್ನು ಅಡ್ಮಿನ್‌ಗಳು ಮಾತ್ರ ಎಂಬುದಕ್ಕೆ ಬದಲಾಯಿಸುವುದರಿಂದ ಈ ಗುಂಪಿನಲ್ಲಿ ಅಡ್ಮಿನ್ ಅಲ್ಲದವರು ಸೆಟ್ ಮಾಡಿರುವ ಸದಸ್ಯರ ಲೇಬಲ್‌ಗಳನ್ನು ತೆರವುಗೊಳಿಸುತ್ತದೆ."</string>
-    <!-- Confirm button for changing member label permission after warning. -->
-    <string name="PermissionsSettingsFragment__change_permission">ಅನುಮತಿಯನ್ನು ಬದಲಾಯಿಸಿ</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->

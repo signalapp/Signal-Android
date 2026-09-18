@@ -1388,13 +1388,14 @@
         <item quantity="other">U shtuan %1$d anëtarë.</item>
     </plurals>
 
-    <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">S\\’keni të drejta për ta bërë këtë</string>
-    <string name="ManageGroupActivity_not_capable">Dikush që shtuat, nuk mbulon grupe të reja dhe lypset të përditësojë Signal-in</string>
-    <string name="ManageGroupActivity_not_announcement_capable">Dikush, të cilin e shtuat ju, nuk mbulon grupe njoftimesh dhe duhet të përditësojë Signal-in</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group">S\\’u arrit të përditësohej grupi</string>
-    <string name="ManageGroupActivity_youre_not_a_member_of_the_group">S\\’jeni anëtar i grupit</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">S\\’u arrit të përditësohet grupi, ju lutemi, riprovoni më vonë</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">S\\’u arrit të përditësohet grupi, për shkak të një gabimi rrjeti, ju lutemi, riprovoni më vonë</string>
+    <string name="GroupErrors__the_group_was_terminated">Grupi u mbyll.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">S\\’keni të drejta për ta bërë këtë</string>
+    <string name="GroupErrors__not_capable">Dikush që shtuat, nuk mbulon grupe të reja dhe lypset të përditësojë Signal-in</string>
+    <string name="GroupErrors__not_announcement_capable">Dikush, të cilin e shtuat ju, nuk mbulon grupe njoftimesh dhe duhet të përditësojë Signal-in</string>
+    <string name="GroupErrors__failed_to_update_the_group">S\\’u arrit të përditësohej grupi</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">S\\’jeni anëtar i grupit</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">S\\’u arrit të përditësohet grupi, ju lutemi, riprovoni më vonë</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">S\\’u arrit të përditësohet grupi, për shkak të një gabimi rrjeti, ju lutemi, riprovoni më vonë</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">Përpunoni emër dhe foto</string>
     <string name="ManageGroupActivity_legacy_group">Grup i Dikurshëm</string>
@@ -5870,26 +5871,6 @@
         <item quantity="one">%1$d ish anëtar</item>
         <item quantity="other">%1$d ish anëtarë</item>
     </plurals>
-
-    <!-- PermissionsSettingsFragment -->
-    <string name="PermissionsSettingsFragment__add_members">Shtoni anëtarë</string>
-    <string name="PermissionsSettingsFragment__edit_group_info">Përpunoni të dhëna grupi</string>
-    <string name="PermissionsSettingsFragment__send_messages">Dërgo mesazhe</string>
-    <string name="PermissionsSettingsFragment__all_members">Krejt anëtarët</string>
-    <string name="PermissionsSettingsFragment__only_admins">Vetëm përgjegjësit</string>
-    <string name="PermissionsSettingsFragment__who_can_add_new_members">Cilët mund të shtojnë anëtarë të rinj?</string>
-    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Cilët mund të përpunojnë të dhënat mbi këtë grup?</string>
-    <string name="PermissionsSettingsFragment__who_can_send_messages">Kush mund të dërgojë mesazhe dhe të fillojë telefonatat?</string>
-    <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">Shto emërtimin e anëtarit</string>
-    <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">Kush mund të shtojë emërtimet e anëtarëve?</string>
-    <!-- Warning title shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">Emërtimet e anëtarëve do të fshihen</string>
-    <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"Ndryshimi i kësaj lejeje në \"Vetëm administratorët\" do të fshijë emërtimet e anëtarëve të vendosur nga jo-administratorët në këtë grup."</string>
-    <!-- Confirm button for changing member label permission after warning. -->
-    <string name="PermissionsSettingsFragment__change_permission">Ndrysho lejet</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->

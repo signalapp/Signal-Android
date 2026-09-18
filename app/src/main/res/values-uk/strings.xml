@@ -1474,13 +1474,14 @@
         <item quantity="other">Додано %1$d учасника.</item>
     </plurals>
 
-    <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">У нас немає прав, щоб це зробити</string>
-    <string name="ManageGroupActivity_not_capable">Хтось з учасників, яких ви додали, не підтримує нові групи. Йому необхідно оновити Signal</string>
-    <string name="ManageGroupActivity_not_announcement_capable">Хтось з учасників, яких ви додали, не підтримує групи з оголошеннями. Йому необхідно оновити Signal</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group">Не вдалось оновити групу</string>
-    <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Ви не учасник цієї групи</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Не вдалось оновити групу, спробуйте пізніше</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Не вдалось оновити групу через збій у мережі, спробуйте пізніше</string>
+    <string name="GroupErrors__the_group_was_terminated">Групу закрито.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">У нас немає прав, щоб це зробити</string>
+    <string name="GroupErrors__not_capable">Хтось з учасників, яких ви додали, не підтримує нові групи. Йому необхідно оновити Signal</string>
+    <string name="GroupErrors__not_announcement_capable">Хтось з учасників, яких ви додали, не підтримує групи з оголошеннями. Йому необхідно оновити Signal</string>
+    <string name="GroupErrors__failed_to_update_the_group">Не вдалось оновити групу</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">Ви не учасник цієї групи</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Не вдалось оновити групу, спробуйте пізніше</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Не вдалось оновити групу через збій у мережі, спробуйте пізніше</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">Змінити назву та зображення</string>
     <string name="ManageGroupActivity_legacy_group">Застаріла група</string>
@@ -6168,26 +6169,6 @@
         <item quantity="many">%1$d колишніх учасників</item>
         <item quantity="other">%1$d колишнього учасника</item>
     </plurals>
-
-    <!-- PermissionsSettingsFragment -->
-    <string name="PermissionsSettingsFragment__add_members">Додавання учасників</string>
-    <string name="PermissionsSettingsFragment__edit_group_info">Редагування інформації про групу</string>
-    <string name="PermissionsSettingsFragment__send_messages">Надсилання повідомлень</string>
-    <string name="PermissionsSettingsFragment__all_members">Усі учасники</string>
-    <string name="PermissionsSettingsFragment__only_admins">Тільки адміністратори</string>
-    <string name="PermissionsSettingsFragment__who_can_add_new_members">Хто може додавати нових учасників?</string>
-    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Хто може редагувати інформацію про цю групу?</string>
-    <string name="PermissionsSettingsFragment__who_can_send_messages">Хто може писати в чаті й починати виклики?</string>
-    <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">Додавання ролей учасників</string>
-    <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">Хто може додавати ролі учасників?</string>
-    <!-- Warning title shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">Ролі учасників буде видалено</string>
-    <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"Якщо надати дозвіл тільки адміністраторам, то ролі учасників, які додали інші учасники цієї групи, буде видалено."</string>
-    <!-- Confirm button for changing member label permission after warning. -->
-    <string name="PermissionsSettingsFragment__change_permission">Змінити дозвіл</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->

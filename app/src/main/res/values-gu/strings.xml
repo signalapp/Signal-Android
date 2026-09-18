@@ -1388,13 +1388,14 @@
         <item quantity="other">%1$d સભ્યો ઉમેર્યા.</item>
     </plurals>
 
-    <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">તમારી પાસે આ કરવાનો અધિકાર નથી</string>
-    <string name="ManageGroupActivity_not_capable">તમે ઉમેરેલ કોઈ વ્યક્તિ નવા ગ્રુપને સપોર્ટ કરતું નથી અને Signal અપડેટ કરવાની જરૂર છે</string>
-    <string name="ManageGroupActivity_not_announcement_capable">તમે ઉમેરેલ કોઈ વ્યક્તિ જાહેરાત ગ્રુપને સપોર્ટ કરતું નથી અને Signal અપડેટ કરવાની જરૂર છે</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group">ગ્રુપ અપડેટ કરવામાં નિષ્ફળ</string>
-    <string name="ManageGroupActivity_youre_not_a_member_of_the_group">તમે ગ્રુપના મેમ્બર નથી.</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">ગ્રુપને અપડેટ કરવામાં નિષ્ફળ થયા પછી કૃપા કરીને પછીથી ફરી પ્રયાસ કરો</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">નેટવર્ક ભૂલને કારણે ગ્રુપને અપડેટ કરવામાં નિષ્ફળ, કૃપા કરીને પછીથી ફરી પ્રયાસ કરો</string>
+    <string name="GroupErrors__the_group_was_terminated">ગ્રૂપ સમાપ્ત કરવામાં આવ્યું.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">તમારી પાસે આ કરવાનો અધિકાર નથી</string>
+    <string name="GroupErrors__not_capable">તમે ઉમેરેલ કોઈ વ્યક્તિ નવા ગ્રુપને સપોર્ટ કરતું નથી અને Signal અપડેટ કરવાની જરૂર છે</string>
+    <string name="GroupErrors__not_announcement_capable">તમે ઉમેરેલ કોઈ વ્યક્તિ જાહેરાત ગ્રુપને સપોર્ટ કરતું નથી અને Signal અપડેટ કરવાની જરૂર છે</string>
+    <string name="GroupErrors__failed_to_update_the_group">ગ્રુપ અપડેટ કરવામાં નિષ્ફળ</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">તમે ગ્રુપના મેમ્બર નથી.</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">ગ્રુપને અપડેટ કરવામાં નિષ્ફળ થયા પછી કૃપા કરીને પછીથી ફરી પ્રયાસ કરો</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">નેટવર્ક ભૂલને કારણે ગ્રુપને અપડેટ કરવામાં નિષ્ફળ, કૃપા કરીને પછીથી ફરી પ્રયાસ કરો</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">નામ અને ચિત્ર સંપાદિત કરવું</string>
     <string name="ManageGroupActivity_legacy_group">લેગેસી ગ્રુપ</string>
@@ -5870,26 +5871,6 @@
         <item quantity="one">%1$d ભુતપૂર્વ સભ્ય</item>
         <item quantity="other">%1$d ભુતપૂર્વ સભ્યો</item>
     </plurals>
-
-    <!-- PermissionsSettingsFragment -->
-    <string name="PermissionsSettingsFragment__add_members">સભ્યો ઉમેરો</string>
-    <string name="PermissionsSettingsFragment__edit_group_info">ગ્રુપ માહિતી સંપાદિત કરો</string>
-    <string name="PermissionsSettingsFragment__send_messages">મેસેજ મોકલો</string>
-    <string name="PermissionsSettingsFragment__all_members">બધા સભ્યો</string>
-    <string name="PermissionsSettingsFragment__only_admins">ફક્ત એડમિન</string>
-    <string name="PermissionsSettingsFragment__who_can_add_new_members">નવા સભ્યો કોણ ઉમેરી શકે?</string>
-    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">આ ગ્રુપની માહિતીમાં કોણ ફેરફાર કરી શકે?</string>
-    <string name="PermissionsSettingsFragment__who_can_send_messages">કોણ મેસેજ મોકલી શકે અને કૉલ શરૂ કરી શકે?</string>
-    <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">સભ્યના લેબલ ઉમેરો</string>
-    <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">સભ્યના લેબલ કોણ ઉમેરી શકે?</string>
-    <!-- Warning title shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">સભ્યના લેબલ સાફ કરવામાં આવશે</string>
-    <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"આ પરવાનગીને \"ફક્ત એડમિન\"માં બદલવાથી આ ગ્રૂપમાં બિન-એડમિન દ્વારા સેટ કરાયેલ સભ્યના લેબલ સાફ થઈ જશે."</string>
-    <!-- Confirm button for changing member label permission after warning. -->
-    <string name="PermissionsSettingsFragment__change_permission">પરવાનગી બદલો</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->

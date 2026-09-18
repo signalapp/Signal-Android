@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <!-- Title of the screen where a group admin picks which actions non-admins can take. -->
+  <string name="GroupPermissionsScreen__permissions">İcazələr</string>
+  <!-- Content description of the button that navigates back off of the group permissions screen. -->
+  <string name="GroupPermissionsScreen__go_back">Geri get</string>
+  <string name="GroupPermissionsScreen__add_members">Üzv əlavə edə bilmə</string>
+  <string name="GroupPermissionsScreen__edit_group_info">Qrup məlumatına düzəliş edə bilmə</string>
+  <string name="GroupPermissionsScreen__send_messages">Mesaj göndərmə</string>
+  <string name="GroupPermissionsScreen__all_members">Bütün üzvlər</string>
+  <string name="GroupPermissionsScreen__only_admins">Yalnız adminlər</string>
+  <string name="GroupPermissionsScreen__who_can_add_new_members">Kim yeni üzv əlavə edə bilər?</string>
+  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">Kim bu qrupun məlumatına düzəliş edə bilər?</string>
+  <string name="GroupPermissionsScreen__who_can_send_messages">Mesajları kim göndərə və zəngləri kim başlada bilər?</string>
+  <!-- Label for the member labels permission button in the group permissions settings screen. -->
+  <string name="GroupPermissionsScreen__add_member_labels">Üzv etiketləri əlavə et</string>
+  <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
+  <string name="GroupPermissionsScreen__who_can_add_member_labels">Üzv etiketlərini kim əlavə edə bilər?</string>
+  <!-- Warning title shown before restricting member labels to admins only. -->
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_title">Üzv etiketləri yaradılacaq</string>
+  <!-- Warning body shown before restricting member labels to admins only. -->
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_body">"Bu icazəni \"Yalnız adminlər\" olaraq dəyişdirsəniz, bu, həmin qrupda qeyri-adminlər tərəfindən təyin edilmiş üzv etiketlərini siləcək."</string>
+  <!-- Confirm button for changing member label permission after warning. -->
+  <string name="GroupPermissionsScreen__change_permission">İcazəni dəyişdir</string>
+</resources>

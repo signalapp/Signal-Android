@@ -1345,13 +1345,14 @@
         <item quantity="other">បានបន្ថែមសមាជិក %1$d នាក់។</item>
     </plurals>
 
-    <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">អ្នកមិនមានសិទ្ធិធ្វើដូចនេះទេ</string>
-    <string name="ManageGroupActivity_not_capable">សមាជិកដែលអ្នកដាក់បញ្ចូលមិនគាំទ្រក្រុមថ្មី និងត្រូវធ្វើបច្ចុប្បន្នភាព Signal</string>
-    <string name="ManageGroupActivity_not_announcement_capable">បុគ្គលដែលអ្នកបានបន្ថែមចូល មិនមានមុខងារទទួលដំណឹងរបស់ក្រុម និងគាត់ត្រូវធ្វើបច្ចុប្បន្នភាព Signal</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group">បរាជ័យក្នុងការធ្វើបច្ចុប្បន្នភាពក្រុម</string>
-    <string name="ManageGroupActivity_youre_not_a_member_of_the_group">អ្នកមិនមែនជាសមាជិកនៃក្រុម</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">បរាជ័យក្នុងការធ្វើបច្ចុប្បន្នភាពក្រុម សូមព្យាយាមម្តងទៀត</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">បរាជ័យក្នុងការធ្វើបច្ចុប្បន្នភាពក្រុមដោយសារបញ្ហាបណ្តាញ សូមព្យាយាមម្តងទៀត</string>
+    <string name="GroupErrors__the_group_was_terminated">ក្រុមនេះបានបញ្ចប់។</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">អ្នកមិនមានសិទ្ធិធ្វើដូចនេះទេ</string>
+    <string name="GroupErrors__not_capable">សមាជិកដែលអ្នកដាក់បញ្ចូលមិនគាំទ្រក្រុមថ្មី និងត្រូវធ្វើបច្ចុប្បន្នភាព Signal</string>
+    <string name="GroupErrors__not_announcement_capable">បុគ្គលដែលអ្នកបានបន្ថែមចូល មិនមានមុខងារទទួលដំណឹងរបស់ក្រុម និងគាត់ត្រូវធ្វើបច្ចុប្បន្នភាព Signal</string>
+    <string name="GroupErrors__failed_to_update_the_group">បរាជ័យក្នុងការធ្វើបច្ចុប្បន្នភាពក្រុម</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">អ្នកមិនមែនជាសមាជិកនៃក្រុម</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">បរាជ័យក្នុងការធ្វើបច្ចុប្បន្នភាពក្រុម សូមព្យាយាមម្តងទៀត</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">បរាជ័យក្នុងការធ្វើបច្ចុប្បន្នភាពក្រុមដោយសារបញ្ហាបណ្តាញ សូមព្យាយាមម្តងទៀត</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">កែប្រែឈ្មោះ និងរូបភាព</string>
     <string name="ManageGroupActivity_legacy_group">ក្រុមមុន</string>
@@ -5721,26 +5722,6 @@
     <plurals name="ConversationSettingsFragment__d_former_members">
         <item quantity="other">អតីតសមាជិក %1$d នាក់</item>
     </plurals>
-
-    <!-- PermissionsSettingsFragment -->
-    <string name="PermissionsSettingsFragment__add_members">បន្ថែមសមាជិក</string>
-    <string name="PermissionsSettingsFragment__edit_group_info">កែព័ត៌មានក្រុម</string>
-    <string name="PermissionsSettingsFragment__send_messages">ផ្ញើសារ</string>
-    <string name="PermissionsSettingsFragment__all_members">សមាជិកទាំងអស់</string>
-    <string name="PermissionsSettingsFragment__only_admins">តែអ្នកគ្រប់គ្រង</string>
-    <string name="PermissionsSettingsFragment__who_can_add_new_members">នរណាអាចបន្ថែមសមាជិកថ្មីឯ</string>
-    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">នរណាអាចកែប្រែព័ត៌មានក្រុមនេះ?</string>
-    <string name="PermissionsSettingsFragment__who_can_send_messages">តើនរណាអាចផ្ញើសារ និងចាប់ផ្តើមការហៅទូរសព្ទបាន?</string>
-    <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">បញ្ចូលស្លាកសមាជិក</string>
-    <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">នរណាអាចបញ្ចូលស្លាកសមាជិកបាន?</string>
-    <!-- Warning title shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">ស្លាកសមាជិកនឹងត្រូវបានលុបចោល</string>
-    <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"ការផ្លាស់ប្តូរការអនុញ្ញាតនេះទៅ “តែអ្នកគ្រប់គ្រងប៉ុណ្ណោះ” នឹងលុបស្លាកសមាជិកដែលកំណត់ដោយបុគ្គលដែលមិនមែនជាអ្នកគ្រប់គ្រងនៅក្នុងក្រុមនេះ។"</string>
-    <!-- Confirm button for changing member label permission after warning. -->
-    <string name="PermissionsSettingsFragment__change_permission">ផ្លាស់ប្តូរការអនុញ្ញាត</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->

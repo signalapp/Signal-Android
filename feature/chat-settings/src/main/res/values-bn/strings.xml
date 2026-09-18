@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <!-- Title of the screen where a group admin picks which actions non-admins can take. -->
+  <string name="GroupPermissionsScreen__permissions">অনুমতিসমূহ</string>
+  <!-- Content description of the button that navigates back off of the group permissions screen. -->
+  <string name="GroupPermissionsScreen__go_back">ফিরে যান</string>
+  <string name="GroupPermissionsScreen__add_members">সদস্যদের যোগ করান</string>
+  <string name="GroupPermissionsScreen__edit_group_info">গ্রুপের তথ্য সম্পাদনা করুন</string>
+  <string name="GroupPermissionsScreen__send_messages">বার্তা পাঠান</string>
+  <string name="GroupPermissionsScreen__all_members">সকল সদস্য</string>
+  <string name="GroupPermissionsScreen__only_admins">শুধু এডমিন</string>
+  <string name="GroupPermissionsScreen__who_can_add_new_members">কে নতুন সদস্য যুক্ত করতে পারবে?</string>
+  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">এই গ্রুপের তথ্য কে সম্পাদনা করতে পারবে?</string>
+  <string name="GroupPermissionsScreen__who_can_send_messages">কারা মেসেজ পাঠাতে এবং কল শুরু করতে পারবেন?</string>
+  <!-- Label for the member labels permission button in the group permissions settings screen. -->
+  <string name="GroupPermissionsScreen__add_member_labels">সদস্য লেবেল যোগ করুন</string>
+  <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
+  <string name="GroupPermissionsScreen__who_can_add_member_labels">কে সদস্য লেবেল যোগ করতে পারবেন?</string>
+  <!-- Warning title shown before restricting member labels to admins only. -->
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_title">সদস্য লেবেলগুলো মুছে ফেলা হবে</string>
+  <!-- Warning body shown before restricting member labels to admins only. -->
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_body">"এই অনুমতি পরিবর্তন করে \"শুধুমাত্র অ্যাডমিন\" বেছে নিলে এই গ্রুপে যারা অ্যাডমিন নন তাদের দ্বারা নির্ধারণ করা সদস্য লেবেলগুলো মুছে যাবে।"</string>
+  <!-- Confirm button for changing member label permission after warning. -->
+  <string name="GroupPermissionsScreen__change_permission">অনুমতি পরিবর্তন করুন</string>
+</resources>

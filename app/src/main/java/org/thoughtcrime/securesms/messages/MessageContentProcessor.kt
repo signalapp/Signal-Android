@@ -3,6 +3,8 @@ package org.thoughtcrime.securesms.messages
 import android.content.Context
 import org.signal.core.models.ServiceId
 import org.signal.core.util.Util
+import org.signal.core.util.groups.GroupChangeBusyException
+import org.signal.core.util.groups.GroupNotAMemberException
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.signal.core.util.toOptional
@@ -18,10 +20,8 @@ import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.PendingRetryReceiptModel
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.BadGroupIdException
-import org.thoughtcrime.securesms.groups.GroupChangeBusyException
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupManager
-import org.thoughtcrime.securesms.groups.GroupNotAMemberException
 import org.thoughtcrime.securesms.groups.v2.processing.GroupUpdateResult
 import org.thoughtcrime.securesms.groups.v2.processing.GroupUpdateResult.UpdateStatus
 import org.thoughtcrime.securesms.jobs.AutomaticSessionResetJob

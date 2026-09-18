@@ -22,6 +22,7 @@ import kotlinx.coroutines.withContext
 import org.signal.core.util.Result
 import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.concurrent.SignalExecutors
+import org.signal.core.util.groups.GroupChangeException
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.signal.core.util.readToList
@@ -39,7 +40,6 @@ import org.thoughtcrime.securesms.database.model.GroupRecord
 import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.groups.GroupChangeException
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupProtoUtil
 import org.thoughtcrime.securesms.groups.GroupsInCommonRepository

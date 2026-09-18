@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <!-- Title of the screen where a group admin picks which actions non-admins can take. -->
+  <string name="GroupPermissionsScreen__permissions">ការអនុញ្ញាត</string>
+  <!-- Content description of the button that navigates back off of the group permissions screen. -->
+  <string name="GroupPermissionsScreen__go_back">ត្រឡប់ក្រោយ</string>
+  <string name="GroupPermissionsScreen__add_members">បន្ថែមសមាជិក</string>
+  <string name="GroupPermissionsScreen__edit_group_info">កែព័ត៌មានក្រុម</string>
+  <string name="GroupPermissionsScreen__send_messages">ផ្ញើសារ</string>
+  <string name="GroupPermissionsScreen__all_members">សមាជិកទាំងអស់</string>
+  <string name="GroupPermissionsScreen__only_admins">តែអ្នកគ្រប់គ្រង</string>
+  <string name="GroupPermissionsScreen__who_can_add_new_members">នរណាអាចបន្ថែមសមាជិកថ្មីឯ</string>
+  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">នរណាអាចកែប្រែព័ត៌មានក្រុមនេះ?</string>
+  <string name="GroupPermissionsScreen__who_can_send_messages">តើនរណាអាចផ្ញើសារ និងចាប់ផ្តើមការហៅទូរសព្ទបាន?</string>
+  <!-- Label for the member labels permission button in the group permissions settings screen. -->
+  <string name="GroupPermissionsScreen__add_member_labels">បញ្ចូលស្លាកសមាជិក</string>
+  <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
+  <string name="GroupPermissionsScreen__who_can_add_member_labels">នរណាអាចបញ្ចូលស្លាកសមាជិកបាន?</string>
+  <!-- Warning title shown before restricting member labels to admins only. -->
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_title">ស្លាកសមាជិកនឹងត្រូវបានលុបចោល</string>
+  <!-- Warning body shown before restricting member labels to admins only. -->
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_body">"ការផ្លាស់ប្តូរការអនុញ្ញាតនេះទៅ “តែអ្នកគ្រប់គ្រងប៉ុណ្ណោះ” នឹងលុបស្លាកសមាជិកដែលកំណត់ដោយបុគ្គលដែលមិនមែនជាអ្នកគ្រប់គ្រងនៅក្នុងក្រុមនេះ។"</string>
+  <!-- Confirm button for changing member label permission after warning. -->
+  <string name="GroupPermissionsScreen__change_permission">ផ្លាស់ប្តូរការអនុញ្ញាត</string>
+</resources>

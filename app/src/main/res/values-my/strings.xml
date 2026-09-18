@@ -1345,13 +1345,14 @@
         <item quantity="other">အဖွဲ့ဝင် %1$d ဦးပေါင်းထည့်ပြီး</item>
     </plurals>
 
-    <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">ဤသို့လုပ်ရန်သင့်တွင်အခွင့်အရေးမရှိပါ</string>
-    <string name="ManageGroupActivity_not_capable">သင်ဖြည့်စွက်ထားသူတစ်ဦး သည်အဖွဲ့အသစ်များကိုမထောက်ခံပါ။ Signal ကိုအသစ်ပြောင်းရန်လိုအပ်သည်</string>
-    <string name="ManageGroupActivity_not_announcement_capable">သင် ပေါင်းထည့်ထားသူတစ်ဦးဦးသည် ကြေညာချက် အဖွဲ့များကို သုံးနိုင်ခြင်း မရှိသောကြောင့် Signal အား အပ်ဒိတ်လုပ်ရန် လိုအပ်ပါသည်။</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group">အုပ်စုအားမွမ်းမံရန်မအောင်မြင်ပါ</string>
-    <string name="ManageGroupActivity_youre_not_a_member_of_the_group">သင်သည် အဖွဲ့ဝင်တစ်ဦးမဟုတ်ပါ</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">အုပ်စုအားမွမ်းမံရန်မအောင်မြင်ပါကျေးဇူးပြုပြီးနောက်မှပြန်ကြိုးစားပါ</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">ကွန်ယက်အမှားတစ်ခုကြောင့်အုပ်စုအားမွမ်းမံရန်မအောင်မြင်ပါ၊ ကျေးဇူးပြုပြီးနောက်မှပြန်ကြိုးစားပါ</string>
+    <string name="GroupErrors__the_group_was_terminated">အဖွဲ့ပြီးဆုံးသွားပါပြီ။</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">ဤသို့လုပ်ရန်သင့်တွင်အခွင့်အရေးမရှိပါ</string>
+    <string name="GroupErrors__not_capable">သင်ဖြည့်စွက်ထားသူတစ်ဦး သည်အဖွဲ့အသစ်များကိုမထောက်ခံပါ။ Signal ကိုအသစ်ပြောင်းရန်လိုအပ်သည်</string>
+    <string name="GroupErrors__not_announcement_capable">သင် ပေါင်းထည့်ထားသူတစ်ဦးဦးသည် ကြေညာချက် အဖွဲ့များကို သုံးနိုင်ခြင်း မရှိသောကြောင့် Signal အား အပ်ဒိတ်လုပ်ရန် လိုအပ်ပါသည်။</string>
+    <string name="GroupErrors__failed_to_update_the_group">အုပ်စုအားမွမ်းမံရန်မအောင်မြင်ပါ</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">သင်သည် အဖွဲ့ဝင်တစ်ဦးမဟုတ်ပါ</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">အုပ်စုအားမွမ်းမံရန်မအောင်မြင်ပါကျေးဇူးပြုပြီးနောက်မှပြန်ကြိုးစားပါ</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">ကွန်ယက်အမှားတစ်ခုကြောင့်အုပ်စုအားမွမ်းမံရန်မအောင်မြင်ပါ၊ ကျေးဇူးပြုပြီးနောက်မှပြန်ကြိုးစားပါ</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">နာမည်နှင့်ရုပ်ပုံကိုတည်းဖြတ်ပါ</string>
     <string name="ManageGroupActivity_legacy_group">အမွေအဖွဲ့</string>
@@ -5721,26 +5722,6 @@
     <plurals name="ConversationSettingsFragment__d_former_members">
         <item quantity="other">အဖွဲ့ဝင်ဟောင်း %1$d ဦး</item>
     </plurals>
-
-    <!-- PermissionsSettingsFragment -->
-    <string name="PermissionsSettingsFragment__add_members">အဖွဲ့ဝင်များ ထည့်ပါ</string>
-    <string name="PermissionsSettingsFragment__edit_group_info">အုပ်စုအချက်အလက်ကိုတည်းဖြတ်ပါ</string>
-    <string name="PermissionsSettingsFragment__send_messages">မက်ဆေ့ချ်များ ပို့ရန်</string>
-    <string name="PermissionsSettingsFragment__all_members">အဖွဲ့ဝင် အားလုံး</string>
-    <string name="PermissionsSettingsFragment__only_admins">အက်မင်များသာ</string>
-    <string name="PermissionsSettingsFragment__who_can_add_new_members">အသင်းဝင်အသစ်များကို မည်သူထပ်ထည့်လို့ရမလဲ?</string>
-    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">ဤအဖွဲ့၏အချက်အလက်ကို မည်သူတည်းဖြတ်နိုင်သနည်း။</string>
-    <string name="PermissionsSettingsFragment__who_can_send_messages">မည်သူက မက်ဆေ့ချ်များ ပေးပို့နိုင်ပြီး ခေါ်ဆိုမှုများ စတင်နိုင်သနည်း။</string>
-    <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">အဖွဲ့ဝင်အမှတ်တံဆိပ် ထည့်သွင်းရန်</string>
-    <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">အဖွဲ့ဝင်အမှတ်တံဆိပ်ကို မည်သူထည့်သွင်းနိုင်သနည်း။</string>
-    <!-- Warning title shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">အဖွဲ့ဝင်တံဆိပ်များကို ဖယ်ရှားပါမည်</string>
-    <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"ဤခွင့်ပြုချက်ကို \"အက်ဒ်မင်များသာ\" သို့ ပြောင်းလဲခြင်းဖြင့် ဤအဖွဲ့ရှိ အက်ဒ်မင်မဟုတ်သူများမှ သတ်မှတ်ထားသော အဖွဲ့ဝင်အမှတ်တံဆိပ်များကို ဖယ်ရှားပေးပါမည်။"</string>
-    <!-- Confirm button for changing member label permission after warning. -->
-    <string name="PermissionsSettingsFragment__change_permission">ခွင့်ပြုချက်ပြောင်းရန်</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->

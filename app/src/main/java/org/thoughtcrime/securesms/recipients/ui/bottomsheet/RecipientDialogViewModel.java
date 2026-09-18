@@ -255,7 +255,7 @@ final class RecipientDialogViewModel extends ViewModel {
                              recipientDialogRepository.setMemberAdmin(true, result -> {
                                                                         adminActionBusy.setValue(false);
                                                                         if (!result) {
-                                                                          Toast.makeText(activity, R.string.ManageGroupActivity_failed_to_update_the_group, Toast.LENGTH_SHORT).show();
+                                                                          Toast.makeText(activity, R.string.GroupErrors__failed_to_update_the_group, Toast.LENGTH_SHORT).show();
                                                                         }
                                                                       },
                                                                       this::showErrorToast);
@@ -280,7 +280,7 @@ final class RecipientDialogViewModel extends ViewModel {
                                recipientDialogRepository.setMemberAdmin(false, result -> {
                                                                           adminActionBusy.setValue(false);
                                                                           if (!result) {
-                                                                            Toast.makeText(activity, R.string.ManageGroupActivity_failed_to_update_the_group, Toast.LENGTH_SHORT).show();
+                                                                            Toast.makeText(activity, R.string.GroupErrors__failed_to_update_the_group, Toast.LENGTH_SHORT).show();
                                                                           }
                                                                         },
                                                                         this::showErrorToast);

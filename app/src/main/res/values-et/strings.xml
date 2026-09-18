@@ -1388,13 +1388,14 @@
         <item quantity="other">%1$d liiget lisatud.</item>
     </plurals>
 
-    <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Sul pole õigusi seda teha</string>
-    <string name="ManageGroupActivity_not_capable">Keegi sinu poolt lisatutest ei toeta uusi gruppe ja peab Signalit uuendama</string>
-    <string name="ManageGroupActivity_not_announcement_capable">Keegi sinu poolt lisatutest ei toeta teavitusgruppe ning peab Signalit uuendama</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group">Grupi uuendamine ei õnnestunud</string>
-    <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Sa ei ole grupi liige</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Grupi uuendamine ei õnnestunud, palun proovi hiljem uuesti</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Grupi uuendamine ei õnnestunud võrgutõrke tõttu, palun proovi hiljem uuesti</string>
+    <string name="GroupErrors__the_group_was_terminated">Grupp lõpetati.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">Sul pole õigusi seda teha</string>
+    <string name="GroupErrors__not_capable">Keegi sinu poolt lisatutest ei toeta uusi gruppe ja peab Signalit uuendama</string>
+    <string name="GroupErrors__not_announcement_capable">Keegi sinu poolt lisatutest ei toeta teavitusgruppe ning peab Signalit uuendama</string>
+    <string name="GroupErrors__failed_to_update_the_group">Grupi uuendamine ei õnnestunud</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">Sa ei ole grupi liige</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Grupi uuendamine ei õnnestunud, palun proovi hiljem uuesti</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Grupi uuendamine ei õnnestunud võrgutõrke tõttu, palun proovi hiljem uuesti</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">Muuda nime ja pilti</string>
     <string name="ManageGroupActivity_legacy_group">Vana grupp</string>
@@ -5870,26 +5871,6 @@
         <item quantity="one">%1$d endine liige</item>
         <item quantity="other">%1$d endist liiget</item>
     </plurals>
-
-    <!-- PermissionsSettingsFragment -->
-    <string name="PermissionsSettingsFragment__add_members">Lisa liikmed</string>
-    <string name="PermissionsSettingsFragment__edit_group_info">Muuda grupi infot</string>
-    <string name="PermissionsSettingsFragment__send_messages">Saada sõnumid</string>
-    <string name="PermissionsSettingsFragment__all_members">Kõik liikmed</string>
-    <string name="PermissionsSettingsFragment__only_admins">Ainult administraatorid</string>
-    <string name="PermissionsSettingsFragment__who_can_add_new_members">Kes saavad uusi liikmeid lisada?</string>
-    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Kes saab selle grupi infot muuta?</string>
-    <string name="PermissionsSettingsFragment__who_can_send_messages">Kes saavad sõnumeid saata ja kõnesid alustada?</string>
-    <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">Lisa liikme silte</string>
-    <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">Kes saavad liikme silte lisada?</string>
-    <!-- Warning title shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">Liikmete sildid kustutatakse</string>
-    <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"Selle loa muutmine valikule „Ainult administraatorid” eemaldab selles grupis mitte-administraatorite määratud liikmete sildid."</string>
-    <!-- Confirm button for changing member label permission after warning. -->
-    <string name="PermissionsSettingsFragment__change_permission">Muuda luba</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->

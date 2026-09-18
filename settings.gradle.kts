@@ -133,6 +133,7 @@ include(":feature:app-settings")
 include(":feature:registration")
 include(":feature:camera")
 include(":feature:media-send")
+include(":feature:chat-settings")
 
 // Demo apps
 include(":demo:paging")

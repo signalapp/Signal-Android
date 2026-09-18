@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <!-- Title of the screen where a group admin picks which actions non-admins can take. -->
+  <string name="GroupPermissionsScreen__permissions">اجازت</string>
+  <!-- Content description of the button that navigates back off of the group permissions screen. -->
+  <string name="GroupPermissionsScreen__go_back">واپس جائیں</string>
+  <string name="GroupPermissionsScreen__add_members">ممبران شامل کریں</string>
+  <string name="GroupPermissionsScreen__edit_group_info">گروپ کی معلومات میں ترمیم کریں</string>
+  <string name="GroupPermissionsScreen__send_messages">پیغامات بھیجیں</string>
+  <string name="GroupPermissionsScreen__all_members">تمام ممبران</string>
+  <string name="GroupPermissionsScreen__only_admins">صرف منتظمین</string>
+  <string name="GroupPermissionsScreen__who_can_add_new_members">کون نئے ممبروں کو شامل کرسکتا ہے؟</string>
+  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">کون اس گروپ کی معلومات میں ترمیم کرسکتا ہے؟</string>
+  <string name="GroupPermissionsScreen__who_can_send_messages">کون میسجز بھیج سکتا اور کالز کا آغاز کر سکتا ہے؟</string>
+  <!-- Label for the member labels permission button in the group permissions settings screen. -->
+  <string name="GroupPermissionsScreen__add_member_labels">ممبر لیبلز شامل کریں</string>
+  <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
+  <string name="GroupPermissionsScreen__who_can_add_member_labels">ممبر لیبلز کون شامل کر سکتا ہے؟</string>
+  <!-- Warning title shown before restricting member labels to admins only. -->
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_title">ممبر لیبلز کو صاف کر دیا جائے گا</string>
+  <!-- Warning body shown before restricting member labels to admins only. -->
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_body">"اس اجازت کو صرف ایڈمنز پر تبدیل کرنے سے اس گروپ میں غیر ایڈمن افراد کی جانب سے مقررہ کردہ ممبر لیبلز صاف ہو جائیں گے۔"</string>
+  <!-- Confirm button for changing member label permission after warning. -->
+  <string name="GroupPermissionsScreen__change_permission">اجازت تبدیل کریں</string>
+</resources>

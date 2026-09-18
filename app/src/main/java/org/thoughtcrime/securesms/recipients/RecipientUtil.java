@@ -7,6 +7,9 @@ import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 
+import org.signal.core.util.groups.GroupChangeBusyException;
+import org.signal.core.util.groups.GroupChangeException;
+import org.signal.core.util.groups.GroupChangeFailedException;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery;
 import org.thoughtcrime.securesms.database.GroupTable;
@@ -16,9 +19,6 @@ import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.database.model.RecipientRecord;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
-import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
-import org.thoughtcrime.securesms.groups.GroupChangeException;
-import org.thoughtcrime.securesms.groups.GroupChangeFailedException;
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob;
 import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob;

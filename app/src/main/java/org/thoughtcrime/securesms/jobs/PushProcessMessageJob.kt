@@ -3,12 +3,12 @@ package org.thoughtcrime.securesms.jobs
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.signal.core.models.ServiceId
+import org.signal.core.util.groups.GroupChangeBusyException
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.message.CiphertextMessage
 import org.signal.network.exceptions.PushNetworkException
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.groups
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.groups.GroupChangeBusyException
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.ChangeNumberConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint

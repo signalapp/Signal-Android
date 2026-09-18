@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <!-- Title of the screen where a group admin picks which actions non-admins can take. -->
+  <string name="GroupPermissionsScreen__permissions">권한</string>
+  <!-- Content description of the button that navigates back off of the group permissions screen. -->
+  <string name="GroupPermissionsScreen__go_back">뒤로 가기</string>
+  <string name="GroupPermissionsScreen__add_members">멤버 추가</string>
+  <string name="GroupPermissionsScreen__edit_group_info">그룹 정보 수정</string>
+  <string name="GroupPermissionsScreen__send_messages">메시지 보내기</string>
+  <string name="GroupPermissionsScreen__all_members">모든 멤버</string>
+  <string name="GroupPermissionsScreen__only_admins">관리자</string>
+  <string name="GroupPermissionsScreen__who_can_add_new_members">새로운 멤버를 추가할 수 있는 사용자를 선택하세요.</string>
+  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">그룹 정보를 수정할 수 있는 사용자를 선택하세요.</string>
+  <string name="GroupPermissionsScreen__who_can_send_messages">메시지를 보내고 통화를 시작할 수 있는 사용자를 선택하세요.</string>
+  <!-- Label for the member labels permission button in the group permissions settings screen. -->
+  <string name="GroupPermissionsScreen__add_member_labels">멤버 라벨 추가</string>
+  <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
+  <string name="GroupPermissionsScreen__who_can_add_member_labels">멤버 라벨을 추가할 수 있는 사람을 선택하세요.</string>
+  <!-- Warning title shown before restricting member labels to admins only. -->
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_title">멤버 라벨이 제거됩니다</string>
+  <!-- Warning body shown before restricting member labels to admins only. -->
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_body">"이 권한을 \'관리자\'로 변경하면 이 그룹에서 관리자가 아닌 멤버가 설정한 라벨이 모두 제거됩니다."</string>
+  <!-- Confirm button for changing member label permission after warning. -->
+  <string name="GroupPermissionsScreen__change_permission">권한 변경</string>
+</resources>

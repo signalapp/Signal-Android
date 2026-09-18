@@ -1388,13 +1388,14 @@
         <item quantity="other">%1$d kideak gehituta</item>
     </plurals>
 
-    <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Ez duzu hau egiteko baimenik</string>
-    <string name="ManageGroupActivity_not_capable">Gehitu duzun partaide batek ez dauka taldeak erabiltzeko gaitasunik eta Signal eguneratu egin behar du</string>
-    <string name="ManageGroupActivity_not_announcement_capable">Gehitu duzun norbaitek ez ditu iragarpen-taldeak onartzen eta Signal eguneratu behar du</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group">Taldea eguneratzeak huts egin du</string>
-    <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Ez zara taldeko kidea</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Taldea eguneratzeak huts egin du; mesedez, beranduago saia zaitez</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Ezin izan da taldea eguneratu sare errore bat dela eta; mesedez, beranduago saia zaitez</string>
+    <string name="GroupErrors__the_group_was_terminated">Taldea amaituta dago.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">Ez duzu hau egiteko baimenik</string>
+    <string name="GroupErrors__not_capable">Gehitu duzun partaide batek ez dauka taldeak erabiltzeko gaitasunik eta Signal eguneratu egin behar du</string>
+    <string name="GroupErrors__not_announcement_capable">Gehitu duzun norbaitek ez ditu iragarpen-taldeak onartzen eta Signal eguneratu behar du</string>
+    <string name="GroupErrors__failed_to_update_the_group">Taldea eguneratzeak huts egin du</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">Ez zara taldeko kidea</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Taldea eguneratzeak huts egin du; mesedez, beranduago saia zaitez</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Ezin izan da taldea eguneratu sare errore bat dela eta; mesedez, beranduago saia zaitez</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">Editatu izena eta irudia</string>
     <string name="ManageGroupActivity_legacy_group">Jarauntsitako Taldea</string>
@@ -5870,26 +5871,6 @@
         <item quantity="one">%1$d kide ohi</item>
         <item quantity="other">%1$d kide ohi</item>
     </plurals>
-
-    <!-- PermissionsSettingsFragment -->
-    <string name="PermissionsSettingsFragment__add_members">Gehitu kideak</string>
-    <string name="PermissionsSettingsFragment__edit_group_info">Editatu taldeari buruzko informazioa</string>
-    <string name="PermissionsSettingsFragment__send_messages">Bidali mezuak</string>
-    <string name="PermissionsSettingsFragment__all_members">Partaide guztiak</string>
-    <string name="PermissionsSettingsFragment__only_admins">Administratzaileak bakarrik</string>
-    <string name="PermissionsSettingsFragment__who_can_add_new_members">Nork gehitu ditzake kide berriak?</string>
-    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Nork edita dezake talde honen informazioa?</string>
-    <string name="PermissionsSettingsFragment__who_can_send_messages">Nork bidal diezazkizuke mezuak eta nork has ditzake deiak?</string>
-    <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">Gehitu kide-etiketak</string>
-    <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">Nork gehi ditzake kide-etiketak?</string>
-    <!-- Warning title shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">Kide-etiketak garbitu egingo dira</string>
-    <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"Baimen honetan \"Adminak bakarrik\" aukeratzen baduzu, taldeko adminak ez diren pertsonek ezarri dituzten kide-etiketak kendu egingo dira."</string>
-    <!-- Confirm button for changing member label permission after warning. -->
-    <string name="PermissionsSettingsFragment__change_permission">Aldatu baimena</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->

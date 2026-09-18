@@ -31,6 +31,7 @@ import org.signal.core.util.Util
 import org.signal.core.util.concurrent.MaybeCompat
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.dp
+import org.signal.core.util.groups.GroupNotAMemberException
 import org.signal.core.util.logging.Log
 import org.signal.emoji.EmojiStrings
 import org.signal.paging.PagedData
@@ -70,7 +71,6 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.PollTerminate
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.dependencies.AppDependencies.databaseObserver
 import org.thoughtcrime.securesms.dependencies.AppDependencies.expiringMessageManager
-import org.thoughtcrime.securesms.groups.GroupNotAMemberException
 import org.thoughtcrime.securesms.jobs.GroupSendJobHelper
 import org.thoughtcrime.securesms.jobs.MultiDeviceViewOnceOpenJob
 import org.thoughtcrime.securesms.jobs.UnpinMessageJob

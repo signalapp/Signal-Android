@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <!-- Title of the screen where a group admin picks which actions non-admins can take. -->
+  <string name="GroupPermissionsScreen__permissions">Uprawnienia</string>
+  <!-- Content description of the button that navigates back off of the group permissions screen. -->
+  <string name="GroupPermissionsScreen__go_back">Wróć</string>
+  <string name="GroupPermissionsScreen__add_members">Dodawanie osób</string>
+  <string name="GroupPermissionsScreen__edit_group_info">Edycja informacji o grupie</string>
+  <string name="GroupPermissionsScreen__send_messages">Wysyłanie wiadomości</string>
+  <string name="GroupPermissionsScreen__all_members">Wszystkie osoby z grupy</string>
+  <string name="GroupPermissionsScreen__only_admins">Tylko administratorzy</string>
+  <string name="GroupPermissionsScreen__who_can_add_new_members">Kto może dodawać nowe osoby?</string>
+  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">Kto może edytować informacje o grupie?</string>
+  <string name="GroupPermissionsScreen__who_can_send_messages">Kto może wysyłać wiadomości i rozpoczynać połączenia?</string>
+  <!-- Label for the member labels permission button in the group permissions settings screen. -->
+  <string name="GroupPermissionsScreen__add_member_labels">Ustawianie ról w grupie</string>
+  <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
+  <string name="GroupPermissionsScreen__who_can_add_member_labels">Kto może ustawiać role w grupie?</string>
+  <!-- Warning title shown before restricting member labels to admins only. -->
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_title">Role w grupie zostaną usunięte</string>
+  <!-- Warning body shown before restricting member labels to admins only. -->
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_body">"Jeśli zmienisz to uprawnienie na „Tylko administratorzy”, role w grupie ustawione przez osoby niebędące administratorami zostaną usunięte."</string>
+  <!-- Confirm button for changing member label permission after warning. -->
+  <string name="GroupPermissionsScreen__change_permission">Zmień uprawnienie</string>
+</resources>

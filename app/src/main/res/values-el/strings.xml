@@ -1388,13 +1388,14 @@
         <item quantity="other">Προστέθηκαν %1$d μέλη.</item>
     </plurals>
 
-    <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Δεν έχεις το δικαίωμα να το κάνεις</string>
-    <string name="ManageGroupActivity_not_capable">Κάποιος/α που πρόσθεσες δεν υποστηρίζει τις νέες ομάδες και πρέπει να αναβαθμίσει το Signal</string>
-    <string name="ManageGroupActivity_not_announcement_capable">Κάποιος που πρόσθεσες δεν έχει υποστήριξη για ομάδες ανακοινώσεων και θα πρέπει να αναβαθμίσει το Signal</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group">Αποτυχία ενημέρωσης της ομάδας</string>
-    <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Δεν είσαι μέλος της ομάδας</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Αποτυχία ανανέωσης της ομάδας, παρακαλώ προσπάθησε ξανά αργότερα</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Αποτυχία ανανέωσης της ομάδας λόγω σφάλματος δικτύου, παρακαλώ προσπάθησε ξανά αργότερα</string>
+    <string name="GroupErrors__the_group_was_terminated">Αυτή η ομάδα έχει καταργηθεί.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">Δεν έχεις το δικαίωμα να το κάνεις</string>
+    <string name="GroupErrors__not_capable">Κάποιος/α που πρόσθεσες δεν υποστηρίζει τις νέες ομάδες και πρέπει να αναβαθμίσει το Signal</string>
+    <string name="GroupErrors__not_announcement_capable">Κάποιος που πρόσθεσες δεν έχει υποστήριξη για ομάδες ανακοινώσεων και θα πρέπει να αναβαθμίσει το Signal</string>
+    <string name="GroupErrors__failed_to_update_the_group">Αποτυχία ενημέρωσης της ομάδας</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">Δεν είσαι μέλος της ομάδας</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Αποτυχία ανανέωσης της ομάδας, παρακαλώ προσπάθησε ξανά αργότερα</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Αποτυχία ανανέωσης της ομάδας λόγω σφάλματος δικτύου, παρακαλώ προσπάθησε ξανά αργότερα</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">Επεξεργασία ονόματος και φωτογραφίας</string>
     <string name="ManageGroupActivity_legacy_group">Ομάδα παλαιού τύπου</string>
@@ -5870,26 +5871,6 @@
         <item quantity="one">%1$d πρώην μέλος</item>
         <item quantity="other">%1$d πρώην μέλη</item>
     </plurals>
-
-    <!-- PermissionsSettingsFragment -->
-    <string name="PermissionsSettingsFragment__add_members">Προσθήκη μελών</string>
-    <string name="PermissionsSettingsFragment__edit_group_info">Επεξεργασία πληροφοριών ομάδας</string>
-    <string name="PermissionsSettingsFragment__send_messages">Αποστολή μηνυμάτων</string>
-    <string name="PermissionsSettingsFragment__all_members">Όλα τα μέλη</string>
-    <string name="PermissionsSettingsFragment__only_admins">Μόνο διαχειριστές</string>
-    <string name="PermissionsSettingsFragment__who_can_add_new_members">Ποιοί μπορούν να προσθέσουν νέα μέλη;</string>
-    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Ποιοί μπορούν να επεξεργαστούν τις πληροφορίες της ομάδας;</string>
-    <string name="PermissionsSettingsFragment__who_can_send_messages">Ποιος μπορεί να στέλνει μηνύματα και να ξεκινά κλήσεις;</string>
-    <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">Προσθήκη ετικετών μέλους</string>
-    <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">Ποιοι μπορούν να προσθέτουν ετικέτες μέλους;</string>
-    <!-- Warning title shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">Οι ετικέτες μελών θα διαγραφούν</string>
-    <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"Η αλλαγή αυτού του δικαιώματος σε \"Μόνο Διαχειριστές\" θα διαγράψει τις ετικέτες μελών που ορίστηκαν από άτομα που δεν είναι διαχειριστές σε αυτήν την ομάδα."</string>
-    <!-- Confirm button for changing member label permission after warning. -->
-    <string name="PermissionsSettingsFragment__change_permission">Αλλαγή δικαιώματος</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->

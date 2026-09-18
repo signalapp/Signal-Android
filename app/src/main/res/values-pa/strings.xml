@@ -1388,13 +1388,14 @@
         <item quantity="other">%1$d ਮੈਂਬਰ ਸ਼ਾਮਲ ਕੀਤੇ ਗਏ।</item>
     </plurals>
 
-    <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">ਤੁਹਾਡੇ ਕੋਲ ਅਜਿਹਾ ਕਰਨ ਦੇ ਅਧਿਕਾਰ ਨਹੀਂ ਹਨ</string>
-    <string name="ManageGroupActivity_not_capable">ਕੋਈ ਵਿਅਕਤੀ ਜਿਸਨੂੰ ਤੁਸੀਂ ਸ਼ਾਮਲ ਕੀਤਾ ਹੈ, ਨਵੇਂ ਗਰੁੱਪਾਂ ਦਾ ਸਮਰਥਨ ਨਹੀਂ ਕਰਦਾ ਅਤੇ ਉਸਨੂੰ Signal ਨੂੰ ਅੱਪਡੇਟ ਕਰਨ ਦੀ ਜ਼ਰੂਰਤ ਹੈ</string>
-    <string name="ManageGroupActivity_not_announcement_capable">ਕੋਈ ਵਿਅਕਤੀ ਜਿਸਨੂੰ ਤੁਸੀਂ ਸ਼ਾਮਲ ਕੀਤਾ ਹੈ, ਐਲਾਨ ਗਰੁੱਪਾਂ ਦਾ ਸਮਰਥਨ ਨਹੀਂ ਕਰਦਾ ਅਤੇ ਉਸਨੂੰ Signal ਨੂੰ ਅੱਪਡੇਟ ਕਰਨ ਦੀ ਜ਼ਰੂਰਤ ਹੈ</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group">ਗਰੁੱਪ ਨੂੰ ਅੱਪਡੇਟ ਕਰਨਾ ਅਸਫਲ ਰਿਹਾ</string>
-    <string name="ManageGroupActivity_youre_not_a_member_of_the_group">ਤੁਸੀਂ ਗਰੁੱਪ ਦੇ ਮੈਂਬਰ ਨਹੀਂ ਹੋ</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">ਗਰੁੱਪ ਨੂੰ ਅੱਪਡੇਟ ਕਰਨਾ ਅਸਫਲ ਰਿਹਾ, ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">ਕਿਸੇ ਨੈੱਟਵਰਕ ਤਰੁੱਟੀ ਕਾਰਨ ਗਰੁੱਪ ਨੂੰ ਅੱਪਡੇਟ ਕਰਨਾ ਅਸਫਲ ਰਿਹਾ, ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ</string>
+    <string name="GroupErrors__the_group_was_terminated">ਗਰੁੱਪ ਬੰਦ ਹੋ ਗਿਆ ਹੈ।</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">ਤੁਹਾਡੇ ਕੋਲ ਅਜਿਹਾ ਕਰਨ ਦੇ ਅਧਿਕਾਰ ਨਹੀਂ ਹਨ</string>
+    <string name="GroupErrors__not_capable">ਕੋਈ ਵਿਅਕਤੀ ਜਿਸਨੂੰ ਤੁਸੀਂ ਸ਼ਾਮਲ ਕੀਤਾ ਹੈ, ਨਵੇਂ ਗਰੁੱਪਾਂ ਦਾ ਸਮਰਥਨ ਨਹੀਂ ਕਰਦਾ ਅਤੇ ਉਸਨੂੰ Signal ਨੂੰ ਅੱਪਡੇਟ ਕਰਨ ਦੀ ਜ਼ਰੂਰਤ ਹੈ</string>
+    <string name="GroupErrors__not_announcement_capable">ਕੋਈ ਵਿਅਕਤੀ ਜਿਸਨੂੰ ਤੁਸੀਂ ਸ਼ਾਮਲ ਕੀਤਾ ਹੈ, ਐਲਾਨ ਗਰੁੱਪਾਂ ਦਾ ਸਮਰਥਨ ਨਹੀਂ ਕਰਦਾ ਅਤੇ ਉਸਨੂੰ Signal ਨੂੰ ਅੱਪਡੇਟ ਕਰਨ ਦੀ ਜ਼ਰੂਰਤ ਹੈ</string>
+    <string name="GroupErrors__failed_to_update_the_group">ਗਰੁੱਪ ਨੂੰ ਅੱਪਡੇਟ ਕਰਨਾ ਅਸਫਲ ਰਿਹਾ</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">ਤੁਸੀਂ ਗਰੁੱਪ ਦੇ ਮੈਂਬਰ ਨਹੀਂ ਹੋ</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">ਗਰੁੱਪ ਨੂੰ ਅੱਪਡੇਟ ਕਰਨਾ ਅਸਫਲ ਰਿਹਾ, ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">ਕਿਸੇ ਨੈੱਟਵਰਕ ਤਰੁੱਟੀ ਕਾਰਨ ਗਰੁੱਪ ਨੂੰ ਅੱਪਡੇਟ ਕਰਨਾ ਅਸਫਲ ਰਿਹਾ, ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">ਨਾਮ ਅਤੇ ਤਸਵੀਰ ਨੂੰ ਸੋਧੋ</string>
     <string name="ManageGroupActivity_legacy_group">ਲੈਗਸੀ ਗਰੁੱਪ</string>
@@ -5870,26 +5871,6 @@
         <item quantity="one">%1$d ਸਾਬਕਾ ਮੈਂਬਰ</item>
         <item quantity="other">%1$d ਸਾਬਕਾ ਮੈਂਬਰ</item>
     </plurals>
-
-    <!-- PermissionsSettingsFragment -->
-    <string name="PermissionsSettingsFragment__add_members">ਮੈਂਬਰਾਂ ਨੂੰ ਸ਼ਾਮਲ ਕਰੋ</string>
-    <string name="PermissionsSettingsFragment__edit_group_info">ਗਰੁੱਪ ਦੀ ਜਾਣਕਾਰੀ ਸੋਧੋ</string>
-    <string name="PermissionsSettingsFragment__send_messages">ਸੁਨੇਹੇ ਭੇਜੋ</string>
-    <string name="PermissionsSettingsFragment__all_members">ਸਾਰੇ ਮੈਂਬਰ</string>
-    <string name="PermissionsSettingsFragment__only_admins">ਸਿਰਫ਼ ਐਡਮਿਨ</string>
-    <string name="PermissionsSettingsFragment__who_can_add_new_members">ਨਵੇਂ ਮੈਂਬਰ ਕੌਣ ਸ਼ਾਮਲ ਕਰ ਸਕਦਾ ਹੈ?</string>
-    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">ਇਸ ਗਰੁੱਪ ਦੀ ਜਾਣਕਾਰੀ ਨੂੰ ਕੌਣ ਸੰਪਾਦਿਤ ਕਰ ਸਕਦਾ ਹੈ?</string>
-    <string name="PermissionsSettingsFragment__who_can_send_messages">ਕੌਣ ਸੁਨੇਹੇ ਭੇਜ ਸਕਦਾ ਹੈ ਅਤੇ ਕਾਲਾਂ ਕਰ ਸਕਦਾ ਹੈ?</string>
-    <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">ਮੈਂਬਰ ਲੇਬਲ ਸ਼ਾਮਲ ਕਰੋ</string>
-    <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">ਮੈਂਬਰ ਲੇਬਲ ਕੌਣ ਸ਼ਾਮਲ ਕਰ ਸਕਦਾ ਹੈ?</string>
-    <!-- Warning title shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">ਮੈਂਬਰ ਲੇਬਲ ਹਟਾ ਦਿੱਤੇ ਜਾਣਗੇ</string>
-    <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"ਇਸ ਇਜਾਜ਼ਤ ਨੂੰ \"ਸਿਰਫ਼ ਐਡਮਿਨ\" ਵਿੱਚ ਬਦਲਣ ਨਾਲ ਇਸ ਗਰੁੱਪ ਵਿੱਚ ਗੈਰ-ਐਡਮਿਨ ਮੈਂਬਰਾਂ ਦੁਆਰਾ ਸੈੱਟ ਕੀਤੇ ਮੈਂਬਰ ਲੇਬਲ ਹਟਾ ਦਿੱਤੇ ਜਾਣਗੇ।"</string>
-    <!-- Confirm button for changing member label permission after warning. -->
-    <string name="PermissionsSettingsFragment__change_permission">ਇਜਾਜ਼ਤ ਨੂੰ ਬਦਲੋ</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->

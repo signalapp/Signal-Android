@@ -1388,13 +1388,14 @@
         <item quantity="other">%1$d మంది సభ్యులను చేర్చారు.</item>
     </plurals>
 
-    <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">దీన్ని చేయడానికి మీకు హక్కులు లేవు</string>
-    <string name="ManageGroupActivity_not_capable">మీరు జోడించిన ఎవరైనా క్రొత్త సమూహాలకు మద్దతు ఇవ్వరు మరియు Signal‌ను నవీకరించాలి</string>
-    <string name="ManageGroupActivity_not_announcement_capable">మీరు జోడించిన ఎవరికో అనౌన్స్‌మెంట్ గ్రూపులు మద్దతు ఇవ్వవు, Signal ని అప్‌డేట్ చేసుకోవాల్సి ఉంటుంది.</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group">సమూహాన్ని నవీకరించడంలో విఫలమైంది</string>
-    <string name="ManageGroupActivity_youre_not_a_member_of_the_group">మీరు సమూహంలో సభ్యుడు కాదు</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">సమూహాన్ని నవీకరించడంలో విఫలమైంది దయచేసి తరువాత మళ్లీ ప్రయత్నించండి</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">నెట్‌వర్క్ లోపం కారణంగా సమూహాన్ని నవీకరించడంలో విఫలమైంది, దయచేసి తరువాత మళ్లీ ప్రయత్నించండి</string>
+    <string name="GroupErrors__the_group_was_terminated">గ్రూప్ ముగిసింది.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">దీన్ని చేయడానికి మీకు హక్కులు లేవు</string>
+    <string name="GroupErrors__not_capable">మీరు జోడించిన ఎవరైనా క్రొత్త సమూహాలకు మద్దతు ఇవ్వరు మరియు Signal‌ను నవీకరించాలి</string>
+    <string name="GroupErrors__not_announcement_capable">మీరు జోడించిన ఎవరికో అనౌన్స్‌మెంట్ గ్రూపులు మద్దతు ఇవ్వవు, Signal ని అప్‌డేట్ చేసుకోవాల్సి ఉంటుంది.</string>
+    <string name="GroupErrors__failed_to_update_the_group">సమూహాన్ని నవీకరించడంలో విఫలమైంది</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">మీరు సమూహంలో సభ్యుడు కాదు</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">సమూహాన్ని నవీకరించడంలో విఫలమైంది దయచేసి తరువాత మళ్లీ ప్రయత్నించండి</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">నెట్‌వర్క్ లోపం కారణంగా సమూహాన్ని నవీకరించడంలో విఫలమైంది, దయచేసి తరువాత మళ్లీ ప్రయత్నించండి</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">పేరు మరియు చిత్రం సవరించండి</string>
     <string name="ManageGroupActivity_legacy_group">లెగసీ సమూహం</string>
@@ -5870,26 +5871,6 @@
         <item quantity="one">%1$d మాజీ సభ్యుడు</item>
         <item quantity="other">%1$d మాజీ సభ్యులు</item>
     </plurals>
-
-    <!-- PermissionsSettingsFragment -->
-    <string name="PermissionsSettingsFragment__add_members">సభ్యులను జోడించండి</string>
-    <string name="PermissionsSettingsFragment__edit_group_info">సమూహ వివరణను సవరించండి</string>
-    <string name="PermissionsSettingsFragment__send_messages">సందేశాలను పంపండి</string>
-    <string name="PermissionsSettingsFragment__all_members">సభ్యులందరు</string>
-    <string name="PermissionsSettingsFragment__only_admins">పరిపాలకులు మాత్రమే</string>
-    <string name="PermissionsSettingsFragment__who_can_add_new_members">కొత్త సభ్యులను ఎవరు చేర్చగలరు?</string>
-    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">ఈ గుంపు వివరణను ఎవరు సవరించగలరు?</string>
-    <string name="PermissionsSettingsFragment__who_can_send_messages">ఎవరు సందేశాలు పంపగలరు మరియు కాల్‌లను ప్రారంభించగలరు?</string>
-    <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">సభ్యుడి లేబుల్‌లను జోడించండి</string>
-    <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">సభ్యుడి లేబుల్‌లను ఎవరు జోడించగలరు?</string>
-    <!-- Warning title shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">సభ్యుల లేబుల్‌లు తొలగించబడతాయి</string>
-    <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"ఈ అనుమతిని అడ్మిన్‌లు మాత్రమేకు మార్చడం వలన ఈ గ్రూప్‌లో అడ్మిన్‌లు కానివారిచే సెట్ చేయబడిన సభ్యుడి లేబుల్‌లను తొలగిస్తుంది."</string>
-    <!-- Confirm button for changing member label permission after warning. -->
-    <string name="PermissionsSettingsFragment__change_permission">అనుమతిని మార్చండి</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->

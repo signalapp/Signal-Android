@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <!-- Title of the screen where a group admin picks which actions non-admins can take. -->
+  <string name="GroupPermissionsScreen__permissions">அனுமதிகள்</string>
+  <!-- Content description of the button that navigates back off of the group permissions screen. -->
+  <string name="GroupPermissionsScreen__go_back">திரும்பிச் செல்லுங்கள்</string>
+  <string name="GroupPermissionsScreen__add_members">உறுப்பினர்களைச் சேர்க்கவும்</string>
+  <string name="GroupPermissionsScreen__edit_group_info">குழு தகவலைத் திருத்தல்</string>
+  <string name="GroupPermissionsScreen__send_messages">செய்திகளை அனுப்பவும்</string>
+  <string name="GroupPermissionsScreen__all_members">அனைத்து உறுப்பினர்கள்</string>
+  <string name="GroupPermissionsScreen__only_admins">நிர்வாகிகள் மட்டுமே</string>
+  <string name="GroupPermissionsScreen__who_can_add_new_members">புதிய உறுப்பினர்களை யார் சேர்க்க முடியும்?</string>
+  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">இந்த குழுவின் தகவலை யார் திருத்தலாம்?</string>
+  <string name="GroupPermissionsScreen__who_can_send_messages">யாரெல்லாம் மெசேஜ்களை அனுப்பி, அழைப்புகளைத் துவங்கலாம்?</string>
+  <!-- Label for the member labels permission button in the group permissions settings screen. -->
+  <string name="GroupPermissionsScreen__add_member_labels">உறுப்பினரின் பதவி நிலையைச் சேர்</string>
+  <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
+  <string name="GroupPermissionsScreen__who_can_add_member_labels">உறுப்பினரின் பதவி நிலையை யார் சேர்க்கலாம்?</string>
+  <!-- Warning title shown before restricting member labels to admins only. -->
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_title">உறுப்பினரின் பதவி நிலை அழிக்கப்படும்</string>
+  <!-- Warning body shown before restricting member labels to admins only. -->
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_body">"இந்த அனுமதியை “நிர்வாகிகள் மட்டும்” என மாற்றினால், இந்தத் குழுவில் உள்ள நிர்வாகிகள் அல்லாதோர் அமைத்த உறுப்பினரின் பதவி நிலை அழிக்கப்படும்."</string>
+  <!-- Confirm button for changing member label permission after warning. -->
+  <string name="GroupPermissionsScreen__change_permission">அனுமதியை மாற்று</string>
+</resources>

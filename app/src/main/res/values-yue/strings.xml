@@ -1345,13 +1345,14 @@
         <item quantity="other">%1$d 位成員已加咗入嚟。</item>
     </plurals>
 
-    <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">您冇得咁樣做</string>
-    <string name="ManageGroupActivity_not_capable">您加嘅某個人唔支援新版谷，佢需要更新 Signal</string>
-    <string name="ManageGroupActivity_not_announcement_capable">您加嘅某個人唔支援佈告谷，佢需要更新 Signal</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group">更新唔到個谷</string>
-    <string name="ManageGroupActivity_youre_not_a_member_of_the_group">您唔係呢個谷嘅成員。</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">更新唔到個谷，麻煩陣間再試下啦</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">網絡有問題，更新唔到個谷，麻煩陣間再試下啦</string>
+    <string name="GroupErrors__the_group_was_terminated">個谷解散咗啦。</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">您冇得咁樣做</string>
+    <string name="GroupErrors__not_capable">您加嘅某個人唔支援新版谷，佢需要更新 Signal</string>
+    <string name="GroupErrors__not_announcement_capable">您加嘅某個人唔支援佈告谷，佢需要更新 Signal</string>
+    <string name="GroupErrors__failed_to_update_the_group">更新唔到個谷</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">您唔係呢個谷嘅成員。</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">更新唔到個谷，麻煩陣間再試下啦</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">網絡有問題，更新唔到個谷，麻煩陣間再試下啦</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">改名同相</string>
     <string name="ManageGroupActivity_legacy_group">舊版谷</string>
@@ -5721,26 +5722,6 @@
     <plurals name="ConversationSettingsFragment__d_former_members">
         <item quantity="other">%1$d 個前成員</item>
     </plurals>
-
-    <!-- PermissionsSettingsFragment -->
-    <string name="PermissionsSettingsFragment__add_members">加成員</string>
-    <string name="PermissionsSettingsFragment__edit_group_info">編輯個谷嘅資訊</string>
-    <string name="PermissionsSettingsFragment__send_messages">傳送訊息</string>
-    <string name="PermissionsSettingsFragment__all_members">所有成員</string>
-    <string name="PermissionsSettingsFragment__only_admins">只有話事人</string>
-    <string name="PermissionsSettingsFragment__who_can_add_new_members">邊個可以加啲新成員入嚟？</string>
-    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">邊個改到關於呢個谷嘅資訊？</string>
-    <string name="PermissionsSettingsFragment__who_can_send_messages">邊個可以傳送訊息同發起通話？</string>
-    <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">加成員標籤</string>
-    <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">邊個可以加成員標籤？</string>
-    <!-- Warning title shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">成員標籤將會被清走</string>
-    <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"將呢個權限改為「淨係得管理員」之後，呢個谷入面唔係由管理員設定嘅成員標籤將會被清走。"</string>
-    <!-- Confirm button for changing member label permission after warning. -->
-    <string name="PermissionsSettingsFragment__change_permission">改權限</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->

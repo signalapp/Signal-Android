@@ -1474,13 +1474,14 @@
         <item quantity="other">%1$d участников добавлено.</item>
     </plurals>
 
-    <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">У вас нет прав, чтобы сделать это</string>
-    <string name="ManageGroupActivity_not_capable">Кто-то из тех, кого вы добавили, не поддерживает новые группы и должен(-на) обновить Signal</string>
-    <string name="ManageGroupActivity_not_announcement_capable">Кто-то из добавленных вами не поддерживает группы для объявлений и должен(-на) обновить Signal</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group">Не удалось обновить группу</string>
-    <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Вы не являетесь участником этой группы</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Не удалось обновить группу, пожалуйста, попробуйте позже</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Не удалось обновить группу из-за ошибки сети, пожалуйста, попробуйте позже</string>
+    <string name="GroupErrors__the_group_was_terminated">Эта группа закрыта.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">У вас нет прав, чтобы сделать это</string>
+    <string name="GroupErrors__not_capable">Кто-то из тех, кого вы добавили, не поддерживает новые группы и должен(-на) обновить Signal</string>
+    <string name="GroupErrors__not_announcement_capable">Кто-то из добавленных вами не поддерживает группы для объявлений и должен(-на) обновить Signal</string>
+    <string name="GroupErrors__failed_to_update_the_group">Не удалось обновить группу</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">Вы не являетесь участником этой группы</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Не удалось обновить группу, пожалуйста, попробуйте позже</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Не удалось обновить группу из-за ошибки сети, пожалуйста, попробуйте позже</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">Редактировать имя и фото</string>
     <string name="ManageGroupActivity_legacy_group">Старая группа</string>
@@ -6168,26 +6169,6 @@
         <item quantity="many">%1$d бывших участников</item>
         <item quantity="other">%1$d бывшего участника</item>
     </plurals>
-
-    <!-- PermissionsSettingsFragment -->
-    <string name="PermissionsSettingsFragment__add_members">Добавлять участников</string>
-    <string name="PermissionsSettingsFragment__edit_group_info">Редактировать информацию</string>
-    <string name="PermissionsSettingsFragment__send_messages">Отправлять сообщения</string>
-    <string name="PermissionsSettingsFragment__all_members">Все участники</string>
-    <string name="PermissionsSettingsFragment__only_admins">Только администраторы</string>
-    <string name="PermissionsSettingsFragment__who_can_add_new_members">Кто может добавлять новых участников?</string>
-    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Кто может редактировать информацию группы?</string>
-    <string name="PermissionsSettingsFragment__who_can_send_messages">Кто может отправлять сообщения и начинать звонки?</string>
-    <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">Добавить значки участников</string>
-    <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">Кто может добавлять значки участников?</string>
-    <!-- Warning title shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">Значки участников будут очищены</string>
-    <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"Изменение этого разрешения на «Только администраторы» удалит значки участников, установленные другими людьми в этой группе."</string>
-    <!-- Confirm button for changing member label permission after warning. -->
-    <string name="PermissionsSettingsFragment__change_permission">Изменить разрешения</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->

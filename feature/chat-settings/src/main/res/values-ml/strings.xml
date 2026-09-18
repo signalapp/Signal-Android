@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <!-- Title of the screen where a group admin picks which actions non-admins can take. -->
+  <string name="GroupPermissionsScreen__permissions">അനുമതികൾ</string>
+  <!-- Content description of the button that navigates back off of the group permissions screen. -->
+  <string name="GroupPermissionsScreen__go_back">മടങ്ങിപ്പോവുക</string>
+  <string name="GroupPermissionsScreen__add_members">അംഗങ്ങളെ ചേർക്കുക</string>
+  <string name="GroupPermissionsScreen__edit_group_info">ഗ്രൂപ്പ് വിവരം തിരുത്തുക</string>
+  <string name="GroupPermissionsScreen__send_messages">സന്ദേശങ്ങള്‍ അയയ്ക്കുക</string>
+  <string name="GroupPermissionsScreen__all_members">എല്ലാ അംഗങ്ങളും</string>
+  <string name="GroupPermissionsScreen__only_admins">അഡ്‌മിനുകൾ മാത്രം</string>
+  <string name="GroupPermissionsScreen__who_can_add_new_members">ആർക്കാണ് പുതിയ അംഗങ്ങളെ ചേർക്കാൻ കഴിയുക?</string>
+  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">ഈ ഗ്രൂപ്പിന്റെ വിവരങ്ങൾ ആർക്കാണ് എഡിറ്റുചെയ്യാൻ കഴിയുക?</string>
+  <string name="GroupPermissionsScreen__who_can_send_messages">ആർക്കൊക്കെ സന്ദേശങ്ങൾ അയയ്ക്കാനും കോളുകൾ ആരംഭിക്കാനും കഴിയും?</string>
+  <!-- Label for the member labels permission button in the group permissions settings screen. -->
+  <string name="GroupPermissionsScreen__add_member_labels">മെമ്പര്‍ ലേബലുകൾ ചേർക്കുക</string>
+  <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
+  <string name="GroupPermissionsScreen__who_can_add_member_labels">ആർക്കാണ് മെമ്പര്‍ ലേബലുകൾ ചേർക്കാൻ കഴിയുക?</string>
+  <!-- Warning title shown before restricting member labels to admins only. -->
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_title">മെമ്പര്‍ ലേബലുകൾ മായ്ക്കപ്പെടും</string>
+  <!-- Warning body shown before restricting member labels to admins only. -->
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_body">"ഈ അനുമതി \"അഡ്മിൻമാർക്ക് മാത്രം\" എന്നാക്കി മാറ്റുന്നത് ഈ ഗ്രൂപ്പിലെ അഡ്മിൻമാരല്ലാത്തവർ സജ്ജമാക്കിയ മെമ്പര്‍ ലേബലുകൾ മായ്ക്കും."</string>
+  <!-- Confirm button for changing member label permission after warning. -->
+  <string name="GroupPermissionsScreen__change_permission">അനുമതി മാറ്റുക</string>
+</resources>

@@ -1474,13 +1474,14 @@
         <item quantity="other">%1$d удзельнікаў даданыя.</item>
     </plurals>
 
-    <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Вы не маеце на гэта правоў</string>
-    <string name="ManageGroupActivity_not_capable">Хтосьці з тых, каго вы дадалі, не падтрымлівае новыя групы і павінен абнавіць Signal</string>
-    <string name="ManageGroupActivity_not_announcement_capable">Хтосьці з тых, каго вы дадалі, не падтрымлівае групы для аб\'яў і павінен абнавіць Signal</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group">Не атрымалася абнавіць групу</string>
-    <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Вы не ўдзельнік групы</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Не атрымалася абнавіць групу, паспрабуйце яшчэ раз пазней</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Не атрымалася абнавіць групу з-за памылкі сеткі, паспрабуйце яшчэ раз пазней</string>
+    <string name="GroupErrors__the_group_was_terminated">Група была спынена.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">Вы не маеце на гэта правоў</string>
+    <string name="GroupErrors__not_capable">Хтосьці з тых, каго вы дадалі, не падтрымлівае новыя групы і павінен абнавіць Signal</string>
+    <string name="GroupErrors__not_announcement_capable">Хтосьці з тых, каго вы дадалі, не падтрымлівае групы для аб\'яў і павінен абнавіць Signal</string>
+    <string name="GroupErrors__failed_to_update_the_group">Не атрымалася абнавіць групу</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">Вы не ўдзельнік групы</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Не атрымалася абнавіць групу, паспрабуйце яшчэ раз пазней</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Не атрымалася абнавіць групу з-за памылкі сеткі, паспрабуйце яшчэ раз пазней</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">Рэдагаваць імя і фота</string>
     <string name="ManageGroupActivity_legacy_group">Старая група</string>
@@ -6168,26 +6169,6 @@
         <item quantity="many">%1$d былых удзельнікаў</item>
         <item quantity="other">%1$d былых удзельнікаў</item>
     </plurals>
-
-    <!-- PermissionsSettingsFragment -->
-    <string name="PermissionsSettingsFragment__add_members">Дадаць удзельнікаў</string>
-    <string name="PermissionsSettingsFragment__edit_group_info">Рэдагаваць інфармацыю аб групе</string>
-    <string name="PermissionsSettingsFragment__send_messages">Адправіць паведамленні</string>
-    <string name="PermissionsSettingsFragment__all_members">Усе ўдзельнікі</string>
-    <string name="PermissionsSettingsFragment__only_admins">Толькі адміністратары</string>
-    <string name="PermissionsSettingsFragment__who_can_add_new_members">Хто можа дадаваць новых удзельнікаў?</string>
-    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Хто можа рэдагаваць інфармацыю аб гэтай групе?</string>
-    <string name="PermissionsSettingsFragment__who_can_send_messages">Хто можа адпраўляць паведамленні і рабіць званкі?</string>
-    <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">Дадаць меткі ўдзельнікаў</string>
-    <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">Хто можа дадаваць меткі ўдзельнікаў?</string>
-    <!-- Warning title shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">Меткі ўдзельнікаў будуць ачышчаны</string>
-    <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"Калі вы зменіце гэты дазвол на «Толькі адміністратары», меткі ўдзельнікаў, што былі ўсталяваны не адміністратарамі ў гэтай групе, будуць ачышчаны."</string>
-    <!-- Confirm button for changing member label permission after warning. -->
-    <string name="PermissionsSettingsFragment__change_permission">Змяніць дазвол</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->

@@ -1388,13 +1388,14 @@
         <item quantity="other">%1$d അംഗങ്ങളെ ചേർത്തു.</item>
     </plurals>
 
-    <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">ഇത് ചെയ്യുന്നതിന് നിങ്ങൾക്ക് അവകാശമില്ല</string>
-    <string name="ManageGroupActivity_not_capable">നിങ്ങൾ ചേർത്ത ഒരാൾ പുതിയ ഗ്രൂപ്പുകളെ പിന്തുണയ്‌ക്കുന്നില്ല, അവർ Signal അപ്‌ഡേറ്റുചെയ്യേണ്ടതുണ്ട്</string>
-    <string name="ManageGroupActivity_not_announcement_capable">നിങ്ങൾ ചേർത്ത ഒരാൾ അനൗൺസ്മെന്റ് ഗ്രൂപ്പുകളെ പിന്തുണയ്ക്കുന്നില്ല കൂടാതെ Signal അപ്ഡേറ്റ് ചെയ്യേണ്ടതുണ്ട്</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group">ഗ്രൂപ്പ് അപ്‌ഡേറ്റ് ചെയ്യുന്നതിൽ പരാജയപ്പെട്ടു</string>
-    <string name="ManageGroupActivity_youre_not_a_member_of_the_group">നിങ്ങൾ ഗ്രൂപ്പിലെ അംഗമല്ല</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">അഡ്‌മിനുകൾക്ക് മാത്രമേ പങ്കിടാനാകുന്ന ഗ്രൂപ്പ് ലിങ്ക് പുനഃസജ്ജമാക്കാൻ കഴിയൂ.</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">ഒരു നെറ്റ്‌വർക്ക് പിശക് കാരണം ഗ്രൂപ്പ് അപ്‌ഡേറ്റുചെയ്യുന്നതിൽ പരാജയപ്പെട്ടു, ദയവായി പിന്നീട് വീണ്ടും ശ്രമിക്കുക</string>
+    <string name="GroupErrors__the_group_was_terminated">ഗ്രൂപ്പ് അവസാനിച്ചു.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">ഇത് ചെയ്യുന്നതിന് നിങ്ങൾക്ക് അവകാശമില്ല</string>
+    <string name="GroupErrors__not_capable">നിങ്ങൾ ചേർത്ത ഒരാൾ പുതിയ ഗ്രൂപ്പുകളെ പിന്തുണയ്‌ക്കുന്നില്ല, അവർ Signal അപ്‌ഡേറ്റുചെയ്യേണ്ടതുണ്ട്</string>
+    <string name="GroupErrors__not_announcement_capable">നിങ്ങൾ ചേർത്ത ഒരാൾ അനൗൺസ്മെന്റ് ഗ്രൂപ്പുകളെ പിന്തുണയ്ക്കുന്നില്ല കൂടാതെ Signal അപ്ഡേറ്റ് ചെയ്യേണ്ടതുണ്ട്</string>
+    <string name="GroupErrors__failed_to_update_the_group">ഗ്രൂപ്പ് അപ്‌ഡേറ്റ് ചെയ്യുന്നതിൽ പരാജയപ്പെട്ടു</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">നിങ്ങൾ ഗ്രൂപ്പിലെ അംഗമല്ല</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">അഡ്‌മിനുകൾക്ക് മാത്രമേ പങ്കിടാനാകുന്ന ഗ്രൂപ്പ് ലിങ്ക് പുനഃസജ്ജമാക്കാൻ കഴിയൂ.</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">ഒരു നെറ്റ്‌വർക്ക് പിശക് കാരണം ഗ്രൂപ്പ് അപ്‌ഡേറ്റുചെയ്യുന്നതിൽ പരാജയപ്പെട്ടു, ദയവായി പിന്നീട് വീണ്ടും ശ്രമിക്കുക</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">പേരും ചിത്രവും എഡിറ്റുചെയ്യുക</string>
     <string name="ManageGroupActivity_legacy_group">ലെഗസി ഗ്രൂപ്പ്</string>
@@ -5870,26 +5871,6 @@
         <item quantity="one">%1$d മുൻ അംഗം</item>
         <item quantity="other">%1$d മുൻ അംഗങ്ങൾ</item>
     </plurals>
-
-    <!-- PermissionsSettingsFragment -->
-    <string name="PermissionsSettingsFragment__add_members">അംഗങ്ങളെ ചേർക്കുക</string>
-    <string name="PermissionsSettingsFragment__edit_group_info">ഗ്രൂപ്പ് വിവരം തിരുത്തുക</string>
-    <string name="PermissionsSettingsFragment__send_messages">സന്ദേശങ്ങള്‍ അയയ്ക്കുക</string>
-    <string name="PermissionsSettingsFragment__all_members">എല്ലാ അംഗങ്ങളും</string>
-    <string name="PermissionsSettingsFragment__only_admins">അഡ്‌മിനുകൾ മാത്രം</string>
-    <string name="PermissionsSettingsFragment__who_can_add_new_members">ആർക്കാണ് പുതിയ അംഗങ്ങളെ ചേർക്കാൻ കഴിയുക?</string>
-    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">ഈ ഗ്രൂപ്പിന്റെ വിവരങ്ങൾ ആർക്കാണ് എഡിറ്റുചെയ്യാൻ കഴിയുക?</string>
-    <string name="PermissionsSettingsFragment__who_can_send_messages">ആർക്കൊക്കെ സന്ദേശങ്ങൾ അയയ്ക്കാനും കോളുകൾ ആരംഭിക്കാനും കഴിയും?</string>
-    <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">മെമ്പര്‍ ലേബലുകൾ ചേർക്കുക</string>
-    <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">ആർക്കാണ് മെമ്പര്‍ ലേബലുകൾ ചേർക്കാൻ കഴിയുക?</string>
-    <!-- Warning title shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">മെമ്പര്‍ ലേബലുകൾ മായ്ക്കപ്പെടും</string>
-    <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"ഈ അനുമതി \"അഡ്മിൻമാർക്ക് മാത്രം\" എന്നാക്കി മാറ്റുന്നത് ഈ ഗ്രൂപ്പിലെ അഡ്മിൻമാരല്ലാത്തവർ സജ്ജമാക്കിയ മെമ്പര്‍ ലേബലുകൾ മായ്ക്കും."</string>
-    <!-- Confirm button for changing member label permission after warning. -->
-    <string name="PermissionsSettingsFragment__change_permission">അനുമതി മാറ്റുക</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->

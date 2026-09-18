@@ -1388,13 +1388,14 @@
         <item quantity="other">%1$d üzv əlavə edildi.</item>
     </plurals>
 
-    <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Bunu etmək üçün hüququnuz yoxdur</string>
-    <string name="ManageGroupActivity_not_capable">Əlavə etdiyiniz bir şəxsin Signal versiyası yeni qrupları dəstəkləmir və Signal-ı yeniləməlidir</string>
-    <string name="ManageGroupActivity_not_announcement_capable">Əlavə etdiyiniz bir şəxsin Signal versiyası elan qruplarını dəstəkləmir və Signal-ı yeniləməlidir</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group">Qrup yenilənmədi</string>
-    <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Artıq qrupun üzvü deyilsiniz</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Qrup yenilənmədi, zəhmət olmasa daha sonra yenidən sınayın</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Şəbəkə xətasına görə qrup yenilənmədi, zəhmət olmasa daha sonra yenidən sınayın</string>
+    <string name="GroupErrors__the_group_was_terminated">Qrup sonlandırıldı.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">Bunu etmək üçün hüququnuz yoxdur</string>
+    <string name="GroupErrors__not_capable">Əlavə etdiyiniz bir şəxsin Signal versiyası yeni qrupları dəstəkləmir və Signal-ı yeniləməlidir</string>
+    <string name="GroupErrors__not_announcement_capable">Əlavə etdiyiniz bir şəxsin Signal versiyası elan qruplarını dəstəkləmir və Signal-ı yeniləməlidir</string>
+    <string name="GroupErrors__failed_to_update_the_group">Qrup yenilənmədi</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">Artıq qrupun üzvü deyilsiniz</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Qrup yenilənmədi, zəhmət olmasa daha sonra yenidən sınayın</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Şəbəkə xətasına görə qrup yenilənmədi, zəhmət olmasa daha sonra yenidən sınayın</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">Ada və şəklə düzəliş et</string>
     <string name="ManageGroupActivity_legacy_group">Köhnə Qrup</string>
@@ -5870,26 +5871,6 @@
         <item quantity="one">%1$d köhnə üzv</item>
         <item quantity="other">%1$d köhnə üzv</item>
     </plurals>
-
-    <!-- PermissionsSettingsFragment -->
-    <string name="PermissionsSettingsFragment__add_members">Üzv əlavə edə bilmə</string>
-    <string name="PermissionsSettingsFragment__edit_group_info">Qrup məlumatına düzəliş edə bilmə</string>
-    <string name="PermissionsSettingsFragment__send_messages">Mesaj göndərmə</string>
-    <string name="PermissionsSettingsFragment__all_members">Bütün üzvlər</string>
-    <string name="PermissionsSettingsFragment__only_admins">Yalnız adminlər</string>
-    <string name="PermissionsSettingsFragment__who_can_add_new_members">Kim yeni üzv əlavə edə bilər?</string>
-    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Kim bu qrupun məlumatına düzəliş edə bilər?</string>
-    <string name="PermissionsSettingsFragment__who_can_send_messages">Mesajları kim göndərə və zəngləri kim başlada bilər?</string>
-    <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">Üzv etiketləri əlavə et</string>
-    <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">Üzv etiketlərini kim əlavə edə bilər?</string>
-    <!-- Warning title shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">Üzv etiketləri yaradılacaq</string>
-    <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"Bu icazəni \"Yalnız adminlər\" olaraq dəyişdirsəniz, bu, həmin qrupda qeyri-adminlər tərəfindən təyin edilmiş üzv etiketlərini siləcək."</string>
-    <!-- Confirm button for changing member label permission after warning. -->
-    <string name="PermissionsSettingsFragment__change_permission">İcazəni dəyişdir</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->

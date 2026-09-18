@@ -1388,13 +1388,14 @@
         <item quantity="other">დამატებულია %1$d წევრი.</item>
     </plurals>
 
-    <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">შენ არ გაქვს ამის გაკეთების უფლება</string>
-    <string name="ManageGroupActivity_not_capable">ვიღაცას, ვინც თქვენ დაამატეთ, არ აქვს ახალი ჯგუფების მხარდაჭერა და სჭირდება Signal-ის განახლება</string>
-    <string name="ManageGroupActivity_not_announcement_capable">ვიღაცას, ვინც თქვენ დაამატეთ, არ აქვს განცხადების ჯგუფების მხარდაჭერა და სჭირდება Signal-ის განახლება</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group">ჯგუფის განახლება ვერ მოხერხდა</string>
-    <string name="ManageGroupActivity_youre_not_a_member_of_the_group">შენ არ ხარ ამ ჯგუფის წევრი</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">ჯგუფის განახლება ვერ მოხერხდა, გთხოვთ მოგვიანებით თავიდან სცადო</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">ჯგუფის განახლება ქსელის ხარვეზის გამო ვერ მოხერხდა, გთხოვთ მოგვიანებით თავიდან სცადო</string>
+    <string name="GroupErrors__the_group_was_terminated">ჯგუფი გაუქმებულია.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">შენ არ გაქვს ამის გაკეთების უფლება</string>
+    <string name="GroupErrors__not_capable">ვიღაცას, ვინც თქვენ დაამატეთ, არ აქვს ახალი ჯგუფების მხარდაჭერა და სჭირდება Signal-ის განახლება</string>
+    <string name="GroupErrors__not_announcement_capable">ვიღაცას, ვინც თქვენ დაამატეთ, არ აქვს განცხადების ჯგუფების მხარდაჭერა და სჭირდება Signal-ის განახლება</string>
+    <string name="GroupErrors__failed_to_update_the_group">ჯგუფის განახლება ვერ მოხერხდა</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">შენ არ ხარ ამ ჯგუფის წევრი</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">ჯგუფის განახლება ვერ მოხერხდა, გთხოვთ მოგვიანებით თავიდან სცადო</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">ჯგუფის განახლება ქსელის ხარვეზის გამო ვერ მოხერხდა, გთხოვთ მოგვიანებით თავიდან სცადო</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">სახელისა და სურათის რედაქტირება</string>
     <string name="ManageGroupActivity_legacy_group">მოძველებული ჯგუფი</string>
@@ -5870,26 +5871,6 @@
         <item quantity="one">%1$d ყოფილი წევრი</item>
         <item quantity="other">%1$d ყოფილი წევრი</item>
     </plurals>
-
-    <!-- PermissionsSettingsFragment -->
-    <string name="PermissionsSettingsFragment__add_members">წევრების დამატება</string>
-    <string name="PermissionsSettingsFragment__edit_group_info">ჯგუფის ინფორმაციის რედაქტირება</string>
-    <string name="PermissionsSettingsFragment__send_messages">შეტყობინებების გაგზავნა</string>
-    <string name="PermissionsSettingsFragment__all_members">ყველა წევრი</string>
-    <string name="PermissionsSettingsFragment__only_admins">მხოლოდ ადმინები</string>
-    <string name="PermissionsSettingsFragment__who_can_add_new_members">ვის შეუძლია ახალი წევრების დამატება?</string>
-    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">ვის შეუძლია ამ ჯგუფის ინფორმაციის რედაქტირება?</string>
-    <string name="PermissionsSettingsFragment__who_can_send_messages">ვის შეუძლია შეტყობინების გაგზავნა და ზარების წამოწყება?</string>
-    <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">წევრის იარლიყის დამატება</string>
-    <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">ვის შეუძლია წევრის იარლიყების დამატება?</string>
-    <!-- Warning title shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">წევრის იარლიყები წაიშლება</string>
-    <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"ნებართვის მხოლოდ ადმინისტრატორზე გადაყვანა ამ ჯგუფში არაადმინისტრატორების მიერ დაყენებულ წევრის იარლიყებს წაშლის."</string>
-    <!-- Confirm button for changing member label permission after warning. -->
-    <string name="PermissionsSettingsFragment__change_permission">ნებართვის შეცვლა</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->

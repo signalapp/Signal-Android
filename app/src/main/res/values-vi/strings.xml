@@ -1345,13 +1345,14 @@
         <item quantity="other">Đã thêm %1$d thành viên.</item>
     </plurals>
 
-    <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Bạn không có quyền thực hiện điều này</string>
-    <string name="ManageGroupActivity_not_capable">Bạn đã thêm một thành viên không hỗ trợ Nhóm Signal và cần cập nhật ứng dụng Signal.</string>
-    <string name="ManageGroupActivity_not_announcement_capable">Bạn đã thêm một thành viên không hổ trợ nhóm quảng cáo và cần phải cấp nhật Signal</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group">Không thể cập nhật nhóm</string>
-    <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Bạn không phải thành viên nhóm này</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Không thể cập nhật nhóm, vui lòng thử lại sau</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Không thể cập nhật nhóm vì lỗi mạng, vui lòng thử lại sau</string>
+    <string name="GroupErrors__the_group_was_terminated">Nhóm đã kết thúc.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">Bạn không có quyền thực hiện điều này</string>
+    <string name="GroupErrors__not_capable">Bạn đã thêm một thành viên không hỗ trợ Nhóm Signal và cần cập nhật ứng dụng Signal.</string>
+    <string name="GroupErrors__not_announcement_capable">Bạn đã thêm một thành viên không hổ trợ nhóm quảng cáo và cần phải cấp nhật Signal</string>
+    <string name="GroupErrors__failed_to_update_the_group">Không thể cập nhật nhóm</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">Bạn không phải thành viên nhóm này</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Không thể cập nhật nhóm, vui lòng thử lại sau</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Không thể cập nhật nhóm vì lỗi mạng, vui lòng thử lại sau</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">Sửa tên và ảnh</string>
     <string name="ManageGroupActivity_legacy_group">Nhóm Cũ</string>
@@ -5721,26 +5722,6 @@
     <plurals name="ConversationSettingsFragment__d_former_members">
         <item quantity="other">%1$d thành viên cũ</item>
     </plurals>
-
-    <!-- PermissionsSettingsFragment -->
-    <string name="PermissionsSettingsFragment__add_members">Thêm thành viên</string>
-    <string name="PermissionsSettingsFragment__edit_group_info">Sửa thông tin nhóm</string>
-    <string name="PermissionsSettingsFragment__send_messages">Gửi tin nhắn</string>
-    <string name="PermissionsSettingsFragment__all_members">Tất cả thành viên</string>
-    <string name="PermissionsSettingsFragment__only_admins">Chỉ quản trị viên</string>
-    <string name="PermissionsSettingsFragment__who_can_add_new_members">Ai có thể thêm thành viên mới?</string>
-    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Ai có thể chỉnh sửa thông tin nhóm này?</string>
-    <string name="PermissionsSettingsFragment__who_can_send_messages">Ai có thể gửi tin nhắn và bắt đầu cuộc gọi?</string>
-    <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">Thêm nhãn thành viên</string>
-    <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">Ai có thể thêm nhãn thành viên?</string>
-    <!-- Warning title shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">Nhãn thành viên sẽ được xóa</string>
-    <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"Việc thay đổi quyền này thành \"Chỉ quản trị viên\" sẽ xóa nhãn thành viên được đặt bởi những người không phải quản trị viên trong nhóm này."</string>
-    <!-- Confirm button for changing member label permission after warning. -->
-    <string name="PermissionsSettingsFragment__change_permission">Thay đổi quyền</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->

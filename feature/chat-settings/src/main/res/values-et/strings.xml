@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <!-- Title of the screen where a group admin picks which actions non-admins can take. -->
+  <string name="GroupPermissionsScreen__permissions">Õigused</string>
+  <!-- Content description of the button that navigates back off of the group permissions screen. -->
+  <string name="GroupPermissionsScreen__go_back">Mine tagasi</string>
+  <string name="GroupPermissionsScreen__add_members">Lisa liikmed</string>
+  <string name="GroupPermissionsScreen__edit_group_info">Muuda grupi infot</string>
+  <string name="GroupPermissionsScreen__send_messages">Saada sõnumid</string>
+  <string name="GroupPermissionsScreen__all_members">Kõik liikmed</string>
+  <string name="GroupPermissionsScreen__only_admins">Ainult administraatorid</string>
+  <string name="GroupPermissionsScreen__who_can_add_new_members">Kes saavad uusi liikmeid lisada?</string>
+  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">Kes saab selle grupi infot muuta?</string>
+  <string name="GroupPermissionsScreen__who_can_send_messages">Kes saavad sõnumeid saata ja kõnesid alustada?</string>
+  <!-- Label for the member labels permission button in the group permissions settings screen. -->
+  <string name="GroupPermissionsScreen__add_member_labels">Lisa liikme silte</string>
+  <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
+  <string name="GroupPermissionsScreen__who_can_add_member_labels">Kes saavad liikme silte lisada?</string>
+  <!-- Warning title shown before restricting member labels to admins only. -->
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_title">Liikmete sildid kustutatakse</string>
+  <!-- Warning body shown before restricting member labels to admins only. -->
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_body">"Selle loa muutmine valikule „Ainult administraatorid” eemaldab selles grupis mitte-administraatorite määratud liikmete sildid."</string>
+  <!-- Confirm button for changing member label permission after warning. -->
+  <string name="GroupPermissionsScreen__change_permission">Muuda luba</string>
+</resources>

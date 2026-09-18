@@ -12,6 +12,7 @@ import org.signal.core.util.Base64
 import org.signal.core.util.Hex
 import org.signal.core.util.Util
 import org.signal.core.util.UuidUtil
+import org.signal.core.util.groups.GroupChangeBusyException
 import org.signal.core.util.isNotEmpty
 import org.signal.core.util.orNull
 import org.signal.emoji.EmojiUtil
@@ -63,7 +64,6 @@ import org.thoughtcrime.securesms.database.withAttachments
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.dependencies.KeyTransparencyApi
 import org.thoughtcrime.securesms.groups.BadGroupIdException
-import org.thoughtcrime.securesms.groups.GroupChangeBusyException
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.jobs.AttachmentBackfill
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <!-- Title of the screen where a group admin picks which actions non-admins can take. -->
+  <string name="GroupPermissionsScreen__permissions">Quyền</string>
+  <!-- Content description of the button that navigates back off of the group permissions screen. -->
+  <string name="GroupPermissionsScreen__go_back">Quay lại</string>
+  <string name="GroupPermissionsScreen__add_members">Thêm thành viên</string>
+  <string name="GroupPermissionsScreen__edit_group_info">Sửa thông tin nhóm</string>
+  <string name="GroupPermissionsScreen__send_messages">Gửi tin nhắn</string>
+  <string name="GroupPermissionsScreen__all_members">Tất cả thành viên</string>
+  <string name="GroupPermissionsScreen__only_admins">Chỉ quản trị viên</string>
+  <string name="GroupPermissionsScreen__who_can_add_new_members">Ai có thể thêm thành viên mới?</string>
+  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">Ai có thể chỉnh sửa thông tin nhóm này?</string>
+  <string name="GroupPermissionsScreen__who_can_send_messages">Ai có thể gửi tin nhắn và bắt đầu cuộc gọi?</string>
+  <!-- Label for the member labels permission button in the group permissions settings screen. -->
+  <string name="GroupPermissionsScreen__add_member_labels">Thêm nhãn thành viên</string>
+  <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
+  <string name="GroupPermissionsScreen__who_can_add_member_labels">Ai có thể thêm nhãn thành viên?</string>
+  <!-- Warning title shown before restricting member labels to admins only. -->
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_title">Nhãn thành viên sẽ được xóa</string>
+  <!-- Warning body shown before restricting member labels to admins only. -->
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_body">"Việc thay đổi quyền này thành \"Chỉ quản trị viên\" sẽ xóa nhãn thành viên được đặt bởi những người không phải quản trị viên trong nhóm này."</string>
+  <!-- Confirm button for changing member label permission after warning. -->
+  <string name="GroupPermissionsScreen__change_permission">Thay đổi quyền</string>
+</resources>

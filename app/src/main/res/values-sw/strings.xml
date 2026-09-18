@@ -1388,13 +1388,14 @@
         <item quantity="other">Wanachama %1$dwameongezwa.</item>
     </plurals>
 
-    <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Huna haki ya kufanya hivi</string>
-    <string name="ManageGroupActivity_not_capable">Mtu uliyeongeza hana programu inayokubali vikundi vipya, kwa hivyo anahitaji kusasisha Signal</string>
-    <string name="ManageGroupActivity_not_announcement_capable">Mtu uliyeongeza hana programu inayokubali matangazo, kwa hivyo anahitaji kusasisha Signal</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group">Kikundi hakijasasishwa</string>
-    <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Wewe si mwanachama wa kikundi hiki</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Hujaweza kusasisha kikundi hiki, tafadhali jaribu tena baadaye</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Hujaweza kusasisha kikundi kwa sababu ya hitilafu ya mtandao, tafadhali jaribu tena baadaye</string>
+    <string name="GroupErrors__the_group_was_terminated">Kikundi kimefungwa.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">Huna haki ya kufanya hivi</string>
+    <string name="GroupErrors__not_capable">Mtu uliyeongeza hana programu inayokubali vikundi vipya, kwa hivyo anahitaji kusasisha Signal</string>
+    <string name="GroupErrors__not_announcement_capable">Mtu uliyeongeza hana programu inayokubali matangazo, kwa hivyo anahitaji kusasisha Signal</string>
+    <string name="GroupErrors__failed_to_update_the_group">Kikundi hakijasasishwa</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">Wewe si mwanachama wa kikundi hiki</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Hujaweza kusasisha kikundi hiki, tafadhali jaribu tena baadaye</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Hujaweza kusasisha kikundi kwa sababu ya hitilafu ya mtandao, tafadhali jaribu tena baadaye</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">Badilisha jina na picha</string>
     <string name="ManageGroupActivity_legacy_group">Kikundi Kizee</string>
@@ -5870,26 +5871,6 @@
         <item quantity="one">Mwanakikundi wa zamani %1$d</item>
         <item quantity="other">Wanakikundi wa zamani %1$d</item>
     </plurals>
-
-    <!-- PermissionsSettingsFragment -->
-    <string name="PermissionsSettingsFragment__add_members">Ongeza wanachama</string>
-    <string name="PermissionsSettingsFragment__edit_group_info">Hariri maelezo ya kikundi</string>
-    <string name="PermissionsSettingsFragment__send_messages">Tuma ujumbe</string>
-    <string name="PermissionsSettingsFragment__all_members">Wanachama wote</string>
-    <string name="PermissionsSettingsFragment__only_admins">Wasimamizi pekee</string>
-    <string name="PermissionsSettingsFragment__who_can_add_new_members">Nani anayeweza kuongeza wanachama wageni?</string>
-    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Nani anayeweza kubadilisha maelezo ya kikundi hiki?</string>
-    <string name="PermissionsSettingsFragment__who_can_send_messages">Je, nani anaweza kutuma jumbe na kupiga simu?</string>
-    <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">Weka vyeo vya wanachama</string>
-    <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">Nani anaweza kuweka vyeo vya wanachama?</string>
-    <!-- Warning title shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">Vyeo vya wanachama vitafutwa</string>
-    <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"Kubadilisha ruhusa hii kuwa \"Admins pekee\" kutafuta vyeo vya wanachama vilivyowekwa na watu wasio admins katika kikundi hiki."</string>
-    <!-- Confirm button for changing member label permission after warning. -->
-    <string name="PermissionsSettingsFragment__change_permission">Badilisha ruhusa</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->

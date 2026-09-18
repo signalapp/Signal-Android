@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <!-- Title of the screen where a group admin picks which actions non-admins can take. -->
+  <string name="GroupPermissionsScreen__permissions">પરવાનગી</string>
+  <!-- Content description of the button that navigates back off of the group permissions screen. -->
+  <string name="GroupPermissionsScreen__go_back">પાછા જાઓ</string>
+  <string name="GroupPermissionsScreen__add_members">સભ્યો ઉમેરો</string>
+  <string name="GroupPermissionsScreen__edit_group_info">ગ્રુપ માહિતી સંપાદિત કરો</string>
+  <string name="GroupPermissionsScreen__send_messages">મેસેજ મોકલો</string>
+  <string name="GroupPermissionsScreen__all_members">બધા સભ્યો</string>
+  <string name="GroupPermissionsScreen__only_admins">ફક્ત એડમિન</string>
+  <string name="GroupPermissionsScreen__who_can_add_new_members">નવા સભ્યો કોણ ઉમેરી શકે?</string>
+  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">આ ગ્રુપની માહિતીમાં કોણ ફેરફાર કરી શકે?</string>
+  <string name="GroupPermissionsScreen__who_can_send_messages">કોણ મેસેજ મોકલી શકે અને કૉલ શરૂ કરી શકે?</string>
+  <!-- Label for the member labels permission button in the group permissions settings screen. -->
+  <string name="GroupPermissionsScreen__add_member_labels">સભ્યના લેબલ ઉમેરો</string>
+  <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
+  <string name="GroupPermissionsScreen__who_can_add_member_labels">સભ્યના લેબલ કોણ ઉમેરી શકે?</string>
+  <!-- Warning title shown before restricting member labels to admins only. -->
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_title">સભ્યના લેબલ સાફ કરવામાં આવશે</string>
+  <!-- Warning body shown before restricting member labels to admins only. -->
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_body">"આ પરવાનગીને \"ફક્ત એડમિન\"માં બદલવાથી આ ગ્રૂપમાં બિન-એડમિન દ્વારા સેટ કરાયેલ સભ્યના લેબલ સાફ થઈ જશે."</string>
+  <!-- Confirm button for changing member label permission after warning. -->
+  <string name="GroupPermissionsScreen__change_permission">પરવાનગી બદલો</string>
+</resources>

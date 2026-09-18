@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <!-- Title of the screen where a group admin picks which actions non-admins can take. -->
+  <string name="GroupPermissionsScreen__permissions">הרשאות</string>
+  <!-- Content description of the button that navigates back off of the group permissions screen. -->
+  <string name="GroupPermissionsScreen__go_back">חזור</string>
+  <string name="GroupPermissionsScreen__add_members">הוסף חברי קבוצה</string>
+  <string name="GroupPermissionsScreen__edit_group_info">עריכת מידע קבוצה</string>
+  <string name="GroupPermissionsScreen__send_messages">שלח הודעות</string>
+  <string name="GroupPermissionsScreen__all_members">כל חברי הקבוצה</string>
+  <string name="GroupPermissionsScreen__only_admins">רק מנהלנים</string>
+  <string name="GroupPermissionsScreen__who_can_add_new_members">מי יכול להוסיף חברי קבוצה חדשים?</string>
+  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">מי יכול לערוך את המידע של קבוצה הזאת?</string>
+  <string name="GroupPermissionsScreen__who_can_send_messages">מי יכול לשלוח הודעות ולהתחיל שיחות?</string>
+  <!-- Label for the member labels permission button in the group permissions settings screen. -->
+  <string name="GroupPermissionsScreen__add_member_labels">הוספת תווית חבר/ה</string>
+  <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
+  <string name="GroupPermissionsScreen__who_can_add_member_labels">מי יכול להוסיף תוויות חברים?</string>
+  <!-- Warning title shown before restricting member labels to admins only. -->
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_title">תוויות החברים יימחקו</string>
+  <!-- Warning body shown before restricting member labels to admins only. -->
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_body">"שינוי הרשאה זו ל״רק מנהלים״ ימחק תוויות חבר/ה שהוגדרו על ידי משתמשים שאינם מנהלים בקבוצה זו."</string>
+  <!-- Confirm button for changing member label permission after warning. -->
+  <string name="GroupPermissionsScreen__change_permission">שינוי הרשאה</string>
+</resources>

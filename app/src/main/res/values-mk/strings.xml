@@ -1388,13 +1388,14 @@
         <item quantity="other">Додадени се %1$d членови.</item>
     </plurals>
 
-    <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Немате права да го правите ова</string>
-    <string name="ManageGroupActivity_not_capable">Некој од луѓето што ги додадовте немаат поддршка за нови групи и треба да го ажурираат Signal.</string>
-    <string name="ManageGroupActivity_not_announcement_capable">Некој од луѓето што ги додадовте нема поддршка за групи за известувања и треба да го ажурира Signal</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group">Не успеа да се ажурира групата</string>
-    <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Не сте член на групата</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Не успеа да се ажурира групата, обидете се повторно подоцна</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Не успеа да се ажурира групата поради мрежна грешка, обидете се повторно подоцна</string>
+    <string name="GroupErrors__the_group_was_terminated">Оваа група е затворена.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">Немате права да го правите ова</string>
+    <string name="GroupErrors__not_capable">Некој од луѓето што ги додадовте немаат поддршка за нови групи и треба да го ажурираат Signal.</string>
+    <string name="GroupErrors__not_announcement_capable">Некој од луѓето што ги додадовте нема поддршка за групи за известувања и треба да го ажурира Signal</string>
+    <string name="GroupErrors__failed_to_update_the_group">Не успеа да се ажурира групата</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">Не сте член на групата</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Не успеа да се ажурира групата, обидете се повторно подоцна</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Не успеа да се ажурира групата поради мрежна грешка, обидете се повторно подоцна</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">Уреди име и слика</string>
     <string name="ManageGroupActivity_legacy_group">Застарена група</string>
@@ -5870,26 +5871,6 @@
         <item quantity="one">%1$d поранешен член</item>
         <item quantity="other">%1$d поранешни членови</item>
     </plurals>
-
-    <!-- PermissionsSettingsFragment -->
-    <string name="PermissionsSettingsFragment__add_members">Додавање членови</string>
-    <string name="PermissionsSettingsFragment__edit_group_info">Уредување информции за група</string>
-    <string name="PermissionsSettingsFragment__send_messages">Испраќање пораки</string>
-    <string name="PermissionsSettingsFragment__all_members">Сите членови</string>
-    <string name="PermissionsSettingsFragment__only_admins">Само администратори</string>
-    <string name="PermissionsSettingsFragment__who_can_add_new_members">Кој може да додава нови членови?</string>
-    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Кој може да ги уредува информациите за групата?</string>
-    <string name="PermissionsSettingsFragment__who_can_send_messages">Кој може да испраќа пораки и да започнува повици?</string>
-    <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">Додајте ознака на член</string>
-    <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">Кој може да додава ознаки на членови?</string>
-    <!-- Warning title shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">Ознаките на членовите ќе бидат избришани</string>
-    <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"Промената на оваа дозвола во „Само администратори“ ќе ги избрише ознаките на членовите поставени од лица кои не се администратори во оваа група."</string>
-    <!-- Confirm button for changing member label permission after warning. -->
-    <string name="PermissionsSettingsFragment__change_permission">Променете дозволи</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->

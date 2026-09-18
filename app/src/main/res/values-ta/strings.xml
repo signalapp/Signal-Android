@@ -1388,13 +1388,14 @@
         <item quantity="other">%1$d உறுப்பினர்கள் சேர்க்கப்பட்டனர்.</item>
     </plurals>
 
-    <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">இதைச் செய்ய உங்களுக்கு உரிமை இல்லை</string>
-    <string name="ManageGroupActivity_not_capable">நீங்கள் சேர்த்த ஒருவரின் தொலைபேசி புதிய குழுக்களை ஆதரிக்காது, அவர்கள் சிக்னல் பயன்பாட்டைப் Signal update புதுப்பிக்க வேண்டும்</string>
-    <string name="ManageGroupActivity_not_announcement_capable">நீங்கள் சேர்த்த ஒருவர் இல்லை ஆதரவு அறிவிப்பு குழுக்கள் மற்றும் வேண்டும் புதுப்பி Signal</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group">குழுவைப் புதுப்பிப்பதில் தோல்வி</string>
-    <string name="ManageGroupActivity_youre_not_a_member_of_the_group">நீங்கள் இந்த குழுவில் உறுப்பினராக இல்லை</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">குழுவைப் புதுப்பிப்பதில் தோல்வி, பின்னர் மீண்டும் முயற்சிக்கவும்</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">இணைய பிழை காரணமாக குழுவைப் புதுப்பிப்பதில் தோல்வி, தயவுசெய்து பின்னர் மீண்டும் முயற்சிக்கவும்</string>
+    <string name="GroupErrors__the_group_was_terminated">தொகுப்பு முடிவடைந்தது.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">இதைச் செய்ய உங்களுக்கு உரிமை இல்லை</string>
+    <string name="GroupErrors__not_capable">நீங்கள் சேர்த்த ஒருவரின் தொலைபேசி புதிய குழுக்களை ஆதரிக்காது, அவர்கள் சிக்னல் பயன்பாட்டைப் Signal update புதுப்பிக்க வேண்டும்</string>
+    <string name="GroupErrors__not_announcement_capable">நீங்கள் சேர்த்த ஒருவர் இல்லை ஆதரவு அறிவிப்பு குழுக்கள் மற்றும் வேண்டும் புதுப்பி Signal</string>
+    <string name="GroupErrors__failed_to_update_the_group">குழுவைப் புதுப்பிப்பதில் தோல்வி</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">நீங்கள் இந்த குழுவில் உறுப்பினராக இல்லை</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">குழுவைப் புதுப்பிப்பதில் தோல்வி, பின்னர் மீண்டும் முயற்சிக்கவும்</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">இணைய பிழை காரணமாக குழுவைப் புதுப்பிப்பதில் தோல்வி, தயவுசெய்து பின்னர் மீண்டும் முயற்சிக்கவும்</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">பெயர் மற்றும் படத்தைத் திருத்தவும்</string>
     <string name="ManageGroupActivity_legacy_group">பழைய மரபு குழு</string>
@@ -5870,26 +5871,6 @@
         <item quantity="one">%1$d முன்னாள் உறுப்பினர்</item>
         <item quantity="other">%1$d முன்னாள் உறுப்பினர்கள்</item>
     </plurals>
-
-    <!-- PermissionsSettingsFragment -->
-    <string name="PermissionsSettingsFragment__add_members">உறுப்பினர்களைச் சேர்க்கவும்</string>
-    <string name="PermissionsSettingsFragment__edit_group_info">குழு தகவலைத் திருத்தல்</string>
-    <string name="PermissionsSettingsFragment__send_messages">செய்திகளை அனுப்பவும்</string>
-    <string name="PermissionsSettingsFragment__all_members">அனைத்து உறுப்பினர்கள்</string>
-    <string name="PermissionsSettingsFragment__only_admins">நிர்வாகிகள் மட்டுமே</string>
-    <string name="PermissionsSettingsFragment__who_can_add_new_members">புதிய உறுப்பினர்களை யார் சேர்க்க முடியும்?</string>
-    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">இந்த குழுவின் தகவலை யார் திருத்தலாம்?</string>
-    <string name="PermissionsSettingsFragment__who_can_send_messages">யாரெல்லாம் மெசேஜ்களை அனுப்பி, அழைப்புகளைத் துவங்கலாம்?</string>
-    <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">உறுப்பினரின் பதவி நிலையைச் சேர்</string>
-    <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">உறுப்பினரின் பதவி நிலையை யார் சேர்க்கலாம்?</string>
-    <!-- Warning title shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">உறுப்பினரின் பதவி நிலை அழிக்கப்படும்</string>
-    <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"இந்த அனுமதியை “நிர்வாகிகள் மட்டும்” என மாற்றினால், இந்தத் குழுவில் உள்ள நிர்வாகிகள் அல்லாதோர் அமைத்த உறுப்பினரின் பதவி நிலை அழிக்கப்படும்."</string>
-    <!-- Confirm button for changing member label permission after warning. -->
-    <string name="PermissionsSettingsFragment__change_permission">அனுமதியை மாற்று</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->

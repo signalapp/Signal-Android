@@ -1345,13 +1345,14 @@
         <item quantity="other">%1$d ahli ditambah.</item>
     </plurals>
 
-    <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Anda tidak mempunyai hak untuk melakukan ini</string>
-    <string name="ManageGroupActivity_not_capable">Seseorang yang anda tambah tidak menyokong kumpulan baru dan perlu mengemas kini Signal</string>
-    <string name="ManageGroupActivity_not_announcement_capable">Seseorang yang anda tambah tidak menyokong kumpulan pengumuman dan perlu mengemas kini Signal</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group">Gagal untuk mengemas kini kumpulan</string>
-    <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Anda bukan ahli kumpulan</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Gagal untuk mengemas kini kumpulan sila cuba semula kemudian</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Gagal mengemas kini kumpulan disebabkan ralat rangkaian, sila cuba semula kemudian</string>
+    <string name="GroupErrors__the_group_was_terminated">Kumpulan ini telah tamat.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">Anda tidak mempunyai hak untuk melakukan ini</string>
+    <string name="GroupErrors__not_capable">Seseorang yang anda tambah tidak menyokong kumpulan baru dan perlu mengemas kini Signal</string>
+    <string name="GroupErrors__not_announcement_capable">Seseorang yang anda tambah tidak menyokong kumpulan pengumuman dan perlu mengemas kini Signal</string>
+    <string name="GroupErrors__failed_to_update_the_group">Gagal untuk mengemas kini kumpulan</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">Anda bukan ahli kumpulan</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Gagal untuk mengemas kini kumpulan sila cuba semula kemudian</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Gagal mengemas kini kumpulan disebabkan ralat rangkaian, sila cuba semula kemudian</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">Edit nama dan gambar</string>
     <string name="ManageGroupActivity_legacy_group">Kumpulan Legasi</string>
@@ -5721,26 +5722,6 @@
     <plurals name="ConversationSettingsFragment__d_former_members">
         <item quantity="other">%1$d ahli terdahulu</item>
     </plurals>
-
-    <!-- PermissionsSettingsFragment -->
-    <string name="PermissionsSettingsFragment__add_members">Tambah ahli</string>
-    <string name="PermissionsSettingsFragment__edit_group_info">Edit info kumpulan</string>
-    <string name="PermissionsSettingsFragment__send_messages">Hantar mesej</string>
-    <string name="PermissionsSettingsFragment__all_members">Semua ahli</string>
-    <string name="PermissionsSettingsFragment__only_admins">Admin sahaja</string>
-    <string name="PermissionsSettingsFragment__who_can_add_new_members">Siapa boleh menambah ahli baru?</string>
-    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Siapa boleh edit info kumpulan ini?</string>
-    <string name="PermissionsSettingsFragment__who_can_send_messages">Siapa yang boleh menghantar mesej dan memulakan panggilan?</string>
-    <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">Tambah label ahli</string>
-    <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">Siapa yang boleh menambah label ahli?</string>
-    <!-- Warning title shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">Label ahli akan dikosongkan</string>
-    <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"Menukar kebenaran ini kepada Pentadbir sahaja akan mengosongkan label ahli yang ditetapkan oleh bukan pentadbir dalam kumpulan ini."</string>
-    <!-- Confirm button for changing member label permission after warning. -->
-    <string name="PermissionsSettingsFragment__change_permission">Tukar Kebenaran</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->

@@ -1474,13 +1474,14 @@
         <item quantity="other">%1$d členů přidáno.</item>
     </plurals>
 
-    <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Nemáte oprávnění toto provést</string>
-    <string name="ManageGroupActivity_not_capable">Přidali jste někoho, kdo nepodporuje nové skupiny a musí aktualizovat Signal</string>
-    <string name="ManageGroupActivity_not_announcement_capable">Přidali jste někoho, kdo nepodporuje oznamovací skupiny a musí aktualizovat Signal</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group">Nepodařilo se aktualizovat skupinu</string>
-    <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Nejste členem skupiny</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Nepodařilo se aktualizovat skupinu. Prosím, zkuste to později</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Nepodařilo se aktualizovat skupinu kvůli chybě sítě. Prosím, zkuste to později</string>
+    <string name="GroupErrors__the_group_was_terminated">Skupina byla ukončena.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">Nemáte oprávnění toto provést</string>
+    <string name="GroupErrors__not_capable">Přidali jste někoho, kdo nepodporuje nové skupiny a musí aktualizovat Signal</string>
+    <string name="GroupErrors__not_announcement_capable">Přidali jste někoho, kdo nepodporuje oznamovací skupiny a musí aktualizovat Signal</string>
+    <string name="GroupErrors__failed_to_update_the_group">Nepodařilo se aktualizovat skupinu</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">Nejste členem skupiny</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Nepodařilo se aktualizovat skupinu. Prosím, zkuste to později</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Nepodařilo se aktualizovat skupinu kvůli chybě sítě. Prosím, zkuste to později</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">Upravit název a obrázek</string>
     <string name="ManageGroupActivity_legacy_group">Starší skupina</string>
@@ -6168,26 +6169,6 @@
         <item quantity="many">%1$d bývalých členů</item>
         <item quantity="other">%1$d bývalých členů</item>
     </plurals>
-
-    <!-- PermissionsSettingsFragment -->
-    <string name="PermissionsSettingsFragment__add_members">Přidávat členy</string>
-    <string name="PermissionsSettingsFragment__edit_group_info">Upravovat informace o skupině</string>
-    <string name="PermissionsSettingsFragment__send_messages">Odesílat zprávy</string>
-    <string name="PermissionsSettingsFragment__all_members">Všichni členové</string>
-    <string name="PermissionsSettingsFragment__only_admins">Pouze správci</string>
-    <string name="PermissionsSettingsFragment__who_can_add_new_members">Kdo může přidávat nové členy?</string>
-    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Kdo může upravovat informace o této skupině?</string>
-    <string name="PermissionsSettingsFragment__who_can_send_messages">Kdo může posílat zprávy a zahajovat hovory?</string>
-    <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">Přidávat štítky členů</string>
-    <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">Kdo může přidávat štítky členů?</string>
-    <!-- Warning title shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">Štítky členů budou smazány</string>
-    <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"Změna tohoto oprávnění na Pouze správci odstraní štítky členů nastavené uživateli, kteří v této skupině nejsou správci."</string>
-    <!-- Confirm button for changing member label permission after warning. -->
-    <string name="PermissionsSettingsFragment__change_permission">Změnit oprávnění</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->

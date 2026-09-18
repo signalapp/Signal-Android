@@ -1388,13 +1388,14 @@
         <item quantity="other">%1$d জন সদস্য যুক্ত করা হয়েছে।</item>
     </plurals>
 
-    <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">আপনার এটা করার অধিকার নেই</string>
-    <string name="ManageGroupActivity_not_capable">আপনি এমন কাউকে যুক্ত করেছেন যার Signal App নতুন গ্রুপ সহায়ক নয়। তার Signal আপডেট করা প্রয়োজন।</string>
-    <string name="ManageGroupActivity_not_announcement_capable">আপনি এমন কাউকে যুক্ত করেছেন যে প্রচার গ্রুপ সহায়ক নয়। তার Signal আপডেট করা প্রয়োজন।</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group">গ্রুপ আপডেটকরণ ব্যার্থ হয়েছে</string>
-    <string name="ManageGroupActivity_youre_not_a_member_of_the_group">আপনি গ্রুপটির সদস্য নন</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">গ্রুপটি আপডেট করতে ব্যর্থ হয়েছে দয়া করে পরে আবার চেষ্টা করুন</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">একটি নেটওয়ার্ক ত্রুটির কারণে গ্রুপটি আপডেট করতে ব্যর্থ হয়েছে দয়া করে পরে আবার চেষ্টা করুন</string>
+    <string name="GroupErrors__the_group_was_terminated">এই গ্রুপটি বন্ধ হয়ে গিয়েছে।</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">আপনার এটা করার অধিকার নেই</string>
+    <string name="GroupErrors__not_capable">আপনি এমন কাউকে যুক্ত করেছেন যার Signal App নতুন গ্রুপ সহায়ক নয়। তার Signal আপডেট করা প্রয়োজন।</string>
+    <string name="GroupErrors__not_announcement_capable">আপনি এমন কাউকে যুক্ত করেছেন যে প্রচার গ্রুপ সহায়ক নয়। তার Signal আপডেট করা প্রয়োজন।</string>
+    <string name="GroupErrors__failed_to_update_the_group">গ্রুপ আপডেটকরণ ব্যার্থ হয়েছে</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">আপনি গ্রুপটির সদস্য নন</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">গ্রুপটি আপডেট করতে ব্যর্থ হয়েছে দয়া করে পরে আবার চেষ্টা করুন</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">একটি নেটওয়ার্ক ত্রুটির কারণে গ্রুপটি আপডেট করতে ব্যর্থ হয়েছে দয়া করে পরে আবার চেষ্টা করুন</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">নাম এবং ছবি সম্পাদনা করেন</string>
     <string name="ManageGroupActivity_legacy_group">লিগ্যাসি গ্রুপ</string>
@@ -5870,26 +5871,6 @@
         <item quantity="one">%1$d জন প্রাক্তন সদস্য</item>
         <item quantity="other">%1$d জন প্রাক্তন সদস্য</item>
     </plurals>
-
-    <!-- PermissionsSettingsFragment -->
-    <string name="PermissionsSettingsFragment__add_members">সদস্যদের যোগ করান</string>
-    <string name="PermissionsSettingsFragment__edit_group_info">গ্রুপের তথ্য সম্পাদনা করুন</string>
-    <string name="PermissionsSettingsFragment__send_messages">বার্তা পাঠান</string>
-    <string name="PermissionsSettingsFragment__all_members">সকল সদস্য</string>
-    <string name="PermissionsSettingsFragment__only_admins">শুধু এডমিন</string>
-    <string name="PermissionsSettingsFragment__who_can_add_new_members">কে নতুন সদস্য যুক্ত করতে পারবে?</string>
-    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">এই গ্রুপের তথ্য কে সম্পাদনা করতে পারবে?</string>
-    <string name="PermissionsSettingsFragment__who_can_send_messages">কারা মেসেজ পাঠাতে এবং কল শুরু করতে পারবেন?</string>
-    <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">সদস্য লেবেল যোগ করুন</string>
-    <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">কে সদস্য লেবেল যোগ করতে পারবেন?</string>
-    <!-- Warning title shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">সদস্য লেবেলগুলো মুছে ফেলা হবে</string>
-    <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"এই অনুমতি পরিবর্তন করে \"শুধুমাত্র অ্যাডমিন\" বেছে নিলে এই গ্রুপে যারা অ্যাডমিন নন তাদের দ্বারা নির্ধারণ করা সদস্য লেবেলগুলো মুছে যাবে।"</string>
-    <!-- Confirm button for changing member label permission after warning. -->
-    <string name="PermissionsSettingsFragment__change_permission">অনুমতি পরিবর্তন করুন</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->

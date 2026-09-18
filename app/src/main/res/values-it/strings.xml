@@ -1388,13 +1388,14 @@
         <item quantity="other">%1$d persone aggiunte.</item>
     </plurals>
 
-    <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Non hai i permessi per farlo</string>
-    <string name="ManageGroupActivity_not_capable">Qualcuno che hai aggiunto non supporta i nuovi gruppi e deve aggiornare Signal</string>
-    <string name="ManageGroupActivity_not_announcement_capable">Qualcuno che hai aggiunto non supporta i gruppi di annuncio e deve aggiornare Signal</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group">Aggiornamento del gruppo fallito</string>
-    <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Non sei un membro del gruppo</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Impossibile aggiornare il gruppo, riprova più tardi</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Aggiornamento del gruppo non riuscito a causa di un errore di rete, riprova più tardi</string>
+    <string name="GroupErrors__the_group_was_terminated">Il gruppo è stato chiuso.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">Non hai i permessi per farlo</string>
+    <string name="GroupErrors__not_capable">Qualcuno che hai aggiunto non supporta i nuovi gruppi e deve aggiornare Signal</string>
+    <string name="GroupErrors__not_announcement_capable">Qualcuno che hai aggiunto non supporta i gruppi di annuncio e deve aggiornare Signal</string>
+    <string name="GroupErrors__failed_to_update_the_group">Aggiornamento del gruppo fallito</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">Non sei un membro del gruppo</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Impossibile aggiornare il gruppo, riprova più tardi</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Aggiornamento del gruppo non riuscito a causa di un errore di rete, riprova più tardi</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">Modifica nome e immagine</string>
     <string name="ManageGroupActivity_legacy_group">Gruppi Legacy</string>
@@ -5870,26 +5871,6 @@
         <item quantity="one">%1$d utente precedente</item>
         <item quantity="other">%1$d utenti precedenti</item>
     </plurals>
-
-    <!-- PermissionsSettingsFragment -->
-    <string name="PermissionsSettingsFragment__add_members">Aggiungi membri</string>
-    <string name="PermissionsSettingsFragment__edit_group_info">Modifica informazioni gruppo</string>
-    <string name="PermissionsSettingsFragment__send_messages">Inviare messaggi</string>
-    <string name="PermissionsSettingsFragment__all_members">Tutti i membri</string>
-    <string name="PermissionsSettingsFragment__only_admins">Solo gli admin</string>
-    <string name="PermissionsSettingsFragment__who_can_add_new_members">Chi può aggiungere nuovi membri?</string>
-    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Chi può modificare le informazioni di questo gruppo?</string>
-    <string name="PermissionsSettingsFragment__who_can_send_messages">Chi può inviare i messaggi e iniziare le chiamate?</string>
-    <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">Aggiungi i ruoli degli utenti</string>
-    <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">Chi può aggiungere i ruoli degli utenti?</string>
-    <!-- Warning title shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">I ruoli degli utenti verranno rimossi</string>
-    <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"Cambiare questa autorizzazione a \"Solo admin\" comporterà la rimozione di tutti i ruoli degli utenti in questo gruppo impostati da utenti che non erano admin."</string>
-    <!-- Confirm button for changing member label permission after warning. -->
-    <string name="PermissionsSettingsFragment__change_permission">Cambia autorizzazione</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->

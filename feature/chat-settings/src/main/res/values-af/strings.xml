@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <!-- Title of the screen where a group admin picks which actions non-admins can take. -->
+  <string name="GroupPermissionsScreen__permissions">Toestemmings</string>
+  <!-- Content description of the button that navigates back off of the group permissions screen. -->
+  <string name="GroupPermissionsScreen__go_back">Gaan terug</string>
+  <string name="GroupPermissionsScreen__add_members">Voeg lede toe</string>
+  <string name="GroupPermissionsScreen__edit_group_info">Wysig groepinligting</string>
+  <string name="GroupPermissionsScreen__send_messages">Stuur boodskappe</string>
+  <string name="GroupPermissionsScreen__all_members">Alle lede</string>
+  <string name="GroupPermissionsScreen__only_admins">Slegs admins</string>
+  <string name="GroupPermissionsScreen__who_can_add_new_members">Wie kan nuwe lede toevoeg?</string>
+  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">Wie kan hierdie groep se inligting wysig?</string>
+  <string name="GroupPermissionsScreen__who_can_send_messages">Wie kan boodskappe stuur en oproepe begin?</string>
+  <!-- Label for the member labels permission button in the group permissions settings screen. -->
+  <string name="GroupPermissionsScreen__add_member_labels">Voeg lidfunksie-etikette by</string>
+  <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
+  <string name="GroupPermissionsScreen__who_can_add_member_labels">Wie kan lidfunksie-etikette byvoeg?</string>
+  <!-- Warning title shown before restricting member labels to admins only. -->
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_title">Lidfunksie-etikette sal uitgevee word</string>
+  <!-- Warning body shown before restricting member labels to admins only. -->
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_body">"Deur hierdie toestemming na Slegs admins te verander, sal lidfunksie-etikette wat deur nie-admins in hierdie groep gestel is, uitgevee word."</string>
+  <!-- Confirm button for changing member label permission after warning. -->
+  <string name="GroupPermissionsScreen__change_permission">Verander toestemmings</string>
+</resources>

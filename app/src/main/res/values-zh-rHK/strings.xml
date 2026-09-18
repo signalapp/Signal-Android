@@ -1345,13 +1345,14 @@
         <item quantity="other">%1$d 個成員已新增。</item>
     </plurals>
 
-    <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">您沒有權限這樣做</string>
-    <string name="ManageGroupActivity_not_capable">您所加入的某人不支援「新版群組」並需要更新 Signal</string>
-    <string name="ManageGroupActivity_not_announcement_capable">您所加入的某人不支援公告群組並需要更新 Signal</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group">升級此群組失敗</string>
-    <string name="ManageGroupActivity_youre_not_a_member_of_the_group">您現在不是此群組的成員</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">更新群組失敗，請稍後再試</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">因網絡問題，更新群組失敗，請稍後再試</string>
+    <string name="GroupErrors__the_group_was_terminated">群組已解散。</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">您沒有權限這樣做</string>
+    <string name="GroupErrors__not_capable">您所加入的某人不支援「新版群組」並需要更新 Signal</string>
+    <string name="GroupErrors__not_announcement_capable">您所加入的某人不支援公告群組並需要更新 Signal</string>
+    <string name="GroupErrors__failed_to_update_the_group">升級此群組失敗</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">您現在不是此群組的成員</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">更新群組失敗，請稍後再試</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">因網絡問題，更新群組失敗，請稍後再試</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">編輯名稱和圖片</string>
     <string name="ManageGroupActivity_legacy_group">舊版群組</string>
@@ -5721,26 +5722,6 @@
     <plurals name="ConversationSettingsFragment__d_former_members">
         <item quantity="other">%1$d 個前任成員</item>
     </plurals>
-
-    <!-- PermissionsSettingsFragment -->
-    <string name="PermissionsSettingsFragment__add_members">新增成員</string>
-    <string name="PermissionsSettingsFragment__edit_group_info">編輯群組資訊</string>
-    <string name="PermissionsSettingsFragment__send_messages">傳送訊息</string>
-    <string name="PermissionsSettingsFragment__all_members">所有成員</string>
-    <string name="PermissionsSettingsFragment__only_admins">僅限管理員</string>
-    <string name="PermissionsSettingsFragment__who_can_add_new_members">誰可以加入新成員？</string>
-    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">誰可以編輯此群組的資訊？</string>
-    <string name="PermissionsSettingsFragment__who_can_send_messages">誰可以傳送訊息並發起通話？</string>
-    <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">新增成員標籤</string>
-    <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">誰可新增成員標籤？</string>
-    <!-- Warning title shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">成員標籤將被清除</string>
-    <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"將此權限變更為「僅限管理員」後，此群組內由非管理員設定的成員標籤將被清除。"</string>
-    <!-- Confirm button for changing member label permission after warning. -->
-    <string name="PermissionsSettingsFragment__change_permission">變更權限</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->

@@ -1388,13 +1388,14 @@
         <item quantity="other">%1$d tag hozzáadva</item>
     </plurals>
 
-    <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Ehhez nincs elegendő jogosultságod</string>
-    <string name="ManageGroupActivity_not_capable">Egy általad hozzáadott csoporttag nem támogatja az új csoportokat, ezért frissítenie kell a Signalt</string>
-    <string name="ManageGroupActivity_not_announcement_capable">Egy új tag elavult Signalt használ, frissítenie kell a hírcsatorna típusú csoport használatához</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group">Nem sikerült a csoport frissítése</string>
-    <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Nem vagy a csoport tagja</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Nem sikerült a csoport frissítése. Kérlek próbáld újra később!</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Hálózati hiba miatt nem sikerült a csoport frissítése. Kérlek próbáld újra később!</string>
+    <string name="GroupErrors__the_group_was_terminated">A csoport megszűnt.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">Ehhez nincs elegendő jogosultságod</string>
+    <string name="GroupErrors__not_capable">Egy általad hozzáadott csoporttag nem támogatja az új csoportokat, ezért frissítenie kell a Signalt</string>
+    <string name="GroupErrors__not_announcement_capable">Egy új tag elavult Signalt használ, frissítenie kell a hírcsatorna típusú csoport használatához</string>
+    <string name="GroupErrors__failed_to_update_the_group">Nem sikerült a csoport frissítése</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">Nem vagy a csoport tagja</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Nem sikerült a csoport frissítése. Kérlek próbáld újra később!</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Hálózati hiba miatt nem sikerült a csoport frissítése. Kérlek próbáld újra később!</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">Név és kép szerkesztése</string>
     <string name="ManageGroupActivity_legacy_group">Régi típusú csoport</string>
@@ -5870,26 +5871,6 @@
         <item quantity="one">%1$d korábbi tag</item>
         <item quantity="other">%1$d korábbi tag</item>
     </plurals>
-
-    <!-- PermissionsSettingsFragment -->
-    <string name="PermissionsSettingsFragment__add_members">Tagok hozzáadása</string>
-    <string name="PermissionsSettingsFragment__edit_group_info">Csoportinfó szerkesztése</string>
-    <string name="PermissionsSettingsFragment__send_messages">Üzenetküldés</string>
-    <string name="PermissionsSettingsFragment__all_members">Összes tag</string>
-    <string name="PermissionsSettingsFragment__only_admins">Csak adminisztrátorok</string>
-    <string name="PermissionsSettingsFragment__who_can_add_new_members">Ki vehet fel új tagokat?</string>
-    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Ki szerkesztheti a csoport adatait?</string>
-    <string name="PermissionsSettingsFragment__who_can_send_messages">Ki küldhet üzenetet és indíthat hívást?</string>
-    <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">Tagsági címke hozzáadása</string>
-    <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">Ki adhat hozzá tagsági címkéket?</string>
-    <!-- Warning title shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">A tagsági címkék törlődnek</string>
-    <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"Ha ezt az engedélyt „Csak rendszergazdák” opcióra módosítod, azzal törlöd a csoportban nem rendszergazdák által beállított tagsági címkéket."</string>
-    <!-- Confirm button for changing member label permission after warning. -->
-    <string name="PermissionsSettingsFragment__change_permission">Engedély módosítása</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->

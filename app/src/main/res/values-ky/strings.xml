@@ -1388,13 +1388,14 @@
         <item quantity="other">%1$d мүчө кошулду.</item>
     </plurals>
 
-    <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Бул нерсени жасай албайсыз.</string>
-    <string name="ManageGroupActivity_not_capable">Сиз кошкон кимдир бирөө жаңы топторду колдоно албайт жана Signal\'ды жаңыртышы керек</string>
-    <string name="ManageGroupActivity_not_announcement_capable">Сиз кошкон кимдир бирөө жарыялар топторун колдоно албайт жана Signal\'ды жаңыртышы керек</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group">Бул топ жаңырбай калды</string>
-    <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Сиз бул топтун мүчөсү эмессиз</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Топ жаңырган жок, бир аздан соң кайталап көрүңүз</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Тармакта ката кеткендиктен, топ жаңырган жок. Бир аздан соң кайталап көрүңүз</string>
+    <string name="GroupErrors__the_group_was_terminated">Топтун иши бүттү.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">Бул нерсени жасай албайсыз.</string>
+    <string name="GroupErrors__not_capable">Сиз кошкон кимдир бирөө жаңы топторду колдоно албайт жана Signal\'ды жаңыртышы керек</string>
+    <string name="GroupErrors__not_announcement_capable">Сиз кошкон кимдир бирөө жарыялар топторун колдоно албайт жана Signal\'ды жаңыртышы керек</string>
+    <string name="GroupErrors__failed_to_update_the_group">Бул топ жаңырбай калды</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">Сиз бул топтун мүчөсү эмессиз</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Топ жаңырган жок, бир аздан соң кайталап көрүңүз</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Тармакта ката кеткендиктен, топ жаңырган жок. Бир аздан соң кайталап көрүңүз</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">Ысым менен сүрөттү өзгөртүү</string>
     <string name="ManageGroupActivity_legacy_group">Эски топ</string>
@@ -5870,26 +5871,6 @@
         <item quantity="one"></item>
         <item quantity="other">%1$d мурунку мүчөлөр</item>
     </plurals>
-
-    <!-- PermissionsSettingsFragment -->
-    <string name="PermissionsSettingsFragment__add_members">Мүчө кошуу</string>
-    <string name="PermissionsSettingsFragment__edit_group_info">Топтун маалыматын өзгөртүү</string>
-    <string name="PermissionsSettingsFragment__send_messages">Билдирүүлөрдү жөнөтүү</string>
-    <string name="PermissionsSettingsFragment__all_members">Бардык мүчөлөр</string>
-    <string name="PermissionsSettingsFragment__only_admins">Администраторлор гана</string>
-    <string name="PermissionsSettingsFragment__who_can_add_new_members">Жаңы мүчөлөрдү ким кошо алат?</string>
-    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Бул топтун маалыматын ким өзгөртө алат?</string>
-    <string name="PermissionsSettingsFragment__who_can_send_messages">Ким билдирүүлөрдү жөнөтүп, чала алат?</string>
-    <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">Катышуучунун энбелгисин кошуу</string>
-    <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">Катышуучулардын энбелгилерин ким кошо алат?</string>
-    <!-- Warning title shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">Катышуучунун энбелгилери тазаланат</string>
-    <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"Бул уруксатты \"Администраторлор гана\" деп өзгөртсөңүз, ушул топтун кадимки колдонуучулары койгон катышуучулардын энбелгилери өчүп калат."</string>
-    <!-- Confirm button for changing member label permission after warning. -->
-    <string name="PermissionsSettingsFragment__change_permission">Уруксатты өзгөртүү</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->

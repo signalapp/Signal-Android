@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <!-- Title of the screen where a group admin picks which actions non-admins can take. -->
+  <string name="GroupPermissionsScreen__permissions">สิทธิ์</string>
+  <!-- Content description of the button that navigates back off of the group permissions screen. -->
+  <string name="GroupPermissionsScreen__go_back">ย้อนกลับ</string>
+  <string name="GroupPermissionsScreen__add_members">เพิ่มสมาชิก</string>
+  <string name="GroupPermissionsScreen__edit_group_info">แก้ไขข้อมูลกลุ่ม</string>
+  <string name="GroupPermissionsScreen__send_messages">ส่งข้อความ</string>
+  <string name="GroupPermissionsScreen__all_members">สมาชิกทุกคน</string>
+  <string name="GroupPermissionsScreen__only_admins">เฉพาะผู้ดูแล</string>
+  <string name="GroupPermissionsScreen__who_can_add_new_members">ใครสามารถเพิ่มสมาชิกใหม่?</string>
+  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">ใครสามารถแก้ไขข้อมูลของกลุ่มนี้ได้?</string>
+  <string name="GroupPermissionsScreen__who_can_send_messages">เลือกอนุญาตสิทธิ์ในการส่งข้อความและเริ่มการโทร</string>
+  <!-- Label for the member labels permission button in the group permissions settings screen. -->
+  <string name="GroupPermissionsScreen__add_member_labels">เพิ่มป้ายกำกับสมาชิก</string>
+  <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
+  <string name="GroupPermissionsScreen__who_can_add_member_labels">ใครบ้างที่สามารถเพิ่มป้ายกำกับสมาชิก</string>
+  <!-- Warning title shown before restricting member labels to admins only. -->
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_title">ป้ายกำกับสมาชิกจะถูกล้าง</string>
+  <!-- Warning body shown before restricting member labels to admins only. -->
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_body">"เมื่อเปลี่ยนการตั้งค่าสิทธิ์นี้เป็นเฉพาะผู้ดูแล ป้ายกำกับสมาชิกที่ไม่ได้กำหนดโดยผู้ดูแลกลุ่มนี้จะถูกล้าง"</string>
+  <!-- Confirm button for changing member label permission after warning. -->
+  <string name="GroupPermissionsScreen__change_permission">เปลี่ยนการตั้งค่าสิทธิ์</string>
+</resources>

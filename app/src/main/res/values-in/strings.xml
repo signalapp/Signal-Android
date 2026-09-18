@@ -1345,13 +1345,14 @@
         <item quantity="other">%1$d anggota ditambahkan.</item>
     </plurals>
 
-    <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Anda tidak memiliki hak untuk melakukan tindakan ini</string>
-    <string name="ManageGroupActivity_not_capable">Seseorang yang Anda tambahkan belum dapat mengakses fitur grup baru dan perlu memperbarui aplikasinya ke versi Signal terbaru</string>
-    <string name="ManageGroupActivity_not_announcement_capable">Seseorang yang Anda tambahkan tidak dapat mengakses grup notifikasi dan perlu memperbarui aplikasinya ke versi Signal terbaru.</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group">Gagal memperbarui grup</string>
-    <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Anda bukan member grup ini</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Gagal memperbarui grup. Mohon coba lagi nanti</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Gagal memperbarui grup karena kesalahan jaringan. Mohon coba lagi nanti</string>
+    <string name="GroupErrors__the_group_was_terminated">Grup sudah bubar.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">Anda tidak memiliki hak untuk melakukan tindakan ini</string>
+    <string name="GroupErrors__not_capable">Seseorang yang Anda tambahkan belum dapat mengakses fitur grup baru dan perlu memperbarui aplikasinya ke versi Signal terbaru</string>
+    <string name="GroupErrors__not_announcement_capable">Seseorang yang Anda tambahkan tidak dapat mengakses grup notifikasi dan perlu memperbarui aplikasinya ke versi Signal terbaru.</string>
+    <string name="GroupErrors__failed_to_update_the_group">Gagal memperbarui grup</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">Anda bukan member grup ini</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Gagal memperbarui grup. Mohon coba lagi nanti</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Gagal memperbarui grup karena kesalahan jaringan. Mohon coba lagi nanti</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">Edit nama dan gambar</string>
     <string name="ManageGroupActivity_legacy_group">Grup Lama</string>
@@ -5721,26 +5722,6 @@
     <plurals name="ConversationSettingsFragment__d_former_members">
         <item quantity="other">%1$d mantan anggota</item>
     </plurals>
-
-    <!-- PermissionsSettingsFragment -->
-    <string name="PermissionsSettingsFragment__add_members">Tambahkan anggota</string>
-    <string name="PermissionsSettingsFragment__edit_group_info">Edit informasi grup</string>
-    <string name="PermissionsSettingsFragment__send_messages">Kirim pesan</string>
-    <string name="PermissionsSettingsFragment__all_members">Semua anggota</string>
-    <string name="PermissionsSettingsFragment__only_admins">Khusus para admin</string>
-    <string name="PermissionsSettingsFragment__who_can_add_new_members">Siapa yang dapat menambahkan anggota baru?</string>
-    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Siapa yang dapat menyunting informasi grup?</string>
-    <string name="PermissionsSettingsFragment__who_can_send_messages">Siapa yang dapat mengirim pesan dan memulai panggilan?</string>
-    <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">Tambahkan label anggota</string>
-    <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">Siapa yang bisa menambahkan label anggota?</string>
-    <!-- Warning title shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">Label anggota akan dihapus</string>
-    <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"Mengubah izin ini menjadi “Hanya admin” akan menghapus label anggota yang ditetapkan oleh non-admin dalam grup ini."</string>
-    <!-- Confirm button for changing member label permission after warning. -->
-    <string name="PermissionsSettingsFragment__change_permission">Ubah izin</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->

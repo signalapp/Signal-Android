@@ -1388,13 +1388,14 @@
         <item quantity="other">%1$d medlemmar tillagda.</item>
     </plurals>
 
-    <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Du har inte rätten att göra detta</string>
-    <string name="ManageGroupActivity_not_capable">Någon som du har lagt till stöder inte nya grupper och behöver uppdatera Signal</string>
-    <string name="ManageGroupActivity_not_announcement_capable">Någon du har lagt till stöder inte tillkännagivande grupper och behöver uppdatera Signal</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group">Det gick inte att uppdatera gruppen</string>
-    <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Du är inte medlem i gruppen</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Det gick inte att uppdatera gruppen. Försök igen senare</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Det gick inte att uppdatera gruppen på grund av ett nätverksfel, försök igen senare</string>
+    <string name="GroupErrors__the_group_was_terminated">Gruppen har avslutats.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">Du har inte rätten att göra detta</string>
+    <string name="GroupErrors__not_capable">Någon som du har lagt till stöder inte nya grupper och behöver uppdatera Signal</string>
+    <string name="GroupErrors__not_announcement_capable">Någon du har lagt till stöder inte tillkännagivande grupper och behöver uppdatera Signal</string>
+    <string name="GroupErrors__failed_to_update_the_group">Det gick inte att uppdatera gruppen</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">Du är inte medlem i gruppen</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Det gick inte att uppdatera gruppen. Försök igen senare</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Det gick inte att uppdatera gruppen på grund av ett nätverksfel, försök igen senare</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">Ändra namn och bild</string>
     <string name="ManageGroupActivity_legacy_group">Äldre grupp</string>
@@ -5870,26 +5871,6 @@
         <item quantity="one">%1$d tidigare medlem</item>
         <item quantity="other">%1$d tidigare medlemmar</item>
     </plurals>
-
-    <!-- PermissionsSettingsFragment -->
-    <string name="PermissionsSettingsFragment__add_members">Lägg till medlemmar</string>
-    <string name="PermissionsSettingsFragment__edit_group_info">Redigera gruppinformation</string>
-    <string name="PermissionsSettingsFragment__send_messages">Skicka meddelanden</string>
-    <string name="PermissionsSettingsFragment__all_members">Alla medlemmar</string>
-    <string name="PermissionsSettingsFragment__only_admins">Endast administratörer</string>
-    <string name="PermissionsSettingsFragment__who_can_add_new_members">Vem kan lägga till nya medlemmar?</string>
-    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Vem kan redigera denna grupps information?</string>
-    <string name="PermissionsSettingsFragment__who_can_send_messages">Vem kan skicka meddelanden och starta samtal?</string>
-    <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">Lägg till medlemsetiketter</string>
-    <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">Vem kan lägga till medlemsetiketter?</string>
-    <!-- Warning title shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">Medlemsetiketter kommer att tas bort</string>
-    <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"Om du ändrar denna behörighet till Endast administratörer rensas medlemsetiketter som angetts av icke-administratörer i den här gruppen."</string>
-    <!-- Confirm button for changing member label permission after warning. -->
-    <string name="PermissionsSettingsFragment__change_permission">Ändra behörighet</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->

@@ -7,6 +7,7 @@ import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.Result;
 import org.signal.core.util.concurrent.SignalExecutors;
+import org.signal.core.util.groups.GroupChangeException;
 import org.signal.core.util.logging.Log;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup;
 import org.thoughtcrime.securesms.database.GroupTable;
@@ -16,7 +17,6 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
-import org.thoughtcrime.securesms.groups.GroupChangeException;
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeErrorCallback;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;

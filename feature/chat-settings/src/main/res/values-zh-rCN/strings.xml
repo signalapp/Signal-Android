@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <!-- Title of the screen where a group admin picks which actions non-admins can take. -->
+  <string name="GroupPermissionsScreen__permissions">权限</string>
+  <!-- Content description of the button that navigates back off of the group permissions screen. -->
+  <string name="GroupPermissionsScreen__go_back">返回</string>
+  <string name="GroupPermissionsScreen__add_members">添加成员</string>
+  <string name="GroupPermissionsScreen__edit_group_info">编辑群组信息</string>
+  <string name="GroupPermissionsScreen__send_messages">发送消息</string>
+  <string name="GroupPermissionsScreen__all_members">全部成员</string>
+  <string name="GroupPermissionsScreen__only_admins">仅限管理员</string>
+  <string name="GroupPermissionsScreen__who_can_add_new_members">谁能添加新成员？</string>
+  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">谁能编辑群组信息？</string>
+  <string name="GroupPermissionsScreen__who_can_send_messages">谁可以发送消息和发起通话？</string>
+  <!-- Label for the member labels permission button in the group permissions settings screen. -->
+  <string name="GroupPermissionsScreen__add_member_labels">添加成员标签</string>
+  <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
+  <string name="GroupPermissionsScreen__who_can_add_member_labels">谁可以添加成员标签？</string>
+  <!-- Warning title shown before restricting member labels to admins only. -->
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_title">成员标签将会被清除</string>
+  <!-- Warning body shown before restricting member labels to admins only. -->
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_body">"将此权限更改为“仅限管理员”将会清除此群组中由非管理员设置的成员标签。"</string>
+  <!-- Confirm button for changing member label permission after warning. -->
+  <string name="GroupPermissionsScreen__change_permission">更改权限</string>
+</resources>

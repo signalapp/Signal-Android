@@ -1474,13 +1474,14 @@
         <item quantity="other">%1$d חברי קבוצה התווספו.</item>
     </plurals>
 
-    <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">אין לך את הזכויות לעשות זאת</string>
-    <string name="ManageGroupActivity_not_capable">למישהו שהוספת אין תמיכה בקבוצות חדשות והוא צריך לעדכן את Signal</string>
-    <string name="ManageGroupActivity_not_announcement_capable">מישהו שהוספת לא תומך בקבוצות הכרזה והוא צריך לעדכן את Signal</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group">כישלון בעדכון הקבוצה</string>
-    <string name="ManageGroupActivity_youre_not_a_member_of_the_group">אינך חבר קבוצה בקבוצה זו</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">נכשל בעדכון הקבוצה. אנא נסה שוב מאוחר יותר.</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">נכשל בעדכון הקבוצה עקב שגיאת רשת, אנא נסה שוב מאוחר יותר.</string>
+    <string name="GroupErrors__the_group_was_terminated">הקבוצה נסגרה.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">אין לך את הזכויות לעשות זאת</string>
+    <string name="GroupErrors__not_capable">למישהו שהוספת אין תמיכה בקבוצות חדשות והוא צריך לעדכן את Signal</string>
+    <string name="GroupErrors__not_announcement_capable">מישהו שהוספת לא תומך בקבוצות הכרזה והוא צריך לעדכן את Signal</string>
+    <string name="GroupErrors__failed_to_update_the_group">כישלון בעדכון הקבוצה</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">אינך חבר קבוצה בקבוצה זו</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">נכשל בעדכון הקבוצה. אנא נסה שוב מאוחר יותר.</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">נכשל בעדכון הקבוצה עקב שגיאת רשת, אנא נסה שוב מאוחר יותר.</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">ערוך שם ותמונה</string>
     <string name="ManageGroupActivity_legacy_group">קבוצה מיושנת</string>
@@ -6168,26 +6169,6 @@
         <item quantity="many">%1$d חברים לשעבר</item>
         <item quantity="other">%1$d חברים לשעבר</item>
     </plurals>
-
-    <!-- PermissionsSettingsFragment -->
-    <string name="PermissionsSettingsFragment__add_members">הוסף חברי קבוצה</string>
-    <string name="PermissionsSettingsFragment__edit_group_info">עריכת מידע קבוצה</string>
-    <string name="PermissionsSettingsFragment__send_messages">שלח הודעות</string>
-    <string name="PermissionsSettingsFragment__all_members">כל חברי הקבוצה</string>
-    <string name="PermissionsSettingsFragment__only_admins">רק מנהלנים</string>
-    <string name="PermissionsSettingsFragment__who_can_add_new_members">מי יכול להוסיף חברי קבוצה חדשים?</string>
-    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">מי יכול לערוך את המידע של קבוצה הזאת?</string>
-    <string name="PermissionsSettingsFragment__who_can_send_messages">מי יכול לשלוח הודעות ולהתחיל שיחות?</string>
-    <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">הוספת תווית חבר/ה</string>
-    <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">מי יכול להוסיף תוויות חברים?</string>
-    <!-- Warning title shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">תוויות החברים יימחקו</string>
-    <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"שינוי הרשאה זו ל״רק מנהלים״ ימחק תוויות חבר/ה שהוגדרו על ידי משתמשים שאינם מנהלים בקבוצה זו."</string>
-    <!-- Confirm button for changing member label permission after warning. -->
-    <string name="PermissionsSettingsFragment__change_permission">שינוי הרשאה</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <!-- Title of the screen where a group admin picks which actions non-admins can take. -->
+  <string name="GroupPermissionsScreen__permissions">アクセス許可</string>
+  <!-- Content description of the button that navigates back off of the group permissions screen. -->
+  <string name="GroupPermissionsScreen__go_back">戻る</string>
+  <string name="GroupPermissionsScreen__add_members">メンバーの追加</string>
+  <string name="GroupPermissionsScreen__edit_group_info">グループ情報の編集</string>
+  <string name="GroupPermissionsScreen__send_messages">メッセージの送信</string>
+  <string name="GroupPermissionsScreen__all_members">すべてのメンバー</string>
+  <string name="GroupPermissionsScreen__only_admins">管理者のみ</string>
+  <string name="GroupPermissionsScreen__who_can_add_new_members">メンバーを追加できるユーザーは？</string>
+  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">グループ情報を編集できるユーザーは？</string>
+  <string name="GroupPermissionsScreen__who_can_send_messages">メッセージを送信したり電話をかけられる人</string>
+  <!-- Label for the member labels permission button in the group permissions settings screen. -->
+  <string name="GroupPermissionsScreen__add_member_labels">メンバーラベルの追加</string>
+  <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
+  <string name="GroupPermissionsScreen__who_can_add_member_labels">メンバーラベルを追加できる人は？</string>
+  <!-- Warning title shown before restricting member labels to admins only. -->
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_title">メンバーラベルは削除されます</string>
+  <!-- Warning body shown before restricting member labels to admins only. -->
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_body">"この権限を「管理者のみ」に変更すると、このグループ内の管理者以外の人が設定したメンバーラベルは削除されます。"</string>
+  <!-- Confirm button for changing member label permission after warning. -->
+  <string name="GroupPermissionsScreen__change_permission">権限を変更</string>
+</resources>

@@ -1388,13 +1388,14 @@
         <item quantity="other">%1$d lede bygevoeg.</item>
     </plurals>
 
-    <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Jy het nie die regte om dit te doen nie</string>
-    <string name="ManageGroupActivity_not_capable">Iemand wat jy toegevoeg het, ondersteun nie nuwe groepe nie en moet Signal bywerk</string>
-    <string name="ManageGroupActivity_not_announcement_capable">Iemand wat jy bygevoeg het, ondersteun nie aankondigingsgroepe nie en moet Signal bywerk</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group">Kon nie die groep bywerk nie</string>
-    <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Jy is nie \'n lid van die groep nie</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Kon nie groep bywerk nie, probeer later weer.</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Kon nie groep bywerk nie a.g.v. \'n netwerkfout, probeer asb. later weer.</string>
+    <string name="GroupErrors__the_group_was_terminated">Die groep is beëindig.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">Jy het nie die regte om dit te doen nie</string>
+    <string name="GroupErrors__not_capable">Iemand wat jy toegevoeg het, ondersteun nie nuwe groepe nie en moet Signal bywerk</string>
+    <string name="GroupErrors__not_announcement_capable">Iemand wat jy bygevoeg het, ondersteun nie aankondigingsgroepe nie en moet Signal bywerk</string>
+    <string name="GroupErrors__failed_to_update_the_group">Kon nie die groep bywerk nie</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">Jy is nie \'n lid van die groep nie</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Kon nie groep bywerk nie, probeer later weer.</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Kon nie groep bywerk nie a.g.v. \'n netwerkfout, probeer asb. later weer.</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">Bewerk naam en foto</string>
     <string name="ManageGroupActivity_legacy_group">Legaatgroep</string>
@@ -5870,26 +5871,6 @@
         <item quantity="one">%1$d voormalige lid</item>
         <item quantity="other">%1$d voormalige lede</item>
     </plurals>
-
-    <!-- PermissionsSettingsFragment -->
-    <string name="PermissionsSettingsFragment__add_members">Voeg lede toe</string>
-    <string name="PermissionsSettingsFragment__edit_group_info">Wysig groepinligting</string>
-    <string name="PermissionsSettingsFragment__send_messages">Stuur boodskappe</string>
-    <string name="PermissionsSettingsFragment__all_members">Alle lede</string>
-    <string name="PermissionsSettingsFragment__only_admins">Slegs admins</string>
-    <string name="PermissionsSettingsFragment__who_can_add_new_members">Wie kan nuwe lede toevoeg?</string>
-    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Wie kan hierdie groep se inligting wysig?</string>
-    <string name="PermissionsSettingsFragment__who_can_send_messages">Wie kan boodskappe stuur en oproepe begin?</string>
-    <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">Voeg lidfunksie-etikette by</string>
-    <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">Wie kan lidfunksie-etikette byvoeg?</string>
-    <!-- Warning title shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">Lidfunksie-etikette sal uitgevee word</string>
-    <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"Deur hierdie toestemming na Slegs admins te verander, sal lidfunksie-etikette wat deur nie-admins in hierdie groep gestel is, uitgevee word."</string>
-    <!-- Confirm button for changing member label permission after warning. -->
-    <string name="PermissionsSettingsFragment__change_permission">Verander toestemmings</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->

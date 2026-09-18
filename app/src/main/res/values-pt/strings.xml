@@ -1388,13 +1388,14 @@
         <item quantity="other">%1$d membros adicionados</item>
     </plurals>
 
-    <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Não tem permissões para fazer isto</string>
-    <string name="ManageGroupActivity_not_capable">Alguém que você adicionou não suporta novos grupos e necessita de atualizar o Signal</string>
-    <string name="ManageGroupActivity_not_announcement_capable">Alguém que você adicionou não suporta novos grupos anunciados e necessita de atualizar o Signal</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group">Falha ao atualizar o grupo</string>
-    <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Você não é um membro do grupo</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Ocorreu um erro ao tentar atualizar o grupo. Por favor tente novamente mais tarde</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Ocorreu um erro ao tentar atualizar o grupo devido a um erro de rede. Por favor, tente novamente mais tarde</string>
+    <string name="GroupErrors__the_group_was_terminated">O grupo foi encerrado.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">Não tem permissões para fazer isto</string>
+    <string name="GroupErrors__not_capable">Alguém que você adicionou não suporta novos grupos e necessita de atualizar o Signal</string>
+    <string name="GroupErrors__not_announcement_capable">Alguém que você adicionou não suporta novos grupos anunciados e necessita de atualizar o Signal</string>
+    <string name="GroupErrors__failed_to_update_the_group">Falha ao atualizar o grupo</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">Você não é um membro do grupo</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Ocorreu um erro ao tentar atualizar o grupo. Por favor tente novamente mais tarde</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Ocorreu um erro ao tentar atualizar o grupo devido a um erro de rede. Por favor, tente novamente mais tarde</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">Editar nome e imagem</string>
     <string name="ManageGroupActivity_legacy_group">Grupo legado</string>
@@ -5870,26 +5871,6 @@
         <item quantity="one">%1$d antigo membro</item>
         <item quantity="other">%1$d antigos membros</item>
     </plurals>
-
-    <!-- PermissionsSettingsFragment -->
-    <string name="PermissionsSettingsFragment__add_members">Adicionar membros</string>
-    <string name="PermissionsSettingsFragment__edit_group_info">Editar informação do grupo</string>
-    <string name="PermissionsSettingsFragment__send_messages">Enviar mensagens</string>
-    <string name="PermissionsSettingsFragment__all_members">Todos os membros</string>
-    <string name="PermissionsSettingsFragment__only_admins">Apenas administradores</string>
-    <string name="PermissionsSettingsFragment__who_can_add_new_members">Quem pode adicionar novos membros?</string>
-    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Quem pode editar a informação do grupo?</string>
-    <string name="PermissionsSettingsFragment__who_can_send_messages">Quem é que pode enviar mensagens e iniciar chamadas?</string>
-    <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">Adicionar etiqueta de membro</string>
-    <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">Quem pode adicionar etiquetas de membros?</string>
-    <!-- Warning title shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">As etiquetas dos membros serão apagadas</string>
-    <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"Alterar esta permissão para \"Apenas administradores\" irá apagar as etiquetas de membros definidas por não administradores neste grupo."</string>
-    <!-- Confirm button for changing member label permission after warning. -->
-    <string name="PermissionsSettingsFragment__change_permission">Alterar permissão</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->

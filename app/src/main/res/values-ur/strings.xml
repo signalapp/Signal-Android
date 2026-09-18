@@ -1388,13 +1388,14 @@
         <item quantity="other">%1$d ممبران کو شامل کیا گیا ہے۔</item>
     </plurals>
 
-    <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">آپ کو یہ کام کرنے کا حق نہیں ہے</string>
-    <string name="ManageGroupActivity_not_capable">آپ کے شامل کردہ کوئی بھی نئے گروپس کی حمایت نہیں کرتا ہے اور اسے Signal کو اپ ڈیٹ کرنے کی ضرورت ہے</string>
-    <string name="ManageGroupActivity_not_announcement_capable">آپ نے جس کسی شخص کو شامل کیا ہے وہ اعلان کے گروپس کی معاونت نہیں کرتا اور اسے Signal اپ ڈیٹ کرنے کی ضرورت ہے</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group">گروپ کی تازہ کاری کرنے میں ناکام</string>
-    <string name="ManageGroupActivity_youre_not_a_member_of_the_group">آپ اس گروپ کے ممبر نہیں ہیں</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">گروپ کو اپ ڈیٹ کرنے میں ناکام رہا براہ کرم بعد میں دوبارہ کوشش کریں</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">نیٹ ورک کی خرابی کی وجہ سے گروپ کو اپ ڈیٹ کرنے میں ناکام ، براہ کرم بعد میں دوبارہ کوشش کریں</string>
+    <string name="GroupErrors__the_group_was_terminated">گروپ ختم کر دیا گیا ہے۔</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">آپ کو یہ کام کرنے کا حق نہیں ہے</string>
+    <string name="GroupErrors__not_capable">آپ کے شامل کردہ کوئی بھی نئے گروپس کی حمایت نہیں کرتا ہے اور اسے Signal کو اپ ڈیٹ کرنے کی ضرورت ہے</string>
+    <string name="GroupErrors__not_announcement_capable">آپ نے جس کسی شخص کو شامل کیا ہے وہ اعلان کے گروپس کی معاونت نہیں کرتا اور اسے Signal اپ ڈیٹ کرنے کی ضرورت ہے</string>
+    <string name="GroupErrors__failed_to_update_the_group">گروپ کی تازہ کاری کرنے میں ناکام</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">آپ اس گروپ کے ممبر نہیں ہیں</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">گروپ کو اپ ڈیٹ کرنے میں ناکام رہا براہ کرم بعد میں دوبارہ کوشش کریں</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">نیٹ ورک کی خرابی کی وجہ سے گروپ کو اپ ڈیٹ کرنے میں ناکام ، براہ کرم بعد میں دوبارہ کوشش کریں</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">نام اور تصویر میں ترمیم کریں</string>
     <string name="ManageGroupActivity_legacy_group">لیگیسی گروپ</string>
@@ -5870,26 +5871,6 @@
         <item quantity="one">%1$d سابق ممبر</item>
         <item quantity="other">%1$d سابق ممبرز</item>
     </plurals>
-
-    <!-- PermissionsSettingsFragment -->
-    <string name="PermissionsSettingsFragment__add_members">ممبران شامل کریں</string>
-    <string name="PermissionsSettingsFragment__edit_group_info">گروپ کی معلومات میں ترمیم کریں</string>
-    <string name="PermissionsSettingsFragment__send_messages">پیغامات بھیجیں</string>
-    <string name="PermissionsSettingsFragment__all_members">تمام ممبران</string>
-    <string name="PermissionsSettingsFragment__only_admins">صرف منتظمین</string>
-    <string name="PermissionsSettingsFragment__who_can_add_new_members">کون نئے ممبروں کو شامل کرسکتا ہے؟</string>
-    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">کون اس گروپ کی معلومات میں ترمیم کرسکتا ہے؟</string>
-    <string name="PermissionsSettingsFragment__who_can_send_messages">کون میسجز بھیج سکتا اور کالز کا آغاز کر سکتا ہے؟</string>
-    <!-- Label for the member labels permission button in the group permissions settings screen. -->
-    <string name="PermissionsSettingsFragment__add_member_labels">ممبر لیبلز شامل کریں</string>
-    <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-    <string name="PermissionsSettingsFragment__who_can_add_member_labels">ممبر لیبلز کون شامل کر سکتا ہے؟</string>
-    <!-- Warning title shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_title">ممبر لیبلز کو صاف کر دیا جائے گا</string>
-    <!-- Warning body shown before restricting member labels to admins only. -->
-    <string name="PermissionsSettingsFragment__member_labels_will_be_cleared_body">"اس اجازت کو صرف ایڈمنز پر تبدیل کرنے سے اس گروپ میں غیر ایڈمن افراد کی جانب سے مقررہ کردہ ممبر لیبلز صاف ہو جائیں گے۔"</string>
-    <!-- Confirm button for changing member label permission after warning. -->
-    <string name="PermissionsSettingsFragment__change_permission">اجازت تبدیل کریں</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <!-- Label for the setting to mute notifications for a conversation -->
