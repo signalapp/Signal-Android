@@ -151,7 +151,7 @@ private fun measureSystemBars(view: View): Insets {
  * the fallback reads would be space it invents.
  */
 private fun View.isInMultiWindowMode(): Boolean {
-  if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+  if (Build.VERSION.SDK_INT < 24) {
     return false
   }
 
