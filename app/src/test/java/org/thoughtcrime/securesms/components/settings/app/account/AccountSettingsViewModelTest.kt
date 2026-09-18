@@ -591,6 +591,26 @@ class AccountSettingsViewModelTest {
     assertThat(actions.last()).isEqualTo(AccountSettingsAction.NavigateToSignalLoginDetails)
   }
 
+  @Test
+  fun `DeleteAccountClicked asks for the screen lock first`() = runTest(testDispatcher) {
+    val viewModel = createViewModel()
+    val actions = collectActions(viewModel.actions)
+
+    viewModel.onEvent(AccountSettingsEvent.DeleteAccountClicked)
+
+    assertThat(actions.last()).isEqualTo(AccountSettingsAction.AuthenticateToDeleteAccount)
+  }
+
+  @Test
+  fun `DeleteAccountAuthenticated opens the delete account screen`() = runTest(testDispatcher) {
+    val viewModel = createViewModel()
+    val actions = collectActions(viewModel.actions)
+
+    viewModel.onEvent(AccountSettingsEvent.DeleteAccountAuthenticated)
+
+    assertThat(actions.last()).isEqualTo(AccountSettingsAction.NavigateToDeleteAccount)
+  }
+
   private fun methods(vararg methods: TwoFactorMethod) = AccountSettingsRepository.TwoFactorMethodsResult.Success(methods.toList())
 
   private fun createViewModel(): AccountSettingsViewModel = AccountSettingsViewModel(repository)

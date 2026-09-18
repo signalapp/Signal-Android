@@ -138,6 +138,9 @@ class AccountSettingsViewModel(
         _actions.send(AccountSettingsAction.ShowDataWipeFailed)
       }
       AccountSettingsEvent.DeleteAccountClicked -> {
+        _actions.send(AccountSettingsAction.AuthenticateToDeleteAccount)
+      }
+      AccountSettingsEvent.DeleteAccountAuthenticated -> {
         _actions.send(AccountSettingsAction.NavigateToDeleteAccount)
       }
       AccountSettingsEvent.DialogDismissed -> {

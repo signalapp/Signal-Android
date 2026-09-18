@@ -78,7 +78,13 @@ class AccountSettingsFragment : ComposeFragment() {
       onAuthenticationFailed = { viewModel.onEvent(AccountSettingsEvent.AuthenticationFailed) }
     )
 
-    CollectActions(viewModel.actions) { action -> handleAction(action, removalBiometrics, signalLoginBiometrics) }
+    val deleteAccountBiometrics = rememberBiometricsAuthentication(
+      promptTitle = stringResource(AppSettingsR.string.AccountSettingsFragment__unlock_to_confirm_its_you),
+      educationSheetMessage = stringResource(AppSettingsR.string.AccountSettingsFragment__to_delete_your_account_confirm_its_you),
+      onAuthenticationFailed = { viewModel.onEvent(AccountSettingsEvent.AuthenticationFailed) }
+    )
+
+    CollectActions(viewModel.actions) { action -> handleAction(action, removalBiometrics, signalLoginBiometrics, deleteAccountBiometrics) }
 
     AccountSettingsScreen(
       state = state,
@@ -86,7 +92,12 @@ class AccountSettingsFragment : ComposeFragment() {
     )
   }
 
-  private fun handleAction(action: AccountSettingsAction, removalBiometrics: BiometricsAuthentication, signalLoginBiometrics: BiometricsAuthentication) {
+  private fun handleAction(
+    action: AccountSettingsAction,
+    removalBiometrics: BiometricsAuthentication,
+    signalLoginBiometrics: BiometricsAuthentication,
+    deleteAccountBiometrics: BiometricsAuthentication
+  ) {
     when (action) {
       AccountSettingsAction.NavigateBack -> requireActivity().onBackPressedDispatcher.onBackPressed()
       AccountSettingsAction.LaunchCreatePinFlow -> pinFlowLauncher.launch(CreateSvrPinActivity.getIntentForPinCreate(requireContext()))
@@ -118,6 +129,11 @@ class AccountSettingsFragment : ComposeFragment() {
       AccountSettingsAction.NavigateToChangePhoneNumber -> findNavController().safeNavigate(R.id.action_accountSettingsFragment_to_changePhoneNumberFragment)
       AccountSettingsAction.NavigateToDeviceTransfer -> findNavController().safeNavigate(R.id.action_accountSettingsFragment_to_oldDeviceTransferActivity)
       AccountSettingsAction.NavigateToExportAccountData -> findNavController().safeNavigate(R.id.action_accountSettingsFragment_to_exportAccountFragment)
+      AccountSettingsAction.AuthenticateToDeleteAccount -> {
+        deleteAccountBiometrics.withBiometricsAuthentication {
+          viewModel.onEvent(AccountSettingsEvent.DeleteAccountAuthenticated)
+        }
+      }
       AccountSettingsAction.NavigateToDeleteAccount -> findNavController().safeNavigate(R.id.action_accountSettingsFragment_to_deleteAccountFragment)
       AccountSettingsAction.OpenPlayStore -> PlayStoreUtil.openPlayStoreOrOurApkDownloadPage(requireContext())
       AccountSettingsAction.LaunchReRegistration -> startActivity(RegistrationActivity.newIntentForReRegistration(requireContext()))

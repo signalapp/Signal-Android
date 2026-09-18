@@ -72,6 +72,9 @@ sealed interface AccountSettingsAction {
   /** Open registration so the user can re-register. */
   data object LaunchReRegistration : AccountSettingsAction
 
+  /** Ask the user to get past their screen lock before we send them into the delete account flow. */
+  data object AuthenticateToDeleteAccount : AccountSettingsAction
+
   /** Open the delete account flow. */
   data object NavigateToDeleteAccount : AccountSettingsAction
 

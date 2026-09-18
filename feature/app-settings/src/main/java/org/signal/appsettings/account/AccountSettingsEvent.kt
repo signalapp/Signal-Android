@@ -96,8 +96,11 @@ sealed interface AccountSettingsEvent {
   /** The fragment reported that clearing application data failed. */
   data object DataWipeFailed : AccountSettingsEvent
 
-  /** The user tapped the delete account row. */
+  /** The user tapped the delete account row, which asks for the screen lock first. */
   data object DeleteAccountClicked : AccountSettingsEvent
+
+  /** The user got past their screen lock, so we can send them into the delete account flow. */
+  data object DeleteAccountAuthenticated : AccountSettingsEvent
 
   /** Dismisses whatever is in [AccountSettingsState.dialog]. */
   data object DialogDismissed : AccountSettingsEvent
