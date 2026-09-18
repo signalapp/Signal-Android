@@ -5,24 +5,14 @@
 
 package org.thoughtcrime.securesms.glide.cache
 
-import android.graphics.Bitmap
 import com.bumptech.glide.load.Options
-import com.bumptech.glide.load.ResourceDecoder
-import com.bumptech.glide.load.engine.Resource
 import org.signal.core.util.logging.Log
-import java.io.IOException
 import java.io.InputStream
 
 /**
- * Uses WebpSanitizer to check for invalid webp.
- *
- * See [WebpSanStreamFactoryDecoder] for the equivalent that operates on the [org.signal.glide.common.io.InputStreamFactory] model chain.
+ * See [WebpSanResourceDecoder]
  */
-class WebpSanDecoder : ResourceDecoder<InputStream, Bitmap> {
-
-  companion object {
-    private val TAG = Log.tag(WebpSanDecoder::class.java)
-  }
+class WebpSanDecoder<DecodeType : Any> : WebpSanResourceDecoder<InputStream, DecodeType>() {
 
   /**
    * If the source is a webp, we sanitize it and block the load if the check fails.
@@ -40,13 +30,8 @@ class WebpSanDecoder : ResourceDecoder<InputStream, Bitmap> {
 
       !sanitized
     } catch (e: Exception) {
-      Log.w(TAG, "Failed to check stream, blocking load.", e)
+      Log.w(tag, "Failed to check stream, blocking load.", e)
       true
     }
-  }
-
-  override fun decode(source: InputStream, width: Int, height: Int, options: Options): Resource<Bitmap>? {
-    Log.w(TAG, "Image did not pass sanitizer")
-    throw IOException("Unable to load image")
   }
 }
