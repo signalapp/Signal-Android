@@ -32,6 +32,9 @@ sealed interface DeleteAccountEvent {
   /** The user asked to delete their account, which we only act on once they've confirmed. */
   data object DeleteAccountClicked : DeleteAccountEvent
 
+  /** The user ticked or unticked the box that gates the deletion for a numberless account. */
+  data class ConfirmationCheckedChanged(val checked: Boolean) : DeleteAccountEvent
+
   /** The user confirmed the deletion, either from the confirmation dialog or by retrying a failed one. */
   data object DeletionConfirmed : DeleteAccountEvent
 

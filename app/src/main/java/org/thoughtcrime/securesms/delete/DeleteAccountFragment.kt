@@ -18,7 +18,8 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import org.signal.appsettings.deleteaccount.DeleteAccountAction
 import org.signal.appsettings.deleteaccount.DeleteAccountEvent
-import org.signal.appsettings.deleteaccount.DeleteAccountScreen
+import org.signal.appsettings.deleteaccount.DeleteAccountWithNumberScreen
+import org.signal.appsettings.deleteaccount.DeleteAccountWithoutNumberScreen
 import org.signal.core.ui.compose.CollectActions
 import org.signal.core.ui.compose.ComposeFragment
 import org.thoughtcrime.securesms.R
@@ -27,7 +28,8 @@ import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.signal.appsettings.R as AppSettingsR
 
 /**
- * Lets a user delete their account. Carries out the [DeleteAccountAction]s that need an Activity or the nav graph.
+ * Lets a user delete their account, showing whichever of the two screens fits the account. Carries out the
+ * [DeleteAccountAction]s that need an Activity or the nav graph.
  */
 class DeleteAccountFragment : ComposeFragment() {
 
@@ -50,10 +52,17 @@ class DeleteAccountFragment : ComposeFragment() {
 
     CollectActions(viewModel.actions) { action -> handleAction(action) }
 
-    DeleteAccountScreen(
-      state = state,
-      onEvent = viewModel::onEvent
-    )
+    if (state.hasPhoneNumber) {
+      DeleteAccountWithNumberScreen(
+        state = state,
+        onEvent = viewModel::onEvent
+      )
+    } else {
+      DeleteAccountWithoutNumberScreen(
+        state = state,
+        onEvent = viewModel::onEvent
+      )
+    }
   }
 
   private fun handleAction(action: DeleteAccountAction) {

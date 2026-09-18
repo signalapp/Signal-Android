@@ -5,7 +5,6 @@
 
 package org.signal.appsettings.deleteaccount
 
-import androidx.annotation.VisibleForTesting
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -14,7 +13,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -26,7 +24,6 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -43,7 +40,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextRange
@@ -51,9 +47,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.window.DialogProperties
 import org.signal.appsettings.R
 import org.signal.appsettings.deleteaccount.DeleteAccountState.Dialog
 import org.signal.core.ui.compose.DayNightPreviews
@@ -62,24 +56,12 @@ import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.TextFields
-import org.signal.core.ui.R as CoreUiR
 
-@VisibleForTesting
-object DeleteAccountTestTags {
-  const val SCROLLER = "scroller"
-  const val ROW_COUNTRY_PICKER = "row-country-picker"
-  const val FIELD_COUNTRY_CODE = "field-country-code"
-  const val FIELD_NUMBER = "field-number"
-  const val BUTTON_DELETE = "button-delete"
-  const val DIALOG_NUMBER_DOES_NOT_MATCH = "dialog-number-does-not-match"
-  const val DIALOG_CONFIRM_DELETION = "dialog-confirm-deletion"
-  const val DIALOG_DELETION_FAILED = "dialog-deletion-failed"
-  const val DIALOG_LOCAL_DATA_DELETION_FAILED = "dialog-local-data-deletion-failed"
-  const val DIALOG_PROGRESS = "dialog-progress"
-}
-
+/**
+ * Lets a user with a phone number delete their account, which they confirm by keying that number back in.
+ */
 @Composable
-fun DeleteAccountScreen(
+fun DeleteAccountWithNumberScreen(
   state: DeleteAccountState,
   onEvent: (DeleteAccountEvent) -> Unit,
   modifier: Modifier = Modifier
@@ -159,6 +141,19 @@ fun DeleteAccountScreen(
     }
 
     DeleteAccountDialogs(dialog = state.dialog, onEvent = onEvent)
+
+    if (state.dialog == Dialog.ConfirmDeletion) {
+      Dialogs.SimpleAlertDialog(
+        title = stringResource(R.string.DeleteAccountFragment__are_you_sure),
+        body = stringResource(R.string.DeleteAccountFragment__this_will_delete_your_signal_account),
+        confirm = stringResource(R.string.DeleteAccountFragment__delete_account),
+        dismiss = stringResource(android.R.string.cancel),
+        confirmColor = MaterialTheme.colorScheme.error,
+        onConfirm = { onEvent(DeleteAccountEvent.DeletionConfirmed) },
+        onDismiss = { onEvent(DeleteAccountEvent.DialogDismissed) },
+        modifier = Modifier.testTag(DeleteAccountTestTags.DIALOG_CONFIRM_DELETION)
+      )
+    }
   }
 }
 
@@ -298,143 +293,11 @@ private fun DeleteButton(
   }
 }
 
-@Composable
-private fun DeleteAccountDialogs(
-  dialog: Dialog,
-  onEvent: (DeleteAccountEvent) -> Unit
-) {
-  when (dialog) {
-    Dialog.None -> Unit
-
-    Dialog.NumberDoesNotMatch -> {
-      Dialogs.SimpleMessageDialog(
-        message = stringResource(R.string.DeleteAccountFragment__the_phone_number),
-        dismiss = stringResource(android.R.string.ok),
-        onDismiss = { onEvent(DeleteAccountEvent.DialogDismissed) },
-        modifier = Modifier.testTag(DeleteAccountTestTags.DIALOG_NUMBER_DOES_NOT_MATCH)
-      )
-    }
-
-    Dialog.ConfirmDeletion -> {
-      Dialogs.SimpleAlertDialog(
-        title = stringResource(R.string.DeleteAccountFragment__are_you_sure),
-        body = stringResource(R.string.DeleteAccountFragment__this_will_delete_your_signal_account),
-        confirm = stringResource(R.string.DeleteAccountFragment__delete_account),
-        dismiss = stringResource(android.R.string.cancel),
-        confirmColor = MaterialTheme.colorScheme.error,
-        onConfirm = { onEvent(DeleteAccountEvent.DeletionConfirmed) },
-        onDismiss = { onEvent(DeleteAccountEvent.DialogDismissed) },
-        modifier = Modifier.testTag(DeleteAccountTestTags.DIALOG_CONFIRM_DELETION)
-      )
-    }
-
-    Dialog.DeletionFailed -> {
-      Dialogs.SimpleAlertDialog(
-        title = stringResource(R.string.DeleteAccountFragment__account_not_deleted),
-        body = stringResource(R.string.DeleteAccountFragment__there_was_a_problem),
-        confirm = stringResource(android.R.string.ok),
-        dismiss = stringResource(android.R.string.cancel),
-        onConfirm = { onEvent(DeleteAccountEvent.DeletionConfirmed) },
-        onDismiss = { onEvent(DeleteAccountEvent.DialogDismissed) },
-        modifier = Modifier.testTag(DeleteAccountTestTags.DIALOG_DELETION_FAILED)
-      )
-    }
-
-    Dialog.LocalDataDeletionFailed -> {
-      Dialogs.SimpleMessageDialog(
-        message = stringResource(R.string.DeleteAccountFragment__failed_to_delete_local_data),
-        dismiss = stringResource(R.string.DeleteAccountFragment__launch_app_settings),
-        onDismiss = { onEvent(DeleteAccountEvent.LaunchAppSettingsClicked) },
-        properties = DialogProperties(dismissOnBackPress = false, dismissOnClickOutside = false),
-        modifier = Modifier.testTag(DeleteAccountTestTags.DIALOG_LOCAL_DATA_DELETION_FAILED)
-      )
-    }
-
-    Dialog.CancelingSubscription -> {
-      ProgressDialog(
-        title = stringResource(R.string.DeleteAccountFragment__deleting_account),
-        message = stringResource(R.string.DeleteAccountFragment__canceling_your_subscription),
-        progress = null
-      )
-    }
-
-    is Dialog.LeavingGroups -> {
-      ProgressDialog(
-        title = stringResource(R.string.DeleteAccountFragment__leaving_groups),
-        message = stringResource(R.string.DeleteAccountFragment__depending_on_the_number_of_groups),
-        progress = if (dialog.totalCount > 0) dialog.leaveCount.toFloat() / dialog.totalCount else null
-      )
-    }
-
-    Dialog.DeletingAccount -> {
-      ProgressDialog(
-        title = stringResource(R.string.DeleteAccountFragment__deleting_account),
-        message = stringResource(R.string.DeleteAccountFragment__deleting_all_user_data_and_resetting),
-        progress = null
-      )
-    }
-  }
-}
-
-/**
- * Non-dismissable spinner shown for the length of the deletion, which reports what part of it is underway.
- */
-@Composable
-private fun ProgressDialog(
-  title: String,
-  message: String,
-  progress: Float?
-) {
-  Dialogs.BaseAlertDialog(
-    onDismissRequest = {},
-    confirmButton = {},
-    properties = DialogProperties(dismissOnBackPress = false, dismissOnClickOutside = false),
-    text = {
-      Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.fillMaxWidth()
-      ) {
-        Spacer(modifier = Modifier.height(24.dp))
-
-        if (progress == null) {
-          CircularProgressIndicator(modifier = Modifier.size(48.dp))
-        } else {
-          CircularProgressIndicator(progress = { progress }, modifier = Modifier.size(48.dp))
-        }
-
-        Spacer(modifier = Modifier.height(24.dp))
-
-        Text(
-          text = title,
-          style = MaterialTheme.typography.bodyLarge,
-          fontWeight = FontWeight.Bold,
-          textAlign = TextAlign.Center,
-          color = MaterialTheme.colorScheme.onSurface,
-          modifier = Modifier.padding(horizontal = dimensionResource(CoreUiR.dimen.gutter))
-        )
-
-        Spacer(modifier = Modifier.height(8.dp))
-
-        Text(
-          text = message,
-          style = MaterialTheme.typography.bodyMedium,
-          textAlign = TextAlign.Center,
-          color = MaterialTheme.colorScheme.onSurfaceVariant,
-          modifier = Modifier.padding(horizontal = dimensionResource(CoreUiR.dimen.gutter))
-        )
-
-        Spacer(modifier = Modifier.height(24.dp))
-      }
-    },
-    modifier = Modifier.testTag(DeleteAccountTestTags.DIALOG_PROGRESS)
-  )
-}
-
 @DayNightPreviews
 @Composable
-private fun DeleteAccountScreenPreview() {
+private fun DeleteAccountWithNumberScreenPreview() {
   Previews.Preview {
-    DeleteAccountScreen(
+    DeleteAccountWithNumberScreen(
       state = DeleteAccountState(),
       onEvent = {}
     )
@@ -443,9 +306,9 @@ private fun DeleteAccountScreenPreview() {
 
 @DayNightPreviews
 @Composable
-private fun DeleteAccountScreenFilledPreview() {
+private fun DeleteAccountWithNumberScreenFilledPreview() {
   Previews.Preview {
-    DeleteAccountScreen(
+    DeleteAccountWithNumberScreen(
       state = DeleteAccountState(
         regionCode = "US",
         countryDisplayName = "United States",
@@ -461,9 +324,9 @@ private fun DeleteAccountScreenFilledPreview() {
 
 @DayNightPreviews
 @Composable
-private fun DeleteAccountScreenConfirmDeletionPreview() {
+private fun DeleteAccountWithNumberScreenConfirmDeletionPreview() {
   Previews.Preview {
-    DeleteAccountScreen(
+    DeleteAccountWithNumberScreen(
       state = DeleteAccountState(dialog = Dialog.ConfirmDeletion),
       onEvent = {}
     )
@@ -472,9 +335,9 @@ private fun DeleteAccountScreenConfirmDeletionPreview() {
 
 @DayNightPreviews
 @Composable
-private fun DeleteAccountScreenLeavingGroupsPreview() {
+private fun DeleteAccountWithNumberScreenLeavingGroupsPreview() {
   Previews.Preview {
-    DeleteAccountScreen(
+    DeleteAccountWithNumberScreen(
       state = DeleteAccountState(dialog = Dialog.LeavingGroups(totalCount = 10, leaveCount = 3)),
       onEvent = {}
     )
@@ -483,9 +346,9 @@ private fun DeleteAccountScreenLeavingGroupsPreview() {
 
 @DayNightPreviews
 @Composable
-private fun DeleteAccountScreenDeletionFailedPreview() {
+private fun DeleteAccountWithNumberScreenDeletionFailedPreview() {
   Previews.Preview {
-    DeleteAccountScreen(
+    DeleteAccountWithNumberScreen(
       state = DeleteAccountState(dialog = Dialog.DeletionFailed),
       onEvent = {}
     )

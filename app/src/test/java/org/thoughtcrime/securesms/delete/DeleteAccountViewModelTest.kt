@@ -8,7 +8,9 @@ package org.thoughtcrime.securesms.delete
 import assertk.assertThat
 import assertk.assertions.contains
 import assertk.assertions.containsExactly
+import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
+import assertk.assertions.isFalse
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.every
@@ -46,6 +48,8 @@ class DeleteAccountViewModelTest {
   fun setUp() {
     Dispatchers.setMain(testDispatcher)
 
+    every { repository.isPhoneNumberless() } returns false
+    every { repository.getUsername() } returns null
     every { repository.getFormattedWalletBalance() } returns null
     every { repository.getRegionDisplayName(any()) } returns ""
     every { repository.getRegionDisplayName("US") } returns "United States"
@@ -143,6 +147,68 @@ class DeleteAccountViewModelTest {
 
     assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.ConfirmDeletion)
     coVerify(exactly = 0) { repository.deleteAccount(any()) }
+  }
+
+  @Test
+  fun `a numberless account is set up to show the numberless screen, along with the username on it`() = runTest(testDispatcher) {
+    every { repository.isPhoneNumberless() } returns true
+    every { repository.getUsername() } returns "alice.01"
+
+    val viewModel = createViewModel()
+
+    assertThat(viewModel.state.value.hasPhoneNumber).isFalse()
+    assertThat(viewModel.state.value.username).isEqualTo("alice.01")
+  }
+
+  @Test
+  fun `DeleteAccountClicked on a numberless account asks for confirmation without any number`() = runTest(testDispatcher) {
+    every { repository.isPhoneNumberless() } returns true
+
+    val viewModel = createViewModel()
+    val actions = collectActions(viewModel.actions)
+
+    viewModel.onEvent(DeleteAccountEvent.DeleteAccountClicked)
+
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.ConfirmNumberlessDeletion(confirmationChecked = false))
+    assertThat(actions).isEmpty()
+    coVerify(exactly = 0) { repository.deleteAccount(any()) }
+  }
+
+  @Test
+  fun `ConfirmationCheckedChanged ticks the box on the numberless confirmation`() = runTest(testDispatcher) {
+    every { repository.isPhoneNumberless() } returns true
+
+    val viewModel = createViewModel()
+    viewModel.onEvent(DeleteAccountEvent.DeleteAccountClicked)
+
+    viewModel.onEvent(DeleteAccountEvent.ConfirmationCheckedChanged(true))
+
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.ConfirmNumberlessDeletion(confirmationChecked = true))
+  }
+
+  @Test
+  fun `ConfirmationCheckedChanged is ignored when the numberless confirmation isn't up`() = runTest(testDispatcher) {
+    every { repository.isPhoneNumberless() } returns true
+
+    val viewModel = createViewModel()
+
+    viewModel.onEvent(DeleteAccountEvent.ConfirmationCheckedChanged(true))
+
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.None)
+  }
+
+  @Test
+  fun `a dismissed numberless confirmation comes back unticked`() = runTest(testDispatcher) {
+    every { repository.isPhoneNumberless() } returns true
+
+    val viewModel = createViewModel()
+    viewModel.onEvent(DeleteAccountEvent.DeleteAccountClicked)
+    viewModel.onEvent(DeleteAccountEvent.ConfirmationCheckedChanged(true))
+
+    viewModel.onEvent(DeleteAccountEvent.DialogDismissed)
+    viewModel.onEvent(DeleteAccountEvent.DeleteAccountClicked)
+
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.ConfirmNumberlessDeletion(confirmationChecked = false))
   }
 
   @Test

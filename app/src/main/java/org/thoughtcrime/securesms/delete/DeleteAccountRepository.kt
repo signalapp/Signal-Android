@@ -44,6 +44,12 @@ class DeleteAccountRepository {
 
   fun getRegionCountryCode(region: String): Int = PhoneNumberUtil.getInstance().getCountryCodeForRegion(region)
 
+  /** Whether this account has no phone number, which changes how the user confirms the deletion. */
+  fun isPhoneNumberless(): Boolean = SignalStore.account.isPhoneNumberless
+
+  /** The user's username, or null if they haven't set one. */
+  fun getUsername(): String? = SignalStore.account.username
+
   /** The user's payments balance, formatted for display, or null if there's nothing in there worth mentioning. */
   fun getFormattedWalletBalance(): String? {
     val amount = SignalStore.payments.mobileCoinLatestBalance().fullAmount

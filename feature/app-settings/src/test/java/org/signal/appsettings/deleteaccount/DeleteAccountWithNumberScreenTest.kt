@@ -29,7 +29,7 @@ import org.signal.appsettings.deleteaccount.DeleteAccountState.Dialog
 
 @RunWith(RobolectricTestRunner::class)
 @Config(application = Application::class)
-class DeleteAccountScreenTest {
+class DeleteAccountWithNumberScreenTest {
 
   private val context: Application = RuntimeEnvironment.getApplication()
 
@@ -119,7 +119,7 @@ class DeleteAccountScreenTest {
 
   private fun setContent(state: DeleteAccountState) {
     composeTestRule.setContent {
-      DeleteAccountScreen(
+      DeleteAccountWithNumberScreen(
         state = state,
         onEvent = { events += it }
       )

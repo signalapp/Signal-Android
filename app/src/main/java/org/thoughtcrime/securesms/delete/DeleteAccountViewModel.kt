@@ -24,8 +24,8 @@ import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
 
 /**
- * Drives the screen that lets a user delete their account, which asks them to key in their own phone number before
- * anything is torn down.
+ * Drives both screens that let a user delete their account. An account with a phone number has to have that number
+ * keyed back in before anything is torn down; a numberless one has a box ticked instead.
  */
 class DeleteAccountViewModel(
   private val repository: DeleteAccountRepository = DeleteAccountRepository()
@@ -39,7 +39,13 @@ class DeleteAccountViewModel(
 
   private val phoneNumberUtil = PhoneNumberUtil.getInstance()
 
-  private val _state = MutableStateFlow(DeleteAccountState(walletBalance = repository.getFormattedWalletBalance()))
+  private val _state = MutableStateFlow(
+    DeleteAccountState(
+      hasPhoneNumber = !repository.isPhoneNumberless(),
+      username = repository.getUsername(),
+      walletBalance = repository.getFormattedWalletBalance()
+    )
+  )
   private val _actions = Channel<DeleteAccountAction>(Channel.BUFFERED)
 
   val state: StateFlow<DeleteAccountState> = _state.asStateFlow()
@@ -67,6 +73,9 @@ class DeleteAccountViewModel(
       }
       DeleteAccountEvent.DeleteAccountClicked -> {
         applyDeleteAccountClicked()
+      }
+      is DeleteAccountEvent.ConfirmationCheckedChanged -> {
+        applyConfirmationCheckedChanged(event.checked)
       }
       DeleteAccountEvent.DeletionConfirmed -> {
         applyDeletionConfirmed()
@@ -137,6 +146,12 @@ class DeleteAccountViewModel(
 
   private suspend fun applyDeleteAccountClicked() {
     val state = _state.value
+
+    if (!state.hasPhoneNumber) {
+      _state.update { it.copy(dialog = Dialog.ConfirmNumberlessDeletion()) }
+      return
+    }
+
     val countryCode = state.countryCode.toIntOrNull() ?: 0
 
     if (countryCode == 0) {
@@ -152,6 +167,12 @@ class DeleteAccountViewModel(
 
     val dialog = if (repository.isNumberMatch(countryCode, nationalNumber)) Dialog.ConfirmDeletion else Dialog.NumberDoesNotMatch
     _state.update { it.copy(dialog = dialog) }
+  }
+
+  private fun applyConfirmationCheckedChanged(checked: Boolean) {
+    _state.update {
+      if (it.dialog is Dialog.ConfirmNumberlessDeletion) it.copy(dialog = Dialog.ConfirmNumberlessDeletion(checked)) else it
+    }
   }
 
   private suspend fun applyDeletionConfirmed() {
