@@ -217,9 +217,10 @@ public class ApplicationMigrations {
     static final int CLEAR_ZK_CREDENTIALS          = 172;
     static final int SVR2_ENCLAVE_UPDATE_7         = 173;
     static final int DISABLE_UNREAD_REMINDER       = 174;
+    static final int MENTIONS_STORAGE_SERVICE      = 175;
   }
 
-  public static final int CURRENT_VERSION = 174;
+  public static final int CURRENT_VERSION = 175;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -1004,6 +1005,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.DISABLE_UNREAD_REMINDER) {
       jobs.put(Version.DISABLE_UNREAD_REMINDER, new DisableUnreadReminderMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.MENTIONS_STORAGE_SERVICE) {
+      jobs.put(Version.MENTIONS_STORAGE_SERVICE, new MentionsStorageServiceMigrationJob());
     }
 
     return jobs;

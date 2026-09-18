@@ -900,6 +900,21 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
   }
 
+  fun markAllGV2NeedsSync() {
+    writableDatabase.withinTransaction { db ->
+      db
+        .select(ID)
+        .from(TABLE_NAME)
+        .where("$TYPE = ? AND $STORAGE_SERVICE_ID NOT NULL", RecipientType.GV2.id)
+        .run()
+        .use { cursor ->
+          while (cursor.moveToNext()) {
+            rotateStorageId(RecipientId.from(cursor.requireLong(ID)))
+          }
+        }
+    }
+  }
+
   fun applyStorageIdUpdates(storageIds: Map<RecipientId, StorageId>) {
     val db = writableDatabase
     db.beginTransaction()
