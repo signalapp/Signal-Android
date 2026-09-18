@@ -48,6 +48,9 @@ class RemoteBackupRestoreViewModel(
   private val _state = MutableStateFlow(RemoteBackupRestoreState(aep))
   val state: StateFlow<RemoteBackupRestoreState> = _state.asStateFlow()
 
+  /** Logging only. Each attempt costs an SVRB guess, so it's useful to know how many were spent. */
+  private var restoreAttempts = 0
+
   init {
     _state
       .throttleLatest(1.seconds) { it.restoreState != RemoteBackupRestoreState.RestoreState.InProgress }
@@ -127,6 +130,8 @@ class RemoteBackupRestoreViewModel(
 
   private fun restoreBackup() {
     viewModelScope.launch {
+      restoreAttempts++
+      Log.i(TAG, "[restoreBackup] Starting restore attempt #$restoreAttempts.")
       repository.restoreRemoteBackup(_state.value.aep).collect { progress ->
         when (progress) {
           is RemoteBackupRestoreProgress.Downloading -> {
@@ -187,7 +192,7 @@ class RemoteBackupRestoreViewModel(
             )
           }
           is RemoteBackupRestoreProgress.PermanentSvrBFailure -> {
-            Log.w(TAG, "[restoreBackup] Remote restore failed: permanent SVRB failure.")
+            Log.w(TAG, "[restoreBackup] Remote restore failed: permanent SVRB failure. (attempt #$restoreAttempts)")
             _state.value = _state.value.copy(
               restoreState = RemoteBackupRestoreState.RestoreState.PermanentSvrBFailure,
               restoreProgress = null

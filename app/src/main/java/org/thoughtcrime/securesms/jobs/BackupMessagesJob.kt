@@ -252,16 +252,22 @@ class BackupMessagesJob private constructor(
         }
       }
 
-      if (SignalStore.backup.backupSecretRestoreRequired) {
+      val svrbReInitRan = SignalStore.backup.backupSecretRestoreRequired
+      if (svrbReInitRan) {
         Log.i(TAG, "[svrb-restore] First backup of re-registered account without remote restore, read remote data if available to re-init")
 
         val forwardSecrecyMetadata: ByteArray? = when (val result = BackupRepository.getRemoteBackupForwardSecrecyMetadata()) {
-          is Either.Right -> result.value
+          is Either.Right -> {
+            if (result.value == null) {
+              Log.w(TAG, "[svrb-restore] Read the remote backup header, but it contained no forward secrecy metadata!", true)
+            }
+            result.value
+          }
           is Either.Left -> when (val error = result.value) {
             is ArchiveError.CredentialError.Unauthorized,
             is ArchiveError.EntitlementError.NotEntitled,
             is ArchiveError.CredentialError.NotFound -> {
-              Log.i(TAG, "[svrb-restore] No backup data found, continuing.", true)
+              Log.i(TAG, "[svrb-restore] No backup data found (${error::class.simpleName}), continuing.", true)
               null
             }
             is ArchiveError.CredentialError.ZkVerificationFailed -> {
@@ -315,13 +321,16 @@ class BackupMessagesJob private constructor(
               return Result.fatalFailure(RuntimeException(result.throwable))
             }
           }
+        } else {
+          Log.w(TAG, "[svrb-restore] No remote forward secrecy metadata to restore from, skipping the SVRB restore.", true)
         }
 
+        Log.i(TAG, "[svrb-restore] Re-init finished. Have local secret data: ${SignalStore.backup.nextBackupSecretData != null}", true)
         SignalStore.backup.backupSecretRestoreRequired = false
       }
 
       val backupSecretData = SignalStore.backup.nextBackupSecretData ?: run {
-        Log.i(TAG, "First SVRB backup! Creating new backup chain.", true)
+        Log.i(TAG, "First SVRB backup! Creating new backup chain. (reInitRan: $svrbReInitRan)", true)
         val secretData = SignalNetwork.svrBApi.createNewBackupChain(auth, SignalStore.backup.messageBackupKey)
         SignalStore.backup.nextBackupSecretData = secretData
         secretData

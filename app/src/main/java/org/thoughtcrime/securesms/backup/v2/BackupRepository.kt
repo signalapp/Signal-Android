@@ -1819,7 +1819,7 @@ object BackupRepository {
 
     val forwardSecrecyMetadata = EncryptedBackupReader.readForwardSecrecyMetadata(tempBackupFile.inputStream())
     if (forwardSecrecyMetadata == null) {
-      Log.w(TAG, "Failed to read forward secrecy metadata!")
+      Log.w(TAG, "[remoteRestore] Downloaded the backup file, but failed to read its forward secrecy metadata!")
       return RemoteRestoreResult.Failure
     }
 
@@ -2007,8 +2007,14 @@ object BackupRepository {
     ).encodeByteString()
   }
 
+  /**
+   * Reads the forward secrecy metadata out of the header of the remote backup file, or null if the file has none.
+   *
+   * Note that the two network steps here can fail with the same error types, so each one logs which step it was.
+   */
   suspend fun getRemoteBackupForwardSecrecyMetadata(): Either<ArchiveError.BackupFileError, ByteArray?> {
     return archiveService.getMessageBackupFileLocation()
+      .onLeft { Log.w(TAG, "[getRemoteBackupForwardSecrecyMetadata] Failed to get the backup file location: ${it::class.simpleName}", it.cause, true) }
       .flatMap { location ->
         val headers = location.cdnCredentials.toMutableMap().apply {
           this["range"] = "bytes=0-${EncryptedBackupReader.BACKUP_SECRET_METADATA_UPPERBOUND - 1}"
@@ -2017,6 +2023,7 @@ object BackupRepository {
         AppDependencies.signalServiceMessageReceiver
           .retrieveBackupForwardSecretMetadataBytes(location.cdn, headers, location.path, EncryptedBackupReader.BACKUP_SECRET_METADATA_UPPERBOUND)
           .toArchiveResult()
+          .onLeft { Log.w(TAG, "[getRemoteBackupForwardSecrecyMetadata] Got a backup file location on cdn ${location.cdn}, but failed to read the header: ${it::class.simpleName}", it.cause, true) }
       }
       .map { bytes -> EncryptedBackupReader.readForwardSecrecyMetadata(ByteArrayInputStream(bytes)) }
   }
