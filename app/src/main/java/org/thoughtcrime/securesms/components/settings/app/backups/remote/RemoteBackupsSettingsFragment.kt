@@ -283,7 +283,11 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
   }
 
   private fun displayBackupKey() {
-    findNavController().safeNavigate(R.id.action_remoteBackupsSettingsFragment_to_backupKeyDisplayFragment)
+    if (SignalStore.account.isPhoneNumberless) {
+      findNavController().safeNavigate(R.id.action_remoteBackupsSettingsFragment_to_settingsSignalLoginDetailsFragment)
+    } else {
+      findNavController().safeNavigate(R.id.action_remoteBackupsSettingsFragment_to_backupKeyDisplayFragment)
+    }
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

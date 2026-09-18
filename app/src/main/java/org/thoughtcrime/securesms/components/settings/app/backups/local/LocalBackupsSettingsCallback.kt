@@ -136,7 +136,11 @@ class DefaultLocalBackupsSettingsCallback(
   }
 
   override fun onViewBackupKeyClick() {
-    fragment.findNavController().safeNavigate(R.id.action_backupsPreferenceFragment_to_backupKeyDisplayFragment)
+    if (SignalStore.account.isPhoneNumberless) {
+      fragment.findNavController().safeNavigate(R.id.action_localBackupsFragment_to_settingsSignalLoginDetailsFragment)
+    } else {
+      fragment.findNavController().safeNavigate(R.id.action_backupsPreferenceFragment_to_backupKeyDisplayFragment)
+    }
   }
 
   override fun onLearnMoreClick() {
