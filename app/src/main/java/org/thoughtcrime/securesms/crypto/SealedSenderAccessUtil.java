@@ -173,7 +173,9 @@ public class SealedSenderAccessUtil {
   }
 
   private static @NonNull CertificateType getUnidentifiedAccessCertificateType() {
-    if (SignalStore.phoneNumberPrivacy().isPhoneNumberSharingEnabled()) {
+    if (SignalStore.account().isPhoneNumberless()) {
+      return CertificateType.ACI_ONLY;
+    } else if (SignalStore.phoneNumberPrivacy().isPhoneNumberSharingEnabled()) {
       return CertificateType.ACI_AND_E164;
     } else {
       return CertificateType.ACI_ONLY;
