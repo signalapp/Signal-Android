@@ -13,8 +13,8 @@ import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
 import org.signal.core.models.ServiceId
-import org.signal.core.models.database.DatabaseId
 import org.signal.core.util.LongSerializer
+import org.signal.core.util.database.DatabaseId
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.thoughtcrime.securesms.database.SignalDatabase
