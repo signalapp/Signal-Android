@@ -115,10 +115,12 @@ class MediaSendV3Activity :
     }
 
     supportFragmentManager.setFragmentResultListener(AddMessageDialogFragment.REQUEST_KEY, this) { _, bundle ->
+      // Set the message first either way: turning view-once on holds it aside rather than dropping it, so what was
+      // typed before reaching for the toggle comes back if view-once is turned off again.
+      viewModel.setMessage(bundle.getCharSequence(AddMessageDialogFragment.RESULT_MESSAGE, null))
+
       if (bundle.getBoolean(AddMessageDialogFragment.RESULT_INCREMENT_VIEW_ONCE_STATE)) {
         viewModel.toggleViewOnce()
-      } else {
-        viewModel.setMessage(bundle.getCharSequence(AddMessageDialogFragment.RESULT_MESSAGE, null))
       }
     }
 

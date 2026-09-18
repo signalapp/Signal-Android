@@ -942,16 +942,23 @@ class MediaSendFlowViewModel(
   }
 
   /**
-   * Flips view-once. Turning it on drops any message the user had already typed, since a view-once send cannot carry
-   * a body, and confirms the change with a toast.
+   * Flips view-once. Turning it on holds aside any message the user had already typed, since a view-once send cannot
+   * carry a body, and confirms the change with a toast. Turning it back off restores that message, so the toggle is not
+   * a silent way to lose it.
    */
   fun toggleViewOnce() {
+    val wasEnabled = internalState.value.isViewOnceEnabled
+
     updateState { copy(viewOnceToggleState = viewOnceToggleState.next()) }
 
     if (!internalState.value.isViewOnceEnabled) {
+      if (wasEnabled) {
+        updateState { copy(message = viewOnceStashedMessage, viewOnceStashedMessage = null) }
+      }
       return
     }
 
+    updateState { copy(viewOnceStashedMessage = message) }
     setMessage(null)
 
     val focusedMedia = internalState.value.focusedMedia
