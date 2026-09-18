@@ -735,8 +735,7 @@ private fun ConfirmPinToDisableRemindersDialog(
     text = {
       Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Text(
-          text = stringResource(R.string.preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin),
-          textAlign = TextAlign.Center
+          text = stringResource(R.string.preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin)
         )
 
         TextField(
