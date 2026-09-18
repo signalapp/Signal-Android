@@ -80,6 +80,10 @@
     <string name="AccountSettingsFragment__unlock_to_view_signal_login">解鎖嚟睇下 Signal Login</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before the Signal Login details can be viewed -->
     <string name="AccountSettingsFragment__to_view_your_signal_login_confirm_its_you">如果想睇下你嘅 Signal Login，請確認係你本人</string>
+    <!-- Title of the device screen lock prompt shown before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__unlock_to_confirm_its_you">Unlock to confirm it\'s you</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__to_delete_your_account_confirm_its_you">To delete your account, confirm it\'s you</string>
     <!-- Toast shown when the device screen lock wasn\'t confirmed, so nothing happened -->
     <string name="AccountSettingsFragment__authentication_required">要認證</string>
     <!-- Title of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
@@ -167,4 +171,48 @@
     <string name="TotpNameEntryScreen__authenticator_app_renamed">驗證 APP 改咗名</string>
     <!-- Toast shown when we couldn\'t reach the service to save the name -->
     <string name="TotpNameEntryScreen__couldnt_save_name">儲存唔到個名。請檢查你嘅連線，然後再試多次。</string>
+
+    <!-- DeleteAccountScreen -->
+    <!-- DeleteAccountFragment -->
+    <string name="DeleteAccountFragment__deleting_your_account_will">Deleting your account will:</string>
+    <string name="DeleteAccountFragment__enter_your_phone_number">Enter your phone number</string>
+    <string name="DeleteAccountFragment__delete_account">Delete account</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Delete your account info and profile photo</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">Delete all your messages</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Delete %1$s in your payments account</string>
+    <string name="DeleteAccountFragment__no_country_code">No country code specified</string>
+    <string name="DeleteAccountFragment__no_number">No number specified</string>
+    <string name="DeleteAccountFragment__the_phone_number">The phone number you entered doesn\'t match your account\'s.</string>
+    <string name="DeleteAccountFragment__are_you_sure">Are you sure you want to delete your account?</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">This will delete your Signal account and reset the application. The app will close after the process is complete.</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">Failed to delete local data. You can manually clear it in the system application settings.</string>
+    <string name="DeleteAccountFragment__launch_app_settings">Launch App Settings</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
+    <string name="DeleteAccountFragment__leaving_groups">Leaving groups…</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_account">Deleting account…</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
+    <string name="DeleteAccountFragment__canceling_your_subscription">Canceling your subscription…</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
+    <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Depending on the number of groups you\'re in, this might take a few minutes</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Deleting user data and resetting the app</string>
+    <!-- Title of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__account_not_deleted">Account Not Deleted</string>
+    <!-- Message of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__there_was_a_problem">There was a problem completing the deletion process. Check your network connection and try again.</string>
+    <!-- Body text above the bullet list on the delete account screen, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__deleting_your_account_with_username_s_will">Deleting your account with username \"%1$s\" will:</string>
+    <!-- Bullet point on the delete account screen, shown in place of the plain one when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__delete_your_account_info_and_profile_photo_including_your_username_s">Delete your account info and profile photo including your username \"%1$s\"</string>
+    <!-- Bullet point on the delete account screen warning the user that the deletion is permanent -->
+    <string name="DeleteAccountScreen__this_action_can_not_be_undone">This action can not be undone</string>
+    <!-- Message of the deletion confirmation dialog, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__this_will_delete_your_signal_account_with_username_s">This will delete your Signal account with username \"%1$s\" and reset the application. The app will close after the process is complete.</string>
+    <!-- Label of the checkbox the user has to tick in the confirmation dialog before they can delete their account -->
+    <string name="DeleteAccountScreen__yes_delete_my_account">Yes, delete my account</string>
+
+    <!-- Shared with the registration screens -->
+    <string name="RegistrationActivity_select_your_country">Select your country</string>
+    <string name="RegistrationActivity_phone_number_description">Phone number</string>
 </resources>

@@ -156,7 +156,7 @@
     <!-- Subtitle for the Signal Backups option card -->
     <string name="ArchiveRestoreSelectionScreen__your_free_or_paid_signal_backup_plan">Il s\'agit de votre forfait de sauvegarde Signal (gratuit ou payant).</string>
     <!-- Title for an option that, when clicked, will take the user to a flow to restore form a local backup -->
-    <string name="ArchiveRestoreSelectionScreen__local_backup_card_title">Restaurer une sauvegarde sur l\'appareil</string>
+    <string name="ArchiveRestoreSelectionScreen__local_backup_card_title">Restaurer une sauvegarde locale</string>
     <!-- Description for an option that, when clicked, will take the user to a flow to restore form a local backup -->
     <string name="ArchiveRestoreSelectionScreen__local_backup_card_description">Il s\'agit d\'une sauvegarde enregistrée sur votre appareil.</string>
     <!-- Title for an option that, when clicked, will take the user to a flow to restore form a local backup -->
@@ -176,7 +176,7 @@
 
     <!-- LocalBackupRestoreScreen -->
     <!-- Title for the local backup restore screen -->
-    <string name="LocalBackupRestoreScreen__restore_on_device_backup">Restaurer une sauvegarde sur l\'appareil</string>
+    <string name="LocalBackupRestoreScreen__restore_on_device_backup">Restaurer une sauvegarde locale</string>
     <!-- Description on the folder selection screen -->
     <string name="LocalBackupRestoreScreen__select_folder_description">Restaurez vos messages depuis la sauvegarde enregistrée sur votre appareil. Si vous ne les restaurez pas maintenant, vous ne pourrez pas le faire plus tard.</string>
     <!-- Title for the choose backup folder card -->
@@ -224,8 +224,6 @@
     <string name="EnterAepScreen__recovery_key">Clé de récupération</string>
     <!-- Link for users who don\'t have their recovery key -->
     <string name="EnterAepScreen__no_recovery_key">Pas de clé de récupération ?</string>
-    <!-- Error text when key is too long -->
-  <!-- Removed by excludeNonTranslatables <string name="EnterAepScreen__too_long">Saisie trop longue (%1$d/%2$d)</string> -->
     <!-- Error text when key is invalid -->
     <string name="EnterAepScreen__invalid_recovery_key">Clé de récupération non valide</string>
     <!-- Error text when key is correct format but does not match account -->
@@ -241,7 +239,7 @@
     <!-- Title of the dialog shown when the entered recovery key is correct, but the account has no Signal Backup to restore -->
     <string name="EnterAepScreen__no_backup_found">Sauvegarde introuvable</string>
     <!-- Body of the dialog shown when the entered recovery key is correct, but the account has no Signal Backup to restore -->
-    <string name="EnterAepScreen__no_backup_found_body">Votre clé de récupération est correcte, mais aucune sauvegarde Signal n\'est associée à ce compte. Retournez à l\'étape précédente pour choisir une autre méthode de restauration, ou poursuivez sans restaurer votre compte.</string>
+    <string name="EnterAepScreen__no_backup_found_body">Vous avez saisi la bonne clé de récupération, mais aucune sauvegarde Signal n\'est associée à ce compte. Retournez à l\'étape précédente pour choisir une autre méthode de restauration. Vous pouvez aussi continuer sans restaurer votre compte.</string>
     <!-- Text shown while preparing the restore -->
     <string name="LocalBackupRestoreScreen__preparing_restore">Préparation de la restauration…</string>
     <!-- Title shown while restore is in progress -->
@@ -644,25 +642,25 @@
     <!-- Error shown when Signal Login cannot be purchased on this device, for example because the Google Play Store is unavailable. -->
     <string name="SignalLoginPaymentScreen__signal_login_cant_be_purchased">Impossible d\'acheter un login Signal sur cet appareil pour le moment. Veuillez réessayer plus tard.</string>
     <!-- Message shown when the user\'s payment has gone through but has not finished processing yet. -->
-    <string name="SignalLoginPaymentScreen__your_payment_is_still_processing">Votre paiement est en cours de traitement. Lorsqu\'il sera finalisé, revenez sur cet écran et appuyez sur \"Continuer\". Cela n\'entraînera pas une nouvelle facturation.</string>
+    <string name="SignalLoginPaymentScreen__your_payment_is_still_processing">Votre paiement est en cours de traitement. Lorsqu\'il sera finalisé, revenez à cet écran et appuyez sur \"Continuer\". Cela n\'entraînera pas une nouvelle facturation.</string>
     <!-- Label for the internal-testing text field where a receipt credential can be pasted to skip payment. Not shown to real users. -->
   <!-- Removed by excludeNonTranslatables <string name="SignalLoginPaymentScreen__paste_a_receipt_credential" translatable="false">Paste a receipt credential (testing)</string> -->
     <!-- Error shown when a manually-pasted receipt credential can\'t be parsed or is rejected. Internal testing only. -->
   <!-- Removed by excludeNonTranslatables <string name="SignalLoginPaymentScreen__this_receipt_credential_is_invalid" translatable="false">This receipt credential is invalid.</string> -->
     <!-- Title of the dialog shown when Google Play services is too old to take a payment. -->
-    <string name="SignalLoginPaymentScreen__update_google_play_services">Update Google Play services</string>
+    <string name="SignalLoginPaymentScreen__update_google_play_services">Mettre à jour les services Google Play</string>
     <!-- Body of the dialog shown when Google Play services is too old to take a payment. -->
     <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_update_google_play_services">To purchase a Signal Login, update Google Play services on this device.</string>
     <!-- Button that updates Google Play services. -->
-    <string name="SignalLoginPaymentScreen__update">Update</string>
+    <string name="SignalLoginPaymentScreen__update">Mettre à jour</string>
     <!-- Title of the dialog shown when Google Play services is not installed. -->
-    <string name="SignalLoginPaymentScreen__google_play_services_missing">Google Play services missing</string>
+    <string name="SignalLoginPaymentScreen__google_play_services_missing">Services Google Play indisponibles</string>
     <!-- Body of the dialog shown when Google Play services is not installed. -->
     <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_google_play_services_needs_to_be_installed">To purchase a Signal Login, Google Play services needs to be installed.</string>
     <!-- Button that installs Google Play services. -->
-    <string name="SignalLoginPaymentScreen__install_play_services">Install Play Services</string>
+    <string name="SignalLoginPaymentScreen__install_play_services">Installer les services Google Play</string>
     <!-- Title of the dialog shown while Google Play services is updating itself. -->
-    <string name="SignalLoginPaymentScreen__google_play_services_are_updating">Google Play services are updating</string>
+    <string name="SignalLoginPaymentScreen__google_play_services_are_updating">Mise à jour des services Google Play</string>
     <!-- Body of the dialog shown while Google Play services is updating itself. -->
     <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_wait_for_google_play_services">To purchase a Signal Login please wait for Google Play services to finish updating.</string>
     <!-- Title of the dialog shown when Google Play cannot be used to take a payment. -->
@@ -725,8 +723,6 @@
     <string name="ConfirmLoginSavedBottomSheet__show_login_info_again">Revoir le login</string>
 
     <!-- Errors shown beneath an account ID text field, wherever one is offered -->
-    <!-- Error shown when too many characters were entered in an account ID field. First placeholder is how many were entered, second is the maximum. -->
-  <!-- Removed by excludeNonTranslatables <string name="AccountIdField__too_long">Saisie trop longue. %1$d/%2$d caractères.</string> -->
     <!-- Error shown when the entered account ID contains characters that can\'t appear in one. -->
     <string name="AccountIdField__invalid_account_id">Identifiant de compte non valide</string>
 
@@ -734,7 +730,7 @@
     <!-- Title of the screen where a user with an existing Signal Login types it in to log back in. -->
     <string name="SignalLoginCredentialEntryScreen__signal_login">Login Signal</string>
     <!-- Description telling the user what to enter to log in. -->
-    <string name="SignalLoginCredentialEntryScreen__enter_your_account_id_followed_by_your_recovery_key">Saisissez votre identifiant de compte suivi de votre clé de récupération pour restaurer votre compte.</string>
+    <string name="SignalLoginCredentialEntryScreen__enter_your_account_id_followed_by_your_recovery_key">Pour restaurer votre compte, saisissez votre identifiant de compte, puis votre clé de récupération.</string>
     <!-- Label of the text field the account ID is typed into. -->
     <string name="SignalLoginCredentialEntryScreen__account_id">Identifiant de compte</string>
     <!-- Label of the text field the recovery key is typed into. -->
@@ -792,9 +788,9 @@
     <!-- Validation error shown when the number the user entered after their username has too many digits. -->
     <string name="AddUsernameScreen__enter_a_maximum_of_d_digits">Nom d\'utilisateur incorrect. Veuillez saisir %1$d chiffres maximum.</string>
     <!-- Validation error shown when the number the user entered after their username is 00. -->
-    <string name="AddUsernameScreen__this_number_cant_be_00">Ce chiffre ne peut pas être 00. Il doit être compris entre 1 et 9.</string>
+    <string name="AddUsernameScreen__this_number_cant_be_00">Ce nombre ne peut pas être 00. Il doit comporter au moins un chiffre compris entre 1 et 9.</string>
     <!-- Validation error shown when the number the user entered after their username has a leading zero. -->
-    <string name="AddUsernameScreen__this_number_cant_start_with_0">Les séries comportant plus de 2 chiffres ne peuvent pas commencer par un 0.</string>
+    <string name="AddUsernameScreen__this_number_cant_start_with_0">Les séries comportant plus de 2 chiffres ne peuvent pas commencer par un 0.</string>
     <!-- Title of the dialog confirming the user wants to skip choosing a username. -->
     <string name="AddUsernameScreen__are_you_sure">Voulez-vous vraiment continuer ?</string>
     <!-- Body of the dialog confirming the user wants to skip choosing a username. -->

@@ -1465,7 +1465,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Erabiltzaile-izena, QR kodea eta esteka ez daude ikusgai profilean. Partekatu erabiltzaile-izena pertsona fidagarriekin bakarrik.</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-    <string name="ManageProfileFragment__username_footer_no_username">People can message you using an optional username instead of a phone number. Usernames have a unique QR code and link you can share with friends.</string>
+    <string name="ManageProfileFragment__username_footer_no_username">Telefono-zenbakiaren ordez, jendeak hautazko erabiltzaile-izenaren bidez bidali ahalko dizkizu mezuak. Erabiltzaile-izenek QR kode eta esteka esklusibo bat dute, eta lagunekin parteka ditzakezu.</string>
     <string name="ManageProfileFragment_profile_name">Profileko izena</string>
     <string name="ManageProfileFragment_username">Erabiltzaile-izena</string>
     <string name="ManageProfileFragment_about">Honi buruz</string>
@@ -1709,7 +1709,7 @@
     <string name="Megaphones_chat_colors">Tx.-koloreak</string>
     <string name="Megaphones_add_a_profile_photo">Profileko a.</string>
     <!-- Text in a card view prompting the user to choose a username as part of the onboarding megaphone -->
-    <string name="Megaphones_set_up_username">Set up username</string>
+    <string name="Megaphones_set_up_username">Konfiguratu erabiltzaile-izena</string>
 
     <!-- Message body of megaphone telling users that a device was linked to their account. %1$s is the time it was linked -->
     <string name="NewLinkedDeviceMegaphone__a_new_device_was_linked">Gailu berri bat lotu da kontuarekin (%1$s).</string>
@@ -2761,21 +2761,21 @@
         <item quantity="other">%1$s hautatua</item>
     </plurals>
     <!-- Label for the sticker management screen tab which shows all of the sticker packs. -->
-    <string name="StickerManagement_all_tab_label">All</string>
+    <string name="StickerManagement_all_tab_label">Denak</string>
     <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
-    <string name="StickerManagement_my_stickers_tab_label">My Stickers</string>
+    <string name="StickerManagement_my_stickers_tab_label">Nire eranskailuak</string>
     <!-- Shown when there are no sticker packs to show. -->
-    <string name="StickerManagement_all_tab_empty_text">No sticker packs are available</string>
+    <string name="StickerManagement_all_tab_empty_text">Ez dago eranskailu-paketerik erabilgarri</string>
     <!-- Shown when there are no sticker packs currently installed. -->
-    <string name="StickerManagement_installed_tab_empty_text">No sticker packs, add stickers to send to your friends.</string>
+    <string name="StickerManagement_installed_tab_empty_text">Ez dago eranskailu-paketerik; lagunei eranskailuak bidaltzeko, gehi itzazu.</string>
     <!-- Message shown when the author of the sticker pack is unknown. -->
     <string name="StickerManagement_author_unknown">Ezezaguna</string>
     <!-- Sticker pack list section header for packs that are already installed. -->
     <string name="StickerManagement_installed_stickers_header">Instalatutako eranskailuak</string>
     <!-- Sticker pack list section header for packs that have been received from incoming messages. -->
-    <string name="StickerManagement_shared_with_you_header">Shared with you</string>
+    <string name="StickerManagement_shared_with_you_header">Zurekin partekatua</string>
     <!-- Sticker pack description for packs that have been sent to you -->
-    <string name="StickerManagement_when_you_receive">When you receive a sticker from someone, the sticker pack will appear here.</string>
+    <string name="StickerManagement_when_you_receive">Norbaitek eranskailu bat bidaltzen dizunean, eranskailu-paketea hemen agertuko da.</string>
     <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
     <string name="StickerManagement_signal_artist_series_header">Signal artisten serieak</string>
     <!-- Title shown when sharing a sticker pack with another user. -->
@@ -2788,13 +2788,13 @@
     <string name="StickerManagement_action_delete_selected">Ezabatu</string>
     <!-- Confirmation message shown before uninstalling sticker packs. The placeholder is the number of items to delete. -->
     <plurals name="StickerManagement_delete_n_packs_confirmation">
-        <item quantity="one">Remove %1$s sticker pack?</item>
-        <item quantity="other">Remove %1$s sticker packs?</item>
+        <item quantity="one">%1$s eranskailu-pakete kendu nahi duzu?</item>
+        <item quantity="other">%1$s eranskailu-pakete kendu nahi dituzu?</item>
     </plurals>
     <!-- Body of the confirmation dialog shown before uninstalling sticker packs. -->
     <plurals name="StickerManagement_delete_n_packs_confirmation_body">
-        <item quantity="one">This will remove the sticker pack. You can\'t add it again without a link or sticker message.</item>
-        <item quantity="other">This will remove these sticker packs. You can\'t add it again without a link or sticker message.</item>
+        <item quantity="one">Eranskailu-paketea kenduko da. Esteka bat edo eranskailu-mezurik izan ezean, ezingo duzu berriro gehitu.</item>
+        <item quantity="other">Eranskailu-paketeak kenduko da. Esteka bat edo eranskailu-mezurik izan ezean, ezingo dituzu berriro gehitu.</item>
     </plurals>
     <!-- Message shown after installing a sticker pack. The placeholder is the name of the sticker pack that was installed. -->
     <string name="StickerManagement_installed_pack_s">Instalatu da %1$s.</string>
@@ -2811,7 +2811,7 @@
         <item quantity="other">%1$s eranskailu</item>
     </plurals>
     <!-- Message shown after copying a sticker pack link. -->
-    <string name="StickerManagement_copied">Link copied</string>
+    <string name="StickerManagement_copied">Kopiatu da esteka</string>
 
     <!-- Sticker pack list dropdown menu label for the button to forward a sticker pack to another user. -->
     <string name="StickerManagement_menu_forward_pack">Birbidali</string>
@@ -2824,13 +2824,13 @@
     <!-- Sticker management screen dropdown menu label for the button to enter multi-select mode. -->
     <string name="StickerManagement_menu_select_packs">Hautatu eranskailu-paketeak</string>
     <!-- Sticker pack list dropdown menu label for sending a sticker pack. -->
-    <string name="StickerManagement_menu_send_pack">Send</string>
+    <string name="StickerManagement_menu_send_pack">Bidali</string>
     <!-- Sticker pack list dropdown menu label for copying a sticker link. -->
-    <string name="StickerManagement_menu_copy_pack">Copy link</string>
+    <string name="StickerManagement_menu_copy_pack">Kopiatu esteka</string>
     <!-- Hint text shown in the sticker management search field. -->
-    <string name="StickerManagement_search">Search</string>
+    <string name="StickerManagement_search">Bilatu</string>
     <!-- Shown when no stickers match the search. The placeholder what was searched. -->
-    <string name="StickerManagement_search_no_results_s">No results found for \'%1$s\'</string>
+    <string name="StickerManagement_search_no_results_s">Ez dago emaitzarik \'%1$s\' bilatuta</string>
 
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
     <string name="StickerManagement_accessibility_download_pack">Deskargatu %1$s eranskailu-paketea</string>
@@ -2847,13 +2847,13 @@
     <!-- Accessibility label for opening the context menu for a sticker pack row item. -->
     <string name="StickerManagement_accessibility_exit_multi_select_mode">Irten hautapen-modutik eta garbitu hautapenak</string>
     <!-- Label for the button that expands the list to show every sticker pack in a section. -->
-    <string name="StickerManagement__see_all">See all</string>
+    <string name="StickerManagement__see_all">Ikusi denak</string>
     <!-- Button that takes you to the list of sticker packs you can install. -->
-    <string name="StickerManagement__add_stickers">Add stickers</string>
+    <string name="StickerManagement__add_stickers">Gehitu eranskailuak</string>
     <!-- Accessibility label to close the search field. -->
-    <string name="StickerManagement_accessibility_close_search">Close search</string>
+    <string name="StickerManagement_accessibility_close_search">Itxi bilaketa</string>
     <!-- Accessibility label to clear the search field. -->
-    <string name="StickerManagement_accessibility_clear_search">Clear search</string>
+    <string name="StickerManagement_accessibility_clear_search">Garbitu Bilaketa</string>
 
     <!-- StickerManagementAdapter -->
     <string name="StickerManagementAdapter_untitled">Izenbururi gabe</string>
@@ -3009,7 +3009,7 @@
     <string name="UsernameEditFragment_username_is_invalid">Erabiltzaile-izena baliogabea da.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Erabiltzaile-izenek %1$d eta %2$d karaktere bitartean egon behar dira.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">People can message you using your optional username instead of a phone number. Usernames are always paired with a set of numbers.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">Telefono-zenbakiaren ordez, jendeak hautazko erabiltzaile-izenaren bidez bidali ahalko dizkizu mezuak. Erabiltzaile-izen bakoitza zenbaki-multzo batekin parekatzen da.</string>
     <!-- Button to allow user to skip -->
     <string name="UsernameEditFragment__skip">Saltatu</string>
     <!-- Content description for done button -->
@@ -3293,31 +3293,31 @@
 
     <!-- ConnectWithUsernamesDialogFragment -->
     <!-- Title of the username education screen shown to accounts registered without a phone number -->
-    <string name="ConnectWithUsernamesDialogFragment__connect_with_usernames">Connect with usernames</string>
+    <string name="ConnectWithUsernamesDialogFragment__connect_with_usernames">Konektatu erabiltzaile-izenen bidez</string>
     <!-- Title of the usernames section -->
-    <string name="ConnectWithUsernamesDialogFragment__usernames">Usernames</string>
+    <string name="ConnectWithUsernamesDialogFragment__usernames">Erabiltzaile-izenak</string>
     <!-- Description of the usernames section -->
-    <string name="ConnectWithUsernamesDialogFragment__people_can_message_you_using_your_optional_username">People can message you using your optional username instead of a phone number. Usernames aren\'t visible on your profile.</string>
+    <string name="ConnectWithUsernamesDialogFragment__people_can_message_you_using_your_optional_username">Telefono-zenbakiaren ordez, jendeak hautazko erabiltzaile-izenaren bidez bidali ahalko dizkizu mezuak. Erabiltzaile-izenak ez daude ikusgai zure profilean.</string>
     <!-- Title of the QR code section -->
-    <string name="ConnectWithUsernamesDialogFragment__qr_codes_and_links">QR codes and links</string>
+    <string name="ConnectWithUsernamesDialogFragment__qr_codes_and_links">QR kode eta estekak</string>
     <!-- Description of the QR code section -->
-    <string name="ConnectWithUsernamesDialogFragment__usernames_have_a_unique_qr_code">Usernames have a unique QR code and link you can share with friends to quickly start a chat with you.</string>
+    <string name="ConnectWithUsernamesDialogFragment__usernames_have_a_unique_qr_code">Erabiltzaile-izenek QR kode eta esteka esklusibo bat dute, eta lagunekin parteka ditzakezu zurekin txatea dezaten.</string>
     <!-- Title of the discoverability section -->
-    <string name="ConnectWithUsernamesDialogFragment__stay_discoverable">Stay discoverable</string>
+    <string name="ConnectWithUsernamesDialogFragment__stay_discoverable">Eman zu aurkitzeko aukera</string>
     <!-- Description of the discoverability section -->
-    <string name="ConnectWithUsernamesDialogFragment__without_a_phone_number_usernames_and_links">Without a phone number, usernames and links are the only way others can connect with you.</string>
+    <string name="ConnectWithUsernamesDialogFragment__without_a_phone_number_usernames_and_links">Telefono-zenbakirik gabe, erabiltzaile-izenak eta estekak dira besteek zurekin konektatzeko dituzten modu bakarrak.</string>
     <!-- Button label that takes the user to the username creation screen -->
-    <string name="ConnectWithUsernamesDialogFragment__set_up_username">Set up username</string>
+    <string name="ConnectWithUsernamesDialogFragment__set_up_username">Konfiguratu erabiltzaile-izena</string>
     <!-- Button label that dismisses the screen without creating a username -->
-    <string name="ConnectWithUsernamesDialogFragment__not_now">Not now</string>
+    <string name="ConnectWithUsernamesDialogFragment__not_now">Orain ez</string>
 
     <!-- SetUpUsernameBanner -->
     <!-- Body of a banner on the new message screen prompting the user to create a username -->
-    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">Choose a username so others can connect with you.</string>
+    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">Aukeratu erabiltzaile-izen bat besteak zurekin konektatzeko.</string>
     <!-- Button label that takes the user to the username creation screen -->
-    <string name="SetUpUsernameBanner__set_up">Set up</string>
+    <string name="SetUpUsernameBanner__set_up">Konfiguratu</string>
     <!-- Accessibility label for the button that permanently dismisses the banner -->
-    <string name="SetUpUsernameBanner__dismiss">Dismiss</string>
+    <string name="SetUpUsernameBanner__dismiss">Baztertu</string>
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">Erreproduzitu bideoa</string>
@@ -5114,35 +5114,6 @@
     <!-- WifiToCellularPopupWindow -->
     <!-- Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead. -->
     <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Wifi-konexio ahula. Datu-konexiora aldatu da.</string>
-
-    <!-- DeleteAccountFragment -->
-    <string name="DeleteAccountFragment__deleting_your_account_will">Kontua ezabatuz gero:</string>
-    <string name="DeleteAccountFragment__enter_your_phone_number">Idatzi zure telefono-zenbakia</string>
-    <string name="DeleteAccountFragment__delete_account">Ezabatu kontua</string>
-    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Ezabatu kontuko informazioa eta profileko argazkia</string>
-    <string name="DeleteAccountFragment__delete_all_your_messages">Ezabatu mezu guztiak</string>
-    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Ezabatu %1$s ordainketa-kontuan</string>
-    <string name="DeleteAccountFragment__no_country_code">Ez duzu herrialde-kodea idatzi</string>
-    <string name="DeleteAccountFragment__no_number">Ez duzu zenbakia idatzi</string>
-    <string name="DeleteAccountFragment__the_phone_number">Idatzi duzun telefono-zenbakia eta zure kontuarena ez datoz bat.</string>
-    <string name="DeleteAccountFragment__are_you_sure">Ziur zaude kontua ezabatu nahi duzula?</string>
-    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Signal-eko kontua ezabatuko da, eta aplikazioa berrezarriko. Aplikazioa itxi egingo da prozesua amaitu ondoren.</string>
-    <string name="DeleteAccountFragment__failed_to_delete_local_data">Ezin izan dira ezabatu datu lokalak. Sistemaren aplikazioen ezarpenetan ezabatu beharko dituzu.</string>
-    <string name="DeleteAccountFragment__launch_app_settings">Aplikazioaren Ezarpenak Ireki</string>
-    <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
-    <string name="DeleteAccountFragment__leaving_groups">Taldeak uzten…</string>
-    <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
-    <string name="DeleteAccountFragment__deleting_account">Kontua ezabatzen…</string>
-    <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
-    <string name="DeleteAccountFragment__canceling_your_subscription">Harpidetza bertan behera uzten…</string>
-    <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
-    <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Parte hartzen ari zaren talde kopuruaren arabera, minutu batzuk behar izan ditzake</string>
-    <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
-    <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Erabiltzailearen datuak ezabatzen eta aplikazioa berrezartzen</string>
-    <!-- Title of error dialog shown when a network error occurs during account deletion -->
-    <string name="DeleteAccountFragment__account_not_deleted">Ez da ezabatu kontua</string>
-    <!-- Message of error dialog shown when a network error occurs during account deletion -->
-    <string name="DeleteAccountFragment__there_was_a_problem">Arazo bat izan da ezabatze-prozesua osatzean. Egiaztatu sareko konexioa eta saiatu berriro.</string>
 
     <!-- DeleteAccountCountryPickerFragment -->
     <string name="DeleteAccountCountryPickerFragment__search_countries">Herrialdeak bilatu</string>
@@ -9518,33 +9489,33 @@
     </plurals>
 
     <!-- Title of the screen for picking a contact to share -->
-    <string name="SelectContactScreen__select_contact">Select contact</string>
+    <string name="SelectContactScreen__select_contact">Hautatu kontaktua</string>
     <!-- Placeholder in the search field on the contact picker -->
-    <string name="SelectContactScreen__search">Search</string>
+    <string name="SelectContactScreen__search">Bilatu</string>
     <!-- Content description for the button that clears the contact search field -->
-    <string name="SelectContactScreen__clear_search">Clear search</string>
+    <string name="SelectContactScreen__clear_search">Garbitu Bilaketa</string>
     <!-- Content description for the badge shown next to a contact that is in the phone\'s address book -->
-    <string name="SelectContactScreen__in_your_contacts">In your contacts</string>
+    <string name="SelectContactScreen__in_your_contacts">Zure kontaktuetan</string>
     <!-- Title of the prompt asking for permission to read the user\'s phone contacts -->
-    <string name="SelectContactScreen__find_people_you_know_on_signal">Find people you know on Signal</string>
+    <string name="SelectContactScreen__find_people_you_know_on_signal">Aurkitu ezagutzen duzun jendea Signal-en</string>
     <!-- Explanation shown when Signal does not have permission to read the user\'s phone contacts -->
-    <string name="SelectContactScreen__allow_access_to_your_contacts">Allow access to your contacts. Your contacts are encrypted and not visible to the Signal service.</string>
+    <string name="SelectContactScreen__allow_access_to_your_contacts">Eman kontaktuetarako sarbidea. Zure kontaktuak enkriptatuta daude eta ez daude ikusgai Signal zerbitzuan.</string>
     <!-- Button that asks the system for permission to read the user\'s phone contacts -->
-    <string name="SelectContactScreen__allow_access">Allow access</string>
+    <string name="SelectContactScreen__allow_access">Sartzeko Baimena Eman</string>
     <!-- Button that dismisses the request for permission to read the user\'s phone contacts -->
-    <string name="SelectContactScreen__no_thanks">No thanks</string>
+    <string name="SelectContactScreen__no_thanks">Ez eskerrik asko</string>
     <!-- Button that opens the phone\'s own contact picker, used when Signal cannot ask for contacts permission -->
-    <string name="SelectContactScreen__open_phone_contacts">Open phone contacts</string>
+    <string name="SelectContactScreen__open_phone_contacts">Ireki telefonoko kontaktuak</string>
     <!-- Note at the bottom of the contact picker when contacts permission was denied on the device. Placeholder is the "Learn more" link text. -->
-    <string name="SelectContactScreen__to_see_your_phone_contacts_here">To see your phone contacts here, allow access in your device settings. %1$s</string>
+    <string name="SelectContactScreen__to_see_your_phone_contacts_here">Telefonoko kontaktuak hemen ikusteko, eman haietarako sarbidea gailuaren ezarpenetan. %1$s</string>
     <!-- Link that opens instructions for granting contacts permission from the device settings -->
-    <string name="SelectContactScreen__learn_more">Learn more</string>
+    <string name="SelectContactScreen__learn_more">Informazio gehiago</string>
     <!-- Title of the sheet explaining how to grant contacts permission from the device settings -->
-    <string name="SelectContactScreen__allow_access_to_contacts">Allow access to contacts</string>
+    <string name="SelectContactScreen__allow_access_to_contacts">Eman kontaktuetarako sarbidea</string>
     <!-- Subtitle of the sheet explaining how to grant contacts permission from the device settings -->
-    <string name="SelectContactScreen__to_find_people_you_know_on_signal">To find people you know on Signal:</string>
+    <string name="SelectContactScreen__to_find_people_you_know_on_signal">Signal-en ezagutzen duzun jendea aurkitzeko:</string>
     <!-- Toast shown when a selected contact can no longer be read -->
-    <string name="SelectContactScreen__couldnt_open_contact">Couldn\'t open that contact</string>
+    <string name="SelectContactScreen__couldnt_open_contact">Ezin izan da ireki kontaktu hori</string>
 
     <!-- Title of the screen where the user chooses which parts of a contact to share -->
     <string name="ShareContactScreen__share_contact">Partekatu kontaktua</string>
@@ -9600,15 +9571,15 @@
     <string name="SharedContactDetailsScreen__join_me_on_signal">Bat egin nirekin Signal-en</string>
 
     <!-- Title of the bottom sheet that confirms the user wants a brand new recovery key. -->
-    <string name="ResetRecoveryKeyBottomSheet__reset_your_recovery_key">Reset your recovery key</string>
+    <string name="ResetRecoveryKeyBottomSheet__reset_your_recovery_key">Berrezarri berreskuratze-gakoa</string>
     <!-- First paragraph of the bottom sheet body, explaining what a reset does. -->
-    <string name="ResetRecoveryKeyBottomSheet__resetting_your_recovery_key_will_create_a_new_key">Resetting your recovery key will create a new key for your Signal Login. This is only necessary if someone else knows your key.</string>
+    <string name="ResetRecoveryKeyBottomSheet__resetting_your_recovery_key_will_create_a_new_key">Berreskuratze-gakoa berrezarrita, beste gako bat sortuko da Signal Login-erako. Norbaitek zure gakoa zein den badaki bakarrik da beharrezkoa hori egitea.</string>
     <!-- Second paragraph of the bottom sheet body, explaining what a reset means for backups. -->
-    <string name="ResetRecoveryKeyBottomSheet__if_backups_are_enabled_you_will_have_to_re_upload">If backups are enabled you will have to re-upload your backup, including media. If you are using \"Optimize Signal storage\" you will have to download offloaded media first.</string>
+    <string name="ResetRecoveryKeyBottomSheet__if_backups_are_enabled_you_will_have_to_re_upload">Babeskopiak gaituta badaude, berriro kargatu beharko duzu babeskopia, multimedia-edukia barne. \"Optimizatu Signal-en biltegia\" erabiltzen ari bazara, kendutako multimedia-eduki deskargatu beharko duzu lehenik.</string>
     <!-- Bottom sheet action that continues on to reset the recovery key. -->
-    <string name="ResetRecoveryKeyBottomSheet__continue">Continue</string>
+    <string name="ResetRecoveryKeyBottomSheet__continue">Jarraitu</string>
     <!-- Dialog body shown when the recovery key change limit is exhausted and the user does not have backups enabled. -->
-    <string name="BackupKeyRotationDialogs__limit_exceeded_body_no_backups">You\'ve exhausted the number of new keys you can create. You will be able to create a new recovery key in 7 days.</string>
+    <string name="BackupKeyRotationDialogs__limit_exceeded_body_no_backups">Sor ditzakezun gakoen gehieneko kopurura iritsi zara. 7 egunen buruan sortu ahalko duzu beste berreskuratze-gako bat.</string>
 
     <!-- EOF -->
 </resources>

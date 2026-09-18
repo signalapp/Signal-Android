@@ -1709,7 +1709,7 @@
     <string name="Megaphones_chat_colors">சாட்டுக்கான கலர்</string>
     <string name="Megaphones_add_a_profile_photo">படத்தைச் சேர்</string>
     <!-- Text in a card view prompting the user to choose a username as part of the onboarding megaphone -->
-    <string name="Megaphones_set_up_username">Set up username</string>
+    <string name="Megaphones_set_up_username">பயனர் பெயரை அமைக்கவும்</string>
 
     <!-- Message body of megaphone telling users that a device was linked to their account. %1$s is the time it was linked -->
     <string name="NewLinkedDeviceMegaphone__a_new_device_was_linked">%1$s மணிக்கு உங்கள் கணக்குடன் புதிய சாதனம் இணைக்கப்பட்டது.</string>
@@ -2761,21 +2761,21 @@
         <item quantity="other">%1$s தேர்ந்தெடுக்கப்பட்டது</item>
     </plurals>
     <!-- Label for the sticker management screen tab which shows all of the sticker packs. -->
-    <string name="StickerManagement_all_tab_label">All</string>
+    <string name="StickerManagement_all_tab_label">அனைத்து</string>
     <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
-    <string name="StickerManagement_my_stickers_tab_label">My Stickers</string>
+    <string name="StickerManagement_my_stickers_tab_label">எனது ஸ்டிக்கர்கள்</string>
     <!-- Shown when there are no sticker packs to show. -->
-    <string name="StickerManagement_all_tab_empty_text">No sticker packs are available</string>
+    <string name="StickerManagement_all_tab_empty_text">கிடைக்கக்கூடிய ஸ்டிக்கர் பேக்குகள் எதுவும் இல்லை</string>
     <!-- Shown when there are no sticker packs currently installed. -->
-    <string name="StickerManagement_installed_tab_empty_text">No sticker packs, add stickers to send to your friends.</string>
+    <string name="StickerManagement_installed_tab_empty_text">ஸ்டிக்கர் பேக்குகள் இல்லை, உங்கள் நண்பர்களுக்கு அனுப்ப ஸ்டிக்கர்களைச் சேர்க்கவும்.</string>
     <!-- Message shown when the author of the sticker pack is unknown. -->
     <string name="StickerManagement_author_unknown">முன் தெரிந்திராத</string>
     <!-- Sticker pack list section header for packs that are already installed. -->
     <string name="StickerManagement_installed_stickers_header">நிறுவப்பட்ட ஒட்டிகள்</string>
     <!-- Sticker pack list section header for packs that have been received from incoming messages. -->
-    <string name="StickerManagement_shared_with_you_header">Shared with you</string>
+    <string name="StickerManagement_shared_with_you_header">உங்களிடன் பகிரப்பட்டவை</string>
     <!-- Sticker pack description for packs that have been sent to you -->
-    <string name="StickerManagement_when_you_receive">When you receive a sticker from someone, the sticker pack will appear here.</string>
+    <string name="StickerManagement_when_you_receive">நீங்கள் ஒருவரிடமிருந்து ஸ்டிக்கரைப் பெற்றால், ஸ்டிக்கர் பேக் இங்கே தோன்றும்.</string>
     <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
     <string name="StickerManagement_signal_artist_series_header">Signal கலைஞர் தொடர்</string>
     <!-- Title shown when sharing a sticker pack with another user. -->
@@ -2811,7 +2811,7 @@
         <item quantity="other">%1$sஸ்டிக்கர்கள்</item>
     </plurals>
     <!-- Message shown after copying a sticker pack link. -->
-    <string name="StickerManagement_copied">Link copied</string>
+    <string name="StickerManagement_copied">இணைப்பு நகலெடுக்கப்பட்டது</string>
 
     <!-- Sticker pack list dropdown menu label for the button to forward a sticker pack to another user. -->
     <string name="StickerManagement_menu_forward_pack">முன்னனுப்புக</string>
@@ -2824,13 +2824,13 @@
     <!-- Sticker management screen dropdown menu label for the button to enter multi-select mode. -->
     <string name="StickerManagement_menu_select_packs">ஸ்டிக்கர் பேக்குகளைத் தேர்ந்தெடுக்கவும்</string>
     <!-- Sticker pack list dropdown menu label for sending a sticker pack. -->
-    <string name="StickerManagement_menu_send_pack">Send</string>
+    <string name="StickerManagement_menu_send_pack">அனுப்புக</string>
     <!-- Sticker pack list dropdown menu label for copying a sticker link. -->
-    <string name="StickerManagement_menu_copy_pack">Copy link</string>
+    <string name="StickerManagement_menu_copy_pack">இணைப்பை நகலெடுக்கவும்</string>
     <!-- Hint text shown in the sticker management search field. -->
-    <string name="StickerManagement_search">Search</string>
+    <string name="StickerManagement_search">தேடல்</string>
     <!-- Shown when no stickers match the search. The placeholder what was searched. -->
-    <string name="StickerManagement_search_no_results_s">No results found for \'%1$s\'</string>
+    <string name="StickerManagement_search_no_results_s">\'%1$s\' க்கான முடிவுகள் எதுவும் கிடைக்கவில்லை</string>
 
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
     <string name="StickerManagement_accessibility_download_pack">%1$sஸ்டிக்கர் பேக்கைப் பதிவிறக்குக</string>
@@ -2847,13 +2847,13 @@
     <!-- Accessibility label for opening the context menu for a sticker pack row item. -->
     <string name="StickerManagement_accessibility_exit_multi_select_mode">தேர்வுப் பயன்முறையிலிருந்து வெளியேறி, தேர்வுகளை அழிக்கவும்</string>
     <!-- Label for the button that expands the list to show every sticker pack in a section. -->
-    <string name="StickerManagement__see_all">See all</string>
+    <string name="StickerManagement__see_all">அனைத்தையும் காட்டு</string>
     <!-- Button that takes you to the list of sticker packs you can install. -->
-    <string name="StickerManagement__add_stickers">Add stickers</string>
+    <string name="StickerManagement__add_stickers">ஸ்டிக்கர்களைச் சேர்</string>
     <!-- Accessibility label to close the search field. -->
-    <string name="StickerManagement_accessibility_close_search">Close search</string>
+    <string name="StickerManagement_accessibility_close_search">தேடலை அழி</string>
     <!-- Accessibility label to clear the search field. -->
-    <string name="StickerManagement_accessibility_clear_search">Clear search</string>
+    <string name="StickerManagement_accessibility_clear_search">தேடலை நீக்கு</string>
 
     <!-- StickerManagementAdapter -->
     <string name="StickerManagementAdapter_untitled">பெயரிடாத</string>
@@ -3295,29 +3295,29 @@
     <!-- Title of the username education screen shown to accounts registered without a phone number -->
     <string name="ConnectWithUsernamesDialogFragment__connect_with_usernames">Connect with usernames</string>
     <!-- Title of the usernames section -->
-    <string name="ConnectWithUsernamesDialogFragment__usernames">Usernames</string>
+    <string name="ConnectWithUsernamesDialogFragment__usernames">பயனர் பெயர்கள்</string>
     <!-- Description of the usernames section -->
     <string name="ConnectWithUsernamesDialogFragment__people_can_message_you_using_your_optional_username">People can message you using your optional username instead of a phone number. Usernames aren\'t visible on your profile.</string>
     <!-- Title of the QR code section -->
-    <string name="ConnectWithUsernamesDialogFragment__qr_codes_and_links">QR codes and links</string>
+    <string name="ConnectWithUsernamesDialogFragment__qr_codes_and_links">QR குறியீடுகள் மற்றும் இணைப்புகள்</string>
     <!-- Description of the QR code section -->
-    <string name="ConnectWithUsernamesDialogFragment__usernames_have_a_unique_qr_code">Usernames have a unique QR code and link you can share with friends to quickly start a chat with you.</string>
+    <string name="ConnectWithUsernamesDialogFragment__usernames_have_a_unique_qr_code">உங்களுடன் விரைவாக சாட் செய்யத் தொடங்க பயனர் பெயர்களில் நண்பர்களுடன் பகிர்ந்துகொள்ளும்படியான ஒரு தனித்துவமான QR குறியீடு மற்றும் ஒரு இணைப்பு உள்ளது.</string>
     <!-- Title of the discoverability section -->
     <string name="ConnectWithUsernamesDialogFragment__stay_discoverable">Stay discoverable</string>
     <!-- Description of the discoverability section -->
     <string name="ConnectWithUsernamesDialogFragment__without_a_phone_number_usernames_and_links">Without a phone number, usernames and links are the only way others can connect with you.</string>
     <!-- Button label that takes the user to the username creation screen -->
-    <string name="ConnectWithUsernamesDialogFragment__set_up_username">Set up username</string>
+    <string name="ConnectWithUsernamesDialogFragment__set_up_username">பயனர் பெயரை அமைக்கவும்</string>
     <!-- Button label that dismisses the screen without creating a username -->
-    <string name="ConnectWithUsernamesDialogFragment__not_now">Not now</string>
+    <string name="ConnectWithUsernamesDialogFragment__not_now">இப்போது வேண்டாம்</string>
 
     <!-- SetUpUsernameBanner -->
     <!-- Body of a banner on the new message screen prompting the user to create a username -->
     <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">Choose a username so others can connect with you.</string>
     <!-- Button label that takes the user to the username creation screen -->
-    <string name="SetUpUsernameBanner__set_up">Set up</string>
+    <string name="SetUpUsernameBanner__set_up">அமைக்கவும்</string>
     <!-- Accessibility label for the button that permanently dismisses the banner -->
-    <string name="SetUpUsernameBanner__dismiss">Dismiss</string>
+    <string name="SetUpUsernameBanner__dismiss">நிராகரி</string>
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">காணொளியை ஓட்டு</string>
@@ -5114,35 +5114,6 @@
     <!-- WifiToCellularPopupWindow -->
     <!-- Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead. -->
     <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">பலவீனமான வை-ஃபை. செல்லுலார்க்கு மாறியது.</string>
-
-    <!-- DeleteAccountFragment -->
-    <string name="DeleteAccountFragment__deleting_your_account_will">உங்கள் கணக்கை நீக்குவதால்:</string>
-    <string name="DeleteAccountFragment__enter_your_phone_number">உள்ளிடவும் உங்கள் தொலைபேசி எண்</string>
-    <string name="DeleteAccountFragment__delete_account">கணக்கை நீக்கு</string>
-    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">உங்கள் கணக்குத் தகவல் மற்றும் புரொஃபைல் ஃபோட்டோவை நீக்கவும்</string>
-    <string name="DeleteAccountFragment__delete_all_your_messages">உங்கள் அனைத்து மெசேஜ்களையும் நீக்குக</string>
-    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">உங்கள் பேமெண்ட் கணக்கில் %1$sஐ நீக்கு</string>
-    <string name="DeleteAccountFragment__no_country_code">இல்லை நாட்டின் குறியீடு குறிப்பிடப்பட்டுள்ளது</string>
-    <string name="DeleteAccountFragment__no_number">இல்லை எண் குறிப்பிடப்பட்டுள்ளது</string>
-    <string name="DeleteAccountFragment__the_phone_number">தி தொலைபேசி நீங்கள் உள்ளிட்ட எண் உங்களுடன் பொருந்தவில்லை கணக்கு.</string>
-    <string name="DeleteAccountFragment__are_you_sure">உங்கள் கணக்கை நிச்சயமாக நீக்க வேண்டுமா?</string>
-    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">இது உங்களது Signal கணக்கை நீக்கி செயலியை மீட்டமைக்கும். செயல்பாடு நிறைவடைந்ததும் செயலி மூடப்படும்.</string>
-    <string name="DeleteAccountFragment__failed_to_delete_local_data">உள்ளே சேமிக்கப்பட்டிருக்கும் தரவை நீக்க முடியவில்லை. சிஸ்டம் அப்ளிகேஷன் செட்டிங்ஸில் அதை நீங்கள் நேரடியாக அழிக்கலாம்.</string>
-    <string name="DeleteAccountFragment__launch_app_settings">பயன்பாட்டு அமைப்புகளை தொடங்கு</string>
-    <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
-    <string name="DeleteAccountFragment__leaving_groups">குழுக்களை விட்டு வெளியேறுகிறது…</string>
-    <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
-    <string name="DeleteAccountFragment__deleting_account">கணக்கை நீக்குகிறது…</string>
-    <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
-    <string name="DeleteAccountFragment__canceling_your_subscription">உங்கள் சந்தாவை ரத்துசெய்கிறது…</string>
-    <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
-    <string name="DeleteAccountFragment__depending_on_the_number_of_groups">நீங்கள் இருக்கும் குழுக்களின் எண்ணிக்கையைப் பொறுத்து, இது சில நிமிடங்கள் எடுக்கலாம்</string>
-    <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
-    <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">பயனர் தரவை நீக்குகிறது மற்றும் ஆப்பை மீட்டமைக்கிறது</string>
-    <!-- Title of error dialog shown when a network error occurs during account deletion -->
-    <string name="DeleteAccountFragment__account_not_deleted">கணக்கு நீக்கப்படவில்லை</string>
-    <!-- Message of error dialog shown when a network error occurs during account deletion -->
-    <string name="DeleteAccountFragment__there_was_a_problem">நீக்குதல் செயல்முறையை முடிப்பதில் சிக்கல் ஏற்பட்டது. உங்கள் நெட்வர்க் இணைப்பைச் சரிபார்த்து, மீண்டும் முயற்சிக்கவும்.</string>
 
     <!-- DeleteAccountCountryPickerFragment -->
     <string name="DeleteAccountCountryPickerFragment__search_countries">நாடுகளை தேடு</string>
@@ -9520,29 +9491,29 @@
     <!-- Title of the screen for picking a contact to share -->
     <string name="SelectContactScreen__select_contact">Select contact</string>
     <!-- Placeholder in the search field on the contact picker -->
-    <string name="SelectContactScreen__search">Search</string>
+    <string name="SelectContactScreen__search">தேடல்</string>
     <!-- Content description for the button that clears the contact search field -->
-    <string name="SelectContactScreen__clear_search">Clear search</string>
+    <string name="SelectContactScreen__clear_search">தேடலை நீக்கு</string>
     <!-- Content description for the badge shown next to a contact that is in the phone\'s address book -->
     <string name="SelectContactScreen__in_your_contacts">In your contacts</string>
     <!-- Title of the prompt asking for permission to read the user\'s phone contacts -->
-    <string name="SelectContactScreen__find_people_you_know_on_signal">Find people you know on Signal</string>
+    <string name="SelectContactScreen__find_people_you_know_on_signal">சிக்னலில் உங்களுக்குத் தெரிந்தவர்களைக் கண்டறியவும்</string>
     <!-- Explanation shown when Signal does not have permission to read the user\'s phone contacts -->
-    <string name="SelectContactScreen__allow_access_to_your_contacts">Allow access to your contacts. Your contacts are encrypted and not visible to the Signal service.</string>
+    <string name="SelectContactScreen__allow_access_to_your_contacts">உங்கள் தொடர்புகளுக்கான அணுகலை அனுமதிக்கவும். உங்கள் தொடர்புகள் குறியாக்கம் செய்யப்பட்டுள்ளது, மேலும் Signal சேவைக்குக் காண்பிக்கப்படாது.</string>
     <!-- Button that asks the system for permission to read the user\'s phone contacts -->
-    <string name="SelectContactScreen__allow_access">Allow access</string>
+    <string name="SelectContactScreen__allow_access">அணுகலை அனுமதிக்கவும்</string>
     <!-- Button that dismisses the request for permission to read the user\'s phone contacts -->
-    <string name="SelectContactScreen__no_thanks">No thanks</string>
+    <string name="SelectContactScreen__no_thanks">தேவையில்லை,நன்றி</string>
     <!-- Button that opens the phone\'s own contact picker, used when Signal cannot ask for contacts permission -->
     <string name="SelectContactScreen__open_phone_contacts">Open phone contacts</string>
     <!-- Note at the bottom of the contact picker when contacts permission was denied on the device. Placeholder is the "Learn more" link text. -->
     <string name="SelectContactScreen__to_see_your_phone_contacts_here">To see your phone contacts here, allow access in your device settings. %1$s</string>
     <!-- Link that opens instructions for granting contacts permission from the device settings -->
-    <string name="SelectContactScreen__learn_more">Learn more</string>
+    <string name="SelectContactScreen__learn_more">மேலும் அறிக</string>
     <!-- Title of the sheet explaining how to grant contacts permission from the device settings -->
-    <string name="SelectContactScreen__allow_access_to_contacts">Allow access to contacts</string>
+    <string name="SelectContactScreen__allow_access_to_contacts">தொடர்புகளுக்கான அணுகலை அனுமதிக்கவும்</string>
     <!-- Subtitle of the sheet explaining how to grant contacts permission from the device settings -->
-    <string name="SelectContactScreen__to_find_people_you_know_on_signal">To find people you know on Signal:</string>
+    <string name="SelectContactScreen__to_find_people_you_know_on_signal">சிக்னலில் உங்களுக்குத் தெரிந்தவர்களைக் கண்டறிய:</string>
     <!-- Toast shown when a selected contact can no longer be read -->
     <string name="SelectContactScreen__couldnt_open_contact">Couldn\'t open that contact</string>
 
@@ -9606,7 +9577,7 @@
     <!-- Second paragraph of the bottom sheet body, explaining what a reset means for backups. -->
     <string name="ResetRecoveryKeyBottomSheet__if_backups_are_enabled_you_will_have_to_re_upload">If backups are enabled you will have to re-upload your backup, including media. If you are using \"Optimize Signal storage\" you will have to download offloaded media first.</string>
     <!-- Bottom sheet action that continues on to reset the recovery key. -->
-    <string name="ResetRecoveryKeyBottomSheet__continue">Continue</string>
+    <string name="ResetRecoveryKeyBottomSheet__continue">தொடர்</string>
     <!-- Dialog body shown when the recovery key change limit is exhausted and the user does not have backups enabled. -->
     <string name="BackupKeyRotationDialogs__limit_exceeded_body_no_backups">You\'ve exhausted the number of new keys you can create. You will be able to create a new recovery key in 7 days.</string>
 

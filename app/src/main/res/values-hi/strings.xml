@@ -1709,7 +1709,7 @@
     <string name="Megaphones_chat_colors">चैट का रंग</string>
     <string name="Megaphones_add_a_profile_photo">फ़ोटो जोड़ें</string>
     <!-- Text in a card view prompting the user to choose a username as part of the onboarding megaphone -->
-    <string name="Megaphones_set_up_username">Set up username</string>
+    <string name="Megaphones_set_up_username">यूज़रनेम नाम सेट अप करें</string>
 
     <!-- Message body of megaphone telling users that a device was linked to their account. %1$s is the time it was linked -->
     <string name="NewLinkedDeviceMegaphone__a_new_device_was_linked">आपके अकाउंट %1$s से एक नया डिवाइस लिंक किया गया।</string>
@@ -2761,21 +2761,21 @@
         <item quantity="other">%1$s आइटम चुने गए</item>
     </plurals>
     <!-- Label for the sticker management screen tab which shows all of the sticker packs. -->
-    <string name="StickerManagement_all_tab_label">All</string>
+    <string name="StickerManagement_all_tab_label">सभी</string>
     <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
-    <string name="StickerManagement_my_stickers_tab_label">My Stickers</string>
+    <string name="StickerManagement_my_stickers_tab_label">मेरे स्टिकर</string>
     <!-- Shown when there are no sticker packs to show. -->
-    <string name="StickerManagement_all_tab_empty_text">No sticker packs are available</string>
+    <string name="StickerManagement_all_tab_empty_text">कोई स्टिकर पैक उपलब्ध नहीं है</string>
     <!-- Shown when there are no sticker packs currently installed. -->
-    <string name="StickerManagement_installed_tab_empty_text">No sticker packs, add stickers to send to your friends.</string>
+    <string name="StickerManagement_installed_tab_empty_text">कोई स्टिकर पैक नहीं है, अपने दोस्तों को भेजने के लिए स्टिकर जोड़ें।</string>
     <!-- Message shown when the author of the sticker pack is unknown. -->
     <string name="StickerManagement_author_unknown">अनजान</string>
     <!-- Sticker pack list section header for packs that are already installed. -->
     <string name="StickerManagement_installed_stickers_header">इंस्टॉल किए गए स्टिकर</string>
     <!-- Sticker pack list section header for packs that have been received from incoming messages. -->
-    <string name="StickerManagement_shared_with_you_header">Shared with you</string>
+    <string name="StickerManagement_shared_with_you_header">आपसे शेयर किए गए</string>
     <!-- Sticker pack description for packs that have been sent to you -->
-    <string name="StickerManagement_when_you_receive">When you receive a sticker from someone, the sticker pack will appear here.</string>
+    <string name="StickerManagement_when_you_receive">आपको जब भी किसी से कोई स्टिकर मिलेगा, तो स्टिकर पैक यहां दिखाई देगा।</string>
     <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
     <string name="StickerManagement_signal_artist_series_header">Signal की आर्टिस्ट सीरीज़</string>
     <!-- Title shown when sharing a sticker pack with another user. -->
@@ -2811,7 +2811,7 @@
         <item quantity="other">%1$s स्टिकर</item>
     </plurals>
     <!-- Message shown after copying a sticker pack link. -->
-    <string name="StickerManagement_copied">Link copied</string>
+    <string name="StickerManagement_copied">लिंक कॉपी किया गया</string>
 
     <!-- Sticker pack list dropdown menu label for the button to forward a sticker pack to another user. -->
     <string name="StickerManagement_menu_forward_pack">फ़ॉरवर्ड करें</string>
@@ -2824,13 +2824,13 @@
     <!-- Sticker management screen dropdown menu label for the button to enter multi-select mode. -->
     <string name="StickerManagement_menu_select_packs">स्टिकर पैक चुनें</string>
     <!-- Sticker pack list dropdown menu label for sending a sticker pack. -->
-    <string name="StickerManagement_menu_send_pack">Send</string>
+    <string name="StickerManagement_menu_send_pack">भेजें</string>
     <!-- Sticker pack list dropdown menu label for copying a sticker link. -->
-    <string name="StickerManagement_menu_copy_pack">Copy link</string>
+    <string name="StickerManagement_menu_copy_pack">लिंक कॉपी करें</string>
     <!-- Hint text shown in the sticker management search field. -->
-    <string name="StickerManagement_search">Search</string>
+    <string name="StickerManagement_search">खोजें</string>
     <!-- Shown when no stickers match the search. The placeholder what was searched. -->
-    <string name="StickerManagement_search_no_results_s">No results found for \'%1$s\'</string>
+    <string name="StickerManagement_search_no_results_s">\'%1$s\' के लिए कोई नतीजा नहीं मिला</string>
 
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
     <string name="StickerManagement_accessibility_download_pack">%1$s स्टिकर पैक डाउनलोड करें</string>
@@ -2847,13 +2847,13 @@
     <!-- Accessibility label for opening the context menu for a sticker pack row item. -->
     <string name="StickerManagement_accessibility_exit_multi_select_mode">चुनने वाले मोड से बाहर आएं और चुने गए आइटम हटाएं</string>
     <!-- Label for the button that expands the list to show every sticker pack in a section. -->
-    <string name="StickerManagement__see_all">See all</string>
+    <string name="StickerManagement__see_all">सभी को देखें</string>
     <!-- Button that takes you to the list of sticker packs you can install. -->
-    <string name="StickerManagement__add_stickers">Add stickers</string>
+    <string name="StickerManagement__add_stickers">स्टिकर जोड़ें</string>
     <!-- Accessibility label to close the search field. -->
-    <string name="StickerManagement_accessibility_close_search">Close search</string>
+    <string name="StickerManagement_accessibility_close_search">सर्च बंद करें</string>
     <!-- Accessibility label to clear the search field. -->
-    <string name="StickerManagement_accessibility_clear_search">Clear search</string>
+    <string name="StickerManagement_accessibility_clear_search">सर्च हटाएं</string>
 
     <!-- StickerManagementAdapter -->
     <string name="StickerManagementAdapter_untitled">बिना टाइटल के</string>
@@ -3295,29 +3295,29 @@
     <!-- Title of the username education screen shown to accounts registered without a phone number -->
     <string name="ConnectWithUsernamesDialogFragment__connect_with_usernames">Connect with usernames</string>
     <!-- Title of the usernames section -->
-    <string name="ConnectWithUsernamesDialogFragment__usernames">Usernames</string>
+    <string name="ConnectWithUsernamesDialogFragment__usernames">यूज़रनेम</string>
     <!-- Description of the usernames section -->
     <string name="ConnectWithUsernamesDialogFragment__people_can_message_you_using_your_optional_username">People can message you using your optional username instead of a phone number. Usernames aren\'t visible on your profile.</string>
     <!-- Title of the QR code section -->
-    <string name="ConnectWithUsernamesDialogFragment__qr_codes_and_links">QR codes and links</string>
+    <string name="ConnectWithUsernamesDialogFragment__qr_codes_and_links">QR कोड और लिंक</string>
     <!-- Description of the QR code section -->
-    <string name="ConnectWithUsernamesDialogFragment__usernames_have_a_unique_qr_code">Usernames have a unique QR code and link you can share with friends to quickly start a chat with you.</string>
+    <string name="ConnectWithUsernamesDialogFragment__usernames_have_a_unique_qr_code">हर यूज़रनेम का अपना यूनिक QR कोड और लिंक होता है। इसे दोस्तों को भेजें, ताकि वे झटपट आपके साथ चैट शुरू कर सकें।</string>
     <!-- Title of the discoverability section -->
     <string name="ConnectWithUsernamesDialogFragment__stay_discoverable">Stay discoverable</string>
     <!-- Description of the discoverability section -->
     <string name="ConnectWithUsernamesDialogFragment__without_a_phone_number_usernames_and_links">Without a phone number, usernames and links are the only way others can connect with you.</string>
     <!-- Button label that takes the user to the username creation screen -->
-    <string name="ConnectWithUsernamesDialogFragment__set_up_username">Set up username</string>
+    <string name="ConnectWithUsernamesDialogFragment__set_up_username">यूज़रनेम नाम सेट अप करें</string>
     <!-- Button label that dismisses the screen without creating a username -->
-    <string name="ConnectWithUsernamesDialogFragment__not_now">Not now</string>
+    <string name="ConnectWithUsernamesDialogFragment__not_now">अभी नहीं</string>
 
     <!-- SetUpUsernameBanner -->
     <!-- Body of a banner on the new message screen prompting the user to create a username -->
     <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">Choose a username so others can connect with you.</string>
     <!-- Button label that takes the user to the username creation screen -->
-    <string name="SetUpUsernameBanner__set_up">Set up</string>
+    <string name="SetUpUsernameBanner__set_up">सेटअप करें</string>
     <!-- Accessibility label for the button that permanently dismisses the banner -->
-    <string name="SetUpUsernameBanner__dismiss">Dismiss</string>
+    <string name="SetUpUsernameBanner__dismiss">खारिज करें</string>
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">वीडियो चलाएं</string>
@@ -5114,35 +5114,6 @@
     <!-- WifiToCellularPopupWindow -->
     <!-- Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead. -->
     <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">वाई-फ़ाई कमज़ोर है। मोबाइल डेटा पर स्विच करें।</string>
-
-    <!-- DeleteAccountFragment -->
-    <string name="DeleteAccountFragment__deleting_your_account_will">अपना खाता मिटाने से:</string>
-    <string name="DeleteAccountFragment__enter_your_phone_number">अपना फ़ोन नंबर डालें</string>
-    <string name="DeleteAccountFragment__delete_account">अकाउंट डिलीट करें</string>
-    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">अपने अकाउंट की जानकारी और प्रोफाइल तस्वीर डिलीट करें</string>
-    <string name="DeleteAccountFragment__delete_all_your_messages">अपने सभी मेसेज डिलीट करें</string>
-    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">अपने भुगतान अकाउंट में %1$s डिलीट करें</string>
-    <string name="DeleteAccountFragment__no_country_code">आपने कोई देश नहीं बताया है</string>
-    <string name="DeleteAccountFragment__no_number">आपने कोई नंबर नहीं बताया है</string>
-    <string name="DeleteAccountFragment__the_phone_number">आपने जो फ़ोन नंबर डाला है, वह आपके अकाउंट से जुड़े नंबर से मेल नहीं खाता।</string>
-    <string name="DeleteAccountFragment__are_you_sure">क्या आपको यकीन है कि आप अपना अकाउंट डिलीट करना चाहते हैं?</string>
-    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">इससे आपका Signal का अकाउंट डिलीट कर दिया जाएगा और एप्लिकेशन रीसेट हो जाएगी। प्रक्रिया पूरी होने के बाद ऐप बंद हो जाएगी।</string>
-    <string name="DeleteAccountFragment__failed_to_delete_local_data">स्थानीय डेटा को डिलीट करना असफल रहा। आप इसे स्वंय सिस्टम एप्लिकेशन सेटिंग्स में साफ कर सकते हैं।</string>
-    <string name="DeleteAccountFragment__launch_app_settings">ऐप सेटिंग लॉन्च करें</string>
-    <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
-    <string name="DeleteAccountFragment__leaving_groups">ग्रुप से निकला जा रहा है…</string>
-    <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
-    <string name="DeleteAccountFragment__deleting_account">अकाउंट डिलीट किया जा रहा है…</string>
-    <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
-    <string name="DeleteAccountFragment__canceling_your_subscription">आपका सब्सक्रिप्शन रद्द किया जा रहा…</string>
-    <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
-    <string name="DeleteAccountFragment__depending_on_the_number_of_groups">इसमें थोड़ा समय लग सकता है। यह समय इस पर निर्भर करेगा कि आप कितने ग्रुप में हैं</string>
-    <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
-    <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">यूज़र का डेटा डिलीट किया जा रहा है और ऐप रीसेट किया जा रहा है</string>
-    <!-- Title of error dialog shown when a network error occurs during account deletion -->
-    <string name="DeleteAccountFragment__account_not_deleted">अकाउंट डिलीट नहीं किया गया</string>
-    <!-- Message of error dialog shown when a network error occurs during account deletion -->
-    <string name="DeleteAccountFragment__there_was_a_problem">डिलीट करने की प्रक्रिया पूरी होने में कोई गड़बड़ी हुई। अपना इंटरनेट कनेक्शन देखें और फिर से कोशिश करें।</string>
 
     <!-- DeleteAccountCountryPickerFragment -->
     <string name="DeleteAccountCountryPickerFragment__search_countries">देश खोजें</string>
@@ -9518,31 +9489,31 @@
     </plurals>
 
     <!-- Title of the screen for picking a contact to share -->
-    <string name="SelectContactScreen__select_contact">Select contact</string>
+    <string name="SelectContactScreen__select_contact">कॉन्टैक्ट चुनें</string>
     <!-- Placeholder in the search field on the contact picker -->
-    <string name="SelectContactScreen__search">Search</string>
+    <string name="SelectContactScreen__search">खोजें</string>
     <!-- Content description for the button that clears the contact search field -->
-    <string name="SelectContactScreen__clear_search">Clear search</string>
+    <string name="SelectContactScreen__clear_search">सर्च हटाएं</string>
     <!-- Content description for the badge shown next to a contact that is in the phone\'s address book -->
     <string name="SelectContactScreen__in_your_contacts">In your contacts</string>
     <!-- Title of the prompt asking for permission to read the user\'s phone contacts -->
-    <string name="SelectContactScreen__find_people_you_know_on_signal">Find people you know on Signal</string>
+    <string name="SelectContactScreen__find_people_you_know_on_signal">Signal पर अपनी जान-पहचान के लोगों को ढूंढें</string>
     <!-- Explanation shown when Signal does not have permission to read the user\'s phone contacts -->
-    <string name="SelectContactScreen__allow_access_to_your_contacts">Allow access to your contacts. Your contacts are encrypted and not visible to the Signal service.</string>
+    <string name="SelectContactScreen__allow_access_to_your_contacts">अपने कॉन्टैक्ट का ऐक्सेस दें। आपके कॉन्टैक्ट एनक्रिप्टेड होते हैं और Signal इसे नहीं देख सकता।</string>
     <!-- Button that asks the system for permission to read the user\'s phone contacts -->
-    <string name="SelectContactScreen__allow_access">Allow access</string>
+    <string name="SelectContactScreen__allow_access">ऐक्सेस दें</string>
     <!-- Button that dismisses the request for permission to read the user\'s phone contacts -->
-    <string name="SelectContactScreen__no_thanks">No thanks</string>
+    <string name="SelectContactScreen__no_thanks">नहीं, रहने दें</string>
     <!-- Button that opens the phone\'s own contact picker, used when Signal cannot ask for contacts permission -->
     <string name="SelectContactScreen__open_phone_contacts">Open phone contacts</string>
     <!-- Note at the bottom of the contact picker when contacts permission was denied on the device. Placeholder is the "Learn more" link text. -->
     <string name="SelectContactScreen__to_see_your_phone_contacts_here">To see your phone contacts here, allow access in your device settings. %1$s</string>
     <!-- Link that opens instructions for granting contacts permission from the device settings -->
-    <string name="SelectContactScreen__learn_more">Learn more</string>
+    <string name="SelectContactScreen__learn_more">और जानें</string>
     <!-- Title of the sheet explaining how to grant contacts permission from the device settings -->
-    <string name="SelectContactScreen__allow_access_to_contacts">Allow access to contacts</string>
+    <string name="SelectContactScreen__allow_access_to_contacts">कॉन्टैक्ट का ऐक्सेस दें</string>
     <!-- Subtitle of the sheet explaining how to grant contacts permission from the device settings -->
-    <string name="SelectContactScreen__to_find_people_you_know_on_signal">To find people you know on Signal:</string>
+    <string name="SelectContactScreen__to_find_people_you_know_on_signal">Signal पर अपनी जान-पहचान के लोगों को खोजने के लिए:</string>
     <!-- Toast shown when a selected contact can no longer be read -->
     <string name="SelectContactScreen__couldnt_open_contact">Couldn\'t open that contact</string>
 
@@ -9606,7 +9577,7 @@
     <!-- Second paragraph of the bottom sheet body, explaining what a reset means for backups. -->
     <string name="ResetRecoveryKeyBottomSheet__if_backups_are_enabled_you_will_have_to_re_upload">If backups are enabled you will have to re-upload your backup, including media. If you are using \"Optimize Signal storage\" you will have to download offloaded media first.</string>
     <!-- Bottom sheet action that continues on to reset the recovery key. -->
-    <string name="ResetRecoveryKeyBottomSheet__continue">Continue</string>
+    <string name="ResetRecoveryKeyBottomSheet__continue">जारी रखें</string>
     <!-- Dialog body shown when the recovery key change limit is exhausted and the user does not have backups enabled. -->
     <string name="BackupKeyRotationDialogs__limit_exceeded_body_no_backups">You\'ve exhausted the number of new keys you can create. You will be able to create a new recovery key in 7 days.</string>
 

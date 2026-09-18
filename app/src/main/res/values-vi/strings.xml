@@ -1657,7 +1657,7 @@
     <string name="Megaphones_chat_colors">Màu trò chuyện</string>
     <string name="Megaphones_add_a_profile_photo">Ảnh đại diện</string>
     <!-- Text in a card view prompting the user to choose a username as part of the onboarding megaphone -->
-    <string name="Megaphones_set_up_username">Set up username</string>
+    <string name="Megaphones_set_up_username">Thiết lập tên người dùng</string>
 
     <!-- Message body of megaphone telling users that a device was linked to their account. %1$s is the time it was linked -->
     <string name="NewLinkedDeviceMegaphone__a_new_device_was_linked">Một thiết bị mới đã được liên kết với tài khoản của bạn %1$s.</string>
@@ -2669,21 +2669,21 @@
         <item quantity="other">Đã chọn %1$s</item>
     </plurals>
     <!-- Label for the sticker management screen tab which shows all of the sticker packs. -->
-    <string name="StickerManagement_all_tab_label">All</string>
+    <string name="StickerManagement_all_tab_label">Tất cả</string>
     <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
-    <string name="StickerManagement_my_stickers_tab_label">My Stickers</string>
+    <string name="StickerManagement_my_stickers_tab_label">Nhãn dán của tôi</string>
     <!-- Shown when there are no sticker packs to show. -->
-    <string name="StickerManagement_all_tab_empty_text">No sticker packs are available</string>
+    <string name="StickerManagement_all_tab_empty_text">Không có gói nhãn dán khả dụng nào</string>
     <!-- Shown when there are no sticker packs currently installed. -->
-    <string name="StickerManagement_installed_tab_empty_text">No sticker packs, add stickers to send to your friends.</string>
+    <string name="StickerManagement_installed_tab_empty_text">Không có gói nhãn dán, thêm nhãn dán để gửi cho bạn bè.</string>
     <!-- Message shown when the author of the sticker pack is unknown. -->
     <string name="StickerManagement_author_unknown">Không rõ</string>
     <!-- Sticker pack list section header for packs that are already installed. -->
     <string name="StickerManagement_installed_stickers_header">Các gói nhãn dán đã cài</string>
     <!-- Sticker pack list section header for packs that have been received from incoming messages. -->
-    <string name="StickerManagement_shared_with_you_header">Shared with you</string>
+    <string name="StickerManagement_shared_with_you_header">Đã chia sẻ với bạn</string>
     <!-- Sticker pack description for packs that have been sent to you -->
-    <string name="StickerManagement_when_you_receive">When you receive a sticker from someone, the sticker pack will appear here.</string>
+    <string name="StickerManagement_when_you_receive">Khi bạn nhận được nhãn dán từ ai đó, gói nhãn dán sẽ xuất hiện ở đây.</string>
     <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
     <string name="StickerManagement_signal_artist_series_header">Tuyển tập Nghệ sĩ Signal</string>
     <!-- Title shown when sharing a sticker pack with another user. -->
@@ -2715,7 +2715,7 @@
         <item quantity="other">%1$s nhãn dán</item>
     </plurals>
     <!-- Message shown after copying a sticker pack link. -->
-    <string name="StickerManagement_copied">Link copied</string>
+    <string name="StickerManagement_copied">Đã sao chép liên kết</string>
 
     <!-- Sticker pack list dropdown menu label for the button to forward a sticker pack to another user. -->
     <string name="StickerManagement_menu_forward_pack">Chuyển tiếp</string>
@@ -2728,13 +2728,13 @@
     <!-- Sticker management screen dropdown menu label for the button to enter multi-select mode. -->
     <string name="StickerManagement_menu_select_packs">Chọn gói nhãn dán</string>
     <!-- Sticker pack list dropdown menu label for sending a sticker pack. -->
-    <string name="StickerManagement_menu_send_pack">Send</string>
+    <string name="StickerManagement_menu_send_pack">Gửi</string>
     <!-- Sticker pack list dropdown menu label for copying a sticker link. -->
-    <string name="StickerManagement_menu_copy_pack">Copy link</string>
+    <string name="StickerManagement_menu_copy_pack">Sao chép đường dẫn</string>
     <!-- Hint text shown in the sticker management search field. -->
-    <string name="StickerManagement_search">Search</string>
+    <string name="StickerManagement_search">Tìm kiếm</string>
     <!-- Shown when no stickers match the search. The placeholder what was searched. -->
-    <string name="StickerManagement_search_no_results_s">No results found for \'%1$s\'</string>
+    <string name="StickerManagement_search_no_results_s">Không có kết quả cho \'%1$s\'</string>
 
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
     <string name="StickerManagement_accessibility_download_pack">Tải gói nhãn dán %1$s</string>
@@ -2751,13 +2751,13 @@
     <!-- Accessibility label for opening the context menu for a sticker pack row item. -->
     <string name="StickerManagement_accessibility_exit_multi_select_mode">Thoát chế độ chọn và bỏ các lựa chọn</string>
     <!-- Label for the button that expands the list to show every sticker pack in a section. -->
-    <string name="StickerManagement__see_all">See all</string>
+    <string name="StickerManagement__see_all">Xem tất cả</string>
     <!-- Button that takes you to the list of sticker packs you can install. -->
-    <string name="StickerManagement__add_stickers">Add stickers</string>
+    <string name="StickerManagement__add_stickers">Thêm Nhãn dán</string>
     <!-- Accessibility label to close the search field. -->
-    <string name="StickerManagement_accessibility_close_search">Close search</string>
+    <string name="StickerManagement_accessibility_close_search">Đóng tìm kiếm</string>
     <!-- Accessibility label to clear the search field. -->
-    <string name="StickerManagement_accessibility_clear_search">Clear search</string>
+    <string name="StickerManagement_accessibility_clear_search">Xoá Tìm kiếm</string>
 
     <!-- StickerManagementAdapter -->
     <string name="StickerManagementAdapter_untitled">Chưa đặt tên</string>
@@ -3192,29 +3192,29 @@
     <!-- Title of the username education screen shown to accounts registered without a phone number -->
     <string name="ConnectWithUsernamesDialogFragment__connect_with_usernames">Connect with usernames</string>
     <!-- Title of the usernames section -->
-    <string name="ConnectWithUsernamesDialogFragment__usernames">Usernames</string>
+    <string name="ConnectWithUsernamesDialogFragment__usernames">Tên người dùng</string>
     <!-- Description of the usernames section -->
     <string name="ConnectWithUsernamesDialogFragment__people_can_message_you_using_your_optional_username">People can message you using your optional username instead of a phone number. Usernames aren\'t visible on your profile.</string>
     <!-- Title of the QR code section -->
-    <string name="ConnectWithUsernamesDialogFragment__qr_codes_and_links">QR codes and links</string>
+    <string name="ConnectWithUsernamesDialogFragment__qr_codes_and_links">Mã QR và Đường Dẫn</string>
     <!-- Description of the QR code section -->
-    <string name="ConnectWithUsernamesDialogFragment__usernames_have_a_unique_qr_code">Usernames have a unique QR code and link you can share with friends to quickly start a chat with you.</string>
+    <string name="ConnectWithUsernamesDialogFragment__usernames_have_a_unique_qr_code">Tên người dùng có một mã QR độc nhất cùng đường dẫn để bạn có thể chia sẻ để bạn bè có thể nhanh chóng bắt đầu trò chuyện với bạn.</string>
     <!-- Title of the discoverability section -->
     <string name="ConnectWithUsernamesDialogFragment__stay_discoverable">Stay discoverable</string>
     <!-- Description of the discoverability section -->
     <string name="ConnectWithUsernamesDialogFragment__without_a_phone_number_usernames_and_links">Without a phone number, usernames and links are the only way others can connect with you.</string>
     <!-- Button label that takes the user to the username creation screen -->
-    <string name="ConnectWithUsernamesDialogFragment__set_up_username">Set up username</string>
+    <string name="ConnectWithUsernamesDialogFragment__set_up_username">Thiết lập tên người dùng</string>
     <!-- Button label that dismisses the screen without creating a username -->
-    <string name="ConnectWithUsernamesDialogFragment__not_now">Not now</string>
+    <string name="ConnectWithUsernamesDialogFragment__not_now">Để sau</string>
 
     <!-- SetUpUsernameBanner -->
     <!-- Body of a banner on the new message screen prompting the user to create a username -->
     <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">Choose a username so others can connect with you.</string>
     <!-- Button label that takes the user to the username creation screen -->
-    <string name="SetUpUsernameBanner__set_up">Set up</string>
+    <string name="SetUpUsernameBanner__set_up">Thiết Lập</string>
     <!-- Accessibility label for the button that permanently dismisses the banner -->
-    <string name="SetUpUsernameBanner__dismiss">Dismiss</string>
+    <string name="SetUpUsernameBanner__dismiss">Bỏ qua</string>
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">Phát video</string>
@@ -4979,35 +4979,6 @@
     <!-- WifiToCellularPopupWindow -->
     <!-- Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead. -->
     <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Wi-Fi yếu. Đã chuyển qua mạng di động.</string>
-
-    <!-- DeleteAccountFragment -->
-    <string name="DeleteAccountFragment__deleting_your_account_will">Việc xóa tài khoản của bạn sẽ:</string>
-    <string name="DeleteAccountFragment__enter_your_phone_number">Nhập số điện thoại của bạn</string>
-    <string name="DeleteAccountFragment__delete_account">Xóa tài khoản</string>
-    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Xóa thông tin tài khoản của bạn và ảnh đại diện</string>
-    <string name="DeleteAccountFragment__delete_all_your_messages">Xóa tất cả tin nhắn của bạn</string>
-    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Xóa %1$s trong tài khoản thanh toán của bạn</string>
-    <string name="DeleteAccountFragment__no_country_code">Mã quốc gia không xác định</string>
-    <string name="DeleteAccountFragment__no_number">Số không xác định</string>
-    <string name="DeleteAccountFragment__the_phone_number">Số điện thoại bạn nhập vào không khớp với số của tài khoản của bạn.</string>
-    <string name="DeleteAccountFragment__are_you_sure">Bạn có chắc muốn Xóa tài khoản?</string>
-    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Thao tác này sẽ xóa tài khoản Signal của bạn và cài đặt lại ứng dụng. Ứng dụng sẽ đóng sau khi quá trình hoàn tất.</string>
-    <string name="DeleteAccountFragment__failed_to_delete_local_data">Không thể Xóa dữ liệu cục bộ. Bạn có thể tự Xóa trong cài đặt hệ thống ứng dụng.</string>
-    <string name="DeleteAccountFragment__launch_app_settings">Mở Cài đặt Ứng dụng</string>
-    <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
-    <string name="DeleteAccountFragment__leaving_groups">Đang rời nhóm…</string>
-    <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
-    <string name="DeleteAccountFragment__deleting_account">Đang xóa tài khoản…</string>
-    <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
-    <string name="DeleteAccountFragment__canceling_your_subscription">Đang hủy gói ủng hộ…</string>
-    <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
-    <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Tùy thuộc vào số lượng nhóm bạn tham gia, quá trình này có thể mất vài phút</string>
-    <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
-    <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Xóa dữ liệu người dùng và đặt lại ứng dụng</string>
-    <!-- Title of error dialog shown when a network error occurs during account deletion -->
-    <string name="DeleteAccountFragment__account_not_deleted">Tài khoản Không Bị xóa</string>
-    <!-- Message of error dialog shown when a network error occurs during account deletion -->
-    <string name="DeleteAccountFragment__there_was_a_problem">Đã xảy ra sự cố khi hoàn tất quá trình xóa. Kiểm tra kết nối mạng của bạn và thử lại.</string>
 
     <!-- DeleteAccountCountryPickerFragment -->
     <string name="DeleteAccountCountryPickerFragment__search_countries">Tìm Quốc gia</string>
@@ -9317,31 +9288,31 @@
     </plurals>
 
     <!-- Title of the screen for picking a contact to share -->
-    <string name="SelectContactScreen__select_contact">Select contact</string>
+    <string name="SelectContactScreen__select_contact">Chọn liên hệ</string>
     <!-- Placeholder in the search field on the contact picker -->
-    <string name="SelectContactScreen__search">Search</string>
+    <string name="SelectContactScreen__search">Tìm kiếm</string>
     <!-- Content description for the button that clears the contact search field -->
-    <string name="SelectContactScreen__clear_search">Clear search</string>
+    <string name="SelectContactScreen__clear_search">Xoá Tìm kiếm</string>
     <!-- Content description for the badge shown next to a contact that is in the phone\'s address book -->
     <string name="SelectContactScreen__in_your_contacts">In your contacts</string>
     <!-- Title of the prompt asking for permission to read the user\'s phone contacts -->
-    <string name="SelectContactScreen__find_people_you_know_on_signal">Find people you know on Signal</string>
+    <string name="SelectContactScreen__find_people_you_know_on_signal">Tìm người bạn biết trên Signal</string>
     <!-- Explanation shown when Signal does not have permission to read the user\'s phone contacts -->
-    <string name="SelectContactScreen__allow_access_to_your_contacts">Allow access to your contacts. Your contacts are encrypted and not visible to the Signal service.</string>
+    <string name="SelectContactScreen__allow_access_to_your_contacts">Cho phép truy cập danh bạ của bạn. Danh bạ của bạn được mã hóa và Signal không thể truy cập được.</string>
     <!-- Button that asks the system for permission to read the user\'s phone contacts -->
-    <string name="SelectContactScreen__allow_access">Allow access</string>
+    <string name="SelectContactScreen__allow_access">Cho phép Truy cập</string>
     <!-- Button that dismisses the request for permission to read the user\'s phone contacts -->
-    <string name="SelectContactScreen__no_thanks">No thanks</string>
+    <string name="SelectContactScreen__no_thanks">Không, cảm ơn</string>
     <!-- Button that opens the phone\'s own contact picker, used when Signal cannot ask for contacts permission -->
     <string name="SelectContactScreen__open_phone_contacts">Open phone contacts</string>
     <!-- Note at the bottom of the contact picker when contacts permission was denied on the device. Placeholder is the "Learn more" link text. -->
     <string name="SelectContactScreen__to_see_your_phone_contacts_here">To see your phone contacts here, allow access in your device settings. %1$s</string>
     <!-- Link that opens instructions for granting contacts permission from the device settings -->
-    <string name="SelectContactScreen__learn_more">Learn more</string>
+    <string name="SelectContactScreen__learn_more">Tìm hiểu thêm</string>
     <!-- Title of the sheet explaining how to grant contacts permission from the device settings -->
-    <string name="SelectContactScreen__allow_access_to_contacts">Allow access to contacts</string>
+    <string name="SelectContactScreen__allow_access_to_contacts">Cho phép truy cập danh bạ</string>
     <!-- Subtitle of the sheet explaining how to grant contacts permission from the device settings -->
-    <string name="SelectContactScreen__to_find_people_you_know_on_signal">To find people you know on Signal:</string>
+    <string name="SelectContactScreen__to_find_people_you_know_on_signal">Để tìm người bạn biết trên Signal:</string>
     <!-- Toast shown when a selected contact can no longer be read -->
     <string name="SelectContactScreen__couldnt_open_contact">Couldn\'t open that contact</string>
 
@@ -9405,7 +9376,7 @@
     <!-- Second paragraph of the bottom sheet body, explaining what a reset means for backups. -->
     <string name="ResetRecoveryKeyBottomSheet__if_backups_are_enabled_you_will_have_to_re_upload">If backups are enabled you will have to re-upload your backup, including media. If you are using \"Optimize Signal storage\" you will have to download offloaded media first.</string>
     <!-- Bottom sheet action that continues on to reset the recovery key. -->
-    <string name="ResetRecoveryKeyBottomSheet__continue">Continue</string>
+    <string name="ResetRecoveryKeyBottomSheet__continue">Tiếp tục</string>
     <!-- Dialog body shown when the recovery key change limit is exhausted and the user does not have backups enabled. -->
     <string name="BackupKeyRotationDialogs__limit_exceeded_body_no_backups">You\'ve exhausted the number of new keys you can create. You will be able to create a new recovery key in 7 days.</string>
 

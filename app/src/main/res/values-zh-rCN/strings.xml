@@ -1657,7 +1657,7 @@
     <string name="Megaphones_chat_colors">聊天颜色</string>
     <string name="Megaphones_add_a_profile_photo">添加个人资料照片</string>
     <!-- Text in a card view prompting the user to choose a username as part of the onboarding megaphone -->
-    <string name="Megaphones_set_up_username">Set up username</string>
+    <string name="Megaphones_set_up_username">设置用户名</string>
 
     <!-- Message body of megaphone telling users that a device was linked to their account. %1$s is the time it was linked -->
     <string name="NewLinkedDeviceMegaphone__a_new_device_was_linked">一台新设备 %1$s 链接到了您的账户。</string>
@@ -2669,21 +2669,21 @@
         <item quantity="other">已选择 %1$s</item>
     </plurals>
     <!-- Label for the sticker management screen tab which shows all of the sticker packs. -->
-    <string name="StickerManagement_all_tab_label">All</string>
+    <string name="StickerManagement_all_tab_label">全部</string>
     <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
-    <string name="StickerManagement_my_stickers_tab_label">My Stickers</string>
+    <string name="StickerManagement_my_stickers_tab_label">我的贴纸</string>
     <!-- Shown when there are no sticker packs to show. -->
-    <string name="StickerManagement_all_tab_empty_text">No sticker packs are available</string>
+    <string name="StickerManagement_all_tab_empty_text">没有可用的贴纸包</string>
     <!-- Shown when there are no sticker packs currently installed. -->
-    <string name="StickerManagement_installed_tab_empty_text">No sticker packs, add stickers to send to your friends.</string>
+    <string name="StickerManagement_installed_tab_empty_text">没有贴纸包，请添加贴纸以发送给朋友。</string>
     <!-- Message shown when the author of the sticker pack is unknown. -->
     <string name="StickerManagement_author_unknown">未知</string>
     <!-- Sticker pack list section header for packs that are already installed. -->
     <string name="StickerManagement_installed_stickers_header">已安装表情</string>
     <!-- Sticker pack list section header for packs that have been received from incoming messages. -->
-    <string name="StickerManagement_shared_with_you_header">Shared with you</string>
+    <string name="StickerManagement_shared_with_you_header">他人分享</string>
     <!-- Sticker pack description for packs that have been sent to you -->
-    <string name="StickerManagement_when_you_receive">When you receive a sticker from someone, the sticker pack will appear here.</string>
+    <string name="StickerManagement_when_you_receive">当您收到其他用户发送的贴纸后，贴纸包将会在这里显示。</string>
     <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
     <string name="StickerManagement_signal_artist_series_header">Signal 艺术家系列</string>
     <!-- Title shown when sharing a sticker pack with another user. -->
@@ -2715,7 +2715,7 @@
         <item quantity="other">%1$s 个表情</item>
     </plurals>
     <!-- Message shown after copying a sticker pack link. -->
-    <string name="StickerManagement_copied">Link copied</string>
+    <string name="StickerManagement_copied">链接已复制</string>
 
     <!-- Sticker pack list dropdown menu label for the button to forward a sticker pack to another user. -->
     <string name="StickerManagement_menu_forward_pack">转发</string>
@@ -2728,13 +2728,13 @@
     <!-- Sticker management screen dropdown menu label for the button to enter multi-select mode. -->
     <string name="StickerManagement_menu_select_packs">选择表情贴纸包</string>
     <!-- Sticker pack list dropdown menu label for sending a sticker pack. -->
-    <string name="StickerManagement_menu_send_pack">Send</string>
+    <string name="StickerManagement_menu_send_pack">发送</string>
     <!-- Sticker pack list dropdown menu label for copying a sticker link. -->
-    <string name="StickerManagement_menu_copy_pack">Copy link</string>
+    <string name="StickerManagement_menu_copy_pack">复制链接</string>
     <!-- Hint text shown in the sticker management search field. -->
-    <string name="StickerManagement_search">Search</string>
+    <string name="StickerManagement_search">搜索</string>
     <!-- Shown when no stickers match the search. The placeholder what was searched. -->
-    <string name="StickerManagement_search_no_results_s">No results found for \'%1$s\'</string>
+    <string name="StickerManagement_search_no_results_s">没有找到关于“%1$s”的信息</string>
 
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
     <string name="StickerManagement_accessibility_download_pack">下载%1$s贴纸包</string>
@@ -2751,13 +2751,13 @@
     <!-- Accessibility label for opening the context menu for a sticker pack row item. -->
     <string name="StickerManagement_accessibility_exit_multi_select_mode">退出选择模式并清除选择</string>
     <!-- Label for the button that expands the list to show every sticker pack in a section. -->
-    <string name="StickerManagement__see_all">See all</string>
+    <string name="StickerManagement__see_all">查看全部</string>
     <!-- Button that takes you to the list of sticker packs you can install. -->
-    <string name="StickerManagement__add_stickers">Add stickers</string>
+    <string name="StickerManagement__add_stickers">添加表情</string>
     <!-- Accessibility label to close the search field. -->
-    <string name="StickerManagement_accessibility_close_search">Close search</string>
+    <string name="StickerManagement_accessibility_close_search">关闭搜索</string>
     <!-- Accessibility label to clear the search field. -->
-    <string name="StickerManagement_accessibility_clear_search">Clear search</string>
+    <string name="StickerManagement_accessibility_clear_search">清空搜索</string>
 
     <!-- StickerManagementAdapter -->
     <string name="StickerManagementAdapter_untitled">未命名</string>
@@ -3192,29 +3192,29 @@
     <!-- Title of the username education screen shown to accounts registered without a phone number -->
     <string name="ConnectWithUsernamesDialogFragment__connect_with_usernames">Connect with usernames</string>
     <!-- Title of the usernames section -->
-    <string name="ConnectWithUsernamesDialogFragment__usernames">Usernames</string>
+    <string name="ConnectWithUsernamesDialogFragment__usernames">用户名</string>
     <!-- Description of the usernames section -->
     <string name="ConnectWithUsernamesDialogFragment__people_can_message_you_using_your_optional_username">People can message you using your optional username instead of a phone number. Usernames aren\'t visible on your profile.</string>
     <!-- Title of the QR code section -->
-    <string name="ConnectWithUsernamesDialogFragment__qr_codes_and_links">QR codes and links</string>
+    <string name="ConnectWithUsernamesDialogFragment__qr_codes_and_links">二维码和链接</string>
     <!-- Description of the QR code section -->
-    <string name="ConnectWithUsernamesDialogFragment__usernames_have_a_unique_qr_code">Usernames have a unique QR code and link you can share with friends to quickly start a chat with you.</string>
+    <string name="ConnectWithUsernamesDialogFragment__usernames_have_a_unique_qr_code">用户名有一个唯一的二维码和链接，您可以将其分享给您的朋友以快速开始聊天。</string>
     <!-- Title of the discoverability section -->
     <string name="ConnectWithUsernamesDialogFragment__stay_discoverable">Stay discoverable</string>
     <!-- Description of the discoverability section -->
     <string name="ConnectWithUsernamesDialogFragment__without_a_phone_number_usernames_and_links">Without a phone number, usernames and links are the only way others can connect with you.</string>
     <!-- Button label that takes the user to the username creation screen -->
-    <string name="ConnectWithUsernamesDialogFragment__set_up_username">Set up username</string>
+    <string name="ConnectWithUsernamesDialogFragment__set_up_username">设置用户名</string>
     <!-- Button label that dismisses the screen without creating a username -->
-    <string name="ConnectWithUsernamesDialogFragment__not_now">Not now</string>
+    <string name="ConnectWithUsernamesDialogFragment__not_now">稍后再说</string>
 
     <!-- SetUpUsernameBanner -->
     <!-- Body of a banner on the new message screen prompting the user to create a username -->
     <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">Choose a username so others can connect with you.</string>
     <!-- Button label that takes the user to the username creation screen -->
-    <string name="SetUpUsernameBanner__set_up">Set up</string>
+    <string name="SetUpUsernameBanner__set_up">设置</string>
     <!-- Accessibility label for the button that permanently dismisses the banner -->
-    <string name="SetUpUsernameBanner__dismiss">Dismiss</string>
+    <string name="SetUpUsernameBanner__dismiss">不予考虑</string>
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">播放视频</string>
@@ -4979,35 +4979,6 @@
     <!-- WifiToCellularPopupWindow -->
     <!-- Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead. -->
     <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Wi-Fi 信号弱。已切换到蜂窝网络。</string>
-
-    <!-- DeleteAccountFragment -->
-    <string name="DeleteAccountFragment__deleting_your_account_will">删除账户将会：</string>
-    <string name="DeleteAccountFragment__enter_your_phone_number">输入您的手机号码</string>
-    <string name="DeleteAccountFragment__delete_account">删除账户</string>
-    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">删除您的账户信息和个人资料照片</string>
-    <string name="DeleteAccountFragment__delete_all_your_messages">删除您的全部消息</string>
-    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">在您的付款账户中删除 %1$s</string>
-    <string name="DeleteAccountFragment__no_country_code">未指定国家代码</string>
-    <string name="DeleteAccountFragment__no_number">未指定号码</string>
-    <string name="DeleteAccountFragment__the_phone_number">您输入的手机号码和您的账户不符。</string>
-    <string name="DeleteAccountFragment__are_you_sure">您确定要删除您的账号吗？</string>
-    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">此操作将会删除您的 Signal 账户并重置 Signal 应用。应用将会在这个过程完成后关闭。</string>
-    <string name="DeleteAccountFragment__failed_to_delete_local_data">删除本地数据失败。您可以手动在系统的应用设置中进行清除。</string>
-    <string name="DeleteAccountFragment__launch_app_settings">打开应用设置</string>
-    <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
-    <string name="DeleteAccountFragment__leaving_groups">正在离开群组…</string>
-    <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
-    <string name="DeleteAccountFragment__deleting_account">正在删除账户…</string>
-    <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
-    <string name="DeleteAccountFragment__canceling_your_subscription">正在取消您的定期捐款……</string>
-    <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
-    <string name="DeleteAccountFragment__depending_on_the_number_of_groups">这可能需要数分钟，根据您所在的群组人数而定</string>
-    <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
-    <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">正在删除用户数据和重置应用</string>
-    <!-- Title of error dialog shown when a network error occurs during account deletion -->
-    <string name="DeleteAccountFragment__account_not_deleted">帐户未删除</string>
-    <!-- Message of error dialog shown when a network error occurs during account deletion -->
-    <string name="DeleteAccountFragment__there_was_a_problem">完成删除步骤时出现问题。请检查您的网络连接并重试。</string>
 
     <!-- DeleteAccountCountryPickerFragment -->
     <string name="DeleteAccountCountryPickerFragment__search_countries">搜索国家</string>
@@ -9317,31 +9288,31 @@
     </plurals>
 
     <!-- Title of the screen for picking a contact to share -->
-    <string name="SelectContactScreen__select_contact">Select contact</string>
+    <string name="SelectContactScreen__select_contact">选择联系人</string>
     <!-- Placeholder in the search field on the contact picker -->
-    <string name="SelectContactScreen__search">Search</string>
+    <string name="SelectContactScreen__search">搜索</string>
     <!-- Content description for the button that clears the contact search field -->
-    <string name="SelectContactScreen__clear_search">Clear search</string>
+    <string name="SelectContactScreen__clear_search">清空搜索</string>
     <!-- Content description for the badge shown next to a contact that is in the phone\'s address book -->
     <string name="SelectContactScreen__in_your_contacts">In your contacts</string>
     <!-- Title of the prompt asking for permission to read the user\'s phone contacts -->
-    <string name="SelectContactScreen__find_people_you_know_on_signal">Find people you know on Signal</string>
+    <string name="SelectContactScreen__find_people_you_know_on_signal">在 Signal 上查找认识的人</string>
     <!-- Explanation shown when Signal does not have permission to read the user\'s phone contacts -->
-    <string name="SelectContactScreen__allow_access_to_your_contacts">Allow access to your contacts. Your contacts are encrypted and not visible to the Signal service.</string>
+    <string name="SelectContactScreen__allow_access_to_your_contacts">允许访问您的联系人。您的联系人信息已加密，Signal 服务无法看到您的联系人。</string>
     <!-- Button that asks the system for permission to read the user\'s phone contacts -->
-    <string name="SelectContactScreen__allow_access">Allow access</string>
+    <string name="SelectContactScreen__allow_access">允许访问</string>
     <!-- Button that dismisses the request for permission to read the user\'s phone contacts -->
-    <string name="SelectContactScreen__no_thanks">No thanks</string>
+    <string name="SelectContactScreen__no_thanks">不，谢谢。</string>
     <!-- Button that opens the phone\'s own contact picker, used when Signal cannot ask for contacts permission -->
     <string name="SelectContactScreen__open_phone_contacts">Open phone contacts</string>
     <!-- Note at the bottom of the contact picker when contacts permission was denied on the device. Placeholder is the "Learn more" link text. -->
     <string name="SelectContactScreen__to_see_your_phone_contacts_here">To see your phone contacts here, allow access in your device settings. %1$s</string>
     <!-- Link that opens instructions for granting contacts permission from the device settings -->
-    <string name="SelectContactScreen__learn_more">Learn more</string>
+    <string name="SelectContactScreen__learn_more">了解详情</string>
     <!-- Title of the sheet explaining how to grant contacts permission from the device settings -->
-    <string name="SelectContactScreen__allow_access_to_contacts">Allow access to contacts</string>
+    <string name="SelectContactScreen__allow_access_to_contacts">允许访问联系人</string>
     <!-- Subtitle of the sheet explaining how to grant contacts permission from the device settings -->
-    <string name="SelectContactScreen__to_find_people_you_know_on_signal">To find people you know on Signal:</string>
+    <string name="SelectContactScreen__to_find_people_you_know_on_signal">如要在 Signal 上查找认识的人：</string>
     <!-- Toast shown when a selected contact can no longer be read -->
     <string name="SelectContactScreen__couldnt_open_contact">Couldn\'t open that contact</string>
 
@@ -9405,7 +9376,7 @@
     <!-- Second paragraph of the bottom sheet body, explaining what a reset means for backups. -->
     <string name="ResetRecoveryKeyBottomSheet__if_backups_are_enabled_you_will_have_to_re_upload">If backups are enabled you will have to re-upload your backup, including media. If you are using \"Optimize Signal storage\" you will have to download offloaded media first.</string>
     <!-- Bottom sheet action that continues on to reset the recovery key. -->
-    <string name="ResetRecoveryKeyBottomSheet__continue">Continue</string>
+    <string name="ResetRecoveryKeyBottomSheet__continue">继续</string>
     <!-- Dialog body shown when the recovery key change limit is exhausted and the user does not have backups enabled. -->
     <string name="BackupKeyRotationDialogs__limit_exceeded_body_no_backups">You\'ve exhausted the number of new keys you can create. You will be able to create a new recovery key in 7 days.</string>
 

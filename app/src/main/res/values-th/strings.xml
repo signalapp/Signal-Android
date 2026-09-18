@@ -1657,7 +1657,7 @@
     <string name="Megaphones_chat_colors">สีแชท</string>
     <string name="Megaphones_add_a_profile_photo">เพิ่มรูปภาพ</string>
     <!-- Text in a card view prompting the user to choose a username as part of the onboarding megaphone -->
-    <string name="Megaphones_set_up_username">Set up username</string>
+    <string name="Megaphones_set_up_username">กำหนดชื่อผู้ใช้</string>
 
     <!-- Message body of megaphone telling users that a device was linked to their account. %1$s is the time it was linked -->
     <string name="NewLinkedDeviceMegaphone__a_new_device_was_linked">คุณเชื่อมโยงอุปกรณ์เครื่องใหม่ไปยังบัญชีแล้วเมื่อ%1$s</string>
@@ -2669,21 +2669,21 @@
         <item quantity="other">เลือกไว้ %1$s</item>
     </plurals>
     <!-- Label for the sticker management screen tab which shows all of the sticker packs. -->
-    <string name="StickerManagement_all_tab_label">All</string>
+    <string name="StickerManagement_all_tab_label">ทั้งหมด</string>
     <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
-    <string name="StickerManagement_my_stickers_tab_label">My Stickers</string>
+    <string name="StickerManagement_my_stickers_tab_label">สติกเกอร์ของฉัน</string>
     <!-- Shown when there are no sticker packs to show. -->
-    <string name="StickerManagement_all_tab_empty_text">No sticker packs are available</string>
+    <string name="StickerManagement_all_tab_empty_text">ไม่พบชุดสติกเกอร์</string>
     <!-- Shown when there are no sticker packs currently installed. -->
-    <string name="StickerManagement_installed_tab_empty_text">No sticker packs, add stickers to send to your friends.</string>
+    <string name="StickerManagement_installed_tab_empty_text">ไม่มีชุดสติกเกอร์ เพิ่มสติกเกอร์เพื่อส่งให้เพื่อนของคุณ</string>
     <!-- Message shown when the author of the sticker pack is unknown. -->
     <string name="StickerManagement_author_unknown">ไม่ทราบ</string>
     <!-- Sticker pack list section header for packs that are already installed. -->
     <string name="StickerManagement_installed_stickers_header">ติดตั้งสติกเกอร์</string>
     <!-- Sticker pack list section header for packs that have been received from incoming messages. -->
-    <string name="StickerManagement_shared_with_you_header">Shared with you</string>
+    <string name="StickerManagement_shared_with_you_header">ที่เคยแชร์ให้คุณ</string>
     <!-- Sticker pack description for packs that have been sent to you -->
-    <string name="StickerManagement_when_you_receive">When you receive a sticker from someone, the sticker pack will appear here.</string>
+    <string name="StickerManagement_when_you_receive">เมื่อคุณได้รับสติกเกอร์จากผู้ติดต่อ ชุดสติกเกอร์นั้นจะปรากฏในรายการนี้</string>
     <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
     <string name="StickerManagement_signal_artist_series_header">ซีรีส์ของสติกเกอร์ที่ออกแบบโดยศิลปินของ Signal</string>
     <!-- Title shown when sharing a sticker pack with another user. -->
@@ -2715,7 +2715,7 @@
         <item quantity="other">สติกเกอร์ %1$s ตัว</item>
     </plurals>
     <!-- Message shown after copying a sticker pack link. -->
-    <string name="StickerManagement_copied">Link copied</string>
+    <string name="StickerManagement_copied">คัดลอกลิงก์แล้ว</string>
 
     <!-- Sticker pack list dropdown menu label for the button to forward a sticker pack to another user. -->
     <string name="StickerManagement_menu_forward_pack">ส่งต่อ</string>
@@ -2728,13 +2728,13 @@
     <!-- Sticker management screen dropdown menu label for the button to enter multi-select mode. -->
     <string name="StickerManagement_menu_select_packs">เลือกชุดสติกเกอร์</string>
     <!-- Sticker pack list dropdown menu label for sending a sticker pack. -->
-    <string name="StickerManagement_menu_send_pack">Send</string>
+    <string name="StickerManagement_menu_send_pack">ส่ง</string>
     <!-- Sticker pack list dropdown menu label for copying a sticker link. -->
-    <string name="StickerManagement_menu_copy_pack">Copy link</string>
+    <string name="StickerManagement_menu_copy_pack">คัดลอกลิงก์</string>
     <!-- Hint text shown in the sticker management search field. -->
-    <string name="StickerManagement_search">Search</string>
+    <string name="StickerManagement_search">ค้นหา</string>
     <!-- Shown when no stickers match the search. The placeholder what was searched. -->
-    <string name="StickerManagement_search_no_results_s">No results found for \'%1$s\'</string>
+    <string name="StickerManagement_search_no_results_s">ไม่พบข้อมูลเกี่ยวกับ \'%1$s\'</string>
 
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
     <string name="StickerManagement_accessibility_download_pack">ดาวน์โหลดชุดสติกเกอร์ %1$s</string>
@@ -2751,13 +2751,13 @@
     <!-- Accessibility label for opening the context menu for a sticker pack row item. -->
     <string name="StickerManagement_accessibility_exit_multi_select_mode">ออกจากหน้าต่างตัวเลือกและล้างการเลือกทั้งหมด</string>
     <!-- Label for the button that expands the list to show every sticker pack in a section. -->
-    <string name="StickerManagement__see_all">See all</string>
+    <string name="StickerManagement__see_all">ดูทั้งหมด</string>
     <!-- Button that takes you to the list of sticker packs you can install. -->
-    <string name="StickerManagement__add_stickers">Add stickers</string>
+    <string name="StickerManagement__add_stickers">เพิ่มสติกเกอร์</string>
     <!-- Accessibility label to close the search field. -->
-    <string name="StickerManagement_accessibility_close_search">Close search</string>
+    <string name="StickerManagement_accessibility_close_search">ปิดกล่องค้นหา</string>
     <!-- Accessibility label to clear the search field. -->
-    <string name="StickerManagement_accessibility_clear_search">Clear search</string>
+    <string name="StickerManagement_accessibility_clear_search">ล้างการค้นหา</string>
 
     <!-- StickerManagementAdapter -->
     <string name="StickerManagementAdapter_untitled">ไม่มีชื่อ</string>
@@ -3192,29 +3192,29 @@
     <!-- Title of the username education screen shown to accounts registered without a phone number -->
     <string name="ConnectWithUsernamesDialogFragment__connect_with_usernames">Connect with usernames</string>
     <!-- Title of the usernames section -->
-    <string name="ConnectWithUsernamesDialogFragment__usernames">Usernames</string>
+    <string name="ConnectWithUsernamesDialogFragment__usernames">ชื่อผู้ใช้</string>
     <!-- Description of the usernames section -->
     <string name="ConnectWithUsernamesDialogFragment__people_can_message_you_using_your_optional_username">People can message you using your optional username instead of a phone number. Usernames aren\'t visible on your profile.</string>
     <!-- Title of the QR code section -->
-    <string name="ConnectWithUsernamesDialogFragment__qr_codes_and_links">QR codes and links</string>
+    <string name="ConnectWithUsernamesDialogFragment__qr_codes_and_links">คิวอาร์โค้ดและลิงก์</string>
     <!-- Description of the QR code section -->
-    <string name="ConnectWithUsernamesDialogFragment__usernames_have_a_unique_qr_code">Usernames have a unique QR code and link you can share with friends to quickly start a chat with you.</string>
+    <string name="ConnectWithUsernamesDialogFragment__usernames_have_a_unique_qr_code">ชื่อผู้ใช้จะมีคิวอาร์โค้ดและลิงก์เฉพาะที่คุณสามารถแชร์เพื่อให้เพื่อนเริ่มแชทด้วยได้ทันที</string>
     <!-- Title of the discoverability section -->
     <string name="ConnectWithUsernamesDialogFragment__stay_discoverable">Stay discoverable</string>
     <!-- Description of the discoverability section -->
     <string name="ConnectWithUsernamesDialogFragment__without_a_phone_number_usernames_and_links">Without a phone number, usernames and links are the only way others can connect with you.</string>
     <!-- Button label that takes the user to the username creation screen -->
-    <string name="ConnectWithUsernamesDialogFragment__set_up_username">Set up username</string>
+    <string name="ConnectWithUsernamesDialogFragment__set_up_username">กำหนดชื่อผู้ใช้</string>
     <!-- Button label that dismisses the screen without creating a username -->
-    <string name="ConnectWithUsernamesDialogFragment__not_now">Not now</string>
+    <string name="ConnectWithUsernamesDialogFragment__not_now">ไว้ทีหลัง</string>
 
     <!-- SetUpUsernameBanner -->
     <!-- Body of a banner on the new message screen prompting the user to create a username -->
     <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">Choose a username so others can connect with you.</string>
     <!-- Button label that takes the user to the username creation screen -->
-    <string name="SetUpUsernameBanner__set_up">Set up</string>
+    <string name="SetUpUsernameBanner__set_up">ตั้งชื่อผู้ใช้</string>
     <!-- Accessibility label for the button that permanently dismisses the banner -->
-    <string name="SetUpUsernameBanner__dismiss">Dismiss</string>
+    <string name="SetUpUsernameBanner__dismiss">ปิด</string>
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">เล่นวิดีโอ</string>
@@ -4979,35 +4979,6 @@
     <!-- WifiToCellularPopupWindow -->
     <!-- Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead. -->
     <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Wi-Fi สัญญาณอ่อน กำลังใช้อินเทอร์เน็ตมือถือ</string>
-
-    <!-- DeleteAccountFragment -->
-    <string name="DeleteAccountFragment__deleting_your_account_will">การลบบัญชีของคุณจะเป็นการ:</string>
-    <string name="DeleteAccountFragment__enter_your_phone_number">ป้อนหมายเลขโทรศัพท์ของคุณ</string>
-    <string name="DeleteAccountFragment__delete_account">ลบบัญชี</string>
-    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">ลบข้อมูลบัญชีและรูปโปรไฟล์ของคุณ</string>
-    <string name="DeleteAccountFragment__delete_all_your_messages">ลบข้อความทั้งหมดของคุณ</string>
-    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">ลบ %1$s ในบัญชีชำระเงินของคุณ</string>
-    <string name="DeleteAccountFragment__no_country_code">ไม่มีรหัสประเทศระบุไว้</string>
-    <string name="DeleteAccountFragment__no_number">ไม่มีหมายเลขระบุไว้</string>
-    <string name="DeleteAccountFragment__the_phone_number">หมายเลขโทรศัพท์ที่คุณป้อนไม่ตรงกับหมายเลขในบัญชีคุณ</string>
-    <string name="DeleteAccountFragment__are_you_sure">คุณแน่ใจหรือไม่ว่าต้องการลบบัญชี</string>
-    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">การดำเนินการนี้จะลบบัญชี Signal ของคุณและรีเซ็ตแอปใหม่ โดยแอปจะปิดลงหลังจากที่กระบวนการนี้เสร็จสิ้น</string>
-    <string name="DeleteAccountFragment__failed_to_delete_local_data">ลบข้อมูลในเครื่องไม่สำเร็จ คุณสามารถล้างข้อมูลเองได้ในการตั้งค่าแอปพลิเคชันของระบบ</string>
-    <string name="DeleteAccountFragment__launch_app_settings">การตั้งค่าการเริ่มแอป</string>
-    <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
-    <string name="DeleteAccountFragment__leaving_groups">กำลังออกจากกลุ่ม…</string>
-    <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
-    <string name="DeleteAccountFragment__deleting_account">กำลังลบบัญชี…</string>
-    <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
-    <string name="DeleteAccountFragment__canceling_your_subscription">กำลังยกเลิกการเป็นสมาชิกของคุณ…</string>
-    <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
-    <string name="DeleteAccountFragment__depending_on_the_number_of_groups">สิ่งนี้อาจจะใช้เวลาเล็กน้อย ขึ้นอยู่กับจำนวนกลุ่มที่คุณอยู่</string>
-    <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
-    <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">กำลังลบข้อมูลผู้ใช้งานและรีเซ็ตแอป</string>
-    <!-- Title of error dialog shown when a network error occurs during account deletion -->
-    <string name="DeleteAccountFragment__account_not_deleted">บัญชีไม่ได้ถูกลบ</string>
-    <!-- Message of error dialog shown when a network error occurs during account deletion -->
-    <string name="DeleteAccountFragment__there_was_a_problem">กระบวนการลบมีปัญหา ตรวจสอบการเชื่อมต่อเครือข่าย แล้วลองอีกครั้ง</string>
 
     <!-- DeleteAccountCountryPickerFragment -->
     <string name="DeleteAccountCountryPickerFragment__search_countries">ค้นหาประเทศ</string>
@@ -9317,31 +9288,31 @@
     </plurals>
 
     <!-- Title of the screen for picking a contact to share -->
-    <string name="SelectContactScreen__select_contact">Select contact</string>
+    <string name="SelectContactScreen__select_contact">เลือกผู้ติดต่อ</string>
     <!-- Placeholder in the search field on the contact picker -->
-    <string name="SelectContactScreen__search">Search</string>
+    <string name="SelectContactScreen__search">ค้นหา</string>
     <!-- Content description for the button that clears the contact search field -->
-    <string name="SelectContactScreen__clear_search">Clear search</string>
+    <string name="SelectContactScreen__clear_search">ล้างการค้นหา</string>
     <!-- Content description for the badge shown next to a contact that is in the phone\'s address book -->
     <string name="SelectContactScreen__in_your_contacts">In your contacts</string>
     <!-- Title of the prompt asking for permission to read the user\'s phone contacts -->
-    <string name="SelectContactScreen__find_people_you_know_on_signal">Find people you know on Signal</string>
+    <string name="SelectContactScreen__find_people_you_know_on_signal">ค้นหาคนที่คุณรู้จักบน Signal</string>
     <!-- Explanation shown when Signal does not have permission to read the user\'s phone contacts -->
-    <string name="SelectContactScreen__allow_access_to_your_contacts">Allow access to your contacts. Your contacts are encrypted and not visible to the Signal service.</string>
+    <string name="SelectContactScreen__allow_access_to_your_contacts">อนุญาตให้เข้าถึงรายชื่อผู้ติดต่อของคุณ โดยรายชื่อผู้ติดต่อของคุณจะได้รับการเข้ารหัสและไม่ถูกเปิดเผยต่อบริการของ Signal</string>
     <!-- Button that asks the system for permission to read the user\'s phone contacts -->
-    <string name="SelectContactScreen__allow_access">Allow access</string>
+    <string name="SelectContactScreen__allow_access">อนุญาตให้เข้าถึง</string>
     <!-- Button that dismisses the request for permission to read the user\'s phone contacts -->
-    <string name="SelectContactScreen__no_thanks">No thanks</string>
+    <string name="SelectContactScreen__no_thanks">ไม่ ขอบคุณ</string>
     <!-- Button that opens the phone\'s own contact picker, used when Signal cannot ask for contacts permission -->
     <string name="SelectContactScreen__open_phone_contacts">Open phone contacts</string>
     <!-- Note at the bottom of the contact picker when contacts permission was denied on the device. Placeholder is the "Learn more" link text. -->
     <string name="SelectContactScreen__to_see_your_phone_contacts_here">To see your phone contacts here, allow access in your device settings. %1$s</string>
     <!-- Link that opens instructions for granting contacts permission from the device settings -->
-    <string name="SelectContactScreen__learn_more">Learn more</string>
+    <string name="SelectContactScreen__learn_more">เรียนรู้เพิ่มเติม</string>
     <!-- Title of the sheet explaining how to grant contacts permission from the device settings -->
-    <string name="SelectContactScreen__allow_access_to_contacts">Allow access to contacts</string>
+    <string name="SelectContactScreen__allow_access_to_contacts">อนุญาตให้เข้าถึงรายชื่อผู้ติดต่อ</string>
     <!-- Subtitle of the sheet explaining how to grant contacts permission from the device settings -->
-    <string name="SelectContactScreen__to_find_people_you_know_on_signal">To find people you know on Signal:</string>
+    <string name="SelectContactScreen__to_find_people_you_know_on_signal">เพื่อค้นหาคนที่คุณรู้จักบน Signal:</string>
     <!-- Toast shown when a selected contact can no longer be read -->
     <string name="SelectContactScreen__couldnt_open_contact">Couldn\'t open that contact</string>
 
@@ -9405,7 +9376,7 @@
     <!-- Second paragraph of the bottom sheet body, explaining what a reset means for backups. -->
     <string name="ResetRecoveryKeyBottomSheet__if_backups_are_enabled_you_will_have_to_re_upload">If backups are enabled you will have to re-upload your backup, including media. If you are using \"Optimize Signal storage\" you will have to download offloaded media first.</string>
     <!-- Bottom sheet action that continues on to reset the recovery key. -->
-    <string name="ResetRecoveryKeyBottomSheet__continue">Continue</string>
+    <string name="ResetRecoveryKeyBottomSheet__continue">ทำต่อ</string>
     <!-- Dialog body shown when the recovery key change limit is exhausted and the user does not have backups enabled. -->
     <string name="BackupKeyRotationDialogs__limit_exceeded_body_no_backups">You\'ve exhausted the number of new keys you can create. You will be able to create a new recovery key in 7 days.</string>
 

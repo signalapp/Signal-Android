@@ -1657,7 +1657,7 @@
     <string name="Megaphones_chat_colors">대화창 색</string>
     <string name="Megaphones_add_a_profile_photo">프로필 사진 추가</string>
     <!-- Text in a card view prompting the user to choose a username as part of the onboarding megaphone -->
-    <string name="Megaphones_set_up_username">Set up username</string>
+    <string name="Megaphones_set_up_username">사용자 이름 설정</string>
 
     <!-- Message body of megaphone telling users that a device was linked to their account. %1$s is the time it was linked -->
     <string name="NewLinkedDeviceMegaphone__a_new_device_was_linked">%1$s 새 기기를 계정에 연동했습니다.</string>
@@ -2359,11 +2359,11 @@
     <string name="WebRtcCallView__no_one_else_is_here">참가한 사람이 없어요</string>
     <string name="WebRtcCallView__s_is_in_this_call">%1$s 님이 통화에 참여했습니다</string>
     <!-- Description of who is in the call when it is only you, %1$s is replaced with either CallParticipant__you or CallParticipant__you_on_another_device -->
-    <string name="WebRtcCallView__s_are_in_this_call">%1$s만 이 통화에 참여했습니다</string>
-    <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s 및 %2$s 님이 통화에 참여했습니다</string>
+    <string name="WebRtcCallView__s_are_in_this_call">%1$s만 이 통화에 참여 중입니다.</string>
+    <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s 님과 %2$s 님이 이 통화에 참여 중입니다.</string>
 
     <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
-        <item quantity="other">%1$s, %2$s 및 %3$d명이 통화에 참여했습니다</item>
+        <item quantity="other">%1$s 님, %2$s 님 외 %3$d명이 이 통화에 참여 중입니다.</item>
     </plurals>
 
     <!-- Toggle content description for toggling camera state  -->
@@ -2461,7 +2461,7 @@
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
     <string name="AboutSheet__verified">인증 완료</string>
     <!-- Displayed in a sheet row that tells users that profile names are not verified -->
-    <string name="AboutSheet__profile_names_are_not_verified">프로필 이름 확인 안 됨</string>
+    <string name="AboutSheet__profile_names_are_not_verified">프로필 이름은 별도의 인증을 거치지 않습니다.</string>
     <!-- Displayed in a sheet row describing that the user is in a message request state with the person -->
     <string name="AboutSheet__pending_message_request">대기 중인 메시지 요청</string>
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
@@ -2669,21 +2669,21 @@
         <item quantity="other">%1$s개 선택됨</item>
     </plurals>
     <!-- Label for the sticker management screen tab which shows all of the sticker packs. -->
-    <string name="StickerManagement_all_tab_label">All</string>
+    <string name="StickerManagement_all_tab_label">전체</string>
     <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
-    <string name="StickerManagement_my_stickers_tab_label">My Stickers</string>
+    <string name="StickerManagement_my_stickers_tab_label">내 스티커</string>
     <!-- Shown when there are no sticker packs to show. -->
-    <string name="StickerManagement_all_tab_empty_text">No sticker packs are available</string>
+    <string name="StickerManagement_all_tab_empty_text">사용할 수 있는 스티커 팩이 없습니다</string>
     <!-- Shown when there are no sticker packs currently installed. -->
-    <string name="StickerManagement_installed_tab_empty_text">No sticker packs, add stickers to send to your friends.</string>
+    <string name="StickerManagement_installed_tab_empty_text">보관 중인 스티커 팩이 없습니다. 스티커를 추가해 친구들에게 보내보세요.</string>
     <!-- Message shown when the author of the sticker pack is unknown. -->
     <string name="StickerManagement_author_unknown">알 수 없음</string>
     <!-- Sticker pack list section header for packs that are already installed. -->
     <string name="StickerManagement_installed_stickers_header">설치된 스티커</string>
     <!-- Sticker pack list section header for packs that have been received from incoming messages. -->
-    <string name="StickerManagement_shared_with_you_header">Shared with you</string>
+    <string name="StickerManagement_shared_with_you_header">공유받은 스티커</string>
     <!-- Sticker pack description for packs that have been sent to you -->
-    <string name="StickerManagement_when_you_receive">When you receive a sticker from someone, the sticker pack will appear here.</string>
+    <string name="StickerManagement_when_you_receive">누군가로부터 스티커 팩을 받으면 스티커 팩이 여기에 표시됩니다.</string>
     <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
     <string name="StickerManagement_signal_artist_series_header">Signal 아티스트 시리즈</string>
     <!-- Title shown when sharing a sticker pack with another user. -->
@@ -2715,7 +2715,7 @@
         <item quantity="other">스티커 %1$s개</item>
     </plurals>
     <!-- Message shown after copying a sticker pack link. -->
-    <string name="StickerManagement_copied">Link copied</string>
+    <string name="StickerManagement_copied">링크를 복사했습니다.</string>
 
     <!-- Sticker pack list dropdown menu label for the button to forward a sticker pack to another user. -->
     <string name="StickerManagement_menu_forward_pack">전달</string>
@@ -2728,13 +2728,13 @@
     <!-- Sticker management screen dropdown menu label for the button to enter multi-select mode. -->
     <string name="StickerManagement_menu_select_packs">스티커 팩 선택</string>
     <!-- Sticker pack list dropdown menu label for sending a sticker pack. -->
-    <string name="StickerManagement_menu_send_pack">Send</string>
+    <string name="StickerManagement_menu_send_pack">보내기</string>
     <!-- Sticker pack list dropdown menu label for copying a sticker link. -->
-    <string name="StickerManagement_menu_copy_pack">Copy link</string>
+    <string name="StickerManagement_menu_copy_pack">링크 복사</string>
     <!-- Hint text shown in the sticker management search field. -->
-    <string name="StickerManagement_search">Search</string>
+    <string name="StickerManagement_search">검색</string>
     <!-- Shown when no stickers match the search. The placeholder what was searched. -->
-    <string name="StickerManagement_search_no_results_s">No results found for \'%1$s\'</string>
+    <string name="StickerManagement_search_no_results_s">\'%1$s\'에 대한 검색 결과 없음</string>
 
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
     <string name="StickerManagement_accessibility_download_pack">%1$s 스티커 팩 다운로드</string>
@@ -2751,13 +2751,13 @@
     <!-- Accessibility label for opening the context menu for a sticker pack row item. -->
     <string name="StickerManagement_accessibility_exit_multi_select_mode">선택 모드 종료 및 선택 항목 지우기</string>
     <!-- Label for the button that expands the list to show every sticker pack in a section. -->
-    <string name="StickerManagement__see_all">See all</string>
+    <string name="StickerManagement__see_all">모두 보기</string>
     <!-- Button that takes you to the list of sticker packs you can install. -->
-    <string name="StickerManagement__add_stickers">Add stickers</string>
+    <string name="StickerManagement__add_stickers">스티커 추가</string>
     <!-- Accessibility label to close the search field. -->
-    <string name="StickerManagement_accessibility_close_search">Close search</string>
+    <string name="StickerManagement_accessibility_close_search">검색 닫기</string>
     <!-- Accessibility label to clear the search field. -->
-    <string name="StickerManagement_accessibility_clear_search">Clear search</string>
+    <string name="StickerManagement_accessibility_clear_search">검색 기록 삭제</string>
 
     <!-- StickerManagementAdapter -->
     <string name="StickerManagementAdapter_untitled">제목 없음</string>
@@ -3192,29 +3192,29 @@
     <!-- Title of the username education screen shown to accounts registered without a phone number -->
     <string name="ConnectWithUsernamesDialogFragment__connect_with_usernames">Connect with usernames</string>
     <!-- Title of the usernames section -->
-    <string name="ConnectWithUsernamesDialogFragment__usernames">Usernames</string>
+    <string name="ConnectWithUsernamesDialogFragment__usernames">사용자 이름</string>
     <!-- Description of the usernames section -->
     <string name="ConnectWithUsernamesDialogFragment__people_can_message_you_using_your_optional_username">People can message you using your optional username instead of a phone number. Usernames aren\'t visible on your profile.</string>
     <!-- Title of the QR code section -->
-    <string name="ConnectWithUsernamesDialogFragment__qr_codes_and_links">QR codes and links</string>
+    <string name="ConnectWithUsernamesDialogFragment__qr_codes_and_links">QR 코드와 링크</string>
     <!-- Description of the QR code section -->
-    <string name="ConnectWithUsernamesDialogFragment__usernames_have_a_unique_qr_code">Usernames have a unique QR code and link you can share with friends to quickly start a chat with you.</string>
+    <string name="ConnectWithUsernamesDialogFragment__usernames_have_a_unique_qr_code">사용자 이름에는 QR 코드와 링크가 함께 제공됩니다. 해당 코드나 링크를 친구와 공유하여 바로 대화를 시작해 보세요.</string>
     <!-- Title of the discoverability section -->
     <string name="ConnectWithUsernamesDialogFragment__stay_discoverable">Stay discoverable</string>
     <!-- Description of the discoverability section -->
     <string name="ConnectWithUsernamesDialogFragment__without_a_phone_number_usernames_and_links">Without a phone number, usernames and links are the only way others can connect with you.</string>
     <!-- Button label that takes the user to the username creation screen -->
-    <string name="ConnectWithUsernamesDialogFragment__set_up_username">Set up username</string>
+    <string name="ConnectWithUsernamesDialogFragment__set_up_username">사용자 이름 설정</string>
     <!-- Button label that dismisses the screen without creating a username -->
-    <string name="ConnectWithUsernamesDialogFragment__not_now">Not now</string>
+    <string name="ConnectWithUsernamesDialogFragment__not_now">나중에</string>
 
     <!-- SetUpUsernameBanner -->
     <!-- Body of a banner on the new message screen prompting the user to create a username -->
     <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">Choose a username so others can connect with you.</string>
     <!-- Button label that takes the user to the username creation screen -->
-    <string name="SetUpUsernameBanner__set_up">Set up</string>
+    <string name="SetUpUsernameBanner__set_up">설정</string>
     <!-- Accessibility label for the button that permanently dismisses the banner -->
-    <string name="SetUpUsernameBanner__dismiss">Dismiss</string>
+    <string name="SetUpUsernameBanner__dismiss">취소</string>
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">동영상 재생</string>
@@ -4980,35 +4980,6 @@
     <!-- Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead. -->
     <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Wi-Fi 연결이 원활하지 않아 모바일 데이터로 전환했습니다.</string>
 
-    <!-- DeleteAccountFragment -->
-    <string name="DeleteAccountFragment__deleting_your_account_will">계정을 삭제할 경우:</string>
-    <string name="DeleteAccountFragment__enter_your_phone_number">전화번호를 입력하세요</string>
-    <string name="DeleteAccountFragment__delete_account">계정 삭제</string>
-    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">계정 정보와 프로필 사진을 삭제합니다.</string>
-    <string name="DeleteAccountFragment__delete_all_your_messages">모든 메시지를 삭제합니다.</string>
-    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">결제 계정에서 %1$s 삭제</string>
-    <string name="DeleteAccountFragment__no_country_code">지정된 국가 코드가 없습니다.</string>
-    <string name="DeleteAccountFragment__no_number">지정된 전화번호가 없습니다.</string>
-    <string name="DeleteAccountFragment__the_phone_number">입력한 전화번호가 내 계정과 일치하지 않습니다.</string>
-    <string name="DeleteAccountFragment__are_you_sure">정말 계정을 삭제하시겠어요?</string>
-    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">진행 시 Signal 계정이 삭제되며 앱이 초기화됩니다. 프로세스가 완료되면 앱이 자동으로 종료됩니다.</string>
-    <string name="DeleteAccountFragment__failed_to_delete_local_data">로컬 데이터를 삭제하지 못했습니다. 기기의 애플리케이션 설정에서 직접 삭제할 수 있습니다.</string>
-    <string name="DeleteAccountFragment__launch_app_settings">앱 설정 시작</string>
-    <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
-    <string name="DeleteAccountFragment__leaving_groups">그룹을 나가는 중…</string>
-    <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
-    <string name="DeleteAccountFragment__deleting_account">계정을 삭제하는 중…</string>
-    <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
-    <string name="DeleteAccountFragment__canceling_your_subscription">구독을 취소하는 중…</string>
-    <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
-    <string name="DeleteAccountFragment__depending_on_the_number_of_groups">참여 중인 그룹 수에 따라 몇 분 정도 걸릴 수 있습니다.</string>
-    <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
-    <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">사용자 데이터를 삭제하고 앱을 초기화하는 중</string>
-    <!-- Title of error dialog shown when a network error occurs during account deletion -->
-    <string name="DeleteAccountFragment__account_not_deleted">계정을 삭제하지 못함</string>
-    <!-- Message of error dialog shown when a network error occurs during account deletion -->
-    <string name="DeleteAccountFragment__there_was_a_problem">삭제를 완료하지 못했습니다. 네트워크 연결 상태를 확인하고 다시 시도해 주세요.</string>
-
     <!-- DeleteAccountCountryPickerFragment -->
     <string name="DeleteAccountCountryPickerFragment__search_countries">국가 검색</string>
 
@@ -6672,7 +6643,7 @@
     <!-- First time share to story dialog: Positive action to go ahead and add to story -->
     <!-- First time share to story dialog: Neutral action to edit who can view "My Story" -->
     <!-- Error message shown when a failure occurs during story send -->
-    <string name="StoryDialogs__story_could_not_be_sent">스토리를 보낼 수 없습니다. 연결을 확인하고 다시 시도하세요.</string>
+    <string name="StoryDialogs__story_could_not_be_sent">스토리를 보내지 못했습니다. 연결을 확인하고 다시 시도해 주세요.</string>
     <!-- Error message dialog button to resend a previously failed story send -->
     <string name="StoryDialogs__send">전송</string>
     <!-- Action button for turning off stories when stories are present on the device -->
@@ -6722,7 +6693,7 @@
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">답장 전송 중…</string>
     <!-- Displayed in the viewer when a story is no longer available -->
-    <string name="StorySlateView__this_story_is_no_longer_available">이 스토리는 더 이상 사용할 수 없습니다.</string>
+    <string name="StorySlateView__this_story_is_no_longer_available">더 이상 볼 수 없는 스토리입니다.</string>
     <!-- Displayed in the viewer when a story has permanently failed to download. -->
     <string name="StorySlateView__cant_download_story_s_will_need_to_share_it_again">스토리를 다운로드할 수 없습니다. %1$s 님이 다시 공유해야 합니다.</string>
     <!-- Displayed in the viewer when the network is not available -->
@@ -6784,21 +6755,21 @@
     <!-- Title for sheet shown when opening a redeemed gift -->
     <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_for_you">%1$s 님이 나를 대신해 후원했어요</string>
     <!-- Title for sheet shown when opening a sent gift -->
-    <string name="ViewSentGiftBottomSheet__thanks_for_your_support">따뜻한 응원에 감사드려요!</string>
+    <string name="ViewSentGiftBottomSheet__thanks_for_your_support">따뜻한 후원에 감사드려요!</string>
     <!-- Description for sheet shown when opening a redeemed gift -->
     <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_to_signal">%1$s 님이 나를 대신해 Signal을 후원했어요! Signal에 대한 응원의 마음을 프로필에 표시해 보세요.</string>
     <!-- Description for sheet shown when opening a sent gift -->
     <string name="ViewSentGiftBottomSheet__youve_made_a_donation_to_signal">%1$s 님을 대신해 Signal에 후원금을 보냈어요. 해당 사용자는 Signal 후원 사실을 프로필 배지로 표시할 수 있어요.</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
-    <string name="ViewReceivedGiftSheet__redeem">사용</string>
+    <string name="ViewReceivedGiftSheet__redeem">배지 사용하기</string>
     <!-- Primary action for pending gift sheet to redeem badge later -->
     <string name="ViewReceivedGiftSheet__not_now">나중에</string>
     <!-- Dialog text while redeeming a gift -->
-    <string name="ViewReceivedGiftSheet__redeeming_badge">배지를 사용하는 중…</string>
+    <string name="ViewReceivedGiftSheet__redeeming_badge">배지를 활성화하는 중…</string>
     <!-- Description text in gift thanks sheet -->
     <string name="GiftThanksSheet__youve_made_a_donation">%1$s 님을 대신해 Signal에 후원금을 보냈어요. 해당 사용자는 Signal 후원 사실을 프로필 배지로 표시할 수 있어요.</string>
     <!-- Expired gift sheet title -->
-    <string name="ExpiredGiftSheetConfiguration__your_badge_has_expired">배지가 만료되었습니다.</string>
+    <string name="ExpiredGiftSheetConfiguration__your_badge_has_expired">배지가 만료되었습니다</string>
     <!-- Expired gift sheet top description text -->
     <string name="ExpiredGiftSheetConfiguration__your_badge_has_expired_and_is">배지가 만료되어 더 이상 프로필에 표시되지 않습니다.</string>
     <!-- Expired gift sheet bottom description text -->
@@ -6827,7 +6798,7 @@
     </plurals>
     <!-- Label under name for my story -->
     <plurals name="ContactSearchItems__my_story_s_dot_d_excluded">
-        <item quantity="other">%1$s · %2$d명을 제외함</item>
+        <item quantity="other">%1$s · %2$d명 제외</item>
     </plurals>
     <!-- Label under name for My Story when first sending to my story -->
     <string name="ContactSearchItems__tap_to_choose_your_viewers">볼 수 있는 사람을 선택하려면 탭하세요.</string>
@@ -6867,9 +6838,9 @@
     <!-- Label indicating that a user can tap to advance to the next post in a story -->
     <string name="StoryFirstTimeNavigationView__tap_to_advance">탭하여 계속하기</string>
     <!-- Label indicating swipe direction to skip current story -->
-    <string name="StoryFirstTimeNavigationView__swipe_up_to_skip">위로 스와이프하여 건너뛰기</string>
+    <string name="StoryFirstTimeNavigationView__swipe_up_to_skip">위로 살짝 밀어 건너뛰기</string>
     <!-- Label indicating swipe direction to exit story viewer -->
-    <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">오른쪽으로 스와이프하여 종료하기</string>
+    <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">오른쪽으로 살짝 밀어 종료하기</string>
     <!-- Button label to confirm understanding of story navigation -->
     <string name="StoryFirstTimeNagivationView__got_it">확인</string>
     <!-- Content description for vertical context menu button in safety number sheet rows -->
@@ -6908,7 +6879,7 @@
     <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">안전 번호 변경 기록</string>
     <!-- Message of safety number review fragment -->
     <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
-        <item quantity="other">받는 사람 %1$d명이 Signal을 다시 설치했거나 기기를 변경했을 수 있습니다. 받는 사람을 탭하여 새 안전 번호를 확인하세요. 이 작업은 선택 사항입니다.</item>
+        <item quantity="other">받는 사람 %1$d명이 Signal을 다시 설치했거나 기기를 변경했을 수 있습니다. 새 안전 번호를 확인하려면 해당 사용자를 탭하세요. (선택 사항)</item>
     </plurals>
     <!-- Section header for 1:1 contacts in review fragment -->
     <string name="SafetyNumberBucketRowItem__contacts">연락처</string>
@@ -6976,7 +6947,7 @@
     <string name="GroupStorySettingsFragment__remove_group_story">그룹 스토리 제거</string>
 
     <!-- Generic title for overflow menus -->
-    <string name="OverflowMenu__overflow_menu">확장 메뉴</string>
+    <string name="OverflowMenu__overflow_menu">더보기 메뉴</string>
 
     <!-- First step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_1">1</string>
@@ -7956,7 +7927,7 @@
     <!-- Title of a dialog box prompting to confirm whether the user truly wants to cancel their backup. -->
     <string name="CancelBackupDialog_title">백업을 취소할까요?</string>
     <!-- Body of a dialog box prompting to confirm whether the user truly wants to cancel their backup. -->
-    <string name="CancelBackupDialog_body">백업을 취소해도 백업은 삭제되지 않으며, 백업 설정에서 언제든지 다시 시작할 수 있습니다.</string>
+    <string name="CancelBackupDialog_body">취소해도 백업은 삭제되지 않으며, 백업 설정에서 언제든지 다시 시작할 수 있습니다.</string>
     <!-- Button on a dialog box that confirming backup cancellation. When pressed, this button will confirm canceling the currently-running backup (future backups are unaffected). -->
     <string name="CancelBackupDialog_cancel_action">백업 취소</string>
     <!-- Button on a dialog box that confirming backup cancellation. When pressed, this button will continue the backup rather than cancel it. -->
@@ -9317,31 +9288,31 @@
     </plurals>
 
     <!-- Title of the screen for picking a contact to share -->
-    <string name="SelectContactScreen__select_contact">Select contact</string>
+    <string name="SelectContactScreen__select_contact">연락처 선택</string>
     <!-- Placeholder in the search field on the contact picker -->
-    <string name="SelectContactScreen__search">Search</string>
+    <string name="SelectContactScreen__search">검색</string>
     <!-- Content description for the button that clears the contact search field -->
-    <string name="SelectContactScreen__clear_search">Clear search</string>
+    <string name="SelectContactScreen__clear_search">검색 기록 삭제</string>
     <!-- Content description for the badge shown next to a contact that is in the phone\'s address book -->
     <string name="SelectContactScreen__in_your_contacts">In your contacts</string>
     <!-- Title of the prompt asking for permission to read the user\'s phone contacts -->
-    <string name="SelectContactScreen__find_people_you_know_on_signal">Find people you know on Signal</string>
+    <string name="SelectContactScreen__find_people_you_know_on_signal">Signal에서 내가 아는 사람을 찾아보세요.</string>
     <!-- Explanation shown when Signal does not have permission to read the user\'s phone contacts -->
-    <string name="SelectContactScreen__allow_access_to_your_contacts">Allow access to your contacts. Your contacts are encrypted and not visible to the Signal service.</string>
+    <string name="SelectContactScreen__allow_access_to_your_contacts">연락처 접근을 허용해 주세요. 연락처 정보는 암호화되며 Signal도 확인할 수 없습니다.</string>
     <!-- Button that asks the system for permission to read the user\'s phone contacts -->
-    <string name="SelectContactScreen__allow_access">Allow access</string>
+    <string name="SelectContactScreen__allow_access">권한 허용</string>
     <!-- Button that dismisses the request for permission to read the user\'s phone contacts -->
-    <string name="SelectContactScreen__no_thanks">No thanks</string>
+    <string name="SelectContactScreen__no_thanks">안 할래요</string>
     <!-- Button that opens the phone\'s own contact picker, used when Signal cannot ask for contacts permission -->
     <string name="SelectContactScreen__open_phone_contacts">Open phone contacts</string>
     <!-- Note at the bottom of the contact picker when contacts permission was denied on the device. Placeholder is the "Learn more" link text. -->
     <string name="SelectContactScreen__to_see_your_phone_contacts_here">To see your phone contacts here, allow access in your device settings. %1$s</string>
     <!-- Link that opens instructions for granting contacts permission from the device settings -->
-    <string name="SelectContactScreen__learn_more">Learn more</string>
+    <string name="SelectContactScreen__learn_more">자세히 알아보기</string>
     <!-- Title of the sheet explaining how to grant contacts permission from the device settings -->
-    <string name="SelectContactScreen__allow_access_to_contacts">Allow access to contacts</string>
+    <string name="SelectContactScreen__allow_access_to_contacts">연락처 접근 허용</string>
     <!-- Subtitle of the sheet explaining how to grant contacts permission from the device settings -->
-    <string name="SelectContactScreen__to_find_people_you_know_on_signal">To find people you know on Signal:</string>
+    <string name="SelectContactScreen__to_find_people_you_know_on_signal">Signal에서 내가 아는 사람을 찾으려면 다음을 수행하세요.</string>
     <!-- Toast shown when a selected contact can no longer be read -->
     <string name="SelectContactScreen__couldnt_open_contact">Couldn\'t open that contact</string>
 
@@ -9405,7 +9376,7 @@
     <!-- Second paragraph of the bottom sheet body, explaining what a reset means for backups. -->
     <string name="ResetRecoveryKeyBottomSheet__if_backups_are_enabled_you_will_have_to_re_upload">If backups are enabled you will have to re-upload your backup, including media. If you are using \"Optimize Signal storage\" you will have to download offloaded media first.</string>
     <!-- Bottom sheet action that continues on to reset the recovery key. -->
-    <string name="ResetRecoveryKeyBottomSheet__continue">Continue</string>
+    <string name="ResetRecoveryKeyBottomSheet__continue">계속</string>
     <!-- Dialog body shown when the recovery key change limit is exhausted and the user does not have backups enabled. -->
     <string name="BackupKeyRotationDialogs__limit_exceeded_body_no_backups">You\'ve exhausted the number of new keys you can create. You will be able to create a new recovery key in 7 days.</string>
 

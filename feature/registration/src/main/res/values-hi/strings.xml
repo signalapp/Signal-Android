@@ -224,8 +224,6 @@
     <string name="EnterAepScreen__recovery_key">\'रिकवरी की\'</string>
     <!-- Link for users who don\'t have their recovery key -->
     <string name="EnterAepScreen__no_recovery_key">कोई \'रिकवरी की\' नहीं है?</string>
-    <!-- Error text when key is too long -->
-  <!-- Removed by excludeNonTranslatables <string name="EnterAepScreen__too_long">बहुत लंबा (%1$d/%2$d)</string> -->
     <!-- Error text when key is invalid -->
     <string name="EnterAepScreen__invalid_recovery_key">\'रिकवरी की\' अमान्य है</string>
     <!-- Error text when key is correct format but does not match account -->
@@ -650,19 +648,19 @@
     <!-- Error shown when a manually-pasted receipt credential can\'t be parsed or is rejected. Internal testing only. -->
   <!-- Removed by excludeNonTranslatables <string name="SignalLoginPaymentScreen__this_receipt_credential_is_invalid" translatable="false">This receipt credential is invalid.</string> -->
     <!-- Title of the dialog shown when Google Play services is too old to take a payment. -->
-    <string name="SignalLoginPaymentScreen__update_google_play_services">Update Google Play services</string>
+    <string name="SignalLoginPaymentScreen__update_google_play_services">Google Play services अपडेट करें</string>
     <!-- Body of the dialog shown when Google Play services is too old to take a payment. -->
     <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_update_google_play_services">To purchase a Signal Login, update Google Play services on this device.</string>
     <!-- Button that updates Google Play services. -->
-    <string name="SignalLoginPaymentScreen__update">Update</string>
+    <string name="SignalLoginPaymentScreen__update">अपडेट करें</string>
     <!-- Title of the dialog shown when Google Play services is not installed. -->
-    <string name="SignalLoginPaymentScreen__google_play_services_missing">Google Play services missing</string>
+    <string name="SignalLoginPaymentScreen__google_play_services_missing">Google Play services मौजूद नहीं है</string>
     <!-- Body of the dialog shown when Google Play services is not installed. -->
     <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_google_play_services_needs_to_be_installed">To purchase a Signal Login, Google Play services needs to be installed.</string>
     <!-- Button that installs Google Play services. -->
-    <string name="SignalLoginPaymentScreen__install_play_services">Install Play Services</string>
+    <string name="SignalLoginPaymentScreen__install_play_services">Google Play services इंस्टॉल करें</string>
     <!-- Title of the dialog shown while Google Play services is updating itself. -->
-    <string name="SignalLoginPaymentScreen__google_play_services_are_updating">Google Play services are updating</string>
+    <string name="SignalLoginPaymentScreen__google_play_services_are_updating">फ़िलहाल, Google Play services अपडेट हो रही हैं</string>
     <!-- Body of the dialog shown while Google Play services is updating itself. -->
     <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_wait_for_google_play_services">To purchase a Signal Login please wait for Google Play services to finish updating.</string>
     <!-- Title of the dialog shown when Google Play cannot be used to take a payment. -->
@@ -725,8 +723,6 @@
     <string name="ConfirmLoginSavedBottomSheet__show_login_info_again">लॉगिन जानकारी फिर से दिखाएं</string>
 
     <!-- Errors shown beneath an account ID text field, wherever one is offered -->
-    <!-- Error shown when too many characters were entered in an account ID field. First placeholder is how many were entered, second is the maximum. -->
-  <!-- Removed by excludeNonTranslatables <string name="AccountIdField__too_long">काफ़ी बड़ी है। %1$d/%2$d कैरेक्टर।</string> -->
     <!-- Error shown when the entered account ID contains characters that can\'t appear in one. -->
     <string name="AccountIdField__invalid_account_id">अकाउंट ID गलत है</string>
 
