@@ -35,6 +35,16 @@ public class LongClickCopySpan extends URLSpan {
     this.underline = underline;
   }
 
+  /**
+   * {@link URLSpan}'s default implementation starts the intent without
+   * {@link android.content.Intent#FLAG_ACTIVITY_NEW_TASK}, which pushes the handling app's activity onto our own task. Route through
+   * {@link CommunicationActions#openBrowserLink} rather than re-implementing the launch here.
+   */
+  @Override
+  public void onClick(View widget) {
+    CommunicationActions.openBrowserLink(widget.getContext(), getURL());
+  }
+
   void onLongClick(View widget) {
     Context context = widget.getContext();
     String preparedUrl = prepareUrl(getURL());
