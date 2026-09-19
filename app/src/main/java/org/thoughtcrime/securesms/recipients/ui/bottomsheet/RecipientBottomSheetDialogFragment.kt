@@ -14,6 +14,7 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -70,8 +71,19 @@ class RecipientBottomSheetDialogFragment : FixedRoundedCornerBottomSheetDialogFr
     fun show(fragmentManager: FragmentManager, recipientId: RecipientId, groupId: GroupId?) {
       val recipient = Recipient.resolved(recipientId)
       if (recipient.isSelf) {
-        AboutSheet.create(recipient, groupId as? GroupId.V2)
-          .show(fragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
+        val aboutSheet = AboutSheet.create(recipient, groupId as? GroupId.V2)
+
+        val aboutSheetDestructionCallback = object : FragmentManager.FragmentLifecycleCallbacks() {
+          override fun onFragmentDestroyed(fm: FragmentManager, f: Fragment) {
+            if (f == aboutSheet) {
+              fragmentManager.unregisterFragmentLifecycleCallbacks(this)
+              (f.parentFragment as? Callback)?.onRecipientBottomSheetDismissed()
+            }
+          }
+        }
+        fragmentManager.registerFragmentLifecycleCallbacks(aboutSheetDestructionCallback, false)
+
+        aboutSheet.show(fragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
       } else {
         val args = Bundle()
         val fragment = RecipientBottomSheetDialogFragment()
