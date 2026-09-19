@@ -210,7 +210,7 @@ class ConversationSettingsRepository(
 
   suspend fun getIdentity(recipientId: RecipientId): IdentityRecord? {
     return withContext(SignalDispatchers.Default) {
-      if (SignalStore.account.aci != null && SignalStore.account.pni != null) {
+      if (SignalStore.account.aci != null) {
         AppDependencies.protocolStore.aci().identities().getIdentityRecord(recipientId).orNull()
       } else {
         null
