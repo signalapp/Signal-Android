@@ -49,7 +49,6 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.InterceptableLongClickCopyLinkSpan
 import org.thoughtcrime.securesms.util.LongClickMovementMethod
-import org.thoughtcrime.securesms.util.MAX_BODY_DISPLAY_LENGTH
 import org.thoughtcrime.securesms.util.PlaceholderURLSpan
 import org.thoughtcrime.securesms.util.Projection
 import org.thoughtcrime.securesms.util.ProjectionList
@@ -58,6 +57,7 @@ import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import org.thoughtcrime.securesms.util.VibrateUtil
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
+import org.thoughtcrime.securesms.util.getMaxBodyDisplayLength
 import org.thoughtcrime.securesms.util.hasExtraText
 import org.thoughtcrime.securesms.util.hasNoBubble
 import org.thoughtcrime.securesms.util.isScheduled
@@ -422,7 +422,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     if (record.hasExtraText()) {
       binding.body.setOverflowText(getLongMessageSpan())
       val trimmedLength = StringUtil.trim(styledText).length
-      binding.body.setMaxLength(minOf(MAX_BODY_DISPLAY_LENGTH, trimmedLength - 2))
+      binding.body.setMaxLength(minOf(record.getMaxBodyDisplayLength(), trimmedLength - 2))
     } else {
       binding.body.setOverflowText(null)
       binding.body.setMaxLength(-1)
