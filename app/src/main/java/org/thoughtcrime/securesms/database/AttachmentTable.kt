@@ -617,7 +617,7 @@ class AttachmentTable(
     return readableDatabase
       .select(*PROJECTION_WITH_METADATA)
       .from(TABLE_NAME_WITH_METADTA)
-      .where("$DATA_HASH_END IS NOT NULL AND $DATA_FILE IS NOT NULL AND ${AttachmentMetadataTable.TABLE_NAME}.${AttachmentMetadataTable.LOCAL_BACKUP_KEY} IS NOT NULL")
+      .where("$DATA_HASH_END IS NOT NULL AND $DATA_FILE IS NOT NULL AND $DATA_RANDOM IS NOT NULL AND ${AttachmentMetadataTable.TABLE_NAME}.${AttachmentMetadataTable.LOCAL_BACKUP_KEY} IS NOT NULL")
       .orderBy("$TABLE_NAME.$ID DESC")
       .run()
       .readToList {
@@ -638,7 +638,7 @@ class AttachmentTable(
       .select(*PROJECTION_WITH_METADATA)
       .from("$TABLE_NAME_WITH_METADTA INNER JOIN ${MessageTable.TABLE_NAME} ON $TABLE_NAME.${MESSAGE_ID} = ${MessageTable.TABLE_NAME}.${MessageTable.ID}")
       .where(
-        "$DATA_HASH_END IS NOT NULL AND $DATA_FILE IS NOT NULL AND ${AttachmentMetadataTable.TABLE_NAME}.${AttachmentMetadataTable.LOCAL_BACKUP_KEY} IS NOT NULL" +
+        "$DATA_HASH_END IS NOT NULL AND $DATA_FILE IS NOT NULL AND $DATA_RANDOM IS NOT NULL AND ${AttachmentMetadataTable.TABLE_NAME}.${AttachmentMetadataTable.LOCAL_BACKUP_KEY} IS NOT NULL" +
           " AND ${MessageTable.TABLE_NAME}.${MessageTable.VIEW_ONCE} = 0" +
           " AND ${MessageTable.TABLE_NAME}.${MessageTable.EXPIRES_IN} = 0"
       )
