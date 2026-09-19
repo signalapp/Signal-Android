@@ -9,6 +9,9 @@ import android.os.Build;
 import android.text.InputFilter;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputConnection;
+import android.view.inputmethod.InputConnectionWrapper;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,6 +22,7 @@ import org.signal.emoji.EmojiProvider.EmojiDrawable;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.EditTextExtensionsKt;
 import org.signal.core.util.ServiceUtil;
+import org.thoughtcrime.securesms.util.LinkUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.signal.core.util.Util;
 
@@ -60,6 +64,27 @@ public class EmojiEditText extends AppCompatEditText {
     if (!isInEditMode()) {
       EditTextExtensionsKt.setIncognitoKeyboardEnabled(this, TextSecurePreferences.isIncognitoKeyboardEnabled(context));
     }
+  }
+
+  @Override
+  public InputConnection onCreateInputConnection(EditorInfo outAttrs) {
+    InputConnection base = super.onCreateInputConnection(outAttrs);
+    if (base == null) return null;
+    return new InputConnectionWrapper(base, true) {
+      @Override
+      public boolean commitText(CharSequence text, int newCursorPosition) {
+        if (text != null) {
+          String trimmed = text.toString().trim();
+          if (LinkUtil.isLegalUrl(trimmed)) {
+            String display = LinkUtil.toDisplayUrl(trimmed);
+            if (!display.equals(trimmed)) {
+              return super.commitText(display, newCursorPosition);
+            }
+          }
+        }
+        return super.commitText(text, newCursorPosition);
+      }
+    };
   }
 
   public void insertEmoji(String emoji) {
@@ -122,6 +147,17 @@ public class EmojiEditText extends AppCompatEditText {
         if (TextUtils.equals(Util.COPY_LABEL, label) && shouldPersistSignalStylingWhenPasting()) {
           return super.onTextContextMenuItem(id);
         } else {
+          CharSequence pasteText = getTextFromClipData(clipData);
+          if (pasteText != null) {
+            String trimmed = pasteText.toString().trim();
+            if (LinkUtil.isLegalUrl(trimmed)) {
+              String display = LinkUtil.toDisplayUrl(trimmed);
+              if (!display.equals(trimmed)) {
+                pasteUrlDisplay(display);
+                return true;
+              }
+            }
+          }
           return super.onTextContextMenuItem(android.R.id.pasteAsPlainText);
         }
       }
@@ -139,6 +175,15 @@ public class EmojiEditText extends AppCompatEditText {
     }
 
     return super.onTextContextMenuItem(id);
+  }
+
+  private void pasteUrlDisplay(@NonNull String display) {
+    if (getText() == null) return;
+    int start = Math.max(0, getSelectionStart());
+    int end   = Math.max(0, getSelectionEnd());
+    if (start > end) { int tmp = start; start = end; end = tmp; }
+    getText().replace(start, end, display);
+    setSelection(start + display.length());
   }
 
   private @Nullable CharSequence getTextFromClipData(@Nullable ClipData data) {
