@@ -81,6 +81,7 @@ class DeleteAccountViewModel(
         applyDeletionConfirmed()
       }
       DeleteAccountEvent.LaunchAppSettingsClicked -> {
+        _state.update { it.copy(dialog = Dialog.None) }
         _actions.send(DeleteAccountAction.LaunchAppSettings)
       }
       DeleteAccountEvent.DialogDismissed -> {

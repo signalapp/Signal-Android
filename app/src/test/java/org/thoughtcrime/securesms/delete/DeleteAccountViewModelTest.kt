@@ -266,6 +266,7 @@ class DeleteAccountViewModelTest {
 
     viewModel.onEvent(DeleteAccountEvent.LaunchAppSettingsClicked)
     assertThat(actions).contains(DeleteAccountAction.LaunchAppSettings)
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.None)
   }
 
   @Test
