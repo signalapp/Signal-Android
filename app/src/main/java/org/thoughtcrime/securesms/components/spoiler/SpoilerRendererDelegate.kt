@@ -10,6 +10,7 @@ import android.view.View.OnAttachStateChangeListener
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import org.signal.core.util.AccessibilityUtil
 import org.signal.core.util.dp
@@ -38,8 +39,9 @@ class SpoilerRendererDelegate @JvmOverloads constructor(
 
   private val animator = TimeAnimator().apply {
     setTimeListener { _, _, _ ->
-      SpoilerPaint.update()
-      view.invalidate()
+      if (SpoilerPaint.update()) {
+        view.invalidate()
+      }
     }
   }
 
@@ -54,9 +56,23 @@ class SpoilerRendererDelegate @JvmOverloads constructor(
     )
 
     view.addOnAttachStateChangeListener(object : OnAttachStateChangeListener {
-      override fun onViewDetachedFromWindow(v: View) = stopAnimating()
+      private var lifecycleObserver: DefaultLifecycleObserver? = null
+
+      override fun onViewDetachedFromWindow(v: View) {
+        stopAnimating()
+        lifecycleObserver?.let { observer ->
+          view.getLifecycle()?.removeObserver(observer)
+          lifecycleObserver = null
+        }
+      }
+
       override fun onViewAttachedToWindow(v: View) {
-        view.getLifecycle()?.addObserver(object : DefaultLifecycleObserver {
+        val lifecycle = view.getLifecycle()
+        if (lifecycle != null && lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)) {
+          canAnimate = true
+          systemAnimationsEnabled = !AccessibilityUtil.areAnimationsDisabled(view.context)
+        }
+        val observer = object : DefaultLifecycleObserver {
           override fun onResume(owner: LifecycleOwner) {
             canAnimate = true
             systemAnimationsEnabled = !AccessibilityUtil.areAnimationsDisabled(view.context)
@@ -67,7 +83,9 @@ class SpoilerRendererDelegate @JvmOverloads constructor(
             canAnimate = false
             stopAnimating()
           }
-        })
+        }
+        lifecycleObserver = observer
+        lifecycle?.addObserver(observer)
       }
     })
   }
@@ -99,15 +117,13 @@ class SpoilerRendererDelegate @JvmOverloads constructor(
         continue
       }
 
-      val measurements = cachedMeasurements.getFromCache(annotation.value, layout) {
-        val startLine = layout.getLineForOffset(spanStart)
-        val endLine = layout.getLineForOffset(spanEnd)
-        SpanMeasurements(
-          startLine = startLine,
-          endLine = endLine,
-          startOffset = (layout.getPrimaryHorizontal(spanStart) + -1 * layout.getParagraphDirection(startLine)).toInt(),
-          endOffset = (layout.getPrimaryHorizontal(spanEnd) + layout.getParagraphDirection(endLine)).toInt()
-        )
+      val key = (spanStart * 31 + spanEnd) * 31 + layout.hashCode()
+      val measurements = if (renderForComposing) {
+        measureSpan(layout, spanStart, spanEnd)
+      } else {
+        cachedMeasurements.getOrPut(key) {
+          measureSpan(layout, spanStart, spanEnd)
+        }
       }
 
       renderer.draw(canvas, layout, measurements.startLine, measurements.endLine, measurements.startOffset, measurements.endOffset)
@@ -122,6 +138,17 @@ class SpoilerRendererDelegate @JvmOverloads constructor(
     } else {
       stopAnimating()
     }
+  }
+
+  private fun measureSpan(layout: Layout, spanStart: Int, spanEnd: Int): SpanMeasurements {
+    val startLine = layout.getLineForOffset(spanStart)
+    val endLine = layout.getLineForOffset(spanEnd)
+    return SpanMeasurements(
+      startLine = startLine,
+      endLine = endLine,
+      startOffset = (layout.getPrimaryHorizontal(spanStart) + -1 * layout.getParagraphDirection(startLine)).toInt(),
+      endOffset = (layout.getPrimaryHorizontal(spanEnd) + layout.getParagraphDirection(endLine)).toInt()
+    )
   }
 
   private fun stopAnimating() {

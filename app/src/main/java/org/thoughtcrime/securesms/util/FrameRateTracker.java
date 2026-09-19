@@ -2,6 +2,8 @@ package org.thoughtcrime.securesms.util;
 
 import android.app.Application;
 import android.content.Context;
+import android.hardware.display.DisplayManager;
+import android.os.Build;
 import android.view.Choreographer;
 import android.view.Display;
 
@@ -32,6 +34,7 @@ public class FrameRateTracker {
   private long   badFrameThresholdNanos;
 
   private long lastFrameTimeNanos;
+  private long lastRefreshRateCheckTimeNanos;
 
   private long consecutiveFrameWarnings;
 
@@ -44,7 +47,8 @@ public class FrameRateTracker {
   public void start() {
     Log.d(TAG, String.format(Locale.ENGLISH, "Beginning frame rate tracking. Screen refresh rate: %.2f hz, or %.2f ms per frame.", refreshRate, idealTimePerFrameNanos / (float) 1_000_000));
 
-    lastFrameTimeNanos  = System.nanoTime();
+    lastFrameTimeNanos             = System.nanoTime();
+    lastRefreshRateCheckTimeNanos  = lastFrameTimeNanos;
 
     Choreographer.getInstance().postFrameCallback(calculator);
   }
@@ -58,6 +62,22 @@ public class FrameRateTracker {
    * has a dynamic refresh rate.
    */
   public static float getDisplayRefreshRate(@NonNull Context context) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+      try {
+        Display display = context.getDisplay();
+        if (display != null) {
+          return display.getRefreshRate();
+        }
+      } catch (Throwable ignored) {
+      }
+      DisplayManager dm = (DisplayManager) context.getSystemService(Context.DISPLAY_SERVICE);
+      if (dm != null) {
+        Display display = dm.getDisplay(Display.DEFAULT_DISPLAY);
+        if (display != null) {
+          return display.getRefreshRate();
+        }
+      }
+    }
     Display display = ServiceUtil.getWindowManager(context).getDefaultDisplay();
     return display.getRefreshRate();
   }
@@ -68,14 +88,14 @@ public class FrameRateTracker {
   private void updateRefreshRate() {
     double newRefreshRate = getDisplayRefreshRate(context);
 
-    if (this.refreshRate != newRefreshRate) {
+    if (newRefreshRate > 0 && Math.abs(this.refreshRate - newRefreshRate) > 0.5) {
       if (this.refreshRate > 0) {
         Log.d(TAG, String.format(Locale.ENGLISH, "Refresh rate changed from %.2f hz to %.2f hz", refreshRate, newRefreshRate));
       }
 
-      this.refreshRate             = getDisplayRefreshRate(context);
+      this.refreshRate             = newRefreshRate;
       this.idealTimePerFrameNanos  = (long) (TimeUnit.SECONDS.toNanos(1) / refreshRate);
-      this.badFrameThresholdNanos  = idealTimePerFrameNanos * (int) (refreshRate / 4);
+      this.badFrameThresholdNanos  = idealTimePerFrameNanos * Math.max(1, (int) (refreshRate / 4));
     }
   }
 
@@ -84,6 +104,11 @@ public class FrameRateTracker {
     public void doFrame(long frameTimeNanos) {
       long   elapsedNanos = frameTimeNanos - lastFrameTimeNanos;
       double fps          = TimeUnit.SECONDS.toNanos(1) / (double) elapsedNanos;
+
+      if (frameTimeNanos - lastRefreshRateCheckTimeNanos > TimeUnit.SECONDS.toNanos(1)) {
+        lastRefreshRateCheckTimeNanos = frameTimeNanos;
+        updateRefreshRate();
+      }
 
       if (elapsedNanos > badFrameThresholdNanos) {
         if (consecutiveFrameWarnings < MAX_CONSECUTIVE_FRAME_LOGS) {

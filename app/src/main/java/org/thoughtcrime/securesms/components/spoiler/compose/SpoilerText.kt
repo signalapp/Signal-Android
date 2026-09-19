@@ -88,7 +88,7 @@ fun SpoilerText(
   }
 
   // Check if there are any unrevealed spoilers
-  val hasUnrevealedSpoilers = remember(spoilerAnnotations, spoilerState, frameTime) {
+  val hasUnrevealedSpoilers = remember(spoilerAnnotations, spoilerState) {
     spoilerAnnotations.any { !spoilerState.isRevealed(it.item) }
   }
 
@@ -97,8 +97,9 @@ fun SpoilerText(
     if (hasUnrevealedSpoilers) {
       while (true) {
         withFrameNanos { nanos ->
-          SpoilerPaint.update()
-          frameTime = nanos
+          if (SpoilerPaint.update()) {
+            frameTime = nanos
+          }
         }
       }
     }
@@ -112,7 +113,7 @@ fun SpoilerText(
     LocalContentColor.current
   }
 
-  val displayText = remember(text, spoilerAnnotations, spoilerState, frameTime) {
+  val displayText = remember(text, spoilerAnnotations, spoilerState) {
     AnnotatedString.Builder(text).apply {
       for (annotation in spoilerAnnotations) {
         if (!spoilerState.isRevealed(annotation.item)) {
@@ -133,7 +134,8 @@ fun SpoilerText(
         spoilerState = spoilerState,
         annotatedString = text,
         textLayoutResult = textLayoutResult,
-        textColor = originalTextColor
+        textColor = originalTextColor,
+        animationTick = frameTime
       )
       .pointerInput(text, spoilerState) {
         detectTapGestures { offset ->
