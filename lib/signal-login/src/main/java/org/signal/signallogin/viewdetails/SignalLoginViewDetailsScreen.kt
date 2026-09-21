@@ -140,6 +140,7 @@ fun SignalLoginViewDetailsScreen(
       Footer(
         maxButtonWidth = layout.maxButtonWidth,
         isElevated = firstPaneScrollState.canScrollForward || secondPaneScrollState.canScrollForward,
+        showSaveToPasswordManagerButton = state.showSaveToPasswordManagerButton,
         showResetRecoveryKeyButton = state.showResetRecoveryKeyButton,
         resetRecoveryKeyButtonLoading = state.resetRecoveryKeyButtonLoading,
         onEvent = onEvent
@@ -294,6 +295,7 @@ private fun KeyDetails(
 private fun Footer(
   maxButtonWidth: Dp,
   isElevated: Boolean,
+  showSaveToPasswordManagerButton: Boolean,
   showResetRecoveryKeyButton: Boolean,
   resetRecoveryKeyButtonLoading: Boolean,
   onEvent: (SignalLoginViewDetailsScreenEvents) -> Unit
@@ -308,18 +310,20 @@ private fun Footer(
         .horizontalGutters()
         .padding(vertical = 16.dp)
     ) {
-      Buttons.MediumTonal(
-        onClick = { onEvent(SignalLoginViewDetailsScreenEvents.SaveToPasswordManagerClicked) },
-        colors = ButtonDefaults.filledTonalButtonColors(
-          containerColor = MaterialTheme.colorScheme.primaryContainer,
-          contentColor = MaterialTheme.colorScheme.onPrimaryContainer
-        ),
-        modifier = Modifier
-          .widthIn(max = maxButtonWidth)
-          .fillMaxWidth()
-          .testTag(SignalLoginTestTags.VIEW_DETAILS_SAVE_TO_PASSWORD_MANAGER_BUTTON)
-      ) {
-        Text(stringResource(R.string.SignalLoginViewDetailsScreen__save_to_password_manager))
+      if (showSaveToPasswordManagerButton) {
+        Buttons.MediumTonal(
+          onClick = { onEvent(SignalLoginViewDetailsScreenEvents.SaveToPasswordManagerClicked) },
+          colors = ButtonDefaults.filledTonalButtonColors(
+            containerColor = MaterialTheme.colorScheme.primaryContainer,
+            contentColor = MaterialTheme.colorScheme.onPrimaryContainer
+          ),
+          modifier = Modifier
+            .widthIn(max = maxButtonWidth)
+            .fillMaxWidth()
+            .testTag(SignalLoginTestTags.VIEW_DETAILS_SAVE_TO_PASSWORD_MANAGER_BUTTON)
+        ) {
+          Text(stringResource(R.string.SignalLoginViewDetailsScreen__save_to_password_manager))
+        }
       }
 
       Buttons.MediumTonal(

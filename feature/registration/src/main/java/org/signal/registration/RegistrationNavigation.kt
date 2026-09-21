@@ -841,16 +841,6 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
 
     CollectActions(viewModel.actions) { action ->
       when (action) {
-        RegistrationSignalLoginDetailsAction.LaunchSaveToPasswordManager -> {
-          scope.launch {
-            SignalCredentialManager.saveCredential(
-              activityContext = context,
-              username = viewModel.state.value.accountKey,
-              password = viewModel.state.value.recoveryKey
-            )
-          }
-        }
-
         RegistrationSignalLoginDetailsAction.LaunchSaveAsPdf -> savePdfLauncher.launch(SignalLoginPdfRenderer.suggestedFileName(context))
 
         is RegistrationSignalLoginDetailsAction.CopyTextToClipboard -> Util.copyToClipboardSensitive(context, action.text)

@@ -9,6 +9,7 @@ import assertk.assertThat
 import assertk.assertions.containsExactly
 import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
+import assertk.assertions.isFalse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -61,6 +62,7 @@ class RegistrationSignalLoginDetailsViewModelTest {
 
     assertThat(viewModel.state.value.accountKey).isEqualTo("A6B28482-2E32-83D0-7F23-91360A4C2B91")
     assertThat(viewModel.state.value.recoveryKey).isEqualTo(aep.displayValue)
+    assertThat(viewModel.state.value.showSaveToPasswordManagerButton).isFalse()
   }
 
   @Test
@@ -73,13 +75,13 @@ class RegistrationSignalLoginDetailsViewModelTest {
   }
 
   @Test
-  fun `SaveToPasswordManagerClicked launches the save to password manager flow`() = runTest(testDispatcher) {
+  fun `SaveToPasswordManagerClicked produces no action`() = runTest(testDispatcher) {
     val actions = mutableListOf<RegistrationSignalLoginDetailsAction>()
     backgroundScope.launch { viewModel.actions.toList(actions) }
 
     viewModel.onEvent(SignalLoginViewDetailsScreenEvents.SaveToPasswordManagerClicked)
 
-    assertThat(actions).containsExactly(RegistrationSignalLoginDetailsAction.LaunchSaveToPasswordManager)
+    assertThat(actions).isEmpty()
   }
 
   @Test

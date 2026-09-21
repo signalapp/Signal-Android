@@ -39,7 +39,8 @@ class RegistrationSignalLoginDetailsViewModel(
   private val _state = MutableStateFlow(
     SignalLoginViewDetailsState(
       accountKey = parentState.value.aci?.toString()?.uppercase().orEmpty(),
-      recoveryKey = parentState.value.accountEntropyPool?.displayValue.orEmpty()
+      recoveryKey = parentState.value.accountEntropyPool?.displayValue.orEmpty(),
+      showSaveToPasswordManagerButton = false
     )
   )
   val state: StateFlow<SignalLoginViewDetailsState> = _state.asStateFlow()
@@ -65,7 +66,7 @@ class RegistrationSignalLoginDetailsViewModel(
       }
 
       is SignalLoginViewDetailsScreenEvents.SaveToPasswordManagerClicked -> {
-        _actions.trySend(RegistrationSignalLoginDetailsAction.LaunchSaveToPasswordManager)
+        Log.w(TAG, "Saving to the password manager isn't offered during registration.")
       }
 
       is SignalLoginViewDetailsScreenEvents.SaveAsPdfClicked -> {

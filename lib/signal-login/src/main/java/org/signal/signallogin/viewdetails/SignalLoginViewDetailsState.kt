@@ -14,10 +14,13 @@ import org.signal.signallogin.RecoveryKeyGroups
  * [showResetRecoveryKeyButton] is only true when the screen is reached from account settings, which is the only entry
  * point that can put the user through a recovery key reset. While [resetRecoveryKeyButtonLoading] is true we don't yet
  * know whether the user has any resets left, so a spinner stands in for the button.
+ *
+ * [showSaveToPasswordManagerButton] is false during registration, where the only save option we offer is the PDF.
  */
 data class SignalLoginViewDetailsState(
   val accountKey: String = "",
   val recoveryKey: String = "",
+  val showSaveToPasswordManagerButton: Boolean = true,
   val showResetRecoveryKeyButton: Boolean = false,
   val resetRecoveryKeyButtonLoading: Boolean = false
 ) {
@@ -25,5 +28,5 @@ data class SignalLoginViewDetailsState(
   val recoveryKeyGroups: RecoveryKeyGroups
     get() = RecoveryKeyGroups.from(recoveryKey)
 
-  override fun toString(): String = "SignalLoginViewDetailsState(accountKey=${accountKey.censor()}, recoveryKey=${recoveryKey.censor()}, showResetRecoveryKeyButton=$showResetRecoveryKeyButton, resetRecoveryKeyButtonLoading=$resetRecoveryKeyButtonLoading)"
+  override fun toString(): String = "SignalLoginViewDetailsState(accountKey=${accountKey.censor()}, recoveryKey=${recoveryKey.censor()}, showSaveToPasswordManagerButton=$showSaveToPasswordManagerButton, showResetRecoveryKeyButton=$showResetRecoveryKeyButton, resetRecoveryKeyButtonLoading=$resetRecoveryKeyButtonLoading)"
 }
