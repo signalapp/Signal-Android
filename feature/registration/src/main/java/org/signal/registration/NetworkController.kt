@@ -569,10 +569,11 @@ interface NetworkController {
    */
   data class ProvisioningMessage(
     val accountEntropyPool: String,
-    val e164: String,
+    val aci: ACI,
+    val e164: String?,
     val pin: String?,
     val aciIdentityKeyPair: IdentityKeyPair,
-    val pniIdentityKeyPair: IdentityKeyPair,
+    val pniIdentityKeyPair: IdentityKeyPair?,
     val platform: Platform,
     val tier: Tier?,
     val backupTimestampMs: Long?,

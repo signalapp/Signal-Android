@@ -1549,6 +1549,75 @@ class RegistrationEndToEndTest {
     assert(storageController.restoreDecision == RestoreDecision.SKIPPED) { "Expected SKIPPED restore decision but was ${storageController.restoreDecision}" }
   }
 
+  @Test
+  fun `quick restore from a numberless old device registers by aci and completes with a remote backup`() {
+    enablePhoneNumberlessAccounts()
+
+    val aep = AccountEntropyPool.generate()
+    val oldDeviceAci = ACI.from(UUID.randomUUID())
+
+    // The old device has no phone number, so it sends no e164 and no PNI identity key
+    networkController.onStartProvisioning = {
+      flowOf(
+        ProvisioningEvent.QrCodeReady("https://signal.test/qr"),
+        ProvisioningEvent.MessageReceived(networkController.provisioningMessage(aep = aep, e164 = null, aci = oldDeviceAci))
+      )
+    }
+
+    var registrationComplete = false
+    launchRegistrationFlow(onRegistrationComplete = { registrationComplete = true })
+
+    startQuickRestore()
+
+    chooseRestoreOption(TestTags.ARCHIVE_RESTORE_SELECTION_FROM_SIGNAL_BACKUPS)
+    startRemoteRestore()
+
+    waitFor("registration to complete") { registrationComplete }
+
+    val request = networkController.lastRegisterAccountRequest
+    assert(request?.e164 == null) { "Expected no e164 in the register request but was ${request?.e164}" }
+    assert(request?.aci == oldDeviceAci) { "Expected to register by the provisioned aci $oldDeviceAci but was ${request?.aci}" }
+    assert(request?.recoveryPassword != null) { "Expected a recovery password derived from the provisioned aep" }
+
+    val committed = storageController.committedData
+    assert(committed != null) { "Expected registration data to be committed" }
+    assert(committed!!.accountData?.e164 == null) { "Expected an account with no phone number but was ${committed.accountData?.e164}" }
+    assert(committed.accountEntropyPool == aep.value) { "Expected the committed AEP to be the provisioned one" }
+    assert(committed.pin.isEmpty()) { "Expected no pin for a numberless account but was ${committed.pin}" }
+    assert(storageController.restoreDecision == RestoreDecision.COMPLETED) { "Expected COMPLETED restore decision but was ${storageController.restoreDecision}" }
+  }
+
+  @Test
+  fun `quick restore from a numberless old device can skip restoring and complete registration without creating a pin`() {
+    enablePhoneNumberlessAccounts()
+
+    val oldDeviceAci = ACI.from(UUID.randomUUID())
+
+    networkController.onStartProvisioning = {
+      flowOf(
+        ProvisioningEvent.QrCodeReady("https://signal.test/qr"),
+        ProvisioningEvent.MessageReceived(networkController.provisioningMessage(aep = AccountEntropyPool.generate(), e164 = null, tier = null, aci = oldDeviceAci))
+      )
+    }
+
+    var registrationComplete = false
+    launchRegistrationFlow(onRegistrationComplete = { registrationComplete = true })
+
+    startQuickRestore()
+
+    chooseRestoreOption(TestTags.ARCHIVE_RESTORE_SELECTION_NONE)
+    waitForTag(Dialogs.TEST_TAG_ALERT_DIALOG_CONFIRM_BUTTON)
+    composeTestRule.onNodeWithTag(Dialogs.TEST_TAG_ALERT_DIALOG_CONFIRM_BUTTON).performClick()
+
+    waitFor("registration to complete") { registrationComplete }
+
+    val committed = storageController.committedData
+    assert(committed != null) { "Expected registration data to be committed" }
+    assert(committed!!.accountData?.e164 == null) { "Expected an account with no phone number but was ${committed.accountData?.e164}" }
+    assert(committed.accountData?.pni == null) { "Expected no pni for a numberless account but was ${committed.accountData?.pni}" }
+    assert(storageController.restoreDecision == RestoreDecision.SKIPPED) { "Expected SKIPPED restore decision but was ${storageController.restoreDecision}" }
+  }
+
   // -- Phone-numberless registration (Signal Login)
 
   @Test
@@ -2041,6 +2110,20 @@ class RegistrationEndToEndTest {
    * Rebuilds the repository with phone-numberless registration turned on, which is what puts the Signal Login screens
    * in front of the user at all.
    */
+  /** Rebuilds the repository with numberless accounts supported, the precondition for accepting a numberless transfer. */
+  private fun enablePhoneNumberlessAccounts() {
+    repository = RegistrationRepository(
+      context = ApplicationProvider.getApplicationContext<Application>(),
+      networkController = networkController,
+      storageController = storageController,
+      isLinkAndSyncAvailable = false,
+      isPhoneNumberlessRegistrationAvailable = true,
+      isGooglePlayBillingAvailable = true,
+      signalLoginPurchaseApi = purchaseApi,
+      googlePlayServicesStatus = { PaymentAvailability.Available }
+    )
+  }
+
   private fun enableSignalLoginRegistration(
     isGooglePlayBillingAvailable: Boolean = true,
     googlePlayServicesStatus: PaymentAvailability = PaymentAvailability.Available

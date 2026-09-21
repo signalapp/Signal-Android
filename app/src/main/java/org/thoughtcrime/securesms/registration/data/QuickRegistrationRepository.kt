@@ -10,6 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.withContext
+import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.Base64.decode
 import org.signal.core.util.isNotNullOrBlank
@@ -82,6 +83,9 @@ object QuickRegistrationRepository {
       return TransferAccountResult.NEW_DEVICE_OUTDATED
     }
 
+    val e164 = SignalStore.account.e164
+    val pniIdentityKey = SignalStore.account.pniIdentityKeyOrNull
+
     val uri = Uri.parse(reRegisterUri)
 
     try {
@@ -101,7 +105,7 @@ object QuickRegistrationRepository {
           ephemeralId,
           publicKey,
           RegistrationProvisionMessage(
-            e164 = SignalStore.account.requireE164(),
+            e164 = e164.orEmpty(),
             aci = SignalStore.account.requireAci().toByteString(),
             accountEntropyPool = SignalStore.account.accountEntropyPool.value,
             pin = SignalStore.svr.pin,
@@ -116,8 +120,8 @@ object QuickRegistrationRepository {
             restoreMethodToken = restoreMethodToken,
             aciIdentityKeyPublic = SignalStore.account.aciIdentityKey.publicKey.serialize().toByteString(),
             aciIdentityKeyPrivate = SignalStore.account.aciIdentityKey.privateKey.serialize().toByteString(),
-            pniIdentityKeyPublic = SignalStore.account.pniIdentityKey.publicKey.serialize().toByteString(),
-            pniIdentityKeyPrivate = SignalStore.account.pniIdentityKey.privateKey.serialize().toByteString(),
+            pniIdentityKeyPublic = pniIdentityKey?.publicKey?.serialize()?.toByteString() ?: ByteString.EMPTY,
+            pniIdentityKeyPrivate = pniIdentityKey?.privateKey?.serialize()?.toByteString() ?: ByteString.EMPTY,
             backupVersion = SignalStore.backup.lastBackupProtoVersion
           )
         )

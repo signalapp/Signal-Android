@@ -1049,6 +1049,7 @@ class RegistrationRepository(
       e164 = provisioningMessage.e164,
       sessionId = null,
       recoveryPassword = recoveryPassword,
+      aci = provisioningMessage.aci.takeIf { provisioningMessage.e164 == null },
       registrationLock = masterKey.deriveRegistrationLock().takeIf { provideRegistrationLock },
       skipDeviceTransfer = true,
       existingAccountEntropyPool = aep,
