@@ -1551,7 +1551,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Ваша імя карыстальніка, QR-код і спасылка не бачныя ў вашым профілі. Паведамляйце пра сваё імя карыстальніка толькі тым, да каго маеце давер.</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-    <string name="ManageProfileFragment__username_footer_no_username">People can message you using an optional username instead of a phone number. Usernames have a unique QR code and link you can share with friends.</string>
+    <string name="ManageProfileFragment__username_footer_no_username">Цяпер вам могуць адпраўляць паведамленні на дадатковае імя карыстальніка, а даваць свой нумар тэлефона вам не патрэбна. Імёны карыстальнікаў маюць унікальны QR-код і спасылку, якія вы можаце абагуліць з сябрамі.</string>
     <string name="ManageProfileFragment_profile_name">Назва профілю</string>
     <string name="ManageProfileFragment_username">Імя карыстальніка</string>
     <string name="ManageProfileFragment_about">Аб кантакце</string>
@@ -2947,19 +2947,19 @@
     <!-- Label for the sticker management screen tab which shows all of the sticker packs. -->
     <string name="StickerManagement_all_tab_label">Усе</string>
     <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
-    <string name="StickerManagement_my_stickers_tab_label">My Stickers</string>
+    <string name="StickerManagement_my_stickers_tab_label">Мае стыкеры</string>
     <!-- Shown when there are no sticker packs to show. -->
     <string name="StickerManagement_all_tab_empty_text">Няма даступных набораў стыкераў</string>
     <!-- Shown when there are no sticker packs currently installed. -->
-    <string name="StickerManagement_installed_tab_empty_text">No sticker packs, add stickers to send to your friends.</string>
+    <string name="StickerManagement_installed_tab_empty_text">Няма набору стыкераў, дадайце стыкеры, каб адправіць іх сябрам.</string>
     <!-- Message shown when the author of the sticker pack is unknown. -->
     <string name="StickerManagement_author_unknown">Невядомы</string>
     <!-- Sticker pack list section header for packs that are already installed. -->
     <string name="StickerManagement_installed_stickers_header">Усталяваныя стыкеры</string>
     <!-- Sticker pack list section header for packs that have been received from incoming messages. -->
-    <string name="StickerManagement_shared_with_you_header">Shared with you</string>
+    <string name="StickerManagement_shared_with_you_header">Абагулена з вамі</string>
     <!-- Sticker pack description for packs that have been sent to you -->
-    <string name="StickerManagement_when_you_receive">When you receive a sticker from someone, the sticker pack will appear here.</string>
+    <string name="StickerManagement_when_you_receive">Калі вы атрымліваеце ад кагосьці стыкер, набор стыкераў з\'яўляецца тут.</string>
     <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
     <string name="StickerManagement_signal_artist_series_header">Стыкеры ад мастакоў Signal</string>
     <!-- Title shown when sharing a sticker pack with another user. -->
@@ -2972,17 +2972,17 @@
     <string name="StickerManagement_action_delete_selected">Выдаліць</string>
     <!-- Confirmation message shown before uninstalling sticker packs. The placeholder is the number of items to delete. -->
     <plurals name="StickerManagement_delete_n_packs_confirmation">
-        <item quantity="one">Remove %1$s sticker pack?</item>
-        <item quantity="few">Remove %1$s sticker packs?</item>
-        <item quantity="many">Remove %1$s sticker packs?</item>
-        <item quantity="other">Remove %1$s sticker packs?</item>
+        <item quantity="one">Выдаліць %1$s набор стыкераў?</item>
+        <item quantity="few">Выдаліць %1$s наборы стыкераў?</item>
+        <item quantity="many">Выдаліць %1$s набораў стыкераў?</item>
+        <item quantity="other">Выдаліць %1$s набораў стыкераў?</item>
     </plurals>
     <!-- Body of the confirmation dialog shown before uninstalling sticker packs. -->
     <plurals name="StickerManagement_delete_n_packs_confirmation_body">
-        <item quantity="one">This will remove the sticker pack. You can\'t add it again without a link or sticker message.</item>
-        <item quantity="few">This will remove these sticker packs. You can\'t add it again without a link or sticker message.</item>
-        <item quantity="many">This will remove these sticker packs. You can\'t add it again without a link or sticker message.</item>
-        <item quantity="other">This will remove these sticker packs. You can\'t add it again without a link or sticker message.</item>
+        <item quantity="one">Пасля гэтага набор стыкераў будзе выдалены. Вы не зможаце дадаць яго зноў без спасылкі або паведамлення са стыкерам.</item>
+        <item quantity="few">Пасля гэтага наборы стыкераў будуць выдалены. Вы не зможаце дадаць іх зноў без спасылкі або паведамлення са стыкерам.</item>
+        <item quantity="many">Пасля гэтага набораў стыкераў будуць выдалены. Вы не зможаце дадаць іх зноў без спасылкі або паведамлення са стыкерам.</item>
+        <item quantity="other">Пасля гэтага набораў стыкераў будуць выдалены. Вы не зможаце дадаць іх зноў без спасылкі або паведамлення са стыкерам.</item>
     </plurals>
     <!-- Message shown after installing a sticker pack. The placeholder is the name of the sticker pack that was installed. -->
     <string name="StickerManagement_installed_pack_s">%1$s усталяваны.</string>
@@ -3041,7 +3041,7 @@
     <!-- Label for the button that expands the list to show every sticker pack in a section. -->
     <string name="StickerManagement__see_all">Глядзець усе</string>
     <!-- Button that takes you to the list of sticker packs you can install. -->
-    <string name="StickerManagement__add_stickers">Add stickers</string>
+    <string name="StickerManagement__add_stickers">Дадаць стыкеры</string>
     <!-- Accessibility label to close the search field. -->
     <string name="StickerManagement_accessibility_close_search">Скончыць пошук</string>
     <!-- Accessibility label to clear the search field. -->
@@ -3201,7 +3201,7 @@
     <string name="UsernameEditFragment_username_is_invalid">Несапраўднае імя карыстальніка.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Імя карыстальніка мусіць складаць ад %1$d да %2$d сімвалаў.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">People can message you using your optional username instead of a phone number. Usernames are always paired with a set of numbers.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">Цяпер вам могуць адпраўляць паведамленні на ваша дадатковае імя карыстальніка, а даваць свой нумар тэлефона вам не патрэбна. Імёны карыстальнікаў заўсёды маюць набор лічбаў.</string>
     <!-- Button to allow user to skip -->
     <string name="UsernameEditFragment__skip">Прапусціць</string>
     <!-- Content description for done button -->
@@ -3499,19 +3499,19 @@
 
     <!-- ConnectWithUsernamesDialogFragment -->
     <!-- Title of the username education screen shown to accounts registered without a phone number -->
-    <string name="ConnectWithUsernamesDialogFragment__connect_with_usernames">Connect with usernames</string>
+    <string name="ConnectWithUsernamesDialogFragment__connect_with_usernames">Звязвайцеся з дапамогай імён карыстальнікаў</string>
     <!-- Title of the usernames section -->
     <string name="ConnectWithUsernamesDialogFragment__usernames">Імёны карыстальнікаў</string>
     <!-- Description of the usernames section -->
-    <string name="ConnectWithUsernamesDialogFragment__people_can_message_you_using_your_optional_username">People can message you using your optional username instead of a phone number. Usernames aren\'t visible on your profile.</string>
+    <string name="ConnectWithUsernamesDialogFragment__people_can_message_you_using_your_optional_username">Цяпер вам могуць адпраўляць паведамленні на ваша дадатковае імя карыстальніка, а даваць свой нумар тэлефона вам не патрэбна. Імёны карыстальнікаў не бачныя ў вашым профілі.</string>
     <!-- Title of the QR code section -->
     <string name="ConnectWithUsernamesDialogFragment__qr_codes_and_links">QR-коды і спасылкі</string>
     <!-- Description of the QR code section -->
-    <string name="ConnectWithUsernamesDialogFragment__usernames_have_a_unique_qr_code">Імя карыстальніка мае ўнікальны QR-код і спасылку, якія вы можаце абагуліць з сябрамі і хутка распачаць з імі чат.</string>
+    <string name="ConnectWithUsernamesDialogFragment__usernames_have_a_unique_qr_code">Імёны карыстальнікаў маюць унікальны QR-код і спасылку, якія вы можаце абагуліць з сябрамі і хутка распачаць з імі чат.</string>
     <!-- Title of the discoverability section -->
-    <string name="ConnectWithUsernamesDialogFragment__stay_discoverable">Stay discoverable</string>
+    <string name="ConnectWithUsernamesDialogFragment__stay_discoverable">Заставайцеся бачнымі</string>
     <!-- Description of the discoverability section -->
-    <string name="ConnectWithUsernamesDialogFragment__without_a_phone_number_usernames_and_links">Without a phone number, usernames and links are the only way others can connect with you.</string>
+    <string name="ConnectWithUsernamesDialogFragment__without_a_phone_number_usernames_and_links">Без нумара тэлефона імёны карыстальнікаў і спасылкі — гэта адзіны спосаб звязацца з вамі.</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="ConnectWithUsernamesDialogFragment__set_up_username">Наладзіць імя карыстальніка</string>
     <!-- Button label that dismisses the screen without creating a username -->
@@ -3519,7 +3519,7 @@
 
     <!-- SetUpUsernameBanner -->
     <!-- Body of a banner on the new message screen prompting the user to create a username -->
-    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">Choose a username so others can connect with you.</string>
+    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">Выберыце імя карыстальніка, каб можна было звязацца з вамі.</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="SetUpUsernameBanner__set_up">Наладзіць</string>
     <!-- Accessibility label for the button that permanently dismisses the banner -->
@@ -3993,7 +3993,7 @@
     <string name="verify_display_fragment__mark_as_verified">Пазначыць як праверанае</string>
     <string name="verify_display_fragment__clear_verification">Ачысціць праверку</string>
     <!-- Header title for automatic key verification -->
-    <string name="verify_display_fragment__automatic">Аўтаматычная праверка кода</string>
+    <string name="verify_display_fragment__automatic">Аўтаматычная праверка ключоў</string>
     <!-- Button text to verify automatically    -->
     <string name="verify_display_fragment__verify_automatic">Праверыць аўтаматычна</string>
     <!-- Loading text when verifying -->
@@ -4029,7 +4029,7 @@
     <string name="VerifyAutomaticallyEducationSheet__continue">Працягнуць</string>
 
     <!-- Title for bottom sheet when self verification fails -->
-    <string name="SelfVerificationFailureSheet__title">Аўтаматычная праверка шыфравання ключоў зараз недаступная для вашай прылады. Адправіць журнал адладкі?</string>
+    <string name="SelfVerificationFailureSheet__title">Аўтаматычная праверка ключоў зараз недаступная для вашай прылады. Адправіць журнал адладкі?</string>
     <!-- Body for bottom sheet when self verification fails -->
     <string name="SelfVerificationFailureSheet__body">Журналы адладкі дапамагаюць нам дыягнаставаць і выправіць праблему і не змяшчаюць ідэнтыфікацыйнай інфармацыі.</string>
     <!-- Button to decline submitting logs -->
@@ -4409,7 +4409,7 @@
     <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
     <string name="preferences_language_change_confirmation_message">Каб пераключыцца на новую мову, неабходна перазапусціць праграму.</string>
     <!-- Preference title for automatic key verification -->
-    <string name="preferences_automatic_key_verification">Аўтаматычная праверка кода</string>
+    <string name="preferences_automatic_key_verification">Аўтаматычная праверка ключоў</string>
     <!-- Preference summary for automatic key verification -->
     <string name="preferences_automatic_key_verification_body">Калі гэта функцыя ўключана, Signal будзе спрабаваць аўтаматычна правяраць шыфраванне прыватных чатаў.</string>
 
@@ -9406,6 +9406,8 @@
     <string name="TransferAccount_continue_on_your_other_device">Працягвайце на сваёй іншай прыладзе</string>
     <!-- Old device Transfer account bottom sheet dialog body -->
     <string name="TransferAccount_continue_on_your_other_device_details">Працягвайце перанос свайго ўліковага запісу на іншай прыладзе.</string>
+    <!-- Old device Transfer account error dialog body shown when the new device is too old to accept an account that has no phone number -->
+    <string name="TransferAccount_the_device_you_are_transferring_to_is_out_of_date">The device you\'re transferring to is out of date. Update Signal on that device and try again.</string>
 
     <!-- Prepare Device screen title for quick restore flow -->
     <string name="PrepareDevice_title">Ідзе падрыхтоўка вашай прылады</string>
@@ -9897,7 +9899,7 @@
     <!-- Content description for the button that clears the contact search field -->
     <string name="SelectContactScreen__clear_search">Ачысціць пошук</string>
     <!-- Content description for the badge shown next to a contact that is in the phone\'s address book -->
-    <string name="SelectContactScreen__in_your_contacts">In your contacts</string>
+    <string name="SelectContactScreen__in_your_contacts">У вашых кантактах</string>
     <!-- Title of the prompt asking for permission to read the user\'s phone contacts -->
     <string name="SelectContactScreen__find_people_you_know_on_signal">Знаходзьце людзей, якіх вы ведаеце, у Signal</string>
     <!-- Explanation shown when Signal does not have permission to read the user\'s phone contacts -->
@@ -9907,9 +9909,9 @@
     <!-- Button that dismisses the request for permission to read the user\'s phone contacts -->
     <string name="SelectContactScreen__no_thanks">Не, дзякуй</string>
     <!-- Button that opens the phone\'s own contact picker, used when Signal cannot ask for contacts permission -->
-    <string name="SelectContactScreen__open_phone_contacts">Open phone contacts</string>
+    <string name="SelectContactScreen__open_phone_contacts">Адкрыць спіс тэлефонных кантактаў</string>
     <!-- Note at the bottom of the contact picker when contacts permission was denied on the device. Placeholder is the "Learn more" link text. -->
-    <string name="SelectContactScreen__to_see_your_phone_contacts_here">To see your phone contacts here, allow access in your device settings. %1$s</string>
+    <string name="SelectContactScreen__to_see_your_phone_contacts_here">Каб убачыць тут свае тэлефонныя кантакты, дазвольце доступ у наладах прылады. %1$s</string>
     <!-- Link that opens instructions for granting contacts permission from the device settings -->
     <string name="SelectContactScreen__learn_more">Даведацца больш</string>
     <!-- Title of the sheet explaining how to grant contacts permission from the device settings -->
@@ -9917,7 +9919,7 @@
     <!-- Subtitle of the sheet explaining how to grant contacts permission from the device settings -->
     <string name="SelectContactScreen__to_find_people_you_know_on_signal">Каб знайсці людзей, якіх вы ведаеце, у Signal:</string>
     <!-- Toast shown when a selected contact can no longer be read -->
-    <string name="SelectContactScreen__couldnt_open_contact">Couldn\'t open that contact</string>
+    <string name="SelectContactScreen__couldnt_open_contact">Не атрымалася адкрыць гэты кантакт</string>
 
     <!-- Title of the screen where the user chooses which parts of a contact to share -->
     <string name="ShareContactScreen__share_contact">Абагуліць кантакт</string>
@@ -9973,15 +9975,15 @@
     <string name="SharedContactDetailsScreen__join_me_on_signal">Далучайцеся да мяне ў Signal</string>
 
     <!-- Title of the bottom sheet that confirms the user wants a brand new recovery key. -->
-    <string name="ResetRecoveryKeyBottomSheet__reset_your_recovery_key">Reset your recovery key</string>
+    <string name="ResetRecoveryKeyBottomSheet__reset_your_recovery_key">Скiньце свой код для аднаўлення</string>
     <!-- First paragraph of the bottom sheet body, explaining what a reset does. -->
-    <string name="ResetRecoveryKeyBottomSheet__resetting_your_recovery_key_will_create_a_new_key">Resetting your recovery key will create a new key for your Signal Login. This is only necessary if someone else knows your key.</string>
+    <string name="ResetRecoveryKeyBottomSheet__resetting_your_recovery_key_will_create_a_new_key">Калi вы скідаеце свой код для аднаўлення, ствараецца новы код для вашага Signal Login. Гэта неабходна толькі тады, калі нехта ведае ваш код.</string>
     <!-- Second paragraph of the bottom sheet body, explaining what a reset means for backups. -->
-    <string name="ResetRecoveryKeyBottomSheet__if_backups_are_enabled_you_will_have_to_re_upload">If backups are enabled you will have to re-upload your backup, including media. If you are using \"Optimize Signal storage\" you will have to download offloaded media first.</string>
+    <string name="ResetRecoveryKeyBottomSheet__if_backups_are_enabled_you_will_have_to_re_upload">Калi ўключана рэзервовае капіраванне, вам патрэбна будзе зноў запампаваць сваю рэзервовую копію, у тым ліку медыяфайлы. Калі вы ўключылі функцыю «Зрабіць аптымізацыю сховішча Signal», вам патрэбна будзе спачатку спампаваць выгружаныя медыяфайлы.</string>
     <!-- Bottom sheet action that continues on to reset the recovery key. -->
     <string name="ResetRecoveryKeyBottomSheet__continue">Працягнуць</string>
     <!-- Dialog body shown when the recovery key change limit is exhausted and the user does not have backups enabled. -->
-    <string name="BackupKeyRotationDialogs__limit_exceeded_body_no_backups">You\'ve exhausted the number of new keys you can create. You will be able to create a new recovery key in 7 days.</string>
+    <string name="BackupKeyRotationDialogs__limit_exceeded_body_no_backups">Вы перавысілі колькасць новых кодаў, што можна стварыць. Вы зможаце стварыць новы код для аднаўлення праз 7 дзён.</string>
 
     <!-- EOF -->
 </resources>

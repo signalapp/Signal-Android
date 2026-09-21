@@ -1422,7 +1422,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Nama pengguna, kode QR, dan tautan Anda tidak terlihat di profil. Hanya bagikan nama pengguna ke orang yang Anda percayai.</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-    <string name="ManageProfileFragment__username_footer_no_username">People can message you using an optional username instead of a phone number. Usernames have a unique QR code and link you can share with friends.</string>
+    <string name="ManageProfileFragment__username_footer_no_username">Orang lain bisa mengirimi Anda pesan menggunakan nama pengguna opsional, bukan nomor telepon Anda. Nama pengguna memiliki kode QR unik dan tautan yang dapat dibagikan kepada teman.</string>
     <string name="ManageProfileFragment_profile_name">Nama profil</string>
     <string name="ManageProfileFragment_username">Nama pengguna</string>
     <string name="ManageProfileFragment_about">Tentang</string>
@@ -2696,11 +2696,11 @@
     <string name="StickerManagement_action_delete_selected">Hapus</string>
     <!-- Confirmation message shown before uninstalling sticker packs. The placeholder is the number of items to delete. -->
     <plurals name="StickerManagement_delete_n_packs_confirmation">
-        <item quantity="other">Remove %1$s sticker packs?</item>
+        <item quantity="other">Hapus %1$s paket stiker?</item>
     </plurals>
     <!-- Body of the confirmation dialog shown before uninstalling sticker packs. -->
     <plurals name="StickerManagement_delete_n_packs_confirmation_body">
-        <item quantity="other">This will remove these sticker packs. You can\'t add it again without a link or sticker message.</item>
+        <item quantity="other">Tindakan ini akan menghapus paket stiker ini. Anda tidak bisa menambahkannya lagi tanpa tautan atau pesan stiker.</item>
     </plurals>
     <!-- Message shown after installing a sticker pack. The placeholder is the name of the sticker pack that was installed. -->
     <string name="StickerManagement_installed_pack_s">%1$s terinstal.</string>
@@ -2913,7 +2913,7 @@
     <string name="UsernameEditFragment_username_is_invalid">Nama pengguna tidak valid.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Nama pengguna harus terdiri antara %1$d dan %2$d karakter.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">People can message you using your optional username instead of a phone number. Usernames are always paired with a set of numbers.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">Orang lain bisa mengirimi Anda pesan menggunakan nama pengguna opsional, bukan nomor telepon Anda. Nama pengguna selalu dipasangkan dengan serangkaian angka.</string>
     <!-- Button to allow user to skip -->
     <string name="UsernameEditFragment__skip">Lewati</string>
     <!-- Content description for done button -->
@@ -3190,19 +3190,19 @@
 
     <!-- ConnectWithUsernamesDialogFragment -->
     <!-- Title of the username education screen shown to accounts registered without a phone number -->
-    <string name="ConnectWithUsernamesDialogFragment__connect_with_usernames">Connect with usernames</string>
+    <string name="ConnectWithUsernamesDialogFragment__connect_with_usernames">Terhubung melalui nama pengguna</string>
     <!-- Title of the usernames section -->
     <string name="ConnectWithUsernamesDialogFragment__usernames">Nama pengguna</string>
     <!-- Description of the usernames section -->
-    <string name="ConnectWithUsernamesDialogFragment__people_can_message_you_using_your_optional_username">People can message you using your optional username instead of a phone number. Usernames aren\'t visible on your profile.</string>
+    <string name="ConnectWithUsernamesDialogFragment__people_can_message_you_using_your_optional_username">Orang lain bisa mengirimi Anda pesan menggunakan nama pengguna opsional, bukan nomor telepon Anda. Nama pengguna tidak terlihat di profil Anda.</string>
     <!-- Title of the QR code section -->
     <string name="ConnectWithUsernamesDialogFragment__qr_codes_and_links">Kode QR dan tautan</string>
     <!-- Description of the QR code section -->
     <string name="ConnectWithUsernamesDialogFragment__usernames_have_a_unique_qr_code">Ada kode QR dan tautan unik di tiap nama pengguna, yang dapat dibagikan kepada teman agar mereka bisa langsung mengobrol dengan Anda.</string>
     <!-- Title of the discoverability section -->
-    <string name="ConnectWithUsernamesDialogFragment__stay_discoverable">Stay discoverable</string>
+    <string name="ConnectWithUsernamesDialogFragment__stay_discoverable">Tetap bisa ditemukan</string>
     <!-- Description of the discoverability section -->
-    <string name="ConnectWithUsernamesDialogFragment__without_a_phone_number_usernames_and_links">Without a phone number, usernames and links are the only way others can connect with you.</string>
+    <string name="ConnectWithUsernamesDialogFragment__without_a_phone_number_usernames_and_links">Tanpa nomor telepon, nama pengguna dan tautan adalah satu-satunya cara orang lain dapat terhubung dengan Anda.</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="ConnectWithUsernamesDialogFragment__set_up_username">Siapkan nama pengguna</string>
     <!-- Button label that dismisses the screen without creating a username -->
@@ -3210,7 +3210,7 @@
 
     <!-- SetUpUsernameBanner -->
     <!-- Body of a banner on the new message screen prompting the user to create a username -->
-    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">Choose a username so others can connect with you.</string>
+    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">Pilih nama pengguna agar orang lain bisa terhubung dengan Anda.</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="SetUpUsernameBanner__set_up">Siapkan</string>
     <!-- Accessibility label for the button that permanently dismisses the banner -->
@@ -8824,6 +8824,8 @@
     <string name="TransferAccount_continue_on_your_other_device">Lanjutkan di perangkat yang lain</string>
     <!-- Old device Transfer account bottom sheet dialog body -->
     <string name="TransferAccount_continue_on_your_other_device_details">Lanjut transfer akun Anda di perangkat yang lain.</string>
+    <!-- Old device Transfer account error dialog body shown when the new device is too old to accept an account that has no phone number -->
+    <string name="TransferAccount_the_device_you_are_transferring_to_is_out_of_date">The device you\'re transferring to is out of date. Update Signal on that device and try again.</string>
 
     <!-- Prepare Device screen title for quick restore flow -->
     <string name="PrepareDevice_title">Menyiapkan perangkat Anda</string>
@@ -9288,13 +9290,13 @@
     </plurals>
 
     <!-- Title of the screen for picking a contact to share -->
-    <string name="SelectContactScreen__select_contact">Pilih Kontak</string>
+    <string name="SelectContactScreen__select_contact">Pilih kontak</string>
     <!-- Placeholder in the search field on the contact picker -->
     <string name="SelectContactScreen__search">Cari</string>
     <!-- Content description for the button that clears the contact search field -->
     <string name="SelectContactScreen__clear_search">Hapus pencarian</string>
     <!-- Content description for the badge shown next to a contact that is in the phone\'s address book -->
-    <string name="SelectContactScreen__in_your_contacts">In your contacts</string>
+    <string name="SelectContactScreen__in_your_contacts">Di kontak Anda</string>
     <!-- Title of the prompt asking for permission to read the user\'s phone contacts -->
     <string name="SelectContactScreen__find_people_you_know_on_signal">Temukan orang yang Anda kenal di Signal</string>
     <!-- Explanation shown when Signal does not have permission to read the user\'s phone contacts -->
@@ -9304,9 +9306,9 @@
     <!-- Button that dismisses the request for permission to read the user\'s phone contacts -->
     <string name="SelectContactScreen__no_thanks">Tidak, terima kasih</string>
     <!-- Button that opens the phone\'s own contact picker, used when Signal cannot ask for contacts permission -->
-    <string name="SelectContactScreen__open_phone_contacts">Open phone contacts</string>
+    <string name="SelectContactScreen__open_phone_contacts">Buka kontak telepon</string>
     <!-- Note at the bottom of the contact picker when contacts permission was denied on the device. Placeholder is the "Learn more" link text. -->
-    <string name="SelectContactScreen__to_see_your_phone_contacts_here">To see your phone contacts here, allow access in your device settings. %1$s</string>
+    <string name="SelectContactScreen__to_see_your_phone_contacts_here">Untuk melihat kontak telepon Anda di sini, izinkan akses di pengaturan perangkat. %1$s</string>
     <!-- Link that opens instructions for granting contacts permission from the device settings -->
     <string name="SelectContactScreen__learn_more">Pelajari selengkapnya</string>
     <!-- Title of the sheet explaining how to grant contacts permission from the device settings -->
@@ -9314,7 +9316,7 @@
     <!-- Subtitle of the sheet explaining how to grant contacts permission from the device settings -->
     <string name="SelectContactScreen__to_find_people_you_know_on_signal">Untuk menemukan orang yang Anda kenal di Signal:</string>
     <!-- Toast shown when a selected contact can no longer be read -->
-    <string name="SelectContactScreen__couldnt_open_contact">Couldn\'t open that contact</string>
+    <string name="SelectContactScreen__couldnt_open_contact">Tidak bisa membuka kontak tersebut</string>
 
     <!-- Title of the screen where the user chooses which parts of a contact to share -->
     <string name="ShareContactScreen__share_contact">Bagikan kontak</string>
@@ -9370,15 +9372,15 @@
     <string name="SharedContactDetailsScreen__join_me_on_signal">Yuk gabung di Signal</string>
 
     <!-- Title of the bottom sheet that confirms the user wants a brand new recovery key. -->
-    <string name="ResetRecoveryKeyBottomSheet__reset_your_recovery_key">Reset your recovery key</string>
+    <string name="ResetRecoveryKeyBottomSheet__reset_your_recovery_key">Reset kunci pemulihan Anda</string>
     <!-- First paragraph of the bottom sheet body, explaining what a reset does. -->
-    <string name="ResetRecoveryKeyBottomSheet__resetting_your_recovery_key_will_create_a_new_key">Resetting your recovery key will create a new key for your Signal Login. This is only necessary if someone else knows your key.</string>
+    <string name="ResetRecoveryKeyBottomSheet__resetting_your_recovery_key_will_create_a_new_key">Jika Anda mereset kunci pemulihan, kunci baru akan dibuat untuk Signal Login Anda. Ini hanya diperlukan jika orang lain mengetahui kunci Anda.</string>
     <!-- Second paragraph of the bottom sheet body, explaining what a reset means for backups. -->
-    <string name="ResetRecoveryKeyBottomSheet__if_backups_are_enabled_you_will_have_to_re_upload">If backups are enabled you will have to re-upload your backup, including media. If you are using \"Optimize Signal storage\" you will have to download offloaded media first.</string>
+    <string name="ResetRecoveryKeyBottomSheet__if_backups_are_enabled_you_will_have_to_re_upload">Jika cadangan diaktifkan, Anda harus mengunggah ulang cadangan Anda, termasuk media. Jika opsi \"Optimalkan penyimpanan Signal\" aktif, Anda harus mengunduh media yang di-offload terlebih dahulu.</string>
     <!-- Bottom sheet action that continues on to reset the recovery key. -->
     <string name="ResetRecoveryKeyBottomSheet__continue">Lanjut</string>
     <!-- Dialog body shown when the recovery key change limit is exhausted and the user does not have backups enabled. -->
-    <string name="BackupKeyRotationDialogs__limit_exceeded_body_no_backups">You\'ve exhausted the number of new keys you can create. You will be able to create a new recovery key in 7 days.</string>
+    <string name="BackupKeyRotationDialogs__limit_exceeded_body_no_backups">Kesempatan Anda untuk membuat kunci baru telah habis. Anda bisa membuat kunci pemulihan baru setelah 7 hari.</string>
 
     <!-- EOF -->
 </resources>

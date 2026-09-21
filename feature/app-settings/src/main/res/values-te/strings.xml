@@ -91,7 +91,7 @@
     <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
     <string name="AccountSettingsFragment__you_cant_add_more_than_d">మీరు %1$d కంటే ఎక్కువ అథెంటికేటర్ యాప్‌లను జోడించలేరు. ముందుగా ఒకదాన్ని తీసివేయడానికి ప్రయత్నించండి.</string>
     <!-- Body of the dialog shown when the account has room for another authenticator app but already has as many two-factor methods of all kinds as it\'s allowed -->
-    <string name="AccountSettingsFragment__you_cant_add_more_than_d_two_factor_methods">You can\'t add more than %1$d two-factor authentication methods. Try removing one first.</string>
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d_two_factor_methods">మీరు %1$d కంటే ఎక్కువ రెండు-దశల అథెంటికేషన్ పద్ధతులను జోడించలేరు. ముందుగా ఒకదాన్ని తొలగించడానికి ప్రయత్నించండి.</string>
     <!-- Shown in place of the list when we couldn\'t work out which second factors are on the account -->
     <string name="AccountSettingsFragment__couldnt_load_your_two_factor_methods">మీ రెండు-కారకాల ప్రామాణీకరణ పద్ధతులను లోడ్ చేయలేకపోయాము. మీ కనెక్షన్‌ను తనిఖీ చేసి, మళ్ళీ ప్రయత్నించండి.</string>
     <!-- Toast shown after an authenticator app has been removed -->
@@ -152,7 +152,7 @@
     <string name="TotpCodeEntryScreen__couldnt_reach_signal">Signal‌ను చేరుకోలేకపోయాము. మీ కనెక్షన్‌ను తనిఖీ చేసి, మళ్ళీ ప్రయత్నించండి.</string>
 
     <!-- Default name given to an authenticator app the moment it\'s set up, before the user chooses their own name for it -->
-    <string name="TotpRepository__authenticator">Authenticator</string>
+    <string name="TotpRepository__authenticator">అథెంటికేటర్</string>
 
     <!-- TotpNameEntryScreen -->
     <!-- Title of the screen where the user names an authenticator app -->

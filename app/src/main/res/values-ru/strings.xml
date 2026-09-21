@@ -1551,7 +1551,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Ваше имя пользователя, QR-код и ссылка не видны в вашем профиле. Делитесь вашим именем пользователя только с теми, кому доверяете.</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-    <string name="ManageProfileFragment__username_footer_no_username">People can message you using an optional username instead of a phone number. Usernames have a unique QR code and link you can share with friends.</string>
+    <string name="ManageProfileFragment__username_footer_no_username">Люди смогут писать вам сообщения, используя ваше дополнительное имя пользователя вместо номера телефона. Именам пользователей присваивается уникальный QR-код и ссылка, которой вы можете поделиться с друзьями.</string>
     <string name="ManageProfileFragment_profile_name">Имя профиля</string>
     <string name="ManageProfileFragment_username">Имя пользователя</string>
     <string name="ManageProfileFragment_about">Обо мне</string>
@@ -2972,17 +2972,17 @@
     <string name="StickerManagement_action_delete_selected">Удалить</string>
     <!-- Confirmation message shown before uninstalling sticker packs. The placeholder is the number of items to delete. -->
     <plurals name="StickerManagement_delete_n_packs_confirmation">
-        <item quantity="one">Remove %1$s sticker pack?</item>
-        <item quantity="few">Remove %1$s sticker packs?</item>
-        <item quantity="many">Remove %1$s sticker packs?</item>
-        <item quantity="other">Remove %1$s sticker packs?</item>
+        <item quantity="one">Удалить %1$s набор стикеров?</item>
+        <item quantity="few">Удалить %1$s набора стикеров?</item>
+        <item quantity="many">Удалить %1$s наборов стикеров?</item>
+        <item quantity="other">Удалить %1$s набора стикеров?</item>
     </plurals>
     <!-- Body of the confirmation dialog shown before uninstalling sticker packs. -->
     <plurals name="StickerManagement_delete_n_packs_confirmation_body">
-        <item quantity="one">This will remove the sticker pack. You can\'t add it again without a link or sticker message.</item>
-        <item quantity="few">This will remove these sticker packs. You can\'t add it again without a link or sticker message.</item>
-        <item quantity="many">This will remove these sticker packs. You can\'t add it again without a link or sticker message.</item>
-        <item quantity="other">This will remove these sticker packs. You can\'t add it again without a link or sticker message.</item>
+        <item quantity="one">Данное действие удалит этот набор стикеров. Добавить его снова можно будет только по ссылке или через стикер-сообщение.</item>
+        <item quantity="few">Данное действие удалит эти наборы стикеров. Добавить их снова можно будет только по ссылке или через стикер-сообщение.</item>
+        <item quantity="many">Данное действие удалит эти наборы стикеров. Добавить их снова можно будет только по ссылке или через стикер-сообщение.</item>
+        <item quantity="other">Данное действие удалит эти наборы стикеров. Добавить их снова можно будет только по ссылке или через стикер-сообщение.</item>
     </plurals>
     <!-- Message shown after installing a sticker pack. The placeholder is the name of the sticker pack that was installed. -->
     <string name="StickerManagement_installed_pack_s">Установлен %1$s.</string>
@@ -3201,7 +3201,7 @@
     <string name="UsernameEditFragment_username_is_invalid">Имя пользователя недействительно.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Имена пользователей должны содержать от %1$d до %2$d символов.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">People can message you using your optional username instead of a phone number. Usernames are always paired with a set of numbers.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">Люди смогут писать вам сообщения, используя ваше дополнительное имя пользователя вместо номера телефона. Именам пользователей всегда присвоен набор цифр.</string>
     <!-- Button to allow user to skip -->
     <string name="UsernameEditFragment__skip">Пропустить</string>
     <!-- Content description for done button -->
@@ -3499,19 +3499,19 @@
 
     <!-- ConnectWithUsernamesDialogFragment -->
     <!-- Title of the username education screen shown to accounts registered without a phone number -->
-    <string name="ConnectWithUsernamesDialogFragment__connect_with_usernames">Connect with usernames</string>
+    <string name="ConnectWithUsernamesDialogFragment__connect_with_usernames">Начало общения с помощью имён пользователей</string>
     <!-- Title of the usernames section -->
     <string name="ConnectWithUsernamesDialogFragment__usernames">Имена пользователей</string>
     <!-- Description of the usernames section -->
-    <string name="ConnectWithUsernamesDialogFragment__people_can_message_you_using_your_optional_username">People can message you using your optional username instead of a phone number. Usernames aren\'t visible on your profile.</string>
+    <string name="ConnectWithUsernamesDialogFragment__people_can_message_you_using_your_optional_username">Люди смогут писать вам сообщения, используя ваше дополнительное имя пользователя вместо номера телефона. Имена пользователей не видны в вашем профиле.</string>
     <!-- Title of the QR code section -->
     <string name="ConnectWithUsernamesDialogFragment__qr_codes_and_links">QR-коды и ссылки</string>
     <!-- Description of the QR code section -->
     <string name="ConnectWithUsernamesDialogFragment__usernames_have_a_unique_qr_code">Именам пользователей присваивается уникальная ссылка, которой вы можете поделиться с друзьями, чтобы они могли начать чат с вами.</string>
     <!-- Title of the discoverability section -->
-    <string name="ConnectWithUsernamesDialogFragment__stay_discoverable">Stay discoverable</string>
+    <string name="ConnectWithUsernamesDialogFragment__stay_discoverable">Оставайтесь доступным для поиска</string>
     <!-- Description of the discoverability section -->
-    <string name="ConnectWithUsernamesDialogFragment__without_a_phone_number_usernames_and_links">Without a phone number, usernames and links are the only way others can connect with you.</string>
+    <string name="ConnectWithUsernamesDialogFragment__without_a_phone_number_usernames_and_links">Если вы не хотите указывать номер телефона, связаться с вами можно будет только с помощью имени пользователя или ссылки.</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="ConnectWithUsernamesDialogFragment__set_up_username">Настройте имя пользователя</string>
     <!-- Button label that dismisses the screen without creating a username -->
@@ -3519,7 +3519,7 @@
 
     <!-- SetUpUsernameBanner -->
     <!-- Body of a banner on the new message screen prompting the user to create a username -->
-    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">Choose a username so others can connect with you.</string>
+    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">Выберите имя пользователя, чтобы с вами можно было связаться.</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="SetUpUsernameBanner__set_up">Настроить</string>
     <!-- Accessibility label for the button that permanently dismisses the banner -->
@@ -9406,6 +9406,8 @@
     <string name="TransferAccount_continue_on_your_other_device">Продолжить на другом устройстве</string>
     <!-- Old device Transfer account bottom sheet dialog body -->
     <string name="TransferAccount_continue_on_your_other_device_details">Продолжите перенос учётной записи на другом устройстве.</string>
+    <!-- Old device Transfer account error dialog body shown when the new device is too old to accept an account that has no phone number -->
+    <string name="TransferAccount_the_device_you_are_transferring_to_is_out_of_date">The device you\'re transferring to is out of date. Update Signal on that device and try again.</string>
 
     <!-- Prepare Device screen title for quick restore flow -->
     <string name="PrepareDevice_title">Подготовка вашего устройства</string>
@@ -9897,7 +9899,7 @@
     <!-- Content description for the button that clears the contact search field -->
     <string name="SelectContactScreen__clear_search">Очистить поиск</string>
     <!-- Content description for the badge shown next to a contact that is in the phone\'s address book -->
-    <string name="SelectContactScreen__in_your_contacts">In your contacts</string>
+    <string name="SelectContactScreen__in_your_contacts">В ваших контактах</string>
     <!-- Title of the prompt asking for permission to read the user\'s phone contacts -->
     <string name="SelectContactScreen__find_people_you_know_on_signal">Найдите знакомых в Signal</string>
     <!-- Explanation shown when Signal does not have permission to read the user\'s phone contacts -->
@@ -9907,9 +9909,9 @@
     <!-- Button that dismisses the request for permission to read the user\'s phone contacts -->
     <string name="SelectContactScreen__no_thanks">Нет, спасибо</string>
     <!-- Button that opens the phone\'s own contact picker, used when Signal cannot ask for contacts permission -->
-    <string name="SelectContactScreen__open_phone_contacts">Open phone contacts</string>
+    <string name="SelectContactScreen__open_phone_contacts">Открыть контакты телефона</string>
     <!-- Note at the bottom of the contact picker when contacts permission was denied on the device. Placeholder is the "Learn more" link text. -->
-    <string name="SelectContactScreen__to_see_your_phone_contacts_here">To see your phone contacts here, allow access in your device settings. %1$s</string>
+    <string name="SelectContactScreen__to_see_your_phone_contacts_here">Чтобы увидеть здесь контакты с вашего телефона, разрешите доступ в настройках устройства. %1$s</string>
     <!-- Link that opens instructions for granting contacts permission from the device settings -->
     <string name="SelectContactScreen__learn_more">Узнать больше</string>
     <!-- Title of the sheet explaining how to grant contacts permission from the device settings -->
@@ -9917,7 +9919,7 @@
     <!-- Subtitle of the sheet explaining how to grant contacts permission from the device settings -->
     <string name="SelectContactScreen__to_find_people_you_know_on_signal">Чтобы найти знакомых в Signal:</string>
     <!-- Toast shown when a selected contact can no longer be read -->
-    <string name="SelectContactScreen__couldnt_open_contact">Couldn\'t open that contact</string>
+    <string name="SelectContactScreen__couldnt_open_contact">Не удалось открыть этот контакт</string>
 
     <!-- Title of the screen where the user chooses which parts of a contact to share -->
     <string name="ShareContactScreen__share_contact">Поделиться контактом</string>
@@ -9973,15 +9975,15 @@
     <string name="SharedContactDetailsScreen__join_me_on_signal">Присоединяйтесь ко мне в Signal</string>
 
     <!-- Title of the bottom sheet that confirms the user wants a brand new recovery key. -->
-    <string name="ResetRecoveryKeyBottomSheet__reset_your_recovery_key">Reset your recovery key</string>
+    <string name="ResetRecoveryKeyBottomSheet__reset_your_recovery_key">Сброс ключа восстановления</string>
     <!-- First paragraph of the bottom sheet body, explaining what a reset does. -->
-    <string name="ResetRecoveryKeyBottomSheet__resetting_your_recovery_key_will_create_a_new_key">Resetting your recovery key will create a new key for your Signal Login. This is only necessary if someone else knows your key.</string>
+    <string name="ResetRecoveryKeyBottomSheet__resetting_your_recovery_key_will_create_a_new_key">Сброс ключа восстановления создаст новый ключ для вашего Signal Login. Это необходимо только в случае, если ваш ключ стал известен кому-то ещё.</string>
     <!-- Second paragraph of the bottom sheet body, explaining what a reset means for backups. -->
-    <string name="ResetRecoveryKeyBottomSheet__if_backups_are_enabled_you_will_have_to_re_upload">If backups are enabled you will have to re-upload your backup, including media. If you are using \"Optimize Signal storage\" you will have to download offloaded media first.</string>
+    <string name="ResetRecoveryKeyBottomSheet__if_backups_are_enabled_you_will_have_to_re_upload">Если у вас включено резервное копирование, то вам придётся загрузить резервную копию повторно, включая медиафайлы. Если вы используете функцию «Оптимизировать хранилище Signal», вам придётся сначала загрузить выгруженные медиафайлы.</string>
     <!-- Bottom sheet action that continues on to reset the recovery key. -->
     <string name="ResetRecoveryKeyBottomSheet__continue">Продолжить</string>
     <!-- Dialog body shown when the recovery key change limit is exhausted and the user does not have backups enabled. -->
-    <string name="BackupKeyRotationDialogs__limit_exceeded_body_no_backups">You\'ve exhausted the number of new keys you can create. You will be able to create a new recovery key in 7 days.</string>
+    <string name="BackupKeyRotationDialogs__limit_exceeded_body_no_backups">Вы исчерпали количество новых ключей, которые можете создать. Вы сможете создать новый ключ восстановления через 7 дней.</string>
 
     <!-- EOF -->
 </resources>

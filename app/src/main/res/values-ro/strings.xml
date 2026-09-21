@@ -9212,6 +9212,8 @@
     <string name="TransferAccount_continue_on_your_other_device">Continuă pe celălalt dispozitiv</string>
     <!-- Old device Transfer account bottom sheet dialog body -->
     <string name="TransferAccount_continue_on_your_other_device_details">Continuă să-ți transferi contul pe celălalt dispozitiv.</string>
+    <!-- Old device Transfer account error dialog body shown when the new device is too old to accept an account that has no phone number -->
+    <string name="TransferAccount_the_device_you_are_transferring_to_is_out_of_date">The device you\'re transferring to is out of date. Update Signal on that device and try again.</string>
 
     <!-- Prepare Device screen title for quick restore flow -->
     <string name="PrepareDevice_title">Se pregătește dispozitivul</string>

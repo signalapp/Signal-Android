@@ -91,7 +91,7 @@
     <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
     <string name="AccountSettingsFragment__you_cant_add_more_than_d">તમે %1$dથી વધુ પ્રમાણીકરણ ઍપ ઉમેરી શકતા નથી. પહેલા એકને દૂર કરી જુઓ.</string>
     <!-- Body of the dialog shown when the account has room for another authenticator app but already has as many two-factor methods of all kinds as it\'s allowed -->
-    <string name="AccountSettingsFragment__you_cant_add_more_than_d_two_factor_methods">You can\'t add more than %1$d two-factor authentication methods. Try removing one first.</string>
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d_two_factor_methods">તમે %1$dથી વધુ બે-પગલાંની ખાતરી પદ્ધતિઓ ઉમેરી શકતા નથી. પહેલા એકને દૂર કરી જુઓ.</string>
     <!-- Shown in place of the list when we couldn\'t work out which second factors are on the account -->
     <string name="AccountSettingsFragment__couldnt_load_your_two_factor_methods">તમારી બે-પગલાંની ખાતરી પદ્ધતિઓ લોડ ન કરી શક્યા. તમારું કનેક્શન તપાસો અને ફરીથી પ્રયત્ન કરો.</string>
     <!-- Toast shown after an authenticator app has been removed -->
@@ -152,7 +152,7 @@
     <string name="TotpCodeEntryScreen__couldnt_reach_signal">Signal સુધી પહોંચી ન શક્યા. તમારું કનેક્શન તપાસો અને ફરીથી પ્રયત્ન કરો.</string>
 
     <!-- Default name given to an authenticator app the moment it\'s set up, before the user chooses their own name for it -->
-    <string name="TotpRepository__authenticator">Authenticator</string>
+    <string name="TotpRepository__authenticator">પ્રમાણીકરણ</string>
 
     <!-- TotpNameEntryScreen -->
     <!-- Title of the screen where the user names an authenticator app -->

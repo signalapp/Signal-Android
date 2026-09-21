@@ -32,7 +32,7 @@
     <!-- Action button that saves the Signal Login as a PDF. -->
     <string name="SignalLoginViewDetailsScreen__save_as_pdf">Захаваць як PDF</string>
     <!-- Action button that starts the flow to replace the recovery key with a newly-generated one. -->
-    <string name="SignalLoginViewDetailsScreen__reset_recovery_key">Reset recovery key</string>
+    <string name="SignalLoginViewDetailsScreen__reset_recovery_key">Скiнуць код для аднаўлення</string>
     <!-- Suggested file name prefilled in the system save dialog when saving the Signal Login as a PDF. Keep the .pdf extension. -->
     <string name="SignalLoginViewDetailsScreen__signal_login_pdf">Signal Login.pdf</string>
     <!-- Toast shown when saving the Signal Login PDF fails. -->
@@ -44,7 +44,7 @@
     <!-- Title at the top of the PDF that holds the user\'s Signal Login. -->
     <string name="SignalLoginPdf__your_signal_login">Ваш Signal Login</string>
     <!-- Explainer below the title of the PDF that holds the user\'s Signal Login. -->
-    <string name="SignalLoginPdf__store_this_in_a_safe_place">Захоўвайце гэта ў бяспечным месцы; інфармацыя пра лагін спатрэбіцца, каб аднавіць свой уліковы запіс і свае даныя. Нікому не паведамляйце яго.</string>
+    <string name="SignalLoginPdf__store_this_in_a_safe_place">Захоўвайце гэта ў бяспечным месцы; вашыя звесткі лагіна спатрэбяцца, каб аднавіць свой уліковы запіс і свае даныя. Нікому не паведамляйце яго.</string>
     <!-- Section header above the account key in the PDF. -->
     <string name="SignalLoginPdf__account_id">ID уліковага запісу</string>
     <!-- Section header above the recovery key in the PDF. -->

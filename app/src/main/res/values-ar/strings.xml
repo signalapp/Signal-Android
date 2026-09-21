@@ -1637,7 +1637,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">اسم المُستخدم الخاص بك، وكود الـ QR والرابط ليسوا مرئيين على حسابك الشخصي. شارِك اسم المُستخدم الخاص بك فقط مع الناس الذين تثق بهم.</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-    <string name="ManageProfileFragment__username_footer_no_username">People can message you using an optional username instead of a phone number. Usernames have a unique QR code and link you can share with friends.</string>
+    <string name="ManageProfileFragment__username_footer_no_username">يمكن للأشخاص مراسلتك باستخدام اسم مُستخدِم اختياري بدلًا من رقم الهاتف. تحتوي أسماء المُستخدِمين على كود QR ورابط فريد يمكنك مشاركتها مع الأصدقاء.</string>
     <string name="ManageProfileFragment_profile_name">اسم الحساب</string>
     <string name="ManageProfileFragment_username">اسم المُستخدم</string>
     <string name="ManageProfileFragment_about">حول</string>
@@ -3156,21 +3156,21 @@
     <string name="StickerManagement_action_delete_selected">حذف</string>
     <!-- Confirmation message shown before uninstalling sticker packs. The placeholder is the number of items to delete. -->
     <plurals name="StickerManagement_delete_n_packs_confirmation">
-        <item quantity="zero">Remove %1$s sticker packs?</item>
-        <item quantity="one">Remove %1$s sticker pack?</item>
-        <item quantity="two">Remove %1$s sticker packs?</item>
-        <item quantity="few">Remove %1$s sticker packs?</item>
-        <item quantity="many">Remove %1$s sticker packs?</item>
-        <item quantity="other">Remove %1$s sticker packs?</item>
+        <item quantity="zero">هل ترغبُ بإزالة %1$s حزمة مُلصَقات؟</item>
+        <item quantity="one">هل ترغبُ بإزالة %1$s حزمة مُلصَقات؟</item>
+        <item quantity="two">هل ترغبُ بإزالة %1$s حزمتي مُلصَقات؟</item>
+        <item quantity="few">هل ترغبُ بإزالة %1$s حزم مُلصَقات؟</item>
+        <item quantity="many">هل ترغبُ بإزالة %1$s حزمة مُلصَقات؟</item>
+        <item quantity="other">هل ترغبُ بإزالة %1$s حزمة مُلصَقات؟</item>
     </plurals>
     <!-- Body of the confirmation dialog shown before uninstalling sticker packs. -->
     <plurals name="StickerManagement_delete_n_packs_confirmation_body">
-        <item quantity="zero">This will remove these sticker packs. You can\'t add it again without a link or sticker message.</item>
-        <item quantity="one">This will remove the sticker pack. You can\'t add it again without a link or sticker message.</item>
-        <item quantity="two">This will remove these sticker packs. You can\'t add it again without a link or sticker message.</item>
-        <item quantity="few">This will remove these sticker packs. You can\'t add it again without a link or sticker message.</item>
-        <item quantity="many">This will remove these sticker packs. You can\'t add it again without a link or sticker message.</item>
-        <item quantity="other">This will remove these sticker packs. You can\'t add it again without a link or sticker message.</item>
+        <item quantity="zero">سيؤدي هذا إلى إزالة حزم المُلصَقات هذه. لن تتمكن من إضافتها مُجدَّدًا دون رابط أو رسالة تحتوي على مُلصَق.</item>
+        <item quantity="one">سيؤدي هذا إلى إزالة حزمة المُلصَقات هذه. لن تتمكن من إضافتها مُجدَّدًا دون رابط أو رسالة تحتوي على مُلصَق.</item>
+        <item quantity="two">سيؤدي هذا إلى إزالة حزمتي المُلصَقات هذه. لن تتمكن من إضافتها مُجدَّدًا دون رابط أو رسالة تحتوي على مُلصَق.</item>
+        <item quantity="few">سيؤدي هذا إلى إزالة حزم المُلصَقات هذه. لن تتمكن من إضافتها مُجدَّدًا دون رابط أو رسالة تحتوي على مُلصَق.</item>
+        <item quantity="many">سيؤدي هذا إلى إزالة حزم المُلصَقات هذه. لن تتمكن من إضافتها مُجدَّدًا دون رابط أو رسالة تحتوي على مُلصَق.</item>
+        <item quantity="other">سيؤدي هذا إلى إزالة حزم المُلصَقات هذه. لن تتمكن من إضافتها مُجدَّدًا دون رابط أو رسالة تحتوي على مُلصَق.</item>
     </plurals>
     <!-- Message shown after installing a sticker pack. The placeholder is the name of the sticker pack that was installed. -->
     <string name="StickerManagement_installed_pack_s">تمَّ تثبيت %1$s.</string>
@@ -3393,7 +3393,7 @@
     <string name="UsernameEditFragment_username_is_invalid">اسم المُستخدم غير صالح.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">اسم المُستخدم لا بد أن يكون بين %1$d و%2$d رمز.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">People can message you using your optional username instead of a phone number. Usernames are always paired with a set of numbers.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">يمكن للأشخاص مراسلتك باستخدام اسم المُستخدِم الاختياري الخاص بك بدلًا من رقم الهاتف. يتم دائمًا إقران أسماء المُستخدِمين بمجموعة من الأرقام.</string>
     <!-- Button to allow user to skip -->
     <string name="UsernameEditFragment__skip">تخطّي</string>
     <!-- Content description for done button -->
@@ -3705,19 +3705,19 @@
 
     <!-- ConnectWithUsernamesDialogFragment -->
     <!-- Title of the username education screen shown to accounts registered without a phone number -->
-    <string name="ConnectWithUsernamesDialogFragment__connect_with_usernames">Connect with usernames</string>
+    <string name="ConnectWithUsernamesDialogFragment__connect_with_usernames">التواصل عبر أسماء المُستخدِمين</string>
     <!-- Title of the usernames section -->
     <string name="ConnectWithUsernamesDialogFragment__usernames">أسماء المُستخدِمين</string>
     <!-- Description of the usernames section -->
-    <string name="ConnectWithUsernamesDialogFragment__people_can_message_you_using_your_optional_username">People can message you using your optional username instead of a phone number. Usernames aren\'t visible on your profile.</string>
+    <string name="ConnectWithUsernamesDialogFragment__people_can_message_you_using_your_optional_username">يمكن للأشخاص مراسلتك باستخدام اسم المُستخدِم الاختياري الخاص بك بدلًا من رقم الهاتف. أسماء المُستخدِمين ليست مرئية على حسابك الشخصي.</string>
     <!-- Title of the QR code section -->
     <string name="ConnectWithUsernamesDialogFragment__qr_codes_and_links">روابط أو كودات الـ QR</string>
     <!-- Description of the QR code section -->
     <string name="ConnectWithUsernamesDialogFragment__usernames_have_a_unique_qr_code">أسماء المُستخدِمين لها رابط وكود QR فريدين يُمكنك مُشاركتُهما مع أصدقائك لكي يبدؤوا الدردشة معك بسرعة.</string>
     <!-- Title of the discoverability section -->
-    <string name="ConnectWithUsernamesDialogFragment__stay_discoverable">Stay discoverable</string>
+    <string name="ConnectWithUsernamesDialogFragment__stay_discoverable">ابقَ قابلًا للاكتشاف</string>
     <!-- Description of the discoverability section -->
-    <string name="ConnectWithUsernamesDialogFragment__without_a_phone_number_usernames_and_links">Without a phone number, usernames and links are the only way others can connect with you.</string>
+    <string name="ConnectWithUsernamesDialogFragment__without_a_phone_number_usernames_and_links">دون رقم هاتف، تكون أسماء المُستخدِمين والروابط هي الطريقة الوحيدة التي يمكن للآخرين من خلالها التواصل معك.</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="ConnectWithUsernamesDialogFragment__set_up_username">إعداد اسم المُستخدم</string>
     <!-- Button label that dismisses the screen without creating a username -->
@@ -3725,7 +3725,7 @@
 
     <!-- SetUpUsernameBanner -->
     <!-- Body of a banner on the new message screen prompting the user to create a username -->
-    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">Choose a username so others can connect with you.</string>
+    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">اختر اسم مُستخدِم حتى يتمكن الآخرون من التواصل معك.</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="SetUpUsernameBanner__set_up">إعداد</string>
     <!-- Accessibility label for the button that permanently dismisses the banner -->
@@ -9794,6 +9794,8 @@
     <string name="TransferAccount_continue_on_your_other_device">المتابعة على جهازك الآخر</string>
     <!-- Old device Transfer account bottom sheet dialog body -->
     <string name="TransferAccount_continue_on_your_other_device_details">تابِع نقل حسابك على جهازك الآخر.</string>
+    <!-- Old device Transfer account error dialog body shown when the new device is too old to accept an account that has no phone number -->
+    <string name="TransferAccount_the_device_you_are_transferring_to_is_out_of_date">The device you\'re transferring to is out of date. Update Signal on that device and try again.</string>
 
     <!-- Prepare Device screen title for quick restore flow -->
     <string name="PrepareDevice_title">جارٍ تجهيز جهازك</string>
@@ -10299,7 +10301,7 @@
     <!-- Content description for the button that clears the contact search field -->
     <string name="SelectContactScreen__clear_search">مسح مُدخلات البحث</string>
     <!-- Content description for the badge shown next to a contact that is in the phone\'s address book -->
-    <string name="SelectContactScreen__in_your_contacts">In your contacts</string>
+    <string name="SelectContactScreen__in_your_contacts">في جهات اتصالك</string>
     <!-- Title of the prompt asking for permission to read the user\'s phone contacts -->
     <string name="SelectContactScreen__find_people_you_know_on_signal">اعثُر على الأشخاص الذين تعرفهم على سيجنال</string>
     <!-- Explanation shown when Signal does not have permission to read the user\'s phone contacts -->
@@ -10309,9 +10311,9 @@
     <!-- Button that dismisses the request for permission to read the user\'s phone contacts -->
     <string name="SelectContactScreen__no_thanks">لا، شكرًا</string>
     <!-- Button that opens the phone\'s own contact picker, used when Signal cannot ask for contacts permission -->
-    <string name="SelectContactScreen__open_phone_contacts">Open phone contacts</string>
+    <string name="SelectContactScreen__open_phone_contacts">فتح جهات اتصال الهاتف</string>
     <!-- Note at the bottom of the contact picker when contacts permission was denied on the device. Placeholder is the "Learn more" link text. -->
-    <string name="SelectContactScreen__to_see_your_phone_contacts_here">To see your phone contacts here, allow access in your device settings. %1$s</string>
+    <string name="SelectContactScreen__to_see_your_phone_contacts_here">لرؤية جهات اتصال هاتفك هنا، اسمح بالوصول إليها في إعدادات جهازك. %1$s</string>
     <!-- Link that opens instructions for granting contacts permission from the device settings -->
     <string name="SelectContactScreen__learn_more">اعرف المزيد</string>
     <!-- Title of the sheet explaining how to grant contacts permission from the device settings -->
@@ -10319,7 +10321,7 @@
     <!-- Subtitle of the sheet explaining how to grant contacts permission from the device settings -->
     <string name="SelectContactScreen__to_find_people_you_know_on_signal">للعثور على الأشخاص الذين تعرفهم على سيجنال:</string>
     <!-- Toast shown when a selected contact can no longer be read -->
-    <string name="SelectContactScreen__couldnt_open_contact">Couldn\'t open that contact</string>
+    <string name="SelectContactScreen__couldnt_open_contact">تعذَّر فتح جهة الاتصال تلك</string>
 
     <!-- Title of the screen where the user chooses which parts of a contact to share -->
     <string name="ShareContactScreen__share_contact">مشاركة جهة الاتصال</string>
@@ -10375,15 +10377,15 @@
     <string name="SharedContactDetailsScreen__join_me_on_signal">انضم إليّ على سيجنال</string>
 
     <!-- Title of the bottom sheet that confirms the user wants a brand new recovery key. -->
-    <string name="ResetRecoveryKeyBottomSheet__reset_your_recovery_key">Reset your recovery key</string>
+    <string name="ResetRecoveryKeyBottomSheet__reset_your_recovery_key">إعادة تعيين مفتاح الاسترداد</string>
     <!-- First paragraph of the bottom sheet body, explaining what a reset does. -->
-    <string name="ResetRecoveryKeyBottomSheet__resetting_your_recovery_key_will_create_a_new_key">Resetting your recovery key will create a new key for your Signal Login. This is only necessary if someone else knows your key.</string>
+    <string name="ResetRecoveryKeyBottomSheet__resetting_your_recovery_key_will_create_a_new_key">سَتؤدي إعادة تعيين مفتاح الاسترداد إلى إنشاء مفتاح جديد لـ Signal Login الخاص بك. هذا الإجراء ضروري فقط إذا كان هناك شخص آخر يعرف مفتاحك.</string>
     <!-- Second paragraph of the bottom sheet body, explaining what a reset means for backups. -->
-    <string name="ResetRecoveryKeyBottomSheet__if_backups_are_enabled_you_will_have_to_re_upload">If backups are enabled you will have to re-upload your backup, including media. If you are using \"Optimize Signal storage\" you will have to download offloaded media first.</string>
+    <string name="ResetRecoveryKeyBottomSheet__if_backups_are_enabled_you_will_have_to_re_upload">إذا كانت النسخ الاحتياطية مُفعَّلة، فستضطر إلى إعادة تحميل نسختك الاحتياطية، بما في ذلك ملفات الوسائط. إذا كُنتَ تستخدم خاصية \"تحسين مساحة التخزين على سيجنال\"، سَيتعين عليك تنزيل ملفات الوسائط المنقولة أولًا.</string>
     <!-- Bottom sheet action that continues on to reset the recovery key. -->
     <string name="ResetRecoveryKeyBottomSheet__continue">متابعة</string>
     <!-- Dialog body shown when the recovery key change limit is exhausted and the user does not have backups enabled. -->
-    <string name="BackupKeyRotationDialogs__limit_exceeded_body_no_backups">You\'ve exhausted the number of new keys you can create. You will be able to create a new recovery key in 7 days.</string>
+    <string name="BackupKeyRotationDialogs__limit_exceeded_body_no_backups">استنفدت عدد المفاتيح التي يمكنك إنشاؤها. سيصبح بإمكانك إنشاء مفتاح استعادة جديد في 7 أيام.</string>
 
     <!-- EOF -->
 </resources>

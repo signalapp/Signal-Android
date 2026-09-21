@@ -2763,11 +2763,11 @@
     <!-- Label for the sticker management screen tab which shows all of the sticker packs. -->
     <string name="StickerManagement_all_tab_label">Tutti</string>
     <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
-    <string name="StickerManagement_my_stickers_tab_label">I miei adesivi</string>
+    <string name="StickerManagement_my_stickers_tab_label">I miei sticker</string>
     <!-- Shown when there are no sticker packs to show. -->
     <string name="StickerManagement_all_tab_empty_text">Nessun pacchetto di sticker disponibile</string>
     <!-- Shown when there are no sticker packs currently installed. -->
-    <string name="StickerManagement_installed_tab_empty_text">Nessun pacchetto di adesivi, aggiungine di nuovi per inviarli nelle tue chat.</string>
+    <string name="StickerManagement_installed_tab_empty_text">Nessun pacchetto di sticker, aggiungi degli sticker per inviarli nelle tue chat.</string>
     <!-- Message shown when the author of the sticker pack is unknown. -->
     <string name="StickerManagement_author_unknown">Sconosciuto</string>
     <!-- Sticker pack list section header for packs that are already installed. -->
@@ -2775,7 +2775,7 @@
     <!-- Sticker pack list section header for packs that have been received from incoming messages. -->
     <string name="StickerManagement_shared_with_you_header">Condivisi con te</string>
     <!-- Sticker pack description for packs that have been sent to you -->
-    <string name="StickerManagement_when_you_receive">I pacchetti degli adesivi che ricevi in chat appariranno qui.</string>
+    <string name="StickerManagement_when_you_receive">I pacchetti di sticker che ricevi in chat appariranno qui.</string>
     <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
     <string name="StickerManagement_signal_artist_series_header">Serie artisti di Signal</string>
     <!-- Title shown when sharing a sticker pack with another user. -->
@@ -2830,7 +2830,7 @@
     <!-- Hint text shown in the sticker management search field. -->
     <string name="StickerManagement_search">Cerca</string>
     <!-- Shown when no stickers match the search. The placeholder what was searched. -->
-    <string name="StickerManagement_search_no_results_s">Nessun risultato trovato per \'%1$s\'</string>
+    <string name="StickerManagement_search_no_results_s">Nessun risultato trovato per \"%1$s\"</string>
 
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
     <string name="StickerManagement_accessibility_download_pack">Scarica il pacchetto di adesivi \"%1$s\"</string>
@@ -2849,7 +2849,7 @@
     <!-- Label for the button that expands the list to show every sticker pack in a section. -->
     <string name="StickerManagement__see_all">Vedi tutto</string>
     <!-- Button that takes you to the list of sticker packs you can install. -->
-    <string name="StickerManagement__add_stickers">Aggiungi adesivi</string>
+    <string name="StickerManagement__add_stickers">Aggiungi sticker</string>
     <!-- Accessibility label to close the search field. -->
     <string name="StickerManagement_accessibility_close_search">Chiudi ed esci dalla ricerca</string>
     <!-- Accessibility label to clear the search field. -->
@@ -9018,6 +9018,8 @@
     <string name="TransferAccount_continue_on_your_other_device">Continua sull\'altro dispositivo</string>
     <!-- Old device Transfer account bottom sheet dialog body -->
     <string name="TransferAccount_continue_on_your_other_device_details">Prosegui il trasferimento del tuo account sull\'altro dispositivo.</string>
+    <!-- Old device Transfer account error dialog body shown when the new device is too old to accept an account that has no phone number -->
+    <string name="TransferAccount_the_device_you_are_transferring_to_is_out_of_date">The device you\'re transferring to is out of date. Update Signal on that device and try again.</string>
 
     <!-- Prepare Device screen title for quick restore flow -->
     <string name="PrepareDevice_title">Preparazione del tuo dispositivo</string>
@@ -9503,7 +9505,7 @@
     <!-- Button that asks the system for permission to read the user\'s phone contacts -->
     <string name="SelectContactScreen__allow_access">Consenti accesso</string>
     <!-- Button that dismisses the request for permission to read the user\'s phone contacts -->
-    <string name="SelectContactScreen__no_thanks">No grazie</string>
+    <string name="SelectContactScreen__no_thanks">No, grazie</string>
     <!-- Button that opens the phone\'s own contact picker, used when Signal cannot ask for contacts permission -->
     <string name="SelectContactScreen__open_phone_contacts">Open phone contacts</string>
     <!-- Note at the bottom of the contact picker when contacts permission was denied on the device. Placeholder is the "Learn more" link text. -->

@@ -1422,7 +1422,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">သင်၏ သုံးစွဲသူအမည်၊ QR ကုဒ်နှင့် လင့်ခ်တို့ကို သင့်ပရိုဖိုင်တွင် မမြင်တွေ့နိုင်ပါ။ သင့်သုံးစွဲသူအမည်ကို သင် ယုံကြည်သူများနှင့်သာ မျှဝေပေးပါ။</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-    <string name="ManageProfileFragment__username_footer_no_username">People can message you using an optional username instead of a phone number. Usernames have a unique QR code and link you can share with friends.</string>
+    <string name="ManageProfileFragment__username_footer_no_username">ဖုန်းနံပါတ်အစား ရွေးချယ်နိုင်သော သုံးစွဲသူအမည်ကိုသုံးကာ အခြားသူများက သင့်ထံ မက်ဆေ့ချ်ပို့နိုင်ပါသည်။ သုံးစွဲသူအမည်များတွင် မိတ်ဆွေများနှင့် မျှဝေနိုင်သည့် ထူးခြားသော QR ကုဒ်နှင့် လင့်ခ် ပါဝင်သည်။</string>
     <string name="ManageProfileFragment_profile_name">ပရိုဖိုင်း အမည်</string>
     <string name="ManageProfileFragment_username">သုံးစွဲသူအမည်</string>
     <string name="ManageProfileFragment_about">အကြောင်း</string>
@@ -2671,7 +2671,7 @@
     <!-- Label for the sticker management screen tab which shows all of the sticker packs. -->
     <string name="StickerManagement_all_tab_label">အားလုံး</string>
     <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
-    <string name="StickerManagement_my_stickers_tab_label">ကျွန်ုပ်၏ စတစ်ကာ</string>
+    <string name="StickerManagement_my_stickers_tab_label">ကျွန်ုပ်၏ စတစ်ကာများ</string>
     <!-- Shown when there are no sticker packs to show. -->
     <string name="StickerManagement_all_tab_empty_text">စတစ်ကာတွဲများကို မရနိုင်ပါ</string>
     <!-- Shown when there are no sticker packs currently installed. -->
@@ -2696,11 +2696,11 @@
     <string name="StickerManagement_action_delete_selected">ဖျက်ရန်</string>
     <!-- Confirmation message shown before uninstalling sticker packs. The placeholder is the number of items to delete. -->
     <plurals name="StickerManagement_delete_n_packs_confirmation">
-        <item quantity="other">Remove %1$s sticker packs?</item>
+        <item quantity="other">စတစ်ကာတွဲ %1$s ခုကို ဖယ်ရှားမည်လား။</item>
     </plurals>
     <!-- Body of the confirmation dialog shown before uninstalling sticker packs. -->
     <plurals name="StickerManagement_delete_n_packs_confirmation_body">
-        <item quantity="other">This will remove these sticker packs. You can\'t add it again without a link or sticker message.</item>
+        <item quantity="other">ဤလုပ်ဆောင်ချက်သည် ယင်းစတစ်ကာတွဲများကို ဖယ်ရှားမည်ဖြစ်သည်။ လင့်ခ် သို့မဟုတ် စတစ်ကာ မက်ဆေ့ချ်မရှိပါက ၎င်းတို့ကို ပြန်လည်ထည့်သွင်း၍ မရပါ။</item>
     </plurals>
     <!-- Message shown after installing a sticker pack. The placeholder is the name of the sticker pack that was installed. -->
     <string name="StickerManagement_installed_pack_s">%1$s ကို ထည့်သွင်းထားသည်။</string>
@@ -2728,7 +2728,7 @@
     <!-- Sticker management screen dropdown menu label for the button to enter multi-select mode. -->
     <string name="StickerManagement_menu_select_packs">စတစ်ကာအတွဲများကို ရွေးပါ</string>
     <!-- Sticker pack list dropdown menu label for sending a sticker pack. -->
-    <string name="StickerManagement_menu_send_pack">ပို့ပါ</string>
+    <string name="StickerManagement_menu_send_pack">ပို့ရန်</string>
     <!-- Sticker pack list dropdown menu label for copying a sticker link. -->
     <string name="StickerManagement_menu_copy_pack">လင့်ခ်ကူးရန်</string>
     <!-- Hint text shown in the sticker management search field. -->
@@ -2913,7 +2913,7 @@
     <string name="UsernameEditFragment_username_is_invalid">သုံးစွဲသူအမည် မမှန်ကန်ပါ</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">သုံးစွဲသူအမည်များသည် %1$d နှင့် %2$d ကြား အက္ခရာလုံး အရေတွက်ရှိရပါမည် ။</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">People can message you using your optional username instead of a phone number. Usernames are always paired with a set of numbers.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">ဖုန်းနံပါတ်အစား ရွေးချယ်နိုင်သော သုံးစွဲသူအမည်ကိုသုံးကာ အခြားသူများက သင့်ထံ မက်ဆေ့ချ်ပို့နိုင်ပါသည်။ သုံးစွဲသူအမည်များကို ကိန်းဂဏန်းတွဲတစ်ခုနှင့် အမြဲတွဲဖက်ထားပါသည်။</string>
     <!-- Button to allow user to skip -->
     <string name="UsernameEditFragment__skip">ကျော်ပါ။</string>
     <!-- Content description for done button -->
@@ -3190,19 +3190,19 @@
 
     <!-- ConnectWithUsernamesDialogFragment -->
     <!-- Title of the username education screen shown to accounts registered without a phone number -->
-    <string name="ConnectWithUsernamesDialogFragment__connect_with_usernames">Connect with usernames</string>
+    <string name="ConnectWithUsernamesDialogFragment__connect_with_usernames">သုံးစွဲသူအမည်ဖြင့် ချိတ်ဆက်ပါ</string>
     <!-- Title of the usernames section -->
     <string name="ConnectWithUsernamesDialogFragment__usernames">သုံးစွဲသူအမည်များ</string>
     <!-- Description of the usernames section -->
-    <string name="ConnectWithUsernamesDialogFragment__people_can_message_you_using_your_optional_username">People can message you using your optional username instead of a phone number. Usernames aren\'t visible on your profile.</string>
+    <string name="ConnectWithUsernamesDialogFragment__people_can_message_you_using_your_optional_username">ဖုန်းနံပါတ်အစား ရွေးချယ်နိုင်သော သုံးစွဲသူအမည်ကိုသုံးကာ အခြားသူများက သင့်ထံ မက်ဆေ့ချ်ပို့နိုင်ပါသည်။ သုံးစွဲသူအမည်များကို သင့်ပရိုဖိုင်တွင် မမြင်တွေ့နိုင်ပါ။</string>
     <!-- Title of the QR code section -->
     <string name="ConnectWithUsernamesDialogFragment__qr_codes_and_links">QR ကုဒ်များနှင့် လင့်ခ်များ</string>
     <!-- Description of the QR code section -->
     <string name="ConnectWithUsernamesDialogFragment__usernames_have_a_unique_qr_code">သုံးစွဲသူအမည်များတွင် သင်နှင့် လျင်မြန်စွာ ချက်(တ်)စတင်နိုင်ရန် မိတ်ဆွေများထံ ဝေမျှနိုင်သည့် သီးသန့် QR ကုဒ်နှင့် လင့်ခ်တစ်ခု ရှိပါသည်။</string>
     <!-- Title of the discoverability section -->
-    <string name="ConnectWithUsernamesDialogFragment__stay_discoverable">Stay discoverable</string>
+    <string name="ConnectWithUsernamesDialogFragment__stay_discoverable">ရှာဖွေတွေ့ရှိနိုင်အောင် ဆက်လက်ထားပါ</string>
     <!-- Description of the discoverability section -->
-    <string name="ConnectWithUsernamesDialogFragment__without_a_phone_number_usernames_and_links">Without a phone number, usernames and links are the only way others can connect with you.</string>
+    <string name="ConnectWithUsernamesDialogFragment__without_a_phone_number_usernames_and_links">ဖုန်းနံပါတ်မပါလျှင် သုံးစွဲသူအမည်နှင့် လင့်ခ်များမှတစ်ဆင့်သာ အခြားသူများက သင်နှင့် ချိတ်ဆက်နိုင်ပါလိမ့်မည်။</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="ConnectWithUsernamesDialogFragment__set_up_username">သုံးစွဲသူအမည်ကို စီစဉ်သတ်မှတ်ရန်</string>
     <!-- Button label that dismisses the screen without creating a username -->
@@ -3210,7 +3210,7 @@
 
     <!-- SetUpUsernameBanner -->
     <!-- Body of a banner on the new message screen prompting the user to create a username -->
-    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">Choose a username so others can connect with you.</string>
+    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">အခြားသူများက သင်နှင့် ချိတ်ဆက်နိုင်ရန် သုံးစွဲသူအမည်တစ်ခုကို ရွေးပါ။</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="SetUpUsernameBanner__set_up">သတ်မှတ်ရန်</string>
     <!-- Accessibility label for the button that permanently dismisses the banner -->
@@ -8824,6 +8824,8 @@
     <string name="TransferAccount_continue_on_your_other_device">သင့် အခြားစက်ပေါ်တွင် ဆက်လုပ်ရန်</string>
     <!-- Old device Transfer account bottom sheet dialog body -->
     <string name="TransferAccount_continue_on_your_other_device_details">သင့်အကောင့်ကို သင့်အခြားစက်ပေါ်တွင် ဆက်လက်လွှဲပြောင်းပါ။</string>
+    <!-- Old device Transfer account error dialog body shown when the new device is too old to accept an account that has no phone number -->
+    <string name="TransferAccount_the_device_you_are_transferring_to_is_out_of_date">The device you\'re transferring to is out of date. Update Signal on that device and try again.</string>
 
     <!-- Prepare Device screen title for quick restore flow -->
     <string name="PrepareDevice_title">သင့်စက်ကို အသင့်ပြင်ခြင်း</string>
@@ -9288,13 +9290,13 @@
     </plurals>
 
     <!-- Title of the screen for picking a contact to share -->
-    <string name="SelectContactScreen__select_contact">Select contact</string>
+    <string name="SelectContactScreen__select_contact">အဆက်အသွယ်ကို ရွေးချယ်ရန်</string>
     <!-- Placeholder in the search field on the contact picker -->
     <string name="SelectContactScreen__search">ရှာရန်</string>
     <!-- Content description for the button that clears the contact search field -->
     <string name="SelectContactScreen__clear_search">ရှာဖွေမှုကို ရှင်းရန်</string>
     <!-- Content description for the badge shown next to a contact that is in the phone\'s address book -->
-    <string name="SelectContactScreen__in_your_contacts">In your contacts</string>
+    <string name="SelectContactScreen__in_your_contacts">သင့်အဆက်အသွယ်များထဲတွင်</string>
     <!-- Title of the prompt asking for permission to read the user\'s phone contacts -->
     <string name="SelectContactScreen__find_people_you_know_on_signal">Signal တွင် သင်သိသောသူများကို ရှာပါ</string>
     <!-- Explanation shown when Signal does not have permission to read the user\'s phone contacts -->
@@ -9304,9 +9306,9 @@
     <!-- Button that dismisses the request for permission to read the user\'s phone contacts -->
     <string name="SelectContactScreen__no_thanks">မလုပ်လိုပါ</string>
     <!-- Button that opens the phone\'s own contact picker, used when Signal cannot ask for contacts permission -->
-    <string name="SelectContactScreen__open_phone_contacts">Open phone contacts</string>
+    <string name="SelectContactScreen__open_phone_contacts">ဖုန်းအဆက်အသွယ်များကို ဖွင့်ပါ</string>
     <!-- Note at the bottom of the contact picker when contacts permission was denied on the device. Placeholder is the "Learn more" link text. -->
-    <string name="SelectContactScreen__to_see_your_phone_contacts_here">To see your phone contacts here, allow access in your device settings. %1$s</string>
+    <string name="SelectContactScreen__to_see_your_phone_contacts_here">သင့်ဖုန်းရှိ အဆက်အသွယ်များကို ဤနေရာတွင် မြင်နိုင်ရန် စက်၏ ဆက်တင်များတွင် အသုံးပြုခွင့်ပြုပါ။ %1$s</string>
     <!-- Link that opens instructions for granting contacts permission from the device settings -->
     <string name="SelectContactScreen__learn_more">ပိုမိုလေ့လာရန်</string>
     <!-- Title of the sheet explaining how to grant contacts permission from the device settings -->
@@ -9314,7 +9316,7 @@
     <!-- Subtitle of the sheet explaining how to grant contacts permission from the device settings -->
     <string name="SelectContactScreen__to_find_people_you_know_on_signal">Signal တွင် သင်သိသောသူများကို ရှာရန်-</string>
     <!-- Toast shown when a selected contact can no longer be read -->
-    <string name="SelectContactScreen__couldnt_open_contact">Couldn\'t open that contact</string>
+    <string name="SelectContactScreen__couldnt_open_contact">ထိုအဆက်အသွယ်ကို ဖွင့်၍မရပါ</string>
 
     <!-- Title of the screen where the user chooses which parts of a contact to share -->
     <string name="ShareContactScreen__share_contact">အဆက်အသွယ် မျှဝေရန်</string>
@@ -9370,15 +9372,15 @@
     <string name="SharedContactDetailsScreen__join_me_on_signal">Signal မှာ ကျွန်ုပ်နဲ့ ချိတ်ဆက်လိုက်ပါ</string>
 
     <!-- Title of the bottom sheet that confirms the user wants a brand new recovery key. -->
-    <string name="ResetRecoveryKeyBottomSheet__reset_your_recovery_key">Reset your recovery key</string>
+    <string name="ResetRecoveryKeyBottomSheet__reset_your_recovery_key">သင့်ပြန်လည်ရယူရေးကီးကို ပြန်လည်သတ်မှတ်ပါ</string>
     <!-- First paragraph of the bottom sheet body, explaining what a reset does. -->
-    <string name="ResetRecoveryKeyBottomSheet__resetting_your_recovery_key_will_create_a_new_key">Resetting your recovery key will create a new key for your Signal Login. This is only necessary if someone else knows your key.</string>
+    <string name="ResetRecoveryKeyBottomSheet__resetting_your_recovery_key_will_create_a_new_key">ပြန်လည်ရယူရေးကီးကို ပြန်လည်သတ်မှတ်ခြင်းဖြင့် သင့် Signal Login အတွက် ကီးအသစ်တစ်ခု ဖန်တီးပေးမည်ဖြစ်သည်။ အခြားသူတစ်ဦးဦးက သင့်ကီးကို သိရှိထားမှသာ ဤလုပ်ဆောင်ချက်ကို ပြုလုပ်ရန် လိုအပ်ပါသည်။</string>
     <!-- Second paragraph of the bottom sheet body, explaining what a reset means for backups. -->
-    <string name="ResetRecoveryKeyBottomSheet__if_backups_are_enabled_you_will_have_to_re_upload">If backups are enabled you will have to re-upload your backup, including media. If you are using \"Optimize Signal storage\" you will have to download offloaded media first.</string>
+    <string name="ResetRecoveryKeyBottomSheet__if_backups_are_enabled_you_will_have_to_re_upload">ဘက်ခ်အပ်ကို ဖွင့်ထားပါက မီဒီယာများအပါအဝင် သင့်ဘက်ခ်အပ်ကို ပြန်လည်အပ်လုဒ်လုပ်ရမည်ဖြစ်သည်။ အကယ်၍ သင်သည် \"Signal သိုလှောင်မှု အကောင်းဆုံးချိန်ညှိရန်\" ကို အသုံးပြုနေပါက Offload လုပ်ထားသော မီဒီယာကို ဦးစွာ ဒေါင်းလုဒ်လုပ်ရပါမည်။</string>
     <!-- Bottom sheet action that continues on to reset the recovery key. -->
     <string name="ResetRecoveryKeyBottomSheet__continue">ဆက်လုပ်ရန်</string>
     <!-- Dialog body shown when the recovery key change limit is exhausted and the user does not have backups enabled. -->
-    <string name="BackupKeyRotationDialogs__limit_exceeded_body_no_backups">You\'ve exhausted the number of new keys you can create. You will be able to create a new recovery key in 7 days.</string>
+    <string name="BackupKeyRotationDialogs__limit_exceeded_body_no_backups">သင်ဖန်တီးနိုင်သော ကီးအသစ်အရေအတွက် ကုန်သွားပါပြီ။ သင်သည် 7 ရက်အတွင်း ပြန်လည်ရယူရေးကီးအသစ်ကို ဖန်တီးနိုင်မည်ဖြစ်သည်။</string>
 
     <!-- EOF -->
 </resources>

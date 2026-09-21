@@ -56,7 +56,7 @@
     <!-- Button on the phone number screen that starts registering with a purchased Signal Login instead of a phone number -->
     <string name="RegistrationActivity_register_without_number">ಸಂಖ್ಯೆಯಿಲ್ಲದೆ ನೋಂದಾಯಿಸಿ</string>
     <!-- Button on the phone number screen, shown when the user already said they have an account to restore, that goes straight to entering their existing Signal Login -->
-    <string name="RegistrationActivity_use_account_id">Use account ID</string>
+    <string name="RegistrationActivity_use_account_id">ಖಾತೆ ID ಅನ್ನು ಬಳಸಿ</string>
     <!-- Dialog title to confirm phone number -->
     <string name="RegistrationActivity_is_the_phone_number">ಈ ಕೆಳಗಿನ ಫೋನ್ ನಂಬರ್ ಸರಿಯಾಗಿದೆಯೇ?</string>
     <!-- Dialog body to confirm phone number -->
@@ -606,7 +606,7 @@
     <!-- Title of the screen where the user buys a Signal Login to register without a phone number. -->
     <string name="SignalLoginPaymentScreen__signal_login">Signal Login</string>
     <!-- Description of what a Signal Login is. Followed by a "learn more" link. -->
-    <string name="SignalLoginPaymentScreen__register_without_a_phone_number">Register without a phone number using Signal Login. With a one-time purchase, you\'ll receive an account ID to get started.</string>
+    <string name="SignalLoginPaymentScreen__register_without_a_phone_number">Signal Login ಬಳಸಿಕೊಂಡು ಫೋನ್ ಸಂಖ್ಯೆಯಿಲ್ಲದೆ ನೋಂದಾಯಿಸಿ. ಒಂದು ಬಾರಿಯ ಖರೀದಿಯೊಂದಿಗೆ, ಪ್ರಾರಂಭಿಸಲು ನೀವು ಖಾತೆ ID ಅನ್ನು ಸ್ವೀಕರಿಸುತ್ತೀರಿ.</string>
     <!-- Link at the end of the description that opens a support article about Signal Login. -->
     <string name="SignalLoginPaymentScreen__learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
     <!-- Subtitle of the purchase option, clarifying the price is not a subscription. -->
@@ -620,7 +620,7 @@
     <!-- Title of the option for users who already bought a Signal Login. -->
     <string name="SignalLoginPaymentScreen__i_have_a_signal_login">ನನ್ನ ಬಳಿ Signal Login ಇದೆ</string>
     <!-- Subtitle of the existing-login option. -->
-    <string name="SignalLoginPaymentScreen__use_your_existing_account_key">Use your existing login info</string>
+    <string name="SignalLoginPaymentScreen__use_your_existing_account_key">ನಿಮ್ಮ ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ಲಾಗಿನ್ ಮಾಹಿತಿಯನ್ನು ಬಳಸಿ</string>
     <!-- Selling point of the existing-login option: the account can be restored. -->
     <string name="SignalLoginPaymentScreen__login_and_restore_your_account">ಲಾಗಿನ್ ಮಾಡಿ ಮತ್ತು ನಿಮ್ಮ ಖಾತೆಯನ್ನು ರಿಸ್ಟೋರ್ ಮಾಡಿ</string>
     <!-- Selling point of the existing-login option, thanking the user for their previous purchase. -->
@@ -650,31 +650,31 @@
     <!-- Title of the dialog shown when Google Play services is too old to take a payment. -->
     <string name="SignalLoginPaymentScreen__update_google_play_services">Google Play ಸೇವೆಗಳನ್ನು ಅಪ್‌ಡೇಟ್ ಮಾಡಿ</string>
     <!-- Body of the dialog shown when Google Play services is too old to take a payment. -->
-    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_update_google_play_services">To purchase a Signal Login, update Google Play services on this device.</string>
+    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_update_google_play_services">Signal Login ಅನ್ನು ಖರೀದಿಸಲು, ಈ ಸಾಧನದಲ್ಲಿ Google Play ಸೇವೆಗಳನ್ನು ಅಪ್‌ಡೇಟ್ ಮಾಡಿ.</string>
     <!-- Button that updates Google Play services. -->
     <string name="SignalLoginPaymentScreen__update">ನವೀಕರಿಸಿ</string>
     <!-- Title of the dialog shown when Google Play services is not installed. -->
     <string name="SignalLoginPaymentScreen__google_play_services_missing">Google Play ಸೇವೆಗಳು ಕಾಣಿಸುತ್ತಿಲ್ಲ</string>
     <!-- Body of the dialog shown when Google Play services is not installed. -->
-    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_google_play_services_needs_to_be_installed">To purchase a Signal Login, Google Play services needs to be installed.</string>
+    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_google_play_services_needs_to_be_installed">Signal Login ಅನ್ನು ಖರೀದಿಸಲು, Google Play ಸೇವೆಗಳನ್ನು ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿಕೊಳ್ಳಬೇಕಾಗುತ್ತದೆ.</string>
     <!-- Button that installs Google Play services. -->
     <string name="SignalLoginPaymentScreen__install_play_services">Play ಸೇವೆಗಳನ್ನು ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿ</string>
     <!-- Title of the dialog shown while Google Play services is updating itself. -->
     <string name="SignalLoginPaymentScreen__google_play_services_are_updating">Google Play ಸೇವೆಗಳನ್ನು ಅಪ್‌ಡೇಟ್ ಮಾಡಲಾಗುತ್ತಿದೆ</string>
     <!-- Body of the dialog shown while Google Play services is updating itself. -->
-    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_wait_for_google_play_services">To purchase a Signal Login please wait for Google Play services to finish updating.</string>
+    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_wait_for_google_play_services">Signal Login ಅನ್ನು ಖರೀದಿಸಲು Google Play ಸೇವೆಗಳು ಅಪ್‌ಡೇಟ್ ಆಗುವುದನ್ನು ಪೂರ್ಣಗೊಳಿಸುವವರೆಗೂ ನಿರೀಕ್ಷಿಸಿ.</string>
     <!-- Title of the dialog shown when Google Play cannot be used to take a payment. -->
-    <string name="SignalLoginPaymentScreen__google_play_is_required">Google Play is required</string>
+    <string name="SignalLoginPaymentScreen__google_play_is_required">Google Play ಅಗತ್ಯವಿದೆ</string>
     <!-- Body of the dialog shown when Google Play services is installed but turned off. -->
-    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_enable_google_play_services">To purchase a Signal Login, enable Google Play services on this device and sign into the Google Play store.</string>
+    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_enable_google_play_services">Signal Login ಅನ್ನು ಖರೀದಿಸಲು, ಈ ಸಾಧನದಲ್ಲಿ Google Play ಸೇವೆಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ ಮತ್ತು Google Play ಸ್ಟೋರ್‌ಗೆ ಸೈನ್ ಇನ್ ಮಾಡಿ.</string>
     <!-- Body of the dialog shown when the device cannot run Google Play services at all. -->
-    <string name="SignalLoginPaymentScreen__you_cant_purchase_a_signal_login_on_this_device">You can\'t purchase a Signal Login because this device does not support Google Play services. Contact the phone manufacturer for assistance.</string>
+    <string name="SignalLoginPaymentScreen__you_cant_purchase_a_signal_login_on_this_device">ಈ ಸಾಧನವು Google Play ಸೇವೆಗಳನ್ನು ಬೆಂಬಲಿಸದ ಕಾರಣ ನೀವು Signal Login ಅನ್ನು ಖರೀದಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ. ಸಹಾಯಕ್ಕಾಗಿ ಫೋನ್ ತಯಾರಕರನ್ನು ಸಂಪರ್ಕಿಸಿ.</string>
     <!-- Body of the dialog shown when Google Play services works but nobody is signed into the Play Store. -->
-    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_sign_into_the_google_play_store">To purchase a Signal Login, please sign into the Google Play store.</string>
+    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_sign_into_the_google_play_store">Signal Login ಅನ್ನು ಖರೀದಿಸಲು, Google Play ಸ್ಟೋರ್‌ಗೆ ಸೈನ್ ಇನ್ ಮಾಡಿ.</string>
     <!-- Body of the dialog shown when this version of Signal cannot make Google Play purchases at all. -->
-    <string name="SignalLoginPaymentScreen__you_cant_purchase_a_signal_login_in_this_version">You can\'t purchase a Signal Login in this version of Signal. Install Signal from the Google Play store to buy one.</string>
+    <string name="SignalLoginPaymentScreen__you_cant_purchase_a_signal_login_in_this_version">Signal ನ ಈ ಆವೃತ್ತಿಯಲ್ಲಿ ನೀವು Signal Login ಅನ್ನು ಖರೀದಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ. ಅದನ್ನು ಖರೀದಿಸಲು Google Play ಸ್ಟೋರ್‌ನಿಂದ Signal ಅನ್ನು ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿಕೊಳ್ಳಿ.</string>
     <!-- Button that opens the Google Play store so the user can sign into it. -->
-    <string name="SignalLoginPaymentScreen__open_play_store">Open Play Store</string>
+    <string name="SignalLoginPaymentScreen__open_play_store">Play Store ತೆರೆಯಿರಿ</string>
 
     <!-- Signal Login details screen -->
     <!-- Title of the screen that shows the user their newly purchased Signal Login. -->

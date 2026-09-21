@@ -229,6 +229,11 @@
   <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
   <string name="LinkedDeviceScannedDialog__device_link_dialog_continue">계속</string>
 
+  <!-- The title of a dialog shown when the user scanned a transfer QR code from a device that is too old to accept their account. -->
+  <string name="ReRegistrationScannedDialog__transfer_failed_title">Can\'t transfer account</string>
+  <!-- The body of a dialog shown when the user scanned a transfer QR code from a device that is too old to accept their account. -->
+  <string name="ReRegistrationScannedDialog__the_device_you_are_transferring_to_is_out_of_date">The device you\'re transferring to is out of date. Update Signal on that device and try again.</string>
+
     <!-- Gif label displayed in a pill in the editor specifying the type of media being sent. -->
     <plurals name="MediaEditScreen__gif">
         <item quantity="other">Gif %1$d개</item>

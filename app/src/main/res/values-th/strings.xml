@@ -1422,7 +1422,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">ชื่อผู้ใช้ คิวอาร์โค้ดและลิงก์จะไม่ปรากฏบนโปรไฟล์ของคุณ เราขอแนะนำให้แชร์ชื่อผู้ใช้ของคุณกับคนที่ไว้วางใจเท่านั้น</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-    <string name="ManageProfileFragment__username_footer_no_username">People can message you using an optional username instead of a phone number. Usernames have a unique QR code and link you can share with friends.</string>
+    <string name="ManageProfileFragment__username_footer_no_username">ผู้ติดต่อจะสามารถส่งข้อความหาคุณผ่านชื่อผู้ใช้ที่คุณกำหนดโดยไม่จำเป็นต้องมีหมายเลขโทรศัพท์ ชื่อผู้ใช้จะมีคิวอาร์โค้ดและลิงก์เฉพาะที่คุณสามารถแชร์ให้เพื่อนได้</string>
     <string name="ManageProfileFragment_profile_name">ชื่อโปรไฟล์</string>
     <string name="ManageProfileFragment_username">ชื่อผู้ใช้</string>
     <string name="ManageProfileFragment_about">เกี่ยวกับ</string>
@@ -2696,11 +2696,11 @@
     <string name="StickerManagement_action_delete_selected">ลบ</string>
     <!-- Confirmation message shown before uninstalling sticker packs. The placeholder is the number of items to delete. -->
     <plurals name="StickerManagement_delete_n_packs_confirmation">
-        <item quantity="other">Remove %1$s sticker packs?</item>
+        <item quantity="other">ลบ %1$s ชุดสติกเกอร์ใช่หรือไม่</item>
     </plurals>
     <!-- Body of the confirmation dialog shown before uninstalling sticker packs. -->
     <plurals name="StickerManagement_delete_n_packs_confirmation_body">
-        <item quantity="other">This will remove these sticker packs. You can\'t add it again without a link or sticker message.</item>
+        <item quantity="other">ระบบจะลบชุดสติกเกอร์ที่เลือกและคุณจะไม่สามารถเพิ่มชุดสติกเกอร์ได้อีกหากไม่มีลิงก์หรือข้อความสติกเกอร์</item>
     </plurals>
     <!-- Message shown after installing a sticker pack. The placeholder is the name of the sticker pack that was installed. -->
     <string name="StickerManagement_installed_pack_s">ติดตั้ง %1$s แล้ว</string>
@@ -2913,7 +2913,7 @@
     <string name="UsernameEditFragment_username_is_invalid">ชื่อผู้ใช้ไม่ถูกต้อง</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ชื่อผู้ใช้ต้องมีอักขระ %1$d ถึง %2$d ตัว</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">People can message you using your optional username instead of a phone number. Usernames are always paired with a set of numbers.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">ผู้ติดต่อจะสามารถส่งข้อความหาคุณผ่านชื่อผู้ใช้ที่คุณกำหนดโดยไม่จำเป็นต้องมีหมายเลขโทรศัพท์ ชื่อผู้ใช้จะต้องมีชุดตัวเลขร่วมด้วยเสมอ</string>
     <!-- Button to allow user to skip -->
     <string name="UsernameEditFragment__skip">ข้าม</string>
     <!-- Content description for done button -->
@@ -3190,19 +3190,19 @@
 
     <!-- ConnectWithUsernamesDialogFragment -->
     <!-- Title of the username education screen shown to accounts registered without a phone number -->
-    <string name="ConnectWithUsernamesDialogFragment__connect_with_usernames">Connect with usernames</string>
+    <string name="ConnectWithUsernamesDialogFragment__connect_with_usernames">ติดต่อสื่อสารผ่านชื่อผู้ใช้</string>
     <!-- Title of the usernames section -->
     <string name="ConnectWithUsernamesDialogFragment__usernames">ชื่อผู้ใช้</string>
     <!-- Description of the usernames section -->
-    <string name="ConnectWithUsernamesDialogFragment__people_can_message_you_using_your_optional_username">People can message you using your optional username instead of a phone number. Usernames aren\'t visible on your profile.</string>
+    <string name="ConnectWithUsernamesDialogFragment__people_can_message_you_using_your_optional_username">ผู้ติดต่อจะสามารถส่งข้อความหาคุณผ่านชื่อผู้ใช้ที่คุณกำหนดโดยไม่จำเป็นต้องมีหมายเลขโทรศัพท์ โดยชื่อผู้ใช้จะไม่ปรากฏบนโปรไฟล์ของคุณ</string>
     <!-- Title of the QR code section -->
     <string name="ConnectWithUsernamesDialogFragment__qr_codes_and_links">คิวอาร์โค้ดและลิงก์</string>
     <!-- Description of the QR code section -->
     <string name="ConnectWithUsernamesDialogFragment__usernames_have_a_unique_qr_code">ชื่อผู้ใช้จะมีคิวอาร์โค้ดและลิงก์เฉพาะที่คุณสามารถแชร์เพื่อให้เพื่อนเริ่มแชทด้วยได้ทันที</string>
     <!-- Title of the discoverability section -->
-    <string name="ConnectWithUsernamesDialogFragment__stay_discoverable">Stay discoverable</string>
+    <string name="ConnectWithUsernamesDialogFragment__stay_discoverable">ให้เพื่อนค้นหาได้</string>
     <!-- Description of the discoverability section -->
-    <string name="ConnectWithUsernamesDialogFragment__without_a_phone_number_usernames_and_links">Without a phone number, usernames and links are the only way others can connect with you.</string>
+    <string name="ConnectWithUsernamesDialogFragment__without_a_phone_number_usernames_and_links">ในกรณีที่ไม่ระบุหมายเลขโทรศัพท์ ผู้ติดต่อจะสามารถเริ่มพูดคุยกับคุณได้ผ่านทางชื่อผู้ใช้และลิงก์เท่านั้น</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="ConnectWithUsernamesDialogFragment__set_up_username">กำหนดชื่อผู้ใช้</string>
     <!-- Button label that dismisses the screen without creating a username -->
@@ -3210,7 +3210,7 @@
 
     <!-- SetUpUsernameBanner -->
     <!-- Body of a banner on the new message screen prompting the user to create a username -->
-    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">Choose a username so others can connect with you.</string>
+    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">กำหนดชื่อผู้ใช้เพื่อให้ผู้ติดต่อเริ่มพูดคุยกับคุณได้</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="SetUpUsernameBanner__set_up">ตั้งชื่อผู้ใช้</string>
     <!-- Accessibility label for the button that permanently dismisses the banner -->
@@ -8824,6 +8824,8 @@
     <string name="TransferAccount_continue_on_your_other_device">ดำเนินการต่อบนอุปกรณ์อีกเครื่อง</string>
     <!-- Old device Transfer account bottom sheet dialog body -->
     <string name="TransferAccount_continue_on_your_other_device_details">ดำเนินการถ่ายโอนบัญชีต่อบนอุปกรณ์อีกเครื่องของคุณ</string>
+    <!-- Old device Transfer account error dialog body shown when the new device is too old to accept an account that has no phone number -->
+    <string name="TransferAccount_the_device_you_are_transferring_to_is_out_of_date">The device you\'re transferring to is out of date. Update Signal on that device and try again.</string>
 
     <!-- Prepare Device screen title for quick restore flow -->
     <string name="PrepareDevice_title">เตรียมอุปกรณ์ของคุณให้พร้อม</string>
@@ -9294,7 +9296,7 @@
     <!-- Content description for the button that clears the contact search field -->
     <string name="SelectContactScreen__clear_search">ล้างการค้นหา</string>
     <!-- Content description for the badge shown next to a contact that is in the phone\'s address book -->
-    <string name="SelectContactScreen__in_your_contacts">In your contacts</string>
+    <string name="SelectContactScreen__in_your_contacts">อยู่ในรายชื่อผู้ติดต่อคุณ</string>
     <!-- Title of the prompt asking for permission to read the user\'s phone contacts -->
     <string name="SelectContactScreen__find_people_you_know_on_signal">ค้นหาคนที่คุณรู้จักบน Signal</string>
     <!-- Explanation shown when Signal does not have permission to read the user\'s phone contacts -->
@@ -9304,9 +9306,9 @@
     <!-- Button that dismisses the request for permission to read the user\'s phone contacts -->
     <string name="SelectContactScreen__no_thanks">ไม่ ขอบคุณ</string>
     <!-- Button that opens the phone\'s own contact picker, used when Signal cannot ask for contacts permission -->
-    <string name="SelectContactScreen__open_phone_contacts">Open phone contacts</string>
+    <string name="SelectContactScreen__open_phone_contacts">เปิดรายชื่อผู้ติดต่อบนโทรศัพท์</string>
     <!-- Note at the bottom of the contact picker when contacts permission was denied on the device. Placeholder is the "Learn more" link text. -->
-    <string name="SelectContactScreen__to_see_your_phone_contacts_here">To see your phone contacts here, allow access in your device settings. %1$s</string>
+    <string name="SelectContactScreen__to_see_your_phone_contacts_here">หากคุณต้องการให้แสดงรายชื่อผู้ติดต่อบนโทรศัพท์ในหน้านี้ โปรดอนุญาตสิทธิ์การเข้าถึงในการตั้งค่าของอุปกรณ์ %1$s</string>
     <!-- Link that opens instructions for granting contacts permission from the device settings -->
     <string name="SelectContactScreen__learn_more">เรียนรู้เพิ่มเติม</string>
     <!-- Title of the sheet explaining how to grant contacts permission from the device settings -->
@@ -9314,7 +9316,7 @@
     <!-- Subtitle of the sheet explaining how to grant contacts permission from the device settings -->
     <string name="SelectContactScreen__to_find_people_you_know_on_signal">เพื่อค้นหาคนที่คุณรู้จักบน Signal:</string>
     <!-- Toast shown when a selected contact can no longer be read -->
-    <string name="SelectContactScreen__couldnt_open_contact">Couldn\'t open that contact</string>
+    <string name="SelectContactScreen__couldnt_open_contact">ไม่สามารถเปิดผู้ติดต่อคนนี้ได้</string>
 
     <!-- Title of the screen where the user chooses which parts of a contact to share -->
     <string name="ShareContactScreen__share_contact">แบ่งปันผู้ติดต่อ</string>
@@ -9370,15 +9372,15 @@
     <string name="SharedContactDetailsScreen__join_me_on_signal">คำชวนให้เริ่มใช้งาน Signal</string>
 
     <!-- Title of the bottom sheet that confirms the user wants a brand new recovery key. -->
-    <string name="ResetRecoveryKeyBottomSheet__reset_your_recovery_key">Reset your recovery key</string>
+    <string name="ResetRecoveryKeyBottomSheet__reset_your_recovery_key">รีเซ็ตกุญแจกู้คืนของคุณ</string>
     <!-- First paragraph of the bottom sheet body, explaining what a reset does. -->
-    <string name="ResetRecoveryKeyBottomSheet__resetting_your_recovery_key_will_create_a_new_key">Resetting your recovery key will create a new key for your Signal Login. This is only necessary if someone else knows your key.</string>
+    <string name="ResetRecoveryKeyBottomSheet__resetting_your_recovery_key_will_create_a_new_key">การรีเซ็ตกุญแจกู้คืนจะเป็นการสร้างกุญแจใหม่ให้ Signal Login ของคุณ คุณมีความจำเป็นที่จะต้องดำเนินการนี้เฉพาะแค่ในกรณีที่มีบุคคลอื่นทราบกุญแจของคุณเท่านั้น</string>
     <!-- Second paragraph of the bottom sheet body, explaining what a reset means for backups. -->
-    <string name="ResetRecoveryKeyBottomSheet__if_backups_are_enabled_you_will_have_to_re_upload">If backups are enabled you will have to re-upload your backup, including media. If you are using \"Optimize Signal storage\" you will have to download offloaded media first.</string>
+    <string name="ResetRecoveryKeyBottomSheet__if_backups_are_enabled_you_will_have_to_re_upload">หากมีการเปิดใช้งานการสำรองข้อมูลไว้ คุณจะต้องอัปโหลดข้อมูลสำรองซึ่งรวมถึงไฟล์สื่ออีกครั้ง และหากคุณกำลังใช้งานตัวเลือก \"เพิ่มประสิทธิภาพพื้นที่จัดเก็บของ Signal\" คุณจะต้องดาวน์โหลดไฟล์สื่อที่เคยออฟโหลดไว้ให้เสร็จก่อน</string>
     <!-- Bottom sheet action that continues on to reset the recovery key. -->
     <string name="ResetRecoveryKeyBottomSheet__continue">ทำต่อ</string>
     <!-- Dialog body shown when the recovery key change limit is exhausted and the user does not have backups enabled. -->
-    <string name="BackupKeyRotationDialogs__limit_exceeded_body_no_backups">You\'ve exhausted the number of new keys you can create. You will be able to create a new recovery key in 7 days.</string>
+    <string name="BackupKeyRotationDialogs__limit_exceeded_body_no_backups">คุณสร้างกุญแจกู้คืนใหม่จนครบจำนวนที่กำหนดแล้ว โดยคุณจะสามารถสร้างกุญแจใหม่ได้ในอีก 7 วัน</string>
 
     <!-- EOF -->
 </resources>

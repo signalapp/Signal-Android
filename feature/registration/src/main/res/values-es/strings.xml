@@ -648,19 +648,19 @@
     <!-- Error shown when a manually-pasted receipt credential can\'t be parsed or is rejected. Internal testing only. -->
   <!-- Removed by excludeNonTranslatables <string name="SignalLoginPaymentScreen__this_receipt_credential_is_invalid" translatable="false">This receipt credential is invalid.</string> -->
     <!-- Title of the dialog shown when Google Play services is too old to take a payment. -->
-    <string name="SignalLoginPaymentScreen__update_google_play_services">Actualiza los servicios de Google Play</string>
+    <string name="SignalLoginPaymentScreen__update_google_play_services">Actualiza los Servicios de Google Play</string>
     <!-- Body of the dialog shown when Google Play services is too old to take a payment. -->
     <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_update_google_play_services">To purchase a Signal Login, update Google Play services on this device.</string>
     <!-- Button that updates Google Play services. -->
     <string name="SignalLoginPaymentScreen__update">Actualizar</string>
     <!-- Title of the dialog shown when Google Play services is not installed. -->
-    <string name="SignalLoginPaymentScreen__google_play_services_missing">Los servicios de Google Play no están instalados</string>
+    <string name="SignalLoginPaymentScreen__google_play_services_missing">Los Servicios de Google Play no están instalados</string>
     <!-- Body of the dialog shown when Google Play services is not installed. -->
     <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_google_play_services_needs_to_be_installed">To purchase a Signal Login, Google Play services needs to be installed.</string>
     <!-- Button that installs Google Play services. -->
-    <string name="SignalLoginPaymentScreen__install_play_services">Instalar Servicios de Play</string>
+    <string name="SignalLoginPaymentScreen__install_play_services">Instalar Servicios de Google Play</string>
     <!-- Title of the dialog shown while Google Play services is updating itself. -->
-    <string name="SignalLoginPaymentScreen__google_play_services_are_updating">Los servicios de Google Play se están actualizando</string>
+    <string name="SignalLoginPaymentScreen__google_play_services_are_updating">Los Servicios de Google Play se están actualizando</string>
     <!-- Body of the dialog shown while Google Play services is updating itself. -->
     <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_wait_for_google_play_services">To purchase a Signal Login please wait for Google Play services to finish updating.</string>
     <!-- Title of the dialog shown when Google Play cannot be used to take a payment. -->
@@ -688,25 +688,25 @@
     <!-- Error shown when the Signal Login could not be stored in the password manager. -->
     <string name="SignalLoginInfoScreen__your_signal_login_could_not_be_saved">No se ha podido guardar tu Signal Login. Guárdalo de forma manual.</string>
     <!-- Title of the dialog shown when the Signal Login could not be found in the password manager after saving it. -->
-    <string name="SignalLoginInfoScreen__error_confirming_login_info">Error al confirmar datos de inicio de sesión</string>
+    <string name="SignalLoginInfoScreen__error_confirming_login_info">Error al confirmar información de acceso</string>
     <!-- Description telling the user that the Signal Login we saved could not be read back out of their password manager. -->
     <string name="SignalLoginInfoScreen__your_signal_login_could_not_be_confirmed">No se ha podido confirmar tu Signal Login. Comprueba que lo has guardado en tu gestor de contraseñas o manualmente.</string>
 
     <!-- Sheet that double-checks the user\'s Signal Login really made it into their password manager -->
     <!-- Title of the sheet asking the user to confirm their Signal Login was saved to their password manager. -->
-    <string name="ConfirmLoginSavedToPasswordManagerBottomSheet__confirm_your_login_info_is_saved">Confirma que has guardado tus datos de inicio de sesión</string>
+    <string name="ConfirmLoginSavedToPasswordManagerBottomSheet__confirm_your_login_info_is_saved">Confirma que has guardado tu información de acceso</string>
     <!-- Description telling the user they are about to be asked to fill in the Signal Login they just saved. -->
     <string name="ConfirmLoginSavedToPasswordManagerBottomSheet__confirm_that_your_login_info_was_saved">Confirma que tu Signal Login se ha guardado correctamente. En el próximo paso, se te pedirá que introduzcas la contraseña que has guardado.</string>
     <!-- Action button that starts checking the password manager for the Signal Login. -->
-    <string name="ConfirmLoginSavedToPasswordManagerBottomSheet__confirm_login_info">Confirmar datos de inicio de sesión</string>
+    <string name="ConfirmLoginSavedToPasswordManagerBottomSheet__confirm_login_info">Confirmar información de acceso</string>
     <!-- Action button that sends the user back to their Signal Login. -->
-    <string name="ConfirmLoginSavedToPasswordManagerBottomSheet__see_login_info_again">Volver a ver datos de inicio de sesión</string>
+    <string name="ConfirmLoginSavedToPasswordManagerBottomSheet__see_login_info_again">Volver a ver información de acceso</string>
 
     <!-- Save Signal Login screen -->
     <!-- Title of the screen that spells out the Signal Login so the user can record it themselves. -->
     <string name="SignalLoginViewDetailsForManualSaveScreen__save_your_signal_login">Guarda tu Signal Login</string>
     <!-- Description telling the user to keep their Signal Login somewhere safe and private. -->
-    <string name="SignalLoginViewDetailsForManualSaveScreen__store_your_signal_login_somewhere_safe">Guarda tu Signal Login en un lugar seguro y protegido. Nunca compartas tus datos de inicio de sesión con nadie.</string>
+    <string name="SignalLoginViewDetailsForManualSaveScreen__store_your_signal_login_somewhere_safe">Guarda tu Signal Login en un lugar seguro y protegido. Nunca compartas tu información de acceso con nadie.</string>
     <!-- Action button that saves the Signal Login to a PDF file. -->
     <string name="SignalLoginViewDetailsForManualSaveScreen__save_as_pdf">Guardar como PDF</string>
     <!-- Action button for users who are done recording their Signal Login. -->
@@ -714,13 +714,13 @@
 
     <!-- Sheet that double-checks the user really saved their Signal Login -->
     <!-- Title of the sheet asking the user to confirm they saved their Signal Login. -->
-    <string name="ConfirmLoginSavedBottomSheet__confirm_your_login_info_is_saved">Confirma que has guardado tus datos de inicio de sesión</string>
+    <string name="ConfirmLoginSavedBottomSheet__confirm_your_login_info_is_saved">Confirma que has guardado tu información de acceso</string>
     <!-- Description warning the user that they are about to be asked for their Signal Login and that it cannot be recovered. -->
     <string name="ConfirmLoginSavedBottomSheet__you_will_be_prompted_to_sign_in">A continuación, se te pedirá que inicies sesión con tu Signal Login. Comprueba que has guardado o copiado esta información. Signal no podrá ayudarte a recuperar tu cuenta.</string>
     <!-- Action button confirming the Signal Login is saved. -->
     <string name="ConfirmLoginSavedBottomSheet__continue">Continuar</string>
     <!-- Action button that sends the user back to their Signal Login. -->
-    <string name="ConfirmLoginSavedBottomSheet__show_login_info_again">Volver a mostrar datos de inicio de sesión</string>
+    <string name="ConfirmLoginSavedBottomSheet__show_login_info_again">Volver a mostrar información de acceso</string>
 
     <!-- Errors shown beneath an account ID text field, wherever one is offered -->
     <!-- Error shown when the entered account ID contains characters that can\'t appear in one. -->
@@ -748,7 +748,7 @@
     <!-- Description shown instead when the user is typing back the Signal Login they were just given, to check they recorded it correctly. -->
     <string name="SignalLoginCredentialEntryScreen__enter_your_signal_login_to_confirm_it_was_recorded_correctly">Introduce tu Signal Login para confirmar que se ha registrado correctamente.</string>
     <!-- Button that takes the user back to their Signal Login if they can\'t remember what they recorded. -->
-    <string name="SignalLoginCredentialEntryScreen__show_login_info_again">Volver a mostrar datos de inicio de sesión</string>
+    <string name="SignalLoginCredentialEntryScreen__show_login_info_again">Volver a mostrar información de acceso</string>
     <!-- Error shown when what the user typed back doesn\'t match the Signal Login they were given. -->
     <string name="SignalLoginCredentialEntryScreen__that_doesnt_match_the_signal_login_you_were_shown">La información no coincide con el Signal Login que te hemos mostrado</string>
 
@@ -830,7 +830,7 @@
     <!-- Title of the card for verifying with a code from an authenticator app -->
     <string name="TwoFactorSelectionScreen__authenticator_app">Aplicación de autenticación</string>
     <!-- Description of the card for verifying with a code from an authenticator app -->
-    <string name="TwoFactorSelectionScreen__enter_a_one_time_code">Introduce la clave de un solo uso de tu aplicación de autenticación.</string>
+    <string name="TwoFactorSelectionScreen__enter_a_one_time_code">Introduce el código de un solo uso de tu aplicación de autenticación.</string>
     <!-- Button text to cancel two-factor authentication -->
     <string name="TwoFactorSelectionScreen__cancel">Cancelar</string>
 </resources>

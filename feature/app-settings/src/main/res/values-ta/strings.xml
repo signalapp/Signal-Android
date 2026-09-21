@@ -91,7 +91,7 @@
     <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
     <string name="AccountSettingsFragment__you_cant_add_more_than_d">%1$d அங்கீகரிப்புச் செயலிகளுக்கு மேல் உங்களால் சேர்க்க முடியாது. முதலில் ஒன்றை அகற்றிவிட்டு முயலவும்.</string>
     <!-- Body of the dialog shown when the account has room for another authenticator app but already has as many two-factor methods of all kinds as it\'s allowed -->
-    <string name="AccountSettingsFragment__you_cant_add_more_than_d_two_factor_methods">You can\'t add more than %1$d two-factor authentication methods. Try removing one first.</string>
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d_two_factor_methods">உங்களால் %1$d-க்கும் மேற்பட்ட இரு-படி அங்கீகார முறையைச் சேர்க்க முடியாது. முதலில் ஒன்றை அகற்றிவிட்டு முயலவும்.</string>
     <!-- Shown in place of the list when we couldn\'t work out which second factors are on the account -->
     <string name="AccountSettingsFragment__couldnt_load_your_two_factor_methods">உங்களின் இரு-படி அங்கீகார முறைகளை ஏற்ற முடியவில்லை. உங்கள் இணைப்பைச் சரிபார்த்துவிட்டு மீண்டும் முயலவும்.</string>
     <!-- Toast shown after an authenticator app has been removed -->
@@ -152,7 +152,7 @@
     <string name="TotpCodeEntryScreen__couldnt_reach_signal">Signal-ஐத் தொடர்புகொள்ள முடியவில்லை. உங்கள் இணைப்பைச் சரிபார்த்துவிட்டு மீண்டும் முயலவும்.</string>
 
     <!-- Default name given to an authenticator app the moment it\'s set up, before the user chooses their own name for it -->
-    <string name="TotpRepository__authenticator">Authenticator</string>
+    <string name="TotpRepository__authenticator">அங்கீகரிப்பு</string>
 
     <!-- TotpNameEntryScreen -->
     <!-- Title of the screen where the user names an authenticator app -->

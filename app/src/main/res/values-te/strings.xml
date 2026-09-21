@@ -1465,7 +1465,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">మీ యూజర్‌నేమ్, QR కోడ్ మరియు లింక్ మీ ప్రొఫైల్‌లో కనిపించవు. మీకు నమ్మకం ఉన్న వ్యక్తులతో మాత్రమే మీ యూజర్‌నేమ్‌ను పంచుకోండి.</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-    <string name="ManageProfileFragment__username_footer_no_username">People can message you using an optional username instead of a phone number. Usernames have a unique QR code and link you can share with friends.</string>
+    <string name="ManageProfileFragment__username_footer_no_username">ఫోన్ నంబర్‌కు బదులుగా ఒక ఐచ్ఛిక యూజర్‌నేమ్ ఉపయోగించి ప్రజలు మీకు సందేశం పంపగలరు. మీ స్నేహితులతో పంచుకోవడానికి యూజర్‌నేమ్‌లకు ఒక ప్రత్యేకమైన QR కోడ్ మరియు లింక్ ఉంటాయి.</string>
     <string name="ManageProfileFragment_profile_name">ఖాతాదారుని పేరు</string>
     <string name="ManageProfileFragment_username">వినియోగదారుడు</string>
     <string name="ManageProfileFragment_about">గురించి</string>
@@ -2788,13 +2788,13 @@
     <string name="StickerManagement_action_delete_selected">తొలగించండి</string>
     <!-- Confirmation message shown before uninstalling sticker packs. The placeholder is the number of items to delete. -->
     <plurals name="StickerManagement_delete_n_packs_confirmation">
-        <item quantity="one">Remove %1$s sticker pack?</item>
-        <item quantity="other">Remove %1$s sticker packs?</item>
+        <item quantity="one">%1$s స్టిక్కర్ ప్యాక్‌ను తొలగించాలా?</item>
+        <item quantity="other">%1$s స్టిక్కర్ ప్యాక్‌లను తొలగించాలా?</item>
     </plurals>
     <!-- Body of the confirmation dialog shown before uninstalling sticker packs. -->
     <plurals name="StickerManagement_delete_n_packs_confirmation_body">
-        <item quantity="one">This will remove the sticker pack. You can\'t add it again without a link or sticker message.</item>
-        <item quantity="other">This will remove these sticker packs. You can\'t add it again without a link or sticker message.</item>
+        <item quantity="one">ఇది స్టిక్కర్ ప్యాక్‌ను తొలగిస్తుంది. ఒక లింక్ లేదా స్టిక్కర్ సందేశం లేకుండా మీరు దానిని మళ్ళీ జోడించలేరు.</item>
+        <item quantity="other">ఇది ఈ స్టిక్కర్ ప్యాక్‌లను తొలగిస్తుంది. ఒక లింక్ లేదా స్టిక్కర్ సందేశం లేకుండా మీరు దానిని మళ్ళీ జోడించలేరు.</item>
     </plurals>
     <!-- Message shown after installing a sticker pack. The placeholder is the name of the sticker pack that was installed. -->
     <string name="StickerManagement_installed_pack_s">%1$s ఇన్‌స్టాల్ చేయబడింది.</string>
@@ -3009,7 +3009,7 @@
     <string name="UsernameEditFragment_username_is_invalid">మీ యూసర్ నేమ్ సరైనది కాదు.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">వినియోగదారు పేర్లు %1$dమరియు %2$dఅక్షరాల మధ్య ఉండాలి.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">People can message you using your optional username instead of a phone number. Usernames are always paired with a set of numbers.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">ఫోన్ నంబర్‌కు బదులుగా మీ ఐచ్ఛిక యూజర్‌నేమ్ ఉపయోగిస్తూ ప్రజలు మీకు సందేశం పంపవచ్చు. యూజర్‌నేమ్‌లు ఎల్లప్పుడూ అంకెల సెట్‌తో జత చేయబడతాయి.</string>
     <!-- Button to allow user to skip -->
     <string name="UsernameEditFragment__skip">దాటవేయి</string>
     <!-- Content description for done button -->
@@ -3293,19 +3293,19 @@
 
     <!-- ConnectWithUsernamesDialogFragment -->
     <!-- Title of the username education screen shown to accounts registered without a phone number -->
-    <string name="ConnectWithUsernamesDialogFragment__connect_with_usernames">Connect with usernames</string>
+    <string name="ConnectWithUsernamesDialogFragment__connect_with_usernames">యూజర్‌నేమ్ల తో కనెక్ట్ అవ్వండి</string>
     <!-- Title of the usernames section -->
     <string name="ConnectWithUsernamesDialogFragment__usernames">యూజర్‌నేమ్‌లు</string>
     <!-- Description of the usernames section -->
-    <string name="ConnectWithUsernamesDialogFragment__people_can_message_you_using_your_optional_username">People can message you using your optional username instead of a phone number. Usernames aren\'t visible on your profile.</string>
+    <string name="ConnectWithUsernamesDialogFragment__people_can_message_you_using_your_optional_username">ఫోన్ నంబర్‌కు బదులుగా మీ ఐచ్ఛిక యూజర్‌నేమ్ ఉపయోగిస్తూ ప్రజలు మీకు సందేశం పంపవచ్చు. యూజర్‌నేమ్‌లు మీ ప్రొఫైల్‌లో కనిపించవు.</string>
     <!-- Title of the QR code section -->
     <string name="ConnectWithUsernamesDialogFragment__qr_codes_and_links">QR కోడ్‌లు మరియు లింక్‌లు</string>
     <!-- Description of the QR code section -->
     <string name="ConnectWithUsernamesDialogFragment__usernames_have_a_unique_qr_code">మీతో త్వరగా చాట్‌ను ప్రారంభించడానికి మీ స్నేహితులతో మీరు పంచుకోగల సాటిలేని QR కోడ్ మరియు లింకును యూజర్‌నేమ్‌లు కలిగి ఉంటాయి.</string>
     <!-- Title of the discoverability section -->
-    <string name="ConnectWithUsernamesDialogFragment__stay_discoverable">Stay discoverable</string>
+    <string name="ConnectWithUsernamesDialogFragment__stay_discoverable">కనుగొనగలిగేలా ఉండండి</string>
     <!-- Description of the discoverability section -->
-    <string name="ConnectWithUsernamesDialogFragment__without_a_phone_number_usernames_and_links">Without a phone number, usernames and links are the only way others can connect with you.</string>
+    <string name="ConnectWithUsernamesDialogFragment__without_a_phone_number_usernames_and_links">ఫోన్ నెంబర్ లేకుండా ఇతరులు మిమ్మల్ని సంప్రదించడానికి యూజర్‌నేమ్‌లు, లింక్ లు మాత్రమే మార్గాలు.</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="ConnectWithUsernamesDialogFragment__set_up_username">యూజర్‌నేమ్‌ను సెట్ చేయండి</string>
     <!-- Button label that dismisses the screen without creating a username -->
@@ -3313,7 +3313,7 @@
 
     <!-- SetUpUsernameBanner -->
     <!-- Body of a banner on the new message screen prompting the user to create a username -->
-    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">Choose a username so others can connect with you.</string>
+    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">ఇతరులు మీతో కనెక్ట్ కావడానికి ఒక యూజర్‌నేమ్‌ను ఎంచుకోండి.</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="SetUpUsernameBanner__set_up">సెటప్ చేయండి</string>
     <!-- Accessibility label for the button that permanently dismisses the banner -->
@@ -9018,6 +9018,8 @@
     <string name="TransferAccount_continue_on_your_other_device">మీ మరో పరికరంపై కొనసాగండి</string>
     <!-- Old device Transfer account bottom sheet dialog body -->
     <string name="TransferAccount_continue_on_your_other_device_details">మీ ఇతర పరికరంలో మీ ఖాతాను బదిలీ చేయడాన్ని కొనసాగించండి.</string>
+    <!-- Old device Transfer account error dialog body shown when the new device is too old to accept an account that has no phone number -->
+    <string name="TransferAccount_the_device_you_are_transferring_to_is_out_of_date">The device you\'re transferring to is out of date. Update Signal on that device and try again.</string>
 
     <!-- Prepare Device screen title for quick restore flow -->
     <string name="PrepareDevice_title">మీ పరికరాన్ని సిద్ధం చేస్తోంది</string>
@@ -9489,13 +9491,13 @@
     </plurals>
 
     <!-- Title of the screen for picking a contact to share -->
-    <string name="SelectContactScreen__select_contact">Select contact</string>
+    <string name="SelectContactScreen__select_contact">పరిచయాలను ఎంచుకోండి</string>
     <!-- Placeholder in the search field on the contact picker -->
     <string name="SelectContactScreen__search">వెతకండి</string>
     <!-- Content description for the button that clears the contact search field -->
     <string name="SelectContactScreen__clear_search">శోధనను క్లియర్ చేయండి</string>
     <!-- Content description for the badge shown next to a contact that is in the phone\'s address book -->
-    <string name="SelectContactScreen__in_your_contacts">In your contacts</string>
+    <string name="SelectContactScreen__in_your_contacts">మీ పరిచయాలలో</string>
     <!-- Title of the prompt asking for permission to read the user\'s phone contacts -->
     <string name="SelectContactScreen__find_people_you_know_on_signal">Signal లో మీకు తెలిసిన వ్యక్తులను కనుగొనండి</string>
     <!-- Explanation shown when Signal does not have permission to read the user\'s phone contacts -->
@@ -9505,9 +9507,9 @@
     <!-- Button that dismisses the request for permission to read the user\'s phone contacts -->
     <string name="SelectContactScreen__no_thanks">వద్దు ధన్యవాదాలు</string>
     <!-- Button that opens the phone\'s own contact picker, used when Signal cannot ask for contacts permission -->
-    <string name="SelectContactScreen__open_phone_contacts">Open phone contacts</string>
+    <string name="SelectContactScreen__open_phone_contacts">ఫోన్ పరిచయాలను తెరవండి</string>
     <!-- Note at the bottom of the contact picker when contacts permission was denied on the device. Placeholder is the "Learn more" link text. -->
-    <string name="SelectContactScreen__to_see_your_phone_contacts_here">To see your phone contacts here, allow access in your device settings. %1$s</string>
+    <string name="SelectContactScreen__to_see_your_phone_contacts_here">మీ ఫోన్ పరిచయాలను ఇక్కడ చూడాలంటే, మీ పరికరం సెట్టింగ్లలో యాక్సెస్‌ను అనుమతించండి. %1$s</string>
     <!-- Link that opens instructions for granting contacts permission from the device settings -->
     <string name="SelectContactScreen__learn_more">మరింత తెలుసుకోండి</string>
     <!-- Title of the sheet explaining how to grant contacts permission from the device settings -->
@@ -9515,7 +9517,7 @@
     <!-- Subtitle of the sheet explaining how to grant contacts permission from the device settings -->
     <string name="SelectContactScreen__to_find_people_you_know_on_signal">Signal లో మీకు తెలిసిన వ్యక్తులను కనుగొనడానికి:</string>
     <!-- Toast shown when a selected contact can no longer be read -->
-    <string name="SelectContactScreen__couldnt_open_contact">Couldn\'t open that contact</string>
+    <string name="SelectContactScreen__couldnt_open_contact">ఆ పరిచయాన్ని తెరవలేకపోతున్నాము</string>
 
     <!-- Title of the screen where the user chooses which parts of a contact to share -->
     <string name="ShareContactScreen__share_contact">పరిచయ వివరాలు పంపండి</string>
@@ -9571,15 +9573,15 @@
     <string name="SharedContactDetailsScreen__join_me_on_signal">Signal లో నన్ను చేర్చండి</string>
 
     <!-- Title of the bottom sheet that confirms the user wants a brand new recovery key. -->
-    <string name="ResetRecoveryKeyBottomSheet__reset_your_recovery_key">Reset your recovery key</string>
+    <string name="ResetRecoveryKeyBottomSheet__reset_your_recovery_key">మీ రికవరీ కీ ని రీసెట్ చేయండి</string>
     <!-- First paragraph of the bottom sheet body, explaining what a reset does. -->
-    <string name="ResetRecoveryKeyBottomSheet__resetting_your_recovery_key_will_create_a_new_key">Resetting your recovery key will create a new key for your Signal Login. This is only necessary if someone else knows your key.</string>
+    <string name="ResetRecoveryKeyBottomSheet__resetting_your_recovery_key_will_create_a_new_key">మీ రికవరీ కీ ని రీసెట్ చేయడం ద్వారా మీ Signal Login కోసం కొత్త కీ సృష్టించబడుతుంది. ఒకవేళ వేరొకరు మీ కీని తెలుసుకుంటే మాత్రమే ఇది అవసరం.</string>
     <!-- Second paragraph of the bottom sheet body, explaining what a reset means for backups. -->
-    <string name="ResetRecoveryKeyBottomSheet__if_backups_are_enabled_you_will_have_to_re_upload">If backups are enabled you will have to re-upload your backup, including media. If you are using \"Optimize Signal storage\" you will have to download offloaded media first.</string>
+    <string name="ResetRecoveryKeyBottomSheet__if_backups_are_enabled_you_will_have_to_re_upload">ఒకవేళ బ్యాకప్‌లు ప్రారంభం చేసి ఉంటే మీరు మీడియాతో సహా మీ బ్యాకప్‌ను తిరిగి అప్‌లోడ్ చేయాల్సి ఉంటుంది. ఒకవేళ మీరు \"Signal నిల్వను అనుకూలపరచండి\"ని ఉపయోగిస్తుంటే, మీరు ముందుగా ఆఫ్‌లోడ్ చేసిన మీడియాను డౌన్‌లోడ్ చేసుకోవాలి.</string>
     <!-- Bottom sheet action that continues on to reset the recovery key. -->
     <string name="ResetRecoveryKeyBottomSheet__continue">కొనసాగించు</string>
     <!-- Dialog body shown when the recovery key change limit is exhausted and the user does not have backups enabled. -->
-    <string name="BackupKeyRotationDialogs__limit_exceeded_body_no_backups">You\'ve exhausted the number of new keys you can create. You will be able to create a new recovery key in 7 days.</string>
+    <string name="BackupKeyRotationDialogs__limit_exceeded_body_no_backups">మీరు సృష్టించగల కొత్త కీల సంఖ్యను మీరు దాటిపోయారు. మీరు 7 రోజుల్లో కొత్త రికవరీ కీని సృష్టించగలరు.</string>
 
     <!-- EOF -->
 </resources>

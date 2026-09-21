@@ -1465,7 +1465,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Kullanıcı adın, kare kodun ve bağlantın profilinde görünmez. Kullanıcı adını yalnızca güvendiğin kişilerle paylaş.</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-    <string name="ManageProfileFragment__username_footer_no_username">People can message you using an optional username instead of a phone number. Usernames have a unique QR code and link you can share with friends.</string>
+    <string name="ManageProfileFragment__username_footer_no_username">İnsanlar telefon numarası yerine isteğe bağlı bir kullanıcı adı ile sana mesaj gönderebilir. Kullanıcı adlarının, arkadaşlarınla paylaşabileceğin benzersiz bir karekodu ve bağlantısı vardır.</string>
     <string name="ManageProfileFragment_profile_name">Profil adı</string>
     <string name="ManageProfileFragment_username">Kullanıcı adı</string>
     <string name="ManageProfileFragment_about">Hakkında</string>
@@ -2773,7 +2773,7 @@
     <!-- Sticker pack list section header for packs that are already installed. -->
     <string name="StickerManagement_installed_stickers_header">Yüklü Çıkartmalar</string>
     <!-- Sticker pack list section header for packs that have been received from incoming messages. -->
-    <string name="StickerManagement_shared_with_you_header">Seninle Paylaşıldı</string>
+    <string name="StickerManagement_shared_with_you_header">Seninle paylaşıldı</string>
     <!-- Sticker pack description for packs that have been sent to you -->
     <string name="StickerManagement_when_you_receive">Birisinden bir çıkartma aldığında, çıkartma paketi burada görünecektir.</string>
     <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
@@ -2788,13 +2788,13 @@
     <string name="StickerManagement_action_delete_selected">Sil</string>
     <!-- Confirmation message shown before uninstalling sticker packs. The placeholder is the number of items to delete. -->
     <plurals name="StickerManagement_delete_n_packs_confirmation">
-        <item quantity="one">Remove %1$s sticker pack?</item>
-        <item quantity="other">Remove %1$s sticker packs?</item>
+        <item quantity="one">%1$s çıkartma paketi kaldırılsın mı?</item>
+        <item quantity="other">%1$s çıkartma paketi kaldırılsın mı?</item>
     </plurals>
     <!-- Body of the confirmation dialog shown before uninstalling sticker packs. -->
     <plurals name="StickerManagement_delete_n_packs_confirmation_body">
-        <item quantity="one">This will remove the sticker pack. You can\'t add it again without a link or sticker message.</item>
-        <item quantity="other">This will remove these sticker packs. You can\'t add it again without a link or sticker message.</item>
+        <item quantity="one">Bu işlem çıkartma paketini kaldırır. Bir bağlantı veya çıkartma mesajı olmadan tekrar ekleyemezsin.</item>
+        <item quantity="other">Bu işlem bu çıkartma paketlerini kaldırır. Bir bağlantı veya çıkartma mesajı olmadan tekrar ekleyemezsin.</item>
     </plurals>
     <!-- Message shown after installing a sticker pack. The placeholder is the name of the sticker pack that was installed. -->
     <string name="StickerManagement_installed_pack_s">%1$s yüklendi.</string>
@@ -2853,7 +2853,7 @@
     <!-- Accessibility label to close the search field. -->
     <string name="StickerManagement_accessibility_close_search">Aramayı kapat</string>
     <!-- Accessibility label to clear the search field. -->
-    <string name="StickerManagement_accessibility_clear_search">Aramayı Temizle</string>
+    <string name="StickerManagement_accessibility_clear_search">Aramayı temizle</string>
 
     <!-- StickerManagementAdapter -->
     <string name="StickerManagementAdapter_untitled">İsimsiz</string>
@@ -3009,7 +3009,7 @@
     <string name="UsernameEditFragment_username_is_invalid">Kullanıcı adı geçersiz.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Kullanıcı adları %1$d ve %2$d karakter aralığında olmalıdır.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">People can message you using your optional username instead of a phone number. Usernames are always paired with a set of numbers.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">İnsanlar telefon numarası yerine isteğe bağlı kullanıcı adını kullanarak sana mesaj gönderebilir. Kullanıcı adları daima bir dizi sayı ile eşleştirilir.</string>
     <!-- Button to allow user to skip -->
     <string name="UsernameEditFragment__skip">Atla</string>
     <!-- Content description for done button -->
@@ -3293,19 +3293,19 @@
 
     <!-- ConnectWithUsernamesDialogFragment -->
     <!-- Title of the username education screen shown to accounts registered without a phone number -->
-    <string name="ConnectWithUsernamesDialogFragment__connect_with_usernames">Connect with usernames</string>
+    <string name="ConnectWithUsernamesDialogFragment__connect_with_usernames">Kullanıcı adlarıyla bağlan</string>
     <!-- Title of the usernames section -->
     <string name="ConnectWithUsernamesDialogFragment__usernames">Kullanıcı adları</string>
     <!-- Description of the usernames section -->
-    <string name="ConnectWithUsernamesDialogFragment__people_can_message_you_using_your_optional_username">People can message you using your optional username instead of a phone number. Usernames aren\'t visible on your profile.</string>
+    <string name="ConnectWithUsernamesDialogFragment__people_can_message_you_using_your_optional_username">İnsanlar telefon numarası yerine isteğe bağlı kullanıcı adını kullanarak sana mesaj gönderebilir. Kullanıcı adları profilinde görünmez.</string>
     <!-- Title of the QR code section -->
     <string name="ConnectWithUsernamesDialogFragment__qr_codes_and_links">Kare kodlar ve bağlantılar</string>
     <!-- Description of the QR code section -->
     <string name="ConnectWithUsernamesDialogFragment__usernames_have_a_unique_qr_code">Kullanıcı adlarının, seninle hızla bir sohbet başlatmak için arkadaşlarınla paylaşabileceğin benzersiz bir kare kodu ve bağlantısı vardır.</string>
     <!-- Title of the discoverability section -->
-    <string name="ConnectWithUsernamesDialogFragment__stay_discoverable">Stay discoverable</string>
+    <string name="ConnectWithUsernamesDialogFragment__stay_discoverable">Bulunabilir kal</string>
     <!-- Description of the discoverability section -->
-    <string name="ConnectWithUsernamesDialogFragment__without_a_phone_number_usernames_and_links">Without a phone number, usernames and links are the only way others can connect with you.</string>
+    <string name="ConnectWithUsernamesDialogFragment__without_a_phone_number_usernames_and_links">Telefon numarası olmadan, kullanıcı adları ve bağlantılar başkalarının seninle iletişim kurmasının tek yoludur.</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="ConnectWithUsernamesDialogFragment__set_up_username">Kullanıcı adı ayarla</string>
     <!-- Button label that dismisses the screen without creating a username -->
@@ -3313,7 +3313,7 @@
 
     <!-- SetUpUsernameBanner -->
     <!-- Body of a banner on the new message screen prompting the user to create a username -->
-    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">Choose a username so others can connect with you.</string>
+    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">Başkalarının seninle iletişim kurabilmesi için bir kullanıcı adı seç.</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="SetUpUsernameBanner__set_up">Ayarla</string>
     <!-- Accessibility label for the button that permanently dismisses the banner -->
@@ -9018,6 +9018,8 @@
     <string name="TransferAccount_continue_on_your_other_device">Diğer cihazında devam et</string>
     <!-- Old device Transfer account bottom sheet dialog body -->
     <string name="TransferAccount_continue_on_your_other_device_details">Hesabını diğer cihazına aktarmaya devam et.</string>
+    <!-- Old device Transfer account error dialog body shown when the new device is too old to accept an account that has no phone number -->
+    <string name="TransferAccount_the_device_you_are_transferring_to_is_out_of_date">The device you\'re transferring to is out of date. Update Signal on that device and try again.</string>
 
     <!-- Prepare Device screen title for quick restore flow -->
     <string name="PrepareDevice_title">Cihazın Hazırlanıyor</string>
@@ -9489,15 +9491,15 @@
     </plurals>
 
     <!-- Title of the screen for picking a contact to share -->
-    <string name="SelectContactScreen__select_contact">Kişiyi Seç</string>
+    <string name="SelectContactScreen__select_contact">Kişiyi seç</string>
     <!-- Placeholder in the search field on the contact picker -->
     <string name="SelectContactScreen__search">Ara</string>
     <!-- Content description for the button that clears the contact search field -->
-    <string name="SelectContactScreen__clear_search">Aramayı Temizle</string>
+    <string name="SelectContactScreen__clear_search">Aramayı temizle</string>
     <!-- Content description for the badge shown next to a contact that is in the phone\'s address book -->
-    <string name="SelectContactScreen__in_your_contacts">In your contacts</string>
+    <string name="SelectContactScreen__in_your_contacts">Kişilerinde</string>
     <!-- Title of the prompt asking for permission to read the user\'s phone contacts -->
-    <string name="SelectContactScreen__find_people_you_know_on_signal">Signal\'de tanıdığın kişileri bul</string>
+    <string name="SelectContactScreen__find_people_you_know_on_signal">Signal\'da tanıdığın kişileri bul</string>
     <!-- Explanation shown when Signal does not have permission to read the user\'s phone contacts -->
     <string name="SelectContactScreen__allow_access_to_your_contacts">Kişilerine erişime izin ver. Kişilerin şifrelendi ve Signal hizmetinde görünmüyor.</string>
     <!-- Button that asks the system for permission to read the user\'s phone contacts -->
@@ -9505,17 +9507,17 @@
     <!-- Button that dismisses the request for permission to read the user\'s phone contacts -->
     <string name="SelectContactScreen__no_thanks">Hayır teşekkürler</string>
     <!-- Button that opens the phone\'s own contact picker, used when Signal cannot ask for contacts permission -->
-    <string name="SelectContactScreen__open_phone_contacts">Open phone contacts</string>
+    <string name="SelectContactScreen__open_phone_contacts">Telefon kişilerini aç</string>
     <!-- Note at the bottom of the contact picker when contacts permission was denied on the device. Placeholder is the "Learn more" link text. -->
-    <string name="SelectContactScreen__to_see_your_phone_contacts_here">To see your phone contacts here, allow access in your device settings. %1$s</string>
+    <string name="SelectContactScreen__to_see_your_phone_contacts_here">Telefon kişilerini görmek için cihaz ayarlarından erişim izni ver. %1$s</string>
     <!-- Link that opens instructions for granting contacts permission from the device settings -->
     <string name="SelectContactScreen__learn_more">Daha fazlasını öğren</string>
     <!-- Title of the sheet explaining how to grant contacts permission from the device settings -->
     <string name="SelectContactScreen__allow_access_to_contacts">Kişilere erişime izin ver</string>
     <!-- Subtitle of the sheet explaining how to grant contacts permission from the device settings -->
-    <string name="SelectContactScreen__to_find_people_you_know_on_signal">Signal\'de tanıdığın kişileri bulmak için:</string>
+    <string name="SelectContactScreen__to_find_people_you_know_on_signal">Signal\'da tanıdığın kişileri bulmak için:</string>
     <!-- Toast shown when a selected contact can no longer be read -->
-    <string name="SelectContactScreen__couldnt_open_contact">Couldn\'t open that contact</string>
+    <string name="SelectContactScreen__couldnt_open_contact">Kişi açılamadı</string>
 
     <!-- Title of the screen where the user chooses which parts of a contact to share -->
     <string name="ShareContactScreen__share_contact">Kişiyi Paylaş</string>
@@ -9571,15 +9573,15 @@
     <string name="SharedContactDetailsScreen__join_me_on_signal">Signal\'da Bana Katıl</string>
 
     <!-- Title of the bottom sheet that confirms the user wants a brand new recovery key. -->
-    <string name="ResetRecoveryKeyBottomSheet__reset_your_recovery_key">Reset your recovery key</string>
+    <string name="ResetRecoveryKeyBottomSheet__reset_your_recovery_key">Kurtarma anahtarını sıfırla</string>
     <!-- First paragraph of the bottom sheet body, explaining what a reset does. -->
-    <string name="ResetRecoveryKeyBottomSheet__resetting_your_recovery_key_will_create_a_new_key">Resetting your recovery key will create a new key for your Signal Login. This is only necessary if someone else knows your key.</string>
+    <string name="ResetRecoveryKeyBottomSheet__resetting_your_recovery_key_will_create_a_new_key">Kurtarma anahtarının sıfırlanması, Signal Login\'in için yeni bir anahtar oluşturacaktır. Bu, yalnızca başka biri anahtarını biliyorsa gereklidir.</string>
     <!-- Second paragraph of the bottom sheet body, explaining what a reset means for backups. -->
-    <string name="ResetRecoveryKeyBottomSheet__if_backups_are_enabled_you_will_have_to_re_upload">If backups are enabled you will have to re-upload your backup, including media. If you are using \"Optimize Signal storage\" you will have to download offloaded media first.</string>
+    <string name="ResetRecoveryKeyBottomSheet__if_backups_are_enabled_you_will_have_to_re_upload">Yedeklemeler etkinleştirilirse, yedeklemeni medya dahil olmak üzere yeniden yüklemen gerekecektir. \"Signal depolama alanını optimize et\"i kullanıyorsan, öncelikle kaldırılan medyayı indirmen gerekecektir.</string>
     <!-- Bottom sheet action that continues on to reset the recovery key. -->
     <string name="ResetRecoveryKeyBottomSheet__continue">Devam et</string>
     <!-- Dialog body shown when the recovery key change limit is exhausted and the user does not have backups enabled. -->
-    <string name="BackupKeyRotationDialogs__limit_exceeded_body_no_backups">You\'ve exhausted the number of new keys you can create. You will be able to create a new recovery key in 7 days.</string>
+    <string name="BackupKeyRotationDialogs__limit_exceeded_body_no_backups">Oluşturabileceğin yeni anahtar sayısını tükettin. 7 gün sonra yeni bir kurtarma anahtarı oluşturabileceksin.</string>
 
     <!-- EOF -->
 </resources>

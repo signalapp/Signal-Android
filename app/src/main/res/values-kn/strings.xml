@@ -1465,7 +1465,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">ನಿಮ್ಮ ಯೂಸರ್‌ನೇಮ್, QR ಕೋಡ್ ಮತ್ತು ಲಿಂಕ್ ನಿಮ್ಮ ಪ್ರೊಫೈಲ್‌ನಲ್ಲಿ ಗೋಚರಿಸುವುದಿಲ್ಲ. ನೀವು ನಂಬುವ ಜನರೊಂದಿಗೆ ಮಾತ್ರ ನಿಮ್ಮ ಯೂಸರ್‌ನೇಮ್‌ ಅನ್ನು ಹಂಚಿಕೊಳ್ಳಿ.</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-    <string name="ManageProfileFragment__username_footer_no_username">People can message you using an optional username instead of a phone number. Usernames have a unique QR code and link you can share with friends.</string>
+    <string name="ManageProfileFragment__username_footer_no_username">ಜನರು ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ಬಳಸುವ ಬದಲಾಗಿ ಐಚ್ಛಿಕ ಯೂಸರ್‌ನೇಮ್ ಬಳಸಿಕೊಂಡು ನಿಮಗೆ ಮೆಸೇಜ್ ಮಾಡಬಹುದು. ಯೂಸರ್‌ನೇಮ್‌ಗಳು ನೀವು ಸ್ನೇಹಿತರೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳಬಹುದಾದ ಅನನ್ಯ QR ಕೋಡ್ ಮತ್ತು ಲಿಂಕ್ ಅನ್ನು ಹೊಂದಿರುತ್ತವೆ.</string>
     <string name="ManageProfileFragment_profile_name">ಪ್ರೊಫೈಲ್ ಹೆಸರು</string>
     <string name="ManageProfileFragment_username">ಯೂಸರ್ ನೇಮ್</string>
     <string name="ManageProfileFragment_about">ಬಗ್ಗೆ</string>
@@ -2788,13 +2788,13 @@
     <string name="StickerManagement_action_delete_selected">ಅಳಿಸಿ</string>
     <!-- Confirmation message shown before uninstalling sticker packs. The placeholder is the number of items to delete. -->
     <plurals name="StickerManagement_delete_n_packs_confirmation">
-        <item quantity="one">Remove %1$s sticker pack?</item>
-        <item quantity="other">Remove %1$s sticker packs?</item>
+        <item quantity="one">%1$s ಸ್ಟಿಕ್ಕರ್ ಪ್ಯಾಕ್ ತೆಗೆದುಹಾಕಬೇಕೇ?</item>
+        <item quantity="other">%1$s ಸ್ಟಿಕ್ಕರ್ ಪ್ಯಾಕ್‌ಗಳನ್ನು ತೆಗೆದುಹಾಕಬೇಕೇ?</item>
     </plurals>
     <!-- Body of the confirmation dialog shown before uninstalling sticker packs. -->
     <plurals name="StickerManagement_delete_n_packs_confirmation_body">
-        <item quantity="one">This will remove the sticker pack. You can\'t add it again without a link or sticker message.</item>
-        <item quantity="other">This will remove these sticker packs. You can\'t add it again without a link or sticker message.</item>
+        <item quantity="one">ಇದು ಸ್ಟಿಕ್ಕರ್ ಪ್ಯಾಕ್ ಅನ್ನು ತೆಗೆದುಹಾಕುತ್ತದೆ. ಲಿಂಕ್ ಅಥವಾ ಸ್ಟಿಕ್ಕರ್ ಮೆಸೇಜ್ ಇಲ್ಲದೆ ನೀವು ಅದನ್ನು ಮತ್ತೆ ಸೇರಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ.</item>
+        <item quantity="other">ಇದು ಈ ಸ್ಟಿಕ್ಕರ್ ಪ್ಯಾಕ್‌ಗಳನ್ನು ತೆಗೆದುಹಾಕುತ್ತದೆ. ಲಿಂಕ್ ಅಥವಾ ಸ್ಟಿಕ್ಕರ್ ಮೆಸೇಜ್ ಇಲ್ಲದೆ ನೀವು ಅದನ್ನು ಮತ್ತೆ ಸೇರಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ.</item>
     </plurals>
     <!-- Message shown after installing a sticker pack. The placeholder is the name of the sticker pack that was installed. -->
     <string name="StickerManagement_installed_pack_s">%1$s ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಲಾಗಿದೆ.</string>
@@ -3009,7 +3009,7 @@
     <string name="UsernameEditFragment_username_is_invalid">ಯೂಸರ್ ನೇಮ್ ಅಮಾನ್ಯವಾಗಿದೆ.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ಯೂಸರ್ ನೇಮ್ ಗಳ %1$d ಮತ್ತು %2$d ಅಕ್ಷರಗಳ ನಡುವೆ ಇರಬೇಕು.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">People can message you using your optional username instead of a phone number. Usernames are always paired with a set of numbers.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">ಜನರು ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ಬಳಸುವ ಬದಲಾಗಿ ನಿಮ್ಮ ಐಚ್ಛಿಕ ಯೂಸರ್‌ನೇಮ್ ಬಳಸಿಕೊಂಡು ನಿಮಗೆ ಮೆಸೇಜ್ ಮಾಡಬಹುದು. ಯೂಸರ್‌ನೇಮ್‌ಗಳನ್ನು ಯಾವಾಗಲೂ ಸಂಖ್ಯೆಗಳ ಸೆಟ್‌ನೊಂದಿಗೆ ಜೋಡಿ ಮಾಡಲಾಗುತ್ತದೆ.</string>
     <!-- Button to allow user to skip -->
     <string name="UsernameEditFragment__skip">ಬಿಟ್ಟು ಮುಂದುವರಿ</string>
     <!-- Content description for done button -->
@@ -3293,19 +3293,19 @@
 
     <!-- ConnectWithUsernamesDialogFragment -->
     <!-- Title of the username education screen shown to accounts registered without a phone number -->
-    <string name="ConnectWithUsernamesDialogFragment__connect_with_usernames">Connect with usernames</string>
+    <string name="ConnectWithUsernamesDialogFragment__connect_with_usernames">ಯೂಸರ್‌ನೇಮ್‌ಗಳ ಮೂಲಕ ಕನೆಕ್ಟ್ ಆಗಿ</string>
     <!-- Title of the usernames section -->
     <string name="ConnectWithUsernamesDialogFragment__usernames">ಯೂಸರ್‌ನೇಮ್‌ಗಳು</string>
     <!-- Description of the usernames section -->
-    <string name="ConnectWithUsernamesDialogFragment__people_can_message_you_using_your_optional_username">People can message you using your optional username instead of a phone number. Usernames aren\'t visible on your profile.</string>
+    <string name="ConnectWithUsernamesDialogFragment__people_can_message_you_using_your_optional_username">ಜನರು ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ಬಳಸುವ ಬದಲಾಗಿ ನಿಮ್ಮ ಐಚ್ಛಿಕ ಯೂಸರ್‌ನೇಮ್ ಬಳಸಿಕೊಂಡು ನಿಮಗೆ ಮೆಸೇಜ್ ಮಾಡಬಹುದು. ನಿಮ್ಮ ಪ್ರೊಫೈಲ್‌ನಲ್ಲಿ ಯೂಸರ್‌ನೇಮ್‌ಗಳು ಗೋಚರಿಸುವುದಿಲ್ಲ.</string>
     <!-- Title of the QR code section -->
     <string name="ConnectWithUsernamesDialogFragment__qr_codes_and_links">QR ಕೋಡ್‌ಗಳು ಮತ್ತು ಲಿಂಕ್‌ಗಳು</string>
     <!-- Description of the QR code section -->
     <string name="ConnectWithUsernamesDialogFragment__usernames_have_a_unique_qr_code">ಯೂಸರ್‌ನೇಮ್‌ಗಳು ಅನನ್ಯ QR ಕೋಡ್ ಮತ್ತು ಲಿಂಕ್ ಅನ್ನು ಹೊಂದಿದ್ದು, ತ್ವರಿತವಾಗಿ ಚಾಟ್ ಪ್ರಾರಂಭಿಸಲು ಅದನ್ನು ನೀವು ಸ್ನೇಹಿತರೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳಬಹುದು.</string>
     <!-- Title of the discoverability section -->
-    <string name="ConnectWithUsernamesDialogFragment__stay_discoverable">Stay discoverable</string>
+    <string name="ConnectWithUsernamesDialogFragment__stay_discoverable">ಹುಡುಕುವಂತೆ ಇರಿ</string>
     <!-- Description of the discoverability section -->
-    <string name="ConnectWithUsernamesDialogFragment__without_a_phone_number_usernames_and_links">Without a phone number, usernames and links are the only way others can connect with you.</string>
+    <string name="ConnectWithUsernamesDialogFragment__without_a_phone_number_usernames_and_links">ಫೋನ್ ಸಂಖ್ಯೆ ಇಲ್ಲದಿದ್ದರೆ, ಯೂಸರ್‌ನೇಮ್‌ಗಳು ಮತ್ತು ಲಿಂಕ್‌ಗಳ ಮೂಲಕ ಮಾತ್ರವೇ ಇತರರು ನಿಮ್ಮೊಂದಿಗೆ ಕನೆಕ್ಟ್ ಆಗಬಹುದು.</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="ConnectWithUsernamesDialogFragment__set_up_username">ನಿಮ್ಮ ಯೂಸರ್‌ನೇಮ್ ಅನ್ನು ಸೆಟಪ್ ಮಾಡಿ</string>
     <!-- Button label that dismisses the screen without creating a username -->
@@ -3313,7 +3313,7 @@
 
     <!-- SetUpUsernameBanner -->
     <!-- Body of a banner on the new message screen prompting the user to create a username -->
-    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">Choose a username so others can connect with you.</string>
+    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">ಇತರರು ನಿಮ್ಮೊಂದಿಗೆ ಕನೆಕ್ಟ್ ಆಗುವಂತೆ ಒಂದು ಯೂಸರ್‌ನೇಮ್ ಅನ್ನು ಆಯ್ಕೆಮಾಡಿ.</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="SetUpUsernameBanner__set_up">ಸೆಟ್ ಅಪ್</string>
     <!-- Accessibility label for the button that permanently dismisses the banner -->
@@ -9018,6 +9018,8 @@
     <string name="TransferAccount_continue_on_your_other_device">ನಿಮ್ಮ ಇನ್ನೊಂದು ಸಾಧನದಲ್ಲಿ ಮುಂದುವರಿಯಿರಿ</string>
     <!-- Old device Transfer account bottom sheet dialog body -->
     <string name="TransferAccount_continue_on_your_other_device_details">ನಿಮ್ಮ ಇನ್ನೊಂದು ಸಾಧನದಲ್ಲಿ ನಿಮ್ಮ ಖಾತೆಯನ್ನು ವರ್ಗಾಯಿಸುವುದನ್ನು ಮುಂದುವರಿಸಿ.</string>
+    <!-- Old device Transfer account error dialog body shown when the new device is too old to accept an account that has no phone number -->
+    <string name="TransferAccount_the_device_you_are_transferring_to_is_out_of_date">The device you\'re transferring to is out of date. Update Signal on that device and try again.</string>
 
     <!-- Prepare Device screen title for quick restore flow -->
     <string name="PrepareDevice_title">ನಿಮ್ಮ ಸಾಧನವನ್ನು ಸಿದ್ಧಪಡಿಸಲಾಗುತ್ತಿದೆ</string>
@@ -9489,13 +9491,13 @@
     </plurals>
 
     <!-- Title of the screen for picking a contact to share -->
-    <string name="SelectContactScreen__select_contact">Select contact</string>
+    <string name="SelectContactScreen__select_contact">ಸಂಪರ್ಕವನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
     <!-- Placeholder in the search field on the contact picker -->
     <string name="SelectContactScreen__search">ಹುಡುಕಿ</string>
     <!-- Content description for the button that clears the contact search field -->
     <string name="SelectContactScreen__clear_search">ಶೋಧ ತೆರವುಗೊಳಿಸಿ</string>
     <!-- Content description for the badge shown next to a contact that is in the phone\'s address book -->
-    <string name="SelectContactScreen__in_your_contacts">In your contacts</string>
+    <string name="SelectContactScreen__in_your_contacts">ನಿಮ್ಮ ಸಂಪರ್ಕಗಳಲ್ಲಿ</string>
     <!-- Title of the prompt asking for permission to read the user\'s phone contacts -->
     <string name="SelectContactScreen__find_people_you_know_on_signal">ನಿಮಗೆ ಗೊತ್ತಿರುವ ಜನರನ್ನು Signal ನಲ್ಲಿ ಹುಡುಕಿ</string>
     <!-- Explanation shown when Signal does not have permission to read the user\'s phone contacts -->
@@ -9505,9 +9507,9 @@
     <!-- Button that dismisses the request for permission to read the user\'s phone contacts -->
     <string name="SelectContactScreen__no_thanks">ಇಲ್ಲ, ಧನ್ಯವಾದಗಳು</string>
     <!-- Button that opens the phone\'s own contact picker, used when Signal cannot ask for contacts permission -->
-    <string name="SelectContactScreen__open_phone_contacts">Open phone contacts</string>
+    <string name="SelectContactScreen__open_phone_contacts">ಫೋನ್ ಸಂಪರ್ಕಗಳನ್ನು ತೆರೆಯಿರಿ</string>
     <!-- Note at the bottom of the contact picker when contacts permission was denied on the device. Placeholder is the "Learn more" link text. -->
-    <string name="SelectContactScreen__to_see_your_phone_contacts_here">To see your phone contacts here, allow access in your device settings. %1$s</string>
+    <string name="SelectContactScreen__to_see_your_phone_contacts_here">ಇಲ್ಲಿ ನಿಮ್ಮ ಫೋನ್ ಸಂಪರ್ಕಗಳನ್ನು ನೋಡಲು, ನಿಮ್ಮ ಸಾಧನ ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಆ್ಯಕ್ಸೆಸ್ ಅನುಮತಿಸಿ. %1$s</string>
     <!-- Link that opens instructions for granting contacts permission from the device settings -->
     <string name="SelectContactScreen__learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
     <!-- Title of the sheet explaining how to grant contacts permission from the device settings -->
@@ -9515,7 +9517,7 @@
     <!-- Subtitle of the sheet explaining how to grant contacts permission from the device settings -->
     <string name="SelectContactScreen__to_find_people_you_know_on_signal">ನಿಮಗೆ ಗೊತ್ತಿರುವ ಜನರನ್ನು Signal ನಲ್ಲಿ ಹುಡುಕಲು:</string>
     <!-- Toast shown when a selected contact can no longer be read -->
-    <string name="SelectContactScreen__couldnt_open_contact">Couldn\'t open that contact</string>
+    <string name="SelectContactScreen__couldnt_open_contact">ಸಂಪರ್ಕವನ್ನು ತೆರೆಯಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ</string>
 
     <!-- Title of the screen where the user chooses which parts of a contact to share -->
     <string name="ShareContactScreen__share_contact">ಸಂಪರ್ಕ ಹಂಚಿಕೊಳ್ಳಿ</string>
@@ -9571,15 +9573,15 @@
     <string name="SharedContactDetailsScreen__join_me_on_signal">Signal ನಲ್ಲಿ ನನ್ನೊಂದಿಗೆ ಸೇರಿಕೊಳ್ಳಿ</string>
 
     <!-- Title of the bottom sheet that confirms the user wants a brand new recovery key. -->
-    <string name="ResetRecoveryKeyBottomSheet__reset_your_recovery_key">Reset your recovery key</string>
+    <string name="ResetRecoveryKeyBottomSheet__reset_your_recovery_key">ನಿಮ್ಮ ರಿಕವರಿ ಕೀ ಅನ್ನು ಮರುಹೊಂದಿಸಿ</string>
     <!-- First paragraph of the bottom sheet body, explaining what a reset does. -->
-    <string name="ResetRecoveryKeyBottomSheet__resetting_your_recovery_key_will_create_a_new_key">Resetting your recovery key will create a new key for your Signal Login. This is only necessary if someone else knows your key.</string>
+    <string name="ResetRecoveryKeyBottomSheet__resetting_your_recovery_key_will_create_a_new_key">ನಿಮ್ಮ ರಿಕವರಿ ಕೀ ಅನ್ನು ಮರುಹೊಂದಿಸುವುದರಿಂದ ನಿಮ್ಮ Signal Login ಗಾಗಿ ಹೊಸ ಕೀ ಅನ್ನು ರಚಿಸುತ್ತದೆ. ನಿಮ್ಮ ಕೀ ಬೇರೆ ಯಾರಿಗಾದರೂ ತಿಳಿದಿದ್ದರೆ ಮಾತ್ರ ಇದು ಅಗತ್ಯವಿರುತ್ತದೆ.</string>
     <!-- Second paragraph of the bottom sheet body, explaining what a reset means for backups. -->
-    <string name="ResetRecoveryKeyBottomSheet__if_backups_are_enabled_you_will_have_to_re_upload">If backups are enabled you will have to re-upload your backup, including media. If you are using \"Optimize Signal storage\" you will have to download offloaded media first.</string>
+    <string name="ResetRecoveryKeyBottomSheet__if_backups_are_enabled_you_will_have_to_re_upload">ಬ್ಯಾಕಪ್‌ಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿದ್ದರೆ ನೀವು ಮೀಡಿಯಾ ಸೇರಿದಂತೆ ನಿಮ್ಮ ಬ್ಯಾಕಪ್ ಅನ್ನು ಮರು-ಅಪ್‌ಲೋಡ್ ಮಾಡಬೇಕು. ನೀವು \"Signal ಸಂಗ್ರಹಣೆಯನ್ನು ಆಪ್ಟಿಮೈಜ್ ಮಾಡಿ\" ಆಯ್ಕೆಯನ್ನು ಬಳಸುತ್ತಿದ್ದರೆ ಆಫ್‌ಲೋಡ್ ಮಾಡಿದ ಮೀಡಿಯಾವನ್ನು ಮೊದಲು ಡೌನ್‌ಲೋಡ್ ಮಾಡಬೇಕು.</string>
     <!-- Bottom sheet action that continues on to reset the recovery key. -->
     <string name="ResetRecoveryKeyBottomSheet__continue">ಮುಂದುವರಿಸಿ</string>
     <!-- Dialog body shown when the recovery key change limit is exhausted and the user does not have backups enabled. -->
-    <string name="BackupKeyRotationDialogs__limit_exceeded_body_no_backups">You\'ve exhausted the number of new keys you can create. You will be able to create a new recovery key in 7 days.</string>
+    <string name="BackupKeyRotationDialogs__limit_exceeded_body_no_backups">ನೀವು ರಚಿಸಬಹುದಾದ ಹೊಸ ಕೀಗಳ ಸಂಖ್ಯೆ ಮುಗಿದಿದೆ. ನೀವು 7 ದಿನಗಳಲ್ಲಿ ಹೊಸ ರಿಕವರಿ ಕೀಯನ್ನು ರಚಿಸಲು ಸಾಧ್ಯವಾಗುತ್ತದೆ.</string>
 
     <!-- EOF -->
 </resources>

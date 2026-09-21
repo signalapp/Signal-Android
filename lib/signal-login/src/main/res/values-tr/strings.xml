@@ -32,7 +32,7 @@
     <!-- Action button that saves the Signal Login as a PDF. -->
     <string name="SignalLoginViewDetailsScreen__save_as_pdf">PDF olarak kaydet</string>
     <!-- Action button that starts the flow to replace the recovery key with a newly-generated one. -->
-    <string name="SignalLoginViewDetailsScreen__reset_recovery_key">Reset recovery key</string>
+    <string name="SignalLoginViewDetailsScreen__reset_recovery_key">Kurtarma anahtarını sıfırla</string>
     <!-- Suggested file name prefilled in the system save dialog when saving the Signal Login as a PDF. Keep the .pdf extension. -->
     <string name="SignalLoginViewDetailsScreen__signal_login_pdf">Signal Login.pdf</string>
     <!-- Toast shown when saving the Signal Login PDF fails. -->

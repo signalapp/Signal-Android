@@ -6155,7 +6155,7 @@
     <!-- Displayed as a subtitle on a row in the Manage Donations screen when payment for a donation is pending -->
     <string name="MySupportPreference__payment_pending">Zahlung ausstehend</string>
     <!-- Displayed as a dialog message when clicking on a donation row that is pending. Placeholder is a formatted fiat amount -->
-    <string name="MySupportPreference__your_bank_transfer_of_s">Deine Überweisung in Höhe von %1$s wird bearbeitet. Die Bearbeitung von Banküberweisungen kann 1 bis 14 Werktage dauern.  </string>
+    <string name="MySupportPreference__your_bank_transfer_of_s">Deine Zahlung per Bank  in Höhe von %1$s wird bearbeitet. Die Bearbeitung  kann 1 bis 14 Werktage dauern.  </string>
     <!-- Displayed in the pending help dialog, used to launch user to more details about bank transfers -->
     <string name="MySupportPreference__learn_more">Mehr erfahren</string>
     <!-- Displayed when a subscription refresh is being performed -->
@@ -7156,9 +7156,9 @@
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
     <string name="DonateToSignalFragment__you_have_a_donation_pending">Eine Spende ist noch ausstehend</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Die Bearbeitung von Banküberweisungen kann 1 bis 14 Werktage dauern. Bitte warte, bis diese Zahlung abgeschlossen ist, bevor du deine regelmäßige Spende aktualisierst.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Die Bearbeitung von Zahlungen per Bank kann 1 bis 14 Werktage dauern. Bitte warte, bis diese Zahlung abgeschlossen ist, bevor du deine regelmäßige Spende aktualisierst.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Die Bearbeitung von Banküberweisungen kann 1 bis 14 Werktage dauern. Bitte warte, bis diese Zahlung abgeschlossen ist, bevor du eine weitere Spende vornimmst.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Die Bearbeitung von Zahlungen per Bank kann 1 bis 14 Werktage dauern. Bitte warte, bis diese Zahlung abgeschlossen ist, bevor du eine weitere Spende vornimmst.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
     <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Deine Spende wird immer noch bearbeitet. Das kann abhängig von deiner Verbindung ein paar Minuten dauern. Bitte warte, bis diese Zahlung abgeschlossen ist, bevor du deine regelmäßige Spende aktualisierst.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
@@ -7168,7 +7168,7 @@
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
     <string name="DonateToSignal__donation_amount_too_high">Spendenbetrag zu hoch</string>
     <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
-    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">Du kannst bis zu %1$s per Banküberweisung senden. Versuche es mit einem anderen Betrag oder einer anderen Zahlungsmethode.</string>
+    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">Du kannst bis zu %1$s per Bankzahlung senden. Versuche es mit einem anderen Betrag oder einer anderen Zahlungsmethode.</string>
 
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">Monatlich</string>
@@ -7188,7 +7188,7 @@
         <item quantity="other">Erhalte ein %1$s-Abzeichen für %2$d Tage</item>
     </plurals>
     <!-- Button label for paying with a bank transfer -->
-    <string name="GatewaySelectorBottomSheet__bank_transfer">Überweisung</string>
+    <string name="GatewaySelectorBottomSheet__bank_transfer">Bankkonto</string>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Kredit- oder Debitkarte</string>
     <!-- Sheet summary when giving donating for a friend -->
@@ -7204,7 +7204,7 @@
 
     <!-- BankTransferMandateFragment -->
     <!-- Title of screen displaying the bank transfer mandate -->
-    <string name="BankTransferMandateFragment__bank_transfer">Überweisung</string>
+    <string name="BankTransferMandateFragment__bank_transfer">Bankzahlung</string>
     <!-- Subtitle of screen displaying the bank transfer mandate, placeholder is \'Learn more\' -->
     <string name="BankTransferMandateFragment__stripe_processes_donations">Stripe verarbeitet Spenden an Signal. Deine persönlichen Daten werden von Signal nicht erfasst oder gespeichert. %1$s</string>
     <!-- Subtitle learn more of screen displaying bank transfer mandate -->
@@ -7278,7 +7278,7 @@
     <!-- Top text block of donation pending sheet displayed after one-time donation via a bank transfer. Placeholder is the badge name. -->
     <string name="DonationPendingBottomSheet__your_one_time_donation_is_pending">Deine einmalige Spende steht noch aus. Sobald deine Spende eingegangen ist, kannst du das %1$s-Abzeichen in deinem Profil anzeigen.</string>
     <!-- Bottom text block of donation pending sheet displayed after donating via a bank transfer. Placeholder is for learn more. -->
-    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">Die Bearbeitung von Banküberweisungen kann 1 bis 14 Werktage dauern. %1$s</string>
+    <string name="DonationPendingBottomSheet__bank_transfers_usually_take">Die Bearbeitung von Zahlungen per Bank kann 1 bis 14 Werktage dauern. %1$s</string>
     <!-- Learn more text for donation pending sheet displayed after donating via a bank transfer. -->
     <string name="DonationPendingBottomSheet__learn_more">Mehr erfahren</string>
     <!-- Confirmation button for donation pending sheet displayed after donating via a bank transfer. -->
@@ -7287,7 +7287,7 @@
     <!-- Title of donation error sheet displayed after making a bank transfer that fails -->
     <string name="DonationErrorBottomSheet__donation_couldnt_be_processed">Spende konnte nicht verarbeitet werden</string>
     <!-- Text block of donation error sheet displayed after making a bank transfer that fails -->
-    <string name="DonationErrorBottomSheet__were_having_trouble">Leider können wir deine Überweisung nicht bearbeiten. Dir wurde keine Gebühr berechnet. Versuche es mit einer anderen Zahlungsmethode oder kontaktiere deine Bank für weitere Informationen.</string>
+    <string name="DonationErrorBottomSheet__were_having_trouble">Leider können wir deine Zahlung per Bank nicht bearbeiten. Dir wurde keine Gebühr berechnet. Versuche es mit einer anderen Zahlungsmethode oder kontaktiere deine Bank für weitere Informationen.</string>
     <!-- Button label for retry button of donation error sheet displayed after making a bank transfer that fails -->
     <string name="DonationErrorBottomSheet__try_again">Erneut versuchen</string>
     <!-- Button label for not now button of donation error sheet displayed after making a bank transfer that fails -->
@@ -7296,7 +7296,7 @@
     <!-- Title of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed -->
     <string name="DonationCompletedBottomSheet__donation_complete">Spende abgeschlossen</string>
     <!-- Text block of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed -->
-    <string name="DonationCompleteBottomSheet__your_bank_transfer_was_received">Deine Überweisung ist eingegangen. Du kannst dieses Abzeichen in deinem Profil anzeigen, um deine Unterstützung für Signal zu zeigen.</string>
+    <string name="DonationCompleteBottomSheet__your_bank_transfer_was_received">Deine Spende ist eingegangen. Du kannst dieses Abzeichen in deinem Profil anzeigen, um deine Unterstützung für Signal zu zeigen.</string>
 
     <!-- StripePaymentInProgressFragment -->
     <string name="StripePaymentInProgressFragment__cancelling">Stornieren …</string>
@@ -8524,7 +8524,7 @@
     <!-- First item in a bulleted list of reasons -->
     <string name="SubscriptionNotFoundBottomSheet__youre_signed_into_the_play_store_with_a_different_google_account">Du hast dich im Play Store mit einem anderen Google-Konto angemeldet.</string>
     <!-- Second item in a bulleted list of reasons -->
-    <string name="SubscriptionNotFoundBottomSheet__you_transferred_from_an_iphone">Du hast die Überweisung per iPhone vorgenommen.</string>
+    <string name="SubscriptionNotFoundBottomSheet__you_transferred_from_an_iphone">Du hast die Zahlung per iPhone vorgenommen.</string>
     <!-- Third item in a bulleted list of reasons -->
     <string name="SubscriptionNotFoundBottomSheet__your_subscription_recently_expired">Dein Abo ist kürzlich abgelaufen.</string>
     <!-- Note underneath bullet points -->
@@ -9018,6 +9018,8 @@
     <string name="TransferAccount_continue_on_your_other_device">Fahre auf deinem anderen Gerät fort</string>
     <!-- Old device Transfer account bottom sheet dialog body -->
     <string name="TransferAccount_continue_on_your_other_device_details">Fahre damit fort, dein Konto auf dein anderes Gerät zu übertragen.</string>
+    <!-- Old device Transfer account error dialog body shown when the new device is too old to accept an account that has no phone number -->
+    <string name="TransferAccount_the_device_you_are_transferring_to_is_out_of_date">The device you\'re transferring to is out of date. Update Signal on that device and try again.</string>
 
     <!-- Prepare Device screen title for quick restore flow -->
     <string name="PrepareDevice_title">Bereite dein Gerät vor</string>

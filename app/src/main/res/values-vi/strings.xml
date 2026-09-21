@@ -1422,7 +1422,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Tên người dùng, mã QR và đường dẫn không hiển thị trên hồ sơ của bạn. Chỉ chia sẻ tên người dùng với người bạn tin tưởng.</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-    <string name="ManageProfileFragment__username_footer_no_username">People can message you using an optional username instead of a phone number. Usernames have a unique QR code and link you can share with friends.</string>
+    <string name="ManageProfileFragment__username_footer_no_username">Mọi người có thể nhắn tin cho bạn bằng tên người dùng tùy chọn thay vì số điện thoại. Tên người dùng có mã QR và đường dẫn riêng để bạn chia sẻ với bạn bè.</string>
     <string name="ManageProfileFragment_profile_name">Tên hồ sơ</string>
     <string name="ManageProfileFragment_username">Tên người dùng</string>
     <string name="ManageProfileFragment_about">Thông tin</string>
@@ -2696,11 +2696,11 @@
     <string name="StickerManagement_action_delete_selected">Xóa</string>
     <!-- Confirmation message shown before uninstalling sticker packs. The placeholder is the number of items to delete. -->
     <plurals name="StickerManagement_delete_n_packs_confirmation">
-        <item quantity="other">Remove %1$s sticker packs?</item>
+        <item quantity="other">Xóa %1$s gói nhãn dán?</item>
     </plurals>
     <!-- Body of the confirmation dialog shown before uninstalling sticker packs. -->
     <plurals name="StickerManagement_delete_n_packs_confirmation_body">
-        <item quantity="other">This will remove these sticker packs. You can\'t add it again without a link or sticker message.</item>
+        <item quantity="other">Thao tác này sẽ xóa các gói nhãn dán này. Bạn không thể thêm lại các gói nhãn dán nếu không có đường dẫn hoặc tin nhắn chứa nhãn dán.</item>
     </plurals>
     <!-- Message shown after installing a sticker pack. The placeholder is the name of the sticker pack that was installed. -->
     <string name="StickerManagement_installed_pack_s">Đã cài đặt %1$s.</string>
@@ -2913,7 +2913,7 @@
     <string name="UsernameEditFragment_username_is_invalid">Tên người dùng không hợp lệ.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Tên người dùng phải nằm trong khoảng từ %1$d đến %2$d ký tự.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">People can message you using your optional username instead of a phone number. Usernames are always paired with a set of numbers.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">Mọi người có thể nhắn tin cho bạn bằng tên người dùng (không bắt buộc) thay vì số điện thoại. Tên người dùng luôn được ghép với một dãy số.</string>
     <!-- Button to allow user to skip -->
     <string name="UsernameEditFragment__skip">Bỏ qua</string>
     <!-- Content description for done button -->
@@ -3190,19 +3190,19 @@
 
     <!-- ConnectWithUsernamesDialogFragment -->
     <!-- Title of the username education screen shown to accounts registered without a phone number -->
-    <string name="ConnectWithUsernamesDialogFragment__connect_with_usernames">Connect with usernames</string>
+    <string name="ConnectWithUsernamesDialogFragment__connect_with_usernames">Kết nối bằng tên người dùng</string>
     <!-- Title of the usernames section -->
     <string name="ConnectWithUsernamesDialogFragment__usernames">Tên người dùng</string>
     <!-- Description of the usernames section -->
-    <string name="ConnectWithUsernamesDialogFragment__people_can_message_you_using_your_optional_username">People can message you using your optional username instead of a phone number. Usernames aren\'t visible on your profile.</string>
+    <string name="ConnectWithUsernamesDialogFragment__people_can_message_you_using_your_optional_username">Mọi người có thể nhắn tin cho bạn bằng tên người dùng (không bắt buộc) thay vì số điện thoại. Tên người dùng không hiển thị trên hồ sơ của bạn.</string>
     <!-- Title of the QR code section -->
     <string name="ConnectWithUsernamesDialogFragment__qr_codes_and_links">Mã QR và Đường Dẫn</string>
     <!-- Description of the QR code section -->
     <string name="ConnectWithUsernamesDialogFragment__usernames_have_a_unique_qr_code">Tên người dùng có một mã QR độc nhất cùng đường dẫn để bạn có thể chia sẻ để bạn bè có thể nhanh chóng bắt đầu trò chuyện với bạn.</string>
     <!-- Title of the discoverability section -->
-    <string name="ConnectWithUsernamesDialogFragment__stay_discoverable">Stay discoverable</string>
+    <string name="ConnectWithUsernamesDialogFragment__stay_discoverable">Giúp mọi người tìm thấy bạn</string>
     <!-- Description of the discoverability section -->
-    <string name="ConnectWithUsernamesDialogFragment__without_a_phone_number_usernames_and_links">Without a phone number, usernames and links are the only way others can connect with you.</string>
+    <string name="ConnectWithUsernamesDialogFragment__without_a_phone_number_usernames_and_links">Nếu không có số điện thoại, tên người dùng và đường dẫn là cách duy nhất để người khác có thể kết nối với bạn.</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="ConnectWithUsernamesDialogFragment__set_up_username">Thiết lập tên người dùng</string>
     <!-- Button label that dismisses the screen without creating a username -->
@@ -3210,7 +3210,7 @@
 
     <!-- SetUpUsernameBanner -->
     <!-- Body of a banner on the new message screen prompting the user to create a username -->
-    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">Choose a username so others can connect with you.</string>
+    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">Chọn tên người dùng để người khác có thể kết nối với bạn.</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="SetUpUsernameBanner__set_up">Thiết Lập</string>
     <!-- Accessibility label for the button that permanently dismisses the banner -->
@@ -8824,6 +8824,8 @@
     <string name="TransferAccount_continue_on_your_other_device">Tiếp tục trên thiết bị khác của bạn</string>
     <!-- Old device Transfer account bottom sheet dialog body -->
     <string name="TransferAccount_continue_on_your_other_device_details">Tiếp tục chuyển tài khoản trên thiết bị khác của bạn.</string>
+    <!-- Old device Transfer account error dialog body shown when the new device is too old to accept an account that has no phone number -->
+    <string name="TransferAccount_the_device_you_are_transferring_to_is_out_of_date">The device you\'re transferring to is out of date. Update Signal on that device and try again.</string>
 
     <!-- Prepare Device screen title for quick restore flow -->
     <string name="PrepareDevice_title">Giai đoạn chuẩn bị</string>
@@ -9294,7 +9296,7 @@
     <!-- Content description for the button that clears the contact search field -->
     <string name="SelectContactScreen__clear_search">Xoá Tìm kiếm</string>
     <!-- Content description for the badge shown next to a contact that is in the phone\'s address book -->
-    <string name="SelectContactScreen__in_your_contacts">In your contacts</string>
+    <string name="SelectContactScreen__in_your_contacts">Trong danh bạ của bạn</string>
     <!-- Title of the prompt asking for permission to read the user\'s phone contacts -->
     <string name="SelectContactScreen__find_people_you_know_on_signal">Tìm người bạn biết trên Signal</string>
     <!-- Explanation shown when Signal does not have permission to read the user\'s phone contacts -->
@@ -9304,9 +9306,9 @@
     <!-- Button that dismisses the request for permission to read the user\'s phone contacts -->
     <string name="SelectContactScreen__no_thanks">Không, cảm ơn</string>
     <!-- Button that opens the phone\'s own contact picker, used when Signal cannot ask for contacts permission -->
-    <string name="SelectContactScreen__open_phone_contacts">Open phone contacts</string>
+    <string name="SelectContactScreen__open_phone_contacts">Mở danh bạ điện thoại</string>
     <!-- Note at the bottom of the contact picker when contacts permission was denied on the device. Placeholder is the "Learn more" link text. -->
-    <string name="SelectContactScreen__to_see_your_phone_contacts_here">To see your phone contacts here, allow access in your device settings. %1$s</string>
+    <string name="SelectContactScreen__to_see_your_phone_contacts_here">Để xem danh bạ điện thoại tại đây, hãy cho phép truy cập trong phần cài đặt thiết bị của bạn. %1$s</string>
     <!-- Link that opens instructions for granting contacts permission from the device settings -->
     <string name="SelectContactScreen__learn_more">Tìm hiểu thêm</string>
     <!-- Title of the sheet explaining how to grant contacts permission from the device settings -->
@@ -9314,7 +9316,7 @@
     <!-- Subtitle of the sheet explaining how to grant contacts permission from the device settings -->
     <string name="SelectContactScreen__to_find_people_you_know_on_signal">Để tìm người bạn biết trên Signal:</string>
     <!-- Toast shown when a selected contact can no longer be read -->
-    <string name="SelectContactScreen__couldnt_open_contact">Couldn\'t open that contact</string>
+    <string name="SelectContactScreen__couldnt_open_contact">Không thể mở liên hệ đó</string>
 
     <!-- Title of the screen where the user chooses which parts of a contact to share -->
     <string name="ShareContactScreen__share_contact">Chia sẻ liên hệ</string>
@@ -9370,15 +9372,15 @@
     <string name="SharedContactDetailsScreen__join_me_on_signal">Cùng sử dụng Signal</string>
 
     <!-- Title of the bottom sheet that confirms the user wants a brand new recovery key. -->
-    <string name="ResetRecoveryKeyBottomSheet__reset_your_recovery_key">Reset your recovery key</string>
+    <string name="ResetRecoveryKeyBottomSheet__reset_your_recovery_key">Đặt lại mã khóa khôi phục</string>
     <!-- First paragraph of the bottom sheet body, explaining what a reset does. -->
-    <string name="ResetRecoveryKeyBottomSheet__resetting_your_recovery_key_will_create_a_new_key">Resetting your recovery key will create a new key for your Signal Login. This is only necessary if someone else knows your key.</string>
+    <string name="ResetRecoveryKeyBottomSheet__resetting_your_recovery_key_will_create_a_new_key">Việc đặt lại mã khóa khôi phục sẽ tạo ra một mã khóa mới cho Signal Login của bạn. Bạn chỉ cần thực hiện việc này nếu có người khác biết mã khóa của bạn.</string>
     <!-- Second paragraph of the bottom sheet body, explaining what a reset means for backups. -->
-    <string name="ResetRecoveryKeyBottomSheet__if_backups_are_enabled_you_will_have_to_re_upload">If backups are enabled you will have to re-upload your backup, including media. If you are using \"Optimize Signal storage\" you will have to download offloaded media first.</string>
+    <string name="ResetRecoveryKeyBottomSheet__if_backups_are_enabled_you_will_have_to_re_upload">Nếu tính năng sao lưu đã được bật, bạn sẽ cần tải lên lại bản sao lưu của mình, bao gồm cả các tập tin đa phương tiện. Nếu bạn đang sử dụng tính năng \"Tối ưu hóa dung lượng của Signal\", bạn cần tải xuống tập tin đa phương tiện đã được giảm tải trước.</string>
     <!-- Bottom sheet action that continues on to reset the recovery key. -->
     <string name="ResetRecoveryKeyBottomSheet__continue">Tiếp tục</string>
     <!-- Dialog body shown when the recovery key change limit is exhausted and the user does not have backups enabled. -->
-    <string name="BackupKeyRotationDialogs__limit_exceeded_body_no_backups">You\'ve exhausted the number of new keys you can create. You will be able to create a new recovery key in 7 days.</string>
+    <string name="BackupKeyRotationDialogs__limit_exceeded_body_no_backups">Bạn đã đạt giới hạn số mã khóa mới có thể tạo. Bạn sẽ không thể tạo mã khóa khôi phục mới trong 7 ngày.</string>
 
     <!-- EOF -->
 </resources>

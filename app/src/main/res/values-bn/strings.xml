@@ -1465,7 +1465,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">আপনার ব্যবহারকারীর নাম, QR কোড এবং লিংক আপনার প্রোফাইলে দৃশ্যমান নয়। শুধুমাত্র আপনি আস্থা রাখতে পারেন এমন ব্যক্তিদের সাথে আপনার ব্যবহারকারীর নাম শেয়ার করুন।</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-    <string name="ManageProfileFragment__username_footer_no_username">People can message you using an optional username instead of a phone number. Usernames have a unique QR code and link you can share with friends.</string>
+    <string name="ManageProfileFragment__username_footer_no_username">অন্যরা ফোন নম্বরের পরিবর্তে ঐচ্ছিক ব্যবহারকারীর নাম ব্যবহার করে আপনাকে মেসেজ পাঠাতে পারবেন। ব্যবহারকারীর নামগুলোর একটি ইউনিক QR কোড এবং লিংক থাকে যা আপনি বন্ধুদের সাথে শেয়ার করতে পারবেন।</string>
     <string name="ManageProfileFragment_profile_name">প্রোফাইল নাম</string>
     <string name="ManageProfileFragment_username">ব্যবহারকারীর নাম</string>
     <string name="ManageProfileFragment_about">সম্বন্ধে</string>
@@ -2788,13 +2788,13 @@
     <string name="StickerManagement_action_delete_selected">মুছে ফেলুন</string>
     <!-- Confirmation message shown before uninstalling sticker packs. The placeholder is the number of items to delete. -->
     <plurals name="StickerManagement_delete_n_packs_confirmation">
-        <item quantity="one">Remove %1$s sticker pack?</item>
-        <item quantity="other">Remove %1$s sticker packs?</item>
+        <item quantity="one">%1$s-টি স্টিকার প্যাক মুছে ফেলবেন?</item>
+        <item quantity="other">%1$s-টি স্টিকার প্যাক মুছে ফেলবেন?</item>
     </plurals>
     <!-- Body of the confirmation dialog shown before uninstalling sticker packs. -->
     <plurals name="StickerManagement_delete_n_packs_confirmation_body">
-        <item quantity="one">This will remove the sticker pack. You can\'t add it again without a link or sticker message.</item>
-        <item quantity="other">This will remove these sticker packs. You can\'t add it again without a link or sticker message.</item>
+        <item quantity="one">এটি স্টিকার প্যাকটি মুছে ফেলবে। লিংক বা স্টিকার মেসেজ ছাড়া আপনি এটি আর যোগ করতে পারবেন না।</item>
+        <item quantity="other">এটি এই স্টিকার প্যাক মুছে ফেলবে। লিংক বা স্টিকার মেসেজ ছাড়া আপনি এগুলো আর যোগ করতে পারবেন না।</item>
     </plurals>
     <!-- Message shown after installing a sticker pack. The placeholder is the name of the sticker pack that was installed. -->
     <string name="StickerManagement_installed_pack_s">%1$s ইনস্টল করা হয়েছে।</string>
@@ -3009,7 +3009,7 @@
     <string name="UsernameEditFragment_username_is_invalid">ব্যবহারকারীর নাম অকার্যকর।</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ব্যবহারকারীর নামগুলো অবশ্যই %1$d এবং %2$d অক্ষরের মধ্যে থাকতে হবে।</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">People can message you using your optional username instead of a phone number. Usernames are always paired with a set of numbers.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">অন্যরা ফোন নম্বরের পরিবর্তে আপনার ঐচ্ছিক ব্যবহারকারীর নাম ব্যবহার করে আপনাকে মেসেজ পাঠাতে পারবেন। ব্যবহারকারীর নাম সবসময় একগুচ্ছ সংখ্যার সাথে জোড়াবদ্ধ করা হয়।</string>
     <!-- Button to allow user to skip -->
     <string name="UsernameEditFragment__skip">বাদ দিয়ে যান</string>
     <!-- Content description for done button -->
@@ -3293,19 +3293,19 @@
 
     <!-- ConnectWithUsernamesDialogFragment -->
     <!-- Title of the username education screen shown to accounts registered without a phone number -->
-    <string name="ConnectWithUsernamesDialogFragment__connect_with_usernames">Connect with usernames</string>
+    <string name="ConnectWithUsernamesDialogFragment__connect_with_usernames">ব্যবহারকারীর নাম দিয়ে সংযুক্ত হোন</string>
     <!-- Title of the usernames section -->
     <string name="ConnectWithUsernamesDialogFragment__usernames">ব্যবহারকারীর নাম</string>
     <!-- Description of the usernames section -->
-    <string name="ConnectWithUsernamesDialogFragment__people_can_message_you_using_your_optional_username">People can message you using your optional username instead of a phone number. Usernames aren\'t visible on your profile.</string>
+    <string name="ConnectWithUsernamesDialogFragment__people_can_message_you_using_your_optional_username">অন্যরা ফোন নম্বরের পরিবর্তে আপনার ঐচ্ছিক ব্যবহারকারীর নাম ব্যবহার করে আপনাকে মেসেজ পাঠাতে পারবেন। ব্যবহারকারীর নাম আপনার প্রোফাইলে দৃশ্যমান থাকে না।</string>
     <!-- Title of the QR code section -->
     <string name="ConnectWithUsernamesDialogFragment__qr_codes_and_links">QR কোড ও লিংক</string>
     <!-- Description of the QR code section -->
     <string name="ConnectWithUsernamesDialogFragment__usernames_have_a_unique_qr_code">ব্যবহারকারীর নামের একটি বিশেষ QR কোড এবং লিংক রয়েছে, যা আপনি দ্রুত আপনার সাথে চ্যাট শুরু করতে আপনার বন্ধুদের সাথে শেয়ার করতে পারেন।</string>
     <!-- Title of the discoverability section -->
-    <string name="ConnectWithUsernamesDialogFragment__stay_discoverable">Stay discoverable</string>
+    <string name="ConnectWithUsernamesDialogFragment__stay_discoverable">অন্যদের সামনে দৃশ্যমান থাকুন</string>
     <!-- Description of the discoverability section -->
-    <string name="ConnectWithUsernamesDialogFragment__without_a_phone_number_usernames_and_links">Without a phone number, usernames and links are the only way others can connect with you.</string>
+    <string name="ConnectWithUsernamesDialogFragment__without_a_phone_number_usernames_and_links">ফোন নম্বর ছাড়া, ব্যবহারকারীর নাম এবং লিংকই হলো অন্যদের সাথে সংযুক্ত হওয়ার একমাত্র উপায়।</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="ConnectWithUsernamesDialogFragment__set_up_username">ব্যবহারকারীর নাম সেট আপ করুন</string>
     <!-- Button label that dismisses the screen without creating a username -->
@@ -3313,7 +3313,7 @@
 
     <!-- SetUpUsernameBanner -->
     <!-- Body of a banner on the new message screen prompting the user to create a username -->
-    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">Choose a username so others can connect with you.</string>
+    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">একটি ব্যবহারকারীর নাম বেছে নিন যাতে অন্যরা আপনার সাথে সংযুক্ত হতে পারেন।</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="SetUpUsernameBanner__set_up">সেট আপ করুন</string>
     <!-- Accessibility label for the button that permanently dismisses the banner -->
@@ -9018,6 +9018,8 @@
     <string name="TransferAccount_continue_on_your_other_device">আপনার অন্য ডিভাইসে চালিয়ে যান</string>
     <!-- Old device Transfer account bottom sheet dialog body -->
     <string name="TransferAccount_continue_on_your_other_device_details">আপনার অন্য ডিভাইসে আপনার অ্যাকাউন্ট ট্রান্সফার চালিয়ে যান।</string>
+    <!-- Old device Transfer account error dialog body shown when the new device is too old to accept an account that has no phone number -->
+    <string name="TransferAccount_the_device_you_are_transferring_to_is_out_of_date">The device you\'re transferring to is out of date. Update Signal on that device and try again.</string>
 
     <!-- Prepare Device screen title for quick restore flow -->
     <string name="PrepareDevice_title">আপনার ডিভাইস প্রস্তুত করা হচ্ছে</string>
@@ -9495,7 +9497,7 @@
     <!-- Content description for the button that clears the contact search field -->
     <string name="SelectContactScreen__clear_search">অনুসন্ধান সাফ করুন</string>
     <!-- Content description for the badge shown next to a contact that is in the phone\'s address book -->
-    <string name="SelectContactScreen__in_your_contacts">In your contacts</string>
+    <string name="SelectContactScreen__in_your_contacts">আপনার কন্টাক্টে</string>
     <!-- Title of the prompt asking for permission to read the user\'s phone contacts -->
     <string name="SelectContactScreen__find_people_you_know_on_signal">Signal-এ আপনার পরিচিত লোকদের খুঁজুন</string>
     <!-- Explanation shown when Signal does not have permission to read the user\'s phone contacts -->
@@ -9505,9 +9507,9 @@
     <!-- Button that dismisses the request for permission to read the user\'s phone contacts -->
     <string name="SelectContactScreen__no_thanks">না ধন্যবাদ</string>
     <!-- Button that opens the phone\'s own contact picker, used when Signal cannot ask for contacts permission -->
-    <string name="SelectContactScreen__open_phone_contacts">Open phone contacts</string>
+    <string name="SelectContactScreen__open_phone_contacts">ফোনের কন্টাক্ট খুলুন</string>
     <!-- Note at the bottom of the contact picker when contacts permission was denied on the device. Placeholder is the "Learn more" link text. -->
-    <string name="SelectContactScreen__to_see_your_phone_contacts_here">To see your phone contacts here, allow access in your device settings. %1$s</string>
+    <string name="SelectContactScreen__to_see_your_phone_contacts_here">এখানে আপনার ফোনের কন্টাক্ট দেখতে, ডিভাইসের সেটিংসে অ্যাক্সেসের অনুমতি দিন। %1$s</string>
     <!-- Link that opens instructions for granting contacts permission from the device settings -->
     <string name="SelectContactScreen__learn_more">আরো জানুন</string>
     <!-- Title of the sheet explaining how to grant contacts permission from the device settings -->
@@ -9515,7 +9517,7 @@
     <!-- Subtitle of the sheet explaining how to grant contacts permission from the device settings -->
     <string name="SelectContactScreen__to_find_people_you_know_on_signal">Signal-এ আপনার পরিচিত লোকদের খুঁজে পেতে:</string>
     <!-- Toast shown when a selected contact can no longer be read -->
-    <string name="SelectContactScreen__couldnt_open_contact">Couldn\'t open that contact</string>
+    <string name="SelectContactScreen__couldnt_open_contact">সেই কন্টাক্টটি খোলা যায়নি</string>
 
     <!-- Title of the screen where the user chooses which parts of a contact to share -->
     <string name="ShareContactScreen__share_contact">পরিচিতি শেয়ার করুন</string>
@@ -9571,15 +9573,15 @@
     <string name="SharedContactDetailsScreen__join_me_on_signal">Signal-এ আমার সাথে যোগ দিন</string>
 
     <!-- Title of the bottom sheet that confirms the user wants a brand new recovery key. -->
-    <string name="ResetRecoveryKeyBottomSheet__reset_your_recovery_key">Reset your recovery key</string>
+    <string name="ResetRecoveryKeyBottomSheet__reset_your_recovery_key">আপনার পুনরুদ্ধার \'কি\' রিসেট করুন</string>
     <!-- First paragraph of the bottom sheet body, explaining what a reset does. -->
-    <string name="ResetRecoveryKeyBottomSheet__resetting_your_recovery_key_will_create_a_new_key">Resetting your recovery key will create a new key for your Signal Login. This is only necessary if someone else knows your key.</string>
+    <string name="ResetRecoveryKeyBottomSheet__resetting_your_recovery_key_will_create_a_new_key">পুনরুদ্ধার \'কি\' রিসেট করলে আপনার Signal Login-এর জন্য একটি নতুন \'কি\' তৈরি হবে। এটি কেবল তখনই প্রয়োজন যদি অন্য কেউ আপনার \'কি\'-টি জেনে ফেলেন।</string>
     <!-- Second paragraph of the bottom sheet body, explaining what a reset means for backups. -->
-    <string name="ResetRecoveryKeyBottomSheet__if_backups_are_enabled_you_will_have_to_re_upload">If backups are enabled you will have to re-upload your backup, including media. If you are using \"Optimize Signal storage\" you will have to download offloaded media first.</string>
+    <string name="ResetRecoveryKeyBottomSheet__if_backups_are_enabled_you_will_have_to_re_upload">ব্যাকআপ চালু করা থাকলে, আপনাকে মিডিয়া-সহ আপনার ব্যাকআপটি পুনরায় আপলোড করতে হবে। আপনি যদি \"Signal স্টোরেজ অপ্টিমাইজ করুন\" ব্যবহার করেন তবে আপনাকে প্রথমে অফলোড করা মিডিয়া ডাউনলোড করতে হবে।</string>
     <!-- Bottom sheet action that continues on to reset the recovery key. -->
     <string name="ResetRecoveryKeyBottomSheet__continue">চলতে থাকুন</string>
     <!-- Dialog body shown when the recovery key change limit is exhausted and the user does not have backups enabled. -->
-    <string name="BackupKeyRotationDialogs__limit_exceeded_body_no_backups">You\'ve exhausted the number of new keys you can create. You will be able to create a new recovery key in 7 days.</string>
+    <string name="BackupKeyRotationDialogs__limit_exceeded_body_no_backups">আপনি সর্বোচ্চ সংখ্যক নতুন \'কি\' তৈরি করে ফেলেছেন। আপনি 7 দিনের মধ্যে একটি নতুন পুনরুদ্ধার \'কি\' তৈরি করতে পারবেন।</string>
 
     <!-- EOF -->
 </resources>
