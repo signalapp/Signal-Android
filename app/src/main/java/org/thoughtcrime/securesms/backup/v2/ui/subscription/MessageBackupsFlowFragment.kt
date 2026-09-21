@@ -20,7 +20,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.core.os.bundleOf
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -54,6 +53,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.PlayStoreUtil
 import org.thoughtcrime.securesms.util.viewModel
+import org.signal.signallogin.R as SignalLoginR
 
 /**
  * Handles the selection, payment, and changing of a user's backup tier.
@@ -83,7 +83,9 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
     )
   }
 
-  private val signalLoginDetailsViewModel: MessageBackupsSignalLoginDetailsViewModel by viewModels()
+  private val signalLoginDetailsViewModel: MessageBackupsSignalLoginDetailsViewModel by viewModel {
+    MessageBackupsSignalLoginDetailsViewModel(isPasswordManagerAvailable = SignalCredentialManager.isSupported(requireContext()))
+  }
 
   private val savePdfLauncher = registerForActivityResult(ActivityResultContracts.CreateDocument(PDF_MIME_TYPE)) { uri: Uri? ->
     if (uri != null) {
@@ -333,6 +335,9 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
             password = signalLoginDetailsViewModel.state.value.recoveryKey
           )
         }
+      }
+      SignalLoginViewDetailsAction.ShowNoPasswordManagerAvailable -> {
+        Toast.makeText(requireContext(), SignalLoginR.string.SignalLoginViewDetailsScreen__no_password_manager_available, Toast.LENGTH_LONG).show()
       }
       SignalLoginViewDetailsAction.LaunchSaveAsPdf -> savePdfLauncher.launch(SignalLoginPdfRenderer.suggestedFileName(requireContext()))
       is SignalLoginViewDetailsAction.CopyTextToClipboard -> Util.copyToClipboardSensitive(requireContext(), action.text)

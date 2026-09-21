@@ -21,4 +21,7 @@ sealed interface SignalLoginInfoScreenActions {
   data class ReadBackFromPasswordManager(val accountId: String) : SignalLoginInfoScreenActions {
     override fun toString(): String = "ReadBackFromPasswordManager(accountId=${accountId.censor()})"
   }
+
+  /** Tell the user that there is no password manager on the device to save the login into. */
+  data object ShowNoPasswordManagerAvailable : SignalLoginInfoScreenActions
 }

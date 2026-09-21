@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -248,28 +249,23 @@ private fun Footer(
         .fillMaxWidth()
         .padding(params.footerPadding)
     ) {
-      if (state.isPasswordManagerAvailable) {
-        Buttons.LargeTonal(
-          onClick = { onEvent(SignalLoginInfoScreenEvents.SaveToPasswordManagerClicked) },
-          enabled = !state.showSpinner,
-          colors = ButtonDefaults.filledTonalButtonColors(
-            containerColor = MaterialTheme.colorScheme.primaryContainer,
-            contentColor = MaterialTheme.colorScheme.onPrimaryContainer
-          ),
-          modifier = Modifier
-            .widthIn(max = params.maxButtonWidth)
-            .fillMaxWidth()
-            .testTag(TestTags.SIGNAL_LOGIN_INFO_SAVE_TO_PASSWORD_MANAGER_BUTTON)
-        ) {
-          if (state.showSpinner) {
-            CircularProgressIndicator(
-              color = MaterialTheme.colorScheme.onPrimaryContainer,
-              strokeWidth = 2.dp,
-              modifier = Modifier.size(20.dp)
-            )
-          } else {
-            Text(stringResource(R.string.SignalLoginInfoScreen__save_to_password_manager))
-          }
+      Buttons.LargeTonal(
+        onClick = { onEvent(SignalLoginInfoScreenEvents.SaveToPasswordManagerClicked) },
+        enabled = !state.showSpinner,
+        colors = primaryContainerButtonColors(enabledLook = state.isPasswordManagerAvailable),
+        modifier = Modifier
+          .widthIn(max = params.maxButtonWidth)
+          .fillMaxWidth()
+          .testTag(TestTags.SIGNAL_LOGIN_INFO_SAVE_TO_PASSWORD_MANAGER_BUTTON)
+      ) {
+        if (state.showSpinner) {
+          CircularProgressIndicator(
+            color = MaterialTheme.colorScheme.onPrimaryContainer,
+            strokeWidth = 2.dp,
+            modifier = Modifier.size(20.dp)
+          )
+        } else {
+          Text(stringResource(R.string.SignalLoginInfoScreen__save_to_password_manager))
         }
       }
 
@@ -288,6 +284,24 @@ private fun Footer(
         Text(stringResource(R.string.SignalLoginInfoScreen__save_manually))
       }
     }
+  }
+}
+
+/**
+ * Tonal button colors, optionally rendered with the disabled palette while the button stays clickable so that tapping
+ * it can explain why it won't work.
+ */
+@Composable
+private fun primaryContainerButtonColors(enabledLook: Boolean): ButtonColors {
+  val colors = ButtonDefaults.filledTonalButtonColors(
+    containerColor = MaterialTheme.colorScheme.primaryContainer,
+    contentColor = MaterialTheme.colorScheme.onPrimaryContainer
+  )
+
+  return if (enabledLook) {
+    colors
+  } else {
+    colors.copy(containerColor = colors.disabledContainerColor, contentColor = colors.disabledContentColor)
   }
 }
 

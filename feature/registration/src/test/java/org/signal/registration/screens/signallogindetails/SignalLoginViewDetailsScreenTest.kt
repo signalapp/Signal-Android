@@ -97,6 +97,15 @@ class SignalLoginViewDetailsScreenTest {
   }
 
   @Test
+  fun `when there is no password manager, the save to password manager button is still shown and clickable`() {
+    setContent(isPasswordManagerAvailable = false)
+
+    composeTestRule.onNodeWithTag(SignalLoginTestTags.VIEW_DETAILS_SAVE_TO_PASSWORD_MANAGER_BUTTON).assertIsDisplayed().performClick()
+
+    assertThat(events).contains(SignalLoginViewDetailsScreenEvents.SaveToPasswordManagerClicked)
+  }
+
+  @Test
   fun `when the screen cannot reset the recovery key, the reset button is not shown`() {
     setContent()
 
@@ -120,7 +129,12 @@ class SignalLoginViewDetailsScreenTest {
     composeTestRule.onNodeWithTag(SignalLoginTestTags.VIEW_DETAILS_RESET_RECOVERY_KEY_BUTTON).assertIsNotDisplayed()
   }
 
-  private fun setContent(showSaveToPasswordManagerButton: Boolean = true, showResetRecoveryKeyButton: Boolean = false, resetRecoveryKeyButtonLoading: Boolean = false) {
+  private fun setContent(
+    showSaveToPasswordManagerButton: Boolean = true,
+    isPasswordManagerAvailable: Boolean = true,
+    showResetRecoveryKeyButton: Boolean = false,
+    resetRecoveryKeyButtonLoading: Boolean = false
+  ) {
     composeTestRule.setContent {
       SignalTheme {
         SignalLoginViewDetailsScreen(
@@ -128,6 +142,7 @@ class SignalLoginViewDetailsScreenTest {
             accountKey = ACCOUNT_KEY,
             recoveryKey = RECOVERY_KEY,
             showSaveToPasswordManagerButton = showSaveToPasswordManagerButton,
+            isPasswordManagerAvailable = isPasswordManagerAvailable,
             showResetRecoveryKeyButton = showResetRecoveryKeyButton,
             resetRecoveryKeyButtonLoading = resetRecoveryKeyButtonLoading
           ),

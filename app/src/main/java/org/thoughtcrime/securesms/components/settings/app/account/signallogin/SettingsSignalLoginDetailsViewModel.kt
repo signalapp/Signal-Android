@@ -24,10 +24,13 @@ import org.signal.signallogin.viewdetails.SignalLoginViewDetailsState
  * account settings.
  *
  * @param showResetRecoveryKeyButton True if the option to reset the recovery key should be offered in the UI.
+ * @param isPasswordManagerAvailable False if the device has no password manager, which leaves the save button showing
+ *   but styled as disabled.
  */
 class SettingsSignalLoginDetailsViewModel(
   private val repository: SignalLoginViewDetailsRepository = SignalLoginViewDetailsRepository(),
-  showResetRecoveryKeyButton: Boolean = false
+  showResetRecoveryKeyButton: Boolean = false,
+  isPasswordManagerAvailable: Boolean = true
 ) : EventDrivenViewModel<SettingsSignalLoginDetailsEvent>(TAG) {
 
   companion object {
@@ -38,6 +41,7 @@ class SettingsSignalLoginDetailsViewModel(
     SignalLoginViewDetailsState(
       accountKey = repository.getAci()?.toString()?.uppercase().orEmpty(),
       recoveryKey = repository.getAccountEntropyPool()?.displayValue.orEmpty(),
+      isPasswordManagerAvailable = isPasswordManagerAvailable,
       showResetRecoveryKeyButton = showResetRecoveryKeyButton,
       resetRecoveryKeyButtonLoading = showResetRecoveryKeyButton
     )
@@ -100,7 +104,11 @@ class SettingsSignalLoginDetailsViewModel(
         _actions.send(SignalLoginViewDetailsAction.NavigateBack)
       }
       SignalLoginViewDetailsScreenEvents.SaveToPasswordManagerClicked -> {
-        _actions.send(SignalLoginViewDetailsAction.LaunchSaveToPasswordManager)
+        if (_state.value.isPasswordManagerAvailable) {
+          _actions.send(SignalLoginViewDetailsAction.LaunchSaveToPasswordManager)
+        } else {
+          _actions.send(SignalLoginViewDetailsAction.ShowNoPasswordManagerAvailable)
+        }
       }
       SignalLoginViewDetailsScreenEvents.SaveAsPdfClicked -> {
         _actions.send(SignalLoginViewDetailsAction.LaunchSaveAsPdf)

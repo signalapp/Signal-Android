@@ -29,13 +29,19 @@ import org.thoughtcrime.securesms.components.TemporaryScreenshotSecurity
 import org.thoughtcrime.securesms.components.settings.app.backups.remote.BackupKeyDisplayFragment
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.viewModel
+import org.signal.signallogin.R as SignalLoginR
 
 /**
  * Shows the account and recovery keys that make up the user's Signal Login, the same way registration does.
  */
 class SettingsSignalLoginDetailsFragment : ComposeFragment() {
 
-  private val viewModel: SettingsSignalLoginDetailsViewModel by viewModel { SettingsSignalLoginDetailsViewModel(showResetRecoveryKeyButton = true) }
+  private val viewModel: SettingsSignalLoginDetailsViewModel by viewModel {
+    SettingsSignalLoginDetailsViewModel(
+      showResetRecoveryKeyButton = true,
+      isPasswordManagerAvailable = SignalCredentialManager.isSupported(requireContext())
+    )
+  }
 
   private val savePdfLauncher = registerForActivityResult(ActivityResultContracts.CreateDocument("application/pdf")) { uri: Uri? ->
     if (uri != null) {
@@ -110,6 +116,9 @@ class SettingsSignalLoginDetailsFragment : ComposeFragment() {
             password = viewModel.state.value.recoveryKey
           )
         }
+      }
+      SignalLoginViewDetailsAction.ShowNoPasswordManagerAvailable -> {
+        Toast.makeText(requireContext(), SignalLoginR.string.SignalLoginViewDetailsScreen__no_password_manager_available, Toast.LENGTH_LONG).show()
       }
       SignalLoginViewDetailsAction.LaunchSaveAsPdf -> savePdfLauncher.launch(SignalLoginPdfRenderer.suggestedFileName(requireContext()))
       SignalLoginViewDetailsAction.LaunchRecoveryKeyReset -> {

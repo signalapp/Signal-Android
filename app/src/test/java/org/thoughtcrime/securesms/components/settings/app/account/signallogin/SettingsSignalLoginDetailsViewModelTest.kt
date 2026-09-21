@@ -99,6 +99,17 @@ class SettingsSignalLoginDetailsViewModelTest {
   }
 
   @Test
+  fun `SaveToPasswordManagerClicked without a password manager tells the user there isn't one`() = runTest(testDispatcher) {
+    val viewModel = SettingsSignalLoginDetailsViewModel(repository, isPasswordManagerAvailable = false)
+    val actions = mutableListOf<SignalLoginViewDetailsAction>()
+    backgroundScope.launch { viewModel.actions.toList(actions) }
+
+    viewModel.onEvent(SettingsSignalLoginDetailsEvent.Screen(SignalLoginViewDetailsScreenEvents.SaveToPasswordManagerClicked))
+
+    assertThat(actions).containsExactly(SignalLoginViewDetailsAction.ShowNoPasswordManagerAvailable)
+  }
+
+  @Test
   fun `SaveAsPdfClicked launches the save as PDF flow`() = runTest(testDispatcher) {
     val viewModel = SettingsSignalLoginDetailsViewModel(repository)
     val actions = mutableListOf<SignalLoginViewDetailsAction>()

@@ -131,6 +131,12 @@ class SignalLoginInfoViewModel(
     isRetry: Boolean,
     stateEmitter: (SignalLoginInfoState) -> Unit
   ) {
+    if (!state.isPasswordManagerAvailable) {
+      Log.w(TAG, "[SaveToPasswordManager] There is no password manager on this device.")
+      _actions.trySend(SignalLoginInfoScreenActions.ShowNoPasswordManagerAvailable)
+      return
+    }
+
     val accountId = state.passwordManagerAccountId
     val recoveryKey = state.passwordManagerRecoveryKey
 

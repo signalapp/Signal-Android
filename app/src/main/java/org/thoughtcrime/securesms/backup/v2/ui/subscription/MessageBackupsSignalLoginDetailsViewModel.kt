@@ -24,7 +24,8 @@ import org.thoughtcrime.securesms.components.settings.app.account.signallogin.Si
  * saved. Resets belong to account settings, so this only ever emits [SignalLoginViewDetailsAction.Shared].
  */
 class MessageBackupsSignalLoginDetailsViewModel(
-  repository: SignalLoginViewDetailsRepository = SignalLoginViewDetailsRepository()
+  repository: SignalLoginViewDetailsRepository = SignalLoginViewDetailsRepository(),
+  isPasswordManagerAvailable: Boolean = true
 ) : EventDrivenViewModel<SignalLoginViewDetailsScreenEvents>(TAG) {
 
   companion object {
@@ -34,7 +35,8 @@ class MessageBackupsSignalLoginDetailsViewModel(
   private val _state = MutableStateFlow(
     SignalLoginViewDetailsState(
       accountKey = repository.getAci()?.toString()?.uppercase().orEmpty(),
-      recoveryKey = repository.getAccountEntropyPool()?.displayValue.orEmpty()
+      recoveryKey = repository.getAccountEntropyPool()?.displayValue.orEmpty(),
+      isPasswordManagerAvailable = isPasswordManagerAvailable
     )
   )
   private val _actions = Channel<SignalLoginViewDetailsAction.Shared>(Channel.BUFFERED)
@@ -48,7 +50,11 @@ class MessageBackupsSignalLoginDetailsViewModel(
         _actions.send(SignalLoginViewDetailsAction.NavigateBack)
       }
       SignalLoginViewDetailsScreenEvents.SaveToPasswordManagerClicked -> {
-        _actions.send(SignalLoginViewDetailsAction.LaunchSaveToPasswordManager)
+        if (_state.value.isPasswordManagerAvailable) {
+          _actions.send(SignalLoginViewDetailsAction.LaunchSaveToPasswordManager)
+        } else {
+          _actions.send(SignalLoginViewDetailsAction.ShowNoPasswordManagerAvailable)
+        }
       }
       SignalLoginViewDetailsScreenEvents.SaveAsPdfClicked -> {
         _actions.send(SignalLoginViewDetailsAction.LaunchSaveAsPdf)

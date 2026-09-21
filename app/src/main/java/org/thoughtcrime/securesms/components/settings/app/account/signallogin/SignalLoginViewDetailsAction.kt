@@ -27,6 +27,9 @@ sealed interface SignalLoginViewDetailsAction {
   /** Launch the system credential manager UI so the user can store the login in their password manager. */
   data object LaunchSaveToPasswordManager : Shared
 
+  /** Tell the user that there is no password manager on the device to save the login into. */
+  data object ShowNoPasswordManagerAvailable : Shared
+
   /** Launch the system document picker so the user can choose where to save the login PDF. */
   data object LaunchSaveAsPdf : Shared
 

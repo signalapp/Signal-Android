@@ -23,6 +23,7 @@ import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -141,6 +142,7 @@ fun SignalLoginViewDetailsScreen(
         maxButtonWidth = layout.maxButtonWidth,
         isElevated = firstPaneScrollState.canScrollForward || secondPaneScrollState.canScrollForward,
         showSaveToPasswordManagerButton = state.showSaveToPasswordManagerButton,
+        isPasswordManagerAvailable = state.isPasswordManagerAvailable,
         showResetRecoveryKeyButton = state.showResetRecoveryKeyButton,
         resetRecoveryKeyButtonLoading = state.resetRecoveryKeyButtonLoading,
         onEvent = onEvent
@@ -296,6 +298,7 @@ private fun Footer(
   maxButtonWidth: Dp,
   isElevated: Boolean,
   showSaveToPasswordManagerButton: Boolean,
+  isPasswordManagerAvailable: Boolean,
   showResetRecoveryKeyButton: Boolean,
   resetRecoveryKeyButtonLoading: Boolean,
   onEvent: (SignalLoginViewDetailsScreenEvents) -> Unit
@@ -313,10 +316,7 @@ private fun Footer(
       if (showSaveToPasswordManagerButton) {
         Buttons.MediumTonal(
           onClick = { onEvent(SignalLoginViewDetailsScreenEvents.SaveToPasswordManagerClicked) },
-          colors = ButtonDefaults.filledTonalButtonColors(
-            containerColor = MaterialTheme.colorScheme.primaryContainer,
-            contentColor = MaterialTheme.colorScheme.onPrimaryContainer
-          ),
+          colors = primaryContainerButtonColors(enabledLook = isPasswordManagerAvailable),
           modifier = Modifier
             .widthIn(max = maxButtonWidth)
             .fillMaxWidth()
@@ -369,6 +369,24 @@ private fun Footer(
   }
 }
 
+/**
+ * Tonal button colors, optionally rendered with the disabled palette while the button stays clickable so that tapping
+ * it can explain why it won't work.
+ */
+@Composable
+private fun primaryContainerButtonColors(enabledLook: Boolean): ButtonColors {
+  val colors = ButtonDefaults.filledTonalButtonColors(
+    containerColor = MaterialTheme.colorScheme.primaryContainer,
+    contentColor = MaterialTheme.colorScheme.onPrimaryContainer
+  )
+
+  return if (enabledLook) {
+    colors
+  } else {
+    colors.copy(containerColor = colors.disabledContainerColor, contentColor = colors.disabledContentColor)
+  }
+}
+
 @BreakpointPreviews
 @Composable
 private fun SignalLoginViewDetailsScreenPreview() {
@@ -377,6 +395,21 @@ private fun SignalLoginViewDetailsScreenPreview() {
       state = SignalLoginViewDetailsState(
         accountKey = "A6B28482-2E32-83D0-7F23-91360A4C2B91",
         recoveryKey = "UY38JH2778HJJHJ8LK19GA61S672JSJ=89R=23S6A578=9BAP92J2YH5T326VV7T"
+      ),
+      onEvent = {}
+    )
+  }
+}
+
+@AllDevicePreviews
+@Composable
+private fun SignalLoginViewDetailsScreenNoPasswordManagerPreview() {
+  Previews.Preview {
+    SignalLoginViewDetailsScreen(
+      state = SignalLoginViewDetailsState(
+        accountKey = "A6B28482-2E32-83D0-7F23-91360A4C2B91",
+        recoveryKey = "UY38JH2778HJJHJ8LK19GA61S672JSJ=89R=23S6A578=9BAP92J2YH5T326VV7T",
+        isPasswordManagerAvailable = false
       ),
       onEvent = {}
     )

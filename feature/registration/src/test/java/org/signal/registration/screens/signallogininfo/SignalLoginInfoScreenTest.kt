@@ -61,6 +61,15 @@ class SignalLoginInfoScreenTest {
   }
 
   @Test
+  fun `when there is no password manager, the save to password manager button is still shown and clickable`() {
+    setContent(isPasswordManagerAvailable = false)
+
+    composeTestRule.onNodeWithTag(TestTags.SIGNAL_LOGIN_INFO_SAVE_TO_PASSWORD_MANAGER_BUTTON).assertIsDisplayed().performClick()
+
+    assertThat(events).contains(SignalLoginInfoScreenEvents.SaveToPasswordManagerClicked)
+  }
+
+  @Test
   fun `when save manually is clicked, SaveManuallyClicked is emitted`() {
     setContent()
 
@@ -117,6 +126,7 @@ class SignalLoginInfoScreenTest {
 
   private fun setContent(
     showConfirmSavedSheet: Boolean = false,
+    isPasswordManagerAvailable: Boolean = true,
     dialogs: SignalLoginInfoState.Dialogs = SignalLoginInfoState.Dialogs()
   ) {
     composeTestRule.setContent {
@@ -125,7 +135,7 @@ class SignalLoginInfoScreenTest {
           state = SignalLoginInfoState(
             aci = ACI_VALUE,
             aep = AEP,
-            isPasswordManagerAvailable = true,
+            isPasswordManagerAvailable = isPasswordManagerAvailable,
             showConfirmSavedSheet = showConfirmSavedSheet,
             dialogs = dialogs
           ),

@@ -807,6 +807,10 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
             viewModel.onEvent(SignalLoginInfoScreenEvents.SavedCredentialRetrieved(credential))
           }
         }
+
+        SignalLoginInfoScreenActions.ShowNoPasswordManagerAvailable -> {
+          Toast.makeText(context, R.string.SignalLoginInfoScreen__no_password_manager_available, Toast.LENGTH_LONG).show()
+        }
       }
     }
 

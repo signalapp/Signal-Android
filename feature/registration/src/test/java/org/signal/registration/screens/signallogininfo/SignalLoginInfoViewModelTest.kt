@@ -107,10 +107,22 @@ class SignalLoginInfoViewModelTest {
   fun `SaveToPasswordManagerClicked without a login in the flow state shows the unknown error dialog`() = runTest(testDispatcher) {
     var emittedState: SignalLoginInfoState? = null
 
-    viewModel.applyEvent(SignalLoginInfoState(), SignalLoginInfoScreenEvents.SaveToPasswordManagerClicked, {}) { emittedState = it }
+    viewModel.applyEvent(SignalLoginInfoState(isPasswordManagerAvailable = true), SignalLoginInfoScreenEvents.SaveToPasswordManagerClicked, {}) { emittedState = it }
 
     assertThat(emittedState?.dialogs?.unknownError).isEqualTo(true)
     assertThat(emittedState?.showSpinner).isEqualTo(false)
+  }
+
+  @Test
+  fun `SaveToPasswordManagerClicked without a password manager tells the user there isn't one`() = runTest(testDispatcher) {
+    val actions = mutableListOf<SignalLoginInfoScreenActions>()
+    backgroundScope.launch { viewModel.actions.toList(actions) }
+    var emittedState: SignalLoginInfoState? = null
+
+    viewModel.applyEvent(SignalLoginInfoState(isPasswordManagerAvailable = false), SignalLoginInfoScreenEvents.SaveToPasswordManagerClicked, {}) { emittedState = it }
+
+    assertThat(actions).containsExactly(SignalLoginInfoScreenActions.ShowNoPasswordManagerAvailable)
+    assertThat(emittedState).isEqualTo(null)
   }
 
   @Test

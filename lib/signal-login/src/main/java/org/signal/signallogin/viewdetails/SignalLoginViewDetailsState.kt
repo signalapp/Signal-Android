@@ -16,11 +16,15 @@ import org.signal.signallogin.RecoveryKeyGroups
  * know whether the user has any resets left, so a spinner stands in for the button.
  *
  * [showSaveToPasswordManagerButton] is false during registration, where the only save option we offer is the PDF.
+ *
+ * [isPasswordManagerAvailable] is false when the device has no password manager at all. The save button is still shown
+ * then, but styled as disabled, so the user can find out why it isn't an option rather than wonder where it went.
  */
 data class SignalLoginViewDetailsState(
   val accountKey: String = "",
   val recoveryKey: String = "",
   val showSaveToPasswordManagerButton: Boolean = true,
+  val isPasswordManagerAvailable: Boolean = true,
   val showResetRecoveryKeyButton: Boolean = false,
   val resetRecoveryKeyButtonLoading: Boolean = false
 ) {
@@ -28,5 +32,5 @@ data class SignalLoginViewDetailsState(
   val recoveryKeyGroups: RecoveryKeyGroups
     get() = RecoveryKeyGroups.from(recoveryKey)
 
-  override fun toString(): String = "SignalLoginViewDetailsState(accountKey=${accountKey.censor()}, recoveryKey=${recoveryKey.censor()}, showSaveToPasswordManagerButton=$showSaveToPasswordManagerButton, showResetRecoveryKeyButton=$showResetRecoveryKeyButton, resetRecoveryKeyButtonLoading=$resetRecoveryKeyButtonLoading)"
+  override fun toString(): String = "SignalLoginViewDetailsState(accountKey=${accountKey.censor()}, recoveryKey=${recoveryKey.censor()}, showSaveToPasswordManagerButton=$showSaveToPasswordManagerButton, isPasswordManagerAvailable=$isPasswordManagerAvailable, showResetRecoveryKeyButton=$showResetRecoveryKeyButton, resetRecoveryKeyButtonLoading=$resetRecoveryKeyButtonLoading)"
 }

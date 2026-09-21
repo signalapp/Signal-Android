@@ -99,6 +99,16 @@ class MessageBackupsSignalLoginDetailsViewModelTest {
   }
 
   @Test
+  fun `SaveToPasswordManagerClicked without a password manager tells the user there isn't one`() = runTest(testDispatcher) {
+    val viewModel = MessageBackupsSignalLoginDetailsViewModel(repository, isPasswordManagerAvailable = false)
+    val actions = collectActions(viewModel)
+
+    viewModel.onEvent(SignalLoginViewDetailsScreenEvents.SaveToPasswordManagerClicked)
+
+    assertThat(actions).containsExactly(SignalLoginViewDetailsAction.ShowNoPasswordManagerAvailable)
+  }
+
+  @Test
   fun `SaveAsPdfClicked launches the save as PDF flow`() = runTest(testDispatcher) {
     val viewModel = MessageBackupsSignalLoginDetailsViewModel(repository)
     val actions = collectActions(viewModel)
