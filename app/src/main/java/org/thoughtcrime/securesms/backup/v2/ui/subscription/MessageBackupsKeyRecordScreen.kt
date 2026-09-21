@@ -737,7 +737,7 @@ private suspend fun saveKeyToCredentialManager(
 ): CredentialManagerResult {
   return SignalCredentialManager.saveCredential(
     activityContext = activityContext,
-    username = SignalStore.account.requireAci().toString().uppercase(),
+    username = credentialId(activityContext),
     password = backupKey
   )
 }
@@ -745,7 +745,19 @@ private suspend fun saveKeyToCredentialManager(
 private suspend fun getKeyFromCredentialManager(
   @UiContext activityContext: Context
 ): String? {
-  return SignalCredentialManager.getCredential(activityContext, SignalStore.account.requireAci().toString().uppercase())?.password
+  return SignalCredentialManager.getCredential(activityContext, credentialId(activityContext))?.password
+}
+
+/**
+ * Numberless accounts file their credential under the ACI, since that is the identifier they log in with.
+ * Everyone else uses a generic Signal-branded id.
+ */
+private fun credentialId(context: Context): String {
+  return if (SignalStore.account.isPhoneNumberless) {
+    SignalStore.account.requireAci().toString().uppercase()
+  } else {
+    context.getString(R.string.MessageBackupsKeyRecordScreen__backup_key_password_manager_id)
+  }
 }
 
 @DayNightPreviews
