@@ -2474,7 +2474,8 @@ public class SignalServiceMessageSender {
   /**
    * Converts common exceptions thrown during message sending to the appropriate {@link SendMessageResult}.
    * <p>
-   * Exceptions that cannot be mapped will be rethrown as wrapped {@link IOException}s.
+   * Transport failures become {@link SendMessageResult#networkFailure} so that callers can keep the results of the
+   * recipients that did succeed. Exceptions that cannot be mapped will be rethrown as wrapped {@link IOException}s.
    */
   public static @Nonnull SendMessageResult mapSendErrorToSendResult(@Nonnull Throwable t, long timestamp, @Nonnull SignalServiceAddress recipient) throws IOException {
     if (t instanceof UntrustedIdentityException) {
@@ -2498,6 +2499,9 @@ public class SignalServiceMessageSender {
     } else if (t instanceof InvalidPreKeyException) {
       Log.w(TAG, "[" + timestamp + "] Hit invalid prekey: " + recipient.getIdentifier(), t);
       return SendMessageResult.invalidPreKeyFailure(recipient);
+    } else if (t instanceof IOException && !(t instanceof NonSuccessfulResponseCodeException)) {
+      Log.w(TAG, "[" + timestamp + "] Hit transport failure: " + recipient.getIdentifier(), t);
+      return SendMessageResult.networkFailure(recipient);
     } else {
       Log.w(TAG, "[" + timestamp + "] Hit unknown exception: " + recipient.getIdentifier(), t);
       throw new IOException(t);
