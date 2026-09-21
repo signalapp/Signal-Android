@@ -89,6 +89,28 @@ class ContactCardReaderTest {
     assertThat(contact.phoneNumbers.first().number).isEqualTo("+15105550101")
   }
 
+  @Test
+  fun `vcard types are read off the raw parameter`() {
+    givenVcard(
+      """
+      BEGIN:VCARD
+      VERSION:3.0
+      FN:Paige Hall
+      TEL;TYPE=WORK:+15105550101
+      TEL;TYPE=X-ASSISTANT:+15105550102
+      EMAIL;TYPE=HOME:paige@example.com
+      END:VCARD
+      """.trimIndent()
+    )
+
+    val contact = reader.readVCard(VCARD_URI)!!
+
+    assertThat(contact.phoneNumbers[0].type).isEqualTo(Contact.Phone.Type.WORK)
+    assertThat(contact.phoneNumbers[1].type).isEqualTo(Contact.Phone.Type.CUSTOM)
+    assertThat(contact.phoneNumbers[1].label).isEqualTo("X-ASSISTANT")
+    assertThat(contact.emails[0].type).isEqualTo(Contact.Email.Type.HOME)
+  }
+
   private fun givenVcard(body: String) {
     every { PartAuthority.getAttachmentStream(any(), any()) } returns ByteArrayInputStream(body.toByteArray())
   }

@@ -9,10 +9,8 @@ import androidx.annotation.Nullable;
 import org.signal.core.util.logging.Log;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
-import ezvcard.Ezvcard;
 import ezvcard.VCard;
 
 public final class VCardUtil {
@@ -20,15 +18,6 @@ public final class VCardUtil {
     private VCardUtil(){}
 
     private static final String TAG = Log.tag(VCardUtil.class);
-
-    public static List<Contact> parseContacts(@NonNull String vCardData) {
-        List<VCard> vContacts = Ezvcard.parse(vCardData).all();
-        List<Contact> contacts = new LinkedList<>();
-        for (VCard vCard: vContacts){
-            contacts.add(getContactFromVcard(vCard));
-        }
-        return contacts;
-    }
 
     static @Nullable Contact getContactFromVcard(@NonNull VCard vcard) {
         ezvcard.property.StructuredName  vName            = vcard.getStructuredName();
@@ -62,24 +51,24 @@ public final class VCardUtil {
 
 
         List<Contact.Phone> phoneNumbers = new ArrayList<>(vPhones.size());
-        for (ezvcard.property.Telephone vEmail : vPhones) {
-            String label = !vEmail.getTypes().isEmpty() ? getCleanedVcardType(vEmail.getTypes().get(0).getValue()) : null;
+        for (ezvcard.property.Telephone vPhone : vPhones) {
+            String label = getVcardTypeLabel(vPhone);
 
             // Phone number is stored in the uri field in v4.0 only. In other versions, it is in the text field.
-            String phoneNumberFromText  = vEmail.getText();
-            String extractedPhoneNumber = phoneNumberFromText == null ? vEmail.getUri().getNumber() : phoneNumberFromText;
+            String phoneNumberFromText  = vPhone.getText();
+            String extractedPhoneNumber = phoneNumberFromText == null ? vPhone.getUri().getNumber() : phoneNumberFromText;
             phoneNumbers.add(new Contact.Phone(extractedPhoneNumber, phoneTypeFromVcardType(label), label));
         }
 
         List<Contact.Email> emails = new ArrayList<>(vEmails.size());
         for (ezvcard.property.Email vEmail : vEmails) {
-            String label = !vEmail.getTypes().isEmpty() ? getCleanedVcardType(vEmail.getTypes().get(0).getValue()) : null;
+            String label = getVcardTypeLabel(vEmail);
             emails.add(new Contact.Email(vEmail.getValue(), emailTypeFromVcardType(label), label));
         }
 
         List<Contact.PostalAddress> postalAddresses = new ArrayList<>(vPostalAddresses.size());
         for (ezvcard.property.Address vPostalAddress : vPostalAddresses) {
-            String label = !vPostalAddress.getTypes().isEmpty() ? getCleanedVcardType(vPostalAddress.getTypes().get(0).getValue()) : null;
+            String label = getVcardTypeLabel(vPostalAddress);
             postalAddresses.add(new Contact.PostalAddress(postalAddressTypeFromVcardType(label),
                     label,
                     vPostalAddress.getStreetAddress(),
@@ -146,6 +135,12 @@ public final class VCardUtil {
         if      ("home".equalsIgnoreCase(type)) return Contact.PostalAddress.Type.HOME;
         else if ("work".equalsIgnoreCase(type)) return Contact.PostalAddress.Type.WORK;
         else                                    return Contact.PostalAddress.Type.CUSTOM;
+    }
+
+    private static @Nullable String getVcardTypeLabel(@NonNull ezvcard.property.VCardProperty property) {
+        String type = property.getParameters().getType();
+
+        return type != null ? getCleanedVcardType(type) : null;
     }
 
     private static String getCleanedVcardType(@Nullable String type) {
