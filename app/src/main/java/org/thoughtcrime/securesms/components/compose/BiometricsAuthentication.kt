@@ -25,9 +25,45 @@ import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.findFragment
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import org.thoughtcrime.securesms.BiometricDeviceAuthentication
 import org.thoughtcrime.securesms.BiometricDeviceLockContract
 import org.thoughtcrime.securesms.DevicePinAuthEducationSheet
+
+/** An authentication the user has been asked for but hasn't finished yet. */
+internal class PendingAuthentication(
+  val onAuthenticated: () -> Unit,
+  val onAuthenticationFailed: (() -> Unit)?
+)
+
+/**
+ * Activity-scoped home for the authentication that's currently in flight.
+ *
+ * [BiometricPrompt] hands its callback to an activity-scoped view model of its own, so only the most recently
+ * constructed prompt is told about a result. Screens that need more than one [BiometricsAuthentication] therefore have
+ * to agree on where the pending authentication lives, or whichever helper happens to own the callback drops the
+ * result.
+ */
+internal class PendingAuthenticationHolder : ViewModel() {
+  private var pendingAuthentication: PendingAuthentication? = null
+
+  fun set(pending: PendingAuthentication) {
+    pendingAuthentication = pending
+  }
+
+  fun peek(): PendingAuthentication? = pendingAuthentication
+
+  fun take(): PendingAuthentication? {
+    return pendingAuthentication.also { pendingAuthentication = null }
+  }
+
+  fun clearIf(pending: PendingAuthentication?) {
+    if (pendingAuthentication === pending) {
+      pendingAuthentication = null
+    }
+  }
+}
 
 @Stable
 class BiometricsAuthentication internal constructor(
@@ -79,31 +115,32 @@ fun rememberBiometricsAuthentication(
     "promptTitle must be non-blank when using rememberBiometricsAuthentication()"
   }
 
+  val pendingHolder = viewModel<PendingAuthenticationHolder>(viewModelStoreOwner = host.activity)
+  var startedHere by remember { mutableStateOf<PendingAuthentication?>(null) }
+
   // Fallback to device credential confirmation when BiometricPrompt isn't available.
-  var pendingAction by remember { mutableStateOf<(() -> Unit)?>(null) }
   val deviceCredentialLauncher = rememberLauncherForActivityResult(BiometricDeviceLockContract()) { result ->
+    val pending = pendingHolder.take()
     if (result == BiometricDeviceAuthentication.AUTHENTICATED) {
-      pendingAction?.invoke()
-      pendingAction = null
+      pending?.onAuthenticated?.invoke()
     }
   }
 
   val biometricManager = remember(context) { BiometricManager.from(context) }
 
-  val biometricPrompt = remember(host.activity, host.fragment, context) {
+  val biometricPrompt = remember(host.activity, host.fragment, context, pendingHolder) {
     val executor = ContextCompat.getMainExecutor(context)
     val callback = object : BiometricPrompt.AuthenticationCallback() {
       override fun onAuthenticationFailed() {
-        onAuthenticationFailed?.invoke()
+        pendingHolder.peek()?.onAuthenticationFailed?.invoke()
       }
 
       override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
-        pendingAction?.invoke()
-        pendingAction = null
+        pendingHolder.take()?.onAuthenticated?.invoke()
       }
 
       override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
-        onAuthenticationFailed?.invoke()
+        pendingHolder.take()?.onAuthenticationFailed?.invoke()
       }
     }
 
@@ -124,7 +161,7 @@ fun rememberBiometricsAuthentication(
   val shouldShowEducationSheetForFlow = biometricDeviceAuthentication.shouldShowEducationSheet(context)
 
   fun authenticateOrFallback(promptTitleForPrompt: String) {
-    val action = pendingAction ?: return
+    val pending = pendingHolder.peek() ?: return
     val promptInfo = BiometricPrompt.PromptInfo.Builder()
       .setAllowedAuthenticators(BiometricDeviceAuthentication.ALLOWED_AUTHENTICATORS)
       .setTitle(promptTitleForPrompt)
@@ -136,8 +173,8 @@ fun rememberBiometricsAuthentication(
       }
     ) {
       // If we cannot authenticate at all, preserve existing call-site behavior and just proceed.
-      action.invoke()
-      pendingAction = null
+      pendingHolder.take()
+      pending.onAuthenticated()
     }
   }
 
@@ -146,13 +183,15 @@ fun rememberBiometricsAuthentication(
   DisposableEffect(biometricDeviceAuthentication) {
     onDispose {
       biometricDeviceAuthentication.cancelAuthentication()
-      pendingAction = null
+      pendingHolder.clearIf(startedHere)
     }
   }
 
   return BiometricsAuthentication(
     authenticateImpl = { onAuthenticated ->
-      pendingAction = onAuthenticated
+      val pending = PendingAuthentication(onAuthenticated, onAuthenticationFailed)
+      startedHere = pending
+      pendingHolder.set(pending)
 
       if (shouldShowEducationSheetForFlow && !educationSheetMessage.isNullOrBlank()) {
         DevicePinAuthEducationSheet.show(educationSheetMessage, host.fragmentManager)
