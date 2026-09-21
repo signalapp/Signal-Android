@@ -49,12 +49,37 @@ object QuickRegistrationRepository {
   }
 
   /**
+   * Whether the new device that generated [data] can handle this account. A phone-numberless account can only be
+   * transferred to a new device that advertises [Capability.Numberless].
+   */
+  fun isNewDeviceCompatible(data: String): Boolean {
+    if (!SignalStore.account.isPhoneNumberless) {
+      return true
+    }
+
+    return Capability.Numberless in Uri.parse(data).getCapabilities()
+  }
+
+  private fun Uri.getCapabilities(): Set<Capability> {
+    return this.getQueryParameter("capabilities")
+      ?.split(",")
+      ?.mapNotNull { value -> Capability.entries.firstOrNull { it.value == value } }
+      ?.toSet()
+      ?: emptySet()
+  }
+
+  /**
    * Send registration provisioning message to new device.
    */
   fun transferAccount(reRegisterUri: String, restoreMethodToken: String): TransferAccountResult {
     if (!isValidReRegistrationQr(reRegisterUri)) {
       Log.w(TAG, "Invalid quick re-register qr data")
       return TransferAccountResult.FAILED
+    }
+
+    if (!isNewDeviceCompatible(reRegisterUri)) {
+      Log.w(TAG, "New device cannot accept a phone-numberless account")
+      return TransferAccountResult.NEW_DEVICE_OUTDATED
     }
 
     val uri = Uri.parse(reRegisterUri)
@@ -165,6 +190,11 @@ object QuickRegistrationRepository {
 
   enum class TransferAccountResult {
     SUCCESS,
-    FAILED
+    FAILED,
+    NEW_DEVICE_OUTDATED
+  }
+
+  private enum class Capability(val value: String) {
+    Numberless("nopni")
   }
 }

@@ -125,6 +125,7 @@ class MediaSendFlowViewModel(
 
   internal val usernameScannedDialog = DialogController<String>()
   internal val linkedDeviceScannedDialog = DialogController<Unit>()
+  internal val reRegistrationOutdatedDeviceDialog = DialogController<Unit>()
   internal val discardMediaDialog = DialogController<Unit>()
   internal val addToGroupStoryDialog = DialogController<MediaRecipientId>()
 
@@ -189,6 +190,7 @@ class MediaSendFlowViewModel(
           }
           MediaSendQrRepository.QrCheckResult.None -> Unit
           is MediaSendQrRepository.QrCheckResult.ReRegistration -> sendHudCommand(MediaSendFlowHudCommand.GoToQuickTransfer(qrData))
+          MediaSendQrRepository.QrCheckResult.ReRegistrationOutdatedDevice -> reRegistrationOutdatedDeviceDialog.show(Unit)
           is MediaSendQrRepository.QrCheckResult.Username -> {
             when (usernameScannedDialog.show(result.username)) {
               DialogResult.POSITIVE -> sendHudCommand(MediaSendFlowHudCommand.GoToConversation(result.recipientId))

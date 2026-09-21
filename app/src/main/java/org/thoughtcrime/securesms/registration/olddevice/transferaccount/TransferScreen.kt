@@ -131,6 +131,14 @@ fun TransferAccountScreen(
         )
       }
 
+      QuickRegistrationRepository.TransferAccountResult.NEW_DEVICE_OUTDATED -> {
+        Dialogs.SimpleMessageDialog(
+          message = stringResource(R.string.TransferAccount_the_device_you_are_transferring_to_is_out_of_date),
+          dismiss = stringResource(android.R.string.ok),
+          onDismiss = { emitter(TransferScreenEvents.ErrorDialogDismissed) }
+        )
+      }
+
       null -> Unit
     }
   }
