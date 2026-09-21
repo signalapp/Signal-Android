@@ -140,7 +140,11 @@ gradle.projectsEvaluated {
 
   tasks.named("validateScreenshots") {
     subprojects.filter { it.name != "Signal-Android" }.forEach { subproject ->
-      subproject.tasks.findByName("validateDebugScreenshotTest")?.let { dependsOn(it) }
+      // All modules get screenshotTests enabled by default, but the validate task fails if there's no tests.
+      // So we just filter out the modules that have no tests ourselves.
+      if (subproject.file("src/screenshotTest").isDirectory) {
+        subproject.tasks.findByName("validateDebugScreenshotTest")?.let { dependsOn(it) }
+      }
     }
   }
 

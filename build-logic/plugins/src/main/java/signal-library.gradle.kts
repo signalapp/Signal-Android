@@ -72,3 +72,18 @@ dependencies {
   testImplementation(testLibs.androidx.test.core)
   testImplementation(testLibs.androidx.test.core.ktx)
 }
+
+// Enable screenshot testing for modules that use compose
+plugins.withId("org.jetbrains.kotlin.plugin.compose") {
+  android {
+    experimentalProperties["android.experimental.enableScreenshotTest"] = true
+  }
+
+  apply(plugin = "com.android.compose.screenshot")
+
+  dependencies {
+    add("screenshotTestImplementation", testLibs.compose.screenshot.validation.api)
+    add("screenshotTestImplementation", libs.androidx.compose.ui.tooling.core)
+    add("screenshotTestImplementation", libs.androidx.compose.ui.tooling.preview)
+  }
+}
