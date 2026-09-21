@@ -22,7 +22,6 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.SignalE164Util
-import java.io.IOException
 
 /** Reads a contact card off a uri, either an address book entry or a vcard attachment. */
 class ContactCardReader(context: Context) {
@@ -112,7 +111,7 @@ class ContactCardReader(context: Context) {
         val vcard = Ezvcard.parse(stream).first() ?: return@use null
         VCardUtil.getContactFromVcard(vcard)
       }
-    } catch (e: IOException) {
+    } catch (e: Exception) {
       Log.w(TAG, "Failed to parse the vcard.", e)
       null
     }
