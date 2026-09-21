@@ -58,6 +58,18 @@ class SignalLoginViewDetailsScreenTest {
     composeTestRule.onNodeWithTag(SignalLoginTestTags.BETA_DISCLAIMER).assertIsDisplayed()
   }
 
+  @Config(qualifiers = "w1280dp-h800dp-xhdpi")
+  @Test
+  fun `when the window is wide, both panes are shown`() {
+    setContent(showResetRecoveryKeyButton = true)
+
+    composeTestRule.onNodeWithTag(SignalLoginTestTags.BETA_DISCLAIMER).assertIsDisplayed()
+    composeTestRule.onNodeWithTag(SignalLoginTestTags.KEY_DETAILS_ACCOUNT_ID_BLOCK).assertIsDisplayed()
+    composeTestRule.onNodeWithTag(SignalLoginTestTags.KEY_DETAILS_RECOVERY_KEY_BLOCK).assertIsDisplayed()
+    composeTestRule.onNodeWithTag(SignalLoginTestTags.VIEW_DETAILS_SAVE_TO_PASSWORD_MANAGER_BUTTON).assertIsDisplayed()
+    composeTestRule.onNodeWithTag(SignalLoginTestTags.VIEW_DETAILS_RESET_RECOVERY_KEY_BUTTON).assertIsDisplayed()
+  }
+
   @Test
   fun `when the account key copy button is clicked, CopyAccountIdClicked is emitted`() {
     setContent()
