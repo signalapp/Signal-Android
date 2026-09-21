@@ -26,7 +26,7 @@ import org.thoughtcrime.securesms.database.model.StickerPackId
 import org.thoughtcrime.securesms.database.model.StickerPackKey
 import org.thoughtcrime.securesms.sharing.MultiShareArgs
 import org.thoughtcrime.securesms.stickers.StickerUrl
-import org.thoughtcrime.securesms.stickers.preview.StickerPackPreviewActivity
+import org.thoughtcrime.securesms.stickers.preview.StickerPackPreviewActivityV2
 import org.thoughtcrime.securesms.util.viewModel
 
 /**
@@ -101,6 +101,6 @@ class StickerManagementActivity : PassphraseRequiredActivity() {
   }
 
   private fun navigateToStickerPreview(packId: StickerPackId, packKey: StickerPackKey) {
-    startActivity(StickerPackPreviewActivity.getIntent(packId.value, packKey.value))
+    startActivity(StickerPackPreviewActivityV2.createIntent(packId, packKey))
   }
 }

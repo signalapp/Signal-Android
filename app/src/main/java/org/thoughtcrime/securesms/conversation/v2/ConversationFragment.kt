@@ -57,7 +57,6 @@ import androidx.annotation.MainThread
 import androidx.annotation.StringRes
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.SearchView
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.ComposeView
@@ -267,6 +266,8 @@ import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.Quote
+import org.thoughtcrime.securesms.database.model.StickerPackId
+import org.thoughtcrime.securesms.database.model.StickerPackKey
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.databinding.V2ConversationBackgroundBinding
 import org.thoughtcrime.securesms.databinding.V2ConversationFragmentBinding
@@ -356,7 +357,7 @@ import org.thoughtcrime.securesms.stickers.StickerEventListener
 import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.thoughtcrime.securesms.stickers.StickerPackInstallEvent
 import org.thoughtcrime.securesms.stickers.manage.StickerManagementScreen
-import org.thoughtcrime.securesms.stickers.preview.StickerPackPreviewActivity
+import org.thoughtcrime.securesms.stickers.preview.StickerPackPreviewActivityV2
 import org.thoughtcrime.securesms.stories.StoryViewerArgs
 import org.thoughtcrime.securesms.stories.viewer.StoryViewerActivity
 import org.thoughtcrime.securesms.util.BubbleUtil
@@ -3693,7 +3694,7 @@ class ConversationFragment :
 
     override fun onStickerClicked(stickerLocator: StickerLocator) {
       context ?: return
-      startActivity(StickerPackPreviewActivity.getIntent(stickerLocator.packId, stickerLocator.packKey))
+      startActivity(StickerPackPreviewActivityV2.createIntent(StickerPackId(stickerLocator.packId), StickerPackKey(stickerLocator.packKey)))
     }
 
     override fun onViewOnceMessageClicked(messageRecord: MmsMessageRecord) {
