@@ -97,6 +97,7 @@ enum class SignalIcons(private val icon: SignalIcon) : SignalIcon by icon {
   QualityHighSlash(icon(R.drawable.symbol_quality_high_slash_24)),
   Recent(icon(R.drawable.symbol_recent_24)),
   Redo(icon(R.drawable.symbol_redo_24)),
+  Refresh(icon(R.drawable.symbol_refresh_24)),
   Save(icon(R.drawable.symbol_save_android_24)),
   Search(icon(R.drawable.symbol_search_24)),
   SendFill(icon(R.drawable.symbol_send_fill_24)),

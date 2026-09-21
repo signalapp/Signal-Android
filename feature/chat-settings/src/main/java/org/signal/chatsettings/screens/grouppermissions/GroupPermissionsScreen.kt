@@ -5,18 +5,15 @@
 
 package org.signal.chatsettings.screens.grouppermissions
 
-import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewWrapper
+import org.signal.chatsettings.ErrorSnackbarHost
 import org.signal.chatsettings.R
 import org.signal.chatsettings.screens.grouppermissions.GroupPermissionsState.Dialog
 import org.signal.core.ui.compose.DayNightPreviews
@@ -26,8 +23,6 @@ import org.signal.core.ui.compose.Rows.TextAndLabel
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.SignalPreviewWrapper
-import org.signal.core.ui.compose.Snackbars
-import org.signal.core.ui.compose.showSnackbar
 
 /** Row values, in the order [R.array.GroupPermissionsScreen__editor_labels] declares their labels. */
 private const val VALUE_ONLY_ADMINS = "only_admins"
@@ -149,28 +144,6 @@ private fun PermissionRow(
     enabled = enabled,
     requireConfirmation = true
   )
-}
-
-/**
- * Reports a rejected change, and tells the view model once it's been seen so the next rejection can show.
- */
-@Composable
-private fun ErrorSnackbarHost(
-  @StringRes errorMessage: Int?,
-  onDismiss: () -> Unit,
-  modifier: Modifier = Modifier
-) {
-  val hostState = remember { SnackbarHostState() }
-  val message = errorMessage?.let { stringResource(it) }
-
-  LaunchedEffect(errorMessage) {
-    if (message != null) {
-      hostState.showSnackbar(message = message, duration = Snackbars.Duration.LONG)
-      onDismiss()
-    }
-  }
-
-  Snackbars.Host(hostState, modifier = modifier)
 }
 
 @Composable

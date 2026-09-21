@@ -22,4 +22,14 @@
   <string name="GroupPermissionsScreen__member_labels_will_be_cleared_body">Changing this permission to &quot;Only admins&quot; will clear member labels set by non-admins in this group.</string>
   <!-- Confirm button for changing member label permission after warning. -->
   <string name="GroupPermissionsScreen__change_permission">Change permission</string>
+  <!-- Title of the screen where a group's members share its link and its admins manage it. -->
+  <string name="ShareableGroupLinkScreen__group_link">Group link</string>
+  <string name="ShareableGroupLinkScreen__share">Share</string>
+  <!-- Label of the row that gives the group a new link, and the confirm button of the warning it shows first. -->
+  <string name="ShareableGroupLinkScreen__reset_link">Reset link</string>
+  <string name="ShareableGroupLinkScreen__require_admin_approval">Require admin approval</string>
+  <string name="ShareableGroupLinkScreen__require_an_admin_to_approve_new_members_joining_via_the_group_link">Require an admin to approve new members joining via the group link.</string>
+  <string name="ShareableGroupLinkScreen__are_you_sure_you_want_to_reset_the_group_link">Are you sure you want to reset the group link? People will no longer be able to join the group using the current link.</string>
+  <!-- Content description of the button that navigates back off of the group link screen. -->
+  <string name="ShareableGroupLinkScreen__go_back">Go back</string>
 </resources>

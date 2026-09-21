@@ -63,7 +63,7 @@ object ReactionMenu {
     }
 
     if (menuState.shouldShowResendAction()) {
-      add(R.drawable.symbol_refresh_24, R.string.conversation_selection__menu_resend_message, ReactionAction.RESEND)
+      add(CoreUiR.drawable.symbol_refresh_24, R.string.conversation_selection__menu_resend_message, ReactionAction.RESEND)
     }
 
     if (menuState.shouldShowSaveAttachmentAction()) {
