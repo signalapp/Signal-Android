@@ -81,12 +81,18 @@ class DemoStickerKeyboardRepository(private val context: Context) : StickerKeybo
     packsFlow.value = buildPacks()
   }
 
+  override fun clearRecentStickers() {
+    recents.clear()
+    packsFlow.value = buildPacks()
+  }
+
   private fun buildPacks(): List<KeyboardStickerPack> {
     return buildList {
       if (recents.isNotEmpty()) {
         add(
           KeyboardStickerPack(
             id = StickerKeyboardRepository.RECENT_PACK_ID,
+            packKey = null,
             title = null,
             cover = null,
             stickers = recents.toList()
@@ -102,6 +108,7 @@ class DemoStickerKeyboardRepository(private val context: Context) : StickerKeybo
   private fun pack(id: String, title: String, @DrawableRes cover: Int): KeyboardStickerPack {
     return KeyboardStickerPack(
       id = id,
+      packKey = "$id-key",
       title = title,
       cover = rasterize(cover),
       stickers = demoStickers.filter { it.packId == id }.map { stickersByName.getValue(it.name) }

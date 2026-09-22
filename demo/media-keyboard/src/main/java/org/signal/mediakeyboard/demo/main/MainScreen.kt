@@ -66,12 +66,15 @@ fun MainScreen(
         MediaKeyboardAction.Backspace -> onEvent(MainScreenEvents.BackspacePressed)
         is MediaKeyboardAction.StickerSelected -> onEvent(MainScreenEvents.StickerSelected(action.sticker))
         is MediaKeyboardAction.GifSelected -> onEvent(MainScreenEvents.GifSelected(action.gif))
-        // Nothing to remember the tab for, and no sticker packs to manage, view, or search.
+        // Nothing to remember the tab for, and no sticker packs to manage, view, search, send or
+        // remove.
         is MediaKeyboardAction.TabSelected,
         MediaKeyboardAction.StickerManagementClicked,
         MediaKeyboardAction.StickerSearchClicked,
         MediaKeyboardAction.GifSearchClicked,
-        is MediaKeyboardAction.ViewStickerPackClicked -> Unit
+        is MediaKeyboardAction.ViewStickerPackClicked,
+        is MediaKeyboardAction.SendStickerPackClicked,
+        is MediaKeyboardAction.RemoveStickerPackClicked -> Unit
       }
     }
   }
