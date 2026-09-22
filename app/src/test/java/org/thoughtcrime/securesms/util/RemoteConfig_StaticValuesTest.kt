@@ -57,6 +57,8 @@ class RemoteConfig_StaticValuesTest {
       "DEVICE_SPECIFIC_NOTIFICATION_CONFIG",
       "PROMPT_BATTERY_SAVER",
       "PROMPT_FOR_NOTIFICATION_LOGS",
+      "overridableConfigs",
+      "overrides",
       "REMOTE_VALUES"
     )
 

@@ -1025,6 +1025,9 @@
         <action
             android:id="@+id/action_internalSettingsFragment_to_internalIssuesFragment"
             app:destination="@id/internalIssuesFragment" />
+        <action
+            android:id="@+id/action_internalSettingsFragment_to_internalRemoteConfigFragment"
+            app:destination="@id/internalRemoteConfigFragment" />
     </fragment>
 
     <fragment
@@ -1096,6 +1099,11 @@
         android:id="@+id/internalIssuesFragment"
         android:name="org.thoughtcrime.securesms.components.settings.app.internal.issues.InternalIssuesFragment"
         android:label="internal_issues_fragment" />
+
+    <fragment
+        android:id="@+id/internalRemoteConfigFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.internal.remoteconfig.InternalRemoteConfigFragment"
+        android:label="internal_remote_config_fragment" />
 
     <!-- endregion -->
 

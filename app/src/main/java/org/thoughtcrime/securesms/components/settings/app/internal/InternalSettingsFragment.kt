@@ -228,6 +228,14 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       )
 
       clickPref(
+        title = DSLSettingsText.from("Override remote config"),
+        summary = DSLSettingsText.from("View every remote config flag and locally override any of them."),
+        onClick = {
+          findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToInternalRemoteConfigFragment())
+        }
+      )
+
+      clickPref(
         title = DSLSettingsText.from("Refresh remote config"),
         summary = DSLSettingsText.from("Forces a refresh of the remote config locally instead of waiting for the elapsed time."),
         onClick = {
