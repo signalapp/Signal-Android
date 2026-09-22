@@ -67,10 +67,10 @@ sealed interface MediaKeyboardAction {
   data class SendStickerPackClicked(val packId: String, val packKey: String) : MediaKeyboardAction
 
   /**
-   * Uninstall a sticker pack, confirming with the user first.
+   * Uninstall a sticker pack. The keyboard has already confirmed it with the user.
    *
    * @param packId The pack to remove.
    * @param packKey Its key, which identifies the pack alongside [packId].
    */
-  data class RemoveStickerPackClicked(val packId: String, val packKey: String) : MediaKeyboardAction
+  data class RemoveStickerPackConfirmed(val packId: String, val packKey: String) : MediaKeyboardAction
 }

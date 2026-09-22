@@ -734,19 +734,11 @@ class ConversationFragment :
         )
       }
 
-      is MediaKeyboardAction.RemoveStickerPackClicked -> {
-        container.onHostWindowShown()
-        MaterialAlertDialogBuilder(requireContext())
-          .setTitle(resources.getQuantityString(R.plurals.StickerManagement_delete_n_packs_confirmation, 1, 1))
-          .setMessage(resources.getQuantityString(R.plurals.StickerManagement_delete_n_packs_confirmation_body, 1, 1))
-          .setPositiveButton(R.string.StickerManagement_menu_remove_pack) { _, _ ->
-            viewLifecycleOwner.lifecycleScope.launch {
-              StickerManagementRepository.uninstallStickerPacks(mapOf(StickerPackId(action.packId) to StickerPackKey(action.packKey)))
-            }
-          }
-          .setNegativeButton(android.R.string.cancel, null)
-          .setOnDismissListener { container.onHostWindowHidden() }
-          .show()
+      // The keyboard has already confirmed this with the user.
+      is MediaKeyboardAction.RemoveStickerPackConfirmed -> {
+        viewLifecycleOwner.lifecycleScope.launch {
+          StickerManagementRepository.uninstallStickerPacks(mapOf(StickerPackId(action.packId) to StickerPackKey(action.packKey)))
+        }
       }
 
       // A screen of its own rather than a window over this one, and picking a gif carries on into

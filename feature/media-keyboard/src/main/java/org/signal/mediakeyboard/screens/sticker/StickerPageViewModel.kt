@@ -89,7 +89,20 @@ class StickerPageViewModel(
       }
 
       is StickerPageScreenEvents.RemoveStickerPackClicked -> {
-        onAction(MediaKeyboardAction.RemoveStickerPackClicked(event.packId, event.packKey))
+        stateEmitter(state.copy(confirmRemovePack = ConfirmRemovePack(event.packId, event.packKey)))
+      }
+
+      is StickerPageScreenEvents.RemoveStickerPackConfirmed -> {
+        val pack = state.confirmRemovePack
+        stateEmitter(state.copy(confirmRemovePack = null))
+
+        if (pack != null) {
+          onAction(MediaKeyboardAction.RemoveStickerPackConfirmed(pack.packId, pack.packKey))
+        }
+      }
+
+      is StickerPageScreenEvents.RemoveStickerPackCanceled -> {
+        stateEmitter(state.copy(confirmRemovePack = null))
       }
 
       is StickerPageScreenEvents.ClearRecentStickersClicked -> {

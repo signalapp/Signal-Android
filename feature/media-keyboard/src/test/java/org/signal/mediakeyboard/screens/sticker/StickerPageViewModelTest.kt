@@ -6,7 +6,9 @@
 package org.signal.mediakeyboard.screens.sticker
 
 import assertk.assertThat
+import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
+import assertk.assertions.isNull
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
@@ -107,6 +109,38 @@ class StickerPageViewModelTest {
     testDispatcher.scheduler.advanceUntilIdle()
 
     assertThat(actions).isEqualTo(listOf(MediaKeyboardAction.ViewStickerPackClicked("pack-1", "pack-1-key")))
+  }
+
+  @Test
+  fun `remove pack clicked - prompts instead of removing`() {
+    val viewModel = createViewModel()
+    viewModel.onEvent(StickerPageScreenEvents.RemoveStickerPackClicked("pack-1", "pack-1-key"))
+    testDispatcher.scheduler.advanceUntilIdle()
+
+    assertThat(viewModel.state.value.confirmRemovePack).isEqualTo(ConfirmRemovePack("pack-1", "pack-1-key"))
+    assertThat(actions).isEmpty()
+  }
+
+  @Test
+  fun `remove pack confirmed - dismisses the prompt and hands the pack's ids to the host`() {
+    val viewModel = createViewModel()
+    viewModel.onEvent(StickerPageScreenEvents.RemoveStickerPackClicked("pack-1", "pack-1-key"))
+    viewModel.onEvent(StickerPageScreenEvents.RemoveStickerPackConfirmed)
+    testDispatcher.scheduler.advanceUntilIdle()
+
+    assertThat(viewModel.state.value.confirmRemovePack).isNull()
+    assertThat(actions).isEqualTo(listOf(MediaKeyboardAction.RemoveStickerPackConfirmed("pack-1", "pack-1-key")))
+  }
+
+  @Test
+  fun `remove pack canceled - dismisses the prompt without removing`() {
+    val viewModel = createViewModel()
+    viewModel.onEvent(StickerPageScreenEvents.RemoveStickerPackClicked("pack-1", "pack-1-key"))
+    viewModel.onEvent(StickerPageScreenEvents.RemoveStickerPackCanceled)
+    testDispatcher.scheduler.advanceUntilIdle()
+
+    assertThat(viewModel.state.value.confirmRemovePack).isNull()
+    assertThat(actions).isEmpty()
   }
 
   @Test

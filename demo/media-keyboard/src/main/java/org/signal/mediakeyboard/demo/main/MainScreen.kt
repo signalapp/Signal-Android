@@ -74,7 +74,7 @@ fun MainScreen(
         MediaKeyboardAction.GifSearchClicked,
         is MediaKeyboardAction.ViewStickerPackClicked,
         is MediaKeyboardAction.SendStickerPackClicked,
-        is MediaKeyboardAction.RemoveStickerPackClicked -> Unit
+        is MediaKeyboardAction.RemoveStickerPackConfirmed -> Unit
       }
     }
   }

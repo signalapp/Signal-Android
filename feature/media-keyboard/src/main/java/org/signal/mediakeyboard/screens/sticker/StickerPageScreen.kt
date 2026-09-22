@@ -30,6 +30,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
@@ -42,9 +43,11 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewWrapper
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.DayNightPreviews
+import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.DropdownMenus
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.SignalPreviewWrapper
+import org.signal.core.ui.compose.keyboard.LocalKeyboardSheetController
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.glide.compose.GlideImage
 import org.signal.mediakeyboard.R
@@ -77,6 +80,31 @@ fun StickerPageScreen(
       onSearchFieldRevealedChange = onSearchFieldRevealedChange
     )
   }
+
+  if (state.confirmRemovePack != null) {
+    ConfirmRemovePackDialog(onEvent = onEvent)
+  }
+}
+
+@Composable
+private fun ConfirmRemovePackDialog(onEvent: (StickerPageScreenEvents) -> Unit) {
+  val host = LocalKeyboardSheetController.current
+
+  // A window of our own in front of the sheet, so the sheet stays put rather than giving way to it.
+  DisposableEffect(Unit) {
+    host.onHostWindowShown()
+    onDispose { host.onHostWindowHidden() }
+  }
+
+  Dialogs.SimpleAlertDialog(
+    title = stringResource(R.string.MediaKeyboard__remove_sticker_pack_question),
+    body = stringResource(R.string.MediaKeyboard__this_will_remove_the_sticker_pack),
+    confirm = stringResource(R.string.MediaKeyboard__remove_pack),
+    dismiss = stringResource(android.R.string.cancel),
+    onConfirm = { onEvent(StickerPageScreenEvents.RemoveStickerPackConfirmed) },
+    onDeny = { onEvent(StickerPageScreenEvents.RemoveStickerPackCanceled) },
+    onDismissRequest = { onEvent(StickerPageScreenEvents.RemoveStickerPackCanceled) }
+  )
 }
 
 @Composable
