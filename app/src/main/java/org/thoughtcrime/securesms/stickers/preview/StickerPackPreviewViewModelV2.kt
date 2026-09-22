@@ -99,6 +99,13 @@ class StickerPackPreviewViewModelV2(
         showPrompt(null)
         internalActions.send(StickerPackPreviewAction.ShareExternally(params))
       }
+
+      is StickerPackPreviewEvent.StickerClicked -> showPrompt(UserPrompt.PreviewSticker(event.sticker))
+
+      is StickerPackPreviewEvent.StickerSent -> {
+        showPrompt(null)
+        internalActions.send(StickerPackPreviewAction.SendSticker(event.sticker))
+      }
     }
   }
 
@@ -179,5 +186,6 @@ data class StickerPackPreviewUiState(
   sealed interface UserPrompt {
     data object ConfirmRemovePack : UserPrompt
     data object ShareStickerPack : UserPrompt
+    data class PreviewSticker(val sticker: StickerManifest.Sticker) : UserPrompt
   }
 }

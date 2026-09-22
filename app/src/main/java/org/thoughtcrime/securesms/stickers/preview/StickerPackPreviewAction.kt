@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.stickers.preview
 
 import org.thoughtcrime.securesms.database.model.StickerPackParams
+import org.thoughtcrime.securesms.stickers.StickerManifest
 
 /**
  * Actions that happen in [StickerPackPreviewActivityV2]
@@ -13,6 +14,7 @@ import org.thoughtcrime.securesms.database.model.StickerPackParams
 sealed interface StickerPackPreviewAction {
   data class SendPack(val params: StickerPackParams) : StickerPackPreviewAction
   data class ShareExternally(val params: StickerPackParams) : StickerPackPreviewAction
+  data class SendSticker(val sticker: StickerManifest.Sticker) : StickerPackPreviewAction
   data object LinkCopied : StickerPackPreviewAction
   data object PackUnavailable : StickerPackPreviewAction
 }

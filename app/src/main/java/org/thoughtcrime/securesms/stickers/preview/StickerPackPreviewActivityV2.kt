@@ -12,6 +12,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -84,12 +85,14 @@ import org.thoughtcrime.securesms.database.model.StickerPackId
 import org.thoughtcrime.securesms.database.model.StickerPackKey
 import org.thoughtcrime.securesms.database.model.StickerPackParams
 import org.thoughtcrime.securesms.sharing.MultiShareArgs
+import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.thoughtcrime.securesms.stickers.StickerManifest
 import org.thoughtcrime.securesms.stickers.StickerPreviewDataFactory
 import org.thoughtcrime.securesms.stickers.StickerRemoteUri
 import org.thoughtcrime.securesms.stickers.StickerUrl
 import org.thoughtcrime.securesms.stickers.preview.StickerPackPreviewUiState.ContentState
 import org.thoughtcrime.securesms.stickers.preview.StickerPackPreviewUiState.UserPrompt
+import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.viewModel
 import java.text.NumberFormat
 import kotlin.jvm.optionals.getOrElse
@@ -147,6 +150,7 @@ class StickerPackPreviewActivityV2 : PassphraseRequiredActivity() {
         Toast.makeText(this, R.string.StickerPackPreviewActivity_failed_to_load_sticker_pack, Toast.LENGTH_SHORT).show()
         onBackPressedDispatcher.onBackPressed()
       }
+      is StickerPackPreviewAction.SendSticker -> openStickerShareSheet(action.sticker)
     }
   }
 
@@ -157,6 +161,24 @@ class StickerPackPreviewActivityV2 : PassphraseRequiredActivity() {
         multiShareArgs = listOf(
           MultiShareArgs.Builder()
             .withDraftText(params.shareLink)
+            .build()
+        ),
+        title = R.string.StickerManagement_share_sheet_title
+      )
+    )
+  }
+
+  private fun openStickerShareSheet(sticker: StickerManifest.Sticker) {
+    val uri = sticker.uri.orNull() ?: return
+
+    MultiselectForwardFragment.showBottomSheet(
+      supportFragmentManager = supportFragmentManager,
+      multiselectForwardFragmentArgs = MultiselectForwardFragmentArgs(
+        multiShareArgs = listOf(
+          MultiShareArgs.Builder()
+            .withDataUri(uri)
+            .withDataType(sticker.contentType?.takeIf { it.isNotBlank() } ?: MediaUtil.IMAGE_WEBP)
+            .withStickerLocator(StickerLocator(sticker.packId, sticker.packKey, sticker.id, sticker.emoji))
             .build()
         ),
         title = R.string.StickerManagement_share_sheet_title
@@ -280,6 +302,15 @@ private fun StickerPackPreviewScreen(
       )
     }
 
+    if (uiState.userPrompt is UserPrompt.PreviewSticker && stickerManifest != null) {
+      StickerPreviewSheet(
+        stickerManifest,
+        uiState.userPrompt.sticker,
+        loadedState.isPackInstalled,
+        onEvent
+      )
+    }
+
     when (uiState.contentState) {
       is ContentState.Loading -> {
         Box(
@@ -380,7 +411,8 @@ private fun StickerPackPreviewContent(
     ) { item ->
       StickerImage(
         sticker = item,
-        modifier = Modifier.size(96.dp)
+        modifier = Modifier.size(96.dp),
+        onClick = { onEvent(StickerPackPreviewEvent.StickerClicked(item)) }
       )
     }
   }
@@ -542,6 +574,29 @@ private fun StickerPackShareSheet(
   }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun StickerPreviewSheet(
+  stickerManifest: StickerManifest,
+  sticker: StickerManifest.Sticker,
+  isPackInstalled: Boolean,
+  onEvent: (StickerPackPreviewEvent) -> Unit
+) {
+  val sheetState = rememberModalBottomSheetState()
+  val scope = rememberCoroutineScope()
+
+  BottomSheets.BottomSheet(
+    sheetState = sheetState,
+    onDismissRequest = { onEvent(StickerPackPreviewEvent.ShareSheetDismissed) }
+  ) {
+    StickerPreviewSheetContent(
+      stickerManifest,
+      sticker,
+      isPackInstalled
+    ) { sheetState.dismissWithAnimation(scope, onComplete = { onEvent(StickerPackPreviewEvent.StickerSent(sticker)) }) }
+  }
+}
+
 @Composable
 private fun StickerPackShareSheetContent(
   params: StickerPackParams,
@@ -627,15 +682,20 @@ private fun StickerPackShareSheetContent(
 }
 
 @Composable
-private fun StickerImage(
+fun StickerImage(
   modifier: Modifier = Modifier,
-  sticker: StickerManifest.Sticker
+  sticker: StickerManifest.Sticker,
+  onClick: (() -> Unit)? = null
 ) {
   if (!LocalInspectionMode.current) {
     GlideImage(
       model = sticker.imageModel,
       enableApngAnimation = true,
-      modifier = modifier
+      modifier = if (onClick != null) {
+        modifier.clickable(onClick = { onClick() })
+      } else {
+        modifier
+      }
     )
   } else {
     Image(

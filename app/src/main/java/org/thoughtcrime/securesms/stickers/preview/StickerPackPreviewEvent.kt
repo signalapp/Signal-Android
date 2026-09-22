@@ -5,6 +5,8 @@
 
 package org.thoughtcrime.securesms.stickers.preview
 
+import org.thoughtcrime.securesms.stickers.StickerManifest
+
 /**
  * Events that happen in [StickerPackPreviewActivityV2]
  */
@@ -19,4 +21,6 @@ sealed interface StickerPackPreviewEvent {
   data object ShareSheetDismissed : StickerPackPreviewEvent
   data object CopyLinkClicked : StickerPackPreviewEvent
   data object ShareExternallyClicked : StickerPackPreviewEvent
+  data class StickerClicked(val sticker: StickerManifest.Sticker) : StickerPackPreviewEvent
+  data class StickerSent(val sticker: StickerManifest.Sticker) : StickerPackPreviewEvent
 }
