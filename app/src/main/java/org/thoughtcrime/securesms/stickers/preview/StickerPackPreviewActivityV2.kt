@@ -243,7 +243,7 @@ private fun StickerPackPreviewScreen(
           if (loadedState.isPackInstalled) {
             DropdownMenus.ItemWithIcon(
               menuController = menuController,
-              imageVector = ImageVector.vectorResource(R.drawable.symbol_minus_circle_24),
+              imageVector = SignalIcons.MinusCircle.imageVector,
               stringResId = R.string.StickerManagement_menu_remove_pack,
               onClick = { onEvent(StickerPackPreviewEvent.UninstallClicked) }
             )
@@ -511,7 +511,7 @@ private fun StickerOptions(
 
       Buttons.ActionButton(
         onClick = { onEvent(StickerPackPreviewEvent.UninstallClicked) },
-        imageVector = ImageVector.vectorResource(R.drawable.symbol_minus_circle_24),
+        imageVector = SignalIcons.MinusCircle.imageVector,
         label = stringResource(R.string.StickerManagement_menu_remove_pack)
       )
     }

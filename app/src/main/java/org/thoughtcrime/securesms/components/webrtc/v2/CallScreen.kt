@@ -69,6 +69,7 @@ import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.AllNightPreviews
 import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.TriggerAlignedPopupState
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.DimensionUnit
@@ -660,7 +661,7 @@ private fun ParticipantContextMenu(
     if (isSelfAdmin && isCallLink) {
       DropdownMenuItem(
         text = { Text(stringResource(R.string.CallParticipantSheet__remove_from_call)) },
-        leadingIcon = { Icon(painter = painterResource(R.drawable.symbol_minus_circle_24), contentDescription = null) },
+        leadingIcon = { Icon(painter = SignalIcons.MinusCircle.painter, contentDescription = null) },
         onClick = {
           onRemoveFromCall(resolved)
           onDismiss()

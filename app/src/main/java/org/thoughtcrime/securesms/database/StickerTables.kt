@@ -381,6 +381,17 @@ class StickerTables(
     notifyStickerPackListeners()
   }
 
+  fun clearRecentlyUsedStickers() {
+    writableDatabase
+      .update(Sticker.TABLE_NAME)
+      .values(Sticker.LAST_USED to 0)
+      .where("${Sticker.LAST_USED} > 0 AND ${Sticker.COVER} = 0")
+      .run()
+
+    notifyStickerListeners()
+    notifyStickerPackListeners()
+  }
+
   fun markPackAsInstalled(packId: String, notify: Boolean) {
     val transitioned = updatePackInstalled(
       db = databaseHelper.signalWritableDatabase,

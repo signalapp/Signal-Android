@@ -354,11 +354,14 @@ import org.thoughtcrime.securesms.registration.ui.RegistrationActivity
 import org.thoughtcrime.securesms.revealable.ViewOnceMessageActivity
 import org.thoughtcrime.securesms.revealable.ViewOnceUtil
 import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
+import org.thoughtcrime.securesms.sharing.MultiShareArgs
 import org.thoughtcrime.securesms.sharing.v2.ShareActivity
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.stickers.StickerEventListener
 import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.thoughtcrime.securesms.stickers.StickerPackInstallEvent
+import org.thoughtcrime.securesms.stickers.StickerUrl
+import org.thoughtcrime.securesms.stickers.manage.StickerManagementRepository
 import org.thoughtcrime.securesms.stickers.manage.StickerManagementScreen
 import org.thoughtcrime.securesms.stickers.preview.StickerPackPreviewActivityV2
 import org.thoughtcrime.securesms.stories.StoryViewerArgs
@@ -712,6 +715,38 @@ class ConversationFragment :
 
       is MediaKeyboardAction.ViewStickerPackClicked -> {
         startActivity(StickerPackPreviewActivityV2.createIntent(StickerPackId(action.packId), StickerPackKey(action.packKey)))
+      }
+
+      // Sending a pack means sending its link, so it goes through the same forward sheet as a
+      // message. A child of this fragment, as with sticker search.
+      is MediaKeyboardAction.SendStickerPackClicked -> {
+        container.onHostWindowShown()
+        MultiselectForwardFragment.showBottomSheet(
+          supportFragmentManager = childFragmentManager,
+          multiselectForwardFragmentArgs = MultiselectForwardFragmentArgs(
+            multiShareArgs = listOf(
+              MultiShareArgs.Builder()
+                .withDraftText(StickerUrl.createShareLink(action.packId, action.packKey))
+                .build()
+            ),
+            title = R.string.StickerManagement_share_sheet_title
+          )
+        )
+      }
+
+      is MediaKeyboardAction.RemoveStickerPackClicked -> {
+        container.onHostWindowShown()
+        MaterialAlertDialogBuilder(requireContext())
+          .setTitle(resources.getQuantityString(R.plurals.StickerManagement_delete_n_packs_confirmation, 1, 1))
+          .setMessage(resources.getQuantityString(R.plurals.StickerManagement_delete_n_packs_confirmation_body, 1, 1))
+          .setPositiveButton(R.string.StickerManagement_menu_remove_pack) { _, _ ->
+            viewLifecycleOwner.lifecycleScope.launch {
+              StickerManagementRepository.uninstallStickerPacks(mapOf(StickerPackId(action.packId) to StickerPackKey(action.packKey)))
+            }
+          }
+          .setNegativeButton(android.R.string.cancel, null)
+          .setOnDismissListener { container.onHostWindowHidden() }
+          .show()
       }
 
       // A screen of its own rather than a window over this one, and picking a gif carries on into

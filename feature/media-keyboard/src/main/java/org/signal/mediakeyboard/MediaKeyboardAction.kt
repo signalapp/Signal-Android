@@ -57,4 +57,20 @@ sealed interface MediaKeyboardAction {
    * @param packKey Its key, which identifies the pack alongside [packId].
    */
   data class ViewStickerPackClicked(val packId: String, val packKey: String) : MediaKeyboardAction
+
+  /**
+   * Let the user send a sticker pack to someone, as a link.
+   *
+   * @param packId The pack to send.
+   * @param packKey Its key, which identifies the pack alongside [packId].
+   */
+  data class SendStickerPackClicked(val packId: String, val packKey: String) : MediaKeyboardAction
+
+  /**
+   * Uninstall a sticker pack, confirming with the user first.
+   *
+   * @param packId The pack to remove.
+   * @param packKey Its key, which identifies the pack alongside [packId].
+   */
+  data class RemoveStickerPackClicked(val packId: String, val packKey: String) : MediaKeyboardAction
 }

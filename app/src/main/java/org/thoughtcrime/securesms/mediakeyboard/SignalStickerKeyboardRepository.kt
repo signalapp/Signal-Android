@@ -62,6 +62,12 @@ class SignalStickerKeyboardRepository(private val context: Context) : StickerKey
     }
   }
 
+  override fun clearRecentStickers() {
+    SignalExecutors.BOUNDED_IO.execute {
+      SignalDatabase.stickers.clearRecentlyUsedStickers()
+    }
+  }
+
   private fun loadStickerPacks(): List<KeyboardStickerPack> {
     val stickerTable = SignalDatabase.stickers
 
@@ -74,6 +80,7 @@ class SignalStickerKeyboardRepository(private val context: Context) : StickerKey
 
       KeyboardStickerPack(
         id = pack.packId,
+        packKey = pack.packKey,
         title = pack.title.nullIfBlank(),
         cover = DecryptableUri(pack.cover.uri),
         stickers = stickers
@@ -87,6 +94,7 @@ class SignalStickerKeyboardRepository(private val context: Context) : StickerKey
 
     val recentPack = KeyboardStickerPack(
       id = StickerKeyboardRepository.RECENT_PACK_ID,
+      packKey = null,
       title = context.getString(R.string.StickerKeyboard__recently_used),
       cover = null,
       stickers = recentStickers.map { it.toKeyboardSticker() }

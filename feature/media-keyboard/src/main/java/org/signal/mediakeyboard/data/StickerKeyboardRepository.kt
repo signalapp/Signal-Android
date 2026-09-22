@@ -30,6 +30,11 @@ interface StickerKeyboardRepository {
    */
   fun onStickerUsed(sticker: KeyboardSticker) = Unit
 
+  /**
+   * Forget every recently-used sticker, emptying the synthetic [RECENT_PACK_ID] pack.
+   */
+  fun clearRecentStickers() = Unit
+
   companion object {
     const val RECENT_PACK_ID = "media-keyboard-recents"
   }
@@ -53,10 +58,13 @@ data class KeyboardSticker(
 )
 
 /**
+ * @param packKey The pack's key, which identifies it alongside [id] wherever it is opened or
+ *   forwarded. Null for the synthetic recents pack, which is not a real pack.
  * @param cover A Glide-loadable model for the pack's cover image.
  */
 data class KeyboardStickerPack(
   val id: String,
+  val packKey: String?,
   val title: String?,
   val cover: Any?,
   val stickers: List<KeyboardSticker>

@@ -83,6 +83,18 @@ class StickerPageViewModel(
       is StickerPageScreenEvents.ViewStickerPackClicked -> {
         onAction(MediaKeyboardAction.ViewStickerPackClicked(event.packId, event.packKey))
       }
+
+      is StickerPageScreenEvents.SendStickerPackClicked -> {
+        onAction(MediaKeyboardAction.SendStickerPackClicked(event.packId, event.packKey))
+      }
+
+      is StickerPageScreenEvents.RemoveStickerPackClicked -> {
+        onAction(MediaKeyboardAction.RemoveStickerPackClicked(event.packId, event.packKey))
+      }
+
+      is StickerPageScreenEvents.ClearRecentStickersClicked -> {
+        repository.clearRecentStickers()
+      }
     }
   }
 

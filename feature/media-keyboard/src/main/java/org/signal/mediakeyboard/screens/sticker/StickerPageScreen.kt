@@ -8,6 +8,8 @@ package org.signal.mediakeyboard.screens.sticker
 import androidx.compose.foundation.background
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -36,9 +38,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.PreviewWrapper
 import androidx.compose.ui.unit.dp
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.DropdownMenus
 import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.ui.compose.SignalPreviewWrapper
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.glide.compose.GlideImage
 import org.signal.mediakeyboard.R
@@ -190,18 +196,7 @@ private fun StickerGrid(
 
     state.packs.forEach { pack ->
       item(key = "header:${pack.id}", span = { GridItemSpan(maxLineSpan) }) {
-        val title = if (pack.id == StickerKeyboardRepository.RECENT_PACK_ID) {
-          stringResource(R.string.MediaKeyboard__recently_used)
-        } else {
-          pack.title.orEmpty()
-        }
-
-        Text(
-          text = title,
-          style = MaterialTheme.typography.labelLarge,
-          color = MaterialTheme.colorScheme.onSurfaceVariant,
-          modifier = Modifier.padding(start = 8.dp, top = 12.dp, bottom = 4.dp)
-        )
+        StickerPackHeader(pack = pack, onEvent = onEvent)
       }
 
       pack.stickers.forEachIndexed { index, sticker ->
@@ -214,6 +209,137 @@ private fun StickerGrid(
         }
       }
     }
+  }
+}
+
+@Composable
+private fun StickerPackHeader(
+  pack: KeyboardStickerPack,
+  onEvent: (StickerPageScreenEvents) -> Unit,
+  modifier: Modifier = Modifier
+) {
+  val isRecents = pack.id == StickerKeyboardRepository.RECENT_PACK_ID
+  val menuController = remember { DropdownMenus.MenuController() }
+
+  Row(
+    verticalAlignment = Alignment.CenterVertically,
+    modifier = modifier
+      .fillMaxWidth()
+      .padding(start = 8.dp, end = 4.dp, top = 12.dp, bottom = 4.dp)
+  ) {
+    Text(
+      text = if (isRecents) stringResource(R.string.MediaKeyboard__recently_used) else pack.title.orEmpty(),
+      style = MaterialTheme.typography.labelLarge,
+      color = MaterialTheme.colorScheme.onSurfaceVariant,
+      maxLines = 1,
+      overflow = TextOverflow.Ellipsis,
+      modifier = Modifier.weight(1f)
+    )
+
+    Box {
+      IconButton(
+        onClick = { menuController.show() },
+        modifier = Modifier.size(32.dp)
+      ) {
+        Icon(
+          imageVector = SignalIcons.MoreVertical.imageVector,
+          contentDescription = stringResource(R.string.MediaKeyboard__more_options),
+          tint = MaterialTheme.colorScheme.onSurfaceVariant
+        )
+      }
+
+      StickerPackHeaderMenu(
+        pack = pack,
+        isRecents = isRecents,
+        menuController = menuController,
+        onEvent = onEvent
+      )
+    }
+  }
+}
+
+@Composable
+private fun StickerPackHeaderMenu(
+  pack: KeyboardStickerPack,
+  isRecents: Boolean,
+  menuController: DropdownMenus.MenuController,
+  onEvent: (StickerPageScreenEvents) -> Unit
+) {
+  DropdownMenus.Menu(
+    controller = menuController,
+    offsetX = 0.dp
+  ) {
+    if (isRecents) {
+      DropdownMenus.ItemWithIcon(
+        menuController = menuController,
+        imageVector = SignalIcons.Trash.imageVector,
+        stringResId = R.string.MediaKeyboard__clear_recents,
+        onClick = {
+          onEvent(StickerPageScreenEvents.ClearRecentStickersClicked)
+        }
+      )
+
+      return@Menu
+    }
+
+    // Everything below acts on the pack itself, which needs the key the recents pack does not have.
+    val packKey = pack.packKey ?: return@Menu
+
+    DropdownMenus.ItemWithIcon(
+      menuController = menuController,
+      imageVector = SignalIcons.Send.imageVector,
+      stringResId = R.string.MediaKeyboard__send,
+      onClick = {
+        onEvent(StickerPageScreenEvents.SendStickerPackClicked(pack.id, packKey))
+      }
+    )
+
+    DropdownMenus.ItemWithIcon(
+      menuController = menuController,
+      imageVector = SignalIcons.StickerPack.imageVector,
+      stringResId = R.string.MediaKeyboard__view_pack,
+      onClick = {
+        onEvent(StickerPageScreenEvents.ViewStickerPackClicked(pack.id, packKey))
+      }
+    )
+
+    DropdownMenus.ItemWithIcon(
+      menuController = menuController,
+      imageVector = SignalIcons.MinusCircle.imageVector,
+      stringResId = R.string.MediaKeyboard__remove_pack,
+      onClick = {
+        onEvent(StickerPageScreenEvents.RemoveStickerPackClicked(pack.id, packKey))
+      }
+    )
+  }
+}
+
+@PreviewWrapper(SignalPreviewWrapper::class)
+@DayNightPreviews
+@Composable
+private fun StickerPackHeaderPreview() {
+  Column {
+    StickerPackHeader(
+      pack = KeyboardStickerPack(
+        id = StickerKeyboardRepository.RECENT_PACK_ID,
+        packKey = null,
+        title = null,
+        cover = null,
+        stickers = emptyList()
+      ),
+      onEvent = {}
+    )
+
+    StickerPackHeader(
+      pack = KeyboardStickerPack(
+        id = "pack-1",
+        packKey = "pack-1-key",
+        title = "Bandit the Cat",
+        cover = null,
+        stickers = emptyList()
+      ),
+      onEvent = {}
+    )
   }
 }
 
@@ -252,7 +378,7 @@ private fun StickerCell(
     ) {
       DropdownMenus.ItemWithIcon(
         menuController = controller,
-        imageVector = SignalIcons.SendFill.imageVector,
+        imageVector = SignalIcons.Send.imageVector,
         stringResId = R.string.MediaKeyboard__send,
         onClick = {
           onEvent(StickerPageScreenEvents.StickerClicked(sticker))

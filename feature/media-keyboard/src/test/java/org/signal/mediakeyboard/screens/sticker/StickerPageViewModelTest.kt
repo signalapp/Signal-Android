@@ -31,8 +31,8 @@ class StickerPageViewModelTest {
 
   private val sticker = KeyboardSticker(packId = "pack-1", packKey = "pack-1-key", stickerId = 1, emoji = "😀", image = "image-1")
   private val packs = listOf(
-    KeyboardStickerPack(id = "pack-1", title = "Pack One", cover = null, stickers = listOf(sticker)),
-    KeyboardStickerPack(id = "pack-2", title = "Pack Two", cover = null, stickers = emptyList())
+    KeyboardStickerPack(id = "pack-1", packKey = "pack-1-key", title = "Pack One", cover = null, stickers = listOf(sticker)),
+    KeyboardStickerPack(id = "pack-2", packKey = "pack-2-key", title = "Pack Two", cover = null, stickers = emptyList())
   )
 
   private lateinit var repository: StickerKeyboardRepository
