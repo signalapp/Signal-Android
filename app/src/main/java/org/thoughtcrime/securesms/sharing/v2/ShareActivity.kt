@@ -7,7 +7,6 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Process
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -180,8 +179,6 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
 
     viewModel.onContactSelectionConfirmed(contactSearchKeys)
   }
-
-  override fun getContainer(): ViewGroup = findViewById(R.id.fragment_container_wrapper)
 
   override fun getDialogBackgroundColor(): Int = ContextCompat.getColor(this, R.color.signal_background_primary)
 

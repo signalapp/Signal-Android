@@ -12,12 +12,15 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.imePadding
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
@@ -29,6 +32,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
@@ -44,6 +48,40 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.rememberRecipientField
+
+/**
+ * [MultiselectForwardBottomBar] on the host's dialog background, carrying the window insets it has to clear.
+ *
+ * [MultiselectForwardScreen] renders this as the screen's bottom bar. A bottom sheet cannot do the same -- its content
+ * is peeked and scrollable, so the bar would scroll away with it -- and hosts this in the dialog's own container
+ * instead, reporting the bar's height back through [onContentHeightChanged] so the list can pad itself out from under
+ * it. The height excludes the inset padding, which the sheet accounts for on its own.
+ */
+@Composable
+fun MultiselectForwardBottomBarSurface(
+  isSplitPane: Boolean,
+  state: MultiselectForwardBottomBarState,
+  backgroundColor: Color,
+  events: (MultiselectForwardBottomBarEvent) -> Unit,
+  modifier: Modifier = Modifier,
+  onContentHeightChanged: (Int) -> Unit = {}
+) {
+  Surface(
+    color = backgroundColor,
+    modifier = modifier
+  ) {
+    MultiselectForwardBottomBar(
+      isSplitPane = isSplitPane,
+      state = state,
+      events = events,
+      modifier = Modifier
+        .fillMaxWidth()
+        .imePadding()
+        .navigationBarsPadding()
+        .onSizeChanged { onContentHeightChanged(it.height) }
+    )
+  }
+}
 
 @Composable
 fun MultiselectForwardBottomBar(

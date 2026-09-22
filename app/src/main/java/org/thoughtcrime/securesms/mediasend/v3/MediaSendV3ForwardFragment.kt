@@ -8,7 +8,6 @@ package org.thoughtcrime.securesms.mediasend.v3
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import android.view.ViewGroup
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -53,11 +52,8 @@ import org.thoughtcrime.securesms.util.adapter.mapping.compose.rememberMappingEn
 import org.signal.core.ui.R as CoreUiR
 
 /**
- * View-backed wrapper around [MultiselectForwardFragment] that provides the [ViewGroup] container
- * required by [MultiselectForwardFragment.Callback.getContainer] for bottom bar inflation.
- *
- * Implements the callback interface and uses the shared [MediaSendFlowViewModel] to drive
- * the send flow forward.
+ * Hosts [MultiselectForwardFragment], implementing its callback interface and using the shared
+ * [MediaSendFlowViewModel] to drive the send flow forward.
  *
  * For story sends this also acts as the [SearchConfigurationProvider], swapping the default
  * destination list for the stories-only list and prepending a preview of the media being posted.
@@ -133,10 +129,6 @@ class MediaSendV3ForwardFragment : Fragment(R.layout.multiselect_forward_activit
     val recipients = selectedRecipients.map { MediaSendRecipient(MediaRecipientId(it.recipientId.toLong()), it.isStory) }
     viewModel.setAdditionalRecipients(recipients)
     viewModel.performSend()
-  }
-
-  override fun getContainer(): ViewGroup {
-    return requireView().findViewById(R.id.fragment_container_wrapper)
   }
 
   override fun getDialogBackgroundColor(): Int {

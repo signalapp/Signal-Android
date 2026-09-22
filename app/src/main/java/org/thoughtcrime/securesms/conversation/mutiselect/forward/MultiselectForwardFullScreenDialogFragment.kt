@@ -54,10 +54,6 @@ class MultiselectForwardFullScreenDialogFragment : DialogFragment(), Multiselect
     return findListener<Callback>()?.getStorySendRequirements()
   }
 
-  override fun getContainer(): ViewGroup {
-    return requireView().findViewById(R.id.fragment_container_wrapper)!!
-  }
-
   override fun setResult(bundle: Bundle) {
     setFragmentResult(MultiselectForwardFragment.RESULT_KEY, bundle)
   }
