@@ -20,7 +20,6 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.backup.BackupEvent;
 import org.thoughtcrime.securesms.backup.BackupFileIOError;
-import org.thoughtcrime.securesms.backup.BackupPassphrase;
 import org.thoughtcrime.securesms.backup.BackupVerifier;
 import org.thoughtcrime.securesms.backup.FullBackupExporter;
 import org.thoughtcrime.securesms.crypto.AppAttachmentSecretStore;
@@ -102,7 +101,7 @@ public final class LocalBackupJobApi29 extends BaseJob {
         notification.setIndeterminateProgress();
       }
 
-      String       backupPassword  = BackupPassphrase.get(context);
+      String       backupPassword  = SignalStore.backup().getV1BackupPassphrase();
       DocumentFile backupDirectory = DocumentFile.fromTreeUri(context, backupDirectoryUri);
       String       timestamp       = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss", Locale.US).format(new Date());
       String       fileName        = String.format("signal-%s.backup", timestamp);

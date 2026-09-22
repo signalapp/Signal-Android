@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.storage
 
-import android.content.Context
 import androidx.annotation.VisibleForTesting
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
@@ -130,7 +129,7 @@ object StorageSyncHelper {
   }
 
   @JvmStatic
-  fun buildAccountRecord(context: Context, self: Recipient): SignalStorageRecord {
+  fun buildAccountRecord(self: Recipient): SignalStorageRecord {
     var self = self
     var selfRecord: RecipientRecord? = SignalDatabase.recipients.getRecordForSync(self.id)
     val pinned: List<RecipientRecord> = SignalDatabase.threads.getPinnedRecipientIds()
@@ -259,13 +258,13 @@ object StorageSyncHelper {
   }
 
   @JvmStatic
-  fun applyAccountStorageSyncUpdates(context: Context, self: Recipient, updatedRecord: SignalAccountRecord, fetchProfile: Boolean) {
-    val localRecord = buildAccountRecord(context, self).let { it.proto.account!!.toSignalAccountRecord(it.id) }
-    applyAccountStorageSyncUpdates(context, self, StorageRecordUpdate(localRecord, updatedRecord), fetchProfile)
+  fun applyAccountStorageSyncUpdates(self: Recipient, updatedRecord: SignalAccountRecord, fetchProfile: Boolean) {
+    val localRecord = buildAccountRecord(self).let { it.proto.account!!.toSignalAccountRecord(it.id) }
+    applyAccountStorageSyncUpdates(self, StorageRecordUpdate(localRecord, updatedRecord), fetchProfile)
   }
 
   @JvmStatic
-  fun applyAccountStorageSyncUpdates(context: Context, self: Recipient, update: StorageRecordUpdate<SignalAccountRecord>, fetchProfile: Boolean) {
+  fun applyAccountStorageSyncUpdates(self: Recipient, update: StorageRecordUpdate<SignalAccountRecord>, fetchProfile: Boolean) {
     SignalDatabase.recipients.applyStorageSyncAccountUpdate(update)
 
     SignalStore.settings.isReadReceiptsEnabled = update.new.proto.readReceipts

@@ -46,7 +46,6 @@ import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.stories.StoryViewerArgs;
 import org.thoughtcrime.securesms.stories.viewer.StoryViewerActivity;
 import org.thoughtcrime.securesms.util.CommunicationActions;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.thoughtcrime.securesms.verify.VerifyIdentityActivity;
 
@@ -80,7 +79,7 @@ final class RecipientDialogViewModel extends ViewModel {
     this.storyViewState             = new MutableLiveData<>();
     this.recipientDetailsState      = new MutableLiveData<>();
     this.disposables                = new CompositeDisposable();
-    this.isDeprecatedOrUnregistered = SignalStore.misc().isClientDeprecated() || TextSecurePreferences.isUnauthorizedReceived(context);
+    this.isDeprecatedOrUnregistered = SignalStore.misc().isClientDeprecated() || SignalStore.account().isUnauthorizedReceived();
 
     boolean recipientIsSelf = recipientDialogRepository.getRecipientId().equals(Recipient.self().getId());
 

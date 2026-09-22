@@ -95,7 +95,7 @@ class StorageForcePushJob private constructor(parameters: Parameters) : BaseJob(
       .map { record -> StorageSyncModels.localToRemoteRecord(record, newContactStorageIds[record.id]!!.raw) }
       .toMutableList()
 
-    val accountRecord = StorageSyncHelper.buildAccountRecord(context, Recipient.self().fresh())
+    val accountRecord = StorageSyncHelper.buildAccountRecord(Recipient.self().fresh())
     val allNewStorageIds: MutableList<StorageId> = ArrayList(newContactStorageIds.values)
 
     inserts.add(accountRecord)

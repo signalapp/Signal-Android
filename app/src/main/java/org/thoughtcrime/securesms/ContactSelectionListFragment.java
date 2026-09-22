@@ -81,7 +81,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.search.SearchRepository;
 import org.thoughtcrime.securesms.util.CommunicationActions;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter;
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModelList;
@@ -222,7 +221,7 @@ public final class ContactSelectionListFragment extends LoggingFragment {
   public void onStart() {
     super.onStart();
 
-    if (hasContactsPermissions(requireContext()) && !TextSecurePreferences.hasSuccessfullyRetrievedDirectory(getActivity())) {
+    if (hasContactsPermissions(requireContext()) && !SignalStore.misc().getHasSuccessfullyRetrievedDirectory()) {
       handleContactPermissionGranted();
     } else {
       requireActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
@@ -441,7 +440,7 @@ public final class ContactSelectionListFragment extends LoggingFragment {
                .ifNecessary()
                .onAllGranted(() -> {
                  contactSearchView.setAlpha(0.5f);
-                 if (!TextSecurePreferences.hasSuccessfullyRetrievedDirectory(getActivity())) {
+                 if (!SignalStore.misc().getHasSuccessfullyRetrievedDirectory()) {
                    handleContactPermissionGranted();
                  } else {
                    contactSearchViewModel.refresh();

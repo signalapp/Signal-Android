@@ -168,7 +168,6 @@ import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 import org.thoughtcrime.securesms.util.SignalProxyUtil;
 import org.thoughtcrime.securesms.util.SnapToTopDataObserver;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.adapter.mapping.PagingMappingAdapter;
 import org.thoughtcrime.securesms.verify.SelfVerificationFailureSheet;
@@ -453,7 +452,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
 
     if (SignalStore.account().isRegistered() &&
         SignalStore.registration().isRegistrationComplete() &&
-        !TextSecurePreferences.isUnauthorizedReceived(requireContext()) &&
+        !SignalStore.account().isUnauthorizedReceived() &&
         SignalStore.settings().getAutomaticVerificationEnabled() &&
         SignalStore.misc().getHasKeyTransparencyFailure() &&
         !SignalStore.misc().getHasSeenKeyTransparencyFailure()) {

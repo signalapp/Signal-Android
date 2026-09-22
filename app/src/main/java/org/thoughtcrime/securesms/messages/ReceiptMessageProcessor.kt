@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.messages
 
 import android.annotation.SuppressLint
-import android.content.Context
 import org.signal.core.util.Stopwatch
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -22,13 +21,13 @@ object ReceiptMessageProcessor {
 
   private const val VERBOSE = false
 
-  fun process(context: Context, senderRecipient: Recipient, envelope: Envelope, content: Content, metadata: EnvelopeMetadata, earlyMessageCacheEntry: EarlyMessageCacheEntry?, batchCache: BatchCache) {
+  fun process(senderRecipient: Recipient, envelope: Envelope, content: Content, metadata: EnvelopeMetadata, earlyMessageCacheEntry: EarlyMessageCacheEntry?, batchCache: BatchCache) {
     val receiptMessage = content.receiptMessage!!
 
     when (receiptMessage.type) {
       ReceiptMessage.Type.DELIVERY -> handleDeliveryReceipt(envelope, metadata, receiptMessage, senderRecipient.id, batchCache)
-      ReceiptMessage.Type.READ -> handleReadReceipt(context, senderRecipient.id, envelope, metadata, receiptMessage, earlyMessageCacheEntry, batchCache)
-      ReceiptMessage.Type.VIEWED -> handleViewedReceipt(context, envelope, metadata, receiptMessage, senderRecipient.id, earlyMessageCacheEntry, batchCache)
+      ReceiptMessage.Type.READ -> handleReadReceipt(senderRecipient.id, envelope, metadata, receiptMessage, earlyMessageCacheEntry, batchCache)
+      ReceiptMessage.Type.VIEWED -> handleViewedReceipt(envelope, metadata, receiptMessage, senderRecipient.id, earlyMessageCacheEntry, batchCache)
       else -> warn(envelope.clientTimestamp!!, "Unknown recipient message type ${receiptMessage.type}")
     }
   }
@@ -68,7 +67,6 @@ object ReceiptMessageProcessor {
 
   @SuppressLint("DefaultLocale")
   private fun handleReadReceipt(
-    context: Context,
     senderRecipientId: RecipientId,
     envelope: Envelope,
     metadata: EnvelopeMetadata,
@@ -104,7 +102,6 @@ object ReceiptMessageProcessor {
   }
 
   private fun handleViewedReceipt(
-    context: Context,
     envelope: Envelope,
     metadata: EnvelopeMetadata,
     viewedReceipt: ReceiptMessage,

@@ -36,7 +36,6 @@ import org.thoughtcrime.securesms.registration.ui.restore.RemoteRestoreActivity
 import org.thoughtcrime.securesms.registration.ui.restore.local.RestoreLocalBackupActivity
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
 import org.thoughtcrime.securesms.util.Environment
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 /**
@@ -126,7 +125,7 @@ class RestoreActivity : BaseActivity() {
     lifecycleScope.launch {
       lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
         while (isActive) {
-          if (TextSecurePreferences.isUnauthorizedReceived(this@RestoreActivity)) {
+          if (SignalStore.account.isUnauthorizedReceived) {
             ThreadUtil.runOnMain { showUnregisteredDialog() }
             break
           }

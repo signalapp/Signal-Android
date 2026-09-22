@@ -73,7 +73,7 @@ public class ApplyUnknownFieldsToSelfMigrationJob extends MigrationJob {
       SignalAccountRecord signalAccountRecord = new SignalAccountRecord(storageId, accountRecord);
 
       Log.d(TAG, "Applying potentially now known unknowns");
-      StorageSyncHelper.applyAccountStorageSyncUpdates(context, self, signalAccountRecord, false);
+      StorageSyncHelper.applyAccountStorageSyncUpdates(self, signalAccountRecord, false);
     } catch (IOException e) {
       Log.w(TAG, e);
     }

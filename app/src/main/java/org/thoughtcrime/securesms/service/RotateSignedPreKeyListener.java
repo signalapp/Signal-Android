@@ -5,13 +5,12 @@ import android.content.Context;
 
 import org.thoughtcrime.securesms.jobs.PreKeysSyncJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 public class RotateSignedPreKeyListener extends PersistentAlarmManagerListener {
 
   @Override
   protected long getNextScheduledExecutionTime(Context context) {
-    return TextSecurePreferences.getSignedPreKeyRotationTime(context);
+    return SignalStore.misc().getSignedPreKeyRotationTime();
   }
 
   @Override
@@ -21,7 +20,7 @@ public class RotateSignedPreKeyListener extends PersistentAlarmManagerListener {
     }
 
     long nextTime = System.currentTimeMillis() + PreKeysSyncJob.REFRESH_INTERVAL;
-    TextSecurePreferences.setSignedPreKeyRotationTime(context, nextTime);
+    SignalStore.misc().setSignedPreKeyRotationTime(nextTime);
 
     return nextTime;
   }

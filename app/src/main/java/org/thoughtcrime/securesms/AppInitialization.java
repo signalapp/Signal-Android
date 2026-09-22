@@ -16,9 +16,9 @@ import org.thoughtcrime.securesms.keyvalue.PlainTextKeyValueStore;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.migrations.ApplicationMigrations;
 import org.thoughtcrime.securesms.migrations.QuoteThumbnailBackfillMigrationJob;
+import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.stickers.BlessedPacks;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.signal.core.util.Util;
 
 /**
@@ -36,9 +36,9 @@ public final class AppInitialization {
     Log.i(TAG, "onFirstEverAppLaunch()");
 
     PlainTextKeyValueStore.setAppMigrationVersion(ApplicationMigrations.CURRENT_VERSION);
-    TextSecurePreferences.setJobManagerVersion(context, JobManager.CURRENT_VERSION);
+    SignalStore.misc().setJobManagerVersion(JobManager.CURRENT_VERSION);
     PlainTextKeyValueStore.setLastVersionCode(BuildConfig.VERSION_CODE);
-    TextSecurePreferences.setHasSeenStickerIntroTooltip(context, true);
+    SignalStore.tooltips().markStickerIntroTooltipSeen();
     SignalStore.settings().setPassphraseDisabled(true);
     SignalStore.settings().setReadReceiptsEnabled(true);
     SignalStore.settings().setTypingIndicatorsEnabled(true);
@@ -56,7 +56,9 @@ public final class AppInitialization {
     SignalStore.onboarding().clearAll();
     SignalStore.settings().setPassphraseDisabled(true);
     SignalStore.notificationProfile().setHasSeenTooltip(true);
-    TextSecurePreferences.onPostBackupRestore(context);
+    if (NotificationChannels.supported()) {
+      NotificationChannels.getInstance().updateMessageVibrate(SignalStore.settings().isMessageVibrateEnabled());
+    }
     SignalStore.settings().setPassphraseDisabled(true);
     AppDependencies.getJobManager().addAll(BlessedPacks.getFirstInstallJobs());
     EmojiSearchIndexDownloadJob.scheduleImmediately();
@@ -82,9 +84,9 @@ public final class AppInitialization {
     Log.w(TAG, "onRepairFirstEverAppLaunch()");
 
     PlainTextKeyValueStore.setAppMigrationVersion(ApplicationMigrations.CURRENT_VERSION);
-    TextSecurePreferences.setJobManagerVersion(context, JobManager.CURRENT_VERSION);
+    SignalStore.misc().setJobManagerVersion(JobManager.CURRENT_VERSION);
     PlainTextKeyValueStore.setLastVersionCode(BuildConfig.VERSION_CODE);
-    TextSecurePreferences.setHasSeenStickerIntroTooltip(context, true);
+    SignalStore.tooltips().markStickerIntroTooltipSeen();
     SignalStore.settings().setPassphraseDisabled(true);
     AppDependencies.getMegaphoneRepository().onFirstEverAppLaunch();
     SignalStore.onFirstEverAppLaunch();

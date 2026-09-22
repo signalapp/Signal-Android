@@ -1,11 +1,17 @@
 package org.thoughtcrime.securesms.keyvalue;
 
+import android.content.Context;
+
 import androidx.annotation.NonNull;
+
+import org.signal.core.util.logging.Log;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class UiHintValues extends SignalStoreValues {
+
+  private static final String TAG = Log.tag(UiHintValues.class);
 
   private static final int NEVER_DISPLAY_PULL_TO_FILTER_TIP_THRESHOLD = 3;
   private static final int HAS_SEEN_PINNED_MESSAGE_SHEET_THRESHOLD    = 3;
@@ -34,9 +40,29 @@ public class UiHintValues extends SignalStoreValues {
   private static final String HAS_DISMISSED_MEMBER_LABEL_ABOUT_OVERRIDE_WARNING = "uihints.has_dismissed_member_label_about_override_warning";
   private static final String HAS_SEEN_ADMIN_DELETE_EDUCATION_DIALOG            = "uihints.has_seen_admin_delete_education_dialog";
   private static final String DISMISSED_SET_UP_USERNAME_BANNER                  = "uihints.dismissed_set_up_username_banner";
+  private static final String HAS_PROMPTED_OPTIMIZE_DOZE                        = "uihints.has_prompted_optimize_doze";
 
-  UiHintValues(@NonNull KeyValueStore store) {
+  UiHintValues(@NonNull KeyValueStore store, @NonNull Context context) {
     super(store);
+
+    if (!store.containsKey(HAS_PROMPTED_OPTIMIZE_DOZE)) {
+      migrateFromSharedPrefsV1(context);
+    }
+  }
+
+  /** Do not alter. If you need to migrate more stuff, create a new method. */
+  private void migrateFromSharedPrefsV1(@NonNull Context context) {
+    Log.i(TAG, "[V1] Migrating ui hint values from shared prefs.");
+
+    putBoolean(HAS_PROMPTED_OPTIMIZE_DOZE, LegacySharedPrefs.INSTANCE.getBoolean(context, "pref_prompted_optimize_doze", false));
+  }
+
+  public boolean hasPromptedOptimizeDoze() {
+    return getBoolean(HAS_PROMPTED_OPTIMIZE_DOZE, false);
+  }
+
+  public void setHasPromptedOptimizeDoze(boolean value) {
+    putBoolean(HAS_PROMPTED_OPTIMIZE_DOZE, value);
   }
 
   @Override

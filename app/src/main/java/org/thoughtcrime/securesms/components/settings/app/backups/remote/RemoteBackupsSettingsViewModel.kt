@@ -50,7 +50,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
 import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.RemoteConfig
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
@@ -71,7 +70,7 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
       backupState = BackupStateObserver.getNonIOBackupState(),
       backupsEnabled = SignalStore.backup.areBackupsEnabled,
       canBackupMessagesJobRun = BackupMessagesConstraint.isMet(AppDependencies.application),
-      canViewBackupKey = !TextSecurePreferences.isUnauthorizedReceived(AppDependencies.application),
+      canViewBackupKey = !SignalStore.account.isUnauthorizedReceived,
       lastBackupTimestamp = SignalStore.backup.lastBackupTime,
       canBackUpUsingCellular = SignalStore.backup.backupWithCellular,
       canRestoreUsingCellular = SignalStore.backup.restoreWithCellular,

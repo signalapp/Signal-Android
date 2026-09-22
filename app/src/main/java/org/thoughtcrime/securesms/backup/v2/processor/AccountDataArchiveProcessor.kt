@@ -60,8 +60,6 @@ object AccountDataArchiveProcessor {
   private val TAG = Log.tag(AccountDataArchiveProcessor::class)
 
   fun export(db: SignalDatabase, signalStore: SignalStore, exportState: ExportState, emitter: BackupFrameEmitter) {
-    val context = AppDependencies.application
-
     val selfId = db.recipientTable.getByAci(signalStore.accountValues.aci!!).get()
     val selfRecord = db.recipientTable.getRecordForSync(selfId)!!
 

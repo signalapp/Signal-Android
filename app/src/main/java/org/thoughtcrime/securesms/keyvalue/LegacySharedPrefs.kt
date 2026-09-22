@@ -34,6 +34,10 @@ object LegacySharedPrefs {
     return prefs(context).getString(key, defaultValue) ?: defaultValue
   }
 
+  fun getStringOrNull(context: Context, key: String): String? {
+    return prefs(context).getString(key, null)
+  }
+
   /** Some values were stored as strings, but some installs ended up with ints. */
   fun getIntegerFromString(context: Context, key: String, defaultValue: Int): Int {
     return try {

@@ -7,7 +7,6 @@ import androidx.annotation.NonNull;
 import org.thoughtcrime.securesms.keyvalue.KeepMessagesDuration;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.signal.core.util.Util;
 
 final class LogSectionKeyPreferences implements LogSection {
@@ -27,7 +26,7 @@ final class LogSectionKeyPreferences implements LogSection {
                               .append("Media Quality            : ").append(SignalStore.settings().getSentMediaQuality()).append("\n")
                               .append("Client Deprecated        : ").append(SignalStore.misc().isClientDeprecated()).append("\n")
                               .append("Push Registered          : ").append(SignalStore.account().isRegistered()).append("\n")
-                              .append("Unauthorized Received    : ").append(TextSecurePreferences.isUnauthorizedReceived(context)).append("\n")
+                              .append("Unauthorized Received    : ").append(SignalStore.account().isUnauthorizedReceived()).append("\n")
                               .append("self.isRegistered()      : ").append(SignalStore.account().getAci() == null ? "false"     : Recipient.self().isRegistered()).append("\n")
                               .append("Thread Trimming          : ").append(getThreadTrimmingString()).append("\n")
                               .append("Censorship Setting       : ").append(SignalStore.settings().getCensorshipCircumventionEnabled()).append("\n")

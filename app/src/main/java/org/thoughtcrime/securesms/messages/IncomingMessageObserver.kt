@@ -49,7 +49,6 @@ import org.thoughtcrime.securesms.util.AlarmSleepTimer
 import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import org.thoughtcrime.securesms.util.SignalTrace
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.asChain
 import org.whispersystems.signalservice.api.messages.EnvelopeResponse
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
@@ -176,7 +175,7 @@ class IncomingMessageObserver(
 
     MessageRetrievalThread().start()
 
-    val registered = SignalStore.account.isRegistered && !TextSecurePreferences.isUnauthorizedReceived(context)
+    val registered = SignalStore.account.isRegistered && !SignalStore.account.isUnauthorizedReceived
     if (registered && (!SignalStore.account.fcmEnabled || SignalStore.settings.forceWebsocketMode.isEnabled)) {
       SignalExecutors.UNBOUNDED.execute {
         if (!SafeForegroundService.start(context, ForegroundService::class.java)) {
@@ -251,7 +250,7 @@ class IncomingMessageObserver(
     val timeIdle = if (isForeground) 0 else System.currentTimeMillis() - lastInteractionTime
 
     val registered = SignalStore.account.isRegistered
-    val unauthorizedReceived = TextSecurePreferences.isUnauthorizedReceived(context)
+    val unauthorizedReceived = SignalStore.account.isUnauthorizedReceived
     val fcmEnabled = SignalStore.account.fcmEnabled
     val hasNetwork = NetworkConstraint.isMet(context)
     val hasProxy = SignalStore.proxy.isProxyEnabled
@@ -278,7 +277,7 @@ class IncomingMessageObserver(
   }
 
   private fun isConnectionAvailable(): Boolean {
-    return !TextSecurePreferences.isUnauthorizedReceived(context) && SignalStore.account.isRegistered && (authWebSocket.stateSnapshot == WebSocketConnectionState.CONNECTED || (authWebSocket.shouldSendKeepAlives() && NetworkConstraint.isMet(context)))
+    return !SignalStore.account.isUnauthorizedReceived && SignalStore.account.isRegistered && (authWebSocket.stateSnapshot == WebSocketConnectionState.CONNECTED || (authWebSocket.shouldSendKeepAlives() && NetworkConstraint.isMet(context)))
   }
 
   /** Conditions are evaluated outside of [connectionLock] so notifiers never block on them. We only park if nothing signaled since the version we evaluated against. */

@@ -101,7 +101,7 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
     val recipientsToFetch = SignalDatabase
       .recipients
       .getRecordsForProfileFetch(recipientIds, debounceThreshold)
-      .map { RecipientCreator.forRecord(context, it) }
+      .map { RecipientCreator.forRecord(it) }
 
     stopwatch.split("resolve")
 

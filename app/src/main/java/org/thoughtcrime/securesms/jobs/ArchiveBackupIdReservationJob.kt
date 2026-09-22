@@ -14,7 +14,6 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.util.RemoteConfig
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 
 /**
  * Reserves backupIds for both text+media. The intention is that every registered user should be doing this, so it should happen post-registration
@@ -49,7 +48,7 @@ class ArchiveBackupIdReservationJob private constructor(parameters: Parameters) 
       return Result.success()
     }
 
-    if (TextSecurePreferences.isUnauthorizedReceived(context)) {
+    if (SignalStore.account.isUnauthorizedReceived) {
       Log.w(TAG, "Not authorized. Skipping.")
       return Result.success()
     }

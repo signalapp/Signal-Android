@@ -34,7 +34,6 @@ import org.thoughtcrime.securesms.registration.data.LocalRegistrationMetadataUti
 import org.thoughtcrime.securesms.registration.data.RegistrationData
 import org.thoughtcrime.securesms.registration.data.RegistrationRepository
 import org.thoughtcrime.securesms.registration.util.RegistrationUtil
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import java.util.UUID
@@ -88,8 +87,8 @@ object TestUsers {
     SignalStore.registration.restoreDecisionState = RestoreDecisionState.Skipped
     RegistrationUtil.maybeMarkRegistrationComplete()
     SignalDatabase.recipients.setProfileName(Recipient.self().id, ProfileName.fromParts("Tester", "McTesterson"))
-    TextSecurePreferences.setPromptedOptimizeDoze(application, true)
-    TextSecurePreferences.setRatingEnabled(application, false)
+    SignalStore.uiHints.setHasPromptedOptimizeDoze(true)
+    SignalStore.misc.ratingEnabled = false
 
     PreKeyUtil.generateAndStoreSignedPreKey(AppDependencies.protocolStore.aci(), SignalStore.account.aciPreKeys)
     PreKeyUtil.generateAndStoreOneTimeEcPreKeys(AppDependencies.protocolStore.aci(), SignalStore.account.aciPreKeys)

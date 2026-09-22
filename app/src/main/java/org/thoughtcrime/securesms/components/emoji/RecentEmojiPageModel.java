@@ -32,6 +32,9 @@ public class RecentEmojiPageModel implements EmojiPageModel {
   private static final int    EMOJI_LRU_SIZE = 50;
   public static final  String KEY            = "Recents";
 
+  /** The shared-prefs entry this model persists its LRU into. */
+  public static final String RECENT_STORAGE_KEY = "pref_recent_emoji2";
+
   private final SharedPreferences     prefs;
   private final String                preferenceName;
   private final LinkedHashSet<String> recentlyUsed;

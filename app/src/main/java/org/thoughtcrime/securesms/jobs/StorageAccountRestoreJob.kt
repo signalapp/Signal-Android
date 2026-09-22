@@ -112,7 +112,7 @@ class StorageAccountRestoreJob private constructor(parameters: Parameters) : Bas
     Log.i(TAG, "Applying changes locally...")
     SignalDatabase.writableDatabase.beginTransaction()
     try {
-      StorageSyncHelper.applyAccountStorageSyncUpdates(context, self().fresh(), accountRecord, false)
+      StorageSyncHelper.applyAccountStorageSyncUpdates(self().fresh(), accountRecord, false)
       SignalDatabase.writableDatabase.setTransactionSuccessful()
     } finally {
       SignalDatabase.writableDatabase.endTransaction()

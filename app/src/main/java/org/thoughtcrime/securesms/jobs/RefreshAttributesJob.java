@@ -20,7 +20,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.keyvalue.SvrValues;
 import org.thoughtcrime.securesms.net.SignalNetwork;
 import org.thoughtcrime.securesms.registration.data.RegistrationRepository;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.NetworkResultUtil;
 import org.whispersystems.signalservice.api.RequestResultUtil;
 import org.whispersystems.signalservice.api.account.AccountAttributes;
@@ -109,7 +108,7 @@ public class RefreshAttributesJob extends BaseJob {
       return;
     }
 
-    if (TextSecurePreferences.isUnauthorizedReceived(context)) {
+    if (SignalStore.account().isUnauthorizedReceived()) {
       Log.i(TAG, "No longer authorized. Ignoring.");
       return;
     }

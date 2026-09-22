@@ -24,7 +24,6 @@ import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.FileUtils;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.VersionTracker;
 
 import java.io.File;
@@ -166,7 +165,7 @@ public class LegacyMigrationJob extends MigrationJob {
 
     if (lastSeenVersion < INTERNALIZE_CONTACTS) {
       if (SignalStore.account().isRegistered()) {
-        TextSecurePreferences.setHasSuccessfullyRetrievedDirectory(context, true);
+        SignalStore.misc().setHasSuccessfullyRetrievedDirectory(true);
       }
     }
 

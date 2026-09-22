@@ -85,7 +85,7 @@ object EditMessageProcessor {
       return
     }
 
-    DataMessageProcessor.notifyTypingStoppedFromIncomingMessage(context, senderRecipient, threadRecipient.id, metadata.sourceDeviceId)
+    DataMessageProcessor.notifyTypingStoppedFromIncomingMessage(senderRecipient, threadRecipient.id, metadata.sourceDeviceId)
 
     targetMessage = targetMessage.withAttachments(SignalDatabase.attachments.getAttachmentsForMessage(targetMessage.id))
 

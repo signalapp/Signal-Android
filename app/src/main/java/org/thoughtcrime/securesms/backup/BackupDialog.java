@@ -72,7 +72,7 @@ public class BackupDialog {
                    .takePersistableUriPermission(backupDirectoryUri, takeFlags);
           }
 
-          BackupPassphrase.set(context, Util.join(password, " "));
+          SignalStore.backup().setV1BackupPassphrase(Util.join(password, " "));
           SignalStore.settings().setLocalBackupNextTime(0);
           SignalStore.settings().setBackupEnabled(true);
           LocalBackupListener.schedule(context);
@@ -177,7 +177,7 @@ public class BackupDialog {
 
     positiveButton.setOnClickListener(v -> {
                                         String passphrase = prompt.getText().toString();
-                                        if (passphrase.equals(BackupPassphrase.get(context))) {
+                                        if (passphrase.equals(SignalStore.backup().getV1BackupPassphrase())) {
                                           Toast.makeText(context, R.string.BackupDialog_you_successfully_entered_your_backup_passphrase, Toast.LENGTH_SHORT).show();
                                           dialog.dismiss();
                                         } else {

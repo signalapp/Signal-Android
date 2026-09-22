@@ -44,7 +44,7 @@ class InstrumentationApplicationDependencyProvider(val application: Application,
   private var archiveService: ArchiveService = mockk(relaxed = true)
 
   init {
-    recipientCache = LiveRecipientCache(application) { r -> r.run() }
+    recipientCache = LiveRecipientCache { r -> r.run() }
   }
 
   override fun provideBillingApi(): BillingApi = billingApi

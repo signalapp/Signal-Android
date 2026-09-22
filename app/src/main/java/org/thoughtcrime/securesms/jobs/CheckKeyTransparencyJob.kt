@@ -18,7 +18,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.RemoteConfig
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess
 import kotlin.random.Random
 import kotlin.time.Duration.Companion.days
@@ -93,7 +92,7 @@ class CheckKeyTransparencyJob private constructor(
       } else if (!SignalStore.registration.isRegistrationComplete) {
         Log.i(TAG, "Registration is not complete. Exiting.")
         false
-      } else if (TextSecurePreferences.isUnauthorizedReceived(AppDependencies.application)) {
+      } else if (SignalStore.account.isUnauthorizedReceived) {
         Log.i(TAG, "Account is unauthorized. Exiting.")
         false
       } else if (!SignalStore.settings.automaticVerificationEnabled) {
@@ -190,7 +189,7 @@ class CheckKeyTransparencyJob private constructor(
    * For others, it will only show once and only be cleared on the next successful verification.
    */
   private fun markFailure() {
-    if (SignalStore.account.isRegistered && !TextSecurePreferences.isUnauthorizedReceived(AppDependencies.application)) {
+    if (SignalStore.account.isRegistered && !SignalStore.account.isUnauthorizedReceived) {
       SignalStore.misc.hasKeyTransparencyFailure = true
       if (RemoteConfig.internalUser) {
         SignalStore.misc.hasSeenKeyTransparencyFailure = false

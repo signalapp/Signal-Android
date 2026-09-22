@@ -86,7 +86,6 @@ import org.thoughtcrime.securesms.registration.ui.shared.RegistrationScreenTitle
 import org.thoughtcrime.securesms.registration.util.RegistrationUtil
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.PlayStoreUtil
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.viewModel
 import kotlin.time.Duration
 
@@ -160,7 +159,7 @@ class RemoteRestoreActivity : BaseActivity() {
     lifecycleScope.launch {
       lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
         while (isActive) {
-          if (TextSecurePreferences.isUnauthorizedReceived(this@RemoteRestoreActivity)) {
+          if (SignalStore.account.isUnauthorizedReceived) {
             ThreadUtil.runOnMain { showUnregisteredDialog() }
             break
           }

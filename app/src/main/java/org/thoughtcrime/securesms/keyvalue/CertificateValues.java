@@ -1,12 +1,10 @@
 package org.thoughtcrime.securesms.keyvalue;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
-import androidx.preference.PreferenceManager;
 
 import org.signal.core.util.logging.Log;
 
@@ -81,14 +79,9 @@ public final class CertificateValues extends SignalStoreValues {
   private void migrateFromSharedPrefsV1(@NonNull Context context) {
     Log.i(TAG, "[V1] Migrating certificate values from shared prefs.");
 
-    SharedPreferences sharedPrefs            = PreferenceManager.getDefaultSharedPreferences(context);
-    long              legacyNextRotationTime = sharedPrefs.getLong("pref_unidentified_access_certificate_rotation_time", 0);
+    long legacyNextRotationTime = LegacySharedPrefs.INSTANCE.getLong(context, "pref_unidentified_access_certificate_rotation_time", 0);
 
     putLong(LAST_ROTATION_TIME, legacyNextRotationTime > 0 ? legacyNextRotationTime - LEGACY_ROTATION_INTERVAL : NEVER_ROTATED);
-
-    sharedPrefs.edit()
-               .remove("pref_unidentified_access_certificate_rotation_time")
-               .apply();
   }
 
 }

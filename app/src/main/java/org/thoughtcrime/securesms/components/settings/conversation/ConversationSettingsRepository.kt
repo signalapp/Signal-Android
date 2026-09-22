@@ -57,7 +57,6 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.RemoteConfig
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import java.io.IOException
 import kotlin.coroutines.resume
 
@@ -74,7 +73,7 @@ class ConversationSettingsRepository(
 ) {
 
   fun isDeprecatedOrUnregistered(): Boolean {
-    return SignalStore.misc.isClientDeprecated || TextSecurePreferences.isUnauthorizedReceived(context)
+    return SignalStore.misc.isClientDeprecated || SignalStore.account.isUnauthorizedReceived
   }
 
   fun isInternalRecipientDetailsEnabled(): Boolean {

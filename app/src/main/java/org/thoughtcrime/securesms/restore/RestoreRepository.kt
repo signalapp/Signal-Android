@@ -12,7 +12,6 @@ import kotlinx.coroutines.withContext
 import org.signal.core.util.crypto.AttachmentSecretProvider
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.AppInitialization
-import org.thoughtcrime.securesms.backup.BackupPassphrase
 import org.thoughtcrime.securesms.backup.FullBackupImporter
 import org.thoughtcrime.securesms.crypto.AppAttachmentSecretStore
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -49,7 +48,7 @@ object RestoreRepository {
 
       val database = SignalDatabase.backupDatabase
 
-      BackupPassphrase.set(context, passphrase)
+      SignalStore.backup.v1BackupPassphrase = passphrase
 
       if (!FullBackupImporter.validatePassphrase(context, backupFileUri, passphrase)) {
         Log.i(TAG, "Restore failed due to invalid passphrase.")

@@ -132,7 +132,6 @@ import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 import org.thoughtcrime.securesms.util.SignalUncaughtExceptionHandler;
 import org.thoughtcrime.securesms.util.SqlCipherLogTarget;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.VersionTracker;
 import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWrapper;
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket;
@@ -459,14 +458,14 @@ public class ApplicationContext extends Application implements AppForegroundObse
   }
 
   private void initializeFirstEverAppLaunch() {
-    if (TextSecurePreferences.getFirstInstallVersion(this) == -1) {
+    if (SignalStore.misc().getFirstInstallVersion() == -1) {
       if (!SignalDatabase.databaseFileExists(this) || VersionTracker.getDaysSinceFirstInstalled(this) < 365) {
         Log.i(TAG, "First ever app launch!");
         AppInitialization.onFirstEverAppLaunch(this);
       }
 
       Log.i(TAG, "Setting first install version to " + BuildConfig.CANONICAL_VERSION_CODE);
-      TextSecurePreferences.setFirstInstallVersion(this, BuildConfig.CANONICAL_VERSION_CODE);
+      SignalStore.misc().setFirstInstallVersion(BuildConfig.CANONICAL_VERSION_CODE);
     } else if (!SignalStore.settings().getPassphraseDisabled() && VersionTracker.getDaysSinceFirstInstalled(this) < 90) {
       Log.i(TAG, "Detected a new install that doesn't have passphrases disabled -- assuming bad initialization.");
       AppInitialization.onRepairFirstEverAppLaunch(this);
@@ -586,7 +585,7 @@ public class ApplicationContext extends Application implements AppForegroundObse
   }
 
   private void executePendingContactSync() {
-    if (TextSecurePreferences.needsFullContactSync(this)) {
+    if (SignalStore.misc().getNeedsFullContactSync()) {
       AppDependencies.getJobManager().add(new MultiDeviceContactUpdateJob(true));
     }
   }

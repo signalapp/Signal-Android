@@ -2458,7 +2458,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
           )
         } ?: Recipient.live(recipientId).get()
       } else {
-        RecipientCreator.forIndividual(context, recipientSettings)
+        RecipientCreator.forIndividual(recipientSettings)
       }
 
       val hasReadReceipt = SignalStore.settings.isReadReceiptsEnabled && cursor.requireBoolean(HAS_READ_RECEIPT)

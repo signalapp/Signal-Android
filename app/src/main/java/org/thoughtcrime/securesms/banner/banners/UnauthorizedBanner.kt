@@ -27,7 +27,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.DeviceTransferBlockingInterceptor
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.registration.ui.RegistrationActivity
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 
 /**
  * A banner displayed when the client is unauthorized (deregistered).
@@ -35,7 +34,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences
 class UnauthorizedBanner(val context: Context) : Banner<Unit>() {
 
   override val enabled: Boolean
-    get() = TextSecurePreferences.isUnauthorizedReceived(context) || !SignalStore.account.isRegistered
+    get() = SignalStore.account.isUnauthorizedReceived || !SignalStore.account.isRegistered
 
   override val dataFlow: Flow<Unit>
     get() = flowOf(Unit)

@@ -174,13 +174,13 @@ object SyncMessageProcessor {
 
     when {
       syncMessage.sent != null -> handleSynchronizeSentMessage(context, envelope, content, metadata, syncMessage.sent!!, senderRecipient, threadRecipient, earlyMessageCacheEntry, batchCache)
-      syncMessage.request != null -> handleSynchronizeRequestMessage(context, syncMessage.request!!, envelope.clientTimestamp!!)
+      syncMessage.request != null -> handleSynchronizeRequestMessage(syncMessage.request!!, envelope.clientTimestamp!!)
       syncMessage.read.isNotEmpty() -> handleSynchronizeReadMessage(context, syncMessage.read, envelope.clientTimestamp!!, earlyMessageCacheEntry, batchCache)
       syncMessage.viewed.isNotEmpty() -> handleSynchronizeViewedMessage(context, syncMessage.viewed, envelope.clientTimestamp!!)
       syncMessage.viewOnceOpen != null -> handleSynchronizeViewOnceOpenMessage(context, syncMessage.viewOnceOpen!!, envelope.clientTimestamp!!, earlyMessageCacheEntry, batchCache)
       syncMessage.verified != null -> handleSynchronizeVerifiedMessage(context, syncMessage.verified!!)
       syncMessage.stickerPackOperation.isNotEmpty() -> handleSynchronizeStickerPackOperation(syncMessage.stickerPackOperation, envelope.clientTimestamp!!)
-      syncMessage.configuration != null -> handleSynchronizeConfigurationMessage(context, syncMessage.configuration!!, envelope.clientTimestamp!!)
+      syncMessage.configuration != null -> handleSynchronizeConfigurationMessage(syncMessage.configuration!!, envelope.clientTimestamp!!)
       syncMessage.blocked != null -> handleSynchronizeBlockedListMessage(syncMessage.blocked!!, envelope.clientTimestamp!!)
       syncMessage.fetchLatest?.type != null -> handleSynchronizeFetchMessage(syncMessage.fetchLatest!!.type!!, envelope.clientTimestamp!!)
       syncMessage.messageRequestResponse != null -> handleSynchronizeMessageRequestResponse(syncMessage.messageRequestResponse!!, envelope.clientTimestamp!!)
@@ -978,7 +978,7 @@ object SyncMessageProcessor {
     return threadId
   }
 
-  private fun handleSynchronizeRequestMessage(context: Context, message: Request, envelopeTimestamp: Long) {
+  private fun handleSynchronizeRequestMessage(message: Request, envelopeTimestamp: Long) {
     if (SignalStore.account.isPrimaryDevice) {
       log(envelopeTimestamp, "Synchronize request message.")
     } else {
@@ -1135,7 +1135,7 @@ object SyncMessageProcessor {
     }
   }
 
-  private fun handleSynchronizeConfigurationMessage(context: Context, configurationMessage: Configuration, envelopeTimestamp: Long) {
+  private fun handleSynchronizeConfigurationMessage(configurationMessage: Configuration, envelopeTimestamp: Long) {
     log(envelopeTimestamp, "Synchronize configuration message.")
 
     if (configurationMessage.readReceipts != null) {

@@ -62,7 +62,6 @@ import org.thoughtcrime.securesms.registration.util.RegistrationUtil
 import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
 import org.thoughtcrime.securesms.testutil.SignalDatabaseRule
 import org.thoughtcrime.securesms.testutil.SignalStoreRule
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import java.io.ByteArrayInputStream
 import java.io.File
 import java.io.IOException
@@ -174,8 +173,8 @@ class AppRegistrationStorageControllerTest {
     assertThat(selfRecord.pni).isEqualTo(pni)
     assertThat(selfRecord.profileKey).isNotNull()
 
-    assertThat(TextSecurePreferences.hasPromptedPushRegistration(context)).isTrue()
-    assertThat(TextSecurePreferences.isUnauthorizedReceived(context)).isFalse()
+    assertThat(SignalStore.registration.hasPromptedPushRegistration).isTrue()
+    assertThat(SignalStore.account.isUnauthorizedReceived).isFalse()
 
     assertThat(readInProgressData().accountDataCommitted).isTrue()
 

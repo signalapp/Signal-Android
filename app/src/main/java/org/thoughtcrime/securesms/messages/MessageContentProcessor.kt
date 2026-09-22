@@ -518,7 +518,6 @@ open class MessageContentProcessor(private val context: Context) {
 
       content.receiptMessage != null -> {
         ReceiptMessageProcessor.process(
-          context,
           senderRecipient,
           envelope,
           content,

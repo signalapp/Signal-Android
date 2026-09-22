@@ -28,7 +28,6 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.registration.util.RegistrationUtil
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.SignalE164Util
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import java.io.IOException
 import java.util.Calendar
@@ -192,13 +191,13 @@ object ContactDiscovery {
       )
       stopwatch.split("contact-sync")
 
-      if (TextSecurePreferences.hasSuccessfullyRetrievedDirectory(context) && notifyOfNewUsers) {
+      if (SignalStore.misc.hasSuccessfullyRetrievedDirectory && notifyOfNewUsers) {
         val systemContacts: Set<RecipientId> = SignalDatabase.recipients.getSystemContacts().toSet()
         val newlyRegisteredSystemContacts: Set<RecipientId> = (result.registeredIds - preExistingRegisteredIds).intersect(systemContacts)
 
         notifyNewUsers(context, newlyRegisteredSystemContacts)
       } else {
-        TextSecurePreferences.setHasSuccessfullyRetrievedDirectory(context, true)
+        SignalStore.misc.hasSuccessfullyRetrievedDirectory = true
       }
       stopwatch.split("notify")
     } else {

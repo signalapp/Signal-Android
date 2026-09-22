@@ -21,7 +21,6 @@ import org.signal.core.util.Stopwatch;
 import org.signal.core.util.logging.Log;
 import org.signal.core.models.database.AttachmentId;
 import org.thoughtcrime.securesms.backup.proto.KeyValue;
-import org.thoughtcrime.securesms.backup.proto.SharedPreference;
 import org.thoughtcrime.securesms.backup.proto.SqlStatement;
 import org.signal.core.util.crypto.AttachmentSecret;
 import org.signal.core.util.crypto.ClassicDecryptingPartInputStream;

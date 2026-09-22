@@ -9,7 +9,6 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.annotation.VisibleForTesting
-import androidx.core.app.NotificationManagerCompat
 import androidx.core.net.toUri
 import androidx.documentfile.provider.DocumentFile
 import com.google.common.io.CountingInputStream
@@ -55,7 +54,6 @@ import org.signal.registration.screens.messagesync.LinkAndSyncProgress
 import org.signal.registration.screens.remotebackuprestore.RemoteBackupRestoreProgress
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.BackupEvent
-import org.thoughtcrime.securesms.backup.BackupPassphrase
 import org.thoughtcrime.securesms.backup.FullBackupImporter
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.RemoteRestoreResult
@@ -83,13 +81,11 @@ import org.thoughtcrime.securesms.jobs.ReclaimUsernameAndLinkJob
 import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob
 import org.thoughtcrime.securesms.jobs.RotateCertificateJob
 import org.thoughtcrime.securesms.keyvalue.Completed
-import org.thoughtcrime.securesms.keyvalue.LegacySharedPrefs
 import org.thoughtcrime.securesms.keyvalue.NewAccount
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.Skipped
 import org.thoughtcrime.securesms.keyvalue.isDecisionPending
-import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.pin.SvrRepository
 import org.thoughtcrime.securesms.profiles.AvatarHelper
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository
@@ -101,7 +97,6 @@ import org.thoughtcrime.securesms.service.DirectoryRefreshListener
 import org.thoughtcrime.securesms.service.LocalBackupListener
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener
 import org.thoughtcrime.securesms.util.BackupUtil
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.link.TransferArchiveResponse
 import org.whispersystems.signalservice.api.push.UsernameLinkComponents
 import java.io.File
@@ -371,8 +366,6 @@ class AppRegistrationStorageController(private val context: Context) : StorageCo
         // The importer writes the restored key-value store straight to disk, bypassing the in-memory SignalStore cache.
         // Reset it so the state we read below reflects the restored values rather than stale pre-restore ones.
         SignalStore.onPostBackupRestore()
-
-        restoreLegacySettingsFromSharedPrefs()
 
         // A post-registration restore clobbers parts of SignalStore.account with the backup's values -- V1 backups
         // carry the identity keys and AEP. Re-apply the frozen account data to heal the committed registration.
@@ -827,9 +820,8 @@ class AppRegistrationStorageController(private val context: Context) : StorageCo
 
     SignalStore.account.setServicePassword(accountData.servicePassword)
     SignalStore.account.setRegistered(registered = true, isAciChanged = isAciChanged)
-    TextSecurePreferences.setPromptedPushRegistration(context, true)
-    TextSecurePreferences.setUnauthorizedReceived(context, false)
-    NotificationManagerCompat.from(context).cancel(NotificationIds.UNREGISTERED_NOTIFICATION_ID)
+    SignalStore.registration.hasPromptedPushRegistration = true
+    SignalStore.account.isUnauthorizedReceived = false
 
     SvrRepository.onRegistrationComplete(
       masterKey = if (pin.isNotEmpty()) masterKey else null,
@@ -898,7 +890,7 @@ class AppRegistrationStorageController(private val context: Context) : StorageCo
    */
   private fun reenableLegacyLocalBackups(rootUri: Uri, passphrase: String) {
     try {
-      BackupPassphrase.set(context, passphrase)
+      SignalStore.backup.v1BackupPassphrase = passphrase
 
       val takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
       context.contentResolver.takePersistableUriPermission(rootUri, takeFlags)
@@ -913,27 +905,6 @@ class AppRegistrationStorageController(private val context: Context) : StorageCo
       }
     } catch (e: Exception) {
       Log.w(TAG, "Failed to re-enable local backups after V1 restore.", e)
-    }
-  }
-
-  /**
-   * Restores shared prefs from v1 backups that would otherwise get lost.
-   */
-  private fun restoreLegacySettingsFromSharedPrefs() {
-    if (LegacySharedPrefs.contains(context, "pref_read_receipts")) {
-      SignalStore.settings.isReadReceiptsEnabled = LegacySharedPrefs.getBoolean(context, "pref_read_receipts", false)
-    }
-
-    if (LegacySharedPrefs.contains(context, "pref_typing_indicators")) {
-      SignalStore.settings.isTypingIndicatorsEnabled = LegacySharedPrefs.getBoolean(context, "pref_typing_indicators", false)
-    }
-
-    if (LegacySharedPrefs.contains(context, "pref_turn_only")) {
-      SignalStore.settings.isTurnOnly = LegacySharedPrefs.getBoolean(context, "pref_turn_only", false)
-    }
-
-    if (LegacySharedPrefs.contains(context, "pref_incognito_keyboard")) {
-      SignalStore.settings.isIncognitoKeyboardEnabled = LegacySharedPrefs.getBoolean(context, "pref_incognito_keyboard", false)
     }
   }
 

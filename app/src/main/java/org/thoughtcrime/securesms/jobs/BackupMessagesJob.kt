@@ -56,7 +56,6 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.RemoteConfig
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
 import org.whispersystems.signalservice.api.push.exceptions.ResumeLocationInvalidException
@@ -90,7 +89,7 @@ class BackupMessagesJob private constructor(
     const val KEY = "BackupMessagesJob"
 
     private fun isRegistered(): Boolean {
-      return SignalStore.account.isRegistered && !TextSecurePreferences.isUnauthorizedReceived(AppDependencies.application)
+      return SignalStore.account.isRegistered && !SignalStore.account.isUnauthorizedReceived
     }
 
     private fun isBackupAllowed(): Boolean {

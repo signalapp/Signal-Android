@@ -6,7 +6,6 @@
 package org.thoughtcrime.securesms.database
 
 import android.app.Application
-import androidx.test.core.app.ApplicationProvider
 import assertk.assertThat
 import assertk.assertions.isEmpty
 import assertk.assertions.isNotEmpty
@@ -391,10 +390,7 @@ class RecipientTableTest {
     )
   }
 
-  private fun recipientFor(id: RecipientId) = RecipientCreator.forRecord(
-    ApplicationProvider.getApplicationContext(),
-    SignalDatabase.recipients.getRecord(id)
-  )
+  private fun recipientFor(id: RecipientId) = RecipientCreator.forRecord(SignalDatabase.recipients.getRecord(id))
 
   companion object {
     val ACI_A = ACI.from(UUID.fromString("aaaa0000-5a76-47fa-a98a-7e72c948a82e"))

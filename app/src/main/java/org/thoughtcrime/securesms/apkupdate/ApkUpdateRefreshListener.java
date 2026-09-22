@@ -12,9 +12,9 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobs.ApkUpdateJob;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.service.PersistentAlarmManagerListener;
 import org.thoughtcrime.securesms.util.Environment;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.concurrent.TimeUnit;
 
@@ -26,7 +26,7 @@ public class ApkUpdateRefreshListener extends PersistentAlarmManagerListener {
 
   @Override
   protected long getNextScheduledExecutionTime(Context context) {
-    return TextSecurePreferences.getUpdateApkRefreshTime(context);
+    return SignalStore.apkUpdate().getRefreshTime();
   }
 
   @Override
@@ -39,7 +39,7 @@ public class ApkUpdateRefreshListener extends PersistentAlarmManagerListener {
     }
 
     long newTime = System.currentTimeMillis() + INTERVAL;
-    TextSecurePreferences.setUpdateApkRefreshTime(context, newTime);
+    SignalStore.apkUpdate().setRefreshTime(newTime);
 
     return newTime;
   }

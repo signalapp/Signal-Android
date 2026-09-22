@@ -9,7 +9,6 @@ import android.app.backup.BackupManager
 import android.content.Context
 import androidx.annotation.VisibleForTesting
 import androidx.annotation.WorkerThread
-import androidx.core.app.NotificationManagerCompat
 import com.google.android.gms.auth.api.phone.SmsRetriever
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -52,7 +51,6 @@ import org.thoughtcrime.securesms.jobs.RotateCertificateJob
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
-import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.pin.Svr3Migration
 import org.thoughtcrime.securesms.pin.SvrRepository
 import org.thoughtcrime.securesms.pin.SvrWrongPinException
@@ -74,7 +72,6 @@ import org.thoughtcrime.securesms.registration.fcm.PushChallengeRequest
 import org.thoughtcrime.securesms.registration.viewmodel.SvrAuthCredentialSet
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.SvrNoDataException
 import org.whispersystems.signalservice.api.account.AccountAttributes
 import org.whispersystems.signalservice.api.account.DeviceAttributes
@@ -237,9 +234,8 @@ object RegistrationRepository {
 
     SignalStore.account.setServicePassword(data.servicePassword)
     SignalStore.account.setRegistered(registered = true, isAciChanged = isAciChanged)
-    TextSecurePreferences.setPromptedPushRegistration(context, true)
-    TextSecurePreferences.setUnauthorizedReceived(context, false)
-    NotificationManagerCompat.from(context).cancel(NotificationIds.UNREGISTERED_NOTIFICATION_ID)
+    SignalStore.registration.hasPromptedPushRegistration = true
+    SignalStore.account.isUnauthorizedReceived = false
 
     val masterKey = if (data.masterKey != null) MasterKey(data.masterKey.toByteArray()) else null
     SvrRepository.onRegistrationComplete(masterKey, data.pin, hasPin, data.reglockEnabled, SignalStore.account.restoredAccountEntropyPool)

@@ -13,7 +13,6 @@ import org.thoughtcrime.securesms.keyvalue.CertificateType;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.net.SignalNetwork;
 import org.thoughtcrime.securesms.util.ExceptionHelper;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.NetworkResultUtil;
 
 import java.io.IOException;
@@ -60,7 +59,7 @@ public final class RotateCertificateJob extends BaseJob {
       return;
     }
 
-    if (TextSecurePreferences.isUnauthorizedReceived(context)) {
+    if (SignalStore.account().isUnauthorizedReceived()) {
       Log.i(TAG, "No longer authorized. Ignoring.");
       return;
     }

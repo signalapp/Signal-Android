@@ -1,11 +1,17 @@
 package org.thoughtcrime.securesms.keyvalue;
 
+import android.content.Context;
+
 import androidx.annotation.NonNull;
+
+import org.signal.core.util.logging.Log;
 
 import java.util.Collections;
 import java.util.List;
 
 public class TooltipValues extends SignalStoreValues {
+
+  private static final String TAG = Log.tag(TooltipValues.class);
 
   private static final int GROUP_CALLING_MAX_TOOLTIP_DISPLAY_COUNT = 3;
 
@@ -16,9 +22,41 @@ public class TooltipValues extends SignalStoreValues {
   private static final String BUBBLE_OPT_OUT                   = "tooltip.bubble.opt.out";
   private static final String PROFILE_SETTINGS_QR_CODE         = "tooltip.profile_settings_qr_code";
   private static final String CALLING_SWITCH_CAMERA            = "tooltip.calling.switch_camera";
+  private static final String STICKER_INTRO                    = "tooltip.sticker_intro";
+  private static final String SWIPE_TO_REPLY                   = "tooltip.swipe_to_reply";
 
-  TooltipValues(@NonNull KeyValueStore store) {
+  TooltipValues(@NonNull KeyValueStore store, @NonNull Context context) {
     super(store);
+
+    if (!store.containsKey(STICKER_INTRO)) {
+      migrateFromSharedPrefsV1(context);
+    }
+  }
+
+  /** Do not alter. If you need to migrate more stuff, create a new method. */
+  private void migrateFromSharedPrefsV1(@NonNull Context context) {
+    Log.i(TAG, "[V1] Migrating tooltip values from shared prefs.");
+
+    getStore().beginWrite()
+              .putBoolean(SWIPE_TO_REPLY, LegacySharedPrefs.INSTANCE.getBoolean(context, "pref_has_seen_swipe_to_reply", false))
+              .putBoolean(STICKER_INTRO, LegacySharedPrefs.INSTANCE.getBoolean(context, "pref_seen_sticker_intro_tooltip", false))
+              .commit();
+  }
+
+  public boolean hasSeenStickerIntroTooltip() {
+    return getBoolean(STICKER_INTRO, false);
+  }
+
+  public void markStickerIntroTooltipSeen() {
+    putBoolean(STICKER_INTRO, true);
+  }
+
+  public boolean hasSeenSwipeToReplyTooltip() {
+    return getBoolean(SWIPE_TO_REPLY, false);
+  }
+
+  public void markSwipeToReplyTooltipSeen() {
+    putBoolean(SWIPE_TO_REPLY, true);
   }
 
   @Override

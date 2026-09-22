@@ -120,7 +120,6 @@ import org.thoughtcrime.securesms.util.Environment;
 import org.thoughtcrime.securesms.util.FrameRateTracker;
 import org.thoughtcrime.securesms.util.PreKeyBatcher;
 import org.thoughtcrime.securesms.util.RemoteConfig;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.video.exo.GiphyMp4Cache;
 import org.thoughtcrime.securesms.video.exo.SimpleExoPlayerPool;
 import org.thoughtcrime.securesms.webrtc.audio.AudioManagerCompat;
@@ -247,7 +246,7 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
 
   @Override
   public @NonNull LiveRecipientCache provideRecipientCache() {
-    return new LiveRecipientCache(context);
+    return new LiveRecipientCache();
   }
 
   @Override
@@ -262,7 +261,7 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
                                        .setConstraintFactories(JobManagerFactories.getConstraintFactories(context))
                                        .setConstraintObservers(JobManagerFactories.getConstraintObservers(context))
                                        .setJobStorage(new FastJobStorage(JobDatabase.getInstance(context)))
-                                       .setJobMigrator(new JobMigrator(TextSecurePreferences.getJobManagerVersion(context), JobManager.CURRENT_VERSION, JobManagerFactories.getJobMigrations(context)))
+                                       .setJobMigrator(new JobMigrator(SignalStore.misc().getJobManagerVersion(), JobManager.CURRENT_VERSION, JobManagerFactories.getJobMigrations(context)))
                                        .addReservedJobRunner(new FactoryJobPredicate(PushProcessMessageJob.KEY, MarkerJob.KEY))
                                        .addReservedJobRunner(new FactoryJobPredicate(AttachmentUploadJob.KEY, AttachmentCompressionJob.KEY))
                                        .addReservedJobRunner(new FactoryJobPredicate(
@@ -421,7 +420,7 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
     };
 
     SignalWebSocket.AuthenticatedWebSocket webSocket = new SignalWebSocket.AuthenticatedWebSocket(authFactory,
-                                                                                                  () -> !SignalStore.misc().isClientDeprecated() && SignalStore.account().isRegistered() && !TextSecurePreferences.isUnauthorizedReceived(context) && !DeviceTransferBlockingInterceptor.getInstance().isBlockingNetwork() && !Environment.IS_INSTRUMENTATION,
+                                                                                                  () -> !SignalStore.misc().isClientDeprecated() && SignalStore.account().isRegistered() && !SignalStore.account().isUnauthorizedReceived() && !DeviceTransferBlockingInterceptor.getInstance().isBlockingNetwork() && !Environment.IS_INSTRUMENTATION,
                                                                                                   sleepTimer,
                                                                                                   TimeUnit.SECONDS.toMillis(30));
     if (AppForegroundObserver.isForegrounded()) {

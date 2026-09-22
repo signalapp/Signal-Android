@@ -32,7 +32,6 @@ import org.signal.core.util.bytes
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.BackupEvent
-import org.thoughtcrime.securesms.backup.BackupPassphrase
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.databinding.FragmentRestoreLocalBackupBinding
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -178,12 +177,12 @@ class RestoreLocalBackupFragment : LoggingFragment(R.layout.fragment_restore_loc
         } catch (_: ActivityNotFoundException) {
           Log.w(TAG, "No external activity found")
           Toast.makeText(context, R.string.BackupDialog_no_file_picker_available, Toast.LENGTH_LONG).show()
-          BackupPassphrase.set(context, null)
+          SignalStore.backup.v1BackupPassphrase = null
           resumeRegistrationAfterLocalBackupRestore()
         }
       }
       .setNegativeButton(R.string.RestoreBackupFragment__not_now) { _, _ ->
-        BackupPassphrase.set(context, null)
+        SignalStore.backup.v1BackupPassphrase = null
         resumeRegistrationAfterLocalBackupRestore()
       }
       .setCancelable(false)

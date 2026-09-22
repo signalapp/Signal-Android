@@ -17,7 +17,6 @@ import kotlinx.coroutines.withContext
 import org.signal.core.ui.util.StorageUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.backup.BackupPassphrase
 import org.thoughtcrime.securesms.backup.LocalExportProgress
 import org.thoughtcrime.securesms.components.settings.app.backups.remote.BackupKeyCredentialManagerHandler
 import org.thoughtcrime.securesms.components.settings.app.backups.remote.BackupKeySaveState
@@ -27,7 +26,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.protos.LocalBackupCreationProgress
 import org.thoughtcrime.securesms.util.BackupUtil
 import org.thoughtcrime.securesms.util.DateUtils
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.formatHours
 import java.time.LocalTime
 import java.util.Locale
@@ -85,7 +83,7 @@ class LocalBackupsViewModel : ViewModel(), BackupKeyCredentialManagerHandler {
     val context = AppDependencies.application
     val backupTime = LocalTime.of(SignalStore.settings.backupHour, SignalStore.settings.backupMinute).formatHours(context)
 
-    val userUnregistered = TextSecurePreferences.isUnauthorizedReceived(context) || !SignalStore.account.isRegistered
+    val userUnregistered = SignalStore.account.isUnauthorizedReceived || !SignalStore.account.isRegistered
     val clientDeprecated = SignalStore.misc.isClientDeprecated
     val legacyLocalBackupsEnabled = SignalStore.settings.isBackupEnabled && BackupUtil.canUserAccessBackupDirectory(context)
     val canTurnOn = legacyLocalBackupsEnabled || (!userUnregistered && !clientDeprecated)
@@ -143,7 +141,7 @@ class LocalBackupsViewModel : ViewModel(), BackupKeyCredentialManagerHandler {
 
         SignalStore.backup.newLocalBackupsDirectory = SignalStore.settings.signalBackupDirectory?.toString()
 
-        BackupPassphrase.set(context, null)
+        SignalStore.backup.v1BackupPassphrase = null
         SignalStore.settings.isBackupEnabled = false
         BackupUtil.deleteAllBackups()
       }

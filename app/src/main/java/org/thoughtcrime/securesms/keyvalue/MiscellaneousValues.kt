@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.keyvalue
 
+import android.content.Context
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.UsernameQrCodeColorScheme
 import org.thoughtcrime.securesms.database.model.databaseprotos.PendingChangeNumberMetadata
 import org.thoughtcrime.securesms.jobmanager.impl.ChangeNumberConstraintObserver
@@ -7,8 +9,10 @@ import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint
 import org.thoughtcrime.securesms.jobs.DeprecatedNotificationJob
 import org.thoughtcrime.securesms.keyvalue.protos.LeastActiveLinkedDevice
 
-class MiscellaneousValues internal constructor(store: KeyValueStore) : SignalStoreValues(store) {
+class MiscellaneousValues internal constructor(store: KeyValueStore, context: Context) : SignalStoreValues(store) {
   companion object {
+    private val TAG = Log.tag(MiscellaneousValues::class)
+
     private const val LAST_PREKEY_REFRESH_TIME = "last_prekey_refresh_time"
     private const val MESSAGE_REQUEST_ENABLE_TIME = "message_request_enable_time"
     private const val LAST_PROFILE_REFRESH_TIME = "misc.last_profile_refresh_time"
@@ -58,7 +62,81 @@ class MiscellaneousValues internal constructor(store: KeyValueStore) : SignalSto
     private const val LAST_APPLIED_PNI_CHANGE_SERVER_TIMESTAMP = "misc.last_applied_pni_change_server_timestamp"
     private const val LAST_MISSING_PLAY_SERVICES_FCM_VERIFICATION_TIME = "misc.last_missing_play_services_fcm_verification_time"
     private const val LAST_PROCESSED_SHARE_DATA_TIMESTAMP = "misc.last_processed_share_data_timestamp"
+    private const val DIRECTORY_REFRESH_TIME = "misc.directory_refresh_time"
+    private const val HAS_SUCCESSFULLY_RETRIEVED_DIRECTORY = "misc.has_successfully_retrieved_directory"
+    private const val LAST_FULL_CONTACT_SYNC_TIME = "misc.last_full_contact_sync_time"
+    private const val NEEDS_FULL_CONTACT_SYNC = "misc.needs_full_contact_sync"
+    private const val SERVICE_OUTAGE = "misc.service_outage"
+    private const val LAST_OUTAGE_CHECK_TIME = "misc.last_outage_check_time"
+    private const val SIGNED_PREKEY_ROTATION_TIME = "misc.signed_prekey_rotation_time"
+    private const val JOB_MANAGER_VERSION = "misc.job_manager_version"
+    private const val FIRST_INSTALL_VERSION = "misc.first_install_version"
+    private const val NOTIFICATION_CHANNEL_VERSION = "misc.notification_channel_version"
+    private const val NOTIFICATION_MESSAGES_CHANNEL_VERSION = "misc.notification_messages_channel_version"
+    private const val RATING_ENABLED = "misc.rating_enabled"
+    private const val RATING_LATER_TIMESTAMP = "misc.rating_later_timestamp"
   }
+
+  init {
+    if (!store.containsKey(FIRST_INSTALL_VERSION)) {
+      migrateFromSharedPrefsV1(context)
+    }
+  }
+
+  /** Do not alter. If you need to migrate more stuff, create a new method. */
+  private fun migrateFromSharedPrefsV1(context: Context) {
+    Log.i(TAG, "[V1] Migrating misc values from shared prefs.")
+
+    store.beginWrite()
+      .putLong(DIRECTORY_REFRESH_TIME, LegacySharedPrefs.getLong(context, "pref_directory_refresh_time", 0))
+      .putBoolean(HAS_SUCCESSFULLY_RETRIEVED_DIRECTORY, LegacySharedPrefs.getBoolean(context, "pref_successful_directory", false))
+      .putLong(LAST_FULL_CONTACT_SYNC_TIME, LegacySharedPrefs.getLong(context, "pref_last_full_contact_sync_time", 0))
+      .putBoolean(NEEDS_FULL_CONTACT_SYNC, LegacySharedPrefs.getBoolean(context, "pref_needs_full_contact_sync", false))
+      .putBoolean(SERVICE_OUTAGE, LegacySharedPrefs.getBoolean(context, "pref_service_outage", false))
+      .putLong(LAST_OUTAGE_CHECK_TIME, LegacySharedPrefs.getLong(context, "pref_last_outage_check_time", 0))
+      .putLong(SIGNED_PREKEY_ROTATION_TIME, LegacySharedPrefs.getLong(context, "pref_signed_pre_key_rotation_time", 0))
+      .putInteger(JOB_MANAGER_VERSION, LegacySharedPrefs.getInteger(context, "pref_job_manager_version", 1))
+      .putInteger(NOTIFICATION_CHANNEL_VERSION, LegacySharedPrefs.getInteger(context, "pref_notification_channel_version", 1))
+      .putInteger(NOTIFICATION_MESSAGES_CHANNEL_VERSION, LegacySharedPrefs.getInteger(context, "pref_notification_messages_channel_version", 1))
+      .putBoolean(RATING_ENABLED, LegacySharedPrefs.getBoolean(context, "pref_rating_enabled", true))
+      .putLong(RATING_LATER_TIMESTAMP, LegacySharedPrefs.getLong(context, "pref_rating_later", -1))
+      // Written last so that it acts as the marker for this migration having run.
+      .putInteger(FIRST_INSTALL_VERSION, LegacySharedPrefs.getInteger(context, "pref_first_install_version", -1))
+      .commit()
+  }
+
+  /** When the next contact directory refresh is scheduled. */
+  var directoryRefreshTime: Long by longValue(DIRECTORY_REFRESH_TIME, 0)
+
+  /** Whether we've ever managed to pull down the contact directory. */
+  var hasSuccessfullyRetrievedDirectory: Boolean by booleanValue(HAS_SUCCESSFULLY_RETRIEVED_DIRECTORY, false)
+
+  var lastFullContactSyncTime: Long by longValue(LAST_FULL_CONTACT_SYNC_TIME, 0)
+
+  var needsFullContactSync: Boolean by booleanValue(NEEDS_FULL_CONTACT_SYNC, false)
+
+  /** Whether the service is currently reporting an outage. */
+  var serviceOutage: Boolean by booleanValue(SERVICE_OUTAGE, false)
+
+  var lastOutageCheckTime: Long by longValue(LAST_OUTAGE_CHECK_TIME, 0)
+
+  var signedPreKeyRotationTime: Long by longValue(SIGNED_PREKEY_ROTATION_TIME, 0)
+
+  /** The [org.thoughtcrime.securesms.jobmanager.JobManager] version the job database was last migrated to. */
+  var jobManagerVersion: Int by integerValue(JOB_MANAGER_VERSION, 1)
+
+  /** The canonical version code the app was first installed at, or -1 if we don't know. */
+  var firstInstallVersion: Int by integerValue(FIRST_INSTALL_VERSION, -1)
+
+  var notificationChannelVersion: Int by integerValue(NOTIFICATION_CHANNEL_VERSION, 1)
+
+  var notificationMessagesChannelVersion: Int by integerValue(NOTIFICATION_MESSAGES_CHANNEL_VERSION, 1)
+
+  /** Whether we're still allowed to ask the user to rate the app. */
+  var ratingEnabled: Boolean by booleanValue(RATING_ENABLED, true)
+
+  /** The earliest time we're allowed to ask the user to rate the app again. */
+  var ratingLaterTimestamp: Long by longValue(RATING_LATER_TIMESTAMP, -1)
 
   public override fun onFirstEverAppLaunch() {
     putLong(MESSAGE_REQUEST_ENABLE_TIME, 0)

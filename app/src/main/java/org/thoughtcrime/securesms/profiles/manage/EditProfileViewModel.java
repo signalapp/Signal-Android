@@ -24,7 +24,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
 import org.thoughtcrime.securesms.util.DefaultValueLiveData;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.whispersystems.signalservice.api.util.StreamDetails;
 
@@ -107,7 +106,7 @@ class EditProfileViewModel extends ViewModel {
   }
 
   public boolean isRegisteredAndUpToDate() {
-    return !TextSecurePreferences.isUnauthorizedReceived(AppDependencies.getApplication()) && SignalStore.account().isRegistered() && !SignalStore.misc().isClientDeprecated();
+    return !SignalStore.account().isUnauthorizedReceived() && SignalStore.account().isRegistered() && !SignalStore.misc().isClientDeprecated();
   }
 
   public boolean isDeprecated() {

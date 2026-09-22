@@ -391,7 +391,6 @@ import org.thoughtcrime.securesms.util.PlayStoreUtil
 import org.thoughtcrime.securesms.util.Projection
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.UriUtil
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.atMidnight
@@ -583,7 +582,7 @@ class ConversationFragment :
   private val colorizer = ColorizerV2()
   private val textDraftSaveDebouncer = Debouncer(500)
   private val doubleTapToEditDebouncer = DoubleClickDebouncer(200)
-  private val recentEmojis: RecentEmojiPageModel by lazy { RecentEmojiPageModel(AppDependencies.application, TextSecurePreferences.RECENT_STORAGE_KEY) }
+  private val recentEmojis: RecentEmojiPageModel by lazy { RecentEmojiPageModel(AppDependencies.application, RecentEmojiPageModel.RECENT_STORAGE_KEY) }
   private val nicknameEditActivityLauncher = registerForActivityResult(NicknameActivity.Contract()) {}
   private val handler = Handler(Looper.getMainLooper())
 
@@ -1793,7 +1792,7 @@ class ConversationFragment :
       }
     }
 
-    if (TextSecurePreferences.getServiceOutage(context)) {
+    if (SignalStore.misc.serviceOutage) {
       AppDependencies.jobManager.add(ServiceOutageDetectionJob())
     }
 
@@ -2789,7 +2788,7 @@ class ConversationFragment :
   }
 
   private fun initializeMediaKeyboard() {
-    val stickerIntro: Boolean = !TextSecurePreferences.hasSeenStickerIntroTooltip(requireContext())
+    val stickerIntro: Boolean = !SignalStore.tooltips.hasSeenStickerIntroTooltip()
 
     inputPanel.showMediaKeyboardToggle(true)
     inputPanel.setMediaKeyboardToggleMode(preferredKeyboardPage())
@@ -3076,7 +3075,7 @@ class ConversationFragment :
   }
 
   private fun maybeShowSwipeToReplyTooltip() {
-    if (!TextSecurePreferences.hasSeenSwipeToReplyTooltip(requireContext())) {
+    if (!SignalStore.tooltips.hasSeenSwipeToReplyTooltip()) {
       val tooltipText = if (ViewUtil.isLtr(requireContext())) {
         R.string.ConversationFragment_you_can_swipe_to_the_right_reply
       } else {
@@ -3085,7 +3084,7 @@ class ConversationFragment :
 
       snackbar(tooltipText)
 
-      TextSecurePreferences.setHasSeenSwipeToReplyTooltip(requireContext(), true)
+      SignalStore.tooltips.markSwipeToReplyTooltipSeen()
     }
   }
 
@@ -5656,7 +5655,7 @@ class ConversationFragment :
       return
     }
 
-    if (!TextSecurePreferences.hasSeenStickerIntroTooltip(requireContext())) {
+    if (!SignalStore.tooltips.hasSeenStickerIntroTooltip()) {
       return
     }
 

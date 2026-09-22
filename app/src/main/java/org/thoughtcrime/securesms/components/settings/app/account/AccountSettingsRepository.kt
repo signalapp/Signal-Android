@@ -12,11 +12,9 @@ import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.components.settings.app.account.authenticator.TotpRepository
 import org.thoughtcrime.securesms.components.settings.app.account.passkeys.AppPasskeysRepository
-import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.lock.v2.PinKeyboardType
 import org.thoughtcrime.securesms.pin.SvrRepository
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.kbs.PinHashUtil
 import java.io.IOException
 
@@ -42,7 +40,7 @@ class AccountSettingsRepository {
 
   fun isRegistrationLockEnabled(): Boolean = SignalStore.svr.isRegistrationLockEnabled
 
-  fun isUserUnregistered(): Boolean = TextSecurePreferences.isUnauthorizedReceived(AppDependencies.application)
+  fun isUserUnregistered(): Boolean = SignalStore.account.isUnauthorizedReceived
 
   fun isClientDeprecated(): Boolean = SignalStore.misc.isClientDeprecated
 

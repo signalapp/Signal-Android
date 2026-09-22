@@ -32,7 +32,6 @@ import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
@@ -196,18 +195,18 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
       throws IOException, UntrustedIdentityException, NetworkException, NoSessionException
   {
     boolean isAppVisible      = AppForegroundObserver.isForegrounded();
-    long    timeSinceLastSync = System.currentTimeMillis() - TextSecurePreferences.getLastFullContactSyncTime(context);
+    long    timeSinceLastSync = System.currentTimeMillis() - SignalStore.misc().getLastFullContactSyncTime();
 
     Log.d(TAG, "Requesting a full contact sync. forced = " + forceSync + ", appVisible = " + isAppVisible + ", timeSinceLastSync = " + timeSinceLastSync + " ms");
 
     if (!forceSync && !isAppVisible && timeSinceLastSync < FULL_SYNC_TIME) {
       Log.i(TAG, "App is backgrounded and the last contact sync was too soon (" + timeSinceLastSync + " ms ago). Marking that we need a sync. Skipping multi-device contact update...");
-      TextSecurePreferences.setNeedsFullContactSync(context, true);
+      SignalStore.misc().setNeedsFullContactSync(true);
       return;
     }
 
-    TextSecurePreferences.setLastFullContactSyncTime(context, System.currentTimeMillis());
-    TextSecurePreferences.setNeedsFullContactSync(context, false);
+    SignalStore.misc().setLastFullContactSyncTime(System.currentTimeMillis());
+    SignalStore.misc().setNeedsFullContactSync(false);
 
     WriteDetails writeDetails = createTempFile();
 

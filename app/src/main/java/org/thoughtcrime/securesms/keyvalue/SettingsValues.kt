@@ -499,6 +499,39 @@ class SettingsValues internal constructor(store: KeyValueStore, private val cont
     }
   }
 
+  /**
+   * V1 backups made before these settings moved into this store carry them as shared prefs rather than key-values. The shared-prefs
+   * migration has already run by the time a restore happens, so the restored prefs need to be re-read afterwards or the user silently
+   * loses their privacy and security choices.
+   */
+  fun restoreLegacySharedPrefsAfterBackupRestore() {
+    Log.i(TAG, "Restoring legacy privacy settings from shared prefs.")
+
+    val writer = store.beginWrite()
+
+    val booleanKeys = mapOf(
+      "pref_screen_security" to SCREEN_SECURITY_ENABLED,
+      "pref_incognito_keyboard" to INCOGNITO_KEYBOARD_ENABLED,
+      "pref_read_receipts" to READ_RECEIPTS_ENABLED,
+      "pref_typing_indicators" to TYPING_INDICATORS_ENABLED,
+      "pref_show_unidentifed_delivery_indicators" to SHOW_UNIDENTIFIED_DELIVERY_INDICATORS,
+      "pref_universal_unidentified_access" to UNIVERSAL_UNIDENTIFIED_ACCESS,
+      "pref_turn_only" to ALWAYS_RELAY_CALLS
+    )
+
+    for ((legacyKey, key) in booleanKeys) {
+      if (LegacySharedPrefs.contains(context, legacyKey)) {
+        writer.putBoolean(key, LegacySharedPrefs.getBoolean(context, legacyKey, false))
+      }
+    }
+
+    if (LegacySharedPrefs.contains(context, "pref_notification_privacy")) {
+      writer.putString(MESSAGE_NOTIFICATION_PRIVACY, LegacySharedPrefs.getString(context, "pref_notification_privacy", "all"))
+    }
+
+    writer.commit()
+  }
+
   private fun migrateFromSharedPrefsV1(context: Context) {
     Log.i(TAG, "[V1] Migrating screen lock values from shared prefs.")
 
