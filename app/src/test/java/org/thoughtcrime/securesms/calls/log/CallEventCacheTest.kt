@@ -286,6 +286,51 @@ class CallEventCacheTest {
     assertThat(result[2].callLinkPeekInfo).isNull()
   }
 
+  @Test
+  fun `Given an unjoined call link, when I filter by missed, then I expect nothing`() {
+    val testData = listOf(
+      createCacheRecord(
+        callId = 1,
+        type = Type.AD_HOC_CALL.code,
+        event = Event.GENERIC_GROUP_CALL.code
+      )
+    )
+
+    val filterState = CallEventCache.FilterState(filter = CallLogFilter.MISSED)
+    val result = CallEventCache.clusterCallEvents(testData, filterState)
+    assertThat(result).isEmpty()
+  }
+
+  @Test
+  fun `Given an unjoined group call, when I filter by missed, then I expect one entry`() {
+    val testData = listOf(
+      createCacheRecord(
+        callId = 1,
+        type = Type.GROUP_CALL.code,
+        event = Event.GENERIC_GROUP_CALL.code
+      )
+    )
+
+    val filterState = CallEventCache.FilterState(filter = CallLogFilter.MISSED)
+    val result = CallEventCache.clusterCallEvents(testData, filterState)
+    assertThat(result).size().isEqualTo(1)
+  }
+
+  @Test
+  fun `Given a missed call link ring, when I filter by missed, then I expect one entry`() {
+    val testData = listOf(
+      createCacheRecord(
+        callId = 1,
+        type = Type.AD_HOC_CALL.code,
+        event = Event.MISSED.code
+      )
+    )
+
+    val filterState = CallEventCache.FilterState(filter = CallLogFilter.MISSED)
+    val result = CallEventCache.clusterCallEvents(testData, filterState)
+    assertThat(result).size().isEqualTo(1)
+  }
+
   private fun createCacheRecord(
     callId: Long,
     peer: Long = 1,

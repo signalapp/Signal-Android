@@ -134,7 +134,7 @@ class CallEventCache(
     }
 
     private fun isMissedGroupCall(call: CacheRecord): Boolean {
-      return call.event == CallTable.Event.GENERIC_GROUP_CALL.code && !call.didLocalUserJoin && !call.isGroupCallActive
+      return call.type == Type.GROUP_CALL.code && call.event == CallTable.Event.GENERIC_GROUP_CALL.code && !call.didLocalUserJoin && !call.isGroupCallActive
     }
 
     private fun isWithinTimeout(parent: CacheRecord, child: CacheRecord): Boolean {
