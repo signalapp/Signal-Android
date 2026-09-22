@@ -283,6 +283,7 @@ public final class JobManagerFactories {
       put(RestoreAttachmentJob.KEY,                    new RestoreAttachmentJob.Factory());
       put(RestoreAttachmentThumbnailJob.KEY,           new RestoreAttachmentThumbnailJob.Factory());
       put(RestoreLocalAttachmentJob.KEY,               new RestoreLocalAttachmentJob.Factory());
+      put(RestoreNotificationsJob.KEY,                 new RestoreNotificationsJob.Factory());
       put(RestoreOptimizedMediaJob.KEY,                new RestoreOptimizedMediaJob.Factory());
       put(RetrieveProfileAvatarJob.KEY,                new RetrieveProfileAvatarJob.Factory());
       put(RetrieveProfileJob.KEY,                      new RetrieveProfileJob.Factory());

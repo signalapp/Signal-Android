@@ -258,6 +258,7 @@ object NotificationFactory {
       setWhen(conversation)
       addReplyActions(conversation)
       setOnlyAlertOnce(!shouldAlert)
+      setSilent(!shouldAlert)
       addMessages(conversation)
       setPriority(TextSecurePreferences.getNotificationPriority(context))
       setLights()
@@ -280,6 +281,7 @@ object NotificationFactory {
       return
     }
 
+    val hasNewNotifications: Boolean = state.notificationItems.any { it.isNewNotification }
     val builder: NotificationBuilder = NotificationBuilder.create(context)
 
     builder.apply {
@@ -300,7 +302,8 @@ object NotificationFactory {
       setWhen(state.mostRecentNotification)
       addMarkAsReadAction(state)
       addMessages(state)
-      setOnlyAlertOnce(!state.notificationItems.any { it.isNewNotification })
+      setOnlyAlertOnce(!hasNewNotifications)
+      setSilent(!hasNewNotifications)
       setPriority(TextSecurePreferences.getNotificationPriority(context))
       setLights()
       setAlarms(state.mostRecentSender)
