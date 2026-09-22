@@ -167,6 +167,10 @@ sealed class SignalWebSocket(
     keepAliveChangeListeners.add(listener)
   }
 
+  fun removeKeepAliveChangeListener(listener: Listener) {
+    keepAliveChangeListeners.remove(listener)
+  }
+
   fun request(request: WebSocketRequestMessage): Single<WebsocketResponse> {
     return try {
       restartDelayedDisconnectIfNecessary()
