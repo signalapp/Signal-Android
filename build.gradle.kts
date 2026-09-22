@@ -58,7 +58,15 @@ subprojects {
   }
 
   tasks.withType<Test>().configureEach {
-    maxParallelForks = (Runtime.getRuntime().availableProcessors() / 4).coerceAtLeast(1)
+    if (name.contains("ScreenshotTest")) {
+      // Compose preview screenshot testing does not support parallel execution.
+      maxParallelForks = 1
+
+      // The plugin creates this task for every module, but most have no previews to validate.
+      failOnNoDiscoveredTests = false
+    } else {
+      maxParallelForks = (Runtime.getRuntime().availableProcessors() / 4).coerceAtLeast(1)
+    }
 
     // Raised for robolectric
     maxHeapSize = "2g"
