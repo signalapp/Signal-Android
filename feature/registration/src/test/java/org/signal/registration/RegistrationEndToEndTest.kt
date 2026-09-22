@@ -1660,6 +1660,48 @@ class RegistrationEndToEndTest {
   }
 
   @Test
+  fun `registering without a phone number on a device already registered with one commits account data carrying no pni`() {
+    enableSignalLoginRegistration()
+    storageController.preExistingRegistrationData = preExistingRegistrationData(E164)
+
+    var registrationComplete = false
+    launchRegistrationFlow(onRegistrationComplete = { registrationComplete = true })
+
+    startSignalLoginRegistration()
+    buySignalLogin()
+
+    waitForTag(TestTags.SIGNAL_LOGIN_INFO_SCREEN)
+    val login = registeredSignalLogin()
+
+    recordSignalLoginManually()
+    enterSignalLogin(login)
+    skipUsername()
+
+    waitFor("registration to complete") { registrationComplete }
+
+    val committed = storageController.committedData
+    assert(committed != null) { "Expected registration data to be committed" }
+
+    val accountData = committed!!.accountData
+    assert(accountData != null) { "Expected account data to be committed" }
+    assert(accountData!!.aci == login.aci.toString()) { "Expected committed ACI ${login.aci} but was ${accountData.aci}" }
+
+    // The device still holds the previous account's E164 and PNI. None of it may leak into the committed data, which is
+    // what the app applies to permanent storage -- a PNI here with no matching key material is unusable.
+    assert(accountData.e164 == null) { "Expected no committed e164 but was ${accountData.e164}" }
+    assert(accountData.pni == null) { "Expected no committed PNI but was ${accountData.pni}" }
+    assert(accountData.pniIdentityKeyPair.size == 0) { "Expected no committed PNI identity key but was ${accountData.pniIdentityKeyPair.size} bytes" }
+    assert(accountData.pniSignedPreKey.size == 0) { "Expected no committed PNI signed pre-key but was ${accountData.pniSignedPreKey.size} bytes" }
+    assert(accountData.pniLastResortKyberPreKey.size == 0) { "Expected no committed PNI last-resort kyber pre-key but was ${accountData.pniLastResortKyberPreKey.size} bytes" }
+    assert(accountData.pniRegistrationId == 0) { "Expected no committed PNI registration id but was ${accountData.pniRegistrationId}" }
+
+    val request = networkController.lastRegisterAccountRequest
+    assert(request != null) { "Expected a registration attempt" }
+    assert(request!!.e164 == null) { "Expected the previous number to be left behind but was ${request.e164}" }
+    assert(request.pniPreKeys == null) { "An account with no phone number has no PNI, so no PNI key material should be sent" }
+  }
+
+  @Test
   fun `a purchased signal login that the password manager takes and hands back moves the user on to the username step`() {
     enableSignalLoginRegistration()
     val savedCredentials = stubPasswordManager()

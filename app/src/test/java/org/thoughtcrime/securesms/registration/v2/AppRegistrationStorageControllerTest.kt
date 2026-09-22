@@ -261,6 +261,42 @@ class AppRegistrationStorageControllerTest {
   }
 
   @Test
+  fun `commit - numberless re-registration over existing account - clears stale pni and e164`() = runBlocking<Unit> {
+    SignalStore.account.setAci(aci)
+    SignalStore.account.setPni(pni)
+    SignalStore.account.setE164(E164)
+    SignalStore.account.restoreAciIdentityKeyFromBackup(aciIdentity.publicKey.serialize(), aciIdentity.privateKey.serialize())
+    SignalStore.account.restorePniIdentityKeyFromBackup(pniIdentity.publicKey.serialize(), pniIdentity.privateKey.serialize())
+    SignalStore.account.pniPreKeys.isSignedPreKeyRegistered = true
+    SignalStore.account.pniPreKeys.activeSignedPreKeyId = 12
+    SignalStore.account.setRegistered(true)
+
+    seedInProgressData(
+      RegistrationData(
+        accountData = accountData(reRegistration = true).newBuilder()
+          .e164("")
+          .pni("")
+          .pniIdentityKeyPair(ByteString.EMPTY)
+          .pniSignedPreKey(ByteString.EMPTY)
+          .pniLastResortKyberPreKey(ByteString.EMPTY)
+          .pniRegistrationId(0)
+          .build(),
+        accountEntropyPool = aep.value
+      )
+    )
+
+    controller.commitRegistrationData()
+
+    assertThat(SignalStore.account.aci).isEqualTo(aci)
+    assertThat(SignalStore.account.pni).isNull()
+    assertThat(SignalStore.account.e164).isNull()
+    assertThat(SignalStore.account.hasPniIdentityKey()).isFalse()
+    assertThat(SignalStore.account.pniPreKeys.isSignedPreKeyRegistered).isFalse()
+    assertThat(SignalStore.account.aciPreKeys.isSignedPreKeyRegistered).isTrue()
+    assertThat(SignalStore.account.isRegistered).isTrue()
+  }
+
+  @Test
   fun `commit - pin opted out - applies svr opt out`() = runBlocking<Unit> {
     seedInProgressData(
       RegistrationData(
