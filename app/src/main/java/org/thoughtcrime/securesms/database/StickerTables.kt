@@ -231,16 +231,25 @@ class StickerTables(
         )
         .run(SQLiteDatabase.CONFLICT_IGNORE)
 
-      db
-        .insertInto(Sticker.TABLE_NAME)
-        .values(
-          Sticker.PACK_ID to packId,
-          Sticker.COVER to 1,
-          Sticker.EMOJI to "",
-          Sticker.CONTENT_TYPE to "",
-          Sticker.FILE_PATH to ""
-        )
-        .run(SQLiteDatabase.CONFLICT_IGNORE)
+      val hasCover = db
+        .exists(Sticker.TABLE_NAME)
+        .where("${Sticker.PACK_ID} = ? AND ${Sticker.COVER} = 1", packId)
+        .run()
+
+      // The cover goes in without a sticker id, which UNIQUE(pack_id, sticker_id, cover) cannot
+      // dedupe, so a pack that already has a cover would otherwise end up with two.
+      if (!hasCover) {
+        db
+          .insertInto(Sticker.TABLE_NAME)
+          .values(
+            Sticker.PACK_ID to packId,
+            Sticker.COVER to 1,
+            Sticker.EMOJI to "",
+            Sticker.CONTENT_TYPE to "",
+            Sticker.FILE_PATH to ""
+          )
+          .run(SQLiteDatabase.CONFLICT_IGNORE)
+      }
     }
   }
 
@@ -262,13 +271,21 @@ class StickerTables(
       .readToSingleObject { it.readStickerPackRecord() }
   }
 
+  /**
+   * Grouped by pack, because a pack can end up with more than one cover row: an archive restore
+   * inserts one without a sticker id, and SQLite's UNIQUE treats those nulls as distinct.
+   */
   fun getInstalledStickerPacks(): Cursor {
-    return readableDatabase
-      .select(*RECORD_PROJECTION)
-      .from(JOINED_TABLES)
-      .where("${Sticker.TABLE_NAME}.${Sticker.COVER} = 1 AND ${Pack.TABLE_NAME}.${Pack.INSTALLED} = 1")
-      .orderBy("${Pack.TABLE_NAME}.${Pack.POSITION} ASC, ${Pack.TABLE_NAME}.${Pack.PACK_ID} ASC")
-      .run()
+    return readableDatabase.query(
+      JOINED_TABLES,
+      RECORD_PROJECTION,
+      "${Sticker.TABLE_NAME}.${Sticker.COVER} = 1 AND ${Pack.TABLE_NAME}.${Pack.INSTALLED} = 1",
+      null,
+      "${Sticker.TABLE_NAME}.${Sticker.PACK_ID}",
+      null,
+      "${Pack.TABLE_NAME}.${Pack.POSITION} ASC, ${Pack.TABLE_NAME}.${Pack.PACK_ID} ASC",
+      null
+    )
   }
 
   fun getStickersByEmoji(emoji: String): Cursor {

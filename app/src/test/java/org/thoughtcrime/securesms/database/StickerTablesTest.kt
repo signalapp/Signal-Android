@@ -288,6 +288,24 @@ class StickerTablesTest {
     assertThat(results).isEqualTo(listOf(2))
   }
 
+  @Test
+  fun `given an installed pack, when I insert a pack reference for it, then I expect it listed once`() {
+    installPack(packId1, packKey1)
+
+    SignalDatabase.stickers.insertPackReference(packId1, packKey1)
+
+    assertThat(installedPackIds()).isEqualTo(listOf(packId1))
+  }
+
+  @Test
+  fun `given a pack reference, when I insert it again, then I expect the pack listed once`() {
+    SignalDatabase.stickers.insertPackReference(packId1, packKey1)
+
+    SignalDatabase.stickers.insertPackReference(packId1, packKey1)
+
+    assertThat(installedPackIds()).isEqualTo(listOf(packId1))
+  }
+
   private fun installedPackIds(): List<String> {
     return StickerTables.StickerPackRecordReader(SignalDatabase.stickers.getInstalledStickerPacks()).use { reader ->
       reader.asSequence().map { it.packId }.toList()
