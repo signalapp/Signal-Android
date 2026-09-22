@@ -51,7 +51,7 @@ class VerificationCodeViewModel(
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
   smsCodeEvents: Flow<String> = emptyFlow(),
   private val clock: () -> Long = { System.currentTimeMillis() }
-) : EventDrivenViewModel<VerificationCodeScreenEvents>(TAG) {
+) : EventDrivenViewModel<VerificationCodeScreenEvents>(TAG, shouldLogEvents = false) {
 
   companion object {
     private val TAG = Log.tag(VerificationCodeViewModel::class)

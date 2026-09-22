@@ -20,7 +20,7 @@ import org.signal.registration.RestoreDecision
 class DeviceTransferCompleteViewModel(
   private val repository: RegistrationRepository,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit
-) : EventDrivenViewModel<DeviceTransferCompleteScreenEvents>(TAG) {
+) : EventDrivenViewModel<DeviceTransferCompleteScreenEvents>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(DeviceTransferCompleteViewModel::class)

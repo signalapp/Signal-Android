@@ -46,7 +46,7 @@ class EnterAepForLocalBackupViewModel(
   private val resultBus: ResultEventBus,
   private val resultKey: String,
   isPasswordManagerAvailable: Boolean = false
-) : EventDrivenViewModel<EnterAepEvents>(TAG) {
+) : EventDrivenViewModel<EnterAepEvents>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(EnterAepForLocalBackupViewModel::class)

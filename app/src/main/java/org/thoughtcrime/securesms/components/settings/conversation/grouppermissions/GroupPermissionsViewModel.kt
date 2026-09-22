@@ -29,7 +29,7 @@ import org.thoughtcrime.securesms.groups.ui.GroupErrors
 class GroupPermissionsViewModel(
   private val groupId: GroupId,
   private val repository: GroupPermissionsRepository = GroupPermissionsRepository()
-) : EventDrivenViewModel<GroupPermissionsEvents>(TAG) {
+) : EventDrivenViewModel<GroupPermissionsEvents>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(GroupPermissionsViewModel::class)

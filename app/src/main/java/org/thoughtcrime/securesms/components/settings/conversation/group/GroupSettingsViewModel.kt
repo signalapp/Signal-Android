@@ -43,7 +43,7 @@ class GroupSettingsViewModel(
   private val groupId: GroupId,
   private val callMessageIds: LongArray,
   private val repository: ConversationSettingsRepository
-) : EventDrivenViewModel<GroupSettingsEvent>(TAG) {
+) : EventDrivenViewModel<GroupSettingsEvent>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(GroupSettingsViewModel::class)

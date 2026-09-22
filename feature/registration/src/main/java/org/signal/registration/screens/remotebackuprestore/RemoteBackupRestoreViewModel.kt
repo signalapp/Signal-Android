@@ -39,7 +39,7 @@ class RemoteBackupRestoreViewModel(
   private val parentState: StateFlow<RegistrationFlowState>,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
   private val ioDispatcher: CoroutineContext = Dispatchers.IO
-) : EventDrivenViewModel<RemoteBackupRestoreScreenEvents>(TAG) {
+) : EventDrivenViewModel<RemoteBackupRestoreScreenEvents>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(RemoteBackupRestoreViewModel::class)

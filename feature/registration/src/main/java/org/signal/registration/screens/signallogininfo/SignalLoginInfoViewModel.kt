@@ -36,7 +36,7 @@ class SignalLoginInfoViewModel(
   parentState: StateFlow<RegistrationFlowState>,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
   isPasswordManagerAvailable: Boolean
-) : EventDrivenViewModel<SignalLoginInfoScreenEvents>(TAG) {
+) : EventDrivenViewModel<SignalLoginInfoScreenEvents>(TAG, shouldLogEvents = false) {
 
   companion object {
     private val TAG = Log.tag(SignalLoginInfoViewModel::class)

@@ -30,7 +30,7 @@ import org.signal.registration.screens.util.navigateTo
 class QuickRestoreQrViewModel(
   private val repository: RegistrationRepository,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit
-) : EventDrivenViewModel<QuickRestoreQrEvents>(TAG) {
+) : EventDrivenViewModel<QuickRestoreQrEvents>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(QuickRestoreQrViewModel::class)

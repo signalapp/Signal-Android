@@ -30,7 +30,7 @@ import org.signal.signallogin.viewdetails.SignalLoginViewDetailsState
 class RegistrationSignalLoginDetailsViewModel(
   parentState: StateFlow<RegistrationFlowState>,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit
-) : EventDrivenViewModel<SignalLoginViewDetailsScreenEvents>(TAG) {
+) : EventDrivenViewModel<SignalLoginViewDetailsScreenEvents>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(RegistrationSignalLoginDetailsViewModel::class)

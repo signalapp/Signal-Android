@@ -32,7 +32,7 @@ import org.signal.registration.screens.util.navigateTo
 class SignalLoginPaymentViewModel(
   private val repository: RegistrationRepository,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit
-) : EventDrivenViewModel<SignalLoginPaymentScreenEvents>(TAG) {
+) : EventDrivenViewModel<SignalLoginPaymentScreenEvents>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(SignalLoginPaymentViewModel::class)

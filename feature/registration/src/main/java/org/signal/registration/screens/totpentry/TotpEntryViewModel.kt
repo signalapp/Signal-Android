@@ -29,7 +29,7 @@ class TotpEntryViewModel(
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
   private val resultBus: ResultEventBus,
   private val resultKey: String
-) : EventDrivenViewModel<TotpEntryScreenEvents>(TAG) {
+) : EventDrivenViewModel<TotpEntryScreenEvents>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(TotpEntryViewModel::class)

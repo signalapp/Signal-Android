@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 
 class CustomNotificationsSettingsViewModel(
   private val recipientId: RecipientId
-) : EventDrivenViewModel<CustomNotificationsEvents>(TAG), RecipientForeverObserver {
+) : EventDrivenViewModel<CustomNotificationsEvents>(TAG, shouldLogEvents = true), RecipientForeverObserver {
 
   companion object {
     private val TAG = Log.tag(CustomNotificationsSettingsViewModel::class)

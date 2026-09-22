@@ -27,7 +27,7 @@ import java.time.format.DateTimeFormatter
 class TotpSetupViewModel(
   private val repository: TotpRepository = TotpRepository(),
   private val accountName: String = accountNameFor(LocalDateTime.now())
-) : EventDrivenViewModel<TotpSetupEvent>(TAG) {
+) : EventDrivenViewModel<TotpSetupEvent>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(TotpSetupViewModel::class)

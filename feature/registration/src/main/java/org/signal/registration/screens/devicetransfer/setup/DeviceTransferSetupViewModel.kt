@@ -48,7 +48,7 @@ class DeviceTransferSetupViewModel(
   private val setupEvents: Flow<TransferStatus>,
   private val parentState: StateFlow<RegistrationFlowState>,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit
-) : EventDrivenViewModel<DeviceTransferSetupScreenEvents>(TAG) {
+) : EventDrivenViewModel<DeviceTransferSetupScreenEvents>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(DeviceTransferSetupViewModel::class)

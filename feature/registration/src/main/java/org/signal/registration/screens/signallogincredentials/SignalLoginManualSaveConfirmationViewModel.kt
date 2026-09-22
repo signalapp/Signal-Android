@@ -32,7 +32,7 @@ import org.signal.registration.screens.util.navigateTo
 class SignalLoginManualSaveConfirmationViewModel(
   private val parentState: StateFlow<RegistrationFlowState>,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit
-) : EventDrivenViewModel<SignalLoginCredentialEntryScreenEvents>(TAG) {
+) : EventDrivenViewModel<SignalLoginCredentialEntryScreenEvents>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(SignalLoginManualSaveConfirmationViewModel::class)

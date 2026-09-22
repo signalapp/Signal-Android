@@ -34,7 +34,7 @@ class PinEntryForSvrRestoreViewModel(
   private val repository: RegistrationRepository,
   private val parentState: StateFlow<RegistrationFlowState>,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit
-) : EventDrivenViewModel<PinEntryScreenEvents>(TAG) {
+) : EventDrivenViewModel<PinEntryScreenEvents>(TAG, shouldLogEvents = false) {
 
   companion object {
     private val TAG = Log.tag(PinEntryForSvrRestoreViewModel::class)

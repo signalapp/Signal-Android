@@ -35,7 +35,7 @@ class DeviceTransferProgressViewModel(
   private val context: Context,
   private val progressEvents: Flow<NewDeviceRestoreStatus>,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit
-) : EventDrivenViewModel<DeviceTransferProgressScreenEvents>(TAG) {
+) : EventDrivenViewModel<DeviceTransferProgressScreenEvents>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(DeviceTransferProgressViewModel::class)

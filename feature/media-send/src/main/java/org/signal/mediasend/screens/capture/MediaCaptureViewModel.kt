@@ -41,7 +41,7 @@ internal class MediaCaptureViewModel(
   private val parentEventEmitter: (MediaSendFlowEvent) -> Unit,
   selectedCaptureScreen: MediaSendRoute.Capture,
   private val repository: MediaCaptureRepository = MediaCaptureRepository()
-) : EventDrivenViewModel<MediaCaptureScreenEvents>(TAG) {
+) : EventDrivenViewModel<MediaCaptureScreenEvents>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(MediaCaptureViewModel::class)

@@ -23,7 +23,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 class SharedContactDetailsViewModel(
   private val contact: Contact,
   private val repository: SharedContactDetailsRepository
-) : EventDrivenViewModel<SharedContactDetailsEvent>(TAG) {
+) : EventDrivenViewModel<SharedContactDetailsEvent>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(SharedContactDetailsViewModel::class)

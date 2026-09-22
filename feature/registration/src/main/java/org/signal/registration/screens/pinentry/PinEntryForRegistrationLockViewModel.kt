@@ -40,7 +40,7 @@ class PinEntryForRegistrationLockViewModel(
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
   private val timeRemaining: Long,
   private val svrCredentials: SvrCredentials
-) : EventDrivenViewModel<PinEntryScreenEvents>(TAG) {
+) : EventDrivenViewModel<PinEntryScreenEvents>(TAG, shouldLogEvents = false) {
 
   companion object {
     private val TAG = Log.tag(PinEntryForRegistrationLockViewModel::class)

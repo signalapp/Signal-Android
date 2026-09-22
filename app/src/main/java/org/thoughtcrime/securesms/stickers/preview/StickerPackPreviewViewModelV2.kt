@@ -31,7 +31,7 @@ import kotlin.coroutines.resume
 
 class StickerPackPreviewViewModelV2(
   private val params: StickerPackParams?
-) : EventDrivenViewModel<StickerPackPreviewEvent>(TAG) {
+) : EventDrivenViewModel<StickerPackPreviewEvent>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(StickerPackPreviewViewModelV2::class)

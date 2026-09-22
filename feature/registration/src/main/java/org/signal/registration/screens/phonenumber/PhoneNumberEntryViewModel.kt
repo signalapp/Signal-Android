@@ -47,7 +47,7 @@ class PhoneNumberEntryViewModel(
   private val parentState: StateFlow<RegistrationFlowState>,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
   private val clock: () -> Long = { System.currentTimeMillis() }
-) : EventDrivenViewModel<PhoneNumberEntryScreenEvents>(TAG) {
+) : EventDrivenViewModel<PhoneNumberEntryScreenEvents>(TAG, shouldLogEvents = false) {
 
   companion object {
     private val TAG = Log.tag(PhoneNumberEntryViewModel::class)

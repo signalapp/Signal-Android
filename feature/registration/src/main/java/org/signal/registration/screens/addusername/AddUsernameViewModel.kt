@@ -44,7 +44,7 @@ import kotlin.time.Duration.Companion.milliseconds
 class AddUsernameViewModel(
   private val repository: RegistrationRepository,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit
-) : EventDrivenViewModel<AddUsernameScreenEvents>(TAG) {
+) : EventDrivenViewModel<AddUsernameScreenEvents>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(AddUsernameViewModel::class)

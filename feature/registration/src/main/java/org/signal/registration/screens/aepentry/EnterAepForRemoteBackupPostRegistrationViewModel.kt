@@ -23,7 +23,7 @@ class EnterAepForRemoteBackupPostRegistrationViewModel(
   private val repository: RegistrationRepository,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
   isPasswordManagerAvailable: Boolean = false
-) : EventDrivenViewModel<EnterAepEvents>(TAG) {
+) : EventDrivenViewModel<EnterAepEvents>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(EnterAepForRemoteBackupPostRegistrationViewModel::class)

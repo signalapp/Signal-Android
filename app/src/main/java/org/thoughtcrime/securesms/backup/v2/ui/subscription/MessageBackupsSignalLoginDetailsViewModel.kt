@@ -26,7 +26,7 @@ import org.thoughtcrime.securesms.components.settings.app.account.signallogin.Si
 class MessageBackupsSignalLoginDetailsViewModel(
   repository: SignalLoginViewDetailsRepository = SignalLoginViewDetailsRepository(),
   isPasswordManagerAvailable: Boolean = true
-) : EventDrivenViewModel<SignalLoginViewDetailsScreenEvents>(TAG) {
+) : EventDrivenViewModel<SignalLoginViewDetailsScreenEvents>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(MessageBackupsSignalLoginDetailsViewModel::class)

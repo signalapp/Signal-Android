@@ -28,7 +28,7 @@ class TotpNameEntryViewModel(
   private val appId: Long,
   private val renamedApp: TotpApp? = null,
   private val repository: TotpRepository = TotpRepository()
-) : EventDrivenViewModel<TotpNameEntryEvent>(TAG) {
+) : EventDrivenViewModel<TotpNameEntryEvent>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(TotpNameEntryViewModel::class)

@@ -42,7 +42,7 @@ class SignalLoginCredentialEntryViewModel(
   private val repository: RegistrationRepository,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
   prefilledAccountId: String? = null
-) : EventDrivenViewModel<SignalLoginCredentialEntryScreenEvents>(TAG) {
+) : EventDrivenViewModel<SignalLoginCredentialEntryScreenEvents>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(SignalLoginCredentialEntryViewModel::class)

@@ -37,7 +37,7 @@ import org.thoughtcrime.securesms.contactshare.screens.selectcontact.SelectConta
 class SelectContactViewModel(
   private val source: ContactIndexSource,
   private val savedState: SavedStateHandle = SavedStateHandle()
-) : EventDrivenViewModel<SelectContactEvent>(TAG) {
+) : EventDrivenViewModel<SelectContactEvent>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(SelectContactViewModel::class)

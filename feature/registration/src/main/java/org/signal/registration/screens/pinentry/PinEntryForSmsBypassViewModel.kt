@@ -37,7 +37,7 @@ class PinEntryForSmsBypassViewModel(
   private val parentState: StateFlow<RegistrationFlowState>,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
   private val svrCredentials: SvrCredentials
-) : EventDrivenViewModel<PinEntryScreenEvents>(TAG) {
+) : EventDrivenViewModel<PinEntryScreenEvents>(TAG, shouldLogEvents = false) {
 
   companion object {
     private val TAG = Log.tag(PinEntryForSmsBypassViewModel::class)

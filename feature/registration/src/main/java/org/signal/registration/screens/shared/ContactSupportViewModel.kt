@@ -12,7 +12,7 @@ import org.signal.registration.ContactSupportController
  */
 class ContactSupportViewModel(
   private val controller: ContactSupportController
-) : EventDrivenViewModel<ContactSupportEvents>(TAG) {
+) : EventDrivenViewModel<ContactSupportEvents>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(ContactSupportViewModel::class)

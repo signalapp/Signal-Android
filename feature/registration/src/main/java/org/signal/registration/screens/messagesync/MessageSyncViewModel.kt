@@ -38,7 +38,7 @@ class MessageSyncViewModel(
   private val repository: RegistrationRepository,
   private val parentState: StateFlow<RegistrationFlowState>,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit
-) : EventDrivenViewModel<MessageSyncScreenEvent>(TAG) {
+) : EventDrivenViewModel<MessageSyncScreenEvent>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(MessageSyncViewModel::class)

@@ -25,7 +25,7 @@ import org.signal.registration.screens.util.navigateTo
 class CreateProfileViewModel(
   private val repository: RegistrationRepository,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit
-) : EventDrivenViewModel<CreateProfileScreenEvents>(TAG) {
+) : EventDrivenViewModel<CreateProfileScreenEvents>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(CreateProfileViewModel::class)

@@ -31,7 +31,7 @@ class SettingsSignalLoginDetailsViewModel(
   private val repository: SignalLoginViewDetailsRepository = SignalLoginViewDetailsRepository(),
   showResetRecoveryKeyButton: Boolean = false,
   isPasswordManagerAvailable: Boolean = true
-) : EventDrivenViewModel<SettingsSignalLoginDetailsEvent>(TAG) {
+) : EventDrivenViewModel<SettingsSignalLoginDetailsEvent>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(SettingsSignalLoginDetailsViewModel::class)

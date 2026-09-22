@@ -33,7 +33,7 @@ import org.thoughtcrime.securesms.lock.v2.SvrConstants
  */
 class AccountSettingsViewModel(
   private val repository: AccountSettingsRepository = AccountSettingsRepository()
-) : EventDrivenViewModel<AccountSettingsEvent>(TAG) {
+) : EventDrivenViewModel<AccountSettingsEvent>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(AccountSettingsViewModel::class)

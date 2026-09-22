@@ -21,7 +21,7 @@ import org.thoughtcrime.securesms.groups.GroupId
 
 private val TAG = Log.tag(AvatarPickerViewModel::class.java)
 
-sealed class AvatarPickerViewModel : EventDrivenViewModel<AvatarPickerEvents>(TAG) {
+sealed class AvatarPickerViewModel : EventDrivenViewModel<AvatarPickerEvents>(TAG, shouldLogEvents = false) {
 
   private val internalState = MutableStateFlow(AvatarPickerState())
   val state: StateFlow<AvatarPickerState> = internalState

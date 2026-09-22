@@ -29,7 +29,7 @@ import org.signal.core.util.logging.Log
  */
 class DeleteAccountViewModel(
   private val repository: DeleteAccountRepository = DeleteAccountRepository()
-) : EventDrivenViewModel<DeleteAccountEvent>(TAG) {
+) : EventDrivenViewModel<DeleteAccountEvent>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(DeleteAccountViewModel::class)

@@ -38,7 +38,7 @@ class ArchiveRestoreSelectionViewModel(
   parentState: StateFlow<RegistrationFlowState>,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
   private val knownAep: AccountEntropyPool? = null
-) : EventDrivenViewModel<ArchiveRestoreSelectionScreenEvents>(TAG) {
+) : EventDrivenViewModel<ArchiveRestoreSelectionScreenEvents>(TAG, shouldLogEvents = false) {
 
   companion object {
     private val TAG = Log.tag(ArchiveRestoreSelectionViewModel::class)

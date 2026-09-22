@@ -39,7 +39,7 @@ class LocalBackupRestoreViewModel(
   private val resultBus: ResultEventBus,
   private val resultKey: String,
   private val knownAep: AccountEntropyPool? = null
-) : EventDrivenViewModel<LocalBackupRestoreEvents>(TAG) {
+) : EventDrivenViewModel<LocalBackupRestoreEvents>(TAG, shouldLogEvents = false) {
 
   companion object {
     private val TAG = Log.tag(LocalBackupRestoreViewModel::class)

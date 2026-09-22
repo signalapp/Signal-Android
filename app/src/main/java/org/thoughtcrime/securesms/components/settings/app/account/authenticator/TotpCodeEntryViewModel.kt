@@ -30,7 +30,7 @@ import org.signal.uicomponents.codeentryfield.CodeEntryFieldPresenter
  */
 class TotpCodeEntryViewModel(
   private val repository: TotpRepository = TotpRepository()
-) : EventDrivenViewModel<TotpCodeEntryEvent>(TAG) {
+) : EventDrivenViewModel<TotpCodeEntryEvent>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(TotpCodeEntryViewModel::class)

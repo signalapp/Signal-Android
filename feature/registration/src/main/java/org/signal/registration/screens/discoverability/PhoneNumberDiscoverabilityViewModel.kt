@@ -22,7 +22,7 @@ class PhoneNumberDiscoverabilityViewModel(
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
   private val resultBus: ResultEventBus,
   private val resultKey: String
-) : EventDrivenViewModel<PhoneNumberDiscoverabilityScreenEvents>(TAG) {
+) : EventDrivenViewModel<PhoneNumberDiscoverabilityScreenEvents>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(PhoneNumberDiscoverabilityViewModel::class)

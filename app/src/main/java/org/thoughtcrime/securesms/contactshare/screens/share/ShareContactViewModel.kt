@@ -42,7 +42,7 @@ class ShareContactViewModel(
   private val recipientId: RecipientId?,
   private val repository: ShareContactRepository,
   private val savedState: SavedStateHandle
-) : EventDrivenViewModel<ShareContactEvent>(TAG) {
+) : EventDrivenViewModel<ShareContactEvent>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(ShareContactViewModel::class)

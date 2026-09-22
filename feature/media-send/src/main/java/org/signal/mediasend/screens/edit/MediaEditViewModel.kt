@@ -41,7 +41,7 @@ internal class MediaEditViewModel(
   parentState: StateFlow<MediaSendFlowState>,
   private val parentEventEmitter: (MediaSendFlowEvent) -> Unit,
   private val repository: MediaSendRepository = MediaSendDependencies.mediaSendRepository
-) : EventDrivenViewModel<MediaEditScreenEvents>(TAG) {
+) : EventDrivenViewModel<MediaEditScreenEvents>(TAG, shouldLogEvents = false) {
 
   companion object {
     private val TAG = Log.tag(MediaEditViewModel::class)
