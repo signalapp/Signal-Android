@@ -244,10 +244,10 @@ class DonateToSignalViewModel(
       when (it) {
         is DonationRedemptionJobStatus.PendingExternalVerification -> Optional.ofNullable(it.pendingOneTimeDonation)
 
-        DonationRedemptionJobStatus.PendingKeepAlive -> error("Invalid state for one time donation")
+        is DonationRedemptionJobStatus.PendingKeepAlive -> error("Invalid state for one time donation")
 
-        DonationRedemptionJobStatus.PendingReceiptRedemption,
-        DonationRedemptionJobStatus.PendingReceiptRequest,
+        is DonationRedemptionJobStatus.PendingReceiptRedemption,
+        is DonationRedemptionJobStatus.PendingReceiptRequest,
         DonationRedemptionJobStatus.FailedSubscription,
         DonationRedemptionJobStatus.None -> Optional.empty()
       }

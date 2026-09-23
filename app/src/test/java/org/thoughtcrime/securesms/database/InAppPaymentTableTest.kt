@@ -9,6 +9,10 @@ import android.app.Application
 import assertk.assertThat
 import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
+import assertk.assertions.isFalse
+import assertk.assertions.isNotNull
+import assertk.assertions.isNull
+import assertk.assertions.isTrue
 import assertk.assertions.single
 import org.junit.Before
 import org.junit.Rule
@@ -17,11 +21,18 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.signal.core.util.deleteAll
+import org.signal.core.util.money.FiatMoney
 import org.signal.donations.InAppPaymentType
+import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatValue
+import org.thoughtcrime.securesms.components.settings.app.subscription.isPaymentFailure
+import org.thoughtcrime.securesms.database.model.databaseprotos.BadgeList
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.jobs.InAppPaymentKeepAliveJob
 import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
 import org.thoughtcrime.securesms.testutil.SignalDatabaseRule
+import java.math.BigDecimal
+import java.util.Currency
+import kotlin.time.Duration.Companion.seconds
 
 @RunWith(RobolectricTestRunner::class)
 @Config(manifest = Config.NONE, application = Application::class)
@@ -32,6 +43,9 @@ class InAppPaymentTableTest {
 
   @get:Rule
   val signalDatabaseRule = SignalDatabaseRule()
+
+  private val testAmount = FiatMoney(BigDecimal.valueOf(5), Currency.getInstance("USD")).toFiatValue()
+  private val testBadge = BadgeList.Badge(id = "test-badge")
 
   @Before
   fun setUp() {
@@ -58,6 +72,129 @@ class InAppPaymentTableTest {
     val paymentAfterUpdate = SignalDatabase.inAppPayments.getById(inAppPaymentId)
     assertThat(paymentAfterUpdate?.state).isEqualTo(InAppPaymentTable.State.PENDING)
   }
+
+  // region getLatestInAppPaymentByType
+
+  @Test
+  fun givenEndRecordWithNoError_whenIQueryLatest_thenIGetActiveSubscription() {
+    SignalDatabase.inAppPayments.insert(
+      type = InAppPaymentType.RECURRING_DONATION,
+      state = InAppPaymentTable.State.END,
+      subscriberId = null,
+      endOfPeriod = 1000.seconds,
+      inAppPaymentData = InAppPaymentData(
+        level = 500L,
+        amount = testAmount,
+        badge = testBadge
+      )
+    )
+
+    val latest = SignalDatabase.inAppPayments.getLatestInAppPaymentByType(InAppPaymentType.RECURRING_DONATION)
+    assertThat(latest).isNotNull()
+    assertThat(latest!!.state).isEqualTo(InAppPaymentTable.State.END)
+    assertThat(latest.data.cancellation).isNull()
+  }
+
+  @Test
+  fun givenEmptyDatabase_whenIQueryLatest_thenIGetNull() {
+    val latest = SignalDatabase.inAppPayments.getLatestInAppPaymentByType(InAppPaymentType.RECURRING_DONATION)
+    assertThat(latest).isNull()
+  }
+
+  @Test
+  fun givenTransactingRecord_whenIQueryLatest_thenItIsReturned() {
+    val id = SignalDatabase.inAppPayments.insert(
+      type = InAppPaymentType.RECURRING_DONATION,
+      state = InAppPaymentTable.State.CREATED,
+      subscriberId = null,
+      endOfPeriod = null,
+      inAppPaymentData = InAppPaymentData(
+        level = 500L,
+        amount = testAmount
+      )
+    )
+
+    SignalDatabase.inAppPayments.moveToTransacting(id)
+
+    val latest = SignalDatabase.inAppPayments.getLatestInAppPaymentByType(InAppPaymentType.RECURRING_DONATION)
+    assertThat(latest).isNotNull()
+    assertThat(latest!!.state).isEqualTo(InAppPaymentTable.State.TRANSACTING)
+  }
+
+  @Test
+  fun givenCreatedRecord_whenIQueryLatest_thenItIsFiltered() {
+    SignalDatabase.inAppPayments.insert(
+      type = InAppPaymentType.RECURRING_DONATION,
+      state = InAppPaymentTable.State.CREATED,
+      subscriberId = null,
+      endOfPeriod = null,
+      inAppPaymentData = InAppPaymentData()
+    )
+
+    val latest = SignalDatabase.inAppPayments.getLatestInAppPaymentByType(InAppPaymentType.RECURRING_DONATION)
+    assertThat(latest).isNull()
+  }
+
+  @Test
+  fun givenEndRecordWithNonRedemptionError_whenICheckPaymentFailure_thenItIsTrue() {
+    val id = insertEndedRecurringDonationWithError(InAppPaymentData.Error(type = InAppPaymentData.Error.Type.PAYMENT_PROCESSING))
+
+    assertThat(SignalDatabase.inAppPayments.getById(id)!!.isPaymentFailure()).isTrue()
+  }
+
+  @Test
+  fun givenEndRecordWithRedemptionError_whenICheckPaymentFailure_thenItIsFalse() {
+    val id = insertEndedRecurringDonationWithError(InAppPaymentData.Error(type = InAppPaymentData.Error.Type.REDEMPTION))
+
+    assertThat(SignalDatabase.inAppPayments.getById(id)!!.isPaymentFailure()).isFalse()
+  }
+
+  /**
+   * A keep-alive error is only valid alongside [InAppPaymentTable.State.PENDING] per [validateInAppPayment], so this
+   * is the one failure-ish record that is not in the END state. It must not read as a payment failure: the periodic
+   * refresh failed, not the user's payment.
+   */
+  @Test
+  fun givenPendingRecordWithKeepAliveError_whenICheckPaymentFailure_thenItIsFalse() {
+    val id = SignalDatabase.inAppPayments.insert(
+      type = InAppPaymentType.RECURRING_DONATION,
+      state = InAppPaymentTable.State.PENDING,
+      subscriberId = null,
+      endOfPeriod = 1000.seconds,
+      inAppPaymentData = keepAliveErrorData()
+    )
+
+    assertThat(SignalDatabase.inAppPayments.getById(id)!!.isPaymentFailure()).isFalse()
+  }
+
+  @Test
+  fun givenEndRecordWithNoError_whenICheckPaymentFailure_thenItIsFalse() {
+    val id = SignalDatabase.inAppPayments.insert(
+      type = InAppPaymentType.RECURRING_DONATION,
+      state = InAppPaymentTable.State.END,
+      subscriberId = null,
+      endOfPeriod = 1000.seconds,
+      inAppPaymentData = InAppPaymentData(level = 500L, amount = testAmount)
+    )
+
+    assertThat(SignalDatabase.inAppPayments.getById(id)!!.isPaymentFailure()).isFalse()
+  }
+
+  private fun insertEndedRecurringDonationWithError(error: InAppPaymentData.Error): InAppPaymentTable.InAppPaymentId {
+    return SignalDatabase.inAppPayments.insert(
+      type = InAppPaymentType.RECURRING_DONATION,
+      state = InAppPaymentTable.State.END,
+      subscriberId = null,
+      endOfPeriod = 1000.seconds,
+      inAppPaymentData = InAppPaymentData(
+        level = 500L,
+        amount = testAmount,
+        error = error
+      )
+    )
+  }
+
+  // endregion
 
   // region consumeDonationPaymentsToNotifyUser
 

@@ -662,11 +662,13 @@ object InAppPaymentsRepository {
       emitter.onNext(Optional.ofNullable(latestInAppPayment))
     }.switchMap { inAppPaymentOptional ->
       val inAppPayment = inAppPaymentOptional.getOrNull() ?: return@switchMap Observable.just(DonationRedemptionJobStatus.None)
+      val paymentSourceType = inAppPayment.data.paymentMethodType.toPaymentSourceType()
 
       val value = when (inAppPayment.state) {
         InAppPaymentTable.State.CREATED -> error("This should have been filtered out.")
         InAppPaymentTable.State.WAITING_FOR_AUTHORIZATION, InAppPaymentTable.State.REQUIRES_ACTION -> {
           DonationRedemptionJobStatus.PendingExternalVerification(
+            paymentSourceType = paymentSourceType,
             pendingOneTimeDonation = inAppPayment.toPendingOneTimeDonation(),
             nonVerifiedMonthlyDonation = inAppPayment.toNonVerifiedMonthlyDonation()
           )
@@ -674,11 +676,11 @@ object InAppPaymentsRepository {
 
         InAppPaymentTable.State.PENDING, InAppPaymentTable.State.TRANSACTING, InAppPaymentTable.State.REQUIRED_ACTION_COMPLETED -> {
           if (inAppPayment.data.redemption?.keepAlive == true) {
-            DonationRedemptionJobStatus.PendingKeepAlive
+            DonationRedemptionJobStatus.PendingKeepAlive(paymentSourceType)
           } else if (inAppPayment.data.redemption?.stage == InAppPaymentData.RedemptionState.Stage.REDEMPTION_STARTED) {
-            DonationRedemptionJobStatus.PendingReceiptRedemption
+            DonationRedemptionJobStatus.PendingReceiptRedemption(paymentSourceType)
           } else {
-            DonationRedemptionJobStatus.PendingReceiptRequest
+            DonationRedemptionJobStatus.PendingReceiptRequest(paymentSourceType)
           }
         }
 
