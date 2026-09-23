@@ -40,6 +40,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshots.SnapshotStateMap
+import androidx.compose.ui.AbsoluteAlignment
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -54,6 +55,7 @@ import androidx.compose.ui.unit.dp
 import androidx.window.core.layout.WindowSizeClass
 import org.signal.core.ui.compose.AllNightPreviews
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.RtlPreview
 import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink
 import org.webrtc.VideoFrame
 import org.webrtc.VideoSink
@@ -544,7 +546,11 @@ fun <T> CallGrid(
     }
   }
 
-  Box(modifier = modifier.onSizeChanged { containerSize = it }) {
+  // Cells are left-origin coordinates applied via absoluteOffset, so children must anchor left in RTL too.
+  Box(
+    modifier = modifier.onSizeChanged { containerSize = it },
+    contentAlignment = AbsoluteAlignment.TopLeft
+  ) {
     managedItems.entries.toList().forEach { (key, managed) ->
       val index = displayItems.indexOfFirst { itemKey(it) == key }
       val targetCell = cells.getOrNull(index)
@@ -604,27 +610,41 @@ fun <T> CallGrid(
 
 // Preview
 
+private val PREVIEW_TILE_COLORS = listOf(
+  Color(0xFF5E97F6),
+  Color(0xFF9CCC65),
+  Color(0xFFFFB74D),
+  Color(0xFFEF5350),
+  Color(0xFFAB47BC),
+  Color(0xFF26A69A),
+  Color(0xFF78909C),
+  Color(0xFFEC407A),
+  Color(0xFF7E57C2),
+  Color(0xFF29B6F6),
+  Color(0xFFD4E157),
+  Color(0xFFFF7043)
+)
+
+@Composable
+private fun PreviewTile(item: Int, modifier: Modifier) {
+  Box(
+    modifier = modifier.background(PREVIEW_TILE_COLORS[(item - 1) % PREVIEW_TILE_COLORS.size]),
+    contentAlignment = Alignment.Center
+  ) {
+    Text(
+      text = item.toString(),
+      color = Color.White
+    )
+  }
+}
+
 @AllNightPreviews
+@RtlPreview
 @Composable
 private fun CallGridPreview() {
   Previews.Preview {
     var nextId by remember { mutableStateOf(2) }
     val items = remember { mutableStateListOf(1) }
-
-    val colors = listOf(
-      Color(0xFF5E97F6),
-      Color(0xFF9CCC65),
-      Color(0xFFFFB74D),
-      Color(0xFFEF5350),
-      Color(0xFFAB47BC),
-      Color(0xFF26A69A),
-      Color(0xFF78909C),
-      Color(0xFFEC407A),
-      Color(0xFF7E57C2),
-      Color(0xFF29B6F6),
-      Color(0xFFD4E157),
-      Color(0xFFFF7043)
-    )
 
     val windowSizeClass = currentWindowAdaptiveInfo(supportLargeAndXLargeWidth = true).windowSizeClass
     val strategy = rememberCallGridStrategy()
@@ -635,15 +655,7 @@ private fun CallGridPreview() {
         modifier = Modifier.fillMaxSize(),
         itemKey = { it }
       ) { item, itemModifier ->
-        Box(
-          modifier = itemModifier.background(colors[(item - 1) % colors.size]),
-          contentAlignment = Alignment.Center
-        ) {
-          Text(
-            text = item.toString(),
-            color = Color.White
-          )
-        }
+        PreviewTile(item = item, modifier = itemModifier)
       }
 
       Text(
