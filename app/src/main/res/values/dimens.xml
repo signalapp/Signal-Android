@@ -243,9 +243,6 @@
 
     <dimen name="chat_folder_row_height">64dp</dimen>
 
-
-    <dimen name="donation_pill_max_width">180dp</dimen>
-
     <dimen name="call_screen_overflow_item_size">72dp</dimen>
 
 </resources>
