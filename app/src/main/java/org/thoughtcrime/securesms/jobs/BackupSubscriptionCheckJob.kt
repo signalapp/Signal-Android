@@ -125,8 +125,6 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
       return Result.success()
     }
 
-    val hasActivePurchase = purchase is BillingPurchaseResult.Success && purchase.isAcknowledged
-
     // Grabs the purchase token which may need to be linked if we need to rotate the subscription.
     val linkablePurchaseToken = if (purchase is BillingPurchaseResult.Success && purchase.purchaseState == BillingPurchaseState.PURCHASED) {
       purchase.purchaseToken
@@ -175,27 +173,28 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
         checkAndSynchronizeZkCredentialTierWithStoredLocalTier()
       }
 
+      val hasActivePurchase = InAppPaymentsRepository.isPurchaseValidatedByService(purchase)
       val hasActivePaidBackupTier = SignalStore.backup.backupTier == MessageBackupTier.PAID
       val hasValidActiveState = hasActivePaidBackupTier && hasActiveSignalSubscription && hasActivePurchase
       val hasValidInactiveState = !hasActivePaidBackupTier && !hasActiveSignalSubscription && !hasActivePurchase
 
       val purchaseToken = if (hasActivePurchase) {
-        purchase.purchaseToken
+        linkablePurchaseToken
       } else {
         null
       }
 
       if (linkablePurchaseToken != null && hasActiveSignalSubscription && hasLocalDevicePurchaseTokenMismatch(linkablePurchaseToken)) {
-        Log.i(TAG, "Encountered token mismatch with an active Signal subscription. Attempting to redeem against latest token. (isAcknowledged: $hasActivePurchase)", true)
-        val rotated = rotateAndRedeem(linkablePurchaseToken, product.price)
-        Log.i(TAG, "Token mismatch redemption enqueued: $rotated. Setting mismatch value to ${!rotated} and exiting.", true)
-        SignalStore.backup.subscriptionStateMismatchDetected = !rotated
+        Log.i(TAG, "Encountered token mismatch with an active Signal subscription. Attempting to redeem against latest token. (hasActivePurchase: $hasActivePurchase)", true)
+        val enqueued = redeemAgainstToken(linkablePurchaseToken, product.price, rotateSubscriberId = true)
+        Log.i(TAG, "Token mismatch redemption enqueued: $enqueued. Setting mismatch value to ${!enqueued} and exiting.", true)
+        SignalStore.backup.subscriptionStateMismatchDetected = !enqueued
         return Result.success()
       } else if (purchaseToken != null && hasActiveSignalSubscription && !hasActivePaidBackupTier && !SignalDatabase.inAppPayments.hasPendingBackupRedemption()) {
         Log.i(TAG, "We have an active signal subscription and active purchase, but no entitlement and no pending redemption. Enqueuing a redemption now.")
-        val rotated = rotateAndRedeem(purchaseToken, product.price)
-        Log.i(TAG, "Missing-entitlement redemption enqueued: $rotated. Setting mismatch value to ${!rotated} and exiting.", true)
-        SignalStore.backup.subscriptionStateMismatchDetected = !rotated
+        val enqueued = redeemAgainstToken(purchaseToken, product.price, rotateSubscriberId = false)
+        Log.i(TAG, "Missing-entitlement redemption enqueued: $enqueued. Setting mismatch value to ${!enqueued} and exiting.", true)
+        SignalStore.backup.subscriptionStateMismatchDetected = !enqueued
         return Result.success()
       } else {
         if (hasValidActiveState || hasValidInactiveState) {
@@ -281,15 +280,17 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
   }
 
   /**
-   * Rotates the backup subscriber id onto the given purchase token and enqueues a fresh redemption chain.
+   * Enqueues a fresh redemption chain against the given purchase token, rotating onto a new subscriber id first when
+   * [rotateSubscriberId] is set. Only rotate when our token differs from the one on the subscriber record, as that id
+   * may belong to another processor; [InAppPaymentPurchaseTokenJob] rotates reactively on a 409 otherwise.
    *
-   * @return whether the redemption chain was enqueued. Callers should treat false as a still-mismatched state.
+   * @return whether the chain was enqueued. Callers should treat false as a still-mismatched state.
    */
-  private fun rotateAndRedeem(localDevicePurchaseToken: String, localProductPrice: FiatMoney): Boolean {
+  private fun redeemAgainstToken(localDevicePurchaseToken: String, localProductPrice: FiatMoney, rotateSubscriberId: Boolean): Boolean {
     try {
       RecurringInAppPaymentRepository.ensureSubscriberIdSync(
         subscriberType = InAppPaymentSubscriberRecord.Type.BACKUP,
-        isRotation = true,
+        isRotation = rotateSubscriberId,
         iapSubscriptionId = IAPSubscriptionId.GooglePlayBillingPurchaseToken(localDevicePurchaseToken)
       )
 
@@ -318,7 +319,7 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
 
       return true
     } catch (e: Exception) {
-      Log.w(TAG, "Failed to rotate the subscriber id and enqueue a redemption. Will try again later.", e, true)
+      Log.w(TAG, "Failed to enqueue a redemption. Will try again later.", e, true)
       return false
     }
   }

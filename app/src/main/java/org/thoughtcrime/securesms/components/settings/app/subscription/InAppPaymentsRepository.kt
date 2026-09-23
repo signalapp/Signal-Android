@@ -21,6 +21,8 @@ import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.conflate
 import kotlinx.coroutines.flow.distinctUntilChanged
 import org.signal.core.util.Util
+import org.signal.core.util.billing.BillingPurchaseResult
+import org.signal.core.util.billing.BillingPurchaseState
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.signal.donations.InAppPaymentType
@@ -586,6 +588,35 @@ object InAppPaymentsRepository {
     }
 
     return getSubscriber(InAppPaymentSubscriberRecord.Type.BACKUP)?.iapSubscriptionId is IAPSubscriptionId.AppleIAPOriginalTransactionId
+  }
+
+  /**
+   * Whether the service has successfully validated the given Google Play purchase.
+   *
+   * [BillingPurchaseResult.Success.isAcknowledged] is proof when true, but we read it out of the Play Store's local
+   * cache, which can lag the service by twenty minutes or more (AND-9874). A redemption against the subscriber holding
+   * this token is equivalent proof, as it cannot complete unless the service validated the token first.
+   *
+   * A token match alone is not proof: we write it when the subscriber id is created, before the token ever reaches the
+   * service.
+   */
+  @WorkerThread
+  fun isPurchaseValidatedByService(purchase: BillingPurchaseResult): Boolean {
+    if (purchase !is BillingPurchaseResult.Success || purchase.purchaseState != BillingPurchaseState.PURCHASED) {
+      return false
+    }
+
+    if (purchase.isAcknowledged) {
+      return true
+    }
+
+    val subscriber = getSubscriber(InAppPaymentSubscriberRecord.Type.BACKUP) ?: return false
+    if (subscriber.iapSubscriptionId?.purchaseToken != purchase.purchaseToken) {
+      return false
+    }
+
+    val latestPayment = SignalDatabase.inAppPayments.getLatestBySubscriberId(subscriber.subscriberId) ?: return false
+    return latestPayment.state == InAppPaymentTable.State.END && latestPayment.data.redemption?.stage == InAppPaymentData.RedemptionState.Stage.REDEEMED
   }
 
   /**

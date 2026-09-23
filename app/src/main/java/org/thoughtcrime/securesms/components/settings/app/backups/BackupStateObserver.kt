@@ -259,7 +259,8 @@ class BackupStateObserver(
       val googlePlayBillingSubscriptionIsActiveAndWillRenew = when (purchaseResult) {
         is BillingPurchaseResult.Success -> {
           Log.d(TAG, "[getNetworkBackupState][subscriptionStateMismatchDetected] Found a purchase: $purchaseResult")
-          purchaseResult.isAcknowledged && purchaseResult.isAutoRenewing
+          purchaseResult.isAutoRenewing &&
+            withContext(SignalDispatchers.IO) { InAppPaymentsRepository.isPurchaseValidatedByService(purchaseResult) }
         }
 
         else -> {
