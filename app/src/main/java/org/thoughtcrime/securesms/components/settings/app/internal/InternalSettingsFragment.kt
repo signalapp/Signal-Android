@@ -80,7 +80,6 @@ import org.thoughtcrime.securesms.registration.data.QuickstartCredentialExporter
 import org.thoughtcrime.securesms.ringrtc.CameraFpsRanges
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.ConversationUtil
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.setIncognitoKeyboardEnabled
@@ -180,7 +179,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
     searchMenuItem?.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
       override fun onMenuItemActionExpand(item: MenuItem): Boolean {
-        searchView.setIncognitoKeyboardEnabled(TextSecurePreferences.isIncognitoKeyboardEnabled(requireContext()))
+        searchView.setIncognitoKeyboardEnabled(SignalStore.settings.isIncognitoKeyboardEnabled)
         searchView.setOnQueryTextListener(queryListener)
         return true
       }
@@ -1145,7 +1144,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       .setMessage("Are you sure? You'll have to re-register to use Signal again -- no promises that the process will go smoothly.")
       .setPositiveButton(android.R.string.ok) { _, _ ->
         lifecycleScope.launch {
-          when (AdvancedPrivacySettingsRepository(requireContext()).disablePushMessages()) {
+          when (AdvancedPrivacySettingsRepository().disablePushMessages()) {
             AdvancedPrivacySettingsRepository.DisablePushMessagesResult.SUCCESS -> {
               SignalStore.account.setRegistered(false)
               SignalStore.registration.clearRegistrationComplete()

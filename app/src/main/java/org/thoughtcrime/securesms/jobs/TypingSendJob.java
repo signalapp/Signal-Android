@@ -13,11 +13,11 @@ import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.messages.GroupSendUtil;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.messages.SignalServiceTypingMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceTypingMessage.Action;
 
@@ -81,7 +81,7 @@ public class TypingSendJob extends BaseJob {
       throw new NotPushRegisteredException();
     }
 
-    if (!TextSecurePreferences.isTypingIndicatorsEnabled(context)) {
+    if (!SignalStore.settings().isTypingIndicatorsEnabled()) {
       return;
     }
 

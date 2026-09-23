@@ -123,7 +123,6 @@ import org.thoughtcrime.securesms.util.IdentityUtil
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.MessageConstraintsUtil
 import org.thoughtcrime.securesms.util.SignalE164Util
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.hasGiftBadge
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer
@@ -993,9 +992,9 @@ object SyncMessageProcessor {
       Request.Type.CONFIGURATION -> {
         AppDependencies.jobManager.add(
           MultiDeviceConfigurationUpdateJob(
-            TextSecurePreferences.isReadReceiptsEnabled(context),
-            TextSecurePreferences.isTypingIndicatorsEnabled(context),
-            TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(context),
+            SignalStore.settings.isReadReceiptsEnabled,
+            SignalStore.settings.isTypingIndicatorsEnabled,
+            SignalStore.settings.isShowUnidentifiedDeliveryIndicatorsEnabled,
             SignalStore.settings.isLinkPreviewsEnabled
           )
         )
@@ -1140,15 +1139,15 @@ object SyncMessageProcessor {
     log(envelopeTimestamp, "Synchronize configuration message.")
 
     if (configurationMessage.readReceipts != null) {
-      TextSecurePreferences.setReadReceiptsEnabled(context, configurationMessage.readReceipts!!)
+      SignalStore.settings.isReadReceiptsEnabled = configurationMessage.readReceipts!!
     }
 
     if (configurationMessage.unidentifiedDeliveryIndicators != null) {
-      TextSecurePreferences.setShowUnidentifiedDeliveryIndicatorsEnabled(context, configurationMessage.unidentifiedDeliveryIndicators!!)
+      SignalStore.settings.isShowUnidentifiedDeliveryIndicatorsEnabled = configurationMessage.unidentifiedDeliveryIndicators!!
     }
 
     if (configurationMessage.typingIndicators != null) {
-      TextSecurePreferences.setTypingIndicatorsEnabled(context, configurationMessage.typingIndicators!!)
+      SignalStore.settings.isTypingIndicatorsEnabled = configurationMessage.typingIndicators!!
     }
 
     if (configurationMessage.linkPreviews != null) {

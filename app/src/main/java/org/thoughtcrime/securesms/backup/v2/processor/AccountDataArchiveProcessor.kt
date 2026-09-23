@@ -5,7 +5,6 @@
 
 package org.thoughtcrime.securesms.backup.v2.processor
 
-import android.content.Context
 import okio.ByteString.Companion.EMPTY
 import okio.ByteString.Companion.toByteString
 import org.signal.archive.proto.AccountData
@@ -44,7 +43,6 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.ProfileUtil
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.webrtc.CallDataMode
 import org.whispersystems.signalservice.api.push.UsernameLinkComponents
 import org.whispersystems.signalservice.api.storage.IAPSubscriptionId.AppleIAPOriginalTransactionId
@@ -82,8 +80,8 @@ object AccountDataArchiveProcessor {
       null
     }
 
-    val mobileAutoDownload = TextSecurePreferences.getMobileMediaDownloadAllowed(context)
-    val wifiAutoDownload = TextSecurePreferences.getWifiMediaDownloadAllowed(context)
+    val mobileAutoDownload = SignalStore.settings.mobileMediaDownloadAllowed
+    val wifiAutoDownload = SignalStore.settings.wifiMediaDownloadAllowed
 
     val username = selfRecord.username?.takeIf { it.isValidUsername() }
 
@@ -107,10 +105,10 @@ object AccountDataArchiveProcessor {
           },
           accountSettings = AccountData.AccountSettings(
             storyViewReceiptsEnabled = signalStore.storyValues.viewedReceiptsEnabled,
-            typingIndicators = TextSecurePreferences.isTypingIndicatorsEnabled(context),
-            readReceipts = TextSecurePreferences.isReadReceiptsEnabled(context),
-            sealedSenderIndicators = TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(context),
-            allowSealedSenderFromAnyone = TextSecurePreferences.isUniversalUnidentifiedAccess(context),
+            typingIndicators = SignalStore.settings.isTypingIndicatorsEnabled,
+            readReceipts = SignalStore.settings.isReadReceiptsEnabled,
+            sealedSenderIndicators = SignalStore.settings.isShowUnidentifiedDeliveryIndicatorsEnabled,
+            allowSealedSenderFromAnyone = SignalStore.settings.isUniversalUnidentifiedAccess,
             linkPreviews = signalStore.settingsValues.isLinkPreviewsEnabled,
             notDiscoverableByPhoneNumber = signalStore.phoneNumberPrivacyValues.phoneNumberDiscoverabilityMode == PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE,
             phoneNumberSharingMode = signalStore.phoneNumberPrivacyValues.phoneNumberSharingMode.toRemotePhoneNumberSharingMode(),
@@ -160,7 +158,7 @@ object AccountDataArchiveProcessor {
           backupsSubscriberData = backupSubscriberRecord?.toIAPSubscriberData(),
           androidSpecificSettings = AccountData.AndroidSpecificSettings(
             useSystemEmoji = signalStore.settingsValues.isPreferSystemEmoji,
-            screenshotSecurity = TextSecurePreferences.isScreenSecurityEnabled(context),
+            screenshotSecurity = SignalStore.settings.isScreenSecurityEnabled,
             navigationBarSize = signalStore.settingsValues.useCompactNavigationBar.toRemoteNavigationBarSize()
           ).takeUnless { Environment.IS_INSTRUMENTATION && SignalStore.backup.importedEmptyAndroidSettings },
           bioText = selfRecord.about ?: "",
@@ -178,17 +176,16 @@ object AccountDataArchiveProcessor {
       SignalStore.svr.setPin(accountData.svrPin)
     }
 
-    val context = AppDependencies.application
     val settings = accountData.accountSettings
 
     if (settings != null) {
-      importSettings(context, settings, importState)
+      importSettings(settings, importState)
     }
 
     val androidSpecificSettings = accountData.androidSpecificSettings
     if (androidSpecificSettings != null) {
       SignalStore.settings.isPreferSystemEmoji = androidSpecificSettings.useSystemEmoji
-      TextSecurePreferences.setScreenSecurityEnabled(context, androidSpecificSettings.screenshotSecurity)
+      SignalStore.settings.isScreenSecurityEnabled = androidSpecificSettings.screenshotSecurity
       SignalStore.settings.useCompactNavigationBar = androidSpecificSettings.navigationBarSize.toLocalNavigationBarSize()
     } else if (Environment.IS_INSTRUMENTATION) {
       SignalStore.backup.importedEmptyAndroidSettings = true
@@ -265,11 +262,11 @@ object AccountDataArchiveProcessor {
     Recipient.self().live().refresh()
   }
 
-  private fun importSettings(context: Context, settings: AccountData.AccountSettings, importState: ImportState) {
-    TextSecurePreferences.setReadReceiptsEnabled(context, settings.readReceipts)
-    TextSecurePreferences.setTypingIndicatorsEnabled(context, settings.typingIndicators)
-    TextSecurePreferences.setShowUnidentifiedDeliveryIndicatorsEnabled(context, settings.sealedSenderIndicators)
-    TextSecurePreferences.setIsUniversalUnidentifiedAccess(context, settings.allowSealedSenderFromAnyone)
+  private fun importSettings(settings: AccountData.AccountSettings, importState: ImportState) {
+    SignalStore.settings.isReadReceiptsEnabled = settings.readReceipts
+    SignalStore.settings.isTypingIndicatorsEnabled = settings.typingIndicators
+    SignalStore.settings.isShowUnidentifiedDeliveryIndicatorsEnabled = settings.sealedSenderIndicators
+    SignalStore.settings.isUniversalUnidentifiedAccess = settings.allowSealedSenderFromAnyone
     SignalStore.settings.isLinkPreviewsEnabled = settings.linkPreviews
     SignalStore.phoneNumberPrivacy.phoneNumberDiscoverabilityMode = if (settings.notDiscoverableByPhoneNumber) PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE else PhoneNumberDiscoverabilityMode.DISCOVERABLE
     SignalStore.phoneNumberPrivacy.phoneNumberSharingMode = settings.phoneNumberSharingMode.toLocalPhoneNumberMode()
@@ -303,11 +300,8 @@ object AccountDataArchiveProcessor {
       val mobileAndWifiDownloadSet = autoDownloadSettings.toLocalAutoDownloadSet(AccountData.AutoDownloadSettings.AutoDownloadOption.WIFI_AND_CELLULAR)
       val wifiDownloadSet = mobileAndWifiDownloadSet + autoDownloadSettings.toLocalAutoDownloadSet(AccountData.AutoDownloadSettings.AutoDownloadOption.WIFI)
 
-      TextSecurePreferences.getSharedPreferences(context).edit().apply {
-        putStringSet(TextSecurePreferences.MEDIA_DOWNLOAD_MOBILE_PREF, mobileAndWifiDownloadSet)
-        putStringSet(TextSecurePreferences.MEDIA_DOWNLOAD_WIFI_PREF, wifiDownloadSet)
-        apply()
-      }
+      SignalStore.settings.mobileMediaDownloadAllowed = mobileAndWifiDownloadSet
+      SignalStore.settings.wifiMediaDownloadAllowed = wifiDownloadSet
     }
 
     val screenLockTimeoutMinutes = settings.screenLockTimeoutMinutes

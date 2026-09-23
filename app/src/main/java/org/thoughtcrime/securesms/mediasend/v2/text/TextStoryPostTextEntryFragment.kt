@@ -28,13 +28,13 @@ import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.KeyboardEntryDialogFragment
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mediasend.v2.MediaAnimations
 import org.thoughtcrime.securesms.scribbles.HSVColorSlider
 import org.thoughtcrime.securesms.scribbles.HSVColorSlider.getColor
 import org.thoughtcrime.securesms.scribbles.HSVColorSlider.setColor
 import org.thoughtcrime.securesms.scribbles.HSVColorSlider.setUpForColor
 import org.thoughtcrime.securesms.util.RemoteConfig
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.activityViewModel
 import org.thoughtcrime.securesms.util.fragments.findListener
@@ -121,7 +121,7 @@ class TextStoryPostTextEntryFragment : KeyboardEntryDialogFragment(
       viewModel.setTemporaryBody(text?.toString() ?: "")
     }
     input.setText(viewModel.getBody())
-    input.setIncognitoKeyboardEnabled(TextSecurePreferences.isIncognitoKeyboardEnabled(requireContext()))
+    input.setIncognitoKeyboardEnabled(SignalStore.settings.isIncognitoKeyboardEnabled)
   }
 
   private fun presentHint() {

@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.components.settings.app.privacy.advanced
 
-import android.content.Context
 import com.google.android.gms.tasks.Tasks
 import com.google.firebase.installations.FirebaseInstallations
 import kotlinx.coroutines.Dispatchers
@@ -16,13 +15,12 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import java.io.IOException
 import java.util.concurrent.ExecutionException
 
 private val TAG = Log.tag(AdvancedPrivacySettingsRepository::class.java)
 
-class AdvancedPrivacySettingsRepository(private val context: Context) {
+class AdvancedPrivacySettingsRepository {
 
   suspend fun disablePushMessages(): DisablePushMessagesResult = withContext(Dispatchers.IO) {
     val clearTokenError: Throwable? = when (val result = SignalNetwork.accountApi.clearFcmToken()) {
@@ -61,9 +59,9 @@ class AdvancedPrivacySettingsRepository(private val context: Context) {
       StorageSyncHelper.scheduleSyncForDataChange()
       AppDependencies.jobManager.add(
         MultiDeviceConfigurationUpdateJob(
-          TextSecurePreferences.isReadReceiptsEnabled(context),
-          TextSecurePreferences.isTypingIndicatorsEnabled(context),
-          TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(context),
+          SignalStore.settings.isReadReceiptsEnabled,
+          SignalStore.settings.isTypingIndicatorsEnabled,
+          SignalStore.settings.isShowUnidentifiedDeliveryIndicatorsEnabled,
           SignalStore.settings.isLinkPreviewsEnabled
         )
       )

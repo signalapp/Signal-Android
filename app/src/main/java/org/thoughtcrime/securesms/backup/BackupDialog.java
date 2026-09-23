@@ -29,7 +29,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.restore.restorelocalbackup.PassphraseAsYouTypeFormatter;
 import org.thoughtcrime.securesms.service.LocalBackupListener;
 import org.thoughtcrime.securesms.util.BackupUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.signal.core.util.Util;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
 
@@ -74,7 +73,7 @@ public class BackupDialog {
           }
 
           BackupPassphrase.set(context, Util.join(password, " "));
-          TextSecurePreferences.setNextBackupTime(context, 0);
+          SignalStore.settings().setLocalBackupNextTime(0);
           SignalStore.settings().setBackupEnabled(true);
           LocalBackupListener.schedule(context);
 

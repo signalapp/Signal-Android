@@ -40,8 +40,8 @@ public final class AppInitialization {
     PlainTextKeyValueStore.setLastVersionCode(BuildConfig.VERSION_CODE);
     TextSecurePreferences.setHasSeenStickerIntroTooltip(context, true);
     SignalStore.settings().setPassphraseDisabled(true);
-    TextSecurePreferences.setReadReceiptsEnabled(context, true);
-    TextSecurePreferences.setTypingIndicatorsEnabled(context, true);
+    SignalStore.settings().setReadReceiptsEnabled(true);
+    SignalStore.settings().setTypingIndicatorsEnabled(true);
     AppDependencies.getMegaphoneRepository().onFirstEverAppLaunch();
     SignalStore.onFirstEverAppLaunch();
     AppDependencies.getJobManager().addAll(BlessedPacks.getFirstInstallJobs());

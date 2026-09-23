@@ -6,6 +6,7 @@
 package org.signal.core.ui
 
 import android.app.Application
+import androidx.annotation.VisibleForTesting
 
 object CoreUiDependencies {
 
@@ -17,6 +18,15 @@ object CoreUiDependencies {
       return
     }
 
+    _application = application
+    _provider = provider
+  }
+
+  /**
+   * Replaces any existing provider, unlike [init]. Only for use in tests.
+   */
+  @VisibleForTesting
+  fun testInject(application: Application, provider: Provider) {
     _application = application
     _provider = provider
   }

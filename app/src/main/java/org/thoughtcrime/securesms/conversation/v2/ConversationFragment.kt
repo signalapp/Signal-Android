@@ -310,6 +310,7 @@ import org.thoughtcrime.securesms.jobs.ServiceOutageDetectionJob
 import org.thoughtcrime.securesms.keyboard.KeyboardPage
 import org.thoughtcrime.securesms.keyboard.KeyboardUtil
 import org.thoughtcrime.securesms.keyboard.sticker.StickerSearchDialogFragment
+import org.thoughtcrime.securesms.keyvalue.SettingsValues.MediaKeyboardMode
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModelV2
@@ -2780,10 +2781,10 @@ class ConversationFragment :
 
   /** Which keyboard the toggle should offer, from the mode remembered across runs. */
   private fun preferredKeyboardPage(): KeyboardPage {
-    return when (TextSecurePreferences.getMediaKeyboardMode(requireContext())) {
-      TextSecurePreferences.MediaKeyboardMode.EMOJI -> KeyboardPage.EMOJI
-      TextSecurePreferences.MediaKeyboardMode.STICKER -> KeyboardPage.STICKER
-      TextSecurePreferences.MediaKeyboardMode.GIF -> if (RemoteConfig.gifSearchAvailable) KeyboardPage.GIF else KeyboardPage.STICKER
+    return when (SignalStore.settings.mediaKeyboardMode) {
+      MediaKeyboardMode.EMOJI -> KeyboardPage.EMOJI
+      MediaKeyboardMode.STICKER -> KeyboardPage.STICKER
+      MediaKeyboardMode.GIF -> if (RemoteConfig.gifSearchAvailable) KeyboardPage.GIF else KeyboardPage.STICKER
     }
   }
 
@@ -2794,7 +2795,7 @@ class ConversationFragment :
     inputPanel.setMediaKeyboardToggleMode(preferredKeyboardPage())
 
     if (stickerIntro) {
-      TextSecurePreferences.setMediaKeyboardMode(requireContext(), TextSecurePreferences.MediaKeyboardMode.STICKER)
+      SignalStore.settings.mediaKeyboardMode = MediaKeyboardMode.STICKER
       inputPanel.setMediaKeyboardToggleMode(KeyboardPage.STICKER)
       conversationTooltips.displayStickerIntroductionTooltip(inputPanel.mediaKeyboardToggleAnchorView) {
         EventBus.getDefault().removeStickyEvent(StickerPackInstallEvent::class.java)
@@ -4747,7 +4748,7 @@ class ConversationFragment :
 
       searchMenuItem!!.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
         override fun onMenuItemActionExpand(item: MenuItem): Boolean {
-          searchView.setIncognitoKeyboardEnabled(TextSecurePreferences.isIncognitoKeyboardEnabled(requireContext()))
+          searchView.setIncognitoKeyboardEnabled(SignalStore.settings.isIncognitoKeyboardEnabled)
           searchView.setOnQueryTextListener(queryListener)
           isSearchRequested = true
           searchViewModel.onSearchOpened()

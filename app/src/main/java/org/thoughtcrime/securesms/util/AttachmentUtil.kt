@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase.Companion.threads
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.jobmanager.impl.NotInCallConstraint
 import org.thoughtcrime.securesms.jobs.MultiDeviceDeleteSyncJob.Companion.enqueueAttachmentDelete
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil
 import org.whispersystems.signalservice.internal.crypto.PaddingInputStream
@@ -167,9 +168,9 @@ object AttachmentUtil {
 
   private fun getAllowedAutoDownloadTypes(context: Context): Set<String> {
     return when {
-      NetworkUtil.isConnectedWifi(context) -> TextSecurePreferences.getWifiMediaDownloadAllowed(context)
-      NetworkUtil.isConnectedRoaming(context) -> TextSecurePreferences.getRoamingMediaDownloadAllowed(context)
-      NetworkUtil.isConnectedMobile(context) -> TextSecurePreferences.getMobileMediaDownloadAllowed(context)
+      NetworkUtil.isConnectedWifi(context) -> SignalStore.settings.wifiMediaDownloadAllowed
+      NetworkUtil.isConnectedRoaming(context) -> SignalStore.settings.roamingMediaDownloadAllowed
+      NetworkUtil.isConnectedMobile(context) -> SignalStore.settings.mobileMediaDownloadAllowed
       else -> emptySet()
     }
   }

@@ -19,7 +19,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.navArgs
-import androidx.preference.PreferenceManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import org.signal.core.util.ServiceUtil
@@ -43,7 +42,6 @@ import org.thoughtcrime.securesms.service.KeyCachingService
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.ExpirationUtil
 import org.thoughtcrime.securesms.util.SpanUtil
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
@@ -101,9 +99,8 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
   override fun bindAdapter(adapter: MappingAdapter) {
     adapter.registerFactory(ValueClickPreference::class.java, LayoutFactory(::ValueClickPreferenceViewHolder, R.layout.value_click_preference_item))
 
-    val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
     val repository = PrivacySettingsRepository()
-    val factory = PrivacySettingsViewModel.Factory(sharedPreferences, repository)
+    val factory = PrivacySettingsViewModel.Factory(repository)
     viewModel = ViewModelProvider(this, factory)[PrivacySettingsViewModel::class.java]
     val args: PrivacySettingsFragmentArgs by navArgs()
     var showPaymentLock = true
@@ -279,7 +276,7 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
         onClick = {
           viewModel.setScreenSecurityEnabled(!state.screenSecurity)
 
-          if (TextSecurePreferences.isScreenSecurityEnabled(requireContext())) {
+          if (SignalStore.settings.isScreenSecurityEnabled) {
             requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_SECURE)
           } else {
             requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_SECURE)

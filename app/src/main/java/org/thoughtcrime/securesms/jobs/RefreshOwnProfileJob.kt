@@ -29,7 +29,6 @@ import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.ProfileUtil
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException
 import org.whispersystems.signalservice.api.crypto.ProfileCipher
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential
@@ -213,8 +212,8 @@ class RefreshOwnProfileJob private constructor(parameters: Parameters) : BaseJob
       return
     }
 
-    if (TextSecurePreferences.isUniversalUnidentifiedAccess(context) != universalUnidentifiedAccess) {
-      Log.w(TAG, "The universal access flag doesn't match our local value (local: " + TextSecurePreferences.isUniversalUnidentifiedAccess(context) + ", remote: " + universalUnidentifiedAccess + ")! Refreshing attributes.")
+    if (SignalStore.settings.isUniversalUnidentifiedAccess != universalUnidentifiedAccess) {
+      Log.w(TAG, "The universal access flag doesn't match our local value (local: " + SignalStore.settings.isUniversalUnidentifiedAccess + ", remote: " + universalUnidentifiedAccess + ")! Refreshing attributes.")
       AppDependencies.jobManager.add(RefreshAttributesJob())
       return
     }

@@ -150,8 +150,8 @@ public class LegacyMigrationJob extends MigrationJob {
     }
 
     if (lastSeenVersion < SCREENSHOTS) {
-      boolean screenSecurity = PreferenceManager.getDefaultSharedPreferences(context).getBoolean(TextSecurePreferences.SCREEN_SECURITY_PREF, true);
-      TextSecurePreferences.setScreenSecurityEnabled(context, screenSecurity);
+      boolean screenSecurity = PreferenceManager.getDefaultSharedPreferences(context).getBoolean("pref_screen_security", true);
+      SignalStore.settings().setScreenSecurityEnabled(screenSecurity);
     }
 
     if (lastSeenVersion < PERSISTENT_BLOBS) {

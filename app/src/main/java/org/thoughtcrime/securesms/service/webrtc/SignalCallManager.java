@@ -74,7 +74,6 @@ import org.thoughtcrime.securesms.service.webrtc.links.SignalCallLinkManager;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcEphemeralState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.util.RecipientAccessList;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.rx.RxStore;
 import org.thoughtcrime.securesms.webrtc.CallNotificationBuilder;
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager;
@@ -1199,7 +1198,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
     process((s, p) -> {
       RemotePeer activePeer = s.getCallInfoState().getActivePeer();
       if (activePeer != null && activePeer.getCallId().equals(remotePeer.getCallId())) {
-        return p.handleTurnServerUpdate(s, servers, TextSecurePreferences.isTurnOnly(context));
+        return p.handleTurnServerUpdate(s, servers, SignalStore.settings().isTurnOnly());
       }
 
       Log.w(TAG, "Ignoring received turn servers for incorrect call id. requesting_call_id: " + remotePeer.getCallId() + " current_call_id: " + (activePeer != null ? activePeer.getCallId() : "null"));

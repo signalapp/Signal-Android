@@ -304,7 +304,7 @@ public class BackupsPreferenceFragment extends Fragment {
       int minute = timePickerFragment.getMinute();
       SignalStore.settings().setBackupSchedule(hour, minute);
       updateTimeLabel();
-      TextSecurePreferences.setNextBackupTime(requireContext(), 0);
+      SignalStore.settings().setLocalBackupNextTime(0);
       LocalBackupListener.schedule(requireContext());
     });
     timePickerFragment.show(getChildFragmentManager(), "TIME_PICKER");

@@ -422,7 +422,7 @@ object RegistrationRepository {
     Log.v(TAG, "registerAccount()")
     val api: RegistrationApi = AccountManagerFactory.getInstance().createUnauthenticated(context, registrationData.e164, SignalServiceAddress.DEFAULT_DEVICE_ID, registrationData.password).registrationApi
 
-    val universalUnidentifiedAccess: Boolean = TextSecurePreferences.isUniversalUnidentifiedAccess(context)
+    val universalUnidentifiedAccess: Boolean = SignalStore.settings.isUniversalUnidentifiedAccess
     val unidentifiedAccessKey: ByteArray = UnidentifiedAccess.deriveAccessKeyFrom(registrationData.profileKey)
 
     val masterKey: MasterKey?

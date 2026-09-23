@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.components.settings.app.data
 
-import android.content.SharedPreferences
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -12,11 +11,9 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SettingsValues.ForceWebsocketMode
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.messages.IncomingMessageObserver
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.webrtc.CallDataMode
 
 class DataAndStorageSettingsViewModel(
-  private val sharedPreferences: SharedPreferences,
   private val repository: DataAndStorageSettingsRepository
 ) : ViewModel() {
 
@@ -31,17 +28,17 @@ class DataAndStorageSettingsViewModel(
   }
 
   fun setMobileAutoDownloadValues(resultSet: Set<String>) {
-    sharedPreferences.edit().putStringSet(TextSecurePreferences.MEDIA_DOWNLOAD_MOBILE_PREF, resultSet).apply()
+    SignalStore.settings.mobileMediaDownloadAllowed = resultSet
     getStateAndCopyStorageUsage()
   }
 
   fun setWifiAutoDownloadValues(resultSet: Set<String>) {
-    sharedPreferences.edit().putStringSet(TextSecurePreferences.MEDIA_DOWNLOAD_WIFI_PREF, resultSet).apply()
+    SignalStore.settings.wifiMediaDownloadAllowed = resultSet
     getStateAndCopyStorageUsage()
   }
 
   fun setRoamingAutoDownloadValues(resultSet: Set<String>) {
-    sharedPreferences.edit().putStringSet(TextSecurePreferences.MEDIA_DOWNLOAD_ROAMING_PREF, resultSet).apply()
+    SignalStore.settings.roamingMediaDownloadAllowed = resultSet
     getStateAndCopyStorageUsage()
   }
 
@@ -88,15 +85,9 @@ class DataAndStorageSettingsViewModel(
 
   private fun getState() = DataAndStorageSettingsState(
     totalStorageUse = 0,
-    mobileAutoDownloadValues = TextSecurePreferences.getMobileMediaDownloadAllowed(
-      AppDependencies.application
-    ),
-    wifiAutoDownloadValues = TextSecurePreferences.getWifiMediaDownloadAllowed(
-      AppDependencies.application
-    ),
-    roamingAutoDownloadValues = TextSecurePreferences.getRoamingMediaDownloadAllowed(
-      AppDependencies.application
-    ),
+    mobileAutoDownloadValues = SignalStore.settings.mobileMediaDownloadAllowed,
+    wifiAutoDownloadValues = SignalStore.settings.wifiMediaDownloadAllowed,
+    roamingAutoDownloadValues = SignalStore.settings.roamingMediaDownloadAllowed,
     callDataMode = SignalStore.settings.callDataMode,
     isProxyEnabled = SignalStore.proxy.isProxyEnabled,
     sentMediaQuality = SignalStore.settings.sentMediaQuality,
@@ -106,12 +97,10 @@ class DataAndStorageSettingsViewModel(
   )
 
   class Factory(
-    private val sharedPreferences: SharedPreferences,
     private val repository: DataAndStorageSettingsRepository
-  ) :
-    ViewModelProvider.Factory {
+  ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return requireNotNull(modelClass.cast(DataAndStorageSettingsViewModel(sharedPreferences, repository)))
+      return requireNotNull(modelClass.cast(DataAndStorageSettingsViewModel(repository)))
     }
   }
 }

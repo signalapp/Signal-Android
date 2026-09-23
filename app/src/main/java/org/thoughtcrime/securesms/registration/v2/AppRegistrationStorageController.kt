@@ -83,6 +83,7 @@ import org.thoughtcrime.securesms.jobs.ReclaimUsernameAndLinkJob
 import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob
 import org.thoughtcrime.securesms.jobs.RotateCertificateJob
 import org.thoughtcrime.securesms.keyvalue.Completed
+import org.thoughtcrime.securesms.keyvalue.LegacySharedPrefs
 import org.thoughtcrime.securesms.keyvalue.NewAccount
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -161,7 +162,7 @@ class AppRegistrationStorageController(private val context: Context) : StorageCo
       servicePassword = servicePassword,
       aep = aep,
       registrationLockEnabled = SignalStore.svr.isRegistrationLockEnabled,
-      unrestrictedUnidentifiedAccess = TextSecurePreferences.isUniversalUnidentifiedAccess(context),
+      unrestrictedUnidentifiedAccess = SignalStore.settings.isUniversalUnidentifiedAccess,
       aciIdentityKeyPair = aciIdentityKeyPair,
       pniIdentityKeyPair = pniIdentityKeyPair
     )
@@ -370,6 +371,8 @@ class AppRegistrationStorageController(private val context: Context) : StorageCo
         // The importer writes the restored key-value store straight to disk, bypassing the in-memory SignalStore cache.
         // Reset it so the state we read below reflects the restored values rather than stale pre-restore ones.
         SignalStore.onPostBackupRestore()
+
+        restoreLegacySettingsFromSharedPrefs()
 
         // A post-registration restore clobbers parts of SignalStore.account with the backup's values -- V1 backups
         // carry the identity keys and AEP. Re-apply the frozen account data to heal the committed registration.
@@ -858,7 +861,7 @@ class AppRegistrationStorageController(private val context: Context) : StorageCo
       RotateSignedPreKeyListener.schedule(context)
     }
 
-    accountData.linkedDeviceData?.readReceipts?.let { TextSecurePreferences.setReadReceiptsEnabled(context, it) }
+    accountData.linkedDeviceData?.readReceipts?.let { SignalStore.settings.isReadReceiptsEnabled = it }
   }
 
   private fun getOrCreateProfileKey(aci: ACI?): ProfileKey {
@@ -910,6 +913,27 @@ class AppRegistrationStorageController(private val context: Context) : StorageCo
       }
     } catch (e: Exception) {
       Log.w(TAG, "Failed to re-enable local backups after V1 restore.", e)
+    }
+  }
+
+  /**
+   * Restores shared prefs from v1 backups that would otherwise get lost.
+   */
+  private fun restoreLegacySettingsFromSharedPrefs() {
+    if (LegacySharedPrefs.contains(context, "pref_read_receipts")) {
+      SignalStore.settings.isReadReceiptsEnabled = LegacySharedPrefs.getBoolean(context, "pref_read_receipts", false)
+    }
+
+    if (LegacySharedPrefs.contains(context, "pref_typing_indicators")) {
+      SignalStore.settings.isTypingIndicatorsEnabled = LegacySharedPrefs.getBoolean(context, "pref_typing_indicators", false)
+    }
+
+    if (LegacySharedPrefs.contains(context, "pref_turn_only")) {
+      SignalStore.settings.isTurnOnly = LegacySharedPrefs.getBoolean(context, "pref_turn_only", false)
+    }
+
+    if (LegacySharedPrefs.contains(context, "pref_incognito_keyboard")) {
+      SignalStore.settings.isIncognitoKeyboardEnabled = LegacySharedPrefs.getBoolean(context, "pref_incognito_keyboard", false)
     }
   }
 

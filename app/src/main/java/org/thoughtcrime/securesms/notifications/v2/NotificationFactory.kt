@@ -36,7 +36,6 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.stories.my.MyStoriesActivity
 import org.thoughtcrime.securesms.util.BubbleUtil
 import org.thoughtcrime.securesms.util.ConversationUtil
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 import org.signal.core.ui.R as CoreUiR
@@ -260,7 +259,7 @@ object NotificationFactory {
       setOnlyAlertOnce(!shouldAlert)
       setSilent(!shouldAlert)
       addMessages(conversation)
-      setPriority(TextSecurePreferences.getNotificationPriority(context))
+      setPriority(SignalStore.settings.messageNotificationPriority)
       setLights()
       setAlarms(conversation.recipient)
       setTicker(conversation.mostRecentNotification.getStyledPrimaryText(context, true))
@@ -304,7 +303,7 @@ object NotificationFactory {
       addMessages(state)
       setOnlyAlertOnce(!hasNewNotifications)
       setSilent(!hasNewNotifications)
-      setPriority(TextSecurePreferences.getNotificationPriority(context))
+      setPriority(SignalStore.settings.messageNotificationPriority)
       setLights()
       setAlarms(state.mostRecentSender)
       setTicker(state.mostRecentNotification?.getStyledPrimaryText(context, true))

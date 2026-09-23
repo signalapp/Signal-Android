@@ -213,7 +213,7 @@ class AppRegistrationStorageControllerTest {
     assertThat(SignalStore.account.restoredAccountEntropyPool).isFalse()
     assertThat(SignalStore.account.restoredAccountEntropyPoolFromPrimary).isTrue()
     assertThat(SignalStore.backup.mediaRootBackupKey.value).isEqualTo(mediaRootBackupKey)
-    assertThat(TextSecurePreferences.isReadReceiptsEnabled(context)).isTrue()
+    assertThat(SignalStore.settings.isReadReceiptsEnabled).isTrue()
 
     assertThat(SignalStore.svr.pin).isNull()
     assertThat(SignalStore.svr.hasOptedOut()).isFalse()

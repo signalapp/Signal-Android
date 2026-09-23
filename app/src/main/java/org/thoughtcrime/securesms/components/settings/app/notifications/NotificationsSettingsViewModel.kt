@@ -1,8 +1,8 @@
 package org.thoughtcrime.securesms.components.settings.app.notifications
 
-import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Build
+import android.provider.Settings
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -14,7 +14,6 @@ import kotlinx.coroutines.launch
 import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.DeviceSpecificNotificationConfig
 import org.thoughtcrime.securesms.notifications.NotificationChannels
@@ -23,9 +22,8 @@ import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPrefere
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 
-class NotificationsSettingsViewModel(private val sharedPreferences: SharedPreferences) : ViewModel(), RecipientForeverObserver {
+class NotificationsSettingsViewModel : ViewModel(), RecipientForeverObserver {
 
   companion object {
     private val TAG = Log.tag(NotificationsSettingsViewModel::class)
@@ -109,7 +107,7 @@ class NotificationsSettingsViewModel(private val sharedPreferences: SharedPrefer
   }
 
   fun setMessageNotificationPriority(priority: Int) {
-    sharedPreferences.edit().putString(TextSecurePreferences.NOTIFICATION_PRIORITY_PREF, priority.toString()).apply()
+    SignalStore.settings.messageNotificationPriority = priority
     refresh()
   }
 
@@ -149,7 +147,7 @@ class NotificationsSettingsViewModel(private val sharedPreferences: SharedPrefer
   fun resetSettings() {
     Log.i(TAG, "Resetting all notifications.")
     // Global
-    setMessageNotificationsSound(TextSecurePreferences.getNotificationRingtone(AppDependencies.application))
+    setMessageNotificationsSound(Settings.System.DEFAULT_NOTIFICATION_URI)
     SignalStore.settings.isMessageNotificationsInChatSoundsEnabled = true
     SignalStore.settings.messageNotificationsPrivacy = NotificationPrivacyPreference("all")
     SignalStore.settings.allowCallsWhileMuted = false
@@ -192,7 +190,7 @@ class NotificationsSettingsViewModel(private val sharedPreferences: SharedPrefer
       inChatSoundsEnabled = SignalStore.settings.isMessageNotificationsInChatSoundsEnabled,
       repeatAlerts = SignalStore.settings.messageNotificationsRepeatAlerts,
       messagePrivacy = SignalStore.settings.messageNotificationsPrivacy.toString(),
-      priority = TextSecurePreferences.getNotificationPriority(AppDependencies.application),
+      priority = SignalStore.settings.messageNotificationPriority,
       troubleshootNotifications = if (calculateSlowNotifications) {
         (SlowNotificationHeuristics.isBatteryOptimizationsOn() && SlowNotificationHeuristics.isHavingDelayedNotifications()) ||
           SlowNotificationHeuristics.getDeviceSpecificShowCondition() == DeviceSpecificNotificationConfig.ShowCondition.ALWAYS
@@ -227,9 +225,9 @@ class NotificationsSettingsViewModel(private val sharedPreferences: SharedPrefer
     return !areNotificationsDisabledBySystem
   }
 
-  class Factory(private val sharedPreferences: SharedPreferences) : ViewModelProvider.Factory {
+  class Factory : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return requireNotNull(modelClass.cast(NotificationsSettingsViewModel(sharedPreferences)))
+      return requireNotNull(modelClass.cast(NotificationsSettingsViewModel()))
     }
   }
 }

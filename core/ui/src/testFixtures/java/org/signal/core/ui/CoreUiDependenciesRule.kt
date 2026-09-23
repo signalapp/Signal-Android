@@ -17,7 +17,7 @@ class CoreUiDependenciesRule(
   private val isIncognitoKeyboardEnabled: Boolean = false
 ) : ExternalResource() {
   override fun before() {
-    CoreUiDependencies.init(application, Provider(isIncognitoKeyboardEnabled))
+    CoreUiDependencies.testInject(application, Provider(isIncognitoKeyboardEnabled))
   }
 
   private class Provider(

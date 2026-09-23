@@ -21,7 +21,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.service.LocalBackupListener
 import org.thoughtcrime.securesms.util.BackupUtil
 import org.thoughtcrime.securesms.util.CommunicationActions
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 sealed interface LocalBackupsSettingsCallback {
@@ -87,7 +86,7 @@ class DefaultLocalBackupsSettingsCallback(
 
     picker.addOnPositiveButtonClickListener {
       SignalStore.settings.setBackupSchedule(picker.hour, picker.minute)
-      TextSecurePreferences.setNextBackupTime(fragment.requireContext(), 0)
+      SignalStore.settings.localBackupNextTime = 0
       LocalBackupListener.schedule(fragment.requireContext())
       viewModel.refreshSettingsState()
     }

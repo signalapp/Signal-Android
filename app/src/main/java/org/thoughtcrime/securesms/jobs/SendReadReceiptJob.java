@@ -19,12 +19,12 @@ import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.signal.core.util.Util;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.ContentHint;
@@ -100,7 +100,7 @@ public class SendReadReceiptJob extends BaseJob {
    * maximum size.
    */
   public static void enqueue(long threadId, @NonNull RecipientId recipientId, List<MarkedMessageInfo> markedMessageInfos) {
-    if (!TextSecurePreferences.isReadReceiptsEnabled(AppDependencies.getApplication())) {
+    if (!SignalStore.settings().isReadReceiptsEnabled()) {
       return;
     }
 
@@ -151,7 +151,7 @@ public class SendReadReceiptJob extends BaseJob {
       throw new NotPushRegisteredException();
     }
 
-    if (!TextSecurePreferences.isReadReceiptsEnabled(context) || messageSentTimestamps.isEmpty()) return;
+    if (!SignalStore.settings().isReadReceiptsEnabled() || messageSentTimestamps.isEmpty()) return;
 
     if (!RecipientUtil.isMessageRequestAccepted(threadId)) {
       Log.w(TAG, "Refusing to send receipts to untrusted recipient");

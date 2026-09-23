@@ -86,7 +86,6 @@ import org.thoughtcrime.securesms.service.webrtc.SignalCallManager
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.util.FullscreenHelper
 import org.thoughtcrime.securesms.util.RemoteConfig
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.VibrateUtil
 import org.thoughtcrime.securesms.webrtc.CallParticipantsViewState
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager
@@ -1156,7 +1155,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
   }
 
   private fun initializeScreenshotSecurity() {
-    if (TextSecurePreferences.isScreenSecurityEnabled(this)) {
+    if (SignalStore.settings.isScreenSecurityEnabled) {
       window.addFlags(WindowManager.LayoutParams.FLAG_SECURE)
     } else {
       window.clearFlags(WindowManager.LayoutParams.FLAG_SECURE)
