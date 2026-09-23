@@ -264,7 +264,7 @@ internal fun MediaEditScreen(
             Box(
               modifier = Modifier
                 .fillMaxSize()
-                .background(color = Color.Red)
+                .background(color = Previews.rememberRandomColor(seed = uri))
             )
             return@HorizontalPager
           }
@@ -300,7 +300,7 @@ internal fun MediaEditScreen(
             Box(
               modifier = Modifier
                 .fillMaxSize()
-                .background(color = Previews.rememberRandomColor())
+                .background(color = Previews.rememberRandomColor(seed = uri))
             )
           }
         }
