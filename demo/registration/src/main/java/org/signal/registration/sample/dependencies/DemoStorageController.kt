@@ -217,14 +217,10 @@ class DemoStorageController(private val context: Context) : StorageController {
         NetworkController.ProvisioningMessage(
           accountEntropyPool = data.accountEntropyPool,
           aci = ACI.parseOrThrow(accountData.aci),
-          e164 = accountData.e164,
+          e164 = accountData.e164?.takeIf { it.isNotEmpty() },
           pin = data.pin.ifEmpty { null },
           aciIdentityKeyPair = IdentityKeyPair(accountData.aciIdentityKeyPair.toByteArray()),
-          pniIdentityKeyPair = if (accountData.pniIdentityKeyPair.size > 0) {
-            IdentityKeyPair(accountData.pniIdentityKeyPair.toByteArray())
-          } else {
-            null
-          },
+          pniIdentityKeyPair = accountData.pniIdentityKeyPair.takeIf { it.size > 0 }?.let { IdentityKeyPair(it.toByteArray()) },
           platform = when (prov.platform) {
             ProvisioningData.Platform.ANDROID -> NetworkController.ProvisioningMessage.Platform.ANDROID
             ProvisioningData.Platform.IOS -> NetworkController.ProvisioningMessage.Platform.IOS

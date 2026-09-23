@@ -552,16 +552,19 @@ class DemoNetworkController(
             return@start
           }
 
+          val pniPublicKey = msg.pniIdentityKeyPublic
+          val pniPrivateKey = msg.pniIdentityKeyPrivate
+
           trySend(
             ProvisioningEvent.MessageReceived(
               ProvisioningMessage(
                 accountEntropyPool = msg.accountEntropyPool,
                 aci = aci,
-                e164 = msg.e164.takeIf { it.isNotBlank() },
+                e164 = msg.e164?.takeIf { it.isNotEmpty() },
                 pin = msg.pin,
                 aciIdentityKeyPair = IdentityKeyPair(IdentityKey(msg.aciIdentityKeyPublic.toByteArray()), ECPrivateKey(msg.aciIdentityKeyPrivate.toByteArray())),
-                pniIdentityKeyPair = if (msg.pniIdentityKeyPublic.size > 0 && msg.pniIdentityKeyPrivate.size > 0) {
-                  IdentityKeyPair(IdentityKey(msg.pniIdentityKeyPublic.toByteArray()), ECPrivateKey(msg.pniIdentityKeyPrivate.toByteArray()))
+                pniIdentityKeyPair = if (pniPublicKey != null && pniPublicKey.size > 0 && pniPrivateKey != null && pniPrivateKey.size > 0) {
+                  IdentityKeyPair(IdentityKey(pniPublicKey.toByteArray()), ECPrivateKey(pniPrivateKey.toByteArray()))
                 } else {
                   null
                 },

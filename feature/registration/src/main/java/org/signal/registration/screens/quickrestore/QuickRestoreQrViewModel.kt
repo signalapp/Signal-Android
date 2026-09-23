@@ -100,7 +100,6 @@ class QuickRestoreQrViewModel(
 
   private suspend fun handleProvisioningMessage(message: NetworkController.ProvisioningMessage) {
     parentEventEmitter(RegistrationFlowEvent.RestoreMethodTokenReceived(message.restoreMethodToken))
-
     if (message.e164 != null) {
       parentEventEmitter(RegistrationFlowEvent.E164Chosen(message.e164))
     }

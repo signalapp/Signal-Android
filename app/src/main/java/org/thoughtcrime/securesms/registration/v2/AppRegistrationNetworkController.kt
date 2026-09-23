@@ -102,6 +102,8 @@ import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.registration.fcm.PushChallengeRequest
 import org.thoughtcrime.securesms.registration.ui.restore.StorageServiceRestore
+import org.thoughtcrime.securesms.registration.ui.restore.e164OrNull
+import org.thoughtcrime.securesms.registration.ui.restore.pniIdentityKeyPair
 import org.thoughtcrime.securesms.registration.util.RegistrationUtil
 import org.thoughtcrime.securesms.registration.viewmodel.SvrAuthCredentialSet
 import org.thoughtcrime.securesms.util.Environment
@@ -623,14 +625,10 @@ class AppRegistrationNetworkController(
               ProvisioningMessage(
                 accountEntropyPool = msg.accountEntropyPool,
                 aci = aci,
-                e164 = msg.e164.takeIf { it.isNotBlank() },
+                e164 = msg.e164OrNull,
                 pin = msg.pin,
                 aciIdentityKeyPair = IdentityKeyPair(IdentityKey(msg.aciIdentityKeyPublic.toByteArray()), ECPrivateKey(msg.aciIdentityKeyPrivate.toByteArray())),
-                pniIdentityKeyPair = if (msg.pniIdentityKeyPublic.size > 0 && msg.pniIdentityKeyPrivate.size > 0) {
-                  IdentityKeyPair(IdentityKey(msg.pniIdentityKeyPublic.toByteArray()), ECPrivateKey(msg.pniIdentityKeyPrivate.toByteArray()))
-                } else {
-                  null
-                },
+                pniIdentityKeyPair = msg.pniIdentityKeyPair,
                 platform = when (msg.platform) {
                   RegistrationProvisionMessage.Platform.ANDROID -> ProvisioningMessage.Platform.ANDROID
                   RegistrationProvisionMessage.Platform.IOS -> ProvisioningMessage.Platform.IOS

@@ -91,7 +91,7 @@ class NoBackupToRestoreFragment : ComposeFragment() {
         sharedViewModel.registerWithBackupKey(
           context = requireContext(),
           backupKey = message.accountEntropyPool,
-          e164 = message.e164,
+          e164 = message.e164OrNull,
           pin = message.pin,
           aciIdentityKeyPair = message.aciIdentityKeyPair,
           pniIdentityKeyPair = message.pniIdentityKeyPair
