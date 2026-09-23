@@ -91,7 +91,7 @@
     <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
     <string name="AccountSettingsFragment__you_cant_add_more_than_d">Nu poți adăuga mai mult de %1$d aplicații de autentificare. Încearcă să o elimini pe prima mai întâi.</string>
     <!-- Body of the dialog shown when the account has room for another authenticator app but already has as many two-factor methods of all kinds as it\'s allowed -->
-    <string name="AccountSettingsFragment__you_cant_add_more_than_d_two_factor_methods">You can\'t add more than %1$d two-factor authentication methods. Try removing one first.</string>
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d_two_factor_methods">Nu poți să adaugi mai mult decât %1$d metode de autentificare cu doi factori. Încearcă să o elimini pe prima mai întâi.</string>
     <!-- Shown in place of the list when we couldn\'t work out which second factors are on the account -->
     <string name="AccountSettingsFragment__couldnt_load_your_two_factor_methods">Nu s-a putut încărca metodele tale de autentificare cu doi factori. Verifică-ți conexiunea și încearcă din nou.</string>
     <!-- Toast shown after an authenticator app has been removed -->

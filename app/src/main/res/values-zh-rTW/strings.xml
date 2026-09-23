@@ -1345,14 +1345,15 @@
         <item quantity="other">%1$d 個成員已新增。</item>
     </plurals>
 
-    <string name="GroupErrors__the_group_was_terminated">群組已解散。</string>
-    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">你沒有權限來做此事</string>
-    <string name="GroupErrors__not_capable">你新增的人不支援新群組，需要更新Signal</string>
-    <string name="GroupErrors__not_announcement_capable">你新增的人不支援公告群組，其須要更新 Signal</string>
-    <string name="GroupErrors__failed_to_update_the_group">更新群組失敗</string>
-    <string name="GroupErrors__youre_not_a_member_of_the_group">你不是群組組員</string>
-    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">無法更新群組，請稍後重試</string>
-    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">由於網絡錯誤，無法更新群組，請稍後重試</string>
+    <!-- Shown when a change to a group is rejected because the group has ended. -->
+    <string name="GroupErrors__the_group_was_terminated">The group ended.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">You don\'t have the rights to do this</string>
+    <string name="GroupErrors__not_capable">Someone you added does not support new groups and needs to update Signal</string>
+    <string name="GroupErrors__not_announcement_capable">Someone you added does not support announcement groups and needs to update Signal</string>
+    <string name="GroupErrors__failed_to_update_the_group">Failed to update the group</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">You\'re not a member of the group</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Failed to update the group please retry later</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Failed to update the group due to a network error, please retry later</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">編輯名稱及圖片</string>
     <string name="ManageGroupActivity_legacy_group">舊版群組</string>
@@ -1423,7 +1424,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">你的個人資料不會顯示用戶名稱、二維碼及連結。僅與你信任的人分享你的用戶名稱。</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-    <string name="ManageProfileFragment__username_footer_no_username">People can message you using an optional username instead of a phone number. Usernames have a unique QR code and link you can share with friends.</string>
+    <string name="ManageProfileFragment__username_footer_no_username">其他人可以使用自選用戶名稱而非電話號碼向你發送訊息。用戶名稱會有獨一無二的二維碼和連結，讓你可以與好友分享。</string>
     <string name="ManageProfileFragment_profile_name">個人資料名稱</string>
     <string name="ManageProfileFragment_username">使用者名稱</string>
     <string name="ManageProfileFragment_about">關於</string>
@@ -1485,12 +1486,8 @@
     <string name="CustomNotificationsDialogFragment__unknown">未知</string>
 
     <!-- ShareableGroupLinkDialogFragment -->
-    <string name="ShareableGroupLinkDialogFragment__group_link">群組連結</string>
-    <string name="ShareableGroupLinkDialogFragment__share">分享</string>
-    <string name="ShareableGroupLinkDialogFragment__reset_link">重設連結</string>
     <string name="ShareableGroupLinkDialogFragment__require_admin_approval">需要管理員核准</string>
     <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">需要管理員批准通過群組連結加入新成員。</string>
-    <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">你確定要重置群組連結嗎？ 人們將無法再使用當前連結加入該群組。</string>
 
     <!-- GroupLinkShareQrDialogFragment -->
     <string name="GroupLinkShareQrDialogFragment__qr_code">QR 碼</string>
@@ -2697,11 +2694,11 @@
     <string name="StickerManagement_action_delete_selected">刪除</string>
     <!-- Confirmation message shown before uninstalling sticker packs. The placeholder is the number of items to delete. -->
     <plurals name="StickerManagement_delete_n_packs_confirmation">
-        <item quantity="other">Remove %1$s sticker packs?</item>
+        <item quantity="other">要移除 %1$s 貼圖包嗎？</item>
     </plurals>
     <!-- Body of the confirmation dialog shown before uninstalling sticker packs. -->
     <plurals name="StickerManagement_delete_n_packs_confirmation_body">
-        <item quantity="other">This will remove these sticker packs. You can\'t add it again without a link or sticker message.</item>
+        <item quantity="other">這會移除這些貼圖包。若無連結或貼圖訊息，你將無法再次新增這些貼圖包。</item>
     </plurals>
     <!-- Message shown after installing a sticker pack. The placeholder is the name of the sticker pack that was installed. -->
     <string name="StickerManagement_installed_pack_s">已安裝 %1$s。</string>
@@ -2736,7 +2733,14 @@
     <string name="StickerManagement_search">搜尋</string>
     <!-- Shown when no stickers match the search. The placeholder what was searched. -->
     <string name="StickerManagement_search_no_results_s">沒有找到「%1$s」的結果</string>
-
+    <!-- Sticker pack button for forwarding a sticker link. -->
+    <string name="StickerManagement_menu_send_signal_pack">Send via Signal</string>
+    <!-- Sticker pack button that opens a bottom sheet with more share options. -->
+    <string name="StickerManagement_menu_link_pack">Link</string>
+    <!-- Sticker pack sheet option for sharing a sticker pack link using the system share sheet. -->
+    <string name="StickerManagement_menu_share_pack">Share</string>
+    <!-- Bottom sheet description for the share sticker sheet. -->
+    <string name="StickerManagement__anyone">Anyone with this link can install and share this sticker pack.</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
     <string name="StickerManagement_accessibility_download_pack">下載 %1$s 貼圖包</string>
     <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
@@ -2771,6 +2775,8 @@
     <string name="StickerPackPreviewActivity_remove">解除安裝</string>
     <string name="StickerPackPreviewActivity_stickers">貼圖</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">讀取貼圖包失敗</string>
+    <!-- Bottom sheet describing a sticker. First placeholder is the title of the sticker pack and second is the author -->
+    <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">儲存</string>
@@ -2914,7 +2920,7 @@
     <string name="UsernameEditFragment_username_is_invalid">使用者名稱無效。</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">使用者名稱長度必須介乎 %1$d 和 %2$d個字元。</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">People can message you using your optional username instead of a phone number. Usernames are always paired with a set of numbers.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">其他人可以使用自選用戶名稱而非電話號碼向你發送訊息。用戶名稱都會與一組數字配對。</string>
     <!-- Button to allow user to skip -->
     <string name="UsernameEditFragment__skip">略過</string>
     <!-- Content description for done button -->
@@ -3191,19 +3197,19 @@
 
     <!-- ConnectWithUsernamesDialogFragment -->
     <!-- Title of the username education screen shown to accounts registered without a phone number -->
-    <string name="ConnectWithUsernamesDialogFragment__connect_with_usernames">Connect with usernames</string>
+    <string name="ConnectWithUsernamesDialogFragment__connect_with_usernames">以用戶名稱聯繫</string>
     <!-- Title of the usernames section -->
     <string name="ConnectWithUsernamesDialogFragment__usernames">用戶名稱</string>
     <!-- Description of the usernames section -->
-    <string name="ConnectWithUsernamesDialogFragment__people_can_message_you_using_your_optional_username">People can message you using your optional username instead of a phone number. Usernames aren\'t visible on your profile.</string>
+    <string name="ConnectWithUsernamesDialogFragment__people_can_message_you_using_your_optional_username">其他人可以使用自選用戶名稱而非電話號碼向你發送訊息。你的個人資料不會顯示用戶名稱。</string>
     <!-- Title of the QR code section -->
     <string name="ConnectWithUsernamesDialogFragment__qr_codes_and_links">二維碼及連結</string>
     <!-- Description of the QR code section -->
     <string name="ConnectWithUsernamesDialogFragment__usernames_have_a_unique_qr_code">用戶名稱會有獨一無二的二維碼和連結，讓你可以與好友分享並快速開始聊天。</string>
     <!-- Title of the discoverability section -->
-    <string name="ConnectWithUsernamesDialogFragment__stay_discoverable">Stay discoverable</string>
+    <string name="ConnectWithUsernamesDialogFragment__stay_discoverable">允許被搜尋</string>
     <!-- Description of the discoverability section -->
-    <string name="ConnectWithUsernamesDialogFragment__without_a_phone_number_usernames_and_links">Without a phone number, usernames and links are the only way others can connect with you.</string>
+    <string name="ConnectWithUsernamesDialogFragment__without_a_phone_number_usernames_and_links">若沒有電話號碼，用戶名稱和連結便是其他人與你聯繫的唯一方式。</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="ConnectWithUsernamesDialogFragment__set_up_username">設定用戶名稱</string>
     <!-- Button label that dismisses the screen without creating a username -->
@@ -3211,7 +3217,7 @@
 
     <!-- SetUpUsernameBanner -->
     <!-- Body of a banner on the new message screen prompting the user to create a username -->
-    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">Choose a username so others can connect with you.</string>
+    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">請選擇一個用戶名稱，以便其他人能與你建立聯繫。</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="SetUpUsernameBanner__set_up">設定</string>
     <!-- Accessibility label for the button that permanently dismisses the banner -->
@@ -9277,7 +9283,7 @@
     <!-- Content description for the button that clears the contact search field -->
     <string name="SelectContactScreen__clear_search">清除搜尋</string>
     <!-- Content description for the badge shown next to a contact that is in the phone\'s address book -->
-    <string name="SelectContactScreen__in_your_contacts">In your contacts</string>
+    <string name="SelectContactScreen__in_your_contacts">在你的聯絡人中</string>
     <!-- Title of the prompt asking for permission to read the user\'s phone contacts -->
     <string name="SelectContactScreen__find_people_you_know_on_signal">在 Signal 上尋找你認識的人</string>
     <!-- Explanation shown when Signal does not have permission to read the user\'s phone contacts -->
@@ -9287,9 +9293,9 @@
     <!-- Button that dismisses the request for permission to read the user\'s phone contacts -->
     <string name="SelectContactScreen__no_thanks">不必了</string>
     <!-- Button that opens the phone\'s own contact picker, used when Signal cannot ask for contacts permission -->
-    <string name="SelectContactScreen__open_phone_contacts">Open phone contacts</string>
+    <string name="SelectContactScreen__open_phone_contacts">開啟電話通訊錄</string>
     <!-- Note at the bottom of the contact picker when contacts permission was denied on the device. Placeholder is the "Learn more" link text. -->
-    <string name="SelectContactScreen__to_see_your_phone_contacts_here">To see your phone contacts here, allow access in your device settings. %1$s</string>
+    <string name="SelectContactScreen__to_see_your_phone_contacts_here">若要在這裡查看電話通訊錄，請在裝置設定中允許存取權限。%1$s</string>
     <!-- Link that opens instructions for granting contacts permission from the device settings -->
     <string name="SelectContactScreen__learn_more">了解更多</string>
     <!-- Title of the sheet explaining how to grant contacts permission from the device settings -->
@@ -9297,7 +9303,7 @@
     <!-- Subtitle of the sheet explaining how to grant contacts permission from the device settings -->
     <string name="SelectContactScreen__to_find_people_you_know_on_signal">要在 Signal 上尋找你認識的人：</string>
     <!-- Toast shown when a selected contact can no longer be read -->
-    <string name="SelectContactScreen__couldnt_open_contact">Couldn\'t open that contact</string>
+    <string name="SelectContactScreen__couldnt_open_contact">無法開啟該聯絡人</string>
 
     <!-- Title of the screen where the user chooses which parts of a contact to share -->
     <string name="ShareContactScreen__share_contact">分享連絡人</string>
@@ -9353,15 +9359,15 @@
     <string name="SharedContactDetailsScreen__join_me_on_signal">跟我一起加入 Signal</string>
 
     <!-- Title of the bottom sheet that confirms the user wants a brand new recovery key. -->
-    <string name="ResetRecoveryKeyBottomSheet__reset_your_recovery_key">Reset your recovery key</string>
+    <string name="ResetRecoveryKeyBottomSheet__reset_your_recovery_key">重設你的恢復金鑰</string>
     <!-- First paragraph of the bottom sheet body, explaining what a reset does. -->
-    <string name="ResetRecoveryKeyBottomSheet__resetting_your_recovery_key_will_create_a_new_key">Resetting your recovery key will create a new key for your Signal Login. This is only necessary if someone else knows your key.</string>
+    <string name="ResetRecoveryKeyBottomSheet__resetting_your_recovery_key_will_create_a_new_key">重設你的恢復金鑰將為你的 Signal Login 建立新的金鑰。只有當其他人知道你的金鑰時才需要。</string>
     <!-- Second paragraph of the bottom sheet body, explaining what a reset means for backups. -->
-    <string name="ResetRecoveryKeyBottomSheet__if_backups_are_enabled_you_will_have_to_re_upload">If backups are enabled you will have to re-upload your backup, including media. If you are using \"Optimize Signal storage\" you will have to download offloaded media first.</string>
+    <string name="ResetRecoveryKeyBottomSheet__if_backups_are_enabled_you_will_have_to_re_upload">若已啟用備份，你必須重新上載備份，包括媒體。如果你使用「最佳化 Signal 儲存空間」，則必須先下載已卸載的媒體。</string>
     <!-- Bottom sheet action that continues on to reset the recovery key. -->
     <string name="ResetRecoveryKeyBottomSheet__continue">繼續</string>
     <!-- Dialog body shown when the recovery key change limit is exhausted and the user does not have backups enabled. -->
-    <string name="BackupKeyRotationDialogs__limit_exceeded_body_no_backups">You\'ve exhausted the number of new keys you can create. You will be able to create a new recovery key in 7 days.</string>
+    <string name="BackupKeyRotationDialogs__limit_exceeded_body_no_backups">你已用盡可建立的新金鑰數量。你可以在 7 天後建立新的恢復金鑰。</string>
 
     <!-- EOF -->
 </resources>

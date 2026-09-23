@@ -683,6 +683,8 @@
     <string name="SignalLoginInfoScreen__thanks_for_your_purchase">Merci pour votre achat. Votre login Signal vous permet de vous inscrire, mais aussi de restaurer votre compte. Attention : sans les clés ci-dessous, il vous sera impossible de récupérer votre compte.</string>
     <!-- Action button that stores the Signal Login in the device password manager. -->
     <string name="SignalLoginInfoScreen__save_to_password_manager">Enregistrer dans le gestionnaire de mots de passe</string>
+    <!-- Toast shown when the user taps the disabled save to password manager button and the device has no password manager. -->
+    <string name="SignalLoginInfoScreen__no_password_manager_available">You don\'t have a password manager set up, or the password manager you\'re using isn\'t supported.</string>
     <!-- Action button for users who would rather write the Signal Login down themselves. -->
     <string name="SignalLoginInfoScreen__save_manually">Enregistrer manuellement</string>
     <!-- Error shown when the Signal Login could not be stored in the password manager. -->

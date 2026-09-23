@@ -12,7 +12,7 @@
     <!-- Label for the recovery portion of the Signal Login on the credential card. -->
     <string name="SignalLoginCard__recovery">Récupération</string>
     <!-- Button on the credential card that reveals the full Signal Login. -->
-    <string name="SignalLoginCard__view_details">Afficher les informations</string>
+    <string name="SignalLoginCard__view_details">Afficher les identifiants</string>
 
     <!-- Signal Login view details screen -->
     <!-- Title of the screen that shows the user the full keys that make up their Signal Login. -->
@@ -35,6 +35,8 @@
     <string name="SignalLoginViewDetailsScreen__reset_recovery_key">Réinitialiser la clé de récupération</string>
     <!-- Suggested file name prefilled in the system save dialog when saving the Signal Login as a PDF. Keep the .pdf extension. -->
     <string name="SignalLoginViewDetailsScreen__signal_login_pdf">Login Signal.pdf</string>
+    <!-- Toast shown when the user taps the disabled save to password manager button and the device has no password manager. -->
+    <string name="SignalLoginViewDetailsScreen__no_password_manager_available">You don\'t have a password manager set up, or the password manager you\'re using isn\'t supported.</string>
     <!-- Toast shown when saving the Signal Login PDF fails. -->
     <string name="SignalLoginViewDetailsScreen__unable_to_save_pdf">Impossible d\'enregistrer le PDF. Veuillez réessayer.</string>
     <!-- Toast shown when the location the user picked for the Signal Login PDF refuses the write. -->

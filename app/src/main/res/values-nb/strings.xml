@@ -1388,14 +1388,15 @@
         <item quantity="other">%1$d medlemmer lagt til.</item>
     </plurals>
 
-    <string name="GroupErrors__the_group_was_terminated">Gruppen er stengt.</string>
-    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">Du har ikke rettigheter for å gjøre dette</string>
-    <string name="GroupErrors__not_capable">Noen du la til har ikke støtte for nye grupper og må oppdatere Signal</string>
-    <string name="GroupErrors__not_announcement_capable">En av personene du la til, støtter ikke kunngjøringsgrupper og må oppdatere Signal-appen sin.</string>
-    <string name="GroupErrors__failed_to_update_the_group">Gruppeoppdatering feilet</string>
-    <string name="GroupErrors__youre_not_a_member_of_the_group">Du er ikke medlem av gruppen</string>
-    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Gruppeoppdateringen feilet, prøv igjen senere</string>
-    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Oppdateringen av gruppen feilet pga. en nettverksfeil, prøv igjen senere</string>
+    <!-- Shown when a change to a group is rejected because the group has ended. -->
+    <string name="GroupErrors__the_group_was_terminated">The group ended.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">You don\'t have the rights to do this</string>
+    <string name="GroupErrors__not_capable">Someone you added does not support new groups and needs to update Signal</string>
+    <string name="GroupErrors__not_announcement_capable">Someone you added does not support announcement groups and needs to update Signal</string>
+    <string name="GroupErrors__failed_to_update_the_group">Failed to update the group</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">You\'re not a member of the group</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Failed to update the group please retry later</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Failed to update the group due to a network error, please retry later</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">Rediger navn og bilde</string>
     <string name="ManageGroupActivity_legacy_group">\"Legacy\"-grupper</string>
@@ -1466,7 +1467,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Brukernavnet, QR-koden og lenken er ikke synlige i profilen din. Ikke del brukernavnet ditt med personer du ikke stoler på.</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-    <string name="ManageProfileFragment__username_footer_no_username">People can message you using an optional username instead of a phone number. Usernames have a unique QR code and link you can share with friends.</string>
+    <string name="ManageProfileFragment__username_footer_no_username">Andre kan sende deg meldinger via brukernavnet ditt i stedet for telefonnummeret ditt. Brukernavn har en unik QR-kode og lenke som du kan dele med vennene dine.</string>
     <string name="ManageProfileFragment_profile_name">Profilnavn</string>
     <string name="ManageProfileFragment_username">Brukernavn</string>
     <string name="ManageProfileFragment_about">Om</string>
@@ -1530,12 +1531,8 @@
     <string name="CustomNotificationsDialogFragment__unknown">Ukjent</string>
 
     <!-- ShareableGroupLinkDialogFragment -->
-    <string name="ShareableGroupLinkDialogFragment__group_link">Gruppelenke</string>
-    <string name="ShareableGroupLinkDialogFragment__share">Del</string>
-    <string name="ShareableGroupLinkDialogFragment__reset_link">Reset link</string>
     <string name="ShareableGroupLinkDialogFragment__require_admin_approval">Krev godkjenning fra administrator</string>
     <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Krev administratorgodkjenning for nye medlemmer som blir med via gruppelenken.</string>
-    <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Er du sikker på at du vil tilbakestille gruppelenken? Folk vil ikke lenger kunne bli med i gruppen ved hjelp av den nåværende lenken.</string>
 
     <!-- GroupLinkShareQrDialogFragment -->
     <string name="GroupLinkShareQrDialogFragment__qr_code">QR kode</string>
@@ -2789,13 +2786,13 @@
     <string name="StickerManagement_action_delete_selected">Slett</string>
     <!-- Confirmation message shown before uninstalling sticker packs. The placeholder is the number of items to delete. -->
     <plurals name="StickerManagement_delete_n_packs_confirmation">
-        <item quantity="one">Remove %1$s sticker pack?</item>
-        <item quantity="other">Remove %1$s sticker packs?</item>
+        <item quantity="one">Vil du fjerne %1$s klistremerkepakke?</item>
+        <item quantity="other">Vil du fjerne %1$s klistremerkepakker?</item>
     </plurals>
     <!-- Body of the confirmation dialog shown before uninstalling sticker packs. -->
     <plurals name="StickerManagement_delete_n_packs_confirmation_body">
-        <item quantity="one">This will remove the sticker pack. You can\'t add it again without a link or sticker message.</item>
-        <item quantity="other">This will remove these sticker packs. You can\'t add it again without a link or sticker message.</item>
+        <item quantity="one">Klistremerkepakken fjernes. Du kan ikke legge den til igjen uten en lenke eller melding med et klistremerke.</item>
+        <item quantity="other">Klistremerkepakkene fjernes. Du kan ikke legge dem til igjen uten en lenke eller melding med et klistremerke.</item>
     </plurals>
     <!-- Message shown after installing a sticker pack. The placeholder is the name of the sticker pack that was installed. -->
     <string name="StickerManagement_installed_pack_s">Installert %1$s.</string>
@@ -2831,8 +2828,15 @@
     <!-- Hint text shown in the sticker management search field. -->
     <string name="StickerManagement_search">Søk</string>
     <!-- Shown when no stickers match the search. The placeholder what was searched. -->
-    <string name="StickerManagement_search_no_results_s">Ingen resultater funnet for \'%1$s\'</string>
-
+    <string name="StickerManagement_search_no_results_s">Ingen resultater funnet for «%1$s»</string>
+    <!-- Sticker pack button for forwarding a sticker link. -->
+    <string name="StickerManagement_menu_send_signal_pack">Send via Signal</string>
+    <!-- Sticker pack button that opens a bottom sheet with more share options. -->
+    <string name="StickerManagement_menu_link_pack">Link</string>
+    <!-- Sticker pack sheet option for sharing a sticker pack link using the system share sheet. -->
+    <string name="StickerManagement_menu_share_pack">Share</string>
+    <!-- Bottom sheet description for the share sticker sheet. -->
+    <string name="StickerManagement__anyone">Anyone with this link can install and share this sticker pack.</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
     <string name="StickerManagement_accessibility_download_pack">Last ned %1$s-klistremerkepakke</string>
     <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
@@ -2867,6 +2871,8 @@
     <string name="StickerPackPreviewActivity_remove">Avinstaller</string>
     <string name="StickerPackPreviewActivity_stickers">Klistremerker</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Kunne ikke laste inn klistremerkepakken</string>
+    <!-- Bottom sheet describing a sticker. First placeholder is the title of the sticker pack and second is the author -->
+    <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">Lagre</string>
@@ -3010,7 +3016,7 @@
     <string name="UsernameEditFragment_username_is_invalid">Brukernavnet er ugyldig.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Brukernavn må være mellom %1$d og %2$d tegn.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">People can message you using your optional username instead of a phone number. Usernames are always paired with a set of numbers.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">Andre kan sende deg meldinger via brukernavnet ditt i stedet for telefonnummeret ditt. Alle brukernavn består av bokstaver og en tallrekke.</string>
     <!-- Button to allow user to skip -->
     <string name="UsernameEditFragment__skip">Hopp over</string>
     <!-- Content description for done button -->
@@ -3294,19 +3300,19 @@
 
     <!-- ConnectWithUsernamesDialogFragment -->
     <!-- Title of the username education screen shown to accounts registered without a phone number -->
-    <string name="ConnectWithUsernamesDialogFragment__connect_with_usernames">Connect with usernames</string>
+    <string name="ConnectWithUsernamesDialogFragment__connect_with_usernames">Kontakt via brukernavn</string>
     <!-- Title of the usernames section -->
     <string name="ConnectWithUsernamesDialogFragment__usernames">Brukernavn</string>
     <!-- Description of the usernames section -->
-    <string name="ConnectWithUsernamesDialogFragment__people_can_message_you_using_your_optional_username">People can message you using your optional username instead of a phone number. Usernames aren\'t visible on your profile.</string>
+    <string name="ConnectWithUsernamesDialogFragment__people_can_message_you_using_your_optional_username">Andre kan sende deg meldinger via brukernavnet ditt i stedet for telefonnummeret ditt. Brukernavnet vises ikke i profilen.</string>
     <!-- Title of the QR code section -->
     <string name="ConnectWithUsernamesDialogFragment__qr_codes_and_links">QR-koder og lenker</string>
     <!-- Description of the QR code section -->
     <string name="ConnectWithUsernamesDialogFragment__usernames_have_a_unique_qr_code">Brukernavnet ditt har sin egen QR-kode og lenke som du kan dele med venner, slik at de raskt kan starte samtaler med deg.</string>
     <!-- Title of the discoverability section -->
-    <string name="ConnectWithUsernamesDialogFragment__stay_discoverable">Stay discoverable</string>
+    <string name="ConnectWithUsernamesDialogFragment__stay_discoverable">Forbli synlig</string>
     <!-- Description of the discoverability section -->
-    <string name="ConnectWithUsernamesDialogFragment__without_a_phone_number_usernames_and_links">Without a phone number, usernames and links are the only way others can connect with you.</string>
+    <string name="ConnectWithUsernamesDialogFragment__without_a_phone_number_usernames_and_links">Brukernavn og lenker er den eneste måten andre kan finne deg på, dersom du ikke registrerer et telefonnummer.</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="ConnectWithUsernamesDialogFragment__set_up_username">Angi et brukernavn</string>
     <!-- Button label that dismisses the screen without creating a username -->
@@ -3314,11 +3320,11 @@
 
     <!-- SetUpUsernameBanner -->
     <!-- Body of a banner on the new message screen prompting the user to create a username -->
-    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">Choose a username so others can connect with you.</string>
+    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">Velg et brukernavn, slik at andre kan sende deg meldinger.</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="SetUpUsernameBanner__set_up">Konfigurer</string>
     <!-- Accessibility label for the button that permanently dismisses the banner -->
-    <string name="SetUpUsernameBanner__dismiss">Avbryt</string>
+    <string name="SetUpUsernameBanner__dismiss">Lukk</string>
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">Spill av video</string>
@@ -9478,7 +9484,7 @@
     <!-- Content description for the button that clears the contact search field -->
     <string name="SelectContactScreen__clear_search">Fjern søk</string>
     <!-- Content description for the badge shown next to a contact that is in the phone\'s address book -->
-    <string name="SelectContactScreen__in_your_contacts">In your contacts</string>
+    <string name="SelectContactScreen__in_your_contacts">I kontaktlisten din</string>
     <!-- Title of the prompt asking for permission to read the user\'s phone contacts -->
     <string name="SelectContactScreen__find_people_you_know_on_signal">Finn bekjente på Signal</string>
     <!-- Explanation shown when Signal does not have permission to read the user\'s phone contacts -->
@@ -9488,9 +9494,9 @@
     <!-- Button that dismisses the request for permission to read the user\'s phone contacts -->
     <string name="SelectContactScreen__no_thanks">Nei takk</string>
     <!-- Button that opens the phone\'s own contact picker, used when Signal cannot ask for contacts permission -->
-    <string name="SelectContactScreen__open_phone_contacts">Open phone contacts</string>
+    <string name="SelectContactScreen__open_phone_contacts">Åpne kontaktlisten</string>
     <!-- Note at the bottom of the contact picker when contacts permission was denied on the device. Placeholder is the "Learn more" link text. -->
-    <string name="SelectContactScreen__to_see_your_phone_contacts_here">To see your phone contacts here, allow access in your device settings. %1$s</string>
+    <string name="SelectContactScreen__to_see_your_phone_contacts_here">Gi tilgang til kontaktlisten din via enhetsinnstillingene for å se den her. %1$s</string>
     <!-- Link that opens instructions for granting contacts permission from the device settings -->
     <string name="SelectContactScreen__learn_more">Les mer</string>
     <!-- Title of the sheet explaining how to grant contacts permission from the device settings -->
@@ -9498,7 +9504,7 @@
     <!-- Subtitle of the sheet explaining how to grant contacts permission from the device settings -->
     <string name="SelectContactScreen__to_find_people_you_know_on_signal">Slik finner du bekjente på Signal:</string>
     <!-- Toast shown when a selected contact can no longer be read -->
-    <string name="SelectContactScreen__couldnt_open_contact">Couldn\'t open that contact</string>
+    <string name="SelectContactScreen__couldnt_open_contact">Kontakten kunne ikke åpnes</string>
 
     <!-- Title of the screen where the user chooses which parts of a contact to share -->
     <string name="ShareContactScreen__share_contact">Del kontakt</string>
@@ -9554,15 +9560,15 @@
     <string name="SharedContactDetailsScreen__join_me_on_signal">Registrer deg på Signal</string>
 
     <!-- Title of the bottom sheet that confirms the user wants a brand new recovery key. -->
-    <string name="ResetRecoveryKeyBottomSheet__reset_your_recovery_key">Reset your recovery key</string>
+    <string name="ResetRecoveryKeyBottomSheet__reset_your_recovery_key">Tilbakestill sikkerhetskoden din</string>
     <!-- First paragraph of the bottom sheet body, explaining what a reset does. -->
-    <string name="ResetRecoveryKeyBottomSheet__resetting_your_recovery_key_will_create_a_new_key">Resetting your recovery key will create a new key for your Signal Login. This is only necessary if someone else knows your key.</string>
+    <string name="ResetRecoveryKeyBottomSheet__resetting_your_recovery_key_will_create_a_new_key">Du får en ny kode for Signal Login hvis du tilbakestiller sikkerhetskoden din. Dette bør kun gjøres dersom noen har fått tak i koden din.</string>
     <!-- Second paragraph of the bottom sheet body, explaining what a reset means for backups. -->
-    <string name="ResetRecoveryKeyBottomSheet__if_backups_are_enabled_you_will_have_to_re_upload">If backups are enabled you will have to re-upload your backup, including media. If you are using \"Optimize Signal storage\" you will have to download offloaded media first.</string>
+    <string name="ResetRecoveryKeyBottomSheet__if_backups_are_enabled_you_will_have_to_re_upload">Dersom sikkerhetskopiering er aktivert, må du laste opp sikkerhetskopien på nytt, inkludert mediefilene. Hvis du bruker «Optimal lagring på Signal», må du laste ned de avlastede mediefilene først.</string>
     <!-- Bottom sheet action that continues on to reset the recovery key. -->
     <string name="ResetRecoveryKeyBottomSheet__continue">Fortsett</string>
     <!-- Dialog body shown when the recovery key change limit is exhausted and the user does not have backups enabled. -->
-    <string name="BackupKeyRotationDialogs__limit_exceeded_body_no_backups">You\'ve exhausted the number of new keys you can create. You will be able to create a new recovery key in 7 days.</string>
+    <string name="BackupKeyRotationDialogs__limit_exceeded_body_no_backups">Du kan ikke lage flere koder for øyeblikket. En ny sikkerhetskode kan opprettes om syv dager.</string>
 
     <!-- EOF -->
 </resources>

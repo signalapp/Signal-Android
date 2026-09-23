@@ -1431,14 +1431,15 @@
         <item quantity="other">Pievienoti %1$d dalībnieki.</item>
     </plurals>
 
-    <string name="GroupErrors__the_group_was_terminated">Grupa ir slēgta.</string>
-    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">Jums nav tiesību veikt šīs darbības</string>
-    <string name="GroupErrors__not_capable">Kāds no pievienotajiem dalībniekiem neatbalsta Signal jaunās grupas. Nepieciešama Signal atjaunināšana</string>
-    <string name="GroupErrors__not_announcement_capable">Kāds no pievienotajiem dalībniekiem neatbalsta paziņojumu grupas, un šim dalībniekam ir jāatjaunina Signal.</string>
-    <string name="GroupErrors__failed_to_update_the_group">Grupas atjaunināšanā notikusi kļūda</string>
-    <string name="GroupErrors__youre_not_a_member_of_the_group">Jūs neesat grupas dalībnieks</string>
-    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Neizdevās atjaunināt grupu. Vēlāk mēģiniet vēlreiz.</string>
-    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Neizdevās atjaunināt grupu, jo radās tīkla kļūda. Vēlāk mēģiniet vēlreiz.</string>
+    <!-- Shown when a change to a group is rejected because the group has ended. -->
+    <string name="GroupErrors__the_group_was_terminated">The group ended.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">You don\'t have the rights to do this</string>
+    <string name="GroupErrors__not_capable">Someone you added does not support new groups and needs to update Signal</string>
+    <string name="GroupErrors__not_announcement_capable">Someone you added does not support announcement groups and needs to update Signal</string>
+    <string name="GroupErrors__failed_to_update_the_group">Failed to update the group</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">You\'re not a member of the group</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Failed to update the group please retry later</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Failed to update the group due to a network error, please retry later</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">Labot vārdu un attēlu</string>
     <string name="ManageGroupActivity_legacy_group">Vecā tipa grupa</string>
@@ -1509,7 +1510,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Jūsu lietotājvārds, QR kods un saite jūsu profilā nav redzami. Kopīgojiet savu lietotājvārdu tikai ar uzticamiem cilvēkiem.</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-    <string name="ManageProfileFragment__username_footer_no_username">People can message you using an optional username instead of a phone number. Usernames have a unique QR code and link you can share with friends.</string>
+    <string name="ManageProfileFragment__username_footer_no_username">Tagad lietotāji var nosūtīt jums ziņas, izmantojot izvēles lietotājvārdu, nevis tālruņa numuru. Katram lietotājvārdam ir unikāls QR kods un saite, ko varat kopīgot ar draugiem.</string>
     <string name="ManageProfileFragment_profile_name">Profila nosaukums</string>
     <string name="ManageProfileFragment_username">Lietotājvārds</string>
     <string name="ManageProfileFragment_about">Par</string>
@@ -1575,12 +1576,8 @@
     <string name="CustomNotificationsDialogFragment__unknown">Nezināms</string>
 
     <!-- ShareableGroupLinkDialogFragment -->
-    <string name="ShareableGroupLinkDialogFragment__group_link">Grupas saite</string>
-    <string name="ShareableGroupLinkDialogFragment__share">Kopīgot</string>
-    <string name="ShareableGroupLinkDialogFragment__reset_link">Atstatīt saiti</string>
     <string name="ShareableGroupLinkDialogFragment__require_admin_approval">Administratora apstiprinājuma pieprasīšana</string>
     <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Pieprasiet, lai administrators apstiprina jaunu dalībnieku pievienošanos, izmantojot grupas saiti.</string>
-    <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Vai tiešām vēlaties atiestatīt grupas saiti? Cilvēki vairs nevarēs pievienoties šai grupai, izmantojot pašreizējo saiti.</string>
 
     <!-- GroupLinkShareQrDialogFragment -->
     <string name="GroupLinkShareQrDialogFragment__qr_code">Kvadrātkods</string>
@@ -2881,15 +2878,15 @@
     <string name="StickerManagement_action_delete_selected">Dzēst</string>
     <!-- Confirmation message shown before uninstalling sticker packs. The placeholder is the number of items to delete. -->
     <plurals name="StickerManagement_delete_n_packs_confirmation">
-        <item quantity="zero">Remove %1$s sticker packs?</item>
-        <item quantity="one">Remove %1$s sticker pack?</item>
-        <item quantity="other">Remove %1$s sticker packs?</item>
+        <item quantity="zero">Noņemt %1$s uzlīmju komplektus?</item>
+        <item quantity="one">Noņemt %1$s uzlīmju komplektu?</item>
+        <item quantity="other">Noņemt %1$s uzlīmju komplektus?</item>
     </plurals>
     <!-- Body of the confirmation dialog shown before uninstalling sticker packs. -->
     <plurals name="StickerManagement_delete_n_packs_confirmation_body">
-        <item quantity="zero">This will remove these sticker packs. You can\'t add it again without a link or sticker message.</item>
-        <item quantity="one">This will remove the sticker pack. You can\'t add it again without a link or sticker message.</item>
-        <item quantity="other">This will remove these sticker packs. You can\'t add it again without a link or sticker message.</item>
+        <item quantity="zero">Šī darbība noņems uzlīmju komplektus. Jūs nevarēsiet tos pievienot atkārtoti bez saites vai ziņas par uzlīmi.</item>
+        <item quantity="one">Šī darbība noņems uzlīmju komplektus. Jūs nevarēsiet tos pievienot atkārtoti bez saites vai ziņas par uzlīmi.</item>
+        <item quantity="other">Šī darbība noņems uzlīmju komplektus. Jūs nevarēsiet tos pievienot atkārtoti bez saites vai ziņas par uzlīmi.</item>
     </plurals>
     <!-- Message shown after installing a sticker pack. The placeholder is the name of the sticker pack that was installed. -->
     <string name="StickerManagement_installed_pack_s">Instalēts %1$s.</string>
@@ -2928,7 +2925,14 @@
     <string name="StickerManagement_search">Meklēt</string>
     <!-- Shown when no stickers match the search. The placeholder what was searched. -->
     <string name="StickerManagement_search_no_results_s">\"%1$s\" netika atrasts</string>
-
+    <!-- Sticker pack button for forwarding a sticker link. -->
+    <string name="StickerManagement_menu_send_signal_pack">Send via Signal</string>
+    <!-- Sticker pack button that opens a bottom sheet with more share options. -->
+    <string name="StickerManagement_menu_link_pack">Link</string>
+    <!-- Sticker pack sheet option for sharing a sticker pack link using the system share sheet. -->
+    <string name="StickerManagement_menu_share_pack">Share</string>
+    <!-- Bottom sheet description for the share sticker sheet. -->
+    <string name="StickerManagement__anyone">Anyone with this link can install and share this sticker pack.</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
     <string name="StickerManagement_accessibility_download_pack">Lejupielādēt uzlīmju komplektu \"%1$s\"</string>
     <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
@@ -2963,6 +2967,8 @@
     <string name="StickerPackPreviewActivity_remove">Atinstalēt</string>
     <string name="StickerPackPreviewActivity_stickers">Uzlīmes</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Neizdevās ielādēt uzlīmju paku</string>
+    <!-- Bottom sheet describing a sticker. First placeholder is the title of the sticker pack and second is the author -->
+    <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">Saglabāt</string>
@@ -3106,7 +3112,7 @@
     <string name="UsernameEditFragment_username_is_invalid">Lietotājvārds nav derīgs.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Lietotājvārdiem jābūt starp %1$d un %2$d rakstzīmēm.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">People can message you using your optional username instead of a phone number. Usernames are always paired with a set of numbers.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">Tagad lietotāji var nosūtīt jums ziņas, izmantojot jūsu izvēles lietotājvārdu, nevis tālruņa numuru. Lietotājvārdiem vienmēr ir piesaistīta ciparu kombinācija.</string>
     <!-- Button to allow user to skip -->
     <string name="UsernameEditFragment__skip">Izlaist</string>
     <!-- Content description for done button -->
@@ -3397,19 +3403,19 @@
 
     <!-- ConnectWithUsernamesDialogFragment -->
     <!-- Title of the username education screen shown to accounts registered without a phone number -->
-    <string name="ConnectWithUsernamesDialogFragment__connect_with_usernames">Connect with usernames</string>
+    <string name="ConnectWithUsernamesDialogFragment__connect_with_usernames">Sazinieties, izmantojot lietotājvārdus</string>
     <!-- Title of the usernames section -->
     <string name="ConnectWithUsernamesDialogFragment__usernames">Lietotājvārdi</string>
     <!-- Description of the usernames section -->
-    <string name="ConnectWithUsernamesDialogFragment__people_can_message_you_using_your_optional_username">People can message you using your optional username instead of a phone number. Usernames aren\'t visible on your profile.</string>
+    <string name="ConnectWithUsernamesDialogFragment__people_can_message_you_using_your_optional_username">Tagad lietotāji var nosūtīt jums ziņas, izmantojot jūsu izvēles lietotājvārdu, nevis tālruņa numuru. Lietotājvārds nav redzams jūsu profilā.</string>
     <!-- Title of the QR code section -->
     <string name="ConnectWithUsernamesDialogFragment__qr_codes_and_links">QR kodi un saites</string>
     <!-- Description of the QR code section -->
     <string name="ConnectWithUsernamesDialogFragment__usernames_have_a_unique_qr_code">Lietotājvārdiem ir piesaistīti unikāli QR kodi, kurus varat nosūtīt draugiem, lai ātri uzsāktu sarunu.</string>
     <!-- Title of the discoverability section -->
-    <string name="ConnectWithUsernamesDialogFragment__stay_discoverable">Stay discoverable</string>
+    <string name="ConnectWithUsernamesDialogFragment__stay_discoverable">Saglabājiet iespēju tikt atrastam</string>
     <!-- Description of the discoverability section -->
-    <string name="ConnectWithUsernamesDialogFragment__without_a_phone_number_usernames_and_links">Without a phone number, usernames and links are the only way others can connect with you.</string>
+    <string name="ConnectWithUsernamesDialogFragment__without_a_phone_number_usernames_and_links">Nenorādot tālruņa numuru, citas personas varēs ar jums var sazināties tikai, izmantojot jūsu lietotājvārdu vai saiti.</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="ConnectWithUsernamesDialogFragment__set_up_username">Iestatīt lietotāja vārdu</string>
     <!-- Button label that dismisses the screen without creating a username -->
@@ -3417,7 +3423,7 @@
 
     <!-- SetUpUsernameBanner -->
     <!-- Body of a banner on the new message screen prompting the user to create a username -->
-    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">Choose a username so others can connect with you.</string>
+    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">Izvēlieties lietotājvārdu, lai citi lietotāji varētu ar jums sazināties.</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="SetUpUsernameBanner__set_up">Iestatīt</string>
     <!-- Accessibility label for the button that permanently dismisses the banner -->
@@ -9673,13 +9679,13 @@
     </plurals>
 
     <!-- Title of the screen for picking a contact to share -->
-    <string name="SelectContactScreen__select_contact">Select contact</string>
+    <string name="SelectContactScreen__select_contact">Izvēlēties kontaktpersonas</string>
     <!-- Placeholder in the search field on the contact picker -->
     <string name="SelectContactScreen__search">Meklēt</string>
     <!-- Content description for the button that clears the contact search field -->
     <string name="SelectContactScreen__clear_search">Notīrīt meklēšanu</string>
     <!-- Content description for the badge shown next to a contact that is in the phone\'s address book -->
-    <string name="SelectContactScreen__in_your_contacts">In your contacts</string>
+    <string name="SelectContactScreen__in_your_contacts">Jūsu kontaktpersonu sarakstā</string>
     <!-- Title of the prompt asking for permission to read the user\'s phone contacts -->
     <string name="SelectContactScreen__find_people_you_know_on_signal">Atrodiet pazīstamas personas platformā Signal</string>
     <!-- Explanation shown when Signal does not have permission to read the user\'s phone contacts -->
@@ -9689,9 +9695,9 @@
     <!-- Button that dismisses the request for permission to read the user\'s phone contacts -->
     <string name="SelectContactScreen__no_thanks">Nē, paldies</string>
     <!-- Button that opens the phone\'s own contact picker, used when Signal cannot ask for contacts permission -->
-    <string name="SelectContactScreen__open_phone_contacts">Open phone contacts</string>
+    <string name="SelectContactScreen__open_phone_contacts">Atvērt tālruņa kontaktpersonas</string>
     <!-- Note at the bottom of the contact picker when contacts permission was denied on the device. Placeholder is the "Learn more" link text. -->
-    <string name="SelectContactScreen__to_see_your_phone_contacts_here">To see your phone contacts here, allow access in your device settings. %1$s</string>
+    <string name="SelectContactScreen__to_see_your_phone_contacts_here">Lai šeit redzētu tālruņa kontaktpersonas, ierīces iestatījumos atļaujiet piekļuvi kontaktpersonām. %1$s</string>
     <!-- Link that opens instructions for granting contacts permission from the device settings -->
     <string name="SelectContactScreen__learn_more">Uzzināt vairāk</string>
     <!-- Title of the sheet explaining how to grant contacts permission from the device settings -->
@@ -9699,7 +9705,7 @@
     <!-- Subtitle of the sheet explaining how to grant contacts permission from the device settings -->
     <string name="SelectContactScreen__to_find_people_you_know_on_signal">Lai atrastu pazīstamas personas platformā Signal:</string>
     <!-- Toast shown when a selected contact can no longer be read -->
-    <string name="SelectContactScreen__couldnt_open_contact">Couldn\'t open that contact</string>
+    <string name="SelectContactScreen__couldnt_open_contact">Neizdevās atvērt šo kontaktpersonu</string>
 
     <!-- Title of the screen where the user chooses which parts of a contact to share -->
     <string name="ShareContactScreen__share_contact">Kopīgot kontaktpersonas informāciju</string>
@@ -9755,15 +9761,15 @@
     <string name="SharedContactDetailsScreen__join_me_on_signal">Aicinājums man pievienoties lietotnē Signal</string>
 
     <!-- Title of the bottom sheet that confirms the user wants a brand new recovery key. -->
-    <string name="ResetRecoveryKeyBottomSheet__reset_your_recovery_key">Reset your recovery key</string>
+    <string name="ResetRecoveryKeyBottomSheet__reset_your_recovery_key">Atiestatīt atkopšanas atslēgu</string>
     <!-- First paragraph of the bottom sheet body, explaining what a reset does. -->
-    <string name="ResetRecoveryKeyBottomSheet__resetting_your_recovery_key_will_create_a_new_key">Resetting your recovery key will create a new key for your Signal Login. This is only necessary if someone else knows your key.</string>
+    <string name="ResetRecoveryKeyBottomSheet__resetting_your_recovery_key_will_create_a_new_key">Atiestatot atkopšanas atslēgu, jūsu Signal Login tiks izveidota jauna atslēga. Tas ir nepieciešams tikai tad, ja cita persona ir uzzinājusi jūsu atslēgu.</string>
     <!-- Second paragraph of the bottom sheet body, explaining what a reset means for backups. -->
-    <string name="ResetRecoveryKeyBottomSheet__if_backups_are_enabled_you_will_have_to_re_upload">If backups are enabled you will have to re-upload your backup, including media. If you are using \"Optimize Signal storage\" you will have to download offloaded media first.</string>
+    <string name="ResetRecoveryKeyBottomSheet__if_backups_are_enabled_you_will_have_to_re_upload">Ja ir iespējotas rezerves kopijas, jums būs atkārtoti jāaugšupielādē sava rezerves kopija, tostarp multivides faili. Ja izmantojat funkciju “Optimizēt Signal krātuvi”, vispirms jums būs jālejupielādē no ierīces pārliktie multivides faili.</string>
     <!-- Bottom sheet action that continues on to reset the recovery key. -->
     <string name="ResetRecoveryKeyBottomSheet__continue">Turpināt</string>
     <!-- Dialog body shown when the recovery key change limit is exhausted and the user does not have backups enabled. -->
-    <string name="BackupKeyRotationDialogs__limit_exceeded_body_no_backups">You\'ve exhausted the number of new keys you can create. You will be able to create a new recovery key in 7 days.</string>
+    <string name="BackupKeyRotationDialogs__limit_exceeded_body_no_backups">Jūs esat izsmēluši jaunu atslēgu izveides limitu. Jaunu atkopšanas atslēgu varēsiet izveidot pēc 7 dienām.</string>
 
     <!-- EOF -->
 </resources>

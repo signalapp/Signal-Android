@@ -1388,14 +1388,15 @@
         <item quantity="other">%1$d kideak gehituta</item>
     </plurals>
 
-    <string name="GroupErrors__the_group_was_terminated">Taldea amaituta dago.</string>
-    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">Ez duzu hau egiteko baimenik</string>
-    <string name="GroupErrors__not_capable">Gehitu duzun partaide batek ez dauka taldeak erabiltzeko gaitasunik eta Signal eguneratu egin behar du</string>
-    <string name="GroupErrors__not_announcement_capable">Gehitu duzun norbaitek ez ditu iragarpen-taldeak onartzen eta Signal eguneratu behar du</string>
-    <string name="GroupErrors__failed_to_update_the_group">Taldea eguneratzeak huts egin du</string>
-    <string name="GroupErrors__youre_not_a_member_of_the_group">Ez zara taldeko kidea</string>
-    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Taldea eguneratzeak huts egin du; mesedez, beranduago saia zaitez</string>
-    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Ezin izan da taldea eguneratu sare errore bat dela eta; mesedez, beranduago saia zaitez</string>
+    <!-- Shown when a change to a group is rejected because the group has ended. -->
+    <string name="GroupErrors__the_group_was_terminated">The group ended.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">You don\'t have the rights to do this</string>
+    <string name="GroupErrors__not_capable">Someone you added does not support new groups and needs to update Signal</string>
+    <string name="GroupErrors__not_announcement_capable">Someone you added does not support announcement groups and needs to update Signal</string>
+    <string name="GroupErrors__failed_to_update_the_group">Failed to update the group</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">You\'re not a member of the group</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Failed to update the group please retry later</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Failed to update the group due to a network error, please retry later</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">Editatu izena eta irudia</string>
     <string name="ManageGroupActivity_legacy_group">Jarauntsitako Taldea</string>
@@ -1530,12 +1531,8 @@
     <string name="CustomNotificationsDialogFragment__unknown">Ezezaguna</string>
 
     <!-- ShareableGroupLinkDialogFragment -->
-    <string name="ShareableGroupLinkDialogFragment__group_link">Talderako esteka</string>
-    <string name="ShareableGroupLinkDialogFragment__share">Elkarbanatu</string>
-    <string name="ShareableGroupLinkDialogFragment__reset_link">Berrezarri esteka</string>
     <string name="ShareableGroupLinkDialogFragment__require_admin_approval">Eskatu administratzaile baten onespena</string>
     <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Kideak talde esteka bidez sartzen badira taldean, derrigorrezkotzat jo administratzaile batek onartzea.</string>
-    <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Ziur zaude talde esteka berrezarri nahi izateaz? Eginez gero, jendea ezingo da taldera gehitu oraingo esteka erabiliz.</string>
 
     <!-- GroupLinkShareQrDialogFragment -->
     <string name="GroupLinkShareQrDialogFragment__qr_code">QR kodea</string>
@@ -2832,7 +2829,14 @@
     <string name="StickerManagement_search">Bilatu</string>
     <!-- Shown when no stickers match the search. The placeholder what was searched. -->
     <string name="StickerManagement_search_no_results_s">Ez dago emaitzarik \'%1$s\' bilatuta</string>
-
+    <!-- Sticker pack button for forwarding a sticker link. -->
+    <string name="StickerManagement_menu_send_signal_pack">Send via Signal</string>
+    <!-- Sticker pack button that opens a bottom sheet with more share options. -->
+    <string name="StickerManagement_menu_link_pack">Link</string>
+    <!-- Sticker pack sheet option for sharing a sticker pack link using the system share sheet. -->
+    <string name="StickerManagement_menu_share_pack">Share</string>
+    <!-- Bottom sheet description for the share sticker sheet. -->
+    <string name="StickerManagement__anyone">Anyone with this link can install and share this sticker pack.</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
     <string name="StickerManagement_accessibility_download_pack">Deskargatu %1$s eranskailu-paketea</string>
     <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
@@ -2867,6 +2871,8 @@
     <string name="StickerPackPreviewActivity_remove">Desinstalatu</string>
     <string name="StickerPackPreviewActivity_stickers">Eranskailuak</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Huts egin du eranskailuen multzoa kargatzean</string>
+    <!-- Bottom sheet describing a sticker. First placeholder is the title of the sticker pack and second is the author -->
+    <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">Gorde</string>

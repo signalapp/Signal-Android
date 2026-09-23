@@ -91,7 +91,7 @@
     <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
     <string name="AccountSettingsFragment__you_cant_add_more_than_d">Je kunt niet meer dan %1$d authenticatie-apps toevoegen. Probeer eerst een app te verwijderen.</string>
     <!-- Body of the dialog shown when the account has room for another authenticator app but already has as many two-factor methods of all kinds as it\'s allowed -->
-    <string name="AccountSettingsFragment__you_cant_add_more_than_d_two_factor_methods">You can\'t add more than %1$d two-factor authentication methods. Try removing one first.</string>
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d_two_factor_methods">Je kunt niet meer dan %1$d authenticatiemethodes toevoegen. Probeer er een te verwijderen.</string>
     <!-- Shown in place of the list when we couldn\'t work out which second factors are on the account -->
     <string name="AccountSettingsFragment__couldnt_load_your_two_factor_methods">Je authenticatiemethodes konden niet worden geladen. Controleer je internetverbinding en probeer het opnieuw.</string>
     <!-- Toast shown after an authenticator app has been removed -->
@@ -152,7 +152,7 @@
     <string name="TotpCodeEntryScreen__couldnt_reach_signal">Kan geen verbinding maken met Signal. Controleer je internetverbinding en probeer het opnieuw.</string>
 
     <!-- Default name given to an authenticator app the moment it\'s set up, before the user chooses their own name for it -->
-    <string name="TotpRepository__authenticator">Authenticator</string>
+    <string name="TotpRepository__authenticator">Authenticatie-app</string>
 
     <!-- TotpNameEntryScreen -->
     <!-- Title of the screen where the user names an authenticator app -->

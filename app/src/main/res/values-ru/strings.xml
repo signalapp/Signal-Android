@@ -1474,14 +1474,15 @@
         <item quantity="other">%1$d участников добавлено.</item>
     </plurals>
 
-    <string name="GroupErrors__the_group_was_terminated">Эта группа закрыта.</string>
-    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">У вас нет прав, чтобы сделать это</string>
-    <string name="GroupErrors__not_capable">Кто-то из тех, кого вы добавили, не поддерживает новые группы и должен(-на) обновить Signal</string>
-    <string name="GroupErrors__not_announcement_capable">Кто-то из добавленных вами не поддерживает группы для объявлений и должен(-на) обновить Signal</string>
-    <string name="GroupErrors__failed_to_update_the_group">Не удалось обновить группу</string>
-    <string name="GroupErrors__youre_not_a_member_of_the_group">Вы не являетесь участником этой группы</string>
-    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Не удалось обновить группу, пожалуйста, попробуйте позже</string>
-    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Не удалось обновить группу из-за ошибки сети, пожалуйста, попробуйте позже</string>
+    <!-- Shown when a change to a group is rejected because the group has ended. -->
+    <string name="GroupErrors__the_group_was_terminated">The group ended.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">You don\'t have the rights to do this</string>
+    <string name="GroupErrors__not_capable">Someone you added does not support new groups and needs to update Signal</string>
+    <string name="GroupErrors__not_announcement_capable">Someone you added does not support announcement groups and needs to update Signal</string>
+    <string name="GroupErrors__failed_to_update_the_group">Failed to update the group</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">You\'re not a member of the group</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Failed to update the group please retry later</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Failed to update the group due to a network error, please retry later</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">Редактировать имя и фото</string>
     <string name="ManageGroupActivity_legacy_group">Старая группа</string>
@@ -1620,12 +1621,8 @@
     <string name="CustomNotificationsDialogFragment__unknown">Неизвестная</string>
 
     <!-- ShareableGroupLinkDialogFragment -->
-    <string name="ShareableGroupLinkDialogFragment__group_link">Ссылка на группу</string>
-    <string name="ShareableGroupLinkDialogFragment__share">Поделиться</string>
-    <string name="ShareableGroupLinkDialogFragment__reset_link">Сбросить ссылку</string>
     <string name="ShareableGroupLinkDialogFragment__require_admin_approval">Требовать одобрение администратора</string>
     <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Администратор должен будет одобрять новых участников, присоединяющихся по ссылке на группу.</string>
-    <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Вы уверены, что хотите сбросить ссылку на группу? Больше никто не сможет присоединиться к группе по текущей ссылке.</string>
 
     <!-- GroupLinkShareQrDialogFragment -->
     <string name="GroupLinkShareQrDialogFragment__qr_code">QR-код</string>
@@ -3024,7 +3021,14 @@
     <string name="StickerManagement_search">Поиск</string>
     <!-- Shown when no stickers match the search. The placeholder what was searched. -->
     <string name="StickerManagement_search_no_results_s">Не найдено результатов для «%1$s»</string>
-
+    <!-- Sticker pack button for forwarding a sticker link. -->
+    <string name="StickerManagement_menu_send_signal_pack">Send via Signal</string>
+    <!-- Sticker pack button that opens a bottom sheet with more share options. -->
+    <string name="StickerManagement_menu_link_pack">Link</string>
+    <!-- Sticker pack sheet option for sharing a sticker pack link using the system share sheet. -->
+    <string name="StickerManagement_menu_share_pack">Share</string>
+    <!-- Bottom sheet description for the share sticker sheet. -->
+    <string name="StickerManagement__anyone">Anyone with this link can install and share this sticker pack.</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
     <string name="StickerManagement_accessibility_download_pack">Скачать набор стикеров %1$s</string>
     <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
@@ -3059,6 +3063,8 @@
     <string name="StickerPackPreviewActivity_remove">Удалить</string>
     <string name="StickerPackPreviewActivity_stickers">Стикеры</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Не удалось загрузить набор стикеров</string>
+    <!-- Bottom sheet describing a sticker. First placeholder is the title of the sticker pack and second is the author -->
+    <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">Сохранить</string>

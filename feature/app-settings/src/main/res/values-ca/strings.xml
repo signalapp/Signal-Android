@@ -91,7 +91,7 @@
     <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
     <string name="AccountSettingsFragment__you_cant_add_more_than_d">No pots afegir més de %1$d apps d\'autenticació. Prova d\'eliminar-ne una abans.</string>
     <!-- Body of the dialog shown when the account has room for another authenticator app but already has as many two-factor methods of all kinds as it\'s allowed -->
-    <string name="AccountSettingsFragment__you_cant_add_more_than_d_two_factor_methods">You can\'t add more than %1$d two-factor authentication methods. Try removing one first.</string>
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d_two_factor_methods">No pots afegir més de %1$d mètodes d\'autenticació de dos factors. Prova d\'eliminar-ne una abans.</string>
     <!-- Shown in place of the list when we couldn\'t work out which second factors are on the account -->
     <string name="AccountSettingsFragment__couldnt_load_your_two_factor_methods">No s\'han pogut carregar els teus mètodes d\'autenticació de dos factors. Comprova la connexió i torna-ho a provar.</string>
     <!-- Toast shown after an authenticator app has been removed -->
@@ -152,7 +152,7 @@
     <string name="TotpCodeEntryScreen__couldnt_reach_signal">No s\'ha pogut connectar Signal. Comprova la connexió i torna-ho a provar.</string>
 
     <!-- Default name given to an authenticator app the moment it\'s set up, before the user chooses their own name for it -->
-    <string name="TotpRepository__authenticator">Authenticator</string>
+    <string name="TotpRepository__authenticator">Autenticació</string>
 
     <!-- TotpNameEntryScreen -->
     <!-- Title of the screen where the user names an authenticator app -->

@@ -1388,14 +1388,15 @@
         <item quantity="other">დამატებულია %1$d წევრი.</item>
     </plurals>
 
-    <string name="GroupErrors__the_group_was_terminated">ჯგუფი გაუქმებულია.</string>
-    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">შენ არ გაქვს ამის გაკეთების უფლება</string>
-    <string name="GroupErrors__not_capable">ვიღაცას, ვინც თქვენ დაამატეთ, არ აქვს ახალი ჯგუფების მხარდაჭერა და სჭირდება Signal-ის განახლება</string>
-    <string name="GroupErrors__not_announcement_capable">ვიღაცას, ვინც თქვენ დაამატეთ, არ აქვს განცხადების ჯგუფების მხარდაჭერა და სჭირდება Signal-ის განახლება</string>
-    <string name="GroupErrors__failed_to_update_the_group">ჯგუფის განახლება ვერ მოხერხდა</string>
-    <string name="GroupErrors__youre_not_a_member_of_the_group">შენ არ ხარ ამ ჯგუფის წევრი</string>
-    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">ჯგუფის განახლება ვერ მოხერხდა, გთხოვთ მოგვიანებით თავიდან სცადო</string>
-    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">ჯგუფის განახლება ქსელის ხარვეზის გამო ვერ მოხერხდა, გთხოვთ მოგვიანებით თავიდან სცადო</string>
+    <!-- Shown when a change to a group is rejected because the group has ended. -->
+    <string name="GroupErrors__the_group_was_terminated">The group ended.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">You don\'t have the rights to do this</string>
+    <string name="GroupErrors__not_capable">Someone you added does not support new groups and needs to update Signal</string>
+    <string name="GroupErrors__not_announcement_capable">Someone you added does not support announcement groups and needs to update Signal</string>
+    <string name="GroupErrors__failed_to_update_the_group">Failed to update the group</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">You\'re not a member of the group</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Failed to update the group please retry later</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Failed to update the group due to a network error, please retry later</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">სახელისა და სურათის რედაქტირება</string>
     <string name="ManageGroupActivity_legacy_group">მოძველებული ჯგუფი</string>
@@ -1530,12 +1531,8 @@
     <string name="CustomNotificationsDialogFragment__unknown">უცნობი</string>
 
     <!-- ShareableGroupLinkDialogFragment -->
-    <string name="ShareableGroupLinkDialogFragment__group_link">ჯგუფის ბმული</string>
-    <string name="ShareableGroupLinkDialogFragment__share">გაზიარება</string>
-    <string name="ShareableGroupLinkDialogFragment__reset_link">ბმულის შეცვლა</string>
     <string name="ShareableGroupLinkDialogFragment__require_admin_approval">ადმინისტრატორის დასტურის მოთხოვნა</string>
     <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">მოითხოვე, რომ ჯგუფის ბმულის მეშვეობით ახალი წევრები ადმინმა დაამტკიცოს.</string>
-    <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">დარწმუნებული ხარ, რომ გსურს ჯგუფის ბმული შეცვალო? ხალხი ჯგუფში გაწევრიანებას ამჟამინდელი ბმულის საშუალებით ვეღარ შეძლებს.</string>
 
     <!-- GroupLinkShareQrDialogFragment -->
     <string name="GroupLinkShareQrDialogFragment__qr_code">QR კოდი</string>
@@ -2832,7 +2829,14 @@
     <string name="StickerManagement_search">ძიება</string>
     <!-- Shown when no stickers match the search. The placeholder what was searched. -->
     <string name="StickerManagement_search_no_results_s">\'%1$s\'-ზე ვერაფერ ვიპოვეთ</string>
-
+    <!-- Sticker pack button for forwarding a sticker link. -->
+    <string name="StickerManagement_menu_send_signal_pack">Send via Signal</string>
+    <!-- Sticker pack button that opens a bottom sheet with more share options. -->
+    <string name="StickerManagement_menu_link_pack">Link</string>
+    <!-- Sticker pack sheet option for sharing a sticker pack link using the system share sheet. -->
+    <string name="StickerManagement_menu_share_pack">Share</string>
+    <!-- Bottom sheet description for the share sticker sheet. -->
+    <string name="StickerManagement__anyone">Anyone with this link can install and share this sticker pack.</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
     <string name="StickerManagement_accessibility_download_pack">ჩამოტვირთე სტიკერების ნაკრები %1$s</string>
     <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
@@ -2867,6 +2871,8 @@
     <string name="StickerPackPreviewActivity_remove">წაშლა</string>
     <string name="StickerPackPreviewActivity_stickers">სტიკერები</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">სტიკერების ნაკრების ჩატვირთვა ვერ მოხერხდა</string>
+    <!-- Bottom sheet describing a sticker. First placeholder is the title of the sticker pack and second is the author -->
+    <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">შენახვა</string>

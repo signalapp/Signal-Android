@@ -1517,14 +1517,15 @@
         <item quantity="other">%1$d ball curtha leis.</item>
     </plurals>
 
-    <string name="GroupErrors__the_group_was_terminated">Tá deireadh curtha leis an ngrúpa.</string>
-    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">Níl na cearta agat chun sin a dhéanamh</string>
-    <string name="GroupErrors__not_capable">Duine a chuir tú leis, ní thacaíonn sé/sí le grúpaí nua agus ní mór dó/di Signal a nuashonrú</string>
-    <string name="GroupErrors__not_announcement_capable">Duine a chuir tú leis, ní thacaíonn sé/sí le grúpaí fógraí agus ní mór dó/di Signal a nuashonrú</string>
-    <string name="GroupErrors__failed_to_update_the_group">Theip ar nuashonrú an ghrúpa</string>
-    <string name="GroupErrors__youre_not_a_member_of_the_group">Ní comhalta den bhaicle thú</string>
-    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Theip ar nuashonrú an ghrúpa, triail arís ar ball</string>
-    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Theip ar nuashonrú an ghrúpa de bharr earráid líonra, triail arís níos déanaí</string>
+    <!-- Shown when a change to a group is rejected because the group has ended. -->
+    <string name="GroupErrors__the_group_was_terminated">The group ended.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">You don\'t have the rights to do this</string>
+    <string name="GroupErrors__not_capable">Someone you added does not support new groups and needs to update Signal</string>
+    <string name="GroupErrors__not_announcement_capable">Someone you added does not support announcement groups and needs to update Signal</string>
+    <string name="GroupErrors__failed_to_update_the_group">Failed to update the group</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">You\'re not a member of the group</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Failed to update the group please retry later</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Failed to update the group due to a network error, please retry later</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">Cuir an t-ainm agus pictiúr in eagar</string>
     <string name="ManageGroupActivity_legacy_group">Grúpa Oidhreachta</string>
@@ -1595,7 +1596,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Níl d\'ainm úsáideora, cód QR ná nasc infheicthe ar do phróifíl. Ná comhroinn d\'ainm úsáideora ach amháin le daoine a bhfuil muinín agat iontu.</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-    <string name="ManageProfileFragment__username_footer_no_username">People can message you using an optional username instead of a phone number. Usernames have a unique QR code and link you can share with friends.</string>
+    <string name="ManageProfileFragment__username_footer_no_username">Beidh daoine in ann teachtaireacht a chur chugat ag úsáid ainm úsáideora roghnach in ionad uimhir ghutháin. Tá cód QR agus nasc uathúil ag ainmneacha úsáideora ar féidir leat iad a chomhroinnt le cairde.</string>
     <string name="ManageProfileFragment_profile_name">Ainm Próifíle</string>
     <string name="ManageProfileFragment_username">Ainm úsáideora</string>
     <string name="ManageProfileFragment_about">Maidir leis</string>
@@ -1619,7 +1620,7 @@
     <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
     <string name="ManageProfileFragment__delete_username_dialog_title">Scrios ainm úsáideora?</string>
     <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_body">"Bainfear d\'ainm úsáideora agus díchumasófar do chód QR agus nasc leis sin. Beidh daoine eile in ann %1$s a éileamh. An bhfuil tú cinnte?"</string>
+    <string name="ManageProfileFragment__delete_username_dialog_body">"Bainfear d'ainm úsáideora agus díchumasófar do chód QR agus nasc leis sin. Beidh daoine eile in ann %1$s a éileamh. An bhfuil tú cinnte?"</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
@@ -1665,12 +1666,8 @@
     <string name="CustomNotificationsDialogFragment__unknown">Anaithnid</string>
 
     <!-- ShareableGroupLinkDialogFragment -->
-    <string name="ShareableGroupLinkDialogFragment__group_link">Group Link</string>
-    <string name="ShareableGroupLinkDialogFragment__share">Comhroinn</string>
-    <string name="ShareableGroupLinkDialogFragment__reset_link">Reset Link</string>
     <string name="ShareableGroupLinkDialogFragment__require_admin_approval">Éiligh faomhadh riarthóra</string>
     <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Require an admin to approve new members joining via the group link.</string>
-    <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Are you sure you want to reset the group link? People will no longer be able to join the group using the current link.</string>
 
     <!-- GroupLinkShareQrDialogFragment -->
     <string name="GroupLinkShareQrDialogFragment__qr_code">Tagairt QR</string>
@@ -3038,7 +3035,7 @@
         <item quantity="other">%1$s roghnaithe</item>
     </plurals>
     <!-- Label for the sticker management screen tab which shows all of the sticker packs. -->
-    <string name="StickerManagement_all_tab_label">Uile</string>
+    <string name="StickerManagement_all_tab_label">Iad Uile</string>
     <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
     <string name="StickerManagement_my_stickers_tab_label">Mo Ghreamáin</string>
     <!-- Shown when there are no sticker packs to show. -->
@@ -3050,7 +3047,7 @@
     <!-- Sticker pack list section header for packs that are already installed. -->
     <string name="StickerManagement_installed_stickers_header">Greamáin shuiteáilte</string>
     <!-- Sticker pack list section header for packs that have been received from incoming messages. -->
-    <string name="StickerManagement_shared_with_you_header">Comhroinnte Leat</string>
+    <string name="StickerManagement_shared_with_you_header">Comhroinnte leat</string>
     <!-- Sticker pack description for packs that have been sent to you -->
     <string name="StickerManagement_when_you_receive">Nuair a fhaigheann tú greamán ó dhuine, taispeánfar an beart greamán anseo.</string>
     <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
@@ -3065,19 +3062,19 @@
     <string name="StickerManagement_action_delete_selected">Scrios iad uile</string>
     <!-- Confirmation message shown before uninstalling sticker packs. The placeholder is the number of items to delete. -->
     <plurals name="StickerManagement_delete_n_packs_confirmation">
-        <item quantity="one">Remove %1$s sticker pack?</item>
-        <item quantity="two">Remove %1$s sticker packs?</item>
-        <item quantity="few">Remove %1$s sticker packs?</item>
-        <item quantity="many">Remove %1$s sticker packs?</item>
-        <item quantity="other">Remove %1$s sticker packs?</item>
+        <item quantity="one">Bain %1$s bheart greamán?</item>
+        <item quantity="two">Bain %1$s bheart greamán?</item>
+        <item quantity="few">Bain %1$s bheart greamán?</item>
+        <item quantity="many">Bain %1$s mbeart greamán?</item>
+        <item quantity="other">Bain %1$s beart greamán?</item>
     </plurals>
     <!-- Body of the confirmation dialog shown before uninstalling sticker packs. -->
     <plurals name="StickerManagement_delete_n_packs_confirmation_body">
-        <item quantity="one">This will remove the sticker pack. You can\'t add it again without a link or sticker message.</item>
-        <item quantity="two">This will remove these sticker packs. You can\'t add it again without a link or sticker message.</item>
-        <item quantity="few">This will remove these sticker packs. You can\'t add it again without a link or sticker message.</item>
-        <item quantity="many">This will remove these sticker packs. You can\'t add it again without a link or sticker message.</item>
-        <item quantity="other">This will remove these sticker packs. You can\'t add it again without a link or sticker message.</item>
+        <item quantity="one">Bainfear an beart greamán leis sin. Ní bheidh tú in ann é a chur leis arís gan nasc nó teachtaireacht ghreamáin.</item>
+        <item quantity="two">Bainfear na bearta greamán seo leis sin. Ní bheidh tú in ann iad a chur leis arís gan nasc nó teachtaireacht ghreamáin.</item>
+        <item quantity="few">Bainfear na bearta greamán seo leis sin. Ní bheidh tú in ann iad a chur leis arís gan nasc nó teachtaireacht ghreamáin.</item>
+        <item quantity="many">Bainfear na bearta greamán seo leis sin. Ní bheidh tú in ann iad a chur leis arís gan nasc nó teachtaireacht ghreamáin.</item>
+        <item quantity="other">Bainfear na bearta greamán seo leis sin. Ní bheidh tú in ann iad a chur leis arís gan nasc nó teachtaireacht ghreamáin.</item>
     </plurals>
     <!-- Message shown after installing a sticker pack. The placeholder is the name of the sticker pack that was installed. -->
     <string name="StickerManagement_installed_pack_s">%1$s suiteáilte.</string>
@@ -3120,7 +3117,14 @@
     <string name="StickerManagement_search">Cuardaigh</string>
     <!-- Shown when no stickers match the search. The placeholder what was searched. -->
     <string name="StickerManagement_search_no_results_s">Níor aimsíodh aon torthaí le haghaidh \'%1$s\'</string>
-
+    <!-- Sticker pack button for forwarding a sticker link. -->
+    <string name="StickerManagement_menu_send_signal_pack">Send via Signal</string>
+    <!-- Sticker pack button that opens a bottom sheet with more share options. -->
+    <string name="StickerManagement_menu_link_pack">Link</string>
+    <!-- Sticker pack sheet option for sharing a sticker pack link using the system share sheet. -->
+    <string name="StickerManagement_menu_share_pack">Share</string>
+    <!-- Bottom sheet description for the share sticker sheet. -->
+    <string name="StickerManagement__anyone">Anyone with this link can install and share this sticker pack.</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
     <string name="StickerManagement_accessibility_download_pack">Íoslódáil beart greamán %1$s</string>
     <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
@@ -3155,6 +3159,8 @@
     <string name="StickerPackPreviewActivity_remove">Díshuiteáil</string>
     <string name="StickerPackPreviewActivity_stickers">Greamáin</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Theip ar lódáil an bhirt ghreamán</string>
+    <!-- Bottom sheet describing a sticker. First placeholder is the title of the sticker pack and second is the author -->
+    <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">Sábháil</string>
@@ -3298,7 +3304,7 @@
     <string name="UsernameEditFragment_username_is_invalid">Níl an t-ainm úsáideora bailí.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Ní mór go mbeidh an líon carachtar idir %1$d agus %2$d in ainmneacha úsáideora.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">People can message you using your optional username instead of a phone number. Usernames are always paired with a set of numbers.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">Beidh daoine in ann teachtaireacht a chur chugat ag úsáid d\'ainm úsáideora roghnach in ionad uimhir ghutháin. Déantar ainmneacha úsáideora a phéireáil le tacar uimhreacha i gcónaí.</string>
     <!-- Button to allow user to skip -->
     <string name="UsernameEditFragment__skip">Léim thar seo</string>
     <!-- Content description for done button -->
@@ -3603,19 +3609,19 @@
 
     <!-- ConnectWithUsernamesDialogFragment -->
     <!-- Title of the username education screen shown to accounts registered without a phone number -->
-    <string name="ConnectWithUsernamesDialogFragment__connect_with_usernames">Connect with usernames</string>
+    <string name="ConnectWithUsernamesDialogFragment__connect_with_usernames">Ceangail le hainmneacha úsáideora</string>
     <!-- Title of the usernames section -->
     <string name="ConnectWithUsernamesDialogFragment__usernames">Ainmneacha úsáideora</string>
     <!-- Description of the usernames section -->
-    <string name="ConnectWithUsernamesDialogFragment__people_can_message_you_using_your_optional_username">People can message you using your optional username instead of a phone number. Usernames aren\'t visible on your profile.</string>
+    <string name="ConnectWithUsernamesDialogFragment__people_can_message_you_using_your_optional_username">Beidh daoine in ann teachtaireacht a chur chugat ag úsáid d\'ainm úsáideora roghnach in ionad uimhir ghutháin. Níl ainmneacha úsáideora infheicthe ar do phróifíl.</string>
     <!-- Title of the QR code section -->
     <string name="ConnectWithUsernamesDialogFragment__qr_codes_and_links">Cóid QR agus naisc</string>
     <!-- Description of the QR code section -->
     <string name="ConnectWithUsernamesDialogFragment__usernames_have_a_unique_qr_code">Tá cód QR agus nasc uathúil ag ainmneacha úsáideora ar féidir leat iad a chomhroinnt le cairde chun tosú ar chomhrá leat.</string>
     <!-- Title of the discoverability section -->
-    <string name="ConnectWithUsernamesDialogFragment__stay_discoverable">Stay discoverable</string>
+    <string name="ConnectWithUsernamesDialogFragment__stay_discoverable">Fan inaimsithe</string>
     <!-- Description of the discoverability section -->
-    <string name="ConnectWithUsernamesDialogFragment__without_a_phone_number_usernames_and_links">Without a phone number, usernames and links are the only way others can connect with you.</string>
+    <string name="ConnectWithUsernamesDialogFragment__without_a_phone_number_usernames_and_links">Gan uimhir ghutháin, is iad ainmneacha úsáideora agus naisc an t-aon bhealach a bheidh daoine eile in ann ceangal leat.</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="ConnectWithUsernamesDialogFragment__set_up_username">Socraigh ainm úsáideora</string>
     <!-- Button label that dismisses the screen without creating a username -->
@@ -3623,7 +3629,7 @@
 
     <!-- SetUpUsernameBanner -->
     <!-- Body of a banner on the new message screen prompting the user to create a username -->
-    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">Choose a username so others can connect with you.</string>
+    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">Roghnaigh ainm úsáideora ionas gur féidir le daoine eile ceangal leat.</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="SetUpUsernameBanner__set_up">Socraigh</string>
     <!-- Accessibility label for the button that permanently dismisses the banner -->
@@ -5155,7 +5161,7 @@
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
     <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">Beidh tú dofheicthe ar Signal ag daoine ach amháin má sheolann tú teachtaireacht chucu nó má tá comhrá ar siúl agat leo.</string>
     <!-- Snackbar text when pressing invalid radio item -->
-    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"Leis an socrú sin a athrú, socraigh Daoine atá in ann m\'uimhir a fheiceáil go Duine ar bith."</string>
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"Leis an socrú sin a athrú, socraigh Daoine atá in ann m'uimhir a fheiceáil go Duine ar bith."</string>
     <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
     <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">An bhfuil tú cinnte?</string>
     <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
@@ -7213,7 +7219,7 @@
     <!-- Signal connections sheet bullet point 3 -->
     <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Trína bheith i dteagmhálaithe do ghutháin</string>
     <!-- Note at the bottom of the Signal connections sheet -->
-    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Is féidir le do theagmhálaithe d\'ainm agus do ghrianghraf, agus postálacha \"Mo Scéal\", a fheiceáil, mura gcuireann tú na rudaí sin i bhfolach orthu."</string>
+    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Is féidir le do theagmhálaithe d'ainm agus do ghrianghraf, agus postálacha \"Mo Scéal\", a fheiceáil, mura gcuireann tú na rudaí sin i bhfolach orthu."</string>
     <!-- Clickable option to add a viewer to a custom story -->
     <string name="PrivateStorySettingsFragment__add_viewer">Cuir amharcóir leis</string>
     <!-- Clickable option to delete a custom story -->
@@ -10075,13 +10081,13 @@
     </plurals>
 
     <!-- Title of the screen for picking a contact to share -->
-    <string name="SelectContactScreen__select_contact">Roghnaigh Teagmhálaí</string>
+    <string name="SelectContactScreen__select_contact">Roghnaigh teagmhálaí</string>
     <!-- Placeholder in the search field on the contact picker -->
     <string name="SelectContactScreen__search">Cuardaigh</string>
     <!-- Content description for the button that clears the contact search field -->
     <string name="SelectContactScreen__clear_search">Glan an cuardach</string>
     <!-- Content description for the badge shown next to a contact that is in the phone\'s address book -->
-    <string name="SelectContactScreen__in_your_contacts">In your contacts</string>
+    <string name="SelectContactScreen__in_your_contacts">I do theagmhálaithe</string>
     <!-- Title of the prompt asking for permission to read the user\'s phone contacts -->
     <string name="SelectContactScreen__find_people_you_know_on_signal">Aimsigh daoine a bhfuil aithne agat orthu ar Signal</string>
     <!-- Explanation shown when Signal does not have permission to read the user\'s phone contacts -->
@@ -10091,9 +10097,9 @@
     <!-- Button that dismisses the request for permission to read the user\'s phone contacts -->
     <string name="SelectContactScreen__no_thanks">Níl, go raibh maith agat</string>
     <!-- Button that opens the phone\'s own contact picker, used when Signal cannot ask for contacts permission -->
-    <string name="SelectContactScreen__open_phone_contacts">Open phone contacts</string>
+    <string name="SelectContactScreen__open_phone_contacts">Oscail teagmhálaithe an ghutháin</string>
     <!-- Note at the bottom of the contact picker when contacts permission was denied on the device. Placeholder is the "Learn more" link text. -->
-    <string name="SelectContactScreen__to_see_your_phone_contacts_here">To see your phone contacts here, allow access in your device settings. %1$s</string>
+    <string name="SelectContactScreen__to_see_your_phone_contacts_here">Ceadaigh rochtain ar shocruithe do ghléis le do theagmhálaithe gutháin a fheiceáil anseo. %1$s</string>
     <!-- Link that opens instructions for granting contacts permission from the device settings -->
     <string name="SelectContactScreen__learn_more">Tuilleadh faisnéise</string>
     <!-- Title of the sheet explaining how to grant contacts permission from the device settings -->
@@ -10101,7 +10107,7 @@
     <!-- Subtitle of the sheet explaining how to grant contacts permission from the device settings -->
     <string name="SelectContactScreen__to_find_people_you_know_on_signal">Chun daoine a bhfuil aithne agat orthu a aimsiú ar Signal:</string>
     <!-- Toast shown when a selected contact can no longer be read -->
-    <string name="SelectContactScreen__couldnt_open_contact">Couldn\'t open that contact</string>
+    <string name="SelectContactScreen__couldnt_open_contact">Níorbh fhéidir an teagmhálaí sin a oscailt</string>
 
     <!-- Title of the screen where the user chooses which parts of a contact to share -->
     <string name="ShareContactScreen__share_contact">Comhroinn an teagmhálaí</string>
@@ -10157,15 +10163,15 @@
     <string name="SharedContactDetailsScreen__join_me_on_signal">Téigh isteach in Signal liom</string>
 
     <!-- Title of the bottom sheet that confirms the user wants a brand new recovery key. -->
-    <string name="ResetRecoveryKeyBottomSheet__reset_your_recovery_key">Reset your recovery key</string>
+    <string name="ResetRecoveryKeyBottomSheet__reset_your_recovery_key">Athshocraigh d\'eochair athshlánaithe</string>
     <!-- First paragraph of the bottom sheet body, explaining what a reset does. -->
-    <string name="ResetRecoveryKeyBottomSheet__resetting_your_recovery_key_will_create_a_new_key">Resetting your recovery key will create a new key for your Signal Login. This is only necessary if someone else knows your key.</string>
+    <string name="ResetRecoveryKeyBottomSheet__resetting_your_recovery_key_will_create_a_new_key">Cruthófar eochair nua do do Signal Login tar éis d\'eochair athshlánaithe a athshocrú. Níl gá leis sin ach amháin má tá d\'eochair ar eolas ag duine eile.</string>
     <!-- Second paragraph of the bottom sheet body, explaining what a reset means for backups. -->
-    <string name="ResetRecoveryKeyBottomSheet__if_backups_are_enabled_you_will_have_to_re_upload">If backups are enabled you will have to re-upload your backup, including media. If you are using \"Optimize Signal storage\" you will have to download offloaded media first.</string>
+    <string name="ResetRecoveryKeyBottomSheet__if_backups_are_enabled_you_will_have_to_re_upload">Má chumasaítear cúltacaí, beidh ort do chúltaca, meáin san áireamh, a uaslódáil arís. Má tá \"Optamaigh stóras Signal\" á úsáid agat beidh ort meáin a baineadh a íoslódáil ar dtús.</string>
     <!-- Bottom sheet action that continues on to reset the recovery key. -->
     <string name="ResetRecoveryKeyBottomSheet__continue">Lean ar aghaidh</string>
     <!-- Dialog body shown when the recovery key change limit is exhausted and the user does not have backups enabled. -->
-    <string name="BackupKeyRotationDialogs__limit_exceeded_body_no_backups">You\'ve exhausted the number of new keys you can create. You will be able to create a new recovery key in 7 days.</string>
+    <string name="BackupKeyRotationDialogs__limit_exceeded_body_no_backups">Tá líon na n-eochracha nua is féidir leat a chruthú úsáidte agat. Beidh tú in ann eochair athshlánaithe nua a chruthú i gceann 7 lá.</string>
 
     <!-- EOF -->
 </resources>

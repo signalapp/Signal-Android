@@ -1345,14 +1345,15 @@
         <item quantity="other">အဖွဲ့ဝင် %1$d ဦးပေါင်းထည့်ပြီး</item>
     </plurals>
 
-    <string name="GroupErrors__the_group_was_terminated">အဖွဲ့ပြီးဆုံးသွားပါပြီ။</string>
-    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">ဤသို့လုပ်ရန်သင့်တွင်အခွင့်အရေးမရှိပါ</string>
-    <string name="GroupErrors__not_capable">သင်ဖြည့်စွက်ထားသူတစ်ဦး သည်အဖွဲ့အသစ်များကိုမထောက်ခံပါ။ Signal ကိုအသစ်ပြောင်းရန်လိုအပ်သည်</string>
-    <string name="GroupErrors__not_announcement_capable">သင် ပေါင်းထည့်ထားသူတစ်ဦးဦးသည် ကြေညာချက် အဖွဲ့များကို သုံးနိုင်ခြင်း မရှိသောကြောင့် Signal အား အပ်ဒိတ်လုပ်ရန် လိုအပ်ပါသည်။</string>
-    <string name="GroupErrors__failed_to_update_the_group">အုပ်စုအားမွမ်းမံရန်မအောင်မြင်ပါ</string>
-    <string name="GroupErrors__youre_not_a_member_of_the_group">သင်သည် အဖွဲ့ဝင်တစ်ဦးမဟုတ်ပါ</string>
-    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">အုပ်စုအားမွမ်းမံရန်မအောင်မြင်ပါကျေးဇူးပြုပြီးနောက်မှပြန်ကြိုးစားပါ</string>
-    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">ကွန်ယက်အမှားတစ်ခုကြောင့်အုပ်စုအားမွမ်းမံရန်မအောင်မြင်ပါ၊ ကျေးဇူးပြုပြီးနောက်မှပြန်ကြိုးစားပါ</string>
+    <!-- Shown when a change to a group is rejected because the group has ended. -->
+    <string name="GroupErrors__the_group_was_terminated">The group ended.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">You don\'t have the rights to do this</string>
+    <string name="GroupErrors__not_capable">Someone you added does not support new groups and needs to update Signal</string>
+    <string name="GroupErrors__not_announcement_capable">Someone you added does not support announcement groups and needs to update Signal</string>
+    <string name="GroupErrors__failed_to_update_the_group">Failed to update the group</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">You\'re not a member of the group</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Failed to update the group please retry later</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Failed to update the group due to a network error, please retry later</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">နာမည်နှင့်ရုပ်ပုံကိုတည်းဖြတ်ပါ</string>
     <string name="ManageGroupActivity_legacy_group">အမွေအဖွဲ့</string>
@@ -1485,12 +1486,8 @@
     <string name="CustomNotificationsDialogFragment__unknown">မသိရှိသော</string>
 
     <!-- ShareableGroupLinkDialogFragment -->
-    <string name="ShareableGroupLinkDialogFragment__group_link">Group link</string>
-    <string name="ShareableGroupLinkDialogFragment__share">ဝေမျှရန်</string>
-    <string name="ShareableGroupLinkDialogFragment__reset_link">link ကိုပြန်လည်သတ်မှတ်</string>
     <string name="ShareableGroupLinkDialogFragment__require_admin_approval">အက်ဒ်မင်၏ ခွင့်ပြုချက်လိုအပ်သည်</string>
     <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">အဖွဲ့ဝင်အသစ်များကို အဖွဲ့လင့်ခ်မှ ဝင်ခြင်းကို စီမံသူမှ အတည်ပြုရန် လိုအပ်စေပါ။</string>
-    <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">အဖွဲ့လင့်ခ်ကို ပြန်သတ်မှတ်မည်ဆိုတာ သင်သေချာပါသလား? လက်ရှိလင့်ခ်ဖြင့် အခြားလူများ အဖွဲ့သို့ မဝင်ရောက်နိုင်တော့ပါမည်။</string>
 
     <!-- GroupLinkShareQrDialogFragment -->
     <string name="GroupLinkShareQrDialogFragment__qr_code">QR ကုဒ်</string>
@@ -2736,7 +2733,14 @@
     <string name="StickerManagement_search">ရှာရန်</string>
     <!-- Shown when no stickers match the search. The placeholder what was searched. -->
     <string name="StickerManagement_search_no_results_s">\'%1$s\' ကို ရှာမတွေ့ပါ</string>
-
+    <!-- Sticker pack button for forwarding a sticker link. -->
+    <string name="StickerManagement_menu_send_signal_pack">Send via Signal</string>
+    <!-- Sticker pack button that opens a bottom sheet with more share options. -->
+    <string name="StickerManagement_menu_link_pack">Link</string>
+    <!-- Sticker pack sheet option for sharing a sticker pack link using the system share sheet. -->
+    <string name="StickerManagement_menu_share_pack">Share</string>
+    <!-- Bottom sheet description for the share sticker sheet. -->
+    <string name="StickerManagement__anyone">Anyone with this link can install and share this sticker pack.</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
     <string name="StickerManagement_accessibility_download_pack">%1$s စတစ်ကာတွဲကို ဒေါင်းလုဒ်လုပ်ပါ</string>
     <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
@@ -2771,6 +2775,8 @@
     <string name="StickerPackPreviewActivity_remove">တပ်ဆင်ခြင်းမှ ဖယ်ရှားမယ်</string>
     <string name="StickerPackPreviewActivity_stickers">စတစ်ကာများ</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">စတစ်ကာတွဲကို တင်ခြင်းမအောင်မြင်ပါ</string>
+    <!-- Bottom sheet describing a sticker. First placeholder is the title of the sticker pack and second is the author -->
+    <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">သိမ်းရန်</string>

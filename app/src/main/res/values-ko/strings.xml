@@ -1345,14 +1345,15 @@
         <item quantity="other">멤버 %1$d명이 추가됨.</item>
     </plurals>
 
-    <string name="GroupErrors__the_group_was_terminated">그룹이 종료되었습니다.</string>
-    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">이 작업을 수행할 권한이 없습니다.</string>
-    <string name="GroupErrors__not_capable">추가한 사용자가 새 그룹을 지원하지 않으며, Signal을 업데이트해야 합니다.</string>
-    <string name="GroupErrors__not_announcement_capable">추가한 사용자가 알림 그룹을 지원하지 않으며, Signal을 업데이트해야 합니다.</string>
-    <string name="GroupErrors__failed_to_update_the_group">그룹을 업데이트하지 못했습니다</string>
-    <string name="GroupErrors__youre_not_a_member_of_the_group">그룹의 멤버가 아닙니다.</string>
-    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">그룹을 업데이트하지 못했습니다. 나중에 다시 시도해 주세요.</string>
-    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">네트워크 오류로 인해 그룹을 업데이트하지 못했습니다. 나중에 다시 시도해 주세요.</string>
+    <!-- Shown when a change to a group is rejected because the group has ended. -->
+    <string name="GroupErrors__the_group_was_terminated">The group ended.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">You don\'t have the rights to do this</string>
+    <string name="GroupErrors__not_capable">Someone you added does not support new groups and needs to update Signal</string>
+    <string name="GroupErrors__not_announcement_capable">Someone you added does not support announcement groups and needs to update Signal</string>
+    <string name="GroupErrors__failed_to_update_the_group">Failed to update the group</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">You\'re not a member of the group</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Failed to update the group please retry later</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Failed to update the group due to a network error, please retry later</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">이름 및 사진 수정하기</string>
     <string name="ManageGroupActivity_legacy_group">레거시 그룹</string>
@@ -1423,7 +1424,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">사용자 이름과 QR 코드, 링크는 프로필에 표시되지 않습니다. 사용자 이름은 신뢰하는 사람에게만 공유하세요.</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-    <string name="ManageProfileFragment__username_footer_no_username">People can message you using an optional username instead of a phone number. Usernames have a unique QR code and link you can share with friends.</string>
+    <string name="ManageProfileFragment__username_footer_no_username">사용자 이름을 설정하면 전화번호 대신 사용자 이름으로 메시지를 주고받을 수 있습니다. 각 사용자 이름에는 친구들에게 공유할 수 있는 전용 QR 코드와 링크가 제공됩니다.</string>
     <string name="ManageProfileFragment_profile_name">프로필 이름</string>
     <string name="ManageProfileFragment_username">사용자 이름</string>
     <string name="ManageProfileFragment_about">정보</string>
@@ -1485,12 +1486,8 @@
     <string name="CustomNotificationsDialogFragment__unknown">알 수 없음</string>
 
     <!-- ShareableGroupLinkDialogFragment -->
-    <string name="ShareableGroupLinkDialogFragment__group_link">그룹 링크</string>
-    <string name="ShareableGroupLinkDialogFragment__share">공유</string>
-    <string name="ShareableGroupLinkDialogFragment__reset_link">링크 초기화</string>
     <string name="ShareableGroupLinkDialogFragment__require_admin_approval">관리자 승인 필요</string>
     <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">그룹 링크로 참가하려는 새 멤버를 승인하려면 관리자 권한이 필요합니다.</string>
-    <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">그룹 링크를 초기화할까요? 초기화하면 이 링크로는 더 이상 그룹에 참가할 수 없습니다.</string>
 
     <!-- GroupLinkShareQrDialogFragment -->
     <string name="GroupLinkShareQrDialogFragment__qr_code">QR 코드</string>
@@ -2697,11 +2694,11 @@
     <string name="StickerManagement_action_delete_selected">삭제</string>
     <!-- Confirmation message shown before uninstalling sticker packs. The placeholder is the number of items to delete. -->
     <plurals name="StickerManagement_delete_n_packs_confirmation">
-        <item quantity="other">Remove %1$s sticker packs?</item>
+        <item quantity="other">스티커 팩 %1$s개를 제거할까요?</item>
     </plurals>
     <!-- Body of the confirmation dialog shown before uninstalling sticker packs. -->
     <plurals name="StickerManagement_delete_n_packs_confirmation_body">
-        <item quantity="other">This will remove these sticker packs. You can\'t add it again without a link or sticker message.</item>
+        <item quantity="other">이대로 진행하면 스티커 팩이 삭제됩니다. 링크나 스티커 메시지가 없으면 다시 추가할 수 없습니다.</item>
     </plurals>
     <!-- Message shown after installing a sticker pack. The placeholder is the name of the sticker pack that was installed. -->
     <string name="StickerManagement_installed_pack_s">%1$s 스티커 팩을 설치했습니다.</string>
@@ -2736,7 +2733,14 @@
     <string name="StickerManagement_search">검색</string>
     <!-- Shown when no stickers match the search. The placeholder what was searched. -->
     <string name="StickerManagement_search_no_results_s">\'%1$s\'에 대한 검색 결과 없음</string>
-
+    <!-- Sticker pack button for forwarding a sticker link. -->
+    <string name="StickerManagement_menu_send_signal_pack">Send via Signal</string>
+    <!-- Sticker pack button that opens a bottom sheet with more share options. -->
+    <string name="StickerManagement_menu_link_pack">Link</string>
+    <!-- Sticker pack sheet option for sharing a sticker pack link using the system share sheet. -->
+    <string name="StickerManagement_menu_share_pack">Share</string>
+    <!-- Bottom sheet description for the share sticker sheet. -->
+    <string name="StickerManagement__anyone">Anyone with this link can install and share this sticker pack.</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
     <string name="StickerManagement_accessibility_download_pack">%1$s 스티커 팩 다운로드</string>
     <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
@@ -2771,6 +2775,8 @@
     <string name="StickerPackPreviewActivity_remove">제거</string>
     <string name="StickerPackPreviewActivity_stickers">스티커</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">스티커 팩을 불러올 수 없음</string>
+    <!-- Bottom sheet describing a sticker. First placeholder is the title of the sticker pack and second is the author -->
+    <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">저장</string>
@@ -2914,7 +2920,7 @@
     <string name="UsernameEditFragment_username_is_invalid">잘못된 사용자 이름입니다.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">사용자 이름은 %1$d~%2$d자여야 합니다.</string>
     <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">People can message you using your optional username instead of a phone number. Usernames are always paired with a set of numbers.</string>
+    <string name="UsernameEditFragment__usernames_let_others_message">사용자 이름을 설정하면 전화번호 대신 사용자 이름으로 메시지를 주고받을 수 있습니다. 모든 사용자 이름에는 고유 번호가 부여됩니다.</string>
     <!-- Button to allow user to skip -->
     <string name="UsernameEditFragment__skip">건너뛰기</string>
     <!-- Content description for done button -->
@@ -3191,19 +3197,19 @@
 
     <!-- ConnectWithUsernamesDialogFragment -->
     <!-- Title of the username education screen shown to accounts registered without a phone number -->
-    <string name="ConnectWithUsernamesDialogFragment__connect_with_usernames">Connect with usernames</string>
+    <string name="ConnectWithUsernamesDialogFragment__connect_with_usernames">사용자 이름으로 연결하기</string>
     <!-- Title of the usernames section -->
     <string name="ConnectWithUsernamesDialogFragment__usernames">사용자 이름</string>
     <!-- Description of the usernames section -->
-    <string name="ConnectWithUsernamesDialogFragment__people_can_message_you_using_your_optional_username">People can message you using your optional username instead of a phone number. Usernames aren\'t visible on your profile.</string>
+    <string name="ConnectWithUsernamesDialogFragment__people_can_message_you_using_your_optional_username">사용자 이름을 설정하면 전화번호 대신 사용자 이름으로 메시지를 주고받을 수 있습니다. 사용자 이름은 프로필에 표시되지 않습니다.</string>
     <!-- Title of the QR code section -->
     <string name="ConnectWithUsernamesDialogFragment__qr_codes_and_links">QR 코드와 링크</string>
     <!-- Description of the QR code section -->
     <string name="ConnectWithUsernamesDialogFragment__usernames_have_a_unique_qr_code">사용자 이름에는 QR 코드와 링크가 함께 제공됩니다. 해당 코드나 링크를 친구와 공유하여 바로 대화를 시작해 보세요.</string>
     <!-- Title of the discoverability section -->
-    <string name="ConnectWithUsernamesDialogFragment__stay_discoverable">Stay discoverable</string>
+    <string name="ConnectWithUsernamesDialogFragment__stay_discoverable">사용자 검색 허용하기</string>
     <!-- Description of the discoverability section -->
-    <string name="ConnectWithUsernamesDialogFragment__without_a_phone_number_usernames_and_links">Without a phone number, usernames and links are the only way others can connect with you.</string>
+    <string name="ConnectWithUsernamesDialogFragment__without_a_phone_number_usernames_and_links">전화번호가 없는 경우, 상대방은 사용자 이름이나 전용 링크로만 대화를 시작할 수 있습니다.</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="ConnectWithUsernamesDialogFragment__set_up_username">사용자 이름 설정</string>
     <!-- Button label that dismisses the screen without creating a username -->
@@ -3211,7 +3217,7 @@
 
     <!-- SetUpUsernameBanner -->
     <!-- Body of a banner on the new message screen prompting the user to create a username -->
-    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">Choose a username so others can connect with you.</string>
+    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">상대방이 나와 연락할 수 있도록 사용자 이름을 만들어 보세요.</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="SetUpUsernameBanner__set_up">설정</string>
     <!-- Accessibility label for the button that permanently dismisses the banner -->
@@ -9277,7 +9283,7 @@
     <!-- Content description for the button that clears the contact search field -->
     <string name="SelectContactScreen__clear_search">검색 기록 삭제</string>
     <!-- Content description for the badge shown next to a contact that is in the phone\'s address book -->
-    <string name="SelectContactScreen__in_your_contacts">In your contacts</string>
+    <string name="SelectContactScreen__in_your_contacts">연락처에 있음</string>
     <!-- Title of the prompt asking for permission to read the user\'s phone contacts -->
     <string name="SelectContactScreen__find_people_you_know_on_signal">Signal에서 내가 아는 사람을 찾아보세요.</string>
     <!-- Explanation shown when Signal does not have permission to read the user\'s phone contacts -->
@@ -9287,9 +9293,9 @@
     <!-- Button that dismisses the request for permission to read the user\'s phone contacts -->
     <string name="SelectContactScreen__no_thanks">안 할래요</string>
     <!-- Button that opens the phone\'s own contact picker, used when Signal cannot ask for contacts permission -->
-    <string name="SelectContactScreen__open_phone_contacts">Open phone contacts</string>
+    <string name="SelectContactScreen__open_phone_contacts">휴대전화 연락처 열기</string>
     <!-- Note at the bottom of the contact picker when contacts permission was denied on the device. Placeholder is the "Learn more" link text. -->
-    <string name="SelectContactScreen__to_see_your_phone_contacts_here">To see your phone contacts here, allow access in your device settings. %1$s</string>
+    <string name="SelectContactScreen__to_see_your_phone_contacts_here">여기에 휴대전화 연락처를 표시하려면 기기 설정에서 접근 권한을 허용해 주세요. %1$s</string>
     <!-- Link that opens instructions for granting contacts permission from the device settings -->
     <string name="SelectContactScreen__learn_more">자세히 알아보기</string>
     <!-- Title of the sheet explaining how to grant contacts permission from the device settings -->
@@ -9297,7 +9303,7 @@
     <!-- Subtitle of the sheet explaining how to grant contacts permission from the device settings -->
     <string name="SelectContactScreen__to_find_people_you_know_on_signal">Signal에서 내가 아는 사람을 찾으려면 다음을 수행하세요.</string>
     <!-- Toast shown when a selected contact can no longer be read -->
-    <string name="SelectContactScreen__couldnt_open_contact">Couldn\'t open that contact</string>
+    <string name="SelectContactScreen__couldnt_open_contact">해당 연락처를 열 수 없음</string>
 
     <!-- Title of the screen where the user chooses which parts of a contact to share -->
     <string name="ShareContactScreen__share_contact">연락처 공유</string>
@@ -9353,15 +9359,15 @@
     <string name="SharedContactDetailsScreen__join_me_on_signal">Signal에서 함께 대화해요</string>
 
     <!-- Title of the bottom sheet that confirms the user wants a brand new recovery key. -->
-    <string name="ResetRecoveryKeyBottomSheet__reset_your_recovery_key">Reset your recovery key</string>
+    <string name="ResetRecoveryKeyBottomSheet__reset_your_recovery_key">복구 키 재설정하기</string>
     <!-- First paragraph of the bottom sheet body, explaining what a reset does. -->
-    <string name="ResetRecoveryKeyBottomSheet__resetting_your_recovery_key_will_create_a_new_key">Resetting your recovery key will create a new key for your Signal Login. This is only necessary if someone else knows your key.</string>
+    <string name="ResetRecoveryKeyBottomSheet__resetting_your_recovery_key_will_create_a_new_key">복구 키를 재설정하면 Signal Login을 위한 새로운 키가 생성됩니다. 이 작업은 다른 사람에게 기존 키가 노출되었을 때만 권장됩니다.</string>
     <!-- Second paragraph of the bottom sheet body, explaining what a reset means for backups. -->
-    <string name="ResetRecoveryKeyBottomSheet__if_backups_are_enabled_you_will_have_to_re_upload">If backups are enabled you will have to re-upload your backup, including media. If you are using \"Optimize Signal storage\" you will have to download offloaded media first.</string>
+    <string name="ResetRecoveryKeyBottomSheet__if_backups_are_enabled_you_will_have_to_re_upload">백업 기능이 활성화되어 있는 경우 미디어와 백업 파일을 다시 업로드해야 합니다. \'Signal 저장 공간 최적화\'를 사용 중이라면 오프로드된 미디어를 먼저 다운로드해야 합니다.</string>
     <!-- Bottom sheet action that continues on to reset the recovery key. -->
     <string name="ResetRecoveryKeyBottomSheet__continue">계속</string>
     <!-- Dialog body shown when the recovery key change limit is exhausted and the user does not have backups enabled. -->
-    <string name="BackupKeyRotationDialogs__limit_exceeded_body_no_backups">You\'ve exhausted the number of new keys you can create. You will be able to create a new recovery key in 7 days.</string>
+    <string name="BackupKeyRotationDialogs__limit_exceeded_body_no_backups">생성할 수 있는 새 키의 개수를 모두 소진했습니다. 새 복구 키는 7일 후에 만들 수 있습니다.</string>
 
     <!-- EOF -->
 </resources>

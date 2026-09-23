@@ -1345,14 +1345,15 @@
         <item quantity="other">%1$d 位成員已加咗入嚟。</item>
     </plurals>
 
-    <string name="GroupErrors__the_group_was_terminated">個谷解散咗啦。</string>
-    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">您冇得咁樣做</string>
-    <string name="GroupErrors__not_capable">您加嘅某個人唔支援新版谷，佢需要更新 Signal</string>
-    <string name="GroupErrors__not_announcement_capable">您加嘅某個人唔支援佈告谷，佢需要更新 Signal</string>
-    <string name="GroupErrors__failed_to_update_the_group">更新唔到個谷</string>
-    <string name="GroupErrors__youre_not_a_member_of_the_group">您唔係呢個谷嘅成員。</string>
-    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">更新唔到個谷，麻煩陣間再試下啦</string>
-    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">網絡有問題，更新唔到個谷，麻煩陣間再試下啦</string>
+    <!-- Shown when a change to a group is rejected because the group has ended. -->
+    <string name="GroupErrors__the_group_was_terminated">The group ended.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">You don\'t have the rights to do this</string>
+    <string name="GroupErrors__not_capable">Someone you added does not support new groups and needs to update Signal</string>
+    <string name="GroupErrors__not_announcement_capable">Someone you added does not support announcement groups and needs to update Signal</string>
+    <string name="GroupErrors__failed_to_update_the_group">Failed to update the group</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">You\'re not a member of the group</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Failed to update the group please retry later</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Failed to update the group due to a network error, please retry later</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">改名同相</string>
     <string name="ManageGroupActivity_legacy_group">舊版谷</string>
@@ -1485,12 +1486,8 @@
     <string name="CustomNotificationsDialogFragment__unknown">未知</string>
 
     <!-- ShareableGroupLinkDialogFragment -->
-    <string name="ShareableGroupLinkDialogFragment__group_link">谷拎</string>
-    <string name="ShareableGroupLinkDialogFragment__share">分享</string>
-    <string name="ShareableGroupLinkDialogFragment__reset_link">重設條拎</string>
     <string name="ShareableGroupLinkDialogFragment__require_admin_approval">需要管理員核准</string>
     <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">以谷拎加入嘅新成員送交話事人審批。</string>
-    <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">您係咪確定要重設條谷拎？人哋將唔再能夠用而家條拎加入呢個谷。</string>
 
     <!-- GroupLinkShareQrDialogFragment -->
     <string name="GroupLinkShareQrDialogFragment__qr_code">二維碼</string>
@@ -2736,7 +2733,14 @@
     <string name="StickerManagement_search">搜尋</string>
     <!-- Shown when no stickers match the search. The placeholder what was searched. -->
     <string name="StickerManagement_search_no_results_s">搵唔到同「%1$s」相關嘅嘢</string>
-
+    <!-- Sticker pack button for forwarding a sticker link. -->
+    <string name="StickerManagement_menu_send_signal_pack">Send via Signal</string>
+    <!-- Sticker pack button that opens a bottom sheet with more share options. -->
+    <string name="StickerManagement_menu_link_pack">Link</string>
+    <!-- Sticker pack sheet option for sharing a sticker pack link using the system share sheet. -->
+    <string name="StickerManagement_menu_share_pack">Share</string>
+    <!-- Bottom sheet description for the share sticker sheet. -->
+    <string name="StickerManagement__anyone">Anyone with this link can install and share this sticker pack.</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
     <string name="StickerManagement_accessibility_download_pack">下載 %1$s 貼圖包</string>
     <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
@@ -2771,6 +2775,8 @@
     <string name="StickerPackPreviewActivity_remove">解除安裝</string>
     <string name="StickerPackPreviewActivity_stickers">貼圖</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">載入唔到貼圖包</string>
+    <!-- Bottom sheet describing a sticker. First placeholder is the title of the sticker pack and second is the author -->
+    <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">儲存</string>

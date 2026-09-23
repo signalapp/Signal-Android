@@ -22,7 +22,7 @@
   <string name="GroupPermissionsScreen__member_labels_will_be_cleared_body">Changing this permission to &quot;Only admins&quot; will clear member labels set by non-admins in this group.</string>
   <!-- Confirm button for changing member label permission after warning. -->
   <string name="GroupPermissionsScreen__change_permission">Change permission</string>
-  <!-- Title of the screen where a group's members share its link and its admins manage it. -->
+  <!-- Title of the screen where a group\'s members share its link and its admins manage it. -->
   <string name="ShareableGroupLinkScreen__group_link">Group link</string>
   <string name="ShareableGroupLinkScreen__share">Share</string>
   <!-- Label of the row that gives the group a new link, and the confirm button of the warning it shows first. -->

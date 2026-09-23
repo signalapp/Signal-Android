@@ -1388,14 +1388,15 @@
         <item quantity="other">%1$d അംഗങ്ങളെ ചേർത്തു.</item>
     </plurals>
 
-    <string name="GroupErrors__the_group_was_terminated">ഗ്രൂപ്പ് അവസാനിച്ചു.</string>
-    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">ഇത് ചെയ്യുന്നതിന് നിങ്ങൾക്ക് അവകാശമില്ല</string>
-    <string name="GroupErrors__not_capable">നിങ്ങൾ ചേർത്ത ഒരാൾ പുതിയ ഗ്രൂപ്പുകളെ പിന്തുണയ്‌ക്കുന്നില്ല, അവർ Signal അപ്‌ഡേറ്റുചെയ്യേണ്ടതുണ്ട്</string>
-    <string name="GroupErrors__not_announcement_capable">നിങ്ങൾ ചേർത്ത ഒരാൾ അനൗൺസ്മെന്റ് ഗ്രൂപ്പുകളെ പിന്തുണയ്ക്കുന്നില്ല കൂടാതെ Signal അപ്ഡേറ്റ് ചെയ്യേണ്ടതുണ്ട്</string>
-    <string name="GroupErrors__failed_to_update_the_group">ഗ്രൂപ്പ് അപ്‌ഡേറ്റ് ചെയ്യുന്നതിൽ പരാജയപ്പെട്ടു</string>
-    <string name="GroupErrors__youre_not_a_member_of_the_group">നിങ്ങൾ ഗ്രൂപ്പിലെ അംഗമല്ല</string>
-    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">അഡ്‌മിനുകൾക്ക് മാത്രമേ പങ്കിടാനാകുന്ന ഗ്രൂപ്പ് ലിങ്ക് പുനഃസജ്ജമാക്കാൻ കഴിയൂ.</string>
-    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">ഒരു നെറ്റ്‌വർക്ക് പിശക് കാരണം ഗ്രൂപ്പ് അപ്‌ഡേറ്റുചെയ്യുന്നതിൽ പരാജയപ്പെട്ടു, ദയവായി പിന്നീട് വീണ്ടും ശ്രമിക്കുക</string>
+    <!-- Shown when a change to a group is rejected because the group has ended. -->
+    <string name="GroupErrors__the_group_was_terminated">The group ended.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">You don\'t have the rights to do this</string>
+    <string name="GroupErrors__not_capable">Someone you added does not support new groups and needs to update Signal</string>
+    <string name="GroupErrors__not_announcement_capable">Someone you added does not support announcement groups and needs to update Signal</string>
+    <string name="GroupErrors__failed_to_update_the_group">Failed to update the group</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">You\'re not a member of the group</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Failed to update the group please retry later</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Failed to update the group due to a network error, please retry later</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">പേരും ചിത്രവും എഡിറ്റുചെയ്യുക</string>
     <string name="ManageGroupActivity_legacy_group">ലെഗസി ഗ്രൂപ്പ്</string>
@@ -1530,12 +1531,8 @@
     <string name="CustomNotificationsDialogFragment__unknown">അജ്ഞാതം</string>
 
     <!-- ShareableGroupLinkDialogFragment -->
-    <string name="ShareableGroupLinkDialogFragment__group_link">ഗ്രൂപ്പിന്റെ ലിങ്ക്</string>
-    <string name="ShareableGroupLinkDialogFragment__share">പങ്കിടുക</string>
-    <string name="ShareableGroupLinkDialogFragment__reset_link">ലിങ്ക് പുനഃസജ്ജമാക്കുക്ക</string>
     <string name="ShareableGroupLinkDialogFragment__require_admin_approval">അഡ്മിൻ അംഗീകാരം ആവശ്യമാണ്</string>
     <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">ഗ്രൂപ്പ് ലിങ്ക് വഴി ചേരുന്ന പുതിയ അംഗങ്ങളെ അംഗീകരിക്കുന്നതിന് ഒരു അഡ്മിൻ ആവശ്യമാണ്.</string>
-    <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">ഗ്രൂപ്പ് ലിങ്ക് പുനസജ്ജമാക്കണമെന്ന് നിങ്ങള്‍ക്ക് ഉറപ്പാണ‍ോ? നിലവിലെ ലിങ്ക് ഉപയോഗിച്ച് ആളുകൾക്ക് മേലിൽ ഗ്രൂപ്പിൽ ചേരാനാവില്ല.</string>
 
     <!-- GroupLinkShareQrDialogFragment -->
     <string name="GroupLinkShareQrDialogFragment__qr_code">QR കോഡ്</string>
@@ -2832,7 +2829,14 @@
     <string name="StickerManagement_search">തിരയൽ</string>
     <!-- Shown when no stickers match the search. The placeholder what was searched. -->
     <string name="StickerManagement_search_no_results_s">\'%1$s\' -നായി ഫലങ്ങളൊന്നും കണ്ടെത്തിയില്ല</string>
-
+    <!-- Sticker pack button for forwarding a sticker link. -->
+    <string name="StickerManagement_menu_send_signal_pack">Send via Signal</string>
+    <!-- Sticker pack button that opens a bottom sheet with more share options. -->
+    <string name="StickerManagement_menu_link_pack">Link</string>
+    <!-- Sticker pack sheet option for sharing a sticker pack link using the system share sheet. -->
+    <string name="StickerManagement_menu_share_pack">Share</string>
+    <!-- Bottom sheet description for the share sticker sheet. -->
+    <string name="StickerManagement__anyone">Anyone with this link can install and share this sticker pack.</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
     <string name="StickerManagement_accessibility_download_pack">%1$s സ്റ്റിക്കർ പായ്ക്ക് ഡൗൺലോഡ് ചെയ്യുക</string>
     <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
@@ -2867,6 +2871,8 @@
     <string name="StickerPackPreviewActivity_remove">അൺഇൻസ്റ്റാൾ ചെയ്യുക</string>
     <string name="StickerPackPreviewActivity_stickers">സ്റ്റിക്കറുകൾ</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">സ്റ്റിക്കർ പായ്ക്ക് ലോഡുചെയ്യുന്നതിൽ പരാജയപ്പെട്ടു</string>
+    <!-- Bottom sheet describing a sticker. First placeholder is the title of the sticker pack and second is the author -->
+    <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">സംരക്ഷിക്കുക</string>

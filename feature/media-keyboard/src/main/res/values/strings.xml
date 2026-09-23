@@ -55,19 +55,19 @@
   <!-- Sticker page -->
   <!-- Accessibility description for the button in the media keyboard top bar that opens the screen where sticker packs are managed. -->
   <string name="MediaKeyboard__manage_stickers">Manage stickers</string>
-  <!-- Menu option that sends a sticker, on a long-pressed sticker, or the whole pack as a link, in a sticker pack header's menu. Verb, imperative. -->
+  <!-- Menu option that sends a sticker, on a long-pressed sticker, or the whole pack as a link, in a sticker pack header\'s menu. Verb, imperative. -->
   <string name="MediaKeyboard__send">Send</string>
-  <!-- Menu option, on a long-pressed sticker and in a sticker pack header's menu, that opens the pack the sticker belongs to. Verb phrase, imperative. -->
+  <!-- Menu option, on a long-pressed sticker and in a sticker pack header\'s menu, that opens the pack the sticker belongs to. Verb phrase, imperative. -->
   <string name="MediaKeyboard__view_pack">View pack</string>
-  <!-- Accessibility description for the three-dot button at the end of a sticker pack header, which opens that pack's menu. -->
+  <!-- Accessibility description for the three-dot button at the end of a sticker pack header, which opens that pack\'s menu. -->
   <string name="MediaKeyboard__more_options">More options</string>
-  <!-- Menu option in a sticker pack header's menu that uninstalls the pack. Verb, imperative. -->
+  <!-- Menu option in a sticker pack header\'s menu that uninstalls the pack. Verb, imperative. -->
   <string name="MediaKeyboard__remove_pack">Remove</string>
   <!-- Title of the confirmation dialog shown before uninstalling a sticker pack. -->
   <string name="MediaKeyboard__remove_sticker_pack_question">Remove sticker pack?</string>
   <!-- Body of the confirmation dialog shown before uninstalling a sticker pack. -->
   <string name="MediaKeyboard__this_will_remove_the_sticker_pack">This will remove the sticker pack. You can\'t add it again without a link or sticker message.</string>
-  <!-- Menu option in the recently used header's menu that forgets every recently used sticker. Verb phrase, imperative. -->
+  <!-- Menu option in the recently used header\'s menu that forgets every recently used sticker. Verb phrase, imperative. -->
   <string name="MediaKeyboard__clear_recents">Clear recents</string>
 
   <!-- Gif page -->

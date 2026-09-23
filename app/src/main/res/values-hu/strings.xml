@@ -1388,14 +1388,15 @@
         <item quantity="other">%1$d tag hozzáadva</item>
     </plurals>
 
-    <string name="GroupErrors__the_group_was_terminated">A csoport megszűnt.</string>
-    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">Ehhez nincs elegendő jogosultságod</string>
-    <string name="GroupErrors__not_capable">Egy általad hozzáadott csoporttag nem támogatja az új csoportokat, ezért frissítenie kell a Signalt</string>
-    <string name="GroupErrors__not_announcement_capable">Egy új tag elavult Signalt használ, frissítenie kell a hírcsatorna típusú csoport használatához</string>
-    <string name="GroupErrors__failed_to_update_the_group">Nem sikerült a csoport frissítése</string>
-    <string name="GroupErrors__youre_not_a_member_of_the_group">Nem vagy a csoport tagja</string>
-    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Nem sikerült a csoport frissítése. Kérlek próbáld újra később!</string>
-    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Hálózati hiba miatt nem sikerült a csoport frissítése. Kérlek próbáld újra később!</string>
+    <!-- Shown when a change to a group is rejected because the group has ended. -->
+    <string name="GroupErrors__the_group_was_terminated">The group ended.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">You don\'t have the rights to do this</string>
+    <string name="GroupErrors__not_capable">Someone you added does not support new groups and needs to update Signal</string>
+    <string name="GroupErrors__not_announcement_capable">Someone you added does not support announcement groups and needs to update Signal</string>
+    <string name="GroupErrors__failed_to_update_the_group">Failed to update the group</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">You\'re not a member of the group</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Failed to update the group please retry later</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Failed to update the group due to a network error, please retry later</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">Név és kép szerkesztése</string>
     <string name="ManageGroupActivity_legacy_group">Régi típusú csoport</string>
@@ -1530,12 +1531,8 @@
     <string name="CustomNotificationsDialogFragment__unknown">Ismeretlen</string>
 
     <!-- ShareableGroupLinkDialogFragment -->
-    <string name="ShareableGroupLinkDialogFragment__group_link">Csoporthivatkozás</string>
-    <string name="ShareableGroupLinkDialogFragment__share">Megosztás</string>
-    <string name="ShareableGroupLinkDialogFragment__reset_link">Hivatkozás cseréje</string>
     <string name="ShareableGroupLinkDialogFragment__require_admin_approval">Adminisztrátori jóváhagyás szükséges</string>
     <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Admin általi jóváhagyás elvárása csoporthivatkozással csatlakozó tagok felvételéhez.</string>
-    <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Biztosan lecseréled a csoporthivatkozást? Utána már nem lehet a jelenlegi hivatkozás használatával csatlakozni a csoporthoz.</string>
 
     <!-- GroupLinkShareQrDialogFragment -->
     <string name="GroupLinkShareQrDialogFragment__qr_code">QR kód</string>
@@ -2832,7 +2829,14 @@
     <string name="StickerManagement_search">Keresés</string>
     <!-- Shown when no stickers match the search. The placeholder what was searched. -->
     <string name="StickerManagement_search_no_results_s">Nincs találat a \'%1$s\' kifejezésre</string>
-
+    <!-- Sticker pack button for forwarding a sticker link. -->
+    <string name="StickerManagement_menu_send_signal_pack">Send via Signal</string>
+    <!-- Sticker pack button that opens a bottom sheet with more share options. -->
+    <string name="StickerManagement_menu_link_pack">Link</string>
+    <!-- Sticker pack sheet option for sharing a sticker pack link using the system share sheet. -->
+    <string name="StickerManagement_menu_share_pack">Share</string>
+    <!-- Bottom sheet description for the share sticker sheet. -->
+    <string name="StickerManagement__anyone">Anyone with this link can install and share this sticker pack.</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
     <string name="StickerManagement_accessibility_download_pack">%1$s matricacsomag letöltése</string>
     <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
@@ -2867,6 +2871,8 @@
     <string name="StickerPackPreviewActivity_remove">Eltávolítás</string>
     <string name="StickerPackPreviewActivity_stickers">Matricák</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Nem sikerült betölteni a matricacsomagot</string>
+    <!-- Bottom sheet describing a sticker. First placeholder is the title of the sticker pack and second is the author -->
+    <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">Mentés</string>
