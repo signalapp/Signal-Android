@@ -2702,6 +2702,14 @@ class ConversationFragment :
     }
   }
 
+  /**
+   * True from the moment a recording is pressed until its session finishes writing out, which outlasts the recorder
+   * itself: the draft is snapshotted once per second while recording, so the draft can be non-null while the panel
+   * still needs to present as "recording" rather than "reviewing a voice draft".
+   */
+  private val isVoiceRecordingInFlight: Boolean
+    get() = inputPanel.isRecordingInProgress || (this::voiceMessageRecordingDelegate.isInitialized && voiceMessageRecordingDelegate.hasActiveSession())
+
   private fun updateToggleButtonState() {
     val buttonToggle: AnimatingToggle = binding.conversationInputPanel.buttonToggle
     val quickAttachment: HidingLinearLayout = binding.conversationInputPanel.quickAttachmentToggle
@@ -2720,8 +2728,7 @@ class ConversationFragment :
         inlineAttachment.hide(false)
       }
 
-      // An in-progress recording snapshots itself into the draft, but its UI lives in quickAttachment and must stay visible.
-      draftViewModel.voiceNoteDraft != null && !inputPanel.isRecordingInProgress -> {
+      draftViewModel.voiceNoteDraft != null && !isVoiceRecordingInFlight -> {
         buttonToggle.display(sendButton)
         quickAttachment.hide(true)
         inlineAttachment.hide(true)

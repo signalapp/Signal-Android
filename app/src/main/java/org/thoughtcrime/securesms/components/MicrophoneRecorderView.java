@@ -265,6 +265,7 @@ public final class MicrophoneRecorderView extends FrameLayout implements View.On
     }
 
     void display() {
+      lockDropTarget.animate().cancel();
       lockDropTarget.setScaleX(1);
       lockDropTarget.setScaleY(1);
       lockDropTarget.setAlpha(0);
@@ -280,11 +281,15 @@ public final class MicrophoneRecorderView extends FrameLayout implements View.On
     }
 
     void hide() {
+      if (lockDropTarget.getVisibility() != VISIBLE) return;
+
+      lockDropTarget.animate().cancel();
       lockDropTarget.animate()
                     .setStartDelay(0)
                     .setDuration(ANIMATION_DURATION)
                     .setInterpolator(new LinearInterpolator())
                     .scaleX(0).scaleY(0)
+                    .withEndAction(() -> lockDropTarget.setVisibility(GONE))
                     .start();
     }
   }

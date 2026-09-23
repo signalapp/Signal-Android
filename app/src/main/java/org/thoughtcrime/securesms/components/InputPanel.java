@@ -101,6 +101,7 @@ public class InputPanel extends ConstraintLayout
   private AnimatingToggle       buttonToggle;
   private SendButton            sendButton;
   private View                  recordingContainer;
+  private final int[]           recordingContainerLocation = new int[2];
   private View                  recordLockCancel;
   private View                  composeContainer;
   private View                  editMessageCancel;
@@ -651,7 +652,9 @@ public class InputPanel extends ConstraintLayout
   public void onRecordMoved(float offsetX, float absoluteX) {
     slideToCancel.moveTo(offsetX);
 
-    float position  = absoluteX / recordingContainer.getWidth();
+    recordingContainer.getLocationOnScreen(recordingContainerLocation);
+
+    float position = (absoluteX - recordingContainerLocation[0]) / recordingContainer.getWidth();
 
     if (ViewUtil.isLtr(this) && position <= 0.5 ||
         ViewUtil.isRtl(this) && position >= 0.6)
