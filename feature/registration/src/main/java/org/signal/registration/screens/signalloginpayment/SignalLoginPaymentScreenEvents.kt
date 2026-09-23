@@ -11,6 +11,15 @@ sealed class SignalLoginPaymentScreenEvents {
   /** Emitted once when the screen is created to load initial data (namely the purchase price) into the state. */
   data object Initialize : SignalLoginPaymentScreenEvents()
 
+  /** The check for a paid-for but unredeemed Signal Login purchase finished. */
+  data class UnredeemedPurchaseLoaded(val hasUnredeemedPurchase: Boolean) : SignalLoginPaymentScreenEvents()
+
+  /** Google Play became able to take a payment, and the price lookup that follows has started. */
+  data class PaymentInfoLoading(val paymentAvailability: PaymentAvailability) : SignalLoginPaymentScreenEvents()
+
+  /** A lookup of whether Google Play can take a payment, and the resulting price, finished. */
+  data class PaymentInfoLoaded(val paymentAvailability: PaymentAvailability, val price: SignalLoginPaymentState.Price) : SignalLoginPaymentScreenEvents()
+
   /** The screen came back to the foreground, which is the cue to re-check anything the user went off to fix. */
   data object Foregrounded : SignalLoginPaymentScreenEvents()
 

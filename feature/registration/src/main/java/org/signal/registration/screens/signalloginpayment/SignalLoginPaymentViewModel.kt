@@ -7,6 +7,7 @@ package org.signal.registration.screens.signalloginpayment
 
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,6 +16,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.RequestResult
@@ -44,6 +46,8 @@ class SignalLoginPaymentViewModel(
   private val _actions = Channel<SignalLoginPaymentScreenActions>(Channel.BUFFERED)
   val actions: Flow<SignalLoginPaymentScreenActions> = _actions.receiveAsFlow()
 
+  private var paymentInfoJob: Job? = null
+
   init {
     _state
       .onEach { Log.d(TAG, "[State] $it") }
@@ -65,31 +69,35 @@ class SignalLoginPaymentViewModel(
   ) {
     when (event) {
       is SignalLoginPaymentScreenEvents.Initialize -> {
-        val hasUnredeemedPurchase = repository.hasUnredeemedSignalLoginPurchase()
-
-        if (hasUnredeemedPurchase) {
-          Log.i(TAG, "[Initialize] The user already has a Signal Login purchase that was never redeemed.")
-        }
-
-        val paymentAvailability = repository.getPaymentAvailability()
-
-        val price = when {
-          paymentAvailability.isAvailable -> loadPrice()
-          paymentAvailability.isTerminal -> {
-            Log.w(TAG, "[Initialize] Google Play can never take a payment here ($paymentAvailability). Offering an existing login only.")
-            SignalLoginPaymentState.Price.Unavailable
+        paymentInfoJob = viewModelScope.launch {
+          val hasUnredeemedPurchase = repository.hasUnredeemedSignalLoginPurchase()
+          if (hasUnredeemedPurchase) {
+            Log.i(TAG, "[Initialize] The user already has a Signal Login purchase that was never redeemed.")
           }
-          else -> {
-            Log.w(TAG, "[Initialize] Google Play cannot take a payment ($paymentAvailability), so there is no price to show yet.")
-            SignalLoginPaymentState.Price.TransientError
-          }
+          onEvent(SignalLoginPaymentScreenEvents.UnredeemedPurchaseLoaded(hasUnredeemedPurchase))
+          onEvent(loadPaymentInfo(repository.getPaymentAvailability()))
         }
+      }
 
+      is SignalLoginPaymentScreenEvents.UnredeemedPurchaseLoaded -> {
+        stateEmitter(state.copy(hasUnredeemedPurchase = event.hasUnredeemedPurchase))
+      }
+
+      is SignalLoginPaymentScreenEvents.PaymentInfoLoading -> {
+        stateEmitter(
+          state.copy(
+            price = SignalLoginPaymentState.Price.Loading,
+            paymentAvailability = event.paymentAvailability,
+            dialogs = state.dialogs.copy(paymentUnavailable = false)
+          )
+        )
+      }
+
+      is SignalLoginPaymentScreenEvents.PaymentInfoLoaded -> {
         val updated = state.copy(
-          price = price,
-          hasUnredeemedPurchase = hasUnredeemedPurchase,
-          paymentAvailability = paymentAvailability,
-          dialogs = state.dialogs.copy(paymentUnavailable = !paymentAvailability.isAvailable)
+          price = event.price,
+          paymentAvailability = event.paymentAvailability,
+          dialogs = state.dialogs.copy(paymentUnavailable = !event.paymentAvailability.isAvailable)
         )
 
         stateEmitter(
@@ -102,37 +110,29 @@ class SignalLoginPaymentViewModel(
       }
 
       is SignalLoginPaymentScreenEvents.PriceRetryClicked -> {
-        val localState = state.copy(price = SignalLoginPaymentState.Price.Loading)
-        stateEmitter(localState)
+        stateEmitter(state.copy(price = SignalLoginPaymentState.Price.Loading))
 
-        val availability = repository.getPaymentAvailability()
-        if (availability.isAvailable) {
-          stateEmitter(localState.copy(paymentAvailability = availability, price = loadPrice()))
-        } else {
-          Log.w(TAG, "[PriceRetryClicked] Google Play still cannot take a payment: $availability")
-          stateEmitter(
-            localState.copy(
-              paymentAvailability = availability,
-              price = if (availability.isTerminal) SignalLoginPaymentState.Price.Unavailable else SignalLoginPaymentState.Price.TransientError,
-              dialogs = localState.dialogs.copy(paymentUnavailable = true)
-            )
-          )
+        paymentInfoJob?.cancel()
+        paymentInfoJob = viewModelScope.launch {
+          onEvent(loadPaymentInfo(repository.getPaymentAvailability()))
         }
       }
 
       is SignalLoginPaymentScreenEvents.Foregrounded -> {
-        val availability = repository.getPaymentAvailability()
+        if (paymentInfoJob?.isActive == true) {
+          return
+        }
 
-        if (availability != state.paymentAvailability) {
-          Log.i(TAG, "[Foregrounded] Google Play availability changed from ${state.paymentAvailability} to $availability.")
+        val previousAvailability = state.paymentAvailability
+        paymentInfoJob = viewModelScope.launch {
+          val availability = repository.getPaymentAvailability()
 
-          val localState = state.copy(paymentAvailability = availability)
-          if (availability.isAvailable) {
-            stateEmitter(localState.copy(price = SignalLoginPaymentState.Price.Loading, dialogs = localState.dialogs.copy(paymentUnavailable = false)))
-            stateEmitter(localState.copy(price = loadPrice(), dialogs = localState.dialogs.copy(paymentUnavailable = false)))
-          } else {
-            val price = if (availability.isTerminal) SignalLoginPaymentState.Price.Unavailable else SignalLoginPaymentState.Price.TransientError
-            stateEmitter(localState.copy(price = price, dialogs = localState.dialogs.copy(paymentUnavailable = true)))
+          if (availability != previousAvailability) {
+            Log.i(TAG, "[Foregrounded] Google Play availability changed from $previousAvailability to $availability.")
+            if (availability.isAvailable) {
+              onEvent(SignalLoginPaymentScreenEvents.PaymentInfoLoading(availability))
+            }
+            onEvent(loadPaymentInfo(availability))
           }
         }
       }
@@ -231,6 +231,22 @@ class SignalLoginPaymentViewModel(
         stateEmitter(state.copy(dialogs = state.dialogs.copy(paymentUnavailable = false)))
       }
     }
+  }
+
+  private suspend fun loadPaymentInfo(availability: PaymentAvailability): SignalLoginPaymentScreenEvents.PaymentInfoLoaded {
+    val price = when {
+      availability.isAvailable -> loadPrice()
+      availability.isTerminal -> {
+        Log.w(TAG, "[loadPaymentInfo] Google Play can never take a payment here ($availability). Offering an existing login only.")
+        SignalLoginPaymentState.Price.Unavailable
+      }
+      else -> {
+        Log.w(TAG, "[loadPaymentInfo] Google Play cannot take a payment ($availability), so there is no price to show yet.")
+        SignalLoginPaymentState.Price.TransientError
+      }
+    }
+
+    return SignalLoginPaymentScreenEvents.PaymentInfoLoaded(availability, price)
   }
 
   private suspend fun loadPrice(): SignalLoginPaymentState.Price {
