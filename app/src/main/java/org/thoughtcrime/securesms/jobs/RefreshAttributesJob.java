@@ -115,7 +115,6 @@ public class RefreshAttributesJob extends BaseJob {
 
     if (!forced && hasRefreshedThisAppCycle) {
       Log.d(TAG, "Already refreshed this app cycle. Skipping.");
-      SignalStore.misc().setLastRefreshAttributesTime(System.currentTimeMillis());
       return;
     }
 
