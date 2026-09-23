@@ -11,6 +11,7 @@ import org.signal.core.util.logging.Log;
 import org.signal.network.exceptions.NonSuccessfulResponseCodeException;
 import org.thoughtcrime.securesms.AppCapabilities;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
@@ -37,9 +38,26 @@ public class RefreshAttributesJob extends BaseJob {
 
   private static final String KEY_FORCED = "forced";
 
+  private static final long REFRESH_INTERVAL = TimeUnit.DAYS.toMillis(7);
+
   private static volatile boolean hasRefreshedThisAppCycle;
 
   private final boolean forced;
+
+  /**
+   * Enqueues a routine refresh if it's been long enough since our last successful one.
+   */
+  public static void enqueueIfNecessary() {
+    if (!SignalStore.account().isRegistered()) {
+      return;
+    }
+
+    long timeSinceLastRefresh = System.currentTimeMillis() - SignalStore.misc().getLastRefreshAttributesTime();
+
+    if (timeSinceLastRefresh > REFRESH_INTERVAL || timeSinceLastRefresh < 0) {
+      AppDependencies.getJobManager().add(new RefreshAttributesJob(false));
+    }
+  }
 
   public static RefreshAttributesJob forAccountRestore() {
     return new RefreshAttributesJob(true, Parameters.PRIORITY_HIGH);
@@ -98,6 +116,7 @@ public class RefreshAttributesJob extends BaseJob {
 
     if (!forced && hasRefreshedThisAppCycle) {
       Log.d(TAG, "Already refreshed this app cycle. Skipping.");
+      SignalStore.misc().setLastRefreshAttributesTime(System.currentTimeMillis());
       return;
     }
 
@@ -115,6 +134,7 @@ public class RefreshAttributesJob extends BaseJob {
     }
 
     hasRefreshedThisAppCycle = true;
+    SignalStore.misc().setLastRefreshAttributesTime(System.currentTimeMillis());
   }
 
   private void setPrimaryDeviceAttributes(@NonNull SvrValues svrValues, @NonNull AccountAttributes.Capabilities capabilities) throws IOException {

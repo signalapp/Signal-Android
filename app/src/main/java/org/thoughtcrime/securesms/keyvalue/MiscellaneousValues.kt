@@ -35,6 +35,7 @@ class MiscellaneousValues internal constructor(store: KeyValueStore) : SignalSto
     private const val FORCE_PNI_SIGNED_PREKEY_ROTATION = "misc.force_pni_signed_prekey_rotation"
     private const val LAST_CDS_FOREGROUND_SYNC = "misc.last_cds_foreground_sync"
     private const val LINKED_DEVICE_LAST_ACTIVE_CHECK_TIME = "misc.linked_device.last_active_check_time"
+    private const val LAST_REFRESH_ATTRIBUTES_TIME = "misc.last_refresh_attributes_time"
     private const val LEAST_ACTIVE_LINKED_DEVICE = "misc.linked_device.least_active"
     private const val NEXT_DATABASE_ANALYSIS_TIME = "misc.next_database_analysis_time"
     private const val LAST_NETWORK_RESET_TIME = "misc.last_network_reset_time"
@@ -276,6 +277,11 @@ class MiscellaneousValues internal constructor(store: KeyValueStore) : SignalSto
    * The last time we checked for linked device activity.
    */
   var linkedDeviceLastActiveCheckTime by longValue(LINKED_DEVICE_LAST_ACTIVE_CHECK_TIME, 0)
+
+  /**
+   * The last time we successfully refreshed our account attributes with the service.
+   */
+  var lastRefreshAttributesTime: Long by longValue(LAST_REFRESH_ATTRIBUTES_TIME, 0)
 
   /**
    * Details about the least-active linked device.

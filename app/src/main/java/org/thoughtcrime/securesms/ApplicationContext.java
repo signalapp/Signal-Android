@@ -257,6 +257,7 @@ public class ApplicationContext extends Application implements AppForegroundObse
               .addPostRender(AccountConsistencyWorkerJob::enqueueIfNecessary)
               .addPostRender(GroupRingCleanupJob::enqueue)
               .addPostRender(LinkedDeviceInactiveCheckJob::enqueueIfNecessary)
+              .addPostRender(RefreshAttributesJob::enqueueIfNecessary)
               .addPostRender(() -> ActiveCallManager.clearNotifications(this))
               .addPostRender(RestoreOptimizedMediaJob::enqueueIfNecessary)
               .addPostRender(() -> AppDependencies.getPinnedMessageManager().scheduleIfNecessary())
