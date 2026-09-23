@@ -404,18 +404,26 @@ private fun NextButton(
   state: PhoneNumberEntryState,
   onEvent: (PhoneNumberEntryScreenEvents) -> Unit
 ) {
+  val arrangement = if (state.isPhoneNumberlessRegistrationAvailable) {
+    Arrangement.SpaceBetween
+  } else {
+    Arrangement.End
+  }
+
   Row(
     modifier = Modifier
       .fillMaxWidth()
       .padding(params.footerPadding),
-    horizontalArrangement = Arrangement.End,
+    horizontalArrangement = arrangement,
     verticalAlignment = Alignment.CenterVertically
   ) {
     if (state.isPhoneNumberlessRegistrationAvailable) {
       TextButton(
         onClick = { onEvent(PhoneNumberEntryScreenEvents.RegisterWithoutNumber) },
         enabled = !state.showSpinner,
-        modifier = Modifier.testTag(TestTags.PHONE_NUMBER_REGISTER_WITHOUT_NUMBER_BUTTON)
+        modifier = Modifier
+          .weight(1f, fill = false)
+          .testTag(TestTags.PHONE_NUMBER_REGISTER_WITHOUT_NUMBER_BUTTON)
       ) {
         Text(
           stringResource(
@@ -428,7 +436,7 @@ private fun NextButton(
         )
       }
 
-      Spacer(modifier = Modifier.weight(1f))
+      Spacer(modifier = Modifier.width(8.dp))
     }
 
     Buttons.LargeTonal(
