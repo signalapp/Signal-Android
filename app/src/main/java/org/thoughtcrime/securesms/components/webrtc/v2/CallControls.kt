@@ -8,26 +8,31 @@ package org.thoughtcrime.securesms.components.webrtc.v2
 import android.Manifest
 import android.content.pm.PackageManager
 import android.content.res.Configuration
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Arrangement.spacedBy
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBarsIgnoringVisibility
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.PreviewWrapper
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import org.signal.core.ui.compose.NightPreview
-import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.SignalPreviewWrapper
 import org.signal.core.ui.compose.TriggerAlignedPopupState.Companion.popupTrigger
 import org.signal.core.ui.compose.TriggerAlignedPopupState.Companion.rememberTriggerAlignedPopupState
+import org.signal.core.ui.compose.spaceBetweenUpTo
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantsState
 import org.thoughtcrime.securesms.components.webrtc.ToggleButtonOutputState
@@ -61,7 +66,8 @@ fun CallControls(
     modifier = modifier.padding(bottom = bottom)
   ) {
     Row(
-      horizontalArrangement = spacedBy(20.dp)
+      horizontalArrangement = Arrangement.spaceBetweenUpTo(20.dp),
+      modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)
     ) {
       if (callControlsState.displayAudioOutputToggle) {
         CallAudioToggleButton(
@@ -134,37 +140,264 @@ fun CallControls(
   }
 }
 
-@NightPreview
+/**
+ * The distinct control layouts the call screen can produce, as derived by
+ * [CallControlsState.fromViewModelData] from a given [WebRtcControls]. The rules that separate them:
+ *
+ * - the audio, video, and mic toggles appear in every pre-join and in-call state, except that the audio toggle
+ *   drops out once your own camera is on and there's no headset to switch to
+ * - the ring toggle is pre-join only, and only for a group that isn't a call link and that nobody has joined yet
+ * - the overflow button is in-call only, and only once someone else is on the call
+ * - the start call button is pre-join only, and the hangup button replaces it once the call is up
+ *
+ * Note that a connected call link and a connected group produce the same strip -- a call link is a group call with
+ * `isCallLink` set, and that flag only suppresses the ring toggle, which is pre-join only. So the connected case is
+ * covered once, by [GROUP_ONGOING].
+ */
+private enum class CallControlsPreviewState(val controls: CallControlsState) {
+  /** 1:1 lobby. No ring toggle (not a group), no hangup yet. */
+  ONE_TO_ONE_PRE_JOIN(
+    CallControlsState(
+      isEarpieceAvailable = true,
+      displayAudioOutputToggle = true,
+      audioOutput = WebRtcAudioOutput.HANDSET,
+      displayVideoToggle = true,
+      displayMicToggle = true,
+      isMicEnabled = true,
+      displayStartCallButton = true,
+      startCallButtonText = R.string.WebRtcCallView__start_call
+    )
+  ),
+
+  /** The smallest strip: camera on with no headset attached leaves nowhere for the audio toggle to route to. */
+  ONE_TO_ONE_PRE_JOIN_VIDEO(
+    CallControlsState(
+      audioOutput = WebRtcAudioOutput.SPEAKER,
+      displayVideoToggle = true,
+      isVideoEnabled = true,
+      displayMicToggle = true,
+      isMicEnabled = true,
+      displayStartCallButton = true,
+      startCallButtonText = R.string.WebRtcCallView__start_call
+    )
+  ),
+
+  /** Connected 1:1. Overflow only shows here when screen sharing is enabled remotely. */
+  ONE_TO_ONE_ONGOING(
+    CallControlsState(
+      isBluetoothHeadsetAvailable = true,
+      isEarpieceAvailable = true,
+      displayAudioOutputToggle = true,
+      audioOutput = WebRtcAudioOutput.BLUETOOTH_HEADSET,
+      displayVideoToggle = true,
+      displayMicToggle = true,
+      isMicEnabled = true,
+      displayAdditionalActions = true,
+      displayEndCallButton = true
+    )
+  ),
+
+  /** Group lobby with nobody on the call yet: the only state that offers the ring toggle. */
+  GROUP_PRE_JOIN(
+    CallControlsState(
+      isEarpieceAvailable = true,
+      displayAudioOutputToggle = true,
+      audioOutput = WebRtcAudioOutput.HANDSET,
+      displayVideoToggle = true,
+      displayMicToggle = true,
+      isMicEnabled = true,
+      displayGroupRingingToggle = true,
+      isGroupRingingEnabled = true,
+      isGroupRingingAllowed = true,
+      isGroupCall = true,
+      displayStartCallButton = true,
+      startCallButtonText = R.string.WebRtcCallView__start_call
+    )
+  ),
+
+  /** Same lobby, but the group is past [RemoteConfig.maxGroupCallRingSize], so the ring toggle is shown disabled. */
+  GROUP_PRE_JOIN_RING_DISALLOWED(
+    CallControlsState(
+      isEarpieceAvailable = true,
+      displayAudioOutputToggle = true,
+      audioOutput = WebRtcAudioOutput.HANDSET,
+      displayVideoToggle = true,
+      displayMicToggle = true,
+      isMicEnabled = true,
+      displayGroupRingingToggle = true,
+      isGroupCall = true,
+      displayStartCallButton = true,
+      startCallButtonText = R.string.WebRtcCallView__start_call
+    )
+  ),
+
+  /** Group lobby for a call that's already running: the ring toggle is gone and the button reads "Join call". */
+  GROUP_PRE_JOIN_CALL_IN_PROGRESS(
+    CallControlsState(
+      isEarpieceAvailable = true,
+      displayAudioOutputToggle = true,
+      audioOutput = WebRtcAudioOutput.HANDSET,
+      displayVideoToggle = true,
+      displayMicToggle = true,
+      isMicEnabled = true,
+      isGroupCall = true,
+      displayStartCallButton = true,
+      startCallButtonText = R.string.WebRtcCallView__join_call
+    )
+  ),
+
+  /** Call link lobby. Identical to an empty group lobby except that call links never ring. */
+  CALL_LINK_PRE_JOIN(
+    CallControlsState(
+      isEarpieceAvailable = true,
+      displayAudioOutputToggle = true,
+      audioOutput = WebRtcAudioOutput.HANDSET,
+      displayVideoToggle = true,
+      displayMicToggle = true,
+      isMicEnabled = true,
+      isGroupCall = true,
+      displayStartCallButton = true,
+      startCallButtonText = R.string.WebRtcCallView__start_call
+    )
+  ),
+
+  /** Connected group or call link. The widest strip. */
+  GROUP_ONGOING(
+    CallControlsState(
+      isWiredHeadsetAvailable = true,
+      isEarpieceAvailable = true,
+      displayAudioOutputToggle = true,
+      audioOutput = WebRtcAudioOutput.WIRED_HEADSET,
+      displayVideoToggle = true,
+      isVideoEnabled = true,
+      displayMicToggle = true,
+      isMicEnabled = true,
+      isGroupCall = true,
+      displayAdditionalActions = true,
+      displayEndCallButton = true
+    )
+  ),
+
+  /** Connected group while sharing your screen, which takes the video toggle away. */
+  GROUP_ONGOING_SCREEN_SHARING(
+    CallControlsState(
+      isEarpieceAvailable = true,
+      displayAudioOutputToggle = true,
+      audioOutput = WebRtcAudioOutput.SPEAKER,
+      displayVideoToggle = true,
+      displayMicToggle = true,
+      isMicEnabled = true,
+      isGroupCall = true,
+      displayAdditionalActions = true,
+      displayEndCallButton = true,
+      isLocalScreenSharing = true
+    )
+  )
+}
+
+/**
+ * The remembered collaborators [CallControls] needs beyond its state, built to match the given controls so that
+ * the audio picker offers the same devices the strip claims are available.
+ */
 @Composable
-fun CallControlsPreview() {
-  Previews.Preview {
-    CallControls(
-      callControlsState = CallControlsState(
-        displayAudioOutputToggle = true,
-        audioOutput = WebRtcAudioOutput.WIRED_HEADSET,
-        displayMicToggle = true,
-        isMicEnabled = true,
-        displayVideoToggle = true,
-        isVideoEnabled = true,
-        displayGroupRingingToggle = true,
-        isGroupRingingEnabled = true,
-        displayAdditionalActions = true,
-        displayStartCallButton = true,
-        startCallButtonText = R.string.WebRtcCallView__start_call,
-        displayEndCallButton = true
-      ),
-      displayVideoTooltip = false,
-      callScreenControlsListener = CallScreenControlsListener.Empty,
-      callScreenSheetDisplayListener = CallScreenSheetDisplayListener.Empty,
-      additionalActionsState = AdditionalActionsState(
-        triggerAlignedPopupState = rememberTriggerAlignedPopupState()
-      ),
-      audioOutputPickerController = AudioOutputPickerController(
-        outputState = ToggleButtonOutputState(),
-        onSelectedDeviceChanged = {}
-      )
+private fun rememberPreviewState(controls: CallControlsState): Pair<AdditionalActionsState, AudioOutputPickerController> {
+  val triggerAlignedPopupState = rememberTriggerAlignedPopupState()
+  val outputState = remember(controls) {
+    ToggleButtonOutputState().apply {
+      isEarpieceAvailable = controls.isEarpieceAvailable
+      isWiredHeadsetAvailable = controls.isWiredHeadsetAvailable
+      isBluetoothHeadsetAvailable = controls.isBluetoothHeadsetAvailable
+      setCurrentOutput(controls.audioOutput)
+    }
+  }
+
+  return remember(controls, triggerAlignedPopupState, outputState) {
+    AdditionalActionsState(
+      triggerAlignedPopupState = triggerAlignedPopupState,
+      isGroupCall = controls.isGroupCall,
+      isScreenSharing = controls.isLocalScreenSharing
+    ) to AudioOutputPickerController(
+      outputState = outputState,
+      onSelectedDeviceChanged = {}
     )
   }
+}
+
+@Composable
+private fun CallControlsPreview(previewState: CallControlsPreviewState) {
+  val (additionalActionsState, audioOutputPickerController) = rememberPreviewState(previewState.controls)
+
+  CallControls(
+    callControlsState = previewState.controls,
+    displayVideoTooltip = false,
+    callScreenControlsListener = CallScreenControlsListener.Empty,
+    callScreenSheetDisplayListener = CallScreenSheetDisplayListener.Empty,
+    additionalActionsState = additionalActionsState,
+    audioOutputPickerController = audioOutputPickerController
+  )
+}
+
+@PreviewWrapper(SignalPreviewWrapper::class)
+@NightPreview
+@Composable
+private fun OneToOnePreJoinCallControlsPreview() {
+  CallControlsPreview(CallControlsPreviewState.ONE_TO_ONE_PRE_JOIN)
+}
+
+@PreviewWrapper(SignalPreviewWrapper::class)
+@NightPreview
+@Composable
+private fun OneToOnePreJoinVideoCallControlsPreview() {
+  CallControlsPreview(CallControlsPreviewState.ONE_TO_ONE_PRE_JOIN_VIDEO)
+}
+
+@PreviewWrapper(SignalPreviewWrapper::class)
+@NightPreview
+@Composable
+private fun OneToOneOngoingCallControlsPreview() {
+  CallControlsPreview(CallControlsPreviewState.ONE_TO_ONE_ONGOING)
+}
+
+@PreviewWrapper(SignalPreviewWrapper::class)
+@NightPreview
+@Composable
+private fun GroupPreJoinCallControlsPreview() {
+  CallControlsPreview(CallControlsPreviewState.GROUP_PRE_JOIN)
+}
+
+@PreviewWrapper(SignalPreviewWrapper::class)
+@NightPreview
+@Composable
+private fun GroupPreJoinRingDisallowedCallControlsPreview() {
+  CallControlsPreview(CallControlsPreviewState.GROUP_PRE_JOIN_RING_DISALLOWED)
+}
+
+@PreviewWrapper(SignalPreviewWrapper::class)
+@NightPreview
+@Composable
+private fun GroupPreJoinCallInProgressCallControlsPreview() {
+  CallControlsPreview(CallControlsPreviewState.GROUP_PRE_JOIN_CALL_IN_PROGRESS)
+}
+
+@PreviewWrapper(SignalPreviewWrapper::class)
+@NightPreview
+@Composable
+private fun CallLinkPreJoinCallControlsPreview() {
+  CallControlsPreview(CallControlsPreviewState.CALL_LINK_PRE_JOIN)
+}
+
+@PreviewWrapper(SignalPreviewWrapper::class)
+@NightPreview
+@Composable
+private fun GroupOngoingCallControlsPreview() {
+  CallControlsPreview(CallControlsPreviewState.GROUP_ONGOING)
+}
+
+@PreviewWrapper(SignalPreviewWrapper::class)
+@NightPreview
+@Composable
+private fun GroupOngoingScreenSharingCallControlsPreview() {
+  CallControlsPreview(CallControlsPreviewState.GROUP_ONGOING_SCREEN_SHARING)
 }
 
 /**
