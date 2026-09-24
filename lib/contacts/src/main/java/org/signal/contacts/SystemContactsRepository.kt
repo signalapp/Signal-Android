@@ -8,6 +8,7 @@ import android.content.ContentUris
 import android.content.Context
 import android.content.OperationApplicationException
 import android.database.Cursor
+import android.database.sqlite.SQLiteException
 import android.net.Uri
 import android.os.RemoteException
 import android.provider.BaseColumns
@@ -84,6 +85,12 @@ object SystemContactsRepository {
   private const val FIELD_TAG = ContactsContract.Data.SYNC2
   private const val FIELD_SUPPORTS_VOICE = ContactsContract.RawContacts.SYNC4
 
+  private val NAME_SOURCE_COLUMNS = arrayOf(
+    ContactsContract.RawContacts.ACCOUNT_TYPE,
+    ContactsContract.Data.RAW_CONTACT_ID,
+    ContactsContract.Contacts.NAME_RAW_CONTACT_ID
+  )
+
   /**
    * Gets and returns an iterator over data for all contacts, containing both phone number data and structured name data.
    *
@@ -91,8 +98,7 @@ object SystemContactsRepository {
    * lookup key.
    */
   @JvmStatic
-  fun getAllSystemContacts(context: Context, e164Formatter: (String) -> String?): ContactIterator {
-    val uri = ContactsContract.Data.CONTENT_URI
+  fun getAllSystemContacts(context: Context, ownAccountType: String, e164Formatter: (String) -> String?): ContactIterator {
     val projection = arrayOf(
       ContactsContract.Data.MIMETYPE,
       ContactsContract.CommonDataKinds.Phone.NUMBER,
@@ -109,13 +115,13 @@ object SystemContactsRepository {
     val args = SqlUtil.buildArgs(ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE, ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE)
     val orderBy = "${ContactsContract.CommonDataKinds.Phone.LOOKUP_KEY} ASC, ${ContactsContract.Data.MIMETYPE} DESC, ${ContactsContract.CommonDataKinds.Phone._ID} DESC"
 
-    val cursor: Cursor = context.contentResolver.query(uri, projection, where, args, orderBy) ?: return EmptyContactIterator()
+    val cursor: Cursor = queryContactData(context, projection, where, args, orderBy) ?: return EmptyContactIterator()
 
-    return CursorContactIterator(cursor, e164Formatter)
+    return CursorContactIterator(cursor, ownAccountType, e164Formatter)
   }
 
   @JvmStatic
-  fun getContactDetailsByQueries(context: Context, queries: List<String>, e164Formatter: (String) -> String?): ContactIterator {
+  fun getContactDetailsByQueries(context: Context, ownAccountType: String, queries: List<String>, e164Formatter: (String) -> String?): ContactIterator {
     val lookupKeys: MutableSet<String> = mutableSetOf()
 
     for (query in queries) {
@@ -134,7 +140,6 @@ object SystemContactsRepository {
       return EmptyContactIterator()
     }
 
-    val uri = ContactsContract.Data.CONTENT_URI
     val projection = arrayOf(
       ContactsContract.Data.MIMETYPE,
       ContactsContract.CommonDataKinds.Phone.NUMBER,
@@ -154,8 +159,22 @@ object SystemContactsRepository {
     val args = lookupKeys.toTypedArray() + SqlUtil.buildArgs(ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE, ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE)
     val orderBy = "${ContactsContract.CommonDataKinds.Phone.LOOKUP_KEY} ASC, ${ContactsContract.Data.MIMETYPE} DESC, ${ContactsContract.CommonDataKinds.Phone._ID} DESC"
 
-    val cursor: Cursor = context.contentResolver.query(uri, projection, where, args, orderBy) ?: return EmptyContactIterator()
-    return CursorContactIterator(cursor, e164Formatter)
+    val cursor: Cursor = queryContactData(context, projection, where, args, orderBy) ?: return EmptyContactIterator()
+    return CursorContactIterator(cursor, ownAccountType, e164Formatter)
+  }
+
+  private fun queryContactData(context: Context, projection: Array<String>, where: String, args: Array<String>, orderBy: String): Cursor? {
+    val uri = ContactsContract.Data.CONTENT_URI
+
+    return try {
+      context.contentResolver.query(uri, projection + NAME_SOURCE_COLUMNS, where, args, orderBy)
+    } catch (e: IllegalArgumentException) {
+      Log.w(TAG, "Name source columns rejected, querying without them.", e)
+      context.contentResolver.query(uri, projection, where, args, orderBy)
+    } catch (e: SQLiteException) {
+      Log.w(TAG, "Name source columns rejected, querying without them.", e)
+      context.contentResolver.query(uri, projection, where, args, orderBy)
+    }
   }
 
   /**
@@ -831,13 +850,16 @@ object SystemContactsRepository {
    * - Assume you're already on the correct row at the start of [next].
    * - Store the lookup key from the first row.
    * - Read all phone entries for that lookup key and store them.
-   * - Read the first name entry for that lookup key and store it.
+   * - Read the best name entry for that lookup key and store it. See [readStructuredName].
    * - Skip all other rows for that lookup key. This will ensure that you're on the correct row for the next call to [next]
    */
   private class CursorContactIterator(
     private val cursor: Cursor,
+    private val ownAccountType: String,
     private val e164Formatter: (String) -> String?
   ) : ContactIterator {
+
+    private val hasNameSourceColumns: Boolean = cursor.getColumnIndex(ContactsContract.Data.RAW_CONTACT_ID) >= 0
 
     init {
       cursor.moveToFirst()
@@ -905,15 +927,40 @@ object SystemContactsRepository {
         .toList()
     }
 
+    /**
+     * Skips our own name rows since the provider re-splits them on display name updates. Returns null if only ours exist, and callers then use the display name.
+     */
     fun readStructuredName(cursor: Cursor, lookupKey: String): StructuredName? {
-      return if (!cursor.isAfterLast && cursor.getLookupKey() == lookupKey && cursor.isNameMimeType()) {
-        StructuredName(
-          givenName = cursor.requireString(ContactsContract.CommonDataKinds.StructuredName.GIVEN_NAME),
-          familyName = cursor.requireString(ContactsContract.CommonDataKinds.StructuredName.FAMILY_NAME)
-        )
-      } else {
-        null
+      if (!hasNameSourceColumns) {
+        return if (!cursor.isAfterLast && cursor.getLookupKey() == lookupKey && cursor.isNameMimeType()) cursor.toStructuredName() else null
       }
+
+      var firstFound: StructuredName? = null
+
+      while (!cursor.isAfterLast && cursor.getLookupKey() == lookupKey && cursor.isNameMimeType()) {
+        if (cursor.requireString(ContactsContract.RawContacts.ACCOUNT_TYPE) != ownAccountType) {
+          val name = cursor.toStructuredName()
+
+          if (cursor.requireLong(ContactsContract.Data.RAW_CONTACT_ID) == cursor.requireLong(ContactsContract.Contacts.NAME_RAW_CONTACT_ID)) {
+            return name
+          }
+
+          if (firstFound == null) {
+            firstFound = name
+          }
+        }
+
+        cursor.moveToNext()
+      }
+
+      return firstFound
+    }
+
+    private fun Cursor.toStructuredName(): StructuredName {
+      return StructuredName(
+        givenName = requireString(ContactsContract.CommonDataKinds.StructuredName.GIVEN_NAME),
+        familyName = requireString(ContactsContract.CommonDataKinds.StructuredName.FAMILY_NAME)
+      )
     }
 
     fun Cursor.getLookupKey(): String {

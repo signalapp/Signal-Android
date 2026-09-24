@@ -14,6 +14,7 @@ import org.signal.core.util.StringUtil
 import org.signal.core.util.Util
 import org.signal.core.util.UuidUtil
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -177,11 +178,12 @@ object ContactDiscovery {
         contactsProvider = {
           if (useFullSync) {
             Log.d(TAG, "Doing a full system contact sync. There are ${result.registeredIds.size} contacts to get info for.")
-            SystemContactsRepository.getAllSystemContacts(context, phoneNumberFormatter())
+            SystemContactsRepository.getAllSystemContacts(context, BuildConfig.APPLICATION_ID, phoneNumberFormatter())
           } else {
             Log.d(TAG, "Doing a partial system contact sync. There are ${result.registeredIds.size} contacts to get info for.")
             SystemContactsRepository.getContactDetailsByQueries(
               context = context,
+              ownAccountType = BuildConfig.APPLICATION_ID,
               queries = Recipient.resolvedList(result.registeredIds).mapNotNull { it.e164.orElse(null) },
               e164Formatter = phoneNumberFormatter()
             )
@@ -241,7 +243,7 @@ object ContactDiscovery {
   private fun syncRecipientsWithSystemContacts(
     context: Context,
     rewrites: Map<String, String>,
-    contactsProvider: () -> ContactIterator = { SystemContactsRepository.getAllSystemContacts(context, phoneNumberFormatter()) },
+    contactsProvider: () -> ContactIterator = { SystemContactsRepository.getAllSystemContacts(context, BuildConfig.APPLICATION_ID, phoneNumberFormatter()) },
     clearInfoForMissingContacts: Boolean
   ) {
     val localNumber: String = SignalStore.account.e164 ?: ""
