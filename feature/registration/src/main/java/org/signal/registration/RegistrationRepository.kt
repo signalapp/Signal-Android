@@ -108,6 +108,8 @@ import javax.crypto.Cipher
 import javax.crypto.spec.GCMParameterSpec
 import javax.crypto.spec.SecretKeySpec
 import kotlin.time.Duration
+import kotlin.time.Duration.Companion.days
+import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
 
 class RegistrationRepository(
@@ -136,6 +138,10 @@ class RegistrationRepository(
   companion object {
     private val TAG = Log.tag(RegistrationRepository::class)
     private val json = Json { ignoreUnknownKeys = true }
+
+    private val SIGNAL_LOGIN_RECEIPT_LIFESPAN = (5 * 366).days
+    private val SIGNAL_LOGIN_RECEIPT_CLOCK_SKEW_BUFFER = 2.days
+    private val SIGNAL_LOGIN_RECEIPT_MAX_LIFESPAN = SIGNAL_LOGIN_RECEIPT_LIFESPAN + SIGNAL_LOGIN_RECEIPT_CLOCK_SKEW_BUFFER
 
     /** Builds a repository from the module's injected [RegistrationDependencies]. */
     fun create(context: Context): RegistrationRepository {
@@ -685,6 +691,17 @@ class RegistrationRepository(
       }
     }
 
+    val configuration = fetchSignalLoginConfiguration()
+    if (configuration == null) {
+      Log.w(TAG, "[redeemSignalLoginPurchaseAndRegister] No Signal Login configuration, so we cannot validate the issued credential.")
+      return SignalLoginPurchaseResult.NetworkError
+    }
+
+    if (!isSignalLoginReceiptCredentialValid(credential, configuration.level)) {
+      Log.w(TAG, "[redeemSignalLoginPurchaseAndRegister] The service issued a credential that failed validation.")
+      return SignalLoginPurchaseResult.UnknownError
+    }
+
     val presentation = when (val built = networkController.createReceiptCredentialPresentation(credential)) {
       is ReceiptCredentialResult.Success -> built.value
       ReceiptCredentialResult.VerificationFailed -> {
@@ -712,6 +729,27 @@ class RegistrationRepository(
         SignalLoginPurchaseResult.UnknownError
       }
     }
+  }
+
+  /**
+   * Guards against the service tagging a credential with a distinctive level or expiration that would let it link the
+   * purchase to the account that redeems it.
+   */
+  private fun isSignalLoginReceiptCredentialValid(credential: ReceiptCredential, expectedLevel: Long): Boolean {
+    val now = System.currentTimeMillis().milliseconds
+    val maxExpirationTime = now + SIGNAL_LOGIN_RECEIPT_MAX_LIFESPAN
+    val isCorrectLevel = credential.receiptLevel == expectedLevel
+    val isExpiration86400 = credential.receiptExpirationTime % 86400 == 0L
+    val isExpirationInTheFuture = credential.receiptExpirationTime.seconds > now
+    val isExpirationWithinMax = credential.receiptExpirationTime.seconds <= maxExpirationTime
+
+    Log.i(
+      TAG,
+      "[isSignalLoginReceiptCredentialValid] isCorrectLevel: $isCorrectLevel (actual: ${credential.receiptLevel}, expected: $expectedLevel), " +
+        "isExpiration86400: $isExpiration86400, isExpirationInTheFuture: $isExpirationInTheFuture, isExpirationWithinMax: $isExpirationWithinMax"
+    )
+
+    return isCorrectLevel && isExpiration86400 && isExpirationInTheFuture && isExpirationWithinMax
   }
 
   /**
