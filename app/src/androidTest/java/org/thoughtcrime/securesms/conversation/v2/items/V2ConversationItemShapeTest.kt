@@ -36,11 +36,11 @@ import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory
+import org.thoughtcrime.securesms.mms.StickerSlide
 import org.thoughtcrime.securesms.polls.PollOption
 import org.thoughtcrime.securesms.polls.PollRecord
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.thoughtcrime.securesms.testing.SignalActivityRule
 import kotlin.time.Duration.Companion.minutes
 
@@ -243,7 +243,7 @@ class V2ConversationItemShapeTest {
 
     override fun onMoreTextClicked(conversationRecipientId: RecipientId, messageId: Long, isMms: Boolean) = Unit
 
-    override fun onStickerClicked(stickerLocator: StickerLocator) = Unit
+    override fun onStickerClicked(stickerSlide: StickerSlide) = Unit
 
     override fun onViewOnceMessageClicked(messageRecord: MmsMessageRecord) = Unit
 

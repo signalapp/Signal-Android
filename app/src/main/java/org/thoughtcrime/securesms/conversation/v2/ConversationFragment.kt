@@ -371,6 +371,7 @@ import org.thoughtcrime.securesms.stickers.StickerUrl
 import org.thoughtcrime.securesms.stickers.manage.StickerManagementRepository
 import org.thoughtcrime.securesms.stickers.manage.StickerManagementScreen
 import org.thoughtcrime.securesms.stickers.preview.StickerPackPreviewActivityV2
+import org.thoughtcrime.securesms.stickers.preview.StickerPreviewBottomSheet
 import org.thoughtcrime.securesms.stories.StoryViewerArgs
 import org.thoughtcrime.securesms.stories.viewer.StoryViewerActivity
 import org.thoughtcrime.securesms.util.BubbleUtil
@@ -3531,6 +3532,13 @@ class ConversationFragment :
     }
   }
 
+  private fun handleViewStickerPack(conversationMessage: ConversationMessage) {
+    val record: MmsMessageRecord = conversationMessage.messageRecord as? MmsMessageRecord ?: return
+    val stickerLocator = record.slideDeck.stickerSlide?.asAttachment()?.stickerLocator ?: return
+
+    startActivity(StickerPackPreviewActivityV2.createIntent(StickerPackId(stickerLocator.packId), StickerPackKey(stickerLocator.packKey)))
+  }
+
   private fun showPaymentTombstoneLearnMoreDialog() {
     val dialogBuilder = MaterialAlertDialogBuilder(requireContext())
     dialogBuilder
@@ -3983,9 +3991,16 @@ class ConversationFragment :
       LongMessageFragment.create(messageId, isMms).show(childFragmentManager, null)
     }
 
-    override fun onStickerClicked(stickerLocator: StickerLocator) {
+    override fun onStickerClicked(stickerSlide: StickerSlide) {
       context ?: return
-      startActivity(StickerPackPreviewActivityV2.createIntent(StickerPackId(stickerLocator.packId), StickerPackKey(stickerLocator.packKey)))
+      val stickerLocator = stickerSlide.asAttachment().stickerLocator ?: return
+
+      StickerPreviewBottomSheet.show(
+        fragmentManager = childFragmentManager,
+        stickerLocator = stickerLocator,
+        stickerUri = stickerSlide.uri,
+        contentType = stickerSlide.contentType
+      )
     }
 
     override fun onViewOnceMessageClicked(messageRecord: MmsMessageRecord) {
@@ -5000,6 +5015,7 @@ class ConversationFragment :
         ReactionAction.UNPIN_MESSAGE -> handleUnpinMessage(conversationMessage.messageRecord.id)
         ReactionAction.STAR_MESSAGE -> handleStarMessages(setOf(conversationMessage.messageRecord.id))
         ReactionAction.UNSTAR_MESSAGE -> handleUnstarMessages(setOf(conversationMessage.messageRecord.id))
+        ReactionAction.VIEW_STICKER_PACK -> handleViewStickerPack(conversationMessage)
       }
     }
   }

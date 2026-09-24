@@ -70,6 +70,10 @@ object ReactionMenu {
       add(CoreUiR.drawable.symbol_save_android_24, R.string.conversation_selection__menu_save, ReactionAction.DOWNLOAD)
     }
 
+    if (menuState.shouldShowViewStickerPackAction()) {
+      add(CoreUiR.drawable.symbol_stickerpack_24, R.string.conversation_selection__menu_view_sticker_pack, ReactionAction.VIEW_STICKER_PACK)
+    }
+
     if (menuState.shouldShowCopyAction()) {
       add(CoreUiR.drawable.symbol_copy_android_24, R.string.conversation_selection__menu_copy, ReactionAction.COPY)
     }

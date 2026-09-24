@@ -29,11 +29,11 @@ import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory;
+import org.thoughtcrime.securesms.mms.StickerSlide;
 import org.thoughtcrime.securesms.polls.PollOption;
 import org.thoughtcrime.securesms.polls.PollRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.stickers.StickerLocator;
 
 import java.util.List;
 import java.util.Locale;
@@ -86,7 +86,7 @@ public interface BindableConversationItem extends Unbindable, GiphyMp4Playable, 
     void onLinkPreviewClicked(@NonNull LinkPreview linkPreview);
     void onQuotedIndicatorClicked(@NonNull MessageRecord messageRecord);
     void onMoreTextClicked(@NonNull RecipientId conversationRecipientId, long messageId, boolean isMms);
-    void onStickerClicked(@NonNull StickerLocator stickerLocator);
+    void onStickerClicked(@NonNull StickerSlide stickerSlide);
     void onViewOnceMessageClicked(@NonNull MmsMessageRecord messageRecord);
     void onSharedContactDetailsClicked(@NonNull Contact contact, @NonNull View avatarTransitionView);
     void onAddToContactsClicked(@NonNull Contact contact);

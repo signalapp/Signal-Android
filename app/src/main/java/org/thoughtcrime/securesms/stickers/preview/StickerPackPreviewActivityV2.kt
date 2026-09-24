@@ -591,10 +591,11 @@ private fun StickerPreviewSheet(
     onDismissRequest = { onEvent(StickerPackPreviewEvent.ShareSheetDismissed) }
   ) {
     StickerPreviewSheetContent(
-      stickerManifest,
-      sticker,
-      isPackInstalled
-    ) { sheetState.dismissWithAnimation(scope, onComplete = { onEvent(StickerPackPreviewEvent.StickerSent(sticker)) }) }
+      stickerManifest = stickerManifest,
+      sticker = sticker,
+      canForward = isPackInstalled,
+      onForwardClick = { sheetState.dismissWithAnimation(scope, onComplete = { onEvent(StickerPackPreviewEvent.StickerSent(sticker)) }) }
+    )
   }
 }
 
