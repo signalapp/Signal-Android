@@ -34,11 +34,16 @@ class EncryptedBackupWriter private constructor(
   forwardSecrecyToken: BackupForwardSecrecyToken?,
   forwardSecrecyMetadata: ByteArray?,
   private val outputStream: OutputStream,
-  private val append: (ByteArray) -> Unit
+  private val append: (ByteArray) -> Unit,
+  estimatedTotalUncompressedSize: Long?
 ) : BackupExportWriter {
 
   private val mainStream: PaddedGzipOutputStream
   private val macStream: MacOutputStream
+
+  /** Total uncompressed bytes written. Suitable as the estimate for the next backup of the same kind. */
+  val uncompressedBytes: Long
+    get() = mainStream.uncompressedBytes
 
   companion object {
     val MAGIC_NUMBER = "SBACKUP".toByteArray(Charsets.UTF_8) + 0x01
@@ -53,9 +58,10 @@ class EncryptedBackupWriter private constructor(
       forwardSecrecyToken: BackupForwardSecrecyToken,
       forwardSecrecyMetadata: ByteArray,
       outputStream: OutputStream,
-      append: (ByteArray) -> Unit
+      append: (ByteArray) -> Unit,
+      estimatedTotalUncompressedSize: Long? = null
     ): EncryptedBackupWriter {
-      return createForSignalBackup(key, key.deriveBackupId(aci), forwardSecrecyToken, forwardSecrecyMetadata, outputStream, append)
+      return createForSignalBackup(key, key.deriveBackupId(aci), forwardSecrecyToken, forwardSecrecyMetadata, outputStream, append, estimatedTotalUncompressedSize)
     }
 
     /**
@@ -68,14 +74,16 @@ class EncryptedBackupWriter private constructor(
       forwardSecrecyToken: BackupForwardSecrecyToken,
       forwardSecrecyMetadata: ByteArray,
       outputStream: OutputStream,
-      append: (ByteArray) -> Unit
+      append: (ByteArray) -> Unit,
+      estimatedTotalUncompressedSize: Long? = null
     ): EncryptedBackupWriter {
       return EncryptedBackupWriter(
         keyMaterial = key.deriveBackupSecrets(backupId, forwardSecrecyToken),
         forwardSecrecyToken = forwardSecrecyToken,
         forwardSecrecyMetadata = forwardSecrecyMetadata,
         outputStream = outputStream,
-        append = append
+        append = append,
+        estimatedTotalUncompressedSize = estimatedTotalUncompressedSize
       )
     }
 
@@ -87,9 +95,10 @@ class EncryptedBackupWriter private constructor(
       key: MessageBackupKey,
       aci: ACI,
       outputStream: OutputStream,
-      append: (ByteArray) -> Unit
+      append: (ByteArray) -> Unit,
+      estimatedTotalUncompressedSize: Long? = null
     ): EncryptedBackupWriter {
-      return createForLocalOrLinking(key, key.deriveBackupId(aci), outputStream, append)
+      return createForLocalOrLinking(key, key.deriveBackupId(aci), outputStream, append, estimatedTotalUncompressedSize)
     }
 
     /**
@@ -100,14 +109,16 @@ class EncryptedBackupWriter private constructor(
       key: MessageBackupKey,
       backupId: BackupId,
       outputStream: OutputStream,
-      append: (ByteArray) -> Unit
+      append: (ByteArray) -> Unit,
+      estimatedTotalUncompressedSize: Long? = null
     ): EncryptedBackupWriter {
       return EncryptedBackupWriter(
         keyMaterial = key.deriveBackupSecrets(backupId, forwardSecrecyToken = null),
         forwardSecrecyToken = null,
         forwardSecrecyMetadata = null,
         outputStream = outputStream,
-        append = append
+        append = append,
+        estimatedTotalUncompressedSize = estimatedTotalUncompressedSize
       )
     }
   }
@@ -141,22 +152,38 @@ class EncryptedBackupWriter private constructor(
     macStream = MacOutputStream(outputStream, mac)
     val cipherStream = CipherOutputStream(macStream, cipher)
 
-    mainStream = PaddedGzipOutputStream(cipherStream)
+    mainStream = PaddedGzipOutputStream(cipherStream, estimatedTotalUncompressedSize)
   }
 
+  /** Writes the header and ends the block, so the header compresses independently of everything after it. */
   override fun write(header: BackupInfo) {
     val headerBytes = header.encode()
 
     mainStream.writeVarInt32(headerBytes.size)
     mainStream.write(headerBytes)
+    mainStream.endBlock()
   }
 
+  /**
+   * Writes a length prefixed frame, and decides whether it also ends the current DEFLATE block.
+   *
+   * The account data and every recipient end a block, so each is compressed independently of its neighbors. The first chat item
+   * instead opens the chat item region, after which [PaddedGzipOutputStream] takes over and ends blocks on its own periodic schedule.
+   */
   @Throws(IOException::class)
   override fun write(frame: Frame) {
+    if (frame.chatItem != null) {
+      mainStream.beginChatItemRegion()
+    }
+
     val frameBytes: ByteArray = frame.encode()
 
     mainStream.writeVarInt32(frameBytes.size)
     mainStream.write(frameBytes)
+
+    if (frame.account != null || frame.recipient != null) {
+      mainStream.endBlock()
+    }
   }
 
   @Throws(IOException::class)

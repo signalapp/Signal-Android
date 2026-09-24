@@ -701,7 +701,8 @@ object BackupRepository {
       key = SignalStore.backup.messageBackupKey,
       aci = SignalStore.account.aci!!,
       outputStream = NonClosingOutputStream(main),
-      append = { main.write(it) }
+      append = { main.write(it) },
+      estimatedTotalUncompressedSize = SignalStore.backup.lastLocalBackupUncompressedSize
     )
 
     export(
@@ -733,6 +734,10 @@ object BackupRepository {
         val currentProgress = progress.incrementAndGet()
         localBackupProgressEmitter.onAttachment(currentProgress, localArchivableAttachments.size.toLong())
       }
+    }
+
+    if (!cancellationSignal()) {
+      SignalStore.backup.lastLocalBackupUncompressedSize = writer.uncompressedBytes
     }
   }
 
@@ -785,10 +790,11 @@ object BackupRepository {
       outputStream = outputStream,
       forwardSecrecyToken = forwardSecrecyToken,
       forwardSecrecyMetadata = forwardSecrecyMetadata,
-      append = append
+      append = append,
+      estimatedTotalUncompressedSize = SignalStore.backup.lastBackupUncompressedSize
     )
 
-    return export(
+    export(
       currentTime = currentTime,
       isLocal = false,
       writer = writer,
@@ -799,6 +805,10 @@ object BackupRepository {
       endingExportOperation = null,
       messageInclusionCutoffTime = messageInclusionCutoffTime
     )
+
+    if (!cancellationSignal()) {
+      SignalStore.backup.lastBackupUncompressedSize = writer.uncompressedBytes
+    }
   }
 
   /**

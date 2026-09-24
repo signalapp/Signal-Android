@@ -42,6 +42,8 @@ class BackupValues(store: KeyValueStore, context: Context) : SignalStoreValues(s
     private const val KEY_MEDIA_CDN_READ_CREDENTIALS_TIMESTAMP = "backup.mediaCdnReadCredentialsTimestamp"
     private const val KEY_RESTORE_STATE = "backup.restoreState"
     private const val KEY_BACKUP_LAST_PROTO_SIZE = "backup.lastProtoSize"
+    private const val KEY_BACKUP_LAST_UNCOMPRESSED_SIZE = "backup.lastUncompressedSize"
+    private const val KEY_LOCAL_BACKUP_LAST_UNCOMPRESSED_SIZE = "backup.lastLocalBackupUncompressedSize"
     private const val KEY_BACKUP_TIER = "backup.backupTier"
     private const val KEY_BACKUP_TIER_INTERNAL_OVERRIDE = "backup.backupTier.internalOverride"
     private const val KEY_BACKUP_TIMESTAMP_RESTORED = "backup.backupTimeRestored"
@@ -181,6 +183,10 @@ class BackupValues(store: KeyValueStore, context: Context) : SignalStoreValues(s
   var cachedMediaCdnPath: String? by stringValue(KEY_CDN_MEDIA_PATH, null)
 
   var lastBackupProtoSize: Long by longValue(KEY_BACKUP_LAST_PROTO_SIZE, 0L)
+
+  var lastBackupUncompressedSize: Long? by nullableLongValue(KEY_BACKUP_LAST_UNCOMPRESSED_SIZE, null)
+
+  var lastLocalBackupUncompressedSize: Long? by nullableLongValue(KEY_LOCAL_BACKUP_LAST_UNCOMPRESSED_SIZE, null)
 
   private val deletionStateValue = enumValue(KEY_BACKUP_DELETION_STATE, DeletionState.NONE, DeletionState.serializer)
   private var internalDeletionState by deletionStateValue
@@ -379,6 +385,7 @@ class BackupValues(store: KeyValueStore, context: Context) : SignalStoreValues(s
           clearNotEnoughRemoteStorageSpace()
           clearMessageBackupFailureSheetWatermark()
           backupCreationError = null
+          lastBackupUncompressedSize = null
 
           clearArchiveVerificationState()
 
@@ -556,12 +563,23 @@ class BackupValues(store: KeyValueStore, context: Context) : SignalStoreValues(s
    */
   var importedEmptyAndroidSettings by booleanValue(KEY_IMPORTED_EMPTY_ANDROID_SETTINGS, false)
 
+  private var internalMessageCuttoffDuration: Duration? by durationValue(KEY_MESSAGE_CUTOFF_DURATION, null)
+
   /**
    * If set, this represents how far back we should backup messages. For instance, if the returned value is 1 year in milliseconds, you should back up
    * every message within the last year. If unset, back up all messages. We only cutoff old messages for users whose backup is over the
    * size limit, which is *extraordinarily* rare, so this value is almost always null.
+   *
+   * Changing this changes which messages a remote backup contains, so [lastBackupUncompressedSize] no longer describes it and is cleared.
    */
-  var messageCuttoffDuration: Duration? by durationValue(KEY_MESSAGE_CUTOFF_DURATION, null)
+  var messageCuttoffDuration: Duration?
+    get() = internalMessageCuttoffDuration
+    set(value) {
+      if (value != internalMessageCuttoffDuration) {
+        lastBackupUncompressedSize = null
+      }
+      internalMessageCuttoffDuration = value
+    }
 
   /**
    * The last threshold we used for backing up messages. Messages sent before this time were not included in the backup.
