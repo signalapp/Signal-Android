@@ -147,7 +147,7 @@ public final class ProfileUtil {
                                                                                                 boolean allowUnidentifiedAccess)
   {
     ProfileService       profileService     = AppDependencies.getProfileService();
-    SealedSenderAccess   sealedSenderAccess = allowUnidentifiedAccess ? SealedSenderAccessUtil.getSealedSenderAccessFor(recipient, false) : SealedSenderAccess.NONE;
+    SealedSenderAccess   sealedSenderAccess = allowUnidentifiedAccess ? SealedSenderAccessUtil.getSealedSenderAccessForProfileFetch(recipient, false) : SealedSenderAccess.NONE;
     Optional<ProfileKey> profileKey         = ProfileKeyUtil.profileKeyOptional(recipient.getProfileKey());
 
     return Single.fromCallable(() -> toSignalServiceAddress(context, recipient))

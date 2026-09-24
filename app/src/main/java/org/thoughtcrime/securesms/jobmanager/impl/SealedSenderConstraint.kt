@@ -9,7 +9,6 @@ import org.thoughtcrime.securesms.jobmanager.ConstraintObserver
 import org.thoughtcrime.securesms.jobs.RotateCertificateJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import java.util.concurrent.TimeUnit
-import java.util.concurrent.atomic.AtomicBoolean
 
 /**
  * Constraint that holds jobs until the sealed sender certificate is confirmed valid.
@@ -21,54 +20,56 @@ object SealedSenderConstraint : Constraint {
   const val KEY = "SealedSenderConstraint"
 
   private val TAG = Log.tag(SealedSenderConstraint::class.java)
-  private val CERTIFICATE_EXPIRATION_BUFFER = TimeUnit.DAYS.toMillis(1)
+  private val ROTATION_LEAD_TIME = TimeUnit.DAYS.toMillis(1)
 
-  private val valid = AtomicBoolean(false)
+  @Volatile
+  private var expiresAt: Long = 0
 
-  override fun isMet(): Boolean = valid.get()
+  override fun isMet(): Boolean = System.currentTimeMillis() < expiresAt
 
   override fun getFactoryKey(): String = KEY
 
   override fun applyToJobInfo(jobInfoBuilder: JobInfo.Builder) = Unit
 
   @JvmStatic
-  fun markValid() {
-    valid.set(true)
-    Observer.onChange()
+  fun refresh() {
+    expiresAt = computeExpiresAt()
+
+    if (isMet()) {
+      Observer.onChange()
+    }
   }
 
-  /**
-   * Checks all required certificate types. If all are present and not near expiry,
-   * marks the constraint as valid. Otherwise enqueues a [RotateCertificateJob] and
-   * leaves the constraint unmet until the rotation completes and calls [markValid].
-   */
   @JvmStatic
-  fun checkAndSetValidity() {
-    try {
-      val requiredTypes = SignalStore.phoneNumberPrivacy.getRequiredCertificateTypes()
+  fun refreshAndRotateIfNeeded() {
+    refresh()
+
+    if (System.currentTimeMillis() > expiresAt - ROTATION_LEAD_TIME) {
+      Log.w(TAG, "A sealed sender certificate is missing, expired, or nearly expired. Enqueuing rotation.")
+      AppDependencies.jobManager.add(RotateCertificateJob())
+    } else {
+      Log.i(TAG, "All sealed sender certificates are valid.")
+    }
+  }
+
+  private fun computeExpiresAt(): Long {
+    return try {
+      val requiredTypes = SignalStore.phoneNumberPrivacy.requiredCertificateTypes
+      var earliest = Long.MAX_VALUE
 
       for (certificateType in requiredTypes) {
-        val certificateBytes = SignalStore.certificate.getUnidentifiedAccessCertificate(certificateType)
-
-        if (certificateBytes == null) {
-          Log.w(TAG, "Missing certificate $certificateType. Enqueuing rotation.")
-          AppDependencies.jobManager.add(RotateCertificateJob())
-          return
-        }
-
-        val certificate = SenderCertificate(certificateBytes)
-        if (System.currentTimeMillis() > certificate.expiration - CERTIFICATE_EXPIRATION_BUFFER) {
-          Log.w(TAG, "Certificate $certificateType is expired or near expiry. Enqueuing rotation.")
-          AppDependencies.jobManager.add(RotateCertificateJob())
-          return
-        }
+        val certificateBytes = SignalStore.certificate.getUnidentifiedAccessCertificate(certificateType) ?: return 0
+        earliest = minOf(earliest, SenderCertificate(certificateBytes).expiration)
       }
 
-      Log.i(TAG, "All sealed sender certificates are valid.")
-      markValid()
+      if (requiredTypes.isEmpty()) {
+        Long.MAX_VALUE
+      } else {
+        earliest + SignalStore.misc.lastKnownServerTimeOffset
+      }
     } catch (e: Exception) {
-      Log.w(TAG, "Error checking certificate validity. Enqueuing rotation.", e)
-      AppDependencies.jobManager.add(RotateCertificateJob())
+      Log.w(TAG, "Error reading certificate validity.", e)
+      0
     }
   }
 

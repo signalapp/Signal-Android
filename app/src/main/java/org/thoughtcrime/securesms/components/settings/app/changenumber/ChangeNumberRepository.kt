@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.PendingChangeNum
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.impl.BackoffUtil
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
+import org.thoughtcrime.securesms.jobs.RotateCertificateJob
 import org.thoughtcrime.securesms.keyvalue.CertificateType
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
@@ -236,6 +237,8 @@ class ChangeNumberRepository(
 
       SignalStore.certificate.setUnidentifiedAccessCertificate(certificateType, certificate)
     }
+
+    RotateCertificateJob.markRotated()
   }
 
   private fun <T> retryChangeLocalNumberNetworkOperation(operation: () -> NetworkResult<T>): NetworkResult<T> {

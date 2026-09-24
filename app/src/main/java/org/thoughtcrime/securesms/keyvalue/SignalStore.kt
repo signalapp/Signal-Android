@@ -22,7 +22,7 @@ class SignalStore(context: Application, private val store: KeyValueStore) {
   val internalValues = InternalValues(store)
   val emojiValues = EmojiValues(store)
   val settingsValues = SettingsValues(store, context)
-  val certificateValues = CertificateValues(store)
+  val certificateValues = CertificateValues(store, context)
   val phoneNumberPrivacyValues = PhoneNumberPrivacyValues(store)
   val onboardingValues = OnboardingValues(store)
   val wallpaperValues = WallpaperValues(store)

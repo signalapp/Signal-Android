@@ -260,17 +260,19 @@ public final class GroupSendUtil {
     Set<Recipient>  unregisteredTargets = allTargets.stream().filter(it -> it.isUnregistered() || it.isUnknown()).collect(Collectors.toSet());
     List<Recipient> registeredTargets   = allTargets.stream().filter(r -> !unregisteredTargets.contains(r)).collect(Collectors.toList());
 
+    SenderCertificate senderCertificate = SealedSenderAccessUtil.getSealedSenderCertificate();
+
+    if (senderCertificate == null) {
+      throw new IOException("No usable sealed sender certificate. Refusing to fall back to an unsealed send.");
+    }
+
     RecipientData               recipients                     = new RecipientData(context, registeredTargets, isStorySend);
     Optional<GroupRecord>       groupRecord                    = groupId != null ? SignalDatabase.groups().getGroup(groupId) : Optional.empty();
     GroupSendEndorsementRecords groupSendEndorsementRecords    = groupRecord.filter(GroupRecord::getHasV2GroupProperties).map(g -> SignalDatabase.groups().getGroupSendEndorsements(g.getId())).orElse(null);
     long                        groupSendEndorsementExpiration = groupRecord.map(GroupRecord::getGroupSendEndorsementExpiration).orElse(0L);
-    SenderCertificate           senderCertificate              = SealedSenderAccessUtil.getSealedSenderCertificate();
     boolean                     useGroupSendEndorsements       = groupSendEndorsementRecords != null;
 
-    if (useGroupSendEndorsements && senderCertificate == null) {
-      Log.w(TAG, "Can't use group send endorsements without a sealed sender certificate, falling back to access key");
-      useGroupSendEndorsements = false;
-    } else if (useGroupSendEndorsements) {
+    if (useGroupSendEndorsements) {
       boolean refreshGroupSendEndorsements = false;
 
       if (groupSendEndorsementExpiration == 0) {
@@ -502,7 +504,7 @@ public final class GroupSendUtil {
       final AtomicLong           entryId             = new AtomicLong(-1);
       final boolean              includeInMessageLog = sendOperation.shouldIncludeInMessageLog();
 
-      List<SendMessageResult> results = sendOperation.sendLegacy(messageSender, legacyTargetAddresses, legacyTargets, SealedSenderAccess.forFanOutGroupSend(groupSendTokens, SealedSenderAccessUtil.getSealedSenderCertificate(), legacyTargetAccesses), recipientUpdate, result -> {
+      List<SendMessageResult> results = sendOperation.sendLegacy(messageSender, legacyTargetAddresses, legacyTargets, SealedSenderAccess.forFanOutGroupSend(groupSendTokens, senderCertificate, legacyTargetAccesses), recipientUpdate, result -> {
         if (!includeInMessageLog) {
           return;
         }

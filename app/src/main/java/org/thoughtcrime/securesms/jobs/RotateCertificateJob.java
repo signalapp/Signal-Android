@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.jobs;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.logging.Log;
 import org.signal.network.exceptions.NonSuccessfulResponseCodeException;
@@ -28,6 +29,7 @@ public final class RotateCertificateJob extends BaseJob {
   public RotateCertificateJob() {
     this(new Job.Parameters.Builder()
                            .setQueue("__ROTATE_SENDER_CERTIFICATE__")
+                           .setMaxInstancesForFactory(1)
                            .addConstraint(NetworkConstraint.KEY)
                            .setLifespan(TimeUnit.DAYS.toMillis(1))
                            .setMaxAttempts(Parameters.UNLIMITED)
@@ -94,7 +96,13 @@ public final class RotateCertificateJob extends BaseJob {
       }
     }
 
-    SealedSenderConstraint.markValid();
+    markRotated();
+  }
+
+  @WorkerThread
+  public static void markRotated() {
+    SignalStore.certificate().setLastRotationTime(System.currentTimeMillis());
+    SealedSenderConstraint.refresh();
   }
 
   @Override

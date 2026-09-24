@@ -226,7 +226,7 @@ public class ApplicationContext extends Application implements AppForegroundObse
               .addNonBlocking(this::initializeCircumvention)
               .addNonBlocking(this::initializeCleanup)
               .addNonBlocking(this::initializeGlideCodecs)
-              .addNonBlocking(SealedSenderConstraint::checkAndSetValidity)
+              .addNonBlocking(SealedSenderConstraint::refreshAndRotateIfNeeded)
               .addNonBlocking(StorageSyncHelper::scheduleRoutineSync)
               .addNonBlocking(this::beginJobLoop)
               .addNonBlocking(EmojiSource::refresh)
@@ -284,6 +284,7 @@ public class ApplicationContext extends Application implements AppForegroundObse
     startAnrDetector();
 
     SignalExecutors.BOUNDED.execute(() -> {
+      SealedSenderConstraint.refreshAndRotateIfNeeded();
       BackupRefreshJob.enqueueIfNecessary();
       InAppPaymentAuthCheckJob.enqueueIfNeeded();
       RemoteConfig.refreshIfNecessary();

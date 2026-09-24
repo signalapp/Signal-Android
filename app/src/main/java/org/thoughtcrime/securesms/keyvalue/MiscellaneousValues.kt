@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.keyvalue
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.UsernameQrCodeColorScheme
 import org.thoughtcrime.securesms.database.model.databaseprotos.PendingChangeNumberMetadata
 import org.thoughtcrime.securesms.jobmanager.impl.ChangeNumberConstraintObserver
+import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint
 import org.thoughtcrime.securesms.jobs.DeprecatedNotificationJob
 import org.thoughtcrime.securesms.keyvalue.protos.LeastActiveLinkedDevice
 
@@ -261,6 +262,8 @@ class MiscellaneousValues internal constructor(store: KeyValueStore) : SignalSto
       .putLong(SERVER_TIME_OFFSET, currentTime - serverTime)
       .putLong(LAST_SERVER_TIME_OFFSET_UPDATE, System.currentTimeMillis())
       .apply()
+
+    SealedSenderConstraint.refresh()
   }
 
   /**

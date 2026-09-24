@@ -123,7 +123,7 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
           id = recipient.id,
           serviceId = recipient.requireServiceId(),
           profileKey = recipient.profileKey?.let { ProfileKey(it) },
-          sealedSenderAccess = SealedSenderAccessUtil.getSealedSenderAccessFor(recipient),
+          sealedSenderAccess = SealedSenderAccessUtil.getSealedSenderAccessForProfileFetch(recipient, true),
           fetchExpiringCredential = !ExpiringProfileCredentialUtil.isValid(recipient.expiringProfileKeyCredential)
         )
       }

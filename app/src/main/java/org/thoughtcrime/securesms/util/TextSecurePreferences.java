@@ -124,7 +124,6 @@ public class TextSecurePreferences {
 
   private static final String NEEDS_MESSAGE_PULL = "pref_needs_message_pull";
 
-  private static final String UNIDENTIFIED_ACCESS_CERTIFICATE_ROTATION_TIME_PREF = "pref_unidentified_access_certificate_rotation_time";
   public  static final String UNIVERSAL_UNIDENTIFIED_ACCESS                      = "pref_universal_unidentified_access";
   public  static final String SHOW_UNIDENTIFIED_DELIVERY_INDICATORS              = "pref_show_unidentifed_delivery_indicators";
   private static final String UNIDENTIFIED_DELIVERY_ENABLED                      = "pref_unidentified_delivery_enabled";
@@ -437,14 +436,6 @@ public class TextSecurePreferences {
   @Deprecated
   public static boolean isInThreadNotifications(Context context) {
     return getBooleanPreference(context, IN_THREAD_NOTIFICATION_PREF, true);
-  }
-
-  public static long getUnidentifiedAccessCertificateRotationTime(Context context) {
-    return getLongPreference(context, UNIDENTIFIED_ACCESS_CERTIFICATE_ROTATION_TIME_PREF, 0L);
-  }
-
-  public static void setUnidentifiedAccessCertificateRotationTime(Context context, long value) {
-    setLongPreference(context, UNIDENTIFIED_ACCESS_CERTIFICATE_ROTATION_TIME_PREF, value);
   }
 
   public static boolean isUniversalUnidentifiedAccess(Context context) {
