@@ -74,7 +74,6 @@ public class TextSecurePreferences {
 
   private static final String NEEDS_MESSAGE_PULL = "pref_needs_message_pull";
 
-  private static final String UNIDENTIFIED_ACCESS_CERTIFICATE_ROTATION_TIME_PREF = "pref_unidentified_access_certificate_rotation_time";
   private static final String UNIDENTIFIED_DELIVERY_ENABLED                      = "pref_unidentified_delivery_enabled";
 
   public static final String LINK_PREVIEWS = "pref_link_previews";
@@ -207,14 +206,6 @@ public class TextSecurePreferences {
 
   public static void setRatingEnabled(Context context, boolean enabled) {
     setBooleanPreference(context, RATING_ENABLED_PREF, enabled);
-  }
-
-  public static long getUnidentifiedAccessCertificateRotationTime(Context context) {
-    return getLongPreference(context, UNIDENTIFIED_ACCESS_CERTIFICATE_ROTATION_TIME_PREF, 0L);
-  }
-
-  public static void setUnidentifiedAccessCertificateRotationTime(Context context, long value) {
-    setLongPreference(context, UNIDENTIFIED_ACCESS_CERTIFICATE_ROTATION_TIME_PREF, value);
   }
 
   public static void setIsUnidentifiedDeliveryEnabled(Context context, boolean enabled) {
