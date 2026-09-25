@@ -142,20 +142,6 @@ object TestTags {
   const val COUNTRY_CODE_SEARCH_FIELD = "country_code_search_field"
   const val COUNTRY_CODE_CLOSE_BUTTON = "country_code_close_button"
 
-  // Create Profile Screen
-  const val CREATE_PROFILE_SCREEN = "create_profile_screen"
-  const val CREATE_PROFILE_GIVEN_NAME_FIELD = "create_profile_given_name_field"
-  const val CREATE_PROFILE_FAMILY_NAME_FIELD = "create_profile_family_name_field"
-  const val CREATE_PROFILE_WHO_CAN_FIND_ME_ROW = "create_profile_who_can_find_me_row"
-  const val CREATE_PROFILE_NEXT_BUTTON = "create_profile_next_button"
-
-  // Phone Number Discoverability Screen
-  const val PHONE_NUMBER_DISCOVERABILITY_SCREEN = "phone_number_discoverability_screen"
-  const val PHONE_NUMBER_DISCOVERABILITY_EVERYONE_OPTION = "phone_number_discoverability_everyone_option"
-  const val PHONE_NUMBER_DISCOVERABILITY_NOBODY_OPTION = "phone_number_discoverability_nobody_option"
-  const val PHONE_NUMBER_DISCOVERABILITY_SAVE_BUTTON = "phone_number_discoverability_save_button"
-  const val PHONE_NUMBER_DISCOVERABILITY_BACK_BUTTON = "phone_number_discoverability_back_button"
-
   // Device Transfer Complete Screen
   const val DEVICE_TRANSFER_COMPLETE_SCREEN = "device_transfer_complete_screen"
   const val DEVICE_TRANSFER_COMPLETE_CONTINUE_BUTTON = "device_transfer_complete_continue_button"

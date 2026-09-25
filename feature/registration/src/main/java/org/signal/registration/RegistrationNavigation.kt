@@ -82,9 +82,6 @@ import org.signal.registration.screens.countrycode.Country
 import org.signal.registration.screens.countrycode.CountryCodePickerRepository
 import org.signal.registration.screens.countrycode.CountryCodePickerScreen
 import org.signal.registration.screens.countrycode.CountryCodePickerViewModel
-import org.signal.registration.screens.createprofile.CreateProfileScreen
-import org.signal.registration.screens.createprofile.CreateProfileScreenEvents
-import org.signal.registration.screens.createprofile.CreateProfileViewModel
 import org.signal.registration.screens.devicetransfer.complete.DeviceTransferCompleteScreen
 import org.signal.registration.screens.devicetransfer.complete.DeviceTransferCompleteViewModel
 import org.signal.registration.screens.devicetransfer.instructions.DeviceTransferInstructionsScreen
@@ -93,8 +90,6 @@ import org.signal.registration.screens.devicetransfer.progress.DeviceTransferPro
 import org.signal.registration.screens.devicetransfer.progress.DeviceTransferProgressViewModel
 import org.signal.registration.screens.devicetransfer.setup.DeviceTransferSetupScreen
 import org.signal.registration.screens.devicetransfer.setup.DeviceTransferSetupViewModel
-import org.signal.registration.screens.discoverability.PhoneNumberDiscoverabilityScreen
-import org.signal.registration.screens.discoverability.PhoneNumberDiscoverabilityViewModel
 import org.signal.registration.screens.linkaccount.LinkAccountScreen
 import org.signal.registration.screens.linkaccount.LinkAccountScreenAction
 import org.signal.registration.screens.linkaccount.LinkAccountViewModel
@@ -395,12 +390,6 @@ sealed interface RegistrationRoute : NavKey, Parcelable {
   data object DeviceTransferComplete : RegistrationRoute
 
   @Serializable
-  data object Profile : RegistrationRoute
-
-  @Serializable
-  data class PhoneNumberDiscoverability(val initialDiscoverable: Boolean) : RegistrationRoute
-
-  @Serializable
   data object FullyComplete : RegistrationRoute
 }
 
@@ -409,7 +398,6 @@ private const val COUNTRY_CODE_RESULT = "country_code_result"
 private const val BACKUP_CREDENTIAL_RESULT = "backup_credential_result"
 private const val AEP_FOR_LOCAL_BACKUP_RESULT = "aep_for_local_backup_result"
 private const val LOCAL_BACKUP_RESTORE_RESULT = "local_backup_restore_result"
-private const val PHONE_NUMBER_DISCOVERABILITY_RESULT = "phone_number_discoverability_result"
 private const val TWO_FACTOR_CODE_RESULT = "two_factor_code_result"
 
 /** Opens [url] in a browser, surfacing a toast if the device has none. */
@@ -1316,42 +1304,6 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
     }
     val state by viewModel.state.collectAsStateWithLifecycle()
     DeviceTransferCompleteScreen(
-      state = state,
-      onEvent = viewModel::onEvent
-    )
-  }
-
-  entry<RegistrationRoute.Profile> {
-    val viewModel: CreateProfileViewModel = viewModel {
-      CreateProfileViewModel(
-        repository = registrationRepository,
-        parentEventEmitter = registrationViewModel::onEvent
-      )
-    }
-    val state by viewModel.state.collectAsStateWithLifecycle()
-
-    ResultEffect<Boolean>(registrationViewModel.resultBus, PHONE_NUMBER_DISCOVERABILITY_RESULT) { discoverable ->
-      viewModel.onEvent(CreateProfileScreenEvents.DiscoverabilityChanged(discoverable))
-    }
-
-    CreateProfileScreen(
-      state = state,
-      onEvent = viewModel::onEvent
-    )
-  }
-
-  entry<RegistrationRoute.PhoneNumberDiscoverability> { key ->
-    val viewModel: PhoneNumberDiscoverabilityViewModel = viewModel {
-      PhoneNumberDiscoverabilityViewModel(
-        initialDiscoverable = key.initialDiscoverable,
-        parentEventEmitter = registrationViewModel::onEvent,
-        resultBus = registrationViewModel.resultBus,
-        resultKey = PHONE_NUMBER_DISCOVERABILITY_RESULT
-      )
-    }
-    val state by viewModel.state.collectAsStateWithLifecycle()
-
-    PhoneNumberDiscoverabilityScreen(
       state = state,
       onEvent = viewModel::onEvent
     )
