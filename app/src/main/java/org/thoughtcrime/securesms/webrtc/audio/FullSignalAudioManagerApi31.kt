@@ -68,8 +68,16 @@ class FullSignalAudioManagerApi31(context: Context, eventListener: EventListener
     }
   }
 
+  private var isMicrophoneSilenced = false
+
   private val audioRecordingCallback = object : AudioManager.AudioRecordingCallback() {
     override fun onRecordingConfigChanged(configs: List<AudioRecordingConfiguration>) {
+      val silenced = configs.any { it.isClientSilenced }
+      if (silenced != isMicrophoneSilenced) {
+        isMicrophoneSilenced = silenced
+        eventListener?.onMicrophoneSilencedChanged(silenced)
+      }
+
       if (configs.isEmpty()) {
         Log.i(TAG, "AudioRecordingCallback: no active recordings state: $state mode: ${getModeName(requestedMode)}")
       } else {

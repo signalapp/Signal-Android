@@ -390,6 +390,10 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
     process((s, p) -> p.handleBluetoothPermissionDenied(s));
   }
 
+  public void onMicrophoneSilencedChanged(boolean silenced) {
+    process((s, p) -> p.handleMicrophoneSilencedChanged(s, silenced));
+  }
+
   public void selectAudioDevice(@NonNull SignalAudioManager.ChosenAudioDeviceIdentifier desiredDevice) {
     process((s, p) -> p.handleSetUserAudioDevice(s, desiredDevice));
   }

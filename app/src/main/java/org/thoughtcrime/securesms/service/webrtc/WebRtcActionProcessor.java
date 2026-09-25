@@ -527,6 +527,11 @@ public abstract class WebRtcActionProcessor {
                        .build();
   }
 
+  protected @NonNull WebRtcServiceState handleMicrophoneSilencedChanged(@NonNull WebRtcServiceState currentState, boolean silenced) {
+    Log.i(tag, "handleMicrophoneSilencedChanged not processed");
+    return currentState;
+  }
+
   protected @NonNull WebRtcServiceState handleSetUserAudioDevice(@NonNull WebRtcServiceState currentState, @NonNull SignalAudioManager.ChosenAudioDeviceIdentifier userDevice) {
     Log.i(tag, "handleSetUserAudioDevice not processed");
     return currentState;

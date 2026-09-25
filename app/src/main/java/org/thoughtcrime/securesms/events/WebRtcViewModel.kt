@@ -121,6 +121,7 @@ class WebRtcViewModel(state: WebRtcServiceState) {
   val activeDevice: SignalAudioManager.AudioDevice = state.localDeviceState.activeDevice
   val availableDevices: Set<SignalAudioManager.AudioDevice> = state.localDeviceState.availableDevices
   val bluetoothPermissionDenied: Boolean = state.localDeviceState.bluetoothPermissionDenied
+  val microphoneSilencedTimestamp: Long = state.localDeviceState.microphoneSilencedTimestamp
   val isAudioDeviceChangePending: Boolean = state.localDeviceState.isAudioDeviceChangePending
 
   val localParticipant: CallParticipant = createLocal(
@@ -171,6 +172,7 @@ class WebRtcViewModel(state: WebRtcServiceState) {
        activeDevice=$activeDevice,
        availableDevices=$availableDevices,
        bluetoothPermissionDenied=$bluetoothPermissionDenied,
+       microphoneSilencedTimestamp=$microphoneSilencedTimestamp,
        ringGroup=$ringGroup,
        remoteMutedBy=$remoteMutedBy
       }
@@ -202,6 +204,7 @@ class WebRtcViewModel(state: WebRtcServiceState) {
       if (activeDevice != previousEvent.activeDevice) builder.append(" activeDevice=$activeDevice\n")
       if (availableDevices != previousEvent.availableDevices) builder.append(" availableDevices=$availableDevices\n")
       if (bluetoothPermissionDenied != previousEvent.bluetoothPermissionDenied) builder.append(" bluetoothPermissionDenied=$bluetoothPermissionDenied\n")
+      if (microphoneSilencedTimestamp != previousEvent.microphoneSilencedTimestamp) builder.append(" microphoneSilencedTimestamp=$microphoneSilencedTimestamp\n")
       if (ringGroup != previousEvent.ringGroup) builder.append(" ringGroup=$ringGroup\n")
       if (remoteMutedBy != previousEvent.remoteMutedBy) builder.append(" remoteMutedBy=$remoteMutedBy\n")
 

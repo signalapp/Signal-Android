@@ -414,6 +414,10 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
     callScreenViewModel.callScreenState.update { it.copy(displayMissingPermissionsNotice = false) }
   }
 
+  override fun showDialog(callScreenDialogType: CallScreenDialogType) {
+    callScreenViewModel.dialog.update { callScreenDialogType }
+  }
+
   override fun onReactWithAnyClick() {
     val bottomSheet = ReactWithAnyEmojiBottomSheetDialogFragment.createForCallingReactions()
     bottomSheet.show(activity.supportFragmentManager, CUSTOM_REACTION_BOTTOM_SHEET_TAG)

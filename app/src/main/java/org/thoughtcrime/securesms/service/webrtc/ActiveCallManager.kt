@@ -284,6 +284,10 @@ class ActiveCallManager(
     callManager.onBluetoothPermissionDenied()
   }
 
+  override fun onMicrophoneSilencedChanged(silenced: Boolean) {
+    callManager.onMicrophoneSilencedChanged(silenced)
+  }
+
   /** Foreground service started only after a call is established */
   class ActiveCallForegroundService : SafeForegroundService() {
     companion object {

@@ -50,6 +50,7 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import org.signal.core.ui.BottomSheetUtil
 import org.signal.core.ui.permissions.Permissions
+import org.signal.core.util.DeviceProperties
 import org.signal.core.util.EllapsedTimeFormatter
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.ThrottledDebouncer
@@ -106,6 +107,12 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
     private const val SAVED_STATE_PIP_ASPECT_RATIO = "pip_aspect_ratio"
     private const val SAVED_STATE_LOCAL_PARTICIPANT_LANDSCAPE = "local_participant_landscape"
 
+    private val BACKGROUND_RESTRICTION_WARNING_STATES = setOf(
+      WebRtcViewModel.State.CALL_PRE_JOIN,
+      WebRtcViewModel.State.CALL_OUTGOING,
+      WebRtcViewModel.State.CALL_CONNECTED
+    )
+
     /**
      * The system rejects picture-in-picture aspect ratios outside of [1/2.39, 2.39] with an
      * IllegalArgumentException. We stay a hair inside those bounds so that rounding when converting
@@ -121,6 +128,8 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
   private val viewModel: WebRtcCallViewModel by viewModels()
   private var enableVideoIfAvailable: Boolean = false
   private var hasWarnedAboutBluetooth: Boolean = false
+  private var hasWarnedAboutBackgroundRestriction: Boolean = false
+  private var hasWarnedAboutMicrophoneSilenced: Boolean = false
   private lateinit var windowLayoutInfoConsumer: WindowLayoutInfoConsumer
   private lateinit var windowInfoTrackerCallbackAdapter: WindowInfoTrackerCallbackAdapter
   private lateinit var requestNewSizesThrottle: ThrottledDebouncer
@@ -513,6 +522,25 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
         .show()
 
       hasWarnedAboutBluetooth = true
+    }
+
+    maybeWarnAboutBackgroundRestriction(event)
+  }
+
+  private fun maybeWarnAboutBackgroundRestriction(event: WebRtcViewModel) {
+    if (isFinishing || hasWarnedAboutMicrophoneSilenced || !DeviceProperties.isBackgroundRestricted()) {
+      return
+    }
+
+    if (event.microphoneSilencedTimestamp > 0) {
+      Log.i(TAG, "Microphone was silenced while background restricted, warning user.")
+      callScreen.showDialog(CallScreenDialogType.MICROPHONE_SILENCED_IN_BACKGROUND)
+      hasWarnedAboutMicrophoneSilenced = true
+      hasWarnedAboutBackgroundRestriction = true
+    } else if (!hasWarnedAboutBackgroundRestriction && event.state in BACKGROUND_RESTRICTION_WARNING_STATES) {
+      Log.i(TAG, "Background restricted at call start, warning user.")
+      callScreen.showDialog(CallScreenDialogType.BACKGROUND_RESTRICTED)
+      hasWarnedAboutBackgroundRestriction = true
     }
   }
 

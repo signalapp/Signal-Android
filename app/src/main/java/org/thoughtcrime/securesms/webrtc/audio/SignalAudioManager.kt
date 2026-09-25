@@ -278,6 +278,8 @@ sealed class SignalAudioManager(protected val context: Context, protected val ev
 
     /** The device is in MODE_IN_COMMUNICATION and the incoming call may now be accepted. */
     fun onAudioReadyForAccept()
+
+    fun onMicrophoneSilencedChanged(silenced: Boolean)
   }
 }
 
