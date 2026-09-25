@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.LeakyBucketLimiter;
 
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * Uses a leaky-bucket strategy to limiting notification updates.
@@ -65,13 +66,23 @@ public class OptimizedMessageNotifier implements MessageNotifier {
   }
 
   @Override
-  public @NonNull Optional<ConversationId> getVisibleBubbleThread() {
-    return getNotifier().getVisibleBubbleThread();
+  public void clearVisibleBubbleThread() {
+    getNotifier().clearVisibleBubbleThread();
   }
 
   @Override
-  public void clearVisibleBubbleThread() {
-    getNotifier().clearVisibleBubbleThread();
+  public void addActiveBubbleThread(@NonNull ConversationId conversationId) {
+    getNotifier().addActiveBubbleThread(conversationId);
+  }
+
+  @Override
+  public void removeActiveBubbleThread(@NonNull ConversationId conversationId) {
+    getNotifier().removeActiveBubbleThread(conversationId);
+  }
+
+  @Override
+  public @NonNull Set<ConversationId> getActiveBubbleThreads() {
+    return getNotifier().getActiveBubbleThreads();
   }
 
   @Override

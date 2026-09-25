@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
 import java.util.Optional;
+import java.util.Set;
 
 public interface MessageNotifier {
   void setVisibleThread(@Nullable ConversationId conversationId);
@@ -21,8 +22,10 @@ public interface MessageNotifier {
   void clearVisibleThread();
   void clearVisibleThread(@NonNull ConversationId conversationId);
   void setVisibleBubbleThread(@Nullable ConversationId conversationId);
-  @NonNull Optional<ConversationId> getVisibleBubbleThread();
   void clearVisibleBubbleThread();
+  void addActiveBubbleThread(@NonNull ConversationId conversationId);
+  void removeActiveBubbleThread(@NonNull ConversationId conversationId);
+  @NonNull Set<ConversationId> getActiveBubbleThreads();
   void notifyMessageDeliveryFailed(@NonNull Context context, @NonNull Recipient recipient, @NonNull ConversationId conversationId);
   void notifyStoryDeliveryFailed(@NonNull Context context, @NonNull Recipient recipient, @NonNull ConversationId conversationId);
   void notifyProofRequired(@NonNull Context context, @NonNull Recipient recipient, @NonNull ConversationId conversationId);

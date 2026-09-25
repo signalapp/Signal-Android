@@ -116,6 +116,9 @@ public final class BubbleUtil {
       ConversationId conversationId = ConversationId.forConversation(threadId);
       SignalExecutors.BOUNDED.execute(() -> {
         if (canBubble(context, recipientId, threadId)) {
+          Recipient recipient = Recipient.resolved(recipientId);
+          ConversationUtil.ensureShortcutForRecipientSync(context, recipient);
+
           NotificationManager     notificationManager      = ServiceUtil.getNotificationManager(context);
           StatusBarNotification[] notifications            = notificationManager.getActiveNotifications();
           int                     threadNotificationId     = NotificationIds.getNotificationIdForThread(conversationId);
@@ -128,7 +131,6 @@ public final class BubbleUtil {
           if (activeThreadNotification != null && activeThreadNotification.deleteIntent != null) {
             AppDependencies.getMessageNotifier().forceBubbleNotification(context, conversationId);
           } else {
-            Recipient recipient = Recipient.resolved(recipientId);
             NotificationFactory.notifyToBubbleConversation(context, recipient, threadId);
           }
         }

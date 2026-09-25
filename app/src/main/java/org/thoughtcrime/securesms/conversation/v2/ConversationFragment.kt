@@ -840,6 +840,18 @@ class ConversationFragment :
     super.onCreate(savedInstanceState)
     SignalLocalMetrics.ConversationOpen.start()
     registerForResults()
+
+    if (args.conversationScreenType.isInBubble) {
+      AppDependencies.messageNotifier.addActiveBubbleThread(ConversationId.forConversation(args.threadId))
+    }
+  }
+
+  override fun onDestroy() {
+    super.onDestroy()
+
+    if (args.conversationScreenType.isInBubble) {
+      AppDependencies.messageNotifier.removeActiveBubbleThread(ConversationId.forConversation(args.threadId))
+    }
   }
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {

@@ -49,6 +49,8 @@ class DefaultMessageNotifier(context: Application) : MessageNotifier {
 
   @Volatile private var visibleBubbleThread: ConversationId? = null
 
+  private val activeBubbleThreads: MutableSet<ConversationId> = ConcurrentHashMap.newKeySet()
+
   @Volatile private var lastAudibleNotification: Long = -1
 
   @Volatile private var lastScheduledReminder: Long = 0
@@ -89,12 +91,20 @@ class DefaultMessageNotifier(context: Application) : MessageNotifier {
     visibleBubbleThread = conversationId
   }
 
-  override fun getVisibleBubbleThread(): Optional<ConversationId> {
-    return Optional.ofNullable(visibleBubbleThread)
-  }
-
   override fun clearVisibleBubbleThread() {
     setVisibleBubbleThread(null)
+  }
+
+  override fun addActiveBubbleThread(conversationId: ConversationId) {
+    activeBubbleThreads += conversationId
+  }
+
+  override fun removeActiveBubbleThread(conversationId: ConversationId) {
+    activeBubbleThreads -= conversationId
+  }
+
+  override fun getActiveBubbleThreads(): Set<ConversationId> {
+    return activeBubbleThreads.toSet()
   }
 
   override fun notifyMessageDeliveryFailed(context: Context, recipient: Recipient, conversationId: ConversationId) {
