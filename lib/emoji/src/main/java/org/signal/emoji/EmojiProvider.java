@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.content.res.AppCompatResources;
 
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
@@ -184,10 +186,14 @@ public class EmojiProvider {
           }
         });
       }
-
-      return drawable;
     }
 
+    if (EmojiUtil.isEmojiInNeedOfWhiteBackground(context, drawInfo.getEmoji())) {
+      Drawable bg = AppCompatResources.getDrawable(context, org.signal.core.ui.R.drawable.emoji_white_background);
+      LayerDrawable drawableWithBg = new LayerDrawable(new Drawable[] { bg, drawable });
+      drawableWithBg.setPaddingMode(LayerDrawable.PADDING_MODE_STACK);
+      return drawableWithBg;
+    }
     return drawable;
   }
 
@@ -254,6 +260,12 @@ public class EmojiProvider {
       drawable.setBitmap(bitmap);
     }
 
+    if (EmojiUtil.isEmojiInNeedOfWhiteBackground(context, drawInfo.getEmoji())) {
+      Drawable bg = AppCompatResources.getDrawable(context, org.signal.core.ui.R.drawable.emoji_white_background);
+      LayerDrawable drawableWithBg = new LayerDrawable(new Drawable[] { bg, drawable });
+      drawableWithBg.setPaddingMode(LayerDrawable.PADDING_MODE_STACK);
+      return drawableWithBg;
+    }
     return drawable;
   }
 
