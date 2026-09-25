@@ -88,7 +88,14 @@ object RecipientArchiveProcessor {
 
     db.recipientTable.getGroupsForBackup(selfAci).use { reader ->
       for (recipient in reader) {
-        exportState.recipientIds.add(recipient.id)
+        if (recipient == null) {
+          continue
+        }
+        val added = exportState.recipientIds.add(recipient.id)
+        if (!added) {
+          Log.w(TAG, ExportSkips.duplicateRecipientId(recipient.id))
+          continue
+        }
         exportState.groupRecipientIds.add(recipient.id)
         emitter.emit(Frame(recipient = recipient))
       }
