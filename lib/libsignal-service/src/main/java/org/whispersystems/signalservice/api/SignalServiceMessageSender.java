@@ -302,13 +302,14 @@ public class SignalServiceMessageSender {
                               List<SignalServiceAddress> recipients,
                               List<UnidentifiedAccess> unidentifiedAccess,
                               @Nonnull GroupSendEndorsements groupSendEndorsements,
-                              SignalServiceTypingMessage message)
+                              SignalServiceTypingMessage message,
+                              @Nullable CancelationSignal cancelationSignal)
       throws IOException, UntrustedIdentityException, InvalidKeyException, NoSessionException, InvalidRegistrationIdException
   {
     Log.d(TAG, "[" + message.getTimestamp() + "] Sending a typing message to " + recipients.size() + " recipient(s) using sender key.");
 
     Content content = createTypingContent(message);
-    sendGroupMessage(distributionId, recipients, unidentifiedAccess, groupSendEndorsements, message.getTimestamp(), content, ContentHint.IMPLICIT, message.getGroupId(), true, SenderKeyGroupEvents.EMPTY, false, false);
+    sendGroupMessage(distributionId, recipients, unidentifiedAccess, groupSendEndorsements, message.getTimestamp(), content, ContentHint.IMPLICIT, message.getGroupId(), true, SenderKeyGroupEvents.EMPTY, false, false, cancelationSignal);
   }
 
   /**
@@ -351,7 +352,7 @@ public class SignalServiceMessageSender {
     Log.d(TAG, "[" + timestamp + "] Sending a story.");
 
     Content                  content            = createStoryContent(message);
-    List<SendMessageResult>  sendMessageResults = sendGroupMessage(distributionId, recipients, unidentifiedAccess, groupSendEndorsements, timestamp, content, ContentHint.IMPLICIT, groupId, false, SenderKeyGroupEvents.EMPTY, false, true);
+    List<SendMessageResult>  sendMessageResults = sendGroupMessage(distributionId, recipients, unidentifiedAccess, groupSendEndorsements, timestamp, content, ContentHint.IMPLICIT, groupId, false, SenderKeyGroupEvents.EMPTY, false, true, null);
 
     if (partialListener != null) {
       partialListener.onPartialSendComplete(sendMessageResults);
@@ -412,7 +413,7 @@ public class SignalServiceMessageSender {
 
     Content content = createCallContent(message);
 
-    List<SendMessageResult> results = sendGroupMessage(distributionId, recipients, unidentifiedAccess, groupSendEndorsements, message.getTimestamp().get(), content, ContentHint.IMPLICIT, message.getGroupId(), false, SenderKeyGroupEvents.EMPTY, message.isUrgent(), false);
+    List<SendMessageResult> results = sendGroupMessage(distributionId, recipients, unidentifiedAccess, groupSendEndorsements, message.getTimestamp().get(), content, ContentHint.IMPLICIT, message.getGroupId(), false, SenderKeyGroupEvents.EMPTY, message.isUrgent(), false, null);
 
     if (partialListener != null) {
       partialListener.onPartialSendComplete(results);
@@ -521,7 +522,8 @@ public class SignalServiceMessageSender {
                                                                   SenderKeyDistributionMessage message,
                                                                   Optional<byte[]> groupId,
                                                                   boolean urgent,
-                                                                  boolean story)
+                                                                  boolean story,
+                                                                  @Nullable CancelationSignal cancelationSignal)
       throws IOException
   {
     ByteString      distributionBytes = ByteString.of(message.serialize());
@@ -531,7 +533,7 @@ public class SignalServiceMessageSender {
 
     Log.d(TAG, "[" + timestamp + "] Sending SKDM to " + recipients.size() + " recipients for DistributionId " + distributionId);
 
-    return sendMessage(recipients, sealedSenderAccesses, timestamp, envelopeContent, false, null, null, null, urgent, story);
+    return sendMessage(recipients, sealedSenderAccesses, timestamp, envelopeContent, false, null, cancelationSignal, null, urgent, story);
   }
 
   /**
@@ -585,7 +587,7 @@ public class SignalServiceMessageSender {
     }
 
     Optional<byte[]>        groupId = message.getGroupId();
-    List<SendMessageResult> results = sendGroupMessage(distributionId, recipients, unidentifiedAccess, groupSendEndorsements, message.getTimestamp(), content, contentHint, groupId, false, sendEvents, urgent, isForStory);
+    List<SendMessageResult> results = sendGroupMessage(distributionId, recipients, unidentifiedAccess, groupSendEndorsements, message.getTimestamp(), content, contentHint, groupId, false, sendEvents, urgent, isForStory, null);
 
     if (partialListener != null) {
       partialListener.onPartialSendComplete(results);
@@ -2183,6 +2185,11 @@ public class SignalServiceMessageSender {
     Log.d(TAG, "[" + timestamp + "] Sending to " + recipients.size() + " recipients.");
     enforceMaxEnvelopeContentSize(content);
 
+    if (cancelationSignal != null && cancelationSignal.isCanceled()) {
+      Log.i(TAG, "[" + timestamp + "] Canceled before sending.");
+      return recipients.stream().map(SendMessageResult::canceledFailure).collect(Collectors.toList());
+    }
+
     long startTime = System.currentTimeMillis();
 
     List<PreKeyRepository.EagerPreKeyRequest> eagerRequests = new ArrayList<>(recipients.size());
@@ -2204,7 +2211,11 @@ public class SignalServiceMessageSender {
         SignalServiceAddress recipient          = recipientIterator.next();
         SealedSenderAccess   sealedSenderAccess = sealedSenderAccessIterator.next();
 
-        emitter.onNext(sendMessageRx(recipient, sealedSenderAccess, timestamp, content, online, cancelationSignal, sendEvents, urgent, story, 0).toObservable());
+        if (cancelationSignal != null && cancelationSignal.isCanceled()) {
+          emitter.onNext(Observable.just(SendMessageResult.canceledFailure(recipient)));
+        } else {
+          emitter.onNext(sendMessageRx(recipient, sealedSenderAccess, timestamp, content, online, cancelationSignal, sendEvents, urgent, story, 0).toObservable());
+        }
       }
 
       emitter.onComplete();
@@ -2532,7 +2543,8 @@ public class SignalServiceMessageSender {
                                                    boolean online,
                                                    SenderKeyGroupEvents sendEvents,
                                                    boolean urgent,
-                                                   boolean story)
+                                                   boolean story,
+                                                   @Nullable CancelationSignal cancelationSignal)
       throws IOException, UntrustedIdentityException, NoSessionException, InvalidKeyException, InvalidRegistrationIdException
   {
     if (recipients.isEmpty()) {
@@ -2559,6 +2571,11 @@ public class SignalServiceMessageSender {
     Set<ServiceId>             quarantined       = new HashSet<>();
 
     for (int i = 0; i < RETRY_COUNT; i++) {
+      if (cancelationSignal != null && cancelationSignal.isCanceled()) {
+        Log.i(TAG, "[sendGroupMessage][" + timestamp + "] Canceled before building group target info.");
+        return buildCanceledGroupResults(workingRecipients, deferredResults);
+      }
+
             GroupTargetInfo targetInfo         = buildGroupTargetInfo(workingRecipients);
       final GroupTargetInfo targetInfoSnapshot = targetInfo;
 
@@ -2585,7 +2602,8 @@ public class SignalServiceMessageSender {
                                                                            senderKeyDistributionMessage,
                                                                            groupId,
                                                                            urgent,
-                                                                           story && groupId.isEmpty()); // We don't want to flag SKDM's as stories for group stories, since we reuse distributionIds for normal group messages
+                                                                           story && groupId.isEmpty(), // We don't want to flag SKDM's as stories for group stories, since we reuse distributionIds for normal group messages
+                                                                           cancelationSignal);
 
         List<SignalServiceAddress> successes = results.stream()
                                                       .filter(SendMessageResult::isSuccess)
@@ -2616,6 +2634,11 @@ public class SignalServiceMessageSender {
           if (workingRecipients.isEmpty()) {
             return deferredResults;
           }
+        }
+
+        if (cancelationSignal != null && cancelationSignal.isCanceled()) {
+          Log.i(TAG, "[sendGroupMessage][" + timestamp + "] Canceled before the sender key send.");
+          return buildCanceledGroupResults(workingRecipients, deferredResults);
         }
 
         targetInfo = buildGroupTargetInfo(workingRecipients);
@@ -2714,6 +2737,12 @@ public class SignalServiceMessageSender {
     }
 
     throw new IOException("Failed to resolve conflicts after " + RETRY_COUNT + " attempts!");
+  }
+
+  private static List<SendMessageResult> buildCanceledGroupResults(List<SignalServiceAddress> workingRecipients, List<SendMessageResult> deferredResults) {
+    List<SendMessageResult> canceledResults = workingRecipients.stream().map(SendMessageResult::canceledFailure).collect(Collectors.toCollection(LinkedList::new));
+    canceledResults.addAll(deferredResults);
+    return canceledResults;
   }
 
   private GroupTargetInfo buildGroupTargetInfo(List<SignalServiceAddress> recipients) {

@@ -154,7 +154,7 @@ public final class GroupSendUtil {
                                                           @Nullable CancelationSignal cancelationSignal)
       throws IOException, UntrustedIdentityException, NoSessionException
   {
-    return sendMessage(context, groupId, getDistributionId(groupId), null, allTargets, false, false, new TypingSendOperation(message), cancelationSignal);
+    return sendMessage(context, groupId, getDistributionId(groupId), null, allTargets, false, false, new TypingSendOperation(message, cancelationSignal), cancelationSignal);
   }
 
   /**
@@ -708,9 +708,11 @@ public final class GroupSendUtil {
   private static class TypingSendOperation implements SendOperation {
 
     private final SignalServiceTypingMessage message;
+    private final CancelationSignal          cancelationSignal;
 
-    private TypingSendOperation(@NonNull SignalServiceTypingMessage message) {
-      this.message = message;
+    private TypingSendOperation(@NonNull SignalServiceTypingMessage message, @Nullable CancelationSignal cancelationSignal) {
+      this.message           = message;
+      this.cancelationSignal = cancelationSignal;
     }
 
     @Override
@@ -725,8 +727,14 @@ public final class GroupSendUtil {
     {
       Preconditions.checkNotNull(groupSendEndorsements, "GSEs must be non-null for non-story sender key send.");
 
-      messageSender.sendGroupTyping(distributionId, targets, access, groupSendEndorsements, message);
-      List<SendMessageResult> results = targets.stream().map(a -> SendMessageResult.success(a, Collections.emptyList(), true, false, -1, Optional.empty())).collect(Collectors.toList());
+      messageSender.sendGroupTyping(distributionId, targets, access, groupSendEndorsements, message, cancelationSignal);
+
+      List<SendMessageResult> results;
+      if (cancelationSignal != null && cancelationSignal.isCanceled()) {
+        results = targets.stream().map(SendMessageResult::canceledFailure).collect(Collectors.toList());
+      } else {
+        results = targets.stream().map(a -> SendMessageResult.success(a, Collections.emptyList(), true, false, -1, Optional.empty())).collect(Collectors.toList());
+      }
 
       if (partialListener != null) {
         partialListener.onPartialSendComplete(results);
