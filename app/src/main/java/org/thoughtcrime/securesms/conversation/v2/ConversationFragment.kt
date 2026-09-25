@@ -144,7 +144,7 @@ import org.signal.core.util.concurrent.ListenableFuture
 import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.concurrent.addTo
 import org.signal.core.util.dp
-import org.signal.core.util.encourageNewBrowserTab
+import org.signal.core.util.prepareExternalLink
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.signal.core.util.requireDrawable
@@ -1215,7 +1215,7 @@ class ConversationFragment :
   }
 
   private fun openLink(url: String) {
-    startActivity(Intent(Intent.ACTION_VIEW, url.toUri()).encourageNewBrowserTab())
+    startActivity(Intent(Intent.ACTION_VIEW, url.toUri()).prepareExternalLink())
   }
 
   //endregion
