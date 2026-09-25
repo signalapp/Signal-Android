@@ -86,7 +86,7 @@ fun DevicePinAuthEducationSheet(
       text = title,
       style = MaterialTheme.typography.titleLarge,
       textAlign = TextAlign.Center,
-      modifier = Modifier.padding(top = 20.dp, bottom = 8.dp),
+      modifier = Modifier.padding(start = 24.dp, end = 24.dp, top = 20.dp, bottom = 8.dp),
       color = MaterialTheme.colorScheme.onSurface
     )
     Text(
