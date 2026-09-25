@@ -390,6 +390,46 @@ class RecipientTableTest {
     )
   }
 
+  @Test
+  fun givenNoProfileSharingOrSystemContacts_whenICheckForExistingContacts_thenIExpectFalse() {
+    val first = recipients.createRecipient("First Person", profileSharing = false)
+    val second = recipients.createRecipient("Second Person", profileSharing = false)
+
+    assertFalse(SignalDatabase.recipients.hasAnyProfileSharingOrSystemContact(listOf(first, second)))
+  }
+
+  @Test
+  fun givenOneProfileSharingRecipient_whenICheckForExistingContacts_thenIExpectTrue() {
+    val first = recipients.createRecipient("First Person", profileSharing = false)
+    val second = recipients.createRecipient("Second Person", profileSharing = true)
+
+    assertTrue(SignalDatabase.recipients.hasAnyProfileSharingOrSystemContact(listOf(first, second)))
+  }
+
+  @Test
+  fun givenOneSystemContact_whenICheckForExistingContacts_thenIExpectTrue() {
+    val first = recipients.createRecipient("First Person", profileSharing = false)
+    val second = recipients.createRecipient("Second Person", profileSharing = false)
+
+    SignalDatabase.recipients.writableDatabase
+      .update(RecipientTable.TABLE_NAME)
+      .values(RecipientTable.SYSTEM_CONTACT_URI to "content://com.android.contacts/contacts/lookup/test")
+      .where("${RecipientTable.ID} = ?", second)
+      .run()
+
+    assertTrue(SignalDatabase.recipients.hasAnyProfileSharingOrSystemContact(listOf(first, second)))
+  }
+
+  @Test
+  fun givenOnlySelfHasProfileSharing_whenICheckForExistingContacts_thenIExpectFalse() {
+    val other = recipients.createRecipient("Other Person", profileSharing = false)
+
+    assertFalse(
+      "Self always has profile sharing enabled and must not count as an existing contact",
+      SignalDatabase.recipients.hasAnyProfileSharingOrSystemContact(listOf(recipients.self, other))
+    )
+  }
+
   private fun recipientFor(id: RecipientId) = RecipientCreator.forRecord(SignalDatabase.recipients.getRecord(id))
 
   companion object {

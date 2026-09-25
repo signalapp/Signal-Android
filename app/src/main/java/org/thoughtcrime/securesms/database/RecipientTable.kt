@@ -2280,6 +2280,16 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
   }
 
+  fun hasAnyProfileSharingOrSystemContact(ids: Collection<RecipientId>): Boolean {
+    return SqlUtil.buildCollectionQuery(ID, ids, "$ID != ${Recipient.self().id.toLong()} AND ($PROFILE_SHARING = 1 OR $SYSTEM_CONTACT_URI NOT NULL) AND")
+      .any { query ->
+        readableDatabase
+          .exists(TABLE_NAME)
+          .where(query.where, query.whereArgs)
+          .run()
+      }
+  }
+
   fun isProfileSharing(groupId: GroupId): Boolean {
     return readableDatabase
       .select(PROFILE_SHARING)
