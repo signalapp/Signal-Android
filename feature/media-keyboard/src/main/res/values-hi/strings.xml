@@ -6,63 +6,63 @@
 <resources>
   <!-- Tab labels -->
   <!-- Label of the tab that shows the emoji page of the media keyboard. Noun. -->
-  <string name="MediaKeyboard__emoji">Emoji</string>
+  <string name="MediaKeyboard__emoji">इमोजी</string>
   <!-- Label of the tab that shows the sticker page of the media keyboard. Plural noun. -->
-  <string name="MediaKeyboard__stickers">Stickers</string>
+  <string name="MediaKeyboard__stickers">स्टिकर</string>
   <!-- Label of the tab that shows the GIF page of the media keyboard. Plural noun. -->
   <string name="MediaKeyboard__gifs">GIFs</string>
 
   <!-- Search -->
   <!-- Placeholder text in the media keyboard search field while the emoji tab is showing. -->
-  <string name="MediaKeyboard__search_emoji">Search emoji</string>
+  <string name="MediaKeyboard__search_emoji">इमोजी खोजें</string>
   <!-- Placeholder text in the search field at the top of the sticker page, and in the media keyboard search field while the sticker tab is showing. -->
-  <string name="MediaKeyboard__search_stickers">Search stickers</string>
+  <string name="MediaKeyboard__search_stickers">स्टिकर खोजें</string>
   <!-- Placeholder text in the search field at the top of the GIF page, and in the media keyboard search field while the GIF tab is showing. -->
-  <string name="MediaKeyboard__search_gifs">Search GIFs</string>
+  <string name="MediaKeyboard__search_gifs">GIF खोजें</string>
   <!-- Accessibility description for the magnifying glass button in the media keyboard top bar that opens search. Verb, as an action the button performs. -->
-  <string name="MediaKeyboard__search">Search</string>
+  <string name="MediaKeyboard__search">खोजें</string>
   <!-- Accessibility description for the back button that closes media keyboard search and returns to the tabs. -->
-  <string name="MediaKeyboard__close_search">Close search</string>
+  <string name="MediaKeyboard__close_search">सर्च बंद करें</string>
   <!-- Accessibility description for the button that erases whatever has been typed into the media keyboard search field. -->
-  <string name="MediaKeyboard__clear_search">Clear search</string>
+  <string name="MediaKeyboard__clear_search">सर्च हटाएं</string>
   <!-- Message shown in place of the grid when a media keyboard search matches no emoji or GIFs. -->
-  <string name="MediaKeyboard__no_results_found">No results found</string>
+  <string name="MediaKeyboard__no_results_found">कोई नतीजा नहीं मिला</string>
 
   <!-- Emoji page -->
   <!-- Accessibility description for the button in the media keyboard top bar that deletes the character before the cursor. Verb, as an action the button performs. -->
-  <string name="MediaKeyboard__backspace">Backspace</string>
+  <string name="MediaKeyboard__backspace">बैकस्पेस</string>
   <!-- Header, and rail accessibility description, for the group of emoji or stickers the user picked most recently. -->
-  <string name="MediaKeyboard__recently_used">Recently used</string>
+  <string name="MediaKeyboard__recently_used">हाल ही में इस्तेमाल किया गया</string>
   <!-- Header for the emoji category holding faces and people. -->
-  <string name="MediaKeyboard__smileys_and_people">Smileys &amp; People</string>
+  <string name="MediaKeyboard__smileys_and_people">स्माइली और लोग</string>
   <!-- Header for the emoji category holding animals and plants. -->
-  <string name="MediaKeyboard__nature">Nature</string>
+  <string name="MediaKeyboard__nature">नेचर</string>
   <!-- Header for the emoji category holding food and drink. -->
-  <string name="MediaKeyboard__food">Food</string>
+  <string name="MediaKeyboard__food">खान-पान</string>
   <!-- Header for the emoji category holding sports and hobbies. -->
-  <string name="MediaKeyboard__activities">Activities</string>
+  <string name="MediaKeyboard__activities">गतिविधियां</string>
   <!-- Header for the emoji category holding travel, buildings and places. -->
-  <string name="MediaKeyboard__places">Places</string>
+  <string name="MediaKeyboard__places">जगहें</string>
   <!-- Header for the emoji category holding everyday objects. -->
-  <string name="MediaKeyboard__objects">Objects</string>
+  <string name="MediaKeyboard__objects">सामान</string>
   <!-- Header for the emoji category holding symbols and signs. -->
-  <string name="MediaKeyboard__symbols">Symbols</string>
+  <string name="MediaKeyboard__symbols">चिह्न</string>
   <!-- Header for the emoji category holding country and region flags. Plural noun, the flags themselves. -->
-  <string name="MediaKeyboard__flags">Flags</string>
+  <string name="MediaKeyboard__flags">झंडे</string>
   <!-- Header for the emoji category holding text emoticons such as :-) -->
-  <string name="MediaKeyboard__emoticons">Emoticons</string>
+  <string name="MediaKeyboard__emoticons">इमोजी</string>
 
   <!-- Sticker page -->
   <!-- Accessibility description for the button in the media keyboard top bar that opens the screen where sticker packs are managed. -->
   <string name="MediaKeyboard__manage_stickers">Manage stickers</string>
   <!-- Menu option that sends a sticker, on a long-pressed sticker, or the whole pack as a link, in a sticker pack header\'s menu. Verb, imperative. -->
-  <string name="MediaKeyboard__send">Send</string>
+  <string name="MediaKeyboard__send">भेजें</string>
   <!-- Menu option, on a long-pressed sticker and in a sticker pack header\'s menu, that opens the pack the sticker belongs to. Verb phrase, imperative. -->
-  <string name="MediaKeyboard__view_pack">View pack</string>
+  <string name="MediaKeyboard__view_pack">पैक देखें</string>
   <!-- Accessibility description for the three-dot button at the end of a sticker pack header, which opens that pack\'s menu. -->
-  <string name="MediaKeyboard__more_options">More options</string>
+  <string name="MediaKeyboard__more_options">और विकल्प</string>
   <!-- Menu option in a sticker pack header\'s menu that uninstalls the pack. Verb, imperative. -->
-  <string name="MediaKeyboard__remove_pack">Remove</string>
+  <string name="MediaKeyboard__remove_pack">हटाएं</string>
   <!-- Title of the confirmation dialog shown before uninstalling a sticker pack. -->
   <string name="MediaKeyboard__remove_sticker_pack_question">Remove sticker pack?</string>
   <!-- Body of the confirmation dialog shown before uninstalling a sticker pack. -->
@@ -72,23 +72,23 @@
 
   <!-- Gif page -->
   <!-- Label of the GIF quick search chip that shows the GIFs trending right now. -->
-  <string name="MediaKeyboard__trending">Trending</string>
+  <string name="MediaKeyboard__trending">ट्रेंडिंग</string>
   <!-- Label of the GIF quick search chip that searches for celebration GIFs. A search topic, not an instruction to the user. -->
-  <string name="MediaKeyboard__celebrate">Celebrate</string>
+  <string name="MediaKeyboard__celebrate">जश्न</string>
   <!-- Label of the GIF quick search chip that searches for GIFs about love. The noun, not the verb. -->
-  <string name="MediaKeyboard__love">Love</string>
+  <string name="MediaKeyboard__love">प्यार</string>
   <!-- Label of the GIF quick search chip that searches for thumbs up GIFs. The hand gesture, as a noun. -->
-  <string name="MediaKeyboard__thumbs_up">Thumbs Up</string>
+  <string name="MediaKeyboard__thumbs_up">थंब्स अप</string>
   <!-- Label of the GIF quick search chip that searches for GIFs of someone surprised. Adjective describing the mood in the GIFs. -->
-  <string name="MediaKeyboard__surprised">Surprised</string>
+  <string name="MediaKeyboard__surprised">हैरान</string>
   <!-- Label of the GIF quick search chip that searches for GIFs of someone excited. Adjective describing the mood in the GIFs. -->
-  <string name="MediaKeyboard__excited">Excited</string>
+  <string name="MediaKeyboard__excited">उत्साहित</string>
   <!-- Label of the GIF quick search chip that searches for GIFs of someone sad. Adjective describing the mood in the GIFs. -->
-  <string name="MediaKeyboard__sad">Sad</string>
+  <string name="MediaKeyboard__sad">उदास</string>
   <!-- Label of the GIF quick search chip that searches for GIFs of someone angry. Adjective describing the mood in the GIFs. -->
-  <string name="MediaKeyboard__angry">Angry</string>
+  <string name="MediaKeyboard__angry">गुस्से में</string>
   <!-- Error message shown in place of the GIF grid when the GIFs could not be fetched. -->
   <string name="MediaKeyboard__couldnt_load_gifs">Couldn\'t load GIFs. Check your connection and try again.</string>
   <!-- Button shown with the GIF loading error that tries the fetch again. Verb, imperative. -->
-  <string name="MediaKeyboard__retry">Retry</string>
+  <string name="MediaKeyboard__retry">दोबारा कोशिश करें</string>
 </resources>

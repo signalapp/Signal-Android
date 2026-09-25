@@ -1346,14 +1346,14 @@
     </plurals>
 
     <!-- Shown when a change to a group is rejected because the group has ended. -->
-    <string name="GroupErrors__the_group_was_terminated">The group ended.</string>
-    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">You don\'t have the rights to do this</string>
-    <string name="GroupErrors__not_capable">Someone you added does not support new groups and needs to update Signal</string>
-    <string name="GroupErrors__not_announcement_capable">Someone you added does not support announcement groups and needs to update Signal</string>
-    <string name="GroupErrors__failed_to_update_the_group">Failed to update the group</string>
-    <string name="GroupErrors__youre_not_a_member_of_the_group">You\'re not a member of the group</string>
-    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Failed to update the group please retry later</string>
-    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Failed to update the group due to a network error, please retry later</string>
+    <string name="GroupErrors__the_group_was_terminated">ក្រុមនេះបានបញ្ចប់។</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">អ្នកមិនមានសិទ្ធិធ្វើដូចនេះទេ</string>
+    <string name="GroupErrors__not_capable">សមាជិកដែលអ្នកដាក់បញ្ចូលមិនគាំទ្រក្រុមថ្មី និងត្រូវធ្វើបច្ចុប្បន្នភាព Signal</string>
+    <string name="GroupErrors__not_announcement_capable">បុគ្គលដែលអ្នកបានបន្ថែមចូល មិនមានមុខងារទទួលដំណឹងរបស់ក្រុម និងគាត់ត្រូវធ្វើបច្ចុប្បន្នភាព Signal</string>
+    <string name="GroupErrors__failed_to_update_the_group">បរាជ័យក្នុងការធ្វើបច្ចុប្បន្នភាពក្រុម</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">អ្នកមិនមែនជាសមាជិកនៃក្រុម</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">បរាជ័យក្នុងការធ្វើបច្ចុប្បន្នភាពក្រុម សូមព្យាយាមម្តងទៀត</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">បរាជ័យក្នុងការធ្វើបច្ចុប្បន្នភាពក្រុមដោយសារបញ្ហាបណ្តាញ សូមព្យាយាមម្តងទៀត</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">កែប្រែឈ្មោះ និងរូបភាព</string>
     <string name="ManageGroupActivity_legacy_group">ក្រុមមុន</string>
@@ -2736,9 +2736,9 @@
     <!-- Sticker pack button for forwarding a sticker link. -->
     <string name="StickerManagement_menu_send_signal_pack">Send via Signal</string>
     <!-- Sticker pack button that opens a bottom sheet with more share options. -->
-    <string name="StickerManagement_menu_link_pack">Link</string>
+    <string name="StickerManagement_menu_link_pack">តំណ</string>
     <!-- Sticker pack sheet option for sharing a sticker pack link using the system share sheet. -->
-    <string name="StickerManagement_menu_share_pack">Share</string>
+    <string name="StickerManagement_menu_share_pack">ចែករំលែក</string>
     <!-- Bottom sheet description for the share sticker sheet. -->
     <string name="StickerManagement__anyone">Anyone with this link can install and share this sticker pack.</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->

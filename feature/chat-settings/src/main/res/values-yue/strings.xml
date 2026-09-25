@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
   <!-- Title of the screen where a group admin picks which actions non-admins can take. -->
-  <string name="GroupPermissionsScreen__permissions">Permissions</string>
+  <string name="GroupPermissionsScreen__permissions">准許</string>
   <!-- Content description of the button that navigates back off of the group permissions screen. -->
-  <string name="GroupPermissionsScreen__go_back">Go back</string>
-  <string name="GroupPermissionsScreen__add_members">Add members</string>
-  <string name="GroupPermissionsScreen__edit_group_info">Edit group info</string>
-  <string name="GroupPermissionsScreen__send_messages">Send messages</string>
-  <string name="GroupPermissionsScreen__all_members">All members</string>
-  <string name="GroupPermissionsScreen__only_admins">Only admins</string>
-  <string name="GroupPermissionsScreen__who_can_add_new_members">Who can add new members?</string>
-  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">Who can edit this group\'s info?</string>
-  <string name="GroupPermissionsScreen__who_can_send_messages">Who can send messages and start calls?</string>
+  <string name="GroupPermissionsScreen__go_back">返轉頭</string>
+  <string name="GroupPermissionsScreen__add_members">加成員</string>
+  <string name="GroupPermissionsScreen__edit_group_info">編輯個谷嘅資訊</string>
+  <string name="GroupPermissionsScreen__send_messages">傳送訊息</string>
+  <string name="GroupPermissionsScreen__all_members">所有成員</string>
+  <string name="GroupPermissionsScreen__only_admins">只有話事人</string>
+  <string name="GroupPermissionsScreen__who_can_add_new_members">邊個可以加啲新成員入嚟？</string>
+  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">邊個改到關於呢個谷嘅資訊？</string>
+  <string name="GroupPermissionsScreen__who_can_send_messages">邊個可以傳送訊息同發起通話？</string>
   <!-- Label for the member labels permission button in the group permissions settings screen. -->
-  <string name="GroupPermissionsScreen__add_member_labels">Add member labels</string>
+  <string name="GroupPermissionsScreen__add_member_labels">加成員標籤</string>
   <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-  <string name="GroupPermissionsScreen__who_can_add_member_labels">Who can add member labels?</string>
+  <string name="GroupPermissionsScreen__who_can_add_member_labels">邊個可以加成員標籤？</string>
   <!-- Warning title shown before restricting member labels to admins only. -->
-  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_title">Member labels will be cleared</string>
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_title">成員標籤將會被清走</string>
   <!-- Warning body shown before restricting member labels to admins only. -->
-  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_body">"Changing this permission to Only admins will clear member labels set by non-admins in this group."</string>
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_body">"將呢個權限改為「淨係得管理員」之後，呢個谷入面唔係由管理員設定嘅成員標籤將會被清走。"</string>
   <!-- Confirm button for changing member label permission after warning. -->
-  <string name="GroupPermissionsScreen__change_permission">Change permission</string>
+  <string name="GroupPermissionsScreen__change_permission">改權限</string>
   <!-- Title of the screen where a group\'s members share its link and its admins manage it. -->
-  <string name="ShareableGroupLinkScreen__group_link">Group link</string>
-  <string name="ShareableGroupLinkScreen__share">Share</string>
+  <string name="ShareableGroupLinkScreen__group_link">谷拎</string>
+  <string name="ShareableGroupLinkScreen__share">分享</string>
   <!-- Label of the row that gives the group a new link, and the confirm button of the warning it shows first. -->
-  <string name="ShareableGroupLinkScreen__reset_link">Reset link</string>
-  <string name="ShareableGroupLinkScreen__require_admin_approval">Require admin approval</string>
-  <string name="ShareableGroupLinkScreen__require_an_admin_to_approve_new_members_joining_via_the_group_link">Require an admin to approve new members joining via the group link.</string>
-  <string name="ShareableGroupLinkScreen__are_you_sure_you_want_to_reset_the_group_link">Are you sure you want to reset the group link? People will no longer be able to join the group using the current link.</string>
+  <string name="ShareableGroupLinkScreen__reset_link">重設條拎</string>
+  <string name="ShareableGroupLinkScreen__require_admin_approval">需要管理員核准</string>
+  <string name="ShareableGroupLinkScreen__require_an_admin_to_approve_new_members_joining_via_the_group_link">以谷拎加入嘅新成員送交話事人審批。</string>
+  <string name="ShareableGroupLinkScreen__are_you_sure_you_want_to_reset_the_group_link">您係咪確定要重設條谷拎？人哋將唔再能夠用而家條拎加入呢個谷。</string>
   <!-- Content description of the button that navigates back off of the group link screen. -->
-  <string name="ShareableGroupLinkScreen__go_back">Go back</string>
+  <string name="ShareableGroupLinkScreen__go_back">返轉頭</string>
 </resources>

@@ -1389,14 +1389,14 @@
     </plurals>
 
     <!-- Shown when a change to a group is rejected because the group has ended. -->
-    <string name="GroupErrors__the_group_was_terminated">The group ended.</string>
-    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">You don\'t have the rights to do this</string>
-    <string name="GroupErrors__not_capable">Someone you added does not support new groups and needs to update Signal</string>
-    <string name="GroupErrors__not_announcement_capable">Someone you added does not support announcement groups and needs to update Signal</string>
-    <string name="GroupErrors__failed_to_update_the_group">Failed to update the group</string>
-    <string name="GroupErrors__youre_not_a_member_of_the_group">You\'re not a member of the group</string>
-    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Failed to update the group please retry later</string>
-    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Failed to update the group due to a network error, please retry later</string>
+    <string name="GroupErrors__the_group_was_terminated">گروپ ختم کر دیا گیا ہے۔</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">آپ کو یہ کام کرنے کا حق نہیں ہے</string>
+    <string name="GroupErrors__not_capable">آپ کے شامل کردہ کوئی بھی نئے گروپس کی حمایت نہیں کرتا ہے اور اسے Signal کو اپ ڈیٹ کرنے کی ضرورت ہے</string>
+    <string name="GroupErrors__not_announcement_capable">آپ نے جس کسی شخص کو شامل کیا ہے وہ اعلان کے گروپس کی معاونت نہیں کرتا اور اسے Signal اپ ڈیٹ کرنے کی ضرورت ہے</string>
+    <string name="GroupErrors__failed_to_update_the_group">گروپ کی تازہ کاری کرنے میں ناکام</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">آپ اس گروپ کے ممبر نہیں ہیں</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">گروپ کو اپ ڈیٹ کرنے میں ناکام رہا براہ کرم بعد میں دوبارہ کوشش کریں</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">نیٹ ورک کی خرابی کی وجہ سے گروپ کو اپ ڈیٹ کرنے میں ناکام ، براہ کرم بعد میں دوبارہ کوشش کریں</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">نام اور تصویر میں ترمیم کریں</string>
     <string name="ManageGroupActivity_legacy_group">لیگیسی گروپ</string>
@@ -2832,9 +2832,9 @@
     <!-- Sticker pack button for forwarding a sticker link. -->
     <string name="StickerManagement_menu_send_signal_pack">Send via Signal</string>
     <!-- Sticker pack button that opens a bottom sheet with more share options. -->
-    <string name="StickerManagement_menu_link_pack">Link</string>
+    <string name="StickerManagement_menu_link_pack">لنک</string>
     <!-- Sticker pack sheet option for sharing a sticker pack link using the system share sheet. -->
-    <string name="StickerManagement_menu_share_pack">Share</string>
+    <string name="StickerManagement_menu_share_pack">اشتراک کریں</string>
     <!-- Bottom sheet description for the share sticker sheet. -->
     <string name="StickerManagement__anyone">Anyone with this link can install and share this sticker pack.</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
@@ -4876,7 +4876,7 @@
     <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
     <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">ترتیبات کو کھولنے کے لئے بائیں طرف اوپر اپنے پروفائل فوٹو پر ٹیپ کریں</string>
     <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_account">"'اکاؤنٹ' پر ٹیپ کریں"</string>
+    <string name="NewDeviceTransferInstructions__tap_on_account">"\'اکاؤنٹ\' پر ٹیپ کریں"</string>
     <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
     <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"\"ٹرانسفر اکاؤنٹ\" پر ٹیپ کریں اور پھر دونوں ڈیوائسز پر \"جاری رکھیں\""</string>
 

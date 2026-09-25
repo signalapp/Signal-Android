@@ -1346,14 +1346,14 @@
     </plurals>
 
     <!-- Shown when a change to a group is rejected because the group has ended. -->
-    <string name="GroupErrors__the_group_was_terminated">The group ended.</string>
-    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">You don\'t have the rights to do this</string>
-    <string name="GroupErrors__not_capable">Someone you added does not support new groups and needs to update Signal</string>
-    <string name="GroupErrors__not_announcement_capable">Someone you added does not support announcement groups and needs to update Signal</string>
-    <string name="GroupErrors__failed_to_update_the_group">Failed to update the group</string>
-    <string name="GroupErrors__youre_not_a_member_of_the_group">You\'re not a member of the group</string>
-    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Failed to update the group please retry later</string>
-    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Failed to update the group due to a network error, please retry later</string>
+    <string name="GroupErrors__the_group_was_terminated">此群组已解散。</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">您没有此操作的权限</string>
+    <string name="GroupErrors__not_capable">您添加的部分用户无法使用新版群组，这些用户需要升级 Signal。</string>
+    <string name="GroupErrors__not_announcement_capable">您添加的某个人无法使用公告群组，对方需要更新 Signal</string>
+    <string name="GroupErrors__failed_to_update_the_group">无法更新群组</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">您不是该群组成员</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">无法更新群组，请稍候再试</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">由于网络错误无法更新群组，请稍候再试</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">编辑昵称和头像</string>
     <string name="ManageGroupActivity_legacy_group">旧版群组</string>
@@ -2736,9 +2736,9 @@
     <!-- Sticker pack button for forwarding a sticker link. -->
     <string name="StickerManagement_menu_send_signal_pack">Send via Signal</string>
     <!-- Sticker pack button that opens a bottom sheet with more share options. -->
-    <string name="StickerManagement_menu_link_pack">Link</string>
+    <string name="StickerManagement_menu_link_pack">链接</string>
     <!-- Sticker pack sheet option for sharing a sticker pack link using the system share sheet. -->
-    <string name="StickerManagement_menu_share_pack">Share</string>
+    <string name="StickerManagement_menu_share_pack">分享</string>
     <!-- Bottom sheet description for the share sticker sheet. -->
     <string name="StickerManagement__anyone">Anyone with this link can install and share this sticker pack.</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->

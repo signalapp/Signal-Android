@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
   <!-- Title of the screen where a group admin picks which actions non-admins can take. -->
-  <string name="GroupPermissionsScreen__permissions">Permissions</string>
+  <string name="GroupPermissionsScreen__permissions">הרשאות</string>
   <!-- Content description of the button that navigates back off of the group permissions screen. -->
-  <string name="GroupPermissionsScreen__go_back">Go back</string>
-  <string name="GroupPermissionsScreen__add_members">Add members</string>
-  <string name="GroupPermissionsScreen__edit_group_info">Edit group info</string>
-  <string name="GroupPermissionsScreen__send_messages">Send messages</string>
-  <string name="GroupPermissionsScreen__all_members">All members</string>
-  <string name="GroupPermissionsScreen__only_admins">Only admins</string>
-  <string name="GroupPermissionsScreen__who_can_add_new_members">Who can add new members?</string>
-  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">Who can edit this group\'s info?</string>
-  <string name="GroupPermissionsScreen__who_can_send_messages">Who can send messages and start calls?</string>
+  <string name="GroupPermissionsScreen__go_back">חזור</string>
+  <string name="GroupPermissionsScreen__add_members">הוסף חברי קבוצה</string>
+  <string name="GroupPermissionsScreen__edit_group_info">עריכת מידע קבוצה</string>
+  <string name="GroupPermissionsScreen__send_messages">שלח הודעות</string>
+  <string name="GroupPermissionsScreen__all_members">כל חברי הקבוצה</string>
+  <string name="GroupPermissionsScreen__only_admins">רק מנהלנים</string>
+  <string name="GroupPermissionsScreen__who_can_add_new_members">מי יכול להוסיף חברי קבוצה חדשים?</string>
+  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">מי יכול לערוך את המידע של קבוצה הזאת?</string>
+  <string name="GroupPermissionsScreen__who_can_send_messages">מי יכול לשלוח הודעות ולהתחיל שיחות?</string>
   <!-- Label for the member labels permission button in the group permissions settings screen. -->
-  <string name="GroupPermissionsScreen__add_member_labels">Add member labels</string>
+  <string name="GroupPermissionsScreen__add_member_labels">הוספת תווית חבר/ה</string>
   <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-  <string name="GroupPermissionsScreen__who_can_add_member_labels">Who can add member labels?</string>
+  <string name="GroupPermissionsScreen__who_can_add_member_labels">מי יכול להוסיף תוויות חברים?</string>
   <!-- Warning title shown before restricting member labels to admins only. -->
-  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_title">Member labels will be cleared</string>
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_title">תוויות החברים יימחקו</string>
   <!-- Warning body shown before restricting member labels to admins only. -->
-  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_body">"Changing this permission to Only admins will clear member labels set by non-admins in this group."</string>
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_body">"שינוי הרשאה זו ל״רק מנהלים״ ימחק תוויות חבר/ה שהוגדרו על ידי משתמשים שאינם מנהלים בקבוצה זו."</string>
   <!-- Confirm button for changing member label permission after warning. -->
-  <string name="GroupPermissionsScreen__change_permission">Change permission</string>
+  <string name="GroupPermissionsScreen__change_permission">שינוי הרשאה</string>
   <!-- Title of the screen where a group\'s members share its link and its admins manage it. -->
-  <string name="ShareableGroupLinkScreen__group_link">Group link</string>
-  <string name="ShareableGroupLinkScreen__share">Share</string>
+  <string name="ShareableGroupLinkScreen__group_link">קישור קבוצה</string>
+  <string name="ShareableGroupLinkScreen__share">שתף</string>
   <!-- Label of the row that gives the group a new link, and the confirm button of the warning it shows first. -->
-  <string name="ShareableGroupLinkScreen__reset_link">Reset link</string>
-  <string name="ShareableGroupLinkScreen__require_admin_approval">Require admin approval</string>
-  <string name="ShareableGroupLinkScreen__require_an_admin_to_approve_new_members_joining_via_the_group_link">Require an admin to approve new members joining via the group link.</string>
-  <string name="ShareableGroupLinkScreen__are_you_sure_you_want_to_reset_the_group_link">Are you sure you want to reset the group link? People will no longer be able to join the group using the current link.</string>
+  <string name="ShareableGroupLinkScreen__reset_link">אפס קישור</string>
+  <string name="ShareableGroupLinkScreen__require_admin_approval">דרישת אישור מנהל/ת</string>
+  <string name="ShareableGroupLinkScreen__require_an_admin_to_approve_new_members_joining_via_the_group_link">דרוש מנהלן כדי לאשר הצטרפות של חברי קבוצה חדשים באמצעות קישור הקבוצה.</string>
+  <string name="ShareableGroupLinkScreen__are_you_sure_you_want_to_reset_the_group_link">האם אתה בטוח שאתה רוצה לאפס את קישור הקבוצה? אנשים לא יוכלו עוד להצטרף אל הקבוצה ע״י שימוש בקישור הנוכחי.</string>
   <!-- Content description of the button that navigates back off of the group link screen. -->
-  <string name="ShareableGroupLinkScreen__go_back">Go back</string>
+  <string name="ShareableGroupLinkScreen__go_back">חזור</string>
 </resources>

@@ -684,7 +684,7 @@
     <!-- Action button that stores the Signal Login in the device password manager. -->
     <string name="SignalLoginInfoScreen__save_to_password_manager">పాస్‌వర్డ్ మేనేజర్‌లో సేవ్ చేయండి</string>
     <!-- Toast shown when the user taps the disabled save to password manager button and the device has no password manager. -->
-    <string name="SignalLoginInfoScreen__no_password_manager_available">You don\'t have a password manager set up, or the password manager you\'re using isn\'t supported.</string>
+    <string name="SignalLoginInfoScreen__no_password_manager_available">మీకు పాస్‌వర్డ్ మేనేజర్ సెటప్ చేయబడలేదు లేదా మీరు ఉపయోగిస్తున్న పాస్‌వర్డ్ మేనేజర్‌కు మద్దతు ఇవ్వబడలేదు.</string>
     <!-- Action button for users who would rather write the Signal Login down themselves. -->
     <string name="SignalLoginInfoScreen__save_manually">మాన్యువల్‌గా సేవ్ చేయండి</string>
     <!-- Error shown when the Signal Login could not be stored in the password manager. -->

@@ -3,7 +3,7 @@
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">¿Activar el bloqueo de registro?</string>
     <string name="RegistrationLockV2Dialog_turn_off_registration_lock">¿Desactivar el bloqueo de registro?</string>
-    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Si olvidas tu PIN de Signal al volver a registrarte en Signal, no podrás acceder a tu cuenta durante 7 días.</string>
+    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Si vuelves a registrarte en Signal y olvidas tu PIN de Signal, no podrás acceder a tu cuenta durante 7 días.</string>
     <string name="RegistrationLockV2Dialog_turn_on">Activar</string>
     <string name="RegistrationLockV2Dialog_turn_off">Desactivar</string>
     <string name="preferences__advanced_pin_settings">Ajustes avanzados del PIN</string>
@@ -20,7 +20,7 @@
     <string name="preferences_app_protection__confirm_pin">Confirmar PIN</string>
     <string name="preferences_app_protection__confirm_your_signal_pin">Confirma tu PIN de Signal</string>
     <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Asegúrate de memorizar o guardar tu PIN de forma segura, ya que no se puede recuperar. Si olvidas tu PIN, es posible que pierdas información cuando vuelvas a registrar tu cuenta de Signal.</string>
-    <string name="preferences_app_protection__incorrect_pin_try_again">PIN incorrecto. Vuelve a intentarlo.</string>
+    <string name="preferences_app_protection__incorrect_pin_try_again">PIN incorrecto. Inténtalo de nuevo.</string>
     <string name="preferences_app_protection__registration_lock">Bloqueo de registro</string>
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
     <string name="preferences_account_reregister">Volver a registrar cuenta</string>
@@ -174,33 +174,33 @@
 
     <!-- DeleteAccountScreen -->
     <!-- DeleteAccountFragment -->
-    <string name="DeleteAccountFragment__deleting_your_account_will">Deleting your account will:</string>
-    <string name="DeleteAccountFragment__enter_your_phone_number">Enter your phone number</string>
-    <string name="DeleteAccountFragment__delete_account">Delete account</string>
-    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Delete your account info and profile photo</string>
-    <string name="DeleteAccountFragment__delete_all_your_messages">Delete all your messages</string>
-    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Delete %1$s in your payments account</string>
-    <string name="DeleteAccountFragment__no_country_code">No country code specified</string>
-    <string name="DeleteAccountFragment__no_number">No number specified</string>
-    <string name="DeleteAccountFragment__the_phone_number">The phone number you entered doesn\'t match your account\'s.</string>
-    <string name="DeleteAccountFragment__are_you_sure">Are you sure you want to delete your account?</string>
-    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">This will delete your Signal account and reset the application. The app will close after the process is complete.</string>
-    <string name="DeleteAccountFragment__failed_to_delete_local_data">Failed to delete local data. You can manually clear it in the system application settings.</string>
-    <string name="DeleteAccountFragment__launch_app_settings">Launch App Settings</string>
+    <string name="DeleteAccountFragment__deleting_your_account_will">Si eliminas tu cuenta, también se eliminará:</string>
+    <string name="DeleteAccountFragment__enter_your_phone_number">Introduce tu número de teléfono</string>
+    <string name="DeleteAccountFragment__delete_account">Eliminar cuenta</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">la información de tu cuenta y tu foto de perfil</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">todos tus mensajes</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">%1$s de tu cuenta de pagos</string>
+    <string name="DeleteAccountFragment__no_country_code">Código de país no especificado</string>
+    <string name="DeleteAccountFragment__no_number">Número no especificado</string>
+    <string name="DeleteAccountFragment__the_phone_number">El número de teléfono que has introducido no coincide con el de tu cuenta de Signal.</string>
+    <string name="DeleteAccountFragment__are_you_sure">¿Seguro que quieres eliminar tu cuenta?</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Esta acción hará que se elimine tu cuenta de Signal y se restablezca la aplicación. Signal se cerrará después de que finalice este proceso.</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">No se han podido eliminar los datos locales. Puedes hacerlo manualmente desde el menú Aplicaciones en Ajustes de Android.</string>
+    <string name="DeleteAccountFragment__launch_app_settings">Abrir Ajustes de aplicaciones</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
-    <string name="DeleteAccountFragment__leaving_groups">Leaving groups…</string>
+    <string name="DeleteAccountFragment__leaving_groups">Abandonando grupos…</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
-    <string name="DeleteAccountFragment__deleting_account">Deleting account…</string>
+    <string name="DeleteAccountFragment__deleting_account">Eliminando cuenta…</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
-    <string name="DeleteAccountFragment__canceling_your_subscription">Canceling your subscription…</string>
+    <string name="DeleteAccountFragment__canceling_your_subscription">Cancelando tu suscripción…</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
-    <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Depending on the number of groups you\'re in, this might take a few minutes</string>
+    <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Este proceso puede llevar unos minutos dependiendo del número de grupos en los que estés</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
-    <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Deleting user data and resetting the app</string>
+    <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Eliminando datos de usuario y restableciendo la aplicación</string>
     <!-- Title of error dialog shown when a network error occurs during account deletion -->
-    <string name="DeleteAccountFragment__account_not_deleted">Account Not Deleted</string>
+    <string name="DeleteAccountFragment__account_not_deleted">Cuenta no eliminada</string>
     <!-- Message of error dialog shown when a network error occurs during account deletion -->
-    <string name="DeleteAccountFragment__there_was_a_problem">There was a problem completing the deletion process. Check your network connection and try again.</string>
+    <string name="DeleteAccountFragment__there_was_a_problem">No se ha podido completar el proceso de eliminación de tu cuenta. Comprueba tu conexión de red e inténtalo de nuevo.</string>
     <!-- Body text above the bullet list on the delete account screen, shown when the account has a username. Placeholder is the username. -->
     <string name="DeleteAccountScreen__deleting_your_account_with_username_s_will">Deleting your account with username \"%1$s\" will:</string>
     <!-- Bullet point on the delete account screen, shown in place of the plain one when the account has a username. Placeholder is the username. -->
@@ -213,6 +213,6 @@
     <string name="DeleteAccountScreen__yes_delete_my_account">Yes, delete my account</string>
 
     <!-- Shared with the registration screens -->
-    <string name="RegistrationActivity_select_your_country">Select your country</string>
-    <string name="RegistrationActivity_phone_number_description">Phone number</string>
+    <string name="RegistrationActivity_select_your_country">Selecciona tu país</string>
+    <string name="RegistrationActivity_phone_number_description">Número de teléfono</string>
 </resources>

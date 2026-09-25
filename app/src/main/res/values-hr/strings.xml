@@ -1475,14 +1475,14 @@
     </plurals>
 
     <!-- Shown when a change to a group is rejected because the group has ended. -->
-    <string name="GroupErrors__the_group_was_terminated">The group ended.</string>
-    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">You don\'t have the rights to do this</string>
-    <string name="GroupErrors__not_capable">Someone you added does not support new groups and needs to update Signal</string>
-    <string name="GroupErrors__not_announcement_capable">Someone you added does not support announcement groups and needs to update Signal</string>
-    <string name="GroupErrors__failed_to_update_the_group">Failed to update the group</string>
-    <string name="GroupErrors__youre_not_a_member_of_the_group">You\'re not a member of the group</string>
-    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Failed to update the group please retry later</string>
-    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Failed to update the group due to a network error, please retry later</string>
+    <string name="GroupErrors__the_group_was_terminated">Grupni razgovor je zatvoren.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">Nemate prava na ovo</string>
+    <string name="GroupErrors__not_capable">Netko koga ste dodali ne podržava nove grupe i mora ažurirati Signal</string>
+    <string name="GroupErrors__not_announcement_capable">Netko koga ste dodali ne podržava grupne najave i mora ažurirati Signal</string>
+    <string name="GroupErrors__failed_to_update_the_group">Ažuriranje grupe nije uspjelo</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">Vi niste član ove grupe</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Ažuriranje grupe nije uspjelo, pokušajte ponovno</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Ažuriranje grupe nije uspjelo zbog mrežne pogreške, pokušajte ponovno</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">Uredi naziv i sliku</string>
     <string name="ManageGroupActivity_legacy_group">Naslijeđena grupa</string>
@@ -3024,9 +3024,9 @@
     <!-- Sticker pack button for forwarding a sticker link. -->
     <string name="StickerManagement_menu_send_signal_pack">Send via Signal</string>
     <!-- Sticker pack button that opens a bottom sheet with more share options. -->
-    <string name="StickerManagement_menu_link_pack">Link</string>
+    <string name="StickerManagement_menu_link_pack">Poveznica</string>
     <!-- Sticker pack sheet option for sharing a sticker pack link using the system share sheet. -->
-    <string name="StickerManagement_menu_share_pack">Share</string>
+    <string name="StickerManagement_menu_share_pack">Podijeli</string>
     <!-- Bottom sheet description for the share sticker sheet. -->
     <string name="StickerManagement__anyone">Anyone with this link can install and share this sticker pack.</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->

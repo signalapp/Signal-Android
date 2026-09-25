@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
   <!-- Title of the screen where a group admin picks which actions non-admins can take. -->
-  <string name="GroupPermissionsScreen__permissions">Permissions</string>
+  <string name="GroupPermissionsScreen__permissions">ნებართვები</string>
   <!-- Content description of the button that navigates back off of the group permissions screen. -->
-  <string name="GroupPermissionsScreen__go_back">Go back</string>
-  <string name="GroupPermissionsScreen__add_members">Add members</string>
-  <string name="GroupPermissionsScreen__edit_group_info">Edit group info</string>
-  <string name="GroupPermissionsScreen__send_messages">Send messages</string>
-  <string name="GroupPermissionsScreen__all_members">All members</string>
-  <string name="GroupPermissionsScreen__only_admins">Only admins</string>
-  <string name="GroupPermissionsScreen__who_can_add_new_members">Who can add new members?</string>
-  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">Who can edit this group\'s info?</string>
-  <string name="GroupPermissionsScreen__who_can_send_messages">Who can send messages and start calls?</string>
+  <string name="GroupPermissionsScreen__go_back">უკან გასვლა</string>
+  <string name="GroupPermissionsScreen__add_members">წევრების დამატება</string>
+  <string name="GroupPermissionsScreen__edit_group_info">ჯგუფის ინფორმაციის რედაქტირება</string>
+  <string name="GroupPermissionsScreen__send_messages">შეტყობინებების გაგზავნა</string>
+  <string name="GroupPermissionsScreen__all_members">ყველა წევრი</string>
+  <string name="GroupPermissionsScreen__only_admins">მხოლოდ ადმინები</string>
+  <string name="GroupPermissionsScreen__who_can_add_new_members">ვის შეუძლია ახალი წევრების დამატება?</string>
+  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">ვის შეუძლია ამ ჯგუფის ინფორმაციის რედაქტირება?</string>
+  <string name="GroupPermissionsScreen__who_can_send_messages">ვის შეუძლია შეტყობინების გაგზავნა და ზარების წამოწყება?</string>
   <!-- Label for the member labels permission button in the group permissions settings screen. -->
-  <string name="GroupPermissionsScreen__add_member_labels">Add member labels</string>
+  <string name="GroupPermissionsScreen__add_member_labels">წევრის იარლიყის დამატება</string>
   <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-  <string name="GroupPermissionsScreen__who_can_add_member_labels">Who can add member labels?</string>
+  <string name="GroupPermissionsScreen__who_can_add_member_labels">ვის შეუძლია წევრის იარლიყების დამატება?</string>
   <!-- Warning title shown before restricting member labels to admins only. -->
-  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_title">Member labels will be cleared</string>
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_title">წევრის იარლიყები წაიშლება</string>
   <!-- Warning body shown before restricting member labels to admins only. -->
-  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_body">"Changing this permission to Only admins will clear member labels set by non-admins in this group."</string>
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_body">"ნებართვის მხოლოდ ადმინისტრატორზე გადაყვანა ამ ჯგუფში არაადმინისტრატორების მიერ დაყენებულ წევრის იარლიყებს წაშლის."</string>
   <!-- Confirm button for changing member label permission after warning. -->
-  <string name="GroupPermissionsScreen__change_permission">Change permission</string>
+  <string name="GroupPermissionsScreen__change_permission">ნებართვის შეცვლა</string>
   <!-- Title of the screen where a group\'s members share its link and its admins manage it. -->
-  <string name="ShareableGroupLinkScreen__group_link">Group link</string>
-  <string name="ShareableGroupLinkScreen__share">Share</string>
+  <string name="ShareableGroupLinkScreen__group_link">ჯგუფის ბმული</string>
+  <string name="ShareableGroupLinkScreen__share">გაზიარება</string>
   <!-- Label of the row that gives the group a new link, and the confirm button of the warning it shows first. -->
-  <string name="ShareableGroupLinkScreen__reset_link">Reset link</string>
-  <string name="ShareableGroupLinkScreen__require_admin_approval">Require admin approval</string>
-  <string name="ShareableGroupLinkScreen__require_an_admin_to_approve_new_members_joining_via_the_group_link">Require an admin to approve new members joining via the group link.</string>
-  <string name="ShareableGroupLinkScreen__are_you_sure_you_want_to_reset_the_group_link">Are you sure you want to reset the group link? People will no longer be able to join the group using the current link.</string>
+  <string name="ShareableGroupLinkScreen__reset_link">ბმულის შეცვლა</string>
+  <string name="ShareableGroupLinkScreen__require_admin_approval">ადმინისტრატორის დასტურის მოთხოვნა</string>
+  <string name="ShareableGroupLinkScreen__require_an_admin_to_approve_new_members_joining_via_the_group_link">მოითხოვე, რომ ჯგუფის ბმულის მეშვეობით ახალი წევრები ადმინმა დაამტკიცოს.</string>
+  <string name="ShareableGroupLinkScreen__are_you_sure_you_want_to_reset_the_group_link">დარწმუნებული ხარ, რომ გსურს ჯგუფის ბმული შეცვალო? ხალხი ჯგუფში გაწევრიანებას ამჟამინდელი ბმულის საშუალებით ვეღარ შეძლებს.</string>
   <!-- Content description of the button that navigates back off of the group link screen. -->
-  <string name="ShareableGroupLinkScreen__go_back">Go back</string>
+  <string name="ShareableGroupLinkScreen__go_back">უკან გასვლა</string>
 </resources>

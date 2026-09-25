@@ -1518,14 +1518,14 @@
     </plurals>
 
     <!-- Shown when a change to a group is rejected because the group has ended. -->
-    <string name="GroupErrors__the_group_was_terminated">The group ended.</string>
-    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">You don\'t have the rights to do this</string>
-    <string name="GroupErrors__not_capable">Someone you added does not support new groups and needs to update Signal</string>
-    <string name="GroupErrors__not_announcement_capable">Someone you added does not support announcement groups and needs to update Signal</string>
-    <string name="GroupErrors__failed_to_update_the_group">Failed to update the group</string>
-    <string name="GroupErrors__youre_not_a_member_of_the_group">You\'re not a member of the group</string>
-    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Failed to update the group please retry later</string>
-    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Failed to update the group due to a network error, please retry later</string>
+    <string name="GroupErrors__the_group_was_terminated">Tá deireadh curtha leis an ngrúpa.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">Níl na cearta agat chun sin a dhéanamh</string>
+    <string name="GroupErrors__not_capable">Duine a chuir tú leis, ní thacaíonn sé/sí le grúpaí nua agus ní mór dó/di Signal a nuashonrú</string>
+    <string name="GroupErrors__not_announcement_capable">Duine a chuir tú leis, ní thacaíonn sé/sí le grúpaí fógraí agus ní mór dó/di Signal a nuashonrú</string>
+    <string name="GroupErrors__failed_to_update_the_group">Theip ar nuashonrú an ghrúpa</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">Ní comhalta den bhaicle thú</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Theip ar nuashonrú an ghrúpa, triail arís ar ball</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Theip ar nuashonrú an ghrúpa de bharr earráid líonra, triail arís níos déanaí</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">Cuir an t-ainm agus pictiúr in eagar</string>
     <string name="ManageGroupActivity_legacy_group">Grúpa Oidhreachta</string>
@@ -1620,7 +1620,7 @@
     <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
     <string name="ManageProfileFragment__delete_username_dialog_title">Scrios ainm úsáideora?</string>
     <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_body">"Bainfear d'ainm úsáideora agus díchumasófar do chód QR agus nasc leis sin. Beidh daoine eile in ann %1$s a éileamh. An bhfuil tú cinnte?"</string>
+    <string name="ManageProfileFragment__delete_username_dialog_body">"Bainfear d\'ainm úsáideora agus díchumasófar do chód QR agus nasc leis sin. Beidh daoine eile in ann %1$s a éileamh. An bhfuil tú cinnte?"</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
@@ -3120,9 +3120,9 @@
     <!-- Sticker pack button for forwarding a sticker link. -->
     <string name="StickerManagement_menu_send_signal_pack">Send via Signal</string>
     <!-- Sticker pack button that opens a bottom sheet with more share options. -->
-    <string name="StickerManagement_menu_link_pack">Link</string>
+    <string name="StickerManagement_menu_link_pack">Nasc</string>
     <!-- Sticker pack sheet option for sharing a sticker pack link using the system share sheet. -->
-    <string name="StickerManagement_menu_share_pack">Share</string>
+    <string name="StickerManagement_menu_share_pack">Comhroinn</string>
     <!-- Bottom sheet description for the share sticker sheet. -->
     <string name="StickerManagement__anyone">Anyone with this link can install and share this sticker pack.</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
@@ -5161,7 +5161,7 @@
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
     <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">Beidh tú dofheicthe ar Signal ag daoine ach amháin má sheolann tú teachtaireacht chucu nó má tá comhrá ar siúl agat leo.</string>
     <!-- Snackbar text when pressing invalid radio item -->
-    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"Leis an socrú sin a athrú, socraigh Daoine atá in ann m'uimhir a fheiceáil go Duine ar bith."</string>
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"Leis an socrú sin a athrú, socraigh Daoine atá in ann m\'uimhir a fheiceáil go Duine ar bith."</string>
     <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
     <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">An bhfuil tú cinnte?</string>
     <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
@@ -7219,7 +7219,7 @@
     <!-- Signal connections sheet bullet point 3 -->
     <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Trína bheith i dteagmhálaithe do ghutháin</string>
     <!-- Note at the bottom of the Signal connections sheet -->
-    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Is féidir le do theagmhálaithe d'ainm agus do ghrianghraf, agus postálacha \"Mo Scéal\", a fheiceáil, mura gcuireann tú na rudaí sin i bhfolach orthu."</string>
+    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Is féidir le do theagmhálaithe d\'ainm agus do ghrianghraf, agus postálacha \"Mo Scéal\", a fheiceáil, mura gcuireann tú na rudaí sin i bhfolach orthu."</string>
     <!-- Clickable option to add a viewer to a custom story -->
     <string name="PrivateStorySettingsFragment__add_viewer">Cuir amharcóir leis</string>
     <!-- Clickable option to delete a custom story -->

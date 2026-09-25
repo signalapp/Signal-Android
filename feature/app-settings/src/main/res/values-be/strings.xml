@@ -174,33 +174,33 @@
 
     <!-- DeleteAccountScreen -->
     <!-- DeleteAccountFragment -->
-    <string name="DeleteAccountFragment__deleting_your_account_will">Deleting your account will:</string>
-    <string name="DeleteAccountFragment__enter_your_phone_number">Enter your phone number</string>
-    <string name="DeleteAccountFragment__delete_account">Delete account</string>
-    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Delete your account info and profile photo</string>
-    <string name="DeleteAccountFragment__delete_all_your_messages">Delete all your messages</string>
-    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Delete %1$s in your payments account</string>
-    <string name="DeleteAccountFragment__no_country_code">No country code specified</string>
-    <string name="DeleteAccountFragment__no_number">No number specified</string>
-    <string name="DeleteAccountFragment__the_phone_number">The phone number you entered doesn\'t match your account\'s.</string>
-    <string name="DeleteAccountFragment__are_you_sure">Are you sure you want to delete your account?</string>
-    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">This will delete your Signal account and reset the application. The app will close after the process is complete.</string>
-    <string name="DeleteAccountFragment__failed_to_delete_local_data">Failed to delete local data. You can manually clear it in the system application settings.</string>
-    <string name="DeleteAccountFragment__launch_app_settings">Launch App Settings</string>
+    <string name="DeleteAccountFragment__deleting_your_account_will">Калі выдаліць уліковы запіс, адбудзецца наступнае:</string>
+    <string name="DeleteAccountFragment__enter_your_phone_number">Увядзіце свой нумар тэлефона</string>
+    <string name="DeleteAccountFragment__delete_account">Выдаліць уліковы запіс</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Выдаляцца інфармацыя аб вашым уліковым запісе і фота профілю</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">Выдаліць усе вашы паведамленні</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Выдаліць %1$s з вашага плацежнага рахунку</string>
+    <string name="DeleteAccountFragment__no_country_code">Код краіны не ўказаны</string>
+    <string name="DeleteAccountFragment__no_number">Нумар не ўказаны</string>
+    <string name="DeleteAccountFragment__the_phone_number">Нумар тэлефона, які вы ўвялі, не супадае з нумарам тэлефона вашага ўліковага запісу.</string>
+    <string name="DeleteAccountFragment__are_you_sure">Вы ўпэўнены, што жадаеце выдаліць свой уліковы запіс?</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Ваш уліковы запіс Signal будзе выдалены, а праграма будзе скінута. Праграма закрыецца пасля завяршэння гэтага працэсу.</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">Не атрымалася выдаліць лакальныя даныя. Вы можаце ачысціць іх уручную ў сістэмных наладах праграмы.</string>
+    <string name="DeleteAccountFragment__launch_app_settings">Адкрыць налады праграмы</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
-    <string name="DeleteAccountFragment__leaving_groups">Leaving groups…</string>
+    <string name="DeleteAccountFragment__leaving_groups">Пакіданне груп…</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
-    <string name="DeleteAccountFragment__deleting_account">Deleting account…</string>
+    <string name="DeleteAccountFragment__deleting_account">Выдаленне ўліковага запісу…</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
-    <string name="DeleteAccountFragment__canceling_your_subscription">Canceling your subscription…</string>
+    <string name="DeleteAccountFragment__canceling_your_subscription">Скасаванне вашай падпіскі…</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
-    <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Depending on the number of groups you\'re in, this might take a few minutes</string>
+    <string name="DeleteAccountFragment__depending_on_the_number_of_groups">У залежнасці ад колькасці груп, у якіх вы знаходзіцеся, гэта можа заняць некалькі хвілін</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
-    <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Deleting user data and resetting the app</string>
+    <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Выдаленне даных карыстальніка і скідванне праграмы</string>
     <!-- Title of error dialog shown when a network error occurs during account deletion -->
-    <string name="DeleteAccountFragment__account_not_deleted">Account Not Deleted</string>
+    <string name="DeleteAccountFragment__account_not_deleted">Уліковы запіс не выдалены</string>
     <!-- Message of error dialog shown when a network error occurs during account deletion -->
-    <string name="DeleteAccountFragment__there_was_a_problem">There was a problem completing the deletion process. Check your network connection and try again.</string>
+    <string name="DeleteAccountFragment__there_was_a_problem">Адбылася праблема з завяршэннем працэсу выдалення. Праверце падключэнне да сеткі і паўтарыце спробу.</string>
     <!-- Body text above the bullet list on the delete account screen, shown when the account has a username. Placeholder is the username. -->
     <string name="DeleteAccountScreen__deleting_your_account_with_username_s_will">Deleting your account with username \"%1$s\" will:</string>
     <!-- Bullet point on the delete account screen, shown in place of the plain one when the account has a username. Placeholder is the username. -->
@@ -213,6 +213,6 @@
     <string name="DeleteAccountScreen__yes_delete_my_account">Yes, delete my account</string>
 
     <!-- Shared with the registration screens -->
-    <string name="RegistrationActivity_select_your_country">Select your country</string>
-    <string name="RegistrationActivity_phone_number_description">Phone number</string>
+    <string name="RegistrationActivity_select_your_country">Выберыце сваю краіну</string>
+    <string name="RegistrationActivity_phone_number_description">Нумар тэлефона</string>
 </resources>

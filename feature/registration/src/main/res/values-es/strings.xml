@@ -194,13 +194,13 @@
     <!-- Link to choose an earlier backup -->
     <string name="LocalBackupRestoreScreen__choose_earlier_backup">Elegir una copia de seguridad anterior</string>
     <!-- Title for the backup picker bottom sheet -->
-    <string name="LocalBackupRestoreScreen__choose_a_backup_to_restore">Elegir una copia de seguridad para restaurar</string>
+    <string name="LocalBackupRestoreScreen__choose_a_backup_to_restore">Elige una copia de seguridad para restaurar</string>
     <!-- Warning text in the backup picker bottom sheet -->
     <string name="LocalBackupRestoreScreen__choosing_an_older_backup_warning">Si eliges una copia de seguridad anterior, es posible que pierdas mensajes o archivos.</string>
     <!-- Title when no backup is found -->
-    <string name="LocalBackupRestoreScreen__no_backup_found">No se ha encontrado ninguna copia de seguridad</string>
+    <string name="LocalBackupRestoreScreen__no_backup_found">No hay ninguna copia de seguridad</string>
     <!-- Description when no backup is found -->
-    <string name="LocalBackupRestoreScreen__no_backup_found_description">No se ha encontrado ninguna copia de seguridad de Signal en la carpeta seleccionada. Prueba con otra carpeta.</string>
+    <string name="LocalBackupRestoreScreen__no_backup_found_description">No se ha encontrado ninguna copia de seguridad de Signal en la carpeta seleccionada. Busca en otra carpeta.</string>
     <!-- Button to try a different folder -->
     <string name="LocalBackupRestoreScreen__try_different_folder">Buscar en otra carpeta</string>
     <!-- Title for V1 passphrase entry screen -->
@@ -237,7 +237,7 @@
     <!-- Confirm button label for the restore to new account dialog -->
     <string name="EnterAepScreen__restore">Restaurar</string>
     <!-- Title of the dialog shown when the entered recovery key is correct, but the account has no Signal Backup to restore -->
-    <string name="EnterAepScreen__no_backup_found">No se ha encontrado ninguna copia de seguridad</string>
+    <string name="EnterAepScreen__no_backup_found">No hay ninguna copia de seguridad</string>
     <!-- Body of the dialog shown when the entered recovery key is correct, but the account has no Signal Backup to restore -->
     <string name="EnterAepScreen__no_backup_found_body">Tu clave de recuperación es correcta, pero no hay ninguna copia de seguridad de Signal asociada a esta cuenta. Regresa y selecciona otra opción de restauración o continúa sin restaurar tus datos.</string>
     <!-- Text shown while preparing the restore -->
@@ -616,7 +616,7 @@
     <!-- Selling point of the purchase option: a username is used to reach the user. -->
     <string name="SignalLoginPaymentScreen__username_for_messaging_and_calls">Usa un alias para mensajes y llamadas</string>
     <!-- Selling point of the purchase option: the purchase supports Signal. -->
-    <string name="SignalLoginPaymentScreen__signal_is_a_non_profit">Signal es una organización sin ánimo de lucro: tu compra nos ayuda a llevar a cabo nuestra misión</string>
+    <string name="SignalLoginPaymentScreen__signal_is_a_non_profit">Signal es una entidad sin ánimo de lucro: tu compra apoya nuestra misión</string>
     <!-- Title of the option for users who already bought a Signal Login. -->
     <string name="SignalLoginPaymentScreen__i_have_a_signal_login">Tengo un Signal Login</string>
     <!-- Subtitle of the existing-login option. -->
@@ -682,9 +682,9 @@
     <!-- Description warning the user that a lost Signal Login cannot be recovered. -->
     <string name="SignalLoginInfoScreen__thanks_for_your_purchase">Gracias por tu compra. Usa tu Signal Login para registrarte y restaurar tu cuenta. Si olvidas tu clave, no podrás recuperar tu cuenta.</string>
     <!-- Action button that stores the Signal Login in the device password manager. -->
-    <string name="SignalLoginInfoScreen__save_to_password_manager">Guardar en el gestor de contraseñas</string>
+    <string name="SignalLoginInfoScreen__save_to_password_manager">Guardar en gestor de contraseñas</string>
     <!-- Toast shown when the user taps the disabled save to password manager button and the device has no password manager. -->
-    <string name="SignalLoginInfoScreen__no_password_manager_available">You don\'t have a password manager set up, or the password manager you\'re using isn\'t supported.</string>
+    <string name="SignalLoginInfoScreen__no_password_manager_available">No tienes un gestor de contraseñas configurado o el gestor de contraseñas que estás usando no es compatible.</string>
     <!-- Action button for users who would rather write the Signal Login down themselves. -->
     <string name="SignalLoginInfoScreen__save_manually">Guardar manualmente</string>
     <!-- Error shown when the Signal Login could not be stored in the password manager. -->

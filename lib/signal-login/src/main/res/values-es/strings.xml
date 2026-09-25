@@ -28,7 +28,7 @@
     <!-- Content description for the button that copies the recovery key to the clipboard. -->
     <string name="SignalLoginKeyDetails__copy_recovery_key">Copiar clave de recuperación</string>
     <!-- Action button that stores the Signal Login in the device password manager. -->
-    <string name="SignalLoginViewDetailsScreen__save_to_password_manager">Guardar en el gestor de contraseñas</string>
+    <string name="SignalLoginViewDetailsScreen__save_to_password_manager">Guardar en gestor de contraseñas</string>
     <!-- Action button that saves the Signal Login as a PDF. -->
     <string name="SignalLoginViewDetailsScreen__save_as_pdf">Guardar como PDF</string>
     <!-- Action button that starts the flow to replace the recovery key with a newly-generated one. -->
@@ -36,7 +36,7 @@
     <!-- Suggested file name prefilled in the system save dialog when saving the Signal Login as a PDF. Keep the .pdf extension. -->
     <string name="SignalLoginViewDetailsScreen__signal_login_pdf">Signal Login.pdf</string>
     <!-- Toast shown when the user taps the disabled save to password manager button and the device has no password manager. -->
-    <string name="SignalLoginViewDetailsScreen__no_password_manager_available">You don\'t have a password manager set up, or the password manager you\'re using isn\'t supported.</string>
+    <string name="SignalLoginViewDetailsScreen__no_password_manager_available">No tienes un gestor de contraseñas configurado o el gestor de contraseñas que estás usando no es compatible.</string>
     <!-- Toast shown when saving the Signal Login PDF fails. -->
     <string name="SignalLoginViewDetailsScreen__unable_to_save_pdf">No se ha podido guardar el PDF. Inténtalo de nuevo.</string>
     <!-- Toast shown when the location the user picked for the Signal Login PDF refuses the write. -->

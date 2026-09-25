@@ -1346,14 +1346,14 @@
     </plurals>
 
     <!-- Shown when a change to a group is rejected because the group has ended. -->
-    <string name="GroupErrors__the_group_was_terminated">The group ended.</string>
-    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">You don\'t have the rights to do this</string>
-    <string name="GroupErrors__not_capable">Someone you added does not support new groups and needs to update Signal</string>
-    <string name="GroupErrors__not_announcement_capable">Someone you added does not support announcement groups and needs to update Signal</string>
-    <string name="GroupErrors__failed_to_update_the_group">Failed to update the group</string>
-    <string name="GroupErrors__youre_not_a_member_of_the_group">You\'re not a member of the group</string>
-    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Failed to update the group please retry later</string>
-    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Failed to update the group due to a network error, please retry later</string>
+    <string name="GroupErrors__the_group_was_terminated">กลุ่มถูกปิดแล้ว</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">คุณไม่มีสิทธิ์ทำสิ่งนี้</string>
+    <string name="GroupErrors__not_capable">บุคคลที่คุณเพิ่มเข้ากลุ่ม ใช้กลุ่มแบบใหม่ไม่ได้ และจะต้องปรับรุ่น Signal</string>
+    <string name="GroupErrors__not_announcement_capable">บุคคลที่คุณเพิ่มไม่รองรับกลุ่มประกาศ และต้องปรับปรุง Signal</string>
+    <string name="GroupErrors__failed_to_update_the_group">ปรับปรุงกลุ่มไม่สำเร็จ</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">คุณไม่ใช่สมาชิกของกลุ่มนี้</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">ปรับปรุงกลุ่มไม่สำเร็จ โปรดลองอีกครั้งในภายหลัง</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">ปรับปรุงกลุ่มไม่สำเร็จเนื่องจากความผิดพลาดของเครือข่าย โปรดลองอีกครั้งในภายหลัง</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">แก้ไขชื่อและภาพ</string>
     <string name="ManageGroupActivity_legacy_group">กลุ่มแบบเก่า</string>
@@ -2736,9 +2736,9 @@
     <!-- Sticker pack button for forwarding a sticker link. -->
     <string name="StickerManagement_menu_send_signal_pack">Send via Signal</string>
     <!-- Sticker pack button that opens a bottom sheet with more share options. -->
-    <string name="StickerManagement_menu_link_pack">Link</string>
+    <string name="StickerManagement_menu_link_pack">ลิงก์</string>
     <!-- Sticker pack sheet option for sharing a sticker pack link using the system share sheet. -->
-    <string name="StickerManagement_menu_share_pack">Share</string>
+    <string name="StickerManagement_menu_share_pack">แชร์</string>
     <!-- Bottom sheet description for the share sticker sheet. -->
     <string name="StickerManagement__anyone">Anyone with this link can install and share this sticker pack.</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->

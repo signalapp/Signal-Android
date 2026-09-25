@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
   <!-- Title of the screen where a group admin picks which actions non-admins can take. -->
-  <string name="GroupPermissionsScreen__permissions">Permissions</string>
+  <string name="GroupPermissionsScreen__permissions">അനുമതികൾ</string>
   <!-- Content description of the button that navigates back off of the group permissions screen. -->
-  <string name="GroupPermissionsScreen__go_back">Go back</string>
-  <string name="GroupPermissionsScreen__add_members">Add members</string>
-  <string name="GroupPermissionsScreen__edit_group_info">Edit group info</string>
-  <string name="GroupPermissionsScreen__send_messages">Send messages</string>
-  <string name="GroupPermissionsScreen__all_members">All members</string>
-  <string name="GroupPermissionsScreen__only_admins">Only admins</string>
-  <string name="GroupPermissionsScreen__who_can_add_new_members">Who can add new members?</string>
-  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">Who can edit this group\'s info?</string>
-  <string name="GroupPermissionsScreen__who_can_send_messages">Who can send messages and start calls?</string>
+  <string name="GroupPermissionsScreen__go_back">മടങ്ങിപ്പോവുക</string>
+  <string name="GroupPermissionsScreen__add_members">അംഗങ്ങളെ ചേർക്കുക</string>
+  <string name="GroupPermissionsScreen__edit_group_info">ഗ്രൂപ്പ് വിവരം തിരുത്തുക</string>
+  <string name="GroupPermissionsScreen__send_messages">സന്ദേശങ്ങള്‍ അയയ്ക്കുക</string>
+  <string name="GroupPermissionsScreen__all_members">എല്ലാ അംഗങ്ങളും</string>
+  <string name="GroupPermissionsScreen__only_admins">അഡ്‌മിനുകൾ മാത്രം</string>
+  <string name="GroupPermissionsScreen__who_can_add_new_members">ആർക്കാണ് പുതിയ അംഗങ്ങളെ ചേർക്കാൻ കഴിയുക?</string>
+  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">ഈ ഗ്രൂപ്പിന്റെ വിവരങ്ങൾ ആർക്കാണ് എഡിറ്റുചെയ്യാൻ കഴിയുക?</string>
+  <string name="GroupPermissionsScreen__who_can_send_messages">ആർക്കൊക്കെ സന്ദേശങ്ങൾ അയയ്ക്കാനും കോളുകൾ ആരംഭിക്കാനും കഴിയും?</string>
   <!-- Label for the member labels permission button in the group permissions settings screen. -->
-  <string name="GroupPermissionsScreen__add_member_labels">Add member labels</string>
+  <string name="GroupPermissionsScreen__add_member_labels">മെമ്പര്‍ ലേബലുകൾ ചേർക്കുക</string>
   <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-  <string name="GroupPermissionsScreen__who_can_add_member_labels">Who can add member labels?</string>
+  <string name="GroupPermissionsScreen__who_can_add_member_labels">ആർക്കാണ് മെമ്പര്‍ ലേബലുകൾ ചേർക്കാൻ കഴിയുക?</string>
   <!-- Warning title shown before restricting member labels to admins only. -->
-  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_title">Member labels will be cleared</string>
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_title">മെമ്പര്‍ ലേബലുകൾ മായ്ക്കപ്പെടും</string>
   <!-- Warning body shown before restricting member labels to admins only. -->
-  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_body">"Changing this permission to Only admins will clear member labels set by non-admins in this group."</string>
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_body">"ഈ അനുമതി \"അഡ്മിൻമാർക്ക് മാത്രം\" എന്നാക്കി മാറ്റുന്നത് ഈ ഗ്രൂപ്പിലെ അഡ്മിൻമാരല്ലാത്തവർ സജ്ജമാക്കിയ മെമ്പര്‍ ലേബലുകൾ മായ്ക്കും."</string>
   <!-- Confirm button for changing member label permission after warning. -->
-  <string name="GroupPermissionsScreen__change_permission">Change permission</string>
+  <string name="GroupPermissionsScreen__change_permission">അനുമതി മാറ്റുക</string>
   <!-- Title of the screen where a group\'s members share its link and its admins manage it. -->
-  <string name="ShareableGroupLinkScreen__group_link">Group link</string>
-  <string name="ShareableGroupLinkScreen__share">Share</string>
+  <string name="ShareableGroupLinkScreen__group_link">ഗ്രൂപ്പിന്റെ ലിങ്ക്</string>
+  <string name="ShareableGroupLinkScreen__share">പങ്കിടുക</string>
   <!-- Label of the row that gives the group a new link, and the confirm button of the warning it shows first. -->
-  <string name="ShareableGroupLinkScreen__reset_link">Reset link</string>
-  <string name="ShareableGroupLinkScreen__require_admin_approval">Require admin approval</string>
-  <string name="ShareableGroupLinkScreen__require_an_admin_to_approve_new_members_joining_via_the_group_link">Require an admin to approve new members joining via the group link.</string>
-  <string name="ShareableGroupLinkScreen__are_you_sure_you_want_to_reset_the_group_link">Are you sure you want to reset the group link? People will no longer be able to join the group using the current link.</string>
+  <string name="ShareableGroupLinkScreen__reset_link">ലിങ്ക് പുനഃസജ്ജമാക്കുക്ക</string>
+  <string name="ShareableGroupLinkScreen__require_admin_approval">അഡ്മിൻ അംഗീകാരം ആവശ്യമാണ്</string>
+  <string name="ShareableGroupLinkScreen__require_an_admin_to_approve_new_members_joining_via_the_group_link">ഗ്രൂപ്പ് ലിങ്ക് വഴി ചേരുന്ന പുതിയ അംഗങ്ങളെ അംഗീകരിക്കുന്നതിന് ഒരു അഡ്മിൻ ആവശ്യമാണ്.</string>
+  <string name="ShareableGroupLinkScreen__are_you_sure_you_want_to_reset_the_group_link">ഗ്രൂപ്പ് ലിങ്ക് പുനസജ്ജമാക്കണമെന്ന് നിങ്ങള്‍ക്ക് ഉറപ്പാണ‍ോ? നിലവിലെ ലിങ്ക് ഉപയോഗിച്ച് ആളുകൾക്ക് മേലിൽ ഗ്രൂപ്പിൽ ചേരാനാവില്ല.</string>
   <!-- Content description of the button that navigates back off of the group link screen. -->
-  <string name="ShareableGroupLinkScreen__go_back">Go back</string>
+  <string name="ShareableGroupLinkScreen__go_back">മടങ്ങിപ്പോവുക</string>
 </resources>

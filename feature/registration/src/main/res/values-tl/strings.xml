@@ -606,7 +606,7 @@
     <!-- Title of the screen where the user buys a Signal Login to register without a phone number. -->
     <string name="SignalLoginPaymentScreen__signal_login">Signal Login</string>
     <!-- Description of what a Signal Login is. Followed by a "learn more" link. -->
-    <string name="SignalLoginPaymentScreen__register_without_a_phone_number">Mag-register nang walang phone number gamit ang Signal Login. Sa pamamagitan ng one-time purchase, makakatanggap ka ng account key para makapagsimula.</string>
+    <string name="SignalLoginPaymentScreen__register_without_a_phone_number">Mag-register nang walang phone number gamit ang Signal Login. Sa pamamagitan ng one-time purchase, makakatanggap ka ng account ID para makapagsimula.</string>
     <!-- Link at the end of the description that opens a support article about Signal Login. -->
     <string name="SignalLoginPaymentScreen__learn_more">Matuto pa</string>
     <!-- Subtitle of the purchase option, clarifying the price is not a subscription. -->
@@ -620,7 +620,7 @@
     <!-- Title of the option for users who already bought a Signal Login. -->
     <string name="SignalLoginPaymentScreen__i_have_a_signal_login">Mayroon akong Signal Login</string>
     <!-- Subtitle of the existing-login option. -->
-    <string name="SignalLoginPaymentScreen__use_your_existing_account_key">Gamitin ang existing login info</string>
+    <string name="SignalLoginPaymentScreen__use_your_existing_account_key">Gamitin ang iyong existing login info</string>
     <!-- Selling point of the existing-login option: the account can be restored. -->
     <string name="SignalLoginPaymentScreen__login_and_restore_your_account">Mag-log in at i-restore ang account mo</string>
     <!-- Selling point of the existing-login option, thanking the user for their previous purchase. -->
@@ -650,29 +650,29 @@
     <!-- Title of the dialog shown when Google Play services is too old to take a payment. -->
     <string name="SignalLoginPaymentScreen__update_google_play_services">I-update ang Google Play services</string>
     <!-- Body of the dialog shown when Google Play services is too old to take a payment. -->
-    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_update_google_play_services">Para mag-purchase ng Signal Login, i-update ang Google Play services sa device na ito.</string>
+    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_update_google_play_services">Para bumili ng Signal Login, i-update ang Google Play services sa device na ito.</string>
     <!-- Button that updates Google Play services. -->
     <string name="SignalLoginPaymentScreen__update">I-update</string>
     <!-- Title of the dialog shown when Google Play services is not installed. -->
-    <string name="SignalLoginPaymentScreen__google_play_services_missing">Nawawala ang Google Play services</string>
+    <string name="SignalLoginPaymentScreen__google_play_services_missing">Hindi mahanap ang Google Play services</string>
     <!-- Body of the dialog shown when Google Play services is not installed. -->
-    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_google_play_services_needs_to_be_installed">Para mag-purchase ng Signal Login, kailangang i-install ang Google Play services.</string>
+    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_google_play_services_needs_to_be_installed">Para bumili ng Signal Login, kailangang naka-install ang Google Play services.</string>
     <!-- Button that installs Google Play services. -->
     <string name="SignalLoginPaymentScreen__install_play_services">I-install ang Play Services</string>
     <!-- Title of the dialog shown while Google Play services is updating itself. -->
     <string name="SignalLoginPaymentScreen__google_play_services_are_updating">Ina-update ang Google Play services</string>
     <!-- Body of the dialog shown while Google Play services is updating itself. -->
-    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_wait_for_google_play_services">Para mag-purchase ng Signal Login, hintaying matapos mag-update ang Google Play services.</string>
+    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_wait_for_google_play_services">Para bumili ng Signal Login, hintaying matapos na mag-update ang Google Play services.</string>
     <!-- Title of the dialog shown when Google Play cannot be used to take a payment. -->
     <string name="SignalLoginPaymentScreen__google_play_is_required">Required ang Google Play</string>
     <!-- Body of the dialog shown when Google Play services is installed but turned off. -->
-    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_enable_google_play_services">Para mag-purchase ng Signal Login, i-enable ang Google Play services sa device na ito at mag-sign in sa Google Play store.</string>
+    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_enable_google_play_services">Para bumili ng Signal Login, i-enable ang Google Play services sa device na ito at mag-sign in sa Google Play store.</string>
     <!-- Body of the dialog shown when the device cannot run Google Play services at all. -->
-    <string name="SignalLoginPaymentScreen__you_cant_purchase_a_signal_login_on_this_device">Hindi ka maaaring mag-purchase ng Signal Login dahil hindi suportado ng device na ito ang Google Play services. I-contact ang phone manufacturer para humingi ng tulong.</string>
+    <string name="SignalLoginPaymentScreen__you_cant_purchase_a_signal_login_on_this_device">Hindi ka maaaring bumili ng Signal Login dahil hindi suportado ng device na ito ang Google Play services. Kontakin ang phone manufacturer para makakuha ng tulong.</string>
     <!-- Body of the dialog shown when Google Play services works but nobody is signed into the Play Store. -->
-    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_sign_into_the_google_play_store">Para mag-purchase ng Signal Login, mag-sign in sa Google Play store.</string>
+    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_sign_into_the_google_play_store">Para bumili ng Signal Login, mag-sign in sa Google Play store.</string>
     <!-- Body of the dialog shown when this version of Signal cannot make Google Play purchases at all. -->
-    <string name="SignalLoginPaymentScreen__you_cant_purchase_a_signal_login_in_this_version">Hindi ka maaaring mag-purchase ng Signal Login sa version na ito ng Signal. I-install ang Signal mula sa Google Play store para bumili.</string>
+    <string name="SignalLoginPaymentScreen__you_cant_purchase_a_signal_login_in_this_version">Hindi ka maaaring bumili ng Signal Login sa version na ito ng Signal. I-install ang Signal mula sa Google Play store para bumili.</string>
     <!-- Button that opens the Google Play store so the user can sign into it. -->
     <string name="SignalLoginPaymentScreen__open_play_store">Buksan ang Play Store</string>
 
@@ -684,7 +684,7 @@
     <!-- Action button that stores the Signal Login in the device password manager. -->
     <string name="SignalLoginInfoScreen__save_to_password_manager">I-save sa password manager</string>
     <!-- Toast shown when the user taps the disabled save to password manager button and the device has no password manager. -->
-    <string name="SignalLoginInfoScreen__no_password_manager_available">You don\'t have a password manager set up, or the password manager you\'re using isn\'t supported.</string>
+    <string name="SignalLoginInfoScreen__no_password_manager_available">Wala ka pang naka-set up na password manager, o hindi suportado ang password manager na ginagamit mo ngayon.</string>
     <!-- Action button for users who would rather write the Signal Login down themselves. -->
     <string name="SignalLoginInfoScreen__save_manually">I-save manually</string>
     <!-- Error shown when the Signal Login could not be stored in the password manager. -->

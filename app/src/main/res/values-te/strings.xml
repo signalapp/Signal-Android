@@ -1389,14 +1389,14 @@
     </plurals>
 
     <!-- Shown when a change to a group is rejected because the group has ended. -->
-    <string name="GroupErrors__the_group_was_terminated">The group ended.</string>
-    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">You don\'t have the rights to do this</string>
-    <string name="GroupErrors__not_capable">Someone you added does not support new groups and needs to update Signal</string>
-    <string name="GroupErrors__not_announcement_capable">Someone you added does not support announcement groups and needs to update Signal</string>
-    <string name="GroupErrors__failed_to_update_the_group">Failed to update the group</string>
-    <string name="GroupErrors__youre_not_a_member_of_the_group">You\'re not a member of the group</string>
-    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Failed to update the group please retry later</string>
-    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Failed to update the group due to a network error, please retry later</string>
+    <string name="GroupErrors__the_group_was_terminated">గ్రూప్ ముగిసింది.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">దీన్ని చేయడానికి మీకు హక్కులు లేవు</string>
+    <string name="GroupErrors__not_capable">మీరు జోడించిన ఎవరైనా క్రొత్త సమూహాలకు మద్దతు ఇవ్వరు మరియు Signal‌ను నవీకరించాలి</string>
+    <string name="GroupErrors__not_announcement_capable">మీరు జోడించిన ఎవరికో అనౌన్స్‌మెంట్ గ్రూపులు మద్దతు ఇవ్వవు, Signal ని అప్‌డేట్ చేసుకోవాల్సి ఉంటుంది.</string>
+    <string name="GroupErrors__failed_to_update_the_group">సమూహాన్ని నవీకరించడంలో విఫలమైంది</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">మీరు సమూహంలో సభ్యుడు కాదు</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">సమూహాన్ని నవీకరించడంలో విఫలమైంది దయచేసి తరువాత మళ్లీ ప్రయత్నించండి</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">నెట్‌వర్క్ లోపం కారణంగా సమూహాన్ని నవీకరించడంలో విఫలమైంది, దయచేసి తరువాత మళ్లీ ప్రయత్నించండి</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">పేరు మరియు చిత్రం సవరించండి</string>
     <string name="ManageGroupActivity_legacy_group">లెగసీ సమూహం</string>
@@ -2832,9 +2832,9 @@
     <!-- Sticker pack button for forwarding a sticker link. -->
     <string name="StickerManagement_menu_send_signal_pack">Send via Signal</string>
     <!-- Sticker pack button that opens a bottom sheet with more share options. -->
-    <string name="StickerManagement_menu_link_pack">Link</string>
+    <string name="StickerManagement_menu_link_pack">లింక్</string>
     <!-- Sticker pack sheet option for sharing a sticker pack link using the system share sheet. -->
-    <string name="StickerManagement_menu_share_pack">Share</string>
+    <string name="StickerManagement_menu_share_pack">పంచుకోండి</string>
     <!-- Bottom sheet description for the share sticker sheet. -->
     <string name="StickerManagement__anyone">Anyone with this link can install and share this sticker pack.</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->

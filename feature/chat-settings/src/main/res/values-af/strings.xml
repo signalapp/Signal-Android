@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
   <!-- Title of the screen where a group admin picks which actions non-admins can take. -->
-  <string name="GroupPermissionsScreen__permissions">Permissions</string>
+  <string name="GroupPermissionsScreen__permissions">Toestemmings</string>
   <!-- Content description of the button that navigates back off of the group permissions screen. -->
-  <string name="GroupPermissionsScreen__go_back">Go back</string>
-  <string name="GroupPermissionsScreen__add_members">Add members</string>
-  <string name="GroupPermissionsScreen__edit_group_info">Edit group info</string>
-  <string name="GroupPermissionsScreen__send_messages">Send messages</string>
-  <string name="GroupPermissionsScreen__all_members">All members</string>
-  <string name="GroupPermissionsScreen__only_admins">Only admins</string>
-  <string name="GroupPermissionsScreen__who_can_add_new_members">Who can add new members?</string>
-  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">Who can edit this group\'s info?</string>
-  <string name="GroupPermissionsScreen__who_can_send_messages">Who can send messages and start calls?</string>
+  <string name="GroupPermissionsScreen__go_back">Gaan terug</string>
+  <string name="GroupPermissionsScreen__add_members">Voeg lede toe</string>
+  <string name="GroupPermissionsScreen__edit_group_info">Wysig groepinligting</string>
+  <string name="GroupPermissionsScreen__send_messages">Stuur boodskappe</string>
+  <string name="GroupPermissionsScreen__all_members">Alle lede</string>
+  <string name="GroupPermissionsScreen__only_admins">Slegs admins</string>
+  <string name="GroupPermissionsScreen__who_can_add_new_members">Wie kan nuwe lede toevoeg?</string>
+  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">Wie kan hierdie groep se inligting wysig?</string>
+  <string name="GroupPermissionsScreen__who_can_send_messages">Wie kan boodskappe stuur en oproepe begin?</string>
   <!-- Label for the member labels permission button in the group permissions settings screen. -->
-  <string name="GroupPermissionsScreen__add_member_labels">Add member labels</string>
+  <string name="GroupPermissionsScreen__add_member_labels">Voeg lidfunksie-etikette by</string>
   <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-  <string name="GroupPermissionsScreen__who_can_add_member_labels">Who can add member labels?</string>
+  <string name="GroupPermissionsScreen__who_can_add_member_labels">Wie kan lidfunksie-etikette byvoeg?</string>
   <!-- Warning title shown before restricting member labels to admins only. -->
-  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_title">Member labels will be cleared</string>
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_title">Lidfunksie-etikette sal uitgevee word</string>
   <!-- Warning body shown before restricting member labels to admins only. -->
-  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_body">"Changing this permission to Only admins will clear member labels set by non-admins in this group."</string>
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_body">"Deur hierdie toestemming na Slegs admins te verander, sal lidfunksie-etikette wat deur nie-admins in hierdie groep gestel is, uitgevee word."</string>
   <!-- Confirm button for changing member label permission after warning. -->
-  <string name="GroupPermissionsScreen__change_permission">Change permission</string>
+  <string name="GroupPermissionsScreen__change_permission">Verander toestemmings</string>
   <!-- Title of the screen where a group\'s members share its link and its admins manage it. -->
-  <string name="ShareableGroupLinkScreen__group_link">Group link</string>
-  <string name="ShareableGroupLinkScreen__share">Share</string>
+  <string name="ShareableGroupLinkScreen__group_link">Groepskakel</string>
+  <string name="ShareableGroupLinkScreen__share">Deel</string>
   <!-- Label of the row that gives the group a new link, and the confirm button of the warning it shows first. -->
-  <string name="ShareableGroupLinkScreen__reset_link">Reset link</string>
-  <string name="ShareableGroupLinkScreen__require_admin_approval">Require admin approval</string>
-  <string name="ShareableGroupLinkScreen__require_an_admin_to_approve_new_members_joining_via_the_group_link">Require an admin to approve new members joining via the group link.</string>
-  <string name="ShareableGroupLinkScreen__are_you_sure_you_want_to_reset_the_group_link">Are you sure you want to reset the group link? People will no longer be able to join the group using the current link.</string>
+  <string name="ShareableGroupLinkScreen__reset_link">Stel skakel terug</string>
+  <string name="ShareableGroupLinkScreen__require_admin_approval">Vereis admin-goedkeuring</string>
+  <string name="ShareableGroupLinkScreen__require_an_admin_to_approve_new_members_joining_via_the_group_link">’n Admin moet nuwe lede goedkeur wat d.m.v. die groepskakel aansluit.</string>
+  <string name="ShareableGroupLinkScreen__are_you_sure_you_want_to_reset_the_group_link">Is jy seker jy wil die groepskakel terugstel? Mense sal nie meer met die huidige skakel by die groep kan aansluit nie.</string>
   <!-- Content description of the button that navigates back off of the group link screen. -->
-  <string name="ShareableGroupLinkScreen__go_back">Go back</string>
+  <string name="ShareableGroupLinkScreen__go_back">Gaan terug</string>
 </resources>

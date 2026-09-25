@@ -1389,14 +1389,14 @@
     </plurals>
 
     <!-- Shown when a change to a group is rejected because the group has ended. -->
-    <string name="GroupErrors__the_group_was_terminated">The group ended.</string>
-    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">You don\'t have the rights to do this</string>
-    <string name="GroupErrors__not_capable">Someone you added does not support new groups and needs to update Signal</string>
-    <string name="GroupErrors__not_announcement_capable">Someone you added does not support announcement groups and needs to update Signal</string>
-    <string name="GroupErrors__failed_to_update_the_group">Failed to update the group</string>
-    <string name="GroupErrors__youre_not_a_member_of_the_group">You\'re not a member of the group</string>
-    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Failed to update the group please retry later</string>
-    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Failed to update the group due to a network error, please retry later</string>
+    <string name="GroupErrors__the_group_was_terminated">Gruppen er stengt.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">Du har ikke rettigheter for å gjøre dette</string>
+    <string name="GroupErrors__not_capable">Noen du la til har ikke støtte for nye grupper og må oppdatere Signal</string>
+    <string name="GroupErrors__not_announcement_capable">En av personene du la til, støtter ikke kunngjøringsgrupper og må oppdatere Signal-appen sin.</string>
+    <string name="GroupErrors__failed_to_update_the_group">Gruppeoppdatering feilet</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">Du er ikke medlem av gruppen</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Gruppeoppdateringen feilet, prøv igjen senere</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Oppdateringen av gruppen feilet pga. en nettverksfeil, prøv igjen senere</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">Rediger navn og bilde</string>
     <string name="ManageGroupActivity_legacy_group">\"Legacy\"-grupper</string>
@@ -2832,9 +2832,9 @@
     <!-- Sticker pack button for forwarding a sticker link. -->
     <string name="StickerManagement_menu_send_signal_pack">Send via Signal</string>
     <!-- Sticker pack button that opens a bottom sheet with more share options. -->
-    <string name="StickerManagement_menu_link_pack">Link</string>
+    <string name="StickerManagement_menu_link_pack">Lenke</string>
     <!-- Sticker pack sheet option for sharing a sticker pack link using the system share sheet. -->
-    <string name="StickerManagement_menu_share_pack">Share</string>
+    <string name="StickerManagement_menu_share_pack">Del</string>
     <!-- Bottom sheet description for the share sticker sheet. -->
     <string name="StickerManagement__anyone">Anyone with this link can install and share this sticker pack.</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
@@ -9541,7 +9541,7 @@
     <!-- Context menu entry that starts an audio call -->
     <string name="SharedContactDetailsScreen__audio_call">Lydsamtale</string>
     <!-- Context menu entry that opens a shared postal address in a map app -->
-    <string name="SharedContactDetailsScreen__open_in_maps">Åpne i kart</string>
+    <string name="SharedContactDetailsScreen__open_in_maps">Åpne i Maps</string>
     <!-- Context menu entry that copies a shared contact detail to the clipboard -->
     <string name="SharedContactDetailsScreen__copy">Kopier</string>
     <!-- Row that invites a shared contact who is not yet on Signal -->

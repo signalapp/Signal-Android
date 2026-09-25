@@ -1389,14 +1389,14 @@
     </plurals>
 
     <!-- Shown when a change to a group is rejected because the group has ended. -->
-    <string name="GroupErrors__the_group_was_terminated">The group ended.</string>
-    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">You don\'t have the rights to do this</string>
-    <string name="GroupErrors__not_capable">Someone you added does not support new groups and needs to update Signal</string>
-    <string name="GroupErrors__not_announcement_capable">Someone you added does not support announcement groups and needs to update Signal</string>
-    <string name="GroupErrors__failed_to_update_the_group">Failed to update the group</string>
-    <string name="GroupErrors__youre_not_a_member_of_the_group">You\'re not a member of the group</string>
-    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Failed to update the group please retry later</string>
-    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Failed to update the group due to a network error, please retry later</string>
+    <string name="GroupErrors__the_group_was_terminated">A csoport megszűnt.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">Ehhez nincs elegendő jogosultságod</string>
+    <string name="GroupErrors__not_capable">Egy általad hozzáadott csoporttag nem támogatja az új csoportokat, ezért frissítenie kell a Signalt</string>
+    <string name="GroupErrors__not_announcement_capable">Egy új tag elavult Signalt használ, frissítenie kell a hírcsatorna típusú csoport használatához</string>
+    <string name="GroupErrors__failed_to_update_the_group">Nem sikerült a csoport frissítése</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">Nem vagy a csoport tagja</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Nem sikerült a csoport frissítése. Kérlek próbáld újra később!</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Hálózati hiba miatt nem sikerült a csoport frissítése. Kérlek próbáld újra később!</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">Név és kép szerkesztése</string>
     <string name="ManageGroupActivity_legacy_group">Régi típusú csoport</string>
@@ -2834,7 +2834,7 @@
     <!-- Sticker pack button that opens a bottom sheet with more share options. -->
     <string name="StickerManagement_menu_link_pack">Link</string>
     <!-- Sticker pack sheet option for sharing a sticker pack link using the system share sheet. -->
-    <string name="StickerManagement_menu_share_pack">Share</string>
+    <string name="StickerManagement_menu_share_pack">Megosztás</string>
     <!-- Bottom sheet description for the share sticker sheet. -->
     <string name="StickerManagement__anyone">Anyone with this link can install and share this sticker pack.</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->

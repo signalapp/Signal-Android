@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
   <!-- Title of the screen where a group admin picks which actions non-admins can take. -->
-  <string name="GroupPermissionsScreen__permissions">Permissions</string>
+  <string name="GroupPermissionsScreen__permissions">अनुमतियां</string>
   <!-- Content description of the button that navigates back off of the group permissions screen. -->
-  <string name="GroupPermissionsScreen__go_back">Go back</string>
-  <string name="GroupPermissionsScreen__add_members">Add members</string>
-  <string name="GroupPermissionsScreen__edit_group_info">Edit group info</string>
-  <string name="GroupPermissionsScreen__send_messages">Send messages</string>
-  <string name="GroupPermissionsScreen__all_members">All members</string>
-  <string name="GroupPermissionsScreen__only_admins">Only admins</string>
-  <string name="GroupPermissionsScreen__who_can_add_new_members">Who can add new members?</string>
-  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">Who can edit this group\'s info?</string>
-  <string name="GroupPermissionsScreen__who_can_send_messages">Who can send messages and start calls?</string>
+  <string name="GroupPermissionsScreen__go_back">पीछे जाएं</string>
+  <string name="GroupPermissionsScreen__add_members">सदस्य जोड़ें</string>
+  <string name="GroupPermissionsScreen__edit_group_info">ग्रुप की जानकारी एडिट करें</string>
+  <string name="GroupPermissionsScreen__send_messages">मैसेज भेजें</string>
+  <string name="GroupPermissionsScreen__all_members">सभी सदस्य</string>
+  <string name="GroupPermissionsScreen__only_admins">सिर्फ़ ऐडमिन</string>
+  <string name="GroupPermissionsScreen__who_can_add_new_members">नए सदस्यों को जोड़ने का अधिकार किसके पास है?</string>
+  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">इस ग्रुप की जानकारी एडिट करने का अधिकार किसके पास है?</string>
+  <string name="GroupPermissionsScreen__who_can_send_messages">कौन मैसेज भेज सकता है और कॉल कर सकता है?</string>
   <!-- Label for the member labels permission button in the group permissions settings screen. -->
-  <string name="GroupPermissionsScreen__add_member_labels">Add member labels</string>
+  <string name="GroupPermissionsScreen__add_member_labels">मेंबर लेबल जोड़ें</string>
   <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-  <string name="GroupPermissionsScreen__who_can_add_member_labels">Who can add member labels?</string>
+  <string name="GroupPermissionsScreen__who_can_add_member_labels">मेंबर लेबल जोड़ने का अधिकार किसके पास है?</string>
   <!-- Warning title shown before restricting member labels to admins only. -->
-  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_title">Member labels will be cleared</string>
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_title">मेंबर लेबल हटा दिए जाएंगे</string>
   <!-- Warning body shown before restricting member labels to admins only. -->
-  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_body">"Changing this permission to Only admins will clear member labels set by non-admins in this group."</string>
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_body">"इस अनुमति को \'सिर्फ़ ऐडमिन\' में बदलने पर, वे मेंबर लेबल हट जाएंगे जिन्हें नॉन-ऐडमिन ने इस ग्रुप में सेट किया है।"</string>
   <!-- Confirm button for changing member label permission after warning. -->
-  <string name="GroupPermissionsScreen__change_permission">Change permission</string>
+  <string name="GroupPermissionsScreen__change_permission">अनुमति बदलें</string>
   <!-- Title of the screen where a group\'s members share its link and its admins manage it. -->
-  <string name="ShareableGroupLinkScreen__group_link">Group link</string>
-  <string name="ShareableGroupLinkScreen__share">Share</string>
+  <string name="ShareableGroupLinkScreen__group_link">ग्रुप लिंक</string>
+  <string name="ShareableGroupLinkScreen__share">शेयर करें</string>
   <!-- Label of the row that gives the group a new link, and the confirm button of the warning it shows first. -->
-  <string name="ShareableGroupLinkScreen__reset_link">Reset link</string>
-  <string name="ShareableGroupLinkScreen__require_admin_approval">Require admin approval</string>
-  <string name="ShareableGroupLinkScreen__require_an_admin_to_approve_new_members_joining_via_the_group_link">Require an admin to approve new members joining via the group link.</string>
-  <string name="ShareableGroupLinkScreen__are_you_sure_you_want_to_reset_the_group_link">Are you sure you want to reset the group link? People will no longer be able to join the group using the current link.</string>
+  <string name="ShareableGroupLinkScreen__reset_link">रीसेट करने के लिए लिंक</string>
+  <string name="ShareableGroupLinkScreen__require_admin_approval">इसके लिए ऐडमिन की मंज़ूरी ज़रूरी है</string>
+  <string name="ShareableGroupLinkScreen__require_an_admin_to_approve_new_members_joining_via_the_group_link">ग्रुप लिंक की मदद से जुड़ने वाले नए सदस्यों के लिए ऐडमिन की मंज़ूरी ज़रूरी है।</string>
+  <string name="ShareableGroupLinkScreen__are_you_sure_you_want_to_reset_the_group_link">क्या आपको वाकई ग्रुप का लिंक रीसेट करना है? लोग मौजूदा लिंक की मदद से इस ग्रुप में नहीं जुड़ पाएंगे।</string>
   <!-- Content description of the button that navigates back off of the group link screen. -->
-  <string name="ShareableGroupLinkScreen__go_back">Go back</string>
+  <string name="ShareableGroupLinkScreen__go_back">पीछे जाएं</string>
 </resources>

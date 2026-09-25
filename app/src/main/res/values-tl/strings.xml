@@ -1389,14 +1389,14 @@
     </plurals>
 
     <!-- Shown when a change to a group is rejected because the group has ended. -->
-    <string name="GroupErrors__the_group_was_terminated">The group ended.</string>
-    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">You don\'t have the rights to do this</string>
-    <string name="GroupErrors__not_capable">Someone you added does not support new groups and needs to update Signal</string>
-    <string name="GroupErrors__not_announcement_capable">Someone you added does not support announcement groups and needs to update Signal</string>
+    <string name="GroupErrors__the_group_was_terminated">Sinara na ang group.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">Wala kang access para gawin ito</string>
+    <string name="GroupErrors__not_capable">Ang user na in-add mo ay hindi sinusuportahan ang new groups at kinakailangang i-update ang kanyang Signal app</string>
+    <string name="GroupErrors__not_announcement_capable">Ang user na in-add mo ay hindi sinusuportahan ang announcement groups at kinakailangang i-update ang kanyang Signal app</string>
     <string name="GroupErrors__failed_to_update_the_group">Failed to update the group</string>
-    <string name="GroupErrors__youre_not_a_member_of_the_group">You\'re not a member of the group</string>
-    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Failed to update the group please retry later</string>
-    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Failed to update the group due to a network error, please retry later</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">Hindi ka member ng grupo</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Failed to update the group. Subukan ulit mamaya.</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Failed to update the group dahil sa network error. Subukan ulit mamaya</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">I-edit ang pangalan at picture</string>
     <string name="ManageGroupActivity_legacy_group">Legacy Group</string>
@@ -2771,7 +2771,7 @@
     <!-- Sticker pack list section header for packs that are already installed. -->
     <string name="StickerManagement_installed_stickers_header">Mga Naka-install na Sticker</string>
     <!-- Sticker pack list section header for packs that have been received from incoming messages. -->
-    <string name="StickerManagement_shared_with_you_header">Naka-share Sa \'Yo</string>
+    <string name="StickerManagement_shared_with_you_header">Naka-share sa \'yo</string>
     <!-- Sticker pack description for packs that have been sent to you -->
     <string name="StickerManagement_when_you_receive">Kapag nakatanggap ka ng sticker mula sa isang tao, ipapakita rito ang sticker pack na \'yon.</string>
     <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
@@ -2786,8 +2786,8 @@
     <string name="StickerManagement_action_delete_selected">Burahin</string>
     <!-- Confirmation message shown before uninstalling sticker packs. The placeholder is the number of items to delete. -->
     <plurals name="StickerManagement_delete_n_packs_confirmation">
-        <item quantity="one">Gusto mo bang alisin ang %1$s sticker pack?</item>
-        <item quantity="other">Gusto mo bang alisin ang %1$s sticker packs?</item>
+        <item quantity="one">Alisin ang sticker pack?</item>
+        <item quantity="other">Alisin ang %1$s sticker packs?</item>
     </plurals>
     <!-- Body of the confirmation dialog shown before uninstalling sticker packs. -->
     <plurals name="StickerManagement_delete_n_packs_confirmation_body">
@@ -2834,7 +2834,7 @@
     <!-- Sticker pack button that opens a bottom sheet with more share options. -->
     <string name="StickerManagement_menu_link_pack">Link</string>
     <!-- Sticker pack sheet option for sharing a sticker pack link using the system share sheet. -->
-    <string name="StickerManagement_menu_share_pack">Share</string>
+    <string name="StickerManagement_menu_share_pack">Ibahagi</string>
     <!-- Bottom sheet description for the share sticker sheet. -->
     <string name="StickerManagement__anyone">Anyone with this link can install and share this sticker pack.</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
@@ -2854,11 +2854,11 @@
     <!-- Label for the button that expands the list to show every sticker pack in a section. -->
     <string name="StickerManagement__see_all">Ipakita lahat</string>
     <!-- Button that takes you to the list of sticker packs you can install. -->
-    <string name="StickerManagement__add_stickers">Magdagdag ng Stickers</string>
+    <string name="StickerManagement__add_stickers">Magdagdag ng stickers</string>
     <!-- Accessibility label to close the search field. -->
     <string name="StickerManagement_accessibility_close_search">Isara ang search</string>
     <!-- Accessibility label to clear the search field. -->
-    <string name="StickerManagement_accessibility_clear_search">Clear Search</string>
+    <string name="StickerManagement_accessibility_clear_search">I-clear ang search</string>
 
     <!-- StickerManagementAdapter -->
     <string name="StickerManagementAdapter_untitled">Walang pamagat</string>
@@ -3312,7 +3312,7 @@
     <!-- Title of the discoverability section -->
     <string name="ConnectWithUsernamesDialogFragment__stay_discoverable">Manatiling discoverable</string>
     <!-- Description of the discoverability section -->
-    <string name="ConnectWithUsernamesDialogFragment__without_a_phone_number_usernames_and_links">Kapag walang phone number, ang usernames at links lamang ang mga paraan para makipag-connect sa\'yo.</string>
+    <string name="ConnectWithUsernamesDialogFragment__without_a_phone_number_usernames_and_links">Kapag walang phone number, ang usernames at links lamang ang mga paraan para makipag-connect ang iba sa \'yo.</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="ConnectWithUsernamesDialogFragment__set_up_username">Mag-set up ng username</string>
     <!-- Button label that dismisses the screen without creating a username -->
@@ -3320,7 +3320,7 @@
 
     <!-- SetUpUsernameBanner -->
     <!-- Body of a banner on the new message screen prompting the user to create a username -->
-    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">Pumili ng username para makipag-connect sila sa\'yo.</string>
+    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">Pumili ng username para makipag-connect ang iba sa \'yo.</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="SetUpUsernameBanner__set_up">I-set up</string>
     <!-- Accessibility label for the button that permanently dismisses the banner -->
@@ -9482,21 +9482,21 @@
     <!-- Placeholder in the search field on the contact picker -->
     <string name="SelectContactScreen__search">Maghanap</string>
     <!-- Content description for the button that clears the contact search field -->
-    <string name="SelectContactScreen__clear_search">Clear Search</string>
+    <string name="SelectContactScreen__clear_search">I-clear ang Search</string>
     <!-- Content description for the badge shown next to a contact that is in the phone\'s address book -->
     <string name="SelectContactScreen__in_your_contacts">Nasa contacts mo</string>
     <!-- Title of the prompt asking for permission to read the user\'s phone contacts -->
-    <string name="SelectContactScreen__find_people_you_know_on_signal">Hanapin sa Signal ang mga kakilala mo</string>
+    <string name="SelectContactScreen__find_people_you_know_on_signal">Maghanap ng mga kakilala mo sa Signal</string>
     <!-- Explanation shown when Signal does not have permission to read the user\'s phone contacts -->
     <string name="SelectContactScreen__allow_access_to_your_contacts">Magbigay ng access sa contacts mo. Encrypted ang contacts mo at hindi ito makikita ng Signal service.</string>
     <!-- Button that asks the system for permission to read the user\'s phone contacts -->
-    <string name="SelectContactScreen__allow_access">Allow Access</string>
+    <string name="SelectContactScreen__allow_access">Bigyan ng access</string>
     <!-- Button that dismisses the request for permission to read the user\'s phone contacts -->
-    <string name="SelectContactScreen__no_thanks">Ayaw ko, salamat na lang</string>
+    <string name="SelectContactScreen__no_thanks">Ayaw ko</string>
     <!-- Button that opens the phone\'s own contact picker, used when Signal cannot ask for contacts permission -->
     <string name="SelectContactScreen__open_phone_contacts">Buksan ang phone contacts</string>
     <!-- Note at the bottom of the contact picker when contacts permission was denied on the device. Placeholder is the "Learn more" link text. -->
-    <string name="SelectContactScreen__to_see_your_phone_contacts_here">Para makita ang phone contacts mo rito, payagan ang access sa settings ng device mo. %1$s</string>
+    <string name="SelectContactScreen__to_see_your_phone_contacts_here">Para makita ang phone contacts mo rito, magbigay ng access sa device settings mo. %1$s</string>
     <!-- Link that opens instructions for granting contacts permission from the device settings -->
     <string name="SelectContactScreen__learn_more">Matuto pa</string>
     <!-- Title of the sheet explaining how to grant contacts permission from the device settings -->
@@ -9562,9 +9562,9 @@
     <!-- Title of the bottom sheet that confirms the user wants a brand new recovery key. -->
     <string name="ResetRecoveryKeyBottomSheet__reset_your_recovery_key">I-reset ang recovery key mo</string>
     <!-- First paragraph of the bottom sheet body, explaining what a reset does. -->
-    <string name="ResetRecoveryKeyBottomSheet__resetting_your_recovery_key_will_create_a_new_key">Kapag ni-reset mo ang iyong reocvery key, makakagawa ka ng bagong key para sa Signal Login mo. Kailangan lamang ito kapag may ibang nakaalam ng key mo.</string>
+    <string name="ResetRecoveryKeyBottomSheet__resetting_your_recovery_key_will_create_a_new_key">Kapag ni-reset mo ang iyong recovery key, magkakaroon ka ng bagong key para sa Signal Login mo. Kailangan lamang ito kapag may ibang nakaalam ng key mo.</string>
     <!-- Second paragraph of the bottom sheet body, explaining what a reset means for backups. -->
-    <string name="ResetRecoveryKeyBottomSheet__if_backups_are_enabled_you_will_have_to_re_upload">Kapag naka-enable ang backups mo, kailangan mong i-upload ulit ang iyong backup, kasama na ang media. Kung ginagamit mo ang \"Optimize Signal storage\", kailangan mo munang i-download ang offloaded media.</string>
+    <string name="ResetRecoveryKeyBottomSheet__if_backups_are_enabled_you_will_have_to_re_upload">Kapag naka-enable ang backups mo, kailangan mong i-upload ulit ang iyong backup, kasama ang media. Kung ginagamit mo ang \"I-optimize ang Signal storage\", kailangan mo munang i-download ang offloaded media.</string>
     <!-- Bottom sheet action that continues on to reset the recovery key. -->
     <string name="ResetRecoveryKeyBottomSheet__continue">Magpatuloy</string>
     <!-- Dialog body shown when the recovery key change limit is exhausted and the user does not have backups enabled. -->

@@ -1389,14 +1389,14 @@
     </plurals>
 
     <!-- Shown when a change to a group is rejected because the group has ended. -->
-    <string name="GroupErrors__the_group_was_terminated">The group ended.</string>
-    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">You don\'t have the rights to do this</string>
-    <string name="GroupErrors__not_capable">Someone you added does not support new groups and needs to update Signal</string>
-    <string name="GroupErrors__not_announcement_capable">Someone you added does not support announcement groups and needs to update Signal</string>
-    <string name="GroupErrors__failed_to_update_the_group">Failed to update the group</string>
-    <string name="GroupErrors__youre_not_a_member_of_the_group">You\'re not a member of the group</string>
-    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Failed to update the group please retry later</string>
-    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Failed to update the group due to a network error, please retry later</string>
+    <string name="GroupErrors__the_group_was_terminated">Kikundi kimefungwa.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">Huna haki ya kufanya hivi</string>
+    <string name="GroupErrors__not_capable">Mtu uliyeongeza hana programu inayokubali vikundi vipya, kwa hivyo anahitaji kusasisha Signal</string>
+    <string name="GroupErrors__not_announcement_capable">Mtu uliyeongeza hana programu inayokubali matangazo, kwa hivyo anahitaji kusasisha Signal</string>
+    <string name="GroupErrors__failed_to_update_the_group">Kikundi hakijasasishwa</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">Wewe si mwanachama wa kikundi hiki</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Hujaweza kusasisha kikundi hiki, tafadhali jaribu tena baadaye</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Hujaweza kusasisha kikundi kwa sababu ya hitilafu ya mtandao, tafadhali jaribu tena baadaye</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">Badilisha jina na picha</string>
     <string name="ManageGroupActivity_legacy_group">Kikundi Kizee</string>
@@ -2832,9 +2832,9 @@
     <!-- Sticker pack button for forwarding a sticker link. -->
     <string name="StickerManagement_menu_send_signal_pack">Send via Signal</string>
     <!-- Sticker pack button that opens a bottom sheet with more share options. -->
-    <string name="StickerManagement_menu_link_pack">Link</string>
+    <string name="StickerManagement_menu_link_pack">Kiungo</string>
     <!-- Sticker pack sheet option for sharing a sticker pack link using the system share sheet. -->
-    <string name="StickerManagement_menu_share_pack">Share</string>
+    <string name="StickerManagement_menu_share_pack">Shiriki</string>
     <!-- Bottom sheet description for the share sticker sheet. -->
     <string name="StickerManagement__anyone">Anyone with this link can install and share this sticker pack.</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->

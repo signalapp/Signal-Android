@@ -1389,14 +1389,14 @@
     </plurals>
 
     <!-- Shown when a change to a group is rejected because the group has ended. -->
-    <string name="GroupErrors__the_group_was_terminated">The group ended.</string>
-    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">You don\'t have the rights to do this</string>
-    <string name="GroupErrors__not_capable">Someone you added does not support new groups and needs to update Signal</string>
-    <string name="GroupErrors__not_announcement_capable">Someone you added does not support announcement groups and needs to update Signal</string>
-    <string name="GroupErrors__failed_to_update_the_group">Failed to update the group</string>
-    <string name="GroupErrors__youre_not_a_member_of_the_group">You\'re not a member of the group</string>
-    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Failed to update the group please retry later</string>
-    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Failed to update the group due to a network error, please retry later</string>
+    <string name="GroupErrors__the_group_was_terminated">Die Gruppe wurde beendet.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">Dir fehlen die hierfür erforderlichen Rechte</string>
+    <string name="GroupErrors__not_capable">Die Signal-App eines von dir hinzugefügten Mitglieds unterstützt keine Gruppen neuen Typs und muss daher aktualisiert werden</string>
+    <string name="GroupErrors__not_announcement_capable">Die Signal-App eines von dir hinzugefügten Mitglieds unterstützt keine Bekanntgabegruppen und muss daher aktualisiert werden</string>
+    <string name="GroupErrors__failed_to_update_the_group">Gruppe konnte nicht aktualisiert werden</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">Du bist kein Mitglied der Gruppe</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Gruppe konnte nicht aktualisiert werden, bitte versuche es später erneut</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Gruppe konnte aufgrund eines Netzfehlers nicht aktualisiert werden, bitte versuche es später erneut</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">Name und Bild bearbeiten</string>
     <string name="ManageGroupActivity_legacy_group">Gruppe alten Typs</string>
@@ -2834,7 +2834,7 @@
     <!-- Sticker pack button that opens a bottom sheet with more share options. -->
     <string name="StickerManagement_menu_link_pack">Link</string>
     <!-- Sticker pack sheet option for sharing a sticker pack link using the system share sheet. -->
-    <string name="StickerManagement_menu_share_pack">Share</string>
+    <string name="StickerManagement_menu_share_pack">Teilen</string>
     <!-- Bottom sheet description for the share sticker sheet. -->
     <string name="StickerManagement__anyone">Anyone with this link can install and share this sticker pack.</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->

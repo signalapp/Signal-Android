@@ -1389,14 +1389,14 @@
     </plurals>
 
     <!-- Shown when a change to a group is rejected because the group has ended. -->
-    <string name="GroupErrors__the_group_was_terminated">The group ended.</string>
-    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">You don\'t have the rights to do this</string>
-    <string name="GroupErrors__not_capable">Someone you added does not support new groups and needs to update Signal</string>
-    <string name="GroupErrors__not_announcement_capable">Someone you added does not support announcement groups and needs to update Signal</string>
-    <string name="GroupErrors__failed_to_update_the_group">Failed to update the group</string>
-    <string name="GroupErrors__youre_not_a_member_of_the_group">You\'re not a member of the group</string>
-    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Failed to update the group please retry later</string>
-    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Failed to update the group due to a network error, please retry later</string>
+    <string name="GroupErrors__the_group_was_terminated">Grup sonlandı.</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">Bunu yapmak için hakkınız yok</string>
+    <string name="GroupErrors__not_capable">Eklediğiniz biri yeni grupları desteklemiyor ve Signal\'i güncellemesi gerekiyor</string>
+    <string name="GroupErrors__not_announcement_capable">Eklediğiniz biri duyuru gruplarını desteklemiyor ve Signal\'i güncellemesi gerekiyor</string>
+    <string name="GroupErrors__failed_to_update_the_group">Grubu güncelleme başarısız oldu</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">Grubun üyesi değilsiniz</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Grubun güncellenmesi başarısız oldu, lütfen daha sonra tekrar deneyin</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Bağlantı hatası nedeniyle grubun güncellenmesi başarısız oldu, lütfen daha sonra tekrar deneyin</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">Adı ve resmi düzenleyin</string>
     <string name="ManageGroupActivity_legacy_group">Eski Grup</string>
@@ -2832,9 +2832,9 @@
     <!-- Sticker pack button for forwarding a sticker link. -->
     <string name="StickerManagement_menu_send_signal_pack">Send via Signal</string>
     <!-- Sticker pack button that opens a bottom sheet with more share options. -->
-    <string name="StickerManagement_menu_link_pack">Link</string>
+    <string name="StickerManagement_menu_link_pack">Bağlantı</string>
     <!-- Sticker pack sheet option for sharing a sticker pack link using the system share sheet. -->
-    <string name="StickerManagement_menu_share_pack">Share</string>
+    <string name="StickerManagement_menu_share_pack">Paylaş</string>
     <!-- Bottom sheet description for the share sticker sheet. -->
     <string name="StickerManagement__anyone">Anyone with this link can install and share this sticker pack.</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
@@ -7794,7 +7794,7 @@
     <string name="InactivePrimary__got_it">Anladım</string>
 
     <!-- Text describing how to restore a backup displayed on the on-device backups screen -->
-    <string name="OnDeviceBackupsScreen__to_restore_a_backup">"Bir yedeklemeyi geri yüklemek için Signal'ın yeni bir kopyasını yükle. Uygulamayı aç ve Yedeklemeyi geri yükle'ye dokun, ardından bir yedekleme dosyası bul."</string>
+    <string name="OnDeviceBackupsScreen__to_restore_a_backup">"Bir yedeklemeyi geri yüklemek için Signal\'ın yeni bir kopyasını yükle. Uygulamayı aç ve Yedeklemeyi geri yükle\'ye dokun, ardından bir yedekleme dosyası bul."</string>
     <!-- Body of a dialog shown when turning on on-device backups while "Optimize Signal storage" is enabled, warning that optimized media won\'t be included -->
     <string name="OnDeviceBackupsScreen__you_have_optimize_signal_storage_on">\"Signal depolama alanını optimize et\" özelliğin açık. Cihazda yedeklemende bulunan tüm medyayı dahil etmek istiyorsan, ayarı kapat.</string>
     <!-- Dialog action that takes the user to the "Optimize Signal storage" setting -->
