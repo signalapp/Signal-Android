@@ -1702,6 +1702,42 @@ class RegistrationEndToEndTest {
   }
 
   @Test
+  fun `registering a new signal login on a device already registered to another account commits a different aci`() {
+    enableSignalLoginRegistration()
+    val preExisting = preExistingRegistrationData(E164)
+    storageController.preExistingRegistrationData = preExisting
+
+    var registrationComplete = false
+    launchRegistrationFlow(onRegistrationComplete = { registrationComplete = true })
+
+    startSignalLoginRegistration()
+    buySignalLogin()
+
+    waitForTag(TestTags.SIGNAL_LOGIN_INFO_SCREEN)
+    val login = registeredSignalLogin()
+
+    recordSignalLoginManually()
+    enterSignalLogin(login)
+
+    waitForTag(TestTags.ADD_USERNAME_FIELD)
+    composeTestRule.onNodeWithTag(TestTags.ADD_USERNAME_FIELD).performTextInput(USERNAME)
+    waitForEnabledTag(TestTags.ADD_USERNAME_NEXT_BUTTON)
+    composeTestRule.onNodeWithTag(TestTags.ADD_USERNAME_NEXT_BUTTON).performClick()
+
+    waitFor("registration to complete") { registrationComplete }
+
+    // The app detects the switch to a new account by comparing the committed ACI against the device's, and uses it to
+    // re-run the post-registration steps (like setting a profile name) that the previous account already completed.
+    val accountData = storageController.committedData?.accountData
+    assert(accountData != null) { "Expected account data to be committed" }
+    assert(accountData!!.aci == login.aci.toString()) { "Expected committed ACI ${login.aci} but was ${accountData.aci}" }
+    assert(accountData.aci != preExisting.aci.toString()) { "Expected a new account, but the committed ACI is the one already on the device" }
+    assert(!accountData.reRegistration) { "Expected a brand new account to not be flagged as a re-registration" }
+    assert(networkController.lastRegisterAccountRequest?.aci == null) { "Expected the device's existing ACI to not be sent but was ${networkController.lastRegisterAccountRequest?.aci}" }
+    assert(storageController.savedUsername == "$USERNAME.42") { "Expected the confirmed username to be saved but was ${storageController.savedUsername}" }
+  }
+
+  @Test
   fun `a purchased signal login that the password manager takes and hands back moves the user on to the username step`() {
     enableSignalLoginRegistration()
     val savedCredentials = stubPasswordManager()

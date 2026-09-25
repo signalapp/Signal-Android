@@ -750,6 +750,11 @@ class AppRegistrationStorageController(private val context: Context) : StorageCo
     val e164 = accountData.e164?.nullIfBlank()
     val isAciChanged = SignalStore.account.aci != aci
 
+    if (isAciChanged && SignalStore.registration.isRegistrationComplete) {
+      Log.i(TAG, "[applyAccountData] Registering a different account than the one this device completed registration for. Clearing registration-complete so the post-registration steps run again.")
+      SignalStore.registration.clearRegistrationComplete()
+    }
+
     if (pni == null) {
       Log.i(TAG, "[applyAccountData] No PNI in the account data. Registering an account with no phone number. Clearing any E164/PNI state from a previous registration.")
       SignalStore.account.clearE164AndPni()

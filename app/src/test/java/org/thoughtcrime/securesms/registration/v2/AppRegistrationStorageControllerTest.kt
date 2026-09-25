@@ -296,6 +296,51 @@ class AppRegistrationStorageControllerTest {
   }
 
   @Test
+  fun `commit - different account than a completed registration - clears registration complete`() = runBlocking<Unit> {
+    SignalStore.account.setAci(ACI.from(UUID.randomUUID()))
+    SignalStore.account.setRegistered(true)
+    SignalStore.registration.markRegistrationComplete()
+
+    seedInProgressData(
+      RegistrationData(
+        accountData = accountData().newBuilder()
+          .e164("")
+          .pni("")
+          .pniIdentityKeyPair(ByteString.EMPTY)
+          .pniSignedPreKey(ByteString.EMPTY)
+          .pniLastResortKyberPreKey(ByteString.EMPTY)
+          .pniRegistrationId(0)
+          .build(),
+        accountEntropyPool = aep.value
+      )
+    )
+
+    controller.commitRegistrationData()
+
+    assertThat(SignalStore.account.aci).isEqualTo(aci)
+    assertThat(SignalStore.registration.isRegistrationComplete).isFalse()
+  }
+
+  @Test
+  fun `commit - same account as a completed registration - leaves registration complete`() = runBlocking<Unit> {
+    SignalStore.account.setAci(aci)
+    SignalStore.account.setRegistered(true)
+    SignalStore.registration.markRegistrationComplete()
+
+    seedInProgressData(
+      RegistrationData(
+        accountData = accountData(reRegistration = true),
+        accountEntropyPool = aep.value,
+        pin = PIN
+      )
+    )
+
+    controller.commitRegistrationData()
+
+    assertThat(SignalStore.registration.isRegistrationComplete).isTrue()
+  }
+
+  @Test
   fun `commit - pin opted out - applies svr opt out`() = runBlocking<Unit> {
     seedInProgressData(
       RegistrationData(
