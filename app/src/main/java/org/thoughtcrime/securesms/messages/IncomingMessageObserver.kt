@@ -22,6 +22,7 @@ import org.signal.core.util.SafeForegroundService
 import org.signal.core.util.SleepTimer
 import org.signal.core.util.UptimeSleepTimer
 import org.signal.core.util.concurrent.SignalExecutors
+import org.signal.core.util.groups.GroupChangeBusyException
 import org.signal.core.util.logging.Log
 import org.signal.network.config.ProxyConfig
 import org.signal.network.config.SignalServiceConfiguration
@@ -57,6 +58,7 @@ import org.whispersystems.signalservice.api.websocket.SignalWebSocket
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
 import org.whispersystems.signalservice.api.websocket.WebSocketUnavailableException
 import org.whispersystems.signalservice.internal.push.Envelope
+import java.io.Closeable
 import java.util.concurrent.CopyOnWriteArrayList
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.TimeoutException
@@ -84,6 +86,8 @@ class IncomingMessageObserver(
     private val TAG = Log.tag(IncomingMessageObserver::class.java)
 
     private const val WEB_SOCKET_KEEP_ALIVE_TOKEN = "MessageRetrieval"
+
+    private const val MAX_GROUP_LOCK_ATTEMPTS = 6
 
     /** How long we wait for the websocket to time out before we try to connect again. */
     private val websocketReadTimeout: Long
@@ -531,7 +535,7 @@ class IncomingMessageObserver(
                   Log.i(TAG, "Retrieved ${batch.size} envelopes!")
 
                   val startTime = System.currentTimeMillis()
-                  GroupsV2ProcessingLock.acquireGroupProcessingLock().use {
+                  acquireGroupProcessingLock().use {
                     ReentrantSessionLock.INSTANCE.acquire().use {
                       val batchCommitted = processBatchInTransaction(batch)
 
@@ -600,6 +604,24 @@ class IncomingMessageObserver(
         Log.i(TAG, "Looping...")
       }
       Log.w(TAG, "Terminated! (${this.hashCode()})")
+    }
+
+    /**
+     * Retries the group processing lock so a slow group job does not immediately tear down the websocket and force the batch to be redelivered.
+     */
+    private fun acquireGroupProcessingLock(): Closeable {
+      var attempt = 1
+      while (true) {
+        try {
+          return GroupsV2ProcessingLock.acquireGroupProcessingLock()
+        } catch (e: GroupChangeBusyException) {
+          if (terminated || attempt >= MAX_GROUP_LOCK_ATTEMPTS) {
+            throw e
+          }
+          Log.w(TAG, "Group processing lock is busy, waiting again. Attempt $attempt of $MAX_GROUP_LOCK_ATTEMPTS. ${e.message}")
+          attempt++
+        }
+      }
     }
 
     /**
