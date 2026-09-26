@@ -237,9 +237,14 @@ class RestoreLocalBackupFragment : LoggingFragment(R.layout.fragment_restore_loc
         Toast.makeText(requireContext(), R.string.RegistrationActivity_backup_failure_foreign_key, Toast.LENGTH_LONG).show()
       }
 
-      RestoreRepository.BackupImportResult.FAILURE_UNKNOWN -> {
+      RestoreRepository.BackupImportResult.FAILURE_PASSPHRASE_VALIDATION -> {
         Log.i(TAG, "Notifying user of restore failure due to incorrect passphrase.")
         Toast.makeText(requireContext(), R.string.RegistrationActivity_incorrect_backup_passphrase, Toast.LENGTH_LONG).show()
+      }
+
+      RestoreRepository.BackupImportResult.FAILURE_UNKNOWN -> {
+        Log.i(TAG, "Notifying user of restore failure.")
+        Toast.makeText(requireContext(), R.string.RestoreLocalBackupActivity__backup_restore_failed, Toast.LENGTH_LONG).show()
       }
 
       RestoreRepository.BackupImportResult.SUCCESS -> {
