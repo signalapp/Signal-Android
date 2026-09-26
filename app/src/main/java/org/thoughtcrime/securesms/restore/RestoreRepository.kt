@@ -53,7 +53,7 @@ object RestoreRepository {
 
       if (!FullBackupImporter.validatePassphrase(context, backupFileUri, passphrase)) {
         Log.i(TAG, "Restore failed due to invalid passphrase.")
-        return@withContext BackupImportResult.FAILURE_UNKNOWN
+        return@withContext BackupImportResult.FAILURE_PASSPHRASE_VALIDATION
       }
 
       Log.i(TAG, "Passphrase validated.")
@@ -101,6 +101,7 @@ object RestoreRepository {
     SUCCESS,
     FAILURE_VERSION_DOWNGRADE,
     FAILURE_FOREIGN_KEY,
+    FAILURE_PASSPHRASE_VALIDATION,
     FAILURE_UNKNOWN
   }
 
