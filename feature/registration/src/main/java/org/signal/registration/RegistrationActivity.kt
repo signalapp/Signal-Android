@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.core.content.IntentCompat
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.core.ui.initializeScreenshotSecurity
 
 /**
  * Activity entry point for the registration flow.
@@ -67,6 +68,8 @@ class RegistrationActivity : ComponentActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     enableEdgeToEdge()
     super.onCreate(savedInstanceState)
+
+    window.initializeScreenshotSecurity()
 
     val startDestination = IntentCompat.getParcelableExtra(intent, START_DESTINATION_EXTRA, RegistrationRoute::class.java)
     val startFresh = intent.getBooleanExtra(START_FRESH_EXTRA, false)
