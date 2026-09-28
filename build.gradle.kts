@@ -71,6 +71,12 @@ subprojects {
     // Raised for robolectric
     maxHeapSize = "2g"
   }
+
+  // The reference images aren't tracked as outputs, so without this the task is skipped after they change on disk.
+  tasks.matching { it.name.startsWith("update") && it.name.endsWith("ScreenshotTest") }.configureEach {
+    outputs.upToDateWhen { false }
+    outputs.doNotCacheIf("Reference images are not tracked outputs") { true }
+  }
 }
 
 tasks.register("buildQa") {
@@ -98,6 +104,11 @@ tasks.register("ci") {
 tasks.register("validateScreenshots") {
   group = "Verification"
   description = "Validates Compose screenshot tests. Intended to run only on CI, not local builds."
+}
+
+tasks.register("updateScreenshots") {
+  group = "Verification"
+  description = "Regenerates Compose screenshot reference images."
 }
 
 tasks.register("qaRemote") {
@@ -146,13 +157,21 @@ gradle.projectsEvaluated {
     }
   }
 
+  // All modules get screenshotTests enabled by default, but the validate task fails if there's no tests.
+  // So we just filter out the modules that have no tests ourselves.
+  val screenshotTestTargets = subprojects
+    .filter { it.file("src/screenshotTest").isDirectory }
+    .map { it to if (it.name == "Signal-Android") "PlayProdDebug" else "Debug" }
+
   tasks.named("validateScreenshots") {
-    subprojects.filter { it.name != "Signal-Android" }.forEach { subproject ->
-      // All modules get screenshotTests enabled by default, but the validate task fails if there's no tests.
-      // So we just filter out the modules that have no tests ourselves.
-      if (subproject.file("src/screenshotTest").isDirectory) {
-        subproject.tasks.findByName("validateDebugScreenshotTest")?.let { dependsOn(it) }
-      }
+    screenshotTestTargets.forEach { (subproject, variant) ->
+      subproject.tasks.findByName("validate${variant}ScreenshotTest")?.let { dependsOn(it) }
+    }
+  }
+
+  tasks.named("updateScreenshots") {
+    screenshotTestTargets.forEach { (subproject, variant) ->
+      subproject.tasks.findByName("update${variant}ScreenshotTest")?.let { dependsOn(it) }
     }
   }
 
