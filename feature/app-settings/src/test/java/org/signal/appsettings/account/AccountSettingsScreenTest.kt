@@ -369,9 +369,26 @@ class AccountSettingsScreenTest {
     setContent(createState(signalLogin = signalLogin(twoFactorMethods = METHODS)))
 
     for (method in METHODS) {
-      composeTestRule.onNodeWithTag(AccountSettingsTestTags.SCROLLER).performScrollToNode(hasText(method.name))
-      composeTestRule.onNodeWithText(method.name).assertIsDisplayed()
+      val name = method.name!!
+      composeTestRule.onNodeWithTag(AccountSettingsTestTags.SCROLLER).performScrollToNode(hasText(name))
+      composeTestRule.onNodeWithText(name).assertIsDisplayed()
     }
+  }
+
+  @Test
+  fun givenAMethodWhoseMetadataCouldntBeRead_whenScreenDisplayed_thenIExpectAnUnknownRowThatCanStillBeRemoved() {
+    val method = TwoFactorMethod(id = 1, kind = TwoFactorMethod.Kind.AUTHENTICATOR_APP, name = null, createdAt = null)
+    setContent(createState(signalLogin = signalLogin(twoFactorMethods = listOf(method))))
+
+    val unknown = context.getString(R.string.AccountSettingsFragment__unknown)
+    composeTestRule.onNodeWithTag(AccountSettingsTestTags.SCROLLER).performScrollToNode(hasText(unknown))
+    composeTestRule.onNodeWithText(unknown).assertIsDisplayed()
+    composeTestRule.onNodeWithText(context.getString(R.string.AccountSettingsFragment__authenticator_app)).assertIsDisplayed()
+
+    composeTestRule.onAllNodesWithTag(AccountSettingsTestTags.BUTTON_METHOD_MENU)[0].performClick()
+    composeTestRule.onNodeWithTag(AccountSettingsTestTags.MENU_ITEM_REMOVE).performClick()
+
+    assertThat(events).contains(AccountSettingsEvent.RemoveMethodClicked(method))
   }
 
   /** Authenticator apps and passkeys share one list, so a row's subtitle is what says which kind it is. */

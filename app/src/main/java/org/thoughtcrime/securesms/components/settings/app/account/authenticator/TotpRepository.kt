@@ -145,7 +145,7 @@ class TotpRepository(
     }
   }
 
-  /** The authenticator apps on the account, newest id last, with anything we can't read left out. */
+  /** The authenticator apps on the account, newest id last. Apps whose metadata we can't read have no name or date. */
   suspend fun getTotpApps(): AppsResult {
     val keys = when (val result = api.listMfaKeys(masterKeyProvider())) {
       is RequestResult.Success -> result.result
@@ -160,26 +160,28 @@ class TotpRepository(
       is RequestResult.NonSuccess -> error("Code branch is unreachable")
     }
 
-    val apps = keys.mapNotNull { key ->
+    val apps = keys.map { key ->
       val metadata = key.metadata
       if (metadata == null) {
-        Log.w(TAG, "Couldn't read the metadata for key ${key.id}. Leaving it out of the list.")
-        null
-      } else {
-        TotpApp(
-          id = key.id.toLong(),
-          name = metadata.name,
-          createdAt = metadata.createdAt.toEpochMilli()
-        )
+        Log.w(TAG, "Couldn't read the metadata for key ${key.id}.")
       }
+
+      TotpApp(
+        id = key.id.toLong(),
+        name = metadata?.name,
+        createdAt = metadata?.createdAt?.toEpochMilli()
+      )
     }
 
     return AppsResult.Success(apps)
   }
 
-  /** Renames [app], which means re-encrypting its metadata and handing the whole blob back to the service. */
+  /**
+   * Renames [app], which means re-encrypting its metadata and handing the whole blob back to the service. An app whose
+   * metadata we couldn't read gets stamped with the current time.
+   */
   suspend fun renameTotpApp(app: TotpApp, name: String): UpdateResult {
-    return setMetadata(app.id, MfaMetadata(name = name, createdAt = Instant.ofEpochMilli(app.createdAt)))
+    return setMetadata(app.id, MfaMetadata(name = name, createdAt = Instant.ofEpochMilli(app.createdAt ?: clock())))
   }
 
   /** Names a newly confirmed app, replacing the default name it was confirmed with moments ago. */

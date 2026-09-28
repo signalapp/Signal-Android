@@ -7,8 +7,8 @@ package org.thoughtcrime.securesms.components.settings.app.account.authenticator
 
 import assertk.assertThat
 import assertk.assertions.contains
+import assertk.assertions.containsExactly
 import assertk.assertions.hasSize
-import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
 import assertk.assertions.isInstanceOf
 import assertk.assertions.startsWith
@@ -208,14 +208,14 @@ class TotpRepositoryTest {
     assertThat(apps.first().createdAt).isEqualTo(NOW)
   }
 
-  /** Metadata we can't read was written under some other key, so listing it as a nameless app would be worse than omitting it. */
+  /** The user still needs to be able to see and remove a key even if we can't read its name. */
   @Test
-  fun `a key whose metadata can't be read is left out of the list`() = runTest {
+  fun `a key whose metadata can't be read still shows up without a name or date`() = runTest {
     coEvery { api.listMfaKeys(any()) } returns RequestResult.Success(
       listOf(ConfirmedMfaKey(id = KEY_ID, metadata = null, kind = MfaKeyKind.TOTP))
     )
 
-    assertThat((repository.getTotpApps() as AppsResult.Success).apps).isEmpty()
+    assertThat((repository.getTotpApps() as AppsResult.Success).apps).containsExactly(TotpApp(id = KEY_ID.toLong(), name = null, createdAt = null))
   }
 
   /** The list is about what's on the account, not what this client understands, so a newer device's key still shows. */
@@ -256,6 +256,18 @@ class TotpRepositoryTest {
     assertThat(repository.renameTotpApp(app, "Aegis on my tablet")).isEqualTo(UpdateResult.Success)
 
     assertThat(metadata.captured.name).isEqualTo("Aegis on my tablet")
+    assertThat(metadata.captured.createdAt).isEqualTo(Instant.ofEpochMilli(NOW))
+  }
+
+  @Test
+  fun `renaming an app whose metadata couldn't be read stamps it with the current time`() = runTest {
+    val metadata = slot<MfaMetadata>()
+    coEvery { api.setMfaKeyMetadata(eq(KEY_ID), capture(metadata), any()) } returns RequestResult.Success(Unit)
+    val app = TotpApp(id = KEY_ID.toLong(), name = null, createdAt = null)
+
+    assertThat(repository.renameTotpApp(app, "Aegis")).isEqualTo(UpdateResult.Success)
+
+    assertThat(metadata.captured.name).isEqualTo("Aegis")
     assertThat(metadata.captured.createdAt).isEqualTo(Instant.ofEpochMilli(NOW))
   }
 

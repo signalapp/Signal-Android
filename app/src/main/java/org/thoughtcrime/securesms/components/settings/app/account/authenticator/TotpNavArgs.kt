@@ -19,6 +19,9 @@ object TotpNavArgs {
   const val ARG_APP_ID = "app_id"
   const val NO_APP_ID = -1L
 
+  /** Whether the screen is renaming an existing app rather than naming a newly paired one. */
+  const val ARG_RENAMING = "renaming"
+
   /** The rest of the app being renamed. Absent when the screen is naming a newly paired app instead. */
   const val ARG_APP_NAME = "app_name"
   const val ARG_APP_CREATED_AT = "app_created_at"
@@ -30,15 +33,23 @@ object TotpNavArgs {
   /** Packs [app] into [bundle] for the rename flow, so the name screen doesn't have to fetch what the list already had. */
   fun putRenamedApp(bundle: Bundle, app: TotpApp) {
     bundle.putLong(ARG_APP_ID, app.id)
+    bundle.putBoolean(ARG_RENAMING, true)
     bundle.putString(ARG_APP_NAME, app.name)
-    bundle.putLong(ARG_APP_CREATED_AT, app.createdAt)
+    bundle.putLong(ARG_APP_CREATED_AT, app.createdAt ?: NO_CREATED_AT)
   }
 
   /** The app being renamed, or null when [arguments] describe naming a newly paired app rather than a rename. */
   fun renamedApp(arguments: Bundle?): TotpApp? {
-    val appId = appId(arguments) ?: return null
-    val createdAt = arguments?.getLong(ARG_APP_CREATED_AT, NO_CREATED_AT)?.takeIf { it != NO_CREATED_AT } ?: return null
+    if (arguments == null || !arguments.getBoolean(ARG_RENAMING, false)) {
+      return null
+    }
 
-    return TotpApp(id = appId, name = arguments.getString(ARG_APP_NAME).orEmpty(), createdAt = createdAt)
+    val appId = appId(arguments) ?: return null
+
+    return TotpApp(
+      id = appId,
+      name = arguments.getString(ARG_APP_NAME)?.takeIf { it.isNotEmpty() },
+      createdAt = arguments.getLong(ARG_APP_CREATED_AT, NO_CREATED_AT).takeIf { it != NO_CREATED_AT }
+    )
   }
 }

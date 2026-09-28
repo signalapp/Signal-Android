@@ -430,7 +430,7 @@ private fun TwoFactorMethodRow(
 ) {
   val context = LocalContext.current
   val addedTime = remember(method.createdAt) {
-    DateUtils.getRelativeDateTimeString(context, method.createdAt, DateUtils.DAY_IN_MILLIS, DateUtils.WEEK_IN_MILLIS, 0).toString()
+    method.createdAt?.let { DateUtils.getRelativeDateTimeString(context, it, DateUtils.DAY_IN_MILLIS, DateUtils.WEEK_IN_MILLIS, 0).toString() }
   }
 
   val icon = when (method.kind) {
@@ -447,8 +447,12 @@ private fun TwoFactorMethodRow(
     icon = { TwoFactorRowIcon(icon = icon) },
     text = {
       TextAndLabel(
-        text = method.name,
-        label = stringResource(R.string.AccountSettingsFragment__s_added_s, kindName, addedTime)
+        text = method.name ?: stringResource(R.string.AccountSettingsFragment__unknown),
+        label = if (addedTime != null) {
+          stringResource(R.string.AccountSettingsFragment__s_added_s, kindName, addedTime)
+        } else {
+          kindName
+        }
       )
 
       TwoFactorMethodMenuButton(
@@ -928,5 +932,6 @@ private fun MaxMfaKeysReachedDialogPreview() {
 private val PREVIEW_TWO_FACTOR_METHODS = listOf(
   TwoFactorMethod(id = 1, kind = TwoFactorMethod.Kind.AUTHENTICATOR_APP, name = "Bitwarden Authenticator", createdAt = System.currentTimeMillis()),
   TwoFactorMethod(id = 2, kind = TwoFactorMethod.Kind.AUTHENTICATOR_APP, name = "Twilio Authy", createdAt = System.currentTimeMillis()),
+  TwoFactorMethod(id = 3, kind = TwoFactorMethod.Kind.AUTHENTICATOR_APP, name = null, createdAt = null),
   TwoFactorMethod(id = 1, kind = TwoFactorMethod.Kind.PASSKEY, name = "Pixel Phone", createdAt = System.currentTimeMillis())
 )
