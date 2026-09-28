@@ -45,7 +45,6 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
-import androidx.core.view.doOnPreDraw
 import org.signal.core.ui.compose.DropdownMenus
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.ui.fonts.SignalSymbols
@@ -182,9 +181,6 @@ fun PinnedMessagesBanner(
               view.text = displayBody
               view.ellipsize = TextUtils.TruncateAt.END
               view.maxLines = 1
-              view.doOnPreDraw {
-                (it as EmojiTextView).ellipsizeEmojiTextForMaxLines()
-              }
             }
           }
         }
