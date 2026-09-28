@@ -19,10 +19,10 @@ class AudioFileInfoTest {
 
   @Test
   fun `wave form is always resampled to the render bar count`() {
-    for (sourceSize in listOf(1, 5, AudioWaveFormGenerator.BAR_COUNT, 100)) {
+    for (sourceSize in listOf(1, 5, AudioFileInfo.RENDER_BAR_COUNT, AudioWaveFormGenerator.BAR_COUNT)) {
       val info = AudioFileInfo(0, ByteArray(sourceSize) { 255.toByte() })
 
-      assertThat(info.waveForm.size).isEqualTo(AudioWaveFormGenerator.BAR_COUNT)
+      assertThat(info.waveForm.size).isEqualTo(AudioFileInfo.RENDER_BAR_COUNT)
       assertThat(info.barCount).isEqualTo(sourceSize)
       assertThat(info.waveForm.toList()).each { it.isCloseTo(1f, 0.001f) }
     }
@@ -30,14 +30,14 @@ class AudioFileInfoTest {
 
   @Test
   fun `bytes are read as unsigned and normalized`() {
-    val info = AudioFileInfo(0, ByteArray(AudioWaveFormGenerator.BAR_COUNT) { 128.toByte() })
+    val info = AudioFileInfo(0, ByteArray(AudioFileInfo.RENDER_BAR_COUNT) { 128.toByte() })
 
     assertThat(info.waveForm.toList()).each { it.isCloseTo(128f / 255f, 0.001f) }
   }
 
   @Test
   fun `downsampling averages the source bars`() {
-    val source = ByteArray(AudioWaveFormGenerator.BAR_COUNT * 2) { if (it % 2 == 0) 0 else 255.toByte() }
+    val source = ByteArray(AudioFileInfo.RENDER_BAR_COUNT * 2) { if (it % 2 == 0) 0 else 255.toByte() }
 
     val info = AudioFileInfo(0, source)
 

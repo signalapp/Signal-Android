@@ -11,6 +11,9 @@ class AudioFileInfo @JvmOverloads internal constructor(
 ) {
 
   companion object {
+    /** Number of bars the wave form is rendered with, independent of the [AudioWaveFormGenerator.BAR_COUNT] bars we store and transmit. */
+    const val RENDER_BAR_COUNT = 46
+
     @JvmStatic
     fun fromDatabaseProtobuf(audioWaveForm: AudioWaveFormData): AudioFileInfo {
       return AudioFileInfo(audioWaveForm.durationUs, audioWaveForm.waveForm.toByteArray(), audioWaveForm.senderProvided)
@@ -34,7 +37,7 @@ class AudioFileInfo @JvmOverloads internal constructor(
     }
   }
 
-  val waveForm: FloatArray = if (waveFormBytes.isEmpty()) FloatArray(0) else resample(waveFormBytes, AudioWaveFormGenerator.BAR_COUNT)
+  val waveForm: FloatArray = if (waveFormBytes.isEmpty()) FloatArray(0) else resample(waveFormBytes, RENDER_BAR_COUNT)
 
   val barCount: Int = waveFormBytes.size
 
