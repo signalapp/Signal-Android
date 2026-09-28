@@ -39,6 +39,10 @@ object ExportSkips {
     return log(sentTimestamp, "Failed to parse GiftBadge.")
   }
 
+  fun invalidGiftBadgeReceiptCredentialPresentation(sentTimestamp: Long): String {
+    return log(sentTimestamp, "GiftBadge had an invalid receipt credential presentation.")
+  }
+
   fun failedToParseGroupUpdate(sentTimestamp: Long): String {
     return log(sentTimestamp, "Failed to parse GroupUpdate.")
   }

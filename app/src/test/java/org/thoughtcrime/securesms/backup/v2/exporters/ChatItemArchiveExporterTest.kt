@@ -15,18 +15,27 @@ import assertk.assertions.isEqualTo
 import assertk.assertions.isFalse
 import assertk.assertions.isGreaterThan
 import assertk.assertions.isLessThan
+import assertk.assertions.isNull
 import assertk.assertions.isTrue
 import io.mockk.mockk
+import okio.ByteString
+import okio.ByteString.Companion.toByteString
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import org.signal.libsignal.zkgroup.ServerSecretParams
+import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations
+import org.signal.libsignal.zkgroup.receipts.ReceiptSerial
+import org.signal.libsignal.zkgroup.receipts.ServerZkReceiptOperations
 import org.thoughtcrime.securesms.backup.v2.ExportState
 import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
 import org.thoughtcrime.securesms.polls.PollOption
 import org.thoughtcrime.securesms.polls.PollRecord
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.signal.archive.proto.GiftBadge as BackupGiftBadge
 
 @RunWith(RobolectricTestRunner::class)
 @Config(application = Application::class)
@@ -165,6 +174,52 @@ class ChatItemArchiveExporterTest {
   @Test
   fun `poll with too many options is invalid for export`() {
     assertThat(poll(options = List(11) { "option$it" }).hasValidOptionsForExport()).isFalse()
+  }
+
+  @Test
+  fun `gift badge with a valid presentation keeps its token and state`() {
+    val token = validReceiptCredentialPresentation()
+    val result = GiftBadge(redemptionToken = token, redemptionState = GiftBadge.RedemptionState.REDEEMED).toBackupGiftBadgeOrNull()
+
+    assertThat(result).isEqualTo(BackupGiftBadge(receiptCredentialPresentation = token, state = BackupGiftBadge.State.REDEEMED))
+  }
+
+  @Test
+  fun `gift badge with an invalid presentation is not exported`() {
+    val result = GiftBadge(redemptionToken = byteArrayOf(1, 2, 3).toByteString(), redemptionState = GiftBadge.RedemptionState.PENDING).toBackupGiftBadgeOrNull()
+
+    assertThat(result).isNull()
+  }
+
+  @Test
+  fun `gift badge with an empty presentation is not exported`() {
+    val result = GiftBadge(redemptionToken = ByteString.EMPTY, redemptionState = GiftBadge.RedemptionState.STARTED).toBackupGiftBadgeOrNull()
+
+    assertThat(result).isNull()
+  }
+
+  @Test
+  fun `failed gift badge with a token is exported with an empty presentation`() {
+    val result = GiftBadge(redemptionToken = validReceiptCredentialPresentation(), redemptionState = GiftBadge.RedemptionState.FAILED).toBackupGiftBadgeOrNull()
+
+    assertThat(result).isEqualTo(BackupGiftBadge(receiptCredentialPresentation = ByteString.EMPTY, state = BackupGiftBadge.State.FAILED))
+  }
+
+  @Test
+  fun `failed gift badge without a token is exported with an empty presentation`() {
+    val result = GiftBadge(redemptionToken = ByteString.EMPTY, redemptionState = GiftBadge.RedemptionState.FAILED).toBackupGiftBadgeOrNull()
+
+    assertThat(result).isEqualTo(BackupGiftBadge(receiptCredentialPresentation = ByteString.EMPTY, state = BackupGiftBadge.State.FAILED))
+  }
+
+  private fun validReceiptCredentialPresentation(): ByteString {
+    val serverSecretParams = ServerSecretParams.generate()
+    val clientOperations = ClientZkReceiptOperations(serverSecretParams.publicParams)
+    val context = clientOperations.createReceiptCredentialRequestContext(ReceiptSerial(ByteArray(ReceiptSerial.SIZE)))
+    val response = ServerZkReceiptOperations(serverSecretParams).issueReceiptCredential(context.request, 86400L, 100L)
+    val credential = clientOperations.receiveReceiptCredential(context, response)
+
+    return clientOperations.createReceiptCredentialPresentation(credential).serialize().toByteString()
   }
 
   private fun poll(question: String = "how are you", options: List<String> = listOf("option1", "option2")): PollRecord {

@@ -71,6 +71,8 @@ import org.signal.core.util.requireLong
 import org.signal.core.util.requireLongOrNull
 import org.signal.core.util.requireString
 import org.signal.core.util.toByteArray
+import org.signal.libsignal.zkgroup.InvalidInputException
+import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.backup.v2.BackupMode
 import org.thoughtcrime.securesms.backup.v2.ExportOddities
@@ -1328,15 +1330,42 @@ private fun BackupMessageRecord.toRemoteGiftBadgeUpdate(): BackupGiftBadge? {
     return null
   }
 
-  return BackupGiftBadge(
-    receiptCredentialPresentation = giftBadge.redemptionToken,
-    state = when (giftBadge.redemptionState) {
-      GiftBadge.RedemptionState.REDEEMED -> BackupGiftBadge.State.REDEEMED
-      GiftBadge.RedemptionState.FAILED -> BackupGiftBadge.State.FAILED
-      GiftBadge.RedemptionState.PENDING -> BackupGiftBadge.State.UNOPENED
-      GiftBadge.RedemptionState.STARTED -> BackupGiftBadge.State.OPENED
+  val backupGiftBadge = giftBadge.toBackupGiftBadgeOrNull()
+  if (backupGiftBadge == null) {
+    Log.w(TAG, ExportSkips.invalidGiftBadgeReceiptCredentialPresentation(this.dateSent))
+  }
+
+  return backupGiftBadge
+}
+
+/**
+ * Returns null if the redemption token is not a valid [ReceiptCredentialPresentation]. Failed gift badges are exported
+ * with an empty presentation, as required by the backup spec.
+ */
+@VisibleForTesting
+internal fun GiftBadge.toBackupGiftBadgeOrNull(): BackupGiftBadge? {
+  val state = when (redemptionState) {
+    GiftBadge.RedemptionState.REDEEMED -> {
+      BackupGiftBadge.State.REDEEMED
     }
-  )
+    GiftBadge.RedemptionState.PENDING -> {
+      BackupGiftBadge.State.UNOPENED
+    }
+    GiftBadge.RedemptionState.STARTED -> {
+      BackupGiftBadge.State.OPENED
+    }
+    GiftBadge.RedemptionState.FAILED -> {
+      return BackupGiftBadge(receiptCredentialPresentation = ByteString.EMPTY, state = BackupGiftBadge.State.FAILED)
+    }
+  }
+
+  try {
+    ReceiptCredentialPresentation(redemptionToken.toByteArray())
+  } catch (e: InvalidInputException) {
+    return null
+  }
+
+  return BackupGiftBadge(receiptCredentialPresentation = redemptionToken, state = state)
 }
 
 private fun PollRecord.toRemotePollMessage(reactionRecords: List<ReactionRecord>?, exportState: ExportState): Poll {
