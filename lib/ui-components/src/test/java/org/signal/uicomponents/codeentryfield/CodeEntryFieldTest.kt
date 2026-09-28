@@ -14,6 +14,8 @@ import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performTextInput
 import assertk.assertThat
 import assertk.assertions.contains
+import assertk.assertions.containsOnly
+import assertk.assertions.isEqualTo
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -30,51 +32,105 @@ class CodeEntryFieldTest {
 
   private val events = mutableListOf<CodeEntryFieldEvents>()
 
+  private val codeChanges: List<String>
+    get() = events.filterIsInstance<CodeEntryFieldEvents.CodeChanged>().map { it.code }
+
   @Test
   fun `field displays one box per digit`() {
     setContent(CodeEntryFieldState())
 
     for (index in 0 until CODE_LENGTH) {
-      composeTestRule.onNodeWithTag(CodeEntryFieldTestTags.digit(index)).assertIsDisplayed()
+      digit(index).assertIsDisplayed()
     }
   }
 
   @Test
-  fun `field renders the digits from state`() {
-    setContent(CodeEntryFieldState(digits = listOf("4", "1", "8", "3", "7", "2")))
+  fun `field renders the initial code from state`() {
+    setContent(CodeEntryFieldState(code = "418"))
 
-    composeTestRule.onNodeWithTag(CodeEntryFieldTestTags.digit(0)).assertTextEquals("4")
-    composeTestRule.onNodeWithTag(CodeEntryFieldTestTags.digit(5)).assertTextEquals("2")
+    digit(0).assertTextEquals("4")
+    digit(2).assertTextEquals("8")
+    digit(3).assertTextEquals("")
   }
 
   @Test
-  fun `entering a digit emits DigitChanged for that box`() {
+  fun `typing emits the whole code after each keystroke`() {
     setContent(CodeEntryFieldState())
 
-    composeTestRule.onNodeWithTag(CodeEntryFieldTestTags.digit(0)).performTextInput("4")
-    composeTestRule.onNodeWithTag(CodeEntryFieldTestTags.digit(1)).performTextInput("1")
+    field().performTextInput("4")
+    composeTestRule.waitForIdle()
+    field().performTextInput("1")
     composeTestRule.waitForIdle()
 
-    assertThat(events).contains(CodeEntryFieldEvents.DigitChanged(0, "4"))
-    assertThat(events).contains(CodeEntryFieldEvents.DigitChanged(1, "1"))
+    assertThat(codeChanges).contains("4")
+    assertThat(codeChanges.last()).isEqualTo("41")
   }
 
   @Test
-  fun `pasting into a box emits DigitChanged with the raw text`() {
+  fun `rapid keystrokes are all kept even when the state never catches up`() {
     setContent(CodeEntryFieldState())
 
-    composeTestRule.onNodeWithTag(CodeEntryFieldTestTags.digit(0)).performTextInput("418-372")
+    "418372".forEach { field().performTextInput(it.toString()) }
     composeTestRule.waitForIdle()
 
-    assertThat(events).contains(CodeEntryFieldEvents.DigitChanged(0, "418-372"))
+    assertThat(codeChanges.last()).isEqualTo("418372")
+    digit(0).assertTextEquals("4")
+    digit(5).assertTextEquals("2")
+  }
+
+  @Test
+  fun `pasting a hyphenated code keeps only the digits`() {
+    setContent(CodeEntryFieldState())
+
+    field().performTextInput("418-372")
+    composeTestRule.waitForIdle()
+
+    assertThat(codeChanges.last()).isEqualTo("418372")
+  }
+
+  @Test
+  fun `pasting a full code over a partial code replaces it`() {
+    setContent(CodeEntryFieldState(code = "12"))
+
+    field().performTextInput("418372")
+    composeTestRule.waitForIdle()
+
+    assertThat(codeChanges.last()).isEqualTo("418372")
+  }
+
+  @Test
+  fun `typing past a full code is ignored`() {
+    setContent(CodeEntryFieldState(code = "418372"))
+
+    field().performTextInput("7")
+    composeTestRule.waitForIdle()
+
+    assertThat(codeChanges).containsOnly("418372")
+  }
+
+  @Test
+  fun `a pending overwrite replaces the field contents and is acknowledged`() {
+    setContent(CodeEntryFieldState(code = "12", pendingOverwrite = "418372"))
+
+    composeTestRule.waitUntil(timeoutMillis = 5_000) {
+      events.any { it is CodeEntryFieldEvents.OverwriteApplied }
+    }
+    composeTestRule.waitForIdle()
+
+    assertThat(codeChanges.last()).isEqualTo("418372")
+    digit(5).assertTextEquals("2")
   }
 
   @Test
   fun `a disabled field cannot be typed in`() {
     setContent(CodeEntryFieldState(), enabled = false)
 
-    composeTestRule.onNodeWithTag(CodeEntryFieldTestTags.digit(0)).assertIsNotEnabled()
+    field().assertIsNotEnabled()
   }
+
+  private fun field() = composeTestRule.onNodeWithTag(CodeEntryFieldTestTags.ROOT)
+
+  private fun digit(index: Int) = composeTestRule.onNodeWithTag(CodeEntryFieldTestTags.digit(index), useUnmergedTree = true)
 
   private fun setContent(state: CodeEntryFieldState, enabled: Boolean = true) {
     composeTestRule.setContent {

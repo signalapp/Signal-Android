@@ -29,8 +29,8 @@ import org.signal.uicomponents.codeentryfield.CodeEntryFieldTestTags
 class TotpCodeEntryScreenTest {
 
   companion object {
-    private val FULL_CODE = CodeEntryFieldState(digits = listOf("1", "2", "3", "4", "5", "6"))
-    private val PARTIAL_CODE = CodeEntryFieldState(digits = listOf("1", "2", "3", "", "", ""))
+    private val FULL_CODE = CodeEntryFieldState(code = "123456")
+    private val PARTIAL_CODE = CodeEntryFieldState(code = "123")
   }
 
   @get:Rule
@@ -60,10 +60,10 @@ class TotpCodeEntryScreenTest {
   fun whenITypeInTheCodeField_thenIExpectAForwardedCodeEntryEvent() {
     setContent(TotpCodeEntryState())
 
-    composeTestRule.onNodeWithTag(CodeEntryFieldTestTags.digit(0)).performTextInput("1")
+    composeTestRule.onNodeWithTag(CodeEntryFieldTestTags.ROOT).performTextInput("1")
     composeTestRule.waitForIdle()
 
-    assertThat(events).contains(TotpCodeEntryEvent.CodeEntryEvent(CodeEntryFieldEvents.DigitChanged(0, "1")))
+    assertThat(events).contains(TotpCodeEntryEvent.CodeEntryEvent(CodeEntryFieldEvents.CodeChanged("1")))
   }
 
   @Test
@@ -77,7 +77,7 @@ class TotpCodeEntryScreenTest {
   fun givenASubmissionInFlight_whenScreenDisplayed_thenTheCodeFieldIsDisabled() {
     setContent(TotpCodeEntryState(codeEntry = FULL_CODE, submitting = true))
 
-    composeTestRule.onNodeWithTag(CodeEntryFieldTestTags.digit(0)).assertIsNotEnabled()
+    composeTestRule.onNodeWithTag(CodeEntryFieldTestTags.ROOT).assertIsNotEnabled()
     composeTestRule.onNodeWithTag(TotpCodeEntryTestTags.BUTTON_NEXT).assertIsNotEnabled()
   }
 

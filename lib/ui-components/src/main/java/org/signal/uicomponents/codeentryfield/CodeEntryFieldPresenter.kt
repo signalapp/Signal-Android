@@ -18,8 +18,8 @@ import org.signal.core.util.logging.Log
 import org.signal.uicomponents.codeentryfield.CodeEntryFieldState.Companion.CODE_LENGTH
 
 /**
- * All of the logic behind a [CodeEntryField]: turning the raw text each digit field reports into a code, moving focus
- * along as the user types, and saying when the code is finished.
+ * All of the logic behind a [CodeEntryField]: tracking the code the field reports, letting the host replace or clear
+ * it, and saying when the code is finished.
  *
  * Meant to be held by the view model of whichever screen shows the field, which feeds it events, mirrors [state] into
  * its own state, and carries out [actions].
@@ -40,88 +40,35 @@ class CodeEntryFieldPresenter(
 
   override suspend fun processEvent(event: CodeEntryFieldEvents) {
     when (event) {
-      is CodeEntryFieldEvents.DigitChanged -> {
-        applyDigitChanged(event.index, event.value)
-      }
+      is CodeEntryFieldEvents.CodeChanged -> applyCodeChanged(event.code)
+      is CodeEntryFieldEvents.OverwriteApplied -> _state.update { it.copy(pendingOverwrite = null) }
+      is CodeEntryFieldEvents.SetCode -> applySetCode(event.code)
+      is CodeEntryFieldEvents.Clear -> applySetCode("")
     }
   }
 
   /**
-   * Interprets the raw [value] reported by the digit field at [index] and updates the digits and focus accordingly:
-   *
-   * - an empty [value] is a backspace, deleting a digit and moving focus back
-   * - a single digit is recorded and focus advances
-   * - multi-character input (e.g. a pasted code) populates every field at once
-   *
-   * Once every field has a value, the completed code is emitted.
+   * Records what the field now holds. While an overwrite is pending, the field's contents are about to be replaced, so
+   * anything it reports in the meantime is stale and ignored.
    */
-  private suspend fun applyDigitChanged(index: Int, value: String) {
-    check(index in _state.value.digits.indices) { "[DigitChanged] Out of bounds index $index." }
-
-    if (value.isEmpty()) {
-      deleteDigit(index)
+  private suspend fun applyCodeChanged(code: String) {
+    val state = _state.value
+    if (state.pendingOverwrite != null || code == state.code) {
       return
     }
 
-    val currentValue = _state.value.digits[index]
-    val remainder = if (currentValue.isNotEmpty()) value.replaceFirst(currentValue, "") else value
-    val addedDigits = remainder.filter { it.isDigit() }
-
-    when {
-      addedDigits.isEmpty() -> Unit
-
-      addedDigits.length == 1 -> {
-        _state.update {
-          it.copy(
-            digits = it.digits.toMutableList().also { digits -> digits[index] = addedDigits },
-            focusedDigitIndex = (index + 1).coerceAtMost(CODE_LENGTH - 1)
-          )
-        }
-        emitCodeIfComplete()
-      }
-
-      else -> applyFullCode(addedDigits)
-    }
-  }
-
-  /**
-   * Populates every digit field from a full pasted [code] at once. Multi-character input that isn't a complete code
-   * is ignored.
-   */
-  private suspend fun applyFullCode(code: String) {
-    if (code.length != CODE_LENGTH) {
-      Log.w(TAG, "[DigitChanged] Ignoring multi-character input containing ${code.length} digits.")
-      return
-    }
-
-    _state.update {
-      it.copy(
-        digits = code.map { digit -> digit.toString() },
-        focusedDigitIndex = CODE_LENGTH - 1
-      )
-    }
+    _state.update { it.copy(code = code) }
     emitCodeIfComplete()
   }
 
-  /**
-   * Deletes the digit at [index] (or the previous one, if [index] is already empty), shifts any following digits left
-   * to fill the gap, and moves focus back.
-   */
-  private fun deleteDigit(index: Int) {
-    val digits = _state.value.digits
-    val deleteAt = if (digits[index].isNotEmpty()) index else index - 1
-    if (deleteAt < 0) {
+  private suspend fun applySetCode(code: String) {
+    if (code.length > CODE_LENGTH || !code.all { it.isDigit() }) {
+      Log.w(TAG, "[SetCode] Ignoring a code that isn't up to $CODE_LENGTH digits. Length: ${code.length}")
       return
     }
 
-    val newDigits = digits.toMutableList().apply {
-      for (j in deleteAt until CODE_LENGTH - 1) {
-        this[j] = this[j + 1]
-      }
-      this[CODE_LENGTH - 1] = ""
-    }
-
-    _state.update { it.copy(digits = newDigits, focusedDigitIndex = (index - 1).coerceAtLeast(0)) }
+    _state.update { it.copy(code = code, pendingOverwrite = code) }
+    emitCodeIfComplete()
   }
 
   private suspend fun emitCodeIfComplete() {

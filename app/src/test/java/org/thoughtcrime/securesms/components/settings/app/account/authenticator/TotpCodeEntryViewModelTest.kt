@@ -137,9 +137,7 @@ class TotpCodeEntryViewModelTest {
   }
 
   private fun enterCode(viewModel: TotpCodeEntryViewModel, code: String) {
-    code.forEachIndexed { index, digit ->
-      viewModel.onEvent(TotpCodeEntryEvent.CodeEntryEvent(CodeEntryFieldEvents.DigitChanged(index, digit.toString())))
-    }
+    viewModel.onEvent(TotpCodeEntryEvent.CodeEntryEvent(CodeEntryFieldEvents.CodeChanged(code)))
   }
 
   private fun createViewModel() = TotpCodeEntryViewModel(repository = repository)

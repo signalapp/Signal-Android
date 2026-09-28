@@ -15,10 +15,19 @@ import org.signal.core.util.censor
  */
 sealed interface CodeEntryFieldEvents {
 
-  /**
-   * The raw [value] of the digit field at [index] changed.
-   */
-  data class DigitChanged(val index: Int, val value: String) : CodeEntryFieldEvents {
-    override fun toString(): String = "DigitChanged(index=$index, value=${value.censor()})"
+  /** The contents of the field changed to [code]. */
+  data class CodeChanged(val code: String) : CodeEntryFieldEvents {
+    override fun toString(): String = "CodeChanged(code=${code.censor()})"
   }
+
+  /** The field has applied [CodeEntryFieldState.pendingOverwrite]. */
+  data object OverwriteApplied : CodeEntryFieldEvents
+
+  /** Replaces the code in the field with [code], such as one auto-filled from an SMS. */
+  data class SetCode(val code: String) : CodeEntryFieldEvents {
+    override fun toString(): String = "SetCode(code=${code.censor()})"
+  }
+
+  /** Clears the field, such as after the entered code was rejected. */
+  data object Clear : CodeEntryFieldEvents
 }

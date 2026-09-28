@@ -57,10 +57,10 @@ class TotpEntryScreenTest {
   fun `entering a digit forwards a code field event`() {
     setContent(TotpEntryState())
 
-    composeTestRule.onNodeWithTag(CodeEntryFieldTestTags.digit(0)).performTextInput("4")
+    composeTestRule.onNodeWithTag(CodeEntryFieldTestTags.ROOT).performTextInput("4")
     composeTestRule.waitForIdle()
 
-    assertThat(events).contains(TotpEntryScreenEvents.CodeEntryEvent(CodeEntryFieldEvents.DigitChanged(0, "4")))
+    assertThat(events).contains(TotpEntryScreenEvents.CodeEntryEvent(CodeEntryFieldEvents.CodeChanged("4")))
   }
 
   @Test

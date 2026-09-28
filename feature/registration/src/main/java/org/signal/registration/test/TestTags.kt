@@ -93,13 +93,6 @@ object TestTags {
   const val ADD_USERNAME_NEXT_BUTTON = "add_username_next_button"
 
   // Verification Code Screen
-  const val VERIFICATION_CODE_INPUT = "verification_code_input"
-  const val VERIFICATION_CODE_DIGIT_0 = "verification_code_digit_0"
-  const val VERIFICATION_CODE_DIGIT_1 = "verification_code_digit_1"
-  const val VERIFICATION_CODE_DIGIT_2 = "verification_code_digit_2"
-  const val VERIFICATION_CODE_DIGIT_3 = "verification_code_digit_3"
-  const val VERIFICATION_CODE_DIGIT_4 = "verification_code_digit_4"
-  const val VERIFICATION_CODE_DIGIT_5 = "verification_code_digit_5"
   const val VERIFICATION_CODE_WRONG_NUMBER_BUTTON = "verification_code_wrong_number_button"
   const val VERIFICATION_CODE_RESEND_SMS_BUTTON = "verification_code_resend_sms_button"
   const val VERIFICATION_CODE_CALL_ME_BUTTON = "verification_code_call_me_button"

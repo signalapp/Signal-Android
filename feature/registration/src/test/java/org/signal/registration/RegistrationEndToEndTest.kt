@@ -2120,8 +2120,8 @@ class RegistrationEndToEndTest {
     enterSignalLogin(login)
 
     // The authenticator app is the only second factor available, so the user lands straight on code entry
-    waitForTag(CodeEntryFieldTestTags.digit(0))
-    composeTestRule.onNodeWithTag(CodeEntryFieldTestTags.digit(0)).performTextInput(totp)
+    waitForTag(CodeEntryFieldTestTags.ROOT)
+    composeTestRule.onNodeWithTag(CodeEntryFieldTestTags.ROOT).performTextInput(totp)
 
     waitFor("registration to complete") { registrationComplete }
 
@@ -2460,8 +2460,8 @@ class RegistrationEndToEndTest {
 
   /** From the verification code screen: enters all six digits of [code], which submits automatically. */
   private fun submitVerificationCode(code: String) {
-    waitForTag(TestTags.VERIFICATION_CODE_DIGIT_0)
-    composeTestRule.onNodeWithTag(TestTags.VERIFICATION_CODE_DIGIT_0).performTextInput(code)
+    waitForTag(CodeEntryFieldTestTags.ROOT)
+    composeTestRule.onNodeWithTag(CodeEntryFieldTestTags.ROOT).performTextInput(code)
   }
 
   /** From the PIN creation screen: enters [pin], then re-enters it on the confirmation step. */

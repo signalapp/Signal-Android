@@ -234,10 +234,7 @@ private fun TotpEntryScreenPartiallyFilledPreview() {
   Previews.Preview {
     TotpEntryScreen(
       state = TotpEntryState(
-        codeEntry = CodeEntryFieldState(
-          digits = listOf("4", "1", "8", "3", "7", ""),
-          focusedDigitIndex = 5
-        )
+        codeEntry = CodeEntryFieldState(code = "41837")
       ),
       onEvent = {}
     )

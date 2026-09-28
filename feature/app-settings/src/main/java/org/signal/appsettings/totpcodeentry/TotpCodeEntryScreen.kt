@@ -124,7 +124,7 @@ private fun TotpCodeEntryState.Error.message(): String? = when (this) {
 private fun TotpCodeEntryScreenPreview() {
   Previews.Preview {
     TotpCodeEntryScreen(
-      state = TotpCodeEntryState(codeEntry = CodeEntryFieldState(digits = listOf("1", "2", "3", "4", "5", "6"))),
+      state = TotpCodeEntryState(codeEntry = CodeEntryFieldState(code = "123456")),
       onEvent = {}
     )
   }
@@ -136,7 +136,7 @@ private fun TotpCodeEntryScreenErrorPreview() {
   Previews.Preview {
     TotpCodeEntryScreen(
       state = TotpCodeEntryState(
-        codeEntry = CodeEntryFieldState(digits = listOf("1", "2", "3", "4", "5", "6")),
+        codeEntry = CodeEntryFieldState(code = "123456"),
         error = TotpCodeEntryState.Error.IncorrectCode
       ),
       onEvent = {}

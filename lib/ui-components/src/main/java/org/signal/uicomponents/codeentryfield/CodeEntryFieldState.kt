@@ -12,22 +12,16 @@ package org.signal.uicomponents.codeentryfield
  * Reminder that this is logged, so don't put the code itself in the toString.
  */
 data class CodeEntryFieldState(
-  val digits: List<String> = emptyDigits(),
-  val focusedDigitIndex: Int = 0
+  val code: String = "",
+  /** Set when the code was replaced from outside the field. The field applies it, then reports [CodeEntryFieldEvents.OverwriteApplied]. */
+  val pendingOverwrite: String? = null
 ) {
 
-  override fun toString(): String = "CodeEntryFieldState(digitsEntered=${digits.count { it.isNotEmpty() }}, focusedDigitIndex=$focusedDigitIndex)"
+  override fun toString(): String = "CodeEntryFieldState(digitsEntered=${code.length}, hasPendingOverwrite=${pendingOverwrite != null})"
 
-  /**
-   * The full code as currently entered. Only meaningful when [isComplete] is true.
-   */
-  val code: String get() = digits.joinToString("")
-
-  val isComplete: Boolean get() = digits.size == CODE_LENGTH && digits.all { it.isNotEmpty() }
+  val isComplete: Boolean get() = code.length == CODE_LENGTH
 
   companion object {
     const val CODE_LENGTH = 6
-
-    fun emptyDigits(): List<String> = List(CODE_LENGTH) { "" }
   }
 }

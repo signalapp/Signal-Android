@@ -50,23 +50,20 @@ class TotpEntryViewModelTest {
   fun `code field state is mirrored into screen state`() = runTest(testDispatcher) {
     val viewModel = createViewModel()
 
-    viewModel.onEvent(TotpEntryScreenEvents.CodeEntryEvent(CodeEntryFieldEvents.DigitChanged(0, "4")))
+    viewModel.onEvent(TotpEntryScreenEvents.CodeEntryEvent(CodeEntryFieldEvents.CodeChanged("4")))
 
-    assertThat(viewModel.state.value.codeEntry.digits[0]).isEqualTo("4")
-    assertThat(viewModel.state.value.codeEntry.focusedDigitIndex).isEqualTo(1)
+    assertThat(viewModel.state.value.codeEntry.code).isEqualTo("4")
   }
 
   @Test
   fun `a completed code is emitted and pops back to the login screen`() = runTest(testDispatcher) {
     val viewModel = createViewModel()
 
-    "41837".forEachIndexed { index, digit ->
-      viewModel.onEvent(TotpEntryScreenEvents.CodeEntryEvent(CodeEntryFieldEvents.DigitChanged(index, digit.toString())))
-    }
+    viewModel.onEvent(TotpEntryScreenEvents.CodeEntryEvent(CodeEntryFieldEvents.CodeChanged("41837")))
     assertThat(sentCode()).isNull()
     assertThat(emittedParentEvents).isEmpty()
 
-    viewModel.onEvent(TotpEntryScreenEvents.CodeEntryEvent(CodeEntryFieldEvents.DigitChanged(5, "2")))
+    viewModel.onEvent(TotpEntryScreenEvents.CodeEntryEvent(CodeEntryFieldEvents.CodeChanged("418372")))
 
     assertThat(sentCode()).isEqualTo("418372")
     assertThat(emittedParentEvents).containsExactly(RegistrationFlowEvent.NavigateBackToScreen(RegistrationRoute.SignalLoginCredentialEntry()))

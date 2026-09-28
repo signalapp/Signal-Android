@@ -10,6 +10,7 @@ import assertk.assertions.containsExactly
 import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
 import assertk.assertions.isFalse
+import assertk.assertions.isNull
 import assertk.assertions.isTrue
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.launchIn
@@ -27,103 +28,91 @@ class CodeEntryFieldPresenterTest {
   private val emittedActions = mutableListOf<CodeEntryFieldAction>()
 
   @Test
-  fun `initial state is empty with focus on the first digit`() = runTest(testDispatcher) {
+  fun `initial state is empty`() = runTest(testDispatcher) {
     val presenter = createPresenter()
 
-    assertThat(presenter.state.value.digits).isEqualTo(CodeEntryFieldState.emptyDigits())
-    assertThat(presenter.state.value.focusedDigitIndex).isEqualTo(0)
+    assertThat(presenter.state.value.code).isEqualTo("")
+    assertThat(presenter.state.value.pendingOverwrite).isNull()
     assertThat(presenter.state.value.isComplete).isFalse()
   }
 
   @Test
-  fun `entering a digit records it and advances focus`() = runTest(testDispatcher) {
+  fun `a partial code is recorded without being emitted`() = runTest(testDispatcher) {
     val presenter = createPresenter()
 
-    presenter.onEvent(CodeEntryFieldEvents.DigitChanged(0, "4"))
+    presenter.onEvent(CodeEntryFieldEvents.CodeChanged("418"))
 
-    assertThat(presenter.state.value.digits[0]).isEqualTo("4")
-    assertThat(presenter.state.value.focusedDigitIndex).isEqualTo(1)
+    assertThat(presenter.state.value.code).isEqualTo("418")
+    assertThat(emittedActions).isEmpty()
   }
 
   @Test
-  fun `entering the final digit emits the code`() = runTest(testDispatcher) {
+  fun `completing the code emits it`() = runTest(testDispatcher) {
     val presenter = createPresenter()
 
-    "41837".forEachIndexed { index, digit ->
-      presenter.onEvent(CodeEntryFieldEvents.DigitChanged(index, digit.toString()))
-    }
-    assertThat(emittedActions).isEmpty()
-
-    presenter.onEvent(CodeEntryFieldEvents.DigitChanged(5, "2"))
+    presenter.onEvent(CodeEntryFieldEvents.CodeChanged("41837"))
+    presenter.onEvent(CodeEntryFieldEvents.CodeChanged("418372"))
 
     assertThat(presenter.state.value.isComplete).isTrue()
     assertThat(emittedActions).containsExactly(CodeEntryFieldAction.CodeEntered("418372"))
   }
 
   @Test
-  fun `pasting a full code populates every field and emits the code`() = runTest(testDispatcher) {
+  fun `the same complete code is only emitted once`() = runTest(testDispatcher) {
     val presenter = createPresenter()
 
-    presenter.onEvent(CodeEntryFieldEvents.DigitChanged(0, "418372"))
+    presenter.onEvent(CodeEntryFieldEvents.CodeChanged("418372"))
+    presenter.onEvent(CodeEntryFieldEvents.CodeChanged("418372"))
 
-    assertThat(presenter.state.value.digits).isEqualTo(listOf("4", "1", "8", "3", "7", "2"))
-    assertThat(presenter.state.value.focusedDigitIndex).isEqualTo(5)
     assertThat(emittedActions).containsExactly(CodeEntryFieldAction.CodeEntered("418372"))
   }
 
   @Test
-  fun `pasting an incomplete code is ignored`() = runTest(testDispatcher) {
+  fun `SetCode replaces the code, asks the field to show it, and emits it when complete`() = runTest(testDispatcher) {
     val presenter = createPresenter()
+    presenter.onEvent(CodeEntryFieldEvents.CodeChanged("12"))
 
-    presenter.onEvent(CodeEntryFieldEvents.DigitChanged(0, "4183"))
+    presenter.onEvent(CodeEntryFieldEvents.SetCode("418372"))
 
-    assertThat(presenter.state.value.digits).isEqualTo(CodeEntryFieldState.emptyDigits())
-    assertThat(emittedActions).isEmpty()
+    assertThat(presenter.state.value.code).isEqualTo("418372")
+    assertThat(presenter.state.value.pendingOverwrite).isEqualTo("418372")
+    assertThat(emittedActions).containsExactly(CodeEntryFieldAction.CodeEntered("418372"))
   }
 
   @Test
-  fun `non-digit input is ignored`() = runTest(testDispatcher) {
+  fun `SetCode with something other than a code is ignored`() = runTest(testDispatcher) {
     val presenter = createPresenter()
 
-    presenter.onEvent(CodeEntryFieldEvents.DigitChanged(0, "a"))
+    presenter.onEvent(CodeEntryFieldEvents.SetCode("4183721"))
+    presenter.onEvent(CodeEntryFieldEvents.SetCode("418-372"))
 
-    assertThat(presenter.state.value.digits).isEqualTo(CodeEntryFieldState.emptyDigits())
-    assertThat(presenter.state.value.focusedDigitIndex).isEqualTo(0)
+    assertThat(presenter.state.value.code).isEqualTo("")
+    assertThat(presenter.state.value.pendingOverwrite).isNull()
   }
 
   @Test
-  fun `a backspace deletes the digit and shifts the following ones left`() = runTest(testDispatcher) {
+  fun `Clear empties the code and asks the field to clear`() = runTest(testDispatcher) {
     val presenter = createPresenter()
+    presenter.onEvent(CodeEntryFieldEvents.CodeChanged("418372"))
 
-    presenter.onEvent(CodeEntryFieldEvents.DigitChanged(0, "4"))
-    presenter.onEvent(CodeEntryFieldEvents.DigitChanged(1, "1"))
-    presenter.onEvent(CodeEntryFieldEvents.DigitChanged(2, "8"))
+    presenter.onEvent(CodeEntryFieldEvents.Clear)
 
-    presenter.onEvent(CodeEntryFieldEvents.DigitChanged(1, ""))
-
-    assertThat(presenter.state.value.digits).isEqualTo(listOf("4", "8", "", "", "", ""))
-    assertThat(presenter.state.value.focusedDigitIndex).isEqualTo(0)
+    assertThat(presenter.state.value.code).isEqualTo("")
+    assertThat(presenter.state.value.pendingOverwrite).isEqualTo("")
   }
 
   @Test
-  fun `a backspace on an empty field deletes the previous digit`() = runTest(testDispatcher) {
+  fun `what the field reports while an overwrite is pending is ignored`() = runTest(testDispatcher) {
     val presenter = createPresenter()
+    presenter.onEvent(CodeEntryFieldEvents.SetCode("418372"))
 
-    presenter.onEvent(CodeEntryFieldEvents.DigitChanged(0, "4"))
-    presenter.onEvent(CodeEntryFieldEvents.DigitChanged(1, ""))
+    presenter.onEvent(CodeEntryFieldEvents.CodeChanged("12"))
+    presenter.onEvent(CodeEntryFieldEvents.OverwriteApplied)
+    presenter.onEvent(CodeEntryFieldEvents.CodeChanged("418372"))
 
-    assertThat(presenter.state.value.digits).isEqualTo(CodeEntryFieldState.emptyDigits())
-    assertThat(presenter.state.value.focusedDigitIndex).isEqualTo(0)
-  }
-
-  @Test
-  fun `a backspace on the first empty field does nothing`() = runTest(testDispatcher) {
-    val presenter = createPresenter()
-
-    presenter.onEvent(CodeEntryFieldEvents.DigitChanged(0, ""))
-
-    assertThat(presenter.state.value.digits).isEqualTo(CodeEntryFieldState.emptyDigits())
-    assertThat(presenter.state.value.focusedDigitIndex).isEqualTo(0)
+    assertThat(presenter.state.value.code).isEqualTo("418372")
+    assertThat(presenter.state.value.pendingOverwrite).isNull()
+    assertThat(emittedActions).containsExactly(CodeEntryFieldAction.CodeEntered("418372"))
   }
 
   private fun TestScope.createPresenter(): CodeEntryFieldPresenter {
