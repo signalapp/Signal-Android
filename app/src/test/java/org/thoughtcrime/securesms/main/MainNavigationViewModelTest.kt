@@ -278,6 +278,24 @@ class MainNavigationViewModelTest {
     assertEquals(PaneAnchor.DETAIL_ONLY, viewModel.paneAnchor.value)
   }
 
+  /**
+   * AND-9169: a notification opening a chat arrives as a single detail navigation, so it brings the chats
+   * stack forward without asking for its list and pulling a window the user dragged to full screen back
+   * to the split.
+   */
+  @Test
+  fun `given the detail fills the window on another tab, when going to a chats detail, then chats is displayed and the pane stays put`() {
+    viewModel.sendEvent(MainNavigationEvents.GoToList(MainListRoute.Calls))
+    viewModel.sendEvent(MainNavigationEvents.GoToDetail(callLinkDetails))
+    viewModel.sendEvent(MainNavigationEvents.ListDetailEvent(ListDetailEvents.AnchorSelected(PaneAnchor.DETAIL_ONLY)))
+
+    viewModel.sendEvent(MainNavigationEvents.GoToDetail(conversationSettings))
+
+    assertEquals(MainListRoute.Chats, viewModel.currentTab.value)
+    assertEquals(listOf(MainListRoute.Chats, conversationSettings), viewModel.navigator[MainListRoute.Chats])
+    assertEquals(PaneAnchor.DETAIL_ONLY, viewModel.paneAnchor.value)
+  }
+
   @Test
   fun `given the detail fills the window, when the last detail is popped, then the list is revealed`() {
     viewModel.sendEvent(MainNavigationEvents.GoToDetail(conversationSettings))

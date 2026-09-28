@@ -45,7 +45,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.core.app.ShareCompat
-import androidx.core.app.TaskStackBuilder
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -69,7 +68,6 @@ import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.ui.permissions.Permissions
-import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.QrCodeData
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.QrCodeState
@@ -249,11 +247,7 @@ private fun MainScreen(
         hasCameraPermission = cameraPermissionState.status.isGranted,
         modifier = Modifier.padding(contentPadding),
         onRecipientFound = { recipient ->
-          val taskStack = TaskStackBuilder
-            .create(context)
-            .addNextIntent(MainActivity.clearTop(context))
-
-          CommunicationActions.startConversation(context, recipient, null, taskStack)
+          CommunicationActions.startConversation(context, recipient, null)
         }
       )
     }

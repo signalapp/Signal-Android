@@ -12,7 +12,10 @@ import androidx.navigation3.runtime.NavKey
  */
 sealed interface ListDetailEvents {
 
-  /** Push [location] onto [root]'s stack, or onto the displayed one when [root] is null. */
+  /**
+   * Push [location] onto [root]'s stack, or onto the displayed one when [root] is null, and display that
+   * stack. See [ListDetailNavigator.push].
+   */
   data class Push(val location: NavKey, val root: ListNavKey? = null) : ListDetailEvents
 
   /** Display [listRoute], on [root]'s stack. See [ListDetailNavigator.goToList]. */

@@ -883,7 +883,6 @@ class MainActivity :
         return
       }
 
-      mainNavigationViewModel.onEvent(MainNavigationEvents.GoToList(MainListRoute.Chats))
       mainNavigationViewModel.onEvent(MainNavigationEvents.GoToDetail(MainDetailRoute.Conversation(ConversationIntents.readArgsFromBundle(extras))))
       intent.action = null
       setIntent(intent)

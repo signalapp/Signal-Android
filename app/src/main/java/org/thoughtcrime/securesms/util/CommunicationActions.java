@@ -16,7 +16,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.TaskStackBuilder;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
@@ -157,15 +156,13 @@ public class CommunicationActions {
     });
   }
 
+  /**
+   * The conversation opens in MainActivity, which is the task root. Its intent already carries
+   * CLEAR_TOP | NEW_TASK | SINGLE_TOP, so it reaches a running instance through onNewIntent and finishes
+   * whatever sits above it. Synthesizing a back stack under it instead would mean FLAG_ACTIVITY_CLEAR_TASK
+   * and a torn-down task, losing everything the window was holding.
+   */
   public static void startConversation(@NonNull Context context, @NonNull Recipient recipient, @Nullable String text) {
-    startConversation(context, recipient, text, null);
-  }
-
-  public static void startConversation(@NonNull  Context          context,
-                                       @NonNull  Recipient        recipient,
-                                       @Nullable String           text,
-                                       @Nullable TaskStackBuilder backStack)
-  {
     new AsyncTask<Void, Void, Long>() {
       @Override
       protected Long doInBackground(Void... voids) {
@@ -179,13 +176,7 @@ public class CommunicationActions {
           builder.withDraftText(text);
         }
 
-        Intent intent = builder.build();
-        if (backStack != null) {
-          backStack.addNextIntent(intent);
-          backStack.startActivities();
-        } else {
-          context.startActivity(intent);
-        }
+        context.startActivity(builder.build());
       }
     }.execute();
   }
