@@ -41,16 +41,20 @@ object SignalCredentialManager {
   private const val ERROR_CODE_SAVE_PROMPT_DISABLED = "[28435]"
 
   /**
-   * Whether a password manager / credential provider is available. On API 26+ this tracks whether
-   * the user has an autofill service enabled; older devices fall back to the Credential Manager
-   * Play Services backend, so they are supported only when Play Services is.
+   * Whether a password manager / credential provider may be available.
    */
   fun isSupported(context: Context): Boolean {
-    return if (Build.VERSION.SDK_INT >= 26) {
-      context.getSystemService<AutofillManager>()?.isEnabled == true
-    } else {
-      PlayServicesUtil.getPlayServicesStatus(context) == PlayServicesUtil.PlayServicesStatus.SUCCESS
+    // This is the version where CredentialManager was added, which is separate from the autofill service.
+    // Unfortunately there's no API to tell if a CredentialManager is set, so we just assume true.
+    if (Build.VERSION.SDK_INT >= 34) {
+      return true
     }
+
+    if (Build.VERSION.SDK_INT >= 26 && context.getSystemService<AutofillManager>()?.isEnabled == true) {
+      return true
+    }
+
+    return PlayServicesUtil.getPlayServicesStatus(context) == PlayServicesUtil.PlayServicesStatus.SUCCESS
   }
 
   /**
