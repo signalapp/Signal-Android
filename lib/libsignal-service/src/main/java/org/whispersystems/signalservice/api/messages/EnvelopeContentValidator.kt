@@ -505,11 +505,15 @@ object EnvelopeContentValidator {
   }
 
   private fun AttachmentPointer?.isNullOrInvalid(): Boolean {
-    return this == null || (this.cdnId == null && this.cdnKey == null)
+    return this == null || (this.cdnId == null && this.cdnKey == null) || this.hasOversizedAudioWaveform()
   }
 
   private fun AttachmentPointer?.isPresentAndInvalid(): Boolean {
-    return this != null && (this.cdnId == null && this.cdnKey == null)
+    return this != null && ((this.cdnId == null && this.cdnKey == null) || this.hasOversizedAudioWaveform())
+  }
+
+  private fun AttachmentPointer.hasOversizedAudioWaveform(): Boolean {
+    return this.audioWaveform != null && this.audioWaveform.size > SignalServiceMessageLimits.MAX_AUDIO_WAVEFORM_BAR_COUNT
   }
 
   private fun String?.isValidServiceId(): Boolean {

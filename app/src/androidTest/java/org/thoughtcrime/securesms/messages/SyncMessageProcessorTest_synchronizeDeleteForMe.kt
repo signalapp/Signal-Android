@@ -724,7 +724,8 @@ class SyncMessageProcessorTest_synchronizeDeleteForMe {
       incrementalDigestChunkSize = this.incrementalMacChunkSize,
       dataSize = this.size,
       uploadTimestamp = uploadTimestamp,
-      blurHash = this.blurHash?.hash
+      blurHash = this.blurHash?.hash,
+      audioHash = this.audioHash?.hash
     )
   }
 }

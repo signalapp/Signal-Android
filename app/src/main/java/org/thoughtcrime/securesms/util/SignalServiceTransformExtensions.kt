@@ -265,6 +265,10 @@ private fun Attachment.toAttachmentPointerProto(): Either<DataMessageError, Atta
   caption?.let { builder.caption(it) }
   blurHash?.let { builder.blurHash(it.hash) }
   uuid?.let { builder.clientUuid(UuidUtil.toByteString(it)) }
+  audioHash?.let { hash ->
+    builder.audioWaveform(hash.waveFormBytes.toByteString())
+    hash.durationSeconds?.let { builder.audioDurationSeconds(it) }
+  }
 
   builder.build()
 }

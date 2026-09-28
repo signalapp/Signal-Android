@@ -866,6 +866,11 @@ message FilePointer {
   optional string caption = 10;
   optional string blurHash = 11;
   LocatorInfo locatorInfo = 13;
+  // Waveform for audio attachments. Each byte represents a "bar" in the
+  // waveform, with 0 as silence 255 as loudest. At most 100 bytes/bars.
+  optional bytes audioWaveform = 14;
+  // Duration of an audio attachment, in seconds.
+  optional float audioDurationSeconds = 15;
 }
 
 message Quote {

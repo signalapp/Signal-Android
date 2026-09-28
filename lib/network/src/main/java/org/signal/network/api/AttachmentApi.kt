@@ -141,7 +141,8 @@ class AttachmentApi(
         incrementalDigestChunkSize = digestInfo.incrementalMacChunkSize,
         uploadTimestamp = attachmentStream.uploadTimestamp,
         dataSize = attachmentStream.length,
-        blurHash = attachmentStream.blurHash.getOrNull()
+        blurHash = attachmentStream.blurHash.getOrNull(),
+        audioHash = attachmentStream.audioHash.getOrNull()
       )
     }
   }
