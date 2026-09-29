@@ -5,6 +5,7 @@
 
 package org.signal.mediakeyboard.screens.emoji
 
+import androidx.lifecycle.viewModelScope
 import assertk.assertThat
 import assertk.assertions.isEqualTo
 import assertk.assertions.isNotNull
@@ -16,6 +17,8 @@ import io.mockk.verify
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
@@ -60,7 +63,8 @@ class EmojiPageViewModelTest {
   }
 
   private fun createViewModel(): EmojiPageViewModel {
-    val viewModel = EmojiPageViewModel(repository, parentState, actions::add)
+    val viewModel = EmojiPageViewModel(repository, parentState)
+    viewModel.actions.onEach(actions::add).launchIn(viewModel.viewModelScope)
     testDispatcher.scheduler.advanceUntilIdle()
     return viewModel
   }

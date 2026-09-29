@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.conversation.v2
 
 import android.view.View
+import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.WindowInsets
@@ -21,6 +22,7 @@ import androidx.compose.foundation.layout.windowInsetsBottomHeight
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.layout.windowInsetsTopHeight
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,6 +30,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.fragment.compose.AndroidFragment
 import org.signal.core.ui.compose.keyboard.KeyboardSheetAction
@@ -68,6 +71,7 @@ private const val BUBBLE_HEIGHT_FRACTION = 0.55f
  * @param conversationView The conversation's own view hierarchy, and the only interop view here.
  *   A second one sharing pointer input would leave this one without its ACTION_HOVER_EXIT, which is
  *   why the long press overlay is Compose. See stylus-hover-interop.md.
+ * @param stickerConfirmation Asks the user to confirm a sticker picked from the media keyboard
  */
 @Composable
 fun ChatScreen(
@@ -82,6 +86,7 @@ fun ChatScreen(
   isBubble: Boolean,
   conversationView: View,
   overlayController: ChatReactionOverlayController,
+  stickerConfirmation: ChatStickerConfirmationController,
   modifier: Modifier = Modifier
 ) {
   val minimumHeight = dimensionResource(R.dimen.default_custom_keyboard_size)
@@ -90,6 +95,11 @@ fun ChatScreen(
   val attachmentKeyboardColor = scrims.attachmentKeyboardColor
 
   val minimumVisibleContent = with(LocalDensity.current) { minimumVisibleContentPx.toDp() }
+
+  val stickerBlurRadius by animateDpAsState(
+    targetValue = if (stickerConfirmation.isShowing) StickerConfirmationBlurRadius else 0.dp,
+    label = "stickerBlurRadius"
+  )
 
   val keyboardHeight = remember(minimumHeight, topMargin, minimumVisibleContent, isBubble) {
     KeyboardSheetHeight(
@@ -134,7 +144,14 @@ fun ChatScreen(
         keyboard(
           key = ChatKeyboards.Media,
           containerColor = mediaKeyboardColor,
-          expandable = true
+          expandable = true,
+          overlay = {
+            ChatStickerConfirmation(
+              controller = stickerConfirmation,
+              modifier = Modifier.fillMaxSize()
+            )
+          },
+          blurRadius = { stickerBlurRadius }
         ) {
           MediaKeyboard(
             repository = mediaKeyboardRepository,

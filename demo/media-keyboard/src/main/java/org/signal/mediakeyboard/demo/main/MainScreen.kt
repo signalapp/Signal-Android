@@ -65,6 +65,7 @@ fun MainScreen(
         is MediaKeyboardAction.EmojiSelected -> onEvent(MainScreenEvents.EmojiSelected(action.emoji))
         MediaKeyboardAction.Backspace -> onEvent(MainScreenEvents.BackspacePressed)
         is MediaKeyboardAction.StickerSelected -> onEvent(MainScreenEvents.StickerSelected(action.sticker))
+        is MediaKeyboardAction.StickerSendClicked -> onEvent(MainScreenEvents.StickerSelected(action.sticker))
         is MediaKeyboardAction.GifSelected -> onEvent(MainScreenEvents.GifSelected(action.gif))
         // Nothing to remember the tab for, and no sticker packs to manage, view, search, send or
         // remove.

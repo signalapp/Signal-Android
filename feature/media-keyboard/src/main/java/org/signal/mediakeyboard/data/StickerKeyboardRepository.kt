@@ -26,7 +26,7 @@ interface StickerKeyboardRepository {
   fun observeStickerPacks(): Flow<List<KeyboardStickerPack>>
 
   /**
-   * Called whenever the user picks a sticker, so that recents can be tracked.
+   * Called whenever the user sends a sticker, so that recents can be tracked.
    */
   fun onStickerUsed(sticker: KeyboardSticker) = Unit
 

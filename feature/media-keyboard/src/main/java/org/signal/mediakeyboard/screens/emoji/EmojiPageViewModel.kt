@@ -9,11 +9,14 @@ import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.receiveAsFlow
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
 import org.signal.mediakeyboard.MediaKeyboardAction
@@ -25,8 +28,7 @@ import org.signal.mediakeyboard.data.EmojiKeyboardRepository
 
 class EmojiPageViewModel(
   private val repository: EmojiKeyboardRepository,
-  private val parentState: StateFlow<MediaKeyboardState>,
-  private val onAction: (MediaKeyboardAction) -> Unit
+  private val parentState: StateFlow<MediaKeyboardState>
 ) : EventDrivenViewModel<EmojiPageScreenEvents>(TAG, shouldLogEvents = false) {
 
   companion object {
@@ -35,6 +37,11 @@ class EmojiPageViewModel(
 
   private val _state = MutableStateFlow(EmojiPageState())
   val state: StateFlow<EmojiPageState> = _state.asStateFlow()
+
+  private val actionChannel = Channel<MediaKeyboardAction>(Channel.UNLIMITED)
+
+  /** What the user did that only the host can carry out, for whichever host is current. */
+  val actions: Flow<MediaKeyboardAction> = actionChannel.receiveAsFlow()
 
   init {
     onEvent(EmojiPageScreenEvents.Initialize)
@@ -86,7 +93,7 @@ class EmojiPageViewModel(
       is EmojiPageScreenEvents.EmojiClicked -> {
         val display = state.displayEmoji(event.emoji)
         repository.onEmojiUsed(display)
-        onAction(MediaKeyboardAction.EmojiSelected(display))
+        actionChannel.trySend(MediaKeyboardAction.EmojiSelected(display))
       }
 
       is EmojiPageScreenEvents.EmojiLongPressed -> {
@@ -98,7 +105,7 @@ class EmojiPageViewModel(
       is EmojiPageScreenEvents.VariationSelected -> {
         repository.setPreferredVariation(event.emoji.canonical, event.variation)
         repository.onEmojiUsed(event.variation)
-        onAction(MediaKeyboardAction.EmojiSelected(event.variation))
+        actionChannel.trySend(MediaKeyboardAction.EmojiSelected(event.variation))
         stateEmitter(
           state.copy(
             preferredVariations = repository.getPreferredVariations(),
@@ -151,12 +158,11 @@ class EmojiPageViewModel(
 
   class Factory(
     private val repository: EmojiKeyboardRepository,
-    private val parentState: StateFlow<MediaKeyboardState>,
-    private val onAction: (MediaKeyboardAction) -> Unit
+    private val parentState: StateFlow<MediaKeyboardState>
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
       @Suppress("UNCHECKED_CAST")
-      return EmojiPageViewModel(repository, parentState, onAction) as T
+      return EmojiPageViewModel(repository, parentState) as T
     }
   }
 }

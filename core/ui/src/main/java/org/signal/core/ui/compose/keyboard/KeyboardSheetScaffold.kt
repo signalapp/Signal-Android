@@ -51,8 +51,10 @@ import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.graphics.BlurEffect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.graphics.TileMode
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.takeOrElse
 import androidx.compose.ui.input.pointer.pointerInput
@@ -488,35 +490,58 @@ fun KeyboardSheetScaffold(
             .graphicsLayer { translationY = backProgress.value * visibleSheetHeightPx() }
             .background(containerColor)
         ) {
-          Column(
-            modifier = Modifier
-              .layout { measurable, constraints ->
-                // Only the part of the sheet the window shows is worth laying content out in, and
-                // never less than a keyboard: below that the sheet is on its way out, not resizing.
-                val visible = visibleSheetHeightPx().coerceIn(heightPx, constraints.maxHeight)
-                val placeable = measurable.measure(constraints.copy(minHeight = visible, maxHeight = visible))
-                layout(constraints.maxWidth, constraints.maxHeight) {
-                  placeable.place(0, 0)
+          val overlay = registry.overlayFor(visibleKey)
+          val blurRadius = registry.blurRadiusFor(visibleKey)
+
+          Box(
+            modifier = Modifier.layout { measurable, constraints ->
+              // Only the part of the sheet the window shows is worth laying content out in, and
+              // never less than a keyboard: below that the sheet is on its way out, not resizing.
+              val visible = visibleSheetHeightPx().coerceIn(heightPx, constraints.maxHeight)
+              val placeable = measurable.measure(constraints.copy(minHeight = visible, maxHeight = visible))
+              layout(constraints.maxWidth, constraints.maxHeight) {
+                placeable.place(0, 0)
+              }
+            }
+          ) {
+            Column(
+              modifier = Modifier
+                .fillMaxSize()
+                .graphicsLayer {
+                  val radiusPx = blurRadius().toPx()
+                  if (radiusPx > 0f) {
+                    renderEffect = BlurEffect(radiusPx, radiusPx, TileMode.Clamp)
+                    clip = true
+                  } else {
+                    renderEffect = null
+                    clip = false
+                  }
+                }
+                .windowInsetsPadding(WindowInsets.navigationBarsCompat)
+            ) {
+              if (expandable) {
+                Box(
+                  contentAlignment = Alignment.Center,
+                  modifier = Modifier.fillMaxWidth()
+                ) {
+                  BottomSheets.Handle()
                 }
               }
-              .windowInsetsPadding(WindowInsets.navigationBarsCompat)
-          ) {
-            if (expandable) {
+
               Box(
-                contentAlignment = Alignment.Center,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                  .weight(1f)
+                  .fillMaxWidth()
               ) {
-                BottomSheets.Handle()
+                CompositionLocalProvider(LocalKeyboardSheetController provides controller) {
+                  registry.contentFor(visibleKey)?.invoke()
+                }
               }
             }
 
-            Box(
-              modifier = Modifier
-                .weight(1f)
-                .fillMaxWidth()
-            ) {
+            if (overlay != null) {
               CompositionLocalProvider(LocalKeyboardSheetController provides controller) {
-                registry.contentFor(visibleKey)?.invoke()
+                overlay()
               }
             }
           }

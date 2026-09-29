@@ -7,6 +7,7 @@ package org.signal.mediakeyboard
 
 import org.signal.mediakeyboard.data.KeyboardGif
 import org.signal.mediakeyboard.data.KeyboardSticker
+import org.signal.mediakeyboard.data.StickerKeyboardRepository
 
 /**
  * Side effects emitted by a [MediaKeyboard] that need to be handled by the user of the component:
@@ -24,8 +25,14 @@ sealed interface MediaKeyboardAction {
   /** Delete backwards from wherever the host's own field has its cursor. */
   data object Backspace : MediaKeyboardAction
 
-  /** @param sticker The sticker to send. */
+  /**
+   * The user tapped a sticker. Nothing is sent or recorded yet, so the host can ask first, then
+   * report a send through [StickerKeyboardRepository.onStickerUsed].
+   */
   data class StickerSelected(val sticker: KeyboardSticker) : MediaKeyboardAction
+
+  /** @param sticker The sticker to send right away, picked from its long press menu. */
+  data class StickerSendClicked(val sticker: KeyboardSticker) : MediaKeyboardAction
 
   /** @param gif The gif to send. */
   data class GifSelected(val gif: KeyboardGif) : MediaKeyboardAction

@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.conversation.v2
 
 import android.Manifest
+import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.app.ActivityOptions
 import android.app.PendingIntent
@@ -67,6 +68,7 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.constraintlayout.widget.ConstraintSet
+import androidx.core.animation.doOnEnd
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.pm.ShortcutManagerCompat
@@ -76,11 +78,13 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.doOnPreDraw
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
+import androidx.core.view.updateLayoutParams
 import androidx.core.view.updatePadding
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentResultListener
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
@@ -154,6 +158,7 @@ import org.signal.donations.InAppPaymentType
 import org.signal.emoji.EmojiEventListener
 import org.signal.mediakeyboard.MediaKeyboardAction
 import org.signal.mediakeyboard.MediaKeyboardTab
+import org.signal.mediakeyboard.data.KeyboardSticker
 import org.signal.ringrtc.CallLinkRootKey
 import org.thoughtcrime.securesms.BlockUnblockDialog
 import org.thoughtcrime.securesms.MainActivity
@@ -417,6 +422,7 @@ import java.util.Optional
 import java.util.concurrent.ExecutionException
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
+import androidx.compose.ui.graphics.Color as ComposeColor
 import org.signal.core.ui.R as CoreUiR
 
 /**
@@ -451,6 +457,7 @@ class ConversationFragment :
     private const val MINIMUM_VISIBLE_MESSAGES_DP: Int = 96
 
     private const val SCROLL_HEADER_ANIMATION_DURATION: Long = 100L
+    private const val STICKER_CONFIRMATION_INPUT_PANEL_DURATION_MS: Long = 250L
     private const val SCROLL_HEADER_CLOSE_DELAY: Long = SCROLL_HEADER_ANIMATION_DURATION * 4
     private const val IS_SCROLLED_TO_BOTTOM_THRESHOLD: Int = 2
 
@@ -676,6 +683,85 @@ class ConversationFragment :
     SignalMediaKeyboardRepository(requireContext(), recentEmojis)
   }
 
+  private val stickerConfirmation: ChatStickerConfirmationController by lazy(LazyThreadSafetyMode.NONE) {
+    ChatStickerConfirmationController(
+      onSend = { sticker ->
+        mediaKeyboardRepository.stickers.onStickerUsed(sticker)
+        sendKeyboardSticker(sticker)
+      },
+      onShowingChanged = ::onStickerConfirmationShowingChanged
+    )
+  }
+
+  private var inputPanelCollapseAnimator: ValueAnimator? = null
+
+  /**
+   * Collapses the input panel down behind the keyboard sheet while a sticker waits to be confirmed,
+   * so the conversation reclaims its space.
+   */
+  private fun onStickerConfirmationShowingChanged(showing: Boolean) {
+    inputPanel.importantForAccessibility = if (showing) View.IMPORTANT_FOR_ACCESSIBILITY_NO_HIDE_DESCENDANTS else View.IMPORTANT_FOR_ACCESSIBILITY_AUTO
+
+    val targetHeight = if (showing) {
+      0
+    } else {
+      inputPanel.measure(
+        View.MeasureSpec.makeMeasureSpec(inputPanel.width, View.MeasureSpec.EXACTLY),
+        View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+      )
+      inputPanel.measuredHeight
+    }
+
+    inputPanelCollapseAnimator?.cancel()
+    inputPanelCollapseAnimator = ValueAnimator.ofInt(inputPanel.height, targetHeight).apply {
+      duration = STICKER_CONFIRMATION_INPUT_PANEL_DURATION_MS
+      interpolator = FastOutSlowInInterpolator()
+      addUpdateListener { animator ->
+        inputPanel.updateLayoutParams { height = animator.animatedValue as Int }
+      }
+      doOnEnd {
+        if (!showing) {
+          inputPanel.updateLayoutParams { height = ViewGroup.LayoutParams.WRAP_CONTENT }
+        }
+      }
+      start()
+    }
+
+    inputPanel.animate()
+      .alpha(if (showing) 0f else 1f)
+      .setDuration(STICKER_CONFIRMATION_INPUT_PANEL_DURATION_MS)
+      .setInterpolator(FastOutSlowInInterpolator())
+      .start()
+  }
+
+  private fun sendKeyboardSticker(sticker: KeyboardSticker) {
+    viewLifecycleOwner.lifecycleScope.launch {
+      val record = withContext(Dispatchers.Default) {
+        SignalDatabase.stickers.getSticker(sticker.packId, sticker.stickerId.toInt(), false)
+      }
+
+      if (record != null) {
+        sendSticker(stickerRecord = record, clearCompose = false)
+      }
+    }
+  }
+
+  /** Who a sticker sent now would reply to, matching whether [sendSticker] will attach the quote. */
+  private suspend fun stickerReplyToName(): String? {
+    if (!SignalStore.labs.stickerReplies) {
+      return null
+    }
+
+    val authorId = inputPanel.quote.orNull()?.author ?: return null
+    val author = withContext(Dispatchers.Default) { Recipient.resolved(authorId) }
+
+    return if (author.isSelf) {
+      getString(R.string.ChatStickerConfirmation__reply_to_yourself)
+    } else {
+      getString(R.string.ChatStickerConfirmation__reply_to_s, author.getDisplayName(requireContext()))
+    }
+  }
+
   private fun onMediaKeyboardAction(action: MediaKeyboardAction) {
     when (action) {
       is MediaKeyboardAction.EmojiSelected -> inputPanel.onEmojiSelected(action.emoji)
@@ -684,15 +770,11 @@ class ConversationFragment :
 
       is MediaKeyboardAction.StickerSelected -> {
         viewLifecycleOwner.lifecycleScope.launch {
-          val record = withContext(Dispatchers.Default) {
-            SignalDatabase.stickers.getSticker(action.sticker.packId, action.sticker.stickerId.toInt(), false)
-          }
-
-          if (record != null) {
-            sendSticker(stickerRecord = record, clearCompose = false)
-          }
+          stickerConfirmation.show(action.sticker, stickerReplyToName())
         }
       }
+
+      is MediaKeyboardAction.StickerSendClicked -> sendKeyboardSticker(action.sticker)
 
       is MediaKeyboardAction.GifSelected -> {
         val image = mediaKeyboardRepository.gifs.getGiphyImage(action.gif.id)
@@ -877,7 +959,8 @@ class ConversationFragment :
             scrims = chatScrims,
             isBubble = args.conversationScreenType == ConversationScreenType.BUBBLE,
             conversationView = conversationContent,
-            overlayController = reactionOverlay
+            overlayController = reactionOverlay,
+            stickerConfirmation = stickerConfirmation
           )
         }
       }
@@ -945,10 +1028,13 @@ class ConversationFragment :
       is KeyboardSheetAction.KeyboardShown -> {
         if (action.key == ChatKeyboards.Media) {
           onShown()
+        } else {
+          stickerConfirmation.dismiss()
         }
       }
 
       KeyboardSheetAction.KeyboardHidden -> {
+        stickerConfirmation.dismiss()
         setNavBarBackgroundColor(viewModel.wallpaperSnapshot != null || viewModel.recipientSnapshot?.isReleaseNotes == true)
         onHidden()
         container.onInputHidden()
@@ -1185,6 +1271,10 @@ class ConversationFragment :
     container.clearPendingActions()
 
     dismissGifProgressDialog()
+
+    stickerConfirmation.dismiss()
+    inputPanelCollapseAnimator?.cancel()
+    inputPanelCollapseAnimator = null
 
     if (!requireActivity().isChangingConfigurations) {
       (requireActivity().supportFragmentManager.findFragmentByTag(MESSAGE_DETAILS_TAG) as? DialogFragment)?.dismissAllowingStateLoss()
@@ -2265,6 +2355,7 @@ class ConversationFragment :
 
   private fun presentChatColors(chatColors: ChatColors) {
     recyclerViewColorizer.setChatColors(chatColors)
+    stickerConfirmation.sendColor = ComposeColor(chatColors.asSingleColor())
     binding.scrollToMention.setUnreadCountBackgroundTint(chatColors.asSingleColor())
     binding.scrollToBottom.setUnreadCountBackgroundTint(chatColors.asSingleColor())
     binding.conversationInputPanel.buttonToggle.background.apply {

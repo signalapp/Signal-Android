@@ -8,9 +8,12 @@ package org.signal.mediakeyboard.screens.gif
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.Result
 import org.signal.core.util.logging.Log
@@ -18,8 +21,7 @@ import org.signal.mediakeyboard.MediaKeyboardAction
 import org.signal.mediakeyboard.data.GifKeyboardRepository
 
 class GifPageViewModel(
-  private val repository: GifKeyboardRepository,
-  private val onAction: (MediaKeyboardAction) -> Unit
+  private val repository: GifKeyboardRepository
 ) : EventDrivenViewModel<GifPageScreenEvents>(TAG) {
 
   companion object {
@@ -29,6 +31,11 @@ class GifPageViewModel(
 
   private val _state = MutableStateFlow(GifPageState())
   val state: StateFlow<GifPageState> = _state.asStateFlow()
+
+  private val actionChannel = Channel<MediaKeyboardAction>(Channel.UNLIMITED)
+
+  /** What the user did that only the host can carry out, for whichever host is current. */
+  val actions: Flow<MediaKeyboardAction> = actionChannel.receiveAsFlow()
 
   init {
     onEvent(GifPageScreenEvents.Initialize)
@@ -64,11 +71,11 @@ class GifPageViewModel(
       }
 
       is GifPageScreenEvents.GifClicked -> {
-        onAction(MediaKeyboardAction.GifSelected(event.gif))
+        actionChannel.trySend(MediaKeyboardAction.GifSelected(event.gif))
       }
 
       is GifPageScreenEvents.SearchClicked -> {
-        onAction(MediaKeyboardAction.GifSearchClicked)
+        actionChannel.trySend(MediaKeyboardAction.GifSearchClicked)
       }
     }
   }
@@ -115,12 +122,11 @@ class GifPageViewModel(
   }
 
   class Factory(
-    private val repository: GifKeyboardRepository,
-    private val onAction: (MediaKeyboardAction) -> Unit
+    private val repository: GifKeyboardRepository
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
       @Suppress("UNCHECKED_CAST")
-      return GifPageViewModel(repository, onAction) as T
+      return GifPageViewModel(repository) as T
     }
   }
 }

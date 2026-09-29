@@ -5,6 +5,7 @@
 
 package org.signal.mediakeyboard.screens.gif
 
+import androidx.lifecycle.viewModelScope
 import assertk.assertThat
 import assertk.assertions.hasSize
 import assertk.assertions.isEqualTo
@@ -14,6 +15,8 @@ import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
@@ -49,7 +52,8 @@ class GifPageViewModelTest {
   }
 
   private fun createViewModel(): GifPageViewModel {
-    val viewModel = GifPageViewModel(repository, actions::add)
+    val viewModel = GifPageViewModel(repository)
+    viewModel.actions.onEach(actions::add).launchIn(viewModel.viewModelScope)
     testDispatcher.scheduler.advanceUntilIdle()
     return viewModel
   }

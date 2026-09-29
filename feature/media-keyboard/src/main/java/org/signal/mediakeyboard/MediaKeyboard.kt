@@ -51,6 +51,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.flow.StateFlow
+import org.signal.core.ui.compose.CollectActions
 import org.signal.core.ui.compose.keyboard.LocalKeyboardSheetController
 import org.signal.mediakeyboard.data.MediaKeyboardRepository
 import org.signal.mediakeyboard.screens.LocalMediaKeyboardExpanded
@@ -280,9 +281,11 @@ private fun EmojiTab(
 ) {
   val viewModel: EmojiPageViewModel = viewModel(
     key = "media-keyboard-emoji",
-    factory = EmojiPageViewModel.Factory(repository.emoji, parentStateFlow, onAction)
+    factory = EmojiPageViewModel.Factory(repository.emoji, parentStateFlow)
   )
   val state by viewModel.state.collectAsStateWithLifecycle()
+
+  CollectActions(viewModel.actions, onAction)
 
   EmojiPageScreen(
     state = state,
@@ -299,9 +302,11 @@ private fun StickerTab(
 ) {
   val viewModel: StickerPageViewModel = viewModel(
     key = "media-keyboard-sticker",
-    factory = StickerPageViewModel.Factory(repository.stickers, onAction)
+    factory = StickerPageViewModel.Factory(repository.stickers)
   )
   val state by viewModel.state.collectAsStateWithLifecycle()
+
+  CollectActions(viewModel.actions, onAction)
 
   StickerPageScreen(
     state = state,
@@ -318,9 +323,11 @@ private fun GifTab(
 ) {
   val viewModel: GifPageViewModel = viewModel(
     key = "media-keyboard-gif",
-    factory = GifPageViewModel.Factory(repository.gifs, onAction)
+    factory = GifPageViewModel.Factory(repository.gifs)
   )
   val state by viewModel.state.collectAsStateWithLifecycle()
+
+  CollectActions(viewModel.actions, onAction)
 
   GifPageScreen(
     state = state,

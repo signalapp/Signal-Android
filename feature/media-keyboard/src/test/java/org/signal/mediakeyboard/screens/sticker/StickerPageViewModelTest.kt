@@ -5,6 +5,7 @@
 
 package org.signal.mediakeyboard.screens.sticker
 
+import androidx.lifecycle.viewModelScope
 import assertk.assertThat
 import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
@@ -15,6 +16,8 @@ import io.mockk.verify
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
@@ -58,7 +61,8 @@ class StickerPageViewModelTest {
   }
 
   private fun createViewModel(): StickerPageViewModel {
-    val viewModel = StickerPageViewModel(repository, actions::add)
+    val viewModel = StickerPageViewModel(repository)
+    viewModel.actions.onEach(actions::add).launchIn(viewModel.viewModelScope)
     testDispatcher.scheduler.advanceUntilIdle()
     return viewModel
   }
@@ -93,13 +97,23 @@ class StickerPageViewModelTest {
   }
 
   @Test
-  fun `sticker clicked - records the use and reports the selection`() {
+  fun `sticker clicked - reports the selection without recording a use`() {
     val viewModel = createViewModel()
     viewModel.onEvent(StickerPageScreenEvents.StickerClicked(sticker))
     testDispatcher.scheduler.advanceUntilIdle()
 
-    verify { repository.onStickerUsed(sticker) }
+    verify(exactly = 0) { repository.onStickerUsed(any()) }
     assertThat(actions).isEqualTo(listOf(MediaKeyboardAction.StickerSelected(sticker)))
+  }
+
+  @Test
+  fun `sticker send clicked - records the use and asks for a send`() {
+    val viewModel = createViewModel()
+    viewModel.onEvent(StickerPageScreenEvents.StickerSendClicked(sticker))
+    testDispatcher.scheduler.advanceUntilIdle()
+
+    verify { repository.onStickerUsed(sticker) }
+    assertThat(actions).isEqualTo(listOf(MediaKeyboardAction.StickerSendClicked(sticker)))
   }
 
   @Test

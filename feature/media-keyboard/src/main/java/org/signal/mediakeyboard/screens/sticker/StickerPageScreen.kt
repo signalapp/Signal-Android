@@ -409,7 +409,7 @@ private fun StickerCell(
         imageVector = SignalIcons.Send.imageVector,
         stringResId = R.string.MediaKeyboard__send,
         onClick = {
-          onEvent(StickerPageScreenEvents.StickerClicked(sticker))
+          onEvent(StickerPageScreenEvents.StickerSendClicked(sticker))
         }
       )
 
