@@ -89,7 +89,7 @@ class TotpCodeEntryViewModel(
   private suspend fun confirmNewApp() {
     when (val result = repository.confirmPendingApp(_state.value.code)) {
       is TotpRepository.ConfirmResult.Success -> {
-        _actions.send(TotpCodeEntryAction.NavigateToNaming(result.appId))
+        _actions.send(TotpCodeEntryAction.NavigateToNaming(appId = result.appId, createdAt = result.createdAt))
       }
       TotpRepository.ConfirmResult.IncorrectCode -> {
         fail(Error.IncorrectCode)

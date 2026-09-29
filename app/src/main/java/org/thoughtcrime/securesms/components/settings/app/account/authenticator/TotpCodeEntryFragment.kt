@@ -11,11 +11,13 @@ import androidx.compose.runtime.getValue
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
+import org.signal.appsettings.account.TwoFactorMethod
 import org.signal.appsettings.totpcodeentry.TotpCodeEntryAction
 import org.signal.appsettings.totpcodeentry.TotpCodeEntryScreen
 import org.signal.core.ui.compose.CollectActions
 import org.signal.core.ui.compose.ComposeFragment
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.settings.app.account.twofactor.TwoFactorNavArgs
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 /**
@@ -44,8 +46,13 @@ class TotpCodeEntryFragment : ComposeFragment() {
     when (action) {
       TotpCodeEntryAction.NavigateBack -> requireActivity().onBackPressedDispatcher.onBackPressed()
       is TotpCodeEntryAction.NavigateToNaming -> {
-        val args = Bundle().apply { putLong(TotpNavArgs.ARG_APP_ID, action.appId) }
-        findNavController().safeNavigate(R.id.action_authenticatorCodeEntryFragment_to_authenticatorNameFragment, args)
+        val args = Bundle().apply {
+          TwoFactorNavArgs.putNewMethod(
+            this,
+            TwoFactorMethod(id = action.appId, kind = TwoFactorMethod.Kind.AUTHENTICATOR_APP, name = null, createdAt = action.createdAt)
+          )
+        }
+        findNavController().safeNavigate(R.id.action_authenticatorCodeEntryFragment_to_twoFactorNameFragment, args)
       }
       TotpCodeEntryAction.NavigateToSetup -> findNavController().popBackStack(R.id.authenticatorSetupFragment, false)
     }

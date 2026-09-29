@@ -33,15 +33,15 @@ data class AccountSettingsState(
     /** How many authenticator apps the account is allowed to have at once. */
     val maxTotpApps: Int = 0,
     /** How many second factors of every kind the account is allowed at once, authenticator apps included. */
-    val maxMfaKeys: Int = 0
+    val maxTwoFactorMethods: Int = 0
   ) {
 
     val atMaxTotpApps: Boolean
       get() = twoFactorMethods.count { it.kind == TwoFactorMethod.Kind.AUTHENTICATOR_APP } >= maxTotpApps
 
     /** Whether the account is out of room for second factors of any kind, which stops another app being added too. */
-    val atMaxMfaKeys: Boolean
-      get() = twoFactorMethods.size >= maxMfaKeys
+    val atMaxTwoFactorMethods: Boolean
+      get() = twoFactorMethods.size >= maxTwoFactorMethods
   }
 
   /** How the last attempt to read the account's second factors went, since an empty list can't say on its own. */
@@ -81,13 +81,16 @@ data class AccountSettingsState(
       val inProgress: Boolean = false
     ) : Dialog
 
-    /** Confirms removing [appId], which still has to be backed up by a code from the app itself. */
-    data class ConfirmRemoveTotpApp(val appId: Long) : Dialog
+    /** Confirms removing [method] from the account. */
+    data class ConfirmRemoveMethod(val method: TwoFactorMethod) : Dialog
 
     /** Explains that the account already has as many authenticator apps as it's allowed. */
     data object MaxTotpAppsReached : Dialog
 
     /** Explains that the account already has as many second factors of all kinds as it's allowed. */
-    data object MaxMfaKeysReached : Dialog
+    data object MaxTwoFactorMethodsReached : Dialog
+
+    /** Covers the two legs of a passkey ceremony that talk to the service, which a tap otherwise looks ignored during. */
+    data object PasskeyInProgress : Dialog
   }
 }

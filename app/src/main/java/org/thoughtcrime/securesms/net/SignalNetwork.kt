@@ -22,6 +22,7 @@ import org.signal.network.api.UsernameApi
 import org.signal.network.service.ArchiveService
 import org.signal.network.service.MessageService
 import org.signal.network.service.StorageServiceService
+import org.signal.network.service.TwoFactorMethodService
 import org.signal.network.service.UsernameService
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.dependencies.KeyTransparencyApi
@@ -117,6 +118,9 @@ open class SignalNetwork {
 
   open val usernameService: UsernameService
     get() = AppDependencies.usernameService
+
+  open val twoFactorMethodService: TwoFactorMethodService
+    get() = AppDependencies.twoFactorMethodService
 
   companion object {
 
@@ -260,5 +264,10 @@ open class SignalNetwork {
     @get:JvmName("usernameService")
     val usernameService: UsernameService
       get() = instance.usernameService
+
+    @JvmStatic
+    @get:JvmName("twoFactorMethodService")
+    val twoFactorMethodService: TwoFactorMethodService
+      get() = instance.twoFactorMethodService
   }
 }

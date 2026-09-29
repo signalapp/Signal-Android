@@ -48,8 +48,8 @@ class TwoFactorSelectionViewModel(
   override suspend fun processEvent(event: TwoFactorSelectionScreenEvents) {
     when (event) {
       is TwoFactorSelectionScreenEvents.MethodSelected -> {
-        when (event.method) {
-          TwoFactorMethod.Passkey -> _actions.send(TwoFactorSelectionAction.AuthenticateWithPasskey)
+        when (val method = event.method) {
+          is TwoFactorMethod.Passkey -> _actions.send(TwoFactorSelectionAction.AuthenticateWithPasskey(method.parameters))
           TwoFactorMethod.AuthenticatorApp -> parentEventEmitter.navigateTo(RegistrationRoute.TotpEntry)
         }
       }

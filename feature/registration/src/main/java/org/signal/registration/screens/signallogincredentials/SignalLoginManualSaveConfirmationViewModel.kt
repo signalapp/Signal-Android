@@ -84,8 +84,9 @@ class SignalLoginManualSaveConfirmationViewModel(
         error("There is no 'need help' button in ${SignalLoginCredentialEntryState.Mode.ConfirmSaved} mode, so this event can't happen.")
       }
 
-      is SignalLoginCredentialEntryScreenEvents.TwoFactorCodeEntered -> {
-        error("Confirming a saved login never talks to the service, so it can never ask for a two-factor code.")
+      is SignalLoginCredentialEntryScreenEvents.TwoFactorCodeEntered,
+      is SignalLoginCredentialEntryScreenEvents.PasskeyAssertionReceived -> {
+        error("Confirming a saved login never talks to the service, so it can never ask for a second factor.")
       }
     }
   }

@@ -6,15 +6,14 @@
 package org.thoughtcrime.securesms.components.settings.app.account
 
 import kotlinx.coroutines.withContext
-import org.signal.appsettings.account.TwoFactorMethod
-import org.signal.appsettings.totp.TotpApp
+import org.signal.core.models.MasterKey
 import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.components.settings.app.account.authenticator.TotpRepository
-import org.thoughtcrime.securesms.components.settings.app.account.passkeys.AppPasskeysRepository
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.lock.v2.PinKeyboardType
 import org.thoughtcrime.securesms.pin.SvrRepository
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.kbs.PinHashUtil
 import java.io.IOException
 
@@ -28,7 +27,6 @@ class AccountSettingsRepository {
   }
 
   private val totpRepository = TotpRepository()
-  private val passkeysRepository = AppPasskeysRepository()
 
   fun hasPin(): Boolean = SignalStore.svr.hasPin() && !SignalStore.svr.hasOptedOut()
 
@@ -50,30 +48,12 @@ class AccountSettingsRepository {
 
   fun getMaxTotpApps(): Int = totpRepository.getMaxApps()
 
-  fun getMaxMfaKeys(): Int = totpRepository.getMaxMfaKeys()
-
   /**
-   * Every second factor on the account, authenticator apps first, or a failure if we couldn't find out. Passkeys are
-   * mocked for now, so only the authenticator apps can actually fail to load.
+   * How many two-factor methods of every kind the account is allowed at once. Authenticator apps share this limit with
+   * passkeys, so it can be reached even when there's room left under [getMaxTotpApps].
    */
-  suspend fun getTwoFactorMethods(): TwoFactorMethodsResult {
-    val apps = when (val result = totpRepository.getTotpApps()) {
-      is TotpRepository.AppsResult.Success -> result.apps
-      TotpRepository.AppsResult.NetworkFailure -> return TwoFactorMethodsResult.NetworkFailure
-    }
-
-    return TwoFactorMethodsResult.Success(apps.map { it.toTwoFactorMethod() } + passkeysRepository.getPasskeys())
-  }
-
-  /**
-   * Removes an authenticator app from the account, returning whether it's gone. An app the service has already
-   * forgotten counts as gone, since that's the outcome the user asked for.
-   */
-  suspend fun removeTotpApp(appId: Long): Boolean {
-    return when (totpRepository.removeTotpApp(appId)) {
-      TotpRepository.UpdateResult.Success, TotpRepository.UpdateResult.AppNotFound -> true
-      TotpRepository.UpdateResult.NetworkFailure -> false
-    }
+  fun getMaxTwoFactorMethods(): Int {
+    return RemoteConfig.maxTwoFactorMethods
   }
 
   fun verifyLocalPin(pin: String): Boolean {
@@ -103,13 +83,7 @@ class AccountSettingsRepository {
     }
   }
 
-  private fun TotpApp.toTwoFactorMethod(): TwoFactorMethod {
-    return TwoFactorMethod(id = id, kind = TwoFactorMethod.Kind.AUTHENTICATOR_APP, name = name, createdAt = createdAt)
-  }
-
-  sealed interface TwoFactorMethodsResult {
-    data class Success(val methods: List<TwoFactorMethod>) : TwoFactorMethodsResult
-
-    data object NetworkFailure : TwoFactorMethodsResult
+  fun masterKey(): MasterKey {
+    return SignalStore.svr.masterKey
   }
 }

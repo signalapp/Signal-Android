@@ -51,6 +51,9 @@ sealed interface AccountSettingsEvent {
   /** The user tapped the authenticator app option in the two-factor set-up menu. */
   data object AddTotpAppClicked : AccountSettingsEvent
 
+  /** The user tapped the passkey option in the two-factor set-up menu. */
+  data object AddPasskeyClicked : AccountSettingsEvent
+
   /** The user tapped a learn more link that should open the support article at [url]. */
   data class LearnMoreClicked(val url: String) : AccountSettingsEvent
 
@@ -66,8 +69,8 @@ sealed interface AccountSettingsEvent {
   /** The screen lock turned the user away, so whatever asked for it goes no further. */
   data object AuthenticationFailed : AccountSettingsEvent
 
-  /** The user confirmed removing the authenticator app with [appId], which removes it. */
-  data class RemoveTotpAppConfirmed(val appId: Long) : AccountSettingsEvent
+  /** The user confirmed removing [method], which removes it. */
+  data class RemoveMethodConfirmed(val method: TwoFactorMethod) : AccountSettingsEvent
 
   /** The user tapped the advanced PIN settings row. */
   data object AdvancedPinSettingsClicked : AccountSettingsEvent

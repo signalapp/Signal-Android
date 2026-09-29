@@ -936,7 +936,7 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
     val state by viewModel.state.collectAsStateWithLifecycle()
     CollectActions(viewModel.actions) { action ->
       when (action) {
-        TwoFactorSelectionAction.AuthenticateWithPasskey -> error("Passkeys are not offered as a two-factor method yet.")
+        is TwoFactorSelectionAction.AuthenticateWithPasskey -> error("Passkeys are not offered as a two-factor method yet.")
       }
     }
 

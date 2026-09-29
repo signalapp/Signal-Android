@@ -111,6 +111,10 @@ class SignalLoginCredentialEntryViewModel(
           Log.w(TAG, "[TwoFactorCodeEntered] Got a two-factor code, but the login on screen is no longer submittable. Leaving the user on the credential screen to re-enter it.")
         }
       }
+
+      is SignalLoginCredentialEntryScreenEvents.PasskeyAssertionReceived -> {
+        error("Passkeys are not offered as a two-factor method yet.")
+      }
     }
   }
 

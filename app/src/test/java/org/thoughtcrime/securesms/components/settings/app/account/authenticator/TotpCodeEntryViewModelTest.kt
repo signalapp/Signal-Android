@@ -37,6 +37,7 @@ class TotpCodeEntryViewModelTest {
   companion object {
     private const val FULL_CODE = "123456"
     private const val APP_ID = 3L
+    private const val CREATED_AT = 1_700_000_000_000L
   }
 
   private val testDispatcher = UnconfinedTestDispatcher()
@@ -49,8 +50,7 @@ class TotpCodeEntryViewModelTest {
   fun setUp() {
     Dispatchers.setMain(testDispatcher)
 
-    coEvery { repository.confirmPendingApp(any()) } returns TotpRepository.ConfirmResult.Success(APP_ID)
-    coEvery { repository.removeTotpApp(any()) } returns TotpRepository.UpdateResult.Success
+    coEvery { repository.confirmPendingApp(any()) } returns TotpRepository.ConfirmResult.Success(appId = APP_ID, createdAt = CREATED_AT)
   }
 
   @After
@@ -79,7 +79,7 @@ class TotpCodeEntryViewModelTest {
 
     submit(viewModel)
 
-    assertThat(actions.last()).isEqualTo(TotpCodeEntryAction.NavigateToNaming(APP_ID))
+    assertThat(actions.last()).isEqualTo(TotpCodeEntryAction.NavigateToNaming(appId = APP_ID, createdAt = CREATED_AT))
   }
 
   @Test

@@ -36,6 +36,8 @@ class TwoFactorSelectionScreenTest {
 
   private val events = mutableListOf<TwoFactorSelectionScreenEvents>()
 
+  private val passkey = TwoFactorMethod.Passkey(WebAuthnParameters(challenge = byteArrayOf(1, 2, 3), timeoutSeconds = 60, allowedCredentialIds = listOf(byteArrayOf(4, 5, 6))))
+
   @Test
   fun `screen displays title and subtitle`() {
     setContent(createState())
@@ -66,7 +68,7 @@ class TwoFactorSelectionScreenTest {
 
     composeTestRule.onNodeWithTag(TestTags.TWO_FACTOR_SELECTION_PASSKEY_OPTION).performClick()
 
-    assertThat(events).contains(TwoFactorSelectionScreenEvents.MethodSelected(TwoFactorMethod.Passkey))
+    assertThat(events).contains(TwoFactorSelectionScreenEvents.MethodSelected(passkey))
   }
 
   @Test
@@ -106,7 +108,7 @@ class TwoFactorSelectionScreenTest {
   }
 
   private fun createState(
-    methods: List<TwoFactorMethod> = listOf(TwoFactorMethod.Passkey, TwoFactorMethod.AuthenticatorApp)
+    methods: List<TwoFactorMethod> = listOf(passkey, TwoFactorMethod.AuthenticatorApp)
   ): TwoFactorSelectionState {
     return TwoFactorSelectionState(methods = methods)
   }

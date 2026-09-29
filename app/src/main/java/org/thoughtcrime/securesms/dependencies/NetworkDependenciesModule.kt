@@ -36,6 +36,7 @@ import org.signal.network.rest.SignalRestClient
 import org.signal.network.service.ArchiveService
 import org.signal.network.service.MessageService
 import org.signal.network.service.StorageServiceService
+import org.signal.network.service.TwoFactorMethodService
 import org.signal.network.service.UsernameService
 import org.signal.network.util.Tls12SocketFactory
 import org.signal.network.util.TlsProxySocketFactory
@@ -195,6 +196,8 @@ class NetworkDependenciesModule(
   }
 
   val usernameService: UsernameService by lazy { provider.provideUsernameService(accountApiV2) }
+
+  val twoFactorMethodService: TwoFactorMethodService by lazy { provider.provideTwoFactorMethodService(accountApiV2) }
 
   val usernameApi: UsernameApi by lazy {
     provider.provideUsernameApi(unauthWebSocket)

@@ -32,6 +32,8 @@ class TwoFactorSelectionViewModelTest {
 
   private val emittedParentEvents = mutableListOf<RegistrationFlowEvent>()
 
+  private val passkey = TwoFactorMethod.Passkey(WebAuthnParameters(challenge = byteArrayOf(1, 2, 3), timeoutSeconds = 60, allowedCredentialIds = listOf(byteArrayOf(4, 5, 6))))
+
   @Before
   fun setUp() {
     Dispatchers.setMain(testDispatcher)
@@ -44,9 +46,9 @@ class TwoFactorSelectionViewModelTest {
 
   @Test
   fun `initial state offers the methods it was constructed with`() = runTest(testDispatcher) {
-    val viewModel = createViewModel(listOf(TwoFactorMethod.Passkey, TwoFactorMethod.AuthenticatorApp))
+    val viewModel = createViewModel(listOf(passkey, TwoFactorMethod.AuthenticatorApp))
 
-    assertThat(viewModel.state.value.methods).containsExactly(TwoFactorMethod.Passkey, TwoFactorMethod.AuthenticatorApp)
+    assertThat(viewModel.state.value.methods).containsExactly(passkey, TwoFactorMethod.AuthenticatorApp)
   }
 
   @Test
@@ -54,9 +56,9 @@ class TwoFactorSelectionViewModelTest {
     val viewModel = createViewModel()
     val actions = collectActions(viewModel.actions)
 
-    viewModel.onEvent(TwoFactorSelectionScreenEvents.MethodSelected(TwoFactorMethod.Passkey))
+    viewModel.onEvent(TwoFactorSelectionScreenEvents.MethodSelected(passkey))
 
-    assertThat(actions).containsExactly(TwoFactorSelectionAction.AuthenticateWithPasskey)
+    assertThat(actions).containsExactly(TwoFactorSelectionAction.AuthenticateWithPasskey(passkey.parameters))
     assertThat(emittedParentEvents).isEmpty()
   }
 
@@ -80,16 +82,16 @@ class TwoFactorSelectionViewModelTest {
 
   @Test
   fun `selecting a method leaves the offered methods alone`() = runTest(testDispatcher) {
-    val methods = listOf(TwoFactorMethod.Passkey, TwoFactorMethod.AuthenticatorApp)
+    val methods = listOf(passkey, TwoFactorMethod.AuthenticatorApp)
     val viewModel = createViewModel(methods)
 
-    viewModel.onEvent(TwoFactorSelectionScreenEvents.MethodSelected(TwoFactorMethod.Passkey))
+    viewModel.onEvent(TwoFactorSelectionScreenEvents.MethodSelected(passkey))
 
     assertThat(viewModel.state.value).isEqualTo(TwoFactorSelectionState(methods = methods))
   }
 
   private fun createViewModel(
-    methods: List<TwoFactorMethod> = listOf(TwoFactorMethod.Passkey, TwoFactorMethod.AuthenticatorApp)
+    methods: List<TwoFactorMethod> = listOf(passkey, TwoFactorMethod.AuthenticatorApp)
   ): TwoFactorSelectionViewModel {
     return TwoFactorSelectionViewModel(methods, parentEventEmitter = { emittedParentEvents.add(it) })
   }

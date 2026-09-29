@@ -43,6 +43,11 @@ sealed class SignalLoginCredentialEntryScreenEvents {
     override fun toString(): String = "TwoFactorCodeEntered(code=${code.censor()})"
   }
 
+  /** The user completed a passkey ceremony the login was bounced to. Carries the assertion the service verifies. */
+  data class PasskeyAssertionReceived(val responseJson: String) : SignalLoginCredentialEntryScreenEvents() {
+    override fun toString(): String = "PasskeyAssertionReceived()"
+  }
+
   /** The user dismissed the login error dialog. */
   data object DismissError : SignalLoginCredentialEntryScreenEvents()
 }

@@ -17,7 +17,7 @@ sealed interface TotpCodeEntryAction {
   data object NavigateBack : TotpCodeEntryAction
 
   /** The new authenticator app is confirmed and the service gave it [appId], so go name it. */
-  data class NavigateToNaming(val appId: Long) : TotpCodeEntryAction
+  data class NavigateToNaming(val appId: Long, val createdAt: Long) : TotpCodeEntryAction
 
   /** Go back to setup, because the key the user was confirming is gone and there's nothing to retry against. */
   data object NavigateToSetup : TotpCodeEntryAction

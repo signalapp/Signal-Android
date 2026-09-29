@@ -44,6 +44,7 @@ import org.signal.network.rest.SignalRestClient
 import org.signal.network.service.ArchiveService
 import org.signal.network.service.MessageService
 import org.signal.network.service.StorageServiceService
+import org.signal.network.service.TwoFactorMethodService
 import org.signal.network.service.UsernameService
 import org.signal.video.exo.ExoPlayerPool
 import org.thoughtcrime.securesms.BuildConfig
@@ -427,6 +428,9 @@ object AppDependencies {
   val usernameService: UsernameService
     get() = networkModule.usernameService
 
+  val twoFactorMethodService: TwoFactorMethodService
+    get() = networkModule.twoFactorMethodService
+
   val usernameApi: UsernameApi
     get() = networkModule.usernameApi
 
@@ -561,6 +565,8 @@ object AppDependencies {
     fun provideAccountApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket): AccountApi
     fun provideAccountApiV2(authWebSocket: SignalWebSocket.AuthenticatedWebSocket): AccountApiV2
     fun provideUsernameService(accountApi: AccountApiV2): UsernameService
+
+    fun provideTwoFactorMethodService(accountApi: AccountApiV2): TwoFactorMethodService
     fun provideUsernameApi(unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket): UsernameApi
     fun provideCallingApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket, pushServiceSocket: PushServiceSocket): CallingApi
     fun providePaymentsApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket): PaymentsApi

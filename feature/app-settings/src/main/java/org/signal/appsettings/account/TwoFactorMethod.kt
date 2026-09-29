@@ -25,7 +25,13 @@ data class TwoFactorMethod(
   /** What sort of second factor this is, which decides its icon, its subtitle, and what its menu can do. */
   enum class Kind {
     AUTHENTICATOR_APP,
-    PASSKEY
+    PASSKEY,
+
+    /**
+     * A kind this build doesn't know about, which a newer linked device added. It still counts against the account's
+     * limit, so it's shown and can be removed, just without anything specific to say about it.
+     */
+    OTHER
   }
 
   override fun toString(): String = "TwoFactorMethod(id=$id, kind=$kind, name=${name?.censor()}, createdAt=$createdAt)"

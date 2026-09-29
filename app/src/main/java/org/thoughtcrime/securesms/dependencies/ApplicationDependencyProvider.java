@@ -54,6 +54,7 @@ import org.signal.network.rest.SignalRestClient;
 import org.signal.network.service.ArchiveService;
 import org.signal.network.service.MessageService;
 import org.signal.network.service.StorageServiceService;
+import org.signal.network.service.TwoFactorMethodService;
 import org.signal.network.service.UsernameService;
 import org.signal.video.exo.ExoPlayerPool;
 import org.thoughtcrime.securesms.BuildConfig;
@@ -641,6 +642,11 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   @Override
   public @NonNull UsernameService provideUsernameService(@NonNull AccountApiV2 accountApi) {
     return new UsernameService(accountApi);
+  }
+
+  @Override
+  public @NonNull TwoFactorMethodService provideTwoFactorMethodService(@NonNull AccountApiV2 accountApi) {
+    return new TwoFactorMethodService(accountApi);
   }
 
   @Override

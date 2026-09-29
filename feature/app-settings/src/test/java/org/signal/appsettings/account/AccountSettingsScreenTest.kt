@@ -354,16 +354,6 @@ class AccountSettingsScreenTest {
     assertThat(events).contains(AccountSettingsEvent.AddTotpAppClicked)
   }
 
-  /** Passkeys aren't supported yet, so the menu can't offer to set one up. */
-  @Test
-  fun givenTheSetUpMenu_whenItIsOpen_thenPasskeyIsNotOffered() {
-    setContent(createState(signalLogin = signalLogin()))
-
-    composeTestRule.onNodeWithTag(AccountSettingsTestTags.ROW_SET_UP_TWO_FACTOR).performClick()
-
-    composeTestRule.onNodeWithText(context.getString(R.string.AccountSettingsFragment__passkey)).assertDoesNotExist()
-  }
-
   @Test
   fun givenTwoFactorMethods_whenScreenDisplayed_thenIExpectARowPerMethod() {
     setContent(createState(signalLogin = signalLogin(twoFactorMethods = METHODS)))
@@ -426,13 +416,33 @@ class AccountSettingsScreenTest {
   }
 
   @Test
-  fun givenTheConfirmRemoveDialog_whenIConfirm_thenIExpectRemoveTotpAppConfirmedForThatApp() {
-    setContent(createState(signalLogin = signalLogin(twoFactorMethods = METHODS), dialog = Dialog.ConfirmRemoveTotpApp(METHODS[0].id)))
+  fun givenTheConfirmRemoveDialog_whenIConfirm_thenIExpectRemoveMethodConfirmedForThatMethod() {
+    setContent(createState(signalLogin = signalLogin(twoFactorMethods = METHODS), dialog = Dialog.ConfirmRemoveMethod(METHODS[0])))
 
-    composeTestRule.onNodeWithTag(AccountSettingsTestTags.DIALOG_CONFIRM_REMOVE_TOTP_APP).assertIsDisplayed()
+    composeTestRule.onNodeWithTag(AccountSettingsTestTags.DIALOG_CONFIRM_REMOVE_METHOD).assertIsDisplayed()
     composeTestRule.onNodeWithTag(Dialogs.TEST_TAG_ALERT_DIALOG_CONFIRM_BUTTON).performClick()
 
-    assertThat(events).contains(AccountSettingsEvent.RemoveTotpAppConfirmed(METHODS[0].id))
+    assertThat(events).contains(AccountSettingsEvent.RemoveMethodConfirmed(METHODS[0]))
+  }
+
+  @Test
+  fun givenTheConfirmRemoveDialogForAPasskey_whenIConfirm_thenIExpectRemoveMethodConfirmedForThatPasskey() {
+    setContent(createState(signalLogin = signalLogin(twoFactorMethods = METHODS), dialog = Dialog.ConfirmRemoveMethod(METHODS[1])))
+
+    composeTestRule.onNodeWithTag(AccountSettingsTestTags.DIALOG_CONFIRM_REMOVE_METHOD).assertIsDisplayed()
+    composeTestRule.onNodeWithTag(Dialogs.TEST_TAG_ALERT_DIALOG_CONFIRM_BUTTON).performClick()
+
+    assertThat(events).contains(AccountSettingsEvent.RemoveMethodConfirmed(METHODS[1]))
+  }
+
+  @Test
+  fun givenTheSetUpMenu_whenITapPasskey_thenIExpectAddPasskeyClicked() {
+    setContent(createState(signalLogin = signalLogin()))
+
+    composeTestRule.onNodeWithTag(AccountSettingsTestTags.ROW_SET_UP_TWO_FACTOR).performClick()
+    composeTestRule.onNodeWithTag(AccountSettingsTestTags.MENU_ITEM_PASSKEY).performClick()
+
+    assertThat(events).contains(AccountSettingsEvent.AddPasskeyClicked)
   }
 
   @Test
@@ -447,10 +457,10 @@ class AccountSettingsScreenTest {
   }
 
   @Test
-  fun givenTheMaxMfaKeysDialog_whenIClickLearnMore_thenIExpectLearnMoreAndDismissEvents() {
-    setContent(createState(signalLogin = signalLogin(), dialog = Dialog.MaxMfaKeysReached))
+  fun givenTheMaxTwoFactorMethodsDialog_whenIClickLearnMore_thenIExpectLearnMoreAndDismissEvents() {
+    setContent(createState(signalLogin = signalLogin(), dialog = Dialog.MaxTwoFactorMethodsReached))
 
-    composeTestRule.onNodeWithTag(AccountSettingsTestTags.DIALOG_MAX_MFA_KEYS_REACHED).assertIsDisplayed()
+    composeTestRule.onNodeWithTag(AccountSettingsTestTags.DIALOG_MAX_TWO_FACTOR_METHODS_REACHED).assertIsDisplayed()
     composeTestRule.onNodeWithTag(Dialogs.TEST_TAG_ALERT_DIALOG_DISMISS_BUTTON).performClick()
 
     assertThat(events).contains(AccountSettingsEvent.LearnMoreClicked("https://support.signal.org/hc/articles/11228705649690"))
@@ -525,9 +535,9 @@ class AccountSettingsScreenTest {
     twoFactorMethods: List<TwoFactorMethod> = emptyList(),
     loadState: LoadState = LoadState.LOADED,
     maxTotpApps: Int = 2,
-    maxMfaKeys: Int = 10
+    maxTwoFactorMethods: Int = 10
   ): AccountSettingsState.SignalLogin {
-    return AccountSettingsState.SignalLogin(twoFactorMethods = twoFactorMethods, loadState = loadState, maxTotpApps = maxTotpApps, maxMfaKeys = maxMfaKeys)
+    return AccountSettingsState.SignalLogin(twoFactorMethods = twoFactorMethods, loadState = loadState, maxTotpApps = maxTotpApps, maxTwoFactorMethods = maxTwoFactorMethods)
   }
 
   /** Links inside an [androidx.compose.ui.text.AnnotatedString] have no bounds to tap, so their click action is invoked directly. */

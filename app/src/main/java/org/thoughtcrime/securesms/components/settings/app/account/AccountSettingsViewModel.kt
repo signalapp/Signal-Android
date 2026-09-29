@@ -21,18 +21,23 @@ import org.signal.appsettings.account.AccountSettingsState.Dialog
 import org.signal.appsettings.account.AccountSettingsState.LoadState
 import org.signal.appsettings.account.AccountSettingsState.SignalLogin
 import org.signal.appsettings.account.TwoFactorMethod
-import org.signal.appsettings.totp.TotpApp
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
+import org.signal.libsignal.net.MfaKeyKind
+import org.signal.libsignal.net.RequestResult
+import org.signal.network.service.TwoFactorMethodService
 import org.thoughtcrime.securesms.lock.v2.PinKeyboardType
 import org.thoughtcrime.securesms.lock.v2.SvrConstants
+import org.thoughtcrime.securesms.net.SignalNetwork
+import org.signal.network.service.TwoFactorMethodService.TwoFactorMethod as ServiceTwoFactorMethod
 
 /**
  * Drives the account settings screen shown on a primary device, which is where PIN, registration lock, and account
  * deletion all live.
  */
 class AccountSettingsViewModel(
-  private val repository: AccountSettingsRepository = AccountSettingsRepository()
+  private val repository: AccountSettingsRepository = AccountSettingsRepository(),
+  private val twoFactorMethodService: TwoFactorMethodService = SignalNetwork.twoFactorMethodService
 ) : EventDrivenViewModel<AccountSettingsEvent>(TAG, shouldLogEvents = true) {
 
   companion object {
@@ -91,11 +96,14 @@ class AccountSettingsViewModel(
       AccountSettingsEvent.AddTotpAppClicked -> {
         applyAddTotpAppClicked()
       }
+      AccountSettingsEvent.AddPasskeyClicked -> {
+        Log.w(TAG, "Passkey creation isn't implemented yet.")
+      }
       is AccountSettingsEvent.LearnMoreClicked -> {
         _actions.send(AccountSettingsAction.OpenSupportArticle(event.url))
       }
       is AccountSettingsEvent.RenameMethodClicked -> {
-        applyRenameMethodClicked(event.method)
+        _actions.send(AccountSettingsAction.NavigateToRenameMethod(event.method))
       }
       is AccountSettingsEvent.RemoveMethodClicked -> {
         _actions.send(AccountSettingsAction.AuthenticateToRemoveMethod(event.method))
@@ -106,8 +114,8 @@ class AccountSettingsViewModel(
       AccountSettingsEvent.AuthenticationFailed -> {
         _actions.send(AccountSettingsAction.ShowAuthenticationFailed)
       }
-      is AccountSettingsEvent.RemoveTotpAppConfirmed -> {
-        applyRemoveTotpAppConfirmed(event.appId)
+      is AccountSettingsEvent.RemoveMethodConfirmed -> {
+        applyRemoveMethodConfirmed(event.method)
       }
       AccountSettingsEvent.AdvancedPinSettingsClicked -> {
         _actions.send(AccountSettingsAction.NavigateToAdvancedPinSettings)
@@ -181,7 +189,11 @@ class AccountSettingsViewModel(
 
     if (!success) {
       _actions.send(
-        if (dialog.enable) AccountSettingsAction.ShowRegistrationLockEnableFailed else AccountSettingsAction.ShowRegistrationLockDisableFailed
+        if (dialog.enable) {
+          AccountSettingsAction.ShowRegistrationLockEnableFailed
+        } else {
+          AccountSettingsAction.ShowRegistrationLockDisableFailed
+        }
       )
     }
   }
@@ -190,46 +202,29 @@ class AccountSettingsViewModel(
     val signalLogin = _state.value.signalLogin
     when {
       signalLogin?.atMaxTotpApps == true -> _state.update { it.copy(dialog = Dialog.MaxTotpAppsReached) }
-      signalLogin?.atMaxMfaKeys == true -> _state.update { it.copy(dialog = Dialog.MaxMfaKeysReached) }
+      signalLogin?.atMaxTwoFactorMethods == true -> _state.update { it.copy(dialog = Dialog.MaxTwoFactorMethodsReached) }
       else -> _actions.send(AccountSettingsAction.NavigateToTotpSetup)
     }
   }
 
-  private suspend fun applyRenameMethodClicked(method: TwoFactorMethod) {
-    when (method.kind) {
-      TwoFactorMethod.Kind.AUTHENTICATOR_APP -> {
-        val app = TotpApp(id = method.id, name = method.name, createdAt = method.createdAt)
-        _actions.send(AccountSettingsAction.NavigateToRenameTotpApp(app))
-      }
-      TwoFactorMethod.Kind.PASSKEY -> {
-        Log.w(TAG, "Passkey renaming isn't implemented yet.")
-      }
-    }
-  }
-
   private fun applyMethodRemovalAuthenticated(method: TwoFactorMethod) {
-    when (method.kind) {
-      TwoFactorMethod.Kind.AUTHENTICATOR_APP -> {
-        _state.update { it.copy(dialog = Dialog.ConfirmRemoveTotpApp(method.id)) }
-      }
-      TwoFactorMethod.Kind.PASSKEY -> {
-        Log.w(TAG, "Passkey removal isn't implemented yet.")
-      }
-    }
+    _state.update { it.copy(dialog = Dialog.ConfirmRemoveMethod(method)) }
   }
 
-  private suspend fun applyRemoveTotpAppConfirmed(appId: Long) {
+  /** A method the service has already forgotten counts as removed, since that's the outcome the user asked for. */
+  private suspend fun applyRemoveMethodConfirmed(method: TwoFactorMethod) {
     _state.update { it.copy(dialog = Dialog.None) }
-    removeTotpApp(appId)
-  }
 
-  private suspend fun removeTotpApp(appId: Long) {
-    if (repository.removeTotpApp(appId)) {
-      _actions.send(AccountSettingsAction.ShowTotpAppRemoved)
-      refreshTwoFactorMethods()
-    } else {
-      Log.w(TAG, "Couldn't remove the authenticator app. Leaving it in the list, where it still is.")
-      _actions.send(AccountSettingsAction.ShowTotpAppRemovalFailed)
+    when (val result = twoFactorMethodService.removeMethod(method.id)) {
+      is RequestResult.Success -> {
+        _actions.send(AccountSettingsAction.ShowMethodRemoved(method.kind))
+        refreshTwoFactorMethods()
+      }
+      is RequestResult.RetryableNetworkError, is RequestResult.ApplicationError -> {
+        Log.w(TAG, "Couldn't remove the second factor. Leaving it in the list, where it still is.")
+        _actions.send(AccountSettingsAction.ShowMethodRemovalFailed(method.kind))
+      }
+      is RequestResult.NonSuccess -> error("Code branch is unreachable")
     }
   }
 
@@ -246,7 +241,7 @@ class AccountSettingsViewModel(
         clientDeprecated = repository.isClientDeprecated(),
         isPhoneNumberless = isPhoneNumberless,
         // Held onto across refreshes so a resume doesn't drop the list back to its loading state.
-        signalLogin = if (isPhoneNumberless) it.signalLogin ?: SignalLogin(maxTotpApps = repository.getMaxTotpApps(), maxMfaKeys = repository.getMaxMfaKeys()) else null
+        signalLogin = if (isPhoneNumberless) it.signalLogin ?: SignalLogin(maxTotpApps = repository.getMaxTotpApps(), maxTwoFactorMethods = repository.getMaxTwoFactorMethods()) else null
       )
     }
 
@@ -256,17 +251,44 @@ class AccountSettingsViewModel(
   }
 
   private suspend fun refreshTwoFactorMethods() {
-    val (methods, loadState) = when (val result = repository.getTwoFactorMethods()) {
-      is AccountSettingsRepository.TwoFactorMethodsResult.Success -> result.methods to LoadState.LOADED
-      AccountSettingsRepository.TwoFactorMethodsResult.NetworkFailure -> {
+    val (methods, loadState) = when (val result = twoFactorMethodService.getMethods(repository.masterKey())) {
+      is RequestResult.Success -> result.result.map { it.toTwoFactorMethod() }.sortedBy { it.kind.sortRank() } to LoadState.LOADED
+      is RequestResult.RetryableNetworkError, is RequestResult.ApplicationError -> {
         Log.w(TAG, "Couldn't reach the service to list the account's second factors.")
         emptyList<TwoFactorMethod>() to LoadState.NETWORK_FAILURE
       }
+      is RequestResult.NonSuccess -> error("Code branch is unreachable")
     }
 
     _state.update { state ->
       val signalLogin = state.signalLogin ?: return@update state
       state.copy(signalLogin = signalLogin.copy(twoFactorMethods = methods, loadState = loadState))
+    }
+  }
+
+  /**
+   * A kind we don't recognize still gets a row, since the user needs to be able to see and remove a second factor
+   * whether or not we can make sense of it.
+   */
+  private fun ServiceTwoFactorMethod.toTwoFactorMethod(): TwoFactorMethod {
+    return TwoFactorMethod(
+      id = id,
+      kind = when (kind) {
+        MfaKeyKind.TOTP -> TwoFactorMethod.Kind.AUTHENTICATOR_APP
+        MfaKeyKind.WEB_AUTHN -> TwoFactorMethod.Kind.PASSKEY
+        MfaKeyKind.UNKNOWN -> TwoFactorMethod.Kind.OTHER
+      },
+      name = name,
+      createdAt = createdAt?.toEpochMilli()
+    )
+  }
+
+  /** The settings list leads with authenticator apps, whatever order the service reports them in. */
+  private fun TwoFactorMethod.Kind.sortRank(): Int {
+    return when (this) {
+      TwoFactorMethod.Kind.AUTHENTICATOR_APP -> 0
+      TwoFactorMethod.Kind.PASSKEY -> 1
+      TwoFactorMethod.Kind.OTHER -> 2
     }
   }
 

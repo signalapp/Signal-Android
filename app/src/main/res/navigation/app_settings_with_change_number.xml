@@ -231,8 +231,8 @@
             app:popEnterAnim="@anim/fragment_close_enter"
             app:popExitAnim="@anim/fragment_close_exit" />
         <action
-            android:id="@+id/action_accountSettingsFragment_to_authenticatorNameFragment"
-            app:destination="@id/authenticatorNameFragment"
+            android:id="@+id/action_accountSettingsFragment_to_twoFactorNameFragment"
+            app:destination="@id/twoFactorNameFragment"
             app:enterAnim="@anim/fragment_open_enter"
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
@@ -270,8 +270,8 @@
         android:name="org.thoughtcrime.securesms.components.settings.app.account.authenticator.TotpCodeEntryFragment"
         android:label="authenticator_code_entry_fragment">
         <action
-            android:id="@+id/action_authenticatorCodeEntryFragment_to_authenticatorNameFragment"
-            app:destination="@id/authenticatorNameFragment"
+            android:id="@+id/action_authenticatorCodeEntryFragment_to_twoFactorNameFragment"
+            app:destination="@id/twoFactorNameFragment"
             app:enterAnim="@anim/fragment_open_enter"
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
@@ -279,12 +279,12 @@
     </fragment>
 
     <fragment
-        android:id="@+id/authenticatorNameFragment"
-        android:name="org.thoughtcrime.securesms.components.settings.app.account.authenticator.TotpNameEntryFragment"
-        android:label="authenticator_name_fragment">
+        android:id="@+id/twoFactorNameFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.account.twofactor.TwoFactorNameEntryFragment"
+        android:label="two_factor_name_fragment">
 
         <argument
-            android:name="app_id"
+            android:name="method_id"
             android:defaultValue="-1L"
             app:argType="long" />
 
@@ -294,12 +294,18 @@
             app:argType="boolean" />
 
         <argument
-            android:name="app_name"
-            android:defaultValue=""
+            android:name="method_kind"
+            android:defaultValue="AUTHENTICATOR_APP"
             app:argType="string" />
 
         <argument
-            android:name="app_created_at"
+            android:name="method_name"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+
+        <argument
+            android:name="method_created_at"
             android:defaultValue="-1L"
             app:argType="long" />
     </fragment>

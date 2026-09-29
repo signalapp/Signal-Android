@@ -29,6 +29,7 @@ import org.signal.network.config.NetworkProxyState
 import org.signal.network.config.SignalServiceConfiguration
 import org.signal.network.rest.SignalRestClient
 import org.signal.network.service.StorageServiceService
+import org.signal.network.service.TwoFactorMethodService
 import org.signal.network.service.UsernameService
 import org.signal.video.exo.ExoPlayerPool
 import org.thoughtcrime.securesms.components.TypingStatusRepository
@@ -335,6 +336,10 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
   }
 
   override fun provideUsernameService(accountApi: AccountApiV2): UsernameService {
+    return mockk(relaxed = true)
+  }
+
+  override fun provideTwoFactorMethodService(accountApi: AccountApiV2): TwoFactorMethodService {
     return mockk(relaxed = true)
   }
 

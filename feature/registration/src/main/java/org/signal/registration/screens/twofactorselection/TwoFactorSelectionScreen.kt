@@ -201,7 +201,7 @@ private fun MethodCard(
   modifier: Modifier = Modifier
 ) {
   when (method) {
-    TwoFactorMethod.Passkey -> {
+    is TwoFactorMethod.Passkey -> {
       SelectionCard(
         imageVector = SignalIcons.Key.imageVector,
         title = stringResource(R.string.TwoFactorSelectionScreen__passkey),
@@ -275,13 +275,15 @@ private fun CancelButton(onEvent: (TwoFactorSelectionScreenEvents) -> Unit) {
   }
 }
 
+private val PREVIEW_WEB_AUTHN_PARAMETERS = WebAuthnParameters(challenge = byteArrayOf(1, 2, 3), timeoutSeconds = 60, allowedCredentialIds = listOf(byteArrayOf(4, 5, 6)))
+
 @AllDevicePreviews
 @Composable
 private fun TwoFactorSelectionScreenPreview() {
   Previews.Preview {
     TwoFactorSelectionScreen(
       state = TwoFactorSelectionState(
-        methods = listOf(TwoFactorMethod.Passkey, TwoFactorMethod.AuthenticatorApp)
+        methods = listOf(TwoFactorMethod.Passkey(PREVIEW_WEB_AUTHN_PARAMETERS), TwoFactorMethod.AuthenticatorApp)
       ),
       onEvent = {}
     )

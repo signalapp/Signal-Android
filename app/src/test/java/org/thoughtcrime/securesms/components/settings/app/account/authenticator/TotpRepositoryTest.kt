@@ -7,8 +7,6 @@ package org.thoughtcrime.securesms.components.settings.app.account.authenticator
 
 import assertk.assertThat
 import assertk.assertions.contains
-import assertk.assertions.containsExactly
-import assertk.assertions.hasSize
 import assertk.assertions.isEqualTo
 import assertk.assertions.isInstanceOf
 import assertk.assertions.startsWith
@@ -19,23 +17,17 @@ import io.mockk.slot
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
-import org.signal.appsettings.totp.TotpApp
 import org.signal.core.models.MasterKey
-import org.signal.libsignal.net.ConfirmedMfaKey
-import org.signal.libsignal.net.MfaKeyKind
-import org.signal.libsignal.net.MfaKeyNotFoundException
 import org.signal.libsignal.net.MfaMetadata
-import org.signal.libsignal.net.OneTimePasswordNotVerifiedException
+import org.signal.libsignal.net.MfaNotVerifiedException
 import org.signal.libsignal.net.PendingTotpKey
 import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.net.TooManyMfaKeysException
 import org.signal.libsignal.net.TooManyTotpKeysException
 import org.signal.libsignal.net.TotpParameters
 import org.signal.network.api.AccountApiV2
-import org.thoughtcrime.securesms.components.settings.app.account.authenticator.TotpRepository.AppsResult
 import org.thoughtcrime.securesms.components.settings.app.account.authenticator.TotpRepository.BeginSetupResult
 import org.thoughtcrime.securesms.components.settings.app.account.authenticator.TotpRepository.ConfirmResult
-import org.thoughtcrime.securesms.components.settings.app.account.authenticator.TotpRepository.UpdateResult
 import java.io.IOException
 import java.time.Duration
 import java.time.Instant
@@ -57,7 +49,7 @@ class TotpRepositoryTest {
     private val PENDING_KEY = PendingTotpKey(key = KEY, parameters = PARAMETERS)
   }
 
-  private var now = NOW
+  private val now = NOW
   private val api = mockk<AccountApiV2>()
   private val repository = TotpRepository(api = api, masterKeyProvider = { MASTER_KEY }, clock = { now }, defaultAppName = { DEFAULT_NAME })
 
@@ -65,9 +57,6 @@ class TotpRepositoryTest {
   fun setUp() {
     coEvery { api.generateTotpKey() } returns RequestResult.Success(PENDING_KEY)
     coEvery { api.confirmTotpKey(any(), any(), any()) } returns RequestResult.Success(KEY_ID)
-    coEvery { api.listMfaKeys(any()) } returns RequestResult.Success(emptyList())
-    coEvery { api.setMfaKeyMetadata(any(), any(), any()) } returns RequestResult.Success(Unit)
-    coEvery { api.removeMfaKey(any()) } returns RequestResult.Success(Unit)
   }
 
   @Test
@@ -160,7 +149,7 @@ class TotpRepositoryTest {
 
   @Test
   fun `a code the service rejects is reported as a wrong code`() = runTest {
-    coEvery { api.confirmTotpKey(any(), any(), any()) } returns RequestResult.NonSuccess(OneTimePasswordNotVerifiedException("nope"))
+    coEvery { api.confirmTotpKey(any(), any(), any()) } returns RequestResult.NonSuccess(MfaNotVerifiedException("nope"))
 
     assertThat(repository.confirmPendingApp(CODE)).isEqualTo(ConfirmResult.IncorrectCode)
   }
@@ -178,6 +167,7 @@ class TotpRepositoryTest {
 
     assertThat(result).isInstanceOf(ConfirmResult.Success::class)
     assertThat((result as ConfirmResult.Success).appId).isEqualTo(KEY_ID.toLong())
+    assertThat(result.createdAt).isEqualTo(NOW)
   }
 
   /** The service wants metadata at confirmation time, and the user hasn't been asked for a name yet. */
@@ -190,106 +180,5 @@ class TotpRepositoryTest {
 
     assertThat(metadata.captured.name).isEqualTo(DEFAULT_NAME)
     assertThat(metadata.captured.createdAt).isEqualTo(Instant.ofEpochMilli(NOW))
-  }
-
-  @Test
-  fun `the confirmed keys on the account come back as apps`() = runTest {
-    coEvery { api.listMfaKeys(any()) } returns RequestResult.Success(
-      listOf(
-        ConfirmedMfaKey(id = KEY_ID, metadata = MfaMetadata(name = "Aegis", createdAt = Instant.ofEpochMilli(NOW)), kind = MfaKeyKind.TOTP)
-      )
-    )
-
-    val apps = (repository.getTotpApps() as AppsResult.Success).apps
-
-    assertThat(apps).hasSize(1)
-    assertThat(apps.first().id).isEqualTo(KEY_ID.toLong())
-    assertThat(apps.first().name).isEqualTo("Aegis")
-    assertThat(apps.first().createdAt).isEqualTo(NOW)
-  }
-
-  /** The user still needs to be able to see and remove a key even if we can't read its name. */
-  @Test
-  fun `a key whose metadata can't be read still shows up without a name or date`() = runTest {
-    coEvery { api.listMfaKeys(any()) } returns RequestResult.Success(
-      listOf(ConfirmedMfaKey(id = KEY_ID, metadata = null, kind = MfaKeyKind.TOTP))
-    )
-
-    assertThat((repository.getTotpApps() as AppsResult.Success).apps).containsExactly(TotpApp(id = KEY_ID.toLong(), name = null, createdAt = null))
-  }
-
-  /** The list is about what's on the account, not what this client understands, so a newer device's key still shows. */
-  @Test
-  fun `a key of a kind this client doesn't know still shows up as an app`() = runTest {
-    coEvery { api.listMfaKeys(any()) } returns RequestResult.Success(
-      listOf(ConfirmedMfaKey(id = KEY_ID, metadata = MfaMetadata(name = "Future", createdAt = Instant.ofEpochMilli(NOW)), kind = MfaKeyKind.UNKNOWN))
-    )
-
-    assertThat((repository.getTotpApps() as AppsResult.Success).apps).hasSize(1)
-  }
-
-  @Test
-  fun `a list we couldn't fetch is a network failure`() = runTest {
-    coEvery { api.listMfaKeys(any()) } returns RequestResult.RetryableNetworkError(IOException("offline"))
-
-    assertThat(repository.getTotpApps()).isEqualTo(AppsResult.NetworkFailure)
-  }
-
-  @Test
-  fun `naming a new app stamps it with the current time`() = runTest {
-    val metadata = slot<MfaMetadata>()
-    coEvery { api.setMfaKeyMetadata(eq(KEY_ID), capture(metadata), any()) } returns RequestResult.Success(Unit)
-
-    assertThat(repository.nameNewTotpApp(KEY_ID.toLong(), "Aegis")).isEqualTo(UpdateResult.Success)
-
-    assertThat(metadata.captured.name).isEqualTo("Aegis")
-    assertThat(metadata.captured.createdAt).isEqualTo(Instant.ofEpochMilli(NOW))
-  }
-
-  @Test
-  fun `renaming keeps the time the app was confirmed`() = runTest {
-    val metadata = slot<MfaMetadata>()
-    coEvery { api.setMfaKeyMetadata(eq(KEY_ID), capture(metadata), any()) } returns RequestResult.Success(Unit)
-    val app = TotpApp(id = KEY_ID.toLong(), name = "Aegis", createdAt = NOW)
-    now += 60_000
-
-    assertThat(repository.renameTotpApp(app, "Aegis on my tablet")).isEqualTo(UpdateResult.Success)
-
-    assertThat(metadata.captured.name).isEqualTo("Aegis on my tablet")
-    assertThat(metadata.captured.createdAt).isEqualTo(Instant.ofEpochMilli(NOW))
-  }
-
-  @Test
-  fun `renaming an app whose metadata couldn't be read stamps it with the current time`() = runTest {
-    val metadata = slot<MfaMetadata>()
-    coEvery { api.setMfaKeyMetadata(eq(KEY_ID), capture(metadata), any()) } returns RequestResult.Success(Unit)
-    val app = TotpApp(id = KEY_ID.toLong(), name = null, createdAt = null)
-
-    assertThat(repository.renameTotpApp(app, "Aegis")).isEqualTo(UpdateResult.Success)
-
-    assertThat(metadata.captured.name).isEqualTo("Aegis")
-    assertThat(metadata.captured.createdAt).isEqualTo(Instant.ofEpochMilli(NOW))
-  }
-
-  @Test
-  fun `renaming an app the service no longer has is reported as not found`() = runTest {
-    coEvery { api.setMfaKeyMetadata(any(), any(), any()) } returns RequestResult.NonSuccess(MfaKeyNotFoundException("gone"))
-    val gone = TotpApp(id = 7, name = "Aegis", createdAt = NOW)
-
-    assertThat(repository.renameTotpApp(gone, "Aegis on my tablet")).isEqualTo(UpdateResult.AppNotFound)
-  }
-
-  @Test
-  fun `removing an app removes its key`() = runTest {
-    assertThat(repository.removeTotpApp(KEY_ID.toLong())).isEqualTo(UpdateResult.Success)
-
-    coVerify { api.removeMfaKey(KEY_ID) }
-  }
-
-  @Test
-  fun `a removal we couldn't send is a network failure`() = runTest {
-    coEvery { api.removeMfaKey(any()) } returns RequestResult.RetryableNetworkError(IOException("offline"))
-
-    assertThat(repository.removeTotpApp(KEY_ID.toLong())).isEqualTo(UpdateResult.NetworkFailure)
   }
 }

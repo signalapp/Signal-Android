@@ -78,6 +78,7 @@ object AccountSettingsTestTags {
   const val LINK_SIGNAL_LOGIN_LEARN_MORE = "link-signal-login-learn-more"
   const val ROW_SET_UP_TWO_FACTOR = "row-set-up-two-factor"
   const val MENU_ITEM_AUTHENTICATOR_APP = "menu-item-authenticator-app"
+  const val MENU_ITEM_PASSKEY = "menu-item-passkey"
   const val ROW_TWO_FACTOR_METHOD = "row-two-factor-method"
   const val BUTTON_METHOD_MENU = "button-method-menu"
   const val MENU_ITEM_RENAME = "menu-item-rename"
@@ -99,9 +100,9 @@ object AccountSettingsTestTags {
   const val DIALOG_CONFIRM_DELETE_ALL_DATA = "dialog-confirm-delete-all-data"
   const val DIALOG_CONFIRM_PIN = "dialog-confirm-pin"
   const val DIALOG_CONFIRM_REGISTRATION_LOCK = "dialog-confirm-registration-lock"
-  const val DIALOG_CONFIRM_REMOVE_TOTP_APP = "dialog-confirm-remove-totp-app"
+  const val DIALOG_CONFIRM_REMOVE_METHOD = "dialog-confirm-remove-method"
   const val DIALOG_MAX_TOTP_APPS_REACHED = "dialog-max-totp-apps-reached"
-  const val DIALOG_MAX_MFA_KEYS_REACHED = "dialog-max-mfa-keys-reached"
+  const val DIALOG_MAX_TWO_FACTOR_METHODS_REACHED = "dialog-max-two-factor-methods-reached"
   const val PIN_INPUT = "pin-input"
   const val PIN_KEYBOARD_TOGGLE = "pin-keyboard-toggle"
 }
@@ -368,16 +369,23 @@ fun AccountSettingsScreen(
         RegistrationLockConfirmationDialog(dialog, onEvent)
       }
     }
-    is Dialog.ConfirmRemoveTotpApp -> ConfirmRemoveTotpAppDialog(appId = dialog.appId, onEvent = onEvent)
+    is Dialog.ConfirmRemoveMethod -> ConfirmRemoveMethodDialog(method = dialog.method, onEvent = onEvent)
     Dialog.MaxTotpAppsReached -> MaxTotpAppsReachedDialog(maxApps = state.signalLogin?.maxTotpApps ?: 0, onEvent = onEvent)
-    Dialog.MaxMfaKeysReached -> MaxMfaKeysReachedDialog(maxMfaKeys = state.signalLogin?.maxMfaKeys ?: 0, onEvent = onEvent)
+    Dialog.MaxTwoFactorMethodsReached -> MaxTwoFactorMethodsReachedDialog(maxTwoFactorMethods = state.signalLogin?.maxTwoFactorMethods ?: 0, onEvent = onEvent)
+    Dialog.PasskeyInProgress -> Dialogs.IndeterminateProgressDialog()
   }
 }
 
 /**
- * The row that starts adding a second factor, which offers a choice of what to add. Passkeys aren't supported yet, so
- * an authenticator app is the only thing there is to choose.
+ * A menu item with a subtitle is taller than the height Material gives a menu item, so it has to bring its own vertical
+ * padding rather than relying on that height to space it out.
  */
+private val TWO_LINE_MENU_ITEM_PADDING = PaddingValues(horizontal = 16.dp, vertical = 12.dp)
+
+/** Material leaves 12dp between a menu item's icon and its text where the design asks for 16dp. */
+private val MENU_ITEM_EXTRA_ICON_GAP = 4.dp
+
+/** The row that starts adding a second factor, which offers a choice of what to add. */
 @Composable
 private fun SetUpTwoFactorRow(
   onEvent: (AccountSettingsEvent) -> Unit,
@@ -395,12 +403,11 @@ private fun SetUpTwoFactorRow(
       modifier = Modifier.testTag(AccountSettingsTestTags.ROW_SET_UP_TWO_FACTOR)
     )
 
-    DropdownMenus.Menu(
-      controller = menuController,
-      contentPadding = PaddingValues(vertical = 12.dp)
-    ) { controller ->
+    DropdownMenus.Menu(controller = menuController) { controller ->
       DropdownMenus.Item(
+        contentPadding = TWO_LINE_MENU_ITEM_PADDING,
         leadingIconResId = CoreUiR.drawable.symbol_device_phone_24,
+        leadingIconSpacing = MENU_ITEM_EXTRA_ICON_GAP,
         text = {
           Column {
             Text(text = stringResource(R.string.AccountSettingsFragment__authenticator_app))
@@ -417,6 +424,28 @@ private fun SetUpTwoFactorRow(
           controller.hide()
         },
         modifier = Modifier.testTag(AccountSettingsTestTags.MENU_ITEM_AUTHENTICATOR_APP)
+      )
+
+      DropdownMenus.Item(
+        contentPadding = TWO_LINE_MENU_ITEM_PADDING,
+        leadingIconResId = CoreUiR.drawable.symbol_key_24,
+        leadingIconSpacing = MENU_ITEM_EXTRA_ICON_GAP,
+        text = {
+          Column {
+            Text(text = stringResource(R.string.AccountSettingsFragment__passkey))
+
+            Text(
+              text = stringResource(R.string.AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock),
+              style = MaterialTheme.typography.bodySmall,
+              color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+          }
+        },
+        onClick = {
+          onEvent(AccountSettingsEvent.AddPasskeyClicked)
+          controller.hide()
+        },
+        modifier = Modifier.testTag(AccountSettingsTestTags.MENU_ITEM_PASSKEY)
       )
     }
   }
@@ -436,11 +465,13 @@ private fun TwoFactorMethodRow(
   val icon = when (method.kind) {
     TwoFactorMethod.Kind.AUTHENTICATOR_APP -> SignalIcons.DevicePhone
     TwoFactorMethod.Kind.PASSKEY -> SignalIcons.Key
+    TwoFactorMethod.Kind.OTHER -> SignalIcons.Lock
   }
 
   val kindName = when (method.kind) {
     TwoFactorMethod.Kind.AUTHENTICATOR_APP -> stringResource(R.string.AccountSettingsFragment__authenticator_app)
     TwoFactorMethod.Kind.PASSKEY -> stringResource(R.string.AccountSettingsFragment__passkey)
+    TwoFactorMethod.Kind.OTHER -> stringResource(R.string.AccountSettingsFragment__two_factor_method)
   }
 
   Rows.TextRow(
@@ -621,19 +652,25 @@ private fun DeleteAllDataConfirmationDialog(
 }
 
 @Composable
-private fun ConfirmRemoveTotpAppDialog(
-  appId: Long,
+private fun ConfirmRemoveMethodDialog(
+  method: TwoFactorMethod,
   onEvent: (AccountSettingsEvent) -> Unit
 ) {
+  val (title, body) = when (method.kind) {
+    TwoFactorMethod.Kind.AUTHENTICATOR_APP -> R.string.AccountSettingsFragment__remove_authenticator_app to R.string.AccountSettingsFragment__you_wont_be_able_to_use_this_app
+    TwoFactorMethod.Kind.PASSKEY -> R.string.AccountSettingsFragment__remove_passkey to R.string.AccountSettingsFragment__you_wont_be_able_to_use_this_passkey
+    TwoFactorMethod.Kind.OTHER -> R.string.AccountSettingsFragment__remove_two_factor_method to R.string.AccountSettingsFragment__you_wont_be_able_to_use_this_method
+  }
+
   Dialogs.SimpleAlertDialog(
-    title = stringResource(R.string.AccountSettingsFragment__remove_authenticator_app),
-    body = stringResource(R.string.AccountSettingsFragment__you_wont_be_able_to_use_this_app),
+    title = stringResource(title),
+    body = stringResource(body),
     confirm = stringResource(R.string.AccountSettingsFragment__remove),
-    onConfirm = { onEvent(AccountSettingsEvent.RemoveTotpAppConfirmed(appId)) },
+    onConfirm = { onEvent(AccountSettingsEvent.RemoveMethodConfirmed(method)) },
     onDismiss = { onEvent(AccountSettingsEvent.DialogDismissed) },
     dismiss = stringResource(android.R.string.cancel),
     onDismissRequest = { onEvent(AccountSettingsEvent.DialogDismissed) },
-    modifier = Modifier.testTag(AccountSettingsTestTags.DIALOG_CONFIRM_REMOVE_TOTP_APP)
+    modifier = Modifier.testTag(AccountSettingsTestTags.DIALOG_CONFIRM_REMOVE_METHOD)
   )
 }
 
@@ -657,20 +694,20 @@ private fun MaxTotpAppsReachedDialog(
 
 /** Shown when there's still room for another authenticator app, but not for another second factor of any kind. */
 @Composable
-private fun MaxMfaKeysReachedDialog(
-  maxMfaKeys: Int,
+private fun MaxTwoFactorMethodsReachedDialog(
+  maxTwoFactorMethods: Int,
   onEvent: (AccountSettingsEvent) -> Unit
 ) {
   Dialogs.SimpleAlertDialog(
     title = stringResource(R.string.AccountSettingsFragment__cant_add_authenticator_app),
-    body = stringResource(R.string.AccountSettingsFragment__you_cant_add_more_than_d_two_factor_methods, maxMfaKeys),
+    body = stringResource(R.string.AccountSettingsFragment__you_cant_add_more_than_d_two_factor_methods, maxTwoFactorMethods),
     confirm = stringResource(android.R.string.ok),
     onConfirm = {},
     onDismiss = { onEvent(AccountSettingsEvent.DialogDismissed) },
     dismiss = stringResource(R.string.AccountSettingsFragment__learn_more),
     onDeny = { onEvent(AccountSettingsEvent.LearnMoreClicked("https://support.signal.org/hc/articles/11228705649690")) },
     onDismissRequest = { onEvent(AccountSettingsEvent.DialogDismissed) },
-    modifier = Modifier.testTag(AccountSettingsTestTags.DIALOG_MAX_MFA_KEYS_REACHED)
+    modifier = Modifier.testTag(AccountSettingsTestTags.DIALOG_MAX_TWO_FACTOR_METHODS_REACHED)
   )
 }
 
@@ -907,9 +944,17 @@ private fun ConfirmPinToDisableRemindersDialogPreview() {
 
 @DayNightPreviews
 @Composable
-private fun ConfirmRemoveTotpAppDialogPreview() {
+private fun ConfirmRemoveAuthenticatorAppDialogPreview() {
   Previews.Preview {
-    ConfirmRemoveTotpAppDialog(appId = 1, onEvent = {})
+    ConfirmRemoveMethodDialog(method = PREVIEW_TWO_FACTOR_METHODS.first { it.kind == TwoFactorMethod.Kind.AUTHENTICATOR_APP }, onEvent = {})
+  }
+}
+
+@DayNightPreviews
+@Composable
+private fun ConfirmRemovePasskeyDialogPreview() {
+  Previews.Preview {
+    ConfirmRemoveMethodDialog(method = PREVIEW_TWO_FACTOR_METHODS.first { it.kind == TwoFactorMethod.Kind.PASSKEY }, onEvent = {})
   }
 }
 
@@ -923,9 +968,9 @@ private fun MaxTotpAppsReachedDialogPreview() {
 
 @DayNightPreviews
 @Composable
-private fun MaxMfaKeysReachedDialogPreview() {
+private fun MaxTwoFactorMethodsReachedDialogPreview() {
   Previews.Preview {
-    MaxMfaKeysReachedDialog(maxMfaKeys = 10, onEvent = {})
+    MaxTwoFactorMethodsReachedDialog(maxTwoFactorMethods = 10, onEvent = {})
   }
 }
 

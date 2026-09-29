@@ -109,6 +109,7 @@ object DropdownMenus {
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(horizontal = 16.dp),
     @DrawableRes leadingIconResId: Int? = null,
+    leadingIconSpacing: Dp = 0.dp,
     text: @Composable () -> Unit,
     onClick: () -> Unit
   ) {
@@ -123,7 +124,8 @@ object DropdownMenus {
         {
           Icon(
             imageVector = ImageVector.vectorResource(id = leadingIconResId),
-            contentDescription = null
+            contentDescription = null,
+            modifier = Modifier.padding(end = leadingIconSpacing)
           )
         }
       } else {

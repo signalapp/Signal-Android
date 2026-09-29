@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.signal.appsettings.totpnameentry
+package org.signal.appsettings.twofactornameentry
 
 import android.app.Application
 import androidx.compose.ui.test.assertIsDisplayed
@@ -23,52 +23,52 @@ import org.robolectric.annotation.Config
 
 @RunWith(RobolectricTestRunner::class)
 @Config(application = Application::class)
-class TotpNameEntryScreenTest {
+class TwoFactorNameEntryScreenTest {
 
   @get:Rule
   val composeTestRule = createComposeRule()
 
-  private val events = mutableListOf<TotpNameEntryEvent>()
+  private val events = mutableListOf<TwoFactorNameEntryEvent>()
 
   @Test
   fun whenITypeAName_thenIExpectNameChangedEvent() {
-    setContent(TotpNameEntryState())
+    setContent(TwoFactorNameEntryState())
 
-    composeTestRule.onNodeWithTag(TotpNameEntryTestTags.NAME_INPUT)
+    composeTestRule.onNodeWithTag(TwoFactorNameEntryTestTags.NAME_INPUT)
       .assertIsDisplayed()
       .performTextReplacement("Bitwarden Authenticator")
 
-    assertThat(events).contains(TotpNameEntryEvent.NameChanged("Bitwarden Authenticator"))
+    assertThat(events).contains(TwoFactorNameEntryEvent.NameChanged("Bitwarden Authenticator"))
   }
 
   @Test
   fun givenABlankName_whenIDisplayScreen_thenIExpectNextDisabled() {
-    setContent(TotpNameEntryState())
+    setContent(TwoFactorNameEntryState())
 
-    composeTestRule.onNodeWithTag(TotpNameEntryTestTags.BUTTON_NEXT).assertIsNotEnabled()
+    composeTestRule.onNodeWithTag(TwoFactorNameEntryTestTags.BUTTON_NEXT).assertIsNotEnabled()
   }
 
   @Test
   fun givenASubmittingState_whenIDisplayScreen_thenIExpectNextDisabled() {
-    setContent(TotpNameEntryState(name = "Twilio Authy", submitting = true))
+    setContent(TwoFactorNameEntryState(name = "Twilio Authy", submitting = true))
 
-    composeTestRule.onNodeWithTag(TotpNameEntryTestTags.BUTTON_NEXT).assertIsNotEnabled()
+    composeTestRule.onNodeWithTag(TwoFactorNameEntryTestTags.BUTTON_NEXT).assertIsNotEnabled()
   }
 
   @Test
   fun givenAName_whenIClickNext_thenIExpectNextClickedEvent() {
-    setContent(TotpNameEntryState(name = "Twilio Authy"))
+    setContent(TwoFactorNameEntryState(name = "Twilio Authy"))
 
-    composeTestRule.onNodeWithTag(TotpNameEntryTestTags.BUTTON_NEXT)
+    composeTestRule.onNodeWithTag(TwoFactorNameEntryTestTags.BUTTON_NEXT)
       .assertIsEnabled()
       .performClick()
 
-    assertThat(events).contains(TotpNameEntryEvent.NextClicked)
+    assertThat(events).contains(TwoFactorNameEntryEvent.NextClicked)
   }
 
-  private fun setContent(state: TotpNameEntryState) {
+  private fun setContent(state: TwoFactorNameEntryState) {
     composeTestRule.setContent {
-      TotpNameEntryScreen(
+      TwoFactorNameEntryScreen(
         state = state,
         onEvent = { events += it }
       )
