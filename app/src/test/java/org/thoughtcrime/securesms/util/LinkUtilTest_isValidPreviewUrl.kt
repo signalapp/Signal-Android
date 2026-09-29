@@ -72,7 +72,10 @@ class LinkUtilTest_isValidPreviewUrl(private val input: String, private val outp
         arrayOf("https://[fc00::1]/", false),
         arrayOf("https://[fd12:3456:789a::1]/", false),
         arrayOf("https://8.8.8.8", true),
-        arrayOf("https://[2001:4860:4860::8888]/", true)
+        arrayOf("https://[2001:4860:4860::8888]/", true),
+        arrayOf("https://grå.org", true),
+        arrayOf("https://grå.org/some/path", true),
+        arrayOf("http://grå.org", false)
       )
     }
   }
