@@ -430,9 +430,7 @@ public class ApplicationContext extends Application implements AppForegroundObse
     AppForegroundObserver.begin();
     ClockSkewDetector.beginObserving(this);
 
-    if (Environment.USE_NEW_REGISTRATION) {
-      initializeRegistrationDependencies();
-    }
+    initializeRegistrationDependencies();
   }
 
   private void initializeRegistrationDependencies() {

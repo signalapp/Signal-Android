@@ -26,7 +26,7 @@ import org.thoughtcrime.securesms.banner.ui.compose.Importance
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.DeviceTransferBlockingInterceptor
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.registration.ui.RegistrationActivity
+import org.thoughtcrime.securesms.registration.ui.RegistrationIntents
 
 /**
  * A banner displayed when the client is unauthorized (deregistered).
@@ -76,9 +76,9 @@ private fun Banner(contentPadding: PaddingValues, isLinkedDevice: Boolean) {
         }
 
         val registrationIntent = if (isLinkedDevice) {
-          RegistrationActivity.newIntentForReLinkDevice(context)
+          RegistrationIntents.newIntentForReLinkDevice(context)
         } else {
-          RegistrationActivity.newIntentForReRegistration(context)
+          RegistrationIntents.newIntentForReRegistration(context)
         }
         context.startActivity(registrationIntent)
       }

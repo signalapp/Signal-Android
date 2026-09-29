@@ -31,7 +31,7 @@ import org.thoughtcrime.securesms.components.compose.rememberBiometricsAuthentic
 import org.thoughtcrime.securesms.components.settings.app.account.authenticator.TotpNavArgs
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.lock.v2.CreateSvrPinActivity
-import org.thoughtcrime.securesms.registration.ui.RegistrationActivity
+import org.thoughtcrime.securesms.registration.ui.RegistrationIntents
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.PlayStoreUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
@@ -136,7 +136,7 @@ class AccountSettingsFragment : ComposeFragment() {
       }
       AccountSettingsAction.NavigateToDeleteAccount -> findNavController().safeNavigate(R.id.action_accountSettingsFragment_to_deleteAccountFragment)
       AccountSettingsAction.OpenPlayStore -> PlayStoreUtil.openPlayStoreOrOurApkDownloadPage(requireContext())
-      AccountSettingsAction.LaunchReRegistration -> startActivity(RegistrationActivity.newIntentForReRegistration(requireContext()))
+      AccountSettingsAction.LaunchReRegistration -> startActivity(RegistrationIntents.newIntentForReRegistration(requireContext()))
       AccountSettingsAction.WipeAllData -> {
         if (!ServiceUtil.getActivityManager(AppDependencies.application).clearApplicationUserData()) {
           viewModel.onEvent(AccountSettingsEvent.DataWipeFailed)

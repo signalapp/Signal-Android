@@ -17,6 +17,7 @@ import org.signal.core.util.AppForegroundObserver;
 import org.signal.core.util.logging.Log;
 import org.signal.core.util.tracing.Tracer;
 import org.signal.devicetransfer.TransferStatus;
+import org.signal.registration.RegistrationActivity;
 import org.signal.registration.RegistrationRoute;
 import org.thoughtcrime.securesms.clockskew.ClockSkewActivity;
 import org.thoughtcrime.securesms.clockskew.ClockSkewDetector;
@@ -33,11 +34,9 @@ import org.thoughtcrime.securesms.pin.PinRestoreActivity;
 import org.thoughtcrime.securesms.profiles.edit.CreateProfileActivity;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.registration.ui.RegistrationActivity;
-import org.thoughtcrime.securesms.restore.RestoreActivity;
+import org.thoughtcrime.securesms.registration.ui.RegistrationIntents;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.AppStartup;
-import org.thoughtcrime.securesms.util.Environment;
 
 import java.util.Locale;
 
@@ -207,8 +206,7 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
   }
 
   private boolean shouldResumeLinkingRegistration() {
-    return Environment.USE_NEW_REGISTRATION &&
-           SignalStore.account().isRegistered() &&
+    return SignalStore.account().isRegistered() &&
            !SignalStore.account().isPrimaryDevice() &&
            !SignalStore.registration().isRegistrationComplete() &&
            RestoreDecisionStateUtil.isDecisionPending(SignalStore.registration().getRestoreDecisionState());
@@ -220,8 +218,7 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
    * hand the user back to the registration module.
    */
   private boolean shouldResumeRegistration() {
-    return Environment.USE_NEW_REGISTRATION &&
-           !SignalStore.registration().isRegistrationComplete() &&
+    return !SignalStore.registration().isRegistrationComplete() &&
            SignalStore.registration().getInProgressRegistrationDataBlobUri() != null;
   }
 
@@ -256,7 +253,7 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
   }
 
   private Intent getPushRegistrationIntent() {
-    return RegistrationActivity.newIntentForNewRegistration(this, getIntent());
+    return RegistrationIntents.newIntentForNewRegistration(this);
   }
 
   private Intent getEnterSignalPinIntent() {
@@ -276,19 +273,15 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
   }
 
   private Intent getTransferOrRestoreIntent() {
-    if (Environment.USE_NEW_REGISTRATION) {
-      return org.signal.registration.RegistrationActivity.createIntent(this, MainActivity.clearTop(this));
-    }
-    Intent intent = RestoreActivity.getRestoreIntent(this);
-    return getRoutedIntent(intent, MainActivity.clearTop(this));
+    return RegistrationActivity.createIntent(this, MainActivity.clearTop(this));
   }
 
   private Intent getResumeRegistrationIntent() {
-    return org.signal.registration.RegistrationActivity.createIntent(this, MainActivity.clearTop(this));
+    return RegistrationActivity.createIntent(this, MainActivity.clearTop(this));
   }
 
   private Intent getResumeLinkedRegistrationIntent() {
-    return org.signal.registration.RegistrationActivity.createIntent(this, MainActivity.clearTop(this), RegistrationRoute.MessageSync.INSTANCE);
+    return RegistrationActivity.createIntent(this, MainActivity.clearTop(this), RegistrationRoute.MessageSync.INSTANCE);
   }
 
   private Intent getCreateProfileNameIntent() {

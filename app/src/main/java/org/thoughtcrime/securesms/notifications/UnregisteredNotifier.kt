@@ -16,7 +16,7 @@ import org.signal.core.util.PendingIntentFlags
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.registration.ui.RegistrationActivity
+import org.thoughtcrime.securesms.registration.ui.RegistrationIntents
 
 /**
  * Notification shown when the service tells us our credentials are no longer valid, prompting the user to re-register or re-link.
@@ -32,9 +32,9 @@ object UnregisteredNotifier {
     }
 
     val registrationIntent = if (SignalStore.account.isLinkedDevice) {
-      RegistrationActivity.newIntentForReLinkDevice(context)
+      RegistrationIntents.newIntentForReLinkDevice(context)
     } else {
-      RegistrationActivity.newIntentForReRegistration(context)
+      RegistrationIntents.newIntentForReRegistration(context)
     }
 
     val reRegistrationIntent = PendingIntent.getActivity(
