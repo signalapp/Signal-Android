@@ -5,7 +5,6 @@
 
 package org.signal.mediakeyboard.screens.sticker
 
-import androidx.lifecycle.viewModelScope
 import assertk.assertThat
 import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
@@ -13,11 +12,12 @@ import assertk.assertions.isNull
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
@@ -43,6 +43,7 @@ class StickerPageViewModelTest {
   private lateinit var repository: StickerKeyboardRepository
   private lateinit var packsFlow: MutableStateFlow<List<KeyboardStickerPack>>
   private lateinit var actions: MutableList<MediaKeyboardAction>
+  private lateinit var collectorScope: CoroutineScope
 
   @Before
   fun setup() {
@@ -53,16 +54,18 @@ class StickerPageViewModelTest {
     every { repository.observeStickerPacks() } returns packsFlow
 
     actions = mutableListOf()
+    collectorScope = CoroutineScope(testDispatcher)
   }
 
   @After
   fun tearDown() {
+    collectorScope.cancel()
     Dispatchers.resetMain()
   }
 
   private fun createViewModel(): StickerPageViewModel {
     val viewModel = StickerPageViewModel(repository)
-    viewModel.actions.onEach(actions::add).launchIn(viewModel.viewModelScope)
+    collectorScope.launch { viewModel.actions.collect { actions += it } }
     testDispatcher.scheduler.advanceUntilIdle()
     return viewModel
   }

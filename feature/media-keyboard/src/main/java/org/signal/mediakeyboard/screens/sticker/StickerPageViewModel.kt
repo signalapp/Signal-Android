@@ -9,22 +9,19 @@ import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.flow.receiveAsFlow
-import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
 import org.signal.mediakeyboard.MediaKeyboardAction
 import org.signal.mediakeyboard.data.StickerKeyboardRepository
+import org.signal.mediakeyboard.screens.MediaKeyboardPageViewModel
 
 class StickerPageViewModel(
   private val repository: StickerKeyboardRepository
-) : EventDrivenViewModel<StickerPageScreenEvents>(TAG, shouldLogEvents = false) {
+) : MediaKeyboardPageViewModel<StickerPageScreenEvents>(TAG, shouldLogEvents = false) {
 
   companion object {
     private val TAG = Log.tag(StickerPageViewModel::class)
@@ -32,11 +29,6 @@ class StickerPageViewModel(
 
   private val _state = MutableStateFlow(StickerPageState(allowAnimation = repository.allowStickerAnimation))
   val state: StateFlow<StickerPageState> = _state.asStateFlow()
-
-  private val actionChannel = Channel<MediaKeyboardAction>(Channel.UNLIMITED)
-
-  /** What the user did that only the host can carry out, for whichever host is current. */
-  val actions: Flow<MediaKeyboardAction> = actionChannel.receiveAsFlow()
 
   init {
     onEvent(StickerPageScreenEvents.Initialize)
@@ -79,24 +71,24 @@ class StickerPageViewModel(
       }
 
       is StickerPageScreenEvents.StickerClicked -> {
-        actionChannel.trySend(MediaKeyboardAction.StickerSelected(event.sticker))
+        emitAction(MediaKeyboardAction.StickerSelected(event.sticker))
       }
 
       is StickerPageScreenEvents.StickerSendClicked -> {
         repository.onStickerUsed(event.sticker)
-        actionChannel.trySend(MediaKeyboardAction.StickerSendClicked(event.sticker))
+        emitAction(MediaKeyboardAction.StickerSendClicked(event.sticker))
       }
 
       is StickerPageScreenEvents.SearchClicked -> {
-        actionChannel.trySend(MediaKeyboardAction.StickerSearchClicked)
+        emitAction(MediaKeyboardAction.StickerSearchClicked)
       }
 
       is StickerPageScreenEvents.ViewStickerPackClicked -> {
-        actionChannel.trySend(MediaKeyboardAction.ViewStickerPackClicked(event.packId, event.packKey))
+        emitAction(MediaKeyboardAction.ViewStickerPackClicked(event.packId, event.packKey))
       }
 
       is StickerPageScreenEvents.SendStickerPackClicked -> {
-        actionChannel.trySend(MediaKeyboardAction.SendStickerPackClicked(event.packId, event.packKey))
+        emitAction(MediaKeyboardAction.SendStickerPackClicked(event.packId, event.packKey))
       }
 
       is StickerPageScreenEvents.RemoveStickerPackClicked -> {
@@ -108,7 +100,7 @@ class StickerPageViewModel(
         stateEmitter(state.copy(confirmRemovePack = null))
 
         if (pack != null) {
-          actionChannel.trySend(MediaKeyboardAction.RemoveStickerPackConfirmed(pack.packId, pack.packKey))
+          emitAction(MediaKeyboardAction.RemoveStickerPackConfirmed(pack.packId, pack.packKey))
         }
       }
 

@@ -371,6 +371,7 @@ private fun EmojiImage(
     Text(
       text = emoji,
       fontSize = if (emoji.isAsciiEmoticon()) 13.sp else 22.sp,
+      color = MaterialTheme.colorScheme.onSurface,
       maxLines = 1,
       softWrap = false,
       modifier = modifier

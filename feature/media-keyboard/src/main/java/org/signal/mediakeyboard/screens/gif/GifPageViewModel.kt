@@ -8,21 +8,18 @@ package org.signal.mediakeyboard.screens.gif
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.receiveAsFlow
-import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.Result
 import org.signal.core.util.logging.Log
 import org.signal.mediakeyboard.MediaKeyboardAction
 import org.signal.mediakeyboard.data.GifKeyboardRepository
+import org.signal.mediakeyboard.screens.MediaKeyboardPageViewModel
 
 class GifPageViewModel(
   private val repository: GifKeyboardRepository
-) : EventDrivenViewModel<GifPageScreenEvents>(TAG) {
+) : MediaKeyboardPageViewModel<GifPageScreenEvents>(TAG) {
 
   companion object {
     private val TAG = Log.tag(GifPageViewModel::class)
@@ -31,11 +28,6 @@ class GifPageViewModel(
 
   private val _state = MutableStateFlow(GifPageState())
   val state: StateFlow<GifPageState> = _state.asStateFlow()
-
-  private val actionChannel = Channel<MediaKeyboardAction>(Channel.UNLIMITED)
-
-  /** What the user did that only the host can carry out, for whichever host is current. */
-  val actions: Flow<MediaKeyboardAction> = actionChannel.receiveAsFlow()
 
   init {
     onEvent(GifPageScreenEvents.Initialize)
@@ -71,11 +63,11 @@ class GifPageViewModel(
       }
 
       is GifPageScreenEvents.GifClicked -> {
-        actionChannel.trySend(MediaKeyboardAction.GifSelected(event.gif))
+        emitAction(MediaKeyboardAction.GifSelected(event.gif))
       }
 
       is GifPageScreenEvents.SearchClicked -> {
-        actionChannel.trySend(MediaKeyboardAction.GifSearchClicked)
+        emitAction(MediaKeyboardAction.GifSearchClicked)
       }
     }
   }

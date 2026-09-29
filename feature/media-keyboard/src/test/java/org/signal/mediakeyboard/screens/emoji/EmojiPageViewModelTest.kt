@@ -5,7 +5,6 @@
 
 package org.signal.mediakeyboard.screens.emoji
 
-import androidx.lifecycle.viewModelScope
 import assertk.assertThat
 import assertk.assertions.isEqualTo
 import assertk.assertions.isNotNull
@@ -14,11 +13,12 @@ import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
 import io.mockk.verify
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
@@ -44,6 +44,7 @@ class EmojiPageViewModelTest {
   private lateinit var repository: EmojiKeyboardRepository
   private lateinit var parentState: MutableStateFlow<MediaKeyboardState>
   private lateinit var actions: MutableList<MediaKeyboardAction>
+  private lateinit var collectorScope: CoroutineScope
 
   @Before
   fun setup() {
@@ -55,16 +56,18 @@ class EmojiPageViewModelTest {
 
     parentState = MutableStateFlow(MediaKeyboardState(offeredTabs = MediaKeyboardTab.entries, preferredTab = MediaKeyboardTab.EMOJI, initialized = true))
     actions = mutableListOf()
+    collectorScope = CoroutineScope(testDispatcher)
   }
 
   @After
   fun tearDown() {
+    collectorScope.cancel()
     Dispatchers.resetMain()
   }
 
   private fun createViewModel(): EmojiPageViewModel {
     val viewModel = EmojiPageViewModel(repository, parentState)
-    viewModel.actions.onEach(actions::add).launchIn(viewModel.viewModelScope)
+    collectorScope.launch { viewModel.actions.collect { actions += it } }
     testDispatcher.scheduler.advanceUntilIdle()
     return viewModel
   }

@@ -46,15 +46,13 @@ interface StickerKeyboardRepository {
  * @param packKey The key of the pack this came from, which identifies the pack alongside [packId]
  *   wherever it is opened. Carried on the sticker rather than the pack because recents mixes packs.
  * @param image A Glide-loadable model for the sticker image (e.g. a Uri or resource id).
- * @param isAnimated Whether the image is an animated (APNG) sticker.
  */
 data class KeyboardSticker(
   val packId: String,
   val packKey: String,
   val stickerId: Long,
   val emoji: String?,
-  val image: Any,
-  val isAnimated: Boolean = false
+  val image: Any
 )
 
 /**

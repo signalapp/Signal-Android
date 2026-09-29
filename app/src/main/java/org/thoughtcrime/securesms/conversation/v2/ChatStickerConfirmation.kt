@@ -173,7 +173,7 @@ private fun StickerConfirmationPanel(
 
     GlideImage(
       model = confirmation.sticker.image,
-      enableApngAnimation = confirmation.sticker.isAnimated,
+      enableApngAnimation = true,
       modifier = Modifier
         .size(StickerSize)
         .align(Alignment.Center)

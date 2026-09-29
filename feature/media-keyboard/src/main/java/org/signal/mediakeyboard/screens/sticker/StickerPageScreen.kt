@@ -7,10 +7,14 @@ package org.signal.mediakeyboard.screens.sticker
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.combinedClickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.calculateEndPadding
+import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -38,9 +42,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewWrapper
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
@@ -58,6 +66,9 @@ import org.signal.mediakeyboard.screens.GRID_CONTENT_PADDING
 import org.signal.mediakeyboard.screens.MediaKeyboardSearchField
 import org.signal.mediakeyboard.screens.PinnedRailLayout
 import org.signal.mediakeyboard.screens.SearchFieldReveal
+
+private const val STICKER_COLUMN_COUNT = 5
+private val STICKER_CELL_SPACING = 12.dp
 
 /**
  * @param onSearchFieldRevealedChange Reports whether the grid is scrolled far enough up to show the
@@ -156,6 +167,7 @@ private fun PackButton(
       } else {
         GlideImage(
           model = pack.cover,
+          imageSize = DpSize(28.dp, 28.dp),
           modifier = Modifier.size(28.dp)
         )
       }
@@ -209,31 +221,44 @@ private fun StickerGrid(
     visiblePackId?.let { onEvent(StickerPageScreenEvents.VisiblePackChanged(it)) }
   }
 
-  LazyVerticalGrid(
-    columns = GridCells.Adaptive(minSize = 72.dp),
-    state = gridState,
-    contentPadding = GRID_CONTENT_PADDING,
-    modifier = modifier.fillMaxWidth()
-  ) {
-    item(key = "search", span = { GridItemSpan(maxLineSpan) }) {
-      MediaKeyboardSearchField(
-        hint = stringResource(R.string.MediaKeyboard__search_stickers),
-        onClick = { onEvent(StickerPageScreenEvents.SearchClicked) }
-      )
-    }
+  // Each cell decodes its sticker at the cell's size, which the grid does not report, so work it out the way the grid
+  // will and hand it down.
+  BoxWithConstraints(modifier = modifier.fillMaxWidth()) {
+    val layoutDirection = LocalLayoutDirection.current
+    val rowWidth = maxWidth -
+      GRID_CONTENT_PADDING.calculateStartPadding(layoutDirection) -
+      GRID_CONTENT_PADDING.calculateEndPadding(layoutDirection)
+    val cellSize = (rowWidth - STICKER_CELL_SPACING * (STICKER_COLUMN_COUNT - 1)) / STICKER_COLUMN_COUNT
 
-    state.packs.forEach { pack ->
-      item(key = "header:${pack.id}", span = { GridItemSpan(maxLineSpan) }) {
-        StickerPackHeader(pack = pack, onEvent = onEvent)
+    LazyVerticalGrid(
+      columns = GridCells.Fixed(STICKER_COLUMN_COUNT),
+      state = gridState,
+      contentPadding = GRID_CONTENT_PADDING,
+      horizontalArrangement = Arrangement.spacedBy(STICKER_CELL_SPACING),
+      verticalArrangement = Arrangement.spacedBy(STICKER_CELL_SPACING),
+      modifier = Modifier.fillMaxWidth()
+    ) {
+      item(key = "search", span = { GridItemSpan(maxLineSpan) }) {
+        MediaKeyboardSearchField(
+          hint = stringResource(R.string.MediaKeyboard__search_stickers),
+          onClick = { onEvent(StickerPageScreenEvents.SearchClicked) }
+        )
       }
 
-      pack.stickers.forEachIndexed { index, sticker ->
-        item(key = "${pack.id}:${sticker.stickerId}:$index") {
-          StickerCell(
-            sticker = sticker,
-            allowAnimation = state.allowAnimation,
-            onEvent = onEvent
-          )
+      state.packs.forEach { pack ->
+        item(key = "header:${pack.id}", span = { GridItemSpan(maxLineSpan) }) {
+          StickerPackHeader(pack = pack, onEvent = onEvent)
+        }
+
+        pack.stickers.forEachIndexed { index, sticker ->
+          item(key = "${pack.id}:${sticker.stickerId}:$index") {
+            StickerCell(
+              sticker = sticker,
+              allowAnimation = state.allowAnimation,
+              cellSize = cellSize,
+              onEvent = onEvent
+            )
+          }
         }
       }
     }
@@ -375,6 +400,7 @@ private fun StickerPackHeaderPreview() {
 private fun StickerCell(
   sticker: KeyboardSticker,
   allowAnimation: Boolean,
+  cellSize: Dp,
   onEvent: (StickerPageScreenEvents) -> Unit
 ) {
   val controller = remember { DropdownMenus.MenuController() }
@@ -392,12 +418,13 @@ private fun StickerCell(
           controller.show()
         }
       )
-      .padding(8.dp)
   ) {
     GlideImage(
       model = sticker.image,
-      enableApngAnimation = allowAnimation && sticker.isAnimated,
+      enableApngAnimation = allowAnimation,
       skipMemoryCache = true,
+      imageSize = DpSize(cellSize, cellSize),
+      contentScale = ContentScale.Fit,
       modifier = Modifier.fillMaxSize()
     )
 

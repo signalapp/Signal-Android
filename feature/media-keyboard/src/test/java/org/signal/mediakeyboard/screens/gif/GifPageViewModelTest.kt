@@ -5,7 +5,6 @@
 
 package org.signal.mediakeyboard.screens.gif
 
-import androidx.lifecycle.viewModelScope
 import assertk.assertThat
 import assertk.assertions.hasSize
 import assertk.assertions.isEqualTo
@@ -13,10 +12,11 @@ import assertk.assertions.isFalse
 import assertk.assertions.isTrue
 import io.mockk.coEvery
 import io.mockk.mockk
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
@@ -37,6 +37,7 @@ class GifPageViewModelTest {
 
   private lateinit var repository: GifKeyboardRepository
   private lateinit var actions: MutableList<MediaKeyboardAction>
+  private lateinit var collectorScope: CoroutineScope
 
   @Before
   fun setup() {
@@ -44,16 +45,18 @@ class GifPageViewModelTest {
     repository = mockk()
     coEvery { repository.getGifs("", 0, any()) } returns Result.success(GifPage(gifs(20), hasMore = true))
     actions = mutableListOf()
+    collectorScope = CoroutineScope(testDispatcher)
   }
 
   @After
   fun tearDown() {
+    collectorScope.cancel()
     Dispatchers.resetMain()
   }
 
   private fun createViewModel(): GifPageViewModel {
     val viewModel = GifPageViewModel(repository)
-    viewModel.actions.onEach(actions::add).launchIn(viewModel.viewModelScope)
+    collectorScope.launch { viewModel.actions.collect { actions += it } }
     testDispatcher.scheduler.advanceUntilIdle()
     return viewModel
   }

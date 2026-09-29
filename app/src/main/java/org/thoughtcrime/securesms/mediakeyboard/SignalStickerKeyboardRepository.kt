@@ -26,7 +26,6 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.StickerTables.StickerPackRecordReader
 import org.thoughtcrime.securesms.database.StickerTables.StickerRecordReader
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.util.MediaUtil
 
 /**
  * [StickerKeyboardRepository] backed by the app's sticker database.
@@ -109,9 +108,7 @@ class SignalStickerKeyboardRepository(private val context: Context) : StickerKey
       packKey = packKey,
       stickerId = stickerId.toLong(),
       emoji = emoji.nullIfBlank(),
-      image = DecryptableUri(uri),
-      // Sticker packs only carry static WebP and animated APNG, so a PNG sticker is an APNG.
-      isAnimated = contentType == MediaUtil.IMAGE_PNG
+      image = DecryptableUri(uri)
     )
   }
 }
