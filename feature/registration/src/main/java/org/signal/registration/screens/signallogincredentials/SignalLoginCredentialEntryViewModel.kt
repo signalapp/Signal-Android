@@ -243,7 +243,7 @@ class SignalLoginCredentialEntryViewModel(
           is RegisterAccountError.DeviceTransferPossible -> {
             error("[Next] Device transfer possible. This should not happen with RRP-based registration.")
           }
-          RegisterAccountError.TotpMissingOrIncorrect -> {
+          is RegisterAccountError.TwoFactorRequired -> {
             // For now this error only means TOTP, but in the future it will indicate that some two-factor method is
             // required, so we treat it generically and let the method list decide where to go.
             val methods = listOf(TwoFactorMethod.AuthenticatorApp)

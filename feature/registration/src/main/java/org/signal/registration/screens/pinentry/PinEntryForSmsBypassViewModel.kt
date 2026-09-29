@@ -216,7 +216,7 @@ class PinEntryForSmsBypassViewModel(
             state
           }
           is RegisterAccountError.InvalidReceiptCredentialPresentation,
-          RegisterAccountError.TotpMissingOrIncorrect,
+          is RegisterAccountError.TwoFactorRequired,
           RegisterAccountError.PostQuantumRatchetRequired -> {
             Log.w(TAG, "[Register] Unexpected error when registering: $error")
             state.copy(loading = false, dialogs = state.dialogs.copy(unknownError = true))

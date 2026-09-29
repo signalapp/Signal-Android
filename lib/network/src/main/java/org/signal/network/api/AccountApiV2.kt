@@ -19,14 +19,17 @@ import org.signal.libsignal.net.AuthUsernamesService
 import org.signal.libsignal.net.BadRequestError
 import org.signal.libsignal.net.ConfirmTotpKeyError
 import org.signal.libsignal.net.ConfirmedMfaKey
+import org.signal.libsignal.net.FinishWebAuthnRegistrationError
 import org.signal.libsignal.net.GenerateTotpKeyError
 import org.signal.libsignal.net.MfaKeyNotFoundException
 import org.signal.libsignal.net.MfaMetadata
 import org.signal.libsignal.net.PendingTotpKey
 import org.signal.libsignal.net.RequestResult
+import org.signal.libsignal.net.StartWebAuthnRegistrationError
 import org.signal.libsignal.net.SvrKey
 import org.signal.libsignal.net.UsernameNotAvailableException
 import org.signal.libsignal.net.UsernameNotSetException
+import org.signal.libsignal.net.WebAuthnCreateParameters
 import org.signal.libsignal.protocol.ecc.ECPublicKey
 import org.signal.libsignal.protocol.kem.KEMPublicKey
 import org.signal.libsignal.usernames.BaseUsernameException
@@ -210,12 +213,54 @@ class AccountApiV2(private val authWebSocket: SignalWebSocket.AuthenticatedWebSo
    * it, returning the id the service assigned. The metadata is encrypted under a key derived from [masterKey], so the
    * service never sees it.
    *
-   * A [OneTimePasswordNotVerifiedException][org.signal.libsignal.net.OneTimePasswordNotVerifiedException] means the
+   * A [MfaNotVerifiedException][org.signal.libsignal.net.MfaNotVerifiedException] means the
    * password was wrong, the clocks are too far apart, or there was no pending key -- the service can't tell us which.
    */
   suspend fun confirmTotpKey(oneTimePassword: Int, metadata: MfaMetadata, masterKey: MasterKey): RequestResult<Int, ConfirmTotpKeyError> {
     return authWebSocket.runCatchingWithChatConnection { connection ->
       AuthAccountsService(connection).confirmTotpKey(oneTimePassword = oneTimePassword, metadata = metadata, svrKey = SvrKey(masterKey.serialize()))
+    }
+  }
+
+  /**
+   * Starts a WebAuthn registration ceremony, returning the parameters an authenticator needs to create a passkey for
+   * the account. Nothing is added to the account until [finishWebAuthnRegistration] reports the ceremony's outcome, so
+   * an abandoned ceremony leaves the account's keys alone.
+   *
+   * A [TooManyMfaKeysException][org.signal.libsignal.net.TooManyMfaKeysException] means the account is at its limit,
+   * and a key has to be removed before another can be added.
+   */
+  suspend fun startWebAuthnRegistration(): RequestResult<WebAuthnCreateParameters, StartWebAuthnRegistrationError> {
+    return authWebSocket.runCatchingWithChatConnection { connection ->
+      AuthAccountsService(connection).startWebAuthnRegistration()
+    }
+  }
+
+  /**
+   * Finishes the ceremony [startWebAuthnRegistration] began, adding the passkey to the account and returning the id the
+   * service assigned it. [metadata] is encrypted under a key derived from [masterKey], so the service never sees it.
+   *
+   * A [WebAuthnRegistrationUnsuccessfulException][org.signal.libsignal.net.WebAuthnRegistrationUnsuccessfulException]
+   * means the service could not verify the ceremony's response, and a
+   * [TooManyMfaKeysException][org.signal.libsignal.net.TooManyMfaKeysException] means the account filled up while the
+   * ceremony was running.
+   *
+   * @param attestationObject The attestation object from the ceremony, serialized per the WebAuthn spec.
+   * @param collectedClientDataJson The collected client data, as the exact JSON that was hashed for the authenticator.
+   */
+  suspend fun finishWebAuthnRegistration(
+    attestationObject: ByteArray,
+    collectedClientDataJson: String,
+    metadata: MfaMetadata,
+    masterKey: MasterKey
+  ): RequestResult<Int, FinishWebAuthnRegistrationError> {
+    return authWebSocket.runCatchingWithChatConnection { connection ->
+      AuthAccountsService(connection).finishWebAuthnRegistration(
+        attestationObject = attestationObject,
+        collectedClientDataJson = collectedClientDataJson,
+        metadata = metadata,
+        svrKey = SvrKey(masterKey.serialize())
+      )
     }
   }
 

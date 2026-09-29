@@ -67,6 +67,7 @@ import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.network.api.RegistrationApiV2.CheckSvrCredentialsResponse
 import org.signal.network.api.RegistrationApiV2.CreateLoginReceiptCredentialResult
+import org.signal.network.api.RegistrationApiV2.MfaFailureResponse
 import org.signal.network.api.RegistrationApiV2.RegisterAccountError
 import org.signal.network.api.RegistrationApiV2.RegistrationLockResponse
 import org.signal.network.api.RegistrationApiV2.RestoreMethod
@@ -2264,7 +2265,7 @@ class RegistrationEndToEndTest {
           RequestResult.NonSuccess(RegisterAccountError.RegistrationRecoveryPasswordIncorrect("no such login"))
         }
         requiredTotp != null && request.totp != requiredTotp -> {
-          RequestResult.NonSuccess(RegisterAccountError.TotpMissingOrIncorrect)
+          RequestResult.NonSuccess(RegisterAccountError.TwoFactorRequired(MfaFailureResponse(hasTotpKey = true)))
         }
         registrationLocked && request.registrationLock != masterKey.deriveRegistrationLock() -> {
           RequestResult.NonSuccess(

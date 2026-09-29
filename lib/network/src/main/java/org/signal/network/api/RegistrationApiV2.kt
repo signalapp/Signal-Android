@@ -297,13 +297,15 @@ class RegistrationApiV2(
    * - 422: Request is invalid
    * - 423: Registration lock is active
    * - 429: Rate limited
-   * - 441: A TOTP is required, but none was provided or the provided one was incorrect
+   * - 441: A second factor is required, but none was provided or the provided one was incorrect
    * - 499: The client must support the post-quantum ratchet
    *
    * @param e164 The phone number in E.164 format (used as username for basic auth). Null when registering without a phone number.
    * @param password The password for basic auth
    * @param aci The ACI of the existing numberless account to log back in to, used as the username for basic auth.
    * @param totp A TOTP one-time password, required when recovering an account that has TOTP keys.
+   * @param webAuthnResponse A JSON-serialized assertion response from a completed WebAuthn authentication ceremony,
+   *   which recovers an account that has passkeys. Never sent alongside a [totp].
    */
   suspend fun registerAccount(
     e164: String?,
@@ -317,13 +319,15 @@ class RegistrationApiV2(
     fcmToken: String?,
     skipDeviceTransfer: Boolean,
     aci: ACI? = null,
-    totp: Int? = null
+    totp: Int? = null,
+    webAuthnResponse: String? = null
   ): RequestResult<RegisterAccountResponse, RegisterAccountError> {
     val redeemingReceipt = receiptCredentialPresentation != null
     val phoneNumberless = redeemingReceipt || aci != null
 
     require(listOfNotNull(sessionId, recoveryPassword, receiptCredentialPresentation).size == 1) { "You must supply exactly one of: Session ID, Recovery Password, or Receipt Credential Presentation." }
     require(aci == null || recoveryPassword != null) { "Must send a recovery password alongside an ACI." }
+    require(totp == null || webAuthnResponse == null) { "Must send at most one second factor." }
     if (phoneNumberless) {
       check(phonenumberlessRegistrationAllowed) { "Phone-number-less registration is not allowed in this build!" }
       require(e164 == null) { "Must not send an e164 when registering without a phone number." }
@@ -344,6 +348,7 @@ class RegistrationApiV2(
       recoveryPassword = recoveryPassword,
       receiptCredentialPresentation = receiptCredentialPresentation?.let { Base64.encodeWithPadding(it.serialize()) },
       totp = totp,
+      webAuthnResponse = webAuthnResponse,
       accountAttributes = attributes,
       aciIdentityKey = Base64.encodeWithoutPadding(aciPreKeys.identityKey.serialize()),
       pniIdentityKey = pniPreKeys?.let { Base64.encodeWithoutPadding(it.identityKey.serialize()) },
@@ -376,7 +381,7 @@ class RegistrationApiV2(
           409 -> RegisterAccountError.DeviceTransferPossible
           423 -> RegisterAccountError.RegistrationLock(SignalJson.json.decodeFromString<RegistrationLockResponse>(error.bodyString()))
           429 -> RegisterAccountError.RateLimited(error.retryAfter())
-          441 -> RegisterAccountError.TotpMissingOrIncorrect
+          441 -> RegisterAccountError.TwoFactorRequired(SignalJson.json.decodeFromString<MfaFailureResponse>(error.bodyString()))
           499 -> RegisterAccountError.PostQuantumRatchetRequired
           else -> null
         }
@@ -780,6 +785,47 @@ class RegistrationApiV2(
     STRIPE, BRAINTREE, GOOGLE_PLAY_BILLING, APPLE_APP_STORE
   }
 
+  /** What the service tells us about an account's second factors when it turns a registration away for want of one. */
+  @Serializable
+  data class MfaFailureResponse(
+    /** Whether the account has at least one authenticator app registered. */
+    val hasTotpKey: Boolean = false,
+    /** Present when the account has at least one passkey registered. */
+    val webAuthnParameters: WebAuthnAuthenticationParameters? = null
+  )
+
+  /** Everything an authenticator needs to run a WebAuthn assertion against the account's registered passkeys. */
+  @Serializable
+  data class WebAuthnAuthenticationParameters(
+    @Serializable(with = ByteArrayToBase64Serializer::class)
+    val challenge: ByteArray,
+    /** How long the [challenge] stays valid. */
+    val timeoutSeconds: Long,
+    /** The credential ids of the passkeys already registered to the account. */
+    val allowedCredentialIds: List<
+      @Serializable(with = ByteArrayToBase64Serializer::class)
+      ByteArray
+      > = emptyList()
+  ) {
+    override fun equals(other: Any?): Boolean {
+      if (this === other) return true
+      if (other !is WebAuthnAuthenticationParameters) return false
+
+      return challenge.contentEquals(other.challenge) &&
+        timeoutSeconds == other.timeoutSeconds &&
+        allowedCredentialIds.size == other.allowedCredentialIds.size &&
+        allowedCredentialIds.zip(other.allowedCredentialIds).all { (a, b) -> a.contentEquals(b) }
+    }
+
+    override fun hashCode(): Int {
+      var result = challenge.contentHashCode()
+      result = 31 * result + timeoutSeconds.hashCode()
+      return allowedCredentialIds.fold(result) { acc, id -> 31 * acc + id.contentHashCode() }
+    }
+
+    override fun toString(): String = "WebAuthnAuthenticationParameters(timeoutSeconds=$timeoutSeconds, allowedCredentialIds=${allowedCredentialIds.size})"
+  }
+
   @Serializable
   data class RegistrationLockResponse(
     val timeRemaining: Long,
@@ -901,6 +947,7 @@ class RegistrationApiV2(
     val recoveryPassword: String? = null,
     val receiptCredentialPresentation: String? = null,
     val totp: Int? = null,
+    val webAuthnResponse: String? = null,
     val accountAttributes: AccountAttributes,
     val aciIdentityKey: String,
     val pniIdentityKey: String?,
@@ -1011,8 +1058,11 @@ class RegistrationApiV2(
     data class RegistrationLock(val data: RegistrationLockResponse) : RegisterAccountError()
     data class RateLimited(val retryAfter: Duration) : RegisterAccountError()
 
-    /** The account being recovered has TOTP keys, and no TOTP or an incorrect TOTP was supplied. */
-    data object TotpMissingOrIncorrect : RegisterAccountError()
+    /**
+     * The account being recovered has second factors, and no second factor or an incorrect one was supplied. [data]
+     * says which factors the account has, and carries what a WebAuthn ceremony needs to run against them.
+     */
+    data class TwoFactorRequired(val data: MfaFailureResponse) : RegisterAccountError()
 
     /** The service requires that the registering client support the post-quantum ratchet. */
     data object PostQuantumRatchetRequired : RegisterAccountError()

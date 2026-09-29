@@ -222,7 +222,7 @@ class PinEntryForRegistrationLockViewModel(
             state
           }
           is RegisterAccountError.InvalidReceiptCredentialPresentation,
-          RegisterAccountError.TotpMissingOrIncorrect,
+          is RegisterAccountError.TwoFactorRequired,
           RegisterAccountError.PostQuantumRatchetRequired -> {
             Log.w(TAG, "[PinEntered] Unexpected error when registering: $error")
             state.copy(loading = false, dialogs = state.dialogs.copy(unknownError = true))

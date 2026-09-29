@@ -380,7 +380,7 @@ class PhoneNumberEntryViewModel(
               state = state.copy(preExistingRegistrationData = null)
             }
             is RegisterAccountError.InvalidReceiptCredentialPresentation,
-            RegisterAccountError.TotpMissingOrIncorrect,
+            is RegisterAccountError.TwoFactorRequired,
             RegisterAccountError.PostQuantumRatchetRequired -> {
               Log.w(TAG, "[Register] Unexpected registration error: $error")
               return state.copy(dialogs = state.dialogs.copy(unknownError = true))
@@ -491,7 +491,7 @@ class PhoneNumberEntryViewModel(
             applySessionBasedRegistration(state, e164, parentEventEmitter)
           }
           is RegisterAccountError.InvalidReceiptCredentialPresentation,
-          RegisterAccountError.TotpMissingOrIncorrect,
+          is RegisterAccountError.TwoFactorRequired,
           RegisterAccountError.PostQuantumRatchetRequired -> {
             Log.w(TAG, "[LocalRestore] Unexpected registration error: $error")
             state.copy(dialogs = state.dialogs.copy(unknownError = true))

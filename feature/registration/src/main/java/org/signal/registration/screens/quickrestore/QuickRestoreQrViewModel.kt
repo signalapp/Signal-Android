@@ -184,7 +184,7 @@ class QuickRestoreQrViewModel(
             )
           }
           is RegisterAccountError.InvalidReceiptCredentialPresentation,
-          RegisterAccountError.TotpMissingOrIncorrect,
+          is RegisterAccountError.TwoFactorRequired,
           RegisterAccountError.PostQuantumRatchetRequired -> {
             Log.w(TAG, "[Register] Unexpected registration error: $error")
             _state.value = _state.value.copy(

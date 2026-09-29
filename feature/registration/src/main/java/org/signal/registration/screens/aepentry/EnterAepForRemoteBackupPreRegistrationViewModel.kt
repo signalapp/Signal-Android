@@ -142,7 +142,7 @@ class EnterAepForRemoteBackupPreRegistrationViewModel(
             error("[Submit] Device transfer possible. This should not happen with RRP-based registration.")
           }
           is RegisterAccountError.InvalidReceiptCredentialPresentation,
-          RegisterAccountError.TotpMissingOrIncorrect,
+          is RegisterAccountError.TwoFactorRequired,
           RegisterAccountError.PostQuantumRatchetRequired -> {
             Log.w(TAG, "[Submit] Unexpected registration error: $error")
             stateEmitter(

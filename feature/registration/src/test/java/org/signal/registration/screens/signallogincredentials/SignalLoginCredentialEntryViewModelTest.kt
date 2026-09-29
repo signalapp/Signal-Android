@@ -35,6 +35,7 @@ import org.junit.Test
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.ServiceId.ACI
 import org.signal.libsignal.net.RequestResult
+import org.signal.network.api.RegistrationApiV2.MfaFailureResponse
 import org.signal.network.api.RegistrationApiV2.RegisterAccountError
 import org.signal.network.api.RegistrationApiV2.RegisterAccountResponse
 import org.signal.network.api.RegistrationApiV2.RegistrationLockResponse
@@ -472,7 +473,7 @@ class SignalLoginCredentialEntryViewModelTest {
   @Test
   fun `NextClicked requiring a two-factor code navigates directly to TOTP entry`() = runTest(testDispatcher) {
     coEvery { mockRepository.reRegisterAccountWithoutPhoneNumber(any(), any(), any(), any(), any()) } returns
-      RequestResult.NonSuccess(RegisterAccountError.TotpMissingOrIncorrect)
+      RequestResult.NonSuccess(RegisterAccountError.TwoFactorRequired(MfaFailureResponse(hasTotpKey = true)))
 
     applyEvent(completeState(), SignalLoginCredentialEntryScreenEvents.NextClicked)
 
