@@ -609,14 +609,6 @@
             android:theme="@style/Theme.Signal.DayNight.NoActionBar" />
 
         <activity
-            android:name=".restore.RestoreActivity"
-            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-            android:exported="false"
-            android:launchMode="singleTask"
-            android:theme="@style/Theme.Signal.DayNight.NoActionBar"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
-
-        <activity
             android:name=".revealable.ViewOnceMessageActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:excludeFromRecents="true"
@@ -750,16 +742,6 @@
             android:exported="false"
             android:theme="@style/TextSecure.LightRegistrationTheme"
             android:windowSoftInputMode="stateVisible|adjustResize" />
-
-        <activity
-            android:name=".registration.ui.restore.RemoteRestoreActivity"
-            android:exported="false"
-            android:theme="@style/Signal.DayNight.NoActionBar" />
-
-        <activity
-            android:name=".registration.ui.restore.local.RestoreLocalBackupActivity"
-            android:exported="false"
-            android:theme="@style/Signal.DayNight.NoActionBar" />
 
         <activity
             android:name=".profiles.manage.EditProfileActivity"

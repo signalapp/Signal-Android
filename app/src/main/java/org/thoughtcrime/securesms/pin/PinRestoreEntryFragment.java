@@ -22,7 +22,6 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import org.signal.core.util.logging.Log;
 import org.signal.core.ui.logging.LoggingFragment;
 import org.thoughtcrime.securesms.MainActivity;
-import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobs.ProfileUploadJob;
@@ -34,7 +33,6 @@ import org.thoughtcrime.securesms.profiles.edit.CreateProfileActivity;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate;
 import org.thoughtcrime.securesms.registration.util.RegistrationUtil;
-import org.thoughtcrime.securesms.restore.RestoreActivity;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.SupportEmailUtil;
@@ -224,9 +222,7 @@ public class PinRestoreEntryFragment extends LoggingFragment {
     Activity activity = requireActivity();
 
     if (RestoreDecisionStateUtil.isDecisionPending(SignalStore.registration().getRestoreDecisionState())) {
-      final Intent transferOrRestore = RestoreActivity.getRestoreIntent(activity);
-      transferOrRestore.putExtra(PassphraseRequiredActivity.NEXT_INTENT_EXTRA, MainActivity.clearTop(requireContext()));
-      startActivity(transferOrRestore);
+      startActivity(MainActivity.clearTop(activity));
     } else if (Recipient.self().getProfileName().isEmpty() || !AvatarHelper.hasAvatar(activity, Recipient.self().getId())) {
       final Intent main    = MainActivity.clearTop(activity);
       final Intent profile = CreateProfileActivity.getIntentForUserProfile(activity);

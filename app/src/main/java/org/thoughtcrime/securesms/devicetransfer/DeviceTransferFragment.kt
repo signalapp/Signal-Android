@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.restore.devicetransfer
+package org.thoughtcrime.securesms.devicetransfer
 
 import android.os.Bundle
 import android.view.View

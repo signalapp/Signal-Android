@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.restore.restorelocalbackup;
+package org.thoughtcrime.securesms.backup;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
