@@ -29,6 +29,7 @@ dependencies {
   implementation(project(":core:util"))
   implementation(project(":core:ui"))
   implementation(project(":lib:glide"))
+  implementation(project(":lib:video"))
 
   // Compose BOM
   platform(libs.androidx.compose.bom).let { composeBom ->

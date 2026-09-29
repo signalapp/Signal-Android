@@ -7,9 +7,12 @@ package org.signal.mediakeyboard.screens
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.ProvidableCompositionLocal
@@ -30,6 +33,7 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
+import org.signal.core.ui.compose.navigationBarsCompat
 
 /**
  * Whether the media keyboard is (or is settling to) full height. Bottom rails re-show themselves
@@ -44,6 +48,11 @@ private val SCROLL_DIRECTION_THRESHOLD = 4.dp
  *
  * Like browser chrome, the rail slides away when the content is scrolled down and returns when it
  * is scrolled back up or the keyboard grows to full height.
+ *
+ * The rail holds the navigation bar clear on the keyboard's behalf, painting behind it while keeping its own contents
+ * above it, so [content] is free to fill the sheet to the bottom of the window. A hidden rail takes the bar's room
+ * with it, which is what lets the content run edge to edge once it is scrolled away. With no rail to do that, this
+ * layout keeps the bar clear itself, since nothing else in the sheet does.
  */
 @Composable
 internal fun PinnedRailLayout(
@@ -92,10 +101,16 @@ internal fun PinnedRailLayout(
       .clipToBounds()
       .nestedScroll(scrollConnection)
   ) {
+    val contentBottomPadding = if (rail != null) {
+      with(density) { (railHeight * (1f - railHiddenFraction)).toDp() }
+    } else {
+      WindowInsets.navigationBarsCompat.asPaddingValues().calculateBottomPadding()
+    }
+
     Box(
       modifier = Modifier
         .fillMaxSize()
-        .padding(bottom = with(density) { (railHeight * (1f - railHiddenFraction)).toDp() })
+        .padding(bottom = contentBottomPadding)
     ) {
       content()
     }
@@ -107,6 +122,7 @@ internal fun PinnedRailLayout(
           .fillMaxWidth()
           .onSizeChanged { measuredRailHeight = it.height }
           .graphicsLayer { translationY = railHeight * railHiddenFraction }
+          .windowInsetsPadding(WindowInsets.navigationBarsCompat)
       ) {
         rail()
       }

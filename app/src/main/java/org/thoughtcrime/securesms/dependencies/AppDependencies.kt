@@ -20,6 +20,7 @@ import org.signal.glide.SignalGlideDependencies
 import org.signal.libsignal.net.Network
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations
 import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations
+import org.signal.mediakeyboard.MediaKeyboardDependencies
 import org.signal.mediasend.MediaSendDependencies
 import org.signal.network.api.AccountApiV2
 import org.signal.network.api.ArchiveApi
@@ -131,6 +132,7 @@ object AppDependencies {
     SignalGlideDependencies.init(application, SignalGlideDependenciesProvider)
     CameraDependencies.init(application, CameraDependenciesProvider)
     MediaSendDependencies.init(application, MediaSendDependenciesProvider)
+    MediaKeyboardDependencies.init(application, MediaKeyboardDependenciesProvider)
     EmojiDependencies.init(application, EmojiDependenciesProvider)
   }
 

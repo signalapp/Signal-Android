@@ -52,6 +52,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.flow.StateFlow
 import org.signal.core.ui.compose.CollectActions
+import org.signal.core.ui.compose.keyboard.KeyboardSheetDragRegion
 import org.signal.core.ui.compose.keyboard.LocalKeyboardSheetController
 import org.signal.mediakeyboard.data.MediaKeyboardRepository
 import org.signal.mediakeyboard.screens.LocalMediaKeyboardExpanded
@@ -127,13 +128,15 @@ fun MediaKeyboard(
       if (searching) {
         MediaKeyboardSearchBar(state = state, onEvent = viewModel::onEvent, onCloseSearch = host::endTextEntry)
       } else {
-        MediaKeyboardTopBar(
-          state = state,
-          onEvent = viewModel::onEvent,
-          onAction = onAction,
-          onOpenSearch = host::beginTextEntry,
-          searchFieldRevealed = searchFieldRevealed
-        )
+        KeyboardSheetDragRegion {
+          MediaKeyboardTopBar(
+            state = state,
+            onEvent = viewModel::onEvent,
+            onAction = onAction,
+            onOpenSearch = host::beginTextEntry,
+            searchFieldRevealed = searchFieldRevealed
+          )
+        }
       }
 
       Box(
@@ -143,7 +146,13 @@ fun MediaKeyboard(
       ) {
         if (state.initialized) {
           when (state.selectedTab) {
-            MediaKeyboardTab.EMOJI -> EmojiTab(repository, viewModel.state, onAction)
+            MediaKeyboardTab.EMOJI -> EmojiTab(
+              repository = repository,
+              parentStateFlow = viewModel.state,
+              onAction = onAction,
+              onSearchClicked = host::beginTextEntry,
+              onSearchFieldRevealedChange = { searchFieldRevealed = it }
+            )
             MediaKeyboardTab.STICKER -> StickerTab(
               repository = repository,
               onAction = onAction,
@@ -277,7 +286,9 @@ private fun TabPill(
 private fun EmojiTab(
   repository: MediaKeyboardRepository,
   parentStateFlow: StateFlow<MediaKeyboardState>,
-  onAction: (MediaKeyboardAction) -> Unit
+  onAction: (MediaKeyboardAction) -> Unit,
+  onSearchClicked: () -> Unit,
+  onSearchFieldRevealedChange: (Boolean) -> Unit
 ) {
   val viewModel: EmojiPageViewModel = viewModel(
     key = "media-keyboard-emoji",
@@ -290,7 +301,9 @@ private fun EmojiTab(
   EmojiPageScreen(
     state = state,
     onEvent = viewModel::onEvent,
-    getEmojiDrawable = repository.emoji::getEmojiDrawable
+    getEmojiDrawable = repository.emoji::getEmojiDrawable,
+    onSearchClicked = onSearchClicked,
+    onSearchFieldRevealedChange = onSearchFieldRevealedChange
   )
 }
 

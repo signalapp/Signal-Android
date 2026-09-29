@@ -68,15 +68,33 @@ import org.signal.mediakeyboard.R
 import org.signal.mediakeyboard.data.EmojiCategoryPage
 import org.signal.mediakeyboard.data.EmojiKeyboardCategory
 import org.signal.mediakeyboard.data.KeyboardEmoji
+import org.signal.mediakeyboard.screens.CollapsingHeaderLayout
 import org.signal.mediakeyboard.screens.GRID_CONTENT_PADDING
+import org.signal.mediakeyboard.screens.MediaKeyboardSearchField
 import org.signal.mediakeyboard.screens.PinnedRailLayout
+import org.signal.mediakeyboard.screens.SEARCH_FIELD_SPACING
 
+/**
+ * Emoji are drawn at the size the design calls for, in cells big enough to tap. The gutters the design shows are the
+ * room left over in each cell around its emoji rather than gaps between the cells, so the whole cell takes the tap
+ * while the emoji still sit the designed distance apart.
+ */
+private val EMOJI_SIZE = 30.dp
+private val EMOJI_CELL_MIN_SIZE = 46.dp
+
+/**
+ * @param onSearchClicked Opens search in place, which the host owns since it needs the system keyboard.
+ * @param onSearchFieldRevealedChange Reports whether the grid is scrolled far enough up to show the
+ *   search field, so the top bar can drop its now-redundant search icon.
+ */
 @Composable
 fun EmojiPageScreen(
   state: EmojiPageState,
   onEvent: (EmojiPageScreenEvents) -> Unit,
   modifier: Modifier = Modifier,
-  getEmojiDrawable: (String) -> Drawable? = { null }
+  getEmojiDrawable: (String) -> Drawable? = { null },
+  onSearchClicked: () -> Unit = {},
+  onSearchFieldRevealedChange: (Boolean) -> Unit = {}
 ) {
   val searching = state.searchResults != null
 
@@ -98,7 +116,9 @@ fun EmojiPageScreen(
       EmojiGrid(
         state = state,
         onEvent = onEvent,
-        getEmojiDrawable = getEmojiDrawable
+        getEmojiDrawable = getEmojiDrawable,
+        onSearchClicked = onSearchClicked,
+        onSearchFieldRevealedChange = onSearchFieldRevealedChange
       )
     }
   }
@@ -154,6 +174,8 @@ private fun EmojiGrid(
   state: EmojiPageState,
   onEvent: (EmojiPageScreenEvents) -> Unit,
   getEmojiDrawable: (String) -> Drawable?,
+  onSearchClicked: () -> Unit,
+  onSearchFieldRevealedChange: (Boolean) -> Unit,
   modifier: Modifier = Modifier
 ) {
   val gridState = rememberLazyGridState()
@@ -195,34 +217,46 @@ private fun EmojiGrid(
     visibleCategory?.let { onEvent(EmojiPageScreenEvents.VisibleCategoryChanged(it)) }
   }
 
-  LazyVerticalGrid(
-    columns = GridCells.Adaptive(minSize = 44.dp),
-    state = gridState,
-    contentPadding = GRID_CONTENT_PADDING,
-    modifier = modifier.fillMaxWidth()
+  CollapsingHeaderLayout(
+    header = {
+      MediaKeyboardSearchField(
+        hint = stringResource(R.string.MediaKeyboard__search_emoji),
+        onClick = onSearchClicked,
+        modifier = Modifier.padding(bottom = SEARCH_FIELD_SPACING)
+      )
+    },
+    onRevealedChange = onSearchFieldRevealedChange,
+    modifier = modifier
   ) {
-    state.pages.forEach { page ->
-      item(key = "header:${page.category.key}", span = { GridItemSpan(maxLineSpan) }) {
-        Text(
-          text = stringResource(page.category.label),
-          style = MaterialTheme.typography.labelLarge,
-          color = MaterialTheme.colorScheme.onSurfaceVariant,
-          modifier = Modifier.padding(start = 8.dp, top = 12.dp, bottom = 4.dp)
-        )
-      }
-
-      page.emoji.forEachIndexed { index, emoji ->
-        val cellKey = "${page.category.key}:$index"
-        item(key = cellKey) {
-          EmojiCell(
-            emoji = emoji,
-            display = state.displayEmoji(emoji),
-            cellKey = cellKey,
-            showVariationSelector = state.variationSelector?.cellKey == cellKey,
-            onEvent = onEvent,
-            getEmojiDrawable = getEmojiDrawable,
-            modifier = Modifier.aspectRatio(1f)
+    LazyVerticalGrid(
+      columns = GridCells.Adaptive(minSize = EMOJI_CELL_MIN_SIZE),
+      state = gridState,
+      contentPadding = GRID_CONTENT_PADDING,
+      modifier = Modifier.fillMaxWidth()
+    ) {
+      state.pages.forEach { page ->
+        item(key = "header:${page.category.key}", span = { GridItemSpan(maxLineSpan) }) {
+          Text(
+            text = stringResource(page.category.label),
+            style = MaterialTheme.typography.labelLarge,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.padding(start = 8.dp, top = 12.dp, bottom = 4.dp)
           )
+        }
+
+        page.emoji.forEachIndexed { index, emoji ->
+          val cellKey = "${page.category.key}:$index"
+          item(key = cellKey) {
+            EmojiCell(
+              emoji = emoji,
+              display = state.displayEmoji(emoji),
+              cellKey = cellKey,
+              showVariationSelector = state.variationSelector?.cellKey == cellKey,
+              onEvent = onEvent,
+              getEmojiDrawable = getEmojiDrawable,
+              modifier = Modifier.aspectRatio(1f)
+            )
+          }
         }
       }
     }
@@ -253,7 +287,7 @@ private fun EmojiSearchResults(
     }
   } else {
     LazyVerticalGrid(
-      columns = GridCells.Adaptive(minSize = 44.dp),
+      columns = GridCells.Adaptive(minSize = EMOJI_CELL_MIN_SIZE),
       contentPadding = GRID_CONTENT_PADDING,
       modifier = Modifier.fillMaxSize()
     ) {
@@ -365,7 +399,7 @@ private fun EmojiImage(
     Image(
       painter = rememberDrawablePainter(drawable),
       contentDescription = emoji,
-      modifier = modifier.size(26.dp)
+      modifier = modifier.size(EMOJI_SIZE)
     )
   } else {
     Text(

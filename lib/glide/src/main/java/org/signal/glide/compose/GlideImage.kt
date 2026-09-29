@@ -75,7 +75,6 @@ fun <T> GlideImage(
       .fallback(fallback)
       .error(error)
       .diskCacheStrategy(diskCacheStrategy)
-      // ApngOptions.ANIMATE defaults to true, so a caller that did not ask for animation has to say so.
       .set(ApngOptions.ANIMATE, enableApngAnimation)
       .skipMemoryCache(skipMemoryCache)
       .apply {

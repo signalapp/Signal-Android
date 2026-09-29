@@ -3722,7 +3722,7 @@ class ConversationFragment :
       val range = computeVerticalScrollRange() - computeVerticalScrollExtent()
       val delta = range - offset
 
-      delta <= IS_SCROLLED_TO_BOTTOM_THRESHOLD
+      delta <= IS_SCROLLED_TO_BOTTOM_THRESHOLD + mediaKeyboardController.expandedOverlapPx
     }
   }
 
@@ -3756,7 +3756,9 @@ class ConversationFragment :
   }
 
   private fun scrollToBottom() {
-    layoutManager.scrollToPositionWithOffset(0, 0)
+    // An expanded media keyboard covers the bottom of the list without the list's height changing, so the newest
+    // message has to be lifted clear of it or it lands behind the sheet.
+    layoutManager.scrollToPositionWithOffset(0, mediaKeyboardController.expandedOverlapPx)
     scrollListener?.onScrolled(binding.conversationItemRecycler, 0, 0)
   }
 

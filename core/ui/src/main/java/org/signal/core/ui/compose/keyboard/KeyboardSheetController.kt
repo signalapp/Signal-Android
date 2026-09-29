@@ -55,6 +55,14 @@ class KeyboardSheetController(initialKeyboardHeightPx: Int = 0) {
     internal set
 
   /**
+   * How much of the content behind the sheet an expanded sheet covers. The content keeps the height it had at
+   * keyboard height while the sheet grows past it, so this is room the host still believes it has and must leave
+   * clear itself when it puts something where the user has to see it. Zero unless the sheet is past keyboard height.
+   */
+  var expandedOverlapPx: Int by mutableStateOf(0)
+    internal set
+
+  /**
    * Whether a window of the host's own -- a dialog with a field of its own, say -- is up in front of
    * the sheet and owns the system keyboard while it is there, so the sheet stays put rather than
    * giving way to it. Driven by [onHostWindowShown] and [onHostWindowHidden].
@@ -148,6 +156,7 @@ class KeyboardSheetController(initialKeyboardHeightPx: Int = 0) {
 
   private fun reset(key: KeyboardSheetKey?, awaitingSystem: Boolean = false) {
     awaitingSystemKeyboard = awaitingSystem
+    expandedOverlapPx = 0
     current = key
     _isEnteringText.value = false
     expansionTarget = false

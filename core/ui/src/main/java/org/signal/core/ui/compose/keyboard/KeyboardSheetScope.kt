@@ -26,7 +26,9 @@ interface KeyboardSheetScope {
    * @param blurRadius How much to blur the sheet beneath [overlay]. Read as the sheet draws, so it
    *   can animate without recomposing anything. Below API 31 the sheet is never blurred, so
    *   [overlay] needs a background opaque enough to stand on its own there.
-   * @param content The keyboard itself.
+   * @param content The keyboard itself. Laid out to the bottom of the window rather than above the navigation bar, so
+   *   content that should not sit under the bar holds it clear itself. Scrolling content usually wants to draw under
+   *   it and pad its own ends instead.
    */
   fun keyboard(
     key: KeyboardSheetKey,

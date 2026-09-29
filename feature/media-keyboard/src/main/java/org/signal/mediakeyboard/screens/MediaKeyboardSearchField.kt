@@ -18,17 +18,11 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewWrapper
 import androidx.compose.ui.unit.dp
@@ -45,6 +39,9 @@ import org.signal.mediakeyboard.R
  * a different value than it laid out with would leave the field peeking.
  */
 internal val GRID_CONTENT_PADDING = PaddingValues(horizontal = 8.dp, vertical = 4.dp)
+
+/** Gap between the search field and the content it sits above. */
+internal val SEARCH_FIELD_SPACING = 8.dp
 
 /**
  * Looks like a field but is not one: tapping it hands search off to the host, which has a whole
@@ -95,51 +92,4 @@ private fun MediaKeyboardSearchFieldPreview() {
     hint = stringResource(R.string.MediaKeyboard__search_stickers),
     onClick = {}
   )
-}
-
-/**
- * Opens a page's grid scrolled past its [MediaKeyboardSearchField] and reports when the user has
- * pulled back down to it, so the top bar can drop its now-redundant search icon.
- *
- * Effects only. The two pages hold different kinds of grid state, which share no supertype, so the
- * grid is reached through lambdas rather than passed in.
- *
- * @param hasContent Whether the grid has anything to scroll yet; until it does there is nothing to
- *   hide the field behind.
- * @param firstVisibleItemIndex The grid's first visible item. Read inside a [derivedStateOf] so
- *   that scrolling does not recompose the page.
- * @param scrollPastField Scrolls the grid to an item and offset.
- * @param onRevealedChange Receives whether the field is showing.
- * @param resetKey Hides the field again whenever this changes, for a grid whose contents are
- *   replaced and whose scroll goes back to the top with them.
- */
-@Composable
-internal fun SearchFieldReveal(
-  hasContent: Boolean,
-  firstVisibleItemIndex: () -> Int,
-  scrollPastField: suspend (index: Int, offset: Int) -> Unit,
-  onRevealedChange: (Boolean) -> Unit,
-  resetKey: Any? = Unit
-) {
-  // Scrolling to an item stops at the leading content padding rather than the top of the viewport,
-  // and that gap is just enough to leave the bottom of the field showing, so it goes too.
-  val topContentPaddingPx = with(LocalDensity.current) { GRID_CONTENT_PADDING.calculateTopPadding().roundToPx() }
-
-  var scrolledPast by remember(resetKey) { mutableStateOf(false) }
-
-  LaunchedEffect(resetKey, hasContent) {
-    if (hasContent && !scrolledPast) {
-      scrollPastField(1, topContentPaddingPx)
-      scrolledPast = true
-    }
-  }
-
-  val currentFirstVisibleItemIndex by rememberUpdatedState(firstVisibleItemIndex)
-  val revealed by remember { derivedStateOf { currentFirstVisibleItemIndex() == 0 } }
-
-  // Held back until the grid has settled where it opens, or the field would be reported as showing
-  // for the frames before that first scroll and the top bar's icon would blink out and back.
-  LaunchedEffect(revealed, scrolledPast) {
-    onRevealedChange(scrolledPast && revealed)
-  }
 }

@@ -167,7 +167,9 @@ fun ChatScreen(
         ) {
           AndroidFragment(
             clazz = AttachmentKeyboardFragment::class.java,
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier
+              .fillMaxSize()
+              .windowInsetsPadding(WindowInsets.navigationBarsCompat)
           )
         }
       },

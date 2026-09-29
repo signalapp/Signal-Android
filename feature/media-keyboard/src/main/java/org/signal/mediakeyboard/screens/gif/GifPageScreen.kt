@@ -7,8 +7,10 @@ package org.signal.mediakeyboard.screens.gif
 
 import androidx.annotation.OptIn
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -26,11 +28,9 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -51,18 +51,21 @@ import org.signal.glide.compose.GlideImage
 import org.signal.glide.compose.GlideImageScaleType
 import org.signal.mediakeyboard.R
 import org.signal.mediakeyboard.data.KeyboardGif
-import org.signal.mediakeyboard.screens.GRID_CONTENT_PADDING
+import org.signal.mediakeyboard.screens.CollapsingHeaderLayout
 import org.signal.mediakeyboard.screens.MediaKeyboardSearchField
 import org.signal.mediakeyboard.screens.PinnedRailLayout
-import org.signal.mediakeyboard.screens.SearchFieldReveal
-
-/** The search field ahead of the gifs, which item indices have to be shifted back past. */
-private const val SEARCH_FIELD_ITEMS = 1
+import org.signal.mediakeyboard.screens.SEARCH_FIELD_SPACING
 
 /**
  * @param onSearchFieldRevealedChange Reports whether the grid is scrolled far enough up to show the
  *   search field, so the top bar can drop its now-redundant search icon.
  */
+private const val GIF_COLUMN_COUNT = 2
+private val GIF_SPACING = 8.dp
+
+/** Its own, rather than the shared grid padding, because the design insets the gifs further than the other pages. */
+private val GIF_GRID_CONTENT_PADDING = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
+
 @Composable
 fun GifPageScreen(
   state: GifPageState,
@@ -168,21 +171,26 @@ private fun GifGrid(
   onSearchFieldRevealedChange: (Boolean) -> Unit
 ) {
   val gridState = rememberLazyStaggeredGridState()
-  val playerPool = rememberGifPlayerPool()
+  val gifPlayers = rememberGifPlayers()
+  val maxSimultaneous = rememberMaxSimultaneousGifs()
+  val playbackSet = rememberGifPlaybackSet(gridState, maxSimultaneous)
+
+  LaunchedEffect(playbackSet, state.gifs) {
+    gifPlayers.setPlaying(
+      playbackSet
+        .mapNotNull { itemIndex ->
+          val gif = state.gifs.getOrNull(itemIndex)
+          gif?.mp4PreviewUri?.let { gif.id to it }
+        }
+        .toMap()
+    )
+  }
 
   // Keyed on the quick search, since switching one empties the grid and takes the scroll back to
   // the top with it.
-  SearchFieldReveal(
-    hasContent = state.gifs.isNotEmpty(),
-    firstVisibleItemIndex = { gridState.firstVisibleItemIndex },
-    scrollPastField = gridState::scrollToItem,
-    onRevealedChange = onSearchFieldRevealedChange,
-    resetKey = state.selectedQuickSearch
-  )
-
   val shouldLoadMore by remember(state.gifs.size) {
     derivedStateOf {
-      val lastVisibleGif = (gridState.layoutInfo.visibleItemsInfo.lastOrNull()?.index ?: 0) - SEARCH_FIELD_ITEMS
+      val lastVisibleGif = gridState.layoutInfo.visibleItemsInfo.lastOrNull()?.index ?: 0
       lastVisibleGif >= state.gifs.size - 8
     }
   }
@@ -193,42 +201,47 @@ private fun GifGrid(
     }
   }
 
-  LazyVerticalStaggeredGrid(
-    columns = StaggeredGridCells.Fixed(2),
-    state = gridState,
-    verticalItemSpacing = 4.dp,
-    contentPadding = GRID_CONTENT_PADDING,
-    modifier = Modifier.fillMaxSize()
-  ) {
-    item(key = "search", span = StaggeredGridItemSpan.FullLine) {
+  CollapsingHeaderLayout(
+    header = {
       MediaKeyboardSearchField(
         hint = stringResource(R.string.MediaKeyboard__search_gifs),
-        onClick = { onEvent(GifPageScreenEvents.SearchClicked) }
+        onClick = { onEvent(GifPageScreenEvents.SearchClicked) },
+        modifier = Modifier.padding(bottom = SEARCH_FIELD_SPACING)
       )
-    }
+    },
+    onRevealedChange = onSearchFieldRevealedChange,
+    resetKey = state.selectedQuickSearch
+  ) {
+    LazyVerticalStaggeredGrid(
+      columns = StaggeredGridCells.Fixed(GIF_COLUMN_COUNT),
+      state = gridState,
+      verticalItemSpacing = GIF_SPACING,
+      horizontalArrangement = Arrangement.spacedBy(GIF_SPACING),
+      contentPadding = GIF_GRID_CONTENT_PADDING,
+      modifier = Modifier.fillMaxSize()
+    ) {
+      items(
+        count = state.gifs.size,
+        key = { index -> "${state.gifs[index].id}:$index" }
+      ) { index ->
+        val gif = state.gifs[index]
+        GifCell(
+          gif = gif,
+          player = gifPlayers.playerFor(gif.id),
+          onClick = { onEvent(GifPageScreenEvents.GifClicked(gif)) }
+        )
+      }
 
-    items(
-      count = state.gifs.size,
-      key = { index -> "${state.gifs[index].id}:$index" }
-    ) { index ->
-      val gif = state.gifs[index]
-      GifCell(
-        gif = gif,
-        playerPool = playerPool,
-        onClick = { onEvent(GifPageScreenEvents.GifClicked(gif)) },
-        modifier = Modifier.padding(horizontal = 4.dp)
-      )
-    }
-
-    if (state.isLoadingMore) {
-      item(key = "loading-more", span = StaggeredGridItemSpan.FullLine) {
-        Box(
-          contentAlignment = Alignment.Center,
-          modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp)
-        ) {
-          CircularProgressIndicator()
+      if (state.isLoadingMore) {
+        item(key = "loading-more", span = StaggeredGridItemSpan.FullLine) {
+          Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier
+              .fillMaxWidth()
+              .padding(16.dp)
+          ) {
+            CircularProgressIndicator()
+          }
         }
       }
     }
@@ -239,7 +252,7 @@ private fun GifGrid(
 @Composable
 private fun GifCell(
   gif: KeyboardGif,
-  playerPool: GifPlayerPool,
+  player: Player?,
   onClick: () -> Unit,
   modifier: Modifier = Modifier
 ) {
@@ -256,27 +269,14 @@ private fun GifCell(
       modifier = Modifier.fillMaxSize()
     )
 
-    val mp4PreviewUri = gif.mp4PreviewUri
-    if (mp4PreviewUri != null) {
-      var player by remember(gif.id) { mutableStateOf<Player?>(null) }
+    if (player != null) {
+      val presentationState = rememberPresentationState(player)
 
-      DisposableEffect(gif.id) {
-        player = playerPool.acquire(gif.id, mp4PreviewUri)
-        onDispose {
-          playerPool.release(gif.id)
-          player = null
-        }
-      }
-
-      player?.let {
-        val presentationState = rememberPresentationState(it)
-
-        PlayerSurface(
-          player = it,
-          surfaceType = SURFACE_TYPE_TEXTURE_VIEW,
-          modifier = Modifier.resizeWithContentScale(ContentScale.Crop, presentationState.videoSizeDp)
-        )
-      }
+      PlayerSurface(
+        player = player,
+        surfaceType = SURFACE_TYPE_TEXTURE_VIEW,
+        modifier = Modifier.resizeWithContentScale(ContentScale.Crop, presentationState.videoSizeDp)
+      )
     }
   }
 }

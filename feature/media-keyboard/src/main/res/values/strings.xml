@@ -13,7 +13,7 @@
   <string name="MediaKeyboard__gifs">GIFs</string>
 
   <!-- Search -->
-  <!-- Placeholder text in the media keyboard search field while the emoji tab is showing. -->
+  <!-- Placeholder text in the search field at the top of the emoji page, and in the media keyboard search field while the emoji tab is showing. -->
   <string name="MediaKeyboard__search_emoji">Search emoji</string>
   <!-- Placeholder text in the search field at the top of the sticker page, and in the media keyboard search field while the sticker tab is showing. -->
   <string name="MediaKeyboard__search_stickers">Search stickers</string>

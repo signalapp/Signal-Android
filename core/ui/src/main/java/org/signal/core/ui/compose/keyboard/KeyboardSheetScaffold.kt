@@ -11,6 +11,12 @@ import androidx.compose.animation.core.FastOutLinearInEasing
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.AnchoredDraggableDefaults
+import androidx.compose.foundation.gestures.AnchoredDraggableState
+import androidx.compose.foundation.gestures.DraggableAnchors
+import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.gestures.anchoredDraggable
+import androidx.compose.foundation.gestures.animateTo
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -23,16 +29,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.ime
 import androidx.compose.foundation.layout.imeAnimationTarget
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.onConsumedWindowInsetsChanged
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.shape.CornerSize
-import androidx.compose.material3.BottomSheetScaffold
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.SheetState
-import androidx.compose.material3.SheetValue
-import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.DisposableEffect
@@ -50,9 +52,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.BlurEffect
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.TileMode
 import androidx.compose.ui.graphics.graphicsLayer
@@ -66,6 +68,7 @@ import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -73,7 +76,6 @@ import kotlinx.coroutines.flow.dropWhile
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.BottomSheets
-import org.signal.core.ui.compose.navigationBarsCompat
 import org.signal.core.ui.compose.safeDrawingCompat
 import org.signal.core.ui.compose.systemBarsCompat
 import org.signal.core.ui.getWindowSizeClass
@@ -95,7 +97,24 @@ private val BACK_SETTLE_MOTION = spring<Float>(
 private val SYSTEM_KEYBOARD_ARRIVAL_TIMEOUT = 1.seconds
 
 private val SHEET_POSITIONAL_THRESHOLD = 56.dp
-private val SHEET_VELOCITY_THRESHOLD = 125.dp
+
+/** Moves the sheet between heights. Never bouncy, since an overshoot would lift the sheet off the bottom of the window. */
+private val SHEET_MOTION = spring<Float>(
+  dampingRatio = Spring.DampingRatioNoBouncy,
+  stiffness = 700f
+)
+
+/** Puts the sheet away, quicker than it comes up. */
+private val SHEET_HIDE_MOTION = spring<Float>(
+  dampingRatio = Spring.DampingRatioNoBouncy,
+  stiffness = 3800f
+)
+
+private enum class SheetAnchor {
+  Hidden,
+  PartiallyExpanded,
+  Expanded
+}
 
 /** How far an expandable sheet dims what is behind it once at full height. */
 private const val EXPANDED_SCRIM_ALPHA = 0.32f
@@ -119,7 +138,7 @@ private const val EXPANDED_HEIGHT_MULTIPLIER = 2f
  * @param keyboardHeight Bounds on how tall a keyboard may be.
  * @param adjustContentForInput False to let a keyboard cover [content] rather than resize it.
  */
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun KeyboardSheetScaffold(
   controller: KeyboardSheetController,
@@ -266,16 +285,13 @@ fun KeyboardSheetScaffold(
   // that built the sheet, and keying the remember on density instead would rebuild the sheet at its
   // initial value, putting a keyboard away because the font scale changed.
   val currentDensity by rememberUpdatedState(density)
-  val sheetState = remember {
-    SheetState(
-      skipPartiallyExpanded = false,
-      positionalThreshold = { with(currentDensity) { SHEET_POSITIONAL_THRESHOLD.toPx() } },
-      velocityThreshold = { with(currentDensity) { SHEET_VELOCITY_THRESHOLD.toPx() } },
-      initialValue = SheetValue.Hidden,
-      skipHiddenState = false
-    )
-  }
-  val scaffoldState = rememberBottomSheetScaffoldState(bottomSheetState = sheetState)
+  val sheetState = remember { AnchoredDraggableState(initialValue = SheetAnchor.Hidden) }
+  val positionalThreshold: (Float) -> Float = remember { { with(currentDensity) { SHEET_POSITIONAL_THRESHOLD.toPx() } } }
+  val sheetFlingBehavior = AnchoredDraggableDefaults.flingBehavior(
+    state = sheetState,
+    positionalThreshold = positionalThreshold,
+    animationSpec = SHEET_MOTION
+  )
 
   // This just makes sure the previously visible state doesn't go away too early while we're mid swap.
   var visibleKey by remember { mutableStateOf<KeyboardSheetKey?>(null) }
@@ -294,8 +310,8 @@ fun KeyboardSheetScaffold(
 
   val expandable = registry.isExpandable(visibleKey)
 
-  // BottomSheetScaffold measures its anchors from the sheet, so the sheet is always as tall as it
-  // could ever need to be and the part below the fold simply hangs off the bottom of the window.
+  // The sheet is always as tall as it could ever need to be and the part below the fold simply hangs
+  // off the bottom of the window.
   var scaffoldHeightPx by remember { mutableIntStateOf(0) }
   val layoutHeightPx = if (scaffoldHeightPx > 0) scaffoldHeightPx else windowHeightPx
   val minimumContentPx = with(density) { keyboardHeight.minimumContentVisible.roundToPx() }
@@ -303,6 +319,22 @@ fun KeyboardSheetScaffold(
   val expandedHeightPx = (heightPx * EXPANDED_HEIGHT_MULTIPLIER).roundToInt().coerceIn(heightPx, windowLimitPx)
   val sheetHeightPx = if (expandable) expandedHeightPx else heightPx
   val sheetHeight = with(density) { sheetHeightPx.toDp() }
+
+  // Where the top of the sheet sits in the scaffold for each height it can rest at.
+  val sheetAnchors = remember(layoutHeightPx, heightPx, sheetHeightPx) {
+    DraggableAnchors {
+      SheetAnchor.Hidden at layoutHeightPx.toFloat()
+      SheetAnchor.PartiallyExpanded at (layoutHeightPx - heightPx).toFloat()
+      if (sheetHeightPx > heightPx) {
+        SheetAnchor.Expanded at (layoutHeightPx - sheetHeightPx).toFloat()
+      }
+    }
+  }
+
+  SideEffect {
+    val target = sheetState.targetValue.takeIf { sheetAnchors.hasPositionFor(it) } ?: SheetAnchor.PartiallyExpanded
+    sheetState.updateAnchors(sheetAnchors, target)
+  }
 
   /**
    * How much of the sheet the window actually shows. Reads the live sheet offset, so anything that
@@ -335,9 +367,9 @@ fun KeyboardSheetScaffold(
    * asked for or given up.
    */
   val sheetTarget = when {
-    activeKey == null -> SheetValue.Hidden
-    expandable && controller.expansionTarget -> SheetValue.Expanded
-    else -> SheetValue.PartiallyExpanded
+    activeKey == null -> SheetAnchor.Hidden
+    expandable && controller.expansionTarget -> SheetAnchor.Expanded
+    else -> SheetAnchor.PartiallyExpanded
   }
 
   // The one place the sheet is driven from. Keyed on the target, so every change comes through here
@@ -352,7 +384,7 @@ fun KeyboardSheetScaffold(
 
       // A gesture may already have carried it off screen; hold that until the hide completes.
       handingOverFromSystemKeyboard = false
-      sheetState.hide()
+      sheetState.animateTo(SheetAnchor.Hidden, SHEET_HIDE_MOTION)
       backProgress.snapTo(0f)
       visibleKey = null
       currentOnAction(KeyboardSheetAction.KeyboardHidden)
@@ -370,10 +402,10 @@ fun KeyboardSheetScaffold(
       backProgress.snapTo(0f)
     }
 
-    when {
-      sheetTarget == SheetValue.Expanded && sheetState.hasExpandedState -> sheetState.expand()
-      sheetState.currentValue == SheetValue.Hidden -> sheetState.show()
-      else -> sheetState.partialExpand()
+    if (sheetTarget == SheetAnchor.Expanded && sheetState.anchors.hasPositionFor(SheetAnchor.Expanded)) {
+      sheetState.animateTo(SheetAnchor.Expanded, SHEET_MOTION)
+    } else {
+      sheetState.animateTo(SheetAnchor.PartiallyExpanded, SHEET_MOTION)
     }
 
     if (arriving) {
@@ -382,29 +414,26 @@ fun KeyboardSheetScaffold(
     }
   }
 
-  // Picks up drags as well as requests, so the controller reports where the sheet actually went.
+  // Picks up drags as well as requests, so the controller reports where the sheet is heading.
   LaunchedEffect(sheetState) {
-    snapshotFlow { sheetState.targetValue == SheetValue.Expanded }
+    snapshotFlow { sheetState.targetValue == SheetAnchor.Expanded }
       .distinctUntilChanged()
       .collect { expanded ->
         controller.isExpanded = expanded
-
-        if (expanded) {
-          controller.expansionTarget = true
-        } else {
-          controller.endTextEntry()
-        }
+        controller.expandedOverlapPx = if (expanded) sheetHeightPx - heightPx else 0
       }
   }
 
-  // A swipe can carry the sheet away without anyone having asked it to, leaving the controller
-  // believing a keyboard is still up and content still holding space for one.
+  // Requests follow a drag only once it lets go. Changing them mid-drag would change sheetTarget, and driving the
+  // sheet there would take it out from under the finger. A drag can also carry the sheet away without anyone having
+  // asked it to, which would otherwise leave the controller believing a keyboard is still up.
   LaunchedEffect(sheetState) {
-    snapshotFlow { sheetState.currentValue }
-      .filter { it == SheetValue.Hidden }
-      .collect {
-        if (controller.isShowing) {
-          controller.hide()
+    snapshotFlow { sheetState.settledValue }
+      .collect { settled ->
+        when (settled) {
+          SheetAnchor.Expanded -> controller.expansionTarget = true
+          SheetAnchor.PartiallyExpanded -> controller.collapse()
+          SheetAnchor.Hidden -> if (controller.isShowing) controller.hide()
         }
       }
   }
@@ -462,6 +491,12 @@ fun KeyboardSheetScaffold(
   }
   // Keyed, because expansionFraction closes over this composition's heights and visible key; an
   // unkeyed remember would hold the first composition's, from before anything was up.
+  val dragRegion = if (expandable) {
+    Modifier.anchoredDraggable(state = sheetState, orientation = Orientation.Vertical, flingBehavior = sheetFlingBehavior)
+  } else {
+    Modifier
+  }
+
   val scrimShowing by remember(expandable, heightPx, sheetHeightPx, layoutHeightPx, visibleKey) {
     derivedStateOf { expansionFraction() > 0f }
   }
@@ -471,121 +506,117 @@ fun KeyboardSheetScaffold(
       .fillMaxSize()
       .onSizeChanged { scaffoldHeightPx = it.height }
   ) {
-    BottomSheetScaffold(
-      scaffoldState = scaffoldState,
-      sheetPeekHeight = height,
-      sheetShape = sheetShape,
-      sheetDragHandle = null,
-      sheetSwipeEnabled = expandable,
-      sheetContainerColor = Color.Transparent,
-      sheetTonalElevation = 0.dp,
-      sheetShadowElevation = 0.dp,
-      containerColor = Color.Transparent,
-      sheetContent = {
-        Box(
+    Box(
+      modifier = Modifier
+        .fillMaxSize()
+        .onConsumedWindowInsetsChanged { ancestorConsumedBottomPx = it.getBottom(density) }
+        .windowInsetsPadding(windowInsets)
+        .layout { measurable, constraints ->
+          // Window insets are already out of these constraints; take only the excess claim.
+          val windowBottomPx = (safeDrawingInsets.getBottom(this) - ancestorConsumedBottomPx).coerceAtLeast(0)
+          val extraPx = if (adjustContentForInput) (claimedBottomPx() - windowBottomPx).coerceAtLeast(0) else 0
+
+          val available = (constraints.maxHeight - extraPx).coerceAtLeast(0)
+          val placeable = measurable.measure(constraints.copy(minHeight = available, maxHeight = available))
+          layout(constraints.maxWidth, constraints.maxHeight) {
+            placeable.place(0, 0)
+          }
+        }
+    ) {
+      content()
+    }
+
+    if (expandable) {
+      Box(
+        modifier = Modifier
+          .fillMaxSize()
+          .drawBehind { drawRect(color = scrimColor, alpha = EXPANDED_SCRIM_ALPHA * expansionFraction()) }
+          .then(
+            if (scrimShowing) {
+              // Collapses rather than dismisses: the dim means the sheet has grown past keyboard
+              // height, and keyboard height is where it belongs the rest of the time, so undoing
+              // the growth is what the gesture is for. Dismissing would also be indiscriminate,
+              // since this covers the whole of [content] -- a host's own text field included.
+              Modifier.pointerInput(Unit) { detectTapGestures { controller.collapse() } }
+            } else {
+              Modifier
+            }
+          )
+      )
+    }
+
+    Box(
+      modifier = Modifier
+        .fillMaxWidth()
+        .height(sheetHeight)
+        .offset {
+          val offset = sheetState.offset
+          IntOffset(0, if (offset.isNaN()) layoutHeightPx else offset.roundToInt())
+        }
+        .clip(sheetShape)
+        // Taken here so a touch on the sheet never falls through to [content] behind it.
+        .pointerInput(Unit) {}
+        // Off the bottom by whatever is actually on screen, which an expanded sheet outgrows.
+        .graphicsLayer { translationY = backProgress.value * visibleSheetHeightPx() }
+        .background(containerColor)
+    ) {
+      val overlay = registry.overlayFor(visibleKey)
+      val blurRadius = registry.blurRadiusFor(visibleKey)
+
+      Box(
+        modifier = Modifier.layout { measurable, constraints ->
+          // Only the part of the sheet the window shows is worth laying content out in, and
+          // never less than a keyboard: below that the sheet is on its way out, not resizing.
+          val visible = visibleSheetHeightPx().coerceIn(heightPx, constraints.maxHeight)
+          val placeable = measurable.measure(constraints.copy(minHeight = visible, maxHeight = visible))
+          layout(constraints.maxWidth, constraints.maxHeight) {
+            placeable.place(0, 0)
+          }
+        }
+      ) {
+        Column(
           modifier = Modifier
-            .fillMaxWidth()
-            .height(sheetHeight)
-            // Off the bottom by whatever is actually on screen, which an expanded sheet outgrows.
-            .graphicsLayer { translationY = backProgress.value * visibleSheetHeightPx() }
-            .background(containerColor)
+            .fillMaxSize()
+            .graphicsLayer {
+              val radiusPx = blurRadius().toPx()
+              if (radiusPx > 0f) {
+                renderEffect = BlurEffect(radiusPx, radiusPx, TileMode.Clamp)
+                clip = true
+              } else {
+                renderEffect = null
+                clip = false
+              }
+            }
         ) {
-          val overlay = registry.overlayFor(visibleKey)
-          val blurRadius = registry.blurRadiusFor(visibleKey)
+          if (expandable) {
+            Box(
+              contentAlignment = Alignment.Center,
+              modifier = Modifier
+                .fillMaxWidth()
+                .then(dragRegion)
+            ) {
+              BottomSheets.Handle()
+            }
+          }
 
           Box(
-            modifier = Modifier.layout { measurable, constraints ->
-              // Only the part of the sheet the window shows is worth laying content out in, and
-              // never less than a keyboard: below that the sheet is on its way out, not resizing.
-              val visible = visibleSheetHeightPx().coerceIn(heightPx, constraints.maxHeight)
-              val placeable = measurable.measure(constraints.copy(minHeight = visible, maxHeight = visible))
-              layout(constraints.maxWidth, constraints.maxHeight) {
-                placeable.place(0, 0)
-              }
-            }
+            modifier = Modifier
+              .weight(1f)
+              .fillMaxWidth()
           ) {
-            Column(
-              modifier = Modifier
-                .fillMaxSize()
-                .graphicsLayer {
-                  val radiusPx = blurRadius().toPx()
-                  if (radiusPx > 0f) {
-                    renderEffect = BlurEffect(radiusPx, radiusPx, TileMode.Clamp)
-                    clip = true
-                  } else {
-                    renderEffect = null
-                    clip = false
-                  }
-                }
-                .windowInsetsPadding(WindowInsets.navigationBarsCompat)
+            CompositionLocalProvider(
+              LocalKeyboardSheetController provides controller,
+              LocalKeyboardSheetDragRegion provides dragRegion
             ) {
-              if (expandable) {
-                Box(
-                  contentAlignment = Alignment.Center,
-                  modifier = Modifier.fillMaxWidth()
-                ) {
-                  BottomSheets.Handle()
-                }
-              }
-
-              Box(
-                modifier = Modifier
-                  .weight(1f)
-                  .fillMaxWidth()
-              ) {
-                CompositionLocalProvider(LocalKeyboardSheetController provides controller) {
-                  registry.contentFor(visibleKey)?.invoke()
-                }
-              }
-            }
-
-            if (overlay != null) {
-              CompositionLocalProvider(LocalKeyboardSheetController provides controller) {
-                overlay()
-              }
+              registry.contentFor(visibleKey)?.invoke()
             }
           }
         }
-      }
-    ) { _ ->
-      Box(modifier = Modifier.fillMaxSize()) {
-        Box(
-          modifier = Modifier
-            .fillMaxSize()
-            .onConsumedWindowInsetsChanged { ancestorConsumedBottomPx = it.getBottom(density) }
-            .windowInsetsPadding(windowInsets)
-            .layout { measurable, constraints ->
-              // Window insets are already out of these constraints; take only the excess claim.
-              val windowBottomPx = (safeDrawingInsets.getBottom(this) - ancestorConsumedBottomPx).coerceAtLeast(0)
-              val extraPx = if (adjustContentForInput) (claimedBottomPx() - windowBottomPx).coerceAtLeast(0) else 0
 
-              val available = (constraints.maxHeight - extraPx).coerceAtLeast(0)
-              val placeable = measurable.measure(constraints.copy(minHeight = available, maxHeight = available))
-              layout(constraints.maxWidth, constraints.maxHeight) {
-                placeable.place(0, 0)
-              }
-            }
-        ) {
-          content()
-        }
-
-        if (expandable) {
-          Box(
-            modifier = Modifier
-              .fillMaxSize()
-              .drawBehind { drawRect(color = scrimColor, alpha = EXPANDED_SCRIM_ALPHA * expansionFraction()) }
-              .then(
-                if (scrimShowing) {
-                  // Collapses rather than dismisses: the dim means the sheet has grown past keyboard
-                  // height, and keyboard height is where it belongs the rest of the time, so undoing
-                  // the growth is what the gesture is for. Dismissing would also be indiscriminate,
-                  // since this covers the whole of [content] -- a host's own text field included.
-                  Modifier.pointerInput(Unit) { detectTapGestures { controller.collapse() } }
-                } else {
-                  Modifier
-                }
-              )
-          )
+        if (overlay != null) {
+          CompositionLocalProvider(LocalKeyboardSheetController provides controller) {
+            overlay()
+          }
         }
       }
     }

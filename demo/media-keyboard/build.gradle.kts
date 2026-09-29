@@ -42,6 +42,8 @@ dependencies {
   implementation(project(":core:ui"))
   implementation(project(":core:util"))
   implementation(project(":lib:glide"))
+  implementation(project(":lib:video"))
+  implementation(libs.androidx.media3.exoplayer)
   implementation(libs.glide.glide)
 
   // Core AndroidX

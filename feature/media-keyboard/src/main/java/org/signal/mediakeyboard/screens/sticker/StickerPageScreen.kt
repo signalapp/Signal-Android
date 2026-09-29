@@ -62,10 +62,11 @@ import org.signal.mediakeyboard.R
 import org.signal.mediakeyboard.data.KeyboardSticker
 import org.signal.mediakeyboard.data.KeyboardStickerPack
 import org.signal.mediakeyboard.data.StickerKeyboardRepository
+import org.signal.mediakeyboard.screens.CollapsingHeaderLayout
 import org.signal.mediakeyboard.screens.GRID_CONTENT_PADDING
 import org.signal.mediakeyboard.screens.MediaKeyboardSearchField
 import org.signal.mediakeyboard.screens.PinnedRailLayout
-import org.signal.mediakeyboard.screens.SearchFieldReveal
+import org.signal.mediakeyboard.screens.SEARCH_FIELD_SPACING
 
 private const val STICKER_COLUMN_COUNT = 5
 private val STICKER_CELL_SPACING = 12.dp
@@ -184,9 +185,8 @@ private fun StickerGrid(
 ) {
   val gridState = rememberLazyGridState()
 
-  // The search field is the first item, so everything else starts one along from it.
   val headerIndices = remember(state.packs) {
-    var index = 1
+    var index = 0
     buildMap {
       state.packs.forEach { pack ->
         put(pack.id, index)
@@ -194,13 +194,6 @@ private fun StickerGrid(
       }
     }
   }
-
-  SearchFieldReveal(
-    hasContent = state.packs.isNotEmpty(),
-    firstVisibleItemIndex = { gridState.firstVisibleItemIndex },
-    scrollPastField = gridState::scrollToItem,
-    onRevealedChange = onSearchFieldRevealedChange
-  )
 
   LaunchedEffect(state.scrollTargetPackId) {
     val target = state.scrollTargetPackId ?: return@LaunchedEffect
@@ -221,43 +214,48 @@ private fun StickerGrid(
     visiblePackId?.let { onEvent(StickerPageScreenEvents.VisiblePackChanged(it)) }
   }
 
-  // Each cell decodes its sticker at the cell's size, which the grid does not report, so work it out the way the grid
-  // will and hand it down.
-  BoxWithConstraints(modifier = modifier.fillMaxWidth()) {
-    val layoutDirection = LocalLayoutDirection.current
-    val rowWidth = maxWidth -
-      GRID_CONTENT_PADDING.calculateStartPadding(layoutDirection) -
-      GRID_CONTENT_PADDING.calculateEndPadding(layoutDirection)
-    val cellSize = (rowWidth - STICKER_CELL_SPACING * (STICKER_COLUMN_COUNT - 1)) / STICKER_COLUMN_COUNT
+  CollapsingHeaderLayout(
+    header = {
+      MediaKeyboardSearchField(
+        hint = stringResource(R.string.MediaKeyboard__search_stickers),
+        onClick = { onEvent(StickerPageScreenEvents.SearchClicked) },
+        modifier = Modifier.padding(bottom = SEARCH_FIELD_SPACING)
+      )
+    },
+    onRevealedChange = onSearchFieldRevealedChange,
+    modifier = modifier
+  ) {
+    // Each cell decodes its sticker at the cell's size, which the grid does not report, so work it out the way the
+    // grid will and hand it down.
+    BoxWithConstraints(modifier = Modifier.fillMaxWidth()) {
+      val layoutDirection = LocalLayoutDirection.current
+      val rowWidth = maxWidth -
+        GRID_CONTENT_PADDING.calculateStartPadding(layoutDirection) -
+        GRID_CONTENT_PADDING.calculateEndPadding(layoutDirection)
+      val cellSize = (rowWidth - STICKER_CELL_SPACING * (STICKER_COLUMN_COUNT - 1)) / STICKER_COLUMN_COUNT
 
-    LazyVerticalGrid(
-      columns = GridCells.Fixed(STICKER_COLUMN_COUNT),
-      state = gridState,
-      contentPadding = GRID_CONTENT_PADDING,
-      horizontalArrangement = Arrangement.spacedBy(STICKER_CELL_SPACING),
-      verticalArrangement = Arrangement.spacedBy(STICKER_CELL_SPACING),
-      modifier = Modifier.fillMaxWidth()
-    ) {
-      item(key = "search", span = { GridItemSpan(maxLineSpan) }) {
-        MediaKeyboardSearchField(
-          hint = stringResource(R.string.MediaKeyboard__search_stickers),
-          onClick = { onEvent(StickerPageScreenEvents.SearchClicked) }
-        )
-      }
+      LazyVerticalGrid(
+        columns = GridCells.Fixed(STICKER_COLUMN_COUNT),
+        state = gridState,
+        contentPadding = GRID_CONTENT_PADDING,
+        horizontalArrangement = Arrangement.spacedBy(STICKER_CELL_SPACING),
+        verticalArrangement = Arrangement.spacedBy(STICKER_CELL_SPACING),
+        modifier = Modifier.fillMaxWidth()
+      ) {
+        state.packs.forEach { pack ->
+          item(key = "header:${pack.id}", span = { GridItemSpan(maxLineSpan) }) {
+            StickerPackHeader(pack = pack, onEvent = onEvent)
+          }
 
-      state.packs.forEach { pack ->
-        item(key = "header:${pack.id}", span = { GridItemSpan(maxLineSpan) }) {
-          StickerPackHeader(pack = pack, onEvent = onEvent)
-        }
-
-        pack.stickers.forEachIndexed { index, sticker ->
-          item(key = "${pack.id}:${sticker.stickerId}:$index") {
-            StickerCell(
-              sticker = sticker,
-              allowAnimation = state.allowAnimation,
-              cellSize = cellSize,
-              onEvent = onEvent
-            )
+          pack.stickers.forEachIndexed { index, sticker ->
+            item(key = "${pack.id}:${sticker.stickerId}:$index") {
+              StickerCell(
+                sticker = sticker,
+                allowAnimation = state.allowAnimation,
+                cellSize = cellSize,
+                onEvent = onEvent
+              )
+            }
           }
         }
       }

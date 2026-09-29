@@ -7,12 +7,15 @@ package org.signal.mediakeyboard.demo
 
 import android.app.Application
 import android.content.Context
+import androidx.media3.exoplayer.ExoPlayer
 import com.bumptech.glide.Glide
 import com.bumptech.glide.Registry
 import org.signal.core.ui.CoreUiDependencies
 import org.signal.core.util.logging.AndroidLogger
 import org.signal.core.util.logging.Log
+import org.signal.mediakeyboard.MediaKeyboardDependencies
 import org.signal.mediakeyboard.demo.data.DemoMediaKeyboardRepository
+import org.signal.video.exo.ExoPlayerPool
 import org.thoughtcrime.securesms.mms.RegisterGlideComponents
 import org.thoughtcrime.securesms.mms.SignalGlideModule
 
@@ -36,6 +39,15 @@ class MediaKeyboardDemoApplication : Application() {
         override fun providePackageId(): String = BuildConfig.APPLICATION_ID
         override fun provideIsIncognitoKeyboardEnabled(): Boolean = false
         override fun provideIsScreenSecurityEnabled(): Boolean = false
+      }
+    )
+
+    MediaKeyboardDependencies.init(
+      this,
+      object : MediaKeyboardDependencies.Provider {
+        private val exoPlayerPool = DemoExoPlayerPool(this@MediaKeyboardDemoApplication)
+
+        override fun provideExoPlayerPool(): ExoPlayerPool<ExoPlayer> = exoPlayerPool
       }
     )
 
