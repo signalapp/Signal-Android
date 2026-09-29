@@ -11,7 +11,7 @@
   <string name="GroupPermissionsScreen__only_admins">അഡ്‌മിനുകൾ മാത്രം</string>
   <string name="GroupPermissionsScreen__who_can_add_new_members">ആർക്കാണ് പുതിയ അംഗങ്ങളെ ചേർക്കാൻ കഴിയുക?</string>
   <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">ഈ ഗ്രൂപ്പിന്റെ വിവരങ്ങൾ ആർക്കാണ് എഡിറ്റുചെയ്യാൻ കഴിയുക?</string>
-  <string name="GroupPermissionsScreen__who_can_send_messages">ആർക്കൊക്കെ സന്ദേശങ്ങൾ അയയ്ക്കാനും കോളുകൾ ആരംഭിക്കാനും കഴിയും?</string>
+  <string name="GroupPermissionsScreen__who_can_send_messages">സന്ദേശങ്ങൾ അയയ്ക്കാനും കോളുകൾ ആരംഭിക്കാനും ആർക്കാണ് കഴിയുക?</string>
   <!-- Label for the member labels permission button in the group permissions settings screen. -->
   <string name="GroupPermissionsScreen__add_member_labels">മെമ്പര്‍ ലേബലുകൾ ചേർക്കുക</string>
   <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
@@ -26,10 +26,10 @@
   <string name="ShareableGroupLinkScreen__group_link">ഗ്രൂപ്പിന്റെ ലിങ്ക്</string>
   <string name="ShareableGroupLinkScreen__share">പങ്കിടുക</string>
   <!-- Label of the row that gives the group a new link, and the confirm button of the warning it shows first. -->
-  <string name="ShareableGroupLinkScreen__reset_link">ലിങ്ക് പുനഃസജ്ജമാക്കുക്ക</string>
+  <string name="ShareableGroupLinkScreen__reset_link">ലിങ്ക് പുനഃക്രമീകരിക്കുക</string>
   <string name="ShareableGroupLinkScreen__require_admin_approval">അഡ്മിൻ അംഗീകാരം ആവശ്യമാണ്</string>
   <string name="ShareableGroupLinkScreen__require_an_admin_to_approve_new_members_joining_via_the_group_link">ഗ്രൂപ്പ് ലിങ്ക് വഴി ചേരുന്ന പുതിയ അംഗങ്ങളെ അംഗീകരിക്കുന്നതിന് ഒരു അഡ്മിൻ ആവശ്യമാണ്.</string>
-  <string name="ShareableGroupLinkScreen__are_you_sure_you_want_to_reset_the_group_link">ഗ്രൂപ്പ് ലിങ്ക് പുനസജ്ജമാക്കണമെന്ന് നിങ്ങള്‍ക്ക് ഉറപ്പാണ‍ോ? നിലവിലെ ലിങ്ക് ഉപയോഗിച്ച് ആളുകൾക്ക് മേലിൽ ഗ്രൂപ്പിൽ ചേരാനാവില്ല.</string>
+  <string name="ShareableGroupLinkScreen__are_you_sure_you_want_to_reset_the_group_link">ഗ്രൂപ്പ് ലിങ്ക് പുനഃക്രമീകരിക്കണമെന്ന് നിങ്ങള്‍ക്ക് ഉറപ്പാണ‍ോ? നിലവിലെ ലിങ്ക് ഉപയോഗിച്ച് ആളുകൾക്ക് മേലിൽ ഗ്രൂപ്പിൽ ചേരാനാവില്ല.</string>
   <!-- Content description of the button that navigates back off of the group link screen. -->
   <string name="ShareableGroupLinkScreen__go_back">മടങ്ങിപ്പോവുക</string>
 </resources>

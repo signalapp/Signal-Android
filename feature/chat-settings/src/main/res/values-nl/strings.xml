@@ -9,8 +9,8 @@
   <string name="GroupPermissionsScreen__send_messages">Berichten verzenden &amp; oproepen beginnen</string>
   <string name="GroupPermissionsScreen__all_members">Alle leden</string>
   <string name="GroupPermissionsScreen__only_admins">Uitsluitend beheerders</string>
-  <string name="GroupPermissionsScreen__who_can_add_new_members">Wie mogen nieuwe leden toevoegen?</string>
-  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">Wie mogen de groepsinformatie bewerken?</string>
+  <string name="GroupPermissionsScreen__who_can_add_new_members">Wie kan nieuwe leden toevoegen?</string>
+  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">Wie kan de groepsinformatie bewerken?</string>
   <string name="GroupPermissionsScreen__who_can_send_messages">Wie kan berichten verzenden en oproepen beginnen?</string>
   <!-- Label for the member labels permission button in the group permissions settings screen. -->
   <string name="GroupPermissionsScreen__add_member_labels">Ledenlabels toevoegen</string>

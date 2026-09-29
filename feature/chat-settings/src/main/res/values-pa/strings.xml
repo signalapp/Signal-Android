@@ -9,8 +9,8 @@
   <string name="GroupPermissionsScreen__send_messages">ਸੁਨੇਹੇ ਭੇਜੋ</string>
   <string name="GroupPermissionsScreen__all_members">ਸਾਰੇ ਮੈਂਬਰ</string>
   <string name="GroupPermissionsScreen__only_admins">ਸਿਰਫ਼ ਐਡਮਿਨ</string>
-  <string name="GroupPermissionsScreen__who_can_add_new_members">ਨਵੇਂ ਮੈਂਬਰ ਕੌਣ ਸ਼ਾਮਲ ਕਰ ਸਕਦਾ ਹੈ?</string>
-  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">ਇਸ ਗਰੁੱਪ ਦੀ ਜਾਣਕਾਰੀ ਨੂੰ ਕੌਣ ਸੰਪਾਦਿਤ ਕਰ ਸਕਦਾ ਹੈ?</string>
+  <string name="GroupPermissionsScreen__who_can_add_new_members">ਨਵੇਂ ਮੈਂਬਰਾਂ ਨੂੰ ਕੌਣ ਸ਼ਾਮਲ ਕਰ ਸਕਦਾ ਹੈ?</string>
+  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">ਇਸ ਗਰੁੱਪ ਦੀ ਜਾਣਕਾਰੀ ਨੂੰ ਕੌਣ ਸੋਧ ਸਕਦਾ ਹੈ?</string>
   <string name="GroupPermissionsScreen__who_can_send_messages">ਕੌਣ ਸੁਨੇਹੇ ਭੇਜ ਸਕਦਾ ਹੈ ਅਤੇ ਕਾਲਾਂ ਕਰ ਸਕਦਾ ਹੈ?</string>
   <!-- Label for the member labels permission button in the group permissions settings screen. -->
   <string name="GroupPermissionsScreen__add_member_labels">ਮੈਂਬਰ ਲੇਬਲ ਸ਼ਾਮਲ ਕਰੋ</string>
@@ -29,7 +29,7 @@
   <string name="ShareableGroupLinkScreen__reset_link">ਲਿੰਕ ਰੀਸੈੱਟ ਕਰੋ</string>
   <string name="ShareableGroupLinkScreen__require_admin_approval">ਐਡਮਿਨ ਦੀ ਮਨਜ਼ੂਰੀ ਲੋੜੀਂਦੀ ਹੈ</string>
   <string name="ShareableGroupLinkScreen__require_an_admin_to_approve_new_members_joining_via_the_group_link">ਗਰੁੱਪ ਲਿੰਕ ਰਾਹੀਂ ਸ਼ਾਮਲ ਹੋਣ ਵਾਲੇ ਨਵੇਂ ਮੈਂਬਰਾਂ ਨੂੰ ਮਨਜ਼ੂਰੀ ਦੇਣ ਲਈ ਕਿਸੇ ਐਡਮਿਨ ਦੀ ਲੋੜ ਹੈ।</string>
-  <string name="ShareableGroupLinkScreen__are_you_sure_you_want_to_reset_the_group_link">ਕੀ ਤੁਸੀਂ ਯਕੀਨਨ ਗਰੁੱਪ ਲਿੰਕ ਨੂੰ ਰੀਸੈੱਟ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ? ਲੋਕ ਹੁਣ ਮੌਜੂਦਾ ਲਿੰਕ ਦੀ ਵਰਤੋਂ ਨਾਲ ਗਰੁੱਪ ਵਿੱਚ ਸ਼ਾਮਲ ਨਹੀਂ ਹੋ ਸਕਣਗੇੇ।</string>
+  <string name="ShareableGroupLinkScreen__are_you_sure_you_want_to_reset_the_group_link">ਕੀ ਤੁਸੀਂ ਪੱਕਾ ਗਰੁੱਪ ਲਿੰਕ ਨੂੰ ਰੀਸੈੱਟ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ? ਲੋਕ ਹੁਣ ਮੌਜੂਦਾ ਲਿੰਕ ਦੀ ਵਰਤੋਂ ਨਾਲ ਗਰੁੱਪ ਵਿੱਚ ਸ਼ਾਮਲ ਨਹੀਂ ਹੋ ਸਕਣਗੇੇ।</string>
   <!-- Content description of the button that navigates back off of the group link screen. -->
   <string name="ShareableGroupLinkScreen__go_back">ਪਿੱਛੇ ਜਾਓ</string>
 </resources>

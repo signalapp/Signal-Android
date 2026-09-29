@@ -8,7 +8,7 @@
   <string name="GroupPermissionsScreen__edit_group_info">Modifier les infos du groupe</string>
   <string name="GroupPermissionsScreen__send_messages">Envoyer des messages</string>
   <string name="GroupPermissionsScreen__all_members">Tous les membres</string>
-  <string name="GroupPermissionsScreen__only_admins">Seulement les admins</string>
+  <string name="GroupPermissionsScreen__only_admins">Les administrateurs</string>
   <string name="GroupPermissionsScreen__who_can_add_new_members">Qui peut ajouter de nouveaux membres ?</string>
   <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">Qui peut modifier les infos de ce groupe ?</string>
   <string name="GroupPermissionsScreen__who_can_send_messages">Qui peut envoyer des messages et passer des appels ?</string>
@@ -28,7 +28,7 @@
   <!-- Label of the row that gives the group a new link, and the confirm button of the warning it shows first. -->
   <string name="ShareableGroupLinkScreen__reset_link">Réinitialiser le lien</string>
   <string name="ShareableGroupLinkScreen__require_admin_approval">Exiger l\'approbation d\'un admin</string>
-  <string name="ShareableGroupLinkScreen__require_an_admin_to_approve_new_members_joining_via_the_group_link">Un administrateur doit approuver les nouveaux membres qui rejoignent le groupe via le lien.</string>
+  <string name="ShareableGroupLinkScreen__require_an_admin_to_approve_new_members_joining_via_the_group_link">Un admin doit approuver les nouveaux membres qui rejoignent le groupe via le lien.</string>
   <string name="ShareableGroupLinkScreen__are_you_sure_you_want_to_reset_the_group_link">Voulez-vous vraiment réinitialiser le lien du groupe ? Personne ne pourra plus rejoindre le groupe via le lien actuel.</string>
   <!-- Content description of the button that navigates back off of the group link screen. -->
   <string name="ShareableGroupLinkScreen__go_back">Retour</string>

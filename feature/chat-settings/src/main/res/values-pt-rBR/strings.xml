@@ -13,13 +13,13 @@
   <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">Quem pode editar as informações deste grupo?</string>
   <string name="GroupPermissionsScreen__who_can_send_messages">Quem pode enviar mensagens e iniciar chamadas?</string>
   <!-- Label for the member labels permission button in the group permissions settings screen. -->
-  <string name="GroupPermissionsScreen__add_member_labels">Adicionar etiqueta de membro</string>
+  <string name="GroupPermissionsScreen__add_member_labels">Adicionar etiquetas de membro</string>
   <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-  <string name="GroupPermissionsScreen__who_can_add_member_labels">Quem pode adicionar etiqueta de membro?</string>
+  <string name="GroupPermissionsScreen__who_can_add_member_labels">Quem pode adicionar rótulos de membro?</string>
   <!-- Warning title shown before restricting member labels to admins only. -->
-  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_title">As etiquetas de membro serão removidas</string>
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_title">Os rótulos de membro serão removidos</string>
   <!-- Warning body shown before restricting member labels to admins only. -->
-  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_body">"Alterar essa permissão para “Somente administradores” removerá as etiquetas de membro definidas por usuários que não são admins neste grupo."</string>
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_body">"Alterar essa permissão para “Somente administradores” removerá os rótulos de membro definidos por usuários que não são admins neste grupo."</string>
   <!-- Confirm button for changing member label permission after warning. -->
   <string name="GroupPermissionsScreen__change_permission">Alterar permissão</string>
   <!-- Title of the screen where a group\'s members share its link and its admins manage it. -->

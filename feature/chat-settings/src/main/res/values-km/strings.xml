@@ -4,13 +4,13 @@
   <string name="GroupPermissionsScreen__permissions">ការអនុញ្ញាត</string>
   <!-- Content description of the button that navigates back off of the group permissions screen. -->
   <string name="GroupPermissionsScreen__go_back">ត្រឡប់ក្រោយ</string>
-  <string name="GroupPermissionsScreen__add_members">បន្ថែមសមាជិក</string>
+  <string name="GroupPermissionsScreen__add_members">បញ្ចូលសមាជិក</string>
   <string name="GroupPermissionsScreen__edit_group_info">កែព័ត៌មានក្រុម</string>
   <string name="GroupPermissionsScreen__send_messages">ផ្ញើសារ</string>
   <string name="GroupPermissionsScreen__all_members">សមាជិកទាំងអស់</string>
-  <string name="GroupPermissionsScreen__only_admins">តែអ្នកគ្រប់គ្រង</string>
-  <string name="GroupPermissionsScreen__who_can_add_new_members">នរណាអាចបន្ថែមសមាជិកថ្មីឯ</string>
-  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">តើនរណាអាចកែប្រែព័ត៌មានក្រុមនេះ?</string>
+  <string name="GroupPermissionsScreen__only_admins">តែអ្នកគ្រប់គ្រងប៉ុណ្ណោះ</string>
+  <string name="GroupPermissionsScreen__who_can_add_new_members">នរណាអាចបញ្ចូលសមាជិកថ្មីបាន?</string>
+  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">តើនរណាអាចកែព័ត៌មានក្រុមនេះបាន?</string>
   <string name="GroupPermissionsScreen__who_can_send_messages">តើនរណាអាចផ្ញើសារ និងចាប់ផ្តើមការហៅទូរសព្ទបាន?</string>
   <!-- Label for the member labels permission button in the group permissions settings screen. -->
   <string name="GroupPermissionsScreen__add_member_labels">បញ្ចូលស្លាកសមាជិក</string>
@@ -28,8 +28,8 @@
   <!-- Label of the row that gives the group a new link, and the confirm button of the warning it shows first. -->
   <string name="ShareableGroupLinkScreen__reset_link">កំណត់តំណភ្ជាប់ឡើងវិញ</string>
   <string name="ShareableGroupLinkScreen__require_admin_approval">ត្រូវមានការយល់ព្រមពីអ្នកគ្រប់គ្រង</string>
-  <string name="ShareableGroupLinkScreen__require_an_admin_to_approve_new_members_joining_via_the_group_link">ទាមទារអភិបាល ដើម្បីអនុម័តសមាជិកថ្មី ចូលរួមតាមតំណភ្ជាប់ក្រុម។</string>
-  <string name="ShareableGroupLinkScreen__are_you_sure_you_want_to_reset_the_group_link">តើអ្នកប្រាកដថាចង់កំណត់តំណភ្ជាប់ក្រុមឡើងវិញ? អ្នកដទៃ នឹងមិនអាចចូលរួមក្រុម ដោយប្រើប្រាស់តំណភ្ជាប់បច្ចុប្បន្នបានទេ។</string>
+  <string name="ShareableGroupLinkScreen__require_an_admin_to_approve_new_members_joining_via_the_group_link">តម្រូវឱ្យអភិបាលអនុញ្ញាតលើការចូលរួមរបស់សមាជិកថ្មីៗតាមតំណភ្ជាប់ក្រុម។</string>
+  <string name="ShareableGroupLinkScreen__are_you_sure_you_want_to_reset_the_group_link">តើអ្នកប្រាកដថាចង់កំណត់តំណភ្ជាប់ក្រុមឡើងវិញទេ? អ្នកផ្សេងទៀតនឹងមិនអាចចូលរួមក្រុម ដោយប្រើប្រាស់តំណភ្ជាប់បច្ចុប្បន្នបានទៀតទេ។</string>
   <!-- Content description of the button that navigates back off of the group link screen. -->
   <string name="ShareableGroupLinkScreen__go_back">ត្រឡប់ក្រោយ</string>
 </resources>

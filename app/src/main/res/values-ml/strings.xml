@@ -509,6 +509,14 @@
         <item quantity="other">%1$d വായിക്കാത്ത സന്ദേശങ്ങൾ</item>
     </plurals>
 
+    <!-- ChatStickerConfirmation -->
+    <!-- Header shown above a sticker the user is about to send as a reply. %1$s is the name of the person whose message is being replied to. -->
+    <string name="ChatStickerConfirmation__reply_to_s">Reply to %1$s</string>
+    <!-- Header shown above a sticker the user is about to send as a reply to one of their own messages -->
+    <string name="ChatStickerConfirmation__reply_to_yourself">Reply to yourself</string>
+    <!-- Content description for the button that closes the sticker confirmation without sending -->
+    <string name="ChatStickerConfirmation__go_back">Go back</string>
+
     <!-- ConversationFragment -->
     <!-- Toast text when contacts activity is not found -->
     <string name="ConversationFragment__contacts_app_not_found">കോൺടാക്‌റ്റുകൾ ആപ്പ് കണ്ടെത്തിയില്ല.</string>
@@ -1395,7 +1403,7 @@
     <string name="GroupErrors__not_announcement_capable">നിങ്ങൾ ചേർത്ത ഒരാൾ അനൗൺസ്മെന്റ് ഗ്രൂപ്പുകളെ പിന്തുണയ്ക്കുന്നില്ല കൂടാതെ Signal അപ്ഡേറ്റ് ചെയ്യേണ്ടതുണ്ട്</string>
     <string name="GroupErrors__failed_to_update_the_group">ഗ്രൂപ്പ് അപ്‌ഡേറ്റ് ചെയ്യുന്നതിൽ പരാജയപ്പെട്ടു</string>
     <string name="GroupErrors__youre_not_a_member_of_the_group">നിങ്ങൾ ഗ്രൂപ്പിലെ അംഗമല്ല</string>
-    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">അഡ്‌മിനുകൾക്ക് മാത്രമേ പങ്കിടാനാകുന്ന ഗ്രൂപ്പ് ലിങ്ക് പുനഃസജ്ജമാക്കാൻ കഴിയൂ.</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">ഗ്രൂപ്പ് അപ്‌ഡേറ്റ് ചെയ്യുന്നതിൽ പരാജയപ്പെട്ടു; ദയവായി പിന്നീട് വീണ്ടും ശ്രമിക്കുക</string>
     <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">ഒരു നെറ്റ്‌വർക്ക് പിശക് കാരണം ഗ്രൂപ്പ് അപ്‌ഡേറ്റുചെയ്യുന്നതിൽ പരാജയപ്പെട്ടു, ദയവായി പിന്നീട് വീണ്ടും ശ്രമിക്കുക</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">പേരും ചിത്രവും എഡിറ്റുചെയ്യുക</string>
@@ -2830,13 +2838,13 @@
     <!-- Shown when no stickers match the search. The placeholder what was searched. -->
     <string name="StickerManagement_search_no_results_s">\'%1$s\' -നായി ഫലങ്ങളൊന്നും കണ്ടെത്തിയില്ല</string>
     <!-- Sticker pack button for forwarding a sticker link. -->
-    <string name="StickerManagement_menu_send_signal_pack">Send via Signal</string>
+    <string name="StickerManagement_menu_send_signal_pack">Signal വഴി അയക്കുക</string>
     <!-- Sticker pack button that opens a bottom sheet with more share options. -->
     <string name="StickerManagement_menu_link_pack">ലിങ്ക്</string>
     <!-- Sticker pack sheet option for sharing a sticker pack link using the system share sheet. -->
     <string name="StickerManagement_menu_share_pack">പങ്കിടുക</string>
     <!-- Bottom sheet description for the share sticker sheet. -->
-    <string name="StickerManagement__anyone">Anyone with this link can install and share this sticker pack.</string>
+    <string name="StickerManagement__anyone">ഈ ലിങ്കുള്ള ആർക്കും ഈ സ്റ്റിക്കർ പായ്ക്ക് ഇൻസ്റ്റാൾ ചെയ്യാനും പങ്കിടാനും കഴിയും.</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
     <string name="StickerManagement_accessibility_download_pack">%1$s സ്റ്റിക്കർ പായ്ക്ക് ഡൗൺലോഡ് ചെയ്യുക</string>
     <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
@@ -9006,7 +9014,7 @@
     <!-- Old device Transfer account bottom sheet dialog body -->
     <string name="TransferAccount_continue_on_your_other_device_details">നിങ്ങളുടെ മറ്റേ ഉപകരണത്തിൽ അക്കൗണ്ട് കൈമാറുന്നത് തുടരുക.</string>
     <!-- Old device Transfer account error dialog body shown when the new device is too old to accept an account that has no phone number -->
-    <string name="TransferAccount_the_device_you_are_transferring_to_is_out_of_date">The device you\'re transferring to is out of date. Update Signal on that device and try again.</string>
+    <string name="TransferAccount_the_device_you_are_transferring_to_is_out_of_date">നിങ്ങൾ ഡാറ്റ കൈമാറുന്ന ഉപകരണം കാലഹരണപ്പെട്ടതാണ്. ആ ഉപകരണത്തിലെ Signal അപ്‌ഡേറ്റ് ചെയ്‌ത് വീണ്ടും ശ്രമിക്കുക.</string>
 
     <!-- Prepare Device screen title for quick restore flow -->
     <string name="PrepareDevice_title">നിങ്ങളുടെ ഉപകരണം തയ്യാറാക്കുന്നു</string>

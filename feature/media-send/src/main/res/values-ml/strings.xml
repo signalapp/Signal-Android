@@ -232,9 +232,9 @@
   <string name="LinkedDeviceScannedDialog__device_link_dialog_continue">തുടരുക</string>
 
   <!-- The title of a dialog shown when the user scanned a transfer QR code from a device that is too old to accept their account. -->
-  <string name="ReRegistrationScannedDialog__transfer_failed_title">Can\'t transfer account</string>
+  <string name="ReRegistrationScannedDialog__transfer_failed_title">അക്കൗണ്ട് കൈമാറാൻ കഴിയില്ല</string>
   <!-- The body of a dialog shown when the user scanned a transfer QR code from a device that is too old to accept their account. -->
-  <string name="ReRegistrationScannedDialog__the_device_you_are_transferring_to_is_out_of_date">The device you\'re transferring to is out of date. Update Signal on that device and try again.</string>
+  <string name="ReRegistrationScannedDialog__the_device_you_are_transferring_to_is_out_of_date">നിങ്ങൾ ഡാറ്റ കൈമാറുന്ന ഉപകരണം കാലഹരണപ്പെട്ടതാണ്. ആ ഉപകരണത്തിലെ Signal അപ്‌ഡേറ്റ് ചെയ്‌ത് വീണ്ടും ശ്രമിക്കുക.</string>
 
     <!-- Gif label displayed in a pill in the editor specifying the type of media being sent. -->
     <plurals name="MediaEditScreen__gif">

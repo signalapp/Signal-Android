@@ -10,7 +10,7 @@
   <string name="GroupPermissionsScreen__all_members">Kaikki jäsenet</string>
   <string name="GroupPermissionsScreen__only_admins">Vain ylläpitäjät</string>
   <string name="GroupPermissionsScreen__who_can_add_new_members">Kuka voi lisätä uusia jäseniä?</string>
-  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">Kuka voi muokata tämän ryhmän tietoja?</string>
+  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">Kuka voi muokata ryhmän tietoja?</string>
   <string name="GroupPermissionsScreen__who_can_send_messages">Kuka voi lähettää viestejä ja aloittaa puheluita?</string>
   <!-- Label for the member labels permission button in the group permissions settings screen. -->
   <string name="GroupPermissionsScreen__add_member_labels">Lisää jäsenrooleja</string>

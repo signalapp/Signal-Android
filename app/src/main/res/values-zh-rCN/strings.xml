@@ -504,6 +504,14 @@
         <item quantity="other">%1$d 条未读消息</item>
     </plurals>
 
+    <!-- ChatStickerConfirmation -->
+    <!-- Header shown above a sticker the user is about to send as a reply. %1$s is the name of the person whose message is being replied to. -->
+    <string name="ChatStickerConfirmation__reply_to_s">Reply to %1$s</string>
+    <!-- Header shown above a sticker the user is about to send as a reply to one of their own messages -->
+    <string name="ChatStickerConfirmation__reply_to_yourself">Reply to yourself</string>
+    <!-- Content description for the button that closes the sticker confirmation without sending -->
+    <string name="ChatStickerConfirmation__go_back">Go back</string>
+
     <!-- ConversationFragment -->
     <!-- Toast text when contacts activity is not found -->
     <string name="ConversationFragment__contacts_app_not_found">找不到联系人应用。</string>
@@ -1351,7 +1359,7 @@
     <string name="GroupErrors__not_capable">您添加的部分用户无法使用新版群组，这些用户需要升级 Signal。</string>
     <string name="GroupErrors__not_announcement_capable">您添加的某个人无法使用公告群组，对方需要更新 Signal</string>
     <string name="GroupErrors__failed_to_update_the_group">无法更新群组</string>
-    <string name="GroupErrors__youre_not_a_member_of_the_group">您不是该群组成员</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">您不是该群组的成员</string>
     <string name="GroupErrors__failed_to_update_the_group_please_retry_later">无法更新群组，请稍候再试</string>
     <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">由于网络错误无法更新群组，请稍候再试</string>
 
@@ -2734,13 +2742,13 @@
     <!-- Shown when no stickers match the search. The placeholder what was searched. -->
     <string name="StickerManagement_search_no_results_s">没有找到关于“%1$s”的信息</string>
     <!-- Sticker pack button for forwarding a sticker link. -->
-    <string name="StickerManagement_menu_send_signal_pack">Send via Signal</string>
+    <string name="StickerManagement_menu_send_signal_pack">通过 Signal 发送</string>
     <!-- Sticker pack button that opens a bottom sheet with more share options. -->
     <string name="StickerManagement_menu_link_pack">链接</string>
     <!-- Sticker pack sheet option for sharing a sticker pack link using the system share sheet. -->
     <string name="StickerManagement_menu_share_pack">分享</string>
     <!-- Bottom sheet description for the share sticker sheet. -->
-    <string name="StickerManagement__anyone">Anyone with this link can install and share this sticker pack.</string>
+    <string name="StickerManagement__anyone">收到此链接的任何用户均可以安装和分享该贴纸包。</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
     <string name="StickerManagement_accessibility_download_pack">下载%1$s贴纸包</string>
     <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
@@ -8812,7 +8820,7 @@
     <!-- Old device Transfer account bottom sheet dialog body -->
     <string name="TransferAccount_continue_on_your_other_device_details">在您的其他设备上继续转移您的账户。</string>
     <!-- Old device Transfer account error dialog body shown when the new device is too old to accept an account that has no phone number -->
-    <string name="TransferAccount_the_device_you_are_transferring_to_is_out_of_date">The device you\'re transferring to is out of date. Update Signal on that device and try again.</string>
+    <string name="TransferAccount_the_device_you_are_transferring_to_is_out_of_date">接收转移的设备版本过旧。请更新该设备上的 Signal，然后重试。</string>
 
     <!-- Prepare Device screen title for quick restore flow -->
     <string name="PrepareDevice_title">将设备准备好</string>

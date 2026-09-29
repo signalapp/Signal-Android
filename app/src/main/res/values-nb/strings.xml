@@ -509,6 +509,14 @@
         <item quantity="other">%1$d uleste meldinger</item>
     </plurals>
 
+    <!-- ChatStickerConfirmation -->
+    <!-- Header shown above a sticker the user is about to send as a reply. %1$s is the name of the person whose message is being replied to. -->
+    <string name="ChatStickerConfirmation__reply_to_s">Reply to %1$s</string>
+    <!-- Header shown above a sticker the user is about to send as a reply to one of their own messages -->
+    <string name="ChatStickerConfirmation__reply_to_yourself">Reply to yourself</string>
+    <!-- Content description for the button that closes the sticker confirmation without sending -->
+    <string name="ChatStickerConfirmation__go_back">Go back</string>
+
     <!-- ConversationFragment -->
     <!-- Toast text when contacts activity is not found -->
     <string name="ConversationFragment__contacts_app_not_found">Kunne ikke finne kontakter-appen.</string>
@@ -1390,13 +1398,13 @@
 
     <!-- Shown when a change to a group is rejected because the group has ended. -->
     <string name="GroupErrors__the_group_was_terminated">Gruppen er stengt.</string>
-    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">Du har ikke rettigheter for å gjøre dette</string>
-    <string name="GroupErrors__not_capable">Noen du la til har ikke støtte for nye grupper og må oppdatere Signal</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">Du har ikke rettigheter til å gjøre dette</string>
+    <string name="GroupErrors__not_capable">Noen du la til, har ikke støtte for nye grupper og må oppdatere Signal-appen sin.</string>
     <string name="GroupErrors__not_announcement_capable">En av personene du la til, støtter ikke kunngjøringsgrupper og må oppdatere Signal-appen sin.</string>
-    <string name="GroupErrors__failed_to_update_the_group">Gruppeoppdatering feilet</string>
+    <string name="GroupErrors__failed_to_update_the_group">Gruppeoppdatering mislyktes</string>
     <string name="GroupErrors__youre_not_a_member_of_the_group">Du er ikke medlem av gruppen</string>
-    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Gruppeoppdateringen feilet, prøv igjen senere</string>
-    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Oppdateringen av gruppen feilet pga. en nettverksfeil, prøv igjen senere</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">Gruppeoppdateringen mislyktes. Prøv på nytt senere.</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">Oppdateringen av gruppen mislyktes pga. en nettverksfeil. Prøv på nytt senere.</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">Rediger navn og bilde</string>
     <string name="ManageGroupActivity_legacy_group">\"Legacy\"-grupper</string>
@@ -2836,7 +2844,7 @@
     <!-- Sticker pack sheet option for sharing a sticker pack link using the system share sheet. -->
     <string name="StickerManagement_menu_share_pack">Del</string>
     <!-- Bottom sheet description for the share sticker sheet. -->
-    <string name="StickerManagement__anyone">Anyone with this link can install and share this sticker pack.</string>
+    <string name="StickerManagement__anyone">Alle som har lenken, kan installere og dele denne klistremerkepakken.</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
     <string name="StickerManagement_accessibility_download_pack">Last ned %1$s-klistremerkepakke</string>
     <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
@@ -9006,7 +9014,7 @@
     <!-- Old device Transfer account bottom sheet dialog body -->
     <string name="TransferAccount_continue_on_your_other_device_details">Fortsett kontooverføringen på den andre enheten.</string>
     <!-- Old device Transfer account error dialog body shown when the new device is too old to accept an account that has no phone number -->
-    <string name="TransferAccount_the_device_you_are_transferring_to_is_out_of_date">The device you\'re transferring to is out of date. Update Signal on that device and try again.</string>
+    <string name="TransferAccount_the_device_you_are_transferring_to_is_out_of_date">Enheten du forsøker å overføre til, er utdatert. Oppdater Signal på enheten, og prøv på nytt.</string>
 
     <!-- Prepare Device screen title for quick restore flow -->
     <string name="PrepareDevice_title">Klargjør enheten din</string>

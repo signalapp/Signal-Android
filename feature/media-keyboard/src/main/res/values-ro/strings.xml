@@ -13,7 +13,7 @@
   <string name="MediaKeyboard__gifs">GIF-uri</string>
 
   <!-- Search -->
-  <!-- Placeholder text in the media keyboard search field while the emoji tab is showing. -->
+  <!-- Placeholder text in the search field at the top of the emoji page, and in the media keyboard search field while the emoji tab is showing. -->
   <string name="MediaKeyboard__search_emoji">Căutare emoji</string>
   <!-- Placeholder text in the search field at the top of the sticker page, and in the media keyboard search field while the sticker tab is showing. -->
   <string name="MediaKeyboard__search_stickers">Căutare autocolante</string>
@@ -54,7 +54,7 @@
 
   <!-- Sticker page -->
   <!-- Accessibility description for the button in the media keyboard top bar that opens the screen where sticker packs are managed. -->
-  <string name="MediaKeyboard__manage_stickers">Manage stickers</string>
+  <string name="MediaKeyboard__manage_stickers">Gestionează abțibildurile</string>
   <!-- Menu option that sends a sticker, on a long-pressed sticker, or the whole pack as a link, in a sticker pack header\'s menu. Verb, imperative. -->
   <string name="MediaKeyboard__send">Trimite</string>
   <!-- Menu option, on a long-pressed sticker and in a sticker pack header\'s menu, that opens the pack the sticker belongs to. Verb phrase, imperative. -->
@@ -64,11 +64,11 @@
   <!-- Menu option in a sticker pack header\'s menu that uninstalls the pack. Verb, imperative. -->
   <string name="MediaKeyboard__remove_pack">Elimină</string>
   <!-- Title of the confirmation dialog shown before uninstalling a sticker pack. -->
-  <string name="MediaKeyboard__remove_sticker_pack_question">Remove sticker pack?</string>
+  <string name="MediaKeyboard__remove_sticker_pack_question">Elimini pachetul de abțibilduri?</string>
   <!-- Body of the confirmation dialog shown before uninstalling a sticker pack. -->
-  <string name="MediaKeyboard__this_will_remove_the_sticker_pack">This will remove the sticker pack. You can\'t add it again without a link or sticker message.</string>
+  <string name="MediaKeyboard__this_will_remove_the_sticker_pack">Acțiunea va elimina pachetul de abțibilduri. Nu poți să le adaugi din nou fără un link sau un mesaj de abțibilduri.</string>
   <!-- Menu option in the recently used header\'s menu that forgets every recently used sticker. Verb phrase, imperative. -->
-  <string name="MediaKeyboard__clear_recents">Clear recents</string>
+  <string name="MediaKeyboard__clear_recents">Elimină recentele</string>
 
   <!-- Gif page -->
   <!-- Label of the GIF quick search chip that shows the GIFs trending right now. -->
@@ -88,7 +88,7 @@
   <!-- Label of the GIF quick search chip that searches for GIFs of someone angry. Adjective describing the mood in the GIFs. -->
   <string name="MediaKeyboard__angry">Furie</string>
   <!-- Error message shown in place of the GIF grid when the GIFs could not be fetched. -->
-  <string name="MediaKeyboard__couldnt_load_gifs">Couldn\'t load GIFs. Check your connection and try again.</string>
+  <string name="MediaKeyboard__couldnt_load_gifs">GIF-urile nu au putut fi încărcate. Verifică-ți conexiunea și încearcă din nou.</string>
   <!-- Button shown with the GIF loading error that tries the fetch again. Verb, imperative. -->
   <string name="MediaKeyboard__retry">Încearcă din nou</string>
 </resources>

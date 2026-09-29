@@ -4,11 +4,11 @@
   <string name="GroupPermissionsScreen__permissions">Dovoljenja</string>
   <!-- Content description of the button that navigates back off of the group permissions screen. -->
   <string name="GroupPermissionsScreen__go_back">Nazaj</string>
-  <string name="GroupPermissionsScreen__add_members">Dodaj člane_ice</string>
+  <string name="GroupPermissionsScreen__add_members">Dodaj člane</string>
   <string name="GroupPermissionsScreen__edit_group_info">Urejanje podatkov o skupini</string>
-  <string name="GroupPermissionsScreen__send_messages">Pošilja sporočila</string>
+  <string name="GroupPermissionsScreen__send_messages">Pošiljanje sporočil</string>
   <string name="GroupPermissionsScreen__all_members">Vsi člani</string>
-  <string name="GroupPermissionsScreen__only_admins">Samo skrbniki_ce</string>
+  <string name="GroupPermissionsScreen__only_admins">Samo skrbniki</string>
   <string name="GroupPermissionsScreen__who_can_add_new_members">Kdo lahko dodaja nove člane?</string>
   <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">Kdo lahko ureja informacije o skupini</string>
   <string name="GroupPermissionsScreen__who_can_send_messages">Kdo lahko pošilja sporočila in začenja klice?</string>
@@ -27,9 +27,9 @@
   <string name="ShareableGroupLinkScreen__share">Deli</string>
   <!-- Label of the row that gives the group a new link, and the confirm button of the warning it shows first. -->
   <string name="ShareableGroupLinkScreen__reset_link">Ponastavi povezavo</string>
-  <string name="ShareableGroupLinkScreen__require_admin_approval">Zahtevajte odobritev administratorja</string>
-  <string name="ShareableGroupLinkScreen__require_an_admin_to_approve_new_members_joining_via_the_group_link">Za pridružitev tej skupini preko deljene povezave je zahtevana odobritev skrbnika_ce.</string>
-  <string name="ShareableGroupLinkScreen__are_you_sure_you_want_to_reset_the_group_link">Ste prepričani, da želite ponastaviti povezavo do skupine? Uporabiki_ce se več ne bodo mogli_le pridružiti skupini preko sedanje povezave.</string>
+  <string name="ShareableGroupLinkScreen__require_admin_approval">Zahtevaj odobritev administratorja</string>
+  <string name="ShareableGroupLinkScreen__require_an_admin_to_approve_new_members_joining_via_the_group_link">Za pridružitev tej skupini preko deljene povezave je zahtevana odobritev skrbnika.</string>
+  <string name="ShareableGroupLinkScreen__are_you_sure_you_want_to_reset_the_group_link">Ste prepričani, da želite ponastaviti povezavo do skupine? Uporabiki se več ne bodo mogli pridružiti skupini preko sedanje povezave.</string>
   <!-- Content description of the button that navigates back off of the group link screen. -->
   <string name="ShareableGroupLinkScreen__go_back">Nazaj</string>
 </resources>

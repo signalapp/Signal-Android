@@ -62,6 +62,8 @@
     <string name="AccountSettingsFragment__passkey">પાસકી</string>
     <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
     <string name="AccountSettingsFragment__s_added_s">%1$s · ઉમેર્યું %2$s</string>
+    <!-- Name shown for a second factor whose details couldn\'t be read -->
+    <string name="AccountSettingsFragment__unknown">Unknown</string>
     <!-- Content description of the button that opens a second factor\'s options -->
     <string name="AccountSettingsFragment__open_two_factor_options">બે-પગલાંની ખાતરી પ્રમાણીકરણ વિકલ્પો ખોલો</string>
     <!-- Menu option that renames a second factor -->
@@ -81,9 +83,9 @@
     <!-- Title of the sheet explaining that the device screen lock is needed before the Signal Login details can be viewed -->
     <string name="AccountSettingsFragment__to_view_your_signal_login_confirm_its_you">તમારું Signal Login જોવા માટે, ખાતરી કરો કે તે તમે જ છો</string>
     <!-- Title of the device screen lock prompt shown before the delete account flow can be opened -->
-    <string name="AccountSettingsFragment__unlock_to_confirm_its_you">Unlock to confirm it\'s you</string>
+    <string name="AccountSettingsFragment__unlock_to_confirm_its_you">તે તમે જ છો તેની ખાતરી કરવા અનલૉક કરો</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before the delete account flow can be opened -->
-    <string name="AccountSettingsFragment__to_delete_your_account_confirm_its_you">To delete your account, confirm it\'s you</string>
+    <string name="AccountSettingsFragment__to_delete_your_account_confirm_its_you">તમારું એકાઉન્ટ ડિલીટ કરવા, ખાતરી કરો કે તે તમે જ છો</string>
     <!-- Toast shown when the device screen lock wasn\'t confirmed, so nothing happened -->
     <string name="AccountSettingsFragment__authentication_required">પ્રમાણીકરણ આવશ્યક છે</string>
     <!-- Title of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
@@ -179,38 +181,38 @@
     <string name="DeleteAccountFragment__delete_account">એકાઉન્ટ ડિલીટ કરો</string>
     <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">તમારી એકાઉન્ટ માહિતી અને પ્રોફાઇલ ફોટો ડિલીટ થશે</string>
     <string name="DeleteAccountFragment__delete_all_your_messages">તમારા બધા મેસેજ ડિલીટ કરો</string>
-    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">તમારા ચુકવણી એકાઉન્ટમાંથી %1$s ડિલીટ કરો</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">તમારા પેમેન્ટ એકાઉન્ટમાંથી %1$s ડિલીટ કરો</string>
     <string name="DeleteAccountFragment__no_country_code">કોઈ દેશ કોડ ઉલ્લેખિત નથી</string>
     <string name="DeleteAccountFragment__no_number">કોઈ નંબર ઉલ્લેખિત નથી</string>
     <string name="DeleteAccountFragment__the_phone_number">તમે દાખલ કરેલા ફોન નંબર તમારા એકાઉન્ટ સાથે મેળ ખાતા નથી.</string>
     <string name="DeleteAccountFragment__are_you_sure">શું તમે ખરેખર તમારું એકાઉન્ટ ડિલીટ કરવા માગો છો?</string>
     <string name="DeleteAccountFragment__this_will_delete_your_signal_account">આનાથી તમારું Signal એકાઉન્ટ ડિલીટ થશે અને ઍપ્લિકેશન રિસેટ થઈ જશે. આ પ્રક્રિયા પૂર્ણ થયા બાદ ઍપ બંધ થઈ જશે.</string>
-    <string name="DeleteAccountFragment__failed_to_delete_local_data">સ્થાનિક ડેટા ડિલીટ કરવામાં નિષ્ફળ. તમે તેને સિસ્ટમ એપ્લિકેશન સેટિંગ્સમાં જાતે દૂર કરી શકો છો.</string>
-    <string name="DeleteAccountFragment__launch_app_settings">એપ્લિકેશન સેટિંગ્સ લોંચ કરો</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">સ્થાનિક ડેટા ડિલીટ કરવામાં નિષ્ફળ. તમે તેને સિસ્ટમ ઍપ્લિકેશન સેટિંગ્સમાં જાતે દૂર કરી શકો છો.</string>
+    <string name="DeleteAccountFragment__launch_app_settings">ઍપ્લિકેશન સેટિંગ્સ લોન્ચ કરો</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
-    <string name="DeleteAccountFragment__leaving_groups">ગ્રુપ છોડી રહ્યાં છીએ…</string>
+    <string name="DeleteAccountFragment__leaving_groups">ગ્રૂપ છોડી રહ્યાં છીએ…</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
     <string name="DeleteAccountFragment__deleting_account">એકાઉન્ટ ડિલીટ કરી રહ્યાં છીએ…</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
     <string name="DeleteAccountFragment__canceling_your_subscription">તમારું સબ્સ્ક્રિપ્શન રદ કરી રહ્યાં છીએ…</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
-    <string name="DeleteAccountFragment__depending_on_the_number_of_groups">તમે કેટલા ગ્રુપમાં છો તેના આધારે, આમાં થોડી મિનિટો લાગી શકે છે</string>
+    <string name="DeleteAccountFragment__depending_on_the_number_of_groups">તમે કેટલા ગ્રૂપમાં છો તેના આધારે, આમાં થોડી મિનિટો લાગી શકે છે</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
-    <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">ઉપયોગકર્તા ડેટા ડિલીટ કરીએ છીએ અને એપ્લિકેશન રિસ્ટાર્ટ કરીએ છીએ</string>
+    <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">ઉપયોગકર્તા ડેટા ડિલીટ કરીએ છીએ અને ઍપ્લિકેશન રિસ્ટાર્ટ કરીએ છીએ</string>
     <!-- Title of error dialog shown when a network error occurs during account deletion -->
     <string name="DeleteAccountFragment__account_not_deleted">એકાઉન્ટ ડિલીટ થયું નથી</string>
     <!-- Message of error dialog shown when a network error occurs during account deletion -->
     <string name="DeleteAccountFragment__there_was_a_problem">ડિલીટ કરવાની પ્રક્રિયા પૂર્ણ કરવામાં એક સમસ્યા આવી હતી. તમારું નેટવર્ક કનેક્શન તપાસો અને ફરી પ્રયાસ કરો.</string>
     <!-- Body text above the bullet list on the delete account screen, shown when the account has a username. Placeholder is the username. -->
-    <string name="DeleteAccountScreen__deleting_your_account_with_username_s_will">Deleting your account with username \"%1$s\" will:</string>
+    <string name="DeleteAccountScreen__deleting_your_account_with_username_s_will">યુઝરનેમ \"%1$s\" સાથેનું તમારું એકાઉન્ટ ડિલીટ કરવાથી:</string>
     <!-- Bullet point on the delete account screen, shown in place of the plain one when the account has a username. Placeholder is the username. -->
-    <string name="DeleteAccountScreen__delete_your_account_info_and_profile_photo_including_your_username_s">Delete your account info and profile photo including your username \"%1$s\"</string>
+    <string name="DeleteAccountScreen__delete_your_account_info_and_profile_photo_including_your_username_s">તમારા યુઝરનેમ \"%1$s\" સહિત તમારી એકાઉન્ટ માહિતી અને પ્રોફાઇલ ફોટો ડિલીટ કરો</string>
     <!-- Bullet point on the delete account screen warning the user that the deletion is permanent -->
-    <string name="DeleteAccountScreen__this_action_can_not_be_undone">This action can not be undone</string>
+    <string name="DeleteAccountScreen__this_action_can_not_be_undone">આ ક્રિયાને બદલી શકાતી નથી</string>
     <!-- Message of the deletion confirmation dialog, shown when the account has a username. Placeholder is the username. -->
-    <string name="DeleteAccountScreen__this_will_delete_your_signal_account_with_username_s">This will delete your Signal account with username \"%1$s\" and reset the application. The app will close after the process is complete.</string>
+    <string name="DeleteAccountScreen__this_will_delete_your_signal_account_with_username_s">આનાથી તમારું \"%1$s\" યુઝરનેમ સાથેનું Signal એકાઉન્ટ ડિલીટ થઈ જશે અને એપ્લિકેશન ફરીથી સેટ થશે. આ પ્રક્રિયા પૂર્ણ થયા પછી ઍપ બંધ થઈ જશે.</string>
     <!-- Label of the checkbox the user has to tick in the confirmation dialog before they can delete their account -->
-    <string name="DeleteAccountScreen__yes_delete_my_account">Yes, delete my account</string>
+    <string name="DeleteAccountScreen__yes_delete_my_account">હા, મારું એકાઉન્ટ ડિલીટ કરો</string>
 
     <!-- Shared with the registration screens -->
     <string name="RegistrationActivity_select_your_country">તમારો દેશ પસંદ કરો</string>

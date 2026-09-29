@@ -9,9 +9,9 @@
   <string name="GroupPermissionsScreen__send_messages">Αποστολή μηνυμάτων</string>
   <string name="GroupPermissionsScreen__all_members">Όλα τα μέλη</string>
   <string name="GroupPermissionsScreen__only_admins">Μόνο διαχειριστές</string>
-  <string name="GroupPermissionsScreen__who_can_add_new_members">Ποιοί μπορούν να προσθέσουν νέα μέλη;</string>
-  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">Ποιοί μπορούν να επεξεργαστούν τις πληροφορίες της ομάδας;</string>
-  <string name="GroupPermissionsScreen__who_can_send_messages">Ποιος μπορεί να στέλνει μηνύματα και να ξεκινά κλήσεις;</string>
+  <string name="GroupPermissionsScreen__who_can_add_new_members">Ποιοι μπορούν να προσθέσουν νέα μέλη;</string>
+  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">Ποιοι μπορούν να επεξεργαστούν τις πληροφορίες της ομάδας;</string>
+  <string name="GroupPermissionsScreen__who_can_send_messages">Ποιοι μπορούν να στέλνουν μηνύματα και να ξεκινούν κλήσεις;</string>
   <!-- Label for the member labels permission button in the group permissions settings screen. -->
   <string name="GroupPermissionsScreen__add_member_labels">Προσθήκη ετικετών μέλους</string>
   <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->

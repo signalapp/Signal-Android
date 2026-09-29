@@ -5,31 +5,31 @@
   <!-- Content description of the button that navigates back off of the group permissions screen. -->
   <string name="GroupPermissionsScreen__go_back">Siar</string>
   <string name="GroupPermissionsScreen__add_members">Cuir baill leis</string>
-  <string name="GroupPermissionsScreen__edit_group_info">Cuir Eolas an Ghrúpa in Eagar</string>
+  <string name="GroupPermissionsScreen__edit_group_info">Cuir faisnéis an ghrúpa in eagar</string>
   <string name="GroupPermissionsScreen__send_messages">Seol teachtaireachtaí</string>
   <string name="GroupPermissionsScreen__all_members">Na baill go léir</string>
-  <string name="GroupPermissionsScreen__only_admins">Riarthóirí Amháin</string>
-  <string name="GroupPermissionsScreen__who_can_add_new_members">Cé ar féidir leis baill nua a chur leis?</string>
+  <string name="GroupPermissionsScreen__only_admins">Riarthóirí amháin</string>
+  <string name="GroupPermissionsScreen__who_can_add_new_members">Cé atá in ann baill nua a chur leis?</string>
   <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">Cé atá in ann faisnéis faoin ngrúpa seo a chur in eagar?</string>
   <string name="GroupPermissionsScreen__who_can_send_messages">Cé atá in ann teachtaireachtaí a sheoladh agus tosú ar ghlaonna?</string>
   <!-- Label for the member labels permission button in the group permissions settings screen. -->
-  <string name="GroupPermissionsScreen__add_member_labels">Cuir lipéad do bhaill leis</string>
+  <string name="GroupPermissionsScreen__add_member_labels">Cuir lipéid do bhaill leis</string>
   <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-  <string name="GroupPermissionsScreen__who_can_add_member_labels">Cé na daoine atá in ann lipéid do bhaill a chur leis?</string>
+  <string name="GroupPermissionsScreen__who_can_add_member_labels">Cé atá in ann lipéid do bhaill a chur leis?</string>
   <!-- Warning title shown before restricting member labels to admins only. -->
-  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_title">Glanfar lipéid na mball</string>
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_title">Glanfar lipéid do bhaill</string>
   <!-- Warning body shown before restricting member labels to admins only. -->
   <string name="GroupPermissionsScreen__member_labels_will_be_cleared_body">"Lipéid do bhaill a bhí socraithe ag baill sa ghrúpa seo nach riarthóirí iad, glanfar iad má athraítear an cead seo go Riarthóirí amháin."</string>
   <!-- Confirm button for changing member label permission after warning. -->
-  <string name="GroupPermissionsScreen__change_permission">Athraigh Cead</string>
+  <string name="GroupPermissionsScreen__change_permission">Athraigh an cead</string>
   <!-- Title of the screen where a group\'s members share its link and its admins manage it. -->
-  <string name="ShareableGroupLinkScreen__group_link">Group Link</string>
+  <string name="ShareableGroupLinkScreen__group_link">Nasc an ghrúpa</string>
   <string name="ShareableGroupLinkScreen__share">Comhroinn</string>
   <!-- Label of the row that gives the group a new link, and the confirm button of the warning it shows first. -->
-  <string name="ShareableGroupLinkScreen__reset_link">Reset Link</string>
+  <string name="ShareableGroupLinkScreen__reset_link">Athshocraigh an nasc</string>
   <string name="ShareableGroupLinkScreen__require_admin_approval">Éiligh faomhadh riarthóra</string>
-  <string name="ShareableGroupLinkScreen__require_an_admin_to_approve_new_members_joining_via_the_group_link">Require an admin to approve new members joining via the group link.</string>
-  <string name="ShareableGroupLinkScreen__are_you_sure_you_want_to_reset_the_group_link">Are you sure you want to reset the group link? People will no longer be able to join the group using the current link.</string>
+  <string name="ShareableGroupLinkScreen__require_an_admin_to_approve_new_members_joining_via_the_group_link">Baill nua atá ag úsáid nasc an ghrúpa chun dul isteach sa ghrúpa, éiligh ar riarthóir iad a fhaomhadh.</string>
+  <string name="ShareableGroupLinkScreen__are_you_sure_you_want_to_reset_the_group_link">An bhfuil tú cinnte gur mian leat nasc an ghrúpa a athshocrú? Ní bheidh daoine in ann an nasc reatha a úsáid a thuilleadh chun dul isteach sa ghrúpa.</string>
   <!-- Content description of the button that navigates back off of the group link screen. -->
   <string name="ShareableGroupLinkScreen__go_back">Siar</string>
 </resources>

@@ -504,6 +504,14 @@
         <item quantity="other">မဖတ်ရသေးသည့် စာတို %1$d</item>
     </plurals>
 
+    <!-- ChatStickerConfirmation -->
+    <!-- Header shown above a sticker the user is about to send as a reply. %1$s is the name of the person whose message is being replied to. -->
+    <string name="ChatStickerConfirmation__reply_to_s">Reply to %1$s</string>
+    <!-- Header shown above a sticker the user is about to send as a reply to one of their own messages -->
+    <string name="ChatStickerConfirmation__reply_to_yourself">Reply to yourself</string>
+    <!-- Content description for the button that closes the sticker confirmation without sending -->
+    <string name="ChatStickerConfirmation__go_back">Go back</string>
+
     <!-- ConversationFragment -->
     <!-- Toast text when contacts activity is not found -->
     <string name="ConversationFragment__contacts_app_not_found">အဆက်အသွယ် အက်ပ် ရှာမတွေ့ပါ။</string>
@@ -1347,13 +1355,13 @@
 
     <!-- Shown when a change to a group is rejected because the group has ended. -->
     <string name="GroupErrors__the_group_was_terminated">အဖွဲ့ပြီးဆုံးသွားပါပြီ။</string>
-    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">ဤသို့လုပ်ရန်သင့်တွင်အခွင့်အရေးမရှိပါ</string>
-    <string name="GroupErrors__not_capable">သင်ဖြည့်စွက်ထားသူတစ်ဦး သည်အဖွဲ့အသစ်များကိုမထောက်ခံပါ။ Signal ကိုအသစ်ပြောင်းရန်လိုအပ်သည်</string>
-    <string name="GroupErrors__not_announcement_capable">သင် ပေါင်းထည့်ထားသူတစ်ဦးဦးသည် ကြေညာချက် အဖွဲ့များကို သုံးနိုင်ခြင်း မရှိသောကြောင့် Signal အား အပ်ဒိတ်လုပ်ရန် လိုအပ်ပါသည်။</string>
-    <string name="GroupErrors__failed_to_update_the_group">အုပ်စုအားမွမ်းမံရန်မအောင်မြင်ပါ</string>
-    <string name="GroupErrors__youre_not_a_member_of_the_group">သင်သည် အဖွဲ့ဝင်တစ်ဦးမဟုတ်ပါ</string>
-    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">အုပ်စုအားမွမ်းမံရန်မအောင်မြင်ပါကျေးဇူးပြုပြီးနောက်မှပြန်ကြိုးစားပါ</string>
-    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">ကွန်ယက်အမှားတစ်ခုကြောင့်အုပ်စုအားမွမ်းမံရန်မအောင်မြင်ပါ၊ ကျေးဇူးပြုပြီးနောက်မှပြန်ကြိုးစားပါ</string>
+    <string name="GroupErrors__you_dont_have_the_rights_to_do_this">ဤသို့လုပ်ရန် သင့်တွင် ခွင့်ပြုချက်မရှိပါ</string>
+    <string name="GroupErrors__not_capable">သင် ပေါင်းထည့်ထားသူတစ်ဦးသည် အဖွဲ့အသစ်များကို ပံ့ပိုးခြင်းမရှိသောကြောင့် Signal ကို အပ်ဒိတ်လုပ်ရန် လိုအပ်သည်</string>
+    <string name="GroupErrors__not_announcement_capable">သင် ပေါင်းထည့်ထားသူတစ်ဦးသည် ကြေညာချက် အဖွဲ့များကို သုံးနိုင်ခြင်းမရှိသောကြောင့် Signal ကို အပ်ဒိတ်လုပ်ရန် လိုအပ်သည်</string>
+    <string name="GroupErrors__failed_to_update_the_group">အဖွဲ့ကို အပ်ဒိတ်လုပ်ခြင်း မအောင်မြင်ပါ</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">သင်သည် ဤအဖွဲ့၏ အဖွဲ့ဝင်တစ်ဦး မဟုတ်ပါ</string>
+    <string name="GroupErrors__failed_to_update_the_group_please_retry_later">အဖွဲ့ကို အပ်ဒိတ်လုပ်ခြင်း မအောင်မြင်ပါ။ နောက်မှ ထပ်ကြိုးစားပါ</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">ကွန်ရက် ချို့ယွင်းချက်တစ်ခုကြောင့် အဖွဲ့ကို အပ်ဒိတ်လုပ်ခြင်း မအောင်မြင်ပါ။ နောက်မှ ထပ်ကြိုးစားပါ</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">နာမည်နှင့်ရုပ်ပုံကိုတည်းဖြတ်ပါ</string>
     <string name="ManageGroupActivity_legacy_group">အမွေအဖွဲ့</string>
@@ -2734,13 +2742,13 @@
     <!-- Shown when no stickers match the search. The placeholder what was searched. -->
     <string name="StickerManagement_search_no_results_s">\'%1$s\' ကို ရှာမတွေ့ပါ</string>
     <!-- Sticker pack button for forwarding a sticker link. -->
-    <string name="StickerManagement_menu_send_signal_pack">Send via Signal</string>
+    <string name="StickerManagement_menu_send_signal_pack">Signal မှတစ်ဆင့် ပေးပို့ရန်</string>
     <!-- Sticker pack button that opens a bottom sheet with more share options. -->
     <string name="StickerManagement_menu_link_pack">လင့်ခ်</string>
     <!-- Sticker pack sheet option for sharing a sticker pack link using the system share sheet. -->
     <string name="StickerManagement_menu_share_pack">ဝေမျှမည်</string>
     <!-- Bottom sheet description for the share sticker sheet. -->
-    <string name="StickerManagement__anyone">Anyone with this link can install and share this sticker pack.</string>
+    <string name="StickerManagement__anyone">ဤလင့်ခ်ရှိသူ မည်သူမဆို ဤစတစ်ကာတွဲကို ထည့်သွင်းပြီး မျှဝေနိုင်သည်။</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
     <string name="StickerManagement_accessibility_download_pack">%1$s စတစ်ကာတွဲကို ဒေါင်းလုဒ်လုပ်ပါ</string>
     <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
@@ -8812,7 +8820,7 @@
     <!-- Old device Transfer account bottom sheet dialog body -->
     <string name="TransferAccount_continue_on_your_other_device_details">သင့်အကောင့်ကို သင့်အခြားစက်ပေါ်တွင် ဆက်လက်လွှဲပြောင်းပါ။</string>
     <!-- Old device Transfer account error dialog body shown when the new device is too old to accept an account that has no phone number -->
-    <string name="TransferAccount_the_device_you_are_transferring_to_is_out_of_date">The device you\'re transferring to is out of date. Update Signal on that device and try again.</string>
+    <string name="TransferAccount_the_device_you_are_transferring_to_is_out_of_date">လွှဲပြောင်းပေးမည့် စက်သည် ဗားရှင်းဟောင်းဖြစ်နေပါသည်။ ထိုစက်တွင် Signal ကို အပ်ဒိတ်လုပ်ပြီး ထပ်မံကြိုးစားပါ။</string>
 
     <!-- Prepare Device screen title for quick restore flow -->
     <string name="PrepareDevice_title">သင့်စက်ကို အသင့်ပြင်ခြင်း</string>

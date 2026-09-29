@@ -62,6 +62,8 @@
     <string name="AccountSettingsFragment__passkey">Passkey</string>
     <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
     <string name="AccountSettingsFragment__s_added_s">%1$s · %2$s တွင် ထည့်သွင်းခဲ့သည်</string>
+    <!-- Name shown for a second factor whose details couldn\'t be read -->
+    <string name="AccountSettingsFragment__unknown">Unknown</string>
     <!-- Content description of the button that opens a second factor\'s options -->
     <string name="AccountSettingsFragment__open_two_factor_options">နှစ်ဆင့်အတည်ပြုခြင်း ရွေးချယ်စရာများကို ဖွင့်ပါ</string>
     <!-- Menu option that renames a second factor -->
@@ -81,9 +83,9 @@
     <!-- Title of the sheet explaining that the device screen lock is needed before the Signal Login details can be viewed -->
     <string name="AccountSettingsFragment__to_view_your_signal_login_confirm_its_you">သင့် Signal Login ကို ကြည့်ရန် သင်ကိုယ်တိုင်ဖြစ်ကြောင်း အတည်ပြုပါ</string>
     <!-- Title of the device screen lock prompt shown before the delete account flow can be opened -->
-    <string name="AccountSettingsFragment__unlock_to_confirm_its_you">Unlock to confirm it\'s you</string>
+    <string name="AccountSettingsFragment__unlock_to_confirm_its_you">သင်ကိုယ်တိုင်ဖြစ်ကြောင်း အတည်ပြုရန် လော့ခ်ဖွင့်ပါ</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before the delete account flow can be opened -->
-    <string name="AccountSettingsFragment__to_delete_your_account_confirm_its_you">To delete your account, confirm it\'s you</string>
+    <string name="AccountSettingsFragment__to_delete_your_account_confirm_its_you">သင့်အကောင့်ကို ဖျက်ရန် သင်ကိုယ်တိုင်ဖြစ်ကြောင်း အတည်ပြုပါ</string>
     <!-- Toast shown when the device screen lock wasn\'t confirmed, so nothing happened -->
     <string name="AccountSettingsFragment__authentication_required">စစ်မှန်ကြောင်းအတည်ပြုချက် လိုအပ်သည်</string>
     <!-- Title of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
@@ -183,9 +185,9 @@
     <string name="DeleteAccountFragment__no_country_code">နိုင်ငံကုဒ်နံပါတ် သတ်မှတ်ထားခြင်း မရှိပါ</string>
     <string name="DeleteAccountFragment__no_number">နံပါတ်သတ်မှတ်ထားခြင်း မရှိပါ</string>
     <string name="DeleteAccountFragment__the_phone_number">သင်ရိုက်ထည့်ထားသော ဖုန်းနံပါတ်သည် သင့်အကောင့်အတွင်းရှိ နံပါတ်နှင့် မကိုက်ညီပါ။</string>
-    <string name="DeleteAccountFragment__are_you_sure">သင့်အကောင့်ကို ဖျက်သိမ်းလိုသည်မှ သေချာပါသလား။</string>
-    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">ဤသည်က သင့် Signal အကောင့်ကို ဖျက်သိမ်းပြီး အပလီကေးရှင်းကို ပြန်လည်သတ်မှတ်ပါမည်။ အက်ပ်သည် လုပ်ဆောင်မှုပြီးလျှင် ပိတ်သွားပါမည်။</string>
-    <string name="DeleteAccountFragment__failed_to_delete_local_data">စက်တွင်းရှိဒေတာဖျက်ခြင်း မအောင်မြင်ပါ။ စနစ်ထဲရှိ အက်ပလီကေးရှင်း အပြင်အဆင်များထဲ၌ သင်ကိုယ်တိုင်သွား ရှင်းနိုင်ပါသည်။</string>
+    <string name="DeleteAccountFragment__are_you_sure">သင့်အကောင့်ကို ဖျက်သိမ်းလိုသည်မှာ သေချာပါသလား။</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">ဤသည်က သင့် Signal အကောင့်ကို ဖျက်သိမ်းပြီး အက်ပလီကေးရှင်းကို ပြန်လည်သတ်မှတ်ပါမည်။ အက်ပ်သည် လုပ်ဆောင်မှုပြီးလျှင် ပိတ်သွားပါမည်။</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">စက်တွင်းရှိဒေတာဖျက်ခြင်း မအောင်မြင်ပါ။ စနစ်ထဲရှိ အက်ပလီကေးရှင်း အပြင်အဆင်များထဲ၌ သင်ကိုယ်တိုင် ရှင်းနိုင်ပါသည်။</string>
     <string name="DeleteAccountFragment__launch_app_settings">ဖုန်းဆက်တင်ကိုဖွင့်မည်</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
     <string name="DeleteAccountFragment__leaving_groups">အဖွဲ့မှ ထွက်နေဆဲ…</string>
@@ -202,15 +204,15 @@
     <!-- Message of error dialog shown when a network error occurs during account deletion -->
     <string name="DeleteAccountFragment__there_was_a_problem">ဖျက်ပစ်သည့် စီမံလုပ်ဆောင်ချက်ကို အပြီးသတ်ရာတွင် ပြဿနာ ရှိနေပါသည်။ သင့်ကွန်ရက်ချိတ်ဆက်မှုကို စစ်ဆေးပြီး ထပ်ကြိုးစားကြည့်ပါ။</string>
     <!-- Body text above the bullet list on the delete account screen, shown when the account has a username. Placeholder is the username. -->
-    <string name="DeleteAccountScreen__deleting_your_account_with_username_s_will">Deleting your account with username \"%1$s\" will:</string>
+    <string name="DeleteAccountScreen__deleting_your_account_with_username_s_will">သုံးစွဲသူအမည် \"%1$s\" ဖြင့် သင့်အကောင့်ကို ဖျက်လိုက်ပါက အောက်ပါအတိုင်း ဖြစ်ပေါ်မည်-</string>
     <!-- Bullet point on the delete account screen, shown in place of the plain one when the account has a username. Placeholder is the username. -->
-    <string name="DeleteAccountScreen__delete_your_account_info_and_profile_photo_including_your_username_s">Delete your account info and profile photo including your username \"%1$s\"</string>
+    <string name="DeleteAccountScreen__delete_your_account_info_and_profile_photo_including_your_username_s">သင့်သုံးစွဲသူအမည် \"%1$s\" အပါအဝင် သင့်အကောင့်အချက်အလက်များနှင့် ပရိုဖိုင်ဓာတ်ပုံကို ဖျက်ပါ</string>
     <!-- Bullet point on the delete account screen warning the user that the deletion is permanent -->
-    <string name="DeleteAccountScreen__this_action_can_not_be_undone">This action can not be undone</string>
+    <string name="DeleteAccountScreen__this_action_can_not_be_undone">ဤလုပ်ဆောင်ချက်ကို ပြန်ရုပ်သိမ်း၍ မရနိုင်ပါ</string>
     <!-- Message of the deletion confirmation dialog, shown when the account has a username. Placeholder is the username. -->
-    <string name="DeleteAccountScreen__this_will_delete_your_signal_account_with_username_s">This will delete your Signal account with username \"%1$s\" and reset the application. The app will close after the process is complete.</string>
+    <string name="DeleteAccountScreen__this_will_delete_your_signal_account_with_username_s">ဤလုပ်ဆောင်ချက်သည် သုံးစွဲသူအမည် \"%1$s\" ဖြင့် သင့် Signal အကောင့်ကို ဖျက်ပြီး အက်ပ်ကို မူလအခြေအနေသို့ ပြန်လည်သတ်မှတ်မည်ဖြစ်သည်။ ဤလုပ်ငန်းစဉ် ပြီးသွားသောအခါ အက်ပ် ပိတ်သွားပါမည်။</string>
     <!-- Label of the checkbox the user has to tick in the confirmation dialog before they can delete their account -->
-    <string name="DeleteAccountScreen__yes_delete_my_account">Yes, delete my account</string>
+    <string name="DeleteAccountScreen__yes_delete_my_account">ကျွန်ုပ်၏ အကောင့်ကို ဖျက်ပါ</string>
 
     <!-- Shared with the registration screens -->
     <string name="RegistrationActivity_select_your_country">နိုင်ငံရွေးချယ်ပါ</string>

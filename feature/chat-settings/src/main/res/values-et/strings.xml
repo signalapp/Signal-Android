@@ -17,9 +17,9 @@
   <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
   <string name="GroupPermissionsScreen__who_can_add_member_labels">Kes saavad liikme silte lisada?</string>
   <!-- Warning title shown before restricting member labels to admins only. -->
-  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_title">Liikmete sildid kustutatakse</string>
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_title">Liikme sildid kustutatakse</string>
   <!-- Warning body shown before restricting member labels to admins only. -->
-  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_body">"Selle loa muutmine valikule „Ainult administraatorid” eemaldab selles grupis mitte-administraatorite määratud liikmete sildid."</string>
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_body">"Selle loa muutmine valikule „Ainult administraatorid” eemaldab selles grupis mitte-administraatorite määratud liikme sildid."</string>
   <!-- Confirm button for changing member label permission after warning. -->
   <string name="GroupPermissionsScreen__change_permission">Muuda luba</string>
   <!-- Title of the screen where a group\'s members share its link and its admins manage it. -->

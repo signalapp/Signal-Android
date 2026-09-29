@@ -4,13 +4,13 @@
   <string name="GroupPermissionsScreen__permissions">准許</string>
   <!-- Content description of the button that navigates back off of the group permissions screen. -->
   <string name="GroupPermissionsScreen__go_back">返轉頭</string>
-  <string name="GroupPermissionsScreen__add_members">加成員</string>
+  <string name="GroupPermissionsScreen__add_members">加谷友</string>
   <string name="GroupPermissionsScreen__edit_group_info">編輯個谷嘅資訊</string>
   <string name="GroupPermissionsScreen__send_messages">傳送訊息</string>
-  <string name="GroupPermissionsScreen__all_members">所有成員</string>
+  <string name="GroupPermissionsScreen__all_members">所有谷友</string>
   <string name="GroupPermissionsScreen__only_admins">只有話事人</string>
-  <string name="GroupPermissionsScreen__who_can_add_new_members">邊個可以加啲新成員入嚟？</string>
-  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">邊個改到關於呢個谷嘅資訊？</string>
+  <string name="GroupPermissionsScreen__who_can_add_new_members">邊個可以加新谷友入嚟？</string>
+  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">邊個修改呢個谷嘅資訊？</string>
   <string name="GroupPermissionsScreen__who_can_send_messages">邊個可以傳送訊息同發起通話？</string>
   <!-- Label for the member labels permission button in the group permissions settings screen. -->
   <string name="GroupPermissionsScreen__add_member_labels">加成員標籤</string>
@@ -28,8 +28,8 @@
   <!-- Label of the row that gives the group a new link, and the confirm button of the warning it shows first. -->
   <string name="ShareableGroupLinkScreen__reset_link">重設條拎</string>
   <string name="ShareableGroupLinkScreen__require_admin_approval">需要管理員核准</string>
-  <string name="ShareableGroupLinkScreen__require_an_admin_to_approve_new_members_joining_via_the_group_link">以谷拎加入嘅新成員送交話事人審批。</string>
-  <string name="ShareableGroupLinkScreen__are_you_sure_you_want_to_reset_the_group_link">您係咪確定要重設條谷拎？人哋將唔再能夠用而家條拎加入呢個谷。</string>
+  <string name="ShareableGroupLinkScreen__require_an_admin_to_approve_new_members_joining_via_the_group_link">以谷拎加入嘅新谷友要送交話事人審批。</string>
+  <string name="ShareableGroupLinkScreen__are_you_sure_you_want_to_reset_the_group_link">你係咪確定要重設條谷拎？其他人將會唔再能夠再用而家條拎加入呢個谷。</string>
   <!-- Content description of the button that navigates back off of the group link screen. -->
   <string name="ShareableGroupLinkScreen__go_back">返轉頭</string>
 </resources>

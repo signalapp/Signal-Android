@@ -509,6 +509,14 @@
         <item quantity="other">%1$d படிக்காத செய்திகள்</item>
     </plurals>
 
+    <!-- ChatStickerConfirmation -->
+    <!-- Header shown above a sticker the user is about to send as a reply. %1$s is the name of the person whose message is being replied to. -->
+    <string name="ChatStickerConfirmation__reply_to_s">Reply to %1$s</string>
+    <!-- Header shown above a sticker the user is about to send as a reply to one of their own messages -->
+    <string name="ChatStickerConfirmation__reply_to_yourself">Reply to yourself</string>
+    <!-- Content description for the button that closes the sticker confirmation without sending -->
+    <string name="ChatStickerConfirmation__go_back">Go back</string>
+
     <!-- ConversationFragment -->
     <!-- Toast text when contacts activity is not found -->
     <string name="ConversationFragment__contacts_app_not_found">தொடர்புகள் பயன்பாடு கிடைக்கவில்லை.</string>
@@ -2830,13 +2838,13 @@
     <!-- Shown when no stickers match the search. The placeholder what was searched. -->
     <string name="StickerManagement_search_no_results_s">\'%1$s\' க்கான முடிவுகள் எதுவும் கிடைக்கவில்லை</string>
     <!-- Sticker pack button for forwarding a sticker link. -->
-    <string name="StickerManagement_menu_send_signal_pack">Send via Signal</string>
+    <string name="StickerManagement_menu_send_signal_pack">Signal வழியாக அனுப்பு</string>
     <!-- Sticker pack button that opens a bottom sheet with more share options. -->
     <string name="StickerManagement_menu_link_pack">இணைப்பு</string>
     <!-- Sticker pack sheet option for sharing a sticker pack link using the system share sheet. -->
     <string name="StickerManagement_menu_share_pack">பகிர்</string>
     <!-- Bottom sheet description for the share sticker sheet. -->
-    <string name="StickerManagement__anyone">Anyone with this link can install and share this sticker pack.</string>
+    <string name="StickerManagement__anyone">இந்த இணைப்பைக் கொண்டுள்ள எவரும் இந்த ஸ்டிக்கர் பேக்கை நிறுவலாம், பகிரலாம்.</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
     <string name="StickerManagement_accessibility_download_pack">%1$sஸ்டிக்கர் பேக்கைப் பதிவிறக்குக</string>
     <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
@@ -9006,7 +9014,7 @@
     <!-- Old device Transfer account bottom sheet dialog body -->
     <string name="TransferAccount_continue_on_your_other_device_details">உங்களின் மற்ற சாதனத்தில் கணக்கு இடமாற்றம் செய்வதைத் தொடரவும்.</string>
     <!-- Old device Transfer account error dialog body shown when the new device is too old to accept an account that has no phone number -->
-    <string name="TransferAccount_the_device_you_are_transferring_to_is_out_of_date">The device you\'re transferring to is out of date. Update Signal on that device and try again.</string>
+    <string name="TransferAccount_the_device_you_are_transferring_to_is_out_of_date">நீங்கள் இடமாற்ற முயலும் சாதனம் காலாவதியாகிவிட்டது. அந்தச் சாதனத்தில் Signalஐப் புதுப்பித்து, மீண்டும் முயலவும்.</string>
 
     <!-- Prepare Device screen title for quick restore flow -->
     <string name="PrepareDevice_title">உங்கள் சாதனத்தைத் தயார் செய்கிறது</string>

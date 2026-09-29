@@ -509,6 +509,14 @@
         <item quantity="other">%1$d ਨਾ-ਪੜ੍ਹੇ ਸੁਨੇਹੇ</item>
     </plurals>
 
+    <!-- ChatStickerConfirmation -->
+    <!-- Header shown above a sticker the user is about to send as a reply. %1$s is the name of the person whose message is being replied to. -->
+    <string name="ChatStickerConfirmation__reply_to_s">Reply to %1$s</string>
+    <!-- Header shown above a sticker the user is about to send as a reply to one of their own messages -->
+    <string name="ChatStickerConfirmation__reply_to_yourself">Reply to yourself</string>
+    <!-- Content description for the button that closes the sticker confirmation without sending -->
+    <string name="ChatStickerConfirmation__go_back">Go back</string>
+
     <!-- ConversationFragment -->
     <!-- Toast text when contacts activity is not found -->
     <string name="ConversationFragment__contacts_app_not_found">ਸੰਪਰਕ ਐਪ ਨਹੀਂ ਲੱਭਾ।</string>
@@ -1391,12 +1399,12 @@
     <!-- Shown when a change to a group is rejected because the group has ended. -->
     <string name="GroupErrors__the_group_was_terminated">ਗਰੁੱਪ ਬੰਦ ਹੋ ਗਿਆ ਹੈ।</string>
     <string name="GroupErrors__you_dont_have_the_rights_to_do_this">ਤੁਹਾਡੇ ਕੋਲ ਅਜਿਹਾ ਕਰਨ ਦੇ ਅਧਿਕਾਰ ਨਹੀਂ ਹਨ</string>
-    <string name="GroupErrors__not_capable">ਕੋਈ ਵਿਅਕਤੀ ਜਿਸਨੂੰ ਤੁਸੀਂ ਸ਼ਾਮਲ ਕੀਤਾ ਹੈ, ਨਵੇਂ ਗਰੁੱਪਾਂ ਦਾ ਸਮਰਥਨ ਨਹੀਂ ਕਰਦਾ ਅਤੇ ਉਸਨੂੰ Signal ਨੂੰ ਅੱਪਡੇਟ ਕਰਨ ਦੀ ਜ਼ਰੂਰਤ ਹੈ</string>
-    <string name="GroupErrors__not_announcement_capable">ਕੋਈ ਵਿਅਕਤੀ ਜਿਸਨੂੰ ਤੁਸੀਂ ਸ਼ਾਮਲ ਕੀਤਾ ਹੈ, ਐਲਾਨ ਗਰੁੱਪਾਂ ਦਾ ਸਮਰਥਨ ਨਹੀਂ ਕਰਦਾ ਅਤੇ ਉਸਨੂੰ Signal ਨੂੰ ਅੱਪਡੇਟ ਕਰਨ ਦੀ ਜ਼ਰੂਰਤ ਹੈ</string>
+    <string name="GroupErrors__not_capable">ਜਿਸ ਵਿਅਕਤੀ ਨੂੰ ਤੁਸੀਂ ਸ਼ਾਮਲ ਕੀਤਾ ਹੈ, ਉਹਨਾਂ ਕੋਲ ਨਵੇਂ ਗਰੁੱਪਾਂ ਵਾਲਾ ਫੀਚਰ ਉਪਲਬਧ ਨਹੀਂ ਹੈ ਅਤੇ ਉਹਨਾਂ ਨੂੰ Signal ਨੂੰ ਅੱਪਡੇਟ ਕਰਨ ਦੀ ਜ਼ਰੂਰਤ ਹੈ</string>
+    <string name="GroupErrors__not_announcement_capable">ਜਿਸ ਵਿਅਕਤੀ ਨੂੰ ਤੁਸੀਂ ਸ਼ਾਮਲ ਕੀਤਾ ਹੈ, ਉਹਨਾਂ ਕੋਲ ਐਲਾਨ ਵਾਲੇ ਗਰੁੱਪਾਂ ਵਾਲਾ ਫੀਚਰ ਉਪਲਬਧ ਨਹੀਂ ਹੈ ਅਤੇ ਉਹਨਾਂ ਨੂੰ Signal ਨੂੰ ਅੱਪਡੇਟ ਕਰਨ ਦੀ ਜ਼ਰੂਰਤ ਹੈ</string>
     <string name="GroupErrors__failed_to_update_the_group">ਗਰੁੱਪ ਨੂੰ ਅੱਪਡੇਟ ਕਰਨਾ ਅਸਫਲ ਰਿਹਾ</string>
     <string name="GroupErrors__youre_not_a_member_of_the_group">ਤੁਸੀਂ ਗਰੁੱਪ ਦੇ ਮੈਂਬਰ ਨਹੀਂ ਹੋ</string>
     <string name="GroupErrors__failed_to_update_the_group_please_retry_later">ਗਰੁੱਪ ਨੂੰ ਅੱਪਡੇਟ ਕਰਨਾ ਅਸਫਲ ਰਿਹਾ, ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ</string>
-    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">ਕਿਸੇ ਨੈੱਟਵਰਕ ਤਰੁੱਟੀ ਕਾਰਨ ਗਰੁੱਪ ਨੂੰ ਅੱਪਡੇਟ ਕਰਨਾ ਅਸਫਲ ਰਿਹਾ, ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ</string>
+    <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">ਨੈੱਟਵਰਕ ਵਿੱਚ ਕੋਈ ਗੜਬੜੀ ਕਾਰਨ ਗਰੁੱਪ ਨੂੰ ਅੱਪਡੇਟ ਕਰਨਾ ਅਸਫਲ ਰਿਹਾ, ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">ਨਾਮ ਅਤੇ ਤਸਵੀਰ ਨੂੰ ਸੋਧੋ</string>
     <string name="ManageGroupActivity_legacy_group">ਲੈਗਸੀ ਗਰੁੱਪ</string>
@@ -2830,13 +2838,13 @@
     <!-- Shown when no stickers match the search. The placeholder what was searched. -->
     <string name="StickerManagement_search_no_results_s">\'%1$s\' ਲਈ ਕੋਈ ਨਤੀਜੇ ਨਹੀਂ ਮਿਲੇ</string>
     <!-- Sticker pack button for forwarding a sticker link. -->
-    <string name="StickerManagement_menu_send_signal_pack">Send via Signal</string>
+    <string name="StickerManagement_menu_send_signal_pack">Signal ਰਾਹੀਂ ਭੇਜੋ</string>
     <!-- Sticker pack button that opens a bottom sheet with more share options. -->
     <string name="StickerManagement_menu_link_pack">ਲਿੰਕ</string>
     <!-- Sticker pack sheet option for sharing a sticker pack link using the system share sheet. -->
     <string name="StickerManagement_menu_share_pack">ਸਾਂਝਾ ਕਰੋ</string>
     <!-- Bottom sheet description for the share sticker sheet. -->
-    <string name="StickerManagement__anyone">Anyone with this link can install and share this sticker pack.</string>
+    <string name="StickerManagement__anyone">ਇਸ ਲਿੰਕ ਦੇ ਨਾਲ ਕੋਈ ਵੀ ਵਿਅਕਤੀ ਇਸ ਸਟਿੱਕਰ ਪੈਕ ਨੂੰ ਇੰਸਟਾਲ ਅਤੇ ਸਾਂਝਾ ਕਰ ਸਕਦਾ ਹੈ।</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
     <string name="StickerManagement_accessibility_download_pack">%1$s ਸਟਿੱਕਰ ਪੈਕ ਡਾਊਨਲੋਡ ਕਰੋ</string>
     <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
@@ -9006,7 +9014,7 @@
     <!-- Old device Transfer account bottom sheet dialog body -->
     <string name="TransferAccount_continue_on_your_other_device_details">ਆਪਣੇ ਦੂਜੇ ਡਿਵਾਈਸ \'ਤੇ ਆਪਣਾ ਖਾਤਾ ਟ੍ਰਾਂਸਫਰ ਕਰਨਾ ਜਾਰੀ ਰੱਖੋ।</string>
     <!-- Old device Transfer account error dialog body shown when the new device is too old to accept an account that has no phone number -->
-    <string name="TransferAccount_the_device_you_are_transferring_to_is_out_of_date">The device you\'re transferring to is out of date. Update Signal on that device and try again.</string>
+    <string name="TransferAccount_the_device_you_are_transferring_to_is_out_of_date">ਜਿਸ ਡਿਵਾਈਸ \'ਤੇ ਤੁਸੀਂ ਟ੍ਰਾਂਸਫਰ ਕਰ ਰਹੇ ਹੋ, ਉਹ ਪੁਰਾਣਾ ਹੈ। ਉਸ ਡਿਵਾਈਸ \'ਤੇ Signal ਨੂੰ ਅੱਪਡੇਟ ਕਰੋ ਅਤੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
 
     <!-- Prepare Device screen title for quick restore flow -->
     <string name="PrepareDevice_title">ਤੁਹਾਡੇ ਡਿਵਾਈਸ ਨੂੰ ਤਿਆਰ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ</string>

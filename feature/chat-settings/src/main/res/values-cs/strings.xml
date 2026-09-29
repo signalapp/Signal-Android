@@ -29,7 +29,7 @@
   <string name="ShareableGroupLinkScreen__reset_link">Obnovit odkaz</string>
   <string name="ShareableGroupLinkScreen__require_admin_approval">Vyžadovat schválení správcem</string>
   <string name="ShareableGroupLinkScreen__require_an_admin_to_approve_new_members_joining_via_the_group_link">Požadovat, aby správce schválil nové členy, kteří se připojují přes odkaz skupiny.</string>
-  <string name="ShareableGroupLinkScreen__are_you_sure_you_want_to_reset_the_group_link">Opravdu chcete obnovit odkaz skupiny? Pomocí současného odkazu se pak už lidé nebudou schopni ke skupině připojit.</string>
+  <string name="ShareableGroupLinkScreen__are_you_sure_you_want_to_reset_the_group_link">Opravdu chcete obnovit odkaz skupiny? Pomocí stávajícího odkazu se už pak lidé do skupiny nebudou moci připojit.</string>
   <!-- Content description of the button that navigates back off of the group link screen. -->
   <string name="ShareableGroupLinkScreen__go_back">Vrátit se zpět</string>
 </resources>

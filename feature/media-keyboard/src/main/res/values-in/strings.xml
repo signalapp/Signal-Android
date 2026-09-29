@@ -13,7 +13,7 @@
   <string name="MediaKeyboard__gifs">GIF</string>
 
   <!-- Search -->
-  <!-- Placeholder text in the media keyboard search field while the emoji tab is showing. -->
+  <!-- Placeholder text in the search field at the top of the emoji page, and in the media keyboard search field while the emoji tab is showing. -->
   <string name="MediaKeyboard__search_emoji">Cari emoji</string>
   <!-- Placeholder text in the search field at the top of the sticker page, and in the media keyboard search field while the sticker tab is showing. -->
   <string name="MediaKeyboard__search_stickers">Cari stiker</string>
@@ -26,7 +26,7 @@
   <!-- Accessibility description for the button that erases whatever has been typed into the media keyboard search field. -->
   <string name="MediaKeyboard__clear_search">Hapus pencarian</string>
   <!-- Message shown in place of the grid when a media keyboard search matches no emoji or GIFs. -->
-  <string name="MediaKeyboard__no_results_found">Tidak ada hasil ditemukan</string>
+  <string name="MediaKeyboard__no_results_found">Tidak ditemukan hasil</string>
 
   <!-- Emoji page -->
   <!-- Accessibility description for the button in the media keyboard top bar that deletes the character before the cursor. Verb, as an action the button performs. -->
@@ -44,7 +44,7 @@
   <!-- Header for the emoji category holding travel, buildings and places. -->
   <string name="MediaKeyboard__places">Tempat</string>
   <!-- Header for the emoji category holding everyday objects. -->
-  <string name="MediaKeyboard__objects">Obyek</string>
+  <string name="MediaKeyboard__objects">Objek</string>
   <!-- Header for the emoji category holding symbols and signs. -->
   <string name="MediaKeyboard__symbols">Simbol</string>
   <!-- Header for the emoji category holding country and region flags. Plural noun, the flags themselves. -->
@@ -54,21 +54,21 @@
 
   <!-- Sticker page -->
   <!-- Accessibility description for the button in the media keyboard top bar that opens the screen where sticker packs are managed. -->
-  <string name="MediaKeyboard__manage_stickers">Manage stickers</string>
+  <string name="MediaKeyboard__manage_stickers">Kelola stiker</string>
   <!-- Menu option that sends a sticker, on a long-pressed sticker, or the whole pack as a link, in a sticker pack header\'s menu. Verb, imperative. -->
   <string name="MediaKeyboard__send">Kirim</string>
   <!-- Menu option, on a long-pressed sticker and in a sticker pack header\'s menu, that opens the pack the sticker belongs to. Verb phrase, imperative. -->
-  <string name="MediaKeyboard__view_pack">Lihat Paket</string>
+  <string name="MediaKeyboard__view_pack">Lihat paket</string>
   <!-- Accessibility description for the three-dot button at the end of a sticker pack header, which opens that pack\'s menu. -->
   <string name="MediaKeyboard__more_options">Opsi lainnya</string>
   <!-- Menu option in a sticker pack header\'s menu that uninstalls the pack. Verb, imperative. -->
   <string name="MediaKeyboard__remove_pack">Hapus</string>
   <!-- Title of the confirmation dialog shown before uninstalling a sticker pack. -->
-  <string name="MediaKeyboard__remove_sticker_pack_question">Remove sticker pack?</string>
+  <string name="MediaKeyboard__remove_sticker_pack_question">Hapus paket stiker?</string>
   <!-- Body of the confirmation dialog shown before uninstalling a sticker pack. -->
-  <string name="MediaKeyboard__this_will_remove_the_sticker_pack">This will remove the sticker pack. You can\'t add it again without a link or sticker message.</string>
+  <string name="MediaKeyboard__this_will_remove_the_sticker_pack">Tindakan ini akan menghapus paket stiker. Anda tidak bisa menambahkannya lagi tanpa tautan atau pesan stiker.</string>
   <!-- Menu option in the recently used header\'s menu that forgets every recently used sticker. Verb phrase, imperative. -->
-  <string name="MediaKeyboard__clear_recents">Clear recents</string>
+  <string name="MediaKeyboard__clear_recents">Hapus yang terbaru</string>
 
   <!-- Gif page -->
   <!-- Label of the GIF quick search chip that shows the GIFs trending right now. -->
@@ -88,7 +88,7 @@
   <!-- Label of the GIF quick search chip that searches for GIFs of someone angry. Adjective describing the mood in the GIFs. -->
   <string name="MediaKeyboard__angry">Marah</string>
   <!-- Error message shown in place of the GIF grid when the GIFs could not be fetched. -->
-  <string name="MediaKeyboard__couldnt_load_gifs">Couldn\'t load GIFs. Check your connection and try again.</string>
+  <string name="MediaKeyboard__couldnt_load_gifs">Tidak bisa memuat GIF. Periksa koneksi Anda dan coba lagi.</string>
   <!-- Button shown with the GIF loading error that tries the fetch again. Verb, imperative. -->
   <string name="MediaKeyboard__retry">Coba ulang</string>
 </resources>

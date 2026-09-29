@@ -19,7 +19,7 @@
   <!-- Warning title shown before restricting member labels to admins only. -->
   <string name="GroupPermissionsScreen__member_labels_will_be_cleared_title">Üye etiketleri silinecektir</string>
   <!-- Warning body shown before restricting member labels to admins only. -->
-  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_body">"Bu iznin Sadece yöneticiler olarak değiştirilmesi, bu grupta yönetici olmayanlar tarafından ayarlanan üye etiketlerini temizleyecektir."</string>
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_body">"Bu iznin \"Sadece yöneticiler\" olarak değiştirilmesi, bu grupta yönetici olmayanlar tarafından ayarlanan üye etiketlerini temizleyecektir."</string>
   <!-- Confirm button for changing member label permission after warning. -->
   <string name="GroupPermissionsScreen__change_permission">İzni değiştir</string>
   <!-- Title of the screen where a group\'s members share its link and its admins manage it. -->
@@ -29,7 +29,7 @@
   <string name="ShareableGroupLinkScreen__reset_link">Bağlantıyı sıfırla</string>
   <string name="ShareableGroupLinkScreen__require_admin_approval">Yönetici onayı iste</string>
   <string name="ShareableGroupLinkScreen__require_an_admin_to_approve_new_members_joining_via_the_group_link">Grup bağlantısı üzerinden katılan yeni üyelerin yönetici tarafından onaylanması gereksin.</string>
-  <string name="ShareableGroupLinkScreen__are_you_sure_you_want_to_reset_the_group_link">Grup bağlantısını sıfırlamak istediğinizden emin misiniz? İnsanlar artık geçerli bağlantıyı kullanarak gruba katılamazlar.</string>
+  <string name="ShareableGroupLinkScreen__are_you_sure_you_want_to_reset_the_group_link">Grup bağlantısını sıfırlamak istediğinden emin misin? İnsanlar artık geçerli bağlantıyı kullanarak gruba katılamazlar.</string>
   <!-- Content description of the button that navigates back off of the group link screen. -->
   <string name="ShareableGroupLinkScreen__go_back">Geri git</string>
 </resources>

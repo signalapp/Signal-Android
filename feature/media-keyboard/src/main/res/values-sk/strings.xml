@@ -13,8 +13,8 @@
   <string name="MediaKeyboard__gifs">GIFy</string>
 
   <!-- Search -->
-  <!-- Placeholder text in the media keyboard search field while the emoji tab is showing. -->
-  <string name="MediaKeyboard__search_emoji">Hľadať emotikon</string>
+  <!-- Placeholder text in the search field at the top of the emoji page, and in the media keyboard search field while the emoji tab is showing. -->
+  <string name="MediaKeyboard__search_emoji">Hľadať emotikony</string>
   <!-- Placeholder text in the search field at the top of the sticker page, and in the media keyboard search field while the sticker tab is showing. -->
   <string name="MediaKeyboard__search_stickers">Hľadať nálepky</string>
   <!-- Placeholder text in the search field at the top of the GIF page, and in the media keyboard search field while the GIF tab is showing. -->
@@ -34,7 +34,7 @@
   <!-- Header, and rail accessibility description, for the group of emoji or stickers the user picked most recently. -->
   <string name="MediaKeyboard__recently_used">Nedávno použité</string>
   <!-- Header for the emoji category holding faces and people. -->
-  <string name="MediaKeyboard__smileys_and_people">Smajlíky &amp; ľudia</string>
+  <string name="MediaKeyboard__smileys_and_people">Smajlíky a ľudia</string>
   <!-- Header for the emoji category holding animals and plants. -->
   <string name="MediaKeyboard__nature">Príroda</string>
   <!-- Header for the emoji category holding food and drink. -->
@@ -54,7 +54,7 @@
 
   <!-- Sticker page -->
   <!-- Accessibility description for the button in the media keyboard top bar that opens the screen where sticker packs are managed. -->
-  <string name="MediaKeyboard__manage_stickers">Manage stickers</string>
+  <string name="MediaKeyboard__manage_stickers">Spravovať nálepky</string>
   <!-- Menu option that sends a sticker, on a long-pressed sticker, or the whole pack as a link, in a sticker pack header\'s menu. Verb, imperative. -->
   <string name="MediaKeyboard__send">Poslať</string>
   <!-- Menu option, on a long-pressed sticker and in a sticker pack header\'s menu, that opens the pack the sticker belongs to. Verb phrase, imperative. -->
@@ -64,15 +64,15 @@
   <!-- Menu option in a sticker pack header\'s menu that uninstalls the pack. Verb, imperative. -->
   <string name="MediaKeyboard__remove_pack">Odstrániť</string>
   <!-- Title of the confirmation dialog shown before uninstalling a sticker pack. -->
-  <string name="MediaKeyboard__remove_sticker_pack_question">Remove sticker pack?</string>
+  <string name="MediaKeyboard__remove_sticker_pack_question">Odstrániť balíček nálepiek?</string>
   <!-- Body of the confirmation dialog shown before uninstalling a sticker pack. -->
-  <string name="MediaKeyboard__this_will_remove_the_sticker_pack">This will remove the sticker pack. You can\'t add it again without a link or sticker message.</string>
+  <string name="MediaKeyboard__this_will_remove_the_sticker_pack">Týmto sa odstráni balíček nálepiek. Bez odkazu alebo správy s nálepkou ich už nebudete môcť znova pridať.</string>
   <!-- Menu option in the recently used header\'s menu that forgets every recently used sticker. Verb phrase, imperative. -->
-  <string name="MediaKeyboard__clear_recents">Clear recents</string>
+  <string name="MediaKeyboard__clear_recents">Vymazať posledné</string>
 
   <!-- Gif page -->
   <!-- Label of the GIF quick search chip that shows the GIFs trending right now. -->
-  <string name="MediaKeyboard__trending">Trendy</string>
+  <string name="MediaKeyboard__trending">Populárne</string>
   <!-- Label of the GIF quick search chip that searches for celebration GIFs. A search topic, not an instruction to the user. -->
   <string name="MediaKeyboard__celebrate">Oslava</string>
   <!-- Label of the GIF quick search chip that searches for GIFs about love. The noun, not the verb. -->
@@ -80,15 +80,15 @@
   <!-- Label of the GIF quick search chip that searches for thumbs up GIFs. The hand gesture, as a noun. -->
   <string name="MediaKeyboard__thumbs_up">Palec hore</string>
   <!-- Label of the GIF quick search chip that searches for GIFs of someone surprised. Adjective describing the mood in the GIFs. -->
-  <string name="MediaKeyboard__surprised">Prekvapený</string>
+  <string name="MediaKeyboard__surprised">Prekvapenie</string>
   <!-- Label of the GIF quick search chip that searches for GIFs of someone excited. Adjective describing the mood in the GIFs. -->
-  <string name="MediaKeyboard__excited">Nadšený</string>
+  <string name="MediaKeyboard__excited">Nadšenie</string>
   <!-- Label of the GIF quick search chip that searches for GIFs of someone sad. Adjective describing the mood in the GIFs. -->
-  <string name="MediaKeyboard__sad">Smutný</string>
+  <string name="MediaKeyboard__sad">Smútok</string>
   <!-- Label of the GIF quick search chip that searches for GIFs of someone angry. Adjective describing the mood in the GIFs. -->
-  <string name="MediaKeyboard__angry">Nahnevaný</string>
+  <string name="MediaKeyboard__angry">Hnev</string>
   <!-- Error message shown in place of the GIF grid when the GIFs could not be fetched. -->
-  <string name="MediaKeyboard__couldnt_load_gifs">Couldn\'t load GIFs. Check your connection and try again.</string>
+  <string name="MediaKeyboard__couldnt_load_gifs">Nepodarilo sa načítať GIFy. Skontrolujte svoje pripojenie a skúste to znova.</string>
   <!-- Button shown with the GIF loading error that tries the fetch again. Verb, imperative. -->
   <string name="MediaKeyboard__retry">Skúsiť znovu</string>
 </resources>

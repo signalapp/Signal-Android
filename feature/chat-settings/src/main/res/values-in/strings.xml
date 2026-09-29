@@ -5,12 +5,12 @@
   <!-- Content description of the button that navigates back off of the group permissions screen. -->
   <string name="GroupPermissionsScreen__go_back">Kembali</string>
   <string name="GroupPermissionsScreen__add_members">Tambahkan anggota</string>
-  <string name="GroupPermissionsScreen__edit_group_info">Edit informasi grup</string>
+  <string name="GroupPermissionsScreen__edit_group_info">Edit info grup</string>
   <string name="GroupPermissionsScreen__send_messages">Kirim pesan</string>
   <string name="GroupPermissionsScreen__all_members">Semua anggota</string>
   <string name="GroupPermissionsScreen__only_admins">Khusus admin</string>
   <string name="GroupPermissionsScreen__who_can_add_new_members">Siapa yang dapat menambahkan anggota baru?</string>
-  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">Siapa yang dapat mengedit informasi grup?</string>
+  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">Siapa yang dapat mengedit info grup?</string>
   <string name="GroupPermissionsScreen__who_can_send_messages">Siapa yang dapat mengirim pesan dan memulai panggilan?</string>
   <!-- Label for the member labels permission button in the group permissions settings screen. -->
   <string name="GroupPermissionsScreen__add_member_labels">Tambahkan label anggota</string>
@@ -19,7 +19,7 @@
   <!-- Warning title shown before restricting member labels to admins only. -->
   <string name="GroupPermissionsScreen__member_labels_will_be_cleared_title">Label anggota akan dihapus</string>
   <!-- Warning body shown before restricting member labels to admins only. -->
-  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_body">"Mengubah izin ini menjadi “Hanya admin” akan menghapus label anggota yang ditetapkan oleh non-admin dalam grup ini."</string>
+  <string name="GroupPermissionsScreen__member_labels_will_be_cleared_body">"Jika izin ini diubah menjadi “Hanya admin”, label anggota yang ditetapkan oleh selain admin dalam grup ini akan dihapus."</string>
   <!-- Confirm button for changing member label permission after warning. -->
   <string name="GroupPermissionsScreen__change_permission">Ubah izin</string>
   <!-- Title of the screen where a group\'s members share its link and its admins manage it. -->
@@ -29,7 +29,7 @@
   <string name="ShareableGroupLinkScreen__reset_link">Reset tautan</string>
   <string name="ShareableGroupLinkScreen__require_admin_approval">Perlu persetujuan admin</string>
   <string name="ShareableGroupLinkScreen__require_an_admin_to_approve_new_members_joining_via_the_group_link">Admin harus menyetujui anggota baru yang bergabung melalui tautan grup.</string>
-  <string name="ShareableGroupLinkScreen__are_you_sure_you_want_to_reset_the_group_link">Yakin ingin mereset tautan grup? Orang tidak akan bisa bergabung ke grup menggunakan tautan saat ini.</string>
+  <string name="ShareableGroupLinkScreen__are_you_sure_you_want_to_reset_the_group_link">Yakin ingin mereset tautan grup? Orang-orang tidak akan bisa lagi bergabung ke grup menggunakan tautan saat ini.</string>
   <!-- Content description of the button that navigates back off of the group link screen. -->
   <string name="ShareableGroupLinkScreen__go_back">Kembali</string>
 </resources>

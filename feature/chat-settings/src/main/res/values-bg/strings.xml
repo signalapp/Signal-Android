@@ -4,7 +4,7 @@
   <string name="GroupPermissionsScreen__permissions">Разрешения</string>
   <!-- Content description of the button that navigates back off of the group permissions screen. -->
   <string name="GroupPermissionsScreen__go_back">Назад</string>
-  <string name="GroupPermissionsScreen__add_members">Добави членове</string>
+  <string name="GroupPermissionsScreen__add_members">Добавяне на членове</string>
   <string name="GroupPermissionsScreen__edit_group_info">Редактиране на информация за групата</string>
   <string name="GroupPermissionsScreen__send_messages">Изпращане на съобщения</string>
   <string name="GroupPermissionsScreen__all_members">Всички членове</string>

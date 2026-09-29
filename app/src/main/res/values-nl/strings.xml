@@ -509,6 +509,14 @@
         <item quantity="other">%1$d ongelezen berichten</item>
     </plurals>
 
+    <!-- ChatStickerConfirmation -->
+    <!-- Header shown above a sticker the user is about to send as a reply. %1$s is the name of the person whose message is being replied to. -->
+    <string name="ChatStickerConfirmation__reply_to_s">Reply to %1$s</string>
+    <!-- Header shown above a sticker the user is about to send as a reply to one of their own messages -->
+    <string name="ChatStickerConfirmation__reply_to_yourself">Reply to yourself</string>
+    <!-- Content description for the button that closes the sticker confirmation without sending -->
+    <string name="ChatStickerConfirmation__go_back">Go back</string>
+
     <!-- ConversationFragment -->
     <!-- Toast text when contacts activity is not found -->
     <string name="ConversationFragment__contacts_app_not_found">Contacten-app niet gevonden.</string>
@@ -1380,8 +1388,8 @@
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Je hebt een contact geselecteerd die geen Signal-groepen heeft, dus deze groep zal gebruikmaken van mms. Zelf ingestelde mms-groepsnamen en groepsafbeeldingen zullen alleen voor jou zichtbaar zijn. Ondersteuning voor mms-groepen wordt binnenkort verwijderd, zodat we ons kunnen richten op versleutelde berichten.</string>
 
     <!-- ManageGroupActivity -->
-    <string name="ManageGroupActivity_who_can_add_new_members">Wie mogen nieuwe leden toevoegen?</string>
-    <string name="ManageGroupActivity_who_can_edit_this_groups_info">Wie mogen de groepsinformatie bewerken?</string>
+    <string name="ManageGroupActivity_who_can_add_new_members">Wie kan nieuwe leden toevoegen?</string>
+    <string name="ManageGroupActivity_who_can_edit_this_groups_info">Wie kan de groepsinformatie bewerken?</string>
 
     <plurals name="ManageGroupActivity_added">
         <item quantity="one">%1$d persoon toegevoegd.</item>
@@ -2791,8 +2799,8 @@
     </plurals>
     <!-- Body of the confirmation dialog shown before uninstalling sticker packs. -->
     <plurals name="StickerManagement_delete_n_packs_confirmation_body">
-        <item quantity="one">Hiermee verwijder je het stickerpakket. Je kunt het alleen opnieuw toevoegen met een link of een stickerbericht.</item>
-        <item quantity="other">Hiermee verwijder je deze stickerpakketten. Je kunt ze alleen opnieuw toevoegen met een link of een stickerbericht.</item>
+        <item quantity="one">Hiermee verwijder je het stickerpakket. Je kunt dit niet opnieuw toevoegen zonder een link of stickerbericht.</item>
+        <item quantity="other">Hiermee verwijder je deze stickerpakketten. Je kunt ze niet opnieuw toevoegen zonder een link of stickerbericht.</item>
     </plurals>
     <!-- Message shown after installing a sticker pack. The placeholder is the name of the sticker pack that was installed. -->
     <string name="StickerManagement_installed_pack_s">%1$s geïnstalleerd.</string>
@@ -2830,13 +2838,13 @@
     <!-- Shown when no stickers match the search. The placeholder what was searched. -->
     <string name="StickerManagement_search_no_results_s">Geen resultaten gevonden voor ‘%1$s’</string>
     <!-- Sticker pack button for forwarding a sticker link. -->
-    <string name="StickerManagement_menu_send_signal_pack">Send via Signal</string>
+    <string name="StickerManagement_menu_send_signal_pack">Versturen via Signal</string>
     <!-- Sticker pack button that opens a bottom sheet with more share options. -->
     <string name="StickerManagement_menu_link_pack">Link</string>
     <!-- Sticker pack sheet option for sharing a sticker pack link using the system share sheet. -->
     <string name="StickerManagement_menu_share_pack">Delen</string>
     <!-- Bottom sheet description for the share sticker sheet. -->
-    <string name="StickerManagement__anyone">Anyone with this link can install and share this sticker pack.</string>
+    <string name="StickerManagement__anyone">Iedereen die deze link heeft, kan dit stickerpakket installeren en delen.</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
     <string name="StickerManagement_accessibility_download_pack">Download %1$s stickerpakket</string>
     <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
@@ -5644,13 +5652,13 @@
     <!-- Description for toggle row to control replies settings while muted -->
     <string name="MutedNotificationsFragment__replies_body_global">Ontvang meldingen wanneer iemand op je bericht antwoordt in een gedempte chat</string>
     <!-- Description for toggle row to control call settings while muted -->
-    <string name="MutedNotificationsFragment__calls_body">Speel beltoon af en ontvang meldingen wanneer een oproep wordt gestart terwijl deze chat is gedempt</string>
+    <string name="MutedNotificationsFragment__calls_body">Speel beltoon af en ontvang meldingen wanneer een oproep wordt gestart als deze chat is gedempt</string>
     <!-- Description for toggle row to control mentions settings while muted -->
-    <string name="MutedNotificationsFragment__mentions_body">Ontvang meldingen wanneer je wordt vermeld terwijl deze chat is gedempt</string>
+    <string name="MutedNotificationsFragment__mentions_body">Ontvang meldingen wanneer je wordt vermeld als deze chat is gedempt</string>
     <!-- Description for toggle row to control replies settings while muted -->
-    <string name="MutedNotificationsFragment__replies_body">Ontvang meldingen wanneer iemand op je bericht antwoordt terwijl deze chat is gedempt</string>
+    <string name="MutedNotificationsFragment__replies_body">Ontvang meldingen wanneer iemand op je bericht antwoordt als deze chat is gedempt</string>
     <!-- Description for toggle row to control unread reminders while muted -->
-    <string name="MutedNotificationsFragment__unread_body">Ontvang af en toe meldingen over ongelezen berichten terwijl deze chat is gedempt</string>
+    <string name="MutedNotificationsFragment__unread_body">Ontvang af en toe meldingen over ongelezen berichten als deze chat is gedempt</string>
 
     <!-- NotificationProfilesFragment -->
     <!-- Title for notification profiles screen that shows all existing profiles; Title with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -9006,7 +9014,7 @@
     <!-- Old device Transfer account bottom sheet dialog body -->
     <string name="TransferAccount_continue_on_your_other_device_details">Ga op je andere apparaat door met het overzetten van je account.</string>
     <!-- Old device Transfer account error dialog body shown when the new device is too old to accept an account that has no phone number -->
-    <string name="TransferAccount_the_device_you_are_transferring_to_is_out_of_date">The device you\'re transferring to is out of date. Update Signal on that device and try again.</string>
+    <string name="TransferAccount_the_device_you_are_transferring_to_is_out_of_date">Het apparaat waarnaar je gegevens overzet, is verouderd. Werk Signal op dat apparaat bij en probeer het opnieuw.</string>
 
     <!-- Prepare Device screen title for quick restore flow -->
     <string name="PrepareDevice_title">Je apparaat klaarmaken</string>

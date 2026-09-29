@@ -9,13 +9,13 @@
   <string name="GroupPermissionsScreen__send_messages">ส่งข้อความ</string>
   <string name="GroupPermissionsScreen__all_members">สมาชิกทุกคน</string>
   <string name="GroupPermissionsScreen__only_admins">เฉพาะผู้ดูแล</string>
-  <string name="GroupPermissionsScreen__who_can_add_new_members">ใครสามารถเพิ่มสมาชิกใหม่?</string>
-  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">ใครสามารถแก้ไขข้อมูลของกลุ่มนี้ได้?</string>
+  <string name="GroupPermissionsScreen__who_can_add_new_members">ใครสามารถเพิ่มสมาชิกใหม่ได้</string>
+  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">ใครสามารถแก้ไขข้อมูลของกลุ่มนี้ได้</string>
   <string name="GroupPermissionsScreen__who_can_send_messages">เลือกอนุญาตสิทธิ์ในการส่งข้อความและเริ่มการโทร</string>
   <!-- Label for the member labels permission button in the group permissions settings screen. -->
   <string name="GroupPermissionsScreen__add_member_labels">เพิ่มป้ายกำกับสมาชิก</string>
   <!-- Dialog title shown when choosing who has permission to add member labels in the group. -->
-  <string name="GroupPermissionsScreen__who_can_add_member_labels">ใครบ้างที่สามารถเพิ่มป้ายกำกับสมาชิก</string>
+  <string name="GroupPermissionsScreen__who_can_add_member_labels">ใครสามารถเพิ่มป้ายกำกับสมาชิกได้</string>
   <!-- Warning title shown before restricting member labels to admins only. -->
   <string name="GroupPermissionsScreen__member_labels_will_be_cleared_title">ป้ายกำกับสมาชิกจะถูกล้าง</string>
   <!-- Warning body shown before restricting member labels to admins only. -->
@@ -29,7 +29,7 @@
   <string name="ShareableGroupLinkScreen__reset_link">ตั้งค่าลิงก์ใหม่</string>
   <string name="ShareableGroupLinkScreen__require_admin_approval">ต้องได้รับการอนุมัติจากผู้ดูแล</string>
   <string name="ShareableGroupLinkScreen__require_an_admin_to_approve_new_members_joining_via_the_group_link">ผู้ดูแลต้องอนุมัติสมาชิกใหม่ที่เข้าร่วมผ่านลิงก์กลุ่ม</string>
-  <string name="ShareableGroupLinkScreen__are_you_sure_you_want_to_reset_the_group_link">คุณแน่ใจหรือไม่ว่าต้องการตั้งค่าลิงก์กลุ่มนี้ใหม่? คนจะไม่สามารถเข้าร่วมกลุ่มด้วยลิงก์ปัจจุบันได้อีกต่อไป</string>
+  <string name="ShareableGroupLinkScreen__are_you_sure_you_want_to_reset_the_group_link">คุณแน่ใจหรือไม่ว่าต้องการรีเซ็ตลิงก์กลุ่มนี้ คนอื่นๆ จะไม่สามารถเข้าร่วมกลุ่มด้วยลิงก์ปัจจุบันอีกต่อไป</string>
   <!-- Content description of the button that navigates back off of the group link screen. -->
   <string name="ShareableGroupLinkScreen__go_back">ย้อนกลับ</string>
 </resources>

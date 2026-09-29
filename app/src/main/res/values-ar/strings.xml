@@ -529,6 +529,14 @@
         <item quantity="other">%1$d رسالة غير مقروءة</item>
     </plurals>
 
+    <!-- ChatStickerConfirmation -->
+    <!-- Header shown above a sticker the user is about to send as a reply. %1$s is the name of the person whose message is being replied to. -->
+    <string name="ChatStickerConfirmation__reply_to_s">Reply to %1$s</string>
+    <!-- Header shown above a sticker the user is about to send as a reply to one of their own messages -->
+    <string name="ChatStickerConfirmation__reply_to_yourself">Reply to yourself</string>
+    <!-- Content description for the button that closes the sticker confirmation without sending -->
+    <string name="ChatStickerConfirmation__go_back">Go back</string>
+
     <!-- ConversationFragment -->
     <!-- Toast text when contacts activity is not found -->
     <string name="ConversationFragment__contacts_app_not_found">لم يتم العثور على تطبيق جهات الاتصال.</string>
@@ -677,7 +685,7 @@
         <item quantity="other">%1$d عضوٍ</item>
     </plurals>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about profile names -->
-    <string name="ConversationFragment_profile_names">أسماء الحسابات الشخصية</string>
+    <string name="ConversationFragment_profile_names">أسماء ملفات الإشعارات</string>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about group names -->
     <string name="ConversationFragment_group_names">أسماء المجموعات</string>
     <!-- Snackbar toast message shown when a profile cannot be downloaded and to try again. -->
@@ -721,7 +729,7 @@
     <!-- Summary tip 1 title: Review names and photos -->
     <string name="SafetyTips_summary_tip1_title">دَقِّق في الأسماء والصور</string>
     <!-- Summary tip 1 message -->
-    <string name="SafetyTips_summary_tip1_message">ابحث عن إشعار \"لم يُتَحقّق من الاسم\". يُحدِّد كل مُستخدِم اسم حسابه الشخصي على سيجنال.</string>
+    <string name="SafetyTips_summary_tip1_message">ابحث عن إشعار \"لم يُتَحقّق من الاسم\". يُحدِّد كل مُستخدِم اسم الحساب الخاص به على سيجنال.</string>
     <!-- Summary tip 2 title: Look out for scams -->
     <string name="SafetyTips_summary_tip2_title">اِحذر من عمليات الاحتيال</string>
     <!-- Summary tip 2 message -->
@@ -895,7 +903,7 @@
     </plurals>
 
     <!-- Show in conversation list overflow menu to open selection bottom sheet -->
-    <string name="ConversationListFragment__notification_profile">مركز الإشعارات</string>
+    <string name="ConversationListFragment__notification_profile">ملف الإشعارات</string>
     <!-- Tooltip shown after you have created your first notification profile -->
     <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">شغِّل ملف الإشعارات لديك أو قُم بإيقاف تشغيله من هنا.</string>
     <!-- Message shown in top toast to indicate the named profile is on -->
@@ -938,7 +946,7 @@
 
     <!-- ProfileCreateFragment -->
     <!-- Displayed at the top of the screen and explains how profiles can be viewed. -->
-    <string name="ProfileCreateFragment__profiles_are_visible_to_contacts_and_people_you_message">الحسابات الشخصية مرئية للأشخاص الذين تُراسلهم وجهات الاتصال والمجموعات لديك.</string>
+    <string name="ProfileCreateFragment__profiles_are_visible_to_contacts_and_people_you_message">ملفات الإشعارات مرئية للأشخاص الذين تُراسلهم وجهات الاتصال والمجموعات لديك.</string>
     <!-- Title of clickable row to select phone number privacy settings -->
     <string name="ProfileCreateFragment__who_can_find_me">مَن يُمكنه إيجادي من خلال رقمي؟</string>
 
@@ -3214,13 +3222,13 @@
     <!-- Shown when no stickers match the search. The placeholder what was searched. -->
     <string name="StickerManagement_search_no_results_s">لم يتم العثور على أي نتيجة لـ \'%1$s\'</string>
     <!-- Sticker pack button for forwarding a sticker link. -->
-    <string name="StickerManagement_menu_send_signal_pack">Send via Signal</string>
+    <string name="StickerManagement_menu_send_signal_pack">إرسال عبر سيجنال</string>
     <!-- Sticker pack button that opens a bottom sheet with more share options. -->
     <string name="StickerManagement_menu_link_pack">الرابط</string>
     <!-- Sticker pack sheet option for sharing a sticker pack link using the system share sheet. -->
     <string name="StickerManagement_menu_share_pack">مشاركة</string>
     <!-- Bottom sheet description for the share sticker sheet. -->
-    <string name="StickerManagement__anyone">Anyone with this link can install and share this sticker pack.</string>
+    <string name="StickerManagement__anyone">أي أحد لديه هذا الرابط يمكنه أن يقوم بتثبيت ومشاركة حزمة المُلصَقات هذه.</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
     <string name="StickerManagement_accessibility_download_pack">نزِّل حزمة المُلصَقات \"%1$s\"</string>
     <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
@@ -6193,7 +6201,7 @@
     <string name="NotificationsSettingsFragment__calls">المكالمات</string>
     <!-- Notification header for sounds -->
     <string name="NotificationsSettingsFragment__sounds">اﻷصوات</string>
-    <string name="NotificationsSettingsFragment__contact_joins_signal">جهة اتصال انضَمَّت إلى سيجنال</string>
+    <string name="NotificationsSettingsFragment__contact_joins_signal">انضمام جهة اتصال إلى سيجنال</string>
     <!-- Notification body to get notified when someone joins Signal -->
     <string name="NotificationsSettingsFragment__notify_contact">إظهار إشعار عندما تنضم جهة اتصال إلى سيجنال</string>
     <!-- Option to reset their notification settings -->
@@ -8608,7 +8616,7 @@
     <string name="FindByActivity__network_error_dialog">حدث خطأ في الشبكة. يُرجى المحاولة مرّة أخرى لاحقًا.</string>
 
     <!-- Title for an alert letting someone know that one of their linked devices is inactive. -->
-    <string name="LinkedDeviceInactiveMegaphone_title">جهاز غير مرتبط غير نشِط</string>
+    <string name="LinkedDeviceInactiveMegaphone_title">جهاز مُرتبِط غير نشِط</string>
     <!-- Body for an alert letting someone know that one of their linked devices is inactive. The string placeholder is the name of the device, and the number placeholder is the number of days before device is unlinked. -->
     <plurals name="LinkedDeviceInactiveMegaphone_body">
         <item quantity="zero">لتُبقي \"%1$s\" مرتبطًا، افتح تطبيق سيجنال على ذلك الجهاز في غضون %2$d أيام.</item>
@@ -9782,7 +9790,7 @@
     <!-- Old device Transfer account bottom sheet dialog body -->
     <string name="TransferAccount_continue_on_your_other_device_details">تابِع نقل حسابك على جهازك الآخر.</string>
     <!-- Old device Transfer account error dialog body shown when the new device is too old to accept an account that has no phone number -->
-    <string name="TransferAccount_the_device_you_are_transferring_to_is_out_of_date">The device you\'re transferring to is out of date. Update Signal on that device and try again.</string>
+    <string name="TransferAccount_the_device_you_are_transferring_to_is_out_of_date">الجهاز الذي تحاول النقل إليه قديم. قُم بتحديث سيجنال على هذا الجهاز وحاوِل من جديد.</string>
 
     <!-- Prepare Device screen title for quick restore flow -->
     <string name="PrepareDevice_title">جارٍ تجهيز جهازك</string>

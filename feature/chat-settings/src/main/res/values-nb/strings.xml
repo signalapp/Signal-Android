@@ -5,12 +5,12 @@
   <!-- Content description of the button that navigates back off of the group permissions screen. -->
   <string name="GroupPermissionsScreen__go_back">Gå tilbake</string>
   <string name="GroupPermissionsScreen__add_members">Legg til medlemmer</string>
-  <string name="GroupPermissionsScreen__edit_group_info">Rediger gruppe info</string>
+  <string name="GroupPermissionsScreen__edit_group_info">Rediger gruppeinformasjon</string>
   <string name="GroupPermissionsScreen__send_messages">Send meldinger</string>
   <string name="GroupPermissionsScreen__all_members">Alle medlemmer</string>
   <string name="GroupPermissionsScreen__only_admins">Kun administratorer</string>
   <string name="GroupPermissionsScreen__who_can_add_new_members">Hvem kan legge til nye medlemmer?</string>
-  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">Hvem kan redigere gruppens info?</string>
+  <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">Hvem kan redigere gruppens informasjon?</string>
   <string name="GroupPermissionsScreen__who_can_send_messages">Hvem kan sende meldinger og foreta anrop?</string>
   <!-- Label for the member labels permission button in the group permissions settings screen. -->
   <string name="GroupPermissionsScreen__add_member_labels">Legg til medlemsmerker</string>
@@ -26,10 +26,10 @@
   <string name="ShareableGroupLinkScreen__group_link">Gruppelenke</string>
   <string name="ShareableGroupLinkScreen__share">Del</string>
   <!-- Label of the row that gives the group a new link, and the confirm button of the warning it shows first. -->
-  <string name="ShareableGroupLinkScreen__reset_link">Reset link</string>
+  <string name="ShareableGroupLinkScreen__reset_link">Tilbakestill lenke</string>
   <string name="ShareableGroupLinkScreen__require_admin_approval">Krev godkjenning fra administrator</string>
   <string name="ShareableGroupLinkScreen__require_an_admin_to_approve_new_members_joining_via_the_group_link">Krev administratorgodkjenning for nye medlemmer som blir med via gruppelenken.</string>
-  <string name="ShareableGroupLinkScreen__are_you_sure_you_want_to_reset_the_group_link">Er du sikker på at du vil tilbakestille gruppelenken? Folk vil ikke lenger kunne bli med i gruppen ved hjelp av den nåværende lenken.</string>
+  <string name="ShareableGroupLinkScreen__are_you_sure_you_want_to_reset_the_group_link">Er du sikker på at du vil tilbakestille gruppelenken? Folk vil ikke lenger kunne bli med i gruppen via den nåværende lenken.</string>
   <!-- Content description of the button that navigates back off of the group link screen. -->
   <string name="ShareableGroupLinkScreen__go_back">Gå tilbake</string>
 </resources>

@@ -509,6 +509,14 @@
         <item quantity="other">%1$dન વાંચેલ મેસેજ</item>
     </plurals>
 
+    <!-- ChatStickerConfirmation -->
+    <!-- Header shown above a sticker the user is about to send as a reply. %1$s is the name of the person whose message is being replied to. -->
+    <string name="ChatStickerConfirmation__reply_to_s">Reply to %1$s</string>
+    <!-- Header shown above a sticker the user is about to send as a reply to one of their own messages -->
+    <string name="ChatStickerConfirmation__reply_to_yourself">Reply to yourself</string>
+    <!-- Content description for the button that closes the sticker confirmation without sending -->
+    <string name="ChatStickerConfirmation__go_back">Go back</string>
+
     <!-- ConversationFragment -->
     <!-- Toast text when contacts activity is not found -->
     <string name="ConversationFragment__contacts_app_not_found">સંપર્કોની એપ્લિકેશન મળી નહીં.</string>
@@ -1391,10 +1399,10 @@
     <!-- Shown when a change to a group is rejected because the group has ended. -->
     <string name="GroupErrors__the_group_was_terminated">ગ્રૂપ સમાપ્ત કરવામાં આવ્યું.</string>
     <string name="GroupErrors__you_dont_have_the_rights_to_do_this">તમારી પાસે આ કરવાનો અધિકાર નથી</string>
-    <string name="GroupErrors__not_capable">તમે ઉમેરેલ કોઈ વ્યક્તિ નવા ગ્રુપને સપોર્ટ કરતું નથી અને Signal અપડેટ કરવાની જરૂર છે</string>
-    <string name="GroupErrors__not_announcement_capable">તમે ઉમેરેલ કોઈ વ્યક્તિ જાહેરાત ગ્રુપને સપોર્ટ કરતું નથી અને Signal અપડેટ કરવાની જરૂર છે</string>
-    <string name="GroupErrors__failed_to_update_the_group">ગ્રુપ અપડેટ કરવામાં નિષ્ફળ</string>
-    <string name="GroupErrors__youre_not_a_member_of_the_group">તમે ગ્રુપના મેમ્બર નથી.</string>
+    <string name="GroupErrors__not_capable">તમે ઉમેરેલ કોઈ વ્યક્તિ નવા ગ્રૂપને સપોર્ટ કરતું નથી અને Signal અપડેટ કરવાની જરૂર છે</string>
+    <string name="GroupErrors__not_announcement_capable">તમે ઉમેરેલ કોઈ વ્યક્તિ જાહેરાત ગ્રૂપને સપોર્ટ કરતું નથી અને Signal અપડેટ કરવાની જરૂર છે</string>
+    <string name="GroupErrors__failed_to_update_the_group">ગ્રૂપ અપડેટ કરવામાં નિષ્ફળ</string>
+    <string name="GroupErrors__youre_not_a_member_of_the_group">તમે ગ્રૂપના સભ્ય નથી.</string>
     <string name="GroupErrors__failed_to_update_the_group_please_retry_later">ગ્રુપને અપડેટ કરવામાં નિષ્ફળ થયા પછી કૃપા કરીને પછીથી ફરી પ્રયાસ કરો</string>
     <string name="GroupErrors__failed_to_update_the_group_due_to_a_network_error_please_retry_later">નેટવર્ક ભૂલને કારણે ગ્રુપને અપડેટ કરવામાં નિષ્ફળ, કૃપા કરીને પછીથી ફરી પ્રયાસ કરો</string>
 
@@ -2830,13 +2838,13 @@
     <!-- Shown when no stickers match the search. The placeholder what was searched. -->
     <string name="StickerManagement_search_no_results_s">\'%1$s\' માટે કોઈ પરિણામ મળ્યું નથી</string>
     <!-- Sticker pack button for forwarding a sticker link. -->
-    <string name="StickerManagement_menu_send_signal_pack">Send via Signal</string>
+    <string name="StickerManagement_menu_send_signal_pack">Signal દ્વારા મોકલો</string>
     <!-- Sticker pack button that opens a bottom sheet with more share options. -->
     <string name="StickerManagement_menu_link_pack">લિંક</string>
     <!-- Sticker pack sheet option for sharing a sticker pack link using the system share sheet. -->
     <string name="StickerManagement_menu_share_pack">શેર કરો</string>
     <!-- Bottom sheet description for the share sticker sheet. -->
-    <string name="StickerManagement__anyone">Anyone with this link can install and share this sticker pack.</string>
+    <string name="StickerManagement__anyone">આ લિંક ધરાવતી કોઈ પણ વ્યક્તિ આ સ્ટીકર પેકને ઇન્સ્ટોલ અને શેર કરી શકશે.</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
     <string name="StickerManagement_accessibility_download_pack">%1$s સ્ટીકર પેક ડાઉનલોડ કરો</string>
     <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
@@ -9006,7 +9014,7 @@
     <!-- Old device Transfer account bottom sheet dialog body -->
     <string name="TransferAccount_continue_on_your_other_device_details">તમારા અન્ય ડિવાઇસ પર તમારું એકાઉન્ટ ટ્રાન્સફર કરવાનું ચાલુ રાખો.</string>
     <!-- Old device Transfer account error dialog body shown when the new device is too old to accept an account that has no phone number -->
-    <string name="TransferAccount_the_device_you_are_transferring_to_is_out_of_date">The device you\'re transferring to is out of date. Update Signal on that device and try again.</string>
+    <string name="TransferAccount_the_device_you_are_transferring_to_is_out_of_date">તમે જેના પર ટ્રાન્સફર કરી રહ્યા છો તે ડિવાઇસ જૂનું થઈ ગયું છે. તે ડિવાઇસ પર Signal અપડેટ કરો અને ફરી પ્રયાસ કરો.</string>
 
     <!-- Prepare Device screen title for quick restore flow -->
     <string name="PrepareDevice_title">તમારા ડિવાઇસને તૈયાર કરી રહ્યા છીએ</string>

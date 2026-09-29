@@ -28,7 +28,7 @@
   <!-- Label of the row that gives the group a new link, and the confirm button of the warning it shows first. -->
   <string name="ShareableGroupLinkScreen__reset_link">重置链接</string>
   <string name="ShareableGroupLinkScreen__require_admin_approval">需要管理员批准</string>
-  <string name="ShareableGroupLinkScreen__require_an_admin_to_approve_new_members_joining_via_the_group_link">通过群组链接的新成员需要经过管理员同意才能入群。</string>
+  <string name="ShareableGroupLinkScreen__require_an_admin_to_approve_new_members_joining_via_the_group_link">通过群组链接加入的新成员需要经过管理员同意才能入群。</string>
   <string name="ShareableGroupLinkScreen__are_you_sure_you_want_to_reset_the_group_link">确定要重置群组链接吗？重置后他人将无法通过原来的链接加入群组。</string>
   <!-- Content description of the button that navigates back off of the group link screen. -->
   <string name="ShareableGroupLinkScreen__go_back">返回</string>

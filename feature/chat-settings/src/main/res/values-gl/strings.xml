@@ -5,7 +5,7 @@
   <!-- Content description of the button that navigates back off of the group permissions screen. -->
   <string name="GroupPermissionsScreen__go_back">Volver</string>
   <string name="GroupPermissionsScreen__add_members">Engadir membros</string>
-  <string name="GroupPermissionsScreen__edit_group_info">Editar a info do grupo</string>
+  <string name="GroupPermissionsScreen__edit_group_info">Editar a información do grupo</string>
   <string name="GroupPermissionsScreen__send_messages">Enviar mensaxes</string>
   <string name="GroupPermissionsScreen__all_members">Todos os membros</string>
   <string name="GroupPermissionsScreen__only_admins">Só administradores</string>
@@ -29,7 +29,7 @@
   <string name="ShareableGroupLinkScreen__reset_link">Restablecer ligazón</string>
   <string name="ShareableGroupLinkScreen__require_admin_approval">Solicitar aprobación dun administrador</string>
   <string name="ShareableGroupLinkScreen__require_an_admin_to_approve_new_members_joining_via_the_group_link">Un administrador ten que aprobar os novos membros que acceden desde a ligazón.</string>
-  <string name="ShareableGroupLinkScreen__are_you_sure_you_want_to_reset_the_group_link">Estás seguro de querer restablecer a ligazón ao grupo? A xente non poderán unirse ao grupo a través da ligazón actual.</string>
+  <string name="ShareableGroupLinkScreen__are_you_sure_you_want_to_reset_the_group_link">Seguro que queres restablecer a ligazón do grupo? A xente non poderán unirse ao grupo a través da ligazón actual.</string>
   <!-- Content description of the button that navigates back off of the group link screen. -->
   <string name="ShareableGroupLinkScreen__go_back">Volver</string>
 </resources>

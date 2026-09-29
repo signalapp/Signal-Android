@@ -5,11 +5,11 @@
   <!-- Content description of the button that navigates back off of the group permissions screen. -->
   <string name="GroupPermissionsScreen__go_back">ပြန်သွားရန်</string>
   <string name="GroupPermissionsScreen__add_members">အဖွဲ့ဝင်များ ထည့်ပါ</string>
-  <string name="GroupPermissionsScreen__edit_group_info">အုပ်စုအချက်အလက်ကိုတည်းဖြတ်ပါ</string>
+  <string name="GroupPermissionsScreen__edit_group_info">အဖွဲ့အချက်အလက်ကို တည်းဖြတ်ရန်</string>
   <string name="GroupPermissionsScreen__send_messages">မက်ဆေ့ချ်များ ပို့ရန်</string>
   <string name="GroupPermissionsScreen__all_members">အဖွဲ့ဝင် အားလုံး</string>
   <string name="GroupPermissionsScreen__only_admins">အက်မင်များသာ</string>
-  <string name="GroupPermissionsScreen__who_can_add_new_members">အသင်းဝင်အသစ်များကို မည်သူထပ်ထည့်လို့ရမလဲ?</string>
+  <string name="GroupPermissionsScreen__who_can_add_new_members">အဖွဲ့ဝင်အသစ်များကို မည်သူထည့်သွင်းနိုင်သနည်း။</string>
   <string name="GroupPermissionsScreen__who_can_edit_this_groups_info">ဤအဖွဲ့၏အချက်အလက်ကို မည်သူတည်းဖြတ်နိုင်သနည်း။</string>
   <string name="GroupPermissionsScreen__who_can_send_messages">မည်သူက မက်ဆေ့ချ်များ ပေးပို့နိုင်ပြီး ခေါ်ဆိုမှုများ စတင်နိုင်သနည်း။</string>
   <!-- Label for the member labels permission button in the group permissions settings screen. -->
@@ -23,13 +23,13 @@
   <!-- Confirm button for changing member label permission after warning. -->
   <string name="GroupPermissionsScreen__change_permission">ခွင့်ပြုချက်ပြောင်းရန်</string>
   <!-- Title of the screen where a group\'s members share its link and its admins manage it. -->
-  <string name="ShareableGroupLinkScreen__group_link">Group link</string>
+  <string name="ShareableGroupLinkScreen__group_link">အဖွဲ့လင့်ခ်</string>
   <string name="ShareableGroupLinkScreen__share">ဝေမျှမည်</string>
   <!-- Label of the row that gives the group a new link, and the confirm button of the warning it shows first. -->
-  <string name="ShareableGroupLinkScreen__reset_link">link ကိုပြန်လည်သတ်မှတ်</string>
+  <string name="ShareableGroupLinkScreen__reset_link">လင့်ခ် ပြန်လည်သတ်မှတ်ရန်</string>
   <string name="ShareableGroupLinkScreen__require_admin_approval">အက်ဒ်မင်၏ ခွင့်ပြုချက်လိုအပ်သည်</string>
-  <string name="ShareableGroupLinkScreen__require_an_admin_to_approve_new_members_joining_via_the_group_link">အဖွဲ့ဝင်အသစ်များကို အဖွဲ့လင့်ခ်မှ ဝင်ခြင်းကို စီမံသူမှ အတည်ပြုရန် လိုအပ်စေပါ။</string>
-  <string name="ShareableGroupLinkScreen__are_you_sure_you_want_to_reset_the_group_link">အဖွဲ့လင့်ခ်ကို ပြန်သတ်မှတ်မည်ဆိုတာ သင်သေချာပါသလား? လက်ရှိလင့်ခ်ဖြင့် အခြားလူများ အဖွဲ့သို့ မဝင်ရောက်နိုင်တော့ပါမည်။</string>
+  <string name="ShareableGroupLinkScreen__require_an_admin_to_approve_new_members_joining_via_the_group_link">အဖွဲ့လင့်ခ်ကိုသုံး၍ အဖွဲ့ဝင်အသစ်များ ဝင်ရောက်ခြင်းအား အက်ဒ်မင်မှ အတည်ပြုရန် လိုအပ်သည်။</string>
+  <string name="ShareableGroupLinkScreen__are_you_sure_you_want_to_reset_the_group_link">အဖွဲ့လင့်ခ်ကို ပြန်လည်သတ်မှတ်မည်မှာ သေချာပါသလား။ အခြားသူများမှာ လက်ရှိလင့်ခ်ဖြင့် အဖွဲ့သို့ ဝင်ရောက်နိုင်တော့မည် မဟုတ်ပါ။</string>
   <!-- Content description of the button that navigates back off of the group link screen. -->
   <string name="ShareableGroupLinkScreen__go_back">ပြန်သွားရန်</string>
 </resources>

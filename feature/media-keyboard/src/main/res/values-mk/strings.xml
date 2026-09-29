@@ -13,7 +13,7 @@
   <string name="MediaKeyboard__gifs">GIF-ови</string>
 
   <!-- Search -->
-  <!-- Placeholder text in the media keyboard search field while the emoji tab is showing. -->
+  <!-- Placeholder text in the search field at the top of the emoji page, and in the media keyboard search field while the emoji tab is showing. -->
   <string name="MediaKeyboard__search_emoji">Пребарувај емоџи</string>
   <!-- Placeholder text in the search field at the top of the sticker page, and in the media keyboard search field while the sticker tab is showing. -->
   <string name="MediaKeyboard__search_stickers">Пребарувај стикери</string>
@@ -54,7 +54,7 @@
 
   <!-- Sticker page -->
   <!-- Accessibility description for the button in the media keyboard top bar that opens the screen where sticker packs are managed. -->
-  <string name="MediaKeyboard__manage_stickers">Manage stickers</string>
+  <string name="MediaKeyboard__manage_stickers">Управувајте со налепниците</string>
   <!-- Menu option that sends a sticker, on a long-pressed sticker, or the whole pack as a link, in a sticker pack header\'s menu. Verb, imperative. -->
   <string name="MediaKeyboard__send">Испрати</string>
   <!-- Menu option, on a long-pressed sticker and in a sticker pack header\'s menu, that opens the pack the sticker belongs to. Verb phrase, imperative. -->
@@ -64,11 +64,11 @@
   <!-- Menu option in a sticker pack header\'s menu that uninstalls the pack. Verb, imperative. -->
   <string name="MediaKeyboard__remove_pack">Отстрани</string>
   <!-- Title of the confirmation dialog shown before uninstalling a sticker pack. -->
-  <string name="MediaKeyboard__remove_sticker_pack_question">Remove sticker pack?</string>
+  <string name="MediaKeyboard__remove_sticker_pack_question">Да се отстрани пакетот налепници?</string>
   <!-- Body of the confirmation dialog shown before uninstalling a sticker pack. -->
-  <string name="MediaKeyboard__this_will_remove_the_sticker_pack">This will remove the sticker pack. You can\'t add it again without a link or sticker message.</string>
+  <string name="MediaKeyboard__this_will_remove_the_sticker_pack">Со ова ќе се отстрани пакетот со налепници. Нема да можете да го додадете пак без линк или порака со налепница.</string>
   <!-- Menu option in the recently used header\'s menu that forgets every recently used sticker. Verb phrase, imperative. -->
-  <string name="MediaKeyboard__clear_recents">Clear recents</string>
+  <string name="MediaKeyboard__clear_recents">Исчисти ги неодамнешните</string>
 
   <!-- Gif page -->
   <!-- Label of the GIF quick search chip that shows the GIFs trending right now. -->
@@ -88,7 +88,7 @@
   <!-- Label of the GIF quick search chip that searches for GIFs of someone angry. Adjective describing the mood in the GIFs. -->
   <string name="MediaKeyboard__angry">Лути</string>
   <!-- Error message shown in place of the GIF grid when the GIFs could not be fetched. -->
-  <string name="MediaKeyboard__couldnt_load_gifs">Couldn\'t load GIFs. Check your connection and try again.</string>
+  <string name="MediaKeyboard__couldnt_load_gifs">GIF-овите не можеа да се вчитаат. Проверете ја интернет врската и обидете се повторно.</string>
   <!-- Button shown with the GIF loading error that tries the fetch again. Verb, imperative. -->
   <string name="MediaKeyboard__retry">Обидете се повторно</string>
 </resources>
