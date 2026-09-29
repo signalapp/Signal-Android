@@ -23,7 +23,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.ArrowBack
 import androidx.compose.material.icons.automirrored.outlined.Backspace
-import androidx.compose.material.icons.outlined.AddCircleOutline
 import androidx.compose.material.icons.outlined.Clear
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material3.Icon
@@ -52,6 +51,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.flow.StateFlow
 import org.signal.core.ui.compose.CollectActions
+import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.keyboard.KeyboardSheetDragRegion
 import org.signal.core.ui.compose.keyboard.LocalKeyboardSheetController
 import org.signal.mediakeyboard.data.MediaKeyboardRepository
@@ -209,7 +209,7 @@ private fun MediaKeyboardTopBar(
       modifier = Modifier.graphicsLayer { alpha = searchAlpha }
     ) {
       Icon(
-        imageVector = Icons.Outlined.Search,
+        imageVector = SignalIcons.Search.imageVector,
         contentDescription = stringResource(R.string.MediaKeyboard__search),
         tint = MaterialTheme.colorScheme.onSurfaceVariant
       )
@@ -248,7 +248,7 @@ private fun MediaKeyboardTopBar(
       MediaKeyboardTab.STICKER -> {
         IconButton(onClick = { onAction(MediaKeyboardAction.StickerManagementClicked) }) {
           Icon(
-            imageVector = Icons.Outlined.AddCircleOutline,
+            imageVector = SignalIcons.StickerPackPlus.imageVector,
             contentDescription = stringResource(R.string.MediaKeyboard__manage_stickers),
             tint = MaterialTheme.colorScheme.onSurfaceVariant
           )
