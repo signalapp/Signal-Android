@@ -58,7 +58,7 @@ object StorageSyncHelper {
 
   private var keyGenerator = KEY_GENERATOR
 
-  private val REFRESH_INTERVAL = TimeUnit.HOURS.toMillis(2)
+  private val REFRESH_INTERVAL = TimeUnit.DAYS.toMillis(1)
 
   /**
    * Given a list of all the local and remote keys you know about, this will return a result telling
