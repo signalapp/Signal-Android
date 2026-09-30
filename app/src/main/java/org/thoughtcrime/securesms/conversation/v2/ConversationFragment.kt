@@ -75,6 +75,7 @@ import androidx.core.content.pm.ShortcutManagerCompat
 import androidx.core.net.toUri
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.doOnNextLayout
 import androidx.core.view.doOnPreDraw
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
@@ -732,6 +733,17 @@ class ConversationFragment :
       .setDuration(STICKER_CONFIRMATION_INPUT_PANEL_DURATION_MS)
       .setInterpolator(FastOutSlowInInterpolator())
       .start()
+  }
+
+  /**
+   * Dismisses the sticker confirmation and snaps the input panel straight back, so anything that
+   * then grows the panel (like a quote) measures and animates against its real height.
+   */
+  private fun dismissStickerConfirmationImmediately() {
+    stickerConfirmation.dismiss()
+    inputPanelCollapseAnimator?.end()
+    inputPanel.animate().cancel()
+    inputPanel.alpha = 1f
   }
 
   private fun sendKeyboardSticker(sticker: KeyboardSticker) {
@@ -3433,16 +3445,26 @@ class ConversationFragment :
     val (slideDeck, body) = viewModel.getSlideDeckAndBodyForReply(requireContext(), conversationMessage)
     val author = conversationMessage.messageRecord.fromRecipient
 
-    inputPanel.setQuote(
-      Glide.with(this),
-      conversationMessage.messageRecord.dateSent,
-      author,
-      body,
-      slideDeck,
-      conversationMessage.messageRecord.getRecordQuoteType()
-    )
+    val setQuoteAndFocus = {
+      inputPanel.setQuote(
+        Glide.with(this),
+        conversationMessage.messageRecord.dateSent,
+        author,
+        body,
+        slideDeck,
+        conversationMessage.messageRecord.getRecordQuoteType()
+      )
 
-    inputPanel.clickOnComposeInput()
+      inputPanel.clickOnComposeInput()
+    }
+
+    if (stickerConfirmation.isShowing) {
+      dismissStickerConfirmationImmediately()
+      // The collapsed panel has to lay out again first, or the quote measures short and the zero-sized field can't take focus.
+      inputPanel.doOnNextLayout { setQuoteAndFocus() }
+    } else {
+      setQuoteAndFocus()
+    }
   }
 
   private fun handleEditMessage(conversationMessage: ConversationMessage) {
