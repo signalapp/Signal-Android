@@ -43,8 +43,6 @@ object StickerManagementRepository {
    * Emits the sticker packs along with any updates.
    */
   fun getStickerPacks(): Flow<StickerPacksResult> = callbackFlow {
-    trySend(loadStickerPacks())
-
     val stickersDbObserver = DatabaseObserver.Observer {
       launch {
         deleteOrphanedStickerPacks()
@@ -53,6 +51,8 @@ object StickerManagementRepository {
     }
 
     databaseObserver.registerStickerPackObserver(stickersDbObserver)
+    deleteOrphanedStickerPacks()
+    trySend(loadStickerPacks())
     awaitClose {
       databaseObserver.unregisterObserver(stickersDbObserver)
     }
