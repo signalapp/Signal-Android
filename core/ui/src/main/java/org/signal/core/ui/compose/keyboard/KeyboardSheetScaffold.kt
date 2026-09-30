@@ -414,13 +414,17 @@ fun KeyboardSheetScaffold(
     }
   }
 
-  // Picks up drags as well as requests, so the controller reports where the sheet is heading.
+  // Picks up drags as well as requests, so the controller reports where the sheet is heading. The heights are read
+  // through rememberUpdatedState because this effect outlives the composition that launched it, which ran before any
+  // keyboard (and so any expandable height) was known.
+  val currentSheetHeightPx by rememberUpdatedState(sheetHeightPx)
+  val currentHeightPx by rememberUpdatedState(heightPx)
   LaunchedEffect(sheetState) {
-    snapshotFlow { sheetState.targetValue == SheetAnchor.Expanded }
+    snapshotFlow { (sheetState.targetValue == SheetAnchor.Expanded) to (currentSheetHeightPx - currentHeightPx) }
       .distinctUntilChanged()
-      .collect { expanded ->
+      .collect { (expanded, overlapPx) ->
         controller.isExpanded = expanded
-        controller.expandedOverlapPx = if (expanded) sheetHeightPx - heightPx else 0
+        controller.expandedOverlapPx = if (expanded) overlapPx else 0
       }
   }
 
