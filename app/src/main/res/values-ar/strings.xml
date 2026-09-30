@@ -959,23 +959,8 @@
     <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">لن يتمكّن أي أحد من رؤيتك على سيجنال إلّا إذا راسلته أو كانت لديك دردشة موجودة معه.</string>
 
     <!-- ChooseBackupFragment -->
-    <string name="ChooseBackupFragment__restore_from_backup">هل ترغبُ بالاستعادة مِن نسخة احتياطية؟</string>
-    <string name="ChooseBackupFragment__restore_your_messages_and_media">استعِد الرسائل والوسائط الخاصة بك من نسخة احتياطية محلية. إن لم تقم باستعادتها الآن، لن يكون بإمكانك ذلك لاحقًا.</string>
-    <string name="ChooseBackupFragment__icon_content_description">الاستعادة من أيقونة النسخة الاحتياطية</string>
-    <string name="ChooseBackupFragment__choose_backup">اختيار النسخة الاحتياطية</string>
-    <string name="ChooseBackupFragment__learn_more">اعرف المزيد</string>
 
     <!-- RestoreBackupFragment -->
-    <string name="RestoreBackupFragment__restore_complete">اكتملَت عملية الاستعادة.</string>
-    <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">للاستمرار في استخدام النسخ اﻻحتياطية، يُرجى اختيار مجلد. سوف تُخزَّن النسخ اﻻحتياطية الجديدة في هذا الموقع.</string>
-    <string name="RestoreBackupFragment__choose_folder">اختر مجلد</string>
-    <string name="RestoreBackupFragment__not_now">ليس الآن</string>
-    <!-- Couldn\'t find the selected backup -->
-    <string name="RestoreBackupFragment__backup_not_found">لا يوجد نسخة احتياطية.</string>
-    <!-- Couldn\'t read the selected backup -->
-    <string name="RestoreBackupFragment__backup_could_not_be_read">لم يكن من الممكن قراءة النسخة الاحتياطية.</string>
-    <!-- Backup has an unsupported file extension -->
-    <string name="RestoreBackupFragment__backup_has_a_bad_extension">يضم ملف النسخة الاحتياطية امتداد غير صالح.</string>
 
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
@@ -1588,60 +1573,6 @@
     <string name="ManageGroupActivity_add_group_description">إضافة وصف للمجموعة…</string>
 
     <!-- RemoteRestoreActivity -->
-    <!-- Progress dialog label when downloading a backup -->
-    <string name="RemoteRestoreActivity__downloading_backup">جارٍتنزيل النسخة الاحتياطية…</string>
-    <!-- Progress dialog label when restoring a backup -->
-    <string name="RemoteRestoreActivity__restoring_messages">جارية استعادة الرسائل…</string>
-    <!-- Progress dialog label when finishing a backup restore -->
-    <string name="RemoteRestoreActivity__finishing_restore">جارٍ إنهاء العملية…</string>
-    <!-- Progress dialog label while awaiting updates -->
-    <string name="RemoteRestoreActivity__restoring">جارية الاستعادة…</string>
-    <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
-    <string name="RemoteRestoreActivity__s_of_s_s">%1$s من %2$s (%3$s)</string>
-    <!-- Feature list media label for paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_media">جميع وسائطك</string>
-    <!-- Feature list media label for free tier. Placeholder is days, and is currently fixed at 30. -->
-    <string name="RemoteRestoreActivity__your_last_d_days_of_media">أيامك %1$d الأخيرة من الوسائط</string>
-    <!-- Feature list message label for free and paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_messages">جميع الرسائل الخاصة بك</string>
-    <!-- Screen title for restoring from backup -->
-    <string name="RemoteRestoreActivity__restore_from_backup">الاستعادة مِن نسخة احتياطية</string>
-    <!-- Section title for explaining what your backup includes -->
-    <string name="RemoteRestoreActivity__your_backup_includes">تتضمن النسخة الاحتياطية:</string>
-    <!-- Primary action button copy for starting restoration -->
-    <string name="RemoteRestoreActivity__restore_backup">استعادة النسخة الاحتياطية</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made. %1$s is replaced with the date (e.g. March 5, 2024) and %2$s is replaced with the time (e.g. 9:00am) -->
-    <string name="RemoteRestoreActivity__backup_created_at">أُجريت آخِر نسخة احتياطية في %1$s عند الساعة %2$s.</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
-    <string name="RemoteRestoreActivity__backup_created_at_with_size">أُجريتَ آخِر نسخة احتياطية في %1$s عند الساعة %2$s. حجم نسختك الاحتياطية هو %3$s.</string>
-    <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
-    <string name="RemoteRestoreActivity__fetching_backup_details">جارٍ إعداد تفاصيل النسخة الاحتياطية…</string>
-    <!-- Text label button to skip restore from remote -->
-    <string name="RemoteRestoreActivity__skip_restore">تخطِّي الاستعادة</string>
-    <!-- Dialog title displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__couldnt_transfer">تعذَّر إنهاء عملية النقل</string>
-    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">تعذَّرت استعادة النسخة الاحتياطية</string>
-    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">حدث خطأ أثناء استعادة نسختك الاحتياطية. نسختك الاحتياطية غير قابلة للاستعادة. يُرجى التواصل مع الدعم للحصول على المساعدة.</string>
-    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">الاتصال بالدعم</string>
-    <!-- Dialog message displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__error_occurred">حدث خطأ وتعذَّر نقل حسابك بسبب ذلك. حاوِل مرّة أخرى من خلال اختيار طريقة النقل.</string>
-    <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
-    <string name="RemoteRestoreActivity__couldnt_restore">تعذَّرت استعادة هذه النسخة الاحتياطية.</string>
-    <!-- Dialog message explaining that an update to Signal is required to restore the backup. -->
-    <string name="RemoteRestoreActivity__update_latest">لا يُمكن لهذه النسخة من سيجنال استعادة نسختك الاحتياطية. حدِّث لآخر نسخة وحاوِل مرّة أخرى.</string>
-    <!-- Text on button that when pressed will redirect them to update Signal -->
-    <string name="RemoteRestoreActivity__update_signal">تحديث سيجنال</string>
-    <!-- Text label button to dismiss the dialog -->
-    <string name="RemoteRestoreActivity__not_now">ليس الآن</string>
-    <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">سَتتم استعادة ملفات وسائطك في الخلفية. إذا اخترتَ عدم الاستعادة الآن، فلن تتمكَّن من الاستعادة لاحقًا.</string>
-    <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">هذا الجهاز لم يَعُد مُسجلًا.</string>
-    <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">على الأغلب هذا بسبب قيامك بتسجيل حساب سيجنال الخاص بك على جهاز آخر.</string>
 
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
@@ -2510,17 +2441,6 @@
     <string name="PinRestoreLockedFragment_create_new_pin">إنشاء رقم تعريف شخصي (PIN) جديد</string>
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
-    <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
-    <string name="ReRegisterWithPinFragment_send_sms_code">أرسِل كود رسالة قصيرة</string>
-    <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">التسجيل في سيجنال - تحتاج مساعدة لتسجيل رقم التعريف الشخصي (PIN) في أندرويد</string>
-    <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">رقم التعريف الشخصي (PIN) الخاص بك عِبارة عَن كود مُكوَّن من %1$d+ خانات أو أكثر والتي يُمكن أن تكون إما أرقامًا أو حُروفًا.\n\nإذا لم تستطع تَذكُّر رقم التعريف الشخصي (PIN) الخاص بك، يمكنك إنشاء رقم جديد.</string>
-    <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">إذا لم تستطع تَذكُّر رقم التعريف الشخصي (PIN) الخاص بك، يمكنك إنشاء رقم جديد.</string>
-    <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">نفدَت تخميناتك لرقم التعريف الشخصي (PIN)، لكن يمكنك الوصول إلى حساب سيجنال الخاص بك عبر إنشاء رقم تعريف شخصي (PIN) جديد.</string>
-
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">تحذير</string>
     <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">إذا قمتَ بتعطيل رقم التعريف الشخصي (PIN)، ستفقد جميع بياناتك عند قيامك بإعادة التسجيل في سيجنال، إلّا إذا قمتَ باسترجاعها بواسطة النسخ الاحتياطي اليدوي. لا يمكنك تفعيل قفل التسجيل أثناء تعطيل رقم التعريف الشخصي (PIN).</string>
@@ -2600,6 +2520,12 @@
     <string name="WebRtcCallActivity__open_settings">فتح الإعدادات</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">ليس الآن</string>
+    <!-- Message for dialog shown at the start of a call when the system battery setting for Signal is "Restricted" -->
+    <string name="WebRtcCallActivity__others_may_not_be_able_to_hear_you_when_your_screen_turns_off">Others may not be able to hear you and the call may disconnect when your screen turns off. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
+    <!-- Title for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__others_couldnt_hear_you">Others couldn\'t hear you</string>
+    <!-- Message for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__your_microphone_was_muted_while_signal_was_in_the_background">Your microphone was muted while Signal was in the background. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
     <!-- Title for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__approve_d_requests">
         <item quantity="zero">هل ترغبُ بالموافقة على %1$d طلب؟</item>
@@ -2999,38 +2925,14 @@
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">الرقم الذي حددته (%1$s) غير صحيح.
     </string>
 
-    <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">هل رقم الهاتف أدناه صحيح؟</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
     <string name="RegistrationActivity_additional_verification_required">التحقُّق الإضافي مطلوب</string>
-    <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">سيُرسَل كود التحقُّق إلى هذا الرقم. قد يتم تطبيق رسوم من قِبَل شركة الاتصالات المُستخدَمة.</string>
-    <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">ستستلم كود تحقُّق. قد تنطبّق تكلفة من مزوِّد الخدمة.</string>
-    <!-- Hint text to select a country -->
-    <string name="RegistrationActivity_select_a_country">اختر بلدًا</string>
-    <!-- Hint text explaining that this is where the country code should go -->
-    <string name="RegistrationActivity_default_country_code">0</string>
-    <string name="RegistrationActivity_edit_number">تعديل الرقم</string>
-    <string name="RegistrationActivity_missing_google_play_services">خدمات Google Play غير موجودة</string>
-    <string name="RegistrationActivity_this_device_is_missing_google_play_services">خدمات Google Play غير موجودة في هذا الجهاز. لا زال بإمكانك استخدام سيجنال، ولكن هذا الضبط قد يؤدي إلى ضعف في الموثوقية أو الأداء. إن لم تكن مُستخدِمًا مُتقدمًا، أو لم تكن مُشغِّلًا لـ Android ROM من جهة خارجية، أو تعتقد أن رؤيتك لهذه الرسالة ناجمة عن خطأ، يُرجى التواصل مع support@signal.org للمساعدة في اكتشاف الأخطاء وإصلاحها.</string>
-    <string name="RegistrationActivity_i_understand">فهمت</string>
-    <string name="RegistrationActivity_play_services_error">خطأ في خدمات Google Play</string>
-    <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">جارٍ تحديث خدمات Google Play أو أنها غير موجودة مؤقتًا. حاوِل مرّة أخرى.</string>
     <string name="RegistrationActivity_rate_limited_to_service">قُمتَ بمحاولاتٍ كثيرة للتسجيل بهذا الرقم. يُرجى المحاولة لاحقًا.</string>
-    <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">قُمتَ بمحاولاتٍ كثيرة للتسجيل بهذا الرقم. يُرجى المحاولة لاحقًا %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">لا يمكن الاتصال بالخدمة. يُرجى التأكُّد من الاتصال بالشبكة والمحاولة مرّة أخرى.</string>
     <!-- Dialog error message shown when we are unable to send an SMS to the user\'s number -->
     <string name="RegistrationActivity_sms_provider_error">لا يمكننا إرسال رسالة قصيرة إلى هذا الرقم. يُرجى المحاولة من جديد في بضع ساعات.</string>
-    <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">تعذَّر إرسال كود التحقُّق عبر رسالة نصية. حاوِل الحصول على الكود الخاص بك عبر مكالمة صوتية بدلًا من ذلك.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">تعذَّر طلب كود التحقُّق. يُرجى التحقُّق من اتصالك بالانترنت ثم حاوِل مرّة أُخرى.</string>
-    <string name="RegistrationActivity_non_standard_number_format">تنسيق العدد غير قياسي</string>
-    <!-- Dialog message shown to confirm when entering phone number (first placeholder) is normalized and formatted differently by the app (second placeholder). -->
-    <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">‫يظهر أن العدد الذي قمتَ بإدخاله (%1$s) ليس بتنسيق قياسي.\n\nهل تقصد هو %2$s؟</string>
-    <string name="RegistrationActivity_signal_android_phone_number_format">سيجنال أندرويد - تنسيق رقم الهاتف</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="zero">أنت الآن على بعد %1$d خطوة من إرسال سجل الأخطاء.</item>
         <item quantity="one">أنت الآن على بعد %1$d خطوة من إرسال سجل الأخطاء.</item>
@@ -3040,13 +2942,7 @@
         <item quantity="other">أنت الآن على بعد %1$d خطوةٍ من إرسال سجل الأخطاء.</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">علينا التحقُّق من أنك إنسان.</string>
-    <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
-    <string name="RegistrationActivity_voice_call">مكالمة صوتية</string>
-    <!-- Dialog button to cancel the pending action and return to the previous state. -->
-    <string name="RegistrationActivity_cancel">إلغاء</string>
     <string name="RegistrationActivity_next">التالي</string>
-    <!-- Title of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_phone_number">رقم الهاتف</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">أدخِل الكود الذي أرسلناه إلى %1$s</string>
 
     <string name="RegistrationActivity_phone_number_description">رقم الهاتف</string>
@@ -3265,6 +3161,8 @@
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">فشل في تحميل مجموعة المُلصَقات</string>
     <!-- Bottom sheet describing a sticker. First placeholder is the title of the sticker pack and second is the author -->
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
+    <!-- Bottom sheet option that opens the pack the sticker belongs to -->
+    <string name="StickerPreviewBottomSheet__view_pack">View pack</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">حفظ</string>
@@ -4055,8 +3953,6 @@
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">لتلقي إشعارات المكالمات، يُرجى لمس \"الإعدادات\" ثم تفعيل أنشطة الخلفية في إعدادات \"البطارية\".</string>
 
     <!-- country_selection_fragment -->
-    <string name="country_selection_fragment__loading_countries">جارٍ تحميل البلدان…</string>
-    <string name="country_selection_fragment__search">بحث</string>
 
     <string name="device_list_fragment__link_new_device">ربط جهاز جديد</string>
 
@@ -4938,6 +4834,8 @@
     <string name="conversation_selection__menu_pin_message">تثبيت</string>
     <!-- Button to unpin a message -->
     <string name="conversation_selection__menu_unpin_message">إزالة التثبيت</string>
+    <!-- Button to open the sticker pack a sticker message came from -->
+    <string name="conversation_selection__menu_view_sticker_pack">View pack</string>
 
     <!-- conversation_expiring_on -->
 
@@ -5140,14 +5038,11 @@
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">أدخِل رقم PIN</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">أدخِل رقم التعريف الشخصي (PIN) الذي قمتَ بإنشائه لحسابك. هو مختلف عن كود التحقُّق الذي وصلك عبر رسالة قصيرة.</string>
-    <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
-    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">أدخِل رقم التعريف الشخصي (PIN) الذي أنشأته لحسابك.</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">رقم التعريف الشخصي (PIN) غير صحيح. حاوِل مرّة أخرى.</string>
     <string name="RegistrationLockFragment__forgot_pin">هل نسيت رقم التعريف الشخصي (PIN)؟</string>
     <string name="RegistrationLockFragment__incorrect_pin">رقم التعريف الشخصي (PIN) غير صحيح</string>
     <string name="RegistrationLockFragment__forgot_your_pin">هل نسيت رقم التعريف الشخصي (PIN)؟</string>
     <string name="RegistrationLockFragment__not_many_tries_left">لم يتبق الكثير من المحاولات!</string>
-    <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">تسجيل سيجنال - تحتاج مساعدة لرقم التعريف الشخصي (PIN) في أندرويد (النسخة الثانية لرقم التعريف الشخصي)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
         <item quantity="zero">لخصوصيتك ولأمانك، لا توجد طريقة لاسترجاع رقم التعريف الشخصي (PIN). إن لم تستطع تذكره، يمكنك إعادة التسجيل باستخدام رسالة قصيرة بعد %1$d أيام من عدم الاستخدام. في هذه الحالة، سيتمُّ حذف حسابك وجميع المحتوى الخاص بك.</item>
@@ -5222,22 +5117,6 @@
     <string name="backup_enable_dialog__you_must_have_this_passphrase">يجب أن تكون لديك العبارة السرية هذه لاستعادة نسخة احتياطية.</string>
     <string name="backup_enable_dialog__folder">المجلد</string>
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">قمتُ بتدوين هذه العبارة السرية. بدونها، لن يمكنني استعادة أي نسخة احتياطية.</string>
-    <string name="registration_activity__restore_backup">استعادة النسخة الاحتياطية</string>
-    <!-- Text label button to skip restoring -->
-    <string name="registration_activity__skip_restore">تخطّي الاستعادة</string>
-    <!-- Title for dialog to enter in the backup passphrase -->
-    <string name="RegistrationActivity_enter_backup_passphrase">أدخِل العبارة السرية للنسخة الاحتياطية</string>
-    <string name="RegistrationActivity_restore">استعادة</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">لا يمكن استيراد نسخ احتياطية من إصدارات أحدث من سيجنال</string>
-    <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
-    <string name="RegistrationActivity_backup_failure_foreign_key">تحتوي النسخة الاحتياطية على بيانات فيها خلل.</string>
-    <string name="RegistrationActivity_incorrect_backup_passphrase">العبارة السرية للنسخة الاحتياطية غير صحيحة</string>
-    <string name="RegistrationActivity_checking">جارٍ التحقُّق…</string>
-    <string name="RegistrationActivity_d_messages_so_far">%1$d رسالة (رسائل) حتى الآن…</string>
-    <string name="RegistrationActivity_restore_from_backup">هل ترغب بالاستعادة مِن نسخة احتياطية؟</string>
-    <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">استعِد الرسائل والوسائط من نسخة احتياطية محليّة. إذا لم تقم باستعادتها الآن، لن يمكنك الاستعادة لاحقًا.</string>
-    <string name="RegistrationActivity_backup_size_s">حجم النسخة الاحتياطية: %1$s</string>
-    <string name="RegistrationActivity_backup_timestamp_s">السجل الزمني للنسخ الاحتياطي: %1$s</string>
     <string name="BackupDialog_enable_local_backups">هل ترغب بتفعيل النسخ الاحتياطية المحلية؟</string>
     <string name="BackupDialog_enable_backups">تفعيل النسخ الاحتياطية</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">يُرجى الإقرار بفهم الخاصية عبر وضع علامة تأكيد في الصندوق.</string>
@@ -5273,7 +5152,6 @@
     <string name="RegistrationActivity_call_me_instead_available_in">اتصل بي (%1$02d:%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
     <string name="RegistrationActivity_resend_sms_available_in">إعادة إرسال الرمز (%1$02d:%2$02d)</string>
-    <string name="RegistrationActivity_contact_signal_support">التواصُل مع قسم الدعم في سيجنال</string>
     <string name="RegistrationActivity_code_support_subject">تسجيل سيجنال - كود التحقُّق لأندرويد</string>
     <string name="RegistrationActivity_incorrect_code">كود غير صحيح</string>
     <string name="BackupUtil_never">أبدًا</string>
@@ -5395,25 +5273,8 @@
     <string name="TransferOrRestoreFragment__restore_from_local_backup">استعادة نسخة احتياطية محلية</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
-    <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">افتح تطبيق سيجنال في هاتف أندرويد القديم الخاص بك</string>
-    <string name="NewDeviceTransferInstructions__continue">متابعة</string>
-    <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">انقر على صورة حسابك الشخصي في أعلى الجزء الأيسر لفتح الإعدادات.</string>
-    <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_account">"انقر على \"الحساب\""</string>
-    <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
-    <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"انقر على \"نقل الحساب\"، ثم \"متابعة\" على كلا الجهازين."</string>
 
     <!-- NewDeviceTransferSetupFragment -->
-    <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">جارٍ إعداد الاتصال بجهاز أندرويد الجديد لديك…</string>
-    <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">يحتاج لبعض الوقت… سيصبح جاهزًا قريبًا.</string>
-    <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">بانتظار اتصال جهاز أندرويد القديم…</string>
-    <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">يحتاج سيجنال إلى إذن الوصول إلى الموقع لاكتشاف جهاز أندرويد القديم الخاص بك والاتصال به.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">يحتاج سيجنال إلى أن تكون خدمات الموقع مُفعَّلة لكي يكتشف جهاز أندرويد القديم الخاص بك ويتصل به.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">يحتاج سيجنال إلى أن يكون الواي فاي مُفعَّلًا لكي يكتشف جهاز أندرويد القديم ويتصل به. يكفي أن يكون الواي فاي مُفعَّلًا فقط، إذ لا داعي لأن يكون متصلًا بشبكة واي فاي.</string>
-    <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">عُذرًا، يبدو أن هذا الجهاز لا يدعم Wi-Fi Direct. يستخدم سيجنال ‫Wi-Fi Direct لاكتشاف جهاز أندرويد القديم الخاص بك والاتصال به. ما يزال بإمكانك استعادة نسخة احتياطية، وذلك لاستعادة حسابك من جهاز أندرويد القديم الخاص بك.</string>
-    <string name="NewDeviceTransferSetup__restore_a_backup">استعادة نسخة احتياطية</string>
-    <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">حدث خطأ غير متوقع خلال محاولة الاتصال بجهاز أندرويد القديم الخاص بك.</string>
 
     <!-- OldDeviceTransferSetupFragment -->
     <string name="OldDeviceTransferSetup__searching_for_new_android_device">جارٍ البحث عن جهاز أندرويد جديد…</string>
@@ -5457,9 +5318,6 @@
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device">انقر على \"متابعة\" في جهازك الآخر…</string>
 
     <!-- NewDeviceTransferFragment -->
-    <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">لم يتمكن من النقل من إصدار أحدث من سيجنال</string>
-    <!-- Error message indicating that we could not finish the user\'s device transfer. Displayed in a toast at the bottom of the screen. -->
-    <string name="NewDeviceTransfer__failure_foreign_key">حصَل خلَل في البيانات المنقولة.</string>
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">جارٍ نقل البيانات</string>
@@ -5498,10 +5356,6 @@
     <string name="OldDeviceTransferComplete__close">إغلاق</string>
 
     <!-- NewDeviceTransferComplete -->
-    <string name="NewDeviceTransferComplete__transfer_successful">نجحَ النقل</string>
-    <string name="NewDeviceTransferComplete__transfer_complete">اكتمَلَ النقل</string>
-    <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">لإتمام عملية النقل، يجب عليك متابعة التسجيل.</string>
-    <string name="NewDeviceTransferComplete__continue_registration">متابعة التسجيل</string>
 
     <!-- DeviceToDeviceTransferService -->
     <string name="DeviceToDeviceTransferService_content_title">نقل الحساب</string>
@@ -9529,219 +9383,6 @@
 
     <!-- ConfirmBackupCancellationDialog -->
 
-    <!-- Row title for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">هاتفي القديم بحوزتي</string>
-    <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_scan_qr">امسح كود الـ QR ضوئيًا من حساب سيجنال الحالي الخاص بك للبدء بسرعة.</string>
-
-    <!-- Row title for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">هاتفي القديم ليس بحوزتي</string>
-    <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">أو تقوم بإعادة تثبيت سيجنال على الجهاز نفسه.</string>
-
-    <!-- Screen title for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__restore_or_transfer_account">استعادة أو نقل الحساب</string>
-    <!-- Screen subtitle for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__get_your_signal_account">حوّل حساب سيجنال الخاص بك وسِجل رسائلك إلى جهازك الحالي.</string>
-    <!-- Option title for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_signal_backup">استعادة النسخة الاحتياطية على سيجنال</string>
-    <!-- Option subtitle for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_your_text_messages_and_media_from">استعِد رسائلك النصية والوسائط من النسخة الاحتياطية في سيجنال.</string>
-    <!-- Option title for restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_on_device_backup">استعادة النسخة الاحتياطية على الجهاز</string>
-    <!-- Option subtitle fdor restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_your_messages_from">استعِد رسائلك من النسخة الاحتياطية التي حفظتها على جهازك.</string>
-    <!-- Option title for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__from_your_old_phone">من جهازك القديم</string>
-    <!-- Option subtitle for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__transfer_directly_from_old">النقل مباشرةً من جهاز أندرويد القديم الخاص بك</string>
-    <!-- Dialog title shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_title">هل ترغبُ بتخطِّي الاستعادة؟</string>
-    <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">إذا قُمتَ بتخطي الاستعادة الآن، فلن تتمكّن من الاستعادة لاحقًا. إذا فعّلتَ النسخ الاحتياطية من جديد لاحقًا بعد تخطي الاستعادة، فسيتم استبدال نسختك الاحتياطية الحالية بسجل الرسائل الخاص بك الجديد.</string>
-    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore">تخطِّي الاستعادة</string>
-
-    <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_title">أدخِل مفتاح الاستعادة الخاص بك.</string>
-    <!-- Screen subtitle for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_subtitle">مفتاح الاستعادة الخاص بك هو كود مُكوَّن من 64 رمزًا، وهو مطلوب لاستعادة حسابك وبياناتك.</string>
-    <!-- Button to skip entering recovery key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">لا حاجة لمفتاح استعادة جديد؟</string>
-    <!-- Recovery key text field hint -->
-    <string name="EnterBackupKey_backup_key">مفتاح الاستعادة</string>
-    <!-- Recovery key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">لا يُمكن استعادة النُسخ الاحتياطية دون كود الاستعادة المُكوَّن من 64 رمزًا. إذا فقدتَ مفتاح الاستعادة الخاص بك، فلا يُمكن لسيجنال مُساعدتك في استعادة نسختك الاحتياطية.</string>
-    <!-- Recovery key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">إذا كان لديك جهازك القديم، يُمكنك عرض مفتاح النسخة الاحتياطية الخاص بك في \"الإعدادات\" &gt; \"النسخ الاحتياطية\". ثم انقر على عرض مفتاح الاستعادة.</string>
-    <!-- Recovery key not known bottom sheet button to learn more about it -->
-    <string name="EnterBackupKey_learn_more">اعرف المزيد</string>
-    <!-- Recovery key not known bottom sheet button to skip recovery key entry and resume normal reregistration -->
-    <string name="EnterBackupKey_skip_and_dont_restore">تخطَّي الاستعادة</string>
-    <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">مفتاح الاستعادة خاطئ</string>
-    <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">تأكَّد من أنك تُسجِّل باستخدام نفس رقم الهاتف ومفتاح الاستعادة المُكوَّن من 64 رمزًا الذي حفظته عند تفعيل النسخ الاحتياطية الآمنة لسيجنال. لا يُمكن استرجاع النُسخ الاحتياطية دون هذا المفتاح.</string>
-    <!-- Dialog positive button text to try entering their recovery key again -->
-    <string name="EnterBackupKey_try_again">حاوِل مُجدَّدًا</string>
-    <!-- Dialog negative button text to get help with recovery key -->
-    <string name="EnterBackupKey_backup_key_help">المساعدة بخصوص مفتاح الاستعادة</string>
-    <!-- Text field error text when the recovery key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">مفتاح الاستعادة خاطئ</string>
-    <!-- Text field error text when the recovery key is too long -->
-    <string name="EnterBackupKey_too_long_error">طويل جدًا (%1$d/%2$d)</string>
-    <!-- Text field error when the recovery key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">مفتاح الاستعادة غير صالح</string>
-    <!-- Dialog title shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_not_found">لا توجد نسخة احتياطية</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">مفتاح الاستعادة الذي أدخلته صحيح، لكن لا توجد أي نسخة احتياطية مرتبطة به. إذا كُنتَ لا تزال تحتفظ بهاتفك القديم، تأكَّد من أن النسخ الاحتياطية مُفعَّلة وأن عملية نسخ احتياطي قد اكتملت بالفعل، وحاوِل مرّة أخرى.</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">قد تكون أدخلتَ مفتاح الاستعادة الخاص بك بشكل خاطئ، أو لم تكمل نسخة احتياطية واحدة على الأقل على جهازك القديم.\n\nتأكَّد من تسجيل الدخول باستخدام رقم الهاتف ومفتاح الاستعادة نفسيهما اللذين حفظتهما عند تفعيل النسخ الاحتياطية الآمنة في سيجنال، وتحقَّق من أن جهازك القديم قد أكملَ النسخ الاحتياطي.</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">نفدَت محاولات إدخال مفتاح الاستعادة. من أجل أمانك، فإن عدد المحاولات التي يمكنك القيام بها محدود. حاوِل مُجدَّدًا بعد ساعة.</string>
-    <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
-    <string name="EnterBackupKey_skip_restore">تخطِّي الاستعادة</string>
-    <!-- Dialog title text when encountering backup restore network error -->
-    <string name="EnterBackupKey_cant_restore_backup">تعذَّرت استعادة النسخة الاحتياطية</string>
-    <!-- Dialog body text when encountering backup restore network error -->
-    <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">لا يُمكن استعادة نسختك الاحتياطية الآن. تحقَّق من اتصالك بالإنترنت وحاوِل مرّة أخرى. </string>
-    <!-- Dialog button text to contact support on network error -->
-    <string name="EnterBackupKey_contact_support">الاتصال بالدعم</string>
-
-    <!-- Email subject when contacting support on a restore backup network issue -->
-    <string name="EnterBackupKey_network_failure_support_email">خطأ في الشبكة عند استعادة النسخة الاحتياطية لسيجنال أندرويد</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
-    <!-- Email subject when contacting support on a permanent backup import failure -->
-    <string name="EnterBackupKey_permanent_failure_support_email">حدث فشل دائم في استعادة النسخة الاحتياطية لسيجنال أندرويد</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
-
-    <!-- EnterLocalBackupKeyScreen: Screen title for entering recovery key for local backup restore -->
-    <string name="EnterLocalBackupKeyScreen__enter_your_recovery_key">أدخِل مفتاح الاستعادة الخاص بك.</string>
-    <!-- EnterLocalBackupKeyScreen: Screen subtitle explaining what the recovery key is -->
-    <string name="EnterLocalBackupKeyScreen__your_recovery_key_is_a_64_character_code">مفتاح الاستعادة الخاص بك هو كود مُكوَّن من 64 رمزًا، وهو مطلوب لاستعادة حسابك وبياناتك.</string>
-    <!-- EnterLocalBackupKeyScreen: Button text when user does not have a recovery key -->
-    <string name="EnterLocalBackupKeyScreen__no_recovery_key">لا حاجة لمفتاح استعادة جديد؟</string>
-    <!-- EnterLocalBackupKeyScreen: Button to proceed to next step -->
-    <string name="EnterLocalBackupKeyScreen__next">التالي</string>
-
-    <!-- RestoreLocalBackupDialog: Error message when the selected archive fails to load -->
-    <string name="RestoreLocalBackupDialog__failed_to_load_archive">تعذَّر تحميل الأرشيف. يُرجى اختيار وجهة مختلفة.</string>
-    <!-- RestoreLocalBackupDialog: Dismiss button for dialog -->
-    <string name="RestoreLocalBackupDialog__ok">حسنًا</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore">هل ترغبُ بتخطِّي الاستعادة؟</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user about the consequences of skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore_body">إذا قُمتَ بتخطي الاستعادة الآن، فلن تتمكّن من الاستعادة لاحقًا. إذا فعّلتَ النسخ الاحتياطية من جديد لاحقًا بعد تخطي الاستعادة، فسيتم استبدال نسختك الاحتياطية الحالية بسجل الرسائل الخاص بك الجديد.</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the skip restore dialog -->
-    <string name="RestoreLocalBackupDialog__skip_restore_confirm">تخطِّي الاستعادة</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm restoring a backup from a different account -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account">هل ترغبُ بالاستعادة إلى حساب جديد؟</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user that the backup was created with a different account and they will lose group memberships -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account_body">تمَّ إنشاء النسخة الاحتياطية التي تستعيدها باستخدام حساب سيجنال مختلف. يمكنك استعادة هذه النسخة الاحتياطية إلى حساب جديد، لكن لن تبقى عضوًا في أي مجموعة تمَّت استعادتها.</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the restore to new account dialog -->
-    <string name="RestoreLocalBackupDialog__restore">استعادة</string>
-
-    <!-- RestoreLocalBackupActivity: Toast message when backup restore fails -->
-    <string name="RestoreLocalBackupActivity__backup_restore_failed">تعذَّرت استعادة النسخة الاحتياطية.</string>
-    <!-- RestoreLocalBackupActivity: Screen title shown during restore -->
-    <string name="RestoreLocalBackupActivity__restoring_backup">جارٍ استعادة النسخة الاحتياطية.</string>
-    <!-- RestoreLocalBackupActivity: Screen subtitle explaining restore duration -->
-    <string name="RestoreLocalBackupActivity__depending_on_the_size">قد يأخذ هذا بعض الدقائق حسب حجم نسختك الاحتياطية.</string>
-    <!-- RestoreLocalBackupActivity: Status text while restoring messages -->
-    <string name="RestoreLocalBackupActivity__restoring_messages">جارية استعادة الرسائل…</string>
-    <!-- RestoreLocalBackupActivity: Status text while finalizing restore -->
-    <string name="RestoreLocalBackupActivity__finalizing">جارٍ وضع اللمسات الأخيرة…</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore is complete -->
-    <string name="RestoreLocalBackupActivity__restore_complete">اكتملَت عملية الاستعادة.</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore fails -->
-    <string name="RestoreLocalBackupActivity__restore_failed">فشلت الاستعادة</string>
-    <!-- RestoreLocalBackupActivity: Progress text showing bytes read of total with percentage, e.g. "1.2 MB of 5.0 MB (24%)" -->
-    <string name="RestoreLocalBackupActivity__s_of_s_d_percent">%1$s من %2$s (%3$d%%)</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__cant_restore_backup">تعذَّرت استعادة النسخة الاحتياطية</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__error_occurred_while_restoring">حدث خطأ أثناء استعادة نسختك الاحتياطية. نسختك الاحتياطية غير قابلة للاستعادة. يُرجى التواصل مع الدعم للحصول على المساعدة.</string>
-
-    <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
-    <string name="RestoreLocalBackupActivity__contact_support">الاتصال بالدعم</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
-    <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">هل ترغبُ بتفعيل النسخ الاحتياطية على الجهاز؟</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">لمواصلة استخدام النسخ الاحتياطية على الجهاز، تحتاج إلى تفعيلها لهذا الحساب. يمكنك فعل هذا في أي وقت من خلال \"الإعدادات\" &gt; النسخ الاحتياطية.</string>
-
-    <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__turn_on_now">التفعيل الآن</string>
-
-    <!-- RestoreLocalBackupActivity: Dismiss button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__not_now">ليس الآن</string>
-
-    <!-- RestoreLocalBackupActivity: Body text for the dialog shown after a successful restore, prompting the user to choose a backup folder -->
-    <string name="RestoreLocalBackupActivity__choose_a_folder_for_backups">لِموصلة استخدام النسخ الاحتياطية على الجهاز، اختر مجلدًا على جهازك حيث سيتم حفظ النسخ الاحتياطية الجديدة.</string>
-
-    <!-- RestoreLocalBackupActivity: Positive button label for the dialog shown after a successful restore; keeps the current backup folder -->
-    <string name="RestoreLocalBackupActivity__use_current_folder">استخدام المجلد الحالي</string>
-
-    <!-- RestoreLocalBackupActivity: Neutral button label for the dialog shown after a successful restore; opens folder picker to select a different backup location -->
-    <string name="RestoreLocalBackupActivity__choose_new_folder">اختر مجلدًا جديدًا</string>
-
-    <!-- RestoreLocalBackupActivity: Negative button label for the dialog shown after a successful restore; disables on-device backups -->
-    <string name="RestoreLocalBackupActivity__disable_backups">تعطيل النسخ الاحتياطية</string>
-
-    <!-- SelectInstructionsSheet: Title for the select backup folder instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_folder">حدِّد مجلد النسخة الاحتياطية الخاص بك</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the select this folder button -->
-    <string name="SelectInstructionsSheet__tap_select_this_folder">انقر على \"اختر هذا المجلد\"</string>
-    <!-- SelectInstructionsSheet: Instruction not to select individual files -->
-    <string name="SelectInstructionsSheet__do_not_select_individual_files">لا تُحدِّد الملفات الفردية</string>
-    <!-- SelectInstructionsSheet: Title for the select backup file instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_file">اختر ملف نسختك الاحتياطية</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the backup file saved to device -->
-    <string name="SelectInstructionsSheet__tap_on_the_backup_file">انقر على ملف النسخة الاحتياطية الذي حفظته على جهازك.</string>
-    <!-- SelectInstructionsSheet: Subtitle explaining how to access backup after tapping continue -->
-    <string name="SelectInstructionsSheet__after_tapping_continue">بعد النقر على \"مواصلة\"، إليك كيفية الوصول إلى نسختك الاحتياطية:</string>
-    <!-- SelectInstructionsSheet: Instruction to select the top-level backup folder -->
-    <string name="SelectInstructionsSheet__select_the_top_level_folder">اختر المجلد الأعلى حيث يتم تخزين نسختك الاحتياطية</string>
-    <!-- SelectInstructionsSheet: Continue button text -->
-    <string name="SelectInstructionsSheet__continue_button">متابعة</string>
-
-    <!-- SelectLocalBackupScreen: Screen title for restoring on-device backup -->
-    <string name="SelectLocalBackupScreen__restore_on_device_backup">استعادة النسخة الاحتياطية على الجهاز</string>
-    <!-- SelectLocalBackupScreen: Screen subtitle explaining the restore process -->
-    <string name="SelectLocalBackupScreen__restore_your_messages_from_the_backup_folder">استعِد رسائلك من مجلد نسخة احتياطية حفظته على جهازك. إذا لم تقُم بالاستعادة الآن، فسيتعذَّر عليك الاستعادة لاحقًا.</string>
-    <!-- SelectLocalBackupScreen: Button to initiate backup restoration -->
-    <string name="SelectLocalBackupScreen__restore_backup">استعادة النسخة الاحتياطية</string>
-    <!-- SelectLocalBackupScreen: Button to choose an earlier backup when current is latest -->
-    <string name="SelectLocalBackupScreen__choose_an_earlier_backup">اختر نسخة احتياطية سابقة</string>
-    <!-- SelectLocalBackupScreen: Button to choose a different backup -->
-    <string name="SelectLocalBackupScreen__choose_a_different_backup">اختر نسخة احتياطية مختلفة</string>
-    <!-- SelectLocalBackupScreen: Label for latest backup card -->
-    <string name="SelectLocalBackupScreen__your_latest_backup">نسختك الاحتياطية الأخيرة:</string>
-    <!-- SelectLocalBackupScreen: Label for non-latest backup card -->
-    <string name="SelectLocalBackupScreen__your_backup">نسختك الاحتياطية:</string>
-
-    <!-- SelectLocalBackupSheet: Title for backup selection bottom sheet -->
-    <string name="SelectLocalBackupSheet__choose_a_backup_to_restore">اختر نسخة احتياطية للاستعادة</string>
-    <!-- SelectLocalBackupSheet: Subtitle warning about choosing an older backup -->
-    <string name="SelectLocalBackupSheet__choosing_an_older_backup">اختيار نسخة احتياطية سابقة قد يؤدي إلى فقدان الرسائل أو الوسائط.</string>
-    <!-- SelectLocalBackupSheet: Continue button text -->
-    <string name="SelectLocalBackupSheet__continue_button">متابعة</string>
-
-    <!-- SelectLocalBackupTypeScreen: Screen title for selecting backup type -->
-    <string name="SelectLocalBackupTypeScreen__restore_on_device_backup">استعادة النسخة الاحتياطية على الجهاز</string>
-    <!-- SelectLocalBackupTypeScreen: Screen subtitle explaining restore options -->
-    <string name="SelectLocalBackupTypeScreen__restore_your_messages_from_the_backup">استعِد رسائلك من النسخة الاحتياطية التي حفظتها على جهازك. إذا لم تقُم بالاستعادة الآن، فسيتعذَّر عليك الاستعادة لاحقًا.</string>
-    <!-- SelectLocalBackupTypeScreen: Button for users who saved backup as single file -->
-    <string name="SelectLocalBackupTypeScreen__i_saved_my_backup_as_a_single_file">حفظتُ نسختي الاحتياطية كملفٍ واحد.</string>
-    <!-- SelectLocalBackupTypeScreen: Card title for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__choose_backup_folder">اختر مجلد النسخة الاحتياطية</string>
-    <!-- SelectLocalBackupTypeScreen: Card description for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__select_the_folder_on_your_device">اختر المجلد على جهازك حيث يتم حفظ النسخة الاحتياطية الخاصة بك.</string>
-
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">خطأ في الشبكة عند استعادة النسخة الاحتياطية لسيجنال أندرويد</string>
     <!-- Email filter when contacting support on a create backup failure -->
@@ -9755,23 +9396,6 @@
     <string name="ContactSupportDialog_submit_with_debug">إرسال مع سجل الأخطاء</string>
     <!-- Button option to not submit debug log when contacting support -->
     <string name="ContactSupportDialog_submit_without_debug">إرسال بدون سجل الأخطاء</string>
-
-    <!-- Title for restore via qr screen -->
-    <string name="RestoreViaQr_title">امسح هذا الكود ضوئيًا باستخدام جهازك القديم</string>
-    <!-- First instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_1">افتح تطبيق سيجنال على جهازك القديم</string>
-    <!-- Second instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_2">انقر على أيقونة الكاميرا </string>
-    <!-- Third instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_3">امسح هذا الكود ضوئيًا باستخدام الكاميرا</string>
-    <!-- Error message shown when qr code could not be loaded -->
-    <string name="RestoreViaQr_qr_code_error">تعذَّر إنشاء كود الـ QR</string>
-    <!-- Status message shown when qr code already scanned by other device -->
-    <string name="RestoreViaQr_qr_code_scanned">تمَّ المسح ضوئيًا على الجهاز القديم</string>
-    <!-- Error button text to retry getting a qr code -->
-    <string name="RestoreViaQr_retry">إعادة المُحاولة</string>
-    <!-- Error message shown when register after receiving the provisioning message failed -->
-    <string name="RestoreViaQr_registration_error">حدث خطأ وتعذّر نقل حسابك إثر ذلك. حاوِل من جديد من خلال مسح كود الـ QR ضوئيًا مُجدَّدًا.</string>
 
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">نقل الحساب</string>
@@ -9813,19 +9437,6 @@
     <string name="RestoreCompleteBottomSheet_transfer_complete_message">تمَّ نقل حسابك ورسائلك على سيجنال إلى جهازك الآخر. سيجنال غير مُفعّل الآن على هذا الجهاز.</string>
     <!-- Restore Complete bottom sheet dialog button text to dismiss sheet -->
     <string name="RestoreCompleteBottomSheet_button">حسنًا</string>
-
-    <!-- No Backup to Restore screen title -->
-    <string name="NoBackupToRestore_title">لا تُوجد نسخة احتياطية للاستعادة</string>
-    <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">بما أنك تنتقل من نظام آيفون إلى أندرويد، فإن الطريقة الوحيدة لنقل رسائلك ووسائطك هي عن طريق تفعيل النسخ الاحتياطية الآمنة لسيجنال على جهازك القديم.</string>
-    <!-- No Backup to Restore step 1 to enable backups on old device -->
-    <string name="NoBackupToRestore_step1">افتح تطبيق سيجنال على جهازك القديم</string>
-    <!-- No Backup to Restore step 2 to enable backups on old device -->
-    <string name="NoBackupToRestore_step2">انقر على \"الإعدادات\" &gt; \" النسخ الاحتياطية\"</string>
-    <!-- No Backup to Restore step 3 to enable backups on old device -->
-    <string name="NoBackupToRestore_step3">فعِّل النسخ الاحتياطية وانتظر حتى تكتمل عملية النسخ الاحتياطي</string>
-    <!-- No backup to Restore tonal cta to skip restore -->
-    <string name="NoBackupToRestore_skip_restore">تخطِّي الاستعادة</string>
 
     <!-- Dialog title when the recovery key change limit is reached -->
     <string name="MessageBackupsKeyRecordScreen__limit_reached_title">بلغتَ الحد الأقصى من مفاتيح الاستعادة المسموح بها</string>

@@ -863,23 +863,8 @@
     <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Kukaan ei näe, että olet Signalissa, ellet lähetä heille viestiä tai keskustele heidän kanssaan.</string>
 
     <!-- ChooseBackupFragment -->
-    <string name="ChooseBackupFragment__restore_from_backup">Palautetaanko varmuuskopiosta?</string>
-    <string name="ChooseBackupFragment__restore_your_messages_and_media">Palauta viestit ja mediasisältö laitteeseen tallennetusta varmuuskopiosta. Palauttaminen ei ole mahdollista myöhemmin.</string>
-    <string name="ChooseBackupFragment__icon_content_description">Palauta varmuuskopio -kuvake</string>
-    <string name="ChooseBackupFragment__choose_backup">Valitse varmuuskopio</string>
-    <string name="ChooseBackupFragment__learn_more">Lue lisää</string>
 
     <!-- RestoreBackupFragment -->
-    <string name="RestoreBackupFragment__restore_complete">Palautus suoritettu</string>
-    <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Valitse kansio jatkaaksesi varmuuskopioiden käyttöä. Uudet varmuuskopiot tallennetaan tähän paikkaan.</string>
-    <string name="RestoreBackupFragment__choose_folder">Valitse kansio</string>
-    <string name="RestoreBackupFragment__not_now">Ei nyt</string>
-    <!-- Couldn\'t find the selected backup -->
-    <string name="RestoreBackupFragment__backup_not_found">Varmuuskopiota ei löydy.</string>
-    <!-- Couldn\'t read the selected backup -->
-    <string name="RestoreBackupFragment__backup_could_not_be_read">Varmuuskopiota ei saatu luettua.</string>
-    <!-- Backup has an unsupported file extension -->
-    <string name="RestoreBackupFragment__backup_has_a_bad_extension">Varmuuskopiolla on väärä tiedostopääte.</string>
 
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
@@ -1416,60 +1401,6 @@
     <string name="ManageGroupActivity_add_group_description">Lisää ryhmän kuvaus…</string>
 
     <!-- RemoteRestoreActivity -->
-    <!-- Progress dialog label when downloading a backup -->
-    <string name="RemoteRestoreActivity__downloading_backup">Ladataan varmuuskopiota…</string>
-    <!-- Progress dialog label when restoring a backup -->
-    <string name="RemoteRestoreActivity__restoring_messages">Palautetaan viestejä…</string>
-    <!-- Progress dialog label when finishing a backup restore -->
-    <string name="RemoteRestoreActivity__finishing_restore">Viimeistellään…</string>
-    <!-- Progress dialog label while awaiting updates -->
-    <string name="RemoteRestoreActivity__restoring">Palautetaan…</string>
-    <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
-    <string name="RemoteRestoreActivity__s_of_s_s">%1$s/%2$s (%3$s)</string>
-    <!-- Feature list media label for paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_media">Kaikki mediasisältösi</string>
-    <!-- Feature list media label for free tier. Placeholder is days, and is currently fixed at 30. -->
-    <string name="RemoteRestoreActivity__your_last_d_days_of_media">Mediasisältö viimeisten %1$d päivän ajalta</string>
-    <!-- Feature list message label for free and paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_messages">Kaikki viestisi</string>
-    <!-- Screen title for restoring from backup -->
-    <string name="RemoteRestoreActivity__restore_from_backup">Palauta varmuuskopiosta</string>
-    <!-- Section title for explaining what your backup includes -->
-    <string name="RemoteRestoreActivity__your_backup_includes">Varmuuskopio sisältää:</string>
-    <!-- Primary action button copy for starting restoration -->
-    <string name="RemoteRestoreActivity__restore_backup">Palauta varmuuskopio</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made. %1$s is replaced with the date (e.g. March 5, 2024) and %2$s is replaced with the time (e.g. 9:00am) -->
-    <string name="RemoteRestoreActivity__backup_created_at">Viimeisin varmuuskopio tehtiin %1$s klo %2$s.</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
-    <string name="RemoteRestoreActivity__backup_created_at_with_size">Viimeisin varmuuskopio tehtiin %1$s klo %2$s. Varmuuskopion koko on %3$s.</string>
-    <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
-    <string name="RemoteRestoreActivity__fetching_backup_details">Haetaan varmuuskopion tietoja…</string>
-    <!-- Text label button to skip restore from remote -->
-    <string name="RemoteRestoreActivity__skip_restore">Ohita palautus</string>
-    <!-- Dialog title displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__couldnt_transfer">Siirtoa ei voitu suorittaa loppuun</string>
-    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Varmuuskopiota ei voitu palauttaa</string>
-    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">Varmuuskopion palauttamisessa tapahtui virhe. Varmuuskopiota ei voi palauttaa. Ota yhteyttä tukeen saadaksesi apua.</string>
-    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Ota yhteyttä tukeen</string>
-    <!-- Dialog message displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__error_occurred">Tapahtui virhe eikä tiliäsi voitu siirtää. Yritä uudelleen valitsemalla siirtotapa.</string>
-    <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
-    <string name="RemoteRestoreActivity__couldnt_restore">Varmuuskopiota ei voitu palauttaa</string>
-    <!-- Dialog message explaining that an update to Signal is required to restore the backup. -->
-    <string name="RemoteRestoreActivity__update_latest">Tämä Signal-versio ei voi palauttaa varmuuskopiota. Päivitä uusimpaan versioon ja yritä uudelleen.</string>
-    <!-- Text on button that when pressed will redirect them to update Signal -->
-    <string name="RemoteRestoreActivity__update_signal">Päivitä Signal</string>
-    <!-- Text label button to dismiss the dialog -->
-    <string name="RemoteRestoreActivity__not_now">Ei nyt</string>
-    <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Mediasisältö palautetaan taustalla. Jos et palauta tietoja nyt, et voi palauttaa niitä enää myöhemmin.</string>
-    <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">Tämä laite ei ole enää rekisteröity</string>
-    <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">Tämä johtuu todennäköisesti siitä, että olet rekisteröinyt puhelinnumerosi Signaliin toisella laitteella.</string>
 
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
@@ -2234,17 +2165,6 @@
     <string name="PinRestoreLockedFragment_create_new_pin">Luo uusi tunnusluku</string>
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
-    <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
-    <string name="ReRegisterWithPinFragment_send_sms_code">Lähetä tekstiviestikoodi</string>
-    <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">Signalin rekisteröinti – Tarvitsen apua PIN-koodin uudelleenrekisteröintiin Android-laitteella</string>
-    <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">Luomasi PIN-koodi on vähintään %1$d-numeroinen koodi, ja se voi olla numeerinen tai aakkosnumeerinen.\n\nJos olet unohtanut PIN-koodin, voit luoda uuden.</string>
-    <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">Jos olet unohtanut PIN-koodin, voit luoda uuden.</string>
-    <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">Olet syöttänyt PIN-koodin liian monta kertaa väärin, mutta voit edelleen käyttää Signal-tiliäsi luomalla uuden PIN-koodin.</string>
-
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Varoitus</string>
     <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Jos poistat PIN-koodin käytöstä, menetät kaikki tietosi rekisteröityessäsi Signaliin uudelleen, ellet varmuuskopioi ja palauta tietojasi manuaalisesti. Et voi myöskään ottaa rekisteröintiestoa käyttöön, jos PIN-koodi on poistettu käytöstä.</string>
@@ -2324,6 +2244,12 @@
     <string name="WebRtcCallActivity__open_settings">Avaa asetukset</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">Ei nyt</string>
+    <!-- Message for dialog shown at the start of a call when the system battery setting for Signal is "Restricted" -->
+    <string name="WebRtcCallActivity__others_may_not_be_able_to_hear_you_when_your_screen_turns_off">Others may not be able to hear you and the call may disconnect when your screen turns off. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
+    <!-- Title for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__others_couldnt_hear_you">Others couldn\'t hear you</string>
+    <!-- Message for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__your_microphone_was_muted_while_signal_was_in_the_background">Your microphone was muted while Signal was in the background. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
     <!-- Title for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__approve_d_requests">
         <item quantity="one">Hyväksytäänkö %1$d pyyntö?</item>
@@ -2639,50 +2565,20 @@
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Antamasi puhelinnumero (%1$s) on virheellinen.
     </string>
 
-    <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">Onko alla oleva puhelinnumero oikea?</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
     <string name="RegistrationActivity_additional_verification_required">Lisävahvistus vaaditaan</string>
-    <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">Vahvistuskoodi lähetetään tähän numeroon. Operaattori saattaa veloittaa viestistä.</string>
-    <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Saat vahvistuskoodin. Matkapuhelinoperaattorisi saattaa veloittaa palvelusta.</string>
-    <!-- Hint text to select a country -->
-    <string name="RegistrationActivity_select_a_country">Valitse maa</string>
-    <!-- Hint text explaining that this is where the country code should go -->
-    <string name="RegistrationActivity_default_country_code">0</string>
-    <string name="RegistrationActivity_edit_number">Muokkaa numeroa</string>
-    <string name="RegistrationActivity_missing_google_play_services">Google Play -palvelut puuttuvat</string>
-    <string name="RegistrationActivity_this_device_is_missing_google_play_services">Google Play -palvelut puuttuvat tästä laitteesta. Signal toimii myös ilman niitä, mutta kaikki ominaisuudet eivät välttämättä toimi yhtä hyvin.\n\nJos et ole edistyneempi käyttäjä, et käytä epävirallista Android-versiota tai tämä viesti on mielestäsi aiheeton, pyydä apua osoitteesta support@signal.org.</string>
-    <string name="RegistrationActivity_i_understand">Selvä</string>
-    <string name="RegistrationActivity_play_services_error">Play-palvelujen virhe</string>
-    <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play -palveluita päivitetään tai ne eivät ole käytettävissä. Yritä myöhemmin uudelleen.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Olet yrittänyt rekisteröidä tämän numeron liian monta kertaa. Yritä myöhemmin uudelleen.</string>
-    <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">Olet yrittänyt rekisteröidä tämän numeron liian monta kertaa. Yritä uudelleen, kun on kulunut %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Yhteyttä ei voitu muodostaa palveluun. Tarkista verkkoyhteytesi ja yritä uudelleen.</string>
     <!-- Dialog error message shown when we are unable to send an SMS to the user\'s number -->
     <string name="RegistrationActivity_sms_provider_error">Emme voi lähettää tekstiviestikoodia numeroosi. Yritä uudelleen muutaman tunnin kuluttua.</string>
-    <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Emme voineet lähettää sinulle vahvistuskoodia tekstiviestillä. Yritä sen sijaan vastaanottaa koodi äänipuhelun välityksellä.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">Vahvistuskoodia ei voida pyytää. Tarkista verkkoyhteys ja yritä uudelleen.</string>
-    <string name="RegistrationActivity_non_standard_number_format">Epästandardi numeron muoto</string>
-    <!-- Dialog message shown to confirm when entering phone number (first placeholder) is normalized and formatted differently by the app (second placeholder). -->
-    <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Syöttämäsi numero (%1$s) ei näytä olevan vakiomuotoinen.\n\nTarkoititko %2$s?</string>
-    <string name="RegistrationActivity_signal_android_phone_number_format">Signal Androidille - Puhelinnumeron muoto</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="one">Olet tällä hetkellä %1$d askeleen päässä virheenkorjauslokin lähettämisestä.</item>
         <item quantity="other">Vielä %1$d vaihetta virheenkorjauslokin lähettämiseen.</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Meidän on varmistettava, että olet ihminen.</string>
-    <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
-    <string name="RegistrationActivity_voice_call">Äänipuhelu</string>
-    <!-- Dialog button to cancel the pending action and return to the previous state. -->
-    <string name="RegistrationActivity_cancel">Peruuta</string>
     <string name="RegistrationActivity_next">Seuraava</string>
-    <!-- Title of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_phone_number">Puhelinnumero</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Syötä koodi, jonka lähetimme numeroon %1$s</string>
 
     <string name="RegistrationActivity_phone_number_description">Puhelinnumero</string>
@@ -2881,6 +2777,8 @@
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Tarrapaketin lataaminen epäonnistui</string>
     <!-- Bottom sheet describing a sticker. First placeholder is the title of the sticker pack and second is the author -->
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
+    <!-- Bottom sheet option that opens the pack the sticker belongs to -->
+    <string name="StickerPreviewBottomSheet__view_pack">View pack</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">Tallenna</string>
@@ -3619,8 +3517,6 @@
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Nähdäksesi ilmoitukset puheluista, napauta asetuksia ja salli tausta-aktiivisuus.</string>
 
     <!-- country_selection_fragment -->
-    <string name="country_selection_fragment__loading_countries">Ladataan maita…</string>
-    <string name="country_selection_fragment__search">Hae</string>
 
     <string name="device_list_fragment__link_new_device">Yhdistä uusi laite</string>
 
@@ -4454,6 +4350,8 @@
     <string name="conversation_selection__menu_pin_message">Kiinnitä</string>
     <!-- Button to unpin a message -->
     <string name="conversation_selection__menu_unpin_message">Irrota</string>
+    <!-- Button to open the sticker pack a sticker message came from -->
+    <string name="conversation_selection__menu_view_sticker_pack">View pack</string>
 
     <!-- conversation_expiring_on -->
 
@@ -4644,14 +4542,11 @@
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">Syötä tunnusluku</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Syötä tilille valitsemasi tunnusluku. Se ei ole sama kuin saamasi tekstiviestivahvistuskoodi.</string>
-    <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
-    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Kirjoita PIN-koodi, jonka loit tiliäsi varten.</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Väärä tunnusluku, yritä uudelleen.</string>
     <string name="RegistrationLockFragment__forgot_pin">Unohditko tunnusluvun?</string>
     <string name="RegistrationLockFragment__incorrect_pin">Väärä tunnusluku</string>
     <string name="RegistrationLockFragment__forgot_your_pin">Unohditko tunnusluvun?</string>
     <string name="RegistrationLockFragment__not_many_tries_left">Vain muutama yritys jäljellä!</string>
-    <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signalin rekisteröinti – Tarvitsen apua tunnusluvun kanssa Androidilla (v2 PIN)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
         <item quantity="one">Yksityisyytesi ja tietoturvasi vuoksi PIN-koodia ei voida palauttaa. Jos et muista PIN-koodiasi, voit rekisteröityä uudelleen tekstiviestillä %1$d päivän toimettomuuden jälkeen. Tässä tapauksessa tilisi pyyhkiytyy ja kaikki sisältö poistetaan.</item>
@@ -4706,22 +4601,6 @@
     <string name="backup_enable_dialog__you_must_have_this_passphrase">Varmuuskopion palauttamiseen vaaditaan salalause.</string>
     <string name="backup_enable_dialog__folder">Kansio</string>
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Olen kirjoittanut ylös tämän salalauseen, joka on välttämätön varmuuskopion palauttamiseen.</string>
-    <string name="registration_activity__restore_backup">Palauta varmuuskopio</string>
-    <!-- Text label button to skip restoring -->
-    <string name="registration_activity__skip_restore">Ohita palautus</string>
-    <!-- Title for dialog to enter in the backup passphrase -->
-    <string name="RegistrationActivity_enter_backup_passphrase">Syötä varmuuskopion salalause</string>
-    <string name="RegistrationActivity_restore">Palauta</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">Varmuuskopiota ei voi tuoda uudemmasta Signal-versiosta</string>
-    <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
-    <string name="RegistrationActivity_backup_failure_foreign_key">Varmuuskopiointi sisältää väärin muotoiltuja tietoja</string>
-    <string name="RegistrationActivity_incorrect_backup_passphrase">Virheellinen varmuuskopion salalause</string>
-    <string name="RegistrationActivity_checking">Tarkistetaan…</string>
-    <string name="RegistrationActivity_d_messages_so_far">%1$d viestiä tähän mennessä…</string>
-    <string name="RegistrationActivity_restore_from_backup">Palautetaanko varmuuskopiosta?</string>
-    <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Palauta viestit ja mediasisältö laitteeseen tallennetusta varmuuskopiosta. Palauttaminen ei ole mahdollista myöhemmin.</string>
-    <string name="RegistrationActivity_backup_size_s">Koko: %1$s</string>
-    <string name="RegistrationActivity_backup_timestamp_s">Varmuuskopioitu: %1$s</string>
     <string name="BackupDialog_enable_local_backups">Otetaanko paikalliset varmuuskopiot käyttöön?</string>
     <string name="BackupDialog_enable_backups">Ota varmuuskopiot käyttöön</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Ilmaisen ymmärtäneeni tämän valitsemalla valintaruudun.</string>
@@ -4757,7 +4636,6 @@
     <string name="RegistrationActivity_call_me_instead_available_in">Soita minulle (%1$02d.%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
     <string name="RegistrationActivity_resend_sms_available_in">Lähetä koodi uudelleen (%1$02d.%2$02d)</string>
-    <string name="RegistrationActivity_contact_signal_support">Ota yhteyttä Signalin tukeen</string>
     <string name="RegistrationActivity_code_support_subject">Signalin rekisteröinti – vahvistuskoodi Androidille</string>
     <string name="RegistrationActivity_incorrect_code">Väärä koodi</string>
     <string name="BackupUtil_never">ei koskaan</string>
@@ -4879,25 +4757,8 @@
     <string name="TransferOrRestoreFragment__restore_from_local_backup">Palauta paikallinen varmuuskopio</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
-    <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Avaa Signal vanhassa Android-laitteessasi</string>
-    <string name="NewDeviceTransferInstructions__continue">Jatka</string>
-    <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Napauta profiilikuvaasi ylävasemmalla avataksesi asetukset</string>
-    <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_account">"Napauta Tili-kohtaa"</string>
-    <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
-    <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"Napauta Siirrä tili ja sitten Jatka molemmilla laitteilla"</string>
 
     <!-- NewDeviceTransferSetupFragment -->
-    <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Valmistellaan yhteyttä vanhaan Android-laitteeseesi…</string>
-    <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Vielä hetki</string>
-    <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Odotetaan yhteyttä vanhasta Android-laitteesta…</string>
-    <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal tarvitsee luvan käyttää sijaintitietojasi vanhan Android-laitteesi löytämiseen ja yhdistämiseen.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Sijaintipalveluiden täytyy olla päällä, jotta vanha Android-laitteesi voidaan löytää ja yhdistää.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal tarvitsee Wi-Fi:ä vanhan Android-laitteesi löytämiseen ja yhdistämiseen. Wi-Fi:n pitää olla päällä, mutta sen ei tarvitse olla yhdistettynä langattomaan verkkoon.</string>
-    <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Näyttää siltä että laitteesi ei tue Wi-Fi Direct -toimintoa. Signal käyttää Wi-Fi Direct -toimintoa vanhan Android-laitteesi löytämiseen ja yhdistämiseen. Voit silti siirtää tiedot vanhasta laitteesta varmuuskopion avulla.</string>
-    <string name="NewDeviceTransferSetup__restore_a_backup">Palauta varmuuskopio</string>
-    <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Tapahtui odottamaton virhe yritettäessä luoda yhteyttä vanhaan Android-laitteeseesi.</string>
 
     <!-- OldDeviceTransferSetupFragment -->
     <string name="OldDeviceTransferSetup__searching_for_new_android_device">Etsitään uutta Android-laitetta…</string>
@@ -4941,9 +4802,6 @@
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Napauta Jatka toisella laitteellasi…</string>
 
     <!-- NewDeviceTransferFragment -->
-    <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Siirto uudemmasta Signal-versiosta ei ole mahdollista</string>
-    <!-- Error message indicating that we could not finish the user\'s device transfer. Displayed in a toast at the bottom of the screen. -->
-    <string name="NewDeviceTransfer__failure_foreign_key">Siirretyt tiedot olivat väärin muotoiltuja</string>
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">Siirretään tietoja</string>
@@ -4982,10 +4840,6 @@
     <string name="OldDeviceTransferComplete__close">Sulje</string>
 
     <!-- NewDeviceTransferComplete -->
-    <string name="NewDeviceTransferComplete__transfer_successful">Siirto onnistui</string>
-    <string name="NewDeviceTransferComplete__transfer_complete">Siirto valmis</string>
-    <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">Jatka rekisteröitymistä siirron viimeistelemiseksi.</string>
-    <string name="NewDeviceTransferComplete__continue_registration">Jatka rekisteröitymistä</string>
 
     <!-- DeviceToDeviceTransferService -->
     <string name="DeviceToDeviceTransferService_content_title">Tilin siirto</string>
@@ -8753,219 +8607,6 @@
 
     <!-- ConfirmBackupCancellationDialog -->
 
-    <!-- Row title for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">Minulla on vanha puhelimeni</string>
-    <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_scan_qr">Aloita nopeasti skannaamalla nykyisen Signal-tilisi QR-koodi</string>
-
-    <!-- Row title for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">Minulla ei ole vanhaa puhelintani</string>
-    <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">Tai jos asennat Signalia uudelleen samalle laitteelle</string>
-
-    <!-- Screen title for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__restore_or_transfer_account">Palauta tai siirrä tili</string>
-    <!-- Screen subtitle for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__get_your_signal_account">Siirrä Signal-tilisi ja viestihistoriasi tälle laitteelle.</string>
-    <!-- Option title for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_signal_backup">Palauta Signal-varmuuskopio</string>
-    <!-- Option subtitle for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_your_text_messages_and_media_from">Palauta tekstiviestit ja media Signal-varmuuskopioinnin tilauksella</string>
-    <!-- Option title for restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_on_device_backup">Palauta laitteella oleva varmuuskopio</string>
-    <!-- Option subtitle fdor restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_your_messages_from">Palauta viestit laitteelle tallentamastasi varmuuskopiosta.</string>
-    <!-- Option title for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__from_your_old_phone">Vanhasta puhelimestasi</string>
-    <!-- Option subtitle for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__transfer_directly_from_old">Siirrä suoraan vanhasta Androidista</string>
-    <!-- Dialog title shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_title">Ohitetaanko palauttaminen?</string>
-    <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">Jos ohitat palauttamisen nyt, et voi tehdä palautusta enää myöhemmin. Jos otat varmuuskopiot uudelleen käyttöön palautuksen ohittamisen jälkeen, nykyinen varmuuskopio korvataan uudella viestihistoriallasi.</string>
-    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore">Ohita palautus</string>
-
-    <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_title">Anna palautusavain</string>
-    <!-- Screen subtitle for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_subtitle">Palautusavain on 64 merkkiä sisältävä koodi, jota tarvitaan tilisi ja tietosi palauttamiseen.</string>
-    <!-- Button to skip entering recovery key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">Eikö sinulla ole palautusavainta?</string>
-    <!-- Recovery key text field hint -->
-    <string name="EnterBackupKey_backup_key">Palautusavain</string>
-    <!-- Recovery key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">Varmuuskopioita ei voi palauttaa ilman 64 merkkiä sisältävää palautuskoodia. Jos olet kadottanut varmuuskopion avaimen, Signal ei voi palauttaa varmuuskopiotasi.</string>
-    <!-- Recovery key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">Jos vanha laitteesi on tallella, löydät varmuuskopion avaimen kohdasta Asetukset &gt; Varmuuskopiot. Napauta sitten Näytä palautusavain.</string>
-    <!-- Recovery key not known bottom sheet button to learn more about it -->
-    <string name="EnterBackupKey_learn_more">Lue lisää</string>
-    <!-- Recovery key not known bottom sheet button to skip recovery key entry and resume normal reregistration -->
-    <string name="EnterBackupKey_skip_and_dont_restore">Ohita äläkä palauta</string>
-    <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">Virheellinen palautusavain</string>
-    <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">Varmista, että rekisteröidyt samalla puhelinnumerolla ja 64-merkkisellä palautusavaimella, jonka tallensit ottaessasi Signalin Secure -varmuuskopioinnin käyttöön. Varmuuskopioita ei voi palauttaa ilman koodia.</string>
-    <!-- Dialog positive button text to try entering their recovery key again -->
-    <string name="EnterBackupKey_try_again">Yritä uudelleen</string>
-    <!-- Dialog negative button text to get help with recovery key -->
-    <string name="EnterBackupKey_backup_key_help">Palautusavaimen ohje</string>
-    <!-- Text field error text when the recovery key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">Virheellinen palautusavain</string>
-    <!-- Text field error text when the recovery key is too long -->
-    <string name="EnterBackupKey_too_long_error">Liian pitkä (%1$d/%2$d)</string>
-    <!-- Text field error when the recovery key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">Kelpaamaton palautusavain</string>
-    <!-- Dialog title shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_not_found">Varmuuskopiota ei löydy</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Antamasi varmuuskopion avain on oikea, mutta siihen ei liity varmuuskopiota. Jos vanha puhelimesi on edelleen tallella, varmista, että sen varmuuskopiointi on käytössä ja yritä uudelleen, kun varmuuskopiointi on valmis.</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">Olet ehkä syöttänyt palautusavaimesi väärin tai et ole tehnyt vähintään yhtä varmuuskopiota vanhalla laitteellasi.\n\nVarmista, että rekisteröidyt samalla puhelinnumerolla ja palautusavaimella, jotka tallensit ottaessasi Signal Secure -varmuuskopioinnin käyttöön, ja tarkista, että vanha laitteesi on suorittanut varmuuskopioinnin loppuun.</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">Palautusavaimen syöttöyritykset ovat loppuneet. Turvallisuutesi vuoksi yritysten määrä on rajoitettu. Odota tunti ja yritä uudelleen.</string>
-    <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
-    <string name="EnterBackupKey_skip_restore">Ohita palautus</string>
-    <!-- Dialog title text when encountering backup restore network error -->
-    <string name="EnterBackupKey_cant_restore_backup">Varmuuskopiota ei voitu palauttaa</string>
-    <!-- Dialog body text when encountering backup restore network error -->
-    <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">Varmuuskopiotasi ei voi palauttaa juuri nyt. Tarkista verkkoyhteytesi ja yritä uudelleen. </string>
-    <!-- Dialog button text to contact support on network error -->
-    <string name="EnterBackupKey_contact_support">Ota yhteyttä tukeen</string>
-
-    <!-- Email subject when contacting support on a restore backup network issue -->
-    <string name="EnterBackupKey_network_failure_support_email">Verkkovirhe Signal Androidin varmuuskopion palauttamisessa</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
-    <!-- Email subject when contacting support on a permanent backup import failure -->
-    <string name="EnterBackupKey_permanent_failure_support_email">Pysyvä virhe Signal Androidin varmuuskopion palauttamisessa</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
-
-    <!-- EnterLocalBackupKeyScreen: Screen title for entering recovery key for local backup restore -->
-    <string name="EnterLocalBackupKeyScreen__enter_your_recovery_key">Anna palautusavain</string>
-    <!-- EnterLocalBackupKeyScreen: Screen subtitle explaining what the recovery key is -->
-    <string name="EnterLocalBackupKeyScreen__your_recovery_key_is_a_64_character_code">Palautusavain on 64 merkkiä sisältävä koodi, jota tarvitaan tilin ja tietojen palauttamiseen.</string>
-    <!-- EnterLocalBackupKeyScreen: Button text when user does not have a recovery key -->
-    <string name="EnterLocalBackupKeyScreen__no_recovery_key">Eikö sinulla ole palautusavainta?</string>
-    <!-- EnterLocalBackupKeyScreen: Button to proceed to next step -->
-    <string name="EnterLocalBackupKeyScreen__next">Seuraava</string>
-
-    <!-- RestoreLocalBackupDialog: Error message when the selected archive fails to load -->
-    <string name="RestoreLocalBackupDialog__failed_to_load_archive">Arkiston lataaminen epäonnistui. Valitse toinen hakemisto.</string>
-    <!-- RestoreLocalBackupDialog: Dismiss button for dialog -->
-    <string name="RestoreLocalBackupDialog__ok">OK</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore">Ohitetaanko palauttaminen?</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user about the consequences of skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore_body">Jos ohitat palauttamisen nyt, et voi tehdä palautusta enää myöhemmin. Jos otat varmuuskopiot uudelleen käyttöön palautuksen ohittamisen jälkeen, nykyinen varmuuskopio korvataan uudella viestihistoriallasi.</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the skip restore dialog -->
-    <string name="RestoreLocalBackupDialog__skip_restore_confirm">Ohita palautus</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm restoring a backup from a different account -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account">Palautetaanko tiedot uudelle tilille?</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user that the backup was created with a different account and they will lose group memberships -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account_body">Palauttamasi varmuuskopio luotiin toisella Signal-tilillä. Voit palauttaa varmuuskopion uudelle tilille, mutta jäsenyytesi palautetuissa ryhmissä päättyy.</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the restore to new account dialog -->
-    <string name="RestoreLocalBackupDialog__restore">Palauta</string>
-
-    <!-- RestoreLocalBackupActivity: Toast message when backup restore fails -->
-    <string name="RestoreLocalBackupActivity__backup_restore_failed">Varmuuskopion palautus epäonnistui</string>
-    <!-- RestoreLocalBackupActivity: Screen title shown during restore -->
-    <string name="RestoreLocalBackupActivity__restoring_backup">Palautetaan varmuuskopiota</string>
-    <!-- RestoreLocalBackupActivity: Screen subtitle explaining restore duration -->
-    <string name="RestoreLocalBackupActivity__depending_on_the_size">Varmuuskopion koosta riippuen tämä voi kestää muutaman minuutin.</string>
-    <!-- RestoreLocalBackupActivity: Status text while restoring messages -->
-    <string name="RestoreLocalBackupActivity__restoring_messages">Palautetaan viestejä…</string>
-    <!-- RestoreLocalBackupActivity: Status text while finalizing restore -->
-    <string name="RestoreLocalBackupActivity__finalizing">Viimeistellään…</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore is complete -->
-    <string name="RestoreLocalBackupActivity__restore_complete">Palautus suoritettu</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore fails -->
-    <string name="RestoreLocalBackupActivity__restore_failed">Palautus epäonnistui</string>
-    <!-- RestoreLocalBackupActivity: Progress text showing bytes read of total with percentage, e.g. "1.2 MB of 5.0 MB (24%)" -->
-    <string name="RestoreLocalBackupActivity__s_of_s_d_percent">%1$s/%2$s (%3$d)</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__cant_restore_backup">Varmuuskopiota ei voitu palauttaa</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__error_occurred_while_restoring">Varmuuskopion palauttamisessa tapahtui virhe. Varmuuskopiota ei voi palauttaa. Ota yhteyttä tukeen saadaksesi apua.</string>
-
-    <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
-    <string name="RestoreLocalBackupActivity__contact_support">Ota yhteyttä tukeen</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
-    <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">Otetaanko laitteessa olevat varmuuskopiot käyttöön?</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Jotta voit jatkaa laitteessa olevien varmuuskopioiden käyttöä, sinun on otettava ne käyttöön tälle tilille. Voit tehdä sen menemällä kohtaan Asetukset &gt; Varmuuskopiointi.</string>
-
-    <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__turn_on_now">Ota käyttöön</string>
-
-    <!-- RestoreLocalBackupActivity: Dismiss button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__not_now">Ei nyt</string>
-
-    <!-- RestoreLocalBackupActivity: Body text for the dialog shown after a successful restore, prompting the user to choose a backup folder -->
-    <string name="RestoreLocalBackupActivity__choose_a_folder_for_backups">Jotta voit jatkaa laitteella olevien varmuuskopioiden käyttöä, valitse laitteesi kansio, jonne uudet varmuuskopiot tallennetaan.</string>
-
-    <!-- RestoreLocalBackupActivity: Positive button label for the dialog shown after a successful restore; keeps the current backup folder -->
-    <string name="RestoreLocalBackupActivity__use_current_folder">Käytä nykyistä kansiota</string>
-
-    <!-- RestoreLocalBackupActivity: Neutral button label for the dialog shown after a successful restore; opens folder picker to select a different backup location -->
-    <string name="RestoreLocalBackupActivity__choose_new_folder">Valitse uusi kansio</string>
-
-    <!-- RestoreLocalBackupActivity: Negative button label for the dialog shown after a successful restore; disables on-device backups -->
-    <string name="RestoreLocalBackupActivity__disable_backups">Ota varmuuskopiointi pois käytöstä</string>
-
-    <!-- SelectInstructionsSheet: Title for the select backup folder instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_folder">Valitse varmuuskopioinnin kansio</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the select this folder button -->
-    <string name="SelectInstructionsSheet__tap_select_this_folder">Napauta Valitse tämä kansio</string>
-    <!-- SelectInstructionsSheet: Instruction not to select individual files -->
-    <string name="SelectInstructionsSheet__do_not_select_individual_files">Älä valitse yksittäisiä tiedostoja</string>
-    <!-- SelectInstructionsSheet: Title for the select backup file instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_file">Valitse varmuuskopioinnin tiedosto</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the backup file saved to device -->
-    <string name="SelectInstructionsSheet__tap_on_the_backup_file">Napauta laitteelle tallentamaasi varmuuskopiotiedostoa</string>
-    <!-- SelectInstructionsSheet: Subtitle explaining how to access backup after tapping continue -->
-    <string name="SelectInstructionsSheet__after_tapping_continue">Napautettuasi Jatka voit käyttää varmuuskopiotasi seuraavasti:</string>
-    <!-- SelectInstructionsSheet: Instruction to select the top-level backup folder -->
-    <string name="SelectInstructionsSheet__select_the_top_level_folder">Valitse ylätason kansio, johon varmuuskopio on tallennettu</string>
-    <!-- SelectInstructionsSheet: Continue button text -->
-    <string name="SelectInstructionsSheet__continue_button">Jatka</string>
-
-    <!-- SelectLocalBackupScreen: Screen title for restoring on-device backup -->
-    <string name="SelectLocalBackupScreen__restore_on_device_backup">Palauta laitteella oleva varmuuskopio</string>
-    <!-- SelectLocalBackupScreen: Screen subtitle explaining the restore process -->
-    <string name="SelectLocalBackupScreen__restore_your_messages_from_the_backup_folder">Palauta viestit laitteelle tallentamastasi varmuuskopiotiedostosta. Jos et palauta niitä nyt, et voi palauttaa niitä enää myöhemmin.</string>
-    <!-- SelectLocalBackupScreen: Button to initiate backup restoration -->
-    <string name="SelectLocalBackupScreen__restore_backup">Palauta varmuuskopio</string>
-    <!-- SelectLocalBackupScreen: Button to choose an earlier backup when current is latest -->
-    <string name="SelectLocalBackupScreen__choose_an_earlier_backup">Valitse aikaisempi varmuuskopio</string>
-    <!-- SelectLocalBackupScreen: Button to choose a different backup -->
-    <string name="SelectLocalBackupScreen__choose_a_different_backup">Valitse toinen varmuuskopio</string>
-    <!-- SelectLocalBackupScreen: Label for latest backup card -->
-    <string name="SelectLocalBackupScreen__your_latest_backup">Viimeisin varmuuskopio:</string>
-    <!-- SelectLocalBackupScreen: Label for non-latest backup card -->
-    <string name="SelectLocalBackupScreen__your_backup">Varmuuskopio:</string>
-
-    <!-- SelectLocalBackupSheet: Title for backup selection bottom sheet -->
-    <string name="SelectLocalBackupSheet__choose_a_backup_to_restore">Valitse palautettava varmuuskopio</string>
-    <!-- SelectLocalBackupSheet: Subtitle warning about choosing an older backup -->
-    <string name="SelectLocalBackupSheet__choosing_an_older_backup">Vanhemman varmuuskopion valitseminen voi johtaa viestien tai median katoamiseen.</string>
-    <!-- SelectLocalBackupSheet: Continue button text -->
-    <string name="SelectLocalBackupSheet__continue_button">Jatka</string>
-
-    <!-- SelectLocalBackupTypeScreen: Screen title for selecting backup type -->
-    <string name="SelectLocalBackupTypeScreen__restore_on_device_backup">Palauta laitteella oleva varmuuskopio</string>
-    <!-- SelectLocalBackupTypeScreen: Screen subtitle explaining restore options -->
-    <string name="SelectLocalBackupTypeScreen__restore_your_messages_from_the_backup">Palauta viestit laitteelle tallentamastasi varmuuskopiosta. Jos et palauta niitä nyt, et voi palauttaa niitä enää myöhemmin.</string>
-    <!-- SelectLocalBackupTypeScreen: Button for users who saved backup as single file -->
-    <string name="SelectLocalBackupTypeScreen__i_saved_my_backup_as_a_single_file">Tallensin varmuuskopioni yhtenä tiedostona</string>
-    <!-- SelectLocalBackupTypeScreen: Card title for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__choose_backup_folder">Valitse varmuuskopioinnin kansio</string>
-    <!-- SelectLocalBackupTypeScreen: Card description for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__select_the_folder_on_your_device">Valitse laitteelta kansio, johon varmuuskopio on tallennettu</string>
-
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">Verkkovirhe Signal Androidin varmuuskopion palauttamisessa</string>
     <!-- Email filter when contacting support on a create backup failure -->
@@ -8979,23 +8620,6 @@
     <string name="ContactSupportDialog_submit_with_debug">Lähetä virheenkorjauslokilla</string>
     <!-- Button option to not submit debug log when contacting support -->
     <string name="ContactSupportDialog_submit_without_debug">Lähetä ilman virheenkorjauslokia</string>
-
-    <!-- Title for restore via qr screen -->
-    <string name="RestoreViaQr_title">Skannaa tämä koodi vanhalla puhelimellasi</string>
-    <!-- First instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_1">Avaa Signal vanhassa laitteessasi</string>
-    <!-- Second instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_2">Napauta kamerakuvaketta </string>
-    <!-- Third instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_3">Skannaa tämä koodi kameralla</string>
-    <!-- Error message shown when qr code could not be loaded -->
-    <string name="RestoreViaQr_qr_code_error">QR-koodin luominen ei onnistu</string>
-    <!-- Status message shown when qr code already scanned by other device -->
-    <string name="RestoreViaQr_qr_code_scanned">Skannattu vanhalla laitteella</string>
-    <!-- Error button text to retry getting a qr code -->
-    <string name="RestoreViaQr_retry">Yritä uudelleen</string>
-    <!-- Error message shown when register after receiving the provisioning message failed -->
-    <string name="RestoreViaQr_registration_error">Tapahtui virhe eikä tiliäsi voitu siirtää. Yritä uudelleen skannaamalla QR-koodi uudelleen.</string>
 
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">Siirrä tili</string>
@@ -9037,19 +8661,6 @@
     <string name="RestoreCompleteBottomSheet_transfer_complete_message">Signal-tilisi ja viestisi on siirretty toiseen laitteeseen. Signal ei ole enää aktiivisena tällä laitteella.</string>
     <!-- Restore Complete bottom sheet dialog button text to dismiss sheet -->
     <string name="RestoreCompleteBottomSheet_button">Selvä</string>
-
-    <!-- No Backup to Restore screen title -->
-    <string name="NoBackupToRestore_title">Ei palautettavaa varmuuskopiota</string>
-    <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">Koska olet siirtymässä iPhonesta Androidiin, ainoa tapa siirtää viestit ja mediasisältö on ottaa Signal Secure -varmuuskopiointi käyttöön vanhassa laitteessa.</string>
-    <!-- No Backup to Restore step 1 to enable backups on old device -->
-    <string name="NoBackupToRestore_step1">Avaa Signal vanhassa laitteessasi</string>
-    <!-- No Backup to Restore step 2 to enable backups on old device -->
-    <string name="NoBackupToRestore_step2">Napauta Asetukset &gt; Varmuuskopiot</string>
-    <!-- No Backup to Restore step 3 to enable backups on old device -->
-    <string name="NoBackupToRestore_step3">Ota varmuuskopiointi käyttöön ja odota, kunnes varmuuskopiointi on valmis</string>
-    <!-- No backup to Restore tonal cta to skip restore -->
-    <string name="NoBackupToRestore_skip_restore">Ohita palautus</string>
 
     <!-- Dialog title when the recovery key change limit is reached -->
     <string name="MessageBackupsKeyRecordScreen__limit_reached_title">Palautusavainten yläraja tullut täyteen</string>

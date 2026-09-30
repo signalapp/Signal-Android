@@ -863,23 +863,8 @@
     <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Ingen vil kunne se, at du er på Signal, medmindre du sender dem en besked eller har en eksisterende chat med dem.</string>
 
     <!-- ChooseBackupFragment -->
-    <string name="ChooseBackupFragment__restore_from_backup">Gendan fra sikkerhedskopi?</string>
-    <string name="ChooseBackupFragment__restore_your_messages_and_media">Gendan dine beskeder og mediefiler fra en lokal sikkerhedskopi. Hvis du ikke gendanner nu, kan det ikke gøres senere.</string>
-    <string name="ChooseBackupFragment__icon_content_description">Gendan fra sikkerhedskopi, ikon</string>
-    <string name="ChooseBackupFragment__choose_backup">Vælg sikkerhedskopi</string>
-    <string name="ChooseBackupFragment__learn_more">Læs mere</string>
 
     <!-- RestoreBackupFragment -->
-    <string name="RestoreBackupFragment__restore_complete">Gendannelse afsluttet</string>
-    <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Vælg venligst en mappe for fortsat at kunne bruge sikkerhedskopier. Nye sikkerhedskopier vil blive gemt i denne mappe.</string>
-    <string name="RestoreBackupFragment__choose_folder">Vælg mappe</string>
-    <string name="RestoreBackupFragment__not_now">Ikke nu</string>
-    <!-- Couldn\'t find the selected backup -->
-    <string name="RestoreBackupFragment__backup_not_found">Sikkerhedskopi ikke fundet.</string>
-    <!-- Couldn\'t read the selected backup -->
-    <string name="RestoreBackupFragment__backup_could_not_be_read">Sikkerhedskopi kunne ikke indlæses.</string>
-    <!-- Backup has an unsupported file extension -->
-    <string name="RestoreBackupFragment__backup_has_a_bad_extension">Sikkerhedskopi har et filtypenavn, som ikke er understøttet.</string>
 
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
@@ -1416,60 +1401,6 @@
     <string name="ManageGroupActivity_add_group_description">Tilføj gruppebeskrivelse …</string>
 
     <!-- RemoteRestoreActivity -->
-    <!-- Progress dialog label when downloading a backup -->
-    <string name="RemoteRestoreActivity__downloading_backup">Downloader sikkerhedskopi…</string>
-    <!-- Progress dialog label when restoring a backup -->
-    <string name="RemoteRestoreActivity__restoring_messages">Gendanner beskeder…</string>
-    <!-- Progress dialog label when finishing a backup restore -->
-    <string name="RemoteRestoreActivity__finishing_restore">Afslutter…</string>
-    <!-- Progress dialog label while awaiting updates -->
-    <string name="RemoteRestoreActivity__restoring">Gendanner…</string>
-    <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
-    <string name="RemoteRestoreActivity__s_of_s_s">%1$s af %2$s (%3$s)</string>
-    <!-- Feature list media label for paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_media">Alle dine mediefiler</string>
-    <!-- Feature list media label for free tier. Placeholder is days, and is currently fixed at 30. -->
-    <string name="RemoteRestoreActivity__your_last_d_days_of_media">De seneste %1$d dages medier</string>
-    <!-- Feature list message label for free and paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_messages">Alle dine beskeder</string>
-    <!-- Screen title for restoring from backup -->
-    <string name="RemoteRestoreActivity__restore_from_backup">Gendan fra sikkerhedskopi</string>
-    <!-- Section title for explaining what your backup includes -->
-    <string name="RemoteRestoreActivity__your_backup_includes">Din sikkerhedskopi omfatter:</string>
-    <!-- Primary action button copy for starting restoration -->
-    <string name="RemoteRestoreActivity__restore_backup">Gendan sikkerhedskopi</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made. %1$s is replaced with the date (e.g. March 5, 2024) and %2$s is replaced with the time (e.g. 9:00am) -->
-    <string name="RemoteRestoreActivity__backup_created_at">Din sidste sikkerhedskopi blev lavet %1$s kl. %2$s.</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
-    <string name="RemoteRestoreActivity__backup_created_at_with_size">Din sidste sikkerhedskopi blev oprettet %1$s kl. %2$s. Sikkerhedskopiens størrelse er %3$s.</string>
-    <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
-    <string name="RemoteRestoreActivity__fetching_backup_details">Henter sikkerhedskopieringsoplysninger…</string>
-    <!-- Text label button to skip restore from remote -->
-    <string name="RemoteRestoreActivity__skip_restore">Spring gendannelse over</string>
-    <!-- Dialog title displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__couldnt_transfer">Overførslen kunne ikke afsluttes</string>
-    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Kan ikke gendanne sikkerhedskopien</string>
-    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">Der opstod en fejl under gendannelsen af din sikkerhedskopi. Din sikkerhedskopi kan ikke gendannes. Kontakt support for hjælp.</string>
-    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Kontakt support</string>
-    <!-- Dialog message displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__error_occurred">Der opstod en fejl, og din konto kunne ikke overføres. Prøv igen ved at vælge din overførselsmetode.</string>
-    <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
-    <string name="RemoteRestoreActivity__couldnt_restore">Kunne ikke gennemføre denne sikkerhedskopiering</string>
-    <!-- Dialog message explaining that an update to Signal is required to restore the backup. -->
-    <string name="RemoteRestoreActivity__update_latest">Denne version af Signal kan ikke gendanne din sikkerhedskopi. Opdatér til den nyeste version, og prøv igen.</string>
-    <!-- Text on button that when pressed will redirect them to update Signal -->
-    <string name="RemoteRestoreActivity__update_signal">Opdater Signal</string>
-    <!-- Text label button to dismiss the dialog -->
-    <string name="RemoteRestoreActivity__not_now">Ikke nu</string>
-    <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Dine medier vil blive gendannet i baggrunden. Hvis du vælger ikke at gendanne nu, vil du ikke kunne gendanne senere.</string>
-    <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">Denne enhed er ikke længere registreret</string>
-    <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">Det skyldes sandsynligvis, at du har registreret din Signal-konto på en anden enhed.</string>
 
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
@@ -2234,17 +2165,6 @@
     <string name="PinRestoreLockedFragment_create_new_pin">Opret ny pinkode</string>
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
-    <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
-    <string name="ReRegisterWithPinFragment_send_sms_code">Send sms-kode</string>
-    <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">Tilmelding på Signal – brug for hjælp til at genregistrere pinkoden på Android</string>
-    <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">Din pinkode er en numerisk eller alfanumerisk kode på %1$d+ cifre, som du har oprettet.\n\nHvis du ikke kan huske din pinkode, kan du oprette en ny.</string>
-    <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">Hvis du ikke kan huske din pinkode, kan du oprette en ny.</string>
-    <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">Du har ikke flere gæt, men du kan stadig få adgang til din Signal-konto ved at oprette en ny pinkode.</string>
-
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Advarsel</string>
     <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Hvis du deaktiverer pinkoden, mister du alle data, når du opretter Signal igen, medmindre du sikkerhedskopierer og gendanner manuelt. Du kan ikke aktivere registreringslås, mens pinkoden er deaktiveret.</string>
@@ -2324,6 +2244,12 @@
     <string name="WebRtcCallActivity__open_settings">Åbn indstillinger</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">Ikke nu</string>
+    <!-- Message for dialog shown at the start of a call when the system battery setting for Signal is "Restricted" -->
+    <string name="WebRtcCallActivity__others_may_not_be_able_to_hear_you_when_your_screen_turns_off">Others may not be able to hear you and the call may disconnect when your screen turns off. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
+    <!-- Title for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__others_couldnt_hear_you">Others couldn\'t hear you</string>
+    <!-- Message for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__your_microphone_was_muted_while_signal_was_in_the_background">Your microphone was muted while Signal was in the background. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
     <!-- Title for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__approve_d_requests">
         <item quantity="one">Godkend %1$d anmodning?</item>
@@ -2639,50 +2565,20 @@
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Det indtastede nummer (%1$s) er ugyldigt
     </string>
 
-    <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">Er telefonnummeret nedenfor korrekt?</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
     <string name="RegistrationActivity_additional_verification_required">Yderligere verificering er påkrævet</string>
-    <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">Der sendes en bekræftelseskode til dette nummer. Almindelig sms-takst kan gælde.</string>
-    <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Du modtager en verifikationskode. Takster fra dit teleselskab kan blive pålagt.</string>
-    <!-- Hint text to select a country -->
-    <string name="RegistrationActivity_select_a_country">Vælg et land</string>
-    <!-- Hint text explaining that this is where the country code should go -->
-    <string name="RegistrationActivity_default_country_code">0</string>
-    <string name="RegistrationActivity_edit_number">Redigér nummer</string>
-    <string name="RegistrationActivity_missing_google_play_services">Mangler Google Play-tjenester</string>
-    <string name="RegistrationActivity_this_device_is_missing_google_play_services">Enheden mangler Google Play-tjenester. Du kan stadig bruge Signal, men denne konfiguration kan resultere i begrænset stabilitet og ydeevne.\n\nHvis du ikke er en superbruger, ikke kører en alternativ Android ROM eller mener, at du ser denne besked ved en fejl, bedes du kontakte support@signal.org på engelsk for hjælp.</string>
-    <string name="RegistrationActivity_i_understand">Forstået</string>
-    <string name="RegistrationActivity_play_services_error">Play Services fejl</string>
-    <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play-tjenester opdateres eller er midlertidigt utilgængelig. Prøv venligst igen.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Du har foretaget for mange forsøg på at registrere dette nummer. Prøv igen senere.</string>
-    <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">Du har forsøgt at registrere dette nummer for mange gange. Prøv igen om %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Ikke muligt at få forbindelse til service. Tjek venligst din netværksforbindelse og prøv igen.</string>
     <!-- Dialog error message shown when we are unable to send an SMS to the user\'s number -->
     <string name="RegistrationActivity_sms_provider_error">Vi kan ikke sende en sms til dit nummer. Prøv igen om flere timer.</string>
-    <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Vi kunne ikke sende dig en bekræftelseskode via sms. Prøv at modtage din kode via et taleopkald i stedet.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">Kunne ikke anmode om verificeringskoden. Tjek din netværksforbindelse, og prøv igen.</string>
-    <string name="RegistrationActivity_non_standard_number_format">Ikke-standardiseret nummerformat</string>
-    <!-- Dialog message shown to confirm when entering phone number (first placeholder) is normalized and formatted differently by the app (second placeholder). -->
-    <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Det nummer du har indtastet (%1$s) ser ud til at være et ikke-standardiseret format.\n\nMente du %2$s?</string>
-    <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Telefonnummerformat</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="one">Du er nu kun %1$d trin fra at indsende en fejllog</item>
         <item quantity="other">Du er nu kun %1$d trin fra at indsende en fejlsøgningslog.</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Vi skal verificere, at du er et menneske.</string>
-    <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
-    <string name="RegistrationActivity_voice_call">Taleopkald</string>
-    <!-- Dialog button to cancel the pending action and return to the previous state. -->
-    <string name="RegistrationActivity_cancel">Annuller</string>
     <string name="RegistrationActivity_next">Næste</string>
-    <!-- Title of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_phone_number">Telefonnummer</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Indtast verifikationskoden sendt til %1$s</string>
 
     <string name="RegistrationActivity_phone_number_description">Telefonnummer</string>
@@ -2881,6 +2777,8 @@
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Fejl ved hentning af klistermærker</string>
     <!-- Bottom sheet describing a sticker. First placeholder is the title of the sticker pack and second is the author -->
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
+    <!-- Bottom sheet option that opens the pack the sticker belongs to -->
+    <string name="StickerPreviewBottomSheet__view_pack">View pack</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">Gem</string>
@@ -3619,8 +3517,6 @@
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">For at modtage opkaldsnotifikationer, tryk på Indstillinger og aktiver baggrundsaktivitet i \"Batteri\"-indstillinger.</string>
 
     <!-- country_selection_fragment -->
-    <string name="country_selection_fragment__loading_countries">Indlæser lande…</string>
-    <string name="country_selection_fragment__search">Søg</string>
 
     <string name="device_list_fragment__link_new_device">Forbind ny enhed</string>
 
@@ -4454,6 +4350,8 @@
     <string name="conversation_selection__menu_pin_message">Fastgør</string>
     <!-- Button to unpin a message -->
     <string name="conversation_selection__menu_unpin_message">Frigør</string>
+    <!-- Button to open the sticker pack a sticker message came from -->
+    <string name="conversation_selection__menu_view_sticker_pack">View pack</string>
 
     <!-- conversation_expiring_on -->
 
@@ -4644,14 +4542,11 @@
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">Indtast din pinkode</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Indtast den pinkode du oprettede til din konto. Den er forskellig fra din SMS-verifikationskode.</string>
-    <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
-    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Angiv den pinkode, du har oprettet til din konto.</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Forkert pinkode. Prøv igen.</string>
     <string name="RegistrationLockFragment__forgot_pin">Glemt pinkode?</string>
     <string name="RegistrationLockFragment__incorrect_pin">Forkert pinkode</string>
     <string name="RegistrationLockFragment__forgot_your_pin">Glemt din pinkode?</string>
     <string name="RegistrationLockFragment__not_many_tries_left">Ikke mange forsøg tilbage!</string>
-    <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal-registrering - Brug for hjælp med pinkode til Android (v2 PIN)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
         <item quantity="one">For dit privatliv og din sikkerheds skyld er det ikke muligt at gendanne din PIN. Hvis du ikke kan huske din PIN, kan du verificere med sms på ny efter %1$d dages inaktivitet. I sådant tilfælde, vil din konto blive fjernet og alt indhold slettet</item>
@@ -4706,22 +4601,6 @@
     <string name="backup_enable_dialog__you_must_have_this_passphrase">Du skal have denne adgangssætning for at kunne gendanne fra sikkerhedskopi.</string>
     <string name="backup_enable_dialog__folder">Mappe</string>
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Jeg har skrevet adgangssætningen ned. Uden den vil jeg ikke have mulighed for at gendanne fra sikkerhedskopi.</string>
-    <string name="registration_activity__restore_backup">Gendan sikkerhedskopi</string>
-    <!-- Text label button to skip restoring -->
-    <string name="registration_activity__skip_restore">Spring gendannelse over</string>
-    <!-- Title for dialog to enter in the backup passphrase -->
-    <string name="RegistrationActivity_enter_backup_passphrase">Indtast adgangssætning til sikkerhedskopi</string>
-    <string name="RegistrationActivity_restore">Gendan</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">Kan ikke importere backups fra nyere Signal-versioner</string>
-    <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
-    <string name="RegistrationActivity_backup_failure_foreign_key">Sikkerhedskopien indeholder fejlbehæftede data</string>
-    <string name="RegistrationActivity_incorrect_backup_passphrase">Forkert adgangssætning til sikkerhedskopi</string>
-    <string name="RegistrationActivity_checking">Tjekker…</string>
-    <string name="RegistrationActivity_d_messages_so_far">%1$d beskeder indtil videre…</string>
-    <string name="RegistrationActivity_restore_from_backup">Gendan fra sikkerhedskopi?</string>
-    <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Gendan dine beskeder og mediefiler fra en lokal sikkerhedskopi. Hvis du ikke gendanner nu kan det ikke gøres senere.</string>
-    <string name="RegistrationActivity_backup_size_s">Størrelse på sikkerhedskopi: %1$s</string>
-    <string name="RegistrationActivity_backup_timestamp_s">Sikkerhedskopi-tidsstempel: %1$s</string>
     <string name="BackupDialog_enable_local_backups">Aktiver lokale sikkerhedskopier?</string>
     <string name="BackupDialog_enable_backups">Aktiver sikkerhedskopier</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Tilkendegiv venligst din forståelse, ved at sætte et flueben i feltet</string>
@@ -4757,7 +4636,6 @@
     <string name="RegistrationActivity_call_me_instead_available_in">Ring til mig (%1$02d:%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
     <string name="RegistrationActivity_resend_sms_available_in">Send kode igen (%1$02d:%2$02d)</string>
-    <string name="RegistrationActivity_contact_signal_support">Kontakt Signal Support</string>
     <string name="RegistrationActivity_code_support_subject">Signal-registrering - Verifikationskode for Android</string>
     <string name="RegistrationActivity_incorrect_code">Forkert kode</string>
     <string name="BackupUtil_never">Aldrig</string>
@@ -4879,25 +4757,8 @@
     <string name="TransferOrRestoreFragment__restore_from_local_backup">Genopret lokal sikkerhedskopi</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
-    <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Åbn Signal på din gamle Android-telefon</string>
-    <string name="NewDeviceTransferInstructions__continue">Fortsæt</string>
-    <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Tryk på dit profilbillede øverst til venstre for at åbne Indstillinger</string>
-    <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_account">"Tryk på \"Konto\""</string>
-    <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
-    <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"Tryk på \"Overfør konto\" og derefter \"Fortsæt\" på begge enheder"</string>
 
     <!-- NewDeviceTransferSetupFragment -->
-    <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Forbereder forbindelse til den gamle Android-enhed…</string>
-    <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Tager et øjeblik. Vil snart være klar</string>
-    <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Venter på, at den gamle Android-enhed forbinder …</string>
-    <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal kræver placeringstilladelsen for at opspore og forbinde din gamle Android-enhed.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal kræver placeringstjenester aktiveret for at opspore og forbinde med din gamle Android-enhed.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal kræver Wi-Fi til for at opspore og forbinde med din gamle Android-enhed. Wi-Fi skal være tændt, men det behøver ikke at være forbundet til et Wi-Fi-netværk.</string>
-    <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Beklager, denne enhed understøtter ikke Wi-Fi Direct. Signal bruger Wi-Fi Direct til at opspore og forbinde med din gamle Android-enhed. Du kan stadig gendanne en sikkerhedskopi for at gendanne din konto fra din gamle Android-enhed.</string>
-    <string name="NewDeviceTransferSetup__restore_a_backup">Gendan en sikkerhedskopi</string>
-    <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Der opstod en uventet fejl under forbindelsesforsøg til din gamle Android-enhed.</string>
 
     <!-- OldDeviceTransferSetupFragment -->
     <string name="OldDeviceTransferSetup__searching_for_new_android_device">Søger efter ny Android-enhed …</string>
@@ -4941,9 +4802,6 @@
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Tryk på Fortsæt på din anden enhed …</string>
 
     <!-- NewDeviceTransferFragment -->
-    <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Der kan ikke overføres fra en nyere version af Signal</string>
-    <!-- Error message indicating that we could not finish the user\'s device transfer. Displayed in a toast at the bottom of the screen. -->
-    <string name="NewDeviceTransfer__failure_foreign_key">De overførte data var fejlbehæftede</string>
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">Overfører data</string>
@@ -4982,10 +4840,6 @@
     <string name="OldDeviceTransferComplete__close">Luk</string>
 
     <!-- NewDeviceTransferComplete -->
-    <string name="NewDeviceTransferComplete__transfer_successful">Overførslen gennemført</string>
-    <string name="NewDeviceTransferComplete__transfer_complete">Overførslen fuldført</string>
-    <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">For at fuldføre overførslen, skal du fortsætte med registreringen.</string>
-    <string name="NewDeviceTransferComplete__continue_registration">Fortsæt registreringen</string>
 
     <!-- DeviceToDeviceTransferService -->
     <string name="DeviceToDeviceTransferService_content_title">Kontooverførsel</string>
@@ -8753,219 +8607,6 @@
 
     <!-- ConfirmBackupCancellationDialog -->
 
-    <!-- Row title for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">Jeg har min gamle telefon</string>
-    <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_scan_qr">Scan en QR-kode fra din nuværende Signal-konto for at komme hurtigt i gang</string>
-
-    <!-- Row title for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">Jeg har ikke min gamle telefon</string>
-    <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">Eller hvis du geninstallerer Signal på samme enhed</string>
-
-    <!-- Screen title for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__restore_or_transfer_account">Gendan eller overfør konto</string>
-    <!-- Screen subtitle for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__get_your_signal_account">Få din Signal-konto og -beskedhistorik på denne enhed.</string>
-    <!-- Option title for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_signal_backup">Genopret Signal-sikkerhedskopi</string>
-    <!-- Option subtitle for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_your_text_messages_and_media_from">Genopret dine beskeder og medier fra dit Signal-sikkerhedskopiabonnement.</string>
-    <!-- Option title for restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_on_device_backup">Gendan din sikkerhedskopi på enheden</string>
-    <!-- Option subtitle fdor restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_your_messages_from">Gendan dine beskeder fra en sikkerhedskopi, du har gemt på din enhed.</string>
-    <!-- Option title for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__from_your_old_phone">Fra din gamle telefon</string>
-    <!-- Option subtitle for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__transfer_directly_from_old">Overfør direkte fra din gamle Android</string>
-    <!-- Dialog title shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_title">Vil du springe gendannelse over?</string>
-    <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">Hvis du vælger ikke at gendanne nu, vil du ikke kunne gendanne senere. Hvis du genaktiverer sikkerhedskopiering efter at have sprunget gendannelse over, vil din nuværende sikkerhedskopi blive erstattet af din nye beskedhistorik.</string>
-    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore">Spring gendannelse over</string>
-
-    <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_title">Angiv din gendannelsesnøgle</string>
-    <!-- Screen subtitle for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_subtitle">Din gendannelsesnøgle er en kode på 64 tegn, der kræves for at gendanne din konto og dine data.</string>
-    <!-- Button to skip entering recovery key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">Har du ingen gendannelsesnøgle?</string>
-    <!-- Recovery key text field hint -->
-    <string name="EnterBackupKey_backup_key">Gendannelsesnøgle</string>
-    <!-- Recovery key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">Sikkerhedskopier kan ikke gendannes uden gendannelseskoden på 64 tegn. Hvis du har mistet din gendannelsesnøgle, kan Signal ikke hjælpe med at gendanne din sikkerhedskopi.</string>
-    <!-- Recovery key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">Hvis du har din gamle enhed, kan du se din gendannelsesnøgle i Indstillinger &gt; Sikkerhedskopier. Tryk derefter på Se gendannelsesnøgle.</string>
-    <!-- Recovery key not known bottom sheet button to learn more about it -->
-    <string name="EnterBackupKey_learn_more">Få mere at vide</string>
-    <!-- Recovery key not known bottom sheet button to skip recovery key entry and resume normal reregistration -->
-    <string name="EnterBackupKey_skip_and_dont_restore">Spring over uden gendannelse</string>
-    <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">Forkert gendannelsesnøgle</string>
-    <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">Sørg for, at du registrerer dig med det telefonnummer og den gendannelsesnøgle (64 tegn) du gemte, da du aktiverede Signal-sikkerhedskopier. Sikkerhedskopier kan ikke gendannes uden denne kode.</string>
-    <!-- Dialog positive button text to try entering their recovery key again -->
-    <string name="EnterBackupKey_try_again">Prøv igen</string>
-    <!-- Dialog negative button text to get help with recovery key -->
-    <string name="EnterBackupKey_backup_key_help">Hjælp til gendannelsesnøgler</string>
-    <!-- Text field error text when the recovery key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">Forkert gendannelsesnøgle</string>
-    <!-- Text field error text when the recovery key is too long -->
-    <string name="EnterBackupKey_too_long_error">For lang (%1$d/%2$d)</string>
-    <!-- Text field error when the recovery key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">Ugyldig gendannelsesnøgle</string>
-    <!-- Dialog title shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_not_found">Sikkerhedskopi ikke fundet</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Den angivne gendannelsesnøgle er korrekt, men der er ingen sikkerhedskopi knyttet til den. Hvis du stadig har din gamle telefon, skal du sørge for, at sikkerhedskopier er aktiveret, og at en sikkerhedskopiering er gennemført, og prøve igen.</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">Du kan have indtastet din gendannelsesnøgle forkert, ellers har du ikke gennemført mindst én sikkerhedskopi på din gamle enhed.\n\nSørg for, at du registrerer dig med det samme telefonnummer og den samme gendannelsesnøgle, som du gemte, da du aktiverede Sikre sikkerhedskopier, og bekræft, at din gamle enhed har gennemført en sikkerhedskopi.</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">Du er løbet tør for forsøg på gendannelsesnøglen. Af sikkerhedshensyn er antallet af forsøg, du kan gøre, begrænset. Vent en time, og prøv igen.</string>
-    <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
-    <string name="EnterBackupKey_skip_restore">Spring gendannelse over</string>
-    <!-- Dialog title text when encountering backup restore network error -->
-    <string name="EnterBackupKey_cant_restore_backup">Kan ikke gendanne sikkerhedskopien</string>
-    <!-- Dialog body text when encountering backup restore network error -->
-    <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">Din sikkerhedskopi kan ikke gendannes lige nu. Tjek din internetforbindelse, og prøv igen. </string>
-    <!-- Dialog button text to contact support on network error -->
-    <string name="EnterBackupKey_contact_support">Kontakt support</string>
-
-    <!-- Email subject when contacting support on a restore backup network issue -->
-    <string name="EnterBackupKey_network_failure_support_email">Netværksfejl under gendannelse af Signal Android-sikkerhedskopi</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
-    <!-- Email subject when contacting support on a permanent backup import failure -->
-    <string name="EnterBackupKey_permanent_failure_support_email">Vedvarende fejl ved gendannelse af Signal Android-sikkerhedskopi</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
-
-    <!-- EnterLocalBackupKeyScreen: Screen title for entering recovery key for local backup restore -->
-    <string name="EnterLocalBackupKeyScreen__enter_your_recovery_key">Angiv din gendannelsesnøgle</string>
-    <!-- EnterLocalBackupKeyScreen: Screen subtitle explaining what the recovery key is -->
-    <string name="EnterLocalBackupKeyScreen__your_recovery_key_is_a_64_character_code">Din gendannelsesnøgle er en kode på 64 tegn, der kræves for at gendanne din konto og dine data.</string>
-    <!-- EnterLocalBackupKeyScreen: Button text when user does not have a recovery key -->
-    <string name="EnterLocalBackupKeyScreen__no_recovery_key">Har du ingen gendannelsesnøgle?</string>
-    <!-- EnterLocalBackupKeyScreen: Button to proceed to next step -->
-    <string name="EnterLocalBackupKeyScreen__next">Næste</string>
-
-    <!-- RestoreLocalBackupDialog: Error message when the selected archive fails to load -->
-    <string name="RestoreLocalBackupDialog__failed_to_load_archive">Fejl ved indlæsning af arkiv. Vælg en anden mappe.</string>
-    <!-- RestoreLocalBackupDialog: Dismiss button for dialog -->
-    <string name="RestoreLocalBackupDialog__ok">OK</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore">Vil du springe gendannelse over?</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user about the consequences of skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore_body">Hvis du vælger ikke at gendanne nu, vil du ikke kunne gendanne senere. Hvis du genaktiverer sikkerhedskopiering efter at have sprunget gendannelse over, vil din nuværende sikkerhedskopi blive erstattet af din nye beskedhistorik.</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the skip restore dialog -->
-    <string name="RestoreLocalBackupDialog__skip_restore_confirm">Spring gendannelse over</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm restoring a backup from a different account -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account">Vil du gendanne til en ny konto?</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user that the backup was created with a different account and they will lose group memberships -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account_body">Den sikkerhedskopi, du gendanner, blev oprettet med en anden Signal-konto. Du kan gendanne denne sikkerhedskopi til en ny konto, men du vil ikke længere være medlem af nogen af de grupper, der blev gendannet.</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the restore to new account dialog -->
-    <string name="RestoreLocalBackupDialog__restore">Gendan</string>
-
-    <!-- RestoreLocalBackupActivity: Toast message when backup restore fails -->
-    <string name="RestoreLocalBackupActivity__backup_restore_failed">Gendannelse af sikkerhedskopi mislykkedes</string>
-    <!-- RestoreLocalBackupActivity: Screen title shown during restore -->
-    <string name="RestoreLocalBackupActivity__restoring_backup">Gendannelse af sikkerhedskopi</string>
-    <!-- RestoreLocalBackupActivity: Screen subtitle explaining restore duration -->
-    <string name="RestoreLocalBackupActivity__depending_on_the_size">Det kan tage et par minutter, afhængigt af sikkerhedskopiens størrelse.</string>
-    <!-- RestoreLocalBackupActivity: Status text while restoring messages -->
-    <string name="RestoreLocalBackupActivity__restoring_messages">Gendanner beskeder…</string>
-    <!-- RestoreLocalBackupActivity: Status text while finalizing restore -->
-    <string name="RestoreLocalBackupActivity__finalizing">Afslutter…</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore is complete -->
-    <string name="RestoreLocalBackupActivity__restore_complete">Gendannelse afsluttet</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore fails -->
-    <string name="RestoreLocalBackupActivity__restore_failed">Gendannelse mislykkedes</string>
-    <!-- RestoreLocalBackupActivity: Progress text showing bytes read of total with percentage, e.g. "1.2 MB of 5.0 MB (24%)" -->
-    <string name="RestoreLocalBackupActivity__s_of_s_d_percent">%1$s af %2$s (%3$d %%)</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__cant_restore_backup">Kan ikke gendanne sikkerhedskopien</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__error_occurred_while_restoring">Der opstod en fejl under gendannelsen af din sikkerhedskopi. Din sikkerhedskopi kan ikke gendannes. Kontakt support for hjælp.</string>
-
-    <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
-    <string name="RestoreLocalBackupActivity__contact_support">Kontakt support</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
-    <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">Vil du slå sikkerhedskopier på enheden til?</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">For at fortsætte med at bruge sikkerhedskopier på enheden skal du slå det til for denne konto. Du kan gøre det når som helst under Indstillinger &gt; Sikkerhedskopier.</string>
-
-    <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__turn_on_now">Slå til nu</string>
-
-    <!-- RestoreLocalBackupActivity: Dismiss button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__not_now">Ikke nu</string>
-
-    <!-- RestoreLocalBackupActivity: Body text for the dialog shown after a successful restore, prompting the user to choose a backup folder -->
-    <string name="RestoreLocalBackupActivity__choose_a_folder_for_backups">Vælg en mappe for at fortsætte med at bruge sikkerhedskopier på enheden, hvor de nye sikkerhedskopier vil blive gemt.</string>
-
-    <!-- RestoreLocalBackupActivity: Positive button label for the dialog shown after a successful restore; keeps the current backup folder -->
-    <string name="RestoreLocalBackupActivity__use_current_folder">Brug den aktuelle mappe</string>
-
-    <!-- RestoreLocalBackupActivity: Neutral button label for the dialog shown after a successful restore; opens folder picker to select a different backup location -->
-    <string name="RestoreLocalBackupActivity__choose_new_folder">Vælg en ny mappe</string>
-
-    <!-- RestoreLocalBackupActivity: Negative button label for the dialog shown after a successful restore; disables on-device backups -->
-    <string name="RestoreLocalBackupActivity__disable_backups">Deaktiver sikkerhedskopier</string>
-
-    <!-- SelectInstructionsSheet: Title for the select backup folder instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_folder">Vælg din sikkerhedskopimappe</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the select this folder button -->
-    <string name="SelectInstructionsSheet__tap_select_this_folder">Tryk på \"Vælg denne mappe\"</string>
-    <!-- SelectInstructionsSheet: Instruction not to select individual files -->
-    <string name="SelectInstructionsSheet__do_not_select_individual_files">Vælg ikke enkeltfiler</string>
-    <!-- SelectInstructionsSheet: Title for the select backup file instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_file">Vælg din sikkerhedskopi</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the backup file saved to device -->
-    <string name="SelectInstructionsSheet__tap_on_the_backup_file">Tryk på den sikkerhedskopi, du har gemt på din enhed</string>
-    <!-- SelectInstructionsSheet: Subtitle explaining how to access backup after tapping continue -->
-    <string name="SelectInstructionsSheet__after_tapping_continue">Når du trykker på \"Fortsæt\", kan du få adgang til din sikkerhedskopi således:</string>
-    <!-- SelectInstructionsSheet: Instruction to select the top-level backup folder -->
-    <string name="SelectInstructionsSheet__select_the_top_level_folder">Vælg den overordnede mappe, hvor din sikkerhedskopi er gemt</string>
-    <!-- SelectInstructionsSheet: Continue button text -->
-    <string name="SelectInstructionsSheet__continue_button">Fortsæt</string>
-
-    <!-- SelectLocalBackupScreen: Screen title for restoring on-device backup -->
-    <string name="SelectLocalBackupScreen__restore_on_device_backup">Gendan en sikkerhedskopi på enheden</string>
-    <!-- SelectLocalBackupScreen: Screen subtitle explaining the restore process -->
-    <string name="SelectLocalBackupScreen__restore_your_messages_from_the_backup_folder">Gendanne dine beskeder fra en sikkerhedskopimappe, du har gemt på din enhed. Hvis du ikke gendanner nu, kan du ikke gendanne senere.</string>
-    <!-- SelectLocalBackupScreen: Button to initiate backup restoration -->
-    <string name="SelectLocalBackupScreen__restore_backup">Gendan sikkerhedskopi</string>
-    <!-- SelectLocalBackupScreen: Button to choose an earlier backup when current is latest -->
-    <string name="SelectLocalBackupScreen__choose_an_earlier_backup">Vælg en tidligere sikkerhedskopi</string>
-    <!-- SelectLocalBackupScreen: Button to choose a different backup -->
-    <string name="SelectLocalBackupScreen__choose_a_different_backup">Vælg en anden sikkerhedskopi</string>
-    <!-- SelectLocalBackupScreen: Label for latest backup card -->
-    <string name="SelectLocalBackupScreen__your_latest_backup">Din seneste sikkerhedskopi:</string>
-    <!-- SelectLocalBackupScreen: Label for non-latest backup card -->
-    <string name="SelectLocalBackupScreen__your_backup">Din sikkerhedskopi:</string>
-
-    <!-- SelectLocalBackupSheet: Title for backup selection bottom sheet -->
-    <string name="SelectLocalBackupSheet__choose_a_backup_to_restore">Vælg en sikkerhedskopi til gendannelse</string>
-    <!-- SelectLocalBackupSheet: Subtitle warning about choosing an older backup -->
-    <string name="SelectLocalBackupSheet__choosing_an_older_backup">Ved valg af en tidligere sikkerhedskopi kan det medføre tab af beskeder eller medier.</string>
-    <!-- SelectLocalBackupSheet: Continue button text -->
-    <string name="SelectLocalBackupSheet__continue_button">Fortsæt</string>
-
-    <!-- SelectLocalBackupTypeScreen: Screen title for selecting backup type -->
-    <string name="SelectLocalBackupTypeScreen__restore_on_device_backup">Gendanne en sikkerhedskopi på enheden</string>
-    <!-- SelectLocalBackupTypeScreen: Screen subtitle explaining restore options -->
-    <string name="SelectLocalBackupTypeScreen__restore_your_messages_from_the_backup">Gendan dine beskeder fra en sikkerhedskopi, du har gemt på din enhed. Hvis du ikke gendanner nu, kan du ikke gendanne senere.</string>
-    <!-- SelectLocalBackupTypeScreen: Button for users who saved backup as single file -->
-    <string name="SelectLocalBackupTypeScreen__i_saved_my_backup_as_a_single_file">Jeg har gemt min sikkerhedskopi som en enkelt fil</string>
-    <!-- SelectLocalBackupTypeScreen: Card title for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__choose_backup_folder">Vælg din sikkerhedskopimappe</string>
-    <!-- SelectLocalBackupTypeScreen: Card description for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__select_the_folder_on_your_device">Vælg mappen på din enhed med din sikkerhedskopi</string>
-
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">Netværksfejl under gendannelse af Signal Android-sikkerhedskopi</string>
     <!-- Email filter when contacting support on a create backup failure -->
@@ -8979,23 +8620,6 @@
     <string name="ContactSupportDialog_submit_with_debug">Send med fejlsøgningslog</string>
     <!-- Button option to not submit debug log when contacting support -->
     <string name="ContactSupportDialog_submit_without_debug">Send uden fejlsøgningslog</string>
-
-    <!-- Title for restore via qr screen -->
-    <string name="RestoreViaQr_title">Scan denne kode med din gamle telefon</string>
-    <!-- First instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_1">Åbn Signal på din gamle enhed</string>
-    <!-- Second instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_2">Tryk på kameraikonet </string>
-    <!-- Third instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_3">Scan denne kode med kameraet</string>
-    <!-- Error message shown when qr code could not be loaded -->
-    <string name="RestoreViaQr_qr_code_error">Kunne ikke generere QR-kode</string>
-    <!-- Status message shown when qr code already scanned by other device -->
-    <string name="RestoreViaQr_qr_code_scanned">Scannet på gammel enhed</string>
-    <!-- Error button text to retry getting a qr code -->
-    <string name="RestoreViaQr_retry">Prøv igen</string>
-    <!-- Error message shown when register after receiving the provisioning message failed -->
-    <string name="RestoreViaQr_registration_error">Der opstod en fejl, og din konto kunne ikke overføres. Prøv igen ved at scanne QR-koden igen.</string>
 
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">Overfør konto</string>
@@ -9037,19 +8661,6 @@
     <string name="RestoreCompleteBottomSheet_transfer_complete_message">Din Signal-konto og dine beskeder er blevet overført til din anden enhed. Signal er nu inaktiv på denne enhed.</string>
     <!-- Restore Complete bottom sheet dialog button text to dismiss sheet -->
     <string name="RestoreCompleteBottomSheet_button">Okay</string>
-
-    <!-- No Backup to Restore screen title -->
-    <string name="NoBackupToRestore_title">Ingen sikkerhedskopi til gendannelse</string>
-    <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">Da du skifter fra iPhone til Android, er den eneste måde at overføre dine beskeder og medier på ved at aktivere Sikre Signal-sikkerhedskopier på din gamle enhed.</string>
-    <!-- No Backup to Restore step 1 to enable backups on old device -->
-    <string name="NoBackupToRestore_step1">Åbn Signal på din gamle enhed</string>
-    <!-- No Backup to Restore step 2 to enable backups on old device -->
-    <string name="NoBackupToRestore_step2">Tryk på Indstillinger &gt; Sikkerhedskopier</string>
-    <!-- No Backup to Restore step 3 to enable backups on old device -->
-    <string name="NoBackupToRestore_step3">Slå sikkerhedskopiering til, og vent til din sikkerhedskopiering er færdig</string>
-    <!-- No backup to Restore tonal cta to skip restore -->
-    <string name="NoBackupToRestore_skip_restore">Spring gendannelse over</string>
 
     <!-- Dialog title when the recovery key change limit is reached -->
     <string name="MessageBackupsKeyRecordScreen__limit_reached_title">Maks. antal gendannelsesnøgler er nået</string>

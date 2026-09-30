@@ -556,41 +556,6 @@
     <string name="DeviceTransferComplete__your_account_is_now_on_this_device">アカウントがこの端末へ移行されました。</string>
     <string name="DeviceTransferComplete__continue_registration">続行</string>
 
-    <!-- Create profile screen -->
-    <!-- Title displayed at the top of the create-profile screen during registration. -->
-    <string name="CreateProfileScreen__set_up_your_profile">プロフィールの設定</string>
-    <!-- Subtitle on create-profile screen explaining that the profile is end-to-end encrypted and visible to recipients. -->
-    <string name="CreateProfileScreen__your_profile_is_end_to_end_encrypted">あなたのプロフィールとその更新情報は、メッセージの相手、連絡先、グループに表示されます。</string>
-    <!-- Label/hint for the first-name field, indicating it is required. -->
-    <string name="CreateProfileScreen__first_name_required">名 (必須)</string>
-    <!-- Label/hint for the last-name field, indicating it is optional. -->
-    <string name="CreateProfileScreen__last_name_optional">姓 (任意)</string>
-    <!-- Action button text to advance from create-profile screen. -->
-    <string name="CreateProfileScreen__next">次へ</string>
-    <!-- Content description for the avatar selection control. -->
-    <string name="CreateProfileScreen__set_avatar_description">アバターを設定</string>
-
-    <!-- Phone number discoverability picker -->
-    <!-- Title row label shown on the create-profile screen pointing at the discoverability picker. -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">私を電話番号から検索できる人は？</string>
-    <!-- Description shown on the picker when "Everyone" is selected. -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">あなたの電話番号を知っている人は誰でも、あなたがSignal利用者であることがわかり、チャットを始めることができます。</string>
-    <!-- Description shown on the picker when "Nobody" is selected. -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">あなたからメッセージを送るか、以前からチャットをやりとりしていない限り、あなたがSignalを利用していることは誰にもわかりません。</string>
-    <!-- Radio option label for "Everyone can find me by number". -->
-    <string name="PhoneNumberPrivacy_everyone">全員</string>
-    <!-- Radio option label for "Nobody can find me by number". -->
-    <string name="PhoneNumberPrivacy_nobody">なし</string>
-    <!-- Title for the confirmation dialog shown when the user selects "Nobody". -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">本当に復元しますか？</string>
-    <!-- Body for the confirmation dialog shown when the user selects "Nobody". -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">「私を電話番号から検索できる人」を「なし」に設定すると、Signal上で他のユーザーはあなたを見つけにくくなります。</string>
-    <!-- Cancel button on the "Nobody" confirmation dialog. -->
-    <string name="PhoneNumberPrivacySettingsFragment__cancel">キャンセル</string>
-    <!-- Save button on the discoverability picker. -->
-    <string name="PhoneNumberDiscoverabilityScreen__save">保存</string>
-    <!-- Content description for the back arrow on the discoverability picker. -->
-    <string name="PhoneNumberDiscoverabilityScreen__back">戻る</string>
     <!-- Error message shown when the captcha fails to load. -->
     <string name="CaptchaScreen__failed_to_load_captcha">キャプチャの読み込みに失敗しました</string>
     <!-- Button to cancel out of the captcha screen. -->
@@ -682,7 +647,7 @@
     <!-- Action button that stores the Signal Login in the device password manager. -->
     <string name="SignalLoginInfoScreen__save_to_password_manager">パスワードマネージャーに保存する</string>
     <!-- Toast shown when the user taps the disabled save to password manager button and the device has no password manager. -->
-    <string name="SignalLoginInfoScreen__no_password_manager_available">パスワードマネージャーが設定されていないか、使用しているパスワードマネージャーがサポートされていません。</string>
+    <string name="SignalLoginInfoScreen__no_password_manager_available">You don\'t have a password manager set up.</string>
     <!-- Action button for users who would rather write the Signal Login down themselves. -->
     <string name="SignalLoginInfoScreen__save_manually">手動で保存</string>
     <!-- Error shown when the Signal Login could not be stored in the password manager. -->

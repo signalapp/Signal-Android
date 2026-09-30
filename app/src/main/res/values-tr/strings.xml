@@ -863,23 +863,8 @@
     <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Ona mesaj göndermediğin veya mevcut bir sohbetin olmadığı sürece kimse Signal\'de olduğunu göremez.</string>
 
     <!-- ChooseBackupFragment -->
-    <string name="ChooseBackupFragment__restore_from_backup">Yedekten geri yüklensin mi?</string>
-    <string name="ChooseBackupFragment__restore_your_messages_and_media">İleti ve ileti içeriklerinizi yerel bir yedekten geri yükleyin. Eğer şimdi yüklemezseniz, daha sonra yükleyemezsiniz.</string>
-    <string name="ChooseBackupFragment__icon_content_description">Yedekten geri yükle simgesi</string>
-    <string name="ChooseBackupFragment__choose_backup">Yedeği seç</string>
-    <string name="ChooseBackupFragment__learn_more">Dahasını öğrenin</string>
 
     <!-- RestoreBackupFragment -->
-    <string name="RestoreBackupFragment__restore_complete">Geri yükleme tamamlandı</string>
-    <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Yedekleri kullanmayı sürdürmek için, bir dizin seçin. Yeni yedekler bu seçilen konuma kaydedilecektir.</string>
-    <string name="RestoreBackupFragment__choose_folder">Klasör seçin</string>
-    <string name="RestoreBackupFragment__not_now">Şimdi değil</string>
-    <!-- Couldn\'t find the selected backup -->
-    <string name="RestoreBackupFragment__backup_not_found">Yedek bulunamadı.</string>
-    <!-- Couldn\'t read the selected backup -->
-    <string name="RestoreBackupFragment__backup_could_not_be_read">Yedek okunamadı.</string>
-    <!-- Backup has an unsupported file extension -->
-    <string name="RestoreBackupFragment__backup_has_a_bad_extension">Yedek kötü bir uzantıya sahip.</string>
 
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
@@ -1416,60 +1401,6 @@
     <string name="ManageGroupActivity_add_group_description">Grup tanımı ekle…</string>
 
     <!-- RemoteRestoreActivity -->
-    <!-- Progress dialog label when downloading a backup -->
-    <string name="RemoteRestoreActivity__downloading_backup">Yedekleme indiriliyor…</string>
-    <!-- Progress dialog label when restoring a backup -->
-    <string name="RemoteRestoreActivity__restoring_messages">Mesajlar geri yükleniyor…</string>
-    <!-- Progress dialog label when finishing a backup restore -->
-    <string name="RemoteRestoreActivity__finishing_restore">Tamamlanıyor…</string>
-    <!-- Progress dialog label while awaiting updates -->
-    <string name="RemoteRestoreActivity__restoring">Geri yükleniyor…</string>
-    <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
-    <string name="RemoteRestoreActivity__s_of_s_s">%1$s / %2$s (%3$s)</string>
-    <!-- Feature list media label for paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_media">Medyanın tamamı</string>
-    <!-- Feature list media label for free tier. Placeholder is days, and is currently fixed at 30. -->
-    <string name="RemoteRestoreActivity__your_last_d_days_of_media">Medyadaki son %1$d günün</string>
-    <!-- Feature list message label for free and paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_messages">Mesajlarının tamamı</string>
-    <!-- Screen title for restoring from backup -->
-    <string name="RemoteRestoreActivity__restore_from_backup">Yedekten geri yükle</string>
-    <!-- Section title for explaining what your backup includes -->
-    <string name="RemoteRestoreActivity__your_backup_includes">Yedeklemen şunlardan oluşur:</string>
-    <!-- Primary action button copy for starting restoration -->
-    <string name="RemoteRestoreActivity__restore_backup">Yedeği geri yükle</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made. %1$s is replaced with the date (e.g. March 5, 2024) and %2$s is replaced with the time (e.g. 9:00am) -->
-    <string name="RemoteRestoreActivity__backup_created_at">Son yedeklemen %1$s tarihinde %2$s saatinde yapılmıştır.</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
-    <string name="RemoteRestoreActivity__backup_created_at_with_size">Son yedeklemen %1$s tarihinde %2$s saatinde yapılmıştır. Yedekleme boyutun %3$s.</string>
-    <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
-    <string name="RemoteRestoreActivity__fetching_backup_details">Yedekleme ayrıntıları getiriliyor…</string>
-    <!-- Text label button to skip restore from remote -->
-    <string name="RemoteRestoreActivity__skip_restore">Geri yüklemeyi atla</string>
-    <!-- Dialog title displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__couldnt_transfer">Aktarımı tamamlanamadı</string>
-    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Yedekleme geri yüklenemiyor</string>
-    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">Yedeklemen geri yüklenirken bir hata oluştu. Yedeklemen kurtarılamaz. Lütfen yardım için destek ekibiyle iletişime geç.</string>
-    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Destekle iletişime geç</string>
-    <!-- Dialog message displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__error_occurred">Bir hata oluştu ve hesabın aktarılamadı. Aktarım yöntemini seçerek tekrar dene.</string>
-    <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
-    <string name="RemoteRestoreActivity__couldnt_restore">Bu yedekleme geri yüklenemedi</string>
-    <!-- Dialog message explaining that an update to Signal is required to restore the backup. -->
-    <string name="RemoteRestoreActivity__update_latest">Signal\'in bu sürümü yedeklemeni geri yükleyemez. En son sürüme güncelle ve tekrar dene.</string>
-    <!-- Text on button that when pressed will redirect them to update Signal -->
-    <string name="RemoteRestoreActivity__update_signal">Signal\'i Güncelle</string>
-    <!-- Text label button to dismiss the dialog -->
-    <string name="RemoteRestoreActivity__not_now">Şimdi değil</string>
-    <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Medyan arka planda geri yüklenecektir. Şimdi geri yüklememeyi seçersen, daha sonra geri yükleyemezsin.</string>
-    <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">Bu cihaz artık kayıtlı değil</string>
-    <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">Bunun nedeni büyük olasılıkla Signal hesabının farklı bir cihazda kaydedilmiş olmasıdır.</string>
 
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
@@ -2234,17 +2165,6 @@
     <string name="PinRestoreLockedFragment_create_new_pin">Yeni PIN oluştur</string>
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
-    <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
-    <string name="ReRegisterWithPinFragment_send_sms_code">SMS kodu gönder</string>
-    <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">Signal Kaydı - Android için PIN\'i yeniden kaydetme konusunda yardıma ihtiyacın mı var</string>
-    <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">PIN\'in, sayısal veya alfanumerik karakterleri kullanabileceğin %1$d+ haneli bir koddur.\n\nPIN\'ini hatırlayamıyorsan yeni bir tane oluşturabilirsin.</string>
-    <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">PIN\'ini hatırlayamıyorsan yeni bir tane oluşturabilirsin.</string>
-    <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">PIN tahminlerin tükendi ancak yine de yeni bir PIN oluşturarak Signal hesabına erişebilirsin.</string>
-
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Uyarı</string>
     <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">PIN\'i devre dışı bırakırsan elle yedekleyip geri yüklemediğin sürece Signal\'i yeniden kaydettiğinde tüm verilerini kaybedersin. PIN devre dışı iken Kayıt Kilidini açamazsın.</string>
@@ -2324,6 +2244,12 @@
     <string name="WebRtcCallActivity__open_settings">Ayarları aç</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">Şimdi değil</string>
+    <!-- Message for dialog shown at the start of a call when the system battery setting for Signal is "Restricted" -->
+    <string name="WebRtcCallActivity__others_may_not_be_able_to_hear_you_when_your_screen_turns_off">Others may not be able to hear you and the call may disconnect when your screen turns off. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
+    <!-- Title for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__others_couldnt_hear_you">Others couldn\'t hear you</string>
+    <!-- Message for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__your_microphone_was_muted_while_signal_was_in_the_background">Your microphone was muted while Signal was in the background. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
     <!-- Title for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__approve_d_requests">
         <item quantity="one">%1$d istek onaylansın mı?</item>
@@ -2639,50 +2565,20 @@
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Girdiğiniz numara (%1$s) geçersiz.
     </string>
 
-    <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">Aşağıdaki telefon numarası doğru mu?</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
     <string name="RegistrationActivity_additional_verification_required">Ek doğrulama gerekli</string>
-    <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">Bu numaraya bir doğrulama kodu gönderilecektir. Telefon operatörü ücretleri uygulanabilir.</string>
-    <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Doğrulama kodu alacaksınız. Tarife ücreti uygulanabilir.</string>
-    <!-- Hint text to select a country -->
-    <string name="RegistrationActivity_select_a_country">Bir ülke seç</string>
-    <!-- Hint text explaining that this is where the country code should go -->
-    <string name="RegistrationActivity_default_country_code">0</string>
-    <string name="RegistrationActivity_edit_number">Numarayı düzenle</string>
-    <string name="RegistrationActivity_missing_google_play_services">Google Play Hizmetleri eksik</string>
-    <string name="RegistrationActivity_this_device_is_missing_google_play_services">Bu cihazda Google Play Hizmetleri bulunmamakta. Signal\'i kullanmaya devam edebilirsiniz ancak bu yapılandırma şekli azaltılmış güvenirlik veya performans gibi sonuçları doğurabilir. \n\nEğer ileri düzey kullanıcı değilseniz, alternatif Android ROM kullanmıyorsanız, veya bunu bir hata olarak görüyorsanız, lütfen sorun giderme konusunda yardım almak için support@signal.org adresinden iletişime geçiniz</string>
-    <string name="RegistrationActivity_i_understand">Anladım</string>
-    <string name="RegistrationActivity_play_services_error">Play Hizmetleri Hatası</string>
-    <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Hizmetleri güncelleniyor veya geçiçi olarak kullanılamaz durumda. Lütfen tekrar deneyiniz.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Bu numarayı kaydettirmek için çok fazla deneme yaptınız. Lütfen daha sonra tekrar deneyiniz.</string>
-    <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">Bu numarayı kaydetmek için çok fazla girişimde bulundun. Lütfen %1$s içinde tekrar dene.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Hizmete bağlanılamadı. Lütfen ağ bağlantınızı kontrol edip tekrar deneyin.</string>
     <!-- Dialog error message shown when we are unable to send an SMS to the user\'s number -->
     <string name="RegistrationActivity_sms_provider_error">Numarana SMS gönderemiyoruz. Lütfen birkaç saat sonra tekrar dene.</string>
-    <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Sana SMS yoluyla bir doğrulama kodu gönderemedik. Bunun yerine kodunu sesli aramayla almayı dene.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">Doğrulama kodu istenemiyor. Lütfen ağ bağlantını kontrol edip tekrar dene.</string>
-    <string name="RegistrationActivity_non_standard_number_format">Standart olmayan numara formatı</string>
-    <!-- Dialog message shown to confirm when entering phone number (first placeholder) is normalized and formatted differently by the app (second placeholder). -->
-    <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Girdiğin numara (%1$s) standart olmayan bir formatta gibi görünüyor.\n\n%2$s mi demek istedin?</string>
-    <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Telefon Numarası Formatı</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="one">Artık bir hata ayıklama günlüğü göndermekten %1$d adım uzaktasınız.</item>
         <item quantity="other">Artık bir hata ayıklama günlüğü göndermekten %1$d adım uzaktasınız.</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">İnsan olduğunuzu doğrulamamız gerekiyor.</string>
-    <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
-    <string name="RegistrationActivity_voice_call">Sesli arama</string>
-    <!-- Dialog button to cancel the pending action and return to the previous state. -->
-    <string name="RegistrationActivity_cancel">İptal</string>
     <string name="RegistrationActivity_next">İleri</string>
-    <!-- Title of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_phone_number">Telefon numarası</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">%1$s numarasına gönderdiğimiz kodu girin</string>
 
     <string name="RegistrationActivity_phone_number_description">Telefon numarası</string>
@@ -2881,6 +2777,8 @@
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Çıkartma paketi yüklenemedi</string>
     <!-- Bottom sheet describing a sticker. First placeholder is the title of the sticker pack and second is the author -->
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
+    <!-- Bottom sheet option that opens the pack the sticker belongs to -->
+    <string name="StickerPreviewBottomSheet__view_pack">View pack</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">Kaydet</string>
@@ -3619,8 +3517,6 @@
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Arama bildirimlerini almak için Ayarlar seçeneğine dokunun ve \"Batarya\" ayarlarında arka plan faaliyetini etkinleştirin.</string>
 
     <!-- country_selection_fragment -->
-    <string name="country_selection_fragment__loading_countries">Ülkeler yükleniyor…</string>
-    <string name="country_selection_fragment__search">Ara</string>
 
     <string name="device_list_fragment__link_new_device">Yeni cihaz bağla</string>
 
@@ -4454,6 +4350,8 @@
     <string name="conversation_selection__menu_pin_message">Sabitle</string>
     <!-- Button to unpin a message -->
     <string name="conversation_selection__menu_unpin_message">Sabitlemeyi kaldır</string>
+    <!-- Button to open the sticker pack a sticker message came from -->
+    <string name="conversation_selection__menu_view_sticker_pack">View pack</string>
 
     <!-- conversation_expiring_on -->
 
@@ -4644,14 +4542,11 @@
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">PIN\'inizi girin</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Bu hesap için oluşturduğunuz PIN kodunu girin. Bu kod, SMS doğrulama kodunuzdan farklıdır.</string>
-    <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
-    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Hesabın için oluşturduğun PIN\'i gir.</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Yanlış PIN. Tekrar deneyin.</string>
     <string name="RegistrationLockFragment__forgot_pin">PIN\'inizi mi unuttunuz?</string>
     <string name="RegistrationLockFragment__incorrect_pin">Yanlış PIN</string>
     <string name="RegistrationLockFragment__forgot_your_pin">PIN\'inizi mi unuttunuz?</string>
     <string name="RegistrationLockFragment__not_many_tries_left">Deneme hakkınız azaldı!</string>
-    <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal Kaydı -  Android için PIN ile ilgili Yardıma mı İhtiyacınız Var (v2 PIN)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
         <item quantity="one">Gizlilik ve güvenliğin için PIN\'ini kurtarmanın yolu yoktur. Eğer PIN\'ini hatırlayamıyorsan %1$d gün hareketsizlik sonrasında SMS ile tekrar PIN\'inini doğrulamayı deneyebilirsin. Bu durumda hesabın ve tüm içeriğin silinecektir.</item>
@@ -4706,22 +4601,6 @@
     <string name="backup_enable_dialog__you_must_have_this_passphrase">Bir yedeği geri yüklemek için bu parolaya ihtiyacınız var.</string>
     <string name="backup_enable_dialog__folder">Dizin</string>
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Bu parolayı kaydettim. Parola olmadan yedeği geri yükleyemem.</string>
-    <string name="registration_activity__restore_backup">Yedeği geri yükle</string>
-    <!-- Text label button to skip restoring -->
-    <string name="registration_activity__skip_restore">Geri yüklemeyi atla</string>
-    <!-- Title for dialog to enter in the backup passphrase -->
-    <string name="RegistrationActivity_enter_backup_passphrase">Yedek parolasını giriniz</string>
-    <string name="RegistrationActivity_restore">Geri yükle</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">Signal\'in daha yeni sürümlerinden yedek alınamaz</string>
-    <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
-    <string name="RegistrationActivity_backup_failure_foreign_key">Yedekleme hatalı biçimlendirilmiş veriler içeriyor</string>
-    <string name="RegistrationActivity_incorrect_backup_passphrase">Yedek parolası yanlış</string>
-    <string name="RegistrationActivity_checking">Kontrol ediliyor…</string>
-    <string name="RegistrationActivity_d_messages_so_far">Şu ana kadar %1$d ileti…</string>
-    <string name="RegistrationActivity_restore_from_backup">Yedekten geri yüklensin mi?</string>
-    <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">İleti ve ileti içeriklerinizi yerel bir yedekten geri yükleyin. Eğer şimdi yüklemezseniz, daha sonra yükleyemezsiniz.</string>
-    <string name="RegistrationActivity_backup_size_s">Yedek boyutu: %1$s</string>
-    <string name="RegistrationActivity_backup_timestamp_s">Yedekleme zamanı: %1$s</string>
     <string name="BackupDialog_enable_local_backups">Yerel yedekler etkinleştirilsin mi?</string>
     <string name="BackupDialog_enable_backups">Yedekleri etkinleştir</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Lütfen onay kutusunu işaretleyerek anladığınızı onaylayın.</string>
@@ -4757,7 +4636,6 @@
     <string name="RegistrationActivity_call_me_instead_available_in">Beni ara (%1$02d:%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
     <string name="RegistrationActivity_resend_sms_available_in">Kodu Yeniden Gönder (%1$02d:%2$02d)</string>
-    <string name="RegistrationActivity_contact_signal_support">Signal Destek Ekibiyle İletişime Geç</string>
     <string name="RegistrationActivity_code_support_subject">Signal Kaydı - Android için Doğrulama Kodu</string>
     <string name="RegistrationActivity_incorrect_code">Geçersiz kod</string>
     <string name="BackupUtil_never">Asla</string>
@@ -4879,25 +4757,8 @@
     <string name="TransferOrRestoreFragment__restore_from_local_backup">Yerel yedeklemeni geri yükle</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
-    <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Eski Android cihazınızda Signal\'i açın</string>
-    <string name="NewDeviceTransferInstructions__continue">Devam Et</string>
-    <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Ayarları açmak için sol üstteki profil fotoğrafınıza dokunun</string>
-    <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_account">"\"Hesap\" seçeneğine tıklayın"</string>
-    <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
-    <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"Öncelikle \"Hesabı Aktar\" seçeneğine, ardından iki cihazda da \"Devam Et\" seçeneğine dokunun"</string>
 
     <!-- NewDeviceTransferSetupFragment -->
-    <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Eski Android cihaza bağlanmaya hazırlanılıyor…</string>
-    <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Biraz bekleyin, yakında hazır olacak</string>
-    <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Eski Android cihazın bağlanması bekleniyor…</string>
-    <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal eski Android cihazınızı keşfetmek ve bağlamak için konum erişimine ihtiyaç duyar.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal eski Android cihazınızı keşfetmek ve bağlamak için konum hizmetlerinin etkinleştirilmesine ihtiyaç duyar</string>
-    <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal eski Android cihazınızı keşfetmek ve bağlamak için kablosuzun etkinleştirilmesine ihtiyaç duyar. Kablosuzun açık olması gereklidir fakat herhangi bir kablosuz ağa bağlı olması gerekli değildir.</string>
-    <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Üzgünüz, görünüşe göre bu cihaz Wi-Fi Direct desteklemiyor. Signal eski Android cihazınızı keşfetmek ve bağlamak için Wi-Fi Direct kullanır. Eski Android cihazınızdaki hesabınızı geri yüklemek için yedek kullanabilirsiniz.</string>
-    <string name="NewDeviceTransferSetup__restore_a_backup">Yedeği geri yükle</string>
-    <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Eski Android cihazınıza bağlanmaya çalışılırken beklenmedik bir hata oluştu.</string>
 
     <!-- OldDeviceTransferSetupFragment -->
     <string name="OldDeviceTransferSetup__searching_for_new_android_device">Yeni Android cihaz aranıyor…</string>
@@ -4941,9 +4802,6 @@
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Diğer cihazınızda Devam seçeneğine dokunun…</string>
 
     <!-- NewDeviceTransferFragment -->
-    <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Daha yeni bir Signal sürümünden aktarım yapılamaz</string>
-    <!-- Error message indicating that we could not finish the user\'s device transfer. Displayed in a toast at the bottom of the screen. -->
-    <string name="NewDeviceTransfer__failure_foreign_key">Aktarılan veriler hatalı biçimlendirilmiş</string>
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">Veri aktarılıyor</string>
@@ -4982,10 +4840,6 @@
     <string name="OldDeviceTransferComplete__close">Kapat</string>
 
     <!-- NewDeviceTransferComplete -->
-    <string name="NewDeviceTransferComplete__transfer_successful">Aktarım başarılı</string>
-    <string name="NewDeviceTransferComplete__transfer_complete">Aktarım tamamlandı</string>
-    <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">Aktarım sürecini tamamlamak için, kayda devam etmeniz gerekiyor.</string>
-    <string name="NewDeviceTransferComplete__continue_registration">Kayda devam et</string>
 
     <!-- DeviceToDeviceTransferService -->
     <string name="DeviceToDeviceTransferService_content_title">Hesap aktarımı</string>
@@ -8753,219 +8607,6 @@
 
     <!-- ConfirmBackupCancellationDialog -->
 
-    <!-- Row title for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">Eski telefonum var</string>
-    <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_scan_qr">Hızla başlamak için mevcut Signal hesabından bir kare kod tara</string>
-
-    <!-- Row title for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">Eski telefonum yanımda değil</string>
-    <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">Ya da Signal\'i aynı cihaza yeniden yüklüyorsun</string>
-
-    <!-- Screen title for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__restore_or_transfer_account">Hesabı geri yükle veya aktar</string>
-    <!-- Screen subtitle for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__get_your_signal_account">Signal hesabını ve mesaj geçmişini bu cihaza getir.</string>
-    <!-- Option title for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_signal_backup">Signal yedeklemeni geri yükle</string>
-    <!-- Option subtitle for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_your_text_messages_and_media_from">Metin mesajlarını ve medyanı Signal yedekleme planından geri yükle.</string>
-    <!-- Option title for restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_on_device_backup">Cihazda yedeklemeyi geri yükle</string>
-    <!-- Option subtitle fdor restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_your_messages_from">Mesajlarını cihazına kaydettiğin bir yedeklemeden geri yükle.</string>
-    <!-- Option title for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__from_your_old_phone">Eski telefonundan</string>
-    <!-- Option subtitle for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__transfer_directly_from_old">Doğrudan eski Android\'inden aktar</string>
-    <!-- Dialog title shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_title">Geri yükleme atlansın mı?</string>
-    <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">Şimdi geri yüklemeyi atlarsan, daha sonra geri yükleme yapamazsın. Geri yüklemeyi atladıktan sonra yedeklemeleri yeniden etkinleştirirsen, mevcut yedeğin yeni mesaj geçmişinle değiştirilir.</string>
-    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore">Geri yüklemeyi atla</string>
-
-    <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_title">Kurtarma anahtarını gir</string>
-    <!-- Screen subtitle for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_subtitle">Kurtarma anahtarın, hesabını ve verilerini kurtarmak için gereken 64 karakterli bir koddur.</string>
-    <!-- Button to skip entering recovery key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">Kurtarma anahtarın mı yok?</string>
-    <!-- Recovery key text field hint -->
-    <string name="EnterBackupKey_backup_key">Kurtarma anahtarı</string>
-    <!-- Recovery key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">Yedeklemeler, 64 karakterli kurtarma kodu olmadan kurtarılamaz. Kurtarma anahtarını kaybettiysen, Signal yedeklemeni geri yüklemene yardımcı olamaz.</string>
-    <!-- Recovery key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">Eski cihazın varsa, kurtarma anahtarını Ayarlar &gt; Yedeklemeler bölümünden görüntüleyebilirsin. Ardından Kurtarma anahtarını görüntüle tuşuna dokun.</string>
-    <!-- Recovery key not known bottom sheet button to learn more about it -->
-    <string name="EnterBackupKey_learn_more">Daha fazlasını öğren</string>
-    <!-- Recovery key not known bottom sheet button to skip recovery key entry and resume normal reregistration -->
-    <string name="EnterBackupKey_skip_and_dont_restore">Atla ve geri yükleme</string>
-    <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">Hatalı kurtarma anahtarı</string>
-    <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">Signal Güvenli Yedeklemeleri etkinleştirirken kaydettiğin aynı telefon numarası ve 64 karakterlik kurtarma anahtarıyla kaydolduğundan emin ol. Yedeklemeler bu anahtar olmadan kurtarılamaz.</string>
-    <!-- Dialog positive button text to try entering their recovery key again -->
-    <string name="EnterBackupKey_try_again">Tekrar dene</string>
-    <!-- Dialog negative button text to get help with recovery key -->
-    <string name="EnterBackupKey_backup_key_help">Kurtarma anahtarı yardımı</string>
-    <!-- Text field error text when the recovery key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">Hatalı kurtarma anahtarı</string>
-    <!-- Text field error text when the recovery key is too long -->
-    <string name="EnterBackupKey_too_long_error">Çok uzun (%1$d/%2$d)</string>
-    <!-- Text field error when the recovery key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">Geçersiz kurtarma anahtarı</string>
-    <!-- Dialog title shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_not_found">Yedek bulunamadı</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Girdiğin kurtarma anahtarı doğru, ancak bununla ilişkili bir yedekleme yok. Hala eski telefonun varsa, yedeklemelerin etkinleştirildiğinden ve bir yedeklemenin tamamlandığından emin ol ve tekrar dene.</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">Kurtarma anahtarını yanlış girmiş veya eski cihazında en az bir yedeklemeyi tamamlamamış olabilirsin.\n\nSignal Güvenli Yedeklemeleri etkinleştirirken kaydettiğin aynı telefon numarası ve kurtarma anahtarıyla kaydolduğundan emin ol ve eski cihazının bir yedeklemeyi tamamladığını onayla.</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">Kurtarma anahtarı denemelerin tükendi. Güvenliğin için yapabileceğin deneme sayısı sınırlıdır. Bir saat bekleyip tekrar dene.</string>
-    <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
-    <string name="EnterBackupKey_skip_restore">Geri yüklemeyi atla</string>
-    <!-- Dialog title text when encountering backup restore network error -->
-    <string name="EnterBackupKey_cant_restore_backup">Yedekleme geri yüklenemiyor</string>
-    <!-- Dialog body text when encountering backup restore network error -->
-    <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">Yedeklemen şu anda geri yüklenemez. İnternet bağlantını kontrol et ve tekrar dene. </string>
-    <!-- Dialog button text to contact support on network error -->
-    <string name="EnterBackupKey_contact_support">Destekle iletişime geç</string>
-
-    <!-- Email subject when contacting support on a restore backup network issue -->
-    <string name="EnterBackupKey_network_failure_support_email">Signal Android Yedeklemesi geri yükleme ağ hatası</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
-    <!-- Email subject when contacting support on a permanent backup import failure -->
-    <string name="EnterBackupKey_permanent_failure_support_email">Signal Android Yedeklemesi geri yükleme kalıcı hatası</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
-
-    <!-- EnterLocalBackupKeyScreen: Screen title for entering recovery key for local backup restore -->
-    <string name="EnterLocalBackupKeyScreen__enter_your_recovery_key">Kurtarma anahtarını gir</string>
-    <!-- EnterLocalBackupKeyScreen: Screen subtitle explaining what the recovery key is -->
-    <string name="EnterLocalBackupKeyScreen__your_recovery_key_is_a_64_character_code">Kurtarma anahtarın, hesabını ve verilerini kurtarmak için gereken 64 karakterli bir koddur.</string>
-    <!-- EnterLocalBackupKeyScreen: Button text when user does not have a recovery key -->
-    <string name="EnterLocalBackupKeyScreen__no_recovery_key">Kurtarma anahtarın mı yok?</string>
-    <!-- EnterLocalBackupKeyScreen: Button to proceed to next step -->
-    <string name="EnterLocalBackupKeyScreen__next">İleri</string>
-
-    <!-- RestoreLocalBackupDialog: Error message when the selected archive fails to load -->
-    <string name="RestoreLocalBackupDialog__failed_to_load_archive">Arşiv yüklenemedi. Lütfen farklı bir dizin seç.</string>
-    <!-- RestoreLocalBackupDialog: Dismiss button for dialog -->
-    <string name="RestoreLocalBackupDialog__ok">TAMAM</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore">Geri yükleme atlansın mı?</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user about the consequences of skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore_body">Şimdi geri yüklemeyi atlarsan, daha sonra geri yükleme yapamazsın. Geri yüklemeyi atladıktan sonra yedeklemeleri yeniden etkinleştirirsen, mevcut yedeğin yeni mesaj geçmişinle değiştirilir.</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the skip restore dialog -->
-    <string name="RestoreLocalBackupDialog__skip_restore_confirm">Geri yüklemeyi atla</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm restoring a backup from a different account -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account">Yeni hesaba geri yüklensin mi?</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user that the backup was created with a different account and they will lose group memberships -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account_body">Geri yüklediğin yedekleme, farklı bir Signal hesabı kullanılarak oluşturulmuştur. Bu yedeklemeyi yeni bir hesaba geri yükleyebilirsin ancak geri yüklenen grupların bir üyesi olamazsın.</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the restore to new account dialog -->
-    <string name="RestoreLocalBackupDialog__restore">Geri yükle</string>
-
-    <!-- RestoreLocalBackupActivity: Toast message when backup restore fails -->
-    <string name="RestoreLocalBackupActivity__backup_restore_failed">Yedekleme geri yükleme başarısız oldu</string>
-    <!-- RestoreLocalBackupActivity: Screen title shown during restore -->
-    <string name="RestoreLocalBackupActivity__restoring_backup">Yedekleme geri yükleniyor</string>
-    <!-- RestoreLocalBackupActivity: Screen subtitle explaining restore duration -->
-    <string name="RestoreLocalBackupActivity__depending_on_the_size">Yedeklemenin büyüklüğüne bağlı olarak bu işlem birkaç dakika sürebilir.</string>
-    <!-- RestoreLocalBackupActivity: Status text while restoring messages -->
-    <string name="RestoreLocalBackupActivity__restoring_messages">Mesajlar geri yükleniyor…</string>
-    <!-- RestoreLocalBackupActivity: Status text while finalizing restore -->
-    <string name="RestoreLocalBackupActivity__finalizing">Sonuçlandırılıyor…</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore is complete -->
-    <string name="RestoreLocalBackupActivity__restore_complete">Geri yükleme tamamlandı</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore fails -->
-    <string name="RestoreLocalBackupActivity__restore_failed">Geri yükleme başarısız oldu</string>
-    <!-- RestoreLocalBackupActivity: Progress text showing bytes read of total with percentage, e.g. "1.2 MB of 5.0 MB (24%)" -->
-    <string name="RestoreLocalBackupActivity__s_of_s_d_percent">%1$s / %2$s (%%%3$d)</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__cant_restore_backup">Yedekleme geri yüklenemiyor</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__error_occurred_while_restoring">Yedeklemen geri yüklenirken bir hata oluştu. Yedeklemen kurtarılamaz. Lütfen yardım için destek ekibiyle iletişime geç.</string>
-
-    <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
-    <string name="RestoreLocalBackupActivity__contact_support">Destekle iletişime geç</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
-    <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">Cihazda yedeklemeler açılsın mı?</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Cihazda yedeklemeleri kullanmaya devam etmek istiyorsan, bu hesap için özelliği etkinleştirmen gerekir. Bu işlemi her zaman Ayarlar &gt; Yedeklemeler bölümünden gerçekleştirebilirsin.</string>
-
-    <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__turn_on_now">Şimdi aç</string>
-
-    <!-- RestoreLocalBackupActivity: Dismiss button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__not_now">Şimdi değil</string>
-
-    <!-- RestoreLocalBackupActivity: Body text for the dialog shown after a successful restore, prompting the user to choose a backup folder -->
-    <string name="RestoreLocalBackupActivity__choose_a_folder_for_backups">Cihazda yedeklemeleri kullanmaya devam etmek için cihazında yeni yedeklemelerin kaydedileceği bir klasör seç.</string>
-
-    <!-- RestoreLocalBackupActivity: Positive button label for the dialog shown after a successful restore; keeps the current backup folder -->
-    <string name="RestoreLocalBackupActivity__use_current_folder">Mevcut klasörü kullan</string>
-
-    <!-- RestoreLocalBackupActivity: Neutral button label for the dialog shown after a successful restore; opens folder picker to select a different backup location -->
-    <string name="RestoreLocalBackupActivity__choose_new_folder">Yeni klasör seç</string>
-
-    <!-- RestoreLocalBackupActivity: Negative button label for the dialog shown after a successful restore; disables on-device backups -->
-    <string name="RestoreLocalBackupActivity__disable_backups">Yedeklemeleri devre dışı bırak</string>
-
-    <!-- SelectInstructionsSheet: Title for the select backup folder instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_folder">Yedekleme klasörünü seç</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the select this folder button -->
-    <string name="SelectInstructionsSheet__tap_select_this_folder">\"Bu klasörü seç\"e dokun</string>
-    <!-- SelectInstructionsSheet: Instruction not to select individual files -->
-    <string name="SelectInstructionsSheet__do_not_select_individual_files">Dosyaları tek tek seçme</string>
-    <!-- SelectInstructionsSheet: Title for the select backup file instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_file">Yedekleme dosyanı seç</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the backup file saved to device -->
-    <string name="SelectInstructionsSheet__tap_on_the_backup_file">Cihazına kaydettiğin yedekleme dosyasına dokun</string>
-    <!-- SelectInstructionsSheet: Subtitle explaining how to access backup after tapping continue -->
-    <string name="SelectInstructionsSheet__after_tapping_continue">\"Devam et\" seçeneğine dokunduktan sonra yedeklemene şöyle erişebilirsin:</string>
-    <!-- SelectInstructionsSheet: Instruction to select the top-level backup folder -->
-    <string name="SelectInstructionsSheet__select_the_top_level_folder">Yedeklemenin depolandığı en üst klasörü seç</string>
-    <!-- SelectInstructionsSheet: Continue button text -->
-    <string name="SelectInstructionsSheet__continue_button">Devam et</string>
-
-    <!-- SelectLocalBackupScreen: Screen title for restoring on-device backup -->
-    <string name="SelectLocalBackupScreen__restore_on_device_backup">Cihazda yedeklemeyi geri yükle</string>
-    <!-- SelectLocalBackupScreen: Screen subtitle explaining the restore process -->
-    <string name="SelectLocalBackupScreen__restore_your_messages_from_the_backup_folder">Mesajlarını cihazına kaydettiğin yedekleme klasöründen geri yükle. Şimdi geri yüklemezsen, daha sonra geri yükleyemezsin.</string>
-    <!-- SelectLocalBackupScreen: Button to initiate backup restoration -->
-    <string name="SelectLocalBackupScreen__restore_backup">Yedeği geri yükle</string>
-    <!-- SelectLocalBackupScreen: Button to choose an earlier backup when current is latest -->
-    <string name="SelectLocalBackupScreen__choose_an_earlier_backup">Daha önceki bir yedeklemeyi seç</string>
-    <!-- SelectLocalBackupScreen: Button to choose a different backup -->
-    <string name="SelectLocalBackupScreen__choose_a_different_backup">Farklı bir yedekleme seç</string>
-    <!-- SelectLocalBackupScreen: Label for latest backup card -->
-    <string name="SelectLocalBackupScreen__your_latest_backup">Son yedeklemen:</string>
-    <!-- SelectLocalBackupScreen: Label for non-latest backup card -->
-    <string name="SelectLocalBackupScreen__your_backup">Yedeklemen:</string>
-
-    <!-- SelectLocalBackupSheet: Title for backup selection bottom sheet -->
-    <string name="SelectLocalBackupSheet__choose_a_backup_to_restore">Geri yüklemek için bir yedekleme seç</string>
-    <!-- SelectLocalBackupSheet: Subtitle warning about choosing an older backup -->
-    <string name="SelectLocalBackupSheet__choosing_an_older_backup">Daha eski bir yedeklemenin seçilmesi, mesajların veya medyanın kaybolmasıyla sonuçlanabilir.</string>
-    <!-- SelectLocalBackupSheet: Continue button text -->
-    <string name="SelectLocalBackupSheet__continue_button">Devam et</string>
-
-    <!-- SelectLocalBackupTypeScreen: Screen title for selecting backup type -->
-    <string name="SelectLocalBackupTypeScreen__restore_on_device_backup">Cihazda yedeklemeyi geri yükle</string>
-    <!-- SelectLocalBackupTypeScreen: Screen subtitle explaining restore options -->
-    <string name="SelectLocalBackupTypeScreen__restore_your_messages_from_the_backup">Mesajlarını cihazına kaydettiğin yedekten geri yükle. Şimdi geri yüklemezsen, daha sonra geri yükleyemezsin.</string>
-    <!-- SelectLocalBackupTypeScreen: Button for users who saved backup as single file -->
-    <string name="SelectLocalBackupTypeScreen__i_saved_my_backup_as_a_single_file">Yedeklememi tek bir dosya olarak kaydettim</string>
-    <!-- SelectLocalBackupTypeScreen: Card title for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__choose_backup_folder">Yedekleme klasörü seç</string>
-    <!-- SelectLocalBackupTypeScreen: Card description for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__select_the_folder_on_your_device">Cihazında yedeklemenin depolandığı klasörü seç</string>
-
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">Signal Android Yedeklemesini dışa aktarmada ağ hatası</string>
     <!-- Email filter when contacting support on a create backup failure -->
@@ -8979,23 +8620,6 @@
     <string name="ContactSupportDialog_submit_with_debug">Hata Ayıklama Günlüğü ile gönder</string>
     <!-- Button option to not submit debug log when contacting support -->
     <string name="ContactSupportDialog_submit_without_debug">Hata Ayıklama Günlüğü olmadan gönder</string>
-
-    <!-- Title for restore via qr screen -->
-    <string name="RestoreViaQr_title">Bu kodu eski telefonunla tara</string>
-    <!-- First instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_1">Signal\'i eski cihazında aç</string>
-    <!-- Second instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_2">Kamera simgesine dokun </string>
-    <!-- Third instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_3">Bu kodu kamera ile tara</string>
-    <!-- Error message shown when qr code could not be loaded -->
-    <string name="RestoreViaQr_qr_code_error">Kare kod oluşturulamıyor</string>
-    <!-- Status message shown when qr code already scanned by other device -->
-    <string name="RestoreViaQr_qr_code_scanned">Eski cihazda tarandı</string>
-    <!-- Error button text to retry getting a qr code -->
-    <string name="RestoreViaQr_retry">Tekrar dene</string>
-    <!-- Error message shown when register after receiving the provisioning message failed -->
-    <string name="RestoreViaQr_registration_error">Bir hata oluştu ve hesabın aktarılamadı. Kare kodu tekrar tarayarak yeniden dene.</string>
 
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">Hesabı aktar</string>
@@ -9037,19 +8661,6 @@
     <string name="RestoreCompleteBottomSheet_transfer_complete_message">Signal hesabın ve mesajların diğer cihazına aktarıldı. Signal artık bu cihazda etkin değil.</string>
     <!-- Restore Complete bottom sheet dialog button text to dismiss sheet -->
     <string name="RestoreCompleteBottomSheet_button">Tamam</string>
-
-    <!-- No Backup to Restore screen title -->
-    <string name="NoBackupToRestore_title">Geri yüklenecek yedekleme yok</string>
-    <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">iPhone\'dan Android\'e geçtiğin için mesajlarını ve medyanı aktarmanın tek yolu, eski cihazındaki Signal Güvenli Yedeklemeleri etkinleştirmektir.</string>
-    <!-- No Backup to Restore step 1 to enable backups on old device -->
-    <string name="NoBackupToRestore_step1">Signal\'i eski cihazında aç</string>
-    <!-- No Backup to Restore step 2 to enable backups on old device -->
-    <string name="NoBackupToRestore_step2">Ayarlar &gt; Yedeklemeler ögesine dokun</string>
-    <!-- No Backup to Restore step 3 to enable backups on old device -->
-    <string name="NoBackupToRestore_step3">Yedeklemeleri etkinleştir ve yedeklemen tamamlanana kadar bekle</string>
-    <!-- No backup to Restore tonal cta to skip restore -->
-    <string name="NoBackupToRestore_skip_restore">Geri yüklemeyi atla</string>
 
     <!-- Dialog title when the recovery key change limit is reached -->
     <string name="MessageBackupsKeyRecordScreen__limit_reached_title">Kurtarma anahtarı limitine ulaşıldı</string>

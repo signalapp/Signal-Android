@@ -556,41 +556,6 @@
     <string name="DeviceTransferComplete__your_account_is_now_on_this_device">你嘅帳戶而家喺呢部機登入咗。</string>
     <string name="DeviceTransferComplete__continue_registration">繼續</string>
 
-    <!-- Create profile screen -->
-    <!-- Title displayed at the top of the create-profile screen during registration. -->
-    <string name="CreateProfileScreen__set_up_your_profile">設定您嘅個人資料</string>
-    <!-- Subtitle on create-profile screen explaining that the profile is end-to-end encrypted and visible to recipients. -->
-    <string name="CreateProfileScreen__your_profile_is_end_to_end_encrypted">同你通訊嘅人、聯絡人同群組將會睇到你嘅個人檔案同埋相關嘅更改。</string>
-    <!-- Label/hint for the first-name field, indicating it is required. -->
-    <string name="CreateProfileScreen__first_name_required">名 (必填)</string>
-    <!-- Label/hint for the last-name field, indicating it is optional. -->
-    <string name="CreateProfileScreen__last_name_optional">姓 (選填)</string>
-    <!-- Action button text to advance from create-profile screen. -->
-    <string name="CreateProfileScreen__next">下一步</string>
-    <!-- Content description for the avatar selection control. -->
-    <string name="CreateProfileScreen__set_avatar_description">設定頭像</string>
-
-    <!-- Phone number discoverability picker -->
-    <!-- Title row label shown on the create-profile screen pointing at the discoverability picker. -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">邊個可以用電話號碼搵到我？</string>
-    <!-- Description shown on the picker when "Everyone" is selected. -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">任何有你電話冧把嘅人都會睇到你用緊 Signal，同埋可以開始同你傾計。</string>
-    <!-- Description shown on the picker when "Nobody" is selected. -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">除非你向對方傳送訊息或者雙方已經有聊天紀錄，如果唔係冇人會睇到你用緊 Signal。</string>
-    <!-- Radio option label for "Everyone can find me by number". -->
-    <string name="PhoneNumberPrivacy_everyone">任何人都得</string>
-    <!-- Radio option label for "Nobody can find me by number". -->
-    <string name="PhoneNumberPrivacy_nobody">邊個都唔得</string>
-    <!-- Title for the confirmation dialog shown when the user selects "Nobody". -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">你係咪確定？</string>
-    <!-- Body for the confirmation dialog shown when the user selects "Nobody". -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">將「邊個可以用電話號碼搵到我」設定為「邊個都唔得」，會令其他人無咁容易喺 Signal 度搵到你。</string>
-    <!-- Cancel button on the "Nobody" confirmation dialog. -->
-    <string name="PhoneNumberPrivacySettingsFragment__cancel">取消</string>
-    <!-- Save button on the discoverability picker. -->
-    <string name="PhoneNumberDiscoverabilityScreen__save">儲存</string>
-    <!-- Content description for the back arrow on the discoverability picker. -->
-    <string name="PhoneNumberDiscoverabilityScreen__back">返轉頭</string>
     <!-- Error message shown when the captcha fails to load. -->
     <string name="CaptchaScreen__failed_to_load_captcha">載入唔到「我不是機械人」驗證</string>
     <!-- Button to cancel out of the captcha screen. -->
@@ -682,7 +647,7 @@
     <!-- Action button that stores the Signal Login in the device password manager. -->
     <string name="SignalLoginInfoScreen__save_to_password_manager">儲存去密碼管理器</string>
     <!-- Toast shown when the user taps the disabled save to password manager button and the device has no password manager. -->
-    <string name="SignalLoginInfoScreen__no_password_manager_available">你冇設定密碼管理器，或者你用緊嘅密碼管理器唔支援。</string>
+    <string name="SignalLoginInfoScreen__no_password_manager_available">You don\'t have a password manager set up.</string>
     <!-- Action button for users who would rather write the Signal Login down themselves. -->
     <string name="SignalLoginInfoScreen__save_manually">人手記低佢</string>
     <!-- Error shown when the Signal Login could not be stored in the password manager. -->

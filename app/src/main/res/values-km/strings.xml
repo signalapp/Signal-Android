@@ -839,23 +839,8 @@
     <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">គ្មាននរណាម្នាក់អាចមើលឃើញអ្នកនៅលើ Signal ទេ លើកលែងតែអ្នកផ្ញើសារទៅពួកគេ ឬមានការជជែកដែលមានស្រាប់ជាមួយពួកគេ។</string>
 
     <!-- ChooseBackupFragment -->
-    <string name="ChooseBackupFragment__restore_from_backup">ស្តារចេញពីការបម្រុងទុក?</string>
-    <string name="ChooseBackupFragment__restore_your_messages_and_media">ស្តារឡើងវិញសាររបស់អ្នក និងមេឌាចេញពីការបម្រុងទុកខាងក្នុង។ បើអ្នកមិនស្តារឡើងវិញឥឡូវទេ អ្នកនឹងមិនអាចស្តារឡើងវិញបានទេនៅពេលក្រោយ។</string>
-    <string name="ChooseBackupFragment__icon_content_description">ស្តារចេញពីរូបតំណាងការបម្រុងទុក</string>
-    <string name="ChooseBackupFragment__choose_backup">ជ្រើសរើស ការបម្រុងទុក</string>
-    <string name="ChooseBackupFragment__learn_more">សិក្សាបន្ថែម</string>
 
     <!-- RestoreBackupFragment -->
-    <string name="RestoreBackupFragment__restore_complete">ការស្តារជោគជ័យ</string>
-    <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">ដើម្បីបន្តប្រើប្រាស់ការបម្រុងទុក សូមជ្រើសរើសថតឯកសារមួយ។ ការបម្រុងទុកថ្មី នឹងត្រូវរក្សាទុកនៅទីតាំងនេះ។</string>
-    <string name="RestoreBackupFragment__choose_folder">ជ្រើសរើសទីតាំងផ្ទុក</string>
-    <string name="RestoreBackupFragment__not_now">ពេលក្រោយ</string>
-    <!-- Couldn\'t find the selected backup -->
-    <string name="RestoreBackupFragment__backup_not_found">រកមិនឃើញការបម្រុងទុកទេ។</string>
-    <!-- Couldn\'t read the selected backup -->
-    <string name="RestoreBackupFragment__backup_could_not_be_read">ការបម្រុងទុកទិន្នន័យមិនអាចអានបានទេ។</string>
-    <!-- Backup has an unsupported file extension -->
-    <string name="RestoreBackupFragment__backup_has_a_bad_extension">ការបម្រុងទុកទិន្នន័យមានផ្នែកបន្ថែមមិនល្អ។</string>
 
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
@@ -1373,60 +1358,6 @@
     <string name="ManageGroupActivity_add_group_description">បន្ថែមការពណ៌នាក្រុម…</string>
 
     <!-- RemoteRestoreActivity -->
-    <!-- Progress dialog label when downloading a backup -->
-    <string name="RemoteRestoreActivity__downloading_backup">កំពុងទាញយកការបម្រុងទុក…</string>
-    <!-- Progress dialog label when restoring a backup -->
-    <string name="RemoteRestoreActivity__restoring_messages">កំពុងស្ដារសារ…</string>
-    <!-- Progress dialog label when finishing a backup restore -->
-    <string name="RemoteRestoreActivity__finishing_restore">កំពុងបញ្ចប់…</string>
-    <!-- Progress dialog label while awaiting updates -->
-    <string name="RemoteRestoreActivity__restoring">កំពុងស្ដារ…</string>
-    <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
-    <string name="RemoteRestoreActivity__s_of_s_s">%1$s នៃ %2$s (%3$s)</string>
-    <!-- Feature list media label for paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_media">មេឌៀទាំងអស់របស់អ្នក</string>
-    <!-- Feature list media label for free tier. Placeholder is days, and is currently fixed at 30. -->
-    <string name="RemoteRestoreActivity__your_last_d_days_of_media">មេឌៀ %1$d ថ្ងៃចុងក្រោយរបស់អ្នក</string>
-    <!-- Feature list message label for free and paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_messages">សារទាំងអស់របស់អ្នក</string>
-    <!-- Screen title for restoring from backup -->
-    <string name="RemoteRestoreActivity__restore_from_backup">ស្តារចេញពីការបម្រុងទុក</string>
-    <!-- Section title for explaining what your backup includes -->
-    <string name="RemoteRestoreActivity__your_backup_includes">ការបម្រុងទុករបស់អ្នករួមមាន៖</string>
-    <!-- Primary action button copy for starting restoration -->
-    <string name="RemoteRestoreActivity__restore_backup">ស្តារការបម្រុងទុក</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made. %1$s is replaced with the date (e.g. March 5, 2024) and %2$s is replaced with the time (e.g. 9:00am) -->
-    <string name="RemoteRestoreActivity__backup_created_at">ការបម្រុងទុកចុងក្រោយរបស់អ្នកត្រូវបានធ្វើឡើងនៅ %1$s ម៉ោង %2$s។</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
-    <string name="RemoteRestoreActivity__backup_created_at_with_size">ការបម្រុងទុកចុងក្រោយរបស់អ្នកត្រូវបានធ្វើឡើងនៅ %1$s ម៉ោង %2$s។ ទំហំបម្រុងទុករបស់អ្នកគឺ %3$s។</string>
-    <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
-    <string name="RemoteRestoreActivity__fetching_backup_details">កំពុងទាញយកព័ត៌មានលម្អិតនៃការបម្រុងទុក…</string>
-    <!-- Text label button to skip restore from remote -->
-    <string name="RemoteRestoreActivity__skip_restore">រំលងការស្តារឡើងវិញ</string>
-    <!-- Dialog title displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__couldnt_transfer">មិនអាចបញ្ចប់ការផ្ទេរបានទេ</string>
-    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">មិនអាចស្តារការបម្រុងទុកបានទេ</string>
-    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">មានបញ្ហាកើតឡើងខណៈពេលកំពុងស្ដារការបម្រុងទុករបស់អ្នក។ ការបម្រុងទុករបស់អ្នកមិនអាចស្តារមកវិញបានទេ។ សូមទាក់ទងទៅកាន់ផ្នែកជំនួយដើម្បីទទួលបានជំនួយ។</string>
-    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">ទាក់ទងផ្នែកជំនួយ</string>
-    <!-- Dialog message displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__error_occurred">បញ្ហាមួយបានកើតឡើង ហើយគណនីរបស់អ្នកមិនអាចផ្ទេរបានទេ។ ព្យាយាមម្តងទៀតដោយជ្រើសរើសវិធីផ្ទេររបស់អ្នក។</string>
-    <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
-    <string name="RemoteRestoreActivity__couldnt_restore">មិនអាចស្តារការបម្រុងទុកនេះបានទេ</string>
-    <!-- Dialog message explaining that an update to Signal is required to restore the backup. -->
-    <string name="RemoteRestoreActivity__update_latest">កំណែ Signal នេះមិនអាចស្ដារការបម្រុងទុករបស់អ្នកបានទេ។ ដំឡើងកំណែទៅកំណែចុងក្រោយបំផុត រួចព្យាយាមម្តងទៀត។</string>
-    <!-- Text on button that when pressed will redirect them to update Signal -->
-    <string name="RemoteRestoreActivity__update_signal">ដំឡើងកំណែ Signal</string>
-    <!-- Text label button to dismiss the dialog -->
-    <string name="RemoteRestoreActivity__not_now">ឥឡូវកុំទាន់</string>
-    <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">មេឌៀរបស់អ្នកនឹងស្ដារនៅផ្ទៃខាងក្រោយ។ ប្រសិនបើអ្នកជ្រើសរើសមិនស្តារឥឡូវនេះទេ អ្នកនឹងមិនអាចស្តារនៅពេលក្រោយបានឡើយ។</string>
-    <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">ឧបករណ៍នេះមិនត្រូវបានចុះឈ្មោះទៀតទេ</string>
-    <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">នេះទំនងជាដោយសារតែអ្នកបានចុះឈ្មោះគណនី Signal របស់អ្នកនៅលើឧបករណ៍ផ្សេង។</string>
 
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
@@ -2165,17 +2096,6 @@
     <string name="PinRestoreLockedFragment_create_new_pin">បង្កើតលេខ PIN ថ្មី</string>
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
-    <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
-    <string name="ReRegisterWithPinFragment_send_sms_code">ផ្ញើលេខកូដតាមសារជាអក្សរ</string>
-    <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">ការចុះឈ្មោះសម្រាប់ Signal - ត្រូវការជំនួយក្នុងការចុះឈ្មោះឡើងវិញនូវលេខកូដសម្ងាត់សម្រាប់ Android</string>
-    <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">លេខកូដសម្ងាត់របស់អ្នកគឺជាលេខកូដ %1$d ខ្ទង់ដែលអ្នកបានបង្កើតឡើង ហើយវាអាចជាលេខ ឬជាអក្សរនិងលេខ។\n\nប្រសិនបើអ្នកចាំលេខកូដសម្ងាត់របស់អ្នកមិនបានទេ អ្នកអាចបង្កើតលេខកូដសម្ងាត់ថ្មី។</string>
-    <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">ប្រសិនបើអ្នកចាំលេខកូដសម្ងាត់របស់អ្នកមិនបានទេ អ្នកអាចបង្កើតលេខកូដសម្ងាត់ថ្មី។</string>
-    <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">ការសាកល្បងទាយស្មានលេខកូដសម្ងាត់របស់អ្នកបានអស់ហើយ ប៉ុន្តែអ្នកនៅតែអាចចូលប្រើគណនី Signal របស់អ្នកបាន ដោយបង្កើតលេខកូដសម្ងាត់ថ្មី។</string>
-
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">ព្រមាន</string>
     <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">បើអ្នកបិទលេខកូដសម្ងាត់ អ្នកនឹងបាត់បង់ទិន្នន័យទាំងអស់ នៅពេលអ្នកចុះឈ្មោះ Signal ឡើងវិញ លើកលែងតែអ្នកបម្រុងទុក និងស្តារឡើងវិញដោយខ្លួនឯង។ អ្នកមិនអាចបើក ការចាក់សោការចុះឈ្មោះ ខណៈពេលដែលលេខកូដសម្ងាត់ត្រូវបានបិទនោះទេ។</string>
@@ -2255,6 +2175,12 @@
     <string name="WebRtcCallActivity__open_settings">បើកការកំណត់</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">ពេលក្រោយ</string>
+    <!-- Message for dialog shown at the start of a call when the system battery setting for Signal is "Restricted" -->
+    <string name="WebRtcCallActivity__others_may_not_be_able_to_hear_you_when_your_screen_turns_off">Others may not be able to hear you and the call may disconnect when your screen turns off. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
+    <!-- Title for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__others_couldnt_hear_you">Others couldn\'t hear you</string>
+    <!-- Message for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__your_microphone_was_muted_while_signal_was_in_the_background">Your microphone was muted while Signal was in the background. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
     <!-- Title for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__approve_d_requests">
         <item quantity="other">អនុញ្ញាត %1$d សំណើឬ?</item>
@@ -2549,49 +2475,19 @@
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">លេខរបស់អ្នក ដែលបានបញ្ជាក់(%1$s) មិនត្រឹមត្រូវ
     </string>
 
-    <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">តើលេខទូរសព្ទខាងក្រោមត្រឹមត្រូវឬទេ?</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
     <string name="RegistrationActivity_additional_verification_required">ទាមទារការផ្ទៀងផ្ទាត់បន្ថែម</string>
-    <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">លេខកូដផ្ទៀងផ្ទាត់នឹងត្រូវបានផ្ញើទៅកាន់លេខនេះ។ អាចនឹងមានការគិតថ្លៃពីក្រុមហ៊ុនសេវាទូរសព្ទ។</string>
-    <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">អ្នកនឹងទទួលបានកូដផ្ទៀងផ្ទាត់។ អត្រាគិតប្រាក់ក្រុមហ៊ុនអាចនឹងត្រូវបានអនុវត្ត។</string>
-    <!-- Hint text to select a country -->
-    <string name="RegistrationActivity_select_a_country">ជ្រើសរើសប្រទេសមួយ</string>
-    <!-- Hint text explaining that this is where the country code should go -->
-    <string name="RegistrationActivity_default_country_code">0</string>
-    <string name="RegistrationActivity_edit_number">កែប្រែលេខ</string>
-    <string name="RegistrationActivity_missing_google_play_services">រកមិនឃើញ Google Play Services</string>
-    <string name="RegistrationActivity_this_device_is_missing_google_play_services">ឧបករណ៍នេះមិនមាន Google Play Services។ អ្នកនៅតែអាចប្រើប្រាស់Signalបាន ប៉ុន្តែលទ្ធផលការកំណត់នេះអាចកាត់បន្ថយទំនុកចិត្ត ឬល្បឿន។ \n\n បើអ្នកមិនមែនជាអ្នកប្រើប្រាស់កម្រិតខ្ពស់ទេ មិនប្រើប្រាស់ Android ROM ផ្សេង ឬជឿជាក់ថាអ្នកកំពុងឃើញបញ្ហានេះ សូមទំនាក់ទំនង support@signal.org សម្រាប់ជួយក្នុងការដោះស្រាយបញ្ហា។</string>
-    <string name="RegistrationActivity_i_understand">ខ្ញុំយល់</string>
-    <string name="RegistrationActivity_play_services_error">Play Services មានបញ្ហាា</string>
-    <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services កំពុងធ្វើបច្ចុប្បន្នភាព ឬមិនអាចប្រើបានជាបណ្តោះអាសន្ន។ សូមព្យាយាមម្តងទៀត។</string>
     <string name="RegistrationActivity_rate_limited_to_service">អ្នកបានសាកល្បងច្រើនដងពេក ដើម្បីចុះឈ្មោះជាមួយលេខទូរស័ព្ទនេះ។ សូមសាកល្បងម្តងទៀតនៅពេលក្រោយ។</string>
-    <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">អ្នកបានព្យាយាមជាច្រើនដងពេកក្នុងការចុះឈ្មោះលេខនេះ។ សូមព្យាយាមម្តងទៀតក្នុងរយៈពេល %1$s។</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">មិនអាចតភ្ជាប់សេវាបាន។ សូមពិនិត្យការតភ្ជាប់បណ្តាញ ហើយព្យាយាមម្តងទៀត។</string>
     <!-- Dialog error message shown when we are unable to send an SMS to the user\'s number -->
     <string name="RegistrationActivity_sms_provider_error">យើងមិនអាចផ្ញើសារ SMS ទៅលេខរបស់អ្នកបានទេ។ សូមព្យាយាមម្តងទៀតក្នុងរយៈពេលពីរបីម៉ោង។</string>
-    <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">យើងមិនអាចផ្ញើលេខកូដផ្ទៀងផ្ទាត់តាមរយៈសារជាអក្សរទេ។ សាកល្បងទទួលលេខកូដរបស់អ្នកតាមរយៈការហៅជាសំឡេងជំនួសវិញ។</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">មិនអាចស្នើសុំលេខកូដផ្ទៀងផ្ទាត់បានទេ។ សូមពិនិត្យមើលការតភ្ជាប់បណ្តាញរបស់អ្នក ហើយព្យាយាមម្តងទៀត។</string>
-    <string name="RegistrationActivity_non_standard_number_format">ទម្រង់លេខមិនស្តង់ដារ</string>
-    <!-- Dialog message shown to confirm when entering phone number (first placeholder) is normalized and formatted differently by the app (second placeholder). -->
-    <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">លេខដែលអ្នកបានបញ្ចូល (%1$s) មានទម្រង់លេខមិនស្តង់ដារ.\n\nតើអ្នកមានន័យថា %2$s?</string>
-    <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - ទម្រង់លេខទូរស័ព្ទ</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="other">You are now %1$d steps away from submitting a debug log.</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">យើងត្រូវផ្ទៀងផ្ទាត់ថាអ្នកជាមនុស្ស។</string>
-    <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
-    <string name="RegistrationActivity_voice_call">ហៅជាសំឡេង</string>
-    <!-- Dialog button to cancel the pending action and return to the previous state. -->
-    <string name="RegistrationActivity_cancel">បោះបង់</string>
     <string name="RegistrationActivity_next">បន្ទាប់</string>
-    <!-- Title of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_phone_number">លេខទូរសព្ទ</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">បញ្ចូលលេខកូដដែលយើងបានផ្ញើទៅ%1$s</string>
 
     <string name="RegistrationActivity_phone_number_description">លេខទូរស័ព្ទ</string>
@@ -2785,6 +2681,8 @@
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">ការផ្ទុកកញ្ចប់ស្ទីកគ័របរាជ័យ</string>
     <!-- Bottom sheet describing a sticker. First placeholder is the title of the sticker pack and second is the author -->
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
+    <!-- Bottom sheet option that opens the pack the sticker belongs to -->
+    <string name="StickerPreviewBottomSheet__view_pack">View pack</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">រក្សាទុក</string>
@@ -3510,8 +3408,6 @@
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">ដើម្បីទទួលសារជូនដំណឹងការហៅ ចុចការកំណត់ និងបើកសកម្មភាពផ្ទៃក្រោយក្នុងការកំណត់ \"ថាមពលថ្ម\"។</string>
 
     <!-- country_selection_fragment -->
-    <string name="country_selection_fragment__loading_countries">កំពុងផ្ទុកប្រទេស…</string>
-    <string name="country_selection_fragment__search">ស្វែងរក</string>
 
     <string name="device_list_fragment__link_new_device">ភ្ជាប់ឧបករណ៍ថ្មី</string>
 
@@ -4333,6 +4229,8 @@
     <string name="conversation_selection__menu_pin_message">ខ្ទាស់</string>
     <!-- Button to unpin a message -->
     <string name="conversation_selection__menu_unpin_message">ឈប់ខ្ទាស់</string>
+    <!-- Button to open the sticker pack a sticker message came from -->
+    <string name="conversation_selection__menu_view_sticker_pack">View pack</string>
 
     <!-- conversation_expiring_on -->
 
@@ -4520,14 +4418,11 @@
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">បញ្ចូលលេខ PIN របស់អ្នក</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">បញ្ចូលលេខ PIN ដែលអ្នកបានបង្កើតសម្រាប់ គណនីរបស់អ្នក។ នេះខុសពីលេខកូដផ្ទៀងផ្ទាត់ពីសារ SMS ។</string>
-    <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
-    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">បញ្ចូលលេខកូដសម្ងាត់ដែលអ្នកបានបង្កើតសម្រាប់គណនីរបស់អ្នក។</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">លេខកូដ PIN មិនត្រឹមត្រូវ។ សាកល្បងម្តងទៀត។</string>
     <string name="RegistrationLockFragment__forgot_pin">ភ្លេចលេខ PIN?</string>
     <string name="RegistrationLockFragment__incorrect_pin">លេខកូដ PIN មិនត្រឹមត្រូវ</string>
     <string name="RegistrationLockFragment__forgot_your_pin">ភ្លេចលេខ PIN របស់អ្នក?</string>
     <string name="RegistrationLockFragment__not_many_tries_left">ការសាកល្បងនៅសល់តិច!</string>
-    <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">ការចុះឈ្មោះ Signal - ត្រូវការជំនួយជាមួយ PIN សម្រាប់ Android (v2 PIN)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
         <item quantity="other">ដើម្បីឯកជនភាព និងសុវត្ថិភាពរបស់អ្នក គ្មានវិធីដើម្បីស្តារលេខកូដសម្ងាត់របស់អ្នកទេ។ បើអ្នកមិនចាំលេខកូដសម្ងាត់របស់អ្នកទេ អ្នកអាចផ្ទៀងផ្ទាត់ឡើងវិញតាមសារ SMS បន្ទាប់ពីមិនមានសកម្មភាពរយៈពេល %1$d ថ្ងៃ។ ក្នុងករណីនេះ គណនីរបស់អ្នកនឹងត្រូវបានលុបចេញ ហើយខ្លឹមសារទាំងអស់នឹងត្រូវលុបចោល។</item>
@@ -4577,22 +4472,6 @@
     <string name="backup_enable_dialog__you_must_have_this_passphrase">អ្នកត្រូវតែមានឃ្លាសម្ងាត់នេះ ដើម្បីស្ដារការបម្រុងទុក។</string>
     <string name="backup_enable_dialog__folder">ថតឯកសារ</string>
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">ខ្ញុំបានកត់ឃ្លាសម្ងាត់ទុកហើយ។ បើគ្មានវា ខ្ញុំនឹងមិនអាចស្តារការបម្រុងទុកបានទេ។</string>
-    <string name="registration_activity__restore_backup">ស្តារការបម្រុងទុក</string>
-    <!-- Text label button to skip restoring -->
-    <string name="registration_activity__skip_restore">រំលងការស្តារឡើងវិញ</string>
-    <!-- Title for dialog to enter in the backup passphrase -->
-    <string name="RegistrationActivity_enter_backup_passphrase">បញ្ចូលឃ្លាសម្ងាត់បម្រុងទុក</string>
-    <string name="RegistrationActivity_restore">ស្តារឡើងវិញ</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">មិនអាចនាំចូលឯកសារបម្រុងទុកពីកំណែ Signal ថ្មីៗទេ</string>
-    <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
-    <string name="RegistrationActivity_backup_failure_foreign_key">ការបម្រុងទុកមានទិន្នន័យខុសទម្រង់</string>
-    <string name="RegistrationActivity_incorrect_backup_passphrase">ឃ្លាសម្ងាត់បម្រុងទុកមិនត្រឹមត្រូវ</string>
-    <string name="RegistrationActivity_checking">កំពុងត្រួតពិនិត្យ…</string>
-    <string name="RegistrationActivity_d_messages_so_far">%1$d សារ ឥឡូវនេះ…</string>
-    <string name="RegistrationActivity_restore_from_backup">ស្តារចេញពីការបម្រុងទុក?</string>
-    <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">ស្តារឡើងវិញសាររបស់អ្នក និងមេឌាចេញពីការបម្រុងទុកខាងក្នុង។ បើអ្នកមិនស្តារឡើងវិញឥលូវទេ អ្នកនឹងមិនអាចស្តារឡើងវិញបានទេនៅពេលក្រោយ។</string>
-    <string name="RegistrationActivity_backup_size_s">ទំហំបម្រុងទុក៖ %1$s</string>
-    <string name="RegistrationActivity_backup_timestamp_s">តែមពេលវេលាបម្រុងទុក៖ %1$s</string>
     <string name="BackupDialog_enable_local_backups">បើកការបម្រុងទុកខាងក្នុង?</string>
     <string name="BackupDialog_enable_backups">បើកការបម្រុងទុក</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">សូមទទួលស្គាល់ដោយគូសក្នុងប្រអប់បញ្ជាក់។</string>
@@ -4628,7 +4507,6 @@
     <string name="RegistrationActivity_call_me_instead_available_in">ហៅមកខ្ញុំ (%1$02d:%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
     <string name="RegistrationActivity_resend_sms_available_in">ផ្ញើលេខកូដឡើងវិញ (%1$02d:%2$02d)</string>
-    <string name="RegistrationActivity_contact_signal_support">ទាក់ទងជំនួយ Signal</string>
     <string name="RegistrationActivity_code_support_subject">ការចុះឈ្មោះ Signal - ការផ្ទៀងផ្ទាត់កូដសម្រាប់ Android</string>
     <string name="RegistrationActivity_incorrect_code">លេខកូដមិនត្រឹមត្រូវ</string>
     <string name="BackupUtil_never">មិនធ្លាប់</string>
@@ -4750,25 +4628,8 @@
     <string name="TransferOrRestoreFragment__restore_from_local_backup">ស្តារការបម្រុងទុកក្នុងឧបករណ៍</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
-    <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">បើក Signal នៅលើទូរស័ព្ទ Android ចាស់របស់អ្នក</string>
-    <string name="NewDeviceTransferInstructions__continue">បន្ត</string>
-    <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">ចុចលើរូបថតប្រវត្តិរូបរបស់អ្នក នៅខាងលើផ្នែកឆ្វេង ដើម្បីបើក ការកំណត់</string>
-    <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_account">"ចុចលើ \"គណនី\""</string>
-    <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
-    <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"ចុច \"ផ្ទេរគណនី\" និងបន្ទាប់មក \"បន្ត\" នៅលើឧបករណ៍ទាំងពីរ"</string>
 
     <!-- NewDeviceTransferSetupFragment -->
-    <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">កំពុងរៀបចំតភ្ជាប់ទៅឧបករណ៍​ Android ចាស់…</string>
-    <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">ចំណាយពេលបន្តិច គួរតែរួចរាល់ឆាប់ៗនេះ</string>
-    <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">កំពុងរង់ចាំឧបករណ៍ Android ចាស់ដើម្បីតភ្ជាប់…</string>
-    <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal ត្រូវការការអនុញ្ញាតទីតាំង ដើម្បីរកមើលនិងតភ្ជាប់ទៅកាន់ឧបករណ៍ Android ចាស់របស់អ្នក។</string>
-    <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal ត្រូវការបើកសេវាកម្មទីតាំង ដើម្បីរកមើលនិងតភ្ជាប់ទៅកាន់ឧបករណ៍ Android ចាស់របស់អ្នក។</string>
-    <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal ត្រូវការបើក Wi-Fi ដើម្បីរកមើលនិងតភ្ជាប់ជាមួយឧបករណ៍​ Android ចាស់របស់អ្នក។ Wi-Fi ត្រូវតែបើក ប៉ុន្តែវាមិនចាំបាច់តភ្ជាប់បណ្តាញ Wi-Fi ទេ។</string>
-    <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">សុំទោស ហាក់បីដូចជាឧបករណ៍នេះមិនគាំទ្រ Wi-Fi Direct។ Signal ប្រើប្រាស់ Wi-Fi Direct ដើម្បីរកមើលនិងតភ្ជាប់ឧបករណ៍ Android ចាស់របស់អ្នក។ អ្នកនៅតែអាចស្តារការបម្រុងទុកឡើងវិញ ដើម្បីស្តារគណនីរបស់អ្នកចេញពីឧបករណ៍ Android ចាស់របស់អ្នក។</string>
-    <string name="NewDeviceTransferSetup__restore_a_backup">ស្តារការបម្រុងទុកមួយ</string>
-    <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">កំហុសមិនរំពឹងទុកមួយកើតឡើង នៅពេលព្យាយាមតភ្ជាប់ទៅកាន់ឧបករណ៍ Android ចាស់របស់អ្នក។</string>
 
     <!-- OldDeviceTransferSetupFragment -->
     <string name="OldDeviceTransferSetup__searching_for_new_android_device">កំពុងស្វែងរកឧបករណ៍ Android ថ្មី…</string>
@@ -4812,9 +4673,6 @@
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device">ចុចពាក្យ បន្ត លើឧបករណ៍មួយទៀតរបស់អ្នក</string>
 
     <!-- NewDeviceTransferFragment -->
-    <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">មិនអាចផ្ទេរចេញពី Signal កំណែថ្មីជាងនោះទេ</string>
-    <!-- Error message indicating that we could not finish the user\'s device transfer. Displayed in a toast at the bottom of the screen. -->
-    <string name="NewDeviceTransfer__failure_foreign_key">ទិន្នន័យដែលបានផ្ទេរមានលក្ខណៈខុសទម្រង់</string>
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">កំពុងផ្ទេរទិន្នន័យ</string>
@@ -4853,10 +4711,6 @@
     <string name="OldDeviceTransferComplete__close">បិទ</string>
 
     <!-- NewDeviceTransferComplete -->
-    <string name="NewDeviceTransferComplete__transfer_successful">ការផ្ទេរបានជោគជ័យ</string>
-    <string name="NewDeviceTransferComplete__transfer_complete">ការផ្ទេរបានបញ្ចប់</string>
-    <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">ដើម្បីបញ្ចប់ដំណើរការផ្ទេរ អ្នកត្រូវតែបន្តការចុះឈ្មោះ</string>
-    <string name="NewDeviceTransferComplete__continue_registration">បន្តការចុះឈ្មោះ</string>
 
     <!-- DeviceToDeviceTransferService -->
     <string name="DeviceToDeviceTransferService_content_title">ផ្ទេរគណនី</string>
@@ -8559,219 +8413,6 @@
 
     <!-- ConfirmBackupCancellationDialog -->
 
-    <!-- Row title for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">ខ្ញុំមានទូរសព្ទចាស់របស់ខ្ញុំ</string>
-    <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_scan_qr">ស្គែនកូដ QR ពីគណនី Signal បច្ចុប្បន្នរបស់អ្នកដើម្បីចាប់ផ្តើមបានលឿន</string>
-
-    <!-- Row title for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">ខ្ញុំមិនមានទូរសព្ទចាស់ទេ</string>
-    <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">ឬអ្នកកំពុងដំឡើង Signal ឡើងវិញនៅលើឧបករណ៍តែមួយ</string>
-
-    <!-- Screen title for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__restore_or_transfer_account">ស្តារ ឬផ្ទេរគណនី</string>
-    <!-- Screen subtitle for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__get_your_signal_account">ទាញគណនី Signal និងប្រវត្តិសាររបស់អ្នកដាក់នៅលើឧបករណ៍នេះ។</string>
-    <!-- Option title for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_signal_backup">ស្តារការបម្រុងទុក Signal</string>
-    <!-- Option subtitle for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_your_text_messages_and_media_from">ស្ដារសារជាអក្សរ និងមេឌៀរបស់អ្នកពីផែនការបម្រុងទុក Signal របស់អ្នក។</string>
-    <!-- Option title for restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_on_device_backup">ស្ដារការបម្រុងទុកនៅលើឧបករណ៍</string>
-    <!-- Option subtitle fdor restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_your_messages_from">ស្ដារសាររបស់អ្នកពីការបម្រុងទុកដែលអ្នកបានរក្សាទុកនៅលើឧបករណ៍របស់អ្នក។</string>
-    <!-- Option title for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__from_your_old_phone">ពីទូរសព្ទចាស់របស់អ្នក</string>
-    <!-- Option subtitle for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__transfer_directly_from_old">ផ្ទេរដោយផ្ទាល់ពីឧបករណ៍ Android ចាស់របស់អ្នក</string>
-    <!-- Dialog title shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_title">រំលងការស្តារឡើងវិញ?</string>
-    <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">ប្រសិនបើអ្នករំលងការស្ដារឥឡូវនេះ អ្នកនឹងមិនអាចស្ដារនៅពេលក្រោយបានទេ។ ប្រសិនបើអ្នកបើកការបម្រុងទុកឡើងវិញបន្ទាប់ពីរំលងការស្ដារ ការបម្រុងទុកបច្ចុប្បន្នរបស់អ្នកនឹងត្រូវបានជំនួសដោយប្រវត្តិសារថ្មីរបស់អ្នក។</string>
-    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore">រំលងការស្តារឡើងវិញ</string>
-
-    <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_title">បញ្ចូលសោស្តាររបស់អ្នក</string>
-    <!-- Screen subtitle for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_subtitle">សោស្តាររបស់អ្នកគឺជាលេខកូដមាន 64 តួអក្សរដែលត្រូវការចាំបាច់ដើម្បីស្តារយកគណនី និងទិន្នន័យរបស់អ្នកមកវិញ។</string>
-    <!-- Button to skip entering recovery key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">មិនមានសោស្តារទេ?</string>
-    <!-- Recovery key text field hint -->
-    <string name="EnterBackupKey_backup_key">សោស្តារ</string>
-    <!-- Recovery key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">ការបម្រុងទុកមិនអាចស្តារបានទេបើវាគ្មានលេខកូដស្តារដែលមាន 64 តួអក្សរនោះទេ។ ប្រសិនបើអ្នកបាត់សោស្តាររបស់អ្នក Signal មិនអាចជួយស្ដារការបម្រុងទុករបស់អ្នកបានទេ។</string>
-    <!-- Recovery key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">ប្រសិនបើអ្នកមានឧបករណ៍ចាស់របស់អ្នក អ្នកអាចមើលសោស្តាររបស់អ្នកនៅក្នុងការកំណត់ &gt; ការបម្រុងទុក។ បន្ទាប់មកចុច មើលសោស្តារ។</string>
-    <!-- Recovery key not known bottom sheet button to learn more about it -->
-    <string name="EnterBackupKey_learn_more">ស្វែងយល់បន្ថែម</string>
-    <!-- Recovery key not known bottom sheet button to skip recovery key entry and resume normal reregistration -->
-    <string name="EnterBackupKey_skip_and_dont_restore">រំលង ហើយកុំស្តារ</string>
-    <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">សោស្តារមិនត្រឹមត្រូវ</string>
-    <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">ត្រូវប្រាកដថាអ្នកកំពុងចុះឈ្មោះជាមួយលេខទូរសព្ទដដែល និងសោស្តារ 64 តួអក្សរដែលអ្នកបានរក្សាទុកនៅពេលបើកការបម្រុងទុកសុវត្ថិភាព Signal។ ការបម្រុងទុកមិនអាចស្តារបានទេបើគ្មានសោនេះ។</string>
-    <!-- Dialog positive button text to try entering their recovery key again -->
-    <string name="EnterBackupKey_try_again">ព្យាយាមម្តងទៀត</string>
-    <!-- Dialog negative button text to get help with recovery key -->
-    <string name="EnterBackupKey_backup_key_help">ជំនួយសម្រាប់សោស្តារ</string>
-    <!-- Text field error text when the recovery key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">សោស្តារមិនត្រឹមត្រូវ</string>
-    <!-- Text field error text when the recovery key is too long -->
-    <string name="EnterBackupKey_too_long_error">វែងពេក (%1$d/%2$d)</string>
-    <!-- Text field error when the recovery key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">សោស្តារមិនមានសុពលភាព</string>
-    <!-- Dialog title shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_not_found">រកមិនឃើញការបម្រុងទុកទេ</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">សោស្តារដែលអ្នកបានបញ្ចូលគឺត្រឹមត្រូវហើយ ប៉ុន្តែមិនមានការបម្រុងទុកដែលពាក់ព័ន្ធនឹងវាទេ។ ប្រសិនបើអ្នកនៅតែមានទូរសព្ទចាស់របស់អ្នក សូមប្រាកដថាការបម្រុងទុកត្រូវបានបើក ហើយថាការបម្រុងទុកត្រូវបានបញ្ចប់សព្វគ្រប់ រួចព្យាយាមម្តងទៀត។</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">អ្នកប្រហែលជាបានបញ្ចូលសោស្តាររបស់អ្នកដោយមិនត្រឹមត្រូវ ឬអ្នកមិនទាន់បានបញ្ចប់ការបម្រុងទុកយ៉ាងហោចណាស់មួយនៅលើឧបករណ៍ចាស់របស់អ្នក។\n\nត្រូវប្រាកដថាអ្នកកំពុងចុះឈ្មោះដោយប្រើលេខទូរសព្ទដូចគ្នា និងសោស្តារដែលអ្នកបានរក្សាទុកនៅពេលបើកការបម្រុងទុកសុវត្ថិភាព Signal ហើយបញ្ជាក់ថាឧបករណ៍ចាស់របស់អ្នកបានបញ្ចប់ការបម្រុងទុក។</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">ការព្យាយាមចំពោះសោស្តាររបស់អ្នកបានអស់ហើយ។ ដើម្បីសុវត្ថិភាពរបស់អ្នក ចំនួននៃការព្យាយាមដែលអ្នកអាចធ្វើបានមានកំណត់។ សូមរង់ចាំមួយម៉ោង ហើយព្យាយាមម្តងទៀត។</string>
-    <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
-    <string name="EnterBackupKey_skip_restore">រំលងការស្តារឡើងវិញ</string>
-    <!-- Dialog title text when encountering backup restore network error -->
-    <string name="EnterBackupKey_cant_restore_backup">មិនអាចស្តារការបម្រុងទុកបានទេ</string>
-    <!-- Dialog body text when encountering backup restore network error -->
-    <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">ការបម្រុងទុករបស់អ្នកមិនអាចស្ដារឡើងវិញទេឥឡូវនេះ។ សូមពិនិត្យមើលសេវាអ៊ីនធឺណិតរបស់អ្នក រួចព្យាយាមម្តងទៀត។ </string>
-    <!-- Dialog button text to contact support on network error -->
-    <string name="EnterBackupKey_contact_support">ទាក់ទងផ្នែកជំនួយ</string>
-
-    <!-- Email subject when contacting support on a restore backup network issue -->
-    <string name="EnterBackupKey_network_failure_support_email">បញ្ហាបណ្តាញក្នុងការស្តារការបម្រុងទុក Signal Android</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
-    <!-- Email subject when contacting support on a permanent backup import failure -->
-    <string name="EnterBackupKey_permanent_failure_support_email">ការស្តារការបម្រុងទុក Signal Android បរាជ័យជាអចិន្ត្រៃយ៍</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
-
-    <!-- EnterLocalBackupKeyScreen: Screen title for entering recovery key for local backup restore -->
-    <string name="EnterLocalBackupKeyScreen__enter_your_recovery_key">បញ្ចូលសោស្តាររបស់អ្នក</string>
-    <!-- EnterLocalBackupKeyScreen: Screen subtitle explaining what the recovery key is -->
-    <string name="EnterLocalBackupKeyScreen__your_recovery_key_is_a_64_character_code">សោស្តាររបស់អ្នកគឺជាលេខកូដមាន 64 តួអក្សរដែលត្រូវការចាំបាច់ដើម្បីស្តារយកគណនី និងទិន្នន័យរបស់អ្នកមកវិញ។</string>
-    <!-- EnterLocalBackupKeyScreen: Button text when user does not have a recovery key -->
-    <string name="EnterLocalBackupKeyScreen__no_recovery_key">មិនមានសោស្តារទេ?</string>
-    <!-- EnterLocalBackupKeyScreen: Button to proceed to next step -->
-    <string name="EnterLocalBackupKeyScreen__next">បន្ទាប់</string>
-
-    <!-- RestoreLocalBackupDialog: Error message when the selected archive fails to load -->
-    <string name="RestoreLocalBackupDialog__failed_to_load_archive">មិនអាចផ្ទុកបណ្ណសារបានទេ។ សូមជ្រើសរើសថតឯកសារផ្សេង។</string>
-    <!-- RestoreLocalBackupDialog: Dismiss button for dialog -->
-    <string name="RestoreLocalBackupDialog__ok">យល់ព្រម</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore">រំលងការស្តារ?</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user about the consequences of skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore_body">ប្រសិនបើអ្នករំលងការស្ដារឥឡូវនេះ អ្នកនឹងមិនអាចស្ដារនៅពេលក្រោយបានទេ។ ប្រសិនបើអ្នកបើកការបម្រុងទុកឡើងវិញបន្ទាប់ពីរំលងការស្ដារ ការបម្រុងទុកបច្ចុប្បន្នរបស់អ្នកនឹងត្រូវបានជំនួសដោយប្រវត្តិសារថ្មីរបស់អ្នក។</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the skip restore dialog -->
-    <string name="RestoreLocalBackupDialog__skip_restore_confirm">រំលងការស្តារ</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm restoring a backup from a different account -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account">ស្តារទៅគណនីថ្មីឬ?</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user that the backup was created with a different account and they will lose group memberships -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account_body">ការបម្រុងទុកដែលអ្នកកំពុងស្ដារឡើងវិញត្រូវបានបង្កើតឡើងដោយប្រើគណនី Signal ផ្សេង។ អ្នកអាចស្ដារការបម្រុងទុកនេះទៅគណនីថ្មីបាន ប៉ុន្តែអ្នកនឹងលែងជាសមាជិកនៃក្រុមណាមួយដែលត្រូវបានស្ដារឡើងវិញ។</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the restore to new account dialog -->
-    <string name="RestoreLocalBackupDialog__restore">ស្តារឡើងវិញ</string>
-
-    <!-- RestoreLocalBackupActivity: Toast message when backup restore fails -->
-    <string name="RestoreLocalBackupActivity__backup_restore_failed">ការស្ដារការបម្រុងទុកមិនបានជោគជ័យទេ</string>
-    <!-- RestoreLocalBackupActivity: Screen title shown during restore -->
-    <string name="RestoreLocalBackupActivity__restoring_backup">កំពុងស្ដារការបម្រុងទុក</string>
-    <!-- RestoreLocalBackupActivity: Screen subtitle explaining restore duration -->
-    <string name="RestoreLocalBackupActivity__depending_on_the_size">អាស្រ័យលើទំហំនៃការបម្រុងទុករបស់អ្នក វាអាចចំណាយពេលពីរបីនាទី។</string>
-    <!-- RestoreLocalBackupActivity: Status text while restoring messages -->
-    <string name="RestoreLocalBackupActivity__restoring_messages">កំពុងស្ដារសារ…</string>
-    <!-- RestoreLocalBackupActivity: Status text while finalizing restore -->
-    <string name="RestoreLocalBackupActivity__finalizing">កំពុងបញ្ចប់…</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore is complete -->
-    <string name="RestoreLocalBackupActivity__restore_complete">ការស្តារបានបញ្ចប់</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore fails -->
-    <string name="RestoreLocalBackupActivity__restore_failed">ការស្ដារមិនបានជោគជ័យទេ</string>
-    <!-- RestoreLocalBackupActivity: Progress text showing bytes read of total with percentage, e.g. "1.2 MB of 5.0 MB (24%)" -->
-    <string name="RestoreLocalBackupActivity__s_of_s_d_percent">%1$s លើ %2$s (%3$d%%)</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__cant_restore_backup">មិនអាចស្តារការបម្រុងទុកបានទេ</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__error_occurred_while_restoring">មានបញ្ហាកើតឡើងខណៈពេលកំពុងស្ដារការបម្រុងទុករបស់អ្នក។ ការបម្រុងទុករបស់អ្នកមិនអាចស្តារមកវិញបានទេ។ សូមទាក់ទងទៅកាន់ផ្នែកជំនួយដើម្បីទទួលបានជំនួយ។</string>
-
-    <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
-    <string name="RestoreLocalBackupActivity__contact_support">ទាក់ទងផ្នែកជំនួយ</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
-    <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">បើកការបម្រុងទុកនៅលើឧបករណ៍ឬ?</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">ដើម្បីបន្តប្រើប្រាស់ការបម្រុងទុកនៅលើឧបករណ៍ អ្នកត្រូវបើកវាសម្រាប់គណនីនេះ។ អ្នកអាចធ្វើដូចនេះនៅពេលណាក៏បានពី ការកំណត់ &gt; ការបម្រុងទុក។</string>
-
-    <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__turn_on_now">បើកឥឡូវនេះ</string>
-
-    <!-- RestoreLocalBackupActivity: Dismiss button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__not_now">ឥឡូវកុំទាន់</string>
-
-    <!-- RestoreLocalBackupActivity: Body text for the dialog shown after a successful restore, prompting the user to choose a backup folder -->
-    <string name="RestoreLocalBackupActivity__choose_a_folder_for_backups">ដើម្បីបន្តប្រើប្រាស់ការបម្រុងទុកនៅលើឧបករណ៍ សូមជ្រើសរើសថតឯកសារនៅលើឧបករណ៍របស់អ្នក ដែលការបម្រុងទុកថ្មីនឹងត្រូវបានរក្សាទុក។</string>
-
-    <!-- RestoreLocalBackupActivity: Positive button label for the dialog shown after a successful restore; keeps the current backup folder -->
-    <string name="RestoreLocalBackupActivity__use_current_folder">ប្រើថតឯកសារបច្ចុប្បន្ន</string>
-
-    <!-- RestoreLocalBackupActivity: Neutral button label for the dialog shown after a successful restore; opens folder picker to select a different backup location -->
-    <string name="RestoreLocalBackupActivity__choose_new_folder">ជ្រើសរើសថតឯកសារថ្មី</string>
-
-    <!-- RestoreLocalBackupActivity: Negative button label for the dialog shown after a successful restore; disables on-device backups -->
-    <string name="RestoreLocalBackupActivity__disable_backups">បិទការបម្រុងទុក</string>
-
-    <!-- SelectInstructionsSheet: Title for the select backup folder instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_folder">ជ្រើសរើសថតឯកសារបម្រុងទុករបស់អ្នក</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the select this folder button -->
-    <string name="SelectInstructionsSheet__tap_select_this_folder">ចុច \"ជ្រើសរើសថតឯកសារនេះ\"</string>
-    <!-- SelectInstructionsSheet: Instruction not to select individual files -->
-    <string name="SelectInstructionsSheet__do_not_select_individual_files">កុំជ្រើសរើសឯកសារនីមួយៗ</string>
-    <!-- SelectInstructionsSheet: Title for the select backup file instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_file">ជ្រើសរើសឯកសារបម្រុងទុករបស់អ្នក</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the backup file saved to device -->
-    <string name="SelectInstructionsSheet__tap_on_the_backup_file">ចុចលើឯកសារបម្រុងទុកដែលអ្នកបានរក្សាទុកទៅក្នុងឧបករណ៍របស់អ្នក</string>
-    <!-- SelectInstructionsSheet: Subtitle explaining how to access backup after tapping continue -->
-    <string name="SelectInstructionsSheet__after_tapping_continue">បន្ទាប់ពីចុច \"បន្ត\" នេះជារបៀបចូលប្រើការបម្រុងទុករបស់អ្នក៖</string>
-    <!-- SelectInstructionsSheet: Instruction to select the top-level backup folder -->
-    <string name="SelectInstructionsSheet__select_the_top_level_folder">ជ្រើសរើសថតឯកសារកម្រិតកំពូលដែលការបម្រុងទុករបស់អ្នកត្រូវបានរក្សាទុក</string>
-    <!-- SelectInstructionsSheet: Continue button text -->
-    <string name="SelectInstructionsSheet__continue_button">បន្ត</string>
-
-    <!-- SelectLocalBackupScreen: Screen title for restoring on-device backup -->
-    <string name="SelectLocalBackupScreen__restore_on_device_backup">ស្ដារការបម្រុងទុកនៅលើឧបករណ៍</string>
-    <!-- SelectLocalBackupScreen: Screen subtitle explaining the restore process -->
-    <string name="SelectLocalBackupScreen__restore_your_messages_from_the_backup_folder">ស្ដារសាររបស់អ្នកពីថតឯកសារបម្រុងទុកដែលអ្នកបានរក្សាទុកនៅលើឧបករណ៍របស់អ្នក។ ប្រសិនបើអ្នកមិនស្តារឥឡូវនេះទេ អ្នកនឹងមិនអាចស្តារនៅពេលក្រោយបានទេ។</string>
-    <!-- SelectLocalBackupScreen: Button to initiate backup restoration -->
-    <string name="SelectLocalBackupScreen__restore_backup">ស្តារការបម្រុងទុក</string>
-    <!-- SelectLocalBackupScreen: Button to choose an earlier backup when current is latest -->
-    <string name="SelectLocalBackupScreen__choose_an_earlier_backup">ជ្រើសរើសការបម្រុងទុកមុននេះ</string>
-    <!-- SelectLocalBackupScreen: Button to choose a different backup -->
-    <string name="SelectLocalBackupScreen__choose_a_different_backup">ជ្រើសរើសការបម្រុងទុកផ្សេង</string>
-    <!-- SelectLocalBackupScreen: Label for latest backup card -->
-    <string name="SelectLocalBackupScreen__your_latest_backup">ការបម្រុងទុកចុងក្រោយបំផុតរបស់អ្នក៖</string>
-    <!-- SelectLocalBackupScreen: Label for non-latest backup card -->
-    <string name="SelectLocalBackupScreen__your_backup">ការបម្រុងទុករបស់អ្នក៖</string>
-
-    <!-- SelectLocalBackupSheet: Title for backup selection bottom sheet -->
-    <string name="SelectLocalBackupSheet__choose_a_backup_to_restore">ជ្រើសរើសការបម្រុងទុកដើម្បីស្ដារ</string>
-    <!-- SelectLocalBackupSheet: Subtitle warning about choosing an older backup -->
-    <string name="SelectLocalBackupSheet__choosing_an_older_backup">ការជ្រើសរើសការបម្រុងទុកដែលយូរជាងនេះអាចនឹងបណ្តាលឱ្យបាត់បង់សារ ឬមេឌៀ។</string>
-    <!-- SelectLocalBackupSheet: Continue button text -->
-    <string name="SelectLocalBackupSheet__continue_button">បន្ត</string>
-
-    <!-- SelectLocalBackupTypeScreen: Screen title for selecting backup type -->
-    <string name="SelectLocalBackupTypeScreen__restore_on_device_backup">ស្ដារការបម្រុងទុកនៅលើឧបករណ៍</string>
-    <!-- SelectLocalBackupTypeScreen: Screen subtitle explaining restore options -->
-    <string name="SelectLocalBackupTypeScreen__restore_your_messages_from_the_backup">ស្ដារសាររបស់អ្នកពីការបម្រុងទុកដែលអ្នកបានរក្សាទុកនៅលើឧបករណ៍របស់អ្នក។ ប្រសិនបើអ្នកមិនស្តារឥឡូវនេះទេ អ្នកនឹងមិនអាចស្តារនៅពេលក្រោយបានទេ។</string>
-    <!-- SelectLocalBackupTypeScreen: Button for users who saved backup as single file -->
-    <string name="SelectLocalBackupTypeScreen__i_saved_my_backup_as_a_single_file">ខ្ញុំបានរក្សាទុកការបម្រុងទុករបស់ខ្ញុំជាឯកសារតែមួយ</string>
-    <!-- SelectLocalBackupTypeScreen: Card title for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__choose_backup_folder">ជ្រើសរើសថតឯកសារបម្រុងទុក</string>
-    <!-- SelectLocalBackupTypeScreen: Card description for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__select_the_folder_on_your_device">ជ្រើសរើសថតឯកសារនៅលើឧបករណ៍របស់អ្នកដែលការបម្រុងទុករបស់អ្នកត្រូវបានរក្សាទុក</string>
-
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">បញ្ហាបណ្តាញក្នុងការនាំចេញការបម្រុងទុក Signal Android</string>
     <!-- Email filter when contacting support on a create backup failure -->
@@ -8785,23 +8426,6 @@
     <string name="ContactSupportDialog_submit_with_debug">ដាក់បញ្ជូនជាមួយកំណត់ត្រាបញ្ហា</string>
     <!-- Button option to not submit debug log when contacting support -->
     <string name="ContactSupportDialog_submit_without_debug">ដាក់បញ្ជូនដោយគ្មានកំណត់ត្រាបញ្ហា</string>
-
-    <!-- Title for restore via qr screen -->
-    <string name="RestoreViaQr_title">ស្គែនកូដនេះដោយប្រើទូរសព្ទចាស់របស់អ្នក</string>
-    <!-- First instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_1">បើក Signal នៅលើឧបករណ៍ចាស់របស់អ្នក</string>
-    <!-- Second instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_2">ចុចលើរូបកាមេរ៉ា </string>
-    <!-- Third instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_3">ស្គែនកូដនេះដោយប្រើកាមេរ៉ា</string>
-    <!-- Error message shown when qr code could not be loaded -->
-    <string name="RestoreViaQr_qr_code_error">មិនអាចបង្កើតកូដ QR បានទេ</string>
-    <!-- Status message shown when qr code already scanned by other device -->
-    <string name="RestoreViaQr_qr_code_scanned">បានស្គែននៅលើឧបករណ៍ចាស់</string>
-    <!-- Error button text to retry getting a qr code -->
-    <string name="RestoreViaQr_retry">ព្យាយាមម្តងទៀត</string>
-    <!-- Error message shown when register after receiving the provisioning message failed -->
-    <string name="RestoreViaQr_registration_error">បញ្ហាមួយបានកើតឡើង ហើយគណនីរបស់អ្នកមិនអាចផ្ទេរបានទេ។ ព្យាយាមម្តងទៀតដោយស្គែនកូដ QR ម្តងទៀត។</string>
 
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">ផ្ទេរគណនី</string>
@@ -8843,19 +8467,6 @@
     <string name="RestoreCompleteBottomSheet_transfer_complete_message">គណនី និងសារ Signal របស់អ្នកត្រូវបានផ្ទេរទៅឧបករណ៍ផ្សេងទៀតរបស់អ្នកហើយ។ ឥឡូវនេះ Signal លែងសកម្មនៅលើឧបករណ៍នេះហើយ។</string>
     <!-- Restore Complete bottom sheet dialog button text to dismiss sheet -->
     <string name="RestoreCompleteBottomSheet_button">យល់ព្រម</string>
-
-    <!-- No Backup to Restore screen title -->
-    <string name="NoBackupToRestore_title">គ្មានការបម្រុងទុកដើម្បីស្តារទេ</string>
-    <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">ដោយសារតែអ្នកកំពុងប្តូរពី iPhone ទៅ Android វិធីតែមួយគត់ដើម្បីផ្ទេរសារ និងមេឌៀរបស់អ្នកគឺតាមរយៈការបើកនូវការបម្រុងទុកសុវត្ថិភាព Signal នៅលើឧបករណ៍ចាស់របស់អ្នក។</string>
-    <!-- No Backup to Restore step 1 to enable backups on old device -->
-    <string name="NoBackupToRestore_step1">បើក Signal នៅលើឧបករណ៍ចាស់របស់អ្នក</string>
-    <!-- No Backup to Restore step 2 to enable backups on old device -->
-    <string name="NoBackupToRestore_step2">ចុច ការកំណត់ &gt; ការបម្រុងទុក</string>
-    <!-- No Backup to Restore step 3 to enable backups on old device -->
-    <string name="NoBackupToRestore_step3">បើកការបម្រុងទុក ហើយរង់ចាំរហូតដល់ការបម្រុងទុករបស់អ្នកបានបញ្ចប់</string>
-    <!-- No backup to Restore tonal cta to skip restore -->
-    <string name="NoBackupToRestore_skip_restore">រំលងការស្តារឡើងវិញ</string>
 
     <!-- Dialog title when the recovery key change limit is reached -->
     <string name="MessageBackupsKeyRecordScreen__limit_reached_title">សោស្តារបានដល់ចំនួនកំណត់ហើយ</string>

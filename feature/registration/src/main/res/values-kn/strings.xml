@@ -558,41 +558,6 @@
     <string name="DeviceTransferComplete__your_account_is_now_on_this_device">ನಿಮ್ಮ ಖಾತೆಯು ಈಗ ಈ ಸಾಧನದಲ್ಲಿದೆ.</string>
     <string name="DeviceTransferComplete__continue_registration">ಮುಂದುವರಿಸಿ</string>
 
-    <!-- Create profile screen -->
-    <!-- Title displayed at the top of the create-profile screen during registration. -->
-    <string name="CreateProfileScreen__set_up_your_profile">ನಿಮ್ಮ ಪ್ರೊಫೈಲನ್ನು ಸ್ಥಾಪಿಸಿ</string>
-    <!-- Subtitle on create-profile screen explaining that the profile is end-to-end encrypted and visible to recipients. -->
-    <string name="CreateProfileScreen__your_profile_is_end_to_end_encrypted">ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಮತ್ತು ಅದರಲ್ಲಿ ಮಾಡಿದ ಬದಲಾವಣೆಗಳು ನೀವು ಮೆಸೇಜ್ ಮಾಡುವ ಜನರು, ಸಂಪರ್ಕಗಳು ಮತ್ತು ಗ್ರೂಪ್‌ಗಳಿಗೆ ಕಾಣಿಸಲಿವೆ.</string>
-    <!-- Label/hint for the first-name field, indicating it is required. -->
-    <string name="CreateProfileScreen__first_name_required">ಮೊದಲ ಹೆಸರು (ಅಗತ್ಯವಿದೆ)</string>
-    <!-- Label/hint for the last-name field, indicating it is optional. -->
-    <string name="CreateProfileScreen__last_name_optional">ಕೊನೆಯ ಹೆಸರು (ಐಚ್ಛಿಕ)</string>
-    <!-- Action button text to advance from create-profile screen. -->
-    <string name="CreateProfileScreen__next">ಮುಂದೆ</string>
-    <!-- Content description for the avatar selection control. -->
-    <string name="CreateProfileScreen__set_avatar_description">ಅವತಾರ್ ಹೊಂದಿಸಿ</string>
-
-    <!-- Phone number discoverability picker -->
-    <!-- Title row label shown on the create-profile screen pointing at the discoverability picker. -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">ಸಂಖ್ಯೆಯ ಮೂಲಕ ನನ್ನನ್ನು ಯಾರು ನೋಡಬಹುದು?</string>
-    <!-- Description shown on the picker when "Everyone" is selected. -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">ನಿಮ್ಮ ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ಹೊಂದಿರುವ ಯಾರಾದರೂ ನೀವು Signal ‌ನಲ್ಲಿರುವುದನ್ನು ನೋಡುತ್ತಾರೆ ಮತ್ತು ನಿಮ್ಮೊಂದಿಗೆ ಚಾಟ್‌ಗಳನ್ನು ಪ್ರಾರಂಭಿಸಬಹುದು.</string>
-    <!-- Description shown on the picker when "Nobody" is selected. -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">ನೀವು ಮೆಸೇಜ್ ಕಳುಹಿಸದ ಹೊರತು ಅಥವಾ ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ಚಾಟ್ ಅನ್ನು ಹೊಂದಿರದ ಹೊರತು ನೀವು Signal ‌ನಲ್ಲಿದ್ದೀರಿ ಎಂದು ಯಾರಿಗೂ ನೋಡಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ.</string>
-    <!-- Radio option label for "Everyone can find me by number". -->
-    <string name="PhoneNumberPrivacy_everyone">ಎಲ್ಲರೂ</string>
-    <!-- Radio option label for "Nobody can find me by number". -->
-    <string name="PhoneNumberPrivacy_nobody">ಯಾರೂ ಇಲ್ಲ</string>
-    <!-- Title for the confirmation dialog shown when the user selects "Nobody". -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">ನಿಮಗೆ ಖಾತ್ರಿಯಿದೆಯೇ?</string>
-    <!-- Body for the confirmation dialog shown when the user selects "Nobody". -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">\"ಯಾರು ನನ್ನ ನಂಬರನ್ನು ಹುಡುಕಬಹುದು\" ಅನ್ನು \"ಯಾರೂ ಇಲ್ಲ\" ಅಂದು ಸೆಟ್ ಮಾಡಿದರೆ, Signal ನಲ್ಲಿ ನಿಮ್ಮನ್ನು ಹುಡುಕಲು ಜನರಿಗೆ ಇನ್ನೂ ಕಷ್ಟವಾಗುವುದು.</string>
-    <!-- Cancel button on the "Nobody" confirmation dialog. -->
-    <string name="PhoneNumberPrivacySettingsFragment__cancel">ರದ್ದುಮಾಡಿ</string>
-    <!-- Save button on the discoverability picker. -->
-    <string name="PhoneNumberDiscoverabilityScreen__save">ಉಳಿಸಿ</string>
-    <!-- Content description for the back arrow on the discoverability picker. -->
-    <string name="PhoneNumberDiscoverabilityScreen__back">ಹಿಂದಕ್ಕೆ</string>
     <!-- Error message shown when the captcha fails to load. -->
     <string name="CaptchaScreen__failed_to_load_captcha">ಕ್ಯಾಪ್ಚ ಲೋಡ್ ಮಾಡಲು ವಿಫಲವಾಗಿದೆ</string>
     <!-- Button to cancel out of the captcha screen. -->
@@ -684,7 +649,7 @@
     <!-- Action button that stores the Signal Login in the device password manager. -->
     <string name="SignalLoginInfoScreen__save_to_password_manager">ಪಾಸ್‌ವರ್ಡ್ ಮ್ಯಾನೇಜರ್‌ಗೆ ಸೇವ್ ಮಾಡಿ</string>
     <!-- Toast shown when the user taps the disabled save to password manager button and the device has no password manager. -->
-    <string name="SignalLoginInfoScreen__no_password_manager_available">ನೀವು ಪಾಸ್‌ವರ್ಡ್ ಮ್ಯಾನೇಜರ್ ಸೆಟಪ್ ಹೊಂದಿಲ್ಲ ಅಥವಾ ನೀವು ಬಳಸುತ್ತಿರುವ ಪಾಸ್‌ವರ್ಡ್ ಮ್ಯಾನೇಜರ್ ಬೆಂಬಲಿತವಾಗಿಲ್ಲ.</string>
+    <string name="SignalLoginInfoScreen__no_password_manager_available">You don\'t have a password manager set up.</string>
     <!-- Action button for users who would rather write the Signal Login down themselves. -->
     <string name="SignalLoginInfoScreen__save_manually">ಹಸ್ತಚಾಲಿತವಾಗಿ ಸೇವ್ ಮಾಡಿ</string>
     <!-- Error shown when the Signal Login could not be stored in the password manager. -->

@@ -839,23 +839,8 @@
     <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">သင် ၎င်းတို့ကို မက်ဆေ့ချ်မပို့ပါက သို့မဟုတ် ၎င်းတို့နှင့် ပြောလက်စ ချက်(တ်)တစ်ခု မရှိပါက သင် Signal သုံးနေကြောင်း မည်သူမျှ မြင်တွေ့ရမည်မဟုတ်ပါ။</string>
 
     <!-- ChooseBackupFragment -->
-    <string name="ChooseBackupFragment__restore_from_backup">အရံသိမ်းထားသည်များကို ပြန်ရယူမည်လား?</string>
-    <string name="ChooseBackupFragment__restore_your_messages_and_media">သင်၏ စာတိုများ၊ ဖုန်းထဲတွင် အရံသိမ်းဆည်းထားသော ရုပ်/သံ/ပုံ ဖိုင်များကို ပြန်လည်ရယူထားပါ။ ယခုမရယူထားပါက နောက်ပိုင်းတွင် ပြန်လည်ရယူနိုင်မည်မဟုတ်ပါ။</string>
-    <string name="ChooseBackupFragment__icon_content_description">backup အိုင်ကွန်မှပြန်ယူပါ</string>
-    <string name="ChooseBackupFragment__choose_backup">အရန်ကူးကိုရွေးချယ်ပါ</string>
-    <string name="ChooseBackupFragment__learn_more">ပိုမိုသိရှိရန်</string>
 
     <!-- RestoreBackupFragment -->
-    <string name="RestoreBackupFragment__restore_complete">ပြီးပြည့်စုံသောပြန်ယူပါ</string>
-    <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">အရန်ကူးခြင်းကိုဆက်လက်အသုံးပြုရန်ဖိုင်တွဲတစ်ခုကိုရွေးပါ။ မိတ္တူပွားအသစ်များကိုဤနေရာတွင်သိမ်းဆည်းထားလိမ့်မည်။</string>
-    <string name="RestoreBackupFragment__choose_folder">ဖိုင်တွဲအသစ် တစ်ခုရွေးချယ်ပါ</string>
-    <string name="RestoreBackupFragment__not_now">အခုမဟုတ်သေးပါ။</string>
-    <!-- Couldn\'t find the selected backup -->
-    <string name="RestoreBackupFragment__backup_not_found">ဘက်ခ်အပ် ရှာမတွေ့ပါ။</string>
-    <!-- Couldn\'t read the selected backup -->
-    <string name="RestoreBackupFragment__backup_could_not_be_read">ဘက်ခ်အပ်ကို ဖတ်၍ မရနိုင်ပါ။</string>
-    <!-- Backup has an unsupported file extension -->
-    <string name="RestoreBackupFragment__backup_has_a_bad_extension">ဘက်ခ်အပ်တွင် မသင့်လျော်သည့် Extension ရှိနေပါသည်။</string>
 
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
@@ -1373,60 +1358,6 @@
     <string name="ManageGroupActivity_add_group_description">အဖွဲ့ ဖော်ပြချက် ပေါင်းထည့်ရန်…</string>
 
     <!-- RemoteRestoreActivity -->
-    <!-- Progress dialog label when downloading a backup -->
-    <string name="RemoteRestoreActivity__downloading_backup">ဘက်ခ်အပ်များကို ဒေါင်းလုဒ်လုပ်နေသည်…</string>
-    <!-- Progress dialog label when restoring a backup -->
-    <string name="RemoteRestoreActivity__restoring_messages">မက်ဆေ့ချ်များကို ပြန်လည်ရယူနေသည်..</string>
-    <!-- Progress dialog label when finishing a backup restore -->
-    <string name="RemoteRestoreActivity__finishing_restore">အပြီးသတ်နေသည်…</string>
-    <!-- Progress dialog label while awaiting updates -->
-    <string name="RemoteRestoreActivity__restoring">ပြန်လည်ရယူနေသည်…</string>
-    <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
-    <string name="RemoteRestoreActivity__s_of_s_s">%2$s မှ %1$s (%3$s)</string>
-    <!-- Feature list media label for paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_media">သင်၏မီဒီယာအားလုံး</string>
-    <!-- Feature list media label for free tier. Placeholder is days, and is currently fixed at 30. -->
-    <string name="RemoteRestoreActivity__your_last_d_days_of_media">သင်၏ နောက်ဆုံးမီဒီယာ %1$d ရက်</string>
-    <!-- Feature list message label for free and paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_messages">သင်၏ မက်ဆေ့ချ်များအားလုံး</string>
-    <!-- Screen title for restoring from backup -->
-    <string name="RemoteRestoreActivity__restore_from_backup">ဘက်ခ်အပ်မှ ပြန်လည်ရယူမည်</string>
-    <!-- Section title for explaining what your backup includes -->
-    <string name="RemoteRestoreActivity__your_backup_includes">သင့် ဘက်ခ်အပ်တွင် အောက်ပါတို့ပါဝင်သည်-</string>
-    <!-- Primary action button copy for starting restoration -->
-    <string name="RemoteRestoreActivity__restore_backup">ဘက်ခ်အပ်မှ ပြန်လည်ရယူမည်</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made. %1$s is replaced with the date (e.g. March 5, 2024) and %2$s is replaced with the time (e.g. 9:00am) -->
-    <string name="RemoteRestoreActivity__backup_created_at">သင်၏နောက်ဆုံး ဘက်ခ်အပ်ကို %1$s တွင် %2$s အချိန်က ပြုလုပ်ခဲ့သည်။</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
-    <string name="RemoteRestoreActivity__backup_created_at_with_size">သင်၏နောက်ဆုံး ဘက်ခ်အပ်ကို %1$s တွင် %2$s အချိန်၌ ပြုလုပ်ခဲ့သည်။ သင်၏ ဘက်ခ်အပ် အရွယ်အစားမှာ %3$s ဖြစ်သည်။</string>
-    <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
-    <string name="RemoteRestoreActivity__fetching_backup_details">ဘက်ခ်အပ်အသေးစိတ်ကို ရယူနေသည်…</string>
-    <!-- Text label button to skip restore from remote -->
-    <string name="RemoteRestoreActivity__skip_restore">ပြန်လည်ရယူခြင်းကို ကျော်မည်</string>
-    <!-- Dialog title displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__couldnt_transfer">လွှဲပြောင်းခြင်းကို အပြီးသတ်၍ မရပါ</string>
-    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">ဘက်ခ်အပ်ကို ပြန်လည်ရယူ၍မရပါ</string>
-    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">သင်၏ ဘက်ခ်အပ်ကို ပြန်လည်ရယူစဉ် အမှားအယွင်းတစ်ခု ဖြစ်ပွားခဲ့သည်။ သင်၏ဘက်ခ်အပ်ကို ပြန်လည်ရယူ၍မရပါ။ အကူအညီအတွက် ပံ့ပိုရေးသို့ ဆက်သွယ်ပါ။</string>
-    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">ပံ့ပိုးရေးသို့ ဆက်သွယ်ရန်</string>
-    <!-- Dialog message displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__error_occurred">ချွတ်ယွင်းချက်တစ်ခု ဖြစ်ပွားခဲ့သောကြောင့် သင့်အကောင့်ကို လွှဲပြောင်း၍မရပါ။ လွှဲပြောင်းရန်နည်းလမ်းကို ရွေးချယ်၍ ထပ်စမ်းကြည့်ပါ။</string>
-    <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
-    <string name="RemoteRestoreActivity__couldnt_restore">ဤဘက်ခ်အပ်ကို ပြန်လည်ရယူ၍မရပါ</string>
-    <!-- Dialog message explaining that an update to Signal is required to restore the backup. -->
-    <string name="RemoteRestoreActivity__update_latest">ဤ Signal ဗားရှင်းသည် သင့်ဘက်ခ်အပ်ကို ပြန်လည်ရယူ၍မရပါ။ နောက်ဆုံးဗားရှင်းအထိ အပ်ဒိတ်လုပ်ပြီး ထပ်စမ်းကြည့်ပါ။</string>
-    <!-- Text on button that when pressed will redirect them to update Signal -->
-    <string name="RemoteRestoreActivity__update_signal">Signal ကို အပ်ဒိတ်လုပ်ပါ။</string>
-    <!-- Text label button to dismiss the dialog -->
-    <string name="RemoteRestoreActivity__not_now">ယခု မလုပ်သေးပါ</string>
-    <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">သင့်မီဒီယာ ပြန်လည်ရယူခြင်းကို နောက်ခံတွင် လုပ်ဆောင်ပါမည်။ ယခု ပြန်လည်ရယူရန် မရွေးချယ်ပါက နောက်မှပြန်လည်မရယူနိုင်တော့ပါ။</string>
-    <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">ဤစက်ကို မှတ်ပုံတင်ထားခြင်း မရှိတော့ပါ</string>
-    <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">ဤသို့ ဖြစ်ရခြင်းမှာ သင်၏ Signal အကောင့်ကို အခြားစက်တစ်ခုတွင် မှတ်ပုံတင်ခဲ့ခြင်းကြောင့် ဖြစ်နိုင်သည်။</string>
 
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
@@ -2165,17 +2096,6 @@
     <string name="PinRestoreLockedFragment_create_new_pin">ပင်နံပါတ်အသစ်ဖန်တီးပါ</string>
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
-    <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
-    <string name="ReRegisterWithPinFragment_send_sms_code">SMS ကုဒ် ပို့ရန်</string>
-    <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">Signal မှတ်ပုံတင်ခြင်း- Android အတွက် PIN ပြန်လည်မှတ်ပုံတင်ခြင်းနှင့်အတူ အကူအညီ လိုအပ်ချက်</string>
-    <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">သင်ဖန်တီးထားသော သင်၏ PIN သည် ဂဏန်း %1$d ခုအထက် ပါသော ကုဒ်ဖြစ်ပြီး နံပါတ် သို့မဟုတ် အက္ခရာနံပါတ် ဖြစ်နိုင်ပါသည်။\n\nသင်၏ PIN ကို မမှတ်မိပါက အသစ်တစ်ခု ဖန်တီးနိုင်ပါသည်။</string>
-    <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">သင်၏ PIN ကို မမှတ်မိပါက အသစ်တစ်ခု ဖန်တီးနိုင်ပါသည်။</string>
-    <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">PIN ခန့်မှန်းထည့်သွင်းမှုများ မရှိတော့ပါ၊ သို့သော် PIN အသစ်တစ်ခု ဖန်တီးခြင်းဖြင့် သင့် Signal အကောင့်ကို ဝင်ရောက်သုံးစွဲနိုင်ပါသေးသည်။</string>
-
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">သတိပေးချက်</string>
     <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">PIN ကို ပိတ်ထားပါက Signal ကို ပြန်လည်စာရင်းသွင်းသည့်အခါ ကိုယ်တိုင် ဘက်ခ်အပ်လုပ်၍ ပြန်လည်မသိုလှောင်မချင်း ဒေတာအားလုံးပျောက်သွားပါလိမ့်မည်။ PIN ကို ပိတ်ထားစဉ် စာရင်းသွင်းလော့ခ်ကို ဖွင့်၍ မရနိုင်ပါ။</string>
@@ -2255,6 +2175,12 @@
     <string name="WebRtcCallActivity__open_settings">ဆက်တင် ဖွင့်ရန်</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">ယခု မလုပ်ဆောင်သေးပါ။</string>
+    <!-- Message for dialog shown at the start of a call when the system battery setting for Signal is "Restricted" -->
+    <string name="WebRtcCallActivity__others_may_not_be_able_to_hear_you_when_your_screen_turns_off">Others may not be able to hear you and the call may disconnect when your screen turns off. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
+    <!-- Title for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__others_couldnt_hear_you">Others couldn\'t hear you</string>
+    <!-- Message for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__your_microphone_was_muted_while_signal_was_in_the_background">Your microphone was muted while Signal was in the background. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
     <!-- Title for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__approve_d_requests">
         <item quantity="other">တောင်းဆိုမှု %1$d ခုကို ခွင့်ပြုမည်လား။</item>
@@ -2549,49 +2475,19 @@
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">သင်ထည့်လိုက်သော နံပါတ် ( %1$s) သည်မှားယွင်းနေသည်။
     </string>
 
-    <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">အောက်ပါဖုန်းနံပါတ် မှန်ကန်ပါသလား။</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
     <string name="RegistrationActivity_additional_verification_required">ထပ်ဆောင်း အတည်ပြုချက် လိုအပ်ပါသည်</string>
-    <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">အတည်ပြုကုဒ်ကို ဤနံပါတ်သို့ ပေးပို့ပါမည်။ ဆက်သွယ်ရေးကယ်ရီယာနှုန်းထားများ ကျသင့်နိုင်ပါသည်။</string>
-    <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">အတည်ပြုချက်နံပါတ် သင်လက်ခံရရှိပါမည်၊ ဖုန်းခေါ်ဆိုခ သို့ SMS မက်ဆေ့ချ် ပို့ဆောင်ခ ကျသင့်မည်ဖြစ်သည်။</string>
-    <!-- Hint text to select a country -->
-    <string name="RegistrationActivity_select_a_country">နိုင်ငံတစ်ခုကို ရွေးပါ</string>
-    <!-- Hint text explaining that this is where the country code should go -->
-    <string name="RegistrationActivity_default_country_code">0</string>
-    <string name="RegistrationActivity_edit_number">နံပါတ်ကို ပြင်မယ်</string>
-    <string name="RegistrationActivity_missing_google_play_services">Google Play မရှိပါ</string>
-    <string name="RegistrationActivity_this_device_is_missing_google_play_services">သင့်ဖုန်းတွင် Google Play Services လိုအပ်နေပါသည်။ သင် Signal ကို အသုံးပြုနိုင်ပါတယ် ဒီဖွဲ့စည်းပုံအကျိုးရလဒ်ကယုံကြည်ဖို့အတွက် ဒါမှမဟုတ် စွမ်းဆောင်ရည် ကောင်းဖို့အတွက်ဖြစ်နိုင်ပါတယ်။ \n\n သင်က ကျွမ်းကျင်အဆင့် မဟုတ်လျှင် Android Rom market ကို သွားရန် မလိုပါ။ သို့မဟုတ် အမှားတစ်ခုခုဟု ထင်ပါက ဖြေရှင်းပေးနိုင်ဖို့အတွက် support@signal.org သို့ ဆက်သွယ်ပေးပါ။</string>
-    <string name="RegistrationActivity_i_understand">နားလည် လက်ခံပါသည်</string>
-    <string name="RegistrationActivity_play_services_error">Google Play အသုံးပြု၍မရပါ</string>
-    <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Serivice ကို အဆင့်မြှင့်တင်နေခြင်း၊ သို့၊ အသုံးပြု၍ မရခြင်းဖြစ်နေပါသည်။ ပြန်လည် စမ်းသပ်ကြည့်ပါ။</string>
     <string name="RegistrationActivity_rate_limited_to_service">ဤနံပတ်ဖြင့် မှတ်ပုံတင်ခြင်းကို အကြိမ်ပေါင်းများစွာ ကြိုးစားပြီးပါပြီ။ ကျေးဇူးပြူ၍ နောင်အခါမှ ပြန်လည်ကြိုးစားပါ။</string>
-    <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">ဤနံပါတ်ကို မှတ်ပုံတင်ရန် ကြိုးပမ်းမှုများစွာ ဆောင်ရွက်ခဲ့ပါသည်။ %1$s အကြာတွင် ထပ်ကြိုးစားကြည့်ပါ။</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">ဝန်ဆောင်မှုနှင့် ဆက်သွယ်၍ မရနိုင်ပါ။ အင်တာနက်ချိတ်ဆက်မှုအား နောက်တစ်ကြိမ် စစ်ဆေး၍ ပြန်လည်ကြိုးစားကြည့်ပါ။</string>
     <!-- Dialog error message shown when we are unable to send an SMS to the user\'s number -->
     <string name="RegistrationActivity_sms_provider_error">သင့်နံပါတ်သို့ SMS ပို့၍မရပါ။ နာရီအနည်းငယ်အကြာတွင် ထပ်မံကြိုးစားပါ။</string>
-    <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">SMS မှတစ်ဆင့် သင့်ထံ အတည်ပြုကုဒ် ပို့၍ မရနိုင်ခဲ့ပါ။ ၎င်းအစား အော်ဒီယိုကောလ်မှတစ်ဆင့် သင့်ကုဒ်ကို လက်ခံကြည့်ပါ။</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">အတည်ပြုကုဒ်တစ်ခုကို တောင်းဆိုနိုင်ခြင်းမရှိပါ။ သင့်ကွန်ရက် ချိတ်ဆက်မှုကို စစ်ဆေးပြီး ထပ်ကြိုးစားပါ။</string>
-    <string name="RegistrationActivity_non_standard_number_format">စံပုံစံနှင့် မကိုက်ညီသည့် နံပါတ်</string>
-    <!-- Dialog message shown to confirm when entering phone number (first placeholder) is normalized and formatted differently by the app (second placeholder). -->
-    <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">သင်ထည့်သွင်းထားသည့် နံပါတ် (%1$s) သည် စံပုံစံနှင့် မကိုက်ညီပုံပေါ်ပါသည်။\n\nသင်ဆိုလိုသည်မှာ %2$s ဟုတ်ပါသလား။</string>
-    <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - ဖုန်းနံပါတ် ပုံစံ</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="other">ယခု သင်သည် ပျက်ကွက်မှုပြင်ခြင်း မှတ်တမ်း တင်ရန်အတွက် အဆင့် %1$d ဆင့်သာလိုတော့သည်</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">သင်သည် လူသားဖြစ်ကြောင်း ကျွန်ုပ်တို့ အတည်ပြုရန် လိုအပ်သည်</string>
-    <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
-    <string name="RegistrationActivity_voice_call">အသံခေါ်ဆိုမှု</string>
-    <!-- Dialog button to cancel the pending action and return to the previous state. -->
-    <string name="RegistrationActivity_cancel">မလုပ်တော့ပါ</string>
     <string name="RegistrationActivity_next">နောက်ထက်</string>
-    <!-- Title of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_phone_number">ဖုန်းနံပါတ်</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">%1$s ကို ပို့လိုက်သည့် အတည်ပြုကုဒ်ကို ထည့်ပါ။</string>
 
     <string name="RegistrationActivity_phone_number_description">ဖုန်းနံပါတ်</string>
@@ -2785,6 +2681,8 @@
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">စတစ်ကာတွဲကို တင်ခြင်းမအောင်မြင်ပါ</string>
     <!-- Bottom sheet describing a sticker. First placeholder is the title of the sticker pack and second is the author -->
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
+    <!-- Bottom sheet option that opens the pack the sticker belongs to -->
+    <string name="StickerPreviewBottomSheet__view_pack">View pack</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">သိမ်းရန်</string>
@@ -3510,8 +3408,6 @@
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">ခေါ်ဆိုမှု သတိပေးချက်များ လက်ခံရန် ဤနေရာတွင်နှိပ်၍ \"ဘက်ထရီ\" အပြင်အဆင်များထဲတွင် နောက်ခံလှုပ်ရှားမှု ဖွင့်ထားပေးပါ။</string>
 
     <!-- country_selection_fragment -->
-    <string name="country_selection_fragment__loading_countries">နိုင်ငံစာရင်းများ လုပ်ဆောင်နေသည် ….</string>
-    <string name="country_selection_fragment__search">ရှာရန်</string>
 
     <string name="device_list_fragment__link_new_device">ဖုန်းအသစ်ကို ချိတ်ရန်</string>
 
@@ -4333,6 +4229,8 @@
     <string name="conversation_selection__menu_pin_message">ပင်တွဲရန်</string>
     <!-- Button to unpin a message -->
     <string name="conversation_selection__menu_unpin_message">ပင်ဖြုတ်ရန်</string>
+    <!-- Button to open the sticker pack a sticker message came from -->
+    <string name="conversation_selection__menu_view_sticker_pack">View pack</string>
 
     <!-- conversation_expiring_on -->
 
@@ -4520,14 +4418,11 @@
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">သင်၏ ပင်နံပါတ် ကိုထည့်ပါ</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">သင့်အကောင့်အတွက် ဖန်တီးထားသော ပင်နံပါတ် ထည့်ပါ၊ SMS စာတိုအနေဖြင့်ပေးပို့သည့် အတည်ပြုကုဒ်နှင့် မတူပါ။</string>
-    <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
-    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">သင့်အကောင့်အတွက် သင်ဖန်တီးထားသော PIN ကို ရိုက်ထည့်ပါ။</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">ပင်နံပါတ်မှားနေသည်။ နောက်တစ်ကြိမ် ကြိုးစားပါ။</string>
     <string name="RegistrationLockFragment__forgot_pin">ပင်နံပါတ်ကို မေ့သွားပြီလား?</string>
     <string name="RegistrationLockFragment__incorrect_pin">ပင်နံပါတ်မှားနေသည်</string>
     <string name="RegistrationLockFragment__forgot_your_pin">ပင်နံပါတ်ကို မေ့သွားပြီလား?</string>
     <string name="RegistrationLockFragment__not_many_tries_left">နောက်အကြိမ်များစွာ ကြိုးစားရန် မကျန်တော့ပါ!</string>
-    <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal မှတ်ပုံတင်ခြင်း - Android ပေါ်တွင် ပင်နံပါတ် (v2 PIN) နှင့်ပါတ်သက်သော အကူအညီရယူလိုပါသည်</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
         <item quantity="other">သင့် ကိုယ်ပိုင်အချက်အလက် လုံခြုံရေးအတွက် သင်၏ ပင်နံပါတ်ကို ပြန်လည်ရယူရန် မဖြစ်နိုင်ပါ။ ပင်နံပါတ်ကို မမှတ်မိပါက အသုံးပြုမှုမရှိသော ရက်ပေါင်း %1$d ရက်အကြာတွင် SMS စာတိုဖြင့် ပြန်လည် အတည်ပြုနိုင်ပါသည်။ ဤအခြေအနေတွင် သင့်အကောင့်ကို ရှင်းလင်းထားပြီး အကြောင်းအရာများအားလုံးကို ဖျက်သိမ်းသွားပါမည်။</item>
@@ -4577,22 +4472,6 @@
     <string name="backup_enable_dialog__you_must_have_this_passphrase">အရန်ကူးခြင်းတစ်ခုကို ပြန်လည်ရယူရန် သင့်တွင်ဤစကားဝှက် ရှိရမည်</string>
     <string name="backup_enable_dialog__folder">ဖိုင်တွဲ</string>
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">စကားဝှက်ကို ရေးမှတ်ပြီးပါပြီ။ စကားဝှက်မပါလျှင် အရံသိမ်းထားသောဖိုင်များကို ပြန်မရနိုင်ပါ။</string>
-    <string name="registration_activity__restore_backup">အရန်သိမ်းထားသည်များကို ပြန်ရယူမယ်</string>
-    <!-- Text label button to skip restoring -->
-    <string name="registration_activity__skip_restore">ပြန်လည်ရယူခြင်းကို ကျော်မည်</string>
-    <!-- Title for dialog to enter in the backup passphrase -->
-    <string name="RegistrationActivity_enter_backup_passphrase">အရန်သိမ်းဆည်းမှုအတွက် စကားဝှက် ထည့်ပါ</string>
-    <string name="RegistrationActivity_restore">ပြန်ရယူမယ်</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">Signal ဗားရှင်းအသစ်များမှ အရန်သိမ်းဆည်းမှုများထည့်၍မရပါ</string>
-    <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
-    <string name="RegistrationActivity_backup_failure_foreign_key">အရန်သိမ်းဆည်းမှုတွင် ပုံပျက်နေသောဒေတာ ပါဝင်နေသည်</string>
-    <string name="RegistrationActivity_incorrect_backup_passphrase">အရန်သိမ်းဆည်းမှုအတွက်စကားဝှက် မမှန်ကန်ပါ</string>
-    <string name="RegistrationActivity_checking">စစ်ဆေးနေသည်…</string>
-    <string name="RegistrationActivity_d_messages_so_far">လက်ရှိအချိန်အထိ %1$d စာတိုများရှိပါသည်…</string>
-    <string name="RegistrationActivity_restore_from_backup">အရန်သိမ်းထားသည်များကို ပြန်ရယူမည်လား?</string>
-    <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">သင်၏ စာတိုများ၊ ဖုန်းထဲတွင် အရန်သိမ်းဆည်းထားသော ရုပ်/သံ/ပုံ ဖိုင်များကို ပြန်လည်ရယူထားပါ။ ယခုမရယူထားပါက နောက်ပိုင်းတွင် ပြန်လည်ရယူနိုင်မည်မဟုတ်ပါ။</string>
-    <string name="RegistrationActivity_backup_size_s">အရန်သိမ်းမည့် အရွယ်အစား %1$s</string>
-    <string name="RegistrationActivity_backup_timestamp_s">အရန်သိမ်းဆည်းထားခဲ့သည့် အချိန် %1$s</string>
     <string name="BackupDialog_enable_local_backups">ဖုန်းထဲတွင် အရန်သိမ်းထားသည်များကို ဖွင့်မည်လား?</string>
     <string name="BackupDialog_enable_backups">အရန်သိမ်းဆည်းခြင်းကို လုပ်ဆောင်မည်</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">သင်နားလည်ပါက လေးထောင့်ကွက်အတွင်း အမှန်ခြစ်ခြစ်ပေးပါ။</string>
@@ -4628,7 +4507,6 @@
     <string name="RegistrationActivity_call_me_instead_available_in">(%1$02d:%2$02d) အကြာတွင် ဖုန်းခေါ်ရန်</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
     <string name="RegistrationActivity_resend_sms_available_in">ကုဒ် ပြန်ပို့ရန် (%1$02d:%2$02d)</string>
-    <string name="RegistrationActivity_contact_signal_support">Signal အကူအညီ ရယူမည်</string>
     <string name="RegistrationActivity_code_support_subject">Signal မှတ်ပုံတင်ခြင်း Android အတွက် အတည်ပြုကုဒ်</string>
     <string name="RegistrationActivity_incorrect_code">ကုဒ် မှားနေပါသည်</string>
     <string name="BackupUtil_never">ဘယ်တော့မှ</string>
@@ -4750,25 +4628,8 @@
     <string name="TransferOrRestoreFragment__restore_from_local_backup">စက်အတွင်း ဘက်ခ်အပ် ပြုလုပ်ခြင်း</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
-    <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">သင့် Android ဖုန်းအဟောင်းပေါ်တွင် Signal ဖွင့်ပါ</string>
-    <string name="NewDeviceTransferInstructions__continue">ဆက်လက်ရန်</string>
-    <string name="NewDeviceTransferInstructions__first_bullet">၁။</string>
-    <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">ထိပ်ဘယ်ဘက်၌ရှိသော သင့်ပရိုဖိုင်းပုံပေါ်အား နှိပ်၍ အပြင်အဆင်သို့သွားနိုင်ပါသည်</string>
-    <string name="NewDeviceTransferInstructions__second_bullet">၂။</string>
-    <string name="NewDeviceTransferInstructions__tap_on_account">"\"အကောင့်\" ကို နှိပ်ပါ"</string>
-    <string name="NewDeviceTransferInstructions__third_bullet">၃။</string>
-    <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"\"အကောင့်လွှဲမယ်\" ပေါ်သို့ နှိပ်၍ စက် ၂ ခုလုံးပေါ်တွင် \"ဆက်လက်ရန်\" ဆက်နှိပ်ပါ"</string>
 
     <!-- NewDeviceTransferSetupFragment -->
-    <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Android စက်အဟောင်းနှင့် ချိတ်ဆက်ရန် ပြင်ဆင်နေပါသည်…</string>
-    <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">အချိန်ခဏယူနေပါသည်၊ မကြာမီရရှိပါမည်</string>
-    <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Android စက်အဟောင်းဖြင့် ချိတ်ရန် စောင့်နေပါသည်…</string>
-    <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">သင့် Android စက်အဟောင်းဖြင့် ချိတ်ရန် Signal မှ တည်နေရာရှာဖွေခွင့် လိုအပ်ပါသည်။</string>
-    <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">သင့် Android စက်အဟောင်းဖြင့် ချိတ်ရန် Signal မှ တည်နေရာဝန်ဆောင်မှုများ ဖွင့်ထားရန် လိုအပ်ပါသည်။</string>
-    <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">သင့် Android စက်အဟောင်းအား ရှာဖွေချိတ်ဆက်ရန် Signal မှ ဝိုင်ဖိုင်ဖွင့်ထားခြင်း လိုအပ်ပါသည်။ ဝိုင်ဖိုင်ဖွင့်ထားရန်သာ လိုအပ်ပြီး ဝိုင်ဖိုင်လိုင်းပေါ်တက်ခြင်း မလိုအပ်ပါ။</string>
-    <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">တောင်းပန်ပါသည်၊ ကြည့်ရတာ ဤစက်သည် ဝိုင်ဖိုင်တိုက်ရိုက် ဝန်ဆောင်မှုအား မပံ့ပိုးပါ။ သင့် Android စက်အဟောင်းအား ရှာဖွေချိတ်ဆက်ရန် Signal မှ ဝိုင်ဖိုင်တိုက်ရိုက် အသုံးပြုရပါသည်။ သင့် Android စက်အဟောင်းမှ အကောင့်အား ပြန်လည်ရယူရန် နောက်ခံအရန်အား ပြန်လည်တည်ထောင်နိုင်ပါသည်။</string>
-    <string name="NewDeviceTransferSetup__restore_a_backup">နောက်ခံအရန်အား ပြန်လည်တည်ထောင်မယ်</string>
-    <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">သင့် Android စက်အဟောင်းဖြင့် ချိတ်ရန်ကြိုးစားနေစဥ် မမျှော်လင့်ထားသော ချို့ယွင်းချက်တစ်ခု ဖြစ်ခဲ့ပါသည်။</string>
 
     <!-- OldDeviceTransferSetupFragment -->
     <string name="OldDeviceTransferSetup__searching_for_new_android_device">Android စက်အသစ်အား ရှာဖွေနေပါသည်…</string>
@@ -4812,9 +4673,6 @@
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device">သင့် တခြားစက်ပေါ်တွင် \"ဆက်လုပ်ရန်\" နှိပ်ပါ…</string>
 
     <!-- NewDeviceTransferFragment -->
-    <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Signal ဗားရှင်းအသစ်များမှ မလွှဲပြောင်းနိုင်ပါ</string>
-    <!-- Error message indicating that we could not finish the user\'s device transfer. Displayed in a toast at the bottom of the screen. -->
-    <string name="NewDeviceTransfer__failure_foreign_key">လွှဲပြောင်းလိုက်သော ဒေတာမှာ ပုံပျက်နေပါသည်</string>
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">ဒေတာများ လွှဲပြောင်းနေပါသည်</string>
@@ -4853,10 +4711,6 @@
     <string name="OldDeviceTransferComplete__close">ပိတ်မယ်</string>
 
     <!-- NewDeviceTransferComplete -->
-    <string name="NewDeviceTransferComplete__transfer_successful">လွှဲပြောင်းခြင်း အောင်မြင်သည်</string>
-    <string name="NewDeviceTransferComplete__transfer_complete">လွှဲပြောင်းမှု ပြီးဆုံးပြီ</string>
-    <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">အကောင့်လွှဲပြောင်းခြင်းအား ပြီးဆုံးရန် သင် အကောင့်အား ဆက်လက်ဖန်တီးပေးပါ။</string>
-    <string name="NewDeviceTransferComplete__continue_registration">ဆက်ပြီး လော့အင်ဝင်မယ်</string>
 
     <!-- DeviceToDeviceTransferService -->
     <string name="DeviceToDeviceTransferService_content_title">အကောင့်လွှဲပြောင်းခြင်း</string>
@@ -8559,219 +8413,6 @@
 
     <!-- ConfirmBackupCancellationDialog -->
 
-    <!-- Row title for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">ကျွန်ုပ်တွင် ဖုန်းအဟောင်းရှိသည်</string>
-    <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_scan_qr">လျင်မြန်စွာစတင်ရန် သင့် လက်ရှိ Signal အကောင့်မှ QR ကုဒ်တစ်ခုကို စကင်ဖတ်ပါ</string>
-
-    <!-- Row title for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">ကျွန်ုပ်တွင် ဖုန်းအဟောင်းမရှိပါ</string>
-    <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">သို့မဟုတ် သင်သည် ထိုစက်တွင်ပင် Signal ကို ပြန်လည်ထည့်သွင်းနေသည်</string>
-
-    <!-- Screen title for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__restore_or_transfer_account">အကောင့်ကို ပြန်ယူရန် သို့မဟုတ် လွှဲပြောင်းရန်</string>
-    <!-- Screen subtitle for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__get_your_signal_account">သင်၏ Signal အကောင့်နှင့် မက်ဆေ့ချ်မှတ်တမ်းကို ဤစက်ပေါ်တွင် ရယူရန်</string>
-    <!-- Option title for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_signal_backup">Signal ဘက်ခ်အပ်ကို ပြန်လည် ရယူခြင်း</string>
-    <!-- Option subtitle for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_your_text_messages_and_media_from">Signal ဘက်ခ်အပ်အစီအစဉ်မှ သင့်စာသားမက်ဆေ့ချ်နှင့် မီဒီယာကို ပြန်လည်ရယူပါ။</string>
-    <!-- Option title for restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_on_device_backup">သင့်စက်ပေါ်ရှိ ဘက်ခ်အပ်ကို ပြန်လည်ရယူရန်</string>
-    <!-- Option subtitle fdor restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_your_messages_from">သင့်စက်ပေါ်တွင် သိမ်းဆည်းထားသော ဘက်ခ်အပ်မှ မက်ဆေ့ချ်များကို ပြန်လည်ရယူပါ။</string>
-    <!-- Option title for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__from_your_old_phone">သင့်ဖုန်းအဟောင်းမှ</string>
-    <!-- Option subtitle for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__transfer_directly_from_old">သင်၏ Android အဟောင်းမှ တိုက်ရိုက်လွှဲပြောင်းပါ</string>
-    <!-- Dialog title shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_title">ပြန်လည်ရယူခြင်းကို ကျော်လိုပါသလား။</string>
-    <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">ယခု ပြန်လည်ရယူရန် မရွေးချယ်ပါက နောက်မှ ပြန်လည်ရယူနိုင်မည် မဟုတ်ပါ။ ပြန်လည်ရယူခြင်းကို ကျော်လိုက်ပြီးနောက် ဘက်ခ်အပ်ကူးယူခြင်းကို ပြန်ဖွင့်ပါက သင်၏ လက်ရှိဘက်ခ်အပ်ကို သင်၏မက်ဆေ့ချ်မှတ်တမ်းအသစ်ဖြင့် အစားထိုးမည်ဖြစ်သည်။</string>
-    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore">ပြန်လည်ရယူခြင်းကို ကျော်မည်</string>
-
-    <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_title">သင့် ပြန်လည်ရယူရေးကီးကို ထည့်ပါ</string>
-    <!-- Screen subtitle for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_subtitle">ပြန်လည်ရယူရေးကီးသည် သင့်အကောင့်နှင့် ဒေတာကို ပြန်လည်ရယူရန်လိုအပ်သော စာလုံး 64 လုံးပါ ကုဒ်တစ်ခုဖြစ်သည်။</string>
-    <!-- Button to skip entering recovery key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">ပြန်လည်ရယူရေးကီး မရှိသေးဘူးလား။</string>
-    <!-- Recovery key text field hint -->
-    <string name="EnterBackupKey_backup_key">ပြန်လည်ရယူရေးကီး</string>
-    <!-- Recovery key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">စာလုံး 64 လုံးရှိသော ပြန်လည်ရယူရေးကုဒ်မပါဘဲ ဘက်ခ်အပ်များကို ပြန်လည်ရယူ၍မရပါ။ သင့် ပြန်လည်ရယူရေးကီး ပျောက်ဆုံးသွားပါက သင်၏ဘက်ခ်အပ်ကို ပြန်လည်ရယူနိုင်တော့မည် မဟုတ်ပါ။</string>
-    <!-- Recovery key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">သင့်စက်အဟောင်းရှိလျှင် ပြန်လည်ရယူရေးကီးကို ဆက်တင် &gt; ဘက်ခ်အပ် တွင် ကြည့်ရှုနိုင်သည်။ ထို့နောက် ပြန်လည်ရယူရေးကီး ကြည့်ရန်ကို နှိပ်ပါ။</string>
-    <!-- Recovery key not known bottom sheet button to learn more about it -->
-    <string name="EnterBackupKey_learn_more">ပိုမိုလေ့လာရန်</string>
-    <!-- Recovery key not known bottom sheet button to skip recovery key entry and resume normal reregistration -->
-    <string name="EnterBackupKey_skip_and_dont_restore">ကျော်ပြီး ပြန်လည်ရယူခြင်းမပြုပါ</string>
-    <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">ပြန်လည်ရယူရေးကီး မှားနေသည်</string>
-    <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">Signal လုံခြုံရေး ဘက်ခ်အပ်ကို ဖွင့်စဥ်က သင်သိမ်းဆည်းထားသည့် တူညီသော ဖုန်းနံပါတ်နှင့် 64 လုံးပါ ပြန်လည်ရယူရေးကီးဖြင့် စာရင်းသွင်းဝင်ရောက်ကြောင်း သေချာပါစေ။ ဤကီးမပါဘဲ ဘက်ခ်အပ်များကို ပြန်လည်ရယူ၍မရပါ။</string>
-    <!-- Dialog positive button text to try entering their recovery key again -->
-    <string name="EnterBackupKey_try_again">ထပ်မံကြိုးစားမည်</string>
-    <!-- Dialog negative button text to get help with recovery key -->
-    <string name="EnterBackupKey_backup_key_help">ပြန်လည်ရယူရေးကီးဆိုင်ရာ အကူအညီ</string>
-    <!-- Text field error text when the recovery key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">ပြန်လည်ရယူရေးကီး မှားနေသည်</string>
-    <!-- Text field error text when the recovery key is too long -->
-    <string name="EnterBackupKey_too_long_error">ရှည်လွန်းသည် (%1$d/%2$d)</string>
-    <!-- Text field error when the recovery key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">ပြန်လည်ရယူရေးကီး မမှန်ကန်ပါ</string>
-    <!-- Dialog title shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_not_found">ဘက်ခ်အပ် ရှာမတွေ့ပါ</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">သင်ထည့်လိုက်သော ပြန်လည်ရယူရေးကီးသည် မှန်ကန်သော်လည်း ၎င်းနှင့် ဆက်စပ်နေသည့် ဘက်ခ်အပ်မရှိပါ။ သင့်တွင် ဖုန်းအဟောင်းရှိနေသေးပါက ဘက်ခ်အပ်ကိုဖွင့်ထားပြီး ဘက်ခ်အပ်ကူးယူမှုပြီးသွားကြောင်း သေချာစေကာ ထပ်စမ်းကြည့်ပါ။</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">သင်သည် ပြန်လည်ရယူရေးကီးကို မှားယွင်းစွာ ထည့်သွင်းခဲ့ခြင်းသော်လည်းကောင်း၊ သင့်စက်အဟောင်းတွင် အနည်းဆုံး ဘက်ခ်အပ်တစ်ခေါက် မပြီးမြောက်ခဲ့ခြင်းသော်လည်းကောင်း ဖြစ်နိုင်ပါသည်။\n\nSignal လုံခြုံရေးဘက်ခ်အပ်ကိုဖွင့်စဉ်က သင်သိမ်းဆည်းထားသည့် တူညီသောဖုန်းနံပါတ်နှင့် ပြန်လည်ရယူရေးကီးတို့ဖြင့် စာရင်းသွင်းဝင်ရောက်ကြောင်း သေချာစေပြီး သင့်စက်အဟောင်းသည် ဘက်ခ်အပ်လုပ်ခြင်းပြီးမြောက်ကြောင်း အတည်ပြုပါ။</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">ပြန်လည်ရယူရေးကီးကို ရယူရန်ကြိုးပမ်းမှု အကြိမ်ရေပြည့်သွားပါပြီ။ သင့်လုံခြုံရေးအတွက် သင်ကြိုးစားနိုင်သည့် အကြိမ်အရေအတွက်ကို ကန့်သတ်ထားသည်။ တစ်နာရီစောင့်ပြီး ထပ်စမ်းကြည့်ပါ။</string>
-    <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
-    <string name="EnterBackupKey_skip_restore">ပြန်လည်ရယူခြင်းကို ကျော်မည်</string>
-    <!-- Dialog title text when encountering backup restore network error -->
-    <string name="EnterBackupKey_cant_restore_backup">ဘက်ခ်အပ်ကို ပြန်လည်ရယူ၍မရပါ</string>
-    <!-- Dialog body text when encountering backup restore network error -->
-    <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">သင့်ဘက်ခ်အပ်ကို ယခုပြန်လည်ရယူ၍မရပါ။ သင့်အင်တာနက်ချိတ်ဆက်မှုကို ပြန်စစ်ဆေးပြီး ထပ်ကြိုးစားကြည့်ပါ။ </string>
-    <!-- Dialog button text to contact support on network error -->
-    <string name="EnterBackupKey_contact_support">ပံ့ပိုးမှုစင်တာသို့ ဆက်သွယ်ရန်</string>
-
-    <!-- Email subject when contacting support on a restore backup network issue -->
-    <string name="EnterBackupKey_network_failure_support_email">Signal Android ဘက်ခ်အပ် ပြန်လည်ရယူခြင်းဆိုင်ရာ ကွန်ရက်ချို့ယွင်းချက်</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
-    <!-- Email subject when contacting support on a permanent backup import failure -->
-    <string name="EnterBackupKey_permanent_failure_support_email">Signal Android ဘက်ခ်အပ် ပြန်လည်ရယူခြင်းဆိုင်ရာ အမြဲတမ်း ချို့ယွင်းချက်</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
-
-    <!-- EnterLocalBackupKeyScreen: Screen title for entering recovery key for local backup restore -->
-    <string name="EnterLocalBackupKeyScreen__enter_your_recovery_key">သင့် ပြန်လည်ရယူရေးကီးကို ထည့်ပါ</string>
-    <!-- EnterLocalBackupKeyScreen: Screen subtitle explaining what the recovery key is -->
-    <string name="EnterLocalBackupKeyScreen__your_recovery_key_is_a_64_character_code">ပြန်လည်ရယူရေးကီးသည် သင့်အကောင့်နှင့် ဒေတာကို ပြန်လည်ရယူရန်လိုအပ်သော စာလုံး 64 လုံးပါ ကုဒ်တစ်ခုဖြစ်သည်။</string>
-    <!-- EnterLocalBackupKeyScreen: Button text when user does not have a recovery key -->
-    <string name="EnterLocalBackupKeyScreen__no_recovery_key">ပြန်လည်ရယူရေးကီး မရှိသေးဘူးလား။</string>
-    <!-- EnterLocalBackupKeyScreen: Button to proceed to next step -->
-    <string name="EnterLocalBackupKeyScreen__next">ဆက်သွားမည်</string>
-
-    <!-- RestoreLocalBackupDialog: Error message when the selected archive fails to load -->
-    <string name="RestoreLocalBackupDialog__failed_to_load_archive">စုစည်းမှုကို ဖွင့်၍မရပါ။ အခြားတစ်ခုကို ရွေးပေးပါ။</string>
-    <!-- RestoreLocalBackupDialog: Dismiss button for dialog -->
-    <string name="RestoreLocalBackupDialog__ok">အိုကေ</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore">ပြန်လည်ရယူခြင်းကို ကျော်လိုပါသလား။</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user about the consequences of skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore_body">ယခု ပြန်လည်ရယူရန် မရွေးချယ်ပါက နောက်မှ ပြန်လည်ရယူနိုင်မည် မဟုတ်ပါ။ ပြန်လည်ရယူခြင်းကို ကျော်လိုက်ပြီးနောက် ဘက်ခ်အပ်ကူးယူခြင်းကို ပြန်ဖွင့်ပါက သင်၏ လက်ရှိဘက်ခ်အပ်ကို သင်၏မက်ဆေ့ချ်မှတ်တမ်းအသစ်ဖြင့် အစားထိုးမည်ဖြစ်သည်။</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the skip restore dialog -->
-    <string name="RestoreLocalBackupDialog__skip_restore_confirm">ပြန်လည်ရယူခြင်းကို ကျော်မည်</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm restoring a backup from a different account -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account">အကောင့်အသစ်သို့ ပြန်လည်ရယူလိုပါသလား။</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user that the backup was created with a different account and they will lose group memberships -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account_body">သင်ပြန်လည်ရယူနေသော ဘက်ခ်အပ်ကို အခြား Signal အကောင့်တစ်ခု အသုံးပြု၍ ဖန်တီးထားပါသည်။ ဤဘက်ခ်အပ်ကို အကောင့်အသစ်တစ်ခုသို့ ပြန်ယူနိုင်သော်လည်း ပြန်လည်ရယူထားသော အဖွဲ့များ၏ အဖွဲ့ဝင်မဟုတ်တော့ပါ။</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the restore to new account dialog -->
-    <string name="RestoreLocalBackupDialog__restore">ပြန်လည်ရယူမယ်</string>
-
-    <!-- RestoreLocalBackupActivity: Toast message when backup restore fails -->
-    <string name="RestoreLocalBackupActivity__backup_restore_failed">ဘက်ခ်အပ်ပြန်လည်ရယူခြင်း မအောင်မြင်ပါ</string>
-    <!-- RestoreLocalBackupActivity: Screen title shown during restore -->
-    <string name="RestoreLocalBackupActivity__restoring_backup">ဘက်ခ်အပ် ပြန်လည်ရယူနေသည်</string>
-    <!-- RestoreLocalBackupActivity: Screen subtitle explaining restore duration -->
-    <string name="RestoreLocalBackupActivity__depending_on_the_size">သင်၏ဘက်ခ်အပ်အရွယ်အစားပေါ် မူတည်၍ အချိန်ကြာမြင့်နိုင်သည်။</string>
-    <!-- RestoreLocalBackupActivity: Status text while restoring messages -->
-    <string name="RestoreLocalBackupActivity__restoring_messages">မက်ဆေ့ချ်များကို ပြန်လည်ရယူနေသည်..</string>
-    <!-- RestoreLocalBackupActivity: Status text while finalizing restore -->
-    <string name="RestoreLocalBackupActivity__finalizing">အပြီးသတ်နေသည်…</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore is complete -->
-    <string name="RestoreLocalBackupActivity__restore_complete">ပြန်လည်ရယူခြင်း ပြီးစီးပါပြီ</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore fails -->
-    <string name="RestoreLocalBackupActivity__restore_failed">ပြန်လည်ရယူခြင်း မအောင်မြင်ပါ</string>
-    <!-- RestoreLocalBackupActivity: Progress text showing bytes read of total with percentage, e.g. "1.2 MB of 5.0 MB (24%)" -->
-    <string name="RestoreLocalBackupActivity__s_of_s_d_percent">%2$s မှ %1$s (%3$d%%)</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__cant_restore_backup">ဘက်ခ်အပ်ကို ပြန်လည်ရယူ၍မရပါ</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__error_occurred_while_restoring">သင်၏ ဘက်ခ်အပ်ကို ပြန်လည်ရယူစဉ် အမှားအယွင်းတစ်ခု ဖြစ်ပွားခဲ့သည်။ သင်၏ဘက်ခ်အပ်ကို ပြန်လည်ရယူ၍မရပါ။ အကူအညီအတွက် ပံ့ပိုးရေးသို့ ဆက်သွယ်ပါ။</string>
-
-    <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
-    <string name="RestoreLocalBackupActivity__contact_support">ပံ့ပိုးရေးသို့ ဆက်သွယ်ရန်</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
-    <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">စက်တွင်းရှိ ဘက်ခ်အပ်ကို ဖွင့်မည်လား။</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">စက်တွင်းရှိ ဘက်ခ်အပ်များကို ဆက်လက်အသုံးပြုရန်အတွက် ဤအကောင့်ကိုဖွင့်ထားရန် လိုအပ်ပါသည်။ ၎င်းကို ဆက်တင် &gt; ဘက်ခ်အပ်မှ အချိန်မရွေး လုပ်ဆောင်နိုင်ပါသည်။</string>
-
-    <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__turn_on_now">ယခုဖွင့်မည်</string>
-
-    <!-- RestoreLocalBackupActivity: Dismiss button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__not_now">ယခု မလုပ်သေးပါ</string>
-
-    <!-- RestoreLocalBackupActivity: Body text for the dialog shown after a successful restore, prompting the user to choose a backup folder -->
-    <string name="RestoreLocalBackupActivity__choose_a_folder_for_backups">စက်တွင်းရှိ ဘက်ခ်အပ်ကို ဆက်လက်အသုံးပြုရန် ဘက်ခ်အပ်အသစ်များကို သိမ်းဆည်းမည့် သင့်စက်ပေါ်ရှိ ဖိုင်တွဲတစ်ခုကို ရွေးချယ်ပါ။</string>
-
-    <!-- RestoreLocalBackupActivity: Positive button label for the dialog shown after a successful restore; keeps the current backup folder -->
-    <string name="RestoreLocalBackupActivity__use_current_folder">လက်ရှိဖိုင်တွဲကို အသုံးပြုမည်</string>
-
-    <!-- RestoreLocalBackupActivity: Neutral button label for the dialog shown after a successful restore; opens folder picker to select a different backup location -->
-    <string name="RestoreLocalBackupActivity__choose_new_folder">ဖိုင်တွဲအသစ်ရွေးချယ်မည်</string>
-
-    <!-- RestoreLocalBackupActivity: Negative button label for the dialog shown after a successful restore; disables on-device backups -->
-    <string name="RestoreLocalBackupActivity__disable_backups">ဘက်ခ်အပ်ပိတ်မည်</string>
-
-    <!-- SelectInstructionsSheet: Title for the select backup folder instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_folder">သင့် ဘက်ခ်အပ်ဖိုင်တွဲကို ရွေးပါ</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the select this folder button -->
-    <string name="SelectInstructionsSheet__tap_select_this_folder">\"ဤဖိုင်တွဲကို ရွေးချယ်မည်\" ကို နှိပ်ပါ</string>
-    <!-- SelectInstructionsSheet: Instruction not to select individual files -->
-    <string name="SelectInstructionsSheet__do_not_select_individual_files">ဖိုင်တစ်ခုချင်းစီကို မရွေးချယ်ပါနှင့်</string>
-    <!-- SelectInstructionsSheet: Title for the select backup file instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_file">သင့် ဘက်ခ်အပ်ဖိုင်ကို ရွေးချယ်ပါ</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the backup file saved to device -->
-    <string name="SelectInstructionsSheet__tap_on_the_backup_file">သင့်စက်တွင် သိမ်းဆည်းထားသော ဘက်ခ်အပ်ဖိုင်ကို နှိပ်ပါ</string>
-    <!-- SelectInstructionsSheet: Subtitle explaining how to access backup after tapping continue -->
-    <string name="SelectInstructionsSheet__after_tapping_continue">\"ဆက်လုပ်ရန်\" ကို နှိပ်ပြီးနောက် သင့်ဘက်ခ်အပ်ကို မည်သို့ဝင်ရောက်ရမည်ကို ဤတွင်ဖော်ပြထားသည်-</string>
-    <!-- SelectInstructionsSheet: Instruction to select the top-level backup folder -->
-    <string name="SelectInstructionsSheet__select_the_top_level_folder">သင့်ဘက်ခ်အပ်ကို သိမ်းဆည်းထားသော top-level ဖိုင်တွဲကို ရွေးချယ်ပါ</string>
-    <!-- SelectInstructionsSheet: Continue button text -->
-    <string name="SelectInstructionsSheet__continue_button">ရှေ့ဆက်ပါ</string>
-
-    <!-- SelectLocalBackupScreen: Screen title for restoring on-device backup -->
-    <string name="SelectLocalBackupScreen__restore_on_device_backup">စက်ပေါ်ရှိ ဘက်ခ်အပ်ကို ပြန်လည်ရယူရန်</string>
-    <!-- SelectLocalBackupScreen: Screen subtitle explaining the restore process -->
-    <string name="SelectLocalBackupScreen__restore_your_messages_from_the_backup_folder">သင့်စက်ပေါ်တွင် သင်သိမ်းဆည်းထားသော ဘက်ခ်အပ်ဖိုင်တစ်ခုမှ မက်ဆေ့ချ်များကို ပြန်လည်ရယူပါ။ ယခု ပြန်လည်မရယူလျှင် နောက်မှပြန်လည်မရယူနိုင်ပါ။</string>
-    <!-- SelectLocalBackupScreen: Button to initiate backup restoration -->
-    <string name="SelectLocalBackupScreen__restore_backup">ဘက်ခ်အပ်မှ ပြန်လည်ရယူမည်</string>
-    <!-- SelectLocalBackupScreen: Button to choose an earlier backup when current is latest -->
-    <string name="SelectLocalBackupScreen__choose_an_earlier_backup">အစောပိုင်း ဘက်ခ်အပ်တစ်ခုကို ရွေးချယ်ပါ</string>
-    <!-- SelectLocalBackupScreen: Button to choose a different backup -->
-    <string name="SelectLocalBackupScreen__choose_a_different_backup">အခြားဘက်ခ်အပ်ကို ရွေးချယ်ပါ</string>
-    <!-- SelectLocalBackupScreen: Label for latest backup card -->
-    <string name="SelectLocalBackupScreen__your_latest_backup">သင်၏ နောက်ဆုံး ဘက်ခ်အပ်-</string>
-    <!-- SelectLocalBackupScreen: Label for non-latest backup card -->
-    <string name="SelectLocalBackupScreen__your_backup">သင့် ဘက်ခ်အပ်-</string>
-
-    <!-- SelectLocalBackupSheet: Title for backup selection bottom sheet -->
-    <string name="SelectLocalBackupSheet__choose_a_backup_to_restore">ပြန်လည်ရယူရန် ဘက်ခ်အပ်တစ်ခုကို ရွေးချယ်ပါ</string>
-    <!-- SelectLocalBackupSheet: Subtitle warning about choosing an older backup -->
-    <string name="SelectLocalBackupSheet__choosing_an_older_backup">ဘက်ခ်အပ်အဟောင်းကို ရွေးချယ်ခြင်းသည် မက်ဆေ့ချ်များ သို့မဟုတ် မီဒီယာများ ပျောက်ဆုံးသွားစေနိုင်သည်။</string>
-    <!-- SelectLocalBackupSheet: Continue button text -->
-    <string name="SelectLocalBackupSheet__continue_button">ရှေ့ဆက်ပါ</string>
-
-    <!-- SelectLocalBackupTypeScreen: Screen title for selecting backup type -->
-    <string name="SelectLocalBackupTypeScreen__restore_on_device_backup">စက်ပေါ်ရှိ ဘက်ခ်အပ်ကို ပြန်လည်ရယူပါ</string>
-    <!-- SelectLocalBackupTypeScreen: Screen subtitle explaining restore options -->
-    <string name="SelectLocalBackupTypeScreen__restore_your_messages_from_the_backup">သင့်စက်ပေါ်တွင် သင်သိမ်းဆည်းထားသော ဘက်ခ်အပ်မှ မက်ဆေ့ချ်များကို ပြန်လည်ရယူပါ။ ယခု ပြန်လည်မရယူလျှင် နောက်မှပြန်လည်မရယူနိုင်ပါ။</string>
-    <!-- SelectLocalBackupTypeScreen: Button for users who saved backup as single file -->
-    <string name="SelectLocalBackupTypeScreen__i_saved_my_backup_as_a_single_file">ကျွန်ု၏ ဘက်ခ်အပ်ကို ဖိုင်တစ်ခုတည်းအဖြစ် သိမ်းဆည်းထားပါသည်</string>
-    <!-- SelectLocalBackupTypeScreen: Card title for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__choose_backup_folder">ဘက်ခ်အပ်ဖိုင်တွဲကို ရွေးချယ်ပါ</string>
-    <!-- SelectLocalBackupTypeScreen: Card description for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__select_the_folder_on_your_device">သင့်စက်ပေါ်ရှိ ဘက်ခ်အပ်ကို သိမ်းဆည်းထားသည့် ဖိုင်တွဲကို ရွေးချယ်ပါ</string>
-
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">Signal Android ဘက်ခ်အပ် ထုတ်ယူခြင်းဆိုင်ရာ ကွန်ရက်ချို့ယွင်းချက်</string>
     <!-- Email filter when contacting support on a create backup failure -->
@@ -8785,23 +8426,6 @@
     <string name="ContactSupportDialog_submit_with_debug">ပြစ်ချက်မှတ်တမ်းဖြင့် တင်ပြရန်</string>
     <!-- Button option to not submit debug log when contacting support -->
     <string name="ContactSupportDialog_submit_without_debug">ပြစ်ချက်မှတ်တမ်းမပါဘဲ တင်ပြရန်</string>
-
-    <!-- Title for restore via qr screen -->
-    <string name="RestoreViaQr_title">သင့်ဖုန်းအဟောင်းဖြင့် ဤကုဒ်ကို စကင်ဖတ်ပါ</string>
-    <!-- First instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_1">သင့်စက်အဟောင်းတွင် Signal ကိုဖွင့်ပါ</string>
-    <!-- Second instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_2">ကင်မရာအိုင်ကွန်ကို နှိပ်ပါ </string>
-    <!-- Third instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_3">ကင်မရာဖြင့် ဤကုဒ်ကို စကင်ဖတ်ပါ</string>
-    <!-- Error message shown when qr code could not be loaded -->
-    <string name="RestoreViaQr_qr_code_error">QR ကုဒ်ကို ပြုလုပ်၍မရပါ</string>
-    <!-- Status message shown when qr code already scanned by other device -->
-    <string name="RestoreViaQr_qr_code_scanned">စက်အဟောင်းတွင် စကင်ဖတ်ထားသည်</string>
-    <!-- Error button text to retry getting a qr code -->
-    <string name="RestoreViaQr_retry">ထပ်ကြိုးစားပါ</string>
-    <!-- Error message shown when register after receiving the provisioning message failed -->
-    <string name="RestoreViaQr_registration_error">ချွတ်ယွင်းချက်တစ်ခု ဖြစ်ပွားခဲ့သောကြောင့် သင့်အကောင့်ကို လွှဲပြောင်း၍မရပါ။ QR ကုဒ်ကို စကင်န်ဖတ်ကာ ထပ်စမ်းကြည့်ပါ။</string>
 
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">အကောင့်လွှဲပြောင်းမည်</string>
@@ -8843,19 +8467,6 @@
     <string name="RestoreCompleteBottomSheet_transfer_complete_message">သင်၏ Signal အကောင့်နှင့် မက်ဆေ့ချ်များကို သင့်အခြားစက်သို့ လွှဲပြောင်းပြီးပါပြီ။ Signal သည် ဤစက်တွင် အလုပ်မလုပ်တော့ပါ။</string>
     <!-- Restore Complete bottom sheet dialog button text to dismiss sheet -->
     <string name="RestoreCompleteBottomSheet_button">အိုကေ</string>
-
-    <!-- No Backup to Restore screen title -->
-    <string name="NoBackupToRestore_title">ပြန်လည်ရယူရန် ဘက်ခ်အပ်မရှိပါ</string>
-    <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">သင်သည် iPhone မှ Android သို့ ပြောင်းရွှေ့သောကြောင့် သင်၏ မက်ဆေ့ချ်များနှင့် မီဒီယာကို လွှဲပြောင်းရန် တစ်ခုတည်းသောနည်းလမ်းမှာ သင့်စက်အဟောင်းတွင် Signal လုံခြုံရေးဘက်ခ်အပ်ကို ဖွင့်ထားခြင်းဖြစ်သည်။</string>
-    <!-- No Backup to Restore step 1 to enable backups on old device -->
-    <string name="NoBackupToRestore_step1">သင့်စက်အဟောင်းတွင် Signal ကိုဖွင့်ပါ</string>
-    <!-- No Backup to Restore step 2 to enable backups on old device -->
-    <string name="NoBackupToRestore_step2">ဆက်တင် &gt; ဘက်ခ်အပ် ကို နှိပ်ပါ</string>
-    <!-- No Backup to Restore step 3 to enable backups on old device -->
-    <string name="NoBackupToRestore_step3">ဘက်ခ်အပ်ကိုဖွင့်ပြီး သင်၏ဘက်ခ်အပ် ပြီးမြောက်သည်အထိ စောင့်ပါ</string>
-    <!-- No backup to Restore tonal cta to skip restore -->
-    <string name="NoBackupToRestore_skip_restore">ပြန်လည်ရယူခြင်းကို ကျော်မည်</string>
 
     <!-- Dialog title when the recovery key change limit is reached -->
     <string name="MessageBackupsKeyRecordScreen__limit_reached_title">ပြန်လည်ရယူရေးကီး ကန့်သတ်ချက် ပြည့်သွားပါပြီ</string>

@@ -556,41 +556,6 @@
     <string name="DeviceTransferComplete__your_account_is_now_on_this_device">Tài khoản của bạn nay đã ở trên thiết bị này.</string>
     <string name="DeviceTransferComplete__continue_registration">Tiếp tục</string>
 
-    <!-- Create profile screen -->
-    <!-- Title displayed at the top of the create-profile screen during registration. -->
-    <string name="CreateProfileScreen__set_up_your_profile">Thiết lập hồ sơ</string>
-    <!-- Subtitle on create-profile screen explaining that the profile is end-to-end encrypted and visible to recipients. -->
-    <string name="CreateProfileScreen__your_profile_is_end_to_end_encrypted">Hồ sơ và các thay đổi trên hồ sơ của bạn sẽ chỉ hiển thị với những người bạn nhắn tin, với các liên hệ, và các nhóm.</string>
-    <!-- Label/hint for the first-name field, indicating it is required. -->
-    <string name="CreateProfileScreen__first_name_required">Tên (bắt buộc)</string>
-    <!-- Label/hint for the last-name field, indicating it is optional. -->
-    <string name="CreateProfileScreen__last_name_optional">Họ (không bắt buộc)</string>
-    <!-- Action button text to advance from create-profile screen. -->
-    <string name="CreateProfileScreen__next">Tiếp</string>
-    <!-- Content description for the avatar selection control. -->
-    <string name="CreateProfileScreen__set_avatar_description">Đặt ảnh đại diện</string>
-
-    <!-- Phone number discoverability picker -->
-    <!-- Title row label shown on the create-profile screen pointing at the discoverability picker. -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Ai có thể tìm tôi bằng số điện thoại?</string>
-    <!-- Description shown on the picker when "Everyone" is selected. -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">Bất kỳ ai có số điện thoại của bạn sẽ thấy bạn trên Signal và có thể bắt đầu trò chuyện với bạn.</string>
-    <!-- Description shown on the picker when "Nobody" is selected. -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Sẽ không có ai nhìn thấy số điện thoại của bạn trên Signal, trừ khi bạn nhắn tin với người đó hoặc đã có một cuộc trò chuyện với người đó.</string>
-    <!-- Radio option label for "Everyone can find me by number". -->
-    <string name="PhoneNumberPrivacy_everyone">Bất cứ ai</string>
-    <!-- Radio option label for "Nobody can find me by number". -->
-    <string name="PhoneNumberPrivacy_nobody">Không ai</string>
-    <!-- Title for the confirmation dialog shown when the user selects "Nobody". -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Bạn có chắc không?</string>
-    <!-- Body for the confirmation dialog shown when the user selects "Nobody". -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Thiết lập tùy chọn “Ai có thể tìm thấy tôi bằng số điện thoại” thành “Không ai” sẽ khiến mọi người khó tìm được bạn hơn trên Signal.</string>
-    <!-- Cancel button on the "Nobody" confirmation dialog. -->
-    <string name="PhoneNumberPrivacySettingsFragment__cancel">Hủy</string>
-    <!-- Save button on the discoverability picker. -->
-    <string name="PhoneNumberDiscoverabilityScreen__save">Lưu</string>
-    <!-- Content description for the back arrow on the discoverability picker. -->
-    <string name="PhoneNumberDiscoverabilityScreen__back">Trở lại</string>
     <!-- Error message shown when the captcha fails to load. -->
     <string name="CaptchaScreen__failed_to_load_captcha">Không thể tải mã captcha</string>
     <!-- Button to cancel out of the captcha screen. -->
@@ -682,7 +647,7 @@
     <!-- Action button that stores the Signal Login in the device password manager. -->
     <string name="SignalLoginInfoScreen__save_to_password_manager">Lưu vào công cụ quản lý mật khẩu</string>
     <!-- Toast shown when the user taps the disabled save to password manager button and the device has no password manager. -->
-    <string name="SignalLoginInfoScreen__no_password_manager_available">Bạn chưa thiết lập công cụ quản lý mật khẩu, hoặc công cụ quản lý mật khẩu bạn đang sử dụng không được hỗ trợ.</string>
+    <string name="SignalLoginInfoScreen__no_password_manager_available">You don\'t have a password manager set up.</string>
     <!-- Action button for users who would rather write the Signal Login down themselves. -->
     <string name="SignalLoginInfoScreen__save_manually">Lưu thủ công</string>
     <!-- Error shown when the Signal Login could not be stored in the password manager. -->

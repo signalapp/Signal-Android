@@ -839,23 +839,8 @@
     <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">除非你向對方傳送訊息或與對方已有聊天紀錄，否則沒有人能看到你使用 Signal。</string>
 
     <!-- ChooseBackupFragment -->
-    <string name="ChooseBackupFragment__restore_from_backup">要從備份還原嗎？</string>
-    <string name="ChooseBackupFragment__restore_your_messages_and_media">從本機備份還原您的訊息和媒體。若您現在不還原，之後將無法還原。</string>
-    <string name="ChooseBackupFragment__icon_content_description">「從備份還原」圖示</string>
-    <string name="ChooseBackupFragment__choose_backup">請選擇備份</string>
-    <string name="ChooseBackupFragment__learn_more">了解更多</string>
 
     <!-- RestoreBackupFragment -->
-    <string name="RestoreBackupFragment__restore_complete">還原完成</string>
-    <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">如要繼續使用備份，請選擇一個資料夾。新的備份將會儲存到此位置。</string>
-    <string name="RestoreBackupFragment__choose_folder">請選擇資料夾</string>
-    <string name="RestoreBackupFragment__not_now">現在不要</string>
-    <!-- Couldn\'t find the selected backup -->
-    <string name="RestoreBackupFragment__backup_not_found">找不到備份。</string>
-    <!-- Couldn\'t read the selected backup -->
-    <string name="RestoreBackupFragment__backup_could_not_be_read">無法讀取備份。</string>
-    <!-- Backup has an unsupported file extension -->
-    <string name="RestoreBackupFragment__backup_has_a_bad_extension">備份的副檔名不良。</string>
 
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
@@ -1373,60 +1358,6 @@
     <string name="ManageGroupActivity_add_group_description">新增群組描述…</string>
 
     <!-- RemoteRestoreActivity -->
-    <!-- Progress dialog label when downloading a backup -->
-    <string name="RemoteRestoreActivity__downloading_backup">正在下載備份…</string>
-    <!-- Progress dialog label when restoring a backup -->
-    <string name="RemoteRestoreActivity__restoring_messages">正在還原訊息…</string>
-    <!-- Progress dialog label when finishing a backup restore -->
-    <string name="RemoteRestoreActivity__finishing_restore">完成中…</string>
-    <!-- Progress dialog label while awaiting updates -->
-    <string name="RemoteRestoreActivity__restoring">正在還原…</string>
-    <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
-    <string name="RemoteRestoreActivity__s_of_s_s">共 %2$s 中的 %1$s ( %3$s )</string>
-    <!-- Feature list media label for paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_media">所有你的媒體</string>
-    <!-- Feature list media label for free tier. Placeholder is days, and is currently fixed at 30. -->
-    <string name="RemoteRestoreActivity__your_last_d_days_of_media">你最近 %1$d 天的媒體內容</string>
-    <!-- Feature list message label for free and paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_messages">所有你的訊息</string>
-    <!-- Screen title for restoring from backup -->
-    <string name="RemoteRestoreActivity__restore_from_backup">從備份還原</string>
-    <!-- Section title for explaining what your backup includes -->
-    <string name="RemoteRestoreActivity__your_backup_includes">你的備份包括：</string>
-    <!-- Primary action button copy for starting restoration -->
-    <string name="RemoteRestoreActivity__restore_backup">備份還原</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made. %1$s is replaced with the date (e.g. March 5, 2024) and %2$s is replaced with the time (e.g. 9:00am) -->
-    <string name="RemoteRestoreActivity__backup_created_at">你上次備份是在 %1$s 的 %2$s 進行的。</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
-    <string name="RemoteRestoreActivity__backup_created_at_with_size">你上次備份是在 %1$s 的 %2$s 進行的。你的備份大小為 %3$s。</string>
-    <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
-    <string name="RemoteRestoreActivity__fetching_backup_details">正在擷取備份詳細資訊…</string>
-    <!-- Text label button to skip restore from remote -->
-    <string name="RemoteRestoreActivity__skip_restore">跳過還原</string>
-    <!-- Dialog title displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__couldnt_transfer">無法完成轉移</string>
-    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">無法還原備份</string>
-    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">備份還原時發生錯誤。你的備份無法恢復。請聯絡支援團隊以提供協助。</string>
-    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">聯絡支援團隊</string>
-    <!-- Dialog message displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__error_occurred">發生錯誤，無法轉移你的帳戶。選擇你的轉移方式再試一次。</string>
-    <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
-    <string name="RemoteRestoreActivity__couldnt_restore">無法還原此備份</string>
-    <!-- Dialog message explaining that an update to Signal is required to restore the backup. -->
-    <string name="RemoteRestoreActivity__update_latest">此版本的 Signal 無法還原備份。更新至最新版本，然後重試。</string>
-    <!-- Text on button that when pressed will redirect them to update Signal -->
-    <string name="RemoteRestoreActivity__update_signal">更新 Signal</string>
-    <!-- Text label button to dismiss the dialog -->
-    <string name="RemoteRestoreActivity__not_now">現在不要</string>
-    <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">媒體將在背景還原。 若你選擇現在不還原，之後將無法還原。</string>
-    <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">此裝置已取消註冊</string>
-    <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">通常是因為你已在另一部裝置上註冊了你的 Signal 帳戶。</string>
 
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
@@ -2165,17 +2096,6 @@
     <string name="PinRestoreLockedFragment_create_new_pin">建立新的 PIN 碼</string>
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
-    <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
-    <string name="ReRegisterWithPinFragment_send_sms_code">傳送 SMS 驗證碼</string>
-    <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">Signal 註冊 — Android 用戶需要重新註冊 PIN 碼的協助</string>
-    <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">PIN 碼是由你建立的 %1$d 位數以上密碼，可以由數字或字母數字混合。如果你忘記 PIN 碼，可以建立一個新的 PIN 碼。</string>
-    <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">如果你忘記 PIN 碼，可以建立一個新的 PIN 碼。</string>
-    <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">你已經用完 PIN 碼猜測次數，但是你仍然可以透過建立新的 PIN 碼來使用你的 Signal 帳戶。</string>
-
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">警告</string>
     <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">如果停用 PIN 碼，當你重新註冊 Signal 而沒有進行手動備份及還原的話，你將會遺失所有資料。PIN 碼停用時不可開啟註冊鎖定。</string>
@@ -2255,6 +2175,12 @@
     <string name="WebRtcCallActivity__open_settings">開啟設定</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">現在不要</string>
+    <!-- Message for dialog shown at the start of a call when the system battery setting for Signal is "Restricted" -->
+    <string name="WebRtcCallActivity__others_may_not_be_able_to_hear_you_when_your_screen_turns_off">Others may not be able to hear you and the call may disconnect when your screen turns off. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
+    <!-- Title for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__others_couldnt_hear_you">Others couldn\'t hear you</string>
+    <!-- Message for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__your_microphone_was_muted_while_signal_was_in_the_background">Your microphone was muted while Signal was in the background. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
     <!-- Title for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__approve_d_requests">
         <item quantity="other">批准 %1$d 個請求？</item>
@@ -2549,49 +2475,19 @@
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">你所標明的號碼 (%1$s) 無效
     </string>
 
-    <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">以下電話號碼是否正確？</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
     <string name="RegistrationActivity_additional_verification_required">需要額外驗證</string>
-    <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">驗證碼將傳送至此號碼。電訊商可能收取費用。</string>
-    <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">你將會收到一個驗證碼。網絡供應商或會收取相關費用。</string>
-    <!-- Hint text to select a country -->
-    <string name="RegistrationActivity_select_a_country">選取國家或地區</string>
-    <!-- Hint text explaining that this is where the country code should go -->
-    <string name="RegistrationActivity_default_country_code">0</string>
-    <string name="RegistrationActivity_edit_number">修正電話號碼</string>
-    <string name="RegistrationActivity_missing_google_play_services">缺少 Google Play 服務</string>
-    <string name="RegistrationActivity_this_device_is_missing_google_play_services">此裝置未有安裝Google Play 服務。你仍可使用 Signal，但其可靠程度及運作表現可能會因這配置而減弱。\n\n 若你不是進階用戶，亦非營運 Android ROM 售後市場，或你認為這是錯誤訊息， 請聯絡 support@signal.org 協助解決疑難。</string>
-    <string name="RegistrationActivity_i_understand">我明白</string>
-    <string name="RegistrationActivity_play_services_error">Play 服務錯誤</string>
-    <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play 服務正在更新，或暫時未能運作。請再試一次。</string>
     <string name="RegistrationActivity_rate_limited_to_service">你已多次嘗試登記此電話號碼。請稍後再試。</string>
-    <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">你已多次嘗試註冊此電話號碼。請在 %1$s後再試。</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">無法連上服務。請檢查網絡連線，並稍後再試。</string>
     <!-- Dialog error message shown when we are unable to send an SMS to the user\'s number -->
     <string name="RegistrationActivity_sms_provider_error">我們無法向你的號碼發送 SMS 短訊。請於幾個小時後重試。</string>
-    <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">我們無法透過 SMS 短訊傳送驗證碼給你。請嘗試透過語音通話接收驗證碼。</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">無法要求驗證碼。請檢查你的網路連線，然後再試一次。</string>
-    <string name="RegistrationActivity_non_standard_number_format">非標準號碼格式</string>
-    <!-- Dialog message shown to confirm when entering phone number (first placeholder) is normalized and formatted differently by the app (second placeholder). -->
-    <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">您所輸入的號碼 (%1$s) 似乎並非標準格式。\n\n您是指 %2$s 嗎？</string>
-    <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - 電話號碼格式</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="other">距離提交調試日誌，尚餘%1$d 個步驟。</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">我們須要確認你是真人。</string>
-    <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
-    <string name="RegistrationActivity_voice_call">語音通話</string>
-    <!-- Dialog button to cancel the pending action and return to the previous state. -->
-    <string name="RegistrationActivity_cancel">取消</string>
     <string name="RegistrationActivity_next">下一步</string>
-    <!-- Title of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_phone_number">電話號碼</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">請輸入發送到 %1$s 的代碼</string>
 
     <string name="RegistrationActivity_phone_number_description">電話號碼</string>
@@ -2785,6 +2681,8 @@
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">載入貼圖包失敗</string>
     <!-- Bottom sheet describing a sticker. First placeholder is the title of the sticker pack and second is the author -->
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
+    <!-- Bottom sheet option that opens the pack the sticker belongs to -->
+    <string name="StickerPreviewBottomSheet__view_pack">View pack</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">儲存</string>
@@ -3510,8 +3408,6 @@
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">若要接收通話通知，輕觸「設定」並在「電量」設定中啟用背景活動。</string>
 
     <!-- country_selection_fragment -->
-    <string name="country_selection_fragment__loading_countries">正在載入國家…</string>
-    <string name="country_selection_fragment__search">搜尋</string>
 
     <string name="device_list_fragment__link_new_device">連結新的裝置</string>
 
@@ -4333,6 +4229,8 @@
     <string name="conversation_selection__menu_pin_message">釘選</string>
     <!-- Button to unpin a message -->
     <string name="conversation_selection__menu_unpin_message">取消釘選</string>
+    <!-- Button to open the sticker pack a sticker message came from -->
+    <string name="conversation_selection__menu_view_sticker_pack">View pack</string>
 
     <!-- conversation_expiring_on -->
 
@@ -4520,14 +4418,11 @@
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">輸入你的 PIN 碼</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">輸入你為帳戶建立的 PIN 碼。這與你的SMS 驗證碼不同。</string>
-    <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
-    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">輸入你為帳戶建立的 PIN 碼。</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">PIN 碼不正確。請再試一次。</string>
     <string name="RegistrationLockFragment__forgot_pin">忘記 PIN 碼？</string>
     <string name="RegistrationLockFragment__incorrect_pin">PIN 碼不正確</string>
     <string name="RegistrationLockFragment__forgot_your_pin">忘記你的 PIN 碼？</string>
     <string name="RegistrationLockFragment__not_many_tries_left">可再試的機會不多了!</string>
-    <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal 用戶註冊 — Android 用戶需要 (v2. PIN) PIN 碼的協助</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
         <item quantity="other">為保護你的隱私和安全，你的 PIN 碼是無法復原的。若你忘記了你的 PIN 碼，你可以在帳戶閒置 %1$d 天後，透過 SMS 重新驗證。而你的帳戶將會被抹除，當中所有內容亦會刪除。</item>
@@ -4577,22 +4472,6 @@
     <string name="backup_enable_dialog__you_must_have_this_passphrase">您必須備有此密碼方可還原備份。</string>
     <string name="backup_enable_dialog__folder">資料夾</string>
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">我已寫下此密碼。若然遺失，我將會無法還原備份。</string>
-    <string name="registration_activity__restore_backup">備份還原</string>
-    <!-- Text label button to skip restoring -->
-    <string name="registration_activity__skip_restore">跳過還原</string>
-    <!-- Title for dialog to enter in the backup passphrase -->
-    <string name="RegistrationActivity_enter_backup_passphrase">輸入備份密碼</string>
-    <string name="RegistrationActivity_restore">還原</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">未能從 Signal 較新版本匯入備份</string>
-    <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
-    <string name="RegistrationActivity_backup_failure_foreign_key">備份包含格式錯誤的資料</string>
-    <string name="RegistrationActivity_incorrect_backup_passphrase">備份密碼不正確</string>
-    <string name="RegistrationActivity_checking">檢查中…</string>
-    <string name="RegistrationActivity_d_messages_so_far">直至現在共有 %1$d 個訊息…</string>
-    <string name="RegistrationActivity_restore_from_backup">要從備份還原嗎？</string>
-    <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">從本機備份還原您的訊息和媒體。若您現在不還原，之後將無法還原。</string>
-    <string name="RegistrationActivity_backup_size_s">備份大小： %1$s</string>
-    <string name="RegistrationActivity_backup_timestamp_s">備份時間戳： %1$s</string>
     <string name="BackupDialog_enable_local_backups">要啟用本機備份嗎？</string>
     <string name="BackupDialog_enable_backups">啟用備份</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">請勾選確認核取方塊，以表示您清楚明白其內容。</string>
@@ -4628,7 +4507,6 @@
     <string name="RegistrationActivity_call_me_instead_available_in">打電話給我 (%1$02d:%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
     <string name="RegistrationActivity_resend_sms_available_in">重新傳送驗證碼 (%1$02d:%2$02d)</string>
-    <string name="RegistrationActivity_contact_signal_support">聯絡 Signal 支援</string>
     <string name="RegistrationActivity_code_support_subject">Signal 註冊 — Android 用的驗證碼</string>
     <string name="RegistrationActivity_incorrect_code">錯誤編號</string>
     <string name="BackupUtil_never">永不</string>
@@ -4750,25 +4628,8 @@
     <string name="TransferOrRestoreFragment__restore_from_local_backup">還原本機備份</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
-    <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">在您舊的 Android 電話上開啟 Signal</string>
-    <string name="NewDeviceTransferInstructions__continue">繼續</string>
-    <string name="NewDeviceTransferInstructions__first_bullet">一、</string>
-    <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">輕觸左上方您的個人資料照片以開啟設定</string>
-    <string name="NewDeviceTransferInstructions__second_bullet">二、</string>
-    <string name="NewDeviceTransferInstructions__tap_on_account">"輕觸「帳戶」"</string>
-    <string name="NewDeviceTransferInstructions__third_bullet">三、</string>
-    <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"輕觸「轉移帳戶」，然後在新、舊裝置上都按一下「繼續」"</string>
 
     <!-- NewDeviceTransferSetupFragment -->
-    <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">正在準備連接舊的 Android 裝置…</string>
-    <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">請等一下，應該快好了</string>
-    <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">正在等候舊的 Android 裝置連接…</string>
-    <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal 需要「位置」權限以探索並連接您舊的 Android 裝置。</string>
-    <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal 需要啟用定位服務以探索並連接您舊的 Android 裝置。</string>
-    <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal 需要開啟 Wi-Fi 以探索並連接您舊的 Android 裝置。需要開啟 Wi-Fi，惟不需要連接到 Wi-Fi 網絡。</string>
-    <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">抱歉，此裝置似乎不支援 Wi-Fi Direct。Signal 使用 Wi-Fi Direct 以探索並連接您舊的 Android 裝置。您仍可還原備份，以便從您舊的 Android 裝置還原您的帳戶。</string>
-    <string name="NewDeviceTransferSetup__restore_a_backup">還原備份</string>
-    <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">嘗試連接您舊的 Android 裝置時發生未預期的錯誤。</string>
 
     <!-- OldDeviceTransferSetupFragment -->
     <string name="OldDeviceTransferSetup__searching_for_new_android_device">正在搜尋新的 Android 裝置…</string>
@@ -4812,9 +4673,6 @@
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device">在您的另一台裝置上輕觸「繼續」…</string>
 
     <!-- NewDeviceTransferFragment -->
-    <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">無法從較新版本的 Signal 轉移</string>
-    <!-- Error message indicating that we could not finish the user\'s device transfer. Displayed in a toast at the bottom of the screen. -->
-    <string name="NewDeviceTransfer__failure_foreign_key">傳送的資料格式錯誤</string>
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">正在轉移資料</string>
@@ -4853,10 +4711,6 @@
     <string name="OldDeviceTransferComplete__close">關閉</string>
 
     <!-- NewDeviceTransferComplete -->
-    <string name="NewDeviceTransferComplete__transfer_successful">轉移成功</string>
-    <string name="NewDeviceTransferComplete__transfer_complete">轉移完成</string>
-    <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">您必須繼續註冊，以完成整個轉移過程。</string>
-    <string name="NewDeviceTransferComplete__continue_registration">繼續註冊</string>
 
     <!-- DeviceToDeviceTransferService -->
     <string name="DeviceToDeviceTransferService_content_title">帳戶轉移</string>
@@ -8559,219 +8413,6 @@
 
     <!-- ConfirmBackupCancellationDialog -->
 
-    <!-- Row title for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">我有我的舊手機</string>
-    <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_scan_qr">從你目前的 Signal 帳戶掃描二維碼以快速開始使用</string>
-
-    <!-- Row title for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">我沒有我的舊手機</string>
-    <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">或者你正在同一裝置上重新安裝 Signal</string>
-
-    <!-- Screen title for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__restore_or_transfer_account">還原或轉移帳戶</string>
-    <!-- Screen subtitle for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__get_your_signal_account">將你的 Signal 帳戶和訊息紀錄載入此裝置。</string>
-    <!-- Option title for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_signal_backup">還原 Signal 備份</string>
-    <!-- Option subtitle for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_your_text_messages_and_media_from">從 Signal 備份計畫中還原文字訊息和媒體。</string>
-    <!-- Option title for restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_on_device_backup">還原裝置上備份</string>
-    <!-- Option subtitle fdor restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_your_messages_from">從你儲存在裝置的備份中還原訊息。</string>
-    <!-- Option title for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__from_your_old_phone">從你的舊手機</string>
-    <!-- Option subtitle for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__transfer_directly_from_old">直接從舊的 Android 手機轉移</string>
-    <!-- Dialog title shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_title">要跳過還原嗎？</string>
-    <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">若你現在跳過還原，之後將無法還原。如果你在跳過還原後重新啟用備份功能，當前的備份將會被新的訊息紀錄取代。</string>
-    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore">跳過還原</string>
-
-    <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_title">輸入你的恢復金鑰</string>
-    <!-- Screen subtitle for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_subtitle">你的恢復金鑰是恢復你帳戶和資料所需的一組 64 個字元的代碼。</string>
-    <!-- Button to skip entering recovery key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">沒有恢復金鑰嗎？</string>
-    <!-- Recovery key text field hint -->
-    <string name="EnterBackupKey_backup_key">恢復金鑰</string>
-    <!-- Recovery key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">如果沒有 64 個字元的恢復代碼，則無法還原備份。如果你遺失了恢復金鑰，Signal 將無法幫助你還原備份。</string>
-    <!-- Recovery key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">如果你有舊裝置，則可以在「設定」 &gt;「備份」中檢視恢復金鑰。然後輕按「檢視恢復金鑰」。</string>
-    <!-- Recovery key not known bottom sheet button to learn more about it -->
-    <string name="EnterBackupKey_learn_more">了解更多</string>
-    <!-- Recovery key not known bottom sheet button to skip recovery key entry and resume normal reregistration -->
-    <string name="EnterBackupKey_skip_and_dont_restore">跳過並不還原</string>
-    <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">恢復金鑰不正確</string>
-    <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">確保你使用在啟用 Signal 安全備份時儲存的電話號碼和 64 個字元的恢復金鑰進行註冊。沒有此金鑰，則無法還原備份。</string>
-    <!-- Dialog positive button text to try entering their recovery key again -->
-    <string name="EnterBackupKey_try_again">再試一次</string>
-    <!-- Dialog negative button text to get help with recovery key -->
-    <string name="EnterBackupKey_backup_key_help">恢復金鑰說明</string>
-    <!-- Text field error text when the recovery key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">恢復金鑰不正確</string>
-    <!-- Text field error text when the recovery key is too long -->
-    <string name="EnterBackupKey_too_long_error">太長 (%1$d/%2$d)</string>
-    <!-- Text field error when the recovery key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">無效的恢復金鑰</string>
-    <!-- Dialog title shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_not_found">找不到備份</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">你輸入的恢復金鑰是正確的，但沒有與其關聯的備份。如果你還有舊手機，請確定備份已啟用並已完成備份，然後再試一次。</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">你可能輸入了錯誤的恢復金鑰，或者尚未在舊裝置上完成至少一次備份。\n\n確保你使用在啟用「Signal 安全備份」時儲存的電話號碼和恢復金鑰進行註冊，並確認舊裝置已完成備份。</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">你已用完恢復金鑰的嘗試次數。為安全計，你可嘗試的次數是有限的。請等待一小時後再重試。</string>
-    <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
-    <string name="EnterBackupKey_skip_restore">跳過還原</string>
-    <!-- Dialog title text when encountering backup restore network error -->
-    <string name="EnterBackupKey_cant_restore_backup">無法還原備份</string>
-    <!-- Dialog body text when encountering backup restore network error -->
-    <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">現在無法還原你的備份。請檢查你的網路連線，然後重試。 </string>
-    <!-- Dialog button text to contact support on network error -->
-    <string name="EnterBackupKey_contact_support">聯絡支援團隊</string>
-
-    <!-- Email subject when contacting support on a restore backup network issue -->
-    <string name="EnterBackupKey_network_failure_support_email">Signal Android 備份還原時網路發生錯誤</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
-    <!-- Email subject when contacting support on a permanent backup import failure -->
-    <string name="EnterBackupKey_permanent_failure_support_email">Signal Android 備份還原永久失敗</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
-
-    <!-- EnterLocalBackupKeyScreen: Screen title for entering recovery key for local backup restore -->
-    <string name="EnterLocalBackupKeyScreen__enter_your_recovery_key">輸入你的恢復金鑰</string>
-    <!-- EnterLocalBackupKeyScreen: Screen subtitle explaining what the recovery key is -->
-    <string name="EnterLocalBackupKeyScreen__your_recovery_key_is_a_64_character_code">你的恢復金鑰是恢復你帳戶和資料所需的一組 64 個字元的代碼。</string>
-    <!-- EnterLocalBackupKeyScreen: Button text when user does not have a recovery key -->
-    <string name="EnterLocalBackupKeyScreen__no_recovery_key">沒有恢復金鑰嗎？</string>
-    <!-- EnterLocalBackupKeyScreen: Button to proceed to next step -->
-    <string name="EnterLocalBackupKeyScreen__next">下一步</string>
-
-    <!-- RestoreLocalBackupDialog: Error message when the selected archive fails to load -->
-    <string name="RestoreLocalBackupDialog__failed_to_load_archive">載入封存紀錄失敗。請選擇不同的目錄。</string>
-    <!-- RestoreLocalBackupDialog: Dismiss button for dialog -->
-    <string name="RestoreLocalBackupDialog__ok">確定</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore">要跳過還原嗎？</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user about the consequences of skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore_body">若你現在跳過還原，之後將無法還原。如果你在跳過還原後重新啟用備份功能，當前的備份將會被新的訊息紀錄取代。</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the skip restore dialog -->
-    <string name="RestoreLocalBackupDialog__skip_restore_confirm">跳過還原</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm restoring a backup from a different account -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account">要還原至新帳戶嗎？</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user that the backup was created with a different account and they will lose group memberships -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account_body">你正在還原的備份是使用另一個 Signal 帳戶建立的。你可以將此備份還原至新帳戶，但你將不再是任何已還原群組的成員。</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the restore to new account dialog -->
-    <string name="RestoreLocalBackupDialog__restore">還原</string>
-
-    <!-- RestoreLocalBackupActivity: Toast message when backup restore fails -->
-    <string name="RestoreLocalBackupActivity__backup_restore_failed">備份還原失敗</string>
-    <!-- RestoreLocalBackupActivity: Screen title shown during restore -->
-    <string name="RestoreLocalBackupActivity__restoring_backup">正在還原備份</string>
-    <!-- RestoreLocalBackupActivity: Screen subtitle explaining restore duration -->
-    <string name="RestoreLocalBackupActivity__depending_on_the_size">視備份的大小而定，這可能需要幾分鐘的時間。</string>
-    <!-- RestoreLocalBackupActivity: Status text while restoring messages -->
-    <string name="RestoreLocalBackupActivity__restoring_messages">正在還原訊息…</string>
-    <!-- RestoreLocalBackupActivity: Status text while finalizing restore -->
-    <string name="RestoreLocalBackupActivity__finalizing">完成階段進行中…</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore is complete -->
-    <string name="RestoreLocalBackupActivity__restore_complete">還原完成</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore fails -->
-    <string name="RestoreLocalBackupActivity__restore_failed">還原失敗</string>
-    <!-- RestoreLocalBackupActivity: Progress text showing bytes read of total with percentage, e.g. "1.2 MB of 5.0 MB (24%)" -->
-    <string name="RestoreLocalBackupActivity__s_of_s_d_percent">共 %2$s 中的 %1$s (%3$d%%)</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__cant_restore_backup">無法還原備份</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__error_occurred_while_restoring">備份還原時發生錯誤。你的備份無法恢復。請聯絡支援團隊以提供協助。</string>
-
-    <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
-    <string name="RestoreLocalBackupActivity__contact_support">聯絡支援團隊</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
-    <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">要開啟裝置上備份嗎？</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">若要繼續使用裝置上備份，你需要為此帳戶啟用該功能。你可以隨時透過「設定」&gt;「備份」來執行此操作。</string>
-
-    <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__turn_on_now">立即開啟</string>
-
-    <!-- RestoreLocalBackupActivity: Dismiss button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__not_now">現在不要</string>
-
-    <!-- RestoreLocalBackupActivity: Body text for the dialog shown after a successful restore, prompting the user to choose a backup folder -->
-    <string name="RestoreLocalBackupActivity__choose_a_folder_for_backups">若要繼續使用裝置上備份，請在裝置上選擇一個資料夾，用來儲存新的備份。</string>
-
-    <!-- RestoreLocalBackupActivity: Positive button label for the dialog shown after a successful restore; keeps the current backup folder -->
-    <string name="RestoreLocalBackupActivity__use_current_folder">使用現有資料夾</string>
-
-    <!-- RestoreLocalBackupActivity: Neutral button label for the dialog shown after a successful restore; opens folder picker to select a different backup location -->
-    <string name="RestoreLocalBackupActivity__choose_new_folder">選擇新的資料夾</string>
-
-    <!-- RestoreLocalBackupActivity: Negative button label for the dialog shown after a successful restore; disables on-device backups -->
-    <string name="RestoreLocalBackupActivity__disable_backups">停用備份</string>
-
-    <!-- SelectInstructionsSheet: Title for the select backup folder instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_folder">選擇你的備份資料夾</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the select this folder button -->
-    <string name="SelectInstructionsSheet__tap_select_this_folder">輕按「選擇此資料夾」</string>
-    <!-- SelectInstructionsSheet: Instruction not to select individual files -->
-    <string name="SelectInstructionsSheet__do_not_select_individual_files">請勿選擇個別檔案</string>
-    <!-- SelectInstructionsSheet: Title for the select backup file instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_file">選擇你的備份檔案</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the backup file saved to device -->
-    <string name="SelectInstructionsSheet__tap_on_the_backup_file">輕按你儲存至裝置的備份檔案</string>
-    <!-- SelectInstructionsSheet: Subtitle explaining how to access backup after tapping continue -->
-    <string name="SelectInstructionsSheet__after_tapping_continue">點選「繼續」後，以下是存取備份的方法：</string>
-    <!-- SelectInstructionsSheet: Instruction to select the top-level backup folder -->
-    <string name="SelectInstructionsSheet__select_the_top_level_folder">選擇儲存備份的頂層資料夾</string>
-    <!-- SelectInstructionsSheet: Continue button text -->
-    <string name="SelectInstructionsSheet__continue_button">繼續</string>
-
-    <!-- SelectLocalBackupScreen: Screen title for restoring on-device backup -->
-    <string name="SelectLocalBackupScreen__restore_on_device_backup">還原裝置上備份</string>
-    <!-- SelectLocalBackupScreen: Screen subtitle explaining the restore process -->
-    <string name="SelectLocalBackupScreen__restore_your_messages_from_the_backup_folder">從你儲存在裝置上的備份資料夾還原訊息。若你現在不還原，之後將無法還原。</string>
-    <!-- SelectLocalBackupScreen: Button to initiate backup restoration -->
-    <string name="SelectLocalBackupScreen__restore_backup">備份還原</string>
-    <!-- SelectLocalBackupScreen: Button to choose an earlier backup when current is latest -->
-    <string name="SelectLocalBackupScreen__choose_an_earlier_backup">選擇較早的備份</string>
-    <!-- SelectLocalBackupScreen: Button to choose a different backup -->
-    <string name="SelectLocalBackupScreen__choose_a_different_backup">選擇不同的備份</string>
-    <!-- SelectLocalBackupScreen: Label for latest backup card -->
-    <string name="SelectLocalBackupScreen__your_latest_backup">你的最新備份：</string>
-    <!-- SelectLocalBackupScreen: Label for non-latest backup card -->
-    <string name="SelectLocalBackupScreen__your_backup">你的備份：</string>
-
-    <!-- SelectLocalBackupSheet: Title for backup selection bottom sheet -->
-    <string name="SelectLocalBackupSheet__choose_a_backup_to_restore">選擇一個備份以進行還原</string>
-    <!-- SelectLocalBackupSheet: Subtitle warning about choosing an older backup -->
-    <string name="SelectLocalBackupSheet__choosing_an_older_backup">選擇較舊的備份可能會導致訊息或媒體遺失。</string>
-    <!-- SelectLocalBackupSheet: Continue button text -->
-    <string name="SelectLocalBackupSheet__continue_button">繼續</string>
-
-    <!-- SelectLocalBackupTypeScreen: Screen title for selecting backup type -->
-    <string name="SelectLocalBackupTypeScreen__restore_on_device_backup">還原裝置上備份</string>
-    <!-- SelectLocalBackupTypeScreen: Screen subtitle explaining restore options -->
-    <string name="SelectLocalBackupTypeScreen__restore_your_messages_from_the_backup">從你儲存在裝置的備份中還原你的訊息。若你現在不還原，之後將無法還原。</string>
-    <!-- SelectLocalBackupTypeScreen: Button for users who saved backup as single file -->
-    <string name="SelectLocalBackupTypeScreen__i_saved_my_backup_as_a_single_file">我將備份儲存為單一檔案</string>
-    <!-- SelectLocalBackupTypeScreen: Card title for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__choose_backup_folder">選擇備份資料夾</string>
-    <!-- SelectLocalBackupTypeScreen: Card description for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__select_the_folder_on_your_device">選擇裝置上儲存備份的資料夾</string>
-
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">Signal Android 備份匯出時網路發生錯誤</string>
     <!-- Email filter when contacting support on a create backup failure -->
@@ -8785,23 +8426,6 @@
     <string name="ContactSupportDialog_submit_with_debug">連同除錯日誌一同上交</string>
     <!-- Button option to not submit debug log when contacting support -->
     <string name="ContactSupportDialog_submit_without_debug">不要連同除錯日誌一同上交</string>
-
-    <!-- Title for restore via qr screen -->
-    <string name="RestoreViaQr_title">使用舊手機掃描此二維碼</string>
-    <!-- First instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_1">在你的舊裝置開啟 Signal</string>
-    <!-- Second instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_2">輕按相機圖示 </string>
-    <!-- Third instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_3">使用相機掃描此二維碼</string>
-    <!-- Error message shown when qr code could not be loaded -->
-    <string name="RestoreViaQr_qr_code_error">無法產生二維碼</string>
-    <!-- Status message shown when qr code already scanned by other device -->
-    <string name="RestoreViaQr_qr_code_scanned">已在舊的裝置上掃瞄</string>
-    <!-- Error button text to retry getting a qr code -->
-    <string name="RestoreViaQr_retry">重試</string>
-    <!-- Error message shown when register after receiving the provisioning message failed -->
-    <string name="RestoreViaQr_registration_error">發生錯誤，無法轉移你的帳戶。重新掃描二維碼再試一次。</string>
 
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">轉移帳戶</string>
@@ -8843,19 +8467,6 @@
     <string name="RestoreCompleteBottomSheet_transfer_complete_message">你的 Signal 帳戶和訊息已轉移到另一部裝置。此裝置上的 Signal 現在已停用。</string>
     <!-- Restore Complete bottom sheet dialog button text to dismiss sheet -->
     <string name="RestoreCompleteBottomSheet_button">確定</string>
-
-    <!-- No Backup to Restore screen title -->
-    <string name="NoBackupToRestore_title">沒有備份可還原</string>
-    <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">由於你正在從 iPhone 移至 Android，所以轉移訊息和媒體的唯一方法是在舊裝置上啟用 Signal 安全備份。</string>
-    <!-- No Backup to Restore step 1 to enable backups on old device -->
-    <string name="NoBackupToRestore_step1">在你的舊裝置開啟 Signal</string>
-    <!-- No Backup to Restore step 2 to enable backups on old device -->
-    <string name="NoBackupToRestore_step2">點按「設定」 &gt; 「備份」</string>
-    <!-- No Backup to Restore step 3 to enable backups on old device -->
-    <string name="NoBackupToRestore_step3">啟用備份並等待備份完成</string>
-    <!-- No backup to Restore tonal cta to skip restore -->
-    <string name="NoBackupToRestore_skip_restore">跳過還原</string>
 
     <!-- Dialog title when the recovery key change limit is reached -->
     <string name="MessageBackupsKeyRecordScreen__limit_reached_title">已達恢復金鑰上限</string>

@@ -558,41 +558,6 @@
     <string name="DeviceTransferComplete__your_account_is_now_on_this_device">നിങ്ങളുടെ അക്കൗണ്ട് ഇപ്പോൾ ഈ ഉപകരണത്തിലാണ്.</string>
     <string name="DeviceTransferComplete__continue_registration">തുടരുക</string>
 
-    <!-- Create profile screen -->
-    <!-- Title displayed at the top of the create-profile screen during registration. -->
-    <string name="CreateProfileScreen__set_up_your_profile">നിങ്ങളുടെ പ്രൊഫൈൽ സജ്ജമാക്കുക</string>
-    <!-- Subtitle on create-profile screen explaining that the profile is end-to-end encrypted and visible to recipients. -->
-    <string name="CreateProfileScreen__your_profile_is_end_to_end_encrypted">നിങ്ങളുടെ പ്രൊഫൈലും അതിലെ മാറ്റങ്ങളും നിങ്ങൾ സന്ദേശമയയ്ക്കുന്ന ആളുകൾക്കും കോൺടാക്റ്റുകൾക്കും ഗ്രൂപ്പുകൾക്കും ദൃശ്യമാകും.</string>
-    <!-- Label/hint for the first-name field, indicating it is required. -->
-    <string name="CreateProfileScreen__first_name_required">പേരിൻ്റെ ആദ്യ ഭാഗം (ആവശ്യമാണ്)</string>
-    <!-- Label/hint for the last-name field, indicating it is optional. -->
-    <string name="CreateProfileScreen__last_name_optional">പേരിൻ്റെ അവസാന ഭാഗം (നിർബന്ധമല്ല)</string>
-    <!-- Action button text to advance from create-profile screen. -->
-    <string name="CreateProfileScreen__next">അടുത്തത്</string>
-    <!-- Content description for the avatar selection control. -->
-    <string name="CreateProfileScreen__set_avatar_description">അവതാർ സജ്ജമാക്കുക</string>
-
-    <!-- Phone number discoverability picker -->
-    <!-- Title row label shown on the create-profile screen pointing at the discoverability picker. -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">നമ്പർ ഉപയോഗിച്ച് എന്നെ കണ്ടെത്താൻ കഴിയുന്നത് ആർക്കൊക്കെ?</string>
-    <!-- Description shown on the picker when "Everyone" is selected. -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">നിങ്ങളുടെ ഫോൺ നമ്പറുള്ള ആർക്കും നിങ്ങൾ Signal-ൽ ഉണ്ടെന്ന് കാണാനും നിങ്ങളുമായി ചാറ്റുകൾ ആരംഭിക്കാനും കഴിയും.</string>
-    <!-- Description shown on the picker when "Nobody" is selected. -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">നിങ്ങൾ സന്ദേശമയയ്‌ക്കുകയോ മുമ്പ് ചാറ്റ് ചെയ്തിട്ടുണ്ടെങ്കിലോ മാത്രമേ നിങ്ങൾ Signal-ൽ ഉണ്ടെന്ന് കാണാനാകൂ.</string>
-    <!-- Radio option label for "Everyone can find me by number". -->
-    <string name="PhoneNumberPrivacy_everyone">എല്ലാവരും</string>
-    <!-- Radio option label for "Nobody can find me by number". -->
-    <string name="PhoneNumberPrivacy_nobody">ആർക്കുമില്ല</string>
-    <!-- Title for the confirmation dialog shown when the user selects "Nobody". -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">ഉറപ്പാണോ?</string>
-    <!-- Body for the confirmation dialog shown when the user selects "Nobody". -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">\"നമ്പർ പ്രകാരം ആർക്കൊക്കെ എന്നെ കണ്ടെത്താനാകും\" എന്നത് \"ആർക്കുമില്ല\" എന്ന് ക്രമീകരിക്കുന്നത് ആളുകൾക്ക് നിങ്ങളെ Signal-ൽ കണ്ടെത്തുന്നത് ബുദ്ധിമുട്ടാക്കും.</string>
-    <!-- Cancel button on the "Nobody" confirmation dialog. -->
-    <string name="PhoneNumberPrivacySettingsFragment__cancel">റദ്ദാക്കുക</string>
-    <!-- Save button on the discoverability picker. -->
-    <string name="PhoneNumberDiscoverabilityScreen__save">സംരക്ഷിക്കൂ</string>
-    <!-- Content description for the back arrow on the discoverability picker. -->
-    <string name="PhoneNumberDiscoverabilityScreen__back">തിരികെ പോകുക</string>
     <!-- Error message shown when the captcha fails to load. -->
     <string name="CaptchaScreen__failed_to_load_captcha">ക്യാപ്‌ച ലോഡ് ചെയ്യാനായില്ല</string>
     <!-- Button to cancel out of the captcha screen. -->
@@ -684,7 +649,7 @@
     <!-- Action button that stores the Signal Login in the device password manager. -->
     <string name="SignalLoginInfoScreen__save_to_password_manager">പാസ്‌വേഡ് മാനേജറിൽ സംരക്ഷിക്കുക</string>
     <!-- Toast shown when the user taps the disabled save to password manager button and the device has no password manager. -->
-    <string name="SignalLoginInfoScreen__no_password_manager_available">നിങ്ങൾ ഒരു പാസ്‌വേഡ് മാനേജർ സജ്ജീകരിച്ചിട്ടില്ല, അല്ലെങ്കിൽ നിങ്ങൾ ഉപയോഗിക്കുന്ന പാസ്‌വേഡ് മാനേജർ ഇത് പിന്തുണയ്ക്കുന്നില്ല.</string>
+    <string name="SignalLoginInfoScreen__no_password_manager_available">You don\'t have a password manager set up.</string>
     <!-- Action button for users who would rather write the Signal Login down themselves. -->
     <string name="SignalLoginInfoScreen__save_manually">മാനുവലായി സംരക്ഷിക്കുക</string>
     <!-- Error shown when the Signal Login could not be stored in the password manager. -->

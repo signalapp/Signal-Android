@@ -564,41 +564,6 @@
     <string name="DeviceTransferComplete__your_account_is_now_on_this_device">Tá do chuntas ar an ngléas seo anois.</string>
     <string name="DeviceTransferComplete__continue_registration">Lean ar aghaidh</string>
 
-    <!-- Create profile screen -->
-    <!-- Title displayed at the top of the create-profile screen during registration. -->
-    <string name="CreateProfileScreen__set_up_your_profile">Socraigh do phróifíl</string>
-    <!-- Subtitle on create-profile screen explaining that the profile is end-to-end encrypted and visible to recipients. -->
-    <string name="CreateProfileScreen__your_profile_is_end_to_end_encrypted">Beidh do phróifíl agus athruithe ar do phróifíl infheicthe ag daoine a fhaigheann teachtaireachtaí uait, ag do theagmhálaithe agus ag do ghrúpaí.</string>
-    <!-- Label/hint for the first-name field, indicating it is required. -->
-    <string name="CreateProfileScreen__first_name_required">Céadainm (Riachtanach)</string>
-    <!-- Label/hint for the last-name field, indicating it is optional. -->
-    <string name="CreateProfileScreen__last_name_optional">Sloinne (Roghnach)</string>
-    <!-- Action button text to advance from create-profile screen. -->
-    <string name="CreateProfileScreen__next">Ar aghaidh</string>
-    <!-- Content description for the avatar selection control. -->
-    <string name="CreateProfileScreen__set_avatar_description">Socraigh abhatár</string>
-
-    <!-- Phone number discoverability picker -->
-    <!-- Title row label shown on the create-profile screen pointing at the discoverability picker. -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Cé hiad na daoine ar féidir leo m\'uimhir a úsáid chun mise a aimsiú?</string>
-    <!-- Description shown on the picker when "Everyone" is selected. -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">Aon duine a bhfuil d\'uimhir ghutháin aige/aici, feicfidh sé/sí go bhfuil tú ar Signal agus beidh sé/sí in ann comhrá a thosú leat.</string>
-    <!-- Description shown on the picker when "Nobody" is selected. -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Beidh tú dofheicthe ar Signal ag daoine ach amháin má sheolann tú teachtaireacht chucu nó má tá comhrá ar siúl agat leis/léi.</string>
-    <!-- Radio option label for "Everyone can find me by number". -->
-    <string name="PhoneNumberPrivacy_everyone">Gach duine</string>
-    <!-- Radio option label for "Nobody can find me by number". -->
-    <string name="PhoneNumberPrivacy_nobody">Duine ar bith</string>
-    <!-- Title for the confirmation dialog shown when the user selects "Nobody". -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">An bhfuil tú cinnte?</string>
-    <!-- Body for the confirmation dialog shown when the user selects "Nobody". -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Má shocraítear \"Na daoine ar féidir leo m\'uimhir a úsáid chun mise a aimsiú\" ag \"Duine ar bith\", beidh sé níos deacra ag daoine thú a aimsiú ar Signal.</string>
-    <!-- Cancel button on the "Nobody" confirmation dialog. -->
-    <string name="PhoneNumberPrivacySettingsFragment__cancel">Cuir ar ceal</string>
-    <!-- Save button on the discoverability picker. -->
-    <string name="PhoneNumberDiscoverabilityScreen__save">Sábháil</string>
-    <!-- Content description for the back arrow on the discoverability picker. -->
-    <string name="PhoneNumberDiscoverabilityScreen__back">Siar</string>
     <!-- Error message shown when the captcha fails to load. -->
     <string name="CaptchaScreen__failed_to_load_captcha">Theip ar lódáil CAPTCHA</string>
     <!-- Button to cancel out of the captcha screen. -->
@@ -690,7 +655,7 @@
     <!-- Action button that stores the Signal Login in the device password manager. -->
     <string name="SignalLoginInfoScreen__save_to_password_manager">Sábháil chuig an mbainisteoir pasfhocal</string>
     <!-- Toast shown when the user taps the disabled save to password manager button and the device has no password manager. -->
-    <string name="SignalLoginInfoScreen__no_password_manager_available">Níl bainisteoir pasfhocal socraithe agat, nó níl tacú ar fáil don bhainisteoir pasfhocal atá in úsáid agat.</string>
+    <string name="SignalLoginInfoScreen__no_password_manager_available">You don\'t have a password manager set up.</string>
     <!-- Action button for users who would rather write the Signal Login down themselves. -->
     <string name="SignalLoginInfoScreen__save_manually">Sábháil de láimh</string>
     <!-- Error shown when the Signal Login could not be stored in the password manager. -->

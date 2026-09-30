@@ -911,23 +911,8 @@
     <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Niko neće moći vidjeti da ste na Signalu osim ako toj osobi ne pošaljete poruku ili ne razgovarate s njom.</string>
 
     <!-- ChooseBackupFragment -->
-    <string name="ChooseBackupFragment__restore_from_backup">Vratiti podatke iz rezervne kopije?</string>
-    <string name="ChooseBackupFragment__restore_your_messages_and_media">Vratite svoje poruke i datoteke iz lokalne rezervne kopije. Ako to ne učinite sada, nećete biti u mogućnosti vratiti podatke kasnije.</string>
-    <string name="ChooseBackupFragment__icon_content_description">Sličica za vraćanje podataka</string>
-    <string name="ChooseBackupFragment__choose_backup">Odaberi rezervnu kopiju</string>
-    <string name="ChooseBackupFragment__learn_more">Saznajte više</string>
 
     <!-- RestoreBackupFragment -->
-    <string name="RestoreBackupFragment__restore_complete">Vraćanje podataka je završeno</string>
-    <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Da biste i dalje mogli kreirati rezervne kopije, izaberite direktorij. Nove rezervne kopije bit će pohranjene na toj lokaciji.</string>
-    <string name="RestoreBackupFragment__choose_folder">Odaberi direktorij</string>
-    <string name="RestoreBackupFragment__not_now">Ne sada</string>
-    <!-- Couldn\'t find the selected backup -->
-    <string name="RestoreBackupFragment__backup_not_found">Rezervna kopija nije pronađena.</string>
-    <!-- Couldn\'t read the selected backup -->
-    <string name="RestoreBackupFragment__backup_could_not_be_read">Rezervnu kopiju nije moguće čitati.</string>
-    <!-- Backup has an unsupported file extension -->
-    <string name="RestoreBackupFragment__backup_has_a_bad_extension">Rezervna kopija sadržava lošu ekstenziju.</string>
 
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
@@ -1502,60 +1487,6 @@
     <string name="ManageGroupActivity_add_group_description">Unesite opis grupe…</string>
 
     <!-- RemoteRestoreActivity -->
-    <!-- Progress dialog label when downloading a backup -->
-    <string name="RemoteRestoreActivity__downloading_backup">Preuzimanje sigurnosne kopije…</string>
-    <!-- Progress dialog label when restoring a backup -->
-    <string name="RemoteRestoreActivity__restoring_messages">Vraćanje poruka…</string>
-    <!-- Progress dialog label when finishing a backup restore -->
-    <string name="RemoteRestoreActivity__finishing_restore">Završava se…</string>
-    <!-- Progress dialog label while awaiting updates -->
-    <string name="RemoteRestoreActivity__restoring">Vraćanje…</string>
-    <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
-    <string name="RemoteRestoreActivity__s_of_s_s">%1$s od %2$s (%3$s)</string>
-    <!-- Feature list media label for paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_media">Sve vaše medijske sadržaje</string>
-    <!-- Feature list media label for free tier. Placeholder is days, and is currently fixed at 30. -->
-    <string name="RemoteRestoreActivity__your_last_d_days_of_media">Vaših posljednjih %1$d dan(a) medija</string>
-    <!-- Feature list message label for free and paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_messages">Sve vaše poruke</string>
-    <!-- Screen title for restoring from backup -->
-    <string name="RemoteRestoreActivity__restore_from_backup">Vrati iz rezervne kopije</string>
-    <!-- Section title for explaining what your backup includes -->
-    <string name="RemoteRestoreActivity__your_backup_includes">Vaša sigurnosna kopija uključuje:</string>
-    <!-- Primary action button copy for starting restoration -->
-    <string name="RemoteRestoreActivity__restore_backup">Vrati podatke</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made. %1$s is replaced with the date (e.g. March 5, 2024) and %2$s is replaced with the time (e.g. 9:00am) -->
-    <string name="RemoteRestoreActivity__backup_created_at">Vaša zadnja sigurnosna kopija je napravljena %1$s u %2$s.</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
-    <string name="RemoteRestoreActivity__backup_created_at_with_size">Vaša zadnja sigurnosna kopija je napravljena %1$s u %2$s. Veličina vaše rezervne kopije je %3$s.</string>
-    <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
-    <string name="RemoteRestoreActivity__fetching_backup_details">Preuzimanje detalja sigurnosne kopije…</string>
-    <!-- Text label button to skip restore from remote -->
-    <string name="RemoteRestoreActivity__skip_restore">Preskoči obnovu</string>
-    <!-- Dialog title displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__couldnt_transfer">Nije moguće završiti prijenos</string>
-    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Nije moguće vratiti sigurnosnu kopiju</string>
-    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">Došlo je do greške prilikom vraćanja vaše sigurnosne kopije. Vaša sigurnosna kopija se ne može oporaviti. Kontaktirajte podršku za pomoć.</string>
-    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Kontaktirajte podršku</string>
-    <!-- Dialog message displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__error_occurred">Došlo je do pogreške i vaš račun nije mogao biti prenesen. Pokušajte ponovno odabirom metode prijenosa.</string>
-    <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
-    <string name="RemoteRestoreActivity__couldnt_restore">Nije moguće vratiti ovu sigurnosnu kopiju</string>
-    <!-- Dialog message explaining that an update to Signal is required to restore the backup. -->
-    <string name="RemoteRestoreActivity__update_latest">Ova verzija Signala ne može vratiti vašu sigurnosnu kopiju. Ažurirajte na najnoviju verziju i pokušajte ponovo.</string>
-    <!-- Text on button that when pressed will redirect them to update Signal -->
-    <string name="RemoteRestoreActivity__update_signal">Ažurirajte Signal</string>
-    <!-- Text label button to dismiss the dialog -->
-    <string name="RemoteRestoreActivity__not_now">Ne sada</string>
-    <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Vaš medijski sadržaj će se vratiti u pozadini. Ako odlučite da sada ne želite vratiti podatke, nećete ih moći vratiti kasnije.</string>
-    <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">Ovaj uređaj više nije registriran</string>
-    <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">Vjerovatno je da ste registrovali svoj Signal račun na drugom uređaju.</string>
 
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
@@ -2372,17 +2303,6 @@
     <string name="PinRestoreLockedFragment_create_new_pin">Kreiraj novi PIN</string>
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
-    <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
-    <string name="ReRegisterWithPinFragment_send_sms_code">Pošaljite SMS kȏd</string>
-    <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">Signal registracija - Potrebna vam je pomoć s ponovnom registracijom PIN-a za Android</string>
-    <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">Vaš PIN je kȏd od %1$d+ znamenki koji ste kreirali i koji može biti numerički ili alfanumerički.\n\nAko se ne možete sjetiti PIN-a, možete kreirati novi.</string>
-    <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">Ako se ne možete sjetiti PIN-a, možete kreirati novi.</string>
-    <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">Nemate više pokušaja pogađanja PIN-a, ali još uvijek možete pristupiti svom Signal računu kreiranjem novog PIN-a.</string>
-
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Upozorenje</string>
     <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Ako isključite PIN, svi vaši podaci bit će izbrisani kada se ponovo registrujete na Signal, osim ako ručno kreirate sigurnosnu kopiju i koristite je za povrat podataka. Nećete moći aktivirati zaključavanje registracije dok god je PIN onemogućen.</string>
@@ -2462,6 +2382,12 @@
     <string name="WebRtcCallActivity__open_settings">Otvori podešavanja</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">Ne sada</string>
+    <!-- Message for dialog shown at the start of a call when the system battery setting for Signal is "Restricted" -->
+    <string name="WebRtcCallActivity__others_may_not_be_able_to_hear_you_when_your_screen_turns_off">Others may not be able to hear you and the call may disconnect when your screen turns off. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
+    <!-- Title for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__others_couldnt_hear_you">Others couldn\'t hear you</string>
+    <!-- Message for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__your_microphone_was_muted_while_signal_was_in_the_background">Your microphone was muted while Signal was in the background. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
     <!-- Title for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__approve_d_requests">
         <item quantity="one">Odobriti %1$d zahtjev?</item>
@@ -2819,38 +2745,14 @@
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Broji koji ste unijeli (%1$s) nije važeći.
     </string>
 
-    <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">Je li broj telefona ispod tačan?</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
     <string name="RegistrationActivity_additional_verification_required">Potrebna je dodatna verifikacija</string>
-    <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">Verifikacijski kȏd će biti poslan na ovaj broj. Mogu se primjenjivati tarife mobilnog operatera.</string>
-    <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Primit ćete kōd za potvrdu. Vaš operater možda naplati uslugu.</string>
-    <!-- Hint text to select a country -->
-    <string name="RegistrationActivity_select_a_country">Odaberite zemlju</string>
-    <!-- Hint text explaining that this is where the country code should go -->
-    <string name="RegistrationActivity_default_country_code">0</string>
-    <string name="RegistrationActivity_edit_number">Ispravite broj</string>
-    <string name="RegistrationActivity_missing_google_play_services">Nedostaju Google Play Services</string>
-    <string name="RegistrationActivity_this_device_is_missing_google_play_services">Na ovom uređaju nisu instalirani Google Play Services. I dalje ćete moći koristiti Signal, ali ova konfiguracija može dovesti do manje pouzdanosti i lošijih performansi.\n\nAko niste napredni korisnik, ako nemate ručno instaliranu verziju Android ROM-a ili smatrate da je ova poruka greška, molimo kontaktirajte support@signal.org za pomoć.</string>
-    <string name="RegistrationActivity_i_understand">Razumijem</string>
-    <string name="RegistrationActivity_play_services_error">Play Services greška</string>
-    <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services se ažuriraju ili su privremeno nedostupni. Pokušajte ponovo.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Pokušali ste previše puta registrovati ovaj broj. Molimo pokušajte ponovo kasnije.</string>
-    <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">Previše puta ste pokušali registrirati ovaj broj. Pokušajte ponovo za %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Povezivanje nije uspjelo. Molimo provjerite internet-konekciju i pokušajte ponovo.</string>
     <!-- Dialog error message shown when we are unable to send an SMS to the user\'s number -->
     <string name="RegistrationActivity_sms_provider_error">Nismo u mogućnosti poslati SMS na vaš broj. Pokušajte ponovo za nekoliko sati.</string>
-    <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Nismo mogli da vam pošaljemo verifikacioni kôd putem SMS-a. Umjesto toga pokušajte primiti kôd putem glasovnog poziva.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">Nije moguće zatražiti verifikacioni kȏd. Provjerite internet konekciju i pokušajte ponovo.</string>
-    <string name="RegistrationActivity_non_standard_number_format">Nestandardni oblik broja</string>
-    <!-- Dialog message shown to confirm when entering phone number (first placeholder) is normalized and formatted differently by the app (second placeholder). -->
-    <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Broj koji ste unijeli (%1$s) izgleda nije standardnog oblika.\n\nJeste li mislili na %2$s?</string>
-    <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android – oblik broja telefona</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="one">Preostao vam je %1$d korak da pošaljete izvještaj o greškama.</item>
         <item quantity="few">Preostala su vam %1$d koraka da pošaljete izvještaj o greškama.</item>
@@ -2858,13 +2760,7 @@
         <item quantity="other">Preostalo vam je %1$d koraka da pošaljete izvještaj o greškama.</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Moramo potvrditi da ste osoba.</string>
-    <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
-    <string name="RegistrationActivity_voice_call">Poziv</string>
-    <!-- Dialog button to cancel the pending action and return to the previous state. -->
-    <string name="RegistrationActivity_cancel">Otkaži</string>
     <string name="RegistrationActivity_next">Dalje</string>
-    <!-- Title of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_phone_number">Broj telefona</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Unesite kōd koji smo poslali na %1$s</string>
 
     <string name="RegistrationActivity_phone_number_description">Broj telefona</string>
@@ -3073,6 +2969,8 @@
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Učitavanje kolekcije naljepnica nije uspjelo</string>
     <!-- Bottom sheet describing a sticker. First placeholder is the title of the sticker pack and second is the author -->
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
+    <!-- Bottom sheet option that opens the pack the sticker belongs to -->
+    <string name="StickerPreviewBottomSheet__view_pack">View pack</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">Pohrani</string>
@@ -3837,8 +3735,6 @@
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Da biste bili obaviješteni o pozivima, pritisnite Podešavanja i uključite aktivnost u pozadini među podešavanjima za bateriju.</string>
 
     <!-- country_selection_fragment -->
-    <string name="country_selection_fragment__loading_countries">Učitavam države…</string>
-    <string name="country_selection_fragment__search">Traži</string>
 
     <string name="device_list_fragment__link_new_device">Uveći novi uređaj</string>
 
@@ -4696,6 +4592,8 @@
     <string name="conversation_selection__menu_pin_message">Prikvači</string>
     <!-- Button to unpin a message -->
     <string name="conversation_selection__menu_unpin_message">Otkvači</string>
+    <!-- Button to open the sticker pack a sticker message came from -->
+    <string name="conversation_selection__menu_view_sticker_pack">View pack</string>
 
     <!-- conversation_expiring_on -->
 
@@ -4892,14 +4790,11 @@
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">Unesite svoj PIN</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Unesite PIN koji ste kreirali za svoj račun. PIN nije isto što i SMS kōd za verifikaciju.</string>
-    <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
-    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Unesite PIN koji ste kreirali za svoj račun.</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Netačan PIN. Pokušajte ponovo.</string>
     <string name="RegistrationLockFragment__forgot_pin">Zaboravili ste PIN?</string>
     <string name="RegistrationLockFragment__incorrect_pin">Netačan PIN</string>
     <string name="RegistrationLockFragment__forgot_your_pin">Zaboravili ste svoj PIN?</string>
     <string name="RegistrationLockFragment__not_many_tries_left">Preostalo je svega nekoliko pokušaja!</string>
-    <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal registracija – trebate pomoć u vezi s PIN-om za Android (v2 PIN)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
         <item quantity="one">Radi zaštite vaše privatnosti i sigurnosti, PIN nije moguće obnoviti. Ako se ne možete sjetiti svog PIN-a, moći ćete ponovo verifikovati telefonski broj putem SMS-a nakon %1$d dana neaktivnosti. U tom slučaju, vaš račun će se obrisati i sav raniji sadržaj će biti izbrisan.</item>
@@ -4964,22 +4859,6 @@
     <string name="backup_enable_dialog__you_must_have_this_passphrase">Morate imati ovu lozinku kako biste mogli vratiti podatke iz rezervne kopije.</string>
     <string name="backup_enable_dialog__folder">Direktorij</string>
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Zapisao/la sam ovu lozinku. Bez nje neću moći vratiti podatke iz rezervne kopije.</string>
-    <string name="registration_activity__restore_backup">Vrati podatke</string>
-    <!-- Text label button to skip restoring -->
-    <string name="registration_activity__skip_restore">Preskoči obnovu</string>
-    <!-- Title for dialog to enter in the backup passphrase -->
-    <string name="RegistrationActivity_enter_backup_passphrase">Unesite lozinku za rezervne kopije</string>
-    <string name="RegistrationActivity_restore">Vrati</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">Ne mogu se preuzeti sig. kopije u novoj verziji Signala</string>
-    <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
-    <string name="RegistrationActivity_backup_failure_foreign_key">Sigurnosna kopija sadrži pogrešno oblikovane podatke</string>
-    <string name="RegistrationActivity_incorrect_backup_passphrase">Netačna lozinka za rezervne kopije</string>
-    <string name="RegistrationActivity_checking">Provjeravam…</string>
-    <string name="RegistrationActivity_d_messages_so_far">%1$d poruka do sada…</string>
-    <string name="RegistrationActivity_restore_from_backup">Vratiti podatke iz rezervne kopije?</string>
-    <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Vratite svoje poruke i datoteke iz lokalne rezervne kopije. Ako to ne učinite sada, nećete biti u mogućnosti vratiti podatke kasnije.</string>
-    <string name="RegistrationActivity_backup_size_s">Veličina rezervne kopije: %1$s</string>
-    <string name="RegistrationActivity_backup_timestamp_s">Vrijeme kreiranja rezervne kopije: %1$s</string>
     <string name="BackupDialog_enable_local_backups">Aktivirati lokalne rezervne kopije?</string>
     <string name="BackupDialog_enable_backups">Aktiviraj</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Molimo potvrdite da ste razumjeli označivši kućicu za potvrdu.</string>
@@ -5015,7 +4894,6 @@
     <string name="RegistrationActivity_call_me_instead_available_in">Pozovi me (%1$02d:%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
     <string name="RegistrationActivity_resend_sms_available_in">Ponovo pošalji kȏd ( %1$02d : %2$02d )</string>
-    <string name="RegistrationActivity_contact_signal_support">Kontaktirajte Signalovu podršku</string>
     <string name="RegistrationActivity_code_support_subject">Signal registracija – potvrda kōda za Android</string>
     <string name="RegistrationActivity_incorrect_code">Pogrešan kôd</string>
     <string name="BackupUtil_never">Nikad</string>
@@ -5137,25 +5015,8 @@
     <string name="TransferOrRestoreFragment__restore_from_local_backup">Vratite lokalnu sigurnosnu kopiju</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
-    <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Otvorite Signal na svom starom Android telefonu</string>
-    <string name="NewDeviceTransferInstructions__continue">Nastavi</string>
-    <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Pritisnite sliku svog profila gore lijevo da otvorite Podešavanja</string>
-    <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_account">"Pritisnite \"Račun\""</string>
-    <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
-    <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"Pritisnite \"Prenesi račun\" a potom \"Nastavi\" na oba uređaja"</string>
 
     <!-- NewDeviceTransferSetupFragment -->
-    <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">U toku su pripreme za povezivanje sa starim Android uređajem…</string>
-    <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Trenutak, uskoro će biti spremno</string>
-    <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Čekam na stari Android uređaj da se poveže…</string>
-    <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signalu je potrebno dopuštenje za pristup lokaciji kako bi pronašao i povezao se s Vašim starim Android uređajem.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signalu je potrebno da lokacija na telefonu bude aktivna kako bi mogao pronaći i povezati se s Vašim starim Android uređajem.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signalu je potrebno da Wi-Fi konekcija bude aktivna kako bi mogao pronaći i povezati se sa Vašim starim Android uređajem. Wi-Fi treba biti uključen, ali ne mora biti povezan na Wi-Fi mrežu.</string>
-    <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Nažalost, izgleda da ovaj uređaj ne podržava Wi-Fi Direct. Signal koristi Wi-Fi Direct da pronađe i poveže se s Vašim starim Android uređajem. I dalje možete vratiti podatke iz rezervne kopije kako biste prenijeli račun sa svog starog Android uređaja.</string>
-    <string name="NewDeviceTransferSetup__restore_a_backup">Vrati podatke iz rezervne kopije</string>
-    <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Došlo je do neočekivane greške prilikom pokušaja da se poveže s Vašim starim Android uređajem.</string>
 
     <!-- OldDeviceTransferSetupFragment -->
     <string name="OldDeviceTransferSetup__searching_for_new_android_device">Tražim novi Android uređaj…</string>
@@ -5199,9 +5060,6 @@
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Pritisnite \"Nastavi\" na svom drugom uređaju…</string>
 
     <!-- NewDeviceTransferFragment -->
-    <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Nije moguće prenijeti sa novije verzije Signala</string>
-    <!-- Error message indicating that we could not finish the user\'s device transfer. Displayed in a toast at the bottom of the screen. -->
-    <string name="NewDeviceTransfer__failure_foreign_key">Preneseni podaci su bili pogrešno oblikovani</string>
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">Prenos podataka</string>
@@ -5240,10 +5098,6 @@
     <string name="OldDeviceTransferComplete__close">Zatvori</string>
 
     <!-- NewDeviceTransferComplete -->
-    <string name="NewDeviceTransferComplete__transfer_successful">Prenos je uspio</string>
-    <string name="NewDeviceTransferComplete__transfer_complete">Prenos je završen</string>
-    <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">Da okončate prenos, morate nastaviti s registracijom.</string>
-    <string name="NewDeviceTransferComplete__continue_registration">Nastavi registraciju</string>
 
     <!-- DeviceToDeviceTransferService -->
     <string name="DeviceToDeviceTransferService_content_title">Prenos računa</string>
@@ -9141,219 +8995,6 @@
 
     <!-- ConfirmBackupCancellationDialog -->
 
-    <!-- Row title for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">Imam svoj stari telefon</string>
-    <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_scan_qr">Skenirajte QR kod sa svog trenutnog Signal računa da brzo započnete</string>
-
-    <!-- Row title for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">Nemam svoj stari telefon</string>
-    <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">Ili ponovo instalirajte Signal na istom uređaju</string>
-
-    <!-- Screen title for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__restore_or_transfer_account">Vratite ili prenesite račun</string>
-    <!-- Screen subtitle for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__get_your_signal_account">Prenesite svoj Signal račun i historiju poruka na ovaj uređaj.</string>
-    <!-- Option title for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_signal_backup">Vratite sigurnosnu kopiju Signala</string>
-    <!-- Option subtitle for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_your_text_messages_and_media_from">Vratite svoje tekstualne poruke i medije iz svog plana sigurnosne kopije Signala.</string>
-    <!-- Option title for restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_on_device_backup">Vratite sigurnosnu kopiju na uređaju</string>
-    <!-- Option subtitle fdor restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_your_messages_from">Vratite svoje poruke iz sigurnosne kopije koju ste sačuvali na uređaju.</string>
-    <!-- Option title for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__from_your_old_phone">Sa starog telefona</string>
-    <!-- Option subtitle for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__transfer_directly_from_old">Prenesite direktno sa svog starog Androida</string>
-    <!-- Dialog title shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_title">Preskočiti vraćanje?</string>
-    <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">Ako sada preskočite vraćanje, nećete moći vratiti podatke kasnije. Ako ponovo omogućite sigurnosne kopije nakon preskakanja vraćanja, vaša trenutna sigurnosna kopija bit će zamijenjena vašom novom istorijom poruka.</string>
-    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore">Preskoči obnovu</string>
-
-    <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_title">Unesite svoj ključ za oporavak</string>
-    <!-- Screen subtitle for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_subtitle">Vaš ključ za oporavak je kod od 64 znaka potreban za oporavak vašeg računa i podataka.</string>
-    <!-- Button to skip entering recovery key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">Nema ključa za oporavak?</string>
-    <!-- Recovery key text field hint -->
-    <string name="EnterBackupKey_backup_key">Ključ za oporavak</string>
-    <!-- Recovery key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">Sigurnosne kopije se ne mogu oporaviti bez njihovog koda za oporavak od 64 znaka. Ako ste izgubili rezervni ključ, Signal vam ne može pomoći da vratite rezervnu kopiju.</string>
-    <!-- Recovery key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">Ako imate svoj stari uređaj, ključ za oporavak možete vidjeti u Postavkama &gt; Sigurnosne kopije. Zatim dodirnite Prikaži ključ za oporavak.</string>
-    <!-- Recovery key not known bottom sheet button to learn more about it -->
-    <string name="EnterBackupKey_learn_more">Saznaj više</string>
-    <!-- Recovery key not known bottom sheet button to skip recovery key entry and resume normal reregistration -->
-    <string name="EnterBackupKey_skip_and_dont_restore">Preskoči i ne vraćaj</string>
-    <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">Netačan ključ za oporavak</string>
-    <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">Provjerite da li se registrujete s istim telefonskim brojem i 64-cifrenim ključem za oporavak koji ste sačuvali prilikom omogućavanja usluge Signal Secure Backups. Sigurnosne kopije se ne mogu oporaviti bez ovog ključa.</string>
-    <!-- Dialog positive button text to try entering their recovery key again -->
-    <string name="EnterBackupKey_try_again">Pokušajte ponovo</string>
-    <!-- Dialog negative button text to get help with recovery key -->
-    <string name="EnterBackupKey_backup_key_help">Pomoć za ključ za oporavak</string>
-    <!-- Text field error text when the recovery key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">Netačan ključ za oporavak</string>
-    <!-- Text field error text when the recovery key is too long -->
-    <string name="EnterBackupKey_too_long_error">Predugo (%1$d/%2$d)</string>
-    <!-- Text field error when the recovery key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">Nevažeći ključ za oporavak</string>
-    <!-- Dialog title shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_not_found">Rezervna kopija nije pronađena</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Vaš ključ za oporavak koji ste unijeli je ispravan, ali s njim nije povezana rezervna kopija. Ako još uvijek imate svoj stari telefon, uvjerite se da su sigurnosne kopije omogućene i da je sigurnosna kopija završena i pokušajte ponovo.</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">Moguće je da ste pogrešno unijeli ključ za oporavak ili niste napravili barem jednu sigurnosnu kopiju na starom uređaju.\n\nProvjerite da li se registrujete s istim brojem telefona i ključem za oporavak koji ste sačuvali prilikom omogućavanja zaštićene kopije podataka Signala i potvrdite da je vaš stari uređaj dovršio sigurnosno kopiranje.</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">Iskoristili ste maksimalan broj pokušaja unosa ključa za oporavak. Radi vaše sigurnosti, broj pokušaja koje možete napraviti je ograničen. Sačekajte sat vremena i pokušajte ponovo.</string>
-    <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
-    <string name="EnterBackupKey_skip_restore">Preskoči obnovu</string>
-    <!-- Dialog title text when encountering backup restore network error -->
-    <string name="EnterBackupKey_cant_restore_backup">Nije moguće vratiti sigurnosnu kopiju</string>
-    <!-- Dialog body text when encountering backup restore network error -->
-    <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">Vaša sigurnosna kopija se trenutno ne može vratiti. Provjerite internetsku vezu i pokušajte ponovo. </string>
-    <!-- Dialog button text to contact support on network error -->
-    <string name="EnterBackupKey_contact_support">Kontaktirajte podršku</string>
-
-    <!-- Email subject when contacting support on a restore backup network issue -->
-    <string name="EnterBackupKey_network_failure_support_email">Greška mreže vraćanja sigurnosne kopije za Signal Android</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
-    <!-- Email subject when contacting support on a permanent backup import failure -->
-    <string name="EnterBackupKey_permanent_failure_support_email">Trajna greška u vraćanju sigurnosne kopije za Signal Android</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
-
-    <!-- EnterLocalBackupKeyScreen: Screen title for entering recovery key for local backup restore -->
-    <string name="EnterLocalBackupKeyScreen__enter_your_recovery_key">Unesite svoj ključ za oporavak</string>
-    <!-- EnterLocalBackupKeyScreen: Screen subtitle explaining what the recovery key is -->
-    <string name="EnterLocalBackupKeyScreen__your_recovery_key_is_a_64_character_code">Vaš ključ za oporavak je kod od 64 znaka potreban za oporavak vašeg računa i podataka.</string>
-    <!-- EnterLocalBackupKeyScreen: Button text when user does not have a recovery key -->
-    <string name="EnterLocalBackupKeyScreen__no_recovery_key">Nema ključa za oporavak?</string>
-    <!-- EnterLocalBackupKeyScreen: Button to proceed to next step -->
-    <string name="EnterLocalBackupKeyScreen__next">Dalje</string>
-
-    <!-- RestoreLocalBackupDialog: Error message when the selected archive fails to load -->
-    <string name="RestoreLocalBackupDialog__failed_to_load_archive">Učitavanje arhive nije uspjelo. Odaberite drugi direktorij.</string>
-    <!-- RestoreLocalBackupDialog: Dismiss button for dialog -->
-    <string name="RestoreLocalBackupDialog__ok">OK</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore">Preskočiti vraćanje?</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user about the consequences of skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore_body">Ako sada preskočite vraćanje, nećete moći vratiti podatke kasnije. Ako ponovo omogućite sigurnosne kopije nakon preskakanja vraćanja, vaša trenutna sigurnosna kopija bit će zamijenjena vašom novom istorijom poruka.</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the skip restore dialog -->
-    <string name="RestoreLocalBackupDialog__skip_restore_confirm">Preskoči obnovu</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm restoring a backup from a different account -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account">Vratiti na novi račun?</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user that the backup was created with a different account and they will lose group memberships -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account_body">Sigurnosna kopija koju vraćate je kreirana pomoću različitog Signal računa. Možete vratiti ovu sigurnosnu kopiju na novi račun ali više nećete biti član nijedne vraćene grupe.</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the restore to new account dialog -->
-    <string name="RestoreLocalBackupDialog__restore">Vrati</string>
-
-    <!-- RestoreLocalBackupActivity: Toast message when backup restore fails -->
-    <string name="RestoreLocalBackupActivity__backup_restore_failed">Vraćanje sigurnosne kopije nije uspjelo</string>
-    <!-- RestoreLocalBackupActivity: Screen title shown during restore -->
-    <string name="RestoreLocalBackupActivity__restoring_backup">Vraćanje sigurnosne kopije</string>
-    <!-- RestoreLocalBackupActivity: Screen subtitle explaining restore duration -->
-    <string name="RestoreLocalBackupActivity__depending_on_the_size">U zavisnosti od veličine vaše sigurnosne kopije, ovo bi moglo potrajati nekoliko minuta.</string>
-    <!-- RestoreLocalBackupActivity: Status text while restoring messages -->
-    <string name="RestoreLocalBackupActivity__restoring_messages">Vraćanje poruka…</string>
-    <!-- RestoreLocalBackupActivity: Status text while finalizing restore -->
-    <string name="RestoreLocalBackupActivity__finalizing">Finaliziranje…</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore is complete -->
-    <string name="RestoreLocalBackupActivity__restore_complete">Vraćanje podataka je završeno</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore fails -->
-    <string name="RestoreLocalBackupActivity__restore_failed">Vraćanje nije uspjelo</string>
-    <!-- RestoreLocalBackupActivity: Progress text showing bytes read of total with percentage, e.g. "1.2 MB of 5.0 MB (24%)" -->
-    <string name="RestoreLocalBackupActivity__s_of_s_d_percent">%3$d od %1$s (%2$s%%)</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__cant_restore_backup">Nije moguće vratiti sigurnosnu kopiju</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__error_occurred_while_restoring">Došlo je do greške prilikom vraćanja vaše sigurnosne kopije. Vaša sigurnosna kopija se ne može oporaviti. Kontaktirajte podršku za pomoć.</string>
-
-    <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
-    <string name="RestoreLocalBackupActivity__contact_support">Kontaktirajte podršku</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
-    <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">Uključiti sigurnosne kopije na uređaju?</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Da nastavite koristiti sigurnosne kopije na uređaju, morat ćete ih omogućiti za ovaj račun. To možete uraditi bilo kada u Postavkama &gt; Sigurnosne kopije.</string>
-
-    <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__turn_on_now">Uključi sada</string>
-
-    <!-- RestoreLocalBackupActivity: Dismiss button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__not_now">Ne sada</string>
-
-    <!-- RestoreLocalBackupActivity: Body text for the dialog shown after a successful restore, prompting the user to choose a backup folder -->
-    <string name="RestoreLocalBackupActivity__choose_a_folder_for_backups">Da nastavite koristiti sigurnosne kopije na uređaju, odaberite folder na uređaju gdje će se pohranjivati nove sigurnosne kopije.</string>
-
-    <!-- RestoreLocalBackupActivity: Positive button label for the dialog shown after a successful restore; keeps the current backup folder -->
-    <string name="RestoreLocalBackupActivity__use_current_folder">Koristi trenutni folder</string>
-
-    <!-- RestoreLocalBackupActivity: Neutral button label for the dialog shown after a successful restore; opens folder picker to select a different backup location -->
-    <string name="RestoreLocalBackupActivity__choose_new_folder">Odaberi drugi folder</string>
-
-    <!-- RestoreLocalBackupActivity: Negative button label for the dialog shown after a successful restore; disables on-device backups -->
-    <string name="RestoreLocalBackupActivity__disable_backups">Onemogući sigurnosne kopije</string>
-
-    <!-- SelectInstructionsSheet: Title for the select backup folder instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_folder">Odaberite folder za sigurnosnu kopiju</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the select this folder button -->
-    <string name="SelectInstructionsSheet__tap_select_this_folder">Dodirnite \"Odaberi ovaj folder\"</string>
-    <!-- SelectInstructionsSheet: Instruction not to select individual files -->
-    <string name="SelectInstructionsSheet__do_not_select_individual_files">Ne birajte pojedinačne datoteke</string>
-    <!-- SelectInstructionsSheet: Title for the select backup file instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_file">Odaberite datoteku sigurnosne kopije</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the backup file saved to device -->
-    <string name="SelectInstructionsSheet__tap_on_the_backup_file">Dodirnite datoteku sigurnosne kopije koju ste sačuvali na svom uređaju</string>
-    <!-- SelectInstructionsSheet: Subtitle explaining how to access backup after tapping continue -->
-    <string name="SelectInstructionsSheet__after_tapping_continue">Nakon što dodirnete \"Nastavi\", evo kako pristupiti sigurnosnoj kopiji:</string>
-    <!-- SelectInstructionsSheet: Instruction to select the top-level backup folder -->
-    <string name="SelectInstructionsSheet__select_the_top_level_folder">Odaberite folder najvišeg nivoa u kojem se nalazi vaša sigurnosna kopija</string>
-    <!-- SelectInstructionsSheet: Continue button text -->
-    <string name="SelectInstructionsSheet__continue_button">Nastavi</string>
-
-    <!-- SelectLocalBackupScreen: Screen title for restoring on-device backup -->
-    <string name="SelectLocalBackupScreen__restore_on_device_backup">Vratite sigurnosnu kopiju na uređaju</string>
-    <!-- SelectLocalBackupScreen: Screen subtitle explaining the restore process -->
-    <string name="SelectLocalBackupScreen__restore_your_messages_from_the_backup_folder">Vratite poruke iz foldera sigurnosnih kopija koji ste sačuvali na uređaju. Ako ih ne vratite sada, nećete ih moći vratiti kasnije.</string>
-    <!-- SelectLocalBackupScreen: Button to initiate backup restoration -->
-    <string name="SelectLocalBackupScreen__restore_backup">Vrati podatke</string>
-    <!-- SelectLocalBackupScreen: Button to choose an earlier backup when current is latest -->
-    <string name="SelectLocalBackupScreen__choose_an_earlier_backup">Odaberite raniju sigurnosnu kopiju</string>
-    <!-- SelectLocalBackupScreen: Button to choose a different backup -->
-    <string name="SelectLocalBackupScreen__choose_a_different_backup">Odaberite drugu sigurnosnu kopiju</string>
-    <!-- SelectLocalBackupScreen: Label for latest backup card -->
-    <string name="SelectLocalBackupScreen__your_latest_backup">Vaša najnovija sigurnosna kopija:</string>
-    <!-- SelectLocalBackupScreen: Label for non-latest backup card -->
-    <string name="SelectLocalBackupScreen__your_backup">Vaša sigurnosna kopija:</string>
-
-    <!-- SelectLocalBackupSheet: Title for backup selection bottom sheet -->
-    <string name="SelectLocalBackupSheet__choose_a_backup_to_restore">Odaberite sigurnosnu kopiju za vraćanje</string>
-    <!-- SelectLocalBackupSheet: Subtitle warning about choosing an older backup -->
-    <string name="SelectLocalBackupSheet__choosing_an_older_backup">Ako odaberete stariju sigurnosnu kopiju, možete izgubiti poruke ili medije.</string>
-    <!-- SelectLocalBackupSheet: Continue button text -->
-    <string name="SelectLocalBackupSheet__continue_button">Nastavi</string>
-
-    <!-- SelectLocalBackupTypeScreen: Screen title for selecting backup type -->
-    <string name="SelectLocalBackupTypeScreen__restore_on_device_backup">Vratite sigurnosnu kopiju na uređaju</string>
-    <!-- SelectLocalBackupTypeScreen: Screen subtitle explaining restore options -->
-    <string name="SelectLocalBackupTypeScreen__restore_your_messages_from_the_backup">Vratite svoje poruke iz sigurnosne kopije koju ste sačuvali na svom uređaju. Ako ih ne vratite sada, nećete ih moći vratiti kasnije.</string>
-    <!-- SelectLocalBackupTypeScreen: Button for users who saved backup as single file -->
-    <string name="SelectLocalBackupTypeScreen__i_saved_my_backup_as_a_single_file">Sačuvao/la sam sigurnosnu kopiju kao jednu datoteku</string>
-    <!-- SelectLocalBackupTypeScreen: Card title for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__choose_backup_folder">Odaberite folder za sigurnosnu kopiju</string>
-    <!-- SelectLocalBackupTypeScreen: Card description for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__select_the_folder_on_your_device">Odaberite folder na uređaju u kojem se nalazi sigurnosna kopija</string>
-
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">Greška mreže vraćanja sigurnosne kopije za Signal Android</string>
     <!-- Email filter when contacting support on a create backup failure -->
@@ -9367,23 +9008,6 @@
     <string name="ContactSupportDialog_submit_with_debug">Pošaljite sa zapisnikom o otklanjanju grešaka</string>
     <!-- Button option to not submit debug log when contacting support -->
     <string name="ContactSupportDialog_submit_without_debug">Pošaljite bez zapisnika o otklanjanju grešaka</string>
-
-    <!-- Title for restore via qr screen -->
-    <string name="RestoreViaQr_title">Skenirajte ovaj kod svojim starim telefonom</string>
-    <!-- First instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_1">Otvorite Signal na svom starom uređaju</string>
-    <!-- Second instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_2">Dodirnite ikonu kamere </string>
-    <!-- Third instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_3">Skenirajte ovaj kod kamerom</string>
-    <!-- Error message shown when qr code could not be loaded -->
-    <string name="RestoreViaQr_qr_code_error">Nije moguće generirati QR kod</string>
-    <!-- Status message shown when qr code already scanned by other device -->
-    <string name="RestoreViaQr_qr_code_scanned">Skenirano na starom uređaju</string>
-    <!-- Error button text to retry getting a qr code -->
-    <string name="RestoreViaQr_retry">Pokušaj</string>
-    <!-- Error message shown when register after receiving the provisioning message failed -->
-    <string name="RestoreViaQr_registration_error">Došlo je do pogreške i vaš račun nije mogao biti prenesen. Pokušajte ponovno skeniranjem QR koda.</string>
 
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">Prenesi račun</string>
@@ -9425,19 +9049,6 @@
     <string name="RestoreCompleteBottomSheet_transfer_complete_message">Vaš Signal račun i poruke su prebačeni na vaš drugi uređaj. Signal je sada neaktivan na ovom uređaju.</string>
     <!-- Restore Complete bottom sheet dialog button text to dismiss sheet -->
     <string name="RestoreCompleteBottomSheet_button">U redu</string>
-
-    <!-- No Backup to Restore screen title -->
-    <string name="NoBackupToRestore_title">Nema rezervne kopije za vraćanje</string>
-    <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">Budući da prelazite s iPhonea na Android, jedini način za prijenos poruka i medija je omogućavanje usluge Signal Secure Backups na vašem starom uređaju.</string>
-    <!-- No Backup to Restore step 1 to enable backups on old device -->
-    <string name="NoBackupToRestore_step1">Otvorite Signal na svom starom uređaju</string>
-    <!-- No Backup to Restore step 2 to enable backups on old device -->
-    <string name="NoBackupToRestore_step2">Dodirnite Postavke &gt; Sigurnosne kopije</string>
-    <!-- No Backup to Restore step 3 to enable backups on old device -->
-    <string name="NoBackupToRestore_step3">Omogućite sigurnosne kopije i pričekajte dok se sigurnosna kopija ne završi</string>
-    <!-- No backup to Restore tonal cta to skip restore -->
-    <string name="NoBackupToRestore_skip_restore">Preskoči obnovu</string>
 
     <!-- Dialog title when the recovery key change limit is reached -->
     <string name="MessageBackupsKeyRecordScreen__limit_reached_title">Dostignuto je ograničenje broja ključeva za oporavak</string>

@@ -863,23 +863,8 @@
     <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">നിങ്ങൾ സന്ദേശമയയ്‌ക്കുകയോ മുമ്പ് ചാറ്റ് ചെയ്തിട്ടുണ്ടെങ്കിലോ മാത്രമേ നിങ്ങൾ Signal-ൽ ഉണ്ടെന്ന് കാണാനാകൂ.</string>
 
     <!-- ChooseBackupFragment -->
-    <string name="ChooseBackupFragment__restore_from_backup">ബാക്കപ്പിൽ വീണ്ടെടുക്കണോ?</string>
-    <string name="ChooseBackupFragment__restore_your_messages_and_media">ഒരു ലോക്കൽ ബാക്കപ്പിൽ നിന്ന് നിങ്ങളുടെ സന്ദേശങ്ങളും മീഡിയയും റിസ്റ്റോർ ചെയ്യുക. നിങ്ങൾ ഇപ്പോൾ റിസ്റ്റോർ ചെയ്തില്ലെങ്കിൽ, നിങ്ങൾക്ക് പിന്നീട് റിസ്റ്റോർ ചെയ്യാൻ കഴിയില്ല.</string>
-    <string name="ChooseBackupFragment__icon_content_description">ബാക്കപ്പ് ഐക്കണിൽ നിന്ന് വീണ്ടെടുക്കൂ</string>
-    <string name="ChooseBackupFragment__choose_backup">ബാക്കപ്പ് തിരഞ്ഞെടുക്കുക</string>
-    <string name="ChooseBackupFragment__learn_more">കൂടുതൽ അറിയുക</string>
 
     <!-- RestoreBackupFragment -->
-    <string name="RestoreBackupFragment__restore_complete">വീണ്ടെടുക്കൽ പൂർത്തിയായി</string>
-    <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">ബാക്കപ്പുകൾ ഉപയോഗിക്കുന്നത് തുടരാൻ, ദയവായി ഒരു ഫോൾഡർ തിരഞ്ഞെടുക്കുക. പുതിയ ബാക്കപ്പുകൾ ഇവിടെ സൂക്ഷിക്കും.</string>
-    <string name="RestoreBackupFragment__choose_folder">ഫോൾഡർ തിരഞ്ഞെടുക്കുക</string>
-    <string name="RestoreBackupFragment__not_now">ഇപ്പോൾ വേണ്ട</string>
-    <!-- Couldn\'t find the selected backup -->
-    <string name="RestoreBackupFragment__backup_not_found">ബാക്കപ്പ് കണ്ടെത്താനാവുന്നില്ല.</string>
-    <!-- Couldn\'t read the selected backup -->
-    <string name="RestoreBackupFragment__backup_could_not_be_read">ബാക്കപ്പ് വായിക്കാൻ കഴിയുന്നില്ല.</string>
-    <!-- Backup has an unsupported file extension -->
-    <string name="RestoreBackupFragment__backup_has_a_bad_extension">ബാക്കപ്പിനൊരു മോശം എക്സ്റ്റെൻഷനുണ്ട്.</string>
 
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
@@ -1416,60 +1401,6 @@
     <string name="ManageGroupActivity_add_group_description">ഗ്രൂപ്പ് വിവരണം ചേർക്കുക…</string>
 
     <!-- RemoteRestoreActivity -->
-    <!-- Progress dialog label when downloading a backup -->
-    <string name="RemoteRestoreActivity__downloading_backup">ബാക്കപ്പ് ഡൗൺലോഡ് ചെയ്യുന്നു…</string>
-    <!-- Progress dialog label when restoring a backup -->
-    <string name="RemoteRestoreActivity__restoring_messages">സന്ദേശങ്ങൾ പുനഃസ്ഥാപിക്കുന്നു…</string>
-    <!-- Progress dialog label when finishing a backup restore -->
-    <string name="RemoteRestoreActivity__finishing_restore">പൂർത്തിയാക്കുന്നു…</string>
-    <!-- Progress dialog label while awaiting updates -->
-    <string name="RemoteRestoreActivity__restoring">പുനഃസ്ഥാപിക്കുന്നു…</string>
-    <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
-    <string name="RemoteRestoreActivity__s_of_s_s">%1$s / %2$s (%3$s)</string>
-    <!-- Feature list media label for paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_media">നിങ്ങളുടെ എല്ലാ മീഡിയയും</string>
-    <!-- Feature list media label for free tier. Placeholder is days, and is currently fixed at 30. -->
-    <string name="RemoteRestoreActivity__your_last_d_days_of_media">നിങ്ങളുടെ മീഡിയയുടെ അവസാന %1$d ദിവസം</string>
-    <!-- Feature list message label for free and paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_messages">നിങ്ങളുടെ എല്ലാ സന്ദേശങ്ങളും</string>
-    <!-- Screen title for restoring from backup -->
-    <string name="RemoteRestoreActivity__restore_from_backup">ബാക്കപ്പിൽ നിന്ന് പുനഃസ്ഥാപിക്കുക</string>
-    <!-- Section title for explaining what your backup includes -->
-    <string name="RemoteRestoreActivity__your_backup_includes">നിങ്ങളുടെ ബാക്കപ്പിൽ ഇവ ഉൾപ്പെടുന്നു:</string>
-    <!-- Primary action button copy for starting restoration -->
-    <string name="RemoteRestoreActivity__restore_backup">ബാക്കപ്പ് വീണ്ടെടുക്കൂ</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made. %1$s is replaced with the date (e.g. March 5, 2024) and %2$s is replaced with the time (e.g. 9:00am) -->
-    <string name="RemoteRestoreActivity__backup_created_at">നിങ്ങളുടെ അവസാന ബാക്കപ്പ് %1$s, %2$s -ന് ചെയ്തു.</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
-    <string name="RemoteRestoreActivity__backup_created_at_with_size">നിങ്ങളുടെ അവസാന ബാക്കപ്പ് %1$s, %2$s -ന് ചെയ്തു. നിങ്ങളുടെ ബാക്കപ്പ് വലുപ്പം %3$s ആണ്.</string>
-    <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
-    <string name="RemoteRestoreActivity__fetching_backup_details">ബാക്കപ്പ് വിശദാംശങ്ങൾ ലഭ്യമാക്കുന്നു…</string>
-    <!-- Text label button to skip restore from remote -->
-    <string name="RemoteRestoreActivity__skip_restore">പുനഃസ്ഥാപിക്കൽ ഒഴിവാക്കുക</string>
-    <!-- Dialog title displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__couldnt_transfer">കൈമാറ്റം പൂർത്തിയാക്കാനായില്ല</string>
-    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">ബാക്കപ്പ് പുനഃസ്ഥാപിക്കാൻ കഴിയില്ല</string>
-    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">നിങ്ങളുടെ ബാക്കപ്പ് പുനഃസ്ഥാപിക്കുമ്പോൾ ഒരു പിശക് സംഭവിച്ചു. നിങ്ങളുടെ ബാക്കപ്പ് വീണ്ടെടുക്കാൻ കഴിയില്ല. സഹായത്തിന് പിന്തുണയുമായി ബന്ധപ്പെടുക.</string>
-    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">പിന്തുണയുമായി ബന്ധപ്പെടുക</string>
-    <!-- Dialog message displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__error_occurred">ഒരു പിശക് സംഭവിച്ചു, നിങ്ങളുടെ അക്കൗണ്ട് കൈമാറാൻ കഴിഞ്ഞില്ല. നിങ്ങളുടെ കൈമാറ്റ രീതി തിരഞ്ഞെടുത്ത് വീണ്ടും ശ്രമിക്കുക.</string>
-    <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
-    <string name="RemoteRestoreActivity__couldnt_restore">ഈ ബാക്കപ്പ് പുനഃസ്ഥാപിക്കാനായില്ല</string>
-    <!-- Dialog message explaining that an update to Signal is required to restore the backup. -->
-    <string name="RemoteRestoreActivity__update_latest">Signal-ൻ്റെ ഈ പതിപ്പിന് നിങ്ങളുടെ ബാക്കപ്പ് പുനഃസ്ഥാപിക്കാനാവില്ല. ഏറ്റവും പുതിയ പതിപ്പിലേക്ക് അപ്ഡേറ്റ് ചെയ്ത് വീണ്ടും ശ്രമിക്കുക.</string>
-    <!-- Text on button that when pressed will redirect them to update Signal -->
-    <string name="RemoteRestoreActivity__update_signal">Signal അപ്ഡേറ്റ് ചെയ്യുക</string>
-    <!-- Text label button to dismiss the dialog -->
-    <string name="RemoteRestoreActivity__not_now">ഇപ്പോൾ വേണ്ട</string>
-    <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">നിങ്ങളുടെ മീഡിയ പശ്ചാത്തലത്തിൽ പുനഃസ്ഥാപിക്കും. ഇപ്പോൾ പുനഃസ്ഥാപിക്കേണ്ടതില്ലെന്ന് നിങ്ങൾ തിരഞ്ഞെടുക്കുകയാണെങ്കിൽ, പിന്നീട് നിങ്ങൾക്ക് പുനഃസ്ഥാപിക്കാനാകില്ല.</string>
-    <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">ഈ ഉപകരണം ഇപ്പോൾ രജിസ്റ്റർ ചെയ്തിട്ടില്ല</string>
-    <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">നിങ്ങളുടെ Signal അക്കൗണ്ട് മറ്റൊരു ഉപകരണത്തിൽ രജിസ്റ്റർ ചെയ്തതിനാലാകാം ഇത്.</string>
 
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
@@ -2234,17 +2165,6 @@
     <string name="PinRestoreLockedFragment_create_new_pin">പുതിയ PIN സൃഷ്ടിക്കുക</string>
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
-    <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
-    <string name="ReRegisterWithPinFragment_send_sms_code">SMS കോഡ് അയയ്ക്കുക</string>
-    <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">Signal രജിസ്ട്രേഷൻ - Android-ൽ PIN വീണ്ടും രജിസ്റ്റർ ചെയ്യാൻ സഹായം വേണം</string>
-    <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">നിങ്ങൾ സൃഷ്ടിച്ച %1$d+ അക്ക കോഡാണ് നിങ്ങളുടെ പിൻ, അത് ന്യൂമറിക്കോ ആൽഫാന്യൂമറിക്കോ ആയേക്കാം.\n\nനിങ്ങളുടെ PIN ഓർമ്മയില്ലെങ്കിൽ, പുതിയൊരെണ്ണം സൃഷ്ടിക്കാനാകും.</string>
-    <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">നിങ്ങളുടെ PIN ഓർമ്മയില്ലെങ്കിൽ, പുതിയൊരെണ്ണം സൃഷ്ടിക്കാനാകും.</string>
-    <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">PIN ഊഹിക്കലുകൾക്കുള്ള ഊഴം കഴിഞ്ഞു, പക്ഷെ പുതിയൊരു PIN സൃഷ്ടിച്ച് നിങ്ങൾക്ക് ഇപ്പോഴും നിങ്ങളുടെ Signal അക്കൗണ്ട് ആക്‌സസ് ചെയ്യാനാകും.</string>
-
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">മുന്നറിയിപ്പ്</string>
     <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">നിങ്ങൾ PIN പ്രവർത്തനരഹിതമാക്കുകയാണെങ്കിൽ, നിങ്ങൾ നേരിട്ട് ബാക്കപ്പ് ചെയ്യുകയും പുനഃസ്ഥാപിക്കുകയും ചെയ്യാത്ത പക്ഷം, Signal വീണ്ടും രജിസ്റ്റർ ചെയ്യുമ്പോൾ എല്ലാ ഡാറ്റയും നഷ്ടപ്പെടും. PIN പ്രവർത്തനരഹിതമാക്കിയിരിക്കുമ്പോൾ നിങ്ങൾക്ക് രജിസ്ട്രേഷൻ ലോക്ക് ഓണാക്കാൻ കഴിയില്ല.</string>
@@ -2324,6 +2244,12 @@
     <string name="WebRtcCallActivity__open_settings">ക്രമീകരണങ്ങൾ തുറക്കുക</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">ഇപ്പോൾ വേണ്ട</string>
+    <!-- Message for dialog shown at the start of a call when the system battery setting for Signal is "Restricted" -->
+    <string name="WebRtcCallActivity__others_may_not_be_able_to_hear_you_when_your_screen_turns_off">Others may not be able to hear you and the call may disconnect when your screen turns off. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
+    <!-- Title for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__others_couldnt_hear_you">Others couldn\'t hear you</string>
+    <!-- Message for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__your_microphone_was_muted_while_signal_was_in_the_background">Your microphone was muted while Signal was in the background. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
     <!-- Title for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__approve_d_requests">
         <item quantity="one">%1$d അഭ്യർത്ഥന അംഗീകരിക്കണോ?</item>
@@ -2639,50 +2565,20 @@
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">നിങ്ങൾ വ്യക്തമാക്കിയ നമ്പർ (%1$s) അസാധുവാണ്.
     </string>
 
-    <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">ചുവടെയുള്ള ഫോൺ നമ്പർ ശരിയാണോ?</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
     <string name="RegistrationActivity_additional_verification_required">അധിക പരിശോധിച്ചുറപ്പിക്കൽ ആവശ്യമാണ്</string>
-    <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">പരിശോധിച്ചുറപ്പിക്കൽ കോഡ് ഈ നമ്പറിലേക്ക് അയയ്ക്കും. കാരിയർ നിരക്കുകൾ ബാധകമായേക്കാം.</string>
-    <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">നിങ്ങൾക്ക് ഒരു സ്ഥിരീകരണ കോഡ് ലഭിക്കും. കാരിയർ നിരക്കുകൾ ബാധകമായേക്കാം.</string>
-    <!-- Hint text to select a country -->
-    <string name="RegistrationActivity_select_a_country">ഒരു രാജ്യം തിരഞ്ഞെടുക്കുക</string>
-    <!-- Hint text explaining that this is where the country code should go -->
-    <string name="RegistrationActivity_default_country_code">0</string>
-    <string name="RegistrationActivity_edit_number">നമ്പർ തിരുത്തുക</string>
-    <string name="RegistrationActivity_missing_google_play_services">Google Play Services കാണുന്നില്ല</string>
-    <string name="RegistrationActivity_this_device_is_missing_google_play_services">ഈ ഉപകരണത്തിന് Google Play Services കാണുന്നില്ല. നിങ്ങൾക്ക് ഇപ്പോഴും Signal ഉപയോഗിക്കാം, പക്ഷേ ഈ കോൺഫിഗറേഷൻ വിശ്വാസ്യതയോ പ്രകടനമോ കുറയാൻ കാരണമായേക്കാം.\n\nനിങ്ങൾ ഒരു നൂതന ഉപയോക്താവല്ലെങ്കിൽ, അഥവാ ഒരു വിപണനാനന്തര Android റോം പ്രവർത്തിപ്പിക്കുന്നില്ല, അല്ലെങ്കിൽ നിങ്ങൾ ഇത് തെറ്റായി കാണുന്നുവെന്ന് വിശ്വസിക്കുന്നുവെങ്കിൽ, പ്രശ്‌നപരിഹാരത്തിന്ദ യവായി support@signal.org-നെ ബന്ധപ്പെടുക.</string>
-    <string name="RegistrationActivity_i_understand">എനിക്ക് മനസിലായി</string>
-    <string name="RegistrationActivity_play_services_error">Play Services പിശക്</string>
-    <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services അപ്‌ഡേറ്റുചെയ്യുന്നു അല്ലെങ്കിൽ താൽക്കാലികമായി ലഭ്യമല്ല. ദയവായി വീണ്ടും ശ്രമിക്കുക.</string>
     <string name="RegistrationActivity_rate_limited_to_service">ഈ നമ്പർ രജിസ്റ്റർ ചെയ്യുന്നതിന് നിങ്ങൾ വളരെയധികം ശ്രമങ്ങൾ നടത്തി. പിന്നീട് വീണ്ടും ശ്രമിക്കുക.</string>
-    <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">ഈ നമ്പർ രജിസ്റ്റർ ചെയ്യാൻ നിങ്ങൾ നിരവധി ശ്രമങ്ങൾ നടത്തി. %1$s സമയത്തിന് ശേഷം വീണ്ടും ശ്രമിക്കുക.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">സേവനത്തിലേക്ക് കണക്റ്റുചെയ്യാനായില്ല. നെറ്റ്‌വർക്ക് കണക്ഷൻ പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക.</string>
     <!-- Dialog error message shown when we are unable to send an SMS to the user\'s number -->
     <string name="RegistrationActivity_sms_provider_error">നിങ്ങളുടെ ഫോൺ നമ്പറിലേക്ക് ഒരു SMS അയയ്ക്കാൻ ഞങ്ങൾക്ക് സാധിക്കുന്നില്ല. ദയവായി കുറച്ച് മണിക്കൂറുകൾക്ക് ശേഷം വീണ്ടും ശ്രമിക്കുക.</string>
-    <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">ഞങ്ങൾക്ക് SMS-ലൂടെ പരിശോധിച്ചുറപ്പിക്കൽ കോഡ് അയയ്ക്കാനായില്ല. വോയ്‌സ് കോളിലൂടെ കോഡ് നേടാൻ ശ്രമിക്കൂ.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">പരിശോധിച്ചുറപ്പിക്കൽ കോഡ് അഭ്യർത്ഥിക്കാനായില്ല. നിങ്ങളുടെ നെറ്റ്‌വർക്ക് കണക്ഷൻ പരിശോധിച്ചശേഷം വീണ്ടും ശ്രമിക്കുക.</string>
-    <string name="RegistrationActivity_non_standard_number_format">അംഗീകൃതമല്ലാത്ത നമ്പര്‍ രൂപം</string>
-    <!-- Dialog message shown to confirm when entering phone number (first placeholder) is normalized and formatted differently by the app (second placeholder). -->
-    <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">നിങ്ങൾ നൽകിയ നമ്പർ (%1$s) അംഗീകൃതമല്ലാത്ത നമ്പര്‍ രൂപത്തില്‍ ആണെന്ന് തോന്നുന്നു.\n\nനിങ്ങൾ ഉദ്ദേശിച്ചത് %2$s എന്നാണോ?</string>
-    <string name="RegistrationActivity_signal_android_phone_number_format">Signal ആൻഡ്രോയിഡ് - ഫോണ്‍ നമ്പര്‍ രുപം</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="one">ഒരു ഡീബഗ് ലോഗ് സമർപ്പിക്കുന്നതിൽ നിന്ന് നിങ്ങൾ ഇപ്പോൾ %1$d പടി അകലെയാണ്.</item>
         <item quantity="other">ഒരു ഡീബഗ് ലോഗ് സമർപ്പിക്കുന്നതിൽ നിന്ന് നിങ്ങൾ ഇപ്പോൾ %1$d ഘട്ടങ്ങൾ അകലെയാണ്.</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">നിങ്ങൾ മനുഷ്യനാണെന്ന് ഞങ്ങൾ പരിശോധിക്കേണ്ടതുണ്ട്.</string>
-    <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
-    <string name="RegistrationActivity_voice_call">വോയ്സ് കോൾ</string>
-    <!-- Dialog button to cancel the pending action and return to the previous state. -->
-    <string name="RegistrationActivity_cancel">റദ്ദാക്കുക</string>
     <string name="RegistrationActivity_next">അടുത്തത്</string>
-    <!-- Title of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_phone_number">ഫോൺ നമ്പർ</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">ഞങ്ങൾ %1$s-ലേക്ക് അയച്ച കോഡ് നൽകുക</string>
 
     <string name="RegistrationActivity_phone_number_description">ഫോൺ നമ്പർ</string>
@@ -2881,6 +2777,8 @@
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">സ്റ്റിക്കർ പായ്ക്ക് ലോഡുചെയ്യുന്നതിൽ പരാജയപ്പെട്ടു</string>
     <!-- Bottom sheet describing a sticker. First placeholder is the title of the sticker pack and second is the author -->
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
+    <!-- Bottom sheet option that opens the pack the sticker belongs to -->
+    <string name="StickerPreviewBottomSheet__view_pack">View pack</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">സംരക്ഷിക്കുക</string>
@@ -3619,8 +3517,6 @@
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">കോൾ അറിയിപ്പുകൾ സ്വീകരിക്കുന്നതിന്, ക്രമീകരണങ്ങൾ തൊടുക, \"ബാറ്ററി\" ക്രമീകരണങ്ങളിൽ പശ്ചാത്തല പ്രവർത്തനം പ്രാപ്തമാക്കുക.</string>
 
     <!-- country_selection_fragment -->
-    <string name="country_selection_fragment__loading_countries">രാജ്യങ്ങൾ ലഭ്യമാക്കുന്നു…</string>
-    <string name="country_selection_fragment__search">തിരയൽ</string>
 
     <string name="device_list_fragment__link_new_device">പുതിയ ഉപകരണം ബന്ധിപ്പിക്കൂ</string>
 
@@ -4454,6 +4350,8 @@
     <string name="conversation_selection__menu_pin_message">പിൻ ചെയ്യുക</string>
     <!-- Button to unpin a message -->
     <string name="conversation_selection__menu_unpin_message">അൺപിൻ ചെയ്യുക</string>
+    <!-- Button to open the sticker pack a sticker message came from -->
+    <string name="conversation_selection__menu_view_sticker_pack">View pack</string>
 
     <!-- conversation_expiring_on -->
 
@@ -4644,14 +4542,11 @@
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">നിങ്ങളുടെ PIN നൽകുക</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">നിങ്ങളുടെ അക്കൗണ്ടിനായി നിങ്ങൾ സൃഷ്‌ടിച്ച പിൻ നൽകുക. ഇത് നിങ്ങളുടെ SMS പരിശോധന കോഡിൽ നിന്ന് വ്യത്യസ്തമാണ്.</string>
-    <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
-    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">നിങ്ങളുടെ അക്കൗണ്ടിനായി സൃഷ്ടിച്ച PIN നൽകുക.</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">PIN തെറ്റാണ്. വീണ്ടും ശ്രമിക്കുക.</string>
     <string name="RegistrationLockFragment__forgot_pin">PIN മറന്നോ?</string>
     <string name="RegistrationLockFragment__incorrect_pin">PIN തെറ്റാണ്</string>
     <string name="RegistrationLockFragment__forgot_your_pin">നിങ്ങളുടെ PIN മറന്നോ?</string>
     <string name="RegistrationLockFragment__not_many_tries_left">കുറച്ച് ശ്രമങ്ങൾ കൂടി ശേഷിക്കുന്നു</string>
-    <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal രജിസ്ട്രേഷൻ - Android-നായുള്ള PIN സഹായം ആവശ്യമുണ്ടോ (v2 PIN)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
         <item quantity="one">നിങ്ങളുടെ സ്വകാര്യതാ, സുരക്ഷാ സംരക്ഷണത്തിന്റെ ഭാഗമായി PIN വീണ്ടെടുക്കാനുള്ള വഴികളൊന്നും നൽകിയിട്ടില്ല. നിങ്ങളുടെ PIN ഓർമിക്കാൻ കഴിയുന്നില്ലെങ്കിൽ, %1$d ദിവസം നിഷ്‌ക്രിയമായി തുടർന്നതിന് ശേഷം നിങ്ങൾക്ക് SMS-ലൂടെ വീണ്ടും പരിശോധിച്ചുറപ്പിക്കാൻ കഴിയും. ഈ സാഹചര്യത്തിൽ, നിങ്ങളുടെ അക്കൗണ്ടും അതിലെ എല്ലാ ഉള്ളടക്കവും ഇല്ലാതാക്കുകയും ചെയ്യും.</item>
@@ -4706,22 +4601,6 @@
     <string name="backup_enable_dialog__you_must_have_this_passphrase">ഒരു ബാക്കപ്പ് വീണ്ടെടുക്കുന്നതിന് നിങ്ങൾക്ക് ഈ പാസ്‌ഫ്രെയ്‌സ് ഉണ്ടായിരിക്കണം.</string>
     <string name="backup_enable_dialog__folder">ഫോള്‍ഡര്‍</string>
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">ഞാൻ ഈ പാസ്‌ഫ്രെയ്‌സ് എഴുതി. ഇത് ഇല്ലാതെ, എനിക്ക് ഒരു ബാക്കപ്പ് പുന റിസ്റ്റോർ ചെയ്യാൻ കഴിയില്ല.</string>
-    <string name="registration_activity__restore_backup">ബാക്കപ്പ് വീണ്ടെടുക്കൂ</string>
-    <!-- Text label button to skip restoring -->
-    <string name="registration_activity__skip_restore">പുനഃസ്ഥാപിക്കൽ ഒഴിവാക്കുക</string>
-    <!-- Title for dialog to enter in the backup passphrase -->
-    <string name="RegistrationActivity_enter_backup_passphrase">ബാക്കപ്പിന്റെ രഹസ്യവാചകം നൽകുക</string>
-    <string name="RegistrationActivity_restore">വീണ്ടെടുക്കൂ</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">പുതിയ Signal പതിപ്പിൽ നിന്ന് ബാക്കപ്പ് ഇമ്പോർട്ട് ഇല്ല</string>
-    <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
-    <string name="RegistrationActivity_backup_failure_foreign_key">ബാക്കപ്പിൽ മാൽഫോം ഡാറ്റ അടങ്ങിയിരിക്കുന്നു</string>
-    <string name="RegistrationActivity_incorrect_backup_passphrase">ബാക്കപ്പ് രഹസ്യവാചകം തെറ്റാണ്</string>
-    <string name="RegistrationActivity_checking">പരിശോധിക്കുന്നു…</string>
-    <string name="RegistrationActivity_d_messages_so_far">ഇതുവരെ %1$d സന്ദേശങ്ങൾ…</string>
-    <string name="RegistrationActivity_restore_from_backup">ബാക്കപ്പിൽ നിന്ന് വീണ്ടെടുക്കണോ?</string>
-    <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">ഒരു ലോക്കൽ ബാക്കപ്പിൽ നിന്ന് നിങ്ങളുടെ സന്ദേശങ്ങളും മീഡിയയും റിസ്റ്റോർ ചെയ്യുക. നിങ്ങൾ ഇപ്പോൾ റിസ്റ്റോർ ചെയ്തില്ലെങ്കിൽ, നിങ്ങൾക്ക് പിന്നീട് റിസ്റ്റോർ ചെയ്യാൻ കഴിയില്ല.</string>
-    <string name="RegistrationActivity_backup_size_s">ബാക്കപ്പ് വലുപ്പം: %1$s</string>
-    <string name="RegistrationActivity_backup_timestamp_s">ബാക്കപ്പ് ടൈംസ്റ്റാമ്പ്: %1$s</string>
     <string name="BackupDialog_enable_local_backups">ലോക്കൽ ബാക്കപ്പുകൾ പ്രാപ്തമാക്കണോ?</string>
     <string name="BackupDialog_enable_backups">ബാക്കപ്പുകൾ പ്രാപ്തമാക്കുക</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">സ്ഥിരീകരണ ചെക്ക് ബോക്സ് അടയാളപ്പെടുത്തിക്കൊണ്ട് നിങ്ങളുടെ ധാരണ അംഗീകരിക്കുക.</string>
@@ -4757,7 +4636,6 @@
     <string name="RegistrationActivity_call_me_instead_available_in">എന്നെ വിളിക്കൂ (%1$02d%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
     <string name="RegistrationActivity_resend_sms_available_in">കോഡ് വീണ്ടും അയയ്ക്കുക (%1$02d:%2$02d)</string>
-    <string name="RegistrationActivity_contact_signal_support">Signal പിന്തുണ ബന്ധപ്പെടുക</string>
     <string name="RegistrationActivity_code_support_subject">Signal രജിസ്ട്രേഷൻ - Android-നായുള്ള സ്ഥിരീകരണ കോഡ്</string>
     <string name="RegistrationActivity_incorrect_code">കോഡ് തെറ്റാണ്</string>
     <string name="BackupUtil_never">ഒരിക്കലും വേണ്ട</string>
@@ -4879,25 +4757,8 @@
     <string name="TransferOrRestoreFragment__restore_from_local_backup">ലോക്കൽ ബാക്കപ്പ് പുനഃസ്ഥാപിക്കുക</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
-    <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">നിങ്ങളുടെ പഴയ ആൻഡ്രോയിഡ് ഫോണിൽ Signal തുറക്കുക</string>
-    <string name="NewDeviceTransferInstructions__continue">തുടരുക</string>
-    <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">ക്രമീകരണങ്ങൾ തുറക്കുന്നതിന് മുകളിൽ ഇടതുവശത്തുള്ള നിങ്ങളുടെ പ്രൊഫൈൽ ഫോട്ടോയിൽ തൊടുക</string>
-    <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_account">"\'അക്കൗണ്ട്\' എന്നതിൽ തൊടുക"</string>
-    <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
-    <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"\"അക്കൗണ്ട് ട്രാൻസ്ഫർ ചെയ്യുക\" തൊടുക, തുടർന്ന് രണ്ട് ഉപകരണങ്ങളിലും \"തുടരുക\""</string>
 
     <!-- NewDeviceTransferSetupFragment -->
-    <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">പഴയ ആൻഡ്രോയിഡ് ഉപകരണവുമായി ബന്ധിപ്പിക്കാൻ തയ്യാറെടുക്കുന്നു…</string>
-    <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">ഒരു നിമിഷം എടുക്കുന്നു, ഉടൻ തയ്യാറാകണം</string>
-    <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">പഴയ ആൻഡ്രോയിഡ് ഉപകരണം ബന്ധിപ്പിക്കാൻ കാത്തിരിക്കുന്നു…</string>
-    <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">നിങ്ങളുടെ പഴയ ആൻഡ്രോയിഡ് ഉപകരണവുമായി കണ്ടെത്തുന്നതിനും ബന്ധിപ്പിക്കുന്നതിനും Signal-ന് ലൊക്കേഷൻ അനുമതി ആവശ്യമാണ്.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">നിങ്ങളുടെ പഴയ ആൻഡ്രോയിഡ് ഉപകരണം കണ്ടെത്തുന്നതിനും ബന്ധിപ്പിക്കുന്നതിനും പ്രാപ്തമാക്കിയ ലൊക്കേഷൻ സേവനങ്ങൾ Signal-ന് ആവശ്യമാണ്.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">നിങ്ങളുടെ പഴയ ആൻഡ്രോയിഡ് ഉപകരണം കണ്ടെത്തുന്നതിനും ബന്ധിപ്പിക്കുന്നതിനും Signal-ന് വൈ-ഫൈ ആവശ്യമാണ്. വൈ-ഫൈ ഓണായിരിക്കേണ്ടതുണ്ട്, പക്ഷേ അത് ഒരു വൈ-ഫൈ നെറ്റ്‌വർക്കുമായി ബന്ധിപ്പിക്കേണ്ടതില്ല.</string>
-    <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">ക്ഷമിക്കണം, ഈ ഉപകരണം വൈ-ഫൈ ഡയറക്റ്റിനെ പിന്തുണയ്ക്കുന്നില്ലെന്ന് തോന്നുന്നു. നിങ്ങളുടെ പഴയ ആൻഡ്രോയിഡ് ഉപകരണം കണ്ടെത്തുന്നതിനും ബന്ധിപ്പിക്കുന്നതിനും Signal വൈ-ഫൈ ഡയറക്റ്റ് ഉപയോഗിക്കുന്നു. നിങ്ങളുടെ പഴയ ആൻഡ്രോയിഡ് ഉപകരണത്തിൽ നിന്ന് നിങ്ങളുടെ അക്കൗണ്ട് പുന:സ്ഥാപിക്കുന്നതിന് നിങ്ങൾക്ക് ഇപ്പോഴും ഒരു ബാക്കപ്പ് പുന:സ്ഥാപിക്കാൻ കഴിയും.</string>
-    <string name="NewDeviceTransferSetup__restore_a_backup">ഒരു ബാക്കപ്പ് വീണ്ടെടുക്കുക</string>
-    <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">നിങ്ങളുടെ പഴയ ആൻഡ്രോയിഡ് ഉപകരണവുമായി ബന്ധിപ്പിക്കാൻ ശ്രമിക്കുമ്പോൾ അപ്രതീക്ഷിത പിശക് സംഭവിച്ചു.</string>
 
     <!-- OldDeviceTransferSetupFragment -->
     <string name="OldDeviceTransferSetup__searching_for_new_android_device">പുതിയ ആൻഡ്രോയിഡ് ഉപകരണം തിരയുന്നു…</string>
@@ -4941,9 +4802,6 @@
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device">നിങ്ങളുടെ മറ്റ് ഉപകരണത്തിൽ തുടരുക തൊടുക…</string>
 
     <!-- NewDeviceTransferFragment -->
-    <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Signal-ന്റെ പുതിയ പതിപ്പുകളിൽ നിന്ന് ട്രാൻസ്ഫർ ചെയ്യാൻ സാധ്യമല്ല</string>
-    <!-- Error message indicating that we could not finish the user\'s device transfer. Displayed in a toast at the bottom of the screen. -->
-    <string name="NewDeviceTransfer__failure_foreign_key">ട്രാൻസ്‌ഫർ ചെയ്‌ത ഡാറ്റ മാൽഫോമായിരുന്നു</string>
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">ഡാറ്റ കൈമാറുന്നു</string>
@@ -4982,10 +4840,6 @@
     <string name="OldDeviceTransferComplete__close">അടയ്ക്കുക</string>
 
     <!-- NewDeviceTransferComplete -->
-    <string name="NewDeviceTransferComplete__transfer_successful">വിജയകരമായി കൈമാറ്റം</string>
-    <string name="NewDeviceTransferComplete__transfer_complete">കൈമാറ്റം പൂർത്തിയായി</string>
-    <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">കൈമാറ്റ പ്രക്രിയ പൂർത്തിയാക്കാൻ, നിങ്ങൾ രജിസ്ട്രേഷൻ തുടരണം.</string>
-    <string name="NewDeviceTransferComplete__continue_registration">രജിസ്ട്രേഷൻ തുടരുക</string>
 
     <!-- DeviceToDeviceTransferService -->
     <string name="DeviceToDeviceTransferService_content_title">അക്കൗണ്ട് കൈമാറ്റം</string>
@@ -8753,219 +8607,6 @@
 
     <!-- ConfirmBackupCancellationDialog -->
 
-    <!-- Row title for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">എൻ്റെ കയ്യിൽ പഴയ ഫോൺ ഉണ്ട്</string>
-    <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_scan_qr">വേഗത്തിൽ ആരംഭിക്കുന്നതിന് നിങ്ങളുടെ നിലവിലെ Signal അക്കൗണ്ടിൽ നിന്ന് ഒരു QR കോഡ് സ്കാൻ ചെയ്യുക</string>
-
-    <!-- Row title for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">എൻ്റെ കയ്യിൽ പഴയ ഫോൺ ഇല്ല</string>
-    <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">അല്ലെങ്കിൽ നിങ്ങൾ അതേ ഉപകരണത്തിൽ Signal വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്യുകയാണ്</string>
-
-    <!-- Screen title for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__restore_or_transfer_account">അക്കൗണ്ട് പുനഃസ്ഥാപിക്കുക അല്ലെങ്കിൽ കൈമാറുക</string>
-    <!-- Screen subtitle for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__get_your_signal_account">ഈ ഉപകരണത്തിലേക്ക് നിങ്ങളുടെ Signal അക്കൗണ്ടും സന്ദേശ ചരിത്രവും നേടുക.</string>
-    <!-- Option title for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_signal_backup">Signal ബാക്കപ്പ് പുനഃസ്ഥാപിക്കുക</string>
-    <!-- Option subtitle for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_your_text_messages_and_media_from">നിങ്ങളുടെ Signal ബാക്കപ്പ് പ്ലാനിൽ നിന്ന് നിങ്ങളുടെ വാചക സന്ദേശങ്ങളും മീഡിയയും പുനഃസ്ഥാപിക്കുക.</string>
-    <!-- Option title for restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_on_device_backup">ഉപകരണത്തിലെ ബാക്കപ്പ് പുനഃസ്ഥാപിക്കുക</string>
-    <!-- Option subtitle fdor restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_your_messages_from">നിങ്ങളുടെ ഉപകരണത്തിൽ സംരക്ഷിച്ച ഒരു ബാക്കപ്പിൽ നിന്ന് നിങ്ങളുടെ സന്ദേശങ്ങൾ പുനഃസ്ഥാപിക്കുക.</string>
-    <!-- Option title for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__from_your_old_phone">നിങ്ങളുടെ പഴയ ഫോണിൽ നിന്ന്</string>
-    <!-- Option subtitle for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__transfer_directly_from_old">നിങ്ങളുടെ പഴയ Android-ൽ നിന്ന് നേരിട്ട് കൈമാറുക</string>
-    <!-- Dialog title shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_title">പുനഃസ്ഥാപിക്കൽ ഒഴിവാക്കണോ?</string>
-    <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">ഇപ്പോൾ പുനഃസ്ഥാപിക്കൽ ഒഴിവാക്കിയാൽ പിന്നീട് പുനഃസ്ഥാപിക്കാൻ കഴിയില്ല. പുനഃസ്ഥാപിക്കൽ ഒഴിവാക്കിയതിന് ശേഷം നിങ്ങൾ ബാക്കപ്പുകൾ വീണ്ടും പ്രവർത്തനക്ഷമമാക്കുകയാണെങ്കിൽ, നിങ്ങളുടെ നിലവിലെ ബാക്കപ്പ് പുതിയ സന്ദേശമയയ്ക്കൽ ചരിത്രം ഉപയോഗിച്ച് മാറ്റിസ്ഥാപിക്കപ്പെടും.</string>
-    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore">പുനഃസ്ഥാപിക്കൽ ഒഴിവാക്കുക</string>
-
-    <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_title">നിങ്ങളുടെ വീണ്ടെടുക്കൽ കീ നൽകുക</string>
-    <!-- Screen subtitle for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_subtitle">നിങ്ങളുടെ അക്കൗണ്ടും ഡാറ്റയും വീണ്ടെടുക്കാൻ ആവശ്യമായ 64 പ്രതീക കോഡാണ് നിങ്ങളുടെ ബാക്കപ്പ് കീ.</string>
-    <!-- Button to skip entering recovery key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">വീണ്ടെടുക്കൽ കീ ഇല്ലേ?</string>
-    <!-- Recovery key text field hint -->
-    <string name="EnterBackupKey_backup_key">വീണ്ടെടുക്കൽ കീ</string>
-    <!-- Recovery key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">64 പ്രതീകങ്ങളുള്ള വീണ്ടെടുക്കൽ കോഡ് ഇല്ലാതെ ബാക്കപ്പുകൾ വീണ്ടെടുക്കാൻ കഴിയില്ല. നിങ്ങളുടെ വീണ്ടെടുക്കൽ കീ നഷ്‌ടപ്പെട്ടാൽ, നിങ്ങളുടെ ബാക്കപ്പ് പുനഃസ്ഥാപിക്കാൻ Signal-ന് സഹായിക്കാനാകില്ല.</string>
-    <!-- Recovery key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">നിങ്ങളുടെ പഴയ ഉപകരണം ഉണ്ടെങ്കിൽ, ക്രമീകരണങ്ങൾ &gt; ബാക്കപ്പുകൾ എന്നതിൽ നിങ്ങളുടെ വീണ്ടെടുക്കൽ കീ കാണാനാകും. തുടർന്ന് വീണ്ടെടുക്കൽ കീ കാണുക ടാപ്പ് ചെയ്യുക.</string>
-    <!-- Recovery key not known bottom sheet button to learn more about it -->
-    <string name="EnterBackupKey_learn_more">കൂടുതലറിയുക</string>
-    <!-- Recovery key not known bottom sheet button to skip recovery key entry and resume normal reregistration -->
-    <string name="EnterBackupKey_skip_and_dont_restore">ഒഴിവാക്കുക, പുനഃസ്ഥാപിക്കരുത്</string>
-    <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">വീണ്ടെടുക്കൽ കീ തെറ്റാണ്</string>
-    <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">Signal സെക്യുർ ബാക്കപ്പുകൾ പ്രാപ്തമാക്കുമ്പോൾ നിങ്ങൾ സേവ് ചെയ്ത അതേ ഫോൺ നമ്പറും 64 പ്രതീകങ്ങളുള്ള വീണ്ടെടുക്കൽ കീയും ഉപയോഗിച്ചാണ് രജിസ്റ്റർ ചെയ്യുന്നതെന്ന് ഉറപ്പാക്കുക. ഈ കീ ഇല്ലാതെ ബാക്കപ്പുകൾ വീണ്ടെടുക്കാൻ കഴിയില്ല.</string>
-    <!-- Dialog positive button text to try entering their recovery key again -->
-    <string name="EnterBackupKey_try_again">വീണ്ടും ശ്രമിക്കുക</string>
-    <!-- Dialog negative button text to get help with recovery key -->
-    <string name="EnterBackupKey_backup_key_help">വീണ്ടെടുക്കൽ കീ സഹായം</string>
-    <!-- Text field error text when the recovery key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">വീണ്ടെടുക്കൽ കീ തെറ്റാണ്</string>
-    <!-- Text field error text when the recovery key is too long -->
-    <string name="EnterBackupKey_too_long_error">വളരെ നീണ്ടത് (%1$d/%2$d)</string>
-    <!-- Text field error when the recovery key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">വീണ്ടെടുക്കൽ കീ അസാധുവാണ്</string>
-    <!-- Dialog title shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_not_found">ബാക്കപ്പ് കണ്ടെത്താനാവുന്നില്ല</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">നിങ്ങൾ നൽകിയ വീണ്ടെടുക്കൽ കീ ശരിയാണ്, പക്ഷേ അതുമായി ബന്ധപ്പെട്ട ഒരു ബാക്കപ്പും ഇല്ല. പഴയ ഫോൺ ഇപ്പോഴും നിങ്ങളുടെ കയ്യിലുണ്ടെങ്കിൽ, ബാക്കപ്പുകൾ പ്രവർത്തനക്ഷമമാക്കിയിട്ടുണ്ടെന്നും ബാക്കപ്പ് പൂർത്തിയായിട്ടുണ്ടെന്നും ഉറപ്പാക്കി വീണ്ടും ശ്രമിക്കുക.</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">നിങ്ങളുടെ വീണ്ടെടുക്കൽ കീ തെറ്റായി നൽകിയിരിക്കാം, അല്ലെങ്കിൽ നിങ്ങളുടെ പഴയ ഉപകരണത്തിൽ കുറഞ്ഞത് ഒരു ബാക്കപ്പ് പോലും പൂർത്തിയാക്കിയിട്ടില്ലായിരിക്കാം.\n\nSignal സുരക്ഷിത ബാക്കപ്പുകൾ പ്രവർത്തനക്ഷമമാക്കുമ്പോൾ നിങ്ങൾ സേവ് ചെയ്ത അതേ ഫോൺ നമ്പറും വീണ്ടെടുക്കൽ കീയും ഉപയോഗിച്ചാണ് രജിസ്റ്റർ ചെയ്യുന്നതെന്ന് ഉറപ്പാക്കുക, കൂടാതെ നിങ്ങളുടെ പഴയ ഉപകരണം ഒരു ബാക്കപ്പ് പൂർത്തിയാക്കിയിട്ടുണ്ടെന്ന് ഉറപ്പാക്കുക.</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">നിങ്ങളുടെ വീണ്ടെടുക്കൽ കീ ശ്രമങ്ങൾ കഴിഞ്ഞു. നിങ്ങളുടെ സുരക്ഷയ്ക്കായി, നിങ്ങൾക്ക് ചെയ്യാൻ കഴിയുന്ന ശ്രമങ്ങളുടെ എണ്ണം പരിമിതമാണ്. ഒരു മണിക്കൂർ കാത്തിരുന്ന് വീണ്ടും ശ്രമിക്കുക.</string>
-    <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
-    <string name="EnterBackupKey_skip_restore">പുനഃസ്ഥാപിക്കൽ ഒഴിവാക്കുക</string>
-    <!-- Dialog title text when encountering backup restore network error -->
-    <string name="EnterBackupKey_cant_restore_backup">ബാക്കപ്പ് പുനഃസ്ഥാപിക്കാൻ കഴിയില്ല</string>
-    <!-- Dialog body text when encountering backup restore network error -->
-    <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">നിങ്ങളുടെ ബാക്കപ്പ് ഇപ്പോൾ പുനഃസ്ഥാപിക്കാൻ കഴിയില്ല. നിങ്ങളുടെ ഇൻ്റർനെറ്റ് കണക്ഷൻ പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക. </string>
-    <!-- Dialog button text to contact support on network error -->
-    <string name="EnterBackupKey_contact_support">പിന്തുണയുമായി ബന്ധപ്പെടുക</string>
-
-    <!-- Email subject when contacting support on a restore backup network issue -->
-    <string name="EnterBackupKey_network_failure_support_email">Signal Android ബാക്കപ്പ് പുനഃസ്ഥാപിക്കുമ്പോൾ നെറ്റ്‌വർക്ക് പിശക്</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
-    <!-- Email subject when contacting support on a permanent backup import failure -->
-    <string name="EnterBackupKey_permanent_failure_support_email">Signal Android ബാക്കപ്പ് പുനഃസ്ഥാപിക്കലിൽ സ്ഥിരമായ പരാജയം</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
-
-    <!-- EnterLocalBackupKeyScreen: Screen title for entering recovery key for local backup restore -->
-    <string name="EnterLocalBackupKeyScreen__enter_your_recovery_key">നിങ്ങളുടെ വീണ്ടെടുക്കൽ കീ നൽകുക</string>
-    <!-- EnterLocalBackupKeyScreen: Screen subtitle explaining what the recovery key is -->
-    <string name="EnterLocalBackupKeyScreen__your_recovery_key_is_a_64_character_code">നിങ്ങളുടെ അക്കൗണ്ടും ഡാറ്റയും വീണ്ടെടുക്കാൻ ആവശ്യമായ 64 പ്രതീക കോഡാണ് നിങ്ങളുടെ ബാക്കപ്പ് കീ.</string>
-    <!-- EnterLocalBackupKeyScreen: Button text when user does not have a recovery key -->
-    <string name="EnterLocalBackupKeyScreen__no_recovery_key">വീണ്ടെടുക്കൽ കീ ഇല്ലേ?</string>
-    <!-- EnterLocalBackupKeyScreen: Button to proceed to next step -->
-    <string name="EnterLocalBackupKeyScreen__next">അടുത്തത്</string>
-
-    <!-- RestoreLocalBackupDialog: Error message when the selected archive fails to load -->
-    <string name="RestoreLocalBackupDialog__failed_to_load_archive">ആർക്കൈവ് ലോഡ് ചെയ്യുന്നതിൽ പരാജയപ്പെട്ടു. മറ്റൊരു ഡയറക്ടറി തിരഞ്ഞെടുക്കൂ.</string>
-    <!-- RestoreLocalBackupDialog: Dismiss button for dialog -->
-    <string name="RestoreLocalBackupDialog__ok">ശരി</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore">പുനഃസ്ഥാപിക്കൽ ഒഴിവാക്കണോ?</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user about the consequences of skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore_body">ഇപ്പോൾ പുനഃസ്ഥാപിക്കൽ ഒഴിവാക്കിയാൽ പിന്നീട് പുനഃസ്ഥാപിക്കാൻ കഴിയില്ല. പുനഃസ്ഥാപിക്കൽ ഒഴിവാക്കിയതിന് ശേഷം നിങ്ങൾ ബാക്കപ്പുകൾ വീണ്ടും പ്രവർത്തനക്ഷമമാക്കുകയാണെങ്കിൽ, നിങ്ങളുടെ നിലവിലെ ബാക്കപ്പ് പുതിയ സന്ദേശമയയ്ക്കൽ ചരിത്രം ഉപയോഗിച്ച് മാറ്റിസ്ഥാപിക്കപ്പെടും.</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the skip restore dialog -->
-    <string name="RestoreLocalBackupDialog__skip_restore_confirm">പുനഃസ്ഥാപിക്കൽ ഒഴിവാക്കുക</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm restoring a backup from a different account -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account">പുതിയ അക്കൗണ്ടിലേക്ക് പുനഃസ്ഥാപിക്കണോ?</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user that the backup was created with a different account and they will lose group memberships -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account_body">നിങ്ങൾ പുനഃസ്ഥാപിക്കുന്ന ബാക്കപ്പ് മറ്റൊരു Signal അക്കൗണ്ട് ഉപയോഗിച്ചാണ് സൃഷ്ടിച്ചിരിക്കുന്നത്. നിങ്ങൾക്ക് ഈ ബാക്കപ്പ് ഒരു പുതിയ അക്കൗണ്ടിലേക്ക് പുനഃസ്ഥാപിക്കാം, എന്നാൽ പുനഃസ്ഥാപിക്കപ്പെട്ട ഗ്രൂപ്പുകളിലൊന്നിലും നിങ്ങൾ ഇനി അംഗമായിരിക്കില്ല.</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the restore to new account dialog -->
-    <string name="RestoreLocalBackupDialog__restore">വീണ്ടെടുക്കൂ</string>
-
-    <!-- RestoreLocalBackupActivity: Toast message when backup restore fails -->
-    <string name="RestoreLocalBackupActivity__backup_restore_failed">ബാക്കപ്പ് പുനഃസ്ഥാപിക്കൽ പരാജയപ്പെട്ടു</string>
-    <!-- RestoreLocalBackupActivity: Screen title shown during restore -->
-    <string name="RestoreLocalBackupActivity__restoring_backup">ബാക്കപ്പ് പുനഃസ്ഥാപിക്കുന്നു</string>
-    <!-- RestoreLocalBackupActivity: Screen subtitle explaining restore duration -->
-    <string name="RestoreLocalBackupActivity__depending_on_the_size">നിങ്ങളുടെ ബാക്കപ്പിന്റെ വലുപ്പത്തെ ആശ്രയിച്ച്, ഇതിന് കുറച്ച് മിനിറ്റുകൾ എടുത്തേക്കാം.</string>
-    <!-- RestoreLocalBackupActivity: Status text while restoring messages -->
-    <string name="RestoreLocalBackupActivity__restoring_messages">സന്ദേശങ്ങൾ പുനഃസ്ഥാപിക്കുന്നു…</string>
-    <!-- RestoreLocalBackupActivity: Status text while finalizing restore -->
-    <string name="RestoreLocalBackupActivity__finalizing">അന്തിമമാക്കുന്നു…</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore is complete -->
-    <string name="RestoreLocalBackupActivity__restore_complete">പുനഃസ്ഥാപിക്കൽ പൂർത്തിയായി</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore fails -->
-    <string name="RestoreLocalBackupActivity__restore_failed">പുനഃസ്ഥാപിക്കൽ പരാജയപ്പെട്ടു</string>
-    <!-- RestoreLocalBackupActivity: Progress text showing bytes read of total with percentage, e.g. "1.2 MB of 5.0 MB (24%)" -->
-    <string name="RestoreLocalBackupActivity__s_of_s_d_percent">%1$s / %2$s (%3$d)</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__cant_restore_backup">ബാക്കപ്പ് പുനഃസ്ഥാപിക്കാൻ കഴിയില്ല</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__error_occurred_while_restoring">നിങ്ങളുടെ ബാക്കപ്പ് പുനഃസ്ഥാപിക്കുമ്പോൾ ഒരു പിശക് സംഭവിച്ചു. നിങ്ങളുടെ ബാക്കപ്പ് വീണ്ടെടുക്കാൻ കഴിയില്ല. സഹായത്തിന് പിന്തുണയുമായി ബന്ധപ്പെടുക.</string>
-
-    <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
-    <string name="RestoreLocalBackupActivity__contact_support">പിന്തുണയുമായി ബന്ധപ്പെടുക</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
-    <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">ഓൺ-ഡിവൈസ് ബാക്കപ്പുകൾ ഓൺ ചെയ്യണോ?</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">ഓൺ-ഡിവൈസ് ബാക്കപ്പുകൾ തുടർന്നും ഉപയോഗിക്കുന്നതിന്, ഈ അക്കൗണ്ടിനായി നിങ്ങൾ അവ പ്രവർത്തനക്ഷമമാക്കേണ്ടതുണ്ട്. നിങ്ങൾക്ക് ക്രമീകരണങ്ങൾ &gt; ബാക്കപ്പുകൾ എന്നതിൽ നിന്ന് എപ്പോൾ വേണമെങ്കിലും ഇത് ചെയ്യാം.</string>
-
-    <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__turn_on_now">ഇപ്പോൾ ഓൺ ചെയ്യുക</string>
-
-    <!-- RestoreLocalBackupActivity: Dismiss button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__not_now">ഇപ്പോൾ വേണ്ട</string>
-
-    <!-- RestoreLocalBackupActivity: Body text for the dialog shown after a successful restore, prompting the user to choose a backup folder -->
-    <string name="RestoreLocalBackupActivity__choose_a_folder_for_backups">ഓൺ-ഡിവൈസ് ബാക്കപ്പുകൾ ഉപയോഗിക്കുന്നത് തുടരുന്നതിന്, പുതിയ ബാക്കപ്പുകൾ സംരക്ഷിക്കാൻ നിങ്ങളുടെ ഉപകരണത്തിൽ ഒരു ഫോൾഡർ തിരഞ്ഞെടുക്കുക.</string>
-
-    <!-- RestoreLocalBackupActivity: Positive button label for the dialog shown after a successful restore; keeps the current backup folder -->
-    <string name="RestoreLocalBackupActivity__use_current_folder">നിലവിലെ ഫോൾഡർ ഉപയോഗിക്കുക</string>
-
-    <!-- RestoreLocalBackupActivity: Neutral button label for the dialog shown after a successful restore; opens folder picker to select a different backup location -->
-    <string name="RestoreLocalBackupActivity__choose_new_folder">പുതിയ ഫോൾഡർ തിരഞ്ഞെടുക്കുക</string>
-
-    <!-- RestoreLocalBackupActivity: Negative button label for the dialog shown after a successful restore; disables on-device backups -->
-    <string name="RestoreLocalBackupActivity__disable_backups">ബാക്കപ്പുകൾ പ്രവർത്തനരഹിതമാക്കുക</string>
-
-    <!-- SelectInstructionsSheet: Title for the select backup folder instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_folder">നിങ്ങളുടെ ബാക്കപ്പ് ഫോൾഡർ തിരഞ്ഞെടുക്കുക</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the select this folder button -->
-    <string name="SelectInstructionsSheet__tap_select_this_folder">\"ഈ ഫോൾഡർ തിരഞ്ഞെടുക്കുക\" ടാപ്പ് ചെയ്യുക</string>
-    <!-- SelectInstructionsSheet: Instruction not to select individual files -->
-    <string name="SelectInstructionsSheet__do_not_select_individual_files">പ്രത്യേകം പ്രത്യേകം ഫയലുകൾ തിരഞ്ഞെടുക്കരുത്</string>
-    <!-- SelectInstructionsSheet: Title for the select backup file instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_file">നിങ്ങളുടെ ബാക്കപ്പ് ഫയൽ തിരഞ്ഞെടുക്കുക</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the backup file saved to device -->
-    <string name="SelectInstructionsSheet__tap_on_the_backup_file">നിങ്ങളുടെ ഉപകരണത്തിൽ സംരക്ഷിച്ച ബാക്കപ്പ് ഫയലിൽ ടാപ്പ് ചെയ്യുക</string>
-    <!-- SelectInstructionsSheet: Subtitle explaining how to access backup after tapping continue -->
-    <string name="SelectInstructionsSheet__after_tapping_continue">\"തുടരുക\" ടാപ്പ് ചെയ്ത ശേഷം, നിങ്ങളുടെ ബാക്കപ്പ് എങ്ങനെ ആക്‌സസ് ചെയ്യാമെന്ന് ഇവിടെ കാണാം:</string>
-    <!-- SelectInstructionsSheet: Instruction to select the top-level backup folder -->
-    <string name="SelectInstructionsSheet__select_the_top_level_folder">നിങ്ങളുടെ ബാക്കപ്പ് സൂക്ഷിച്ചിരിക്കുന്ന ടോപ്പ്-ലെവൽ ഫോൾഡർ തിരഞ്ഞെടുക്കുക</string>
-    <!-- SelectInstructionsSheet: Continue button text -->
-    <string name="SelectInstructionsSheet__continue_button">തുടരുക</string>
-
-    <!-- SelectLocalBackupScreen: Screen title for restoring on-device backup -->
-    <string name="SelectLocalBackupScreen__restore_on_device_backup">ഉപകരണത്തിലെ ബാക്കപ്പ് പുനഃസ്ഥാപിക്കുക</string>
-    <!-- SelectLocalBackupScreen: Screen subtitle explaining the restore process -->
-    <string name="SelectLocalBackupScreen__restore_your_messages_from_the_backup_folder">നിങ്ങളുടെ ഉപകരണത്തിൽ സംരക്ഷിച്ചിരിക്കുന്ന ബാക്കപ്പ് ഫോൾഡറിൽ നിന്ന് നിങ്ങളുടെ സന്ദേശങ്ങൾ പുനഃസ്ഥാപിക്കുക. നിങ്ങൾ ഇപ്പോൾ പുനഃസ്ഥാപിച്ചില്ലെങ്കിൽ, നിങ്ങൾക്ക് പിന്നീട് പുനഃസ്ഥാപിക്കാൻ കഴിയില്ല.</string>
-    <!-- SelectLocalBackupScreen: Button to initiate backup restoration -->
-    <string name="SelectLocalBackupScreen__restore_backup">ബാക്കപ്പ് വീണ്ടെടുക്കൂ</string>
-    <!-- SelectLocalBackupScreen: Button to choose an earlier backup when current is latest -->
-    <string name="SelectLocalBackupScreen__choose_an_earlier_backup">നേരത്തെയുള്ള ഒരു ബാക്കപ്പ് തിരഞ്ഞെടുക്കുക</string>
-    <!-- SelectLocalBackupScreen: Button to choose a different backup -->
-    <string name="SelectLocalBackupScreen__choose_a_different_backup">മറ്റൊരു ബാക്കപ്പ് തിരഞ്ഞെടുക്കുക</string>
-    <!-- SelectLocalBackupScreen: Label for latest backup card -->
-    <string name="SelectLocalBackupScreen__your_latest_backup">നിങ്ങളുടെ ഏറ്റവും പുതിയ ബാക്കപ്പ്:</string>
-    <!-- SelectLocalBackupScreen: Label for non-latest backup card -->
-    <string name="SelectLocalBackupScreen__your_backup">നിങ്ങളുടെ ബാക്കപ്പ്:</string>
-
-    <!-- SelectLocalBackupSheet: Title for backup selection bottom sheet -->
-    <string name="SelectLocalBackupSheet__choose_a_backup_to_restore">പുനഃസ്ഥാപിക്കാൻ ഒരു ബാക്കപ്പ് തിരഞ്ഞെടുക്കുക</string>
-    <!-- SelectLocalBackupSheet: Subtitle warning about choosing an older backup -->
-    <string name="SelectLocalBackupSheet__choosing_an_older_backup">പഴയ ബാക്കപ്പ് തിരഞ്ഞെടുക്കുന്നത് സന്ദേശങ്ങളോ മീഡിയയോ നഷ്ടപ്പെടാൻ കാരണമായേക്കാം.</string>
-    <!-- SelectLocalBackupSheet: Continue button text -->
-    <string name="SelectLocalBackupSheet__continue_button">തുടരുക</string>
-
-    <!-- SelectLocalBackupTypeScreen: Screen title for selecting backup type -->
-    <string name="SelectLocalBackupTypeScreen__restore_on_device_backup">ഉപകരണത്തിലെ ബാക്കപ്പ് പുനഃസ്ഥാപിക്കുക</string>
-    <!-- SelectLocalBackupTypeScreen: Screen subtitle explaining restore options -->
-    <string name="SelectLocalBackupTypeScreen__restore_your_messages_from_the_backup">നിങ്ങളുടെ ഉപകരണത്തിൽ സംരക്ഷിച്ചിരിക്കുന്ന ബാക്കപ്പിൽ നിന്ന് നിങ്ങളുടെ സന്ദേശങ്ങൾ പുനഃസ്ഥാപിക്കുക. നിങ്ങൾ ഇപ്പോൾ പുനഃസ്ഥാപിച്ചില്ലെങ്കിൽ, നിങ്ങൾക്ക് പിന്നീട് പുനഃസ്ഥാപിക്കാൻ കഴിയില്ല.</string>
-    <!-- SelectLocalBackupTypeScreen: Button for users who saved backup as single file -->
-    <string name="SelectLocalBackupTypeScreen__i_saved_my_backup_as_a_single_file">എന്റെ ബാക്കപ്പ് ഒറ്റ ഫയലായി ഞാൻ സംരക്ഷിച്ചു</string>
-    <!-- SelectLocalBackupTypeScreen: Card title for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__choose_backup_folder">ബാക്കപ്പ് ഫോൾഡർ തിരഞ്ഞെടുക്കുക</string>
-    <!-- SelectLocalBackupTypeScreen: Card description for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__select_the_folder_on_your_device">നിങ്ങളുടെ ഉപകരണത്തിലെ ബാക്കപ്പ് സൂക്ഷിച്ചിരിക്കുന്ന ഫോൾഡർ തിരഞ്ഞെടുക്കുക</string>
-
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">Signal Android ബാക്കപ്പ് എക്സ്പോർട്ടുചെയ്യുമ്പോൾ നെറ്റ്‌വർക്ക് പിശക്</string>
     <!-- Email filter when contacting support on a create backup failure -->
@@ -8979,23 +8620,6 @@
     <string name="ContactSupportDialog_submit_with_debug">ഡീബഗ് ലോഗ് ഉപയോഗിച്ച് സമർപ്പിക്കുക</string>
     <!-- Button option to not submit debug log when contacting support -->
     <string name="ContactSupportDialog_submit_without_debug">ഡീബഗ് ലോഗ് ഇല്ലാതെ സമർപ്പിക്കുക</string>
-
-    <!-- Title for restore via qr screen -->
-    <string name="RestoreViaQr_title">നിങ്ങളുടെ പഴയ ഫോൺ ഉപയോഗിച്ച് ഈ കോഡ് സ്കാൻ ചെയ്യുക</string>
-    <!-- First instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_1">നിങ്ങളുടെ പഴയ ഉപകരണത്തിൽ Signal തുറക്കുക</string>
-    <!-- Second instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_2">ക്യാമറ ഐക്കൺ ടാപ്പ് ചെയ്യുക </string>
-    <!-- Third instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_3">ക്യാമറ ഉപയോഗിച്ച് ഈ കോഡ് സ്കാൻ ചെയ്യുക</string>
-    <!-- Error message shown when qr code could not be loaded -->
-    <string name="RestoreViaQr_qr_code_error">QR കോഡ് സൃഷ്‌ടിക്കാനായില്ല</string>
-    <!-- Status message shown when qr code already scanned by other device -->
-    <string name="RestoreViaQr_qr_code_scanned">പഴയ ഉപകരണത്തിൽ സ്കാൻ ചെയ്തു</string>
-    <!-- Error button text to retry getting a qr code -->
-    <string name="RestoreViaQr_retry">വീണ്ടും ശ്രമിക്കുക</string>
-    <!-- Error message shown when register after receiving the provisioning message failed -->
-    <string name="RestoreViaQr_registration_error">ഒരു പിശക് സംഭവിച്ചു, നിങ്ങളുടെ അക്കൗണ്ട് കൈമാറാൻ കഴിഞ്ഞില്ല. QR കോഡ് വീണ്ടും സ്കാൻ ചെയ്തുകൊണ്ട് വീണ്ടും ശ്രമിക്കുക.</string>
 
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">അക്കൗണ്ട് കൈമാറുക</string>
@@ -9037,19 +8661,6 @@
     <string name="RestoreCompleteBottomSheet_transfer_complete_message">നിങ്ങളുടെ Signal അക്കൗണ്ടും സന്ദേശങ്ങളും നിങ്ങളുടെ മറ്റേ ഉപകരണത്തിലേക്ക് കൈമാറ്റം ചെയ്‌തു. ഈ ഉപകരണത്തിൽ Signal ഇപ്പോൾ പ്രവർത്തനരഹിതമാണ്.</string>
     <!-- Restore Complete bottom sheet dialog button text to dismiss sheet -->
     <string name="RestoreCompleteBottomSheet_button">ശരി</string>
-
-    <!-- No Backup to Restore screen title -->
-    <string name="NoBackupToRestore_title">പുനഃസ്ഥാപിക്കാൻ ബാക്കപ്പ് ഇല്ല</string>
-    <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">നിങ്ങൾ iPhone-ൽ നിന്ന് Android-ലേക്ക് മാറുന്നതിനാൽ, നിങ്ങളുടെ പഴയ ഉപകരണത്തിൽ Signal സുരക്ഷിത ബാക്കപ്പുകൾ പ്രവർത്തനക്ഷമമാക്കുക എന്നതാണ് നിങ്ങളുടെ സന്ദേശങ്ങളും മീഡിയയും കൈമാറാനുള്ള ഏക മാർഗം.</string>
-    <!-- No Backup to Restore step 1 to enable backups on old device -->
-    <string name="NoBackupToRestore_step1">നിങ്ങളുടെ പഴയ ഉപകരണത്തിൽ Signal തുറക്കുക</string>
-    <!-- No Backup to Restore step 2 to enable backups on old device -->
-    <string name="NoBackupToRestore_step2">ക്രമീകരണങ്ങൾ &gt; ബാക്കപ്പുകൾ ടാപ്പ് ചെയ്യുക</string>
-    <!-- No Backup to Restore step 3 to enable backups on old device -->
-    <string name="NoBackupToRestore_step3">ബാക്കപ്പുകൾ പ്രവർത്തനക്ഷമമാക്കി നിങ്ങളുടെ ബാക്കപ്പ് പൂർത്തിയാകുന്നതുവരെ കാത്തിരിക്കുക</string>
-    <!-- No backup to Restore tonal cta to skip restore -->
-    <string name="NoBackupToRestore_skip_restore">പുനഃസ്ഥാപിക്കൽ ഒഴിവാക്കുക</string>
 
     <!-- Dialog title when the recovery key change limit is reached -->
     <string name="MessageBackupsKeyRecordScreen__limit_reached_title">വീണ്ടെടുക്കൽ കീ പരിധിയിലെത്തി</string>

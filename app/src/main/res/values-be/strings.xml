@@ -911,23 +911,8 @@
     <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Ніхто не ўбачыць, што вы ў Signal, пакуль вы не адправіце яму паведамленне або не распачняце з ім чат.</string>
 
     <!-- ChooseBackupFragment -->
-    <string name="ChooseBackupFragment__restore_from_backup">Аднавіць з рэзервовай копіі?</string>
-    <string name="ChooseBackupFragment__restore_your_messages_and_media">Аднавіце паведамленні і медыяфайлы з лакальнай рэзервовай копіі. Калі вы не зробіце гэта зараз, пазней аднавіць іх ужо не атрымаецца.</string>
-    <string name="ChooseBackupFragment__icon_content_description">Значок аднаўлення з рэзервовай копіі</string>
-    <string name="ChooseBackupFragment__choose_backup">Выбраць рэзервовую копію</string>
-    <string name="ChooseBackupFragment__learn_more">Даведацца больш</string>
 
     <!-- RestoreBackupFragment -->
-    <string name="RestoreBackupFragment__restore_complete">Аднаўленне завершана</string>
-    <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Каб працягваць выкарыстоўваць рэзервовыя копіі, выберыце папку. Новыя рэзервовыя копіі будуць захаваны ў гэтым месцы.</string>
-    <string name="RestoreBackupFragment__choose_folder">Выбраць папку</string>
-    <string name="RestoreBackupFragment__not_now">Не зараз</string>
-    <!-- Couldn\'t find the selected backup -->
-    <string name="RestoreBackupFragment__backup_not_found">Рэзервовая копія не знойдзена.</string>
-    <!-- Couldn\'t read the selected backup -->
-    <string name="RestoreBackupFragment__backup_could_not_be_read">Не атрымалася прачытаць рэзервовую копію.</string>
-    <!-- Backup has an unsupported file extension -->
-    <string name="RestoreBackupFragment__backup_has_a_bad_extension">Рэзервовая копія мае пашырэнне файла, якое не падтрымліваецца.</string>
 
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
@@ -1502,60 +1487,6 @@
     <string name="ManageGroupActivity_add_group_description">Дадаць апісанне групы…</string>
 
     <!-- RemoteRestoreActivity -->
-    <!-- Progress dialog label when downloading a backup -->
-    <string name="RemoteRestoreActivity__downloading_backup">Спампоўванне рэзервовай копіі…</string>
-    <!-- Progress dialog label when restoring a backup -->
-    <string name="RemoteRestoreActivity__restoring_messages">Аднаўленне паведамленняў…</string>
-    <!-- Progress dialog label when finishing a backup restore -->
-    <string name="RemoteRestoreActivity__finishing_restore">Сканчаем…</string>
-    <!-- Progress dialog label while awaiting updates -->
-    <string name="RemoteRestoreActivity__restoring">Аднаўленне…</string>
-    <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
-    <string name="RemoteRestoreActivity__s_of_s_s">%1$s з %2$s (%3$s)</string>
-    <!-- Feature list media label for paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_media">Усе вашы медыяфайлы</string>
-    <!-- Feature list media label for free tier. Placeholder is days, and is currently fixed at 30. -->
-    <string name="RemoteRestoreActivity__your_last_d_days_of_media">Вашы медыяфайлы за апошнія %1$d дзён</string>
-    <!-- Feature list message label for free and paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_messages">Усе вашы паведамленні</string>
-    <!-- Screen title for restoring from backup -->
-    <string name="RemoteRestoreActivity__restore_from_backup">Аднавіць з рэзервовай копіі</string>
-    <!-- Section title for explaining what your backup includes -->
-    <string name="RemoteRestoreActivity__your_backup_includes">Ваша рэзервовая копія ўключае ў сябе:</string>
-    <!-- Primary action button copy for starting restoration -->
-    <string name="RemoteRestoreActivity__restore_backup">Аднавіць рэзервовую копію</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made. %1$s is replaced with the date (e.g. March 5, 2024) and %2$s is replaced with the time (e.g. 9:00am) -->
-    <string name="RemoteRestoreActivity__backup_created_at">Ваша апошняя рэзервовая копія была зроблена %1$s у %2$s.</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
-    <string name="RemoteRestoreActivity__backup_created_at_with_size">Ваша апошняя рэзервовая копія была зроблена %1$s у %2$s. Памер рэзервовай копіі: %3$s.</string>
-    <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
-    <string name="RemoteRestoreActivity__fetching_backup_details">Ідзе збор звестак аб рэзервовым капіраванні…</string>
-    <!-- Text label button to skip restore from remote -->
-    <string name="RemoteRestoreActivity__skip_restore">Прапусціць аднаўленне</string>
-    <!-- Dialog title displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__couldnt_transfer">Немагчыма завершыць перанос</string>
-    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Не атрымалася аднавіць рэзервовую копію</string>
-    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">Адбылася памылка падчас аднаўлення рэзервовай копіі. Немагчыма аднавіць вашу рэзервовую копію. Калі ласка, звярніцеся да службы падтрымкі.</string>
-    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Звярнуцца да службы падтрымкі</string>
-    <!-- Dialog message displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__error_occurred">Адбылася памылка, таму не атрымалася перанесцi ваш уліковы запіс. Выберыце свой спосаб пераносу і паўтарыце спробу.</string>
-    <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
-    <string name="RemoteRestoreActivity__couldnt_restore">Не атрымалася аднавіць гэту рэзервовую копію</string>
-    <!-- Dialog message explaining that an update to Signal is required to restore the backup. -->
-    <string name="RemoteRestoreActivity__update_latest">Гэтая версія Signal не дазваляе аднавіць вашу рэзервовую копію. Абнавіце да апошняй версіі і паспрабуйце яшчэ раз.</string>
-    <!-- Text on button that when pressed will redirect them to update Signal -->
-    <string name="RemoteRestoreActivity__update_signal">Абнавіць Signal</string>
-    <!-- Text label button to dismiss the dialog -->
-    <string name="RemoteRestoreActivity__not_now">Не зараз</string>
-    <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Вашы медыяфайлы будуць аднаўляцца ў фонавым рэжыме. Калі вы не зробіце аднаўленне зараз, пазней аднавіць гэта ўжо не атрымаецца.</string>
-    <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">Гэтая прылада больш не зарэгістраваная</string>
-    <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">Магчыма, гэта здарылася таму, што вы зарэгістравалі свой уліковы запіс Signal на іншай прыладзе.</string>
 
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
@@ -2372,17 +2303,6 @@
     <string name="PinRestoreLockedFragment_create_new_pin">Стварыць новы PIN-код</string>
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
-    <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
-    <string name="ReRegisterWithPinFragment_send_sms_code">Адправіць SMS-код</string>
-    <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">Рэгістрацыя Signal - Патрэбна дапамога з паўторнай рэгістрацыяй PIN-кода для Android</string>
-    <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">Ваш PIN-код — гэта код з %1$d+ сімвалаў, які вы стварылі і які можа быць лічбавым або змяшчаць літары і лічбы.\n\nКалі вы не памятаеце свой PIN-код, вы можаце стварыць новы.</string>
-    <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">Калі вы не памятаеце свой PIN-код, вы можаце стварыць новы.</string>
-    <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">У вас скончыліся PIN-коды, але вы па-ранейшаму зможаце мець доступ да свайго ўліковага запісу Signal, калі створыце новы PIN-код.</string>
-
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Увага</string>
     <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Калі адключыць PIN-код, вы страціце ўсе даныя пры паўторнай рэгістрацыі ў Signal, таму загадзя зрабіце ўручную рэзервовае капіраванне і аднаўленне. Пакуль PIN-код адключаны, нельга будзе ўключыць блакіроўку рэгістрацыі.</string>
@@ -2462,6 +2382,12 @@
     <string name="WebRtcCallActivity__open_settings">Адкрыць налады</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">Не зараз</string>
+    <!-- Message for dialog shown at the start of a call when the system battery setting for Signal is "Restricted" -->
+    <string name="WebRtcCallActivity__others_may_not_be_able_to_hear_you_when_your_screen_turns_off">Others may not be able to hear you and the call may disconnect when your screen turns off. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
+    <!-- Title for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__others_couldnt_hear_you">Others couldn\'t hear you</string>
+    <!-- Message for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__your_microphone_was_muted_while_signal_was_in_the_background">Your microphone was muted while Signal was in the background. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
     <!-- Title for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__approve_d_requests">
         <item quantity="one">Ухваліць %1$d запыт?</item>
@@ -2819,38 +2745,14 @@
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Нумар (%1$s), што вы пазначылі, несапраўдны.
     </string>
 
-    <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">Нумар тэлефона, што ніжэй, правільны?</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
     <string name="RegistrationActivity_additional_verification_required">Патрабуецца дадатковая праверка</string>
-    <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">На гэты нумар будзе адпраўлены праверачны код. Могуць прымяняцца тарыфы аператара.</string>
-    <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Вы атрымаеце праверачны код. Могуць прымяняцца тарыфы аператара.</string>
-    <!-- Hint text to select a country -->
-    <string name="RegistrationActivity_select_a_country">Выбраць краіну</string>
-    <!-- Hint text explaining that this is where the country code should go -->
-    <string name="RegistrationActivity_default_country_code">0</string>
-    <string name="RegistrationActivity_edit_number">Рэдагаваць нумар</string>
-    <string name="RegistrationActivity_missing_google_play_services">Сэрвісы Google Play адсутнічаюць</string>
-    <string name="RegistrationActivity_this_device_is_missing_google_play_services">На гэтай прыладзе Сэрвісы Google Play адсутнічаюць. Вы па-ранейшаму зможаце выкарыстоўваць Signal, але ж з такой канфігурацыі можа адбыцца зніжэнне надзейнасці ці прадукцыйнасці.\n\nКалі вы не прасунуты карыстальнік, не выкарыстоўваеце знешнюю прашыўку Android, або лічыце, што бачыце гэту памылку, звярніцеся па адрасу support@signal.org, каб атрымаць падтрымку ў устараненні непаладак.</string>
-    <string name="RegistrationActivity_i_understand">Я прымаю</string>
-    <string name="RegistrationActivity_play_services_error">Памылка Сэрвісаў Google Play</string>
-    <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Сэрвісы Google Play абнаўляюцца або часова недаступныя. Калі ласка, паўтарыце спробу.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Вы зрабілі занадта шмат спроб зарэгістраваць гэты нумар. Калі ласка, паўтарыце спробу пазней.</string>
-    <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">Вы зрабілі занадта шмат спроб зарэгістраваць гэты нумар. Калі ласка, паўтарыце спробу праз %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Не атрымалася падключыцца да сэрвісу. Калі ласка, праверце падключэнне да сеткі і паўтарыце спробу.</string>
     <!-- Dialog error message shown when we are unable to send an SMS to the user\'s number -->
     <string name="RegistrationActivity_sms_provider_error">Не атрымалася адправіць SMS-код на ваш нумар. Паўтарыце спробу праз некалькі гадзін.</string>
-    <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Мы не змаглі адправіць вам праверачны код праз SMS. Паспрабуйце тады атрымаць код праз галасавы званок.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">Не атрымалася запытаць праверачны код. Калі ласка, праверце падключэнне да сеткі і паўтарыце спробу.</string>
-    <string name="RegistrationActivity_non_standard_number_format">Нестандартны фармат нумара</string>
-    <!-- Dialog message shown to confirm when entering phone number (first placeholder) is normalized and formatted differently by the app (second placeholder). -->
-    <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Уведзены вамі нумар (%1$s) выглядае як нестандартны фармат.\n\nВы мелі на ўвазе %2$s?</string>
-    <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Фармат нумара тэлефона</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="one">Застаўся %1$d крок, каб адправіць журнал адладкі.</item>
         <item quantity="few">Засталося %1$d крокі, каб адправіць журнал адладкі.</item>
@@ -2858,13 +2760,7 @@
         <item quantity="other">Засталося %1$d крокаў, каб адправіць журнал адладкі.</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Нам трэба праверыць, што вы не робат.</string>
-    <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
-    <string name="RegistrationActivity_voice_call">Галасавы званок</string>
-    <!-- Dialog button to cancel the pending action and return to the previous state. -->
-    <string name="RegistrationActivity_cancel">Скасаваць</string>
     <string name="RegistrationActivity_next">Далей</string>
-    <!-- Title of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_phone_number">Нумар тэлефона</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Увядзіце код, які мы адправілі на %1$s</string>
 
     <string name="RegistrationActivity_phone_number_description">Нумар тэлефона</string>
@@ -3073,6 +2969,8 @@
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Не атрымалася загрузіць набор стыкераў</string>
     <!-- Bottom sheet describing a sticker. First placeholder is the title of the sticker pack and second is the author -->
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
+    <!-- Bottom sheet option that opens the pack the sticker belongs to -->
+    <string name="StickerPreviewBottomSheet__view_pack">View pack</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">Захаваць</string>
@@ -3837,8 +3735,6 @@
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Каб атрымліваць апавяшчэнні аб званках, націсніце «Налады» і ўключыце фонавую актыўнасць у наладах «Акумулятар».</string>
 
     <!-- country_selection_fragment -->
-    <string name="country_selection_fragment__loading_countries">Загрузка краін…</string>
-    <string name="country_selection_fragment__search">Пошук</string>
 
     <string name="device_list_fragment__link_new_device">Звязаць новую прыладу</string>
 
@@ -4696,6 +4592,8 @@
     <string name="conversation_selection__menu_pin_message">Прымацаваць</string>
     <!-- Button to unpin a message -->
     <string name="conversation_selection__menu_unpin_message">Адмацаваць</string>
+    <!-- Button to open the sticker pack a sticker message came from -->
+    <string name="conversation_selection__menu_view_sticker_pack">View pack</string>
 
     <!-- conversation_expiring_on -->
 
@@ -4892,14 +4790,11 @@
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">Увядзіце свой PIN-код</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Увядзіце PIN-код, які вы стварылі для свайго ўліковага запісу. Ён адрозніваецца ад вашага праверачнага кода, атрыманага праз SMS.</string>
-    <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
-    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Увядзіце PIN-код, які вы стварылі для свайго ўліковага запісу.</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Няправільны PIN-код. Паўтарыце спробу.</string>
     <string name="RegistrationLockFragment__forgot_pin">Забыліся PIN-код?</string>
     <string name="RegistrationLockFragment__incorrect_pin">Няправільны PIN-код</string>
     <string name="RegistrationLockFragment__forgot_your_pin">Забыліся свой PIN-код?</string>
     <string name="RegistrationLockFragment__not_many_tries_left">Засталося не так шмат спроб!</string>
-    <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Рэгістрацыя Signal - Патрэбна дапамога з PIN-кодам для Android (v2 PIN)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
         <item quantity="one">Каб гарантаваць канфідэнцыйнасць і бяспеку, аднавіць PIN-код немагчыма. Калі вы не можаце згадаць свой PIN-код, вы можаце праверыць яго праз SMS праз %1$d дзень бяздзейнасці. У гэтым выпадку ваш уліковы запіс будзе выдалены, а ўвесь кантэнт ачышчаны.</item>
@@ -4964,22 +4859,6 @@
     <string name="backup_enable_dialog__you_must_have_this_passphrase">Вам неабходна мець гэтую парольную фразу, каб аднавіць рэзервовую копію.</string>
     <string name="backup_enable_dialog__folder">Папка</string>
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Я запісаў(-ла) гэтую парольную фразу. Без яе я не змагу аднавіць рэзервовую копію.</string>
-    <string name="registration_activity__restore_backup">Аднавіць рэзервовую копію</string>
-    <!-- Text label button to skip restoring -->
-    <string name="registration_activity__skip_restore">Прапусціць аднаўленне</string>
-    <!-- Title for dialog to enter in the backup passphrase -->
-    <string name="RegistrationActivity_enter_backup_passphrase">Увядзіце парольную фразу для рэзервовай копіі</string>
-    <string name="RegistrationActivity_restore">Аднавіць</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">Імпарт рэзервовых копій з новых версій Signal немагчымы</string>
-    <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
-    <string name="RegistrationActivity_backup_failure_foreign_key">Рэзервовая копія змяшчае няправільна сфарміраваныя даныя</string>
-    <string name="RegistrationActivity_incorrect_backup_passphrase">Няправільная парольная фраза для рэзервовай копіі</string>
-    <string name="RegistrationActivity_checking">Праверка…</string>
-    <string name="RegistrationActivity_d_messages_so_far">Ужо %1$d паведамленняў…</string>
-    <string name="RegistrationActivity_restore_from_backup">Аднавіць з рэзервовай копіі?</string>
-    <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Аднавіце паведамленні і медыяфайлы з лакальнай рэзервовай копіі. Калі вы не зробіце гэта зараз, пазней аднавіць іх ужо не атрымаецца.</string>
-    <string name="RegistrationActivity_backup_size_s">Памер рэзервовай копіі: %1$s</string>
-    <string name="RegistrationActivity_backup_timestamp_s">Час для стварэння рэзервовай копіі: %1$s</string>
     <string name="BackupDialog_enable_local_backups">Уключыць лакальныя рэзервовыя копіі?</string>
     <string name="BackupDialog_enable_backups">Уключыць рэзервовыя копіі</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Калі ласка, пастаўце сцяжок для пацвярджэння таго, што вы зразумелі папярэджанне.</string>
@@ -5015,7 +4894,6 @@
     <string name="RegistrationActivity_call_me_instead_available_in">Пазваніць мне (%1$02d:%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
     <string name="RegistrationActivity_resend_sms_available_in">Паўторна адправіць код (%1$02d:%2$02d)</string>
-    <string name="RegistrationActivity_contact_signal_support">Звярнуцца да службы падтрымкі Signal</string>
     <string name="RegistrationActivity_code_support_subject">Рэгістрацыя Signal - Праверачны код для Android</string>
     <string name="RegistrationActivity_incorrect_code">Няправільны код</string>
     <string name="BackupUtil_never">Ніколі</string>
@@ -5137,25 +5015,8 @@
     <string name="TransferOrRestoreFragment__restore_from_local_backup">Аднавіць лакальную рэзервовую копію</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
-    <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Адкрыйце Signal на сваёй старой прыладзе Android</string>
-    <string name="NewDeviceTransferInstructions__continue">Працягнуць</string>
-    <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Націсніце на сваё фота профілю ў левым верхнім куце, каб адкрыць «Налады»</string>
-    <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_account">"Націсніце «Уліковы запіс»"</string>
-    <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
-    <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"Націсніце «Перанесці ўліковы запіс», а потым «Працягнуць» на абедзвюх прыладах"</string>
 
     <!-- NewDeviceTransferSetupFragment -->
-    <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Падрыхтоўка да падключэння да старой прылады Android…</string>
-    <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Яшчэ хвілінку, хутка будзе гатова</string>
-    <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Чаканне падключэння да старой прылады Android…</string>
-    <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal патрабуе дазволу на вызначэнне месцазнаходжання, каб знайсці вашу старую прыладу Android і падключыцца да яе.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal патрэбна ўключыць сэрвіс для вызначэння месцазнаходжання, каб знайсці вашу старую прыладу Android і падключыцца да яе.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal патрэбен Wi-Fi, каб знайсці вашу старую прыладу Android і падключыцца да яе. Wi-Fi мусіць быць уключаны, пры гэтым падключацца да якойсьці сеткі Wi-Fi не абавязкова.</string>
-    <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">На жаль, гэта прылада не падтрымлівае Wi-Fi Direct. Signal выкарыстоўвае Wi-Fi Direct, каб знайсці вашу старую прыладу Android і падключыцца да яе. Вы па-ранейшаму можаце аднавіць рэзервовую копію, каб аднавіць уліковы запіс з вашай старой прылады Android.</string>
-    <string name="NewDeviceTransferSetup__restore_a_backup">Аднавіць рэзервовую копію</string>
-    <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Адбылася непрадбачаная памылка пры спробе падключыцца да вашай старой прылады Android.</string>
 
     <!-- OldDeviceTransferSetupFragment -->
     <string name="OldDeviceTransferSetup__searching_for_new_android_device">Пошук новай прылады Android…</string>
@@ -5199,9 +5060,6 @@
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Націсніце «Працягнуць» на іншай прыладзе…</string>
 
     <!-- NewDeviceTransferFragment -->
-    <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Перанос з новых версій Signal немагчымы</string>
-    <!-- Error message indicating that we could not finish the user\'s device transfer. Displayed in a toast at the bottom of the screen. -->
-    <string name="NewDeviceTransfer__failure_foreign_key">Перанесеныя даныя былі няправільна сфарміраваны</string>
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">Перанос даных</string>
@@ -5240,10 +5098,6 @@
     <string name="OldDeviceTransferComplete__close">Закрыць</string>
 
     <!-- NewDeviceTransferComplete -->
-    <string name="NewDeviceTransferComplete__transfer_successful">Перанос выкананы паспяхова</string>
-    <string name="NewDeviceTransferComplete__transfer_complete">Перанос завершаны</string>
-    <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">Каб завяршыць працэс пераносу, вам патрэбна працягнуць рэгістрацыю на новай прыладзе.</string>
-    <string name="NewDeviceTransferComplete__continue_registration">Працягнуць рэгістрацыю</string>
 
     <!-- DeviceToDeviceTransferService -->
     <string name="DeviceToDeviceTransferService_content_title">Перанос уліковага запісу</string>
@@ -9141,219 +8995,6 @@
 
     <!-- ConfirmBackupCancellationDialog -->
 
-    <!-- Row title for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">Я маю стары тэлефон</string>
-    <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_scan_qr">Праскануйце QR-код на вашым бягучым уліковым запісу Signal, каб пачаць працэс</string>
-
-    <!-- Row title for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">Я не маю старога тэлефона</string>
-    <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">Або вы ўсталёўваеце нанова Signal на гэтай жа прыладзе</string>
-
-    <!-- Screen title for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__restore_or_transfer_account">Аднавіць або перанесці ўліковы запіс</string>
-    <!-- Screen subtitle for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__get_your_signal_account">Атрымайце свой уліковы запіс і гісторыю паведамленняў на гэтай прыладзе.</string>
-    <!-- Option title for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_signal_backup">Аднавіць рэзервовую копію Signal</string>
-    <!-- Option subtitle for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_your_text_messages_and_media_from">Аднавіце тэкставыя паведамленні і медыяфайлы са свайго плана рэзервовага капіравання Signal.</string>
-    <!-- Option title for restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_on_device_backup">Аднавіце рэзервовую копію на прыладзе</string>
-    <!-- Option subtitle fdor restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_your_messages_from">Аднавіце паведамленні з рэзервовай копіі, што вы захавалі на сваёй прыладзе.</string>
-    <!-- Option title for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__from_your_old_phone">Са свайго старога тэлефона</string>
-    <!-- Option subtitle for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__transfer_directly_from_old">Перанясіце прама са сваёй старой прылады Android</string>
-    <!-- Dialog title shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_title">Прапусціць аднаўленне?</string>
-    <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">Калі вы прапусціце аднаўленне зараз, пазней аднавіць гэта ўжо не атрымаецца. Калі вы паўторна ўключыце рэзервовае капіраванне пасля таго, як прапусціце аднаўленне, ваша бягучая рэзервовая копія будзе заменена на новую гісторыю паведамленняў.</string>
-    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore">Прапусціць аднаўленне</string>
-
-    <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_title">Увядзіце свой код для аднаўлення</string>
-    <!-- Screen subtitle for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_subtitle">Ваш код для аднаўлення – гэта 64-значны код, які неабходны для аднаўлення вашага ўліковага запісу і даных.</string>
-    <!-- Button to skip entering recovery key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">Няма кода для аднаўлення?</string>
-    <!-- Recovery key text field hint -->
-    <string name="EnterBackupKey_backup_key">Код для аднаўлення</string>
-    <!-- Recovery key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">Без 64-значнага кода аднаўлення немагчыма аднавіць рэзервовыя копіі. Калі вы згубіце свой код для аднаўлення, Signal не зможа аднавіць вашу рэзервовую копію.</string>
-    <!-- Recovery key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">На вашай старой прыладзе вы можаце прагледзець свой код для аднаўлення ў меню Налады &gt; Рэзервовыя копіі. Потым націсніце «Прагледзець код для аднаўлення».</string>
-    <!-- Recovery key not known bottom sheet button to learn more about it -->
-    <string name="EnterBackupKey_learn_more">Даведацца больш</string>
-    <!-- Recovery key not known bottom sheet button to skip recovery key entry and resume normal reregistration -->
-    <string name="EnterBackupKey_skip_and_dont_restore">Прапусціць і не аднаўляць</string>
-    <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">Няправільны код для аднаўлення</string>
-    <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">Праверце падчас рэгістрацыі, што вы ўжываеце той жа нумар тэлефона і 64-значны код для аднаўлення, які вы захавалі, калі ўключалі бяспечнае рэзервовае капіраванне Signal. Без гэтага кода немагчыма аднавіць рэзервовыя копіі.</string>
-    <!-- Dialog positive button text to try entering their recovery key again -->
-    <string name="EnterBackupKey_try_again">Паўтарыць спробу</string>
-    <!-- Dialog negative button text to get help with recovery key -->
-    <string name="EnterBackupKey_backup_key_help">Падтрымка па коду для аднаўлення</string>
-    <!-- Text field error text when the recovery key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">Няправільны код для аднаўлення</string>
-    <!-- Text field error text when the recovery key is too long -->
-    <string name="EnterBackupKey_too_long_error">Занадта доўгі (%1$d/%2$d)</string>
-    <!-- Text field error when the recovery key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">Несапраўдны код для аднаўлення</string>
-    <!-- Dialog title shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_not_found">Рэзервовая копія не знойдзена</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Код для аднаўлення, што вы ўвялі, правільны, але няма рэзервовых копій, з якімі ён суадносіцца. Калі вы яшчэ маеце свой стары тэлефон, праверце, каб былі ўключаны рэзервовыя копіі і каб было завершана рэзервовае капіраванне, потым паспрабуйце яшчэ раз.</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">Магчыма, вы няправільна ўвялі код для аднаўлення або не зрабілі, як мінімум, адну рэзервовую копію на сваёй старой прыладзе.\n\nПраверце падчас рэгістрацыі, што вы ўжываеце той жа нумар тэлефона і код для аднаўлення, які вы захавалі, калі ўключалі «Бяспечнае рэзервовае капіраванне Signal», і пацвердзіце, што ваша старая прылада завяршыла рэзервовае капіраванне.</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">Вы дасягнулі ліміту спроб, каб скарыстаць код для аднаўлення. Дзеля вашай бяспекі дазволеная колькасць спроб абмежавана. Пачакайце адну гадзіну і паспрабуйце яшчэ раз.</string>
-    <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
-    <string name="EnterBackupKey_skip_restore">Прапусціць аднаўленне</string>
-    <!-- Dialog title text when encountering backup restore network error -->
-    <string name="EnterBackupKey_cant_restore_backup">Не атрымалася аднавіць рэзервовую копію</string>
-    <!-- Dialog body text when encountering backup restore network error -->
-    <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">Зараз немагчыма аднавіць вашу рэзервовую копію. Праверце падключэнне да інтэрнэту і паўтарыце спробу. </string>
-    <!-- Dialog button text to contact support on network error -->
-    <string name="EnterBackupKey_contact_support">Звярнуцца да службы падтрымкі</string>
-
-    <!-- Email subject when contacting support on a restore backup network issue -->
-    <string name="EnterBackupKey_network_failure_support_email">Памылка сеткі падчас аднаўлення рэзервовай копіі Android Signal Android</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
-    <!-- Email subject when contacting support on a permanent backup import failure -->
-    <string name="EnterBackupKey_permanent_failure_support_email">Пастаянны збой падчас аднаўлення рэзервовай копіі Signal Android</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
-
-    <!-- EnterLocalBackupKeyScreen: Screen title for entering recovery key for local backup restore -->
-    <string name="EnterLocalBackupKeyScreen__enter_your_recovery_key">Увядзіце свой код для аднаўлення</string>
-    <!-- EnterLocalBackupKeyScreen: Screen subtitle explaining what the recovery key is -->
-    <string name="EnterLocalBackupKeyScreen__your_recovery_key_is_a_64_character_code">Ваш код для аднаўлення – гэта 64-значны код, які неабходны для аднаўлення вашага ўліковага запісу і даных.</string>
-    <!-- EnterLocalBackupKeyScreen: Button text when user does not have a recovery key -->
-    <string name="EnterLocalBackupKeyScreen__no_recovery_key">Няма кода для аднаўлення?</string>
-    <!-- EnterLocalBackupKeyScreen: Button to proceed to next step -->
-    <string name="EnterLocalBackupKeyScreen__next">Далей</string>
-
-    <!-- RestoreLocalBackupDialog: Error message when the selected archive fails to load -->
-    <string name="RestoreLocalBackupDialog__failed_to_load_archive">Не атрымалася загрузіць архіў. Выберыце іншы каталог.</string>
-    <!-- RestoreLocalBackupDialog: Dismiss button for dialog -->
-    <string name="RestoreLocalBackupDialog__ok">OK</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore">Прапусціць аднаўленне?</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user about the consequences of skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore_body">Калі вы прапусціце аднаўленне зараз, пазней аднавіць гэта ўжо не атрымаецца. Калі вы паўторна ўключыце рэзервовае капіраванне пасля таго, як прапусціце аднаўленне, ваша бягучая рэзервовая копія будзе заменена на новую гісторыю паведамленняў.</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the skip restore dialog -->
-    <string name="RestoreLocalBackupDialog__skip_restore_confirm">Прапусціць аднаўленне</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm restoring a backup from a different account -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account">Аднавіць для новага ўліковага запісу?</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user that the backup was created with a different account and they will lose group memberships -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account_body">Рэзервовая копія, што вы аднаўляеце, была створана з выкарыстаннем іншага ўліковага запісу Signal. Вы можаце аднавіць гэтую рэзервовую копію для новага ўліковага запісу, але вы больш не будзеце ўдзельнікам аніякіх адноўленых груп.</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the restore to new account dialog -->
-    <string name="RestoreLocalBackupDialog__restore">Аднавіць</string>
-
-    <!-- RestoreLocalBackupActivity: Toast message when backup restore fails -->
-    <string name="RestoreLocalBackupActivity__backup_restore_failed">Не атрымалася аднавіць рэзервовую копію</string>
-    <!-- RestoreLocalBackupActivity: Screen title shown during restore -->
-    <string name="RestoreLocalBackupActivity__restoring_backup">Аднаўленне рэзервовай копіі</string>
-    <!-- RestoreLocalBackupActivity: Screen subtitle explaining restore duration -->
-    <string name="RestoreLocalBackupActivity__depending_on_the_size">У залежнасці ад памеру рэзервовай копіі гэта можа заняць некалькі хвілін.</string>
-    <!-- RestoreLocalBackupActivity: Status text while restoring messages -->
-    <string name="RestoreLocalBackupActivity__restoring_messages">Аднаўленне паведамленняў…</string>
-    <!-- RestoreLocalBackupActivity: Status text while finalizing restore -->
-    <string name="RestoreLocalBackupActivity__finalizing">Завяршаецца…</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore is complete -->
-    <string name="RestoreLocalBackupActivity__restore_complete">Аднаўленне завершана</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore fails -->
-    <string name="RestoreLocalBackupActivity__restore_failed">Не атрымалася зрабіць аднаўленне</string>
-    <!-- RestoreLocalBackupActivity: Progress text showing bytes read of total with percentage, e.g. "1.2 MB of 5.0 MB (24%)" -->
-    <string name="RestoreLocalBackupActivity__s_of_s_d_percent">%1$s з %2$s (%3$d)</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__cant_restore_backup">Не атрымалася аднавіць рэзервовую копію</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__error_occurred_while_restoring">Адбылася памылка падчас аднаўлення рэзервовай копіі. Немагчыма аднавіць вашу рэзервовую копію. Калі ласка, звярніцеся да службы падтрымкі.</string>
-
-    <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
-    <string name="RestoreLocalBackupActivity__contact_support">Звярнуцца да службы падтрымкі</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
-    <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">Уключыць рэзервовае капіраванне на прыладзе?</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Каб працягваць выкарыстоўваць рэзервовыя копіі на прыладзе, вам трэба ўключыць іх для гэтага ўліковага запісу. Вы можаце ў любы час зрабіць гэта ў «Налады» &gt; «Рэзервовыя копіі».</string>
-
-    <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__turn_on_now">Уключыць зараз</string>
-
-    <!-- RestoreLocalBackupActivity: Dismiss button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__not_now">Не зараз</string>
-
-    <!-- RestoreLocalBackupActivity: Body text for the dialog shown after a successful restore, prompting the user to choose a backup folder -->
-    <string name="RestoreLocalBackupActivity__choose_a_folder_for_backups">Каб працягваць выкарыстоўваць рэзервовыя копіі на прыладзе, выберыце на сваёй прыладзе папку, дзе будуць захоўвацца новыя рэзервовыя копіі.</string>
-
-    <!-- RestoreLocalBackupActivity: Positive button label for the dialog shown after a successful restore; keeps the current backup folder -->
-    <string name="RestoreLocalBackupActivity__use_current_folder">Выкарыстоўваць бягучую папку</string>
-
-    <!-- RestoreLocalBackupActivity: Neutral button label for the dialog shown after a successful restore; opens folder picker to select a different backup location -->
-    <string name="RestoreLocalBackupActivity__choose_new_folder">Выбраць новую папку</string>
-
-    <!-- RestoreLocalBackupActivity: Negative button label for the dialog shown after a successful restore; disables on-device backups -->
-    <string name="RestoreLocalBackupActivity__disable_backups">Адключыць рэзервовае капіраванне</string>
-
-    <!-- SelectInstructionsSheet: Title for the select backup folder instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_folder">Выберыце папку рэзервовых копій</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the select this folder button -->
-    <string name="SelectInstructionsSheet__tap_select_this_folder">Націснеце «Выбраць гэту папку»</string>
-    <!-- SelectInstructionsSheet: Instruction not to select individual files -->
-    <string name="SelectInstructionsSheet__do_not_select_individual_files">Не выбірайце асобныя файлы</string>
-    <!-- SelectInstructionsSheet: Title for the select backup file instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_file">Выберыце файл рэзервовай копіі</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the backup file saved to device -->
-    <string name="SelectInstructionsSheet__tap_on_the_backup_file">Націснеце на файл рэзервовай копіі, што вы захавалі на сваёй прыладзе</string>
-    <!-- SelectInstructionsSheet: Subtitle explaining how to access backup after tapping continue -->
-    <string name="SelectInstructionsSheet__after_tapping_continue">Калі вы націснеце «Працягнуць», вы зможаце атрымаць доступ да рэзервовай копіі наступным чынам:</string>
-    <!-- SelectInstructionsSheet: Instruction to select the top-level backup folder -->
-    <string name="SelectInstructionsSheet__select_the_top_level_folder">Выберыце папку верхняга ўзроўню, дзе захоўваецца ваша рэзервовая копія</string>
-    <!-- SelectInstructionsSheet: Continue button text -->
-    <string name="SelectInstructionsSheet__continue_button">Працягнуць</string>
-
-    <!-- SelectLocalBackupScreen: Screen title for restoring on-device backup -->
-    <string name="SelectLocalBackupScreen__restore_on_device_backup">Аднавіце рэзервовую копію на прыладзе</string>
-    <!-- SelectLocalBackupScreen: Screen subtitle explaining the restore process -->
-    <string name="SelectLocalBackupScreen__restore_your_messages_from_the_backup_folder">Аднавіце паведамленні з папкі рэзервовай копіі, што вы захавалі на сваёй прыладзе. Калі вы не зробіце гэта зараз, пазней аднавіць іх ужо не атрымаецца.</string>
-    <!-- SelectLocalBackupScreen: Button to initiate backup restoration -->
-    <string name="SelectLocalBackupScreen__restore_backup">Аднавіць рэзервовую копію</string>
-    <!-- SelectLocalBackupScreen: Button to choose an earlier backup when current is latest -->
-    <string name="SelectLocalBackupScreen__choose_an_earlier_backup">Выбраць ранейшую рэзервовую копію</string>
-    <!-- SelectLocalBackupScreen: Button to choose a different backup -->
-    <string name="SelectLocalBackupScreen__choose_a_different_backup">Выбраць іншую рэзервовую копію</string>
-    <!-- SelectLocalBackupScreen: Label for latest backup card -->
-    <string name="SelectLocalBackupScreen__your_latest_backup">Ваша апошняя рэзервовая копія:</string>
-    <!-- SelectLocalBackupScreen: Label for non-latest backup card -->
-    <string name="SelectLocalBackupScreen__your_backup">Ваша рэзервовая копія:</string>
-
-    <!-- SelectLocalBackupSheet: Title for backup selection bottom sheet -->
-    <string name="SelectLocalBackupSheet__choose_a_backup_to_restore">Выберыце рэзервовую копію, што патрэбуе аднаўлення</string>
-    <!-- SelectLocalBackupSheet: Subtitle warning about choosing an older backup -->
-    <string name="SelectLocalBackupSheet__choosing_an_older_backup">Калі вы выберыце старую рэзервовую копію, гэта можа прывесці да страты паведамленняў або медыяфайлаў.</string>
-    <!-- SelectLocalBackupSheet: Continue button text -->
-    <string name="SelectLocalBackupSheet__continue_button">Працягнуць</string>
-
-    <!-- SelectLocalBackupTypeScreen: Screen title for selecting backup type -->
-    <string name="SelectLocalBackupTypeScreen__restore_on_device_backup">Аднавіце рэзервовую копію на прыладзе</string>
-    <!-- SelectLocalBackupTypeScreen: Screen subtitle explaining restore options -->
-    <string name="SelectLocalBackupTypeScreen__restore_your_messages_from_the_backup">Аднавіце паведамленні з рэзервовай копіі, што вы захавалі на сваёй прыладзе. Калі вы не зробіце гэта зараз, пазней аднавіць іх ужо не атрымаецца.</string>
-    <!-- SelectLocalBackupTypeScreen: Button for users who saved backup as single file -->
-    <string name="SelectLocalBackupTypeScreen__i_saved_my_backup_as_a_single_file">Я захаваў рэзервовую копію як адзін файл</string>
-    <!-- SelectLocalBackupTypeScreen: Card title for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__choose_backup_folder">Выбраць папку рэзервовых копій</string>
-    <!-- SelectLocalBackupTypeScreen: Card description for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__select_the_folder_on_your_device">Выберыце папку на прыладзе, дзе захоўваецца ваша рэзервовая копія</string>
-
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">Памылка сеткі падчас экспарту рэзервовай копіі Signal Android</string>
     <!-- Email filter when contacting support on a create backup failure -->
@@ -9367,23 +9008,6 @@
     <string name="ContactSupportDialog_submit_with_debug">Адправіць з журналам адладкі</string>
     <!-- Button option to not submit debug log when contacting support -->
     <string name="ContactSupportDialog_submit_without_debug">Адправіць без журнала адладкі</string>
-
-    <!-- Title for restore via qr screen -->
-    <string name="RestoreViaQr_title">Праскануйце гэты код з дапамогай свайго старога тэлефона</string>
-    <!-- First instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_1">Адкрыйце Signal на сваёй старой прыладзе</string>
-    <!-- Second instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_2">Націсніце на значок камеры </string>
-    <!-- Third instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_3">Праскануйце гэты код з дапамогай камеры</string>
-    <!-- Error message shown when qr code could not be loaded -->
-    <string name="RestoreViaQr_qr_code_error">Не атрымалася згенераваць QR-код</string>
-    <!-- Status message shown when qr code already scanned by other device -->
-    <string name="RestoreViaQr_qr_code_scanned">Прасканаваны на старой прыладзе</string>
-    <!-- Error button text to retry getting a qr code -->
-    <string name="RestoreViaQr_retry">Паспрабаваць зноў</string>
-    <!-- Error message shown when register after receiving the provisioning message failed -->
-    <string name="RestoreViaQr_registration_error">Адбылася памылка, таму не атрымалася перанесцi ваш уліковы запіс. Праскануйце QR-код і паўтарыце спробу.</string>
 
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">Перанесці ўліковы запіс</string>
@@ -9425,19 +9049,6 @@
     <string name="RestoreCompleteBottomSheet_transfer_complete_message">Ваш уліковы запіс Signal і паведамленні былі перанесены на вашу іншую прыладу. Зараз Signal неактыўны на гэтай прыладзе.</string>
     <!-- Restore Complete bottom sheet dialog button text to dismiss sheet -->
     <string name="RestoreCompleteBottomSheet_button">Добра</string>
-
-    <!-- No Backup to Restore screen title -->
-    <string name="NoBackupToRestore_title">Няма рэзервовай копіі, што патрэбуе аднаўлення</string>
-    <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">Паколькі вы пераходзіце з iPhone на Android, для пераносу вашых паведамленняў і медыяфайлаў ёсць толькі адзіны спосаб – уключыць бяспечнае рэзервовае капіраванне Signal на вашай старой прыладзе.</string>
-    <!-- No Backup to Restore step 1 to enable backups on old device -->
-    <string name="NoBackupToRestore_step1">Адкрыйце Signal на сваёй старой прыладзе</string>
-    <!-- No Backup to Restore step 2 to enable backups on old device -->
-    <string name="NoBackupToRestore_step2">Націсніце Налады &gt; Рэзервовыя копіі</string>
-    <!-- No Backup to Restore step 3 to enable backups on old device -->
-    <string name="NoBackupToRestore_step3">Уключыце рэзервовыя копіі і дачакайцеся завяршэння рэзервовага капіравання</string>
-    <!-- No backup to Restore tonal cta to skip restore -->
-    <string name="NoBackupToRestore_skip_restore">Прапусціць аднаўленне</string>
 
     <!-- Dialog title when the recovery key change limit is reached -->
     <string name="MessageBackupsKeyRecordScreen__limit_reached_title">Вы дасягнулі ліміту кодаў для аднаўлення</string>

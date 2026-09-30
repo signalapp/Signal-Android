@@ -839,23 +839,8 @@
     <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">จะไม่มีใครเห็นว่าคุณใช้งาน Signal เว้นแต่ว่าคุณจะส่งข้อความหาหรือเคยแชทกับผู้ใช้คนนั้น</string>
 
     <!-- ChooseBackupFragment -->
-    <string name="ChooseBackupFragment__restore_from_backup">กู้คืนจากข้อมูลสำรองหรือไม่?</string>
-    <string name="ChooseBackupFragment__restore_your_messages_and_media">กู้คืนข้อความและสื่อของคุณจากข้อมูลสำรองในเครื่อง หากคุณไม่กู้คืนตอนนี้ คุณจะไม่สามารถกู้คืนได้อีกในภายหลัง</string>
-    <string name="ChooseBackupFragment__icon_content_description">กู้คืนจากข้อมูลสำรอง</string>
-    <string name="ChooseBackupFragment__choose_backup">เลือกข้อมูลสำรอง</string>
-    <string name="ChooseBackupFragment__learn_more">เรียนรู้เพิ่มเติม</string>
 
     <!-- RestoreBackupFragment -->
-    <string name="RestoreBackupFragment__restore_complete">กู้คืนเสร็จสิ้น</string>
-    <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">เพื่อจะใช้ข้อมูลสำรอง กรุณาเลือกโฟลเดอร์ ข้อมูลสำรองใหม่จะถูกบันทึกในที่นี้</string>
-    <string name="RestoreBackupFragment__choose_folder">เลือกโฟลเดอร์</string>
-    <string name="RestoreBackupFragment__not_now">ไม่ใช่ตอนนี้</string>
-    <!-- Couldn\'t find the selected backup -->
-    <string name="RestoreBackupFragment__backup_not_found">ไม่พบข้อมูลสำรอง</string>
-    <!-- Couldn\'t read the selected backup -->
-    <string name="RestoreBackupFragment__backup_could_not_be_read">อ่านข้อมูลสำรองไม่ได้</string>
-    <!-- Backup has an unsupported file extension -->
-    <string name="RestoreBackupFragment__backup_has_a_bad_extension">ข้อมูลสำรองมีส่วนขยายที่ไม่ดี</string>
 
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
@@ -1373,60 +1358,6 @@
     <string name="ManageGroupActivity_add_group_description">เพิ่มคำอธิบายกลุ่ม…</string>
 
     <!-- RemoteRestoreActivity -->
-    <!-- Progress dialog label when downloading a backup -->
-    <string name="RemoteRestoreActivity__downloading_backup">กำลังดาวน์โหลดข้อมูลสำรอง…</string>
-    <!-- Progress dialog label when restoring a backup -->
-    <string name="RemoteRestoreActivity__restoring_messages">กำลังกู้คืนข้อความ…</string>
-    <!-- Progress dialog label when finishing a backup restore -->
-    <string name="RemoteRestoreActivity__finishing_restore">ใกล้เสร็จสิ้น…</string>
-    <!-- Progress dialog label while awaiting updates -->
-    <string name="RemoteRestoreActivity__restoring">กำลังกู้คืน…</string>
-    <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
-    <string name="RemoteRestoreActivity__s_of_s_s">%1$s จาก %2$s (%3$s)</string>
-    <!-- Feature list media label for paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_media">ไฟล์สื่อทั้งหมด</string>
-    <!-- Feature list media label for free tier. Placeholder is days, and is currently fixed at 30. -->
-    <string name="RemoteRestoreActivity__your_last_d_days_of_media">ไฟล์สื่อจาก %1$d วันที่ผ่านมา</string>
-    <!-- Feature list message label for free and paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_messages">ข้อความทั้งหมด</string>
-    <!-- Screen title for restoring from backup -->
-    <string name="RemoteRestoreActivity__restore_from_backup">กู้คืนจากข้อมูลสำรอง</string>
-    <!-- Section title for explaining what your backup includes -->
-    <string name="RemoteRestoreActivity__your_backup_includes">ข้อมูลสำรองของคุณประกอบด้วย:</string>
-    <!-- Primary action button copy for starting restoration -->
-    <string name="RemoteRestoreActivity__restore_backup">กู้คืนจากข้อมูลสำรอง</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made. %1$s is replaced with the date (e.g. March 5, 2024) and %2$s is replaced with the time (e.g. 9:00am) -->
-    <string name="RemoteRestoreActivity__backup_created_at">คุณสำรองข้อมูลครั้งล่าสุดเมื่อวันที่ %1$s เวลา %2$s</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
-    <string name="RemoteRestoreActivity__backup_created_at_with_size">คุณสำรองข้อมูลครั้งล่าสุดเมื่อวันที่ %1$s เวลา %2$s และข้อมูลสำรองมีขนาด %3$s</string>
-    <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
-    <string name="RemoteRestoreActivity__fetching_backup_details">กำลังเรียกดูข้อมูลสำรอง…</string>
-    <!-- Text label button to skip restore from remote -->
-    <string name="RemoteRestoreActivity__skip_restore">ข้ามการกู้คืน</string>
-    <!-- Dialog title displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__couldnt_transfer">ไม่สามารถดำเนินการถ่ายโอนให้เสร็จสิ้นได้</string>
-    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">ไม่สามารถกู้คืนข้อมูลสำรอง</string>
-    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">เกิดข้อผิดพลาดขณะกู้คืนข้อมูลสำรอง ระบบไม่สามารถกู้ข้อมูลสำรองของคุณได้ โปรดติดต่อฝ่ายสนับสนุน</string>
-    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">ติดต่อฝ่ายสนับสนุน</string>
-    <!-- Dialog message displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__error_occurred">เกิดข้อผิดพลาดที่ทำให้ไม่สามารถถ่ายโอนบัญชีของคุณได้ โปรดลองใหม่ด้วยการเลือกวิธีการถ่ายโอน</string>
-    <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
-    <string name="RemoteRestoreActivity__couldnt_restore">ไม่สามารถกู้คืนข้อมูลสำรองนี้</string>
-    <!-- Dialog message explaining that an update to Signal is required to restore the backup. -->
-    <string name="RemoteRestoreActivity__update_latest">Signal เวอร์ชันนี้ไม่สามารถกู้คืนข้อมูลสำรองของคุณได้ โปรดอัปเดตเป็นเวอร์ชันล่าสุดแล้วลองอีกครั้ง</string>
-    <!-- Text on button that when pressed will redirect them to update Signal -->
-    <string name="RemoteRestoreActivity__update_signal">อัปเดต Signal</string>
-    <!-- Text label button to dismiss the dialog -->
-    <string name="RemoteRestoreActivity__not_now">ไว้ทีหลัง</string>
-    <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">โดยการกู้คืนไฟล์สื่อจะดำเนินการในพื้นหลัง หากเลือกไม่กู้คืนตอนนี้ คุณจะไม่สามารถกู้คืนได้อีกในภายหลัง</string>
-    <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">อุปกรณ์เครื่องนี้ไม่ได้ลงทะเบียนอีกต่อไป</string>
-    <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">นี่น่าจะเป็นเพราะคุณเคยลงทะเบียนบัญชี Signal นี้บนอุปกรณ์อื่นแล้ว</string>
 
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
@@ -2165,17 +2096,6 @@
     <string name="PinRestoreLockedFragment_create_new_pin">สร้างรหัส PIN ใหม่</string>
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
-    <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
-    <string name="ReRegisterWithPinFragment_send_sms_code">ส่งรหัสทาง SMS</string>
-    <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">การลงทะเบียน Signal - ต้องการความช่วยเหลือเกี่ยวกับการลงทะเบียน PIN อีกครั้งสำหรับ Android</string>
-    <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">PIN ของคุณคือรหัส %1$d+ หลักที่คุณสร้างไว้โดยอาจจะเป็นตัวเลขหรือตัวอักษรผสมกับตัวเลข\n\nหากจำ PIN ของตัวเองไม่ได้ คุณสามารถสร้างขึ้นมาใหม่ได้</string>
-    <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">หากจำ PIN ของตัวเองไม่ได้ คุณสามารถสร้างขึ้นมาใหม่ได้</string>
-    <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">คุณลองใส่ PIN จนครบจำนวนครั้งที่อนุญาตแล้ว แต่คุณยังสามารถเข้าถึงบัญชี Signal ของคุณได้ด้วยการสร้าง PIN ใหม่</string>
-
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">คำเตือน</string>
     <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">หากคุณปิดใช้งาน PIN คุณจะสูญเสียข้อมูลทั้งหมดเมื่อลงทะเบียนบัญชี Signal ใหม่ (เว้นแต่ว่าคุณจะกู้คืนมาเองจากการสำรองข้อมูลเอาไว้) นอกจากนี้ คุณจะไม่สามารถเปิดใช้งานกุญแจลงทะเบียนในขณะที่ PIN ปิดใช้งานอยู่</string>
@@ -2255,6 +2175,12 @@
     <string name="WebRtcCallActivity__open_settings">เปิดการตั้งค่า</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">ไม่ใช่ตอนนี้</string>
+    <!-- Message for dialog shown at the start of a call when the system battery setting for Signal is "Restricted" -->
+    <string name="WebRtcCallActivity__others_may_not_be_able_to_hear_you_when_your_screen_turns_off">Others may not be able to hear you and the call may disconnect when your screen turns off. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
+    <!-- Title for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__others_couldnt_hear_you">Others couldn\'t hear you</string>
+    <!-- Message for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__your_microphone_was_muted_while_signal_was_in_the_background">Your microphone was muted while Signal was in the background. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
     <!-- Title for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__approve_d_requests">
         <item quantity="other">อนุมัติคำขอ %1$d รายการใช่หรือไม่</item>
@@ -2549,49 +2475,19 @@
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">หมายที่คุณ ระบุ (%1$s) ไม่ถูกรูปแบบ
     </string>
 
-    <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">โปรดตรวจสอบว่าหมายเลขโทรศัพท์ด้านล่างนี้ถูกต้องหรือไม่</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
     <string name="RegistrationActivity_additional_verification_required">ต้องมีการตรวจยืนยันเพิ่มเติม</string>
-    <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">รหัสยืนยันจะถูกส่งไปยังหมายเลขโทรศัพท์นี้ อาจมีค่าบริการจากผู้ให้บริการโทรศัพท์</string>
-    <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">คุณจะได้รับรหัสตรวจยืนยัน ซึ่งอาจมีค่าบริการจากผู้ให้บริการโทรศัพท์</string>
-    <!-- Hint text to select a country -->
-    <string name="RegistrationActivity_select_a_country">เลือกประเทศ</string>
-    <!-- Hint text explaining that this is where the country code should go -->
-    <string name="RegistrationActivity_default_country_code">0</string>
-    <string name="RegistrationActivity_edit_number">แก้ไขหมายเลข</string>
-    <string name="RegistrationActivity_missing_google_play_services">ไม่พบ Google Play Services</string>
-    <string name="RegistrationActivity_this_device_is_missing_google_play_services">อุปกรณ์นี้ไม่มี Google Play Services คุณยังสามารถใช้งาน Signal ได้ แต่ในการติดตั้งแบบนี้อาจมีเสถียรภาพหรือประสิทธิภาพที่ลดลง\n\nหากคุณไม่ได้เป็นผู้ใช้งานขั้นสูง หรือไม่ได้ใช้รอมแอนดรอยด์จากผู้ผลิตอื่น หรือเชื่อว่าคุณได้เห็นข้อความนี้เนื่องจากความผิดพลาด โปรดติดต่อ support@signal.org สำหรับความช่วยเหลือในการแก้ปัญหา</string>
-    <string name="RegistrationActivity_i_understand">ฉันเข้าใจ</string>
-    <string name="RegistrationActivity_play_services_error">ข้อผิดพลาดเกี่ยวกับ Play Services</string>
-    <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services กำลังปรับรุ่นหรือใช้ไม่ได้ชั่วคราว โปรดลองอีกครั้ง</string>
     <string name="RegistrationActivity_rate_limited_to_service">คุณได้พยายามลงทะเบียนด้วยหมายเลขนี้หลายครั้งเกินไป โปรดลองใหม่ในภายหลัง</string>
-    <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">คุณพยายามลงทะเบียนด้วยหมายเลขนี้หลายครั้งเกินไป โปรดลองอีกครั้งใน %1$s</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">ไม่สามารถเชื่อมต่อบริการได้ โปรดตรวจสอบการเชื่อมต่อเครือข่ายและลองอีกครั้ง</string>
     <!-- Dialog error message shown when we are unable to send an SMS to the user\'s number -->
     <string name="RegistrationActivity_sms_provider_error">เราไม่สามารถส่ง SMS ไปยังหมายเลขโทรศัพท์ของคุณได้ โปรดรอประมาณ 2-3 ชั่วโมงแล้วลองใหม่อีกครั้ง</string>
-    <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">เราไม่สามารถส่งรหัสยืนยันผ่านทาง SMS ให้คุณได้ ลองเปลี่ยนไปรับรหัสผ่านทางการโทรแทน</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">ไม่สามารถขอรหัสยืนยันได้ โปรดตรวจสอบการเชื่อมต่อเครือข่ายและลองอีกครั้ง</string>
-    <string name="RegistrationActivity_non_standard_number_format">ฟอร์แมทหมายเลขที่ไม่มีมาตรฐาน</string>
-    <!-- Dialog message shown to confirm when entering phone number (first placeholder) is normalized and formatted differently by the app (second placeholder). -->
-    <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">ตัวเลขที่คุณป้อน (%1$s) เป็นฟอร์แมทที่ไม่ได้มาตรฐาน\n\n คุณต้องการใส่ %2$sหรือเปล่า</string>
-    <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - ฟอร์แมทหมายเลขโทรศัพท์</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="other">เหลืออีก %1$d ขั้นตอนในการส่งปูมดีบัก</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">เราจำเป็นต้องตรวจยืนยันว่าคุณเป็นมนุษย์</string>
-    <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
-    <string name="RegistrationActivity_voice_call">โทรเสียง</string>
-    <!-- Dialog button to cancel the pending action and return to the previous state. -->
-    <string name="RegistrationActivity_cancel">ยกเลิก</string>
     <string name="RegistrationActivity_next">ต่อไป</string>
-    <!-- Title of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_phone_number">หมายเลขโทรศัพท์</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">ใส่รหัสที่เราส่งไปให้ %1$s</string>
 
     <string name="RegistrationActivity_phone_number_description">หมายเลขโทรศัพท์</string>
@@ -2785,6 +2681,8 @@
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">การโหลดสติกเกอร์ล้มเหลว</string>
     <!-- Bottom sheet describing a sticker. First placeholder is the title of the sticker pack and second is the author -->
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
+    <!-- Bottom sheet option that opens the pack the sticker belongs to -->
+    <string name="StickerPreviewBottomSheet__view_pack">View pack</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">บันทึก</string>
@@ -3510,8 +3408,6 @@
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">เพื่อรับการแจ้งเตือนการโทร แตะการตั้งค่าและเปิดใช้งานกิจกรรมพื้นหลังในการตั้งค่า \"แบตเตอรี่\"</string>
 
     <!-- country_selection_fragment -->
-    <string name="country_selection_fragment__loading_countries">กำลังโหลดประเทศ…</string>
-    <string name="country_selection_fragment__search">ค้นหา</string>
 
     <string name="device_list_fragment__link_new_device">เชื่อมโยงอุปกรณ์ใหม่</string>
 
@@ -4333,6 +4229,8 @@
     <string name="conversation_selection__menu_pin_message">ปักหมุด</string>
     <!-- Button to unpin a message -->
     <string name="conversation_selection__menu_unpin_message">เลิกปักหมุด</string>
+    <!-- Button to open the sticker pack a sticker message came from -->
+    <string name="conversation_selection__menu_view_sticker_pack">View pack</string>
 
     <!-- conversation_expiring_on -->
 
@@ -4520,14 +4418,11 @@
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">ใส่รหัส PIN ของคุณ</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">ใส่รหัส PIN ที่คุณสร้างขึ้นสำหรับบัญชีของคุณ รหัสนี้แตกต่างจากรหัสตรวจยืนยันทาง SMS</string>
-    <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
-    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">ใส่ PIN ที่คุณสร้างไว้สำหรับบัญชีของคุณ</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">รหัส PIN ไม่ถูกต้อง ลองอีกครั้ง</string>
     <string name="RegistrationLockFragment__forgot_pin">ลืมรหัส PIN หรือ?</string>
     <string name="RegistrationLockFragment__incorrect_pin">รหัส PIN ไม่ถูกต้อง</string>
     <string name="RegistrationLockFragment__forgot_your_pin">ลืมรหัส PIN หรือ?</string>
     <string name="RegistrationLockFragment__not_many_tries_left">ลองได้อีกไม่กี่ครั้งแล้ว!</string>
-    <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">การลงทะเบียน Signal - ต้องการความช่วยเหลือเกี่ยวกับ PIN สำหรับ Android (v2 PIN)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
         <item quantity="other">เราไม่มีระบบในการกู้คืน PIN เพื่อความเป็นส่วนตัวและความปลอดภัยของคุณ หากจำ PIN ไม่ได้ ให้ยืนยันตัวตนทาง SMS อีกครั้งหลังจากที่หยุดใช้งานเป็นเวลา %1$d วัน ในกรณีนี้ บัญชีของคุณจะถูกล้างและเนื้อหาทั้งหมดจะถูกลบ</item>
@@ -4577,22 +4472,6 @@
     <string name="backup_enable_dialog__you_must_have_this_passphrase">คุณจะต้องมีวลีรหัสผ่านในการกู้คืนข้อมูลสำรอง</string>
     <string name="backup_enable_dialog__folder">โฟลเดอร์</string>
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">ฉันได้จดบันทึกวลีรหัสผ่านนี้แล้ว หากจำไม่ได้ ฉันจะไม่สามารถกู้คืนจากข้อมูลสำรองได้</string>
-    <string name="registration_activity__restore_backup">กู้คืนจากข้อมูลสำรอง</string>
-    <!-- Text label button to skip restoring -->
-    <string name="registration_activity__skip_restore">ข้ามการกู้คืน</string>
-    <!-- Title for dialog to enter in the backup passphrase -->
-    <string name="RegistrationActivity_enter_backup_passphrase">ใส่วลีรหัสผ่านสำหรับข้อมูลสำรอง</string>
-    <string name="RegistrationActivity_restore">กู้คืน</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">ไม่สามารถนำเข้าข้อมูลสำรองจาก Signal รุ่นที่ใหม่กว่า</string>
-    <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
-    <string name="RegistrationActivity_backup_failure_foreign_key">มีข้อมูลที่รูปแบบไม่ถูกต้องอยู่ในข้อมูลสำรอง</string>
-    <string name="RegistrationActivity_incorrect_backup_passphrase">วลีรหัสผ่านสำหรับข้อมูลสำรองไม่ถูกต้อง</string>
-    <string name="RegistrationActivity_checking">กำลังตรวจสอบ…</string>
-    <string name="RegistrationActivity_d_messages_so_far">%1$d ข้อความจนถึงตอนนี้…</string>
-    <string name="RegistrationActivity_restore_from_backup">กู้คืนจากข้อมูลสำรองหรือไม่?</string>
-    <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">กู้คืนข้อความและสื่อของคุณจากข้อมูลสำรองในเครื่อง หากคุณไม่กู้คืนตอนนี้ คุณจะไม่สามารถกู้คืนได้อีกในภายหลัง</string>
-    <string name="RegistrationActivity_backup_size_s">ขนาดของข้อมูลสำรอง: %1$s</string>
-    <string name="RegistrationActivity_backup_timestamp_s">เวลาที่บันทึกของการสำรองข้อมูล: %1$s</string>
     <string name="BackupDialog_enable_local_backups">เปิดใช้การสำรองข้อมูลลงในอุปกรณ์นี้หรือไม่?</string>
     <string name="BackupDialog_enable_backups">เปิดใช้การสำรองข้อมูล</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">โปรดแสดงการยอมรับว่าคุณเข้าใจโดยทำเครื่องหมายที่กล่องกาเครื่องหมายยืนยัน</string>
@@ -4628,7 +4507,6 @@
     <string name="RegistrationActivity_call_me_instead_available_in">โทรหาฉัน (%1$02d:%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
     <string name="RegistrationActivity_resend_sms_available_in">ส่งรหัสอีกครั้งใน (%1$02d:%2$02d)</string>
-    <string name="RegistrationActivity_contact_signal_support">ติดต่อทีมซัพพอร์ตของ Signal</string>
     <string name="RegistrationActivity_code_support_subject">การลงทะเบียน Signal - รหัสตรวจยืนยันสำหรับ Android</string>
     <string name="RegistrationActivity_incorrect_code">รหัสไม่ถูกต้อง</string>
     <string name="BackupUtil_never">ไม่เลย</string>
@@ -4750,25 +4628,8 @@
     <string name="TransferOrRestoreFragment__restore_from_local_backup">กู้คืนข้อมูลสำรองจากอุปกรณ์</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
-    <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">เปิด Signal บนโทรศัพท์ Android เครื่องเก่าของคุณ</string>
-    <string name="NewDeviceTransferInstructions__continue">ทำต่อ</string>
-    <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">แตะรูปโปรไฟล์ของคุณบนฝั่งซ้ายบนเพื่อเปิดการตั้งค่า</string>
-    <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_account">"แตะที่ \"บัญชี\""</string>
-    <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
-    <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"แตะ \"ถ่ายโอนบัญชี\" แล้วเลือก \"ดำเนินการต่อ\" บนอุปกรณ์ทั้งสองเครื่อง"</string>
 
     <!-- NewDeviceTransferSetupFragment -->
-    <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">กำลังเตรียมเชื่อมต่อไปยังอุปกรณ์ Android เครื่องเก่า</string>
-    <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">จะพร้อมในไม่ช้า กรุณารอสักครู่</string>
-    <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">กำลังรอการเชื่อมต่อจากอุปกรณ์ Android เครื่องเก่า</string>
-    <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal จำเป็นต้องได้รับอนุญาตในการเข้าถึงตำแหน่งของคุณเพื่อค้นหาและเชื่อมต่ออุปรกณ์ Android เครื่องเก่าของคุณ</string>
-    <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal จำเป็นต้องเปิดใช้งานบริการการเข้าถึงตำแหน่งของคุณเพื่อค้นหาและเชื่อมต่ออุปรกณ์ Android เครื่องเก่าของคุณ</string>
-    <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal จำเป็นต้องเปิด Wi-Fi- เพื่อค้นหาและเชื่อมต่อกับอุปกรณ์ Android เครื่องเก่าของคุณ ซึ่ง Wi-Fi จำเป้นต้องเปิดไว้แต่ไม่จำเป็นต้องเชื่อมต่อกับเครือข่าย Wi-Fi</string>
-    <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">ขออภัย อุปกรณ์ของคุณไม่รองรับ Wi-Fi Direct โดย Signal จะใช้ Wi-Fi Direct เพื่อค้นหาและเชื่อมต่อกับอุปกรณ์ Android เครื่องเก่าของคุณ คุณจะยังสามารถกู้คืนข้อมูลสำรองเพื่อกู้คืนบัญชีผู้ใช้ของคุณจากอุปกรณ์ Android เครื่องเก่าของคุณ</string>
-    <string name="NewDeviceTransferSetup__restore_a_backup">กู้คืนข้อมูลสำรอง</string>
-    <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">เกิดความผิดพลาดที่ไม่คาดคิดขึ้นขณะที่พยายามจะเชื่อมต่อกับอุปกรณ์ Android เครื่องเก่าของคุณ</string>
 
     <!-- OldDeviceTransferSetupFragment -->
     <string name="OldDeviceTransferSetup__searching_for_new_android_device">กำลังค้นหาอุปกรณ์ Android เครื่องใหม่…</string>
@@ -4812,9 +4673,6 @@
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device">แตะปุ่มดำเนินการต่อบนอุปกรณ์อีกเครื่องของคุณ…</string>
 
     <!-- NewDeviceTransferFragment -->
-    <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">ไม่สามารถถ่ายโอนจาก Signal รุ่นที่ใหม่กว่า</string>
-    <!-- Error message indicating that we could not finish the user\'s device transfer. Displayed in a toast at the bottom of the screen. -->
-    <string name="NewDeviceTransfer__failure_foreign_key">ข้อมูลที่ถ่ายโอนมีรูปแบบไม่ถูกต้อง</string>
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">กำลังถ่ายโอนข้อมูล</string>
@@ -4853,10 +4711,6 @@
     <string name="OldDeviceTransferComplete__close">ปิด</string>
 
     <!-- NewDeviceTransferComplete -->
-    <string name="NewDeviceTransferComplete__transfer_successful">การถ่ายโอนสำเร็จ</string>
-    <string name="NewDeviceTransferComplete__transfer_complete">การถ่ายโอนเสร็จสมบูรณ์</string>
-    <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">ในการดำเนินการถ่ายโอนให้เสร็จสมบูรณ์ คุณจะต้องดำเนินการลงทะเบียนบนอุปกรณ์เครื่องใหม่ของคุณต่อ</string>
-    <string name="NewDeviceTransferComplete__continue_registration">ดำเนินการลงทะเบียนต่อ</string>
 
     <!-- DeviceToDeviceTransferService -->
     <string name="DeviceToDeviceTransferService_content_title">ถ่ายโอนบัญชีผู้ใช้</string>
@@ -8559,219 +8413,6 @@
 
     <!-- ConfirmBackupCancellationDialog -->
 
-    <!-- Row title for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">ฉันมีโทรศัพท์เครื่องเก่า</string>
-    <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_scan_qr">เริ่มใช้งานได้เร็วทันใจด้วยการสแกนคิวอาร์โค้ดจากบัญชี Signal ที่คุณใช้อยู่</string>
-
-    <!-- Row title for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">ฉันไม่มีโทรศัพท์เครื่องเก่า</string>
-    <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">หรือติดตั้ง Signal ใหม่บนอุปกรณ์เครื่องเดียวกันนั้น</string>
-
-    <!-- Screen title for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__restore_or_transfer_account">กู้คืนหรือถ่ายโอนบัญชี</string>
-    <!-- Screen subtitle for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__get_your_signal_account">ส่งข้อมูลบัญชี Signal และประวัติการส่งข้อความของคุณมายังอุปกรณ์เครื่องนี้</string>
-    <!-- Option title for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_signal_backup">กู้คืนข้อมูลสำรองจาก Signal</string>
-    <!-- Option subtitle for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_your_text_messages_and_media_from">กู้คืนข้อความและไฟล์สื่อของคุณจากแพ็กเกจสำรองข้อมูลของ Signal</string>
-    <!-- Option title for restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_on_device_backup">กู้คืนจากการสำรองข้อมูลไว้บนอุปกรณ์</string>
-    <!-- Option subtitle fdor restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_your_messages_from">กู้คืนข้อความของคุณจากข้อมูลสำรองที่คุณบันทึกไว้ในอุปกรณ์</string>
-    <!-- Option title for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__from_your_old_phone">จากโทรศัพท์เครื่องเก่า</string>
-    <!-- Option subtitle for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__transfer_directly_from_old">ถ่ายโอนโดยตรงจากโทรศัพท์ Android เครื่องเก่าของคุณ</string>
-    <!-- Dialog title shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_title">ข้ามการกู้คืนใช่หรือไม่</string>
-    <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">หากข้ามการกู้คืนตอนนี้ คุณจะไม่สามารถกู้คืนได้อีกในภายหลัง โดยเมื่อคุณเปิดใช้งานการสำรองข้อมูลอีกครั้งหลังจากเลือกข้ามการกู้คืน ข้อมูลสำรองที่มีอยู่จะถูกแทนที่ด้วยประวัติการส่งข้อความใหม่</string>
-    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore">ข้ามการกู้คืน</string>
-
-    <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_title">ป้อนกุญแจกู้คืนของคุณ</string>
-    <!-- Screen subtitle for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_subtitle">กุญแจกู้คืนคือรหัส 64 ตัวที่คุณต้องใช้ในการกู้คืนบัญชีและข้อมูล</string>
-    <!-- Button to skip entering recovery key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">แตะที่นี่หากไม่มีกุญแจกู้คืน</string>
-    <!-- Recovery key text field hint -->
-    <string name="EnterBackupKey_backup_key">กุญแจกู้คืน</string>
-    <!-- Recovery key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">ไม่สามารถกู้คืนข้อมูลสำรองในกรณีที่ไม่มีรหัสกู้คืน 64 ตัว Signal จะไม่สามารถช่วยกู้คืนข้อมูลสำรองของคุณหากคุณทำกุญแจกู้คืนหาย</string>
-    <!-- Recovery key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">โดยหากคุณยังมีอุปกรณ์เครื่องเก่า สามารถเปิดดูกุญแจกู้คืนได้ในการตั้งค่า &gt; ข้อมูลสำรอง จากนั้นแตะที่ดูกุญแจกู้คืน</string>
-    <!-- Recovery key not known bottom sheet button to learn more about it -->
-    <string name="EnterBackupKey_learn_more">เรียนรู้เพิ่มเติม</string>
-    <!-- Recovery key not known bottom sheet button to skip recovery key entry and resume normal reregistration -->
-    <string name="EnterBackupKey_skip_and_dont_restore">ข้ามและไม่กู้คืนข้อมูล</string>
-    <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">กุญแจกู้คืนไม่ถูกต้อง</string>
-    <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">โปรดตรวจสอบให้แน่ใจว่าคุณกำลังลงทะเบียนโดยใช้หมายเลขโทรศัพท์และกุญแจกู้คืน 64 ตัวเดียวกันกับที่บันทึกไว้ในตอนที่เปิดใช้งานการสำรองข้อมูลที่ปลอดภัยของ Signal หากไม่มีกุญแจนี้ คุณจะไม่สามารถกู้คืนข้อมูลสำรองได้</string>
-    <!-- Dialog positive button text to try entering their recovery key again -->
-    <string name="EnterBackupKey_try_again">ลองอีกครั้ง</string>
-    <!-- Dialog negative button text to get help with recovery key -->
-    <string name="EnterBackupKey_backup_key_help">ความช่วยเหลือเกี่ยวกับกุญแจกู้คืน</string>
-    <!-- Text field error text when the recovery key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">กุญแจกู้คืนไม่ถูกต้อง</string>
-    <!-- Text field error text when the recovery key is too long -->
-    <string name="EnterBackupKey_too_long_error">ยาวเกินกำหนด (%1$d/%2$d)</string>
-    <!-- Text field error when the recovery key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">กุญแจกู้คืนใช้งานไม่ได้</string>
-    <!-- Dialog title shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_not_found">ไม่พบข้อมูลสำรอง</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">กุญแจกู้คืนที่คุณใส่ถูกต้อง แต่ระบบไม่พบข้อมูลสำรองที่เชื่อมโยงกับกุญแจดังกล่าว หากคุณยังมีโทรศัพท์เครื่องเก่า โปรดตรวจสอบว่าการสำรองข้อมูลเปิดใช้งานอยู่และมีการดำเนินการสำรองข้อมูลเสร็จสมบูรณ์แล้ว จากนั้นโปรดลองใหม่อีกครั้ง</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">คุณอาจป้อนกุญแจกู้คืนไม่ถูกต้องหรืออุปกรณ์เครื่องเก่าของคุณอาจดำเนินการสำรองข้อมูลไม่เสร็จสมบูรณ์\n\nโปรดตรวจสอบให้แน่ใจว่าคุณกำลังลงทะเบียนโดยใช้หมายเลขโทรศัพท์และกุญแจกู้คืนเดียวกันกับที่บันทึกไว้ในตอนที่เปิดใช้งานการสำรองข้อมูลที่ปลอดภัยของ Signal และตรวจสอบว่าอุปกรณ์เครื่องเก่าของคุณดำเนินการสำรองข้อมูลเสร็จสมบูรณ์</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">คุณป้อนกุญแจกู้คืนเกินจำนวนครั้งที่กำหนดแล้ว การจำกัดจำนวนครั้งเป็นไปเพื่อความปลอดภัยของคุณ โปรดลองอีกครั้งในอีกหนึ่งชั่วโมง</string>
-    <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
-    <string name="EnterBackupKey_skip_restore">ข้ามการกู้คืน</string>
-    <!-- Dialog title text when encountering backup restore network error -->
-    <string name="EnterBackupKey_cant_restore_backup">ไม่สามารถกู้คืนข้อมูลสำรอง</string>
-    <!-- Dialog body text when encountering backup restore network error -->
-    <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">ไม่สามารถกู้คืนข้อมูลสำรองของคุณได้ในขณะนี้ โปรดตรวจสอบการเชื่อมต่ออินเทอร์เน็ตแล้วลองอีกครั้ง </string>
-    <!-- Dialog button text to contact support on network error -->
-    <string name="EnterBackupKey_contact_support">ติดต่อฝ่ายสนับสนุน</string>
-
-    <!-- Email subject when contacting support on a restore backup network issue -->
-    <string name="EnterBackupKey_network_failure_support_email">การกู้คืนข้อมูลสำรองของ Signal Android พบข้อผิดพลาดของเครือข่าย</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
-    <!-- Email subject when contacting support on a permanent backup import failure -->
-    <string name="EnterBackupKey_permanent_failure_support_email">การกู้คืนข้อมูลสำรองของ Signal Android พบข้อผิดพลาดที่ไม่สามารถแก้ไขได้ (Permanent Failure)</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
-
-    <!-- EnterLocalBackupKeyScreen: Screen title for entering recovery key for local backup restore -->
-    <string name="EnterLocalBackupKeyScreen__enter_your_recovery_key">ป้อนกุญแจกู้คืนของคุณ</string>
-    <!-- EnterLocalBackupKeyScreen: Screen subtitle explaining what the recovery key is -->
-    <string name="EnterLocalBackupKeyScreen__your_recovery_key_is_a_64_character_code">กุญแจกู้คืนคือรหัส 64 ตัวที่คุณต้องใช้ในการกู้คืนบัญชีและข้อมูล</string>
-    <!-- EnterLocalBackupKeyScreen: Button text when user does not have a recovery key -->
-    <string name="EnterLocalBackupKeyScreen__no_recovery_key">แตะที่นี่หากไม่มีกุญแจกู้คืน</string>
-    <!-- EnterLocalBackupKeyScreen: Button to proceed to next step -->
-    <string name="EnterLocalBackupKeyScreen__next">ดำเนินการต่อ</string>
-
-    <!-- RestoreLocalBackupDialog: Error message when the selected archive fails to load -->
-    <string name="RestoreLocalBackupDialog__failed_to_load_archive">โหลดแฟ้มที่เก็บถาวรไม่สำเร็จ โปรดเลือกไดเร็กทอรีอื่น</string>
-    <!-- RestoreLocalBackupDialog: Dismiss button for dialog -->
-    <string name="RestoreLocalBackupDialog__ok">ตกลง</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore">ข้ามการกู้คืนใช่หรือไม่</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user about the consequences of skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore_body">หากข้ามการกู้คืนตอนนี้ คุณจะไม่สามารถกู้คืนได้อีกในภายหลัง โดยเมื่อคุณเปิดใช้งานการสำรองข้อมูลอีกครั้งหลังจากเลือกข้ามการกู้คืน ข้อมูลสำรองที่มีอยู่จะถูกแทนที่ด้วยประวัติการส่งข้อความใหม่</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the skip restore dialog -->
-    <string name="RestoreLocalBackupDialog__skip_restore_confirm">ข้ามการกู้คืน</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm restoring a backup from a different account -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account">กู้คืนมายังบัญชีใหม่ใช่หรือไม่</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user that the backup was created with a different account and they will lose group memberships -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account_body">ข้อมูลสำรองที่คุณกำลังจะกู้คืนถูกสร้างขึ้นด้วยบัญชี Signal อีกบัญชี คุณสามารถกู้คืนข้อมูลสำรองนี้มายังบัญชีใหม่ได้ แต่คุณจะเสียสถานะการเป็นสมาชิกในกลุ่มที่ถูกกู้คืนมา</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the restore to new account dialog -->
-    <string name="RestoreLocalBackupDialog__restore">กู้คืน</string>
-
-    <!-- RestoreLocalBackupActivity: Toast message when backup restore fails -->
-    <string name="RestoreLocalBackupActivity__backup_restore_failed">กู้คืนข้อมูลสำรองไม่สำเร็จ</string>
-    <!-- RestoreLocalBackupActivity: Screen title shown during restore -->
-    <string name="RestoreLocalBackupActivity__restoring_backup">กำลังกู้คืนข้อมูลสำรอง</string>
-    <!-- RestoreLocalBackupActivity: Screen subtitle explaining restore duration -->
-    <string name="RestoreLocalBackupActivity__depending_on_the_size">ขั้นตอนนี้อาจใช้เวลาสักครู่ ขึ้นอยู่กับขนาดของข้อมูลสำรอง</string>
-    <!-- RestoreLocalBackupActivity: Status text while restoring messages -->
-    <string name="RestoreLocalBackupActivity__restoring_messages">กำลังกู้คืนข้อความ…</string>
-    <!-- RestoreLocalBackupActivity: Status text while finalizing restore -->
-    <string name="RestoreLocalBackupActivity__finalizing">กำลังดำเนินการให้เสร็จสิ้น…</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore is complete -->
-    <string name="RestoreLocalBackupActivity__restore_complete">กู้คืนเสร็จสิ้น</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore fails -->
-    <string name="RestoreLocalBackupActivity__restore_failed">กู้คืนไม่สำเร็จ</string>
-    <!-- RestoreLocalBackupActivity: Progress text showing bytes read of total with percentage, e.g. "1.2 MB of 5.0 MB (24%)" -->
-    <string name="RestoreLocalBackupActivity__s_of_s_d_percent">%1$s จาก %2$s (%3$d%%)</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__cant_restore_backup">ไม่สามารถกู้คืนข้อมูลสำรอง</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__error_occurred_while_restoring">เกิดข้อผิดพลาดขณะกู้คืนข้อมูลสำรอง ระบบไม่สามารถกู้ข้อมูลสำรองของคุณได้ โปรดติดต่อฝ่ายสนับสนุน</string>
-
-    <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
-    <string name="RestoreLocalBackupActivity__contact_support">ติดต่อฝ่ายสนับสนุน</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
-    <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">เปิดใช้งานการสำรองข้อมูลไว้บนอุปกรณ์ใช่หรือไม่</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">หากต้องการใช้การสำรองข้อมูลไว้บนอุปกรณ์ต่อไป คุณจำเป็นต้องเปิดใช้งานการสำรองข้อมูลดังกล่าวสำหรับบัญชีนี้ โดยสามารถเปิดใช้งานได้ทุกเมื่อจากการตั้งค่า &gt; ข้อมูลสำรอง</string>
-
-    <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__turn_on_now">เปิดใช้งานตอนนี้</string>
-
-    <!-- RestoreLocalBackupActivity: Dismiss button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__not_now">ไว้ทีหลัง</string>
-
-    <!-- RestoreLocalBackupActivity: Body text for the dialog shown after a successful restore, prompting the user to choose a backup folder -->
-    <string name="RestoreLocalBackupActivity__choose_a_folder_for_backups">หากต้องการใช้การสำรองข้อมูลไว้บนอุปกรณ์ต่อไป โปรดเลือกโฟลเดอร์สำหรับเก็บข้อมูลสำรองใหม่บนอุปกรณ์ของคุณ</string>
-
-    <!-- RestoreLocalBackupActivity: Positive button label for the dialog shown after a successful restore; keeps the current backup folder -->
-    <string name="RestoreLocalBackupActivity__use_current_folder">ใช้โฟลเดอร์เดิม</string>
-
-    <!-- RestoreLocalBackupActivity: Neutral button label for the dialog shown after a successful restore; opens folder picker to select a different backup location -->
-    <string name="RestoreLocalBackupActivity__choose_new_folder">เลือกโฟลเดอร์ใหม่</string>
-
-    <!-- RestoreLocalBackupActivity: Negative button label for the dialog shown after a successful restore; disables on-device backups -->
-    <string name="RestoreLocalBackupActivity__disable_backups">ปิดใช้งานการสำรองข้อมูล</string>
-
-    <!-- SelectInstructionsSheet: Title for the select backup folder instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_folder">เลือกโฟลเดอร์ข้อมูลสำรองของคุณ</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the select this folder button -->
-    <string name="SelectInstructionsSheet__tap_select_this_folder">แตะ \"เลือกโฟลเดอร์นี้\"</string>
-    <!-- SelectInstructionsSheet: Instruction not to select individual files -->
-    <string name="SelectInstructionsSheet__do_not_select_individual_files">อย่าเลือกไฟล์ใดไฟล์หนึ่ง</string>
-    <!-- SelectInstructionsSheet: Title for the select backup file instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_file">เลือกไฟล์ข้อมูลสำรองของคุณ</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the backup file saved to device -->
-    <string name="SelectInstructionsSheet__tap_on_the_backup_file">แตะที่ไฟล์ข้อมูลสำรองที่คุณบันทึกไว้ในอุปกรณ์</string>
-    <!-- SelectInstructionsSheet: Subtitle explaining how to access backup after tapping continue -->
-    <string name="SelectInstructionsSheet__after_tapping_continue">เมื่อแตะ \"ดำเนินการต่อ\" คุณจะสามารถเข้าถึงข้อมูลสำรองได้ด้วยวิธีนี้:</string>
-    <!-- SelectInstructionsSheet: Instruction to select the top-level backup folder -->
-    <string name="SelectInstructionsSheet__select_the_top_level_folder">เลือกโฟลเดอร์หลักที่คุณจัดเก็บข้อมูลสำรองไว้</string>
-    <!-- SelectInstructionsSheet: Continue button text -->
-    <string name="SelectInstructionsSheet__continue_button">ทำต่อ</string>
-
-    <!-- SelectLocalBackupScreen: Screen title for restoring on-device backup -->
-    <string name="SelectLocalBackupScreen__restore_on_device_backup">กู้คืนจากการสำรองข้อมูลไว้บนอุปกรณ์</string>
-    <!-- SelectLocalBackupScreen: Screen subtitle explaining the restore process -->
-    <string name="SelectLocalBackupScreen__restore_your_messages_from_the_backup_folder">กู้คืนข้อความของคุณจากโฟลเดอร์ข้อมูลสำรองที่คุณบันทึกไว้ในอุปกรณ์ หากไม่กู้คืนตอนนี้ คุณจะไม่สามารถกู้คืนได้อีกในภายหลัง</string>
-    <!-- SelectLocalBackupScreen: Button to initiate backup restoration -->
-    <string name="SelectLocalBackupScreen__restore_backup">กู้คืนจากข้อมูลสำรอง</string>
-    <!-- SelectLocalBackupScreen: Button to choose an earlier backup when current is latest -->
-    <string name="SelectLocalBackupScreen__choose_an_earlier_backup">เลือกข้อมูลสำรองที่เก่ากว่านี้</string>
-    <!-- SelectLocalBackupScreen: Button to choose a different backup -->
-    <string name="SelectLocalBackupScreen__choose_a_different_backup">เลือกข้อมูลสำรองรายการอื่น</string>
-    <!-- SelectLocalBackupScreen: Label for latest backup card -->
-    <string name="SelectLocalBackupScreen__your_latest_backup">ข้อมูลสำรองล่าสุดของคุณ:</string>
-    <!-- SelectLocalBackupScreen: Label for non-latest backup card -->
-    <string name="SelectLocalBackupScreen__your_backup">ข้อมูลสำรองของคุณ:</string>
-
-    <!-- SelectLocalBackupSheet: Title for backup selection bottom sheet -->
-    <string name="SelectLocalBackupSheet__choose_a_backup_to_restore">เลือกข้อมูลสำรองที่ต้องการกู้คืน</string>
-    <!-- SelectLocalBackupSheet: Subtitle warning about choosing an older backup -->
-    <string name="SelectLocalBackupSheet__choosing_an_older_backup">การเลือกข้อมูลสำรองเก่าอาจทำให้ข้อความหรือไฟล์สื่อสูญหาย</string>
-    <!-- SelectLocalBackupSheet: Continue button text -->
-    <string name="SelectLocalBackupSheet__continue_button">ทำต่อ</string>
-
-    <!-- SelectLocalBackupTypeScreen: Screen title for selecting backup type -->
-    <string name="SelectLocalBackupTypeScreen__restore_on_device_backup">กู้คืนจากการสำรองข้อมูลไว้บนอุปกรณ์</string>
-    <!-- SelectLocalBackupTypeScreen: Screen subtitle explaining restore options -->
-    <string name="SelectLocalBackupTypeScreen__restore_your_messages_from_the_backup">กู้คืนข้อความของคุณจากข้อมูลสำรองที่บันทึกไว้ในอุปกรณ์ หากไม่กู้คืนตอนนี้ คุณจะไม่สามารถกู้คืนได้อีกในภายหลัง</string>
-    <!-- SelectLocalBackupTypeScreen: Button for users who saved backup as single file -->
-    <string name="SelectLocalBackupTypeScreen__i_saved_my_backup_as_a_single_file">ฉันบันทึกข้อมูลสำรองไว้เป็นไฟล์เดียว</string>
-    <!-- SelectLocalBackupTypeScreen: Card title for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__choose_backup_folder">เลือกโฟลเดอร์ข้อมูลสำรอง</string>
-    <!-- SelectLocalBackupTypeScreen: Card description for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__select_the_folder_on_your_device">เลือกโฟลเดอร์บนอุปกรณ์ที่คุณจัดเก็บข้อมูลสำรองไว้</string>
-
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">การส่งออกข้อมูลสำรองของ Signal Android พบข้อผิดพลาดของเครือข่าย</string>
     <!-- Email filter when contacting support on a create backup failure -->
@@ -8785,23 +8426,6 @@
     <string name="ContactSupportDialog_submit_with_debug">ส่งพร้อมกับบันทึกดีบัก</string>
     <!-- Button option to not submit debug log when contacting support -->
     <string name="ContactSupportDialog_submit_without_debug">ส่งโดยไม่มีบันทึกดีบัก</string>
-
-    <!-- Title for restore via qr screen -->
-    <string name="RestoreViaQr_title">ใช้โทรศัพท์เครื่องเก่าของคุณสแกนโค้ดนี้</string>
-    <!-- First instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_1">เปิดแอป Signal บนอุปกรณ์เครื่องเก่า</string>
-    <!-- Second instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_2">แตะที่ไอคอนกล้อง </string>
-    <!-- Third instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_3">ใช้กล้องสแกนโค้ดนี้</string>
-    <!-- Error message shown when qr code could not be loaded -->
-    <string name="RestoreViaQr_qr_code_error">ไม่สามารถสร้างคิวอาร์โค้ดได้</string>
-    <!-- Status message shown when qr code already scanned by other device -->
-    <string name="RestoreViaQr_qr_code_scanned">ใช้อุปกรณ์เครื่องเก่าสแกนแล้ว</string>
-    <!-- Error button text to retry getting a qr code -->
-    <string name="RestoreViaQr_retry">ลองใหม่</string>
-    <!-- Error message shown when register after receiving the provisioning message failed -->
-    <string name="RestoreViaQr_registration_error">เกิดข้อผิดพลาดที่ทำให้ไม่สามารถถ่ายโอนบัญชีของคุณได้ โปรดลองใหม่ด้วยการสแกนคิวอาร์โค้ดอีกครั้ง</string>
 
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">ถ่ายโอนบัญชี</string>
@@ -8843,19 +8467,6 @@
     <string name="RestoreCompleteBottomSheet_transfer_complete_message">ถ่ายโอนบัญชี Signal และข้อความของคุณไปยังอุปกรณ์อีกเครื่องเรียบร้อยแล้ว ขณะนี้ Signal บนอุปกรณ์เครื่องนี้จะหยุดทำงาน</string>
     <!-- Restore Complete bottom sheet dialog button text to dismiss sheet -->
     <string name="RestoreCompleteBottomSheet_button">ตกลง</string>
-
-    <!-- No Backup to Restore screen title -->
-    <string name="NoBackupToRestore_title">ไม่พบข้อมูลสำรองเพื่อใช้ในการกู้คืน</string>
-    <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">ในกรณีที่ย้ายการใช้งานจาก iPhone มาเป็นอุปกรณ์ Android วิธีเดียวในการถ่ายโอนข้อความและไฟล์สื่อคือการเปิดใช้งานการสำรองข้อมูลที่ปลอดภัยของ Signal บนอุปกรณ์เครื่องเก่าของคุณ</string>
-    <!-- No Backup to Restore step 1 to enable backups on old device -->
-    <string name="NoBackupToRestore_step1">เปิดแอป Signal บนอุปกรณ์เครื่องเก่า</string>
-    <!-- No Backup to Restore step 2 to enable backups on old device -->
-    <string name="NoBackupToRestore_step2">แตะที่การตั้งค่า &gt; ข้อมูลสำรอง</string>
-    <!-- No Backup to Restore step 3 to enable backups on old device -->
-    <string name="NoBackupToRestore_step3">เปิดใช้งานการสำรองข้อมูล แล้วรอจนการสำรองข้อมูลของคุณเสร็จสมบูรณ์</string>
-    <!-- No backup to Restore tonal cta to skip restore -->
-    <string name="NoBackupToRestore_skip_restore">ข้ามการกู้คืน</string>
 
     <!-- Dialog title when the recovery key change limit is reached -->
     <string name="MessageBackupsKeyRecordScreen__limit_reached_title">สร้างกุญแจกู้คืนถึงจำนวนที่กำหนดแล้ว</string>

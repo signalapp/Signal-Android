@@ -863,23 +863,8 @@
     <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">మీరు వారికి సందేశం పంపితే లేదా వారితో ఇప్పటికే చాట్ చేస్తే తప్ప మీరు Signal లో ఉన్నారని ఎవరూ చూడలేరు.</string>
 
     <!-- ChooseBackupFragment -->
-    <string name="ChooseBackupFragment__restore_from_backup">ప్రత్యామ్నాయ నుండి పునరుద్ధరించాలా?</string>
-    <string name="ChooseBackupFragment__restore_your_messages_and_media">స్థానిక ప్రత్యామ్నాయ నుండి మీ సందేశాలు మరియు మీడియాను పునరుద్ధరించండి. మీరు ఇప్పుడు పునరుద్ధరించకపోతే, తర్వాత మీరు పునరుద్ధరించలేరు.</string>
-    <string name="ChooseBackupFragment__icon_content_description">బ్యాకప్ చిహ్నం నుండి పునరుద్ధరించండి</string>
-    <string name="ChooseBackupFragment__choose_backup">బ్యాకప్ ఎంచుకోండి</string>
-    <string name="ChooseBackupFragment__learn_more">ఇంకా నేర్చుకో</string>
 
     <!-- RestoreBackupFragment -->
-    <string name="RestoreBackupFragment__restore_complete">పునరుద్ధరణ పూర్తయింది</string>
-    <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">ప్రత్యామ్నాయములను ఉపయోగించడం కొనసాగించడానికి, దయచేసి ఫోల్డర్‌ను ఎంచుకోండి. క్రొత్త బ్యాకప్‌లు ఈ స్థానానికి సేవ్ చేయబడతాయి.</string>
-    <string name="RestoreBackupFragment__choose_folder">ఫోల్డర్ ఎంచుకోండి</string>
-    <string name="RestoreBackupFragment__not_now">ఇప్పుడు కాదు</string>
-    <!-- Couldn\'t find the selected backup -->
-    <string name="RestoreBackupFragment__backup_not_found">బ్యాకప్ కనుగొనబడలేదు.</string>
-    <!-- Couldn\'t read the selected backup -->
-    <string name="RestoreBackupFragment__backup_could_not_be_read">బ్యాకప్‌ని చదవలేరు.</string>
-    <!-- Backup has an unsupported file extension -->
-    <string name="RestoreBackupFragment__backup_has_a_bad_extension">బ్యాకప్‌కు చెడ్డ ఎక్స్‌టెన్షన్ ఉంది.</string>
 
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
@@ -1416,60 +1401,6 @@
     <string name="ManageGroupActivity_add_group_description">సమూహ వివరణను జోడించండి …</string>
 
     <!-- RemoteRestoreActivity -->
-    <!-- Progress dialog label when downloading a backup -->
-    <string name="RemoteRestoreActivity__downloading_backup">బ్యాకప్ డౌన్‌లోడ్ అవుతోంది…</string>
-    <!-- Progress dialog label when restoring a backup -->
-    <string name="RemoteRestoreActivity__restoring_messages">సందేశాలు రీస్టోర్ అవుతున్నాయి…</string>
-    <!-- Progress dialog label when finishing a backup restore -->
-    <string name="RemoteRestoreActivity__finishing_restore">పూర్తి చేస్తోంది…</string>
-    <!-- Progress dialog label while awaiting updates -->
-    <string name="RemoteRestoreActivity__restoring">రీస్టోర్ అవుతున్నాయి…</string>
-    <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
-    <string name="RemoteRestoreActivity__s_of_s_s">%2$s (%3$s)లో %1$s</string>
-    <!-- Feature list media label for paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_media">మీ మీడియా అంతా</string>
-    <!-- Feature list media label for free tier. Placeholder is days, and is currently fixed at 30. -->
-    <string name="RemoteRestoreActivity__your_last_d_days_of_media">మీడియా యొక్క మీ చివరి %1$d రోజులు</string>
-    <!-- Feature list message label for free and paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_messages">మీ సందేశాలు అన్ని</string>
-    <!-- Screen title for restoring from backup -->
-    <string name="RemoteRestoreActivity__restore_from_backup">బ్యాకప్ నుంచి పునరుద్ధరించండి</string>
-    <!-- Section title for explaining what your backup includes -->
-    <string name="RemoteRestoreActivity__your_backup_includes">మీ బ్యాకప్‌లలో ఇవి ఉంటాయి:</string>
-    <!-- Primary action button copy for starting restoration -->
-    <string name="RemoteRestoreActivity__restore_backup">ప్రత్యామ్నాయ పునరుద్ధరించండి</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made. %1$s is replaced with the date (e.g. March 5, 2024) and %2$s is replaced with the time (e.g. 9:00am) -->
-    <string name="RemoteRestoreActivity__backup_created_at">మీ చివరి బ్యాకప్ %1$s న %2$s కు చేయబడింది.</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
-    <string name="RemoteRestoreActivity__backup_created_at_with_size">మీ చివరి బ్యాకప్ %1$s న %2$s కు చేయబడింది. మీ బ్యాకప్ పరిమాణం %3$s.</string>
-    <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
-    <string name="RemoteRestoreActivity__fetching_backup_details">బ్యాకప్ వివరాలను పొందుతోంది…</string>
-    <!-- Text label button to skip restore from remote -->
-    <string name="RemoteRestoreActivity__skip_restore">పునరుద్ధరించడాన్ని దాటవేయండి</string>
-    <!-- Dialog title displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__couldnt_transfer">బదిలీని పూర్తి చేయడం సాధ్యపడలేదు</string>
-    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">బ్యాకప్‌ను పునరుద్ధరించలేరు</string>
-    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">మీ బ్యాకప్‌ను పునరుద్ధరించేటప్పుడు ఒక పొరపాటు ఏర్పడింది. మీ బ్యాకప్‌ను తిరిగి పొందడం సాధ్యం కాదు. సహాయం కోసం దయచేసి మద్దతును సంప్రదించండి.</string>
-    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">మద్దతును సంప్రదించండి</string>
-    <!-- Dialog message displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__error_occurred">లోపం సంభవించింది మరియు మీ ఖాతాను బదిలీ చేయడం సాధ్యపడలేదు. మీ బదిలీ పద్ధతిని ఎంచుకోవడం ద్వారా మళ్ళీ ప్రయత్నించండి.</string>
-    <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
-    <string name="RemoteRestoreActivity__couldnt_restore">ఈ బ్యాకప్‌ను పునరుద్ధరించడం సాధ్యపడలేదు</string>
-    <!-- Dialog message explaining that an update to Signal is required to restore the backup. -->
-    <string name="RemoteRestoreActivity__update_latest">Signal యొక్క ఈ వెర్షన్ మీ బ్యాకప్‌ను పునరుద్ధరించలేదు. తాజా వెర్షన్‌కు అప్‌డేట్ చేసి, మళ్ళీ ప్రయత్నించండి.</string>
-    <!-- Text on button that when pressed will redirect them to update Signal -->
-    <string name="RemoteRestoreActivity__update_signal">Signal ను నవీకరించండి</string>
-    <!-- Text label button to dismiss the dialog -->
-    <string name="RemoteRestoreActivity__not_now">ఇప్పుడు కాదు</string>
-    <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">మీ మీడియా నేపథ్యంలో పునరుద్ధరించబడుతుంది. ఒకవేళ మీరు ఇప్పుడు పునరుద్ధరించకూడదని ఎంచుకుంటే, మీరు తర్వాత పునరుద్ధరించలేరు.</string>
-    <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">ఈ పరికరం ఇకపై నమోదు చేయబడదు</string>
-    <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">మీరు మీ Signal ఖాతాను వేరొక పరికరంలో నమోదు చేసుకున్నందున ఇది జరిగి ఉండవచ్చు.</string>
 
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
@@ -2234,17 +2165,6 @@
     <string name="PinRestoreLockedFragment_create_new_pin">క్రొత్త పిన్ సృష్టించండి</string>
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
-    <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
-    <string name="ReRegisterWithPinFragment_send_sms_code">SMS కోడ్ పంపండి</string>
-    <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">Signal నమోదు చేసుకోవడం - Android కొరకు PIN ను మళ్ళీ నమోదు చేయడంలో సహాయం కావాలి</string>
-    <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">మీ PIN అనేది మీరు సృష్టించిన %1$d+ అంకెల కోడ్, ఇది సంఖ్య లేదా ఆల్ఫాన్యూమరిక్‌గా ఉండవచ్చు.\n\nఒకవేళ మీ PIN ను మీరు గుర్తు పెట్టుకోలేకపోతే, ఒక కొత్త దానిని మీరు సృష్టించవచ్చు.</string>
-    <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">ఒకవేళ మీ PIN ను మీరు గుర్తు పెట్టుకోలేకపోతే, ఒక కొత్త దానిని మీరు సృష్టించవచ్చు.</string>
-    <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">మీ PIN అంచనాలు అయిపోయాయి, అయితే ఒక కొత్త PIN ను సృష్టించడం ద్వారా మీ Signal ఖాతాను మీరు ఇప్పటికీ యాక్సెస్ చేయవచ్చు.</string>
-
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">హెచ్చరిక</string>
     <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">ఒకవేళ మీరు PIN ను నిలిపివేస్తే, మీరు మాన్యువల్‌గా బ్యాకప్ చేసి పునరుద్ధరించకపోతే మీరు Signal ను తిరిగి నమోదు చేసినప్పుడు మీరు మొత్తం డేటాను కోల్పోతారు. PIN నిలిపివేయబడిప్పుడు మీరు నమోదు లాక్‌ను ఆన్ చేయలేరు.</string>
@@ -2324,6 +2244,12 @@
     <string name="WebRtcCallActivity__open_settings">సెట్టింగ్‌లను ఓపెన్ చేయండి</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">ఇప్పుడు కాదు</string>
+    <!-- Message for dialog shown at the start of a call when the system battery setting for Signal is "Restricted" -->
+    <string name="WebRtcCallActivity__others_may_not_be_able_to_hear_you_when_your_screen_turns_off">Others may not be able to hear you and the call may disconnect when your screen turns off. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
+    <!-- Title for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__others_couldnt_hear_you">Others couldn\'t hear you</string>
+    <!-- Message for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__your_microphone_was_muted_while_signal_was_in_the_background">Your microphone was muted while Signal was in the background. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
     <!-- Title for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__approve_d_requests">
         <item quantity="one">%1$d అభ్యర్థనను ఆమోదించేదా?</item>
@@ -2639,50 +2565,20 @@
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">మీరు పేర్కొన్న సంఖ్య (%1$s) చెల్లదు.
     </string>
 
-    <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">దిగువ ఫోన్ నంబర్ సరైనదేనా?</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
     <string name="RegistrationActivity_additional_verification_required">అదనపు ధృవీకరణ అవసరం</string>
-    <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">ఈ నంబర్‌కు ఒక ధృవీకరణ కోడ్ పంపబడుతుంది. క్యారియర్ రేట్లు వర్తించవచ్చు.</string>
-    <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">మీరు ధృవీకరణ కోడ్‌ను అందుకుంటారు. క్యారియర్ రేట్లు వర్తించవచ్చు.</string>
-    <!-- Hint text to select a country -->
-    <string name="RegistrationActivity_select_a_country">దేశాన్ని ఎంచుకోండి</string>
-    <!-- Hint text explaining that this is where the country code should go -->
-    <string name="RegistrationActivity_default_country_code">0</string>
-    <string name="RegistrationActivity_edit_number">సంఖ్య మార్చు</string>
-    <string name="RegistrationActivity_missing_google_play_services">గూగుల్ ఫ్లే సేవలు అందుబాటులో లేవు.</string>
-    <string name="RegistrationActivity_this_device_is_missing_google_play_services">ఈ పరికరంలో Google Play సేవలు లేవు. మీరు ఇప్పటికీ Signal ఉపయోగించవచ్చు, కానీ ఈ కాన్ఫిగరేషన్ తగ్గిన విశ్వసనీయత లేదా పనితీరును కలిగించవచ్చు. \\ N \\ n మీరు అధునాతన వినియోగదారు కానట్లయితే, ఒక యాడ్మార్కెట్ Android ROM ను అమలు చేయకపోయినా లేదా మీరు దీనిని తప్పుగా చూస్తున్నారని విశ్వసిస్తారు, దయచేసి support@signal.org</string>
-    <string name="RegistrationActivity_i_understand">నాకు అర్దం అయ్యినది</string>
-    <string name="RegistrationActivity_play_services_error">ప్లే సేవల దోషం.</string>
-    <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">గూగల్ ేవలను నవీకరించుటకు లేదా తాత్కాలికంగా అందుబాటులో చేస్తున్నారు. మళ్ళి ప్రయత్నించండి.</string>
     <string name="RegistrationActivity_rate_limited_to_service">మీరు ఈ నంబరును నమోదు చేయడానికి చాలా ప్రయత్నాలు చేసారు. దయచేసి తర్వాత మళ్లీ ప్రయత్నించండి.</string>
-    <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">ఈ నంబర్‌ను నమోదు చేయడానికి మీరు చాలా ఎక్కువ ప్రయత్నాలు చేశారు. దయచేసి %1$sలో మళ్ళీ ప్రయత్నించండి.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">కనెక్ట్ చేయడం సాధ్యం కాలేదు. దయచేసి నెట్వర్క్ కనెక్షన్ను తనిఖీ చేసి మళ్ళీ ప్రయత్నించండి.</string>
     <!-- Dialog error message shown when we are unable to send an SMS to the user\'s number -->
     <string name="RegistrationActivity_sms_provider_error">మేము మీ నంబర్‌కు SMS పంపలేకపోతున్నాము. దయచేసి కొన్ని గంటల తర్వాత మళ్ళీ ప్రయత్నించండి.</string>
-    <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">SMS ద్వారా ధృవీకరణ కోడ్‌ను మేము పంపలేకపోయాము. బదులుగా స్వర కాల్ ద్వారా మీ కోడ్‌ను అందుకోవడానికి ప్రయత్నించండి.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">ధృవీకరణ కోడ్‌ను అభ్యర్ధించలేకపోయింది. దయచేసి నెట్‌వర్క్ కనెక్షన్ తనిఖీ చేసి, మళ్ళీ ప్రయత్నించండి.</string>
-    <string name="RegistrationActivity_non_standard_number_format">నాన్-స్టాండర్డ్ నెంబర్ ఫార్మెట్</string>
-    <!-- Dialog message shown to confirm when entering phone number (first placeholder) is normalized and formatted differently by the app (second placeholder). -->
-    <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">మీరు నమోదు చేసిన నెంబరు (%1$s) నాన్-స్టాండర్డ్ ఫార్మెట్‌లో కనిపిస్తోంది.\n\n%2$s అని మీ అర్ధమా?</string>
-    <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - ఫోన్ నెంబర్ ఫార్మెట్</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="one">డీబగ్ లాగ్ను సమర్పించకుండా మీరు ఇప్పుడు %1$d దూరంగా ఉన్నారు.</item>
         <item quantity="other">డీబగ్ లాగ్ను సమర్పించకుండా మీరు ఇప్పుడు %1$d మళ్లే ఉన్నారు.</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">మీరు మానవుడని మేము ధృవీకరించాలి.</string>
-    <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
-    <string name="RegistrationActivity_voice_call">వాయిస్ కాల్</string>
-    <!-- Dialog button to cancel the pending action and return to the previous state. -->
-    <string name="RegistrationActivity_cancel">రద్దు చేయండి</string>
     <string name="RegistrationActivity_next">తరువాత</string>
-    <!-- Title of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_phone_number">ఫోన్ నంబర్</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">మేము పంపిన కోడ్‌ను నమోదు చేయండి %1$s</string>
 
     <string name="RegistrationActivity_phone_number_description">ఫోను నంబరు</string>
@@ -2881,6 +2777,8 @@
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">స్టిక్కర్ ప్యాక్ లోడ్ చేయడంలో విఫలమైంది</string>
     <!-- Bottom sheet describing a sticker. First placeholder is the title of the sticker pack and second is the author -->
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
+    <!-- Bottom sheet option that opens the pack the sticker belongs to -->
+    <string name="StickerPreviewBottomSheet__view_pack">View pack</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">సేవ్ చేయండి</string>
@@ -3619,8 +3517,6 @@
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">కాల్ నోటిఫికేషన్‌లను పొందడానికి, సెట్టింగ్‌లపై తట్టి, ‘‘బ్యాటరీ’’ సెట్టింగ్‌ల్లో బ్యాక్‌గ్రౌండ్ యాక్టివిటీని ప్రారంభించండి.</string>
 
     <!-- country_selection_fragment -->
-    <string name="country_selection_fragment__loading_countries">దేశాలు లోడ్ అవుతున్నాయి…</string>
-    <string name="country_selection_fragment__search">వెతకండి</string>
 
     <string name="device_list_fragment__link_new_device">కొత్త పరికరాన్ని అనుసంధానించు</string>
 
@@ -4454,6 +4350,8 @@
     <string name="conversation_selection__menu_pin_message">పిన్</string>
     <!-- Button to unpin a message -->
     <string name="conversation_selection__menu_unpin_message">అన్‌పిన్</string>
+    <!-- Button to open the sticker pack a sticker message came from -->
+    <string name="conversation_selection__menu_view_sticker_pack">View pack</string>
 
     <!-- conversation_expiring_on -->
 
@@ -4644,14 +4542,11 @@
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">మీ పిన్ను నమోదు చేయండి</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">మీ ఖాతా కోసం మీరు సృష్టించిన పిన్‌ను నమోదు చేయండి. ఇది మీ SMS ధృవీకరణ కోడ్‌కు భిన్నంగా ఉంటుంది.</string>
-    <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
-    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">మీ ఖాతా కొరకు మీరు సృష్టించిన PIN ను ఎంటర్ చేయండి.</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">తప్పు పిన్. మళ్ళీ ప్రయత్నించండి.</string>
     <string name="RegistrationLockFragment__forgot_pin">పిన్ను మరచిపోయారా?</string>
     <string name="RegistrationLockFragment__incorrect_pin">తప్పయిన పిన్</string>
     <string name="RegistrationLockFragment__forgot_your_pin">పిన్ను మరచిపోయారా?</string>
     <string name="RegistrationLockFragment__not_many_tries_left">చాలా ప్రయత్నాలు మిగిలి లేవు!</string>
-    <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal రిజిస్ట్రేషన్ - Android (v2 PIN) కోసం పిన్‌తో సహాయం కావాలి</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
         <item quantity="one">మీ గోప్యత మరియు భద్రత కోసం, మీ పిన్‌ను తిరిగి పొందటానికి మార్గం లేదు. ఒకవేళ మీకు మీ పిన్ గుర్తులేకపోతే, %1$d రోజు నిష్క్రియాత్మకత తర్వాత మీరు SMS తో తిరిగి ధృవీకరించవచ్చు. ఈ సందర్భంలో, మీ ఖాతా తుడిచివేయబడుతుంది మరియు మొత్తం విషయాలు తొలిగిచబడతాయి.</item>
@@ -4706,22 +4601,6 @@
     <string name="backup_enable_dialog__you_must_have_this_passphrase">ప్రత్యామ్నాయ‌ను పునరుద్ధరించడానికి మీకు ఈ పాస్‌ఫ్రేజ్ ఉండాలి.</string>
     <string name="backup_enable_dialog__folder">ఫోల్డర్</string>
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">నేను ఈ పాస్ఫ్రేజ్ని వ్రాశాను. ఇది లేకుండా, నేను ఒక ప్రత్యామ్నాయ పునరుద్ధరించడానికి సాధ్యం కాదు.</string>
-    <string name="registration_activity__restore_backup">ప్రత్యామ్నాయ పునరుద్ధరించండి</string>
-    <!-- Text label button to skip restoring -->
-    <string name="registration_activity__skip_restore">పునరుద్ధరించడాన్ని దాటవేయండి</string>
-    <!-- Title for dialog to enter in the backup passphrase -->
-    <string name="RegistrationActivity_enter_backup_passphrase">ప్రత్యామ్నాయ పాస్ఫ్రేజ్ని నమోదు చేయండి</string>
-    <string name="RegistrationActivity_restore">పునరుద్ధరించు</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">Signal నూతన వెర్షన్ల నుండి బ్యాకప్స్ దిగుమతి చేయలేరు</string>
-    <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
-    <string name="RegistrationActivity_backup_failure_foreign_key">తప్పుగా రూపొందించబడిన డేటాను బ్యాకప్ కలిగి ఉంది</string>
-    <string name="RegistrationActivity_incorrect_backup_passphrase">సరికాని ప్రత్యామ్నాయ పాస్ఫ్రేజ్</string>
-    <string name="RegistrationActivity_checking">తనిఖీ చేస్తోంది…</string>
-    <string name="RegistrationActivity_d_messages_so_far">ఇప్పటివరకు %1$d సందేశాలు</string>
-    <string name="RegistrationActivity_restore_from_backup">ప్రత్యామ్నాయ నుండి పునరుద్ధరించాలా?</string>
-    <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">స్థానిక ప్రత్యామ్నాయ నుండి మీ సందేశాలు మరియు మీడియాను పునరుద్ధరించండి. మీరు ఇప్పుడు పునరుద్ధరించకపోతే, తర్వాత మీరు పునరుద్ధరించలేరు.</string>
-    <string name="RegistrationActivity_backup_size_s">ప్రత్యామ్నాయ పరిమాణం: %1$s</string>
-    <string name="RegistrationActivity_backup_timestamp_s">ప్రత్యామ్నాయ సమయం స్టాంప్: %1$s</string>
     <string name="BackupDialog_enable_local_backups">స్థానిక ప్రత్యామ్నాయను ప్రారంభించాలా?</string>
     <string name="BackupDialog_enable_backups">ప్రత్యామ్నాయ ప్రారంభించు</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">దయచేసి మీ అవగాహనను నిర్ధారించడానికి నిర్ధారణ తనిఖీ పెట్టెలో గుర్తించండి.</string>
@@ -4757,7 +4636,6 @@
     <string name="RegistrationActivity_call_me_instead_available_in">నాకు కాల్ చేయండి (%1$02d:%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
     <string name="RegistrationActivity_resend_sms_available_in">కోడ్ మళ్ళీ పంపండి (%1$02d:%2$02d)</string>
-    <string name="RegistrationActivity_contact_signal_support">Signal మద్దతును సంప్రదించండి</string>
     <string name="RegistrationActivity_code_support_subject">Signal రిజిస్ట్రేషన్ - Android కోసం ధృవీకరణ కోడ్</string>
     <string name="RegistrationActivity_incorrect_code">తప్పు కోడ్</string>
     <string name="BackupUtil_never">ఎప్పుడూ</string>
@@ -4879,25 +4757,8 @@
     <string name="TransferOrRestoreFragment__restore_from_local_backup">లోకల్ బ్యాకప్‌ను పునరుద్ధరించండి</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
-    <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">మీ పాత Android పరికరంపై Signal ను తెరవండి</string>
-    <string name="NewDeviceTransferInstructions__continue">కొనసాగించు</string>
-    <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">సెట్టింగ్‌లను ఓపెన్ చేయడానికి పైన కుడివైపున ఉండే మీ ప్రొఫైల్ చిత్రంపై తట్టండి</string>
-    <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_account">"‘‘ఖాతా’’పై తట్టండి"</string>
-    <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
-    <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"‘‘ఖాతాను బదిలీ చేయండి’’ మీద, తరువాత రెండు పరికరాలపై ‘‘కొనసాగండి’’ని తట్టండి"</string>
 
     <!-- NewDeviceTransferSetupFragment -->
-    <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">పాత Android పరికరాన్ని కనెక్ట్ చేయడానికి సిద్ధం చేయడం…</string>
-    <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">ఒక్క క్షణం పడుతుంది, త్వరగా సిద్ధం కావాలి</string>
-    <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">పాత Android పరికరం కనెక్ట్ కావడం కొరకు వేచి ఉంది…</string>
-    <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">మీ పాత Android పరికరాన్ని కనుగొని, దానితో అనుసంధానం కావడానికి Signal కు లొకేషన్ పర్మిషన్ కావాలి.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">మీ పాత Android పరికరాన్ని కనుగొని, దానితో అనుసంధానం కావడానికి లొకేషన్‌ సర్వీస్‌లు ప్రారంభించడం Signal కొరకు అవసరం.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">మీ పాత Android పరికరాన్ని కనుగొని, దానితో అనుసంధానం కావడానికి Signal కు Wi-Fi అవసరం. Wi-Fiని ఆన్ చేసి ఉంచాలి కానీ, Wi-Fi నెట్‌వర్క్‌కు కనెక్ట్ కావాల్సిన అవసరం లేదు.</string>
-    <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">క్షమించండి, ఈ పరికరం Wi-Fi Directకు మద్దతు ఇవ్వదు. మీ పాత Android పరికరాన్ని కనుగొనడానికి, కనెక్ట్ చేయడానికి Wi-Fi Directని Signal ఉపయోగిస్తుంది. మీరు ఇప్పటికీ మీ పాత Android పరికరం నుండి మీ ఖాతాను పునరుద్ధరించడానికి బ్యాకప్ స్టోరేజీని పునరుద్ధరించవచ్చు.</string>
-    <string name="NewDeviceTransferSetup__restore_a_backup">బ్యాకప్‌ని పునరుద్ధరించండి</string>
-    <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">మీ పాత Android పరికరానికి కనెక్ట్ చేయడానికి ప్రయత్నించేటప్పుడు ఊహించని దోషం ఏర్పడింది.</string>
 
     <!-- OldDeviceTransferSetupFragment -->
     <string name="OldDeviceTransferSetup__searching_for_new_android_device">కొత్త Android పరికరం కొరకు వెతుకుతోంది…</string>
@@ -4941,9 +4802,6 @@
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device">మీ మరో పరికరంపై కొనసాగండి మీద తట్టండి…</string>
 
     <!-- NewDeviceTransferFragment -->
-    <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Signal కొత్త వెర్షన్‌ల నుంచి బదిలీ చేయలేం</string>
-    <!-- Error message indicating that we could not finish the user\'s device transfer. Displayed in a toast at the bottom of the screen. -->
-    <string name="NewDeviceTransfer__failure_foreign_key">బదిలీ చేయబడ్డ డేటా తప్పుగా రూపొందించబడింది</string>
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">డేటాని బదిలీ చేస్తోంది</string>
@@ -4982,10 +4840,6 @@
     <string name="OldDeviceTransferComplete__close">మూసివెయ్యి</string>
 
     <!-- NewDeviceTransferComplete -->
-    <string name="NewDeviceTransferComplete__transfer_successful">బదిలీ చేయడం విజయవంతమైంది</string>
-    <string name="NewDeviceTransferComplete__transfer_complete">బదిలీ చేయడం పూర్తయింది</string>
-    <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">బదిలీ ప్రక్రియను పూర్తి చేయడానికి, మీరు విధిగా రిజిస్ట్రేషన్‌ను కొనసాగించాలి.</string>
-    <string name="NewDeviceTransferComplete__continue_registration">రిజిస్ట్రేషన్‌ను కొనసాగించండి</string>
 
     <!-- DeviceToDeviceTransferService -->
     <string name="DeviceToDeviceTransferService_content_title">ఖాతా బదిలీ</string>
@@ -8753,219 +8607,6 @@
 
     <!-- ConfirmBackupCancellationDialog -->
 
-    <!-- Row title for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">నా దగ్గర నా పాత ఫోన్ ఉంది</string>
-    <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_scan_qr">త్వరగా ప్రారంభించడానికి మీ ప్రస్తుత Signal ఖాతా నుండి QR కోడ్‌ను స్కాన్ చేయండి</string>
-
-    <!-- Row title for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">నా దగ్గర నా పాత ఫోన్ లేదు</string>
-    <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">లేదా మీరు అదే పరికరంలో Signal ను మళ్ళీ ఇన్‌స్టాల్ చేస్తున్నారు</string>
-
-    <!-- Screen title for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__restore_or_transfer_account">ఖాతాను పునరుద్ధరించండి లేదా బదిలీ చేయండి</string>
-    <!-- Screen subtitle for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__get_your_signal_account">ఈ పరికరంలో మీ Signal ఖాతా మరియు సందేశ చరిత్రను పొందండి.</string>
-    <!-- Option title for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_signal_backup">Signal బ్యాకప్‌ను పునరుద్ధరించండి</string>
-    <!-- Option subtitle for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_your_text_messages_and_media_from">మీ Signal బ్యాకప్ ప్లాన్ నుండి మీ టెక్స్ట్ సందేశాలు మరియు మీడియాను పునరుద్ధరించండి.</string>
-    <!-- Option title for restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_on_device_backup">పరికరంలోని బ్యాకప్‌ను పునరుద్ధరించండి</string>
-    <!-- Option subtitle fdor restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_your_messages_from">మీ పరికరంలో మీరు సేవ్ చేసిన బ్యాకప్ నుండి మీ సందేశాలను పునరుద్ధరించండి.</string>
-    <!-- Option title for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__from_your_old_phone">మీ పాత ఫోన్ నుండి</string>
-    <!-- Option subtitle for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__transfer_directly_from_old">మీ పాత Android నుండి నేరుగా బదిలీ చేయండి</string>
-    <!-- Dialog title shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_title">పునరుద్ధరించడాన్ని దాటవేసేదా?</string>
-    <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">ఒకవేళ మీరు ఇప్పుడు పునరుద్ధరించడాన్ని దాటవేస్తే, మీరు తరువాత పునరుద్ధరించలేరు. ఒకవేళ మీరు పునరుద్ధరణను దాటవేసిన తర్వాత బ్యాకప్‌లను మళ్ళీ ప్రారంభిస్తే, మీ ప్రస్తుత బ్యాకప్ మీ కొత్త సందేశ చరిత్రతో భర్తీ చేయబడుతుంది.</string>
-    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore">పునరుద్ధరించడాన్ని దాటవేయండి</string>
-
-    <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_title">మీ రికవరీ కీని ఎంటర్ చేయండి</string>
-    <!-- Screen subtitle for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_subtitle">మీ రికవరీ కీ అనేది 64-అక్షరాల కోడ్, ఇది మీ ఖాతా మరియు డేటాను పునరుద్ధరించడానికి అవసరం.</string>
-    <!-- Button to skip entering recovery key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">రికవరీ కీ లేదా?</string>
-    <!-- Recovery key text field hint -->
-    <string name="EnterBackupKey_backup_key">రికవరీ కీ</string>
-    <!-- Recovery key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">బ్యాకప్‌లను వాటి 64-అక్షరాల రికవరీ కోడ్ లేకుండా తిరిగి పొందడం సాధ్యం కాదు. ఒకవేళ మీరు మీ రికవరీ కీని పోగొట్టుకున్నట్లయితే, మీ బ్యాకప్‌ను పునరుద్ధరించడంలో Signal సహాయం చేయలేదు.</string>
-    <!-- Recovery key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">ఒకవేళ మీరు మీ పాత పరికరాన్ని కలిగి ఉంటే, మీరు మీ రికవరీ కీని సెట్టింగ్‌లు &gt; బ్యాకప్‌లలో వీక్షించవచ్చు. తర్వాత రికవరీ కీని వీక్షించండిని తట్టండి.</string>
-    <!-- Recovery key not known bottom sheet button to learn more about it -->
-    <string name="EnterBackupKey_learn_more">మరింత తెలుసుకోండి</string>
-    <!-- Recovery key not known bottom sheet button to skip recovery key entry and resume normal reregistration -->
-    <string name="EnterBackupKey_skip_and_dont_restore">దాటవేయి మరియు పునరుద్ధరించవద్దు</string>
-    <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">తప్పు రికవరీ కీ</string>
-    <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">Signal సురక్షిత బ్యాకప్‌లను ప్రారంభించేటప్పుడు మీరు సేవ్ చేసిన అదే ఫోన్ నంబర్ మరియు 64-అక్షరాల రికవరీ కీతో మీరు నమోదు చేసుకుంటున్నారని నిర్ధారించుకోండి. ఈ కీ లేకుండా బ్యాకప్‌లను తిరిగి పొందడం సాధ్యం కాదు.</string>
-    <!-- Dialog positive button text to try entering their recovery key again -->
-    <string name="EnterBackupKey_try_again">మళ్ళీ ప్రయత్నించండి</string>
-    <!-- Dialog negative button text to get help with recovery key -->
-    <string name="EnterBackupKey_backup_key_help">రికవరీ కీ సహాయం</string>
-    <!-- Text field error text when the recovery key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">తప్పు రికవరీ కీ</string>
-    <!-- Text field error text when the recovery key is too long -->
-    <string name="EnterBackupKey_too_long_error">చాలా పొడవుగా ఉంది (%1$d/%2$d)</string>
-    <!-- Text field error when the recovery key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">చెల్లని రికవరీ కీ</string>
-    <!-- Dialog title shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_not_found">బ్యాకప్ కనుగొనబడలేదు</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">మీరు ఎంటర్ చేసిన రికవరీ కీ సరైనది, కానీ దానితో అనుబంధించబడిన బ్యాకప్ ఏదీ లేదు. ఒకవేళ మీ పాత ఫోన్ ఇంకా మీ దగ్గర ఉంటే, బ్యాకప్‌లు ప్రారంభించబడ్డాయని మరియు బ్యాకప్ పూర్తి చేయబడిందని నిర్ధారించుకుని, మళ్ళీ ప్రయత్నించండి.</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">మీరు మీ రికవరీ కీని తప్పుగా ఎంటర్ చేసి ఉండవచ్చు లేదా మీరు మీ పాత పరికరంలో కనీసం ఒక బ్యాకప్‌ను పూర్తి చేసి ఉండకపోవచ్చు.\n\nSignal సురక్షిత బ్యాకప్‌లను ప్రారంభించేటప్పుడు మీరు సేవ్ చేసిన అదే ఫోన్ నంబర్ మరియు రికవరీ కీతో మీరు నమోదు అవుతున్నారని నిర్ధారించుకోండి మరియు మీ పాత పరికరం బ్యాకప్‌ను పూర్తి చేసిందని నిర్ధారించుకోండి.</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">మీరు రికవరీ కీ ప్రయత్నాలను పూర్తి చేసుకున్నారు. మీ భద్రత కోసం, మీరు చేయగల ప్రయత్నాల సంఖ్య పరిమితం చేయబడింది. ఒక గంటసేపు ఆగి, మళ్ళీ ప్రయత్నించండి.</string>
-    <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
-    <string name="EnterBackupKey_skip_restore">పునరుద్ధరించడాన్ని దాటవేయండి</string>
-    <!-- Dialog title text when encountering backup restore network error -->
-    <string name="EnterBackupKey_cant_restore_backup">బ్యాకప్‌ను పునరుద్ధరించలేరు</string>
-    <!-- Dialog body text when encountering backup restore network error -->
-    <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">మీ బ్యాకప్ ప్రస్తుతం పునరుద్ధరించబడదు. మీ ఇంటర్నెట్ కనెక్షన్‌ను తనిఖీ చేసి, మళ్ళీ ప్రయత్నించండి. </string>
-    <!-- Dialog button text to contact support on network error -->
-    <string name="EnterBackupKey_contact_support">మద్దతును సంప్రదించండి</string>
-
-    <!-- Email subject when contacting support on a restore backup network issue -->
-    <string name="EnterBackupKey_network_failure_support_email">Signal Android బ్యాకప్ పునరుద్ధరణ నెట్‌వర్క్ లోపం</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
-    <!-- Email subject when contacting support on a permanent backup import failure -->
-    <string name="EnterBackupKey_permanent_failure_support_email">Signal Android బ్యాకప్ పునరుద్ధరణ శాశ్వత వైఫల్యం</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
-
-    <!-- EnterLocalBackupKeyScreen: Screen title for entering recovery key for local backup restore -->
-    <string name="EnterLocalBackupKeyScreen__enter_your_recovery_key">మీ రికవరీ కీని ఎంటర్ చేయండి</string>
-    <!-- EnterLocalBackupKeyScreen: Screen subtitle explaining what the recovery key is -->
-    <string name="EnterLocalBackupKeyScreen__your_recovery_key_is_a_64_character_code">మీ రికవరీ కీ అనేది 64-అక్షరాల కోడ్, ఇది మీ ఖాతా మరియు డేటాను పునరుద్ధరించడానికి అవసరం.</string>
-    <!-- EnterLocalBackupKeyScreen: Button text when user does not have a recovery key -->
-    <string name="EnterLocalBackupKeyScreen__no_recovery_key">రికవరీ కీ లేదా?</string>
-    <!-- EnterLocalBackupKeyScreen: Button to proceed to next step -->
-    <string name="EnterLocalBackupKeyScreen__next">తరువాత</string>
-
-    <!-- RestoreLocalBackupDialog: Error message when the selected archive fails to load -->
-    <string name="RestoreLocalBackupDialog__failed_to_load_archive">ఆర్కైవ్‌ను లోడ్ చేయడంలో విఫలమైంది. దయచేసి వేరే డైరెక్టరీని ఎంచుకోండి.</string>
-    <!-- RestoreLocalBackupDialog: Dismiss button for dialog -->
-    <string name="RestoreLocalBackupDialog__ok">సరే</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore">పునరుద్ధరించడాన్ని దాటవేసేదా?</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user about the consequences of skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore_body">ఒకవేళ మీరు ఇప్పుడు పునరుద్ధరించడాన్ని దాటవేస్తే, మీరు తరువాత పునరుద్ధరించలేరు. ఒకవేళ మీరు పునరుద్ధరణను దాటవేసిన తర్వాత బ్యాకప్‌లను మళ్ళీ ప్రారంభిస్తే, మీ ప్రస్తుత బ్యాకప్ మీ కొత్త సందేశ చరిత్రతో భర్తీ చేయబడుతుంది.</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the skip restore dialog -->
-    <string name="RestoreLocalBackupDialog__skip_restore_confirm">పునరుద్ధరించడాన్ని దాటవేయండి</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm restoring a backup from a different account -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account">కొత్త ఖాతాకు పునరుద్ధరించాలా?</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user that the backup was created with a different account and they will lose group memberships -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account_body">మీరు పునరుద్ధరిస్తున్న బ్యాకప్ వేరొక Signal ఖాతాను ఉపయోగించి సృష్టించబడింది. మీరు ఈ బ్యాకప్‌ను కొత్త ఖాతాకు పునరుద్ధరించవచ్చు, కానీ పునరుద్ధరించబడిన ఏ గ్రూపులలోనూ మీరు ఇకపై సభ్యులుగా ఉండరు.</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the restore to new account dialog -->
-    <string name="RestoreLocalBackupDialog__restore">పునరుద్ధరించు</string>
-
-    <!-- RestoreLocalBackupActivity: Toast message when backup restore fails -->
-    <string name="RestoreLocalBackupActivity__backup_restore_failed">బ్యాకప్ పునరుద్ధరణ విఫలమైంది</string>
-    <!-- RestoreLocalBackupActivity: Screen title shown during restore -->
-    <string name="RestoreLocalBackupActivity__restoring_backup">బ్యాకప్‌ను పునరుద్ధరిస్తోంది</string>
-    <!-- RestoreLocalBackupActivity: Screen subtitle explaining restore duration -->
-    <string name="RestoreLocalBackupActivity__depending_on_the_size">మీ బ్యాకప్ పరిమాణం ఆధారంగా, దీనికి కొన్ని నిమిషాల సమయం పట్టవచ్చు.</string>
-    <!-- RestoreLocalBackupActivity: Status text while restoring messages -->
-    <string name="RestoreLocalBackupActivity__restoring_messages">సందేశాలు రీస్టోర్ అవుతున్నాయి…</string>
-    <!-- RestoreLocalBackupActivity: Status text while finalizing restore -->
-    <string name="RestoreLocalBackupActivity__finalizing">తుది రూపం ఇస్తోంది…</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore is complete -->
-    <string name="RestoreLocalBackupActivity__restore_complete">పునరుద్ధరణ పూర్తయింది</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore fails -->
-    <string name="RestoreLocalBackupActivity__restore_failed">పునరుద్ధరణ విఫలమైంది</string>
-    <!-- RestoreLocalBackupActivity: Progress text showing bytes read of total with percentage, e.g. "1.2 MB of 5.0 MB (24%)" -->
-    <string name="RestoreLocalBackupActivity__s_of_s_d_percent">%2$s లో %1$s (%3$d%%)</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__cant_restore_backup">బ్యాకప్‌ను పునరుద్ధరించలేరు</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__error_occurred_while_restoring">మీ బ్యాకప్‌ను పునరుద్ధరించేటప్పుడు ఒక పొరపాటు ఏర్పడింది. మీ బ్యాకప్‌ను తిరిగి పొందడం సాధ్యం కాదు. సహాయం కోసం దయచేసి మద్దతును సంప్రదించండి.</string>
-
-    <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
-    <string name="RestoreLocalBackupActivity__contact_support">మద్దతును సంప్రదించండి</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
-    <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">పరికరంలో బ్యాకప్‌లను ఆన్ చేయాలా?</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">పరికరంలోని బ్యాకప్‌లను ఉపయోగించడం కొనసాగించడానికి, మీరు ఈ ఖాతా కోసం వాటిని ప్రారంభించాలి. మీరు దీన్ని సెట్టింగ్‌లు &gt; బ్యాకప్‌ల నుండి ఎప్పుడైనా చేయవచ్చు.</string>
-
-    <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__turn_on_now">ఇప్పుడు ఆన్ చేయండి</string>
-
-    <!-- RestoreLocalBackupActivity: Dismiss button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__not_now">ఇప్పుడు కాదు</string>
-
-    <!-- RestoreLocalBackupActivity: Body text for the dialog shown after a successful restore, prompting the user to choose a backup folder -->
-    <string name="RestoreLocalBackupActivity__choose_a_folder_for_backups">పరికరంలోని బ్యాకప్‌లను ఉపయోగించడం కొనసాగించడానికి, మీ పరికరంలో కొత్త బ్యాకప్‌లు సేవ్ చేయబడే ఫోల్డర్‌ను ఎంచుకోండి.</string>
-
-    <!-- RestoreLocalBackupActivity: Positive button label for the dialog shown after a successful restore; keeps the current backup folder -->
-    <string name="RestoreLocalBackupActivity__use_current_folder">ప్రస్తుత ఫోల్డర్‌ను ఉపయోగించండి</string>
-
-    <!-- RestoreLocalBackupActivity: Neutral button label for the dialog shown after a successful restore; opens folder picker to select a different backup location -->
-    <string name="RestoreLocalBackupActivity__choose_new_folder">కొత్త ఫోల్డర్‌ను ఎంచుకోండి</string>
-
-    <!-- RestoreLocalBackupActivity: Negative button label for the dialog shown after a successful restore; disables on-device backups -->
-    <string name="RestoreLocalBackupActivity__disable_backups">బ్యాకప్‌లను నిలిపివేయండి</string>
-
-    <!-- SelectInstructionsSheet: Title for the select backup folder instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_folder">మీ బ్యాకప్ ఫోల్డర్‌ను ఎంచుకోండి</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the select this folder button -->
-    <string name="SelectInstructionsSheet__tap_select_this_folder">\"ఈ ఫోల్డర్‌ను ఎంచుకోండి\"ని తట్టండి</string>
-    <!-- SelectInstructionsSheet: Instruction not to select individual files -->
-    <string name="SelectInstructionsSheet__do_not_select_individual_files">వ్యక్తిగత ఫైళ్ళను ఎంచుకోకండి</string>
-    <!-- SelectInstructionsSheet: Title for the select backup file instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_file">మీ బ్యాకప్ ఫైల్‌ను ఎంచుకోండి</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the backup file saved to device -->
-    <string name="SelectInstructionsSheet__tap_on_the_backup_file">మీ పరికరంలో మీరు సేవ్ చేసిన బ్యాకప్ ఫైల్‌పై తట్టండి</string>
-    <!-- SelectInstructionsSheet: Subtitle explaining how to access backup after tapping continue -->
-    <string name="SelectInstructionsSheet__after_tapping_continue">\"కొనసాగించండి\"ని తట్టిన తర్వాత, మీ బ్యాకప్‌ను ఎలా యాక్సెస్ చేయాలో ఇక్కడ ఉంది:</string>
-    <!-- SelectInstructionsSheet: Instruction to select the top-level backup folder -->
-    <string name="SelectInstructionsSheet__select_the_top_level_folder">మీ బ్యాకప్ నిల్వ చేసి ఉన్న ఉన్నత స్థాయి ఫోల్డర్‌ను ఎంచుకోండి</string>
-    <!-- SelectInstructionsSheet: Continue button text -->
-    <string name="SelectInstructionsSheet__continue_button">కొనసాగించు</string>
-
-    <!-- SelectLocalBackupScreen: Screen title for restoring on-device backup -->
-    <string name="SelectLocalBackupScreen__restore_on_device_backup">పరికరంలోని బ్యాకప్‌ను పునరుద్ధరించండి</string>
-    <!-- SelectLocalBackupScreen: Screen subtitle explaining the restore process -->
-    <string name="SelectLocalBackupScreen__restore_your_messages_from_the_backup_folder">మీ పరికరంలో మీరు సేవ్ చేసిన బ్యాకప్ ఫోల్డర్ నుండి మీ సందేశాలను పునరుద్ధరించండి. ఒకవేళ మీరు ఇప్పుడు పునరుద్ధరించకపోతే, తరువాత మీరు పునరుద్ధరించలేరు.</string>
-    <!-- SelectLocalBackupScreen: Button to initiate backup restoration -->
-    <string name="SelectLocalBackupScreen__restore_backup">ప్రత్యామ్నాయ పునరుద్ధరించండి</string>
-    <!-- SelectLocalBackupScreen: Button to choose an earlier backup when current is latest -->
-    <string name="SelectLocalBackupScreen__choose_an_earlier_backup">మునుపటి బ్యాకప్‌ను ఎంచుకోండి</string>
-    <!-- SelectLocalBackupScreen: Button to choose a different backup -->
-    <string name="SelectLocalBackupScreen__choose_a_different_backup">వేరే బ్యాకప్‌ను ఎంచుకోండి</string>
-    <!-- SelectLocalBackupScreen: Label for latest backup card -->
-    <string name="SelectLocalBackupScreen__your_latest_backup">మీ తాజా బ్యాకప్:</string>
-    <!-- SelectLocalBackupScreen: Label for non-latest backup card -->
-    <string name="SelectLocalBackupScreen__your_backup">మీ బ్యాకప్:</string>
-
-    <!-- SelectLocalBackupSheet: Title for backup selection bottom sheet -->
-    <string name="SelectLocalBackupSheet__choose_a_backup_to_restore">పునరుద్ధరించడానికి బ్యాకప్‌ను ఎంచుకోండి</string>
-    <!-- SelectLocalBackupSheet: Subtitle warning about choosing an older backup -->
-    <string name="SelectLocalBackupSheet__choosing_an_older_backup">పాత బ్యాకప్‌ను ఎంచుకోవడం వలన సందేశాలు లేదా మీడియాను కోల్పోయే అవకాశం ఉంది.</string>
-    <!-- SelectLocalBackupSheet: Continue button text -->
-    <string name="SelectLocalBackupSheet__continue_button">కొనసాగించు</string>
-
-    <!-- SelectLocalBackupTypeScreen: Screen title for selecting backup type -->
-    <string name="SelectLocalBackupTypeScreen__restore_on_device_backup">పరికరంలోని బ్యాకప్‌ను పునరుద్ధరించండి</string>
-    <!-- SelectLocalBackupTypeScreen: Screen subtitle explaining restore options -->
-    <string name="SelectLocalBackupTypeScreen__restore_your_messages_from_the_backup">మీరు మీ పరికరంలో సేవ్ చేసిన బ్యాకప్ నుండి మీ సందేశాలను పునరుద్ధరించండి. ఒకవేళ మీరు ఇప్పుడు పునరుద్ధరించలేకపోతే తరువాత పునరుద్ధరించలేరు.</string>
-    <!-- SelectLocalBackupTypeScreen: Button for users who saved backup as single file -->
-    <string name="SelectLocalBackupTypeScreen__i_saved_my_backup_as_a_single_file">నా బ్యాకప్‌ను ఒకే ఫైల్‌గా సేవ్ చేశాను</string>
-    <!-- SelectLocalBackupTypeScreen: Card title for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__choose_backup_folder">బ్యాకప్ ఫోల్డర్‌ను ఎంచుకోండి</string>
-    <!-- SelectLocalBackupTypeScreen: Card description for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__select_the_folder_on_your_device">మీ బ్యాకప్ నిల్వ చేసి ఉన్న మీ పరికరంలో ఫోల్డర్‌ను ఎంచుకోండి</string>
-
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">Signal Android బ్యాకప్ ఎగుమతి నెట్‌వర్క్ పొరపాటు</string>
     <!-- Email filter when contacting support on a create backup failure -->
@@ -8979,23 +8620,6 @@
     <string name="ContactSupportDialog_submit_with_debug">డీబగ్ లాగ్‌తో సమర్పించండి</string>
     <!-- Button option to not submit debug log when contacting support -->
     <string name="ContactSupportDialog_submit_without_debug">డీబగ్ లాగ్ లేకుండా సమర్పించండి</string>
-
-    <!-- Title for restore via qr screen -->
-    <string name="RestoreViaQr_title">మీ పాత ఫోన్‌తో ఈ కోడ్‌ను స్కాన్ చేయండి</string>
-    <!-- First instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_1">మీ పాత పరికరంలో Signal ను తెరవండి</string>
-    <!-- Second instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_2">కెమెరా చిహ్నాన్ని తట్టండి </string>
-    <!-- Third instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_3">కెమెరాతో ఈ కోడ్‌ను స్కాన్ చేయండి</string>
-    <!-- Error message shown when qr code could not be loaded -->
-    <string name="RestoreViaQr_qr_code_error">QR కోడ్‌ను ఉత్పత్తి చేయడం సాధ్యం కాలేదు</string>
-    <!-- Status message shown when qr code already scanned by other device -->
-    <string name="RestoreViaQr_qr_code_scanned">పాత పరికరంలో స్కాన్ చేయబడింది</string>
-    <!-- Error button text to retry getting a qr code -->
-    <string name="RestoreViaQr_retry">మళ్ళీ ప్రయత్నించు</string>
-    <!-- Error message shown when register after receiving the provisioning message failed -->
-    <string name="RestoreViaQr_registration_error">లోపం సంభవించింది మరియు మీ ఖాతాను బదిలీ చేయడం సాధ్యపడలేదు. QR కోడ్‌ను మళ్ళీ స్కాన్ చేయడం ద్వారా మళ్ళీ ప్రయత్నించండి.</string>
 
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">ఖాతాను బదిలీ చేయడం</string>
@@ -9037,19 +8661,6 @@
     <string name="RestoreCompleteBottomSheet_transfer_complete_message">మీ Signal ఖాతా మరియు సందేశాలు మీ ఇతర పరికరానికి బదిలీ చేయబడ్డాయి. ఈ పరికరంపై Signal ఇప్పుడు నిష్క్రియంగా ఉంది.</string>
     <!-- Restore Complete bottom sheet dialog button text to dismiss sheet -->
     <string name="RestoreCompleteBottomSheet_button">సరే</string>
-
-    <!-- No Backup to Restore screen title -->
-    <string name="NoBackupToRestore_title">పునరుద్ధరించడానికి ఎటువంటి బ్యాకప్ లేదు</string>
-    <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">మీరు iPhone నుండి Android కి మారుతున్నందున, మీ పాత పరికరంలో Signal సురక్షిత బ్యాకప్‌లను ప్రారంభించడం ద్వారా మీ సందేశాలు మరియు మీడియాను బదిలీ చేయడమే ఏకైక మార్గం.</string>
-    <!-- No Backup to Restore step 1 to enable backups on old device -->
-    <string name="NoBackupToRestore_step1">మీ పాత పరికరంలో Signal ను తెరవండి</string>
-    <!-- No Backup to Restore step 2 to enable backups on old device -->
-    <string name="NoBackupToRestore_step2">సెట్టింగ్‌లు &gt; బ్యాకప్‌లను తట్టండి</string>
-    <!-- No Backup to Restore step 3 to enable backups on old device -->
-    <string name="NoBackupToRestore_step3">బ్యాకప్‌లను ప్రారంభించి, మీ బ్యాకప్ పూర్తయ్యే వరకు వేచి ఉండండి</string>
-    <!-- No backup to Restore tonal cta to skip restore -->
-    <string name="NoBackupToRestore_skip_restore">పునరుద్ధరించడాన్ని దాటవేయండి</string>
 
     <!-- Dialog title when the recovery key change limit is reached -->
     <string name="MessageBackupsKeyRecordScreen__limit_reached_title">రికవరీ కీ పరిమితిని చేరుకున్నారు</string>

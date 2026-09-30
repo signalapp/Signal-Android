@@ -839,23 +839,8 @@
     <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Tiada sesiapa boleh melihat anda di Signal melainkan anda menghantar mesej kepada mereka atau mempunyai sembang sedia ada dengan mereka.</string>
 
     <!-- ChooseBackupFragment -->
-    <string name="ChooseBackupFragment__restore_from_backup">Memulihkan daripada sandaran?</string>
-    <string name="ChooseBackupFragment__restore_your_messages_and_media">Memulihkan mesej dan media anda daripada sandaran tempatan. Jika anda tidak memulihkan sekarang, anda tidak akan dapat memulihkannya selepas ini.</string>
-    <string name="ChooseBackupFragment__icon_content_description">Pulihkan daripada ikon sandaran</string>
-    <string name="ChooseBackupFragment__choose_backup">Pilih backup</string>
-    <string name="ChooseBackupFragment__learn_more">Ketahui lebih lanjut</string>
 
     <!-- RestoreBackupFragment -->
-    <string name="RestoreBackupFragment__restore_complete">Restore selesai</string>
-    <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Untuk terus menggunakan sandaran, pilih folder. Sandaran baharu akan disimpan ke lokasi ini.</string>
-    <string name="RestoreBackupFragment__choose_folder">Memilih folder</string>
-    <string name="RestoreBackupFragment__not_now">Bukan sekarang</string>
-    <!-- Couldn\'t find the selected backup -->
-    <string name="RestoreBackupFragment__backup_not_found">Sandar tidak ditemui.</string>
-    <!-- Couldn\'t read the selected backup -->
-    <string name="RestoreBackupFragment__backup_could_not_be_read">Sandar tidak boleh dibaca.</string>
-    <!-- Backup has an unsupported file extension -->
-    <string name="RestoreBackupFragment__backup_has_a_bad_extension">Sandar mempunyai sambungan teruk.</string>
 
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
@@ -1373,60 +1358,6 @@
     <string name="ManageGroupActivity_add_group_description">Tambah penerangan kumpulan…</string>
 
     <!-- RemoteRestoreActivity -->
-    <!-- Progress dialog label when downloading a backup -->
-    <string name="RemoteRestoreActivity__downloading_backup">Memuat turun sandaran…</string>
-    <!-- Progress dialog label when restoring a backup -->
-    <string name="RemoteRestoreActivity__restoring_messages">Memulihkan mesej…</string>
-    <!-- Progress dialog label when finishing a backup restore -->
-    <string name="RemoteRestoreActivity__finishing_restore">Menyelesaikan…</string>
-    <!-- Progress dialog label while awaiting updates -->
-    <string name="RemoteRestoreActivity__restoring">Memulihkan…</string>
-    <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
-    <string name="RemoteRestoreActivity__s_of_s_s">%1$s daripada %2$s (%3$s)</string>
-    <!-- Feature list media label for paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_media">Semua media anda</string>
-    <!-- Feature list media label for free tier. Placeholder is days, and is currently fixed at 30. -->
-    <string name="RemoteRestoreActivity__your_last_d_days_of_media">%1$d hari terakhir media anda</string>
-    <!-- Feature list message label for free and paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_messages">Semua mesej anda</string>
-    <!-- Screen title for restoring from backup -->
-    <string name="RemoteRestoreActivity__restore_from_backup">Pulihkan dari sandaran</string>
-    <!-- Section title for explaining what your backup includes -->
-    <string name="RemoteRestoreActivity__your_backup_includes">Sandaran anda termasuk:</string>
-    <!-- Primary action button copy for starting restoration -->
-    <string name="RemoteRestoreActivity__restore_backup">Memulihkan sandaran</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made. %1$s is replaced with the date (e.g. March 5, 2024) and %2$s is replaced with the time (e.g. 9:00am) -->
-    <string name="RemoteRestoreActivity__backup_created_at">Sandaran terakhir anda telah dibuat pada %1$s pada %2$s.</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
-    <string name="RemoteRestoreActivity__backup_created_at_with_size">Sandaran terakhir anda telah dibuat pada %1$s pada %2$s. Saiz sandaran anda ialah %3$s.</string>
-    <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
-    <string name="RemoteRestoreActivity__fetching_backup_details">Mengambil butiran sandaran…</string>
-    <!-- Text label button to skip restore from remote -->
-    <string name="RemoteRestoreActivity__skip_restore">Langkau pemulihan</string>
-    <!-- Dialog title displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__couldnt_transfer">Tidak dapat menyelesaikan pemindahan</string>
-    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Tidak dapat memulihkan sandaran</string>
-    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">Ralat berlaku semasa memulihkan sandaran anda. Sandaran anda tidak boleh dipulihkan. Sila hubungi sokongan untuk bantuan.</string>
-    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Hubungi sokongan</string>
-    <!-- Dialog message displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__error_occurred">Ralat berlaku dan akaun anda tidak dapat dipindahkan. Cuba lagi dengan memilih kaedah pemindahan anda.</string>
-    <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
-    <string name="RemoteRestoreActivity__couldnt_restore">Tidak dapat memulihkan sandaran ini</string>
-    <!-- Dialog message explaining that an update to Signal is required to restore the backup. -->
-    <string name="RemoteRestoreActivity__update_latest">Versi Signal ini tidak dapat memulihkan sandaran anda. Kemas kini kepada versi terkini dan cuba lagi.</string>
-    <!-- Text on button that when pressed will redirect them to update Signal -->
-    <string name="RemoteRestoreActivity__update_signal">Kemas Kini Signal</string>
-    <!-- Text label button to dismiss the dialog -->
-    <string name="RemoteRestoreActivity__not_now">Bukan sekarang</string>
-    <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Media anda akan dipulihkan di latar belakang. Jika anda memilih untuk tidak memulihkan sekarang, anda tidak akan dapat memulihkannya kemudian.</string>
-    <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">Peranti tidak lagi didaftarkan</string>
-    <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">Ini mungkin kerana anda mendaftarkan akaun Signal anda pada peranti lain.</string>
 
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
@@ -2165,17 +2096,6 @@
     <string name="PinRestoreLockedFragment_create_new_pin">Cipta PIN baharu</string>
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
-    <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
-    <string name="ReRegisterWithPinFragment_send_sms_code">Hantar kod SMS</string>
-    <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">Pendaftaran Signal - Perlukan Bantuan pendaftaran semula PIN untuk Android</string>
-    <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">PIN anda ialah %1$d+ kod digit yang anda buat sama ada angka atau abjad angka.\n\nJika anda tidak ingat PIN anda, anda boleh mencipta yang baharu.</string>
-    <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">Jika anda tidak ingat PIN, anda boleh mencipta yang baharu.</string>
-    <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">Anda telah kehabisan tekaan PIN, tetapi anda masih boleh mengakses akaun Signal anda dengan mencipta PIN baharu.</string>
-
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Amaran</string>
     <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Sekiranya anda menyahdayakan PIN, anda akan kehilangan semua data apabila anda mendaftar semula Signal, melainkan anda membuat sandaran dan pemulihan secara manual. Anda tidak dapat menghidupkan Kunci Pendaftaran semasa PIN dinyahdayakan.</string>
@@ -2255,6 +2175,12 @@
     <string name="WebRtcCallActivity__open_settings">Buka tetapan</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">Bukan sekarang</string>
+    <!-- Message for dialog shown at the start of a call when the system battery setting for Signal is "Restricted" -->
+    <string name="WebRtcCallActivity__others_may_not_be_able_to_hear_you_when_your_screen_turns_off">Others may not be able to hear you and the call may disconnect when your screen turns off. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
+    <!-- Title for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__others_couldnt_hear_you">Others couldn\'t hear you</string>
+    <!-- Message for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__your_microphone_was_muted_while_signal_was_in_the_background">Your microphone was muted while Signal was in the background. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
     <!-- Title for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__approve_d_requests">
         <item quantity="other">Luluskan %1$d permintaan?</item>
@@ -2549,49 +2475,19 @@
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Nombor yang anda nyatakan (%1$s) adalah tidak sah.
     </string>
 
-    <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">Adakah nombor telefon di bawah ini betul?</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
     <string name="RegistrationActivity_additional_verification_required">Pengesahan tambahan diperlukan</string>
-    <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">Kod pengesahan akan dihantar ke nombor ini. Kadar pembawa mungkin dikenakan.</string>
-    <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Anda akan terima satu kod pengesahan. Kadar caj telekomunikasi mungkin dikenakan.</string>
-    <!-- Hint text to select a country -->
-    <string name="RegistrationActivity_select_a_country">Pilih negara</string>
-    <!-- Hint text explaining that this is where the country code should go -->
-    <string name="RegistrationActivity_default_country_code">0</string>
-    <string name="RegistrationActivity_edit_number">Edit nombor</string>
-    <string name="RegistrationActivity_missing_google_play_services">Kehilangan Perkhidmatan Google Play</string>
-    <string name="RegistrationActivity_this_device_is_missing_google_play_services">Peranti ini kehilangan Perkhidmatan Google Play. Anda masih boleh gunakan Signal, tetapi konfigurasi ini boleh menyebabkan kebolehpercayaan atau prestasi yang kurang.\n\nKalau anda bukan pengguna lanjutan, tidak menjalankan ROM Android selepas jualan, atau anda percaya melihat ini kerana ralat, sila hubungi support@signal.org untuk penyelesaian masalah.</string>
-    <string name="RegistrationActivity_i_understand">Saya faham</string>
-    <string name="RegistrationActivity_play_services_error">Ralat Perkhidmatan Play</string>
-    <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Perkhidmatan Google Play sedang dikemas kini atau tidak tersedia sementara waktu. Sila cuba sekali lagi.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Anda telah membuat terlalu banyak percubaan untuk mendaftar nombor ini. Sila cuba lagi kemudian.</string>
-    <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">Anda telah membuat terlalu banyak percubaan untuk mendaftar nombor ini. Sila cuba lagi kemudian dalam masa %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Perkhidmatan tidak dapat disambungkan. Sila semak sambungan rangkaian dan cuba lagi.</string>
     <!-- Dialog error message shown when we are unable to send an SMS to the user\'s number -->
     <string name="RegistrationActivity_sms_provider_error">Kami tidak dapat menghantar SMS ke nombor anda. Sila cuba lagi dalam beberapa jam.</string>
-    <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Kami tidak dapat menghantar kod pengesahan kepada anda melalui SMS. Cuba terima kod anda melalui panggilan suara.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">Tidak dapat meminta kod pengesahan. Sila periksa sambungan rangkaian anda dan cuba lagi.</string>
-    <string name="RegistrationActivity_non_standard_number_format">Format nombor bukan standard</string>
-    <!-- Dialog message shown to confirm when entering phone number (first placeholder) is normalized and formatted differently by the app (second placeholder). -->
-    <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Nombor yang anda telah masukkan (%1$s) adalah dalam format bukan standard.\n\nAdakah anda maksudkan %2$s?</string>
-    <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Format Nombor Telefon</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="other">Anda kini %1$d langkah daripada menghantar log nyahpepijat.</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Kami perlu mengesahkan bahawa anda adalah manusia.</string>
-    <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
-    <string name="RegistrationActivity_voice_call">Panggilan suara</string>
-    <!-- Dialog button to cancel the pending action and return to the previous state. -->
-    <string name="RegistrationActivity_cancel">Batal</string>
     <string name="RegistrationActivity_next">Seterusnya</string>
-    <!-- Title of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_phone_number">Nombor telefon</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Masukkan kod yang kami hantar ke %1$s</string>
 
     <string name="RegistrationActivity_phone_number_description">Nombor telefon</string>
@@ -2785,6 +2681,8 @@
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Gagal memuatkan pek pelekat</string>
     <!-- Bottom sheet describing a sticker. First placeholder is the title of the sticker pack and second is the author -->
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
+    <!-- Bottom sheet option that opens the pack the sticker belongs to -->
+    <string name="StickerPreviewBottomSheet__view_pack">View pack</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">Simpan</string>
@@ -3510,8 +3408,6 @@
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Untuk menerima pemberitahuan panggilan, ketik Tetapan dan dayakan aktiviti latar belakang dalam tetapan \"Bateri\".</string>
 
     <!-- country_selection_fragment -->
-    <string name="country_selection_fragment__loading_countries">Memuatkan negara …</string>
-    <string name="country_selection_fragment__search">Cari</string>
 
     <string name="device_list_fragment__link_new_device">Memautkan peranti baru</string>
 
@@ -4333,6 +4229,8 @@
     <string name="conversation_selection__menu_pin_message">Pin</string>
     <!-- Button to unpin a message -->
     <string name="conversation_selection__menu_unpin_message">Nyahpin</string>
+    <!-- Button to open the sticker pack a sticker message came from -->
+    <string name="conversation_selection__menu_view_sticker_pack">View pack</string>
 
     <!-- conversation_expiring_on -->
 
@@ -4520,14 +4418,11 @@
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">Masukkan PIN anda</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Masukkan PIN yang anda buat untuk akaun anda. Ini berbeza dengan kod pengesahan SMS anda.</string>
-    <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
-    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Masukkan PIN yang anda buat untuk akaun anda.</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">PIN tidak betul. Cuba lagi.</string>
     <string name="RegistrationLockFragment__forgot_pin">Terlupa PIN?</string>
     <string name="RegistrationLockFragment__incorrect_pin">PIN tidak betul</string>
     <string name="RegistrationLockFragment__forgot_your_pin">Lupa PIN anda?</string>
     <string name="RegistrationLockFragment__not_many_tries_left">Tidak banyak percubaan yang tinggal!</string>
-    <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Pendaftaran Signal - Perlu Bantuan dengan PIN untuk Android (PIN v2)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
         <item quantity="other">Untuk privasi dan keselamatan anda, tiada cara untuk memulihkan PIN anda. Jika anda tidak ingat PIN anda, anda boleh mengesahkan semula dengan SMS selepas %1$d hari tidak aktif. Dalam kes ini, akaun anda akan dihapuskan dan semua kandungan dipadamkan.</item>
@@ -4577,22 +4472,6 @@
     <string name="backup_enable_dialog__you_must_have_this_passphrase">Anda mesti mempunyai frasa laluan ini untuk memulihkan sandaran.</string>
     <string name="backup_enable_dialog__folder">Folder</string>
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Saya telah menulis frasa laluan tersebut. Saya tidak memulihkan sandaran tanpanya.</string>
-    <string name="registration_activity__restore_backup">Memulihkan sandaran</string>
-    <!-- Text label button to skip restoring -->
-    <string name="registration_activity__skip_restore">Langkau pemulihan</string>
-    <!-- Title for dialog to enter in the backup passphrase -->
-    <string name="RegistrationActivity_enter_backup_passphrase">Masukkan frasa laluan sandaran</string>
-    <string name="RegistrationActivity_restore">Memulihkan</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">Sandaran tak dapat diimport daripada versi Signal baru</string>
-    <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
-    <string name="RegistrationActivity_backup_failure_foreign_key">Sandaran mengandungi data cacat bentuk</string>
-    <string name="RegistrationActivity_incorrect_backup_passphrase">Frasa laluan sandaran yang tidak betul</string>
-    <string name="RegistrationActivity_checking">Memeriksa…</string>
-    <string name="RegistrationActivity_d_messages_so_far">%1$d mesej setakat ini…</string>
-    <string name="RegistrationActivity_restore_from_backup">Memulihkan daripada sandaran?</string>
-    <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Memulihkan mesej dan media anda daripada sandaran tempatan. Jika anda tidak memulihkan sekarang, anda tidak akan dapat memulihkannya selepas ini.</string>
-    <string name="RegistrationActivity_backup_size_s">Saiz sandaran: %1$s</string>
-    <string name="RegistrationActivity_backup_timestamp_s">Cap waktu sandaran: %1$s</string>
     <string name="BackupDialog_enable_local_backups">Mendayakan sandaran tempatan?</string>
     <string name="BackupDialog_enable_backups">Mendayakan sandaran</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Sila perakui bahawa anda faham dengan menandakan kotak semak pengesahan.</string>
@@ -4628,7 +4507,6 @@
     <string name="RegistrationActivity_call_me_instead_available_in">Hubungi saya (%1$02d:%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
     <string name="RegistrationActivity_resend_sms_available_in">Hantar semula Kod (%1$02d:%2$02d)</string>
-    <string name="RegistrationActivity_contact_signal_support">Hubungi Sokongan Signal</string>
     <string name="RegistrationActivity_code_support_subject">Pendaftaran Signal - Kod Pengesahan untuk Android</string>
     <string name="RegistrationActivity_incorrect_code">Kod salah</string>
     <string name="BackupUtil_never">Tidak pernah</string>
@@ -4750,25 +4628,8 @@
     <string name="TransferOrRestoreFragment__restore_from_local_backup">Pulihkan sandaran setempat</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
-    <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Buka Signal pada telefon Android lama anda</string>
-    <string name="NewDeviceTransferInstructions__continue">Teruskan</string>
-    <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Ketik foto profil anda di kiri atas untuk membuka Tetapan</string>
-    <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_account">"Ketik \"Akaun\""</string>
-    <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
-    <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"Ketik \"Pindahkan Akaun\" dan kemudian \"Teruskan\" pada kedua-dua peranti"</string>
 
     <!-- NewDeviceTransferSetupFragment -->
-    <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Bersedia untuk menyambung ke peranti Android lama…</string>
-    <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Sebentar, akan tersedia sebentar lagi</string>
-    <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Menunggu peranti Android lama untuk disambungkan…</string>
-    <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal memerlukan kebenaran lokasi untuk menemui dan menyambung ke peranti Android lama anda.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal memerlukan perkhidmatan lokasi didayakan untuk menemui dan menyambung dengan peranti Android lama anda.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal memerlukan Wi-Fi untuk menemui dan menyambung dengan peranti Android lama anda. Wi-Fi perlu dihidupkan tetapi tidak perlu disambungkan ke rangkaian Wi-Fi.</string>
-    <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Maaf, nampaknya peranti ini tidak menyokong Wi-Fi Direct. Signal menggunakan Wi-Fi Direct untuk menemui dan menyambung dengan peranti Android lama anda. Anda masih boleh memulihkan sandaran untuk memulihkan akaun anda daripada peranti Android lama anda.</string>
-    <string name="NewDeviceTransferSetup__restore_a_backup">Pulihkan sandaran</string>
-    <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Ralat yang tidak dijangka berlaku semasa cuba menyambung ke peranti Android lama anda.</string>
 
     <!-- OldDeviceTransferSetupFragment -->
     <string name="OldDeviceTransferSetup__searching_for_new_android_device">Mencari peranti Android baharu…</string>
@@ -4812,9 +4673,6 @@
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Ketik Teruskan pada peranti anda yang lain…</string>
 
     <!-- NewDeviceTransferFragment -->
-    <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Tidak dapat pindah daripada versi Signal yang lebih baharu</string>
-    <!-- Error message indicating that we could not finish the user\'s device transfer. Displayed in a toast at the bottom of the screen. -->
-    <string name="NewDeviceTransfer__failure_foreign_key">Data yang dipindahkan adalah cacat bentuk</string>
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">Memindahkan data</string>
@@ -4853,10 +4711,6 @@
     <string name="OldDeviceTransferComplete__close">Tutup</string>
 
     <!-- NewDeviceTransferComplete -->
-    <string name="NewDeviceTransferComplete__transfer_successful">Pemindahan berjaya</string>
-    <string name="NewDeviceTransferComplete__transfer_complete">Pemindahan selesai</string>
-    <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">Untuk menyelesaikan proses pemindahan, anda mesti meneruskan pendaftaran.</string>
-    <string name="NewDeviceTransferComplete__continue_registration">Teruskan pendaftaran</string>
 
     <!-- DeviceToDeviceTransferService -->
     <string name="DeviceToDeviceTransferService_content_title">Pemindahan akaun</string>
@@ -8559,219 +8413,6 @@
 
     <!-- ConfirmBackupCancellationDialog -->
 
-    <!-- Row title for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">Saya mempunyai telefon lama saya</string>
-    <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_scan_qr">Imbas kod QR daripada akaun Signal semasa anda untuk bermula dengan cepat</string>
-
-    <!-- Row title for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">Saya tidak mempunyai telefon lama saya</string>
-    <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">Atau anda pasang semula Signal pada peranti yang sama</string>
-
-    <!-- Screen title for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__restore_or_transfer_account">Pulihkan atau pindahkan akaun</string>
-    <!-- Screen subtitle for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__get_your_signal_account">Dapatkan akaun Signal dan sejarah mesej anda ke peranti ini.</string>
-    <!-- Option title for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_signal_backup">Pulihkan sandaran Signal</string>
-    <!-- Option subtitle for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_your_text_messages_and_media_from">Pulihkan mesej teks dan media anda daripada pelan sandaran Signal berbayar anda.</string>
-    <!-- Option title for restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_on_device_backup">Pulihkan sandaran pada peranti</string>
-    <!-- Option subtitle fdor restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_your_messages_from">Pulihkan mesej anda daripada sandaran yang disimpan pada peranti anda.</string>
-    <!-- Option title for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__from_your_old_phone">Dari telefon lama anda</string>
-    <!-- Option subtitle for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__transfer_directly_from_old">Pindahkan terus dari Android lama anda</string>
-    <!-- Dialog title shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_title">Langkau pemulihan?</string>
-    <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">Jika anda melangkau pemulihan sekarang, anda tidak akan dapat memulihkan kemudian. Jika anda mendayakan semula sandaran selepas melangkau pemulihan, sandaran semasa anda akan digantikan dengan sejarah pemesejan baharu anda.</string>
-    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore">Langkau pemulihan</string>
-
-    <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_title">Masukkan kunci pemulihan anda</string>
-    <!-- Screen subtitle for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_subtitle">Kunci pemulihan anda ialah kod 64 aksara yang diperlukan untuk memulihkan akaun dan data anda.</string>
-    <!-- Button to skip entering recovery key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">Tiada kunci pemulihan?</string>
-    <!-- Recovery key text field hint -->
-    <string name="EnterBackupKey_backup_key">Kunci pemulihan</string>
-    <!-- Recovery key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">Sandaran tidak boleh dipulihkan tanpa kod pemulihan 64 aksara. Jika anda kehilangan kunci pemulihan, Signal tidak dapat membantu memulihkan sandaran anda.</string>
-    <!-- Recovery key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">Jika anda masih mempunyai peranti lama, anda boleh melihat kunci pemulihan anda dalam Tetapan &gt; Sandaran. Kemudian ketik Lihat kunci pemulihan.</string>
-    <!-- Recovery key not known bottom sheet button to learn more about it -->
-    <string name="EnterBackupKey_learn_more">Ketahui lebih lanjut</string>
-    <!-- Recovery key not known bottom sheet button to skip recovery key entry and resume normal reregistration -->
-    <string name="EnterBackupKey_skip_and_dont_restore">Langkau dan jangan pulihkan</string>
-    <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">Kunci pemulihan salah</string>
-    <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">Pastikan anda mendaftar dengan nombor telefon yang sama dan kunci pemulihan 64 aksara yang anda simpan ketika mendayakan Sandaran Selamat Signal. Sandaran tidak boleh dipulihkan tanpa kunci ini.</string>
-    <!-- Dialog positive button text to try entering their recovery key again -->
-    <string name="EnterBackupKey_try_again">Cuba lagi</string>
-    <!-- Dialog negative button text to get help with recovery key -->
-    <string name="EnterBackupKey_backup_key_help">Bantuan kunci pemulihan</string>
-    <!-- Text field error text when the recovery key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">Kunci pemulihan salah</string>
-    <!-- Text field error text when the recovery key is too long -->
-    <string name="EnterBackupKey_too_long_error">Terlalu panjang (%1$d/%2$d)</string>
-    <!-- Text field error when the recovery key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">Kunci pemulihan tidak sah</string>
-    <!-- Dialog title shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_not_found">Sandaran tidak ditemui</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Kunci pemulihan yang anda masukkan adalah betul, tetapi tiada sandaran yang dikaitkan dengannya. Jika anda masih mempunyai telefon lama anda, pastikan sandaran diaktifkan dan satu telah selesai dibuat, kemudian cuba lagi.</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">Anda mungkin telah tersalah memasukkan kunci pemulihan, atau anda belum melengkapkan sekurang-kurangnya satu sandaran pada peranti lama anda.\n\nPastikan anda mendaftar dengan nombor telefon dan kunci pemulihan yang sama seperti yang anda simpan semasa mendayakan Sandaran Selamat Signal, dan sahkan bahawa peranti lama anda telah melengkapkan sandaran.</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">Anda telah kehabisan percubaan kunci pemulihan. Untuk keselamatan anda, bilangan percubaan yang boleh dibuat adalah terhad. Tunggu satu jam dan cuba lagi.</string>
-    <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
-    <string name="EnterBackupKey_skip_restore">Langkau pemulihan</string>
-    <!-- Dialog title text when encountering backup restore network error -->
-    <string name="EnterBackupKey_cant_restore_backup">Tidak dapat memulihkan sandaran</string>
-    <!-- Dialog body text when encountering backup restore network error -->
-    <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">Sandaran anda tidak dapat dipulihkan sekarang. Semak sambungan internet anda dan cuba lagi. </string>
-    <!-- Dialog button text to contact support on network error -->
-    <string name="EnterBackupKey_contact_support">Hubungi sokongan</string>
-
-    <!-- Email subject when contacting support on a restore backup network issue -->
-    <string name="EnterBackupKey_network_failure_support_email">Ralat rangkaian semasa pemulihan Sandaran Signal Android</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
-    <!-- Email subject when contacting support on a permanent backup import failure -->
-    <string name="EnterBackupKey_permanent_failure_support_email">Kegagalan kekal memulihkan Sandaran Signal Android</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
-
-    <!-- EnterLocalBackupKeyScreen: Screen title for entering recovery key for local backup restore -->
-    <string name="EnterLocalBackupKeyScreen__enter_your_recovery_key">Masukkan kunci pemulihan anda</string>
-    <!-- EnterLocalBackupKeyScreen: Screen subtitle explaining what the recovery key is -->
-    <string name="EnterLocalBackupKeyScreen__your_recovery_key_is_a_64_character_code">Kunci pemulihan anda ialah kod 64 aksara yang diperlukan untuk memulihkan akaun dan data anda.</string>
-    <!-- EnterLocalBackupKeyScreen: Button text when user does not have a recovery key -->
-    <string name="EnterLocalBackupKeyScreen__no_recovery_key">Tiada kunci pemulihan?</string>
-    <!-- EnterLocalBackupKeyScreen: Button to proceed to next step -->
-    <string name="EnterLocalBackupKeyScreen__next">Seterusnya</string>
-
-    <!-- RestoreLocalBackupDialog: Error message when the selected archive fails to load -->
-    <string name="RestoreLocalBackupDialog__failed_to_load_archive">Gagal memuatkan arkib. Sila pilih direktori lain.</string>
-    <!-- RestoreLocalBackupDialog: Dismiss button for dialog -->
-    <string name="RestoreLocalBackupDialog__ok">OK</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore">Langkau pemulihan?</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user about the consequences of skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore_body">Jika anda melangkau pemulihan sekarang, anda tidak akan dapat memulihkan kemudian. Jika anda mendayakan semula sandaran selepas melangkau pemulihan, sandaran semasa anda akan digantikan dengan sejarah pemesejan baharu anda.</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the skip restore dialog -->
-    <string name="RestoreLocalBackupDialog__skip_restore_confirm">Langkau pemulihan</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm restoring a backup from a different account -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account">Pulihkan ke akaun baharu?</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user that the backup was created with a different account and they will lose group memberships -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account_body">Sandaran yang anda pulihkan telah dicipta menggunakan akaun Signal yang berbeza. Anda boleh memulihkan sandaran ini ke akaun baharu, tetapi anda tidak lagi akan menjadi ahli mana-mana kumpulan yang dipulihkan.</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the restore to new account dialog -->
-    <string name="RestoreLocalBackupDialog__restore">Memulihkan</string>
-
-    <!-- RestoreLocalBackupActivity: Toast message when backup restore fails -->
-    <string name="RestoreLocalBackupActivity__backup_restore_failed">Pemulihan sandaran gagal</string>
-    <!-- RestoreLocalBackupActivity: Screen title shown during restore -->
-    <string name="RestoreLocalBackupActivity__restoring_backup">Memulihkan sandaran</string>
-    <!-- RestoreLocalBackupActivity: Screen subtitle explaining restore duration -->
-    <string name="RestoreLocalBackupActivity__depending_on_the_size">Bergantung pada saiz sandaran anda, ini boleh mengambil masa beberapa minit.</string>
-    <!-- RestoreLocalBackupActivity: Status text while restoring messages -->
-    <string name="RestoreLocalBackupActivity__restoring_messages">Memulihkan mesej…</string>
-    <!-- RestoreLocalBackupActivity: Status text while finalizing restore -->
-    <string name="RestoreLocalBackupActivity__finalizing">Memuktamadkan…</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore is complete -->
-    <string name="RestoreLocalBackupActivity__restore_complete">Restore selesai</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore fails -->
-    <string name="RestoreLocalBackupActivity__restore_failed">Pemulihan gagal</string>
-    <!-- RestoreLocalBackupActivity: Progress text showing bytes read of total with percentage, e.g. "1.2 MB of 5.0 MB (24%)" -->
-    <string name="RestoreLocalBackupActivity__s_of_s_d_percent">%1$s daripada %2$s (%3$d%%)</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__cant_restore_backup">Tidak dapat memulihkan sandaran</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__error_occurred_while_restoring">Ralat berlaku semasa memulihkan sandaran anda. Sandaran anda tidak boleh dipulihkan. Sila hubungi sokongan untuk bantuan.</string>
-
-    <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
-    <string name="RestoreLocalBackupActivity__contact_support">Hubungi sokongan</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
-    <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">Hidupkan sandaran pada peranti?</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Untuk terus menggunakan sandaran pada peranti, anda perlu mendayakannya untuk akaun ini. Anda boleh melakukannya pada bila-bila masa melalui Tetapan &gt; Sandaran.</string>
-
-    <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__turn_on_now">Hidupkan sekarang</string>
-
-    <!-- RestoreLocalBackupActivity: Dismiss button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__not_now">Bukan sekarang</string>
-
-    <!-- RestoreLocalBackupActivity: Body text for the dialog shown after a successful restore, prompting the user to choose a backup folder -->
-    <string name="RestoreLocalBackupActivity__choose_a_folder_for_backups">Untuk terus menggunakan sandaran pada peranti, pilih folder pada peranti anda di mana sandaran baharu akan disimpan.</string>
-
-    <!-- RestoreLocalBackupActivity: Positive button label for the dialog shown after a successful restore; keeps the current backup folder -->
-    <string name="RestoreLocalBackupActivity__use_current_folder">Gunakan folder semasa</string>
-
-    <!-- RestoreLocalBackupActivity: Neutral button label for the dialog shown after a successful restore; opens folder picker to select a different backup location -->
-    <string name="RestoreLocalBackupActivity__choose_new_folder">Pilih folder baharu</string>
-
-    <!-- RestoreLocalBackupActivity: Negative button label for the dialog shown after a successful restore; disables on-device backups -->
-    <string name="RestoreLocalBackupActivity__disable_backups">Nyahdayakan sandaran</string>
-
-    <!-- SelectInstructionsSheet: Title for the select backup folder instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_folder">Pilih folder sandaran anda</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the select this folder button -->
-    <string name="SelectInstructionsSheet__tap_select_this_folder">Ketik \"Pilih folder ini\"</string>
-    <!-- SelectInstructionsSheet: Instruction not to select individual files -->
-    <string name="SelectInstructionsSheet__do_not_select_individual_files">Jangan pilih fail individu</string>
-    <!-- SelectInstructionsSheet: Title for the select backup file instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_file">Pilih fail sandaran anda</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the backup file saved to device -->
-    <string name="SelectInstructionsSheet__tap_on_the_backup_file">Ketik pada fail sandaran yang anda simpan pada peranti anda</string>
-    <!-- SelectInstructionsSheet: Subtitle explaining how to access backup after tapping continue -->
-    <string name="SelectInstructionsSheet__after_tapping_continue">Selepas mengetik \"Teruskan\", berikut ialah cara untuk mengakses sandaran anda:</string>
-    <!-- SelectInstructionsSheet: Instruction to select the top-level backup folder -->
-    <string name="SelectInstructionsSheet__select_the_top_level_folder">Pilih folder utama yang menyimpan sandaran anda</string>
-    <!-- SelectInstructionsSheet: Continue button text -->
-    <string name="SelectInstructionsSheet__continue_button">Teruskan</string>
-
-    <!-- SelectLocalBackupScreen: Screen title for restoring on-device backup -->
-    <string name="SelectLocalBackupScreen__restore_on_device_backup">Pulihkan sandaran pada peranti</string>
-    <!-- SelectLocalBackupScreen: Screen subtitle explaining the restore process -->
-    <string name="SelectLocalBackupScreen__restore_your_messages_from_the_backup_folder">Pulihkan mesej anda daripada fail sandaran yang disimpan pada peranti anda. Jika anda tidak memulihkan sekarang, anda tidak akan dapat memulihkan kemudian.</string>
-    <!-- SelectLocalBackupScreen: Button to initiate backup restoration -->
-    <string name="SelectLocalBackupScreen__restore_backup">Memulihkan sandaran</string>
-    <!-- SelectLocalBackupScreen: Button to choose an earlier backup when current is latest -->
-    <string name="SelectLocalBackupScreen__choose_an_earlier_backup">Pilih sandaran terdahulu</string>
-    <!-- SelectLocalBackupScreen: Button to choose a different backup -->
-    <string name="SelectLocalBackupScreen__choose_a_different_backup">Pilih sandaran lain</string>
-    <!-- SelectLocalBackupScreen: Label for latest backup card -->
-    <string name="SelectLocalBackupScreen__your_latest_backup">Sandaran terkini anda:</string>
-    <!-- SelectLocalBackupScreen: Label for non-latest backup card -->
-    <string name="SelectLocalBackupScreen__your_backup">Sandaran anda:</string>
-
-    <!-- SelectLocalBackupSheet: Title for backup selection bottom sheet -->
-    <string name="SelectLocalBackupSheet__choose_a_backup_to_restore">Pilih sandaran untuk dipulihkan</string>
-    <!-- SelectLocalBackupSheet: Subtitle warning about choosing an older backup -->
-    <string name="SelectLocalBackupSheet__choosing_an_older_backup">Memilih sandaran yang lebih lama boleh mengakibatkan mesej atau media hilang.</string>
-    <!-- SelectLocalBackupSheet: Continue button text -->
-    <string name="SelectLocalBackupSheet__continue_button">Teruskan</string>
-
-    <!-- SelectLocalBackupTypeScreen: Screen title for selecting backup type -->
-    <string name="SelectLocalBackupTypeScreen__restore_on_device_backup">Pulihkan sandaran pada peranti</string>
-    <!-- SelectLocalBackupTypeScreen: Screen subtitle explaining restore options -->
-    <string name="SelectLocalBackupTypeScreen__restore_your_messages_from_the_backup">Pulihkan mesej anda daripada sandaran yang disimpan pada peranti anda. Jika anda tidak memulihkan sekarang, anda tidak akan dapat memulihkan kemudian.</string>
-    <!-- SelectLocalBackupTypeScreen: Button for users who saved backup as single file -->
-    <string name="SelectLocalBackupTypeScreen__i_saved_my_backup_as_a_single_file">Saya menyimpan sandaran saya sebagai satu fail</string>
-    <!-- SelectLocalBackupTypeScreen: Card title for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__choose_backup_folder">Pilih folder sandaran</string>
-    <!-- SelectLocalBackupTypeScreen: Card description for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__select_the_folder_on_your_device">Pilih folder pada peranti anda tempat sandaran anda disimpan</string>
-
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">Ralat rangkaian semasa mengeksport Sandaran Signal Android</string>
     <!-- Email filter when contacting support on a create backup failure -->
@@ -8785,23 +8426,6 @@
     <string name="ContactSupportDialog_submit_with_debug">Hantar dengan Log Nyahpepijat</string>
     <!-- Button option to not submit debug log when contacting support -->
     <string name="ContactSupportDialog_submit_without_debug">Hantar tanpa Log Nyahpepijat</string>
-
-    <!-- Title for restore via qr screen -->
-    <string name="RestoreViaQr_title">Imbas kod ini dengan telefon lama anda</string>
-    <!-- First instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_1">Buka Signal pada peranti lama anda</string>
-    <!-- Second instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_2">Ketik ikon kamera </string>
-    <!-- Third instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_3">Imbas kod ini dengan kamera</string>
-    <!-- Error message shown when qr code could not be loaded -->
-    <string name="RestoreViaQr_qr_code_error">Tidak dapat menjana kod QR</string>
-    <!-- Status message shown when qr code already scanned by other device -->
-    <string name="RestoreViaQr_qr_code_scanned">Diimbas pada peranti lama</string>
-    <!-- Error button text to retry getting a qr code -->
-    <string name="RestoreViaQr_retry">Cuba Semula</string>
-    <!-- Error message shown when register after receiving the provisioning message failed -->
-    <string name="RestoreViaQr_registration_error">Ralat berlaku dan akaun anda tidak dapat dipindahkan. Cuba lagi dengan mengimbas kod QR sekali lagi.</string>
 
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">Pindahkan akaun</string>
@@ -8843,19 +8467,6 @@
     <string name="RestoreCompleteBottomSheet_transfer_complete_message">Akaun Signal dan mesej anda telah dipindahkan ke peranti anda yang lain. Signal kini tidak lagi aktif pada peranti ini.</string>
     <!-- Restore Complete bottom sheet dialog button text to dismiss sheet -->
     <string name="RestoreCompleteBottomSheet_button">Okey</string>
-
-    <!-- No Backup to Restore screen title -->
-    <string name="NoBackupToRestore_title">Tiada Sandaran untuk Dipulihkan</string>
-    <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">Oleh kerana anda bertukar daripada iPhone ke Android, satu-satunya cara untuk memindahkan mesej dan media anda adalah dengan mendayakan Sandaran Selamat Signal pada peranti lama anda.</string>
-    <!-- No Backup to Restore step 1 to enable backups on old device -->
-    <string name="NoBackupToRestore_step1">Buka Signal pada peranti lama anda</string>
-    <!-- No Backup to Restore step 2 to enable backups on old device -->
-    <string name="NoBackupToRestore_step2">Ketik Tetapan &gt; Sandaran</string>
-    <!-- No Backup to Restore step 3 to enable backups on old device -->
-    <string name="NoBackupToRestore_step3">Dayakan sandaran dan tunggu sehingga sandaran anda selesai</string>
-    <!-- No backup to Restore tonal cta to skip restore -->
-    <string name="NoBackupToRestore_skip_restore">Langkau pemulihan</string>
 
     <!-- Dialog title when the recovery key change limit is reached -->
     <string name="MessageBackupsKeyRecordScreen__limit_reached_title">Had kunci pemulihan dicapai</string>

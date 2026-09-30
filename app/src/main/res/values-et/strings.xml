@@ -863,23 +863,8 @@
     <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Mitte keegi ei näe, et sa oled Signalis, kui sa neile sõnumit ei saada või sul nendega juba vestlust pooleli ei ole.</string>
 
     <!-- ChooseBackupFragment -->
-    <string name="ChooseBackupFragment__restore_from_backup">Kas taastada varukoopiast?</string>
-    <string name="ChooseBackupFragment__restore_your_messages_and_media">Taasta oma sõnumid ja meedia kohalikust varukoopiast. Kui sa kohe ei taasta, ei saa seda teha ka hiljem.</string>
-    <string name="ChooseBackupFragment__icon_content_description">Varundusest taastamise ikoon</string>
-    <string name="ChooseBackupFragment__choose_backup">Vali varundus</string>
-    <string name="ChooseBackupFragment__learn_more">Rohkem infot</string>
 
     <!-- RestoreBackupFragment -->
-    <string name="RestoreBackupFragment__restore_complete">Taastamine õnnestus</string>
-    <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Varunduste kasutamise jätkamiseks palun vali kaust. Uued varundused salvestatakse sinna.</string>
-    <string name="RestoreBackupFragment__choose_folder">Vali kaust</string>
-    <string name="RestoreBackupFragment__not_now">Mitte praegu</string>
-    <!-- Couldn\'t find the selected backup -->
-    <string name="RestoreBackupFragment__backup_not_found">Varukoopiat ei leitud.</string>
-    <!-- Couldn\'t read the selected backup -->
-    <string name="RestoreBackupFragment__backup_could_not_be_read">Varukoopia ei olnud loetav.</string>
-    <!-- Backup has an unsupported file extension -->
-    <string name="RestoreBackupFragment__backup_has_a_bad_extension">Varukoopia faili laiendus on vale.</string>
 
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
@@ -1416,60 +1401,6 @@
     <string name="ManageGroupActivity_add_group_description">Lisa grupi kirjeldus…</string>
 
     <!-- RemoteRestoreActivity -->
-    <!-- Progress dialog label when downloading a backup -->
-    <string name="RemoteRestoreActivity__downloading_backup">Varukoopia allalaadimine …</string>
-    <!-- Progress dialog label when restoring a backup -->
-    <string name="RemoteRestoreActivity__restoring_messages">Sõnumite taastamine …</string>
-    <!-- Progress dialog label when finishing a backup restore -->
-    <string name="RemoteRestoreActivity__finishing_restore">Lõpuleviimine …</string>
-    <!-- Progress dialog label while awaiting updates -->
-    <string name="RemoteRestoreActivity__restoring">Taastamine …</string>
-    <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
-    <string name="RemoteRestoreActivity__s_of_s_s">%1$s kogumahust %2$s (%3$s)</string>
-    <!-- Feature list media label for paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_media">Kõik su meedia</string>
-    <!-- Feature list media label for free tier. Placeholder is days, and is currently fixed at 30. -->
-    <string name="RemoteRestoreActivity__your_last_d_days_of_media">Sinu viimase %1$d päeva meedia</string>
-    <!-- Feature list message label for free and paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_messages">Kõik su sõnumid</string>
-    <!-- Screen title for restoring from backup -->
-    <string name="RemoteRestoreActivity__restore_from_backup">Taasta varukoopiast</string>
-    <!-- Section title for explaining what your backup includes -->
-    <string name="RemoteRestoreActivity__your_backup_includes">Sinu varukoopia sisaldab järgmist:</string>
-    <!-- Primary action button copy for starting restoration -->
-    <string name="RemoteRestoreActivity__restore_backup">Taasta varukoopia</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made. %1$s is replaced with the date (e.g. March 5, 2024) and %2$s is replaced with the time (e.g. 9:00am) -->
-    <string name="RemoteRestoreActivity__backup_created_at">Sinu viimane varukoopia tehti %1$s kell %2$s.</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
-    <string name="RemoteRestoreActivity__backup_created_at_with_size">Sinu viimane varukoopia tehti %1$s kell %2$s. Sinu varukoopia suurus on %3$s.</string>
-    <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
-    <string name="RemoteRestoreActivity__fetching_backup_details">Varundamidandmete hankimine …</string>
-    <!-- Text label button to skip restore from remote -->
-    <string name="RemoteRestoreActivity__skip_restore">Jäta taastamine vahele</string>
-    <!-- Dialog title displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__couldnt_transfer">Edastust ei saanud lõpule viia</string>
-    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Varukoopiat ei saa taastada</string>
-    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">Sinu varukoopia taastamisel ilmnes viga. Sinu varukoopiat ei ole võimalik taastada. Palun võta abi saamiseks ühendust kasutajatoega.</string>
-    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Võta ühendust kasutajatoega</string>
-    <!-- Dialog message displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__error_occurred">Ilmnes viga ja sinu kontot ei saanud edastada. Vali edastuse viis ja proovi uuesti.</string>
-    <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
-    <string name="RemoteRestoreActivity__couldnt_restore">Seda varukoopiat ei saanud taastada</string>
-    <!-- Dialog message explaining that an update to Signal is required to restore the backup. -->
-    <string name="RemoteRestoreActivity__update_latest">See Signali versioon ei saa su varukoopiat taastada. Hangi uusim versioon ja proovi uuesti.</string>
-    <!-- Text on button that when pressed will redirect them to update Signal -->
-    <string name="RemoteRestoreActivity__update_signal">Uuenda Signalit</string>
-    <!-- Text label button to dismiss the dialog -->
-    <string name="RemoteRestoreActivity__not_now">Mitte praegu</string>
-    <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Sinu meedia taastamine toimub taustal. Kui sa nüüd ei taasta, ei ole võimalik ka hiljem taastada.</string>
-    <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">See seade ei ole enam registreeritud</string>
-    <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">Tõenäoliselt on see seepärast, et sa registreerisid oma Signali konto teises seadmes.</string>
 
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
@@ -2234,17 +2165,6 @@
     <string name="PinRestoreLockedFragment_create_new_pin">Loo uus PIN-kood</string>
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
-    <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
-    <string name="ReRegisterWithPinFragment_send_sms_code">Saada SMS-kood</string>
-    <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">Signalis registreerimine - vajan abi PIN-koodi Androidis uuesti registreerimiseks</string>
-    <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">Sinu PIN-kood on sinu loodud %1$d+ märgist koosnev kood, mis võib sisaldada ainult numbreid või tähti ja numbreid.\n\nKui sa ei mäleta oma PIN-koodi, saad luua uue.</string>
-    <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">Kui sa ei mäleta oma PIN-koodi, saad luua uue.</string>
-    <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">Sinu PIN-koodi sisestamiste arv on täis, kuid kui uue PIN-koodi lood, pääsed endiselt oma Signali kontole ligi.</string>
-
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Hoiatus</string>
     <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Kui keelad PIN-koodi, siis kaotad Signalisse uuesti registreerudes kõik andmed, mida sa pole käsitsi varundanud ja taastanud. Registreerimislukku pole võimalik sisse lülitada, kui PIN-kood on keelatud.</string>
@@ -2324,6 +2244,12 @@
     <string name="WebRtcCallActivity__open_settings">Ava sätted</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">Mitte praegu</string>
+    <!-- Message for dialog shown at the start of a call when the system battery setting for Signal is "Restricted" -->
+    <string name="WebRtcCallActivity__others_may_not_be_able_to_hear_you_when_your_screen_turns_off">Others may not be able to hear you and the call may disconnect when your screen turns off. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
+    <!-- Title for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__others_couldnt_hear_you">Others couldn\'t hear you</string>
+    <!-- Message for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__your_microphone_was_muted_while_signal_was_in_the_background">Your microphone was muted while Signal was in the background. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
     <!-- Title for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__approve_d_requests">
         <item quantity="one">Kas kinnitada %1$d taotlus?</item>
@@ -2639,50 +2565,20 @@
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Määratud number (%1$s) on sobimatu.
     </string>
 
-    <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">Kas sinu allpool toodud telefoninumber on korrektne?</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
     <string name="RegistrationActivity_additional_verification_required">Vajalik täiendav kontroll</string>
-    <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">Kinnituskood saadetakse sellele numbrile. Rakenduda võib teenusepakkuja tasu.</string>
-    <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Sa saad kinnituskoodi. Rakenduda võivad operaatoritasud.</string>
-    <!-- Hint text to select a country -->
-    <string name="RegistrationActivity_select_a_country">Vali riik</string>
-    <!-- Hint text explaining that this is where the country code should go -->
-    <string name="RegistrationActivity_default_country_code">0</string>
-    <string name="RegistrationActivity_edit_number">Muuda numbrit</string>
-    <string name="RegistrationActivity_missing_google_play_services">Puuduvad Google Play teenused</string>
-    <string name="RegistrationActivity_this_device_is_missing_google_play_services">Seadmest puuduvad Google Play teenused. Sa saad siiski Signalit kasutada, kuid see konfiguratsioon võib põhjustada vähendatud stabiilsust või jõudlust.\n\nKui sa pole edasijõudnud kasutaja, ei käita järelturu Androidi ROMi või arvad, et see on viga, palun kontakteeru support@signal.org, et saada abi probleemi lahendamisel.</string>
-    <string name="RegistrationActivity_i_understand">Saan aru</string>
-    <string name="RegistrationActivity_play_services_error">Play teenuste viga</string>
-    <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play teenused uuenevad või pole hetkel saadaval. Palun proovi uuesti.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Oled sooritanud liiga palju selle numbri registreerimise katseid. Palun proovi hiljem uuesti.</string>
-    <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">Oled proovinud seda numbrit liiga palju kordi registreerida. Palun proovi uuesti %1$s pärast.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Teenusega ei saadud ühendust. Palun kontrolli võrguühendust ja proovi uuesti.</string>
     <!-- Dialog error message shown when we are unable to send an SMS to the user\'s number -->
     <string name="RegistrationActivity_sms_provider_error">Me ei saa sinu numbrile SMSi saata. Palun proovi mõne tunni pärast uuesti.</string>
-    <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Me ei saanud sulle SMS-i kaudu kinnituskoodi saata. Proovi koodi saamiseks parem häälkõnet kasutada.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">Kinnituskoodi küsimine nurjus. Palun kontrolli oma võrguühendust ja proovi uuesti.</string>
-    <string name="RegistrationActivity_non_standard_number_format">Ebastandardne numbriformaat</string>
-    <!-- Dialog message shown to confirm when entering phone number (first placeholder) is normalized and formatted differently by the app (second placeholder). -->
-    <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Sisestatud number (%1$s) tundub olevat mittestandardses formaadis.\n\nKas mõtlesid hoopis %2$s?</string>
-    <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - telefoninumbri formaat</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="one">Sa oled silumislogi saatmisest %1$d sammu kaugusel.</item>
         <item quantity="other">Sa oled silumislogi saatmisest %1$d sammu kaugusel.</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Me peame kinnitama, et oled inimene.</string>
-    <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
-    <string name="RegistrationActivity_voice_call">Häälkõne</string>
-    <!-- Dialog button to cancel the pending action and return to the previous state. -->
-    <string name="RegistrationActivity_cancel">Loobu</string>
     <string name="RegistrationActivity_next">Edasi</string>
-    <!-- Title of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_phone_number">Telefoninumber</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Sisesta kood, mille saatsime numbrile %1$s</string>
 
     <string name="RegistrationActivity_phone_number_description">Telefoninumber</string>
@@ -2881,6 +2777,8 @@
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Kleepsupaki laadimine ebaõnnestus</string>
     <!-- Bottom sheet describing a sticker. First placeholder is the title of the sticker pack and second is the author -->
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
+    <!-- Bottom sheet option that opens the pack the sticker belongs to -->
+    <string name="StickerPreviewBottomSheet__view_pack">View pack</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">Salvesta</string>
@@ -3619,8 +3517,6 @@
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Kõnede teavituste saamiseks klõpsa Sätted ja luba aku sätetes taustategevused.</string>
 
     <!-- country_selection_fragment -->
-    <string name="country_selection_fragment__loading_countries">Riikide laadimine…</string>
-    <string name="country_selection_fragment__search">Otsi</string>
 
     <string name="device_list_fragment__link_new_device">Lingi uus seade</string>
 
@@ -4454,6 +4350,8 @@
     <string name="conversation_selection__menu_pin_message">Kinnita</string>
     <!-- Button to unpin a message -->
     <string name="conversation_selection__menu_unpin_message">Eemalda</string>
+    <!-- Button to open the sticker pack a sticker message came from -->
+    <string name="conversation_selection__menu_view_sticker_pack">View pack</string>
 
     <!-- conversation_expiring_on -->
 
@@ -4644,14 +4542,11 @@
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">Sisesta enda PIN-kood</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Sisesta PIN-kood, mille tegid enda konto jaoks. See erineb SMS-kontrollkoodist.</string>
-    <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
-    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Sisesta PIN-kood, mille oled oma konto jaoks loonud.</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Lubamatu PIN-kood. Proovi uuesti.</string>
     <string name="RegistrationLockFragment__forgot_pin">Unustasid PIN-koodi?</string>
     <string name="RegistrationLockFragment__incorrect_pin">Sobimatu PIN-kood</string>
     <string name="RegistrationLockFragment__forgot_your_pin">Kas unustasid PIN-koodi?</string>
     <string name="RegistrationLockFragment__not_many_tries_left">Palju katseid pole enam jäänud!</string>
-    <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signali registreerimine - vajad abi Androidi PIN-koodiga (v2 PIN)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
         <item quantity="one">Sinu privaatsuse ja turvalisuse huvides ei ole võimalik sinu PIN-koodi taastada. Kui sa ei suuda PIN-koodi meenutada, siis on sul võimalik pärast %1$d päeva konto mitteaktiivsust võimalik uuesti SMS-i abil kinnitada. Sellisel juhul su konto tühjendatakse ja kogu sisu eemaldatakse.</item>
@@ -4706,22 +4601,6 @@
     <string name="backup_enable_dialog__you_must_have_this_passphrase">Sul peab see parool olemas olema varukoopia taastamiseks.</string>
     <string name="backup_enable_dialog__folder">Kaust</string>
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Ma olen salasõna üles kirjutanud. Ilma selleta ei saa ma varukoopiat taastada.</string>
-    <string name="registration_activity__restore_backup">Taasta varukoopia</string>
-    <!-- Text label button to skip restoring -->
-    <string name="registration_activity__skip_restore">Jäta taastamine vahele</string>
-    <!-- Title for dialog to enter in the backup passphrase -->
-    <string name="RegistrationActivity_enter_backup_passphrase">Sisesta varukoopia salasõna</string>
-    <string name="RegistrationActivity_restore">Taasta</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">Uuematest Signali versioonidest ei saa varukoopiaid importida</string>
-    <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
-    <string name="RegistrationActivity_backup_failure_foreign_key">Varukoopia sisaldab valesti vormindatud andmeid</string>
-    <string name="RegistrationActivity_incorrect_backup_passphrase">Vale varukoopia salasõna</string>
-    <string name="RegistrationActivity_checking">Kontrollimine…</string>
-    <string name="RegistrationActivity_d_messages_so_far">Siiani leidsime %1$d sõnumit…</string>
-    <string name="RegistrationActivity_restore_from_backup">Kas taastada varukoopiast?</string>
-    <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Taasta oma sõnumid ja meedia kohalikust varukoopiast. Kui sa kohe ei taasta, ei saa seda teha ka hiljem.</string>
-    <string name="RegistrationActivity_backup_size_s">Varukoopia suurus: %1$s</string>
-    <string name="RegistrationActivity_backup_timestamp_s">Varukoopia ajatempel: %1$s</string>
     <string name="BackupDialog_enable_local_backups">Kas lubada kohalik varundamine?</string>
     <string name="BackupDialog_enable_backups">Luba varundamine</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Palun kinnita oma arusaamist, märkides kinnituse märkeruudu.</string>
@@ -4757,7 +4636,6 @@
     <string name="RegistrationActivity_call_me_instead_available_in">Helista mulle (%1$02d.%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
     <string name="RegistrationActivity_resend_sms_available_in">Saada kood uuesti (%1$02d.%2$02d)</string>
-    <string name="RegistrationActivity_contact_signal_support">Võta ühendust Signali kasutajatoega</string>
     <string name="RegistrationActivity_code_support_subject">Signali registreerimine - kinnituskood Androidile</string>
     <string name="RegistrationActivity_incorrect_code">Sobimatu kood</string>
     <string name="BackupUtil_never">Mitte kunagi</string>
@@ -4879,25 +4757,8 @@
     <string name="TransferOrRestoreFragment__restore_from_local_backup">Taasta kohalik varukoopia</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
-    <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Ava Signal vanas Android-seadmes</string>
-    <string name="NewDeviceTransferInstructions__continue">Jätka</string>
-    <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Sätete avamiseks klõpsa enda profiilifotol üleval vasakul</string>
-    <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_account">"Klõpsa \"Konto\""</string>
-    <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
-    <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"Klõpsa \"Konto ülekanne\" ja siis mõlemas seadmes \"Jätka\""</string>
 
     <!-- NewDeviceTransferSetupFragment -->
-    <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Valmistun ühenduma vanasse Android-seadmesse…</string>
-    <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">See võtab hetke aega, peaks varsti valmis olema</string>
-    <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Ootan vana Android-seadme ühendumist…</string>
-    <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal vajab vana Android-seadme leidmiseks ja ühendamiseks juurdepääsu asukohainfole.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal vajab sinu eelmise Android-seadme leidmiseks ja ühendumiseks ligipääsu asukohateenustele.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal vajab sinu eelmise Android-seadme leidmiseks ja ühendumiseks WiFi-t. WiFi peab olema sees, aga ei pea olema ühtegi WiFi võrku ühendatud.</string>
-    <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Vabandust, nähtavasti ei toeta see seade Wi-Fi Directi. Signal kasutab Wi-Fi Directi sinu vana Android-seadme tuvastamiseks ja sellega ühenduse loomiseks. Siiski saad taastada oma konto vanast seadmest ka varukoopia kaudu.</string>
-    <string name="NewDeviceTransferSetup__restore_a_backup">Taasta varukoopia</string>
-    <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Sinu vana Android-seadmega ühenduse loomisel tekkis ootamatu tõrge.</string>
 
     <!-- OldDeviceTransferSetupFragment -->
     <string name="OldDeviceTransferSetup__searching_for_new_android_device">Uue Android-seadme otsimine…</string>
@@ -4941,9 +4802,6 @@
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Toksa teisel seadmel \"Jätka\"…</string>
 
     <!-- NewDeviceTransferFragment -->
-    <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Ülekandmine uuematest Signali versioonidest ei ole võimalik</string>
-    <!-- Error message indicating that we could not finish the user\'s device transfer. Displayed in a toast at the bottom of the screen. -->
-    <string name="NewDeviceTransfer__failure_foreign_key">Edastatud andmed olid valesti vormindatud</string>
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">Andmete ülekandmine</string>
@@ -4982,10 +4840,6 @@
     <string name="OldDeviceTransferComplete__close">Sulge</string>
 
     <!-- NewDeviceTransferComplete -->
-    <string name="NewDeviceTransferComplete__transfer_successful">Ülekanne õnnestus</string>
-    <string name="NewDeviceTransferComplete__transfer_complete">Ülekanne lõpetatud</string>
-    <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">Ülekandmise protsessi lõpetamiseks pead jätkama konto registreerimisega.</string>
-    <string name="NewDeviceTransferComplete__continue_registration">Jätka registreerimist</string>
 
     <!-- DeviceToDeviceTransferService -->
     <string name="DeviceToDeviceTransferService_content_title">Konto ülekanne</string>
@@ -8753,219 +8607,6 @@
 
     <!-- ConfirmBackupCancellationDialog -->
 
-    <!-- Row title for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">Mul on mu vana telefon alles</string>
-    <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_scan_qr">Kiiresti alustamiseks skanni oma praeguse Signali konto alt QR-kood</string>
-
-    <!-- Row title for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">Mul ei ole mu vana telefoni</string>
-    <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">Või paigaldad Signalit uuesti samasse seadmesse</string>
-
-    <!-- Screen title for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__restore_or_transfer_account">Taasta või edasta konto</string>
-    <!-- Screen subtitle for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__get_your_signal_account">Liiguta oma Signali konto ja sõnumiajalugu sellesse seadmesse.</string>
-    <!-- Option title for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_signal_backup">Taasta Signali varukoopia</string>
-    <!-- Option subtitle for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_your_text_messages_and_media_from">Taasta oma tekstisõnumid ja meedia oma Signali varukoopia plaani kaudu.</string>
-    <!-- Option title for restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_on_device_backup">Seadmesisese varukoopia taastamine</string>
-    <!-- Option subtitle fdor restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_your_messages_from">Taasta oma sõnumid sinu seadmesse salvestatud varukoopiast.</string>
-    <!-- Option title for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__from_your_old_phone">Sinu vanast telefonist</string>
-    <!-- Option subtitle for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__transfer_directly_from_old">Edasta otse oma vanast Android-seadmest</string>
-    <!-- Dialog title shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_title">Kas jätta taastamine vahele?</string>
-    <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">Kui sa nüüd ei taasta, siis sa ei saa ka hiljem taastada. Kui lubad varundamise uuesti pärast taastamise vahelejätmist, asendatakse sinu praegune varukoopia uue sõnumijalooga.</string>
-    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore">Jäta taastamine vahele</string>
-
-    <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_title">Sisesta oma varukoopia võti</string>
-    <!-- Screen subtitle for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_subtitle">Sinu varukoopia võti on 64-kohaline kood, mida on vaja sinu andmete ja konto taastamiseks.</string>
-    <!-- Button to skip entering recovery key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">Kas sul ei ole varukoopia võtit?</string>
-    <!-- Recovery key text field hint -->
-    <string name="EnterBackupKey_backup_key">Varukoopia võti</string>
-    <!-- Recovery key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">Ilma 64-kohalise koodita ei saa varukoopiat taastada. Kui oled oma varukoopia võtme kaotanud, ei saa Signal sul aidata varukoopiat taastada.</string>
-    <!-- Recovery key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">Kui sul on vana seade alles, saad vaadata oma varukoopia võtit, kui valid Sätted &gt; Varukoopiad. Seejärel vali „Vaata varukoopia võtit“.</string>
-    <!-- Recovery key not known bottom sheet button to learn more about it -->
-    <string name="EnterBackupKey_learn_more">Rohkem teavet</string>
-    <!-- Recovery key not known bottom sheet button to skip recovery key entry and resume normal reregistration -->
-    <string name="EnterBackupKey_skip_and_dont_restore">Jäta vahele ja ära taasta</string>
-    <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">Vale varukoopia võti</string>
-    <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">Veendu, et kasutad registreerimisel sama telefoninumbrit ja 64-kohalist varukoopia võtit, mille salvestasid Signali turvalisi varukoopiaid seadistades. Ilma selle võtmeta ei ole võimalik varukoopiaid taastada.</string>
-    <!-- Dialog positive button text to try entering their recovery key again -->
-    <string name="EnterBackupKey_try_again">Proovi uuesti</string>
-    <!-- Dialog negative button text to get help with recovery key -->
-    <string name="EnterBackupKey_backup_key_help">Varukoopia võtme abi</string>
-    <!-- Text field error text when the recovery key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">Vale varukoopia võti</string>
-    <!-- Text field error text when the recovery key is too long -->
-    <string name="EnterBackupKey_too_long_error">Liiga pikk (%1$d/%2$d)</string>
-    <!-- Text field error when the recovery key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">Kehtetu varukoopia võti</string>
-    <!-- Dialog title shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_not_found">Varukoopiat ei leitud</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Sinu sisestatud varukoopia võti on õige, kuid sellega ei ole seotud ühtegi varukoopiat. Kui sul on vana telefon endiselt olemas, veendu, et varundamine on lubatud ja lõpule viidud, ning proovi uuesti.</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">Võib-olla sisestasid varukoopia võtme valesti või pole sa oma vanas seadmes vähemalt ühte varukoopiat teinud.\n\nVeendu, et kasutad registreerimisel sama telefoninumbrit ja varukoopia võtit, mille salvestasid Signali turvalisi varukoopiaid seadistades ning kinnita et su vanas seadmes on varukoopia tehtud.</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">Varukoopia võtme sisestamise katsete arv on otsa saanud. Sinu turvalisuse huvides on katsete arv piiratud. Oota üks tund ja proovi uuesti.</string>
-    <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
-    <string name="EnterBackupKey_skip_restore">Jäta taastamine vahele</string>
-    <!-- Dialog title text when encountering backup restore network error -->
-    <string name="EnterBackupKey_cant_restore_backup">Varukoopiat ei saa taastada</string>
-    <!-- Dialog body text when encountering backup restore network error -->
-    <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">Sinu varukoopiat ei saa praegu taastada. Kontrolli oma võrguühendust ja proovi uuesti. </string>
-    <!-- Dialog button text to contact support on network error -->
-    <string name="EnterBackupKey_contact_support">Võta ühendust kasutajatoega</string>
-
-    <!-- Email subject when contacting support on a restore backup network issue -->
-    <string name="EnterBackupKey_network_failure_support_email">Signal Androidi varukoopia taastamise võrguviga</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
-    <!-- Email subject when contacting support on a permanent backup import failure -->
-    <string name="EnterBackupKey_permanent_failure_support_email">Püsiv tõrge Signal Androidi varukoopia taastamisel</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
-
-    <!-- EnterLocalBackupKeyScreen: Screen title for entering recovery key for local backup restore -->
-    <string name="EnterLocalBackupKeyScreen__enter_your_recovery_key">Sisesta oma varukoopia võti</string>
-    <!-- EnterLocalBackupKeyScreen: Screen subtitle explaining what the recovery key is -->
-    <string name="EnterLocalBackupKeyScreen__your_recovery_key_is_a_64_character_code">Sinu varukoopia võti on 64-kohaline kood, mida on vaja sinu andmete ja konto taastamiseks.</string>
-    <!-- EnterLocalBackupKeyScreen: Button text when user does not have a recovery key -->
-    <string name="EnterLocalBackupKeyScreen__no_recovery_key">Kas sul ei ole varukoopia võtit?</string>
-    <!-- EnterLocalBackupKeyScreen: Button to proceed to next step -->
-    <string name="EnterLocalBackupKeyScreen__next">Edasi</string>
-
-    <!-- RestoreLocalBackupDialog: Error message when the selected archive fails to load -->
-    <string name="RestoreLocalBackupDialog__failed_to_load_archive">Arhiivi laadimine ebaõnnestus. Palun vali teine kataloog.</string>
-    <!-- RestoreLocalBackupDialog: Dismiss button for dialog -->
-    <string name="RestoreLocalBackupDialog__ok">OK</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore">Kas jätta taastamine vahele?</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user about the consequences of skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore_body">Kui sa nüüd ei taasta, siis sa ei saa ka hiljem taastada. Kui lubad varundamise uuesti pärast taastamise vahelejätmist, asendatakse sinu praegune varukoopia uue sõnumijalooga.</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the skip restore dialog -->
-    <string name="RestoreLocalBackupDialog__skip_restore_confirm">Jäta taastamine vahele</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm restoring a backup from a different account -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account">Kas taastada uuele kontole?</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user that the backup was created with a different account and they will lose group memberships -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account_body">Varukoopia, mida sa taastad, loodi teise Signali konto kaudu. Sa saad seda varukoopiat uuele kontole taastada, kuid sa ei ole enam taastatud gruppide liige.</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the restore to new account dialog -->
-    <string name="RestoreLocalBackupDialog__restore">Taasta</string>
-
-    <!-- RestoreLocalBackupActivity: Toast message when backup restore fails -->
-    <string name="RestoreLocalBackupActivity__backup_restore_failed">Varukoopia taastamine ebaõnnestus</string>
-    <!-- RestoreLocalBackupActivity: Screen title shown during restore -->
-    <string name="RestoreLocalBackupActivity__restoring_backup">Varukoopia taastamine</string>
-    <!-- RestoreLocalBackupActivity: Screen subtitle explaining restore duration -->
-    <string name="RestoreLocalBackupActivity__depending_on_the_size">Olenevalt varukoopia suurusest võib selleks kuluda mõni minut.</string>
-    <!-- RestoreLocalBackupActivity: Status text while restoring messages -->
-    <string name="RestoreLocalBackupActivity__restoring_messages">Sõnumite taastamine …</string>
-    <!-- RestoreLocalBackupActivity: Status text while finalizing restore -->
-    <string name="RestoreLocalBackupActivity__finalizing">Viimane lihv …</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore is complete -->
-    <string name="RestoreLocalBackupActivity__restore_complete">Taastamine õnnestus</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore fails -->
-    <string name="RestoreLocalBackupActivity__restore_failed">Taastamine ebaõnnestus</string>
-    <!-- RestoreLocalBackupActivity: Progress text showing bytes read of total with percentage, e.g. "1.2 MB of 5.0 MB (24%)" -->
-    <string name="RestoreLocalBackupActivity__s_of_s_d_percent">%1$s kogumahust %2$s (%3$d%%)</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__cant_restore_backup">Varukoopiat ei saa taastada</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__error_occurred_while_restoring">Sinu varukoopia taastamisel ilmnes viga. Sinu varukoopiat ei ole võimalik taastada. Palun võta abi saamiseks ühendust kasutajatoega.</string>
-
-    <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
-    <string name="RestoreLocalBackupActivity__contact_support">Võta ühendust kasutajatoega</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
-    <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">Kas lülitada seadmesisesed varukoopiad sisse?</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Selleks, et jätkata seadmesiseste varukoopiate kasutamist, pead need selle konto jaoks lubama. Saad seda igal ajal teha, valides Sätted &gt; Varukoopiad.</string>
-
-    <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__turn_on_now">Lülita kohe sisse</string>
-
-    <!-- RestoreLocalBackupActivity: Dismiss button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__not_now">Mitte praegu</string>
-
-    <!-- RestoreLocalBackupActivity: Body text for the dialog shown after a successful restore, prompting the user to choose a backup folder -->
-    <string name="RestoreLocalBackupActivity__choose_a_folder_for_backups">Selleks, et jätkata seadmesiseste varukoopiate kasutamist, vali oma seadmes uus kaust, kuhu uued varukoopiad salvestatakse.</string>
-
-    <!-- RestoreLocalBackupActivity: Positive button label for the dialog shown after a successful restore; keeps the current backup folder -->
-    <string name="RestoreLocalBackupActivity__use_current_folder">Kasuta praegust kausta</string>
-
-    <!-- RestoreLocalBackupActivity: Neutral button label for the dialog shown after a successful restore; opens folder picker to select a different backup location -->
-    <string name="RestoreLocalBackupActivity__choose_new_folder">Vali uus kaust</string>
-
-    <!-- RestoreLocalBackupActivity: Negative button label for the dialog shown after a successful restore; disables on-device backups -->
-    <string name="RestoreLocalBackupActivity__disable_backups">Lülita varukoopiad välja</string>
-
-    <!-- SelectInstructionsSheet: Title for the select backup folder instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_folder">Vali oma varukoopia kaust</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the select this folder button -->
-    <string name="SelectInstructionsSheet__tap_select_this_folder">Puuduta valikut „Vali see kaust”</string>
-    <!-- SelectInstructionsSheet: Instruction not to select individual files -->
-    <string name="SelectInstructionsSheet__do_not_select_individual_files">Ära vali üksikuid faile</string>
-    <!-- SelectInstructionsSheet: Title for the select backup file instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_file">Vali oma varukoopia fail</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the backup file saved to device -->
-    <string name="SelectInstructionsSheet__tap_on_the_backup_file">Puuduta oma seadmesse salvestatud varukoopiafaili</string>
-    <!-- SelectInstructionsSheet: Subtitle explaining how to access backup after tapping continue -->
-    <string name="SelectInstructionsSheet__after_tapping_continue">Pärast nupul „Jätka” klõpsamist pääsed oma varukoopiale ligi järgmiselt.</string>
-    <!-- SelectInstructionsSheet: Instruction to select the top-level backup folder -->
-    <string name="SelectInstructionsSheet__select_the_top_level_folder">Vali kõrgema taseme kaust, kuhu sinu varukoopia on salvestatud</string>
-    <!-- SelectInstructionsSheet: Continue button text -->
-    <string name="SelectInstructionsSheet__continue_button">Jätka</string>
-
-    <!-- SelectLocalBackupScreen: Screen title for restoring on-device backup -->
-    <string name="SelectLocalBackupScreen__restore_on_device_backup">Seadmesisese varukoopia taastamine</string>
-    <!-- SelectLocalBackupScreen: Screen subtitle explaining the restore process -->
-    <string name="SelectLocalBackupScreen__restore_your_messages_from_the_backup_folder">Taasta oma sõnumid sinu seadmesse salvestatud varukoopiakaustast. Kui sa nüüd ei taasta, siis sa ei saa ka hiljem taastada.</string>
-    <!-- SelectLocalBackupScreen: Button to initiate backup restoration -->
-    <string name="SelectLocalBackupScreen__restore_backup">Taasta varukoopia</string>
-    <!-- SelectLocalBackupScreen: Button to choose an earlier backup when current is latest -->
-    <string name="SelectLocalBackupScreen__choose_an_earlier_backup">Vali varasem varukoopia</string>
-    <!-- SelectLocalBackupScreen: Button to choose a different backup -->
-    <string name="SelectLocalBackupScreen__choose_a_different_backup">Vali teine varukoopia</string>
-    <!-- SelectLocalBackupScreen: Label for latest backup card -->
-    <string name="SelectLocalBackupScreen__your_latest_backup">Sinu viimane varukoopia:</string>
-    <!-- SelectLocalBackupScreen: Label for non-latest backup card -->
-    <string name="SelectLocalBackupScreen__your_backup">Sinu varukoopia:</string>
-
-    <!-- SelectLocalBackupSheet: Title for backup selection bottom sheet -->
-    <string name="SelectLocalBackupSheet__choose_a_backup_to_restore">Valige taastamiseks varukoopia</string>
-    <!-- SelectLocalBackupSheet: Subtitle warning about choosing an older backup -->
-    <string name="SelectLocalBackupSheet__choosing_an_older_backup">Vanema varukoopia valimine võib kaasa tuua sõnumite või meedia kadumise.</string>
-    <!-- SelectLocalBackupSheet: Continue button text -->
-    <string name="SelectLocalBackupSheet__continue_button">Jätka</string>
-
-    <!-- SelectLocalBackupTypeScreen: Screen title for selecting backup type -->
-    <string name="SelectLocalBackupTypeScreen__restore_on_device_backup">Seadmesisese varukoopia taastamine</string>
-    <!-- SelectLocalBackupTypeScreen: Screen subtitle explaining restore options -->
-    <string name="SelectLocalBackupTypeScreen__restore_your_messages_from_the_backup">Taasta oma sõnumid sinu seadmesse salvestatud varukoopiast. Kui sa nüüd ei taasta, siis sa ei saa ka hiljem taastada.</string>
-    <!-- SelectLocalBackupTypeScreen: Button for users who saved backup as single file -->
-    <string name="SelectLocalBackupTypeScreen__i_saved_my_backup_as_a_single_file">Salvestasin oma varukoopia ühe failina</string>
-    <!-- SelectLocalBackupTypeScreen: Card title for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__choose_backup_folder">Vali varukoopia kaust</string>
-    <!-- SelectLocalBackupTypeScreen: Card description for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__select_the_folder_on_your_device">Vali oma seadmes kaust, kuhu sinu varukoopia on salvestatud</string>
-
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">Signal Androidi varukoopia eksportimise võrguviga</string>
     <!-- Email filter when contacting support on a create backup failure -->
@@ -8979,23 +8620,6 @@
     <string name="ContactSupportDialog_submit_with_debug">Postita koos silumislogiga</string>
     <!-- Button option to not submit debug log when contacting support -->
     <string name="ContactSupportDialog_submit_without_debug">Postita ilma silumislogita</string>
-
-    <!-- Title for restore via qr screen -->
-    <string name="RestoreViaQr_title">Skanni oma vana telefoniga see kood</string>
-    <!-- First instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_1">Ava Signal oma vanas seadmes</string>
-    <!-- Second instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_2">Toksa kaamera ikooni </string>
-    <!-- Third instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_3">Skanni kaameraga see kood</string>
-    <!-- Error message shown when qr code could not be loaded -->
-    <string name="RestoreViaQr_qr_code_error">QR-koodi ei saanud luua</string>
-    <!-- Status message shown when qr code already scanned by other device -->
-    <string name="RestoreViaQr_qr_code_scanned">Vanas seadmes skannitud</string>
-    <!-- Error button text to retry getting a qr code -->
-    <string name="RestoreViaQr_retry">Proovi uuesti</string>
-    <!-- Error message shown when register after receiving the provisioning message failed -->
-    <string name="RestoreViaQr_registration_error">Ilmnes viga ja sinu kontot ei saanud edastada. Skanni QR-kood uuesti ning proovi uuesti.</string>
 
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">Kanna konto üle</string>
@@ -9037,19 +8661,6 @@
     <string name="RestoreCompleteBottomSheet_transfer_complete_message">Sinu Signali konto ja sõnumid on edastatud su teise seadmesse. Signal on selles seadmes nüüd mitteaktiivne.</string>
     <!-- Restore Complete bottom sheet dialog button text to dismiss sheet -->
     <string name="RestoreCompleteBottomSheet_button">Olgu</string>
-
-    <!-- No Backup to Restore screen title -->
-    <string name="NoBackupToRestore_title">Ühtegi varukoopiat taastamiseks ei ole</string>
-    <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">Kuna liigud iPhone\'ist Androidi, on ainus viis sõnumite ja meedia edastamiseks lülitada vanas seadmes sisse Signali turvalised varukoopiad.</string>
-    <!-- No Backup to Restore step 1 to enable backups on old device -->
-    <string name="NoBackupToRestore_step1">Ava Signal oma vanas seadmes</string>
-    <!-- No Backup to Restore step 2 to enable backups on old device -->
-    <string name="NoBackupToRestore_step2">Vali Sätted &gt; Varukoopiad</string>
-    <!-- No Backup to Restore step 3 to enable backups on old device -->
-    <string name="NoBackupToRestore_step3">Lülita varundamine sisse ja oota, kuni see lõpule jõuab</string>
-    <!-- No backup to Restore tonal cta to skip restore -->
-    <string name="NoBackupToRestore_skip_restore">Jäta taastamine vahele</string>
 
     <!-- Dialog title when the recovery key change limit is reached -->
     <string name="MessageBackupsKeyRecordScreen__limit_reached_title">Varukoopia võtmete limiit on täis</string>

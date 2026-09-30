@@ -863,23 +863,8 @@
     <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Ezingo du inork ikusi Signal-en zaudela, salbu eta mezuak bidaltzen badituzu edo lehendik txaten bat baduzu norbaitekin.</string>
 
     <!-- ChooseBackupFragment -->
-    <string name="ChooseBackupFragment__restore_from_backup">Babeskopia berreskuratu?</string>
-    <string name="ChooseBackupFragment__restore_your_messages_and_media">Leheneratu babeskopia lokal bateko mezuak eta multimedia-edukiak. Orain leheneratu ezean, gero ezingo duzu.</string>
-    <string name="ChooseBackupFragment__icon_content_description">Babeskopiaren ikonotik leheneratu</string>
-    <string name="ChooseBackupFragment__choose_backup">Aukeratu babeskopia</string>
-    <string name="ChooseBackupFragment__learn_more">Gehiago jakin</string>
 
     <!-- RestoreBackupFragment -->
-    <string name="RestoreBackupFragment__restore_complete">Leheneratzea osatuta</string>
-    <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Babeskopiak erabiltzen jarraitzeko, mesedez karpeta bat hautatu. Babeskopia berriak kokapen honetan gordeko dira.</string>
-    <string name="RestoreBackupFragment__choose_folder">Aukeratu karpeta</string>
-    <string name="RestoreBackupFragment__not_now">Orain ez</string>
-    <!-- Couldn\'t find the selected backup -->
-    <string name="RestoreBackupFragment__backup_not_found">Ez da aurkitu babeskopia.</string>
-    <!-- Couldn\'t read the selected backup -->
-    <string name="RestoreBackupFragment__backup_could_not_be_read">Ezin izan da irakurri babeskopia.</string>
-    <!-- Backup has an unsupported file extension -->
-    <string name="RestoreBackupFragment__backup_has_a_bad_extension">Babeskopiaren luzapenak ez du balio.</string>
 
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
@@ -1416,60 +1401,6 @@
     <string name="ManageGroupActivity_add_group_description">Gehitu taldearen deskribapena…</string>
 
     <!-- RemoteRestoreActivity -->
-    <!-- Progress dialog label when downloading a backup -->
-    <string name="RemoteRestoreActivity__downloading_backup">Babeskopia deskargatzen…</string>
-    <!-- Progress dialog label when restoring a backup -->
-    <string name="RemoteRestoreActivity__restoring_messages">Mezuak leheneratzen…</string>
-    <!-- Progress dialog label when finishing a backup restore -->
-    <string name="RemoteRestoreActivity__finishing_restore">Amaitzen…</string>
-    <!-- Progress dialog label while awaiting updates -->
-    <string name="RemoteRestoreActivity__restoring">Leheneratzen…</string>
-    <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
-    <string name="RemoteRestoreActivity__s_of_s_s">%1$s / %2$s (%3$s)</string>
-    <!-- Feature list media label for paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_media">Multimedia-eduki guztia</string>
-    <!-- Feature list media label for free tier. Placeholder is days, and is currently fixed at 30. -->
-    <string name="RemoteRestoreActivity__your_last_d_days_of_media">Azken %1$d egunetako multimedia-edukia</string>
-    <!-- Feature list message label for free and paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_messages">Mezu guztiak</string>
-    <!-- Screen title for restoring from backup -->
-    <string name="RemoteRestoreActivity__restore_from_backup">Babeskopia berreskuratu</string>
-    <!-- Section title for explaining what your backup includes -->
-    <string name="RemoteRestoreActivity__your_backup_includes">Babeskopian, hauek gordetzen dira:</string>
-    <!-- Primary action button copy for starting restoration -->
-    <string name="RemoteRestoreActivity__restore_backup">Berreskuratu babeskopia</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made. %1$s is replaced with the date (e.g. March 5, 2024) and %2$s is replaced with the time (e.g. 9:00am) -->
-    <string name="RemoteRestoreActivity__backup_created_at">Azken babeskopia: %1$s (%2$s).</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
-    <string name="RemoteRestoreActivity__backup_created_at_with_size">Azken babeskopia: %1$s (%2$s). Babeskopiaren tamaina: %3$s.</string>
-    <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
-    <string name="RemoteRestoreActivity__fetching_backup_details">Babeskopiaren xehetasunak lortzen…</string>
-    <!-- Text label button to skip restore from remote -->
-    <string name="RemoteRestoreActivity__skip_restore">Saltatu leheneratzeko aukera</string>
-    <!-- Dialog title displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__couldnt_transfer">Ezin izan da osatu transferentzia</string>
-    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Ezin da babeskopia leheneratu</string>
-    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">Errore bat izan da babeskopia leheneratzean. Babeskopia ezin da berreskuratu. Laguntza lortzeko, jarri harremanetan laguntza-zerbitzuarekin.</string>
-    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Jarri harremanetan laguntza-zerbitzuarekin</string>
-    <!-- Dialog message displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__error_occurred">Errore bat gertatu da eta ezin izan da transferitu zure kontua. Saiatu berriro transferentzia-metodo bat aukeratuta.</string>
-    <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
-    <string name="RemoteRestoreActivity__couldnt_restore">Ezin izan da leheneratu babeskopia hau</string>
-    <!-- Dialog message explaining that an update to Signal is required to restore the backup. -->
-    <string name="RemoteRestoreActivity__update_latest">Signal-en bertsio honek ezin du leheneratu babeskopia. Egunera ezazu azken bertsiora eta saiatu berriro.</string>
-    <!-- Text on button that when pressed will redirect them to update Signal -->
-    <string name="RemoteRestoreActivity__update_signal">Eguneratu Signal</string>
-    <!-- Text label button to dismiss the dialog -->
-    <string name="RemoteRestoreActivity__not_now">Orain ez</string>
-    <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Multimedia-edukia atzeko planoan leheneratuko da. Orain leheneratzea aukeratu ezean, ezingo dituzu geroago leheneratu.</string>
-    <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">Gailu hau jada ez dago erregistratuta</string>
-    <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">Ziurrenik Signal-eko kontua beste gailu batean erregistratu duzulako gertatu da hori.</string>
 
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
@@ -2234,17 +2165,6 @@
     <string name="PinRestoreLockedFragment_create_new_pin">Sortu PIN berria</string>
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
-    <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
-    <string name="ReRegisterWithPinFragment_send_sms_code">Bidali SMS kodea</string>
-    <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">Signal-eko erregistroa: Laguntza behar dut Android-erako PINa berriro erregistratzeko</string>
-    <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">PINa zeuk sortutako kode bat da, %1$d digitu baino gehiagokoa, eta zenbakizkoa nahiz alfanumerikoa izan daiteke.\n\nPINa gogoratzen ez baduzu, beste bat sor dezakezu.</string>
-    <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">PINa gogoratzen ez baduzu, beste bat sor dezakezu.</string>
-    <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">PINa idazteko saiakerak agortu zaizkizu, baina, beste PIN bat sortzen baduzu, oraindik ere Signal-eko kontuan sar zaitezke.</string>
-
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Markatutako zenbakia ez dago Signal-era erregistratuta. SMS bidez gonbidatu nahiko zenuke?</string>
     <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">PINa desgaitzen baduzu, datu guztiak galduko dituzu Signal berriro erregistratzen duzunean, babeskopiak eskuz egin eta leheneratu ezean. PINa desgaituta badago, ezin duzu aktibatu erregistratzeko blokeoa.</string>
@@ -2324,6 +2244,12 @@
     <string name="WebRtcCallActivity__open_settings">Ireki ezarpenak</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">Orain ez</string>
+    <!-- Message for dialog shown at the start of a call when the system battery setting for Signal is "Restricted" -->
+    <string name="WebRtcCallActivity__others_may_not_be_able_to_hear_you_when_your_screen_turns_off">Others may not be able to hear you and the call may disconnect when your screen turns off. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
+    <!-- Title for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__others_couldnt_hear_you">Others couldn\'t hear you</string>
+    <!-- Message for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__your_microphone_was_muted_while_signal_was_in_the_background">Your microphone was muted while Signal was in the background. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
     <!-- Title for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__approve_d_requests">
         <item quantity="one">Eskaera %1$d onartu nahi duzu?</item>
@@ -2639,50 +2565,20 @@
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Zehaztu duzun zenbakia (%1$s) baliogabea da.
     </string>
 
-    <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">Zuzena al da beheko telefono-zenbakia?</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
     <string name="RegistrationActivity_additional_verification_required">Egiaztapen osagarria behar da</string>
-    <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">Zenbaki honetara egiaztapen-kode bat bidaliko da. Baliteke operadorearen tarifak aplikatzea.</string>
-    <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Berifikazio kode bat jasoko duzu. Operadoreak tarifa bat jarri dezake.</string>
-    <!-- Hint text to select a country -->
-    <string name="RegistrationActivity_select_a_country">Hautatu herrialdea</string>
-    <!-- Hint text explaining that this is where the country code should go -->
-    <string name="RegistrationActivity_default_country_code">0</string>
-    <string name="RegistrationActivity_edit_number">Zenbakia editatu</string>
-    <string name="RegistrationActivity_missing_google_play_services">Ez dira topatzen Google Play-ren zerbitzuak</string>
-    <string name="RegistrationActivity_this_device_is_missing_google_play_services">Ez dago Google Play Services-ik gailu honetan. Signal erabili dezakezu, baina konfigurazio honek fidagarritasuna edo errendimendua gutxiagotu dezake.\n\nErabiltzaile aurreratua ez bazara, jatorrizkoa ez den Android ROM bat erabiltzen ari ez bazara edo hau errore bat dela uste baduzu, mesedez jarri zaitez harremanetan support@signal.org helbidean.</string>
-    <string name="RegistrationActivity_i_understand">Ulertzen dut</string>
-    <string name="RegistrationActivity_play_services_error">Play Services-en Errorea</string>
-    <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services eguneratzen ari da edo tenporalki ez dago erabilgarri. Mesedez, berriro saia zaitez.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Zenbakia erregistratzeko saiakera gehiegi egin dituzu. Mesedez, saia zaitez beranduago.</string>
-    <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">Saiakera gehiegi egin dituzu zenbaki hau erregistratzeko. Saiatu berriro denbora hau igarotakoan: %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Ezin da zerbitzura konektatu. Egiaztatu sarearen ezarpenak eta saiatu berriz.</string>
     <!-- Dialog error message shown when we are unable to send an SMS to the user\'s number -->
     <string name="RegistrationActivity_sms_provider_error">Ezin dugu bidali SMSrik zure telefono-zenbakira. Saiatu berriro ordu batzuen buruan.</string>
-    <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Ezin izan dizugu egiaztapen-koderik bidali SMS bidez. Horren ordez, saiatu kodea ahots-dei bidez jasotzen.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">Ezin da egiaztapen-koderik eskatu. Egiaztatu sarera konektatuta zaudela eta saiatu berriro.</string>
-    <string name="RegistrationActivity_non_standard_number_format">Zenbaki-formatu ez-estandarra</string>
-    <!-- Dialog message shown to confirm when entering phone number (first placeholder) is normalized and formatted differently by the app (second placeholder). -->
-    <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Idatzi duzun zenbakiak (%1$s) formatu ez-estandar bat du.\n\n%2$s esan nahi al zenuen?</string>
-    <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Telefono-zenbakien formatua</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="one">Hurrats %1$d falta zaizu arazterko txosten bat bidaltzeko.</item>
         <item quantity="other">%1$d hurrats falta zaizkizu arazterko txosten bat bidaltzeko.</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Gizakia zarela egiaztatu behar dugu.</string>
-    <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
-    <string name="RegistrationActivity_voice_call">Ahots deia</string>
-    <!-- Dialog button to cancel the pending action and return to the previous state. -->
-    <string name="RegistrationActivity_cancel">Utzi</string>
     <string name="RegistrationActivity_next">Hurrengoa</string>
-    <!-- Title of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_phone_number">Telefono-zenbakia</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Sartu %1$s telefonora bidali dugun kodea.</string>
 
     <string name="RegistrationActivity_phone_number_description">Telefono-zenbakia</string>
@@ -2881,6 +2777,8 @@
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Huts egin du eranskailuen multzoa kargatzean</string>
     <!-- Bottom sheet describing a sticker. First placeholder is the title of the sticker pack and second is the author -->
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
+    <!-- Bottom sheet option that opens the pack the sticker belongs to -->
+    <string name="StickerPreviewBottomSheet__view_pack">View pack</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">Gorde</string>
@@ -3619,8 +3517,6 @@
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Deien jakinarazpenak jasotzeko, sakatu Ezarpenak eta gaitu atzeko planoko jarduerak \"Bateria\" ataleko ezarpenetan.</string>
 
     <!-- country_selection_fragment -->
-    <string name="country_selection_fragment__loading_countries">Herrialdeak kargatzen…</string>
-    <string name="country_selection_fragment__search">Bilatu</string>
 
     <string name="device_list_fragment__link_new_device">Lotu gailu berria</string>
 
@@ -4454,6 +4350,8 @@
     <string name="conversation_selection__menu_pin_message">Ainguratu</string>
     <!-- Button to unpin a message -->
     <string name="conversation_selection__menu_unpin_message">Kendu aingura</string>
+    <!-- Button to open the sticker pack a sticker message came from -->
+    <string name="conversation_selection__menu_view_sticker_pack">View pack</string>
 
     <!-- conversation_expiring_on -->
 
@@ -4644,14 +4542,11 @@
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">Idatzi zure PINa</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Idatzi konturako sortu duzun PIN-a. PIN hau ez da zure SMS berifikazio gakoa.</string>
-    <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
-    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Idatzi zure konturako sortu duzun PINa.</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">PIN okerra. Saia zaitez berriro.</string>
     <string name="RegistrationLockFragment__forgot_pin">PINa ahaztu al duzu?</string>
     <string name="RegistrationLockFragment__incorrect_pin">PIN okerra</string>
     <string name="RegistrationLockFragment__forgot_your_pin">Zure PINa ahaztu duzu?</string>
     <string name="RegistrationLockFragment__not_many_tries_left">Ez dira saiakera asko gelditzen!</string>
-    <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal Erregistroa - Laguntza behar dut Androideko PINarekina (PIN v2)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
         <item quantity="one">Zure pribatutasuna eta segurtasuna babesteko, ez dago PINa berreskuratzeko beste modurik. PINa gogoratzen ez baduzu, berriro egin dezakezu egiaztapena SMS bidez %1$d egun jarduerarik gabe egon ondoren. Kasu horretan, zure kontua eta edukia ezabatu egingo dira.</item>
@@ -4706,22 +4601,6 @@
     <string name="backup_enable_dialog__you_must_have_this_passphrase">Pasaesaldi hau eduki behar duzu babeskopia bat leheneratzeko.</string>
     <string name="backup_enable_dialog__folder">Karpeta</string>
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Pasaesaldia gorde dut. Hori gabe, ezin izango dut babeskopia bat berreskuratu.</string>
-    <string name="registration_activity__restore_backup">Berreskuratu babeskopia</string>
-    <!-- Text label button to skip restoring -->
-    <string name="registration_activity__skip_restore">Saltatu leheneratzeko aukera</string>
-    <!-- Title for dialog to enter in the backup passphrase -->
-    <string name="RegistrationActivity_enter_backup_passphrase">Idatzi babeskopiaren pasaesaldia</string>
-    <string name="RegistrationActivity_restore">Berreskuratu</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">Ezin dira inportatu Signal bertsio berrien babeskopiak</string>
-    <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
-    <string name="RegistrationActivity_backup_failure_foreign_key">Babeskopiak hondatutako datuak ditu</string>
-    <string name="RegistrationActivity_incorrect_backup_passphrase">Babeskopiaren pasaesaldia okerra da</string>
-    <string name="RegistrationActivity_checking">Egiaztatzen…</string>
-    <string name="RegistrationActivity_d_messages_so_far">%1$d mezu orain arte…</string>
-    <string name="RegistrationActivity_restore_from_backup">Babeskopia berreskuratu?</string>
-    <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Berreskuratu babeskopia lokal bateko mezuak eta multimedia elementuak. Orain ez baduzu egiten, gero ezingo duzu.</string>
-    <string name="RegistrationActivity_backup_size_s">Babeskopiaren tamaina: %1$s</string>
-    <string name="RegistrationActivity_backup_timestamp_s">Babeskopiaren denbora-zigilua: %1$s</string>
     <string name="BackupDialog_enable_local_backups">Babeskopia lokalak gaitu?</string>
     <string name="BackupDialog_enable_backups">Gaitu babeskopiak</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Baieztatu ulertu duzula berrespenaren kontrol-laukia markatuz.</string>
@@ -4757,7 +4636,6 @@
     <string name="RegistrationActivity_call_me_instead_available_in">Dei iezadazu (%1$02d:%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
     <string name="RegistrationActivity_resend_sms_available_in">Bidali berriro kodea (%1$02d:%2$02d)</string>
-    <string name="RegistrationActivity_contact_signal_support">Harremanetan jarri Signal Laguntza Taldearekin</string>
     <string name="RegistrationActivity_code_support_subject">Signal Errejistratzea - Androiderako Egiaztatze Kodea</string>
     <string name="RegistrationActivity_incorrect_code">Kodea ez da zuzena</string>
     <string name="BackupUtil_never">Inoiz ez</string>
@@ -4879,25 +4757,8 @@
     <string name="TransferOrRestoreFragment__restore_from_local_backup">Leheneratu babeskopia lokala</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
-    <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Ireki Signal zure Android telefono zaharrean</string>
-    <string name="NewDeviceTransferInstructions__continue">Jarraitu</string>
-    <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Sakatu goiko ezkerreko profileko argazkia Ezarpenak irekitzeko</string>
-    <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_account">"Sakatu \"Kontua\""</string>
-    <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
-    <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"Sakatu \"Transferitu kontua\" eta gero \"Jarraitu\" bi gailuetan"</string>
 
     <!-- NewDeviceTransferSetupFragment -->
-    <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Android gailu zaharrera konektatzeko prestatzen…</string>
-    <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Itxaron momentu batez, laster prest egon beharko litzateke</string>
-    <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Android gailu zaharra konektatzeko zain…</string>
-    <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal-ek kokapen-baimena behar du zure Android gailu zaharra ezagutzeko eta konektatzeko.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal-ek kokapen-zerbitzu gaituak behar ditu zure Android gailu zaharra ezagutzeko eta harekin konektatzeko.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal-ek Wi-Fi aktibatuta behar du zure Android gailu zaharra ezagutzeko eta harekin konektatzeko. Wi-Fi-a aktibatuta egon behar da, baina ez da zertan Wi-Fi sare batera konektatuta egon behar.</string>
-    <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Barkatu, badirudi gailu honek ez duela Wi-Fi Direct onartzen. Signal-ek Wi-Fi Direct erabiltzen du zure Android gailu zaharra ezagutzeko eta harekin konektatzeko. Hala ere, babeskopia bat leheneratu dezakezu zure kontua zure Android gailu zaharretik leheneratzeko.</string>
-    <string name="NewDeviceTransferSetup__restore_a_backup">Berreskuratu babeskopia</string>
-    <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Ustekabeko errore bat gertatu da Android gailu zaharrera konektatzen saiatzean.</string>
 
     <!-- OldDeviceTransferSetupFragment -->
     <string name="OldDeviceTransferSetup__searching_for_new_android_device">Android gailu berri baten bila…</string>
@@ -4941,9 +4802,6 @@
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Sakatu Jarraitu beste gailuan…</string>
 
     <!-- NewDeviceTransferFragment -->
-    <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Ezin da Signal-en bertsio berriago batetik transferitu</string>
-    <!-- Error message indicating that we could not finish the user\'s device transfer. Displayed in a toast at the bottom of the screen. -->
-    <string name="NewDeviceTransfer__failure_foreign_key">Transferitutako datuak hondatuta zeuden</string>
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">Datuak transferitzen</string>
@@ -4982,10 +4840,6 @@
     <string name="OldDeviceTransferComplete__close">Itxi</string>
 
     <!-- NewDeviceTransferComplete -->
-    <string name="NewDeviceTransferComplete__transfer_successful">Transferentzia arrakastatsua da</string>
-    <string name="NewDeviceTransferComplete__transfer_complete">Transferentzia amaituta</string>
-    <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">Transferentzia prozesua amaitzeko, erregistratzen jarraitu behar duzu.</string>
-    <string name="NewDeviceTransferComplete__continue_registration">Jarraitu erregistratzen</string>
 
     <!-- DeviceToDeviceTransferService -->
     <string name="DeviceToDeviceTransferService_content_title">Kontuaren transferentzia</string>
@@ -8753,219 +8607,6 @@
 
     <!-- ConfirmBackupCancellationDialog -->
 
-    <!-- Row title for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">Telefono zaharra daukat</string>
-    <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_scan_qr">Eskaneatu QR kode bat Signal-eko oraingo kontutik bizkor hasteko</string>
-
-    <!-- Row title for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">Ez daukat telefono zaharra</string>
-    <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">Edo Signal gailu berean berriro instalatzen ari zara</string>
-
-    <!-- Screen title for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__restore_or_transfer_account">Leheneratu edo transferitu kontua</string>
-    <!-- Screen subtitle for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__get_your_signal_account">Ekarri Signal-eko kontua eta mezu-historia gailu honetara.</string>
-    <!-- Option title for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_signal_backup">Leheneratu Signal-en babeskopia</string>
-    <!-- Option subtitle for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_your_text_messages_and_media_from">Leheneratu Signal-en babeskopia-planeko testu-mezuak eta multimedia-edukia.</string>
-    <!-- Option title for restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_on_device_backup">Leheneratu gailuko babeskopia</string>
-    <!-- Option subtitle fdor restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_your_messages_from">Leheneratu gailuan gordetako babeskopiako mezuak.</string>
-    <!-- Option title for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__from_your_old_phone">Telefono zaharretik</string>
-    <!-- Option subtitle for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__transfer_directly_from_old">Transferitu zuzenean Android zaharretik</string>
-    <!-- Dialog title shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_title">Leheneratzea saltatu nahi duzu?</string>
-    <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">Orain leheneratu ezean, ezingo dituzu geroago leheneratu. Leheneratzeko urratsa saltatu ondoren birgaitzen badituzu babeskopiak, oraingo babeskopia mezu-historia berriarekin ordeztuko da.</string>
-    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore">Saltatu leheneratzeko aukera</string>
-
-    <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_title">Idatzi berreskuratze-gakoa</string>
-    <!-- Screen subtitle for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_subtitle">Kontua eta datuak berreskuratzeko behar den 64 karaktereko kode bat da babeskopia-gakoa.</string>
-    <!-- Button to skip entering recovery key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">Ez duzu berreskuratze-gakorik?</string>
-    <!-- Recovery key text field hint -->
-    <string name="EnterBackupKey_backup_key">Berreskuratze-gakoa</string>
-    <!-- Recovery key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">Babeskopiak ezin dira berreskuratu 64 karaktereko berreskuratze-koderik gabe. Berreskuratze-gakoa galdu baduzu, Signal-ek ezin dizu lagundu babeskopia leheneratzen.</string>
-    <!-- Recovery key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">Gailu zaharra zurekin badaukazu, berreskuratze-gakoa ikusteko, joan Ezarpenak &gt; Babeskopiak atalera. Ondoren, sakatu Ikusi berreskuratze-gakoa.</string>
-    <!-- Recovery key not known bottom sheet button to learn more about it -->
-    <string name="EnterBackupKey_learn_more">Informazio gehiago</string>
-    <!-- Recovery key not known bottom sheet button to skip recovery key entry and resume normal reregistration -->
-    <string name="EnterBackupKey_skip_and_dont_restore">Saltatu eta ez leheneratu</string>
-    <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">Berreskuratze-gakoa okerra da</string>
-    <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">Erabili Signal-en babeskopia seguruak gaitzean erabilitako telefono-zenbaki eta 64 karaktereko berreskuratze-gako berak. Gako hori gabe, ezin dira berreskuratu babeskopiak.</string>
-    <!-- Dialog positive button text to try entering their recovery key again -->
-    <string name="EnterBackupKey_try_again">Saiatu berriro</string>
-    <!-- Dialog negative button text to get help with recovery key -->
-    <string name="EnterBackupKey_backup_key_help">Berreskuratze-gakoari buruzko laguntza</string>
-    <!-- Text field error text when the recovery key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">Berreskuratze-gakoa okerra da</string>
-    <!-- Text field error text when the recovery key is too long -->
-    <string name="EnterBackupKey_too_long_error">Luzeegia (%1$d/%2$d)</string>
-    <!-- Text field error when the recovery key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">Berreskuratze-gakoak ez du balio</string>
-    <!-- Dialog title shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_not_found">Ez da aurkitu babeskopia</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Idatzi duzun berreskuratze-gakoa zuzena da, baina ez dago hari lotutako babeskopiarik. Oraindik telefono zaharra badaukazu, ziurtatu babeskopiak gaituta daudela eta babeskopiak egiteko prozesua osatu dela, eta saiatu berriro.</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">Agian berreskuratze-gako okerra idatzi duzu, edo ez duzu babeskopia bat ere egin gailu zaharrarekin.\n\nZiurtatu Babeskopia seguruak gaitzean gordetako telefono-zenbaki eta berreskuratze-gako berberekin erregistratzen ari zarela, eta berretsi gailu zaharrarekin babeskopia bat egin dela.</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">Berreskuratze-gakoa erabiltzeko saiakerarik gabe geratu zara. Zure segurtasunerako, egin daitezkeen saiakeren kopurua mugatuta dago. Itxaron ordubetez eta saiatu berriro.</string>
-    <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
-    <string name="EnterBackupKey_skip_restore">Saltatu leheneratzeko aukera</string>
-    <!-- Dialog title text when encountering backup restore network error -->
-    <string name="EnterBackupKey_cant_restore_backup">Ezin da babeskopia leheneratu</string>
-    <!-- Dialog body text when encountering backup restore network error -->
-    <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">Ezin da babeskopia leheneratu oraintxe bertan Egiaztatu Internetera konektatuta zaudela eta saiatu berriro. </string>
-    <!-- Dialog button text to contact support on network error -->
-    <string name="EnterBackupKey_contact_support">Jarri harremanetan laguntza-zerbitzuarekin</string>
-
-    <!-- Email subject when contacting support on a restore backup network issue -->
-    <string name="EnterBackupKey_network_failure_support_email">Android-erako Signal-en babeskopia leheneratzeko errorea</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
-    <!-- Email subject when contacting support on a permanent backup import failure -->
-    <string name="EnterBackupKey_permanent_failure_support_email">Android-erako Signal-en babeskopia leheneratzeko behin betiko errorea</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
-
-    <!-- EnterLocalBackupKeyScreen: Screen title for entering recovery key for local backup restore -->
-    <string name="EnterLocalBackupKeyScreen__enter_your_recovery_key">Idatzi berreskuratze-gakoa</string>
-    <!-- EnterLocalBackupKeyScreen: Screen subtitle explaining what the recovery key is -->
-    <string name="EnterLocalBackupKeyScreen__your_recovery_key_is_a_64_character_code">Kontua eta datuak berreskuratzeko behar den 64 karaktereko kode bat da babeskopia-gakoa.</string>
-    <!-- EnterLocalBackupKeyScreen: Button text when user does not have a recovery key -->
-    <string name="EnterLocalBackupKeyScreen__no_recovery_key">Ez duzu berreskuratze-gakorik?</string>
-    <!-- EnterLocalBackupKeyScreen: Button to proceed to next step -->
-    <string name="EnterLocalBackupKeyScreen__next">Hurrengoa</string>
-
-    <!-- RestoreLocalBackupDialog: Error message when the selected archive fails to load -->
-    <string name="RestoreLocalBackupDialog__failed_to_load_archive">Ezin izan da kargatu artxiboa. Hautatu beste direktorio bat.</string>
-    <!-- RestoreLocalBackupDialog: Dismiss button for dialog -->
-    <string name="RestoreLocalBackupDialog__ok">Ados</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore">Leheneratzea saltatu nahi duzu?</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user about the consequences of skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore_body">Orain leheneratu ezean, ezingo dituzu geroago leheneratu. Leheneratzeko urratsa saltatu ondoren birgaitzen badituzu babeskopiak, oraingo babeskopia mezu-historia berriarekin ordeztuko da.</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the skip restore dialog -->
-    <string name="RestoreLocalBackupDialog__skip_restore_confirm">Saltatu leheneratzeko aukera</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm restoring a backup from a different account -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account">Kontu berrian leheneratu nahi duzu?</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user that the backup was created with a different account and they will lose group memberships -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account_body">Leheneratu behar duzun babeskopia Signal-eko beste kontu batekin sortua da. Babeskopia kontu berri batean lehenera dezakezu, baina, leheneratutakoan, ez zara izango inongo taldetako kide.</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the restore to new account dialog -->
-    <string name="RestoreLocalBackupDialog__restore">Berreskuratu</string>
-
-    <!-- RestoreLocalBackupActivity: Toast message when backup restore fails -->
-    <string name="RestoreLocalBackupActivity__backup_restore_failed">Ezin ezin da leheneratu babeskopia</string>
-    <!-- RestoreLocalBackupActivity: Screen title shown during restore -->
-    <string name="RestoreLocalBackupActivity__restoring_backup">Babeskopia leheneratzen</string>
-    <!-- RestoreLocalBackupActivity: Screen subtitle explaining restore duration -->
-    <string name="RestoreLocalBackupActivity__depending_on_the_size">Babeskopiaren tamainaren arabera, baliteke minutu batzuk behar izatea.</string>
-    <!-- RestoreLocalBackupActivity: Status text while restoring messages -->
-    <string name="RestoreLocalBackupActivity__restoring_messages">Mezuak leheneratzen…</string>
-    <!-- RestoreLocalBackupActivity: Status text while finalizing restore -->
-    <string name="RestoreLocalBackupActivity__finalizing">Amaitzen…</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore is complete -->
-    <string name="RestoreLocalBackupActivity__restore_complete">Leheneratzea osatuta</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore fails -->
-    <string name="RestoreLocalBackupActivity__restore_failed">Ezin izan da leheneratu</string>
-    <!-- RestoreLocalBackupActivity: Progress text showing bytes read of total with percentage, e.g. "1.2 MB of 5.0 MB (24%)" -->
-    <string name="RestoreLocalBackupActivity__s_of_s_d_percent">%1$s / %2$s (%% %3$d)</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__cant_restore_backup">Ezin da babeskopia leheneratu</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__error_occurred_while_restoring">Errore bat izan da babeskopia leheneratzean. Babeskopia ezin da berreskuratu. Laguntza lortzeko, jarri harremanetan laguntza-zerbitzuarekin.</string>
-
-    <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
-    <string name="RestoreLocalBackupActivity__contact_support">Jarri harremanetan laguntza-zerbitzuarekin</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
-    <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">Gailuko babeskopiak aktibatu nahi dituzu?</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Gailuko babeskopiak erabiltzen jarraitzeko, kontu honetarako gaitu behar dituzu. Horretarako, joan Ezarpenak &gt; Babeskopiak atalera.</string>
-
-    <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__turn_on_now">Aktibatu orain</string>
-
-    <!-- RestoreLocalBackupActivity: Dismiss button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__not_now">Orain ez</string>
-
-    <!-- RestoreLocalBackupActivity: Body text for the dialog shown after a successful restore, prompting the user to choose a backup folder -->
-    <string name="RestoreLocalBackupActivity__choose_a_folder_for_backups">Gailuko babeskopiak erabiltzen jarraitzeko, aukeratu babeskopia berriak gordetzeko karpeta bat gailuan.</string>
-
-    <!-- RestoreLocalBackupActivity: Positive button label for the dialog shown after a successful restore; keeps the current backup folder -->
-    <string name="RestoreLocalBackupActivity__use_current_folder">Erabili oraingo karpeta</string>
-
-    <!-- RestoreLocalBackupActivity: Neutral button label for the dialog shown after a successful restore; opens folder picker to select a different backup location -->
-    <string name="RestoreLocalBackupActivity__choose_new_folder">Aukeratu beste karpeta bat</string>
-
-    <!-- RestoreLocalBackupActivity: Negative button label for the dialog shown after a successful restore; disables on-device backups -->
-    <string name="RestoreLocalBackupActivity__disable_backups">Desgaitu babeskopiak</string>
-
-    <!-- SelectInstructionsSheet: Title for the select backup folder instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_folder">Hautatu babeskopiaren karpeta</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the select this folder button -->
-    <string name="SelectInstructionsSheet__tap_select_this_folder">Sakatu \"Hautatu karpeta hau\"</string>
-    <!-- SelectInstructionsSheet: Instruction not to select individual files -->
-    <string name="SelectInstructionsSheet__do_not_select_individual_files">Ez hautatu banako fitxategiak</string>
-    <!-- SelectInstructionsSheet: Title for the select backup file instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_file">Hautatu babeskopia-fitxategia</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the backup file saved to device -->
-    <string name="SelectInstructionsSheet__tap_on_the_backup_file">Sakatu gailuan gordetako babeskopia-fitxategia</string>
-    <!-- SelectInstructionsSheet: Subtitle explaining how to access backup after tapping continue -->
-    <string name="SelectInstructionsSheet__after_tapping_continue">\"Jarraitu\" sakatu ondoren, honela atzitu ahalko duzu babeskopia:</string>
-    <!-- SelectInstructionsSheet: Instruction to select the top-level backup folder -->
-    <string name="SelectInstructionsSheet__select_the_top_level_folder">Hautatu babeskopia gordeta daukan goi-mailako karpeta</string>
-    <!-- SelectInstructionsSheet: Continue button text -->
-    <string name="SelectInstructionsSheet__continue_button">Jarraitu</string>
-
-    <!-- SelectLocalBackupScreen: Screen title for restoring on-device backup -->
-    <string name="SelectLocalBackupScreen__restore_on_device_backup">Leheneratu gailuko babeskopia</string>
-    <!-- SelectLocalBackupScreen: Screen subtitle explaining the restore process -->
-    <string name="SelectLocalBackupScreen__restore_your_messages_from_the_backup_folder">Leheneratu gailuan gordetako babeskopia-karpetako mezuak. Orain leheneratu ezean, ezingo dituzu geroago leheneratu.</string>
-    <!-- SelectLocalBackupScreen: Button to initiate backup restoration -->
-    <string name="SelectLocalBackupScreen__restore_backup">Berreskuratu babeskopia</string>
-    <!-- SelectLocalBackupScreen: Button to choose an earlier backup when current is latest -->
-    <string name="SelectLocalBackupScreen__choose_an_earlier_backup">Aukeratu lehenagoko babeskopia bat</string>
-    <!-- SelectLocalBackupScreen: Button to choose a different backup -->
-    <string name="SelectLocalBackupScreen__choose_a_different_backup">Aukeratu beste babeskopia bat</string>
-    <!-- SelectLocalBackupScreen: Label for latest backup card -->
-    <string name="SelectLocalBackupScreen__your_latest_backup">Azken babeskopia:</string>
-    <!-- SelectLocalBackupScreen: Label for non-latest backup card -->
-    <string name="SelectLocalBackupScreen__your_backup">Zure babeskopia:</string>
-
-    <!-- SelectLocalBackupSheet: Title for backup selection bottom sheet -->
-    <string name="SelectLocalBackupSheet__choose_a_backup_to_restore">Aukeratu leheneratzeko babeskopia bat</string>
-    <!-- SelectLocalBackupSheet: Subtitle warning about choosing an older backup -->
-    <string name="SelectLocalBackupSheet__choosing_an_older_backup">Babeskopia zaharrago bat aukeratzen baduzu, baliteke mezuak edo multimedia-edukia galtzea.</string>
-    <!-- SelectLocalBackupSheet: Continue button text -->
-    <string name="SelectLocalBackupSheet__continue_button">Jarraitu</string>
-
-    <!-- SelectLocalBackupTypeScreen: Screen title for selecting backup type -->
-    <string name="SelectLocalBackupTypeScreen__restore_on_device_backup">Leheneratu gailuko babeskopia</string>
-    <!-- SelectLocalBackupTypeScreen: Screen subtitle explaining restore options -->
-    <string name="SelectLocalBackupTypeScreen__restore_your_messages_from_the_backup">Leheneratu gailuan gordetako babeskopiako mezuak. Orain leheneratu ezean, ezingo dituzu geroago leheneratu.</string>
-    <!-- SelectLocalBackupTypeScreen: Button for users who saved backup as single file -->
-    <string name="SelectLocalBackupTypeScreen__i_saved_my_backup_as_a_single_file">Babeskopia banako fitxategi gisa gorde dut</string>
-    <!-- SelectLocalBackupTypeScreen: Card title for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__choose_backup_folder">Aukeratu babeskopiaren karpeta</string>
-    <!-- SelectLocalBackupTypeScreen: Card description for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__select_the_folder_on_your_device">Hautatu babeskopia gordeta daukan gailuko karpeta</string>
-
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">Android-erako Signal-en babeskopia esportatzeko errorea</string>
     <!-- Email filter when contacting support on a create backup failure -->
@@ -8979,23 +8620,6 @@
     <string name="ContactSupportDialog_submit_with_debug">Bidali arazketa-erregistroarekin</string>
     <!-- Button option to not submit debug log when contacting support -->
     <string name="ContactSupportDialog_submit_without_debug">Bidali arazketa-erregistrorik gabe</string>
-
-    <!-- Title for restore via qr screen -->
-    <string name="RestoreViaQr_title">Eskaneatu kode hau telefono zaharrarekin</string>
-    <!-- First instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_1">Ireki Signal gailu zaharrean</string>
-    <!-- Second instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_2">Sakatu kameraren ikonoa </string>
-    <!-- Third instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_3">Eskaneatu kode hau kamerarekin</string>
-    <!-- Error message shown when qr code could not be loaded -->
-    <string name="RestoreViaQr_qr_code_error">Ezin da sortu QR kodea</string>
-    <!-- Status message shown when qr code already scanned by other device -->
-    <string name="RestoreViaQr_qr_code_scanned">Gailu zaharrean eskaneatu da</string>
-    <!-- Error button text to retry getting a qr code -->
-    <string name="RestoreViaQr_retry">Berriro saiatu</string>
-    <!-- Error message shown when register after receiving the provisioning message failed -->
-    <string name="RestoreViaQr_registration_error">Errore bat gertatu da eta ezin izan da transferitu zure kontua. Saiatu berriro QR kodea berriro eskaneatuta.</string>
 
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">Transferitu kontua</string>
@@ -9037,19 +8661,6 @@
     <string name="RestoreCompleteBottomSheet_transfer_complete_message">Signal-eko kontua eta mezuak beste gailura transferitu dira. Signal inaktibo dago gailu honetan.</string>
     <!-- Restore Complete bottom sheet dialog button text to dismiss sheet -->
     <string name="RestoreCompleteBottomSheet_button">Ados</string>
-
-    <!-- No Backup to Restore screen title -->
-    <string name="NoBackupToRestore_title">Ez dago leheneratzeko babeskopiarik</string>
-    <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">iPhone-tik Android-era aldatzen ari zarenez, gailu zaharrean Signal-en babeskopia seguruak gaitzea da mezuak eta multimedia-edukia transferitzeko modu bakarra.</string>
-    <!-- No Backup to Restore step 1 to enable backups on old device -->
-    <string name="NoBackupToRestore_step1">Ireki Signal gailu zaharrean</string>
-    <!-- No Backup to Restore step 2 to enable backups on old device -->
-    <string name="NoBackupToRestore_step2">Sakatu Ezarpenak &gt; Babeskopiak</string>
-    <!-- No Backup to Restore step 3 to enable backups on old device -->
-    <string name="NoBackupToRestore_step3">Gaitu babeskopiak eta itxaron babeskopiak osatu arte</string>
-    <!-- No backup to Restore tonal cta to skip restore -->
-    <string name="NoBackupToRestore_skip_restore">Saltatu leheneratzeko aukera</string>
 
     <!-- Dialog title when the recovery key change limit is reached -->
     <string name="MessageBackupsKeyRecordScreen__limit_reached_title">Berreskuratze-gakoen mugara iritsi zara</string>

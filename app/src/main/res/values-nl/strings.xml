@@ -863,23 +863,8 @@
     <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Niemand kan zien dat je een Signal-gebruiker bent, tenzij je hen een bericht stuurt of een bestaande chat met iemand hebt.</string>
 
     <!-- ChooseBackupFragment -->
-    <string name="ChooseBackupFragment__restore_from_backup">Back-upgegevens terugzetten?</string>
-    <string name="ChooseBackupFragment__restore_your_messages_and_media">Herstel je berichten en media vanuit een lokale back-up. Herstellen vanuit een back-up kan alleen tijdens deze stap en kun je op een later moment niet alsnog doen.</string>
-    <string name="ChooseBackupFragment__icon_content_description">Icoon voor back-upgegevens terugzetten</string>
-    <string name="ChooseBackupFragment__choose_backup">Back-upbestand kiezen</string>
-    <string name="ChooseBackupFragment__learn_more">Meer informatie</string>
 
     <!-- RestoreBackupFragment -->
-    <string name="RestoreBackupFragment__restore_complete">Herstellen is voltooid</string>
-    <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Om back-ups te blijven maken, kies een map waar je back-ups vanaf nu in wilt opslaan.</string>
-    <string name="RestoreBackupFragment__choose_folder">Map kiezen</string>
-    <string name="RestoreBackupFragment__not_now">Niet nu</string>
-    <!-- Couldn\'t find the selected backup -->
-    <string name="RestoreBackupFragment__backup_not_found">Back-up niet gevonden.</string>
-    <!-- Couldn\'t read the selected backup -->
-    <string name="RestoreBackupFragment__backup_could_not_be_read">Back-upbestand kon niet worden gelezen.</string>
-    <!-- Backup has an unsupported file extension -->
-    <string name="RestoreBackupFragment__backup_has_a_bad_extension">Back-upbestand heeft verkeerde extensie.</string>
 
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
@@ -1416,60 +1401,6 @@
     <string name="ManageGroupActivity_add_group_description">Voeg een groepsomschrijving toe…</string>
 
     <!-- RemoteRestoreActivity -->
-    <!-- Progress dialog label when downloading a backup -->
-    <string name="RemoteRestoreActivity__downloading_backup">Back-up aan het downloaden…</string>
-    <!-- Progress dialog label when restoring a backup -->
-    <string name="RemoteRestoreActivity__restoring_messages">Berichten herstellen…</string>
-    <!-- Progress dialog label when finishing a backup restore -->
-    <string name="RemoteRestoreActivity__finishing_restore">Voltooien…</string>
-    <!-- Progress dialog label while awaiting updates -->
-    <string name="RemoteRestoreActivity__restoring">Herstellen…</string>
-    <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
-    <string name="RemoteRestoreActivity__s_of_s_s">%1$s van %2$s (%3$s)</string>
-    <!-- Feature list media label for paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_media">Al je media</string>
-    <!-- Feature list media label for free tier. Placeholder is days, and is currently fixed at 30. -->
-    <string name="RemoteRestoreActivity__your_last_d_days_of_media">Je media van de afgelopen %1$d dagen</string>
-    <!-- Feature list message label for free and paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_messages">Al je berichten</string>
-    <!-- Screen title for restoring from backup -->
-    <string name="RemoteRestoreActivity__restore_from_backup">Gegevens vanuit een back-up terugzetten</string>
-    <!-- Section title for explaining what your backup includes -->
-    <string name="RemoteRestoreActivity__your_backup_includes">Je back-up omvat:</string>
-    <!-- Primary action button copy for starting restoration -->
-    <string name="RemoteRestoreActivity__restore_backup">Back-upgegevens terugzetten</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made. %1$s is replaced with the date (e.g. March 5, 2024) and %2$s is replaced with the time (e.g. 9:00am) -->
-    <string name="RemoteRestoreActivity__backup_created_at">De laatste back-up is gemaakt op %1$s om %2$s.</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
-    <string name="RemoteRestoreActivity__backup_created_at_with_size">De laatste back-up is gemaakt op %1$s om %2$s. Je back-upgrootte is %3$s.</string>
-    <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
-    <string name="RemoteRestoreActivity__fetching_backup_details">Back-updetails aan het ophalen…</string>
-    <!-- Text label button to skip restore from remote -->
-    <string name="RemoteRestoreActivity__skip_restore">Herstel overslaan</string>
-    <!-- Dialog title displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__couldnt_transfer">Het overzetten kon niet worden voltooid</string>
-    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Back-up kan niet worden teruggezet</string>
-    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">Er is een fout opgetreden tijdens het herstellen van je back-up. Je back-up kan niet worden hersteld. Neem contact op met ondersteuning.</string>
-    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Neem contact op met ondersteuning</string>
-    <!-- Dialog message displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__error_occurred">Er is een fout opgetreden en je account kon niet worden overgezet. Probeer het nog eens of probeer een andere overdrachtsmethode.</string>
-    <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
-    <string name="RemoteRestoreActivity__couldnt_restore">Back-up kon niet worden teruggezet</string>
-    <!-- Dialog message explaining that an update to Signal is required to restore the backup. -->
-    <string name="RemoteRestoreActivity__update_latest">Deze versie van Signal kan je back-up niet herstellen. Werk bij naar de meest recente versie en probeer het opnieuw.</string>
-    <!-- Text on button that when pressed will redirect them to update Signal -->
-    <string name="RemoteRestoreActivity__update_signal">Signal bijwerken</string>
-    <!-- Text label button to dismiss the dialog -->
-    <string name="RemoteRestoreActivity__not_now">Niet nu</string>
-    <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Je media worden op de achtergrond hersteld. Als je er nu voor kiest om niet te herstellen, dan is dat op een later moment niet meer mogelijk.</string>
-    <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">Dit apparaat is niet meer geregistreerd</string>
-    <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">Dit komt waarschijnlijk omdat je je Signal-account op een ander apparaat hebt geregistreerd.</string>
 
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
@@ -2234,17 +2165,6 @@
     <string name="PinRestoreLockedFragment_create_new_pin">Nieuwe pincode aanmaken</string>
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
-    <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
-    <string name="ReRegisterWithPinFragment_send_sms_code">Sms-code versturen</string>
-    <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">Signal-registratie - Hulp nodig bij het opnieuw registreren van de pincode voor Android</string>
-    <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">Je pincode is een code die je zelf hebt aangemaakt en die bestaat uit %1$d of meer cijfers of een combinatie van cijfers en letters.\n\nAls je je pincode niet kunt herinneren, dan kun je een nieuwe pincode aanmaken.</string>
-    <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">Als je je pincode niet meer weet, kun je een nieuwe aanmaken.</string>
-    <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">Je hebt geen pogingen meer om je pincode te raden, maar je hebt nog steeds toegang tot je Signal-account als je een nieuwe pincode aanmaakt.</string>
-
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Waarschuwing</string>
     <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Als je de pincode uitschakelt zul je wanneer je Signal opnieuw registreert alle gegevens kwijtraken, tenzij je handmatig een back-up maakt en herstelt. Daarnaast kun je zolang de pincode is uitgeschakeld de registratievergrendeling niet inschakelen.</string>
@@ -2324,6 +2244,12 @@
     <string name="WebRtcCallActivity__open_settings">Instellingen openen</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">Niet nu</string>
+    <!-- Message for dialog shown at the start of a call when the system battery setting for Signal is "Restricted" -->
+    <string name="WebRtcCallActivity__others_may_not_be_able_to_hear_you_when_your_screen_turns_off">Others may not be able to hear you and the call may disconnect when your screen turns off. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
+    <!-- Title for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__others_couldnt_hear_you">Others couldn\'t hear you</string>
+    <!-- Message for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__your_microphone_was_muted_while_signal_was_in_the_background">Your microphone was muted while Signal was in the background. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
     <!-- Title for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__approve_d_requests">
         <item quantity="one">%1$d verzoek goedkeuren?</item>
@@ -2639,50 +2565,20 @@
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Het nummer dat je hebt ingevoerd (%1$s) is ongeldig.
     </string>
 
-    <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">Klopt het onderstaand telefoonnummer?</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
     <string name="RegistrationActivity_additional_verification_required">Aanvullende verificatie vereist</string>
-    <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">Er wordt een verificatiecode naar dit nummer gestuurd. Providertarieven kunnen van toepassing zijn.</string>
-    <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Je zult een verificatiecode ontvangen. Providertarieven kunnen van toepassing zijn.</string>
-    <!-- Hint text to select a country -->
-    <string name="RegistrationActivity_select_a_country">Selecteer een land</string>
-    <!-- Hint text explaining that this is where the country code should go -->
-    <string name="RegistrationActivity_default_country_code">0</string>
-    <string name="RegistrationActivity_edit_number">Telefoonnummer bewerken</string>
-    <string name="RegistrationActivity_missing_google_play_services">Google Play Services ontbreekt</string>
-    <string name="RegistrationActivity_this_device_is_missing_google_play_services">Dit apparaat heeft geen Google Play Services. Je kunt Signal nog steeds gebruiken, maar deze configuratie kan de betrouwbaarheid en prestaties verminderen.\n\nAls je geen gevorderde gebruiker bent, geen aangepaste ROM gebruikt of denkt dat dit bericht onterecht wordt weergegeven, neem dan contact op met support@signal.org voor hulp met probleemoplossen.</string>
-    <string name="RegistrationActivity_i_understand">Ik begrijp het</string>
-    <string name="RegistrationActivity_play_services_error">Google Play Services-fout</string>
-    <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services wordt momenteel bijgewerkt of is tijdelijk niet beschikbaar. Probeer het nog eens.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Je hebt te vaak geprobeerd dit telefoonnummer te registreren. Probeer het later opnieuw.</string>
-    <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">Je hebt te vaak geprobeerd dit telefoonnummer te registreren. Probeer het opnieuw over %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Het lukt niet om te verbinden met Signals servers. Controleer je internetverbinding en probeer het opnieuw.</string>
     <!-- Dialog error message shown when we are unable to send an SMS to the user\'s number -->
     <string name="RegistrationActivity_sms_provider_error">We kunnen geen sms naar je nummer sturen. Probeer het over enkele uren opnieuw.</string>
-    <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">We konden je geen verificatiecode sturen via sms. Probeer in plaats daarvan je code via een spraakoproep te ontvangen.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">Kan geen verificatiecode aanvragen. Controleer je internetverbinding en probeer het opnieuw.</string>
-    <string name="RegistrationActivity_non_standard_number_format">Afwijkend telefoonnummerformaat</string>
-    <!-- Dialog message shown to confirm when entering phone number (first placeholder) is normalized and formatted differently by the app (second placeholder). -->
-    <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Het door jou ingevulde telefoonnummer (%1$s) heeft een afwijkend formaat.\n\nBedoelde je %2$s?</string>
-    <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Telefoonnummerformaat</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="one">Je bent nu %1$d stap verwijderd van het indienen van een foutopsporingslog.</item>
         <item quantity="other">Je bent nu %1$d stappen verwijderd van het indienen van een foutopsporingslog.</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">We moeten verifiëren dat je een mens bent.</string>
-    <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
-    <string name="RegistrationActivity_voice_call">Spraakoproep</string>
-    <!-- Dialog button to cancel the pending action and return to the previous state. -->
-    <string name="RegistrationActivity_cancel">Annuleren</string>
     <string name="RegistrationActivity_next">Volgende</string>
-    <!-- Title of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_phone_number">Telefoonnummer</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Vul de code in die we per sms naar %1$s hebben verzonden</string>
 
     <string name="RegistrationActivity_phone_number_description">Telefoonnummer</string>
@@ -2881,6 +2777,8 @@
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Laden van stickerpakket mislukt</string>
     <!-- Bottom sheet describing a sticker. First placeholder is the title of the sticker pack and second is the author -->
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
+    <!-- Bottom sheet option that opens the pack the sticker belongs to -->
+    <string name="StickerPreviewBottomSheet__view_pack">View pack</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">Opslaan</string>
@@ -3619,8 +3517,6 @@
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Tik op ‘Instellingen’ en schakel in de batterij -instellingen achtergrondactiviteit in om oproepmeldingen te ontvangen.</string>
 
     <!-- country_selection_fragment -->
-    <string name="country_selection_fragment__loading_countries">Landen laden…</string>
-    <string name="country_selection_fragment__search">Zoeken</string>
 
     <string name="device_list_fragment__link_new_device">Nieuw apparaat koppelen</string>
 
@@ -4454,6 +4350,8 @@
     <string name="conversation_selection__menu_pin_message">Vastzetten</string>
     <!-- Button to unpin a message -->
     <string name="conversation_selection__menu_unpin_message">Losmaken</string>
+    <!-- Button to open the sticker pack a sticker message came from -->
+    <string name="conversation_selection__menu_view_sticker_pack">View pack</string>
 
     <!-- conversation_expiring_on -->
 
@@ -4644,14 +4542,11 @@
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">Voer je pincode in</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Voer de pincode in die je eerder hebt aangemaakt voor je account. Dit is niet dezelfde code als de verificatiecode die je per sms of telefoonoproep hebt ontvangen.</string>
-    <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
-    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Voer de pincode in die je voor je account hebt aangemaakt.</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Onjuiste pincode, probeer het opnieuw.</string>
     <string name="RegistrationLockFragment__forgot_pin">Pincode vergeten?</string>
     <string name="RegistrationLockFragment__incorrect_pin">Onjuiste pincode</string>
     <string name="RegistrationLockFragment__forgot_your_pin">Pincode vergeten?</string>
     <string name="RegistrationLockFragment__not_many_tries_left">Weinig pogingen over.</string>
-    <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal-registratie - Hulp nodig met de pincode voor Android (Pincode-versie 2)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
         <item quantity="one">Voor je privacy en veiligheid is er geen mogelijkheid om je pincode te herstellen. Als je je pincode niet meer weet, dan kun je je na %1$d dag inactiviteit opnieuw verifiëren via sms. In dat geval zal alle inhoud worden gewist.</item>
@@ -4706,22 +4601,6 @@
     <string name="backup_enable_dialog__you_must_have_this_passphrase">Je hebt dit wachtwoord nodig om je gegevens vanuit een back-up te kunnen herstellen.</string>
     <string name="backup_enable_dialog__folder">Opslaglocatie</string>
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Ik heb dit wachtwoord opgeschreven. Zonder dit wachtwoord kan ik back-ups niet gebruiken om gegevens terug te zetten.</string>
-    <string name="registration_activity__restore_backup">Back-upgegevens terugzetten</string>
-    <!-- Text label button to skip restoring -->
-    <string name="registration_activity__skip_restore">Herstel overslaan</string>
-    <!-- Title for dialog to enter in the backup passphrase -->
-    <string name="RegistrationActivity_enter_backup_passphrase">Voer het back-upwachtwoord in</string>
-    <string name="RegistrationActivity_restore">Herstellen</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">Kan geen back-ups van nieuwere versies importeren</string>
-    <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
-    <string name="RegistrationActivity_backup_failure_foreign_key">Back-up bevat verkeerd ingedeelde gegevens</string>
-    <string name="RegistrationActivity_incorrect_backup_passphrase">Verkeerd back-upwachtwoord</string>
-    <string name="RegistrationActivity_checking">Aan het controleren…</string>
-    <string name="RegistrationActivity_d_messages_so_far">%1$d berichten tot nu toe…</string>
-    <string name="RegistrationActivity_restore_from_backup">Back-upgegevens terugzetten?</string>
-    <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Herstel je berichten en media vanuit een lokale back-up. Herstellen vanuit een back-up kan alleen tijdens deze stap en kun je op een later moment niet alsnog doen.</string>
-    <string name="RegistrationActivity_backup_size_s">Back-upgrootte: %1$s</string>
-    <string name="RegistrationActivity_backup_timestamp_s">Back-uptijdstip: %1$s</string>
     <string name="BackupDialog_enable_local_backups">Lokale back-ups maken?</string>
     <string name="BackupDialog_enable_backups">Back-ups inschakelen</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Verklaar dat je het begrijpt door het selectievakje aan te vinken.</string>
@@ -4757,7 +4636,6 @@
     <string name="RegistrationActivity_call_me_instead_available_in">Bel me (%1$02d:%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
     <string name="RegistrationActivity_resend_sms_available_in">Stuur code opnieuw (%1$02d:%2$02d)</string>
-    <string name="RegistrationActivity_contact_signal_support">Contact opnemen met Signal Support</string>
     <string name="RegistrationActivity_code_support_subject">Signal-registratie - Verificatiecode voor Android</string>
     <string name="RegistrationActivity_incorrect_code">Onjuiste code</string>
     <string name="BackupUtil_never">Nooit</string>
@@ -4879,25 +4757,8 @@
     <string name="TransferOrRestoreFragment__restore_from_local_backup">Lokale back-upgegevens terugzetten</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
-    <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Open Signal op je oude apparaat</string>
-    <string name="NewDeviceTransferInstructions__continue">Doorgaan</string>
-    <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Tik in de linkerbovenhoek op je profielfoto om de instellingen te openen</string>
-    <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_account">"Tik op ‘Account’"</string>
-    <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
-    <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"Tik op beide apparaten op ‘Account overzetten’ en dan op ‘Doorgaan’"</string>
 
     <!-- NewDeviceTransferSetupFragment -->
-    <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Voorbereiden op verbinding maken met je oude Android-apparaat…</string>
-    <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Een moment, dit duurt niet lang</string>
-    <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Aan het wachten tot je oude Android-apparaat verbinding maakt…</string>
-    <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Om je oude Android-apparaat te kunnen detecteren en om er verbinding mee te maken, heeft Signal een machtiging nodig om je locatie te lezen.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Om je oude Android-apparaat te kunnen detecteren en om er verbinding mee te maken, is het nodig dat locatiebepaling op dit apparaat is ingeschakeld.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal heeft wifi nodig om je oude Android-apparaat te detecteren en om er verbinding mee te maken. Wifi moet zijn ingeschakeld, maar je hoeft niet verbonden te zijn met een wifi-netwerk.</string>
-    <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Sorry, het lijkt er op dat dit apparaat geen ondersteuning biedt voor Wi-Fi Direct. Signal heeft Wi-Fi Direct nodig om je oude Android-apparaat te detecteren en om er verbinding mee te maken. Je kunt nog wel je gegevens overzetten door op je oude Android-apparaat in Signal een back-up te maken en vervolgens die back-up te herstellen op je nieuwe Android-apparaat.</string>
-    <string name="NewDeviceTransferSetup__restore_a_backup">Back-upgegevens terugzetten</string>
-    <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Er is een onverwachte fout opgetreden bij het verbinding maken met je oude Android-apparaat.</string>
 
     <!-- OldDeviceTransferSetupFragment -->
     <string name="OldDeviceTransferSetup__searching_for_new_android_device">Er wordt gezocht naar je nieuwe Android-apparaat…</string>
@@ -4941,9 +4802,6 @@
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Tik op je andere apparaat op ‘Doorgaan’.</string>
 
     <!-- NewDeviceTransferFragment -->
-    <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Je kunt gegevens niet overzetten vanuit een nieuwere versie van Signal</string>
-    <!-- Error message indicating that we could not finish the user\'s device transfer. Displayed in a toast at the bottom of the screen. -->
-    <string name="NewDeviceTransfer__failure_foreign_key">De overgedragen gegevens waren verkeerd opgemaakt</string>
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">Gegevens aan het overzetten</string>
@@ -4982,10 +4840,6 @@
     <string name="OldDeviceTransferComplete__close">Sluiten</string>
 
     <!-- NewDeviceTransferComplete -->
-    <string name="NewDeviceTransferComplete__transfer_successful">Overzetten succesvol voltooid</string>
-    <string name="NewDeviceTransferComplete__transfer_complete">Overzetten voltooid</string>
-    <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">Om het overzetten te voltooien moet je eerst nog de registratie afronden.</string>
-    <string name="NewDeviceTransferComplete__continue_registration">Doorgaan met registratie</string>
 
     <!-- DeviceToDeviceTransferService -->
     <string name="DeviceToDeviceTransferService_content_title">Account overzetten</string>
@@ -8753,219 +8607,6 @@
 
     <!-- ConfirmBackupCancellationDialog -->
 
-    <!-- Row title for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">Ik heb mijn oude telefoon</string>
-    <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_scan_qr">Scan een QR-code met je oude telefoon om snel aan de slag te gaan</string>
-
-    <!-- Row title for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">Ik heb mijn oude telefoon niet</string>
-    <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">Of je installeert Signal opnieuw op hetzelfde apparaat</string>
-
-    <!-- Screen title for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__restore_or_transfer_account">Account herstellen of overzetten</string>
-    <!-- Screen subtitle for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__get_your_signal_account">Zet je Signal-account en chatgeschiedenis op dit apparaat.</string>
-    <!-- Option title for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_signal_backup">Signal back-up herstellen</string>
-    <!-- Option subtitle for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_your_text_messages_and_media_from">Herstel je tekstberichten en media via je Signal back-upabonnement.</string>
-    <!-- Option title for restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_on_device_backup">Lokale back-up herstellen</string>
-    <!-- Option subtitle fdor restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_your_messages_from">Herstel je berichten vanuit een back-up die je op je apparaat hebt opgeslagen.</string>
-    <!-- Option title for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__from_your_old_phone">Vanaf je oude telefoon</string>
-    <!-- Option subtitle for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__transfer_directly_from_old">Zet rechtstreeks over vanaf je oude Android-apparaat</string>
-    <!-- Dialog title shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_title">Herstel overslaan?</string>
-    <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">Als je herstellen nu overslaat, is dat op een later moment niet meer mogelijk. Als je back-ups opnieuw inschakelt nadat je herstel hebt overgeslagen, wordt je huidige back-up vervangen door je nieuwe chatgeschiedenis.</string>
-    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore">Herstel overslaan</string>
-
-    <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_title">Voer je herstelsleutel in</string>
-    <!-- Screen subtitle for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_subtitle">Je herstelsleutel is een code van 64 tekens die je nodig hebt om je account en gegevens te herstellen.</string>
-    <!-- Button to skip entering recovery key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">Geen herstelsleutel?</string>
-    <!-- Recovery key text field hint -->
-    <string name="EnterBackupKey_backup_key">Herstelsleutel</string>
-    <!-- Recovery key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">Back-ups kunnen niet worden hersteld zonder de herstelcode van 64 tekens. Als je de herstelsleutel kwijt bent, kan Signal je niet helpen je back-up te herstellen.</string>
-    <!-- Recovery key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">Op je oude apparaat kun je de herstelsleutel bekijken in Instellingen &gt; Back-ups. Tik vervolgens op Herstelsleutel weergeven.</string>
-    <!-- Recovery key not known bottom sheet button to learn more about it -->
-    <string name="EnterBackupKey_learn_more">Meer informatie</string>
-    <!-- Recovery key not known bottom sheet button to skip recovery key entry and resume normal reregistration -->
-    <string name="EnterBackupKey_skip_and_dont_restore">Overslaan en niet herstellen</string>
-    <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">Onjuiste herstelsleutel</string>
-    <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">Zorg ervoor dat je je registreert met hetzelfde telefoonnummer en dezelfde herstelsleutel van 64 tekens die je hebt opgeslagen bij het inschakelen van Signal Secure Backups. Back-ups kunnen niet worden hersteld zonder deze sleutel.</string>
-    <!-- Dialog positive button text to try entering their recovery key again -->
-    <string name="EnterBackupKey_try_again">Opnieuw proberen</string>
-    <!-- Dialog negative button text to get help with recovery key -->
-    <string name="EnterBackupKey_backup_key_help">Hulp bij herstelsleutel</string>
-    <!-- Text field error text when the recovery key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">Onjuiste herstelsleutel</string>
-    <!-- Text field error text when the recovery key is too long -->
-    <string name="EnterBackupKey_too_long_error">Te lang (%1$d/%2$d)</string>
-    <!-- Text field error when the recovery key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">Ongeldige herstelsleutel</string>
-    <!-- Dialog title shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_not_found">Back-up niet gevonden</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">De herstelsleutel die je hebt ingevoerd is juist, maar er is geen back-up aan gekoppeld. Als je je oude telefoon nog hebt, zorg er dan voor dat back-ups zijn ingeschakeld en dat er een back-up is gemaakt. Probeer het dan opnieuw.</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">Mogelijk heb je je herstelsleutel onjuist ingevoerd of heb je geen enkele back-up voltooid op je oude apparaat.\n\nZorg ervoor dat je je registreert met hetzelfde telefoonnummer en dezelfde herstelsleutel die je hebt opgeslagen bij het inschakelen van Signal Secure Backups en controleer of je oude apparaat een back-up heeft gemaakt.</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">Je hebt te vaak geprobeerd de herstelsleutel in te voeren. Voor je veiligheid is het aantal pogingen beperkt. Wacht een uur en probeer het opnieuw.</string>
-    <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
-    <string name="EnterBackupKey_skip_restore">Herstel overslaan</string>
-    <!-- Dialog title text when encountering backup restore network error -->
-    <string name="EnterBackupKey_cant_restore_backup">Back-up kan niet worden teruggezet</string>
-    <!-- Dialog body text when encountering backup restore network error -->
-    <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">Je back-up kan op dit moment niet worden teruggezet. Controleer je internetverbinding en probeer het opnieuw. </string>
-    <!-- Dialog button text to contact support on network error -->
-    <string name="EnterBackupKey_contact_support">Neem contact op met ondersteuning</string>
-
-    <!-- Email subject when contacting support on a restore backup network issue -->
-    <string name="EnterBackupKey_network_failure_support_email">Netwerkfout bij herstel Signal Android back-up</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
-    <!-- Email subject when contacting support on a permanent backup import failure -->
-    <string name="EnterBackupKey_permanent_failure_support_email">Permanente fout bij herstel Signal Android back-up</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
-
-    <!-- EnterLocalBackupKeyScreen: Screen title for entering recovery key for local backup restore -->
-    <string name="EnterLocalBackupKeyScreen__enter_your_recovery_key">Voer je herstelsleutel in</string>
-    <!-- EnterLocalBackupKeyScreen: Screen subtitle explaining what the recovery key is -->
-    <string name="EnterLocalBackupKeyScreen__your_recovery_key_is_a_64_character_code">Je herstelsleutel is een code van 64 tekens die je nodig hebt om je account en gegevens te herstellen.</string>
-    <!-- EnterLocalBackupKeyScreen: Button text when user does not have a recovery key -->
-    <string name="EnterLocalBackupKeyScreen__no_recovery_key">Geen herstelsleutel?</string>
-    <!-- EnterLocalBackupKeyScreen: Button to proceed to next step -->
-    <string name="EnterLocalBackupKeyScreen__next">Volgende</string>
-
-    <!-- RestoreLocalBackupDialog: Error message when the selected archive fails to load -->
-    <string name="RestoreLocalBackupDialog__failed_to_load_archive">Kan archief niet laden. Selecteer een andere map.</string>
-    <!-- RestoreLocalBackupDialog: Dismiss button for dialog -->
-    <string name="RestoreLocalBackupDialog__ok">OK</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore">Herstel overslaan?</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user about the consequences of skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore_body">Als je herstellen nu overslaat, is dat op een later moment niet meer mogelijk. Als je back-ups opnieuw inschakelt nadat je herstel hebt overgeslagen, wordt je huidige back-up vervangen door je nieuwe chatgeschiedenis.</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the skip restore dialog -->
-    <string name="RestoreLocalBackupDialog__skip_restore_confirm">Herstel overslaan</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm restoring a backup from a different account -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account">Herstellen naar een nieuw account?</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user that the backup was created with a different account and they will lose group memberships -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account_body">De back-up die je wilt herstellen, is gemaakt met een ander Signal-account. Je kunt deze back-up herstellen naar een nieuw account, maar je bent dan geen lid meer van de groepen die zijn hersteld.</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the restore to new account dialog -->
-    <string name="RestoreLocalBackupDialog__restore">Herstellen</string>
-
-    <!-- RestoreLocalBackupActivity: Toast message when backup restore fails -->
-    <string name="RestoreLocalBackupActivity__backup_restore_failed">Back-up herstellen is mislukt</string>
-    <!-- RestoreLocalBackupActivity: Screen title shown during restore -->
-    <string name="RestoreLocalBackupActivity__restoring_backup">Back-upgegevens aan het terugzetten…</string>
-    <!-- RestoreLocalBackupActivity: Screen subtitle explaining restore duration -->
-    <string name="RestoreLocalBackupActivity__depending_on_the_size">Afhankelijk van de grootte van je back-up kan dit even duren.</string>
-    <!-- RestoreLocalBackupActivity: Status text while restoring messages -->
-    <string name="RestoreLocalBackupActivity__restoring_messages">Berichten herstellen…</string>
-    <!-- RestoreLocalBackupActivity: Status text while finalizing restore -->
-    <string name="RestoreLocalBackupActivity__finalizing">Aan het afronden…</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore is complete -->
-    <string name="RestoreLocalBackupActivity__restore_complete">Herstellen is voltooid</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore fails -->
-    <string name="RestoreLocalBackupActivity__restore_failed">Herstellen is mislukt</string>
-    <!-- RestoreLocalBackupActivity: Progress text showing bytes read of total with percentage, e.g. "1.2 MB of 5.0 MB (24%)" -->
-    <string name="RestoreLocalBackupActivity__s_of_s_d_percent">%1$s van %2$s (%3$d%%)</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__cant_restore_backup">Back-up kan niet worden teruggezet</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__error_occurred_while_restoring">Er is een fout opgetreden tijdens het herstellen van je back-up. Je back-up kan niet worden hersteld. Neem contact op met ondersteuning.</string>
-
-    <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
-    <string name="RestoreLocalBackupActivity__contact_support">Neem contact op met ondersteuning</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
-    <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">Lokale back-ups inschakelen?</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Om lokale back-ups te blijven gebruiken moet je deze voor dit account inschakelen. Je kunt dit op elk moment doen in Instellingen &gt; Back-ups.</string>
-
-    <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__turn_on_now">Nu inschakelen</string>
-
-    <!-- RestoreLocalBackupActivity: Dismiss button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__not_now">Niet nu</string>
-
-    <!-- RestoreLocalBackupActivity: Body text for the dialog shown after a successful restore, prompting the user to choose a backup folder -->
-    <string name="RestoreLocalBackupActivity__choose_a_folder_for_backups">Om lokale back-ups te blijven gebruiken, kies een map op je apparaat waar nieuwe back-ups opgeslagen kunnen worden.</string>
-
-    <!-- RestoreLocalBackupActivity: Positive button label for the dialog shown after a successful restore; keeps the current backup folder -->
-    <string name="RestoreLocalBackupActivity__use_current_folder">Huidige map gebruiken</string>
-
-    <!-- RestoreLocalBackupActivity: Neutral button label for the dialog shown after a successful restore; opens folder picker to select a different backup location -->
-    <string name="RestoreLocalBackupActivity__choose_new_folder">Nieuwe map kiezen</string>
-
-    <!-- RestoreLocalBackupActivity: Negative button label for the dialog shown after a successful restore; disables on-device backups -->
-    <string name="RestoreLocalBackupActivity__disable_backups">Back-ups uitschakelen</string>
-
-    <!-- SelectInstructionsSheet: Title for the select backup folder instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_folder">Selecteer je back-upmap</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the select this folder button -->
-    <string name="SelectInstructionsSheet__tap_select_this_folder">Tik op ‘Deze map gebruiken‘</string>
-    <!-- SelectInstructionsSheet: Instruction not to select individual files -->
-    <string name="SelectInstructionsSheet__do_not_select_individual_files">Selecteer geen individuele bestanden</string>
-    <!-- SelectInstructionsSheet: Title for the select backup file instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_file">Selecteer je back-upbestand</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the backup file saved to device -->
-    <string name="SelectInstructionsSheet__tap_on_the_backup_file">Tik op het back-upbestand dat je op je apparaat hebt opgeslagen</string>
-    <!-- SelectInstructionsSheet: Subtitle explaining how to access backup after tapping continue -->
-    <string name="SelectInstructionsSheet__after_tapping_continue">Nadat je op ‘Doorgaan’ hebt getikt, krijg je als volgt toegang tot je back-up:</string>
-    <!-- SelectInstructionsSheet: Instruction to select the top-level backup folder -->
-    <string name="SelectInstructionsSheet__select_the_top_level_folder">Selecteer de hoofdmap waarin je back-up is opgeslagen</string>
-    <!-- SelectInstructionsSheet: Continue button text -->
-    <string name="SelectInstructionsSheet__continue_button">Doorgaan</string>
-
-    <!-- SelectLocalBackupScreen: Screen title for restoring on-device backup -->
-    <string name="SelectLocalBackupScreen__restore_on_device_backup">Lokale back-up herstellen</string>
-    <!-- SelectLocalBackupScreen: Screen subtitle explaining the restore process -->
-    <string name="SelectLocalBackupScreen__restore_your_messages_from_the_backup_folder">Herstel je berichten vanuit de back-upmap die je op je apparaat hebt opgeslagen. Als je nu niet herstelt, is dat op een later moment niet meer mogelijk.</string>
-    <!-- SelectLocalBackupScreen: Button to initiate backup restoration -->
-    <string name="SelectLocalBackupScreen__restore_backup">Back-upgegevens terugzetten</string>
-    <!-- SelectLocalBackupScreen: Button to choose an earlier backup when current is latest -->
-    <string name="SelectLocalBackupScreen__choose_an_earlier_backup">Kies een oudere back-up</string>
-    <!-- SelectLocalBackupScreen: Button to choose a different backup -->
-    <string name="SelectLocalBackupScreen__choose_a_different_backup">Kies een andere back-up</string>
-    <!-- SelectLocalBackupScreen: Label for latest backup card -->
-    <string name="SelectLocalBackupScreen__your_latest_backup">Je laatste back-up:</string>
-    <!-- SelectLocalBackupScreen: Label for non-latest backup card -->
-    <string name="SelectLocalBackupScreen__your_backup">Je back-up:</string>
-
-    <!-- SelectLocalBackupSheet: Title for backup selection bottom sheet -->
-    <string name="SelectLocalBackupSheet__choose_a_backup_to_restore">Kies een back-up om te herstellen</string>
-    <!-- SelectLocalBackupSheet: Subtitle warning about choosing an older backup -->
-    <string name="SelectLocalBackupSheet__choosing_an_older_backup">Wanneer je een oudere back-up kiest, kun je berichten of media kwijtraken.</string>
-    <!-- SelectLocalBackupSheet: Continue button text -->
-    <string name="SelectLocalBackupSheet__continue_button">Doorgaan</string>
-
-    <!-- SelectLocalBackupTypeScreen: Screen title for selecting backup type -->
-    <string name="SelectLocalBackupTypeScreen__restore_on_device_backup">Lokale back-up herstellen</string>
-    <!-- SelectLocalBackupTypeScreen: Screen subtitle explaining restore options -->
-    <string name="SelectLocalBackupTypeScreen__restore_your_messages_from_the_backup">Herstel je berichten vanuit de back-up die je op je apparaat hebt opgeslagen. Als je nu niet herstelt, is dat op een later moment niet meer mogelijk.</string>
-    <!-- SelectLocalBackupTypeScreen: Button for users who saved backup as single file -->
-    <string name="SelectLocalBackupTypeScreen__i_saved_my_backup_as_a_single_file">Ik heb mijn back-up als één bestand opgeslagen</string>
-    <!-- SelectLocalBackupTypeScreen: Card title for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__choose_backup_folder">Kies back-upmap</string>
-    <!-- SelectLocalBackupTypeScreen: Card description for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__select_the_folder_on_your_device">Selecteer de map op je apparaat waar je back-up is opgeslagen</string>
-
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">Netwerkfout bij het exporteren van back-up in Signal Android</string>
     <!-- Email filter when contacting support on a create backup failure -->
@@ -8979,23 +8620,6 @@
     <string name="ContactSupportDialog_submit_with_debug">Indienen met foutopsporingslog</string>
     <!-- Button option to not submit debug log when contacting support -->
     <string name="ContactSupportDialog_submit_without_debug">Indienen zonder foutopsporingslog</string>
-
-    <!-- Title for restore via qr screen -->
-    <string name="RestoreViaQr_title">Scan deze code met je oude telefoon</string>
-    <!-- First instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_1">Open Signal op je oude apparaat</string>
-    <!-- Second instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_2">Tik op het camera-icoon </string>
-    <!-- Third instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_3">Scan deze code met de camera</string>
-    <!-- Error message shown when qr code could not be loaded -->
-    <string name="RestoreViaQr_qr_code_error">Kan geen QR-code genereren</string>
-    <!-- Status message shown when qr code already scanned by other device -->
-    <string name="RestoreViaQr_qr_code_scanned">Gescand op oud apparaat</string>
-    <!-- Error button text to retry getting a qr code -->
-    <string name="RestoreViaQr_retry">Opnieuw proberen</string>
-    <!-- Error message shown when register after receiving the provisioning message failed -->
-    <string name="RestoreViaQr_registration_error">Er is een fout opgetreden en je account kon niet worden overgezet. Probeer het nog eens door de QR-code opnieuw te scannen.</string>
 
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">Account overzetten</string>
@@ -9037,19 +8661,6 @@
     <string name="RestoreCompleteBottomSheet_transfer_complete_message">Je Signal-account en berichten zijn overgezet naar je andere apparaat. Signal is nu inactief op dit apparaat.</string>
     <!-- Restore Complete bottom sheet dialog button text to dismiss sheet -->
     <string name="RestoreCompleteBottomSheet_button">Oké</string>
-
-    <!-- No Backup to Restore screen title -->
-    <string name="NoBackupToRestore_title">Geen back-up om te herstellen</string>
-    <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">Omdat je overstapt van iPhone naar Android, kun je je berichten en media alleen overzetten door op je oude apparaat Signal Secure Backups in te schakelen.</string>
-    <!-- No Backup to Restore step 1 to enable backups on old device -->
-    <string name="NoBackupToRestore_step1">Open Signal op je oude apparaat</string>
-    <!-- No Backup to Restore step 2 to enable backups on old device -->
-    <string name="NoBackupToRestore_step2">Tik op Instellingen &gt; Back-ups</string>
-    <!-- No Backup to Restore step 3 to enable backups on old device -->
-    <string name="NoBackupToRestore_step3">Schakel back-ups in en wacht tot je back-up is voltooid</string>
-    <!-- No backup to Restore tonal cta to skip restore -->
-    <string name="NoBackupToRestore_skip_restore">Herstel overslaan</string>
 
     <!-- Dialog title when the recovery key change limit is reached -->
     <string name="MessageBackupsKeyRecordScreen__limit_reached_title">Limiet aantal nieuwe herstelsleutels bereikt</string>

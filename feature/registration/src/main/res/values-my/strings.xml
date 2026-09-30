@@ -556,41 +556,6 @@
     <string name="DeviceTransferComplete__your_account_is_now_on_this_device">သင့်အကောင့်သည် ယခု ဤစက်တွင် ရှိသည်။</string>
     <string name="DeviceTransferComplete__continue_registration">ရှေ့ဆက်ပါ</string>
 
-    <!-- Create profile screen -->
-    <!-- Title displayed at the top of the create-profile screen during registration. -->
-    <string name="CreateProfileScreen__set_up_your_profile">သင့် ပရိုဖိုင်ကိုပြင်ဆင်ပါ</string>
-    <!-- Subtitle on create-profile screen explaining that the profile is end-to-end encrypted and visible to recipients. -->
-    <string name="CreateProfileScreen__your_profile_is_end_to_end_encrypted">သင့်ပရိုဖိုင်နှင့် ၎င်းရှိ ပြောင်းလဲမှုများကို သင်မက်ဆေ့ချ်ပို့ထားသူများ၊ အဆက်အသွယ်များနှင့် အဖွဲ့များက မြင်ရပါမည်။</string>
-    <!-- Label/hint for the first-name field, indicating it is required. -->
-    <string name="CreateProfileScreen__first_name_required">အမည်အစ (လိုအပ်သည်)</string>
-    <!-- Label/hint for the last-name field, indicating it is optional. -->
-    <string name="CreateProfileScreen__last_name_optional">အမည်အဆုံး (ရွေးချယ်နိုင်သည်)</string>
-    <!-- Action button text to advance from create-profile screen. -->
-    <string name="CreateProfileScreen__next">ဆက်သွားမည်</string>
-    <!-- Content description for the avatar selection control. -->
-    <string name="CreateProfileScreen__set_avatar_description">ရုပ်ပုံ သတ်မှတ်ပါ</string>
-
-    <!-- Phone number discoverability picker -->
-    <!-- Title row label shown on the create-profile screen pointing at the discoverability picker. -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">ကျွန်ုပ်ကို မည်သူတို့က ဖုန်းနံပါတ်ဖြင့် ရှာနိုင်သနည်း။</string>
-    <!-- Description shown on the picker when "Everyone" is selected. -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">သင့်ဖုန်းနံပါတ် ရှိသူတိုင်းသည် သင် Signal သုံးနေကြောင်း မြင်တွေ့နိုင်ပြီး သင်နှင့် ချက်(တ်)စတင်နိုင်ပါသည်။</string>
-    <!-- Description shown on the picker when "Nobody" is selected. -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">သင် ၎င်းတို့ကို မက်ဆေ့ချ်မပို့ပါက သို့မဟုတ် ၎င်းတို့နှင့် ပြောလက်စ ချက်(တ်)တစ်ခု မရှိပါက သင် Signal သုံးနေကြောင်း မည်သူမျှ မြင်တွေ့ရမည်မဟုတ်ပါ။</string>
-    <!-- Radio option label for "Everyone can find me by number". -->
-    <string name="PhoneNumberPrivacy_everyone">လူတိုင်း</string>
-    <!-- Radio option label for "Nobody can find me by number". -->
-    <string name="PhoneNumberPrivacy_nobody">မည်သူမျှ</string>
-    <!-- Title for the confirmation dialog shown when the user selects "Nobody". -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">သေချာပါသလား။</string>
-    <!-- Body for the confirmation dialog shown when the user selects "Nobody". -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">\"ကျွန်ုပ်ကို ဖုန်းနံပါတ်ဖြင့် ရှာဖွေနိုင်သူများ\" ကို \"မည်သူမျှမရှာနိုင်\" ဟု သတ်မှတ်ထားခြင်းဖြင့် သင့်ကို Signal တွင် ရှာဖွေရန် ပိုမိုခက်ခဲစေပါမည်။</string>
-    <!-- Cancel button on the "Nobody" confirmation dialog. -->
-    <string name="PhoneNumberPrivacySettingsFragment__cancel">မလုပ်တော့ပါ</string>
-    <!-- Save button on the discoverability picker. -->
-    <string name="PhoneNumberDiscoverabilityScreen__save">သိမ်းရန်</string>
-    <!-- Content description for the back arrow on the discoverability picker. -->
-    <string name="PhoneNumberDiscoverabilityScreen__back">နောက်သို့</string>
     <!-- Error message shown when the captcha fails to load. -->
     <string name="CaptchaScreen__failed_to_load_captcha">စက်ရုပ်မဟုတ်ကြောင်း အတည်ပြုချက်ကို ဖွင့်၍မရပါ</string>
     <!-- Button to cancel out of the captcha screen. -->
@@ -682,7 +647,7 @@
     <!-- Action button that stores the Signal Login in the device password manager. -->
     <string name="SignalLoginInfoScreen__save_to_password_manager">စကားဝှက်စီမံရေးတွင် သိမ်းဆည်းပါ</string>
     <!-- Toast shown when the user taps the disabled save to password manager button and the device has no password manager. -->
-    <string name="SignalLoginInfoScreen__no_password_manager_available">သင့်တွင် စကားဝှက်စီမံရေးစနစ် ထည့်သွင်းထားခြင်း မရှိပါ သို့မဟုတ် သင်အသုံးပြုနေသည့် စကားဝှက်စီမံရေးကို ပံ့ပိုးမထားပါ။</string>
+    <string name="SignalLoginInfoScreen__no_password_manager_available">You don\'t have a password manager set up.</string>
     <!-- Action button for users who would rather write the Signal Login down themselves. -->
     <string name="SignalLoginInfoScreen__save_manually">ကိုယ်တိုင် သိမ်းဆည်းပါ</string>
     <!-- Error shown when the Signal Login could not be stored in the password manager. -->

@@ -863,23 +863,8 @@
     <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Ningú podrà veure que ets a Signal tret que els enviïs un missatge o tinguis un xat obert amb ells.</string>
 
     <!-- ChooseBackupFragment -->
-    <string name="ChooseBackupFragment__restore_from_backup">Voleu fer una restauració des d\'una còpia de seguretat?</string>
-    <string name="ChooseBackupFragment__restore_your_messages_and_media">Restaureu els missatges i els continguts multimèdia des d\'una còpia de seguretat local. Si no ho feu ara, no ho podreu fer més tard.</string>
-    <string name="ChooseBackupFragment__icon_content_description">Restaura des de la icona de còpia de seguretat</string>
-    <string name="ChooseBackupFragment__choose_backup">Trieu la còpia de seguretat</string>
-    <string name="ChooseBackupFragment__learn_more">Més informació</string>
 
     <!-- RestoreBackupFragment -->
-    <string name="RestoreBackupFragment__restore_complete">Restauració completa</string>
-    <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Per continuar usant les còpies de seguretat, trieu una carpeta. S\'hi desaran les còpies noves.</string>
-    <string name="RestoreBackupFragment__choose_folder">Trieu una carpeta</string>
-    <string name="RestoreBackupFragment__not_now">Ara no</string>
-    <!-- Couldn\'t find the selected backup -->
-    <string name="RestoreBackupFragment__backup_not_found">No s\'ha trobat la còpia de seguretat.</string>
-    <!-- Couldn\'t read the selected backup -->
-    <string name="RestoreBackupFragment__backup_could_not_be_read">No s\'ha pogut llegir la còpia de seguretat.</string>
-    <!-- Backup has an unsupported file extension -->
-    <string name="RestoreBackupFragment__backup_has_a_bad_extension">La còpia de seguretat té una extensió incorrecta.</string>
 
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
@@ -1416,60 +1401,6 @@
     <string name="ManageGroupActivity_add_group_description">Afegiu-hi una descripció del grup.</string>
 
     <!-- RemoteRestoreActivity -->
-    <!-- Progress dialog label when downloading a backup -->
-    <string name="RemoteRestoreActivity__downloading_backup">S\'està descarregant la còpia de seguretat…</string>
-    <!-- Progress dialog label when restoring a backup -->
-    <string name="RemoteRestoreActivity__restoring_messages">Restaurant els missatges…</string>
-    <!-- Progress dialog label when finishing a backup restore -->
-    <string name="RemoteRestoreActivity__finishing_restore">Completant…</string>
-    <!-- Progress dialog label while awaiting updates -->
-    <string name="RemoteRestoreActivity__restoring">S\'està restaurant…</string>
-    <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
-    <string name="RemoteRestoreActivity__s_of_s_s">%1$s de %2$s (%3$s)</string>
-    <!-- Feature list media label for paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_media">Tots els teus arxius multimèdia</string>
-    <!-- Feature list media label for free tier. Placeholder is days, and is currently fixed at 30. -->
-    <string name="RemoteRestoreActivity__your_last_d_days_of_media">Els teus darrers %1$d dies d\'arxius multimèdia</string>
-    <!-- Feature list message label for free and paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_messages">Tots els teus missatges</string>
-    <!-- Screen title for restoring from backup -->
-    <string name="RemoteRestoreActivity__restore_from_backup">Restaura des d\'una còpia de seguretat</string>
-    <!-- Section title for explaining what your backup includes -->
-    <string name="RemoteRestoreActivity__your_backup_includes">La teva còpia de seguretat inclou:</string>
-    <!-- Primary action button copy for starting restoration -->
-    <string name="RemoteRestoreActivity__restore_backup">Restaura la còpia de seguretat</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made. %1$s is replaced with the date (e.g. March 5, 2024) and %2$s is replaced with the time (e.g. 9:00am) -->
-    <string name="RemoteRestoreActivity__backup_created_at">La teva darrera còpia de seguretat es va fer el dia %1$s a les %2$s.</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
-    <string name="RemoteRestoreActivity__backup_created_at_with_size">La teva darrera còpia de seguretat es va fer el dia %1$s a les %2$s. Mida de la teva còpia de seguretat: %3$s.</string>
-    <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
-    <string name="RemoteRestoreActivity__fetching_backup_details">Obtenint detalls de la còpia de seguretat…</string>
-    <!-- Text label button to skip restore from remote -->
-    <string name="RemoteRestoreActivity__skip_restore">Ometre la restauració</string>
-    <!-- Dialog title displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__couldnt_transfer">No s\'ha pogut completar la transferència</string>
-    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">No es pot restaurar la còpia de seguretat</string>
-    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">Hi ha hagut un error en restaurar la teva còpia de seguretat. La teva còpia de seguretat no és recuperable. Posa\'t en contacte amb el servei d\'assistència per obtenir ajuda.</string>
-    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Contacta amb el servei d\'assistència</string>
-    <!-- Dialog message displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__error_occurred">S\'ha produït un error i el teu compte no s\'ha pogut transferir. Torna-ho a provar triant el teu mètode de transferència.</string>
-    <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
-    <string name="RemoteRestoreActivity__couldnt_restore">No s\'ha pogut restaurar aquesta còpia de seguretat</string>
-    <!-- Dialog message explaining that an update to Signal is required to restore the backup. -->
-    <string name="RemoteRestoreActivity__update_latest">Aquesta versió de Signal no pot restaurar la teva còpia de seguretat. Actualitza a la versió més recent i torna-ho a provar.</string>
-    <!-- Text on button that when pressed will redirect them to update Signal -->
-    <string name="RemoteRestoreActivity__update_signal">Actualitza el Signal</string>
-    <!-- Text label button to dismiss the dialog -->
-    <string name="RemoteRestoreActivity__not_now">Ara no</string>
-    <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Els teus arxius es restauraran en segon pla. Si decideixes no restaurar-ho ara, no podràs restaurar-la més tard.</string>
-    <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">Aquest dispositiu ja no està registrat</string>
-    <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">Segurament vas registrar el teu compte de Signal a un altre dispositiu.</string>
 
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
@@ -2234,17 +2165,6 @@
     <string name="PinRestoreLockedFragment_create_new_pin">Crea un PIN nou</string>
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
-    <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
-    <string name="ReRegisterWithPinFragment_send_sms_code">Enviar codi per SMS</string>
-    <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">Registre a Signal - Ajuda per tornar a registrar-se amb el PIN a Android</string>
-    <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">El teu PIN és un codi creat per tu d\'almenys %1$d+ caràcters, i pot ser numèric o alfanumèric.\n\nSi no recordes el teu PIN, pots crear-ne un de nou.</string>
-    <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">Si no recordes el teu PIN, pots crear-ne un de nou.</string>
-    <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">T\'has quedat sense intents per introduir el PIN, però encara pots accedir al teu compte de Signal creant un PIN nou.</string>
-
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Advertiment</string>
     <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Si desactiveu el PIN, perdreu totes les dades quan torneu a registrar-vos al Signal, si no és que en feu una còpia de seguretat i una restauració manualment. No podeu activar el bloqueig de registre mentre el PIN estigui desactivat.</string>
@@ -2324,6 +2244,12 @@
     <string name="WebRtcCallActivity__open_settings">Obre la configuració</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">Ara no</string>
+    <!-- Message for dialog shown at the start of a call when the system battery setting for Signal is "Restricted" -->
+    <string name="WebRtcCallActivity__others_may_not_be_able_to_hear_you_when_your_screen_turns_off">Others may not be able to hear you and the call may disconnect when your screen turns off. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
+    <!-- Title for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__others_couldnt_hear_you">Others couldn\'t hear you</string>
+    <!-- Message for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__your_microphone_was_muted_while_signal_was_in_the_background">Your microphone was muted while Signal was in the background. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
     <!-- Title for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__approve_d_requests">
         <item quantity="one">Aprovar %1$d sol·licitud?</item>
@@ -2639,50 +2565,20 @@
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">El número que heu especificat (%1$s) no és vàlid.
     </string>
 
-    <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">És correcte aquest número de telèfon?</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
     <string name="RegistrationActivity_additional_verification_required">Cal verificació addicional</string>
-    <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">S\'enviarà un codi de verificació a aquest número. El teu operador pot aplicar tarifes.</string>
-    <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Rebreu un codi de verificació. La vostra operadora podria aplicar algun càrrec.</string>
-    <!-- Hint text to select a country -->
-    <string name="RegistrationActivity_select_a_country">Selecciona un país</string>
-    <!-- Hint text explaining that this is where the country code should go -->
-    <string name="RegistrationActivity_default_country_code">0</string>
-    <string name="RegistrationActivity_edit_number">Edita el número</string>
-    <string name="RegistrationActivity_missing_google_play_services">No hi ha el Google Play Services.</string>
-    <string name="RegistrationActivity_this_device_is_missing_google_play_services">Aquest dispositiu no té el Google Play Services. Encara podeu usar el Signal, però aquesta configuració pot resultar en una fiabilitat o un rendiment reduïts.\n\nSi no sou un usuari avançat, si no esteu fent servir una ROM d\'Android de mercat secundari o si creieu que esteu veient això com a error, si us plau, poseu-vos en contacte amb support@signal.org per a la resolució de problemes.</string>
-    <string name="RegistrationActivity_i_understand">Ho entenc</string>
-    <string name="RegistrationActivity_play_services_error">Error amb el Play Services</string>
-    <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">El Google Play Services s\'està actualitzant o no està disponible. Torneu a provar-ho.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Heu fet massa intents per registrar aquest número. Si us plau, torneu-ho a provar més tard.</string>
-    <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">Has fet massa intents per registrar aquest número. Si us plau, torna-ho a provar en %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">No es pot connectar al servei. Si us plau, comproveu la connexió de xarxa i torneu-ho a provar.</string>
     <!-- Dialog error message shown when we are unable to send an SMS to the user\'s number -->
     <string name="RegistrationActivity_sms_provider_error">No hem pogut enviar un SMS al teu número. Torna-ho a provar d\'aquí a unes hores.</string>
-    <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">No t\'hem pogut enviar un codi de verificació per SMS. Prova de rebre el teu codi mitjançant una trucada de veu.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">No s\'ha pogut sol·licitar un codi de verificació. Comprova la connexió de xarxa i torna-ho a provar.</string>
-    <string name="RegistrationActivity_non_standard_number_format">Format de número no estàndard</string>
-    <!-- Dialog message shown to confirm when entering phone number (first placeholder) is normalized and formatted differently by the app (second placeholder). -->
-    <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">El número que heu introduït (%1$s) sembla d\'un format no estàndard.\n\nVoleu dir %2$s?</string>
-    <string name="RegistrationActivity_signal_android_phone_number_format">Signal d\'Android. Format del número de telèfon</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="one">Ara us queda %1$d pas per enviar un informe de depuració.</item>
         <item quantity="other">Ara us queden %1$d passos per enviar un informe de depuració.</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Hem de verificar que sou una persona.</string>
-    <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
-    <string name="RegistrationActivity_voice_call">Trucada de veu</string>
-    <!-- Dialog button to cancel the pending action and return to the previous state. -->
-    <string name="RegistrationActivity_cancel">Cancel·lar</string>
     <string name="RegistrationActivity_next">Següent</string>
-    <!-- Title of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_phone_number">Número de telèfon</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Marqueu el codi que hem enviat a %1$s</string>
 
     <string name="RegistrationActivity_phone_number_description">Número de telèfon</string>
@@ -2881,6 +2777,8 @@
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Ha fallat carregar el paquet d\'adhesius.</string>
     <!-- Bottom sheet describing a sticker. First placeholder is the title of the sticker pack and second is the author -->
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
+    <!-- Bottom sheet option that opens the pack the sticker belongs to -->
+    <string name="StickerPreviewBottomSheet__view_pack">View pack</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">Desar</string>
@@ -3619,8 +3517,6 @@
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Per rebre notificacions de trucades, toqueu Configuració i activeu l\'activitat en segon pla a la configuració Bateria.</string>
 
     <!-- country_selection_fragment -->
-    <string name="country_selection_fragment__loading_countries">Es carreguen els països…</string>
-    <string name="country_selection_fragment__search">Cerca</string>
 
     <string name="device_list_fragment__link_new_device">Enllaça un dispositiu nou</string>
 
@@ -4454,6 +4350,8 @@
     <string name="conversation_selection__menu_pin_message">Fixa</string>
     <!-- Button to unpin a message -->
     <string name="conversation_selection__menu_unpin_message">No ho fixis</string>
+    <!-- Button to open the sticker pack a sticker message came from -->
+    <string name="conversation_selection__menu_view_sticker_pack">View pack</string>
 
     <!-- conversation_expiring_on -->
 
@@ -4644,14 +4542,11 @@
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">Marqueu el PIN</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Marqueu el PIN que heu creat per al compte. Això és diferent del codi de verificació d\'SMS.</string>
-    <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
-    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Introdueix el PIN que has creat per al teu compte.</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">PIN incorrecte. Torneu-ho a provar.</string>
     <string name="RegistrationLockFragment__forgot_pin">Heu oblidat el PIN?</string>
     <string name="RegistrationLockFragment__incorrect_pin">PIN incorrecte</string>
     <string name="RegistrationLockFragment__forgot_your_pin">Heu oblidat el PIN?</string>
     <string name="RegistrationLockFragment__not_many_tries_left">No resta cap intent!</string>
-    <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Registre del Signal - Cal ajuda amb el PIN per a Android (PIN v2)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
         <item quantity="one">Per a la vostra privadesa i seguretat, no hi ha manera de recuperar el PIN. Si no el podeu recordar, podeu refer la verificació amb un SMS al cap de %1$d dia d\'inactivitat. En aquest cas, el compte s\'esborrarà i se\'n suprimirà el contingut.</item>
@@ -4706,22 +4601,6 @@
     <string name="backup_enable_dialog__you_must_have_this_passphrase">Heu de tenir aquesta contrasenya per restaurar una còpia de seguretat.</string>
     <string name="backup_enable_dialog__folder">Carpeta</string>
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">He anotat aquesta contrasenya. Sense, no podré restaurar cap còpia de seguretat.</string>
-    <string name="registration_activity__restore_backup">Restaura la còpia de seguretat</string>
-    <!-- Text label button to skip restoring -->
-    <string name="registration_activity__skip_restore">Ometre la restauració</string>
-    <!-- Title for dialog to enter in the backup passphrase -->
-    <string name="RegistrationActivity_enter_backup_passphrase">Escriviu la contrasenya de la còpia de seguretat.</string>
-    <string name="RegistrationActivity_restore">Restaura</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">No es pot importar backup de versions noves de Signal</string>
-    <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
-    <string name="RegistrationActivity_backup_failure_foreign_key">La còpia de seguretat conté dades amb un format incorrecte</string>
-    <string name="RegistrationActivity_incorrect_backup_passphrase">Contrasenya de còpia de seguretat incorrecta</string>
-    <string name="RegistrationActivity_checking">Es comprova…</string>
-    <string name="RegistrationActivity_d_messages_so_far">%1$d missatges fins ara…</string>
-    <string name="RegistrationActivity_restore_from_backup">Voleu fer una restauració des d\'una còpia de seguretat?</string>
-    <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Restaureu els missatges i els continguts multimèdia des d\'una còpia de seguretat local. Si no ho feu ara, no ho podreu fer més tard.</string>
-    <string name="RegistrationActivity_backup_size_s">Mida de la còpia de seguretat: %1$s</string>
-    <string name="RegistrationActivity_backup_timestamp_s">Marca horària de la còpia de seguretat: %1$s</string>
     <string name="BackupDialog_enable_local_backups">Voleu activar les còpies de seguretat locals?</string>
     <string name="BackupDialog_enable_backups">Activa les còpies de seguretat</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Si us plau, reconeixeu que ho heu entès marcant la casella de confirmació.</string>
@@ -4757,7 +4636,6 @@
     <string name="RegistrationActivity_call_me_instead_available_in">Truca\'m (%1$02d:%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
     <string name="RegistrationActivity_resend_sms_available_in">Torna a enviar el codi (%1$02d:%2$02d)</string>
-    <string name="RegistrationActivity_contact_signal_support">Contacteu amb el suport de Signal</string>
     <string name="RegistrationActivity_code_support_subject">Registre del Signal - Codi de verificació per a Android</string>
     <string name="RegistrationActivity_incorrect_code">Codi incorrecte</string>
     <string name="BackupUtil_never">Mai</string>
@@ -4879,25 +4757,8 @@
     <string name="TransferOrRestoreFragment__restore_from_local_backup">Restaurar la còpia de seguretat local</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
-    <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Obriu el Signal a l\'antic telèfon Android.</string>
-    <string name="NewDeviceTransferInstructions__continue">Continua</string>
-    <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Toqueu la foto del perfil a la part superior esquerra per obrir-ne la Configuració.</string>
-    <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_account">"Toqueu Compte"</string>
-    <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
-    <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"Toqueu Transfereix el compte i, a continuació, Continua, als dos dispositius."</string>
 
     <!-- NewDeviceTransferSetupFragment -->
-    <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Es prepara la connexió amb un dispositiu Android antic…</string>
-    <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Un moment, hauria d’estar llest aviat…</string>
-    <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">S\'espera que el dispositiu Android antic es connecti…</string>
-    <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">El Signal necessita el permís d’ubicació per descobrir i connectar-se al dispositiu antic d\'Android.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">El Signal necessita els serveis d’ubicació habilitats per descobrir i connectar-se al dispositiu antic d\'Android.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">El Signal necessita la connexió Wi-Fi per descobrir i connectar-se al dispositiu antic d\'Android. La Wi-Fi ha d’estar activa, però no ha d’estar connectat a una xarxa Wi-Fi.</string>
-    <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Sembla que aquest dispositiu no admet Wi-Fi Direct. El Signal usa Wi-Fi Direct per descobrir i connectar-se al dispositiu antic d\'Android. Encara podeu restaurar una còpia de seguretat per restaurar el compte des del dispositiu d\'Android antic.</string>
-    <string name="NewDeviceTransferSetup__restore_a_backup">Restaura una còpia de seguretat</string>
-    <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">S\'ha produït un error inesperat en intentar connectar al dispositiu d\'Android antic.</string>
 
     <!-- OldDeviceTransferSetupFragment -->
     <string name="OldDeviceTransferSetup__searching_for_new_android_device">Se cerca un dispositiu d\'Android nou…</string>
@@ -4941,9 +4802,6 @@
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Toqueu Continua a l’altre dispositiu…</string>
 
     <!-- NewDeviceTransferFragment -->
-    <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">No es pot fer la transferència des de versions més recents del Signal.</string>
-    <!-- Error message indicating that we could not finish the user\'s device transfer. Displayed in a toast at the bottom of the screen. -->
-    <string name="NewDeviceTransfer__failure_foreign_key">Les dades transferides tenien un format incorrecte</string>
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">Es transfereixen dades</string>
@@ -4982,10 +4840,6 @@
     <string name="OldDeviceTransferComplete__close">Tanca</string>
 
     <!-- NewDeviceTransferComplete -->
-    <string name="NewDeviceTransferComplete__transfer_successful">Transferència correcta</string>
-    <string name="NewDeviceTransferComplete__transfer_complete">Transferència completa</string>
-    <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">Per completar el procés de transferència, heu de continuar el registre.</string>
-    <string name="NewDeviceTransferComplete__continue_registration">Continua el registre</string>
 
     <!-- DeviceToDeviceTransferService -->
     <string name="DeviceToDeviceTransferService_content_title">Transferència del compte</string>
@@ -8753,219 +8607,6 @@
 
     <!-- ConfirmBackupCancellationDialog -->
 
-    <!-- Row title for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">Tinc el meu telèfon antic</string>
-    <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_scan_qr">Per començar ràpidament, escaneja un codi QR des del teu compte actual de Signal</string>
-
-    <!-- Row title for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">No conservo el meu telèfon antic</string>
-    <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">O estàs reinstal·lant Signal al mateix dispositiu</string>
-
-    <!-- Screen title for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__restore_or_transfer_account">Restaurar o transferir compte</string>
-    <!-- Screen subtitle for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__get_your_signal_account">Recupera el teu compte de Signal i l\'historial de missatges en aquest dispositiu.</string>
-    <!-- Option title for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_signal_backup">Restaurar la còpia de seguretat de Signal</string>
-    <!-- Option subtitle for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_your_text_messages_and_media_from">Restaura els teus missatges i arxius multimèdia des del teu pla de còpies de seguretat de Signal.</string>
-    <!-- Option title for restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_on_device_backup">Restaurar la còpia de seguretat local</string>
-    <!-- Option subtitle fdor restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_your_messages_from">Restaura els teus missatges des d\'una còpia de seguretat del teu dispositiu.</string>
-    <!-- Option title for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__from_your_old_phone">Des del teu telèfon antic</string>
-    <!-- Option subtitle for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__transfer_directly_from_old">Transfereix directament des del teu antic Android</string>
-    <!-- Dialog title shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_title">Ometre la restauració?</string>
-    <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">Si decideixes no restaurar-ho ara, no podràs restaurar-ho més tard. Si tornes a activar les còpies de seguretat després d\'ometre la restauració, la còpia de seguretat actual serà substituïda pel nou historial de missatges.</string>
-    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore">Ometre la restauració</string>
-
-    <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_title">Introdueix la teva clau de recuperació</string>
-    <!-- Screen subtitle for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_subtitle">La teva clau de recuperació és un codi de 64 caràcters i és necessària per recuperar el teu compte i les teves dades.</string>
-    <!-- Button to skip entering recovery key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">No tens clau de recuperació?</string>
-    <!-- Recovery key text field hint -->
-    <string name="EnterBackupKey_backup_key">Clau de recuperació</string>
-    <!-- Recovery key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">Les còpies de seguretat no es poden recuperar sense el seu codi de recuperació de 64 caràcters. Si has perdut la teva clau, Signal no pot ajudar-te a restaurar la còpia de seguretat.</string>
-    <!-- Recovery key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">Si conserves el teu dispositiu antic, podràs veure la teva clau de recuperació a Ajustos &gt; Còpies de seguretat de Signal. Llavors, toca Veure la clau de recuperació.</string>
-    <!-- Recovery key not known bottom sheet button to learn more about it -->
-    <string name="EnterBackupKey_learn_more">Més informació</string>
-    <!-- Recovery key not known bottom sheet button to skip recovery key entry and resume normal reregistration -->
-    <string name="EnterBackupKey_skip_and_dont_restore">Ometre la restauració</string>
-    <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">Clau de recuperació incorrecta</string>
-    <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">Assegura\'t de registrar-te amb el mateix número de telèfon i la clau de recuperació de 64 caràcters que has guardat en activar les còpies de seguretat segures de Signal. Sense aquesta clau, no es poden recuperar les còpies de seguretat.</string>
-    <!-- Dialog positive button text to try entering their recovery key again -->
-    <string name="EnterBackupKey_try_again">Torna a provar-ho</string>
-    <!-- Dialog negative button text to get help with recovery key -->
-    <string name="EnterBackupKey_backup_key_help">Ajuda amb la clau de recuperació</string>
-    <!-- Text field error text when the recovery key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">Clau de recuperació incorrecta</string>
-    <!-- Text field error text when the recovery key is too long -->
-    <string name="EnterBackupKey_too_long_error">Massa llarg (%1$d/%2$d)</string>
-    <!-- Text field error when the recovery key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">Clau de recuperació no vàlida</string>
-    <!-- Dialog title shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_not_found">No s\'ha trobat la còpia de seguretat</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">La clau de recuperació que has introduït és correcta, però no hi ha cap còpia de seguretat associada a ella. Si encara tens el teu telèfon antic, assegura\'t que les còpies de seguretat estan habilitades i que s\'ha completat una còpia de seguretat, i torna-ho a intentar.</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">És possible que hagis introduït la clau de recuperació incorrectament o no hagis completat almenys una còpia de seguretat al teu antic dispositiu.\n\nAssegura\'t de registrar-te amb el mateix número de telèfon i la mateixa clau de recuperació que vas enregistrar en activar les Còpies de seguretat segures de Signal i confirma que el teu antic dispositiu hagi completat almenys una còpia de seguretat.</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">Has esgotat els intents de la clau de recuperació. Per la teva seguretat, el nombre d\'intents que pots fer és limitat. Espera una hora i torna-ho a intentar.</string>
-    <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
-    <string name="EnterBackupKey_skip_restore">Ometre la restauració</string>
-    <!-- Dialog title text when encountering backup restore network error -->
-    <string name="EnterBackupKey_cant_restore_backup">No es pot restaurar la còpia de seguretat</string>
-    <!-- Dialog body text when encountering backup restore network error -->
-    <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">Ara mateix no es pot restaurar la teva còpia de seguretat. Comprova la connexió a Internet i torna-ho a provar. </string>
-    <!-- Dialog button text to contact support on network error -->
-    <string name="EnterBackupKey_contact_support">Contacta amb el servei d\'assistència</string>
-
-    <!-- Email subject when contacting support on a restore backup network issue -->
-    <string name="EnterBackupKey_network_failure_support_email">Error de xarxa de restauració de la còpia de seguretat de Signal Android</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
-    <!-- Email subject when contacting support on a permanent backup import failure -->
-    <string name="EnterBackupKey_permanent_failure_support_email">Error permanent en restaurar la còpia de seguretat de Signal Android</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
-
-    <!-- EnterLocalBackupKeyScreen: Screen title for entering recovery key for local backup restore -->
-    <string name="EnterLocalBackupKeyScreen__enter_your_recovery_key">Introdueix la teva clau de recuperació</string>
-    <!-- EnterLocalBackupKeyScreen: Screen subtitle explaining what the recovery key is -->
-    <string name="EnterLocalBackupKeyScreen__your_recovery_key_is_a_64_character_code">La teva clau de recuperació és un codi de 64 caràcters i és necessària per recuperar el teu compte i les teves dades.</string>
-    <!-- EnterLocalBackupKeyScreen: Button text when user does not have a recovery key -->
-    <string name="EnterLocalBackupKeyScreen__no_recovery_key">No tens clau de recuperació?</string>
-    <!-- EnterLocalBackupKeyScreen: Button to proceed to next step -->
-    <string name="EnterLocalBackupKeyScreen__next">Següent</string>
-
-    <!-- RestoreLocalBackupDialog: Error message when the selected archive fails to load -->
-    <string name="RestoreLocalBackupDialog__failed_to_load_archive">No s\'ha pogut carregar l\'arxiu. Selecciona un directori diferent.</string>
-    <!-- RestoreLocalBackupDialog: Dismiss button for dialog -->
-    <string name="RestoreLocalBackupDialog__ok">D\'acord</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore">Ometre la restauració?</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user about the consequences of skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore_body">Si decideixes no restaurar-ho ara, no podràs restaurar-ho més tard. Si tornes a activar les còpies de seguretat després d\'ometre la restauració, la còpia de seguretat actual serà substituïda pel nou historial de missatges.</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the skip restore dialog -->
-    <string name="RestoreLocalBackupDialog__skip_restore_confirm">Ometre la restauració</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm restoring a backup from a different account -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account">Restaurar a un nou compte?</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user that the backup was created with a different account and they will lose group memberships -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account_body">La còpia de seguretat que estàs restaurant es va crear amb un altre compte de Signal. Pots restaurar aquesta còpia de seguretat a un nou compte, però ja no seràs membre de cap dels grups que es restaurin.</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the restore to new account dialog -->
-    <string name="RestoreLocalBackupDialog__restore">Restaura</string>
-
-    <!-- RestoreLocalBackupActivity: Toast message when backup restore fails -->
-    <string name="RestoreLocalBackupActivity__backup_restore_failed">No s\'ha pogut restaurar la còpia de seguretat</string>
-    <!-- RestoreLocalBackupActivity: Screen title shown during restore -->
-    <string name="RestoreLocalBackupActivity__restoring_backup">Restaurant la còpia de seguretat</string>
-    <!-- RestoreLocalBackupActivity: Screen subtitle explaining restore duration -->
-    <string name="RestoreLocalBackupActivity__depending_on_the_size">Depenent de la mida de la teva còpia de seguretat, això pot trigar uns minuts.</string>
-    <!-- RestoreLocalBackupActivity: Status text while restoring messages -->
-    <string name="RestoreLocalBackupActivity__restoring_messages">Restaurant els missatges…</string>
-    <!-- RestoreLocalBackupActivity: Status text while finalizing restore -->
-    <string name="RestoreLocalBackupActivity__finalizing">Finalitzant…</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore is complete -->
-    <string name="RestoreLocalBackupActivity__restore_complete">Restauració completa</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore fails -->
-    <string name="RestoreLocalBackupActivity__restore_failed">Restauració fallida</string>
-    <!-- RestoreLocalBackupActivity: Progress text showing bytes read of total with percentage, e.g. "1.2 MB of 5.0 MB (24%)" -->
-    <string name="RestoreLocalBackupActivity__s_of_s_d_percent">%1$s de %2$s (%3$d %%)</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__cant_restore_backup">No es pot restaurar la còpia de seguretat</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__error_occurred_while_restoring">Hi ha hagut un error en restaurar la teva còpia de seguretat. La teva còpia de seguretat no és recuperable. Posa\'t en contacte amb el servei d\'assistència per obtenir ajuda.</string>
-
-    <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
-    <string name="RestoreLocalBackupActivity__contact_support">Contacta amb el servei d\'assistència</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
-    <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">Activar les còpies de seguretat locals?</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Per continuar utilitzant les còpies de seguretat locals, hauràs d\'activar-les en aquest compte. Pots fer-ho des d\'Ajustos &gt; Còpies de seguretat</string>
-
-    <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__turn_on_now">Activar ara</string>
-
-    <!-- RestoreLocalBackupActivity: Dismiss button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__not_now">Ara no</string>
-
-    <!-- RestoreLocalBackupActivity: Body text for the dialog shown after a successful restore, prompting the user to choose a backup folder -->
-    <string name="RestoreLocalBackupActivity__choose_a_folder_for_backups">Per continuar utilitzant les còpies de seguretat locals, tria una carpeta al teu dispositiu on desar les noves còpies de seguretat.</string>
-
-    <!-- RestoreLocalBackupActivity: Positive button label for the dialog shown after a successful restore; keeps the current backup folder -->
-    <string name="RestoreLocalBackupActivity__use_current_folder">Utilitzar la carpeta actual</string>
-
-    <!-- RestoreLocalBackupActivity: Neutral button label for the dialog shown after a successful restore; opens folder picker to select a different backup location -->
-    <string name="RestoreLocalBackupActivity__choose_new_folder">Triar una nova carpeta</string>
-
-    <!-- RestoreLocalBackupActivity: Negative button label for the dialog shown after a successful restore; disables on-device backups -->
-    <string name="RestoreLocalBackupActivity__disable_backups">Desactivar les còpies de seguretat</string>
-
-    <!-- SelectInstructionsSheet: Title for the select backup folder instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_folder">Selecciona la teva carpeta per la còpia de seguretat</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the select this folder button -->
-    <string name="SelectInstructionsSheet__tap_select_this_folder">Toca \"Seleccionar aquesta carpeta\"</string>
-    <!-- SelectInstructionsSheet: Instruction not to select individual files -->
-    <string name="SelectInstructionsSheet__do_not_select_individual_files">No seleccionis arxius individuals</string>
-    <!-- SelectInstructionsSheet: Title for the select backup file instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_file">Selecciona el teu arxiu de còpia de seguretat</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the backup file saved to device -->
-    <string name="SelectInstructionsSheet__tap_on_the_backup_file">Toca l\'arxiu de la còpia de seguretat que has desat al teu dispositiu</string>
-    <!-- SelectInstructionsSheet: Subtitle explaining how to access backup after tapping continue -->
-    <string name="SelectInstructionsSheet__after_tapping_continue">Un cop toquis \"Continuar\", podràs accedir a la teva còpia de seguretat així:</string>
-    <!-- SelectInstructionsSheet: Instruction to select the top-level backup folder -->
-    <string name="SelectInstructionsSheet__select_the_top_level_folder">Selecciona la carpeta de nivell superior on s\'emmagatzema la còpia de seguretat</string>
-    <!-- SelectInstructionsSheet: Continue button text -->
-    <string name="SelectInstructionsSheet__continue_button">Continua</string>
-
-    <!-- SelectLocalBackupScreen: Screen title for restoring on-device backup -->
-    <string name="SelectLocalBackupScreen__restore_on_device_backup">Restaurar la còpia de seguretat local</string>
-    <!-- SelectLocalBackupScreen: Screen subtitle explaining the restore process -->
-    <string name="SelectLocalBackupScreen__restore_your_messages_from_the_backup_folder">Restaurar els teus missatges des d\'una carpeta de còpies de seguretat del teu dispositiu. Si no la restaures ara, no podràs restaurar-la més tard.</string>
-    <!-- SelectLocalBackupScreen: Button to initiate backup restoration -->
-    <string name="SelectLocalBackupScreen__restore_backup">Restaura la còpia de seguretat</string>
-    <!-- SelectLocalBackupScreen: Button to choose an earlier backup when current is latest -->
-    <string name="SelectLocalBackupScreen__choose_an_earlier_backup">Selecciona una còpia de seguretat anterior</string>
-    <!-- SelectLocalBackupScreen: Button to choose a different backup -->
-    <string name="SelectLocalBackupScreen__choose_a_different_backup">Selecciona una còpia de seguretat diferent</string>
-    <!-- SelectLocalBackupScreen: Label for latest backup card -->
-    <string name="SelectLocalBackupScreen__your_latest_backup">La teva darrera còpia de seguretat:</string>
-    <!-- SelectLocalBackupScreen: Label for non-latest backup card -->
-    <string name="SelectLocalBackupScreen__your_backup">La teva còpia de seguretat:</string>
-
-    <!-- SelectLocalBackupSheet: Title for backup selection bottom sheet -->
-    <string name="SelectLocalBackupSheet__choose_a_backup_to_restore">Selecciona una còpia de seguretat per restaurar</string>
-    <!-- SelectLocalBackupSheet: Subtitle warning about choosing an older backup -->
-    <string name="SelectLocalBackupSheet__choosing_an_older_backup">Si selecciones una còpia de seguretat més antiga, podries perdre missatges o arxius multimèdia.</string>
-    <!-- SelectLocalBackupSheet: Continue button text -->
-    <string name="SelectLocalBackupSheet__continue_button">Continua</string>
-
-    <!-- SelectLocalBackupTypeScreen: Screen title for selecting backup type -->
-    <string name="SelectLocalBackupTypeScreen__restore_on_device_backup">Restaurar la còpia de seguretat local</string>
-    <!-- SelectLocalBackupTypeScreen: Screen subtitle explaining restore options -->
-    <string name="SelectLocalBackupTypeScreen__restore_your_messages_from_the_backup">Restaura els teus missatges des d\'una còpia de seguretat del teu dispositiu. Si no la restaures ara, no podràs restaurar-la més tard.</string>
-    <!-- SelectLocalBackupTypeScreen: Button for users who saved backup as single file -->
-    <string name="SelectLocalBackupTypeScreen__i_saved_my_backup_as_a_single_file">He desat la meva còpia de seguretat com un sol arxiu</string>
-    <!-- SelectLocalBackupTypeScreen: Card title for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__choose_backup_folder">Selecciona la carpeta de còpies de seguretat</string>
-    <!-- SelectLocalBackupTypeScreen: Card description for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__select_the_folder_on_your_device">Selecciona la carpeta del teu dispositiu on s\'emmagatzemen les còpies de seguretat</string>
-
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">Error de xarxa d\'exportació de la còpia de seguretat de Signal Android</string>
     <!-- Email filter when contacting support on a create backup failure -->
@@ -8979,23 +8620,6 @@
     <string name="ContactSupportDialog_submit_with_debug">Envia-ho amb el registre de depuració</string>
     <!-- Button option to not submit debug log when contacting support -->
     <string name="ContactSupportDialog_submit_without_debug">Envia-ho sense el registre de depuració</string>
-
-    <!-- Title for restore via qr screen -->
-    <string name="RestoreViaQr_title">Escaneja aquest codi amb el teu mòbil antic</string>
-    <!-- First instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_1">Obre Signal al teu dispositiu antic</string>
-    <!-- Second instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_2">Toca la icona de la càmera </string>
-    <!-- Third instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_3">Escaneja aquest codi amb la càmera</string>
-    <!-- Error message shown when qr code could not be loaded -->
-    <string name="RestoreViaQr_qr_code_error">No es pot generar un codi QR</string>
-    <!-- Status message shown when qr code already scanned by other device -->
-    <string name="RestoreViaQr_qr_code_scanned">Escanejat en l\'antic dispositiu</string>
-    <!-- Error button text to retry getting a qr code -->
-    <string name="RestoreViaQr_retry">Torna a provar-ho</string>
-    <!-- Error message shown when register after receiving the provisioning message failed -->
-    <string name="RestoreViaQr_registration_error">S\'ha produït un error i el teu compte no s\'ha pogut transferir. Torna-ho a provar escanejant el codi QR de nou.</string>
 
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">Transfereix el compte</string>
@@ -9037,19 +8661,6 @@
     <string name="RestoreCompleteBottomSheet_transfer_complete_message">El teu compte de Signal i els teus missatges no s\'han pogut transferir al teu altre dispositiu. Actualment, Signal està inactiu en aquest dispositiu.</string>
     <!-- Restore Complete bottom sheet dialog button text to dismiss sheet -->
     <string name="RestoreCompleteBottomSheet_button">D\'acord</string>
-
-    <!-- No Backup to Restore screen title -->
-    <string name="NoBackupToRestore_title">No hi ha cap còpia de seguretat per restaurar</string>
-    <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">Com que estàs passant d\'iPhone a Android, l\'única manera de transferir els teus missatges i arxius és habilitant les Còpies de seguretat segures de Signal al teu antic dispositiu.</string>
-    <!-- No Backup to Restore step 1 to enable backups on old device -->
-    <string name="NoBackupToRestore_step1">Obre Signal al teu dispositiu antic</string>
-    <!-- No Backup to Restore step 2 to enable backups on old device -->
-    <string name="NoBackupToRestore_step2">Toca Ajustos &gt; Còpies de seguretat</string>
-    <!-- No Backup to Restore step 3 to enable backups on old device -->
-    <string name="NoBackupToRestore_step3">Activa les còpies de seguretat i espera fins que la teva còpia de seguretat estigui completa</string>
-    <!-- No backup to Restore tonal cta to skip restore -->
-    <string name="NoBackupToRestore_skip_restore">Ometre la restauració</string>
 
     <!-- Dialog title when the recovery key change limit is reached -->
     <string name="MessageBackupsKeyRecordScreen__limit_reached_title">S\'ha assolit el límit de claus de recuperació</string>

@@ -863,23 +863,8 @@
     <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Senki sem láthatja, hogy használod a Signalt, hacsak nem küldesz valakinek üzenetet, vagy nem folytatsz csevegést valakivel.</string>
 
     <!-- ChooseBackupFragment -->
-    <string name="ChooseBackupFragment__restore_from_backup">Visszaállítás biztonsági mentésből?</string>
-    <string name="ChooseBackupFragment__restore_your_messages_and_media">Állítsd vissza elmentett üzeneteid és médiafájljaid egy helyi biztonsági mentésből. Ha most nem állítod vissza, később már nem lesz rá lehetőség.</string>
-    <string name="ChooseBackupFragment__icon_content_description">\"Visszaállítás biztonsági mentésből\" ikonja</string>
-    <string name="ChooseBackupFragment__choose_backup">Válassz biztonsági mentést!</string>
-    <string name="ChooseBackupFragment__learn_more">Tudj meg többet!</string>
 
     <!-- RestoreBackupFragment -->
-    <string name="RestoreBackupFragment__restore_complete">Visszaállítás kész</string>
-    <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">A biztonsági mentések használatának folytatásához válassz egy mappát! Az újabb mentések már itt lesznek létrehozva.</string>
-    <string name="RestoreBackupFragment__choose_folder">Mappa kiválasztása</string>
-    <string name="RestoreBackupFragment__not_now">Most nem</string>
-    <!-- Couldn\'t find the selected backup -->
-    <string name="RestoreBackupFragment__backup_not_found">A biztonsági mentés nem található.</string>
-    <!-- Couldn\'t read the selected backup -->
-    <string name="RestoreBackupFragment__backup_could_not_be_read">A biztonsági mentés nem olvasható.</string>
-    <!-- Backup has an unsupported file extension -->
-    <string name="RestoreBackupFragment__backup_has_a_bad_extension">A biztonsági mentés kiterjesztése nem megfelelő.</string>
 
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
@@ -1416,60 +1401,6 @@
     <string name="ManageGroupActivity_add_group_description">Csoportleírás hozzáadása…</string>
 
     <!-- RemoteRestoreActivity -->
-    <!-- Progress dialog label when downloading a backup -->
-    <string name="RemoteRestoreActivity__downloading_backup">Biztonsági mentés letöltése…</string>
-    <!-- Progress dialog label when restoring a backup -->
-    <string name="RemoteRestoreActivity__restoring_messages">Üzenetek visszaállítása…</string>
-    <!-- Progress dialog label when finishing a backup restore -->
-    <string name="RemoteRestoreActivity__finishing_restore">Befejezés…</string>
-    <!-- Progress dialog label while awaiting updates -->
-    <string name="RemoteRestoreActivity__restoring">Visszaállítás…</string>
-    <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
-    <string name="RemoteRestoreActivity__s_of_s_s">%1$s/%2$s (%3$s)</string>
-    <!-- Feature list media label for paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_media">Az összes médiafájlod</string>
-    <!-- Feature list media label for free tier. Placeholder is days, and is currently fixed at 30. -->
-    <string name="RemoteRestoreActivity__your_last_d_days_of_media">Médiafájljaid az elmúlt %1$d napból</string>
-    <!-- Feature list message label for free and paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_messages">Az összes üzeneted</string>
-    <!-- Screen title for restoring from backup -->
-    <string name="RemoteRestoreActivity__restore_from_backup">Visszaállítás biztonsági mentésből</string>
-    <!-- Section title for explaining what your backup includes -->
-    <string name="RemoteRestoreActivity__your_backup_includes">A biztonsági másolat a következőket tartalmazza:</string>
-    <!-- Primary action button copy for starting restoration -->
-    <string name="RemoteRestoreActivity__restore_backup">Biztonsági mentés visszaállítása</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made. %1$s is replaced with the date (e.g. March 5, 2024) and %2$s is replaced with the time (e.g. 9:00am) -->
-    <string name="RemoteRestoreActivity__backup_created_at">Az utolsó biztonsági mentés dátuma: %1$s, %2$s.</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
-    <string name="RemoteRestoreActivity__backup_created_at_with_size">Az utolsó biztonsági mentés dátuma: %1$s, %2$s. A biztonsági másolat mérete: %3$s.</string>
-    <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
-    <string name="RemoteRestoreActivity__fetching_backup_details">Biztonsági mentés részleteinek lekérése…</string>
-    <!-- Text label button to skip restore from remote -->
-    <string name="RemoteRestoreActivity__skip_restore">Visszaállítás kihagyása</string>
-    <!-- Dialog title displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__couldnt_transfer">Nem sikerült befejezni az átvitelt</string>
-    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Nem lehet visszaállítani a biztonsági másolatot</string>
-    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">Hiba történt a biztonsági mentés visszaállítása során. A biztonsági mentés nem állítható vissza. Kérjük, fordulj az ügyfélszolgálathoz segítségért!</string>
-    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Segítségkérés</string>
-    <!-- Dialog message displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__error_occurred">Hiba történt, és a fiókodat nem sikerült áthelyezni. Próbáld újra az átviteli mód kiválasztásával.</string>
-    <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
-    <string name="RemoteRestoreActivity__couldnt_restore">Nem sikerült visszaállítani ezt a biztonsági másolatot</string>
-    <!-- Dialog message explaining that an update to Signal is required to restore the backup. -->
-    <string name="RemoteRestoreActivity__update_latest">A Signal ezen verziója nem tudja visszaállítani a biztonsági másolatot. Frissíts a legújabb verzióra, és próbáld újra!</string>
-    <!-- Text on button that when pressed will redirect them to update Signal -->
-    <string name="RemoteRestoreActivity__update_signal">Signal frissítése</string>
-    <!-- Text label button to dismiss the dialog -->
-    <string name="RemoteRestoreActivity__not_now">Később</string>
-    <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">A médiafájlok visszaállítása a háttérben történik. Ha úgy döntesz, hogy most nem állítod vissza, később nem fogod tudni visszaállítani.</string>
-    <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">Ez az eszköz már nincs regisztrálva.</string>
-    <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">Ez valószínűleg azért van, mert egy másik eszközön regisztráltad a Signal fiókodat.</string>
 
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
@@ -2234,17 +2165,6 @@
     <string name="PinRestoreLockedFragment_create_new_pin">Új PIN létrehozása</string>
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
-    <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
-    <string name="ReRegisterWithPinFragment_send_sms_code">SMS-kód küldése</string>
-    <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">Signal-regisztráció - Segítségkérés a PIN-kód használatához Androidon</string>
-    <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">A PIN-kódod egy általad létrehozott %1$d+ számjegyű kód, amely lehet numerikus vagy alfanumerikus.Ha nem emlékszel a PIN-kódodra, létrehozhatsz egy újat.</string>
-    <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">Ha nem emlékszel a PIN-kódodra, létrehozhatsz egy újat.</string>
-    <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">Elfogyott a PIN-kód megadására rendelkezésre álló kísérletek száma, de továbbra is hozzáférhetsz a Signal-fiókodhoz, ha új PIN-kódot hozol létre.</string>
-
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Figyelmeztetés</string>
     <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">PIN-kódod letiltásával egy esetleges újraregisztráció során az összes Signal-adatod el fog veszni, kivéve ha azokat előtte külön lemented, majd helyreállítod. Letiltott PIN-kóddal nem lehetséges a regisztrációs zár bekapcsolása.</string>
@@ -2324,6 +2244,12 @@
     <string name="WebRtcCallActivity__open_settings">Beállítok megnyitása</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">Később</string>
+    <!-- Message for dialog shown at the start of a call when the system battery setting for Signal is "Restricted" -->
+    <string name="WebRtcCallActivity__others_may_not_be_able_to_hear_you_when_your_screen_turns_off">Others may not be able to hear you and the call may disconnect when your screen turns off. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
+    <!-- Title for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__others_couldnt_hear_you">Others couldn\'t hear you</string>
+    <!-- Message for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__your_microphone_was_muted_while_signal_was_in_the_background">Your microphone was muted while Signal was in the background. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
     <!-- Title for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__approve_d_requests">
         <item quantity="one">Jóváhagysz %1$d kérést?</item>
@@ -2639,50 +2565,20 @@
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Az általad megadott szám (%1$s) érvénytelen.
     </string>
 
-    <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">Helyes az alábbi telefonszám?</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
     <string name="RegistrationActivity_additional_verification_required">További ellenőrzés szükséges</string>
-    <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">Az ellenőrző kódot erre a számra küldjük. Szolgáltatói díjak lehetnek érvényben.</string>
-    <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Hamarosan megerősítő kódot fogsz kapni. Szolgáltatói költségek felmerülhetnek.</string>
-    <!-- Hint text to select a country -->
-    <string name="RegistrationActivity_select_a_country">Válassz országot</string>
-    <!-- Hint text explaining that this is where the country code should go -->
-    <string name="RegistrationActivity_default_country_code">0</string>
-    <string name="RegistrationActivity_edit_number">Szám szerkesztése</string>
-    <string name="RegistrationActivity_missing_google_play_services">Hiányzó Google Play Szolgáltatások</string>
-    <string name="RegistrationActivity_this_device_is_missing_google_play_services">Ezen a készüléken hiányzik a Google Play Szolgáltatások. Továbbra is használhatod a Signalt, de ez a konfiguráció csökkent megbízhatóságot vagy teljesítményt eredményezhet.\n\nHa nem egy hozzáértő felhasználó vagy, aki egy utángyártott Android ROM-ot futtat, vagy ez egy hibának tűnik neked, akkor kérlek vedd fel a kapcsolatot a probléma megoldása érdekében a support@signal.org -gal.</string>
-    <string name="RegistrationActivity_i_understand">Megértettem</string>
-    <string name="RegistrationActivity_play_services_error">Play Szolgáltatások hiba</string>
-    <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">A Google Play Szolgáltatások épp frissítés alatt áll, vagy átmenetileg nem elérhető. Kérlek próbáld újra.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Túl sokszor próbálkoztál ennek a számnak a regisztrációjával. Kérlek próbáld újra később!</string>
-    <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">Túl sokszor próbáltad regisztrálni ezt a számot. Kérjük, próbáld újra %1$s múlva.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Nem lehet kapcsolódni szolgáltatáshoz. Kérlek ellenőrizd a hálózati kapcsolatot és próbáld újra!</string>
     <!-- Dialog error message shown when we are unable to send an SMS to the user\'s number -->
     <string name="RegistrationActivity_sms_provider_error">Nem tudunk SMS-t küldeni a telefonszámodra. Kérjük, próbáld újra néhány óra múlva.</string>
-    <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Nem sikerült ellenőrző kódot küldenünk SMS-ben. Próbáld meg inkább hanghívással fogadni a kódot.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">Nem lehet ellenőrző kódot kérni. Kérjük, ellenőrizd a hálózati kapcsolatot, és próbáld újra!</string>
-    <string name="RegistrationActivity_non_standard_number_format">Nem szabványos számformátum</string>
-    <!-- Dialog message shown to confirm when entering phone number (first placeholder) is normalized and formatted differently by the app (second placeholder). -->
-    <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">A begépelt szám (%1$s) nem tűnik szabványos formátumúnak.\n\nNem erre gondoltál: %2$s ?</string>
-    <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Telefonszám formátum</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="one">Még %1$d lépésre vagy a fejlesztői napló elküldésétől.</item>
         <item quantity="other">Még %1$d lépésre vagy a hibakeresési napló elküldésétől.</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Meg kell bizonyosodnunk róla, hogy valódi személy vagy.</string>
-    <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
-    <string name="RegistrationActivity_voice_call">Hanghívás</string>
-    <!-- Dialog button to cancel the pending action and return to the previous state. -->
-    <string name="RegistrationActivity_cancel">Mégse</string>
     <string name="RegistrationActivity_next">Tovább</string>
-    <!-- Title of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_phone_number">Telefonszám</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Add meg a %1$s számra küldött kódot</string>
 
     <string name="RegistrationActivity_phone_number_description">Telefonszám</string>
@@ -2881,6 +2777,8 @@
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Nem sikerült betölteni a matricacsomagot</string>
     <!-- Bottom sheet describing a sticker. First placeholder is the title of the sticker pack and second is the author -->
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
+    <!-- Bottom sheet option that opens the pack the sticker belongs to -->
+    <string name="StickerPreviewBottomSheet__view_pack">View pack</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">Mentés</string>
@@ -3619,8 +3517,6 @@
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">A hívás-értesítések engedélyezéséhez koppints a Beállítások menüpontra, és engedélyezd a háttértevékenységeket az \"Akkumulátor\" beállításoknál.</string>
 
     <!-- country_selection_fragment -->
-    <string name="country_selection_fragment__loading_countries">Országok betöltése…</string>
-    <string name="country_selection_fragment__search">Keresés</string>
 
     <string name="device_list_fragment__link_new_device">Új eszköz társítása</string>
 
@@ -4454,6 +4350,8 @@
     <string name="conversation_selection__menu_pin_message">Rögzítés</string>
     <!-- Button to unpin a message -->
     <string name="conversation_selection__menu_unpin_message">Feloldás</string>
+    <!-- Button to open the sticker pack a sticker message came from -->
+    <string name="conversation_selection__menu_view_sticker_pack">View pack</string>
 
     <!-- conversation_expiring_on -->
 
@@ -4644,14 +4542,11 @@
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">Add meg PIN kódodat</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Gépeld be a fiókodhoz létrehozott PIN kódodat. Ez nem azonos az SMS-ben regisztrációkor kapott ellenőrző kóddal.</string>
-    <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
-    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Add meg a fiókodhoz létrehozott PIN-kódot.</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Hibás PIN kód. Próbáld újra!</string>
     <string name="RegistrationLockFragment__forgot_pin">Elfelejtetted PIN kódodat?</string>
     <string name="RegistrationLockFragment__incorrect_pin">Hibás PIN</string>
     <string name="RegistrationLockFragment__forgot_your_pin">Elfelejtett PIN?</string>
     <string name="RegistrationLockFragment__not_many_tries_left">Nem maradt túl sok lehetőséged!</string>
-    <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal regisztráció - Segítségkérés a PIN kód használatához Androidon (v2 PIN)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
         <item quantity="one">Személyes adataid védelme és biztonságod érdekében nincs lehetőség a PIN kód visszaállítására. Ha nem emlékszel PIN kódodra, SMS-ben újra megerősítheted telefonszámodat %1$d nap inaktivitást követően. Ebben az esetben fiókod és az összes kapcsolódó adat törlésre kerül.</item>
@@ -4706,22 +4601,6 @@
     <string name="backup_enable_dialog__you_must_have_this_passphrase">Erre a jelmondatra szükséged lesz ahhoz, hogy visszaállítsd a biztonsági mentést.</string>
     <string name="backup_enable_dialog__folder">Mappa</string>
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Feljegyeztem ezt a jelmondatot. Enélkül nem leszek képes visszaállítani biztonsági mentést.</string>
-    <string name="registration_activity__restore_backup">Biztonsági mentés visszaállítása</string>
-    <!-- Text label button to skip restoring -->
-    <string name="registration_activity__skip_restore">Visszaállítás kihagyása</string>
-    <!-- Title for dialog to enter in the backup passphrase -->
-    <string name="RegistrationActivity_enter_backup_passphrase">Biztonsági mentés jelmondatának megadása</string>
-    <string name="RegistrationActivity_restore">Visszaállítás</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">Az újabb verziókból nincs biztonsági másolat import</string>
-    <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
-    <string name="RegistrationActivity_backup_failure_foreign_key">A biztonsági másolat hibásan formázott adatokat tartalmaz</string>
-    <string name="RegistrationActivity_incorrect_backup_passphrase">Hibás a biztonsági mentéshez tartozó jelmondat</string>
-    <string name="RegistrationActivity_checking">Ellenőrzés…</string>
-    <string name="RegistrationActivity_d_messages_so_far">Eddig %1$d db üzenet…</string>
-    <string name="RegistrationActivity_restore_from_backup">Visszaállítás biztonsági mentésből?</string>
-    <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Állítsd vissza az üzeneteid és médiáfájljaid helyi biztonsági mentésből. Ha most nem teszed meg, később már nem lesz rá lehetőséged.</string>
-    <string name="RegistrationActivity_backup_size_s">Biztonsági mentés mérete: %1$s</string>
-    <string name="RegistrationActivity_backup_timestamp_s">Biztonsági mentés időbélyege: %1$s</string>
     <string name="BackupDialog_enable_local_backups">Engedélyezed a helyi biztonsági mentéseket?</string>
     <string name="BackupDialog_enable_backups">Biztonsági mentések bekapcsolása</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Kérlek erősítsd meg a jelölőnégyzet bejelölésével, hogy megértetted a figyelmeztetést!</string>
@@ -4757,7 +4636,6 @@
     <string name="RegistrationActivity_call_me_instead_available_in">Hívjon (%1$02d:%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
     <string name="RegistrationActivity_resend_sms_available_in">Kód újraküldése (%1$02d:%2$02d)</string>
-    <string name="RegistrationActivity_contact_signal_support">Kapcsolatfelvétel a Signal támogatással</string>
     <string name="RegistrationActivity_code_support_subject">Signal regisztráció - megerősítő kód Androidhoz</string>
     <string name="RegistrationActivity_incorrect_code">Helytelen kód</string>
     <string name="BackupUtil_never">Soha</string>
@@ -4879,25 +4757,8 @@
     <string name="TransferOrRestoreFragment__restore_from_local_backup">Helyi biztonsági mentés visszaállítása</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
-    <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Nyisd meg a Signalt régi Android készülékeden!</string>
-    <string name="NewDeviceTransferInstructions__continue">Folytatás</string>
-    <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Koppints a profilképedre bal-felül a Beállítások megnyitásához.</string>
-    <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_account">"Koppints a \"Fiók\"-ra"</string>
-    <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
-    <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"Érintsd meg az \"Átvitel Andorid eszközről\" majd a \"Folytatás\" opciókat mindkét eszközön."</string>
 
     <!-- NewDeviceTransferSetupFragment -->
-    <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Előkészülés a régi Android eszközhöz csatlakozáshoz…</string>
-    <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Kis türelmet, hamarosan készen van</string>
-    <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Várakozás a régi Android eszközre a csatlakozáshoz…</string>
-    <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">A Signalnak szüksége van hely engedélyekre, hogy felderíthesse és csatlakozhasson régi Android eszközödhöz.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">A Signalnak szüksége van hely szolgáltatások engedélyezésére, hogy felderíthesse és csatlakozhasson régi Android eszközödhöz.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">A Signalnak szüksége Wi-Fi-re, hogy felderíthesse és csatlakozhasson régi Android eszközödhöz. A Wi-Finek bekapcsolva kell lennie, de nem muszáj csatlakozva lennie.</string>
-    <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Sajnáljuk, de úgy tűnik, hogy ez az eszköz nem támogatja a Wi-Fi Directet. A Signal Wi-Fi Directet használ, hogy felderítse és csatlakozzon régi Android eszközödhöz. Továbbra is használhatod a biztonsági mentés által létrehozott fájlokat, hogy a fiókodat áthozd régi Android eszközödről.</string>
-    <string name="NewDeviceTransferSetup__restore_a_backup">Biztonsági mentés visszaállítása</string>
-    <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Váratlan hiba történt a régi Android eszközödhöz történő csatlakozás során.</string>
 
     <!-- OldDeviceTransferSetupFragment -->
     <string name="OldDeviceTransferSetup__searching_for_new_android_device">Az új Android eszköz keresése…</string>
@@ -4941,9 +4802,6 @@
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Koppints a Folytatásra másik eszközödön…</string>
 
     <!-- NewDeviceTransferFragment -->
-    <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Nem lehetséges az átvitel újabb verziójú Signalból</string>
-    <!-- Error message indicating that we could not finish the user\'s device transfer. Displayed in a toast at the bottom of the screen. -->
-    <string name="NewDeviceTransfer__failure_foreign_key">Az átvitt adatok hibás formátumúak voltak</string>
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">Adat áttöltése</string>
@@ -4982,10 +4840,6 @@
     <string name="OldDeviceTransferComplete__close">Bezárás</string>
 
     <!-- NewDeviceTransferComplete -->
-    <string name="NewDeviceTransferComplete__transfer_successful">Átvitel sikeres</string>
-    <string name="NewDeviceTransferComplete__transfer_complete">Átvitel kész</string>
-    <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">Az átvitel befejezéséhez folytatnod kell a regisztrációt.</string>
-    <string name="NewDeviceTransferComplete__continue_registration">Regisztráció folytatása</string>
 
     <!-- DeviceToDeviceTransferService -->
     <string name="DeviceToDeviceTransferService_content_title">Fiók átvitele</string>
@@ -8753,219 +8607,6 @@
 
     <!-- ConfirmBackupCancellationDialog -->
 
-    <!-- Row title for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">Nálam van a régi telefonom</string>
-    <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_scan_qr">A gyors kezdéshez olvasd be a QR-kódot jelenlegi Signal-fiókodból</string>
-
-    <!-- Row title for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">Nincs nálam a régi telefonom</string>
-    <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">Vagy telepítsd újra a Signalt ugyanarra az eszközre</string>
-
-    <!-- Screen title for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__restore_or_transfer_account">Fiók visszaállítása vagy átvitele</string>
-    <!-- Screen subtitle for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__get_your_signal_account">Helyezd át Signal-fiókodat és üzenetelőzményeidet erre az eszközre.</string>
-    <!-- Option title for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_signal_backup">Signal biztonsági mentésének visszaállítása</string>
-    <!-- Option subtitle for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_your_text_messages_and_media_from">Állítsd vissza a szöveges üzeneteidet és médiatartalmaidat a Signal biztonsági mentési csomagjával.</string>
-    <!-- Option title for restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_on_device_backup">Az eszközön tárolt biztonsági mentés visszaállítása</string>
-    <!-- Option subtitle fdor restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_your_messages_from">Állítsd vissza az üzeneteidet az eszközödre mentett biztonsági másolatból.</string>
-    <!-- Option title for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__from_your_old_phone">A régi telefonodról</string>
-    <!-- Option subtitle for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__transfer_directly_from_old">Vidd át közvetlenül régi Android-eszközödről</string>
-    <!-- Dialog title shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_title">Visszaállítás kihagyása?</string>
-    <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">Ha most kihagyod a visszaállítást, később nem fogod tudni visszaállítani. Ha a visszaállítás kihagyása után újra engedélyezed a biztonsági mentéseket, a jelenlegi biztonsági mentést az új üzenetküldési előzmények felülírják.</string>
-    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore">Visszaállítás kihagyása</string>
-
-    <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_title">Add meg a helyreállítási kulcsodat</string>
-    <!-- Screen subtitle for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_subtitle">A helyreállítási kulcs egy 64 karakterből álló kód, amely a fiók és az adatok helyreállításához szükséges.</string>
-    <!-- Button to skip entering recovery key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">Nincs helyreállítási kulcs?</string>
-    <!-- Recovery key text field hint -->
-    <string name="EnterBackupKey_backup_key">Helyreállítási kulcs</string>
-    <!-- Recovery key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">A biztonsági másolatokat nem lehet visszaállítani a 64 karakterből álló helyreállítási kód nélkül. Ha elveszítetted a biztonsági kulcsodat, a Signal nem tud segíteni a biztonsági másolat visszaállításában.</string>
-    <!-- Recovery key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">Ha rendelkezel a régi eszközöddel, tekintsd meg a helyreállítási kulcsot a Beállítások &gt; Csevegések menüpontban. Ezután koppints a Helyreállítási kulcs megtekintése lehetőségre.</string>
-    <!-- Recovery key not known bottom sheet button to learn more about it -->
-    <string name="EnterBackupKey_learn_more">Tudj meg többet</string>
-    <!-- Recovery key not known bottom sheet button to skip recovery key entry and resume normal reregistration -->
-    <string name="EnterBackupKey_skip_and_dont_restore">Kihagyás és visszaállítás</string>
-    <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">Helytelen helyreállítási kulcs</string>
-    <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">Győződj meg róla, hogy ugyanazzal a telefonszámmal és 64 karakteres biztonsági kulccsal regisztrálsz, amelyet a Signal biztonsági mentések engedélyezésekor elmentettél. A biztonsági mentések nem állíthatók vissza e kulcs nélkül.</string>
-    <!-- Dialog positive button text to try entering their recovery key again -->
-    <string name="EnterBackupKey_try_again">Próbáld újra</string>
-    <!-- Dialog negative button text to get help with recovery key -->
-    <string name="EnterBackupKey_backup_key_help">Helyreállítási kulcs súgó</string>
-    <!-- Text field error text when the recovery key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">Helytelen helyreállítási kulcs</string>
-    <!-- Text field error text when the recovery key is too long -->
-    <string name="EnterBackupKey_too_long_error">Túl hosszú (%1$d/%2$d)</string>
-    <!-- Text field error when the recovery key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">Érvénytelen helyreállítási kulcs</string>
-    <!-- Dialog title shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_not_found">A biztonsági mentés nem található</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">A megadott helyreállítási kulcs helyes, de nincs hozzá társítva biztonsági másolat. Ha még mindig megvan a régi telefonod, ellenőrizd, hogy a biztonsági mentések engedélyezve vannak-e, és hogy a biztonsági mentés befejeződött-e, majd próbálja újra.</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">Lehetséges, hogy helytelenül adtad meg a helyreállítási kulcsot, vagy nem készítettél legalább egy biztonsági mentést a régi eszközödről.\n\nGyőződj meg róla, hogy ugyanazzal a telefonszámmal és helyreállítási kulccsal regisztrálsz, amelyet a Signal biztonsági mentés engedélyezésekor elmentettél, és ellenőrizd, hogy a régi eszköz biztonsági mentése megtörtént-e.</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">Elfogytak a helyreállítási kulcs megadásának lehetőségei. Biztonságod érdekében a próbálkozások száma korlátozott. Várj egy órát, és próbáld újra!</string>
-    <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
-    <string name="EnterBackupKey_skip_restore">Visszaállítás kihagyása</string>
-    <!-- Dialog title text when encountering backup restore network error -->
-    <string name="EnterBackupKey_cant_restore_backup">Nem lehet visszaállítani a biztonsági másolatot</string>
-    <!-- Dialog body text when encountering backup restore network error -->
-    <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">A biztonsági másolatot jelenleg nem lehet visszaállítani. Ellenőrizd az internetkapcsolatot, és próbáld újra. </string>
-    <!-- Dialog button text to contact support on network error -->
-    <string name="EnterBackupKey_contact_support">Segítségkérés</string>
-
-    <!-- Email subject when contacting support on a restore backup network issue -->
-    <string name="EnterBackupKey_network_failure_support_email">Signal Android biztonsági mentés visszaállítási hálózati hiba</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
-    <!-- Email subject when contacting support on a permanent backup import failure -->
-    <string name="EnterBackupKey_permanent_failure_support_email">A Signal Android biztonsági mentés visszaállításának tartós hibája</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
-
-    <!-- EnterLocalBackupKeyScreen: Screen title for entering recovery key for local backup restore -->
-    <string name="EnterLocalBackupKeyScreen__enter_your_recovery_key">Add meg a helyreállítási kulcsodat</string>
-    <!-- EnterLocalBackupKeyScreen: Screen subtitle explaining what the recovery key is -->
-    <string name="EnterLocalBackupKeyScreen__your_recovery_key_is_a_64_character_code">A helyreállítási kulcs egy 64 karakterből álló kód, amely a fiók és az adatok helyreállításához szükséges.</string>
-    <!-- EnterLocalBackupKeyScreen: Button text when user does not have a recovery key -->
-    <string name="EnterLocalBackupKeyScreen__no_recovery_key">Nincs helyreállítási kulcs?</string>
-    <!-- EnterLocalBackupKeyScreen: Button to proceed to next step -->
-    <string name="EnterLocalBackupKeyScreen__next">Tovább</string>
-
-    <!-- RestoreLocalBackupDialog: Error message when the selected archive fails to load -->
-    <string name="RestoreLocalBackupDialog__failed_to_load_archive">Nem sikerült betölteni az archívumot. Válassz egy másik könyvtárat.</string>
-    <!-- RestoreLocalBackupDialog: Dismiss button for dialog -->
-    <string name="RestoreLocalBackupDialog__ok">OK</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore">Visszaállítás kihagyása?</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user about the consequences of skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore_body">Ha most kihagyod a visszaállítást, később nem fogod tudni visszaállítani. Ha a visszaállítás kihagyása után újra engedélyezed a biztonsági mentéseket, a jelenlegi biztonsági mentést az új üzenetküldési előzmények felülírják.</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the skip restore dialog -->
-    <string name="RestoreLocalBackupDialog__skip_restore_confirm">Visszaállítás kihagyása</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm restoring a backup from a different account -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account">Helyreállítás új fiókba?</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user that the backup was created with a different account and they will lose group memberships -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account_body">A helyreállítandó biztonsági mentés egy másik Signal-fiókkal készült. Helyreállíthatod ezt a biztonsági mentést egy új fiókba, de a helyreállított csoportoknak többé nem leszel a tagja.</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the restore to new account dialog -->
-    <string name="RestoreLocalBackupDialog__restore">Visszaállítás</string>
-
-    <!-- RestoreLocalBackupActivity: Toast message when backup restore fails -->
-    <string name="RestoreLocalBackupActivity__backup_restore_failed">A biztonsági mentés visszaállítása sikertelen</string>
-    <!-- RestoreLocalBackupActivity: Screen title shown during restore -->
-    <string name="RestoreLocalBackupActivity__restoring_backup">Biztonsági mentés visszaállítása</string>
-    <!-- RestoreLocalBackupActivity: Screen subtitle explaining restore duration -->
-    <string name="RestoreLocalBackupActivity__depending_on_the_size">A biztonsági mentés méretétől függően ez eltarthat néhány percig.</string>
-    <!-- RestoreLocalBackupActivity: Status text while restoring messages -->
-    <string name="RestoreLocalBackupActivity__restoring_messages">Üzenetek visszaállítása…</string>
-    <!-- RestoreLocalBackupActivity: Status text while finalizing restore -->
-    <string name="RestoreLocalBackupActivity__finalizing">Véglegesítés…</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore is complete -->
-    <string name="RestoreLocalBackupActivity__restore_complete">Visszaállítás kész</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore fails -->
-    <string name="RestoreLocalBackupActivity__restore_failed">Visszaállítás sikertelen</string>
-    <!-- RestoreLocalBackupActivity: Progress text showing bytes read of total with percentage, e.g. "1.2 MB of 5.0 MB (24%)" -->
-    <string name="RestoreLocalBackupActivity__s_of_s_d_percent">%1$s/%2$s (%3$d%%)</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__cant_restore_backup">Nem lehet visszaállítani a biztonsági másolatot</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__error_occurred_while_restoring">Hiba történt a biztonsági mentés visszaállítása során. A biztonsági mentés nem állítható vissza. Kérjük, fordulj az ügyfélszolgálathoz segítségért!</string>
-
-    <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
-    <string name="RestoreLocalBackupActivity__contact_support">Segítségkérés</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
-    <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">Eszközön tárolt biztonsági mentések bekapcsolása?</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Az eszközön tárolt biztonsági mentések további használatához engedélyezned kell azokat ehhez a fiókhoz. Ezt bármikor megteheted a Beállítások &gt; Biztonsági mentések menüpontban.</string>
-
-    <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__turn_on_now">Bekapcsolás most</string>
-
-    <!-- RestoreLocalBackupActivity: Dismiss button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__not_now">Később</string>
-
-    <!-- RestoreLocalBackupActivity: Body text for the dialog shown after a successful restore, prompting the user to choose a backup folder -->
-    <string name="RestoreLocalBackupActivity__choose_a_folder_for_backups">Az eszközön tárolt biztonsági mentések további használatához válassz ki egy mappát az eszközödön, ahová az új biztonsági mentéseket menteni szeretnéd.</string>
-
-    <!-- RestoreLocalBackupActivity: Positive button label for the dialog shown after a successful restore; keeps the current backup folder -->
-    <string name="RestoreLocalBackupActivity__use_current_folder">Jelenlegi mappa használata</string>
-
-    <!-- RestoreLocalBackupActivity: Neutral button label for the dialog shown after a successful restore; opens folder picker to select a different backup location -->
-    <string name="RestoreLocalBackupActivity__choose_new_folder">Új mappa választása</string>
-
-    <!-- RestoreLocalBackupActivity: Negative button label for the dialog shown after a successful restore; disables on-device backups -->
-    <string name="RestoreLocalBackupActivity__disable_backups">Biztonsági mentések kikapcsolása</string>
-
-    <!-- SelectInstructionsSheet: Title for the select backup folder instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_folder">Válaszd ki a biztonsági mentésed mappáját</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the select this folder button -->
-    <string name="SelectInstructionsSheet__tap_select_this_folder">Koppints a „Mappa kijelölése” lehetőségre</string>
-    <!-- SelectInstructionsSheet: Instruction not to select individual files -->
-    <string name="SelectInstructionsSheet__do_not_select_individual_files">Ne válassz ki egyéni fájlokat</string>
-    <!-- SelectInstructionsSheet: Title for the select backup file instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_file">Válaszd ki a biztonsági mentési fájlt</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the backup file saved to device -->
-    <string name="SelectInstructionsSheet__tap_on_the_backup_file">Koppints az eszközödre mentett biztonsági mentési fájlra</string>
-    <!-- SelectInstructionsSheet: Subtitle explaining how to access backup after tapping continue -->
-    <string name="SelectInstructionsSheet__after_tapping_continue">A „Folytatás” gombra való koppintás után a következőképpen férhetsz hozzá a biztonsági mentéshez:</string>
-    <!-- SelectInstructionsSheet: Instruction to select the top-level backup folder -->
-    <string name="SelectInstructionsSheet__select_the_top_level_folder">Válaszd ki a legfelső szintű mappát, ahol a biztonsági mentés található</string>
-    <!-- SelectInstructionsSheet: Continue button text -->
-    <string name="SelectInstructionsSheet__continue_button">Folytatás</string>
-
-    <!-- SelectLocalBackupScreen: Screen title for restoring on-device backup -->
-    <string name="SelectLocalBackupScreen__restore_on_device_backup">Az eszközön tárolt biztonsági mentés visszaállítása</string>
-    <!-- SelectLocalBackupScreen: Screen subtitle explaining the restore process -->
-    <string name="SelectLocalBackupScreen__restore_your_messages_from_the_backup_folder">Állítsd vissza az üzeneteidet az eszközödre mentett biztonsági fájlból. Ha most nem állítod vissza, később nem fogod tudni visszaállítani.</string>
-    <!-- SelectLocalBackupScreen: Button to initiate backup restoration -->
-    <string name="SelectLocalBackupScreen__restore_backup">Biztonsági mentés visszaállítása</string>
-    <!-- SelectLocalBackupScreen: Button to choose an earlier backup when current is latest -->
-    <string name="SelectLocalBackupScreen__choose_an_earlier_backup">Válassz egy korábbi biztonsági mentést</string>
-    <!-- SelectLocalBackupScreen: Button to choose a different backup -->
-    <string name="SelectLocalBackupScreen__choose_a_different_backup">Válassz egy másik biztonsági mentést</string>
-    <!-- SelectLocalBackupScreen: Label for latest backup card -->
-    <string name="SelectLocalBackupScreen__your_latest_backup">A legutóbbi biztonsági mentésed:</string>
-    <!-- SelectLocalBackupScreen: Label for non-latest backup card -->
-    <string name="SelectLocalBackupScreen__your_backup">A biztonsági mentésed:</string>
-
-    <!-- SelectLocalBackupSheet: Title for backup selection bottom sheet -->
-    <string name="SelectLocalBackupSheet__choose_a_backup_to_restore">A visszaállításhoz válassz egy biztonsági mentést</string>
-    <!-- SelectLocalBackupSheet: Subtitle warning about choosing an older backup -->
-    <string name="SelectLocalBackupSheet__choosing_an_older_backup">Egy régebbi biztonsági mentés kiválasztása üzenetek vagy médiafájlok elvesztéséhez vezethet.</string>
-    <!-- SelectLocalBackupSheet: Continue button text -->
-    <string name="SelectLocalBackupSheet__continue_button">Folytatás</string>
-
-    <!-- SelectLocalBackupTypeScreen: Screen title for selecting backup type -->
-    <string name="SelectLocalBackupTypeScreen__restore_on_device_backup">Az eszközön tárolt biztonsági mentés visszaállítása</string>
-    <!-- SelectLocalBackupTypeScreen: Screen subtitle explaining restore options -->
-    <string name="SelectLocalBackupTypeScreen__restore_your_messages_from_the_backup">Állítsd vissza az üzeneteidet az eszközödre mentett biztonsági másolatból. Ha most nem állítod vissza, később nem fogod tudni visszaállítani.</string>
-    <!-- SelectLocalBackupTypeScreen: Button for users who saved backup as single file -->
-    <string name="SelectLocalBackupTypeScreen__i_saved_my_backup_as_a_single_file">Egyetlen fájlként mentettem el a biztonsági mentést</string>
-    <!-- SelectLocalBackupTypeScreen: Card title for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__choose_backup_folder">Biztonsági mentés mappájának kiválasztása</string>
-    <!-- SelectLocalBackupTypeScreen: Card description for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__select_the_folder_on_your_device">Válaszd ki az eszközön megtalálható mappát, ahová a biztonsági mentést tárolni szeretnéd</string>
-
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">Signal Android biztonsági mentés visszaállítási hálózati hiba</string>
     <!-- Email filter when contacting support on a create backup failure -->
@@ -8979,23 +8620,6 @@
     <string name="ContactSupportDialog_submit_with_debug">Beküldés hibanaplóval együtt</string>
     <!-- Button option to not submit debug log when contacting support -->
     <string name="ContactSupportDialog_submit_without_debug">Beküldés hibanapló nélkül</string>
-
-    <!-- Title for restore via qr screen -->
-    <string name="RestoreViaQr_title">Olvasd be ezt a kódot a régi telefonoddal</string>
-    <!-- First instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_1">Nyisd meg a Signalt a régi eszközödön</string>
-    <!-- Second instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_2">Koppints a kamera ikonra </string>
-    <!-- Third instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_3">Olvasd be ezt a kódot a kamerával</string>
-    <!-- Error message shown when qr code could not be loaded -->
-    <string name="RestoreViaQr_qr_code_error">QR-kód generálása sikertelen</string>
-    <!-- Status message shown when qr code already scanned by other device -->
-    <string name="RestoreViaQr_qr_code_scanned">Régi eszközön beolvasva</string>
-    <!-- Error button text to retry getting a qr code -->
-    <string name="RestoreViaQr_retry">Újra</string>
-    <!-- Error message shown when register after receiving the provisioning message failed -->
-    <string name="RestoreViaQr_registration_error">Hiba történt, és a fiókodat nem sikerült áthelyezni. Próbáld újra a QR-kód újbóli beolvasásával.</string>
 
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">Fiók átvitele</string>
@@ -9037,19 +8661,6 @@
     <string name="RestoreCompleteBottomSheet_transfer_complete_message">A Signal-fiók és az üzenetek átkerültek a másik eszközödre. A Signal most inaktív ezen az eszközön.</string>
     <!-- Restore Complete bottom sheet dialog button text to dismiss sheet -->
     <string name="RestoreCompleteBottomSheet_button">OK</string>
-
-    <!-- No Backup to Restore screen title -->
-    <string name="NoBackupToRestore_title">Nincs biztonsági mentés a visszaállításhoz</string>
-    <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">Mivel iPhone-ról Androidra váltasz, az üzenetek és a médiafájlok átvitelének egyetlen módja a Signal Biztonságos Biztonsági mentéseinek engedélyezése a régi eszközödön.</string>
-    <!-- No Backup to Restore step 1 to enable backups on old device -->
-    <string name="NoBackupToRestore_step1">Nyisd meg a Signalt a régi eszközödön</string>
-    <!-- No Backup to Restore step 2 to enable backups on old device -->
-    <string name="NoBackupToRestore_step2">Koppints a Beállítások &gt; Biztonsági mentések lehetőségre</string>
-    <!-- No Backup to Restore step 3 to enable backups on old device -->
-    <string name="NoBackupToRestore_step3">Engedélyezd a biztonsági mentéseket, és várd meg, amíg a biztonsági mentés befejeződik</string>
-    <!-- No backup to Restore tonal cta to skip restore -->
-    <string name="NoBackupToRestore_skip_restore">Visszaállítás kihagyása</string>
 
     <!-- Dialog title when the recovery key change limit is reached -->
     <string name="MessageBackupsKeyRecordScreen__limit_reached_title">Elérted a helyreállítási kulcsok korlátját</string>

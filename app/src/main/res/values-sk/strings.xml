@@ -911,23 +911,8 @@
     <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Nikto vás v aplikácii Signal neuvidí, pokiaľ mu nenapíšete správu alebo s ním nebudete četovať.</string>
 
     <!-- ChooseBackupFragment -->
-    <string name="ChooseBackupFragment__restore_from_backup">Obnoviť zo zálohy?</string>
-    <string name="ChooseBackupFragment__restore_your_messages_and_media">Obnovte Vaše správy a médiá z úložiska. Keď nevykonáte obnovu teraz, neskôr nebude možná.</string>
-    <string name="ChooseBackupFragment__icon_content_description">ikona Obnoviť zo zálohy</string>
-    <string name="ChooseBackupFragment__choose_backup">Vyberte zálohu</string>
-    <string name="ChooseBackupFragment__learn_more">Dozvedieť sa viac</string>
 
     <!-- RestoreBackupFragment -->
-    <string name="RestoreBackupFragment__restore_complete">Obnova dokončená</string>
-    <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Ak chcete ďalej používať zálohy, zvoľte, prosím, priečinok. Nové zálohy budú ukladané do tejto lokácie.</string>
-    <string name="RestoreBackupFragment__choose_folder">Zvoľte priečinok</string>
-    <string name="RestoreBackupFragment__not_now">Teraz nie</string>
-    <!-- Couldn\'t find the selected backup -->
-    <string name="RestoreBackupFragment__backup_not_found">Záloha sa nenašla.</string>
-    <!-- Couldn\'t read the selected backup -->
-    <string name="RestoreBackupFragment__backup_could_not_be_read">Zálohu sa nepodarilo prečítať.</string>
-    <!-- Backup has an unsupported file extension -->
-    <string name="RestoreBackupFragment__backup_has_a_bad_extension">Záloha má zlé rozšírenie.</string>
 
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
@@ -1502,60 +1487,6 @@
     <string name="ManageGroupActivity_add_group_description">Pridať popis skupiny…</string>
 
     <!-- RemoteRestoreActivity -->
-    <!-- Progress dialog label when downloading a backup -->
-    <string name="RemoteRestoreActivity__downloading_backup">Sťahuje sa záloha…</string>
-    <!-- Progress dialog label when restoring a backup -->
-    <string name="RemoteRestoreActivity__restoring_messages">Obnovujú sa správy…</string>
-    <!-- Progress dialog label when finishing a backup restore -->
-    <string name="RemoteRestoreActivity__finishing_restore">Dokončuje sa…</string>
-    <!-- Progress dialog label while awaiting updates -->
-    <string name="RemoteRestoreActivity__restoring">Obnovuje sa…</string>
-    <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
-    <string name="RemoteRestoreActivity__s_of_s_s">%1$s z %2$s (%3$s)</string>
-    <!-- Feature list media label for paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_media">Všetky vaše médiá</string>
-    <!-- Feature list media label for free tier. Placeholder is days, and is currently fixed at 30. -->
-    <string name="RemoteRestoreActivity__your_last_d_days_of_media">Médiá z posledných %1$d dní</string>
-    <!-- Feature list message label for free and paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_messages">Všetky vaše správy</string>
-    <!-- Screen title for restoring from backup -->
-    <string name="RemoteRestoreActivity__restore_from_backup">Obnoviť zo zálohy</string>
-    <!-- Section title for explaining what your backup includes -->
-    <string name="RemoteRestoreActivity__your_backup_includes">Vaša záloha zahŕňa:</string>
-    <!-- Primary action button copy for starting restoration -->
-    <string name="RemoteRestoreActivity__restore_backup">Obnoviť zálohu</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made. %1$s is replaced with the date (e.g. March 5, 2024) and %2$s is replaced with the time (e.g. 9:00am) -->
-    <string name="RemoteRestoreActivity__backup_created_at">Vaša posledná záloha bola vytvorená %1$s o %2$s.</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
-    <string name="RemoteRestoreActivity__backup_created_at_with_size">Vaša posledná záloha bola vytvorená %1$s o %2$s. Veľkosť zálohy: %3$s.</string>
-    <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
-    <string name="RemoteRestoreActivity__fetching_backup_details">Načítavajú sa podrobnosti o zálohe…</string>
-    <!-- Text label button to skip restore from remote -->
-    <string name="RemoteRestoreActivity__skip_restore">Preskočiť obnovenie</string>
-    <!-- Dialog title displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__couldnt_transfer">Prenos sa nepodarilo dokončiť</string>
-    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Nepodarilo sa obnoviť zálohu</string>
-    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">Pri obnove zálohy sa vyskytla chyba. Vaša záloha nie je obnoviteľná. Kontaktujte náš tím podpory.</string>
-    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Kontaktovať podporu</string>
-    <!-- Dialog message displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__error_occurred">Vyskytla sa chyba a váš účet sa nepodarilo preniesť. Zvoľte spôsob prenosu a skúste to znova.</string>
-    <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
-    <string name="RemoteRestoreActivity__couldnt_restore">Túto zálohu sa nepodarilo obnoviť</string>
-    <!-- Dialog message explaining that an update to Signal is required to restore the backup. -->
-    <string name="RemoteRestoreActivity__update_latest">Táto verzia Signalu nedokáže obnoviť vašu zálohu. Aktualizujte na najnovšiu verziu a skúste to znova.</string>
-    <!-- Text on button that when pressed will redirect them to update Signal -->
-    <string name="RemoteRestoreActivity__update_signal">Aktualizovať Signal</string>
-    <!-- Text label button to dismiss the dialog -->
-    <string name="RemoteRestoreActivity__not_now">Teraz nie</string>
-    <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Vaše médiá sa obnovia na pozadí. Ak sa rozhodnete nevykonať obnovu teraz, neskôr to nebude možné.</string>
-    <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">Toto zariadenie už nie je registrované</string>
-    <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">Dôvodom je pravdepodobne to, že ste svoj účet Signal zaregistrovali na inom zariadení.</string>
 
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
@@ -2372,17 +2303,6 @@
     <string name="PinRestoreLockedFragment_create_new_pin">Vytvoriť nový PIN</string>
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
-    <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
-    <string name="ReRegisterWithPinFragment_send_sms_code">Odoslať SMS kód</string>
-    <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">Signal registrácia – potrebujem pomoc s opätovnou registráciou PIN kódu pre Android</string>
-    <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">Váš PIN kód je %1$d alebo viacmiestny kód, ktorý ste si vytvorili a môže pozostávať z číselných alebo alfanumerických znakov.\n\nAk si nepamätáte svoj PIN kód, môžete si vytvoriť nový.</string>
-    <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">Ak si nepamätáte svoj PIN kód, môžete si vytvoriť nový.</string>
-    <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">Dosiahli ste maximálny počet neúspešných pokusov o zadanie PIN kódu, no ku svojmu Signal účtu budete mať prístup aj naďalej, ak si vytvoríte nový PIN kód.</string>
-
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Varovanie</string>
     <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Ak vypnete PIN, opätovnou registráciou Signalu prídete o všetky svoje údaje, pokiaľ ich manuálne nezálohujete a neobnovíte. Kým bude PIN vypnutý, nebudete môcť zapnúť registračný zámok.</string>
@@ -2462,6 +2382,12 @@
     <string name="WebRtcCallActivity__open_settings">Otvorte nastavenia</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">Teraz nie</string>
+    <!-- Message for dialog shown at the start of a call when the system battery setting for Signal is "Restricted" -->
+    <string name="WebRtcCallActivity__others_may_not_be_able_to_hear_you_when_your_screen_turns_off">Others may not be able to hear you and the call may disconnect when your screen turns off. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
+    <!-- Title for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__others_couldnt_hear_you">Others couldn\'t hear you</string>
+    <!-- Message for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__your_microphone_was_muted_while_signal_was_in_the_background">Your microphone was muted while Signal was in the background. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
     <!-- Title for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__approve_d_requests">
         <item quantity="one">Chcete schváliť %1$d žiadosť?</item>
@@ -2819,38 +2745,14 @@
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Vami zadané telefónne číslo (%1$s) je neplatné.
     </string>
 
-    <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">Je nižšie uvedené telefónne číslo správne?</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
     <string name="RegistrationActivity_additional_verification_required">Vyžaduje sa dodatočné overenie</string>
-    <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">Na toto číslo bude odoslaný overovací kód. Môžu sa účtovať poplatky operátora.</string>
-    <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Obdržíte overovací kód. Váš mobilný operátor si môže účtovať poplatky.</string>
-    <!-- Hint text to select a country -->
-    <string name="RegistrationActivity_select_a_country">Vyberte krajinu</string>
-    <!-- Hint text explaining that this is where the country code should go -->
-    <string name="RegistrationActivity_default_country_code">0</string>
-    <string name="RegistrationActivity_edit_number">Úprav číslo</string>
-    <string name="RegistrationActivity_missing_google_play_services">Chýba služba Google Play</string>
-    <string name="RegistrationActivity_this_device_is_missing_google_play_services">V tomto zariadení chýba služba Google Play. Signal môžete používať aj tak, ale táto konfigurácia môže mať za následok nespoľahlivosť a nižší výkon.\n\nAk nie ste pokročilý užívateľ, nepoužívate neoficiálny ROM telefónu alebo si myslíte, že sa vám toto hlásenie nemalo zobrazovať, kontaktujte nás na support@signal.org pre vyriešenie problému.</string>
-    <string name="RegistrationActivity_i_understand">Rozumiem</string>
-    <string name="RegistrationActivity_play_services_error">Chyba služby Google Play</string>
-    <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Služba Google Play sa aktualizuje, alebo je dočasne nedostupná. Prosím, skúste to znova.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Urobili ste príliš veľa pokusov o zaregistrovanie tohto čísla. Prosím, skúste to znovu neskôr.</string>
-    <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">Urobili ste príliš veľa pokusov o zaregistrovanie tohto čísla. Skúste to znova o %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Nepodarilo sa pripojiť k službe. Prosím, overte Vaše sieťové pripojenie a skúste to znovu.</string>
     <!-- Dialog error message shown when we are unable to send an SMS to the user\'s number -->
     <string name="RegistrationActivity_sms_provider_error">Momentálne nemôžeme poslať SMS na vaše číslo. Skúste to znova o pár hodín.</string>
-    <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Nepodarilo sa nám poslať vám overovací kód prostredníctvom SMS. Skúste prijať kód prostredníctvom hlasového hovoru.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">Nie je možné požiadať o overovací kód. Skontrolujte pripojenie k sieti a skúste to znova.</string>
-    <string name="RegistrationActivity_non_standard_number_format">Neštandardný formát čísla</string>
-    <!-- Dialog message shown to confirm when entering phone number (first placeholder) is normalized and formatted differently by the app (second placeholder). -->
-    <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Zdá sa, že zadané číslo (%1$s) má neštandardný formát.\n\n Mali ste na mysli %2$s?</string>
-    <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Formát telefónneho čísla</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="one">Ste %1$d krok od odoslania ladiaceho záznamu.</item>
         <item quantity="few">Ste %1$d kroky od odoslania ladiaceho záznamu.</item>
@@ -2858,13 +2760,7 @@
         <item quantity="other">Ste %1$d krokov od odoslania ladiaceho záznamu.</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Potrebujeme si overiť, že ste človek.</string>
-    <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
-    <string name="RegistrationActivity_voice_call">Hlasový hovor</string>
-    <!-- Dialog button to cancel the pending action and return to the previous state. -->
-    <string name="RegistrationActivity_cancel">Zrušiť</string>
     <string name="RegistrationActivity_next">Ďalší</string>
-    <!-- Title of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_phone_number">Telefónne číslo</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Zadajte kód, ktorý sme odoslali na %1$s</string>
 
     <string name="RegistrationActivity_phone_number_description">Telefónne číslo</string>
@@ -3073,6 +2969,8 @@
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Nepodarilo sa načítať balík s nálepkami</string>
     <!-- Bottom sheet describing a sticker. First placeholder is the title of the sticker pack and second is the author -->
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
+    <!-- Bottom sheet option that opens the pack the sticker belongs to -->
+    <string name="StickerPreviewBottomSheet__view_pack">View pack</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">Uložiť</string>
@@ -3837,8 +3735,6 @@
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Ak chcete dostávať oznámenia o hovoroch, ťuknite na Nastavenia a v nastaveniach batérie povoľte aktivitu na pozadí.</string>
 
     <!-- country_selection_fragment -->
-    <string name="country_selection_fragment__loading_countries">Načítavanie krajín…</string>
-    <string name="country_selection_fragment__search">Hľadať</string>
 
     <string name="device_list_fragment__link_new_device">Pripojiť nové zariadenie</string>
 
@@ -4696,6 +4592,8 @@
     <string name="conversation_selection__menu_pin_message">Pripnúť</string>
     <!-- Button to unpin a message -->
     <string name="conversation_selection__menu_unpin_message">Odopnúť</string>
+    <!-- Button to open the sticker pack a sticker message came from -->
+    <string name="conversation_selection__menu_view_sticker_pack">View pack</string>
 
     <!-- conversation_expiring_on -->
 
@@ -4892,14 +4790,11 @@
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">Zadajte svoj PIN</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Zadajte PIN, ktorý ste si pre váš účet vytvorili. Nie je to to isté ako SMS overovací kód.</string>
-    <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
-    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Zadajte PIN kód, ktorý ste vytvorili pre svoj účet.</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Nesprávny PIN kód. Skúste to znova.</string>
     <string name="RegistrationLockFragment__forgot_pin">Zabudli ste PIN?</string>
     <string name="RegistrationLockFragment__incorrect_pin">Nesprávny PIN</string>
     <string name="RegistrationLockFragment__forgot_your_pin">Zabudli ste svoj PIN?</string>
     <string name="RegistrationLockFragment__not_many_tries_left">Ostáva už len zopár pokusov!</string>
-    <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal registrácia - potrebujem pomôcť s PIN na Androide (v2 PIN)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
         <item quantity="one">Kvôli vášmu súkromiu a bezpečnosti nie je možné PIN nijakým spôsobom obnoviť. Ak svoj PIN zabudnete, po %1$d dni neaktivity si budete môcť overiť svoj účet prostredníctvom SMS. V tom prípade bude váš účet zmazaný a celý jeho obsah sa odstráni.</item>
@@ -4964,22 +4859,6 @@
     <string name="backup_enable_dialog__you_must_have_this_passphrase">Musíte vedieť toto heslo, aby ste mohli obnoviť zálohu.</string>
     <string name="backup_enable_dialog__folder">Priečinok</string>
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Heslo som si zapísal/a, bez hesla nebudem schopný/á obnoviť zálohy.</string>
-    <string name="registration_activity__restore_backup">Obnoviť zálohu</string>
-    <!-- Text label button to skip restoring -->
-    <string name="registration_activity__skip_restore">Preskočiť obnovenie</string>
-    <!-- Title for dialog to enter in the backup passphrase -->
-    <string name="RegistrationActivity_enter_backup_passphrase">Zadajte heslo pre zálohy</string>
-    <string name="RegistrationActivity_restore">Obnovenie</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">Zálohy z novších verzií Signalu nie je možné importovať</string>
-    <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
-    <string name="RegistrationActivity_backup_failure_foreign_key">Záloha obsahuje poškodené údaje</string>
-    <string name="RegistrationActivity_incorrect_backup_passphrase">Nesprávne heslo pre zálohy</string>
-    <string name="RegistrationActivity_checking">Kontrola…</string>
-    <string name="RegistrationActivity_d_messages_so_far">Zatiaľ %1$d správ…</string>
-    <string name="RegistrationActivity_restore_from_backup">Obnoviť zo zálohy?</string>
-    <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Obnovte Vaše správy a médiá z úložiska. Keď nevykonáte obnovu teraz, neskôr nebude možná.</string>
-    <string name="RegistrationActivity_backup_size_s">Veľkosť zálohy: %1$s</string>
-    <string name="RegistrationActivity_backup_timestamp_s">Čas zálohy: %1$s</string>
     <string name="BackupDialog_enable_local_backups">Povoliť lokálne zálohy?</string>
     <string name="BackupDialog_enable_backups">Povoliť zálohovanie</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Zaškrtnutím boxu potvrďte, že ste to pochopili.</string>
@@ -5015,7 +4894,6 @@
     <string name="RegistrationActivity_call_me_instead_available_in">Zavolajte mi (%1$02d:%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
     <string name="RegistrationActivity_resend_sms_available_in">Znova odoslať kód (%1$02d:%2$02d)</string>
-    <string name="RegistrationActivity_contact_signal_support">Kontaktovať podporu Signal</string>
     <string name="RegistrationActivity_code_support_subject">Registrácia v Signali – Overovací kód pre Android</string>
     <string name="RegistrationActivity_incorrect_code">Nesprávny kód</string>
     <string name="BackupUtil_never">Nikdy</string>
@@ -5137,25 +5015,8 @@
     <string name="TransferOrRestoreFragment__restore_from_local_backup">Obnoviť lokálnu zálohu</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
-    <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Otvorte Signal na svojom starom Android zariadení.</string>
-    <string name="NewDeviceTransferInstructions__continue">Pokračovať</string>
-    <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Ťuknite na svoju profilovú fotku v ľavom hornom rohu pre otvorenie Nastavení</string>
-    <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_account">"Ťuknite na \"Účet\""</string>
-    <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
-    <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"Ťuknite \"Presunúť účet\" a potom \"Pokračovať\" na oboch zariadeniach"</string>
 
     <!-- NewDeviceTransferSetupFragment -->
-    <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Pripravuje sa pripojenie do starého Android zariadenia…</string>
-    <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Chvíľku strpenia, onedlho by malo byť hotovo</string>
-    <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Čaká sa na pripojenie starého Android zariadenia…</string>
-    <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal potrebuje prístup k polohe, aby mohol objaviť a pripojiť sa k vášmu starému Android zariadeniu.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Aby Signal mohol objaviť a pripojiť sa k vášmu starému Android zariadeniu, musia byť zapnuté služby polohy.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal potrebuje Wi-Fi, aby mohol objaviť a pripojiť sa k vášmu starému Android zariadeniu. Wi-Fi musí byť zapnuté, ale nemusí byť pripojené k žiadnej Wi-Fi sieti.</string>
-    <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Je nám ľúto, ale vyzerá to, že toto zariadenie nepodporuje Wi-Fi Direct. Signal používa Wi-Fi Direct na objavenie a pripojenie sa ku vášmu starému Android zariadeniu. Môžete ale urobiť obnovu zo zálohy a tým obnoviť vaše konto zo svojho starého Android zariadenia.</string>
-    <string name="NewDeviceTransferSetup__restore_a_backup">Obnoviť zálohu</string>
-    <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Počas pripájania sa k vášmu starému Android zariadeniu sa stala neočakávaná chyba.</string>
 
     <!-- OldDeviceTransferSetupFragment -->
     <string name="OldDeviceTransferSetup__searching_for_new_android_device">Hľadá sa nové Android zariadenie…</string>
@@ -5199,9 +5060,6 @@
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Ťuknite Pokračovať na vašom druhom zariadení…</string>
 
     <!-- NewDeviceTransferFragment -->
-    <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Presun nie je možný z novších verzií aplikácie Signal</string>
-    <!-- Error message indicating that we could not finish the user\'s device transfer. Displayed in a toast at the bottom of the screen. -->
-    <string name="NewDeviceTransfer__failure_foreign_key">Prenesené údaje boli poškodené</string>
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">Prenášajú sa dáta</string>
@@ -5240,10 +5098,6 @@
     <string name="OldDeviceTransferComplete__close">Zatvoriť</string>
 
     <!-- NewDeviceTransferComplete -->
-    <string name="NewDeviceTransferComplete__transfer_successful">Presun úspešný</string>
-    <string name="NewDeviceTransferComplete__transfer_complete">Presun hotový</string>
-    <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">Pre ukončenie procesu prenosu musíte pokračovať registráciou.</string>
-    <string name="NewDeviceTransferComplete__continue_registration">Pokračovať v registrácii</string>
 
     <!-- DeviceToDeviceTransferService -->
     <string name="DeviceToDeviceTransferService_content_title">Presun účtu</string>
@@ -9141,219 +8995,6 @@
 
     <!-- ConfirmBackupCancellationDialog -->
 
-    <!-- Row title for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">Mám svoj starý telefón</string>
-    <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_scan_qr">Pre rýchle nastavenie naskenujte QR kód zo svojho aktuálneho Signal účtu</string>
-
-    <!-- Row title for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">Nemám svoj starý telefón</string>
-    <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">Alebo znova inštalujete Signal na rovnakom zariadení</string>
-
-    <!-- Screen title for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__restore_or_transfer_account">Obnoviť alebo preniesť účet</string>
-    <!-- Screen subtitle for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__get_your_signal_account">Preneste svoj Signal účet a históriu správ do tohto zariadenia.</string>
-    <!-- Option title for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_signal_backup">Obnoviť zálohu Signal</string>
-    <!-- Option subtitle for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_your_text_messages_and_media_from">Obnovte svoje textové správy a médiá z plánu zálohovania Signal.</string>
-    <!-- Option title for restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_on_device_backup">Obnoviť zálohu na zariadení</string>
-    <!-- Option subtitle fdor restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_your_messages_from">Obnovte svoje správy zo zálohy, ktorú ste si uložili na zariadení.</string>
-    <!-- Option title for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__from_your_old_phone">Z vášho starého telefónu</string>
-    <!-- Option subtitle for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__transfer_directly_from_old">Vykonajte prenos priamo zo svojho starého Android zariadenia</string>
-    <!-- Dialog title shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_title">Preskočiť obnovenie?</string>
-    <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">Ak nevykonáte obnovu teraz, neskôr to nebude možné. Ak po preskočení obnovy znova povolíte zálohovanie, vaša aktuálna záloha bude nahradená novou históriou správ.</string>
-    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore">Preskočiť obnovenie</string>
-
-    <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_title">Zadajte kľúč na obnovenie</string>
-    <!-- Screen subtitle for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_subtitle">Váš kľúč na obnovenie je 64-miestny kód potrebný na obnovenie vášho účtu a údajov.</string>
-    <!-- Button to skip entering recovery key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">Nemáte kľúč na obnovenie?</string>
-    <!-- Recovery key text field hint -->
-    <string name="EnterBackupKey_backup_key">Kľúč na obnovenie</string>
-    <!-- Recovery key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">Zálohy nie je možné obnoviť bez ich 64-miestneho kódu na obnovenie. V prípade straty kľúča na obnovenie vám Signal nemôže pomôcť obnoviť zálohu.</string>
-    <!-- Recovery key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">Ak máte svoje staré zariadenie, kľúč na obnovenie si môžete pozrieť v časti Nastavenia &gt; Zálohy Signal. Potom ťuknite na Zobraziť kľúč na obnovenie.</string>
-    <!-- Recovery key not known bottom sheet button to learn more about it -->
-    <string name="EnterBackupKey_learn_more">Zistiť viac</string>
-    <!-- Recovery key not known bottom sheet button to skip recovery key entry and resume normal reregistration -->
-    <string name="EnterBackupKey_skip_and_dont_restore">Preskočiť a neobnoviť</string>
-    <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">Nesprávny kľúč na obnovenie</string>
-    <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">Uistite sa, že sa registrujete pomocou rovnakého telefónneho čísla a 64-miestneho kľúča na obnovenie, ktorý ste si uložili pri povolení bezpečných Záloh Signal. Zálohy nie je možné obnoviť bez tohto kľúča.</string>
-    <!-- Dialog positive button text to try entering their recovery key again -->
-    <string name="EnterBackupKey_try_again">Skúsiť znova</string>
-    <!-- Dialog negative button text to get help with recovery key -->
-    <string name="EnterBackupKey_backup_key_help">Pomoc s kľúčom na obnovenie</string>
-    <!-- Text field error text when the recovery key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">Nesprávny kľúč na obnovenie</string>
-    <!-- Text field error text when the recovery key is too long -->
-    <string name="EnterBackupKey_too_long_error">Príliš dlhé (%1$d/%2$d)</string>
-    <!-- Text field error when the recovery key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">Neplatný kľúč na obnovenie</string>
-    <!-- Dialog title shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_not_found">Záloha sa nenašla</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Zadaný kľúč na obnovenie je správny, ale nie je s ním spojená žiadna záloha. Ak ešte máte svoj starý telefón, uistite sa, že bolo povolené a dokončené zálohovanie. Potom to skúste znova.</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">Možno ste zadali nesprávny kľúč na obnovenie alebo ste nevytvorili aspoň jednu zálohu na starom zariadení.\n\nUistite sa, že sa registrujete pomocou rovnakého telefónneho čísla a kľúča na obnovenie, ktorý ste si uložili pri povolení bezpečných záloh Signal, a overte si, či sa na vašom starom zariadení dokončila záloha.</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">Vyčerpali ste počet pokusov o zadanie kľúča na obnovenie. Z bezpečnostných dôvodov je počet pokusov, ktoré môžete vykonať, obmedzený. Skúste to znova o hodinu.</string>
-    <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
-    <string name="EnterBackupKey_skip_restore">Preskočiť obnovenie</string>
-    <!-- Dialog title text when encountering backup restore network error -->
-    <string name="EnterBackupKey_cant_restore_backup">Nepodarilo sa obnoviť zálohu</string>
-    <!-- Dialog body text when encountering backup restore network error -->
-    <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">Vašu zálohu nie je momentálne možné obnoviť. Skontrolujte internetové pripojenie a skúste to znova. </string>
-    <!-- Dialog button text to contact support on network error -->
-    <string name="EnterBackupKey_contact_support">Kontaktovať podporu</string>
-
-    <!-- Email subject when contacting support on a restore backup network issue -->
-    <string name="EnterBackupKey_network_failure_support_email">Chyba siete pri obnovovaní zálohy Signal Android</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
-    <!-- Email subject when contacting support on a permanent backup import failure -->
-    <string name="EnterBackupKey_permanent_failure_support_email">Trvalé zlyhanie pri obnovovaní zálohy Signal Android</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
-
-    <!-- EnterLocalBackupKeyScreen: Screen title for entering recovery key for local backup restore -->
-    <string name="EnterLocalBackupKeyScreen__enter_your_recovery_key">Zadajte kľúč na obnovenie</string>
-    <!-- EnterLocalBackupKeyScreen: Screen subtitle explaining what the recovery key is -->
-    <string name="EnterLocalBackupKeyScreen__your_recovery_key_is_a_64_character_code">Váš kľúč na obnovenie je 64-miestny kód potrebný na obnovenie vášho účtu a údajov.</string>
-    <!-- EnterLocalBackupKeyScreen: Button text when user does not have a recovery key -->
-    <string name="EnterLocalBackupKeyScreen__no_recovery_key">Nemáte kľúč na obnovenie?</string>
-    <!-- EnterLocalBackupKeyScreen: Button to proceed to next step -->
-    <string name="EnterLocalBackupKeyScreen__next">Ďalej</string>
-
-    <!-- RestoreLocalBackupDialog: Error message when the selected archive fails to load -->
-    <string name="RestoreLocalBackupDialog__failed_to_load_archive">Nepodarilo sa načítať archív. Vyberte iný priečinok.</string>
-    <!-- RestoreLocalBackupDialog: Dismiss button for dialog -->
-    <string name="RestoreLocalBackupDialog__ok">OK</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore">Preskočiť obnovenie?</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user about the consequences of skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore_body">Ak nevykonáte obnovu teraz, neskôr to nebude možné. Ak po preskočení obnovy znova povolíte zálohovanie, vaša aktuálna záloha bude nahradená novou históriou správ.</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the skip restore dialog -->
-    <string name="RestoreLocalBackupDialog__skip_restore_confirm">Preskočiť obnovenie</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm restoring a backup from a different account -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account">Obnoviť do nového účtu?</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user that the backup was created with a different account and they will lose group memberships -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account_body">Záloha, ktorú obnovujete, bola vytvorená pomocou iného Signal účtu. Túto zálohu môžete obnoviť do nového účtu, ale už nebudete členom žiadnej zo skupín, ktoré boli obnovené.</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the restore to new account dialog -->
-    <string name="RestoreLocalBackupDialog__restore">Obnoviť</string>
-
-    <!-- RestoreLocalBackupActivity: Toast message when backup restore fails -->
-    <string name="RestoreLocalBackupActivity__backup_restore_failed">Obnovenie zálohy zlyhalo</string>
-    <!-- RestoreLocalBackupActivity: Screen title shown during restore -->
-    <string name="RestoreLocalBackupActivity__restoring_backup">Obnovuje sa záloha</string>
-    <!-- RestoreLocalBackupActivity: Screen subtitle explaining restore duration -->
-    <string name="RestoreLocalBackupActivity__depending_on_the_size">V závislosti od veľkosti zálohy to môže trvať niekoľko minút.</string>
-    <!-- RestoreLocalBackupActivity: Status text while restoring messages -->
-    <string name="RestoreLocalBackupActivity__restoring_messages">Obnovujú sa správy…</string>
-    <!-- RestoreLocalBackupActivity: Status text while finalizing restore -->
-    <string name="RestoreLocalBackupActivity__finalizing">Dokončuje sa…</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore is complete -->
-    <string name="RestoreLocalBackupActivity__restore_complete">Obnova dokončená</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore fails -->
-    <string name="RestoreLocalBackupActivity__restore_failed">Obnovenie zlyhalo</string>
-    <!-- RestoreLocalBackupActivity: Progress text showing bytes read of total with percentage, e.g. "1.2 MB of 5.0 MB (24%)" -->
-    <string name="RestoreLocalBackupActivity__s_of_s_d_percent">%1$s z %2$s (%3$d %%)</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__cant_restore_backup">Nepodarilo sa obnoviť zálohu</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__error_occurred_while_restoring">Pri obnove zálohy sa vyskytla chyba. Vaša záloha nie je obnoviteľná. Kontaktujte náš tím podpory.</string>
-
-    <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
-    <string name="RestoreLocalBackupActivity__contact_support">Kontaktovať podporu</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
-    <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">Zapnúť zálohy na zariadení?</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Ak chcete naďalej používať zálohy na zariadení, musíte ich pre tento účet povoliť. Môžete tak urobiť kedykoľvek v časti Nastavenia &gt; Zálohy.</string>
-
-    <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__turn_on_now">Zapnúť teraz</string>
-
-    <!-- RestoreLocalBackupActivity: Dismiss button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__not_now">Teraz nie</string>
-
-    <!-- RestoreLocalBackupActivity: Body text for the dialog shown after a successful restore, prompting the user to choose a backup folder -->
-    <string name="RestoreLocalBackupActivity__choose_a_folder_for_backups">Ak chcete naďalej používať zálohy na zariadení, vyberte priečinok v zariadení, kam sa budú ukladať nové zálohy.</string>
-
-    <!-- RestoreLocalBackupActivity: Positive button label for the dialog shown after a successful restore; keeps the current backup folder -->
-    <string name="RestoreLocalBackupActivity__use_current_folder">Použiť aktuálny priečinok</string>
-
-    <!-- RestoreLocalBackupActivity: Neutral button label for the dialog shown after a successful restore; opens folder picker to select a different backup location -->
-    <string name="RestoreLocalBackupActivity__choose_new_folder">Vybrať nový priečinok</string>
-
-    <!-- RestoreLocalBackupActivity: Negative button label for the dialog shown after a successful restore; disables on-device backups -->
-    <string name="RestoreLocalBackupActivity__disable_backups">Vypnúť zálohy</string>
-
-    <!-- SelectInstructionsSheet: Title for the select backup folder instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_folder">Vyberte priečinok so zálohou</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the select this folder button -->
-    <string name="SelectInstructionsSheet__tap_select_this_folder">Ťuknite na „Vybrať tento priečinok“</string>
-    <!-- SelectInstructionsSheet: Instruction not to select individual files -->
-    <string name="SelectInstructionsSheet__do_not_select_individual_files">Nevyberajte jednotlivé súbory</string>
-    <!-- SelectInstructionsSheet: Title for the select backup file instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_file">Vyberte súbor so zálohou</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the backup file saved to device -->
-    <string name="SelectInstructionsSheet__tap_on_the_backup_file">Ťuknite na záložný súbor, ktorý ste si uložili do svojho zariadenia</string>
-    <!-- SelectInstructionsSheet: Subtitle explaining how to access backup after tapping continue -->
-    <string name="SelectInstructionsSheet__after_tapping_continue">Po ťuknutí na „Pokračovať“ získate prístup k zálohe takto:</string>
-    <!-- SelectInstructionsSheet: Instruction to select the top-level backup folder -->
-    <string name="SelectInstructionsSheet__select_the_top_level_folder">Vyberte priečinok najvyššej úrovne, v ktorom je uložená vaša záloha</string>
-    <!-- SelectInstructionsSheet: Continue button text -->
-    <string name="SelectInstructionsSheet__continue_button">Pokračovať</string>
-
-    <!-- SelectLocalBackupScreen: Screen title for restoring on-device backup -->
-    <string name="SelectLocalBackupScreen__restore_on_device_backup">Obnoviť zálohu na zariadení</string>
-    <!-- SelectLocalBackupScreen: Screen subtitle explaining the restore process -->
-    <string name="SelectLocalBackupScreen__restore_your_messages_from_the_backup_folder">Obnovte svoje správy z priečinka so zálohou, ktorý ste si uložili do svojho zariadenia. Ak nevykonáte obnovu teraz, neskôr to nebude možné.</string>
-    <!-- SelectLocalBackupScreen: Button to initiate backup restoration -->
-    <string name="SelectLocalBackupScreen__restore_backup">Obnoviť zálohu</string>
-    <!-- SelectLocalBackupScreen: Button to choose an earlier backup when current is latest -->
-    <string name="SelectLocalBackupScreen__choose_an_earlier_backup">Vybrať staršiu zálohu</string>
-    <!-- SelectLocalBackupScreen: Button to choose a different backup -->
-    <string name="SelectLocalBackupScreen__choose_a_different_backup">Vybrať inú zálohu</string>
-    <!-- SelectLocalBackupScreen: Label for latest backup card -->
-    <string name="SelectLocalBackupScreen__your_latest_backup">Vaša najnovšia záloha:</string>
-    <!-- SelectLocalBackupScreen: Label for non-latest backup card -->
-    <string name="SelectLocalBackupScreen__your_backup">Vaša záloha:</string>
-
-    <!-- SelectLocalBackupSheet: Title for backup selection bottom sheet -->
-    <string name="SelectLocalBackupSheet__choose_a_backup_to_restore">Vyberte zálohu na obnovenie</string>
-    <!-- SelectLocalBackupSheet: Subtitle warning about choosing an older backup -->
-    <string name="SelectLocalBackupSheet__choosing_an_older_backup">Výberom staršej zálohy môžete prísť o správy alebo médiá.</string>
-    <!-- SelectLocalBackupSheet: Continue button text -->
-    <string name="SelectLocalBackupSheet__continue_button">Pokračovať</string>
-
-    <!-- SelectLocalBackupTypeScreen: Screen title for selecting backup type -->
-    <string name="SelectLocalBackupTypeScreen__restore_on_device_backup">Obnoviť zálohu na zariadení</string>
-    <!-- SelectLocalBackupTypeScreen: Screen subtitle explaining restore options -->
-    <string name="SelectLocalBackupTypeScreen__restore_your_messages_from_the_backup">Obnovte svoje správy zo zálohy, ktorú ste si uložili na zariadení. Ak nevykonáte obnovu teraz, neskôr to nebude možné.</string>
-    <!-- SelectLocalBackupTypeScreen: Button for users who saved backup as single file -->
-    <string name="SelectLocalBackupTypeScreen__i_saved_my_backup_as_a_single_file">Záloha bola uložená ako jeden súbor</string>
-    <!-- SelectLocalBackupTypeScreen: Card title for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__choose_backup_folder">Vyberte priečinok so zálohou</string>
-    <!-- SelectLocalBackupTypeScreen: Card description for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__select_the_folder_on_your_device">Vyberte priečinok v zariadení, v ktorom je uložená vaša záloha</string>
-
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">Chyba siete pri exportovaní zálohy Signal Android</string>
     <!-- Email filter when contacting support on a create backup failure -->
@@ -9367,23 +9008,6 @@
     <string name="ContactSupportDialog_submit_with_debug">Odoslať s denníkom ladenia</string>
     <!-- Button option to not submit debug log when contacting support -->
     <string name="ContactSupportDialog_submit_without_debug">Odoslať bez denníka ladenia</string>
-
-    <!-- Title for restore via qr screen -->
-    <string name="RestoreViaQr_title">Naskenujte tento kód pomocou svojho starého telefónu</string>
-    <!-- First instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_1">Otvorte Signal na svojom starom zariadení</string>
-    <!-- Second instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_2">Ťuknite na ikonu fotoaparátu </string>
-    <!-- Third instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_3">Naskenujte tento kód pomocou fotoaparátu</string>
-    <!-- Error message shown when qr code could not be loaded -->
-    <string name="RestoreViaQr_qr_code_error">Nepodarilo sa vygenerovať QR kód</string>
-    <!-- Status message shown when qr code already scanned by other device -->
-    <string name="RestoreViaQr_qr_code_scanned">Naskenované na starom zariadení</string>
-    <!-- Error button text to retry getting a qr code -->
-    <string name="RestoreViaQr_retry">Skúsiť znovu</string>
-    <!-- Error message shown when register after receiving the provisioning message failed -->
-    <string name="RestoreViaQr_registration_error">Vyskytla sa chyba a váš účet sa nepodarilo preniesť. Skúste to znova naskenovaním QR kódu.</string>
 
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">Preniesť účet</string>
@@ -9425,19 +9049,6 @@
     <string name="RestoreCompleteBottomSheet_transfer_complete_message">Váš Signal účet a správy boli prenesené do vášho druhého zariadenia. Signal je teraz na tomto zariadení neaktívny.</string>
     <!-- Restore Complete bottom sheet dialog button text to dismiss sheet -->
     <string name="RestoreCompleteBottomSheet_button">OK</string>
-
-    <!-- No Backup to Restore screen title -->
-    <string name="NoBackupToRestore_title">Žiadna záloha na obnovenie</string>
-    <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">Keďže prechádzate zo zariadenia iPhone na Android, jediný spôsob, ako preniesť správy a médiá je povoliť bezpečné Zálohy Signal na starom zariadení.</string>
-    <!-- No Backup to Restore step 1 to enable backups on old device -->
-    <string name="NoBackupToRestore_step1">Otvorte Signal na svojom starom zariadení</string>
-    <!-- No Backup to Restore step 2 to enable backups on old device -->
-    <string name="NoBackupToRestore_step2">Ťuknite na Nastavenia &gt; Zálohy</string>
-    <!-- No Backup to Restore step 3 to enable backups on old device -->
-    <string name="NoBackupToRestore_step3">Povoľte zálohovanie a počkajte, kým sa proces dokončí</string>
-    <!-- No backup to Restore tonal cta to skip restore -->
-    <string name="NoBackupToRestore_skip_restore">Preskočiť obnovenie</string>
 
     <!-- Dialog title when the recovery key change limit is reached -->
     <string name="MessageBackupsKeyRecordScreen__limit_reached_title">Bol dosiahnutý limit kľúčov na obnovenie</string>

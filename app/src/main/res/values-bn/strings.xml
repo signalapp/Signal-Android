@@ -863,23 +863,8 @@
     <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">আপনি Signal-এ আছেন তা কেউ দেখতে পাবেন না যদি না আপনি তাদের মেসেজ পাঠান বা তাদের সাথে কোনো চ্যাট বিদ্যমান থাকে।</string>
 
     <!-- ChooseBackupFragment -->
-    <string name="ChooseBackupFragment__restore_from_backup">ব্যাকআপ থেকে পুনঃস্থাপন করবেন?</string>
-    <string name="ChooseBackupFragment__restore_your_messages_and_media">স্থানীয় ব্যাকঅাপ থেকে আপনার বার্তা এবং মিডিয়া পুনরুদ্ধার করুন। আপনি যদি এখনই পুনরুদ্ধার না করেন তবে আপনি পরে আর পুনরুদ্ধার করতে পারবেন না।</string>
-    <string name="ChooseBackupFragment__icon_content_description">ব্যাকআপ আইকন থেকে পুনরুদ্ধার করুন</string>
-    <string name="ChooseBackupFragment__choose_backup">ব্যাকআপ নির্বাচন করুন</string>
-    <string name="ChooseBackupFragment__learn_more">আরও জানুন</string>
 
     <!-- RestoreBackupFragment -->
-    <string name="RestoreBackupFragment__restore_complete">পুনরুদ্ধার সম্পূর্ণ</string>
-    <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">ব্যাকআপগুলি ব্যবহার চালিয়ে যেতে, দয়া করে একটি ফোল্ডার নির্বাচন করুন। নতুন ব্যাকআপগুলি এই স্থানে সংরক্ষণ করা হবে।</string>
-    <string name="RestoreBackupFragment__choose_folder">ফোল্ডার চয়ন করুন</string>
-    <string name="RestoreBackupFragment__not_now">এখন না</string>
-    <!-- Couldn\'t find the selected backup -->
-    <string name="RestoreBackupFragment__backup_not_found">ব্যাকআপ পাওয়া যাচ্ছে না।</string>
-    <!-- Couldn\'t read the selected backup -->
-    <string name="RestoreBackupFragment__backup_could_not_be_read">ব্যাকআপ রিড করা যাচ্ছে না।</string>
-    <!-- Backup has an unsupported file extension -->
-    <string name="RestoreBackupFragment__backup_has_a_bad_extension">ব্যাকআপের ত্রুটিপূর্ণ এক্সটেনশন রয়েছে।</string>
 
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
@@ -1416,60 +1401,6 @@
     <string name="ManageGroupActivity_add_group_description">গ্রুপের বিবরণ যুক্ত করুন …</string>
 
     <!-- RemoteRestoreActivity -->
-    <!-- Progress dialog label when downloading a backup -->
-    <string name="RemoteRestoreActivity__downloading_backup">ব্যাকআপ ডাউনলোড করা হচ্ছে…</string>
-    <!-- Progress dialog label when restoring a backup -->
-    <string name="RemoteRestoreActivity__restoring_messages">মেসেজ পুনরুদ্ধার করা হচ্ছে…</string>
-    <!-- Progress dialog label when finishing a backup restore -->
-    <string name="RemoteRestoreActivity__finishing_restore">শেষ হচ্ছে…</string>
-    <!-- Progress dialog label while awaiting updates -->
-    <string name="RemoteRestoreActivity__restoring">পুনরুদ্ধার করা হচ্ছে…</string>
-    <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
-    <string name="RemoteRestoreActivity__s_of_s_s">%1$s এর %2$s (%3$s)</string>
-    <!-- Feature list media label for paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_media">আপনার সকল মিডিয়া</string>
-    <!-- Feature list media label for free tier. Placeholder is days, and is currently fixed at 30. -->
-    <string name="RemoteRestoreActivity__your_last_d_days_of_media">আপনার মিডিয়া সংরক্ষণের শেষ %1$d দিন</string>
-    <!-- Feature list message label for free and paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_messages">আপনার সকল মেসেজ</string>
-    <!-- Screen title for restoring from backup -->
-    <string name="RemoteRestoreActivity__restore_from_backup">ব্যাকআপ থেকে পুনরুদ্ধার করুন</string>
-    <!-- Section title for explaining what your backup includes -->
-    <string name="RemoteRestoreActivity__your_backup_includes">আপনার ব্যাকআপের মধ্য়ে যা যা রয়েছে:</string>
-    <!-- Primary action button copy for starting restoration -->
-    <string name="RemoteRestoreActivity__restore_backup">ব্যাকঅাপ পুনরুদ্ধার</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made. %1$s is replaced with the date (e.g. March 5, 2024) and %2$s is replaced with the time (e.g. 9:00am) -->
-    <string name="RemoteRestoreActivity__backup_created_at">আপনার সর্বশেষ ব্যাকআপ করা হয়েছিল %1$s তারিখে %2$s-টার সময়।</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
-    <string name="RemoteRestoreActivity__backup_created_at_with_size">আপনার সর্বশেষ ব্যাকআপ নেওয়া হয়েছিল %1$s তারিখে %2$s-টার সময়। আপনার ব্যাকআপের আকার হলো %3$s।</string>
-    <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
-    <string name="RemoteRestoreActivity__fetching_backup_details">ব্যাকআপের তথ্য আনা হচ্ছে…</string>
-    <!-- Text label button to skip restore from remote -->
-    <string name="RemoteRestoreActivity__skip_restore">পুনরুদ্ধার এড়িয়ে যান</string>
-    <!-- Dialog title displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__couldnt_transfer">ট্রান্সফার সম্পন্ন করা যায়নি</string>
-    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">ব্যাকআপ পুনর্বহাল করা যায়নি</string>
-    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">আপনার ব্যাকআপ পুনর্বহাল করার সময় একটি ত্রুটি ঘটেছে। আপনার ব্যাকআপ পুনর্বহালযোগ্য নয়। সাহায্যের জন্য সহায়তা কেন্দ্রে যোগাযোগ করুন।</string>
-    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">সহায়তা কেন্দ্রে যোগাযোগ করুন</string>
-    <!-- Dialog message displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__error_occurred">একটি ত্রুটি ঘটেছে এবং আপনার অ্যাকাউন্ট ট্রান্সফার করা যায়নি। আপনার ট্রান্সফার পদ্ধতি বেছে নিয়ে আবার চেষ্টা করুন।</string>
-    <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
-    <string name="RemoteRestoreActivity__couldnt_restore">এই ব্যাকআপটি পুনর্বহাল করা যায়নি</string>
-    <!-- Dialog message explaining that an update to Signal is required to restore the backup. -->
-    <string name="RemoteRestoreActivity__update_latest">Signal-এর এই সংস্করণটি আপনার ব্যাকআপ পুনর্বহাল করতে পারে না। সর্বশেষ সংস্করণে আপডেট করুন এবং আবার চেষ্টা করুন।</string>
-    <!-- Text on button that when pressed will redirect them to update Signal -->
-    <string name="RemoteRestoreActivity__update_signal">Signal আপডেট করুন</string>
-    <!-- Text label button to dismiss the dialog -->
-    <string name="RemoteRestoreActivity__not_now">এখন না</string>
-    <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">আপনার মিডিয়া ব্যাকগ্রাউন্ডে পুনর্বহাল করা হবে। আপনি যদি এখন পুনর্বহাল করতে না চান, তবে পরে পুনর্বহাল করতে পারবেন না।</string>
-    <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">এই ডিভাইসটি আর নিবন্ধিত নয়</string>
-    <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">এর সম্ভাব্য কারণ আপনি আপনার Signal অ্যাকাউন্টটি অন্য কোনো ডিভাইসে নিবন্ধন করেছেন।</string>
 
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
@@ -2234,17 +2165,6 @@
     <string name="PinRestoreLockedFragment_create_new_pin">PIN তৈরি করুন</string>
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
-    <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
-    <string name="ReRegisterWithPinFragment_send_sms_code">এসএমএস কোড পাঠান</string>
-    <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">Signal রেজিস্ট্রেশন - অ্যান্ড্রয়েডের জন্য পিন পুনরায় রেজিস্ট্রেশন করতে সহায়তা প্রয়োজন</string>
-    <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">আপনার পিন হলো আপনারই তৈরি একটি %1$d+ সংখ্যার কোড যা সংখ্যা বা আলফানিউমেরিক হতে পারে।\n\nআপনি যদি আপনার পিন মনে রাখতে না পারেন তবে আপনি একটি নতুন পিন তৈরি করতে পারেন।</string>
-    <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">আপনি যদি আপনার পিন মনে রাখতে না পারেন তবে আপনি একটি নতুন পিন তৈরি করতে পারেন।</string>
-    <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">আপনার পিন অনুমান করার সুযোগ শেষ হয়ে গেছে, তবে আপনি এখনো একটি নতুন পিন তৈরি করে আপনার Signal অ্যাকাউন্টে অ্যাক্সেস করতে পারবেন।</string>
-
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">সতর্কতা</string>
     <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">পিনটি যদি নিষ্ক্রিয় করেন, তবে আপনি Signal-এ সেভ করা ডেটা ম্যানুয়ালি ব্যাক-আপ ও পুনরুদ্ধার না করলে, পুনরায় Signal-এ রেজিস্টার করার সময় সমস্ত সেভ করা ডেটা হারাবেন। পিন নিষ্ক্রিয় থাকা অবস্থায় আপনি রেজিস্ট্রেশন লক চালু করতে পারবেন না।</string>
@@ -2324,6 +2244,12 @@
     <string name="WebRtcCallActivity__open_settings">সেটিংস খুলুন</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">এখন না</string>
+    <!-- Message for dialog shown at the start of a call when the system battery setting for Signal is "Restricted" -->
+    <string name="WebRtcCallActivity__others_may_not_be_able_to_hear_you_when_your_screen_turns_off">Others may not be able to hear you and the call may disconnect when your screen turns off. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
+    <!-- Title for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__others_couldnt_hear_you">Others couldn\'t hear you</string>
+    <!-- Message for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__your_microphone_was_muted_while_signal_was_in_the_background">Your microphone was muted while Signal was in the background. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
     <!-- Title for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__approve_d_requests">
         <item quantity="one">%1$dটি অনুরোধ অনুমোদন করবেন?</item>
@@ -2639,50 +2565,20 @@
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">আপনি যে নাম্বার নির্দিষ্ট করেছেন (%1$s) তা সঠিক নয়।
     </string>
 
-    <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">নিচের ফোন নম্বরটি কি সঠিক?</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
     <string name="RegistrationActivity_additional_verification_required">আরো যাচাইকরণ প্রয়োজন</string>
-    <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">এই নম্বরে একটি যাচাইকরণ কোড পাঠানো হবে। ক্যারিয়ার রেট প্রযোজ্য হতে পারে।</string>
-    <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">আপনি একটি যাচাইকরণ কোড পাবেন। ক্যারিয়ারের হার প্রযোজ্য হতে পারে।</string>
-    <!-- Hint text to select a country -->
-    <string name="RegistrationActivity_select_a_country">এটি দেশ নির্বাচন করুন</string>
-    <!-- Hint text explaining that this is where the country code should go -->
-    <string name="RegistrationActivity_default_country_code">০</string>
-    <string name="RegistrationActivity_edit_number">নম্বর সম্পাদনা</string>
-    <string name="RegistrationActivity_missing_google_play_services">গুগল প্লে সার্ভিস নিখোজ</string>
-    <string name="RegistrationActivity_this_device_is_missing_google_play_services">এই ডিভাইস টিতে গুগল প্লে পরিষেবাদি অনুপস্থিত। আপনি এখনও সিগন্যাল ব্যবহার করতে পারেন, তবে এই কনফিগারেশনের ফলে নির্ভরযোগ্যতা বা কার্যকারিতা হ্রাস পেতে পারে। \n\\ আপনি যদি এ্যাডভান্স ব্যবহারকারী না হন, তাছাড়া কোনও পরিবর্তিত অ্যানড্রয়েড রম চালিয়ে যাচ্ছেন না, বা মনে করছেন যে, আপনি এই ত্রুটি ভুল করে দেখছেন। দয়া করে সমস্যা সমাধানের জন্য support@signal.org ঠিকানায় পরিচিতি করুন।</string>
-    <string name="RegistrationActivity_i_understand">আমি বুঝতে পেরেছি</string>
-    <string name="RegistrationActivity_play_services_error">প্লে সার্ভিস সমস্যা</string>
-    <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">গুগল প্লে পরিষেবাদি আপডেট করছে বা অস্থায়ীভাবে অনুপলব্ধ। অনুগ্রহপূর্বক আবার চেষ্টা করুন।</string>
     <string name="RegistrationActivity_rate_limited_to_service">আপনি এই নম্বরটি নিবন্ধন করার জন্য অনেকবার চেষ্টা করেছেন। দয়া করে পরে আবার চেষ্টা করুন।</string>
-    <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">আপনি এই নম্বরটি রেজিস্ট্রেশন করার জন্য ইতোমধ্যে অনেকবার চেষ্টা করে ফেলেছেন। অনুগ্রহ করে %1$s মিনিটের মধ্যে আবার চেষ্টা করুন।</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">পরিষেবাতে সংযোগ করতে অক্ষম। নেটওয়ার্ক সংযোগ পরীক্ষা করুন এবং আবার চেষ্টা করুন।</string>
     <!-- Dialog error message shown when we are unable to send an SMS to the user\'s number -->
     <string name="RegistrationActivity_sms_provider_error">আমরা আপনার নম্বরে SMS পাঠাতে পারছি না। অনুগ্রহ করে কয়েক ঘন্টা পর আবার চেষ্টা করুন।</string>
-    <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">আমরা আপনাকে SMS-এর মাধ্যমে যাচাইকরণ কোড পাঠাতে পারিনি। এর পরিবর্তে আপনি ভয়েস কলের মাধ্যমে আপনার কোড পাওয়ার চেষ্টা করুন।</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">যাচাইকরণ কোডের জন্য অনুরোধ করতে সক্ষম নয়। অনুগ্রহ করে আপনার নেটওয়ার্ক সংযোগ ঠিক আছে কি না দেখুন এবং আবার চেষ্টা করুন।</string>
-    <string name="RegistrationActivity_non_standard_number_format">নন-স্ট্যান্ডার্ড নম্বর বিন্যাস</string>
-    <!-- Dialog message shown to confirm when entering phone number (first placeholder) is normalized and formatted differently by the app (second placeholder). -->
-    <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">আপনি যে নম্বরটি প্রবেশ করেছেন (%1$s) সেটি একটি অ-মানক বিন্যাস বলে মনে হচ্ছে।\n\nআপনি কি %2$s বলতে চান?</string>
-    <string name="RegistrationActivity_signal_android_phone_number_format">Signal অ্যান্ড্রয়েড - ফোন নম্বর ফর্ম্যাট</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="one">আপনি এখন একটি ডিবাগ লগ জমা দেওয়ার থেকে %1$d পদক্ষেপ দূরে।</item>
         <item quantity="other">আপনি এখন একটি ডিবাগ লগ জমা দেওয়ার থেকে %1$d পদক্ষেপ দূরে।</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">আপনি যে একজন মানুষ তা আমরা যাচাই করতে চাই।</string>
-    <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
-    <string name="RegistrationActivity_voice_call">ভয়েস কল</string>
-    <!-- Dialog button to cancel the pending action and return to the previous state. -->
-    <string name="RegistrationActivity_cancel">বাতিল করুন</string>
     <string name="RegistrationActivity_next">পরবর্তী</string>
-    <!-- Title of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_phone_number">ফোন নম্বর</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">%1$s-তে পাঠানো কোড টি এন্টার করুন</string>
 
     <string name="RegistrationActivity_phone_number_description">ফোন নম্বর</string>
@@ -2881,6 +2777,8 @@
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">স্টিকার প্যাক লোড হয়নি</string>
     <!-- Bottom sheet describing a sticker. First placeholder is the title of the sticker pack and second is the author -->
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
+    <!-- Bottom sheet option that opens the pack the sticker belongs to -->
+    <string name="StickerPreviewBottomSheet__view_pack">View pack</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">সংরক্ষণ করুন</string>
@@ -3619,8 +3517,6 @@
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">কল নোটিফিকেশনগুলো পেতে, সেটিংস-এ ট্যাপ করুন এবং “ব্যাটারি” সেটিংস-এ গিয়ে ব্যাকগ্রাউন্ড কার্যকলাপ চালু করুন।</string>
 
     <!-- country_selection_fragment -->
-    <string name="country_selection_fragment__loading_countries">দেশগুলি লোড হচ্ছে …</string>
-    <string name="country_selection_fragment__search">খুঁজুন</string>
 
     <string name="device_list_fragment__link_new_device">নতুন ডিভাইস সংযুক্ত করুন</string>
 
@@ -4454,6 +4350,8 @@
     <string name="conversation_selection__menu_pin_message">পিন করুন</string>
     <!-- Button to unpin a message -->
     <string name="conversation_selection__menu_unpin_message">আনপিন করুন</string>
+    <!-- Button to open the sticker pack a sticker message came from -->
+    <string name="conversation_selection__menu_view_sticker_pack">View pack</string>
 
     <!-- conversation_expiring_on -->
 
@@ -4644,14 +4542,11 @@
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">আপনার পিন প্রবেশ করান</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">আপনি নিজের অ্যাকাউন্ট এর জন্য তৈরি করা পিনটি প্রবেশ করুন। এটি আপনার এসএমএস যাচাইকরণ কোড থেকে ভিন্ন।</string>
-    <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
-    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">আপনার অ্যাকাউন্টের জন্য তৈরি করা পিনটি লিখুন।</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">ভুল পিন। আবার চেষ্টা করুন|</string>
     <string name="RegistrationLockFragment__forgot_pin">পিন ভুলে গেছেন?</string>
     <string name="RegistrationLockFragment__incorrect_pin">ভুল পিন</string>
     <string name="RegistrationLockFragment__forgot_your_pin">পিন ভুলে গেছেন?</string>
     <string name="RegistrationLockFragment__not_many_tries_left">খুব একটা বেশী সুযোগ বাকি নেই</string>
-    <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal রেজিস্ট্রেশন - Android-এর জন্য পিনের সাহায্য প্রয়োজন (v2 পিন)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
         <item quantity="one">আপনার গোপনীয়তা ও সুরক্ষার জন্য, আপনার পিনটি পুনরুদ্ধার করার কোনো উপায় নেই। আপনি যদি আপনার পিনটি ভুলে যান তবে আপনি %1$d দিন নিষ্ক্রিয় থাকার পরে SMS-এর মাধ্যমে পুনরায় যাচাই করতে পারবেন। এই ক্ষেত্রে, আপনার অ্যাকাউন্টটি পরিস্কার করার পাশাপাশি সকল বিষয়বস্তু মুছে ফেলা হবে।</item>
@@ -4706,22 +4601,6 @@
     <string name="backup_enable_dialog__you_must_have_this_passphrase">ব্যাকআপটি পুনরুদ্ধার করতে আপনার অবশ্যই এই পাসফ্রেজটি থাকতে হবে।</string>
     <string name="backup_enable_dialog__folder">ফোল্ডার</string>
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">আমি এই পাসফ্রেজ লিখে রেখেছি। এটি ছাড়া, আমি একটি ব্যাকঅাপ পুনরুদ্ধার করতে পারব না।</string>
-    <string name="registration_activity__restore_backup">ব্যাকঅাপ পুনরুদ্ধার</string>
-    <!-- Text label button to skip restoring -->
-    <string name="registration_activity__skip_restore">পুনরুদ্ধার এড়িয়ে যান</string>
-    <!-- Title for dialog to enter in the backup passphrase -->
-    <string name="RegistrationActivity_enter_backup_passphrase">ব্যাকঅাপ পাসফ্রেজ প্রবেশ করান</string>
-    <string name="RegistrationActivity_restore">পুনরুদ্ধার</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">Signal-এর নতুন সংস্করণ থেকে ব্যাকআপ ইম্পোর্ট সম্ভব নয়</string>
-    <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
-    <string name="RegistrationActivity_backup_failure_foreign_key">ব্যাকআপে অকার্যকর ডেটা আছে</string>
-    <string name="RegistrationActivity_incorrect_backup_passphrase">ব্যাকঅাপ পাসফ্রেজ সঠিক নয়</string>
-    <string name="RegistrationActivity_checking">পরীক্ষা করা হচ্ছে …</string>
-    <string name="RegistrationActivity_d_messages_so_far">%1$dএখন পর্যন্ত বার্তা …</string>
-    <string name="RegistrationActivity_restore_from_backup">ব্যাকঅাপ থেকে পুনঃস্থাপন?</string>
-    <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">স্থানীয় ব্যাকঅাপ থেকে আপনার বার্তা এবং মিডিয়া পুনরুদ্ধার করুন। আপনি যদি এখনই পুনরুদ্ধার না করেন তবে আপনি পরে আর পুনরুদ্ধার করতে পারবেন না।</string>
-    <string name="RegistrationActivity_backup_size_s">ব্যাকঅাপ আকার: %1$s</string>
-    <string name="RegistrationActivity_backup_timestamp_s">ব্যাকঅাপ সময়কাল: %1$s</string>
     <string name="BackupDialog_enable_local_backups">স্থানীয় ব্যাকআপ সক্ষম করবেন?</string>
     <string name="BackupDialog_enable_backups">ব্যাকআপ সক্ষম করুন</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">নিশ্চিতকরণ চেক বক্স চিহ্নিত করে আপনার বোঝার স্বীকৃতি দিন।</string>
@@ -4757,7 +4636,6 @@
     <string name="RegistrationActivity_call_me_instead_available_in">আমাকে কল করুন (%1$02d:%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
     <string name="RegistrationActivity_resend_sms_available_in">কোডটি আবারো পাঠান (%1$02d:%2$02d)</string>
-    <string name="RegistrationActivity_contact_signal_support">Signal সহায়তায় যোগাযোগ করুন</string>
     <string name="RegistrationActivity_code_support_subject">Signal নিবন্ধন - অ্যানড্রয়েড এর জন্য যাচাইকরণ কোড</string>
     <string name="RegistrationActivity_incorrect_code">ভুল কোড</string>
     <string name="BackupUtil_never">কখনোই না</string>
@@ -4879,25 +4757,8 @@
     <string name="TransferOrRestoreFragment__restore_from_local_backup">স্থানীয় ব্যাকআপ পুনর্বহাল করুন</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
-    <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">আপনার পুরনো Android ফোনে Signal খুলুন</string>
-    <string name="NewDeviceTransferInstructions__continue">চলতে থাকুন</string>
-    <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">সেটিংস খুলতে উপরের বাম কোণে আপনার প্রোফাইল ছবির উপর ট্যাপ করুন</string>
-    <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_account">"“অ্যাকাউন্ট”-এ ট্যাপ করুন"</string>
-    <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
-    <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"“অ্যাকাউন্ট ট্রান্সফার করুন”-এ ট্যাপ করে উভয় ডিভাইসে “চালিয়ে যান”-এ ট্যাপ করুন"</string>
 
     <!-- NewDeviceTransferSetupFragment -->
-    <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">পুরনো Android ডিভাইসের সাথে সংযোগের প্রস্তুতি নিচ্ছে…</string>
-    <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">কিছু সময় নিচ্ছে, শীঘ্রই প্রস্তুত হয়ে যাবে</string>
-    <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">পুরনো Android ডিভাইসের সংযোগের জন্য অপেক্ষা করছে…</string>
-    <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">আপনার পুরনো Android ডিভাইস খুঁজে পেতে ও সংযুক্ত করতে Signal-এর লোকেশনের অনুমতি আবশ্যক।</string>
-    <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">আপনার পুরনো Android ডিভাইস খুঁজে পেতে ও সংযুক্ত করতে Signal-এর জন্য লোকেশন পরিষেবাটি চালু থাকতে হবে।</string>
-    <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">আপনার পুরনো Android ডিভাইস খুঁজে পেতে ও সংযুক্ত করতে Signal-এর ওয়াই-ফাই চালু থাকতে হবে। ওয়াই-ফাই চালু থাকতে হবে, কিন্তু এটি কোন ওয়াই-ফাই নেটওয়ার্কের সাথে সংযুক্ত থাকার দরকার নেই।</string>
-    <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">দুঃখিত, মনে হচ্ছে এই ডিভাইসটি Wi-Fi Direct-কে সমর্থন করে না। Signal আপনার পুরানো Android ডিভাইসটি খুঁজে পেতে এবং সংযোগ করতে Wi-Fi Direct ব্যবহার করে। আপনার পুরানো Android ডিভাইস থেকে আপনার অ্যাকাউন্টটি পুনরুদ্ধার করতে আপনি এখনও একটি ব্যাকআপ পুনরুদ্ধার করতে পারেন।</string>
-    <string name="NewDeviceTransferSetup__restore_a_backup">একটি ব্যাকআপ পুনরুদ্ধার করুন</string>
-    <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">আপনার পুরনো Android ডিভাইসে সংযুক্ত হওয়ার চেষ্টাকালীন একটি অপ্রত্যাশিত সমস্যা হয়েছে।</string>
 
     <!-- OldDeviceTransferSetupFragment -->
     <string name="OldDeviceTransferSetup__searching_for_new_android_device">নতুন Android ডিভাইস খোঁজা হচ্ছে…</string>
@@ -4941,9 +4802,6 @@
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device">আপনার অন্য ডিভাইসে চালিয়ে যান অপশনটিতে ট্যাপ করুন…</string>
 
     <!-- NewDeviceTransferFragment -->
-    <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Signal নতুন সংস্করণ থেকে স্থানান্তর করা যায় না</string>
-    <!-- Error message indicating that we could not finish the user\'s device transfer. Displayed in a toast at the bottom of the screen. -->
-    <string name="NewDeviceTransfer__failure_foreign_key">ট্রান্সফার করা ডেটা অকার্যকর ছিল</string>
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">তথ্য স্থানান্তর করা হচ্ছে</string>
@@ -4982,10 +4840,6 @@
     <string name="OldDeviceTransferComplete__close">বন্ধ</string>
 
     <!-- NewDeviceTransferComplete -->
-    <string name="NewDeviceTransferComplete__transfer_successful">স্থানান্তর সফল</string>
-    <string name="NewDeviceTransferComplete__transfer_complete">স্থানান্তর সম্পূর্ণ</string>
-    <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">স্থানান্তর প্রক্রিয়াটি সম্পূর্ণ করতে, আপনাকে অবশ্যই নিবন্ধকরণ চালিয়ে যেতে হবে।</string>
-    <string name="NewDeviceTransferComplete__continue_registration">নিবন্ধকরণ চালিয়ে যান</string>
 
     <!-- DeviceToDeviceTransferService -->
     <string name="DeviceToDeviceTransferService_content_title">অ্যাকাউন্ট স্থানান্তর</string>
@@ -8753,219 +8607,6 @@
 
     <!-- ConfirmBackupCancellationDialog -->
 
-    <!-- Row title for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">আমার পুরানো ফোন আছে</string>
-    <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_scan_qr">দ্রুত শুরু করতে আপনার বর্তমান Signal অ্যাকাউন্ট থেকে একটি QR কোড স্ক্যান করুন</string>
-
-    <!-- Row title for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">আমার পুরানো ফোনটি নেই</string>
-    <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">অথবা আপনি একই ডিভাইসে Signal পুনরায় ইনস্টল করছেন</string>
-
-    <!-- Screen title for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__restore_or_transfer_account">অ্যাকাউন্ট পুনর্বহাল বা ট্রান্সফার করুন</string>
-    <!-- Screen subtitle for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__get_your_signal_account">এই ডিভাইসে আপনার Signal অ্যাকাউন্ট এবং মেসেজের ইতিহাস নিন।</string>
-    <!-- Option title for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_signal_backup">Signal ব্যাকআপ পুনর্বহাল করুন</string>
-    <!-- Option subtitle for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_your_text_messages_and_media_from">আপনার Signal ব্যাকআপ প্ল্যান থেকে আপনার টেক্সট মেসেজ ও মিডিয়া পুনর্বহাল করুন।</string>
-    <!-- Option title for restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_on_device_backup">ডিভাইসে থাকা ব্যাকআপ পুনর্বহাল করুন</string>
-    <!-- Option subtitle fdor restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_your_messages_from">আপনার ডিভাইসে সংরক্ষণ করা ব্যাকআপ থেকে আপনার মেসেজগুলো পুনর্বহাল করুন।</string>
-    <!-- Option title for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__from_your_old_phone">আপনার পুরানো ফোন থেকে</string>
-    <!-- Option subtitle for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__transfer_directly_from_old">আপনার পুরানো Android থেকে সরাসরি ট্রান্সফার করুন</string>
-    <!-- Dialog title shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_title">পুনর্বহাল এড়িয়ে যাবেন?</string>
-    <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">আপনি যদি এখন পুনর্বহাল করা এড়িয়ে যান তবে পরে পুনর্বহাল করতে পারবেন না। পুনর্বহাল এড়িয়ে যাওয়ার পর যদি আপনি ব্যাকআপ পুনরায় সচল করেন, তাহলে আপনার বর্তমান ব্যাকআপটির জায়গায় আপনার নতুন মেসেজের ইতিহাস প্রতিস্থাপিত হবে।</string>
-    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore">পুনরুদ্ধার এড়িয়ে যান</string>
-
-    <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_title">আপনার পুনরুদ্ধার \'কি\' লিখুন</string>
-    <!-- Screen subtitle for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_subtitle">আপনার পুনরুদ্ধার \'কি\' একটি 64-ক্যারেক্টারের কোড যা আপনার অ্যাকাউন্ট ও ডেটা পুনর্বহাল করার সময় প্রয়োজন হবে।</string>
-    <!-- Button to skip entering recovery key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">কোনো পুনরুদ্ধার \'কি\' নেই?</string>
-    <!-- Recovery key text field hint -->
-    <string name="EnterBackupKey_backup_key">পুনরুদ্ধার \'কি\'</string>
-    <!-- Recovery key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">ব্যাকআপগুলো তাদের 64-ক্যারেক্টারের পুনরুদ্ধার কোড ছাড়া পুনরুদ্ধার করা যাবে না। আপনি যদি আপনার পুনরুদ্ধার \'কি\' হারিয়ে ফেলেন তবে Signal আপনার ব্যাকআপ পুনর্বহাল করতে সাহায্য করতে সক্ষম হবে না।</string>
-    <!-- Recovery key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">আপনার পুরানো ডিভাইসটি থাকলে আপনি সেটিংস &gt; ব্যাকআপে আপনার ব্যাকআপ \'কি\' দেখতে পারবেন। তারপর পুনরুদ্ধার \'কি\' দেখুন-এ ট্যাপ করুন।</string>
-    <!-- Recovery key not known bottom sheet button to learn more about it -->
-    <string name="EnterBackupKey_learn_more">আরো জানুন</string>
-    <!-- Recovery key not known bottom sheet button to skip recovery key entry and resume normal reregistration -->
-    <string name="EnterBackupKey_skip_and_dont_restore">এড়িয়ে যান এবং পুনর্বহালের প্রয়োজন নেই</string>
-    <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">ভুল পুনরুদ্ধার \'কি\'</string>
-    <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">Signal নিরাপদ ব্যাকআপ সক্রিয় করার সময় আপনি যে ফোন নম্বর ও 64-ক্যারেক্টারের পুনরুদ্ধার \'কি\' সংরক্ষণ করেছিলেন তা দিয়ে নিবন্ধন করা নিশ্চিত করুন। এই \'কি\' ছাড়া ব্যাকআপ পুনর্বহাল করা যাবে না।</string>
-    <!-- Dialog positive button text to try entering their recovery key again -->
-    <string name="EnterBackupKey_try_again">আবার চেষ্টা করুন</string>
-    <!-- Dialog negative button text to get help with recovery key -->
-    <string name="EnterBackupKey_backup_key_help">পুনরুদ্ধার \'কি\' সংক্রান্ত সাহায্য</string>
-    <!-- Text field error text when the recovery key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">ভুল পুনরুদ্ধার \'কি\'</string>
-    <!-- Text field error text when the recovery key is too long -->
-    <string name="EnterBackupKey_too_long_error">অনেক লম্বা (%1$d/%2$d)</string>
-    <!-- Text field error when the recovery key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">অকার্যকর পুনরুদ্ধার \'কি\'</string>
-    <!-- Dialog title shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_not_found">ব্যাকআপ পাওয়া যায়নি</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">আপনার দেওয়া পুনরুদ্ধার \'কি\'-টি সঠিক, কিন্তু এর সাথে কোনো ব্যাকআপ যুক্ত নেই। আপনার পুরনো ফোনটি যদি এখনো থেকে থাকে, তাহলে নিশ্চিত করুন যে ব্যাকআপগুলো সচল করা আছে এবং সেই ব্যাকআপটি সম্পন্ন হয়েছে ও তারপর আবারো চেষ্টা করুন।</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">আপনি হয়তো আপনার পুনরুদ্ধার \'কি\' ভুল লিখেছেন, অথবা আপনার পুরনো ডিভাইসে অন্তত একটি ব্যাকআপ সম্পন্ন করেননি।\n\nSignal নিরাপদ ব্যাকআপ সচল করার সময় আপনি যে ফোন নম্বর ও পুনরুদ্ধার \'কি\'-টি সেভ করেছিলেন, নিশ্চিত করুন যে আপনি সেগুলো দিয়েই রেজিস্ট্রেশন করছেন এবং এটিও নিশ্চিত করুন যে আপনার পুরানো ডিভাইসটি একটি ব্যাকআপ সম্পন্ন করেছে।</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">আপনার পুনরুদ্ধার \'কি\' দিয়ে ঢোকার প্রচেষ্টার সর্বোচ্চ সংখ্যা ফুরিয়ে গেছে। আপনার নিরাপত্তার জন্য, আপনি যতবার ঢোকার চেষ্টা করতে পারবেন তার সংখ্যা সীমিত। এক ঘন্টা অপেক্ষা করুন এবং আবার চেষ্টা করুন।</string>
-    <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
-    <string name="EnterBackupKey_skip_restore">পুনরুদ্ধার এড়িয়ে যান</string>
-    <!-- Dialog title text when encountering backup restore network error -->
-    <string name="EnterBackupKey_cant_restore_backup">ব্যাকআপ পুনর্বহাল করা যায়নি</string>
-    <!-- Dialog body text when encountering backup restore network error -->
-    <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">আপনার ব্যাকআপ এখনই পুনর্বহাল করা যাবে না। আপনার ইন্টারনেট সংযোগ ঠিক আছে কি না দেখুন এবং আবার চেষ্টা করুন। </string>
-    <!-- Dialog button text to contact support on network error -->
-    <string name="EnterBackupKey_contact_support">সহায়তা কেন্দ্রে যোগাযোগ করুন</string>
-
-    <!-- Email subject when contacting support on a restore backup network issue -->
-    <string name="EnterBackupKey_network_failure_support_email">Signal Android ব্যাকআপ পুনর্বহাল নেটওয়ার্কে ত্রুটি</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
-    <!-- Email subject when contacting support on a permanent backup import failure -->
-    <string name="EnterBackupKey_permanent_failure_support_email">Signal Android ব্যাকআপ পুনর্বহালের স্থায়ী ব্যর্থতা</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
-
-    <!-- EnterLocalBackupKeyScreen: Screen title for entering recovery key for local backup restore -->
-    <string name="EnterLocalBackupKeyScreen__enter_your_recovery_key">আপনার পুনরুদ্ধার \'কি\' লিখুন</string>
-    <!-- EnterLocalBackupKeyScreen: Screen subtitle explaining what the recovery key is -->
-    <string name="EnterLocalBackupKeyScreen__your_recovery_key_is_a_64_character_code">আপনার পুনরুদ্ধার \'কি\' একটি 64-ক্যারেক্টারের কোড যা আপনার অ্যাকাউন্ট ও ডেটা পুনর্বহাল করার সময় প্রয়োজন হবে।</string>
-    <!-- EnterLocalBackupKeyScreen: Button text when user does not have a recovery key -->
-    <string name="EnterLocalBackupKeyScreen__no_recovery_key">কোনো পুনরুদ্ধার \'কি\' নেই?</string>
-    <!-- EnterLocalBackupKeyScreen: Button to proceed to next step -->
-    <string name="EnterLocalBackupKeyScreen__next">পরবর্তী</string>
-
-    <!-- RestoreLocalBackupDialog: Error message when the selected archive fails to load -->
-    <string name="RestoreLocalBackupDialog__failed_to_load_archive">আর্কাইভ লোড করা সফল হয়নি। অনুগ্রহ করে একটি ভিন্ন ডিরেক্টরি বেছে নিন।</string>
-    <!-- RestoreLocalBackupDialog: Dismiss button for dialog -->
-    <string name="RestoreLocalBackupDialog__ok">ঠিক আছে</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore">পুনর্বহাল এড়িয়ে যাবেন?</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user about the consequences of skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore_body">আপনি যদি এখন পুনর্বহাল করা এড়িয়ে যান তবে পরে পুনর্বহাল করতে পারবেন না। পুনর্বহাল এড়িয়ে যাওয়ার পর যদি আপনি ব্যাকআপ পুনরায় সচল করেন, তাহলে আপনার বর্তমান ব্যাকআপটির জায়গায় আপনার নতুন মেসেজের ইতিহাস প্রতিস্থাপিত হবে।</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the skip restore dialog -->
-    <string name="RestoreLocalBackupDialog__skip_restore_confirm">পুনরুদ্ধার এড়িয়ে যান</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm restoring a backup from a different account -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account">নতুন অ্যাকাউন্টে পুনর্বহাল করবেন?</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user that the backup was created with a different account and they will lose group memberships -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account_body">আপনি যে ব্যাকআপটি পুনর্বহাল করছেন, সেটি একটি ভিন্ন Signal অ্যাকাউন্ট ব্যবহার করে তৈরি করা হয়েছিলো। আপনি এই ব্যাকআপটি একটি নতুন অ্যাকাউন্টে পুনর্বহাল করতে পারবেন, কিন্তু আপনি আর পুনর্বহাল করা কোনো গ্রুপেরই সদস্য থাকবেন না।</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the restore to new account dialog -->
-    <string name="RestoreLocalBackupDialog__restore">পুনরুদ্ধার</string>
-
-    <!-- RestoreLocalBackupActivity: Toast message when backup restore fails -->
-    <string name="RestoreLocalBackupActivity__backup_restore_failed">ব্যাকআপ পুনর্বহাল সফল হয়নি</string>
-    <!-- RestoreLocalBackupActivity: Screen title shown during restore -->
-    <string name="RestoreLocalBackupActivity__restoring_backup">ব্যাকআপ পুনর্বহাল করা হচ্ছে</string>
-    <!-- RestoreLocalBackupActivity: Screen subtitle explaining restore duration -->
-    <string name="RestoreLocalBackupActivity__depending_on_the_size">আপনার ব্যাকআপের আকারের উপর নির্ভর করে, এতে কয়েক মিনিট সময় লাগতে পারে।</string>
-    <!-- RestoreLocalBackupActivity: Status text while restoring messages -->
-    <string name="RestoreLocalBackupActivity__restoring_messages">মেসেজ পুনরুদ্ধার করা হচ্ছে…</string>
-    <!-- RestoreLocalBackupActivity: Status text while finalizing restore -->
-    <string name="RestoreLocalBackupActivity__finalizing">চূড়ান্ত করা হচ্ছে…</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore is complete -->
-    <string name="RestoreLocalBackupActivity__restore_complete">পুনরুদ্ধার সম্পূর্ণ</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore fails -->
-    <string name="RestoreLocalBackupActivity__restore_failed">পুনর্বহাল সফল হয়নি</string>
-    <!-- RestoreLocalBackupActivity: Progress text showing bytes read of total with percentage, e.g. "1.2 MB of 5.0 MB (24%)" -->
-    <string name="RestoreLocalBackupActivity__s_of_s_d_percent">%2$s এর %1$s (%3$d%%)</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__cant_restore_backup">ব্যাকআপ পুনর্বহাল করা যায়নি</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__error_occurred_while_restoring">আপনার ব্যাকআপ পুনর্বহাল করার সময় একটি ত্রুটি ঘটেছে। আপনার ব্যাকআপ পুনর্বহালযোগ্য নয়। সাহায্যের জন্য সহায়তা কেন্দ্রে যোগাযোগ করুন।</string>
-
-    <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
-    <string name="RestoreLocalBackupActivity__contact_support">সহায়তা কেন্দ্রে যোগাযোগ করুন</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
-    <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">অন-ডিভাইস ব্যাকআপ চালু করবেন?</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">ডিভাইসে ব্যাকআপ ব্যবহার চালিয়ে যেতে, আপনাকে এই অ্যাকাউন্টের জন্য সেগুলো সক্রিয় করতে হবে। আপনি সেটিংস &gt; ব্যাকআপ থেকে যেকোনো সময় এটি করতে পারবেন।</string>
-
-    <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__turn_on_now">এখনই চালু করুন</string>
-
-    <!-- RestoreLocalBackupActivity: Dismiss button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__not_now">এখন না</string>
-
-    <!-- RestoreLocalBackupActivity: Body text for the dialog shown after a successful restore, prompting the user to choose a backup folder -->
-    <string name="RestoreLocalBackupActivity__choose_a_folder_for_backups">অন-ডিভাইসে থাকা ব্যাকআপ ব্যবহার করা চালিয়ে যেতে, আপনার ডিভাইসে একটি ফোল্ডার বেছে নিন যেখানে নতুন ব্যাকআপগুলো সংরক্ষিত হবে।</string>
-
-    <!-- RestoreLocalBackupActivity: Positive button label for the dialog shown after a successful restore; keeps the current backup folder -->
-    <string name="RestoreLocalBackupActivity__use_current_folder">বর্তমান ফোল্ডারটি ব্যবহার করুন</string>
-
-    <!-- RestoreLocalBackupActivity: Neutral button label for the dialog shown after a successful restore; opens folder picker to select a different backup location -->
-    <string name="RestoreLocalBackupActivity__choose_new_folder">নতুন ফোল্ডার বেছে নিন</string>
-
-    <!-- RestoreLocalBackupActivity: Negative button label for the dialog shown after a successful restore; disables on-device backups -->
-    <string name="RestoreLocalBackupActivity__disable_backups">ব্যাকআপ নিষ্ক্রিয় করুন</string>
-
-    <!-- SelectInstructionsSheet: Title for the select backup folder instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_folder">আপনার ব্যাকআপ ফোল্ডারটি নির্বাচন করুন</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the select this folder button -->
-    <string name="SelectInstructionsSheet__tap_select_this_folder">\"এই ফোল্ডারটি বেছে নিন\"-এ ট্যাপ করুন</string>
-    <!-- SelectInstructionsSheet: Instruction not to select individual files -->
-    <string name="SelectInstructionsSheet__do_not_select_individual_files">আলাদা আলাদা ফাইল নির্বাচন করবেন না</string>
-    <!-- SelectInstructionsSheet: Title for the select backup file instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_file">আপনার ব্যাকআপ ফাইলটি বেছে নিন</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the backup file saved to device -->
-    <string name="SelectInstructionsSheet__tap_on_the_backup_file">আপনার ডিভাইসে সংরক্ষিত ব্যাকআপ ফাইলটিতে ট্যাপ করুন</string>
-    <!-- SelectInstructionsSheet: Subtitle explaining how to access backup after tapping continue -->
-    <string name="SelectInstructionsSheet__after_tapping_continue">\"চালিয়ে যান\" ট্যাপ করার পর, আপনার ব্যাকআপে কীভাবে অ্যাক্সেস করবেন তা এখানে দেওয়া হলো:</string>
-    <!-- SelectInstructionsSheet: Instruction to select the top-level backup folder -->
-    <string name="SelectInstructionsSheet__select_the_top_level_folder">আপনার ব্যাকআপটি যেখানে সংরক্ষণ করা হবে সেই শীর্ষ-স্তরের ফোল্ডারটি নির্বাচন করুন</string>
-    <!-- SelectInstructionsSheet: Continue button text -->
-    <string name="SelectInstructionsSheet__continue_button">চলতে থাকুন</string>
-
-    <!-- SelectLocalBackupScreen: Screen title for restoring on-device backup -->
-    <string name="SelectLocalBackupScreen__restore_on_device_backup">ডিভাইসে থাকা ব্যাকআপ পুনর্বহাল করুন</string>
-    <!-- SelectLocalBackupScreen: Screen subtitle explaining the restore process -->
-    <string name="SelectLocalBackupScreen__restore_your_messages_from_the_backup_folder">আপনার ডিভাইসে সংরক্ষিত ব্যাকআপ ফোল্ডার থেকে আপনার মেসেজ পুনর্বহাল করুন। আপনি এখন পুনর্বহাল না করলে, আপনি পরে পুনর্বহাল করতে পারবেন না।</string>
-    <!-- SelectLocalBackupScreen: Button to initiate backup restoration -->
-    <string name="SelectLocalBackupScreen__restore_backup">ব্যাকঅাপ পুনরুদ্ধার</string>
-    <!-- SelectLocalBackupScreen: Button to choose an earlier backup when current is latest -->
-    <string name="SelectLocalBackupScreen__choose_an_earlier_backup">আগের ব্যাকআপ বেছে নিন</string>
-    <!-- SelectLocalBackupScreen: Button to choose a different backup -->
-    <string name="SelectLocalBackupScreen__choose_a_different_backup">একটি ভিন্ন ব্যাকআপ বেছে নিন</string>
-    <!-- SelectLocalBackupScreen: Label for latest backup card -->
-    <string name="SelectLocalBackupScreen__your_latest_backup">আপনার সর্বশেষ ব্যাকআপ:</string>
-    <!-- SelectLocalBackupScreen: Label for non-latest backup card -->
-    <string name="SelectLocalBackupScreen__your_backup">আপনার ব্যাকআপ:</string>
-
-    <!-- SelectLocalBackupSheet: Title for backup selection bottom sheet -->
-    <string name="SelectLocalBackupSheet__choose_a_backup_to_restore">পুনর্বহাল করার জন্য একটি ব্যাকআপ বেছে নিন</string>
-    <!-- SelectLocalBackupSheet: Subtitle warning about choosing an older backup -->
-    <string name="SelectLocalBackupSheet__choosing_an_older_backup">পুরনো ব্যাকআপ বেছে নিলে মেসেজ বা মিডিয়া হারিয়ে যেতে পারে।</string>
-    <!-- SelectLocalBackupSheet: Continue button text -->
-    <string name="SelectLocalBackupSheet__continue_button">চলতে থাকুন</string>
-
-    <!-- SelectLocalBackupTypeScreen: Screen title for selecting backup type -->
-    <string name="SelectLocalBackupTypeScreen__restore_on_device_backup">ডিভাইসে থাকা ব্যাকআপ পুনর্বহাল করুন</string>
-    <!-- SelectLocalBackupTypeScreen: Screen subtitle explaining restore options -->
-    <string name="SelectLocalBackupTypeScreen__restore_your_messages_from_the_backup">আপনার ডিভাইসে আপনার সংরক্ষিত ব্যাকআপ থেকে মেসেজগুলো পুনর্বহাল করুন। আপনি এখন পুনর্বহাল না করলে, আপনি পরে পুনর্বহাল করতে পারবেন না।</string>
-    <!-- SelectLocalBackupTypeScreen: Button for users who saved backup as single file -->
-    <string name="SelectLocalBackupTypeScreen__i_saved_my_backup_as_a_single_file">আমি আমার ব্যাকআপটি একটি একক ফাইল হিসেবে সংরক্ষণ করেছি</string>
-    <!-- SelectLocalBackupTypeScreen: Card title for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__choose_backup_folder">ব্যাকআপ ফোল্ডারটি বেছে নিন</string>
-    <!-- SelectLocalBackupTypeScreen: Card description for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__select_the_folder_on_your_device">আপনার ডিভাইসের সেই ফোল্ডারটি বেছে নিন যেখানে আপনার ব্যাকআপ সংরক্ষণ করা আছে</string>
-
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">Signal Android ব্যাকআপ এক্সপোর্টে নেটওয়ার্কে ত্রুটি দেখা দিয়েছে</string>
     <!-- Email filter when contacting support on a create backup failure -->
@@ -8979,23 +8620,6 @@
     <string name="ContactSupportDialog_submit_with_debug">ডিবাগ লগ সহ জমা দিন</string>
     <!-- Button option to not submit debug log when contacting support -->
     <string name="ContactSupportDialog_submit_without_debug">ডিবাগ লগ ছাড়াই জমা দিন</string>
-
-    <!-- Title for restore via qr screen -->
-    <string name="RestoreViaQr_title">আপনার পুরানো ফোন দিয়ে এই কোডটি স্ক্যান করুন</string>
-    <!-- First instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_1">আপনার পুরানো ডিভাইসে Signal খুলুন</string>
-    <!-- Second instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_2">ক্যামেরা আইকনে ট্যাপ করুন </string>
-    <!-- Third instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_3">ক্যামেরা দিয়ে এই কোডটি স্ক্যান করুন</string>
-    <!-- Error message shown when qr code could not be loaded -->
-    <string name="RestoreViaQr_qr_code_error">QR কোড তৈরি করতে সক্ষম হয়নি</string>
-    <!-- Status message shown when qr code already scanned by other device -->
-    <string name="RestoreViaQr_qr_code_scanned">পুরানো ডিভাইসে স্ক্যান করা হয়েছে</string>
-    <!-- Error button text to retry getting a qr code -->
-    <string name="RestoreViaQr_retry">পুনরায় চেষ্টা করুন</string>
-    <!-- Error message shown when register after receiving the provisioning message failed -->
-    <string name="RestoreViaQr_registration_error">একটি ত্রুটি ঘটেছে এবং আপনার অ্যাকাউন্ট ট্রান্সফার করা যায়নি। আবার QR কোড স্ক্যান করে আবার চেষ্টা করুন।</string>
 
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">অ্যাকাউন্ট স্থানান্তর করুন</string>
@@ -9037,19 +8661,6 @@
     <string name="RestoreCompleteBottomSheet_transfer_complete_message">আপনার Signal অ্যাকাউন্ট এবং মেসেজ আপনার অন্য ডিভাইসে ট্রান্সফার হয়েছে। এই ডিভাইসে Signal এখন নিষ্ক্রিয়।</string>
     <!-- Restore Complete bottom sheet dialog button text to dismiss sheet -->
     <string name="RestoreCompleteBottomSheet_button">ঠিক আছে</string>
-
-    <!-- No Backup to Restore screen title -->
-    <string name="NoBackupToRestore_title">পুনর্বহাল করার জন্য কোনো ব্যাকআপ নেই</string>
-    <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">যেহেতু আপনি iPhone থেকে Android-এ চলে যাচ্ছেন, তাই আপনার মেসেজ ও মিডিয়া ট্রান্সফার করার একমাত্র উপায় হলো আপনার পুরানো ডিভাইসে Signal নিরাপদ ব্যাকআপ সচল করা।</string>
-    <!-- No Backup to Restore step 1 to enable backups on old device -->
-    <string name="NoBackupToRestore_step1">আপনার পুরানো ডিভাইসে Signal খুলুন</string>
-    <!-- No Backup to Restore step 2 to enable backups on old device -->
-    <string name="NoBackupToRestore_step2">সেটিংস &gt; ব্যাকআপ ট্যাপ করুন</string>
-    <!-- No Backup to Restore step 3 to enable backups on old device -->
-    <string name="NoBackupToRestore_step3">ব্যাকআপ সক্রিয় করুন এবং ব্যাকআপ সম্পন্ন না হওয়া পর্যন্ত অপেক্ষা করুন</string>
-    <!-- No backup to Restore tonal cta to skip restore -->
-    <string name="NoBackupToRestore_skip_restore">পুনরুদ্ধার এড়িয়ে যান</string>
 
     <!-- Dialog title when the recovery key change limit is reached -->
     <string name="MessageBackupsKeyRecordScreen__limit_reached_title">পুনরুদ্ধার \'কি\'-এর সীমা শেষ হয়ে গেছে</string>

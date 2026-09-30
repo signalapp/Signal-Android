@@ -863,23 +863,8 @@
     <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Askush nuk do të shohë se je në Signal nëse nuk dërgon mesazhe ose nëse nuk ke biseda ekzistuese.</string>
 
     <!-- ChooseBackupFragment -->
-    <string name="ChooseBackupFragment__restore_from_backup">Të rikthehet prej kopjeruajtjeje?</string>
-    <string name="ChooseBackupFragment__restore_your_messages_and_media">Riktheni mesazhet dhe mediat tuaja që prej një kopjeruajtjeje vendore. Nëse s\\’i riktheni tani, s\\’do të jeni në gjendje t\\’i riktheni më vonë.</string>
-    <string name="ChooseBackupFragment__icon_content_description">Ikonë rikthe prej kopjeruajtjeje</string>
-    <string name="ChooseBackupFragment__choose_backup">Zgjidhni kopjeruajtje</string>
-    <string name="ChooseBackupFragment__learn_more">Mësoni më tepër</string>
 
     <!-- RestoreBackupFragment -->
-    <string name="RestoreBackupFragment__restore_complete">Rikthim i plotësuar</string>
-    <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Që të vazhdoni të përdorni kopjeruajtje, ju lutemi, zgjidhni një dosje. Kopjeruajtjet e reja do të ruhen te kjo vendndodhje.</string>
-    <string name="RestoreBackupFragment__choose_folder">Zgjidhni dosjen</string>
-    <string name="RestoreBackupFragment__not_now">Jo tani</string>
-    <!-- Couldn\'t find the selected backup -->
-    <string name="RestoreBackupFragment__backup_not_found">S’u gjet kopjeruatje.</string>
-    <!-- Couldn\'t read the selected backup -->
-    <string name="RestoreBackupFragment__backup_could_not_be_read">Kopjeruajtja s’u lexua dot.</string>
-    <!-- Backup has an unsupported file extension -->
-    <string name="RestoreBackupFragment__backup_has_a_bad_extension">Kopjeruajtja ka zgjatim të gabuar.</string>
 
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
@@ -1416,60 +1401,6 @@
     <string name="ManageGroupActivity_add_group_description">Shtoni përshkrim grupi…</string>
 
     <!-- RemoteRestoreActivity -->
-    <!-- Progress dialog label when downloading a backup -->
-    <string name="RemoteRestoreActivity__downloading_backup">Kopjeruajtja po shkarkohet…</string>
-    <!-- Progress dialog label when restoring a backup -->
-    <string name="RemoteRestoreActivity__restoring_messages">Po rikthehen mesazhet…</string>
-    <!-- Progress dialog label when finishing a backup restore -->
-    <string name="RemoteRestoreActivity__finishing_restore">Duke përfunduar…</string>
-    <!-- Progress dialog label while awaiting updates -->
-    <string name="RemoteRestoreActivity__restoring">Po kthehet…</string>
-    <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
-    <string name="RemoteRestoreActivity__s_of_s_s">%1$s nga %2$s (%3$s)</string>
-    <!-- Feature list media label for paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_media">Të gjithë median</string>
-    <!-- Feature list media label for free tier. Placeholder is days, and is currently fixed at 30. -->
-    <string name="RemoteRestoreActivity__your_last_d_days_of_media">%1$d ditët e tua të fundit të medias</string>
-    <!-- Feature list message label for free and paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_messages">Të gjitha mesazhet</string>
-    <!-- Screen title for restoring from backup -->
-    <string name="RemoteRestoreActivity__restore_from_backup">Riktheni prej kopjeruajtje</string>
-    <!-- Section title for explaining what your backup includes -->
-    <string name="RemoteRestoreActivity__your_backup_includes">Kopjeruajtja përfshin:</string>
-    <!-- Primary action button copy for starting restoration -->
-    <string name="RemoteRestoreActivity__restore_backup">Riktheje kopjeruajtjen</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made. %1$s is replaced with the date (e.g. March 5, 2024) and %2$s is replaced with the time (e.g. 9:00am) -->
-    <string name="RemoteRestoreActivity__backup_created_at">Kopjeruajtja jote e fundit është bërë më %1$s në %2$s.</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
-    <string name="RemoteRestoreActivity__backup_created_at_with_size">Kopjeruajtja e fundit është bërë më %1$s në %2$s. Madhësia e kopjeruajtjes është %3$s.</string>
-    <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
-    <string name="RemoteRestoreActivity__fetching_backup_details">Duke marrë detajet e kopjeruajtjes…</string>
-    <!-- Text label button to skip restore from remote -->
-    <string name="RemoteRestoreActivity__skip_restore">Kapërce rikthimin</string>
-    <!-- Dialog title displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__couldnt_transfer">Transferimi nuk mund të kryhej</string>
-    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Kopjeruajtja nuk mund të rikthehej</string>
-    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">Ndodhi një gabim gjatë rikthimit të kopjeruajtjes. Kopjeruajtja nuk rikuperohet. Të lutem, kontakto ndihmën për mbështetje.</string>
-    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Kontakto ndihmën</string>
-    <!-- Dialog message displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__error_occurred">Ndodhi një gabim dhe llogaria nuk mund të transferohej. Provo sërish duke zgjedhur mënyrën e transferimit.</string>
-    <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
-    <string name="RemoteRestoreActivity__couldnt_restore">Kjo kopjeruajtje nuk mund të rikthehej</string>
-    <!-- Dialog message explaining that an update to Signal is required to restore the backup. -->
-    <string name="RemoteRestoreActivity__update_latest">Ky version i Signal nuk mund ta rikthejë kopjeruajtjen. Përditëso në versionin më të fundit dhe provo sërish.</string>
-    <!-- Text on button that when pressed will redirect them to update Signal -->
-    <string name="RemoteRestoreActivity__update_signal">Përditësoni Signal-in</string>
-    <!-- Text label button to dismiss the dialog -->
-    <string name="RemoteRestoreActivity__not_now">Jo tani</string>
-    <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Media do të rikthehet në sfond. Nëse zgjedh të mos e rikthesh tani, nuk do të jesh në gjendje ta rikthesh më vonë.</string>
-    <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">Pajisja nuk është më e regjistruar</string>
-    <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">Kjo ndoshta ka ndodhur pasi e ke regjistruar llogarinë e Signal në një pajisje tjetër.</string>
 
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
@@ -2234,17 +2165,6 @@
     <string name="PinRestoreLockedFragment_create_new_pin">Krijoni PIN të ri</string>
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
-    <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
-    <string name="ReRegisterWithPinFragment_send_sms_code">Dërgo kodin SMS</string>
-    <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">Regjistrimi i Signal - Ke nevojë për ndihmë për riregjistrimin e PIN-it për Android</string>
-    <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">PIN-i yt është një kod %1$d + shifror që ke krijuar që mund të jetë numerik ose alfanumerik.\n\nNëse nuk e mbani mend PIN-in tënd, mund të krijosh një të ri.</string>
-    <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">Nëse nuk e mbani mend PIN-in tënd, mund të krijosh një të ri.</string>
-    <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">Të kanë mbaruar opsionet e kodit PIN, por mund të hysh ende në llogarinë tënde të Signal duke krijuar një PIN të ri.</string>
-
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Paralajmërim</string>
     <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Nëse çaktivizoni kodin PIN, do t\'i humbni të gjitha të dhënat kur të regjistroni sërish Signal, veç nëse bëni manualisht kopje rezervë dhe rivendosje. Nuk mund të aktivizoni Çelësin e Regjistrimit kur kodi PIN është i çaktivizuar.</string>
@@ -2324,6 +2244,12 @@
     <string name="WebRtcCallActivity__open_settings">Hap parametrat</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">Jo tani</string>
+    <!-- Message for dialog shown at the start of a call when the system battery setting for Signal is "Restricted" -->
+    <string name="WebRtcCallActivity__others_may_not_be_able_to_hear_you_when_your_screen_turns_off">Others may not be able to hear you and the call may disconnect when your screen turns off. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
+    <!-- Title for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__others_couldnt_hear_you">Others couldn\'t hear you</string>
+    <!-- Message for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__your_microphone_was_muted_while_signal_was_in_the_background">Your microphone was muted while Signal was in the background. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
     <!-- Title for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__approve_d_requests">
         <item quantity="one">Të miratohet %1$d kërkesë?</item>
@@ -2639,50 +2565,20 @@
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Numri që specifikuat (%1$s) është i pavlefshëm.
     </string>
 
-    <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">A është i saktë numri i telefonit më poshtë?</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
     <string name="RegistrationActivity_additional_verification_required">Kërkohet verifikim shtesë</string>
-    <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">Një kod verifikimi do të dërgohet në këtë numër. Mund të zbatohen tarifat e operatorit celular.</string>
-    <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Do të merrni një kod verifikimi. Mund të ketë tarifa operatori.</string>
-    <!-- Hint text to select a country -->
-    <string name="RegistrationActivity_select_a_country">Zgjidh shtetin</string>
-    <!-- Hint text explaining that this is where the country code should go -->
-    <string name="RegistrationActivity_default_country_code">0</string>
-    <string name="RegistrationActivity_edit_number">Modifiko numrin</string>
-    <string name="RegistrationActivity_missing_google_play_services">Mungojnë Shërbimet Google Play</string>
-    <string name="RegistrationActivity_this_device_is_missing_google_play_services">Në këtë pajisje mungojnë Shërbimet Google Play. Mundeni prapëseprapë ta përdorni Signal-in, por ky formësim mund të sjellë qëndrueshmëri ose funksionim të reduktuar.\n\nNëse s\\’jeni përdorues i përparuar, s\\’po përdorni një ROM Android të modifikuar, ose besoni se po e shihni gabimisht këtë, ju lutemi, lidhuni me support@signal.org për ndihmë në diagnostikikim.</string>
-    <string name="RegistrationActivity_i_understand">E kuptoj</string>
-    <string name="RegistrationActivity_play_services_error">Gabim nga Shërbime Play</string>
-    <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Shërbimet Google Play po përditësohen ose janë përkohësisht jashtë funksionimi. Ju lutemi, riprovoni.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Keni bërë shumë përpjekje për të regjistruar këtë numër. Ju lutemi, riprovoni më vonë.</string>
-    <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">Ke bërë shumë përpjekje për të regjistruar këtë numër. Të lutem provoje përsëri për %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">S\\’arrihet të bëhet lidhja te shërbimi. Ju lutemi, kontrolloni lidhjen me rrjetin dhe riprovoni.</string>
     <!-- Dialog error message shown when we are unable to send an SMS to the user\'s number -->
     <string name="RegistrationActivity_sms_provider_error">Nuk mund të dërgojmë SMS në numrin tënd. Të lutem, provo përsëri pas disa orësh.</string>
-    <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Nuk mundëm të të dërgonim një kod verifikimi me SMS. Në vend të kësaj, provo të marrësh kodin nëpërmjet thirrjes zanore.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">Nuk mund të kërkohet një kod verifikimi. Të lutem, kontrollo lidhjen me rrjetin dhe riprovo.</string>
-    <string name="RegistrationActivity_non_standard_number_format">Format jostandard numrash</string>
-    <!-- Dialog message shown to confirm when entering phone number (first placeholder) is normalized and formatted differently by the app (second placeholder). -->
-    <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Numri që dhatë (%1$s) duket të jetë në një format jo standard.\n\nKishit ndërmend %2$s?</string>
-    <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Formati i numrit të telefonit</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="one">Ju ndan %1$d hap nga parashtrimi i një regjistri diagnostikimesh.</item>
         <item quantity="other">Ju ndajnë %1$d hapa nga parashtrimi i një regjistri diagnostikimesh.</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Na duhet të verifikojmë se jeni qenie njerëzore.</string>
-    <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
-    <string name="RegistrationActivity_voice_call">Thirrje zanore</string>
-    <!-- Dialog button to cancel the pending action and return to the previous state. -->
-    <string name="RegistrationActivity_cancel">Anulo</string>
     <string name="RegistrationActivity_next">Pasuesi</string>
-    <!-- Title of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_phone_number">Numër telefoni</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Jepni kodin që dërguam te %1$s</string>
 
     <string name="RegistrationActivity_phone_number_description">Numër telefoni</string>
@@ -2881,6 +2777,8 @@
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">S\\’u arrit të ngarkohej paketë ngjitësish</string>
     <!-- Bottom sheet describing a sticker. First placeholder is the title of the sticker pack and second is the author -->
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
+    <!-- Bottom sheet option that opens the pack the sticker belongs to -->
+    <string name="StickerPreviewBottomSheet__view_pack">View pack</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">Ruaji</string>
@@ -3619,8 +3517,6 @@
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Për të marrë njoftime thirrjesh, kliko parametrat dhe aktivizoni veprimtari në prapaskenë, te parametrat e “Baterisë”.</string>
 
     <!-- country_selection_fragment -->
-    <string name="country_selection_fragment__loading_countries">Po ngarkohen vende…</string>
-    <string name="country_selection_fragment__search">Kërko</string>
 
     <string name="device_list_fragment__link_new_device">Lidhni pajisje të re</string>
 
@@ -4454,6 +4350,8 @@
     <string name="conversation_selection__menu_pin_message">Fiksoji</string>
     <!-- Button to unpin a message -->
     <string name="conversation_selection__menu_unpin_message">Çfiksoji</string>
+    <!-- Button to open the sticker pack a sticker message came from -->
+    <string name="conversation_selection__menu_view_sticker_pack">View pack</string>
 
     <!-- conversation_expiring_on -->
 
@@ -4644,14 +4542,11 @@
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">Jepni PIN-in tuaj</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Jepni PIN-in që krijuar për llogarinë tuaj. Ky është tjetër gjë nga kodi juaj i verifikimit me SMS.</string>
-    <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
-    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Vendos kodin PIN që krijove për llogarinë tënde.</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">PIN i pasaktë. Riprovoni.</string>
     <string name="RegistrationLockFragment__forgot_pin">Harruat PIN-in?</string>
     <string name="RegistrationLockFragment__incorrect_pin">PIN i pasaktë</string>
     <string name="RegistrationLockFragment__forgot_your_pin">Harruat PIN-in tuaj?</string>
     <string name="RegistrationLockFragment__not_many_tries_left">S\\’ka edhe shumë prova!</string>
-    <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Regjistrim Signal-i - Duhet Ndihmë me PIN për Android (v2 PIN)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
         <item quantity="one">Për të të ruajtur privatësinë dhe sigurinë, nuk ka mënyrë për të rimarrë PIN-in. Nëse nuk e mban mend PIN-in, mund të ribësh verifikimin me SMS pas %1$d dite pa veprimtari. Në këtë rast, llogaria do të të spastrohet dhe krejt lënda do të fshihet.</item>
@@ -4706,22 +4601,6 @@
     <string name="backup_enable_dialog__you_must_have_this_passphrase">Që të mund të ktheni një kopjeruajtje, duhet të keni këtë frazëkalim.</string>
     <string name="backup_enable_dialog__folder">Dosje</string>
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">E kam shkruar diku këtë frazëkalim. Pa të, s\\’do të jem në gjendje të rikthej një kopjeruajtje.</string>
-    <string name="registration_activity__restore_backup">Riktheje kopjeruajtjen</string>
-    <!-- Text label button to skip restoring -->
-    <string name="registration_activity__skip_restore">Kapërce rikthimin</string>
-    <!-- Title for dialog to enter in the backup passphrase -->
-    <string name="RegistrationActivity_enter_backup_passphrase">Jepni frazëkalim kopjeruajtjeje</string>
-    <string name="RegistrationActivity_restore">Riktheje</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">Kopjet rezervë s\'importohen nga versionet e reja Signal</string>
-    <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
-    <string name="RegistrationActivity_backup_failure_foreign_key">Materiali për ruajtje përmban të dhëna të keqformuara</string>
-    <string name="RegistrationActivity_incorrect_backup_passphrase">Jepni frazëkalim kopjeruajtjeje</string>
-    <string name="RegistrationActivity_checking">Po kontrollohet…</string>
-    <string name="RegistrationActivity_d_messages_so_far">%1$d mesazhe deri këtu…</string>
-    <string name="RegistrationActivity_restore_from_backup">Të rikthehet prej kopjeruajtjeje?</string>
-    <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Riktheni mesazhet dhe mediat tuaja që prej një kopjeruajtjeje vendore. Nëse s\\’i riktheni tani, s\\’do të jeni në gjendje t\\’i riktheni më vonë.</string>
-    <string name="RegistrationActivity_backup_size_s">Madhësi kopjeruajtjeje: %1$s</string>
-    <string name="RegistrationActivity_backup_timestamp_s">Vulë kohore kopjeruajtjeje: %1$s</string>
     <string name="BackupDialog_enable_local_backups">Të aktivizohen kopjeruajtjet vendore?</string>
     <string name="BackupDialog_enable_backups">Aktivizoji kopjeruajtjet</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Ju lutemi, na bëni të ditur se e keni kuptuar, duke i vënë shenjë kutizës së ripohimit.</string>
@@ -4757,7 +4636,6 @@
     <string name="RegistrationActivity_call_me_instead_available_in">Më telefono (%1$02d:%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
     <string name="RegistrationActivity_resend_sms_available_in">Ridërgo kodin (%1$02d:%2$02d)</string>
-    <string name="RegistrationActivity_contact_signal_support">Lidhuni Me Asistencën e Signal-it</string>
     <string name="RegistrationActivity_code_support_subject">Regjistrim Signal-i - Kod Verifikimi për Android</string>
     <string name="RegistrationActivity_incorrect_code">Kod i gabuar</string>
     <string name="BackupUtil_never">Kurrë</string>
@@ -4879,25 +4757,8 @@
     <string name="TransferOrRestoreFragment__restore_from_local_backup">Rikthe kopjeruajtjen lokale</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
-    <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Hapni Signal-in në telefonin tuaj të vjetër Android</string>
-    <string name="NewDeviceTransferInstructions__continue">Vazhdo</string>
-    <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Prekni mbi foton e profilit tuaj në cepin e majtë sipër, që të hapen parametrat</string>
-    <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_account">"Prekni mbi “Llogari”"</string>
-    <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
-    <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"Prekni “Shpërngulni Llogari” dhe mandej “Vazhdoni” në të dyjat e pajisjeve"</string>
 
     <!-- NewDeviceTransferSetupFragment -->
-    <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Po gatitet të lidhet me një pajisje Android të vjetër…</string>
-    <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Po ha një çast, duhet të jetë gati së shpejti</string>
-    <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Po pritet që të lidhet pajisje e vjetër Android…</string>
-    <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal-i lyp leje vendndodhjesh që të pikasë dhe lidhet me pajisjen tuaj të vjetër Android.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal-i lyp aktivizim shërbimesh vendndodhjesh që të pikasë dhe lidhet me pajisjen tuaj të vjetër Android.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal-i lyp Wi-Fi të hapur që të pikasë dhe lidhet me pajisjen tuaj të vjetër Android. Wi-Fi duhet të jetë i hapur, por jo edhe të jetë i lidhur në një rrjet Wi-Fi.</string>
-    <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Na ndjeni, duket se kjo pajisje s\\’mbulon Wi-Fi Direct. Signal-i e përdor Wi-Fi Direct që të pikasë dhe lidhet me pajisjen tuaj të vjetër Android. Mundeni ende të riktheni një kopjeruajtje, që të riktheni llogarinë tuaj nga pajisja juaj e vjetër Android.</string>
-    <string name="NewDeviceTransferSetup__restore_a_backup">Riktheni një kopjeruajtje</string>
-    <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Ndodhi një gabim i papritur teksa provohej të lidhej me pajisjen tuaj të vjetër Android.</string>
 
     <!-- OldDeviceTransferSetupFragment -->
     <string name="OldDeviceTransferSetup__searching_for_new_android_device">Po kërkohet për pajisje të re Android…</string>
@@ -4941,9 +4802,6 @@
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Prekni Vazhdo, te pajisja juaj tjetër…</string>
 
     <!-- NewDeviceTransferFragment -->
-    <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">S\\’mund të shpërngulet prej një versioni më të ri të Signal-it</string>
-    <!-- Error message indicating that we could not finish the user\'s device transfer. Displayed in a toast at the bottom of the screen. -->
-    <string name="NewDeviceTransfer__failure_foreign_key">E dhëna e transferuar ishte e keqformuar</string>
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">Shpërngulje të dhënash</string>
@@ -4982,10 +4840,6 @@
     <string name="OldDeviceTransferComplete__close">Mbylle</string>
 
     <!-- NewDeviceTransferComplete -->
-    <string name="NewDeviceTransferComplete__transfer_successful">Shpërngulje e suksesshme</string>
-    <string name="NewDeviceTransferComplete__transfer_complete">Shpërngulje e plotë</string>
-    <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">Që të plotësoni procesin e shpërnguljes, duhet të vazhdoni regjistrimin.</string>
-    <string name="NewDeviceTransferComplete__continue_registration">Vazhdoni regjistrimin</string>
 
     <!-- DeviceToDeviceTransferService -->
     <string name="DeviceToDeviceTransferService_content_title">Shpërngulje llogarie</string>
@@ -8753,219 +8607,6 @@
 
     <!-- ConfirmBackupCancellationDialog -->
 
-    <!-- Row title for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">E kam telefonin e vjetër</string>
-    <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_scan_qr">Skano kodin QR nga llogaria aktuale e Signal për të filluar më shpejt</string>
-
-    <!-- Row title for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">Nuk e kam telefonin e vjetër</string>
-    <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">Ose je duke e riinstaluar Signal në të njëjtën pajisje</string>
-
-    <!-- Screen title for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__restore_or_transfer_account">Rikthe ose transfero llogarinë</string>
-    <!-- Screen subtitle for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__get_your_signal_account">Merr llogarinë e Signal dhe historikun e mesazheve në këtë pajisje.</string>
-    <!-- Option title for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_signal_backup">Rikthe kopjeruajtjen Signal</string>
-    <!-- Option subtitle for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_your_text_messages_and_media_from">Rikthe mesazhet me tekst dhe mediat nga plani i kopjeruajtjeve në Signal.</string>
-    <!-- Option title for restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_on_device_backup">Rikthe kopjeruajtjen në pajisje</string>
-    <!-- Option subtitle fdor restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_your_messages_from">Rikthe mesazhet nga kopjeruajtja që ke ruajtur në pajisje.</string>
-    <!-- Option title for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__from_your_old_phone">Nga telefoni i vjetër</string>
-    <!-- Option subtitle for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__transfer_directly_from_old">Transfero drejtpërdrejt nga Android yt i vjetër</string>
-    <!-- Dialog title shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_title">Të kapërcehet rikthimi?</string>
-    <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">Nëse e kapërcen rikthimin tani, nuk do të jesh në gjendje ta rikthesh më vonë. Nëse i riaktivizon kopjeruajtjet pasi ke kapërcyer rikthimin, kopjeruajtja aktuale do të zëvendësohet me historikun e ri të mesazheve.</string>
-    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore">Kapërce rikthimin</string>
-
-    <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_title">Vendos kodin e rikthimit</string>
-    <!-- Screen subtitle for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_subtitle">Kodi i rikthimit është kod 64-shifror që kërkohet për të rikthyer llogarinë dhe të dhënat.</string>
-    <!-- Button to skip entering recovery key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">Nuk ke kod rikthimi?</string>
-    <!-- Recovery key text field hint -->
-    <string name="EnterBackupKey_backup_key">Kodi i rikthimit</string>
-    <!-- Recovery key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">Kopjeruajtjet nuk mund të rikthehen pa kodin e tyre të rikthimit prej 64 karakteresh. Nëse e ke humbur kodin e rikthimit, Signal nuk mund të ndihmojë në rikthimin e kopjeruajtjes.</string>
-    <!-- Recovery key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">Nëse ke pajisjen e vjetër, mund ta shikosh kodin e rikthimit te Parametrat &gt; Kopjeruajtjet. Pastaj prek lehtë mbi \"Shiko kodin e rikthimit\".</string>
-    <!-- Recovery key not known bottom sheet button to learn more about it -->
-    <string name="EnterBackupKey_learn_more">Mëso më shumë</string>
-    <!-- Recovery key not known bottom sheet button to skip recovery key entry and resume normal reregistration -->
-    <string name="EnterBackupKey_skip_and_dont_restore">Kapërce dhe mos rikthe</string>
-    <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">Kodi i rikthimit është i pasaktë</string>
-    <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">Sigurohu që po regjistrohesh me të njëjtin numër telefoni dhe kod rikthimi prej 64 karakteresh që ke ruajtur kur aktivizove \"Kopjeruajtjet e sigurta\" të Signal. Kopjeruajtjet nuk mund të rikthehen pa këtë kod.</string>
-    <!-- Dialog positive button text to try entering their recovery key again -->
-    <string name="EnterBackupKey_try_again">Provo sërish</string>
-    <!-- Dialog negative button text to get help with recovery key -->
-    <string name="EnterBackupKey_backup_key_help">Ndihmë për kodin e rikthimit</string>
-    <!-- Text field error text when the recovery key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">Kodi i rikthimit është i pasaktë</string>
-    <!-- Text field error text when the recovery key is too long -->
-    <string name="EnterBackupKey_too_long_error">Shumë e gjatë (%1$d/%2$d)</string>
-    <!-- Text field error when the recovery key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">Kodi i pavlefshëm rikthimi</string>
-    <!-- Dialog title shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_not_found">Kopjeruajtja nuk u gjet</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Kodi i rikuperimit që vendose është i saktë, por nuk ka kopjeruajtje të lidhur me të. Nëse e ke ende telefonin e vjetër, sigurohu që kopjeruajtjet të jenë aktive dhe të jetë kryer një kopjeruajtje e pastaj provo përsëri.</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">Mund të kesh vendosur gabim kodin e rikthimit ose nuk ke përfunduar të paktën një kopjeruajtje në pajisjen e vjetër.\n\nSigurohu që po regjistrohesh me të njëjtin numër telefoni dhe kod rikthimi që ke ruajtur kur aktivizove \"Kopjeruajtjet e sigurta\" dhe konfirmo që të kesh përfunduar kopjeruajtje në pajisjen e vjetër.</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">Të kanë mbaruar përpjekjet për kodin e rikthimit. Për sigurinë tënde, numri i përpjekjeve që mund të bësh është i kufizuar. Prit një orë dhe provo përsëri.</string>
-    <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
-    <string name="EnterBackupKey_skip_restore">Kapërce rikthimin</string>
-    <!-- Dialog title text when encountering backup restore network error -->
-    <string name="EnterBackupKey_cant_restore_backup">Kopjeruajtja nuk mund të rikthehej</string>
-    <!-- Dialog body text when encountering backup restore network error -->
-    <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">Kopjeruajtja nuk mund të rikthehet për momentin. Kontrollo lidhjen e internetit dhe provo sërish. </string>
-    <!-- Dialog button text to contact support on network error -->
-    <string name="EnterBackupKey_contact_support">Kontakto ndihmën</string>
-
-    <!-- Email subject when contacting support on a restore backup network issue -->
-    <string name="EnterBackupKey_network_failure_support_email">Gabim rrjeti gjatë rikthimit të kopjeruajtjes të Signal Android</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
-    <!-- Email subject when contacting support on a permanent backup import failure -->
-    <string name="EnterBackupKey_permanent_failure_support_email">Dështim i përhershëm i rikthimit të kopjeruajtjes së Signal Android</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
-
-    <!-- EnterLocalBackupKeyScreen: Screen title for entering recovery key for local backup restore -->
-    <string name="EnterLocalBackupKeyScreen__enter_your_recovery_key">Vendos kodin e rikthimit</string>
-    <!-- EnterLocalBackupKeyScreen: Screen subtitle explaining what the recovery key is -->
-    <string name="EnterLocalBackupKeyScreen__your_recovery_key_is_a_64_character_code">Kodi i rikthimit është kod 64-shifror që kërkohet për të rikthyer llogarinë dhe të dhënat.</string>
-    <!-- EnterLocalBackupKeyScreen: Button text when user does not have a recovery key -->
-    <string name="EnterLocalBackupKeyScreen__no_recovery_key">Nuk ke kod rikthimi?</string>
-    <!-- EnterLocalBackupKeyScreen: Button to proceed to next step -->
-    <string name="EnterLocalBackupKeyScreen__next">Tjetër</string>
-
-    <!-- RestoreLocalBackupDialog: Error message when the selected archive fails to load -->
-    <string name="RestoreLocalBackupDialog__failed_to_load_archive">Arkiva nuk u ngarkua. Të lutem, zgjidh një direktori tjetër.</string>
-    <!-- RestoreLocalBackupDialog: Dismiss button for dialog -->
-    <string name="RestoreLocalBackupDialog__ok">OK</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore">Të kapërcehet rikthimi?</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user about the consequences of skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore_body">Nëse e kapërcen rikthimin tani, nuk do të jesh në gjendje ta rikthesh më vonë. Nëse i riaktivizon kopjeruajtjet pasi ke kapërcyer rikthimin, kopjeruajtja aktuale do të zëvendësohet me historikun e ri të mesazheve.</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the skip restore dialog -->
-    <string name="RestoreLocalBackupDialog__skip_restore_confirm">Kapërce rikthimin</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm restoring a backup from a different account -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account">Të rikthehet në llogarinë e re?</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user that the backup was created with a different account and they will lose group memberships -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account_body">Kopjeruajtja që po rikthen është krijuar duke përdorur një llogari tjetër Signal. Mund ta rikthesh këtë kopjeruajtje në një llogari të re, por nuk do të jesh më anëtar i grupeve që janë rikthyer.</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the restore to new account dialog -->
-    <string name="RestoreLocalBackupDialog__restore">Riktheje</string>
-
-    <!-- RestoreLocalBackupActivity: Toast message when backup restore fails -->
-    <string name="RestoreLocalBackupActivity__backup_restore_failed">Kopjeruajtja nuk u rikthye</string>
-    <!-- RestoreLocalBackupActivity: Screen title shown during restore -->
-    <string name="RestoreLocalBackupActivity__restoring_backup">Po rikthehet kopjeruajtja</string>
-    <!-- RestoreLocalBackupActivity: Screen subtitle explaining restore duration -->
-    <string name="RestoreLocalBackupActivity__depending_on_the_size">Në varësi të madhësisë së kopjeruajtjes, kjo mund të zgjasë disa minuta.</string>
-    <!-- RestoreLocalBackupActivity: Status text while restoring messages -->
-    <string name="RestoreLocalBackupActivity__restoring_messages">Po rikthehen mesazhet…</string>
-    <!-- RestoreLocalBackupActivity: Status text while finalizing restore -->
-    <string name="RestoreLocalBackupActivity__finalizing">Duke e përmbyllur…</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore is complete -->
-    <string name="RestoreLocalBackupActivity__restore_complete">Rikthim i plotësuar</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore fails -->
-    <string name="RestoreLocalBackupActivity__restore_failed">Rikthimi dështoi</string>
-    <!-- RestoreLocalBackupActivity: Progress text showing bytes read of total with percentage, e.g. "1.2 MB of 5.0 MB (24%)" -->
-    <string name="RestoreLocalBackupActivity__s_of_s_d_percent">%1$s nga %2$s (%3$d)</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__cant_restore_backup">Kopjeruajtja nuk mund të rikthehej</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__error_occurred_while_restoring">Ndodhi një gabim gjatë rikthimit të kopjeruajtjes. Kopjeruajtja nuk rikuperohet. Të lutem, kontakto ndihmën për mbështetje.</string>
-
-    <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
-    <string name="RestoreLocalBackupActivity__contact_support">Kontakto ndihmën</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
-    <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">Të aktivizohen kopjeruajtjet në pajisje?</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Për të vazhduar përdorimin e kopjeruajtjeve në pajisje, duhet t\'i aktivizosh për këtë llogari. Këtë veprim mund ta kryesh në çdo kohë te Parametrat &gt; Kopjeruajtjet.</string>
-
-    <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__turn_on_now">Aktivizo tani</string>
-
-    <!-- RestoreLocalBackupActivity: Dismiss button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__not_now">Jo tani</string>
-
-    <!-- RestoreLocalBackupActivity: Body text for the dialog shown after a successful restore, prompting the user to choose a backup folder -->
-    <string name="RestoreLocalBackupActivity__choose_a_folder_for_backups">Për të vazhduar me kopjeruajtjet në pajisje, zgjidh një dosje ku do të ruhen kopjeruajtjet e reja.</string>
-
-    <!-- RestoreLocalBackupActivity: Positive button label for the dialog shown after a successful restore; keeps the current backup folder -->
-    <string name="RestoreLocalBackupActivity__use_current_folder">Përdor dosjen aktuale</string>
-
-    <!-- RestoreLocalBackupActivity: Neutral button label for the dialog shown after a successful restore; opens folder picker to select a different backup location -->
-    <string name="RestoreLocalBackupActivity__choose_new_folder">Zgjidh dosjen e re</string>
-
-    <!-- RestoreLocalBackupActivity: Negative button label for the dialog shown after a successful restore; disables on-device backups -->
-    <string name="RestoreLocalBackupActivity__disable_backups">Ç\'aktivizo kopjeruajtjet</string>
-
-    <!-- SelectInstructionsSheet: Title for the select backup folder instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_folder">Zgjidh dosjen e kopjeruajtjeve</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the select this folder button -->
-    <string name="SelectInstructionsSheet__tap_select_this_folder">Prek \"Zgjidh këtë dosje\"</string>
-    <!-- SelectInstructionsSheet: Instruction not to select individual files -->
-    <string name="SelectInstructionsSheet__do_not_select_individual_files">Mos zgjidh skedarë individualë</string>
-    <!-- SelectInstructionsSheet: Title for the select backup file instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_file">Zgjidh skedarin e kopjeruajtjes</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the backup file saved to device -->
-    <string name="SelectInstructionsSheet__tap_on_the_backup_file">Prek në skedarin e kopjeruajtjes që ke ruajtur në pajisje</string>
-    <!-- SelectInstructionsSheet: Subtitle explaining how to access backup after tapping continue -->
-    <string name="SelectInstructionsSheet__after_tapping_continue">Pasi të klikosh te \"Vazhdo\", ja se si të qasesh te kopjeruajtja:</string>
-    <!-- SelectInstructionsSheet: Instruction to select the top-level backup folder -->
-    <string name="SelectInstructionsSheet__select_the_top_level_folder">Zgjidh dosjen e nivelit të lartë ku ruhet kopjeruajtja</string>
-    <!-- SelectInstructionsSheet: Continue button text -->
-    <string name="SelectInstructionsSheet__continue_button">Vazhdo</string>
-
-    <!-- SelectLocalBackupScreen: Screen title for restoring on-device backup -->
-    <string name="SelectLocalBackupScreen__restore_on_device_backup">Rikthe kopjeruajtjen në pajisje</string>
-    <!-- SelectLocalBackupScreen: Screen subtitle explaining the restore process -->
-    <string name="SelectLocalBackupScreen__restore_your_messages_from_the_backup_folder">Rikthe mesazhet nga skedari i kopjeruajtjes që ke ruajtur në pajisje. Nëse nuk i rikthen tani, nuk do të mund t\'i rikthesh më vonë.</string>
-    <!-- SelectLocalBackupScreen: Button to initiate backup restoration -->
-    <string name="SelectLocalBackupScreen__restore_backup">Riktheje kopjeruajtjen</string>
-    <!-- SelectLocalBackupScreen: Button to choose an earlier backup when current is latest -->
-    <string name="SelectLocalBackupScreen__choose_an_earlier_backup">Zgjidh kopjeruajtje më të hershme</string>
-    <!-- SelectLocalBackupScreen: Button to choose a different backup -->
-    <string name="SelectLocalBackupScreen__choose_a_different_backup">Zgjidh kopjeruajtje tjetër</string>
-    <!-- SelectLocalBackupScreen: Label for latest backup card -->
-    <string name="SelectLocalBackupScreen__your_latest_backup">Kopjeruajtja e fundit:</string>
-    <!-- SelectLocalBackupScreen: Label for non-latest backup card -->
-    <string name="SelectLocalBackupScreen__your_backup">Kopjeruajtja jote:</string>
-
-    <!-- SelectLocalBackupSheet: Title for backup selection bottom sheet -->
-    <string name="SelectLocalBackupSheet__choose_a_backup_to_restore">Zgjidh një kopjeruajtje për ta rikthyer</string>
-    <!-- SelectLocalBackupSheet: Subtitle warning about choosing an older backup -->
-    <string name="SelectLocalBackupSheet__choosing_an_older_backup">Zgjedhja e kopjeruajtjes më të vjetër mund të rezultojë në humbjen e mesazheve ose mediave.</string>
-    <!-- SelectLocalBackupSheet: Continue button text -->
-    <string name="SelectLocalBackupSheet__continue_button">Vazhdo</string>
-
-    <!-- SelectLocalBackupTypeScreen: Screen title for selecting backup type -->
-    <string name="SelectLocalBackupTypeScreen__restore_on_device_backup">Rikthe kopjeruajtjen në pajisje</string>
-    <!-- SelectLocalBackupTypeScreen: Screen subtitle explaining restore options -->
-    <string name="SelectLocalBackupTypeScreen__restore_your_messages_from_the_backup">Rikthe mesazhet nga kopjeruajtja që ke ruajtur në pajisje. Nëse nuk i rikthen tani, nuk do të mund t\'i rikthesh më vonë.</string>
-    <!-- SelectLocalBackupTypeScreen: Button for users who saved backup as single file -->
-    <string name="SelectLocalBackupTypeScreen__i_saved_my_backup_as_a_single_file">E ruajta kopjeruajtjen si një skedar i vetëm</string>
-    <!-- SelectLocalBackupTypeScreen: Card title for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__choose_backup_folder">Zgjidh dosjen e kopjeruajtjes</string>
-    <!-- SelectLocalBackupTypeScreen: Card description for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__select_the_folder_on_your_device">Zgjidh dosjen në pajisjen ku do të ruhet kopjeruajtja</string>
-
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">Gabim në rrjetin e eksportimit të kopjeruajtjes së Signal Android</string>
     <!-- Email filter when contacting support on a create backup failure -->
@@ -8979,23 +8620,6 @@
     <string name="ContactSupportDialog_submit_with_debug">Dërgo me regjistër diagnostikimesh</string>
     <!-- Button option to not submit debug log when contacting support -->
     <string name="ContactSupportDialog_submit_without_debug">Dërgo pa regjistër diagnostikimesh</string>
-
-    <!-- Title for restore via qr screen -->
-    <string name="RestoreViaQr_title">Skano këtë kod me telefonin e vjetër</string>
-    <!-- First instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_1">Hap Signal në pajisjen e vjetër</string>
-    <!-- Second instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_2">Kliko në ikonën e kamerës </string>
-    <!-- Third instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_3">Skano këtë kod me kamera</string>
-    <!-- Error message shown when qr code could not be loaded -->
-    <string name="RestoreViaQr_qr_code_error">Nuk mund të gjenerohet kodi QR</string>
-    <!-- Status message shown when qr code already scanned by other device -->
-    <string name="RestoreViaQr_qr_code_scanned">Skanuar në pajisjen e vjetër</string>
-    <!-- Error button text to retry getting a qr code -->
-    <string name="RestoreViaQr_retry">Riprovo</string>
-    <!-- Error message shown when register after receiving the provisioning message failed -->
-    <string name="RestoreViaQr_registration_error">Ndodhi një gabim dhe llogaria nuk mund të transferohej. Provo sërish duke riskanuar kodin QR.</string>
 
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">Shpërngulni llogari</string>
@@ -9037,19 +8661,6 @@
     <string name="RestoreCompleteBottomSheet_transfer_complete_message">Llogaria e Signal dhe mesazhet janë transferuar në pajisjen tjetër. Signal është tani joaktiv në këtë pajisje.</string>
     <!-- Restore Complete bottom sheet dialog button text to dismiss sheet -->
     <string name="RestoreCompleteBottomSheet_button">OK</string>
-
-    <!-- No Backup to Restore screen title -->
-    <string name="NoBackupToRestore_title">Nuk ka kopjeruajtje për të rikthyer</string>
-    <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">Për shkak se po kalon nga iPhone në Android, mënyra e vetme për të transferuar mesazhet dhe median është duke aktivizuar Kopjeruajtjet e Signal në pajisjen e vjetër.</string>
-    <!-- No Backup to Restore step 1 to enable backups on old device -->
-    <string name="NoBackupToRestore_step1">Hap Signal në pajisjen e vjetër</string>
-    <!-- No Backup to Restore step 2 to enable backups on old device -->
-    <string name="NoBackupToRestore_step2">Kliko Parametrat &gt; Kopjeruajtjet</string>
-    <!-- No Backup to Restore step 3 to enable backups on old device -->
-    <string name="NoBackupToRestore_step3">Aktivizo kopjeruajtjet dhe prit derisa të përfundojë kopjeruajtja</string>
-    <!-- No backup to Restore tonal cta to skip restore -->
-    <string name="NoBackupToRestore_skip_restore">Kapërce rikthimin</string>
 
     <!-- Dialog title when the recovery key change limit is reached -->
     <string name="MessageBackupsKeyRecordScreen__limit_reached_title">U arrit limiti i kodit të rikthimit</string>

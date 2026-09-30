@@ -863,23 +863,8 @@
     <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Сіз біреуге хат жазбайынша немесе біреумен ортақ чатыңыз болмайынша, сіздің Signal қолданбасын пайдаланатыныңызды ешкім көре алмайды.</string>
 
     <!-- ChooseBackupFragment -->
-    <string name="ChooseBackupFragment__restore_from_backup">Сақтық көшірмеден қалпына келтіру керек пе?</string>
-    <string name="ChooseBackupFragment__restore_your_messages_and_media">Хабарлар мен ақпаратты жергілікті сақтық көшірмеден қалпына келтіріңіз. Егер қазір қалпына келтірмесеңіз, кейін қалпына келтіре алмайсыз.</string>
-    <string name="ChooseBackupFragment__icon_content_description">Резервтік белгішеден қалпына келтіру</string>
-    <string name="ChooseBackupFragment__choose_backup">Резервтік көшірме таңдау</string>
-    <string name="ChooseBackupFragment__learn_more">Толық ақпарат</string>
 
     <!-- RestoreBackupFragment -->
-    <string name="RestoreBackupFragment__restore_complete">Қалпына келтірілді</string>
-    <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Резервтік көшірмелерді әрі қарай да пайдалану үшін қалтаны таңдаңыз. Жаңа резервтік көшірмелер осы орынға сақталады.</string>
-    <string name="RestoreBackupFragment__choose_folder">Choose folder</string>
-    <string name="RestoreBackupFragment__not_now">Кейін</string>
-    <!-- Couldn\'t find the selected backup -->
-    <string name="RestoreBackupFragment__backup_not_found">Резервтік көшірме табылмады.</string>
-    <!-- Couldn\'t read the selected backup -->
-    <string name="RestoreBackupFragment__backup_could_not_be_read">Резервтік көшірмені оқу мүмкін болмады.</string>
-    <!-- Backup has an unsupported file extension -->
-    <string name="RestoreBackupFragment__backup_has_a_bad_extension">Резервтік көшірменің кеңейтімі дұрыс емес.</string>
 
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
@@ -1416,60 +1401,6 @@
     <string name="ManageGroupActivity_add_group_description">Топ сипаттамасын қосу…</string>
 
     <!-- RemoteRestoreActivity -->
-    <!-- Progress dialog label when downloading a backup -->
-    <string name="RemoteRestoreActivity__downloading_backup">Резервтік көшірме жүктеп алынуда…</string>
-    <!-- Progress dialog label when restoring a backup -->
-    <string name="RemoteRestoreActivity__restoring_messages">Хаттар туралы хабарлау…</string>
-    <!-- Progress dialog label when finishing a backup restore -->
-    <string name="RemoteRestoreActivity__finishing_restore">Аяқталып жатыр…</string>
-    <!-- Progress dialog label while awaiting updates -->
-    <string name="RemoteRestoreActivity__restoring">Қалпына келтірілуде…</string>
-    <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
-    <string name="RemoteRestoreActivity__s_of_s_s">%1$s/%2$s (%3$s)</string>
-    <!-- Feature list media label for paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_media">Барлық мультимедиа</string>
-    <!-- Feature list media label for free tier. Placeholder is days, and is currently fixed at 30. -->
-    <string name="RemoteRestoreActivity__your_last_d_days_of_media">Мультимедианың соңғы %1$d күні</string>
-    <!-- Feature list message label for free and paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_messages">Барлық хат</string>
-    <!-- Screen title for restoring from backup -->
-    <string name="RemoteRestoreActivity__restore_from_backup">Резервтік көшірмеден қалпына келтіру</string>
-    <!-- Section title for explaining what your backup includes -->
-    <string name="RemoteRestoreActivity__your_backup_includes">Резервтік көшірме:</string>
-    <!-- Primary action button copy for starting restoration -->
-    <string name="RemoteRestoreActivity__restore_backup">Сақтық көшірмені қалпына келтіру</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made. %1$s is replaced with the date (e.g. March 5, 2024) and %2$s is replaced with the time (e.g. 9:00am) -->
-    <string name="RemoteRestoreActivity__backup_created_at">Соңғы резервтік көшірме %1$s күні сағат%2$s жасалды.</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
-    <string name="RemoteRestoreActivity__backup_created_at_with_size">Соңғы сақтық көшірме жасалған күн және уақыт: %1$s, %2$s. Сақтық көшірме көлемі – %3$s.</string>
-    <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
-    <string name="RemoteRestoreActivity__fetching_backup_details">Сақтық көшірме мәліметтері алынып жатыр…</string>
-    <!-- Text label button to skip restore from remote -->
-    <string name="RemoteRestoreActivity__skip_restore">Қалпына келтіру функциясын өткізіп жіберу</string>
-    <!-- Dialog title displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__couldnt_transfer">Тасымалдау процесі аяқталмады</string>
-    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Сақтық көшірме қалпына келтірілмейді</string>
-    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">Сақтық көшірмені қалпына келтіру кезінде қате шықты. Сақтық көшірмеңізді қалпына келтіру мүмкін емес. Қолдау орталығының көмегіне жүгініңіз.</string>
-    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Қолдау қызметіне хабарласу</string>
-    <!-- Dialog message displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__error_occurred">Қате шықты және аккаунтыңызды тасымалдау мүмкін болмады. Тасымалдау әдісін таңдап, қайталап көріңіз.</string>
-    <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
-    <string name="RemoteRestoreActivity__couldnt_restore">Бұл сақтық көшірме қалпына келтірілмеді</string>
-    <!-- Dialog message explaining that an update to Signal is required to restore the backup. -->
-    <string name="RemoteRestoreActivity__update_latest">Signal-дың бұл нұсқасы сақтық көшірмеңізді қалпына келтіре алмайды. Оның ең соңғы нұсқасын орнатып, әрекетті қайталап көріңіз.</string>
-    <!-- Text on button that when pressed will redirect them to update Signal -->
-    <string name="RemoteRestoreActivity__update_signal">Signal-ды жаңарту</string>
-    <!-- Text label button to dismiss the dialog -->
-    <string name="RemoteRestoreActivity__not_now">Кейін</string>
-    <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Мультимедиа файлыңыз фондық режимде қалпына келеді. Оны қазір қалпына келтірмесеңіз, кейінірек қалпына келтіре алмай қаласыз.</string>
-    <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">Бұл құрылғы енді тіркелмеген</string>
-    <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">Мұның себебі Signal аккаунтыңызды басқа құрылғыда тіркегендіктен сияқты.</string>
 
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
@@ -2234,17 +2165,6 @@
     <string name="PinRestoreLockedFragment_create_new_pin">Жаңа PIN-код жасау</string>
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
-    <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
-    <string name="ReRegisterWithPinFragment_send_sms_code">SMS кодын жіберу</string>
-    <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">Signal-ға тіркелу – Android құрылғысы үшін PIN кодын қайта тіркеу кезінде көмек керек</string>
-    <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">Сіздің PIN кодыңыз – %1$d + сіз жасаған цифрлық код сандық немесе әріптік-сандық болуы мүмкін.\n\nPIN кодыңыз есіңізде болмаса, жаңасын ойлап табыңыз.</string>
-    <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">PIN кодыңыз есіңізде болмаса, жаңасын ойлап табыңыз.</string>
-    <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">PIN кодын енгізуге берілген мүмкіндіктің барлығын пайдаланып қойдыңыз, бірақ жаңа PIN кодын жасап, Signal аккаунтыңызға әлі де кіре аласыз.</string>
-
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Ескерту</string>
     <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">PIN-кодты өшіріп қойсаңыз, резервтік көшірмесін қолмен жасап, оны қалпына келтірмейінше, Signal қолданбасына қайта тіркелгенде, барлық дерегіңіз өшіп қалады. PIN-кодты өшіріп қойып, Тіркелу құлпын аша алмайсыз.</string>
@@ -2324,6 +2244,12 @@
     <string name="WebRtcCallActivity__open_settings">Параметрлерді ашу</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">Кейін</string>
+    <!-- Message for dialog shown at the start of a call when the system battery setting for Signal is "Restricted" -->
+    <string name="WebRtcCallActivity__others_may_not_be_able_to_hear_you_when_your_screen_turns_off">Others may not be able to hear you and the call may disconnect when your screen turns off. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
+    <!-- Title for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__others_couldnt_hear_you">Others couldn\'t hear you</string>
+    <!-- Message for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__your_microphone_was_muted_while_signal_was_in_the_background">Your microphone was muted while Signal was in the background. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
     <!-- Title for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__approve_d_requests">
         <item quantity="one">%1$d өтінішті мақұлдау керек пе?</item>
@@ -2639,50 +2565,20 @@
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Сіз көрсеткен (%1$s) телефон нөмірі жарамсыз.
     </string>
 
-    <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">Төмендегі телефон нөмірі дұрыс па?</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
     <string name="RegistrationActivity_additional_verification_required">Қосымша верификация қажет</string>
-    <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">Верификация коды осы нөмірге жіберіледі. Оператор ақы алуы мүмкін.</string>
-    <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Сіз тексеру кодын аласыз. Тасымалдаушы ақысы алынуы мүмкін.</string>
-    <!-- Hint text to select a country -->
-    <string name="RegistrationActivity_select_a_country">Елді таңдаңыз</string>
-    <!-- Hint text explaining that this is where the country code should go -->
-    <string name="RegistrationActivity_default_country_code">0</string>
-    <string name="RegistrationActivity_edit_number">Нөмірді өзгерту</string>
-    <string name="RegistrationActivity_missing_google_play_services">Google Play қызметтері жоқ</string>
-    <string name="RegistrationActivity_this_device_is_missing_google_play_services">Бұл құрылғыда Google Play қызметтері жоқ. Signal қолданбасын әлі де пайдалануға болады, бірақ бұл конфигурация сенімділік пен жұмыс өнімділігін азайтуы мүмкін.\n\nЕгер сіз тәжірибелі пайдаланушы болмасаңыз, сатылымнан кейінгі Android ROM жадын қолданбасаңыз немесе мұны қате көріп отырмын деп ойласаңыз, ақайлықты анықтауда көмек алу үшін support@signal.org қызметіне хабарласыңыз.</string>
-    <string name="RegistrationActivity_i_understand">Түсінемін</string>
-    <string name="RegistrationActivity_play_services_error">Play қызметтерінің қатесі</string>
-    <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play қызметтері жаңартылуда немесе уақытша жұмыс істемейді. Тағы да байқап көріңіз.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Осы нөмірді тіркеу үшін сіз тым көп әрекет жасадыңыз. Кейінірек тағы бір рет байқап көріңіз.</string>
-    <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">Осы нөмірді тіркеу үшін сіз тым көп әрекет жасадыңыз. %1$s өткен соң, қайталап көріңіз.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Қызметке жалғану мүмкін емес. Желіге жалғанғаныңызды тексеріңіз де, тағы бір рет байқап көріңіз.</string>
     <!-- Dialog error message shown when we are unable to send an SMS to the user\'s number -->
     <string name="RegistrationActivity_sms_provider_error">Нөміріңізге SMS хабарын жібере алмадық. Бірнеше сағаттан кейін қайталап көріңіз.</string>
-    <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Верификация кодын SMS арқылы жібере алмадық. Кодты дауыстық қоңырау арқылы алып көріңіз.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">Верификация кодын сұрау мүмкін емес. Желі байланысын тексеріп, қайталап көріңіз.</string>
-    <string name="RegistrationActivity_non_standard_number_format">Стандартты емес нөмір форматы</string>
-    <!-- Dialog message shown to confirm when entering phone number (first placeholder) is normalized and formatted differently by the app (second placeholder). -->
-    <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Сіз енгізген нөмірдің (%1$s) форматы стандартты емес екен.\n\n%2$s деп жазғыңыз келіп пе еді?</string>
-    <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Телефон нөмірінің форматы</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="one">You are now %1$d step away from submitting a debug log.</item>
         <item quantity="other">Дұрыстау журналын жіберу үшін енді %1$d қадам қалды.</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Сіздің адам екеніңізді тексеруіміз керек.</string>
-    <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
-    <string name="RegistrationActivity_voice_call">Дауыстық қоңырау</string>
-    <!-- Dialog button to cancel the pending action and return to the previous state. -->
-    <string name="RegistrationActivity_cancel">Бас тарту</string>
     <string name="RegistrationActivity_next">Келесі</string>
-    <!-- Title of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_phone_number">Телефон нөмірі</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Біз %1$s нөміріне жіберген кодты енгізіңіз</string>
 
     <string name="RegistrationActivity_phone_number_description">Телефон нөмірі</string>
@@ -2881,6 +2777,8 @@
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Стикерлер жинағы жүктелмеді</string>
     <!-- Bottom sheet describing a sticker. First placeholder is the title of the sticker pack and second is the author -->
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
+    <!-- Bottom sheet option that opens the pack the sticker belongs to -->
+    <string name="StickerPreviewBottomSheet__view_pack">View pack</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">Сақтау</string>
@@ -3619,8 +3517,6 @@
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Қоңырау туралы хабарландырулар алу үшін Параметрлер бөлімін басып, \"Батарея\" параметрлерінде фондық әрекетті қосыңыз.</string>
 
     <!-- country_selection_fragment -->
-    <string name="country_selection_fragment__loading_countries">Елдер жүктелуде…</string>
-    <string name="country_selection_fragment__search">Іздеу</string>
 
     <string name="device_list_fragment__link_new_device">Жаңа құрылғыны байланыстыру</string>
 
@@ -4454,6 +4350,8 @@
     <string name="conversation_selection__menu_pin_message">Бекіту</string>
     <!-- Button to unpin a message -->
     <string name="conversation_selection__menu_unpin_message">Босату</string>
+    <!-- Button to open the sticker pack a sticker message came from -->
+    <string name="conversation_selection__menu_view_sticker_pack">View pack</string>
 
     <!-- conversation_expiring_on -->
 
@@ -4644,14 +4542,11 @@
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">PIN кодыңызды енгізу</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Тіркелгіңіз үшін жасаған PIN кодты енгізіңіз. Ол сіздің SMS арқылы жіберілген тексеру кодыңыздан басқаша.</string>
-    <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
-    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Аккаунт үшін ойлап тапқан PIN кодыңызды енгізіңіз.</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Дұрыс емес PIN. Қайтадан байқап көріңіз.</string>
     <string name="RegistrationLockFragment__forgot_pin">PIN кодын ұмытып қалдыңыз ба?</string>
     <string name="RegistrationLockFragment__incorrect_pin">Дұрыс емес PIN</string>
     <string name="RegistrationLockFragment__forgot_your_pin">PIN кодыңызды ұмытып қалдыңыз ба?</string>
     <string name="RegistrationLockFragment__not_many_tries_left">Қалған әрекет саны азайып барады!</string>
-    <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal-ды тіркеу - Android жүйесіне арналған PIN-кодқа (v2 PIN) қатысты көмек керек</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
         <item quantity="one">Құпиялығыңыз бен қауіпсіздігіңізді сақтау үшін PIN кодты қалпына келтіру мүмкін емес. Егер PIN кодыңызды есіңізге түсіре алмасаңыз, %1$d күн белсенді болмағаннан кейін SMS арқылы қайта тексеруге болады. Мұндай жағдайда аккаунтыңыз және ондағы бүкіл деректер жойылады.</item>
@@ -4706,22 +4601,6 @@
     <string name="backup_enable_dialog__you_must_have_this_passphrase">Резервтік көшірмені қалпына келтіру үшін осы құпия сөйлемді пайдалануыңыз керек.</string>
     <string name="backup_enable_dialog__folder">Қалта</string>
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Бұл құпия сөйлемді жазып алдым. Ол болмаса, мен резервтік көшірмені қалпына келтіре алмаймын.</string>
-    <string name="registration_activity__restore_backup">Сақтық көшірмені қалпына келтіру</string>
-    <!-- Text label button to skip restoring -->
-    <string name="registration_activity__skip_restore">Қалпына келтіру функциясын өткізіп жіберу</string>
-    <!-- Title for dialog to enter in the backup passphrase -->
-    <string name="RegistrationActivity_enter_backup_passphrase">Сақтық көшірме құпия сөйлемін енгізу</string>
-    <string name="RegistrationActivity_restore">Қалпына келтіру</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">Сақтық көшірмелер жаңа нұсқалардан импортталмайды</string>
-    <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
-    <string name="RegistrationActivity_backup_failure_foreign_key">Сақтық көшірмеде бүлінген деректер бар</string>
-    <string name="RegistrationActivity_incorrect_backup_passphrase">Сақтық көшірме құпия сөйлемі қате</string>
-    <string name="RegistrationActivity_checking">Тексеруде…</string>
-    <string name="RegistrationActivity_d_messages_so_far">Қазіргі сәтте %1$d хабар…</string>
-    <string name="RegistrationActivity_restore_from_backup">Сақтық көшірмеден қалпына келтіру керек пе?</string>
-    <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Хабарлар мен ақпаратты жергілікті сақтық көшірмеден қалпына келтіріңіз. Егер қазір қалпына келтірмесеңіз, кейін қалпына келтіре алмайсыз.</string>
-    <string name="RegistrationActivity_backup_size_s">Сақтық көшірменің өлшемі: %1$s</string>
-    <string name="RegistrationActivity_backup_timestamp_s">Сақтық көшірменің уақыт белгісі: %1$s</string>
     <string name="BackupDialog_enable_local_backups">Жергілікті резервтік көшірмелерді қосу керек пе?</string>
     <string name="BackupDialog_enable_backups">Резервтік көшірмелерді қосу</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Растауға арналған ұяшықты белгілеу арқылы түсінгеніңізді білдіріңіз.</string>
@@ -4757,7 +4636,6 @@
     <string name="RegistrationActivity_call_me_instead_available_in">Маған қоңырау шалу (%1$02d:%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
     <string name="RegistrationActivity_resend_sms_available_in">Кодты қайта жіберу (%1$02d:%2$02d)</string>
-    <string name="RegistrationActivity_contact_signal_support">Signal қолдау қызметіне хабарласу</string>
     <string name="RegistrationActivity_code_support_subject">Signal қолданбасында тіркелу - Android жүйесіне арналған тексеру коды</string>
     <string name="RegistrationActivity_incorrect_code">Код дұрыс емес</string>
     <string name="BackupUtil_never">Ешқашан</string>
@@ -4879,25 +4757,8 @@
     <string name="TransferOrRestoreFragment__restore_from_local_backup">Жергілікті резервтік көшірмені қалпына келтіру</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
-    <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Ескі Android телефоныңызда Signal-ды ашыңыз</string>
-    <string name="NewDeviceTransferInstructions__continue">Жалғастыру</string>
-    <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Параметрлерді ашу үшін жоғарғы сол жақтағы профиль фотосуретіңізді басыңыз</string>
-    <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_account">"\"Аккаунт\" тармағын таңдаңыз"</string>
-    <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
-    <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"\"Аккаунтты тасымалдау\" түймесін, содан кейін екі құрылғыда да \"Жалғастыру\" түймесін басыңыз"</string>
 
     <!-- NewDeviceTransferSetupFragment -->
-    <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Ескі Android құрылғысына қосылуға дайындалуда…</string>
-    <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Күте тұрыңыз, дайын болып қалды</string>
-    <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Ескі Android құрылғысының қосылғаны күтілуде…</string>
-    <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Ескі Android құрылғыңызды анықтап, оған қосылу үшін Signal қолданбасына геолокация рұқсаты керек.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Ескі Android құрылғыңызды анықтап, оған қосылу үшін Signal локация қызметтерін пайдалана алуы керек.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Ескі Android құрылғыңызды анықтау және оған қосылу үшін Signal қолданбасына Wi-Fi керек. Wi-Fi қосылып тұруы керек, бірақ Wi-Fi желісінен ажыратылып тұруы тиіс.</string>
-    <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Кешіріңіз, бұл құрылғыда Wi-Fi Direct істемейді екен. Signal қолданбасы Wi-Fi Direct-ті пайдаланып, ескі Android құрылғыңызды анықтайды және оған қосылады. Ескі Android құрылғыңыздан аккаунтыңызды қалпына келтіру үшін резервтік көшірмені қалпына келтіруіңізге болады.</string>
-    <string name="NewDeviceTransferSetup__restore_a_backup">Резервтік көшірмені қалпына келтіру</string>
-    <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Ескі Android құрылғыңызға қосылып жатқанда, күтпеген қате пайда болды.</string>
 
     <!-- OldDeviceTransferSetupFragment -->
     <string name="OldDeviceTransferSetup__searching_for_new_android_device">Жаңа Android құрылғысы ізделуде…</string>
@@ -4941,9 +4802,6 @@
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Екінші құрылғыда \"Жалғастыру\" түймесін басыңыз…</string>
 
     <!-- NewDeviceTransferFragment -->
-    <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Signal-дың жаңа нұсқаларынан тасымалдау мүмкін емес</string>
-    <!-- Error message indicating that we could not finish the user\'s device transfer. Displayed in a toast at the bottom of the screen. -->
-    <string name="NewDeviceTransfer__failure_foreign_key">Тасымалданған деректер бүлінген</string>
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">Деректер тасымалдануда</string>
@@ -4982,10 +4840,6 @@
     <string name="OldDeviceTransferComplete__close">Close</string>
 
     <!-- NewDeviceTransferComplete -->
-    <string name="NewDeviceTransferComplete__transfer_successful">Тасымалданды</string>
-    <string name="NewDeviceTransferComplete__transfer_complete">Тасымалдау аяқталды</string>
-    <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">Тасымалдау процесін аяқтау үшін, тіркелу процесін аяқтауыңыз керек.</string>
-    <string name="NewDeviceTransferComplete__continue_registration">Тіркелуді жалғастыру</string>
 
     <!-- DeviceToDeviceTransferService -->
     <string name="DeviceToDeviceTransferService_content_title">Аккаунтты тасымалдау</string>
@@ -8753,219 +8607,6 @@
 
     <!-- ConfirmBackupCancellationDialog -->
 
-    <!-- Row title for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">Ескі телефоным бар</string>
-    <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_scan_qr">Қазіргі Signal аккаунтыңыздан QR кодын сканерлеп, жылдам бастаңыз</string>
-
-    <!-- Row title for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">Ескі телефоным жоқ</string>
-    <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">Signal қолданбасын бір құрылғыға қайта орнатып жатырсыз</string>
-
-    <!-- Screen title for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__restore_or_transfer_account">Аккаунтты қалпына келтіру немесе тасымалдау</string>
-    <!-- Screen subtitle for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__get_your_signal_account">Signal аккаунтыңызды және хабарлар тарихын осы құрылғыға сақтаңыз.</string>
-    <!-- Option title for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_signal_backup">Signal резервтік көшірмесін қалпына келтіру</string>
-    <!-- Option subtitle for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_your_text_messages_and_media_from">Signal-дың сақтық көшірме жоспарынан мәтіндік хабарларды және мультимедианы қалпына келтіріңіз.</string>
-    <!-- Option title for restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_on_device_backup">Құрылғыдағы сақтық көшірмені қалпына келтіру</string>
-    <!-- Option subtitle fdor restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_your_messages_from">Құрылғыңызда сақталған сақтық көшірмеден хабарларды қалпына келтіріңіз.</string>
-    <!-- Option title for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__from_your_old_phone">Ескі телефоннан</string>
-    <!-- Option subtitle for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__transfer_directly_from_old">Ескі Android құрылғыңыздан тікелей тасымалдау</string>
-    <!-- Dialog title shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_title">Қалпына келтіруді өткізіп жіберу керек пе?</string>
-    <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">Қалпына келтіру процесін қазір өткізіп жіберсеңіз, кейінірек қалпына келтіре алмайсыз. Қалпына келтіру процесін өткізіп жіберген соң, сақтық көшірмелерді қайта іске қоссаңыз, ағымдағы сақтық көшірменің орнын жаңа хабарлар тарихы басады.</string>
-    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore">Қалпына келтіру функциясын өткізіп жіберу</string>
-
-    <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_title">Қалпына келтіру кілтін енгізіңіз</string>
-    <!-- Screen subtitle for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_subtitle">Қалпына келтіру кілті – аккаунтыңыз бен деректеріңізді қалпына келтіруге қажетті 64 таңбалы код.</string>
-    <!-- Button to skip entering recovery key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">Қалпына келтіру кілті жоқ па?</string>
-    <!-- Recovery key text field hint -->
-    <string name="EnterBackupKey_backup_key">Қалпына келтіру кілті</string>
-    <!-- Recovery key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">Сақтық көшірмелер 64 таңбалы кодсыз қалпына келтірілмейді. Қалпына келтіру кілтіңізді жоғалтып алсаңыз, Signal сақтық көшірмеңізді қалпына келтіруге көмектесе алмайды.</string>
-    <!-- Recovery key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">Ескі құрылғыңыз болса, қалпына келтіру кілтіңізді көру үшін \"Параметрлер &gt; Сақтық көшірмелер\" тармағына өтіңіз. Содан кейін \"Қалпына келтіру кілтін көру\" түймесін түртіңіз.</string>
-    <!-- Recovery key not known bottom sheet button to learn more about it -->
-    <string name="EnterBackupKey_learn_more">Толық ақпарат</string>
-    <!-- Recovery key not known bottom sheet button to skip recovery key entry and resume normal reregistration -->
-    <string name="EnterBackupKey_skip_and_dont_restore">Өткізіп жіберу және қалпына келтірмеу</string>
-    <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">Қалпына келтіру кілті дұрыс емес</string>
-    <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">Signal қауіпсіз сақтық көшірмелерін қосқан кезде, сақтаған телефон нөміріңіз бен 64 таңбалы қалпына келтіру кілтімен тіркеліп жатқаныңызға көз жеткізіңіз. Сақтық көшірмелер бұл кілтсіз қалпына келтірілмейді.</string>
-    <!-- Dialog positive button text to try entering their recovery key again -->
-    <string name="EnterBackupKey_try_again">Қайталап көру</string>
-    <!-- Dialog negative button text to get help with recovery key -->
-    <string name="EnterBackupKey_backup_key_help">Қалпына келтіру кілтіне қатысты анықтама</string>
-    <!-- Text field error text when the recovery key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">Қалпына келтіру кілті дұрыс емес</string>
-    <!-- Text field error text when the recovery key is too long -->
-    <string name="EnterBackupKey_too_long_error">Тым ұзақ (%1$d/%2$d)</string>
-    <!-- Text field error when the recovery key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">Қалпына келтіру кілті жарамсыз</string>
-    <!-- Dialog title shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_not_found">Сақтық көшірме табылмады</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Сіз енгізген қалпына келтіру кілті дұрыс, бірақ онымен байланысты сақтық көшірме жоқ. Егер ескі телефоныңыз әлі де болса, сақтық көшірмелер қосылып тұрғанына және сақтық көшірменің жасалғанына көз жеткізіңіз де, қайталап көріңіз.</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">Қалпына келтіру кілтін қате енгізген болуыңыз мүмкін немесе ескі құрылғыңызда кемінде бір сақтық көшірме жасамағансыз.\n\nSignal Қауіпсіз сақтық көшірмесін қосқан кезде сақталған телефон нөмірі мен қалпына келтіру кілтімен тіркелуіңіз керек. Ескі құрылғыңызда сақтық көшірменің орындалғанына көз жеткізіңіз.</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">Қалпына келтіру кілтін енгізуге берілген мүмкіндіктің барлығын пайдаланып қойдыңыз. Қауіпсіздік мақсатында қайталап көруге болатын әрекеттер саны шектелген. Бір сағат күте тұрып, қайталап көріңіз.</string>
-    <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
-    <string name="EnterBackupKey_skip_restore">Қалпына келтіру функциясын өткізіп жіберу</string>
-    <!-- Dialog title text when encountering backup restore network error -->
-    <string name="EnterBackupKey_cant_restore_backup">Сақтық көшірме қалпына келтірілмейді</string>
-    <!-- Dialog body text when encountering backup restore network error -->
-    <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">Сақтық көшірмеңізді қазір қалпына келтіру мүмкін емес. Интернет байланысын тексеріп, қайталап көріңіз. </string>
-    <!-- Dialog button text to contact support on network error -->
-    <string name="EnterBackupKey_contact_support">Қолдау қызметіне хабарласу</string>
-
-    <!-- Email subject when contacting support on a restore backup network issue -->
-    <string name="EnterBackupKey_network_failure_support_email">Signal Android сақтық көшірмесін қалпына келтіру кезінде желі қатесі шықты</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
-    <!-- Email subject when contacting support on a permanent backup import failure -->
-    <string name="EnterBackupKey_permanent_failure_support_email">Signal Android сақтық көшірмесін қалпына келтіруде ақаудың қайталануы</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
-
-    <!-- EnterLocalBackupKeyScreen: Screen title for entering recovery key for local backup restore -->
-    <string name="EnterLocalBackupKeyScreen__enter_your_recovery_key">Қалпына келтіру кілтін енгізіңіз</string>
-    <!-- EnterLocalBackupKeyScreen: Screen subtitle explaining what the recovery key is -->
-    <string name="EnterLocalBackupKeyScreen__your_recovery_key_is_a_64_character_code">Қалпына келтіру кілті – аккаунтыңыз бен деректеріңізді қалпына келтіруге қажетті 64 таңбалы код.</string>
-    <!-- EnterLocalBackupKeyScreen: Button text when user does not have a recovery key -->
-    <string name="EnterLocalBackupKeyScreen__no_recovery_key">Қалпына келтіру кілті жоқ па?</string>
-    <!-- EnterLocalBackupKeyScreen: Button to proceed to next step -->
-    <string name="EnterLocalBackupKeyScreen__next">Келесі</string>
-
-    <!-- RestoreLocalBackupDialog: Error message when the selected archive fails to load -->
-    <string name="RestoreLocalBackupDialog__failed_to_load_archive">Мұрағат жүктелмеді. Басқа каталог таңдаңыз.</string>
-    <!-- RestoreLocalBackupDialog: Dismiss button for dialog -->
-    <string name="RestoreLocalBackupDialog__ok">OK</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore">Қалпына келтіруді өткізіп жіберу керек пе?</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user about the consequences of skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore_body">Қалпына келтіру процесін қазір өткізіп жіберсеңіз, кейінірек қалпына келтіре алмайсыз. Қалпына келтіру процесін өткізіп жіберген соң, сақтық көшірмелерді қайта іске қоссаңыз, ағымдағы сақтық көшірменің орнын жаңа хабарлар тарихы басады.</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the skip restore dialog -->
-    <string name="RestoreLocalBackupDialog__skip_restore_confirm">Қалпына келтіру функциясын өткізіп жіберу</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm restoring a backup from a different account -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account">Жаңа аккаунтта қалпына келтіру керек пе?</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user that the backup was created with a different account and they will lose group memberships -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account_body">Сіз қалпына келтірейін деп жатқан сақтық көшірме басқа Signal аккаунтымен жасалған. Бұл сақтық көшірмені жаңа аккаунтта қалпына келтіре аласыз, бірақ сіз қалпына келтірілген ешбір топтың мүшесі бола алмайсыз.</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the restore to new account dialog -->
-    <string name="RestoreLocalBackupDialog__restore">Қалпына келтіру</string>
-
-    <!-- RestoreLocalBackupActivity: Toast message when backup restore fails -->
-    <string name="RestoreLocalBackupActivity__backup_restore_failed">Сақтық көшірме қалпына келтірілмеді</string>
-    <!-- RestoreLocalBackupActivity: Screen title shown during restore -->
-    <string name="RestoreLocalBackupActivity__restoring_backup">Сақтық көшірме қалпына келтіріліп жатыр</string>
-    <!-- RestoreLocalBackupActivity: Screen subtitle explaining restore duration -->
-    <string name="RestoreLocalBackupActivity__depending_on_the_size">Сақтық көшірменің өлшеміне қарай оған бірнеше минут кетуі мүмкін.</string>
-    <!-- RestoreLocalBackupActivity: Status text while restoring messages -->
-    <string name="RestoreLocalBackupActivity__restoring_messages">Хаттар туралы хабарлау…</string>
-    <!-- RestoreLocalBackupActivity: Status text while finalizing restore -->
-    <string name="RestoreLocalBackupActivity__finalizing">Аяқталып жатыр…</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore is complete -->
-    <string name="RestoreLocalBackupActivity__restore_complete">Қалпына келтірілді</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore fails -->
-    <string name="RestoreLocalBackupActivity__restore_failed">Қалпына келтірілмеді</string>
-    <!-- RestoreLocalBackupActivity: Progress text showing bytes read of total with percentage, e.g. "1.2 MB of 5.0 MB (24%)" -->
-    <string name="RestoreLocalBackupActivity__s_of_s_d_percent">%1$s/%2$s (%3$d)</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__cant_restore_backup">Сақтық көшірме қалпына келтірілмейді</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__error_occurred_while_restoring">Сақтық көшірмені қалпына келтіру кезінде қате шықты. Сақтық көшірмеңізді қалпына келтіру мүмкін емес. Қолдау орталығының көмегіне жүгініңіз.</string>
-
-    <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
-    <string name="RestoreLocalBackupActivity__contact_support">Қолдау қызметіне хабарласу</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
-    <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">Құрылғыдағы сақтық көшірмені қосу керек пе?</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Құрылғыдағы сақтық көшірмелерді пайдалана беру үшін оны осы аккаунтта іске қосуыңыз керек. Оны кез келген уақытта \"Параметрлер &gt; Сақтық көшірмелер\" тармағында жасай аласыз.</string>
-
-    <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__turn_on_now">Қазір қосу</string>
-
-    <!-- RestoreLocalBackupActivity: Dismiss button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__not_now">Кейін</string>
-
-    <!-- RestoreLocalBackupActivity: Body text for the dialog shown after a successful restore, prompting the user to choose a backup folder -->
-    <string name="RestoreLocalBackupActivity__choose_a_folder_for_backups">Құрылғыдағы сақтық көшірмелер арқылы жалғастыру үшін жаңа сақтық көшірмелер сақталатын құрылғыдағы қалтаны таңдаңыз.</string>
-
-    <!-- RestoreLocalBackupActivity: Positive button label for the dialog shown after a successful restore; keeps the current backup folder -->
-    <string name="RestoreLocalBackupActivity__use_current_folder">Қазіргі қалтаны пайдалану</string>
-
-    <!-- RestoreLocalBackupActivity: Neutral button label for the dialog shown after a successful restore; opens folder picker to select a different backup location -->
-    <string name="RestoreLocalBackupActivity__choose_new_folder">Жаңа қалтаны таңдау</string>
-
-    <!-- RestoreLocalBackupActivity: Negative button label for the dialog shown after a successful restore; disables on-device backups -->
-    <string name="RestoreLocalBackupActivity__disable_backups">Сақтық көшірмелерді өшіру</string>
-
-    <!-- SelectInstructionsSheet: Title for the select backup folder instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_folder">Сақтық көшірме қалтасын таңдаңыз</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the select this folder button -->
-    <string name="SelectInstructionsSheet__tap_select_this_folder">\"Осы қалтаны таңдау\" түймесін түртіңіз</string>
-    <!-- SelectInstructionsSheet: Instruction not to select individual files -->
-    <string name="SelectInstructionsSheet__do_not_select_individual_files">Жеке файлдарды таңдамаңыз</string>
-    <!-- SelectInstructionsSheet: Title for the select backup file instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_file">Сақтық көшірме файлыңызды таңдаңыз</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the backup file saved to device -->
-    <string name="SelectInstructionsSheet__tap_on_the_backup_file">Құрылғыңызда сақталған сақтық көшірме файлын түртіңіз</string>
-    <!-- SelectInstructionsSheet: Subtitle explaining how to access backup after tapping continue -->
-    <string name="SelectInstructionsSheet__after_tapping_continue">\"Жалғастыру\" түймесін басқан соң, сақтық көшірмеге келесі жолмен кіресіз:</string>
-    <!-- SelectInstructionsSheet: Instruction to select the top-level backup folder -->
-    <string name="SelectInstructionsSheet__select_the_top_level_folder">Сақтық көшірмеңіз сақталған жоғары деңгейлі қалтаны таңдаңыз</string>
-    <!-- SelectInstructionsSheet: Continue button text -->
-    <string name="SelectInstructionsSheet__continue_button">Жалғастыру</string>
-
-    <!-- SelectLocalBackupScreen: Screen title for restoring on-device backup -->
-    <string name="SelectLocalBackupScreen__restore_on_device_backup">Құрылғыдағы сақтық көшірмені қалпына келтіру</string>
-    <!-- SelectLocalBackupScreen: Screen subtitle explaining the restore process -->
-    <string name="SelectLocalBackupScreen__restore_your_messages_from_the_backup_folder">Құрылғыңызда сақталған сақтық көшірме қалтасындағы хабарларды қалпына келтіріңіз. Оны қазір қалпына келтірмесеңіз, кейінірек қалпына келтіре алмай қаласыз.</string>
-    <!-- SelectLocalBackupScreen: Button to initiate backup restoration -->
-    <string name="SelectLocalBackupScreen__restore_backup">Сақтық көшірмені қалпына келтіру</string>
-    <!-- SelectLocalBackupScreen: Button to choose an earlier backup when current is latest -->
-    <string name="SelectLocalBackupScreen__choose_an_earlier_backup">Ескі сақтық көшірмені таңдау</string>
-    <!-- SelectLocalBackupScreen: Button to choose a different backup -->
-    <string name="SelectLocalBackupScreen__choose_a_different_backup">Басқа сақтық көшірме таңдау</string>
-    <!-- SelectLocalBackupScreen: Label for latest backup card -->
-    <string name="SelectLocalBackupScreen__your_latest_backup">Соңғы сақтық көшірмеңіз:</string>
-    <!-- SelectLocalBackupScreen: Label for non-latest backup card -->
-    <string name="SelectLocalBackupScreen__your_backup">Сақтық көшірмеңіз:</string>
-
-    <!-- SelectLocalBackupSheet: Title for backup selection bottom sheet -->
-    <string name="SelectLocalBackupSheet__choose_a_backup_to_restore">Қалпына келтіретін сақтық көшірмені таңдау</string>
-    <!-- SelectLocalBackupSheet: Subtitle warning about choosing an older backup -->
-    <string name="SelectLocalBackupSheet__choosing_an_older_backup">Ескі сақтық көшірмені таңдасаңыз, хабарларыңыз немесе мультимедиаңыз жоғалып қалуы мүмкін.</string>
-    <!-- SelectLocalBackupSheet: Continue button text -->
-    <string name="SelectLocalBackupSheet__continue_button">Жалғастыру</string>
-
-    <!-- SelectLocalBackupTypeScreen: Screen title for selecting backup type -->
-    <string name="SelectLocalBackupTypeScreen__restore_on_device_backup">Құрылғыдағы сақтық көшірмені қалпына келтіру</string>
-    <!-- SelectLocalBackupTypeScreen: Screen subtitle explaining restore options -->
-    <string name="SelectLocalBackupTypeScreen__restore_your_messages_from_the_backup">Құрылғыңызда сақталған сақтық көшірмеден хабарларды қалпына келтіріңіз. Оны қазір қалпына келтірмесеңіз, кейінірек қалпына келтіре алмай қаласыз.</string>
-    <!-- SelectLocalBackupTypeScreen: Button for users who saved backup as single file -->
-    <string name="SelectLocalBackupTypeScreen__i_saved_my_backup_as_a_single_file">Сақтық көшірмені бір файл ретінде сақтадым</string>
-    <!-- SelectLocalBackupTypeScreen: Card title for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__choose_backup_folder">Сақтық көшірме қалтасын таңдау</string>
-    <!-- SelectLocalBackupTypeScreen: Card description for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__select_the_folder_on_your_device">Сақтық көшірме сақталған құрылғыңыздағы қалтаны таңдаңыз</string>
-
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">Signal Android сақтық көшірмесін экспорттау кезінде желі қатесі шықты</string>
     <!-- Email filter when contacting support on a create backup failure -->
@@ -8979,23 +8620,6 @@
     <string name="ContactSupportDialog_submit_with_debug">Ақауларды түзету журналын жіберу</string>
     <!-- Button option to not submit debug log when contacting support -->
     <string name="ContactSupportDialog_submit_without_debug">Ақауларды түзету журналын жібермеу</string>
-
-    <!-- Title for restore via qr screen -->
-    <string name="RestoreViaQr_title">Осы кодты ескі телефоныңызбен сканерлеңіз</string>
-    <!-- First instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_1">Signal қолданбасын ескі құрылғыңызда ашыңыз</string>
-    <!-- Second instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_2">Камера белгішесін түртіңіз </string>
-    <!-- Third instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_3">Осы кодты камерамен сканерлеңіз</string>
-    <!-- Error message shown when qr code could not be loaded -->
-    <string name="RestoreViaQr_qr_code_error">QR коды жасалмады</string>
-    <!-- Status message shown when qr code already scanned by other device -->
-    <string name="RestoreViaQr_qr_code_scanned">Ескі құрылғыда сканерленді</string>
-    <!-- Error button text to retry getting a qr code -->
-    <string name="RestoreViaQr_retry">Қайтадан байқап көру</string>
-    <!-- Error message shown when register after receiving the provisioning message failed -->
-    <string name="RestoreViaQr_registration_error">Қате шықты және аккаунтыңызды тасымалдау мүмкін болмады. QR кодын қайта сканерлеп, қайталап көріңіз.</string>
 
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">Аккаунтты тасымалдау</string>
@@ -9037,19 +8661,6 @@
     <string name="RestoreCompleteBottomSheet_transfer_complete_message">Signal аккаунтыңыз бен хабарларыңыз басқа құрылғыңызға тасымалданды. Signal бұл құрылғыда қазір жұмыс істеп тұрған жоқ.</string>
     <!-- Restore Complete bottom sheet dialog button text to dismiss sheet -->
     <string name="RestoreCompleteBottomSheet_button">Жарайды</string>
-
-    <!-- No Backup to Restore screen title -->
-    <string name="NoBackupToRestore_title">Қалпына келтіретін сақтық көшірме жоқ</string>
-    <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">iPhone-нан Android-қа ауысайын деп жатқандықтан, хабарларыңыз бен мультимедиа файлдарын ескі құрылғыңызда Signal-дың қауіпсіз сақтық көшірмелерін қосу арқылы ғана тасымалдай аласыз.</string>
-    <!-- No Backup to Restore step 1 to enable backups on old device -->
-    <string name="NoBackupToRestore_step1">Signal қолданбасын ескі құрылғыңызда ашыңыз.</string>
-    <!-- No Backup to Restore step 2 to enable backups on old device -->
-    <string name="NoBackupToRestore_step2">\"Параметрлер &gt; Сақтық көшірмелер\" тармағын түртіңіз.</string>
-    <!-- No Backup to Restore step 3 to enable backups on old device -->
-    <string name="NoBackupToRestore_step3">Сақтық көшірмелерді қосып, сақтық көшірмелердің жасалғанын күтіңіз.</string>
-    <!-- No backup to Restore tonal cta to skip restore -->
-    <string name="NoBackupToRestore_skip_restore">Қалпына келтіру функциясын өткізіп жіберу</string>
 
     <!-- Dialog title when the recovery key change limit is reached -->
     <string name="MessageBackupsKeyRecordScreen__limit_reached_title">Қалпына келтіру кілті шегіне жетті</string>

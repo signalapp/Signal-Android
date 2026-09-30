@@ -863,23 +863,8 @@
     <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Κανείς δεν θα μπορεί να δει ότι είσαι στο Signal εκτός και αν στείλεις μήνυμα ή δεν έχεις ήδη μια συνομιλία μαζί του.</string>
 
     <!-- ChooseBackupFragment -->
-    <string name="ChooseBackupFragment__restore_from_backup">Επαναφορά από αντίγραφο ασφαλείας;</string>
-    <string name="ChooseBackupFragment__restore_your_messages_and_media">Επανάφερε τα μηνύματα και τα πολυμέσα σου από ένα τοπικό αντίγραφο ασφαλείας. Αν δεν τα επαναφέρεις τώρα, δε θα μπορείς να τα επαναφέρεις αργότερα.</string>
-    <string name="ChooseBackupFragment__icon_content_description">Εικονίδιο ανάκτησης από αντίγραφο ασφαλείας</string>
-    <string name="ChooseBackupFragment__choose_backup">Επιλογή αντιγράφου ασφαλείας</string>
-    <string name="ChooseBackupFragment__learn_more">Μάθε περισσότερα</string>
 
     <!-- RestoreBackupFragment -->
-    <string name="RestoreBackupFragment__restore_complete">Η ανάκτηση ολοκληρώθηκε</string>
-    <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Για να συνεχίσεις να χρησιμοποιείς τα αντίγραφα ασφαλείας, παρακαλώ επέλεξε ένα φάκελο. Τα νέα αντίγραφα θα αποθηκεύονται σε αυτή την τοποθεσία.</string>
-    <string name="RestoreBackupFragment__choose_folder">Επιλογή φακέλου</string>
-    <string name="RestoreBackupFragment__not_now">Όχι τώρα</string>
-    <!-- Couldn\'t find the selected backup -->
-    <string name="RestoreBackupFragment__backup_not_found">Το αντίγραφο ασφαλείας δε βρέθηκε.</string>
-    <!-- Couldn\'t read the selected backup -->
-    <string name="RestoreBackupFragment__backup_could_not_be_read">Το αντίγραφο ασφαλείας δεν μπόρεσε να αναγνωστεί.</string>
-    <!-- Backup has an unsupported file extension -->
-    <string name="RestoreBackupFragment__backup_has_a_bad_extension">Το αντίγραφο ασφαλείας έχει κακή επέκταση.</string>
 
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
@@ -1416,60 +1401,6 @@
     <string name="ManageGroupActivity_add_group_description">Εισαγωγή περιγραφής της ομάδας…</string>
 
     <!-- RemoteRestoreActivity -->
-    <!-- Progress dialog label when downloading a backup -->
-    <string name="RemoteRestoreActivity__downloading_backup">Λήψη αντιγράφων ασφαλείας…</string>
-    <!-- Progress dialog label when restoring a backup -->
-    <string name="RemoteRestoreActivity__restoring_messages">Επαναφορά μηνυμάτων…</string>
-    <!-- Progress dialog label when finishing a backup restore -->
-    <string name="RemoteRestoreActivity__finishing_restore">Ολοκλήρωση…</string>
-    <!-- Progress dialog label while awaiting updates -->
-    <string name="RemoteRestoreActivity__restoring">Επαναφορά…</string>
-    <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
-    <string name="RemoteRestoreActivity__s_of_s_s">%1$s από %2$s (%3$s)</string>
-    <!-- Feature list media label for paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_media">Όλα τα πολυμέσα σου</string>
-    <!-- Feature list media label for free tier. Placeholder is days, and is currently fixed at 30. -->
-    <string name="RemoteRestoreActivity__your_last_d_days_of_media">Οι τελευταίες %1$d ημέρες πολυμέσων σου</string>
-    <!-- Feature list message label for free and paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_messages">Όλα τα μηνύματά σου</string>
-    <!-- Screen title for restoring from backup -->
-    <string name="RemoteRestoreActivity__restore_from_backup">Επαναφορά από αντίγραφο ασφαλείας</string>
-    <!-- Section title for explaining what your backup includes -->
-    <string name="RemoteRestoreActivity__your_backup_includes">Τα αντίγραφα ασφαλείας περιλαμβάνουν:</string>
-    <!-- Primary action button copy for starting restoration -->
-    <string name="RemoteRestoreActivity__restore_backup">Επαναφορά αντίγραφου ασφαλείας</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made. %1$s is replaced with the date (e.g. March 5, 2024) and %2$s is replaced with the time (e.g. 9:00am) -->
-    <string name="RemoteRestoreActivity__backup_created_at">Το τελευταίο σου αντίγραφο ασφαλείας έγινε στις %1$s στις %2$s.</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
-    <string name="RemoteRestoreActivity__backup_created_at_with_size">Το τελευταίο σου αντίγραφο ασφαλείας έγινε στις %1$s στις %2$s. Το μέγεθος του αντιγράφου ασφαλείας είναι %3$s.</string>
-    <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
-    <string name="RemoteRestoreActivity__fetching_backup_details">Λήψη στοιχείων αντιγράφων ασφαλείας…</string>
-    <!-- Text label button to skip restore from remote -->
-    <string name="RemoteRestoreActivity__skip_restore">Παράλειψη επαναφοράς</string>
-    <!-- Dialog title displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__couldnt_transfer">Δεν ήταν δυνατή η ολοκλήρωση της μεταφοράς</string>
-    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Δεν είναι δυνατή η επαναφορά του αντιγράφου ασφαλείας</string>
-    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">Παρουσιάστηκε σφάλμα κατά την επαναφορά του αντιγράφου ασφαλείας σου. Το αντίγραφο ασφαλείας σου δεν μπορεί να ανακτηθεί. Επικοινώνησε με την υποστήριξη για βοήθεια.</string>
-    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Επικοινωνία με την υποστήριξη</string>
-    <!-- Dialog message displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__error_occurred">Παρουσιάστηκε σφάλμα και δεν ήταν δυνατή η μεταφορά του λογαριασμού σου. Δοκίμασε ξανά επιλέγοντας τη μέθοδο μεταφοράς.</string>
-    <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
-    <string name="RemoteRestoreActivity__couldnt_restore">Δεν ήταν δυνατή η επαναφορά αυτού του αντιγράφου ασφαλείας</string>
-    <!-- Dialog message explaining that an update to Signal is required to restore the backup. -->
-    <string name="RemoteRestoreActivity__update_latest">Αυτή η έκδοση του Signal δεν μπορεί να επαναφέρει το αντίγραφο ασφαλείας σου. Ενημέρωσε το Signal στην τελευταία έκδοση και δοκίμασε ξανά.</string>
-    <!-- Text on button that when pressed will redirect them to update Signal -->
-    <string name="RemoteRestoreActivity__update_signal">Αναβάθμιση του Signal</string>
-    <!-- Text label button to dismiss the dialog -->
-    <string name="RemoteRestoreActivity__not_now">Όχι τώρα</string>
-    <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Η επαναφορά των πολυμέσων σου θα πραγματοποιηθεί στο παρασκήνιο. Αν δεν επιλέξεις να τα επαναφέρεις τώρα, δε θα μπορείς να τα επαναφέρεις αργότερα.</string>
-    <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">Αυτή η συσκευή δεν είναι πλέον καταχωρισμένη</string>
-    <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">Αυτό συνέβη μάλλον επειδή καταχώρισες τον λογαριασμό Signal σε άλλη συσκευή.</string>
 
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
@@ -2234,17 +2165,6 @@
     <string name="PinRestoreLockedFragment_create_new_pin">Δημιουργία νέου PIN</string>
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
-    <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
-    <string name="ReRegisterWithPinFragment_send_sms_code">Αποστολή κωδικού SMS</string>
-    <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">Εγγραφή στο Signal - Βοήθεια με την επανεγγραφή PIN σε Android</string>
-    <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">Το PIN σου είναι ένας κωδικός με %1$d+ ψηφία που δημιούργησες και μπορεί να αποτελείται από αριθμούς ή αλφαριθμητικά.\n\nΑν δεν μπορείς να θυμηθείς το PIN σου, μπορείς να δημιουργήσεις ένα νέο.</string>
-    <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">Αν δεν μπορείς να θυμηθείς το PIN σου, μπορείς να δημιουργήσεις ένα νέο.</string>
-    <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">Σου τέλειωσαν οι απόπειρες για το PIN, αλλά μπορείς να αποκτήσεις πρόσβαση στο λογαριασμό Signal σου δημιουργώντας νέο PIN.</string>
-
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Προσοχή</string>
     <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Αν απενεργοποιήσεις το PIN, θα χάσεις όλα τα δεδομένα όταν επανεγγραφείς στο Signal, εκτός εάν δημιουργήσεις χειροκίνητα αντίγραφο ασφαλείας και το ανακτήσεις. Δεν μπορείς να ενεργοποιήσεις το Κλείδωμα Εγγραφής όσο το PIN είναι απενεργοποιημένο.</string>
@@ -2324,6 +2244,12 @@
     <string name="WebRtcCallActivity__open_settings">Άνοιγμα ρυθμίσεων</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">Όχι τώρα</string>
+    <!-- Message for dialog shown at the start of a call when the system battery setting for Signal is "Restricted" -->
+    <string name="WebRtcCallActivity__others_may_not_be_able_to_hear_you_when_your_screen_turns_off">Others may not be able to hear you and the call may disconnect when your screen turns off. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
+    <!-- Title for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__others_couldnt_hear_you">Others couldn\'t hear you</string>
+    <!-- Message for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__your_microphone_was_muted_while_signal_was_in_the_background">Your microphone was muted while Signal was in the background. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
     <!-- Title for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__approve_d_requests">
         <item quantity="one">Έγκριση %1$d αιτήματος;</item>
@@ -2639,50 +2565,20 @@
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Ο αριθμός που έγραψες (%1$s) δεν είναι έγκυρος.
     </string>
 
-    <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">Είναι σωστός ο παρακάτω αριθμός τηλεφώνου;</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
     <string name="RegistrationActivity_additional_verification_required">Απαιτείται πρόσθετη επαλήθευση</string>
-    <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">Θα σταλεί κωδικός επαλήθευσης σε αυτό το νούμερο. Ενδέχεται να ισχύουν χρεώσεις εταιρείας κινητής τηλεφωνίας.</string>
-    <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Θα λάβεις έναν κωδικό επαλήθευσης. Μπορεί να υπάρξουν χρεώσεις παρόχου.</string>
-    <!-- Hint text to select a country -->
-    <string name="RegistrationActivity_select_a_country">Επιλογή χώρας</string>
-    <!-- Hint text explaining that this is where the country code should go -->
-    <string name="RegistrationActivity_default_country_code">0</string>
-    <string name="RegistrationActivity_edit_number">Επεξεργασία αριθμού</string>
-    <string name="RegistrationActivity_missing_google_play_services">Υπηρεσίες Google Play που λείπουν</string>
-    <string name="RegistrationActivity_this_device_is_missing_google_play_services">Αυτή η συσκευή δεν έχει τις Υπηρεσίες Google Play. Μπορείς και πάλι να χρησιμοποιήσεις το Signal, αλλά αυτή η διαμόρφωση μπορεί να οδηγήσει σε μειωμένη αξιοπιστία και επιδόσεις.\n\nΑν δεν είσαι προηγμένος/η χρήστης, αν δεν έχεις εγκαταστήσει κάποιο εναλλακτικό Android ROM, ή αν νομίζεις πως βλέπεις αυτό το μήνυμα από λάθος, παρακαλώ επικοινώνησε με το support@signal.org για να σε βοηθήσουμε με την αποσφαλμάτωση.</string>
-    <string name="RegistrationActivity_i_understand">Καταλαβαίνω</string>
-    <string name="RegistrationActivity_play_services_error">Σφάλμα υπηρεσιών Play</string>
-    <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Οι υπηρεσίες Google Play αναβαθμίζονται ή είναι προσωρινά μη διαθέσιμες. Παρακαλώ ξαναπροσπάθησε.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Έχεις προσπαθήσει πάρα πολλές φορές να εγγράψεις αυτόν τον αριθμό. Παρακαλώ ξαναπροσπάθησε αργότερα.</string>
-    <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">Έχεις προσπαθήσει πάρα πολλές φορές να εγγράψεις αυτόν τον αριθμό. Ξαναπροσπάθησε σε %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Αδυναμία σύνδεσης στην υπηρεσία. Παρακαλώ έλεγξε τη σύνδεση στο δίκτυο και ξαναπροσπάθησε.</string>
     <!-- Dialog error message shown when we are unable to send an SMS to the user\'s number -->
     <string name="RegistrationActivity_sms_provider_error">Δεν μπορούμε να στείλουμε SMS στον αριθμό σου. Δοκίμασε ξανά σε λίγες ώρες.</string>
-    <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Δεν μπορέσαμε να σου στείλουμε κωδικό επαλήθευσης μέσω SMS. Δοκίμασε να λάβεις τον κωδικό μέσω κλήσης.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">Αδυναμία αίτησης κωδικού επαλήθευσης. Έλεγξε τη σύνδεση στο δίκτυο και προσπάθησε ξανά.</string>
-    <string name="RegistrationActivity_non_standard_number_format">Μη-τυπική μορφή αριθμού</string>
-    <!-- Dialog message shown to confirm when entering phone number (first placeholder) is normalized and formatted differently by the app (second placeholder). -->
-    <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Ο αριθμός που έγραψες (%1$s) φαίνεται να μην έχει μια τυπική μορφή.n\nΜήπως εννοούσες %2$s;</string>
-    <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Μορφή αριθμού τηλεφώνου</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="one">Είσαι %1$d βήμα μακριά από την καταχώρηση ενός αρχείου αποσφαλμάτωσης.</item>
         <item quantity="other">Είσαι %1$d βήματα μακριά από την καταχώρηση ενός αρχείου αποσφαλμάτωσης.</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Πρέπει να επιβεβαιώσουμε ότι είσαι άνθρωπος.</string>
-    <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
-    <string name="RegistrationActivity_voice_call">Βιντεοκλήση</string>
-    <!-- Dialog button to cancel the pending action and return to the previous state. -->
-    <string name="RegistrationActivity_cancel">Ακύρωση</string>
     <string name="RegistrationActivity_next">Επόμενο</string>
-    <!-- Title of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_phone_number">Αριθμός τηλεφώνου</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Γράψε τον κωδικό που σου στείλαμε στο %1$s</string>
 
     <string name="RegistrationActivity_phone_number_description">Αριθμός τηλεφώνου</string>
@@ -2881,6 +2777,8 @@
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Αποτυχία φόρτωσης του πακέτου αυτοκολλήτων</string>
     <!-- Bottom sheet describing a sticker. First placeholder is the title of the sticker pack and second is the author -->
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
+    <!-- Bottom sheet option that opens the pack the sticker belongs to -->
+    <string name="StickerPreviewBottomSheet__view_pack">View pack</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">Αποθήκευση</string>
@@ -3619,8 +3517,6 @@
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Για να λαμβάνεις ειδοποιήσεις κλήσεων, πάτα στις Ρυθμίσεις και ενεργοποίησε τη δραστηριότητα στο υπόβαθρο στις ρυθμίσεις Μπαταρίας.</string>
 
     <!-- country_selection_fragment -->
-    <string name="country_selection_fragment__loading_countries">Γίνεται φόρτωση χωρών…</string>
-    <string name="country_selection_fragment__search">Αναζήτηση</string>
 
     <string name="device_list_fragment__link_new_device">Σύνδεση νέας συσκευής</string>
 
@@ -4454,6 +4350,8 @@
     <string name="conversation_selection__menu_pin_message">Καρφίτσωμα</string>
     <!-- Button to unpin a message -->
     <string name="conversation_selection__menu_unpin_message">Ξεκαρφίτσωμα</string>
+    <!-- Button to open the sticker pack a sticker message came from -->
+    <string name="conversation_selection__menu_view_sticker_pack">View pack</string>
 
     <!-- conversation_expiring_on -->
 
@@ -4644,14 +4542,11 @@
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">Γράψε το PIN σου</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Γράψε το PIN που δημιούργησες για το λογαριασμό σου. Αυτό είναι διαφορετικό από τον κωδικό επαλήθευσης που έλαβες μέσω SMS.</string>
-    <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
-    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Εισήγαγε το PIN που δημιούργησες για τον λογαριασμό σου.</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Λάθος PIN. Ξαναδοκίμασε.</string>
     <string name="RegistrationLockFragment__forgot_pin">Ξέχασες το PIN;</string>
     <string name="RegistrationLockFragment__incorrect_pin">Λάθος ΡΙΝ</string>
     <string name="RegistrationLockFragment__forgot_your_pin">Ξέχασες το PIN σου;</string>
     <string name="RegistrationLockFragment__not_many_tries_left">Δεν απομένουν πολλές προσπάθειες!</string>
-    <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Εγγραφή Signal - Βοήθεια με το PIN στο Android (v2 PIN)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
         <item quantity="one">Για την ασφάλεια και το απόρρητό σου, δεν υπάρχει τρόπος να επανακτήσεις το PIN σου. Αν δεν μπορείς να το θυμηθείς, μπορείς να το επιβεβαιώσεις πάλι μέσω SMS μετά από %1$d ημέρα αδράνειας. Σε αυτή την περίπτωση, ο λογαριασμός σου θα καθαριστεί και όλα τα περιεχόμενα θα διαγραφούν.</item>
@@ -4706,22 +4601,6 @@
     <string name="backup_enable_dialog__you_must_have_this_passphrase">Θα πρέπει να έχεις αυτο το συνθηματικό για να επανακτήσεις αντίγραφα ασφαλείας.</string>
     <string name="backup_enable_dialog__folder">Φάκελος</string>
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Σημείωσα σε χαρτί αυτό το συνθηματικό. Χωρίς αυτό, δε θα μπορέσω να επανακτήσω το αντίγραφο ασφαλείας.</string>
-    <string name="registration_activity__restore_backup">Επαναφορά αντίγραφου ασφαλείας</string>
-    <!-- Text label button to skip restoring -->
-    <string name="registration_activity__skip_restore">Παράλειψη επαναφοράς</string>
-    <!-- Title for dialog to enter in the backup passphrase -->
-    <string name="RegistrationActivity_enter_backup_passphrase">Εισαγωγή συνθηματικό αντίγραφου ασφαλείας</string>
-    <string name="RegistrationActivity_restore">Επαναφορά</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">Δεν εισαγάγουμε backup από νεότερη έκδοση Signal</string>
-    <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
-    <string name="RegistrationActivity_backup_failure_foreign_key">Το αντίγραφο ασφαλείας περιέχει δεδομένα με λανθασμένη μορφή</string>
-    <string name="RegistrationActivity_incorrect_backup_passphrase">Λάθος συνθηματικό αντίγραφου ασφαλείας</string>
-    <string name="RegistrationActivity_checking">Έλεγχος…</string>
-    <string name="RegistrationActivity_d_messages_so_far">%1$d μηνύματα μέχρι τώρα…</string>
-    <string name="RegistrationActivity_restore_from_backup">Επαναφορά από αντίγραφο ασφαλείας;</string>
-    <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Επανάφερε τα μηνύματα και τα πολυμέσα σου από ένα τοπικό αντίγραφο ασφαλείας. Αν δεν τα επαναφέρεις τώρα, δε θα μπορείς να τα επαναφέρεις αργότερα.</string>
-    <string name="RegistrationActivity_backup_size_s">Μέγεθος αντίγραφου ασφαλείας: %1$s</string>
-    <string name="RegistrationActivity_backup_timestamp_s">Χρόνος δημιουργίας αντίγραφου ασφαλείας: %1$s</string>
     <string name="BackupDialog_enable_local_backups">Ενεργοποίηση τοπικών αντίγραφων ασφαλείας;</string>
     <string name="BackupDialog_enable_backups">Ενεργοποίηση αντίγραφων ασφαλείας</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Παρακαλώ επιβεβαίωσε ότι κατάλαβες τσεκάροντας το κουτί επιβεβαίωσης.</string>
@@ -4757,7 +4636,6 @@
     <string name="RegistrationActivity_call_me_instead_available_in">Κάλεσέ με (%1$02d:%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
     <string name="RegistrationActivity_resend_sms_available_in">Επαναποστολή κωδικού σε(%1$02d:%2$02d)</string>
-    <string name="RegistrationActivity_contact_signal_support">Επικοινωνία με την Υποστήριξη Signal</string>
     <string name="RegistrationActivity_code_support_subject">Εγγραφή Signal - Κωδικός επαλήθευσης για Android</string>
     <string name="RegistrationActivity_incorrect_code">Λάθος κωδικός</string>
     <string name="BackupUtil_never">Ποτέ</string>
@@ -4879,25 +4757,8 @@
     <string name="TransferOrRestoreFragment__restore_from_local_backup">Επαναφορά τοπικού αντιγράφου ασφαλείας</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
-    <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Άνοιξε το Signal στη παλιά σου συσκευή Android</string>
-    <string name="NewDeviceTransferInstructions__continue">Συνέχεια</string>
-    <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Πάτα στη φωτογραφία προφίλ σου πάνω αριστερά για να ανοίξεις τις Ρυθμίσεις</string>
-    <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_account">"Πατήστε στο «Λογαριασμός»"</string>
-    <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
-    <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"Πάτα \"Μεταφορά λογαριασμού\" και μετά \"Συνέχεια\" και στις δύο συσκευές"</string>
 
     <!-- NewDeviceTransferSetupFragment -->
-    <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Προετοιμαζόμαστε να συνδεθούμε με τη παλιά συσκευή Android…</string>
-    <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Θα πάρει μερικές στιγμές, θα είμαστε έτοιμοι σύντομα</string>
-    <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Περιμένουμε να συνδεθεί η παλιά συσκευή Android…</string>
-    <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Το Signal χρειάζεται την άδεια τοποθεσίας για να ανακαλύψει και να συνδεθεί στη παλιά σου συσκευή Android.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Το Signal χρειάζεται να έχεις την τοποθεσία ενεργοποιημένη για να ανακαλύψει και να συνδεθεί στη παλιά σου συσκευή Android.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Το Signal χρειάζεται ενεργοποιημένο το Wi-Fi για να ανακαλύψει και να συνδεθεί στη παλιά σου συσκευή Android. Το Wi-Fi χρειάζεται να είναι ενεργοποιημένο αλλά δεν χρειάζεται να είναι συνδεδεμένο σε κάποιο δίκτυο Wi-Fi.</string>
-    <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Συγγνώμη, φαίνεται πως αυτή η συσκευή δεν υποστηρίζει το Wi-Fi Direct. Το Signal χρησιμοποιεί το Wi-Fi Direct για να ανακαλύψει και να συνδεθεί με τη παλιά σου συσκευή Android. Μπορείς παρ\' όλα αυτά να επαναφέρεις ένα αντίγραφο ασφαλείας, για να επαναφέρεις τον λογαριασμό σου από τη παλιά σου συσκευή Android.</string>
-    <string name="NewDeviceTransferSetup__restore_a_backup">Επαναφορά αντίγραφου ασφαλείας</string>
-    <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Συνέβη ένα μη αναμενόμενο σφάλμα κατά την απόπειρα σύνδεσης στη παλιά σου συσκευή Android.</string>
 
     <!-- OldDeviceTransferSetupFragment -->
     <string name="OldDeviceTransferSetup__searching_for_new_android_device">Αναζητούμε τη νέα συσκευή Android…</string>
@@ -4941,9 +4802,6 @@
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Πάτα Συνέχεια στην άλλη σου συσκευή…</string>
 
     <!-- NewDeviceTransferFragment -->
-    <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Δεν μπορεί να γίνει μεταφορά από νεότερη έκδοση του Signal</string>
-    <!-- Error message indicating that we could not finish the user\'s device transfer. Displayed in a toast at the bottom of the screen. -->
-    <string name="NewDeviceTransfer__failure_foreign_key">Τα δεδομένα που μεταφέρθηκαν ήταν εσφαλμένα</string>
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">Μεταφορά δεδομένων</string>
@@ -4982,10 +4840,6 @@
     <string name="OldDeviceTransferComplete__close">Κλείσιμο</string>
 
     <!-- NewDeviceTransferComplete -->
-    <string name="NewDeviceTransferComplete__transfer_successful">Επιτυχία μεταφοράς</string>
-    <string name="NewDeviceTransferComplete__transfer_complete">Η μεταφορά ολοκληρώθηκε</string>
-    <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">Για να ολοκληρώσεις τη διαδικασία μεταφοράς, πρέπει να συνεχίσεις με την εγγραφή.</string>
-    <string name="NewDeviceTransferComplete__continue_registration">Συνέχεια εγγραφής</string>
 
     <!-- DeviceToDeviceTransferService -->
     <string name="DeviceToDeviceTransferService_content_title">Μεταφορά λογαριασμού</string>
@@ -8753,219 +8607,6 @@
 
     <!-- ConfirmBackupCancellationDialog -->
 
-    <!-- Row title for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">Έχω το παλιό μου τηλέφωνο</string>
-    <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_scan_qr">Σάρωσε έναν κωδικό QR από τον τρέχοντα λογαριασμό σου στο Signal για να ξεκινήσεις γρήγορα</string>
-
-    <!-- Row title for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">Δεν έχω το παλιό μου τηλέφωνο</string>
-    <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">Ή επανεγκαθιστάς το Signal στην ίδια συσκευή</string>
-
-    <!-- Screen title for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__restore_or_transfer_account">Επαναφορά ή μεταφορά λογαριασμού</string>
-    <!-- Screen subtitle for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__get_your_signal_account">Απόκτησε τον λογαριασμό σου στο Signal και το ιστορικό μηνυμάτων σε αυτήν τη συσκευή.</string>
-    <!-- Option title for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_signal_backup">Επαναφορά αντίγραφου ασφαλείας Signal</string>
-    <!-- Option subtitle for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_your_text_messages_and_media_from">Επανάφερε τα μηνύματα κειμένου και τα πολυμέσα σου από το πακέτο δημιουργίας αντιγράφων ασφαλείας Signal.</string>
-    <!-- Option title for restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_on_device_backup">Επαναφορά αντιγράφων ασφαλείας στη συσκευή</string>
-    <!-- Option subtitle fdor restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_your_messages_from">Επανάφερε τα μηνύματά σου από ένα αντίγραφο ασφαλείας που έχεις αποθηκεύσει στη συσκευή σου.</string>
-    <!-- Option title for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__from_your_old_phone">Από το παλιό σου τηλέφωνο</string>
-    <!-- Option subtitle for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__transfer_directly_from_old">Απευθείας μεταφορά από το παλιό σου Android</string>
-    <!-- Dialog title shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_title">Παράλειψη επαναφοράς;</string>
-    <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">Αν παραλείψεις την επαναφορά τώρα, δε θα μπορείς να τα επαναφέρεις αργότερα. Εάν ενεργοποιήσεις ξανά τα αντίγραφα ασφαλείας μετά την παράλειψη της επαναφοράς, το τρέχον αντίγραφο ασφαλείας θα αντικατασταθεί από το νέο ιστορικό μηνυμάτων σου.</string>
-    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore">Παράλειψη επαναφοράς</string>
-
-    <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_title">Γράψε το κλειδί ανάκτησής σου</string>
-    <!-- Screen subtitle for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_subtitle">Το κλειδί ανάκτησής σου είναι ένας κωδικός 64 χαρακτήρων που απαιτείται για την ανάκτηση του λογαριασμού και των δεδομένων σου.</string>
-    <!-- Button to skip entering recovery key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">Δεν υπάρχει κλειδί ανάκτησης;</string>
-    <!-- Recovery key text field hint -->
-    <string name="EnterBackupKey_backup_key">Κλειδί ανάκτησης</string>
-    <!-- Recovery key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">Τα αντίγραφα ασφαλείας δεν μπορούν να ανακτηθούν χωρίς τον κωδικό ανάκτησης 64 χαρακτήρων. Εάν έχεις χάσει το κλειδί ανάκτησής σου, το Signal δεν μπορεί να βοηθήσει στην επαναφορά του αντιγράφου ασφαλείας σου.</string>
-    <!-- Recovery key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">Αν έχεις την παλιά σου συσκευή, μπορείς να δεις το κλειδί ανάκτησης στις Ρυθμίσεις &gt; Αντίγραφα ασφαλείας. Στη συνέχεια, πάτα Προβολή κλειδιού ανάκτησης.</string>
-    <!-- Recovery key not known bottom sheet button to learn more about it -->
-    <string name="EnterBackupKey_learn_more">Μάθε περισσότερα</string>
-    <!-- Recovery key not known bottom sheet button to skip recovery key entry and resume normal reregistration -->
-    <string name="EnterBackupKey_skip_and_dont_restore">Παράλειψη, χωρίς επαναφορά</string>
-    <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">Λανθασμένο κλειδί ανάκτησης</string>
-    <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">Βεβαιώσου ότι εγγράφεσαι με τον ίδιο αριθμό τηλεφώνου και κλειδί ανάκτησης 64 χαρακτήρων που αποθήκευσες κατά την ενεργοποίηση των αντιγράφων ασφαλείας Signal Secure Backups. Τα αντίγραφα ασφαλείας δεν μπορούν να ανακτηθούν χωρίς αυτό το κλειδί.</string>
-    <!-- Dialog positive button text to try entering their recovery key again -->
-    <string name="EnterBackupKey_try_again">Δοκίμασε ξανά</string>
-    <!-- Dialog negative button text to get help with recovery key -->
-    <string name="EnterBackupKey_backup_key_help">Βοήθεια σχετικά με το κλειδί ανάκτησης</string>
-    <!-- Text field error text when the recovery key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">Λανθασμένο κλειδί ανάκτησης</string>
-    <!-- Text field error text when the recovery key is too long -->
-    <string name="EnterBackupKey_too_long_error">Πολύ μακροσκελές (%1$d/%2$d)</string>
-    <!-- Text field error when the recovery key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">Μη έγκυρο κλειδί ανάκτησης</string>
-    <!-- Dialog title shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_not_found">Το αντίγραφο ασφαλείας δεν βρέθηκε</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Το κλειδί ανάκτησης που εισήγαγες είναι σωστό, αλλά δεν υπάρχει αντίγραφο ασφαλείας που να σχετίζεται με αυτό. Εάν εξακολουθείς να έχεις το παλιό σου τηλέφωνο, βεβαιώσου ότι τα αντίγραφα ασφαλείας είναι ενεργοποιημένα και ότι έχει ολοκληρωθεί το αντίγραφο ασφαλείας και δοκίμασε ξανά.</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">Ενδέχεται να έχεις εισαγάγει λανθασμένα το κλειδί ανάκτησης ή να μην έχεις ολοκληρώσει τουλάχιστον ένα αντίγραφο ασφαλείας στην παλιά σου συσκευή.\n\nΒεβαιώσου ότι εγγράφεσαι με τον ίδιο αριθμό τηλεφώνου και κλειδί ανάκτησης που αποθήκευσες κατά την ενεργοποίηση της διαδικασίας \"Ασφαλή αντίγραφα Signal\" και επιβεβαίωσε ότι η παλιά σου συσκευή έχει ολοκληρώσει τη δημιουργία αντιγράφων ασφαλείας.</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">Έχεις εξαντλήσει τις προσπάθειες κλειδιού ανάκτησης. Για την ασφάλειά σου, ο αριθμός των προσπαθειών είναι περιορισμένος. Περίμενε μία ώρα και προσπάθησε ξανά.</string>
-    <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
-    <string name="EnterBackupKey_skip_restore">Παράλειψη επαναφοράς</string>
-    <!-- Dialog title text when encountering backup restore network error -->
-    <string name="EnterBackupKey_cant_restore_backup">Δεν είναι δυνατή η επαναφορά του αντιγράφου ασφαλείας</string>
-    <!-- Dialog body text when encountering backup restore network error -->
-    <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">Δεν είναι δυνατή η επαναφορά του αντιγράφου ασφαλείας σου προς το παρόν. Έλεγξε τη σύνδεσή σου στο διαδίκτυο και ξαναδοκίμασε. </string>
-    <!-- Dialog button text to contact support on network error -->
-    <string name="EnterBackupKey_contact_support">Επικοινωνία με την υποστήριξη</string>
-
-    <!-- Email subject when contacting support on a restore backup network issue -->
-    <string name="EnterBackupKey_network_failure_support_email">Σφάλμα δικτύου κατά την επαναφορά αντιγράφων ασφαλείας Signal Android</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
-    <!-- Email subject when contacting support on a permanent backup import failure -->
-    <string name="EnterBackupKey_permanent_failure_support_email">Μόνιμη αποτυχία επαναφοράς αντιγράφου ασφαλείας Signal Android</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
-
-    <!-- EnterLocalBackupKeyScreen: Screen title for entering recovery key for local backup restore -->
-    <string name="EnterLocalBackupKeyScreen__enter_your_recovery_key">Γράψε το κλειδί ανάκτησής σου</string>
-    <!-- EnterLocalBackupKeyScreen: Screen subtitle explaining what the recovery key is -->
-    <string name="EnterLocalBackupKeyScreen__your_recovery_key_is_a_64_character_code">Το κλειδί ανάκτησής σου είναι ένας κωδικός 64 χαρακτήρων που απαιτείται για την ανάκτηση του λογαριασμού και των δεδομένων σου.</string>
-    <!-- EnterLocalBackupKeyScreen: Button text when user does not have a recovery key -->
-    <string name="EnterLocalBackupKeyScreen__no_recovery_key">Δεν υπάρχει κλειδί ανάκτησης;</string>
-    <!-- EnterLocalBackupKeyScreen: Button to proceed to next step -->
-    <string name="EnterLocalBackupKeyScreen__next">Επόμενο</string>
-
-    <!-- RestoreLocalBackupDialog: Error message when the selected archive fails to load -->
-    <string name="RestoreLocalBackupDialog__failed_to_load_archive">Αποτυχία φόρτωσης αρχείου. Επίλεξε διαφορετικό κατάλογο.</string>
-    <!-- RestoreLocalBackupDialog: Dismiss button for dialog -->
-    <string name="RestoreLocalBackupDialog__ok">OK</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore">Παράλειψη επαναφοράς;</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user about the consequences of skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore_body">Αν παραλείψεις την επαναφορά τώρα, δε θα μπορείς να τα επαναφέρεις αργότερα. Εάν ενεργοποιήσεις ξανά τα αντίγραφα ασφαλείας μετά την παράλειψη της επαναφοράς, το τρέχον αντίγραφο ασφαλείας θα αντικατασταθεί από το νέο ιστορικό μηνυμάτων σου.</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the skip restore dialog -->
-    <string name="RestoreLocalBackupDialog__skip_restore_confirm">Παράλειψη επαναφοράς</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm restoring a backup from a different account -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account">Επαναφορά σε νέο λογαριασμό;</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user that the backup was created with a different account and they will lose group memberships -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account_body">Το αντίγραφο ασφαλείας που επαναφέρεις δημιουργήθηκε χρησιμοποιώντας διαφορετικό λογαριασμό Signal. Μπορείς να επαναφέρεις αυτό το αντίγραφο ασφαλείας σε έναν νέο λογαριασμό, αλλά δεν θα είσαι πλέον μέλος των ομάδων που ανακτήθηκαν.</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the restore to new account dialog -->
-    <string name="RestoreLocalBackupDialog__restore">Επαναφορά</string>
-
-    <!-- RestoreLocalBackupActivity: Toast message when backup restore fails -->
-    <string name="RestoreLocalBackupActivity__backup_restore_failed">Η επαναφορά αντιγράφων ασφαλείας απέτυχε.</string>
-    <!-- RestoreLocalBackupActivity: Screen title shown during restore -->
-    <string name="RestoreLocalBackupActivity__restoring_backup">Επαναφορά αντίγραφου ασφαλείας</string>
-    <!-- RestoreLocalBackupActivity: Screen subtitle explaining restore duration -->
-    <string name="RestoreLocalBackupActivity__depending_on_the_size">Ανάλογα με το μέγεθος του αντιγράφου ασφαλείας σου, αυτό μπορεί να διαρκέσει μερικά λεπτά.</string>
-    <!-- RestoreLocalBackupActivity: Status text while restoring messages -->
-    <string name="RestoreLocalBackupActivity__restoring_messages">Επαναφορά μηνυμάτων…</string>
-    <!-- RestoreLocalBackupActivity: Status text while finalizing restore -->
-    <string name="RestoreLocalBackupActivity__finalizing">Οριστικοποίηση…</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore is complete -->
-    <string name="RestoreLocalBackupActivity__restore_complete">Η ανάκτηση ολοκληρώθηκε</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore fails -->
-    <string name="RestoreLocalBackupActivity__restore_failed">Η επαναφορά απέτυχε</string>
-    <!-- RestoreLocalBackupActivity: Progress text showing bytes read of total with percentage, e.g. "1.2 MB of 5.0 MB (24%)" -->
-    <string name="RestoreLocalBackupActivity__s_of_s_d_percent">%1$s από %2$s (%3$d)</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__cant_restore_backup">Δεν είναι δυνατή η επαναφορά του αντιγράφου ασφαλείας</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__error_occurred_while_restoring">Παρουσιάστηκε σφάλμα κατά την επαναφορά του αντιγράφου ασφαλείας σου. Το αντίγραφο ασφαλείας σου δεν μπορεί να ανακτηθεί. Επικοινώνησε με την υποστήριξη για βοήθεια.</string>
-
-    <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
-    <string name="RestoreLocalBackupActivity__contact_support">Επικοινωνία με την υποστήριξη</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
-    <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">Ενεργοποίηση αντιγράφων ασφαλείας στη συσκευή;</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Για να συνεχίσεις να χρησιμοποιείς τα αντίγραφα ασφαλείας στη συσκευή, πρέπει να τα ενεργοποιήσεις για αυτόν τον λογαριασμό. Μπορείς να το κάνεις ανά πάσα στιγμή πηγαίνοντας στις Ρυθμίσεις &gt; Αντίγραφα ασφαλείας.</string>
-
-    <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__turn_on_now">Ενεργοποίηση τώρα</string>
-
-    <!-- RestoreLocalBackupActivity: Dismiss button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__not_now">Όχι τώρα</string>
-
-    <!-- RestoreLocalBackupActivity: Body text for the dialog shown after a successful restore, prompting the user to choose a backup folder -->
-    <string name="RestoreLocalBackupActivity__choose_a_folder_for_backups">Για να συνεχίσεις να χρησιμοποιείς τα αντίγραφα ασφαλείας στη συσκευή, επίλεξε έναν φάκελο στη συσκευή σου όπου θα αποθηκεύονται τα νέα αντίγραφα ασφαλείας.</string>
-
-    <!-- RestoreLocalBackupActivity: Positive button label for the dialog shown after a successful restore; keeps the current backup folder -->
-    <string name="RestoreLocalBackupActivity__use_current_folder">Χρήση τρέχοντα φακέλου</string>
-
-    <!-- RestoreLocalBackupActivity: Neutral button label for the dialog shown after a successful restore; opens folder picker to select a different backup location -->
-    <string name="RestoreLocalBackupActivity__choose_new_folder">Επιλογή νέου φακέλου</string>
-
-    <!-- RestoreLocalBackupActivity: Negative button label for the dialog shown after a successful restore; disables on-device backups -->
-    <string name="RestoreLocalBackupActivity__disable_backups">Απενεργοποίηση αντιγράφων ασφαλείας</string>
-
-    <!-- SelectInstructionsSheet: Title for the select backup folder instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_folder">Επίλεξε τον φάκελο αντιγράφων ασφαλείας</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the select this folder button -->
-    <string name="SelectInstructionsSheet__tap_select_this_folder">Πάτησε \"Επιλογή αυτού του φακέλου\"</string>
-    <!-- SelectInstructionsSheet: Instruction not to select individual files -->
-    <string name="SelectInstructionsSheet__do_not_select_individual_files">Μην επιλέγεις μεμονωμένα αρχεία</string>
-    <!-- SelectInstructionsSheet: Title for the select backup file instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_file">Επίλεξε το αρχείο αντιγράφου ασφαλείας</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the backup file saved to device -->
-    <string name="SelectInstructionsSheet__tap_on_the_backup_file">Πάτησε στο αρχείο αντιγράφου ασφαλείας που αποθήκευσες στη συσκευή σου</string>
-    <!-- SelectInstructionsSheet: Subtitle explaining how to access backup after tapping continue -->
-    <string name="SelectInstructionsSheet__after_tapping_continue">Αφού πατήσεις \"Συνέχεια\", δες πώς μπορείς να αποκτήσεις πρόσβαση στο αντίγραφο ασφαλείας σου:</string>
-    <!-- SelectInstructionsSheet: Instruction to select the top-level backup folder -->
-    <string name="SelectInstructionsSheet__select_the_top_level_folder">Επίλεξε τον φάκελο ανώτατου επιπέδου όπου αποθηκεύεται το αντίγραφο ασφαλείας σου</string>
-    <!-- SelectInstructionsSheet: Continue button text -->
-    <string name="SelectInstructionsSheet__continue_button">Συνέχεια</string>
-
-    <!-- SelectLocalBackupScreen: Screen title for restoring on-device backup -->
-    <string name="SelectLocalBackupScreen__restore_on_device_backup">Επαναφορά αντιγράφων ασφαλείας στη συσκευή</string>
-    <!-- SelectLocalBackupScreen: Screen subtitle explaining the restore process -->
-    <string name="SelectLocalBackupScreen__restore_your_messages_from_the_backup_folder">Επανάφερε τα μηνύματά σου από τον φάκελο αντιγράφων ασφαλείας που έχεις αποθηκεύσει στη συσκευή σου. Αν δεν τα επαναφέρεις τώρα, δε θα μπορείς να τα επαναφέρεις αργότερα.</string>
-    <!-- SelectLocalBackupScreen: Button to initiate backup restoration -->
-    <string name="SelectLocalBackupScreen__restore_backup">Επαναφορά αντίγραφου ασφαλείας</string>
-    <!-- SelectLocalBackupScreen: Button to choose an earlier backup when current is latest -->
-    <string name="SelectLocalBackupScreen__choose_an_earlier_backup">Επίλεξε ένα παλαιότερο αντίγραφο ασφαλείας</string>
-    <!-- SelectLocalBackupScreen: Button to choose a different backup -->
-    <string name="SelectLocalBackupScreen__choose_a_different_backup">Επίλεξε διαφορετικό αντίγραφο ασφαλείας</string>
-    <!-- SelectLocalBackupScreen: Label for latest backup card -->
-    <string name="SelectLocalBackupScreen__your_latest_backup">Τα τελευταία αντίγραφα ασφαλείας σου:</string>
-    <!-- SelectLocalBackupScreen: Label for non-latest backup card -->
-    <string name="SelectLocalBackupScreen__your_backup">Τα αντίγραφα ασφαλείας σου:</string>
-
-    <!-- SelectLocalBackupSheet: Title for backup selection bottom sheet -->
-    <string name="SelectLocalBackupSheet__choose_a_backup_to_restore">Επίλεξε ένα αντίγραφο ασφαλείας για επαναφορά</string>
-    <!-- SelectLocalBackupSheet: Subtitle warning about choosing an older backup -->
-    <string name="SelectLocalBackupSheet__choosing_an_older_backup">Η επιλογή ενός παλαιότερου αντιγράφου ασφαλείας μπορεί να οδηγήσει σε απώλεια μηνυμάτων ή πολυμέσων.</string>
-    <!-- SelectLocalBackupSheet: Continue button text -->
-    <string name="SelectLocalBackupSheet__continue_button">Συνέχεια</string>
-
-    <!-- SelectLocalBackupTypeScreen: Screen title for selecting backup type -->
-    <string name="SelectLocalBackupTypeScreen__restore_on_device_backup">Επαναφορά αντιγράφων ασφαλείας στη συσκευή</string>
-    <!-- SelectLocalBackupTypeScreen: Screen subtitle explaining restore options -->
-    <string name="SelectLocalBackupTypeScreen__restore_your_messages_from_the_backup">Επανάφερε τα μηνύματά σου από το αντίγραφο ασφαλείας που έχεις αποθηκεύσει στη συσκευή σου. Αν δεν τα επαναφέρεις τώρα, δε θα μπορείς να τα επαναφέρεις αργότερα.</string>
-    <!-- SelectLocalBackupTypeScreen: Button for users who saved backup as single file -->
-    <string name="SelectLocalBackupTypeScreen__i_saved_my_backup_as_a_single_file">Αποθήκευσα το αντίγραφο ασφαλείας μου ως ένα μεμονωμένο αρχείο</string>
-    <!-- SelectLocalBackupTypeScreen: Card title for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__choose_backup_folder">Επίλεξε φάκελο αντιγράφων ασφαλείας</string>
-    <!-- SelectLocalBackupTypeScreen: Card description for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__select_the_folder_on_your_device">Επίλεξε τον φάκελο στη συσκευή σου όπου είναι αποθηκευμένο το αντίγραφο ασφαλείας</string>
-
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">Σφάλμα δικτύου κατά την εξαγωγή Αντιγράφων ασφαλείας Signal Android</string>
     <!-- Email filter when contacting support on a create backup failure -->
@@ -8979,23 +8620,6 @@
     <string name="ContactSupportDialog_submit_with_debug">Υποβολή με αρχείο καταγραφής</string>
     <!-- Button option to not submit debug log when contacting support -->
     <string name="ContactSupportDialog_submit_without_debug">Υποβολή χωρίς αρχείο καταγραφής</string>
-
-    <!-- Title for restore via qr screen -->
-    <string name="RestoreViaQr_title">Σάρωσε αυτόν τον κωδικό με το παλιό σου τηλέφωνο</string>
-    <!-- First instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_1">Άνοιξε το Signal στη παλιά σου συσκευή</string>
-    <!-- Second instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_2">Πάτα το εικονίδιο της κάμερας </string>
-    <!-- Third instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_3">Σάρωσε αυτόν τον κωδικό με την κάμερα</string>
-    <!-- Error message shown when qr code could not be loaded -->
-    <string name="RestoreViaQr_qr_code_error">Δεν είναι δυνατή η δημιουργία κωδικού QR</string>
-    <!-- Status message shown when qr code already scanned by other device -->
-    <string name="RestoreViaQr_qr_code_scanned">Σαρώθηκε σε παλιά συσκευή</string>
-    <!-- Error button text to retry getting a qr code -->
-    <string name="RestoreViaQr_retry">Επανάληψη</string>
-    <!-- Error message shown when register after receiving the provisioning message failed -->
-    <string name="RestoreViaQr_registration_error">Παρουσιάστηκε σφάλμα και δεν ήταν δυνατή η μεταφορά του λογαριασμού σου. Δοκίμασε ξανά σαρώνοντας ξανά τον κωδικό QR.</string>
 
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">Μεταφορά λογαριασμού</string>
@@ -9037,19 +8661,6 @@
     <string name="RestoreCompleteBottomSheet_transfer_complete_message">Ο λογαριασμός και τα μηνύματά σου στο Signal έχουν μεταφερθεί στην άλλη σου συσκευή. Το Signal είναι πλέον ανενεργό σε αυτήν τη συσκευή.</string>
     <!-- Restore Complete bottom sheet dialog button text to dismiss sheet -->
     <string name="RestoreCompleteBottomSheet_button">Εντάξει</string>
-
-    <!-- No Backup to Restore screen title -->
-    <string name="NoBackupToRestore_title">Δεν υπάρχουν αντίγραφα ασφαλείας για επαναφορά</string>
-    <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">Επειδή αλλάζεις από iPhone σε Android, ο μόνος τρόπος για να μεταφέρεις τα μηνύματα και τα πολυμέσα σου είναι να ενεργοποιήσεις τα Αντίγραφα ασφαλείας Signal Secure Backups στην παλιά σου συσκευή.</string>
-    <!-- No Backup to Restore step 1 to enable backups on old device -->
-    <string name="NoBackupToRestore_step1">Άνοιξε το Signal στην παλιά σου συσκευή</string>
-    <!-- No Backup to Restore step 2 to enable backups on old device -->
-    <string name="NoBackupToRestore_step2">Πάτα Ρυθμίσεις &gt; Αντίγραφα ασφαλείας</string>
-    <!-- No Backup to Restore step 3 to enable backups on old device -->
-    <string name="NoBackupToRestore_step3">Ενεργοποίησε τα αντίγραφα ασφαλείας και περίμενε μέχρι να ολοκληρωθεί η δημιουργία αντιγράφων ασφαλείας</string>
-    <!-- No backup to Restore tonal cta to skip restore -->
-    <string name="NoBackupToRestore_skip_restore">Παράλειψη επαναφοράς</string>
 
     <!-- Dialog title when the recovery key change limit is reached -->
     <string name="MessageBackupsKeyRecordScreen__limit_reached_title">Συμπληρώθηκε το όριο κλειδιών ανάκτησης</string>

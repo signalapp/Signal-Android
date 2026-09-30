@@ -558,41 +558,6 @@
     <string name="DeviceTransferComplete__your_account_is_now_on_this_device">आपका अकाउंट अब इस डिवाइस पर है।</string>
     <string name="DeviceTransferComplete__continue_registration">जारी रखें</string>
 
-    <!-- Create profile screen -->
-    <!-- Title displayed at the top of the create-profile screen during registration. -->
-    <string name="CreateProfileScreen__set_up_your_profile">अपनी प्रोफ़ाइल सेट करें</string>
-    <!-- Subtitle on create-profile screen explaining that the profile is end-to-end encrypted and visible to recipients. -->
-    <string name="CreateProfileScreen__your_profile_is_end_to_end_encrypted">आपकी प्रोफ़ाइल और उसमें किए गए बदलाव आपके कॉन्टैक्ट, ग्रुप, और उन लोगों को दिखेंगे जिन्हें आपने मैसेज किया है।</string>
-    <!-- Label/hint for the first-name field, indicating it is required. -->
-    <string name="CreateProfileScreen__first_name_required">नाम (ज़रूरी है)</string>
-    <!-- Label/hint for the last-name field, indicating it is optional. -->
-    <string name="CreateProfileScreen__last_name_optional">सरनेम (ज़रूरी नहीं है)</string>
-    <!-- Action button text to advance from create-profile screen. -->
-    <string name="CreateProfileScreen__next">अगला</string>
-    <!-- Content description for the avatar selection control. -->
-    <string name="CreateProfileScreen__set_avatar_description">अवतार सेट करें</string>
-
-    <!-- Phone number discoverability picker -->
-    <!-- Title row label shown on the create-profile screen pointing at the discoverability picker. -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">मुझे नंबर से कौन ढूंढ सकता है?</string>
-    <!-- Description shown on the picker when "Everyone" is selected. -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">जिस भी व्यक्ति के पास आपका फ़ोन नंबर है, वह आपको Signal पर देख सकता है और चैट कर सकता है।</string>
-    <!-- Description shown on the picker when "Nobody" is selected. -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">अगर आपने किसी को मैसेज नहीं भेजा है या फिर किसी के साथ आपने पहले चैट नहीं की है, तो कोई नहीं जान पाएगा कि आप Signal पर हैं।</string>
-    <!-- Radio option label for "Everyone can find me by number". -->
-    <string name="PhoneNumberPrivacy_everyone">सभी</string>
-    <!-- Radio option label for "Nobody can find me by number". -->
-    <string name="PhoneNumberPrivacy_nobody">कोई नहीं</string>
-    <!-- Title for the confirmation dialog shown when the user selects "Nobody". -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">क्या आपको वाकई ऐसा करना है?</string>
-    <!-- Body for the confirmation dialog shown when the user selects "Nobody". -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">\"मुझे नंबर से कौन ढूंढ सकता है\" को \"कोई नहीं\" पर सेट करने पर किसी के लिए भी Signal पर आपको ढूंढना मुश्किल हो जाएगा।</string>
-    <!-- Cancel button on the "Nobody" confirmation dialog. -->
-    <string name="PhoneNumberPrivacySettingsFragment__cancel">कैंसिल करें</string>
-    <!-- Save button on the discoverability picker. -->
-    <string name="PhoneNumberDiscoverabilityScreen__save">सेव करें</string>
-    <!-- Content description for the back arrow on the discoverability picker. -->
-    <string name="PhoneNumberDiscoverabilityScreen__back">पीछे जाएं</string>
     <!-- Error message shown when the captcha fails to load. -->
     <string name="CaptchaScreen__failed_to_load_captcha">कैप्चा लोड नहीं हो सका</string>
     <!-- Button to cancel out of the captcha screen. -->
@@ -684,7 +649,7 @@
     <!-- Action button that stores the Signal Login in the device password manager. -->
     <string name="SignalLoginInfoScreen__save_to_password_manager">पासवर्ड मैनेजर में सेव करें</string>
     <!-- Toast shown when the user taps the disabled save to password manager button and the device has no password manager. -->
-    <string name="SignalLoginInfoScreen__no_password_manager_available">आपने कोई पासवर्ड मैनेजर सेट अप नहीं किया है या फिर आपका मौजूदा पासवर्ड मैनेजर पर यह सुविधा काम नहीं करती।</string>
+    <string name="SignalLoginInfoScreen__no_password_manager_available">You don\'t have a password manager set up.</string>
     <!-- Action button for users who would rather write the Signal Login down themselves. -->
     <string name="SignalLoginInfoScreen__save_manually">मैन्युअल तरीके से सेव करें</string>
     <!-- Error shown when the Signal Login could not be stored in the password manager. -->

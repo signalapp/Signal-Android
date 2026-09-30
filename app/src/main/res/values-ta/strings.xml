@@ -863,23 +863,8 @@
     <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">நீங்கள் அவர்களுக்கு மெசேஜ் அனுப்பாத வரை அல்லது அவர்களுடன் ஏற்கனவே சாட் செய்யாத வரை, நீங்கள் சிக்னலை பயன்படுத்திக் கொண்டிருப்பதை யாராலும் பார்க்க முடியாது.</string>
 
     <!-- ChooseBackupFragment -->
-    <string name="ChooseBackupFragment__restore_from_backup">காப்புப்பதிவு பயனர் தரவு மீட்டமைக்கவா?</string>
-    <string name="ChooseBackupFragment__restore_your_messages_and_media">உள்ளூர் காப்புப்பதிவு பயனர் தரவு உங்கள் செய்திகளையும் ஊடகத்தையும் மீட்டெடுக்கவும். நீங்கள் இப்போது மீட்டமைக்கவில்லை என்றால், நீங்கள் பின்னர் மீட்டெடுக்க முடியாது.</string>
-    <string name="ChooseBackupFragment__icon_content_description">மறுபிரதி ஐகானிலிருந்து மீட்டெடு</string>
-    <string name="ChooseBackupFragment__choose_backup">மறுபிரதியைத் தேர்வுசெய்க</string>
-    <string name="ChooseBackupFragment__learn_more">மேலும் அறிக</string>
 
     <!-- RestoreBackupFragment -->
-    <string name="RestoreBackupFragment__restore_complete">மீட்டெடுப்பு முடிந்தது</string>
-    <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">மறுபிரதிகளை இயக்க, ஒரு கோப்புறையைத் தேர்வுசெய்க. புதிய மறுபிரதிகள் இந்த இருப்பிடத்தில் சேமிக்கப்படும்.</string>
-    <string name="RestoreBackupFragment__choose_folder">கோப்புறையைத் தேர்வுசெய்க</string>
-    <string name="RestoreBackupFragment__not_now">இப்போது இல்லை</string>
-    <!-- Couldn\'t find the selected backup -->
-    <string name="RestoreBackupFragment__backup_not_found">காப்புப்பிரதி கிடைக்கவில்லை.</string>
-    <!-- Couldn\'t read the selected backup -->
-    <string name="RestoreBackupFragment__backup_could_not_be_read">காப்புப்பிரதியைப் படிக்க முடியவில்லை.</string>
-    <!-- Backup has an unsupported file extension -->
-    <string name="RestoreBackupFragment__backup_has_a_bad_extension">காப்புப்பிரதி தவறான நீட்டிப்பைக் கொண்டுள்ளது.</string>
 
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
@@ -1416,60 +1401,6 @@
     <string name="ManageGroupActivity_add_group_description">கூட்டு குழு விளக்கம்…</string>
 
     <!-- RemoteRestoreActivity -->
-    <!-- Progress dialog label when downloading a backup -->
-    <string name="RemoteRestoreActivity__downloading_backup">காப்புப்பிரதியை பதிவிறக்குகிறது…</string>
-    <!-- Progress dialog label when restoring a backup -->
-    <string name="RemoteRestoreActivity__restoring_messages">செய்திகள் மீட்டெடுக்கப்படுகிறது…</string>
-    <!-- Progress dialog label when finishing a backup restore -->
-    <string name="RemoteRestoreActivity__finishing_restore">முடிக்கிறது…</string>
-    <!-- Progress dialog label while awaiting updates -->
-    <string name="RemoteRestoreActivity__restoring">மீட்டெடுக்கப்படுகிறது…</string>
-    <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
-    <string name="RemoteRestoreActivity__s_of_s_s">%2$s இல் %1$s (%3$s)</string>
-    <!-- Feature list media label for paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_media">உங்களின் அனைத்து மீடியா</string>
-    <!-- Feature list media label for free tier. Placeholder is days, and is currently fixed at 30. -->
-    <string name="RemoteRestoreActivity__your_last_d_days_of_media">மீடியாவின் உங்களின் கடைசி %1$d நாட்கள்</string>
-    <!-- Feature list message label for free and paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_messages">உங்களின் அனைத்து செய்திகள்</string>
-    <!-- Screen title for restoring from backup -->
-    <string name="RemoteRestoreActivity__restore_from_backup">மீட்டமை இருந்து காப்புப்பிரதி</string>
-    <!-- Section title for explaining what your backup includes -->
-    <string name="RemoteRestoreActivity__your_backup_includes">உங்கள் காப்புப்பிரதியில் உள்ளடங்குவன:</string>
-    <!-- Primary action button copy for starting restoration -->
-    <string name="RemoteRestoreActivity__restore_backup">காப்புப்பதிவு பயனர் தரவு மீட்டமை</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made. %1$s is replaced with the date (e.g. March 5, 2024) and %2$s is replaced with the time (e.g. 9:00am) -->
-    <string name="RemoteRestoreActivity__backup_created_at">உங்களின் கடைசி காப்புப் பிரதி %1$sஅன்று %2$s மணிக்கு செய்யப்பட்டது.</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
-    <string name="RemoteRestoreActivity__backup_created_at_with_size">உங்களின் கடைசி காப்புப்பிரதி %1$sஅன்று %2$s மணிக்கு செய்யப்பட்டது. உங்களின் கடைசி காப்புப்பிரதி அளவு %3$s.</string>
-    <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
-    <string name="RemoteRestoreActivity__fetching_backup_details">காப்புப்பிரதி விவரங்களைப் பெறுகிறது…</string>
-    <!-- Text label button to skip restore from remote -->
-    <string name="RemoteRestoreActivity__skip_restore">மீட்டமைப்பதைத் தவிர்</string>
-    <!-- Dialog title displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__couldnt_transfer">இடமாற்றத்தை முடிக்க முடியவில்லை</string>
-    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">காப்புப்பிரதியை மீட்டெடுக்க முடியவில்லை</string>
-    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">உங்கள் காப்புப்பிரதியை மீட்டெடுக்கும்போது பிழை ஏற்பட்டது. உங்கள் காப்புப்பிரதி மீட்டெடுக்கப்படவில்லை. உதவிக்கு ஆதரவைத் தொடர்பு கொள்ளுங்கள்.</string>
-    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">ஆதரவைத் தொடர்பு கொள்க</string>
-    <!-- Dialog message displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__error_occurred">பிழை ஏற்பட்டதால் உங்கள் கணக்கை இடமாற்ற முடியவில்லை. உங்கள் இடமாற்ற முறையைத் தேர்ந்தெடுத்து மீண்டும் முயலுங்கள்.</string>
-    <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
-    <string name="RemoteRestoreActivity__couldnt_restore">இந்தக் காப்புப்பிரதியை மீண்டும் மீட்டமைக்கவில்லை</string>
-    <!-- Dialog message explaining that an update to Signal is required to restore the backup. -->
-    <string name="RemoteRestoreActivity__update_latest">சிக்னலின் இந்தப் பதிப்பினால் உங்கள் காப்புப்பிரதியை மீட்டெடுக்க முடியாது. அண்மைய பதிப்புக்குப் புதுப்பித்து மீண்டும் முயலுங்கள்.</string>
-    <!-- Text on button that when pressed will redirect them to update Signal -->
-    <string name="RemoteRestoreActivity__update_signal">Signal லைப் புதுப்பிக்கவும்</string>
-    <!-- Text label button to dismiss the dialog -->
-    <string name="RemoteRestoreActivity__not_now">இப்போது வேண்டாம்</string>
-    <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">உங்கள் ஊடகமானது பின்னணியில் மீட்டெடுக்கப்படும். இப்போது மீட்டெடுக்க வேண்டாம் என்பதை நீங்கள் தேர்வுசெய்தால், பின்னர் நீங்கள் மீட்டெடுக்கவே முடியாது.</string>
-    <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">இந்தச் சாதனம் இனி பதிவுசெய்யப்பட்டிருக்காது</string>
-    <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">உங்கள் சிக்னல் கணக்கை வேறு சாதனத்தில் பதிவு செய்ததால் இவ்வாறு நிகழலாம்.</string>
 
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
@@ -2234,17 +2165,6 @@
     <string name="PinRestoreLockedFragment_create_new_pin">புதிய பின்னை உருவாக்கவும்</string>
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
-    <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
-    <string name="ReRegisterWithPinFragment_send_sms_code">SMS குறியீட்டை அனுப்பு</string>
-    <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">Signal பதிவு - Androidக்கான மறுபதிவு PIN உடன் செய்ய உதவி தேவை</string>
-    <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">உங்கள் பின் என்பது நீங்கள் உருவாக்கிய %1$d+ இலக்கக் குறியீடாகும், இது எண் அல்லது எண்ணெழுத்து ஆகும்.\n\nஉங்கள் பின்னை நினைவில் கொள்ள முடியாவிட்டால், புதிய ஒன்றை உருவாக்கலாம்.</string>
-    <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">உங்கள் பின்னை நினைவில் கொள்ள முடியாவிட்டால், புதிய ஒன்றை உருவாக்கலாம்.</string>
-    <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">உங்களது பின் யூகங்கள் தீர்ந்துவிட்டன, ஆனால் புதிய பின்னை உருவாக்குவதன் மூலம் உங்கள் Signal கணக்கைத் தொடர்ந்து அணுகலாம்.</string>
-
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">எச்சரிக்கை</string>
     <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">நீங்கள் PIN-ஐ முடக்கினால், நீங்கள் கைமுறையாக பேக்அப் செய்து மீட்டெடுக்காமல் Signalஐ மீண்டும் பதிவுசெய்யும்போது எல்லா தரவையும் இழப்பீர்கள். PIN முடக்கப்பட்டிருக்கும் போது நீங்கள் பதிவு பூட்டை இயக்க முடியாது.</string>
@@ -2324,6 +2244,12 @@
     <string name="WebRtcCallActivity__open_settings">அமைப்புகளைத் திறக்கவும்</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">இப்போது இல்லை</string>
+    <!-- Message for dialog shown at the start of a call when the system battery setting for Signal is "Restricted" -->
+    <string name="WebRtcCallActivity__others_may_not_be_able_to_hear_you_when_your_screen_turns_off">Others may not be able to hear you and the call may disconnect when your screen turns off. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
+    <!-- Title for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__others_couldnt_hear_you">Others couldn\'t hear you</string>
+    <!-- Message for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__your_microphone_was_muted_while_signal_was_in_the_background">Your microphone was muted while Signal was in the background. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
     <!-- Title for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__approve_d_requests">
         <item quantity="one">%1$d கோரிக்கையை ஏற்பதா?</item>
@@ -2639,50 +2565,20 @@
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">நீங்கள் குறிப்பிட்ட எண் (%1$s) செல்லாது.
     </string>
 
-    <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">கீழே உள்ள தொலைபேசி எண் சரியானதா?</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
     <string name="RegistrationActivity_additional_verification_required">கூடுதல் சரிபார்ப்பு தேவை</string>
-    <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">இந்த எண்ணுக்கு சரிபார்ப்புக் குறியீடு அனுப்பப்படும். கேரியர் கட்டணங்கள் விதிக்கப்படலாம்.</string>
-    <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">சரிபார்ப்புக் குறியீட்டைப் பெறுவீர்கள். கேரியர் கட்டணங்கள் பொருந்தக்கூடும்.</string>
-    <!-- Hint text to select a country -->
-    <string name="RegistrationActivity_select_a_country">ஒரு நாட்டைத் தேர்வு செய்யுங்கள்</string>
-    <!-- Hint text explaining that this is where the country code should go -->
-    <string name="RegistrationActivity_default_country_code">0</string>
-    <string name="RegistrationActivity_edit_number">எண்ணை தொகுக்க</string>
-    <string name="RegistrationActivity_missing_google_play_services">Google Play சேவைகளைக் காணவில்லை</string>
-    <string name="RegistrationActivity_this_device_is_missing_google_play_services">இந்த சாதனத்தில் Google Play சேவைகள் இல்லை . இருந்தும் நீங்கள் Signal ஐ பயன்படுத்தலாம் , ஆனால் இந்த உள்ளமைவு நம்பகத்தன்மை அல்லது செயல்திறனைக் குறைக்கலாம். \n\n நீங்கள் ஒரு மேம்பட்ட பயனராக இல்லாவிட்டால், சந்தைக்குப்பிறகான அண்ட்ராய்டு ROM ஐ இயக்கவில்லை அல்லது இதை பிழையாகப் பார்க்கிறீர்கள் என்று நம்பினால், தயவுசெய்து ஆதரவைத் தொடர்பு கொள்ளவும் @ சிக்கல் support@signal.org.</string>
-    <string name="RegistrationActivity_i_understand">எனக்கு புரிகிறது</string>
-    <string name="RegistrationActivity_play_services_error">சேவைகளில் பிழை</string>
-    <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play சேவைகள் புதுப்பித்தல் அல்லது தற்காலிகமாக கிடைக்கவில்லை. தயவு செய்து மீண்டும் முயற்சிக்கவும்.</string>
     <string name="RegistrationActivity_rate_limited_to_service">இந்த எண்ணை பதிவு செய்ய நீங்கள் பல முயற்சிகளை செய்துள்ளீர்கள். சிறிது நேரம் கழித்து மீண்டும் முயற்சிக்கவும்.</string>
-    <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">இந்த எண்ணை பதிவு செய்ய நீங்கள் பல முயற்சிகளை செய்துள்ளீர்கள். %1$s இல் மீண்டும் முயற்சிக்கவும்.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">சேவையுடன் இணைக்க முடியவில்லை. பிணைய இணைப்பைச் சரிபார்த்து மீண்டும் முயற்சிக்கவும்.</string>
     <!-- Dialog error message shown when we are unable to send an SMS to the user\'s number -->
     <string name="RegistrationActivity_sms_provider_error">உங்கள் எண்ணுக்கு எங்களால் SMSஐ அனுப்ப முடியவில்லை. சில மணிநேரம் கழித்து மீண்டும் முயலுங்கள்.</string>
-    <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">SMS மூலம் சரிபார்ப்புக் குறியீட்டை உங்களுக்கு அனுப்ப முடியவில்லை. அதற்குப் பதிலாக குரல் அழைப்பு மூலம் உங்கள் குறியீட்டைப் பெற முயலவும்.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">சரிபார்ப்புக் குறியீட்டைக் கோர முடியவில்லை. உங்கள் நெட்வொர்க் இணைப்பைச் சரிபார்த்து, மீண்டும் முயலவும்.</string>
-    <string name="RegistrationActivity_non_standard_number_format">நான்-ஸ்டாண்டர்ட் எண் வடிவம்</string>
-    <!-- Dialog message shown to confirm when entering phone number (first placeholder) is normalized and formatted differently by the app (second placeholder). -->
-    <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">நீங்கள் உள்ளிட்ட எண் (%1$s) நான்-ஸ்டாண்டர்ட் எண் வடிவத்தைக் கொண்டுள்ளது.\n\nநீங்கள் %2$s-ஐ நினைத்தீர்களா?</string>
-    <string name="RegistrationActivity_signal_android_phone_number_format">சிக்னல் ஆண்ட்ராய்டு - தொலைபேசி எண் வடிவம்</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="one">பிழைத்திருத்த பதிவைச் சமர்ப்பிப்பதில் இருந்து இப்போது நீங்கள் %1$d விலகிவிட்டீர்கள்.</item>
         <item quantity="other">பிழைத்திருத்த பதிவைச் சமர்ப்பிப்பதில் இருந்து இப்போது நீங்கள் %1$d படிகள் தொலைவில் உள்ளீர்கள்.</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">நீங்கள் மனிதர் என்பதை நாங்கள் சரிபார்க்க வேண்டும்.</string>
-    <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
-    <string name="RegistrationActivity_voice_call">குரல் அழைப்பு</string>
-    <!-- Dialog button to cancel the pending action and return to the previous state. -->
-    <string name="RegistrationActivity_cancel">ரத்துசெய்</string>
     <string name="RegistrationActivity_next">அடுத்தது</string>
-    <!-- Title of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_phone_number">தொலைபேசி எண்</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">நாங்கள் அனுப்பிய குறியீட்டை %1$s க்கு உள்ளிடவும்</string>
 
     <string name="RegistrationActivity_phone_number_description">தொலைபேசி எண்</string>
@@ -2881,6 +2777,8 @@
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">ஸ்டிக்கர் பேக்கை ஏற்றுவதில் தோல்வி</string>
     <!-- Bottom sheet describing a sticker. First placeholder is the title of the sticker pack and second is the author -->
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
+    <!-- Bottom sheet option that opens the pack the sticker belongs to -->
+    <string name="StickerPreviewBottomSheet__view_pack">View pack</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">சேமி</string>
@@ -3619,8 +3517,6 @@
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">அழைப்பு அறிவிப்புகளைப் பெற, அமைப்புகளைத் தட்டவும், \"பேட்டரி\" அமைப்புகளில் பின்னணி செயல்பாட்டை இயக்கவும்.</string>
 
     <!-- country_selection_fragment -->
-    <string name="country_selection_fragment__loading_countries">நாடுகள் ஏற்றப்படுகிறது…</string>
-    <string name="country_selection_fragment__search">தேடல்</string>
 
     <string name="device_list_fragment__link_new_device">புதுக் கருவியை இனைக்க</string>
 
@@ -4454,6 +4350,8 @@
     <string name="conversation_selection__menu_pin_message">பின்செய்</string>
     <!-- Button to unpin a message -->
     <string name="conversation_selection__menu_unpin_message">பின்னை அகற்று</string>
+    <!-- Button to open the sticker pack a sticker message came from -->
+    <string name="conversation_selection__menu_view_sticker_pack">View pack</string>
 
     <!-- conversation_expiring_on -->
 
@@ -4644,14 +4542,11 @@
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">உங்கள் பின்னை உள்ளிடவும்</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">உங்கள் கணக்கிற்கு நீங்கள் உருவாக்கிய பின்னை உள்ளிடவும். இது உங்கள் SMS சரிபார்ப்புக் குறியீட்டிலிருந்து வேறுபட்டது.</string>
-    <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
-    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">உங்கள் கணக்கிற்கு நீங்கள் உருவாக்கிய பின்னை உள்ளிடவும்.</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">தவறான பின். மீண்டும் முயற்சி செய்க.</string>
     <string name="RegistrationLockFragment__forgot_pin">பின் மறந்துவிட்டீர்களா?</string>
     <string name="RegistrationLockFragment__incorrect_pin">தவறான பின்</string>
     <string name="RegistrationLockFragment__forgot_your_pin">உங்கள் பின்னை மறந்துவிட்டீர்களா?</string>
     <string name="RegistrationLockFragment__not_many_tries_left">பல முயற்சிகள் மீதமில்லை!</string>
-    <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal பதிவு - ஆண்ட்ராய்டுக்கான ரகசிய எண் சம்பந்தமாய் உதவி வேண்டுமா (v2 PIN)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
         <item quantity="one">உங்கள் தனியுரிமை மற்றும் பாதுகாப்பிற்காக, உங்கள் பின்னை மீட்டெடுக்க வழி இல்லை. உங்கள் பின்னை நினைவில் கொள்ள முடியாவிட்டால், %1$d நாட்கள் செயலற்ற நிலைக்குப் பிறகு நீங்கள் SMS மூலம் மீண்டும் சரிபார்க்கலாம். இந்த வழக்கில், உங்கள் கணக்கு அழிக்கப்பட்டு அனைத்து உள்ளடக்கமும் நீக்கப்படும்.</item>
@@ -4706,22 +4601,6 @@
     <string name="backup_enable_dialog__you_must_have_this_passphrase">மறுபிரதியை மீட்டமைக்க இந்த கடவுத்தொடர் உங்களுக்குத் தேவைப்படும்.</string>
     <string name="backup_enable_dialog__folder">கோப்புறை</string>
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">இந்த கடவுச்சொற்றொடரை நான் எழுதியுள்ளேன். இது இல்லாமல், என்னால் ஒரு காப்புப்பதிவு பயனர் தரவு மீட்டெடுக்க முடியாது.</string>
-    <string name="registration_activity__restore_backup">காப்புப்பதிவு பயனர் தரவு மீட்டமை</string>
-    <!-- Text label button to skip restoring -->
-    <string name="registration_activity__skip_restore">மீட்டமைப்பதைத் தவிர்</string>
-    <!-- Title for dialog to enter in the backup passphrase -->
-    <string name="RegistrationActivity_enter_backup_passphrase">காப்புப்பதிவு பயனர் தரவு கடவுச்சொற்றொடரை உள்ளிடவும்</string>
-    <string name="RegistrationActivity_restore">மீட்க</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">Signal இன் புதிய பதிப்புகளில் பேக்அப்களை இறக்க முடியாது</string>
-    <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
-    <string name="RegistrationActivity_backup_failure_foreign_key">காப்புப்பிரதியில் தவறான தரவு உள்ளது</string>
-    <string name="RegistrationActivity_incorrect_backup_passphrase">தவறான காப்புப்பதிவு பயனர் தரவு கடவுச்சொல்</string>
-    <string name="RegistrationActivity_checking">சரிபார்க்கிறது…</string>
-    <string name="RegistrationActivity_d_messages_so_far">இதுவரை %1$d செய்திகள் …</string>
-    <string name="RegistrationActivity_restore_from_backup">காப்புப்பதிவு பயனர் தரவு மீட்டமைக்கவா?</string>
-    <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">உள்ளூர் காப்புப்பதிவு பயனர் தரவு உங்கள் செய்திகளையும் ஊடகத்தையும் மீட்டெடுக்கவும். நீங்கள் இப்போது மீட்டமைக்கவில்லை என்றால், நீங்கள் பின்னர் மீட்டெடுக்க முடியாது.</string>
-    <string name="RegistrationActivity_backup_size_s">காப்புப்பதிவு பயனர் தரவு அளவு: %1$s</string>
-    <string name="RegistrationActivity_backup_timestamp_s">காப்புப்பதிவு பயனர் தரவு நேர முத்திரை: %1$s</string>
     <string name="BackupDialog_enable_local_backups">உள்ளூர் காப்புப்பிரதிகளை இயக்கவா?</string>
     <string name="BackupDialog_enable_backups">காப்புப்பிரதிகளை இயக்கு</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Please acknowledge your understanding by marking the confirmation check box.</string>
@@ -4757,7 +4636,6 @@
     <string name="RegistrationActivity_call_me_instead_available_in">என்னை அழைக்கவும் (%1$02d:%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
     <string name="RegistrationActivity_resend_sms_available_in">குறியீட்டை மீண்டும் அனுப்புக (%1$02d:%2$02d)</string>
-    <string name="RegistrationActivity_contact_signal_support">Signal ஆதரவைத் தொடர்பு கொள்ளுங்கள்</string>
     <string name="RegistrationActivity_code_support_subject">Signal பதிவு - அண்ட்ராய்டு க்கான சரிபார்ப்புக் குறியீடு</string>
     <string name="RegistrationActivity_incorrect_code">தவறான குறியீடு</string>
     <string name="BackupUtil_never">ஒருபோதுமில்லை</string>
@@ -4879,25 +4757,8 @@
     <string name="TransferOrRestoreFragment__restore_from_local_backup">உள் காப்புப்பிரதியை மீட்டமை</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
-    <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">உங்கள் பழைய Android தொலைபேசியில் Signal த் திறக்கவும்</string>
-    <string name="NewDeviceTransferInstructions__continue">தொடர்ந்து செல் </string>
-    <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">தட்டவும் உங்கள் சுயவிவரத்தில் புகைப்படம் மேலே இடதுபுறம் திறந்த அமைப்புகள்</string>
-    <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_account">"தட்டவும் on \"கணக்கு\""</string>
-    <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
-    <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"தட்டவும் \"இடமாற்றம் கணக்கு\"பின்னர் இரண்டு சாதனங்களிலும்\" தொடரவும் \""</string>
 
     <!-- NewDeviceTransferSetupFragment -->
-    <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">பழைய Android சாதனத்துடன் இணைக்கத் தயாராகிறது…</string>
-    <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">ஒரு கணம் எடுத்து, விரைவில் தயாராக இருக்க வேண்டும்</string>
-    <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">பழைய Android சாதனம் இணைக்க காத்திருக்கிறது…</string>
-    <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal இடம் தேவை அனுமதி உங்கள் பழைய Android சாதனத்தைக் கண்டுபிடித்து இணைக்க.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal உங்கள் பழைய Android சாதனத்தைக் கண்டுபிடித்து இணைக்க இருப்பிட சேவைகள் தேவை.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal உங்கள் பழைய Android சாதனத்தைக் கண்டுபிடித்து இணைக்க Wi-Fi தேவை. வைஃபை இயக்கத்தில் இருக்க வேண்டும், ஆனால் அதை வைஃபை நெட்வொர்க்குடன் இணைக்க வேண்டியதில்லை.</string>
-    <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">மன்னிக்கவும், இந்த சாதனம் இல்லை என்று தோன்றுகிறது ஆதரவு வைஃபை நேரடி. Signal வைஃபை பயன்படுத்துகிறது நேரடிஉங்கள் பழைய Android சாதனத்தைக் கண்டுபிடித்து இணைக்க. நீங்கள் இன்னும் முடியும்மீட்டமை a காப்புப்பிரதி க்கு மீட்டமை உங்கள் கணக்கு உங்கள் பழைய Android சாதனத்திலிருந்து.</string>
-    <string name="NewDeviceTransferSetup__restore_a_backup">மீட்டமை a காப்புப்பிரதி</string>
-    <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">உங்கள் பழைய Android சாதனத்துடன் இணைக்க முயற்சிக்கும்போது எதிர்பாராத பிழை ஏற்பட்டது.</string>
 
     <!-- OldDeviceTransferSetupFragment -->
     <string name="OldDeviceTransferSetup__searching_for_new_android_device">புதிய Android சாதனத்தைத் தேடுகிறது…</string>
@@ -4941,9 +4802,6 @@
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device">தட்டவும் உங்கள் தொடரவும் மற்றவை சாதனம்…</string>
 
     <!-- NewDeviceTransferFragment -->
-    <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">முடியாது பரிமாற்றம் இன் புதிய பதிப்புகளிலிருந்து Signal</string>
-    <!-- Error message indicating that we could not finish the user\'s device transfer. Displayed in a toast at the bottom of the screen. -->
-    <string name="NewDeviceTransfer__failure_foreign_key">மாற்றப்பட்ட தரவு தவறாக வடிவமைக்கப்பட்டுள்ளது</string>
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">இடமாற்றம் தகவல்கள்</string>
@@ -4982,10 +4840,6 @@
     <string name="OldDeviceTransferComplete__close">நெருக்கமான</string>
 
     <!-- NewDeviceTransferComplete -->
-    <string name="NewDeviceTransferComplete__transfer_successful">இடமாற்றம் வெற்றிகரமாக</string>
-    <string name="NewDeviceTransferComplete__transfer_complete">இடமாற்றம் முழுமை</string>
-    <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">க்கு முழுமை தி பரிமாற்றம் செயல்முறை, நீங்கள் தொடர்ந்து பதிவு செய்ய வேண்டும்.</string>
-    <string name="NewDeviceTransferComplete__continue_registration">பதிவு தொடரவும்</string>
 
     <!-- DeviceToDeviceTransferService -->
     <string name="DeviceToDeviceTransferService_content_title">கணக்கு பரிமாற்றம்</string>
@@ -8753,219 +8607,6 @@
 
     <!-- ConfirmBackupCancellationDialog -->
 
-    <!-- Row title for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">என் பழைய ஃபோன் என்னிடம் உள்ளது</string>
-    <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_scan_qr">விரைவாகத் தொடங்க, உங்கள் தற்போதைய சிக்னல் கணக்கிலிருந்து QR குறியீட்டை ஸ்கேன் செய்யவும்</string>
-
-    <!-- Row title for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">என்னிடம் என் பழைய ஃபோன் இல்லை</string>
-    <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">அல்லது அதே சாதனத்தில் நீங்கள் சிக்னலை மீண்டும் நிறுவுகிறீர்கள்</string>
-
-    <!-- Screen title for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__restore_or_transfer_account">கணக்கை மீட்டெடுக்கவும் அல்லது இடமாற்றவும்</string>
-    <!-- Screen subtitle for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__get_your_signal_account">இந்தச் சாதனத்தில் உங்கள் சிக்னல் கணக்கு மற்றும் மெசேஜ் வரலாற்றைப் பெறவும்.</string>
-    <!-- Option title for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_signal_backup">சிக்னல் காப்புப்பிரதியை மீட்டமை</string>
-    <!-- Option subtitle for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_your_text_messages_and_media_from">உங்கள் சிக்னல் காப்புப்பிரதித் திட்டத்திலிருந்து உங்கள் உரைச் செய்திகள் மற்றும் ஊடகத்தை மீட்டெடுக்கவும்.</string>
-    <!-- Option title for restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_on_device_backup">சாதனத்திலுள்ள காப்புப்பிரதியை மீட்டெடுத்தல்</string>
-    <!-- Option subtitle fdor restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_your_messages_from">உங்கள் சாதனத்தில் நீங்கள் சேமித்த காப்புப்பிரதியிலிருந்து மெசேஜ்களை மீட்டெடுக்கவும்.</string>
-    <!-- Option title for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__from_your_old_phone">உங்களின் பழைய ஃபோனிலிருந்து</string>
-    <!-- Option subtitle for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__transfer_directly_from_old">உங்களின் பழைய Android சாதானத்திலிருந்து நேரடியாக இடமாற்றம் செய்யவும்</string>
-    <!-- Dialog title shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_title">மீட்டமைப்பதைத் தவிர்ப்பதா?</string>
-    <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">நீங்கள் இப்போது மீட்டெடுக்கவில்லை எனில், பின்னர் மீட்டெடுக்க முடியாது. மீட்டெடுப்பதைத் தவிர்த்த பிறகு நீங்கள் காப்புப்பிரதிகளை மீண்டும் செயல்படுத்தினால், உங்கள் தற்போதைய காப்புப்பிரதி உங்கள் புதிய செய்தி வரலாற்றுடன் மாற்றப்படும்.</string>
-    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore">மீட்டமைப்பதைத் தவிர்</string>
-
-    <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_title">உங்கள் மீட்புக் குறியீட்டை உள்ளிடுங்கள்</string>
-    <!-- Screen subtitle for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_subtitle">உங்கள் மீட்புக் குறியீடு என்பது உங்கள் கணக்கையும் தரவையும் மீட்டெடுக்க உதவும் 64 இலக்கக் குறியீடாகும்.</string>
-    <!-- Button to skip entering recovery key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">மீட்புக் குறியீடு இல்லையா?</string>
-    <!-- Recovery key text field hint -->
-    <string name="EnterBackupKey_backup_key">மீட்புக் குறியீடு</string>
-    <!-- Recovery key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">64 இலக்கம் கொண்ட மீட்புக் குறியீடு இல்லாமல் காப்புப் பிரதிகளை மீட்டெடுக்க முடியாது. உங்கள் காப்புப்பிரதி குறியீட்டை நீங்கள் இழந்திருந்தால், உங்கள் காப்புப் பிரதியை மீட்டெடுக்க சிக்னலால் உதவ இயலாது.</string>
-    <!-- Recovery key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">உங்களிடம் பழைய சாதனம் இருந்தால், அமைப்புகள் &gt; காப்புப்பிரதிகள் என்பதில் இருக்கும் உங்கள் மீட்புக் குறியீட்டைப் பார்க்க முடியும். பின்னர் மீட்புக் குறியீட்டைக் காண்க என்பதைத் தட்டவும்.</string>
-    <!-- Recovery key not known bottom sheet button to learn more about it -->
-    <string name="EnterBackupKey_learn_more">மேலும் அறிக</string>
-    <!-- Recovery key not known bottom sheet button to skip recovery key entry and resume normal reregistration -->
-    <string name="EnterBackupKey_skip_and_dont_restore">தவிர்த்து, மீட்டெடுக்க வேண்டாம்</string>
-    <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">தவறான மீட்புக் குறியீடு</string>
-    <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">சிக்னலின் பாதுகாப்பான காப்புப் பிரதிகளைச் செயல்படுத்தும் போது நீங்கள் சேமித்த அதே தொலைபேசி எண் மற்றும் 64 எழுத்து மீட்பு குறியீட்டுடன் நீங்கள் பதிவு செய்கிறீர்கள் என்பதை உறுதிப்படுத்திக் கொள்ளுங்கள். இந்தக் குறியீடு இல்லாமல் காப்புப் பிரதிகளை மீட்டெடுக்க முடியாது. இந்தக் குறியீடு இல்லாமல் காப்புப் பிரதிகளை மீட்டெடுக்க முடியாது.</string>
-    <!-- Dialog positive button text to try entering their recovery key again -->
-    <string name="EnterBackupKey_try_again">மீண்டும் முயற்சிக்கவும்</string>
-    <!-- Dialog negative button text to get help with recovery key -->
-    <string name="EnterBackupKey_backup_key_help">மீட்புக் குறியீடு உதவி</string>
-    <!-- Text field error text when the recovery key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">தவறான மீட்புக் குறியீடு</string>
-    <!-- Text field error text when the recovery key is too long -->
-    <string name="EnterBackupKey_too_long_error">மிக நீளமாக உள்ளது (%1$d/%2$d)</string>
-    <!-- Text field error when the recovery key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">தவறான மீட்புக் குறியீடு</string>
-    <!-- Dialog title shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_not_found">காப்புப்பிரதி கிடைக்கவில்லை</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">நீங்கள் உள்ளீடு செய்த மீட்பு குறியீடு சரியானது, ஆனால் அதனுடன் தொடர்புடைய காப்புப் பிரதி எதுவும் இல்லை. நீங்கள் பழைய தொலைபேசியை இன்னும் வைத்திருந்தால், காப்புப் பிரதிகள் இயக்கப்பட்டிருப்பதை உறுதிசெய்து, காப்புப் பிரதி நிறைவு செய்யப்பட்டது என்பதை உறுதிப்படுத்தி, மீண்டும் முயலுங்கள்.</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">நீங்கள் மீட்புக் குறியீட்டைத் தவறாக உள்ளிட்டிருக்கலாம், அல்லது உங்கள் பழைய சாதனத்தில் குறைந்தது ஒரு காப்புப்பிரதியை முடிக்காமல் இருக்கலாம்.\n\nசிக்னல் பாதுகாப்பு காப்புப்பிரதிகளைச் செயல்படுததும்போது நீங்கள் சேமித்த அதே பேசி எண் மற்றும் மீட்புக் குறியீட்டுடன் நீங்கள் பதிவு செய்கிறீர்கள் என்பதை உறுதிப்படுத்திக் கொள்ளவும், மேலும் உங்கள் பழைய சாதனம் காப்புப்பிரதியை முடித்துவிட்டது என்பதை உறுதிப்படுத்துங்கள்.</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">மீட்புக் குறியீட்டிற்கான முயற்சிகளின் வரம்பு முடிந்துவிட்டது. உங்கள் பாதுகாப்புக்காக, நீங்கள் செய்யக்கூடிய முயற்சிகளுக்கான எண்ணிக்கை குறைவாகவே உள்ளது. ஒரு மணி நேரம் காத்திருந்து, மீண்டும் முயலுங்கள்.</string>
-    <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
-    <string name="EnterBackupKey_skip_restore">மீட்டமைப்பதைத் தவிர்</string>
-    <!-- Dialog title text when encountering backup restore network error -->
-    <string name="EnterBackupKey_cant_restore_backup">காப்புப்பிரதியை மீட்டெடுக்க முடியவில்லை</string>
-    <!-- Dialog body text when encountering backup restore network error -->
-    <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">தற்போது உங்கள் காப்புப்பிரதியை மீட்டெடுக்க முடியவில்லை. உங்கள் இணைய இணைப்பைச் சரிபார்த்து மீண்டும் முயலவும். </string>
-    <!-- Dialog button text to contact support on network error -->
-    <string name="EnterBackupKey_contact_support">ஆதரவைத் தொடர்பு கொள்க</string>
-
-    <!-- Email subject when contacting support on a restore backup network issue -->
-    <string name="EnterBackupKey_network_failure_support_email">சிக்னல் ஆண்ட்ராய்டு காப்புப்பிரதியை மீட்டெடுப்பதில் நெட்வொர்க் பிழை</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
-    <!-- Email subject when contacting support on a permanent backup import failure -->
-    <string name="EnterBackupKey_permanent_failure_support_email">சிக்னல் ஆண்ட்ராய்டு காப்புப்பிரதி மீட்டமைப்பில் நிரந்திரத் தோல்வி</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
-
-    <!-- EnterLocalBackupKeyScreen: Screen title for entering recovery key for local backup restore -->
-    <string name="EnterLocalBackupKeyScreen__enter_your_recovery_key">உங்கள் மீட்புக் குறியீட்டை உள்ளிடுங்க்ள</string>
-    <!-- EnterLocalBackupKeyScreen: Screen subtitle explaining what the recovery key is -->
-    <string name="EnterLocalBackupKeyScreen__your_recovery_key_is_a_64_character_code">உங்கள் மீட்புக் குறியீடு என்பது உங்கள் கணக்கையும் தரவையும் மீட்டெடுக்க உதவும் 64 இலக்கக் குறியீடாகும்.</string>
-    <!-- EnterLocalBackupKeyScreen: Button text when user does not have a recovery key -->
-    <string name="EnterLocalBackupKeyScreen__no_recovery_key">மீட்புக் குறியீடு இல்லையா?</string>
-    <!-- EnterLocalBackupKeyScreen: Button to proceed to next step -->
-    <string name="EnterLocalBackupKeyScreen__next">அடுத்து</string>
-
-    <!-- RestoreLocalBackupDialog: Error message when the selected archive fails to load -->
-    <string name="RestoreLocalBackupDialog__failed_to_load_archive">காப்பகத்தை ஏற்ற முடியவில்லை. வேறொரு கோப்பகத்தைத் தேர்ந்தெடுக்கவும்.</string>
-    <!-- RestoreLocalBackupDialog: Dismiss button for dialog -->
-    <string name="RestoreLocalBackupDialog__ok">சரி</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore">மீட்டமைப்பதைத் தவிர்ப்பதா?</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user about the consequences of skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore_body">நீங்கள் இப்போது மீட்டெடுக்கவில்லை எனில், பின்னர் மீட்டெடுக்க முடியாது. மீட்டெடுப்பதைத் தவிர்த்த பிறகு நீங்கள் காப்புப்பிரதிகளை மீண்டும் செயல்படுத்தினால், உங்கள் தற்போதைய காப்புப்பிரதி உங்கள் புதிய செய்தி வரலாற்றுடன் மாற்றப்படும்.</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the skip restore dialog -->
-    <string name="RestoreLocalBackupDialog__skip_restore_confirm">மீட்டமைப்பதைத் தவிர்</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm restoring a backup from a different account -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account">புதிய கணக்கிற்கு மீட்டெடுக்கவா?</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user that the backup was created with a different account and they will lose group memberships -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account_body">நீங்கள் மீட்டெடுக்கும் காப்புப்பிரதி வேறொரு சிக்னல் கணக்கைப் பயன்படுத்தி உருவாக்கப்பட்டுள்ளது. இந்தக் காப்புப்பிரதியை நீங்கள் ஒரு புதிய கணக்கிற்கு மீட்டெடுக்கலாம், ஆனால் மீட்டெடுக்கப்பட்ட எந்தவொரு தொகுப்பிலும் நீங்கள் இனி உறுப்பினராக இருக்க மாட்டீர்கள்.</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the restore to new account dialog -->
-    <string name="RestoreLocalBackupDialog__restore">மீட்க</string>
-
-    <!-- RestoreLocalBackupActivity: Toast message when backup restore fails -->
-    <string name="RestoreLocalBackupActivity__backup_restore_failed">காப்புப்பிரதியை மீட்டெடுக்க முடியவில்லை</string>
-    <!-- RestoreLocalBackupActivity: Screen title shown during restore -->
-    <string name="RestoreLocalBackupActivity__restoring_backup">காப்புப்பிரதி மீட்டெடுக்கப்படுகிறது</string>
-    <!-- RestoreLocalBackupActivity: Screen subtitle explaining restore duration -->
-    <string name="RestoreLocalBackupActivity__depending_on_the_size">உங்கள் காப்புப்பிரதியின் அளவைப் பொறுத்து, இதற்குச் சில நிமிடங்கள் ஆகலாம்.</string>
-    <!-- RestoreLocalBackupActivity: Status text while restoring messages -->
-    <string name="RestoreLocalBackupActivity__restoring_messages">செய்திகள் மீட்டெடுக்கப்படுகிறது…</string>
-    <!-- RestoreLocalBackupActivity: Status text while finalizing restore -->
-    <string name="RestoreLocalBackupActivity__finalizing">இறுதி செய்யப்படுகிறது…</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore is complete -->
-    <string name="RestoreLocalBackupActivity__restore_complete">மீட்டெடுப்பு முடிந்தது</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore fails -->
-    <string name="RestoreLocalBackupActivity__restore_failed">மீட்டெடுக்க முடியவில்லை</string>
-    <!-- RestoreLocalBackupActivity: Progress text showing bytes read of total with percentage, e.g. "1.2 MB of 5.0 MB (24%)" -->
-    <string name="RestoreLocalBackupActivity__s_of_s_d_percent">%2$s இல் %1$s (%3$d%%)</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__cant_restore_backup">காப்புப்பிரதியை மீட்டெடுக்க முடியவில்லை</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__error_occurred_while_restoring">உங்கள் காப்புப்பிரதியை மீட்டெடுக்கும்போது பிழை ஏற்பட்டது. உங்கள் காப்புப்பிரதி மீட்டெடுக்கப்படவில்லை. உதவிக்கு ஆதரவைத் தொடர்பு கொள்ளுங்கள்.</string>
-
-    <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
-    <string name="RestoreLocalBackupActivity__contact_support">ஆதரவைத் தொடர்பு கொள்க</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
-    <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">சாதனத்தில் உள்ள காப்புப்பிரதிகளை ஆன் செய்யவா?</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">சாதனத்தில் உள்ள காப்புப்பிரதிகளைத் தொடர்ந்து பயன்படுத்த, இந்தக் கணக்கிற்கு அவற்றைச் செயல்படுத்த வேண்டும். அமைப்புகள் &gt; காப்புப்பிரதிகள் என்பதற்குச் சென்று எந்த நேரத்திலும் இதை நீங்கள் செய்யலாம்.</string>
-
-    <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__turn_on_now">இப்போதே ஆன் செய்க</string>
-
-    <!-- RestoreLocalBackupActivity: Dismiss button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__not_now">இப்போது வேண்டாம்</string>
-
-    <!-- RestoreLocalBackupActivity: Body text for the dialog shown after a successful restore, prompting the user to choose a backup folder -->
-    <string name="RestoreLocalBackupActivity__choose_a_folder_for_backups">சாதனத்தில் உள்ள காப்புப்பிரதிகளைத் தொடர்ந்து பயன்படுத்த, புதிய காப்புப்பிரதிகள் சேமிக்கப்படும் ஒரு கோப்புறையை உங்கள் சாதனத்தில் தேர்ந்தெடுக்கவும்.</string>
-
-    <!-- RestoreLocalBackupActivity: Positive button label for the dialog shown after a successful restore; keeps the current backup folder -->
-    <string name="RestoreLocalBackupActivity__use_current_folder">தற்போதைய கோப்புறையைப் பயன்படுத்துக</string>
-
-    <!-- RestoreLocalBackupActivity: Neutral button label for the dialog shown after a successful restore; opens folder picker to select a different backup location -->
-    <string name="RestoreLocalBackupActivity__choose_new_folder">புதிய கோப்புறையைத் தேர்வுசெய்க</string>
-
-    <!-- RestoreLocalBackupActivity: Negative button label for the dialog shown after a successful restore; disables on-device backups -->
-    <string name="RestoreLocalBackupActivity__disable_backups">காப்புப்பிரதிகளை முடக்குக</string>
-
-    <!-- SelectInstructionsSheet: Title for the select backup folder instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_folder">உங்கள் காப்புப்பிரதிக் கோப்புறையைத் தேர்ந்தெடுக்கவும்</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the select this folder button -->
-    <string name="SelectInstructionsSheet__tap_select_this_folder">\"இந்தக் கோப்புறையைத் தேர்ந்தெடு\" என்பதைத் தட்டவும்</string>
-    <!-- SelectInstructionsSheet: Instruction not to select individual files -->
-    <string name="SelectInstructionsSheet__do_not_select_individual_files">தனிப்பட்ட கோப்புகளைத் தேர்ந்தெடுக்க வேண்டாம்</string>
-    <!-- SelectInstructionsSheet: Title for the select backup file instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_file">உங்கள் காப்புப்பிரதிக் கோப்பைத் தேர்ந்தெடுக்கவும்</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the backup file saved to device -->
-    <string name="SelectInstructionsSheet__tap_on_the_backup_file">உங்கள் சாதனத்தில் நீங்கள் சேமித்த காப்புப்பிரதிக் கோப்பைத் தட்டவும்</string>
-    <!-- SelectInstructionsSheet: Subtitle explaining how to access backup after tapping continue -->
-    <string name="SelectInstructionsSheet__after_tapping_continue">\"தொடர்\" என்பதைத் தட்டிய பிறகு, உங்கள் காப்புப்பிரதியை அணுகும் விதம் இங்கே கொடுக்கப்பட்டுள்ளது:</string>
-    <!-- SelectInstructionsSheet: Instruction to select the top-level backup folder -->
-    <string name="SelectInstructionsSheet__select_the_top_level_folder">உங்கள் காப்புப்பிரதி சேமிக்கப்பட்டுள்ள உயர்மட்டக் கோப்புறையைத் தேர்ந்தெடுக்கவும்</string>
-    <!-- SelectInstructionsSheet: Continue button text -->
-    <string name="SelectInstructionsSheet__continue_button">தொடர்</string>
-
-    <!-- SelectLocalBackupScreen: Screen title for restoring on-device backup -->
-    <string name="SelectLocalBackupScreen__restore_on_device_backup">சாதனத்திலுள்ள காப்புப்பிரதியை மீட்டெடு</string>
-    <!-- SelectLocalBackupScreen: Screen subtitle explaining the restore process -->
-    <string name="SelectLocalBackupScreen__restore_your_messages_from_the_backup_folder">உங்கள் சாதனத்தில் நீங்கள் சேமித்த காப்புப்பிரதிக் கோப்புறையிலிருந்து உங்கள் மெசேஜ்களை மீட்டெடுக்கவும். நீங்கள் இப்போது மீட்டெடுக்கவில்லை என்றால், உங்களால் பிறகு மீட்டெடுக்க முடியாது.</string>
-    <!-- SelectLocalBackupScreen: Button to initiate backup restoration -->
-    <string name="SelectLocalBackupScreen__restore_backup">காப்புப்பதிவு பயனர் தரவு மீட்டமை</string>
-    <!-- SelectLocalBackupScreen: Button to choose an earlier backup when current is latest -->
-    <string name="SelectLocalBackupScreen__choose_an_earlier_backup">முந்தைய காப்புப்பிரதியைத் தேர்ந்தெடு</string>
-    <!-- SelectLocalBackupScreen: Button to choose a different backup -->
-    <string name="SelectLocalBackupScreen__choose_a_different_backup">வேறொரு காப்புப்பிரதியைத் தேர்ந்தெடு</string>
-    <!-- SelectLocalBackupScreen: Label for latest backup card -->
-    <string name="SelectLocalBackupScreen__your_latest_backup">உங்களின் அண்மைய காப்புப்பிரதி:</string>
-    <!-- SelectLocalBackupScreen: Label for non-latest backup card -->
-    <string name="SelectLocalBackupScreen__your_backup">உங்கள் காப்புப்பிரதி:</string>
-
-    <!-- SelectLocalBackupSheet: Title for backup selection bottom sheet -->
-    <string name="SelectLocalBackupSheet__choose_a_backup_to_restore">மீட்டெடுக்க ஒரு காப்புப்பிரதியைத் தேர்ந்தெடு</string>
-    <!-- SelectLocalBackupSheet: Subtitle warning about choosing an older backup -->
-    <string name="SelectLocalBackupSheet__choosing_an_older_backup">பழைய காப்புப்பிரதியைத் தேர்ந்தெடுப்பது, மெசேஜ்கள் அல்லது ஊடகத்தை இழக்கச் செய்யலாம்.</string>
-    <!-- SelectLocalBackupSheet: Continue button text -->
-    <string name="SelectLocalBackupSheet__continue_button">தொடர்</string>
-
-    <!-- SelectLocalBackupTypeScreen: Screen title for selecting backup type -->
-    <string name="SelectLocalBackupTypeScreen__restore_on_device_backup">சாதனத்திலுள்ள காப்புப்பிரதியை மீட்டெடு</string>
-    <!-- SelectLocalBackupTypeScreen: Screen subtitle explaining restore options -->
-    <string name="SelectLocalBackupTypeScreen__restore_your_messages_from_the_backup">உங்கள் சாதனத்தில் நீங்கள் சேமித்த காப்புப்பிரதியிலிருந்து மெசேஜ்களை மீட்டெடுக்கவும். இப்போது மீட்டெடுக்கப்படவில்லை எனில், பின்னர் மீட்டெடுக்க முடியாது.</string>
-    <!-- SelectLocalBackupTypeScreen: Button for users who saved backup as single file -->
-    <string name="SelectLocalBackupTypeScreen__i_saved_my_backup_as_a_single_file">நான் என் காப்புப்பிரதியை ஒற்றைக் கோப்பாகச் சேமித்துள்ளேன்</string>
-    <!-- SelectLocalBackupTypeScreen: Card title for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__choose_backup_folder">காப்புப்பிரதிக் கோப்புறையைத் தேர்ந்தெடு</string>
-    <!-- SelectLocalBackupTypeScreen: Card description for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__select_the_folder_on_your_device">உங்கள் காப்புப்பிரதி சேமிக்கப்பட்டுள்ள உங்கள் சாதனத்திலுள்ள கோப்புறையைத் தேர்ந்தெடுக்கவும்</string>
-
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">சிக்னல் ஆண்ட்ராய்டு காப்புப்பிரதி ஏற்றுமதி செய்யும் நெட்வொர்க்கில் பிழை</string>
     <!-- Email filter when contacting support on a create backup failure -->
@@ -8979,23 +8620,6 @@
     <string name="ContactSupportDialog_submit_with_debug">பிழைத்திருத்தப் பதிவுடன் சமர்ப்பி</string>
     <!-- Button option to not submit debug log when contacting support -->
     <string name="ContactSupportDialog_submit_without_debug">பிழைத்திருத்தப் பதிவு இல்லாமல் சமர்ப்பி</string>
-
-    <!-- Title for restore via qr screen -->
-    <string name="RestoreViaQr_title">உங்களின் பழைய ஃபோன் கொண்டு இந்தக் குறியீட்டை ஸ்கேன் செய்யவும்</string>
-    <!-- First instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_1">உங்களின் பழைய சாதனத்தில் சிக்னலைத் திறக்கவும்</string>
-    <!-- Second instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_2">கேமரா ஐகானைத் தட்டவும் </string>
-    <!-- Third instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_3">இந்தக் குறியீட்டைக் கேமரா கொண்டு ஸ்கேன் செய்யவும்</string>
-    <!-- Error message shown when qr code could not be loaded -->
-    <string name="RestoreViaQr_qr_code_error">QR குறியீட்டை உருவாக்க முடியவில்லை</string>
-    <!-- Status message shown when qr code already scanned by other device -->
-    <string name="RestoreViaQr_qr_code_scanned">பழைய சாதனத்தில் ஸ்கேன் செய்யவும்</string>
-    <!-- Error button text to retry getting a qr code -->
-    <string name="RestoreViaQr_retry">மீண்டும் முயற்சி செய்</string>
-    <!-- Error message shown when register after receiving the provisioning message failed -->
-    <string name="RestoreViaQr_registration_error">பிழை ஏற்பட்டதால் உங்கள் கணக்கை இடமாற்ற முடியவில்லை. QR குறியீட்டை மீண்டும் ஸ்கேன் செய்து மீண்டும் முயலுங்கள்.</string>
 
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">Signal கணக்கை நகர்த்தவும்</string>
@@ -9037,19 +8661,6 @@
     <string name="RestoreCompleteBottomSheet_transfer_complete_message">மற்ற சாதானத்திற்கு உங்கள் சிக்னல் கணக்கு மற்றும் மெசேஜ்கள் இடமாற்றப்பட்டன. இந்தச் சாதனத்தில் சிக்னல் இப்போது செயலற்ற நிலையில் உள்ளது.</string>
     <!-- Restore Complete bottom sheet dialog button text to dismiss sheet -->
     <string name="RestoreCompleteBottomSheet_button">சரி</string>
-
-    <!-- No Backup to Restore screen title -->
-    <string name="NoBackupToRestore_title">மீட்டமைக்க காப்புப்பிரதி இல்லை</string>
-    <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">நீங்கள் iPhone இலிருந்து Androidக்குச் செல்வதால், உங்கள் பழைய சாதனத்தில் சிக்னலின் பாதுகாப்பான காப்புப் பிரதிகளைச் செயல்படுத்துவதே உங்கள் மெசேஜ்களையும் ஊடகத்தையும் இடமாற்றுவதற்கான ஒரே வழி.</string>
-    <!-- No Backup to Restore step 1 to enable backups on old device -->
-    <string name="NoBackupToRestore_step1">உங்களின் பழைய சாதனத்தில் சிக்னலைத் திறந்திடுங்கள்</string>
-    <!-- No Backup to Restore step 2 to enable backups on old device -->
-    <string name="NoBackupToRestore_step2">அமைப்புகள் &gt; காப்புப்பிரதிகள் என்பதை அழுத்துங்கள்</string>
-    <!-- No Backup to Restore step 3 to enable backups on old device -->
-    <string name="NoBackupToRestore_step3">காப்புப்பிரதிகளை இயக்கி, உங்கள் காப்புப்பிரதி முடியும் வரை காத்திருங்கள்</string>
-    <!-- No backup to Restore tonal cta to skip restore -->
-    <string name="NoBackupToRestore_skip_restore">மீட்டமைப்பதைத் தவிர்</string>
 
     <!-- Dialog title when the recovery key change limit is reached -->
     <string name="MessageBackupsKeyRecordScreen__limit_reached_title">மீட்புக் குறியீட்டு வரம்பை அடைந்தது</string>

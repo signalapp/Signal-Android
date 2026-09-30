@@ -863,23 +863,8 @@
     <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Walang makakakita na nasa Signal ka maliban sa mga taong minessage o naka-chat mo.</string>
 
     <!-- ChooseBackupFragment -->
-    <string name="ChooseBackupFragment__restore_from_backup">I-restore mula sa backup?</string>
-    <string name="ChooseBackupFragment__restore_your_messages_and_media">I-restore ang iyong mga mensahe at media mula sa isang lokal na backup. Kung hindi ka magre-restore ngayon, hindi ka na makakapag-restore sa hinaharap.</string>
-    <string name="ChooseBackupFragment__icon_content_description">I-restore mula sa backup icon</string>
-    <string name="ChooseBackupFragment__choose_backup">Pumili ng backup</string>
-    <string name="ChooseBackupFragment__learn_more">Matuto pa</string>
 
     <!-- RestoreBackupFragment -->
-    <string name="RestoreBackupFragment__restore_complete">Restore complete</string>
-    <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Para magpatuloy sa paggamit ng backups, pumili ng isang folder. Ang bagong backups ay isa-save sa location na ito.</string>
-    <string name="RestoreBackupFragment__choose_folder">Pumili ng folder</string>
-    <string name="RestoreBackupFragment__not_now">Hindi ngayon</string>
-    <!-- Couldn\'t find the selected backup -->
-    <string name="RestoreBackupFragment__backup_not_found">Backup not found.</string>
-    <!-- Couldn\'t read the selected backup -->
-    <string name="RestoreBackupFragment__backup_could_not_be_read">Backup could not be read.</string>
-    <!-- Backup has an unsupported file extension -->
-    <string name="RestoreBackupFragment__backup_has_a_bad_extension">Ang backup ay may bad extension.</string>
 
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
@@ -1416,60 +1401,6 @@
     <string name="ManageGroupActivity_add_group_description">Mag-add ng group description…</string>
 
     <!-- RemoteRestoreActivity -->
-    <!-- Progress dialog label when downloading a backup -->
-    <string name="RemoteRestoreActivity__downloading_backup">Dina-download ang backup…</string>
-    <!-- Progress dialog label when restoring a backup -->
-    <string name="RemoteRestoreActivity__restoring_messages">Nire-restore ang messages…</string>
-    <!-- Progress dialog label when finishing a backup restore -->
-    <string name="RemoteRestoreActivity__finishing_restore">Tinatapos…</string>
-    <!-- Progress dialog label while awaiting updates -->
-    <string name="RemoteRestoreActivity__restoring">Nagre-restore…</string>
-    <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
-    <string name="RemoteRestoreActivity__s_of_s_s">%1$s ng %2$s (%3$s)</string>
-    <!-- Feature list media label for paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_media">Lahat ng iyong media</string>
-    <!-- Feature list media label for free tier. Placeholder is days, and is currently fixed at 30. -->
-    <string name="RemoteRestoreActivity__your_last_d_days_of_media">Ang last %1$d days ng iyong media</string>
-    <!-- Feature list message label for free and paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_messages">Lahat ng iyong messages</string>
-    <!-- Screen title for restoring from backup -->
-    <string name="RemoteRestoreActivity__restore_from_backup">Mag-restore mula sa backup</string>
-    <!-- Section title for explaining what your backup includes -->
-    <string name="RemoteRestoreActivity__your_backup_includes">Kasama sa backup mo ang:</string>
-    <!-- Primary action button copy for starting restoration -->
-    <string name="RemoteRestoreActivity__restore_backup">Mag-restore ng backup</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made. %1$s is replaced with the date (e.g. March 5, 2024) and %2$s is replaced with the time (e.g. 9:00am) -->
-    <string name="RemoteRestoreActivity__backup_created_at">Huli kang nag-backup noong %1$s nang %2$s.</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
-    <string name="RemoteRestoreActivity__backup_created_at_with_size">Huli kang nag-backup noong %1$s sa ganap na %2$s. Ang iyong backup size ay %3$s.</string>
-    <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
-    <string name="RemoteRestoreActivity__fetching_backup_details">Kinukuha ang backup details…</string>
-    <!-- Text label button to skip restore from remote -->
-    <string name="RemoteRestoreActivity__skip_restore">I-skip ang restore</string>
-    <!-- Dialog title displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__couldnt_transfer">Hindi matapos ang paglipat</string>
-    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Hindi ma-restore ang backup</string>
-    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">Nagkaroon ng error habang sinusubukang i-restore ang backup mo. Hindi na maaaring i-recover ang backup mo. Paki contact ang support para makakuha ng tulong.</string>
-    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Kontakin ang Support</string>
-    <!-- Dialog message displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__error_occurred">Nagkaroon ng error at hindi mailipat ang account mo. Subukan ulit sa pamamagitan ng pagpili ng paraan ng paglipat.</string>
-    <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
-    <string name="RemoteRestoreActivity__couldnt_restore">Hindi ma-restore ang backup na ito</string>
-    <!-- Dialog message explaining that an update to Signal is required to restore the backup. -->
-    <string name="RemoteRestoreActivity__update_latest">Hindi ma-restore ng Signal version na ito ang backup mo. Mag-update sa latest version at subukan ulit.</string>
-    <!-- Text on button that when pressed will redirect them to update Signal -->
-    <string name="RemoteRestoreActivity__update_signal">I-update ang Signal</string>
-    <!-- Text label button to dismiss the dialog -->
-    <string name="RemoteRestoreActivity__not_now">Hindi na muna</string>
-    <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Ire-restore ang iyong media sa background. Kung hindi ka mag-restore ngayon, hindi mo na ito magagawa sa susunod.</string>
-    <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">Hindi na registered ang device na ito</string>
-    <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">Maaaring dahil ibang device ang ginamit mo sa pag-register ng iyong Signal account.</string>
 
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
@@ -2234,17 +2165,6 @@
     <string name="PinRestoreLockedFragment_create_new_pin">Gumawa ng bagong PIN</string>
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
-    <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
-    <string name="ReRegisterWithPinFragment_send_sms_code">I-send ang SMS code</string>
-    <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">Signal Registration - Kailangan ng Tulong sa pag-register ulit ng PIN sa Android</string>
-    <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">Ang iyong PIN ay isang %1$d+ digit code na ginawa mo at maaari itong numeric o alphanumeric.\n\nKung hindi mo maalala ang iyong PIN, maaari kang gumawa ng bago.</string>
-    <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">Kung hindi mo maalala ang iyong PIN, maaari kang gumawa ng bago.</string>
-    <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">Naubusan ka na ng PIN guesses, pero maaari mo pa ring ma-access ang iyong Signal account sa pamamagitan ng paggawa ng bagong PIN.</string>
-
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Babala</string>
     <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Kapag dinisable mo ang iyong PIN, mawawala ang lahat ng data kapag nag-register ka ulit sa Signal maliban na lang kung manually kang nag-back up at restore. Hindi mo pwedeng i-on ang Registration Lock habang naka-disable ang PIN.</string>
@@ -2324,6 +2244,12 @@
     <string name="WebRtcCallActivity__open_settings">Buksan ang settings</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">Hindi sa ngayon</string>
+    <!-- Message for dialog shown at the start of a call when the system battery setting for Signal is "Restricted" -->
+    <string name="WebRtcCallActivity__others_may_not_be_able_to_hear_you_when_your_screen_turns_off">Others may not be able to hear you and the call may disconnect when your screen turns off. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
+    <!-- Title for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__others_couldnt_hear_you">Others couldn\'t hear you</string>
+    <!-- Message for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__your_microphone_was_muted_while_signal_was_in_the_background">Your microphone was muted while Signal was in the background. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
     <!-- Title for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__approve_d_requests">
         <item quantity="one">Gusto mo bang aprubahan ang %1$d request?</item>
@@ -2639,50 +2565,20 @@
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Ang numerong iyong tinukoy (%1$s) ay hindi valid.
     </string>
 
-    <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">Tama ba ang phone number na nasa ibaba?</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
     <string name="RegistrationActivity_additional_verification_required">Kailangan ng additional verification</string>
-    <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">Magse-send ng verification code sa number na ito. Maaaring magkaroon ng carrier charges.</string>
-    <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Makakatanggap ka ng verification code. Maaaring mailapat ang mga singilin ng Carrier.</string>
-    <!-- Hint text to select a country -->
-    <string name="RegistrationActivity_select_a_country">Pumili ng bansa</string>
-    <!-- Hint text explaining that this is where the country code should go -->
-    <string name="RegistrationActivity_default_country_code">0</string>
-    <string name="RegistrationActivity_edit_number">I-edit ang numero</string>
-    <string name="RegistrationActivity_missing_google_play_services">Nawawala ang Google Play Services</string>
-    <string name="RegistrationActivity_this_device_is_missing_google_play_services">Nawawala sa device na ito ang Google Play Services. Maaari mo pa ring gamitin ang Signal, ngunit ang configuration na ito ay maaaring magresulta sa kabawasan sa pagiging maaasahan o paggana.\n\nKung ikaw ay advanced na user, hindi gumagamit ng aftermarket na Android ROM, o kaya\'y naniniwala kang hindi mo dapat ito nakikita, makipag-ugnayan sa support@signal.org para makatulong kami sa pag-troubleshoot.</string>
-    <string name="RegistrationActivity_i_understand">Nauunawaan ko</string>
-    <string name="RegistrationActivity_play_services_error">Nagka-error sa Play Services</string>
-    <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Ang Google Play Services ay nag-u-update o kaya\'y pansamantalang hindi available. Pakisubukang muli.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Nakagawa ka ng napakaraming pagtatangkang irehistro ang numerong ito. Pakiusap na subukang muli kinalaunan.</string>
-    <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">Masyadong maraming beses mo nang sinubukang i-register ang number na ito. Subukan ulit pagkatapos ng %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Hindi makakonekta sa serbisyo. Pakisuri ang koneksyon ng network at subukang muli.</string>
     <!-- Dialog error message shown when we are unable to send an SMS to the user\'s number -->
     <string name="RegistrationActivity_sms_provider_error">Hindi kami makapag-send ng text sa number mo. Subukan ulit pagkatapos ng ilang oras.</string>
-    <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Hindi kami makapag-send sa \'yo ng verification code via SMS. Subukang kuhanin ang iyong code via voice call.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">Hindi makapag-request ng verification code. Paki-check ng iyong network connection at subukan ulit.</string>
-    <string name="RegistrationActivity_non_standard_number_format">Non-standard number format</string>
-    <!-- Dialog message shown to confirm when entering phone number (first placeholder) is normalized and formatted differently by the app (second placeholder). -->
-    <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Ang number na nilagay mo (%1$s) ay mukhang isang non-standard format.\n\nDid you mean %2$s?</string>
-    <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Phone Number Format</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="one">Ikaw ngayon ay %1$d layong-hakbang na lang sa pagsusumite ng debug log.</item>
         <item quantity="other">%1$d hakbang ka pa para makapagsumite ng debug log.</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Kailangan naming beripikahing tao ka.</string>
-    <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
-    <string name="RegistrationActivity_voice_call">Voice call</string>
-    <!-- Dialog button to cancel the pending action and return to the previous state. -->
-    <string name="RegistrationActivity_cancel">I-cancel</string>
     <string name="RegistrationActivity_next">Susunod</string>
-    <!-- Title of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_phone_number">Phone number</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Ilagay ang code na ipinadala namin sa %1$s</string>
 
     <string name="RegistrationActivity_phone_number_description">Phone number</string>
@@ -2881,6 +2777,8 @@
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Nabigong i-load ang sticker pack</string>
     <!-- Bottom sheet describing a sticker. First placeholder is the title of the sticker pack and second is the author -->
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
+    <!-- Bottom sheet option that opens the pack the sticker belongs to -->
+    <string name="StickerPreviewBottomSheet__view_pack">View pack</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">I-save</string>
@@ -3619,8 +3517,6 @@
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Para maka-receive ng call notifications, i-tap ang Settings at i-enable ang background activity sa \"Battery\" settings.</string>
 
     <!-- country_selection_fragment -->
-    <string name="country_selection_fragment__loading_countries">Nilo-load ang mga bansa…</string>
-    <string name="country_selection_fragment__search">Maghanap</string>
 
     <string name="device_list_fragment__link_new_device">Mag-link ng bagong device</string>
 
@@ -4454,6 +4350,8 @@
     <string name="conversation_selection__menu_pin_message">I-pin</string>
     <!-- Button to unpin a message -->
     <string name="conversation_selection__menu_unpin_message">I-unpin</string>
+    <!-- Button to open the sticker pack a sticker message came from -->
+    <string name="conversation_selection__menu_view_sticker_pack">View pack</string>
 
     <!-- conversation_expiring_on -->
 
@@ -4644,14 +4542,11 @@
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">Ilagay ang iyong PIN</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Ipasok ang PIN na iyong nilikha para sa iyong account. Ito ay iba sa iyong SMS verification code.</string>
-    <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
-    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Ilagay ang ginawa mong PIN para sa account na ito.</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Hindi tama ang PIN. Subukang muli.</string>
     <string name="RegistrationLockFragment__forgot_pin">Nakalimutan ang PIN?</string>
     <string name="RegistrationLockFragment__incorrect_pin">Hindi tama ang PIN</string>
     <string name="RegistrationLockFragment__forgot_your_pin">Nakalimutan ang iyong PIN?</string>
     <string name="RegistrationLockFragment__not_many_tries_left">Hindi na marami ang natitirang pagsubok!</string>
-    <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal Registration - Need Help sa PIN for Android (v2 PIN)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
         <item quantity="one">Para sa iyong privacy at seguridad, walang paraan upang ma-recover ang iyong PIN. Kung hindi mo maalala ang iyong PIN, maaari kang mag-verify ulit sa pamamagitan ng SMS makalipas ang %1$d araw ng kawalang-aktibidad. Kapag nangyari ito, mabubura ang laman ng iyong account at ang lahat ng content.</item>
@@ -4706,22 +4601,6 @@
     <string name="backup_enable_dialog__you_must_have_this_passphrase">You must have this passphrase para makapag-restore ka ng backup.</string>
     <string name="backup_enable_dialog__folder">Folder</string>
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Naisulat ko na ang passphrase na ito. Kung wala ito, hindi ako makakapag-restore ng backup.</string>
-    <string name="registration_activity__restore_backup">Mag-restore ng backup</string>
-    <!-- Text label button to skip restoring -->
-    <string name="registration_activity__skip_restore">I-skip ang restore</string>
-    <!-- Title for dialog to enter in the backup passphrase -->
-    <string name="RegistrationActivity_enter_backup_passphrase">Ilagay ang passphrase ng backup</string>
-    <string name="RegistrationActivity_restore">I-restore</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">\'Di ma-import ang backups mula sa newer Signal versions</string>
-    <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
-    <string name="RegistrationActivity_backup_failure_foreign_key">Ang backup ay naglalaman ng malformed data</string>
-    <string name="RegistrationActivity_incorrect_backup_passphrase">Hindi tamang passphrase ng backup</string>
-    <string name="RegistrationActivity_checking">Sinusuri…</string>
-    <string name="RegistrationActivity_d_messages_so_far">%1$d mensahe sa ngayon…</string>
-    <string name="RegistrationActivity_restore_from_backup">I-restore mula sa backup?</string>
-    <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">I-restore ang iyong mga mensahe at media mula sa isang lokal na backup. Kung hindi ka magre-restore ngayon, hindi ka na makakapag-restore sa hinaharap.</string>
-    <string name="RegistrationActivity_backup_size_s">Size ng backup: %1$s</string>
-    <string name="RegistrationActivity_backup_timestamp_s">Timestamp ng backup: %1$s</string>
     <string name="BackupDialog_enable_local_backups">I-enable ang mga lokal na backup?</string>
     <string name="BackupDialog_enable_backups">I-enable ang mga backup?</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Pakikumpirma ang iyong pagkakaunawa sa pamamagitan ng paglalagay ng check sa check box ng kumpirmasyon.</string>
@@ -4757,7 +4636,6 @@
     <string name="RegistrationActivity_call_me_instead_available_in">Tawagan ako (%1$02d:%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
     <string name="RegistrationActivity_resend_sms_available_in">I-resend ang Code (%1$02d:%2$02d)</string>
-    <string name="RegistrationActivity_contact_signal_support">Makipag-ugnayan sa Suporta ng Signal</string>
     <string name="RegistrationActivity_code_support_subject">Pagpaparehistro sa Signal - Verification Code para sa Android</string>
     <string name="RegistrationActivity_incorrect_code">Maling kodigo</string>
     <string name="BackupUtil_never">Hindi kailanman</string>
@@ -4879,25 +4757,8 @@
     <string name="TransferOrRestoreFragment__restore_from_local_backup">I-restore ang local backup</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
-    <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Buksan ang Signal sa old Android phone mo.</string>
-    <string name="NewDeviceTransferInstructions__continue">Magpatuloy</string>
-    <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">I-tap ang iyong profile photo sa top left para mabuksan ang Settings</string>
-    <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_account">"I-tap ang \"Account\""</string>
-    <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
-    <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"I-tap ang \"Transfer Account\" and then \"Continue\" sa parehong devices"</string>
 
     <!-- NewDeviceTransferSetupFragment -->
-    <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Preparing to connect to old Andoid device…</string>
-    <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Taking a moment, should be ready soon</string>
-    <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Waiting for old Android device to connect…</string>
-    <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Kailangan ng Signal ang location permission para ma-discover at maka-connect sa old Android device mo.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Kailangan ng Signal ang enabled location services para ma-discover at maka-connect sa old Android device mo.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Kailangan ng Signal ang naka-turn on na Wi-Fi access para ma-discover at maka-connect sa old Android device mo. Dapat naka-turn on ang WiFi pero hindi naman kailangan na connected ito sa isang Wi-Fi network.</string>
-    <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Sorry, hindi supported ng iyong device ang Wi-Fi Direct. Gumagamit ang Signal ng Wi-Fi Direct para ma-discover at maka-connect sa old Android device mo. Pwede kang mag-restore ng backup para ma-restore ang iyong account mula sa old Android device mo.</string>
-    <string name="NewDeviceTransferSetup__restore_a_backup">Mag-restore ng backup</string>
-    <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">An unexpected error occurred while attempting to connect to your old Android device.</string>
 
     <!-- OldDeviceTransferSetupFragment -->
     <string name="OldDeviceTransferSetup__searching_for_new_android_device">Searching for new Android device…</string>
@@ -4941,9 +4802,6 @@
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device">I-tap ang Continue sa other device mo…</string>
 
     <!-- NewDeviceTransferFragment -->
-    <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Hindi ma-transfer sa newer versions ng Signal</string>
-    <!-- Error message indicating that we could not finish the user\'s device transfer. Displayed in a toast at the bottom of the screen. -->
-    <string name="NewDeviceTransfer__failure_foreign_key">Ang transferred data ay malformed</string>
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">Transferring data</string>
@@ -4982,10 +4840,6 @@
     <string name="OldDeviceTransferComplete__close">Isara</string>
 
     <!-- NewDeviceTransferComplete -->
-    <string name="NewDeviceTransferComplete__transfer_successful">Transfer successful</string>
-    <string name="NewDeviceTransferComplete__transfer_complete">Transfer complete</string>
-    <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">Para makumpleto ang transfer process, kailangan mong i-continue ang registration.</string>
-    <string name="NewDeviceTransferComplete__continue_registration">Continue registration</string>
 
     <!-- DeviceToDeviceTransferService -->
     <string name="DeviceToDeviceTransferService_content_title">Account transfer</string>
@@ -8753,219 +8607,6 @@
 
     <!-- ConfirmBackupCancellationDialog -->
 
-    <!-- Row title for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">Nasa akin ang lumang phone ko</string>
-    <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_scan_qr">I-scan ang QR code mula sa current Signal account mo para makapagsimula agad</string>
-
-    <!-- Row title for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">Wala sa akin ang lumang phone ko</string>
-    <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">O nag-iinstall ka ulit ng Signal sa parehong device</string>
-
-    <!-- Screen title for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__restore_or_transfer_account">I-restore o ilipat ang account</string>
-    <!-- Screen subtitle for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__get_your_signal_account">Ilagay ang Signal account at message history mo sa device na ito.</string>
-    <!-- Option title for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_signal_backup">I-restore ang Signal backup</string>
-    <!-- Option subtitle for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_your_text_messages_and_media_from">I-restore ang text messages at media mo mula sa iyong Signal backup plan.</string>
-    <!-- Option title for restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_on_device_backup">I-restore ang on-device backup</string>
-    <!-- Option subtitle fdor restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_your_messages_from">I-restore ang messages mo mula sa backup na naka-save sa iyong device.</string>
-    <!-- Option title for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__from_your_old_phone">Mula sa lumang phone mo</string>
-    <!-- Option subtitle for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__transfer_directly_from_old">Direktang ilipat mula sa lumang Android mo</string>
-    <!-- Dialog title shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_title">I-skip ang pag-restore?</string>
-    <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">Kung hindi ka mag-restore ngayon, hindi mo na ito magagawa mamaya. Kung i-enable mo ulit ang backups pagkatapos mong laktawan ang pag-restore, ang current backup mo ay mapapalitan ng bagong messaging history mo.</string>
-    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore">I-skip ang restore</string>
-
-    <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_title">Ilagay ang iyong recovery key</string>
-    <!-- Screen subtitle for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_subtitle">Ang backup key mo ay isang 64-character code na kinakailangan para ma-recover ang iyong account at data.</string>
-    <!-- Button to skip entering recovery key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">Walang recovery key?</string>
-    <!-- Recovery key text field hint -->
-    <string name="EnterBackupKey_backup_key">Recovery key</string>
-    <!-- Recovery key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">Hindi mare-recover ang backups kapag wala ang 64-character recovery code nito. Kapag nawala mo ang iyong backup key, hindi ka matutulungan ng Signal na i-restore ang backup mo.</string>
-    <!-- Recovery key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">Kung nasa \'yo ang lumang device mo, pwede mong tignan ang iyong recovery key sa Settings &gt; Backups. Pagkatapos ay i-tap ang Tingnan ang recovery key.</string>
-    <!-- Recovery key not known bottom sheet button to learn more about it -->
-    <string name="EnterBackupKey_learn_more">Matuto pa</string>
-    <!-- Recovery key not known bottom sheet button to skip recovery key entry and resume normal reregistration -->
-    <string name="EnterBackupKey_skip_and_dont_restore">I-skip at huwag i-restore</string>
-    <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">Mali ang recovery key</string>
-    <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">Siguraduhing nagre-register ka gamit ang parehong phone number at 64-character recovery key na sinave mo noong in-enable mo ang Signal Secure Backups. Hindi mare-recover ang backups kapag wala ang key na ito.</string>
-    <!-- Dialog positive button text to try entering their recovery key again -->
-    <string name="EnterBackupKey_try_again">Subukang muli</string>
-    <!-- Dialog negative button text to get help with recovery key -->
-    <string name="EnterBackupKey_backup_key_help">Tulong sa recovery key</string>
-    <!-- Text field error text when the recovery key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">Mali ang recovery key</string>
-    <!-- Text field error text when the recovery key is too long -->
-    <string name="EnterBackupKey_too_long_error">Masyadong mahaba (%1$d/%2$d)</string>
-    <!-- Text field error when the recovery key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">Invalid ang recovery key</string>
-    <!-- Dialog title shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_not_found">Hindi mahanap ang backup</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Tama ang backup key na inilagay mo, pero walang backup na nauugnay dito. Kung nasa \'yo pa rin ang lumang phone mo, siguraduhing naka-enable ang backups at nakumpleto na ang pag-back up, at subukan ulit.</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">Maaaring maling recovery key ang nailagay mo, o hindi ka pa nakapag-back up sa lumang device mo.\n\nSiguraduhing nagre-register ka gamit ang parehong phone number at recovery key na sinave mo noong in-enable mo ang Signal Secure Backups, at kumpirmahing nakapag-backup ka na sa lumang device mo.</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">Naubusan ka na ng recovery key attempts. Para sa iyong seguridad, limitado ang attempts na maaari mong gawin. Maghintay ng isang oras at subukan ulit.</string>
-    <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
-    <string name="EnterBackupKey_skip_restore">I-skip ang restore</string>
-    <!-- Dialog title text when encountering backup restore network error -->
-    <string name="EnterBackupKey_cant_restore_backup">Hindi ma-restore ang backup</string>
-    <!-- Dialog body text when encountering backup restore network error -->
-    <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">Hindi ma-restore ang backup mo ngayon. I-check ang iyong internet connection at subukan ulit. </string>
-    <!-- Dialog button text to contact support on network error -->
-    <string name="EnterBackupKey_contact_support">Kontakin ang Support</string>
-
-    <!-- Email subject when contacting support on a restore backup network issue -->
-    <string name="EnterBackupKey_network_failure_support_email">Network error sa pag-restore ng Signal Android Backup</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
-    <!-- Email subject when contacting support on a permanent backup import failure -->
-    <string name="EnterBackupKey_permanent_failure_support_email">Permanenteng pagkabigo sa pag-restore ng Signal Android Backup</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
-
-    <!-- EnterLocalBackupKeyScreen: Screen title for entering recovery key for local backup restore -->
-    <string name="EnterLocalBackupKeyScreen__enter_your_recovery_key">Ilagay ang iyong recovery key</string>
-    <!-- EnterLocalBackupKeyScreen: Screen subtitle explaining what the recovery key is -->
-    <string name="EnterLocalBackupKeyScreen__your_recovery_key_is_a_64_character_code">Ang backup key mo ay isang 64-character code na kinakailangan para ma-recover ang iyong account at data.</string>
-    <!-- EnterLocalBackupKeyScreen: Button text when user does not have a recovery key -->
-    <string name="EnterLocalBackupKeyScreen__no_recovery_key">Walang recovery key?</string>
-    <!-- EnterLocalBackupKeyScreen: Button to proceed to next step -->
-    <string name="EnterLocalBackupKeyScreen__next">Susunod</string>
-
-    <!-- RestoreLocalBackupDialog: Error message when the selected archive fails to load -->
-    <string name="RestoreLocalBackupDialog__failed_to_load_archive">Failed ang pag-load ng archive. Pumili ng ibang directory.</string>
-    <!-- RestoreLocalBackupDialog: Dismiss button for dialog -->
-    <string name="RestoreLocalBackupDialog__ok">OK</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore">I-skip ang pag-restore?</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user about the consequences of skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore_body">Kung hindi ka mag-restore ngayon, hindi mo na ito magagawa mamaya. Kung i-enable mo ulit ang backups pagkatapos mong laktawan ang pag-restore, ang current backup mo ay mapapalitan ng bagong messaging history mo.</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the skip restore dialog -->
-    <string name="RestoreLocalBackupDialog__skip_restore_confirm">I-skip ang restore</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm restoring a backup from a different account -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account">I-restore sa bagong account?</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user that the backup was created with a different account and they will lose group memberships -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account_body">Ginawa sa ibang Signal account ang backup na nire-restore mo. Pwede mong i-restore ang backup na ito sa bagong account, pero hindi ka na magiging member ng anumang group na ni-restore.</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the restore to new account dialog -->
-    <string name="RestoreLocalBackupDialog__restore">I-restore</string>
-
-    <!-- RestoreLocalBackupActivity: Toast message when backup restore fails -->
-    <string name="RestoreLocalBackupActivity__backup_restore_failed">Failed ang pag-restore ng backup</string>
-    <!-- RestoreLocalBackupActivity: Screen title shown during restore -->
-    <string name="RestoreLocalBackupActivity__restoring_backup">Nire-restore ang backup</string>
-    <!-- RestoreLocalBackupActivity: Screen subtitle explaining restore duration -->
-    <string name="RestoreLocalBackupActivity__depending_on_the_size">Depende sa laki ng backup mo, maaari itong tumagal ng ilang minuto.</string>
-    <!-- RestoreLocalBackupActivity: Status text while restoring messages -->
-    <string name="RestoreLocalBackupActivity__restoring_messages">Nire-restore ang messages…</string>
-    <!-- RestoreLocalBackupActivity: Status text while finalizing restore -->
-    <string name="RestoreLocalBackupActivity__finalizing">Finalizing…</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore is complete -->
-    <string name="RestoreLocalBackupActivity__restore_complete">Restore complete</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore fails -->
-    <string name="RestoreLocalBackupActivity__restore_failed">Failed ang pag-restore</string>
-    <!-- RestoreLocalBackupActivity: Progress text showing bytes read of total with percentage, e.g. "1.2 MB of 5.0 MB (24%)" -->
-    <string name="RestoreLocalBackupActivity__s_of_s_d_percent">%1$s ng %2$s (%3$d%%)</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__cant_restore_backup">Hindi ma-restore ang backup</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__error_occurred_while_restoring">Nagkaroon ng error habang sinusubukang i-restore ang backup mo. Hindi na maaaring i-recover ang backup mo. Paki contact ang support para makakuha ng tulong.</string>
-
-    <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
-    <string name="RestoreLocalBackupActivity__contact_support">Kontakin ang Support</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
-    <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">I-on ang on-device backups?</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Para patuloy na magamit ang on-device backup, kailangan mo itong i-enable sa account na ito. Pwede mo itong gawin anumang oras sa Settings &gt; Backups.</string>
-
-    <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__turn_on_now">I-on</string>
-
-    <!-- RestoreLocalBackupActivity: Dismiss button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__not_now">Hindi na muna</string>
-
-    <!-- RestoreLocalBackupActivity: Body text for the dialog shown after a successful restore, prompting the user to choose a backup folder -->
-    <string name="RestoreLocalBackupActivity__choose_a_folder_for_backups">Para magpatuloy sa paggamit ng on-device backups, pumili ng folder sa iyong device kung saan ise-save ang bagong backups.</string>
-
-    <!-- RestoreLocalBackupActivity: Positive button label for the dialog shown after a successful restore; keeps the current backup folder -->
-    <string name="RestoreLocalBackupActivity__use_current_folder">Gamitin ang current folder</string>
-
-    <!-- RestoreLocalBackupActivity: Neutral button label for the dialog shown after a successful restore; opens folder picker to select a different backup location -->
-    <string name="RestoreLocalBackupActivity__choose_new_folder">Pumili ng bagong folder</string>
-
-    <!-- RestoreLocalBackupActivity: Negative button label for the dialog shown after a successful restore; disables on-device backups -->
-    <string name="RestoreLocalBackupActivity__disable_backups">I-disable ang backups</string>
-
-    <!-- SelectInstructionsSheet: Title for the select backup folder instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_folder">Piliin ang backup folder mo</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the select this folder button -->
-    <string name="SelectInstructionsSheet__tap_select_this_folder">I-tap ang \"Piliin ang folder na ito\"</string>
-    <!-- SelectInstructionsSheet: Instruction not to select individual files -->
-    <string name="SelectInstructionsSheet__do_not_select_individual_files">Huwag pumili ng individual files</string>
-    <!-- SelectInstructionsSheet: Title for the select backup file instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_file">Piliin ang backup file mo</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the backup file saved to device -->
-    <string name="SelectInstructionsSheet__tap_on_the_backup_file">I-tap ang backup file na naka-save sa device mo</string>
-    <!-- SelectInstructionsSheet: Subtitle explaining how to access backup after tapping continue -->
-    <string name="SelectInstructionsSheet__after_tapping_continue">Pagkatapos i-tap ang \"Magpatuloy,\" gawin ang sumusunod para ma-access ang backup mo:</string>
-    <!-- SelectInstructionsSheet: Instruction to select the top-level backup folder -->
-    <string name="SelectInstructionsSheet__select_the_top_level_folder">Piliin ang top-level folder kung saan nakalagay ang backup mo</string>
-    <!-- SelectInstructionsSheet: Continue button text -->
-    <string name="SelectInstructionsSheet__continue_button">Magpatuloy</string>
-
-    <!-- SelectLocalBackupScreen: Screen title for restoring on-device backup -->
-    <string name="SelectLocalBackupScreen__restore_on_device_backup">I-restore ang on-device backup</string>
-    <!-- SelectLocalBackupScreen: Screen subtitle explaining the restore process -->
-    <string name="SelectLocalBackupScreen__restore_your_messages_from_the_backup_folder">I-restore ang messages mo mula sa backup folder na naka-save sa iyong device. Kung hindi ka mag-restore ngayon, hindi mo na ito magagawa sa susunod.</string>
-    <!-- SelectLocalBackupScreen: Button to initiate backup restoration -->
-    <string name="SelectLocalBackupScreen__restore_backup">Mag-restore ng backup</string>
-    <!-- SelectLocalBackupScreen: Button to choose an earlier backup when current is latest -->
-    <string name="SelectLocalBackupScreen__choose_an_earlier_backup">Pumili ng mas lumang backup</string>
-    <!-- SelectLocalBackupScreen: Button to choose a different backup -->
-    <string name="SelectLocalBackupScreen__choose_a_different_backup">Pumili ng ibang backup</string>
-    <!-- SelectLocalBackupScreen: Label for latest backup card -->
-    <string name="SelectLocalBackupScreen__your_latest_backup">Ang latest backup mo:</string>
-    <!-- SelectLocalBackupScreen: Label for non-latest backup card -->
-    <string name="SelectLocalBackupScreen__your_backup">Ang backup mo:</string>
-
-    <!-- SelectLocalBackupSheet: Title for backup selection bottom sheet -->
-    <string name="SelectLocalBackupSheet__choose_a_backup_to_restore">Pumili ng backup na ire-restore</string>
-    <!-- SelectLocalBackupSheet: Subtitle warning about choosing an older backup -->
-    <string name="SelectLocalBackupSheet__choosing_an_older_backup">Maaaring mawalang messages o media kapag pumili ka ng mas lumang backup.</string>
-    <!-- SelectLocalBackupSheet: Continue button text -->
-    <string name="SelectLocalBackupSheet__continue_button">Magpatuloy</string>
-
-    <!-- SelectLocalBackupTypeScreen: Screen title for selecting backup type -->
-    <string name="SelectLocalBackupTypeScreen__restore_on_device_backup">I-restore ang on-device backup</string>
-    <!-- SelectLocalBackupTypeScreen: Screen subtitle explaining restore options -->
-    <string name="SelectLocalBackupTypeScreen__restore_your_messages_from_the_backup">I-restore ang messages mo mula sa backup na naka-save sa iyong device. Kung hindi ka mag-restore ngayon, hindi mo na ito magagawa sa susunod.</string>
-    <!-- SelectLocalBackupTypeScreen: Button for users who saved backup as single file -->
-    <string name="SelectLocalBackupTypeScreen__i_saved_my_backup_as_a_single_file">Nai-save ko ang aking backup bilang isang single file</string>
-    <!-- SelectLocalBackupTypeScreen: Card title for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__choose_backup_folder">Pumili ng backup folder</string>
-    <!-- SelectLocalBackupTypeScreen: Card description for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__select_the_folder_on_your_device">Piliin ang folder sa device mo kung saan nakalagay ang backup mo</string>
-
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">May network error sa pag-restore ng Signal Android Backup</string>
     <!-- Email filter when contacting support on a create backup failure -->
@@ -8979,23 +8620,6 @@
     <string name="ContactSupportDialog_submit_with_debug">I-submit kasama ang debug log</string>
     <!-- Button option to not submit debug log when contacting support -->
     <string name="ContactSupportDialog_submit_without_debug">I-submit na walang debug log</string>
-
-    <!-- Title for restore via qr screen -->
-    <string name="RestoreViaQr_title">I-scan ang code na ito gamit ang lumang phone mo</string>
-    <!-- First instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_1">Buksan ang Signal sa lumang device mo</string>
-    <!-- Second instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_2">I-tap ang camera icon </string>
-    <!-- Third instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_3">I-scan ang code na ito gamit ang camera</string>
-    <!-- Error message shown when qr code could not be loaded -->
-    <string name="RestoreViaQr_qr_code_error">Hindi ma-generate ang QR code</string>
-    <!-- Status message shown when qr code already scanned by other device -->
-    <string name="RestoreViaQr_qr_code_scanned">Na-scan sa lumang device</string>
-    <!-- Error button text to retry getting a qr code -->
-    <string name="RestoreViaQr_retry">Subukang muli</string>
-    <!-- Error message shown when register after receiving the provisioning message failed -->
-    <string name="RestoreViaQr_registration_error">Nagkaroon ng error at hindi mailipat ang account mo. Subukan ulit sa pamamagitan ng pag-scan ulit sa QR code.</string>
 
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">Transfer account</string>
@@ -9037,19 +8661,6 @@
     <string name="RestoreCompleteBottomSheet_transfer_complete_message">Nalipat na ang Signal account at messages mo sa ibang device mo. Inactive na ang Signal sa device na ito.</string>
     <!-- Restore Complete bottom sheet dialog button text to dismiss sheet -->
     <string name="RestoreCompleteBottomSheet_button">Okay</string>
-
-    <!-- No Backup to Restore screen title -->
-    <string name="NoBackupToRestore_title">Walang Backup Na Ma-restore</string>
-    <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">Dahil lilipat ka sa Android mula sa iPhone, maililipat mo lang ang messages at media mo sa pamamagitan ng pag-enable sa Signal Backups sa lumang device mo.</string>
-    <!-- No Backup to Restore step 1 to enable backups on old device -->
-    <string name="NoBackupToRestore_step1">Buksan ang Signal sa lumang device mo</string>
-    <!-- No Backup to Restore step 2 to enable backups on old device -->
-    <string name="NoBackupToRestore_step2">I-tap ang Settings &gt; Backups</string>
-    <!-- No Backup to Restore step 3 to enable backups on old device -->
-    <string name="NoBackupToRestore_step3">I-enable ang backups at hintaying matapos ang backup mo</string>
-    <!-- No backup to Restore tonal cta to skip restore -->
-    <string name="NoBackupToRestore_skip_restore">I-skip ang restore</string>
 
     <!-- Dialog title when the recovery key change limit is reached -->
     <string name="MessageBackupsKeyRecordScreen__limit_reached_title">Naabot na ang limitasyon ng recovery key</string>

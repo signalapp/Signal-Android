@@ -863,23 +863,8 @@
     <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Ingen kommer att kunna se att du är på Signal om du inte skickar ett meddelande eller har en befintlig chatt med dem.</string>
 
     <!-- ChooseBackupFragment -->
-    <string name="ChooseBackupFragment__restore_from_backup">Återställ från säkerhetskopia?</string>
-    <string name="ChooseBackupFragment__restore_your_messages_and_media">Återställ dina meddelanden och media från en lokal säkerhetskopia. Om du inte återställer nu kommer du inte att kunna återställa senare.</string>
-    <string name="ChooseBackupFragment__icon_content_description">Återställ från säkerhetskopieringsikonen</string>
-    <string name="ChooseBackupFragment__choose_backup">Välj säkerhetskopia</string>
-    <string name="ChooseBackupFragment__learn_more">Läs mer</string>
 
     <!-- RestoreBackupFragment -->
-    <string name="RestoreBackupFragment__restore_complete">Återställningen är klar</string>
-    <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Välj en mapp för att fortsätta använda säkerhetskopior. Nya säkerhetskopior sparas på denna plats.</string>
-    <string name="RestoreBackupFragment__choose_folder">Välj mapp</string>
-    <string name="RestoreBackupFragment__not_now">Inte nu</string>
-    <!-- Couldn\'t find the selected backup -->
-    <string name="RestoreBackupFragment__backup_not_found">Säkerhetskopia hittades inte.</string>
-    <!-- Couldn\'t read the selected backup -->
-    <string name="RestoreBackupFragment__backup_could_not_be_read">Säkerhetskopia kunde inte läsas.</string>
-    <!-- Backup has an unsupported file extension -->
-    <string name="RestoreBackupFragment__backup_has_a_bad_extension">Säkerhetskopia har fel filtillägg.</string>
 
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
@@ -1416,60 +1401,6 @@
     <string name="ManageGroupActivity_add_group_description">Lägg till gruppbeskrivning…</string>
 
     <!-- RemoteRestoreActivity -->
-    <!-- Progress dialog label when downloading a backup -->
-    <string name="RemoteRestoreActivity__downloading_backup">Laddar ner säkerhetskopia …</string>
-    <!-- Progress dialog label when restoring a backup -->
-    <string name="RemoteRestoreActivity__restoring_messages">Återställer meddelanden …</string>
-    <!-- Progress dialog label when finishing a backup restore -->
-    <string name="RemoteRestoreActivity__finishing_restore">Slutför …</string>
-    <!-- Progress dialog label while awaiting updates -->
-    <string name="RemoteRestoreActivity__restoring">Återställer …</string>
-    <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
-    <string name="RemoteRestoreActivity__s_of_s_s">%1$s av %2$s (%3$s)</string>
-    <!-- Feature list media label for paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_media">Alla dina media</string>
-    <!-- Feature list media label for free tier. Placeholder is days, and is currently fixed at 30. -->
-    <string name="RemoteRestoreActivity__your_last_d_days_of_media">Dina senaste %1$d dagars media</string>
-    <!-- Feature list message label for free and paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_messages">Alla dina meddelanden</string>
-    <!-- Screen title for restoring from backup -->
-    <string name="RemoteRestoreActivity__restore_from_backup">Återställ från säkerhetskopia</string>
-    <!-- Section title for explaining what your backup includes -->
-    <string name="RemoteRestoreActivity__your_backup_includes">Din säkerhetskopia innehåller:</string>
-    <!-- Primary action button copy for starting restoration -->
-    <string name="RemoteRestoreActivity__restore_backup">Återställ säkerhetskopia</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made. %1$s is replaced with the date (e.g. March 5, 2024) and %2$s is replaced with the time (e.g. 9:00am) -->
-    <string name="RemoteRestoreActivity__backup_created_at">Din senaste säkerhetskopia gjordes den %1$s kl %2$s.</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
-    <string name="RemoteRestoreActivity__backup_created_at_with_size">Din senaste säkerhetskopia gjordes den %1$s kl %2$s. Storleken på din säkerhetskopia är: %3$s.</string>
-    <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
-    <string name="RemoteRestoreActivity__fetching_backup_details">Hämtar säkerhetskopieringsdetaljer …</string>
-    <!-- Text label button to skip restore from remote -->
-    <string name="RemoteRestoreActivity__skip_restore">Hoppa över återställning</string>
-    <!-- Dialog title displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__couldnt_transfer">Det gick inte att slutföra överföringen</string>
-    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Det går inte att återställa säkerhetskopia</string>
-    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">Ett fel uppstod när säkerhetskopian återställdes. Din säkerhetskopia kan inte återställas. Kontakta supporten för hjälp.</string>
-    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Kontakta supporten</string>
-    <!-- Dialog message displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__error_occurred">Ett fel uppstod och ditt konto kunde inte överföras. Försök igen genom att välja din överföringsmetod.</string>
-    <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
-    <string name="RemoteRestoreActivity__couldnt_restore">Det gick inte att återställa denna säkerhetskopia</string>
-    <!-- Dialog message explaining that an update to Signal is required to restore the backup. -->
-    <string name="RemoteRestoreActivity__update_latest">Den här versionen av Signal kan inte återställa din säkerhetskopia. Uppdatera till den senaste versionen och försök igen.</string>
-    <!-- Text on button that when pressed will redirect them to update Signal -->
-    <string name="RemoteRestoreActivity__update_signal">Uppdatera Signal</string>
-    <!-- Text label button to dismiss the dialog -->
-    <string name="RemoteRestoreActivity__not_now">Inte nu</string>
-    <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Dina media kommer att återställas i bakgrunden. Om du väljer att inte återställa nu kommer du inte att kunna återställa senare.</string>
-    <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">Den här enheten är inte längre registrerad</string>
-    <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">Detta beror troligtvis på att du registrerade ditt Signal-konto på en annan enhet.</string>
 
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
@@ -2234,17 +2165,6 @@
     <string name="PinRestoreLockedFragment_create_new_pin">Skapa ny PIN-kod</string>
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
-    <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
-    <string name="ReRegisterWithPinFragment_send_sms_code">Skicka sms-kod</string>
-    <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">Signal-registrering – Behöver hjälp med att registrera pinkoden för Android</string>
-    <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">Din pinkod är en kod på minst %1$d siffror som du har skapat. Den kan vara numerisk eller alfanumerisk.\n\nOm du inte kommer ihåg din pinkod kan du skapa en ny.</string>
-    <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">Om du inte kommer ihåg din pinkod kan du skapa en ny.</string>
-    <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">Du har gjort för många försök att gissa din pinkod, men du kan fortfarande komma åt ditt Signal-konto genom att skapa en ny.</string>
-
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Varning</string>
     <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Om du inaktiverar PIN-koden kommer du att förlora alla data när du registrerar om Signal om du inte säkerhetskopierar och återställer manuellt. Du kan inte aktivera registreringslåset medan PIN-koden är inaktiverad.</string>
@@ -2324,6 +2244,12 @@
     <string name="WebRtcCallActivity__open_settings">Öppna inställningar</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">Inte nu</string>
+    <!-- Message for dialog shown at the start of a call when the system battery setting for Signal is "Restricted" -->
+    <string name="WebRtcCallActivity__others_may_not_be_able_to_hear_you_when_your_screen_turns_off">Others may not be able to hear you and the call may disconnect when your screen turns off. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
+    <!-- Title for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__others_couldnt_hear_you">Others couldn\'t hear you</string>
+    <!-- Message for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__your_microphone_was_muted_while_signal_was_in_the_background">Your microphone was muted while Signal was in the background. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
     <!-- Title for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__approve_d_requests">
         <item quantity="one">Godkänn %1$d förfrågan?</item>
@@ -2639,50 +2565,20 @@
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Numret du angav (%1$s) är ogiltigt.
     </string>
 
-    <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">Är telefonnumret nedan korrekt?</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
     <string name="RegistrationActivity_additional_verification_required">Ytterligare verifiering krävs</string>
-    <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">En verifieringskod skickas till detta nummer. Operatörsavgifter kan tillkomma.</string>
-    <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Du kommer att få en verifieringskod. Din operatör kan ta betalt för det.</string>
-    <!-- Hint text to select a country -->
-    <string name="RegistrationActivity_select_a_country">Välj ett land</string>
-    <!-- Hint text explaining that this is where the country code should go -->
-    <string name="RegistrationActivity_default_country_code">0</string>
-    <string name="RegistrationActivity_edit_number">Ändra nummer</string>
-    <string name="RegistrationActivity_missing_google_play_services">Saknar Google Play-tjänster</string>
-    <string name="RegistrationActivity_this_device_is_missing_google_play_services">Denna enhet saknar Google Play-tjänster. Du kan fortfarande använda Signal men denna konfiguration kan leda till minskad tillförlitlighet eller prestanda.\n\nOm du inte är en avancerad användare, inte använder en egenhändigt modifierad Android ROM eller tror att du ser detta på grund av ett fel, kontakta support@signal.org för hjälp med felsökning.</string>
-    <string name="RegistrationActivity_i_understand">Jag förstår</string>
-    <string name="RegistrationActivity_play_services_error">Fel på Google Play-tjänster</string>
-    <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play-tjänster uppdateras eller är tillfälligt otillgängliga. Försök igen.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Du har gjort för många försök att registrera detta nummer. Försök igen senare.</string>
-    <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">Du har gjort för många försök att registrera detta nummer. Försök igen om %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Det går inte att ansluta till tjänsten. Kontrollera nätverksanslutning och försök igen.</string>
     <!-- Dialog error message shown when we are unable to send an SMS to the user\'s number -->
     <string name="RegistrationActivity_sms_provider_error">Vi kan inte skicka ett sms till ditt nummer. Försök igen om några timmar.</string>
-    <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Vi kunde inte skicka en verifieringskod via sms. Försök att ta emot din kod via röstsamtal istället.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">Det gick inte att begära en verifieringskod. Kontrollera din nätverksanslutning och försök igen.</string>
-    <string name="RegistrationActivity_non_standard_number_format">Icke-standardiserat sifferformat</string>
-    <!-- Dialog message shown to confirm when entering phone number (first placeholder) is normalized and formatted differently by the app (second placeholder). -->
-    <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Siffran du angav (%1$s) verkar vara ett icke-standardformat.\n\nMenade du %2$s?</string>
-    <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Telefonnummerformat</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="one">Du är nu %1$d steg bort från att skicka in en felsökningslogg.</item>
         <item quantity="other">Du är nu %1$d steg bort från att skicka in en felsökningslogg.</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Vi måste verifiera att du är en människa.</string>
-    <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
-    <string name="RegistrationActivity_voice_call">Röstsamtal</string>
-    <!-- Dialog button to cancel the pending action and return to the previous state. -->
-    <string name="RegistrationActivity_cancel">Avbryt</string>
     <string name="RegistrationActivity_next">Nästa</string>
-    <!-- Title of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_phone_number">Telefonnummer</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Ange koden vi skickade till %1$s</string>
 
     <string name="RegistrationActivity_phone_number_description">Telefonnummer</string>
@@ -2881,6 +2777,8 @@
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Det gick inte att läsa in klistermärkespaketet</string>
     <!-- Bottom sheet describing a sticker. First placeholder is the title of the sticker pack and second is the author -->
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
+    <!-- Bottom sheet option that opens the pack the sticker belongs to -->
+    <string name="StickerPreviewBottomSheet__view_pack">View pack</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">Spara</string>
@@ -3619,8 +3517,6 @@
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">För att ta emot samtalsaviseringar, tryck på Inställningar och aktivera bakgrundsaktivitet i \"Batteri\"-inställningarna.</string>
 
     <!-- country_selection_fragment -->
-    <string name="country_selection_fragment__loading_countries">Läser in länder…</string>
-    <string name="country_selection_fragment__search">Sök</string>
 
     <string name="device_list_fragment__link_new_device">Länka ny enhet</string>
 
@@ -4454,6 +4350,8 @@
     <string name="conversation_selection__menu_pin_message">Nåla</string>
     <!-- Button to unpin a message -->
     <string name="conversation_selection__menu_unpin_message">Lösgör</string>
+    <!-- Button to open the sticker pack a sticker message came from -->
+    <string name="conversation_selection__menu_view_sticker_pack">View pack</string>
 
     <!-- conversation_expiring_on -->
 
@@ -4644,14 +4542,11 @@
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">Ange din PIN-kod</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Ange PIN-koden du skapade för ditt konto. Denna skiljer sig från din SMS-verifieringskod.</string>
-    <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
-    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Ange pinkoden du skapade för ditt konto.</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Felaktig PIN-kod. Försök igen.</string>
     <string name="RegistrationLockFragment__forgot_pin">Glömt PIN-kod?</string>
     <string name="RegistrationLockFragment__incorrect_pin">Felaktig PIN-kod</string>
     <string name="RegistrationLockFragment__forgot_your_pin">Har du glömt din PIN-kod?</string>
     <string name="RegistrationLockFragment__not_many_tries_left">Inte många försök kvar!</string>
-    <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signalregistrering - Behöver du hjälp med PIN-kod för Android (v2 PIN)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
         <item quantity="one">För din integritet och säkerhet finns det inget sätt att återställa din PIN-kod. Om du inte kan komma ihåg din PIN-kod kan du verifiera med SMS efter %1$d dag av inaktivitet. I detta fall kommer ditt konto att rensas och allt innehåll tas bort.</item>
@@ -4706,22 +4601,6 @@
     <string name="backup_enable_dialog__you_must_have_this_passphrase">Du måste ha detta lösenord för att återställa en säkerhetskopia.</string>
     <string name="backup_enable_dialog__folder">Mapp</string>
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Jag har skrivit ner lösenordet. Utan det kommer jag inte att kunna återställa en säkerhetskopia.</string>
-    <string name="registration_activity__restore_backup">Återställ säkerhetskopia</string>
-    <!-- Text label button to skip restoring -->
-    <string name="registration_activity__skip_restore">Hoppa över återställning</string>
-    <!-- Title for dialog to enter in the backup passphrase -->
-    <string name="RegistrationActivity_enter_backup_passphrase">Ange lösenord för säkerhetskopian</string>
-    <string name="RegistrationActivity_restore">Återställ</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">Kan ej importera backuper från nyare Signal-versioner</string>
-    <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
-    <string name="RegistrationActivity_backup_failure_foreign_key">Säkerhetskopiering innehåller felaktiga data</string>
-    <string name="RegistrationActivity_incorrect_backup_passphrase">Fel lösenord för säkerhetskopian</string>
-    <string name="RegistrationActivity_checking">Kontrollerar…</string>
-    <string name="RegistrationActivity_d_messages_so_far">%1$d meddelanden hittills…</string>
-    <string name="RegistrationActivity_restore_from_backup">Återställ från säkerhetskopia?</string>
-    <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Återställ dina meddelanden och media från en lokal säkerhetskopia. Om du inte återställer nu kommer du inte att kunna återställa senare.</string>
-    <string name="RegistrationActivity_backup_size_s">Storlek på säkerhetskopia: %1$s</string>
-    <string name="RegistrationActivity_backup_timestamp_s">Tidspunkt för säkerhetskopia: %1$s</string>
     <string name="BackupDialog_enable_local_backups">Aktivera lokala säkerhetskopior?</string>
     <string name="BackupDialog_enable_backups">Aktivera säkerhetskopior</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Bekräfta att du förstår genom att kryssa i rutan.</string>
@@ -4757,7 +4636,6 @@
     <string name="RegistrationActivity_call_me_instead_available_in">Ring mig (%1$02d:%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
     <string name="RegistrationActivity_resend_sms_available_in">Skicka kod igen (%1$02d:%2$02d)</string>
-    <string name="RegistrationActivity_contact_signal_support">Kontakta Signal-support</string>
     <string name="RegistrationActivity_code_support_subject">Signal-registrering - Verifieringskod för Android</string>
     <string name="RegistrationActivity_incorrect_code">Felaktig kod</string>
     <string name="BackupUtil_never">Aldrig</string>
@@ -4879,25 +4757,8 @@
     <string name="TransferOrRestoreFragment__restore_from_local_backup">Återställ lokal säkerhetskopia</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
-    <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Öppna Signal på din gamla Android-telefon</string>
-    <string name="NewDeviceTransferInstructions__continue">Fortsätt</string>
-    <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Tryck på ditt profilfoto längst upp till vänster för att öppna Inställningar</string>
-    <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_account">"Tryck på \"Konto\""</string>
-    <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
-    <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"Tryck på \"Överför konto\" och sedan på \"Fortsätt\" på båda enheterna"</string>
 
     <!-- NewDeviceTransferSetupFragment -->
-    <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Förbereder för anslutning till gammal Android-enhet…</string>
-    <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Det tar ett stund, borde vara klart snart</string>
-    <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Väntar på att en gammal Android-enhet ska ansluta…</string>
-    <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal behöver platsbehörighet för att upptäcka och ansluta till din gamla Android-enhet.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal behöver platstjänster aktiverade för att upptäcka och ansluta till din gamla Android-enhet.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Wi-Fi behöver vara aktiverat för att Signal ska upptäcka och ansluta till din gamla Android-enhet. Wi-Fi måste vara på men det behöver inte vara anslutet till ett Wi-Fi-nätverk.</string>
-    <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Tyvärr verkar den här enheten inte stöda Wi-Fi Direct. Signal använder Wi-Fi Direct för att upptäcka och ansluta till din gamla Android-enhet. Du kan fortfarande återställa en säkerhetskopia för att återställa ditt konto från din gamla Android-enhet.</string>
-    <string name="NewDeviceTransferSetup__restore_a_backup">Återställ en säkerhetskopia</string>
-    <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Ett oväntat fel uppstod när du försökte ansluta till din gamla Android-enhet.</string>
 
     <!-- OldDeviceTransferSetupFragment -->
     <string name="OldDeviceTransferSetup__searching_for_new_android_device">Söker efter en ny Android-enhet…</string>
@@ -4941,9 +4802,6 @@
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Tryck på Fortsätt på din andra enhet…</string>
 
     <!-- NewDeviceTransferFragment -->
-    <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Det går inte att överföra från en nyare version av Signal</string>
-    <!-- Error message indicating that we could not finish the user\'s device transfer. Displayed in a toast at the bottom of the screen. -->
-    <string name="NewDeviceTransfer__failure_foreign_key">Överförda data var felaktiga</string>
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">Överför data</string>
@@ -4982,10 +4840,6 @@
     <string name="OldDeviceTransferComplete__close">Stäng</string>
 
     <!-- NewDeviceTransferComplete -->
-    <string name="NewDeviceTransferComplete__transfer_successful">Överföringen lyckades</string>
-    <string name="NewDeviceTransferComplete__transfer_complete">Överföringen slutförd</string>
-    <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">För att slutföra överföringsprocessen måste du fortsätta registrera dig.</string>
-    <string name="NewDeviceTransferComplete__continue_registration">Fortsätt registrera dig</string>
 
     <!-- DeviceToDeviceTransferService -->
     <string name="DeviceToDeviceTransferService_content_title">Kontoöverföring</string>
@@ -8753,219 +8607,6 @@
 
     <!-- ConfirmBackupCancellationDialog -->
 
-    <!-- Row title for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">Jag har min gamla telefon</string>
-    <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_scan_qr">Skanna en QR-kod från ditt nuvarande Signal-konto för att snabbt komma igång</string>
-
-    <!-- Row title for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">Jag har inte min gamla telefon</string>
-    <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">Eller så installerar du om Signal på samma enhet</string>
-
-    <!-- Screen title for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__restore_or_transfer_account">Återställ eller överför konto</string>
-    <!-- Screen subtitle for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__get_your_signal_account">Hämta ditt Signal-konto och din meddelandehistorik till den här enheten.</string>
-    <!-- Option title for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_signal_backup">Återställ säkerhetskopiering av Signal</string>
-    <!-- Option subtitle for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_your_text_messages_and_media_from">Återställ dina sms och media från din Signal-säkerhetskopia.</string>
-    <!-- Option title for restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_on_device_backup">Återställ säkerhetskopia på enheten</string>
-    <!-- Option subtitle fdor restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_your_messages_from">Återställ dina meddelanden från en säkerhetskopia som du har sparat på din enhet.</string>
-    <!-- Option title for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__from_your_old_phone">Från din gamla telefon</string>
-    <!-- Option subtitle for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__transfer_directly_from_old">Överför direkt från din gamla Android</string>
-    <!-- Dialog title shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_title">Hoppa över återställning?</string>
-    <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">Om du hoppar över återställningen nu kommer du inte att kunna återställa senare. Om du återaktiverar säkerhetskopiering efter att ha hoppat över återställningen kommer din nuvarande säkerhetskopia att ersättas med din nya meddelandehistorik.</string>
-    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore">Hoppa över återställning</string>
-
-    <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_title">Ange din återställningsnyckel</string>
-    <!-- Screen subtitle for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_subtitle">Din återställningsnyckel är en kod på 64 tecken som krävs för att återställa ditt konto och dina data.</string>
-    <!-- Button to skip entering recovery key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">Ingen återställningsnyckel?</string>
-    <!-- Recovery key text field hint -->
-    <string name="EnterBackupKey_backup_key">Återställningsnyckel</string>
-    <!-- Recovery key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">Säkerhetskopior kan inte återställas utan deras återställningskod på 64 tecken. Om du har tappat bort din återställningsnyckel kan Signal inte hjälpa till att återställa din säkerhetskopia.</string>
-    <!-- Recovery key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">Om du har din gamla enhet kan du visa din återställningsnyckel i Inställningar &gt; Säkerhetskopior. Tryck sedan på Visa återställningsnyckel.</string>
-    <!-- Recovery key not known bottom sheet button to learn more about it -->
-    <string name="EnterBackupKey_learn_more">Läs mer</string>
-    <!-- Recovery key not known bottom sheet button to skip recovery key entry and resume normal reregistration -->
-    <string name="EnterBackupKey_skip_and_dont_restore">Hoppa över och återställ inte</string>
-    <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">Felaktig återställningsnyckel</string>
-    <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">Se till att du registrerar dig med samma telefonnummer och 64-teckens återställningsnyckel som du sparade när du aktiverade Säkerhetskopiering av Signal. Säkerhetskopior kan inte återställas utan denna nyckel.</string>
-    <!-- Dialog positive button text to try entering their recovery key again -->
-    <string name="EnterBackupKey_try_again">Försök igen</string>
-    <!-- Dialog negative button text to get help with recovery key -->
-    <string name="EnterBackupKey_backup_key_help">Hjälp med återställningsnyckel</string>
-    <!-- Text field error text when the recovery key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">Felaktig återställningsnyckel</string>
-    <!-- Text field error text when the recovery key is too long -->
-    <string name="EnterBackupKey_too_long_error">För långt (%1$d/%2$d)</string>
-    <!-- Text field error when the recovery key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">Ogiltig återställningsnyckel</string>
-    <!-- Dialog title shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_not_found">Säkerhetskopia hittades inte</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Återställningsnyckeln du angav är korrekt, men det finns ingen säkerhetskopia kopplad till den. Om du fortfarande har din gamla telefon, se till att säkerhetskopiering är aktiverad och att en säkerhetskopiering har slutförts. Försök sedan igen.</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">Du kan ha angett fel återställningsnyckel, eller så har du inte slutfört minst en säkerhetskopia på din gamla enhet.\n\nSe till att du registrerar dig med samma telefonnummer och återställningsnyckel som du sparade när du aktiverade Säker säkerhetskopiering och bekräfta att din gamla enhet har slutfört en säkerhetskopiering.</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">Du har slut på försök med återställningsnyckel. För din säkerhet är antalet försök du kan göra begränsat. Vänta en timme och försök igen.</string>
-    <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
-    <string name="EnterBackupKey_skip_restore">Hoppa över återställning</string>
-    <!-- Dialog title text when encountering backup restore network error -->
-    <string name="EnterBackupKey_cant_restore_backup">Det går inte att återställa säkerhetskopia</string>
-    <!-- Dialog body text when encountering backup restore network error -->
-    <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">Din säkerhetskopia kan inte återställas just nu. Kontrollera din internetanslutning och försök igen. </string>
-    <!-- Dialog button text to contact support on network error -->
-    <string name="EnterBackupKey_contact_support">Kontakta supporten</string>
-
-    <!-- Email subject when contacting support on a restore backup network issue -->
-    <string name="EnterBackupKey_network_failure_support_email">Nätverksfel vid Signal Android Backup-återställning</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
-    <!-- Email subject when contacting support on a permanent backup import failure -->
-    <string name="EnterBackupKey_permanent_failure_support_email">Permanent fel på återställning av Signal Android-säkerhetskopior</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
-
-    <!-- EnterLocalBackupKeyScreen: Screen title for entering recovery key for local backup restore -->
-    <string name="EnterLocalBackupKeyScreen__enter_your_recovery_key">Ange din återställningsnyckel</string>
-    <!-- EnterLocalBackupKeyScreen: Screen subtitle explaining what the recovery key is -->
-    <string name="EnterLocalBackupKeyScreen__your_recovery_key_is_a_64_character_code">Din återställningsnyckel är en kod på 64 tecken som krävs för att återställa ditt konto och dina data.</string>
-    <!-- EnterLocalBackupKeyScreen: Button text when user does not have a recovery key -->
-    <string name="EnterLocalBackupKeyScreen__no_recovery_key">Ingen återställningsnyckel?</string>
-    <!-- EnterLocalBackupKeyScreen: Button to proceed to next step -->
-    <string name="EnterLocalBackupKeyScreen__next">Nästa</string>
-
-    <!-- RestoreLocalBackupDialog: Error message when the selected archive fails to load -->
-    <string name="RestoreLocalBackupDialog__failed_to_load_archive">Det gick inte att läsa in arkivet. Välj en annan mapp.</string>
-    <!-- RestoreLocalBackupDialog: Dismiss button for dialog -->
-    <string name="RestoreLocalBackupDialog__ok">OK</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore">Hoppa över återställning?</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user about the consequences of skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore_body">Om du hoppar över återställningen nu kommer du inte att kunna återställa senare. Om du återaktiverar säkerhetskopiering efter att ha hoppat över återställningen kommer din nuvarande säkerhetskopia att ersättas med din nya meddelandehistorik.</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the skip restore dialog -->
-    <string name="RestoreLocalBackupDialog__skip_restore_confirm">Hoppa över återställning</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm restoring a backup from a different account -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account">Återställ till nytt konto?</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user that the backup was created with a different account and they will lose group memberships -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account_body">Säkerhetskopian du återställer skapades med ett annat Signal-konto. Du kan återställa den här säkerhetskopian till ett nytt konto, men du kommer inte längre att vara medlem i några av grupperna som återställs.</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the restore to new account dialog -->
-    <string name="RestoreLocalBackupDialog__restore">Återställ</string>
-
-    <!-- RestoreLocalBackupActivity: Toast message when backup restore fails -->
-    <string name="RestoreLocalBackupActivity__backup_restore_failed">Återställning av säkerhetskopia misslyckades</string>
-    <!-- RestoreLocalBackupActivity: Screen title shown during restore -->
-    <string name="RestoreLocalBackupActivity__restoring_backup">Återställer säkerhetskopia</string>
-    <!-- RestoreLocalBackupActivity: Screen subtitle explaining restore duration -->
-    <string name="RestoreLocalBackupActivity__depending_on_the_size">Beroende på storleken på din säkerhetskopia kan detta ta några minuter.</string>
-    <!-- RestoreLocalBackupActivity: Status text while restoring messages -->
-    <string name="RestoreLocalBackupActivity__restoring_messages">Återställer meddelanden …</string>
-    <!-- RestoreLocalBackupActivity: Status text while finalizing restore -->
-    <string name="RestoreLocalBackupActivity__finalizing">Slutför …</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore is complete -->
-    <string name="RestoreLocalBackupActivity__restore_complete">Återställningen är klar</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore fails -->
-    <string name="RestoreLocalBackupActivity__restore_failed">Återställningen misslyckades</string>
-    <!-- RestoreLocalBackupActivity: Progress text showing bytes read of total with percentage, e.g. "1.2 MB of 5.0 MB (24%)" -->
-    <string name="RestoreLocalBackupActivity__s_of_s_d_percent">%1$s av %2$s (%3$d %%)</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__cant_restore_backup">Det går inte att återställa säkerhetskopia</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__error_occurred_while_restoring">Ett fel uppstod när säkerhetskopian återställdes. Din säkerhetskopia kan inte återställas. Kontakta supporten för hjälp.</string>
-
-    <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
-    <string name="RestoreLocalBackupActivity__contact_support">Kontakta supporten</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
-    <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">Aktivera säkerhetskopiering på enheten?</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">För att fortsätta använda säkerhetskopior på enheten behöver du aktivera dem för det här kontot. Det kan du göra när som helst via Inställningar &gt; Säkerhetskopior.</string>
-
-    <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__turn_on_now">Aktivera nu</string>
-
-    <!-- RestoreLocalBackupActivity: Dismiss button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__not_now">Inte nu</string>
-
-    <!-- RestoreLocalBackupActivity: Body text for the dialog shown after a successful restore, prompting the user to choose a backup folder -->
-    <string name="RestoreLocalBackupActivity__choose_a_folder_for_backups">För att fortsätta använda säkerhetskopior på enheten väljer du en mapp på enheten där nya säkerhetskopior ska sparas.</string>
-
-    <!-- RestoreLocalBackupActivity: Positive button label for the dialog shown after a successful restore; keeps the current backup folder -->
-    <string name="RestoreLocalBackupActivity__use_current_folder">Använd nuvarande mapp</string>
-
-    <!-- RestoreLocalBackupActivity: Neutral button label for the dialog shown after a successful restore; opens folder picker to select a different backup location -->
-    <string name="RestoreLocalBackupActivity__choose_new_folder">Välj ny mapp</string>
-
-    <!-- RestoreLocalBackupActivity: Negative button label for the dialog shown after a successful restore; disables on-device backups -->
-    <string name="RestoreLocalBackupActivity__disable_backups">Inaktivera säkerhetskopior</string>
-
-    <!-- SelectInstructionsSheet: Title for the select backup folder instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_folder">Välj din mapp för säkerhetskopia</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the select this folder button -->
-    <string name="SelectInstructionsSheet__tap_select_this_folder">Tryck på \"Välj den här mappen\"</string>
-    <!-- SelectInstructionsSheet: Instruction not to select individual files -->
-    <string name="SelectInstructionsSheet__do_not_select_individual_files">Markera inte enskilda filer</string>
-    <!-- SelectInstructionsSheet: Title for the select backup file instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_file">Välj din säkerhetskopia</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the backup file saved to device -->
-    <string name="SelectInstructionsSheet__tap_on_the_backup_file">Tryck på säkerhetskopian som du sparade på din enhet</string>
-    <!-- SelectInstructionsSheet: Subtitle explaining how to access backup after tapping continue -->
-    <string name="SelectInstructionsSheet__after_tapping_continue">När du har tryckt på \"Fortsätt\" får du tillgång till din säkerhetskopia så här:</string>
-    <!-- SelectInstructionsSheet: Instruction to select the top-level backup folder -->
-    <string name="SelectInstructionsSheet__select_the_top_level_folder">Välj den översta mappen där din säkerhetskopia är sparad</string>
-    <!-- SelectInstructionsSheet: Continue button text -->
-    <string name="SelectInstructionsSheet__continue_button">Fortsätt</string>
-
-    <!-- SelectLocalBackupScreen: Screen title for restoring on-device backup -->
-    <string name="SelectLocalBackupScreen__restore_on_device_backup">Återställ säkerhetskopia på enheten</string>
-    <!-- SelectLocalBackupScreen: Screen subtitle explaining the restore process -->
-    <string name="SelectLocalBackupScreen__restore_your_messages_from_the_backup_folder">Återställ dina meddelanden från säkerhetskopian du sparade på din enhet. Om du inte återställer nu kommer du inte att kunna återställa senare.</string>
-    <!-- SelectLocalBackupScreen: Button to initiate backup restoration -->
-    <string name="SelectLocalBackupScreen__restore_backup">Återställ säkerhetskopia</string>
-    <!-- SelectLocalBackupScreen: Button to choose an earlier backup when current is latest -->
-    <string name="SelectLocalBackupScreen__choose_an_earlier_backup">Välj en tidigare säkerhetskopia</string>
-    <!-- SelectLocalBackupScreen: Button to choose a different backup -->
-    <string name="SelectLocalBackupScreen__choose_a_different_backup">Välj en annan säkerhetskopia</string>
-    <!-- SelectLocalBackupScreen: Label for latest backup card -->
-    <string name="SelectLocalBackupScreen__your_latest_backup">Din senaste säkerhetskopia:</string>
-    <!-- SelectLocalBackupScreen: Label for non-latest backup card -->
-    <string name="SelectLocalBackupScreen__your_backup">Din säkerhetskopia:</string>
-
-    <!-- SelectLocalBackupSheet: Title for backup selection bottom sheet -->
-    <string name="SelectLocalBackupSheet__choose_a_backup_to_restore">Välj en säkerhetskopia att återställa</string>
-    <!-- SelectLocalBackupSheet: Subtitle warning about choosing an older backup -->
-    <string name="SelectLocalBackupSheet__choosing_an_older_backup">Att välja en äldre säkerhetskopia kan leda till förlorade meddelanden eller media.</string>
-    <!-- SelectLocalBackupSheet: Continue button text -->
-    <string name="SelectLocalBackupSheet__continue_button">Fortsätt</string>
-
-    <!-- SelectLocalBackupTypeScreen: Screen title for selecting backup type -->
-    <string name="SelectLocalBackupTypeScreen__restore_on_device_backup">Återställ säkerhetskopia på enheten</string>
-    <!-- SelectLocalBackupTypeScreen: Screen subtitle explaining restore options -->
-    <string name="SelectLocalBackupTypeScreen__restore_your_messages_from_the_backup">Återställ dina meddelanden från säkerhetskopian som du har sparat på din enhet. Om du inte återställer nu kommer du inte att kunna återställa senare.</string>
-    <!-- SelectLocalBackupTypeScreen: Button for users who saved backup as single file -->
-    <string name="SelectLocalBackupTypeScreen__i_saved_my_backup_as_a_single_file">Jag sparade min säkerhetskopia som en enda fil</string>
-    <!-- SelectLocalBackupTypeScreen: Card title for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__choose_backup_folder">Välj mapp för säkerhetskopia</string>
-    <!-- SelectLocalBackupTypeScreen: Card description for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__select_the_folder_on_your_device">Välj mappen på din enhet där din säkerhetskopia finns lagrad</string>
-
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">Nätverksfel vid export av Signal Android-säkerhetskopiering</string>
     <!-- Email filter when contacting support on a create backup failure -->
@@ -8979,23 +8620,6 @@
     <string name="ContactSupportDialog_submit_with_debug">Skicka med felsökningslogg</string>
     <!-- Button option to not submit debug log when contacting support -->
     <string name="ContactSupportDialog_submit_without_debug">Skicka utan felsökningslogg</string>
-
-    <!-- Title for restore via qr screen -->
-    <string name="RestoreViaQr_title">Skanna den här koden med din gamla telefon</string>
-    <!-- First instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_1">Öppna Signal på din gamla enhet</string>
-    <!-- Second instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_2">Tryck på kameraikonen </string>
-    <!-- Third instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_3">Skanna den här koden med kameran</string>
-    <!-- Error message shown when qr code could not be loaded -->
-    <string name="RestoreViaQr_qr_code_error">Det går inte att generera QR-kod</string>
-    <!-- Status message shown when qr code already scanned by other device -->
-    <string name="RestoreViaQr_qr_code_scanned">Skannad på gammal enhet</string>
-    <!-- Error button text to retry getting a qr code -->
-    <string name="RestoreViaQr_retry">Försök igen</string>
-    <!-- Error message shown when register after receiving the provisioning message failed -->
-    <string name="RestoreViaQr_registration_error">Ett fel uppstod och ditt konto kunde inte överföras. Försök igen genom att skanna om QR-koden.</string>
 
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">Överför konto</string>
@@ -9037,19 +8661,6 @@
     <string name="RestoreCompleteBottomSheet_transfer_complete_message">Ditt Signal-konto och dina meddelanden har överförts till din andra enhet. Signal är nu inaktivt på den här enheten.</string>
     <!-- Restore Complete bottom sheet dialog button text to dismiss sheet -->
     <string name="RestoreCompleteBottomSheet_button">Okej</string>
-
-    <!-- No Backup to Restore screen title -->
-    <string name="NoBackupToRestore_title">Ingen säkerhetskopiering att återställa</string>
-    <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">Eftersom du flyttar från iPhone till Android är det enda sättet att överföra dina meddelanden och media genom att aktivera Säkerhetskopiering av Signal på din gamla enhet.</string>
-    <!-- No Backup to Restore step 1 to enable backups on old device -->
-    <string name="NoBackupToRestore_step1">Öppna Signal på din gamla enhet</string>
-    <!-- No Backup to Restore step 2 to enable backups on old device -->
-    <string name="NoBackupToRestore_step2">Tryck på Inställningar &gt; Säkerhetskopieringar</string>
-    <!-- No Backup to Restore step 3 to enable backups on old device -->
-    <string name="NoBackupToRestore_step3">Aktivera säkerhetskopieringar och vänta tills säkerhetskopieringen är klar</string>
-    <!-- No backup to Restore tonal cta to skip restore -->
-    <string name="NoBackupToRestore_skip_restore">Hoppa över återställning</string>
 
     <!-- Dialog title when the recovery key change limit is reached -->
     <string name="MessageBackupsKeyRecordScreen__limit_reached_title">Gränsen för återställningsnycklar har nåtts</string>

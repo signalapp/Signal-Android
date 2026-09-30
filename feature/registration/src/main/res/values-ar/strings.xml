@@ -566,41 +566,6 @@
     <string name="DeviceTransferComplete__your_account_is_now_on_this_device">حسابك موجود الآن على هذا الجهاز.</string>
     <string name="DeviceTransferComplete__continue_registration">متابعة</string>
 
-    <!-- Create profile screen -->
-    <!-- Title displayed at the top of the create-profile screen during registration. -->
-    <string name="CreateProfileScreen__set_up_your_profile">إعداد الحساب الشخصي</string>
-    <!-- Subtitle on create-profile screen explaining that the profile is end-to-end encrypted and visible to recipients. -->
-    <string name="CreateProfileScreen__your_profile_is_end_to_end_encrypted">سيَظهر حسابك الشخصي والتغييرات التي طرأت عليه للأشخاص الذين تُراسلهم وجهات الاتصال والمجموعات لديك.</string>
-    <!-- Label/hint for the first-name field, indicating it is required. -->
-    <string name="CreateProfileScreen__first_name_required">الاسم الأول (مطلوب)</string>
-    <!-- Label/hint for the last-name field, indicating it is optional. -->
-    <string name="CreateProfileScreen__last_name_optional">اسم العائلة (اختياري)</string>
-    <!-- Action button text to advance from create-profile screen. -->
-    <string name="CreateProfileScreen__next">التالي</string>
-    <!-- Content description for the avatar selection control. -->
-    <string name="CreateProfileScreen__set_avatar_description">تعيين صورة رمزية</string>
-
-    <!-- Phone number discoverability picker -->
-    <!-- Title row label shown on the create-profile screen pointing at the discoverability picker. -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">مَن يُمكنه إيجادي من خلال رقمي؟</string>
-    <!-- Description shown on the picker when "Everyone" is selected. -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">أي شخص لديه رقم هاتفك سَيرى أنك متواجد على سيجنال وسَيتمكن من بدء دردشاتٍ معك.</string>
-    <!-- Description shown on the picker when "Nobody" is selected. -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">لن يتمكّن أي أحد من رؤيتك على سيجنال إلّا إذا راسلته أو كانت لديك دردشة موجودة معه.</string>
-    <!-- Radio option label for "Everyone can find me by number". -->
-    <string name="PhoneNumberPrivacy_everyone">الجميع</string>
-    <!-- Radio option label for "Nobody can find me by number". -->
-    <string name="PhoneNumberPrivacy_nobody">لا أحد</string>
-    <!-- Title for the confirmation dialog shown when the user selects "Nobody". -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">هل أنت متأكد؟</string>
-    <!-- Body for the confirmation dialog shown when the user selects "Nobody". -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">يمكن أن يُصعِّب اختيار \"لا أحد\" في إعداد \"مَن يُمكنه إيجادي من خلال رقمي\" على الناس إيجادك على سيجنال.</string>
-    <!-- Cancel button on the "Nobody" confirmation dialog. -->
-    <string name="PhoneNumberPrivacySettingsFragment__cancel">إلغاء</string>
-    <!-- Save button on the discoverability picker. -->
-    <string name="PhoneNumberDiscoverabilityScreen__save">حفظ</string>
-    <!-- Content description for the back arrow on the discoverability picker. -->
-    <string name="PhoneNumberDiscoverabilityScreen__back">الرجوع</string>
     <!-- Error message shown when the captcha fails to load. -->
     <string name="CaptchaScreen__failed_to_load_captcha">تعذَّر تحميل اختبار التحقُّق</string>
     <!-- Button to cancel out of the captcha screen. -->
@@ -692,7 +657,7 @@
     <!-- Action button that stores the Signal Login in the device password manager. -->
     <string name="SignalLoginInfoScreen__save_to_password_manager">حفظ في مدير كلمات المرور</string>
     <!-- Toast shown when the user taps the disabled save to password manager button and the device has no password manager. -->
-    <string name="SignalLoginInfoScreen__no_password_manager_available">لم تقم بإعداد مدير كلمات المرور، أو مدير كلمات المرور الذي تستخدمه غير مدعوم.</string>
+    <string name="SignalLoginInfoScreen__no_password_manager_available">You don\'t have a password manager set up.</string>
     <!-- Action button for users who would rather write the Signal Login down themselves. -->
     <string name="SignalLoginInfoScreen__save_manually">حفظ يدويًا</string>
     <!-- Error shown when the Signal Login could not be stored in the password manager. -->

@@ -887,23 +887,8 @@
     <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Neviens neredzēs, ka izmantojat Signal, izņemot tos, kuriem nosūtīsiet ziņu vai ar kuriem jau esat sarunājušies iepriekš.</string>
 
     <!-- ChooseBackupFragment -->
-    <string name="ChooseBackupFragment__restore_from_backup">Atjaunot no rezerves kopijas?</string>
-    <string name="ChooseBackupFragment__restore_your_messages_and_media">Ielasiet ziņas un multividi no lokālas rezerves kopijas. Ja datus neatjaunosiet tagad, vēlāk tas nebūs izdarāms.</string>
-    <string name="ChooseBackupFragment__icon_content_description">Atjaunot no rezerves kopijas ikonas</string>
-    <string name="ChooseBackupFragment__choose_backup">Izvēlieties rezerves kopiju</string>
-    <string name="ChooseBackupFragment__learn_more">Uzzināt vairāk</string>
 
     <!-- RestoreBackupFragment -->
-    <string name="RestoreBackupFragment__restore_complete">Atjaunošana pabeigta</string>
-    <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Lai turpinātu izmantot rezerves kopēšanas iespēju, lūdzu izvēlieties mapi. Jaunās rezerves kopijas tiks saglabātas šajā mapē.</string>
-    <string name="RestoreBackupFragment__choose_folder">Izvēlēties mapi</string>
-    <string name="RestoreBackupFragment__not_now">Ne tagad</string>
-    <!-- Couldn\'t find the selected backup -->
-    <string name="RestoreBackupFragment__backup_not_found">Rezerves kopija nav atrasta.</string>
-    <!-- Couldn\'t read the selected backup -->
-    <string name="RestoreBackupFragment__backup_could_not_be_read">Rezerves kopiju nevar nolasīt.</string>
-    <!-- Backup has an unsupported file extension -->
-    <string name="RestoreBackupFragment__backup_has_a_bad_extension">Rezerves kopijai ir nepareizs paplašinājums.</string>
 
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
@@ -1459,60 +1444,6 @@
     <string name="ManageGroupActivity_add_group_description">Pievienot grupas aprakstu…</string>
 
     <!-- RemoteRestoreActivity -->
-    <!-- Progress dialog label when downloading a backup -->
-    <string name="RemoteRestoreActivity__downloading_backup">Rezerves kopija tiek lejupielādēta…</string>
-    <!-- Progress dialog label when restoring a backup -->
-    <string name="RemoteRestoreActivity__restoring_messages">Ziņas tiek atjaunotas…</string>
-    <!-- Progress dialog label when finishing a backup restore -->
-    <string name="RemoteRestoreActivity__finishing_restore">Notiek pabeigšana…</string>
-    <!-- Progress dialog label while awaiting updates -->
-    <string name="RemoteRestoreActivity__restoring">Notiek atjaunošana…</string>
-    <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
-    <string name="RemoteRestoreActivity__s_of_s_s">%1$s no %2$s (%3$s)</string>
-    <!-- Feature list media label for paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_media">Visu jūsu multividi</string>
-    <!-- Feature list media label for free tier. Placeholder is days, and is currently fixed at 30. -->
-    <string name="RemoteRestoreActivity__your_last_d_days_of_media">Pēdējo %1$d dienu multivide</string>
-    <!-- Feature list message label for free and paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_messages">Visas jūsu ziņas</string>
-    <!-- Screen title for restoring from backup -->
-    <string name="RemoteRestoreActivity__restore_from_backup">Atjaunot no rezerves kopijas</string>
-    <!-- Section title for explaining what your backup includes -->
-    <string name="RemoteRestoreActivity__your_backup_includes">Jūsu rezerves kopija ietver:</string>
-    <!-- Primary action button copy for starting restoration -->
-    <string name="RemoteRestoreActivity__restore_backup">Atjaunot rezerves kopiju</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made. %1$s is replaced with the date (e.g. March 5, 2024) and %2$s is replaced with the time (e.g. 9:00am) -->
-    <string name="RemoteRestoreActivity__backup_created_at">Pēdējā rezerves kopija tika izveidota: %1$s plkst. %2$s.</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
-    <string name="RemoteRestoreActivity__backup_created_at_with_size">Pēdējā rezerves kopija tika izveidota: %1$s plkst. %2$s. Rezerves kopijas izmērs ir %3$s.</string>
-    <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
-    <string name="RemoteRestoreActivity__fetching_backup_details">Meklē rezerves kopijas informāciju…</string>
-    <!-- Text label button to skip restore from remote -->
-    <string name="RemoteRestoreActivity__skip_restore">Izlaist atjaunošanu</string>
-    <!-- Dialog title displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__couldnt_transfer">Neizdevās pabeigt pārsūtīšanu</string>
-    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Nevar atjaunot rezerves kopiju</string>
-    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">Atjaunojot rezerves kopiju, radās kļūda. Jūsu rezerves kopiju nevar atgūt. Lai saņemtu palīdzību, sazinieties ar atbalsta dienestu.</string>
-    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Sazināties ar atbalstu</string>
-    <!-- Dialog message displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__error_occurred">Radās kļūda, un jūsu kontu nevarēja pārsūtīt. Mēģiniet vēlreiz, izvēloties pārsūtīšanas veidu.</string>
-    <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
-    <string name="RemoteRestoreActivity__couldnt_restore">Neizdevās atjaunot šo rezerves kopiju</string>
-    <!-- Dialog message explaining that an update to Signal is required to restore the backup. -->
-    <string name="RemoteRestoreActivity__update_latest">Šī Signal versija nevar atjaunot rezerves kopiju. Atjauniniet uz jaunāko versiju un mēģiniet vēlreiz.</string>
-    <!-- Text on button that when pressed will redirect them to update Signal -->
-    <string name="RemoteRestoreActivity__update_signal">Atjaunināt Signal</string>
-    <!-- Text label button to dismiss the dialog -->
-    <string name="RemoteRestoreActivity__not_now">Ne tagad</string>
-    <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Jūsu multivide tiks atjaunota fonā. Ja izvēlēsieties neveikt atjaunošanu tagad, vēlāk to veikt nevarēs.</string>
-    <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">Šī ierīce vairs nav reģistrēta</string>
-    <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">Tas, visticamāk, ir tādēļ, ka reģistrējāt Signal kontu citā ierīcē.</string>
 
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
@@ -2303,17 +2234,6 @@
     <string name="PinRestoreLockedFragment_create_new_pin">Izveidojiet jaunu PIN</string>
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
-    <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
-    <string name="ReRegisterWithPinFragment_send_sms_code">Sūtīt SMS kodu</string>
-    <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">Signal reģistrācija — nepieciešama palīdzība ar atkārtotas reģistrācijas Android PIN kodu</string>
-    <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">PIN ir jūsu izveidots %1$d+ ciparu kods, kas var sastāvēt no cipariem vai no burtiem un cipariem.\n\nJa neatceraties savu PIN, varat izveidot jaunu.</string>
-    <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">Ja neatceraties savu PIN, varat izveidot jaunu.</string>
-    <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">Ir sasniegts maksimālais PIN minējumu skaits, taču joprojām varat piekļūt savam Signal kontam, izveidojot jaunu PIN kodu.</string>
-
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Brīdinājums</string>
     <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Ja atspējosiet PIN, jūs zaudēsiet visus datus, atkārtoti reģistrējoties lietotnē Signal, ja vien manuāli tos nedublēsiet un neatjaunosiet. Reģistrācijas bloķēšanu nevar ieslēgt, kamēr PIN ir atspējots.</string>
@@ -2393,6 +2313,12 @@
     <string name="WebRtcCallActivity__open_settings">Atvērt iestatījumus</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">Ne tagad</string>
+    <!-- Message for dialog shown at the start of a call when the system battery setting for Signal is "Restricted" -->
+    <string name="WebRtcCallActivity__others_may_not_be_able_to_hear_you_when_your_screen_turns_off">Others may not be able to hear you and the call may disconnect when your screen turns off. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
+    <!-- Title for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__others_couldnt_hear_you">Others couldn\'t hear you</string>
+    <!-- Message for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__your_microphone_was_muted_while_signal_was_in_the_background">Your microphone was muted while Signal was in the background. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
     <!-- Title for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__approve_d_requests">
         <item quantity="zero">Vai apstiprināt %1$d pieprasījumus?</item>
@@ -2729,51 +2655,21 @@
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Numurs, kuru jūs norādījāt (%1$s), ir nederīgs
     </string>
 
-    <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">Vai tālāk norādītais tālruņa numurs ir pareizs?</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
     <string name="RegistrationActivity_additional_verification_required">Nepieciešama papildu verifikācija</string>
-    <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">Uz šo numuru tiks nosūtīts verifikācijas kods. Var tikt piemēroti mobilo sakaru operatora tarifi.</string>
-    <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Jūs saņemsiet verifikācijas kodu. Var tikt piemēroti mobilā operatora tarifi.</string>
-    <!-- Hint text to select a country -->
-    <string name="RegistrationActivity_select_a_country">Izvēlieties valsti</string>
-    <!-- Hint text explaining that this is where the country code should go -->
-    <string name="RegistrationActivity_default_country_code">0</string>
-    <string name="RegistrationActivity_edit_number">Rediģēt numuru</string>
-    <string name="RegistrationActivity_missing_google_play_services">Jocīgi, trūkst izspiegojošo Google Play pakalpojumu</string>
-    <string name="RegistrationActivity_this_device_is_missing_google_play_services">Šajā ierīcei trūkst Google Play pakalpojumu. Jūs varat izmantot Signal, taču šī ierīces konfigurācija, iespējams, var pasliktināt uzticamību un veiktspēju.\n\nJa jūs neesat pieredzējis lietotājs, ierīcē neizmantojiet \"pēctirgus\" Android operētājsistēmu vai arī uzskatiet, ka šo paziņojumu redziet kļūdas pēc, lūdzu, sazinieties ar support@signal.org, lai saņemtu palīdzību.</string>
-    <string name="RegistrationActivity_i_understand">Es saprotu</string>
-    <string name="RegistrationActivity_play_services_error">Google Play pakalpojumu kļūme</string>
-    <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play pakalpojumi tiek aktualizēti vai īslaicīgi nav pieejami. Lūdzu, mēģiniet vēlreiz.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Pārāk daudz šī numura reģistrēšanas mēģinājumu. Vēlāk mēģiniet vēlreiz.</string>
-    <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">Pārāk daudz šī numura reģistrēšanas mēģinājumu. Mēģiniet vēlreiz pēc %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Nevar izveidot savienojumu ar pakalpojumu. Lūdzu, pārbaudiet tīkla savienojumu un mēģiniet vēlreiz.</string>
     <!-- Dialog error message shown when we are unable to send an SMS to the user\'s number -->
     <string name="RegistrationActivity_sms_provider_error">Mums neizdodas nosūtīt SMS uz jūsu tālruņa numuru. Lūdzu, mēģiniet vēlreiz pēc dažām stundām.</string>
-    <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Mēs nevarējām nosūtīt jums verifikācijas kodu īsziņā. Tā vietā mēģiniet saņemt kodu, izmantojot balss zvanu.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">Nevar pieprasīt verifikācijas kodu. Lūdzu, pārbaudiet tīkla savienojumu un mēģiniet vēlreiz.</string>
-    <string name="RegistrationActivity_non_standard_number_format">Nestandarta numura formāts</string>
-    <!-- Dialog message shown to confirm when entering phone number (first placeholder) is normalized and formatted differently by the app (second placeholder). -->
-    <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Izskatās, ka numurs, kuru ievadījāt (%1$s), ir nestandarta formātā.\n\nVai domājāt %2$s?</string>
-    <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - tālruņa Numura Formāts</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="zero">Jūs tagad esiet %1$d soļus no atkļūdošanas žurnāla iesniegšanas</item>
         <item quantity="one">Jūs tagad esiet %1$d soli no atkļūdošanas žurnāla iesniegšanas</item>
         <item quantity="other">Jūs tagad esiet %1$d soļus no atkļūdošanas žurnāla iesniegšanas</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Nepieciešams pārbaudīt, vai esiet cilvēks.</string>
-    <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
-    <string name="RegistrationActivity_voice_call">Audiozvans</string>
-    <!-- Dialog button to cancel the pending action and return to the previous state. -->
-    <string name="RegistrationActivity_cancel">Atcelt</string>
     <string name="RegistrationActivity_next">Tālāk</string>
-    <!-- Title of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_phone_number">Tālruņa numurs</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Ievadiet kodu, kuru nosūtījām uz %1$s</string>
 
     <string name="RegistrationActivity_phone_number_description">Tālruņa numurs</string>
@@ -2977,6 +2873,8 @@
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Neizdevās ielādēt uzlīmju paku</string>
     <!-- Bottom sheet describing a sticker. First placeholder is the title of the sticker pack and second is the author -->
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
+    <!-- Bottom sheet option that opens the pack the sticker belongs to -->
+    <string name="StickerPreviewBottomSheet__view_pack">View pack</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">Saglabāt</string>
@@ -3728,8 +3626,6 @@
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Lai saņemtu paziņojumus par zvaniem, pieskarieties pie Iestatījumi un akumulatora iestatījumu sadaļā iespējojiet fona darbības.</string>
 
     <!-- country_selection_fragment -->
-    <string name="country_selection_fragment__loading_countries">Ielādē valstis…</string>
-    <string name="country_selection_fragment__search">Meklēt</string>
 
     <string name="device_list_fragment__link_new_device">Piesaistīt jaunu ierīci</string>
 
@@ -4575,6 +4471,8 @@
     <string name="conversation_selection__menu_pin_message">Piespraust</string>
     <!-- Button to unpin a message -->
     <string name="conversation_selection__menu_unpin_message">Atspraust</string>
+    <!-- Button to open the sticker pack a sticker message came from -->
+    <string name="conversation_selection__menu_view_sticker_pack">View pack</string>
 
     <!-- conversation_expiring_on -->
 
@@ -4768,14 +4666,11 @@
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">Ievadiet jūsu PIN</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Ievadiet sava konta PIN kodu. Tas atšķiras no jūsu SMS verifikācijas koda.</string>
-    <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
-    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Ievadiet savam kontam izveidoto PIN.</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Nepareizs PIN. Mēģiniet vēlreiz.</string>
     <string name="RegistrationLockFragment__forgot_pin">Aizmirsāt PIN?</string>
     <string name="RegistrationLockFragment__incorrect_pin">Nepareizs PIN</string>
     <string name="RegistrationLockFragment__forgot_your_pin">Aizmirsāt jūsu PIN?</string>
     <string name="RegistrationLockFragment__not_many_tries_left">Vairs nav daudz mēģinājumu atlicis!</string>
-    <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal reģistrācija - Vajadzīga palīdzība ar PIN Android ierīcēm (v2 PIN)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
         <item quantity="zero">Jūsu privātuma un drošības apsvērumu dēļ jūsu PIN nav iespējams atkopt. Ja neatceraties savu PIN, pēc %1$d dienas neaktivitātes perioda varēsiet to atkārtoti verificēt ar īsziņu. Šādā gadījumā jūsu konts tiks iztīrīts un viss saturs tiks dzēsts.</item>
@@ -4835,22 +4730,6 @@
     <string name="backup_enable_dialog__you_must_have_this_passphrase">Lai atjaunotu rezerves kopiju, jums ir jābūt šai paroles frāzei.</string>
     <string name="backup_enable_dialog__folder">Mape</string>
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Esmu sev pierakstījis šo paroles frāzi. Bez tās nebūs iespējams atjaunot rezerves kopiju.</string>
-    <string name="registration_activity__restore_backup">Atjaunot rezerves kopiju</string>
-    <!-- Text label button to skip restoring -->
-    <string name="registration_activity__skip_restore">Izlaist atjaunošanu</string>
-    <!-- Title for dialog to enter in the backup passphrase -->
-    <string name="RegistrationActivity_enter_backup_passphrase">Rezerves kopijas paroles frāzi</string>
-    <string name="RegistrationActivity_restore">Atjaunot</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">Nevar importēt dublējumus no jaunākām Signal versijām</string>
-    <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
-    <string name="RegistrationActivity_backup_failure_foreign_key">Rezerves kopija satur nepareizi veidotus datus</string>
-    <string name="RegistrationActivity_incorrect_backup_passphrase">Nepareiza rezerves kopijas paroles frāze</string>
-    <string name="RegistrationActivity_checking">Tiek pārbaudīts…</string>
-    <string name="RegistrationActivity_d_messages_so_far">%1$d ziņas pagaidām…</string>
-    <string name="RegistrationActivity_restore_from_backup">Vai atjaunot no rezerves kopijas?</string>
-    <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Ielasiet ziņas un multividi no lokālas rezerves kopijas. Ja datus neatjaunosiet tagad, vēlāk tas nebūs izdarāms.</string>
-    <string name="RegistrationActivity_backup_size_s">Rezerves kopijas izmērs: %1$s</string>
-    <string name="RegistrationActivity_backup_timestamp_s">Rezerves kopijas laiks: %1$s</string>
     <string name="BackupDialog_enable_local_backups">Iespējot lokālo rezerves kopiju veidošanu?</string>
     <string name="BackupDialog_enable_backups">Iespējot rezerves kopēšanu</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Lūdzu, apstipriniet, ka saprotat, atzīmējot apstiprinājuma izvēles rūtiņu.</string>
@@ -4886,7 +4765,6 @@
     <string name="RegistrationActivity_call_me_instead_available_in">Piezvaniet man (%1$02d.%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
     <string name="RegistrationActivity_resend_sms_available_in">Atkārtoti nosūtīt kodu (%1$02d:%2$02d)</string>
-    <string name="RegistrationActivity_contact_signal_support">Sazināties ar Signal tehnisko atbalstu</string>
     <string name="RegistrationActivity_code_support_subject">Signal reģistrācija - Android ierīces verifikācijas kods</string>
     <string name="RegistrationActivity_incorrect_code">Nepareizs kods</string>
     <string name="BackupUtil_never">Nekad</string>
@@ -5008,25 +4886,8 @@
     <string name="TransferOrRestoreFragment__restore_from_local_backup">Lokālās rezerves kopijas atjaunošana</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
-    <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Atvērt Signal vecajā Android ierīcē</string>
-    <string name="NewDeviceTransferInstructions__continue">Turpināt</string>
-    <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Pieskarieties sava profila fotoattēlam augšējā kreisajā stūrī, lai atvērtu iestatījumus</string>
-    <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_account">"Pieskarieties pie \"Konts\""</string>
-    <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
-    <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"Abās ierīcēs pieskarieties pie \"Pārsūtīt kontu\" un pēc tam pie \"Turpināt\""</string>
 
     <!-- NewDeviceTransferSetupFragment -->
-    <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Gatavojas savienojuma izveidei ar veco Android ierīci…</string>
-    <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Brīdi uzgaidiet, drīz viss būs kārtībā</string>
-    <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Gaida savienojumu ar veco Android ierīci…</string>
-    <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Lietotnei Signal ir nepieciešama atrašanās vietas atļauja, lai atrastu veco Android ierīci un izveidotu ar to savienojumu.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Lietotnē Signal ir jābūt iespējotiem atrašanās vietas pakalpojumiem, lai atrastu veco Android ierīci un izveidotu ar to savienojumu.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Lietotnē Signal ir jāieslēdz Wi-Fi, lai varētu noteikt veco Android ierīci un izveidot ar to savienojumu. Wi-Fi ir jābūt ieslēgtam, bet ierīcei nav jābūt pievienotai Wi-Fi tīklam.</string>
-    <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Diemžēl šķiet, ka šī ierīce neatbalsta Wi-Fi Direct. Lietotne Signal izmanto Wi-Fi Direct, lai noteiktu veco Android ierīci un izveidotu ar to savienojumu. Joprojām varat atjaunot rezerves kopiju konta atjaunošanai no vecās Android ierīces.</string>
-    <string name="NewDeviceTransferSetup__restore_a_backup">Atjaunot rezerves kopiju</string>
-    <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Mēģinot izveidot savienojumu ar veco Android ierīci, radās neparedzēta kļūda.</string>
 
     <!-- OldDeviceTransferSetupFragment -->
     <string name="OldDeviceTransferSetup__searching_for_new_android_device">Meklē jauno Android ierīci…</string>
@@ -5070,9 +4931,6 @@
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Pieskarieties pie Turpināt otrā ierīcē…</string>
 
     <!-- NewDeviceTransferFragment -->
-    <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Nevar pārsūtīt no jaunākām Signal versijām</string>
-    <!-- Error message indicating that we could not finish the user\'s device transfer. Displayed in a toast at the bottom of the screen. -->
-    <string name="NewDeviceTransfer__failure_foreign_key">Pārsūtītie dati bija nepareizi veidoti</string>
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">Notiek datu pārsūtīšana</string>
@@ -5111,10 +4969,6 @@
     <string name="OldDeviceTransferComplete__close">Aizvērt</string>
 
     <!-- NewDeviceTransferComplete -->
-    <string name="NewDeviceTransferComplete__transfer_successful">Pārsūtīšana izdevās</string>
-    <string name="NewDeviceTransferComplete__transfer_complete">Pārsūtīšana pabeigta</string>
-    <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">Lai pabeigtu pārsūtīšanas procesu, jums jāturpina reģistrācija savā jaunajā ierīcē.</string>
-    <string name="NewDeviceTransferComplete__continue_registration">Turpināt reģistrāciju</string>
 
     <!-- DeviceToDeviceTransferService -->
     <string name="DeviceToDeviceTransferService_content_title">Konta pārsūtīšana</string>
@@ -8947,219 +8801,6 @@
 
     <!-- ConfirmBackupCancellationDialog -->
 
-    <!-- Row title for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">Man ir iepriekšējais tālrunis</string>
-    <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_scan_qr">Lai ātri sāktu darbu, skenējiet QR kodu no pašreizējā Signal konta</string>
-
-    <!-- Row title for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">Man nav iepriekšējā tālruņa</string>
-    <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">Vai arī jūs atkārtoti instalējat Signal tajā pašā ierīcē</string>
-
-    <!-- Screen title for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__restore_or_transfer_account">Atjaunojiet vai pārsūtiet kontu</string>
-    <!-- Screen subtitle for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__get_your_signal_account">Iegūstiet savu Signal kontu un ziņu vēsturi šajā ierīcē.</string>
-    <!-- Option title for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_signal_backup">Signal rezerves kopijas atjaunošana</string>
-    <!-- Option subtitle for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_your_text_messages_and_media_from">Atjaunojiet īsziņas un multividi ar Signal rezerves kopiju plānu.</string>
-    <!-- Option title for restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_on_device_backup">Ierīces rezerves kopijas atjaunošana</string>
-    <!-- Option subtitle fdor restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_your_messages_from">Atjaunojiet ziņas ar rezerves kopiju, ko saglabājāt savā ierīcē.</string>
-    <!-- Option title for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__from_your_old_phone">No jūsu iepriekšējā tālruņa</string>
-    <!-- Option subtitle for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__transfer_directly_from_old">Pārsūtiet tieši no iepriekšējā Android tālruņa</string>
-    <!-- Dialog title shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_title">Vai izlaist atjaunošanu?</string>
-    <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">Ja tagad atjaunināšanu izlaidīsiet, vēlāk atjaunošanu veikt nevarēs. Ja pēc atjaunošanas izlaišanas atkārtoti aktivizēsiet rezerves kopijas, pašreizējās rezerves kopijas tiks aizstātas ar jauno ziņu vēsturi.</string>
-    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore">Izlaist atjaunošanu</string>
-
-    <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_title">Ievadiet savu atkopšanas atslēgu</string>
-    <!-- Screen subtitle for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_subtitle">Atkopšanas atslēga ir 64 rakstzīmju kods, kas nepieciešams konta un datu atgūšanai.</string>
-    <!-- Button to skip entering recovery key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">Nav atkopšanas atslēgas?</string>
-    <!-- Recovery key text field hint -->
-    <string name="EnterBackupKey_backup_key">Atkopšanas atslēga</string>
-    <!-- Recovery key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">Rezerves kopijas nevar atgūt bez 64 rakstzīmju atgūšanas koda. Ja atkopšananas atslēga ir pazaudēta, Signal nevar palīdzēt atgūt rezerves kopiju.</string>
-    <!-- Recovery key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">Ja iepriekšējā ierīce ir jūsu rīcībā, rezerves kopijas atslēgu varat skatīt sadaļā Iestatījumi &gt; Rezerves kopijas. Pēc tam pieskarieties pie Skatīt atkopšanas atslēgu.</string>
-    <!-- Recovery key not known bottom sheet button to learn more about it -->
-    <string name="EnterBackupKey_learn_more">Uzzināt vairāk</string>
-    <!-- Recovery key not known bottom sheet button to skip recovery key entry and resume normal reregistration -->
-    <string name="EnterBackupKey_skip_and_dont_restore">Izlaist un neatjaunot</string>
-    <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">Nepareiza atkopšanas atslēga</string>
-    <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">Pārliecinieties, ka reģistrējaties, izmantojot to pašu tālruņa numuru un 64 rakstzīmju atkopšanas atslēgu, ko saglabājāt, kad iespējojāt Signal drošo rezerves kopiju izveidi. Rezerves kopijas atjaunot bez šīs atslēgas nav iespējams.</string>
-    <!-- Dialog positive button text to try entering their recovery key again -->
-    <string name="EnterBackupKey_try_again">Mēģināt vēlreiz</string>
-    <!-- Dialog negative button text to get help with recovery key -->
-    <string name="EnterBackupKey_backup_key_help">Palīdzība saistībā ar atkopšanas atslēgu</string>
-    <!-- Text field error text when the recovery key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">Nepareiza atkopšanas atslēga</string>
-    <!-- Text field error text when the recovery key is too long -->
-    <string name="EnterBackupKey_too_long_error">Par daudz teksta (%1$d/%2$d)</string>
-    <!-- Text field error when the recovery key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">Nederīga atkopšanas atslēga</string>
-    <!-- Dialog title shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_not_found">Rezerves kopija nav atrasta</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Ievadītā atkopšanas atslēga ir pareiza, taču ar to nav saistīta neviena rezerves kopija. Ja jums ir piekļuve iepriekšējam tālrunim, pārliecinieties, ka rezerves kopijas ir ieslēgtas un ka rezerves kopijas izveide ir pabeigta. Pēc tam mēģiniet vēlreiz.</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">Iespējams, esat nepareizi ievadījuši atkopšanas atslēgu vai neesat pabeiguši vismaz vienu rezerves kopiju vecajā ierīcē.\n\nPārliecinieties, ka reģistrējaties, izmantojot to pašu tālruņa numuru un atkopšanas atslēgu, ko saglabājāt, kad iespējojāt Signal Drošās Rezerves Kopijas, un apstipriniet, ka jūsu vecajā ierīcē ir pabeigta rezerves kopiju izveide.</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">Atkopšanas atslēgu mēģinājumi ir beigušies. Jūsu drošības nolūkos mēģinājumu skaits ir ierobežots. Pagaidiet vienu stundu un mēģiniet vēlreiz.</string>
-    <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
-    <string name="EnterBackupKey_skip_restore">Izlaist atjaunošanu</string>
-    <!-- Dialog title text when encountering backup restore network error -->
-    <string name="EnterBackupKey_cant_restore_backup">Nevar atjaunot rezerves kopiju</string>
-    <!-- Dialog body text when encountering backup restore network error -->
-    <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">Rezerves kopiju šobrīd nevar atjaunot. Pārbaudiet interneta savienojumu un mēģiniet vēlreiz. </string>
-    <!-- Dialog button text to contact support on network error -->
-    <string name="EnterBackupKey_contact_support">Sazināties ar atbalstu</string>
-
-    <!-- Email subject when contacting support on a restore backup network issue -->
-    <string name="EnterBackupKey_network_failure_support_email">Signal Android rezerves kopijas atjaunošanas tīkla kļūda</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
-    <!-- Email subject when contacting support on a permanent backup import failure -->
-    <string name="EnterBackupKey_permanent_failure_support_email">Signal Android rezerves kopijas atjaunošanas neatgriezeniska kļūme</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
-
-    <!-- EnterLocalBackupKeyScreen: Screen title for entering recovery key for local backup restore -->
-    <string name="EnterLocalBackupKeyScreen__enter_your_recovery_key">Ievadiet savu atkopšanas atslēgu</string>
-    <!-- EnterLocalBackupKeyScreen: Screen subtitle explaining what the recovery key is -->
-    <string name="EnterLocalBackupKeyScreen__your_recovery_key_is_a_64_character_code">Atkopšanas atslēga ir 64 rakstzīmju kods, kas nepieciešams konta un datu atgūšanai.</string>
-    <!-- EnterLocalBackupKeyScreen: Button text when user does not have a recovery key -->
-    <string name="EnterLocalBackupKeyScreen__no_recovery_key">Nav atkopšanas atslēgas?</string>
-    <!-- EnterLocalBackupKeyScreen: Button to proceed to next step -->
-    <string name="EnterLocalBackupKeyScreen__next">Tālāk</string>
-
-    <!-- RestoreLocalBackupDialog: Error message when the selected archive fails to load -->
-    <string name="RestoreLocalBackupDialog__failed_to_load_archive">Neizdevās ielādēt arhīvu. Lūdzu, izvēlieties citu direktoriju.</string>
-    <!-- RestoreLocalBackupDialog: Dismiss button for dialog -->
-    <string name="RestoreLocalBackupDialog__ok">Ok</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore">Vai izlaist atjaunošanu?</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user about the consequences of skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore_body">Ja tagad atjaunināšanu izlaidīsiet, vēlāk atjaunošanu veikt nevarēs. Ja pēc atjaunošanas izlaišanas atkārtoti aktivizēsiet rezerves kopijas, pašreizējās rezerves kopijas tiks aizstātas ar jauno ziņu vēsturi.</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the skip restore dialog -->
-    <string name="RestoreLocalBackupDialog__skip_restore_confirm">Izlaist atjaunošanu</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm restoring a backup from a different account -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account">Atjaunot uz jaunu kontu?</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user that the backup was created with a different account and they will lose group memberships -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account_body">Rezerves kopija, kuru atjaunojat, tika izveidota, izmantojot citu Signal kontu. Varat atjaunot šo rezerves kopiju jaunā kontā, taču jūsu dalība atjaunotajās grupās netiks pārnesta.</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the restore to new account dialog -->
-    <string name="RestoreLocalBackupDialog__restore">Atjaunot</string>
-
-    <!-- RestoreLocalBackupActivity: Toast message when backup restore fails -->
-    <string name="RestoreLocalBackupActivity__backup_restore_failed">Rezerves kopijas atjaunošana neizdevās</string>
-    <!-- RestoreLocalBackupActivity: Screen title shown during restore -->
-    <string name="RestoreLocalBackupActivity__restoring_backup">Rezerves kopiju atjaunošana</string>
-    <!-- RestoreLocalBackupActivity: Screen subtitle explaining restore duration -->
-    <string name="RestoreLocalBackupActivity__depending_on_the_size">Atkarībā no rezerves kopiju izmēra, process var aizņemt dažas minūtes.</string>
-    <!-- RestoreLocalBackupActivity: Status text while restoring messages -->
-    <string name="RestoreLocalBackupActivity__restoring_messages">Ziņas tiek atjaunotas…</string>
-    <!-- RestoreLocalBackupActivity: Status text while finalizing restore -->
-    <string name="RestoreLocalBackupActivity__finalizing">Notiek pabeigšana…</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore is complete -->
-    <string name="RestoreLocalBackupActivity__restore_complete">Atjaunošana pabeigta</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore fails -->
-    <string name="RestoreLocalBackupActivity__restore_failed">Atjaunošana neizdevās</string>
-    <!-- RestoreLocalBackupActivity: Progress text showing bytes read of total with percentage, e.g. "1.2 MB of 5.0 MB (24%)" -->
-    <string name="RestoreLocalBackupActivity__s_of_s_d_percent">%1$s no %2$s (%3$d%%)</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__cant_restore_backup">Nevar atjaunot rezerves kopiju</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__error_occurred_while_restoring">Atjaunojot rezerves kopiju, radās kļūda. Jūsu rezerves kopiju nevar atgūt. Lai saņemtu palīdzību, sazinieties ar atbalsta dienestu.</string>
-
-    <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
-    <string name="RestoreLocalBackupActivity__contact_support">Sazināties ar atbalstu</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
-    <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">Vai ieslēgt rezerves kopijas ierīcē?</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Lai turpinātu lietot rezerves kopijas ierīcē, tās jāiespējo šim kontam. To var izdarīt jebkurā laikā sadaļā Iestatījumi &gt; Rezerves kopijas.</string>
-
-    <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__turn_on_now">Ieslēgt tūlīt</string>
-
-    <!-- RestoreLocalBackupActivity: Dismiss button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__not_now">Ne tagad</string>
-
-    <!-- RestoreLocalBackupActivity: Body text for the dialog shown after a successful restore, prompting the user to choose a backup folder -->
-    <string name="RestoreLocalBackupActivity__choose_a_folder_for_backups">Lai turpinātu izmantot rezerves kopijas ierīcē, izvēlieties mapi savā ierīcē, kurā tiks saglabātas rezerves kopijas.</string>
-
-    <!-- RestoreLocalBackupActivity: Positive button label for the dialog shown after a successful restore; keeps the current backup folder -->
-    <string name="RestoreLocalBackupActivity__use_current_folder">Izmantot esošo mapi</string>
-
-    <!-- RestoreLocalBackupActivity: Neutral button label for the dialog shown after a successful restore; opens folder picker to select a different backup location -->
-    <string name="RestoreLocalBackupActivity__choose_new_folder">Izvēlēties jaunu mapi</string>
-
-    <!-- RestoreLocalBackupActivity: Negative button label for the dialog shown after a successful restore; disables on-device backups -->
-    <string name="RestoreLocalBackupActivity__disable_backups">Atspējot rezerves kopijas</string>
-
-    <!-- SelectInstructionsSheet: Title for the select backup folder instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_folder">Atlasiet rezerves kopiju mapi</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the select this folder button -->
-    <string name="SelectInstructionsSheet__tap_select_this_folder">Pieskarieties pie \"Atlasīt šo mapi\"</string>
-    <!-- SelectInstructionsSheet: Instruction not to select individual files -->
-    <string name="SelectInstructionsSheet__do_not_select_individual_files">Neatlasiet atsevišķus failus</string>
-    <!-- SelectInstructionsSheet: Title for the select backup file instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_file">Atlasiet savu rezerves kopijas failu</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the backup file saved to device -->
-    <string name="SelectInstructionsSheet__tap_on_the_backup_file">Pieskarieties rezerves kopijas failam, kas saglabāts ierīcē</string>
-    <!-- SelectInstructionsSheet: Subtitle explaining how to access backup after tapping continue -->
-    <string name="SelectInstructionsSheet__after_tapping_continue">Pēc pieskaršanās \"Turpināt\", rezerves kopijai varat piekļūt šādi:</string>
-    <!-- SelectInstructionsSheet: Instruction to select the top-level backup folder -->
-    <string name="SelectInstructionsSheet__select_the_top_level_folder">Atlasiet galveno mapi, kurā glabājas rezerves kopija</string>
-    <!-- SelectInstructionsSheet: Continue button text -->
-    <string name="SelectInstructionsSheet__continue_button">Turpināt</string>
-
-    <!-- SelectLocalBackupScreen: Screen title for restoring on-device backup -->
-    <string name="SelectLocalBackupScreen__restore_on_device_backup">Ierīces rezerves kopijas atjaunošana</string>
-    <!-- SelectLocalBackupScreen: Screen subtitle explaining the restore process -->
-    <string name="SelectLocalBackupScreen__restore_your_messages_from_the_backup_folder">Atjaunojiet ziņas no rezerves kopijas mapes, ko saglabājāt savā ierīcē. Ja neatjaunosiet tagad, vēlāk atjaunošanu veikt nevarēs.</string>
-    <!-- SelectLocalBackupScreen: Button to initiate backup restoration -->
-    <string name="SelectLocalBackupScreen__restore_backup">Atjaunot rezerves kopiju</string>
-    <!-- SelectLocalBackupScreen: Button to choose an earlier backup when current is latest -->
-    <string name="SelectLocalBackupScreen__choose_an_earlier_backup">Izvēlieties agrāku rezerves kopiju</string>
-    <!-- SelectLocalBackupScreen: Button to choose a different backup -->
-    <string name="SelectLocalBackupScreen__choose_a_different_backup">Izvēlieties citu rezerves kopiju</string>
-    <!-- SelectLocalBackupScreen: Label for latest backup card -->
-    <string name="SelectLocalBackupScreen__your_latest_backup">Jūsu jaunākā rezerves kopija:</string>
-    <!-- SelectLocalBackupScreen: Label for non-latest backup card -->
-    <string name="SelectLocalBackupScreen__your_backup">Jūsu rezerves kopija:</string>
-
-    <!-- SelectLocalBackupSheet: Title for backup selection bottom sheet -->
-    <string name="SelectLocalBackupSheet__choose_a_backup_to_restore">Izvēlieties rezerves kopiju, ko atjaunot</string>
-    <!-- SelectLocalBackupSheet: Subtitle warning about choosing an older backup -->
-    <string name="SelectLocalBackupSheet__choosing_an_older_backup">Izvēloties vecāku rezerves kopiju, varat zaudēt jaunākās ziņas un multividi.</string>
-    <!-- SelectLocalBackupSheet: Continue button text -->
-    <string name="SelectLocalBackupSheet__continue_button">Turpināt</string>
-
-    <!-- SelectLocalBackupTypeScreen: Screen title for selecting backup type -->
-    <string name="SelectLocalBackupTypeScreen__restore_on_device_backup">Ierīces rezerves kopijas atjaunošana</string>
-    <!-- SelectLocalBackupTypeScreen: Screen subtitle explaining restore options -->
-    <string name="SelectLocalBackupTypeScreen__restore_your_messages_from_the_backup">Atjaunojiet ziņas no rezerves kopijas, ko saglabājāt savā ierīcē. Ja neatjaunosiet tagad, vēlāk atjaunošanu veikt nevarēs.</string>
-    <!-- SelectLocalBackupTypeScreen: Button for users who saved backup as single file -->
-    <string name="SelectLocalBackupTypeScreen__i_saved_my_backup_as_a_single_file">Es saglabāju savu rezerves kopiju kā vienu failu</string>
-    <!-- SelectLocalBackupTypeScreen: Card title for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__choose_backup_folder">Izvēlieties rezerves kopiju mapi</string>
-    <!-- SelectLocalBackupTypeScreen: Card description for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__select_the_folder_on_your_device">Atlasiet mapi ierīcē, kurā glabājas rezerves kopija</string>
-
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">Signal Android rezerves kopijas eksportēšanas tīkla kļūda</string>
     <!-- Email filter when contacting support on a create backup failure -->
@@ -9173,23 +8814,6 @@
     <string name="ContactSupportDialog_submit_with_debug">Iesniegt ar atkļūdošanas žurnālu</string>
     <!-- Button option to not submit debug log when contacting support -->
     <string name="ContactSupportDialog_submit_without_debug">Iesniegt bez atkļūdošanas žurnāla</string>
-
-    <!-- Title for restore via qr screen -->
-    <string name="RestoreViaQr_title">Noskenējiet šo kodu ar savu iepriekšējo tālruni</string>
-    <!-- First instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_1">Atveriet Signal savā iepriekšējā ierīcē.</string>
-    <!-- Second instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_2">Pieskarieties kameras ikonai. </string>
-    <!-- Third instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_3">Noskenējiet šo kodu ar kameru.</string>
-    <!-- Error message shown when qr code could not be loaded -->
-    <string name="RestoreViaQr_qr_code_error">Nevar ģenerēt QR kodu</string>
-    <!-- Status message shown when qr code already scanned by other device -->
-    <string name="RestoreViaQr_qr_code_scanned">Noskenēts iepriekšējā ierīcē</string>
-    <!-- Error button text to retry getting a qr code -->
-    <string name="RestoreViaQr_retry">Mēģināt vēlreiz</string>
-    <!-- Error message shown when register after receiving the provisioning message failed -->
-    <string name="RestoreViaQr_registration_error">Radās kļūda, un jūsu kontu nevarēja pārsūtīt. Mēģiniet vēlreiz, atkārtoti skenējot QR kodu.</string>
 
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">Pārnest kontu</string>
@@ -9231,19 +8855,6 @@
     <string name="RestoreCompleteBottomSheet_transfer_complete_message">Jūsu Signal konts un ziņas ir pārsūtītas uz otru ierīci. Tagad Signal vairs nav aktīvs šajā ierīcē.</string>
     <!-- Restore Complete bottom sheet dialog button text to dismiss sheet -->
     <string name="RestoreCompleteBottomSheet_button">Labi</string>
-
-    <!-- No Backup to Restore screen title -->
-    <string name="NoBackupToRestore_title">Nav rezerves kopijas, ko atjaunot</string>
-    <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">Tā kā jūs pārejat no iPhone ierīces uz Android, vienīgais veids, kā pārsūtīt ziņas un multividi, ir iespējot Signal drošās rezerves kopijas izveidi iepriekšējā ierīcē.</string>
-    <!-- No Backup to Restore step 1 to enable backups on old device -->
-    <string name="NoBackupToRestore_step1">Atveriet Signal savā iepriekšējā ierīcē.</string>
-    <!-- No Backup to Restore step 2 to enable backups on old device -->
-    <string name="NoBackupToRestore_step2">Pieskarieties pie Iestatījumi &gt; Rezerves kopijas.</string>
-    <!-- No Backup to Restore step 3 to enable backups on old device -->
-    <string name="NoBackupToRestore_step3">Iespējojiet rezerves kopijas izveidi un uzgaidiet, līdz tā ir pabeigta.</string>
-    <!-- No backup to Restore tonal cta to skip restore -->
-    <string name="NoBackupToRestore_skip_restore">Izlaist atjaunošanu</string>
 
     <!-- Dialog title when the recovery key change limit is reached -->
     <string name="MessageBackupsKeyRecordScreen__limit_reached_title">Sasniegts atkopšanas atslēgu limits</string>

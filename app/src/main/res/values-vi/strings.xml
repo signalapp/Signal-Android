@@ -839,23 +839,8 @@
     <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Sẽ không có ai nhìn thấy số điện thoại của bạn trên Signal, trừ khi bạn nhắn tin với người đó hoặc đã có một cuộc trò chuyện với người đó.</string>
 
     <!-- ChooseBackupFragment -->
-    <string name="ChooseBackupFragment__restore_from_backup">Khôi phục từ bản sao lưu?</string>
-    <string name="ChooseBackupFragment__restore_your_messages_and_media">Khôi phục tin nhắn và tệp từ bản sao lưu. Bạn chỉ có thể khôi phục vào lúc này.</string>
-    <string name="ChooseBackupFragment__icon_content_description">Khôi phục từ sao lưu</string>
-    <string name="ChooseBackupFragment__choose_backup">Chọn bản sao lưu</string>
-    <string name="ChooseBackupFragment__learn_more">Tìm hiểu thêm</string>
 
     <!-- RestoreBackupFragment -->
-    <string name="RestoreBackupFragment__restore_complete">Hoàn tất khôi phục</string>
-    <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Để tiếp tục sử dụng tính năng sao lưu, vui lòng chọn một thư mục. Các bản sao lưu mới sẽ được lưu vào thư mục này.</string>
-    <string name="RestoreBackupFragment__choose_folder">Chọn thư mục</string>
-    <string name="RestoreBackupFragment__not_now">Để sau</string>
-    <!-- Couldn\'t find the selected backup -->
-    <string name="RestoreBackupFragment__backup_not_found">Không tìm thấy tệp sao lưu.</string>
-    <!-- Couldn\'t read the selected backup -->
-    <string name="RestoreBackupFragment__backup_could_not_be_read">Không thể đọc tệp sao lưu.</string>
-    <!-- Backup has an unsupported file extension -->
-    <string name="RestoreBackupFragment__backup_has_a_bad_extension">Tệp sao lưu có phần mở rộng không đúng.</string>
 
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
@@ -1373,60 +1358,6 @@
     <string name="ManageGroupActivity_add_group_description">Thêm mô tả nhóm…</string>
 
     <!-- RemoteRestoreActivity -->
-    <!-- Progress dialog label when downloading a backup -->
-    <string name="RemoteRestoreActivity__downloading_backup">Đang tải bản sao lưu…</string>
-    <!-- Progress dialog label when restoring a backup -->
-    <string name="RemoteRestoreActivity__restoring_messages">Đang khôi phục tin nhắn…</string>
-    <!-- Progress dialog label when finishing a backup restore -->
-    <string name="RemoteRestoreActivity__finishing_restore">Đang hoàn tất…</string>
-    <!-- Progress dialog label while awaiting updates -->
-    <string name="RemoteRestoreActivity__restoring">Đang khôi phục…</string>
-    <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
-    <string name="RemoteRestoreActivity__s_of_s_s">%1$s của tổng số %2$s (%3$s)</string>
-    <!-- Feature list media label for paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_media">Tất cả tập tin đa phương tiện</string>
-    <!-- Feature list media label for free tier. Placeholder is days, and is currently fixed at 30. -->
-    <string name="RemoteRestoreActivity__your_last_d_days_of_media">Tập tin đa phương tiện trong %1$d ngày qua</string>
-    <!-- Feature list message label for free and paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_messages">Tất cả tin nhắn</string>
-    <!-- Screen title for restoring from backup -->
-    <string name="RemoteRestoreActivity__restore_from_backup">Khôi phục từ bản sao lưu</string>
-    <!-- Section title for explaining what your backup includes -->
-    <string name="RemoteRestoreActivity__your_backup_includes">Bản sao lưu bao gồm:</string>
-    <!-- Primary action button copy for starting restoration -->
-    <string name="RemoteRestoreActivity__restore_backup">Khôi phục từ bản sao lưu</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made. %1$s is replaced with the date (e.g. March 5, 2024) and %2$s is replaced with the time (e.g. 9:00am) -->
-    <string name="RemoteRestoreActivity__backup_created_at">Bản sao lưu gần nhất của bạn là vào lúc %2$s ngày %1$s.</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
-    <string name="RemoteRestoreActivity__backup_created_at_with_size">Bản sao lưu gần nhất của bạn là vào lúc %2$s ngày %1$s. Dung lượng của bản sao lưu là %3$s.</string>
-    <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
-    <string name="RemoteRestoreActivity__fetching_backup_details">Đang thu thập thông tin bản sao lưu…</string>
-    <!-- Text label button to skip restore from remote -->
-    <string name="RemoteRestoreActivity__skip_restore">Bỏ qua</string>
-    <!-- Dialog title displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__couldnt_transfer">Không thể hoàn tất việc chuyển</string>
-    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Không thể khôi phục bản sao lưu</string>
-    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">Có lỗi xảy ra trong quá trình khôi phục bản sao lưu của bạn. Bản sao lưu của bạn không thể khôi phục được. Vui lòng liên hệ bộ phận hỗ trợ để được trợ giúp.</string>
-    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Liên hệ hỗ trợ</string>
-    <!-- Dialog message displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__error_occurred">Có lỗi xảy ra và không thể chuyển tài khoản của bạn. Thử lại bằng cách chọn phương pháp chuyển.</string>
-    <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
-    <string name="RemoteRestoreActivity__couldnt_restore">Không thể khôi phục bản sao lưu này</string>
-    <!-- Dialog message explaining that an update to Signal is required to restore the backup. -->
-    <string name="RemoteRestoreActivity__update_latest">Phiên bản Signal này không thể khôi phục bản sao lưu của bạn. Cập nhật phiên bản mới nhất và thử lại.</string>
-    <!-- Text on button that when pressed will redirect them to update Signal -->
-    <string name="RemoteRestoreActivity__update_signal">Cập nhật Signal</string>
-    <!-- Text label button to dismiss the dialog -->
-    <string name="RemoteRestoreActivity__not_now">Để sau</string>
-    <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Tập tin đa phương tiện sẽ khôi phục ở chế độ nền. Nếu bạn chọn không khôi phục bây giờ, bạn sẽ không khôi phục được sau này.</string>
-    <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">Thiết bị này không còn được đăng ký</string>
-    <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">Nguyên nhân có thể là do bạn đăng ký tài khoản Signal của mình trên một thiết bị khác.</string>
 
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
@@ -2165,17 +2096,6 @@
     <string name="PinRestoreLockedFragment_create_new_pin">Tạo PIN mới</string>
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
-    <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
-    <string name="ReRegisterWithPinFragment_send_sms_code">Gửi mã SMS</string>
-    <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">Đăng ký Signal - Cần Hỗ trợ để đăng ký lại mã PIN cho thiết bị Android</string>
-    <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">Mã pin của bạn là một mã có %1$d+ ký tự bạn đã tạo, có thể là dãy số hoặc có cả số và chữ cái.\n\nNếu bạn không nhớ mã PIN của mình, bạn có thể tạo một mã mới.</string>
-    <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">Nếu bạn không nhớ mã PIN của mình, bạn có thể tạo một mã mới.</string>
-    <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">Bạn đã hết số lần đoán mã PIN, nhưng bạn vẫn có thể truy cập tài khoản Signal của mình bằng cách tạo một mã PIN mới.</string>
-
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Cảnh báo</string>
     <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Nếu bạn tắt PIN, bạn sẽ mất toàn bộ dữ liệu khi bạn đăng kí lại với Signal trừ khi bạn sao lưu và khôi phục dữ liệu thủ công. Bạn không thể bật Khóa đăng kí khi PIN đang tắt.</string>
@@ -2255,6 +2175,12 @@
     <string name="WebRtcCallActivity__open_settings">Mở cài đặt</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">Để sau</string>
+    <!-- Message for dialog shown at the start of a call when the system battery setting for Signal is "Restricted" -->
+    <string name="WebRtcCallActivity__others_may_not_be_able_to_hear_you_when_your_screen_turns_off">Others may not be able to hear you and the call may disconnect when your screen turns off. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
+    <!-- Title for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__others_couldnt_hear_you">Others couldn\'t hear you</string>
+    <!-- Message for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__your_microphone_was_muted_while_signal_was_in_the_background">Your microphone was muted while Signal was in the background. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
     <!-- Title for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__approve_d_requests">
         <item quantity="other">Chấp nhận %1$d yêu cầu?</item>
@@ -2549,49 +2475,19 @@
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Số bạn cung cấp (%1$s) không hợp lệ.
     </string>
 
-    <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">Số điện thoại dưới đây có chính xác không?</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
     <string name="RegistrationActivity_additional_verification_required">Cần thêm bước xác minh</string>
-    <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">Mã xác minh sẽ được gửi đến số này. Có thể có cước của nhà mạng.</string>
-    <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Bạn sẽ nhận tin nhắn chứa mã xác minh. Có thể mất phí nhà mạng.</string>
-    <!-- Hint text to select a country -->
-    <string name="RegistrationActivity_select_a_country">Chọn quốc gia</string>
-    <!-- Hint text explaining that this is where the country code should go -->
-    <string name="RegistrationActivity_default_country_code">0</string>
-    <string name="RegistrationActivity_edit_number">Sửa số</string>
-    <string name="RegistrationActivity_missing_google_play_services">Thiếu Dịch vụ Google Play</string>
-    <string name="RegistrationActivity_this_device_is_missing_google_play_services">Thiết bị này thiếu Dịch vụ Google Play. Bạn vẫn có thể dùng Signal, nhưng thiết đặt này có thể giảm độ tin cậy và hiệu năng ứng dụng.\n\nNếu bạn không phải người dùng nâng cao, hoặc không dùng ROM Android tự chế, hoặc cho rằng đây là lỗi không đáng có, hãy liên lạc support@signal.org để nhờ hỗ trợ.</string>
-    <string name="RegistrationActivity_i_understand">Tôi đã hiểu</string>
-    <string name="RegistrationActivity_play_services_error">Lỗi Dịch vụ Google Play</string>
-    <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Dịch vụ Google Play đang cập nhật hoặc tạm thời không khả dụng. Hãy thử lại sau.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Bạn đã thử đăng kí số điện thoại này quá nhiều lần. Vui lòng thử lại sau.</string>
-    <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">Bạn đã thử đăng ký số này quá nhiều lần. Vui lòng thử lại trong %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Không thể kết nối với dịch vụ. Vui lòng kiểm tra đuờng truyền mạng và thử lại.</string>
     <!-- Dialog error message shown when we are unable to send an SMS to the user\'s number -->
     <string name="RegistrationActivity_sms_provider_error">Chúng tôi không thể gửi tin nhắn SMS đến số điện thoại của bạn. Vui lòng thử lại trong vài giờ nữa.</string>
-    <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Chúng tôi không thể gửi cho bạn mã xác minh thông qua tin nhắn SMS. Thử nhận mã của bạn qua cuộc gọi thoại.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">Không thể yêu cầu mã xác minh. Vui lòng kiểm tra kết nối mạng của bạn và thử lại.</string>
-    <string name="RegistrationActivity_non_standard_number_format">Định dạng số không chuẩn</string>
-    <!-- Dialog message shown to confirm when entering phone number (first placeholder) is normalized and formatted differently by the app (second placeholder). -->
-    <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Số mà bạn nhập vào (%1$s) không đúng. /n/n có phải ý bạn là %2$s?</string>
-    <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Định dạng số điện thoại</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="other">Còn %1$d bước nữa để bạn hoàn thành gửi báo cáo lỗi.</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Chúng tôi cần kiểm tra bạn là người hay robot.</string>
-    <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
-    <string name="RegistrationActivity_voice_call">Gọi thoại</string>
-    <!-- Dialog button to cancel the pending action and return to the previous state. -->
-    <string name="RegistrationActivity_cancel">Hủy</string>
     <string name="RegistrationActivity_next">Tiếp</string>
-    <!-- Title of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_phone_number">Số điện thoại</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Điền mã xác minh được gửi đến %1$s</string>
 
     <string name="RegistrationActivity_phone_number_description">Số điện thoại</string>
@@ -2785,6 +2681,8 @@
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Không thể tải gói nhãn dán</string>
     <!-- Bottom sheet describing a sticker. First placeholder is the title of the sticker pack and second is the author -->
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
+    <!-- Bottom sheet option that opens the pack the sticker belongs to -->
+    <string name="StickerPreviewBottomSheet__view_pack">View pack</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">Lưu</string>
@@ -3510,8 +3408,6 @@
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Để nhận thông báo cuộc gọi, nhấn vào đây và bật hoạt động nền trong cài đặt \"Pin\".</string>
 
     <!-- country_selection_fragment -->
-    <string name="country_selection_fragment__loading_countries">Đang tải các quốc gia…</string>
-    <string name="country_selection_fragment__search">Tìm kiếm</string>
 
     <string name="device_list_fragment__link_new_device">Liên kết thiết bị mới</string>
 
@@ -4333,6 +4229,8 @@
     <string name="conversation_selection__menu_pin_message">Ghim</string>
     <!-- Button to unpin a message -->
     <string name="conversation_selection__menu_unpin_message">Bỏ ghim</string>
+    <!-- Button to open the sticker pack a sticker message came from -->
+    <string name="conversation_selection__menu_view_sticker_pack">View pack</string>
 
     <!-- conversation_expiring_on -->
 
@@ -4520,14 +4418,11 @@
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">Nhập mã PIN của bạn</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Nhập mã PIN bạn đã tạo cho tài khoản. Mã này khác với mã xác minh SMS của bạn.</string>
-    <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
-    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Nhập mã PIN bạn đã tạo cho tài khoản của mình.</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">PIN không đúng. Hãy thử lại.</string>
     <string name="RegistrationLockFragment__forgot_pin">Quên mã PIN?</string>
     <string name="RegistrationLockFragment__incorrect_pin">Mã PIN không chính xác</string>
     <string name="RegistrationLockFragment__forgot_your_pin">Quên mã PIN của bạn?</string>
     <string name="RegistrationLockFragment__not_many_tries_left">Không còn nhiều lần thử đâu!</string>
-    <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal Registration - Need Help with PIN for Android (v2 PIN)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
         <item quantity="other">Để đảm bảo quyền riêng tư và bảo mật của bạn, không có cách nào khôi phục mã PIN. Nếu bạn không nhớ mã PIN, bạn có thể đăng ký lại số điện thoại này sau %1$d ngày không sử dụng. Trong trường hợp này, dữ liệu tài khoản của bạn sẽ bị xóa.</item>
@@ -4577,22 +4472,6 @@
     <string name="backup_enable_dialog__you_must_have_this_passphrase">Bạn phải có mật khẩu này để khôi phục lại một bản sao lưu.</string>
     <string name="backup_enable_dialog__folder">Thư mục</string>
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Tôi đã ghi lại mật khẩu này. Không có nó, tôi sẽ không thể khôi phục bản sao lưu.</string>
-    <string name="registration_activity__restore_backup">Khôi phục từ bản sao lưu</string>
-    <!-- Text label button to skip restoring -->
-    <string name="registration_activity__skip_restore">Bỏ qua</string>
-    <!-- Title for dialog to enter in the backup passphrase -->
-    <string name="RegistrationActivity_enter_backup_passphrase">Điền mật khẩu sao lưu</string>
-    <string name="RegistrationActivity_restore">Khôi phục</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">Không thể nhập bản sao lưu tạo từ bản Signal mới hơn</string>
-    <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
-    <string name="RegistrationActivity_backup_failure_foreign_key">Bản sao lưu có chứa dữ liệu không đọc được</string>
-    <string name="RegistrationActivity_incorrect_backup_passphrase">Mật khẩu sao lưu không đúng</string>
-    <string name="RegistrationActivity_checking">Đang kiểm tra…</string>
-    <string name="RegistrationActivity_d_messages_so_far">Đã được %1$d tin nhắn…</string>
-    <string name="RegistrationActivity_restore_from_backup">Khôi phục từ bản sao lưu?</string>
-    <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Khôi phục tin nhắn và tệp từ bản sao lưu. Bạn chỉ có thể khôi phục vào lúc này.</string>
-    <string name="RegistrationActivity_backup_size_s">Kích thước bản sao lưu: %1$s</string>
-    <string name="RegistrationActivity_backup_timestamp_s">Thời điểm sao lưu: %1$s</string>
     <string name="BackupDialog_enable_local_backups">Bật sao lưu vào bộ nhớ?</string>
     <string name="BackupDialog_enable_backups">Bật sao lưu</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Hãy khẳng định rằng bạn đã hiểu bằng cách đánh dấu vào ô vuông.</string>
@@ -4628,7 +4507,6 @@
     <string name="RegistrationActivity_call_me_instead_available_in">Gọi tôi (%1$02d:%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
     <string name="RegistrationActivity_resend_sms_available_in">Gửi lại Mã (%1$02d:%2$02d)</string>
-    <string name="RegistrationActivity_contact_signal_support">Liên lạc Bộ phận hỗ trợ Signal</string>
     <string name="RegistrationActivity_code_support_subject">Đăng ký Signal - Mã Xác minh cho Android</string>
     <string name="RegistrationActivity_incorrect_code">Mã không đúng</string>
     <string name="BackupUtil_never">Không bao giờ</string>
@@ -4750,25 +4628,8 @@
     <string name="TransferOrRestoreFragment__restore_from_local_backup">Khôi phục bản sao lưu cục bộ</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
-    <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Mở Signal trên thiết bị Android cũ của bạn</string>
-    <string name="NewDeviceTransferInstructions__continue">Tiếp tục</string>
-    <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Nhấn vào ảnh đại diện của bạn ở góc trên bên trái để mở Cài đặt</string>
-    <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_account">"Nhấn vào \"Tài khoản\""</string>
-    <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
-    <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"Nhấn \"Chuyển tài khoản\" và \"Tiếp tục\" trên cả hai thiết bị"</string>
 
     <!-- NewDeviceTransferSetupFragment -->
-    <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Đang chuẩn bị kết nối với thiết bị Android cũ…</string>
-    <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Chỉ mất một lúc, sẽ hoàn thành sớm thôi</string>
-    <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Đang chờ kết nối với thiết bị Android cũ…</string>
-    <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal cần quyền truy cập vị trí để kết nối và ngắt kết nối với thiết bị Android cũ của bạn.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal cần dịch vụ Vị trí được bật để kết nối và ngắt kết nối với thiết bị Android cũ của bạn.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal cần Wi-Fi được bật để phát hiện và kết nối với thiết bị Android cũ của bạn. Wi-Fi cần được bật nhưng không bắt buộc phải kết nối với một mạng Wi-Fi nào đó.</string>
-    <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Xin lỗi, có vẻ như thiết bị này không hỗ trợ Wi-Fi Direct. Signal sử dụng Wi-Fi Direct để phát hiện và kết nối với thiết bị Android cũ của bạn. Bạn vẫn có thể khôi phục sao lưu hoặc khôi phục tài khoản trên thiết bị Android cũ của bạn.</string>
-    <string name="NewDeviceTransferSetup__restore_a_backup">Khôi phục bản sao lưu</string>
-    <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Lỗi không xác định khi đang cố gắng kết nối với thiết bị Android cũ của bạn.</string>
 
     <!-- OldDeviceTransferSetupFragment -->
     <string name="OldDeviceTransferSetup__searching_for_new_android_device">Đang tìm thiết bị Android mới…</string>
@@ -4812,9 +4673,6 @@
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Nhấn Tiếp tục trên thiết bị còn lại của bạn…</string>
 
     <!-- NewDeviceTransferFragment -->
-    <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Không thể chuyển từ các phiên bản mới hơn của Signal</string>
-    <!-- Error message indicating that we could not finish the user\'s device transfer. Displayed in a toast at the bottom of the screen. -->
-    <string name="NewDeviceTransfer__failure_foreign_key">Không đọc được dữ liệu được chuyển</string>
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">Đang chuyển dữ liệu</string>
@@ -4853,10 +4711,6 @@
     <string name="OldDeviceTransferComplete__close">Đóng</string>
 
     <!-- NewDeviceTransferComplete -->
-    <string name="NewDeviceTransferComplete__transfer_successful">Chuyển thành công</string>
-    <string name="NewDeviceTransferComplete__transfer_complete">Chuyển hoàn tất</string>
-    <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">Để hoàn tất quá trình chuyển, bạn phải tiếp tục đăng ký.</string>
-    <string name="NewDeviceTransferComplete__continue_registration">Tiếp tục đăng ký</string>
 
     <!-- DeviceToDeviceTransferService -->
     <string name="DeviceToDeviceTransferService_content_title">Chuyển tài khoản</string>
@@ -8559,219 +8413,6 @@
 
     <!-- ConfirmBackupCancellationDialog -->
 
-    <!-- Row title for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">Tôi có điện thoại cũ</string>
-    <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_scan_qr">Quét mã QR từ tài khoản Signal điện thoại của bạn để nhanh chóng bắt đầu</string>
-
-    <!-- Row title for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">Tôi không có điện thoại cũ</string>
-    <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">Hoặc bạn đang cài lại Signal trên cùng thiết bị</string>
-
-    <!-- Screen title for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__restore_or_transfer_account">Khôi phục hoặc chuyển tài khoản</string>
-    <!-- Screen subtitle for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__get_your_signal_account">Mang tài khoản Signal và lịch sử tin nhắn của bạn lên thiết bị này.</string>
-    <!-- Option title for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_signal_backup">Khôi phục bản sao lưu của Signal</string>
-    <!-- Option subtitle for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_your_text_messages_and_media_from">Khôi phục tin nhắn văn bản và tập tin đa phương tiện từ gói Sao lưu Signal của bạn.</string>
-    <!-- Option title for restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_on_device_backup">Khôi phục bản sao lưu trên thiết bị</string>
-    <!-- Option subtitle fdor restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_your_messages_from">Khôi phục tin nhắn từ một tập tin sao lưu bạn đã lưu trên thiết bị của mình.</string>
-    <!-- Option title for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__from_your_old_phone">Từ điện thoại cũ của bạn</string>
-    <!-- Option subtitle for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__transfer_directly_from_old">Chuyển trực tiếp từ điện thoại Android cũ của bạn</string>
-    <!-- Dialog title shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_title">Bỏ qua khôi phục?</string>
-    <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">Nếu bạn bỏ qua việc khôi phục bây giờ, bạn sẽ không thể khôi phục sau này. Nếu bạn bật lại tính năng sao lưu sau khi bỏ qua việc khôi phục, bản sao lưu hiện tại sẽ được thay thế bởi lịch sử tin nhắn mới.</string>
-    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore">Bỏ qua</string>
-
-    <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_title">Nhập mã khóa khôi phục</string>
-    <!-- Screen subtitle for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_subtitle">Yêu cầu có mã khóa khôi phục có 64 ký tự của bạn để khôi phục tài khoản và dữ liệu.</string>
-    <!-- Button to skip entering recovery key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">Không có mã khôi phục?</string>
-    <!-- Recovery key text field hint -->
-    <string name="EnterBackupKey_backup_key">Mã khóa khôi phục</string>
-    <!-- Recovery key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">Không thể khôi phục bản sao lưu nếu không có mã khóa sao lưu 64 ký tự. Nếu bạn đã để mất mã khóa khôi phục của mình, Signal không thể hỗ trợ bạn khôi phục bản sao lưu.</string>
-    <!-- Recovery key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">Nếu có thiết bị cũ của mình, bạn có thể xem mã khóa khôi phục trong Cài đặt &gt; Sao lưu. Sau đó nhấn Xem mã khóa khôi phục.</string>
-    <!-- Recovery key not known bottom sheet button to learn more about it -->
-    <string name="EnterBackupKey_learn_more">Tìm hiểu thêm</string>
-    <!-- Recovery key not known bottom sheet button to skip recovery key entry and resume normal reregistration -->
-    <string name="EnterBackupKey_skip_and_dont_restore">Bỏ qua và không khôi phục</string>
-    <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">Mã khóa khôi phục không đúng</string>
-    <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">Hãy đảm bảo bạn đang đăng ký bằng cùng số điện thoại và mã khóa khôi phục 64 ký tự mà bạn đã lưu khi bật tính năng Sao lưu bảo mật Signal. Không thể khôi phục bản sao lưu nếu không có mã khóa này.</string>
-    <!-- Dialog positive button text to try entering their recovery key again -->
-    <string name="EnterBackupKey_try_again">Thử lại</string>
-    <!-- Dialog negative button text to get help with recovery key -->
-    <string name="EnterBackupKey_backup_key_help">Trợ giúp</string>
-    <!-- Text field error text when the recovery key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">Mã khóa khôi phục không đúng</string>
-    <!-- Text field error text when the recovery key is too long -->
-    <string name="EnterBackupKey_too_long_error">Quá dài (%1$d/%2$d)</string>
-    <!-- Text field error when the recovery key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">Mã khóa khôi phục không hợp lệ</string>
-    <!-- Dialog title shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_not_found">Không tìm thấy bản sao lưu</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Mã khóa khôi phục bạn nhập đúng nhưng không có bản sao lưu đi kèm. Nếu bạn còn giữ điện thoại cũ, đảm bảo đã bật sao lưu và đã hoàn tất sao lưu rồi thử lại.</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">Có thể bạn đã nhập sai mã khóa khôi phục hoặc chưa hoàn tất ít nhất một lần sao lưu trên thiết bị cũ.\n\nHãy đảm bảo rằng bạn đang đăng ký bằng cùng số điện thoại và mã khóa khôi phục bạn đã lưu khi bật Sao lưu bảo mật Signal và xác nhận rằng thiết bị cũ của bạn đã hoàn tất quá trình sao lưu.</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">Bạn đã hết số lượt thử mã khóa khôi phục. Vì lý do bảo mật, bạn chỉ có thể nhập mã khóa với số lượt nhất định. Hãy chờ một tiếng và thử lại.</string>
-    <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
-    <string name="EnterBackupKey_skip_restore">Bỏ qua</string>
-    <!-- Dialog title text when encountering backup restore network error -->
-    <string name="EnterBackupKey_cant_restore_backup">Không thể khôi phục bản sao lưu</string>
-    <!-- Dialog body text when encountering backup restore network error -->
-    <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">Hiện không thể khôi phục bản sao lưu của bạn. Kiểm kết nối internet của bạn và thử lại. </string>
-    <!-- Dialog button text to contact support on network error -->
-    <string name="EnterBackupKey_contact_support">Liên hệ hỗ trợ</string>
-
-    <!-- Email subject when contacting support on a restore backup network issue -->
-    <string name="EnterBackupKey_network_failure_support_email">Lỗi mạng khôi phục bản sao lưu của Signal Android</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
-    <!-- Email subject when contacting support on a permanent backup import failure -->
-    <string name="EnterBackupKey_permanent_failure_support_email">Lỗi không thể khôi phục bản sao lưu của Signal Android</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
-
-    <!-- EnterLocalBackupKeyScreen: Screen title for entering recovery key for local backup restore -->
-    <string name="EnterLocalBackupKeyScreen__enter_your_recovery_key">Nhập mã khóa khôi phục</string>
-    <!-- EnterLocalBackupKeyScreen: Screen subtitle explaining what the recovery key is -->
-    <string name="EnterLocalBackupKeyScreen__your_recovery_key_is_a_64_character_code">Yêu cầu có mã khóa khôi phục có 64 ký tự của bạn để khôi phục tài khoản và dữ liệu.</string>
-    <!-- EnterLocalBackupKeyScreen: Button text when user does not have a recovery key -->
-    <string name="EnterLocalBackupKeyScreen__no_recovery_key">Không có mã khôi phục?</string>
-    <!-- EnterLocalBackupKeyScreen: Button to proceed to next step -->
-    <string name="EnterLocalBackupKeyScreen__next">Tiếp</string>
-
-    <!-- RestoreLocalBackupDialog: Error message when the selected archive fails to load -->
-    <string name="RestoreLocalBackupDialog__failed_to_load_archive">Tải kho lưu trữ không thành công. Vui lòng chọn một thư mục khác.</string>
-    <!-- RestoreLocalBackupDialog: Dismiss button for dialog -->
-    <string name="RestoreLocalBackupDialog__ok">OK</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore">Bỏ qua khôi phục?</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user about the consequences of skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore_body">Nếu bạn bỏ qua việc khôi phục bây giờ, bạn sẽ không thể khôi phục sau này. Nếu bạn bật lại tính năng sao lưu sau khi bỏ qua việc khôi phục, bản sao lưu hiện tại sẽ được thay thế bởi lịch sử tin nhắn mới.</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the skip restore dialog -->
-    <string name="RestoreLocalBackupDialog__skip_restore_confirm">Bỏ qua</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm restoring a backup from a different account -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account">Khôi phục vào tài khoản mới?</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user that the backup was created with a different account and they will lose group memberships -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account_body">Bản sao lưu bạn đang khôi phục được tạo bằng một tài khoản Signal khác. Bạn có thể khôi phục bản sao lưu này vào một tài khoản mới, nhưng bạn sẽ không còn là thành viên của bất kỳ nhóm nào đã được khôi phục.</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the restore to new account dialog -->
-    <string name="RestoreLocalBackupDialog__restore">Khôi phục</string>
-
-    <!-- RestoreLocalBackupActivity: Toast message when backup restore fails -->
-    <string name="RestoreLocalBackupActivity__backup_restore_failed">Khôi phục sao lưu không thành công</string>
-    <!-- RestoreLocalBackupActivity: Screen title shown during restore -->
-    <string name="RestoreLocalBackupActivity__restoring_backup">Đang khôi phục bản sao lưu</string>
-    <!-- RestoreLocalBackupActivity: Screen subtitle explaining restore duration -->
-    <string name="RestoreLocalBackupActivity__depending_on_the_size">Tùy thuộc vào kích thước của bản sao lưu, quá trình này có thể mất một một vài phút.</string>
-    <!-- RestoreLocalBackupActivity: Status text while restoring messages -->
-    <string name="RestoreLocalBackupActivity__restoring_messages">Đang khôi phục tin nhắn…</string>
-    <!-- RestoreLocalBackupActivity: Status text while finalizing restore -->
-    <string name="RestoreLocalBackupActivity__finalizing">Đang hoàn tất…</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore is complete -->
-    <string name="RestoreLocalBackupActivity__restore_complete">Hoàn tất khôi phục</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore fails -->
-    <string name="RestoreLocalBackupActivity__restore_failed">Khôi phục không thành công</string>
-    <!-- RestoreLocalBackupActivity: Progress text showing bytes read of total with percentage, e.g. "1.2 MB of 5.0 MB (24%)" -->
-    <string name="RestoreLocalBackupActivity__s_of_s_d_percent">%1$s của tổng số %2$s (%3$d%%)</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__cant_restore_backup">Không thể khôi phục bản sao lưu</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__error_occurred_while_restoring">Có lỗi xảy ra trong quá trình khôi phục bản sao lưu của bạn. Bản sao lưu của bạn không thể khôi phục được. Vui lòng liên hệ bộ phận hỗ trợ để được trợ giúp.</string>
-
-    <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
-    <string name="RestoreLocalBackupActivity__contact_support">Liên hệ hỗ trợ</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
-    <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">Bật sao lưu trên thiết bị?</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">Để tiếp tục sử dụng tính năng sao lưu trên thiết bị, bạn cần bật tính năng này cho tài khoản. Bạn có thể làm điều này bất cứ lúc nào trong Cài đặt &gt; Sao lưu.</string>
-
-    <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__turn_on_now">Bật ngay</string>
-
-    <!-- RestoreLocalBackupActivity: Dismiss button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__not_now">Để sau</string>
-
-    <!-- RestoreLocalBackupActivity: Body text for the dialog shown after a successful restore, prompting the user to choose a backup folder -->
-    <string name="RestoreLocalBackupActivity__choose_a_folder_for_backups">Để tiếp tục sử dụng tính năng sao lưu trên thiết bị, hãy chọn một thư mục để lưu các bản sao lưu mới.</string>
-
-    <!-- RestoreLocalBackupActivity: Positive button label for the dialog shown after a successful restore; keeps the current backup folder -->
-    <string name="RestoreLocalBackupActivity__use_current_folder">Sử dụng thư mục hiện tại</string>
-
-    <!-- RestoreLocalBackupActivity: Neutral button label for the dialog shown after a successful restore; opens folder picker to select a different backup location -->
-    <string name="RestoreLocalBackupActivity__choose_new_folder">Chọn thư mục mới</string>
-
-    <!-- RestoreLocalBackupActivity: Negative button label for the dialog shown after a successful restore; disables on-device backups -->
-    <string name="RestoreLocalBackupActivity__disable_backups">Tắt sao lưu</string>
-
-    <!-- SelectInstructionsSheet: Title for the select backup folder instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_folder">Chọn thư mục sao lưu của bạn</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the select this folder button -->
-    <string name="SelectInstructionsSheet__tap_select_this_folder">Nhấn \"Chọn thư mục này\"</string>
-    <!-- SelectInstructionsSheet: Instruction not to select individual files -->
-    <string name="SelectInstructionsSheet__do_not_select_individual_files">Không chọn các tập tin riêng lẻ</string>
-    <!-- SelectInstructionsSheet: Title for the select backup file instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_file">Chọn tập tin sao lưu của bạn</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the backup file saved to device -->
-    <string name="SelectInstructionsSheet__tap_on_the_backup_file">Nhấn vào tập tin sao lưu bạn đã lưu vào thiết bị của mình</string>
-    <!-- SelectInstructionsSheet: Subtitle explaining how to access backup after tapping continue -->
-    <string name="SelectInstructionsSheet__after_tapping_continue">Sau khi nhấn \"Tiếp tục\", đây là cách truy cập bản sao lưu của bạn:</string>
-    <!-- SelectInstructionsSheet: Instruction to select the top-level backup folder -->
-    <string name="SelectInstructionsSheet__select_the_top_level_folder">Chọn thư mục cấp cao nhất nơi lưu trữ bản sao lưu của bạn</string>
-    <!-- SelectInstructionsSheet: Continue button text -->
-    <string name="SelectInstructionsSheet__continue_button">Tiếp tục</string>
-
-    <!-- SelectLocalBackupScreen: Screen title for restoring on-device backup -->
-    <string name="SelectLocalBackupScreen__restore_on_device_backup">Khôi phục bản sao lưu trên thiết bị</string>
-    <!-- SelectLocalBackupScreen: Screen subtitle explaining the restore process -->
-    <string name="SelectLocalBackupScreen__restore_your_messages_from_the_backup_folder">Khôi phục tin nhắn từ một thư mục sao lưu bạn đã lưu trên thiết bị của mình. Nếu bạn không khôi phục bây giờ, bạn sẽ không khôi phục được sau này.</string>
-    <!-- SelectLocalBackupScreen: Button to initiate backup restoration -->
-    <string name="SelectLocalBackupScreen__restore_backup">Khôi phục từ bản sao lưu</string>
-    <!-- SelectLocalBackupScreen: Button to choose an earlier backup when current is latest -->
-    <string name="SelectLocalBackupScreen__choose_an_earlier_backup">Chọn bản sao lưu cũ hơn</string>
-    <!-- SelectLocalBackupScreen: Button to choose a different backup -->
-    <string name="SelectLocalBackupScreen__choose_a_different_backup">Chọn một bản sao lưu khác</string>
-    <!-- SelectLocalBackupScreen: Label for latest backup card -->
-    <string name="SelectLocalBackupScreen__your_latest_backup">Bản sao lưu mới nhất của bạn:</string>
-    <!-- SelectLocalBackupScreen: Label for non-latest backup card -->
-    <string name="SelectLocalBackupScreen__your_backup">Bản sao lưu của bạn:</string>
-
-    <!-- SelectLocalBackupSheet: Title for backup selection bottom sheet -->
-    <string name="SelectLocalBackupSheet__choose_a_backup_to_restore">Chọn bản sao lưu để khôi phục</string>
-    <!-- SelectLocalBackupSheet: Subtitle warning about choosing an older backup -->
-    <string name="SelectLocalBackupSheet__choosing_an_older_backup">Thao tác chọn một bản sao lưu cũ hơn có thể dẫn đến mất tin nhắn hoặc tập tin đa phương tiện.</string>
-    <!-- SelectLocalBackupSheet: Continue button text -->
-    <string name="SelectLocalBackupSheet__continue_button">Tiếp tục</string>
-
-    <!-- SelectLocalBackupTypeScreen: Screen title for selecting backup type -->
-    <string name="SelectLocalBackupTypeScreen__restore_on_device_backup">Khôi phục bản sao lưu trên thiết bị</string>
-    <!-- SelectLocalBackupTypeScreen: Screen subtitle explaining restore options -->
-    <string name="SelectLocalBackupTypeScreen__restore_your_messages_from_the_backup">Khôi phục tin nhắn từ một tập tin sao lưu bạn đã lưu trên thiết bị của mình. Nếu bạn không khôi phục bây giờ, bạn sẽ không khôi phục được sau này.</string>
-    <!-- SelectLocalBackupTypeScreen: Button for users who saved backup as single file -->
-    <string name="SelectLocalBackupTypeScreen__i_saved_my_backup_as_a_single_file">Tôi đã lưu bản sao lưu của mình thành một tập tin duy nhất</string>
-    <!-- SelectLocalBackupTypeScreen: Card title for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__choose_backup_folder">Chọn thư mục sao lưu</string>
-    <!-- SelectLocalBackupTypeScreen: Card description for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__select_the_folder_on_your_device">Chọn thư mục trên thiết bị của bạn, nơi lưu trữ bản sao lưu của bạn</string>
-
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">Lỗi mạng xuất bản sao lưu của Signal Android</string>
     <!-- Email filter when contacting support on a create backup failure -->
@@ -8785,23 +8426,6 @@
     <string name="ContactSupportDialog_submit_with_debug">Gửi cùng nhật ký gỡ lỗi</string>
     <!-- Button option to not submit debug log when contacting support -->
     <string name="ContactSupportDialog_submit_without_debug">Gửi không có nhật ký gỡ lỗi</string>
-
-    <!-- Title for restore via qr screen -->
-    <string name="RestoreViaQr_title">Quét mã với điện thoại của bạn</string>
-    <!-- First instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_1">Mở Signal trên thiết bị cũ của bạn</string>
-    <!-- Second instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_2">Nhấn biểu tượng camera </string>
-    <!-- Third instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_3">Quét mã này với camera</string>
-    <!-- Error message shown when qr code could not be loaded -->
-    <string name="RestoreViaQr_qr_code_error">Không thể tạo mã QR</string>
-    <!-- Status message shown when qr code already scanned by other device -->
-    <string name="RestoreViaQr_qr_code_scanned">Đã quét trên thiết bị cũ</string>
-    <!-- Error button text to retry getting a qr code -->
-    <string name="RestoreViaQr_retry">Thử lại</string>
-    <!-- Error message shown when register after receiving the provisioning message failed -->
-    <string name="RestoreViaQr_registration_error">Có lỗi xảy ra và không thể chuyển tài khoản của bạn. Thử lại bằng cách quét lại mã QR.</string>
 
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">Chuyển tài khoản</string>
@@ -8843,19 +8467,6 @@
     <string name="RestoreCompleteBottomSheet_transfer_complete_message">Tài khoản và tin nhắn Signal của bạn đã được chuyển đến thiết bị khác của bạn. Signal hiện không còn hoạt động trên thiết bị này.</string>
     <!-- Restore Complete bottom sheet dialog button text to dismiss sheet -->
     <string name="RestoreCompleteBottomSheet_button">OK</string>
-
-    <!-- No Backup to Restore screen title -->
-    <string name="NoBackupToRestore_title">Không có bản sao lưu</string>
-    <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">Vì bạn đang chuyển từ iPhone sang Android, cách duy nhất để chuyển tin nhắn và tập tin đa phương tiện là bật Sao lưu bảo mật Signal trên thiết bị cũ của bạn.</string>
-    <!-- No Backup to Restore step 1 to enable backups on old device -->
-    <string name="NoBackupToRestore_step1">Mở Signal trên thiết bị cũ của bạn</string>
-    <!-- No Backup to Restore step 2 to enable backups on old device -->
-    <string name="NoBackupToRestore_step2">Nhấn Cài đặt &gt; Sao lưu</string>
-    <!-- No Backup to Restore step 3 to enable backups on old device -->
-    <string name="NoBackupToRestore_step3">Bật sao lưu và chờ quá trình sao lưu hoàn tất</string>
-    <!-- No backup to Restore tonal cta to skip restore -->
-    <string name="NoBackupToRestore_skip_restore">Bỏ qua</string>
 
     <!-- Dialog title when the recovery key change limit is reached -->
     <string name="MessageBackupsKeyRecordScreen__limit_reached_title">Đạt giới hạn mã khóa khôi phục</string>

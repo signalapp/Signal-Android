@@ -839,23 +839,8 @@
     <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">あなたからメッセージを送るか、以前からチャットをやりとりしていない限り、あなたがSignalを利用していることは誰にもわかりません。</string>
 
     <!-- ChooseBackupFragment -->
-    <string name="ChooseBackupFragment__restore_from_backup">バックアップから復元しますか？</string>
-    <string name="ChooseBackupFragment__restore_your_messages_and_media">ローカルバックアップからメッセージやメディアを復元します。いま復元しないと、あとから復元することはできません。</string>
-    <string name="ChooseBackupFragment__icon_content_description">バックアップアイコンから復元</string>
-    <string name="ChooseBackupFragment__choose_backup">バックアップを選択</string>
-    <string name="ChooseBackupFragment__learn_more">詳しく見る</string>
 
     <!-- RestoreBackupFragment -->
-    <string name="RestoreBackupFragment__restore_complete">復元が完了しました</string>
-    <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">バックアップを続けるには、フォルダを選択してください。新しいバックアップはこの場所に保存されます。</string>
-    <string name="RestoreBackupFragment__choose_folder">フォルダを選択</string>
-    <string name="RestoreBackupFragment__not_now">今はしない</string>
-    <!-- Couldn\'t find the selected backup -->
-    <string name="RestoreBackupFragment__backup_not_found">バックアップが見つかりません。</string>
-    <!-- Couldn\'t read the selected backup -->
-    <string name="RestoreBackupFragment__backup_could_not_be_read">バックアップを読み込めませんでした。</string>
-    <!-- Backup has an unsupported file extension -->
-    <string name="RestoreBackupFragment__backup_has_a_bad_extension">バックアップの拡張子が正しくありません。</string>
 
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
@@ -1373,60 +1358,6 @@
     <string name="ManageGroupActivity_add_group_description">グループの説明を追加してください…</string>
 
     <!-- RemoteRestoreActivity -->
-    <!-- Progress dialog label when downloading a backup -->
-    <string name="RemoteRestoreActivity__downloading_backup">バックアップをダウンロードしています…</string>
-    <!-- Progress dialog label when restoring a backup -->
-    <string name="RemoteRestoreActivity__restoring_messages">メッセージを復元しています…</string>
-    <!-- Progress dialog label when finishing a backup restore -->
-    <string name="RemoteRestoreActivity__finishing_restore">終了しています…</string>
-    <!-- Progress dialog label while awaiting updates -->
-    <string name="RemoteRestoreActivity__restoring">復元中…</string>
-    <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
-    <string name="RemoteRestoreActivity__s_of_s_s">%2$s のうち%1$s（%3$s）</string>
-    <!-- Feature list media label for paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_media">すべてのメディア</string>
-    <!-- Feature list media label for free tier. Placeholder is days, and is currently fixed at 30. -->
-    <string name="RemoteRestoreActivity__your_last_d_days_of_media">直近 %1$d 日間のメディア</string>
-    <!-- Feature list message label for free and paid tier -->
-    <string name="RemoteRestoreActivity__all_of_your_messages">すべてのメッセージ</string>
-    <!-- Screen title for restoring from backup -->
-    <string name="RemoteRestoreActivity__restore_from_backup">バックアップから復元</string>
-    <!-- Section title for explaining what your backup includes -->
-    <string name="RemoteRestoreActivity__your_backup_includes">バックアップの内容</string>
-    <!-- Primary action button copy for starting restoration -->
-    <string name="RemoteRestoreActivity__restore_backup">バックアップを復元</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made. %1$s is replaced with the date (e.g. March 5, 2024) and %2$s is replaced with the time (e.g. 9:00am) -->
-    <string name="RemoteRestoreActivity__backup_created_at">最終バックアップは%1$sの%2$sです。</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
-    <string name="RemoteRestoreActivity__backup_created_at_with_size">最終バックアップは%1$sの%2$sにおこなわれました。バックアップサイズは%3$sです。</string>
-    <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
-    <string name="RemoteRestoreActivity__fetching_backup_details">バックアップの詳細を取得中…</string>
-    <!-- Text label button to skip restore from remote -->
-    <string name="RemoteRestoreActivity__skip_restore">復元をスキップする</string>
-    <!-- Dialog title displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__couldnt_transfer">移行を完了できませんでした</string>
-    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">バックアップを復元できません</string>
-    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">バックアップを復元する際にエラーが発生しました。バックアップの復元ができません。サポートにお問い合わせください。</string>
-    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">サポートに問い合わせる</string>
-    <!-- Dialog message displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__error_occurred">エラーが発生したため、アカウントを移行できませんでした。移行方法を選択して、もう一度お試しください。</string>
-    <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
-    <string name="RemoteRestoreActivity__couldnt_restore">このバックアップを復元できませんでした</string>
-    <!-- Dialog message explaining that an update to Signal is required to restore the backup. -->
-    <string name="RemoteRestoreActivity__update_latest">このバージョンの Signal ではバックアップを復元できません。最新バージョンにアップデートして、もう一度お試しください。</string>
-    <!-- Text on button that when pressed will redirect them to update Signal -->
-    <string name="RemoteRestoreActivity__update_signal">Signalをアップデートしてください</string>
-    <!-- Text label button to dismiss the dialog -->
-    <string name="RemoteRestoreActivity__not_now">今はしない</string>
-    <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">メディアはバックグラウンドで復元されます。今復元しないと、後で復元することはできません。</string>
-    <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">この端末はもう登録されていません</string>
-    <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">おそらく別の端末でSignalアカウントを登録したことが原因です。</string>
 
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
@@ -2165,17 +2096,6 @@
     <string name="PinRestoreLockedFragment_create_new_pin">新しいPINを作成</string>
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
-    <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
-    <string name="ReRegisterWithPinFragment_send_sms_code">SMSコードを送信する</string>
-    <!-- Email subject used when user contacts support about an issue with the reregister flow. -->
-    <string name="ReRegisterWithPinFragment_support_email_subject">Signalの登録 - AndroidでPINの再登録に関するサポートが必要です</string>
-    <!-- Dialog message shown in reregister flow when tapping a informational button to to learn about pins or contact support for help -->
-    <string name="ReRegisterWithPinFragment_need_help_local">あなたのPINは %1$d桁以上のコードで、数字または英数字のいずれかです。\n\nPIN を忘れた場合は、新しい PIN を作成できます。</string>
-    <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
-    <string name="ReRegisterWithPinFragment_skip_local">PIN を忘れた場合は、新しい PIN を作成できます。</string>
-    <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">思いつくPINの候補がなくなっても、新しいPINを作成することで、Signalアカウントにアクセスすることができます。</string>
-
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">ご注意ください</string>
     <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">PINを無効にすると、自身でバックアップと復元を行わない限り、Signalに再登録する際すべてのデータが失われます。PINを無効にしている間は登録ロックは使用できません。</string>
@@ -2255,6 +2175,12 @@
     <string name="WebRtcCallActivity__open_settings">設定を開く</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">今はしない</string>
+    <!-- Message for dialog shown at the start of a call when the system battery setting for Signal is "Restricted" -->
+    <string name="WebRtcCallActivity__others_may_not_be_able_to_hear_you_when_your_screen_turns_off">Others may not be able to hear you and the call may disconnect when your screen turns off. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
+    <!-- Title for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__others_couldnt_hear_you">Others couldn\'t hear you</string>
+    <!-- Message for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
+    <string name="WebRtcCallActivity__your_microphone_was_muted_while_signal_was_in_the_background">Your microphone was muted while Signal was in the background. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
     <!-- Title for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__approve_d_requests">
         <item quantity="other">%1$d 人のリクエストを承認しますか？</item>
@@ -2549,49 +2475,19 @@
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">指定された番号 (%1$s) は無効です。
     </string>
 
-    <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">下記の電話番号でよろしいですか？</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
     <string name="RegistrationActivity_additional_verification_required">追加の認証手続きが必要です</string>
-    <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">この番号に認証コードが送付されます。通信料金が発生する場合があります。</string>
-    <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">認証コードが届きます。通信料金が発生する場合があります。</string>
-    <!-- Hint text to select a country -->
-    <string name="RegistrationActivity_select_a_country">国を選択</string>
-    <!-- Hint text explaining that this is where the country code should go -->
-    <string name="RegistrationActivity_default_country_code">0</string>
-    <string name="RegistrationActivity_edit_number">番号を編集する</string>
-    <string name="RegistrationActivity_missing_google_play_services">Google Play開発者サービスがありません</string>
-    <string name="RegistrationActivity_this_device_is_missing_google_play_services">この端末にはGoogle Play開発者サービスがありません。Signalは使用できますが、信頼性や性能は下がる可能性があります。\n\n上級者でない方や、メーカー公式のAndroidをご利用の方、何かの間違いだと思う方などは support@signal.org まで連絡してください。</string>
-    <string name="RegistrationActivity_i_understand">分かりました</string>
-    <string name="RegistrationActivity_play_services_error">Google Play開発者サービスのエラー</string>
-    <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play開発者サービスは更新中か一時的に使用不能です。再度試してください。</string>
     <string name="RegistrationActivity_rate_limited_to_service">この番号の登録試行回数が多すぎます。あとで再度試してください。</string>
-    <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">この番号の登録試行回数が多すぎます。%1$s分後にもう一度お試しください。.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">サービスに接続できませんでした。ネットワークの接続を確認してから、再度試してください。</string>
     <!-- Dialog error message shown when we are unable to send an SMS to the user\'s number -->
     <string name="RegistrationActivity_sms_provider_error">お使いの電話番号にSMSを送信できませんでした。数時間後にもう一度お試しください。</string>
-    <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">SMSで認証コードを送信できませんでした。音声通話でコードを受信してみてください。</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">認証コードをリクエストできません。ネットワーク接続を確認して再度試してください。</string>
-    <string name="RegistrationActivity_non_standard_number_format">非標準の数字フォーマット</string>
-    <!-- Dialog message shown to confirm when entering phone number (first placeholder) is normalized and formatted differently by the app (second placeholder). -->
-    <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">あなたが入力した数字 (%1$s) は、非標準のフォーマットのようです。\n\n%2$s を意図していすか？</string>
-    <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - 電話番号フォーマット</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="other">デバッグログの提出まで、あと%1$dステップです。</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">あなたがロボットでないことを確認します。</string>
-    <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
-    <string name="RegistrationActivity_voice_call">音声通話</string>
-    <!-- Dialog button to cancel the pending action and return to the previous state. -->
-    <string name="RegistrationActivity_cancel">キャンセル</string>
     <string name="RegistrationActivity_next">次へ</string>
-    <!-- Title of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_phone_number">電話番号</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">%1$s に届いたコードを入力してください</string>
 
     <string name="RegistrationActivity_phone_number_description">電話番号</string>
@@ -2785,6 +2681,8 @@
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">ステッカーパックを読み込めませんでした</string>
     <!-- Bottom sheet describing a sticker. First placeholder is the title of the sticker pack and second is the author -->
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
+    <!-- Bottom sheet option that opens the pack the sticker belongs to -->
+    <string name="StickerPreviewBottomSheet__view_pack">View pack</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">保存</string>
@@ -3510,8 +3408,6 @@
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">着信通知を受けるには、設定をタップして「バッテリー」設定でバックグラウンド動作を有効にします。</string>
 
     <!-- country_selection_fragment -->
-    <string name="country_selection_fragment__loading_countries">国名を読み込んでいます…</string>
-    <string name="country_selection_fragment__search">検索</string>
 
     <string name="device_list_fragment__link_new_device">新しい端末をリンク</string>
 
@@ -4333,6 +4229,8 @@
     <string name="conversation_selection__menu_pin_message">ピン留め</string>
     <!-- Button to unpin a message -->
     <string name="conversation_selection__menu_unpin_message">ピン留めを解除する</string>
+    <!-- Button to open the sticker pack a sticker message came from -->
+    <string name="conversation_selection__menu_view_sticker_pack">View pack</string>
 
     <!-- conversation_expiring_on -->
 
@@ -4520,14 +4418,11 @@
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">PINを入力してください</string>
     <string name="RegistrationLockFragment__enter_the_pin_you_created">あなたのアカウント用に作成したPINを入力してください。これはSMSの認証コードとは違います。</string>
-    <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
-    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">アカウント用に作成した PIN を入力してください。</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">PINが違います。再度試してください。</string>
     <string name="RegistrationLockFragment__forgot_pin">PINを忘れましたか？</string>
     <string name="RegistrationLockFragment__incorrect_pin">PINが違います</string>
     <string name="RegistrationLockFragment__forgot_your_pin">PINを忘れましたか？</string>
     <string name="RegistrationLockFragment__not_many_tries_left">試行回数が残りわずかです！</string>
-    <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal登録 - AndroidのPINに関するサポートが必要 (V2 PIN)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
         <item quantity="other">プライバシーとセキュリティ保護のため、PINを回復する方法はありません。PINを思い出せない場合、%1$d日間無操作にするとSMSで再認証できます。その場合アカウントはリセットされ、メッセージ等もすべて消去されます。</item>
@@ -4577,22 +4472,6 @@
     <string name="backup_enable_dialog__you_must_have_this_passphrase">バックアップを復元するには、このパスフレーズが必要です。</string>
     <string name="backup_enable_dialog__folder">フォルダ</string>
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">パスフレーズを書き留めました。パスフレーズがなければ、バックアップは復元できません。</string>
-    <string name="registration_activity__restore_backup">バックアップを復元する</string>
-    <!-- Text label button to skip restoring -->
-    <string name="registration_activity__skip_restore">復元をスキップする</string>
-    <!-- Title for dialog to enter in the backup passphrase -->
-    <string name="RegistrationActivity_enter_backup_passphrase">バックアップ用パスフレーズを入力してください</string>
-    <string name="RegistrationActivity_restore">復元する</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">現在ご利用のものより新しいバージョンの Signal からはバックアップをインポートできません</string>
-    <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
-    <string name="RegistrationActivity_backup_failure_foreign_key">正しくない形式のデータがバックアップに含まれています</string>
-    <string name="RegistrationActivity_incorrect_backup_passphrase">バックアップ用パスフレーズが違います</string>
-    <string name="RegistrationActivity_checking">確認しています…</string>
-    <string name="RegistrationActivity_d_messages_so_far">これまで%1$d件のメッセージ…</string>
-    <string name="RegistrationActivity_restore_from_backup">バックアップから復元しますか？</string>
-    <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">ローカルバックアップからメディアやメッセージを復元してください。いま復元しなければ、あとでできなくなります。</string>
-    <string name="RegistrationActivity_backup_size_s">バックアップサイズ: %1$s</string>
-    <string name="RegistrationActivity_backup_timestamp_s">バックアップ日時: %1$s</string>
     <string name="BackupDialog_enable_local_backups">ローカルバックアップを有効にしますか？</string>
     <string name="BackupDialog_enable_backups">バックアップを有効にする</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">内容をご確認いただき、チェックボックスにチェックを入れて下さい。</string>
@@ -4628,7 +4507,6 @@
     <string name="RegistrationActivity_call_me_instead_available_in">電話で確認 (%1$02d:%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
     <string name="RegistrationActivity_resend_sms_available_in">コードの再送信まで (%1$02d:%2$02d)</string>
-    <string name="RegistrationActivity_contact_signal_support">Signalサポートに問い合わせ</string>
     <string name="RegistrationActivity_code_support_subject">Signal登録 - Android用認証コード</string>
     <string name="RegistrationActivity_incorrect_code">コードが違います</string>
     <string name="BackupUtil_never">なし</string>
@@ -4750,25 +4628,8 @@
     <string name="TransferOrRestoreFragment__restore_from_local_backup">ローカルバックアップを復元する</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
-    <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">古いAndroid端末でSignalを開きます</string>
-    <string name="NewDeviceTransferInstructions__continue">続ける</string>
-    <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">左上の写真をタップして、設定を開きます</string>
-    <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_account">"「アカウント」をタップ"</string>
-    <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
-    <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"両方の端末で「アカウントの移行」、「続ける」の順にタップします"</string>
 
     <!-- NewDeviceTransferSetupFragment -->
-    <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">古いAndroid端末への接続を準備しています…</string>
-    <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">しばらくお待ちください</string>
-    <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">古いAndroid端末との接続を待っています…</string>
-    <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">古いAndroid端末を検出し接続するには、Signalに位置情報へのアクセス許可が必要です。</string>
-    <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">古いAndroid端末を検出し接続するには、位置情報サービスを有効にする必要があります。</string>
-    <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signalが古いAndroid端末を検出して接続するには、Wi-Fiが有効になっている必要があります。ただし、Wi-Fiネットワークに接続されている必要はありません。</string>
-    <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">この端末はWi-Fi Directに対応していないようです。Signalは、Wi-Fi Directを使って古いAndroid端末を検出し、接続します。古いAndroid端末からアカウントを復元するために、バックアップを復元することは可能です。</string>
-    <string name="NewDeviceTransferSetup__restore_a_backup">バックアップを復元</string>
-    <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">古いAndroid端末への接続時に、予期しないエラーが発生しました。</string>
 
     <!-- OldDeviceTransferSetupFragment -->
     <string name="OldDeviceTransferSetup__searching_for_new_android_device">新しいAndroid端末を探しています…</string>
@@ -4812,9 +4673,6 @@
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device">他方の端末で「続ける」をタップしてください…</string>
 
     <!-- NewDeviceTransferFragment -->
-    <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">より新しいバージョンのSignalからは移行できません</string>
-    <!-- Error message indicating that we could not finish the user\'s device transfer. Displayed in a toast at the bottom of the screen. -->
-    <string name="NewDeviceTransfer__failure_foreign_key">転送されたデータの形式が正しくありません</string>
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">データを移行しています</string>
@@ -4853,10 +4711,6 @@
     <string name="OldDeviceTransferComplete__close">閉じる</string>
 
     <!-- NewDeviceTransferComplete -->
-    <string name="NewDeviceTransferComplete__transfer_successful">移行に成功しました</string>
-    <string name="NewDeviceTransferComplete__transfer_complete">移行が完了しました</string>
-    <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">移行を完了するには、登録を続ける必要があります。</string>
-    <string name="NewDeviceTransferComplete__continue_registration">登録を続ける</string>
 
     <!-- DeviceToDeviceTransferService -->
     <string name="DeviceToDeviceTransferService_content_title">アカウントの移行</string>
@@ -8559,219 +8413,6 @@
 
     <!-- ConfirmBackupCancellationDialog -->
 
-    <!-- Row title for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">以前利用していた端末がある場合</string>
-    <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_scan_qr">新しいSignalアカウントからQRコードをスキャンすれば、すぐに再開できます</string>
-
-    <!-- Row title for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">以前利用していた端末がない場合</string>
-    <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">または、Signalを同じ端末に再インストールする場合</string>
-
-    <!-- Screen title for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__restore_or_transfer_account">アカウントの復元または移行</string>
-    <!-- Screen subtitle for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__get_your_signal_account">Signalアカウントとメッセージ履歴をこの端末に復元します。</string>
-    <!-- Option title for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_signal_backup">Signalバックアップの復元</string>
-    <!-- Option subtitle for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__restore_your_text_messages_and_media_from">Signalバックアッププランからテキストメッセージとメディアを復元します。</string>
-    <!-- Option title for restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_on_device_backup">端末内のバックアップの復元</string>
-    <!-- Option subtitle fdor restoring via a local backup file or folder -->
-    <string name="SelectRestoreMethodFragment__restore_your_messages_from">端末に保存したバックアップからメッセージを復元します。</string>
-    <!-- Option title for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__from_your_old_phone">以前利用していた端末から復元する</string>
-    <!-- Option subtitle for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__transfer_directly_from_old">以前利用していたAndroidから直接移行する</string>
-    <!-- Dialog title shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_title">復元をスキップしますか？</string>
-    <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">復元を今スキップすると、後で復元することはできません。復元をスキップした後にバックアップを再度有効にすると、現在のバックアップが新しいメッセージ履歴に置き換えられます。</string>
-    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore">復元をスキップする</string>
-
-    <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_title">リカバリーキーを入力してください</string>
-    <!-- Screen subtitle for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_subtitle">リカバリーキーは、アカウントとデータを復元するために必要な64文字のコードです。</string>
-    <!-- Button to skip entering recovery key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">リカバリーキーをお持ちでない場合</string>
-    <!-- Recovery key text field hint -->
-    <string name="EnterBackupKey_backup_key">リカバリーキー</string>
-    <!-- Recovery key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">バックアップは、64文字のリカバリーコードがないと復元できません。リカバリーキーを忘れた場合、Signalはバックアップの復元対応はできません。</string>
-    <!-- Recovery key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">以前利用していた端末をお持ちの場合は、設定 &gt;「バックアップ」でリカバリーキーを確認できます。「リカバリーキーを表示する」をタップします。</string>
-    <!-- Recovery key not known bottom sheet button to learn more about it -->
-    <string name="EnterBackupKey_learn_more">詳しく見る</string>
-    <!-- Recovery key not known bottom sheet button to skip recovery key entry and resume normal reregistration -->
-    <string name="EnterBackupKey_skip_and_dont_restore">スキップして復元しない</string>
-    <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">リカバリーキーが正しくありません</string>
-    <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">Signalセキュアバックアップを有効にした際に保存したのと同じ電話番号と64文字のリカバリーキーで登録していることを確認してください。このキーがないとバックアップを復元できません。</string>
-    <!-- Dialog positive button text to try entering their recovery key again -->
-    <string name="EnterBackupKey_try_again">もう一度試す</string>
-    <!-- Dialog negative button text to get help with recovery key -->
-    <string name="EnterBackupKey_backup_key_help">リカバリーキーのヘルプ</string>
-    <!-- Text field error text when the recovery key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">リカバリーキーが正しくありません</string>
-    <!-- Text field error text when the recovery key is too long -->
-    <string name="EnterBackupKey_too_long_error">長すぎます (%1$d/%2$d)</string>
-    <!-- Text field error when the recovery key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">無効なリカバリーキーです</string>
-    <!-- Dialog title shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_not_found">バックアップが見つかりません</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">入力されたリカバリーキーは正しいですが、これに関連付けられたバックアップがありません。以前のスマートフォンを保管されている場合は、バックアップが有効になっており、バックアップが完了していることを確認してから、もう一度お試しください。</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">回復キーを間違って入力したか、古い端末で少なくとも1つのバックアップを完了していない可能性があります。\n\nSignalセキュアバックアップを有効にしたときに保存したのと同じ電話番号と回復キーで登録していること、および以前の端末でバックアップが完了していることを確認してください。</string>
-    <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">回復キーの試行回数が上限に達しました。セキュリティ対策として、試行回数には上限が設定されています。一時間後に再度お試しください。</string>
-    <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
-    <string name="EnterBackupKey_skip_restore">復元をスキップする</string>
-    <!-- Dialog title text when encountering backup restore network error -->
-    <string name="EnterBackupKey_cant_restore_backup">バックアップを復元できません</string>
-    <!-- Dialog body text when encountering backup restore network error -->
-    <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">現在、バックアップを復元できません。インターネット接続を確認して再度試してください。 </string>
-    <!-- Dialog button text to contact support on network error -->
-    <string name="EnterBackupKey_contact_support">サポートに問い合わせる</string>
-
-    <!-- Email subject when contacting support on a restore backup network issue -->
-    <string name="EnterBackupKey_network_failure_support_email">Signal Androidのバックアップ復元時のネットワークエラーについて</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
-    <!-- Email subject when contacting support on a permanent backup import failure -->
-    <string name="EnterBackupKey_permanent_failure_support_email">Signal Androidのバックアップ復元永久エラー</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
-
-    <!-- EnterLocalBackupKeyScreen: Screen title for entering recovery key for local backup restore -->
-    <string name="EnterLocalBackupKeyScreen__enter_your_recovery_key">リカバリーキーを入力してください</string>
-    <!-- EnterLocalBackupKeyScreen: Screen subtitle explaining what the recovery key is -->
-    <string name="EnterLocalBackupKeyScreen__your_recovery_key_is_a_64_character_code">リカバリーキーは、アカウントとデータを復元するために必要な64文字のコードです。</string>
-    <!-- EnterLocalBackupKeyScreen: Button text when user does not have a recovery key -->
-    <string name="EnterLocalBackupKeyScreen__no_recovery_key">リカバリーキーをお持ちでない場合</string>
-    <!-- EnterLocalBackupKeyScreen: Button to proceed to next step -->
-    <string name="EnterLocalBackupKeyScreen__next">次へ</string>
-
-    <!-- RestoreLocalBackupDialog: Error message when the selected archive fails to load -->
-    <string name="RestoreLocalBackupDialog__failed_to_load_archive">アーカイブの読み込みに失敗しました。別のディレクトリを選択してください。</string>
-    <!-- RestoreLocalBackupDialog: Dismiss button for dialog -->
-    <string name="RestoreLocalBackupDialog__ok">OK</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore">復元をスキップしますか？</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user about the consequences of skipping backup restore -->
-    <string name="RestoreLocalBackupDialog__skip_restore_body">復元を今スキップすると、後で復元することはできません。復元をスキップした後にバックアップを再度有効にすると、現在のバックアップが新しいメッセージ履歴に置き換えられます。</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the skip restore dialog -->
-    <string name="RestoreLocalBackupDialog__skip_restore_confirm">復元をスキップ</string>
-    <!-- RestoreLocalBackupDialog: Title of the dialog asking the user to confirm restoring a backup from a different account -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account">新しいアカウントへ復元しますか？</string>
-    <!-- RestoreLocalBackupDialog: Body of the dialog warning the user that the backup was created with a different account and they will lose group memberships -->
-    <string name="RestoreLocalBackupDialog__restore_to_new_account_body">復元しようとしているバックアップは、別のSignalアカウントで作成されたものです。新しいアカウントに復元することはできますが、復元後はすべてのグループから外れます。</string>
-    <!-- RestoreLocalBackupDialog: Confirm button label for the restore to new account dialog -->
-    <string name="RestoreLocalBackupDialog__restore">復元する</string>
-
-    <!-- RestoreLocalBackupActivity: Toast message when backup restore fails -->
-    <string name="RestoreLocalBackupActivity__backup_restore_failed">バックアップの復元に失敗しました</string>
-    <!-- RestoreLocalBackupActivity: Screen title shown during restore -->
-    <string name="RestoreLocalBackupActivity__restoring_backup">バックアップを復元しています</string>
-    <!-- RestoreLocalBackupActivity: Screen subtitle explaining restore duration -->
-    <string name="RestoreLocalBackupActivity__depending_on_the_size">バックアップのサイズによっては、数分かかる場合があります。</string>
-    <!-- RestoreLocalBackupActivity: Status text while restoring messages -->
-    <string name="RestoreLocalBackupActivity__restoring_messages">メッセージを復元しています…</string>
-    <!-- RestoreLocalBackupActivity: Status text while finalizing restore -->
-    <string name="RestoreLocalBackupActivity__finalizing">終了しています…</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore is complete -->
-    <string name="RestoreLocalBackupActivity__restore_complete">復元が完了しました</string>
-    <!-- RestoreLocalBackupActivity: Status text when restore fails -->
-    <string name="RestoreLocalBackupActivity__restore_failed">復元に失敗しました</string>
-    <!-- RestoreLocalBackupActivity: Progress text showing bytes read of total with percentage, e.g. "1.2 MB of 5.0 MB (24%)" -->
-    <string name="RestoreLocalBackupActivity__s_of_s_d_percent">%2$s のうち%1$s（%3$d%%）</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__cant_restore_backup">バックアップを復元できません</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when backup restore fails and is not recoverable -->
-    <string name="RestoreLocalBackupActivity__error_occurred_while_restoring">バックアップを復元する際にエラーが発生しました。バックアップの復元ができません。サポートにお問い合わせください。</string>
-
-    <!-- RestoreLocalBackupActivity: Label for the button that opens the contact support form -->
-    <string name="RestoreLocalBackupActivity__contact_support">サポートに問い合わせる</string>
-
-    <!-- RestoreLocalBackupActivity: Title for the dialog shown when on-device backups could not be automatically re-enabled -->
-    <string name="RestoreLocalBackupActivity__turn_on_on_device_backups">端末上のバックアップを有効化しますか？</string>
-
-    <!-- RestoreLocalBackupActivity: Body for the dialog shown when on-device backups could not be automatically re-enabled, prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__to_continue_using_on_device_backups">端末上のバックアップを使用して引き続きご利用になるには、このアカウントでバックアップを有効にする必要があります。これは、設定 &gt; バックアップ からいつでもおこなえます。</string>
-
-    <!-- RestoreLocalBackupActivity: Confirm button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__turn_on_now">今すぐ有効化</string>
-
-    <!-- RestoreLocalBackupActivity: Dismiss button label for the dialog prompting the user to re-enable on-device backups -->
-    <string name="RestoreLocalBackupActivity__not_now">今はしない</string>
-
-    <!-- RestoreLocalBackupActivity: Body text for the dialog shown after a successful restore, prompting the user to choose a backup folder -->
-    <string name="RestoreLocalBackupActivity__choose_a_folder_for_backups">端末上のバックアップを使用して引き続きご利用になるには、新しいバックアップの保存先となるフォルダを端末上で選択してください。</string>
-
-    <!-- RestoreLocalBackupActivity: Positive button label for the dialog shown after a successful restore; keeps the current backup folder -->
-    <string name="RestoreLocalBackupActivity__use_current_folder">現在のフォルダを使用</string>
-
-    <!-- RestoreLocalBackupActivity: Neutral button label for the dialog shown after a successful restore; opens folder picker to select a different backup location -->
-    <string name="RestoreLocalBackupActivity__choose_new_folder">新しいフォルダを選択</string>
-
-    <!-- RestoreLocalBackupActivity: Negative button label for the dialog shown after a successful restore; disables on-device backups -->
-    <string name="RestoreLocalBackupActivity__disable_backups">バックアップを無効化</string>
-
-    <!-- SelectInstructionsSheet: Title for the select backup folder instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_folder">バックアップフォルダを選択してください</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the select this folder button -->
-    <string name="SelectInstructionsSheet__tap_select_this_folder">「このフォルダを選択」をタップ</string>
-    <!-- SelectInstructionsSheet: Instruction not to select individual files -->
-    <string name="SelectInstructionsSheet__do_not_select_individual_files">個々のファイルを選択しない</string>
-    <!-- SelectInstructionsSheet: Title for the select backup file instruction sheet -->
-    <string name="SelectInstructionsSheet__select_your_backup_file">バックアップファイルを選択してください</string>
-    <!-- SelectInstructionsSheet: Instruction to tap the backup file saved to device -->
-    <string name="SelectInstructionsSheet__tap_on_the_backup_file">端末に保存したバックアップファイルをタップ</string>
-    <!-- SelectInstructionsSheet: Subtitle explaining how to access backup after tapping continue -->
-    <string name="SelectInstructionsSheet__after_tapping_continue">「続行」をタップした後、バックアップにアクセスする方法は以下のとおりです。</string>
-    <!-- SelectInstructionsSheet: Instruction to select the top-level backup folder -->
-    <string name="SelectInstructionsSheet__select_the_top_level_folder">バックアップが保存されている最上位フォルダを選択</string>
-    <!-- SelectInstructionsSheet: Continue button text -->
-    <string name="SelectInstructionsSheet__continue_button">続行</string>
-
-    <!-- SelectLocalBackupScreen: Screen title for restoring on-device backup -->
-    <string name="SelectLocalBackupScreen__restore_on_device_backup">端末内のバックアップの復元</string>
-    <!-- SelectLocalBackupScreen: Screen subtitle explaining the restore process -->
-    <string name="SelectLocalBackupScreen__restore_your_messages_from_the_backup_folder">端末に保存したバックアップフォルダからメッセージを復元します。今復元しないと、後で復元することはできません。</string>
-    <!-- SelectLocalBackupScreen: Button to initiate backup restoration -->
-    <string name="SelectLocalBackupScreen__restore_backup">バックアップを復元</string>
-    <!-- SelectLocalBackupScreen: Button to choose an earlier backup when current is latest -->
-    <string name="SelectLocalBackupScreen__choose_an_earlier_backup">以前のバックアップを選択</string>
-    <!-- SelectLocalBackupScreen: Button to choose a different backup -->
-    <string name="SelectLocalBackupScreen__choose_a_different_backup">別のバックアップを選択</string>
-    <!-- SelectLocalBackupScreen: Label for latest backup card -->
-    <string name="SelectLocalBackupScreen__your_latest_backup">最新のバックアップ：</string>
-    <!-- SelectLocalBackupScreen: Label for non-latest backup card -->
-    <string name="SelectLocalBackupScreen__your_backup">バックアップ：</string>
-
-    <!-- SelectLocalBackupSheet: Title for backup selection bottom sheet -->
-    <string name="SelectLocalBackupSheet__choose_a_backup_to_restore">バックアップを選択して復元</string>
-    <!-- SelectLocalBackupSheet: Subtitle warning about choosing an older backup -->
-    <string name="SelectLocalBackupSheet__choosing_an_older_backup">以前のバックアップを選択すると、メッセージやメディアが失われる可能性があります。</string>
-    <!-- SelectLocalBackupSheet: Continue button text -->
-    <string name="SelectLocalBackupSheet__continue_button">続行</string>
-
-    <!-- SelectLocalBackupTypeScreen: Screen title for selecting backup type -->
-    <string name="SelectLocalBackupTypeScreen__restore_on_device_backup">端末内のバックアップの復元</string>
-    <!-- SelectLocalBackupTypeScreen: Screen subtitle explaining restore options -->
-    <string name="SelectLocalBackupTypeScreen__restore_your_messages_from_the_backup">端末に保存したバックアップからメッセージを復元します。今復元しないと、後で復元することはできません。</string>
-    <!-- SelectLocalBackupTypeScreen: Button for users who saved backup as single file -->
-    <string name="SelectLocalBackupTypeScreen__i_saved_my_backup_as_a_single_file">バックアップを1つのファイルとして保存済み</string>
-    <!-- SelectLocalBackupTypeScreen: Card title for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__choose_backup_folder">バックアップフォルダを選択</string>
-    <!-- SelectLocalBackupTypeScreen: Card description for choosing backup folder -->
-    <string name="SelectLocalBackupTypeScreen__select_the_folder_on_your_device">バックアップが保存されている端末内のフォルダを選択してください</string>
-
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">Signal Androidの、バックアップエクスポート時のネットワークエラーについて</string>
     <!-- Email filter when contacting support on a create backup failure -->
@@ -8785,23 +8426,6 @@
     <string name="ContactSupportDialog_submit_with_debug">デバッグログを添付して送信する</string>
     <!-- Button option to not submit debug log when contacting support -->
     <string name="ContactSupportDialog_submit_without_debug">デバッグログなしで送信する</string>
-
-    <!-- Title for restore via qr screen -->
-    <string name="RestoreViaQr_title">以前利用していた端末でこのコードをスキャンしてください</string>
-    <!-- First instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_1">以前利用していた端末でSignalを開きます</string>
-    <!-- Second instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_2">カメラのアイコンをタップします </string>
-    <!-- Third instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_3">そのカメラでこのコードをスキャンします</string>
-    <!-- Error message shown when qr code could not be loaded -->
-    <string name="RestoreViaQr_qr_code_error">QRコードを生成できません</string>
-    <!-- Status message shown when qr code already scanned by other device -->
-    <string name="RestoreViaQr_qr_code_scanned">以前利用していた端末でスキャンされました</string>
-    <!-- Error button text to retry getting a qr code -->
-    <string name="RestoreViaQr_retry">再試行</string>
-    <!-- Error message shown when register after receiving the provisioning message failed -->
-    <string name="RestoreViaQr_registration_error">エラーが発生したため、アカウントを移行できませんでした。QRコードをもう一度スキャンしてやり直してください。</string>
 
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">アカウントの移行</string>
@@ -8843,19 +8467,6 @@
     <string name="RestoreCompleteBottomSheet_transfer_complete_message">Signalアカウントとメッセージは他の端末に移行されました。この端末上でSignalはご利用できなくなりました。</string>
     <!-- Restore Complete bottom sheet dialog button text to dismiss sheet -->
     <string name="RestoreCompleteBottomSheet_button">OK</string>
-
-    <!-- No Backup to Restore screen title -->
-    <string name="NoBackupToRestore_title">復元するバックアップがありません</string>
-    <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">iPhoneからAndroidにメッセージとメディアを移行する場合は、以前ご利用になっていた端末でSignalセキュアバックアップを有効にしておかなければなりません。</string>
-    <!-- No Backup to Restore step 1 to enable backups on old device -->
-    <string name="NoBackupToRestore_step1">以前利用していた端末でSignalを開きます</string>
-    <!-- No Backup to Restore step 2 to enable backups on old device -->
-    <string name="NoBackupToRestore_step2">設定 &gt; バックアップ　の順にタップします</string>
-    <!-- No Backup to Restore step 3 to enable backups on old device -->
-    <string name="NoBackupToRestore_step3">バックアップを有効にして、バックアップが完了するまでお待ちください</string>
-    <!-- No backup to Restore tonal cta to skip restore -->
-    <string name="NoBackupToRestore_skip_restore">復元をスキップする</string>
 
     <!-- Dialog title when the recovery key change limit is reached -->
     <string name="MessageBackupsKeyRecordScreen__limit_reached_title">回復キー作成回数の上限に達しました</string>

@@ -560,41 +560,6 @@
     <string name="DeviceTransferComplete__your_account_is_now_on_this_device">Jūsu konts tagad ir pieejams šajā ierīcē.</string>
     <string name="DeviceTransferComplete__continue_registration">Turpināt</string>
 
-    <!-- Create profile screen -->
-    <!-- Title displayed at the top of the create-profile screen during registration. -->
-    <string name="CreateProfileScreen__set_up_your_profile">Iestatiet savu profilu</string>
-    <!-- Subtitle on create-profile screen explaining that the profile is end-to-end encrypted and visible to recipients. -->
-    <string name="CreateProfileScreen__your_profile_is_end_to_end_encrypted">Jūsu profilu un tā izmaiņas redzēs lietotāji, kuriem nosūtīsiet ziņas, kā arī jūsu kontakti un grupas.</string>
-    <!-- Label/hint for the first-name field, indicating it is required. -->
-    <string name="CreateProfileScreen__first_name_required">Vārds (obligāts)</string>
-    <!-- Label/hint for the last-name field, indicating it is optional. -->
-    <string name="CreateProfileScreen__last_name_optional">Uzvārds (nav obligāts)</string>
-    <!-- Action button text to advance from create-profile screen. -->
-    <string name="CreateProfileScreen__next">Tālāk</string>
-    <!-- Content description for the avatar selection control. -->
-    <string name="CreateProfileScreen__set_avatar_description">Iestatīt avataru</string>
-
-    <!-- Phone number discoverability picker -->
-    <!-- Title row label shown on the create-profile screen pointing at the discoverability picker. -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Kas var mani atrast pēc numura?</string>
-    <!-- Description shown on the picker when "Everyone" is selected. -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">Ikviens, kuram ir jūsu tālruņa numurs, redzēs, ka izmantojat Signal, un varēs uzsākt ar jums sarunas.</string>
-    <!-- Description shown on the picker when "Nobody" is selected. -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Neviens neredzēs, ka izmantojat Signal, izņemot tos, kuriem nosūtīsiet ziņu vai ar kuriem jau esat sarunājušies iepriekš.</string>
-    <!-- Radio option label for "Everyone can find me by number". -->
-    <string name="PhoneNumberPrivacy_everyone">Ikviens</string>
-    <!-- Radio option label for "Nobody can find me by number". -->
-    <string name="PhoneNumberPrivacy_nobody">Neviens</string>
-    <!-- Title for the confirmation dialog shown when the user selects "Nobody". -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Vai tiešām turpināt?</string>
-    <!-- Body for the confirmation dialog shown when the user selects "Nobody". -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Funkcijai \"Kas var mani atrast pēc numura\" iestatot \"Neviens\", cilvēkiem būs grūtāk jūs atrast Signal platformā.</string>
-    <!-- Cancel button on the "Nobody" confirmation dialog. -->
-    <string name="PhoneNumberPrivacySettingsFragment__cancel">Atcelt</string>
-    <!-- Save button on the discoverability picker. -->
-    <string name="PhoneNumberDiscoverabilityScreen__save">Saglabāt</string>
-    <!-- Content description for the back arrow on the discoverability picker. -->
-    <string name="PhoneNumberDiscoverabilityScreen__back">Atpakaļ</string>
     <!-- Error message shown when the captcha fails to load. -->
     <string name="CaptchaScreen__failed_to_load_captcha">Neizdevās ielādēt captcha</string>
     <!-- Button to cancel out of the captcha screen. -->
@@ -686,7 +651,7 @@
     <!-- Action button that stores the Signal Login in the device password manager. -->
     <string name="SignalLoginInfoScreen__save_to_password_manager">Saglabāt paroļu pārvaldniekā</string>
     <!-- Toast shown when the user taps the disabled save to password manager button and the device has no password manager. -->
-    <string name="SignalLoginInfoScreen__no_password_manager_available">Jums nav iestatīts paroļu pārvaldnieks vai jūsu izmantotais paroļu pārvaldnieks netiek atbalstīts.</string>
+    <string name="SignalLoginInfoScreen__no_password_manager_available">You don\'t have a password manager set up.</string>
     <!-- Action button for users who would rather write the Signal Login down themselves. -->
     <string name="SignalLoginInfoScreen__save_manually">Saglabāt manuāli</string>
     <!-- Error shown when the Signal Login could not be stored in the password manager. -->
