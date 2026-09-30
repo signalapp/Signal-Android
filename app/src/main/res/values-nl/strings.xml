@@ -3216,7 +3216,7 @@
     <!-- Notification channel name for notifications sent when a device has been linked -->
     <string name="NotificationChannel_new_linked_device">Nieuw gekoppeld apparaat</string>
     <!-- Notification channel name for unread reminder notifications -->
-    <string name="NotificationChannel_unread_reminders">Ongelezen herinneringen</string>
+    <string name="NotificationChannel_unread_reminders">Herinneringen ongelezen berichten</string>
 
     <!-- A toast notification that is shown when the app does not have sufficient permissions to save media files to the device storage. -->
     <string name="SaveAttachment_unable_to_write_to_sd_card_exclamation">Kan niet schrijven naar opslag.</string>
@@ -4133,7 +4133,7 @@
     <!-- Body option in settings to turn on reaction notifications    -->
     <string name="preferences_notifications__notify_reaction">Ontvang meldingen voor emoji-reacties op je berichten</string>
     <!-- Option in settings to turn on unread reminders -->
-    <string name="preferences_notifications__unread">Ongelezen herinneringen</string>
+    <string name="preferences_notifications__unread">Herinneringen ongelezen berichten</string>
     <!-- Body option to turn on unread reminders -->
     <string name="preferences_notifications__notify_unread">Ontvang af en toe meldingen over ongelezen berichten in gedempte chats</string>
     <string name="preferences_notifications__ringtone">Beltoon</string>
@@ -5652,11 +5652,11 @@
     <!-- Description for toggle row to control replies settings while muted -->
     <string name="MutedNotificationsFragment__replies_body_global">Ontvang meldingen wanneer iemand op je bericht antwoordt in een gedempte chat</string>
     <!-- Description for toggle row to control call settings while muted -->
-    <string name="MutedNotificationsFragment__calls_body">Speel beltoon af en ontvang meldingen wanneer een oproep wordt gestart als deze chat is gedempt</string>
+    <string name="MutedNotificationsFragment__calls_body">Speel beltoon af en ontvang meldingen wanneer een oproep wordt gestart terwijl deze chat is gedempt</string>
     <!-- Description for toggle row to control mentions settings while muted -->
-    <string name="MutedNotificationsFragment__mentions_body">Ontvang meldingen wanneer je wordt vermeld als deze chat is gedempt</string>
+    <string name="MutedNotificationsFragment__mentions_body">Ontvang meldingen wanneer je wordt vermeld terwijl deze chat is gedempt</string>
     <!-- Description for toggle row to control replies settings while muted -->
-    <string name="MutedNotificationsFragment__replies_body">Ontvang meldingen wanneer iemand op je bericht antwoordt als deze chat is gedempt</string>
+    <string name="MutedNotificationsFragment__replies_body">Ontvang meldingen wanneer iemand op je bericht antwoordt terwijl deze chat is gedempt</string>
     <!-- Description for toggle row to control unread reminders while muted -->
     <string name="MutedNotificationsFragment__unread_body">Ontvang af en toe meldingen over ongelezen berichten als deze chat is gedempt</string>
 
@@ -7334,7 +7334,7 @@
 
     <!-- GroupStoryEducationSheet -->
     <!-- Displayed as the title of the education bottom sheet -->
-    <string name="GroupStoryEducationSheet__introducing_group_stories">Nieuw: groepsverhalen</string>
+    <string name="GroupStoryEducationSheet__introducing_group_stories">Groepsverhalen</string>
     <!-- Line item on the sheet explaining group stories -->
     <string name="GroupStoryEducationSheet__share_story_updates_to">Deel verhalen in een groepschat waar je al in zit.</string>
     <!-- Line item on the sheet explaining that anyone in the group can share to group stories -->

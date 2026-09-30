@@ -88,7 +88,7 @@
   <!-- Label of the GIF quick search chip that searches for GIFs of someone angry. Adjective describing the mood in the GIFs. -->
   <string name="MediaKeyboard__angry">כעס</string>
   <!-- Error message shown in place of the GIF grid when the GIFs could not be fetched. -->
-  <string name="MediaKeyboard__couldnt_load_gifs">לא ניתן לטעון קבצי GIF. יש לבדוק את החיבור שלך ולנסות שוב.</string>
+  <string name="MediaKeyboard__couldnt_load_gifs">לא ניתן לטעון קובצי GIF. יש לבדוק את החיבור שלך ולנסות שוב.</string>
   <!-- Button shown with the GIF loading error that tries the fetch again. Verb, imperative. -->
   <string name="MediaKeyboard__retry">נסה שוב</string>
 </resources>
