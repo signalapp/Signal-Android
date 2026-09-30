@@ -24,6 +24,7 @@ import org.whispersystems.signalservice.internal.push.StoryMessage
 import org.whispersystems.signalservice.internal.push.SyncMessage
 import org.whispersystems.signalservice.internal.push.TypingMessage
 import org.whispersystems.signalservice.internal.util.Util
+import java.text.BreakIterator
 
 /**
  * Validates an [Envelope] and its decrypted [Content] so that we know the message can be processed safely
@@ -33,8 +34,8 @@ import org.whispersystems.signalservice.internal.util.Util
  */
 object EnvelopeContentValidator {
 
-  private const val MAX_POLL_QUESTION_CHARACTER_LENGTH = 200
-  private const val MAX_POLL_CHARACTER_LENGTH = 100
+  private const val MAX_POLL_QUESTION_GRAPHEME_LENGTH = 200
+  private const val MAX_POLL_OPTION_GRAPHEME_LENGTH = 100
   private const val MIN_POLL_OPTIONS = 2
   private const val MAX_POLL_OPTIONS = 10
   private const val LONG_TEXT_CONTENT_TYPE = "text/x-signal-plain"
@@ -206,11 +207,22 @@ object EnvelopeContentValidator {
   }
 
   private fun DataMessage.PollCreate.hasInvalidPollQuestion(): Boolean {
-    return this.question.isNullOrBlank() || this.question.length > MAX_POLL_QUESTION_CHARACTER_LENGTH
+    return this.question.isNullOrBlank() || this.question.graphemeCount() > MAX_POLL_QUESTION_GRAPHEME_LENGTH
   }
 
   private fun DataMessage.PollCreate.hasInvalidPollOptions(): Boolean {
-    return this.options.size < MIN_POLL_OPTIONS || this.options.any { option -> option.length > MAX_POLL_CHARACTER_LENGTH }
+    return this.options.size < MIN_POLL_OPTIONS || this.options.any { option -> option.graphemeCount() > MAX_POLL_OPTION_GRAPHEME_LENGTH }
+  }
+
+  private fun String.graphemeCount(): Int {
+    val iterator = BreakIterator.getCharacterInstance()
+    iterator.setText(this)
+
+    var count = 0
+    while (iterator.next() != BreakIterator.DONE) {
+      count++
+    }
+    return count
   }
 
   private fun validateCallMessage(callMessage: CallMessage): Result {

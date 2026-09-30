@@ -26,6 +26,8 @@ class EnvelopeContentValidatorTest {
   companion object {
     private val SELF_ACI = ServiceId.ACI.parseOrThrow("0a5ebe7e-9de7-41a5-a25f-6ace4f8e11d1")
     private val OTHER_ACI = ServiceId.ACI.parseOrThrow("11111111-9de7-41a5-a25f-6ace4f8e11d1")
+    private const val FAMILY_EMOJI = "\uD83D\uDC68\u200D\uD83D\uDC69\u200D\uD83D\uDC67\u200D\uD83D\uDC66"
+    private const val FLAG_EMOJI = "\uD83C\uDDFA\uD83C\uDDF8"
   }
 
   @Test
@@ -104,6 +106,74 @@ class EnvelopeContentValidatorTest {
     )
 
     val result = EnvelopeContentValidator.validate(Envelope(), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure polls with a question of 200 multi-codepoint graphemes are marked valid`() {
+    val content = Content(
+      dataMessage = DataMessage(
+        timestamp = 1234,
+        pollCreate = DataMessage.PollCreate(
+          question = FAMILY_EMOJI.repeat(200),
+          options = listOf("option1", "option2"),
+          allowMultiple = true
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Valid)
+  }
+
+  @Test
+  fun `validate - ensure polls with a question exceeding 200 multi-codepoint graphemes are marked invalid`() {
+    val content = Content(
+      dataMessage = DataMessage(
+        timestamp = 1234,
+        pollCreate = DataMessage.PollCreate(
+          question = FAMILY_EMOJI.repeat(201),
+          options = listOf("option1", "option2"),
+          allowMultiple = true
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure poll options of 100 multi-codepoint graphemes are marked valid`() {
+    val content = Content(
+      dataMessage = DataMessage(
+        timestamp = 1234,
+        pollCreate = DataMessage.PollCreate(
+          question = "how are you",
+          options = listOf(FLAG_EMOJI.repeat(100), "e\u0301".repeat(100)),
+          allowMultiple = true
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Valid)
+  }
+
+  @Test
+  fun `validate - ensure poll options exceeding 100 multi-codepoint graphemes are marked invalid`() {
+    val content = Content(
+      dataMessage = DataMessage(
+        timestamp = 1234,
+        pollCreate = DataMessage.PollCreate(
+          question = "how are you",
+          options = listOf(FLAG_EMOJI.repeat(101), "option2"),
+          allowMultiple = true
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
     assert(result is EnvelopeContentValidator.Result.Invalid)
   }
 

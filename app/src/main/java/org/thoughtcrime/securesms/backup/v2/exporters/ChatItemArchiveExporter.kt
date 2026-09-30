@@ -126,8 +126,8 @@ private val TAG = Log.tag(ChatItemArchiveExporter::class.java)
 private val MAX_INLINED_BODY_SIZE = 128.kibiBytes.bytes.toInt()
 private val MAX_INLINED_BODY_SIZE_WITH_LONG_ATTACHMENT_POINTER = 2.kibiBytes.bytes.toInt()
 private val MAX_INLINED_QUOTE_BODY_SIZE = 2.kibiBytes.bytes.toInt()
-private const val MAX_POLL_QUESTION_CHARACTER_LENGTH = 200
-private const val MAX_POLL_CHARACTER_LENGTH = 100
+private const val MAX_POLL_QUESTION_GRAPHEME_LENGTH = 200
+private const val MAX_POLL_OPTION_GRAPHEME_LENGTH = 100
 private const val MAX_POLL_OPTIONS = 10
 
 /**
@@ -438,11 +438,11 @@ class ChatItemArchiveExporter(
 
         extraData.pollsById[record.id] != null -> {
           val poll = extraData.pollsById[record.id]!!
-          if (poll.question.isEmpty() || poll.question.length > MAX_POLL_QUESTION_CHARACTER_LENGTH) {
+          if (!poll.hasValidQuestionForExport()) {
             Log.w(TAG, ExportSkips.invalidPollQuestion(record.dateSent))
             continue
           }
-          if (poll.pollOptions.isEmpty() || poll.pollOptions.size > MAX_POLL_OPTIONS || poll.pollOptions.any { it.text.isEmpty() || it.text.length > MAX_POLL_CHARACTER_LENGTH }) {
+          if (!poll.hasValidOptionsForExport()) {
             Log.w(TAG, ExportSkips.invalidPollOption(record.dateSent))
             continue
           }
@@ -618,6 +618,16 @@ class ChatItemArchiveExporter(
       pollsById = pollsResult
     )
   }
+}
+
+@VisibleForTesting
+internal fun PollRecord.hasValidQuestionForExport(): Boolean {
+  return question.isNotEmpty() && StringUtil.getGraphemeCount(question) <= MAX_POLL_QUESTION_GRAPHEME_LENGTH
+}
+
+@VisibleForTesting
+internal fun PollRecord.hasValidOptionsForExport(): Boolean {
+  return pollOptions.isNotEmpty() && pollOptions.size <= MAX_POLL_OPTIONS && pollOptions.all { it.text.isNotEmpty() && StringUtil.getGraphemeCount(it.text) <= MAX_POLL_OPTION_GRAPHEME_LENGTH }
 }
 
 private fun simpleUpdate(type: SimpleChatUpdate.Type): ChatUpdateMessage {
