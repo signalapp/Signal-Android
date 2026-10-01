@@ -303,6 +303,7 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
           instance!!.searchTable.fullyResetTables(useTransaction = false)
           instance!!.recipientTable.clearFileWallpapersPostBackupRestore()
           instance!!.recipientTable.clearSelfKeyTransparencyData()
+          instance!!.recipientTable.markSystemContactLinksNeededPostBackupRestore()
           instance!!.rawWritableDatabase.execSQL("DROP TABLE IF EXISTS key_value")
           instance!!.rawWritableDatabase.execSQL("DROP TABLE IF EXISTS megaphone")
           instance!!.rawWritableDatabase.execSQL("DROP TABLE IF EXISTS job_spec")

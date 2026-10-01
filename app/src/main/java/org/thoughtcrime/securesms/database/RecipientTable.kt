@@ -2608,6 +2608,24 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       .run()
   }
 
+  /**
+   * A restored database carries the old phone's system contact links, but a lookup key from another
+   * phone can resolve to a different person here. So every link becomes one the user needs to make
+   * again, keeping what the old contact gave the recipient, such as its name. A contact sync then
+   * links again whatever it can match by number.
+   */
+  fun markSystemContactLinksNeededPostBackupRestore() {
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(
+        SYSTEM_PHOTO_URI to null,
+        SYSTEM_CONTACT_URI to null,
+        SYSTEM_CONTACT_LINK_STATE to SystemContactLinkState.NEEDED.id
+      )
+      .where("$SYSTEM_CONTACT_URI NOT NULL")
+      .run()
+  }
+
   fun getPhoneNumberDiscoverability(id: RecipientId): PhoneNumberDiscoverableState? {
     return readableDatabase
       .select(PHONE_NUMBER_DISCOVERABLE)
@@ -4879,6 +4897,12 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         put(AVATAR_COLOR, avatarColor.serialize())
       } else if (isInsert) {
         put(AVATAR_COLOR, AvatarColorHash.forAddress(contact.proto.signalAci ?: contact.proto.signalPni, contact.proto.e164).serialize())
+
+        // Only a link to a system contact sets these names, so this contact was linked on an
+        // earlier primary device, and its contact here is yet to be found.
+        if (!systemName.isEmpty) {
+          put(SYSTEM_CONTACT_LINK_STATE, SystemContactLinkState.NEEDED.id)
+        }
       }
     }
   }
