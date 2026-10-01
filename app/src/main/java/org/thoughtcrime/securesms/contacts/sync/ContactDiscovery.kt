@@ -260,13 +260,7 @@ object ContactDiscovery {
           for (phoneDetails in phoneDetailsWithoutSelf) {
             val realNumber: String = Util.getFirstNonEmpty(rewrites[phoneDetails.number], phoneDetails.number)
 
-            val profileName: ProfileName = if (!StringUtil.isEmpty(details.givenName)) {
-              ProfileName.fromParts(details.givenName, details.familyName)
-            } else if (!StringUtil.isEmpty(phoneDetails.displayName)) {
-              ProfileName.asGiven(phoneDetails.displayName)
-            } else {
-              ProfileName.EMPTY
-            }
+            val profileName: ProfileName = systemProfileName(details.givenName, details.familyName, phoneDetails.displayName)
 
             val recipient: Recipient = Recipient.externalContact(realNumber) ?: continue
 
@@ -315,6 +309,16 @@ object ContactDiscovery {
         .recipients
         .getRecipientsWithNotificationChannels()
         .forEach { NotificationChannels.getInstance().updateContactChannelName(Recipient.resolved(it.id)) }
+    }
+  }
+
+  private fun systemProfileName(givenName: String?, familyName: String?, displayName: String?): ProfileName {
+    return if (!StringUtil.isEmpty(givenName)) {
+      ProfileName.fromParts(givenName, familyName)
+    } else if (!StringUtil.isEmpty(displayName)) {
+      ProfileName.asGiven(displayName)
+    } else {
+      ProfileName.EMPTY
     }
   }
 

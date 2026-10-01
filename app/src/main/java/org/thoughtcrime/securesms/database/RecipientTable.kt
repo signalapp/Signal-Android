@@ -1413,6 +1413,28 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     return BulkOperationsHandle(writableDatabase)
   }
 
+  private fun systemContactValues(
+    systemProfileName: ProfileName,
+    systemDisplayName: String?,
+    photoUri: String?,
+    systemPhoneLabel: String?,
+    systemPhoneType: Int,
+    systemPhoneE164: String?,
+    systemContactUri: String?
+  ): ContentValues {
+    return ContentValues().apply {
+      put(SYSTEM_GIVEN_NAME, systemProfileName.givenName)
+      put(SYSTEM_FAMILY_NAME, systemProfileName.familyName)
+      put(SYSTEM_JOINED_NAME, Util.firstNonNull(systemDisplayName, systemProfileName.toString()))
+      put(SYSTEM_PHOTO_URI, photoUri)
+      put(SYSTEM_PHONE_LABEL, systemPhoneLabel)
+      put(SYSTEM_PHONE_TYPE, systemPhoneType)
+      put(SYSTEM_PHONE_E164, systemPhoneE164)
+      put(SYSTEM_CONTACT_URI, systemContactUri)
+      put(SYSTEM_CONTACT_LINK_STATE, SystemContactLinkState.LINKED.id)
+    }
+  }
+
   fun onUpdatedChatColors(chatColors: ChatColors) {
     val where = "$CUSTOM_CHAT_COLORS_ID = ?"
     val args = SqlUtil.buildArgs(chatColors.id.longValue)
@@ -5076,21 +5098,9 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       systemPhoneE164: String?,
       systemContactUri: String?
     ) {
-      val joinedName = Util.firstNonNull(systemDisplayName, systemProfileName.toString())
-      val refreshQualifyingValues = ContentValues().apply {
-        put(SYSTEM_GIVEN_NAME, systemProfileName.givenName)
-        put(SYSTEM_FAMILY_NAME, systemProfileName.familyName)
-        put(SYSTEM_JOINED_NAME, joinedName)
-        put(SYSTEM_PHOTO_URI, photoUri)
-        put(SYSTEM_PHONE_LABEL, systemPhoneLabel)
-        put(SYSTEM_PHONE_TYPE, systemPhoneType)
-        put(SYSTEM_PHONE_E164, systemPhoneE164)
-        put(SYSTEM_CONTACT_URI, systemContactUri)
-        put(SYSTEM_CONTACT_LINK_STATE, SystemContactLinkState.LINKED.id)
-      }
-
-      val updateQuery = SqlUtil.buildTrueUpdateQuery("$ID = ? AND $PHONE_NUMBER_DISCOVERABLE != ?", SqlUtil.buildArgs(id, PhoneNumberDiscoverableState.NOT_DISCOVERABLE.id), refreshQualifyingValues)
-      if (update(updateQuery, refreshQualifyingValues)) {
+      val values = systemContactValues(systemProfileName, systemDisplayName, photoUri, systemPhoneLabel, systemPhoneType, systemPhoneE164, systemContactUri)
+      val updateQuery = SqlUtil.buildTrueUpdateQuery("$ID = ? AND $PHONE_NUMBER_DISCOVERABLE != ?", SqlUtil.buildArgs(id, PhoneNumberDiscoverableState.NOT_DISCOVERABLE.id), values)
+      if (update(updateQuery, values)) {
         pendingRecipients.add(id)
       }
 
