@@ -82,6 +82,85 @@ class SystemContactsRepositoryTest {
     assertEquals("content://com.android.contacts/contacts/4/photo", number.photoUri)
   }
 
+  @Test
+  fun `a linked contact loads like a full read, from its current lookup key`() {
+    FakeContactsProvider.contacts = listOf(contact(1, "alice.joined", resolvesFrom = "alice", displayName = "Alice Anderson"))
+    FakeContactsProvider.dataRows = ALICE_ROWS + BOB_ROWS
+
+    val result = SystemContactsRepository.getLinkedContact(context, OWN_ACCOUNT_TYPE, "alice", FORMATTER) as SystemContactsRepository.LinkedContactResult.Found
+    val alice = result.contact
+
+    assertEquals("content://com.android.contacts/contacts/lookup/alice.joined/1", alice.contactUri.toString())
+    assertEquals("Alice Anderson", alice.displayName)
+    assertEquals("content://com.android.contacts/contacts/1/photo", alice.photoUri)
+    assertEquals("Alice", alice.givenName)
+    assertEquals("Anderson", alice.familyName)
+    assertEquals(
+      listOf(
+        SystemContactsRepository.PhoneDetails("+15555550101", Phone.TYPE_HOME, null),
+        SystemContactsRepository.PhoneDetails("+15555550199", Phone.TYPE_WORK, null)
+      ),
+      alice.numbers
+    )
+  }
+
+  @Test
+  fun `a linked contact ignores numbers only Signal's own raw contact has`() {
+    FakeContactsProvider.contacts = listOf(contact(1, "alice", displayName = "Alice Anderson"))
+    FakeContactsProvider.dataRows = listOf(
+      phone(1, "alice", id = 13, rawContactId = 900, accountType = OWN_ACCOUNT_TYPE, displayName = "Alice Anderson", number = "555-555-0177", type = Phone.TYPE_MOBILE)
+    ) + ALICE_ROWS
+
+    val result = SystemContactsRepository.getLinkedContact(context, OWN_ACCOUNT_TYPE, "alice", FORMATTER) as SystemContactsRepository.LinkedContactResult.Found
+
+    assertEquals(listOf("+15555550101", "+15555550199"), result.contact.numbers.map { it.number })
+  }
+
+  @Test
+  fun `a linked contact kept alive only by Signal's own raw contact is missing`() {
+    FakeContactsProvider.contacts = listOf(contact(2, "bob", displayName = "Bob"))
+    FakeContactsProvider.dataRows = listOf(BOB_ROWS[1])
+
+    assertEquals(SystemContactsRepository.LinkedContactResult.Missing, SystemContactsRepository.getLinkedContact(context, OWN_ACCOUNT_TYPE, "bob", FORMATTER))
+  }
+
+  @Test
+  fun `a linked contact with neither a number nor a name is still there`() {
+    FakeContactsProvider.contacts = listOf(contact(3, "carol", displayName = "carol@example.com"))
+    FakeContactsProvider.dataRows = listOf(
+      mapOf(
+        ContactsContract.Data.MIMETYPE to ContactsContract.CommonDataKinds.Email.CONTENT_ITEM_TYPE,
+        ContactsContract.Data.CONTACT_ID to 3L,
+        ContactsContract.Data.LOOKUP_KEY to "carol",
+        ContactsContract.Data._ID to 40L,
+        ContactsContract.Data.RAW_CONTACT_ID to 301L,
+        ContactsContract.RawContacts.ACCOUNT_TYPE to GOOGLE,
+        ContactsContract.Contacts.NAME_RAW_CONTACT_ID to 301L,
+        ContactsContract.CommonDataKinds.Email.ADDRESS to "carol@example.com"
+      )
+    )
+
+    val result = SystemContactsRepository.getLinkedContact(context, OWN_ACCOUNT_TYPE, "carol", FORMATTER) as SystemContactsRepository.LinkedContactResult.Found
+
+    assertEquals("carol@example.com", result.contact.displayName)
+    assertNull(result.contact.givenName)
+    assertEquals(emptyList<SystemContactsRepository.PhoneDetails>(), result.contact.numbers)
+  }
+
+  @Test
+  fun `a lookup key the provider cannot parse is missing`() {
+    FakeContactsProvider.unparseableLookupKeys = setOf("garbled")
+
+    assertEquals(SystemContactsRepository.LinkedContactResult.Missing, SystemContactsRepository.getLinkedContact(context, OWN_ACCOUNT_TYPE, "garbled", FORMATTER))
+  }
+
+  @Test
+  fun `a deleted linked contact is missing`() {
+    FakeContactsProvider.dataRows = ALICE_ROWS
+
+    assertEquals(SystemContactsRepository.LinkedContactResult.Missing, SystemContactsRepository.getLinkedContact(context, OWN_ACCOUNT_TYPE, "alice", FORMATTER))
+  }
+
   private fun readAll(): List<SystemContactsRepository.ContactDetails> {
     return SystemContactsRepository.getAllSystemContacts(context, OWN_ACCOUNT_TYPE, FORMATTER).use { iterator ->
       val contacts = mutableListOf<SystemContactsRepository.ContactDetails>()
@@ -98,6 +177,16 @@ class SystemContactsRepositoryTest {
 
     /** Formats ten-digit numbers as North American E164s, and rejects anything else. */
     private val FORMATTER: (String) -> String? = { number -> number.filter { it.isDigit() }.takeIf { it.length == 10 }?.let { "+1$it" } }
+
+    private fun contact(id: Long, lookupKey: String, resolvesFrom: String? = null, displayName: String): Map<String, Any?> {
+      return mapOf(
+        ContactsContract.Contacts._ID to id,
+        ContactsContract.Contacts.LOOKUP_KEY to lookupKey,
+        FakeContactsProvider.RESOLVES_FROM to resolvesFrom,
+        ContactsContract.Contacts.DISPLAY_NAME to displayName,
+        ContactsContract.Contacts.PHOTO_URI to "content://com.android.contacts/contacts/$id/photo"
+      )
+    }
 
     private fun phone(contactId: Long, lookupKey: String, id: Long, rawContactId: Long, accountType: String, displayName: String, number: String, type: Int, label: String? = null): Map<String, Any?> {
       return mapOf(

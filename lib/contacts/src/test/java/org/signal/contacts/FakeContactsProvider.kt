@@ -17,21 +17,28 @@ import android.provider.ContactsContract
  *
  * [dataRows] are served from [ContactsContract.Data.CONTENT_URI], sorted by the query's sort order as
  * the real provider would, so a test can list them in any order. A query by contact id keeps only
- * that contact's rows. [contacts] answer lookup URI queries, by lookup key.
+ * that contact's rows. [contacts] answer lookup URI queries, by lookup key, or by an older key given
+ * under [RESOLVES_FROM], as the real provider resolves a key from before contacts were joined.
  */
 class FakeContactsProvider : ContentProvider() {
 
   companion object {
+    const val RESOLVES_FROM = "fake_resolves_from"
+
     var dataRows: List<Map<String, Any?>> = emptyList()
     var contacts: List<Map<String, Any?>> = emptyList()
 
     /** Makes queries that ask for the name source columns fail, as some providers' do. */
     var rejectNameSourceColumns: Boolean = false
 
+    /** Lookup keys the provider refuses to parse, as the real one does malformed keys. */
+    var unparseableLookupKeys: Set<String> = emptySet()
+
     fun reset() {
       dataRows = emptyList()
       contacts = emptyList()
       rejectNameSourceColumns = false
+      unparseableLookupKeys = emptySet()
     }
   }
 
@@ -57,7 +64,10 @@ class FakeContactsProvider : ContentProvider() {
 
       uri.pathSegments.firstOrNull() == "contacts" && uri.pathSegments.getOrNull(1) == "lookup" -> {
         val lookupKey = uri.pathSegments[2]
-        contacts.filter { it[ContactsContract.Contacts.LOOKUP_KEY] == lookupKey }.toCursor(columns)
+        if (lookupKey in unparseableLookupKeys) {
+          throw IllegalArgumentException("Invalid lookup id: $lookupKey")
+        }
+        contacts.filter { it[ContactsContract.Contacts.LOOKUP_KEY] == lookupKey || it[RESOLVES_FROM] == lookupKey }.toCursor(columns)
       }
 
       else -> throw IllegalArgumentException("Unexpected uri $uri")

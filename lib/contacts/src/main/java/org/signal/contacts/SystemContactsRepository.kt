@@ -8,6 +8,7 @@ import android.content.ContentUris
 import android.content.Context
 import android.content.OperationApplicationException
 import android.database.Cursor
+import android.database.MatrixCursor
 import android.database.sqlite.SQLiteException
 import android.net.Uri
 import android.os.RemoteException
@@ -203,6 +204,98 @@ object SystemContactsRepository {
   fun currentContactUri(context: Context, lookupKey: String, contactId: Long): Uri? {
     val lookupUri = ContactsContract.Contacts.getLookupUri(contactId, lookupKey)
     return ContactsContract.Contacts.lookupContact(context.contentResolver, lookupUri)
+  }
+
+  /**
+   * Reads the contact a stored lookup key points to, so a link to it can be kept current.
+   *
+   * The provider still resolves a key that has since changed, as one does when the user joins two
+   * contacts, and [LinkedContact.contactUri] carries the current key. Rows from [ownAccountType] are
+   * ignored, so a contact kept alive only by our own raw contact counts as missing.
+   */
+  @JvmStatic
+  fun getLinkedContact(context: Context, ownAccountType: String, lookupKey: String, e164Formatter: (String) -> String?): LinkedContactResult {
+    // 1. Find the contact the key names now.
+    val contactCursor: Cursor = queryContactByLookupKey(context, lookupKey) ?: return LinkedContactResult.Unavailable
+    val contact: ContactRow = contactCursor.use { it.readContactRow() } ?: return LinkedContactResult.Missing
+
+    // 2. Load its numbers and name, from rows that are not our own.
+    val dataCursor: Cursor = queryContactData(context, CONTACT_DATA_PROJECTION, "${ContactsContract.Data.CONTACT_ID} = ?", SqlUtil.buildArgs(contact.id), CONTACT_DATA_ORDER) ?: return LinkedContactResult.Unavailable
+    val reader: ContactDataReader = dataCursor.use { readRowsNotFrom(it, ownAccountType, e164Formatter) } ?: return LinkedContactResult.Missing
+
+    // 3. Combine the two.
+    return LinkedContactResult.Found(contact.toLinkedContact(reader))
+  }
+
+  /**
+   * The contact a lookup key names now, as a cursor over a [ContactRow]. The provider still resolves a
+   * key from before an edit such as joining two contacts. A key it cannot parse names no contact.
+   * Returns null if the provider cannot be queried.
+   */
+  private fun queryContactByLookupKey(context: Context, lookupKey: String): Cursor? {
+    val projection = arrayOf(
+      ContactsContract.Contacts._ID,
+      ContactsContract.Contacts.LOOKUP_KEY,
+      ContactsContract.Contacts.DISPLAY_NAME,
+      ContactsContract.Contacts.PHOTO_URI
+    )
+    val uri = Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_LOOKUP_URI, lookupKey)
+
+    return try {
+      context.contentResolver.query(uri, projection, null, null, null)
+    } catch (e: IllegalArgumentException) {
+      Log.w(TAG, "Unparseable lookup key, treating the contact as missing.", e)
+      MatrixCursor(projection)
+    }
+  }
+
+  private fun Cursor.readContactRow(): ContactRow? {
+    if (!moveToFirst()) {
+      return null
+    }
+
+    return ContactRow(
+      id = requireLong(ContactsContract.Contacts._ID),
+      lookupKey = requireNonNullString(ContactsContract.Contacts.LOOKUP_KEY),
+      displayName = requireString(ContactsContract.Contacts.DISPLAY_NAME),
+      photoUri = requireString(ContactsContract.Contacts.PHOTO_URI)
+    )
+  }
+
+  /**
+   * Loads a contact's data rows into a [ContactDataReader], skipping rows from [ownAccountType].
+   * Returns null if every row is ours: the user's own entry is gone, and only our raw contact keeps
+   * the contact alive. Every kind of row counts, not just phones and names, so an entry holding only,
+   * say, an email address is still there.
+   */
+  private fun readRowsNotFrom(cursor: Cursor, ownAccountType: String, e164Formatter: (String) -> String?): ContactDataReader? {
+    val hasNameSourceColumns = cursor.getColumnIndex(ContactsContract.Data.RAW_CONTACT_ID) >= 0
+    val reader = ContactDataReader(ownAccountType, e164Formatter, hasNameSourceColumns)
+    var hasOtherRows = false
+
+    while (cursor.moveToNext()) {
+      if (hasNameSourceColumns && cursor.requireString(ContactsContract.RawContacts.ACCOUNT_TYPE) == ownAccountType) {
+        continue
+      }
+
+      hasOtherRows = true
+      reader.add(cursor)
+    }
+
+    return if (hasOtherRows) reader else null
+  }
+
+  private fun ContactRow.toLinkedContact(reader: ContactDataReader): LinkedContact {
+    val name = reader.name
+
+    return LinkedContact(
+      contactUri = ContactsContract.Contacts.getLookupUri(id, lookupKey),
+      displayName = displayName,
+      givenName = name?.givenName,
+      familyName = name?.familyName,
+      photoUri = photoUri,
+      numbers = reader.numbers.map { PhoneDetails(number = it.number, type = it.type, label = it.label) }
+    )
   }
 
   /**
@@ -1004,6 +1097,26 @@ object SystemContactsRepository {
     val label: String?
   )
 
+  sealed interface LinkedContactResult {
+    data class Found(val contact: LinkedContact) : LinkedContactResult
+
+    /** The contact no longer exists. */
+    data object Missing : LinkedContactResult
+
+    /** The contacts provider could not be queried, so whether the contact exists is unknown. */
+    data object Unavailable : LinkedContactResult
+  }
+
+  /** A contact as [getLinkedContact] read it. Its [numbers] are formatted as E164s. */
+  data class LinkedContact(
+    val contactUri: Uri,
+    val displayName: String?,
+    val givenName: String?,
+    val familyName: String?,
+    val photoUri: String?,
+    val numbers: List<PhoneDetails>
+  )
+
   /** The single row behind a uri handed back by the system phone number picker. */
   data class PickedPhone(
     val number: String,
@@ -1046,4 +1159,6 @@ object SystemContactsRepository {
   )
 
   private data class StructuredName(val givenName: String?, val familyName: String?)
+
+  private data class ContactRow(val id: Long, val lookupKey: String, val displayName: String?, val photoUri: String?)
 }
