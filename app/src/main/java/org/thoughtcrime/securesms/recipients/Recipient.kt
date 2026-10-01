@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.conversation.colors.ChatColors.Id.Auto
 import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette
 import org.thoughtcrime.securesms.database.RecipientTable.MissingRecipientException
 import org.thoughtcrime.securesms.database.RecipientTable.NotificationSetting
+import org.thoughtcrime.securesms.database.RecipientTable.PhoneNumberDiscoverableState
 import org.thoughtcrime.securesms.database.RecipientTable.PhoneNumberSharingState
 import org.thoughtcrime.securesms.database.RecipientTable.RegisteredState
 import org.thoughtcrime.securesms.database.RecipientTable.SealedSenderAccessMode
@@ -100,6 +101,7 @@ class Recipient(
   private val systemContactPhoto: Uri? = null,
   private val customLabel: String? = null,
   val contactUri: Uri? = null,
+  private val systemContactHasNumber: Boolean = false,
   val profileName: ProfileName = ProfileName.EMPTY,
   val profileAvatar: String? = null,
   val profileAvatarFileDetails: ProfileAvatarFileDetails = ProfileAvatarFileDetails.NO_DETAILS,
@@ -128,6 +130,7 @@ class Recipient(
   private val callLinkRoomId: CallLinkRoomId? = null,
   private val groupRecord: Optional<GroupRecord> = Optional.empty(),
   val phoneNumberSharing: PhoneNumberSharingState = PhoneNumberSharingState.UNKNOWN,
+  private val phoneNumberDiscoverable: PhoneNumberDiscoverableState = PhoneNumberDiscoverableState.UNKNOWN,
   val nickname: ProfileName = ProfileName.EMPTY,
   val note: String? = null,
   /**
@@ -159,8 +162,17 @@ class Recipient(
   /** The recipient's e164, if present. */
   val e164: Optional<String> = Optional.ofNullable(e164Value)
 
+  /**
+   * Whether the linked system contact holds this recipient's phone number, and the recipient lets
+   * that number be known. Use this instead of [isSystemContact] when a decision depends on the
+   * address book having the number, rather than on the user knowing this recipient.
+   */
+  val isSystemContactByPhoneNumber: Boolean = isSystemContact &&
+    systemContactHasNumber &&
+    (phoneNumberDiscoverable != PhoneNumberDiscoverableState.NOT_DISCOVERABLE || phoneNumberSharing == PhoneNumberSharingState.ENABLED)
+
   /** Whether or not we should show this user's e164 in the interface. */
-  val shouldShowE164: Boolean = e164Value.isNotNullOrBlank() && (isSystemContact || phoneNumberSharing == PhoneNumberSharingState.ENABLED || (aciValue == null && usernameValue == null))
+  val shouldShowE164: Boolean = e164Value.isNotNullOrBlank() && (isSystemContactByPhoneNumber || phoneNumberSharing == PhoneNumberSharingState.ENABLED || (aciValue == null && usernameValue == null))
 
   /** The recipient's email, if present. Emails are only for legacy SMS contacts that were reached via email. */
   val email: Optional<String> = Optional.ofNullable(emailValue)
@@ -907,6 +919,7 @@ class Recipient(
       systemContactPhoto == other.systemContactPhoto &&
       customLabel == other.customLabel &&
       contactUri == other.contactUri &&
+      systemContactHasNumber == other.systemContactHasNumber &&
       profileName == other.profileName &&
       systemProfileName == other.systemProfileName &&
       profileAvatar == other.profileAvatar &&
@@ -927,6 +940,7 @@ class Recipient(
       isActiveGroup == other.isActiveGroup &&
       callLinkRoomId == other.callLinkRoomId &&
       phoneNumberSharing == other.phoneNumberSharing &&
+      phoneNumberDiscoverable == other.phoneNumberDiscoverable &&
       nickname == other.nickname &&
       note == other.note &&
       sharedName == other.sharedName &&

@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.database.IdentityTable.VerifiedStatus
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.RecipientTable.NotificationSetting
+import org.thoughtcrime.securesms.database.RecipientTable.PhoneNumberDiscoverableState
 import org.thoughtcrime.securesms.database.RecipientTable.PhoneNumberSharingState
 import org.thoughtcrime.securesms.database.RecipientTable.RegisteredState
 import org.thoughtcrime.securesms.database.RecipientTable.SealedSenderAccessMode
@@ -87,6 +88,7 @@ data class RecipientRecord(
   val hiddenState: Recipient.HiddenState,
   val callLinkRoomId: CallLinkRoomId?,
   val phoneNumberSharing: PhoneNumberSharingState,
+  val phoneNumberDiscoverable: PhoneNumberDiscoverableState,
   val nickname: ProfileName,
   val note: String?,
   val sharedName: ProfileName,

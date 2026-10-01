@@ -654,7 +654,10 @@ public final class ConversationUpdateItem extends FrameLayout
           passthroughClickListener.onClick(v);
         }
       });
-    } else if (conversationMessage.getMessageRecord().isChangeNumber() && conversationMessage.getMessageRecord().getFromRecipient().isSystemContact()) {
+    } else if (conversationMessage.getMessageRecord().isChangeNumber() &&
+               conversationMessage.getMessageRecord().getFromRecipient().isSystemContact() &&
+               conversationMessage.getMessageRecord().getFromRecipient().getShouldShowE164())
+    {
       actionButton.setText(R.string.ConversationUpdateItem_update_contact);
       actionButton.setVisibility(VISIBLE);
       actionButton.setOnClickListener(v -> {

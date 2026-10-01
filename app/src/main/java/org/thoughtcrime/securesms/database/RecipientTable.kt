@@ -354,6 +354,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       NEEDS_PNI_SIGNATURE,
       REPORTING_TOKEN,
       PHONE_NUMBER_SHARING,
+      PHONE_NUMBER_DISCOVERABLE,
       NICKNAME_GIVEN_NAME,
       NICKNAME_FAMILY_NAME,
       NOTE,
@@ -5357,12 +5358,15 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
             WHERE ${GroupTable.MembershipTable.TABLE_NAME}.${GroupTable.MembershipTable.RECIPIENT_ID} = $TABLE_NAME.$ID AND ${GroupTable.TABLE_NAME}.${GroupTable.IS_MEMBER} = 1 AND ${GroupTable.TABLE_NAME}.${GroupTable.TERMINATED_BY} = 0 AND ${GroupTable.TABLE_NAME}.${GroupTable.MMS} = 0
         )
       """
-      val E164_SEARCH = "(($PHONE_NUMBER_SHARING != ${PhoneNumberSharingState.DISABLED.id} OR $SYSTEM_CONTACT_URI NOT NULL) AND $E164 GLOB ?)"
+
+      /** SQL for [Recipient.isSystemContactByPhoneNumber]. */
+      private val SYSTEM_CONTACT_BY_PHONE_NUMBER = "($SYSTEM_CONTACT_URI NOT NULL AND $SYSTEM_PHONE_E164 = $E164 AND ($PHONE_NUMBER_DISCOVERABLE != ${PhoneNumberDiscoverableState.NOT_DISCOVERABLE.id} OR $PHONE_NUMBER_SHARING = ${PhoneNumberSharingState.ENABLED.id}))"
+      val E164_SEARCH = "(($PHONE_NUMBER_SHARING != ${PhoneNumberSharingState.DISABLED.id} OR $SYSTEM_CONTACT_BY_PHONE_NUMBER) AND $E164 GLOB ?)"
       const val FILTER_GROUPS = " AND $GROUP_ID IS NULL"
       const val FILTER_ID = " AND $ID != ?"
       const val FILTER_BLOCKED = " AND $BLOCKED = ?"
       const val FILTER_HIDDEN = " AND $HIDDEN = ?"
-      const val NON_SIGNAL_CONTACT = "$REGISTERED != ? AND $SYSTEM_CONTACT_URI NOT NULL AND ($E164 NOT NULL OR $EMAIL NOT NULL)"
+      val NON_SIGNAL_CONTACT = "$REGISTERED != ? AND $SYSTEM_CONTACT_BY_PHONE_NUMBER AND ($E164 NOT NULL OR $EMAIL NOT NULL)"
       val QUERY_NON_SIGNAL_CONTACT = "$NON_SIGNAL_CONTACT AND ($E164_SEARCH OR $EMAIL GLOB ? OR $SYSTEM_JOINED_NAME GLOB ?)"
       const val SIGNAL_CONTACT = "$REGISTERED = ? AND (NULLIF($SYSTEM_JOINED_NAME, '') NOT NULL OR $PROFILE_SHARING = ?) AND ($SORT_NAME NOT NULL OR $USERNAME NOT NULL)"
       val QUERY_SIGNAL_CONTACT = "$SIGNAL_CONTACT AND ($E164_SEARCH OR $SORT_NAME GLOB ? OR $USERNAME GLOB ?)"
