@@ -40,6 +40,7 @@ dependencies {
   api(libs.androidx.activity.compose)
   debugApi(libs.androidx.compose.ui.tooling.core)
   api(libs.androidx.fragment.compose)
+  api(libs.androidx.biometric)
   implementation(libs.kotlinx.serialization.json)
   api(libs.google.zxing.core)
   api(libs.material.material)

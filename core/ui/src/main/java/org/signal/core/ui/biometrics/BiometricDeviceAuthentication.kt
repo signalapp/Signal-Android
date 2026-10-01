@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms
+package org.signal.core.ui.biometrics
 
 import android.app.Activity
 import android.content.ActivityNotFoundException
@@ -35,6 +35,15 @@ class BiometricDeviceAuthentication(
      * > prior to API 30, and BIOMETRIC_STRONG | DEVICE_CREDENTIAL is unsupported on API 28-29.
      */
     private val DISALLOWED_BIOMETRIC_VERSIONS = setOf(28, 29)
+
+    /**
+     * Creates a [PromptInfo.Builder] with [ALLOWED_AUTHENTICATORS] already set. Lint cannot validate the
+     * constant from other modules, so callers outside this module should use this instead.
+     */
+    @JvmStatic
+    fun createPromptInfoBuilder(): PromptInfo.Builder {
+      return PromptInfo.Builder().setAllowedAuthenticators(ALLOWED_AUTHENTICATORS)
+    }
   }
 
   private fun isDeviceSecure(context: Context): Boolean {

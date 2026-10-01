@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.giph.mp4;
 
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.signal.core.util.DeviceProperties;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 
 import java.util.concurrent.TimeUnit;
 
@@ -13,7 +14,7 @@ public final class GiphyMp4PlaybackPolicy {
   private GiphyMp4PlaybackPolicy() { }
 
   public static boolean autoplay() {
-    return !DeviceProperties.isLowMemoryDevice(AppDependencies.getApplication());
+    return !DeviceProperties.isLowMemoryDevice(AppDependencies.getApplication()) && SignalStore.settings().isAutoplayStickersAndGifsEnabled();
   }
 
   public static int maxRepeatsOfSinglePlayback() {

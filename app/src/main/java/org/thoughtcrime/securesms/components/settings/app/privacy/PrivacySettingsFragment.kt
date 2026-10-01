@@ -13,7 +13,6 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
-import androidx.biometric.BiometricPrompt.PromptInfo
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -21,10 +20,10 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
+import org.signal.core.ui.biometrics.BiometricDeviceAuthentication
+import org.signal.core.ui.biometrics.BiometricDeviceLockContract
 import org.signal.core.util.ServiceUtil
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.BiometricDeviceAuthentication
-import org.thoughtcrime.securesms.BiometricDeviceLockContract
 import org.thoughtcrime.securesms.PassphraseChangeActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.TimeDurationPickerDialog
@@ -74,8 +73,7 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
         viewModel.togglePaymentLock(false)
       }
     }
-    val promptInfo = PromptInfo.Builder()
-      .setAllowedAuthenticators(BiometricDeviceAuthentication.ALLOWED_AUTHENTICATORS)
+    val promptInfo = BiometricDeviceAuthentication.createPromptInfoBuilder()
       .setTitle(requireContext().getString(R.string.BiometricDeviceAuthentication__signal))
       .setConfirmationRequired(false)
       .build()

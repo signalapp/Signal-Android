@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms
+package org.signal.core.ui.biometrics
 
 import android.content.DialogInterface
 import android.os.Bundle
@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.setFragmentResult
 import org.signal.core.ui.BottomSheetUtil
+import org.signal.core.ui.R
 import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.ComposeBottomSheetDialogFragment

@@ -3,19 +3,20 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.components.settings.app.chats
+package org.signal.appsettings.chats
 
-import android.net.Uri
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
+import org.signal.appsettings.R
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Launchers
-import org.thoughtcrime.securesms.R
 
 /**
  * Dialogs displayed while processing a user's decrypted chat export.
@@ -23,31 +24,31 @@ import org.thoughtcrime.securesms.R
  * Displayed *after* the user has confirmed via phone auth.
  */
 @Composable
-fun ChatExportDialogs(state: ChatExportState, callbacks: ChatExportCallbacks) {
+internal fun ChatExportDialogs(state: ChatExportState, onEvent: (ChatsSettingsEvents) -> Unit) {
   val folderPicker = Launchers.rememberOpenDocumentTreeLauncher {
     if (it != null) {
-      callbacks.onFolderSelected(it)
+      onEvent(ChatsSettingsEvents.ExportFolderSelected(it))
     } else {
-      callbacks.onCancelStartExport()
+      onEvent(ChatsSettingsEvents.StartExportCanceled)
     }
   }
 
   when (state) {
     ChatExportState.None -> Unit
     ChatExportState.ConfirmExport -> ConfirmExportDialog(
-      onConfirmExport = callbacks::onConfirmExport,
-      onCancel = callbacks::onCancelStartExport
+      onConfirmExport = { onEvent(ChatsSettingsEvents.ExportConfirmed(it)) },
+      onCancel = { onEvent(ChatsSettingsEvents.StartExportCanceled) }
     )
 
     ChatExportState.ChooseAFolder -> ChooseAFolderDialog(
       onChooseAFolder = { folderPicker.launch(null) },
-      onCancel = callbacks::onCancelStartExport
+      onCancel = { onEvent(ChatsSettingsEvents.StartExportCanceled) }
     )
 
     ChatExportState.Canceling -> Dialogs.IndeterminateProgressDialog(message = stringResource(R.string.ChatExportDialogs__canceling_export))
 
     ChatExportState.Success -> CompleteDialog(
-      onOK = callbacks::onCompletionConfirmed
+      onOK = { onEvent(ChatsSettingsEvents.ExportCompletionConfirmed) }
     )
   }
 }
@@ -89,7 +90,8 @@ private fun ChooseAFolderDialog(
     confirm = stringResource(R.string.ChatExportDialogs__choose_folder_button),
     dismiss = stringResource(android.R.string.cancel),
     onConfirm = onChooseAFolder,
-    onDeny = onCancel
+    onDeny = onCancel,
+    modifier = Modifier.testTag(ChatsSettingsTestTags.DIALOG_CHOOSE_A_FOLDER)
   )
 }
 
@@ -110,7 +112,8 @@ private fun CompleteDialog(
     title = AnnotatedString(stringResource(R.string.ChatExportDialogs__complete_title)),
     body = body,
     confirm = AnnotatedString(stringResource(android.R.string.ok)),
-    onConfirm = onOK
+    onConfirm = onOK,
+    modifier = Modifier.testTag(ChatsSettingsTestTags.DIALOG_EXPORT_COMPLETE)
   )
 }
 
@@ -120,18 +123,4 @@ enum class ChatExportState {
   ChooseAFolder,
   Canceling,
   Success
-}
-
-interface ChatExportCallbacks {
-  fun onConfirmExport(withMedia: Boolean)
-  fun onFolderSelected(uri: Uri)
-  fun onCancelStartExport()
-  fun onCompletionConfirmed()
-
-  object Empty : ChatExportCallbacks {
-    override fun onConfirmExport(withMedia: Boolean) = Unit
-    override fun onFolderSelected(uri: Uri) = Unit
-    override fun onCancelStartExport() = Unit
-    override fun onCompletionConfirmed() = Unit
-  }
 }

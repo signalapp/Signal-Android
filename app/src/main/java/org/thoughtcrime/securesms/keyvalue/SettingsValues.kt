@@ -89,6 +89,7 @@ class SettingsValues internal constructor(store: KeyValueStore, private val cont
     private const val MEDIA_DOWNLOAD_MOBILE = "settings.media.download.mobile"
     private const val MEDIA_DOWNLOAD_WIFI = "settings.media.download.wifi"
     private const val MEDIA_DOWNLOAD_ROAMING = "settings.media.download.roaming"
+    private const val AUTOPLAY_STICKERS_AND_GIFS = "settings.chats.autoplayStickersAndGifs"
 
     const val SCREEN_SECURITY_ENABLED = "settings.screen.security.enabled"
     const val INCOGNITO_KEYBOARD_ENABLED = "settings.incognito.keyboard.enabled"
@@ -170,13 +171,16 @@ class SettingsValues internal constructor(store: KeyValueStore, private val cont
     ALWAYS_RELAY_CALLS,
     MEDIA_DOWNLOAD_MOBILE,
     MEDIA_DOWNLOAD_WIFI,
-    MEDIA_DOWNLOAD_ROAMING
+    MEDIA_DOWNLOAD_ROAMING,
+    AUTOPLAY_STICKERS_AND_GIFS
   )
 
   val onConfigurationSettingChanged: LiveData<String>
     get() = configurationSettingChanged
 
   var isLinkPreviewsEnabled: Boolean by booleanValue(LINK_PREVIEWS, false)
+
+  var isAutoplayStickersAndGifsEnabled: Boolean by booleanValue(AUTOPLAY_STICKERS_AND_GIFS, true)
 
   var keepMessagesDuration: KeepMessagesDuration
     get() = KeepMessagesDuration.fromId(getInteger(KEEP_MESSAGES_DURATION, 0))

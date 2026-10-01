@@ -425,6 +425,7 @@ import java.util.concurrent.ExecutionException
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
 import androidx.compose.ui.graphics.Color as ComposeColor
+import org.signal.appsettings.R as AppSettingsR
 import org.signal.core.ui.R as CoreUiR
 
 /**
@@ -4959,12 +4960,12 @@ class ConversationFragment :
 
     override fun handleExportChat() {
       MaterialAlertDialogBuilder(requireContext())
-        .setTitle(R.string.ChatExportDialogs__export_chat_history_title)
-        .setMessage(R.string.ChatExportDialogs__export_confirm_body)
-        .setPositiveButton(R.string.ChatExportDialogs__export_with_media) { _, _ ->
+        .setTitle(AppSettingsR.string.ChatExportDialogs__export_chat_history_title)
+        .setMessage(AppSettingsR.string.ChatExportDialogs__export_confirm_body)
+        .setPositiveButton(AppSettingsR.string.ChatExportDialogs__export_with_media) { _, _ ->
           viewModel.startPlaintextExport(requireContext().applicationContext, includeMedia = true)
         }
-        .setNeutralButton(R.string.ChatExportDialogs__export_without_media) { _, _ ->
+        .setNeutralButton(AppSettingsR.string.ChatExportDialogs__export_without_media) { _, _ ->
           viewModel.startPlaintextExport(requireContext().applicationContext, includeMedia = false)
         }
         .setNegativeButton(android.R.string.cancel, null)

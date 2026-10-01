@@ -2,7 +2,7 @@
  * Copyright 2026 Signal Messenger, LLC
  * SPDX-License-Identifier: AGPL-3.0-only
  */
-package org.thoughtcrime.securesms.components.compose
+package org.signal.core.ui.biometrics
 
 import android.content.Context
 import android.view.View
@@ -27,9 +27,6 @@ import androidx.fragment.app.findFragment
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
-import org.thoughtcrime.securesms.BiometricDeviceAuthentication
-import org.thoughtcrime.securesms.BiometricDeviceLockContract
-import org.thoughtcrime.securesms.DevicePinAuthEducationSheet
 
 /** An authentication the user has been asked for but hasn't finished yet. */
 internal class PendingAuthentication(

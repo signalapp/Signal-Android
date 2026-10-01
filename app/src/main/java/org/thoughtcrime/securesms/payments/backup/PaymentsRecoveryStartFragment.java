@@ -19,8 +19,8 @@ import androidx.navigation.Navigation;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.BiometricDeviceAuthentication;
-import org.thoughtcrime.securesms.BiometricDeviceLockContract;
+import org.signal.core.ui.biometrics.BiometricDeviceAuthentication;
+import org.signal.core.ui.biometrics.BiometricDeviceLockContract;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.signal.core.util.ServiceUtil;
@@ -73,12 +73,10 @@ public class PaymentsRecoveryStartFragment extends Fragment {
       message.setLink(getString(R.string.PaymentsRecoveryStartFragment__learn_more__view));
       startButton.setOnClickListener(v -> {
         if (state == RecoveryPhraseStates.FROM_PAYMENTS_MENU_WITH_MNEMONIC_CONFIRMED && ServiceUtil.getKeyguardManager(requireContext()).isKeyguardSecure() && SignalStore.payments().isPaymentLockEnabled()) {
-          BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo
-                                                                     .Builder()
-                                                                     .setAllowedAuthenticators(BiometricDeviceAuthentication.ALLOWED_AUTHENTICATORS)
-                                                                     .setTitle(requireContext().getString(R.string.BiometricDeviceAuthentication__signal))
-                                                                     .setConfirmationRequired(false)
-                                                                     .build();
+          BiometricPrompt.PromptInfo promptInfo = BiometricDeviceAuthentication.createPromptInfoBuilder()
+                                                                               .setTitle(requireContext().getString(R.string.BiometricDeviceAuthentication__signal))
+                                                                               .setConfirmationRequired(false)
+                                                                               .build();
           BiometricDeviceAuthentication biometricAuth = new BiometricDeviceAuthentication(BiometricManager.from(requireActivity()),
                                                                                           new BiometricPrompt(requireActivity(), new BiometricAuthenticationListener()),
                                                                                           promptInfo);

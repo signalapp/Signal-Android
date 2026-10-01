@@ -43,6 +43,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.compose.RoundCheckbox
 import org.thoughtcrime.securesms.components.transfercontrols.TransferProgressIndicator
 import org.thoughtcrime.securesms.components.transfercontrols.TransferProgressState
+import org.thoughtcrime.securesms.stickers.StickerAnimationPolicy
 import org.thoughtcrime.securesms.stickers.StickerPreviewDataFactory
 import org.thoughtcrime.securesms.stickers.manage.StickerPack.DownloadStatus
 import org.signal.core.ui.R as CoreUiR
@@ -293,7 +294,7 @@ private fun StickerPackInfo(
   ) {
     GlideImage(
       model = coverImageUri,
-      enableApngAnimation = true,
+      enableApngAnimation = StickerAnimationPolicy.allowAnimation(),
       contentScale = ContentScale.Fit,
       modifier = Modifier
         .padding(end = 16.dp)

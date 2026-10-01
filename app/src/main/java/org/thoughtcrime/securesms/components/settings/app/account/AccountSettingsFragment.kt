@@ -23,12 +23,12 @@ import org.signal.appsettings.account.AccountSettingsAction
 import org.signal.appsettings.account.AccountSettingsEvent
 import org.signal.appsettings.account.AccountSettingsScreen
 import org.signal.appsettings.account.TwoFactorMethod
+import org.signal.core.ui.biometrics.BiometricsAuthentication
+import org.signal.core.ui.biometrics.rememberBiometricsAuthentication
 import org.signal.core.ui.compose.CollectActions
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.util.ServiceUtil
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.compose.BiometricsAuthentication
-import org.thoughtcrime.securesms.components.compose.rememberBiometricsAuthentication
 import org.thoughtcrime.securesms.components.settings.app.account.twofactor.TwoFactorNavArgs
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.lock.v2.CreateSvrPinActivity

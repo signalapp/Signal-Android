@@ -59,6 +59,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.signal.appsettings.backups.BackupCreationProgressRow
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dividers
@@ -73,11 +74,11 @@ import org.signal.core.util.Util
 import org.signal.core.util.getLength
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.backup.isIdle
+import org.thoughtcrime.securesms.backup.toBackupCreationProgress
 import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgress
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.ui.BackupAlert
 import org.thoughtcrime.securesms.backup.v2.ui.BackupAlertBottomSheet
-import org.thoughtcrime.securesms.backup.v2.ui.status.BackupCreationProgressRow
 import org.thoughtcrime.securesms.components.settings.app.internal.backup.InternalBackupPlaygroundViewModel.DialogState
 import org.thoughtcrime.securesms.components.settings.app.internal.backup.InternalBackupPlaygroundViewModel.ScreenState
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -489,7 +490,7 @@ fun Screen(
         )
       } else {
         BackupCreationProgressRow(
-          progress = state.plaintextProgress,
+          progress = state.plaintextProgress.toBackupCreationProgress(),
           isRemote = false
         )
       }

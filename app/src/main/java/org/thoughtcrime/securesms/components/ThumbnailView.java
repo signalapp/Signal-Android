@@ -42,6 +42,7 @@ import org.signal.core.util.concurrent.SettableFuture;
 import org.signal.core.util.logging.Log;
 import org.signal.blurhash.BlurHash;
 import org.signal.core.ui.view.Stub;
+import org.signal.glide.apng.ApngOptions;
 import org.signal.glide.decryptableuri.DecryptableUri;
 import org.signal.glide.load.SignalDownsampleStrategy;
 import org.thoughtcrime.securesms.R;
@@ -50,12 +51,14 @@ import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.components.transfercontrols.TransferControlView;
 import org.thoughtcrime.securesms.components.transfercontrols.TransferControls;
 import org.thoughtcrime.securesms.database.AttachmentTable;
+import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicy;
 import org.thoughtcrime.securesms.glide.targets.GlideBitmapListeningTarget;
 import org.thoughtcrime.securesms.glide.targets.GlideDrawableListeningTarget;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
+import org.thoughtcrime.securesms.stickers.StickerAnimationPolicy;
 import org.thoughtcrime.securesms.mms.SlideClickListener;
 import org.thoughtcrime.securesms.mms.SlidesClickedListener;
 import org.thoughtcrime.securesms.mms.VideoSlide;
@@ -621,6 +624,12 @@ public class ThumbnailView extends FrameLayout {
                                                               .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                                                               .downsample(SignalDownsampleStrategy.CENTER_OUTSIDE_NO_UPSCALE)
                                                               .transition(withCrossFade()));
+
+    if (slide.hasSticker()) {
+      requestBuilder = requestBuilder.set(ApngOptions.ANIMATE, StickerAnimationPolicy.allowAnimation());
+    } else if (MediaUtil.isGif(slide.getContentType()) && !GiphyMp4PlaybackPolicy.autoplay()) {
+      requestBuilder = requestBuilder.decode(Bitmap.class);
+    }
 
     if (slide.isInProgress()) {
       return requestBuilder;

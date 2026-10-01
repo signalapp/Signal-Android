@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.backup.v2.ui.status
+package org.signal.appsettings.backups
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
@@ -21,19 +21,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.PreviewWrapper
 import androidx.compose.ui.unit.dp
+import org.signal.appsettings.R
 import org.signal.core.ui.compose.DayNightPreviews
-import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.SignalIcons
-import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.backup.exportProgress
-import org.thoughtcrime.securesms.backup.transferProgress
-import org.thoughtcrime.securesms.keyvalue.protos.LocalBackupCreationProgress
+import org.signal.core.ui.compose.SignalPreviewWrapper
 import org.signal.core.ui.R as CoreUiR
 
 @Composable
 fun BackupCreationProgressRow(
-  progress: LocalBackupCreationProgress,
+  progress: BackupCreationProgress,
   isRemote: Boolean,
   modifier: Modifier = Modifier,
   onCancel: (() -> Unit)? = null
@@ -59,21 +57,18 @@ fun BackupCreationProgressRow(
 
 @Composable
 private fun BackupCreationProgressIndicator(
-  progress: LocalBackupCreationProgress,
+  progress: BackupCreationProgress,
   onCancel: (() -> Unit)? = null
 ) {
-  val exporting = progress.exporting
-  val transferring = progress.transferring
-
-  val fraction = when {
-    exporting != null -> progress.exportProgress()
-    transferring != null -> progress.transferProgress()
+  val fraction = when (progress) {
+    is BackupCreationProgress.Exporting -> progress.fraction
+    is BackupCreationProgress.Transferring -> progress.fraction
     else -> 0f
   }
 
-  val hasDeterminateProgress = when {
-    exporting != null -> exporting.frameTotalCount > 0 && (exporting.phase == LocalBackupCreationProgress.ExportPhase.MESSAGE || exporting.phase == LocalBackupCreationProgress.ExportPhase.INITIALIZING || exporting.phase == LocalBackupCreationProgress.ExportPhase.FINALIZING)
-    transferring != null -> transferring.total > 0
+  val hasDeterminateProgress = when (progress) {
+    is BackupCreationProgress.Exporting -> progress.frameTotalCount > 0 && (progress.phase == BackupCreationProgress.ExportPhase.MESSAGE || progress.phase == BackupCreationProgress.ExportPhase.INITIALIZING || progress.phase == BackupCreationProgress.ExportPhase.FINALIZING)
+    is BackupCreationProgress.Transferring -> progress.total > 0
     else -> false
   }
 
@@ -111,40 +106,37 @@ private fun BackupCreationProgressIndicator(
 }
 
 @Composable
-private fun getProgressMessage(progress: LocalBackupCreationProgress, isRemote: Boolean): String {
-  val exporting = progress.exporting
-  val transferring = progress.transferring
-
-  return when {
-    exporting != null -> getExportPhaseMessage(exporting, progress)
-    transferring != null -> getTransferPhaseMessage(transferring, isRemote)
+private fun getProgressMessage(progress: BackupCreationProgress, isRemote: Boolean): String {
+  return when (progress) {
+    is BackupCreationProgress.Exporting -> getExportPhaseMessage(progress)
+    is BackupCreationProgress.Transferring -> getTransferPhaseMessage(progress, isRemote)
     else -> stringResource(R.string.BackupCreationProgressRow__processing_backup)
   }
 }
 
 @Composable
-private fun getExportPhaseMessage(exporting: LocalBackupCreationProgress.Exporting, progress: LocalBackupCreationProgress): String {
+private fun getExportPhaseMessage(exporting: BackupCreationProgress.Exporting): String {
   return when (exporting.phase) {
-    LocalBackupCreationProgress.ExportPhase.MESSAGE -> {
+    BackupCreationProgress.ExportPhase.MESSAGE -> {
       if (exporting.frameTotalCount > 0) {
         stringResource(
           R.string.BackupCreationProgressRow__processing_messages_s_of_s_d,
           "%,d".format(exporting.frameExportCount),
           "%,d".format(exporting.frameTotalCount),
-          (progress.exportProgress() * 100).toInt()
+          (exporting.fraction * 100).toInt()
         )
       } else {
         stringResource(R.string.BackupCreationProgressRow__processing_messages)
       }
     }
-    LocalBackupCreationProgress.ExportPhase.NONE -> stringResource(R.string.BackupCreationProgressRow__processing_backup)
-    LocalBackupCreationProgress.ExportPhase.FINALIZING -> stringResource(R.string.BackupCreationProgressRow__finalizing)
+    BackupCreationProgress.ExportPhase.NONE -> stringResource(R.string.BackupCreationProgressRow__processing_backup)
+    BackupCreationProgress.ExportPhase.FINALIZING -> stringResource(R.string.BackupCreationProgressRow__finalizing)
     else -> stringResource(R.string.BackupCreationProgressRow__preparing_backup)
   }
 }
 
 @Composable
-private fun getTransferPhaseMessage(transferring: LocalBackupCreationProgress.Transferring, isRemote: Boolean): String {
+private fun getTransferPhaseMessage(transferring: BackupCreationProgress.Transferring, isRemote: Boolean): String {
   val percent = if (transferring.total == 0L) 0 else (transferring.completed * 100 / transferring.total).toInt()
   return if (isRemote) {
     stringResource(R.string.BackupCreationProgressRow__uploading_media_d, percent)
@@ -153,93 +145,71 @@ private fun getTransferPhaseMessage(transferring: LocalBackupCreationProgress.Tr
   }
 }
 
+@PreviewWrapper(SignalPreviewWrapper::class)
 @DayNightPreviews
 @Composable
 private fun ExportingIndeterminatePreview() {
-  Previews.Preview {
-    BackupCreationProgressRow(
-      progress = LocalBackupCreationProgress(exporting = LocalBackupCreationProgress.Exporting(phase = LocalBackupCreationProgress.ExportPhase.NONE)),
-      isRemote = false
-    )
-  }
+  BackupCreationProgressRow(
+    progress = BackupCreationProgress.Exporting(phase = BackupCreationProgress.ExportPhase.NONE, frameExportCount = 0, frameTotalCount = 0),
+    isRemote = false
+  )
 }
 
+@PreviewWrapper(SignalPreviewWrapper::class)
 @DayNightPreviews
 @Composable
 private fun InitializingIndeterminatePreview() {
-  Previews.Preview {
-    BackupCreationProgressRow(
-      progress = LocalBackupCreationProgress(exporting = LocalBackupCreationProgress.Exporting(phase = LocalBackupCreationProgress.ExportPhase.INITIALIZING)),
-      isRemote = false
-    )
-  }
+  BackupCreationProgressRow(
+    progress = BackupCreationProgress.Exporting(phase = BackupCreationProgress.ExportPhase.INITIALIZING, frameExportCount = 0, frameTotalCount = 0),
+    isRemote = false
+  )
 }
 
+@PreviewWrapper(SignalPreviewWrapper::class)
 @DayNightPreviews
 @Composable
 private fun InitializingDeterminatePreview() {
-  Previews.Preview {
-    BackupCreationProgressRow(
-      progress = LocalBackupCreationProgress(
-        exporting = LocalBackupCreationProgress.Exporting(
-          phase = LocalBackupCreationProgress.ExportPhase.INITIALIZING,
-          frameExportCount = 128,
-          frameTotalCount = 256
-        )
-      ),
-      isRemote = false
-    )
-  }
+  BackupCreationProgressRow(
+    progress = BackupCreationProgress.Exporting(
+      phase = BackupCreationProgress.ExportPhase.INITIALIZING,
+      frameExportCount = 128,
+      frameTotalCount = 256
+    ),
+    isRemote = false
+  )
 }
 
+@PreviewWrapper(SignalPreviewWrapper::class)
 @DayNightPreviews
 @Composable
 private fun ExportingMessagesPreview() {
-  Previews.Preview {
-    BackupCreationProgressRow(
-      progress = LocalBackupCreationProgress(
-        exporting = LocalBackupCreationProgress.Exporting(
-          phase = LocalBackupCreationProgress.ExportPhase.MESSAGE,
-          frameExportCount = 1000,
-          frameTotalCount = 100_000
-        )
-      ),
-      isRemote = false
-    )
-  }
+  BackupCreationProgressRow(
+    progress = BackupCreationProgress.Exporting(
+      phase = BackupCreationProgress.ExportPhase.MESSAGE,
+      frameExportCount = 1000,
+      frameTotalCount = 100_000
+    ),
+    isRemote = false
+  )
 }
 
+@PreviewWrapper(SignalPreviewWrapper::class)
 @DayNightPreviews
 @Composable
 private fun TransferringLocalPreview() {
-  Previews.Preview {
-    BackupCreationProgressRow(
-      progress = LocalBackupCreationProgress(
-        transferring = LocalBackupCreationProgress.Transferring(
-          completed = 50,
-          total = 200,
-          mediaPhase = true
-        )
-      ),
-      isRemote = false
-    )
-  }
+  BackupCreationProgressRow(
+    progress = BackupCreationProgress.Transferring(completed = 50, total = 200),
+    isRemote = false
+  )
 }
 
+@PreviewWrapper(SignalPreviewWrapper::class)
 @DayNightPreviews
 @Composable
 private fun TransferringRemotePreview() {
-  Previews.Preview {
-    BackupCreationProgressRow(
-      progress = LocalBackupCreationProgress(
-        transferring = LocalBackupCreationProgress.Transferring(
-          completed = 50,
-          total = 200,
-          mediaPhase = true
-        )
-      ),
-      isRemote = true,
-      onCancel = {}
-    )
-  }
+  BackupCreationProgressRow(
+    progress = BackupCreationProgress.Transferring(completed = 50, total = 200),
+    isRemote = true,
+    onCancel = {}
+  )
 }

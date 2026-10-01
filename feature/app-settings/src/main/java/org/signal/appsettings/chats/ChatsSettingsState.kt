@@ -1,7 +1,11 @@
-package org.thoughtcrime.securesms.components.settings.app.chats
+/*
+ * Copyright 2026 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
 
-import org.thoughtcrime.securesms.backup.LocalExportProgress
-import org.thoughtcrime.securesms.keyvalue.protos.LocalBackupCreationProgress
+package org.signal.appsettings.chats
+
+import org.signal.appsettings.backups.BackupCreationProgress
 
 data class ChatsSettingsState(
   val generateLinkPreviews: Boolean,
@@ -14,9 +18,10 @@ data class ChatsSettingsState(
   val userUnregistered: Boolean,
   val clientDeprecated: Boolean,
   val isPlaintextExportEnabled: Boolean,
-  val plaintextExportProgress: LocalBackupCreationProgress = LocalExportProgress.plaintextProgress.value,
+  val plaintextExportProgress: BackupCreationProgress = BackupCreationProgress.Idle,
   val chatExportState: ChatExportState = ChatExportState.None,
-  val includeMediaInExport: Boolean = false
+  val includeMediaInExport: Boolean = false,
+  val shouldAutoplayStickersAndGifs: Boolean = false
 ) {
   fun isRegisteredAndUpToDate(): Boolean {
     return !userUnregistered && !clientDeprecated

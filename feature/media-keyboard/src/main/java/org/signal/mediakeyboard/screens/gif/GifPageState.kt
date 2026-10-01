@@ -13,5 +13,6 @@ data class GifPageState(
   val isLoading: Boolean = false,
   val isLoadingMore: Boolean = false,
   val hasMore: Boolean = true,
-  val loadFailed: Boolean = false
+  val loadFailed: Boolean = false,
+  val allowAnimation: Boolean = true
 )

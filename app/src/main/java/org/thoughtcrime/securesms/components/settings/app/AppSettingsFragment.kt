@@ -373,7 +373,7 @@ private fun AppSettingsContent(
 
         item {
           Rows.TextRow(
-            text = stringResource(R.string.preferences_chats__chats),
+            text = stringResource(AppSettingsR.string.preferences_chats__chats),
             icon = painterResource(R.drawable.symbol_chat_24),
             onClick = {
               callbacks.navigate(AppSettingsRoute.ChatsRoute.Chats)

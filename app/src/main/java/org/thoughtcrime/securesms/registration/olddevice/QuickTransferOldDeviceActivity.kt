@@ -21,10 +21,10 @@ import androidx.navigationevent.compose.LocalNavigationEventDispatcherOwner
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.coroutines.launch
+import org.signal.core.ui.biometrics.BiometricDeviceAuthentication
+import org.signal.core.ui.biometrics.BiometricDeviceLockContract
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.BiometricDeviceAuthentication
-import org.thoughtcrime.securesms.BiometricDeviceLockContract
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
@@ -80,8 +80,7 @@ class QuickTransferOldDeviceActivity : PassphraseRequiredActivity() {
       }
     }
 
-    val promptInfo = BiometricPrompt.PromptInfo.Builder()
-      .setAllowedAuthenticators(BiometricDeviceAuthentication.ALLOWED_AUTHENTICATORS)
+    val promptInfo = BiometricDeviceAuthentication.createPromptInfoBuilder()
       .setTitle(getString(R.string.TransferAccount_unlock_to_transfer))
       .setConfirmationRequired(true)
       .build()
