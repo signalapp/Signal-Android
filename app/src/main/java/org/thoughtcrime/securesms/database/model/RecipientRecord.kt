@@ -54,6 +54,8 @@ data class RecipientRecord(
   val systemPhoneLabel: String?,
   /** The [android.provider.ContactsContract.CommonDataKinds.Phone.TYPE] of the linked contact's matching number, or -1 if it has none. */
   val systemPhoneType: Int,
+  /** The recipient's number as last seen on the linked contact, or null if the contact does not hold it. */
+  val systemPhoneE164: String?,
   val systemContactUri: String?,
   @get:JvmName("getProfileName")
   val signalProfileName: ProfileName,

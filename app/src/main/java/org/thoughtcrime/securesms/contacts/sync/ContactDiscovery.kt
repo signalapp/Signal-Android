@@ -278,6 +278,7 @@ object ContactDiscovery {
                 photoUri = phoneDetails.photoUri,
                 label = phoneDetails.label,
                 type = phoneDetails.type,
+                e164 = recipient.e164.orElse(null),
                 contactUri = phoneDetails.contactUri.toString()
               )
             )
@@ -299,6 +300,7 @@ object ContactDiscovery {
             photoUri = contactInfo.photoUri,
             systemPhoneLabel = contactInfo.label,
             systemPhoneType = contactInfo.type,
+            systemPhoneE164 = contactInfo.e164,
             systemContactUri = contactInfo.contactUri
           )
         }
@@ -350,6 +352,7 @@ object ContactDiscovery {
     val photoUri: String?,
     val label: String?,
     val type: Int,
+    val e164: String?,
     val contactUri: String
   )
 }

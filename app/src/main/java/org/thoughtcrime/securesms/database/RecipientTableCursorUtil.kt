@@ -143,6 +143,7 @@ object RecipientTableCursorUtil {
       systemContactPhotoUri = cursor.requireString(RecipientTable.SYSTEM_PHOTO_URI),
       systemPhoneLabel = cursor.requireString(RecipientTable.SYSTEM_PHONE_LABEL),
       systemPhoneType = cursor.requireInt(RecipientTable.SYSTEM_PHONE_TYPE),
+      systemPhoneE164 = cursor.requireString(RecipientTable.SYSTEM_PHONE_E164),
       systemContactUri = cursor.requireString(RecipientTable.SYSTEM_CONTACT_URI),
       signalProfileName = ProfileName.fromParts(cursor.requireString(RecipientTable.PROFILE_GIVEN_NAME), cursor.requireString(RecipientTable.PROFILE_FAMILY_NAME)),
       signalProfileAvatar = cursor.requireString(RecipientTable.PROFILE_AVATAR),

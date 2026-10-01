@@ -38,6 +38,7 @@ class RecipientTableTest_mergeSystemContact {
         photoUri = PHOTO_URI,
         systemPhoneLabel = "Cell",
         systemPhoneType = ContactsContract.CommonDataKinds.Phone.TYPE_CUSTOM,
+        systemPhoneE164 = E164,
         systemContactUri = CONTACT_URI
       )
     } finally {
@@ -53,6 +54,7 @@ class RecipientTableTest_mergeSystemContact {
     assertEquals(PHOTO_URI, merged.systemContactPhotoUri)
     assertEquals("Cell", merged.systemPhoneLabel)
     assertEquals(ContactsContract.CommonDataKinds.Phone.TYPE_CUSTOM, merged.systemPhoneType)
+    assertEquals(E164, merged.systemPhoneE164)
     assertEquals(CONTACT_URI, merged.systemContactUri)
   }
 

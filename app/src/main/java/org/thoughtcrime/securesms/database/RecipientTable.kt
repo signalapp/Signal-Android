@@ -163,6 +163,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     const val SYSTEM_PHOTO_URI = "system_photo_uri"
     const val SYSTEM_PHONE_LABEL = "system_phone_label"
     const val SYSTEM_PHONE_TYPE = "system_phone_type"
+    const val SYSTEM_PHONE_E164 = "system_phone_e164"
     const val SYSTEM_CONTACT_URI = "system_contact_uri"
     const val SYSTEM_INFO_PENDING = "system_info_pending"
     const val NOTIFICATION_CHANNEL = "notification_channel"
@@ -284,7 +285,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         $BLOCKED_AT INTEGER DEFAULT 0,
         $UNREAD_REMINDER INTEGER DEFAULT ${NotificationSetting.SYSTEM_DEFAULT.id},
         $SHARED_GIVEN_NAME TEXT DEFAULT NULL,
-        $SHARED_FAMILY_NAME TEXT DEFAULT NULL
+        $SHARED_FAMILY_NAME TEXT DEFAULT NULL,
+        $SYSTEM_PHONE_E164 TEXT DEFAULT NULL
       )
       """
 
@@ -322,6 +324,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       SYSTEM_PHOTO_URI,
       SYSTEM_PHONE_LABEL,
       SYSTEM_PHONE_TYPE,
+      SYSTEM_PHONE_E164,
       SYSTEM_CONTACT_URI,
       NOTIFICATION_CHANNEL,
       MESSAGE_RINGTONE,
@@ -4642,6 +4645,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       SYSTEM_PHOTO_URI to secondaryRecord.systemContactPhotoUri,
       SYSTEM_PHONE_LABEL to secondaryRecord.systemPhoneLabel,
       SYSTEM_PHONE_TYPE to secondaryRecord.systemPhoneType,
+      SYSTEM_PHONE_E164 to secondaryRecord.systemPhoneE164,
       SYSTEM_CONTACT_URI to secondaryRecord.systemContactUri,
       PROFILE_SHARING to (primaryRecord.profileSharing || secondaryRecord.profileSharing),
       CAPABILITIES to max(primaryRecord.capabilities.rawBits, secondaryRecord.capabilities.rawBits),
@@ -4853,6 +4857,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       SYSTEM_PHOTO_URI to null,
       SYSTEM_PHONE_LABEL to null,
       SYSTEM_PHONE_TYPE to -1,
+      SYSTEM_PHONE_E164 to null,
       SYSTEM_CONTACT_URI to null,
       SYSTEM_INFO_PENDING to 0,
       NOTIFICATION_CHANNEL to null,
@@ -5051,6 +5056,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       photoUri: String?,
       systemPhoneLabel: String?,
       systemPhoneType: Int,
+      systemPhoneE164: String?,
       systemContactUri: String?
     ) {
       val joinedName = Util.firstNonNull(systemDisplayName, systemProfileName.toString())
@@ -5061,6 +5067,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         put(SYSTEM_PHOTO_URI, photoUri)
         put(SYSTEM_PHONE_LABEL, systemPhoneLabel)
         put(SYSTEM_PHONE_TYPE, systemPhoneType)
+        put(SYSTEM_PHONE_E164, systemPhoneE164)
         put(SYSTEM_CONTACT_URI, systemContactUri)
       }
 
@@ -5109,6 +5116,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
           $SYSTEM_JOINED_NAME = NULL,
           $SYSTEM_PHOTO_URI = NULL,
           $SYSTEM_PHONE_LABEL = NULL,
+          $SYSTEM_PHONE_E164 = NULL,
           $SYSTEM_CONTACT_URI = NULL
         WHERE $SYSTEM_INFO_PENDING = 1
         RETURNING $ID
