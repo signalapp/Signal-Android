@@ -40,6 +40,7 @@ import org.signal.network.api.RegistrationApiV2.RegisterAccountError
 import org.signal.network.api.RegistrationApiV2.RegisterAccountResponse
 import org.signal.network.api.RegistrationApiV2.RegistrationLockResponse
 import org.signal.network.api.RegistrationApiV2.SvrCredentials
+import org.signal.network.api.RegistrationApiV2.WebAuthnAuthenticationParameters
 import org.signal.registration.KeyMaterial
 import org.signal.registration.NetworkController
 import org.signal.registration.RegisteredAccountData
@@ -51,6 +52,8 @@ import org.signal.registration.screens.aepentry.AepInput
 import org.signal.registration.screens.restoreselection.ArchiveRestoreOption
 import org.signal.registration.screens.restoreselection.RegisteredState
 import org.signal.registration.screens.shared.AccountIdError
+import org.signal.registration.screens.twofactorselection.TwoFactorMethod
+import org.signal.registration.screens.twofactorselection.WebAuthnParameters
 import java.io.IOException
 import java.util.UUID
 import kotlin.time.Duration
@@ -60,6 +63,7 @@ class SignalLoginCredentialEntryViewModelTest {
 
   companion object {
     private const val VALID_ACCOUNT_ID = "a6b284822e3283d07f2391360a4c2b91"
+    private const val ASSERTION_JSON = "{\"id\":\"abc\"}"
     private const val VALID_AEP = "uy38jh2778hjjhj8lk19ga61s672jsj089r023s6a57809bap92j2yh5t326vv7t"
     private val VALID_ACI = ACI.from(UUID.fromString("a6b28482-2e32-83d0-7f23-91360a4c2b91"))
   }
@@ -81,7 +85,7 @@ class SignalLoginCredentialEntryViewModelTest {
     emittedStates = mutableListOf()
     parentEventEmitter = { event -> emittedParentEvents.add(event) }
     stateEmitter = { state -> emittedStates.add(state) }
-    viewModel = SignalLoginCredentialEntryViewModel(repository = mockRepository, parentEventEmitter = parentEventEmitter)
+    viewModel = SignalLoginCredentialEntryViewModel(repository = mockRepository, parentEventEmitter = parentEventEmitter, arePasskeysSupported = true)
   }
 
   @After
@@ -91,14 +95,14 @@ class SignalLoginCredentialEntryViewModelTest {
 
   @Test
   fun `a prefilled account ID starts the screen with the ID already in the field`() = runTest(testDispatcher) {
-    val prefilled = SignalLoginCredentialEntryViewModel(repository = mockRepository, parentEventEmitter = parentEventEmitter, prefilledAccountId = VALID_ACCOUNT_ID)
+    val prefilled = SignalLoginCredentialEntryViewModel(repository = mockRepository, parentEventEmitter = parentEventEmitter, arePasskeysSupported = true, prefilledAccountId = VALID_ACCOUNT_ID)
 
     assertThat(prefilled.state.value.accountId).isEqualTo(VALID_ACCOUNT_ID)
   }
 
   @Test
   fun `a prefilled account ID does not count as user input, so the password manager can still be offered`() = runTest(testDispatcher) {
-    val prefilled = SignalLoginCredentialEntryViewModel(repository = mockRepository, parentEventEmitter = parentEventEmitter, prefilledAccountId = VALID_ACCOUNT_ID)
+    val prefilled = SignalLoginCredentialEntryViewModel(repository = mockRepository, parentEventEmitter = parentEventEmitter, arePasskeysSupported = true, prefilledAccountId = VALID_ACCOUNT_ID)
 
     assertThat(prefilled.state.value.isAccountIdPrefilled).isTrue()
     assertThat(prefilled.state.value.canPromptPasswordManager).isTrue()
@@ -485,6 +489,124 @@ class SignalLoginCredentialEntryViewModelTest {
   }
 
   @Test
+  fun `NextClicked requiring a passkey goes to the selection screen carrying the ceremony parameters`() = runTest(testDispatcher) {
+    val parameters = WebAuthnAuthenticationParameters(
+      challenge = byteArrayOf(1, 2, 3),
+      timeoutSeconds = 60,
+      allowedCredentialIds = listOf(byteArrayOf(4, 5, 6))
+    )
+    coEvery { mockRepository.reRegisterAccountWithoutPhoneNumber(any(), any(), any(), any(), any()) } returns
+      RequestResult.NonSuccess(RegisterAccountError.TwoFactorRequired(MfaFailureResponse(hasTotpKey = false, webAuthnParameters = parameters)))
+
+    applyEvent(completeState(), SignalLoginCredentialEntryScreenEvents.NextClicked)
+
+    assertThat(emittedParentEvents.last())
+      .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
+      .prop(RegistrationFlowEvent.NavigateToScreen::route)
+      .isEqualTo(
+        RegistrationRoute.TwoFactorSelection(
+          methods = listOf(
+            TwoFactorMethod.Passkey(
+              WebAuthnParameters(
+                challenge = byteArrayOf(1, 2, 3),
+                timeoutSeconds = 60,
+                allowedCredentialIds = listOf(byteArrayOf(4, 5, 6))
+              )
+            )
+          )
+        )
+      )
+  }
+
+  /** An account with both offers a choice, so the selection screen is the only place that can go. */
+  @Test
+  fun `NextClicked requiring either factor offers both on the selection screen`() = runTest(testDispatcher) {
+    val parameters = WebAuthnAuthenticationParameters(challenge = byteArrayOf(1), timeoutSeconds = 60, allowedCredentialIds = listOf(byteArrayOf(2)))
+    coEvery { mockRepository.reRegisterAccountWithoutPhoneNumber(any(), any(), any(), any(), any()) } returns
+      RequestResult.NonSuccess(RegisterAccountError.TwoFactorRequired(MfaFailureResponse(hasTotpKey = true, webAuthnParameters = parameters)))
+
+    applyEvent(completeState(), SignalLoginCredentialEntryScreenEvents.NextClicked)
+
+    val route = (emittedParentEvents.last() as RegistrationFlowEvent.NavigateToScreen).route
+    assertThat((route as RegistrationRoute.TwoFactorSelection).methods)
+      .isEqualTo(
+        listOf(
+          TwoFactorMethod.Passkey(WebAuthnParameters(challenge = byteArrayOf(1), timeoutSeconds = 60, allowedCredentialIds = listOf(byteArrayOf(2)))),
+          TwoFactorMethod.AuthenticatorApp
+        )
+      )
+  }
+
+  /** The service turned us away for want of a factor but named none we support, so there is nowhere to send the user. */
+  @Test
+  fun `NextClicked requiring a factor we do not support reports an error rather than navigating`() = runTest(testDispatcher) {
+    coEvery { mockRepository.reRegisterAccountWithoutPhoneNumber(any(), any(), any(), any(), any()) } returns
+      RequestResult.NonSuccess(RegisterAccountError.TwoFactorRequired(MfaFailureResponse()))
+
+    applyEvent(completeState(), SignalLoginCredentialEntryScreenEvents.NextClicked)
+
+    assertThat(emittedStates.last().loginError).isEqualTo(SignalLoginError.UnknownError)
+    assertThat(emittedParentEvents.filterIsInstance<RegistrationFlowEvent.NavigateToScreen>()).isEmpty()
+  }
+
+  /** A device that can't run a ceremony shouldn't be sent to a screen offering one. */
+  @Test
+  fun `NextClicked requiring a passkey this device cannot run reports an error rather than navigating`() = runTest(testDispatcher) {
+    val parameters = WebAuthnAuthenticationParameters(challenge = byteArrayOf(1), timeoutSeconds = 60, allowedCredentialIds = listOf(byteArrayOf(2)))
+    coEvery { mockRepository.reRegisterAccountWithoutPhoneNumber(any(), any(), any(), any(), any()) } returns
+      RequestResult.NonSuccess(RegisterAccountError.TwoFactorRequired(MfaFailureResponse(hasTotpKey = false, webAuthnParameters = parameters)))
+
+    applyEventWithoutPasskeySupport(completeState(), SignalLoginCredentialEntryScreenEvents.NextClicked)
+
+    assertThat(emittedStates.last().loginError).isEqualTo(SignalLoginError.UnknownError)
+    assertThat(emittedParentEvents.filterIsInstance<RegistrationFlowEvent.NavigateToScreen>()).isEmpty()
+  }
+
+  /** The passkey drops off the list, leaving the authenticator app as the only way in. */
+  @Test
+  fun `NextClicked requiring either factor offers only the authenticator app when passkeys are unsupported`() = runTest(testDispatcher) {
+    val parameters = WebAuthnAuthenticationParameters(challenge = byteArrayOf(1), timeoutSeconds = 60, allowedCredentialIds = listOf(byteArrayOf(2)))
+    coEvery { mockRepository.reRegisterAccountWithoutPhoneNumber(any(), any(), any(), any(), any()) } returns
+      RequestResult.NonSuccess(RegisterAccountError.TwoFactorRequired(MfaFailureResponse(hasTotpKey = true, webAuthnParameters = parameters)))
+
+    applyEventWithoutPasskeySupport(completeState(), SignalLoginCredentialEntryScreenEvents.NextClicked)
+
+    assertThat(emittedParentEvents.last())
+      .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
+      .prop(RegistrationFlowEvent.NavigateToScreen::route)
+      .isEqualTo(RegistrationRoute.TotpEntry)
+  }
+
+  @Test
+  fun `PasskeyAssertionReceived retries the login with the assertion`() = runTest(testDispatcher) {
+    val aep = AccountEntropyPool(VALID_AEP)
+    stubSuccessfulLogin(aep)
+
+    applyEvent(completeState(), SignalLoginCredentialEntryScreenEvents.PasskeyAssertionReceived(ASSERTION_JSON))
+
+    coVerify {
+      mockRepository.reRegisterAccountWithoutPhoneNumber(
+        aci = VALID_ACI,
+        recoveryPassword = aep.deriveMasterKey().deriveRegistrationRecoveryPassword(),
+        aep = match { it.value == VALID_AEP },
+        registrationLock = null,
+        webAuthnResponse = ASSERTION_JSON
+      )
+    }
+  }
+
+  @Test
+  fun `PasskeyAssertionReceived for a screen whose recovery key is gone does not attempt a login`() = runTest(testDispatcher) {
+    val state = SignalLoginCredentialEntryState(accountId = VALID_ACCOUNT_ID)
+
+    applyEvent(state, SignalLoginCredentialEntryScreenEvents.PasskeyAssertionReceived(ASSERTION_JSON))
+
+    assertThat(emittedStates).isEmpty()
+    assertThat(emittedParentEvents).isEmpty()
+    coVerify(exactly = 0) { mockRepository.reRegisterAccountWithoutPhoneNumber(any(), any(), any(), any(), any(), any(), any()) }
+  }
+
+  @Test
   fun `TwoFactorCodeEntered retries the login with the entered code`() = runTest(testDispatcher) {
     val aep = AccountEntropyPool(VALID_AEP)
     stubSuccessfulLogin(aep)
@@ -510,14 +632,14 @@ class SignalLoginCredentialEntryViewModelTest {
 
     assertThat(emittedStates).isEmpty()
     assertThat(emittedParentEvents).isEmpty()
-    coVerify(exactly = 0) { mockRepository.reRegisterAccountWithoutPhoneNumber(any(), any(), any(), any(), any(), any()) }
+    coVerify(exactly = 0) { mockRepository.reRegisterAccountWithoutPhoneNumber(any(), any(), any(), any(), any(), any(), any()) }
   }
 
   @Test
   fun `TwoFactorCodeEntered while the login is already in flight does not attempt a second login`() = runTest(testDispatcher) {
     applyEvent(completeState().copy(isLoggingIn = true), SignalLoginCredentialEntryScreenEvents.TwoFactorCodeEntered("123456"))
 
-    coVerify(exactly = 0) { mockRepository.reRegisterAccountWithoutPhoneNumber(any(), any(), any(), any(), any(), any()) }
+    coVerify(exactly = 0) { mockRepository.reRegisterAccountWithoutPhoneNumber(any(), any(), any(), any(), any(), any(), any()) }
   }
 
   @Test(expected = IllegalStateException::class)
@@ -530,6 +652,11 @@ class SignalLoginCredentialEntryViewModelTest {
 
   private suspend fun applyEvent(state: SignalLoginCredentialEntryState, event: SignalLoginCredentialEntryScreenEvents) {
     viewModel.applyEvent(state, event, parentEventEmitter, stateEmitter)
+  }
+
+  private suspend fun applyEventWithoutPasskeySupport(state: SignalLoginCredentialEntryState, event: SignalLoginCredentialEntryScreenEvents) {
+    SignalLoginCredentialEntryViewModel(repository = mockRepository, parentEventEmitter = parentEventEmitter, arePasskeysSupported = false)
+      .applyEvent(state, event, parentEventEmitter, stateEmitter)
   }
 
   private suspend fun applyAccountId(value: String): SignalLoginCredentialEntryState {

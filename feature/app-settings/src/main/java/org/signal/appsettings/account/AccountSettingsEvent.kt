@@ -5,6 +5,8 @@
 
 package org.signal.appsettings.account
 
+import org.signal.passwordmanager.PasskeyCreationResult
+
 /**
  * Reminder that these events are logged, so don't include anything sensitive in the toString.
  */
@@ -53,6 +55,9 @@ sealed interface AccountSettingsEvent {
 
   /** The user tapped the passkey option in the two-factor set-up menu. */
   data object AddPasskeyClicked : AccountSettingsEvent
+
+  /** The passkey ceremony finished, one way or another. A credential still has to be verified by the service to count. */
+  data class PasskeyCeremonyCompleted(val result: PasskeyCreationResult) : AccountSettingsEvent
 
   /** The user tapped a learn more link that should open the support article at [url]. */
   data class LearnMoreClicked(val url: String) : AccountSettingsEvent

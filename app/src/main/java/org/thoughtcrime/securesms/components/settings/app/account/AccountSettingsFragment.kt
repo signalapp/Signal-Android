@@ -17,17 +17,24 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.res.stringResource
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.launch
 import org.signal.appsettings.account.AccountSettingsAction
 import org.signal.appsettings.account.AccountSettingsEvent
 import org.signal.appsettings.account.AccountSettingsScreen
+import org.signal.appsettings.account.PasskeyCreationParameters
 import org.signal.appsettings.account.TwoFactorMethod
 import org.signal.core.ui.biometrics.BiometricsAuthentication
 import org.signal.core.ui.biometrics.rememberBiometricsAuthentication
 import org.signal.core.ui.compose.CollectActions
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.util.ServiceUtil
+import org.signal.core.util.logging.Log
+import org.signal.passwordmanager.PasskeyCreationResult
+import org.signal.passwordmanager.SignalPasskeyManager
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.account.twofactor.TwoFactorNavArgs
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -35,6 +42,7 @@ import org.thoughtcrime.securesms.lock.v2.CreateSvrPinActivity
 import org.thoughtcrime.securesms.registration.ui.RegistrationIntents
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.PlayStoreUtil
+import org.thoughtcrime.securesms.util.ViewModelFactory
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.signal.appsettings.R as AppSettingsR
 
@@ -44,7 +52,20 @@ import org.signal.appsettings.R as AppSettingsR
  */
 class AccountSettingsFragment : ComposeFragment() {
 
-  private val viewModel: AccountSettingsViewModel by viewModels()
+  companion object {
+    private val TAG = Log.tag(AccountSettingsFragment::class)
+  }
+
+  private val viewModel: AccountSettingsViewModel by viewModels(
+    factoryProducer = ViewModelFactory.factoryProducer {
+      AccountSettingsViewModel(
+        accountRepository = AccountSettingsRepository(
+          defaultPasskeyName = getString(AppSettingsR.string.AccountSettingsRepository__passkey)
+        ),
+        arePasskeysSupported = SignalPasskeyManager.isSupported(requireContext())
+      )
+    }
+  )
 
   private lateinit var pinFlowLauncher: ActivityResultLauncher<Intent>
 
@@ -123,7 +144,9 @@ class AccountSettingsFragment : ComposeFragment() {
       AccountSettingsAction.NavigateToTotpSetup -> {
         findNavController().safeNavigate(R.id.action_accountSettingsFragment_to_authenticatorSetupFragment)
       }
-      is AccountSettingsAction.CreatePasskey -> Unit
+      is AccountSettingsAction.CreatePasskey -> {
+        createPasskey(action.parameters)
+      }
       is AccountSettingsAction.NavigateToNameNewPasskey -> {
         findNavController().safeNavigate(
           R.id.action_accountSettingsFragment_to_twoFactorNameFragment,
@@ -141,14 +164,18 @@ class AccountSettingsFragment : ComposeFragment() {
           viewModel.onEvent(AccountSettingsEvent.MethodRemovalAuthenticated(action.method))
         }
       }
-      AccountSettingsAction.ShowAuthenticationFailed -> toast(AppSettingsR.string.AccountSettingsFragment__authentication_required)
-      is AccountSettingsAction.ShowMethodRemoved -> toast(
-        when (action.kind) {
-          TwoFactorMethod.Kind.AUTHENTICATOR_APP -> AppSettingsR.string.AccountSettingsFragment__authenticator_app_removed
-          TwoFactorMethod.Kind.PASSKEY -> AppSettingsR.string.AccountSettingsFragment__passkey_removed
-          TwoFactorMethod.Kind.OTHER -> AppSettingsR.string.AccountSettingsFragment__two_factor_method_removed
-        }
-      )
+      AccountSettingsAction.ShowAuthenticationFailed -> {
+        toast(AppSettingsR.string.AccountSettingsFragment__authentication_required)
+      }
+      is AccountSettingsAction.ShowMethodRemoved -> {
+        toast(
+          when (action.kind) {
+            TwoFactorMethod.Kind.AUTHENTICATOR_APP -> AppSettingsR.string.AccountSettingsFragment__authenticator_app_removed
+            TwoFactorMethod.Kind.PASSKEY -> AppSettingsR.string.AccountSettingsFragment__passkey_removed
+            TwoFactorMethod.Kind.OTHER -> AppSettingsR.string.AccountSettingsFragment__two_factor_method_removed
+          }
+        )
+      }
       is AccountSettingsAction.ShowMethodRemovalFailed -> toast(
         when (action.kind) {
           TwoFactorMethod.Kind.AUTHENTICATOR_APP -> AppSettingsR.string.AccountSettingsFragment__couldnt_remove_authenticator_app
@@ -156,8 +183,12 @@ class AccountSettingsFragment : ComposeFragment() {
           TwoFactorMethod.Kind.OTHER -> AppSettingsR.string.AccountSettingsFragment__couldnt_remove_two_factor_method
         }
       )
-      AccountSettingsAction.ShowNoPasskeyProvider -> toast(AppSettingsR.string.AccountSettingsFragment__no_passkey_provider)
-      AccountSettingsAction.ShowPasskeyCreationFailed -> toast(AppSettingsR.string.AccountSettingsFragment__couldnt_create_passkey)
+      AccountSettingsAction.ShowNoPasskeyProvider -> {
+        toast(AppSettingsR.string.AccountSettingsFragment__no_passkey_provider)
+      }
+      AccountSettingsAction.ShowPasskeyCreationFailed -> {
+        toast(AppSettingsR.string.AccountSettingsFragment__couldnt_create_passkey)
+      }
       is AccountSettingsAction.OpenSupportArticle -> {
         CommunicationActions.openBrowserLink(requireContext(), action.url)
       }
@@ -201,6 +232,29 @@ class AccountSettingsFragment : ComposeFragment() {
       AccountSettingsAction.ShowRegistrationLockDisableFailed -> {
         toast(R.string.preferences_app_protection__failed_to_disable_registration_lock)
       }
+    }
+  }
+
+  /** Runs the middle leg of the passkey ceremony, which requires an activity context. */
+  private fun createPasskey(parameters: PasskeyCreationParameters) {
+    lifecycleScope.launch {
+      val result = try {
+        SignalPasskeyManager.createPasskey(
+          activityContext = requireActivity(),
+          rpId = parameters.relyingPartyId,
+          rpName = parameters.relyingPartyName,
+          userHandle = parameters.userHandle,
+          userName = parameters.userName,
+          allowedAlgorithms = parameters.allowedAlgorithms,
+          excludeCredentialIds = parameters.excludeCredentialIds
+        )
+      } catch (e: CancellationException) {
+        Log.w(TAG, "The passkey ceremony was canceled before it could finish.", e)
+        viewModel.onEvent(AccountSettingsEvent.PasskeyCeremonyCompleted(PasskeyCreationResult.UserCanceled))
+        throw e
+      }
+
+      viewModel.onEvent(AccountSettingsEvent.PasskeyCeremonyCompleted(result))
     }
   }
 

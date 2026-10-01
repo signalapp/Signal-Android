@@ -14,6 +14,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.update
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
 import org.signal.registration.RegistrationFlowEvent
@@ -55,6 +56,12 @@ class TwoFactorSelectionViewModel(
       }
       TwoFactorSelectionScreenEvents.CancelClicked -> {
         parentEventEmitter.navigateBack()
+      }
+      TwoFactorSelectionScreenEvents.PasskeyCeremonyFailed -> {
+        _state.update { it.copy(showPasskeyError = true) }
+      }
+      TwoFactorSelectionScreenEvents.PasskeyErrorDismissed -> {
+        _state.update { it.copy(showPasskeyError = false) }
       }
     }
   }

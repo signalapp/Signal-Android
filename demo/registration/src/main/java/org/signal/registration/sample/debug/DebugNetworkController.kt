@@ -146,13 +146,14 @@ class DebugNetworkController(
     fcmToken: String?,
     skipDeviceTransfer: Boolean,
     aci: ACI?,
-    totp: Int?
+    totp: Int?,
+    webAuthnResponse: String?
   ): RequestResult<RegisterAccountResponse, RegisterAccountError> {
     NetworkDebugState.getOverride<RequestResult<RegisterAccountResponse, RegisterAccountError>>("registerAccount")?.let {
       Log.d(TAG, "[registerAccount] Returning debug override")
       return it
     }
-    return delegate.registerAccount(e164, password, sessionId, recoveryPassword, receiptCredentialPresentation, attributes, aciPreKeys, pniPreKeys, fcmToken, skipDeviceTransfer, aci, totp)
+    return delegate.registerAccount(e164, password, sessionId, recoveryPassword, receiptCredentialPresentation, attributes, aciPreKeys, pniPreKeys, fcmToken, skipDeviceTransfer, aci, totp, webAuthnResponse)
   }
 
   override suspend fun getLoginConfiguration(): RequestResult<LoginConfiguration, GetLoginConfigurationError> {

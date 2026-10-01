@@ -829,7 +829,8 @@ class RegistrationRepository(
     aep: AccountEntropyPool,
     registrationLock: String? = null,
     skipDeviceTransfer: Boolean = true,
-    totp: Int? = null
+    totp: Int? = null,
+    webAuthnResponse: String? = null
   ): RequestResult<RegisteredAccountData, RegisterAccountError> = withContext(Dispatchers.IO) {
     val result = registerAccount(
       e164 = null,
@@ -840,7 +841,8 @@ class RegistrationRepository(
       registrationLock = registrationLock,
       skipDeviceTransfer = skipDeviceTransfer,
       existingAccountEntropyPool = aep,
-      totp = totp
+      totp = totp,
+      webAuthnResponse = webAuthnResponse
     )
 
     if (result is RequestResult.Success && result.result.response.authCredentialSalt == null) {
@@ -1147,7 +1149,8 @@ class RegistrationRepository(
     existingAciIdentityKeyPair: IdentityKeyPair? = null,
     existingPniIdentityKeyPair: IdentityKeyPair? = null,
     unrestrictedUnidentifiedAccess: Boolean = false,
-    totp: Int? = null
+    totp: Int? = null,
+    webAuthnResponse: String? = null
   ): RequestResult<RegisteredAccountData, RegisterAccountError> = withContext(Dispatchers.IO) {
     val phoneNumberless = receiptCredentialPresentation != null || aci != null
 
@@ -1159,7 +1162,7 @@ class RegistrationRepository(
       check(e164 != null) { "Must provide an e164 when registering with a phone number" }
     }
 
-    Log.i(TAG, "[registerAccount] Starting registration for $e164. sessionId: ${sessionId != null}, recoveryPassword: ${recoveryPassword != null}, receiptCredentialPresentation: ${receiptCredentialPresentation != null}, aci: ${aci != null}, phoneNumberless: $phoneNumberless, registrationLock: ${registrationLock != null}, skipDeviceTransfer: $skipDeviceTransfer, existingAep: ${existingAccountEntropyPool != null}, totp: ${totp != null}")
+    Log.i(TAG, "[registerAccount] Starting registration for $e164. sessionId: ${sessionId != null}, recoveryPassword: ${recoveryPassword != null}, receiptCredentialPresentation: ${receiptCredentialPresentation != null}, aci: ${aci != null}, phoneNumberless: $phoneNumberless, registrationLock: ${registrationLock != null}, skipDeviceTransfer: $skipDeviceTransfer, existingAep: ${existingAccountEntropyPool != null}, totp: ${totp != null}, webAuthn: ${webAuthnResponse != null}")
 
     val inProgressData = storageController.readInProgressRegistrationData()
     val resumedAciIdentityKeyPair = inProgressData.accountData?.aciIdentityKeyPair?.takeIf { it.size > 0 }?.let { IdentityKeyPair(it.toByteArray()) }
@@ -1250,7 +1253,8 @@ class RegistrationRepository(
       fcmToken = fcmToken,
       skipDeviceTransfer = skipDeviceTransfer,
       aci = aci,
-      totp = totp
+      totp = totp,
+      webAuthnResponse = webAuthnResponse
     )
 
     when (result) {

@@ -33,6 +33,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.AllDevicePreviews
+import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.registration.R
@@ -66,7 +67,24 @@ fun TwoFactorSelectionScreen(
         onEvent = onEvent
       )
     }
+
+    if (state.showPasskeyError) {
+      PasskeyErrorDialog(onEvent)
+    }
   }
+}
+
+/**
+ * Generic passkey failure dialog.
+ */
+@Composable
+private fun PasskeyErrorDialog(onEvent: (TwoFactorSelectionScreenEvents) -> Unit) {
+  Dialogs.SimpleMessageDialog(
+    message = stringResource(R.string.TwoFactorSelectionScreen__something_went_wrong_with_your_passkey),
+    dismiss = stringResource(android.R.string.ok),
+    onDismiss = { onEvent(TwoFactorSelectionScreenEvents.PasskeyErrorDismissed) },
+    modifier = Modifier.testTag(TestTags.TWO_FACTOR_SELECTION_PASSKEY_ERROR_DIALOG)
+  )
 }
 
 @Composable

@@ -131,7 +131,8 @@ interface NetworkController {
     fcmToken: String?,
     skipDeviceTransfer: Boolean,
     aci: ACI?,
-    totp: Int?
+    totp: Int?,
+    webAuthnResponse: String?
   ): RequestResult<RegisterAccountResponse, RegisterAccountError>
 
   /**

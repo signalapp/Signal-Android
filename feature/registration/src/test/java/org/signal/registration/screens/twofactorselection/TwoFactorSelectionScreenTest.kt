@@ -96,6 +96,29 @@ class TwoFactorSelectionScreenTest {
     assertThat(events).isEmpty()
   }
 
+  @Test
+  fun `the passkey error dialog is shown when the state asks for it`() {
+    setContent(createState(showPasskeyError = true))
+
+    composeTestRule.onNodeWithText("Something went wrong with your passkey. Please try again or choose another method.").assertIsDisplayed()
+  }
+
+  @Test
+  fun `dismissing the passkey error dialog emits PasskeyErrorDismissed`() {
+    setContent(createState(showPasskeyError = true))
+
+    composeTestRule.onNodeWithText("OK").performClick()
+
+    assertThat(events).contains(TwoFactorSelectionScreenEvents.PasskeyErrorDismissed)
+  }
+
+  @Test
+  fun `no passkey error dialog is shown by default`() {
+    setContent(createState())
+
+    composeTestRule.onNodeWithTag(TestTags.TWO_FACTOR_SELECTION_PASSKEY_ERROR_DIALOG).assertDoesNotExist()
+  }
+
   private fun setContent(state: TwoFactorSelectionState) {
     composeTestRule.setContent {
       SignalTheme {
@@ -108,8 +131,9 @@ class TwoFactorSelectionScreenTest {
   }
 
   private fun createState(
-    methods: List<TwoFactorMethod> = listOf(passkey, TwoFactorMethod.AuthenticatorApp)
+    methods: List<TwoFactorMethod> = listOf(passkey, TwoFactorMethod.AuthenticatorApp),
+    showPasskeyError: Boolean = false
   ): TwoFactorSelectionState {
-    return TwoFactorSelectionState(methods = methods)
+    return TwoFactorSelectionState(methods = methods, showPasskeyError = showPasskeyError)
   }
 }

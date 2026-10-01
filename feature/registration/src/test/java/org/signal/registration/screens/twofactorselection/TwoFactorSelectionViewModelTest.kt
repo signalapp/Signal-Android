@@ -9,6 +9,8 @@ import assertk.assertThat
 import assertk.assertions.containsExactly
 import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
+import assertk.assertions.isFalse
+import assertk.assertions.isTrue
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
@@ -88,6 +90,28 @@ class TwoFactorSelectionViewModelTest {
     viewModel.onEvent(TwoFactorSelectionScreenEvents.MethodSelected(passkey))
 
     assertThat(viewModel.state.value).isEqualTo(TwoFactorSelectionState(methods = methods))
+  }
+
+  @Test
+  fun `PasskeyCeremonyFailed puts the error dialog up`() = runTest(testDispatcher) {
+    val viewModel = createViewModel()
+
+    viewModel.onEvent(TwoFactorSelectionScreenEvents.PasskeyCeremonyFailed)
+
+    assertThat(viewModel.state.value.showPasskeyError).isTrue()
+    assertThat(emittedParentEvents).isEmpty()
+  }
+
+  /** The user stays on the selection screen after acknowledging, so they can pick again. */
+  @Test
+  fun `PasskeyErrorDismissed takes the error dialog back down`() = runTest(testDispatcher) {
+    val viewModel = createViewModel()
+    viewModel.onEvent(TwoFactorSelectionScreenEvents.PasskeyCeremonyFailed)
+
+    viewModel.onEvent(TwoFactorSelectionScreenEvents.PasskeyErrorDismissed)
+
+    assertThat(viewModel.state.value.showPasskeyError).isFalse()
+    assertThat(emittedParentEvents).isEmpty()
   }
 
   private fun createViewModel(

@@ -37,11 +37,15 @@ import org.signal.appsettings.account.AccountSettingsAction
 import org.signal.appsettings.account.AccountSettingsEvent
 import org.signal.appsettings.account.AccountSettingsState.Dialog
 import org.signal.appsettings.account.AccountSettingsState.LoadState
+import org.signal.appsettings.account.PasskeyCreationParameters
 import org.signal.appsettings.account.TwoFactorMethod
 import org.signal.core.models.MasterKey
 import org.signal.libsignal.net.MfaKeyKind
 import org.signal.libsignal.net.RequestResult
 import org.signal.network.service.TwoFactorMethodService
+import org.signal.passwordmanager.PasskeyCreationResult
+import org.thoughtcrime.securesms.components.settings.app.account.AccountSettingsRepository.FinishPasskeyRegistrationResult
+import org.thoughtcrime.securesms.components.settings.app.account.AccountSettingsRepository.StartPasskeyRegistrationResult
 import org.thoughtcrime.securesms.lock.v2.PinKeyboardType
 import org.thoughtcrime.securesms.testing.CoroutineDispatcherRule
 import java.io.IOException
@@ -60,6 +64,22 @@ class AccountSettingsViewModelTest {
     private val TOTP_APP = TwoFactorMethod(id = 1, kind = TwoFactorMethod.Kind.AUTHENTICATOR_APP, name = "Bitwarden Authenticator", createdAt = 0)
     private val OTHER_TOTP_APP = TwoFactorMethod(id = 2, kind = TwoFactorMethod.Kind.AUTHENTICATOR_APP, name = "Twilio Authy", createdAt = 0)
     private val PASSKEY = TwoFactorMethod(id = 1, kind = TwoFactorMethod.Kind.PASSKEY, name = "Pixel Phone", createdAt = 0)
+
+    private const val NEW_PASSKEY_ID = 9L
+    private const val NEW_PASSKEY_CREATED_AT = 1_700_000_000_000L
+    private val NEW_PASSKEY = TwoFactorMethod(id = NEW_PASSKEY_ID, kind = TwoFactorMethod.Kind.PASSKEY, name = null, createdAt = NEW_PASSKEY_CREATED_AT)
+
+    private val CREATION_PARAMETERS = PasskeyCreationParameters(
+      relyingPartyId = "login.signal.org",
+      relyingPartyName = "Signal",
+      userHandle = byteArrayOf(1, 2, 3),
+      userName = "2026-09-22",
+      allowedAlgorithms = listOf(-7),
+      excludeCredentialIds = emptyList()
+    )
+
+    private val ATTESTATION_OBJECT = byteArrayOf(4, 5, 6)
+    private const val CLIENT_DATA_JSON = "{\"type\":\"webauthn.create\"}"
   }
 
   private val testDispatcher = UnconfinedTestDispatcher()
@@ -87,6 +107,8 @@ class AccountSettingsViewModelTest {
     every { repository.getMaxTwoFactorMethods() } returns 10
     coEvery { twoFactorMethodService.getMethods(any()) } returns methods()
     coEvery { twoFactorMethodService.removeMethod(any()) } returns RequestResult.Success(Unit)
+    coEvery { repository.startPasskeyRegistration() } returns StartPasskeyRegistrationResult.Success(CREATION_PARAMETERS)
+    coEvery { repository.finishPasskeyRegistration(any(), any()) } returns FinishPasskeyRegistrationResult.Success(NEW_PASSKEY_ID, NEW_PASSKEY_CREATED_AT)
     every { repository.verifyLocalPin(any()) } answers { firstArg<String>() == CORRECT_PIN }
     coEvery { repository.setRegistrationLockEnabled(any()) } returns true
   }
@@ -417,6 +439,183 @@ class AccountSettingsViewModelTest {
   }
 
   @Test
+  fun `AddPasskeyClicked hands the ceremony parameters out to be run`() = runTest(testDispatcher) {
+    every { repository.isPhoneNumberless() } returns true
+    coEvery { twoFactorMethodService.getMethods(any()) } returns methods(TOTP_APP)
+
+    val viewModel = createViewModel()
+    val actions = collectActions(viewModel.actions)
+
+    viewModel.onEvent(AccountSettingsEvent.AddPasskeyClicked)
+
+    assertThat(actions.last()).isEqualTo(AccountSettingsAction.CreatePasskey(CREATION_PARAMETERS))
+  }
+
+  /** The service leg of the ceremony happens before the provider's sheet, so the tap needs something to show for it. */
+  @Test
+  fun `AddPasskeyClicked shows progress until the ceremony is over`() = runTest(testDispatcher) {
+    every { repository.isPhoneNumberless() } returns true
+    coEvery { twoFactorMethodService.getMethods(any()) } returns methods(TOTP_APP)
+
+    val viewModel = createViewModel()
+
+    viewModel.onEvent(AccountSettingsEvent.AddPasskeyClicked)
+
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.PasskeyInProgress)
+
+    viewModel.onEvent(AccountSettingsEvent.PasskeyCeremonyCompleted(PasskeyCreationResult.Success(ATTESTATION_OBJECT, CLIENT_DATA_JSON)))
+
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.None)
+  }
+
+  @Test
+  fun `a canceled ceremony takes the progress dialog back down`() = runTest(testDispatcher) {
+    every { repository.isPhoneNumberless() } returns true
+    coEvery { twoFactorMethodService.getMethods(any()) } returns methods(TOTP_APP)
+
+    val viewModel = createViewModel()
+
+    viewModel.onEvent(AccountSettingsEvent.AddPasskeyClicked)
+    viewModel.onEvent(AccountSettingsEvent.PasskeyCeremonyCompleted(PasskeyCreationResult.UserCanceled))
+
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.None)
+  }
+
+  /** Passkeys share the one overall limit with apps, and have no tighter limit of their own. */
+  @Test
+  fun `AddPasskeyClicked explains the overall limit rather than starting a ceremony`() = runTest(testDispatcher) {
+    every { repository.isPhoneNumberless() } returns true
+    every { repository.getMaxTwoFactorMethods() } returns 2
+    coEvery { twoFactorMethodService.getMethods(any()) } returns methods(TOTP_APP, PASSKEY)
+
+    val viewModel = createViewModel()
+    val actions = collectActions(viewModel.actions)
+
+    viewModel.onEvent(AccountSettingsEvent.AddPasskeyClicked)
+
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.MaxTwoFactorMethodsReached)
+    assertThat(actions).isEmpty()
+    coVerify(exactly = 0) { repository.startPasskeyRegistration() }
+  }
+
+  /** Another device can fill the account up between the limit check here and the service hearing about it. */
+  @Test
+  fun `AddPasskeyClicked explains the limit the service reports`() = runTest(testDispatcher) {
+    every { repository.isPhoneNumberless() } returns true
+    coEvery { twoFactorMethodService.getMethods(any()) } returns methods(TOTP_APP)
+    coEvery { repository.startPasskeyRegistration() } returns StartPasskeyRegistrationResult.TooManyMethods
+
+    val viewModel = createViewModel()
+    val actions = collectActions(viewModel.actions)
+
+    viewModel.onEvent(AccountSettingsEvent.AddPasskeyClicked)
+
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.MaxTwoFactorMethodsReached)
+    assertThat(actions).isEmpty()
+  }
+
+  /** A ceremony that never starts has to take the spinner back down, or the user is stuck looking at it. */
+  @Test
+  fun `AddPasskeyClicked that cannot reach the service takes the progress dialog back down`() = runTest(testDispatcher) {
+    every { repository.isPhoneNumberless() } returns true
+    coEvery { twoFactorMethodService.getMethods(any()) } returns methods(TOTP_APP)
+    coEvery { repository.startPasskeyRegistration() } returns StartPasskeyRegistrationResult.NetworkFailure
+
+    val viewModel = createViewModel()
+    val actions = collectActions(viewModel.actions)
+
+    viewModel.onEvent(AccountSettingsEvent.AddPasskeyClicked)
+
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.None)
+    assertThat(actions.last()).isEqualTo(AccountSettingsAction.ShowPasskeyCreationFailed)
+  }
+
+  /** The account can fill up while the provider's sheet is open, leaving a credential that has nowhere to land. */
+  @Test
+  fun `PasskeyCeremonyCompleted the service has no room for explains the limit`() = runTest(testDispatcher) {
+    every { repository.isPhoneNumberless() } returns true
+    coEvery { twoFactorMethodService.getMethods(any()) } returns methods(TOTP_APP)
+    coEvery { repository.finishPasskeyRegistration(any(), any()) } returns FinishPasskeyRegistrationResult.TooManyMethods
+
+    val viewModel = createViewModel()
+    val actions = collectActions(viewModel.actions)
+
+    viewModel.onEvent(AccountSettingsEvent.PasskeyCeremonyCompleted(PasskeyCreationResult.Success(ATTESTATION_OBJECT, CLIENT_DATA_JSON)))
+
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.MaxTwoFactorMethodsReached)
+    assertThat(actions).isEmpty()
+  }
+
+  @Test
+  fun `PasskeyCeremonyCompleted registers the credential and sends the user on to name it`() = runTest(testDispatcher) {
+    every { repository.isPhoneNumberless() } returns true
+    coEvery { twoFactorMethodService.getMethods(any()) } returns methods(TOTP_APP)
+
+    val viewModel = createViewModel()
+    val actions = collectActions(viewModel.actions)
+
+    viewModel.onEvent(AccountSettingsEvent.PasskeyCeremonyCompleted(PasskeyCreationResult.Success(ATTESTATION_OBJECT, CLIENT_DATA_JSON)))
+
+    coVerify { repository.finishPasskeyRegistration(ATTESTATION_OBJECT, CLIENT_DATA_JSON) }
+    assertThat(actions.last()).isEqualTo(AccountSettingsAction.NavigateToNameNewPasskey(NEW_PASSKEY))
+  }
+
+  /** The new passkey has a default name until the naming screen replaces it, so the list has to show it either way. */
+  @Test
+  fun `PasskeyCeremonyCompleted re-reads the list`() = runTest(testDispatcher) {
+    every { repository.isPhoneNumberless() } returns true
+    coEvery { twoFactorMethodService.getMethods(any()) } returns methods(TOTP_APP)
+
+    val viewModel = createViewModel()
+
+    coEvery { twoFactorMethodService.getMethods(any()) } returns methods(TOTP_APP, PASSKEY)
+    viewModel.onEvent(AccountSettingsEvent.PasskeyCeremonyCompleted(PasskeyCreationResult.Success(ATTESTATION_OBJECT, CLIENT_DATA_JSON)))
+
+    assertThat(viewModel.state.value.signalLogin!!.twoFactorMethods).containsExactly(TOTP_APP, PASSKEY)
+  }
+
+  @Test
+  fun `a ceremony the service rejects says so rather than sending the user to name nothing`() = runTest(testDispatcher) {
+    every { repository.isPhoneNumberless() } returns true
+    coEvery { twoFactorMethodService.getMethods(any()) } returns methods(TOTP_APP)
+    coEvery { repository.finishPasskeyRegistration(any(), any()) } returns FinishPasskeyRegistrationResult.CeremonyRejected
+
+    val viewModel = createViewModel()
+    val actions = collectActions(viewModel.actions)
+
+    viewModel.onEvent(AccountSettingsEvent.PasskeyCeremonyCompleted(PasskeyCreationResult.Success(ATTESTATION_OBJECT, CLIENT_DATA_JSON)))
+
+    assertThat(actions.last()).isEqualTo(AccountSettingsAction.ShowPasskeyCreationFailed)
+  }
+
+  /** Backing out of the provider's sheet is a choice, not a failure, so there is nothing to tell the user about. */
+  @Test
+  fun `a canceled ceremony says nothing`() = runTest(testDispatcher) {
+    every { repository.isPhoneNumberless() } returns true
+    coEvery { twoFactorMethodService.getMethods(any()) } returns methods(TOTP_APP)
+
+    val viewModel = createViewModel()
+    val actions = collectActions(viewModel.actions)
+
+    viewModel.onEvent(AccountSettingsEvent.PasskeyCeremonyCompleted(PasskeyCreationResult.UserCanceled))
+
+    assertThat(actions).isEmpty()
+  }
+
+  @Test
+  fun `a device with no passkey provider is told as much`() = runTest(testDispatcher) {
+    every { repository.isPhoneNumberless() } returns true
+    coEvery { twoFactorMethodService.getMethods(any()) } returns methods(TOTP_APP)
+
+    val viewModel = createViewModel()
+    val actions = collectActions(viewModel.actions)
+
+    viewModel.onEvent(AccountSettingsEvent.PasskeyCeremonyCompleted(PasskeyCreationResult.NoProviderAvailable))
+
+    assertThat(actions.last()).isEqualTo(AccountSettingsAction.ShowNoPasskeyProvider)
+  }
+
+  @Test
   fun `RenameMethodClicked opens the naming screen for that method`() = runTest(testDispatcher) {
     every { repository.isPhoneNumberless() } returns true
     coEvery { twoFactorMethodService.getMethods(any()) } returns methods(TOTP_APP)
@@ -636,7 +835,7 @@ class AccountSettingsViewModelTest {
     }
   )
 
-  private fun createViewModel(): AccountSettingsViewModel = AccountSettingsViewModel(repository, twoFactorMethodService)
+  private fun createViewModel(): AccountSettingsViewModel = AccountSettingsViewModel(repository, arePasskeysSupported = true, twoFactorMethodService = twoFactorMethodService)
 
   private fun TestScope.collectActions(actions: Flow<AccountSettingsAction>): List<AccountSettingsAction> {
     val collected = mutableListOf<AccountSettingsAction>()

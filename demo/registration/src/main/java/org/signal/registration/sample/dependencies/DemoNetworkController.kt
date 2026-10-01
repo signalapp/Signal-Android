@@ -228,7 +228,8 @@ class DemoNetworkController(
     fcmToken: String?,
     skipDeviceTransfer: Boolean,
     aci: ACI?,
-    totp: Int?
+    totp: Int?,
+    webAuthnResponse: String?
   ): RequestResult<RegisterAccountResponse, RegisterAccountError> {
     return registrationApi.registerAccount(
       e164 = e164,
@@ -242,7 +243,8 @@ class DemoNetworkController(
       fcmToken = fcmToken,
       skipDeviceTransfer = skipDeviceTransfer,
       aci = aci,
-      totp = totp
+      totp = totp,
+      webAuthnResponse = webAuthnResponse
     )
   }
 

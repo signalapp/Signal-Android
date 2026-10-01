@@ -445,6 +445,17 @@ class AccountSettingsScreenTest {
     assertThat(events).contains(AccountSettingsEvent.AddPasskeyClicked)
   }
 
+  /** A device with no way to run a passkey ceremony shouldn't be offered one. */
+  @Test
+  fun givenPasskeysAreUnsupported_whenIOpenTheSetUpMenu_thenIExpectNoPasskeyOption() {
+    setContent(createState(signalLogin = signalLogin(), arePasskeysSupported = false))
+
+    composeTestRule.onNodeWithTag(AccountSettingsTestTags.ROW_SET_UP_TWO_FACTOR).performClick()
+
+    composeTestRule.onNodeWithTag(AccountSettingsTestTags.MENU_ITEM_PASSKEY).assertDoesNotExist()
+    composeTestRule.onNodeWithTag(AccountSettingsTestTags.MENU_ITEM_AUTHENTICATOR_APP).assertIsDisplayed()
+  }
+
   @Test
   fun givenTheMaxAppsDialog_whenIClickLearnMore_thenIExpectLearnMoreAndDismissEvents() {
     setContent(createState(signalLogin = signalLogin(), dialog = Dialog.MaxTotpAppsReached))
@@ -562,6 +573,7 @@ class AccountSettingsScreenTest {
     clientDeprecated: Boolean = false,
     canTransferWhileUnregistered: Boolean = true,
     isPhoneNumberless: Boolean = false,
+    arePasskeysSupported: Boolean = true,
     signalLogin: AccountSettingsState.SignalLogin? = null,
     dialog: Dialog = Dialog.None
   ): AccountSettingsState {
@@ -574,6 +586,7 @@ class AccountSettingsScreenTest {
       clientDeprecated = clientDeprecated,
       canTransferWhileUnregistered = canTransferWhileUnregistered,
       isPhoneNumberless = isPhoneNumberless,
+      arePasskeysSupported = arePasskeysSupported,
       signalLogin = signalLogin,
       dialog = dialog
     )

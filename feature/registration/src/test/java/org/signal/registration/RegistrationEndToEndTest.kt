@@ -74,8 +74,11 @@ import org.signal.network.api.RegistrationApiV2.RegistrationLockResponse
 import org.signal.network.api.RegistrationApiV2.RestoreMethod
 import org.signal.network.api.RegistrationApiV2.SvrCredentials
 import org.signal.network.api.RegistrationApiV2.UpdateSessionError
+import org.signal.network.api.RegistrationApiV2.WebAuthnAuthenticationParameters
 import org.signal.passwordmanager.CredentialManagerResult
+import org.signal.passwordmanager.PasskeyAssertionResult
 import org.signal.passwordmanager.SignalCredentialManager
+import org.signal.passwordmanager.SignalPasskeyManager
 import org.signal.passwordmanager.UsernamePasswordCredential
 import org.signal.registration.NetworkController.MasterKeyResponse
 import org.signal.registration.NetworkController.ProvisioningEvent
@@ -112,6 +115,7 @@ class RegistrationEndToEndTest {
     private const val PHONE_NUMBER = "5550123456"
     private const val E164 = "+1$PHONE_NUMBER"
     private const val VERIFICATION_CODE = FakeNetworkController.DEFAULT_VERIFICATION_CODE
+    private const val WEBAUTHN_RELYING_PARTY_ID = "login.signal.org"
     private const val PIN = "9182"
     private const val USERNAME = "signaluser"
     private const val WAIT_TIMEOUT_MS = 30_000L
@@ -143,6 +147,21 @@ class RegistrationEndToEndTest {
     storageController = FakeStorageController()
     purchaseApi = FakeOneTimePurchaseApi()
     repository = RegistrationRepository(context, networkController, storageController, isLinkAndSyncAvailable = false, signalLoginPurchaseApi = OneTimePurchaseApi.Empty)
+
+    RegistrationDependencies.provide(
+      RegistrationDependencies(
+        networkController = networkController,
+        storageController = storageController,
+        isLinkAndSyncAvailable = false,
+        isPhoneNumberlessRegistrationAvailable = true,
+        isGooglePlayBillingAvailable = true,
+        webAuthnRelyingPartyId = WEBAUTHN_RELYING_PARTY_ID,
+        sensitiveLogger = null,
+        debugLogCallback = null,
+        proxyConfigCallback = null,
+        contactSupportController = null
+      )
+    )
   }
 
   @After
@@ -2182,6 +2201,34 @@ class RegistrationEndToEndTest {
   }
 
   @Test
+  fun `a signal login that needs two-factor authentication is completed with a passkey`() {
+    enableSignalLoginRegistration()
+    val assertionJson = "{\"response\":{\"signature\":\"c2ln\"}}"
+    val login = signalLoginFor(reregistration = false, requiredWebAuthn = true)
+
+    mockkObject(SignalPasskeyManager)
+    coEvery { SignalPasskeyManager.getPasskeyAssertion(any(), any(), any(), any(), any()) } returns PasskeyAssertionResult.Success(assertionJson)
+
+    var registrationComplete = false
+    launchRegistrationFlow(onRegistrationComplete = { registrationComplete = true })
+
+    startSignalLoginRegistration()
+    useExistingSignalLogin()
+    enterSignalLogin(login)
+
+    // A passkey needs the provider's sheet, so the ceremony is started from the selection screen rather than skipped
+    waitForTag(TestTags.TWO_FACTOR_SELECTION_PASSKEY_OPTION)
+    composeTestRule.onNodeWithTag(TestTags.TWO_FACTOR_SELECTION_PASSKEY_OPTION).performClick()
+
+    waitFor("registration to complete") { registrationComplete }
+
+    assert(networkController.lastRegisterAccountRequest?.webAuthnResponse == assertionJson) {
+      "Expected the assertion to be sent with the login but was ${networkController.lastRegisterAccountRequest}"
+    }
+    assert(storageController.committedData?.accountData?.e164 == null) { "Expected an account with no phone number" }
+  }
+
+  @Test
   fun `a reglocked signal login account is unlocked with the reglock derived from the entered recovery key`() {
     enableSignalLoginRegistration()
     val login = signalLoginFor(reregistration = false, registrationLocked = true)
@@ -2296,11 +2343,13 @@ class RegistrationEndToEndTest {
    *
    * @param reregistration Whether the service reports the login as reclaiming an account that already existed.
    * @param requiredTotp When set, the login is only accepted alongside this two-factor code.
+   * @param requiredWebAuthn When set, the login is only accepted alongside a passkey assertion.
    * @param registrationLocked Whether the account is registration locked until the reglock derived from the recovery key is provided.
    */
   private fun signalLoginFor(
     reregistration: Boolean,
     requiredTotp: Int? = null,
+    requiredWebAuthn: Boolean = false,
     registrationLocked: Boolean = false
   ): SignalLogin {
     val login = SignalLogin(ACI.from(UUID.randomUUID()), AccountEntropyPool.generate())
@@ -2313,6 +2362,20 @@ class RegistrationEndToEndTest {
         }
         requiredTotp != null && request.totp != requiredTotp -> {
           RequestResult.NonSuccess(RegisterAccountError.TwoFactorRequired(MfaFailureResponse(hasTotpKey = true)))
+        }
+        requiredWebAuthn && request.webAuthnResponse == null -> {
+          RequestResult.NonSuccess(
+            RegisterAccountError.TwoFactorRequired(
+              MfaFailureResponse(
+                hasTotpKey = false,
+                webAuthnParameters = WebAuthnAuthenticationParameters(
+                  challenge = byteArrayOf(1, 2, 3),
+                  timeoutSeconds = 60,
+                  allowedCredentialIds = listOf(byteArrayOf(4, 5, 6))
+                )
+              )
+            )
+          )
         }
         registrationLocked && request.registrationLock != masterKey.deriveRegistrationLock() -> {
           RequestResult.NonSuccess(

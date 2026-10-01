@@ -21,6 +21,7 @@ dependencies {
   lintChecks(project(":lintchecks"))
 
   // Project dependencies
+  api(project(":lib:password-manager"))
   api(project(":lib:ui-components"))
   implementation(project(":core:ui"))
   implementation(project(":core:util"))

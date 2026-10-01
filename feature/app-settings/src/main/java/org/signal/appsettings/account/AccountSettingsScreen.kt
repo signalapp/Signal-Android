@@ -156,7 +156,7 @@ fun AccountSettingsScreen(
         }
 
         item {
-          SetUpTwoFactorRow(onEvent = onEvent)
+          SetUpTwoFactorRow(arePasskeysSupported = state.arePasskeysSupported, onEvent = onEvent)
         }
 
         when (state.signalLogin.loadState) {
@@ -388,6 +388,7 @@ private val MENU_ITEM_EXTRA_ICON_GAP = 4.dp
 /** The row that starts adding a second factor, which offers a choice of what to add. */
 @Composable
 private fun SetUpTwoFactorRow(
+  arePasskeysSupported: Boolean,
   onEvent: (AccountSettingsEvent) -> Unit,
   modifier: Modifier = Modifier
 ) {
@@ -426,27 +427,29 @@ private fun SetUpTwoFactorRow(
         modifier = Modifier.testTag(AccountSettingsTestTags.MENU_ITEM_AUTHENTICATOR_APP)
       )
 
-      DropdownMenus.Item(
-        contentPadding = TWO_LINE_MENU_ITEM_PADDING,
-        leadingIconResId = CoreUiR.drawable.symbol_key_24,
-        leadingIconSpacing = MENU_ITEM_EXTRA_ICON_GAP,
-        text = {
-          Column {
-            Text(text = stringResource(R.string.AccountSettingsFragment__passkey))
+      if (arePasskeysSupported) {
+        DropdownMenus.Item(
+          contentPadding = TWO_LINE_MENU_ITEM_PADDING,
+          leadingIconResId = CoreUiR.drawable.symbol_key_24,
+          leadingIconSpacing = MENU_ITEM_EXTRA_ICON_GAP,
+          text = {
+            Column {
+              Text(text = stringResource(R.string.AccountSettingsFragment__passkey))
 
-            Text(
-              text = stringResource(R.string.AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock),
-              style = MaterialTheme.typography.bodySmall,
-              color = MaterialTheme.colorScheme.onSurfaceVariant
-            )
-          }
-        },
-        onClick = {
-          onEvent(AccountSettingsEvent.AddPasskeyClicked)
-          controller.hide()
-        },
-        modifier = Modifier.testTag(AccountSettingsTestTags.MENU_ITEM_PASSKEY)
-      )
+              Text(
+                text = stringResource(R.string.AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+              )
+            }
+          },
+          onClick = {
+            onEvent(AccountSettingsEvent.AddPasskeyClicked)
+            controller.hide()
+          },
+          modifier = Modifier.testTag(AccountSettingsTestTags.MENU_ITEM_PASSKEY)
+        )
+      }
     }
   }
 }

@@ -14,6 +14,7 @@ data class AccountSettingsState(
   val clientDeprecated: Boolean = false,
   val canTransferWhileUnregistered: Boolean = true,
   val isPhoneNumberless: Boolean = false,
+  val arePasskeysSupported: Boolean = false,
   val signalLogin: SignalLogin? = null,
   val dialog: Dialog = Dialog.None
 ) {

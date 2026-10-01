@@ -63,7 +63,7 @@
     <!-- Description of the passkey menu option -->
     <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">Use your fingerprint, face, or screen lock</string>
     <!-- Default name given to a passkey before the user chooses one -->
-    <string name="PasskeyRepository__passkey">Passkey</string>
+    <string name="AccountSettingsRepository__passkey">Passkey</string>
     <!-- Name given to a second factor added by a newer version of Signal that this one doesn\'t recognize -->
     <string name="AccountSettingsFragment__two_factor_method">Two-factor method</string>
     <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->

@@ -191,6 +191,7 @@ object TestTags {
   const val TWO_FACTOR_SELECTION_PASSKEY_OPTION = "two_factor_selection_passkey_option"
   const val TWO_FACTOR_SELECTION_AUTHENTICATOR_APP_OPTION = "two_factor_selection_authenticator_app_option"
   const val TWO_FACTOR_SELECTION_CANCEL_BUTTON = "two_factor_selection_cancel_button"
+  const val TWO_FACTOR_SELECTION_PASSKEY_ERROR_DIALOG = "two_factor_selection_passkey_error_dialog"
 
   // Remote Backup Restore Screen
   const val REMOTE_BACKUP_RESTORE_SCREEN = "remote_backup_restore_screen"

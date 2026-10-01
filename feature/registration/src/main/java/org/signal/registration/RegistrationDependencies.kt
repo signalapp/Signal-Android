@@ -18,6 +18,8 @@ import org.signal.registration.util.SensitiveLog
  *   account that has no phone number.
  * @param isGooglePlayBillingAvailable Whether this build can use Google Play billing at all, which buying a Signal
  *   Login requires.
+ * @param webAuthnRelyingPartyId The domain the account's passkeys are scoped to. It has to be a domain this app is
+ *   listed under in a digital asset links file, or the platform will refuse to run a ceremony for it.
  * @param sensitiveLogger A logger for logging sensitive material. The intention is this would only be used in the demo app for testing + debugging, while
  *   the actual app would just pass null.
  * @param debugLogCallback Callback to launch the debug log viewer. The actual app provides the real implementation.
@@ -30,6 +32,7 @@ class RegistrationDependencies(
   val isLinkAndSyncAvailable: Boolean,
   val isPhoneNumberlessRegistrationAvailable: Boolean,
   val isGooglePlayBillingAvailable: Boolean,
+  val webAuthnRelyingPartyId: String,
   val sensitiveLogger: Log.Logger?,
   val debugLogCallback: ((Context) -> Unit)?,
   val proxyConfigCallback: ((Context) -> Unit)?,

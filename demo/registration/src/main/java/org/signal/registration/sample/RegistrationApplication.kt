@@ -45,6 +45,9 @@ class RegistrationApplication : Application() {
     // Staging SVR2 mrEnclave value
     private const val SVR2_MRENCLAVE = "97f151f6ed078edbbfd72fa9cae694dcc08353f1f5e8d9ccd79a971b10ffc535"
 
+    /** The demo app isn't listed in the relying party's asset links, so passkey ceremonies fail here by design. */
+    private const val WEBAUTHN_RP_ID = "login.signal.org"
+
     lateinit var serviceConfiguration: SignalServiceConfiguration
       private set
   }
@@ -70,6 +73,7 @@ class RegistrationApplication : Application() {
       RegistrationDependencies(
         networkController = networkController,
         storageController = storageController,
+        webAuthnRelyingPartyId = WEBAUTHN_RP_ID,
         sensitiveLogger = LogLogger,
         debugLogCallback = {},
         proxyConfigCallback = { context ->

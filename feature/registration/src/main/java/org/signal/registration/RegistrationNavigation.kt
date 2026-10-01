@@ -52,6 +52,7 @@ import kotlinx.serialization.Serializable
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.ui.compose.CollectActions
 import org.signal.core.ui.navigation.ResultEffect
+import org.signal.core.ui.navigation.ResultEventBus
 import org.signal.core.ui.navigation.TransitionSpecs
 import org.signal.core.util.LinkActions
 import org.signal.core.util.LinkActions.OpenUrlError
@@ -59,10 +60,13 @@ import org.signal.core.util.Result
 import org.signal.core.util.Util
 import org.signal.core.util.billing.OneTimePurchaseResult
 import org.signal.core.util.censor
+import org.signal.core.util.logging.Log
 import org.signal.core.util.serialization.AccountEntropyPoolSerializer
 import org.signal.network.api.RegistrationApiV2.SessionMetadata
 import org.signal.network.api.RegistrationApiV2.SvrCredentials
+import org.signal.passwordmanager.PasskeyAssertionResult
 import org.signal.passwordmanager.SignalCredentialManager
+import org.signal.passwordmanager.SignalPasskeyManager
 import org.signal.registration.screens.accountlocked.AccountLockedScreen
 import org.signal.registration.screens.accountlocked.AccountLockedScreenEvents
 import org.signal.registration.screens.accountlocked.AccountLockedState
@@ -143,7 +147,9 @@ import org.signal.registration.screens.totpentry.TotpEntryViewModel
 import org.signal.registration.screens.twofactorselection.TwoFactorMethod
 import org.signal.registration.screens.twofactorselection.TwoFactorSelectionAction
 import org.signal.registration.screens.twofactorselection.TwoFactorSelectionScreen
+import org.signal.registration.screens.twofactorselection.TwoFactorSelectionScreenEvents
 import org.signal.registration.screens.twofactorselection.TwoFactorSelectionViewModel
+import org.signal.registration.screens.twofactorselection.WebAuthnParameters
 import org.signal.registration.screens.util.navigateBack
 import org.signal.registration.screens.util.navigateTo
 import org.signal.registration.screens.verificationcode.VerificationCodeScreen
@@ -399,31 +405,9 @@ private const val BACKUP_CREDENTIAL_RESULT = "backup_credential_result"
 private const val AEP_FOR_LOCAL_BACKUP_RESULT = "aep_for_local_backup_result"
 private const val LOCAL_BACKUP_RESTORE_RESULT = "local_backup_restore_result"
 private const val TWO_FACTOR_CODE_RESULT = "two_factor_code_result"
+private const val PASSKEY_ASSERTION_RESULT = "passkey_assertion_result"
 
-/** Opens [url] in a browser, surfacing a toast if the device has none. */
-private fun openUrl(context: Context, url: String) {
-  LinkActions.openUrl(context, url) { error ->
-    when (error) {
-      OpenUrlError.NoBrowserFound -> Toast.makeText(context, R.string.LinkActions_error_no_browser_found, Toast.LENGTH_SHORT).show()
-    }
-  }
-}
-
-/** Opens the Play Store app so the user can sign into it, falling back to the web store when it is not installed. */
-private fun openPlayStore(context: Context) {
-  val intent = Intent(Intent.ACTION_VIEW, "market://details?id=com.android.vending".toUri()).apply {
-    setPackage("com.android.vending")
-    if (context !is Activity) {
-      addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-    }
-  }
-
-  try {
-    context.startActivity(intent)
-  } catch (_: ActivityNotFoundException) {
-    openUrl(context, "https://play.google.com/store/apps/")
-  }
-}
+private const val TAG = "RegistrationNavigation"
 
 /**
  * Sets up the navigation graph for the registration flow using Navigation 3.
@@ -900,15 +884,16 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
 
   // -- Signal Login Credential Entry Screen
   entry<RegistrationRoute.SignalLoginCredentialEntry> { key ->
+    val context = LocalContext.current
     val viewModel: SignalLoginCredentialEntryViewModel = viewModel {
       SignalLoginCredentialEntryViewModel(
         repository = registrationRepository,
         parentEventEmitter = registrationViewModel::onEvent,
+        arePasskeysSupported = SignalPasskeyManager.isSupported(context),
         prefilledAccountId = key.prefilledAccountId
       )
     }
     val state by viewModel.state.collectAsStateWithLifecycle()
-    val context = LocalContext.current
     CollectActions(viewModel.actions) { action ->
       when (action) {
         SignalLoginCredentialEntryScreenActions.OpenNeedHelpArticle -> openUrl(context, "https://support.signal.org/hc/articles/11197884108826")
@@ -917,6 +902,10 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
 
     ResultEffect<String>(registrationViewModel.resultBus, TWO_FACTOR_CODE_RESULT) { code ->
       viewModel.onEvent(SignalLoginCredentialEntryScreenEvents.TwoFactorCodeEntered(code))
+    }
+
+    ResultEffect<String>(registrationViewModel.resultBus, PASSKEY_ASSERTION_RESULT) { responseJson ->
+      viewModel.onEvent(SignalLoginCredentialEntryScreenEvents.PasskeyAssertionReceived(responseJson))
     }
 
     SignalLoginCredentialEntryScreen(
@@ -934,9 +923,28 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
       )
     }
     val state by viewModel.state.collectAsStateWithLifecycle()
+    val activity = LocalActivity.current
+    val scope = rememberCoroutineScope()
+
     CollectActions(viewModel.actions) { action ->
       when (action) {
-        is TwoFactorSelectionAction.AuthenticateWithPasskey -> error("Passkeys are not offered as a two-factor method yet.")
+        is TwoFactorSelectionAction.AuthenticateWithPasskey -> {
+          if (activity == null) {
+            Log.w(TAG, "[TwoFactorSelection] No activity to show the passkey provider's sheet on. Leaving the user on the selection screen.")
+            viewModel.onEvent(TwoFactorSelectionScreenEvents.PasskeyCeremonyFailed)
+          } else {
+            scope.launch {
+              runPasskeyAssertion(
+                activityContext = activity,
+                relyingPartyId = RegistrationDependencies.get().webAuthnRelyingPartyId,
+                parameters = action.parameters,
+                resultBus = registrationViewModel.resultBus,
+                parentEventEmitter = parentEventEmitter,
+                onCeremonyFailed = { viewModel.onEvent(TwoFactorSelectionScreenEvents.PasskeyCeremonyFailed) }
+              )
+            }
+          }
+        }
       }
     }
 
@@ -1313,5 +1321,70 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
     LaunchedEffect(Unit) {
       onRegistrationComplete()
     }
+  }
+}
+
+/**
+ * Runs a WebAuthn assertion and, if the user sees it through, hands the result to the login screen that bounced them
+ * here. A ceremony that produces nothing leaves them on the selection screen to pick again, and [onCeremonyFailed] is
+ * called for the outcomes they didn't choose so the screen can say something went wrong.
+ */
+private suspend fun runPasskeyAssertion(
+  activityContext: Context,
+  relyingPartyId: String,
+  parameters: WebAuthnParameters,
+  resultBus: ResultEventBus,
+  parentEventEmitter: (RegistrationFlowEvent) -> Unit,
+  onCeremonyFailed: () -> Unit
+) {
+  val result = SignalPasskeyManager.getPasskeyAssertion(
+    activityContext = activityContext,
+    rpId = relyingPartyId,
+    challenge = parameters.challenge,
+    timeoutSeconds = parameters.timeoutSeconds,
+    allowedCredentialIds = parameters.allowedCredentialIds
+  )
+
+  when (result) {
+    is PasskeyAssertionResult.Success -> {
+      resultBus.sendResult(PASSKEY_ASSERTION_RESULT, result.responseJson)
+      parentEventEmitter(RegistrationFlowEvent.NavigateBackToScreen(RegistrationRoute.SignalLoginCredentialEntry()))
+    }
+    PasskeyAssertionResult.UserCanceled -> {
+      Log.i(TAG, "[Passkey] The user backed out of the provider's sheet.")
+    }
+    PasskeyAssertionResult.NoCredentialAvailable -> {
+      Log.w(TAG, "[Passkey] This device holds none of the account's passkeys.")
+      onCeremonyFailed()
+    }
+    PasskeyAssertionResult.CeremonyFailed -> {
+      Log.w(TAG, "[Passkey] The assertion ceremony produced nothing usable.")
+      onCeremonyFailed()
+    }
+  }
+}
+
+/** Opens [url] in a browser, surfacing a toast if the device has none. */
+private fun openUrl(context: Context, url: String) {
+  LinkActions.openUrl(context, url) { error ->
+    when (error) {
+      OpenUrlError.NoBrowserFound -> Toast.makeText(context, R.string.LinkActions_error_no_browser_found, Toast.LENGTH_SHORT).show()
+    }
+  }
+}
+
+/** Opens the Play Store app so the user can sign into it, falling back to the web store when it is not installed. */
+private fun openPlayStore(context: Context) {
+  val intent = Intent(Intent.ACTION_VIEW, "market://details?id=com.android.vending".toUri()).apply {
+    setPackage("com.android.vending")
+    if (context !is Activity) {
+      addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+    }
+  }
+
+  try {
+    context.startActivity(intent)
+  } catch (_: ActivityNotFoundException) {
+    openUrl(context, "https://play.google.com/store/apps/")
   }
 }

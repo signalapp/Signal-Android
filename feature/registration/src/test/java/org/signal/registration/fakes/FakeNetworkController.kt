@@ -109,7 +109,7 @@ class FakeNetworkController(
   }
 
   data class UpdateSessionRequest(val sessionId: String?, val pushChallengeToken: String?, val captchaToken: String?)
-  data class RegisterAccountRequest(val e164: String?, val sessionId: String?, val recoveryPassword: String?, val registrationLock: String?, val aci: ACI? = null, val pniPreKeys: PreKeyCollection? = null, val pniRegistrationId: Int? = null, val receiptCredentialPresentation: ReceiptCredentialPresentation? = null, val totp: Int? = null)
+  data class RegisterAccountRequest(val e164: String?, val sessionId: String?, val recoveryPassword: String?, val registrationLock: String?, val aci: ACI? = null, val pniPreKeys: PreKeyCollection? = null, val pniRegistrationId: Int? = null, val receiptCredentialPresentation: ReceiptCredentialPresentation? = null, val totp: Int? = null, val webAuthnResponse: String? = null)
   data class SetPinRequest(val pin: String, val masterKey: MasterKey)
   data class RestoreMasterKeyRequest(val svrCredentials: SvrCredentials, val pin: String)
   data class SetRestoreMethodRequest(val token: String, val method: RestoreMethod)
@@ -375,9 +375,10 @@ class FakeNetworkController(
     fcmToken: String?,
     skipDeviceTransfer: Boolean,
     aci: ACI?,
-    totp: Int?
+    totp: Int?,
+    webAuthnResponse: String?
   ): RequestResult<RegisterAccountResponse, RegisterAccountError> {
-    val request = RegisterAccountRequest(e164, sessionId, recoveryPassword, attributes.registrationLock, aci, pniPreKeys, attributes.pniRegistrationId, receiptCredentialPresentation, totp)
+    val request = RegisterAccountRequest(e164, sessionId, recoveryPassword, attributes.registrationLock, aci, pniPreKeys, attributes.pniRegistrationId, receiptCredentialPresentation, totp, webAuthnResponse)
     lastRegisterAccountRequest = request
     return onRegisterAccount(request)
   }

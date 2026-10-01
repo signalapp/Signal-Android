@@ -26,6 +26,9 @@ import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.MfaKeyKind
 import org.signal.libsignal.net.RequestResult
 import org.signal.network.service.TwoFactorMethodService
+import org.signal.passwordmanager.PasskeyCreationResult
+import org.thoughtcrime.securesms.components.settings.app.account.AccountSettingsRepository.FinishPasskeyRegistrationResult
+import org.thoughtcrime.securesms.components.settings.app.account.AccountSettingsRepository.StartPasskeyRegistrationResult
 import org.thoughtcrime.securesms.lock.v2.PinKeyboardType
 import org.thoughtcrime.securesms.lock.v2.SvrConstants
 import org.thoughtcrime.securesms.net.SignalNetwork
@@ -36,7 +39,8 @@ import org.signal.network.service.TwoFactorMethodService.TwoFactorMethod as Serv
  * deletion all live.
  */
 class AccountSettingsViewModel(
-  private val repository: AccountSettingsRepository = AccountSettingsRepository(),
+  private val accountRepository: AccountSettingsRepository,
+  arePasskeysSupported: Boolean,
   private val twoFactorMethodService: TwoFactorMethodService = SignalNetwork.twoFactorMethodService
 ) : EventDrivenViewModel<AccountSettingsEvent>(TAG, shouldLogEvents = true) {
 
@@ -44,7 +48,7 @@ class AccountSettingsViewModel(
     private val TAG = Log.tag(AccountSettingsViewModel::class)
   }
 
-  private val _state = MutableStateFlow(AccountSettingsState())
+  private val _state = MutableStateFlow(AccountSettingsState(arePasskeysSupported = arePasskeysSupported))
   private val _actions = Channel<AccountSettingsAction>(Channel.BUFFERED)
 
   val state: StateFlow<AccountSettingsState> = _state.asStateFlow()
@@ -97,7 +101,10 @@ class AccountSettingsViewModel(
         applyAddTotpAppClicked()
       }
       AccountSettingsEvent.AddPasskeyClicked -> {
-        Log.w(TAG, "Passkey creation isn't implemented yet.")
+        applyAddPasskeyClicked()
+      }
+      is AccountSettingsEvent.PasskeyCeremonyCompleted -> {
+        applyPasskeyCeremonyCompleted(event.result)
       }
       is AccountSettingsEvent.LearnMoreClicked -> {
         _actions.send(AccountSettingsAction.OpenSupportArticle(event.url))
@@ -159,10 +166,10 @@ class AccountSettingsViewModel(
 
   private suspend fun applyPinRemindersToggled(enabled: Boolean) {
     if (enabled) {
-      repository.setPinRemindersEnabled(true)
+      accountRepository.setPinRemindersEnabled(true)
       refresh()
     } else {
-      val keyboardType = repository.getPinKeyboardType()
+      val keyboardType = accountRepository.getPinKeyboardType()
       _state.update { it.copy(dialog = Dialog.ConfirmPinToDisableReminders(isAlphanumericKeyboard = keyboardType == PinKeyboardType.ALPHA_NUMERIC)) }
     }
   }
@@ -170,8 +177,8 @@ class AccountSettingsViewModel(
   private suspend fun applyDisablePinRemindersConfirmed() {
     val dialog = _state.value.dialog as? Dialog.ConfirmPinToDisableReminders ?: return
 
-    if (repository.verifyLocalPin(dialog.pin)) {
-      repository.setPinRemindersEnabled(false)
+    if (accountRepository.verifyLocalPin(dialog.pin)) {
+      accountRepository.setPinRemindersEnabled(false)
       _state.update { it.copy(dialog = Dialog.None) }
       refresh()
     } else {
@@ -183,7 +190,7 @@ class AccountSettingsViewModel(
     val dialog = _state.value.dialog as? Dialog.ConfirmRegistrationLock ?: return
 
     _state.update { it.copy(dialog = dialog.copy(inProgress = true)) }
-    val success = repository.setRegistrationLockEnabled(dialog.enable)
+    val success = accountRepository.setRegistrationLockEnabled(dialog.enable)
     _state.update { it.copy(dialog = Dialog.None) }
     refresh()
 
@@ -204,6 +211,80 @@ class AccountSettingsViewModel(
       signalLogin?.atMaxTotpApps == true -> _state.update { it.copy(dialog = Dialog.MaxTotpAppsReached) }
       signalLogin?.atMaxTwoFactorMethods == true -> _state.update { it.copy(dialog = Dialog.MaxTwoFactorMethodsReached) }
       else -> _actions.send(AccountSettingsAction.NavigateToTotpSetup)
+    }
+  }
+
+  /**
+   * Starts the ceremony, but we need to show an activity, so we send out an action for the UI to do the next step and send back the results as an event.
+   */
+  private suspend fun applyAddPasskeyClicked() {
+    val signalLogin = _state.value.signalLogin
+    if (signalLogin?.atMaxTwoFactorMethods == true) {
+      _state.update { it.copy(dialog = Dialog.MaxTwoFactorMethodsReached) }
+      return
+    }
+
+    _state.update { it.copy(dialog = Dialog.PasskeyInProgress) }
+
+    when (val result = accountRepository.startPasskeyRegistration()) {
+      is StartPasskeyRegistrationResult.Success -> {
+        _actions.send(AccountSettingsAction.CreatePasskey(result.parameters))
+      }
+      StartPasskeyRegistrationResult.TooManyMethods -> {
+        _state.update { it.copy(dialog = Dialog.MaxTwoFactorMethodsReached) }
+      }
+      StartPasskeyRegistrationResult.NetworkFailure -> {
+        _state.update { it.copy(dialog = Dialog.None) }
+        _actions.send(AccountSettingsAction.ShowPasskeyCreationFailed)
+      }
+    }
+  }
+
+  private suspend fun applyPasskeyCeremonyCompleted(result: PasskeyCreationResult) {
+    when (result) {
+      is PasskeyCreationResult.Success -> {
+        registerNewPasskey(result)
+      }
+      PasskeyCreationResult.UserCanceled -> {
+        _state.update { it.copy(dialog = Dialog.None) }
+        Log.i(TAG, "The user backed out of the passkey provider's sheet.")
+      }
+      PasskeyCreationResult.NoProviderAvailable -> {
+        _state.update { it.copy(dialog = Dialog.None) }
+        _actions.send(AccountSettingsAction.ShowNoPasskeyProvider)
+      }
+      PasskeyCreationResult.CeremonyFailed -> {
+        _state.update { it.copy(dialog = Dialog.None) }
+        _actions.send(AccountSettingsAction.ShowPasskeyCreationFailed)
+      }
+    }
+  }
+
+  /** Hands the completed ceremony to the service, which is what actually puts the passkey on the account. */
+  private suspend fun registerNewPasskey(ceremony: PasskeyCreationResult.Success) {
+    val result = accountRepository.finishPasskeyRegistration(
+      attestationObject = ceremony.attestationObject,
+      collectedClientDataJson = ceremony.collectedClientDataJson
+    )
+
+    when (result) {
+      is FinishPasskeyRegistrationResult.Success -> {
+        _state.update { it.copy(dialog = Dialog.None) }
+        refreshTwoFactorMethods()
+        _actions.send(
+          AccountSettingsAction.NavigateToNameNewPasskey(
+            TwoFactorMethod(id = result.passkeyId, kind = TwoFactorMethod.Kind.PASSKEY, name = null, createdAt = result.createdAt)
+          )
+        )
+      }
+      FinishPasskeyRegistrationResult.TooManyMethods -> {
+        _state.update { it.copy(dialog = Dialog.MaxTwoFactorMethodsReached) }
+      }
+      FinishPasskeyRegistrationResult.CeremonyRejected,
+      FinishPasskeyRegistrationResult.NetworkFailure -> {
+        _state.update { it.copy(dialog = Dialog.None) }
+        _actions.send(AccountSettingsAction.ShowPasskeyCreationFailed)
+      }
     }
   }
 
@@ -229,19 +310,19 @@ class AccountSettingsViewModel(
   }
 
   private suspend fun refresh() {
-    val isPhoneNumberless = repository.isPhoneNumberless()
+    val isPhoneNumberless = accountRepository.isPhoneNumberless()
 
     _state.update {
       it.copy(
-        hasPin = repository.hasPin(),
-        hasRestoredAep = repository.hasRestoredAep(),
-        pinRemindersEnabled = repository.arePinRemindersEnabled(),
-        registrationLockEnabled = repository.isRegistrationLockEnabled(),
-        userUnregistered = repository.isUserUnregistered(),
-        clientDeprecated = repository.isClientDeprecated(),
+        hasPin = accountRepository.hasPin(),
+        hasRestoredAep = accountRepository.hasRestoredAep(),
+        pinRemindersEnabled = accountRepository.arePinRemindersEnabled(),
+        registrationLockEnabled = accountRepository.isRegistrationLockEnabled(),
+        userUnregistered = accountRepository.isUserUnregistered(),
+        clientDeprecated = accountRepository.isClientDeprecated(),
         isPhoneNumberless = isPhoneNumberless,
         // Held onto across refreshes so a resume doesn't drop the list back to its loading state.
-        signalLogin = if (isPhoneNumberless) it.signalLogin ?: SignalLogin(maxTotpApps = repository.getMaxTotpApps(), maxTwoFactorMethods = repository.getMaxTwoFactorMethods()) else null
+        signalLogin = if (isPhoneNumberless) it.signalLogin ?: SignalLogin(maxTotpApps = accountRepository.getMaxTotpApps(), maxTwoFactorMethods = accountRepository.getMaxTwoFactorMethods()) else null
       )
     }
 
@@ -251,7 +332,7 @@ class AccountSettingsViewModel(
   }
 
   private suspend fun refreshTwoFactorMethods() {
-    val (methods, loadState) = when (val result = twoFactorMethodService.getMethods(repository.masterKey())) {
+    val (methods, loadState) = when (val result = twoFactorMethodService.getMethods(accountRepository.masterKey())) {
       is RequestResult.Success -> result.result.map { it.toTwoFactorMethod() }.sortedBy { it.kind.sortRank() } to LoadState.LOADED
       is RequestResult.RetryableNetworkError, is RequestResult.ApplicationError -> {
         Log.w(TAG, "Couldn't reach the service to list the account's second factors.")

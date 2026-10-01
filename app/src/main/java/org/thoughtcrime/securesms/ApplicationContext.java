@@ -441,6 +441,7 @@ public class ApplicationContext extends Application implements AppForegroundObse
         Environment.IS_LINK_AND_SYNC_AVAILABLE,
         Environment.PHONENUMBERLESS_REGISTRATION,
         Environment.supportsGooglePlayBilling(),
+        BuildConfig.WEBAUTHN_RP_ID,
         null,
         context -> {
           context.startActivity(new Intent(context, SubmitDebugLogActivity.class));
