@@ -99,14 +99,18 @@ object SystemContactsRepository {
     ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
     ContactsContract.CommonDataKinds.Phone.LABEL,
     ContactsContract.CommonDataKinds.Phone.PHOTO_URI,
-    ContactsContract.CommonDataKinds.Phone._ID,
+    ContactsContract.CommonDataKinds.Phone.CONTACT_ID,
     ContactsContract.CommonDataKinds.Phone.LOOKUP_KEY,
     ContactsContract.CommonDataKinds.Phone.TYPE,
     ContactsContract.CommonDataKinds.StructuredName.GIVEN_NAME,
     ContactsContract.CommonDataKinds.StructuredName.FAMILY_NAME
   )
 
-  /** Groups each contact's rows together, phones before names, latest first. See [CursorContactIterator]. */
+  /**
+   * Groups each contact's rows together, phones before names, latest first, so the latest row wins
+   * any tie a [ContactDataReader] breaks. Sorting needs no column from the projection. See
+   * [CursorContactIterator].
+   */
   private val CONTACT_DATA_ORDER = "${ContactsContract.CommonDataKinds.Phone.LOOKUP_KEY} ASC, ${ContactsContract.Data.MIMETYPE} DESC, ${ContactsContract.CommonDataKinds.Phone._ID} DESC"
 
   /**
@@ -337,9 +341,9 @@ object SystemContactsRepository {
   /**
    * Pulls the lookup key out of a contact lookup URI.
    *
-   * Note this reads the segment after "lookup" rather than the last segment. [ContactDataReader] builds
-   * these URIs with a Data row id in the trailing position instead of a contact id, so the trailing
-   * segment cannot be trusted, while the lookup key is both correct and stable across contact edits.
+   * Note this reads the segment after "lookup" rather than the last segment. Older stored URIs carry a
+   * Data row id in the trailing position instead of a contact id, so the trailing segment cannot be
+   * trusted, while the lookup key is both correct and stable across contact edits.
    */
   @JvmStatic
   fun lookupKeyFromLookupUri(uri: String?): String? {
@@ -1024,7 +1028,7 @@ object SystemContactsRepository {
 
       if (!displayNumber.isNullOrEmpty() && !formattedNumber.isNullOrEmpty()) {
         phones += ContactPhoneDetails(
-          contactUri = ContactsContract.Contacts.getLookupUri(cursor.requireLong(ContactsContract.CommonDataKinds.Phone._ID), cursor.requireNonNullString(ContactsContract.CommonDataKinds.Phone.LOOKUP_KEY)),
+          contactUri = ContactsContract.Contacts.getLookupUri(cursor.requireLong(ContactsContract.CommonDataKinds.Phone.CONTACT_ID), cursor.requireNonNullString(ContactsContract.CommonDataKinds.Phone.LOOKUP_KEY)),
           displayName = cursor.requireString(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME),
           photoUri = cursor.requireString(ContactsContract.CommonDataKinds.Phone.PHOTO_URI),
           number = formattedNumber,

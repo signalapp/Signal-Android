@@ -51,7 +51,8 @@ class SystemContactsRepositoryTest {
     assertEquals("Anderson", alice.familyName)
     assertEquals(listOf("+15555550101", "+15555550199"), alice.numbers.map { it.number })
     assertEquals(Phone.TYPE_HOME, alice.numbers[0].type)
-    assertEquals("content://com.android.contacts/contacts/lookup/alice/11", alice.numbers[0].contactUri.toString())
+    assertEquals("content://com.android.contacts/contacts/lookup/alice/1", alice.numbers[0].contactUri.toString())
+    assertEquals("Every number of a contact links to the same contact", alice.numbers[0].contactUri, alice.numbers[1].contactUri)
     assertEquals("Alice Anderson", alice.numbers[0].displayName)
 
     val bob = contacts[1]

@@ -3741,7 +3741,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   /**
    * Every registered recipient linked to a system contact, keyed by that contact's lookup key.
    *
-   * The key comes from the uri path, not its last segment, which is a Data row id. Two numbers on
+   * The key comes from the uri path, not its last segment, which older links fill with a Data row id. Two numbers on
    * one contact share a lookup key and are separate Signal accounts, so all of them are kept.
    */
   fun getSystemContactLinksByLookupKey(): Map<String, List<SystemContactLink>> {
