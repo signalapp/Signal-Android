@@ -165,6 +165,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     const val SYSTEM_PHONE_TYPE = "system_phone_type"
     const val SYSTEM_PHONE_E164 = "system_phone_e164"
     const val SYSTEM_CONTACT_URI = "system_contact_uri"
+    const val SYSTEM_CONTACT_LINK_STATE = "system_contact_link_state"
     const val SYSTEM_INFO_PENDING = "system_info_pending"
     const val NOTIFICATION_CHANNEL = "notification_channel"
     const val MESSAGE_RINGTONE = "message_ringtone"
@@ -286,7 +287,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         $UNREAD_REMINDER INTEGER DEFAULT ${NotificationSetting.SYSTEM_DEFAULT.id},
         $SHARED_GIVEN_NAME TEXT DEFAULT NULL,
         $SHARED_FAMILY_NAME TEXT DEFAULT NULL,
-        $SYSTEM_PHONE_E164 TEXT DEFAULT NULL
+        $SYSTEM_PHONE_E164 TEXT DEFAULT NULL,
+        $SYSTEM_CONTACT_LINK_STATE INTEGER DEFAULT ${SystemContactLinkState.NONE.id}
       )
       """
 
@@ -326,6 +328,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       SYSTEM_PHONE_TYPE,
       SYSTEM_PHONE_E164,
       SYSTEM_CONTACT_URI,
+      SYSTEM_CONTACT_LINK_STATE,
       NOTIFICATION_CHANNEL,
       MESSAGE_RINGTONE,
       MESSAGE_VIBRATE,
@@ -4622,6 +4625,17 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     db.delete(TABLE_NAME, ID_WHERE, SqlUtil.buildArgs(secondaryId))
     RemappedRecords.getInstance().addRecipient(secondaryId, primaryId)
 
+    // The system contact fields describe one link, so they all come from the same record: whichever
+    // has the stronger link, and the E164 record when they are equal.
+    val linkStrength = { record: RecipientRecord ->
+      when (record.systemContactLinkState) {
+        SystemContactLinkState.LINKED -> 2
+        SystemContactLinkState.NEEDED -> 1
+        SystemContactLinkState.NONE -> 0
+      }
+    }
+    val systemContactRecord = if (linkStrength(primaryRecord) > linkStrength(secondaryRecord)) primaryRecord else secondaryRecord
+
     val uuidValues = contentValuesOf(
       E164 to (secondaryRecord.e164 ?: primaryRecord.e164),
       ACI_COLUMN to (primaryRecord.aci ?: secondaryRecord.aci)?.toString(),
@@ -4640,14 +4654,15 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       MESSAGE_EXPIRATION_TIME to if (primaryRecord.expireMessages > 0) primaryRecord.expireMessages else secondaryRecord.expireMessages,
       MESSAGE_EXPIRATION_TIME_VERSION to max(primaryRecord.expireTimerVersion, secondaryRecord.expireTimerVersion),
       REGISTERED to RegisteredState.REGISTERED.id,
-      SYSTEM_GIVEN_NAME to secondaryRecord.systemProfileName.givenName,
-      SYSTEM_FAMILY_NAME to secondaryRecord.systemProfileName.familyName,
-      SYSTEM_JOINED_NAME to secondaryRecord.systemProfileName.toString(),
-      SYSTEM_PHOTO_URI to secondaryRecord.systemContactPhotoUri,
-      SYSTEM_PHONE_LABEL to secondaryRecord.systemPhoneLabel,
-      SYSTEM_PHONE_TYPE to secondaryRecord.systemPhoneType,
-      SYSTEM_PHONE_E164 to secondaryRecord.systemPhoneE164,
-      SYSTEM_CONTACT_URI to secondaryRecord.systemContactUri,
+      SYSTEM_GIVEN_NAME to systemContactRecord.systemProfileName.givenName,
+      SYSTEM_FAMILY_NAME to systemContactRecord.systemProfileName.familyName,
+      SYSTEM_JOINED_NAME to systemContactRecord.systemProfileName.toString(),
+      SYSTEM_PHOTO_URI to systemContactRecord.systemContactPhotoUri,
+      SYSTEM_PHONE_LABEL to systemContactRecord.systemPhoneLabel,
+      SYSTEM_PHONE_TYPE to systemContactRecord.systemPhoneType,
+      SYSTEM_PHONE_E164 to systemContactRecord.systemPhoneE164,
+      SYSTEM_CONTACT_URI to systemContactRecord.systemContactUri,
+      SYSTEM_CONTACT_LINK_STATE to systemContactRecord.systemContactLinkState.id,
       PROFILE_SHARING to (primaryRecord.profileSharing || secondaryRecord.profileSharing),
       CAPABILITIES to max(primaryRecord.capabilities.rawBits, secondaryRecord.capabilities.rawBits),
       MENTION_SETTING to if (primaryRecord.mentionSetting != NotificationSetting.ALWAYS_NOTIFY) primaryRecord.mentionSetting.id else secondaryRecord.mentionSetting.id,
@@ -4860,6 +4875,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       SYSTEM_PHONE_TYPE to -1,
       SYSTEM_PHONE_E164 to null,
       SYSTEM_CONTACT_URI to null,
+      SYSTEM_CONTACT_LINK_STATE to SystemContactLinkState.NONE.id,
       SYSTEM_INFO_PENDING to 0,
       NOTIFICATION_CHANNEL to null,
       MESSAGE_RINGTONE to null,
@@ -5070,6 +5086,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         put(SYSTEM_PHONE_TYPE, systemPhoneType)
         put(SYSTEM_PHONE_E164, systemPhoneE164)
         put(SYSTEM_CONTACT_URI, systemContactUri)
+        put(SYSTEM_CONTACT_LINK_STATE, SystemContactLinkState.LINKED.id)
       }
 
       val updateQuery = SqlUtil.buildTrueUpdateQuery("$ID = ? AND $PHONE_NUMBER_DISCOVERABLE != ?", SqlUtil.buildArgs(id, PhoneNumberDiscoverableState.NOT_DISCOVERABLE.id), refreshQualifyingValues)
@@ -5118,7 +5135,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
           $SYSTEM_PHOTO_URI = NULL,
           $SYSTEM_PHONE_LABEL = NULL,
           $SYSTEM_PHONE_E164 = NULL,
-          $SYSTEM_CONTACT_URI = NULL
+          $SYSTEM_CONTACT_URI = NULL,
+          $SYSTEM_CONTACT_LINK_STATE = ${SystemContactLinkState.NONE.id}
         WHERE $SYSTEM_INFO_PENDING = 1
         RETURNING $ID
         """,
@@ -5528,6 +5546,24 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
     companion object {
       fun fromId(id: Int): PhoneNumberSharingState {
+        return entries[id]
+      }
+    }
+  }
+
+  /** Whether a recipient is tied to a system contact. See [SYSTEM_CONTACT_LINK_STATE]. */
+  enum class SystemContactLinkState(val id: Int) {
+    /** Never tied to a system contact. */
+    NONE(0),
+
+    /** Tied to a system contact, which [SYSTEM_CONTACT_URI] points to. */
+    LINKED(1),
+
+    /** Was tied to a system contact and lost it, and the user has not yet linked another. */
+    NEEDED(2);
+
+    companion object {
+      fun fromId(id: Int): SystemContactLinkState {
         return entries[id]
       }
     }

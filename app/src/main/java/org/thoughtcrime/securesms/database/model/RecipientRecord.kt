@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.database.RecipientTable.PhoneNumberDiscoverabl
 import org.thoughtcrime.securesms.database.RecipientTable.PhoneNumberSharingState
 import org.thoughtcrime.securesms.database.RecipientTable.RegisteredState
 import org.thoughtcrime.securesms.database.RecipientTable.SealedSenderAccessMode
+import org.thoughtcrime.securesms.database.RecipientTable.SystemContactLinkState
 import org.thoughtcrime.securesms.database.RecipientTable.VibrateState
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.profiles.ProfileName
@@ -58,6 +59,7 @@ data class RecipientRecord(
   /** The recipient's number as last seen on the linked contact, or null if the contact does not hold it. */
   val systemPhoneE164: String?,
   val systemContactUri: String?,
+  val systemContactLinkState: SystemContactLinkState,
   @get:JvmName("getProfileName")
   val signalProfileName: ProfileName,
   @get:JvmName("getProfileAvatar")

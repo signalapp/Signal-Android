@@ -124,6 +124,7 @@ object RecipientDatabaseTestUtils {
       systemPhoneType = systemPhoneType,
       systemPhoneE164 = systemPhoneE164,
       systemContactUri = systemContactUri,
+      systemContactLinkState = if (systemContactUri != null) RecipientTable.SystemContactLinkState.LINKED else RecipientTable.SystemContactLinkState.NONE,
       signalProfileName = signalProfileName,
       signalProfileAvatar = signalProfileAvatar,
       profileAvatarFileDetails = profileAvatarFileDetails,
