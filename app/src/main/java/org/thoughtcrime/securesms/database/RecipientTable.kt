@@ -4641,6 +4641,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       SYSTEM_JOINED_NAME to secondaryRecord.systemProfileName.toString(),
       SYSTEM_PHOTO_URI to secondaryRecord.systemContactPhotoUri,
       SYSTEM_PHONE_LABEL to secondaryRecord.systemPhoneLabel,
+      SYSTEM_PHONE_TYPE to secondaryRecord.systemPhoneType,
       SYSTEM_CONTACT_URI to secondaryRecord.systemContactUri,
       PROFILE_SHARING to (primaryRecord.profileSharing || secondaryRecord.profileSharing),
       CAPABILITIES to max(primaryRecord.capabilities.rawBits, secondaryRecord.capabilities.rawBits),

@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.database
 
 import android.net.Uri
+import android.provider.ContactsContract
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.util.toOptional
 import org.signal.libsignal.zkgroup.profiles.ExpiringProfileKeyCredential
@@ -53,6 +54,7 @@ object RecipientDatabaseTestUtils {
     systemContactPhoto: String? = null,
     systemPhoneLabel: String? = null,
     systemContactUri: String? = null,
+    systemPhoneType: Int = if (systemContactUri != null) ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE else -1,
     signalProfileName: ProfileName = ProfileName.EMPTY,
     signalProfileAvatar: String? = null,
     profileAvatarFileDetails: ProfileAvatarFileDetails = ProfileAvatarFileDetails.NO_DETAILS,
@@ -116,6 +118,7 @@ object RecipientDatabaseTestUtils {
       systemDisplayName = systemDisplayName,
       systemContactPhotoUri = systemContactPhoto,
       systemPhoneLabel = systemPhoneLabel,
+      systemPhoneType = systemPhoneType,
       systemContactUri = systemContactUri,
       signalProfileName = signalProfileName,
       signalProfileAvatar = signalProfileAvatar,
