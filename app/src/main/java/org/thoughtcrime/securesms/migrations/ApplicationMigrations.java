@@ -286,6 +286,12 @@ public class ApplicationMigrations {
             throw new AssertionError("Received a higher version than the current version? App downgrades are not supported. (received: " + event.getVersion() + ", current: " + CURRENT_VERSION + ")");
           }
 
+          int storedVersion = PlainTextKeyValueStore.getAppMigrationVersion();
+          if (event.getVersion() <= storedVersion) {
+            Log.w(TAG, "Ignoring stale MigrationCompleteEvent for version " + event.getVersion() + ". Already at version " + storedVersion + ".");
+            return;
+          }
+
           Log.i(TAG, "Updating last migration version to " + event.getVersion());
           PlainTextKeyValueStore.setAppMigrationVersion(event.getVersion());
 
